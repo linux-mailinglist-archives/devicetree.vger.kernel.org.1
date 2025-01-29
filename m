@@ -1,353 +1,206 @@
-Return-Path: <devicetree+bounces-141676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D53EBA21EDD
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:15:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01721A21F11
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:26:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46DB71889931
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:12:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33C051882DE1
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2C051487D5;
-	Wed, 29 Jan 2025 14:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AE714BFA2;
+	Wed, 29 Jan 2025 14:26:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PdWseG1g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF412C9D;
-	Wed, 29 Jan 2025 14:12:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA1B29CE8
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 14:26:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738159943; cv=none; b=Wa+HS8/rWObFJdcTuhdMNkZd18JW3Be4NIyOppBy5uoWMc0TGC/coALsbRIagKb+QkO7nTh+9X45yHh0Iko2wTYsYzbMgtylPVQO3EnDUhvAHv8n0r2hCJrJ6sZprJU06VTctlJRraIDxBzploeg2HN/nIUBihiNq6cwcfzMFvw=
+	t=1738160786; cv=none; b=fHPN/4spAWu2Z6HNzBokcQBY0kTG/mx3oqR3jYiWCYq5N0yiyWSJtA2/BL1ymcE3o8RHcHjZ7ZVg6+1PVgDYCU4PgtRPKpZax/nYsfHHh/fx2gHNopNHdz2FnIDHb+v2VgGJCp8fccwtCJ1XFhz06VqO9zLOE9X0sFfA1Zte1co=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738159943; c=relaxed/simple;
-	bh=bP1LpwLMclbJicT0S+HVXQal5TyBbetxTZ51Z7K9Qns=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EfvnmHvMAM9UNLuTDML4iiQbKy34niw67HiQypKPPhT3t5J1gEXLsBzy6E7ErjGTpUTZp4QRv63nzz3H4avwYnWmZ64xtOdfVQso2JRwZrBtQDlZtWdVml14r+67h1U0AWu/XWaTRqkXnEEX5T6FCGN+OpZ9fTH1O/9a5QUXJpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6df83fd01cbso27769676d6.2;
-        Wed, 29 Jan 2025 06:12:21 -0800 (PST)
+	s=arc-20240116; t=1738160786; c=relaxed/simple;
+	bh=upO1szqsGrctpocpedrWQrUbVSGuOGiUp8W6bu7k4Ok=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Cy6yVscNjtRScgBX2/wCgBM//mj3hFdsbW0dQcvC6nlLpAEfW58R8fbfoi1Gy5bS4wBdALN0ewI16+O2HZNhDveVTHvoS4SUJnydW2BK1d14yRBufATfzKlTp45S6mAsvcveUIGJSfX+6gUoxIbvZbOXXkl58wUTW5uZAPfor0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PdWseG1g; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50T8Sgiw012733
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 14:26:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Y90IeSV1c8E1ITAjBf3zASZwIa5fTfZk4/hpGgHosLc=; b=PdWseG1gZStW2kaH
+	gdJA6YppHYoKdzSdkAe7v/IzPNxTa37U9LXXyi1pec6AqJIOn1tWzdF6DDGMla7n
+	4NSW2eC28RcAUDkx2JAhjlcEq2pkvW8okvHYCOcC/CLVtub1y4z/YrY+IuAiELsi
+	ib5/xaRdokjLkYlOs0K4rIpVniXgX19pPjPe/CLa17LZgsWujNYPr4OHPp+ns4LT
+	1luN1IHlPHJ9BZEwKja9BdDojIqWVUknTerZp+GKNnzWm3wZhpljzA6EunWo02ab
+	Nb18AtYaf6vlmVxLaJrH6USNYARMPtUYytxoOnc6cAe+v/8YVdkoAzVQc+jrLJWf
+	cGEHDw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44fguvgmx8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 14:26:23 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-467975f1b53so18913361cf.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 06:26:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738159940; x=1738764740;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=g5Tkcv8gZTgbyp2heRc2wr0p9jGYqFMOo9+Mqf5RFT4=;
-        b=mEGr9ha0fxR+Po0P6hucl7XV1w4doaeAZHfvyQE8aYumiBbdHhYJJZ0xL4w70Kro05
-         gNgvWiUe8hMm92ENGwYhC7y6kHExpknJFIpDW+UNn0L//SPhzPgFW7AAFPuWQGGr8Qfv
-         6mBp7gHjaxXwB9Dr2F1GBfHFGduAWaSoU8mnCnOficBYzv7MB5Mpkg0pUEGlRt+oymp6
-         8byL6XYFAMBPUDCoSZwgJb9iyy1Br0SubBoOWilwfXPQHABPvlT47jPl8crodYLvKOCB
-         V999qEv8fgvIAyN7/MHs/Bud9fQhDKTOPyBjFv6Thx9WJykBcSROwDqqJGJGu7A+QK4d
-         WPIg==
-X-Forwarded-Encrypted: i=1; AJvYcCWq+u/Go29iXHdHMSgVAcJlzoEpZMfO5QMIRhmrvGJOhQJwhIBUwnyYyHnjwD+neZjnXJqm9i64PTaOYkT+@vger.kernel.org, AJvYcCXAROmxHC23kiquI9sFaFAXsFUeRBoHv0EGsomweWxot8aNGassgvFyTgMkCsYoAwlnI4ybAFVGeHrncXs84oz3iaE=@vger.kernel.org, AJvYcCXJCeVSjT/uBYoGF5Z2yEuj0uStuT1g5J+fl5UF6XkE8Jp9ms1wQOeXue/j0Isvu+AYRS+IbdPChV27@vger.kernel.org
-X-Gm-Message-State: AOJu0YztjmIMRW+SrujlwP/wZgrEiR7QwpQkKg15yfHG3NVtPncuqR/N
-	Qvc0mXUhlo6riEuB9cSJeV9bPAmSnTZm8GQzDOmeSJKaUnNww0E0tB9bcaRN
-X-Gm-Gg: ASbGncv80fUsA18TNquyJiwSFw/byz9BDrQqxUwQHd0xfB6Ipj7mmUg/uAPw5quBFw3
-	nBjZQg3IYrec/hqBhI+DECxv7qHuzww5kGdpsWCw1OK5VPj7Z2jrUt71I6nE01lBd8LqfHYgEKR
-	PuzjLWLxkdlAjhrnSNDOyTTR1O2/BHC3o7TG19Vvvh8p0fm4DGg0hRKkxI8hQTACEQAtfIxl/T1
-	beyG2xQi+LUwe2ZpuMvC8C+1jRIS1QdiJwEDzAJVPDOf7vfNRKH1lZ8atKF4LGnEU/KnZGtPPZH
-	LhMeu9j/bEUfj1VvkHgaw46zWOoIXNT1LtDOYWokCJZEQFEnFiaUI5Hn7g==
-X-Google-Smtp-Source: AGHT+IE/6SdaAR9mAGJnJOQaU6s3bhDsAEYQwRcoz0uKgto71AUv0heiLRpPxq9QgFk1oc8QTy9F0w==
-X-Received: by 2002:a05:6214:1d0e:b0:6d8:b189:5419 with SMTP id 6a1803df08f44-6e243b91da4mr57849446d6.8.1738159939772;
-        Wed, 29 Jan 2025 06:12:19 -0800 (PST)
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com. [209.85.160.172])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e2057a88f8sm55894526d6.74.2025.01.29.06.12.19
+        d=1e100.net; s=20230601; t=1738160778; x=1738765578;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y90IeSV1c8E1ITAjBf3zASZwIa5fTfZk4/hpGgHosLc=;
+        b=qr0MU+oDGnO/AWOPXPlKU8kjs6PGszYKoCr4SFI5XKI6D5oU+u1oQeEOAv+fTDNU8C
+         KFxV6/zwQaSSk0oJNJZNqPDOLjZzvc26wox5aMQrfrjU3bsSIoaSKSjmY6xCw0neqP0+
+         zMZCQxvBDwpOIt96hdBuymCphOqrRGpgTkqI2EfrX9OQsrXiogVO1/s9mMFyV1uBMOZr
+         u/Rodi+fNP1/koxzcDG0LCtk7KqBiDRVH+5nEqRbi7JQLfpPJ800CXHuwdZq26Qrm+zp
+         +ijqZAMqKpZ2fFCOpcWu5j7FhDFwiFJzNEPrs6Dk1iFp3z9rxpwP5jIH5cH7DxLMbY0S
+         JttA==
+X-Forwarded-Encrypted: i=1; AJvYcCU9yp4Sd1MH8qvq3Fk6QB+aQs0fCGegfaSx1Vh6NuHiROP9ARuPJ1imTG7U6c6C072V5w2vfKPxz5Gh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSe2fvtPl6jHTK+JNh69fZN5MqF47J5T2B0Q2UQYPksraZ9jaK
+	XD6UeOKyIyvLvCgD2eWG/iEQxNI4ajsnoBhGEqsfB4PI2Qx1wkPSPQvrhrvr9NMBOkTssVnGs55
+	WZU+63pCzAX39PWG+uT46V/Bajgq0i03uOHHOLxJ/b7D5VT/XV7XooUgdKu5+
+X-Gm-Gg: ASbGncvxvFr+qFN3NhLr7+Omx9y/D8S2Medwy+CFGYa3gyf4qWUuhPRfiiInoyOxGD8
+	87vS0z+SCQybedXeaJGu/e0C6YLIPt6nSK56J/JBHHQN85jxNYEa55zqxdALIV0CB9QtbaWJRdt
+	i6lgcg3ybWwa6BOxYHwwbK0nJMvpK3ntjXrJhwsRNOseVxYO4d9VT/EkV2dNd6hkbp3o1+dS4tf
+	a2jrS5EOgnUr5qDhmYRiZJKFeLltqp4ny16FSNb1I34v7j4qkR9ZauU7ROLEuDa/YNFu8M1YWu4
+	KnVzW0zQzUGbz3Hv3TMFSW55iJxEvyCX7BWrQlr4PjZzYiLwpWBB31ak5+8=
+X-Received: by 2002:a05:622a:1496:b0:467:6486:78bb with SMTP id d75a77b69052e-46fd0a41b9fmr18841581cf.5.1738160778376;
+        Wed, 29 Jan 2025 06:26:18 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFCNf1RBTp6oWIGRWle1mL3ksQXz1UepkfqPVNPLNu7sLQ0Ep4heqkzXkKY2PW3Bx/m6WbeIg==
+X-Received: by 2002:a05:622a:1496:b0:467:6486:78bb with SMTP id d75a77b69052e-46fd0a41b9fmr18841291cf.5.1738160777971;
+        Wed, 29 Jan 2025 06:26:17 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab676114a73sm972451466b.162.2025.01.29.06.26.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jan 2025 06:12:19 -0800 (PST)
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-467a3c85e11so50132191cf.2;
-        Wed, 29 Jan 2025 06:12:19 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUTuRdD7rrWqfEjAVQQJGftwShgwipMtGq8csQY/XBRmd/g7DudALd7gf5LJU+LfMDRmPl170YQjaeo5PN0tsjQ55I=@vger.kernel.org, AJvYcCUaKgBDyqIkOpvs2ys6AybA4OiX3EgNDwAooMIm4u9jqjhqSnv6Wj5dbpRb1g0bkq4ENRG9KHrVz31Y@vger.kernel.org, AJvYcCVnNSL8J4XeM+RhRaL6ZP0u0Upr1qKYcyvN+Py1K6iYeN8bXurbvEuQM8KSg8FvlZnXnjc+NoL5hSnOj6wp@vger.kernel.org
-X-Received: by 2002:ac8:5d52:0:b0:467:86fa:6b72 with SMTP id
- d75a77b69052e-46fd0a6486cmr46231051cf.12.1738159939102; Wed, 29 Jan 2025
- 06:12:19 -0800 (PST)
+        Wed, 29 Jan 2025 06:26:17 -0800 (PST)
+Message-ID: <ba800255-e2b0-4b92-9ff0-f7ed744fec8c@oss.qualcomm.com>
+Date: Wed, 29 Jan 2025 15:26:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250127-myir-remi-pi-v2-0-7bd3a1c62752@collabora.com> <20250127-myir-remi-pi-v2-2-7bd3a1c62752@collabora.com>
-In-Reply-To: <20250127-myir-remi-pi-v2-2-7bd3a1c62752@collabora.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 29 Jan 2025 15:12:07 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV3Z9d8qsa_mnUgH50a=_aq9myf0xYVx+ZexKtkUXcMNw@mail.gmail.com>
-X-Gm-Features: AWEUYZlxLUbHTU3u3xDhV9Zxr8pZ7ahCIIdSYfsNHiLG9VOAKw5JswNmTSU9Sbc
-Message-ID: <CAMuHMdV3Z9d8qsa_mnUgH50a=_aq9myf0xYVx+ZexKtkUXcMNw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: renesas: add initial support for MYIR Remi Pi
-To: Julien Massot <julien.massot@collabora.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs8300: Add device node for
+ gfx_smmu
+To: Pratyush Brahma <quic_pbrahma@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prakash Gupta <quic_guptap@quicinc.com>
+References: <20241227110024.30203-1-quic_pbrahma@quicinc.com>
+ <1c8af731-c551-4d72-84a0-f14d57bec4ec@oss.qualcomm.com>
+ <e7abe34c-9df9-425b-933e-cc744a63b80c@quicinc.com>
+ <41fd6b59-249d-4f19-9ff8-4ae169a6db05@oss.qualcomm.com>
+ <27aa8dc3-34b9-40e7-93bc-e52118b46138@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <27aa8dc3-34b9-40e7-93bc-e52118b46138@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: 2MltieDlyGBygUczDkR-rv8zkYssDQxN
+X-Proofpoint-GUID: 2MltieDlyGBygUczDkR-rv8zkYssDQxN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-29_02,2025-01-29_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 spamscore=0 mlxlogscore=999 bulkscore=0 suspectscore=0
+ mlxscore=0 adultscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501290117
 
-Hi Julien,
+On 28.01.2025 11:02 AM, Pratyush Brahma wrote:
+> 
+> On 1/9/2025 8:56 PM, Konrad Dybcio wrote:
+>> On 8.01.2025 1:10 PM, Pratyush Brahma wrote:
+>>> On 12/30/2024 6:49 PM, Konrad Dybcio wrote:
+>>>> On 27.12.2024 12:00 PM, Pratyush Brahma wrote:
+>>>>> Add the device node for gfx smmu that is required for gpu
+>>>>> specific address translations.
+>>>>>
+>>>>> This patch depends on the patch series [1] posted by Imran Shaik
+>>>>> adding the clock support for gpu.
+>>>>>
+>>>>> [1] https://lore.kernel.org/all/802d32f1-ff7e-4d61-83f1-f804ee1750ed@oss.qualcomm.com/
+>>>>>
+>>>>> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/qcom/qcs8300.dtsi | 37 +++++++++++++++++++++++++++
+>>>>>    1 file changed, 37 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>>>> index 80226992a65d..8eb688e2df0a 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>>>> @@ -816,6 +816,43 @@
+>>>>>                #power-domain-cells = <1>;
+>>>>>            };
+>>>>>    +        adreno_smmu: iommu@3da0000 {
+>>>>> +            compatible = "qcom,qcs8300-smmu-500", "qcom,adreno-smmu",
+>>>>> +                   "qcom,smmu-500", "arm,mmu-500";
+>>>>> +            reg = <0x0 0x3da0000 0x0 0x20000>;
+>>>>> +            #iommu-cells = <2>;
+>>>>> +            #global-interrupts = <2>;
+>>>>> +            dma-coherent;
+>>>>> +
+>>>>> +            power-domains = <&gpucc GPU_CC_CX_GDSC>;
+>>>>> +            clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+>>>>> +                 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
+>>>>> +                 <&gpucc GPU_CC_AHB_CLK>,
+>>>>> +                 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
+>>>>> +                 <&gpucc GPU_CC_CX_GMU_CLK>,
+>>>>> +                 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
+>>>>> +                 <&gpucc GPU_CC_HUB_AON_CLK>;
+>>>>> +            clock-names = "gcc_gpu_memnoc_gfx_clk",
+>>>>> +                      "gcc_gpu_snoc_dvm_gfx_clk",
+>>>>> +                      "gpu_cc_ahb_clk",
+>>>>> +                      "gpu_cc_hlos1_vote_gpu_smmu_clk",
+>>>>> +                      "gpu_cc_cx_gmu_clk",
+>>>>> +                      "gpu_cc_hub_cx_int_clk",
+>>>>> +                      "gpu_cc_hub_aon_clk";
+>>>> Most of these entries look totally bogus, please make sure you only
+>>>> reference the ones actually required
+>>> These entries are exactly similar to the ones we use in sa8775p as well [1] and the usecases
+>>> haven't changed between qcs8300 and sa8775p.
+>>>
+>>> Can you please let me know which entries you find irrelevant here?
+>> Well, I'm particularly unsure about CX_GMU and the HUB clocks.
+>> I >>don't think<< they don't have much to do with the SMMU, but please
+>> check internally with someone who knows for sure
+> I checked internally and found that these clocks are required for gpu smmu operations
+> as we don't use interconnect voting mechanism here as we do downstream. Hence the
+> list of clocks is same across all targets using gpu smmu as described in [1] previously.
 
-On Mon, 27 Jan 2025 at 10:39, Julien Massot <julien.massot@collabora.com> wrote:
-> Add basic support for the MyIR Remi Pi (based on r9a07g044l2):
->  - UART
->  - i2c
->  - emmc
->  - USB host
->  - HDMI output
->  - Ethernet
->
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+I managed to dig up some documents too.. It seems you're right, however the order
+is supposed to be slightly different:
 
-Thanks for your patch!
+GPU_CC_CX_GMU_CLK
+GPU_CC_HUB_CX_INT_CLK
+GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK
+GCC_GPU_MEMNOC_GFX_CLK
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-remi-pi.dts
-> @@ -0,0 +1,388 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Device Tree Source for the MYiR Remi Pi
-> + *
-> + * Copyright (C) 2022 MYiR Electronics Corp.
-> + * Copyright (C) 2025 Collabora Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-> +
-> +#include "r9a07g044l2.dtsi"
-> +
-> +/ {
-> +       model = "MYIR Tech Limited Remi Pi MYB-YG2LX-REMI";
-> +       compatible = "myir,remi-pi", "renesas,r9a07g044l2", "renesas,r9a07g044";
-> +
-> +       aliases {
-> +               ethernet0 = &eth0;
-> +               ethernet1 = &eth1;
-> +
-> +               serial0 = &scif0;
+Unsure if it *actually* matters given we've added them in a random order on a
+multitude of platforms and there haven't been any visible adverse effects.
 
-So serial0 is the CA55 console, OK.
+With GPU_CC_AHB not being mentioned but it being quite reasonable to be there
+judging by its name. Enabling HLOS1_VOTE normally enables some more clocks (some
+known by Linux, some not), but here the docs are rather cryptic on that topic.
 
-> +               serial1 = &scif1;
+I'm not sure about SNoC_DVM on this one as well, but other SoCs require it so
+it's probably safe so assume this one does so as well
 
-Connected to BT/WiFi, but not yet enabled below.
+I've verified the interrupt numbers, so please just alter the property order /
+whitespaces / general style of the node to match x1e80100.dtsi and we'll get
+this merged
 
-> +               serial2 = &scif2;
-
-This is wired to the Raspberri Pi expansion connector.
-However, on Raspberri Pi, these pins are GPIOs.
-While the Raspberri Pi UART_[TR]X pins are wired to SCIF4 here,
-which is not yet enabled...
-
-> +               serial3 = &scif3;
-
-Serial3 is the CA33 debug console, OK.
-
-> +
-> +               i2c0 = &i2c0;
-> +               i2c1 = &i2c1;
-> +               i2c2 = &i2c2;
-> +               i2c3 = &i2c3;
-> +
-> +               mmc0 = &sdhi0;
-> +               mmc1 = &sdhi1;
-
-sdhi1 is not yet enabled, so please drop it.
-
-> +       };
-
-> +       reg_5p0v: regulator-5p0v {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "fixed-5.0V";
-> +               regulator-min-microvolt = <5000000>;
-> +               regulator-max-microvolt = <5000000>;
-> +       };
-> +
-> +       reg_3p3v: regulator-3p3v {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "fixed-3.3V";
-> +               vin-supply = <&reg_5p0v>;
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +               regulator-always-on;
-> +       };
-> +
-> +       reg_1p8v: regulator-1p8v {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "fixed-1.8V";
-> +               vin-supply = <&reg_3p3v>;
-
-reg_5p0v, as 1.8V is generated from 5.0V, according to the schematics.
-
-> +               regulator-min-microvolt = <1800000>;
-> +               regulator-max-microvolt = <1800000>;
-> +               regulator-always-on;
-> +       };
-> +
-> +       reg_1p1v: regulator-vdd-core {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "fixed-1.1V";
-> +               regulator-min-microvolt = <1100000>;
-> +               regulator-max-microvolt = <1100000>;
-> +               regulator-always-on;
-> +       };
-
-> +&eth0 {
-> +       pinctrl-0 = <&eth0_pins>;
-> +       pinctrl-names = "default";
-> +       phy-handle = <&phy0>;
-> +       phy-mode = "rgmii-id";
-> +       status = "okay";
-> +
-> +       phy0: ethernet-phy@4 {
-> +               compatible = "ethernet-phy-ieee802.3-c22";
-> +               reg = <4>;
-> +               interrupts-extended = <&pinctrl RZG2L_GPIO(44, 2) IRQ_TYPE_LEVEL_LOW>;
-
-Missing reset-gpios (P44_3).
-
-> +       };
-> +};
-> +
-> +&eth1 {
-> +       pinctrl-0 = <&eth1_pins>;
-> +       pinctrl-names = "default";
-> +       phy-handle = <&phy1>;
-> +       phy-mode = "rgmii-id";
-> +       status = "okay";
-> +
-> +       phy1: ethernet-phy@6 {
-> +               compatible = "ethernet-phy-ieee802.3-c22";
-> +               reg = <6>;
-> +               interrupts-extended = <&pinctrl RZG2L_GPIO(43, 2) IRQ_TYPE_LEVEL_LOW>;
-
-Missing reset-gpios (P43_3).
-
-> +       };
-> +};
-
-> +&pinctrl {
-
-> +       spi0_pins: spi0 {
-> +               pinmux = <RZG2L_PORT_PINMUX(47, 0, 5)>, /* CLK */
-> +                        <RZG2L_PORT_PINMUX(47, 1, 5)>, /* MOSI */
-> +                        <RZG2L_PORT_PINMUX(47, 2, 5)>, /* MISO */
-> +                        <RZG2L_PORT_PINMUX(47, 3, 5)>; /* Chip Enable*/
-> +       };
-
-Unused.
-
-> +
-> +       eth0_pins: eth0 {
-
-Please sort pinctrl subnodes (alphabetically by node name).
-
-> +       sdhi0_pins: sd0 {
-> +               sd0_data {
-> +                       pins = "SD0_DATA0", "SD0_DATA1", "SD0_DATA2", "SD0_DATA3",
-> +                              "SD0_DATA4", "SD0_DATA5", "SD0_DATA6", "SD0_DATA7";
-> +                       power-source = <1800>;
-> +               };
-> +
-> +               sd0_ctrl {
-> +                       pins = "SD0_CLK", "SD0_CMD";
-> +                       power-source = <1800>;
-> +               };
-> +
-> +               sd0_rst {
-> +                       pins = "SD0_RST#";
-> +                       power-source = <1800>;
-> +               };
-> +       };
-> +
-> +       sdhi0_pins_uhs: sd0_uhs {
-> +               sd0_data_uhs {
-> +                       pins = "SD0_DATA0", "SD0_DATA1", "SD0_DATA2", "SD0_DATA3",
-> +                              "SD0_DATA4", "SD0_DATA5", "SD0_DATA6", "SD0_DATA7";
-> +                       power-source = <1800>;
-> +               };
-> +
-> +               sd0_ctrl_uhs {
-> +                       pins = "SD0_CLK", "SD0_CMD";
-> +                       power-source = <1800>;
-> +               };
-> +
-> +               sd0_rst_uhs {
-> +                       pins = "SD0_RST#";
-> +                       power-source = <1800>;
-> +               };
-> +       };
-
-sd0 and sd0_uhs are identical, so you can just always use the former,
-and drop the latter.
-
-> +
-> +       usb1_pins: usb1 {
-> +               pinmux = <RZG2L_PORT_PINMUX(42, 0, 1)>, /* VBUS */
-> +                        <RZG2L_PORT_PINMUX(42, 1, 1)>; /* OVC */
-
-These two pins don't seem to be exposed on the SoM.
-Perhaps this is wired on the SoM?
-
-> +       };
-> +
-> +       scif0_pins: scif0 {
-> +               pinmux = <RZG2L_PORT_PINMUX(38, 0, 1)>, /* TxD */
-> +                        <RZG2L_PORT_PINMUX(38, 1, 1)>; /* RxD */
-> +       };
-> +
-> +       scif1_pins: scif1 {
-> +               pinmux = <RZG2L_PORT_PINMUX(40, 0, 1)>, /* TxD */
-> +                        <RZG2L_PORT_PINMUX(40, 1, 1)>; /* RxD */
-> +       };
-
-SCIF1 is connected to BT/WiFi, and the CTS/RTS pins should be included.
-However, for now SCIF1 is not yet enabled, so please everything related to it.
-
-> +&usb2_phy1 {
-> +       pinctrl-0 = <&usb1_pins>;
-> +       pinctrl-names = "default";
-> +
-> +       status = "okay";
-> +};
-> +
-> +&ehci1 {
-
-Please sort references to nodes (alphabetically). More below...
-
-> +&dsi {
-> +       status = "okay";
-
-Please insert a blank line.
-
-> +       ports {
-
-> +&i2c0 {
-> +       pinctrl-0 = <&i2c0_pins>;
-> +       pinctrl-names = "default";
-> +
-> +       clock-frequency = <400000>;
-> +       status = "okay";
-> +
-> +       hdmi-bridge@48 {
-> +               compatible = "lontium,lt8912b";
-> +               reg = <0x48> ;
-> +               reset-gpios = <&pinctrl RZG2L_GPIO(42, 2) GPIO_ACTIVE_LOW>;
-
-Missing interrupts (P16_1), but that is not yet supported by the
-bindings, so I guess it's fine to leave it out for now.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Konrad
 
