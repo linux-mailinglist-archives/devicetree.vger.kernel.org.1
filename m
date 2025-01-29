@@ -1,556 +1,203 @@
-Return-Path: <devicetree+bounces-141632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD5B1A21B16
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:40:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD225A21B1E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:43:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1AFF3A5102
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 10:40:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FEDB18883BE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 10:43:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5E61B042F;
-	Wed, 29 Jan 2025 10:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BF21B3952;
+	Wed, 29 Jan 2025 10:43:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YD1xVnzw"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="U/lnCV4G";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="VaZKT8hY";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="wArQ3UD8";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MUSweoG3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3DF419E96B
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 10:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25D041AAA10;
+	Wed, 29 Jan 2025 10:43:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738147252; cv=none; b=dRYjsBoZljL/Nxrb4EqOx/GBQC56CW1I6d9jPoyCXecjiJoNtbpjoW5yhHCiKeeaMoiIR/NCy/rRBafF0xwZMLDf1101gwwijtppvtn2aPgRJGlI0B4XNgNrMkmh1e3moFOT78cA/HI2pRPI/xvLNEo8ccX5pfp/jzyCac4NsOg=
+	t=1738147419; cv=none; b=QJ5LFMRuyIfur4jlhdbMNXp0wb46NNMbYWA3u3Dnd2EFsMISO6QVq7ck4V3tJxdyg+v8w5ohhiKhjLu1sKEFHeNAQNhfXPTpnYVVwVX25UAXb5xKjNYN3n20iKRYI4pWgHaVt+Asco/PKKVcCygbFUsFXuW/z/0A6CgnxpNgq+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738147252; c=relaxed/simple;
-	bh=vSoWV0VGv0peVl0kRTkz4N7s8x47L2yDhqYC0POt8Wg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=m6yAT2Bcai/vGmCxl5tQkPZN4CNSKw1Aio1Nhfsd7G1mY9Z/MtYjLJpzP5Kw9oicUSKeTUfn4s/IRqsxLe/ncv/XTAWJIMaLdBKPVmc78oiLh0JHaN/L60h9FGZRkuGfOGrpfxMz0PFE7948Rxzsjn+oVGYKokrJ7efHXA6/Has=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YD1xVnzw; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-385e0e224cbso3839424f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 02:40:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738147248; x=1738752048; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GM2FkveSmeT/ifZcYkvEJxk0YOsQhqWXppQ6+s3P/EY=;
-        b=YD1xVnzwK0LrGW3yrNzGY7ZsnMpQRUb0fMczjj7MMUJQYg8UV26oW9FGChyW1zvsC0
-         HDUCmCDu5JtOW5h+sB1N440wctTyP3cHjfXm8FVDMRfbGgX4UYNVQQ7jPrzIBeCTa9eE
-         lRtz4956FhgKvvUXCuuGV+3UDGYpALGSi5NHkSRN1cdSUxTnvL716NSYQ4PTIbSiST19
-         4xxnvppKFB4k8glCFWnPeql/iZAwLrYwZR0E7YgaeHfm+NJDAA+T/S4uajagIsEJ7ccZ
-         F+dmvde6K8YJ+xXcKMZbsBSVNpL5PuS01g6TY9dKQ1xqNJeV5/nzwjkg/cta8+OkzQMm
-         +f8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738147248; x=1738752048;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GM2FkveSmeT/ifZcYkvEJxk0YOsQhqWXppQ6+s3P/EY=;
-        b=DlYn65Zh4pgNd3bk8QXFR/PgFhmaHOrlAMKq7jLAuvqkBCrgl4p/WCZjKsjYuOl6E7
-         cdW9b78kgJ+chJE5xW1lrXwha354hUfN1H4oF26ypnS7OEj0g2DHd2hmxlkgOrwr8gw0
-         n+367bCnTJbluEIiuS+y37LYrO7sfilN7zmCIf9A4gnRvDqel3Gz4fxDe6ACZpdqtAtE
-         yXc72nLdiOcsHR7TIEaSWOB3Nw5MDw2OvTbdwPnvmg6vegNRfDJg2HhfTotyQZN5wx6O
-         4QN5CCS23+0Rhjt91rOXvOt4GCb0nhcymzUtxxtfXfAbOyMCgpAmuaKwB+NGwW+AvvFW
-         EmAA==
-X-Forwarded-Encrypted: i=1; AJvYcCVQ5ufULkuFAmveRHVZh2fyOyPw3MnRrkqzBbQbm4Wszd9xq3akc9gE9Z+UB80btqEl7FBl3ydnwGHR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcBbhvbYWPkQDir1vaGI1suWN5LOZ1nE8BUAIqVKb0iLDJwjKN
-	jYaDLRf7zQdbplVFJdgjx0tid/VOf8VAlRbB17lS30+//5346cDRrWqClPBz1xs=
-X-Gm-Gg: ASbGncsDfzJDVUns4oHkYnrdwWXjjBaLqJW8y/ywRwVBJ2poEbJ6x3QOHlvsK/tzjxa
-	7k9Sloqdu7uLU+ybTl2dQWJ57Lnv1v8LMlglwUFgb5uU02sHeVFekTxTxZt8lbBEbln/ejGHuJd
-	5tlUIn3Da4toLYWEYHEDnlyJGEe2HljYJ4caT90HjjNqyPaNWNmyqJUoV9JHLybF/rt2M9O++9M
-	j94tC6ToXzvaoFfLMvHK1jN3c1wcRxMKaU+KUPEcXDeOem9RAuefYm/U0NTTdkWRFTJKcq0fZJ6
-	FhrDBkYJkt23EDVdBvgHlPvIU0MrbyMPGpjJ
-X-Google-Smtp-Source: AGHT+IEo6tTkfuoHvRbwRM54QhEgHlVHx2lzfOPvYYUpGdDm6TJusQG0c7s4uNn/GmrCQ3rMz5JW1A==
-X-Received: by 2002:a5d:64e9:0:b0:385:db39:2cf with SMTP id ffacd0b85a97d-38c5195f334mr1803231f8f.12.1738147247972;
-        Wed, 29 Jan 2025 02:40:47 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438dcc11ae6sm18468515e9.6.2025.01.29.02.40.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jan 2025 02:40:47 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 29 Jan 2025 11:40:25 +0100
-Subject: [PATCH] arm64: dts: qcom: sm8650: harmonize all unregulated
- thermal trip points
+	s=arc-20240116; t=1738147419; c=relaxed/simple;
+	bh=CC343mfD0okuki1r57crt4ti98EOIoVeWw0sI+C/c/A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WUVDhd2r99CEDl5PWCV8C1urI7sImoMMt7/O462irpxfMfe9UYUVX+vEfQWg8Co/nCe4hcR9VXshhnGYHz1C1EL7oP+YyHw4dYedu8KJ9IWsGSCMqlyluGFvplU4eK+QPzkE9rHU9G4Cb16mDFYDsKKQ71lPPa43Mc2tYJoQXeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=U/lnCV4G; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=VaZKT8hY; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=wArQ3UD8; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=MUSweoG3; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id EB6801F365;
+	Wed, 29 Jan 2025 10:43:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1738147416; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2tnS1z33E1lmdARbRZJZY1baV7i5IrhBmmqgHqbmlVM=;
+	b=U/lnCV4GBIZG9GbQ1SLwed6PEFOLa2KtiY6O7akzy8ThP6T1VqE5oYuGdqn4uKfnAqC/k1
+	KCLe8/AKMCU6a4ptb2qA4+1jPr9Y2ovmlTZmOlIZgji2XQKurkAnusdTuaa0Bx6Zg062/S
+	6nT6jznqT6s44t3SkfFVyXd3U1tdxxQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1738147416;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2tnS1z33E1lmdARbRZJZY1baV7i5IrhBmmqgHqbmlVM=;
+	b=VaZKT8hYvx0LvDaL9DncH7hgceQXTxV/NUnlHukMowsinbc2G6ukDey/6e71smi6XHiIWi
+	I9IwBRm8e3VqvNAA==
+Authentication-Results: smtp-out2.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=wArQ3UD8;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=MUSweoG3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1738147414; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2tnS1z33E1lmdARbRZJZY1baV7i5IrhBmmqgHqbmlVM=;
+	b=wArQ3UD8ofb8Duq+Uqy67bpUSGreo6Hiqr8UM04g7f2MxsC9UKifObCDP+OnI0zlBXChlu
+	dYnzMI2mTY7jJMElIN4x44gRClFguzJgUeCXVK8+jHFM081mnCG0Sv4/PA39GANzMBwQ0y
+	nTNXNR115MEBd2mbOvIjX3hlN9E33rU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1738147414;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2tnS1z33E1lmdARbRZJZY1baV7i5IrhBmmqgHqbmlVM=;
+	b=MUSweoG3CdRus8S/4/g34ZtCsJ7NIYPezhBni7oNh8xix67Dfx0INn6LKOumml603x7ipq
+	Simvrq8afwjaDBBA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id F3CD6137D2;
+	Wed, 29 Jan 2025 10:43:33 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id KhYhOVUGmmfeWQAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Wed, 29 Jan 2025 10:43:33 +0000
+Message-ID: <320db9bc-3610-4336-a691-a8926cdb7e24@suse.de>
+Date: Wed, 29 Jan 2025 12:43:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 -next 03/11] irqchip: Add Broadcom bcm2712 MSI-X
+ interrupt controller
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Stanimir Varbanov <svarbanov@suse.de>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ linux-pci@vger.kernel.org,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Bjorn Helgaas
+ <bhelgaas@google.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
+ <jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>
+References: <20250120130119.671119-1-svarbanov@suse.de>
+ <20250120130119.671119-4-svarbanov@suse.de> <87bjvs86w8.ffs@tglx>
+ <b1009877-6749-4bb1-95b9-ae976bef591c@broadcom.com>
+Content-Language: en-US
+From: Stanimir Varbanov <svarbanov@suse.de>
+In-Reply-To: <b1009877-6749-4bb1-95b9-ae976bef591c@broadcom.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250129-topic-sm8650-other-thermal-fixes-v1-1-2ceb36bdcd6e@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAJgFmmcC/x2MywqDMBAAf0X27EKSGl+/UnpY4qoLaiQrpSD+e
- 6OXgWFgTlBOwgp9cULir6jELYstCwgzbROjDNnBGeeNdR0ecZeAura1NxiPmRPeWGnBUX6s2Di
- qXjZQZ8lD3uyJn5Av7891/QFggg6kcgAAAA==
-X-Change-ID: 20250129-topic-sm8650-other-thermal-fixes-72a431ca91a5
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10671;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=vSoWV0VGv0peVl0kRTkz4N7s8x47L2yDhqYC0POt8Wg=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnmgWuzoCJQ4lpMw0SXCQ6d4xqiSHsIEfVrpDFVpTG
- Bgpt0NSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ5oFrgAKCRB33NvayMhJ0SmjD/
- 9KrHefU+xfw/gYQklNC1zTX5T/F5lFeA525ykfZaAxDAelGUMU0NCTkJ/bWKWB4v6Z/wee6s4HFUJa
- pmP2scfQP3fx3ogu7uvlMYvvoAf6ncUy3lNAbs+vFPW43yRhG36zQAym53PZFg0xifV5DZosZ7e0Tf
- VNGAQ7OAbc0PweOvKea4JLEOfrPZxgjkeDOvjEdo25zH4VDNf8zH0+IyVmLPskwOathyFIAMRArYq7
- tsPr0aKTX2pn2HjKt8O8Ef0zKaeDWBXomUWadiF7hF+f4dls8cWC53HqX6nyiHpV0zpK/1AWPus1bN
- 3CChWJCGqFh2LJXEsWu+bm6wKs4jRF88WJfWmEiKMGFhGSlV1i/1XKJbaUVXZXcp2ZxhqzYKfG5fu0
- mhWGdLXeGebvQAfSWFn41DQAPFvTHWmjVGG8ctVV85tK9sMSCUMHErO95wTUP9OQ01pUabAMWH57bq
- ISB3LYtJ/0hvqOJMtsTsV1XPmHZ74mLMnGTg8Uz/PSaI0elaz+K7h0KMIzvu4ONSI8rTh8xlEiwigY
- ToiQ11cv8jlFOZsTQRKF1jbjRyaWX4Wv/XjfV6g/FiP8ynaD6HH0+oXl0zNg8/QCugzU+19NSBV18A
- p36pAYczBtzMbqGy+NGg+XPP2kZ2442fRsx9JXVRCmUmYK9IVePwRJV/lfPw==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Rspamd-Queue-Id: EB6801F365
+X-Spam-Score: -3.01
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-3.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+];
+	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,pengutronix.de,suse.com,raspberrypi.com];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	DKIM_TRACE(0.00)[suse.de:+];
+	ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email,linutronix.de:email]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Flag: NO
+X-Spam-Level: 
 
-While the CPUs thermal is handled by the LMH, and GPU has a passive
-cooldowm via the HLOS DCVS, all the other thermal blocks only have
-hot and critical and no passive/active trip points.
+Hi,
 
-Passive or active thermal management for those blocks should
-be either defined if somehow we can express those in DT or
-in the board definition if there's an active cooling device
-available.
+On 1/28/25 7:55 PM, Florian Fainelli wrote:
+> On 1/27/25 10:10, Thomas Gleixner wrote:
+>> On Mon, Jan 20 2025 at 15:01, Stanimir Varbanov wrote:
+>>
+>>> Add an interrupt controller driver for MSI-X Interrupt Peripheral (MIP)
+>>> hardware block found in bcm2712. The interrupt controller is used to
+>>> handle MSI-X interrupts from peripherials behind PCIe endpoints like
+>>> RP1 south bridge found in RPi5.
+>>>
+>>> There are two MIPs on bcm2712, the first has 64 consecutive SPIs
+>>> assigned to 64 output vectors, and the second has 17 SPIs, but only
+>>> 8 of them are consecutive starting at the 8th output vector.
+>>>
+>>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+>>
+>> Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+>>
+>> As this is a new controller and required for the actual PCI muck, I
+>> think the best way is to take it through the PCI tree, unless someone
+>> wants me to pick the whole lot up.
+> 
+> Agreed, the PCI maintainers should take patches 1 through 9 inclusive,
 
-Cleanup the trip points names and adjust the temperatures to
-the downstream reference implementation where the following
-trip points are defined:
-- "reset-mon" to 115C
-- "thermal-engine" to 125C
-where we can map them to hot and critical trip points.
+Just small correction, patch 09/11 [1] has a new v2 at [2]. And I think
+PCI maintainer have to take v2.
 
-In the case a passive or active cooling device would be
-available, the downstream reference implementation uses
-the 95C "tj" trip point, as we already use for the
-gpuss thermal blocks.
+> and I will take patches 10-11 through the Broadcom ARM SoC tree, Bjorn,
+> KW, does that work?
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-Depends on:
-- https://lore.kernel.org/all/20250129-topic-sm8650-thermal-cpu-idle-v3-0-62ab1a64098d@linaro.org/
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 170 +++++++++++++++++------------------
- 1 file changed, 85 insertions(+), 85 deletions(-)
+~Stan
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 3ec3a65ddd612e83cab6a1f574813aed2e99b4cf..0dd81aad8c5b6e710b31f489205444b154d898be 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -5843,14 +5843,14 @@ aoss0-thermal {
- 			thermal-sensors = <&tsens0 0>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				aoss0-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				aoss0-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -5861,14 +5861,14 @@ cpuss0-thermal {
- 			thermal-sensors = <&tsens0 1>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				cpuss0-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				cpuss0-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -5879,14 +5879,14 @@ cpuss1-thermal {
- 			thermal-sensors = <&tsens0 2>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				cpuss1-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				cpuss1-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -5897,14 +5897,14 @@ cpuss2-thermal {
- 			thermal-sensors = <&tsens0 3>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				cpuss2-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				cpuss2-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -5915,14 +5915,14 @@ cpuss3-thermal {
- 			thermal-sensors = <&tsens0 4>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				cpuss3-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				cpuss3-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6053,14 +6053,14 @@ aoss1-thermal {
- 			thermal-sensors = <&tsens1 0>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				aoss1-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				aoss1-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6133,14 +6133,14 @@ nsphvx0-thermal {
- 			thermal-sensors = <&tsens2 6>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				nsphvx0-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
--				nsphvx1-critical {
--					temperature = <110000>;
-+				nsphvx0-critical {
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6153,14 +6153,14 @@ nsphvx1-thermal {
- 			thermal-sensors = <&tsens2 7>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				nsphvx1-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				nsphvx1-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6173,14 +6173,14 @@ nsphmx0-thermal {
- 			thermal-sensors = <&tsens2 8>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				nsphmx0-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				nsphmx0-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6193,14 +6193,14 @@ nsphmx1-thermal {
- 			thermal-sensors = <&tsens2 9>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				nsphmx1-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				nsphmx1-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6213,14 +6213,14 @@ nsphmx2-thermal {
- 			thermal-sensors = <&tsens2 10>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				nsphmx2-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				nsphmx2-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6233,14 +6233,14 @@ nsphmx3-thermal {
- 			thermal-sensors = <&tsens2 11>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				nsphmx3-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				nsphmx3-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6253,14 +6253,14 @@ video-thermal {
- 			thermal-sensors = <&tsens1 12>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				video-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				video-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6273,14 +6273,14 @@ ddr-thermal {
- 			thermal-sensors = <&tsens1 13>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				ddr-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				ddr-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6291,14 +6291,14 @@ camera0-thermal {
- 			thermal-sensors = <&tsens1 14>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				camera0-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				camera0-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6309,14 +6309,14 @@ camera1-thermal {
- 			thermal-sensors = <&tsens1 15>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				camera1-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				camera1-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6327,14 +6327,14 @@ aoss2-thermal {
- 			thermal-sensors = <&tsens2 0>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				aoss2-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				aoss2-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6609,14 +6609,14 @@ modem0-thermal {
- 			thermal-sensors = <&tsens2 9>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				modem0-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				modem0-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6627,14 +6627,14 @@ modem1-thermal {
- 			thermal-sensors = <&tsens2 10>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				modem1-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				modem1-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6645,14 +6645,14 @@ modem2-thermal {
- 			thermal-sensors = <&tsens2 11>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				modem2-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				modem2-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
-@@ -6663,14 +6663,14 @@ modem3-thermal {
- 			thermal-sensors = <&tsens2 12>;
- 
- 			trips {
--				trip-point0 {
--					temperature = <90000>;
--					hysteresis = <2000>;
-+				modem3-hot {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
- 					type = "hot";
- 				};
- 
- 				modem3-critical {
--					temperature = <110000>;
-+					temperature = <125000>;
- 					hysteresis = <0>;
- 					type = "critical";
- 				};
+[1] [PATCH v5 -next 09/11] PCI: brcmstb: Fix for missing of_node_put
 
----
-base-commit: 2616c1ec96d966abb922248fe48b12dbd4297dfc
-change-id: 20250129-topic-sm8650-other-thermal-fixes-72a431ca91a5
+[2]
+https://lore.kernel.org/lkml/20250122222955.1752778-1-svarbanov@suse.de/T/
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
 
 
