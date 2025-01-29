@@ -1,96 +1,48 @@
-Return-Path: <devicetree+bounces-141633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD225A21B1E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:43:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDFF9A21B25
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:44:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FEDB18883BE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 10:43:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F27F51887F39
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 10:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BF21B3952;
-	Wed, 29 Jan 2025 10:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927391B4121;
+	Wed, 29 Jan 2025 10:44:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="U/lnCV4G";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="VaZKT8hY";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="wArQ3UD8";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MUSweoG3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GRulBNko"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25D041AAA10;
-	Wed, 29 Jan 2025 10:43:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E8EB16C854;
+	Wed, 29 Jan 2025 10:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738147419; cv=none; b=QJ5LFMRuyIfur4jlhdbMNXp0wb46NNMbYWA3u3Dnd2EFsMISO6QVq7ck4V3tJxdyg+v8w5ohhiKhjLu1sKEFHeNAQNhfXPTpnYVVwVX25UAXb5xKjNYN3n20iKRYI4pWgHaVt+Asco/PKKVcCygbFUsFXuW/z/0A6CgnxpNgq+w=
+	t=1738147483; cv=none; b=QhDKE7UvuSOIxkwBRjm1YwcnnY6kpLIjmKmq+oHNC3Bkk9mBcBusxd/lRqqyqp8GAteZF/QXxKjM7+fbzG6d5ftY12YTbJyawMK0/jTBu+ILkDKHQ3ZNrTPwUA/Q3189ohcA3ULhS5JPxgtRkS4G2cpaSp5UecS2ThBu4XuqqZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738147419; c=relaxed/simple;
-	bh=CC343mfD0okuki1r57crt4ti98EOIoVeWw0sI+C/c/A=;
+	s=arc-20240116; t=1738147483; c=relaxed/simple;
+	bh=T2RVaPAE44RT8dx6SqFQUThUdmq/PWU4mA6kbablfoU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WUVDhd2r99CEDl5PWCV8C1urI7sImoMMt7/O462irpxfMfe9UYUVX+vEfQWg8Co/nCe4hcR9VXshhnGYHz1C1EL7oP+YyHw4dYedu8KJ9IWsGSCMqlyluGFvplU4eK+QPzkE9rHU9G4Cb16mDFYDsKKQ71lPPa43Mc2tYJoQXeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=U/lnCV4G; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=VaZKT8hY; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=wArQ3UD8; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=MUSweoG3; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id EB6801F365;
-	Wed, 29 Jan 2025 10:43:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1738147416; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2tnS1z33E1lmdARbRZJZY1baV7i5IrhBmmqgHqbmlVM=;
-	b=U/lnCV4GBIZG9GbQ1SLwed6PEFOLa2KtiY6O7akzy8ThP6T1VqE5oYuGdqn4uKfnAqC/k1
-	KCLe8/AKMCU6a4ptb2qA4+1jPr9Y2ovmlTZmOlIZgji2XQKurkAnusdTuaa0Bx6Zg062/S
-	6nT6jznqT6s44t3SkfFVyXd3U1tdxxQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1738147416;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2tnS1z33E1lmdARbRZJZY1baV7i5IrhBmmqgHqbmlVM=;
-	b=VaZKT8hYvx0LvDaL9DncH7hgceQXTxV/NUnlHukMowsinbc2G6ukDey/6e71smi6XHiIWi
-	I9IwBRm8e3VqvNAA==
-Authentication-Results: smtp-out2.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=wArQ3UD8;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=MUSweoG3
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1738147414; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2tnS1z33E1lmdARbRZJZY1baV7i5IrhBmmqgHqbmlVM=;
-	b=wArQ3UD8ofb8Duq+Uqy67bpUSGreo6Hiqr8UM04g7f2MxsC9UKifObCDP+OnI0zlBXChlu
-	dYnzMI2mTY7jJMElIN4x44gRClFguzJgUeCXVK8+jHFM081mnCG0Sv4/PA39GANzMBwQ0y
-	nTNXNR115MEBd2mbOvIjX3hlN9E33rU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1738147414;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2tnS1z33E1lmdARbRZJZY1baV7i5IrhBmmqgHqbmlVM=;
-	b=MUSweoG3CdRus8S/4/g34ZtCsJ7NIYPezhBni7oNh8xix67Dfx0INn6LKOumml603x7ipq
-	Simvrq8afwjaDBBA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id F3CD6137D2;
-	Wed, 29 Jan 2025 10:43:33 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id KhYhOVUGmmfeWQAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Wed, 29 Jan 2025 10:43:33 +0000
-Message-ID: <320db9bc-3610-4336-a691-a8926cdb7e24@suse.de>
-Date: Wed, 29 Jan 2025 12:43:25 +0200
+	 In-Reply-To:Content-Type; b=XIqKYJ7PZOSKLWNE/HbnNPAdAdsSMGDm7sxYVfy2e2DgWncZ3uhrUcsvxRqUKwF+E8OYTddT7yHB1Nonk5EgwnkjnMGf1Vb3/y2NSWxKXGk4xxtWiSMbxYUGEGp47yLlcefLYSlytgWG/4WqUTgCTMq+FuTe6YoP1fSq4iVVlC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GRulBNko; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38F92C4CED3;
+	Wed, 29 Jan 2025 10:44:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738147482;
+	bh=T2RVaPAE44RT8dx6SqFQUThUdmq/PWU4mA6kbablfoU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GRulBNkogLoZHV+pvCVvONuqv583/E+3qcW5dg77HpiQ45Eg6zmGWkR84MP14iNi9
+	 PpJQgDsuoMqX/KqJeXe6WxfdGMfUQAzWqafQ8ViOXKG/vMm4EbYKLxfScRjBjkEGcw
+	 hZVniyVLB7qWEOYOgdYsoAMnHwKxcsPnIbcKsfzcAu3r2OMY7GwJs8fRy97PwvK9Kf
+	 p4kycGiKRT3ycBPiOMUNW6LbRXOW94HxOHRoUoiQFk5w5scA2eGXjI3lj38yYV8ofC
+	 ffCtKPu84H0WaaDPTMc48aNQxW9zLe82+Kcm/NMjRIlKhnQkT2jmh3wjh5RGpE2WH2
+	 K/UcaTLMWeXLw==
+Message-ID: <5070e1f1-914b-4654-88ef-3566e3eee9ca@kernel.org>
+Date: Wed, 29 Jan 2025 11:44:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,106 +50,221 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 -next 03/11] irqchip: Add Broadcom bcm2712 MSI-X
- interrupt controller
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- Thomas Gleixner <tglx@linutronix.de>, Stanimir Varbanov <svarbanov@suse.de>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- linux-pci@vger.kernel.org,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Bjorn Helgaas
- <bhelgaas@google.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
- <jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>
-References: <20250120130119.671119-1-svarbanov@suse.de>
- <20250120130119.671119-4-svarbanov@suse.de> <87bjvs86w8.ffs@tglx>
- <b1009877-6749-4bb1-95b9-ae976bef591c@broadcom.com>
+Subject: Re: [RFC PATCH v10 1/2] media: iris: introduce helper module to
+ select video driver
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>, quic_vgarodia@quicinc.com,
+ quic_abhinavk@quicinc.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, p.zabel@pengutronix.de
+Cc: hverkuil@xs4all.nl, sebastian.fricke@collabora.com,
+ bryan.odonoghue@linaro.org, dmitry.baryshkov@linaro.org,
+ neil.armstrong@linaro.org, nicolas@ndufresne.ca,
+ u.kleine-koenig@baylibre.com, stefan.schmidt@linaro.org,
+ lujianhua000@gmail.com, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org,
+ johan@kernel.org
+References: <20250128080429.3911091-1-quic_dikshita@quicinc.com>
+ <20250128080429.3911091-2-quic_dikshita@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <b1009877-6749-4bb1-95b9-ae976bef591c@broadcom.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250128080429.3911091-2-quic_dikshita@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: EB6801F365
-X-Spam-Score: -3.01
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	MIME_TRACE(0.00)[0:+];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,pengutronix.de,suse.com,raspberrypi.com];
-	RCVD_TLS_ALL(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	DKIM_TRACE(0.00)[suse.de:+];
-	ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email,linutronix.de:email]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spam-Flag: NO
-X-Spam-Level: 
 
-Hi,
-
-On 1/28/25 7:55 PM, Florian Fainelli wrote:
-> On 1/27/25 10:10, Thomas Gleixner wrote:
->> On Mon, Jan 20 2025 at 15:01, Stanimir Varbanov wrote:
->>
->>> Add an interrupt controller driver for MSI-X Interrupt Peripheral (MIP)
->>> hardware block found in bcm2712. The interrupt controller is used to
->>> handle MSI-X interrupts from peripherials behind PCIe endpoints like
->>> RP1 south bridge found in RPi5.
->>>
->>> There are two MIPs on bcm2712, the first has 64 consecutive SPIs
->>> assigned to 64 output vectors, and the second has 17 SPIs, but only
->>> 8 of them are consecutive starting at the 8th output vector.
->>>
->>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
->>
->> Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
->>
->> As this is a new controller and required for the actual PCI muck, I
->> think the best way is to take it through the PCI tree, unless someone
->> wants me to pick the whole lot up.
+On 28/01/2025 09:04, Dikshita Agarwal wrote:
+> Introduce a helper module with a kernel param to select between
+> venus and iris drivers for platforms supported by both drivers.
 > 
-> Agreed, the PCI maintainers should take patches 1 through 9 inclusive,
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> ---
+>  drivers/media/platform/qcom/Makefile          |  1 +
+>  drivers/media/platform/qcom/iris/iris_core.h  |  1 +
+>  drivers/media/platform/qcom/iris/iris_probe.c |  3 +
+>  drivers/media/platform/qcom/venus/core.c      |  5 ++
+>  .../platform/qcom/video_drv_helper/Makefile   |  4 ++
+>  .../qcom/video_drv_helper/video_drv_helper.c  | 70 +++++++++++++++++++
+>  .../qcom/video_drv_helper/video_drv_helper.h  | 11 +++
+>  7 files changed, 95 insertions(+)
+>  create mode 100644 drivers/media/platform/qcom/video_drv_helper/Makefile
+>  create mode 100644 drivers/media/platform/qcom/video_drv_helper/video_drv_helper.c
+>  create mode 100644 drivers/media/platform/qcom/video_drv_helper/video_drv_helper.h
+> 
+> diff --git a/drivers/media/platform/qcom/Makefile b/drivers/media/platform/qcom/Makefile
+> index ea2221a202c0..15accde3bd67 100644
+> --- a/drivers/media/platform/qcom/Makefile
+> +++ b/drivers/media/platform/qcom/Makefile
+> @@ -2,3 +2,4 @@
+>  obj-y += camss/
+>  obj-y += iris/
+>  obj-y += venus/
+> +obj-y += video_drv_helper/
+> diff --git a/drivers/media/platform/qcom/iris/iris_core.h b/drivers/media/platform/qcom/iris/iris_core.h
+> index 37fb4919fecc..7108e751ff88 100644
+> --- a/drivers/media/platform/qcom/iris/iris_core.h
+> +++ b/drivers/media/platform/qcom/iris/iris_core.h
+> @@ -107,5 +107,6 @@ struct iris_core {
+>  
+>  int iris_core_init(struct iris_core *core);
+>  void iris_core_deinit(struct iris_core *core);
+> +extern bool video_drv_should_bind(struct device *dev, bool is_iris_driver);
+>  
+>  #endif
+> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
+> index 954cc7c0cc97..276461ade811 100644
+> --- a/drivers/media/platform/qcom/iris/iris_probe.c
+> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+> @@ -196,6 +196,9 @@ static int iris_probe(struct platform_device *pdev)
+>  	u64 dma_mask;
+>  	int ret;
+>  
+> +	if (!video_drv_should_bind(&pdev->dev, true))
+> +		return -ENODEV;
 
-Just small correction, patch 09/11 [1] has a new v2 at [2]. And I think
-PCI maintainer have to take v2.
+Wouldn't it mark the probe as failed and cause dmesg regressions?
 
-> and I will take patches 10-11 through the Broadcom ARM SoC tree, Bjorn,
-> KW, does that work?
+> +
+>  	core = devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
+>  	if (!core)
+>  		return -ENOMEM;
+> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> index 77d48578ecd2..b38be7812efe 100644
+> --- a/drivers/media/platform/qcom/venus/core.c
+> +++ b/drivers/media/platform/qcom/venus/core.c
+> @@ -369,12 +369,17 @@ static int venus_add_dynamic_nodes(struct venus_core *core)
+>  static void venus_remove_dynamic_nodes(struct venus_core *core) {}
+>  #endif
+>  
+> +extern bool video_drv_should_bind(struct device *dev, bool is_iris_driver);
 
-~Stan
+You just defined it in the header. Why is this here?
 
-[1] [PATCH v5 -next 09/11] PCI: brcmstb: Fix for missing of_node_put
+> +
+>  static int venus_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+>  	struct venus_core *core;
+>  	int ret;
+>  
+> +	if (!video_drv_should_bind(&pdev->dev, false))
+> +		return -ENODEV;
 
-[2]
-https://lore.kernel.org/lkml/20250122222955.1752778-1-svarbanov@suse.de/T/
+Same problems - d,esg regression.
+
+> +
+>  	core = devm_kzalloc(dev, sizeof(*core), GFP_KERNEL);
+>  	if (!core)
+>  		return -ENOMEM;
+> diff --git a/drivers/media/platform/qcom/video_drv_helper/Makefile b/drivers/media/platform/qcom/video_drv_helper/Makefile
+> new file mode 100644
+> index 000000000000..82567e0392fb
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/video_drv_helper/Makefile
+> @@ -0,0 +1,4 @@
+
+Missing SPDX
+
+> +# Makefile for Video driver helper
+> +
+> +obj-m := video_drv_helper.o
+> +
+> diff --git a/drivers/media/platform/qcom/video_drv_helper/video_drv_helper.c b/drivers/media/platform/qcom/video_drv_helper/video_drv_helper.c
+> new file mode 100644
+> index 000000000000..9009c2906e54
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/video_drv_helper/video_drv_helper.c
+> @@ -0,0 +1,70 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +
+> +#include "video_drv_helper.h"
+> +
+> +/* The venus driver supports only hfi gen1 to communicate with the firmware while
+
+Use Linux generic coding style comment, not netdev.
+
+> + * the iris driver supports both hfi gen1 and hfi gen2.
+> + * The support of hfi gen1 is added to the iris driver with the intention that
+> + * it can support old gen1 interface based firmware, while enabling gen2 based future SOCs.
+> + * With this, the plan is to migrate older SOCs from venus to iris.
+> + * As of now, since the iris driver supports only entry level features and doesn't have
+> + * feature parity with the venus driver, a runtime-selection is provided to user via
+> + * module parameter 'prefer_venus' to select the driver.
+> + * This selection is available only for the SoCs which are supported by both venus
+> + * and iris eg: SM8250.
+> + * When the feature parity is achieved, the plan is to switch the default to point to
+> + * the iris driver, then gradually start removing platforms from venus.
+> + * Hardware supported by only venus - 8916, 8996, SDM660, SDM845, SC7180, SC7280
+> + * Hardware supported by only iris - SM8550
+> + * Hardware supported by both venus and iris - SM8250
+> + */
+> +
+> +#if !IS_REACHABLE(CONFIG_VIDEO_QCOM_VENUS) || !IS_REACHABLE(CONFIG_VIDEO_QCOM_IRIS)
+> +bool video_drv_should_bind(struct device *dev, bool is_iris_driver)
+> +{
+> +	/* If just a single driver is enabled, use it no matter what */
+> +	return true;
+> +}
+> +
+> +#else
+> +static bool prefer_venus = true;
+> +MODULE_PARM_DESC(prefer_venus, "Select whether venus or iris driver should be preferred");
+> +module_param(prefer_venus, bool, 0444);
 
 
+The choice of driver is by module blacklisting, not by failing probes.
+
+I don't understand why this patchset is needed and neither commit msg
+nor above longer code comment explain me that. Just blacklist the module.
+
+Best regards,
+Krzysztof
 
