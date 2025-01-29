@@ -1,263 +1,157 @@
-Return-Path: <devicetree+bounces-141657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69054A21C82
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 12:53:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EF81A21CEF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 13:05:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F401164BCD
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:53:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E41E3A4F8A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 12:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C9141D89F1;
-	Wed, 29 Jan 2025 11:52:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CPs375ua"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CAE81B87E4;
+	Wed, 29 Jan 2025 12:05:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855381D63CE;
-	Wed, 29 Jan 2025 11:52:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 497DD78F58
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 12:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738151579; cv=none; b=H4fP/4mD1gEEu36dE9gSDJTk3IVY4agGFKoFwdPvmGyajMTQdva+XWta1L9HzTwjV5XM12ynkXXONi3wCikNSEqASS7Wa067FsR6GZOfyu3S5RONyAgFZiOT47CkDYuoM/YQQnJvHee3kMK+AnfEZChyJm69mgC5nxRwiIeIPcY=
+	t=1738152348; cv=none; b=FH7GIsVZxvJdfIPCS+GZ3GvPxYgBwDXyFKP+VZrQNHrOwTkOHT5dc6/crGvUQ4nnSkGoWuHn1JwJ4oZLgFKatbTYspSS3PCLDGqa+Tmm/N0I6169hzpht93KunhRvH2lvQ3cjskvBdIkJ/QvncIB3FfocLwfDVtmiIg0817OUKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738151579; c=relaxed/simple;
-	bh=TPYhsiGNBe0zj67MuYwYsH5Ln7hT3CrvcovyhXkc3Xg=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PpZQrhjrtSdXmhV3rWFmp1M7wUaJdAHBcOEHrZm+KvaAJ7e53ZaHlCR7byeMryc6bV0D923iGEkKzy0JxRMmQXZMnLPYNv1JjoTzRGSgKsimx+fcwFZ1adz7zp1DxSxz3nRJ5wxjuEhU+J20fKff+t9XipPPy4VswKM8ZAVu8ao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CPs375ua; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50T8TZ5R013948;
-	Wed, 29 Jan 2025 11:52:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=358xhYqGUWK78Sf6i+cyUm
-	otcgttleyMvGoO/R9uzDI=; b=CPs375uaQjO3x86vpS4QLrVYvuLj3CwFSrm6Di
-	Q6gnEP1l8MGwnumvKMTZdiUe9OWKCU7iMUzA8L47+E90D++h68MKqPkfypRKAkGz
-	FGjJ0pKkAzR8r7uAawT4ij6CX0yQr0T/afrT22yDqYMpX6ZwQYaxjYWbXQhV8ywt
-	klDE/Ez0Ax7vdidmNDdQZt6QIFxcApO60Xr7oxxlCLDJk/iP9Lro5wPkCPxL3uFP
-	Wt1Do+64hRCU0CNKkHA7B6lJDnB+9DfEtIXnIYT8MMtLXWxVwb2fqF23ygx9vhYl
-	xZ9c4QR1KV2wAKAdyeEg5QadpH7ZhIsjdlAbt6k8cszJUwUQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44fguvgbb7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Jan 2025 11:52:53 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50TBqqO4025983
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Jan 2025 11:52:52 GMT
-Received: from hu-kotarake-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 29 Jan 2025 03:52:49 -0800
-From: Rakesh Kota <quic_kotarake@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <quic_kotarake@quicinc.com>, <quic_kamalw@quicinc.com>,
-        <quic_jprakash@quicinc.com>
-Subject: [PATCH V2] arm64: dts: qcs6490-rb3gen2: Add vadc and adc-tm channels
-Date: Wed, 29 Jan 2025 17:22:26 +0530
-Message-ID: <20250129115226.2964465-1-quic_kotarake@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1738152348; c=relaxed/simple;
+	bh=OMSNasQ/l727Tn5e5HeIPtR0C/HUH9P7QAHXwxfQRNo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=MJ6z7Fh+o3JCy2m2FrQ1R9YfUmEnQ7bh97n6e295RwNWYg0x0PNC/mur2f9kM0LQuXpwS+JGAfMb7CQYyXXyHnCB2zn4SrnYDWxpwce+b1Fof+vrNpiqXRHlVnfoYB5S6soHo5HgtnowLaKpVhKrBAweMkmuN/v/gEMbBikXaQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1td6oV-00084D-9t; Wed, 29 Jan 2025 13:04:59 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1td6oP-002SPe-2U;
+	Wed, 29 Jan 2025 13:04:53 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1td6oP-000561-27;
+	Wed, 29 Jan 2025 13:04:53 +0100
+Message-ID: <f79109bad50ed926af7ffc06bc3ab155fe6224ed.camel@pengutronix.de>
+Subject: Re: [PATCH v4 09/18] reset: thead: Add TH1520 reset controller
+ driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Michal Wilczynski <m.wilczynski@samsung.com>, mturquette@baylibre.com, 
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+  drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
+ jassisinghbrar@gmail.com,  paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu,  frank.binns@imgtec.com, matt.coster@imgtec.com, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+  airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
+ jszhang@kernel.org,  m.szyprowski@samsung.com
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+Date: Wed, 29 Jan 2025 13:04:53 +0100
+In-Reply-To: <20250128194816.2185326-10-m.wilczynski@samsung.com>
+References: <20250128194816.2185326-1-m.wilczynski@samsung.com>
+	 <CGME20250128194836eucas1p151c4fc83a17173fd1b79bfc959976301@eucas1p1.samsung.com>
+	 <20250128194816.2185326-10-m.wilczynski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 2LMt4bhnOwDonqqnWyv0YCLNzaFhrHhd
-X-Proofpoint-GUID: 2LMt4bhnOwDonqqnWyv0YCLNzaFhrHhd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-28_04,2025-01-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 spamscore=0 mlxlogscore=942 bulkscore=0 suspectscore=0
- mlxscore=0 adultscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501290097
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add support for vadc and adc-tm channels which are used for
-monitoring thermistors present on the platform.
+On Di, 2025-01-28 at 20:48 +0100, Michal Wilczynski wrote:
+> Add reset controller driver for the T-HEAD TH1520 SoC that manages
+> hardware reset lines for various subsystems. The driver currently
+> implements support for GPU reset control, with infrastructure in place
+> to extend support for NPU and Watchdog Timer resets in future updates.
+>=20
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+>  MAINTAINERS | 1 +
+>  drivers/reset/Kconfig | 10 ++
+>  drivers/reset/Makefile | 1 +
+>  drivers/reset/reset-th1520.c | 178 +++++++++++++++++++++++++++++++++++
+>  4 files changed, 190 insertions(+)
+>  create mode 100644 drivers/reset/reset-th1520.c
+>=20
+[...]
+> diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
+> new file mode 100644
+> index 000000000000..48afbc9f1cdd
+> --- /dev/null
+> +++ b/drivers/reset/reset-th1520.c
+> @@ -0,0 +1,178 @@
+[...]
+> +static int th1520_reset_xlate(struct reset_controller_dev *rcdev,
+> + const struct of_phandle_args *reset_spec)
+> +{
+> + unsigned int index =3D reset_spec->args[0];
+> +
+> + /* currently, only GPU reset is implemented in this driver */
+> + if (index =3D=3D TH1520_RESET_ID_GPU)
+> + return index;
+> +
+> + return -EOPNOTSUPP;
 
-- Add the necessary includes for qcom,spmi-adc7-pm7325 and
-  qcom,spmi-adc7-pmk8350.
-- Add thermal zones for quiet-thermal, sdm-skin-thermal, and
-  xo-thermal, and define their polling delays and thermal sensors.
-- Configure the pm7325_temp_alarm node to use the pmk8350_vadc
-  channel for thermal monitoring.
-- Configure the pmk8350_adc_tm node to enable its thermal sensors
-  and define their registers and settings.
-- Configure the pmk8350_vadc node to define its channels and settings
+It is customary to return -EINVAL for unsupported resets.
 
-Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
----
-Changes from V1:
- - Update the Die temp name to Channel as per Documentation.
- - As per Konrad Dybcio’s suggestion, I have sorted the pmk8350_adc_tm
-   channels by unit address instead of alphabetically.
---- 
-arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 114 +++++++++++++++++++
- 1 file changed, 114 insertions(+)
+Further, you don't have to implement a custom .of_xlate at all.
+With nr_resets being set to 1, and because TH1520_RESET_ID_GPU happens
+to be 0, the of_reset_simple_xlate() default implementation will do
+exactly the same.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 7a36c90ad4ec..54ad11d33b38 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -9,6 +9,8 @@
- #define PM7250B_SID 8
- #define PM7250B_SID1 9
- 
-+#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-+#include <dt-bindings/iio/qcom,spmi-adc7-pm7325.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-@@ -212,6 +214,50 @@ pmic_glink_sbu_in: endpoint {
- 		};
- 	};
- 
-+	thermal-zones {
-+		sdm-skin-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 3>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		quiet-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 1>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		xo-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
-+
- 	vph_pwr: vph-pwr-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vph_pwr";
-@@ -745,6 +791,36 @@ kypd_vol_up_n: kypd-vol-up-n-state {
- 	};
- };
- 
-+&pm7325_temp_alarm {
-+	io-channels = <&pmk8350_vadc PM7325_ADC7_DIE_TEMP>;
-+	io-channel-names = "thermal";
-+};
-+
-+&pmk8350_adc_tm {
-+	status = "okay";
-+
-+	xo-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pmk8350_vadc PMK8350_ADC7_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	quiet-therm@1 {
-+		reg = <1>;
-+		io-channels = <&pmk8350_vadc PM7325_ADC7_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	sdm-skin-therm@3 {
-+		reg = <3>;
-+		io-channels = <&pmk8350_vadc PM7325_ADC7_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
- &pm8350c_pwm {
- 	nvmem = <&pmk8350_sdam_21>,
- 		<&pmk8350_sdam_22>;
-@@ -789,6 +865,44 @@ &pmk8350_rtc {
- 	status = "okay";
- };
- 
-+&pmk8350_vadc {
-+	channel@3 {
-+		reg = <PMK8350_ADC7_DIE_TEMP>;
-+		label = "pmk8350_die_temp";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	channel@44 {
-+		reg = <PMK8350_ADC7_AMUX_THM1_100K_PU>;
-+		label = "xo_therm";
-+		qcom,hw-settle-time = <200>;
-+		qcom,pre-scaling = <1 1>;
-+		qcom,ratiometric;
-+	};
-+
-+	channel@103 {
-+		reg = <PM7325_ADC7_DIE_TEMP>;
-+		label = "pm7325_die_temp";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	channel@144 {
-+		reg = <PM7325_ADC7_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+		qcom,pre-scaling = <1 1>;
-+		label = "pm7325_quiet_therm";
-+	};
-+
-+	channel@146 {
-+		reg = <PM7325_ADC7_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+		qcom,pre-scaling = <1 1>;
-+		label = "pm7325_sdm_skin_therm";
-+	};
-+};
-+
- &pon_pwrkey {
- 	status = "okay";
- };
--- 
-2.34.1
+[...]
+> +static int th1520_reset_probe(struct platform_device *pdev)
+> +{
+> + struct device *dev =3D &pdev->dev;
+> + struct th1520_reset_priv *priv;
+> + void __iomem *base;
+> +
+> + priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> + if (!priv)
+> + return -ENOMEM;
+> +
+> + base =3D devm_platform_ioremap_resource(pdev, 0);
+> + if (IS_ERR(base))
+> + return PTR_ERR(base);
+> +
+> + priv->map =3D devm_regmap_init_mmio(dev, base,
+> + &th1520_reset_regmap_config);
+> + if (IS_ERR(priv->map))
+> + return PTR_ERR(priv->map);
+> +
+> + mutex_init(&priv->gpu_seq_lock);
+> +
+> + priv->rcdev.owner =3D THIS_MODULE;
+> + priv->rcdev.nr_resets =3D 1;
+> + priv->rcdev.ops =3D &th1520_reset_ops;
+> + priv->rcdev.of_node =3D dev->of_node;
+>    A. > + priv->rcdev.of_xlate =3D th1520_reset_xlate;
+> + priv->rcdev.of_reset_n_cells =3D 1;
 
+You could just drop these two lines again. With that,
+
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+regards
+Philipp
 
