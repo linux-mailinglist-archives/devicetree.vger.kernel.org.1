@@ -1,332 +1,241 @@
-Return-Path: <devicetree+bounces-141694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A8E4A21FFC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:08:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E892A22043
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:28:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D33141886575
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:08:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE69718880CE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D0D11DD0C7;
-	Wed, 29 Jan 2025 15:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 608911DE2B1;
+	Wed, 29 Jan 2025 15:28:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nwtVijav"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="mofr66Fp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2080.outbound.protection.outlook.com [40.107.22.80])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D865F191F95
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 15:08:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738163301; cv=none; b=iBSQVw41cv1fPMWNgHo5iCkylm6UkeD4Hhk2UC9GTNjq/zOyZPBsteSYf0rgNNOmaHNoviFpqIYqccWKY5FTC++CimGFD6jWH5R/m7hqAW6zopKVfmLkdrf9pGosE+EMQnx/iQwwnuBSq7JCNo4PdQb14WCPwTz9Zr8wurm2w+I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738163301; c=relaxed/simple;
-	bh=QJk/y35AN758snCIGT5lwTN72HdUsNszcu5pu5zpxCo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iNPlQ0X9K9gc2kKwHTOSq8gXO925KQI+bNVtemGGRvAlG7AtiTRD6k8JXP2O6spOanVd+7e2NtnAsCDGVQHUlNEOqg0BYyK6DR+Ste56Hv40kcj1nAULalIQ2RYzM652ZcCOBLigCm7hqsJ4zOjwCCc5mE6Q7QockgUPLcYlPes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nwtVijav; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-436a39e4891so47372255e9.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 07:08:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738163297; x=1738768097; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2CYRb3v3Cd5U02FZotlhRzeAbSddoQoKFeq32vyUsjI=;
-        b=nwtVijavNZkeomO6rziHJKrdhB2CSjhIJN7ANLCAYBBG4E7KetNaIC1dgG/JvAkM6p
-         Yl26MmB3xXM9KgL5BRw2K5HFQUTiXCy/8JxJ06c44n+t2uVBjP4eWlKnEI9AL9o2Bgho
-         5WiqQu7QhFbj1/7XvOjabAjT7Bd+1puzh22SmxMLL+yr99mk8XAwAa3uaWs7E2FwmX1M
-         W5aeq6yPNLk1F/SFFp15m+Tibl/4kC/Nf8ekR3AFIKGGEgt8AWdq/rcoWWDYIFvaFoXm
-         PoTxOJHAohL9D8abU1wldp8Hl/IKagw1OqeEE4cWV1/OnmPle6UgGBSaPKRoE1YEvMa2
-         yYsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738163297; x=1738768097;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2CYRb3v3Cd5U02FZotlhRzeAbSddoQoKFeq32vyUsjI=;
-        b=Uk7RbdWBZcCEYKSWZAEvgi7gl75/bFR0a7YaKcjY9RdK/dayj2342qo39JiA5I8wqT
-         f1V4h1ubqwGWhzexcC1yZxsf4PWFYu571pAfSR54tXKpzBEzMhldVc9XGc28dCdtjlHn
-         WOMgeplAJOwc/dASG9dNIa4t6ZPLOTfqphAPEOlsRcLp7xBmRPcgItfwQuMeaC2Wk98A
-         T1uQnrL0UQw4ec2anG597y4sVVCjq4f+mx3alnCT4u8mmA94TbFKnlXrDlzEK21Y7/Qn
-         2FoWZ+8cDWAGVTwc3GwGridp60uw2BAiccIHW0TFizrgpaPWZvGkqJovvD9FRV0wgoBo
-         dklQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU5L336Qv5fnesyzM9UBk6ng0Jjam568Do0RD4v1Ba4DDfVnaBKIOda1/EsipJYS5sjDBGce0RcUKTI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw67bOKtN0SQcHfqXD5L2TtHDvv3V9YcDXHQIgdG15e4eeofVTz
-	zB0dvAC543ZuQmbNYJjIMgB0p1o3r8FnXCH3sDP2QJgnK70hMrcMJnqemmsWvxMje0BCvRIODMW
-	u
-X-Gm-Gg: ASbGnctubzSlUQHUySE/Fn+mVhY5BG/zPhYpM5x1SPADDSDhSQyAXz+b70udbyJ+LgA
-	6wDy+d0SSEOOiYq8ZKIPkQPirsRcG0bkDO/Ze7sNyZ7yXmufDF/Cvykb4qIR/3bUxC4g+co7ilo
-	Zu/KDEumVMIZHnmRGKP3r74H8M1Ih/Ev5f9F689FXrCY7/xGAvOPpHhl5dZEz46RORXn7XfW010
-	RJ2oAlgDJ6GUeS4jw13ltkeE0/BIRuMewfwyFGUa9++tPMG67yunr5cBsaHplogzrS1AgZ+gii5
-	IQYrtI5q+ATMLbP61e8R37XuAF2EAuk02EOR
-X-Google-Smtp-Source: AGHT+IE7tnyp1BSUltFDXXRCRiqoj51wxvf9f6x8qK5ob4tr7y38tljmGCcys/yA6u7yk0W8JQZNrw==
-X-Received: by 2002:a05:6000:d43:b0:386:2aba:a7f6 with SMTP id ffacd0b85a97d-38c520b9643mr2343166f8f.49.1738163296975;
-        Wed, 29 Jan 2025 07:08:16 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1c3994sm17011531f8f.81.2025.01.29.07.08.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jan 2025 07:08:16 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 29 Jan 2025 16:08:15 +0100
-Subject: [PATCH v2] arm64: dts: qcom: sm8650: add all 8 coresight ETE nodes
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E960315B102;
+	Wed, 29 Jan 2025 15:28:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738164520; cv=fail; b=QzPYyQUwjCRQduZ+xWb5d+oTysK3QhDE5vIVXp0GyTHBj9/PhnvtA9kxmPZusEyXUeGWgTVHHeZTbJkWSGQ+XmS810KSVFPFeKmc1d4rqkfMmQhcdQjCdrRvK7/hk3YVd8DPDmg2RpimNW5gfgDsnBCliSeXL9r6ebfkhFxHU6I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738164520; c=relaxed/simple;
+	bh=/JsFHSs36jEEjCJO6QxYhL5kSRA59bZMZmAmvfNsvbA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=eh1P2oI/ZUuCSgSJTLSGVS0a0pF3Qc5uTWTF1eUJmxNZLkUK/sJVYQDYhLmvkcZj3KLCqstXSi+taKuOH3Zewlyl7Gme3BFkoBjsJm4LvQxmHKmZsB3vxbwpw0KTi5lzHBE7iG2UfjBgRFCfp/zlttK/maTdTRqBzvbOxSCIY5A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=mofr66Fp; arc=fail smtp.client-ip=40.107.22.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Tid1fCj8k5KvbgG6r8zRx0u9Ad110yMQx6Sy7D8kg2CFjQYP625hjZVYA3kw85/vNOk27SJupEvOtoZWkKQ/iHlVdgnpxAf611hHbQwD4T0ahvg2z4dSZMc24+WfFgp5/cWxsQ3Z2K4qphxrSAfesFYjTPWTbtJyrLKyqKv24aM1euaUR63dnx51yf9Lximm3aJSXpg2oQm9HwHhmTtbd2hAQNYDbI5m87ABTuf4UzCzEaN6pSMsiUwAIjqnbgcqYIVyQYH/B+pE+suTcSsMlb9hgEfdkU6rM/SA++g5LBXj28TJWjOpoRexc5lXPTAtwzTqkC/Yy45MBtq2nW+j1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1WLoGXo8FV0VgYhcQySSGNhTayNQPR82EobdqU4u7FE=;
+ b=qYgItB9jrF7SxnAhBw6VuZkJchbGe5j/bYXunmIN/b2c8BfhQAP0IwWyFjxXQ/T+8u3PaKCaU2XFuH4qbpY0zXarB7x6+DSuJX6jRzHqXj82GUql4shpSE4rJvj5Dic7jw1vZHBtr4/9X5b0o7S0ulFjGD9/5Nl3Tfnp2v9uwwG3qo/Z/xWhv4gQ1shpFEq1W8KICGIKbcEdgYONrnqC+p6VfgVL2TrRnnKdTwVk20ufF9YNX27DEHiIzWA6hx6b8AqnPQ5/QVkgw2omWfzQJ9MDwN+8wQunLu7RxwivM4019SxTkKGhyv4yvQK3RiX0wbOx78ivg4k0xl09Uz+/tA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1WLoGXo8FV0VgYhcQySSGNhTayNQPR82EobdqU4u7FE=;
+ b=mofr66Fpqawnn8W9s8cgDNcFkcGFbTGCuwqkuGJbso1pAYYga6puhqZUMJkWwq0ej/DVOvwPQSR3N0Ee9RibnbCg+niJ9DO4onrZ4s15o8GHV6IVRQBBpBkQSIRHbAo+94XwMQTMf5JjO9XU2giAv8xdP3gf9R8rS6ZImqqBFmlkQet6TTunhDHHwRYmllVAH2fS/An86w2Nr4o0wK/GXIGvqhhkC5gTDm+GuzTpa8CqOWfjutHilfUdkLRue2Sopl9bZdjVS/KhNYmfQaOixezLzM00S1BkIOtJJosGf/rXT7T75dXQf3Zzle1wDnAMaPaUDQs0lZDHtoHHN77z0Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS4PR04MB9337.eurprd04.prod.outlook.com (2603:10a6:20b:4e5::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.23; Wed, 29 Jan
+ 2025 15:28:32 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8377.021; Wed, 29 Jan 2025
+ 15:28:32 +0000
+Date: Wed, 29 Jan 2025 10:28:23 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH v9 0/7] PCI: dwc: opitimaze RC Host/EP pci_fixup_addr()
+Message-ID: <Z5pJF9MGENNDqq/O@lizhi-Precision-Tower-5810>
+References: <20250128-pci_fixup_addr-v9-0-3c4bb506f665@nxp.com>
+ <Z5n_VrN8HUmdVPUq@ryzen>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z5n_VrN8HUmdVPUq@ryzen>
+X-ClientProxiedBy: SJ0PR03CA0235.namprd03.prod.outlook.com
+ (2603:10b6:a03:39f::30) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250129-topic-sm8650-upstream-add-all-coresight-cpus-v2-1-c62549307e01@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAF5EmmcC/53NQQ6DIBCF4asY1p0GUKl21Xs0LiiMOokKATRtj
- Hcv9Qhd/m/xvp1FDISR3YudBdwokltyyEvBzKiXAYFsbia5rLmQLSTnyUCcG1VzWH1MAfUM2lr
- Q0wTGBYw0jAmMXyPoshKN4upV1hXLlz5gT++Te3a5R4rJhc+pb+K3/gltAgS0qm2VLW+2b/Ax0
- aKDu7owsO44ji9SXFDO6QAAAA==
-X-Change-ID: 20250129-topic-sm8650-upstream-add-all-coresight-cpus-a3418606b354
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Yuanfang Zhang <quic_yuanfang@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4302;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=QJk/y35AN758snCIGT5lwTN72HdUsNszcu5pu5zpxCo=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnmkRfk/CLYC29WNARvYq24dlh+YrvybckuSrD2woD
- htVCi5GJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ5pEXwAKCRB33NvayMhJ0VibEA
- CmcW3qfqDRfZgnngVTM6jSGaSTMA7bkLj1GUAYueTfpwWA90xLz4S4OgMBLGZKAO7PJJKLvJe8vtTh
- IPG0lsrVMBFOY8hNUzGx8o603lhAUa4kewCOp7WIXUCe2RjPB22fvS0MuyD/3Z3aZFyMGYmd2jIaMC
- PdztpNZIeVpKDazzDZT8skZxRL9czQ+Ol6EdOOsffcI5BB4EHeVwC/fOAjmFxtfveAODFxRfyRViB8
- xQysMH38dcl4FBxuq+y26Mc3nOK6IRxOv/YkOwP5B9NfczbTNNygGGG7/I5CmceE1ukIkWi/DB9dMZ
- w9aChnLn1kgbwQ/CyCAxYTohc8QHS+0yGbdV4Ri0PSO2C5L2zxXHVI0px3NjqVSAKvwM8Dp54U3yWY
- B5tblVVq1c2euLIJFgouUmtZMlRSjhKUTVrnYzo57oHKmYTBKITEw63hq71ew0xfZA9hbhaGT1VDTZ
- IBxJGb6zz+jedmPyCFBHxm+5Eb/iMzB6J9i+9GE6MVuJUmoGKv0lR5YqwmUZ6hsEZHxiwBp4Dc1Qo+
- 4ByKUuoGEvaQOOyVF7HPwb3x5oLZzesiltkaQSSxvmvqBBpv6Max9zgq3nGgX876Ce3CgjDXgI5TZD
- GOJ/IjInYSraNF5Fq0lk3eVSEkgdQIUhm6RCeMoqUQJwGQr3V4ZvsfXZRzcg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS4PR04MB9337:EE_
+X-MS-Office365-Filtering-Correlation-Id: b9a5ed4f-f1fe-4d62-10f2-08dd407996e4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|366016|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?PMpXDznDYElczh3qQwn3J3XS8sgd9wSct431+mROCS89MlTQE5RldJTntAkZ?=
+ =?us-ascii?Q?iqsA2pb9UjWL2wRWoVjehPrKDL362ba1VZLglsjRfB+ylMUISlPWsVth+mfV?=
+ =?us-ascii?Q?RFy0SzK2dXqBE7eKSQliP+9j/9zXf7Ibi2Tl1g+t2PnpyUsColyBw2hQkvJe?=
+ =?us-ascii?Q?vVS2Oa01u2VJyWStJihBIcHsdN7QcZ13KTpBp9xQvYs86Sgh8LRDNV7rQEMP?=
+ =?us-ascii?Q?qL+cNOJN0xg+tyrj/eFvxQ9/0x2EiAMsu3rEOuZW3+755pbzeW+GLhZk0NII?=
+ =?us-ascii?Q?fAODHBp4bdSBYQ4BS0UzhfFQY2eNcAW5wyfF858o8WjtqGAiTVVdck1bddAT?=
+ =?us-ascii?Q?v4riXd/mgML4ylfGVeUVHXg+zv/5F07OduV+zaWynFMg7UV3TTKQ8x7Fq6eR?=
+ =?us-ascii?Q?4es793mpmUpFwcQAMSsfWHbEMPMKD201EL6mlchE47qr9bq10kex3sqC8KpV?=
+ =?us-ascii?Q?0f0XzvwDw18UyCX/aGpcBJF9khylXkCGzCn6QixZ606RdOFFEr/ZTGGxvXw6?=
+ =?us-ascii?Q?6OExUtH2Ij2DFKwdeDCO/WXGif+uyQ9M/2/qAUqVGEvh/SE48l4eqCb/D6pD?=
+ =?us-ascii?Q?ejW4TBDnvTmLB8325b159HbHzvXvv2qT5jZ9BNlNTOqcLFjsL1VSz7O1fEl+?=
+ =?us-ascii?Q?fpJqbvew7lH4CLkLw36/JlLmVLOPuJQ+z4RDo1EjIr+1NqxcBaClj3UVpXy1?=
+ =?us-ascii?Q?fp9X1vX/ICyb9pClKhX27Cb/U+WFE+wZIc+BjZiHQAwuwwl1k8Z5Su9HeRaE?=
+ =?us-ascii?Q?/YacVQYxwe8uhmgXS4D9WC36M7Y+uFYNwo3tI+Krw+w3xb+NvmpU1TkEOkuG?=
+ =?us-ascii?Q?6cp6Io6JqmY5XqhRqu0QnAJKkjf4kzokEkYF7EkQ6ah0EBVlQYCoJbO+mPVl?=
+ =?us-ascii?Q?/CQEO90/4lLeTgmaFdHpXoEb4ljn6fnLL7HgYikPArXeQuTQdbTgD+G6Uvqj?=
+ =?us-ascii?Q?K4RgU09GdRkjQBIt0ktWoGGWkBrGu2POxaPR/uUur9NU9+amzcdgmoEdGxgF?=
+ =?us-ascii?Q?ltCGwdGfFEwgNxREqfjzZrSZAbgMfHAWUKohyxti9QhiTCB95ST/Wtlxd4kQ?=
+ =?us-ascii?Q?NYDI+ekItP9dEl+A0atEUCWz6ssCw1ZgJUh7fRpeZjIUEsTM2J3QfuioFMyH?=
+ =?us-ascii?Q?ZCy2QSx3aUrCLCfN31a953FkXZTs5S42zxbD2lcScPqSSVkaUgPFZRcEEcWD?=
+ =?us-ascii?Q?l6Mtpajo/qTmZ78al1uX541aMXE4a3RtSrPrBEamJEZKeh1kyC5SWmRcT8Nt?=
+ =?us-ascii?Q?uc6EIwRjKqGYbECnD/hH1HIXApN1FsFYQAOg80u4zjCZTPRhSGIge3rLqUTl?=
+ =?us-ascii?Q?0bqgyIU4vQvuhRCschSpLBUT0A/0uY6L3SjbsoqxZ0FkHWlfO9Svi6bRlRtE?=
+ =?us-ascii?Q?cXgjlul/smTw9gbyVzwfUjSLz99GoEALNysOT6FJW5oZ1l2Jow=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?cYxOU4mtDNpqxMg9ckUbEH8Db2J8wf4oDpj17T3m/qkJdOPbOMhvdc7hmVwU?=
+ =?us-ascii?Q?DA3f+csmsJStyp/mQ53+oUaJbctYxBmgvWKnJI4pNdxXyk7PM1/bQZo9hNxR?=
+ =?us-ascii?Q?9Ms5zTgVa/AqIhmKgnBv/VNuWnakgxWX3TQoJzYFQF7F/UwHHGN7DlDgpaW/?=
+ =?us-ascii?Q?JB94qbUzpi0HAI0cCgKLyZWXVdX4Gjz91/fAJ0ML1Iv6oCsNWyiP/Z4M2nq/?=
+ =?us-ascii?Q?IqEyM4T0+j0pMhbOO7pH0RsKfA0ugRf3HbnMrfuwwHQduBDDFHgBcKyYFCAs?=
+ =?us-ascii?Q?YYjT7qZKHeWRq5oFoHRe4GV7xWSGmLyLSwxNAvxXbDSsFHJFQVWZKKcPTL1I?=
+ =?us-ascii?Q?F0IFawnJrTR86lh4RBsWeiEEDB86aJw1ZMCHTJgn5yKm49SQw7noDj00t6vh?=
+ =?us-ascii?Q?lrpZ9z1Uttbl+XN9pvqFa5vtIvac8gapeSR5Q2O3F+mbnbEZdIm8RJ1txC+d?=
+ =?us-ascii?Q?GIsCFVF1pQxTOdL2fr6bXokPPmzfxdQzRUHYmSTd1jwdc+k4iYOda4iku+X1?=
+ =?us-ascii?Q?CByH0RUXzPHY/NC0wD5mDdt1bDKswYqRvuKjCinL04DtG+OPg5EW8PHMnr7A?=
+ =?us-ascii?Q?0ZQ+DNZ1hUY8Ak7Yt16X+d16Q4ekiEBhy/37BaNFLDik+ajZvZ35Y5wkzkro?=
+ =?us-ascii?Q?t/BytTto5cmum5twyMgsZASE+FIv9nYPzqaHXU6qsWjRh06dgtC+znbm1y3o?=
+ =?us-ascii?Q?YfEEIUZvf65tXGX8JDh0rEMN0oPAqLyegIPB+/w9XgEmTDyMu7EQdZoRFBeG?=
+ =?us-ascii?Q?IQhjxYS+n/wiPVR3zhnWvHu12Dd5EmMxOAdnmISYDj0OMDg3OlYcMwQiLW6B?=
+ =?us-ascii?Q?Teq2tMaKMmvFxPkVQmgAYukjwzNjNtwf/UQu0v2it7R64U2DKKNsxnmrISDT?=
+ =?us-ascii?Q?lZaV4BAsAy7T9S2XPYsOG+CMxesG/RftLWKqp5vJbS+3AWJ9w80tFSNNvojK?=
+ =?us-ascii?Q?ONv3H9SvGOhO8eioI498GvBSSIMrsMZAcnrfSo5KGNxyd9eqMN6ccijNB2cC?=
+ =?us-ascii?Q?+tMBVXjpIxsIdytu9ERD84vVEZr7IS1ySFutGk4dYkwZd+BEzC9kvS4nyWY0?=
+ =?us-ascii?Q?NkY54VFSpALm/9VCDrLfRDrBE69xfbNPIgQeVanRa+uBFLyNXZQhoe1tNczb?=
+ =?us-ascii?Q?LPBJ4mbxi7TyWZHLQc9AUpxgOmu8hD+DXH9c51P7ufG8YS85YaMe1PxVCTCE?=
+ =?us-ascii?Q?ThD7bDMMGozLepzP6XZ2wYxP5CIhAJkU1WrhUH198+FGD9Fgdne35hx1v7LJ?=
+ =?us-ascii?Q?LDUhVYu1rbK4OJBQt15tboiMbKOKTYwRnRfxJCebHgEr7BtfzPFURwVKd4Fd?=
+ =?us-ascii?Q?AwoLPGjkISR417WsL4AFXwjQFiAwP6hkf/Y8jBzmkTP2J9VdaS0Nwmqnvpl9?=
+ =?us-ascii?Q?qltMpsRxyoGJ3ZAtwaOg9txHjDE80sSVQlpZJxmhcyfyVA0N9dKPKGwDe6M4?=
+ =?us-ascii?Q?ZxLwHUcaDeWOMtiFBy7dohu50mmyw+X4dveKqpfr0ENPJoj74IE85kKijsmq?=
+ =?us-ascii?Q?1w7+OGNREObKIZM0pZN6gDi+paCWrv8laLygguzP7DHCepsWivM+y5d87T4/?=
+ =?us-ascii?Q?YqAxjgZLo9Dfi/OpXQ8wbvDy+0ah4MzEUhxlm/bY?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9a5ed4f-f1fe-4d62-10f2-08dd407996e4
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2025 15:28:32.4593
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tWhVJ2Ihp00LYNsIS2rGB8WsrpetYJU4qdb15/qubbzdan70WcUVrH/mjfVZtFynxovnaH1/LUU7rtnfRfSEzg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9337
 
-Only CPU0 Embedded Trace Extension (ETE) was added, but there's one
-for all 8 CPUs, so add the missing ones.
+On Wed, Jan 29, 2025 at 11:13:42AM +0100, Niklas Cassel wrote:
+> Hello Frank,
+>
+> Typo in subject:
+> s/opitimaze/optimize/
+>
+>
+> On Tue, Jan 28, 2025 at 05:07:33PM -0500, Frank Li wrote:
+> >
+> > Bjorn's comments in https://lore.kernel.org/imx/20250123190900.GA650360@bhelgaas/
+> >
+> > > After all cpu_address_fixup() removed, we can remove use_parent_dt_ranges
+> > > in one clean up patches.
+> > >
+> > >
+> >   ...
+> > >  dw_pcie_rd_other_conf
+> > >  dw_pcie_wr_other_conf
+> > >    dw_pcie_prog_outbound_atu() only called if pp->cfg0_io_shared,
+> > >    after an ECAM map via dw_pcie_other_conf_map_bus() and subsequent
+> > >    successful access; atu.cpu_addr came from pp->io_base, set by
+> > >    dw_pcie_host_init() from pci_pio_to_address(), which I'm pretty
+> > >    sure returns a CPU address.
+> >
+> > io_base is parent_bus_address
+> >
+> > >    So this still looks wrong to me.  In addition, I think doing the
+> > >    ATU setup in *_map() and restore in *rd/wr_other_conf() is ugly
+> > >    and looks unreliable.
+> >
+> > ....
+> >
+> > >  dw_pcie_pme_turn_off
+> > >    atu.cpu_addr came from pp.msg_res, set by
+> > >    dw_pcie_host_request_msg_tlp_res() to a CPU address at the end of
+> > >    the first MMIO bridge window.  This one also looks wrong to me.
+> >
+> > Fixed at this version.
+>
+>
+> I feel like it would have been easier if you replied to Bjorn's comments
+> directly in the thread instead of pasting them here (to a cover letter).
+>
+>
+> Please don't shoot the messenger, but I don't see any reply to (what I
+> assume is the biggest reason why Bjorn did not merge this series):
+>
+> ""
+> .cpu_addr_fixup() is a generic problem that affects dwc (dra7xx, imx6,
+> artpec6, intel-gw, visconti), cadence (cadence-plat), and now
+> apparently microchip.
+>
+> I deferred these because I'm hoping we can come up with a more generic
+> solution that's easier to apply across all these cases.  I don't
+> really want to merge something that immediately needs to be reworked
+> for other drivers.
+> ""
+>
+> It should probably state in the cover letter how v9 addresses Bjorn's
+> concern when it comes to other PCI controller drivers, especially those
+> that are not DWC based.
 
-Fixes: 256e6937e48a ("arm64: dts: qcom: sm8650: Add coresight nodes")
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-Changes in v2:
-- fixed the 7/8 cpu wording
-- added the sm8650 prefix
-- add review tag
-- Link to v1: https://lore.kernel.org/r/20250129-topic-sm8650-upstream-add-all-coresight-cpus-v1-1-96996d37df8e@linaro.org
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 163 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 161 insertions(+), 2 deletions(-)
+Thank you for your reminder, I forget mentions this in cover letter. I
+create new patch to figure out this Bjorn's problem.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 86684cb9a9325618ddb74458621cf4bbdc1cc0d1..d925d5e2c8182d522dd5b8e1fa0e253f5de2f7a7 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -365,7 +365,7 @@ cluster_sleep_1: cluster-sleep-1 {
- 		};
- 	};
- 
--	ete0 {
-+	ete-0 {
- 		compatible = "arm,embedded-trace-extension";
- 
- 		cpu = <&cpu0>;
-@@ -379,15 +379,174 @@ ete0_out_funnel_ete: endpoint {
- 		};
- 	};
- 
-+	ete-1 {
-+		compatible = "arm,embedded-trace-extension";
-+
-+		cpu = <&cpu1>;
-+
-+		out-ports {
-+			port {
-+				ete1_out_funnel_ete: endpoint {
-+					remote-endpoint = <&funnel_ete_in_ete1>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ete-2 {
-+		compatible = "arm,embedded-trace-extension";
-+
-+		cpu = <&cpu2>;
-+
-+		out-ports {
-+			port {
-+				ete2_out_funnel_ete: endpoint {
-+					remote-endpoint = <&funnel_ete_in_ete2>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ete-3 {
-+		compatible = "arm,embedded-trace-extension";
-+
-+		cpu = <&cpu3>;
-+
-+		out-ports {
-+			port {
-+				ete3_out_funnel_ete: endpoint {
-+					remote-endpoint = <&funnel_ete_in_ete3>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ete-4 {
-+		compatible = "arm,embedded-trace-extension";
-+
-+		cpu = <&cpu4>;
-+
-+		out-ports {
-+			port {
-+				ete4_out_funnel_ete: endpoint {
-+					remote-endpoint = <&funnel_ete_in_ete4>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ete-5 {
-+		compatible = "arm,embedded-trace-extension";
-+
-+		cpu = <&cpu5>;
-+
-+		out-ports {
-+			port {
-+				ete5_out_funnel_ete: endpoint {
-+					remote-endpoint = <&funnel_ete_in_ete5>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ete-6 {
-+		compatible = "arm,embedded-trace-extension";
-+
-+		cpu = <&cpu6>;
-+
-+		out-ports {
-+			port {
-+				ete6_out_funnel_ete: endpoint {
-+					remote-endpoint = <&funnel_ete_in_ete6>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ete-7 {
-+		compatible = "arm,embedded-trace-extension";
-+
-+		cpu = <&cpu7>;
-+
-+		out-ports {
-+			port {
-+				ete7_out_funnel_ete: endpoint {
-+					remote-endpoint = <&funnel_ete_in_ete7>;
-+				};
-+			};
-+		};
-+	};
-+
- 	funnel-ete {
- 		compatible = "arm,coresight-static-funnel";
- 
- 		in-ports {
--			port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
- 				funnel_ete_in_ete0: endpoint {
- 					remote-endpoint = <&ete0_out_funnel_ete>;
- 				};
- 			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				funnel_ete_in_ete1: endpoint {
-+					remote-endpoint = <&ete1_out_funnel_ete>;
-+				};
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+
-+				funnel_ete_in_ete2: endpoint {
-+					remote-endpoint = <&ete2_out_funnel_ete>;
-+				};
-+			};
-+
-+			port@3 {
-+				reg = <3>;
-+
-+				funnel_ete_in_ete3: endpoint {
-+					remote-endpoint = <&ete3_out_funnel_ete>;
-+				};
-+			};
-+
-+			port@4 {
-+				reg = <4>;
-+
-+				funnel_ete_in_ete4: endpoint {
-+					remote-endpoint = <&ete4_out_funnel_ete>;
-+				};
-+			};
-+
-+			port@5 {
-+				reg = <5>;
-+
-+				funnel_ete_in_ete5: endpoint {
-+					remote-endpoint = <&ete5_out_funnel_ete>;
-+				};
-+			};
-+
-+			port@6 {
-+				reg = <6>;
-+
-+				funnel_ete_in_ete6: endpoint {
-+					remote-endpoint = <&ete6_out_funnel_ete>;
-+				};
-+			};
-+
-+			port@7 {
-+				reg = <7>;
-+
-+				funnel_ete_in_ete7: endpoint {
-+					remote-endpoint = <&ete7_out_funnel_ete>;
-+				};
-+			};
- 		};
- 
- 		out-ports {
+PCI: Add parent_bus_offset to resource_entry
 
----
-base-commit: da7e6047a6264af16d2cb82bed9b6caa33eaf56a
-change-id: 20250129-topic-sm8650-upstream-add-all-coresight-cpus-a3418606b354
+With above patch, other platform will be easy apply the same method.
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
-
+Frank
+>
+>
+> Kind regards,
+> Niklas
 
