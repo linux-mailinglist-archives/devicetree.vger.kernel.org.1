@@ -1,169 +1,179 @@
-Return-Path: <devicetree+bounces-141716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40860A22222
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:51:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 379EFA22226
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:51:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A80D2163785
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:51:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5398E1637F1
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F85C1DF75C;
-	Wed, 29 Jan 2025 16:51:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D141DFE14;
+	Wed, 29 Jan 2025 16:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="Z1AkDh9a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZAzRdIn6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE55F1AD403;
-	Wed, 29 Jan 2025 16:51:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738169487; cv=pass; b=fCWLRtc0jknxf2Zzq16OUWQcT3ACjH+rK9T/f/2Ik2K4tx/MwZmbgvRYWXR2ZinIG6ocuZJvMDnOk0mrvSSMioU5qh3w2HCUljFIFUKL6kbInaO3w5z1l4kW1vPmKE9l3HGu9587kj/2DbXOqSRERM2LiaR+wgnJFlGhtYG4dRM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738169487; c=relaxed/simple;
-	bh=iha0Qb5CHXCtlSASKRIfGOfEeYnumvLm3mgF4a5jMWA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Agpcm3puINjWI9cnd5ZMfe7k1aYfEULaNOQWjtFlz+XoSmBEC5R92GXuPnEZB84cVDkGhfIs+xl2bUtdFDBwsHYkfEzhlOnXTyHWRc9hpUmYwly/pIAXZEWC3+m5v8RTTlHOr2vdcSnivRJJHASgZjXwT+gcbgtUYk+WARwm7SE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=Z1AkDh9a; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1738169451; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=UgrcL6rMN/4wU8bq3QwCfqoUIJD14WOSBWTAEdNDTNn2oXvmKKlCeC8wFspeGiQad5gFf6LED4uJb/SNP0VFW90337Whkh/4SK4PYFrS57uGRnirxsXGfFsQbCtNCxu3yvP+pDXZibjUgKevgz89uDnByim6O8HrWIsez/BVILQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1738169451; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=wPGGfc1qwmOrQZGLlJNOWgBoAZRzR/BbTbOKRT5al8k=; 
-	b=NG7AtYb2a2Q5uo4vpFBu/10e+848SICc0+d/3SduQISEn8qKRlBI1j7E1wi3ijsWsd4RICHqZybgQYOoIqJUPX5XlWeQznaAn6LF+wDPmUNfCDLAFge0Y+/kH6OAjfkVJ090In9m2yAC4XYDDKIU194LOeGIpen1EXTtjyb+sV4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1738169451;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=wPGGfc1qwmOrQZGLlJNOWgBoAZRzR/BbTbOKRT5al8k=;
-	b=Z1AkDh9apOD+PwP6D7Nj3dw6dqAoxWhEZZpoE5MTrY+XFHQCP9YIKzk3aDle8Zw3
-	Igc8acgOSzr2oLLACUvyF3DZ48n/hhVyo6eUi6KajltJ7gnrpSFAIkWISzEhoajoj+w
-	hneSRZi4L/It/R0udbKYbQ+V4OfqoE1V5VU13v3A=
-Received: by mx.zohomail.com with SMTPS id 1738169445054994.6577657400422;
-	Wed, 29 Jan 2025 08:50:45 -0800 (PST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Diederik de Haas <didi.debian@cknow.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>, Alexey Charkov <alchark@gmail.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
-Date: Wed, 29 Jan 2025 11:50:43 -0500
-Message-ID: <8541055.T7Z3S40VBb@trenzalore>
-In-Reply-To: <CE4343FE-94AA-4F84-8C43-8366013AED84@gmail.com>
-References:
- <20240615015734.1612108-1-detlev.casanova@collabora.com>
- <5969581.LvFx2qVVIh@arisu> <CE4343FE-94AA-4F84-8C43-8366013AED84@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173281AD403;
+	Wed, 29 Jan 2025 16:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738169492; cv=none; b=D/86ZSApV/9G6Nc0AgiLTc1WWFdI5ZGskMLMTQp3J/pGCqc1EAcyp9SokgemMctyGlWJmS5vITGE1qOi5wbkHGoezb4qbxzOOjBmzaejVEYxWxao7cQEy7iJBt/XdWuMAPIuxgTsjatZjYFROx2t2bLACodti8qEllNbzck3JKc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738169492; c=relaxed/simple;
+	bh=Tg1oBtB+g5D3u942EZXUAq8Z82CBxaiPRA6s8YUTMX4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uYPUUah57oNu4+yofLoF4VJDF+UeJofeai1vcFyascDA5RGpkcU1DvDuRb+dW9xUyPH3ZwYJvabFNoUZn7NnKsi4/dXOVofV/SxCyydnyAG21mXj3CufhIWn56WwvDcxvmbvydwpEGMXN0ibRm7CkIjJZuppiPGq4+D0nZo7lSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZAzRdIn6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6678CC4CED1;
+	Wed, 29 Jan 2025 16:51:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738169490;
+	bh=Tg1oBtB+g5D3u942EZXUAq8Z82CBxaiPRA6s8YUTMX4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZAzRdIn66WKxjU6RDiDVwfGIiD4H1fxjDvTasCLlu02qH8+6N8HkGxHiZzjg1J7sd
+	 wYv/TJ0rcyN6kNB6i3Y949hbbFO+7CV4q22AIzpBsl7zZdfrGc0cbL0VUiFsITYuEZ
+	 sqMwNOjnd/c35ut/3Ph6rb+t5LFheW95Pg53LwnohjzEvf6X94zXEHUnRcqESos3BK
+	 SZaSJNq7oVqwIwp88176R/CpoETU0XIW2EoZc0pWsWyQXaOLr2eBLngbm1GrhEeEXt
+	 ifr8Hrz+d2lM9xTIpFSb6m4+jWMCCqMMIJrkeXsTOlsmkygrrYL61ha72ks4dEbnNG
+	 IXsQ7uwSzaekw==
+Date: Wed, 29 Jan 2025 10:51:29 -0600
+From: Rob Herring <robh@kernel.org>
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: add AD7191
+Message-ID: <20250129165129.GA2216595-robh@kernel.org>
+References: <20250129143054.225322-1-alisa.roman@analog.com>
+ <20250129143054.225322-2-alisa.roman@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250129143054.225322-2-alisa.roman@analog.com>
 
-Hi Piotr,
+On Wed, Jan 29, 2025 at 04:29:02PM +0200, Alisa-Dariana Roman wrote:
+> AD7191 is a pin-programmable, ultra-low noise 24-bit sigma-delta ADC
+> designed for precision bridge sensor measurements. It features two
+> differential analog input channels, selectable output rates,
+> programmable gain, internal temperature sensor and simultaneous
+> 50Hz/60Hz rejection.
+> 
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+> ---
+>  .../bindings/iio/adc/adi,ad7191.yaml          | 149 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 156 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
+> new file mode 100644
+> index 000000000000..ac14096ba76c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
+> @@ -0,0 +1,149 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2025 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7191.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD7191 ADC
+> +
+> +maintainers:
+> +  - Alisa-Dariana Roman <alisa.roman@analog.com>
+> +
+> +description: |
+> +  Bindings for the Analog Devices AD7191 ADC device. Datasheet can be
+> +  found here:
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD7191.pdf
+> +  The device's PDOWN pin must be connected to the SPI controller's chip select
+> +  pin.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7191
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-cpol: true
+> +
+> +  spi-cpha: true
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: |
 
-On Wednesday, 29 January 2025 09:48:51 EST Piotr Oniszczuk wrote:
-> > Wiadomo=C5=9B=C4=87 napisana przez Detlev Casanova <detlev.casanova@col=
-labora.com> w
-> > dniu 15 cze 2024, o godz. 21:44:
-> >=20
-> >=20
-> >=20
-> >=20
-> > Yes, the vdpu34x decoder on rk356x socs should be supported by this dri=
-ver
-> > but I don't have boards to test that unfortunately.
->=20
-> Detlev,
->=20
-> Just FYI:
->=20
-> I done some tests of rkvdec2 on 6.12.11 on 3588, 3568 and 3566
->=20
-> For enabling rkvdec2 on 356x i:
-> -add 356x compatible in rkvdec2.c
-> -add dtsi nodes like this:
-> https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-6.12/=
-fi
-> les/1078-arm64-dtsi-rockchip-rk356x-add-rkvdec2-video-decoder-nodes.patch
->=20
-> With this i can say:
-> -on rk3588 i have some hevc 4k decoding perfectly but some others are
-> failing -on rk3566/3568 only subset of 3588=E2=80=99s samples is decoded =
-well. (but
-> is works then works perfectly fine) -when not failing on 3588 sample fails
-> on 356x - is see errors like:
->=20
-> [   95.666669] iova: 0x00000000f2e80000 already mapped to 0x0000000037378=
-000
-> cannot remap to phys: 0x000000002f8c0000 prot: 0x3 [   95.745082] iova:
-> 0x00000000f2f46000 already mapped to 0x00000000372b6000 cannot remap to
-> phys: 0x000000003a403000 prot: 0x3 [   95.822012] iova: 0x00000000f2ee6000
-> already mapped to 0x0000000037126000 cannot remap to phys:
-> 0x000000003a803000 prot: 0x3 [   95.896802] iova: 0x00000000f2ec6000
-> already mapped to 0x0000000029fe6000 cannot remap to phys:
-> 0x000000003a403000 prot: 0x3 turning-off iommu makes above errors disappe=
-ar
-> - but sample still fails.
+Don't need '|' if no formatting.
 
-I suppose you tested with my hevc branch, which is not really ready yet (So=
-me=20
-ref frames will work but usually, it won't) Can you confirm which branch/co=
-mmit=20
-you based your tests on ?
+> +      Must be present when CLKSEL pin is tied HIGH to select external clock
+> +      source (either a crystal between MCLK1 and MCLK2 pins, or a
+> +      CMOS-compatible clock driving MCLK2 pin). Must be absent when CLKSEL pin
+> +      is tied LOW to use the internal 4.92MHz clock.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: AVdd voltage supply
+> +
+> +  dvdd-supply:
+> +    description: DVdd voltage supply
+> +
+> +  vref-supply:
+> +    description: Vref voltage supply
+> +
+> +  odr-gpios:
+> +    description: |
 
-=46or the iommu, do you see those errors like that only on 356x or also on =
-3588=20
-? The hevc branch should have the iommu patches to fix that kind of things.=
-=20
-(but note that hevc support is really new, so it may have bugs with buffer=
-=20
-allocations)
+Don't need '|' if no formatting.
 
-> If anybody hints me for way/tool to analyse of playing/failing samples to
-> catch: what encoding specifics makes given sample failing to decode  on
-> rkvdec2 - i'll be more that happy to provide details=E2=80=A6 (doing simp=
-le
-> mediainfo <file> shows no differences for me=E2=80=A6)
+> +      ODR1 and ODR2 pins for output data rate selection. Should be defined if
+> +      adi,odr-value is absent.
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  adi,odr-value:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Should be present if ODR pins are pin-strapped. Possible values:
+> +      120 Hz (ODR1=0, ODR2=0)
+> +      60 Hz (ODR1=0, ODR2=1)
+> +      50 Hz (ODR1=1, ODR2=0)
+> +      10 Hz (ODR1=1, ODR2=1)
+> +      If defined, odr-gpios must be absent.
+> +    enum: [120, 60, 50, 10]
+> +
+> +  pga-gpios:
+> +    description: |
 
-=46ew features are supported for HEVC as of now:
- - No scanlist support (only default 16x16 blocks will work)
- - Long term reference frames are also not configured yet.
- - hevc 10 bits is also not supported yet
+Don't need '|' if no formatting.
 
-These are specific to the encoding and mediainfo won't really give you=20
-information on that, except maybe on the 10 bits format.
+With those fixed,
 
-You can also checkout YUView (https://github.com/IENT/YUView) to get=20
-information on media files structure, but I have had issues with HEVC suppo=
-rt=20
-lately.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Regards,
-
-Detlev.
-
-
-
+> +      PGA1 and PGA2 pins for gain selection. Should be defined if adi,pga-value
+> +      is absent.
+> +    minItems: 2
+> +    maxItems: 2
 
