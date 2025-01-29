@@ -1,180 +1,194 @@
-Return-Path: <devicetree+bounces-141732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E05A22363
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 18:52:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E36B5A2236F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 18:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEB37168250
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:52:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 540001632A5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F6F1E0DE8;
-	Wed, 29 Jan 2025 17:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F52E1E0DCC;
+	Wed, 29 Jan 2025 17:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="lZdWbKAN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BU+nGcuT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982B21DF728;
-	Wed, 29 Jan 2025 17:52:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121791DFE16;
+	Wed, 29 Jan 2025 17:54:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738173122; cv=none; b=BqqlnWvVMxXbF9usC5Fvx0yZktZvcyUm61SS6OIwbrsCGyrLwFVpWx7utN6NaQLM4qhW/tB4iDIylCIgKiAnEogpgpq359SkMutq/42pY2vmnLzR4nhZaPoZaYMPyyHThdcm3yRrObJDdMQLvjssUbgBQK5A9rWHcAxzcoc23LI=
+	t=1738173244; cv=none; b=exDYUhJ9iItRhL/YElxCI463X+0PmidirRJ76WQY6A+gQ6zCU++v5Kn8SCW4qolS8K14GlEn7tXPjQ1zDr8T/qMZsEtGoP44vzl/b8iLpD2jYXec0TFI4+GBG/fqJJU9zAscQZgjEL0XyEIKjsZ3wlNbHuLkX2GxyM5RRGXWALQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738173122; c=relaxed/simple;
-	bh=zpiAXyILf067I4whMC+frV0pjFcZkvxHyV76lqWCAAQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hIQHdpWMiUpPDggQU+UAgmHMh5KtgroayVuZnlOq7INIBHjJjjOHGE9hFFWk8XRAxl3kJDL+//t5sSdLKqhR3qB90tb0QGsgTI2t9C8OLJlt6DUCSaGhCV8zpv7KdjnzQgR5QRhmMvMY1Oca3Kjf9mwYaX6k8yiW8PV/tAcPZGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=lZdWbKAN; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1738173118; bh=zpiAXyILf067I4whMC+frV0pjFcZkvxHyV76lqWCAAQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=lZdWbKANpvXf7F9MTh9ki/AIGtlVy6tvWjhMYDDnubh/v3qC78u3kbwLZjlXLzCpd
-	 pLdLwQx2pBy2GaTs0YhVExXanhpHwLsKdRkMe3BE21rStjJTXOd3omGonc556qkHcN
-	 PKrGdHCg+NbZyoIKuwtjpCrYkgb/9AtoyQWAZvn8=
-From: Luca Weiss <luca@lucaweiss.eu>
-Date: Wed, 29 Jan 2025 18:51:44 +0100
-Subject: [PATCH 2/2] remoteproc: qcom_wcnss: Handle platforms with only
- single power domain
+	s=arc-20240116; t=1738173244; c=relaxed/simple;
+	bh=Zyf2Hutc5cy0T89YVPvTglk6LxkQN6P68b7+zGZ837w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ub+/lFn8dmgTZ77IkJyuiW3N0BOYbeN5zc9+uWOlcM90tT8tl5WbGdQ9nGwm+C7xU9kiAXsJw4W9no7QrOl5uDW75FMysIq7qDIDECDpI8j6fiZWBW6FlpkUzSwqH6jVT+O1cX2Nie1uqRxGfmgLfDHuDV7kwJnj1IZ+NanZxR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BU+nGcuT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 454BFC4CED1;
+	Wed, 29 Jan 2025 17:54:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738173243;
+	bh=Zyf2Hutc5cy0T89YVPvTglk6LxkQN6P68b7+zGZ837w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BU+nGcuTtFSX63zvw1OdWg01bkYPv85CIq9lThHNzW8t3mpk5pTpn0NqgjviFTmRG
+	 9uVfhz8se45xyyaEoJqxNWNjKuRHlArPi8QK/gm8W4zzZRChSe5OMBBJs4YmF6Xk01
+	 sPPyyCDIlHHO8uk0UwfddpjuVyJA/DKOtpq6iajj1opHiHc44poT3PnxtTO9Wvohzn
+	 lL6dN2TRIQYh2GV3Uk1SIrsvbOp91L6c7FJTLx3O2QtGJ7nQ+mVSh+Ti7kAb9zQvj2
+	 Q4jA3SJG9OJICbc50j21pWb8Of7cSotac9oTJ3OYI880BfnboqeSHWj3FWLzUXsC/j
+	 HDAusBlf+F/iw==
+Date: Wed, 29 Jan 2025 17:53:57 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Patrice CHOTARD <patrice.chotard@foss.st.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	christophe.kerello@foss.st.com
+Subject: Re: [PATCH v2 1/9] dt-bindings: spi: Add STM32 OSPI controller
+Message-ID: <20250129-feminize-spotlight-2cee53f8b463@spud>
+References: <20250128081731.2284457-1-patrice.chotard@foss.st.com>
+ <20250128081731.2284457-2-patrice.chotard@foss.st.com>
+ <20250128-panama-manly-a753d91c297c@spud>
+ <e3d01bce-a7d4-4690-8a2f-3bbb1ee5ccb7@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250129-wcnss-singlepd-v1-2-b01a6ba0b1bd@lucaweiss.eu>
-References: <20250129-wcnss-singlepd-v1-0-b01a6ba0b1bd@lucaweiss.eu>
-In-Reply-To: <20250129-wcnss-singlepd-v1-0-b01a6ba0b1bd@lucaweiss.eu>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Stephan Gerhold <stephan.gerhold@linaro.org>, 
- =?utf-8?q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca@lucaweiss.eu>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3011; i=luca@lucaweiss.eu;
- h=from:subject:message-id; bh=bnl2z9mRN3zuirTMKAM0nt9n9bUo3DVXiWm61cywUqU=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBnmmq963npVto5IWdNrks/vO79yDWF0IEzgZsN0
- un9f3kXMR2JAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZ5pqvQAKCRBy2EO4nU3X
- VgHREACCeSC4+NNiSlMIcNwGj+V4Mix4ymuRw6MMmKehV4n9qLEgUB75xXdvL0T3uUVZiDPqeaF
- SJKGjkhNEpZS5cGd4vBf+bLmfCRvS9GhZYnShRPaD3GT3b8YR4V5sThRnRnlTembM+hdRzGXghG
- zKVjffM7fmnXBq30QOObvNViUy+rNfOZAr5j1War3vWAUw6PvpLUUMwk0WcbIgDj5hJNWmz4GPt
- fWZPbrSDBBeD/0lk9GD72mGeDKSvVRBrQiKNDf2gii2YqjBMbxMqC8Tjzq4XlPvC8/YsqKN585F
- j+wTSdctMjzpTC+TVuE7AAnUbU08Lb6TJDonH/Y+45e10D/3IHVsq2AiBxQ1fOaq/QsICZr2gvZ
- Yc/LuTrpUxo8dODLlrG/dmGBNQNEtpWdV89fDhMbwWn3FtFQzrlkbb6Sxy4fUGvLybzQcYTKQyO
- Kh+18SxiFETNm5Qe0RUSpRjoCCJwCL3oW2ZnpffmySZsjqM0Pb+TIdD1+yeVh7C5I7cluEQrVEI
- hNPWr6M02NUslffY0WHFr+U8L/E8G3VK85tmZhk0w0tB0t9L71nZNyRt7mmSn77CZxQOTtUK7nU
- hvSuIFZSFlO62OCcajeFOsitnUyb/VRE9JTSdRzQzBLB3nR2XsOiMKwHW4WfumwhH47TLEbHtdD
- ZZi8lH7Srr2U6Vg==
-X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="klBchq5Iv61GqXw7"
+Content-Disposition: inline
+In-Reply-To: <e3d01bce-a7d4-4690-8a2f-3bbb1ee5ccb7@foss.st.com>
 
-From: Matti Lehtimäki <matti.lehtimaki@gmail.com>
 
-Both MSM8974 and MSM8226 have only CX as power domain with MX & PX being
-handled as regulators. Handle this case by reodering pd_names to have CX
-first, and handling that the driver core will already attach a single
-power domain internally.
+--klBchq5Iv61GqXw7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
-[luca: minor changes]
-Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
----
- drivers/remoteproc/qcom_wcnss.c | 32 +++++++++++++++++++++++++-------
- 1 file changed, 25 insertions(+), 7 deletions(-)
+On Wed, Jan 29, 2025 at 06:40:23PM +0100, Patrice CHOTARD wrote:
+> On 1/28/25 19:02, Conor Dooley wrote:
+> > On Tue, Jan 28, 2025 at 09:17:23AM +0100, patrice.chotard@foss.st.com w=
+rote:
+> >> +  memory-region:
+> >> +    maxItems: 1
+> >=20
+> > Whatever about not having descriptions for clocks or reg when there's
+> > only one, I think a memory region should be explained.
+>=20
+> ok i will add :
+>=20
+>     description: |
 
-diff --git a/drivers/remoteproc/qcom_wcnss.c b/drivers/remoteproc/qcom_wcnss.c
-index a7bb9da27029db23f3759b19e423fab11b8430e4..4658ffb9bb13dfd52ecb23e85e0ad2d36af0cc80 100644
---- a/drivers/remoteproc/qcom_wcnss.c
-+++ b/drivers/remoteproc/qcom_wcnss.c
-@@ -117,10 +117,10 @@ static const struct wcnss_data pronto_v1_data = {
- 	.pmu_offset = 0x1004,
- 	.spare_offset = 0x1088,
- 
--	.pd_names = { "mx", "cx" },
-+	.pd_names = { "cx", "mx" },
- 	.vregs = (struct wcnss_vreg_info[]) {
--		{ "vddmx", 950000, 1150000, 0 },
- 		{ "vddcx", .super_turbo = true},
-+		{ "vddmx", 950000, 1150000, 0 },
- 		{ "vddpx", 1800000, 1800000, 0 },
- 	},
- 	.num_pd_vregs = 2,
-@@ -131,10 +131,10 @@ static const struct wcnss_data pronto_v2_data = {
- 	.pmu_offset = 0x1004,
- 	.spare_offset = 0x1088,
- 
--	.pd_names = { "mx", "cx" },
-+	.pd_names = { "cx", "mx" },
- 	.vregs = (struct wcnss_vreg_info[]) {
--		{ "vddmx", 1287500, 1287500, 0 },
- 		{ "vddcx", .super_turbo = true },
-+		{ "vddmx", 1287500, 1287500, 0 },
- 		{ "vddpx", 1800000, 1800000, 0 },
- 	},
- 	.num_pd_vregs = 2,
-@@ -397,8 +397,17 @@ static irqreturn_t wcnss_stop_ack_interrupt(int irq, void *dev)
- static int wcnss_init_pds(struct qcom_wcnss *wcnss,
- 			  const char * const pd_names[WCNSS_MAX_PDS])
- {
-+	struct device *dev = wcnss->dev;
- 	int i, ret;
- 
-+	/* Handle single power domain */
-+	if (dev->pm_domain) {
-+		wcnss->pds[0] = dev;
-+		wcnss->num_pds = 1;
-+		pm_runtime_enable(dev);
-+		return 0;
-+	}
-+
- 	for (i = 0; i < WCNSS_MAX_PDS; i++) {
- 		if (!pd_names[i])
- 			break;
-@@ -418,8 +427,15 @@ static int wcnss_init_pds(struct qcom_wcnss *wcnss,
- 
- static void wcnss_release_pds(struct qcom_wcnss *wcnss)
- {
-+	struct device *dev = wcnss->dev;
- 	int i;
- 
-+	/* Handle single power domain */
-+	if (wcnss->num_pds == 1 && dev->pm_domain) {
-+		pm_runtime_disable(dev);
-+		return;
-+	}
-+
- 	for (i = 0; i < wcnss->num_pds; i++)
- 		dev_pm_domain_detach(wcnss->pds[i], false);
- }
-@@ -437,9 +453,11 @@ static int wcnss_init_regulators(struct qcom_wcnss *wcnss,
- 	 * the regulators for the power domains. For old device trees we need to
- 	 * reserve extra space to manage them through the regulator interface.
- 	 */
--	if (wcnss->num_pds)
--		info += num_pd_vregs;
--	else
-+	if (wcnss->num_pds) {
-+		info += wcnss->num_pds;
-+		/* Handle single power domain case */
-+		num_vregs += num_pd_vregs - wcnss->num_pds;
-+	} else
- 		num_vregs += num_pd_vregs;
- 
- 	bulk = devm_kcalloc(wcnss->dev,
+The | isn't needed here.
 
--- 
-2.48.1
+>       Memory region to be used for memory-map read access.
 
+I don't think that's a good explanation, sorry. Why's a memory-region
+required for read access?
+
+> >> +
+> >> +  clocks:
+> >> +    maxItems: 1
+> >> +
+> >> +  interrupts:
+> >> +    maxItems: 1
+> >> +
+> >> +  resets:
+> >> +    items:
+> >> +      - description: phandle to OSPI block reset
+> >> +      - description: phandle to delay block reset
+> >> +
+> >> +  dmas:
+> >> +    maxItems: 2
+> >> +
+> >> +  dma-names:
+> >> +    items:
+> >> +      - const: tx
+> >> +      - const: rx
+> >> +
+> >> +  st,syscfg-dlyb:
+> >> +    description: phandle to syscon block
+> >> +      Use to set the OSPI delay block within syscon to
+> >> +      tune the phase of the RX sampling clock (or DQS) in order
+> >> +      to sample the data in their valid window and to
+> >> +      tune the phase of the TX launch clock in order to meet setup
+> >> +      and hold constraints of TX signals versus the memory clock.
+> >> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> >=20
+> > Why do you need a phandle here? I assume looking up by compatible ain't
+> > possible because you have multiple controllers on the SoC? Also, I don't
+>=20
+> Yes, we got 2 OCTOSPI controller, each of them have a dedicated delay blo=
+ck
+>  syscfg register.
+
+:+1:=20
+
+> > think your copy-paste "phandle to" stuff here is accurate:
+> >       st,syscfg-dlyb =3D <&syscfg 0x1000>;
+> > There's an offset here that you don't mention in your description.
+>=20
+> I will add it as following:
+>=20
+>   st,syscfg-dlyb:
+>     description:
+>       Use to set the OSPI delay block within syscon to
+>       tune the phase of the RX sampling clock (or DQS) in order
+>       to sample the data in their valid window and to
+>       tune the phase of the TX launch clock in order to meet setup
+>       and hold constraints of TX signals versus the memory clock.
+>     $ref: /schemas/types.yaml#/definitions/phandle-array
+>     items:
+>       - description: phandle to syscfg
+>       - description: register offset within syscfg
+
+:+1:
+
+> >> +  access-controllers:
+> >> +    description: phandle to the rifsc device to check access right
+> >> +      and in some cases, an additional phandle to the rcc device for
+> >> +      secure clock control
+> >=20
+> > This should be described using items rather than a free-form list.
+>=20
+>   access-controllers:
+>     description: phandle to the rifsc device to check access right
+>       and in some cases, an additional phandle to the rcc device for
+>       secure clock control
+>     items:
+>       - description: phandle to bus controller or to clock controller
+>       - description: access controller specifier
+>      minItems: 1
+>      maxItems: 2
+
+These updates look fine to me.
+
+--klBchq5Iv61GqXw7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5prNQAKCRB4tDGHoIJi
+0tiOAQDd9BF6yvC5/EHySEFWBLCC14sZW3m0j9Y5sHG+IFLYJQD/SiGc3aoOaqRR
+GvI0wjS/7qTgY+FgXginJwblZbIzNAs=
+=C2X+
+-----END PGP SIGNATURE-----
+
+--klBchq5Iv61GqXw7--
 
