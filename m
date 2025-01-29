@@ -1,257 +1,103 @@
-Return-Path: <devicetree+bounces-141730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66C6EA22353
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 18:48:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AB43A22361
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 18:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8132167F18
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:48:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACECE1882C78
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:52:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA94F1DF99D;
-	Wed, 29 Jan 2025 17:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC441E0DCC;
+	Wed, 29 Jan 2025 17:52:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HmkrBs4t"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="M3pqxwOk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A69D19066B;
-	Wed, 29 Jan 2025 17:48:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D88C18E75A;
+	Wed, 29 Jan 2025 17:52:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738172934; cv=none; b=MK1+I/QoBhl27EfBmvDx3qICOgfBckdHy++lopZiN1NFEoYBq0K0Wqy+o0fI0x5H+WJQ4u3F+ietLv9WwKUvulsZFcGfD/xFwjSrFIKeLyUTh9INntfZE3S0ogbaNlIyAAhCRE7Agi/bWkLeZzxydPDPndoZncPC2XTbqRGQUvw=
+	t=1738173122; cv=none; b=eGQ83upgkSUrUDCEC+cmZJBGwtv4IEzrkCPwDbP6qW7EbiSE750Ab8ZKoNi4oMz84cXx3Z91o9ZvIio+R0h1haKtzKxv4ATwcyCKopwZnM8EU5BXcUCy3q63kGVmiOwoUNFgsDBcG8ZS/XPYqEbOtJZ8MxZlAs8WNh+bBF6n6g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738172934; c=relaxed/simple;
-	bh=0mZICetq1ltZupJqnsMYF9aRp1+EuIM+7AJJ0xhWLcc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UUB3FWtaB0/Nkj39pZUHsIdoDAj2VGoKfKRbnO+OqnDpmOfI1UAqAbHavEfH4e8zoI5JUriG/IJT4OVWah8oRsiyGFXLoVSKu7xpSeRzOiyIRHlDOmExhWXOyFvCQASILENbADSX/UohauRazdT/tJfBAyeZEJTXiEi3Mlxkmnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HmkrBs4t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 042FFC4CED1;
-	Wed, 29 Jan 2025 17:48:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738172933;
-	bh=0mZICetq1ltZupJqnsMYF9aRp1+EuIM+7AJJ0xhWLcc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HmkrBs4tG5uJa6hwyPpvaVotnf8N0VRhPwtJ3ohE52yAXNMk2Iw5JzfpenDYEFMe7
-	 ISsnDpGGu8V8ATfjwqdrXYuj/ZZvjgZy7GEiuM6ZmeOrcmWUQpyv2ozQ+S9JP7EDmA
-	 OE9N4rcRKwqwT3HJZo0ITJeGoSUucA1nh3Cj2WBJ/BQZiWQAD66ftYNsspaiDSXlTZ
-	 qPjhCgBcZQQcGC47W4PkjxSqhA1PrQzxJTitJ5yuLSioUS5pmMKRvzvyuKGFbCFEnG
-	 ThmlHwpv2MhArFedU7xHyMFQf7NrZw1uZ5Y/zoblJvGfxemZmypCIY++mLxBi1NZGz
-	 wU2AC3qoaiosA==
-Date: Wed, 29 Jan 2025 17:48:44 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Basharath Hussain Khaja <basharath@couthit.com>
-Cc: danishanwar <danishanwar@ti.com>, rogerq <rogerq@kernel.org>,
-	andrew+netdev <andrew+netdev@lunn.ch>, davem <davem@davemloft.net>,
-	edumazet <edumazet@google.com>, kuba <kuba@kernel.org>,
-	pabeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>,
-	nm <nm@ti.com>, ssantosh <ssantosh@kernel.org>,
-	tony <tony@atomide.com>, richardcochran <richardcochran@gmail.com>,
-	parvathi <parvathi@couthit.com>, schnelle <schnelle@linux.ibm.com>,
-	rdunlap <rdunlap@infradead.org>, diogo ivo <diogo.ivo@siemens.com>,
-	m-karicheri2 <m-karicheri2@ti.com>, horms <horms@kernel.org>,
-	jacob e keller <jacob.e.keller@intel.com>,
-	m-malladi <m-malladi@ti.com>,
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>,
-	afd <afd@ti.com>, s-anna <s-anna@ti.com>,
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-	netdev <netdev@vger.kernel.org>,
-	devicetree <devicetree@vger.kernel.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>,
-	linux-omap <linux-omap@vger.kernel.org>,
-	pratheesh <pratheesh@ti.com>, prajith <prajith@ti.com>,
-	vigneshr <vigneshr@ti.com>, praneeth <praneeth@ti.com>,
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>,
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>,
-	mohan <mohan@couthit.com>
-Subject: Re: [RFC v2 PATCH 01/10] dt-bindings: net: ti: Adds DUAL-EMAC mode
- support on PRU-ICSS2 for AM57xx SOCs
-Message-ID: <20250129-vowed-dingbat-cfb5c5b8ede4@spud>
-References: <20250124122353.1457174-1-basharath@couthit.com>
- <20250124122353.1457174-2-basharath@couthit.com>
- <20250124-reoccupy-music-3803c753f8af@spud>
- <504387436.449923.1738127812232.JavaMail.zimbra@couthit.local>
+	s=arc-20240116; t=1738173122; c=relaxed/simple;
+	bh=F034U0F9Qebn9T+CgagQAO5PapIj94Zzv/Iz7/IHDIg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NKOlpUhyVA01FA3ECmqWeGepmVvb4s8wIz3l0nTn6CO0rhk3J1VDodyCP6dJQon3clGkJKHgh/rJmQh1sdWr6XKmfriAEBMgDhRLais9Rf4uO+ulQ8zZsJ3FTfQtqCsatP6UN/54jQzaufFlWDbLUTpjPKUVL48mfcydZeblNto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=M3pqxwOk; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1738173118; bh=F034U0F9Qebn9T+CgagQAO5PapIj94Zzv/Iz7/IHDIg=;
+	h=From:Subject:Date:To:Cc;
+	b=M3pqxwOkcktu7YnNP2z8nCHJlZWrpuGXXg9c5+cA4QHS9sKGglnRXtJz5LqWZKMqV
+	 F/yTvtWguqeJHvYuztoLBvuRzslHZ94EjV0WciWzkPAqie9t97bBxr9GlLDiBoBRZq
+	 tAcoyB7qDGjumhkxbLlLfJdk2zzq1DP1mntFmoHY=
+From: Luca Weiss <luca@lucaweiss.eu>
+Subject: [PATCH 0/2] Support single-PD in wcnss driver
+Date: Wed, 29 Jan 2025 18:51:42 +0100
+Message-Id: <20250129-wcnss-singlepd-v1-0-b01a6ba0b1bd@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="A1ip/677/ZYHkwQO"
-Content-Disposition: inline
-In-Reply-To: <504387436.449923.1738127812232.JavaMail.zimbra@couthit.local>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAK5qmmcC/x3MQQqAIBBA0avErBNMsrKrRIvQ0QbCwoEKxLsnL
+ d/i/wyMiZBhbjIkvInpjBVd24DdtxhQkKsGJZWWnTLisZFZMMVw4OWENzhMuld6RAc1uhJ6ev/
+ hspbyARg55qxgAAAA
+X-Change-ID: 20250129-wcnss-singlepd-f9e6854257ed
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Stephan Gerhold <stephan.gerhold@linaro.org>, 
+ =?utf-8?q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca@lucaweiss.eu>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=740; i=luca@lucaweiss.eu;
+ h=from:subject:message-id; bh=F034U0F9Qebn9T+CgagQAO5PapIj94Zzv/Iz7/IHDIg=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBnmmqwG1zV5BsrzT266t57OFG2ifaSlE9T8MBJ1
+ YGBjjOvOC+JAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZ5pqsAAKCRBy2EO4nU3X
+ VgqZD/4i7tdDIFsnP4xU5NVP9FQkZNVKpFZSa28tLjk1x+3bnQCLj942EaWPNKKZQF39KPw125L
+ 4TlVQ7kEINdEIRfFKdsb5wBY879wYV9ze9DzWzvK+KY2QKraYvP2uyi4zLwX3nnrBwBwwyiiMg/
+ 7d5y4G60Iw2tPsWJcXLyPR/dJzzoU9GipNMO7E1P/ynTMuTHUhhWTOzt2s+K2d7hohMC2tV/lkH
+ 7B8jrJKJtvz4wViZXkgaDpMwSJN5P+HeRPzq4AGBZJ1T2VriwET5bN//iPRvB/TOkGIpaadFWDQ
+ kosMC0HNF+tESMSizB04xp7IOJwJY9cHrZQLEPw1jaMWbAyHB6Bb7uHxXkoUIn+e2MXCGNB82WQ
+ WxGxqPbt+ylPtLKPisUJug+b20SdLZNoTWUZSHw4ThcW2iArEpAjEtwGuJ4Giw+f17noEUp8EIq
+ usyNs3/Cbf4Xw6eUfHOdp0jrpNCFuovU6ZIrnEmftAGd7pxCqARei8wqlWoa6VT8kGSP9XC8lme
+ lHaufgNJnaLqI4Iq7Na4maKrkxrABOYW86PrrcwflrUd9TDf6ZRBv8Bc15Cp4tztBs0+baDVhRk
+ 2cB2P0S/lOvQKkmRtgEHOz0rZeKJrzfzrjpHlvEcjxpcKdeABzmbFGfBW8AgSP1lLNjl06uB/bb
+ Sc8rA487D2mX/4A==
+X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
+Both MSM8974 and MSM8226 only model CX as power domain, leaving MX & PX
+as regulators. Add some patches to support this use case.
 
---A1ip/677/ZYHkwQO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+---
+Matti Lehtimäki (2):
+      dt-bindings: remoteproc: qcom,wcnss-pil: Add support for single power-domain platforms
+      remoteproc: qcom_wcnss: Handle platforms with only single power domain
 
-On Wed, Jan 29, 2025 at 10:46:52AM +0530, Basharath Hussain Khaja wrote:
-> > On Fri, Jan 24, 2025 at 05:53:44PM +0530, Basharath Hussain Khaja wrote:
-> >> From: Parvathi Pudi <parvathi@couthit.com>
-> >>=20
-> >> Documentation update for the newly added "pruss2_eth" device tree
-> >> node and its dependencies along with compatibility for PRU-ICSS
-> >> Industrial Ethernet Peripheral (IEP), PRU-ICSS Enhanced Capture
-> >> (eCAP) peripheral and using YAML binding document for AM57xx SoCs.
-> >>=20
-> >> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> >> Signed-off-by: Andrew F. Davis <afd@ti.com>
-> >> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> >> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
-> >> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
-> >=20
-> > I find this hard to believe. If all these people handled the patch, the
-> > signoff from Parvathi would be first, no? Should some of these people be
-> > co-developers?
-> >=20
->=20
-> Changes are about multiple modules. We have added our sign-off followed b=
-y original module authors.
+ .../bindings/remoteproc/qcom,wcnss-pil.yaml        |  2 ++
+ drivers/remoteproc/qcom_wcnss.c                    | 32 +++++++++++++++++-----
+ 2 files changed, 27 insertions(+), 7 deletions(-)
+---
+base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
+change-id: 20250129-wcnss-singlepd-f9e6854257ed
 
-I think what you're trying to say is that these people are
-co-developers? Anyone that contributed to the content of this patch
-needs to get a co-developed-by. If they're not co-developers, and you
-just want to put them in the maintainers section, they don't get
-sign-offs.
+Best regards,
+-- 
+Luca Weiss <luca@lucaweiss.eu>
 
-> >> ---
-> >>  .../devicetree/bindings/net/ti,icss-iep.yaml  |   5 +
-> >>  .../bindings/net/ti,icssm-prueth.yaml         | 147 ++++++++++++++++++
-> >>  .../bindings/net/ti,pruss-ecap.yaml           |  32 ++++
-> >>  .../devicetree/bindings/soc/ti/ti,pruss.yaml  |   9 ++
-> >>  4 files changed, 193 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/net/ti,icssm-pru=
-eth.yaml
-> >>  create mode 100644 Documentation/devicetree/bindings/net/ti,pruss-eca=
-p.yaml
-> >>=20
-> >> diff --git a/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
-> >> b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
-> >> index e36e3a622904..aad7d37fb47e 100644
-> >> --- a/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
-> >> +++ b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
-> >> @@ -8,6 +8,8 @@ title: Texas Instruments ICSS Industrial Ethernet Peri=
-pheral
-> >> (IEP) module
-> >> =20
-> >>  maintainers:
-> >>    - Md Danish Anwar <danishanwar@ti.com>
-> >> +  - Parvathi Pudi <parvathi@couthit.com>
-> >> +  - Basharath Hussain Khaja <basharath@couthit.com>
-> >> =20
-> >>  properties:
-> >>    compatible:
-> >> @@ -20,6 +22,9 @@ properties:
-> >> =20
-> >>        - const: ti,am654-icss-iep
-> >> =20
-> >> +      - items:
-> >> +          - enum:
-> >> +              - ti,am5728-icss-iep
-> >=20
-> > "items: - enum: <one item>" is the same as const.
-> >=20
->=20
-> Sure, we will modify as below.
->=20
->       - const: ti,am5728-icss-iep
->=20
-> >> =20
-> >>    reg:
-> >>      maxItems: 1
-> >> diff --git a/Documentation/devicetree/bindings/net/ti,icssm-prueth.yaml
-> >> b/Documentation/devicetree/bindings/net/ti,icssm-prueth.yaml
-> >> new file mode 100644
-> >> index 000000000000..51e99beb5f5f
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/net/ti,icssm-prueth.yaml
-> >> @@ -0,0 +1,147 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/net/ti,icssm-prueth.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Texas Instruments ICSSM PRUSS Ethernet
-> >> +
-> >> +maintainers:
-> >> +  - Roger Quadros <rogerq@ti.com>
-> >> +  - Andrew F. Davis <afd@ti.com>
-> >> +  - Parvathi Pudi <parvathi@couthit.com>
-> >> +  - Basharath Hussain Khaja <basharath@couthit.com>
-> >> +
-> >> +description:
-> >> +  Ethernet based on the Programmable Real-Time Unit and Industrial
-> >> +  Communication Subsystem.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - ti,am57-prueth     # for AM57x SoC family
-> >> +
-> >> +  sram:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description:
-> >> +      phandle to OCMC SRAM node
-> >> +
-> >> +  ti,mii-rt:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description:
-> >> +      phandle to MII_RT module's syscon regmap
-> >> +
-> >> +  ti,iep:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description:
-> >> +      phandle to IEP (Industrial Ethernet Peripheral) for ICSS
-> >> +
-> >> +  ecap:
-> >=20
-> > Why's this one not got a ti prefix?
-> >=20
->=20
-> We will add "ti" prefix to ecap as "ti,ecap" in the next version.
->=20
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description:
-> >> +      phandle to Enhanced Capture (eCAP) event for ICSS
-> >=20
-> > Why do you need phandles for these things, can they not be looked up by
-> > compatible? (e.g. multiple devices on one SoC).
-> >=20
->=20
-> ecap is another peripheral similar to IEP in ICSSM/ICSSG. We have created=
- a separate driver for possible reuse with ICSSG in future.
-
-That's not an answer to my question.
-
->=20
-> >> +
-> >> +  interrupts:
-> >> +    items:
-> >> +      - description: High priority Rx Interrupt specifier.
-> > > +      - description: Low priority Rx Interrupt specifier.
->=20
->=20
-> Thanks & Best Regards,
-> Basharath
-
---A1ip/677/ZYHkwQO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5pp/AAKCRB4tDGHoIJi
-0j1XAQDUL9qTPiwK0zX2laAS1VtLc/BPBORTGaY0J9aaaWzQzQEA3B7TIVYm6bzB
-4hBCMr4G0YOuHuOpH2AJFTavyt3K/ws=
-=od+I
------END PGP SIGNATURE-----
-
---A1ip/677/ZYHkwQO--
 
