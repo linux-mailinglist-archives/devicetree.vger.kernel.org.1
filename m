@@ -1,350 +1,304 @@
-Return-Path: <devicetree+bounces-141671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 668B0A21DF6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:39:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73A42A21E0D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1199C7A2024
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 13:38:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89BE81629D8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 13:43:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74C5B13CFA6;
-	Wed, 29 Jan 2025 13:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D6F156678;
+	Wed, 29 Jan 2025 13:42:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U4u/oFdO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DOTXJDV4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 782071BC20
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 13:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D139613D531;
+	Wed, 29 Jan 2025 13:42:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738157965; cv=none; b=qOxbzzn9faE78ihRCOhZ96FuSPyEMVzD2u5IQtb6Zos7NHEvo3fWHWYIww39tlcDMgqRE5ESYl0z2FmuTLxfvydiemj/Ta9HlxetpExt8w7Bz37zXI+2FJqcdq2LYRxxRMe9Bqgk1o1KiM/wAEkHZKsS3yRnnjcpDENQMgCvRiM=
+	t=1738158171; cv=none; b=cWft9jW8y4jLJ3KsIdhZ7f1u5aLqYzCFVnEMg0uU8roEvD6LbZ7a5gefPo7z1V1XdCXkzS2RIG0fR60VW2naEsG7K/PFfudY5I9VQEiBsbFrPzdZpXsCHrh8ySFYRaUROgh9YTfUIva3f2p2/qSNe+2atcbEbqHWBHUauhMjj3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738157965; c=relaxed/simple;
-	bh=CDcRRXN0ifiuQSEQoQDUdUPg9kOvhCH+/uhLp/TkVuI=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=jD7vxoxbZPjFZxqoxUZMQKcn2oO5exfOVxFPedQ6NR6KVJpQCccpFAD95gD1Jxfj0gqDokOAlVAAWqgBLF+1raQA61laNz3TXiKgPLk7PDs/26j3R9Iujm+09/NJIdsZwRJ0dXWqo7m9LtH5nzHTc8Ee8i4mHym/Ki+kHP5sc7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U4u/oFdO; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-436202dd730so48739885e9.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 05:39:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738157962; x=1738762762; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y+K0sidwnuxavvy1AkJKNcWdrNuKvpIiQ4qgOISO6jE=;
-        b=U4u/oFdOcU3ycHMXhF9GP21Cx82wSVvJQVoRDBMAhyFSOmJLIL40dhZZlVMLrwZWfV
-         OHxxNp/MYmQaLQIRQ/tXK3hvkWxC4b6zfbLqoOG7KP9IN4p7PWc4ThKGTwRqAdNlDoyo
-         25XVLJiapWWyFcHnXNfVxHGF/ZhdUCUXPj6hfsQYB0YkosxX4PrMPMrCvSgGc+tRrGBa
-         Ci2H1X0e+wWYrOI+hPfRTnjugZVYqxVDOrBqG1fcLW5s1JYKaM7ETur3NJnRYdZQjHGR
-         0ymbm5TRHoP4fJtSzRAm2Qz0XH6aVJeLCq5YptiCNLlcuRJg+KAI6RRJxsunM0xRjRAc
-         3pRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738157962; x=1738762762;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Y+K0sidwnuxavvy1AkJKNcWdrNuKvpIiQ4qgOISO6jE=;
-        b=sp5JInv3jKYkkutHXE2IGdpcEEJKO03BWubVhWVPVF/XSkgAnB7y/pjU6WdifKT1ef
-         ixg94frYNHUw8pwwn5aDbwWSmwd0cMinwmCcSphh8vpxQ8S/3PjwGHsuNRSwRtQcndU4
-         Y/BSa6a1w5EFUg76NPs+v66RFrsA3/eR3FfBOZvLa6rM7JXVbpXxCvZj00XpIkb1hzuB
-         juEbRG9xi3vKw2cs9gjU4Jr5CPYmatpI1VsE8OvAu7i5Fx9SwGpgMxZUZjHwHaqdBN0E
-         R2NpVpM+2j4jCA/VPltoQ9nNdYg0V2/wAQOs2FAlSyKDpvh+p3bl8Z6nSId6Ro7i59L1
-         GgVA==
-X-Forwarded-Encrypted: i=1; AJvYcCVizJ7HyxGMjun9lvS7Iq4zkBnV9+jvjp9SIY+FDBh3Gid0eyzw9z0QN0PgPsc/u2APSnYjit2qLZ1K@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBfyr8GyI+978i63NZQW4VQNP+XswTDFq2Qjz4pYDK3SyHcXCs
-	WVH41n/XNFkxF0NpvHDtugVJ8aHQr4qCSgouRuDMAdlYJyN/KLEQVEDqM3AyddV68MwbPm9WbnJ
-	Q
-X-Gm-Gg: ASbGnct+4XdR1aDRmjYcu/boy7rELEl4JZVCa5Un7ljLu/EGQTEUdlKJ/QdxAr1dqoZ
-	je2K7Towb3ft4pMJmQ90EAHI4Qu7Tal9ZB1kU506cL3BjBCGmwZqj8WjLemWcq2VFjaWPD0GTg7
-	GRGT6uop93epTgdGSyd43cM7oI4Kgaw4adTAgTaJ9Z4SdzePS3tIxHKQsHmCehBt6DUTjHI1Nbb
-	9fdAHHqbAWmbNy8DOx7n5ezDteq7aU5GmgcSbPQoU9+0Om3Gf5vHz1Deh5YH+JsD6v5Laq0cdkW
-	kEjiTZhZOyk+TKR4R+b0ldc35Q5Y80sukgitXPT7El+bHVZ36i9DyV8vtqnjNdzQUQ7p
-X-Google-Smtp-Source: AGHT+IEhSvgjfruwhcex+wivH//fD/wuaybIS2/hD16jD5+lAolzYLPk996GstOlH4QsZAZmUZU1Kg==
-X-Received: by 2002:a5d:47ab:0:b0:38a:87cc:fb2c with SMTP id ffacd0b85a97d-38c5195f506mr2941224f8f.18.1738157961709;
-        Wed, 29 Jan 2025 05:39:21 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:b25e:a614:863b:566e? ([2a01:e0a:982:cbb0:b25e:a614:863b:566e])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1c3f8asm16757481f8f.86.2025.01.29.05.39.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jan 2025 05:39:21 -0800 (PST)
-Message-ID: <df4baaa2-0c31-4ecd-9c48-9a2cbf1ece4d@linaro.org>
-Date: Wed, 29 Jan 2025 14:39:20 +0100
+	s=arc-20240116; t=1738158171; c=relaxed/simple;
+	bh=397wmQJ4TE8S5q2cgqvNcsL9lPDIAhrglheJH9ArOBM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d+hoz5DWY4EmWeRjAlqkyzqziWAMisiOwch2hnoIzSx8HShuOUCGaSlYSBBnHCEX82xfX7SoXXXng2z3ZvILd/Btuqqy+zE5fepFR5SqqXNMtlEYjbkIa8IsHAHEwpEuQOTIzV52k8vOQcKtAMgXyCFp4PVP12jXhHKuyeEzXjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DOTXJDV4; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738158169; x=1769694169;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=397wmQJ4TE8S5q2cgqvNcsL9lPDIAhrglheJH9ArOBM=;
+  b=DOTXJDV4W5yj0A/imDyVq4RL7lwsPjp2ymYOxoeOjMZtuoxOuR22y/6Q
+   NjNaylqgL+1STvYr+9yAhzigUiDkq1i1BMNCvwuDFHzqQlMs3rTAz1sSA
+   C9rckpoRbNRWQ284MOUDk/wdJvupTx5w8sl9ZBMtCKMho6Dq6QXUzVHxG
+   EMr4swr7jSTUdcDbEBFYDq8DEgdBiXmgmq15Caj3y3R4dGLb5lT0WmVZq
+   zYEXRk3a2x7JVIsqPmee4MSpDjpXkY4NEt9P2RNSLB4RkY6cb7Ic/flQm
+   XZsDRwTAueHXth8j4rZPafVOPi8fF6Ddk1jFgPVZQLqIascW2DXgJ9heU
+   w==;
+X-CSE-ConnectionGUID: /0u+qsxBSSW57KyPGmMYbg==
+X-CSE-MsgGUID: KpapgsS4TOqKjO0PyOSFCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42598110"
+X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; 
+   d="scan'208";a="42598110"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2025 05:42:48 -0800
+X-CSE-ConnectionGUID: xiEMcZjQTV+pEXk+jpkGQg==
+X-CSE-MsgGUID: S4o4FnqzQeaEFnmV+rg1dQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="146229921"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2025 05:42:42 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id E7B4011F8DF;
+	Wed, 29 Jan 2025 15:42:38 +0200 (EET)
+Date: Wed, 29 Jan 2025 13:42:38 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Mirela Rabulea <mirela.rabulea@nxp.com>,
+	Hans de Goede <hdegoede@redhat.com>, mchehab@kernel.org,
+	hverkuil-cisco@xs4all.nl, robh@kernel.org, krzk+dt@kernel.org,
+	bryan.odonoghue@linaro.org, laurentiu.palcu@nxp.com,
+	robert.chiras@nxp.com, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, LnxRevLi@nxp.com,
+	kieran.bingham@ideasonboard.com, dave.stevenson@raspberrypi.com,
+	mike.rudenko@gmail.com, alain.volmat@foss.st.com,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	alexander.stein@ew.tq-group.com, umang.jain@ideasonboard.com,
+	zhi.mao@mediatek.com, festevam@denx.de, julien.vuillaumier@nxp.com,
+	alice.yuan@nxp.com
+Subject: Re: Re: [PATCH v2 2/4] media: ox05b1s: Add omnivision OX05B1S raw
+ sensor driver
+Message-ID: <Z5owTnr_5Zl8Gfjo@kekkonen.localdomain>
+References: <20241126155100.1263946-1-mirela.rabulea@nxp.com>
+ <20241126155100.1263946-3-mirela.rabulea@nxp.com>
+ <131271d3-f3be-450f-b4e1-a7efb65362f3@redhat.com>
+ <20250125001437.GA19927@pendragon.ideasonboard.com>
+ <367710fc-9c66-4cf5-9059-1df00320f1f3@redhat.com>
+ <20250125121832.GC1805@pendragon.ideasonboard.com>
+ <1751e672-9ba1-4e8c-92bd-c7385afbe624@nxp.com>
+ <20250129133324.GB16795@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: qcom: add all 7 coresight ETE nodes
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Yuanfang Zhang <quic_yuanfang@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250129-topic-sm8650-upstream-add-all-coresight-cpus-v1-1-96996d37df8e@linaro.org>
- <D7EJURP1JU6R.1TNVVAGA939RR@fairphone.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <D7EJURP1JU6R.1TNVVAGA939RR@fairphone.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250129133324.GB16795@pendragon.ideasonboard.com>
 
-On 29/01/2025 13:18, Luca Weiss wrote:
-> Hi Neil,
-> 
-> On Wed Jan 29, 2025 at 10:54 AM CET, Neil Armstrong wrote:
->> Only CPU0 Embedded Trace Extension (ETE) was added, but there's one
->> for all 7 CPUs, so add the missing ones.
->>
->> Fixes: 256e6937e48a ("arm64: dts: qcom: sm8650: Add coresight nodes")
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> The subject line is missing "sm8650"
+Hi Laurent,
 
-Damn, thx, I'll fix for v2
-
-Neil
-
+On Wed, Jan 29, 2025 at 03:33:24PM +0200, Laurent Pinchart wrote:
+> On Tue, Jan 28, 2025 at 02:09:52PM +0200, Mirela Rabulea wrote:
+> > On 25.01.2025 14:18, Laurent Pinchart wrote:
+> > > On Sat, Jan 25, 2025 at 11:12:16AM +0100, Hans de Goede wrote:
+> > >> On 25-Jan-25 1:14 AM, Laurent Pinchart wrote:
+> > >>> On Fri, Jan 24, 2025 at 06:17:40PM +0100, Hans de Goede wrote:
+> > >>>> On 26-Nov-24 4:50 PM, Mirela Rabulea wrote:
+> > >>>>> Add a v4l2 subdevice driver for the Omnivision OX05B1S RGB-IR sensor.
+> > >>>>>
+> > >>>>> The Omnivision OX05B1S is a 1/2.5-Inch CMOS image sensor with an
+> > >>>>> active array size of 2592 x 1944.
+> > >>>>>
+> > >>>>> The following features are supported for OX05B1S:
+> > >>>>> - Manual exposure an gain control support
+> > >>>>> - vblank/hblank control support
+> > >>>>> - Supported resolution: 2592 x 1944 @ 30fps (SGRBG10)
+> > >>>>>
+> > >>>>> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+> > >>>> Thank you for your contribution, I noticed in $subject
+> > >>>> that the model-nr ends in a "S" and that you describe
+> > >>>> this as a RGB-IR sensor.
+> > >>>>
+> > >>>> I've been working on OV01A1S support myself and one of
+> > >>>> the issues is how to communicate the RGB-IR color-filter
+> > >>>> to userspace.
+> > >>>>
+> > >>>> <snip>
+> > >>>>
+> > >>>> I see here:
+> > >>>>
+> > >>>>> +static const struct ox05b1s_sizes ox05b1s_supported_codes[] = {
+> > >>>>> + {
+> > >>>>> +         .code = MEDIA_BUS_FMT_SGRBG10_1X10,
+> > >>>>> +         .sizes = ox05b1s_sgrbg10_sizes,
+> > >>>>> + }, {
+> > >>>>> +         /* sentinel */
+> > >>>>> + }
+> > >>>>> +};
+> > >>>> That you are using MEDIA_BUS_FMT_SGRBG10_1X10, but that suggests
+> > >>>> this sensor is using a plain Bayer color filter which is not correct.
+> > >>>>
+> > >>>> Here is what I have come up with:
+> > >>>>
+> > >>>> diff --git a/include/linux/drm_fourcc.h b/include/linux/drm_fourcc.h
+> > >>>> index db679877..68ed65c5 100644
+> > >>>> --- a/include/linux/drm_fourcc.h
+> > >>>> +++ b/include/linux/drm_fourcc.h
+> > >>>> @@ -447,6 +447,8 @@ extern "C" {
+> > >>>>   #define DRM_FORMAT_SGRBG10        fourcc_code('B', 'A', '1', '0')
+> > >>>>   #define DRM_FORMAT_SGBRG10        fourcc_code('G', 'B', '1', '0')
+> > >>>>   #define DRM_FORMAT_SBGGR10        fourcc_code('B', 'G', '1', '0')
+> > >>>> +/* Mixed 10 bit bayer + ir pixel pattern found on Omnivision ov01a1s */
+> > >>>> +#define DRM_FORMAT_SIGIG_GBGR_IGIG_GRGB10 fourcc_code('O', 'V', '1', 'S')
+> > >>>>
+> > >>>>   /* 12-bit Bayer formats */
+> > >>>>   #define DRM_FORMAT_SRGGB12        fourcc_code('R', 'G', '1', '2')
+> > >>>> diff --git a/include/linux/media-bus-format.h b/include/linux/media-bus-format.h
+> > >>>> index b6acf8c8..e2938f0d 100644
+> > >>>> --- a/include/linux/media-bus-format.h
+> > >>>> +++ b/include/linux/media-bus-format.h
+> > >>>> @@ -122,7 +122,7 @@
+> > >>>>   #define MEDIA_BUS_FMT_YUV16_1X48          0x202a
+> > >>>>   #define MEDIA_BUS_FMT_UYYVYY16_0_5X48             0x202b
+> > >>>>
+> > >>>> -/* Bayer - next is        0x3025 */
+> > >>>> +/* Bayer - next is        0x3026 */
+> > >>>>   #define MEDIA_BUS_FMT_SBGGR8_1X8          0x3001
+> > >>>>   #define MEDIA_BUS_FMT_SGBRG8_1X8          0x3013
+> > >>>>   #define MEDIA_BUS_FMT_SGRBG8_1X8          0x3002
+> > >>>> @@ -159,6 +159,8 @@
+> > >>>>   #define MEDIA_BUS_FMT_SGBRG20_1X20                0x3022
+> > >>>>   #define MEDIA_BUS_FMT_SGRBG20_1X20                0x3023
+> > >>>>   #define MEDIA_BUS_FMT_SRGGB20_1X20                0x3024
+> > >>>> +/* Mixed bayer + ir pixel pattern found on ov01a1s */
+> > >>>> +#define MEDIA_BUS_FMT_SIGIG_GBGR_IGIG_GRGB10_1X10 0x3025
+> > >>>>
+> > >>>>   /* JPEG compressed formats - next is      0x4002 */
+> > >>>>   #define MEDIA_BUS_FMT_JPEG_1X8                    0x4001
+> > >>>> diff --git a/include/linux/videodev2.h b/include/linux/videodev2.h
+> > >>>> index 3829c0b6..1b91ed0e 100644
+> > >>>> --- a/include/linux/videodev2.h
+> > >>>> +++ b/include/linux/videodev2.h
+> > >>>> @@ -706,6 +706,9 @@ struct v4l2_pix_format {
+> > >>>>   #define V4L2_PIX_FMT_SGBRG16 v4l2_fourcc('G', 'B', '1', '6') /* 16  GBGB.. RGRG.. */
+> > >>>>   #define V4L2_PIX_FMT_SGRBG16 v4l2_fourcc('G', 'R', '1', '6') /* 16  GRGR.. BGBG.. */
+> > >>>>   #define V4L2_PIX_FMT_SRGGB16 v4l2_fourcc('R', 'G', '1', '6') /* 16  RGRG.. GBGB.. */
+> > >>>> +  /* 10bit mixed bayer + ir pixel pattern found on ov01a1s */
+> > >>>> +#define V4L2_PIX_FMT_SIGIG_GBGR_IGIG_GRGB10  v4l2_fourcc('O', 'V', '1', 'S') /* unpacked */
+> > >>>> +#define V4L2_PIX_FMT_SIGIG_GBGR_IGIG_GRGB10P v4l2_fourcc('O', 'V', '1', 'P') /* packed */
+> > >>>>
+> > >>>>   /* HSV formats */
+> > >>>>   #define V4L2_PIX_FMT_HSV24 v4l2_fourcc('H', 'S', 'V', '3')
+> > >>>>
+> > >>>> For this, note:
+> > >>>>
+> > >>>> 1. This is against libcamera's copy of the relevant linux headers, the paths
+> > >>>> to the .h files are different in the kernel
+> > >>>>
+> > >>>> 2. Since I wrote this I learned that it looks like the intel driver for
+> > >>>> the ov01a1s:
+> > >>>>
+> > >>>> /https://github.com/intel/ipu6-drivers/blob/master/drivers/media/i2c/ov01a1s.c/
+> > >>>>
+> > >>>> may have enabled horizontal-flip / mirroring by default, which means that
+> > >>>> the order of each of the quads needs to be flipped.
+> > >>>>
+> > >>>> IMHO we need to resolve how to communicate the color-filters used on
+> > >>>> these OV xxxxx"S" models to userspace. When I last discussed this with
+> > >>>> Laurent, Laurent suggested using V4L2_PIX_FMT_Y10, combined with
+> > >>>> a new field or v4l2-control to query the actual filter.
+> > >>>
+> > >>> Yes, adding new pixel formats and media bus codes to represent CFA
+> > >>> patterns won't scale. We need to switch to using controls to report
+> > >>> those. Sakari is already working on a series for that.
+> >
+> > That is why we also did not try to add some BGGR-IR format, because 
+> > there were too many combinations possible. Even if we are using just one 
+> > particular format, someone else would probably need another format, and 
+> > in the end, we agree that such a solution won't scale. So, separating 
+> > the size from the CFA information seems the practical thing to do.
+> >
+> > >> Interesting, do you have a link to Sakari's work ?
+> > >
+> > > I don't think it has been posted yet (Sakari can correct me if I'm
+> > > wrong). I believe the plan is to include it in a new version of "RFC v4
+> > > 0/9] Sub-device configuration models".
+> > 
+> > Looking forward for that :)
+> > 
+> > >>>> The idea is to separate the depth/packing info from the filter info,
+> > >>>> avoiding the possible combinatioral explosion of needing this special
+> > >>>> filter with all possible deths. I gave this a quick try but at least on
+> > >>>> the libcamera side there is still a lot of code assuming that both
+> > >>>> depth and color-filter-type are communicated through a single fmt
+> > >>>> integer. Also it seems that in practice there only is this one new
+> > >>>> RGB-IR color filter used on the OV xxxxx"S" models so I think we
+> > >>>> need just 1 new V4L2_PIX_FMT_ define (*).
+> > >>>
+> > >>> Changes in libcamera are surely needed. There's work to be done, we'll
+> > >>> do the work, and we'll solve this problem. Let's focus the effort in
+> > >>> that direction.
+> > >>
+> > >> Ok, so what does that mean for upstreaming support for omnivision
+> > >> OVxxxxS sensors? Clearly advertising MEDIA_BUS_FMT_SGRBG10_1X10 is
+> > >> wrong. So I guess that upstreaming this driver needs to wait until
+> > >> at least the kernel API side of this is resolved?
+> > >
+> > > It depends. I don't know if that's the case for this particular sensor,
+> > > but I wouldn't be surprised if some sensors could interpolate
+> > > neighbouring pixels to replace the IR pixels and produce a regular 2x2
+> > > Bayer CFA pattern. If the sensor you're working with can do that, then
+> > > the feature can be enabled by default, and the driver can advertise the
+> > > corresponding existing media bus code. Otherwise, let's cooperate to
+> > > review and merge the subdev configuration models series :-)
+> >
+> > For this ox05b1s sensor specifically, the CFA pattern is
+> > B G
+> > G IR
+> > 
+> > And when mirroring:
+> > G R
+> > IR G
+> > 
+> > So, we choose MEDIA_BUS_FMT_SGRBG10_1X10, as that was the closest match, 
+> > and our ISP gets extra information from userspace (libcamera) about the 
+> > CFA pattern.
+> > 
+> > >> Sensors relying on the new CFA control to communicatethe CFA type
+> > >> could use a new (e.g.) MEDIA_BUS_FMT_RAW_1X10 or are we going to re-use
+> > >> the monochrome (Y only) media bus fmts, so e.g. this sensor would
+> > >> advertise MEDIA_BUS_FMT_Y10_1X10 and then the CFA control would provide
+> > >> the actual CFA info ?
+> > >>
+> > >> IMHO re-using the monochrome (Y only) media bus fmts seems best
+> > >> to avoid needing to have to make a "RAW" copy of all of them.
+> > > I believe the plan is to use new RAW media bus codes, but we can also
+> > > consider reusing the Y formats.
+> > 
+> > So, should we try to re-submit this driver with Y format, or rather wait 
+> > for the new RAW media bus codes? Is there some work already started on 
+> > RAW media bus codes, are you referring to the generic MEDIA_BUS_FMT_META 
+> > formats?
 > 
-> Regards
-> Luca
+> I've discussed this with Sakari yesterday, and we both agreed that Hans'
+> idea of reusing the Y media bus codes and pixel formats is a good
+> approach, provided we don't run into issues.
 > 
->> ---
->>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 163 ++++++++++++++++++++++++++++++++++-
->>   1 file changed, 161 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> index 86684cb9a9325618ddb74458621cf4bbdc1cc0d1..d925d5e2c8182d522dd5b8e1fa0e253f5de2f7a7 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> @@ -365,7 +365,7 @@ cluster_sleep_1: cluster-sleep-1 {
->>   		};
->>   	};
->>   
->> -	ete0 {
->> +	ete-0 {
->>   		compatible = "arm,embedded-trace-extension";
->>   
->>   		cpu = <&cpu0>;
->> @@ -379,15 +379,174 @@ ete0_out_funnel_ete: endpoint {
->>   		};
->>   	};
->>   
->> +	ete-1 {
->> +		compatible = "arm,embedded-trace-extension";
->> +
->> +		cpu = <&cpu1>;
->> +
->> +		out-ports {
->> +			port {
->> +				ete1_out_funnel_ete: endpoint {
->> +					remote-endpoint = <&funnel_ete_in_ete1>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +
->> +	ete-2 {
->> +		compatible = "arm,embedded-trace-extension";
->> +
->> +		cpu = <&cpu2>;
->> +
->> +		out-ports {
->> +			port {
->> +				ete2_out_funnel_ete: endpoint {
->> +					remote-endpoint = <&funnel_ete_in_ete2>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +
->> +	ete-3 {
->> +		compatible = "arm,embedded-trace-extension";
->> +
->> +		cpu = <&cpu3>;
->> +
->> +		out-ports {
->> +			port {
->> +				ete3_out_funnel_ete: endpoint {
->> +					remote-endpoint = <&funnel_ete_in_ete3>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +
->> +	ete-4 {
->> +		compatible = "arm,embedded-trace-extension";
->> +
->> +		cpu = <&cpu4>;
->> +
->> +		out-ports {
->> +			port {
->> +				ete4_out_funnel_ete: endpoint {
->> +					remote-endpoint = <&funnel_ete_in_ete4>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +
->> +	ete-5 {
->> +		compatible = "arm,embedded-trace-extension";
->> +
->> +		cpu = <&cpu5>;
->> +
->> +		out-ports {
->> +			port {
->> +				ete5_out_funnel_ete: endpoint {
->> +					remote-endpoint = <&funnel_ete_in_ete5>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +
->> +	ete-6 {
->> +		compatible = "arm,embedded-trace-extension";
->> +
->> +		cpu = <&cpu6>;
->> +
->> +		out-ports {
->> +			port {
->> +				ete6_out_funnel_ete: endpoint {
->> +					remote-endpoint = <&funnel_ete_in_ete6>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +
->> +	ete-7 {
->> +		compatible = "arm,embedded-trace-extension";
->> +
->> +		cpu = <&cpu7>;
->> +
->> +		out-ports {
->> +			port {
->> +				ete7_out_funnel_ete: endpoint {
->> +					remote-endpoint = <&funnel_ete_in_ete7>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +
->>   	funnel-ete {
->>   		compatible = "arm,coresight-static-funnel";
->>   
->>   		in-ports {
->> -			port {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			port@0 {
->> +				reg = <0>;
->> +
->>   				funnel_ete_in_ete0: endpoint {
->>   					remote-endpoint = <&ete0_out_funnel_ete>;
->>   				};
->>   			};
->> +
->> +			port@1 {
->> +				reg = <1>;
->> +
->> +				funnel_ete_in_ete1: endpoint {
->> +					remote-endpoint = <&ete1_out_funnel_ete>;
->> +				};
->> +			};
->> +
->> +			port@2 {
->> +				reg = <2>;
->> +
->> +				funnel_ete_in_ete2: endpoint {
->> +					remote-endpoint = <&ete2_out_funnel_ete>;
->> +				};
->> +			};
->> +
->> +			port@3 {
->> +				reg = <3>;
->> +
->> +				funnel_ete_in_ete3: endpoint {
->> +					remote-endpoint = <&ete3_out_funnel_ete>;
->> +				};
->> +			};
->> +
->> +			port@4 {
->> +				reg = <4>;
->> +
->> +				funnel_ete_in_ete4: endpoint {
->> +					remote-endpoint = <&ete4_out_funnel_ete>;
->> +				};
->> +			};
->> +
->> +			port@5 {
->> +				reg = <5>;
->> +
->> +				funnel_ete_in_ete5: endpoint {
->> +					remote-endpoint = <&ete5_out_funnel_ete>;
->> +				};
->> +			};
->> +
->> +			port@6 {
->> +				reg = <6>;
->> +
->> +				funnel_ete_in_ete6: endpoint {
->> +					remote-endpoint = <&ete6_out_funnel_ete>;
->> +				};
->> +			};
->> +
->> +			port@7 {
->> +				reg = <7>;
->> +
->> +				funnel_ete_in_ete7: endpoint {
->> +					remote-endpoint = <&ete7_out_funnel_ete>;
->> +				};
->> +			};
->>   		};
->>   
->>   		out-ports {
->>
->> ---
->> base-commit: da7e6047a6264af16d2cb82bed9b6caa33eaf56a
->> change-id: 20250129-topic-sm8650-upstream-add-all-coresight-cpus-a3418606b354
->>
->> Best regards,
-> 
+> Sakari is working on documenting a control to expose the CFA pattern. In
+> parallel, I think you can switch to Y formats for the next version of
+> this driver, and then implement the CFA pattern control as soon as
+> patches get posted.
 
+My set will still be an RFC one. With the patches eventually merged, I'd
+like to see drivers merged from then on to follow the new API as well. This
+includes the use of internal pads, too. I'll convert a driver (ov2740
+maybe?) once we get some kind of agreement on the APIs.
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
