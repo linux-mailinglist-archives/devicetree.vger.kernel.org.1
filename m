@@ -1,270 +1,166 @@
-Return-Path: <devicetree+bounces-141634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDFF9A21B25
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:44:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 526EAA21BA6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 12:05:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F27F51887F39
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 10:44:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 083EB7A117B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927391B4121;
-	Wed, 29 Jan 2025 10:44:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91BE21B4242;
+	Wed, 29 Jan 2025 11:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GRulBNko"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y1yZ65Vf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E8EB16C854;
-	Wed, 29 Jan 2025 10:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9E31B042F
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 11:04:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738147483; cv=none; b=QhDKE7UvuSOIxkwBRjm1YwcnnY6kpLIjmKmq+oHNC3Bkk9mBcBusxd/lRqqyqp8GAteZF/QXxKjM7+fbzG6d5ftY12YTbJyawMK0/jTBu+ILkDKHQ3ZNrTPwUA/Q3189ohcA3ULhS5JPxgtRkS4G2cpaSp5UecS2ThBu4XuqqZU=
+	t=1738148700; cv=none; b=JkRqswcln/drP3oP5LPflhEDNGjJMyoCa4VVDqyeV8C+a95ValPtbXGOe45q4V6mOPswRxzZoFdhLpdiWy7m/tFnUjxfa0M8MHNQ5alGjquL9bsV0K0mXc3GKlG1TwnkvcodJgyq3HjmUNthXDlAT9nsmNF4qSoYCzqTFW0Tskw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738147483; c=relaxed/simple;
-	bh=T2RVaPAE44RT8dx6SqFQUThUdmq/PWU4mA6kbablfoU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XIqKYJ7PZOSKLWNE/HbnNPAdAdsSMGDm7sxYVfy2e2DgWncZ3uhrUcsvxRqUKwF+E8OYTddT7yHB1Nonk5EgwnkjnMGf1Vb3/y2NSWxKXGk4xxtWiSMbxYUGEGp47yLlcefLYSlytgWG/4WqUTgCTMq+FuTe6YoP1fSq4iVVlC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GRulBNko; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38F92C4CED3;
-	Wed, 29 Jan 2025 10:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738147482;
-	bh=T2RVaPAE44RT8dx6SqFQUThUdmq/PWU4mA6kbablfoU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GRulBNkogLoZHV+pvCVvONuqv583/E+3qcW5dg77HpiQ45Eg6zmGWkR84MP14iNi9
-	 PpJQgDsuoMqX/KqJeXe6WxfdGMfUQAzWqafQ8ViOXKG/vMm4EbYKLxfScRjBjkEGcw
-	 hZVniyVLB7qWEOYOgdYsoAMnHwKxcsPnIbcKsfzcAu3r2OMY7GwJs8fRy97PwvK9Kf
-	 p4kycGiKRT3ycBPiOMUNW6LbRXOW94HxOHRoUoiQFk5w5scA2eGXjI3lj38yYV8ofC
-	 ffCtKPu84H0WaaDPTMc48aNQxW9zLe82+Kcm/NMjRIlKhnQkT2jmh3wjh5RGpE2WH2
-	 K/UcaTLMWeXLw==
-Message-ID: <5070e1f1-914b-4654-88ef-3566e3eee9ca@kernel.org>
-Date: Wed, 29 Jan 2025 11:44:32 +0100
+	s=arc-20240116; t=1738148700; c=relaxed/simple;
+	bh=mj9E4SRlwU2+ogNUoYRTExcnrVD+/JKmUcsECqo0Q+s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WZSDgrh1YmH+Nj2T1Lz+lrSMUu3c9+hcecR7sftD6RjCIdunlFHLIKuDBJsFrjJ3E9wVG0FTrfpCRobspkkkeS2NuiYWaNxxpf3c27Nv7Ee//FCF37jR9BBmEWN0ra+P68KBEE+uTEfuP0Knvya0yxdPQc/03HjgbfNE7I9p2yI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y1yZ65Vf; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4361c705434so47773075e9.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 03:04:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738148695; x=1738753495; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bAU4GIvVmdt4JZJ7rSRSO2Uc+HtQ8JKsDSpEn0o2lz0=;
+        b=y1yZ65VfqfBA01N5d0XT1yWr7ZYyaicCYt7dH7N0WpSVUZBhOG0AUiIbaeCMI9k6GT
+         PKcHty/UiWrUTIzzEGoI9PFdAnzXUPvrXv88pyOGKST0iSG4KCCosdpT8QMBMQy6Co4c
+         9hedDAtcImePtGKI5jqXRZd2SrrH8lEdfCXx2DmhJL58cVK6tJcSqQTg8DUtLJ1WCnQi
+         nY2V2Ah4wxU2XmshVm5Asj8Bn7GMB0KgQBdsKtLm4uh61Unpy+dlSuZXMaA4Bdy3C+rY
+         1qH0KqOPX/n3nOeFTdUwkMK6/jc5qwwfVhOtVFZQgMMHex/3pLASm9uYzyhGrO5j28lL
+         B2MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738148695; x=1738753495;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bAU4GIvVmdt4JZJ7rSRSO2Uc+HtQ8JKsDSpEn0o2lz0=;
+        b=XbKGmk42u3C1RL1nKG20g67mQVIiKupheJyWZrjx9ChoKFdmAmTST4siAqV62V/ir5
+         qNlJE0Bw+7WFqD6KR17wfjuNSaD+MCdfaX79grB7KqSPQjAzFU0Sm2a45EhSsi3lRVUk
+         JU7ECjt220AZ/JPuLaYsRuoII9/tdT2hEGvcFgbNXJQZHbxrcEh1bcKxr/gefgb5i7OM
+         045C8PJ3H3IRBJ9Yo8OenqZ90WZYatkUSiaCkdoz6KYVkX8MGSbHQ003MW/BSody1Kg9
+         cIORd16/3cqaoHz1urFUapL+dDvVbjLnAabje/3+OiWrdQOlsOOzURFOWy+iCsYi6qwp
+         sjqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXPEgwYZXhT01tecQD1P+dM93BM471V/ayWtlgUSiqJB8S4s9pS4gB3G7TMaPVs5Kg4pj8Po1UcbrDD@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqedlS61moz+OZIRZNd3b4/yQJiGlvUD8ujjVFF1S+5KVaWa7K
+	b3lCZWwGoA4R5nf1HwVsC5Jf4f6nB61xx83IkIArAbpFgQQhfqxWFBtYUu0aZyM=
+X-Gm-Gg: ASbGncuVUoUvAIW4PmnIo7E59ave5uaA3EkY15JmpOZ/Z9DtMHkHwo/MjRvFljdu6Ks
+	HtEWriUTHQEVGoBVArB6jwEKR4UjJ0lBIJ+umF1O/xOvHwOCZYcap1BgEHoOHxYnFkfLg1eiSjo
+	XKMihnhwl5lanfOIEoaSE/qnxh2FFFtUfLeOex7svYTmX7aZtrd0WDmlqu31jMJAP7JvtULYSIg
+	Z4Lg60eVUdQelsG/LkqBKLB46KnwwEpRCSHR3iB9rG+U7ReNtHCj1yaYqUjPiRySvReVLvfYsTF
+	9Ocg0pVPVaJk/Dj60iVhYs/xqVfIsxqGs5ztZBpj4UtWgqQ/G8+Qv0Ugj8MZTVhfUi8HJLE=
+X-Google-Smtp-Source: AGHT+IGoJE2bH4Lrk+kyxraLibRytPNA902qZKJwBAr0z2UhRf6p4L2iIn4biM5sloY+TAdsS9ECKg==
+X-Received: by 2002:a05:600c:3b94:b0:434:a929:42bb with SMTP id 5b1f17b1804b1-438dc3cbb71mr21327205e9.18.1738148695417;
+        Wed, 29 Jan 2025 03:04:55 -0800 (PST)
+Received: from [127.0.1.1] (host-95-245-235-245.retail.telecomitalia.it. [95.245.235.245])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a17d7a7sm17107364f8f.32.2025.01.29.03.04.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jan 2025 03:04:54 -0800 (PST)
+From: Angelo Dureghello <adureghello@baylibre.com>
+X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
+Subject: [PATCH v3 00/10] add support for Software mode on AD7606's iio
+ backend driver
+Date: Wed, 29 Jan 2025 12:03:01 +0100
+Message-Id: <20250129-wip-bl-ad7606_add_backend_sw_mode-v3-0-c3aec77c0ab7@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v10 1/2] media: iris: introduce helper module to
- select video driver
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>, quic_vgarodia@quicinc.com,
- quic_abhinavk@quicinc.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, p.zabel@pengutronix.de
-Cc: hverkuil@xs4all.nl, sebastian.fricke@collabora.com,
- bryan.odonoghue@linaro.org, dmitry.baryshkov@linaro.org,
- neil.armstrong@linaro.org, nicolas@ndufresne.ca,
- u.kleine-koenig@baylibre.com, stefan.schmidt@linaro.org,
- lujianhua000@gmail.com, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org,
- johan@kernel.org
-References: <20250128080429.3911091-1-quic_dikshita@quicinc.com>
- <20250128080429.3911091-2-quic_dikshita@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250128080429.3911091-2-quic_dikshita@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOUKmmcC/x3N0QqDMAxA0V+RPC9QU+zQXxmjRBNn2FalhTkQ/
+ 31lj+fl3gOKZtMCQ3NA1o8VW1OFvzQwLZweiibVQI4611KPu204vpDlGlyILBJHnp6aJJY9vld
+ RFCHizoXgZw+1s2Wd7ft/3O7n+QNHOVHAcwAAAA==
+To: Michael Hennerich <michael.hennerich@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexandru Ardelean <aardelean@baylibre.com>, 
+ David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Guillaume Stols <gstols@baylibre.com>, 
+ Angelo Dureghello <adureghello@baylibre.com>
+X-Mailer: b4 0.14.1
 
-On 28/01/2025 09:04, Dikshita Agarwal wrote:
-> Introduce a helper module with a kernel param to select between
-> venus and iris drivers for platforms supported by both drivers.
-> 
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  drivers/media/platform/qcom/Makefile          |  1 +
->  drivers/media/platform/qcom/iris/iris_core.h  |  1 +
->  drivers/media/platform/qcom/iris/iris_probe.c |  3 +
->  drivers/media/platform/qcom/venus/core.c      |  5 ++
->  .../platform/qcom/video_drv_helper/Makefile   |  4 ++
->  .../qcom/video_drv_helper/video_drv_helper.c  | 70 +++++++++++++++++++
->  .../qcom/video_drv_helper/video_drv_helper.h  | 11 +++
->  7 files changed, 95 insertions(+)
->  create mode 100644 drivers/media/platform/qcom/video_drv_helper/Makefile
->  create mode 100644 drivers/media/platform/qcom/video_drv_helper/video_drv_helper.c
->  create mode 100644 drivers/media/platform/qcom/video_drv_helper/video_drv_helper.h
-> 
-> diff --git a/drivers/media/platform/qcom/Makefile b/drivers/media/platform/qcom/Makefile
-> index ea2221a202c0..15accde3bd67 100644
-> --- a/drivers/media/platform/qcom/Makefile
-> +++ b/drivers/media/platform/qcom/Makefile
-> @@ -2,3 +2,4 @@
->  obj-y += camss/
->  obj-y += iris/
->  obj-y += venus/
-> +obj-y += video_drv_helper/
-> diff --git a/drivers/media/platform/qcom/iris/iris_core.h b/drivers/media/platform/qcom/iris/iris_core.h
-> index 37fb4919fecc..7108e751ff88 100644
-> --- a/drivers/media/platform/qcom/iris/iris_core.h
-> +++ b/drivers/media/platform/qcom/iris/iris_core.h
-> @@ -107,5 +107,6 @@ struct iris_core {
->  
->  int iris_core_init(struct iris_core *core);
->  void iris_core_deinit(struct iris_core *core);
-> +extern bool video_drv_should_bind(struct device *dev, bool is_iris_driver);
->  
->  #endif
-> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
-> index 954cc7c0cc97..276461ade811 100644
-> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> @@ -196,6 +196,9 @@ static int iris_probe(struct platform_device *pdev)
->  	u64 dma_mask;
->  	int ret;
->  
-> +	if (!video_drv_should_bind(&pdev->dev, true))
-> +		return -ENODEV;
+The previous series added iio_backend mode, but the configuration for this
+mode was only possible through GPIOs (Hardware mode). Here, we add support
+for configuring the chip using its registers (Software mode).
 
-Wouldn't it mark the probe as failed and cause dmesg regressions?
+The bus access is based on Angelo's ad3552 implementation, that is we have
+a particular compatible for the backend (here axi-adc) version supporting
+the ad7606's register writing, and the ad7606 is defined as a child node
+of the backend in the devicetree. Small changes are added to make the code
+a bit more straightforward to understand, and more compact.
 
-> +
->  	core = devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
->  	if (!core)
->  		return -ENOMEM;
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index 77d48578ecd2..b38be7812efe 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
-> @@ -369,12 +369,17 @@ static int venus_add_dynamic_nodes(struct venus_core *core)
->  static void venus_remove_dynamic_nodes(struct venus_core *core) {}
->  #endif
->  
-> +extern bool video_drv_should_bind(struct device *dev, bool is_iris_driver);
+Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+Co-developed-by: Angelo Dureghello <adureghello@baylibre.com>
+Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+---
+Changes in v2:
+- Improved descriptions.
+- dt-bindings: improved descriptions, added exemple and additional
+  property for the custom IP.
+- Reworked some macro commits to avoid changing order and associated
+  diff artifacts.
+- Various cleanups and formatting fixes.
+- Link to v1: https://lore.kernel.org/r/20241121-ad7606_add_iio_backend_software_mode-v1-0-8a693a5e3fa9@baylibre.com
 
-You just defined it in the header. Why is this here?
+Changes in v3:
+- add some fixes found while testing,
+- general commit meessages fixes,
+- codying style fixes,
+- dt-bindings: add some properties as requirted,
+- use iio_device_claim_direct_mode (and release),
+- rename bus read/write functions with "bus" as done for ad3552r.
 
-> +
->  static int venus_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct venus_core *core;
->  	int ret;
->  
-> +	if (!video_drv_should_bind(&pdev->dev, false))
-> +		return -ENODEV;
+---
+Angelo Dureghello (2):
+      dt-bindings: iio: dac: adi-axi-adc: fix ad7606 pwm-names
+      iio: adc: ad7606: fix wrong scale available
 
-Same problems - d,esg regression.
+Guillaume Stols (8):
+      dt-bindings: iio: dac: adi-axi-adc: add ad7606 variant
+      iio: adc: ad7606: move the software mode configuration
+      iio: adc: ad7606: move software functions into common file
+      iio: adc: adi-axi-adc: add platform children support
+      iio: adc: adi-axi-adc: add support for AD7606 register writing
+      iio: adc: ad7606: change r/w_register signature
+      iio: adc: ad7606: change channel macros parameters
+      iio: adc: ad7606: add support for writing registers when using backend
 
-> +
->  	core = devm_kzalloc(dev, sizeof(*core), GFP_KERNEL);
->  	if (!core)
->  		return -ENOMEM;
-> diff --git a/drivers/media/platform/qcom/video_drv_helper/Makefile b/drivers/media/platform/qcom/video_drv_helper/Makefile
-> new file mode 100644
-> index 000000000000..82567e0392fb
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/video_drv_helper/Makefile
-> @@ -0,0 +1,4 @@
-
-Missing SPDX
-
-> +# Makefile for Video driver helper
-> +
-> +obj-m := video_drv_helper.o
-> +
-> diff --git a/drivers/media/platform/qcom/video_drv_helper/video_drv_helper.c b/drivers/media/platform/qcom/video_drv_helper/video_drv_helper.c
-> new file mode 100644
-> index 000000000000..9009c2906e54
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/video_drv_helper/video_drv_helper.c
-> @@ -0,0 +1,70 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +
-> +#include "video_drv_helper.h"
-> +
-> +/* The venus driver supports only hfi gen1 to communicate with the firmware while
-
-Use Linux generic coding style comment, not netdev.
-
-> + * the iris driver supports both hfi gen1 and hfi gen2.
-> + * The support of hfi gen1 is added to the iris driver with the intention that
-> + * it can support old gen1 interface based firmware, while enabling gen2 based future SOCs.
-> + * With this, the plan is to migrate older SOCs from venus to iris.
-> + * As of now, since the iris driver supports only entry level features and doesn't have
-> + * feature parity with the venus driver, a runtime-selection is provided to user via
-> + * module parameter 'prefer_venus' to select the driver.
-> + * This selection is available only for the SoCs which are supported by both venus
-> + * and iris eg: SM8250.
-> + * When the feature parity is achieved, the plan is to switch the default to point to
-> + * the iris driver, then gradually start removing platforms from venus.
-> + * Hardware supported by only venus - 8916, 8996, SDM660, SDM845, SC7180, SC7280
-> + * Hardware supported by only iris - SM8550
-> + * Hardware supported by both venus and iris - SM8250
-> + */
-> +
-> +#if !IS_REACHABLE(CONFIG_VIDEO_QCOM_VENUS) || !IS_REACHABLE(CONFIG_VIDEO_QCOM_IRIS)
-> +bool video_drv_should_bind(struct device *dev, bool is_iris_driver)
-> +{
-> +	/* If just a single driver is enabled, use it no matter what */
-> +	return true;
-> +}
-> +
-> +#else
-> +static bool prefer_venus = true;
-> +MODULE_PARM_DESC(prefer_venus, "Select whether venus or iris driver should be preferred");
-> +module_param(prefer_venus, bool, 0444);
-
-
-The choice of driver is by module blacklisting, not by failing probes.
-
-I don't understand why this patchset is needed and neither commit msg
-nor above longer code comment explain me that. Just blacklist the module.
+ .../devicetree/bindings/iio/adc/adi,ad7606.yaml    |   1 +
+ .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |  70 +++++++-
+ drivers/iio/adc/ad7606.c                           | 152 ++++++++++++++---
+ drivers/iio/adc/ad7606.h                           | 111 +++++++++----
+ drivers/iio/adc/ad7606_bus_iface.h                 |  16 ++
+ drivers/iio/adc/ad7606_par.c                       |  69 +++++++-
+ drivers/iio/adc/ad7606_spi.c                       | 145 +---------------
+ drivers/iio/adc/adi-axi-adc.c                      | 184 ++++++++++++++++++++-
+ 8 files changed, 541 insertions(+), 207 deletions(-)
+---
+base-commit: ae62b72e76b72f98a4955580cb1a46095fda7d8e
+change-id: 20250129-wip-bl-ad7606_add_backend_sw_mode-dd22a50663f3
 
 Best regards,
-Krzysztof
+-- 
+Angelo Dureghello <adureghello@baylibre.com>
+
 
