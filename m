@@ -1,163 +1,193 @@
-Return-Path: <devicetree+bounces-141686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFB1DA21F9A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:49:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4F23A21FBD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:53:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 858807A07F5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:48:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01CFF7A3B18
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:52:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD05191F95;
-	Wed, 29 Jan 2025 14:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126231DC99A;
+	Wed, 29 Jan 2025 14:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S9+vIdID"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JD01Ib11"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2BB22033A;
-	Wed, 29 Jan 2025 14:49:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF6D1C5F2E;
+	Wed, 29 Jan 2025 14:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738162148; cv=none; b=lrEv1Ls714vEG6WuqC9pVsGOL2JuSuVGUZ92l6MJTYIoUx6o4A3YxUW3w6iDuGGfS5V2V7HNaYfQKv3RbAtkE3SXM5RjANkJs9OkaS6v4KTzO4UIFxuSt11BSIw4gnSyn7kxWwdDj0voI7JpvCBcusSg8cMbH1/5sWQdQWElLW0=
+	t=1738162368; cv=none; b=NfDxVMH5apK7QLoToC6yhBIM1HT/HM1WtonDMWh7GGc8j2Mq2mW6WNnph4A1bbLEPu4LoqRPZYERoFn+2CKKLY02wP4dGb8RuvZAMyQ0oMCD3n0/fDvVQgJtsJRaC/D/Mw6bney4BwbX+NYhsR2HaYKaWRxniZxb1rKWLoVSVMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738162148; c=relaxed/simple;
-	bh=t1NL0hBfeu93pwmSKWKCLe6DNvNe+PaCC8pPv9JXU7o=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=gvEj0wWWl/F7011CZWxfXes8bVbVbMMr42Y07KhFgst+SgCoUnlvGKSA+LBDkId3AAQGwll7EQwKaSc+Go2wkLZ1g615I+6ygBs8Oo3t0uRPJBNfUgTV/KlgtaPdBFgPl9p2TYpu1efCEttNeJ3C9HdzmJ8xFAOr7sTOp6hBUCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S9+vIdID; arc=none smtp.client-ip=209.85.208.42
+	s=arc-20240116; t=1738162368; c=relaxed/simple;
+	bh=rjpba0LFpYm6AyC0WzTszRjZtuSKA5sSBH8QdJgCQYc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HVxaA3nmzDubIGROgBagJt2Np4FhKGidLCwCEvdFbNdM6eRZlsNhawNlJM2vGM1Fdflo+rwLAH3aLRPNoTuJaw/B/LghRnaL3sROtO7udkVPY7R1uLrMRqgrHTOLUdwhTwe5ulnxEGwqA2clwW2fSJsmyXMNerUxsTAp+gFjPWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JD01Ib11; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5dc5c180a72so2604860a12.3;
-        Wed, 29 Jan 2025 06:49:06 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4361f65ca01so73274045e9.1;
+        Wed, 29 Jan 2025 06:52:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738162145; x=1738766945; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wy9Kd1tRNPjJ7fX39Zk0IB/RiCX0HA9i6UGO0pbaFf0=;
-        b=S9+vIdIDeh0iMrlhHBBBX8SYqm7xycKY95N96kRST2IBU8MSZ6BZog+Z22jSmCb/ot
-         Au4t9d5jxzr6oXNtyGZ0a3JZoCr4eiCSZOlywYzCnSnD/4awwVkV7PF051XQQGcgkAyO
-         BSi0t25RsMjKm64yZCe8JcuFIoLnp2Go+Pqx5zf7Wj3+nP/+p/KMD1MNJC11nIN3WMKA
-         t6byeYazF+RD5J/8wgFqPDEAC0JCV+umif8GWIZMkyo3oQ752IQblPPfLBqCf/bBz194
-         LjBHFdjPCaRbhJ43ztutd8x4rWCNG3JUY5JpqZDeHHNfsYfXq6HOaoqKZGif34qfBs9Y
-         oBDQ==
+        d=gmail.com; s=20230601; t=1738162363; x=1738767163; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rjpba0LFpYm6AyC0WzTszRjZtuSKA5sSBH8QdJgCQYc=;
+        b=JD01Ib11AirVTN4dSQ0OyMCj0XnwTS0wVU3YXPFi7jQCsmppTObfA0LvIjoX8a7lfG
+         1X98Rq7spxMGFKhGjBxaC2nKo4dwiYdd0snGSvvr+z5+3POJGoX8xSkb5VpgsAjOV6ad
+         GBrU9gs0zW2c/gr2R8sU86kTMNumzy+fzCzUEIVKUj2yg1ihABkYFLb7bgHO5T7P282f
+         X/N1qLlHc9gQ0JQkIyq7lF+mU2UcDq4cShIU6jvXkml0sawaW4MFcxy7tCrUoIcOSCeN
+         FSxlS+A+4YMufI3dfH2cmIhT5UDEdnIfEg8MzfaVLNqiUhgevdWEWM3JTUiMed6wuX7d
+         ixFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738162145; x=1738766945;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Wy9Kd1tRNPjJ7fX39Zk0IB/RiCX0HA9i6UGO0pbaFf0=;
-        b=C0S0M/RoC9TQccXjVBf2FUpYNXVO+XCYWkqf+r5JFcGiK0eBeenE1z6o48h1p3Tfxi
-         6ngHCCz4Yd27j5zURlHBIpBg5diI+n3hO6ux5wvJMSh3GaHNZCarWkAo7mc4zhyuqAW+
-         saMkirSJxELtUmpUP1sqjUYta46pN5qnu/luX40VkPqy+cSihfRc8o1Ch6FNYFNHovF9
-         WcfRVnvBVgP9f2lHFjOpOkt1Z0euiMAJ2pyspPvNDJLh3hIUZ/nY6grTO9S6qimciHEf
-         SkL+dvoQIcFOjAP7ueE3MBLlo1l9qGttTMh5tgGKtaGoeRfph5dltAfeTfmdwYp4f9RY
-         wtiA==
-X-Forwarded-Encrypted: i=1; AJvYcCUoX4i8IIdP7Oyrm95WxJ+RrkahipER+AAw/hgRNP9xsuqcEYUmUOwSy7U52jSDBpviV8pbyjG6coxClew=@vger.kernel.org, AJvYcCVl5TmHu7+Z2SOekxeoiznot6hHsqvnTy4msR5B2Yvx0FDtBpMdMXa8cycT5YcgwB278Kx9awUuvctO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/bzxasO2TVvIXrYaLVD8wbD6JMkLv8JclPLqwld7pk1SCsCeO
-	joLhm3fOPMqaSMV/cqJUfXgW9oDwV0yW5wwRNPxKj84cq6yLOZhH
-X-Gm-Gg: ASbGncuQagCpZHOqyEzjvcQdZCPqOVAs44C6uD6dnytoZiKjbT8ANgFEBzjShP0IgF/
-	ejGLSN50AWvbDR9FoYLpA51FvQL9A4AqkSwnfv2BaA7cyD17Y4w5HlxB2hEDUmCfejRLcxdnnub
-	tIQNTWZ1WZBWHCvjVIMdEFOA2351bJE+yqmjmnWyyjLqRlHcypWJ7DbNeR857N6i7ARP2KbsFoH
-	0l7iDi9WCKHIOEcW4Ipt1kFJj2RhV9QaQqoTBhHbn8L7eHlsYsUhX3IvqJyYcNMZ4mSSEbFFI5o
-	Pe9oA5P3PGkOVcYR4j/aZjGVj9hrMNALAbuUaCzOf4nvk8icJc2EhhiOyY4GSqOYmFk6c8Cg
-X-Google-Smtp-Source: AGHT+IH2RX223oR2m9txbeNFTWl5Np8ejjscYRjYqWj/WLr3tsu0nZkXz1s69kvMjRYyH6ERTmSECQ==
-X-Received: by 2002:a05:6402:5251:b0:5d9:cde9:29c6 with SMTP id 4fb4d7f45d1cf-5dc5effb151mr3128289a12.27.1738162144793;
-        Wed, 29 Jan 2025 06:49:04 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dc18628a5dsm9075610a12.26.2025.01.29.06.49.02
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 29 Jan 2025 06:49:04 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+        d=1e100.net; s=20230601; t=1738162363; x=1738767163;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rjpba0LFpYm6AyC0WzTszRjZtuSKA5sSBH8QdJgCQYc=;
+        b=R4taebWXUHzXA9fo0F/Xv3ir9Ga0EDbR9U8+0vNZLl8Hz9Iae86TqBeJY5K2cwNPUx
+         2GzJmrnv5kWoJcVlCiEANL8Npw1Za6/NrAgoTNlGGAVwotYCBp0ccNdlbX4Ox9upByln
+         LjhDQHg5dfD8VEM4114z4i92RmulbG/LaWwU2JICAi7x6bGB2EwHtmRHoZ6UWeT+c3ZW
+         R/DB5Z06/IWmXb94NaYyDZslWvz53pujZ6Mz0ofGwu02j1xU+uNSnnwu6omXhSI/hHpc
+         ACUSZiJA8z5QWDuMF4AR/V7owsgAClrAmopWqrIxkOT60P6LhisrQaudd7/fWzwNQILL
+         LhqA==
+X-Forwarded-Encrypted: i=1; AJvYcCVR1Ow4aRSM3Fvx+Se0+JhZ4mB6tvERX/DipXTyEB+lEV/dyAnYQltNBYTEdM6ny9cTwFVqKgD1RRCPhgd8@vger.kernel.org, AJvYcCVYxV2G5doJdqTB6tAuSX9h3+1/lideUWJoeD0tkBiDp2oBA796zwz5S32CpjjrBPEEGdFDw2G1iAt4z+A=@vger.kernel.org, AJvYcCW8DI3x+VvKMjOxEedoxjgETDqdD0g4FWfEkocH1yMYADXX4d43MhJFnnv03Mjo87JS6XeH8sxUEn9Eb8UZ@vger.kernel.org, AJvYcCXQmv5+YKy5M3iYoD1rL/bbzl4MAikTLRx9Cni2rn7jtN+5RvgcZoqXSwdFdM3xnKIf1RaVJ8LkDKeH@vger.kernel.org
+X-Gm-Message-State: AOJu0YyO5B7Ax9+dxzwdFSiUY03nWrkAuxPBLcqXs60lnaeYREmDr+aN
+	LzChYLWEZUeDb7MBIZYv49ijxOYwfmZ7mS/UB8uQfDL/D7J84Bm8
+X-Gm-Gg: ASbGncuUSijNVIamirg8UYTDvv2u7ZrX4r6Gc4cMObp7q0uLTgPePoS1SCZZpNrhmS3
+	zn5heCfftErNiws/LM3NxEMCMgXe0oXwAQ7Yewyc62bUmhjQtk84ROjtSJ3XBLS1M6BeZx+u5Sd
+	OmWtrGQHh0OE0r6vDrWScxle7sP7zQZP/O0y4FS9TWgGPgplqNZ83/UWFsY+eidCVMVi7dTc2Bc
+	zs6w+Pq9jcU02T+PT7F+YBHxG8bxDT2KgWOmQ3XJEPjew8+ZNN5utnOW4F5BJAizjigQW5lgtkV
+	SrjeYiJ/y+y/e7Jnx7i6zccbr1nnIJNlalNdRqVxZ/za3j08qkU2xqO4+5pkeY1Mc2Wqwvz/bTw
+	Zhw==
+X-Google-Smtp-Source: AGHT+IHYiD8HHU7c3CPRRKT9FNr4EOClWP6a4zZA9f98b+kcMuPfszC9bzeA10N9+9WO3BBUe4NS9g==
+X-Received: by 2002:a05:600c:3b14:b0:434:a781:f5e2 with SMTP id 5b1f17b1804b1-438dc3c237dmr29171655e9.8.1738162363114;
+        Wed, 29 Jan 2025 06:52:43 -0800 (PST)
+Received: from orome (p200300e41f281900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1900:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438dcc11ae6sm26173045e9.6.2025.01.29.06.52.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jan 2025 06:52:41 -0800 (PST)
+Date: Wed, 29 Jan 2025 15:52:39 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Kartik Rajput <kkartik@nvidia.com>
+Cc: "krzk@kernel.org" <krzk@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, 
+	"robh@kernel.org" <robh@kernel.org>, "robert.marko@sartura.hr" <robert.marko@sartura.hr>, 
+	"arnd@kernel.org" <arnd@kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "geert+renesas@glider.be" <geert+renesas@glider.be>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>, 
+	"schnelle@linux.ibm.com" <schnelle@linux.ibm.com>, "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, 
+	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>, 
+	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: serial: Add bindings for
+ nvidia,tegra264-utc
+Message-ID: <5j3fhrauu7j4vdal4yi34yj5egxe42i3aj4ezuc5oblhz6nfca@ebewyvonecj5>
+References: <20250128064633.12381-1-kkartik@nvidia.com>
+ <20250128064633.12381-2-kkartik@nvidia.com>
+ <20250128-amusing-squirrel-of-gaiety-b3ba97@krzk-bin>
+ <ae6132b93ac30a1f7b2721066a0e0eddc01745d5.camel@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.300.87.4.3\))
-Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <5969581.LvFx2qVVIh@arisu>
-Date: Wed, 29 Jan 2025 15:48:51 +0100
-Cc: linux-kernel@vger.kernel.org,
- Diederik de Haas <didi.debian@cknow.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>,
- Alexey Charkov <alchark@gmail.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- linux-media@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org,
- linux-staging@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5smhkbxpyhajfnuz"
+Content-Disposition: inline
+In-Reply-To: <ae6132b93ac30a1f7b2721066a0e0eddc01745d5.camel@nvidia.com>
+
+
+--5smhkbxpyhajfnuz
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <CE4343FE-94AA-4F84-8C43-8366013AED84@gmail.com>
-References: <20240615015734.1612108-1-detlev.casanova@collabora.com>
- <20240615015734.1612108-2-detlev.casanova@collabora.com>
- <3333233.eAoTOS8U2s@bagend> <5969581.LvFx2qVVIh@arisu>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-X-Mailer: Apple Mail (2.3826.300.87.4.3)
+Subject: Re: [PATCH 1/2] dt-bindings: serial: Add bindings for
+ nvidia,tegra264-utc
+MIME-Version: 1.0
 
-
-
-> Wiadomo=C5=9B=C4=87 napisana przez Detlev Casanova =
-<detlev.casanova@collabora.com> w dniu 15 cze 2024, o godz. 21:44:
->>=20
->>=20
->>=20
-
-> Yes, the vdpu34x decoder on rk356x socs should be supported by this =
-driver but=20
-> I don't have boards to test that unfortunately.
+On Wed, Jan 29, 2025 at 07:30:55AM +0000, Kartik Rajput wrote:
+> Thanks for reviewing the patch Krzysztof!
 >=20
+> On Tue, 2025-01-28 at 08:52 +0100, Krzysztof Kozlowski wrote:
+> > External email: Use caution opening links or attachments
+> >=20
+> >=20
+> > On Tue, Jan 28, 2025 at 12:16:32PM +0530, Kartik Rajput wrote:
+[...]
+> > > +=C2=A0 nvidia,utc-fifo-threshold:
+> > > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/uint32
+> > > +=C2=A0=C2=A0=C2=A0 description:
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This property specifies the UTC TX an=
+d RX client FIFO
+> > > threshold in
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 terms of occupancy.
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This property should have the same va=
+lue as the burst size
+> > > (number
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of characters read by the Tegra UTC h=
+ardware at a time from
+> > > each
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 client) which is configured by the bo=
+otloader.
+> >=20
+> > Title says this is a client, so quite confusing. Anyway, why is this
+> > board specific?
+>=20
+> The client FIFO threshold should match the burst size configured in the
+> UTC controller by bootloader. This value could change depending on what
+> bootloader has programmed. Hence, this is moved to the device-tree.
+>=20
+> >=20
+> > Also, missing constraints, missing units. Why common serial
+> > properties
+> > are not applicable?
+> >=20
+>=20
+> I do see current-speed defined in serial-peripheral-props.yaml, that
+> can be used here. I also see "rx-threshold" and "tx-threshold"
+> properties defined in serial.yaml, maybe those can be utilized here. I
+> will update this in v2.
 
-Detlev,
+I suppose "rx-threshold" and "tx-threshold" could be used instead of the
+custom "nvidia,utc-fifo-threshold" property. It looks like the hardware
+has separate values for the threshold in both directions, so this would
+give us a more accurate description (though from the current state of
+affairs it looks like both are always going to be the same).
 
-Just FYI:
+I'm not so sure about "current-speed", though. There's no concept of
+speed for the UTC, right? It's effectively backed by a physical UART
+that will run at a certain speed, but given that it will multiplex data
+=66rom a variety of sources, "current-speed" will not be accurate in many
+cases.
 
-I done some tests of rkvdec2 on 6.12.11 on 3588, 3568 and 3566
+Thierry
 
-For enabling rkvdec2 on 356x i:
--add 356x compatible in rkvdec2.c
--add dtsi nodes like this: =
-https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-6.12/f=
-iles/1078-arm64-dtsi-rockchip-rk356x-add-rkvdec2-video-decoder-nodes.patch=
+--5smhkbxpyhajfnuz
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-With this i can say:
--on rk3588 i have some hevc 4k decoding perfectly but some others are =
-failing
--on rk3566/3568 only subset of 3588=E2=80=99s samples is decoded well. =
-(but is works then works perfectly fine)
--when not failing on 3588 sample fails on 356x - is see errors like:
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmeaQLMACgkQ3SOs138+
+s6Emlg/+MkWZTsiltrG5WOU7FROD1BNtrTMJM1miRG4fNtVf7fSd6xOYPi6Xp+gn
+0fYzToqmpBRNMhQTdEUcmMz/3uKRWC/29BiyV44aBjpb3u/jj7d1DP/B8E/iTuZM
+2ifUzL5QnHVz93Ew4uDsrVxfVSsjzDzeEV148wkiO/liWVWW+rJw7cL+sINssmnN
+g3hYzXNOWA/9DzPdcxydHHe6lh+DNf4cn5cf4jaW7r9HPmXQpLDkmp8lSbqbJYkJ
+I0awauUXVXiZroUqmy+ubyEqFWYzvbFAvrEkyocgPVgheDOndWyauf/wKUsDvWKv
+uFzRO8ypLqYp880+J9vsBoo8MjNCWQayZ3PjwT5vF7wga41ZDKxPMOJNb//l/zw5
+0R2ru9glO+fuf019SEqnx6tVbIsK0++4CVOe9jtfhQPsrHPOGk7RYvoR7R8FYh0J
+l6sPLCuS0DZWeG5MvttwlO2iwS/luOhbNL7FZSRWKmaEiT0Sbnry81GdO4kz4WdK
+avOtQM6yOwJ7q1NRfwd2YnSTW7dIntYVrmajJ3iErL+HjVGKJXA9kHMLUybBvSXT
+CAu4y7GKBPucmZ1+jbRZpAWZz5Fyd0YNNFIugsOUq4yuMb+YvBH3SlRj/DcfMR3F
+ATH8aYHFke6IuNYBwg4ycUBti2oZTuIjojlisbz0bywwKtgldjY=
+=MV3R
+-----END PGP SIGNATURE-----
 
-[   95.666669] iova: 0x00000000f2e80000 already mapped to =
-0x0000000037378000 cannot remap to phys: 0x000000002f8c0000 prot: 0x3
-[   95.745082] iova: 0x00000000f2f46000 already mapped to =
-0x00000000372b6000 cannot remap to phys: 0x000000003a403000 prot: 0x3
-[   95.822012] iova: 0x00000000f2ee6000 already mapped to =
-0x0000000037126000 cannot remap to phys: 0x000000003a803000 prot: 0x3
-[   95.896802] iova: 0x00000000f2ec6000 already mapped to =
-0x0000000029fe6000 cannot remap to phys: 0x000000003a403000 prot: 0x3
- turning-off iommu makes above errors disappear - but sample still =
-fails.
-
-If anybody hints me for way/tool to analyse of playing/failing samples =
-to catch: what encoding specifics makes given sample failing to decode  =
-on rkvdec2 - i'll be more that happy to provide details=E2=80=A6    =20
-(doing simple mediainfo <file> shows no differences for me=E2=80=A6)
-
-
+--5smhkbxpyhajfnuz--
 
