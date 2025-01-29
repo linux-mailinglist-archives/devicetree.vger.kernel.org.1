@@ -1,128 +1,122 @@
-Return-Path: <devicetree+bounces-141723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2831BA22255
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:56:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E377A221E0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:39:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FF423A99E0
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:55:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90D843A2977
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:39:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 577A71E102D;
-	Wed, 29 Jan 2025 16:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F081DE4ED;
+	Wed, 29 Jan 2025 16:39:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iTnqnlG3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F731DFE00;
-	Wed, 29 Jan 2025 16:53:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 986032FB6;
+	Wed, 29 Jan 2025 16:39:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738169584; cv=none; b=l2RA8jqk8V9uHZZ7QvQv42dqr4SShEdhn8LuA3pOfp3ufHSOZlwLlSgMOaEgisnhfHAapAplB9JogbpySCwleb0CyRoHsv66S5mWSz3ecpfkeDoic8KuA3KmPGkrTlUWh6HTbu9yhnQuqua57voJZ5k8DSot+BQ8WJOYfcO2pCA=
+	t=1738168765; cv=none; b=pISQ+1w90HdeH+fj+bhygP4gY0k1UM4s6Ai1cocX/klSlzu8+V9T/4RAVUQVnBSTf7fDH6krjRX7wXGeNt8Kf0cc1SkCmxxBOt0x7getk4knMnpM2YDIgZg08bSxP+ycj1W58uve+SvnFy8MBOzBEDHx9CIVgObQK6C8FXatqFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738169584; c=relaxed/simple;
-	bh=49JXspVkamgcQH2yU4Ezn6GwJ2xGAnzCwes4Ugh6Iws=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KkT+XRpqe4PRlRhw4vE0X3RGBRC284DeLzzAFFFT+gRAqp60SrC+lHQmZCULEb66p+ldvr+onTwR5LN1fNYwHXbtyDo6nA8aJgJdJUc8l3Mnu2UlbMAn4FI31PNM/GdAStsWmok35tIm3PoicEm3wqtUfbRBCT4AUhyVmW0avU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: DxccpHN8SCmdv0mXpMZK5g==
-X-CSE-MsgGUID: 1qiZafiQRV6F0s7U8rrx4A==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 30 Jan 2025 01:53:01 +0900
-Received: from wvbox.administration.lan (unknown [10.226.92.145])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 3E80A402F02E;
-	Thu, 30 Jan 2025 01:52:45 +0900 (JST)
-From: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 13/14] arm64: dts: renesas: Add initial support for renesas RZ/T2H eval board
-Date: Wed, 29 Jan 2025 16:37:49 +0000
-Message-ID: <20250129165122.2980-14-thierry.bultel.yh@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250129165122.2980-1-thierry.bultel.yh@bp.renesas.com>
-References: <20250129165122.2980-1-thierry.bultel.yh@bp.renesas.com>
+	s=arc-20240116; t=1738168765; c=relaxed/simple;
+	bh=Ah4vFnZwz/yZYDSuu8dtBEFULNvuptTD7Yx7PbHXAxQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tkKmu2vsDNIMd+ooH2o9mvhtXx/1c+gbqdgeoHVI24I71IHK/kbIub3AJkZwp3L96ofn+yjD/GHNTgjcjrbc+U92VCKxKAWKmOtSc1zakrKch6MIcriu4+zECYRRfXY6UcH3Mx+fAG1AsHxJHFeoMGpBLa/AdFXFNPdNTGcd5r8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iTnqnlG3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E3BDC4CED1;
+	Wed, 29 Jan 2025 16:39:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738168765;
+	bh=Ah4vFnZwz/yZYDSuu8dtBEFULNvuptTD7Yx7PbHXAxQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iTnqnlG3+7YHKkHl0AKhQ4j0QCf1CqR4SYyHC+K5JQ17Ztjajn3FWmHT6+TggVeeA
+	 ROt86ZitHHnWESUKMRQnUTmot8RyI3/Hc7DcqR/IpBhG+pPwt/DHfTJOI4rJZXeLub
+	 DtWBWeV0wSU1n2LBxKn0rYgHcNAlpZpFqNGwtoCZlCvlyftJh+xmmkgxTF1SevIXRX
+	 Zn/dbczsl5xpjlJ+dcYNbjphdUTeJqBehOpZDJt4ojjjlOfYYoWTVuROBbvxjDm//q
+	 9On77OOIUHWyUzfozR12JD8NqQXaYP5/OtDGe6OmVYJ6AWoZHTkjASi0lkcuawFIpR
+	 8RiI1H3ndLOeA==
+Date: Wed, 29 Jan 2025 17:39:18 +0100
+From: Niklas Cassel <cassel@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH v9 0/7] PCI: dwc: opitimaze RC Host/EP pci_fixup_addr()
+Message-ID: <Z5pZtsa4FFKq0AZD@ryzen>
+References: <20250128-pci_fixup_addr-v9-0-3c4bb506f665@nxp.com>
+ <Z5n_VrN8HUmdVPUq@ryzen>
+ <Z5pJF9MGENNDqq/O@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z5pJF9MGENNDqq/O@lizhi-Precision-Tower-5810>
 
-Add the initial device tree for the RZ/T2H evaluation board.
+Hello Frank,
 
-Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/Makefile          |  1 +
- .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    | 37 +++++++++++++++++++
- 2 files changed, 38 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+On Wed, Jan 29, 2025 at 10:28:23AM -0500, Frank Li wrote:
+> On Wed, Jan 29, 2025 at 11:13:42AM +0100, Niklas Cassel wrote:
+> >
+> > Please don't shoot the messenger, but I don't see any reply to (what I
+> > assume is the biggest reason why Bjorn did not merge this series):
+> >
+> > ""
+> > .cpu_addr_fixup() is a generic problem that affects dwc (dra7xx, imx6,
+> > artpec6, intel-gw, visconti), cadence (cadence-plat), and now
+> > apparently microchip.
+> >
+> > I deferred these because I'm hoping we can come up with a more generic
+> > solution that's easier to apply across all these cases.  I don't
+> > really want to merge something that immediately needs to be reworked
+> > for other drivers.
+> > ""
+> >
+> > It should probably state in the cover letter how v9 addresses Bjorn's
+> > concern when it comes to other PCI controller drivers, especially those
+> > that are not DWC based.
+> 
+> Thank you for your reminder, I forget mentions this in cover letter. I
+> create new patch to figure out this Bjorn's problem.
+> 
+> PCI: Add parent_bus_offset to resource_entry
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 97228a3cb99c..422ff9ccd05e 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -140,6 +140,7 @@ dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc.dtb
- 
- dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
- 
-+dtb-$(CONFIG_ARCH_R9A09G077) += r9a09g077m44-rzt2h-evk.dtb
- dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
- 
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-new file mode 100644
-index 000000000000..f2b448aaec82
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-@@ -0,0 +1,37 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/T2H Development EVK board
-+ *
-+ * Copyright (C) 2025 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include "r9a09g077m44.dtsi"
-+
-+/ {
-+	model = "Renesas Development EVK based on r9a09g077m44";
-+	compatible = "renesas,r9a9g077m44-rzt2h-evk", "renesas,r9a9g077";
-+
-+	aliases {
-+		serial0 = &sci0;
-+	};
-+
-+	chosen {
-+		bootargs = "ignore_loglevel";
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+};
-+
-+&extal {
-+	clock-frequency = <25000000>;
-+};
-+
-+&loco {
-+	clock-frequency = <1000000>;
-+};
-+
-+&sci0 {
-+	status = "okay";
-+};
--- 
-2.43.0
+I see.
 
+If you are solving this problem in a generic way, then it would make sense
+if the generic patch comes first in the series, and then the driver (DWC)
+specific patches come after that.
+
+Your cover letter, including the subject is also written in a DWC specific
+manner.
+
+If you are solving a generic problem, then describe first how you solve
+the generic problem, followed by DWC specific details.
+
+See e.g. my cover letter here:
+https://lore.kernel.org/linux-pci/20250119050850.2kogtpl5hatpp2tv@thinkpad/T/#t
+
+
+Kind regards,
+Niklas
 
