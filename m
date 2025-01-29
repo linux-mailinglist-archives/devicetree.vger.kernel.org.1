@@ -1,193 +1,188 @@
-Return-Path: <devicetree+bounces-141687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F23A21FBD
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:53:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F40A21FCA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:55:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01CFF7A3B18
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:52:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1E47161F3D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126231DC99A;
-	Wed, 29 Jan 2025 14:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439FF1B4250;
+	Wed, 29 Jan 2025 14:55:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JD01Ib11"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WVkFkryg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF6D1C5F2E;
-	Wed, 29 Jan 2025 14:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 549237E9
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 14:55:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738162368; cv=none; b=NfDxVMH5apK7QLoToC6yhBIM1HT/HM1WtonDMWh7GGc8j2Mq2mW6WNnph4A1bbLEPu4LoqRPZYERoFn+2CKKLY02wP4dGb8RuvZAMyQ0oMCD3n0/fDvVQgJtsJRaC/D/Mw6bney4BwbX+NYhsR2HaYKaWRxniZxb1rKWLoVSVMI=
+	t=1738162509; cv=none; b=QjETEcYRfsIwjjgdvxzHwYbSYpRIJrTTJEilO+/mx1uJlTcfoy9NgIMNExN//KSAnhiG+HWJkwZcml2qv9wPCnfXSjhn4LGpyzX5k2EBy0Eov6haA3+8A6i7/hDU5Y/e9M6A8Z1MCu5wibgrtB0P9BQSYNUC70NVVFW7SZXmVgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738162368; c=relaxed/simple;
-	bh=rjpba0LFpYm6AyC0WzTszRjZtuSKA5sSBH8QdJgCQYc=;
+	s=arc-20240116; t=1738162509; c=relaxed/simple;
+	bh=dUDG3V2pcnh4PJKsQs8dXW0ezZosbDC8947hkzBNT9w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HVxaA3nmzDubIGROgBagJt2Np4FhKGidLCwCEvdFbNdM6eRZlsNhawNlJM2vGM1Fdflo+rwLAH3aLRPNoTuJaw/B/LghRnaL3sROtO7udkVPY7R1uLrMRqgrHTOLUdwhTwe5ulnxEGwqA2clwW2fSJsmyXMNerUxsTAp+gFjPWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JD01Ib11; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4361f65ca01so73274045e9.1;
-        Wed, 29 Jan 2025 06:52:44 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=c89glPuQgWQllrrESAEoe/VpcmqCsvn59ys+I5LaV3POa3n+H2Iv2lJ694MPonbJUlyVVzeITcpQelZ5JJoNm65RV1NHAWBR9QxUJxR3GGqceMK++Vbli/7WJQTJk9N7X1WJ5KhXkYCpbiYlEpZs/aWe5usZ7c/xNSYg742FmBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WVkFkryg; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5d0ac27b412so9224955a12.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 06:55:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738162363; x=1738767163; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738162504; x=1738767304; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rjpba0LFpYm6AyC0WzTszRjZtuSKA5sSBH8QdJgCQYc=;
-        b=JD01Ib11AirVTN4dSQ0OyMCj0XnwTS0wVU3YXPFi7jQCsmppTObfA0LvIjoX8a7lfG
-         1X98Rq7spxMGFKhGjBxaC2nKo4dwiYdd0snGSvvr+z5+3POJGoX8xSkb5VpgsAjOV6ad
-         GBrU9gs0zW2c/gr2R8sU86kTMNumzy+fzCzUEIVKUj2yg1ihABkYFLb7bgHO5T7P282f
-         X/N1qLlHc9gQ0JQkIyq7lF+mU2UcDq4cShIU6jvXkml0sawaW4MFcxy7tCrUoIcOSCeN
-         FSxlS+A+4YMufI3dfH2cmIhT5UDEdnIfEg8MzfaVLNqiUhgevdWEWM3JTUiMed6wuX7d
-         ixFA==
+        bh=tRXaUYDpwPpub2ZkUhS7mQik3pW6CZUI57KwH1qopBc=;
+        b=WVkFkrygR0iGV6v7XHOZ53xxYpU+0xjrBwWXB4YKRO46dkNROXVpBqgFXyBvSkBaMg
+         hOYwmlv27j5DbCxHuut9gpYCWzKe7cTgMa4NIa9K4qS/A8eAshwdZc/jM/5buJHwhhz9
+         U1Vi9rOS7qq8SNM4AbsPzSNT+O1O9tuZk94amVQmPdDYl0RNIEGzZFtY4lLDBOprm/ev
+         ePhN12we+0zTMuQHKqT3t4Bhkk7OUGBrUg2nCgGJ6dDxSbhGwdwNB+oAYZLP5kgvFOr2
+         1pZwUWz/lmPUCUysMsHHarTvIuiOtAURO5BqPVEARVPi3GEfz/CP/uoHlvFHFQ+ZMIlZ
+         Wsug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738162363; x=1738767163;
+        d=1e100.net; s=20230601; t=1738162504; x=1738767304;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rjpba0LFpYm6AyC0WzTszRjZtuSKA5sSBH8QdJgCQYc=;
-        b=R4taebWXUHzXA9fo0F/Xv3ir9Ga0EDbR9U8+0vNZLl8Hz9Iae86TqBeJY5K2cwNPUx
-         2GzJmrnv5kWoJcVlCiEANL8Npw1Za6/NrAgoTNlGGAVwotYCBp0ccNdlbX4Ox9upByln
-         LjhDQHg5dfD8VEM4114z4i92RmulbG/LaWwU2JICAi7x6bGB2EwHtmRHoZ6UWeT+c3ZW
-         R/DB5Z06/IWmXb94NaYyDZslWvz53pujZ6Mz0ofGwu02j1xU+uNSnnwu6omXhSI/hHpc
-         ACUSZiJA8z5QWDuMF4AR/V7owsgAClrAmopWqrIxkOT60P6LhisrQaudd7/fWzwNQILL
-         LhqA==
-X-Forwarded-Encrypted: i=1; AJvYcCVR1Ow4aRSM3Fvx+Se0+JhZ4mB6tvERX/DipXTyEB+lEV/dyAnYQltNBYTEdM6ny9cTwFVqKgD1RRCPhgd8@vger.kernel.org, AJvYcCVYxV2G5doJdqTB6tAuSX9h3+1/lideUWJoeD0tkBiDp2oBA796zwz5S32CpjjrBPEEGdFDw2G1iAt4z+A=@vger.kernel.org, AJvYcCW8DI3x+VvKMjOxEedoxjgETDqdD0g4FWfEkocH1yMYADXX4d43MhJFnnv03Mjo87JS6XeH8sxUEn9Eb8UZ@vger.kernel.org, AJvYcCXQmv5+YKy5M3iYoD1rL/bbzl4MAikTLRx9Cni2rn7jtN+5RvgcZoqXSwdFdM3xnKIf1RaVJ8LkDKeH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyO5B7Ax9+dxzwdFSiUY03nWrkAuxPBLcqXs60lnaeYREmDr+aN
-	LzChYLWEZUeDb7MBIZYv49ijxOYwfmZ7mS/UB8uQfDL/D7J84Bm8
-X-Gm-Gg: ASbGncuUSijNVIamirg8UYTDvv2u7ZrX4r6Gc4cMObp7q0uLTgPePoS1SCZZpNrhmS3
-	zn5heCfftErNiws/LM3NxEMCMgXe0oXwAQ7Yewyc62bUmhjQtk84ROjtSJ3XBLS1M6BeZx+u5Sd
-	OmWtrGQHh0OE0r6vDrWScxle7sP7zQZP/O0y4FS9TWgGPgplqNZ83/UWFsY+eidCVMVi7dTc2Bc
-	zs6w+Pq9jcU02T+PT7F+YBHxG8bxDT2KgWOmQ3XJEPjew8+ZNN5utnOW4F5BJAizjigQW5lgtkV
-	SrjeYiJ/y+y/e7Jnx7i6zccbr1nnIJNlalNdRqVxZ/za3j08qkU2xqO4+5pkeY1Mc2Wqwvz/bTw
-	Zhw==
-X-Google-Smtp-Source: AGHT+IHYiD8HHU7c3CPRRKT9FNr4EOClWP6a4zZA9f98b+kcMuPfszC9bzeA10N9+9WO3BBUe4NS9g==
-X-Received: by 2002:a05:600c:3b14:b0:434:a781:f5e2 with SMTP id 5b1f17b1804b1-438dc3c237dmr29171655e9.8.1738162363114;
-        Wed, 29 Jan 2025 06:52:43 -0800 (PST)
-Received: from orome (p200300e41f281900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438dcc11ae6sm26173045e9.6.2025.01.29.06.52.41
+        bh=tRXaUYDpwPpub2ZkUhS7mQik3pW6CZUI57KwH1qopBc=;
+        b=qCvosuMx9tG+ntamTKF8kt0QfBkrSI+rgUxebQpKettnH9asYE9lycy17lxzMOr1Ua
+         98OvDmRv0P9wdEsLC6SMWgbjyWM4yzP5XaIRzwOIl8hh8DHzlGlYbjCskYm/KshXyt0W
+         75BniN90R2+O4Ty9rp67L8IVVIjOk5WlFUUaFHubR/3Qt3lowKCDkYv3n6CzJURYyqBm
+         9pT+j8TsdawvwgsS1Gk5T+qkzaAioZ1JjRbwxtzA/JG6d6kpglLODoM0jn+RNyuaYCmO
+         SSjpayAxsCjc6oV2ZatK233UqfgIHu7lBfC2iZ1tn/ZDz8vc3SFts0iITxm/vejVTETC
+         LqMg==
+X-Forwarded-Encrypted: i=1; AJvYcCWEUZmh7ujDpTGrnMrJ5pxK+TYfTMLVIDbbZraHBGS8Iht3q5e17dde0op7HOQtzWsuUckSgw2xNyJn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyo586UGWzIJUJ878aRaOGm05FgPfLxN+CjJJ5PoL/x7vb8UVHB
+	kI5oWKPf37YzZKWQaWk6B1z/piu3/r2JxMq21rUKmWnMM8TTckr7+mNAjQdcnbI=
+X-Gm-Gg: ASbGnctRNpHSSFmOirOCRA66hWL75auGLFzebcoi0dsOXFGha3sog0XywHaNyIQlr6B
+	akImWRwqAcbCAWspH0MF/8NuJI/jiyEZQDAVY0cOh2x8lDiB3Lt7L5iIi0Xmwp0dfKfYO0qe7MN
+	of3YgTc687n5GR3zECbKbReUXV+ABNtlQzq7gk7/Dmh5oeZ/6EwH5nbVJ0eE8fb6J/r7B81QliX
+	Gfr/txlwWxORIMl7TuxgTfpKmXfMbGmKIE5OpwS2NMaG+JbawHhr1+pMtQvFELsiWLMcPPIeso+
+	67I4ramn5x2P1isq8KUa
+X-Google-Smtp-Source: AGHT+IFer6WhX+yo5tVjXt4tHpAp4l/OJqlHH1muQaQvZOwPDcqkOcj3R7zSbWjFDVcbG92S8yScJw==
+X-Received: by 2002:a17:907:3d8d:b0:ab2:c208:732d with SMTP id a640c23a62f3a-ab6cfdbc500mr364867966b.40.1738162504249;
+        Wed, 29 Jan 2025 06:55:04 -0800 (PST)
+Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab69c8dc921sm660475066b.10.2025.01.29.06.55.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jan 2025 06:52:41 -0800 (PST)
-Date: Wed, 29 Jan 2025 15:52:39 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Kartik Rajput <kkartik@nvidia.com>
-Cc: "krzk@kernel.org" <krzk@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, 
-	"robh@kernel.org" <robh@kernel.org>, "robert.marko@sartura.hr" <robert.marko@sartura.hr>, 
-	"arnd@kernel.org" <arnd@kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "geert+renesas@glider.be" <geert+renesas@glider.be>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>, 
-	"schnelle@linux.ibm.com" <schnelle@linux.ibm.com>, "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, 
-	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>, 
-	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: serial: Add bindings for
- nvidia,tegra264-utc
-Message-ID: <5j3fhrauu7j4vdal4yi34yj5egxe42i3aj4ezuc5oblhz6nfca@ebewyvonecj5>
-References: <20250128064633.12381-1-kkartik@nvidia.com>
- <20250128064633.12381-2-kkartik@nvidia.com>
- <20250128-amusing-squirrel-of-gaiety-b3ba97@krzk-bin>
- <ae6132b93ac30a1f7b2721066a0e0eddc01745d5.camel@nvidia.com>
+        Wed, 29 Jan 2025 06:55:03 -0800 (PST)
+Date: Wed, 29 Jan 2025 15:55:01 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [RESEND PATCH] ARM: dts: socfpga: Add basic support for
+ Terrasic's de10-nano
+Message-ID: <v24wxcgyv4w4r5wa2i7ljbu365lfgp6yiqeoolpirbqkapl5wj@svzvaim77p6b>
+References: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
+ <fa163bab-1461-479d-b149-4e018935ac57@kernel.org>
+ <kxdipj2oktcyivl7o7mtyyacqm437jm7dpjihi7e7hcrmll6xb@5dywwnt5wpz5>
+ <7bef8677-b002-46bc-822a-16fc975d41b1@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5smhkbxpyhajfnuz"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="o4mp4ofu7jn4scqc"
 Content-Disposition: inline
-In-Reply-To: <ae6132b93ac30a1f7b2721066a0e0eddc01745d5.camel@nvidia.com>
+In-Reply-To: <7bef8677-b002-46bc-822a-16fc975d41b1@kernel.org>
 
 
---5smhkbxpyhajfnuz
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
+--o4mp4ofu7jn4scqc
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/2] dt-bindings: serial: Add bindings for
- nvidia,tegra264-utc
+Subject: Re: [RESEND PATCH] ARM: dts: socfpga: Add basic support for
+ Terrasic's de10-nano
 MIME-Version: 1.0
 
-On Wed, Jan 29, 2025 at 07:30:55AM +0000, Kartik Rajput wrote:
-> Thanks for reviewing the patch Krzysztof!
->=20
-> On Tue, 2025-01-28 at 08:52 +0100, Krzysztof Kozlowski wrote:
-> > External email: Use caution opening links or attachments
-> >=20
-> >=20
-> > On Tue, Jan 28, 2025 at 12:16:32PM +0530, Kartik Rajput wrote:
-[...]
-> > > +=C2=A0 nvidia,utc-fifo-threshold:
-> > > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/uint32
-> > > +=C2=A0=C2=A0=C2=A0 description:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This property specifies the UTC TX an=
-d RX client FIFO
-> > > threshold in
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 terms of occupancy.
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This property should have the same va=
-lue as the burst size
-> > > (number
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of characters read by the Tegra UTC h=
-ardware at a time from
-> > > each
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 client) which is configured by the bo=
-otloader.
-> >=20
-> > Title says this is a client, so quite confusing. Anyway, why is this
-> > board specific?
->=20
-> The client FIFO threshold should match the burst size configured in the
-> UTC controller by bootloader. This value could change depending on what
-> bootloader has programmed. Hence, this is moved to the device-tree.
->=20
-> >=20
-> > Also, missing constraints, missing units. Why common serial
-> > properties
-> > are not applicable?
-> >=20
->=20
-> I do see current-speed defined in serial-peripheral-props.yaml, that
-> can be used here. I also see "rx-threshold" and "tx-threshold"
-> properties defined in serial.yaml, maybe those can be utilized here. I
-> will update this in v2.
+Hello,
 
-I suppose "rx-threshold" and "tx-threshold" could be used instead of the
-custom "nvidia,utc-fifo-threshold" property. It looks like the hardware
-has separate values for the threshold in both directions, so this would
-give us a more accurate description (though from the current state of
-affairs it looks like both are always going to be the same).
+On Wed, Jan 29, 2025 at 01:34:28PM +0100, Krzysztof Kozlowski wrote:
+> On 29/01/2025 13:19, Uwe Kleine-K=F6nig wrote:
+> > On Wed, Jan 29, 2025 at 10:27:22AM +0100, Krzysztof Kozlowski wrote:
+> >> On 28/01/2025 18:29, Uwe Kleine-K=F6nig wrote:
+> > I tried
+> >=20
+> > 	dt-validate -m -u Documentation/devicetree/bindings -p ~/work/kbuild/a=
+rm/Documentation/devicetree/bindings/processed-schema.json ~/work/kbuild/ar=
+m/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb
+>=20
+> That's unusual way of running the check, but of course might work.
 
-I'm not so sure about "current-speed", though. There's no concept of
-speed for the UTC, right? It's effectively backed by a physical UART
-that will run at a certain speed, but given that it will multiplex data
-=66rom a variety of sources, "current-speed" will not be accurate in many
-cases.
+This is what `make` does when running one of the dt check targets. I
+didn't find a way to call this via make for just a single dtb.
 
-Thierry
+> >>> +	soc {
+> >>> +		fpga_axi: axi_h2f_lw_bridge@ff200000 {
+> >>
+> >> Follow DTS coding style. You just sent us something from downstream.
+> >=20
+> > Indeed this is from downstream. Looking at the matching dt-validate
+> > output I guess just "axi@ff200000" would be appropriate?!
+>=20
+> bus@
 
---5smhkbxpyhajfnuz
+ok.
+
+> >>> +			compatible =3D "simple-bus";
+> >>> +			reg =3D <0xff200000 0x00200000>;
+> >>> +			#address-cells =3D <1>;
+> >>> +			#size-cells =3D <1>;
+> >>
+> >> ranges would be after reg, but they are pointless here, no?
+> >=20
+> > I thought it's "compatible", "reg" at the start, "status" at the end and
+> > the rest in-between in alphabetic order. What is the right ordering?
+>=20
+> DTS coding style could be clearer here. It exactly says what is the
+> first, what is the second and what is the third.
+
+I found Documentation/devicetree/bindings/dts-coding-style.rst now.
+
+> >> Where is the child?
+> >=20
+> > I intend to add children using dt-overlays. I have a prototype here, but
+> > that's still to embarrassing to show.
+>=20
+> The entire bus is in such case a bit confusing. If you have nothing
+> connected here in the base board, does it really exist in FPGA bitstream?
+
+I'm unsure. If I don't load an FPGA image, the machine boots fine but
+IIRC accessing the address space results in an error. If I load an FPGA
+image, its register space appears at that address. So technically it
+might be ok to drop the node, but from a practical POV it's useful to
+have it in the board.dtb to not have to create that note in each
+overlay.
+
+If that is good enough for you, I'll go with a comment in that node that
+tells about the expectation that it will be filled using an overlay.
+
+Best regards
+Uwe
+
+--o4mp4ofu7jn4scqc
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmeaQLMACgkQ3SOs138+
-s6Emlg/+MkWZTsiltrG5WOU7FROD1BNtrTMJM1miRG4fNtVf7fSd6xOYPi6Xp+gn
-0fYzToqmpBRNMhQTdEUcmMz/3uKRWC/29BiyV44aBjpb3u/jj7d1DP/B8E/iTuZM
-2ifUzL5QnHVz93Ew4uDsrVxfVSsjzDzeEV148wkiO/liWVWW+rJw7cL+sINssmnN
-g3hYzXNOWA/9DzPdcxydHHe6lh+DNf4cn5cf4jaW7r9HPmXQpLDkmp8lSbqbJYkJ
-I0awauUXVXiZroUqmy+ubyEqFWYzvbFAvrEkyocgPVgheDOndWyauf/wKUsDvWKv
-uFzRO8ypLqYp880+J9vsBoo8MjNCWQayZ3PjwT5vF7wga41ZDKxPMOJNb//l/zw5
-0R2ru9glO+fuf019SEqnx6tVbIsK0++4CVOe9jtfhQPsrHPOGk7RYvoR7R8FYh0J
-l6sPLCuS0DZWeG5MvttwlO2iwS/luOhbNL7FZSRWKmaEiT0Sbnry81GdO4kz4WdK
-avOtQM6yOwJ7q1NRfwd2YnSTW7dIntYVrmajJ3iErL+HjVGKJXA9kHMLUybBvSXT
-CAu4y7GKBPucmZ1+jbRZpAWZz5Fyd0YNNFIugsOUq4yuMb+YvBH3SlRj/DcfMR3F
-ATH8aYHFke6IuNYBwg4ycUBti2oZTuIjojlisbz0bywwKtgldjY=
-=MV3R
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmeaQUIACgkQj4D7WH0S
+/k7ovAf/TsTzdxS7/CurCdb/NxP//rNr99mEWLIwsA6JTYw+gbBTIeeKYpj804bR
+PYolN4JxpYDUEjFZIO16/Zc+4grByALz7isl/9DLEAT+4Q/V/tDzpjGavxpq3xU2
+8ayyOt0HiM7ruJs8/j/W3hXOtU/Tn7UpzeCQS16I1Lf5DEriG7LcoGTopahyxVFO
+namEEu/+WpISucQch9VlBDabTQzHHjtlgSXy99i0iedK+u8gaJ1NRXYdNXRU+WMP
+drD38H2DYlz3SFq/t9hn7izqemo8pvXeATreDpVpuYsvEg1u9m1RLna+AtLKrpN7
+CDUHakzxu3exWH/9WV70hnpb+RY48g==
+=8/x0
 -----END PGP SIGNATURE-----
 
---5smhkbxpyhajfnuz--
+--o4mp4ofu7jn4scqc--
 
