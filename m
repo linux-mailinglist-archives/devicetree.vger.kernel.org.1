@@ -1,304 +1,126 @@
-Return-Path: <devicetree+bounces-141672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73A42A21E0D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:43:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B45D1A21E28
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:48:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89BE81629D8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 13:43:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 347987A3DAD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 13:47:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D6F156678;
-	Wed, 29 Jan 2025 13:42:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD94F18C910;
+	Wed, 29 Jan 2025 13:48:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DOTXJDV4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VZ5grChY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D139613D531;
-	Wed, 29 Jan 2025 13:42:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B7514A4F9
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 13:48:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738158171; cv=none; b=cWft9jW8y4jLJ3KsIdhZ7f1u5aLqYzCFVnEMg0uU8roEvD6LbZ7a5gefPo7z1V1XdCXkzS2RIG0fR60VW2naEsG7K/PFfudY5I9VQEiBsbFrPzdZpXsCHrh8ySFYRaUROgh9YTfUIva3f2p2/qSNe+2atcbEbqHWBHUauhMjj3Q=
+	t=1738158484; cv=none; b=XaJZKnYC4kDti/uuyILjrkrDDdY7oiV8dKEDb84XXmfh61RsBy/AaynG2Z1SHYaloQN75679nJgE1BNYNk4kRHF+lMMTZlS9BPIjuEEaZ/tXjw/KjvTITPRTvqVsCWPryAXzUiBKH1ejkuiR0r18zck/5H5Mx8c0UYL+3RtSsHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738158171; c=relaxed/simple;
-	bh=397wmQJ4TE8S5q2cgqvNcsL9lPDIAhrglheJH9ArOBM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d+hoz5DWY4EmWeRjAlqkyzqziWAMisiOwch2hnoIzSx8HShuOUCGaSlYSBBnHCEX82xfX7SoXXXng2z3ZvILd/Btuqqy+zE5fepFR5SqqXNMtlEYjbkIa8IsHAHEwpEuQOTIzV52k8vOQcKtAMgXyCFp4PVP12jXhHKuyeEzXjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DOTXJDV4; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738158169; x=1769694169;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=397wmQJ4TE8S5q2cgqvNcsL9lPDIAhrglheJH9ArOBM=;
-  b=DOTXJDV4W5yj0A/imDyVq4RL7lwsPjp2ymYOxoeOjMZtuoxOuR22y/6Q
-   NjNaylqgL+1STvYr+9yAhzigUiDkq1i1BMNCvwuDFHzqQlMs3rTAz1sSA
-   C9rckpoRbNRWQ284MOUDk/wdJvupTx5w8sl9ZBMtCKMho6Dq6QXUzVHxG
-   EMr4swr7jSTUdcDbEBFYDq8DEgdBiXmgmq15Caj3y3R4dGLb5lT0WmVZq
-   zYEXRk3a2x7JVIsqPmee4MSpDjpXkY4NEt9P2RNSLB4RkY6cb7Ic/flQm
-   XZsDRwTAueHXth8j4rZPafVOPi8fF6Ddk1jFgPVZQLqIascW2DXgJ9heU
-   w==;
-X-CSE-ConnectionGUID: /0u+qsxBSSW57KyPGmMYbg==
-X-CSE-MsgGUID: KpapgsS4TOqKjO0PyOSFCA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42598110"
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; 
-   d="scan'208";a="42598110"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2025 05:42:48 -0800
-X-CSE-ConnectionGUID: xiEMcZjQTV+pEXk+jpkGQg==
-X-CSE-MsgGUID: S4o4FnqzQeaEFnmV+rg1dQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="146229921"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2025 05:42:42 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id E7B4011F8DF;
-	Wed, 29 Jan 2025 15:42:38 +0200 (EET)
-Date: Wed, 29 Jan 2025 13:42:38 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Mirela Rabulea <mirela.rabulea@nxp.com>,
-	Hans de Goede <hdegoede@redhat.com>, mchehab@kernel.org,
-	hverkuil-cisco@xs4all.nl, robh@kernel.org, krzk+dt@kernel.org,
-	bryan.odonoghue@linaro.org, laurentiu.palcu@nxp.com,
-	robert.chiras@nxp.com, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, LnxRevLi@nxp.com,
-	kieran.bingham@ideasonboard.com, dave.stevenson@raspberrypi.com,
-	mike.rudenko@gmail.com, alain.volmat@foss.st.com,
-	devicetree@vger.kernel.org, conor+dt@kernel.org,
-	alexander.stein@ew.tq-group.com, umang.jain@ideasonboard.com,
-	zhi.mao@mediatek.com, festevam@denx.de, julien.vuillaumier@nxp.com,
-	alice.yuan@nxp.com
-Subject: Re: Re: [PATCH v2 2/4] media: ox05b1s: Add omnivision OX05B1S raw
- sensor driver
-Message-ID: <Z5owTnr_5Zl8Gfjo@kekkonen.localdomain>
-References: <20241126155100.1263946-1-mirela.rabulea@nxp.com>
- <20241126155100.1263946-3-mirela.rabulea@nxp.com>
- <131271d3-f3be-450f-b4e1-a7efb65362f3@redhat.com>
- <20250125001437.GA19927@pendragon.ideasonboard.com>
- <367710fc-9c66-4cf5-9059-1df00320f1f3@redhat.com>
- <20250125121832.GC1805@pendragon.ideasonboard.com>
- <1751e672-9ba1-4e8c-92bd-c7385afbe624@nxp.com>
- <20250129133324.GB16795@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1738158484; c=relaxed/simple;
+	bh=CXXkaINHKcgPgFLIAruxbqB9w0jLUsI5+chyZUYz/I0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n2bmnphDEDIbYwaPK1WSW3OUAGG8JPS0zQny5aDHyCAYcJuBxwI2oam4VdO5vXSuOcVJSkrokXNOKly3tXlQpBlFCjL3zF9HJmzpsphBbkESblno9ayTGiJ7Fzoex3WqIFb6O4bUY8W/GeqzrtbXos3F/2DUSaKC5UO/p2Lib+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VZ5grChY; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50T6OYvg004247
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 13:48:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	CXXkaINHKcgPgFLIAruxbqB9w0jLUsI5+chyZUYz/I0=; b=VZ5grChY4xCgY1pm
+	dRkYVU+FTl5n/WHYwbV9dnP4InkwvmKsjLHGMYbSHShGOURfh5PkDvbHjtsZb11U
+	pMXOS9lZqaoZ1qzHviS8mi0xeWv3J0OHsr32pZKqxp6YVIkNyBNDito4C9cJOpHb
+	uXYSP1qV4gWlgFOpyQU6Vi/OyFbCOBJwlIVHdWbK0cNdqCBBNek024Y+QUN299ew
+	Px9i+rD2ufz9CQ+4fhZj9dKJygl/xobvaVbTFs8c4/47Sh2M1Y21dsZiHDooSBxE
+	fOC8nlHC6dsP86gLryYwdYF5tETlqTejvGpeBL37DKlTeSSmY0phIPyGoeWzfqPp
+	LKRrMQ==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ff1q0r32-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 13:48:02 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6d8f15481bbso13189826d6.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 05:48:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738158481; x=1738763281;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CXXkaINHKcgPgFLIAruxbqB9w0jLUsI5+chyZUYz/I0=;
+        b=NNbwD/v2XO86v0XfzrVbgwWu0E3jt6g6yCjCbSxZr3s8Y4sngBsL4ZPqCCKR+X8hmI
+         ZhQGV0MhSbieayJeguyS/xOUwWhFglebwJ2pcxOOoT+SYdaSV8bkiE/dJxJzKvpNcSbU
+         xIqxlF8SUq1jjjf+yfJ+Ep4ydK+J7MUaQg3T9TPTUMg7TG92zgdJ2KvXiHkBubc2ycrU
+         Lt+Q75zFttaCde2LYGskJPWoXJOU07aBH32r+xgZX4sYoh2grobreFSpotw4J4erNu3S
+         s3uuxD4icQNnMGE8lvZyKxFs6Ss2q/4NfwyrkRpI+S4v3RTxHi4e8AHooiAKKdaH9io4
+         sfFg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhP6xjOD3oVVpQJ+GyTeeExcT+GtxqPAeoSkzvoAGgV8xmJ/EaRlEqQrN9t3jSd6v8HsTOupdbwaBX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmXVlrVSbBVypC2yt5GcX5R3L+9gXBxkpgsjgcGDMzW9boxo2c
+	7exsYdDzPcHG4qkog5Rg308ZfLSoivGbS6udS/IVg1GyvKRaIxrqOiwbgcoS+wObtcdsLQUwVrS
+	xvBCXLrcpUcPUwGuetWLNTZljwB8xEutWy+gOeDwkqEXBas9l8kvYIlnCvW2x
+X-Gm-Gg: ASbGnctywe543klYAonT//+5qSeHJdb+oui+T7fAXZM6dsL/gbVX2bWyLt0eaH2LrjN
+	7rr8ufogwDVIw9qfWa8ScYFujPDP7w0yHeAUfpsqkfHV7r3HNU7CuK9PpJ1KhAK4j+mauwwi8WB
+	Q41ab2EUNts9NV2Z6yGMv8f5IlArLgQae0YCYdpN3tlcFHDV34HnAZT4TNDEq/YkdLg6rGpcWKO
+	F7WQaDU13I9zpUFMrUSy8MkWIunXTnazUtejWKuP/Q3SoPJaRil3I+bHKl1/ff/7kj8AHfWptMR
+	tBbO5FwJLJL4ybVFxwIT5d7Z9MgSx8jMDQfktcMGKgHDSrAXMNbf7Erew4Y=
+X-Received: by 2002:a05:620a:1921:b0:7b6:6b55:887a with SMTP id af79cd13be357-7bffcce582emr193212985a.6.1738158481075;
+        Wed, 29 Jan 2025 05:48:01 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEB8E/u68ugx01I51kdoUqadvvqxHqiqJPuElKkhVEjYIOIGHL4R8gUbiUaf6Np1jPrF4xShg==
+X-Received: by 2002:a05:620a:1921:b0:7b6:6b55:887a with SMTP id af79cd13be357-7bffcce582emr193211585a.6.1738158480732;
+        Wed, 29 Jan 2025 05:48:00 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dc5f64d1ddsm1158319a12.35.2025.01.29.05.47.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jan 2025 05:48:00 -0800 (PST)
+Message-ID: <3d23c903-fe11-41dd-b79d-1aa1596d1712@oss.qualcomm.com>
+Date: Wed, 29 Jan 2025 14:47:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250129133324.GB16795@pendragon.ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: add all 7 coresight ETE nodes
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250129-topic-sm8650-upstream-add-all-coresight-cpus-v1-1-96996d37df8e@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250129-topic-sm8650-upstream-add-all-coresight-cpus-v1-1-96996d37df8e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: pJNwrpHV1QCpHfFaYoLuS2vR1bu6pOyN
+X-Proofpoint-ORIG-GUID: pJNwrpHV1QCpHfFaYoLuS2vR1bu6pOyN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-29_02,2025-01-29_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=814
+ impostorscore=0 mlxscore=0 suspectscore=0 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 bulkscore=0 clxscore=1015 adultscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501290112
 
-Hi Laurent,
+On 29.01.2025 10:54 AM, Neil Armstrong wrote:
+> Only CPU0 Embedded Trace Extension (ETE) was added, but there's one
+> for all 7 CPUs, so add the missing ones.
 
-On Wed, Jan 29, 2025 at 03:33:24PM +0200, Laurent Pinchart wrote:
-> On Tue, Jan 28, 2025 at 02:09:52PM +0200, Mirela Rabulea wrote:
-> > On 25.01.2025 14:18, Laurent Pinchart wrote:
-> > > On Sat, Jan 25, 2025 at 11:12:16AM +0100, Hans de Goede wrote:
-> > >> On 25-Jan-25 1:14 AM, Laurent Pinchart wrote:
-> > >>> On Fri, Jan 24, 2025 at 06:17:40PM +0100, Hans de Goede wrote:
-> > >>>> On 26-Nov-24 4:50 PM, Mirela Rabulea wrote:
-> > >>>>> Add a v4l2 subdevice driver for the Omnivision OX05B1S RGB-IR sensor.
-> > >>>>>
-> > >>>>> The Omnivision OX05B1S is a 1/2.5-Inch CMOS image sensor with an
-> > >>>>> active array size of 2592 x 1944.
-> > >>>>>
-> > >>>>> The following features are supported for OX05B1S:
-> > >>>>> - Manual exposure an gain control support
-> > >>>>> - vblank/hblank control support
-> > >>>>> - Supported resolution: 2592 x 1944 @ 30fps (SGRBG10)
-> > >>>>>
-> > >>>>> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
-> > >>>> Thank you for your contribution, I noticed in $subject
-> > >>>> that the model-nr ends in a "S" and that you describe
-> > >>>> this as a RGB-IR sensor.
-> > >>>>
-> > >>>> I've been working on OV01A1S support myself and one of
-> > >>>> the issues is how to communicate the RGB-IR color-filter
-> > >>>> to userspace.
-> > >>>>
-> > >>>> <snip>
-> > >>>>
-> > >>>> I see here:
-> > >>>>
-> > >>>>> +static const struct ox05b1s_sizes ox05b1s_supported_codes[] = {
-> > >>>>> + {
-> > >>>>> +         .code = MEDIA_BUS_FMT_SGRBG10_1X10,
-> > >>>>> +         .sizes = ox05b1s_sgrbg10_sizes,
-> > >>>>> + }, {
-> > >>>>> +         /* sentinel */
-> > >>>>> + }
-> > >>>>> +};
-> > >>>> That you are using MEDIA_BUS_FMT_SGRBG10_1X10, but that suggests
-> > >>>> this sensor is using a plain Bayer color filter which is not correct.
-> > >>>>
-> > >>>> Here is what I have come up with:
-> > >>>>
-> > >>>> diff --git a/include/linux/drm_fourcc.h b/include/linux/drm_fourcc.h
-> > >>>> index db679877..68ed65c5 100644
-> > >>>> --- a/include/linux/drm_fourcc.h
-> > >>>> +++ b/include/linux/drm_fourcc.h
-> > >>>> @@ -447,6 +447,8 @@ extern "C" {
-> > >>>>   #define DRM_FORMAT_SGRBG10        fourcc_code('B', 'A', '1', '0')
-> > >>>>   #define DRM_FORMAT_SGBRG10        fourcc_code('G', 'B', '1', '0')
-> > >>>>   #define DRM_FORMAT_SBGGR10        fourcc_code('B', 'G', '1', '0')
-> > >>>> +/* Mixed 10 bit bayer + ir pixel pattern found on Omnivision ov01a1s */
-> > >>>> +#define DRM_FORMAT_SIGIG_GBGR_IGIG_GRGB10 fourcc_code('O', 'V', '1', 'S')
-> > >>>>
-> > >>>>   /* 12-bit Bayer formats */
-> > >>>>   #define DRM_FORMAT_SRGGB12        fourcc_code('R', 'G', '1', '2')
-> > >>>> diff --git a/include/linux/media-bus-format.h b/include/linux/media-bus-format.h
-> > >>>> index b6acf8c8..e2938f0d 100644
-> > >>>> --- a/include/linux/media-bus-format.h
-> > >>>> +++ b/include/linux/media-bus-format.h
-> > >>>> @@ -122,7 +122,7 @@
-> > >>>>   #define MEDIA_BUS_FMT_YUV16_1X48          0x202a
-> > >>>>   #define MEDIA_BUS_FMT_UYYVYY16_0_5X48             0x202b
-> > >>>>
-> > >>>> -/* Bayer - next is        0x3025 */
-> > >>>> +/* Bayer - next is        0x3026 */
-> > >>>>   #define MEDIA_BUS_FMT_SBGGR8_1X8          0x3001
-> > >>>>   #define MEDIA_BUS_FMT_SGBRG8_1X8          0x3013
-> > >>>>   #define MEDIA_BUS_FMT_SGRBG8_1X8          0x3002
-> > >>>> @@ -159,6 +159,8 @@
-> > >>>>   #define MEDIA_BUS_FMT_SGBRG20_1X20                0x3022
-> > >>>>   #define MEDIA_BUS_FMT_SGRBG20_1X20                0x3023
-> > >>>>   #define MEDIA_BUS_FMT_SRGGB20_1X20                0x3024
-> > >>>> +/* Mixed bayer + ir pixel pattern found on ov01a1s */
-> > >>>> +#define MEDIA_BUS_FMT_SIGIG_GBGR_IGIG_GRGB10_1X10 0x3025
-> > >>>>
-> > >>>>   /* JPEG compressed formats - next is      0x4002 */
-> > >>>>   #define MEDIA_BUS_FMT_JPEG_1X8                    0x4001
-> > >>>> diff --git a/include/linux/videodev2.h b/include/linux/videodev2.h
-> > >>>> index 3829c0b6..1b91ed0e 100644
-> > >>>> --- a/include/linux/videodev2.h
-> > >>>> +++ b/include/linux/videodev2.h
-> > >>>> @@ -706,6 +706,9 @@ struct v4l2_pix_format {
-> > >>>>   #define V4L2_PIX_FMT_SGBRG16 v4l2_fourcc('G', 'B', '1', '6') /* 16  GBGB.. RGRG.. */
-> > >>>>   #define V4L2_PIX_FMT_SGRBG16 v4l2_fourcc('G', 'R', '1', '6') /* 16  GRGR.. BGBG.. */
-> > >>>>   #define V4L2_PIX_FMT_SRGGB16 v4l2_fourcc('R', 'G', '1', '6') /* 16  RGRG.. GBGB.. */
-> > >>>> +  /* 10bit mixed bayer + ir pixel pattern found on ov01a1s */
-> > >>>> +#define V4L2_PIX_FMT_SIGIG_GBGR_IGIG_GRGB10  v4l2_fourcc('O', 'V', '1', 'S') /* unpacked */
-> > >>>> +#define V4L2_PIX_FMT_SIGIG_GBGR_IGIG_GRGB10P v4l2_fourcc('O', 'V', '1', 'P') /* packed */
-> > >>>>
-> > >>>>   /* HSV formats */
-> > >>>>   #define V4L2_PIX_FMT_HSV24 v4l2_fourcc('H', 'S', 'V', '3')
-> > >>>>
-> > >>>> For this, note:
-> > >>>>
-> > >>>> 1. This is against libcamera's copy of the relevant linux headers, the paths
-> > >>>> to the .h files are different in the kernel
-> > >>>>
-> > >>>> 2. Since I wrote this I learned that it looks like the intel driver for
-> > >>>> the ov01a1s:
-> > >>>>
-> > >>>> /https://github.com/intel/ipu6-drivers/blob/master/drivers/media/i2c/ov01a1s.c/
-> > >>>>
-> > >>>> may have enabled horizontal-flip / mirroring by default, which means that
-> > >>>> the order of each of the quads needs to be flipped.
-> > >>>>
-> > >>>> IMHO we need to resolve how to communicate the color-filters used on
-> > >>>> these OV xxxxx"S" models to userspace. When I last discussed this with
-> > >>>> Laurent, Laurent suggested using V4L2_PIX_FMT_Y10, combined with
-> > >>>> a new field or v4l2-control to query the actual filter.
-> > >>>
-> > >>> Yes, adding new pixel formats and media bus codes to represent CFA
-> > >>> patterns won't scale. We need to switch to using controls to report
-> > >>> those. Sakari is already working on a series for that.
-> >
-> > That is why we also did not try to add some BGGR-IR format, because 
-> > there were too many combinations possible. Even if we are using just one 
-> > particular format, someone else would probably need another format, and 
-> > in the end, we agree that such a solution won't scale. So, separating 
-> > the size from the CFA information seems the practical thing to do.
-> >
-> > >> Interesting, do you have a link to Sakari's work ?
-> > >
-> > > I don't think it has been posted yet (Sakari can correct me if I'm
-> > > wrong). I believe the plan is to include it in a new version of "RFC v4
-> > > 0/9] Sub-device configuration models".
-> > 
-> > Looking forward for that :)
-> > 
-> > >>>> The idea is to separate the depth/packing info from the filter info,
-> > >>>> avoiding the possible combinatioral explosion of needing this special
-> > >>>> filter with all possible deths. I gave this a quick try but at least on
-> > >>>> the libcamera side there is still a lot of code assuming that both
-> > >>>> depth and color-filter-type are communicated through a single fmt
-> > >>>> integer. Also it seems that in practice there only is this one new
-> > >>>> RGB-IR color filter used on the OV xxxxx"S" models so I think we
-> > >>>> need just 1 new V4L2_PIX_FMT_ define (*).
-> > >>>
-> > >>> Changes in libcamera are surely needed. There's work to be done, we'll
-> > >>> do the work, and we'll solve this problem. Let's focus the effort in
-> > >>> that direction.
-> > >>
-> > >> Ok, so what does that mean for upstreaming support for omnivision
-> > >> OVxxxxS sensors? Clearly advertising MEDIA_BUS_FMT_SGRBG10_1X10 is
-> > >> wrong. So I guess that upstreaming this driver needs to wait until
-> > >> at least the kernel API side of this is resolved?
-> > >
-> > > It depends. I don't know if that's the case for this particular sensor,
-> > > but I wouldn't be surprised if some sensors could interpolate
-> > > neighbouring pixels to replace the IR pixels and produce a regular 2x2
-> > > Bayer CFA pattern. If the sensor you're working with can do that, then
-> > > the feature can be enabled by default, and the driver can advertise the
-> > > corresponding existing media bus code. Otherwise, let's cooperate to
-> > > review and merge the subdev configuration models series :-)
-> >
-> > For this ox05b1s sensor specifically, the CFA pattern is
-> > B G
-> > G IR
-> > 
-> > And when mirroring:
-> > G R
-> > IR G
-> > 
-> > So, we choose MEDIA_BUS_FMT_SGRBG10_1X10, as that was the closest match, 
-> > and our ISP gets extra information from userspace (libcamera) about the 
-> > CFA pattern.
-> > 
-> > >> Sensors relying on the new CFA control to communicatethe CFA type
-> > >> could use a new (e.g.) MEDIA_BUS_FMT_RAW_1X10 or are we going to re-use
-> > >> the monochrome (Y only) media bus fmts, so e.g. this sensor would
-> > >> advertise MEDIA_BUS_FMT_Y10_1X10 and then the CFA control would provide
-> > >> the actual CFA info ?
-> > >>
-> > >> IMHO re-using the monochrome (Y only) media bus fmts seems best
-> > >> to avoid needing to have to make a "RAW" copy of all of them.
-> > > I believe the plan is to use new RAW media bus codes, but we can also
-> > > consider reusing the Y formats.
-> > 
-> > So, should we try to re-submit this driver with Y format, or rather wait 
-> > for the new RAW media bus codes? Is there some work already started on 
-> > RAW media bus codes, are you referring to the generic MEDIA_BUS_FMT_META 
-> > formats?
-> 
-> I've discussed this with Sakari yesterday, and we both agreed that Hans'
-> idea of reusing the Y media bus codes and pixel formats is a good
-> approach, provided we don't run into issues.
-> 
-> Sakari is working on documenting a control to expose the CFA pattern. In
-> parallel, I think you can switch to Y formats for the next version of
-> this driver, and then implement the CFA pattern control as soon as
-> patches get posted.
+all 8 CPUs or the 7 other CPUs
 
-My set will still be an RFC one. With the patches eventually merged, I'd
-like to see drivers merged from then on to follow the new API as well. This
-includes the use of internal pads, too. I'll convert a driver (ov2740
-maybe?) once we get some kind of agreement on the APIs.
-
--- 
-Kind regards,
-
-Sakari Ailus
+Konrad
 
