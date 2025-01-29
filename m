@@ -1,288 +1,301 @@
-Return-Path: <devicetree+bounces-141669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E6EA21DE6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:33:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49136A21DEB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:35:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D79C1887324
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 13:33:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 654593A5D91
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 13:35:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCDE2C9D;
-	Wed, 29 Jan 2025 13:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD5DDDA9;
+	Wed, 29 Jan 2025 13:35:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bO1qBQiO"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="NRUiKvmV";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="/+3Klpeg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EEEA13D503;
-	Wed, 29 Jan 2025 13:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9391FDD;
+	Wed, 29 Jan 2025 13:35:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738157626; cv=none; b=aEszBT9dwwy4dAwptYiNCsFkkO+eOcYfBuViGVIQM3Wr2p/oiRb76Tqd4x0cHd2yRzy9Jdvuhd+38SuLjE6SLzeaB5mdsTE8cnsBnPkenAPSehrZOio2Qu7g6XRKZBuRxGP2bVxh8QhVsA+98YGJolhNy3ww0JD9SNpK0ul42Nw=
+	t=1738157737; cv=none; b=Ifj+kiRuS5g5uvF3GTFhi2wVIAtQlDyFgY2GiZZK3ldGFiIKLCZerE+tvREXQOgKHJoqIzkQbT11Mfm0ue8Y9w7Wddi+KfegEgbd9ofppgGCPKlvllngLF0FopJ3tk4bp07g3zFx+KkqYFa1o5vJlzjMdf+obPhnCTNUQSg1G4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738157626; c=relaxed/simple;
-	bh=BznABFZ/NlB39cvM170PkIUpDQCAwzRCwLUgXe+zKvA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aSEqBTMIQhYzhw/fzuQU3qp4B44mjn2aaqQPqMmUNkLAWf0d0OdEk324XMByiZ0Zoi30WuUEmMdQQZNjXU0vihpzbVLYXtOlg4ZVOlsHt2f2Ef82nM65PVUUDoYqvLXc1+vtkp/K/jLbfEkDWViRPy7sYR+WaZCnGrv95BnLUBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=bO1qBQiO; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DF532D21;
-	Wed, 29 Jan 2025 14:32:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1738157548;
-	bh=BznABFZ/NlB39cvM170PkIUpDQCAwzRCwLUgXe+zKvA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bO1qBQiOsHM6eaulPckHMq1RIo/H3TgMG4x1VgnJGURzQCcvW4n6tVxzqVzL7RaM3
-	 JdBa21dVS0HiOpOGUGMdD6bCCyR5R1f5lm8ukUSPoRlaNW02qkr59WbL3TpItaanv/
-	 qULX17Yz0WO2EHGFquhsSL+zwTTmPVXX9PATYZXI=
-Date: Wed, 29 Jan 2025 15:33:24 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Mirela Rabulea <mirela.rabulea@nxp.com>
-Cc: Hans de Goede <hdegoede@redhat.com>,
-	"sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
-	mchehab@kernel.org, hverkuil-cisco@xs4all.nl, robh@kernel.org,
-	krzk+dt@kernel.org, bryan.odonoghue@linaro.org,
-	laurentiu.palcu@nxp.com, robert.chiras@nxp.com,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	LnxRevLi@nxp.com, kieran.bingham@ideasonboard.com,
-	dave.stevenson@raspberrypi.com, mike.rudenko@gmail.com,
-	alain.volmat@foss.st.com, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, alexander.stein@ew.tq-group.com,
-	umang.jain@ideasonboard.com, zhi.mao@mediatek.com, festevam@denx.de,
-	julien.vuillaumier@nxp.com, alice.yuan@nxp.com
-Subject: Re: Re: [PATCH v2 2/4] media: ox05b1s: Add omnivision OX05B1S raw
- sensor driver
-Message-ID: <20250129133324.GB16795@pendragon.ideasonboard.com>
-References: <20241126155100.1263946-1-mirela.rabulea@nxp.com>
- <20241126155100.1263946-3-mirela.rabulea@nxp.com>
- <131271d3-f3be-450f-b4e1-a7efb65362f3@redhat.com>
- <20250125001437.GA19927@pendragon.ideasonboard.com>
- <367710fc-9c66-4cf5-9059-1df00320f1f3@redhat.com>
- <20250125121832.GC1805@pendragon.ideasonboard.com>
- <1751e672-9ba1-4e8c-92bd-c7385afbe624@nxp.com>
+	s=arc-20240116; t=1738157737; c=relaxed/simple;
+	bh=J4XlGBc+tMImfQaxv9uBkMDoBS+YbjM+R52tQoIwJ48=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kWKGdfZ/Sf4GL6zuX39gPshTVzfaFEU/GnLygc0KoyvRH+kT6lF7tk1OlffYpeMEsL2QOvmfu/p89UzWWtcgbTlAD0xbM3rUdu+9qrC7K0zu6P5tITRbGuEnUe0wdLmRa3PO1eb1HaedFLhI7wTon20X70UZ05tnKm5SnRNqeV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=NRUiKvmV; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=/+3Klpeg; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1738157733;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=01swkCTfzFuMOx6T4s/kjh8AWVdXMgMO+nkmNoE6yWc=;
+	b=NRUiKvmVhiAbl2lCGg35Wz/ixzngGYrkWLL6K3+fE4ymGOGhB8LOVYYya4rXeQyUCuVU6s
+	j7Bl1+eFJ8Po7EbRuWdTn2Ibb0aYeUbKXae7cnu3b0PCjKtYtcy922jvc6Xdw4Z1j8FjUP
+	hCyV0sVcqMs4VQtaPPxsZetRwp/Fx0H+MmvOQwGIJC2jQOVkRvM2PL1HAhZLdlPxowu+cw
+	FzcZ8R+HbAC1qH3fswiEgcWHxMRCl/untIQQ21SzmAi1H9k/tfCMf1w4A8xDVejjYJaaJR
+	+Sk/ZYSGgicKyzsL7OGM4if7kCZwSKJgdn1NLckKQ3qUvv4kq9aUff7rvz3Ifg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1738157733;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=01swkCTfzFuMOx6T4s/kjh8AWVdXMgMO+nkmNoE6yWc=;
+	b=/+3KlpegYqj9ZJynUJbQhkBLSDhHE1ZIk4GyeDdLlDWz6e/drxq0ML7ixS6PMB0HW13I/u
+	/E+oMRmai1rb3KDw==
+Date: Wed, 29 Jan 2025 14:35:27 +0100
+Subject: [PATCH v3] of: address: Add kunit test for
+ __of_address_resource_bounds()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1751e672-9ba1-4e8c-92bd-c7385afbe624@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20250129-of-address-overflow-v3-1-95d1760ed791@linutronix.de>
+X-B4-Tracking: v=1; b=H4sIAJ4ummcC/33N0Q6CIBTG8VdxXHcaIKB21Xu0LlQOyeaggZHN+
+ e6hV621Lv/fdn5nIRGDxUhOxUICJhutdznKQ0H6oXU3BKtzE065pIxT8AZarQPGCD5hMKN/Qis
+ bUalS8bqWJF/eAxo77+rlmnuwcfLhtT9JbFv/e4kBBa1VrTsjqq7H82jdYwre2fmokWxm4p9O9
+ dvhwECxTlKhqBDYfDvrur4BqxuUNQIBAAA=
+X-Change-ID: 20250120-of-address-overflow-a59476362885
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+Cc: Basharath Hussain Khaja <basharath@couthit.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738157732; l=6401;
+ i=thomas.weissschuh@linutronix.de; s=20240209; h=from:subject:message-id;
+ bh=J4XlGBc+tMImfQaxv9uBkMDoBS+YbjM+R52tQoIwJ48=;
+ b=Y0z3JoxWkd+bCKip6zStlUFRqtVK0OCbOkD4uhroMlrbatVz3PW7MRtUYBVmOHN0bvnGN+5vi
+ fuisGQtDdPsDpezpymEZecYZYWlnk9GmXuH08fpJBJ1ahXiPESG4m1N
+X-Developer-Key: i=thomas.weissschuh@linutronix.de; a=ed25519;
+ pk=pfvxvpFUDJV2h2nY0FidLUml22uGLSjByFbM6aqQQws=
 
-On Tue, Jan 28, 2025 at 02:09:52PM +0200, Mirela Rabulea wrote:
-> On 25.01.2025 14:18, Laurent Pinchart wrote:
-> > On Sat, Jan 25, 2025 at 11:12:16AM +0100, Hans de Goede wrote:
-> >> On 25-Jan-25 1:14 AM, Laurent Pinchart wrote:
-> >>> On Fri, Jan 24, 2025 at 06:17:40PM +0100, Hans de Goede wrote:
-> >>>> On 26-Nov-24 4:50 PM, Mirela Rabulea wrote:
-> >>>>> Add a v4l2 subdevice driver for the Omnivision OX05B1S RGB-IR sensor.
-> >>>>>
-> >>>>> The Omnivision OX05B1S is a 1/2.5-Inch CMOS image sensor with an
-> >>>>> active array size of 2592 x 1944.
-> >>>>>
-> >>>>> The following features are supported for OX05B1S:
-> >>>>> - Manual exposure an gain control support
-> >>>>> - vblank/hblank control support
-> >>>>> - Supported resolution: 2592 x 1944 @ 30fps (SGRBG10)
-> >>>>>
-> >>>>> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
-> >>>> Thank you for your contribution, I noticed in $subject
-> >>>> that the model-nr ends in a "S" and that you describe
-> >>>> this as a RGB-IR sensor.
-> >>>>
-> >>>> I've been working on OV01A1S support myself and one of
-> >>>> the issues is how to communicate the RGB-IR color-filter
-> >>>> to userspace.
-> >>>>
-> >>>> <snip>
-> >>>>
-> >>>> I see here:
-> >>>>
-> >>>>> +static const struct ox05b1s_sizes ox05b1s_supported_codes[] = {
-> >>>>> + {
-> >>>>> +         .code = MEDIA_BUS_FMT_SGRBG10_1X10,
-> >>>>> +         .sizes = ox05b1s_sgrbg10_sizes,
-> >>>>> + }, {
-> >>>>> +         /* sentinel */
-> >>>>> + }
-> >>>>> +};
-> >>>> That you are using MEDIA_BUS_FMT_SGRBG10_1X10, but that suggests
-> >>>> this sensor is using a plain Bayer color filter which is not correct.
-> >>>>
-> >>>> Here is what I have come up with:
-> >>>>
-> >>>> diff --git a/include/linux/drm_fourcc.h b/include/linux/drm_fourcc.h
-> >>>> index db679877..68ed65c5 100644
-> >>>> --- a/include/linux/drm_fourcc.h
-> >>>> +++ b/include/linux/drm_fourcc.h
-> >>>> @@ -447,6 +447,8 @@ extern "C" {
-> >>>>   #define DRM_FORMAT_SGRBG10        fourcc_code('B', 'A', '1', '0')
-> >>>>   #define DRM_FORMAT_SGBRG10        fourcc_code('G', 'B', '1', '0')
-> >>>>   #define DRM_FORMAT_SBGGR10        fourcc_code('B', 'G', '1', '0')
-> >>>> +/* Mixed 10 bit bayer + ir pixel pattern found on Omnivision ov01a1s */
-> >>>> +#define DRM_FORMAT_SIGIG_GBGR_IGIG_GRGB10 fourcc_code('O', 'V', '1', 'S')
-> >>>>
-> >>>>   /* 12-bit Bayer formats */
-> >>>>   #define DRM_FORMAT_SRGGB12        fourcc_code('R', 'G', '1', '2')
-> >>>> diff --git a/include/linux/media-bus-format.h b/include/linux/media-bus-format.h
-> >>>> index b6acf8c8..e2938f0d 100644
-> >>>> --- a/include/linux/media-bus-format.h
-> >>>> +++ b/include/linux/media-bus-format.h
-> >>>> @@ -122,7 +122,7 @@
-> >>>>   #define MEDIA_BUS_FMT_YUV16_1X48          0x202a
-> >>>>   #define MEDIA_BUS_FMT_UYYVYY16_0_5X48             0x202b
-> >>>>
-> >>>> -/* Bayer - next is        0x3025 */
-> >>>> +/* Bayer - next is        0x3026 */
-> >>>>   #define MEDIA_BUS_FMT_SBGGR8_1X8          0x3001
-> >>>>   #define MEDIA_BUS_FMT_SGBRG8_1X8          0x3013
-> >>>>   #define MEDIA_BUS_FMT_SGRBG8_1X8          0x3002
-> >>>> @@ -159,6 +159,8 @@
-> >>>>   #define MEDIA_BUS_FMT_SGBRG20_1X20                0x3022
-> >>>>   #define MEDIA_BUS_FMT_SGRBG20_1X20                0x3023
-> >>>>   #define MEDIA_BUS_FMT_SRGGB20_1X20                0x3024
-> >>>> +/* Mixed bayer + ir pixel pattern found on ov01a1s */
-> >>>> +#define MEDIA_BUS_FMT_SIGIG_GBGR_IGIG_GRGB10_1X10 0x3025
-> >>>>
-> >>>>   /* JPEG compressed formats - next is      0x4002 */
-> >>>>   #define MEDIA_BUS_FMT_JPEG_1X8                    0x4001
-> >>>> diff --git a/include/linux/videodev2.h b/include/linux/videodev2.h
-> >>>> index 3829c0b6..1b91ed0e 100644
-> >>>> --- a/include/linux/videodev2.h
-> >>>> +++ b/include/linux/videodev2.h
-> >>>> @@ -706,6 +706,9 @@ struct v4l2_pix_format {
-> >>>>   #define V4L2_PIX_FMT_SGBRG16 v4l2_fourcc('G', 'B', '1', '6') /* 16  GBGB.. RGRG.. */
-> >>>>   #define V4L2_PIX_FMT_SGRBG16 v4l2_fourcc('G', 'R', '1', '6') /* 16  GRGR.. BGBG.. */
-> >>>>   #define V4L2_PIX_FMT_SRGGB16 v4l2_fourcc('R', 'G', '1', '6') /* 16  RGRG.. GBGB.. */
-> >>>> +  /* 10bit mixed bayer + ir pixel pattern found on ov01a1s */
-> >>>> +#define V4L2_PIX_FMT_SIGIG_GBGR_IGIG_GRGB10  v4l2_fourcc('O', 'V', '1', 'S') /* unpacked */
-> >>>> +#define V4L2_PIX_FMT_SIGIG_GBGR_IGIG_GRGB10P v4l2_fourcc('O', 'V', '1', 'P') /* packed */
-> >>>>
-> >>>>   /* HSV formats */
-> >>>>   #define V4L2_PIX_FMT_HSV24 v4l2_fourcc('H', 'S', 'V', '3')
-> >>>>
-> >>>> For this, note:
-> >>>>
-> >>>> 1. This is against libcamera's copy of the relevant linux headers, the paths
-> >>>> to the .h files are different in the kernel
-> >>>>
-> >>>> 2. Since I wrote this I learned that it looks like the intel driver for
-> >>>> the ov01a1s:
-> >>>>
-> >>>> /https://github.com/intel/ipu6-drivers/blob/master/drivers/media/i2c/ov01a1s.c/
-> >>>>
-> >>>> may have enabled horizontal-flip / mirroring by default, which means that
-> >>>> the order of each of the quads needs to be flipped.
-> >>>>
-> >>>> IMHO we need to resolve how to communicate the color-filters used on
-> >>>> these OV xxxxx"S" models to userspace. When I last discussed this with
-> >>>> Laurent, Laurent suggested using V4L2_PIX_FMT_Y10, combined with
-> >>>> a new field or v4l2-control to query the actual filter.
-> >>>
-> >>> Yes, adding new pixel formats and media bus codes to represent CFA
-> >>> patterns won't scale. We need to switch to using controls to report
-> >>> those. Sakari is already working on a series for that.
->
-> That is why we also did not try to add some BGGR-IR format, because 
-> there were too many combinations possible. Even if we are using just one 
-> particular format, someone else would probably need another format, and 
-> in the end, we agree that such a solution won't scale. So, separating 
-> the size from the CFA information seems the practical thing to do.
->
-> >> Interesting, do you have a link to Sakari's work ?
-> >
-> > I don't think it has been posted yet (Sakari can correct me if I'm
-> > wrong). I believe the plan is to include it in a new version of "RFC v4
-> > 0/9] Sub-device configuration models".
-> 
-> Looking forward for that :)
-> 
-> >>>> The idea is to separate the depth/packing info from the filter info,
-> >>>> avoiding the possible combinatioral explosion of needing this special
-> >>>> filter with all possible deths. I gave this a quick try but at least on
-> >>>> the libcamera side there is still a lot of code assuming that both
-> >>>> depth and color-filter-type are communicated through a single fmt
-> >>>> integer. Also it seems that in practice there only is this one new
-> >>>> RGB-IR color filter used on the OV xxxxx"S" models so I think we
-> >>>> need just 1 new V4L2_PIX_FMT_ define (*).
-> >>>
-> >>> Changes in libcamera are surely needed. There's work to be done, we'll
-> >>> do the work, and we'll solve this problem. Let's focus the effort in
-> >>> that direction.
-> >>
-> >> Ok, so what does that mean for upstreaming support for omnivision
-> >> OVxxxxS sensors? Clearly advertising MEDIA_BUS_FMT_SGRBG10_1X10 is
-> >> wrong. So I guess that upstreaming this driver needs to wait until
-> >> at least the kernel API side of this is resolved?
-> >
-> > It depends. I don't know if that's the case for this particular sensor,
-> > but I wouldn't be surprised if some sensors could interpolate
-> > neighbouring pixels to replace the IR pixels and produce a regular 2x2
-> > Bayer CFA pattern. If the sensor you're working with can do that, then
-> > the feature can be enabled by default, and the driver can advertise the
-> > corresponding existing media bus code. Otherwise, let's cooperate to
-> > review and merge the subdev configuration models series :-)
->
-> For this ox05b1s sensor specifically, the CFA pattern is
-> B G
-> G IR
-> 
-> And when mirroring:
-> G R
-> IR G
-> 
-> So, we choose MEDIA_BUS_FMT_SGRBG10_1X10, as that was the closest match, 
-> and our ISP gets extra information from userspace (libcamera) about the 
-> CFA pattern.
-> 
-> >> Sensors relying on the new CFA control to communicatethe CFA type
-> >> could use a new (e.g.) MEDIA_BUS_FMT_RAW_1X10 or are we going to re-use
-> >> the monochrome (Y only) media bus fmts, so e.g. this sensor would
-> >> advertise MEDIA_BUS_FMT_Y10_1X10 and then the CFA control would provide
-> >> the actual CFA info ?
-> >>
-> >> IMHO re-using the monochrome (Y only) media bus fmts seems best
-> >> to avoid needing to have to make a "RAW" copy of all of them.
-> > I believe the plan is to use new RAW media bus codes, but we can also
-> > consider reusing the Y formats.
-> 
-> So, should we try to re-submit this driver with Y format, or rather wait 
-> for the new RAW media bus codes? Is there some work already started on 
-> RAW media bus codes, are you referring to the generic MEDIA_BUS_FMT_META 
-> formats?
+The overflow checking has to deal with different datatypes and
+edgecases. Add a new kunit testcase to make sure it works correctly.
 
-I've discussed this with Sakari yesterday, and we both agreed that Hans'
-idea of reusing the Y media bus codes and pixel formats is a good
-approach, provided we don't run into issues.
+Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+---
+Changes in v3:
+- Avoid constant truncation warnings by using u64 for test case
+  expectations
+- Run through 0day before submission
+- Link to v2: https://lore.kernel.org/r/20250127-of-address-overflow-v2-1-61b5046044e9@linutronix.de
 
-Sakari is working on documenting a control to expose the CFA pattern. In
-parallel, I think you can switch to Y formats for the next version of
-this driver, and then implement the CFA pattern control as soon as
-patches get posted.
+Changes in v2:
+- Rebase on robh/for-master
+- Drop already applied patch
+- Add missing MODULE_IMPORT_NS()
+- Fix sparse warnings: "cast truncates bits from constant value"
+- Link to v1: https://lore.kernel.org/r/20250120-of-address-overflow-v1-0-dd68dbf47bce@linutronix.de
+---
+Technically it's possible to run this unittest with !CONFIG_OF_ADDRESS,
+so there is an explicit check inside the test.
+It would also be possible to add a dedicated source file, but that
+seemed like a lot of churn to me.
+---
+ drivers/of/address.c    |   5 +-
+ drivers/of/of_private.h |   4 ++
+ drivers/of/of_test.c    | 119 +++++++++++++++++++++++++++++++++++++++++++++++-
+ 3 files changed, 126 insertions(+), 2 deletions(-)
 
-> >> This also matches with what we are already doing for IR only sensors.
-> >> AFAIK MEDIA_BUS_FMT_Y10_1X10 is currently already used for infrared
-> >> sensors, so sticking with that and adding a IR CFA option to
-> >> the CFA control to make clear this really is IR (*) seems to make
-> >> sensor for IR only sensors. At which point extending this to RGB-IR
-> >> sensors seems logical.
-> >>
-> >> *) Actually the whole spectrum the sensor is sensitive to really AFAIK
-> >
-> > I don't think I would report the sensitivity to light of individual
-> > pixels through the new CFA pattern control. It seems a candidate for a
-> > different API if we want to expose it from kernel to userspace, but we
-> > could also simply add it to the camera sensor database in libcamera.
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index 26f7fc3d759976539dbd05fb07fe25b27ae4faa7..4976cdf33dd4d81b0de6b979bb79bce734634af5 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -16,6 +16,8 @@
+ #include <linux/string.h>
+ #include <linux/dma-direct.h> /* for bus_dma_region */
+ 
++#include <kunit/visibility.h>
++
+ /* Uncomment me to enable of_dump_addr() debugging output */
+ // #define DEBUG
+ 
+@@ -183,7 +185,7 @@ static u64 of_bus_pci_map(__be32 *addr, const __be32 *range, int na, int ns,
+ 
+ #endif /* CONFIG_PCI */
+ 
+-static int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
++VISIBLE_IF_KUNIT int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
+ {
+ 	if (overflows_type(start, r->start))
+ 		return -EOVERFLOW;
+@@ -197,6 +199,7 @@ static int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
+ 
+ 	return 0;
+ }
++EXPORT_SYMBOL_IF_KUNIT(__of_address_resource_bounds);
+ 
+ /*
+  * of_pci_range_to_resource - Create a resource from an of_pci_range
+diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+index f3e1193c8ded4899f39677a76da073e2266a1b9a..1bdc7ceef3c5fc854bd7708a50281bbfa439838d 100644
+--- a/drivers/of/of_private.h
++++ b/drivers/of/of_private.h
+@@ -208,4 +208,8 @@ static void __maybe_unused of_dump_addr(const char *s, const __be32 *addr, int n
+ static void __maybe_unused of_dump_addr(const char *s, const __be32 *addr, int na) { }
+ #endif
+ 
++#if IS_ENABLED(CONFIG_KUNIT)
++int __of_address_resource_bounds(struct resource *r, u64 start, u64 size);
++#endif
++
+ #endif /* _LINUX_OF_PRIVATE_H */
+diff --git a/drivers/of/of_test.c b/drivers/of/of_test.c
+index b0557ded838fdf70f0b679c31ead38f501371304..8bba5a72c9c7ca7d1ac9b1c5a4dbe2850c328c43 100644
+--- a/drivers/of/of_test.c
++++ b/drivers/of/of_test.c
+@@ -2,6 +2,7 @@
+ /*
+  * KUnit tests for OF APIs
+  */
++#include <linux/ioport.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+ 
+@@ -54,8 +55,124 @@ static struct kunit_suite of_dtb_suite = {
+ 	.init = of_dtb_test_init,
+ };
+ 
++struct of_address_resource_bounds_case {
++	u64 start;
++	u64 size;
++	int ret;
++
++	u64 res_start;
++	u64 res_end;
++};
++
++static void of_address_resource_bounds_case_desc(const struct of_address_resource_bounds_case *p,
++						 char *name)
++{
++	snprintf(name, KUNIT_PARAM_DESC_SIZE, "start=0x%016llx,size=0x%016llx", p->start, p->size);
++}
++
++static const struct of_address_resource_bounds_case of_address_resource_bounds_cases[] = {
++	{
++		.start = 0,
++		.size = 0,
++		.ret = 0,
++		.res_start = 0,
++		.res_end = -1,
++	},
++	{
++		.start = 0,
++		.size = 0x1000,
++		.ret = 0,
++		.res_start = 0,
++		.res_end = 0xfff,
++	},
++	{
++		.start = 0x1000,
++		.size = 0,
++		.ret = 0,
++		.res_start = 0x1000,
++		.res_end = 0xfff,
++	},
++	{
++		.start = 0x1000,
++		.size = 0x1000,
++		.ret = 0,
++		.res_start = 0x1000,
++		.res_end = 0x1fff,
++	},
++	{
++		.start = 1,
++		.size = RESOURCE_SIZE_MAX,
++		.ret = 0,
++		.res_start = 1,
++		.res_end = RESOURCE_SIZE_MAX,
++	},
++	{
++		.start = RESOURCE_SIZE_MAX,
++		.size = 1,
++		.ret = 0,
++		.res_start = RESOURCE_SIZE_MAX,
++		.res_end = RESOURCE_SIZE_MAX,
++	},
++	{
++		.start = 2,
++		.size = RESOURCE_SIZE_MAX,
++		.ret = -EOVERFLOW,
++	},
++	{
++		.start = RESOURCE_SIZE_MAX,
++		.size = 2,
++		.ret = -EOVERFLOW,
++	},
++	{
++		.start = ULL(0x100000000),
++		.size = 1,
++		.ret = sizeof(resource_size_t) > sizeof(u32) ? 0 : -EOVERFLOW,
++		.res_start = ULL(0x100000000),
++		.res_end = ULL(0x100000000),
++	},
++	{
++		.start = 0x1000,
++		.size = 0xffffffff,
++		.ret = sizeof(resource_size_t) > sizeof(u32) ? 0 : -EOVERFLOW,
++		.res_start = 0x1000,
++		.res_end = ULL(0x100000ffe),
++	},
++};
++
++KUNIT_ARRAY_PARAM(of_address_resource_bounds,
++		  of_address_resource_bounds_cases, of_address_resource_bounds_case_desc);
++
++static void of_address_resource_bounds(struct kunit *test)
++{
++	const struct of_address_resource_bounds_case *param = test->param_value;
++	struct resource r; /* Intentionally uninitialized */
++	int ret;
++
++	if (!IS_ENABLED(CONFIG_OF_ADDRESS))
++		kunit_skip(test, "CONFIG_OF_ADDRESS not enabled\n");
++
++	ret = __of_address_resource_bounds(&r, param->start, param->size);
++	KUNIT_EXPECT_EQ(test, param->ret, ret);
++	if (ret == 0) {
++		KUNIT_EXPECT_EQ(test, (resource_size_t)param->res_start, r.start);
++		KUNIT_EXPECT_EQ(test, (resource_size_t)param->res_end, r.end);
++		KUNIT_EXPECT_EQ(test, param->size, resource_size(&r));
++	}
++}
++
++static struct kunit_case of_address_test_cases[] = {
++	KUNIT_CASE_PARAM(of_address_resource_bounds, of_address_resource_bounds_gen_params),
++	{}
++};
++
++static struct kunit_suite of_address_suite = {
++	.name = "of_address",
++	.test_cases = of_address_test_cases,
++};
++
+ kunit_test_suites(
+-	&of_dtb_suite,
++	&of_dtb_suite, &of_address_suite,
+ );
+ MODULE_DESCRIPTION("KUnit tests for OF APIs");
++MODULE_IMPORT_NS("EXPORTED_FOR_KUNIT_TESTING");
+ MODULE_LICENSE("GPL");
 
+---
+base-commit: 15e2f65f2ecfeb8e39315522e2b5cfdc5651fc10
+change-id: 20250120-of-address-overflow-a59476362885
+
+Best regards,
 -- 
-Regards,
+Thomas Weißschuh <thomas.weissschuh@linutronix.de>
 
-Laurent Pinchart
 
