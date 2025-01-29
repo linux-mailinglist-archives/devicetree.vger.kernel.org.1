@@ -1,188 +1,118 @@
-Return-Path: <devicetree+bounces-141688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F40A21FCA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:55:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61B57A21FD5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:58:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1E47161F3D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:55:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E3AD7A34EC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439FF1B4250;
-	Wed, 29 Jan 2025 14:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WVkFkryg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446711D63CC;
+	Wed, 29 Jan 2025 14:58:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 549237E9
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 14:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 194021B4250;
+	Wed, 29 Jan 2025 14:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738162509; cv=none; b=QjETEcYRfsIwjjgdvxzHwYbSYpRIJrTTJEilO+/mx1uJlTcfoy9NgIMNExN//KSAnhiG+HWJkwZcml2qv9wPCnfXSjhn4LGpyzX5k2EBy0Eov6haA3+8A6i7/hDU5Y/e9M6A8Z1MCu5wibgrtB0P9BQSYNUC70NVVFW7SZXmVgA=
+	t=1738162705; cv=none; b=W7SMI9A/8nXwiEAwrqcwAT7hMF9MxA0hbzpDf8yX43iPdBq+q1G+F04EvL2EjX60bNBLo6WpLiba7fs5+cnwRrJmRjO4HYJigPxA37XSY2G0TXBE9Es5Q5u03nU/9807Z/M8hoeh+Ys2rxI5MEqssNCuKMLsZYu+3TnpPS+kg1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738162509; c=relaxed/simple;
-	bh=dUDG3V2pcnh4PJKsQs8dXW0ezZosbDC8947hkzBNT9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c89glPuQgWQllrrESAEoe/VpcmqCsvn59ys+I5LaV3POa3n+H2Iv2lJ694MPonbJUlyVVzeITcpQelZ5JJoNm65RV1NHAWBR9QxUJxR3GGqceMK++Vbli/7WJQTJk9N7X1WJ5KhXkYCpbiYlEpZs/aWe5usZ7c/xNSYg742FmBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WVkFkryg; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5d0ac27b412so9224955a12.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 06:55:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738162504; x=1738767304; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tRXaUYDpwPpub2ZkUhS7mQik3pW6CZUI57KwH1qopBc=;
-        b=WVkFkrygR0iGV6v7XHOZ53xxYpU+0xjrBwWXB4YKRO46dkNROXVpBqgFXyBvSkBaMg
-         hOYwmlv27j5DbCxHuut9gpYCWzKe7cTgMa4NIa9K4qS/A8eAshwdZc/jM/5buJHwhhz9
-         U1Vi9rOS7qq8SNM4AbsPzSNT+O1O9tuZk94amVQmPdDYl0RNIEGzZFtY4lLDBOprm/ev
-         ePhN12we+0zTMuQHKqT3t4Bhkk7OUGBrUg2nCgGJ6dDxSbhGwdwNB+oAYZLP5kgvFOr2
-         1pZwUWz/lmPUCUysMsHHarTvIuiOtAURO5BqPVEARVPi3GEfz/CP/uoHlvFHFQ+ZMIlZ
-         Wsug==
+	s=arc-20240116; t=1738162705; c=relaxed/simple;
+	bh=3LPXKlDDfVyQVvZFLF+r9dREtZeA86OsVIv8HH/Wshw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EOAQ/hHCNxdRP/BlYEUtvqTqgsZzB8tsL0dIKh6ZXNbzGtwPpxK3ayi6cyBdrkg0HpRTdDNphT1WmrlPzRhnyo4j6PBIzfTgozWqmjevOlTPNR7JWZVztTqxVSM9H5IonGJSJ4HRT56XDtejj1nEvVOswhdMTOYahl/HM81ftxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4b24d969db1so1440887137.0;
+        Wed, 29 Jan 2025 06:58:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738162504; x=1738767304;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tRXaUYDpwPpub2ZkUhS7mQik3pW6CZUI57KwH1qopBc=;
-        b=qCvosuMx9tG+ntamTKF8kt0QfBkrSI+rgUxebQpKettnH9asYE9lycy17lxzMOr1Ua
-         98OvDmRv0P9wdEsLC6SMWgbjyWM4yzP5XaIRzwOIl8hh8DHzlGlYbjCskYm/KshXyt0W
-         75BniN90R2+O4Ty9rp67L8IVVIjOk5WlFUUaFHubR/3Qt3lowKCDkYv3n6CzJURYyqBm
-         9pT+j8TsdawvwgsS1Gk5T+qkzaAioZ1JjRbwxtzA/JG6d6kpglLODoM0jn+RNyuaYCmO
-         SSjpayAxsCjc6oV2ZatK233UqfgIHu7lBfC2iZ1tn/ZDz8vc3SFts0iITxm/vejVTETC
-         LqMg==
-X-Forwarded-Encrypted: i=1; AJvYcCWEUZmh7ujDpTGrnMrJ5pxK+TYfTMLVIDbbZraHBGS8Iht3q5e17dde0op7HOQtzWsuUckSgw2xNyJn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyo586UGWzIJUJ878aRaOGm05FgPfLxN+CjJJ5PoL/x7vb8UVHB
-	kI5oWKPf37YzZKWQaWk6B1z/piu3/r2JxMq21rUKmWnMM8TTckr7+mNAjQdcnbI=
-X-Gm-Gg: ASbGnctRNpHSSFmOirOCRA66hWL75auGLFzebcoi0dsOXFGha3sog0XywHaNyIQlr6B
-	akImWRwqAcbCAWspH0MF/8NuJI/jiyEZQDAVY0cOh2x8lDiB3Lt7L5iIi0Xmwp0dfKfYO0qe7MN
-	of3YgTc687n5GR3zECbKbReUXV+ABNtlQzq7gk7/Dmh5oeZ/6EwH5nbVJ0eE8fb6J/r7B81QliX
-	Gfr/txlwWxORIMl7TuxgTfpKmXfMbGmKIE5OpwS2NMaG+JbawHhr1+pMtQvFELsiWLMcPPIeso+
-	67I4ramn5x2P1isq8KUa
-X-Google-Smtp-Source: AGHT+IFer6WhX+yo5tVjXt4tHpAp4l/OJqlHH1muQaQvZOwPDcqkOcj3R7zSbWjFDVcbG92S8yScJw==
-X-Received: by 2002:a17:907:3d8d:b0:ab2:c208:732d with SMTP id a640c23a62f3a-ab6cfdbc500mr364867966b.40.1738162504249;
-        Wed, 29 Jan 2025 06:55:04 -0800 (PST)
-Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab69c8dc921sm660475066b.10.2025.01.29.06.55.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jan 2025 06:55:03 -0800 (PST)
-Date: Wed, 29 Jan 2025 15:55:01 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [RESEND PATCH] ARM: dts: socfpga: Add basic support for
- Terrasic's de10-nano
-Message-ID: <v24wxcgyv4w4r5wa2i7ljbu365lfgp6yiqeoolpirbqkapl5wj@svzvaim77p6b>
-References: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
- <fa163bab-1461-479d-b149-4e018935ac57@kernel.org>
- <kxdipj2oktcyivl7o7mtyyacqm437jm7dpjihi7e7hcrmll6xb@5dywwnt5wpz5>
- <7bef8677-b002-46bc-822a-16fc975d41b1@kernel.org>
+        d=1e100.net; s=20230601; t=1738162701; x=1738767501;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VWaar81/OL/kNnYPNHn5k0vfqnNd1x60vBsOeOMMMS8=;
+        b=NgvgzIK0NFq2IKwO0r9n7grCIBhTusrtFo170VPNhZpuI1NRcO7GYB5iPTn/CxbUK4
+         XVINamPdrQikHOGQQ7FfhiWb3lGYBXX5XQ9Mws9sittVSQzS0zSpAfMEq5leCn1zxG1P
+         vPGUKDLBO1Gv65vdcpNXYe8UOh/9b7r6RS7mhONBF2K6xMrDtyyjhX50jIgTLDdHVcZ2
+         DexG2zCpg8Qvg/oaWCXJ7DKIcTzUKKsKkiaw9DTbmbq5CLExokNddvIaCjv+3GboThoH
+         1Nlbpo71UWsvoyDFeKJLlK2LX7R2aqAchL/jJ9a9+F76Krv3CRC2MJv63L1rlOaB7zCR
+         1k5A==
+X-Forwarded-Encrypted: i=1; AJvYcCV551N51O3JGkHvI9hPY5P7uS63GUunRy8kh7LCRQqKaewp59lpD5A10YGik/XBx8U0VZd9UxDj3Tn8mGnP@vger.kernel.org, AJvYcCW8gBIjFrFJMesoyCn5qyU/yauDy0Nkm0V7ek7I53w4jmzvSnniXJ/6Pv18RWc+C3h8kqAaTstCTj0h@vger.kernel.org, AJvYcCWTRa3rQktiu69Cv/TtUJc/uC6se2XYmt8LXw7/AKmS7sR3mve4kHVmXZUopfjP2YS2DNg4GArQ7C8NrAruranwYcM=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/2d/Ooug6Hdr4sTNmtQRdy98gnUgSogJzycQnEMAwBxEnEg2i
+	xRGB7bVtkce3R0lVaQdeHSK9CTJI3dnS/1nYzf7d0sAFY8v5bm3ov/rQ+qe9
+X-Gm-Gg: ASbGncs/cHwxeKbZGAyJHq8REmZrE4DWr0b6YB5TJaareEUmKK6jq7nz6lAO0Iushw1
+	1Lvf5mQSotdT0VqWq1901IiEIB2KazbzjAuolPY3WmbhOoSj66fWpaKQhAbaS3P2mJ4SqaW7vj4
+	SEk9BECos5I7yrYIPTDREQaWfDaY6zJoF3qPSbmb1mdJ7PXrvW/PFwvZYBsPhxlENbMiIAo+U9x
+	N6SPU0wa2F0r5i3xctpbPFHwlOvmBtIDL6LajOIlToUU1ocnB0BWLzMpU9OybInVJXqurpy8hRm
+	PF1i056w40RctBDVzV3gOVK2aE2qIKn5zB+k/GaiKjvBFR/xy2AeDyYFsaYwPMHi
+X-Google-Smtp-Source: AGHT+IHGZ6Ej28LUbLeEOJOBoHCVXM+3pdVieRHn1oT+Xdo46xKr4wJ46DCfWo+DKUQbxeHPovpAXw==
+X-Received: by 2002:a05:6102:dce:b0:4b2:cbe5:fbc5 with SMTP id ada2fe7eead31-4b9a528aaa6mr2484509137.20.1738162700907;
+        Wed, 29 Jan 2025 06:58:20 -0800 (PST)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-864a9c17d0dsm2847002241.27.2025.01.29.06.58.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jan 2025 06:58:20 -0800 (PST)
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4affab62589so1901809137.1;
+        Wed, 29 Jan 2025 06:58:20 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVA6FbK7vsIlQ0wxwbkpP372EuXipe1R12DFtRs7TqHl0528YoXmqa7/0OB5fAmcqbLfrwcpQMWPEOu3cg3@vger.kernel.org, AJvYcCWvG8q9LwJUjntj0A8VLT/bJXq4ZqTYlxt2fgh8Oq9vGt7dLCnyBzPPVpwQVzSnEYQtHhI8WNBNgzLq@vger.kernel.org, AJvYcCXYm77JOLh2TB2O9fz5qjNK9oc5rPGv50778xxuNT57vn5atyaGp6URrqfBAv4bkk+wSasfL8giI6CJLVFsq0rW+cs=@vger.kernel.org
+X-Received: by 2002:a05:6102:32d6:b0:4b1:20b1:bff3 with SMTP id
+ ada2fe7eead31-4b9a524fccfmr2560357137.16.1738162700297; Wed, 29 Jan 2025
+ 06:58:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="o4mp4ofu7jn4scqc"
-Content-Disposition: inline
-In-Reply-To: <7bef8677-b002-46bc-822a-16fc975d41b1@kernel.org>
+References: <20250128031342.52675-1-john.madieu.xa@bp.renesas.com> <20250128031342.52675-2-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250128031342.52675-2-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 29 Jan 2025 15:58:08 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWTJm3yNnLxKWdN0gnNbFM6bH-CQ0R534sK1jqO+P6YYA@mail.gmail.com>
+X-Gm-Features: AWEUYZl_gtYutNcuzoNV4d-Jc1lLN3vGfG_dck5mGgosgIP8aL5rPsVK36G7W2c
+Message-ID: <CAMuHMdWTJm3yNnLxKWdN0gnNbFM6bH-CQ0R534sK1jqO+P6YYA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/5] soc: renesas: Add SYSC driver for Renesas RZ family
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: krzk+dt@kernel.org, robh@kernel.org, biju.das.jz@bp.renesas.com, 
+	claudiu.beznea.uj@bp.renesas.com, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, john.madieu@gmail.com, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	magnus.damm@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 
+On Tue, 28 Jan 2025 at 04:14, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The RZ/G3S system controller (SYSC) has various registers that control
+> different functionalities. One of the exposed register offsers information
+> about the SoC identification.
+>
+> Add a driver that identifies the SoC. Later the driver will be extended
+> with other functionalities.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> ---
+> Changes:
+> v5: added sanity check after devm_kstrdup().
 
---o4mp4ofu7jn4scqc
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RESEND PATCH] ARM: dts: socfpga: Add basic support for
- Terrasic's de10-nano
-MIME-Version: 1.0
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.15.
 
-Hello,
+Gr{oetje,eeting}s,
 
-On Wed, Jan 29, 2025 at 01:34:28PM +0100, Krzysztof Kozlowski wrote:
-> On 29/01/2025 13:19, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Jan 29, 2025 at 10:27:22AM +0100, Krzysztof Kozlowski wrote:
-> >> On 28/01/2025 18:29, Uwe Kleine-K=F6nig wrote:
-> > I tried
-> >=20
-> > 	dt-validate -m -u Documentation/devicetree/bindings -p ~/work/kbuild/a=
-rm/Documentation/devicetree/bindings/processed-schema.json ~/work/kbuild/ar=
-m/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb
->=20
-> That's unusual way of running the check, but of course might work.
+                        Geert
 
-This is what `make` does when running one of the dt check targets. I
-didn't find a way to call this via make for just a single dtb.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> >>> +	soc {
-> >>> +		fpga_axi: axi_h2f_lw_bridge@ff200000 {
-> >>
-> >> Follow DTS coding style. You just sent us something from downstream.
-> >=20
-> > Indeed this is from downstream. Looking at the matching dt-validate
-> > output I guess just "axi@ff200000" would be appropriate?!
->=20
-> bus@
-
-ok.
-
-> >>> +			compatible =3D "simple-bus";
-> >>> +			reg =3D <0xff200000 0x00200000>;
-> >>> +			#address-cells =3D <1>;
-> >>> +			#size-cells =3D <1>;
-> >>
-> >> ranges would be after reg, but they are pointless here, no?
-> >=20
-> > I thought it's "compatible", "reg" at the start, "status" at the end and
-> > the rest in-between in alphabetic order. What is the right ordering?
->=20
-> DTS coding style could be clearer here. It exactly says what is the
-> first, what is the second and what is the third.
-
-I found Documentation/devicetree/bindings/dts-coding-style.rst now.
-
-> >> Where is the child?
-> >=20
-> > I intend to add children using dt-overlays. I have a prototype here, but
-> > that's still to embarrassing to show.
->=20
-> The entire bus is in such case a bit confusing. If you have nothing
-> connected here in the base board, does it really exist in FPGA bitstream?
-
-I'm unsure. If I don't load an FPGA image, the machine boots fine but
-IIRC accessing the address space results in an error. If I load an FPGA
-image, its register space appears at that address. So technically it
-might be ok to drop the node, but from a practical POV it's useful to
-have it in the board.dtb to not have to create that note in each
-overlay.
-
-If that is good enough for you, I'll go with a comment in that node that
-tells about the expectation that it will be filled using an overlay.
-
-Best regards
-Uwe
-
---o4mp4ofu7jn4scqc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmeaQUIACgkQj4D7WH0S
-/k7ovAf/TsTzdxS7/CurCdb/NxP//rNr99mEWLIwsA6JTYw+gbBTIeeKYpj804bR
-PYolN4JxpYDUEjFZIO16/Zc+4grByALz7isl/9DLEAT+4Q/V/tDzpjGavxpq3xU2
-8ayyOt0HiM7ruJs8/j/W3hXOtU/Tn7UpzeCQS16I1Lf5DEriG7LcoGTopahyxVFO
-namEEu/+WpISucQch9VlBDabTQzHHjtlgSXy99i0iedK+u8gaJ1NRXYdNXRU+WMP
-drD38H2DYlz3SFq/t9hn7izqemo8pvXeATreDpVpuYsvEg1u9m1RLna+AtLKrpN7
-CDUHakzxu3exWH/9WV70hnpb+RY48g==
-=8/x0
------END PGP SIGNATURE-----
-
---o4mp4ofu7jn4scqc--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
