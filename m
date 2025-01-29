@@ -1,170 +1,240 @@
-Return-Path: <devicetree+bounces-141612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69DFCA219C5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 10:18:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A385A219D4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 10:27:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2848163704
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 09:18:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA6013A5DC9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 09:27:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10C761ACEA6;
-	Wed, 29 Jan 2025 09:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912571A0714;
+	Wed, 29 Jan 2025 09:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=mobileye.com header.i=@mobileye.com header.b="NwUpyCyC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pCptWq20"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa3.hc555-34.eu.iphmx.com (esa3.hc555-34.eu.iphmx.com [207.54.77.50])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 087701A9B3C;
-	Wed, 29 Jan 2025 09:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.54.77.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A00A8462
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 09:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738142279; cv=none; b=Y5Md9ZfNqFBU5krQ2uPHPxQ4QU+AnuPk5Uy+M8+/COpPHN2cYJdJq6rHi9UjmB8yD7ozkZqqFQmL6exDP3GxlTPWqReOJZKLJMOkXfswcQ4KhwyI+xByxnFjxHmRKs/yR6JC0TdZu0FRx73YyymHY9OFTsFaLvb+g6TUNVqCYp0=
+	t=1738142848; cv=none; b=f9uWlRXcFE7FRug4QFVFToc+k1p/A7RezPMbTYAPKFGpuszAfDUxrRpFzBq1bk/axjVoTruYHvc0YXT+0r3jSh5Am1PT2iH0qAteOkACGDjgdJLfIaKYHRmUAp1m/oj0OGpm5A/Dw+n8HvY+ZxjiSXL2TqX6338p+fRBwP/rfXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738142279; c=relaxed/simple;
-	bh=t4I+3GYTBD9R29FxQzIKQ/m13Ut3AEhZho/gtBtVzk8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sOOWbxAkO3WgZZscaBMRwqCQPpYFE3CKh0MXAEe28IlJBTrd1NpzHf2oV85Zt6CgouKucDhodlodyOFiny3qDdYllE+XicPdJZKDZcH9gkR8xighszOwFUtPNKtv5OCzt6qR6PtF/6H62ItncuZ/HPQ389e/mfJqfwmTRciP1EE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com; spf=pass smtp.mailfrom=mobileye.com; dkim=fail (0-bit key) header.d=mobileye.com header.i=@mobileye.com header.b=NwUpyCyC reason="key not found in DNS"; arc=none smtp.client-ip=207.54.77.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mobileye.com
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
-  t=1738142276; x=1769678276;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=t4I+3GYTBD9R29FxQzIKQ/m13Ut3AEhZho/gtBtVzk8=;
-  b=NwUpyCyC6e+SxW5d90Jj42yJtAQt+D5GtIMf4m24MvknqKDGpQAbbr3f
-   CAlpGJ/oWc6nHqIHo08a89DVgu8RvJSfn3REFNCXquL/zF2dTTEl2NhJL
-   zpfjs5hoUPdDe23EphE5rGMHTYSI1TIF5sTZ2rzq6N4QvuczcOcGmdpYy
-   AbuRrsrr2AlMugCO8GqMTHw8syvnHrJSYG8I+UqKmKCGBeeOrg9TZACrJ
-   Z3MWQSf45kNxML05UX76khV/qY9bZ40teXN8TAAh5XA2upPJ3TYLaqw3w
-   NhNSvWw7KI+JRO3SFHi0qkNMMsB1xzEJzmBTZjHbcgFuDkFPjenSJw3vS
-   w==;
-X-CSE-ConnectionGUID: 6Nh673V+RmCBQJDsYKe3Ag==
-X-CSE-MsgGUID: 4RnbrDGXRiOXZtlwAXM4Xg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from unknown (HELO ces03_data.me-corp.lan) ([146.255.191.134])
-  by esa3.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2025 11:16:44 +0200
-X-CSE-ConnectionGUID: nONMQM6cRruRabxuYX8Nfw==
-X-CSE-MsgGUID: vXRUQUsaTx62JrFTD94w6A==
-Received: from unknown (HELO epgd022.me-corp.lan) ([10.154.54.1])
-  by ces03_data.me-corp.lan with SMTP; 29 Jan 2025 11:16:41 +0200
-Received: by epgd022.me-corp.lan (sSMTP sendmail emulation); Wed, 29 Jan 2025 11:16:43 +0200
-From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-To: Anup Patel <anup@brainfault.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Subject: [PATCH v5 2/2] irqchip/riscv-aplic: add support for hart indexes
-Date: Wed, 29 Jan 2025 11:16:37 +0200
-Message-ID: <20250129091637.1667279-3-vladimir.kondratiev@mobileye.com>
-In-Reply-To: <20250129091637.1667279-1-vladimir.kondratiev@mobileye.com>
-References: <87ed0o87qg.ffs@tglx>
- <20250129091637.1667279-1-vladimir.kondratiev@mobileye.com>
+	s=arc-20240116; t=1738142848; c=relaxed/simple;
+	bh=1+Yh0t4hKkjLkKHgNRzZDk0KDPxXQptTZTnVEuXVx5M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UKnCvwb8Bjbfv8D807l4VXNfxMDcERkNDGYm+4t0lIoScm3qpap83QJcMaIBn0iwg2YvdmIIszgo9sBln5tmw8E7PKB6v3ScSvS3DvzeKf47ft+nw0OxhOWbx2HHAcJsl0JP6z/W90tybwbl2duocqZ+AD4WWxNGIOrna+JnpGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pCptWq20; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23D85C4CEE0;
+	Wed, 29 Jan 2025 09:27:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738142847;
+	bh=1+Yh0t4hKkjLkKHgNRzZDk0KDPxXQptTZTnVEuXVx5M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pCptWq20SOsCV3lNPIETlcuZIWQ5OVNJ1EQcUNUwKucZc2+NapTMAItTWnB2xkezg
+	 t4+2zHgljezY00khG1ejXXqLTVUK27LwGerMKIUMCdTojtp1IsOmLVMTqeZrbpnSMF
+	 RZduTxTRhBrn8L7gR64cakXx+YgbooHRw0LHwedH/DH+2dYYukotcfZdDjwz6IPdqt
+	 7wH3ZImwvTkXLnwKElXQM4d0sDyVjnyU70wD2EP/5s5mCjlsjAjU6xB1dcKn7vHtwX
+	 Nom8oW9GFc4EtAijTrT3sDSNxtLdv6ABC51TNF/3+rYg1sVsunJLhJWqxiYTYMAA/K
+	 WItD6zc2PZveA==
+Message-ID: <fa163bab-1461-479d-b149-4e018935ac57@kernel.org>
+Date: Wed, 29 Jan 2025 10:27:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND PATCH] ARM: dts: socfpga: Add basic support for
+ Terrasic's de10-nano
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Dinh Nguyen <dinguyen@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Risc-V APLIC specification defines "hart index" in [1]:
+On 28/01/2025 18:29, Uwe Kleine-König wrote:
+> This dts is enough to make the board boot to Linux with the rootfs on
+> a micro SD card.
+> 
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+> ---
+> Hello,
+> 
+> in the variant I sent 15 min ago I fatfingered the address of the
+> linux-arm-kernel list. So here comes a resend with the right address ...
+> 
+> Sorry for the noise
+> Uwe
+> 
+>  arch/arm/boot/dts/intel/socfpga/Makefile      |  1 +
+>  .../socfpga/socfpga_cyclone5_de10nano.dts     | 90 +++++++++++++++++++
+>  2 files changed, 91 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
+> 
+> diff --git a/arch/arm/boot/dts/intel/socfpga/Makefile b/arch/arm/boot/dts/intel/socfpga/Makefile
+> index c467828aeb4b..7f69a0355ea5 100644
+> --- a/arch/arm/boot/dts/intel/socfpga/Makefile
+> +++ b/arch/arm/boot/dts/intel/socfpga/Makefile
+> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
+>  	socfpga_cyclone5_mcvevk.dtb \
+>  	socfpga_cyclone5_socdk.dtb \
+>  	socfpga_cyclone5_de0_nano_soc.dtb \
+> +	socfpga_cyclone5_de10nano.dtb \
+>  	socfpga_cyclone5_sockit.dtb \
+>  	socfpga_cyclone5_socrates.dtb \
+>  	socfpga_cyclone5_sodia.dtb \
+> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
+> new file mode 100644
+> index 000000000000..d1f23a57a94d
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
+> @@ -0,0 +1,90 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2017, Intel Corporation
+> + *
+> + * based on socfpga_cyclone5_de0_nano_soc.dts
+> + */
+> +/dts-v1/;
+> +
+> +#include "socfpga_cyclone5.dtsi"
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	model = "Terasic DE10-Nano";
+> +	compatible = "altr,socfpga-cyclone5", "altr,socfpga";
 
-Within a given interrupt domain, each of the domain’s harts has a
-unique index number in the range 0 to 2^14 − 1 (= 16,383). The index
-number a domain associates with a hart may or may not have any
-relationship to the unique hart identifier (“hart ID”) that the
-RISC-V Privileged Architecture assigns to the hart. Two different
-interrupt domains may employ entirely different index numbers for
-the same set of harts.
+Incorrect compatible. It's not cyclone5 board. cyclone5 is the SoC.
 
-Further, this document says in "4.5 Memory-mapped control
-region for an interrupt domain":
+There is no altr,socfpga
 
-The array of IDC structures may include some for potential hart index
-numbers that are not actual hart index numbers in the domain. For
-example, the first IDC structure is always for hart index 0, but 0 is
-not necessarily a valid index number for any hart in the domain.
+This wasn't ever tested with bindings.
 
-Support arbitrary hart indexes specified in optional APLIC property
-"riscv,hart-indexes" that should be array of u32 elements, one per
-interrupt target. If this property not specified, fallback is to use
-logical hart indexes within the domain.
 
-[1]: https://github.com/riscv/riscv-aia
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@0 {
+> +		/* 1 GiB */
+> +		device_type = "memory";
+> +		reg = <0x0 0x40000000>;
+> +	};
+> +
+> +	soc {
+> +		fpga_axi: axi_h2f_lw_bridge@ff200000 {
 
-Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Reviewed-by: Anup Patel <anup@brainfault.org>
----
- drivers/irqchip/irq-riscv-aplic-direct.c | 25 +++++++++++++++++++++---
- 1 file changed, 22 insertions(+), 3 deletions(-)
+Follow DTS coding style. You just sent us something from downstream.
 
-diff --git a/drivers/irqchip/irq-riscv-aplic-direct.c b/drivers/irqchip/irq-riscv-aplic-direct.c
-index 7cd6b646774b..ea61329decb2 100644
---- a/drivers/irqchip/irq-riscv-aplic-direct.c
-+++ b/drivers/irqchip/irq-riscv-aplic-direct.c
-@@ -31,7 +31,7 @@ struct aplic_direct {
- };
- 
- struct aplic_idc {
--	unsigned int		hart_index;
-+	u32			hart_index;
- 	void __iomem		*regs;
- 	struct aplic_direct	*direct;
- };
-@@ -219,6 +219,21 @@ static int aplic_direct_parse_parent_hwirq(struct device *dev, u32 index,
- 	return 0;
- }
- 
-+static int aplic_direct_get_hart_index(struct device *dev, u32 logical_index,
-+				       u32 *hart_index)
-+{
-+	static const char *prop_hart_index = "riscv,hart-indexes";
-+	struct device_node *np = to_of_node(dev->fwnode);
-+
-+	if (!np || !of_property_present(np, prop_hart_index)) {
-+		*hart_index = logical_index;
-+		return 0;
-+	}
-+
-+	return of_property_read_u32_index(np, prop_hart_index,
-+					  logical_index, hart_index);
-+}
-+
- int aplic_direct_setup(struct device *dev, void __iomem *regs)
- {
- 	int i, j, rc, cpu, current_cpu, setup_count = 0;
-@@ -265,8 +280,12 @@ int aplic_direct_setup(struct device *dev, void __iomem *regs)
- 		cpumask_set_cpu(cpu, &direct->lmask);
- 
- 		idc = per_cpu_ptr(&aplic_idcs, cpu);
--		idc->hart_index = i;
--		idc->regs = priv->regs + APLIC_IDC_BASE + i * APLIC_IDC_SIZE;
-+		rc = aplic_direct_get_hart_index(dev, i, &idc->hart_index);
-+		if (rc) {
-+			dev_warn(dev, "hart index not found for IDC%d\n", i);
-+			continue;
-+		}
-+		idc->regs = priv->regs + APLIC_IDC_BASE + idc->hart_index * APLIC_IDC_SIZE;
- 		idc->direct = direct;
- 
- 		aplic_idc_set_delivery(idc, true);
--- 
-2.43.0
+> +			compatible = "simple-bus";
+> +			reg = <0xff200000 0x00200000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
 
+ranges would be after reg, but they are pointless here, no? Where is the
+child?
+
+> +			ranges = <0x00000000 0xff200000 0x00200000>;
+> +		};
+> +	};
+> +};
+> +
+> +&gmac1 {
+> +	/* Uses a KSZ9031RNX phy */
+> +	status = "okay";
+> +	phy-mode = "rgmii";
+> +
+> +	rxd0-skew-ps = <420>;
+> +	rxd1-skew-ps = <420>;
+> +	rxd2-skew-ps = <420>;
+> +	rxd3-skew-ps = <420>;
+> +	txen-skew-ps = <0>;
+> +	txc-skew-ps = <1860>;
+> +	rxdv-skew-ps = <420>;
+> +	rxc-skew-ps = <1680>;
+> +};
+> +
+> +&gpio0 {
+> +	status = "okay";
+> +};
+> +
+> +&gpio1 {
+> +	status = "okay";
+> +};
+> +
+> +&gpio2 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +
+> +	accelerometer@53 {
+> +		compatible = "adi,adxl34x";
+
+There is no such compatible and nothing in changelog refers to missing
+bindings. Always provide link in the changelog to your bindings which
+were not yet accepted.
+
+
+Best regards,
+Krzysztof
 
