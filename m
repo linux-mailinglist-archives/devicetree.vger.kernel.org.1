@@ -1,55 +1,52 @@
-Return-Path: <devicetree+bounces-141721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FFF2A2223A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:53:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C6DEA22250
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:55:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F58F16377F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:53:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34CEB3A9E88
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4E911E0B73;
-	Wed, 29 Jan 2025 16:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F621E2614;
+	Wed, 29 Jan 2025 16:52:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32E261E04BD;
-	Wed, 29 Jan 2025 16:52:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8CB1DFE00;
+	Wed, 29 Jan 2025 16:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738169538; cv=none; b=eK+JhNBbBomip/XrmCaqOqckOH1IMH4VgtgC7zUe0XY1OmmMBmcNnfv93GvSRli1T9Z2RGEcJVmYd/oCv3I71ItCgZuPml5MzI06CmnF52WPegWyUrJ5kcANzfS92gHGNRVzU8o5OHss3dO6BXVYPyoZLrpoMZpsJ09LUF6mIj0=
+	t=1738169567; cv=none; b=e+eCZqwUzhQIXSb701Sij+PKwFPcrvHRURwx8eW69VLTkI+7ecNK6kDSQ3SN1s6e2lKoK9Wy8yy3C1/TuT7V16RCfJZTWqDST9r9Xr6FBh9hw9iZ2/DqjQNNb7MCJbnC9qkWk98Zu/xHpTTd3Oofi6nQAsf7IZ5Ya3NM3xh0fIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738169538; c=relaxed/simple;
-	bh=9lLPFIXz6ZQceuk/AtSkSJ0SfJktgU8m3ojTa4ld+d0=;
+	s=arc-20240116; t=1738169567; c=relaxed/simple;
+	bh=NUT/d3UeYWQltVBqEhEx9CsCqthGyzfLH4Fa5L4NTqI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WRTwZ1UD8iD5UFMvD8jl9ifVYTuI5s80PsN09lGea7CQyRptgR5wLHwsWY7VLX2u4Yq1puc8QUD2AI0rmN2+3b7156P7LRkeyAWY2Vph9CLx5gxfmWrJ1iNWwrkDjOnv+3jueVjoZTnz26aaQIFV7mJ9R6IVKtn1xyrBgKDjU0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+	 MIME-Version; b=Kaz+3DumdQ56+lSOiK0ZsjpFRi5WpPBkb0xspzMH5Ee0YwmzZsJexU305haDLbF5++bH0z1l5u4X4r1iylEB5NMKfAkMWL3euQXNdPwrlHLqOzr5DmT8+GhzTc5KtrBXTD3bCUU8w2+tq8zykxoZrAqDRxRIU8SmYAFhEBcIp38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: pMXj4B3YSs2NyQm8dJ20ZA==
-X-CSE-MsgGUID: 3Pil8R0NQAeozhfuZSwFWg==
+X-CSE-ConnectionGUID: l+3Q2I5FQFSP2+nLSI7oBw==
+X-CSE-MsgGUID: 8Q46k3C3SJiIM9rg9VrBiQ==
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 30 Jan 2025 01:52:13 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 30 Jan 2025 01:52:44 +0900
 Received: from wvbox.administration.lan (unknown [10.226.92.145])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 66D24402E786;
-	Thu, 30 Jan 2025 01:51:59 +0900 (JST)
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id F2724402F02E;
+	Thu, 30 Jan 2025 01:52:40 +0900 (JST)
 From: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 04/14] dt-bindings: clock: Document cpg bindings for the Renesas RZ/T2H SoC
-Date: Wed, 29 Jan 2025 16:37:40 +0000
-Message-ID: <20250129165122.2980-5-thierry.bultel.yh@bp.renesas.com>
+Subject: [PATCH 12/14] arm64: dts: renesas: Add initial support for renesas RZ/T2H SoC
+Date: Wed, 29 Jan 2025 16:37:48 +0000
+Message-ID: <20250129165122.2980-13-thierry.bultel.yh@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250129165122.2980-1-thierry.bultel.yh@bp.renesas.com>
 References: <20250129165122.2980-1-thierry.bultel.yh@bp.renesas.com>
@@ -61,247 +58,175 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document RZ/T2H (a.k.a r9a09g077) CPG (Clock Pulse Generator) binding.
-Add the header file for the resets and clocks definitions.
+Add the initial dtsi for the RZ/T2H Soc:
+
+- gic
+- armv8-timer
+- cpg clock
+- sci0 uart
+
+also add arch/arm64/boot/dts/renesas/r9a09g077m44.dtsi, that keeps
+all 4 CPUs enabled, for consistency with later support of -m24
+and -m04 SoC revisions, that only have 2 and 1 Cortex-A55, respectively,
+and that will use /delete-node/ to disable the missing CPUs.
 
 Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
 ---
- .../bindings/clock/renesas,rzt2h-cpg.yaml     |  73 +++++++++
- include/dt-bindings/clock/r9a09g077-cpg.h     | 144 ++++++++++++++++++
- 2 files changed, 217 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/renesas,rzt2h-cpg.yaml
- create mode 100644 include/dt-bindings/clock/r9a09g077-cpg.h
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi    | 129 ++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g077m44.dtsi |   8 ++
+ 2 files changed, 137 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g077m44.dtsi
 
-diff --git a/Documentation/devicetree/bindings/clock/renesas,rzt2h-cpg.yaml b/Documentation/devicetree/bindings/clock/renesas,rzt2h-cpg.yaml
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
 new file mode 100644
-index 000000000000..9a3a00126d2b
+index 000000000000..55a2b1bd8100
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/renesas,rzt2h-cpg.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/renesas,rzt2h-cpg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/T2H(P) Clock Pulse Generator (CPG)
-+
-+maintainers:
-+  - Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-+
-+description:
-+  On Renesas RZ/T2H SoCs, the CPG (Clock Pulse Generator) handles generation
-+  and control of clock signals for the IP modules, generation and control of resets,
-+  and control over booting, low power consumption and power supply domains.
-+
-+properties:
-+  compatible:
-+    const: renesas,r9a09g077-cpg
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: EXTAL clock input
-+      - description: LOCO clock input
-+
-+  clock-names:
-+    items:
-+      - const: extal
-+      - const: loco
-+
-+  '#clock-cells':
-+    description: |
-+      - For CPG core clocks, the two clock specifier cells must be "CPG_CORE"
-+        and a core clock reference, as defined in
-+        <dt-bindings/clock/renesas,r9a09g077-cpg.h>,
-+      - For module clocks, the two clock specifier cells must be "CPG_MOD" and
-+        a module number, also defined <dt-bindings/clock/r9a09g077-cpg.h>,
-+    const: 2
-+
-+  '#power-domain-cells':
-+    const: 0
-+
-+  '#reset-cells':
-+    description:
-+      The single reset specifier cell must be the reset number, as defined in
-+      <dt-bindings/clock/r9a09g077-cpg.h>.
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - '#power-domain-cells'
-+  - '#reset-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@10420000 {
-+        compatible = "renesas,r9a09g077-cpg";
-+        reg = <0x10420000 0x10000>;
-+        clocks = <&extal>, <&loco>;
-+        clock-names = "extal", "loco";
-+        #clock-cells = <2>;
-+        #power-domain-cells = <0>;
-+        #reset-cells = <1>;
-+    };
-diff --git a/include/dt-bindings/clock/r9a09g077-cpg.h b/include/dt-bindings/clock/r9a09g077-cpg.h
-new file mode 100644
-index 000000000000..413c428478df
---- /dev/null
-+++ b/include/dt-bindings/clock/r9a09g077-cpg.h
-@@ -0,0 +1,144 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+@@ -0,0 +1,129 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Device Tree Source for the RZ/T2H SoC
 + *
 + * Copyright (C) 2025 Renesas Electronics Corp.
 + */
 +
-+#ifndef __DT_BINDINGS_CLOCK_RENESAS_R9A09G077_CPG_H__
-+#define __DT_BINDINGS_CLOCK_RENESAS_R9A09G077_CPG_H__
++#include <dt-bindings/clock/r9a09g077-cpg.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+#include <dt-bindings/clock/renesas-cpg-mssr.h>
++/ {
++	compatible = "renesas,r9a09g077";
++	#address-cells = <2>;
++	#size-cells = <2>;
 +
-+/* R9A09G077 CPG Core Clocks */
-+#define R9A09G077_CA55C0		0
-+#define R9A09G077_CA55C1		1
-+#define R9A09G077_CA55C2		2
-+#define R9A09G077_CA55C3		3
-+#define R9A09G077_SDHIHS		4
-+#define R9A09G077_CLK_PLL1_ETH_PHY	5
-+#define R9A09G077_CLK_OSC_ETH_PHY	6
-+#define R9A09G077_CLK_ETHPHY		7
-+#define R9A09G077_PCLKAH		8
-+#define R9A09G077_PCLKAM		9
-+#define R9A09G077_PCLKAL		10
-+#define R9A09G077_CLK_SEL_ETH_PHY	11
-+#define R9A09G077_DFI			12
-+#define R9A09G077_PCLKH			13
-+#define R9A09G077_PCLKM			14
-+#define R9A09G077_PCLKL			15
-+#define R9A09G077_PCLKGPTL		16
-+#define R9A09G077_PCLKSHOST		17
-+#define R9A09G077_PCLKRTC		18
-+#define R9A09G077_USB			19
-+#define R9A09G077_SPI0			20
-+#define R9A09G077_SPI1			21
-+#define R9A09G077_SPI2			22
-+#define R9A09G077_SPI3			23
-+#define R9A09G077_ETCLKA		24
-+#define R9A09G077_ETCLKB		25
-+#define R9A09G077_ETCLKC		26
-+#define R9A09G077_ETCLKD		27
-+#define R9A09G077_ETCLKE		28
-+#define R9A09G077_ETHCLKE		29
-+#define R9A09G077_ETHCLK_EXTAL		30
-+#define R9A09G077_ETH_REFCLK		31
-+#define R9A09G077_LCDC_CLKA		32
-+#define R9A09G077_LCDC_CLKP		33
-+#define R9A09G077_CA55			34
-+#define R9A09G077_LCDC_CLKD		35
++	extal: extal {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		/* This value must be overridden by the board */
++		clock-frequency = <0>;
++	};
 +
-+/* R9A09G077 Module Clocks */
-+#define R9A09G077_SCI0_CLK		0
-+#define R9A09G077_CA55_CORE0_CLK	1
-+#define R9A09G077_CA55_CORE1_CLK	2
-+#define R9A09G077_CA55_CORE2_CLK	3
-+#define R9A09G077_CA55_CORE3_CLK	4
-+#define R9A09G077_PCIE_CLK		5
-+#define R9A09G077_USB_CLK		6
-+#define R9A09G077_SDHI0_CLK		7
-+#define R9A09G077_SDHI1_CLK		8
-+#define R9A09G077_MTU3_CLK		9
-+#define R9A09G077_GPT0_CLK		10
-+#define R9A09G077_GPT1_CLK		11
-+#define R9A09G077_ACD0_CLK		12
-+#define R9A09G077_ACD1_CLK		13
-+#define R9A09G077_ACD2_CLK		14
-+#define R9A09G077_GMAC0_CLK		15
-+#define R9A09G077_GMAC1_CLK		16
-+#define R9A09G077_GMAC2_CLK		17
-+#define R9A09G077_SHOSTIF_CLK		18
-+#define R9A09G077_IIC0_CLK		19
-+#define R9A09G077_IIC1_CLK		20
-+#define R9A09G077_IIC2_CLK		21
-+#define R9A09G077_DOC_CLK		22
-+#define R9A09G077_CMT0_CLK		23
-+#define R9A09G077_CMT1_CLK		24
-+#define R9A09G077_CMT2_CLK		25
-+#define R9A09G077_CMTW0_CLK		26
-+#define R9A09G077_CMTW1_CLK		27
-+#define R9A09G077_SPI0_CLK		28
-+#define R9A09G077_SPI1_CLK		29
-+#define R9A09G077_SPI2_CLK		30
-+#define R9A09G077_SPI3_CLK		31
-+#define R9A09G077_SCI1_CLK		32
-+#define R9A09G077_SCI2_CLK		33
-+#define R9A09G077_SCI3_CLK		34
-+#define R9A09G077_SCI4_CLK		35
-+#define R9A09G077_SCI5_CLK		36
-+#define R9A09G077_SCIE0_CLK		37
-+#define R9A09G077_SCIE1_CLK		38
-+#define R9A09G077_SCIE2_CLK		39
-+#define R9A09G077_SCIE3_CLK		40
-+#define R9A09G077_SCIE4_CLK		41
-+#define R9A09G077_SCIE5_CLK		42
-+#define R9A09G077_SCIE6_CLK		43
-+#define R9A09G077_SCIE7_CLK		44
-+#define R9A09G077_SCIE8_CLK		45
-+#define R9A09G077_SCIE9_CLK		46
-+#define R9A09G077_SCIE10_CLK		47
-+#define R9A09G077_SCIE11_CLK		48
-+#define R9A09G077_RTC_CLK		49
-+#define R9A09G077_ETHSS_CLK		50
-+#define R9A09G077_ETHSW_CLK		51
-+#define R9A09G077_GPT2_CLK		52
-+#define R9A09G077_GPT3_CLK		53
-+#define R9A09G077_GPT4_CLK		54
-+#define R9A09G077_GPT5_CLK		55
-+#define R9A09G077_GPT6_CLK		56
-+#define R9A09G077_GPT7_CLK		57
-+#define R9A09G077_GPT8_CLK		58
-+#define R9A09G077_GPT9_CLK		59
-+#define R9A09G077_GPT10_CLK		60
-+#define R9A09G077_CANFD_CLK		61
-+#define R9A09G077_TSU_CLK		62
-+#define R9A09G077_LCDC_CLK		63
++	loco: loco {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		/* This value must be overridden by the board */
++		clock-frequency = <0>;
++	};
 +
-+/* R9A09G077 Resets */
-+#define R9A09G077_xSPI0_RST		0
-+#define R9A09G077_xSPI1_RST		1
-+#define R9A09G077_GMAC0_PCLKH_RST	2
-+#define R9A09G077_GMAC0_PCLKM_RST	3
-+#define R9A09G077_ETHSW_RST		4
-+#define R9A09G077_ESC_BUS_RST		5
-+#define R9A09G077_ESC_IP_RST		6
-+#define R9A09G077_ETH_SUBSYSTEM_RST	7
-+#define R9A09G077_MII_CONVERT_RST	8
-+#define R9A09G077_GMAC1_PCLKAH_RST	9
-+#define R9A09G077_GMAC1_PCLKAM_RST	10
-+#define R9A09G077_GMAC2_PCLKAH_RST	11
-+#define R9A09G077_GMAC2_PCLKAM_RST	12
-+#define R9A09G077_SHOSTIF_MASTER_RST	13
-+#define R9A09G077_SHOSTIF_SLAVE_RST	14
-+#define R9A09G077_SHOSTIF_IP_RST	15
-+#define R9A09G077_DDRSS_RST_N_RST	16
-+#define R9A09G077_DDRSS_PWROKIN_RST	17
-+#define R9A09G077_DDRSS_RST_RST		18
-+#define R9A09G077_DDRSS_AXI0_RST	19
-+#define R9A09G077_DDRSS_AXI1_RST	20
-+#define R9A09G077_DDRSS_AXI2_RST	21
-+#define R9A09G077_DDRSS_AXI3_RST	22
-+#define R9A09G077_DDRSS_AXI4_RST	23
-+#define R9A09G077_DDRSS_MC_RST		24
-+#define R9A09G077_PCIE_RST		25
-+#define R9A09G077_DDRSS_PHY_RST		26
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
 +
-+#endif /* __DT_BINDINGS_CLOCK_RENESAS_R9A09G077_CPG_H__ */
-\ No newline at end of file
++		L3_CA55: cache-controller-0 {
++			compatible = "cache";
++			cache-unified;
++			cache-size = <0x100000>;
++			cache-level = <3>;
++		};
++
++		cpu0: cpu@0 {
++			compatible = "arm,cortex-a55";
++			reg = <0>;
++			device_type = "cpu";
++			next-level-cache = <&L3_CA55>;
++			enable-method = "psci";
++		};
++
++		cpu1: cpu@100 {
++			compatible = "arm,cortex-a55";
++			reg = <0x100>;
++			device_type = "cpu";
++			next-level-cache = <&L3_CA55>;
++			enable-method = "psci";
++		};
++
++		cpu2: cpu@200 {
++			compatible = "arm,cortex-a55";
++			reg = <0x200>;
++			device_type = "cpu";
++			next-level-cache = <&L3_CA55>;
++			enable-method = "psci";
++		};
++
++		cpu3: cpu@300 {
++			compatible = "arm,cortex-a55";
++			reg = <0x300>;
++			device_type = "cpu";
++			next-level-cache = <&L3_CA55>;
++			enable-method = "psci";
++		};
++	};
++
++	psci {
++		compatible = "arm,psci-1.0", "arm,psci-0.2";
++		method = "smc";
++	};
++
++	soc: soc {
++		compatible = "simple-bus";
++		interrupt-parent = <&gic>;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		sci0: serial@80005000 {
++			compatible = "renesas,r9a09g077-sci";
++			reg = <0 0x80005000 0 0x400>;
++			interrupts = <GIC_SPI 590 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 591 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 592 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 593 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD R9A09G077_SCI0_CLK>;
++			clock-names = "fck";
++			power-domains = <&cpg>;
++			status = "disabled";
++		};
++
++		cpg: clock-controller@80280000 {
++			compatible = "renesas,r9a09g077-cpg";
++			reg = <0 0x80280000 0 0x1000>,
++			      <0 0x81280000 0 0x9000>;
++			clocks = <&extal>, <&loco>;
++			clock-names = "extal", "loco";
++			#clock-cells = <2>;
++			#reset-cells = <1>;
++			#power-domain-cells = <0>;
++		};
++
++		gic: interrupt-controller@83000000 {
++			compatible = "arm,gic-v3";
++			reg = <0x0 0x83000000 0 0x40000>,
++			      <0x0 0x83040000 0 0x160000>;
++			#interrupt-cells = <3>;
++			#address-cells = <0>;
++			interrupt-controller;
++			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts-extended = <&gic GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g077m44.dtsi b/arch/arm64/boot/dts/renesas/r9a09g077m44.dtsi
+new file mode 100644
+index 000000000000..f54bb50829db
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r9a09g077m44.dtsi
+@@ -0,0 +1,8 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Device Tree Source for the RZ/T2H 4-core SoC
++ *
++ * Copyright (C) 2025 Renesas Electronics Corp.
++ */
++
++#include "r9a09g077.dtsi"
 -- 
 2.43.0
 
