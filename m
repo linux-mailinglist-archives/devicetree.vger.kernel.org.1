@@ -1,144 +1,138 @@
-Return-Path: <devicetree+bounces-141627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F8C2A21AC2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:12:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A64E7A21ACE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A1143A38E1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 10:12:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C4907A1DE9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 10:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 609A81B0412;
-	Wed, 29 Jan 2025 10:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF7BD1A38F9;
+	Wed, 29 Jan 2025 10:13:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gd0sseaZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OaQKGXun"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4BC1AF0B7;
-	Wed, 29 Jan 2025 10:12:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CC7D16C854;
+	Wed, 29 Jan 2025 10:13:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738145527; cv=none; b=shnPFBJv1rRNvx+jdza7KvbHUHbLjoNnzPypXgnfcitjmQfrwaau0IPOaTgRFPeKZ/5jwGiZJaKk2xyatFPkovweMZeHLI2hsxF1brWvDVQiNVV57i9aYGfwE6+muIMUzfVvtVhXlzwLEUD0biHCF9dcD7qtm4BkVQLJGYZpGsE=
+	t=1738145629; cv=none; b=jUpBUmzoE+E9T3/ZK3fuMT9OfZItHRbasjzT8lR1nPuV/plj8G651LlgOYA9zGc4OxAVbHhwHpLGtqKX6/AOFTJL4Tv9MnZya0IqsQyGfV9E09fkp/8oS9As06jvZ9oq9pZ7aFDeDJl69AY8dS9cPuDF0lijdXKQSE+gSOQokMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738145527; c=relaxed/simple;
-	bh=lwpO7PNCaMK4XSaIdcUENjOc29JySu1q3MC0ZNh/nD8=;
+	s=arc-20240116; t=1738145629; c=relaxed/simple;
+	bh=h+J5mA+WmvhsE8mIU9p7eCMpAO/Myt/o9nAE8zizNZ4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tS0hflieKj8I165OcYNqpHLWuVbVpqBM2L02PwjE3WAF+kz5DfG6BFFJPmCYRcRJbhPOgihG0HD22Oxv8Rz7QOrCoRD1RA6A3GeG+ZHEbp+S9kcYfzZRseWWUyvBTeXBf4/2jBFuE0Nesb01TuaoU1bD+Lm52PKRs36bIJUPWcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gd0sseaZ; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738145526; x=1769681526;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=lwpO7PNCaMK4XSaIdcUENjOc29JySu1q3MC0ZNh/nD8=;
-  b=gd0sseaZyuFHpQTMnjgphQHuGt5xDjl5Md9PWlTwpHGexfxK7gryShxb
-   h/UaRCyK8vhbGS9+cZZKCZ80heOm+94RTKyKtA3F+LHdRZFavhf03LICc
-   AKwuqWuIlbjPH0i+mpMNBxeneel7Gfyv8wx+hFk0BsOsk/luf/ETvnPa5
-   hq5NOSv18BjPzP0A66rHZtLvdXLVHbn+Ydx7syC6+d96ivYKPdRjv4CEQ
-   FnemLwcoTO7s+7DMC39gCph8bXGfiXwhqz7d+JA8sbdcXhqr+3tuA2v6v
-   Z0nJ2aBjTvobzrCXKWhKGYYmAMjNY8w9ZqJaSVqNqliD1x413fS0ns0gN
-   A==;
-X-CSE-ConnectionGUID: Bzt5D8ZrRQKOod3vOeUcxQ==
-X-CSE-MsgGUID: 8X00qrU7SdeVA4ecuuG9gw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="38559410"
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; 
-   d="scan'208";a="38559410"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2025 02:12:05 -0800
-X-CSE-ConnectionGUID: irVLMjNnSriAwxDXwVV8cw==
-X-CSE-MsgGUID: q/vBOH0pRrOMhulNU5EtPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; 
-   d="scan'208";a="114018129"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2025 02:11:59 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1td535-00000006LKG-2oWb;
-	Wed, 29 Jan 2025 12:11:55 +0200
-Date: Wed, 29 Jan 2025 12:11:55 +0200
-From: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
-To: Kartik Rajput <kkartik@nvidia.com>
-Cc: Jon Hunter <jonathanh@nvidia.com>, "robh@kernel.org" <robh@kernel.org>,
-	"robert.marko@sartura.hr" <robert.marko@sartura.hr>,
-	"arnd@kernel.org" <arnd@kernel.org>,
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"geert+renesas@glider.be" <geert+renesas@glider.be>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"jirislaby@kernel.org" <jirislaby@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
-	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	"schnelle@linux.ibm.com" <schnelle@linux.ibm.com>,
-	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-Subject: Re: [PATCH 2/2] serial: tegra-utc: Add driver for Tegra UART Trace
- Controller (UTC)
-Message-ID: <Z5n-6z6SOSZy-BMW@smile.fi.intel.com>
-References: <20250128064633.12381-1-kkartik@nvidia.com>
- <20250128064633.12381-3-kkartik@nvidia.com>
- <Z5nTm9UniwCgGNOY@smile.fi.intel.com>
- <101d68c9789ef774c242d038a51b35113e6fbcc0.camel@nvidia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GOESfpW9ezTfSkOhCOix7vBDjnQDbkYNjTlswhu/NYAbVfvTixNLCgFS3a7d6odXj6bAuz6AWaZkRN97fmem/HLAFWZRKYDDGxDHm9lOX8CwjvBXIwob/exsN8YhoBWFuqybe742tMozQVKB9qCZc0q0QJCmtk9L3ZFIQRa1R1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OaQKGXun; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D92FC4CEE4;
+	Wed, 29 Jan 2025 10:13:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738145629;
+	bh=h+J5mA+WmvhsE8mIU9p7eCMpAO/Myt/o9nAE8zizNZ4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OaQKGXuncS+9M95nztFSZNUpOV/3xkX1UIn8ndUKBemW5eEaO9TD1i0DV60imXHOv
+	 /RD5qK8IbnevUYj2u2/clYCmOF20OBp8XC57IjvKh6nCMqMIRlPBEaSSwKcMQV3ld4
+	 +yeEwdtCsJ/zWz3naxUTsCivcDuAFXJ6bcgg5Z2+aiXH/eguM2bl9tiwiQNuFpvPOl
+	 dO4kBbiljuDVaak1TvmjTwsZmALIu4yRpGMaWhFqK1o497PpG+O654aT3oRGduWm4v
+	 UGJyOScDxBfu/lW67/i8zfOOK3NUfqGIbrJVgo7bDGH7kSxgzmXTR7FFZ5GHDu8Fic
+	 oP6HHKeTWuaCQ==
+Date: Wed, 29 Jan 2025 11:13:42 +0100
+From: Niklas Cassel <cassel@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH v9 0/7] PCI: dwc: opitimaze RC Host/EP pci_fixup_addr()
+Message-ID: <Z5n_VrN8HUmdVPUq@ryzen>
+References: <20250128-pci_fixup_addr-v9-0-3c4bb506f665@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <101d68c9789ef774c242d038a51b35113e6fbcc0.camel@nvidia.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20250128-pci_fixup_addr-v9-0-3c4bb506f665@nxp.com>
 
-On Wed, Jan 29, 2025 at 08:04:27AM +0000, Kartik Rajput wrote:
-> On Wed, 2025-01-29 at 09:07 +0200, Andy Shevchenko wrote:
-> > On Tue, Jan 28, 2025 at 12:16:33PM +0530, Kartik Rajput wrote:
+Hello Frank,
 
-...
+Typo in subject:
+s/opitimaze/optimize/
 
-> > > +     ret = of_property_read_u32(np, "current-speed", &tup-
-> > > >baudrate);
-> > 
-> > Why not clock-frequency? But if needed, add this to the above
-> > mentioned API as
-> > I know more than one driver may utilise this.
+
+On Tue, Jan 28, 2025 at 05:07:33PM -0500, Frank Li wrote:
 > 
-> "current-speed" is to specify the baudrate at which the UTC is
-> operating. Not sure if "clock-frequency" is the ideal property for this
-> as we are not configuring any clocks in the driver.
+> Bjorn's comments in https://lore.kernel.org/imx/20250123190900.GA650360@bhelgaas/
+> 
+> > After all cpu_address_fixup() removed, we can remove use_parent_dt_ranges
+> > in one clean up patches.
+> >
+> >
+>   ...
+> >  dw_pcie_rd_other_conf
+> >  dw_pcie_wr_other_conf
+> >    dw_pcie_prog_outbound_atu() only called if pp->cfg0_io_shared,
+> >    after an ECAM map via dw_pcie_other_conf_map_bus() and subsequent
+> >    successful access; atu.cpu_addr came from pp->io_base, set by
+> >    dw_pcie_host_init() from pci_pio_to_address(), which I'm pretty
+> >    sure returns a CPU address.
+> 
+> io_base is parent_bus_address
+> 
+> >    So this still looks wrong to me.  In addition, I think doing the
+> >    ATU setup in *_map() and restore in *rd/wr_other_conf() is ugly
+> >    and looks unreliable.
+> 
+> ....
+> 
+> >  dw_pcie_pme_turn_off
+> >    atu.cpu_addr came from pp.msg_res, set by
+> >    dw_pcie_host_request_msg_tlp_res() to a CPU address at the end of
+> >    the first MMIO bridge window.  This one also looks wrong to me.
+> 
+> Fixed at this version.
 
-I didn't say anything about configuring clocks. The clock-frequency property is
-standard way to provide a functional frequency of the UART (usually some MHz
-crystal) which you can divide by the known HW coefficients and get the baud rate
-(but yes, I agree that this is HW-dependent and needs to be thought through).
 
-> Also, to add this in uart_read_port_properties() would require updating
-> uart_port stucture to store the baudrate value. Would this be fine?
-
-Sure, it requires some members to be defined beforehand.
-
-> Asking because I do not see termios related configurations stored in
-> uart_port structure.
-
-Yeah, the only one is uartclk. But again, if you need current-speed to be
-parsed, consider doing this in the uart_read_port_properties() and saving
-as uartclk in the known way.
-Technically it's possible to add a new member to uart_port, but it has
-a lot of downsides as I can see: additional memory, added ambiguity to
-how parse uartclk and current speed if they both are defined.
-
--- 
-With Best Regards,
-Andy Shevchenko
+I feel like it would have been easier if you replied to Bjorn's comments
+directly in the thread instead of pasting them here (to a cover letter).
 
 
+Please don't shoot the messenger, but I don't see any reply to (what I
+assume is the biggest reason why Bjorn did not merge this series):
+
+""
+.cpu_addr_fixup() is a generic problem that affects dwc (dra7xx, imx6,
+artpec6, intel-gw, visconti), cadence (cadence-plat), and now
+apparently microchip.
+
+I deferred these because I'm hoping we can come up with a more generic
+solution that's easier to apply across all these cases.  I don't
+really want to merge something that immediately needs to be reworked
+for other drivers.
+""
+
+It should probably state in the cover letter how v9 addresses Bjorn's
+concern when it comes to other PCI controller drivers, especially those
+that are not DWC based.
+
+
+Kind regards,
+Niklas
 
