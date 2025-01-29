@@ -1,116 +1,332 @@
-Return-Path: <devicetree+bounces-141693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 044C4A21FEA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:02:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A8E4A21FFC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:08:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3AD83A6072
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:02:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D33141886575
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:08:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB931885A1;
-	Wed, 29 Jan 2025 15:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D0D11DD0C7;
+	Wed, 29 Jan 2025 15:08:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nwtVijav"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317814C83;
-	Wed, 29 Jan 2025 15:02:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D865F191F95
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 15:08:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738162927; cv=none; b=BORiRZ7AGF0FHrhwD3yWPgYvAlJ6pNWMiUhH4OtIuy3yCZr1JoD6RHW//ndKeqZvmxQs3yDUqQs8r0iG9OM3qr1Yr9Jw2I1LiQKFcb75Ec81o3CdnvHpv9tH8h1XR6aylpN5rofwFwWVpEoRmOjyQLDaa3Vgfs+pJh1q5+oifWU=
+	t=1738163301; cv=none; b=iBSQVw41cv1fPMWNgHo5iCkylm6UkeD4Hhk2UC9GTNjq/zOyZPBsteSYf0rgNNOmaHNoviFpqIYqccWKY5FTC++CimGFD6jWH5R/m7hqAW6zopKVfmLkdrf9pGosE+EMQnx/iQwwnuBSq7JCNo4PdQb14WCPwTz9Zr8wurm2w+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738162927; c=relaxed/simple;
-	bh=20WkvFkSPbBkEEg6YMt3KIoVUIB9A2vbiac6vIrLmq0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MQyV5BZUu41RIJQ0tKtEviLpl0NRL3uk53apwEQAUbiYYV5ErLyQSeqgwM1noMp3dG2m29pv2u4S+Vsm7V7s6Rrs1faRG8hvvR5jJin7XqcheSVVBpZcNWNNKSYulqNkAEfv5ByTckZ4kZ1gUTsEHvbtgEbS00LHrZJ0rZ2JI0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-5f2b21a0784so1750679eaf.1;
-        Wed, 29 Jan 2025 07:02:04 -0800 (PST)
+	s=arc-20240116; t=1738163301; c=relaxed/simple;
+	bh=QJk/y35AN758snCIGT5lwTN72HdUsNszcu5pu5zpxCo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iNPlQ0X9K9gc2kKwHTOSq8gXO925KQI+bNVtemGGRvAlG7AtiTRD6k8JXP2O6spOanVd+7e2NtnAsCDGVQHUlNEOqg0BYyK6DR+Ste56Hv40kcj1nAULalIQ2RYzM652ZcCOBLigCm7hqsJ4zOjwCCc5mE6Q7QockgUPLcYlPes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nwtVijav; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-436a39e4891so47372255e9.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 07:08:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738163297; x=1738768097; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2CYRb3v3Cd5U02FZotlhRzeAbSddoQoKFeq32vyUsjI=;
+        b=nwtVijavNZkeomO6rziHJKrdhB2CSjhIJN7ANLCAYBBG4E7KetNaIC1dgG/JvAkM6p
+         Yl26MmB3xXM9KgL5BRw2K5HFQUTiXCy/8JxJ06c44n+t2uVBjP4eWlKnEI9AL9o2Bgho
+         5WiqQu7QhFbj1/7XvOjabAjT7Bd+1puzh22SmxMLL+yr99mk8XAwAa3uaWs7E2FwmX1M
+         W5aeq6yPNLk1F/SFFp15m+Tibl/4kC/Nf8ekR3AFIKGGEgt8AWdq/rcoWWDYIFvaFoXm
+         PoTxOJHAohL9D8abU1wldp8Hl/IKagw1OqeEE4cWV1/OnmPle6UgGBSaPKRoE1YEvMa2
+         yYsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738162923; x=1738767723;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1738163297; x=1738768097;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ewE3umzL3gj0XBAqlrJ7IaBFo9LiX+onjG/TWOWg+5I=;
-        b=XI1WJLRO+WsBm1i2TxHtHJUsACmyM3barftikKk9c8iuiH6aZtGIlEwJMP7Os2jv9G
-         36UH5vtLp87VBtfkabu5nRO4j2s7yvQ3hpHMDq1KU2NygPSNm+1gLM5pSIzP+07z3dQY
-         nY4Qe21N6gJWho1nBsASO23PJkw/SUkSc6Yh9nLMGQE4kRQ5hPKSvHPy+JmNsQz1q3lL
-         F0KgGBtCiaoQ9/Y8ivkOUvDfhJACo6hOvFs0n3yu3Z9WJohmReRa0wYeNx07uaEpXlZV
-         ZG5jAMyx/R+eVvyIWnrdJCg2ZBHGe1ZKR1Hq3Q9CytmgivQCYukCj4FeBE+VhX6iqktS
-         KTyw==
-X-Forwarded-Encrypted: i=1; AJvYcCUB3hBw+JJo1UsPARXlRndTOqpvBhQeXQB/VSFzC+WSnoGzB87WlJPBHkFlb5tLi8vnNmazmjm+sl0p1w9P@vger.kernel.org, AJvYcCW5nlrQiGYT9snwh4RbPY4qydPf7pcIhHwpVtSVQ97tkozrWu/q1w2pAx+KuoKjbwvAIDqDW5dOTvOd@vger.kernel.org, AJvYcCXVpySaeUD7abSlvG3N6lylL30W4M7Akb+TBzR8WZ+cMdg1Q6n6r4VKH66SMtin26yehD54liMIOpdVM9uqNR72Ap4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwLWN5ASpdNuam4AbwsQMUFbvl+65ih/auvwDiVlyDXIQph1qE
-	2ZAVld87n+MTw5cNiqjlThW5keIVBOrRqNCuxQ5EZJ3VXOs/1Y/zf7foccOJ
-X-Gm-Gg: ASbGnctq4+nXpAMNvOzFd11N4fejNs4JvTKIxoUe30B4LdQwpt6vuy2UUAxuUGO1ilF
-	VbCOtoD/GVNu7OwhRVkVNMjNWVLwigFbIKo0xBs/Hp2b8vzyG0hQw7W8WI3kMlEaeTn/dqY+tf5
-	SmVNX5VL68/8LEb4Jk2mQY8woJwA7oRWtof1UIW1On0Svd30k6Ad6wu98ITviXA5JkN11ugGVr7
-	ZFZoSdqqr346uuv1O3nhMMiXfsDNGdn2eW81EJEhZ9kk+QrvtWm6qSiPOItXMlwq9KsaniSGxOI
-	3iEo5IZWRt5A8XKBhCPh8WL2kxRektc8XhopsNuJOMaLkxUxdUM2MJ2N7g==
-X-Google-Smtp-Source: AGHT+IGUJeGOmpxK+Mrp71A9IRLn/KpZQLLJAe1nhU0BuXRqPnZ4On5iINpeLxIlYHFQ1vQi6NxVhA==
-X-Received: by 2002:a05:6820:2001:b0:5f9:b840:6bb0 with SMTP id 006d021491bc7-5fc00366950mr2216440eaf.6.1738162923151;
-        Wed, 29 Jan 2025 07:02:03 -0800 (PST)
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com. [209.85.167.175])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-724ecf9cf6fsm3773611a34.62.2025.01.29.07.02.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jan 2025 07:02:02 -0800 (PST)
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3eb9ba53f90so1871182b6e.1;
-        Wed, 29 Jan 2025 07:02:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVDcb5pNdOsxi+v2W6huP78u2FwX1jOyczjQk2dcpfq39s3PIhvjTgJZbgdffBh5oD1z34D4LtqhVUwHo12iqUjpM4=@vger.kernel.org, AJvYcCW1O3yEboEet7OWEtaDJYDsTozyyxvHUuThex/C/SlHrTvEgbeeu38aQiFXwEU9wUDpaDyAsqVP+gK4@vger.kernel.org, AJvYcCWy8KdCGI1v+bu0BQkUDW9+Zm6gwkFAnv5NzYOdCB0qvph9r6W6ABj+lmYIp7yamRgAUh4kMFI2MuIHJDdu@vger.kernel.org
-X-Received: by 2002:a05:6808:3a0e:b0:3ea:57cf:7c26 with SMTP id
- 5614622812f47-3f323a73eb7mr2107120b6e.19.1738162921882; Wed, 29 Jan 2025
- 07:02:01 -0800 (PST)
+        bh=2CYRb3v3Cd5U02FZotlhRzeAbSddoQoKFeq32vyUsjI=;
+        b=Uk7RbdWBZcCEYKSWZAEvgi7gl75/bFR0a7YaKcjY9RdK/dayj2342qo39JiA5I8wqT
+         f1V4h1ubqwGWhzexcC1yZxsf4PWFYu571pAfSR54tXKpzBEzMhldVc9XGc28dCdtjlHn
+         WOMgeplAJOwc/dASG9dNIa4t6ZPLOTfqphAPEOlsRcLp7xBmRPcgItfwQuMeaC2Wk98A
+         T1uQnrL0UQw4ec2anG597y4sVVCjq4f+mx3alnCT4u8mmA94TbFKnlXrDlzEK21Y7/Qn
+         2FoWZ+8cDWAGVTwc3GwGridp60uw2BAiccIHW0TFizrgpaPWZvGkqJovvD9FRV0wgoBo
+         dklQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5L336Qv5fnesyzM9UBk6ng0Jjam568Do0RD4v1Ba4DDfVnaBKIOda1/EsipJYS5sjDBGce0RcUKTI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw67bOKtN0SQcHfqXD5L2TtHDvv3V9YcDXHQIgdG15e4eeofVTz
+	zB0dvAC543ZuQmbNYJjIMgB0p1o3r8FnXCH3sDP2QJgnK70hMrcMJnqemmsWvxMje0BCvRIODMW
+	u
+X-Gm-Gg: ASbGnctubzSlUQHUySE/Fn+mVhY5BG/zPhYpM5x1SPADDSDhSQyAXz+b70udbyJ+LgA
+	6wDy+d0SSEOOiYq8ZKIPkQPirsRcG0bkDO/Ze7sNyZ7yXmufDF/Cvykb4qIR/3bUxC4g+co7ilo
+	Zu/KDEumVMIZHnmRGKP3r74H8M1Ih/Ev5f9F689FXrCY7/xGAvOPpHhl5dZEz46RORXn7XfW010
+	RJ2oAlgDJ6GUeS4jw13ltkeE0/BIRuMewfwyFGUa9++tPMG67yunr5cBsaHplogzrS1AgZ+gii5
+	IQYrtI5q+ATMLbP61e8R37XuAF2EAuk02EOR
+X-Google-Smtp-Source: AGHT+IE7tnyp1BSUltFDXXRCRiqoj51wxvf9f6x8qK5ob4tr7y38tljmGCcys/yA6u7yk0W8JQZNrw==
+X-Received: by 2002:a05:6000:d43:b0:386:2aba:a7f6 with SMTP id ffacd0b85a97d-38c520b9643mr2343166f8f.49.1738163296975;
+        Wed, 29 Jan 2025 07:08:16 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1c3994sm17011531f8f.81.2025.01.29.07.08.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jan 2025 07:08:16 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Wed, 29 Jan 2025 16:08:15 +0100
+Subject: [PATCH v2] arm64: dts: qcom: sm8650: add all 8 coresight ETE nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250128031342.52675-1-john.madieu.xa@bp.renesas.com> <20250128031342.52675-6-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20250128031342.52675-6-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 29 Jan 2025 16:01:49 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWTe+nDo-T_ExHzpR4kun6dLUf5dk0itx48odS6kvxxYA@mail.gmail.com>
-X-Gm-Features: AWEUYZlucVpmewkLx03dFtQUqk0uwPxTAUuXfrbRoD_9-IH5pjUXbLJjvr0J9xw
-Message-ID: <CAMuHMdWTe+nDo-T_ExHzpR4kun6dLUf5dk0itx48odS6kvxxYA@mail.gmail.com>
-Subject: Re: [PATCH v5 5/5] soc: renesas: rzv2h: Add a callback to print
- SoC-specific extra features
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: krzk+dt@kernel.org, robh@kernel.org, biju.das.jz@bp.renesas.com, 
-	claudiu.beznea.uj@bp.renesas.com, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, john.madieu@gmail.com, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	magnus.damm@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250129-topic-sm8650-upstream-add-all-coresight-cpus-v2-1-c62549307e01@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAF5EmmcC/53NQQ6DIBCF4asY1p0GUKl21Xs0LiiMOokKATRtj
+ Hcv9Qhd/m/xvp1FDISR3YudBdwokltyyEvBzKiXAYFsbia5rLmQLSTnyUCcG1VzWH1MAfUM2lr
+ Q0wTGBYw0jAmMXyPoshKN4upV1hXLlz5gT++Te3a5R4rJhc+pb+K3/gltAgS0qm2VLW+2b/Ax0
+ aKDu7owsO44ji9SXFDO6QAAAA==
+X-Change-ID: 20250129-topic-sm8650-upstream-add-all-coresight-cpus-a3418606b354
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4302;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=QJk/y35AN758snCIGT5lwTN72HdUsNszcu5pu5zpxCo=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnmkRfk/CLYC29WNARvYq24dlh+YrvybckuSrD2woD
+ htVCi5GJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ5pEXwAKCRB33NvayMhJ0VibEA
+ CmcW3qfqDRfZgnngVTM6jSGaSTMA7bkLj1GUAYueTfpwWA90xLz4S4OgMBLGZKAO7PJJKLvJe8vtTh
+ IPG0lsrVMBFOY8hNUzGx8o603lhAUa4kewCOp7WIXUCe2RjPB22fvS0MuyD/3Z3aZFyMGYmd2jIaMC
+ PdztpNZIeVpKDazzDZT8skZxRL9czQ+Ol6EdOOsffcI5BB4EHeVwC/fOAjmFxtfveAODFxRfyRViB8
+ xQysMH38dcl4FBxuq+y26Mc3nOK6IRxOv/YkOwP5B9NfczbTNNygGGG7/I5CmceE1ukIkWi/DB9dMZ
+ w9aChnLn1kgbwQ/CyCAxYTohc8QHS+0yGbdV4Ri0PSO2C5L2zxXHVI0px3NjqVSAKvwM8Dp54U3yWY
+ B5tblVVq1c2euLIJFgouUmtZMlRSjhKUTVrnYzo57oHKmYTBKITEw63hq71ew0xfZA9hbhaGT1VDTZ
+ IBxJGb6zz+jedmPyCFBHxm+5Eb/iMzB6J9i+9GE6MVuJUmoGKv0lR5YqwmUZ6hsEZHxiwBp4Dc1Qo+
+ 4ByKUuoGEvaQOOyVF7HPwb3x5oLZzesiltkaQSSxvmvqBBpv6Max9zgq3nGgX876Ce3CgjDXgI5TZD
+ GOJ/IjInYSraNF5Fq0lk3eVSEkgdQIUhm6RCeMoqUQJwGQr3V4ZvsfXZRzcg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Tue, 28 Jan 2025 at 04:14, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> Some RZ/V2H SoC variants feature a Mali-G31 (GPU) and/or a Mali-C55 (ISP)
-> IP(s). Detect and inform about their presence during SoC identification.
-> Also detect PLL frequency and warn in case of mismatch.
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
-> Changes:
->
-> v5: Use proper hex value to populate rzv2h_sys_soc_id_init_data and put as much
->     variable as possible on the same line while printing messages
+Only CPU0 Embedded Trace Extension (ETE) was added, but there's one
+for all 8 CPUs, so add the missing ones.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.15.
+Fixes: 256e6937e48a ("arm64: dts: qcom: sm8650: Add coresight nodes")
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- fixed the 7/8 cpu wording
+- added the sm8650 prefix
+- add review tag
+- Link to v1: https://lore.kernel.org/r/20250129-topic-sm8650-upstream-add-all-coresight-cpus-v1-1-96996d37df8e@linaro.org
+---
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 163 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 161 insertions(+), 2 deletions(-)
 
-Gr{oetje,eeting}s,
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index 86684cb9a9325618ddb74458621cf4bbdc1cc0d1..d925d5e2c8182d522dd5b8e1fa0e253f5de2f7a7 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -365,7 +365,7 @@ cluster_sleep_1: cluster-sleep-1 {
+ 		};
+ 	};
+ 
+-	ete0 {
++	ete-0 {
+ 		compatible = "arm,embedded-trace-extension";
+ 
+ 		cpu = <&cpu0>;
+@@ -379,15 +379,174 @@ ete0_out_funnel_ete: endpoint {
+ 		};
+ 	};
+ 
++	ete-1 {
++		compatible = "arm,embedded-trace-extension";
++
++		cpu = <&cpu1>;
++
++		out-ports {
++			port {
++				ete1_out_funnel_ete: endpoint {
++					remote-endpoint = <&funnel_ete_in_ete1>;
++				};
++			};
++		};
++	};
++
++	ete-2 {
++		compatible = "arm,embedded-trace-extension";
++
++		cpu = <&cpu2>;
++
++		out-ports {
++			port {
++				ete2_out_funnel_ete: endpoint {
++					remote-endpoint = <&funnel_ete_in_ete2>;
++				};
++			};
++		};
++	};
++
++	ete-3 {
++		compatible = "arm,embedded-trace-extension";
++
++		cpu = <&cpu3>;
++
++		out-ports {
++			port {
++				ete3_out_funnel_ete: endpoint {
++					remote-endpoint = <&funnel_ete_in_ete3>;
++				};
++			};
++		};
++	};
++
++	ete-4 {
++		compatible = "arm,embedded-trace-extension";
++
++		cpu = <&cpu4>;
++
++		out-ports {
++			port {
++				ete4_out_funnel_ete: endpoint {
++					remote-endpoint = <&funnel_ete_in_ete4>;
++				};
++			};
++		};
++	};
++
++	ete-5 {
++		compatible = "arm,embedded-trace-extension";
++
++		cpu = <&cpu5>;
++
++		out-ports {
++			port {
++				ete5_out_funnel_ete: endpoint {
++					remote-endpoint = <&funnel_ete_in_ete5>;
++				};
++			};
++		};
++	};
++
++	ete-6 {
++		compatible = "arm,embedded-trace-extension";
++
++		cpu = <&cpu6>;
++
++		out-ports {
++			port {
++				ete6_out_funnel_ete: endpoint {
++					remote-endpoint = <&funnel_ete_in_ete6>;
++				};
++			};
++		};
++	};
++
++	ete-7 {
++		compatible = "arm,embedded-trace-extension";
++
++		cpu = <&cpu7>;
++
++		out-ports {
++			port {
++				ete7_out_funnel_ete: endpoint {
++					remote-endpoint = <&funnel_ete_in_ete7>;
++				};
++			};
++		};
++	};
++
+ 	funnel-ete {
+ 		compatible = "arm,coresight-static-funnel";
+ 
+ 		in-ports {
+-			port {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
+ 				funnel_ete_in_ete0: endpoint {
+ 					remote-endpoint = <&ete0_out_funnel_ete>;
+ 				};
+ 			};
++
++			port@1 {
++				reg = <1>;
++
++				funnel_ete_in_ete1: endpoint {
++					remote-endpoint = <&ete1_out_funnel_ete>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				funnel_ete_in_ete2: endpoint {
++					remote-endpoint = <&ete2_out_funnel_ete>;
++				};
++			};
++
++			port@3 {
++				reg = <3>;
++
++				funnel_ete_in_ete3: endpoint {
++					remote-endpoint = <&ete3_out_funnel_ete>;
++				};
++			};
++
++			port@4 {
++				reg = <4>;
++
++				funnel_ete_in_ete4: endpoint {
++					remote-endpoint = <&ete4_out_funnel_ete>;
++				};
++			};
++
++			port@5 {
++				reg = <5>;
++
++				funnel_ete_in_ete5: endpoint {
++					remote-endpoint = <&ete5_out_funnel_ete>;
++				};
++			};
++
++			port@6 {
++				reg = <6>;
++
++				funnel_ete_in_ete6: endpoint {
++					remote-endpoint = <&ete6_out_funnel_ete>;
++				};
++			};
++
++			port@7 {
++				reg = <7>;
++
++				funnel_ete_in_ete7: endpoint {
++					remote-endpoint = <&ete7_out_funnel_ete>;
++				};
++			};
+ 		};
+ 
+ 		out-ports {
 
-                        Geert
+---
+base-commit: da7e6047a6264af16d2cb82bed9b6caa33eaf56a
+change-id: 20250129-topic-sm8650-upstream-add-all-coresight-cpus-a3418606b354
 
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Neil Armstrong <neil.armstrong@linaro.org>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
