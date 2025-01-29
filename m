@@ -1,113 +1,190 @@
-Return-Path: <devicetree+bounces-141706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E9EA22189
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:17:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 606D6A221A1
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:20:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E38A7A0F93
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:16:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69B017A16B5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5947B1DE2D5;
-	Wed, 29 Jan 2025 16:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10C011DFD91;
+	Wed, 29 Jan 2025 16:20:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MgDPP8QY"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="UvBCbLxr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC2521D8A16;
-	Wed, 29 Jan 2025 16:17:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69761DFDA3
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 16:20:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738167423; cv=none; b=nrMpL8+hBGiLlXXl44kwFZw9P5fWrhMmr+0NwpTVAvdiH8vo/7j/Amos0iWtwJ9XDowoi/whK+ElCQnZ4P/U2X7nu3ZRFCMOZ1dVyvH6HGTsF4CKkPwNrbxLNiK3s/nyRHh5bUwQupVZNJijWeucH6T5ovrVIRYq//MJyUEc5as=
+	t=1738167625; cv=none; b=BDFJOWl+VMG9EM9NO4O6V4mUuBhaBNRYbXS/uMue6o8KRNPyCgQHE4Dnw0kG+1OE1rfg8eLAYZah8yfP/H8EgIDc4ShHqiCt/fNU7pVhbxB6aqPWzXopwOeQ5haBpLliAwkOexWqqpE+mhagtXOZa8ThCSmkC4X13lBDqi0BNbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738167423; c=relaxed/simple;
-	bh=vMH4AHbNEo1X8xdCjwKUe3JGzbmrvf0LTKHttulIVzE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YnzHRtJOn59bSDCkWHK/pPWFDy5WLvYyeWCYYT26YHXap+COh7GF4FBdFAHc0NV+tpQ0Xm/uLCRcuHlwC361Efau1qiEKoj18xxVzBuset0nsWRmDfIQuojzShmTetlrJvhMQ0ZFL7HY/mf02R2TJ/+vRtAEuPGHEzixI5ynyrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MgDPP8QY; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2166f1e589cso10140945ad.3;
-        Wed, 29 Jan 2025 08:17:01 -0800 (PST)
+	s=arc-20240116; t=1738167625; c=relaxed/simple;
+	bh=bi5jxy8pcsrdWXk2UcX0b7/4O10xr5tppBodfAD555I=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=LVKbuAOLYm6PJ3w0tiCRg29Pp87ddzg26qiknMxv/CYqEVoOJb5MkYIIziQTdCITCShLvMvAUIk8dH9h6c3UfzJMBd3OF0D2Y65KctSAi257mqSDVEtgaRcmw1aSlK/iKTgvBI4bcth5lRBKH7MZsCbdKHCGOxsrQsac6WSzicc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=UvBCbLxr; arc=none smtp.client-ip=209.85.222.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7b6eb531e13so402476185a.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 08:20:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738167421; x=1738772221; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+VUI39JDNpJS/4Dkbxml91Zz8NppmMw6YG9DqWL8daE=;
-        b=MgDPP8QY1yTtifaU6qMeXKGSKzatyDguQy4Y/yhVgCHJe0kIl5nQFK4FjjGljX01jx
-         Vm9bcY02m8TvqXFHlIaW98NRTVwo7PI6be33XzZ0hHmoPcjg5gCNUA79hFB3iNduy386
-         usKG4LVAIvMM1ppuJgqT3+buvBbzZEVY34WaS6Vzfb8UIuvQu9DKscvhVNyns21wf9BD
-         flIpnrDFVit6YUBdqF84jxr8ZW0VESWUGIPcj8A53lZdV2CqTiVxCAzVJEBxhicyMHtc
-         pguFRMRsNZ9mrXLTiRTPDLLFX6RNU6Xb3UuKrlVnjUNuOxzBlmkKOP/KnwYI+W3aeMZ8
-         PVHQ==
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1738167623; x=1738772423; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=AASPGoZdR79efbOZhdjcAbczy5T4cO1CnTVAPCvMgDc=;
+        b=UvBCbLxrx3R/qO7IKcYX5SrcSXBC1mK8sGsJls5sjrfOJlTtCt29qCMlAzKur0sv5d
+         GEOyTRP2oA/dDRITltJ1xXdRDFLilWLt6y3QFU3aqrO+GDftqGWl/QcYPss/FVYcK7uv
+         KSlgHFZ3kyzRCZ8B8iBZ6vC21s4MTzn8n96bdPgootiPXUlEgGHDNbJebrYEr/ian0Uy
+         OcbWUcoBAon8P1Q7i3avzyOlZT0BTH49vPAfaRh+T+i3Tv1jcXMr1EtapXEdNhL57qbc
+         DVjRxAnGWWnQo1CcqgW0YcFQHctmmLPBUmOw00tjgu2Co0e9QkAbQVPG3vGlKMoAPM5S
+         yRFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738167421; x=1738772221;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+VUI39JDNpJS/4Dkbxml91Zz8NppmMw6YG9DqWL8daE=;
-        b=STIaW5kc0k40SsknYCdEqktbXr4qqS7g8ESLJi6k8jlWd3jdtzyrBKMposjmXpktIo
-         iObKPlBwRDDjDToA1wRXCyjuwNxvsq6zhJJk4qNxHol92unf/0gf4TIcE26wnKE+dci3
-         bGm7ppYMuwlIaDgPzkGz3TkGnfB1HfclqrMVvvU7qUBnJ7AniQ/Wqfpb7MI5FJTZRUiF
-         Lv4T1C7CgVpHkee9J0xG9vznK3WtDgkEbgC1NV+wkngceWdXwEJLfRbaeAShu4wuyi8N
-         H4prklLfnvv+NpJ6/+4AlxUzEYudmreg2GlTin1LDrup62qGoqxMS4ZProadjvoO6jpR
-         fITA==
-X-Forwarded-Encrypted: i=1; AJvYcCV+TXdElH6/n5I1HojIKO1GjcEX0l6CzyLvsdyek8kqa+Dd4qddQxUlYVDo4f9zDFIRa0q1YQQ5sY0ewSqH@vger.kernel.org, AJvYcCWMRsKNgKFeqgeuqiaFQpY1FzJNjpdfD8XYXCuEiIAggY0Qtc9Bffok4vqCZ590Waxf9FF64WtV4ZYZ@vger.kernel.org, AJvYcCXFSpYVmpGCRzKqFoori0r/kGUKuUafkwqkvMqs4NlNl8BvX8bCxnfwKxWRdjxMLDu9oNwCPJrZyr7s6JE=@vger.kernel.org, AJvYcCXs3TlIeF+fsJ+WKILMFi4jnM0xzbcNKE7/iozcrSST3wxoI1K63sTHH1EWc8NXhBgvt6k8992uXUWF@vger.kernel.org
-X-Gm-Message-State: AOJu0YxD5P4j87Fqjk0a8SH6TaDgMN/ytZYDW2fYFDdLKHDRbDfp9VHU
-	6j631kGRW8e9yvFOgUUC4yZEKTGDDQLxowh8TO98qzBX5Hr85jQE
-X-Gm-Gg: ASbGncteXkG9kFkjaqY6Ap1iiPZmnA/L9NK9TuXbWKccjOW5gGfb82MLtjx7ZC8wd7V
-	SU0NjlG4YeYATAnUmY1mTM2sOdEaavuDS/YfqnGS/kwiz1mnvbC7fwrr620AvwT1hSfsZS/qjpW
-	oJZiUQsLOr0PHn+Oam55IjKpa2CU151PxVS96zXLvHd2hr1NXldb2R1po8GNVTaq407/ElzhbOC
-	Puc70NQuKgrkeIQ3/bLK/LtPMvDmxYTMFZoGEieHk4RNpIQ8Rt6TCsDOkoRWQ+EYQEbThDwKWVs
-	hz55HWMHwxTKu/WFkDzo6RWq50AI
-X-Google-Smtp-Source: AGHT+IELa2WDnyf0caGv/2YsDLATCRcceGBwlZspcs8P+p/HSdm6UyCQEItqhuAmYJCmem3vzMGrVg==
-X-Received: by 2002:a17:903:98c:b0:21a:8839:4f4d with SMTP id d9443c01a7336-21dd7c46868mr52558965ad.6.1738167421080;
-        Wed, 29 Jan 2025 08:17:01 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21da3d9e216sm102863585ad.21.2025.01.29.08.17.00
+        d=1e100.net; s=20230601; t=1738167623; x=1738772423;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AASPGoZdR79efbOZhdjcAbczy5T4cO1CnTVAPCvMgDc=;
+        b=nkEwkyDiJoPJwIurDzDEekX24/65bAcPWQ8lH0mZg2rzfh9iOMJxL3CfUJN7AhS2EJ
+         Xh/Vz/X4ZP97Ffm2eZzxdLHGJs3shX8JOg0S37zFe8/afwblMqR0nIhwkUkU81eUTLE4
+         q8ycKw9dlocXFRzND2/5qqzLZYFr21TwLsTiXMOwjHNCEg9AwsBKXMVl7+e44hMVFkBh
+         /RzYXq+lOZvNfpxa7G7Y811qx2QuTPt5a1jhUSFekzqQ2qQ0dpF2GOo5A1n6BE8Pq+hA
+         E6rgaRvZ/7Nh3q+8+rMdsFlYoazPe9wARwHeHH1nqUEry+zUlceLIHJwMSWVLkVch3tb
+         xb5g==
+X-Forwarded-Encrypted: i=1; AJvYcCXD30Ii45Ujrx2wPXZYeOvFC3wcx2slRRWgf0czJbLLsU/cy9vwIG9zDcucVdS5CyW5EcGR8XB8xWYb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4ZUOS/qGFqYriG1nhZyoUb5whHVjKdmig4mkkArfVx8XtFd3f
+	ZO90W4crgGi25PamnOBq53WGeJgxN1EM0ev4qEOLn0LHGN+pVzkpFtvJjYMKn40=
+X-Gm-Gg: ASbGncuN3cwGsc102XEthGu3XTKl0LXTYgkQBAH0HIlULzJCiFGtsBH6vNxQOFvKdHn
+	goF5MTnb+stOS+5W40lFaNLkTJ1jc9hSt4rgW1imWhQwqtXQDGh3lxKlw/lJY7Vjrhcv+FKvJjD
+	zDFRxWoQiP7/LpZBd3bYftU6Zd5jOb58MTIUzaLb+khUP5/DvwRzG8yB+SC4NN55unYxkLj4uDt
+	54Ez3APhd/3aw+wM0VAp7CoN7jcRt38TKtppTh9wdhEu7FvZx9F93yj/a1H9KkA6PTB0KGS9GpT
+	dwx+TUd/d6+sF+qi
+X-Google-Smtp-Source: AGHT+IGppDxv2MaMp8XMUqVjUk8aPzK+5B86GRXvdwYxAlIS5cCU4yod4npv5CwwFk+ECmoEn75I5Q==
+X-Received: by 2002:a05:620a:280e:b0:7b6:cedf:1b4e with SMTP id af79cd13be357-7bffcd900aemr507124485a.41.1738167622668;
+        Wed, 29 Jan 2025 08:20:22 -0800 (PST)
+Received: from nicolas-tpx395.localdomain ([2606:6d00:11:e976::7a9])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7be9ae7dd05sm637120385a.13.2025.01.29.08.20.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jan 2025 08:17:00 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 29 Jan 2025 08:16:59 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Ming Yu <a0282524688@gmail.com>
-Cc: tmyu0@nuvoton.com, jdelvare@suse.com, corbet@lwn.net, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] hwmon: (lm90): Add support for NCT7716, NCT7717
- and NCT7718
-Message-ID: <c9e2c3ef-852c-4a6f-87c2-de209a49be94@roeck-us.net>
-References: <20250117100744.1571385-1-a0282524688@gmail.com>
- <20250117100744.1571385-2-a0282524688@gmail.com>
+        Wed, 29 Jan 2025 08:20:22 -0800 (PST)
+Message-ID: <bd5abd7f1e29853729c1c9b57b62e2e4a9524e6d.camel@ndufresne.ca>
+Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>, Detlev Casanova
+	 <detlev.casanova@collabora.com>
+Cc: linux-kernel@vger.kernel.org, Diederik de Haas <didi.debian@cknow.org>, 
+ Mauro Carvalho Chehab	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner	 <heiko@sntech.de>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,  Sebastian Reichel
+ <sebastian.reichel@collabora.com>, Dragan Simic <dsimic@manjaro.org>,
+ Alexey Charkov	 <alchark@gmail.com>, Cristian Ciocaltea
+ <cristian.ciocaltea@collabora.com>,  Andy Yan <andy.yan@rock-chips.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-staging@lists.linux.dev
+Date: Wed, 29 Jan 2025 11:20:21 -0500
+In-Reply-To: <CE4343FE-94AA-4F84-8C43-8366013AED84@gmail.com>
+References: <20240615015734.1612108-1-detlev.casanova@collabora.com>
+	 <20240615015734.1612108-2-detlev.casanova@collabora.com>
+	 <3333233.eAoTOS8U2s@bagend> <5969581.LvFx2qVVIh@arisu>
+	 <CE4343FE-94AA-4F84-8C43-8366013AED84@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250117100744.1571385-2-a0282524688@gmail.com>
 
-On Fri, Jan 17, 2025 at 06:07:43PM +0800, Ming Yu wrote:
-> NCT7716 is similar to NCT7717 but has one more address support,
-> both of them only have a 8 bit resolution local thermal sensor.
-> 
-> NCT7718 has 11 bit resoulution remote thermal sensor.
-> 
-> Signed-off-by: Ming Yu <a0282524688@gmail.com>
+Hi Piotr,
 
-Applied to hwmon-next.
+Le mercredi 29 janvier 2025 =C3=A0 15:48 +0100, Piotr Oniszczuk a =C3=A9cri=
+t=C2=A0:
+>=20
+> > Wiadomo=C5=9B=C4=87 napisana przez Detlev Casanova <detlev.casanova@col=
+labora.com> w dniu 15 cze 2024, o godz. 21:44:
+> > >=20
+> > >=20
+> > >=20
+>=20
+> > Yes, the vdpu34x decoder on rk356x socs should be supported by this dri=
+ver but=20
+> > I don't have boards to test that unfortunately.
+> >=20
+>=20
+> Detlev,
+>=20
+> Just FYI:
+>=20
+> I done some tests of rkvdec2 on 6.12.11 on 3588, 3568 and 3566
+>=20
+> For enabling rkvdec2 on 356x i:
+> -add 356x compatible in rkvdec2.c
+> -add dtsi nodes like this: https://github.com/warpme/minimyth2/blob/maste=
+r/script/kernel/linux-6.12/files/1078-arm64-dtsi-rockchip-rk356x-add-rkvdec=
+2-video-decoder-nodes.patch
+>=20
+> With this i can say:
+> -on rk3588 i have some hevc 4k decoding perfectly but some others are fai=
+ling
+> -on rk3566/3568 only subset of 3588=E2=80=99s samples is decoded well. (b=
+ut is works then works perfectly fine)
+> -when not failing on 3588 sample fails on 356x - is see errors like:
+>=20
+> [   95.666669] iova: 0x00000000f2e80000 already mapped to 0x0000000037378=
+000 cannot remap to phys: 0x000000002f8c0000 prot: 0x3
+> [   95.745082] iova: 0x00000000f2f46000 already mapped to 0x00000000372b6=
+000 cannot remap to phys: 0x000000003a403000 prot: 0x3
+> [   95.822012] iova: 0x00000000f2ee6000 already mapped to 0x0000000037126=
+000 cannot remap to phys: 0x000000003a803000 prot: 0x3
+> [   95.896802] iova: 0x00000000f2ec6000 already mapped to 0x0000000029fe6=
+000 cannot remap to phys: 0x000000003a403000 prot: 0x3
+>  turning-off iommu makes above errors disappear - but sample still fails.
+>=20
+> If anybody hints me for way/tool to analyse of playing/failing samples to=
+ catch: what encoding specifics makes given sample failing to decode  on rk=
+vdec2 - i'll be more that happy to provide details=E2=80=A6    =20
+> (doing simple mediainfo <file> shows no differences for me=E2=80=A6)
 
-Note that the branch will only be pushed to linux-next after the commit
-window closed.
+Not sure where it is saved, but we have a mainline kernel with the MPP serv=
+ices
+driver up-levelled (you can probably do that yourself, its not that hard). =
+You
+have to have the MPP library and probably the gstreamer plugins from rockch=
+ip
+installed.
 
-Thanks,
-Guenter
+The general approach is to dump the register prior to every codec trigger, =
+and
+compare. Appart from memory addresses, pretty much all register should be
+identical for decoders. If you happen to have a stream that fails on MPP, s=
+imply
+report that to them, they are generally fast on fixing their own stuff. And=
+ we
+can then used that knowledge to fix our implementation.
+
+As for most codec, when working with larger group of developpers, its bette=
+r to
+start with getting the ITU conformance tests passing. Once we reach an exce=
+llant
+score then we can start looking at specific streams. The benefit is that IT=
+U
+conformance can be run with fluster which removes a lot of possible human
+errors.
+
+Nicolas
+
+p.s. Jonas Karlman has been working on IOMMU fixes and resets that helps re=
+cover
+from faults that are sticky in the dedicated IOMMUs despite the HW self res=
+et
+mechanism.
 
