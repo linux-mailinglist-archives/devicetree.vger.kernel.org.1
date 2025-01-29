@@ -1,301 +1,350 @@
-Return-Path: <devicetree+bounces-141670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49136A21DEB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:35:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 668B0A21DF6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:39:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 654593A5D91
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 13:35:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1199C7A2024
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 13:38:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD5DDDA9;
-	Wed, 29 Jan 2025 13:35:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74C5B13CFA6;
+	Wed, 29 Jan 2025 13:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="NRUiKvmV";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="/+3Klpeg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U4u/oFdO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9391FDD;
-	Wed, 29 Jan 2025 13:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 782071BC20
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 13:39:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738157737; cv=none; b=Ifj+kiRuS5g5uvF3GTFhi2wVIAtQlDyFgY2GiZZK3ldGFiIKLCZerE+tvREXQOgKHJoqIzkQbT11Mfm0ue8Y9w7Wddi+KfegEgbd9ofppgGCPKlvllngLF0FopJ3tk4bp07g3zFx+KkqYFa1o5vJlzjMdf+obPhnCTNUQSg1G4Y=
+	t=1738157965; cv=none; b=qOxbzzn9faE78ihRCOhZ96FuSPyEMVzD2u5IQtb6Zos7NHEvo3fWHWYIww39tlcDMgqRE5ESYl0z2FmuTLxfvydiemj/Ta9HlxetpExt8w7Bz37zXI+2FJqcdq2LYRxxRMe9Bqgk1o1KiM/wAEkHZKsS3yRnnjcpDENQMgCvRiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738157737; c=relaxed/simple;
-	bh=J4XlGBc+tMImfQaxv9uBkMDoBS+YbjM+R52tQoIwJ48=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kWKGdfZ/Sf4GL6zuX39gPshTVzfaFEU/GnLygc0KoyvRH+kT6lF7tk1OlffYpeMEsL2QOvmfu/p89UzWWtcgbTlAD0xbM3rUdu+9qrC7K0zu6P5tITRbGuEnUe0wdLmRa3PO1eb1HaedFLhI7wTon20X70UZ05tnKm5SnRNqeV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=NRUiKvmV; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=/+3Klpeg; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1738157733;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=01swkCTfzFuMOx6T4s/kjh8AWVdXMgMO+nkmNoE6yWc=;
-	b=NRUiKvmVhiAbl2lCGg35Wz/ixzngGYrkWLL6K3+fE4ymGOGhB8LOVYYya4rXeQyUCuVU6s
-	j7Bl1+eFJ8Po7EbRuWdTn2Ibb0aYeUbKXae7cnu3b0PCjKtYtcy922jvc6Xdw4Z1j8FjUP
-	hCyV0sVcqMs4VQtaPPxsZetRwp/Fx0H+MmvOQwGIJC2jQOVkRvM2PL1HAhZLdlPxowu+cw
-	FzcZ8R+HbAC1qH3fswiEgcWHxMRCl/untIQQ21SzmAi1H9k/tfCMf1w4A8xDVejjYJaaJR
-	+Sk/ZYSGgicKyzsL7OGM4if7kCZwSKJgdn1NLckKQ3qUvv4kq9aUff7rvz3Ifg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1738157733;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=01swkCTfzFuMOx6T4s/kjh8AWVdXMgMO+nkmNoE6yWc=;
-	b=/+3KlpegYqj9ZJynUJbQhkBLSDhHE1ZIk4GyeDdLlDWz6e/drxq0ML7ixS6PMB0HW13I/u
-	/E+oMRmai1rb3KDw==
-Date: Wed, 29 Jan 2025 14:35:27 +0100
-Subject: [PATCH v3] of: address: Add kunit test for
- __of_address_resource_bounds()
+	s=arc-20240116; t=1738157965; c=relaxed/simple;
+	bh=CDcRRXN0ifiuQSEQoQDUdUPg9kOvhCH+/uhLp/TkVuI=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=jD7vxoxbZPjFZxqoxUZMQKcn2oO5exfOVxFPedQ6NR6KVJpQCccpFAD95gD1Jxfj0gqDokOAlVAAWqgBLF+1raQA61laNz3TXiKgPLk7PDs/26j3R9Iujm+09/NJIdsZwRJ0dXWqo7m9LtH5nzHTc8Ee8i4mHym/Ki+kHP5sc7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U4u/oFdO; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-436202dd730so48739885e9.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 05:39:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738157962; x=1738762762; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y+K0sidwnuxavvy1AkJKNcWdrNuKvpIiQ4qgOISO6jE=;
+        b=U4u/oFdOcU3ycHMXhF9GP21Cx82wSVvJQVoRDBMAhyFSOmJLIL40dhZZlVMLrwZWfV
+         OHxxNp/MYmQaLQIRQ/tXK3hvkWxC4b6zfbLqoOG7KP9IN4p7PWc4ThKGTwRqAdNlDoyo
+         25XVLJiapWWyFcHnXNfVxHGF/ZhdUCUXPj6hfsQYB0YkosxX4PrMPMrCvSgGc+tRrGBa
+         Ci2H1X0e+wWYrOI+hPfRTnjugZVYqxVDOrBqG1fcLW5s1JYKaM7ETur3NJnRYdZQjHGR
+         0ymbm5TRHoP4fJtSzRAm2Qz0XH6aVJeLCq5YptiCNLlcuRJg+KAI6RRJxsunM0xRjRAc
+         3pRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738157962; x=1738762762;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Y+K0sidwnuxavvy1AkJKNcWdrNuKvpIiQ4qgOISO6jE=;
+        b=sp5JInv3jKYkkutHXE2IGdpcEEJKO03BWubVhWVPVF/XSkgAnB7y/pjU6WdifKT1ef
+         ixg94frYNHUw8pwwn5aDbwWSmwd0cMinwmCcSphh8vpxQ8S/3PjwGHsuNRSwRtQcndU4
+         Y/BSa6a1w5EFUg76NPs+v66RFrsA3/eR3FfBOZvLa6rM7JXVbpXxCvZj00XpIkb1hzuB
+         juEbRG9xi3vKw2cs9gjU4Jr5CPYmatpI1VsE8OvAu7i5Fx9SwGpgMxZUZjHwHaqdBN0E
+         R2NpVpM+2j4jCA/VPltoQ9nNdYg0V2/wAQOs2FAlSyKDpvh+p3bl8Z6nSId6Ro7i59L1
+         GgVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVizJ7HyxGMjun9lvS7Iq4zkBnV9+jvjp9SIY+FDBh3Gid0eyzw9z0QN0PgPsc/u2APSnYjit2qLZ1K@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBfyr8GyI+978i63NZQW4VQNP+XswTDFq2Qjz4pYDK3SyHcXCs
+	WVH41n/XNFkxF0NpvHDtugVJ8aHQr4qCSgouRuDMAdlYJyN/KLEQVEDqM3AyddV68MwbPm9WbnJ
+	Q
+X-Gm-Gg: ASbGnct+4XdR1aDRmjYcu/boy7rELEl4JZVCa5Un7ljLu/EGQTEUdlKJ/QdxAr1dqoZ
+	je2K7Towb3ft4pMJmQ90EAHI4Qu7Tal9ZB1kU506cL3BjBCGmwZqj8WjLemWcq2VFjaWPD0GTg7
+	GRGT6uop93epTgdGSyd43cM7oI4Kgaw4adTAgTaJ9Z4SdzePS3tIxHKQsHmCehBt6DUTjHI1Nbb
+	9fdAHHqbAWmbNy8DOx7n5ezDteq7aU5GmgcSbPQoU9+0Om3Gf5vHz1Deh5YH+JsD6v5Laq0cdkW
+	kEjiTZhZOyk+TKR4R+b0ldc35Q5Y80sukgitXPT7El+bHVZ36i9DyV8vtqnjNdzQUQ7p
+X-Google-Smtp-Source: AGHT+IEhSvgjfruwhcex+wivH//fD/wuaybIS2/hD16jD5+lAolzYLPk996GstOlH4QsZAZmUZU1Kg==
+X-Received: by 2002:a5d:47ab:0:b0:38a:87cc:fb2c with SMTP id ffacd0b85a97d-38c5195f506mr2941224f8f.18.1738157961709;
+        Wed, 29 Jan 2025 05:39:21 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:b25e:a614:863b:566e? ([2a01:e0a:982:cbb0:b25e:a614:863b:566e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1c3f8asm16757481f8f.86.2025.01.29.05.39.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jan 2025 05:39:21 -0800 (PST)
+Message-ID: <df4baaa2-0c31-4ecd-9c48-9a2cbf1ece4d@linaro.org>
+Date: Wed, 29 Jan 2025 14:39:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250129-of-address-overflow-v3-1-95d1760ed791@linutronix.de>
-X-B4-Tracking: v=1; b=H4sIAJ4ummcC/33N0Q6CIBTG8VdxXHcaIKB21Xu0LlQOyeaggZHN+
- e6hV621Lv/fdn5nIRGDxUhOxUICJhutdznKQ0H6oXU3BKtzE065pIxT8AZarQPGCD5hMKN/Qis
- bUalS8bqWJF/eAxo77+rlmnuwcfLhtT9JbFv/e4kBBa1VrTsjqq7H82jdYwre2fmokWxm4p9O9
- dvhwECxTlKhqBDYfDvrur4BqxuUNQIBAAA=
-X-Change-ID: 20250120-of-address-overflow-a59476362885
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
-Cc: Basharath Hussain Khaja <basharath@couthit.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738157732; l=6401;
- i=thomas.weissschuh@linutronix.de; s=20240209; h=from:subject:message-id;
- bh=J4XlGBc+tMImfQaxv9uBkMDoBS+YbjM+R52tQoIwJ48=;
- b=Y0z3JoxWkd+bCKip6zStlUFRqtVK0OCbOkD4uhroMlrbatVz3PW7MRtUYBVmOHN0bvnGN+5vi
- fuisGQtDdPsDpezpymEZecYZYWlnk9GmXuH08fpJBJ1ahXiPESG4m1N
-X-Developer-Key: i=thomas.weissschuh@linutronix.de; a=ed25519;
- pk=pfvxvpFUDJV2h2nY0FidLUml22uGLSjByFbM6aqQQws=
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: qcom: add all 7 coresight ETE nodes
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yuanfang Zhang <quic_yuanfang@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250129-topic-sm8650-upstream-add-all-coresight-cpus-v1-1-96996d37df8e@linaro.org>
+ <D7EJURP1JU6R.1TNVVAGA939RR@fairphone.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <D7EJURP1JU6R.1TNVVAGA939RR@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The overflow checking has to deal with different datatypes and
-edgecases. Add a new kunit testcase to make sure it works correctly.
+On 29/01/2025 13:18, Luca Weiss wrote:
+> Hi Neil,
+> 
+> On Wed Jan 29, 2025 at 10:54 AM CET, Neil Armstrong wrote:
+>> Only CPU0 Embedded Trace Extension (ETE) was added, but there's one
+>> for all 7 CPUs, so add the missing ones.
+>>
+>> Fixes: 256e6937e48a ("arm64: dts: qcom: sm8650: Add coresight nodes")
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> 
+> The subject line is missing "sm8650"
 
-Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
----
-Changes in v3:
-- Avoid constant truncation warnings by using u64 for test case
-  expectations
-- Run through 0day before submission
-- Link to v2: https://lore.kernel.org/r/20250127-of-address-overflow-v2-1-61b5046044e9@linutronix.de
+Damn, thx, I'll fix for v2
 
-Changes in v2:
-- Rebase on robh/for-master
-- Drop already applied patch
-- Add missing MODULE_IMPORT_NS()
-- Fix sparse warnings: "cast truncates bits from constant value"
-- Link to v1: https://lore.kernel.org/r/20250120-of-address-overflow-v1-0-dd68dbf47bce@linutronix.de
----
-Technically it's possible to run this unittest with !CONFIG_OF_ADDRESS,
-so there is an explicit check inside the test.
-It would also be possible to add a dedicated source file, but that
-seemed like a lot of churn to me.
----
- drivers/of/address.c    |   5 +-
- drivers/of/of_private.h |   4 ++
- drivers/of/of_test.c    | 119 +++++++++++++++++++++++++++++++++++++++++++++++-
- 3 files changed, 126 insertions(+), 2 deletions(-)
+Neil
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 26f7fc3d759976539dbd05fb07fe25b27ae4faa7..4976cdf33dd4d81b0de6b979bb79bce734634af5 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -16,6 +16,8 @@
- #include <linux/string.h>
- #include <linux/dma-direct.h> /* for bus_dma_region */
- 
-+#include <kunit/visibility.h>
-+
- /* Uncomment me to enable of_dump_addr() debugging output */
- // #define DEBUG
- 
-@@ -183,7 +185,7 @@ static u64 of_bus_pci_map(__be32 *addr, const __be32 *range, int na, int ns,
- 
- #endif /* CONFIG_PCI */
- 
--static int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
-+VISIBLE_IF_KUNIT int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
- {
- 	if (overflows_type(start, r->start))
- 		return -EOVERFLOW;
-@@ -197,6 +199,7 @@ static int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
- 
- 	return 0;
- }
-+EXPORT_SYMBOL_IF_KUNIT(__of_address_resource_bounds);
- 
- /*
-  * of_pci_range_to_resource - Create a resource from an of_pci_range
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index f3e1193c8ded4899f39677a76da073e2266a1b9a..1bdc7ceef3c5fc854bd7708a50281bbfa439838d 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -208,4 +208,8 @@ static void __maybe_unused of_dump_addr(const char *s, const __be32 *addr, int n
- static void __maybe_unused of_dump_addr(const char *s, const __be32 *addr, int na) { }
- #endif
- 
-+#if IS_ENABLED(CONFIG_KUNIT)
-+int __of_address_resource_bounds(struct resource *r, u64 start, u64 size);
-+#endif
-+
- #endif /* _LINUX_OF_PRIVATE_H */
-diff --git a/drivers/of/of_test.c b/drivers/of/of_test.c
-index b0557ded838fdf70f0b679c31ead38f501371304..8bba5a72c9c7ca7d1ac9b1c5a4dbe2850c328c43 100644
---- a/drivers/of/of_test.c
-+++ b/drivers/of/of_test.c
-@@ -2,6 +2,7 @@
- /*
-  * KUnit tests for OF APIs
-  */
-+#include <linux/ioport.h>
- #include <linux/module.h>
- #include <linux/of.h>
- 
-@@ -54,8 +55,124 @@ static struct kunit_suite of_dtb_suite = {
- 	.init = of_dtb_test_init,
- };
- 
-+struct of_address_resource_bounds_case {
-+	u64 start;
-+	u64 size;
-+	int ret;
-+
-+	u64 res_start;
-+	u64 res_end;
-+};
-+
-+static void of_address_resource_bounds_case_desc(const struct of_address_resource_bounds_case *p,
-+						 char *name)
-+{
-+	snprintf(name, KUNIT_PARAM_DESC_SIZE, "start=0x%016llx,size=0x%016llx", p->start, p->size);
-+}
-+
-+static const struct of_address_resource_bounds_case of_address_resource_bounds_cases[] = {
-+	{
-+		.start = 0,
-+		.size = 0,
-+		.ret = 0,
-+		.res_start = 0,
-+		.res_end = -1,
-+	},
-+	{
-+		.start = 0,
-+		.size = 0x1000,
-+		.ret = 0,
-+		.res_start = 0,
-+		.res_end = 0xfff,
-+	},
-+	{
-+		.start = 0x1000,
-+		.size = 0,
-+		.ret = 0,
-+		.res_start = 0x1000,
-+		.res_end = 0xfff,
-+	},
-+	{
-+		.start = 0x1000,
-+		.size = 0x1000,
-+		.ret = 0,
-+		.res_start = 0x1000,
-+		.res_end = 0x1fff,
-+	},
-+	{
-+		.start = 1,
-+		.size = RESOURCE_SIZE_MAX,
-+		.ret = 0,
-+		.res_start = 1,
-+		.res_end = RESOURCE_SIZE_MAX,
-+	},
-+	{
-+		.start = RESOURCE_SIZE_MAX,
-+		.size = 1,
-+		.ret = 0,
-+		.res_start = RESOURCE_SIZE_MAX,
-+		.res_end = RESOURCE_SIZE_MAX,
-+	},
-+	{
-+		.start = 2,
-+		.size = RESOURCE_SIZE_MAX,
-+		.ret = -EOVERFLOW,
-+	},
-+	{
-+		.start = RESOURCE_SIZE_MAX,
-+		.size = 2,
-+		.ret = -EOVERFLOW,
-+	},
-+	{
-+		.start = ULL(0x100000000),
-+		.size = 1,
-+		.ret = sizeof(resource_size_t) > sizeof(u32) ? 0 : -EOVERFLOW,
-+		.res_start = ULL(0x100000000),
-+		.res_end = ULL(0x100000000),
-+	},
-+	{
-+		.start = 0x1000,
-+		.size = 0xffffffff,
-+		.ret = sizeof(resource_size_t) > sizeof(u32) ? 0 : -EOVERFLOW,
-+		.res_start = 0x1000,
-+		.res_end = ULL(0x100000ffe),
-+	},
-+};
-+
-+KUNIT_ARRAY_PARAM(of_address_resource_bounds,
-+		  of_address_resource_bounds_cases, of_address_resource_bounds_case_desc);
-+
-+static void of_address_resource_bounds(struct kunit *test)
-+{
-+	const struct of_address_resource_bounds_case *param = test->param_value;
-+	struct resource r; /* Intentionally uninitialized */
-+	int ret;
-+
-+	if (!IS_ENABLED(CONFIG_OF_ADDRESS))
-+		kunit_skip(test, "CONFIG_OF_ADDRESS not enabled\n");
-+
-+	ret = __of_address_resource_bounds(&r, param->start, param->size);
-+	KUNIT_EXPECT_EQ(test, param->ret, ret);
-+	if (ret == 0) {
-+		KUNIT_EXPECT_EQ(test, (resource_size_t)param->res_start, r.start);
-+		KUNIT_EXPECT_EQ(test, (resource_size_t)param->res_end, r.end);
-+		KUNIT_EXPECT_EQ(test, param->size, resource_size(&r));
-+	}
-+}
-+
-+static struct kunit_case of_address_test_cases[] = {
-+	KUNIT_CASE_PARAM(of_address_resource_bounds, of_address_resource_bounds_gen_params),
-+	{}
-+};
-+
-+static struct kunit_suite of_address_suite = {
-+	.name = "of_address",
-+	.test_cases = of_address_test_cases,
-+};
-+
- kunit_test_suites(
--	&of_dtb_suite,
-+	&of_dtb_suite, &of_address_suite,
- );
- MODULE_DESCRIPTION("KUnit tests for OF APIs");
-+MODULE_IMPORT_NS("EXPORTED_FOR_KUNIT_TESTING");
- MODULE_LICENSE("GPL");
-
----
-base-commit: 15e2f65f2ecfeb8e39315522e2b5cfdc5651fc10
-change-id: 20250120-of-address-overflow-a59476362885
-
-Best regards,
--- 
-Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+> 
+> Regards
+> Luca
+> 
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 163 ++++++++++++++++++++++++++++++++++-
+>>   1 file changed, 161 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> index 86684cb9a9325618ddb74458621cf4bbdc1cc0d1..d925d5e2c8182d522dd5b8e1fa0e253f5de2f7a7 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> @@ -365,7 +365,7 @@ cluster_sleep_1: cluster-sleep-1 {
+>>   		};
+>>   	};
+>>   
+>> -	ete0 {
+>> +	ete-0 {
+>>   		compatible = "arm,embedded-trace-extension";
+>>   
+>>   		cpu = <&cpu0>;
+>> @@ -379,15 +379,174 @@ ete0_out_funnel_ete: endpoint {
+>>   		};
+>>   	};
+>>   
+>> +	ete-1 {
+>> +		compatible = "arm,embedded-trace-extension";
+>> +
+>> +		cpu = <&cpu1>;
+>> +
+>> +		out-ports {
+>> +			port {
+>> +				ete1_out_funnel_ete: endpoint {
+>> +					remote-endpoint = <&funnel_ete_in_ete1>;
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	ete-2 {
+>> +		compatible = "arm,embedded-trace-extension";
+>> +
+>> +		cpu = <&cpu2>;
+>> +
+>> +		out-ports {
+>> +			port {
+>> +				ete2_out_funnel_ete: endpoint {
+>> +					remote-endpoint = <&funnel_ete_in_ete2>;
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	ete-3 {
+>> +		compatible = "arm,embedded-trace-extension";
+>> +
+>> +		cpu = <&cpu3>;
+>> +
+>> +		out-ports {
+>> +			port {
+>> +				ete3_out_funnel_ete: endpoint {
+>> +					remote-endpoint = <&funnel_ete_in_ete3>;
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	ete-4 {
+>> +		compatible = "arm,embedded-trace-extension";
+>> +
+>> +		cpu = <&cpu4>;
+>> +
+>> +		out-ports {
+>> +			port {
+>> +				ete4_out_funnel_ete: endpoint {
+>> +					remote-endpoint = <&funnel_ete_in_ete4>;
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	ete-5 {
+>> +		compatible = "arm,embedded-trace-extension";
+>> +
+>> +		cpu = <&cpu5>;
+>> +
+>> +		out-ports {
+>> +			port {
+>> +				ete5_out_funnel_ete: endpoint {
+>> +					remote-endpoint = <&funnel_ete_in_ete5>;
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	ete-6 {
+>> +		compatible = "arm,embedded-trace-extension";
+>> +
+>> +		cpu = <&cpu6>;
+>> +
+>> +		out-ports {
+>> +			port {
+>> +				ete6_out_funnel_ete: endpoint {
+>> +					remote-endpoint = <&funnel_ete_in_ete6>;
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	ete-7 {
+>> +		compatible = "arm,embedded-trace-extension";
+>> +
+>> +		cpu = <&cpu7>;
+>> +
+>> +		out-ports {
+>> +			port {
+>> +				ete7_out_funnel_ete: endpoint {
+>> +					remote-endpoint = <&funnel_ete_in_ete7>;
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +
+>>   	funnel-ete {
+>>   		compatible = "arm,coresight-static-funnel";
+>>   
+>>   		in-ports {
+>> -			port {
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			port@0 {
+>> +				reg = <0>;
+>> +
+>>   				funnel_ete_in_ete0: endpoint {
+>>   					remote-endpoint = <&ete0_out_funnel_ete>;
+>>   				};
+>>   			};
+>> +
+>> +			port@1 {
+>> +				reg = <1>;
+>> +
+>> +				funnel_ete_in_ete1: endpoint {
+>> +					remote-endpoint = <&ete1_out_funnel_ete>;
+>> +				};
+>> +			};
+>> +
+>> +			port@2 {
+>> +				reg = <2>;
+>> +
+>> +				funnel_ete_in_ete2: endpoint {
+>> +					remote-endpoint = <&ete2_out_funnel_ete>;
+>> +				};
+>> +			};
+>> +
+>> +			port@3 {
+>> +				reg = <3>;
+>> +
+>> +				funnel_ete_in_ete3: endpoint {
+>> +					remote-endpoint = <&ete3_out_funnel_ete>;
+>> +				};
+>> +			};
+>> +
+>> +			port@4 {
+>> +				reg = <4>;
+>> +
+>> +				funnel_ete_in_ete4: endpoint {
+>> +					remote-endpoint = <&ete4_out_funnel_ete>;
+>> +				};
+>> +			};
+>> +
+>> +			port@5 {
+>> +				reg = <5>;
+>> +
+>> +				funnel_ete_in_ete5: endpoint {
+>> +					remote-endpoint = <&ete5_out_funnel_ete>;
+>> +				};
+>> +			};
+>> +
+>> +			port@6 {
+>> +				reg = <6>;
+>> +
+>> +				funnel_ete_in_ete6: endpoint {
+>> +					remote-endpoint = <&ete6_out_funnel_ete>;
+>> +				};
+>> +			};
+>> +
+>> +			port@7 {
+>> +				reg = <7>;
+>> +
+>> +				funnel_ete_in_ete7: endpoint {
+>> +					remote-endpoint = <&ete7_out_funnel_ete>;
+>> +				};
+>> +			};
+>>   		};
+>>   
+>>   		out-ports {
+>>
+>> ---
+>> base-commit: da7e6047a6264af16d2cb82bed9b6caa33eaf56a
+>> change-id: 20250129-topic-sm8650-upstream-add-all-coresight-cpus-a3418606b354
+>>
+>> Best regards,
+> 
 
 
