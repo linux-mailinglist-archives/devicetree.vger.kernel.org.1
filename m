@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8567A217FD
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 08:23:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FD0AA21805
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 08:24:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AD543A6993
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 07:23:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 931011881AC6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 07:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D883F18FDB9;
-	Wed, 29 Jan 2025 07:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D82192B85;
+	Wed, 29 Jan 2025 07:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JWJ2Xg8J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cGZaHmNu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9695C179BC;
-	Wed, 29 Jan 2025 07:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C4A185B5F;
+	Wed, 29 Jan 2025 07:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738135401; cv=none; b=mERMxDbeTd2CxoQX4PY1pQenjSpdztM+McT/q5b7LHyc6ECCP2yfbeBPRXj8f1W8q85Pd+zhJuLvKuV3HIfesdWpe3r5HOyh5umA3Xhkjgq7gcJJVOgcIR0RYSuvBdk4sCo1gcFDN3aTr5TZJ4Xr6nAdIh4oIWwJYVFimJLdIR0=
+	t=1738135460; cv=none; b=c1N4oFaRwaXUUX+Jy0gvk1i1X7q2QvVH7J8kxbmS24FmJ1kvdx/cU0eJY1xtftRXNlwQHAVIgSJqukGp/7M8aXH9vJ61Ja9m5oJkZ03nAEmKZRRAXer2LivUjt2jd694JXdZr6CKTmqvcY9lFz9hHiXAym1q7yNaq3a7V0pDECk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738135401; c=relaxed/simple;
-	bh=kR13aShW7NSxrR47PS4dl1AYXDYzkrNK0af2e/a3Hus=;
+	s=arc-20240116; t=1738135460; c=relaxed/simple;
+	bh=SumzoFuVd/ey5ffa03ifaVJsHH2Epg/F0roU1pBAX6o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f6tAdfEIewI7RjRMsrANq/6OzQ6/+8EXihSXBwiq9Z0UORZNouP3tGdJgaulY17CHl42YSGAXu9iD1EwwGZEmCQNoXyU4oYp9v41HZbKG1INgMYahsLuBF1c0JasEFebg0H/DqbkcroRUnve35F6JtUe1TW/92cMCW5Il0yKU3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JWJ2Xg8J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA529C4CED3;
-	Wed, 29 Jan 2025 07:23:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rx0MzYGO16W4+xFqY6qafP1rEC5wWI+hb+RfnJCTxqNi0xQgGKHLA0VQc2NPU3PPg14jAR2vvgScO5kb7j6laUHc3keN2PhrmjtrwH4C2DUXrrh1MvI+vm+DQdCEfZG07I5/fOpfCtViOotPpaYLkEmmDF7cyt5OKZwbUekC2qc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cGZaHmNu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D1A3C4CEE0;
+	Wed, 29 Jan 2025 07:24:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738135401;
-	bh=kR13aShW7NSxrR47PS4dl1AYXDYzkrNK0af2e/a3Hus=;
+	s=k20201202; t=1738135459;
+	bh=SumzoFuVd/ey5ffa03ifaVJsHH2Epg/F0roU1pBAX6o=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JWJ2Xg8JcLOAYf56B0Pt6w3kBd7kuhHJRetiuZpQQRvf9h/ZBJNUnlTg2jWc7Dy3F
-	 5yh6j0NQ7MFxYx3szDV2SnahgOleuKwxdSPz+zO6RcLsfbbP9dj4MYkkwCLHFnYNmy
-	 DaQ5Ahx/o7VD4ZvjMaGR37zckQvH3kKKI+bGVTYBqTmI0zLgHYfg4Q9oCxg2F8YXDw
-	 CtHgAcztTQIyaYyIDn86XVYRymAS16MVaNKIzJskFlpr+n2sBwUHTyU7/yYtzmzjtY
-	 ZSCQvluc74hrmKxh6Bf3mQHMj+A2bmilCfp8pwBVhXjnF9DpfT5UOd9rQU/OceIO5I
-	 Ou95L5rdLdong==
-Message-ID: <a4e13c9e-f554-4095-8708-e6755ea11e56@kernel.org>
-Date: Wed, 29 Jan 2025 08:23:12 +0100
+	b=cGZaHmNuVvYkEtmZci1cqq1noi4H9Z2iM4gURfsYdXCdZl9pfkfLmjbrwTLjGOqoc
+	 0vJgLsYRUH3n6j3vnzeTanL9Yq5xJ+JnhjbtZjuyq3bd1trRMfX16LT2bsP9CGkA5q
+	 he0shPDduklSsUyzWY4cAnaG1xNenGWMdadC6Qy1GmYtNSBSo5CDNLl26Vx+qdqgl5
+	 MH8hZ825vNp7nkqyT+VFFfVelV5VLk+V/M/3Kx/OOC35k/SZ/AbUEVyzxBcekRAhlz
+	 7rnXkHeAyvZr3F4OLiftI9Q69NiKgEbx3aH5a7bcgwQW6mThW8XamDbW3qf8z1V4mM
+	 J2EwVmMMHpYtA==
+Message-ID: <e1fb1529-1568-46a3-bb7e-3f36b90259ac@kernel.org>
+Date: Wed, 29 Jan 2025 08:24:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] dt-bindings: serial: Add support for selecting
- data transfer mode
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andi.shyti@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.or,
- andersson@kernel.org, konradybcio@kernel.org, johan+linaro@kernel.org,
- dianders@chromium.org, agross@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-spi@vger.kernel.org, quic_msavaliy@quicinc.com,
- quic_anupkulk@quicinc.com
-References: <20250124105309.295769-1-quic_vdadhani@quicinc.com>
- <20250124105309.295769-5-quic_vdadhani@quicinc.com>
- <10060d39-87a4-4565-a2a6-80c93ac2266a@kernel.org>
- <dudqd2y42wy6iq2k73aphd5ol4mtq7z4c54zhd27rl745rrw5x@p3oummf2jke7>
- <374e16d6-46aa-4bdf-85e9-bc2e33c38057@kernel.org>
- <v5n7wn3saiymi2ncgi35drzdjfeaa4ng2ftia6ggex6oh74ocg@7vuskxosh726>
+Subject: Re: [RFC v3 04/18] firmware: thead: Add AON firmware protocol driver
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
+ wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com,
+ matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ ulf.hansson@linaro.org, jszhang@kernel.org, p.zabel@pengutronix.de,
+ m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-pm@vger.kernel.org
+References: <20250120172111.3492708-1-m.wilczynski@samsung.com>
+ <CGME20250120172124eucas1p233b3f6da39e7064db62b02a66bc1ac29@eucas1p2.samsung.com>
+ <20250120172111.3492708-5-m.wilczynski@samsung.com>
+ <20250121-small-ruby-seahorse-7475d0@krzk-bin>
+ <0324973c-2180-4077-a000-b7b6d895b7aa@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,77 +113,53 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <v5n7wn3saiymi2ncgi35drzdjfeaa4ng2ftia6ggex6oh74ocg@7vuskxosh726>
+In-Reply-To: <0324973c-2180-4077-a000-b7b6d895b7aa@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/01/2025 03:21, Dmitry Baryshkov wrote:
-> On Mon, Jan 27, 2025 at 05:24:21PM +0100, Krzysztof Kozlowski wrote:
->> On 27/01/2025 15:27, Dmitry Baryshkov wrote:
->>> On Mon, Jan 27, 2025 at 08:02:12AM +0100, Krzysztof Kozlowski wrote:
->>>> On 24/01/2025 11:53, Viken Dadhaniya wrote:
->>>>> Data transfer mode is fixed by TrustZone (TZ), which currently restricts
->>>>> developers from modifying the transfer mode from the APPS side.
->>>>>
->>>>> Document the 'qcom,xfer-mode' properties to select the data transfer mode,
->>>>> either GPI DMA (Generic Packet Interface) or non-GPI mode (PIO/CPU DMA).
->>>>>
->>>>> UART controller can operate in one of two modes based on the
->>>>> 'qcom,xfer-mode' property, and the firmware is loaded accordingly.
->>>>>
->>>>> Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->>>>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->>>>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
->>>>> ---
->>>>>
->>>>> v1 -> v2:
->>>>>
->>>>> - Drop 'qcom,load-firmware' property and add 'firmware-name' property in
->>>>>   qup common driver.
->>>>> - Update commit log.
->>>>>
->>>>> v1 Link: https://lore.kernel.org/linux-kernel/20241204150326.1470749-4-quic_vdadhani@quicinc.com/
->>>>> ---
->>>>> ---
->>>>>  .../devicetree/bindings/serial/qcom,serial-geni-qcom.yaml | 8 ++++++++
->>>>>  1 file changed, 8 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
->>>>> index dd33794b3534..383773b32e47 100644
->>>>> --- a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
->>>>> +++ b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
->>>>> @@ -56,6 +56,13 @@ properties:
->>>>>    reg:
->>>>>      maxItems: 1
->>>>>  
->>>>> +  qcom,xfer-mode:
->>>>> +    description: Set the value to 1 for non-GPI (FIFO/CPU DMA) mode and 3 for GPI DMA mode.
->>>>> +      The default mode is FIFO.
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +    enum: [1, 3]
->>>>> +
->>>>> +
->>>>
->>>> Just one blank line, but anyway, this property should not be in three
->>>> places. Do you really expect that each of serial engines within one
->>>> GeniQUP will be configured differently by TZ?
->>>
->>> Yes, each SE is configured separately and it's quite frequent when
->>> different SEs have different DMA configuration.
->>
->> Well, I checked at sm8550 and sm8650 and each pair of SE - which shares
->> resources - has the same DMAs, so I would not call it frequent. Care to
->> bring an example where same serial engines have different DMAs and
->> different TZ? We do not talk about single QUP.
+On 28/01/2025 16:54, Michal Wilczynski wrote:
 > 
-> Well, I don't have access to the latest sm8550 / sm8650 devcfg sources.
-> I checked the RB5 ones. As far as I understand out of 14 enabled SEs
-> only two are configured for the GSI DMA, others should use FIFO / SE
-> DMA. Same applies to the SM8250 MTP devices. Checking the RB1 / RB2
-> setup also shows 3 out of 6 SEs being set for GSI.
+> 
+> On 1/21/25 10:56, Krzysztof Kozlowski wrote:
+> 
+>>> diff --git a/include/linux/firmware/thead/thead,th1520-aon.h b/include/linux/firmware/thead/thead,th1520-aon.h
+>>> new file mode 100644
+>>> index 000000000000..3daa17c01d17
+>>> --- /dev/null
+>>> +++ b/include/linux/firmware/thead/thead,th1520-aon.h
+>>> @@ -0,0 +1,186 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0 */
+>>> +/*
+>>> + * Copyright (C) 2021 Alibaba Group Holding Limited.
+>>> + */
+>>> +
+>>> +#ifndef _THEAD_AON_H
+>>> +#define _THEAD_AON_H
+>>> +
+>>> +#include <linux/device.h>
+>>> +#include <linux/types.h>
+>>> +
+>>> +#define AON_RPC_MSG_MAGIC (0xef)
+>>> +#define TH1520_AON_RPC_VERSION 2
+>>> +#define TH1520_AON_RPC_MSG_NUM 7
+>>> +
+>>> +extern struct th1520_aon_chan *aon_chan;
+>>
+>> Drop all externs.
+> 
+> This is required so the code will compile as the
+> int th1520_aon_call_rpc(struct th1520_aon_chan *aon_chan, void *msg);
+> is non static and exposed in the same header.
 
-But they are the same serial engines. Again, we do not talk here about
-QUP, but serial engines.
+No, extern is not required. It's some old coding style, long time
+deprecated.
+
+> 
+> I really would like to keep th1520_aon_call_rpc in this header, as it
+
+It can stay, I commented only on externs.
+
+
 
 Best regards,
 Krzysztof
