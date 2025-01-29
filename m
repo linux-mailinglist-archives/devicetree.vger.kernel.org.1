@@ -1,176 +1,204 @@
-Return-Path: <devicetree+bounces-141576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76317A21682
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 03:21:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D38A21720
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 05:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B984D161DAE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 02:21:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35B131633AC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 04:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4019618FC65;
-	Wed, 29 Jan 2025 02:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E209118FDC9;
+	Wed, 29 Jan 2025 04:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PJYHdyCI"
+	dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b="pc3Ep6c8";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="wYiJ4UIS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-b2-smtp.messagingengine.com (fout-b2-smtp.messagingengine.com [202.12.124.145])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E725218DF80
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 02:21:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B90A11713;
+	Wed, 29 Jan 2025 04:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738117298; cv=none; b=PnsHlcTKZJhuo/95NRlF4Nyh1haV5bqp+Y0TDGjF9etSYHbFpOYZi5J7EKfEkBcfzk8GPGmJKaTuXJrBC8nq7zu17liZBUsnZWw5FwPSvf5llZqr6v4tcX7jlBVwMGC8go573zWwnON9iI5/AXVy1g4dZKXzycG2NOBk4CRJPxk=
+	t=1738126443; cv=none; b=DtTdTG805kpdSvyISUkadaUFWIdJPbpTp138umT46bRcSGRJKLOJZ2sl1tLh6Mrgpk+pl+YmwmO79SY0BfPJEIvDn1yNG7D4TXykqiGOBhb2v6i4WAm55GjQHnixlZBu9PCZ7gO80oYqdJmxn/U7PkQGtejnzd3C4kq0E3P563w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738117298; c=relaxed/simple;
-	bh=ClyITuF8gOnzs/F3NZb6ENAP9stJFnJgE1LAv9csGYs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nDe9EZ7sS9TUBAt+4P99BHqBKCu6Utl5utIusUomggveP9gkWeZeiahLKUjeKLFFE9yKcxODf7XvnIr4KzAuFUVIoNn5cjOaXd0J/FETJISh5qzf/YDhkdD641MHxlWiHictbjF3dz+Mo3ux86Sg7HYx9zcL7jm/rlirXSxoj3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PJYHdyCI; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-543d8badc30so3158595e87.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 18:21:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738117293; x=1738722093; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lhVC/jY9oSkBWKgGztp81ZX5vLd9ni6/ghgnT90rp+w=;
-        b=PJYHdyCIm9xZGeITClzrO6WHqyVJEVh7jpVEqtysZvOXALjGF4rSZ9uhEfIXlmaHDr
-         SoLCkZPjer9NBDwv7YJ1rjqLmmAU2KUQsnacAP7G/SRs1TJd4UszHR5RHy6RQzkfwgXc
-         CRHQPthNtcQVvpEpIHchSFYQ4AsmrxHJkZDbr9Xqh2kKUawpb6dREjHSUPhwTFDREyar
-         mCCc4i3DofWGY3vZUo3gUkKfUD7y9bqDeYXgjDVraqTnpdcx/Pjwqossjv4uMWKbqTpW
-         fcvFwsc8NECy4dkudNIdaHkOfH09CR1BgJz76ar5M0JEJnf2PLQ8Tp+F1LG7Mo7CbmMt
-         bY0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738117293; x=1738722093;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lhVC/jY9oSkBWKgGztp81ZX5vLd9ni6/ghgnT90rp+w=;
-        b=D1ZIo7ZE9M5jsmO+g5tr7VTvsqtBiXnC+Lc7d8l74iGpZKpU7xf3+G+83U9iQVTOWn
-         sz8TXhNd1j+yZC/o2mU562vxAzs4mwFTRMuQ5S5jmXkj3wgnfV3f8FyUw42ZxToowMBA
-         V9Wk4nRt+FRsbwrVxgJCK0elf+MZ+ORvaEqs+JDYIYdzm6IJIXCcXaCqSfQ99zfqoWRC
-         +sJzUELt1omvCJf8K4Y70FfQM8YcbWGv3LymusXWSpICsIrtM+wzn4FMiEZJ/i30H3Mi
-         BfbC2PZ2HyFIMJ0zXvvwVGsrV9UQq2WZLnnpUcpn8ctD9ssoFW6bsL3tvO7STheonnwn
-         sOuw==
-X-Forwarded-Encrypted: i=1; AJvYcCWaOKGKsPTJqPFvG413mP4z9hLu2bekH9j7DjY3C5QO8QQQadn9f5+se6Y/GgiT6tQn03Sc3155GxMr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWE9GST2D+bQ+ndIukmPwkfjYUcP2NL/CylwcP6Hf1o2QbIscH
-	L49qMjcMjuekSFHhvsCHn4traywj9ygYwMRrDIW4oAHwlncyWPMVFI5ZIcCjj7I=
-X-Gm-Gg: ASbGnctmRgM0uAPr9E/TjsTeAhPabs58SopvwoNnubzxSOll0BuKMbmXdHAdhaoiaVS
-	a9aI4QMwE+qOodeLL656kJBISSNb9OdRA5W4U6gxcNUwN5aohRSLzsm59t+jZvtw93hok3EPTTX
-	SnXehIHoTCHyn7ZqCbH43Yl/mrcAGakZ5yMTNneYsbKYfiRRRp99zCYTnx1BuUtgSZIqi24vObC
-	PFeP0EA84aJJZKJIOuZ194U0fu2OW11SPbV2OFp5r9pZu9TpGYGd9bkt/h3rIw6Bfgyndlo2A6V
-	AxlLfsrd9S9lYlBs/SKTVNmIIikFoHeuBqadihjup72i6t0AySWZFXZ5rsoE3xw/0xv3CH2gSF2
-	bJBRVUg==
-X-Google-Smtp-Source: AGHT+IFCsKhtG6nSDsI742TadJTivtvw91Ucb98NwdkXhuO5uH0m74kP7qa7ILD4yusdJNvna23Ihw==
-X-Received: by 2002:a05:6512:3081:b0:542:2999:2e43 with SMTP id 2adb3069b0e04-543e4c011acmr409942e87.24.1738117292885;
-        Tue, 28 Jan 2025 18:21:32 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543c836846asm1808863e87.116.2025.01.28.18.21.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jan 2025 18:21:31 -0800 (PST)
-Date: Wed, 29 Jan 2025 04:21:29 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andi.shyti@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.or, andersson@kernel.org, 
-	konradybcio@kernel.org, johan+linaro@kernel.org, dianders@chromium.org, 
-	agross@kernel.org, linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-spi@vger.kernel.org, quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com
-Subject: Re: [PATCH v2 4/8] dt-bindings: serial: Add support for selecting
- data transfer mode
-Message-ID: <v5n7wn3saiymi2ncgi35drzdjfeaa4ng2ftia6ggex6oh74ocg@7vuskxosh726>
-References: <20250124105309.295769-1-quic_vdadhani@quicinc.com>
- <20250124105309.295769-5-quic_vdadhani@quicinc.com>
- <10060d39-87a4-4565-a2a6-80c93ac2266a@kernel.org>
- <dudqd2y42wy6iq2k73aphd5ol4mtq7z4c54zhd27rl745rrw5x@p3oummf2jke7>
- <374e16d6-46aa-4bdf-85e9-bc2e33c38057@kernel.org>
+	s=arc-20240116; t=1738126443; c=relaxed/simple;
+	bh=VJ3g843QZp3CIXcfvo0qGyNGFQEdP4kBr+lewXtIiJA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=R6Y0WZtb688RpFzh/E+F65UHRxvNmwTBvLLptsqyHPKcN8EvSN5FwB4DoRQdwBwzdotkuGzhuOuTjfiLq4SbfB3+IwF4sfjZUUN+FU09oLvqT6/l+4f/PENv9EH4T3R+8CZYMhBZMy38glH/9uxNS4Y7K4xR+41dGDlqUowpBJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au; spf=pass smtp.mailfrom=traverse.com.au; dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b=pc3Ep6c8; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=wYiJ4UIS; arc=none smtp.client-ip=202.12.124.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=traverse.com.au
+Received: from phl-compute-06.internal (phl-compute-06.phl.internal [10.202.2.46])
+	by mailfout.stl.internal (Postfix) with ESMTP id 0738A11401BD;
+	Tue, 28 Jan 2025 23:53:59 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-06.internal (MEProxy); Tue, 28 Jan 2025 23:53:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm2; t=1738126438; x=1738212838; bh=eMyQJwJhmV
+	S3FVKPKH5yOTL3X3dY5nNNbnJgYKK3EIg=; b=pc3Ep6c8WKGOT0jQNPJZEKNP0Z
+	L2I8T9E96YJhKYx8I8BAvQ61oqb9U2ayuuUeN95O9BVike+q9xFYplJMfh6eF5LK
+	2pmNWHNDYQ7rSL2E9xyFW7cphTQIc/1ovNWTLmEQ1DgPMQzdGKTm3QZANJCXGcae
+	TfrjItuhqOArSW27O0ZZFHYxmyTHi1OUphoHxppmoKHFSkfwXvUX5WwLuvLTGj9h
+	NEITZI4nnx2628+64/r7N3IYJ/lJV7ZKOtvMgHEWMzY8COLsGc5M6Sm9sAIEUrUG
+	8NpdKE16NMGvYgpXbn5Ecydd9mTQquMvoEQFw+QnFcOeYcpDPposZQrJw03g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1738126438; x=1738212838; bh=eMyQJwJhmVS3FVKPKH5yOTL3X3dY5nNNbnJ
+	gYKK3EIg=; b=wYiJ4UISqkuI/hGv6BV6qz/+UWg2dQmbwI4+F98jVUhsoshDCdn
+	DBj6T4K+4jjyC8ksA8cC0xBtnfq+AfVr0LjjpW6EyYN7FLXXuxnbpdN8MUkg1lL8
+	6jvnk+h/pXM5g6jJqW+5nX9JlYWslxJqrlKsVDeKF+Hgq+jsorSDaaSw0NLf8lB6
+	XnWeewRJQyYYjR0WCwO/8DAci3xrawTYzandiZDICM1/7ljCrEVRni/EAvydkejy
+	2z5ICu9M1l9cNtNAgfUCF8o6+LZHM3HJX4NyvzilxLAdIRwa25vzGRdnfKVDRkkt
+	uoxaVziL87UFyt6gSle+NmvFtm/tnw/mL0w==
+X-ME-Sender: <xms:ZrSZZ4KOF0tSGajFZ7RswBpdy8p-OV0FH3ukqAKXa3NCgJ1phNzr4Q>
+    <xme:ZrSZZ4KV3oaTbfJJ5jueQlC-Wel75iW4LcGY9I2oWbhaqG2F7d5a7faki1lllxS4B
+    Uu8RdSZOMOhUjxySZA>
+X-ME-Received: <xmr:ZrSZZ4vMUO7Xg6UIUUrdPOwgOK7vD0qQEIifR1Sys6jI0IFBAvMA6H1LVjoK9ULVT1dAE-qqc-srJecnYzjuxqFUlGYQwguaSVEdsyBcrwbxNELy8xxk5CaKNY8pdNMFG1rGHIYBw-K32KH1I8rn8HDJsXk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhephffvvefufffkofgggfestdekredtredttdenucfh
+    rhhomhepofgrthhhvgifucfotgeurhhiuggvuceomhgrthhtsehtrhgrvhgvrhhsvgdrtg
+    homhdrrghuqeenucggtffrrghtthgvrhhnpefgkeetgedufffgtdevvdejjefftdfghfet
+    fefgueehhfeljeffgfefueeujeelffenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruhdpnhgs
+    pghrtghpthhtohepjedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepuggvvhhitg
+    gvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidq
+    rghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpth
+    htoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghp
+    thhtohepshhhrgifnhhguhhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshh
+    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdho
+    rhhgpdhrtghpthhtohepmhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghu
+X-ME-Proxy: <xmx:ZrSZZ1ZlM2-OSRFpHaVtdpiZEC2G5R-ouCjRbNBiFL8Nyu6CR1mfvQ>
+    <xmx:ZrSZZ_YtecGEbON3THFkAd3EF1vAtZIiVmC_Z_Ph8Ge8EyXl9cgmJg>
+    <xmx:ZrSZZxAyknMpM3ufooBk3O2vU3eU06XCrTQRPcWaL7G0KneSqdzuTg>
+    <xmx:ZrSZZ1ZClwcXVtGh4sS4PfXcchUk2evef7tTyFcUgcQgg-e0TcxTLg>
+    <xmx:ZrSZZ9PtxyriO9N9UBYaCxYml2DXBfqIhBb5fcUxCB-HXZj5ZDoJeeH8>
+Feedback-ID: i426947f3:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 28 Jan 2025 23:53:55 -0500 (EST)
+From: Mathew McBride <matt@traverse.com.au>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Mathew McBride <matt@traverse.com.au>
+Subject: [PATCH] arm64: dts: freescale: ten64: add usb hub definition
+Date: Wed, 29 Jan 2025 15:53:52 +1100
+Message-ID: <20250129045352.10728-1-matt@traverse.com.au>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <374e16d6-46aa-4bdf-85e9-bc2e33c38057@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 27, 2025 at 05:24:21PM +0100, Krzysztof Kozlowski wrote:
-> On 27/01/2025 15:27, Dmitry Baryshkov wrote:
-> > On Mon, Jan 27, 2025 at 08:02:12AM +0100, Krzysztof Kozlowski wrote:
-> >> On 24/01/2025 11:53, Viken Dadhaniya wrote:
-> >>> Data transfer mode is fixed by TrustZone (TZ), which currently restricts
-> >>> developers from modifying the transfer mode from the APPS side.
-> >>>
-> >>> Document the 'qcom,xfer-mode' properties to select the data transfer mode,
-> >>> either GPI DMA (Generic Packet Interface) or non-GPI mode (PIO/CPU DMA).
-> >>>
-> >>> UART controller can operate in one of two modes based on the
-> >>> 'qcom,xfer-mode' property, and the firmware is loaded accordingly.
-> >>>
-> >>> Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-> >>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-> >>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-> >>> ---
-> >>>
-> >>> v1 -> v2:
-> >>>
-> >>> - Drop 'qcom,load-firmware' property and add 'firmware-name' property in
-> >>>   qup common driver.
-> >>> - Update commit log.
-> >>>
-> >>> v1 Link: https://lore.kernel.org/linux-kernel/20241204150326.1470749-4-quic_vdadhani@quicinc.com/
-> >>> ---
-> >>> ---
-> >>>  .../devicetree/bindings/serial/qcom,serial-geni-qcom.yaml | 8 ++++++++
-> >>>  1 file changed, 8 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-> >>> index dd33794b3534..383773b32e47 100644
-> >>> --- a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-> >>> +++ b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-> >>> @@ -56,6 +56,13 @@ properties:
-> >>>    reg:
-> >>>      maxItems: 1
-> >>>  
-> >>> +  qcom,xfer-mode:
-> >>> +    description: Set the value to 1 for non-GPI (FIFO/CPU DMA) mode and 3 for GPI DMA mode.
-> >>> +      The default mode is FIFO.
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    enum: [1, 3]
-> >>> +
-> >>> +
-> >>
-> >> Just one blank line, but anyway, this property should not be in three
-> >> places. Do you really expect that each of serial engines within one
-> >> GeniQUP will be configured differently by TZ?
-> > 
-> > Yes, each SE is configured separately and it's quite frequent when
-> > different SEs have different DMA configuration.
-> 
-> Well, I checked at sm8550 and sm8650 and each pair of SE - which shares
-> resources - has the same DMAs, so I would not call it frequent. Care to
-> bring an example where same serial engines have different DMAs and
-> different TZ? We do not talk about single QUP.
+A device tree binding for the Microchip USB5744 hub controller
+was added in commit 02be19e914b8 ("dt-bindings: usb: Add support
+for Microchip usb5744 hub controller").
 
-Well, I don't have access to the latest sm8550 / sm8650 devcfg sources.
-I checked the RB5 ones. As far as I understand out of 14 enabled SEs
-only two are configured for the GSI DMA, others should use FIFO / SE
-DMA. Same applies to the SM8250 MTP devices. Checking the RB1 / RB2
-setup also shows 3 out of 6 SEs being set for GSI.
+U-Boot will consume this binding in order to perform the
+necessary actions to enable the USB hub ports over I2C.
+(We previously used our own out-of-tree driver for
+this task)
 
-> 
-> Anyway, if you need property per node, this has to be shared schema.
-> 
-> Best regards,
-> Krzysztof
+The Ten64 board does not have any switchable supplies
+for the voltage rails utilized by the USB5744, so a
+pair of dummy supplies have been added to facilitate
+operation with U-Boot's hub driver.
 
+Signed-off-by: Mathew McBride <matt@traverse.com.au>
+---
+ .../boot/dts/freescale/fsl-ls1088a-ten64.dts  | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
+index bc0d89427fbe5..fc15c83d222f6 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
+@@ -87,6 +87,22 @@ sfp_xg1: dpmac1-sfp {
+ 		los-gpios = <&sfpgpio 7 GPIO_ACTIVE_HIGH>;
+ 		maximum-power-milliwatt = <2000>;
+ 	};
++
++	usb1v2_supply: regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "usbhub_1v2";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		regulator-always-on;
++	};
++
++	system3v3_supply: regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "system_3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++	};
+ };
+ 
+ /* XG1 - Upper SFP */
+@@ -231,6 +247,12 @@ at97sc: tpm@29 {
+ 		compatible = "atmel,at97sc3204t";
+ 		reg = <0x29>;
+ 	};
++
++	usbhub: usb-hub@2d {
++		compatible = "microchip,usb5744";
++		reg = <0x2d>;
++	};
++
+ };
+ 
+ &i2c2 {
+@@ -378,10 +400,33 @@ partition@9400000 {
+ 	};
+ };
+ 
++/* LS1088A USB Port 0 - direct to bottom USB-A port */
+ &usb0 {
+ 	status = "okay";
+ };
+ 
++/* LS1088A USB Port 1 - to Microchip USB5744 USB Hub */
+ &usb1 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
+ 	status = "okay";
++
++	hub_2_0: hub@1 {
++		compatible = "usb424,2744";
++		reg = <1>;
++		peer-hub = <&hub_3_0>;
++		i2c-bus = <&usbhub>;
++		vdd-supply = <&system3v3_supply>;
++		vdd2-supply = <&usb1v2_supply>;
++	};
++
++	hub_3_0: hub@2 {
++		compatible = "usb424,5744";
++		reg = <2>;
++		peer-hub = <&hub_2_0>;
++		i2c-bus = <&usbhub>;
++		vdd-supply = <&system3v3_supply>;
++		vdd2-supply = <&usb1v2_supply>;
++	};
+ };
 -- 
-With best wishes
-Dmitry
+2.45.1
+
 
