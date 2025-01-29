@@ -1,122 +1,110 @@
-Return-Path: <devicetree+bounces-141708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E377A221E0
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:39:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B80FA221E7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:40:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90D843A2977
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:39:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C2EC1887256
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:40:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F081DE4ED;
-	Wed, 29 Jan 2025 16:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C3BB1DEFC5;
+	Wed, 29 Jan 2025 16:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iTnqnlG3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bVd5HPtB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 986032FB6;
-	Wed, 29 Jan 2025 16:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64A6C1DE8BF;
+	Wed, 29 Jan 2025 16:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738168765; cv=none; b=pISQ+1w90HdeH+fj+bhygP4gY0k1UM4s6Ai1cocX/klSlzu8+V9T/4RAVUQVnBSTf7fDH6krjRX7wXGeNt8Kf0cc1SkCmxxBOt0x7getk4knMnpM2YDIgZg08bSxP+ycj1W58uve+SvnFy8MBOzBEDHx9CIVgObQK6C8FXatqFo=
+	t=1738168836; cv=none; b=tyCybRXcSumR6IXIneoAg1zfNWSssiA6svGslPhGO/Wdczu5o2a5lMlh7USeQUZZ0OXE5kK4kJXN6zKTGFc8Vv3vZtjCPs/zEYZ9hCR4nqIgZ3wz3/+k5y6wCSIcs95l6CcYo7wjJDcFcuwZdrYKE3cGBS9OV2TYMMWvhaDvRDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738168765; c=relaxed/simple;
-	bh=Ah4vFnZwz/yZYDSuu8dtBEFULNvuptTD7Yx7PbHXAxQ=;
+	s=arc-20240116; t=1738168836; c=relaxed/simple;
+	bh=fQHwilHCkmzvP+LtfBPpLrp6GzI+AORKtJJ51bDVNC8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tkKmu2vsDNIMd+ooH2o9mvhtXx/1c+gbqdgeoHVI24I71IHK/kbIub3AJkZwp3L96ofn+yjD/GHNTgjcjrbc+U92VCKxKAWKmOtSc1zakrKch6MIcriu4+zECYRRfXY6UcH3Mx+fAG1AsHxJHFeoMGpBLa/AdFXFNPdNTGcd5r8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iTnqnlG3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E3BDC4CED1;
-	Wed, 29 Jan 2025 16:39:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uZiWEACxsEKjx6g+n3Wnx+xtI8pQ5FKPw4sTThLG0qZ/RgMP6nKEAO1Q22Wo7DR6VsLjD2L0Ym+PexmWrTKs48MryIxZJsfrYY+LIpRVyyQxvWpANuZMoO8NoGP3P05lsItXJK75aObZc5Ijuej5eBd2Ia5xn8DlGyOIYGhsKuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bVd5HPtB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B609EC4CED1;
+	Wed, 29 Jan 2025 16:40:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738168765;
-	bh=Ah4vFnZwz/yZYDSuu8dtBEFULNvuptTD7Yx7PbHXAxQ=;
+	s=k20201202; t=1738168835;
+	bh=fQHwilHCkmzvP+LtfBPpLrp6GzI+AORKtJJ51bDVNC8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iTnqnlG3+7YHKkHl0AKhQ4j0QCf1CqR4SYyHC+K5JQ17Ztjajn3FWmHT6+TggVeeA
-	 ROt86ZitHHnWESUKMRQnUTmot8RyI3/Hc7DcqR/IpBhG+pPwt/DHfTJOI4rJZXeLub
-	 DtWBWeV0wSU1n2LBxKn0rYgHcNAlpZpFqNGwtoCZlCvlyftJh+xmmkgxTF1SevIXRX
-	 Zn/dbczsl5xpjlJ+dcYNbjphdUTeJqBehOpZDJt4ojjjlOfYYoWTVuROBbvxjDm//q
-	 9On77OOIUHWyUzfozR12JD8NqQXaYP5/OtDGe6OmVYJ6AWoZHTkjASi0lkcuawFIpR
-	 8RiI1H3ndLOeA==
-Date: Wed, 29 Jan 2025 17:39:18 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Subject: Re: [PATCH v9 0/7] PCI: dwc: opitimaze RC Host/EP pci_fixup_addr()
-Message-ID: <Z5pZtsa4FFKq0AZD@ryzen>
-References: <20250128-pci_fixup_addr-v9-0-3c4bb506f665@nxp.com>
- <Z5n_VrN8HUmdVPUq@ryzen>
- <Z5pJF9MGENNDqq/O@lizhi-Precision-Tower-5810>
+	b=bVd5HPtBR130PvxqyvqF0UjsAU3QxxJTZWvYXs1z5NBnDH7UHaaFEcb42m6uSEnvY
+	 oJPyks39sAxUcXiP1vCaTREnDQpPUch1ocZt3XAL6/PHW+p/t3fCcgJqRp1Wnabzbv
+	 xUJRNtRxU9iboPtZgBlqtz5795aI2MQEkF0tJhBazq/GjUqP+s+04kG/yu7BNiYBWc
+	 5CSG16CQJHx6SR/04OrQYZje0Ytqy4EWfX8YE8k7YqGd25xE/sNu66H/3w35Np6YF3
+	 8bgHGEs+XKXi4Yj2y0DqS9iCVahEJ5olgo+ZNvM3l5IGsUXy6MxWvUkkt+szUaGTwn
+	 S4eqcDU49uSpg==
+Date: Wed, 29 Jan 2025 10:40:34 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Cc: linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Anup Patel <anup@brainfault.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: interrupt-controller: add
+ risc-v,aplic hart indexes
+Message-ID: <173816883375.2207117.18376328133127394018.robh@kernel.org>
+References: <87ed0o87qg.ffs@tglx>
+ <20250129091637.1667279-1-vladimir.kondratiev@mobileye.com>
+ <20250129091637.1667279-2-vladimir.kondratiev@mobileye.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Z5pJF9MGENNDqq/O@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250129091637.1667279-2-vladimir.kondratiev@mobileye.com>
 
-Hello Frank,
 
-On Wed, Jan 29, 2025 at 10:28:23AM -0500, Frank Li wrote:
-> On Wed, Jan 29, 2025 at 11:13:42AM +0100, Niklas Cassel wrote:
-> >
-> > Please don't shoot the messenger, but I don't see any reply to (what I
-> > assume is the biggest reason why Bjorn did not merge this series):
-> >
-> > ""
-> > .cpu_addr_fixup() is a generic problem that affects dwc (dra7xx, imx6,
-> > artpec6, intel-gw, visconti), cadence (cadence-plat), and now
-> > apparently microchip.
-> >
-> > I deferred these because I'm hoping we can come up with a more generic
-> > solution that's easier to apply across all these cases.  I don't
-> > really want to merge something that immediately needs to be reworked
-> > for other drivers.
-> > ""
-> >
-> > It should probably state in the cover letter how v9 addresses Bjorn's
-> > concern when it comes to other PCI controller drivers, especially those
-> > that are not DWC based.
+On Wed, 29 Jan 2025 11:16:36 +0200, Vladimir Kondratiev wrote:
+> Document optional property "riscv,hart-indexes"
 > 
-> Thank you for your reminder, I forget mentions this in cover letter. I
-> create new patch to figure out this Bjorn's problem.
+> Risc-V APLIC specification defines "hart index" in [1]:
 > 
-> PCI: Add parent_bus_offset to resource_entry
+> Within a given interrupt domain, each of the domain’s harts has a
+> unique index number in the range 0 to 2^14 − 1 (= 16,383). The index
+> number a domain associates with a hart may or may not have any
+> relationship to the unique hart identifier (“hart ID”) that the
+> RISC-V Privileged Architecture assigns to the hart. Two different
+> interrupt domains may employ entirely different index numbers for
+> the same set of harts.
+> 
+> Further, this document says in "4.5 Memory-mapped control
+> region for an interrupt domain":
+> 
+> The array of IDC structures may include some for potential hart index
+> numbers that are not actual hart index numbers in the domain. For
+> example, the first IDC structure is always for hart index 0, but 0 is
+> not necessarily a valid index number for any hart in the domain.
+> 
+> Support arbitrary hart indexes specified in optional APLIC property
+> "riscv,hart-indexes" that should be array of u32 elements, one per
+> interrupt target. If this property not specified, fallback is to use
+> logical hart indexes within the domain.
+> 
+> [1]: https://github.com/riscv/riscv-aia
+> 
+> Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+> Reviewed-by: Anup Patel <anup@brainfault.org>
+> ---
+>  .../bindings/interrupt-controller/riscv,aplic.yaml        | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
 
-I see.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-If you are solving this problem in a generic way, then it would make sense
-if the generic patch comes first in the series, and then the driver (DWC)
-specific patches come after that.
-
-Your cover letter, including the subject is also written in a DWC specific
-manner.
-
-If you are solving a generic problem, then describe first how you solve
-the generic problem, followed by DWC specific details.
-
-See e.g. my cover letter here:
-https://lore.kernel.org/linux-pci/20250119050850.2kogtpl5hatpp2tv@thinkpad/T/#t
-
-
-Kind regards,
-Niklas
 
