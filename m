@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-141638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AF9CA21BB1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 12:05:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C1A6A21BBC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 12:05:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3AA51881FC9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:05:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 422A31884375
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E8E81B87F7;
-	Wed, 29 Jan 2025 11:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 514D81DA100;
+	Wed, 29 Jan 2025 11:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ctaK8n/c"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Bz4/49AJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BFB71D8A16
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 11:05:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A671DA60B
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 11:05:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738148707; cv=none; b=CduyoSj8rjsqtVfTvKgHg3Ej6TQm+WyHZ8IcV7NuYTtX2Jrw9W+tICQshnJgfNd+D/TmgBETvbN6WnwiETG8WYMSloBN7ereHNY5fQp7BnIh5V/hDWn+FgA2z2hwD+/6Y7I+3ASsecqoYYUcj0a9I4BGblYnZdzB+iDaIZaJNSY=
+	t=1738148710; cv=none; b=TFVAmSBM2XgKCTzkW7CYiE4phx0c74ABhABpEkMqXqNFMxGlOuwp2+lXjLlKZjZF9XyJJo5vy6bDir+r9hJVFtkZzBnzzQJhdu8i7xUYTrPISxau2RpyPoqpGmU7TsaKMjZIH44ltHFAg0CT+artuoGTil/HaDFuifWUchjNOUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738148707; c=relaxed/simple;
-	bh=eeeG742/LDeOmZMMgJC+W4hlPYKRzBPb8KIQGlxLJKg=;
+	s=arc-20240116; t=1738148710; c=relaxed/simple;
+	bh=dioqZv2txBsr2G2NsI3KTjuvSsHBK1WMQvxJwpSgCpc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=c6KEjKLkgQpzgrjXc5B7Bh8ngdN4wHyuS6Qd3Ukd/8EPNRkV4sdheF8oQ13oL9fG7vgCHMP9fr/fafgvr8IH7Weq7oN0/SE+5LGq5BEQ+3BQ8S1oRPCaEQ7mLa9c+jPHG5r4EPA286soo43BYQMea1K26ciTSLkEdUYpIuY+sro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ctaK8n/c; arc=none smtp.client-ip=209.85.221.53
+	 In-Reply-To:To:Cc; b=PppkdLH4hDa6JRqI7ureRTS6wo/5W+DGDBwH8pqAkvoTJAqEcSyDNHKRMcZjjLS9X25ywUDm6wbDU2nb5iMBKfuTHzK18r/IOe9KnITR1XPbmnBL3DwYUBHqkKAZJ5Of1Az5HxQESmN4Bn7NTUyerM5PkTw2065phx7XvUxjUaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Bz4/49AJ; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-38a8b35e168so353056f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 03:05:05 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-385e1fcb0e1so3505696f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 03:05:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738148704; x=1738753504; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738148707; x=1738753507; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Cdc1cATkxj+NRQremP6tEug4vIFfF8rLsJGQkTSIG7w=;
-        b=ctaK8n/cGXbZUQJsCsEeJAX1kstrN1ZAO4b+dRNxj9Bsm0Lt0hC9j+jlAdPbK7F99I
-         JAe+aES1tFjFYG51ASECBQM+3qpKJGlbIPjyeRCYtDQ5KP5V3qhq37qKpLBJ3HQQz330
-         oJ9uWH4T8nbQkEuYDsdhAtu8Blp5am4lSKl8Y3u7YMUBsExsD51duhau+RsCUb2KlgVU
-         YqYAFApmgnwjlUSVJF7ZgPE6pKUBoZr0OgG5zrnMkoFyX7NYVsCBJwKB7KlKPpUZe115
-         zuWoCHaDV/K+9P5EUJVQtUuKI6c8GoR5TRujlUgiUQ4yisberOTWVTxbMcT5gCmvKycm
-         cJow==
+        bh=wlrP600R/ci5wFmyR+m1ecPzb5qUkdneDDlwcUEYxOc=;
+        b=Bz4/49AJauD3c1+DEMoSQiC3Xk7fs9jDbGBSu3wh7rpGRxNCqMJwGm7ju8Uh9SYXDR
+         kEbg/tC1MnZZJWPFYjIMzyaoS0yhHrhy1TSjyg+BhZCGCwta12lRMEBtKkFP3T2FbDBw
+         jfaEFSG6A1jYqCPOK587causGRetL2/mhatMG4uRoaQJizw4olV2GlrkoCkgad+PqfhM
+         h6DK0uXNCF/nMUaXrMdCIUbB/MduVNd+F/bGbLI67v0xV5O1J/IYyNfuRxwumu45YH7+
+         MBcMC5NtFm1dunSlK9+99ugEgMDi3QSN7BqtXtKK9ljl2m5Q+CaVUiWOoxfzu250Rk4I
+         PMiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738148704; x=1738753504;
+        d=1e100.net; s=20230601; t=1738148707; x=1738753507;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Cdc1cATkxj+NRQremP6tEug4vIFfF8rLsJGQkTSIG7w=;
-        b=Gy/7hvJmDXyGhfRh2dmLx5S87Xp8ErDdqVXwkDLPC+MBVg9u6tXAfH2JYF0bFK9Sxy
-         v7WQbvFUr5/o6X0Z0yHGxnDk7NWd4KqGEM02w7wXqwJxvNIeMjYR1W86G4gaoabsIdyc
-         5JfcQt8KCIx6njbBqPeN9jBWHgrdzqKdmjrKWgZj18CUUmI6bnJs1vsMIHP6pM7iCFMs
-         FvH47/rGwtqNHWZDwnYoMwGMe9ByVjYwZLlk+ZsIo37KXe3BYubSkEsUwHjJIkBMfvpA
-         QXK9zMnD9y//0xTK9yeUp3KucYehaUBXVyTnhtSeLWoppvFMrfOclVqsm1LGAoiRtn2g
-         SVdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVWP7iZKMICNW0tm8huBrb4M7rj+69wV2td1gRhG8O06ZeffZd6ZEDAm5YZbsmLcsFwkewUg4XnreA5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYp3JTk2XMZof48NMPVz85FMkNU/V225dDLiGYEuXD2GC8OPx+
-	icC7Oru7H9FqLkr7IKteoEphgvVKKxFTOAz4x84KMvF7JVGwz7/T7Jkr9SHsmKY=
-X-Gm-Gg: ASbGncv6ZwD0wc3jSDOlH8MmmzYIgjwHsqe3valwURc4cRXFNkOyWOLvqmCAtaC8ZDk
-	Dk4cCJ++5FgmsXrDrRdURpnFbcJsC5FAOdhId1iUbU5A7isG48FxFUR6HD6HIcDHUQw6Lk56cq5
-	1/PHOKveHFZpmLdbljr4S8J9zY8Dc4o3tMZOwMggkrqOqfchhGp1VJgTNduaTb9dR4NjZbbh9VU
-	UqiZS2SY5WHdr3M8Y41SSJGNqnRWG532F4LepYkOkJ8lk313YJgQJysOyf5hJv5m2+2tzuAIOVU
-	s441SNQZdhqRtGfwftgMOnskhV6/V/DbjknC3T8VGVWVD4lPH8gzh9meXdshBzLXU9V1FmE=
-X-Google-Smtp-Source: AGHT+IFaDLpWVjFWIu1Y+Qyim7g9TKgeSUYK0sY4eBsggvgAlH7UPWWj1NlDTMMXxX0rHSkDBiAViQ==
-X-Received: by 2002:a5d:6481:0:b0:386:34af:9bae with SMTP id ffacd0b85a97d-38c49a051c8mr5706558f8f.4.1738148703815;
-        Wed, 29 Jan 2025 03:05:03 -0800 (PST)
+        bh=wlrP600R/ci5wFmyR+m1ecPzb5qUkdneDDlwcUEYxOc=;
+        b=N6w156vFx0aDlP5iuoI3Swrx+ttR8JP5Qm/PtidTSO1GWI/68Kdw6vNy40mdne/MQY
+         KXFjsI7lVeQHYwz6wqR9lRAJmb0D8Qg8XGdt+VK1ZqxyaM5Rmeckzx/v8xBUwaJrQFuE
+         /QfvbQ+FTCfH7foEGXddNTyvli0ttLor1kVOwnzi7Dq2YPXjPGxBc/spxfQXYWv8DERL
+         3nqPnPHFt+zm/E2u5pPZZDT+ynOn1LoUdJiHWwpmTF/g14wuNH4lpj8KIZ2YLwb/iHiY
+         QKRyRLF5Q1kwqORfHu7u0xryWgWqMYLIkWJGmjLUcK+zhzr3+qucl4Bi5NvrTG700hSe
+         +lqg==
+X-Forwarded-Encrypted: i=1; AJvYcCUmEDoEerzbnG+eAxQC72RG1u2eIGecwuBgb2WFzUiFXzojBCt/+aE4guilwRPvUYM+hTyEJLwlgg8p@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9DhrsheVH//QypN3hcOFnGUsiaMQly0Fy0EdGzI3QIGYhNiii
+	EdqimkTX8zwtPH0ace9eGH0t2m5UFkIdWon9bHD+pxHY645fkjG9l0CHLKBZQ4k=
+X-Gm-Gg: ASbGncvTkHQSAmV3nd3vuCbTyc56sfbm/FYokJFVQPFVNug/ypvZ03B8zwLZzd97mcr
+	lNsgcVHmcZdG0ElyL8+vg0C6BEmEs3OIlOxUTU6Z+dS1iv5p1LqgT5/dyT5GgfvHQHoMjbsg+ik
+	zj7G+krbctPhGSOQWE7+Xmr/Lkq2rgR3C1hhR1MUacWZDPgba053meOOy8r9SR44t+4alQgUk5E
+	Mkus/+RG+G8SwZvBpX20dN2cmnUhhd5JYk1M28uv+wB9TJ0uOaWy4QVVfY0/foNYtHa470wS28a
+	cfJfDiUDWwQ9MpcmWXpUOyMDMdSb6M0pfe4c4T9QwrUcniIs9wamFw+8ieWsGTdwbnzegkw=
+X-Google-Smtp-Source: AGHT+IE2sAMHKOfuQ1fuQ2nuVuYnw/aDn5EAlessm0idPWhiV/TrPf3r9aU7XQvRQSZJ/cTuX/bYWw==
+X-Received: by 2002:a5d:6149:0:b0:386:373f:47c4 with SMTP id ffacd0b85a97d-38c520b0473mr1757557f8f.49.1738148706878;
+        Wed, 29 Jan 2025 03:05:06 -0800 (PST)
 Received: from [127.0.1.1] (host-95-245-235-245.retail.telecomitalia.it. [95.245.235.245])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a17d7a7sm17107364f8f.32.2025.01.29.03.04.59
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a17d7a7sm17107364f8f.32.2025.01.29.03.05.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jan 2025 03:05:00 -0800 (PST)
+        Wed, 29 Jan 2025 03:05:05 -0800 (PST)
 From: Angelo Dureghello <adureghello@baylibre.com>
 X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Date: Wed, 29 Jan 2025 12:03:04 +0100
-Subject: [PATCH v3 03/10] iio: adc: ad7606: fix wrong scale available
+Date: Wed, 29 Jan 2025 12:03:05 +0100
+Subject: [PATCH v3 04/10] iio: adc: ad7606: move the software mode
+ configuration
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250129-wip-bl-ad7606_add_backend_sw_mode-v3-3-c3aec77c0ab7@baylibre.com>
+Message-Id: <20250129-wip-bl-ad7606_add_backend_sw_mode-v3-4-c3aec77c0ab7@baylibre.com>
 References: <20250129-wip-bl-ad7606_add_backend_sw_mode-v3-0-c3aec77c0ab7@baylibre.com>
 In-Reply-To: <20250129-wip-bl-ad7606_add_backend_sw_mode-v3-0-c3aec77c0ab7@baylibre.com>
 To: Michael Hennerich <michael.hennerich@analog.com>, 
@@ -100,42 +101,64 @@ Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
  Angelo Dureghello <adureghello@baylibre.com>
 X-Mailer: b4 0.14.1
 
-From: Angelo Dureghello <adureghello@baylibre.com>
+From: Guillaume Stols <gstols@baylibre.com>
 
-Fix wrong scale available list since only one value is returned:
+This is a preparation for the intoduction of the sofware functions in
+the iio backend version of the driver.
+The software mode configuration must be executed once the channels are
+configured, and the number of channels is known. This is not the case
+before iio-backend's configuration is called, and iio backend version of
+the driver does not have a timestamp channel.
+Also the sw_mode_config callback is configured during the iio-backend
+configuration.
+For clarity purpose, I moved the entire block instead of just the
+concerned function calls.
 
-...
-iio:device1: ad7606b (buffer capable)
-    8 channels found:
-           voltage0:  (input, index: 0, format: le:S16/16>>0)
-           2 channel-specific attributes found:
-                 attr  0: scale value: 0.305176
-                 attr  1: scale_available value: 0.076293
-Fix as:
-           voltage0:  (input, index: 0, format: le:S16/16>>0)
-           2 channel-specific attributes found:
-                 attr  0: scale value: 0.305176
-                 attr  1: scale_available value: 0.076293 0.152588 0.305176
-
-Fixes: 97c6d857041d ("iio: adc: ad7606: rework scale-available to be static")
-Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+Signed-off-by: Guillaume Stols <gstols@baylibre.com>
 ---
- drivers/iio/adc/ad7606.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/iio/adc/ad7606.c | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-index d8e3c7a43678..d39354afd539 100644
+index d39354afd539..376c808df11c 100644
 --- a/drivers/iio/adc/ad7606.c
 +++ b/drivers/iio/adc/ad7606.c
-@@ -1047,7 +1047,7 @@ static int ad7606_read_avail(struct iio_dev *indio_dev,
+@@ -1246,17 +1246,6 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
+ 			return -ERESTARTSYS;
+ 	}
  
- 		cs = &st->chan_scales[ch];
- 		*vals = (int *)cs->scale_avail;
--		*length = cs->num_scales;
-+		*length = cs->num_scales * 2;
- 		*type = IIO_VAL_INT_PLUS_MICRO;
+-	st->write_scale = ad7606_write_scale_hw;
+-	st->write_os = ad7606_write_os_hw;
+-
+-	ret = ad7606_sw_mode_setup(indio_dev);
+-	if (ret)
+-		return ret;
+-
+-	ret = ad7606_chan_scales_setup(indio_dev);
+-	if (ret)
+-		return ret;
+-
+ 	/* If convst pin is not defined, setup PWM. */
+ 	if (!st->gpio_convst) {
+ 		st->cnvst_pwm = devm_pwm_get(dev, NULL);
+@@ -1334,6 +1323,17 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
+ 			return ret;
+ 	}
  
- 		return IIO_AVAIL_LIST;
++	st->write_scale = ad7606_write_scale_hw;
++	st->write_os = ad7606_write_os_hw;
++
++	ret = ad7606_sw_mode_setup(indio_dev);
++	if (ret)
++		return ret;
++
++	ret = ad7606_chan_scales_setup(indio_dev);
++	if (ret)
++		return ret;
++
+ 	return devm_iio_device_register(dev, indio_dev);
+ }
+ EXPORT_SYMBOL_NS_GPL(ad7606_probe, "IIO_AD7606");
 
 -- 
 2.47.0
