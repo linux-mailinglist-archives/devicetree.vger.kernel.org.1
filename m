@@ -1,108 +1,191 @@
-Return-Path: <devicetree+bounces-141582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFCA7A217C6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 07:43:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9910FA217EE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 08:14:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6055818881A4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 06:43:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBE581622E3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 07:14:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F6418E75A;
-	Wed, 29 Jan 2025 06:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C124A194147;
+	Wed, 29 Jan 2025 07:14:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Fxj2WebV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5968823DE
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 06:43:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF89018C31;
+	Wed, 29 Jan 2025 07:14:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738132995; cv=none; b=YL4/Bc7gh5YG+dc0lbLrTE4fa9rSFlMxviDs/RLMYP3BmTsFqpufAVajDT7X26Gl8HEVFbeVPLOSGGKBO3w0/knjK/OugJNPP1LkPGXZHNryboWTXGuonq139ke6OGZHTrqsPWLRJFRzQ7ei+9FhNQzeCA5YVTvH6lc7cX100TY=
+	t=1738134861; cv=none; b=lQrpJ+mR3tZPoId8tUZBdz9G5xNuVQtG3pfVk5RU7Py/bIiLthcCUpYM2rHr+XdLsd5XZViItXWdZ7Pxsq3gIHHZMJDxNMCJJYHPlQ7Uf6GooI8fES8w5Baw0nKe8uilxZxkC/HidTyB3SHeSXcaQNVLe5enPYpLEylvpgPgdnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738132995; c=relaxed/simple;
-	bh=USafknG5OokJmhIO3KUhbkwJwGs/wIMHsBskQbbvqAE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZFlY/QATVY1pYmWBjv7tvDJ0wqthDVj+0UJqOK2MnEFKGXyVGg3Y+UODridkVQ2gYo9Uq7nM35oT8VXab0lyno0+FenhuFQYeBspf7mWhRtIoqxa4LK+zh2FdtcyGxasVTK+vlDO3byw0HVH//vmNKQwqLIZXkhRtz4na/WZs6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 50T6glYa009998;
-	Wed, 29 Jan 2025 15:42:47 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se,
-        macromorgan@hotmail.com, michael.riesch@wolfvision.net,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH v2] arm64: dts: rockchip: Add support for device tree overlays for Radxa devices
-Date: Wed, 29 Jan 2025 06:42:42 +0000
-Message-ID: <20250129064242.162265-1-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1738134861; c=relaxed/simple;
+	bh=q2fZTrf+p76HbbhOg0Lfy3JFC8YSrP6AIb0gvUBhDPQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XF99jmEba0+IDPLCg4R5OZv+VJ1qxy1WzX/oU4w3sUlsP2V9VvFTcuOHtTSL5QRD7PoGjUGZ5LC1A6c5XjS2Dkmbd7RpOFlLfAe51wQd+aGK2/I4dRz6UrRDkRNlfqjvcpvteVFL/fv1t1oYXlTFjmM//RzTB/TB3AbeHVFDoso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Fxj2WebV; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738134860; x=1769670860;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=q2fZTrf+p76HbbhOg0Lfy3JFC8YSrP6AIb0gvUBhDPQ=;
+  b=Fxj2WebVqeWkOW3do1gu+bfOQwukF6A9GczR7vNejYgsdI/QLhgaOUD3
+   0n9AbGSucB/johW0j7KqNOJcm09Y3Jep/Uzh3LcMPtETep/cVTMsA7JS0
+   RueobO4ioG8aAA48n0EJuXLl8kQIGKR4BCVDGz8jT7oXa5SOo66p2GmOy
+   +2S8Hvu5JF2dnuIYy+YmEWn0Jtq8vzRnFG3ab3X/5ja2We25H4ryAL4H+
+   itWKPw5UsyDJ2eJbvGMN+mTdlh759eZupOM89zeEMKmWi7IhAGWcadRrB
+   k/A3f7UYoGpEJs1ZP7VKPL/HXhXuYK7GlaLGxQ5+ZnHuGSY6Ke69MMXQk
+   Q==;
+X-CSE-ConnectionGUID: XY5HcmqCRbisI0nSHmAz1w==
+X-CSE-MsgGUID: u/W8PCqqRCqaaq/Kz71UVA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="56063559"
+X-IronPort-AV: E=Sophos;i="6.13,242,1732608000"; 
+   d="scan'208";a="56063559"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2025 23:07:18 -0800
+X-CSE-ConnectionGUID: lQJssghITJeIx0dTqI9b3A==
+X-CSE-MsgGUID: yczFgM7ISj2LG9DDHeTbMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,242,1732608000"; 
+   d="scan'208";a="109530878"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2025 23:07:10 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1td2AF-00000006Irk-1ebN;
+	Wed, 29 Jan 2025 09:07:07 +0200
+Date: Wed, 29 Jan 2025 09:07:07 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Kartik Rajput <kkartik@nvidia.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
+	jonathanh@nvidia.com, hvilleneuve@dimonoff.com, arnd@kernel.org,
+	geert+renesas@glider.be, robert.marko@sartura.hr,
+	schnelle@linux.ibm.com, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 2/2] serial: tegra-utc: Add driver for Tegra UART Trace
+ Controller (UTC)
+Message-ID: <Z5nTm9UniwCgGNOY@smile.fi.intel.com>
+References: <20250128064633.12381-1-kkartik@nvidia.com>
+ <20250128064633.12381-3-kkartik@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250128064633.12381-3-kkartik@nvidia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Since Radxa devices use device tree overlays[1][2][3], make base .dts
-support them.
+On Tue, Jan 28, 2025 at 12:16:33PM +0530, Kartik Rajput wrote:
+> The Tegra264 SoC supports the UART Trace Controller (UTC), which allows
+> multiple firmware clients (up to 16) to share a single physical UART.
+> Each client is provided with its own interrupt and has access to a
+> 128-character wide FIFO for both transmit (TX) and receive (RX)
+> operations.
+> 
+> Add tegra-utc driver to support Tegra UART Trace Controller (UTC)
+> client.
 
-[1] arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtso
-[2] arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtso
-[3] https://github.com/radxa-pkg/radxa-overlays
+...
 
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
----
-Changes in v2:
-- Remove .dtsi
-- Add rk3582-radxa-e52c
-- Sort
----
- arch/arm64/boot/dts/rockchip/Makefile | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+> +static int tegra_utc_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct tegra_utc_port *tup;
+> +	int index;
+> +	int ret;
+> +
+> +	index = of_alias_get_id(np, "serial");
+> +	if (index < 0) {
+> +		dev_err(&pdev->dev, "failed to get alias id, err %d\n", index);
+> +		return index;
+> +	}
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index def1222c1907..729109375d78 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -1,4 +1,31 @@
- # SPDX-License-Identifier: GPL-2.0
-+
-+# Enables support for device tree overlays for Radxa devices
-+DTC_FLAGS_rk3308-rock-pi-s := -@
-+DTC_FLAGS_rk3308-rock-s0 := -@
-+DTC_FLAGS_rk3328-rock-pi-e := -@
-+DTC_FLAGS_rk3399-rock-4c-plus := -@
-+DTC_FLAGS_rk3399-rock-4se := -@
-+DTC_FLAGS_rk3399-rock-pi-4a := -@
-+DTC_FLAGS_rk3399-rock-pi-4a-plus := -@
-+DTC_FLAGS_rk3399-rock-pi-4b := -@
-+DTC_FLAGS_rk3399-rock-pi-4b-plus := -@
-+DTC_FLAGS_rk3399-rock-pi-4c := -@
-+DTC_FLAGS_rk3399pro-rock-pi-n10 := -@
-+DTC_FLAGS_rk3528-radxa-e20c := -@
-+DTC_FLAGS_rk3566-radxa-cm3-io := -@
-+DTC_FLAGS_rk3566-radxa-zero-3e := -@
-+DTC_FLAGS_rk3566-radxa-zero-3w := -@
-+DTC_FLAGS_rk3566-rock-3c := -@
-+DTC_FLAGS_rk3568-radxa-e25 := -@
-+DTC_FLAGS_rk3568-rock-3a := -@
-+DTC_FLAGS_rk3568-rock-3b := -@
-+DTC_FLAGS_rk3582-radxa-e52c := -@
-+DTC_FLAGS_rk3588-rock-5-itx := -@
-+DTC_FLAGS_rk3588-rock-5b := -@
-+DTC_FLAGS_rk3588s-rock-5a := -@
-+DTC_FLAGS_rk3588s-rock-5c := -@
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-evb.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2-of10.dtb
+Can we please use uart_read_port_properties() instead of open-coding everything
+again and again?
+
+> +	tup = devm_kzalloc(&pdev->dev, sizeof(struct tegra_utc_port), GFP_KERNEL);
+> +	if (!tup)
+> +		return -ENOMEM;
+> +
+> +	ret = of_property_read_u32(np, "current-speed", &tup->baudrate);
+
+Why not clock-frequency? But if needed, add this to the above mentioned API as
+I know more than one driver may utilise this.
+
+
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "missing current-speed device-tree property\n");
+
+With
+
+	struct device *dev = &pdev-dev;
+
+this and other lines will be neater.
+
+> +		return ret;
+
+		return dev_err_probe(...);
+
+> +	}
+> +
+> +	ret = of_property_read_u32(np, "nvidia,utc-fifo-threshold", &tup->fifo_threshold);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "missing nvidia,fifo-threshold device-tree property\n");
+> +		return ret;
+> +	}
+> +
+> +	tup->irq = platform_get_irq(pdev, 0);
+> +	if (tup->irq < 0) {
+
+> +		dev_err(&pdev->dev, "failed to get interrupt\n");
+
+Dup. This error report is done by the above API.
+
+> +		return tup->irq;
+> +	}
+
+> +	tup->soc = of_device_get_match_data(&pdev->dev);
+
+> +	tup->tx_base = devm_platform_ioremap_resource_byname(pdev, "tx");
+> +	if (IS_ERR(tup->tx_base))
+> +		return PTR_ERR(tup->tx_base);
+> +
+> +	tup->rx_base = devm_platform_ioremap_resource_byname(pdev, "rx");
+> +	if (IS_ERR(tup->rx_base))
+> +		return PTR_ERR(tup->rx_base);
+> +
+> +	tegra_utc_setup_port(&pdev->dev, tup, index);
+> +	platform_set_drvdata(pdev, tup);
+> +
+> +	return tegra_utc_register_port(tup);
+> +}
+
+...
+
+> +static const struct of_device_id tegra_utc_of_match[] = {
+> +	{ .compatible = "nvidia,tegra264-utc", .data = &tegra264_utc_soc },
+> +	{},
+
+No comma for the terminator line.
+
+> +};
+
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
 
