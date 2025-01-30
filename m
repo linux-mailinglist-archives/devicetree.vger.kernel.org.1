@@ -1,82 +1,94 @@
-Return-Path: <devicetree+bounces-141786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38116A2287B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 06:21:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A6CA2289F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 06:39:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B9003A1F8D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 05:20:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD8E31883FE3
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 05:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDEAB186E2D;
-	Thu, 30 Jan 2025 05:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E97514EC73;
+	Thu, 30 Jan 2025 05:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UxMfTjzb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LxyzyAhy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C0D154BFE;
-	Thu, 30 Jan 2025 05:19:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A469A4431;
+	Thu, 30 Jan 2025 05:39:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738214398; cv=none; b=L2GgzeMVUpCC8R2Yd6dhhyNRCeEUJHWcIHje3G5W0lwlhyvhcnaPV+ztOxqVdr33WQr85Rlg2n5Xl8E52KanKNlarF2AKqed3k1Ce52aHFqYjU/FZiYZu3NAOL+QpO4WrFpWeJSAgf37NI/DXYFpmfDlg4Oaixxc+fTk1KX/mIQ=
+	t=1738215552; cv=none; b=VwFca3OCy8StLWRDVQ4QzIkekIYYFHLe287H5UL722jEWXbHr6A2sOCQiUVRY6eUJ7kMRH123gLVIx9DJBqGo/fPa+LQC2eAH029RvMKhoOUPC+THN/HT/evPOyfCIHhJmzvrIo8uCv18iBI0ofky0fpACHLcGzklRmBxRWgQwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738214398; c=relaxed/simple;
-	bh=iASeqjJsAnlFb+Z/MW7NADrnwsZt3hjo1ZbxDDj1Rg8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ssnbZBJ1eLwFkHgie9OqF6/Tkt7LgthGu1urZ0QtK0osAsmTG6Pj8MZzVCI1wa3sDyKaXPaXCRIKIhYpY62LDdrVTkDQwZ+mnCfNG4HlImrFjVO45C9oIDgsybxm5TAyUCf3VfiOuQL2rIcx94YkLSiExsTH+Oh+duHb9btbDX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UxMfTjzb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50TLlfpA030164;
-	Thu, 30 Jan 2025 05:19:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	hQW/uwSsCdNcJYbKXhDgIauPl8mwC5rmI2zt4OYJh+w=; b=UxMfTjzbrkK916Bp
-	Ejy93jSBxdNgKg/EUbaiZKPs7dOqRpfbU/41B0Lljd+wCLatnCty7QaaanWgGd4R
-	gfWgISVlC0qBU3IVCjx7jdB7ua1ed5ScAVnsP7zvlT5bk9nplqihikIfGjMiypky
-	i0mWUUp9YhPnlCQ3ON2Ed732uM8u6DOvzbAVRMx3udJWCTT7EmUVk0wY8xtHbi9L
-	ot+PMTThl4Q3yLUVya+A0j8tzJbwVVl9A2Z0ssbrHlV4WgP8bl+KqQbPAngLCZ0C
-	1MugmOPSL9Q8MP64+XVlZmpMAdzopfNGPfdnzFZU3pHQEu5dZSDA0/MLpfIIeLrn
-	DtjDwg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44fvjcgnn0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Jan 2025 05:19:51 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50U5JoO1001618
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Jan 2025 05:19:50 GMT
-Received: from hu-rajkbhag-blr.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 29 Jan 2025 21:19:46 -0800
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-To: <ath12k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Sowmiya Sree
- Elavalagan" <quic_ssreeela@quicinc.com>,
-        Saravanakumar Duraisamy
-	<quic_saradura@quicinc.com>,
-        Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-Subject: [RFC PATCH 5/5] wifi: ath12k: Enable IPQ5424 WiFi device support
-Date: Thu, 30 Jan 2025 10:48:38 +0530
-Message-ID: <20250130051838.1924079-6-quic_rajkbhag@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250130051838.1924079-1-quic_rajkbhag@quicinc.com>
-References: <20250130051838.1924079-1-quic_rajkbhag@quicinc.com>
+	s=arc-20240116; t=1738215552; c=relaxed/simple;
+	bh=Ow4ZN8i+zu93sqR8A7PlGp0fPg0RHjSsiqW8t0XWd5Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mMOpVzH1hVnTwdcldWAnYls/19qd6JEdY0TpbBnRTRcvHSh6pd65zraZa6RjSfi/0nBHvw2YAAlHz68AMXun1a2EpxcEemWvJu9e9nz7a/AKR8T1hT3EcGI3XUNwvP2lfefsdUV1xRzAMQQRMLjjcLEMS6G0yyi20ZoOtB5QZ5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LxyzyAhy; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-54287a3ba3cso1428640e87.0;
+        Wed, 29 Jan 2025 21:39:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738215548; x=1738820348; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yg6BBDLYoGyifIg9RVhTYdC6MChPe9nDARLhmJSgMKY=;
+        b=LxyzyAhyq0wBpSURrHOAHcOZNE9uT73rnBLcEZOctmqZdzvo/J7gb0RvB3ebeydLQX
+         2lBzA/Ciky+2utfpE3mNQjUOWysNIMfU32/TSy+7UWdmbFc7su+hsYE9Byouc/ciMaOk
+         JAMJ3K9/ENBeWO7R2MB80C9LE37xG5XA/24GAKA9DUprJAWkUCeMGbB6vDZ0iCXGZ9vs
+         qudi9zNKp9e0HEN6buw7a7489TtSWSMZGm3Dk7OfF1/on1u1AX6fOhJUqNg/hUsmo9bD
+         2ozI9VJlXO7otp48SkjcqwLdIznFbqc7FDHFAFB1CcDA5LKsKUoixjQmxi6ovH1IdzHd
+         Lkhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738215548; x=1738820348;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yg6BBDLYoGyifIg9RVhTYdC6MChPe9nDARLhmJSgMKY=;
+        b=M8CBrUIzPF9HyroPiuCk7YkpPl0shTM0THWHNYnF62B42zk6BrWhP126IQS1tef3hq
+         vvZMa3hALRoVx11ibmP4ZHSiigO4vaLsoo++2IvgyG7zs7PS1cgSQ/Eg36jQjcthbMeF
+         D+52YrmyFWv0rAaQkNCmbjul0nMyVEiXa10nf1UpCajPI7TT9EC1n5wBEcIdhUA/VkgR
+         EqXgP/deDYwJxMPceepnNHPYh49Vohq3ZhDizmqiUEZxtqnelaxgxyk/x0H4YSFqOq7N
+         JQBcMqdzsKL4W4lhPVNNTU0odOcDhftYB35we2ncbcUNsuUMsrgqKVenYaxpTXvIQ+WU
+         gw/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUuZsoKCopBwu0ejoRLkLlfrqO9C5cVE9M5R1af8wA34qAS7uwF3XDJLPoSRe4qhSE6ndMTS1E9zqiLCWdb@vger.kernel.org, AJvYcCW409cwMo8YhF1jqs1ZRAAccxlXibvaFT5BGzh7WlkbaabP61E7iwuAsxYKR7jlqZjk0eFUoKsPumFA@vger.kernel.org, AJvYcCX/o2fibWxwBCNAswMMLosrxnir2XxLjTm0pH++gjsVhSSMmSAGxT1QjjKi+UZnroh3ITY23kw0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRigEfr2bgiEYabLq/DZ8O2AgSOtMiJG6P851lcxgClht0dpt5
+	wrIJ5eBBTZ3NUwKU2DYbxaaAcRV+6HShpUUe3c0VTE3yMLHVcxTN
+X-Gm-Gg: ASbGncuGWkreXpDnv5IrgkbRslaHhjF49LJFtidNyTz2Jedrw48Z3nJ1QIoSg7xwhsw
+	P5CoOX61DmVoHdXd2EhNkYbe0KIKHg4IozZnuRg5kKwNXa+AiKq4nLRRzuQFnnBjqhtPBQ2CfDU
+	+T4pEa775w07BNp92JDrQvoRAhJqZyGoIFI5RS/06D3GfX6ElAWkMtxm8795YOVSaARLVkJp58m
+	qeET8N7tiCYEjHCDEgyQgMp8IdXN+yaZHVrOPtVW+0MJFm8lxLX56WHDWLTWxrv1IJjTTT6rfrY
+	TmvODdOJ2ms5bjFYsfLwNLJU7ec+QZ631E1MEQ==
+X-Google-Smtp-Source: AGHT+IHwPat51mTNEQD4tasyr+KPQCLz762K4muhG5MfppKqRTRitE6CB6EPNTp9yP7cvuJ670ntDA==
+X-Received: by 2002:a19:7007:0:b0:53e:3852:999c with SMTP id 2adb3069b0e04-543ea3d218dmr552015e87.12.1738215548145;
+        Wed, 29 Jan 2025 21:39:08 -0800 (PST)
+Received: from localhost.localdomain ([188.243.23.53])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebeb77e4sm66749e87.163.2025.01.29.21.39.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jan 2025 21:39:06 -0800 (PST)
+From: Alexander Shiyan <eagle.alexander923@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Alexander Shiyan <eagle.alexander923@gmail.com>,
+	stable@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: rockchip: Fix broken tsadc pinctrl names for rk3588
+Date: Thu, 30 Jan 2025 08:38:49 +0300
+Message-Id: <20250130053849.4902-1-eagle.alexander923@gmail.com>
+X-Mailer: git-send-email 2.39.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,211 +96,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ei1D-p9qtg0vRv9F5iXpZaVbq_t-k_9E
-X-Proofpoint-GUID: ei1D-p9qtg0vRv9F5iXpZaVbq_t-k_9E
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-30_02,2025-01-29_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- impostorscore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 mlxscore=0 phishscore=0 malwarescore=0 spamscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501300039
 
-From: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
+The tsadc driver does not handle pinctrl "gpio" and "otpout".
+Let's use the correct pinctrl names "default" and "sleep".
+Additionally, Alexey Charkov's testing [1] has established that
+it is necessary for pinctrl state to reference the &tsadc_shut_org
+configuration rather than &tsadc_shut for the driver to function correctly.
 
-Currently, ath12k AHB (in IPQ5332) uses SCM calls to authenticate the
-firmware image to bring up userpd. From IPQ5424 onwards, Q6 firmware can
-directly communicate with the Trusted Management Engine - Lite (TME-L),
-eliminating the need for SCM calls for userpd bring-up.
+[1] https://lkml.org/lkml/2025/1/24/966
 
-Hence, to enable IPQ5424 device support, use qcom_mdt_load_no_init() and
-skip the SCM call as Q6 will directly authenticate the userpd firmware.
-
-Tested-on: IPQ5424 hw1.0 AHB WLAN.WBE.1.5-01053-QCAHKSWPL_SILICONZ-1
-Tested-on: IPQ5332 hw1.0 AHB WLAN.WBE.1.3.1-00130-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
-Co-developed-by: Saravanakumar Duraisamy <quic_saradura@quicinc.com>
-Signed-off-by: Saravanakumar Duraisamy <quic_saradura@quicinc.com>
-Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Fixes: 32641b8ab1a5 ("arm64: dts: rockchip: add rk3588 thermal sensor")
+Cc: stable@vger.kernel.org
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
 ---
- drivers/net/wireless/ath/ath12k/ahb.c | 80 +++++++++++++++++----------
- drivers/net/wireless/ath/ath12k/ahb.h |  9 +++
- 2 files changed, 61 insertions(+), 28 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath12k/ahb.c b/drivers/net/wireless/ath/ath12k/ahb.c
-index d502b59a78d8..75767915dec3 100644
---- a/drivers/net/wireless/ath/ath12k/ahb.c
-+++ b/drivers/net/wireless/ath/ath12k/ahb.c
-@@ -21,6 +21,9 @@ static const struct of_device_id ath12k_ahb_of_match[] = {
- 	{ .compatible = "qcom,ipq5332-wifi",
- 	  .data = (void *)ATH12K_HW_IPQ5332_HW10,
- 	},
-+	{ .compatible = "qcom,ipq5424-wifi",
-+	  .data = (void *)ATH12K_HW_IPQ5424_HW10,
-+	},
- 	{ }
- };
- 
-@@ -398,8 +401,8 @@ static int ath12k_ahb_power_up(struct ath12k_base *ab)
- 		ATH12K_AHB_UPD_SWID;
- 
- 	/* Load FW image to a reserved memory location */
--	ret = qcom_mdt_load(dev, fw, fw_name, pasid, mem_region, mem_phys, mem_size,
--			    &mem_phys);
-+	ret = ab_ahb->ahb_ops->mdt_load(dev, fw, fw_name, pasid, mem_region, mem_phys,
-+					mem_size, &mem_phys);
- 	if (ret) {
- 		ath12k_err(ab, "Failed to load MDT segments: %d\n", ret);
- 		goto err_fw;
-@@ -430,11 +433,13 @@ static int ath12k_ahb_power_up(struct ath12k_base *ab)
- 		goto err_fw2;
- 	}
- 
--	/* Authenticate FW image using peripheral ID */
--	ret = qcom_scm_pas_auth_and_reset(pasid);
--	if (ret) {
--		ath12k_err(ab, "failed to boot the remote processor %d\n", ret);
--		goto err_fw2;
-+	if (ab_ahb->scm_auth_enabled) {
-+		/* Authenticate FW image using peripheral ID */
-+		ret = qcom_scm_pas_auth_and_reset(pasid);
-+		if (ret) {
-+			ath12k_err(ab, "failed to boot the remote processor %d\n", ret);
-+			goto err_fw2;
-+		}
- 	}
- 
- 	/* Instruct Q6 to spawn userPD thread */
-@@ -491,13 +496,15 @@ static void ath12k_ahb_power_down(struct ath12k_base *ab, bool is_suspend)
- 
- 	qcom_smem_state_update_bits(ab_ahb->stop_state, BIT(ab_ahb->stop_bit), 0);
- 
--	pasid = (u32_encode_bits(ab_ahb->userpd_id, ATH12K_USERPD_ID_MASK)) |
--		ATH12K_AHB_UPD_SWID;
--	/* Release the firmware */
--	ret = qcom_scm_pas_shutdown(pasid);
--	if (ret)
--		ath12k_err(ab, "scm pas shutdown failed for userPD%d: %d\n",
--			   ab_ahb->userpd_id, ret);
-+	if (ab_ahb->scm_auth_enabled) {
-+		pasid = (u32_encode_bits(ab_ahb->userpd_id, ATH12K_USERPD_ID_MASK)) |
-+			 ATH12K_AHB_UPD_SWID;
-+		/* Release the firmware */
-+		ret = qcom_scm_pas_shutdown(pasid);
-+		if (ret)
-+			ath12k_err(ab, "scm pas shutdown failed for userPD%d\n",
-+				   ab_ahb->userpd_id);
-+	}
- }
- 
- static void ath12k_ahb_init_qmi_ce_config(struct ath12k_base *ab)
-@@ -707,6 +714,14 @@ static int ath12k_ahb_map_service_to_pipe(struct ath12k_base *ab, u16 service_id
- 	return 0;
- }
- 
-+static const struct ath12k_ahb_ops ahb_ops_ipq5332 = {
-+	.mdt_load = qcom_mdt_load,
-+};
-+
-+static const struct ath12k_ahb_ops ahb_ops_ipq5424 = {
-+	.mdt_load = qcom_mdt_load_no_init,
-+};
-+
- static const struct ath12k_hif_ops ath12k_ahb_hif_ops_ipq5332 = {
- 	.start = ath12k_ahb_start,
- 	.stop = ath12k_ahb_stop,
-@@ -1041,19 +1056,9 @@ static int ath12k_ahb_probe(struct platform_device *pdev)
- 	struct device_node *mem_node;
- 	struct ath12k_ahb *ab_ahb;
- 	enum ath12k_hw_rev hw_rev;
--	u32 addr, userpd_id;
-+	u32 addr;
- 	int ret;
- 
--	hw_rev = ath12k_ahb_get_hw_rev(pdev);
--	switch (hw_rev) {
--	case ATH12K_HW_IPQ5332_HW10:
--		hif_ops = &ath12k_ahb_hif_ops_ipq5332;
--		userpd_id = ATH12K_IPQ5332_USERPD_ID;
--		break;
--	default:
--		return -EOPNOTSUPP;
--	}
--
- 	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
- 	if (ret) {
- 		dev_err(&pdev->dev, "Failed to set 32-bit coherent dma\n");
-@@ -1067,13 +1072,32 @@ static int ath12k_ahb_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	}
- 
-+	ab_ahb = ath12k_ab_to_ahb(ab);
-+	ab_ahb->ab = ab;
-+
-+	hw_rev = ath12k_ahb_get_hw_rev(pdev);
-+	switch (hw_rev) {
-+	case ATH12K_HW_IPQ5332_HW10:
-+		hif_ops = &ath12k_ahb_hif_ops_ipq5332;
-+		ab_ahb->userpd_id = ATH12K_IPQ5332_USERPD_ID;
-+		ab_ahb->scm_auth_enabled = true;
-+		ab_ahb->ahb_ops = &ahb_ops_ipq5332;
-+		break;
-+	case ATH12K_HW_IPQ5424_HW10:
-+		hif_ops = &ath12k_ahb_hif_ops_ipq5332;
-+		ab_ahb->userpd_id = ATH12K_IPQ5332_USERPD_ID;
-+		ab_ahb->scm_auth_enabled = false;
-+		ab_ahb->ahb_ops = &ahb_ops_ipq5424;
-+		break;
-+	default:
-+		ret = -EOPNOTSUPP;
-+		goto err_core_free;
-+	}
-+
- 	ab->hif.ops = hif_ops;
- 	ab->pdev = pdev;
- 	ab->hw_rev = hw_rev;
- 	platform_set_drvdata(pdev, ab);
--	ab_ahb = ath12k_ab_to_ahb(ab);
--	ab_ahb->ab = ab;
--	ab_ahb->userpd_id = userpd_id;
- 
- 	/* Set fixed_mem_region to true for platforms that support fixed memory
- 	 * reservation from DT. If memory is reserved from DT for FW, ath12k driver
-diff --git a/drivers/net/wireless/ath/ath12k/ahb.h b/drivers/net/wireless/ath/ath12k/ahb.h
-index d56244b20a6a..270d6db2a4a4 100644
---- a/drivers/net/wireless/ath/ath12k/ahb.h
-+++ b/drivers/net/wireless/ath/ath12k/ahb.h
-@@ -43,6 +43,13 @@ enum ath12k_ahb_userpd_irq {
- 
- struct ath12k_base;
- 
-+struct ath12k_ahb_ops {
-+	int (*mdt_load)(struct device *dev, const struct firmware *fw,
-+			const char *firmware, int pas_id, void *mem_region,
-+			phys_addr_t mem_phys, size_t mem_size,
-+			phys_addr_t *reloc_base);
-+};
-+
- struct ath12k_ahb {
- 	struct ath12k_base *ab;
- 	struct rproc *tgt_rproc;
-@@ -59,6 +66,8 @@ struct ath12k_ahb {
- 	u32 spawn_bit;
- 	u32 stop_bit;
- 	int userpd_irq_num[ATH12K_USERPD_MAX_IRQ];
-+	bool scm_auth_enabled;
-+	const struct ath12k_ahb_ops *ahb_ops;
- };
- 
- static inline struct ath12k_ahb *ath12k_ab_to_ahb(struct ath12k_base *ab)
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+index 8cfa30837ce7..978de506d434 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+@@ -2668,9 +2668,9 @@ tsadc: tsadc@fec00000 {
+ 		rockchip,hw-tshut-temp = <120000>;
+ 		rockchip,hw-tshut-mode = <0>; /* tshut mode 0:CRU 1:GPIO */
+ 		rockchip,hw-tshut-polarity = <0>; /* tshut polarity 0:LOW 1:HIGH */
+-		pinctrl-0 = <&tsadc_gpio_func>;
+-		pinctrl-1 = <&tsadc_shut>;
+-		pinctrl-names = "gpio", "otpout";
++		pinctrl-0 = <&tsadc_shut_org>;
++		pinctrl-1 = <&tsadc_gpio_func>;
++		pinctrl-names = "default", "sleep";
+ 		#thermal-sensor-cells = <1>;
+ 		status = "disabled";
+ 	};
 -- 
-2.34.1
+2.39.1
 
 
