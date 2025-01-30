@@ -1,190 +1,140 @@
-Return-Path: <devicetree+bounces-141811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF17BA229BA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:40:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA549A229C1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:40:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB7623A371B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:39:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FB5E166949
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA431B0F04;
-	Thu, 30 Jan 2025 08:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F171B0F39;
+	Thu, 30 Jan 2025 08:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b="nSjo+f0Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jx/AKb2j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50CBA1B0415;
-	Thu, 30 Jan 2025 08:39:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=130.133.4.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7691B0422;
+	Thu, 30 Jan 2025 08:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738226396; cv=none; b=Y3pU0QwqpxL5gBawZhVlW9dk2G9capf/Kg/t6UTPu+Fz012R9yGS8bLW8lL4m3jk/bo6uyO7GHRd3ZTO8LVKiK4LF9suSXrQn+vdwx6OXBgtsfimClOOPLroW2wrOjz2NdMwgGRd+KB/v4NL+rPwSR3GgupDBGbOMTucEhM7wk4=
+	t=1738226450; cv=none; b=pzAA5G3wou/O1PMbX4tVPHA2Ni10r7j5FC8gwHnTdiay9DdOdJQpoNewVhFnAGRgqIMBiFTXtieefVIPZIrCybYuF2Cg8RszGoFVUkpTWb1Hwt4i6anNSziN5Ua+UZVJDGc03ZE8d8Nn3g2Gh3E5F0adPSMalCfdgLW/XrVp5AE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738226396; c=relaxed/simple;
-	bh=xru6o8b5Uqfw2olO4dSfWMmnEM5D0REdzLt7kl7S5FU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZTO6aI00tcl5jQhh2kphz4T6M/AKesSxxTPXrCoPwp7MpV14dguSgoSUAPGKoVyLJQwv2nMUd6tIPuamsYb8HI6MA7w0ZSrKBixS1lKR4zpG95EwxLJeMen3pECOgPV13rnZzrEk0OYdYRwRVc/tsY86E5A76ZgnBVPI3Fl2dFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de; spf=pass smtp.mailfrom=zedat.fu-berlin.de; dkim=pass (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b=nSjo+f0Z; arc=none smtp.client-ip=130.133.4.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zedat.fu-berlin.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=fu-berlin.de; s=fub01; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=v9opNwDwn255UtavLuQBZ+mOTvHfGlJaF7SL6xxekMY=; t=1738226394; x=1738831194; 
-	b=nSjo+f0ZqkjmsnQ2kTBHhaTAgkIIRNvap5ObGbZ+MwURQr0Up96xFd+zhqhQDxGttT0rQUKaRTs
-	DSlxY4jsHGi+g6XfosHdP2U9phxAVbEWUoRrc0288c19PKVXa40hZBh64PGRaONNobPTdEM1XEX2J
-	517WU2/Rm1jTXSVqOfkNLb0KfxM2TKsTqSiAjqp/ru0LOCzCAQzjpW2oWiKr+8lGUgyVuFhc8FOOW
-	ELpIY41IZHqflgrgrV+kIXLm5U7NcP3dnTklxIXyf7hg04b/6Uyr7iE8dKXNBX89k6TyrDxz8iYkA
-	5yG1Y4zjwHYFXjJuNFtnfos93JcqvLiOpMGQ==;
-Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
-          by outpost.zedat.fu-berlin.de (Exim 4.98)
-          with esmtps (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@zedat.fu-berlin.de>)
-          id 1tdQ5W-00000000EmF-3Q5N; Thu, 30 Jan 2025 09:39:50 +0100
-Received: from p5dc55198.dip0.t-ipconnect.de ([93.197.81.152] helo=[192.168.178.61])
-          by inpost2.zedat.fu-berlin.de (Exim 4.98)
-          with esmtpsa (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@physik.fu-berlin.de>)
-          id 1tdQ5W-00000001l3r-2KTZ; Thu, 30 Jan 2025 09:39:50 +0100
-Message-ID: <f447d1a9256033253d9bd9193ad639479e7c8575.camel@physik.fu-berlin.de>
-Subject: Re: [PATCH] sh: migrate to the generic rule for built-in DTB
-From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-To: Masahiro Yamada <masahiroy@kernel.org>, Yoshinori Sato
-	 <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>, 
-	linux-sh@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org
-Date: Thu, 30 Jan 2025 09:39:49 +0100
-In-Reply-To: <20241222003315.2582655-1-masahiroy@kernel.org>
-References: <20241222003315.2582655-1-masahiroy@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 
+	s=arc-20240116; t=1738226450; c=relaxed/simple;
+	bh=YvbJnh/HicZ8svAByNknxks8ZnMOCqU0Cb9AnJtFmUU=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=N4poMD1cRAN7xwUVYxNd7cJbq6eI83jNwdVDyaN9RSBYtGIb0+4j+MbVF3jQE4BmHv4/JWt299HWoytiGyG2bZVBS/xiGmNXwZlkBPAC6t+qH9YcpSNmNsvzzbN7VEgMyMnn33b1uCKEKwI+nlhNIXreEs+9ojknCr1B4Hw0bDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jx/AKb2j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5AE8C4CED2;
+	Thu, 30 Jan 2025 08:40:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738226450;
+	bh=YvbJnh/HicZ8svAByNknxks8ZnMOCqU0Cb9AnJtFmUU=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=jx/AKb2jKdDU3K9xze5RT0UAbgJDDbNv8p3XMvh9QIsjmkI5NaEyDbfZWD2z0GRM8
+	 ETXfmzPU2JhSkdT9h2iTm2GFVzqHGeoXq1E96kx5e2IZ4rFVmvp/wR4EbA1Iw0psmu
+	 Il1Sen1fbIQkVGMgq3vhEY+3spvSQjEqE46qV6jUo91U/X8Bo1y9Mcyj3/ZD8PGaGP
+	 HKzxVpVkLoz/9BQbc4LA5GNCE9OcZrU2ma1IimecHw6//blPiM78VEUo1HIokcqd3L
+	 SPDD1Zl+9HmD4Sxzg1q5KA+jeu++w6m7TjCC+d3bfe3t69S4pF+MmlVez7e9SQW5uR
+	 dQV8SOxlTNwNA==
+Message-ID: <104e6b6f-3c1e-4a00-8822-aa6fb4562411@kernel.org>
+Date: Thu, 30 Jan 2025 09:40:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Original-Sender: glaubitz@physik.fu-berlin.de
-X-ZEDAT-Hint: PO
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/13] dt-bindings: net: wireless: describe the ath12k
+ AHB module
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ Kalle Valo <kvalo@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250130043508.1885026-1-quic_rajkbhag@quicinc.com>
+ <20250130043508.1885026-2-quic_rajkbhag@quicinc.com>
+ <20250130-cunning-quail-of-opportunity-76d0ad@krzk-bin>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250130-cunning-quail-of-opportunity-76d0ad@krzk-bin>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Masahiro,
+On 30/01/2025 09:28, Krzysztof Kozlowski wrote:
+> On Thu, Jan 30, 2025 at 10:04:56AM +0530, Raj Kumar Bhagat wrote:
+>> Add device-tree bindings for the ATH12K module found in the IPQ5332
+>> device.
+>>
+>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>> ---
+>>  .../net/wireless/qcom,ath12k-ahb.yaml         | 319 ++++++++++++++++++
+>>  1 file changed, 319 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>> new file mode 100644
+>> index 000000000000..bd953a028dc3
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+> 
+> Filename should match compatible. This binding does not look like
+> supporting more devices, so there is no much benefit calling it by generic name.
 
-On Sun, 2024-12-22 at 09:32 +0900, Masahiro Yamada wrote:
-> Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
-> DTBs") introduced generic support for built-in DTBs.
->=20
-> Select GENERIC_BUILTIN_DTB when built-in DTB support is enabled.
->=20
-> To keep consistency across architectures, this commit also renames
-> CONFIG_USE_BUILTIN_DTB to CONFIG_BUILTIN_DTB, and
-> CONFIG_BUILTIN_DTB_SOURCE to CONFIG_BUILTIN_DTB_NAME.
->=20
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
->=20
->  arch/sh/Kbuild            | 1 -
->  arch/sh/Kconfig           | 7 ++++---
->  arch/sh/boot/dts/Makefile | 2 +-
->  arch/sh/kernel/setup.c    | 4 ++--
->  4 files changed, 7 insertions(+), 7 deletions(-)
->=20
-> diff --git a/arch/sh/Kbuild b/arch/sh/Kbuild
-> index 056efec72c2a..0da6c6d6821a 100644
-> --- a/arch/sh/Kbuild
-> +++ b/arch/sh/Kbuild
-> @@ -1,7 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  obj-y				+=3D kernel/ mm/ boards/
->  obj-$(CONFIG_SH_FPU_EMU)	+=3D math-emu/
-> -obj-$(CONFIG_USE_BUILTIN_DTB)	+=3D boot/dts/
-> =20
->  obj-$(CONFIG_HD6446X_SERIES)	+=3D cchips/hd6446x/
-> =20
-> diff --git a/arch/sh/Kconfig b/arch/sh/Kconfig
-> index 04ff5fb9242e..89185af7bcc9 100644
-> --- a/arch/sh/Kconfig
-> +++ b/arch/sh/Kconfig
-> @@ -648,10 +648,11 @@ endmenu
-> =20
->  menu "Boot options"
-> =20
-> -config USE_BUILTIN_DTB
-> +config BUILTIN_DTB
->  	bool "Use builtin DTB"
->  	default n
->  	depends on SH_DEVICE_TREE
-> +	select GENERIC_BUILTIN_DTB
->  	help
->  	  Link a device tree blob for particular hardware into the kernel,
->  	  suppressing use of the DTB pointer provided by the bootloader.
-> @@ -659,10 +660,10 @@ config USE_BUILTIN_DTB
->  	  not capable of providing a DTB to the kernel, or for experimental
->  	  hardware without stable device tree bindings.
-> =20
-> -config BUILTIN_DTB_SOURCE
-> +config BUILTIN_DTB_NAME
->  	string "Source file for builtin DTB"
->  	default ""
-> -	depends on USE_BUILTIN_DTB
-> +	depends on BUILTIN_DTB
->  	help
->  	  Base name (without suffix, relative to arch/sh/boot/dts) for the
->  	  a DTS file that will be used to produce the DTB linked into the
-> diff --git a/arch/sh/boot/dts/Makefile b/arch/sh/boot/dts/Makefile
-> index 4a6dec9714a9..d109978a5eb9 100644
-> --- a/arch/sh/boot/dts/Makefile
-> +++ b/arch/sh/boot/dts/Makefile
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -obj-$(CONFIG_USE_BUILTIN_DTB) +=3D $(addsuffix .dtb.o, $(CONFIG_BUILTIN_=
-DTB_SOURCE))
-> +obj-$(CONFIG_BUILTIN_DTB) +=3D $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_=
-NAME))
-> diff --git a/arch/sh/kernel/setup.c b/arch/sh/kernel/setup.c
-> index f2b6f16a46b8..039a51291002 100644
-> --- a/arch/sh/kernel/setup.c
-> +++ b/arch/sh/kernel/setup.c
-> @@ -249,7 +249,7 @@ void __ref sh_fdt_init(phys_addr_t dt_phys)
->  	/* Avoid calling an __init function on secondary cpus. */
->  	if (done) return;
-> =20
-> -#ifdef CONFIG_USE_BUILTIN_DTB
-> +#ifdef CONFIG_BUILTIN_DTB
->  	dt_virt =3D __dtb_start;
->  #else
->  	dt_virt =3D phys_to_virt(dt_phys);
-> @@ -323,7 +323,7 @@ void __init setup_arch(char **cmdline_p)
->  	sh_early_platform_driver_probe("earlyprintk", 1, 1);
-> =20
->  #ifdef CONFIG_OF_EARLY_FLATTREE
-> -#ifdef CONFIG_USE_BUILTIN_DTB
-> +#ifdef CONFIG_BUILTIN_DTB
->  	unflatten_and_copy_device_tree();
->  #else
->  	unflatten_device_tree();
 
-Looks like a good idea to address possible race conditions during build.
+I saw now your other patchset, so you have here two devices, but I still
+do not understand why this cannot follow standard naming practice like
+most bindings supporting one or more devices. Like every review we give.
 
-Reviewed-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-
-Thanks,
-Adrian
-
---=20
- .''`.  John Paul Adrian Glaubitz
-: :' :  Debian Developer
-`. `'   Physicist
-  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
+Best regards,
+Krzysztof
 
