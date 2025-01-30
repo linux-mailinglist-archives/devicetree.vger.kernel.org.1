@@ -1,131 +1,95 @@
-Return-Path: <devicetree+bounces-141956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15427A23754
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 23:40:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F41A237AE
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 00:14:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1825E3A67D2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 22:40:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2C2616469D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 23:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DF371B85F6;
-	Thu, 30 Jan 2025 22:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DCE1F1300;
+	Thu, 30 Jan 2025 23:14:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sW1vz/kJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A9qYZsUj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 400043987D;
-	Thu, 30 Jan 2025 22:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79E5E1ADC6E
+	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 23:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738276831; cv=none; b=VuUeWs9n2K1qePTqogRboY4+7NuG0WbzxTfLYB/ni83HegTRmPNTQirru0YniGqgTKYQrPaeTx2mE+xYdiZnG541MxZMfOKzBW0890ny3rzCwRxsb5KmapmABsr5ityf+rLKUxkhoZnX8wmEx8Jy8VH7MjjnsvCWpR+aOBbs5O8=
+	t=1738278874; cv=none; b=IRZ1/G8OuDx7rZug8/5JehToiaeYGNPex2Kx5dj4/ex05YmA3GiN6PdOZE+wXMxPSyCKwpDF8Tpn8ESCsk6m8dU3o7VA/NkBjsqIOOFfV5/HyHU2tZ97Ee1/2Mb5N7ZfDWEE/NVrvgdVjmPfa0PWzfJtb1NwAaopS/dW6cERboY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738276831; c=relaxed/simple;
-	bh=LD6NzYbyw8wYsWeOSqbINsKPuePnVnQvJryxR97ejxo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=CnAXuDhygzX+RPq+gulyESE92wuExJQmo+tflg/Saf6ahHvaKYEH3qNBITxQxwpsPcfclMFyHY2rLLO8GvIg20H/5Y55rvYWUX8y5yzqMTXV1X+UqOEOiFof2Rt+blTMiNCLx29TFg5UtznuomqjxuFk8mBuSWrwfMoiPt1WK30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sW1vz/kJ; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50UMeLj61558537
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Thu, 30 Jan 2025 16:40:21 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738276821;
-	bh=w5FdDKxl0YKeB7HteFlvgLhQ09iS0vqq32PZTKFOdu8=;
-	h=Date:Subject:From:To:CC:References:In-Reply-To;
-	b=sW1vz/kJh7HQ0uD6vYYFnFmIrH+zNxGIJV1skoQ9S9cj4y0xJ0h/H0ZL9dvd9UJlZ
-	 EzM0TdRSjMEZlY7v1+g4YUT4WW/hWIB/l+nHVAk5igrm7WR+IAX8yqlIah6qlqt1BI
-	 tL8ieukbsEWRMvyvBOsokxDaDmLqYoA554Qfr0c8=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50UMeLJG117060;
-	Thu, 30 Jan 2025 16:40:21 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 30
- Jan 2025 16:40:20 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 30 Jan 2025 16:40:20 -0600
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50UMeKrR055087;
-	Thu, 30 Jan 2025 16:40:20 -0600
-Message-ID: <6ab56868-b2d2-4b8a-ac06-d0d35a5e8998@ti.com>
-Date: Thu, 30 Jan 2025 16:40:20 -0600
+	s=arc-20240116; t=1738278874; c=relaxed/simple;
+	bh=8Q2HjqJPbaVhow4NFnSVnVK+CKZ2y+Hypsx9jZq8DDw=;
+	h=From:Message-ID:To:Subject:Date:MIME-Version:Content-Type; b=uwo596nJPN1jYTr2L2H1Zn3m3eMKWlwa2Q+NEJ1LnfIDrqHx7wOKiApE/AnTcbNV+q1rROWlEOEKddbqeCL6nTHFcqXKX//0/6rtMvpY5VOTOUrrmUnFw3odQbosZto4oHzNF1DG5DGPWCv5/Mi+Z/Vxp1xq7RbibiMBZxiMNl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A9qYZsUj; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-216634dd574so16436815ad.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 15:14:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738278872; x=1738883672; darn=vger.kernel.org;
+        h=mime-version:date:subject:to:reply-to:message-id:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8Q2HjqJPbaVhow4NFnSVnVK+CKZ2y+Hypsx9jZq8DDw=;
+        b=A9qYZsUjInq3hwYTwHWzoydHp97XoNknbGBoGBIBVEya6AvnHmGOEJES4YvlHFuTaS
+         HwmN1un6UHLUBuIDYid4NzWSJDAiy99KabbTD7DMrA++wmcRLXxiHjFm987mEXXgcMr4
+         nGuQ3S9HR0wK0Q847HwSY/pOS0/akbVz5/rKf//qERTTRM3E5quOAlqs8UDlrMTvh3Sz
+         JXVzE5zu7EdfwU26FJPKYjE4znnAoFALA1AobTS8vLY5cOwD5RcyjyxgyQISpUfpbU98
+         xd9Q/hPL7dtK8gQ82Wotgk/x+xAcqX+w8rNGBiNOk8i5hQGU48ArQ8UBAya491SXGgbl
+         gcgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738278872; x=1738883672;
+        h=mime-version:date:subject:to:reply-to:message-id:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8Q2HjqJPbaVhow4NFnSVnVK+CKZ2y+Hypsx9jZq8DDw=;
+        b=i9WjRAygrqsaUsHlsNgP/NWWTt5LHVKNI9eW3nOBfcZ246nj4cePiBi87r3B/TD7VB
+         JRMPypFHc/ET6XGUHBd2HzqPi2y6c1iBgRZRmQAfxPLbDdWhgAXHPWM9YF3ULMtBfJWa
+         qUFt86Oml9XMwcpzKZu7GVgz5gmrl/YVsSMM8890yJ/SzDuklayeSaLBo4MwLQrSGRNj
+         mz/Phx09g76odm1WYOLwl4AdssOkIw6ke+KWwpTFtV9E+DogJdsKqlAdIvkzPryz9+LU
+         GHHn+H08FWKhy7mcwlOM3yPqMVb+pID0PgQyhBUG5oEVcVUHrr0dMUp53/B3iox7CHaS
+         26vA==
+X-Gm-Message-State: AOJu0YxbcMbWv9ZO9ZXq56onU5/49xPBLO301QXkCmZSqmJoehNXP/Zy
+	x/LPc3h60MCWeIIKCmkLca2lmmee20AdAGINnhLHFbkKKNSE7eSlP7ZwWQ==
+X-Gm-Gg: ASbGncvRQvC2s+1qNt6Z8vPZp0CBAsQQOFsaUMPFMSaG7761X7HiTy/jrseNmkhnL5/
+	4Tqv4ZvL2gfEed7wlZASs+EcsAt1XdTW6mfR5lrxnA9ev/2z5Rf5ZKEdVdCKqybtX+tNxGkZvzL
+	39fEJnQo6DVPROBsV6OFNsnrl9ttN4/5O9PBQHH1m/MoW/2PAKAWBSf414Jl/x1beoW/eh5eLA5
+	F3czj/BuvT8p/iNZNE8fWMZs8UMJARC39zRttXRPqu7xAe9qynM5GPS9mI3KiRQTd7ETRY3rNzN
+	ndMYOIlwmKZI5tIZhD0vV7ZTsZdP9vM/Ig==
+X-Google-Smtp-Source: AGHT+IE3wbbtr5dIcRoL8CAwojYS9E6foC5xrtT5NHQ/qrIXnVcaaqjAP62iJ5gNYMucqd1uofYsNA==
+X-Received: by 2002:a05:6a21:3511:b0:1ed:75f4:d289 with SMTP id adf61e73a8af0-1ed7a52b048mr13990286637.19.1738278872528;
+        Thu, 30 Jan 2025 15:14:32 -0800 (PST)
+Received: from [103.67.163.162] ([103.67.163.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72fe631be20sm2029106b3a.34.2025.01.30.15.14.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 Jan 2025 15:14:32 -0800 (PST)
+From: Solera Capital <dewayne1lint@gmail.com>
+X-Google-Original-From: Solera Capital <info@administration.com>
+Message-ID: <dbdf25ec4a6d758d1de98123ad509be3f2b70260982dd5c4267fa6effa465117@mx.google.com>
+Reply-To: h.nwangi025capitalinvest@gmail.com
+To: devicetree@vger.kernel.org
+Subject: Jan/30/25
+Date: Thu, 30 Jan 2025 18:14:31 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] arm64: dts: ti: k3-am62a-mcu: Add R5F remote proc
- node
-From: Judith Mendez <jm@ti.com>
-To: Hari Nagalla <hnagalla@ti.com>, Andrew Davis <afd@ti.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Devarsh Thakkar <devarsht@ti.com>, Nishanth
- Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>
-References: <20250127221631.3974583-1-jm@ti.com>
- <20250127221631.3974583-3-jm@ti.com>
- <8b152f81-0848-4f34-adcb-fee9b4f2fd7f@ti.com>
- <76f9e9e8-dd7c-e783-fccc-0b6f913ce753@ti.com>
- <390aa52e-e9f2-4ce3-ad1b-eac71f4a211c@ti.com>
-Content-Language: en-US
-In-Reply-To: <390aa52e-e9f2-4ce3-ad1b-eac71f4a211c@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
 
-On 1/28/25 11:48 AM, Judith Mendez wrote:
-> Hi Andrew,
-> 
-> On 1/28/25 10:52 AM, Hari Nagalla wrote:
->> On 1/28/25 10:27, Andrew Davis wrote:
->>>> +    mcu_r5fss0: r5fss@79000000 {
->>>> +        compatible = "ti,am62-r5fss";
->>>> +        #address-cells = <1>;
->>>> +        #size-cells = <1>;
->>>> +        ranges = <0x79000000 0x00 0x79000000 0x8000>,
->>>> +             <0x79020000 0x00 0x79020000 0x8000>;
->>>> +        power-domains = <&k3_pds 7 TI_SCI_PD_EXCLUSIVE>;
->>>
->>> Newline here.
->>>
->>> Also this should be default "disabled". It can be set to "okay"
->>> in the board DTS file when the needed mboxes and memory-region
->>> are set. Speaking of that, where are those patches? This is
->>> incomplete without them and these nodes will not function.
->>> Same for the DSP patch.
->>>
->>> Andrew
->> Yes, by default needs to set the node state to "disabled". This is HW 
->> description of the wake-up domain components. Memory carve outs and 
->> mailbox assignments for IPC are a separate patch as it is configurable 
->> and distro dependent.
-> 
-> Yes I plan to disable the nodes in each domain .dtsi file.
-> 
-> Also yes, my understanding is that the memory carveouts could
-> be a separate series if at all. Not sure if those patches can be
-> sent upstream since they are distro dependent. Can anyone clarify
-> if this is the case?
-> 
+Hello,
 
-As per offline discussion, I will include the memory carveouts in this
-same series.
-~ Judith
+I?m the, Head of Regional Investments for Sub-Saharan Africa at Solera Capital Investment Partners. Our firm connects global investors with project owners, focusing on opportunities with strong ROI potential.
 
-> ~ Judith
-> 
+Our current investor is ready to partner on promising ventures. Let?s discuss how we can work together.
 
+Best regards,
+Henry N.
 
