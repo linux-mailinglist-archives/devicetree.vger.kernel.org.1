@@ -1,48 +1,65 @@
-Return-Path: <devicetree+bounces-141814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C3E4A229D0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:48:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A5F6A229E9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:57:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 048271887BD1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:48:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 440A83A26BA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:56:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E48C1B043E;
-	Thu, 30 Jan 2025 08:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FCA1B394B;
+	Thu, 30 Jan 2025 08:57:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8nqdkgk"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="neJk4e8F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B5EF1A8F71;
-	Thu, 30 Jan 2025 08:48:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28EB1459F7;
+	Thu, 30 Jan 2025 08:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738226894; cv=none; b=RzVSJ8Soz6Fz8afL2qKFfZp6xXyTiF03o2XpciEg46cj7shuSW0I3QGZCcVfAUfz7oNpTIVZBnao63q/dyLAz6ywq/2POFj4W9mnjRQ4xcnWgh1vPI2FJ5nLdx9gjBFCmiEKbIE89Mk/ZNhWeXim7wNnMsHaWpcG+aXYEpueSrQ=
+	t=1738227420; cv=none; b=R2WVtGLxUFPoW0gQHnlOpIPWO2gv2R2tSMWQaWA0t3+Tb6k8kDP3hVa+3zCAdmMP8LMUfzQ9IrvkGAa7mkS/KsqrbFo/zw2a1BJmjKjVCkStBULGBWlFLLNnTDM7QoyWN5V7a9CvpB5gCcMKru/yIBkNdBI2l6Gdp2lvyPXLDmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738226894; c=relaxed/simple;
-	bh=FWJwQiogQ+hxCJVsbSYT68kgHA+GtG0m8mRQyC9+PGs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tOvnlMlIEakrNXSmZonY/nqIUkWD95at3KnlNf7OGjgmhspGAkHtt16mppNbWqVsF/689oibhwk99os1NQdDo1zMdCbbsXOQYTD8Dv2oa3isMSmHZHdmUR6OAnKkMo8PlRUISxwfJdzomy5ux+Tn6tXbD9keFaGz5vhWPkW4P/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n8nqdkgk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA6E7C4CED2;
-	Thu, 30 Jan 2025 08:48:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738226893;
-	bh=FWJwQiogQ+hxCJVsbSYT68kgHA+GtG0m8mRQyC9+PGs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n8nqdkgk1zoGYhcUzBBCkhmcFB0QYcJE3pH2NeziUqcUn1RF/jZiCMFKZQT2vZo9S
-	 IMa2HHiLn/ZM63yHUFgndiQy6I0wbsu1KIeFHYvlB+vLYnvzkhig2OBLFY8pGVwXFh
-	 0ncqLYFtA+d9FAA+JFOsfJg7xrpOHvq0MiYHclxnER3LweTOWY5LD4KWG6RdboXp8B
-	 SLYz/qI9RMD5nxZCYvEYRUfjOKdUiqUcCT+e9pstAuHyyJtRgymrniKyF/NFQ+4bgi
-	 AfysMqz2FdXWbWxRAXL+llPYgzucRD+rsCnFJKdw2e8chGd/m/7itZXwfBUB3WekyU
-	 MerEow4OpYnyg==
-Message-ID: <ac1ea985-15cd-4001-9700-a185ceb338d7@kernel.org>
-Date: Thu, 30 Jan 2025 09:48:07 +0100
+	s=arc-20240116; t=1738227420; c=relaxed/simple;
+	bh=M9roGvymV6bq03xrzax4BNoeWMtIDfHpmWenQYdxemw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=siEaLOWIubpJ/yJLUhESs6iFjpu6x2Bv5sd8qNSOiYvgoEzZ6Y/2EIAfi0TPPdJCkt2tnBIyT5eXyNxsMZgN0rvxlRM0llsy16jJbCkFsxZQqb+Vdh42u0GIazL6sL1+WM7fW8e8RlYqmjb4ki3BVnvLs1aTpjPaOZQPIGvyyGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=neJk4e8F; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50U6QBVh019628;
+	Thu, 30 Jan 2025 09:56:25 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	EzcyMoLNvtKxLHNHjczcsoR+W7/fDhlAI5vFIoUcVSo=; b=neJk4e8FK6tYF+Ad
+	nZVB/yh2Q9xUNrnMqDr28yaYonhcm2KYV5ISdfmAPhrU5gUgXXC+mkyKX8EvL5p0
+	VjoBCwUOMAZ/ADTEU4HQ8h0kjcoQIc20QMXQC8UHCDWS0ke+BwJPJIWIjJJqjVb0
+	hLLeQHAjwXdSO6aM5VBtdtMzleOR+xEe3E5lFYmTvvd/HaBawDQVoPpogg1jAE9d
+	CHOxGdkj1ez2zHWpaP9ZYadaswP6UOoewFMxiEb6RdPV/HTWXsgq04ZxG2z53a9G
+	NkWLMN1hiGpE5HZO9BGasSqec8BEozdO/YRrSSkvnaptqRyOjiIQ7vXQUsl6OsGZ
+	YZSByQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44f26x6w4a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Jan 2025 09:56:25 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 9EE874002D;
+	Thu, 30 Jan 2025 09:54:02 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BEB2C27EEB1;
+	Thu, 30 Jan 2025 09:51:29 +0100 (CET)
+Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 30 Jan
+ 2025 09:51:28 +0100
+Message-ID: <98f9bdfa-5107-412a-8b9b-41f8135954fc@foss.st.com>
+Date: Thu, 30 Jan 2025 09:51:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,132 +67,154 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: s32g: add the eDMA nodes
-To: Larisa Grigore <larisa.grigore@oss.nxp.com>, Frank Li <Frank.Li@nxp.com>,
- Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>
-Cc: imx@lists.linux.dev, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, s32@nxp.com,
- Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
- Enric Balletbo <eballetb@redhat.com>
-References: <20250130072951.373027-1-larisa.grigore@oss.nxp.com>
+Subject: Re: [PATCH v2 1/9] dt-bindings: spi: Add STM32 OSPI controller
+To: Conor Dooley <conor@kernel.org>
+CC: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <christophe.kerello@foss.st.com>
+References: <20250128081731.2284457-1-patrice.chotard@foss.st.com>
+ <20250128081731.2284457-2-patrice.chotard@foss.st.com>
+ <20250128-panama-manly-a753d91c297c@spud>
+ <e3d01bce-a7d4-4690-8a2f-3bbb1ee5ccb7@foss.st.com>
+ <20250129-feminize-spotlight-2cee53f8b463@spud>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250130072951.373027-1-larisa.grigore@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
+From: Patrice CHOTARD <patrice.chotard@foss.st.com>
+In-Reply-To: <20250129-feminize-spotlight-2cee53f8b463@spud>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-30_05,2025-01-29_01,2024-11-22_01
 
-On 30/01/2025 08:29, Larisa Grigore wrote:
-> Add the two eDMA nodes in the device tree in order to enable the probing
-> of the S32G2/S32G3 eDMA driver.
+
+
+On 1/29/25 18:53, Conor Dooley wrote:
+> On Wed, Jan 29, 2025 at 06:40:23PM +0100, Patrice CHOTARD wrote:
+>> On 1/28/25 19:02, Conor Dooley wrote:
+>>> On Tue, Jan 28, 2025 at 09:17:23AM +0100, patrice.chotard@foss.st.com wrote:
+>>>> +  memory-region:
+>>>> +    maxItems: 1
+>>>
+>>> Whatever about not having descriptions for clocks or reg when there's
+>>> only one, I think a memory region should be explained.
+>>
+>> ok i will add :
+>>
+>>     description: |
 > 
-> Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/s32g2.dtsi | 34 ++++++++++++++++++++++++
->  arch/arm64/boot/dts/freescale/s32g3.dtsi | 34 ++++++++++++++++++++++++
->  2 files changed, 68 insertions(+)
+> The | isn't needed here.
+ok
+
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> index 7be430b78c83..f73cd5a0906d 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> @@ -317,6 +317,23 @@ usdhc0-200mhz-grp4 {
->  			};
->  		};
->  
-> +		edma0: dma-controller@40144000 {
-> +			#dma-cells = <2>;
+>>       Memory region to be used for memory-map read access.
+> 
+> I don't think that's a good explanation, sorry. Why's a memory-region
+> required for read access?
 
-Any reason for not following DTS coding style in order of properties?
-This is odd style.
+The OCTOSPI interface support 3 functional modes: 
+  _ indirect
+  _ automatic polling status
+  _ memory-mapped
 
-> +			compatible = "nxp,s32g2-edma";
-> +			reg = <0x40144000 0x24000>,
-> +			      <0x4012c000 0x3000>,
-> +			      <0x40130000 0x3000>;
-> +			dma-channels = <32>;
-> +			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "tx-0-15",
-> +					  "tx-16-31",
-> +					  "err";
-> +			clock-names = "dmamux0", "dmamux1";
-> +			clocks = <&clks 63>, <&clks 64>;
-> +		};
-> +
->  		uart0: serial@401c8000 {
->  			compatible = "nxp,s32g2-linflexuart",
->  				     "fsl,s32v234-linflexuart";
-> @@ -333,6 +350,23 @@ uart1: serial@401cc000 {
->  			status = "disabled";
->  		};
->  
-> +		edma1: dma-controller@40244000 {
-> +			#dma-cells = <2>;
-> +			compatible = "nxp,s32g2-edma";
-> +			reg = <0x40244000 0x24000>,
-> +			      <0x4022c000 0x3000>,
-> +			      <0x40230000 0x3000>;
-> +			dma-channels = <32>;
-> +			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "tx-0-15",
-> +					  "tx-16-31",
-> +					  "err";
+256MB are reserved in the CPU memory map for the 2 OCTOSPI instance.
+This area is used when OCTOSPI1 and/or OCTOSPI2 operate in memory-mapped
+mode. In this mode, read access are performed from the memory device using
+the direct mapping.
 
-interrupts, then interrupt-names but:
+Thanks
+Patrice
 
-> +			clock-names = "dmamux0", "dmamux1";
-> +			clocks = <&clks 63>, <&clks 64>;
-
-here reversed.
-
-Best regards,
-Krzysztof
+> 
+>>>> +
+>>>> +  clocks:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  interrupts:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  resets:
+>>>> +    items:
+>>>> +      - description: phandle to OSPI block reset
+>>>> +      - description: phandle to delay block reset
+>>>> +
+>>>> +  dmas:
+>>>> +    maxItems: 2
+>>>> +
+>>>> +  dma-names:
+>>>> +    items:
+>>>> +      - const: tx
+>>>> +      - const: rx
+>>>> +
+>>>> +  st,syscfg-dlyb:
+>>>> +    description: phandle to syscon block
+>>>> +      Use to set the OSPI delay block within syscon to
+>>>> +      tune the phase of the RX sampling clock (or DQS) in order
+>>>> +      to sample the data in their valid window and to
+>>>> +      tune the phase of the TX launch clock in order to meet setup
+>>>> +      and hold constraints of TX signals versus the memory clock.
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>
+>>> Why do you need a phandle here? I assume looking up by compatible ain't
+>>> possible because you have multiple controllers on the SoC? Also, I don't
+>>
+>> Yes, we got 2 OCTOSPI controller, each of them have a dedicated delay block
+>>  syscfg register.
+> 
+> :+1: 
+> 
+>>> think your copy-paste "phandle to" stuff here is accurate:
+>>>       st,syscfg-dlyb = <&syscfg 0x1000>;
+>>> There's an offset here that you don't mention in your description.
+>>
+>> I will add it as following:
+>>
+>>   st,syscfg-dlyb:
+>>     description:
+>>       Use to set the OSPI delay block within syscon to
+>>       tune the phase of the RX sampling clock (or DQS) in order
+>>       to sample the data in their valid window and to
+>>       tune the phase of the TX launch clock in order to meet setup
+>>       and hold constraints of TX signals versus the memory clock.
+>>     $ref: /schemas/types.yaml#/definitions/phandle-array
+>>     items:
+>>       - description: phandle to syscfg
+>>       - description: register offset within syscfg
+> 
+> :+1:
+> 
+>>>> +  access-controllers:
+>>>> +    description: phandle to the rifsc device to check access right
+>>>> +      and in some cases, an additional phandle to the rcc device for
+>>>> +      secure clock control
+>>>
+>>> This should be described using items rather than a free-form list.
+>>
+>>   access-controllers:
+>>     description: phandle to the rifsc device to check access right
+>>       and in some cases, an additional phandle to the rcc device for
+>>       secure clock control
+>>     items:
+>>       - description: phandle to bus controller or to clock controller
+>>       - description: access controller specifier
+>>      minItems: 1
+>>      maxItems: 2
+> 
+> These updates look fine to me.
 
