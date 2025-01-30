@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF25A22914
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:18:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE040A22920
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:26:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23278163227
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 07:18:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AE93164E0F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 07:26:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2956C19CD1D;
-	Thu, 30 Jan 2025 07:18:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06721A23A0;
+	Thu, 30 Jan 2025 07:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VObLoFMp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tJUCz+xp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00334A07;
-	Thu, 30 Jan 2025 07:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E2A433B1;
+	Thu, 30 Jan 2025 07:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738221506; cv=none; b=iOyOHEsySLnvlxpx+5Q/dUGNr1+csR0A5oL3VYgvFYAzIU1mjhkTME4CVO47mSYQAjt3DpxuhTDz03rnlLkdZJqx264oFkBVU3JjIoaOGe3W+K1L9B1H7hzx2jGe9n+4LJAdRpZ/39AdyKbrzj32Yxuk1U5TMXBXKAWY6Jho9qo=
+	t=1738221977; cv=none; b=D2yW++DTDMxYzcQxI4EnApzlnB+h81L96crnhIs7uE0B1fSy8W1EWqAfh/OulhzIpu9/SB146ay6Cvwcg6MoWtxBe9ES2vRzX7XqMhaKvycFtMJE7XlfELtpoAuhVnkItHL6BpbIoERKvymdXO7vNAClS8tcFstSApdafVbOzEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738221506; c=relaxed/simple;
-	bh=fh1hqRp5VbcUC+J0XG8LWe9kkq6cnHpQLGS6qB5Wg3g=;
+	s=arc-20240116; t=1738221977; c=relaxed/simple;
+	bh=ZU/fxjXisLMnyON1qchdh4GygxZ4cUrjTB3cD3A/U2A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PZmUwmjwwXxBNqj/6YD0ZrDI0YR8hjxvgG7e5Or5C4Hib2KE0RGy+lnsLmV1qpjyIkcnqRkG3kK5V+vaMVTFoP3aXPsJ+JLaCwO10Hr9lYPIQFaM7oe7plUEn3Ka71i7Ud2igyUgUvIhsxqm6UNront1Ea4ogaC3qWvPveWCuz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VObLoFMp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87434C4CED2;
-	Thu, 30 Jan 2025 07:18:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NpfmajGx6oyDXn4pyhxxUgx0c526lMJZ7oxKZKSMHvr1gA5LMKo3RltyODDEVqZjthEfeugd45ZrbAxzf8LWi6ySRHFykrgSbdV/iv+BDUFPP6UYeQprJQdlpkhQ+mVuZTJOLTvpg/CCjngmDrlIG9+gC3gsOyzOp/pvoSmm1SI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tJUCz+xp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4782C4CED2;
+	Thu, 30 Jan 2025 07:26:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738221505;
-	bh=fh1hqRp5VbcUC+J0XG8LWe9kkq6cnHpQLGS6qB5Wg3g=;
+	s=k20201202; t=1738221974;
+	bh=ZU/fxjXisLMnyON1qchdh4GygxZ4cUrjTB3cD3A/U2A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VObLoFMpxhsIXdWGBOVp1Gi1rfD2DYRcFxO/KGjhvYEeEtBWTrFuPhauFuYD8MAnV
-	 MqB2CQD6KCUJIK2M9GCKL7MofNwji9dVOfUW77kBqxGPXf5QZYzQyaSg5kCfw9n8eZ
-	 Q3NjDrEBchYCEHMjK1hOd80Q4gesAcod+SbJSzZY7h47ICfCnvj/Dhcs7ANG7gH7L6
-	 nYxVuUtHtcL2axwQSCCYiB0Z1t5uMOc8yah9VugzGy7FfHsZb+A+drb/E/EsdGaBXd
-	 GYFAuEo+39q6NJ8Ddn4cwR/g05KNeSm4LOcDwoCs2Z5rn+TbC3wsaVgmosNCZucrsB
-	 BdqJPNbZ/9cTA==
-Message-ID: <8f77207b-5957-4d1c-88d1-7a1da5e93183@kernel.org>
-Date: Thu, 30 Jan 2025 08:18:19 +0100
+	b=tJUCz+xpg5g+kXWEG5k3Zc42O5EY/L1E2iHx4PNy9sTGAGoL67gwnVdEY+VooE/L/
+	 ZX1MTcJX9kO0zy5f6BR3L80uDp7/Hsbe2fZT7X4JPzdctxCv9xnJ8ulnQCIiR09H/o
+	 /ixs7JY+/UxylFiJhnjr/r268z8ZNkyQu1XofS4dg41rnaWBj8DCOiVV8LmFReOoFN
+	 1APBVU0MiGitnHqI4w8v3mJxAIsZHFiGKzc9j56XO2tbE5PBKWEMmxlPjy+qnyKIPX
+	 YMRW5iXSq0xKyTLmfsDPYoqalqL67J3JtGIeeumX9aBSDRKbt19QcMsrCN0fbqQmfr
+	 IfZK/FVvN6W7A==
+Message-ID: <40a3dced-defe-412d-b5b2-efcc9619d172@kernel.org>
+Date: Thu, 30 Jan 2025 08:26:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: misc: atmel,at91-ssc: Convert to YAML
- format
-To: Andrei Simion <andrei.simion@microchip.com>
-Cc: alexandre.belloni@bootlin.com, broonie@kernel.org,
- claudiu.beznea@tuxon.dev, conor+dt@kernel.org, devicetree@vger.kernel.org,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, robh@kernel.org
-References: <20250129-vagabond-scrupulous-scorpion-b57db9@krzk-bin>
- <20250129132822.9382-1-andrei.simion@microchip.com>
+Subject: Re: [PATCH v5 3/5] arm64: dts: agilex: add dtsi for PCIe Root Port
+To: matthew.gerlach@linux.intel.com
+Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
+ robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, matthew.gerlach@altera.com,
+ peter.colberg@altera.com
+References: <20250127173550.1222427-1-matthew.gerlach@linux.intel.com>
+ <20250127173550.1222427-4-matthew.gerlach@linux.intel.com>
+ <ea614dc5-ad24-4795-b9ba-fa682eda428f@kernel.org>
+ <22cb714e-db76-b07-8572-2f70f6848369@linux.intel.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,70 +107,71 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250129132822.9382-1-andrei.simion@microchip.com>
+In-Reply-To: <22cb714e-db76-b07-8572-2f70f6848369@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/01/2025 14:28, Andrei Simion wrote:
-> Hi,
+On 29/01/2025 20:42, matthew.gerlach@linux.intel.com wrote:
 > 
-> Thank you for the review.
 > 
-> I will place this in: Documentation/devicetree/bindings/sound/
-> because the SSC it is used only for Audio.
+> On Wed, 29 Jan 2025, Krzysztof Kozlowski wrote:
+> 
+>> On 27/01/2025 18:35, Matthew Gerlach wrote:
+>>> Add the base device tree for support of the PCIe Root Port
+>>> for the Agilex family of chips.
+>>>
+>>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>>> ---
+>>> v3:
+>>>  - Remove accepted patches from patch set.
+>>>
+>>> v2:
+>>>  - Rename node to fix schema check error.
+>>> ---
+>>>  .../intel/socfpga_agilex_pcie_root_port.dtsi  | 55 +++++++++++++++++++
+>>>  1 file changed, 55 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+>>> new file mode 100644
+>>> index 000000000000..50f131f5791b
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+>>> @@ -0,0 +1,55 @@
+>>> +// SPDX-License-Identifier:     GPL-2.0
+>>
+>> Odd spaces in SPDX tag.
+> 
+> Yes, there should only be one space.
 > 
 >>
->> Missing dai-cells. Old binding said 0, now you say anything...
+>>> +/*
+>>> + * Copyright (C) 2024, Intel Corporation
+>>> + */
+>>> +&soc0 {
+>>> +	aglx_hps_bridges: fpga-bus@80000000 {
+>>> +		compatible = "simple-bus";
+>>> +		reg = <0x80000000 0x20200000>,
+>>> +		      <0xf9000000 0x00100000>;
+>>> +		reg-names = "axi_h2f", "axi_h2f_lw";
 >>
->> Missing required block
+>> Where is this binding defined?
+> 
+> The bindings for these reg-names are not currently defined anywhere, but 
 
-Here, look.
+Then you cannot use them.
 
->>
->>> +allOf:
->>> +  - $ref: ../sound/dai-common.yaml#
->>
->> Full path, so /schemas/
->>
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - atmel,at91sam9g45-ssc
->>> +    then:
->>> +      required:
->>> +        - compatible
->>> +        - reg
->>> +        - interrupts
->>> +        - dmas
->>> +        - dma-names
->>
->> So only dmas?
->>
->>> +        - clocks
->>> +        - clock-names
->>> +    else:
->>> +      required:
->>> +        - compatible
->>> +        - reg
->>> +        - interrupts
->>> +        - clocks
->>> +        - clock-names
->>
->> Drop entire required:
->>
-> 
-> I have a question:
-> 
-> 1) The old binding said if "atmel,at91sam9g45-ssc": add dmas and DMA-names to the list:
-> 	- compatible, reg, interrupts, clock-names, clocks
->    Why do you ask: "drop entire required"?
->    I intended to set the required through a conditional.
->     case 1) dma transfer
->     case 2) pdc transfer
+> they are also referenced in the following:
+>      Documentation/devicetree/bindings/soc/intel/intel,hps-copy-engine.yaml
+>      arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+> I am not exactly sure where the right place is to define them, maybe
+> Documentation/devicetree/bindings/arm/intel,socfpga.yaml. On the other 
+> hand, no code references these names; so it might make sense to just 
+> remove them.
 
-I commented earlier on missing required block in top-level.
+In general: nowhere, because simple bus does not have such properties.
+It's not about reg-names only - you cannot have reg. You just did not
+define here simple-bus.
 
 Best regards,
 Krzysztof
