@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B196A22938
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:36:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E878CA2293C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:37:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E638B1887023
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 07:36:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04A003A650F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 07:37:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D1619F487;
-	Thu, 30 Jan 2025 07:36:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E65D19F12A;
+	Thu, 30 Jan 2025 07:37:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ki8tqzc9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CbENHeGE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2BC3C2FB;
-	Thu, 30 Jan 2025 07:36:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30ED5C2FB;
+	Thu, 30 Jan 2025 07:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738222564; cv=none; b=Z8RWvydFwKB9VYftN7Q5aIlUJZzbB3ukoDS8ZTS4PNcWBHd0cU7h04AMn9uHy1oz1whTjne9h17BV778DaNiKR4XloTAF7sdg4I7ilz42RJvS36JgVqmDeL8ZOZoM5UANYl+sgc71gBlAujB0t0McvBsxeqCPC1AO6eosXZ6U24=
+	t=1738222655; cv=none; b=iDVVPEw0EgnHe6Pvte8r2HyGsETbFDjaQTJ0TwgaZgccwFpIaCkPfPhCIDKBpdJoAqUcWTPZkDYmZKFigRVN7Y7dP3Lz61cRl3BY/1sBpWcg3I3Ps1EdrJB5u7f54aP7a7LGLdA2foBplj8E1uzZ7SVBW5ZGTox6tmI7O+Wl7tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738222564; c=relaxed/simple;
-	bh=Oy++OGw4d1Cqv/mjpV/tNrSElpOXfx/bqz7yrKICXPM=;
+	s=arc-20240116; t=1738222655; c=relaxed/simple;
+	bh=5X77AvIgq4Fo1Fp8a31/KKOXgMONk2UfKmvIYDuGpZY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RsHun0jcOqiJym8s6GR3joceKexL3HLD/39ui3IW7Iz8nv/dQ3nrUU//F4id1w+NE9v0m3uspDFxVo9VYqhDjl89R9PCFx2WyHpc1Wf4bq7Sufm8i+YfDiXLfsF+6Dc5N2ELqN1MqFWmHSFPeQp/pNcfdhf5q8+laxaY2/kSjk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ki8tqzc9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 433A5C4CED2;
-	Thu, 30 Jan 2025 07:35:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OtZLz6boXNtzTMUnx27hJL17ocpQhYRDBqGVzggO236J0fqQaPPvSI12ncvQKLBcVn/FBo3yl1XgukypXyNkaJa67NNOEV+TuZ69ekoT/lC0UwsjNunawMw8XRKMC3Yd+rsi1jcT/vWErpEE9A4GWit/OuUUENomWihCCsQ34zQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CbENHeGE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B3DDC4CED2;
+	Thu, 30 Jan 2025 07:37:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738222563;
-	bh=Oy++OGw4d1Cqv/mjpV/tNrSElpOXfx/bqz7yrKICXPM=;
+	s=k20201202; t=1738222653;
+	bh=5X77AvIgq4Fo1Fp8a31/KKOXgMONk2UfKmvIYDuGpZY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ki8tqzc9IhtnCvc1Y6eMFCno5ZwetJ+H5t09Bi1tfK9n1GyvNESfI+LI9e6ofKSrV
-	 63f781nGy1AzLRptKlQnJ7tFn5bQlqpGVYJ6rRcRHwCc6LiFSkAeJFCHyrQHyv919a
-	 MfGm8e/+mIT/CVrM1d0fZmHPNR3tvht2ltV0kX3poZoBgrRrMb6CxOLj4ZCk9wYftZ
-	 wI3iplRji9sn/ROV5WJrWek2BY/td96H8SUBHXI2jAt6P/Xa9QA6lcEQ3mwFDgJxJP
-	 JH6AC1GxfeMkHjrZAWDrTp9p53oXRW1X8BH7oZ6XeLnHdkwIj5FR+LwrHGarDxofM0
-	 5qY8DIszUyjiA==
-Message-ID: <b44f0dd4-1793-429d-a8c8-0cf23481be2a@kernel.org>
-Date: Thu, 30 Jan 2025 08:35:56 +0100
+	b=CbENHeGEZH8xImy0A2q/bbVLxRIgqLOfpGHB0VENHsJTnXhstb2isvAuK/W7xvlSe
+	 +ymog6Sb5PTBPlueZpNE6Y5yeSvnRhanTfAhoMipDbd/A9KE+8gos7UYN0K2JnU/nD
+	 UHrwe63cTRMJYILs6P2Y8u764ffDi3LUz+54UPmPT6tGezlogjdWtuA9BGaPc7iRdA
+	 xm94RhsjWnrOyRSBF9etEFvmN7+m4JStknU30R4LpQxcmP0JlXKB59FbqfsKUNmobG
+	 ptUjktiAIOPuqFc+/P76JeZm6uSsVUR1wtnTqvTNy0JgvR03qDfKnv+JfVk0KBZeOO
+	 nGk38+Ep9KnCQ==
+Message-ID: <3db11710-8ad7-439b-8674-ce07fa221920@kernel.org>
+Date: Thu, 30 Jan 2025 08:37:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] clk: qcom: gcc-sdm660: Add missing SDCC block resets
-To: Alexey Minnekhanov <alexeymin@postmarketos.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
- Craig Tatlor <ctatlor97@gmail.com>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20250129171842.1588526-1-alexeymin@postmarketos.org>
- <55c5cef2-3cfb-408c-8c78-4bfd5ee19a29@kernel.org>
- <09d57c27-f287-4ae5-8c78-db39dd9cc820@postmarketos.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [RFC PATCH 0/5] wifi: ath12k: Enable IPQ5424 AHB WiFi device
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250130051838.1924079-1-quic_rajkbhag@quicinc.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -109,34 +102,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <09d57c27-f287-4ae5-8c78-db39dd9cc820@postmarketos.org>
+In-Reply-To: <20250130051838.1924079-1-quic_rajkbhag@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/01/2025 21:52, Alexey Minnekhanov wrote:
-> On 1/29/25 10:06 PM, Krzysztof Kozlowski wrote:
->>
->> No line breaks between tags (see `git log`).
->>
+On 30/01/2025 06:18, Raj Kumar Bhagat wrote:
+> Add support for the new ath12k AHB device IPQ5424, as currently, Ath12k
+> AHB only supports IPQ5332 WiFi devices.
 > 
-> Will fix in v2.
+> The IPQ5424 is an IEEE 802.11be 2 GHz WiFi device, supporting 4x4
+> configurations. To enable the IPQ5424 device:
+> - Add the necessary hardware parameters for IPQ5424.
+> - Modify the boot-up sequence for ath12k AHB to accommodate the
+>   requirements of the IPQ5424 device.
 > 
->>
->>>   include/dt-bindings/clock/qcom,gcc-sdm660.h | 2 ++
->>
->> That's a separate patch. Always.
->>
+> Depends-On: [PATCH v5 00/13] wifi: ath12k: add Ath12k AHB driver support for IPQ5332
+> Link: https://lore.kernel.org/all/20250130043508.1885026-1-quic_rajkbhag@quicinc.com/
 > 
-> No big deal, but I've looked at git log and found previous commit 
-> b538304da785 ("clk: qcom: gcc-sdm660: Add missing modem reset") [1] that 
-> did similar things, but in a single patch, so I did the same.
-> 
-> Will fix in v2.
-
-Is there DT Ack for that commit? No.
-
-You also marked this commit as fixes, so explain in commit msg
-user-observable bug being fixed here.
+You marked this a RFC, so this is not ready, but nothing explains this
+here. What sort of comments are you looking for? What's incomplete with
+this work?
 
 Best regards,
 Krzysztof
