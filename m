@@ -1,155 +1,326 @@
-Return-Path: <devicetree+bounces-141884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E3FCA230AA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 15:54:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00839A230D8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 16:09:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E5C43A5FE3
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 14:54:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 496D71887829
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 15:09:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 413B31E991B;
-	Thu, 30 Jan 2025 14:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA7CF1E9B27;
+	Thu, 30 Jan 2025 15:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FbthnF1L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HTfICIqA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8053C1E5732;
-	Thu, 30 Jan 2025 14:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99DED1E98E7;
+	Thu, 30 Jan 2025 15:09:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738248868; cv=none; b=gYSou1u83+TpIG6EUDAwMZVwhRdLPNYVvsDOb6Z4CRDzdKWobPfrClt8WthE81kdHKSoVG1Q6r9WkrACA0P4oMLJkQ8zp5vS3jrvDQUU/qPceXiNaad6bJuhG3v4lp69Omy1HJxsiQpNqXCuXuo79vgMiwYmpOEsJ42BGcqMehY=
+	t=1738249758; cv=none; b=tvCzjbqHv6U31Ayg670iwOffCrG7P96i9nzV2BqdFWzTcltpCjgTEpX9mtxYAWFDbBkVn9oGoT/fJxqGzC/L42lkFXQg8razUvK/U+y9mkAKf7DQz5VG4TD6t7BsDMSH0zBcmFFSuztgJPzhszLShG9iyU+wkuk9eA1mzxy4O0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738248868; c=relaxed/simple;
-	bh=ePC6fMP+mBRkjMGGu/8MplwouXSIvjGXh2QC88juEJc=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=YSKtlNZxCpjzkdFByMgmgv4WcY38cvq2P0PD6LGF1UBpOP/xP5FGtJjwp7SyrAhQl8GuX5WBvwUlHWsZiNbC9XpJJv95sNStiHt69fGynKNoH/h56ThJHqfgIV/gKRJFhvE6TeIZT1F7AVmLowFZxL8mm1oj0YZjnWaYrdPwvb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FbthnF1L; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ab2e308a99bso160138166b.1;
-        Thu, 30 Jan 2025 06:54:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738248865; x=1738853665; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qbp4EtOkuC+0iVMNyfHjqvPw/lKMjNnZSdESNc6UztA=;
-        b=FbthnF1LsUW411h9WxtobR5s/W72HYF9CZOx3koegv48amw23E6H8vWMu7FAqR6/e2
-         RTfft1d/34MW4JB1MwYaJWIrm0O3DjhUCWMh9ST+vTMf4NqWT5g4NNA0zAtRqrsiuYcu
-         tlXkdH2pSOCm+JbRO/LE3kFPyFVYy0kU49wOHduQ9ZdNYjtWoAG5ccEa0XeHf8aCu/J8
-         CPLdlutxDG2b6TLUYjeKDn5ceR+o84he0JApwM+Dxmn3AnryEvpU8qSUSGizdue9WJzv
-         Ygwxg1ujbjCoZH2xIrMMRhsrsVuN1CecPvCYmv0iimmZdRoaXutzZBVnfwv7vDa7ot67
-         zpCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738248865; x=1738853665;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qbp4EtOkuC+0iVMNyfHjqvPw/lKMjNnZSdESNc6UztA=;
-        b=abMr/kwLlERf0/Qq+RPggU4b3HRL/tMQtvIkvmKTM3fJx8foB3IB2aovUAv+T01jkI
-         ZvxLTDrh5yS/onxWDUYZCWMnu5SVVFqYUIR9xy7PODKFNhaSak2k6xfUur6GB0P9TTxM
-         lX8ca3YB4ecN3aE5gGNo3QIp/uOpadJI7hPpq3V0Pse0226UNp4IXlCBTDdq8/sUnV/I
-         ObylAHd/cwUeHohtapYMp8f6rxgWOiFXOnXB/L5hURltFp72P1N+DvvrVWTe06nwiIXf
-         Mu8a35XV3Yx2dU6JBfsdarU7vn2kcVEJBL8k/jC4f6wH59pSAoT+sq9PqL1oFR92Q/Cr
-         HEdA==
-X-Forwarded-Encrypted: i=1; AJvYcCVfgfAfARg2qq+oHOU4X/XYoW3DSyoXCpQUmHNO1yaJQHWM7HBcvPQ4ubS066iUCp4NdV9vDYIpjjAo@vger.kernel.org, AJvYcCVqlfc3rAM7aIkmr0Xsq9J9z2mkZztFNyE7/boG/o/3Hdr8f9qCqOisJ4ShbyaziJmYFfr5IvaRwFqNAv8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdjWkOmwwHf11yAFzNyYR7YjtJARLbm8rZiQVFsAytjQkPu18e
-	3owrZSY9z+vsQAvh9lU0qzcMAE49swwExBzO0ImrSHkAKrXk9p1thbDaXg==
-X-Gm-Gg: ASbGnctvZ+/mjASrpJUq5nlGefngWGRgKa+rXr9bdTDicnilAvNGBDP/WWBXoeVU99M
-	dI+ApqnekOL9KN10u+0PgzhMOrN/fa6b5g3WIhSZjxI/ar0mqgwyI9axy0ChGhH10DiwngjvjcF
-	t/Vm+NX4H5xHOzsOICHLkcba6SyyBTANH109Ryp119bhfO9hLKvZWAaT3gAhgIPCuCv7JfdFW6Y
-	9aX97MTq0c34udaWc6pUCq9oWQ513NWs4m/Atzx5mTs3Y6GYUpTt3I1SGYKWgSPoRVG+SR9euR/
-	rqYonkhG3RU13LvmF8E6hqhUap32jbn6o0sbSdyJj7w4yErKPS9tbcMmx3c8vR8eRdGqkval
-X-Google-Smtp-Source: AGHT+IEscLo+ZglJ4iQ8yhcikhYDyTBbGC16YkQrOwamLjmGj9mpYIbrbWr8u+H0RMfLebwCb6ojRw==
-X-Received: by 2002:a17:907:1c13:b0:ab6:8bb8:af2e with SMTP id a640c23a62f3a-ab6e0cc500cmr358429766b.26.1738248864471;
-        Thu, 30 Jan 2025 06:54:24 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab6e4a2fe78sm129297166b.125.2025.01.30.06.54.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 30 Jan 2025 06:54:24 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1738249758; c=relaxed/simple;
+	bh=1lENOrBuzaiptZUl0nwSS5uQHpvkdQsRgMkvtdCe9zk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m5SbiR0LzB+oNMW9JxSdOepEjHL+lA5zkidjNwJkVjEAgFJPYxabuJxSomFSgvsTKkDxRo+9lhfgDqkRFatZGm1D8plJc4nTd5bUCBEnCWoZazy0cjvgIJWiuelj1VDupuS1oh3hDqD0SFm/OJ7TynQkmoevVxGaazr4ItR92W4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HTfICIqA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89D10C4CED2;
+	Thu, 30 Jan 2025 15:09:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738249758;
+	bh=1lENOrBuzaiptZUl0nwSS5uQHpvkdQsRgMkvtdCe9zk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HTfICIqAght9yWAmdjzfR2F+ZYURALpMimc125Z8vIm+FaoueBOUttObIOtGPeF2Q
+	 ObESx7k5p/RF9JiLq+vZRnstwdXzIunARv30EjEGmC327ifhKeqYehk82D2fZgLaR5
+	 hvfkSmGU5FuFX6o2SysNGkb5UYRinT1Sl/8aDJCQN62vKoJ3mPNVocxbZtSlZsTyfQ
+	 vBHCPbLG2d/4weN7RE5bEU8E6HCvXER3xF+pHpm7M7kx+9JLI6boZNyvp37fO3D5zt
+	 Di5nhZeJqCOk2xTTPRNaO/mXn5lohpj0PEe5Vl1ylKLHKbnIWqip6A091zhx9NNfoY
+	 TmvXV+nEjrwQQ==
+Message-ID: <899675e8-4c2e-4ff2-a6af-854e0ec29bb6@kernel.org>
+Date: Thu, 30 Jan 2025 16:09:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.300.87.4.3\))
-Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <278CF0E0-7277-40F3-942C-6FA61AA759A0@gmail.com>
-Date: Thu, 30 Jan 2025 15:54:10 +0100
-Cc: linux-kernel@vger.kernel.org,
- Diederik de Haas <didi.debian@cknow.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>,
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/9] dt-bindings: memory-controllers: Add STM32 Octo
+ Memory Manager controller
+To: Patrice CHOTARD <patrice.chotard@foss.st.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>,
- Alexey Charkov <alchark@gmail.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- linux-media@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org,
- linux-staging@lists.linux.dev
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <B8B4C7CF-B2C4-48CE-84AD-52DF6002D17B@gmail.com>
-References: <20240615015734.1612108-1-detlev.casanova@collabora.com>
- <5969581.LvFx2qVVIh@arisu> <CE4343FE-94AA-4F84-8C43-8366013AED84@gmail.com>
- <8541055.T7Z3S40VBb@trenzalore>
- <278CF0E0-7277-40F3-942C-6FA61AA759A0@gmail.com>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-X-Mailer: Apple Mail (2.3826.300.87.4.3)
+ Arnd Bergmann <arnd@arndb.de>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ christophe.kerello@foss.st.com
+References: <20250128081731.2284457-1-patrice.chotard@foss.st.com>
+ <20250128081731.2284457-4-patrice.chotard@foss.st.com>
+ <20250129-hilarious-glittering-mustang-fb5471@krzk-bin>
+ <3660580d-72eb-45ca-8240-55557e334e37@foss.st.com>
+ <951e4d16-2bb2-44b1-99e7-dd28349f20aa@kernel.org>
+ <02b947e3-dd5c-4ee8-bd65-5775923fe33f@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <02b947e3-dd5c-4ee8-bd65-5775923fe33f@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Update to my last email:=20
+On 30/01/2025 14:32, Patrice CHOTARD wrote:
+> 
+> 
+> On 1/30/25 13:12, Krzysztof Kozlowski wrote:
+>> On 30/01/2025 09:57, Patrice CHOTARD wrote:
+>>>
+>>>
+>>> On 1/29/25 08:52, Krzysztof Kozlowski wrote:
+>>>> On Tue, Jan 28, 2025 at 09:17:25AM +0100, patrice.chotard@foss.st.com wrote:
+>>>>> From: Patrice Chotard <patrice.chotard@foss.st.com>
+>>>>>
+>>>>> Add bindings for STM32 Octo Memory Manager (OMM) controller.
+>>>>>
+>>>>> OMM manages:
+>>>>>   - the muxing between 2 OSPI busses and 2 output ports.
+>>>>>     There are 4 possible muxing configurations:
+>>>>>       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
+>>>>>         output is on port 2
+>>>>>       - OSPI1 and OSPI2 are multiplexed over the same output port 1
+>>>>>       - swapped mode (no multiplexing), OSPI1 output is on port 2,
+>>>>>         OSPI2 output is on port 1
+>>>>>       - OSPI1 and OSPI2 are multiplexed over the same output port 2
+>>>>>   - the split of the memory area shared between the 2 OSPI instances.
+>>>>>   - chip select selection override.
+>>>>>   - the time between 2 transactions in multiplexed mode.
+>>>>>
+>>>>> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+>>>>> ---
+>>>>>  .../memory-controllers/st,stm32-omm.yaml      | 190 ++++++++++++++++++
+>>>>>  1 file changed, 190 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/st,stm32-omm.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-omm.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-omm.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..7e0b150e0005
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-omm.yaml
+>>>>
+>>>>
+>>>> Filename as compatible, so st,stm32mp25-omm.yaml
+>>>>
+>>>> You already received this comment.
+>>>
+>>> Sorry, i missed this update
+>>>
+>>>>
+>>>>> @@ -0,0 +1,190 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/memory-controllers/st,stm32-omm.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: STM32 Octo Memory Manager (OMM)
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Patrice Chotard <patrice.chotard@foss.st.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  The STM32 Octo Memory Manager is a low-level interface that enables an
+>>>>> +  efficient OCTOSPI pin assignment with a full I/O matrix (before alternate
+>>>>> +  function map) and multiplex of single/dual/quad/octal 		SPI interfaces over
+>>>>> +  the same bus. It Supports up to:
+>>>>> +    - Two single/dual/quad/octal SPI interfaces
+>>>>> +    - Two ports for pin assignment
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: st,stm32mp25-omm
+>>>>> +
+>>>>> +  "#address-cells":
+>>>>> +    const: 2
+>>>>> +
+>>>>> +  "#size-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  ranges:
+>>>>> +    description: |
+>>>>> +      Reflects the memory layout with four integer values per OSPI instance.
+>>>>> +      Format:
+>>>>> +      <chip-select> 0 <registers base address> <size>
+>>>>
+>>>> Do you always have two children? If so, this should have maxItems.
+>>>
+>>> No, we can have one child.
+>>
+>> For the same SoC? How? You put the spi@ in the soc, so I don't
+>> understand how one child is possible.
+> 
+> Yes for the same SoC, in DTSI file, the both OCTOSPI child are declared 
+> but are disabled by default.
 
-> Wiadomo=C5=9B=C4=87 napisana przez Piotr Oniszczuk =
-<piotr.oniszczuk@gmail.com> w dniu 30 sty 2025, o godz. 11:46:
->=20
->=20
-> I=E2=80=99m using:
-> =
-https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/com=
-mit/bc47c445bfd9586115e9bcf5f231c5a5c5f0f828
-> =
-https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/com=
-mit/9a9fd791513bc0d02c2242c88f23b41bd47de30a
->=20
-> I see there is: =
-https://gitlab.collabora.com/detlev/linux/-/commits/add-rkvdec2-driver-iom=
-mu
-> Let me update iommu code to above branch and report back here how it =
-goes in 3588 and 356x
+But the child node is there anyway so are the ranges.
 
-I updated to =
-https://gitlab.collabora.com/detlev/linux/-/commits/add-rkvdec2-driver-iom=
-mu and basically i see no change (the same iommu errors on 356x; 3588 =
-all clean)  =20
+> 
+> In the DTS board file, 0,1 or 2 OCTOSPI instance can be enabled depending of the board design.
+> 
+> In our case, on stm32mp257f-ev1 board, one SPI-NOR is soldered on PCB, so only one OCTOSPI 
+> instance is needed and enabled.
+> 
+> Internally we got validation boards with several memory devices connected to OCTOSPI1 and 
+> OCTOSPI2, in this case, both OCTOSPI instance are needed and enabled.
 
->=20
->=20
->>=20
->> You can also checkout YUView (https://github.com/IENT/YUView) to get=20=
+I could imagine that you would not want to have unused reserved ranges,
+so that one indeed is flexible, I agree.
 
->> information on media files structure, but I have had issues with HEVC =
-support=20
->> lately.
->=20
-> oh great. will do and report!
->=20
+> 
+>>
+>>>
+>>>>
+>>>>> +
+>>>>> +  reg:
+>>>>> +    items:
+>>>>> +      - description: OMM registers
+>>>>> +      - description: OMM memory map area
+>>>>> +
+>>>>> +  reg-names:
+>>>>> +    items:
+>>>>> +      - const: regs
+>>>>> +      - const: memory_map
+>>>>> +
+>>>>> +  memory-region:
+>>>>> +    description: Phandle to node describing memory-map region to used.
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 2
+>>>>
+>>>> List the items with description instead with optional minItems. Why is
+>>>> this flexible in number of items?
+>>>
+>>> If only one child (OCTOSPI instance), only one memory-region is needed.
+>>
+>> Which is not possible... look at your DTSI.
+> 
+> It's possible. if one OCTOSPI is used (the second one is kept disabled), only
+> one memory-region is needed.
 
-Huh - here in need to switch to Linux as on maxOS i have issue with =
-ffmpeg ver. mismatch in YUView
-Will report next days=E2=80=A6.
-=20
+Ack.
+
+> 
+>>
+>>>
+>>> Another update, i will reintroduce "memory-region-names:" which was 
+>>> wrongly removed in V2, i have forgotten one particular case.
+>>>
+>>> We need memory-region-names in case only one OCTOSPI instance is 
+>>> used. If it's OCTOCPI2 and the whole memory-map region
+>>> is dedicated to OCTOSPI2 (OCTOSPI1 unmapped, OCTOSPI2 (256 Mbytes)
+>>>
+>>> We need to know to which OCTOSPI instance the memory region is associated
+>>> with, in order to check "st,syscfg-amcr" 's value which must be coherent 
+>>> with memory region declared.
+>>>
+>>> so i will add :
+>>>
+>>>   memory-region-names:
+>>>     description: |
+>>>       OCTOSPI instance's name to which memory region is associated
+>>>     items:
+>>>       - const: ospi1
+>>>       - const: ospi2
+>>>
+>>
+>> I don't think this matches what you are saying to us. Let's talk about
+>> the hardware which is directly represented by DTS/DTSI. You always have
+>> two instances.
+>>
+>>
+> 
+> We have 2 instances, but both not always enabled.
+> In case only one is enabled, only one memory-region-names is needed.
+> 
+> We must know to which OCTCOSPI the memory-region makes reference to, in order
+> to configure and/or check the memory region split configuration. That' swhy 
+> the memory-regions-names must specify if it's the OCTOSPI1 or OCTOSPI2 instance.
+
+Well, in that case two comments.
+1. Above syntax does not allow you to skip one item. You would need:
+items:
+  enum: [ospi1, ospi2]
+minItems: 1
+maxItems: 2
+
+2. But this points to other problem. From the omm-manager node point of
+view, you should define all the resources regardless whether the child
+is enabled or not. You do not skip some part of 'reg' if child is
+missing. Do not skip interrupts, access controllers, clocks etc.
+If some resource is to be skipped, it means that it belongs to the
+child, not to the parent, IMO.
+Therefore memory-region looks like child's property.
+
+Imagine different case: runtime loaded overlay. In your setup, you probe
+omm-manager with one memory-region and one child. Then someone loads
+overlay enabling the second child, second SPI.
+
+That's of course imaginary case, but shows the concept how the parent
+would work.
+
+It's the same with other buses in the kernel. You can load overlay with
+any new child and the parent should not get new properties.
+
+
+
+Best regards,
+Krzysztof
 
