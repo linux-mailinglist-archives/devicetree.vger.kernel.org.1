@@ -1,267 +1,259 @@
-Return-Path: <devicetree+bounces-141954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C956A2370C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 23:01:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB847A23743
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 23:33:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 972CF1883F6A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 22:01:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D6E21888CAF
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 22:33:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F821AC884;
-	Thu, 30 Jan 2025 22:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C81001B85C9;
+	Thu, 30 Jan 2025 22:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jLj+BAl8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bV9dX0bV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CFF284D0E
-	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 22:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42B31465AB
+	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 22:33:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738274488; cv=none; b=uaQbm6Xi7rmbywwM/aN7Vx6BRW1wfk8G8tNFQ6HNNMG8z9B7rFim68WvFLeLbWRkj3VYPyPjgZq5GOrt0oVXP2uCBDgkXXjP+iD7oUXeTRbB8pYbj05nDWBs7ku3X+IdC8pm7DcaukBhONiuKSnyKN4a4t4l10zQ92AF6i/phGs=
+	t=1738276427; cv=none; b=fPVAeEj/2wQ89Jl3nrWpUQHMjec/Uc7Ko20oAheLcelVz2XiQQerERB7x0ofQJiixe46w853bw1cSzMNUTbQQEgyOkNrCgXmeIc+C029ziKh5D6Wt4BF4itRg2+J4kpd/6udUGpZ8bTlgY1SVRLQ75s/qPzCBt6DsRft6V3kjlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738274488; c=relaxed/simple;
-	bh=90cF7DIZ7OamdqPQuknkLovPPwl/nMhTfmsNZaNtlFs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IrIU6EUBKB5k5VV/InK9gfZjfjmkh7f+gN8I/urylYveGvRhVvmxszezWVaAUQ/xbn1jpMLn+k1kPJ2NeOtoPMu2Zqtf6E5KF4NGsX3m2OHZCsHfQAytUwAlonfBO6kL+oVLNTP0mn5vdRDqv6dbVHcqDUS7Kq8Arj5UEpR01kI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jLj+BAl8; arc=none smtp.client-ip=209.85.167.53
+	s=arc-20240116; t=1738276427; c=relaxed/simple;
+	bh=lTjFhNlU6GBCHRFRJM2vnQiERraPdQsSqotzJR2dc/A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RzDj7m5LeDpquuVS7n0FyOxRHE60G95Qn/WSNxjLYAHXFX69tUUv19ldXN/fDvbcrO/aBLVTFAO5HppbgPwViMPozXgD2lM0EAn79RXfUbJbrifAsB6OA9WgjhUDypKEmVM3EM3nWxRatohzSKaD9m/1orJ5Ahlh3e6ArjZC6AM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bV9dX0bV; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-54287a3ba3cso2288576e87.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 14:01:25 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43634b570c1so9904565e9.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 14:33:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738274484; x=1738879284; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cBlNXsRHjI4Icc/cJrwUE5dS89XMGKvK0YRLR8DFXAg=;
-        b=jLj+BAl82jcBP96Z51RN4k4COrrS6wMRBhZH59BmDN8fxea90AXDa6wjFkFLmj0lGQ
-         qSTAfj2bMCdyxWq1n8+edeAK4unaKJVuuOTMHitlNEcoaGu07g6nH5wVjZLpTXeLqJH3
-         JBw1o8eT73cPmoZsCgeAKlKHy3IzrdPSxymNQzC4U23wsumagc01IgiEK8qjm7adJTW4
-         Zz5lT6nHByXen/fi+wxsPHlV0uykU0Elgyw+S0ICF+AYed/hOZIAwGh7uDoY6TgsfjSS
-         8/0vu2RIouqUo4Lw1fFLFEIhW4hMmyMpxcXAZFPwLW6jqHWwm5PD/MumbwZhFmcXw1va
-         Uaew==
+        d=linaro.org; s=google; t=1738276424; x=1738881224; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q4PhLkA2yH+xwVRJ4eRUYfsP78J3oAK3Sf/7oUAOMWE=;
+        b=bV9dX0bV0r2UCDJ68EsBkPqO+064jFXKk4rVaity1QT3prOajBT0tTh0Edu0Dkeb73
+         2uX2YeszYK/ZV35Pi769RDYvPcYqCr8cA3oHluZs0HCf9ibHXxsUJs18E18aVp2zkQgh
+         3DiZ2RG1yxZrCRqn5bUcBl6hj2YeNJJJUT7L2NtqI3t0EA1mjwSJAc2GjstdHr89zSrD
+         3vYStisWMnMVFsCWH2RNoqdN9K9xx4Zj/C0uxnzsJY0p0SRmlxUQHdrgdW91umf+HfFA
+         JWKwbsOA7jnGTiD2b0/rplGkddHz3pK3xcs5Pey12R+v4YI4GCpZxfu/Z9GurMRsqXYT
+         TYFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738274484; x=1738879284;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cBlNXsRHjI4Icc/cJrwUE5dS89XMGKvK0YRLR8DFXAg=;
-        b=a6bvvUuR4dHGXQRyuWio0v19AYKCsmKPSDsT8zDtN8SssXYuQ+tXKWurE6c6Q/xbBi
-         puIK0Tr3+Qauyyrrks83lzru+M+jcTJmpiJXriw6vK/ymI9Dq7c/LWu8eenG/goJ/91H
-         ggC/lIec+CarTqAh13AzJSVbWsV2vrgexMruFSzCRnAGYalbZS3RYcqDiaeDCNpj8ydw
-         Jhfj46Vb/ylso+98t47rnByPB+kKOKqwZGO9MXII7SOb4Lq/Zm5Q8tT346Rn2ro7xFV4
-         u8YtK11bXuedfSXtIS8NvDKdg39M2D1n77pYYhBzCO6IAak9jsLOLgbwmE40QECIeV3v
-         AMYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXSnZdq2EEejLiy+plzjoz2PJg6SrzZVZWFbSAiOUjLNw+L++nhuVnIep2kkXdjpF0svET83fkUZXrJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4CmR9BWHKt4bifrxDuBdhi3cekU65AEYGmkmcKCd50CTBijGZ
-	9BQtFnaTTVAxsWQjQHtdq6GM8hZ0INqj4RNo0pJ4tTo4j1hg/MD8+UdKIcZS6x8=
-X-Gm-Gg: ASbGnctduIGa6PAphz50T68m+opoKTlsuUDW15XHMshqJMxtVo5mJGH21KSiurkV0Ql
-	XZ8aA4XLeavuTOdTq1ghEj81n0xMWqwYULh9dR2sWWtO555O+HdLYYjsAs1JT1l3HKTUg3cBJzD
-	Hzdqh4tECIOXLciq7e3kktCVjxeQvAdjs/U7kmVT3/2T0dc549lqaTrtGpfReeRyrmZQBXtxLBu
-	Ljppc31IME0Ff890x1AyeSU2Gc7hnmxqy+PS0FQ5HiI+Tj+pb97Gkf+9ZiY6mxenCjgaBU/stmf
-	vRVLMo1r9HgXk5DlaG5Gi1MrQ0FPCiQ/bcVGQAY27gwBsJjpr3XOEi+VruJBpOwj6cY7So8=
-X-Google-Smtp-Source: AGHT+IH4P4gNbyEayjwfxNHgKoxFSQta9sI/Y3L5cdMV5aw8SzodtwlXrZDsCpO0rA5Hkb9HY+WXJQ==
-X-Received: by 2002:ac2:53a1:0:b0:540:2fbb:22fe with SMTP id 2adb3069b0e04-543ea3fbcaamr1423019e87.26.1738274483663;
-        Thu, 30 Jan 2025 14:01:23 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebe10625sm264424e87.78.2025.01.30.14.01.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jan 2025 14:01:22 -0800 (PST)
-Date: Fri, 31 Jan 2025 00:01:20 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, Alexey Charkov <alchark@gmail.com>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Jianfeng Liu <liujianfeng1994@gmail.com>, 
-	Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Johan Jonker <jbx6244@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Sugar Zhang <sugar.zhang@rock-chips.com>, Algea Cao <algea.cao@rock-chips.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org, kernel@collabora.com
-Subject: Re: [PATCH v3 1/2] drm/bridge: synopsys: Add audio support for
- dw-hdmi-qp
-Message-ID: <5j5kgecsmehbcslq6aickhnv4qpzxptzp62p4s3qamegmdnohc@oq6hmgf23jbq>
-References: <20250130165126.2292107-1-detlev.casanova@collabora.com>
- <20250130165126.2292107-2-detlev.casanova@collabora.com>
+        d=1e100.net; s=20230601; t=1738276424; x=1738881224;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q4PhLkA2yH+xwVRJ4eRUYfsP78J3oAK3Sf/7oUAOMWE=;
+        b=GVvYj6tDwaD0egdtp972SHm6H/Y9wDJU1lUtcVpAVHKSJmbMoSSzW88R9fWz5nE1cq
+         8sKksNHuCN0PZYWabu7nK2ynvClyEUXrFBVdYLLlOje2QKJLkqImrVQV7Us4l6SBUEMt
+         kdsN5QZXlwSpwNeSzZeACVGlOoa6PlQx8dJsIfYlp5mr5drkcRMG/vRY8FIfIWqotJoP
+         DNvhZvfDc6TtRTUAEBWj4XZfn2cHlXS7rCm7jRbzWjAinVJNvXn7pC4azIEGQt7js3dU
+         ul64VNciS9GNtHal5niPFSBO8V/d5PTSltldjfnNhFPKhQYY50ImY0Vd84RQWKOYeLf6
+         aZNA==
+X-Forwarded-Encrypted: i=1; AJvYcCXarTGowSTAouVgLVMnKMNt2Oti49yV9nGhp+hupLQu/PvXkRboVwA1PgEZFiH1TQJgBXn5MNoI/qLe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxliwz9niK7FBdOtkdXROEWdOYbiFHE5//rG88YHaVdpoM0LwYt
+	5dgzLg6Gf2ad3hsBbImpcD+D2nZxGPrbItTSweOfC6t8o4UM0uxUp/KwMg+UOic=
+X-Gm-Gg: ASbGncvN0CB5WtbrYxWTYxRlHAzO9UVLNEYPriR1+ORfvq1deU+jpA7ENq5OUlQOEgI
+	xihHcDPY2yNkddD7noIuDWPYfliqSw4VTkpQFso1PItyDui/KMRFXs/iHpCyVKAbf/I3YJD9KJg
+	j4LEO2/W985xwj47lTRQ5RIVLpeRgg1aW+gnbCC2Kx77hl1dt4yepDJf9tIhYnPUdYceP59/IMN
+	HAJLGUtUDcduWKqM0azsC7f8k97zKi0MdC8gVskaYyStOQFtAMDKZOouIntF/hYUIIsQsgYe91z
+	TKRRzKbr6O6qo8fU9o/6qnI4zNNa5x+WvP5Ss++irjPjIQYnBxvRyjU=
+X-Google-Smtp-Source: AGHT+IEp+NL8KjaCqdJLkSqTmmab+u4WxdsC5LvvC6odn5b/wppdPeWMvLnufUZb2VnSyWDCxGmQVA==
+X-Received: by 2002:a05:600c:3c98:b0:434:fb65:ebbb with SMTP id 5b1f17b1804b1-438dc3c38dcmr84375125e9.17.1738276423846;
+        Thu, 30 Jan 2025 14:33:43 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-438dcc8a59dsm73532705e9.40.2025.01.30.14.33.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jan 2025 14:33:42 -0800 (PST)
+Message-ID: <7d1bf72b-183a-429d-9a0c-10e1936a9abe@linaro.org>
+Date: Thu, 30 Jan 2025 23:33:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250130165126.2292107-2-detlev.casanova@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] thermal: of: Export non-devres helper to
+ register/unregister thermal zone
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: rafael@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, p.zabel@pengutronix.de, ulf.hansson@linaro.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250103163805.1775705-3-claudiu.beznea.uj@bp.renesas.com>
+ <Z5pkUNNvsWPjRQvy@mai.linaro.org>
+ <65a16c3f-456e-40ec-91b0-afb57269ed46@tuxon.dev>
+ <Z5tPR_tv7vWDkUI7@mai.linaro.org>
+ <6ed7d545-82d7-4bca-95ec-95447586bb58@tuxon.dev>
+ <b496d933-3c57-4b02-ab65-0582a30939af@linaro.org>
+ <98ddf1b6-1804-4116-b4e2-f54a62c27966@tuxon.dev>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <98ddf1b6-1804-4116-b4e2-f54a62c27966@tuxon.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jan 30, 2025 at 11:45:17AM -0500, Detlev Casanova wrote:
-> From: Sugar Zhang <sugar.zhang@rock-chips.com>
+On 30/01/2025 21:53, Claudiu Beznea wrote:
+> Hi, Daniel,
 > 
-> Register the dw-hdmi-qp bridge driver as an HDMI audio codec.
+> On 30.01.2025 19:24, Daniel Lezcano wrote:
+>> On 30/01/2025 11:30, Claudiu Beznea wrote:
+>>>
+>>>
+>>> On 30.01.2025 12:07, Daniel Lezcano wrote:
+>>>> On Thu, Jan 30, 2025 at 11:08:03AM +0200, Claudiu Beznea wrote:
+>>>>> Hi, Daniel,
+>>
+>> [ ... ]
+>>
+>>>>>> Would the IP need some cycles to capture the temperature accurately
+>>>>>> after the
+>>>>>> clock is enabled ?
+>>>>>
+>>>>> There is nothing about this mentioned about this in the HW manual of the
+>>>>> RZ/G3S SoC. The only points mentioned are as described in the driver code:
+>>>>> - wait at least 3us after each IIO channel read
+>>>>> - wait at least 30us after enabling the sensor
+>>>>> - wait at least 50us after setting OE bit in TSU_SM
+>>>>>
+>>>>> For this I chose to have it implemented as proposed.
+>>>>
+>>>> IMO, disabling/enabling the clock between two reads through the pm
+>>>> runtime may
+>>>> not be a good thing, especially if the system enters a thermal situation
+>>>> where
+>>>> it has to mitigate.
+>>>>
+>>>> Without any testing capturing the temperatures and compare between the
+>>>> always-on
+>>>> and on/off, it is hard to say if it is true or not. Up to you to test
+>>>> that or
+>>>> not. If you think it is fine, then let's go with it.
+>>>
+>>> I tested it with and w/o the runtime PM and on/off support (so, everything
+>>> ON from the probe) and the reported temperature values were similar.
+>>
+>>
+>> Did you remove the roundup to 0.5°C ?
 > 
-> The register values computation functions (for n) are based on the
-> downstream driver, as well as the register writing functions.
+> I did the testing as suggested and, this time, collected results and
+> compared side by side. I read the temperature for 10 minutes, 60 seconds
+> after the Linux prompt showed up. There is, indeed, a slight difference b/w
+> the 2 cases.
 > 
-> The driver uses the generic HDMI Codec framework in order to implement
-> the HDMI audio support.
+> When the runtime PM doesn't touch the clocks on read the reported
+> temperature varies b/w 53-54 degrees while when the runtime PM
+> enables/disables the clocks a single read reported 55 degrees, the rest
+> reported 54 degrees.
 > 
-> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 497 +++++++++++++++++++
->  1 file changed, 497 insertions(+)
+> I plotted the results side by side here:
+> https://i2.paste.pics/f07eaeddc2ccc3c6695fe5056b52f4a2.png?trs=0a0eaab99bb59ebcb10051eb298f437c7cd50c16437a87392aebc16cd9013e18&rand=vWXm2VTrbt
 > 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> index b281cabfe992e..7937504c2dcef 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> @@ -36,6 +36,88 @@
->  
->  #define SCRAMB_POLL_DELAY_MS	3000
->  
-> +/*
-> + * Unless otherwise noted, entries in this table are 100% optimization.
-> + * Values can be obtained from hdmi_compute_n() but that function is
-> + * slow so we pre-compute values we expect to see.
-> + *
-> + * The values for TMDS 25175, 25200, 27000, 54000, 74250 and 148500 kHz are
-> + * the recommended N values specified in the Audio chapter of the HDMI
-> + * specification.
-> + */
-> +static const struct dw_hdmi_audio_tmds_n {
-> +	unsigned long tmds;
-> +	unsigned int n_32k;
-> +	unsigned int n_44k1;
-> +	unsigned int n_48k;
-> +} common_tmds_n_table[] = {
-> +	{ .tmds = 25175000,  .n_32k = 4576,  .n_44k1 = 7007,  .n_48k = 6864, },
-> +	{ .tmds = 25200000,  .n_32k = 4096,  .n_44k1 = 6272,  .n_48k = 6144, },
-> +	{ .tmds = 27000000,  .n_32k = 4096,  .n_44k1 = 6272,  .n_48k = 6144, },
-> +	{ .tmds = 28320000,  .n_32k = 4096,  .n_44k1 = 5586,  .n_48k = 6144, },
-> +	{ .tmds = 30240000,  .n_32k = 4096,  .n_44k1 = 5642,  .n_48k = 6144, },
-> +	{ .tmds = 31500000,  .n_32k = 4096,  .n_44k1 = 5600,  .n_48k = 6144, },
-> +	{ .tmds = 32000000,  .n_32k = 4096,  .n_44k1 = 5733,  .n_48k = 6144, },
-> +	{ .tmds = 33750000,  .n_32k = 4096,  .n_44k1 = 6272,  .n_48k = 6144, },
-> +	{ .tmds = 36000000,  .n_32k = 4096,  .n_44k1 = 5684,  .n_48k = 6144, },
-> +	{ .tmds = 40000000,  .n_32k = 4096,  .n_44k1 = 5733,  .n_48k = 6144, },
-> +	{ .tmds = 49500000,  .n_32k = 4096,  .n_44k1 = 5488,  .n_48k = 6144, },
-> +	{ .tmds = 50000000,  .n_32k = 4096,  .n_44k1 = 5292,  .n_48k = 6144, },
-> +	{ .tmds = 54000000,  .n_32k = 4096,  .n_44k1 = 6272,  .n_48k = 6144, },
-> +	{ .tmds = 65000000,  .n_32k = 4096,  .n_44k1 = 7056,  .n_48k = 6144, },
-> +	{ .tmds = 68250000,  .n_32k = 4096,  .n_44k1 = 5376,  .n_48k = 6144, },
-> +	{ .tmds = 71000000,  .n_32k = 4096,  .n_44k1 = 7056,  .n_48k = 6144, },
-> +	{ .tmds = 72000000,  .n_32k = 4096,  .n_44k1 = 5635,  .n_48k = 6144, },
-> +	{ .tmds = 73250000,  .n_32k = 11648, .n_44k1 = 14112, .n_48k = 6144, },
-> +	{ .tmds = 74250000,  .n_32k = 4096,  .n_44k1 = 6272,  .n_48k = 6144, },
-> +	{ .tmds = 75000000,  .n_32k = 4096,  .n_44k1 = 5880,  .n_48k = 6144, },
-> +	{ .tmds = 78750000,  .n_32k = 4096,  .n_44k1 = 5600,  .n_48k = 6144, },
-> +	{ .tmds = 78800000,  .n_32k = 4096,  .n_44k1 = 5292,  .n_48k = 6144, },
-> +	{ .tmds = 79500000,  .n_32k = 4096,  .n_44k1 = 4704,  .n_48k = 6144, },
-> +	{ .tmds = 83500000,  .n_32k = 4096,  .n_44k1 = 7056,  .n_48k = 6144, },
-> +	{ .tmds = 85500000,  .n_32k = 4096,  .n_44k1 = 5488,  .n_48k = 6144, },
-> +	{ .tmds = 88750000,  .n_32k = 4096,  .n_44k1 = 14112, .n_48k = 6144, },
-> +	{ .tmds = 97750000,  .n_32k = 4096,  .n_44k1 = 14112, .n_48k = 6144, },
-> +	{ .tmds = 101000000, .n_32k = 4096,  .n_44k1 = 7056,  .n_48k = 6144, },
-> +	{ .tmds = 106500000, .n_32k = 4096,  .n_44k1 = 4704,  .n_48k = 6144, },
-> +	{ .tmds = 108000000, .n_32k = 4096,  .n_44k1 = 5684,  .n_48k = 6144, },
-> +	{ .tmds = 115500000, .n_32k = 4096,  .n_44k1 = 5712,  .n_48k = 6144, },
-> +	{ .tmds = 119000000, .n_32k = 4096,  .n_44k1 = 5544,  .n_48k = 6144, },
-> +	{ .tmds = 135000000, .n_32k = 4096,  .n_44k1 = 5488,  .n_48k = 6144, },
-> +	{ .tmds = 146250000, .n_32k = 11648, .n_44k1 = 6272,  .n_48k = 6144, },
-> +	{ .tmds = 148500000, .n_32k = 4096,  .n_44k1 = 6272,  .n_48k = 6144, },
-> +	{ .tmds = 154000000, .n_32k = 4096,  .n_44k1 = 5544,  .n_48k = 6144, },
-> +	{ .tmds = 162000000, .n_32k = 4096,  .n_44k1 = 5684,  .n_48k = 6144, },
-> +
-> +	/* For 297 MHz+ HDMI spec have some other rule for setting N */
-> +	{ .tmds = 297000000, .n_32k = 3073,  .n_44k1 = 4704,  .n_48k = 5120, },
-> +	{ .tmds = 594000000, .n_32k = 3073,  .n_44k1 = 9408,  .n_48k = 10240,},
-> +
-> +	/* End of table */
-> +	{ .tmds = 0,         .n_32k = 0,     .n_44k1 = 0,     .n_48k = 0,    },
-> +};
-> +
-> +/*
-> + * These are the CTS values as recommended in the Audio chapter of the HDMI
-> + * specification.
-> + */
-> +static const struct dw_hdmi_audio_tmds_cts {
-> +	unsigned long tmds;
-> +	unsigned int cts_32k;
-> +	unsigned int cts_44k1;
-> +	unsigned int cts_48k;
-> +} common_tmds_cts_table[] = {
-> +	{ .tmds = 25175000,  .cts_32k = 28125,  .cts_44k1 = 31250,  .cts_48k = 28125,  },
-> +	{ .tmds = 25200000,  .cts_32k = 25200,  .cts_44k1 = 28000,  .cts_48k = 25200,  },
-> +	{ .tmds = 27000000,  .cts_32k = 27000,  .cts_44k1 = 30000,  .cts_48k = 27000,  },
-> +	{ .tmds = 54000000,  .cts_32k = 54000,  .cts_44k1 = 60000,  .cts_48k = 54000,  },
-> +	{ .tmds = 74250000,  .cts_32k = 74250,  .cts_44k1 = 82500,  .cts_48k = 74250,  },
-> +	{ .tmds = 148500000, .cts_32k = 148500, .cts_44k1 = 165000, .cts_48k = 148500, },
-> +
-> +	/* End of table */
-> +	{ .tmds = 0,         .cts_32k = 0,      .cts_44k1 = 0,      .cts_48k = 0,      },
-> +};
-> +
->  struct dw_hdmi_qp_i2c {
->  	struct i2c_adapter	adap;
->  
-> @@ -60,6 +142,8 @@ struct dw_hdmi_qp {
->  	} phy;
->  
->  	struct regmap *regm;
-> +
-> +	unsigned long tmds_char_rate;
->  };
->  
->  static void dw_hdmi_qp_write(struct dw_hdmi_qp *hdmi, unsigned int val,
-> @@ -83,6 +167,354 @@ static void dw_hdmi_qp_mod(struct dw_hdmi_qp *hdmi, unsigned int data,
->  	regmap_update_bits(hdmi->regm, reg, mask, data);
->  }
->  
-> +static struct dw_hdmi_qp *dw_hdmi_qp_from_bridge(struct drm_bridge *bridge)
-> +{
-> +	return container_of(bridge, struct dw_hdmi_qp, bridge);
-> +}
-> +
-> +static void hdmi_set_cts_n(struct dw_hdmi_qp *hdmi, unsigned int cts,
-> +			   unsigned int n)
+> Please let me know how do you consider it.
 
-I'm sorry, I should have pointed out in the previous review cycle. Could
-you please rename those functions so that their name start with
-dw_hdmi_qp_*.
+Thanks for taking the time to provide a figure
 
-Other than that:
+Testing thermal can be painful because it should be done under certain 
+conditions.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+I guess there was no particular work load on the system when running the 
+tests.
+
+At the first glance, it seems, without the pm runtime, the measurement 
+is more precise as it catches more thermal changes. But the test does 
+not give information about the thermal behavior under stress. And one 
+second sampling is too long to really figure it out.
+
+In the kernel source tree, there is a tool to read the temperature in an 
+optimized manner, you may want to use it to read the temperature at a 
+higher rate. It is located in tools/thermal/thermometer
+
+Compiling is a bit fuzzy ATM, so until it is fixed, here are the steps:
+
+(you should install libconfig-dev and libnl-3-dev packages).
+
+cd $LINUX_DIR/tools/thermal/lib
+make
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$LINUX_DIR/tools/thermal/lib
+
+cd $LINUX_DIR/tools
+make thermometer
 
 
-> +{
-> +	/* Set N */
-> +	dw_hdmi_qp_mod(hdmi, n, AUDPKT_ACR_N_VALUE, AUDPKT_ACR_CONTROL0);
-> +
-> +	/* Set CTS */
-> +	if (cts)
-> +		dw_hdmi_qp_mod(hdmi, AUDPKT_ACR_CTS_OVR_EN, AUDPKT_ACR_CTS_OVR_EN_MSK,
-> +			  AUDPKT_ACR_CONTROL1);
-> +	else
-> +		dw_hdmi_qp_mod(hdmi, 0, AUDPKT_ACR_CTS_OVR_EN_MSK,
-> +			  AUDPKT_ACR_CONTROL1);
-> +
-> +	dw_hdmi_qp_mod(hdmi, AUDPKT_ACR_CTS_OVR_VAL(cts), AUDPKT_ACR_CTS_OVR_VAL_MSK,
-> +		  AUDPKT_ACR_CONTROL1);
-> +}
-> +
+
+Then change directory:
+
+cd $LINUX_DIR/tools/thermal/thermometer
+
+
+Run the tool:
+
+./thermometer -o out -c t.conf -l DEBUG -- <my_command>
+
+
+The content of the configuration file t.conf is:
+
+thermal-zones = (
+	      {	name = "cpu[0_9].*-thermal";
+		polling = 100; }
+       )
+
+All the captured data will be in the 'out' directory
+
+For 'my_command', I suggest to use a script containing:
+
+sleep 10; dhrystone -t 1 -r 120; sleep 10
+
+If you need the dhrystone binary, let me know.
+
+The thermal zone device tree configuration should be changed to use a 
+65°C passive trip point instead of 100°C (and the kernel setup with the 
+step wise governor as default).
+
+The resulting figure from the temperature should show a flat temperature 
+figure during 10 seconds, then the temperature increasing until reaching 
+the temperature threshold of 65°C, the temperature stabilizing around 
+it, then followed by a temperature decreasing when the test finishes.
+
+If the temperature does not reach the limit, decrease the trip point 
+temperature or increase the dhrystone duration (the -r 120 option)
+
+At this point, you should the test with and without pm runtime but in 
+order to have consistent results, you should wait ~20 minutes between 
+two tests.
+
+The shape of the figures will give the immediate information about how 
+the mitigation vs thermal sensor vs cooling device behave.
+
+Additionally, you can enable the thermal DEBUGFS option and add the 
+collected information statistics from /sys/kernel/debug/thermal/*** in 
+the results.
+
+
+Hope that helps
+
+
+
+
+
 
 -- 
-With best wishes
-Dmitry
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
