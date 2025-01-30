@@ -1,66 +1,62 @@
-Return-Path: <devicetree+bounces-141946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA240A23401
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 19:46:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C9C4A23406
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 19:47:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 572DE7A24CB
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 18:45:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 882373A423E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 18:47:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8868F1865FA;
-	Thu, 30 Jan 2025 18:46:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4AF01BEF84;
+	Thu, 30 Jan 2025 18:47:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k/25bg1c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8XhSYpV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D5F179BC;
-	Thu, 30 Jan 2025 18:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E294179BC;
+	Thu, 30 Jan 2025 18:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738262778; cv=none; b=Em8m8h1adNpuiL0O95Bz+HHbs8/qlxd+G0RlINa8kTkXxG812GICWaRbA3m41fu/RSazHbRlVPxvR+5mmozYpT11+R8x9eJVfDOfgm+JMdZ/Ezmgqbf6zzrVBYaQN6XeuF8zdrlP5ycJ8OJmhOcypqDmWMpLgdkwBBCghsXs4Ds=
+	t=1738262852; cv=none; b=h0Hnxj8b5b/f5uaa1oqjhNouyRIMHWrT4ml2bYLEUojssDclNL4comnwlKaFnKq9VNKGtjIhtDhR7Y/uGTYgJbytqvVf/4RTXHIW7fMDFXleVvh/nc/YNK9JdzqyDH8x39HbtxyiLII6zsZ+9jwMKy300Lcjc6yk1+Eufyqj0n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738262778; c=relaxed/simple;
-	bh=0K6s1LorKkA3vT94npzZne1s6vrmJojmi6fmu1jX3YI=;
+	s=arc-20240116; t=1738262852; c=relaxed/simple;
+	bh=mZJRq9k9X5Pu3nkmopql7LVi/y4tYssCQBqEevf/y7Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qO0/DLWIPtLAseRgKCAFK8+5nJlxXAy8dZVzAeW+EJyi3/afwIRds6xbK4VpkD5euT+jTcT8yXIthHNZd4Lk2b8jIfxFdDJZYAAqGwHzuFhKf4JLQhvLZq+mdTR1/gvD+t9hAODf+z+jPdeQ21Cg8q3ZqPWkOAGy3AI+p2a15Fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k/25bg1c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC740C4CED2;
-	Thu, 30 Jan 2025 18:46:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=crwe6+pzW65w8IJ2UqmKaPtwVcY7nPaO/K/YPEU9x1IUysYDbliHn+zEnqTEt2gcPFULPEiM7Wiz1uaP9sohQkU1SmEscrbga/dt6vaj37RzSLD6hQd6dTVTTNs6uilja24D8K6XL109S6A4Qbx9YkjTtpVmx4iMGsC41xBDHyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n8XhSYpV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85B95C4CED2;
+	Thu, 30 Jan 2025 18:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738262777;
-	bh=0K6s1LorKkA3vT94npzZne1s6vrmJojmi6fmu1jX3YI=;
+	s=k20201202; t=1738262851;
+	bh=mZJRq9k9X5Pu3nkmopql7LVi/y4tYssCQBqEevf/y7Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k/25bg1cFe91uYNFaGP8OzA2csT7VrfCxQQ85vXieeatqHEH7TENfk6bozjSKXLK+
-	 wdDeOJY8kTahByo6G/XtWwAipPDysbPGOYMSWGMOdOC7npjNCO4sGEYCm6w22oUGGV
-	 nTu+pOrB+bsj2VM05owXPCSZYFhfIjImRr+5pdUrryjq19U/K2m6dI0bmM5N561tCz
-	 77GeQPRyxOkYK4z9r+vjIC2JGUh6PvvRZ02DlcIfSCNlRHfTqH2V8m5lOT5m5hJzP8
-	 oHE6TrpQVaN3P8IlOJw3fvoVK5gHZ0dPCbvr+XLNLMKABemI0SRuakb+KgJnYlToCQ
-	 FKpBhFimtXdtg==
-Date: Thu, 30 Jan 2025 18:46:12 +0000
+	b=n8XhSYpVEgOVg7CPv7mdSBjxIe6IM3wMxmJpnF+fyePkW2XCp9406387nlnCAsT0a
+	 rydEh1IhviEaaJd2XioVWIzivnsyLO0nOldlRSQJPjpyWPFeHwXaONkLtMKTKmPFNX
+	 Q5DgkbSVUDEgN4pVDymRUV7WhO0MtsVSj5OxjKoL1Ec7ugVkxO41vWZSXF0o42J3N9
+	 HVzZPCCX/PjWnZjirRKRbMM3PJ7DWGYOAzvc6IDqRcsZ679rHFBQCmCJTwzHx6g2WW
+	 yPy2a53dNB6jMUdEqCVzJuO4ka2fvxm/wJRczp2yE+1wzo4vhWBJxzC+BmU0Sagqnf
+	 o5lSFtaEbXEwQ==
+Date: Thu, 30 Jan 2025 18:47:26 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-crypto@vger.kernel.org,
-	XiaoDong Huang <derrick.huang@rock-chips.com>
-Subject: Re: [PATCH 1/7] dt-bindings: reset: Add SCMI reset IDs for RK3588
-Message-ID: <20250130-payment-carpentry-bf3898625c96@spud>
-References: <20250130-rk3588-trng-submission-v1-0-97ff76568e49@collabora.com>
- <20250130-rk3588-trng-submission-v1-1-97ff76568e49@collabora.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: nvmem: imx-ocotp: Add i.MX8M Nano
+ access controller definitions
+Message-ID: <20250130-awkward-referee-3bec6c8cb1cd@spud>
+References: <20250130130101.1040824-1-alexander.stein@ew.tq-group.com>
+ <20250130130101.1040824-2-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,39 +64,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="CXK8FdX5cD3efR4o"
+	protocol="application/pgp-signature"; boundary="4mU4vkAAU2Hn3gqn"
 Content-Disposition: inline
-In-Reply-To: <20250130-rk3588-trng-submission-v1-1-97ff76568e49@collabora.com>
+In-Reply-To: <20250130130101.1040824-2-alexander.stein@ew.tq-group.com>
 
 
---CXK8FdX5cD3efR4o
+--4mU4vkAAU2Hn3gqn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 30, 2025 at 05:31:15PM +0100, Nicolas Frattaroli wrote:
-> When TF-A is used to assert/deassert the resets through SCMI, the
-> IDs communicated to it are different than the ones mainline Linux uses.
+On Thu, Jan 30, 2025 at 02:00:58PM +0100, Alexander Stein wrote:
+> These are the definition for the bindings of imx-ocotp for disabling
+> fuses.
 >=20
-> Import the list of SCMI reset IDs from mainline TF-A so that devicetrees
-> can use these IDs more easily.
->=20
-> Co-developed-by: XiaoDong Huang <derrick.huang@rock-chips.com>
-> Signed-off-by: XiaoDong Huang <derrick.huang@rock-chips.com>
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---CXK8FdX5cD3efR4o
+--4mU4vkAAU2Hn3gqn
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5vI9AAKCRB4tDGHoIJi
-0lvpAP9ygjEXGyo4J28BWq/27ynjo3PWvGqe6RcHCk0ZCC2LNQD/dyoBch31V1v3
-TlDQoD+rw5odXfpjDFjLOsA3O3ea8Qw=
-=y1Z6
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5vJPgAKCRB4tDGHoIJi
+0u+EAQDYdX6jxw/RzEi8k4fHQSVdiqM7o4HubF0JSKkZjwwU2wD8CffUuSP6JtiJ
+RfePnNXmBYGsnu0cSu/Ttx6O7v6IhQ4=
+=loIX
 -----END PGP SIGNATURE-----
 
---CXK8FdX5cD3efR4o--
+--4mU4vkAAU2Hn3gqn--
 
