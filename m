@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A56C4A22CCA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 13:05:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96080A22CD0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 13:06:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAAA61889406
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 12:06:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF9A63A6AD5
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 12:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C5D1AF0DC;
-	Thu, 30 Jan 2025 12:05:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4430A1DED4B;
+	Thu, 30 Jan 2025 12:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0e1hgaT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OPMik30u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE3F1B372C
-	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 12:05:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 107301AF0DC;
+	Thu, 30 Jan 2025 12:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738238754; cv=none; b=lWQ42T3WGiuvzWXevB5aE03D+LlGWIaA0zaPNonb6ABEIoz6mEc9ixQnfb+MjOLvizSPoVFZ3ZElupdRBtBRH/Ttw2i4Vj+Xx310lRQFor1nqwBopBpSJeYjTOt5DMnkCwpFN1zUFcCp9g4IIWjw9v1NqGQJf+EZ61wlIyEheuY=
+	t=1738238796; cv=none; b=JBdIdbOQ7Ruf3yJqTTuAMX4SOXkPyi9UZilz4c8xHjf3e6vdCt9dmwztIEns/R+L0W37oppIXCb8Gsyb+Kt7h5yMeOJvfK75/048ZU+drt0pPm/GRvgjC++oSxonZr7UTg9uoCp+3ByEOW3KZefh5Le2QiCLGUfe5VXPlbuj16g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738238754; c=relaxed/simple;
-	bh=N9+aP35sgFfJsvBYos8MkBS8AdR7qkaK2Qnqd2yxZGk=;
+	s=arc-20240116; t=1738238796; c=relaxed/simple;
+	bh=b4lyXCs00W4v0PX6NjYUFGe3MRcYlInXkes936v3VrU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VbSszgpsG1+f3EZ/UXxuAlYgGwK9H23lxZFmeywCoWzS+CGQfx1VSIh3Vut9RzccSTAAHf/fU+5znY6qfdItXATupKOHQ17BlXmZjPWfmg5Q3Jj655aCGF1NWBRgM1OF/nwXzp+kSZGoRLTzqD/7RzgrfjHpHBxwKHuz1F5L+Lw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0e1hgaT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB455C4CED2;
-	Thu, 30 Jan 2025 12:05:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mkZDuC7Mt3JIAvqSAJJafXjoHE50HkPwWZrPpJFfPfIAw3ULebAVelHd2W8Du+vM5qDooDXVFn4PYXssZrCNolXCvZz3G2cehA92VscTuyLUYd2EnB4SdjHVLRY7JXO4JGqwk5tMqjXIXk5r0haXkh+1X+PtlDAKFFs5Fh59pSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OPMik30u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CFB0C4CED2;
+	Thu, 30 Jan 2025 12:06:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738238752;
-	bh=N9+aP35sgFfJsvBYos8MkBS8AdR7qkaK2Qnqd2yxZGk=;
+	s=k20201202; t=1738238795;
+	bh=b4lyXCs00W4v0PX6NjYUFGe3MRcYlInXkes936v3VrU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s0e1hgaTsvjRhbnZqzyVQvPcx1FcDvyE44Ib2LDLq/bAPHy/XerDezQZyS4KH8fOO
-	 Q7N9w6EKZC69+T2j8J6qHBfAJVVPVzkJRbwrAidk7WurhFw4lAMMVbIizlx90LHyTT
-	 sb5ZU5bYccR7fNsFDcPYZzNhJaT1W5x9Y3vKgnL7jddvj3Lc6o3CgSaQE9EPxS55TD
-	 MbkcMuz5J3kj/fUU9olqxJ36FOcQ8fIwIEZE/uO62SPs8hf879BB1GwTkHCDAER3NR
-	 Z0rTvCs/Ctao1bSIEONvxqI9iSy5BK9+lONYaoB16eMfuR3Rro2LmdYpQkKuz1EEms
-	 2YWvX2GXhi6WQ==
-Message-ID: <cd6edfed-08a8-44de-9bfb-5199fd2813fd@kernel.org>
-Date: Thu, 30 Jan 2025 13:05:45 +0100
+	b=OPMik30uzeRZV6DX4CH/FYVipBa9lpJgZjjaa3s7/Vkzd4+y+f9Sk+f33lYBq/NV7
+	 /22u5QjN9VWnsVUxa5IJLGK9eAYtiwIGIq0Zm7T7ECPpiITBC14fd7BUTtV1eTAV+n
+	 X9dQfbc+u8JyUohCvsaE19OJ30fxKYP+s0r8d2fUJwn27dNSqtk6XqhqMoDJ+/vdP6
+	 bCtKi2/BiN7PcbJXMFkVOriQwyoA3wgWsravVoZ0ZV/FxRwIPottRn+WMEK17SBX3I
+	 kwAA0ISMDaYXUlaRiVZsLPCYpElWg1YZLrPvjf0DNQYh/+kLCb3qRSHZNSR2sHafTM
+	 WDlxSuPZiNynA==
+Message-ID: <42879d73-e983-4246-83cd-a5bd55b02d32@kernel.org>
+Date: Thu, 30 Jan 2025 13:06:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: add MNT Reform 2
-To: Patrick Wildt <patrick@blueri.se>, linux-rockchip@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- Kever Yang <kever.yang@rock-chips.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: gcc-sdm660: Add missing SDCC
+ resets
+To: Alexey Minnekhanov <alexeymin@postmarketos.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-References: <Z5toOecuMiBXM6aF@windev.fritz.box>
- <Z5tobRnjXmr4dl7j@windev.fritz.box>
+ <conor+dt@kernel.org>, Craig Tatlor <ctatlor97@gmail.com>,
+ Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20250129212328.1627891-1-alexeymin@postmarketos.org>
+ <20250130-cheerful-splendid-cockatoo-d833f6@krzk-bin>
+ <6312f316-f407-494b-91c4-04d761396e22@postmarketos.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,132 +110,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z5tobRnjXmr4dl7j@windev.fritz.box>
+In-Reply-To: <6312f316-f407-494b-91c4-04d761396e22@postmarketos.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/01/2025 12:54, Patrick Wildt wrote:
-> +
-> +&hdptxphy_hdmi0 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0m2_xfer>;
-> +	status = "okay";
-> +
-> +	vdd_cpu_big0_s0: vdd_cpu_big0_mem_s0: rk8602@42 {
+On 30/01/2025 12:29, Alexey Minnekhanov wrote:
+> On 1/30/25 11:35 AM, Krzysztof Kozlowski wrote:
+>> On Thu, Jan 30, 2025 at 12:23:25AM +0300, Alexey Minnekhanov wrote:
+>>> Add resets for eMMC/SD card blocks that were missed during initial
+>>> driver submission.
+>>>
+>>> Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
+>>> Fixes: f2a76a2955c0 ("clk: qcom: Add Global Clock controller (GCC) driver for SDM660")
+>>
+>> Your SoB is always the last tag, but repeating what I asked during
+>> previous review - what sort of bug is here? Missing feature is not a bug
+>> per se.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> I was hesitant about adding fixes tag myself, because there is no any 
+> user-observable bug being fixed here. In fact the behavior is unchanged, 
+> eMMC and SD worked fine before this and still work fine with this patch.
+>  From Linux side this is mostly for consistency with other 
+> younger/sibling SoCs, like MSM8998 & 8996 all have these resets 
+> specified. This will probably be much more useful for U-Boot port.
+> 
+> Perhaps fixes tag should be removed completely?
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-
-> +		compatible = "rockchip,rk8602";
-> +		reg = <0x42>;
-> +
-> +		vin-supply = <&vcc5v0_sys>;
-> +		fcs,suspend-voltage-selector = <1>;
-> +		rockchip,suspend-voltage-selector = <1>;
-> +
-> +		regulator-compatible = "rk860x-reg";
-> +		regulator-name = "vdd_cpu_big0_s0";
-> +		regulator-min-microvolt = <0x86470>;
-> +		regulator-max-microvolt = <0x100590>;
-> +		regulator-ramp-delay = <0x8fc>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +
-> +	vdd_cpu_big1_s0: vdd_cpu_big1_mem_s0: rk8603@43 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-
-> +		compatible = "rockchip,rk8602", "rockchip,rk8603";
-> +		reg = <0x43>;
-> +
-
-
-...
-
-> +&spi2 {
-> +	status = "okay";
-> +	assigned-clocks = <&cru CLK_SPI2>;
-> +	assigned-clock-rates = <200000000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
-> +	num-cs = <1>;
-> +
-> +	rk806single: pmic@0 {
-> +		compatible = "rockchip,rk806";
-> +		spi-max-frequency = <1000000>;
-> +		reg = <0x0>;
-
-reg is always theh second property.
-
-> +
-> +		interrupt-parent = <&gpio0>;
-> +		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		pinctrl-names = "default", "pmic-power-off";
-> +		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
-> +			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
-> +		pinctrl-1 = <&rk806_dvs1_pwrdn>;
-> +
-> +		pmic-reset-func = <1>;
-> +
-> +		vcc1-supply = <&vcc5v0_sys>;
-> +		vcc2-supply = <&vcc5v0_sys>;
-> +		vcc3-supply = <&vcc5v0_sys>;
-> +		vcc4-supply = <&vcc5v0_sys>;
-> +		vcc5-supply = <&vcc5v0_sys>;
-> +		vcc6-supply = <&vcc5v0_sys>;
-> +		vcc7-supply = <&vcc5v0_sys>;
-> +		vcc8-supply = <&vcc5v0_sys>;
-> +		vcc9-supply = <&vcc5v0_sys>;
-> +		vcc10-supply = <&vcc5v0_sys>;
-> +		vcc11-supply = <&vcc_2v0_pldo_s3>;
-> +		vcc12-supply = <&vcc5v0_sys>;
-> +		vcc13-supply = <&vcc_1v1_nldo_s3>;
-> +		vcc14-supply = <&vcc_1v1_nldo_s3>;
-> +		vcca-supply = <&vcc5v0_sys>;
-> +
-> +		#gpio-cells = <2>;
-> +		gpio-controller;
-> +
-> +		rk806_dvs1_null: dvs1-null-pins {
-> +			pins = "gpio_pwrctrl2";
-> +			function = "pin_fun0";
-> +		};
-> +
-> +		rk806_dvs1_slp: rk806_dvs1_slp {
-
-No underscores in node names. Missing suffix also suggests this fails
-tests, so standard disclaimer:
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-Maybe you need to update your dtschema and yamllint. Don't rely on
-distro packages for dtschema and be sure you are using the latest
-released dtschema.
-
-
-> +			pins = "gpio_pwrctrl1";
-> +			function = "pin_fun1";
-> +		};
+Yes, drop the Fixes tag.
 
 Best regards,
 Krzysztof
