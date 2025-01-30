@@ -1,222 +1,190 @@
-Return-Path: <devicetree+bounces-141810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F00A6A229B4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:39:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF17BA229BA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:40:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B14A1887AB6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:39:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB7623A371B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 472A81B2192;
-	Thu, 30 Jan 2025 08:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA431B0F04;
+	Thu, 30 Jan 2025 08:39:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="otwIu41G"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b="nSjo+f0Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BF371B0F18;
-	Thu, 30 Jan 2025 08:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50CBA1B0415;
+	Thu, 30 Jan 2025 08:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=130.133.4.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738226366; cv=none; b=ifTnrjbNm5C7CKTvRIBteSal7M6Vnf8HHUmuV+Z4PFUb/XQ+Pls30zCUcxJgeEv98CPDI+gGfP49dUuu+KQaosU8CVK2oTJ0rwSvoNt8tmlI6Q5PbSUtQtb9uyzp0eK/jIgBYFZj5XiaN9H6j+omGSJVUGxTph17HRjyVLunOt8=
+	t=1738226396; cv=none; b=Y3pU0QwqpxL5gBawZhVlW9dk2G9capf/Kg/t6UTPu+Fz012R9yGS8bLW8lL4m3jk/bo6uyO7GHRd3ZTO8LVKiK4LF9suSXrQn+vdwx6OXBgtsfimClOOPLroW2wrOjz2NdMwgGRd+KB/v4NL+rPwSR3GgupDBGbOMTucEhM7wk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738226366; c=relaxed/simple;
-	bh=fd3xpF4ktv4ORw9vYuTZ4/WAbOSh+WpvwrJQi9du1UQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ODjleucsSWeShVluSWanAORgR0Zqt8SAtPk/Rpfhx5GNzG6xhRqnR3+QEcAfYTSpZNGKNwbVnabB0OWaEAH0fRbG0BrX4Kxfzzifta6+0qJw8GX9gmvOBxeMwvY8VUsruv6Xi2pNFhXRBXxg+U71ww0k7RdJUmEHFOIhpnwVYlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=otwIu41G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEC2FC4CED3;
-	Thu, 30 Jan 2025 08:39:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738226365;
-	bh=fd3xpF4ktv4ORw9vYuTZ4/WAbOSh+WpvwrJQi9du1UQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=otwIu41GwAywhOKGwqk7MwV2/izu1h8d3S/HnyVQ/eL01ulpBWP57L3QiHHn9oqKG
-	 gCz2XfFVc6Y/1rF5GXRmMU6ic67OccQd0bN/XKHBxW3Fwb/Aq2s4aE8tOQc2cIiUa6
-	 4NKmBnP2dn9roup25qTQV1IrkepmW3pwC3bTLPJkh0ncJTcjFgAUpLxJqzwCu1C1mr
-	 Lc3AgGMWKzsRmPe0/pQbe1/zR6RbnFcoUPdaX1zhwgdRwFCklmpR7/v6zJU6CjnTHh
-	 woU1CrnaO2ab5KHBdMZubE0ze8WhaLYthUM4Du1rQA1vEBg9pwfCm5BpYeZdDUDNBM
-	 A3lpr5DgN/+2A==
-Date: Thu, 30 Jan 2025 09:39:22 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org, 
-	Kalle Valo <kvalo@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>, Saravanakumar Duraisamy <quic_saradura@quicinc.com>
-Subject: Re: [RFC PATCH 5/5] wifi: ath12k: Enable IPQ5424 WiFi device support
-Message-ID: <20250130-offbeat-sparkling-nyala-042b72@krzk-bin>
-References: <20250130051838.1924079-1-quic_rajkbhag@quicinc.com>
- <20250130051838.1924079-6-quic_rajkbhag@quicinc.com>
+	s=arc-20240116; t=1738226396; c=relaxed/simple;
+	bh=xru6o8b5Uqfw2olO4dSfWMmnEM5D0REdzLt7kl7S5FU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZTO6aI00tcl5jQhh2kphz4T6M/AKesSxxTPXrCoPwp7MpV14dguSgoSUAPGKoVyLJQwv2nMUd6tIPuamsYb8HI6MA7w0ZSrKBixS1lKR4zpG95EwxLJeMen3pECOgPV13rnZzrEk0OYdYRwRVc/tsY86E5A76ZgnBVPI3Fl2dFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de; spf=pass smtp.mailfrom=zedat.fu-berlin.de; dkim=pass (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b=nSjo+f0Z; arc=none smtp.client-ip=130.133.4.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zedat.fu-berlin.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=fu-berlin.de; s=fub01; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=v9opNwDwn255UtavLuQBZ+mOTvHfGlJaF7SL6xxekMY=; t=1738226394; x=1738831194; 
+	b=nSjo+f0ZqkjmsnQ2kTBHhaTAgkIIRNvap5ObGbZ+MwURQr0Up96xFd+zhqhQDxGttT0rQUKaRTs
+	DSlxY4jsHGi+g6XfosHdP2U9phxAVbEWUoRrc0288c19PKVXa40hZBh64PGRaONNobPTdEM1XEX2J
+	517WU2/Rm1jTXSVqOfkNLb0KfxM2TKsTqSiAjqp/ru0LOCzCAQzjpW2oWiKr+8lGUgyVuFhc8FOOW
+	ELpIY41IZHqflgrgrV+kIXLm5U7NcP3dnTklxIXyf7hg04b/6Uyr7iE8dKXNBX89k6TyrDxz8iYkA
+	5yG1Y4zjwHYFXjJuNFtnfos93JcqvLiOpMGQ==;
+Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
+          by outpost.zedat.fu-berlin.de (Exim 4.98)
+          with esmtps (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@zedat.fu-berlin.de>)
+          id 1tdQ5W-00000000EmF-3Q5N; Thu, 30 Jan 2025 09:39:50 +0100
+Received: from p5dc55198.dip0.t-ipconnect.de ([93.197.81.152] helo=[192.168.178.61])
+          by inpost2.zedat.fu-berlin.de (Exim 4.98)
+          with esmtpsa (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@physik.fu-berlin.de>)
+          id 1tdQ5W-00000001l3r-2KTZ; Thu, 30 Jan 2025 09:39:50 +0100
+Message-ID: <f447d1a9256033253d9bd9193ad639479e7c8575.camel@physik.fu-berlin.de>
+Subject: Re: [PATCH] sh: migrate to the generic rule for built-in DTB
+From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+To: Masahiro Yamada <masahiroy@kernel.org>, Yoshinori Sato
+	 <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>, 
+	linux-sh@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+Date: Thu, 30 Jan 2025 09:39:49 +0100
+In-Reply-To: <20241222003315.2582655-1-masahiroy@kernel.org>
+References: <20241222003315.2582655-1-masahiroy@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250130051838.1924079-6-quic_rajkbhag@quicinc.com>
+X-Original-Sender: glaubitz@physik.fu-berlin.de
+X-ZEDAT-Hint: PO
 
-On Thu, Jan 30, 2025 at 10:48:38AM +0530, Raj Kumar Bhagat wrote:
-> From: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
-> 
-> Currently, ath12k AHB (in IPQ5332) uses SCM calls to authenticate the
-> firmware image to bring up userpd. From IPQ5424 onwards, Q6 firmware can
-> directly communicate with the Trusted Management Engine - Lite (TME-L),
-> eliminating the need for SCM calls for userpd bring-up.
-> 
-> Hence, to enable IPQ5424 device support, use qcom_mdt_load_no_init() and
-> skip the SCM call as Q6 will directly authenticate the userpd firmware.
-> 
-> Tested-on: IPQ5424 hw1.0 AHB WLAN.WBE.1.5-01053-QCAHKSWPL_SILICONZ-1
-> Tested-on: IPQ5332 hw1.0 AHB WLAN.WBE.1.3.1-00130-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
-> Co-developed-by: Saravanakumar Duraisamy <quic_saradura@quicinc.com>
-> Signed-off-by: Saravanakumar Duraisamy <quic_saradura@quicinc.com>
-> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Hi Masahiro,
+
+On Sun, 2024-12-22 at 09:32 +0900, Masahiro Yamada wrote:
+> Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
+> DTBs") introduced generic support for built-in DTBs.
+>=20
+> Select GENERIC_BUILTIN_DTB when built-in DTB support is enabled.
+>=20
+> To keep consistency across architectures, this commit also renames
+> CONFIG_USE_BUILTIN_DTB to CONFIG_BUILTIN_DTB, and
+> CONFIG_BUILTIN_DTB_SOURCE to CONFIG_BUILTIN_DTB_NAME.
+>=20
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 > ---
->  drivers/net/wireless/ath/ath12k/ahb.c | 80 +++++++++++++++++----------
->  drivers/net/wireless/ath/ath12k/ahb.h |  9 +++
->  2 files changed, 61 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath12k/ahb.c b/drivers/net/wireless/ath/ath12k/ahb.c
-> index d502b59a78d8..75767915dec3 100644
-> --- a/drivers/net/wireless/ath/ath12k/ahb.c
-> +++ b/drivers/net/wireless/ath/ath12k/ahb.c
-> @@ -21,6 +21,9 @@ static const struct of_device_id ath12k_ahb_of_match[] = {
->  	{ .compatible = "qcom,ipq5332-wifi",
->  	  .data = (void *)ATH12K_HW_IPQ5332_HW10,
->  	},
-> +	{ .compatible = "qcom,ipq5424-wifi",
-> +	  .data = (void *)ATH12K_HW_IPQ5424_HW10,
-> +	},
->  	{ }
->  };
->  
-> @@ -398,8 +401,8 @@ static int ath12k_ahb_power_up(struct ath12k_base *ab)
->  		ATH12K_AHB_UPD_SWID;
->  
->  	/* Load FW image to a reserved memory location */
-> -	ret = qcom_mdt_load(dev, fw, fw_name, pasid, mem_region, mem_phys, mem_size,
-> -			    &mem_phys);
-> +	ret = ab_ahb->ahb_ops->mdt_load(dev, fw, fw_name, pasid, mem_region, mem_phys,
-> +					mem_size, &mem_phys);
->  	if (ret) {
->  		ath12k_err(ab, "Failed to load MDT segments: %d\n", ret);
->  		goto err_fw;
-> @@ -430,11 +433,13 @@ static int ath12k_ahb_power_up(struct ath12k_base *ab)
->  		goto err_fw2;
->  	}
->  
-> -	/* Authenticate FW image using peripheral ID */
-> -	ret = qcom_scm_pas_auth_and_reset(pasid);
-> -	if (ret) {
-> -		ath12k_err(ab, "failed to boot the remote processor %d\n", ret);
-> -		goto err_fw2;
-> +	if (ab_ahb->scm_auth_enabled) {
-> +		/* Authenticate FW image using peripheral ID */
-> +		ret = qcom_scm_pas_auth_and_reset(pasid);
-> +		if (ret) {
-> +			ath12k_err(ab, "failed to boot the remote processor %d\n", ret);
-> +			goto err_fw2;
-> +		}
->  	}
->  
->  	/* Instruct Q6 to spawn userPD thread */
-> @@ -491,13 +496,15 @@ static void ath12k_ahb_power_down(struct ath12k_base *ab, bool is_suspend)
->  
->  	qcom_smem_state_update_bits(ab_ahb->stop_state, BIT(ab_ahb->stop_bit), 0);
->  
-> -	pasid = (u32_encode_bits(ab_ahb->userpd_id, ATH12K_USERPD_ID_MASK)) |
-> -		ATH12K_AHB_UPD_SWID;
-> -	/* Release the firmware */
-> -	ret = qcom_scm_pas_shutdown(pasid);
-> -	if (ret)
-> -		ath12k_err(ab, "scm pas shutdown failed for userPD%d: %d\n",
-> -			   ab_ahb->userpd_id, ret);
-> +	if (ab_ahb->scm_auth_enabled) {
-> +		pasid = (u32_encode_bits(ab_ahb->userpd_id, ATH12K_USERPD_ID_MASK)) |
-> +			 ATH12K_AHB_UPD_SWID;
-> +		/* Release the firmware */
-> +		ret = qcom_scm_pas_shutdown(pasid);
-> +		if (ret)
-> +			ath12k_err(ab, "scm pas shutdown failed for userPD%d\n",
-> +				   ab_ahb->userpd_id);
-> +	}
->  }
->  
->  static void ath12k_ahb_init_qmi_ce_config(struct ath12k_base *ab)
-> @@ -707,6 +714,14 @@ static int ath12k_ahb_map_service_to_pipe(struct ath12k_base *ab, u16 service_id
->  	return 0;
->  }
->  
-> +static const struct ath12k_ahb_ops ahb_ops_ipq5332 = {
-> +	.mdt_load = qcom_mdt_load,
-> +};
-> +
-> +static const struct ath12k_ahb_ops ahb_ops_ipq5424 = {
-> +	.mdt_load = qcom_mdt_load_no_init,
-> +};
-> +
->  static const struct ath12k_hif_ops ath12k_ahb_hif_ops_ipq5332 = {
->  	.start = ath12k_ahb_start,
->  	.stop = ath12k_ahb_stop,
-> @@ -1041,19 +1056,9 @@ static int ath12k_ahb_probe(struct platform_device *pdev)
->  	struct device_node *mem_node;
->  	struct ath12k_ahb *ab_ahb;
->  	enum ath12k_hw_rev hw_rev;
-> -	u32 addr, userpd_id;
-> +	u32 addr;
->  	int ret;
->  
-> -	hw_rev = ath12k_ahb_get_hw_rev(pdev);
-> -	switch (hw_rev) {
-> -	case ATH12K_HW_IPQ5332_HW10:
-> -		hif_ops = &ath12k_ahb_hif_ops_ipq5332;
-> -		userpd_id = ATH12K_IPQ5332_USERPD_ID;
-> -		break;
-> -	default:
-> -		return -EOPNOTSUPP;
-> -	}
+>=20
+>  arch/sh/Kbuild            | 1 -
+>  arch/sh/Kconfig           | 7 ++++---
+>  arch/sh/boot/dts/Makefile | 2 +-
+>  arch/sh/kernel/setup.c    | 4 ++--
+>  4 files changed, 7 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/arch/sh/Kbuild b/arch/sh/Kbuild
+> index 056efec72c2a..0da6c6d6821a 100644
+> --- a/arch/sh/Kbuild
+> +++ b/arch/sh/Kbuild
+> @@ -1,7 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  obj-y				+=3D kernel/ mm/ boards/
+>  obj-$(CONFIG_SH_FPU_EMU)	+=3D math-emu/
+> -obj-$(CONFIG_USE_BUILTIN_DTB)	+=3D boot/dts/
+> =20
+>  obj-$(CONFIG_HD6446X_SERIES)	+=3D cchips/hd6446x/
+> =20
+> diff --git a/arch/sh/Kconfig b/arch/sh/Kconfig
+> index 04ff5fb9242e..89185af7bcc9 100644
+> --- a/arch/sh/Kconfig
+> +++ b/arch/sh/Kconfig
+> @@ -648,10 +648,11 @@ endmenu
+> =20
+>  menu "Boot options"
+> =20
+> -config USE_BUILTIN_DTB
+> +config BUILTIN_DTB
+>  	bool "Use builtin DTB"
+>  	default n
+>  	depends on SH_DEVICE_TREE
+> +	select GENERIC_BUILTIN_DTB
+>  	help
+>  	  Link a device tree blob for particular hardware into the kernel,
+>  	  suppressing use of the DTB pointer provided by the bootloader.
+> @@ -659,10 +660,10 @@ config USE_BUILTIN_DTB
+>  	  not capable of providing a DTB to the kernel, or for experimental
+>  	  hardware without stable device tree bindings.
+> =20
+> -config BUILTIN_DTB_SOURCE
+> +config BUILTIN_DTB_NAME
+>  	string "Source file for builtin DTB"
+>  	default ""
+> -	depends on USE_BUILTIN_DTB
+> +	depends on BUILTIN_DTB
+>  	help
+>  	  Base name (without suffix, relative to arch/sh/boot/dts) for the
+>  	  a DTS file that will be used to produce the DTB linked into the
+> diff --git a/arch/sh/boot/dts/Makefile b/arch/sh/boot/dts/Makefile
+> index 4a6dec9714a9..d109978a5eb9 100644
+> --- a/arch/sh/boot/dts/Makefile
+> +++ b/arch/sh/boot/dts/Makefile
+> @@ -1,2 +1,2 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> -obj-$(CONFIG_USE_BUILTIN_DTB) +=3D $(addsuffix .dtb.o, $(CONFIG_BUILTIN_=
+DTB_SOURCE))
+> +obj-$(CONFIG_BUILTIN_DTB) +=3D $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_=
+NAME))
+> diff --git a/arch/sh/kernel/setup.c b/arch/sh/kernel/setup.c
+> index f2b6f16a46b8..039a51291002 100644
+> --- a/arch/sh/kernel/setup.c
+> +++ b/arch/sh/kernel/setup.c
+> @@ -249,7 +249,7 @@ void __ref sh_fdt_init(phys_addr_t dt_phys)
+>  	/* Avoid calling an __init function on secondary cpus. */
+>  	if (done) return;
+> =20
+> -#ifdef CONFIG_USE_BUILTIN_DTB
+> +#ifdef CONFIG_BUILTIN_DTB
+>  	dt_virt =3D __dtb_start;
+>  #else
+>  	dt_virt =3D phys_to_virt(dt_phys);
+> @@ -323,7 +323,7 @@ void __init setup_arch(char **cmdline_p)
+>  	sh_early_platform_driver_probe("earlyprintk", 1, 1);
+> =20
+>  #ifdef CONFIG_OF_EARLY_FLATTREE
+> -#ifdef CONFIG_USE_BUILTIN_DTB
+> +#ifdef CONFIG_BUILTIN_DTB
+>  	unflatten_and_copy_device_tree();
+>  #else
+>  	unflatten_device_tree();
 
-You just added this code in previous patchset, why are you moving it?
+Looks like a good idea to address possible race conditions during build.
 
-> -
->  	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
->  	if (ret) {
->  		dev_err(&pdev->dev, "Failed to set 32-bit coherent dma\n");
-> @@ -1067,13 +1072,32 @@ static int ath12k_ahb_probe(struct platform_device *pdev)
->  		return -ENOMEM;
->  	}
->  
-> +	ab_ahb = ath12k_ab_to_ahb(ab);
-> +	ab_ahb->ab = ab;
-> +
-> +	hw_rev = ath12k_ahb_get_hw_rev(pdev);
-> +	switch (hw_rev) {
-> +	case ATH12K_HW_IPQ5332_HW10:
-> +		hif_ops = &ath12k_ahb_hif_ops_ipq5332;
-> +		ab_ahb->userpd_id = ATH12K_IPQ5332_USERPD_ID;
-> +		ab_ahb->scm_auth_enabled = true;
-> +		ab_ahb->ahb_ops = &ahb_ops_ipq5332;
-> +		break;
-> +	case ATH12K_HW_IPQ5424_HW10:
-> +		hif_ops = &ath12k_ahb_hif_ops_ipq5332;
-> +		ab_ahb->userpd_id = ATH12K_IPQ5332_USERPD_ID;
-> +		ab_ahb->scm_auth_enabled = false;
-> +		ab_ahb->ahb_ops = &ahb_ops_ipq5424;
+Reviewed-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
 
-Why you cannot store just proper driver data structure in match data?
-This entire switch is redundant.
+Thanks,
+Adrian
 
-Best regards,
-Krzysztof
-
+--=20
+ .''`.  John Paul Adrian Glaubitz
+: :' :  Debian Developer
+`. `'   Physicist
+  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
 
