@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7522A22931
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:34:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B196A22938
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:36:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E1AF165BC0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 07:34:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E638B1887023
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 07:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954081922FA;
-	Thu, 30 Jan 2025 07:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D1619F487;
+	Thu, 30 Jan 2025 07:36:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YjgGviO6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ki8tqzc9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D2CC2FB;
-	Thu, 30 Jan 2025 07:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2BC3C2FB;
+	Thu, 30 Jan 2025 07:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738222451; cv=none; b=IAHV45Llj8ZxGckIywCj1kpmmkLsfDBP5eQ0pL0U1qlGX0jjLOKgZ67VXJvYrPASJdWGT4CQamqEl71tXhtt6LB/PjmA70FvxfyeT1jXLtcGqlSKhFFyslgJ4JP7JiAKU/Y/CgTkovTV2nGdWypf7wPOM44XCikqNcfXnvhg2Pg=
+	t=1738222564; cv=none; b=Z8RWvydFwKB9VYftN7Q5aIlUJZzbB3ukoDS8ZTS4PNcWBHd0cU7h04AMn9uHy1oz1whTjne9h17BV778DaNiKR4XloTAF7sdg4I7ilz42RJvS36JgVqmDeL8ZOZoM5UANYl+sgc71gBlAujB0t0McvBsxeqCPC1AO6eosXZ6U24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738222451; c=relaxed/simple;
-	bh=fuoI3H+uEt5cFuzKB/WfrfDnzCiYn1D5RYaUBHTm+Kw=;
+	s=arc-20240116; t=1738222564; c=relaxed/simple;
+	bh=Oy++OGw4d1Cqv/mjpV/tNrSElpOXfx/bqz7yrKICXPM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oLelRrquV+kIIh0lQrkyooBQRPgPW7J8chs401Eel4DLKo23XqIptikXNVvJy3DAVDzfvSFZ70PmN2yTz9Y4/TwWoscKLOxcsHTqZ/i0sFWXIf+Rs/JqFC5oKhwfihD9+kFNWcB2wN5loUomVSBd/xjXd4LZlaAzJquc40xvIYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YjgGviO6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28AEEC4CED2;
-	Thu, 30 Jan 2025 07:34:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RsHun0jcOqiJym8s6GR3joceKexL3HLD/39ui3IW7Iz8nv/dQ3nrUU//F4id1w+NE9v0m3uspDFxVo9VYqhDjl89R9PCFx2WyHpc1Wf4bq7Sufm8i+YfDiXLfsF+6Dc5N2ELqN1MqFWmHSFPeQp/pNcfdhf5q8+laxaY2/kSjk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ki8tqzc9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 433A5C4CED2;
+	Thu, 30 Jan 2025 07:35:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738222451;
-	bh=fuoI3H+uEt5cFuzKB/WfrfDnzCiYn1D5RYaUBHTm+Kw=;
+	s=k20201202; t=1738222563;
+	bh=Oy++OGw4d1Cqv/mjpV/tNrSElpOXfx/bqz7yrKICXPM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YjgGviO62GBrFAeDvU1KaUkkDlPUHG8kaVOcz0ZZxd+0n3nawdZpEIv09Z+seukD+
-	 2l8ehDFWXIWXv2HrBe+Q2m0i4vkMkQo+m1IVWBJthRUSt03L+CbDTVT3p9HM4WiCPV
-	 yVVekXVI4XH2vMhwEVoQ6yMW3hj+wyKXzhGSwEzrxaMkzS6xvadnSc+RGigoX9NmRm
-	 DviO0D86CtzJumI3heZ85JRmuTRMja/7q8K+ayJ4JvHrgaivUYxbvrBwQApZGrkMXL
-	 445yV0/EKr31csjgVcbMniIEx17iAIqVrsqPn2cJeOUxFMH7hYYUHQ1xJM3B6RgK82
-	 eP76S/RvGTE/w==
-Message-ID: <40adf7c3-7c02-4520-9e99-ea797143f454@kernel.org>
-Date: Thu, 30 Jan 2025 08:34:03 +0100
+	b=ki8tqzc9IhtnCvc1Y6eMFCno5ZwetJ+H5t09Bi1tfK9n1GyvNESfI+LI9e6ofKSrV
+	 63f781nGy1AzLRptKlQnJ7tFn5bQlqpGVYJ6rRcRHwCc6LiFSkAeJFCHyrQHyv919a
+	 MfGm8e/+mIT/CVrM1d0fZmHPNR3tvht2ltV0kX3poZoBgrRrMb6CxOLj4ZCk9wYftZ
+	 wI3iplRji9sn/ROV5WJrWek2BY/td96H8SUBHXI2jAt6P/Xa9QA6lcEQ3mwFDgJxJP
+	 JH6AC1GxfeMkHjrZAWDrTp9p53oXRW1X8BH7oZ6XeLnHdkwIj5FR+LwrHGarDxofM0
+	 5qY8DIszUyjiA==
+Message-ID: <b44f0dd4-1793-429d-a8c8-0cf23481be2a@kernel.org>
+Date: Thu, 30 Jan 2025 08:35:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] dt-bindings: PCI: altera: Add binding for Agilex
-To: Matthew Gerlach <matthew.gerlach@linux.intel.com>, lpieralisi@kernel.org,
- kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org,
- bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- dinguyen@kernel.org, joyce.ooi@intel.com, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: matthew.gerlach@altera.com, peter.colberg@altera.com
-References: <20250127173550.1222427-1-matthew.gerlach@linux.intel.com>
- <20250127173550.1222427-2-matthew.gerlach@linux.intel.com>
+Subject: Re: [PATCH 1/2] clk: qcom: gcc-sdm660: Add missing SDCC block resets
+To: Alexey Minnekhanov <alexeymin@postmarketos.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
+ Craig Tatlor <ctatlor97@gmail.com>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20250129171842.1588526-1-alexeymin@postmarketos.org>
+ <55c5cef2-3cfb-408c-8c78-4bfd5ee19a29@kernel.org>
+ <09d57c27-f287-4ae5-8c78-db39dd9cc820@postmarketos.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,41 +109,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250127173550.1222427-2-matthew.gerlach@linux.intel.com>
+In-Reply-To: <09d57c27-f287-4ae5-8c78-db39dd9cc820@postmarketos.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/01/2025 18:35, Matthew Gerlach wrote:
-> Add the compatible bindings for the three variants of Agilex
-> PCIe Hard IP.
+On 29/01/2025 21:52, Alexey Minnekhanov wrote:
+> On 1/29/25 10:06 PM, Krzysztof Kozlowski wrote:
+>>
+>> No line breaks between tags (see `git log`).
+>>
 > 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> v3:
->  - Remove accepted patches from patch set.
-> ---
->  .../devicetree/bindings/pci/altr,pcie-root-port.yaml     | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> Will fix in v2.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-> index 52533fccc134..ca9691ec87d2 100644
-> --- a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-> +++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-> @@ -12,9 +12,18 @@ maintainers:
->  
->  properties:
->    compatible:
-> +    description: altr,pcie-root-port-1.0 is used for the Cyclone5
-> +      family of chips. The Stratix10 family of chips is supported
-> +      by altr,pcie-root-port-2.0. The Agilex family of chips has
-> +      three variants of PCIe Hard IP referred to as the f-tile, p-tile,
-> +      and r-tile.
+>>
+>>>   include/dt-bindings/clock/qcom,gcc-sdm660.h | 2 ++
+>>
+>> That's a separate patch. Always.
+>>
+> 
+> No big deal, but I've looked at git log and found previous commit 
+> b538304da785 ("clk: qcom: gcc-sdm660: Add missing modem reset") [1] that 
+> did similar things, but in a single patch, so I did the same.
+> 
+> Will fix in v2.
 
+Is there DT Ack for that commit? No.
 
-Has three in the same time? Or one of three? Your board DTS said you
-have exactly one, so this comment is confusing.
-
+You also marked this commit as fixes, so explain in commit msg
+user-observable bug being fixed here.
 
 Best regards,
 Krzysztof
