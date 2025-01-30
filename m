@@ -1,245 +1,150 @@
-Return-Path: <devicetree+bounces-141949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18B6DA2341D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 19:50:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D712A2346F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 20:07:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1453B1888955
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 18:51:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB0151888633
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 19:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBAF21F0E58;
-	Thu, 30 Jan 2025 18:50:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850521F5435;
+	Thu, 30 Jan 2025 19:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iqlcGmlj"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jWEKebLw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77C171F0E4F;
-	Thu, 30 Jan 2025 18:50:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797571F3D48
+	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 19:03:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738263028; cv=none; b=WGrsZGVGFzdAERUIhzphxx7FDTkmMqm6VOfSytbH99yMWwYQ85PBfmJe/IhFF3U92CeuteTo/tGFG9Xqgk0hOuQlXnLVpZVikvL63nlWnFL1QVirtUv91xFFKA9qnheTyUXqFzkyCHUvjEK7bXmMkX4b5u5GJuDTDcLXcf2YDbY=
+	t=1738263808; cv=none; b=UrpPwpoLSz2BJG4SdV+TTZjj9mdZrtBAYCe4en4IQI3oYxv+NqULLCVi3f852DV8t/QLhAimASW/lVK0brTEbM+nxQy6XCzTtV/41tfPZBBpphKWQDfLu5IFxIx01hUEEb0TGK7vg00wJk2xFMHqROG7gqnd9fe7m/wPKWKmk5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738263028; c=relaxed/simple;
-	bh=MYg3AsTcSXQARcbaugNsK02PwWByaCjobZg5rK43YCU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AEhWyyYEfq6pV/FI47MdZJWpWJPOgL6KNYWXkhfjyX83Bl7jZGPU5jFZHdCz9iMLFQrJt0fkQLvY+UPder7Irk9gtrV9ipQiX7kv4ON+/WdoLiP/7ZsTdyS2rDZK7cGaVlrk3gmqaNaGcUO07h4f1tgCKVMP3OY4B5klHqJ92Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iqlcGmlj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02DACC4CEE1;
-	Thu, 30 Jan 2025 18:50:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738263028;
-	bh=MYg3AsTcSXQARcbaugNsK02PwWByaCjobZg5rK43YCU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iqlcGmljoIX90woxDCJs9LO3Foqri2WOlX++4D/mrtPJr8vdkcBPm9joJ5Y6ASSGI
-	 Yqbt0VTLnPPPx2RNwG8J9gpCMvb8Kq0HPTo0HsUcwH/A/zFMNypNnT7BIHTHnuYKTA
-	 +GEiawgn4yhmo0F3heRsmYAbxF76+YeOQBBPHfQjYAJbj94i+qQ1TcaTjx1x52LtbM
-	 AuCrw/HTqov5+UxTKDupe+f55Qzej5Yy/wCnk3p7cEyrGo+ixSljZNQny1V5DUvqvV
-	 QdnSf46yHfoSmWLJOHJAtIEn9Q9Qt8tQcvWU2tbmZ5Crysjmoj77htbIBlUi8eJrVo
-	 tGCpF74tXX6Lw==
-Date: Thu, 30 Jan 2025 18:50:23 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org,
-	Kalle Valo <kvalo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/5] dt-bindings: net: wireless: describe the ath12k
- wifi device IPQ5424
-Message-ID: <20250130-divisible-chrome-3f9c5d1aff11@spud>
-References: <20250130051838.1924079-1-quic_rajkbhag@quicinc.com>
- <20250130051838.1924079-2-quic_rajkbhag@quicinc.com>
+	s=arc-20240116; t=1738263808; c=relaxed/simple;
+	bh=xA170475glyKqHvoyIBb2H8mhDD9eIw+YedUxI2I/Mk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Bf3ZCyzSrzNMVAH5gRCqYhSmC6WYgsByBI0iOLmUlLY7BZT8pKB52/Gj7ksmHAw8fVjX6TH4RiJg979s2lDXoKiYP5lfxQBQfyuCeYTKHiJPIIaVKCzw+LVH0ee0IFmTHvigdKTlJXun1ioOaw6d+P6dA5apj8F+SVoBr6MyvWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jWEKebLw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50UJ22Vh021139
+	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 19:03:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1+4dC9ic1NqLbtu8u4j5hpEPGFN8j5hgiRxsVCkLaMw=; b=jWEKebLwZHpKxBV2
+	RBapcT5V4s5pAMsgxvOHAJAh43QHgaLKnmvl+vu444OgUaG2QmeD/YuCkkFVUHW4
+	JgJti1SGN7hyQ1x7bz6dgC7wLWjYB4xCkZkABBYkVd1p6L3aklXpfNmiQSa7qLOn
+	pJVTFj3+2XyMWhZS/w5XJdaIiX6aogbOqzNfLxpOGi6mYYiaxjQVmhtNZ6fDEMid
+	aJZgYagfw9R3YtaeuNNeamRHLevAaduG2RxlK92dAVQJVAsPyhXa9ScOkzhTaOif
+	aP6GpfeZKV3+etr/xIdGCh4muR2bUXxX+VTHFfr2S4md6yOqySYDf/lR1cr55elr
+	5DBLLA==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44gf7p806f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 19:03:25 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2163d9a730aso23515675ad.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 11:03:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738263804; x=1738868604;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1+4dC9ic1NqLbtu8u4j5hpEPGFN8j5hgiRxsVCkLaMw=;
+        b=YSBN/pZgLuf2xiCH0gS1xJd1LXOk35M6oyp37uxe2MDTaPXSgR2eueKhc5ED75MvDP
+         eBLG9SCw63I7Bx/jKDsWNJhuyvXA8NadeyIM9FgPtYRG0BRZ4mJ1oJ5W4PPXGs4EMQ1j
+         ySWS1Dt/MM67+gaLaOE3qsga8vtJDbqZiGZKEWTPflmGTKlXEbUfic4652iD9iR3okr0
+         6L7h6sCJZbI3ST5NfPpEZpPF18T18b7eosIe4+gSR2C4R9CxCrVdmr9jYMObK0+PY0em
+         SIXxJXvjbqf2Io8UGU9obtnl2lWdguhDfxhdJm8mZnITPQOPvj5G0gxzzWkk+DvTWorr
+         bVpA==
+X-Forwarded-Encrypted: i=1; AJvYcCWdU6qfeukYt+xvBXzMdEAqCA5Y1TA4BJ4sOkgtC+D7dTgB1YgXEuYmVxzSdRgcDU76ig5PiWfoxJKD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLP7tZnib8AMRWfmbHmp4lvhzkbg2ZjC3aVLnXcqPWVSuKi7pA
+	jpQr3yO6tPtgpbASPT3gcY8VJzZfksBYr2t1OXIkL4IP4PWJ+vItmlEfGp1ml+spJhVSO9rAUXO
+	jrJaUGSFbH1VE6asvCus9V9nWIddu5mQn+v3ldph9fJWtDQO62JLpaLSc9XzQ
+X-Gm-Gg: ASbGncvNpcQmkNTgwjheSA+6o9mgptwgtrHe3vJiueIFM9MbBz7xYGL9kZqDPXjn8Hl
+	i22EXyLAVsP+B28AvX3pfTY5ILdLzJHv3udDWswP5FqbUfrooiSI0/SFaTPJCpLZzWO3DW84nMq
+	+ca9x8jaBTLVQc6PhWpKL1MmQ4snMBgyKEbmoL+I9OEajjYm9FFJF7JwA6K6ckz4kRPXapIj3k9
+	iXJtyu45Jdqgl/E5SNFrcoKKUvUgVdIwh12uuGgN13qh7CzHXkKWnsgsY7PUffqAoWLVOlgKwqL
+	9stChP3Ld19LPIQtxWNYcGYBn0qCyfaa7A2nAeXnDYmAnfW2Qu5Lr1Fn+0hhSUxgBOpjM8cd5A=
+	=
+X-Received: by 2002:a17:903:1c6:b0:215:9eac:1857 with SMTP id d9443c01a7336-21edd7d88c0mr9634115ad.5.1738263804021;
+        Thu, 30 Jan 2025 11:03:24 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE5lOZnffNUyJ7KCfKAJLEwNSxmca+bnJfKkR1FK09cdyV4G4K0NyYO2pFGbFiPeZPx9BBARQ==
+X-Received: by 2002:a17:903:1c6:b0:215:9eac:1857 with SMTP id d9443c01a7336-21edd7d88c0mr9633645ad.5.1738263803605;
+        Thu, 30 Jan 2025 11:03:23 -0800 (PST)
+Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21de32eba59sm17295815ad.147.2025.01.30.11.03.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jan 2025 11:03:23 -0800 (PST)
+Message-ID: <b70445c0-ec0d-4a7a-b23e-3939cae87bcf@oss.qualcomm.com>
+Date: Thu, 30 Jan 2025 11:03:21 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="oqfI5O9GKaxgpMRo"
-Content-Disposition: inline
-In-Reply-To: <20250130051838.1924079-2-quic_rajkbhag@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 3/5] wifi: ath12k: add ath12k_hw_regs for IPQ5424
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        Kalle Valo <kvalo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Saravanakumar Duraisamy <quic_saradura@quicinc.com>
+References: <20250130051838.1924079-1-quic_rajkbhag@quicinc.com>
+ <20250130051838.1924079-4-quic_rajkbhag@quicinc.com>
+ <20250130-groovy-competent-mastiff-19cc9e@krzk-bin>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20250130-groovy-competent-mastiff-19cc9e@krzk-bin>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: i696F3JbQ5fZkxlLpY1xHAQ2mvjW0Bry
+X-Proofpoint-ORIG-GUID: i696F3JbQ5fZkxlLpY1xHAQ2mvjW0Bry
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-30_08,2025-01-30_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 bulkscore=0 suspectscore=0 mlxlogscore=706 mlxscore=0
+ adultscore=0 phishscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2501170000 definitions=main-2501300145
 
+On 1/30/2025 12:38 AM, Krzysztof Kozlowski wrote:
+> On Thu, Jan 30, 2025 at 10:48:36AM +0530, Raj Kumar Bhagat wrote:
+>> From: Saravanakumar Duraisamy <quic_saradura@quicinc.com>
+>>
+>> Add register addresses (ath12k_hw_regs) for new ath12k AHB based
+>> WiFi device IPQ5424.
+>>
+>> Tested-on: IPQ5424 hw1.0 AHB WLAN.WBE.1.5-01053-QCAHKSWPL_SILICONZ-1
+>> Tested-on: IPQ5332 hw1.0 AHB WLAN.WBE.1.3.1-00130-QCAHKSWPL_SILICONZ-1
+>>
+>> Signed-off-by: Saravanakumar Duraisamy <quic_saradura@quicinc.com>
+>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>> ---
+>>  drivers/net/wireless/ath/ath12k/hal.h |  3 +
+>>  drivers/net/wireless/ath/ath12k/hw.c  | 87 ++++++++++++++++++++++++++-
+>>  2 files changed, 89 insertions(+), 1 deletion(-)
+>>
+> 
+> That's not a separate patch. Regs do not make any sense on their own,
+> so this commit makes no sense on its own.
 
---oqfI5O9GKaxgpMRo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This approach was suggested during internal review so that each addition can
+be reviewed without distraction from the other pieces. None of this is
+actually enabled until the final patch, so "trickling in" the pieces seems
+preferable to me.
 
-On Thu, Jan 30, 2025 at 10:48:34AM +0530, Raj Kumar Bhagat wrote:
-> Describe and add the device-tree bindings for the ATH12K AHB wifi device
-> IPQ5424.
->=20
-> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-> ---
->  .../net/wireless/qcom,ath12k-ahb.yaml         | 119 ++++++++++++++++++
->  1 file changed, 119 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-a=
-hb.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.ya=
-ml
-> index bd953a028dc3..1d24389a0ab3 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
-> @@ -18,6 +18,7 @@ properties:
->    compatible:
->      enum:
->        - qcom,ipq5332-wifi
-> +      - qcom,ipq5424-wifi
+/jeff
 
-Patch should end here, another example for something that doesn't have
-different properties etc is pointless.
-
-Thanks,
-Conor.
-
-> =20
->    reg:
->      maxItems: 1
-> @@ -317,3 +318,121 @@ examples:
->                                  "stop",
->                                  "spawn";
->      };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    wifi1: wifi@c000000 {
-> +        compatible =3D "qcom,ipq5424-wifi";
-> +        reg =3D <0x0c000000 0x1000000>;
-> +        clocks =3D <&gcc GCC_XO_CLK_SRC>;
-> +        clock-names =3D "xo";
-> +        interrupts-extended =3D <&wcss_smp2p_in 8 IRQ_TYPE_NONE>,
-> +                              <&wcss_smp2p_in 9 IRQ_TYPE_NONE>,
-> +                              <&wcss_smp2p_in 12 IRQ_TYPE_NONE>,
-> +                              <&wcss_smp2p_in 11 IRQ_TYPE_NONE>,
-> +                              <&intc GIC_SPI 559 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 560 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 561 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 518 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 519 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 520 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 521 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 522 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 523 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 524 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 525 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 526 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 527 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 528 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 529 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 574 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 576 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 627 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 540 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 549 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 580 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 537 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 536 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 535 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 534 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 571 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 571 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 567 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 637 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 637 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 632 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 590 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 583 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 582 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 581 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 533 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 532 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 531 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 530 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 626 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 569 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 569 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 565 IRQ_TYPE_EDGE_RISING>,
-> +                              <&intc GIC_SPI 502 IRQ_TYPE_EDGE_RISING>;
-> +        interrupt-names =3D "fatal",
-> +                          "ready",
-> +                          "spawn",
-> +                          "stop-ack",
-> +                          "misc-pulse1",
-> +                          "misc-latch",
-> +                          "sw-exception",
-> +                          "ce0",
-> +                          "ce1",
-> +                          "ce2",
-> +                          "ce3",
-> +                          "ce4",
-> +                          "ce5",
-> +                          "ce6",
-> +                          "ce7",
-> +                          "ce8",
-> +                          "ce9",
-> +                          "ce10",
-> +                          "ce11",
-> +                          "host2wbm-desc-feed",
-> +                          "host2reo-re-injection",
-> +                          "host2reo-command",
-> +                          "host2rxdma-monitor-ring1",
-> +                          "reo2ost-exception",
-> +                          "wbm2host-rx-release",
-> +                          "reo2host-status",
-> +                          "reo2host-destination-ring4",
-> +                          "reo2host-destination-ring3",
-> +                          "reo2host-destination-ring2",
-> +                          "reo2host-destination-ring1",
-> +                          "rxdma2host-monitor-destination-mac3",
-> +                          "rxdma2host-monitor-destination-mac2",
-> +                          "rxdma2host-monitor-destination-mac1",
-> +                          "host2rxdma-host-buf-ring-mac3",
-> +                          "host2rxdma-host-buf-ring-mac2",
-> +                          "host2rxdma-host-buf-ring-mac1",
-> +                          "host2tcl-input-ring4",
-> +                          "host2tcl-input-ring3",
-> +                          "host2tcl-input-ring2",
-> +                          "host2tcl-input-ring1",
-> +                          "wbm2host-tx-completions-ring4",
-> +                          "wbm2host-tx-completions-ring3",
-> +                          "wbm2host-tx-completions-ring2",
-> +                          "wbm2host-tx-completions-ring1",
-> +                          "host2tx-monitor-ring1",
-> +                          "txmon2host-monitor-destination-mac3",
-> +                          "txmon2host-monitor-destination-mac2",
-> +                          "txmon2host-monitor-destination-mac1",
-> +                          "umac-reset";
-> +
-> +        memory-region =3D <&q6_region>, <&m3_dump>, <&q6_caldb>, <&mlo_m=
-em>;
-> +        memory-region-names =3D "q6-region", "m3-dump", "q6-caldb", "mlo=
--global-mem";
-> +        qcom,ath12k-calibration-variant =3D "RDP466_1";
-> +        qcom,rproc =3D <&q6v5_wcss>;
-> +        qcom,smem-states =3D <&wcss_smp2p_out 8>,
-> +                           <&wcss_smp2p_out 9>,
-> +                           <&wcss_smp2p_out 10>;
-> +        qcom,smem-state-names =3D "shutdown",
-> +                                "stop",
-> +                                "spawn";
-> +    };
-> --=20
-> 2.34.1
->=20
-
---oqfI5O9GKaxgpMRo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5vJ7wAKCRB4tDGHoIJi
-0tT8AP97QJzy4JYDX4rqfgSWMw5o6OfXPhgOwTkxo8ugz0H54gEAztVHnmEb6L26
-S46P8pMtTxhSsdieGy9hKR/y+xjWggw=
-=yj6F
------END PGP SIGNATURE-----
-
---oqfI5O9GKaxgpMRo--
 
