@@ -1,87 +1,77 @@
-Return-Path: <devicetree+bounces-141941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4ED2A23396
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 19:12:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98506A233D5
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 19:35:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 531C37A2119
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 18:11:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5727163E9D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 18:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98611EF091;
-	Thu, 30 Jan 2025 18:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21BF31F0E2D;
+	Thu, 30 Jan 2025 18:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eXFfMdqk"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Xij4tm7p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2355384D34
-	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 18:12:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4231EB9F8;
+	Thu, 30 Jan 2025 18:35:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738260757; cv=none; b=OwlIGTnUj+CIE4ebB5Ia0gi8svoeWbzuM5JZVMLv1EJwFXEZiqJm0k6Cxs+gYtLYol5Vi0qlk3euNzimtxGIof0oW6qHHZeaZujE1/AMM0TZPw4REw9Ud5pkUervf0Ag89LGbQSNy6x332dtFdbXgAmczcKrnTJDSf94gGqfQxE=
+	t=1738262127; cv=none; b=TtyAgY1lepUDSYM/ZR4MhP8z9GqnTYfUy9+QDrH9JhjIp49Hr0iU4kCIXxm0e5bdElTfgLGDq0vhX2eBBZEhpIMJX2ts1EHQIE3VXTmiO8LJ9kphUQt63cdiK/NdmTXYWJrG6tY0sbGfjgbNSlhUaaIgRsbRrqOe4vc5bNcmRrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738260757; c=relaxed/simple;
-	bh=yioVhlVEhFzUaZEWLLYq7Z20yluO2tVcZQNEfZN+D7k=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jjxRrnreW/2yFAsu/k4dQJ9Hw0P6mMxk4RQyoFl9m5rGv5tbSIk1IzcC1UZr+v6GYstrDydhACQLOIU7mutqllZUxUySfKP8BcPzvhXDfHfEXT7HEOy0/AEAKc8iHZXE+njsY6RxeYjqtkLxBdN69uGHNU86qMf4hLkzSpbdizo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eXFfMdqk; arc=none smtp.client-ip=209.85.167.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3eb7edfa42dso601138b6e.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 10:12:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738260755; x=1738865555; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YdgoRXrSyl0SwNYeJOkfBySm6H0lmfcmHgCdqCIPMvc=;
-        b=eXFfMdqkQsY/Tsg/439u4xV8+l0Pxx2+pE7aftTlHZS2TEYoUBXCCxGj/KQWYv3LeG
-         OfNJRdHoMrK88FK0YmgjWpgOrX5v+9Ks3/MqDExuevrEasNfo5UiJ+6Wp1/4pxkdBGEa
-         X2XsXeYcAgw0f9Kyb9rXEtVJjUUUCxfwtDiW+6bne892D2oXzTpNVMDGppi/Vyt5dGno
-         9eOqowwT+T++8S/M84K/40j2M/VXsFuTn6X6w98Xo99/odq4fJ1Ayy3uwK3lsR++eKi0
-         /N7hHuC/Su4Wn2EK488vimB0rKr4RtxZ7thC8gtdJbMoe/aod9+Axe7x61aoB1zZj0f9
-         Lf0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738260755; x=1738865555;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YdgoRXrSyl0SwNYeJOkfBySm6H0lmfcmHgCdqCIPMvc=;
-        b=BnBR/WlGKKMfrBB+4W08B2orPXTlWZUCdNgFh0Zavou/rjeo5zxmjzyHE1JYXf0kBS
-         mMaATQ2akHm1na/E7Y92L2v/bpuO2w1X+KMhipC+8FM7Gd5nNrRsHiTggPg9UV0k6SDE
-         Ro/HBfTNP0WYIwyG2Uij7h6l/n7G71qpL4Q61jv2CZxtaAFibAEkVOdxvNVPtSsFbCbq
-         WtOPS2RRnkcjOr0Au92K7mCVBq9MLX6/SbiEBCtTjUNKq+7upS/jVHbaQtgJr54Zq6NI
-         KXecoK17l8xcgjRLfTzzl2pHsHnrlJ215iGUHVVB1zDJbZY8FmGMdcQdS4s3V+/Uatxz
-         i2eA==
-X-Gm-Message-State: AOJu0Yz3ciaCSF3E9WeEGdBEunynS3ySE0VHWZeDE9DndJMDY8h56ADS
-	5j3PyZJvcFD0D46IvcbKTwHdZEh5HYytLRE58obwSdoImx4xXhPAECgPIw==
-X-Gm-Gg: ASbGncvpyUt05pNRnh3EbNlAEqSJPaPS1M9R35xhNVOHsEpRzNjSWA8GZDLhtSjWUrb
-	VZMpXlxRSiwu8aZvEzafSLjUzehGynMSIDG8SYAaB/KXFublmfVipLk+KihpMegD4ndMkPGDCtD
-	Ax4f3OdAATcuNMHxUrqUwj1dkSMIVfzREJvm2X40lP9/Fmbgw9/4B2p6JJNe8C1driL2iwYOJ36
-	tI7SNMswfrIusX9nLhl0Hd48WE5P5QUpq2W2KLRM6T7rntfAiXg+LjnMhra2+KrSm5bg/+VXyuK
-	dU7t0WOKjfljiQIF8faoL5G39IBslHb/Ww==
-X-Google-Smtp-Source: AGHT+IG3X476Qe4ZhR3dKakKXmR/cepO4ChjuYZ8JVda/dOuLlEJ7k2TmI4+KjouWgpNJD/6WhP1bw==
-X-Received: by 2002:a05:6808:3307:b0:3eb:6dd3:12bf with SMTP id 5614622812f47-3f323aefb5amr5504069b6e.28.1738260754990;
-        Thu, 30 Jan 2025 10:12:34 -0800 (PST)
-Received: from localhost.localdomain ([2600:1700:fb0:1bcf:7478:d882:8d68:2fb])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-726617eb233sm427110a34.35.2025.01.30.10.12.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jan 2025 10:12:34 -0800 (PST)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH] arm64: dts: rockchip: remove rk3588 optee node
-Date: Thu, 30 Jan 2025 12:10:04 -0600
-Message-ID: <20250130181005.6319-1-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1738262127; c=relaxed/simple;
+	bh=GlABbLQNdlEWm8DmN6/oAlkh9Ch4kaIssmUYP35PdPI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=R+uC9JDHoJJNmriXb/Q1EVrX6MlGNsWzkt4dClbEg/wtNfUN57n1VWrFmBjwmZMHXY9HRPN9qM7G+T+bTWsEJdxly8dTU+Z33HQ36rb3jQTFqjb4LBsSpdYNPtRm4qCOXLNgh+y+/DcDyaj9Hq1HzjdNLhUmaAOcx6sCz2u7yt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Xij4tm7p; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50UD45UZ012012;
+	Thu, 30 Jan 2025 18:35:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=599FXlmZ3EgyEUHHKK5D1A
+	8GuodYRYwTvseL6b1+1ag=; b=Xij4tm7pC0i+sqJTSVX+/iaOIiRw71vJECyVD8
+	JakvwonwwMqxJm3Gs0BE+sAriS4mtFTIgxTyuBBR7QIqGPpm8gOnmyHJFqPYLqDB
+	EMc8aTsQPN87/LthnC85yTtoJC+gZj8B85hEjTWz4dKNCokAjYHAR2p8J2J8NnrO
+	nZE4iLRzuYoA2wRXLhhPqoT93VYowG1SdTgKbVMAwAmvNettyEVsL2LP2v6O5ptj
+	xsYRAV8NHxElhjTbskbUkOALJ0QHX0coOm8kPSLiBsTWGk+HYn4UEy8qsDF/jw0V
+	x8N197UAqF05Lnuq9hKYBt4uLZUB96o+dCZpetLZqKG0QMCw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44g9ys0ux8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Jan 2025 18:35:18 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50UIZH1D002264
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Jan 2025 18:35:17 GMT
+Received: from hu-janathot-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 30 Jan 2025 10:35:13 -0800
+From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Marcel Holtmann
+	<marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
+        <quic_anubhavg@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-bluetooth@vger.kernel.org>
+Subject: [PATCH v9 0/2] Enable Bluetooth on qcs6490-rb3gen2 board
+Date: Fri, 31 Jan 2025 00:04:32 +0530
+Message-ID: <20250130183434.2394058-1-quic_janathot@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,37 +79,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4eO3I_pjnoOgNmnmE_iNX6F0SlBirign
+X-Proofpoint-ORIG-GUID: 4eO3I_pjnoOgNmnmE_iNX6F0SlBirign
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-30_08,2025-01-30_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 suspectscore=0 priorityscore=1501 mlxscore=0 malwarescore=0
+ adultscore=0 spamscore=0 mlxlogscore=744 phishscore=0 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501300140
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Patch 1/2
+  The new state node qup_uart7_sleep is causing a dt-check warning because the 
+  base DTSI (sc7280.dtsi) is defined with individual pin configurations
 
-Remove Optee node from rk3588 devicetree. When Optee is present and
-used the node will be added automatically by U-Boot when
-CONFIG_OPTEE_LIB=y and CONFIG_SPL_ATF_NO_PLATFORM_PARAM is not set.
-When Optee is not present or used, the node will trigger a probe
-that generates a (harmless) message on the kernel log.
+----
+Changes from v8:
+* Fixed the dtb-check warning  in P1 and removed tag: Reviewed-by
+* Link to v8: https://lore.kernel.org/linux-arm-msm/20250127064940.1360404-1-quic_janathot@quicinc.com/
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 5 -----
- 1 file changed, 5 deletions(-)
+Changes from v7:
+* updated P1 & P2 with tag: Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> 
+* Link to v7: https://lore.kernel.org/lkml/20250107134157.211702-1-quic_janathot@quicinc.com/#t
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index 8cfa30837ce7..245a6cabdc8e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -358,11 +358,6 @@ display_subsystem: display-subsystem {
- 	};
- 
- 	firmware {
--		optee: optee {
--			compatible = "linaro,optee-tz";
--			method = "smc";
--		};
--
- 		scmi: scmi {
- 			compatible = "arm,scmi-smc";
- 			arm,smc-id = <0x82000010>;
+Changes from v6:
+* Elaborated the commit message with more information.
+* Link to v6: https://lore.kernel.org/lkml/20241223135700.22660-1-quic_janathot@quicinc.com/
+
+Changes from v5:
+* Update the wcn6750 required properties in bindings.
+* Link to v5: https://lore.kernel.org/linux-arm-msm/20241209103455.9675-1-quic_janathot@quicinc.com/
+
+Changes from v4:
+* Added reviewed tag by Krzysztof in p1
+* Updated the p2 commit message with sw_ctrl and wifi-enable are
+  handled in wifi FW.
+* Added blank line between the nodes in p2
+* Placed the structures in proper order in p4
+* Link to v4: https://lore.kernel.org/all/20241204131706.20791-1-quic_janathot@quicinc.com/
+
+Changes from v3:
+* Defined the PMU node and used the its output to power up BT
+* Used power sequencer for wcn wcn6750 module
+* Split the patch to multiple as per subtree
+* Add description of the PMU of the WCN6750 module
+* Include separate UART state node for sleep pin configuarion
+* Link to v3: https://lore.kernel.org/linux-arm-msm/20241022104600.3228-1-quic_janathot@quicinc.com/
+
+Changes from v2:
+* Sorted nodes alphabetically
+* Link to v2: https://lore.kernel.org/linux-arm-msm/20241010105107.30118-1-quic_janathot@quicinc.com/
+
+Changes from v1:
+* Corrected the board name in subject
+* Link to v1: https://lore.kernel.org/linux-arm-msm/20241009111436.23473-1-quic_janathot@quicinc.com/
+Janaki Ramaiah Thota (2):
+  arm64: dts: qcom: qcs6490-rb3gen: add and enable BT node
+  Bluetooth: hci_qca: use the power sequencer for wcn6750
+
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 167 ++++++++++++++++++-
+ drivers/bluetooth/hci_qca.c                  |   2 +-
+ 2 files changed, 167 insertions(+), 2 deletions(-)
+
 -- 
-2.43.0
+
 
 
