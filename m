@@ -1,142 +1,199 @@
-Return-Path: <devicetree+bounces-141829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E530A22BD7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 11:40:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 597CEA22BE0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 11:46:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F9AF1622CE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 10:40:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABF37168525
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 10:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C5A1BD01E;
-	Thu, 30 Jan 2025 10:39:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF8A51BBBF4;
+	Thu, 30 Jan 2025 10:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TjrboCpi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NGcgQbHz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890CC286A9;
-	Thu, 30 Jan 2025 10:39:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB0E1ACEB3;
+	Thu, 30 Jan 2025 10:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738233597; cv=none; b=EYJeS24HD7sRCvl5BxwCNWj2AUo9GeulnhKpuVUKN1n243Dw2Ok/VqVVvw10nA0msJsOsfW4h5EBzUASaQXSFRYSymScoCy5LbnSrxk0tbS++JatWsShvs8NzRbzWFzhifibMyiTD+1hCEWwlbLp3vzduFvnG0AJfJyDVzb/1kE=
+	t=1738233985; cv=none; b=lR/l92T9oa7qUMa1tSHj73tRnzgjaiLjBehuIE2wc1w1ipOzymcNnJX3hFFfEjdQb1dCMdpkhA2okApTIYn6/v5zjdMihMAdUjRzvftseTCWugq0X9ClNkd+sdkFWuMzj45c7nOw7Bpz4MSSwjAF0c588XYPMgYPbBm/VXNPuFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738233597; c=relaxed/simple;
-	bh=Bwe1zSzA94tr7JN1tOQGaCAyWDd1qOeWJ+jDd/YFqvc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Scgf9lEZdjrIDEuEbbDhN8uK4VssY80WdkvoWBC/+/sVoY72oDPdbO+dJe9gVeMzye4O9zL8OMrHZrbV2qKQcMfPh3cr4Wgszz/iqt+k9uG07YV7EY37a+pRspn4h9OwAW4DHyPds5Yt5yhxJj8sjQY7azQHH6ibKZXoq8Lsa8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TjrboCpi; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50U9Hcua011694;
-	Thu, 30 Jan 2025 10:39:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9v5kVzMEZCO5IQ1FxICjBWo/iJbjrcZVbQPVd8cZQhc=; b=TjrboCpiVx49+KOS
-	K35Mz5F1I8RoElMCy9u7kiqg/nA8ASRnOBMvNLNrd57/f0HUGH40lF0fw7A4FHJD
-	T2yY1vaGTtJrqAQnmpntpgPR72YJJMjOeWlNq++0atVmVyDFlNp0x8mZN74n/FoQ
-	b5Y404Ti7NWVfDJYeWCujizN+/XepuOcR50AbXah6k8PYgiz5ccXptMsrDLco1qZ
-	5uXU57h+Zd2+ILNcwj7Q6v7FNO4z21M1lD6n+wBUnSAU7RuUukYnqY5e78yH0MbD
-	4Aj1DSa5OG5EAI64YPE7bBHfLEekcGwpvUsLHkEGfiJdDUMeWMfR/hu77ipUeK5P
-	E8jZCQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44g6ntg5ms-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Jan 2025 10:39:50 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50UAdnKq013770
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Jan 2025 10:39:49 GMT
-Received: from [10.216.8.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 30 Jan
- 2025 02:39:34 -0800
-Message-ID: <39d2ed05-2068-4d41-9af8-da3dcd4e12f0@quicinc.com>
-Date: Thu, 30 Jan 2025 16:09:27 +0530
+	s=arc-20240116; t=1738233985; c=relaxed/simple;
+	bh=gnlUmrWlO7OgOPSRJanEmk9xOsvql/02GYnysEms+X4=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=rQapo+/cVhZy4bz/zKNaueIbXF9m6ih+gkdjIlmLrj33ZK+P7LppjUHW3ArZaimhtqGP5KkTZ3hpxMbuiaj6lLc6pYv55hYnPNZ8f3JQelYYYg3FurKeUyZse2jFsO5674QUUYv42P2Ce7qZwjUbgesWyQ/rphsuvB39FcLYSUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NGcgQbHz; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5dc0522475eso1183400a12.1;
+        Thu, 30 Jan 2025 02:46:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738233982; x=1738838782; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dvH7kPRqDnGEpR7MN/c0OEfUDsiKTUq2RFU3G+hwaFA=;
+        b=NGcgQbHziT0Mv4GMx0mhnTtCnuNqyKcK/yJYRS3J+fJisz2epNgSVFm0j8519ncZEp
+         WNGvkuB1rQrLUAQPSpvsTbWwAMTHA0QUTRlEfjHtn+Z7U521HMUaCByZ/jq3tDWn7MaF
+         +cBSzB9OeMWQWOFSnQNBjDx7cd1Nrs5mBkkP26vfAd64agtptZxRONPAqMJecVMJPCp3
+         aEjZhn/U3xqoIzNkQU+K5IarpZE4ZsgA0RK2KvDNuIqevNENFzQ8c5+yg3ubiG5EWXSj
+         WIxiKEDHEaXbZvP8+tc5LgApYba7tWx7J/6DBGXg6+bNQl9h/dLJGfqF0KrVfWmbdHBA
+         pPhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738233982; x=1738838782;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dvH7kPRqDnGEpR7MN/c0OEfUDsiKTUq2RFU3G+hwaFA=;
+        b=tfNUbS95yrjAaBXzPHV3jvd3JcDRhVGtiBuNQ6q9aTWhRMB6RV05rM9fd0euVIBjDx
+         +xIxofWp3cXVO13wEvC+FgUMDZoL3/hhefloztXjWodQRpaBk4/3gkxEfdAYNBdMjtmz
+         xF3x/ZkVaVQ90hC/I66E1m9SRGzWmMdKTuC8d5NtzxHleBt1EqFLy6ASxfYkDErIYVMK
+         +LYLzPlSM9EjFZW4bh1Xh80t32/lZpI68ORkD2tCYTi1HD0Fo2C6vnzj1eDekO3Ji0Ec
+         gW5YlraXPZnr6krwkqoaIegMcwPgymNGanxh/1sjr00JLInEqmUw5EwK9UCOLmDS66Cb
+         H/sg==
+X-Forwarded-Encrypted: i=1; AJvYcCUzJw4OukkdyyAC2xSd8jNhQ/sOCix+tqfF25HS4PoT7DEVTi/5nCpY9pOJ2HyMHwyWkzurCPxm5VbN18Q=@vger.kernel.org, AJvYcCXnorH/Tp68Rb37Kuj15x/j2ucXBxFF+1AIvZOqIVO95cBAJsfX5kKh/s2iFoK9EWRNt0g4nampKaUU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHGrlA60CnesmyK2MEtO5eJhoyq9VgF0wPubZUDvfBwuuekR6F
+	3oUNFe1DEHS/v+FZCowGorxHoaZoMaw9n47S/k6h0ITMysI2DE76
+X-Gm-Gg: ASbGnct/6DinA6V9NHhTw39K3+izzBCrzZVuRkD6KV26PlSPf9HtTkTJMFde/eHj7sq
+	fqNqXamac6gRSQn0IcfDfkkMC/0/XDNnEPAz7Q/rDifSMBdbpgRjOw9C6v2oJlj32phxHmNXULy
+	Bf+PZ5m/nbRrq7chA4/GD2OpI9fKEMZyCw08uWJ4qjJBm7tgN+RVLzy4/IHs4S8ti+RF5/z9f3X
+	tr8XFgmBDWowS6IeYNxQGORP9gVoRDC1jOybPvrAfYB82YZLrUnmQq8ncRCclIclYEBt5zhdIbe
+	JyyoMY8eboYqtZOLEZY/aFmkMAlPaGWdmFpqMY/P+0ZtGs2SJujGxK/0g1oP/E1iMe3cHQCG
+X-Google-Smtp-Source: AGHT+IEqE7nySufMnirHCjAVfxj7jngqk9FZNYT/ymSENzVPV3ZLZzx1oB1e3XlK0q5RDTVUp4kFhg==
+X-Received: by 2002:a05:6402:50ca:b0:5d0:b2c8:8d04 with SMTP id 4fb4d7f45d1cf-5dc5efcab34mr5837467a12.18.1738233982119;
+        Thu, 30 Jan 2025 02:46:22 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dc725aae6esm854530a12.1.2025.01.30.02.46.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 Jan 2025 02:46:21 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: clock: ipq5424-apss-clk: Add ipq5424
- apss clock controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <konradybcio@kernel.org>,
-        <rafael@kernel.org>, <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-References: <20250127093128.2611247-1-quic_srichara@quicinc.com>
- <20250127093128.2611247-2-quic_srichara@quicinc.com>
- <0c26af56-ed7a-4de8-ac47-7447298b87f0@kernel.org>
- <92836021-ee0e-4fb4-bf01-49b46a5af3a4@quicinc.com>
- <c3b6c20f-6e35-446d-a61d-f24611dd815d@kernel.org>
-Content-Language: en-US
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <c3b6c20f-6e35-446d-a61d-f24611dd815d@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: eUz22xZ4LVTZl3I0QC9PQqMbdqe7d6v9
-X-Proofpoint-GUID: eUz22xZ4LVTZl3I0QC9PQqMbdqe7d6v9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-30_06,2025-01-30_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 suspectscore=0 mlxscore=0 bulkscore=0 mlxlogscore=999
- adultscore=0 malwarescore=0 phishscore=0 priorityscore=1501 clxscore=1015
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501300082
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.300.87.4.3\))
+Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <8541055.T7Z3S40VBb@trenzalore>
+Date: Thu, 30 Jan 2025 11:46:09 +0100
+Cc: linux-kernel@vger.kernel.org,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>,
+ Alexey Charkov <alchark@gmail.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,
+ linux-staging@lists.linux.dev
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <278CF0E0-7277-40F3-942C-6FA61AA759A0@gmail.com>
+References: <20240615015734.1612108-1-detlev.casanova@collabora.com>
+ <5969581.LvFx2qVVIh@arisu> <CE4343FE-94AA-4F84-8C43-8366013AED84@gmail.com>
+ <8541055.T7Z3S40VBb@trenzalore>
+To: Detlev Casanova <detlev.casanova@collabora.com>
+X-Mailer: Apple Mail (2.3826.300.87.4.3)
 
 
 
-On 1/28/2025 6:00 PM, Krzysztof Kozlowski wrote:
-> On 28/01/2025 12:15, Sricharan Ramabadhran wrote:
->>
->>
->> On 1/28/2025 1:04 PM, Krzysztof Kozlowski wrote:
->>> On 27/01/2025 10:31, Sricharan R wrote:
->>>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>>>
->>>> The CPU core in ipq5424 is clocked by a huayra PLL with RCG support.
->>>> The RCG and PLL have a separate register space from the GCC.
->>>> Also the L3 cache has a separate pll and needs to be scaled along
->>>> with the CPU.
->>>>
->>>> Co-developed-by: Md Sadre Alam <quic_mdalam@quicinc.com>
->>>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
->>>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>>
->>> Considering that there were multiple conflicting patches coming from
->>> Qualcomm around IPQ SoCs and that we are in the merge window, I will
->>> skip this patch.
->>>
->>> I suspect this duplicates the other chip as well, but that's your task
->>> to sync up internally.
->>>
->> ok, but this .yaml is specific to IPQ5424 and would not conflict with
->> IPQ5332. That said, will post it after merge window as a part of
->> V3 (for other patch changes) to avoid any confusion.
-> 
-> 
-> But maybe it is the same on ipq5332? or similar? Other works were
-> totally de-synced and you ask community to sync them. That's not how it
-> works.
+> Wiadomo=C5=9B=C4=87 napisana przez Detlev Casanova =
+<detlev.casanova@collabora.com> w dniu 29 sty 2025, o godz. 17:50:
+>=20
+> Hi Piotr,
+>=20
+> On Wednesday, 29 January 2025 09:48:51 EST Piotr Oniszczuk wrote:
+>=20
+> I suppose you tested with my hevc branch, which is not really ready =
+yet (Some=20
+> ref frames will work but usually, it won't) Can you confirm which =
+branch/commit=20
+> you based your tests on ?
 
-This is different from ipq5332, hence we cannot re-use and would have
-no conflicts as well.
+Indeed  - i=E2=80=99m using your rkvdec2 hevc code from: =
+https://gitlab.collabora.com/detlev/linux/-/commits/add-rkvdec2-driver-hev=
+c with iommu from =
+https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/com=
+mit/bc47c445bfd9586115e9bcf5f231c5a5c5f0f828
+and =
+https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/com=
+mit/9a9fd791513bc0d02c2242c88f23b41bd47de30a
+=20
 
-Regards,
-  Sricharan
+>=20
+> For the iommu, do you see those errors like that only on 356x or also =
+on 3588=20
+> ?
+
+3588 has no any iommu errors.=20
+I see iommu errors only on 356x
+=20
+
+> The hevc branch should have the iommu patches to fix that kind of =
+things.
+
+I=E2=80=99m using:
+=
+https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/com=
+mit/bc47c445bfd9586115e9bcf5f231c5a5c5f0f828
+=
+https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/com=
+mit/9a9fd791513bc0d02c2242c88f23b41bd47de30a
+
+I see there is: =
+https://gitlab.collabora.com/detlev/linux/-/commits/add-rkvdec2-driver-iom=
+mu
+Let me update iommu code to above branch and report back here how it =
+goes in 3588 and 356x
+
+
+>=20
+> (but note that hevc support is really new, so it may have bugs with =
+buffer=20
+> allocations)
+
+It is already great work.
+I=E2=80=99m awaiting for hevc in 35xx during last 2+ years :-) =20
+
+>=20
+>> If anybody hints me for way/tool to analyse of playing/failing =
+samples to
+>> catch: what encoding specifics makes given sample failing to decode  =
+on
+>> rkvdec2 - i'll be more that happy to provide details=E2=80=A6 (doing =
+simple
+>> mediainfo <file> shows no differences for me=E2=80=A6)
+>=20
+> Few features are supported for HEVC as of now:
+> - No scanlist support (only default 16x16 blocks will work)
+> - Long term reference frames are also not configured yet.
+> - hevc 10 bits is also not supported yet
+>=20
+> These are specific to the encoding and mediainfo won't really give you=20=
+
+> information on that, except maybe on the 10 bits format.
+>=20
+> You can also checkout YUView (https://github.com/IENT/YUView) to get=20=
+
+> information on media files structure, but I have had issues with HEVC =
+support=20
+> lately.
+
+oh great. will do and report!
+
 
