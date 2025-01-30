@@ -1,65 +1,79 @@
-Return-Path: <devicetree+bounces-141818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA75A22A01
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 10:02:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C627A22A10
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 10:08:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 025AF3A47DE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:02:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AAE977A257A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:07:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B61311B415E;
-	Thu, 30 Jan 2025 09:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D491B4228;
+	Thu, 30 Jan 2025 09:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="RWUeJQA6"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="EJy4UFpK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91D3125634;
-	Thu, 30 Jan 2025 09:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB9F1AF0BA
+	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 09:08:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738227744; cv=none; b=rJ16Q/cmgeCVovfN9xd6AbbCXDyGkNmUpCruWnCKukmzDvo5Lhq86DRGj+xWXz9cLztGggo+VIXVI5iI5kBIZXJaZbZddDHHG2fMo/9pAfJuSO8HBwPocN+huKXW91qKYatJgKn+g3P8tuEYevBUIrkHP5wWQPLGYxeQ+kbJ0hQ=
+	t=1738228090; cv=none; b=SKP2UMMEFHEyWwCmW1lqj+oMgPB8E8emWoSN32p3fguOn8FISPq8Rq6K7K5/jy/E5W+SZ9iYeCv5dMTRkri4/uNGsocGgCbhtu+z6Z/ygNg+c2snHfUb++RhdcHeXZDFZYuarUMzRJjpd9MRUN7FrDJBORgUDkS0XjhWowgjpZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738227744; c=relaxed/simple;
-	bh=cwbL8UiNeVw38LworTppXYP09m57JaPOsaWXGjJ1KzE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=B+W9FZES55uY11RpqrY2fKYPWHSu3WcbE8aaH1uZfllto4CwOQoAjwAHwTeSZsOMc5qHtSJXzl6h5vzr0IsyxfiNYOPOgyMHDtIFcQZGOBjO/PfQGrffYo0+hrkF+HoOmZsNyRVVuAgb0Tl6wyKAdmEQR/OGOsFObtT5bj0IZF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=RWUeJQA6; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50U6QfTO000797;
-	Thu, 30 Jan 2025 10:02:00 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	9Fc7EkJjccFhCTeiXlxmIiZqzpO4YNCNmEt6HgwoRsk=; b=RWUeJQA6UeabuBp8
-	jMwzHatYEqzy/OUfiE/ibfYTQpydvhNsyPf0MfJtY3ETxX15rWx2yHCRu52p3QXU
-	drIFpR1U7pjNkVjgZ0UT4JEL9yol0y7G66FFmqhDmibd/8kHePeUTL2CRLekB7Xw
-	1PkS1/DNGiY1XHM2RkHZ8yoYDZBA1P3v7WV1HLLZVoR8utcmDriW1+nEevCKp+fe
-	bKrtwrfo48CtK83Med0KoP1r40SVMMnLojuYdkNY/VHuyyjgi/2m2QDG7Ap2pHVi
-	Elew6l1sOhS6qloZly7ALDpKmpRaV5Lm8KgP4KdUhBw8DXsr1FOvsyIf3HvqPlnl
-	hQbI9g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44fkr2kj4q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Jan 2025 10:01:59 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id ACDB140044;
-	Thu, 30 Jan 2025 10:00:43 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6FFA92D97FA;
-	Thu, 30 Jan 2025 09:57:31 +0100 (CET)
-Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 30 Jan
- 2025 09:57:30 +0100
-Message-ID: <3660580d-72eb-45ca-8240-55557e334e37@foss.st.com>
-Date: Thu, 30 Jan 2025 09:57:30 +0100
+	s=arc-20240116; t=1738228090; c=relaxed/simple;
+	bh=OBNGLE/SBRHOIMdTMZvbtABJhm/g1DTPsBcuphE4iS4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fDUvgkEVlM+gmdP5yximWDN5mBE5ICINiEjy1PebR/mMBBqFAFmkxt5TJFg/93eWjWG2K8D0/bNixtyeXY5mrGE/roOzC8+9Jpe/WIznSjY8uLFozdJkidMT+d4zlKgcvmZqccv1iAkt4lFfl7BbwwUcxkhYu3auvSjDnQWedyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=EJy4UFpK; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-385e1fcb0e1so260546f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 01:08:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1738228086; x=1738832886; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ANhml7M+MMMD3LKkNci+JpTEfPstAMQQQpY+9UHoOXg=;
+        b=EJy4UFpKS+n6GHSFxX1+XPhIPnP2n9VHhsq11l/oDiEbOpn3dyPHXMUGjWcujTbSZJ
+         rk5B9F4a9M/U6qIJ/qHySCVswSmZo9rZ0MCbjwaTi5mc9I/BdBbGDCPrNy5aBoK0OCje
+         ME3zbo904Lk9QcgdTne41r6jcO1Lpn2UFolG2VrFYYgsJ0lNECv6teWsqAeRYHgLOS/A
+         DHhM+V+Z87JR4nVBwUc6fvlUBWq/RWJ8dWtZyXLmp2QHeSTdLSEyJTw7JsqZSesxRS8u
+         idRz7aIjPomosaaOdgKMnttXeaFrYcrliUi/54PfoSv2t59cBJY7mdW5/LBTBocvyR+j
+         U0cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738228086; x=1738832886;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ANhml7M+MMMD3LKkNci+JpTEfPstAMQQQpY+9UHoOXg=;
+        b=NjweM22u3RlzMf2Gw1per1Flv4Ou+wvypFmDs69BxmT1SiTR14I5wnHdIgm8B295vJ
+         MQ3XVqR45rg/1JWzPM7K/Vgs2xpFnPhT37wjxj6WU413OQdLO/YIUZDFVuTI8JQr9saD
+         5jJ879dbJ1SqzLTzcARVnl12SZUCi4/bhh8hTA5nn43jl3GKu1zElsGOHDxYWqC/V40Q
+         7HNDiqw6IpwfynZKwNLbrGTvw0NecVZiOSukH9O65y6LO7nVb5Lo0yA0nnEaq5rah2BW
+         1naBOVmVqgcDhQDqA9haFncjn1RF/S669lcn9FSRc9uyzEMIyeErdu1d/5uNqwLmK/ya
+         Z5hQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0aKVpoi8pUardXPk0gOmtreL1sCk8rAhNGvEknm6tZLfsyfvc8RVUFuEvcLdfrrUmYGvLprznwfG4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+zvlMH5KyLbrLzJrujTUpukb3FKtJcU/FHumCGWs5RVdBk6A2
+	dKFQqMCDF+7I7XoHAXx9JOpEbLj1MwdBcRasr2tbDVliTQDL3PmF/HtV8oQuRIc=
+X-Gm-Gg: ASbGncvifuXeicSaI1xRVodnPNHn8UnoKciL7nxtkL5tpys6EZFIFiO5JUC5xPg8zph
+	71yJEzg096b2vPiQUJg948M30Se3p1D5finTZnBrJvCneW4xxVlOCshoB/oHYpNqf8rA8a1x9P3
+	CDhbRFl7BHytreuFxcpPpz9OuaKEqKxIZ+x87w7wc/s6LGoBO8maQSJRdNeeLLvmtAe4uHkfliY
+	EIBi6f43jTjUdS1CNXYWmNB9f0YQspYl/zCv556ZZweIkqCV510/tB4pHYVZuTg/ZEopO7qe9vo
+	MO56Nfbdd8PIvOmmiMkYDcC7
+X-Google-Smtp-Source: AGHT+IEjxgi6T0u+WBslXxqIsPByCV1IEbwLcjNUUJAJZf9hq5VGIBAWjwewMxDvT3YhfK7VwFb5eQ==
+X-Received: by 2002:a5d:5f4c:0:b0:38a:4184:151c with SMTP id ffacd0b85a97d-38c519602e8mr4907671f8f.27.1738228085612;
+        Thu, 30 Jan 2025 01:08:05 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.173])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c5c102d2esm1368334f8f.33.2025.01.30.01.08.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jan 2025 01:08:05 -0800 (PST)
+Message-ID: <65a16c3f-456e-40ec-91b0-afb57269ed46@tuxon.dev>
+Date: Thu, 30 Jan 2025 11:08:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,423 +81,117 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/9] dt-bindings: memory-controllers: Add STM32 Octo
- Memory Manager controller
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <christophe.kerello@foss.st.com>
-References: <20250128081731.2284457-1-patrice.chotard@foss.st.com>
- <20250128081731.2284457-4-patrice.chotard@foss.st.com>
- <20250129-hilarious-glittering-mustang-fb5471@krzk-bin>
+Subject: Re: [PATCH 2/6] thermal: of: Export non-devres helper to
+ register/unregister thermal zone
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: rafael@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, p.zabel@pengutronix.de, ulf.hansson@linaro.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250103163805.1775705-3-claudiu.beznea.uj@bp.renesas.com>
+ <Z5pkUNNvsWPjRQvy@mai.linaro.org>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20250129-hilarious-glittering-mustang-fb5471@krzk-bin>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <Z5pkUNNvsWPjRQvy@mai.linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-30_05,2025-01-29_01,2024-11-22_01
 
+Hi, Daniel,
 
-
-On 1/29/25 08:52, Krzysztof Kozlowski wrote:
-> On Tue, Jan 28, 2025 at 09:17:25AM +0100, patrice.chotard@foss.st.com wrote:
->> From: Patrice Chotard <patrice.chotard@foss.st.com>
+On 29.01.2025 19:24, Daniel Lezcano wrote:
+> Hi Claudiu,
+> 
+> On Fri, Jan 03, 2025 at 06:38:01PM +0200, Claudiu wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >>
->> Add bindings for STM32 Octo Memory Manager (OMM) controller.
+>> On the Renesas RZ/G3S (and other Renesas SoCs, e.g., RZ/G2{L, LC, UL}),
+>> clocks are managed through PM domains. These PM domains, registered on
+>> behalf of the clock controller driver, are configured with
+>> GENPD_FLAG_PM_CLK. In most of the Renesas drivers used by RZ SoCs, the
+>> clocks are enabled/disabled using runtime PM APIs.
 >>
->> OMM manages:
->>   - the muxing between 2 OSPI busses and 2 output ports.
->>     There are 4 possible muxing configurations:
->>       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
->>         output is on port 2
->>       - OSPI1 and OSPI2 are multiplexed over the same output port 1
->>       - swapped mode (no multiplexing), OSPI1 output is on port 2,
->>         OSPI2 output is on port 1
->>       - OSPI1 and OSPI2 are multiplexed over the same output port 2
->>   - the split of the memory area shared between the 2 OSPI instances.
->>   - chip select selection override.
->>   - the time between 2 transactions in multiplexed mode.
+>> During probe, devices are attached to the PM domain controlling their
+>> clocks. Similarly, during removal, devices are detached from the PM domain.
 >>
->> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
->> ---
->>  .../memory-controllers/st,stm32-omm.yaml      | 190 ++++++++++++++++++
->>  1 file changed, 190 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/st,stm32-omm.yaml
+>> The detachment call stack is as follows:
 >>
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-omm.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-omm.yaml
->> new file mode 100644
->> index 000000000000..7e0b150e0005
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-omm.yaml
+>> device_driver_detach() ->
+>>   device_release_driver_internal() ->
+>>     __device_release_driver() ->
+>>       device_remove() ->
+>>         platform_remove() ->
+>> 	  dev_pm_domain_detach()
+>>
+>> In the upcoming Renesas RZ/G3S thermal driver, the
+>> struct thermal_zone_device_ops::change_mode API is implemented to
+>> start/stop the thermal sensor unit. Register settings are updated within
+>> the change_mode API.
+>>
+>> In case devres helpers are used for thermal zone register/unregister the
+>> struct thermal_zone_device_ops::change_mode API is invoked when the
+>> driver is unbound. The identified call stack is as follows:
+>>
+>> device_driver_detach() ->
+>>   device_release_driver_internal() ->
+>>     device_unbind_cleanup() ->
+>>       devres_release_all() ->
+>>         devm_thermal_of_zone_release() ->
+>> 	  thermal_zone_device_disable() ->
+>> 	    thermal_zone_device_set_mode() ->
+>> 	      rzg3s_thermal_change_mode()
+>>
+>> The device_unbind_cleanup() function is called after the thermal device is
+>> detached from the PM domain (via dev_pm_domain_detach()).
+>>
+>> The rzg3s_thermal_change_mode() implementation calls
+>> pm_runtime_resume_and_get()/pm_runtime_put_autosuspend() before/after
+>> accessing the registers. However, during the unbind scenario, the
+>> devm_thermal_of_zone_release() is invoked after dev_pm_domain_detach().
+>> Consequently, the clocks are not enabled, as the device is removed from
+>> the PM domain at this time, leading to an Asynchronous SError Interrupt.
+>> The system cannot be used after this.
 > 
+> I've been through the driver before responding to this change. What is the
+> benefit of powering down / up (or clock off / on) the thermal sensor when
+> reading the temperature ?
 > 
-> Filename as compatible, so st,stm32mp25-omm.yaml
-> 
-> You already received this comment.
+> I can understand for disable / enable but I don't get for the classic usage
+> where a governor will be reading the temperature regularly.
 
-Sorry, i missed this update
-
-> 
->> @@ -0,0 +1,190 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/memory-controllers/st,stm32-omm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: STM32 Octo Memory Manager (OMM)
->> +
->> +maintainers:
->> +  - Patrice Chotard <patrice.chotard@foss.st.com>
->> +
->> +description: |
->> +  The STM32 Octo Memory Manager is a low-level interface that enables an
->> +  efficient OCTOSPI pin assignment with a full I/O matrix (before alternate
->> +  function map) and multiplex of single/dual/quad/octal 		SPI interfaces over
->> +  the same bus. It Supports up to:
->> +    - Two single/dual/quad/octal SPI interfaces
->> +    - Two ports for pin assignment
->> +
->> +properties:
->> +  compatible:
->> +    const: st,stm32mp25-omm
->> +
->> +  "#address-cells":
->> +    const: 2
->> +
->> +  "#size-cells":
->> +    const: 1
->> +
->> +  ranges:
->> +    description: |
->> +      Reflects the memory layout with four integer values per OSPI instance.
->> +      Format:
->> +      <chip-select> 0 <registers base address> <size>
-> 
-> Do you always have two children? If so, this should have maxItems.
-
-No, we can have one child.
+I tried to be as power saving as possible both at runtime and after the IP
+is not used anymore as the HW manual doesn't mentioned anything about
+accuracy or implications of disabling the IP clock at runtime. We use
+similar approach (of disabling clocks at runtime) for other IPs in the
+RZ/G3S SoC as well.
 
 > 
->> +
->> +  reg:
->> +    items:
->> +      - description: OMM registers
->> +      - description: OMM memory map area
->> +
->> +  reg-names:
->> +    items:
->> +      - const: regs
->> +      - const: memory_map
->> +
->> +  memory-region:
->> +    description: Phandle to node describing memory-map region to used.
->> +    minItems: 1
->> +    maxItems: 2
-> 
-> List the items with description instead with optional minItems. Why is
-> this flexible in number of items?
+> Would the IP need some cycles to capture the temperature accurately after the
+> clock is enabled ?
 
-If only one child (OCTOSPI instance), only one memory-region is needed.
+There is nothing about this mentioned about this in the HW manual of the
+RZ/G3S SoC. The only points mentioned are as described in the driver code:
+- wait at least 3us after each IIO channel read
+- wait at least 30us after enabling the sensor
+- wait at least 50us after setting OE bit in TSU_SM
 
-Another update, i will reintroduce "memory-region-names:" which was 
-wrongly removed in V2, i have forgotten one particular case.
+For this I chose to have it implemented as proposed.
 
-We need memory-region-names in case only one OCTOSPI instance is 
-used. If it's OCTOCPI2 and the whole memory-map region
-is dedicated to OCTOSPI2 (OCTOSPI1 unmapped, OCTOSPI2 (256 Mbytes)
+If any, the HW manual is available here
+https://www.renesas.com/en/document/mah/rzg3s-group-users-manual-hardware?r=25458591
+(an archive is here; the manual is in Deliverables/r01uh1014ej0110-rzg3s.pdf)
 
-We need to know to which OCTOSPI instance the memory region is associated
-with, in order to check "st,syscfg-amcr" 's value which must be coherent 
-with memory region declared.
-
-so i will add :
-
-  memory-region-names:
-    description: |
-      OCTOSPI instance's name to which memory region is associated
-    items:
-      - const: ospi1
-      - const: ospi2
+Thank you for your review,
+Claudiu
 
 > 
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  access-controllers:
->> +    maxItems: 1
->> +
->> +  st,syscfg-amcr:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    description: |
->> +      The Address Mapping Control Register (AMCR) is used to split the 256MB
->> +      memory map area shared between the 2 OSPI instance. The Octo Memory
->> +      Manager sets the AMCR depending of the memory-region configuration.
->> +      Format is phandle to syscfg / register offset within syscfg / memory split
->> +      bitmask.
-> 
-> Don't repeat constraints in free form text.
+>> Add thermal_of_zone_register()/thermal_of_zone_unregister(). These will
+>> be used in the upcomming RZ/G3S thermal driver.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-ok
-
-> 
->> +      The memory split bitmask description is:
->> +        - 000: OCTOSPI1 (256 Mbytes), OCTOSPI2 unmapped
->> +        - 001: OCTOSPI1 (192 Mbytes), OCTOSPI2 (64 Mbytes)
->> +        - 010: OCTOSPI1 (128 Mbytes), OCTOSPI2 (128 Mbytes)
->> +        - 011: OCTOSPI1 (64 Mbytes), OCTOSPI2 (192 Mbytes)
->> +        - 1xx: OCTOSPI1 unmapped, OCTOSPI2 (256 Mbytes)
->> +    items:
->> +      minItems: 3
->> +      maxItems: 3
-> 
-> You do not have there three phandles, but one. Look how other bindings
-> encode this.
-
-yes, i see, will update with 
-
-    items:
-      - description: phandle to syscfg
-      - description: register offset within syscfg
-      - description: register bitmask for memory split
-
-> 
->> +
->> +  st,omm-req2ack-ns:
->> +    description: |
->> +      In multiplexed mode (MUXEN = 1), this field defines the time in
->> +      nanoseconds between two transactions.
->> +
->> +  st,omm-cssel-ovr:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: |
->> +      Configure the chip select selector override for the 2 OCTOSPIs.
->> +      The 2 bits mask muxing description is:
-> 
-> bit mask of size? 1? Then just enum string, no?
-
-I didn't get your point ? the size of bitmask is 2 bits as indicated.
-    -bit 0: Chip select selector override setting for OCTOSPI1
-    -bit 1: Chip select selector override setting for OCTOSPI2
-
-
-> 
->> +        -bit 0: Chip select selector override setting for OCTOSPI1
->> +          0x0: the chip select signal from OCTOSPI1 is sent to NCS1
->> +          0x1: the chip select signal from OCTOSPI1 is sent to NCS2
->> +        -bit 1: Chip select selector override setting for OCTOSPI2
->> +          0x0: the chip select signal from OCTOSPI2 is sent to NCS1
->> +          0x1: the chip select signal from OCTOSPI2 is sent to NCS2
-> 
-> I don't understand why this is so complicated. First, can you even send
-> chip select OCTOSPI1 to NCS2 and use 0x1 as mux? or 0x3 as mux?
-
-
-By default, if st,omm-cssel-ovr property is not present:
-  _ chip select OCTOSPI1 is send to NCS1
-  _ chip select OCTOSPI2 is send to NCS2
-
-It's the default configuration.
-
-If st,omm-cssel-ovr property is present, you can mux the chip select 
-of both OCTOSPI instance on NCS1 or NCS2 as you want.
-
-Yes you can send chip select OCTOSPI1 to NCS2 by using 0x1 as bitmask mux
-(in this case chip select OCTOSPI2 is sent to NCS1).
-
-If you use 0x3 as bitmask mux, you send  :
-   _ chip select OCTOSPI1 is sent to NCS2
-   _ chip select OCTOSPI2 is sent to NCS2
-
-> 
-> Second, your bitmask value of "0x0" means OCTOSPI1 and OCTOSPI2 are sent
-
-i think the 0x0/0x1 in the description brings to confusion as it's only the 
-bit value not the bitmask.
-
-> to NCS1 (whateveer NCS is). This sounds wrong, but your binding says is
-> perfectly correct. Is that true? Is that correct binding?
-
- 4 bitmask possible choice :
-   0x0 : the chip select signal from OCTOSPI1 is sent to NCS1
-	 the chip select signal from OCTOSPI2 is sent to NCS1
-
-   0x1 : the chip select signal from OCTOSPI1 is sent to NCS2
-	 the chip select signal from OCTOSPI2 is sent to NCS1
-
-   0x2 : the chip select signal from OCTOSPI1 is sent to NCS1
-	 the chip select signal from OCTOSPI2 is sent to NCS2
-
-   0x3 : the chip select signal from OCTOSPI1 is sent to NCS2
-	 the chip select signal from OCTOSPI2 is sent to NCS2
-
-
-I propose to update the st,omm-cssel-ovr description as following
-
-  st,omm-cssel-ovr:
-    $ref: /schemas/types.yaml#/definitions/uint32
-    description: |
-      Configure the chip select selector override for the 2 OCTOSPIs.
-        - 0: OCTOSPI1 chip select send to NCS1 OCTOSPI2 chip select send to NCS1
-        - 1: OCTOSPI1 chip select send to NCS2 OCTOSPI2 chip select send to NCS1
-        - 2: OCTOSPI1 chip select send to NCS1 OCTOSPI2 chip select send to NCS2
-        - 3: OCTOSPI1 chip select send to NCS2 OCTOSPI2 chip select send to NCS2
-    minimum: 0
-    maximum: 3
-
-
-> 
-> 
->> +
->> +  st,omm-mux:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: |
->> +      Configure the muxing between the 2 OCTOSPIs busses and the 2 output ports.
->> +      The muxing 2 bits mask description is:
->> +        - 0x0: direct mode, default
->> +        - 0x1: mux OCTOSPI1 and OCTOSPI2 to port 1
->> +        - 0x2: swapped mode
->> +        - 0x3: mux OCTOSPI1 and OCTOSPI2 to port 2
-> 
-> So these are just 1-3, not hex, not bitmasks. Missing constraints or
-> enum.
-
-
-ok , i will update as following
-
-  st,omm-mux:
-    $ref: /schemas/types.yaml#/definitions/uint32
-    description: |
-      Configure the muxing between the 2 OCTOSPIs busses and the 2 output ports.
-        - 0: direct mode, default
-        - 1: mux OCTOSPI1 and OCTOSPI2 to port 1
-        - 2: swapped mode
-        - 3: mux OCTOSPI1 and OCTOSPI2 to port 2
-    minimum: 0
-    maximum: 3
-
-
-> 
-> 
-> 
-> 
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +patternProperties:
->> +  ^spi@[a-f0-9]+$:
->> +    type: object
->> +    $ref: "/schemas/spi/st,stm32mp25-ospi.yaml#"
-> 
-> Not much improved. I think you got here comment to drop quotes. That's
-> the second comment you ignored.
-
-sorry, i missed this comment too
-
-> 
->> +    description: Required spi child node
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - "#address-cells"
->> +  - "#size-cells"
->> +  - clocks
->> +  - st,syscfg-amcr
->> +  - ranges
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/reset/st,stm32mp25-rcc.h>
->> +    ommanager@40500000 {
->> +      compatible = "st,stm32mp25-omm";
->> +      reg = <0x40500000 0x400>, <0x60000000 0x10000000>;
->> +      reg-names = "regs", "memory_map";
->> +      memory-region = <&mm_ospi1>, <&mm_ospi2>;
->> +      pinctrl-names = "default", "sleep";
-> 
-> pinctrl-names after pinctrl-1
-
-ok
-
-> 
->> +      pinctrl-0 = <&ospi_port1_clk_pins_a
->> +                   &ospi_port1_io03_pins_a
->> +                   &ospi_port1_cs0_pins_a>;
->> +      pinctrl-1 = <&ospi_port1_clk_sleep_pins_a
->> +                   &ospi_port1_io03_sleep_pins_a
->> +                   &ospi_port1_cs0_sleep_pins_a>;
->> +      clocks = <&rcc CK_BUS_OSPIIOM>;
->> +      resets = <&rcc OSPIIOM_R>;
->> +      st,syscfg-amcr = <&syscfg 0x2c00 0x7>;
->> +      st,omm-req2ack-ns = <0x0>;
-> 
-> Time is never expressed in hex, we do not follow 0x18h clock in
-> continental Europe.
-
-ok
-
-> 
->> +      st,omm-mux = <0x0>;
->> +      st,omm-cssel-ovr = <0x0>;
->> +      access-controllers = <&rifsc 111>;
->> +      power-domains = <&CLUSTER_PD>;
->> +
->> +      #address-cells = <2>;
->> +      #size-cells = <1>;
->> +
->> +      ranges = <0 0 0x40430000 0x400>,
->> +               <1 0 0x40440000 0x400>;
-> 
-> ranges always go after reg/reg-names.
-
-ok
-
-> 
->> +
->> +      spi@40430000 {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +        compatible = "st,stm32mp25-ospi";
-> 
-> Please follow DTS coding style in ordering your properties.
-ok i will move address-cells and size-cells at the correct place.
-
-Thanks 
-Patrice
-
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
 
