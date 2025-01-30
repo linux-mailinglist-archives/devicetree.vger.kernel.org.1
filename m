@@ -1,232 +1,346 @@
-Return-Path: <devicetree+bounces-141821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1A79A22AA9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 10:51:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8233AA22B36
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 11:05:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14FF21624DF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:51:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D6BA1884C0C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 10:04:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBF991B6CF4;
-	Thu, 30 Jan 2025 09:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD361B4137;
+	Thu, 30 Jan 2025 10:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="APUY0V3y";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="A3i5T7FW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OYAJGn7I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F4BA1B6CF0;
-	Thu, 30 Jan 2025 09:50:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4277E0E4;
+	Thu, 30 Jan 2025 10:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738230659; cv=none; b=OMb2y89FuiXc3RvxG51VXeeR+hENjzLZEyEkbkJrg8CxY7Jl5aZftqQw2n1guAD2z1riYWb9uj9xdWSOmIfiiRykCQLi5qVUCCdRW1gkrAlhi6k4ecY5Oqod78wWRCAGE4EquV1PdA1ZUwUiA/ffnzKIKLCoGsbQSZ9k9P/6HHU=
+	t=1738231415; cv=none; b=i1k/dMhSn5C8u4RCfH1S6jgVB8UhFNXBtmxIgK4WO2kPMZ07OW8AlsfdwChgS8b4nTlloQZ0u19i2D2XJSEQQodsGQEpsekfDWuPWDPdV2I4Xu5G9ca/oz9uJkvNKES/nSd6nO4Ebn4U5wZzM1b68/mjOoUn+cOYclHytTgEchw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738230659; c=relaxed/simple;
-	bh=gvQtqSkM2Azzl9eW+61Gix8wW/h+Xv8INjrnMwEE8SM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gzq5itOQYfOGaM1tnCj+v9K7hH+czr4fRtluY22bzp35aNkyMwhWIwwybsEQrDZVuIQdQnaWsUN6Lk4+63AtqCQZFTd4EnOWhlEDifRMEh4Orf6JenVQCJWA+B5IUaB3psmK7EqlFjFOecwWg9x5W9Wl0xvAXpO4r8KJGCRUHkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=APUY0V3y; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=A3i5T7FW reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1738230655; x=1769766655;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=rd2a38AIvhmJF+sIIntn3sECyoZlnToSJTC1vvQgGpU=;
-  b=APUY0V3yDmBNFYrSxpahi2Y15X0KNuXtg+M2jLa5TfHZP0+fZD5uesyx
-   Q/yaVh5NtzB6VwW2kzP17U2/IlVXcwfUSpwRWZweNO6EtHbTpwV4klFJi
-   4RbrbzYw6PFUgohFCqicNznOgl6/eDRyKQOwglVuKemYpqQOoyEkQnsVQ
-   VgPyqgzGpqYrlVTXAty5qx6wX+CT9KSVfwaxSlzPzgEmJ2Oc1cqC9iLMP
-   fxL+BHaYfmZb4vdskIZ2OouCb2xlpWb81c7JDaCvRCMZNLdzEZy+YBTlh
-   lGiWoEhjRMxd31jztgFB/a5qjYKHFR3Ntf9w4t7k7v35hfinC2nk86dD5
-   Q==;
-X-CSE-ConnectionGUID: yJZjX8XqQE24M0r03Fnbdg==
-X-CSE-MsgGUID: bNrVFvibQqGR23uGzNF9Fw==
-X-IronPort-AV: E=Sophos;i="6.13,245,1732575600"; 
-   d="scan'208";a="41370002"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 30 Jan 2025 10:49:43 +0100
-X-CheckPoint: {679B4B37-18-1CE016C0-E589DA3E}
-X-MAIL-CPID: DD08E384A724ED70B11DF9CE815C91BE_1
-X-Control-Analysis: str=0001.0A682F27.679B4B37.00B9,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 13D53167A0C;
-	Thu, 30 Jan 2025 10:49:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1738230579;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rd2a38AIvhmJF+sIIntn3sECyoZlnToSJTC1vvQgGpU=;
-	b=A3i5T7FWTQyr0aYYLUVJR4wNh6PNlonbj/S8+XBd3QZqrMwR+vGsSwIvojS4R3cgU/OMLN
-	p9Pjody1PtAvH+UMO+dbKEqVe7trjFcXhyEn3iwNJWo3NHdhBF9RPpBjB7zLCwpKaYWXEV
-	ICiB9ceIlgzNe2T7pbWQ8XTS9TaHEo8qziWro20NYknF0NYcJFB50W0oH9XiXODbpuC9M+
-	/0GVIlz9GvnXV6N/Lz+lCp7pYWn0IUHN1Bi+ZHNn5pYOZljPehu+D+jpE/GuGyzENCqDb6
-	CVMMKX1nxi+2ytByDrctmB3v31E1dfGnREvIZZkFJshWW+YSWDuQuQdpHAVSBg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>, Frank Li <Frank.Li@nxp.com>, Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: nvmem: imx-ocotp: Introduce #access-controller-cells
-Date: Thu, 30 Jan 2025 10:49:37 +0100
-Message-ID: <2771977.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250121-imx-ocotp-v6-1-76dab40e13db@nxp.com>
-References: <20250121-imx-ocotp-v6-0-76dab40e13db@nxp.com> <20250121-imx-ocotp-v6-1-76dab40e13db@nxp.com>
+	s=arc-20240116; t=1738231415; c=relaxed/simple;
+	bh=2sXW4GBxPt/yJ3Q152hJbd3MBIixTAR4IBbse8RQ5NI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=XXEoZwu2TaE+fzwX3ZPXV/uyayJpE25k/vsExElO3koZ7xtMpkdn28Wdd91AS+rvyiPrgTdSD8j1UZkicZMcRVVCe0bZxkqo7nPpjm12M2k1xK24UiEYc4cAtzob31i7AG29Z+zK4SS6mbrPwt0hup1e/hAEFbVkSnlHtQ77qlQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OYAJGn7I; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50U1dC6S023830;
+	Thu, 30 Jan 2025 10:03:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ZUGoZU9SmpWtYDyisJW6wY5gUB1sQNSLSjbLV3TJrP8=; b=OYAJGn7IV6Nd4mOf
+	Q2mKdyj33Zu5SrlBzLhwdOwUJpcVPaH7xkHWpUpkrCkWIJtDWSQWCSuIaNjIaAY1
+	lFGKS0XiQ1zRfnoVSjx3eKVUdEMcRFQa2I7SgliuE1ESL4nZQnbgNoCrg4Uf5cKH
+	GEt2XaM9CkvyqX7l2PQQGE5x3o4lkyM4/i4J2AIt4DQeIFuZrCuoAykyQlnhZ7q5
+	DOl0RxtnuEuXVin2GvqfHZFAafjibcq2YBZAhESfeJdw7+l70N7dSpYcW2XeOKGH
+	/70+cLibjFa8jW/DeciPNUQBimC/HRnmXf4kZqaYvxQqqMnFQwJcQNy5/vElb4kG
+	npJPcw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44fyxnrth2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Jan 2025 10:03:23 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50UA3Mxa024644
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Jan 2025 10:03:22 GMT
+Received: from [10.216.8.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 30 Jan
+ 2025 02:03:17 -0800
+Message-ID: <123a324c-561a-4081-be43-8d8ed0662acc@quicinc.com>
+Date: Thu, 30 Jan 2025 15:33:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
-
-Hi,
-
-Am Dienstag, 21. Januar 2025, 16:05:31 CET schrieb Peng Fan (OSS):
-> From: Peng Fan <peng.fan@nxp.com>
->=20
-> Introduce "#access-controller-cells" to make OCOTP be an accessing
-> controller, because i.MX Family OCOTP supports a specific peripheral
-> or function being fused which means being disabled.
->=20
-> Add the i.MX[95,93] OCOTP gate index.
->=20
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/nvmem/imx-ocotp.yaml       |  5 +++
->  include/dt-bindings/nvmem/fsl,imx93-ocotp.h        | 24 ++++++++++++
->  include/dt-bindings/nvmem/fsl,imx95-ocotp.h        | 43 ++++++++++++++++=
-++++++
->  3 files changed, 72 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml b/Doc=
-umentation/devicetree/bindings/nvmem/imx-ocotp.yaml
-> index b2cb76cf9053a883a158acaf5eaa108895818afc..c78e202ced22f1c278f7be827=
-b71ba434832d2a7 100644
-> --- a/Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml
-> @@ -54,6 +54,11 @@ properties:
->    clocks:
->      maxItems: 1
-> =20
-> +  "#access-controller-cells":
-> +    const: 1
-> +    description:
-> +      Contains the gate ID associated to the peripheral.
-> +
->  required:
->    - "#address-cells"
->    - "#size-cells"
-> diff --git a/include/dt-bindings/nvmem/fsl,imx93-ocotp.h b/include/dt-bin=
-dings/nvmem/fsl,imx93-ocotp.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..6ef525173845fd4ee0e847cf5=
-a17e53a14f71362
-> --- /dev/null
-> +++ b/include/dt-bindings/nvmem/fsl,imx93-ocotp.h
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
-> +
-> +#ifndef _DT_BINDINGS_NVMEM_IMX93_OTPC_H
-> +#define _DT_BINDINGS_NVMEM_IMX93_OTPC_H
-
-This doesn't match the filename.
-
-> +
-> +#define IMX93_OCOTP_NPU_GATE		0
-> +#define IMX93_OCOTP_A550_GATE		1
-> +#define IMX93_OCOTP_A551_GATE		2
-> +#define IMX93_OCOTP_M33_GATE		3
-> +#define IMX93_OCOTP_CAN1_FD_GATE	4
-> +#define IMX93_OCOTP_CAN2_FD_GATE	5
-> +#define IMX93_OCOTP_CAN1_GATE		6
-> +#define IMX93_OCOTP_CAN2_GATE		7
-> +#define IMX93_OCOTP_USB1_GATE		8
-> +#define IMX93_OCOTP_USB2_GATE		9
-> +#define IMX93_OCOTP_ENET1_GATE		10
-> +#define IMX93_OCOTP_ENET2_GATE		11
-> +#define IMX93_OCOTP_PXP_GATE		12
-> +#define IMX93_OCOTP_MIPI_CSI1_GATE	13
-> +#define IMX93_OCOTP_MIPI_DSI1_GATE	14
-> +#define IMX93_OCOTP_LVDS1_GATE		15
-> +#define IMX93_OCOTP_ADC1_GATE		16
-> +
-> +#endif
-> diff --git a/include/dt-bindings/nvmem/fsl,imx95-ocotp.h b/include/dt-bin=
-dings/nvmem/fsl,imx95-ocotp.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..2d21d1f690974d0215c713521=
-68378a150f489af
-> --- /dev/null
-> +++ b/include/dt-bindings/nvmem/fsl,imx95-ocotp.h
-> @@ -0,0 +1,43 @@
-> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
-> +
-> +#ifndef _DT_BINDINGS_NVMEM_IMX95_OTPC_H
-> +#define _DT_BINDINGS_NVMEM_IMX95_OTPC_H
-
-This doesn't match the filename.
-
-Best regards,
-Alexander
-
-> +
-> +#define IMX95_OCOTP_CANFD1_GATE		0
-> +#define IMX95_OCOTP_CANFD2_GATE		1
-> +#define IMX95_OCOTP_CANFD3_GATE		2
-> +#define IMX95_OCOTP_CANFD4_GATE		3
-> +#define IMX95_OCOTP_CANFD5_GATE		4
-> +#define IMX95_OCOTP_CAN1_GATE		5
-> +#define IMX95_OCOTP_CAN2_GATE		6
-> +#define IMX95_OCOTP_CAN3_GATE		7
-> +#define IMX95_OCOTP_CAN4_GATE		8
-> +#define IMX95_OCOTP_CAN5_GATE		9
-> +#define IMX95_OCOTP_NPU_GATE		10
-> +#define IMX95_OCOTP_A550_GATE		11
-> +#define IMX95_OCOTP_A551_GATE		12
-> +#define IMX95_OCOTP_A552_GATE		13
-> +#define IMX95_OCOTP_A553_GATE		14
-> +#define IMX95_OCOTP_A554_GATE		15
-> +#define IMX95_OCOTP_A555_GATE		16
-> +#define IMX95_OCOTP_M7_GATE		17
-> +#define IMX95_OCOTP_DCSS_GATE		18
-> +#define IMX95_OCOTP_LVDS1_GATE		19
-> +#define IMX95_OCOTP_ISP_GATE		20
-> +#define IMX95_OCOTP_USB1_GATE		21
-> +#define IMX95_OCOTP_USB2_GATE		22
-> +#define IMX95_OCOTP_NETC_GATE		23
-> +#define IMX95_OCOTP_PCIE1_GATE		24
-> +#define IMX95_OCOTP_PCIE2_GATE		25
-> +#define IMX95_OCOTP_ADC1_GATE		26
-> +#define IMX95_OCOTP_EARC_RX_GATE	27
-> +#define IMX95_OCOTP_GPU3D_GATE		28
-> +#define IMX95_OCOTP_VPU_GATE		29
-> +#define IMX95_OCOTP_JPEG_ENC_GATE	30
-> +#define IMX95_OCOTP_JPEG_DEC_GATE	31
-> +#define IMX95_OCOTP_MIPI_CSI1_GATE	32
-> +#define IMX95_OCOTP_MIPI_CSI2_GATE	33
-> +#define IMX95_OCOTP_MIPI_DSI1_GATE	34
-> +#define IMX95_OCOTP_V2X_GATE		35
-> +
-> +#endif
->=20
->=20
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] clk: qcom: apss-ipq5424: Add ipq5424 apss clock
+ controller
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <konradybcio@kernel.org>,
+        <rafael@kernel.org>, <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+References: <20250127093128.2611247-1-quic_srichara@quicinc.com>
+ <20250127093128.2611247-3-quic_srichara@quicinc.com>
+ <47f7553d-74a2-4da0-a64c-cc49a2170efb@oss.qualcomm.com>
+Content-Language: en-US
+From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <47f7553d-74a2-4da0-a64c-cc49a2170efb@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ap5pL5MPNMORJ5j2I9WNVpI2JPP6wEA8
+X-Proofpoint-GUID: ap5pL5MPNMORJ5j2I9WNVpI2JPP6wEA8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-30_06,2025-01-30_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=999 spamscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ adultscore=0 malwarescore=0 priorityscore=1501 bulkscore=0 clxscore=1015
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501300077
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
 
+On 1/28/2025 5:29 PM, Konrad Dybcio wrote:
+> On 27.01.2025 10:31 AM, Sricharan R wrote:
+>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>
+>> CPU on Qualcomm ipq5424 is clocked by huayra PLL with RCG support.
+>> Add support for the APSS PLL, RCG and clock enable for ipq5424.
+>> The PLL, RCG register space are clubbed. Hence adding new APSS driver
+>> for both PLL and RCG/CBC control. Also the L3 cache has a separate pll
+>> and needs to be scaled along with the CPU.
+>>
+>> Co-developed-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> ---
+> 
+> [...]
+> 
+>> +#define GPLL0_CLK_RATE		800000000
+>> +#define CPU_NOM_CLK_RATE	1416000000
+>> +#define CPU_TURBO_CLK_RATE	1800000000
+>> +#define L3_NOM_CLK_RATE		984000000
+>> +#define L3_TURBO_CLK_RATE	1272000000
+> 
+> Please inline these values
+> 
+ok.
 
+>> +
+>> +enum {
+>> +	P_XO,
+>> +	P_GPLL0,
+>> +	P_APSS_PLL_EARLY,
+>> +	P_L3_PLL,
+>> +};
+>> +
+>> +struct apss_clk {
+>> +	struct notifier_block cpu_clk_notifier;
+>> +	struct clk_hw *hw;
+>> +	struct device *dev;
+>> +	struct clk *l3_clk;
+>> +};
+>> +
+> 
+>> +static struct clk_branch l3_core_clk = {
+>> +	.halt_reg = 0x1008c,
+>> +	.clkr = {
+>> +		.enable_reg = 0x1008c,
+>> +		.enable_mask = BIT(0),
+>> +		.hw.init = &(struct clk_init_data){
+>> +			.name = "l3_clk",
+>> +			.parent_hws = (const struct clk_hw *[]){
+>> +				&l3_clk_src.clkr.hw },
+> 
+> 	&l3_clk_src.clkr.hw
+> },
+> 
+>> +static unsigned long get_l3_clk_from_tbl(unsigned long rate)
+>> +{
+>> +	struct clk_rcg2 *l3_rcg2 = container_of(&l3_clk_src.clkr, struct clk_rcg2, clkr);
+>> +	u8 max_clk = sizeof(ftbl_apss_clk_src) / sizeof(struct freq_tbl);
+>> +	u8 loop;
+>> +
+>> +	for (loop = 0; loop < max_clk; loop++)
+>> +		if (ftbl_apss_clk_src[loop].freq == rate)
+>> +			return l3_rcg2->freq_tbl[loop].freq;
+> 
+> This looks extremely explosive if anyone makes changes to the driver..
+> 
+> Use an OPP table in the devicetree instead
+> 
+ok, already using OPPtable for cpu. To understand better, since L3 clk
+is separate that needs to be scaled along with cpu, are you suggesting
+to use dev_pm_opp_find_freq here for indexing ?
+
+> And please add a newline before the return statement
+> 
+ok
+
+>> +	return 0;
+>> +}
+>> +
+>> +static int cpu_clk_notifier_fn(struct notifier_block *nb, unsigned long action,
+>> +			       void *data)
+>> +{
+>> +	struct apss_clk *apss_ipq5424_cfg = container_of(nb, struct apss_clk, cpu_clk_notifier);
+>> +	struct clk_notifier_data *cnd = (struct clk_notifier_data *)data;
+>> +	struct device *dev = apss_ipq5424_cfg->dev;
+>> +	unsigned long rate = 0, l3_rate;
+>> +	int err = 0;
+> 
+> Please use 'ret'
+> 
+ok
+
+>> +
+>> +	dev_dbg(dev, "action:%ld old_rate:%ld new_rate:%ld\n", action,
+>> +		cnd->old_rate, cnd->new_rate);
+>> +
+>> +	switch (action) {
+>> +	case PRE_RATE_CHANGE:
+>> +		if (cnd->old_rate < cnd->new_rate)
+>> +			rate = cnd->new_rate;
+>> +	break;
+> 
+> Why are the breaks indented like this?
+> 
+ok, will fix
+
+>> +	case POST_RATE_CHANGE:
+>> +		if (cnd->old_rate > cnd->new_rate)
+>> +			rate = cnd->new_rate;
+>> +	break;
+>> +	};
+>> +
+>> +	if (!rate)
+>> +		goto notif_ret;
+> 
+> In cases like these, just return directly instead of jumping
+> 
+ok
+
+>> +
+>> +	l3_rate = get_l3_clk_from_tbl(rate);
+>> +	if (!l3_rate) {
+>> +		dev_err(dev, "Failed to get l3 clock rate from l3_tbl\n");
+>> +		return NOTIFY_BAD;
+>> +	}
+>> +
+>> +	err = clk_set_rate(apss_ipq5424_cfg->l3_clk, l3_rate);
+>> +	if (err) {
+>> +		dev_err(dev, "Failed to set l3 clock rate(%ld) err(%d)\n", l3_rate, err);
+>> +		return NOTIFY_BAD;
+>> +	}
+>> +
+>> +notif_ret:
+>> +	return NOTIFY_OK;
+>> +}
+>> +
+>> +static int apss_ipq5424_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct apss_clk *apss_ipq5424_cfg;
+>> +	struct regmap *regmap;
+>> +	void __iomem *base;
+>> +	int ret;
+>> +
+>> +	apss_ipq5424_cfg = devm_kzalloc(&pdev->dev, sizeof(struct apss_clk), GFP_KERNEL);
+> 
+> Since there is no "config" in there, something like "ipq5424_apsscc" would be
+> more fitting
+> 
+ok
+
+>> +	if (IS_ERR_OR_NULL(apss_ipq5424_cfg))
+>> +		return PTR_ERR(apss_ipq5424_cfg);
+> 
+> https://elixir.bootlin.com/linux/v6.13/source/include/linux/device.h#L326-L329
+> |_
+>     > elixir.bootlin.com/linux/v6.13/source/drivers/base/devres.c#L819-L820
+> 
+> It can never throw an errno, just check for if (!apss...)
+> 
+ok
+
+>> +
+>> +	base = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(base))
+>> +		return PTR_ERR(base);
+>> +
+>> +	regmap = devm_regmap_init_mmio(dev, base, &apss_ipq5424_regmap_config);
+>> +	if (!regmap)
+>> +		return PTR_ERR(regmap);
+> 
+> devm_platform_get_and_ioremap_resource()
+> 
+ok
+
+>> +
+>> +	clk_alpha_pll_configure(&ipq5424_l3_pll, regmap, &l3_pll_config);
+>> +
+>> +	clk_alpha_pll_configure(&ipq5424_apss_pll, regmap, &apss_pll_config);
+>> +
+>> +	ret = qcom_cc_really_probe(dev, &apss_ipq5424_desc, regmap);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	dev_dbg(&pdev->dev, "Registered APSS & L3 clock provider\n");
+>> +
+>> +	apss_ipq5424_cfg->dev = dev;
+>> +	apss_ipq5424_cfg->hw = &apss_silver_clk_src.clkr.hw;
+>> +	apss_ipq5424_cfg->cpu_clk_notifier.notifier_call = cpu_clk_notifier_fn;
+>> +
+>> +	apss_ipq5424_cfg->l3_clk = clk_hw_get_clk(&l3_core_clk.clkr.hw, "l3_clk");
+>> +	if (IS_ERR(apss_ipq5424_cfg->l3_clk)) {
+>> +		dev_err(&pdev->dev, "Failed to get L3 clk, %ld\n",
+>> +			PTR_ERR(apss_ipq5424_cfg->l3_clk));
+>> +		return PTR_ERR(apss_ipq5424_cfg->l3_clk);
+>> +	}
+> 
+> Now that you'll use OPP, you can drop all this getting.. maybe even the
+> apss_ipq5424_cfg struct could be let go
+
+ok, is the suggestion here to use devm_pm_opp_set_config ?
+
+>> +
+>> +	ret = devm_clk_notifier_register(&pdev->dev, apss_ipq5424_cfg->hw->clk,
+>> +					 &apss_ipq5424_cfg->cpu_clk_notifier);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return 0;
+> 
+> Just return ret instead
+> 
+ok
+
+>> +}
+>> +
+>> +static const struct of_device_id apss_ipq5424_match_table[] = {
+>> +	{ .compatible = "qcom,ipq5424-apss-clk" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, apss_ipq5424_match_table);
+>> +
+>> +static struct platform_driver apss_ipq5424_driver = {
+>> +	.probe = apss_ipq5424_probe,
+>> +	.driver = {
+>> +		.name   = "apss-ipq5424-clk",
+>> +		.of_match_table = apss_ipq5424_match_table,
+>> +	},
+>> +};
+>> +
+>> +module_platform_driver(apss_ipq5424_driver);
+>> +
+>> +MODULE_DESCRIPTION("QCOM APSS IPQ5424 CLK Driver");
+>> +MODULE_LICENSE("GPL v2");
+> 
+> Please don't skip running 'checkpatch'.
+
+Infact ran it with --strict as well. But thought "GPL V2" was correct
+and let it. Anyways will change.
+
+Regards,
+  Sricharan
 
