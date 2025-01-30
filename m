@@ -1,229 +1,125 @@
-Return-Path: <devicetree+bounces-141940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9E5A23378
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 18:54:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4ED2A23396
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 19:12:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89B031883232
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 17:54:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 531C37A2119
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 18:11:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B6F1F03DC;
-	Thu, 30 Jan 2025 17:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98611EF091;
+	Thu, 30 Jan 2025 18:12:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SDNoEJt7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eXFfMdqk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6D791EB9E1
-	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 17:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2355384D34
+	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 18:12:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738259644; cv=none; b=ZsB1y5zt61k0+OVXowtK0wgE/Uwmw7P2COxK7igUlmfoj5PR4XBwtSnorGGnQfNY1kfuob43w++Jv6eZhSwOxk98GU1iEJfF5ov9WdX0kLkPMS0uwcGOVX60Fgb0gGs+Hdq2sgP8FglAVdBWmSz+cKcEkV+USPSH1EPxTyeX0Zg=
+	t=1738260757; cv=none; b=OwlIGTnUj+CIE4ebB5Ia0gi8svoeWbzuM5JZVMLv1EJwFXEZiqJm0k6Cxs+gYtLYol5Vi0qlk3euNzimtxGIof0oW6qHHZeaZujE1/AMM0TZPw4REw9Ud5pkUervf0Ag89LGbQSNy6x332dtFdbXgAmczcKrnTJDSf94gGqfQxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738259644; c=relaxed/simple;
-	bh=WUw+cg2C7p4c6woyhzeIifv4ld0H2t+UcA3JTslN+0Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LKhMhAOy0nUFwSuJUmlOerJgdrMieWFvnbBiV8++uG+vOVpDK3yEUrlwKmFNMFrFUKVbg7ol8/HJraVDMLtV8tsBcTiRumZCQlJGmqOgHy4/27mowtsPerGYNlHUC6Yuigl9Pgt37yy7QWZ943eWXbwe1jANgICfoxk6+PaEd9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SDNoEJt7; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3862b40a6e0so766431f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 09:54:01 -0800 (PST)
+	s=arc-20240116; t=1738260757; c=relaxed/simple;
+	bh=yioVhlVEhFzUaZEWLLYq7Z20yluO2tVcZQNEfZN+D7k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jjxRrnreW/2yFAsu/k4dQJ9Hw0P6mMxk4RQyoFl9m5rGv5tbSIk1IzcC1UZr+v6GYstrDydhACQLOIU7mutqllZUxUySfKP8BcPzvhXDfHfEXT7HEOy0/AEAKc8iHZXE+njsY6RxeYjqtkLxBdN69uGHNU86qMf4hLkzSpbdizo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eXFfMdqk; arc=none smtp.client-ip=209.85.167.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3eb7edfa42dso601138b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 10:12:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738259640; x=1738864440; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z8JJUa/aNAV/P70L0oa1PWI0esDvQnXBP48aD2W+hbQ=;
-        b=SDNoEJt7SGYkbHVNdjvckU8rtSPLBWRK1Di315zd5pcyoUWrZBRVKknXL0hHQEmAah
-         gPQKNRm+BQmaDaOH/DQd/vNh+vq2kT+5QnvfxZkcF5Iw+fnWH+6gckIY/9QXVqQveMbS
-         qU94ss1EcYjTdTmTj34HuVKYFUeWnXk9shEGjYKNSH3iC5ANjJwVjiXyyCBAcrd0nhK4
-         Anf1df7Ip2ZJXvjnA6TcGiBC8KWxSOB1gzT8w8CXtDJrxFaaGbZ2G00gdQ2HMKg46X8N
-         0t/ZBexechWA0P3jhzHe+w2pvbtUbm8G3l2f8vHv2fyT7kyPq2ZaSrJR4tfH8Hg7e+N8
-         txFg==
+        d=gmail.com; s=20230601; t=1738260755; x=1738865555; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YdgoRXrSyl0SwNYeJOkfBySm6H0lmfcmHgCdqCIPMvc=;
+        b=eXFfMdqkQsY/Tsg/439u4xV8+l0Pxx2+pE7aftTlHZS2TEYoUBXCCxGj/KQWYv3LeG
+         OfNJRdHoMrK88FK0YmgjWpgOrX5v+9Ks3/MqDExuevrEasNfo5UiJ+6Wp1/4pxkdBGEa
+         X2XsXeYcAgw0f9Kyb9rXEtVJjUUUCxfwtDiW+6bne892D2oXzTpNVMDGppi/Vyt5dGno
+         9eOqowwT+T++8S/M84K/40j2M/VXsFuTn6X6w98Xo99/odq4fJ1Ayy3uwK3lsR++eKi0
+         /N7hHuC/Su4Wn2EK488vimB0rKr4RtxZ7thC8gtdJbMoe/aod9+Axe7x61aoB1zZj0f9
+         Lf0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738259640; x=1738864440;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z8JJUa/aNAV/P70L0oa1PWI0esDvQnXBP48aD2W+hbQ=;
-        b=T3UXCjGyBDgVXVQLY/wuW7EkmLSba9v+eaG+5hFGuJzoUcmCAzMBPBvXj/Op9xFKAU
-         tgVlDHSDmzEVonq6AsmKWPnqWnMX1lcYx/JzEkKmtad3tg6sUuSwDviqCHvbRgax6dl+
-         p/A1t5z/12+EvLUFJEllRPIvK14W5+XnP/XDD48n63b33q+9S0+Bp5+fco5JK78K83PU
-         56VZbCaUsbn9iM6B9SW46LXNKyoPgkSD9r2noa0OK4/aPPVmXGrQzd/D06Hbot85FPW2
-         bXqOZXjLFXA2NtnfYXYBx8PNSgkMgY1bXm2s3YXScKCKKFfsQPe4oSIhHrP5mA1wV4y2
-         78MA==
-X-Forwarded-Encrypted: i=1; AJvYcCWvhqdN9hp8ezSbK2jbksNtCADn5spcT4UtTJmKCmWTcQkVd8BIzSCXHu6LrSDUcFSzPZOAePmDX6b3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTCpc5+gR7dJcv1qc+P5B1q42Z4AHtpHW4c6PXYUOhBPjimTTC
-	LryiMkTn39iewP+hOzj0nxaiLJ2QVRRpE6NcEPhnM/zwscIPrkmohy0d33lj50M=
-X-Gm-Gg: ASbGncs2z0R1PyvBYfmkmPxlLYAKr8oL1ufE7XrLT10hB4VwUZSQTepB3Qursv09tiS
-	/y6Wx2jN0P3ptBkLNdtCOZS1hCvYkwTWf0H9CBr8YbCrkos/NHijfnTeqHiHVVyw49/DRwn5Hzo
-	JLri5xxKZrnPVGrflkOtY1hmRnxW40pMqC+9CyWwpNw8lNeVPSSetBTs4bUvdmCDpfGpgM5g+06
-	H8JoXWM/BpgG2SMbfCheWLO0aU8NxHoClrAofJHaNKUPBNghffKbyrz9NdJ/wh+ztvoL3kE8Yk+
-	+EPT1jvWbRaVpUnAmlFfGYeXcehZFIgYyxV4ge41O38ILpeaUNxroXA=
-X-Google-Smtp-Source: AGHT+IE96tMjtmz3u9v3Eic5ID5HrbnpMbVJNYNsrTeZ4kPIWPh0vN3o9LQirB4Tqm2SD1jL2Q6Ung==
-X-Received: by 2002:a05:6000:186d:b0:38c:617c:ee22 with SMTP id ffacd0b85a97d-38c617cf0c1mr173456f8f.54.1738259638478;
-        Thu, 30 Jan 2025 09:53:58 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-438dcc2f17dsm65847425e9.23.2025.01.30.09.53.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jan 2025 09:53:58 -0800 (PST)
-Message-ID: <034707dd-e6b1-4a39-860b-b972fa438645@linaro.org>
-Date: Thu, 30 Jan 2025 18:53:57 +0100
+        d=1e100.net; s=20230601; t=1738260755; x=1738865555;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YdgoRXrSyl0SwNYeJOkfBySm6H0lmfcmHgCdqCIPMvc=;
+        b=BnBR/WlGKKMfrBB+4W08B2orPXTlWZUCdNgFh0Zavou/rjeo5zxmjzyHE1JYXf0kBS
+         mMaATQ2akHm1na/E7Y92L2v/bpuO2w1X+KMhipC+8FM7Gd5nNrRsHiTggPg9UV0k6SDE
+         Ro/HBfTNP0WYIwyG2Uij7h6l/n7G71qpL4Q61jv2CZxtaAFibAEkVOdxvNVPtSsFbCbq
+         WtOPS2RRnkcjOr0Au92K7mCVBq9MLX6/SbiEBCtTjUNKq+7upS/jVHbaQtgJr54Zq6NI
+         KXecoK17l8xcgjRLfTzzl2pHsHnrlJ215iGUHVVB1zDJbZY8FmGMdcQdS4s3V+/Uatxz
+         i2eA==
+X-Gm-Message-State: AOJu0Yz3ciaCSF3E9WeEGdBEunynS3ySE0VHWZeDE9DndJMDY8h56ADS
+	5j3PyZJvcFD0D46IvcbKTwHdZEh5HYytLRE58obwSdoImx4xXhPAECgPIw==
+X-Gm-Gg: ASbGncvpyUt05pNRnh3EbNlAEqSJPaPS1M9R35xhNVOHsEpRzNjSWA8GZDLhtSjWUrb
+	VZMpXlxRSiwu8aZvEzafSLjUzehGynMSIDG8SYAaB/KXFublmfVipLk+KihpMegD4ndMkPGDCtD
+	Ax4f3OdAATcuNMHxUrqUwj1dkSMIVfzREJvm2X40lP9/Fmbgw9/4B2p6JJNe8C1driL2iwYOJ36
+	tI7SNMswfrIusX9nLhl0Hd48WE5P5QUpq2W2KLRM6T7rntfAiXg+LjnMhra2+KrSm5bg/+VXyuK
+	dU7t0WOKjfljiQIF8faoL5G39IBslHb/Ww==
+X-Google-Smtp-Source: AGHT+IG3X476Qe4ZhR3dKakKXmR/cepO4ChjuYZ8JVda/dOuLlEJ7k2TmI4+KjouWgpNJD/6WhP1bw==
+X-Received: by 2002:a05:6808:3307:b0:3eb:6dd3:12bf with SMTP id 5614622812f47-3f323aefb5amr5504069b6e.28.1738260754990;
+        Thu, 30 Jan 2025 10:12:34 -0800 (PST)
+Received: from localhost.localdomain ([2600:1700:fb0:1bcf:7478:d882:8d68:2fb])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-726617eb233sm427110a34.35.2025.01.30.10.12.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Jan 2025 10:12:34 -0800 (PST)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	sebastian.reichel@collabora.com,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH] arm64: dts: rockchip: remove rk3588 optee node
+Date: Thu, 30 Jan 2025 12:10:04 -0600
+Message-ID: <20250130181005.6319-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] arm64: dts: renesas: r9a08g045: Add TSU node
-To: Claudiu <claudiu.beznea@tuxon.dev>, rafael@kernel.org,
- rui.zhang@intel.com, lukasz.luba@arm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
- magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, ulf.hansson@linaro.org
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Biju Das <biju.das.jz@bp.renesas.com>
-References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
- <20250103163805.1775705-6-claudiu.beznea.uj@bp.renesas.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20250103163805.1775705-6-claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 03/01/2025 17:38, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> Add TSU node along with thermal zones and keep it enabled in the SoC DTSI.
-> The temperature reported by the TSU can only be read through channel 8 of
-> the ADC. Therefore, enable the ADC by default.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->   arch/arm64/boot/dts/renesas/r9a08g045.dtsi    | 43 ++++++++++++++++++-
->   .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |  4 --
->   2 files changed, 42 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> index a9b98db9ef95..fd74138198a8 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> @@ -205,7 +205,6 @@ adc: adc@10058000 {
->   			#address-cells = <1>;
->   			#size-cells = <0>;
->   			#io-channel-cells = <1>;
-> -			status = "disabled";
->   
->   			channel@0 {
->   				reg = <0>;
-> @@ -244,6 +243,17 @@ channel@8 {
->   			};
->   		};
->   
-> +		tsu: thermal@10059000 {
-> +			compatible = "renesas,r9a08g045-tsu";
-> +			reg = <0 0x10059000 0 0x1000>;
-> +			clocks = <&cpg CPG_MOD R9A08G045_TSU_PCLK>;
-> +			resets = <&cpg R9A08G045_TSU_PRESETN>;
-> +			power-domains = <&cpg>;
-> +			#thermal-sensor-cells = <0>;
-> +			io-channels = <&adc 8>;
-> +			io-channel-names = "tsu";
-> +		};
-> +
->   		vbattb: clock-controller@1005c000 {
->   			compatible = "renesas,r9a08g045-vbattb";
->   			reg = <0 0x1005c000 0 0x1000>;
-> @@ -690,6 +700,37 @@ timer {
->   				  "hyp-virt";
->   	};
->   
-> +	thermal-zones {
-> +		cpu_thermal: cpu-thermal {
-> +			polling-delay-passive = <250>;
-> +			polling-delay = <1000>;
-> +			thermal-sensors = <&tsu>;
-> +			sustainable-power = <423>;
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&target>;
-> +					cooling-device = <&cpu0 0 2>;
-> +					contribution = <1024>;
-> +				};
-> +			};
-> +
-> +			trips {
-> +				sensor_crit: sensor-crit {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +
-> +				target: trip-point {
-> +					temperature = <100000>;
-> +					hysteresis = <1000>;
-> +					type = "passive";
-> +				};
+From: Chris Morgan <macromorgan@hotmail.com>
 
-1. As you specified the sustainable power, the power allocator would be 
-used. However, it needs an intermediate passive trip point before 
-reaching the mitigation because the governor has to collect data ahead 
-of the passive mitigation trip point in order to feed the PID loop. This 
-trip point is not bound to any cooling device
+Remove Optee node from rk3588 devicetree. When Optee is present and
+used the node will be added automatically by U-Boot when
+CONFIG_OPTEE_LIB=y and CONFIG_SPL_ATF_NO_PLATFORM_PARAM is not set.
+When Optee is not present or used, the node will trigger a probe
+that generates a (harmless) message on the kernel log.
 
-2. The mitigation temperature is set to 100°C. The MTBF decay factor of 
-the semi-conductor will be increased by more the 100x times during the 
-thermal episodes stress thus reducing its lifespan considerably if it 
-hits this temperature often (but I doubt with a single Cortex-A55).
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 5 -----
+ 1 file changed, 5 deletions(-)
 
-3. It would make sense to add a 'hot' trip point so the user space can 
-take an action to reduce the thermal pressure before reaching the 
-critical temperature
-
-4. IIUC, the CPU does not do voltage scaling but only frequency scaling, 
-right ? If it is the case, then it is even more true that the mitigation 
-trip point should be reduced because the frequency scaling only may not 
-suffice to provide a cooling effect
-
-
-> +			};
-> +		};
-> +	};
-> +
->   	vbattb_xtal: vbattb-xtal {
->   		compatible = "fixed-clock";
->   		#clock-cells = <0>;
-> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> index ef12c1c462a7..041d256d7b79 100644
-> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> @@ -102,10 +102,6 @@ x3_clk: x3-clock {
->   	};
->   };
->   
-> -&adc {
-> -	status = "okay";
-> -};
-> -
->   #if SW_CONFIG3 == SW_ON
->   &eth0 {
->   	pinctrl-0 = <&eth0_pins>;
-
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+index 8cfa30837ce7..245a6cabdc8e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+@@ -358,11 +358,6 @@ display_subsystem: display-subsystem {
+ 	};
+ 
+ 	firmware {
+-		optee: optee {
+-			compatible = "linaro,optee-tz";
+-			method = "smc";
+-		};
+-
+ 		scmi: scmi {
+ 			compatible = "arm,scmi-smc";
+ 			arm,smc-id = <0x82000010>;
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.43.0
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
