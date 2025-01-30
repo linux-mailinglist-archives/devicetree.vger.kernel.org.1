@@ -1,86 +1,137 @@
-Return-Path: <devicetree+bounces-141856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287D0A22D22
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 13:59:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9EAAA22D29
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 14:01:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 979841885C12
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 12:59:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 563BB16840A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 13:01:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DBC51C5F37;
-	Thu, 30 Jan 2025 12:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D471D5170;
+	Thu, 30 Jan 2025 13:01:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="MlCi2LRb"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="VyzKl7hS";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="mbcFpJJx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4564B660
-	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 12:59:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8357483;
+	Thu, 30 Jan 2025 13:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738241961; cv=none; b=Jx0CiOG7yLynjczwEliFMG/pyLYyL1gnyo2pPluVNIz2mMPXzLEQK7InIrqeXx61gc+D3yV2Lga2tNO+azAlRw6ZyS312LUrpxSwAlCGrrKLXBEMAl05xY7dRtl12JkZ2XDRYO7JwKxcHxf78RxC0OQASNaZTyAnsLUqyXC/8DI=
+	t=1738242075; cv=none; b=OLPXhx1I/H2OezzQCgUn9z34B2AJCMdilXWRb+uMDqKQuSKUjT/ElTq3z8LG6O4zNrFRcuzD/3X7eWg44wGlKf76D6/qR2S5SXyd4g8Bsd23EtAVOjR5osTbsEcMkI+9x+aHcgxFgdhATPouph8pSfpGl1Ra4SLlH0MUkfyGPhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738241961; c=relaxed/simple;
-	bh=wtgX4x5vIcVQ+Bm3YO25IzhEbJuEmNMAQIG6dQUh6co=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QCpfqNqG9BfVCbsnjfNyxoY51GX+bDQV1sMbiBuHN0JF/Rve3rfAYkioIUPJbEflKuvAaDQAiBqkMbG1XynF3u3aDAXz6KqLPGVPvgEA/EaQFW8VJca9XVJQtXfHa1bppeWIl+jI7PUuco3OlxYLMLAqW+JFN6zxVyBfoZ/uTfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=MlCi2LRb; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=5E8vrIUiwgp840jedrOdXiCw8U0oFfDgQrEtzVFZfOc=; b=MlCi2LRb2mWc5JZ5udEuozKHrC
-	/uQEVXaO0BkYpAZjsY9bePbaq3SNHAO+iW+Uv/CV7mF2+mJO4IYQhH+ufOF0bDtNNYk7kM08pz6aS
-	3tl4DU5gMbw/KV/6wEUeVIo3fNnMfet8Mc1J6DyVR+STmnmUDiTKTvRqi45DtfBRjL0g=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tdU8U-009PNy-VX; Thu, 30 Jan 2025 13:59:10 +0100
-Date: Thu, 30 Jan 2025 13:59:10 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1738242075; c=relaxed/simple;
+	bh=VxRkETfKHmTAhNRv4hdfVEutIx+9IVlNgDyAqsRrGpw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VMz1bcRL/P7qfif8Ti0I7sA+j88X6MDssKtHPBZNDamRXvFcuesG45TJ3vhDd7tdyYXZzSsOTik+lqWcHC4iYw0wP5wNZ67Zo7neU6KlqZ+jdksx7Y8XA/32gePjp2h6UbZB81qjdwVQEA0CHQglwfi0VEI1We2d7v+xN4EMlMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=VyzKl7hS; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=mbcFpJJx reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1738242071; x=1769778071;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=wj58s5CoC7A+ZuNeV/ZGyINoKzUF6v+v74SipQCF2NQ=;
+  b=VyzKl7hSpaCYcHiLFtHeADZENyqpKopQClvKvO845GSzUz+Q0nssNe6q
+   m+1DPXTKetO+rjqvAv+/EyBfS3XqdOO6vb1DQ4sgBNP+OQdMt5PIy+wmQ
+   em832LOpikDdKQ+Md8hlG6BHLWhZV85q65DG4UNSSYM4Aw2im+cHK5D45
+   CiA1MsPkTFGZlNsqcNMlCL792+6RolZeOlIDyvw+KLw4v1Nxt1EDi5PxE
+   MSRAG7Xc4J0YJU/0+xQ5HXKj+NVyKflOC1s6lGFXszpuLYs/7Nk72+d+F
+   OWDl6PE+109HUdZHNdu4v9JDoreefk39MaNxUThPi8cfe45ePM9TAXrgm
+   w==;
+X-CSE-ConnectionGUID: F346eup2RHyq5Mx9HZjn4Q==
+X-CSE-MsgGUID: gyO9Yn/jRTGuTzpjVybASA==
+X-IronPort-AV: E=Sophos;i="6.13,245,1732575600"; 
+   d="scan'208";a="41374596"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 30 Jan 2025 14:01:08 +0100
+X-CheckPoint: {679B7814-32-1CE016C0-E589DA3E}
+X-MAIL-CPID: 96EE492516499171CB9FDB906F9A685E_1
+X-Control-Analysis: str=0001.0A682F1C.679B7814.00B1,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 54FB41675B4;
+	Thu, 30 Jan 2025 14:01:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1738242064;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=wj58s5CoC7A+ZuNeV/ZGyINoKzUF6v+v74SipQCF2NQ=;
+	b=mbcFpJJxFpOyy8kUEWQbTB4M3Gyw3lSYbYE2ZwwM71ysmoV3w6Ji6wTZTN2JStwPupDawb
+	8oJm98ESPJuBxIw39klfQBSnrNZW2mpTHF63+7yl6yuDP73OPy8YXaqMgEcFhPvNpUFVGy
+	ZpLcDLLIxq99QSzbia1Jq3B3cuVRRsnBx2T+i69+06Z3pVH4LX/noYMF+xa0/G8AUHqNUR
+	b5lrSwd6ZPo3I0k+9/9kBk8IwCoZ3KJ0MoMs+qzRWY7N1xZMrffxRfyBBpVMnPTelOeY/v
+	MYo3ID28tMD4RHvQ4lKzDIL3/iSBu6gkLjZxn3aHjD5PbLsK3sse3Ip7dn1+Jg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] ARM: dts: socfpga: Add basic support for Terrasic's
- de10-nano
-Message-ID: <d375f621-1502-419e-bb99-658ca2fd2b63@lunn.ch>
-References: <20250130074553.92023-2-u.kleine-koenig@baylibre.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Make i.MX8M Nano OCOTP work as accessing controller
+Date: Thu, 30 Jan 2025 14:00:57 +0100
+Message-Id: <20250130130101.1040824-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250130074553.92023-2-u.kleine-koenig@baylibre.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-> +&gmac1 {
-> +	/* Uses a KSZ9031RNX phy */
-> +	phy-mode = "rgmii-id";
-> +	rxd0-skew-ps = <420>;
-> +	rxd1-skew-ps = <420>;
-> +	rxd2-skew-ps = <420>;
-> +	rxd3-skew-ps = <420>;
-> +	txen-skew-ps = <0>;
-> +	rxdv-skew-ps = <420>;
-> +	status = "okay";
-> +};
+Hi,
 
+inspired by [1] this adds the accessing controller feature to i.MX8M Nano.
+The OCOTP eFuse has bits which can disable particular peripherals, such as
+GPU, MIPI-DSI oder USB.
 
-For this part:
+In OCOTP driver, the nodes under "/" will be iterated, and checked
+if property "#access-controllers" exsits. If not allow access, detach
+the node.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+I successfully used this on a i.MX8M Nano DualLite which has GPU disabled.
+Without this patchset the default DT completly freezes the SoC if GPU
+is accessed.
+Using this patchset the GPU is disabled without any DT modification from
+bootloader:
+> imx_ocotp 30350000.efuse: /soc@0/gpu@38000000: disabled by fuse, device driver will not be probed
 
-Thanks for making the change.
+Adding the other i.MX8M SoCs is straight forward.
 
-    Andrew
+Best regards,
+Alexander
+
+[1] https://lore.kernel.org/all/20250121-imx-ocotp-v6-0-76dab40e13db@nxp.com/
+
+Alexander Stein (4):
+  dt-bindings: nvmem: imx-ocotp: Add i.MX8M Nano access controller
+    definitions
+  nvmem: imx-ocotp: Sort header alphabetically
+  nvmem: imx-ocotp: Support accessing controller for i.MX8M Nano
+  arm64: dts: imx8mn: Add access-controller references
+
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi    |   8 ++
+ drivers/nvmem/Kconfig                        |   3 +
+ drivers/nvmem/imx-ocotp.c                    | 107 ++++++++++++++++++-
+ include/dt-bindings/nvmem/fsl,imx8mn-ocotp.h |  16 +++
+ 4 files changed, 132 insertions(+), 2 deletions(-)
+ create mode 100644 include/dt-bindings/nvmem/fsl,imx8mn-ocotp.h
+
+-- 
+2.34.1
+
 
