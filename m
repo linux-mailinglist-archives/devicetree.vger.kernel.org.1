@@ -1,67 +1,88 @@
-Return-Path: <devicetree+bounces-141841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21126A22CA4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 12:42:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B8D9A22CBA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 12:53:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BCCF1884842
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 11:42:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E4FA1887484
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 11:53:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525AB1C5F2E;
-	Thu, 30 Jan 2025 11:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21FC41E0DDC;
+	Thu, 30 Jan 2025 11:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DVeS/PJ5"
+	dkim=pass (2048-bit key) header.d=patrick-wildt-de.20230601.gappssmtp.com header.i=@patrick-wildt-de.20230601.gappssmtp.com header.b="xvCJmuGe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f100.google.com (mail-wr1-f100.google.com [209.85.221.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D77C1AB507;
-	Thu, 30 Jan 2025 11:41:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5976A194C86
+	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 11:53:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738237315; cv=none; b=Gpzytzci/wMSqd4HOHulElY1vDo8ZGXJNjRHUDmftDsSJBKeV2f2QmY5OdD7eha7QYQcF8jsBCnFoUj+BrCFlTbVu5yHmJEmZz2FS5EuXa55mmSQ0UTuk83s+JxvJbra3724XBMF7jmv6II1XoS57jKDJ8zKAyNk7kYld255T48=
+	t=1738238016; cv=none; b=JPYEpqMWcAiLyRqb2o31RG5odIXHcE5zo2kHzegkcU7p3Ew+k1NUOAi1cDIAAotBziRK2wY0LXDmrwm1hXBJkiTqU9/8AWdU4MIJDt4tSN8KhjZdDosUAlCSQUHMPIkBv4ei5rP/SLBIeZppDewSp7iIk84fvkcrI/AC93oA8jM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738237315; c=relaxed/simple;
-	bh=zGGDx72jO5SaCwxhGo8Hf3CSZMZACAKlKE/UujYgRPU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lwhP4ScffAz0sJ/AHehAASKZwKuoh4dHBE6lHx2FISAqzX3iq6Z+2pJ3XQ4geBIvwH9TjHjlV7vOtPG2+adPJgrf+mhCcfvGuASqrwmb5RP8s/kEny/Hl+9vfUM3D1f6O7wisaJ+UezaDuPR600J+EGeIVX/fmQ5AIcZpZZkzuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DVeS/PJ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA076C4CED2;
-	Thu, 30 Jan 2025 11:41:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738237314;
-	bh=zGGDx72jO5SaCwxhGo8Hf3CSZMZACAKlKE/UujYgRPU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DVeS/PJ55W7IvF7P3tKbosmE6FOorkc/HwVcjgBKE4RcehzsLYuFEEyhFjAjOfEk+
-	 oUKNhRM7zYp5izAXKmJUjv75tJFPy1TY9pDc1Vys0MhJpf/j3lMvEytBz5+/fpjqiB
-	 kMPTGT/slnYOqvCvAciwcdpFNK/phdbPXTQYX61PrAQBqREcwO96j67r0P56dB9HcH
-	 qWdGIY9lpZDpPY+ZRhIu1N2GaeGEKA2G89E4dQUovpHs+54lzsLNL5m1sXqLm8Eg88
-	 1BxQngOUNnhBo+iAXFBUnJ8DC6hmPbUcWLLTiPsUnKYl/NoPF2hFnOB8TmSLQOzxdW
-	 ONG2Y1kM3Thgw==
-Date: Thu, 30 Jan 2025 11:41:45 +0000
-From: Simon Horman <horms@kernel.org>
-To: Basharath Hussain Khaja <basharath@couthit.com>
-Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
-	tony@atomide.com, richardcochran@gmail.com, parvathi@couthit.com,
-	schnelle@linux.ibm.com, rdunlap@infradead.org,
-	diogo.ivo@siemens.com, m-karicheri2@ti.com,
-	jacob.e.keller@intel.com, m-malladi@ti.com,
-	javier.carrasco.cruz@gmail.com, afd@ti.com, s-anna@ti.com,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org, pratheesh@ti.com, prajith@ti.com,
-	vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com,
-	krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
-Subject: Re: [RFC v2 PATCH 02/10] net: ti: prueth: Adds ICSSM Ethernet driver
-Message-ID: <20250130114145.GM113107@kernel.org>
-References: <20250124122353.1457174-1-basharath@couthit.com>
- <20250124122353.1457174-3-basharath@couthit.com>
+	s=arc-20240116; t=1738238016; c=relaxed/simple;
+	bh=UnNRPy5TCFRYdUcRSrlfO/PR7mrCQCxVQjKppDvuQik=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=Yds6L4bjw31BNk7d+UTOU9mSU6QC4L/JKEymOLNO3QqE2TYl7JixnLfudsxTxQ3H25T2hfL8lhj7FduCcv628hy3fzhb/XfymCgoWGMsmU+TtQvpERpwIQ+i2cjP/UZZwhB+3ZnoF38jF/ZdyMEVODuseRDkFLrBDkdDpo/2hSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blueri.se; spf=pass smtp.mailfrom=blueri.se; dkim=pass (2048-bit key) header.d=patrick-wildt-de.20230601.gappssmtp.com header.i=@patrick-wildt-de.20230601.gappssmtp.com header.b=xvCJmuGe; arc=none smtp.client-ip=209.85.221.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blueri.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blueri.se
+Received: by mail-wr1-f100.google.com with SMTP id ffacd0b85a97d-3862a921123so533992f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 03:53:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=patrick-wildt-de.20230601.gappssmtp.com; s=20230601; t=1738238012; x=1738842812; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CuBCputXLU2pypUU/cEHWnT9TxtQ+bGj8yBwSpNY/DY=;
+        b=xvCJmuGe3DYABHlEcnEE0e2ddk6fcdQC9CPiL3/QCzEwSlvTLNJtjXtWW4CpZ+MnYm
+         lFmX8QwjdjBBbrZJFviT4DaKKLsA4UfrAlG8jmM81sXajMEzao3qknIoCwH53wjgJz/P
+         u6b61DMfj+Xtb6QSLDgjnI8/Lkuc2hg2u0u4Ww+qHmpSfaNPas+0WXhyTNuGMtTqrhbU
+         /2uopBr78kGe0/0FYuGUe6nzgfBy7G12y0wXe015b89IgMfyPwfvWN8tLVOhuCvpMW4D
+         glyeASEc/krBPFPyL8OS4kpzOpqTUElLFuNe1n6AQvqzRyTx59BDxIeIYvrkAGfYudzg
+         QHgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738238012; x=1738842812;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CuBCputXLU2pypUU/cEHWnT9TxtQ+bGj8yBwSpNY/DY=;
+        b=J1zYw5rQV8nqysUQO4CMZh9RAMD7LxwF6AAMysHIQxAdyVhGdsH5EtpERHbx3icgrk
+         9ihbFDUZ2HsX/3945GTcjKs2GXDqcXgZMefIkHb/3wzxeMzK/jUL2syD1g2n6MT8ADuO
+         fEqoCztZ/4O/zdRt2Tef45HXMnDmWhHOO5qTEjjUQF+DCwEoaDIl9bCh22Gw9lRvh+h4
+         586ZeRHtsgpOOsDOecd0hIPC2UDKfoDXISgMOm/pgj9f6wp5C2HzzMFkS3bj0za77fS7
+         b73eTpsC54jQrFdNWxTav6Rl8Qhge6wkADpBJQPcnBWQ+wsjDilauxLUZ2XsygjmPCHN
+         TLsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV2Tkf+VUBuf3LQ3xQ3A3UPN0Ywbq0p5CGfRBQJ6HE5eU3jdNde3Ibfq5fBP1DMQ5idxuwBxvkJCBdT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyl+Zzn577O1IF1zdsoal9MBibzV7e+P6SvWwFbZV2aNFjhpOAF
+	Anj6fn8zxfL9+H8keaChK/aXNPgIFpwk5JmfEm5YukipR5wc7nzDiRA5lbPSd80DldVwN95vNxR
+	XogD2bvimG/cbf9WdWD2PhUKl4dJz6kRo
+X-Gm-Gg: ASbGnctd9RaRlB/az2k20Vw8gwozJ8c3UAuENN20o1istlYYz2D/BeQozqwFXTulaNw
+	oOeCjRH8pzMl0N6vRrH7P5aSnokpFe+lKesuQYKflGgxOyZCK1SqygU7pafJxXTzz460ZN/GRf+
+	LiwyioghFbhcLHU75RiKei9MrUOH39XXdMAly3yZswV9Ne0BiKeyjLPvgoSZsZ9x9hTdjfZbPcP
+	9U8/skuaX5EjN5p+iPQ/21w7L6nPeNHNwMmzakRBm/wHgMBmYn4YYpYfW3W9cRzEBNT5zjbKWWm
+	rvTwD5c2BlGRbPKQ6ow+rZtvGng/JyGP
+X-Google-Smtp-Source: AGHT+IH9MZSA5hC3H8pO6YOmlz/fBwHCszfrX4ssHJaZQj2Tf715OBtQ0JS+NzH/6ILqJwBnKjfqVvKQfLQT
+X-Received: by 2002:a05:6000:2c8:b0:38a:88f8:aac8 with SMTP id ffacd0b85a97d-38c52096289mr5391502f8f.54.1738238012345;
+        Thu, 30 Jan 2025 03:53:32 -0800 (PST)
+Received: from windev.fritz.box (pc19f8e2d.dip0.t-ipconnect.de. [193.159.142.45])
+        by smtp-relay.gmail.com with ESMTPS id 5b1f17b1804b1-438dcc12df0sm3750845e9.11.2025.01.30.03.53.31
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Thu, 30 Jan 2025 03:53:32 -0800 (PST)
+X-Relaying-Domain: blueri.se
+Date: Thu, 30 Jan 2025 12:53:29 +0100
+From: Patrick Wildt <patrick@blueri.se>
+To: linux-rockchip@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Subject: [PATCH 1/2] dt-bindings: arm: rockchip: Add MNT Reform 2 (RCORE)
+Message-ID: <Z5toOecuMiBXM6aF@windev.fritz.box>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,188 +91,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250124122353.1457174-3-basharath@couthit.com>
 
-On Fri, Jan 24, 2025 at 05:53:45PM +0530, Basharath Hussain Khaja wrote:
-> From: Roger Quadros <rogerq@ti.com>
-> 
-> Updates Kernel configuration to enable PRUETH driver and its dependencies
-> along with makefile changes to add the new PRUETH driver.
-> 
-> Changes includes init and deinit of ICSSM PRU Ethernet driver including
-> net dev registration and firmware loading for DUAL-MAC mode running on
-> PRU-ICSS2 instance.
-> 
-> Changes also includes link handling, PRU booting, default firmware loading
-> and PRU stopping using existing remoteproc driver APIs.
-> 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> Signed-off-by: Andrew F. Davis <afd@ti.com>
-> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
-> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+Document board compatible bindings.
 
-...
+Signed-off-by: Patrick Wildt <patrick@blueri.se>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.c b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 522a6f0450ea..bc995db8cbfe 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -710,6 +710,11 @@ properties:
+           - const: mqmaker,miqi
+           - const: rockchip,rk3288
+ 
++      - description: MNT Reform2 (RCORE)
++        items:
++          - const: mntre,reform2-rcore
++          - const: rockchip,rk3588
++
+       - description: Neardi LBA3368
+         items:
+           - const: neardi,lba3368
+-- 
+2.48.1
 
-...
-
-> +static int icssm_emac_set_boot_pru(struct prueth_emac *emac,
-> +				   struct net_device *ndev)
-> +{
-> +	const struct prueth_firmware *pru_firmwares;
-> +	struct prueth *prueth = emac->prueth;
-> +	const char *fw_name;
-> +	int ret;
-> +
-> +	pru_firmwares = &prueth->fw_data->fw_pru[emac->port_id - 1];
-> +	fw_name = pru_firmwares->fw_name[prueth->eth_type];
-> +	if (!fw_name) {
-> +		netdev_err(ndev, "eth_type %d not supported\n",
-> +			   prueth->eth_type);
-> +		return -ENODEV;
-> +	}
-> +
-> +	ret = rproc_set_firmware(emac->pru, fw_name);
-> +	if (ret) {
-> +		netdev_err(ndev, "failed to set PRU0 firmware %s: %d\n",
-> +			   fw_name, ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = rproc_boot(emac->pru);
-> +	if (ret) {
-> +		netdev_err(ndev, "failed to boot PRU0: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +/**
-> + * icssm_emac_ndo_open - EMAC device open
-> + * @ndev: network adapter device
-> + *
-> + * Called when system wants to start the interface.
-> + *
-> + * Return: 0 for a successful open, or appropriate error code
-> + */
-> +static int icssm_emac_ndo_open(struct net_device *ndev)
-> +{
-> +	struct prueth_emac *emac = netdev_priv(ndev);
-> +	int ret;
-> +
-> +	ret = icssm_emac_set_boot_pru(emac, ndev);
-> +	if (ret)
-> +		netdev_err(ndev, "failed to boot PRU: %d\n", ret);
-
-Hi Roger, Basharath, all,
-
-icssm_emac_set_boot_pru() already logs errors, including the one above.
-So this log seems unnecessary to me.
-
-Also, should an error be returned here?  If so, it looks like
-icssm_emac_set_boot_pru() should release resources allocated by
-rproc_set_firmware() if rproc_boot() fails.
-
-> +
-> +	/* start PHY */
-> +	phy_start(emac->phydev);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int icssm_prueth_netdev_init(struct prueth *prueth,
-> +				    struct device_node *eth_node)
-> +{
-> +	struct prueth_emac *emac;
-> +	struct net_device *ndev;
-> +	enum prueth_port port;
-> +	enum prueth_mac mac;
-> +	int ret;
-> +
-> +	port = icssm_prueth_node_port(eth_node);
-> +	if (port == PRUETH_PORT_INVALID)
-> +		return -EINVAL;
-> +
-> +	mac = icssm_prueth_node_mac(eth_node);
-> +	if (mac == PRUETH_MAC_INVALID)
-> +		return -EINVAL;
-> +
-> +	ndev = devm_alloc_etherdev(prueth->dev, sizeof(*emac));
-> +	if (!ndev)
-> +		return -ENOMEM;
-> +
-> +	SET_NETDEV_DEV(ndev, prueth->dev);
-> +	emac = netdev_priv(ndev);
-> +	prueth->emac[mac] = emac;
-> +	emac->prueth = prueth;
-> +	emac->ndev = ndev;
-> +	emac->port_id = port;
-> +
-> +	/* by default eth_type is EMAC */
-> +	switch (port) {
-> +	case PRUETH_PORT_MII0:
-> +		emac->pru = prueth->pru0;
-> +		break;
-> +	case PRUETH_PORT_MII1:
-> +		emac->pru = prueth->pru1;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +	/* get mac address from DT and set private and netdev addr */
-> +	ret = of_get_ethdev_address(eth_node, ndev);
-> +	if (!is_valid_ether_addr(ndev->dev_addr)) {
-> +		eth_hw_addr_random(ndev);
-> +		dev_warn(prueth->dev, "port %d: using random MAC addr: %pM\n",
-> +			 port, ndev->dev_addr);
-> +	}
-> +	ether_addr_copy(emac->mac_addr, ndev->dev_addr);
-> +
-> +	/* connect PHY */
-> +	emac->phydev = of_phy_get_and_connect(ndev, eth_node,
-> +					      icssm_emac_adjust_link);
-> +	if (!emac->phydev) {
-> +		dev_dbg(prueth->dev, "PHY connection failed\n");
-> +		ret = -EPROBE_DEFER;
-
-Perhaps I misunderstand things, but if this occurs then
-presumably icssm_prueth_netdev_init() will be called again.
-And for each time this occirs another ndev will be allocated
-by devm_alloc_etherdev(), each of which will only be freed
-once the device is eventually torn-down.
-
-I wonder if it would be better to free ndev here.
-Which I think would imply using a non-mdev allocation for symmetry.
-
-Similarly for resources allocated in the caller icssm_prueth_probe().
-
-> +		goto free;
-> +	}
-> +
-> +	/* remove unsupported modes */
-> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_10baseT_Full_BIT);
-> +
-> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
-> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_100baseT_Half_BIT);
-> +
-> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_Pause_BIT);
-> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_Asym_Pause_BIT);
-> +
-> +	ndev->netdev_ops = &emac_netdev_ops;
-> +
-> +	return 0;
-> +free:
-
-nit: This doesn't free anything.
-
-> +	prueth->emac[mac] = NULL;
-> +
-> +	return ret;
-> +}
-
-...
 
