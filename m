@@ -1,174 +1,150 @@
-Return-Path: <devicetree+bounces-141848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 200D3A22CDD
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 13:16:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7153A22CE8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 13:26:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DC03167F1B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 12:16:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2D8A3A6429
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 12:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866DC1B425D;
-	Thu, 30 Jan 2025 12:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C1B1DD0C7;
+	Thu, 30 Jan 2025 12:26:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="Xy6QLsBv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W/1iZ3U4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C34EB660;
-	Thu, 30 Jan 2025 12:16:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738239373; cv=pass; b=rcp9sz6JjV0VMX1yd4AXkkQEPYTN1wdb2EE8E6Id/KamyUEvwkUFs+Nntdt1yUJ62lM4Ni7FpoRprUh+RuVtrf4PwQPVXYbVqF4bwrTO+F2Vp3fmhuXDViIlHOJCXu9BI1AZmdA1GJBngSjWxq52utUyt6O1/W1eusI2NTp7DlE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738239373; c=relaxed/simple;
-	bh=NhjWn71blrawadwTQcygIseL1rRYAGUDgnjHvN3IQ9A=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=NOCgTHyAYrhuU5Ok9UxRMpkvX/uWSxEK9RDUZU/H0LR2vBVZlkrLubmfa92pEUCawUIqsQ08mnOa42WHrpeRUumnQicstBJl87yBs40IyIR7I1oD6lOgXNunXxLVxPd7oncqK/f/fPY7PXCeXe1aL+30L5nKdKGNmFrxpLndHpU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=Xy6QLsBv; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1738239343; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=kUKLD131ujnf9MGxdR4qc0pAWhSJI16fuG3rsd7YkP9WoGJOl3ngEVtMmhHhRaDgMOl+qDKC1FktFleXTsoNQnexiVnZI6rgnMTjpTiR41qM8906YQSNDpOVIaiR0/h7YMSqzyr/srfN9nZSBj/IUYjYEnNrT6SEOX5cK6cfhc0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1738239343; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=vtqvkjW++P13EILfu6kPduF5HHVIDhPG3bCc05q2yIw=; 
-	b=RN52rTs/CG5wK9wqAIr1XIzrinACSwAq/TPtbhYbeFWdW02NSPaSKMJ22qRzI7AYNGXdVMaVHxrgx9J0OZ4JVwpM+a0RUgmi1hvWVD/uUZDLBds05yon9a/2VmgBiD3zSWquGaP6ZY4SEn9rqgDkwWKYkdXWMt2mNakHmzJ7WxU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
-	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1738239343;
-	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=vtqvkjW++P13EILfu6kPduF5HHVIDhPG3bCc05q2yIw=;
-	b=Xy6QLsBv399RQrHj3yLnO4xSaVy1gQtccoGnHwsh1kT7Z3gRzhZp81Oul7fJFv2F
-	oLiyxt2zC0WDndQG+BnhKMXGik3kSVOB/qb3v0vAF6Ye/Q/ImQkn7g8MWPVPN+jSNcy
-	UGtwIHj4VbItttr+CjWKeQPcD3f6ArGfn5ryfpd8=
-Received: from mail.zoho.com by mx.zohomail.com
-	with SMTP id 1738239340867764.380040312308; Thu, 30 Jan 2025 04:15:40 -0800 (PST)
-Date: Thu, 30 Jan 2025 13:15:40 +0100
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-Cc: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
-	"Maxime Ripard" <mripard@kernel.org>,
-	"Thomas Zimmermann" <tzimmermann@suse.de>,
-	"David Airlie" <airlied@gmail.com>,
-	"Simona Vetter" <simona@ffwll.ch>, "Rob Herring" <robh@kernel.org>,
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	"Matthias Brugger" <matthias.bgg@gmail.com>,
-	"AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
-	"Boris Brezillon" <boris.brezillon@collabora.com>,
-	"Steven Price" <steven.price@arm.com>,
-	"kernel" <kernel@collabora.com>,
-	"dri-devel" <dri-devel@lists.freedesktop.org>,
-	"devicetree" <devicetree@vger.kernel.org>,
-	"linux-kernel" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel" <linux-arm-kernel@lists.infradead.org>,
-	"linux-mediatek" <linux-mediatek@lists.infradead.org>
-Message-ID: <194b7237128.10f9923a41656565.5574753983898665940@collabora.com>
-In-Reply-To: <20250118-meticulous-black-caracal-ec7f0d@krzk-bin>
-References: <20250116-mt8370-enable-gpu-v1-0-0a6b78e925c8@collabora.com>
- <20250116-mt8370-enable-gpu-v1-2-0a6b78e925c8@collabora.com> <20250118-meticulous-black-caracal-ec7f0d@krzk-bin>
-Subject: Re: [PATCH 2/3] drm/panfrost: Add support for Mali on the MT8370
- SoC
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5FB1B425D;
+	Thu, 30 Jan 2025 12:26:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738240000; cv=none; b=T3tEPa5ompd8tUJ2TkhLZ5c0sV6DT27B/3FF4l/0yOEmsnElCEXiVIAawetOG82QgYjrtjSB/DfTTQ+von4zr02ppK3uAqzy2LFQkAzHQawynDadjUQ3vPeORH7Cbl3v9iRC/rrkiGGgoml7Zo/I80Xbys7IrB4j/jihM1G0H2s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738240000; c=relaxed/simple;
+	bh=HHmjXkaKxsC+1UnEXF18DKMoqxPUcAEuG5lP/kgW/IY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RE6Tb9wbzFW2j5cV4Lb9D5mU47+1h0e4otWjBeMVUG3I4CoI9uDCzSJMU+khNRZWKzScHlIBR90D7JMyHv03IMr7czQgcVHEMmTYNQ5CPQ0Bq7+mlm/BFLlQW7oO2KYlbgpiEMlJcY2jqkje2XeJEix5lniPvf48XWh418rpSOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W/1iZ3U4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48274C4CED2;
+	Thu, 30 Jan 2025 12:26:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738240000;
+	bh=HHmjXkaKxsC+1UnEXF18DKMoqxPUcAEuG5lP/kgW/IY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=W/1iZ3U4cvPSzdOJBxJmD4V4Pr3COXPPlnlnjek7O6QtEYVLAeis0abM8WPIMTzVm
+	 Jt8F5Gz1ClOrbMBYdJMxA5ePzRIzZk4S1yqd0K1IAK7hjonr5W2hLNuRL/v5rlNMHk
+	 K6ckFWc5D2yhw0yk8ubb0rONrSRVKk5p8pPIG3Vf7GG8upCqUAPeUUUYen3XIKjfkY
+	 r9/v0WwAtJdcVrf6qpJYskv4+cmlCTk6odrfaAEpARGKQEDrvNuqj9dVk8QkUhpOZx
+	 U8T+L3HHvIuSKUWg46GYYNCYp6BAJehhkgK9davHmFGeV66C24mzCcTA3l88puJ+zO
+	 OOnxrVsoMT9kg==
+Message-ID: <7323e5ae-21b7-43cc-aed2-e23cd528842e@kernel.org>
+Date: Thu, 30 Jan 2025 13:26:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Importance: Medium
-User-Agent: Zoho Mail
-X-Mailer: Zoho Mail
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/9] dt-bindings: spi: Add STM32 OSPI controller
+To: Patrice CHOTARD <patrice.chotard@foss.st.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Arnd Bergmann <arnd@arndb.de>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ christophe.kerello@foss.st.com
+References: <20250128081731.2284457-1-patrice.chotard@foss.st.com>
+ <20250128081731.2284457-2-patrice.chotard@foss.st.com>
+ <20250128-panama-manly-a753d91c297c@spud>
+ <e3d01bce-a7d4-4690-8a2f-3bbb1ee5ccb7@foss.st.com>
+ <20250129-feminize-spotlight-2cee53f8b463@spud>
+ <5892e452-96e7-4945-a2dd-2e713d85d751@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <5892e452-96e7-4945-a2dd-2e713d85d751@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello,
+On 30/01/2025 11:28, Patrice CHOTARD wrote:
+> For example:
+> 
+>  access-controllers:
+>     description: phandle to the rifsc device to check access right
+>       and in some cases, an additional phandle to the rcc device for
+>       secure clock control.
+>     items:
+>       - description: phandle to bus controller
+>       - description: phandle to clock controller
+>     minItems: 1
+>     maxItems: 2
+> 
+> 
+> make dt_binding_check DT_SCHEMA_FILES=st,stm32mp25-ospi.yaml
+> 
+> Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.yaml: properties:access-controllers: {'description': 'phandle to the rifsc device to check access right and in some cases, an additional phandle to the rcc device for secure clock control.', 'items': [{'description': 'phandle to bus controller'}, {'description': 'phandle to clock controller'}], 'minItems': 1, 'maxItems': 2} should not be valid under {'required': ['maxItems']}
+> 	hint: "maxItems" is not needed with an "items" list
+> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+>   DTC [C] Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.example.dtb
+> 
+> How can i indicate that at least one items is mandatory, the second one is optional and in the same
+> time describing the both items as required without getting the above error ? 
 
-sorry for the delay,
+maxItems is redundant.
 
- ---- On Sat, 18 Jan 2025 17:08:10 +0100  Krzysztof Kozlowski  wrote ---=20
- > On Thu, Jan 16, 2025 at 03:25:58PM +0100, Louis-Alexis Eyraud wrote:
- > > This commit adds a compatible for the MediaTek MT8370 SoC, with an
- > > integrated ARM Mali G57 MC2 GPU (Valhall-JM, dual core), and adds
- > > platform data using the same supplies and the same power domain lists
- > > as MT8186 (one regulator, two power domains).
- > >=20
- > > Signed-off-by: Louis-Alexis Eyraud louisalexis.eyraud@collabora.com>
- > > ---
- > >  drivers/gpu/drm/panfrost/panfrost_drv.c | 10 ++++++++++
- > >  1 file changed, 10 insertions(+)
- > >=20
- > > diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm=
-/panfrost/panfrost_drv.c
- > > index 0f3935556ac761adcd80197d87e8e478df436fd5..1d51b64ed0f0660cc95263=
-a289d5dad204540cfd 100644
- > > --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
- > > +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
- > > @@ -837,6 +837,15 @@ static const struct panfrost_compatible mediatek_=
-mt8192_data =3D {
- > >  =C2=A0=C2=A0=C2=A0=C2=A0.pm_features =3D BIT(GPU_PM_CLK_DIS) | BIT(GP=
-U_PM_VREG_OFF),
- > >  };
- > > =20
- > > +/* MT8370 uses the same power domains and power supplies as MT8186 */
- > > +static const struct panfrost_compatible mediatek_mt8370_data =3D {
- > > +=C2=A0=C2=A0=C2=A0=C2=A0.num_supplies =3D ARRAY_SIZE(mediatek_mt8183_=
-b_supplies) - 1,
- > > +=C2=A0=C2=A0=C2=A0=C2=A0.supply_names =3D mediatek_mt8183_b_supplies,
- > > +=C2=A0=C2=A0=C2=A0=C2=A0.num_pm_domains =3D ARRAY_SIZE(mediatek_mt818=
-6_pm_domains),
- > > +=C2=A0=C2=A0=C2=A0=C2=A0.pm_domain_names =3D mediatek_mt8186_pm_domai=
-ns,
- > > +=C2=A0=C2=A0=C2=A0=C2=A0.pm_features =3D BIT(GPU_PM_CLK_DIS) | BIT(GP=
-U_PM_VREG_OFF),
- > > +};
- >=20
- > No, people, stop this nonsense. This is exactly the same as previous.
- > Don't duplicate entries just because you want a commit.
- >=20
-I added this new compatible in bindings and panfrost driver because there w=
-ere no other matching compatible=20
-Using another mali-vallhal-jm compatible would make the driver probe fail b=
-ecause of power domains number difference.=20
-Using mt8186-mali compatible would work without modifications but as it is =
-not the same architecture (mali-bifrost), it would be incorrect.
-
-I've also misguessed on the dt_match array modifications, sorry.
-I'll amend this patch in order to reuse the mt8186 platform data instead.
-
- > > +
- > >  static const struct of_device_id dt_match[] =3D {
- > >  =C2=A0=C2=A0=C2=A0=C2=A0/* Set first to probe before the generic comp=
-atibles */
- > >  =C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "amlogic,meson-gxm-mali",
- > > @@ -859,6 +868,7 @@ static const struct of_device_id dt_match[] =3D {
- > >  =C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "mediatek,mt8186-mali", .da=
-ta =3D &mediatek_mt8186_data },
- > >  =C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "mediatek,mt8188-mali", .da=
-ta =3D &mediatek_mt8188_data },
- > >  =C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "mediatek,mt8192-mali", .da=
-ta =3D &mediatek_mt8192_data },
- > > +=C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "mediatek,mt8370-mali", .da=
-ta =3D &mediatek_mt8370_data },
- >=20
- > No, express properly compatibility or say in bindings commit msg why
- > devices are not compatible.
- >=20
-I'll reword in V2 the commit messages to make the compatible need more expl=
-icit.
-
- > Best regards,
- > Krzysztof
- >=20
- >=20
-
-Regards,
-Louis-Alexis Eyraud
+Best regards,
+Krzysztof
 
