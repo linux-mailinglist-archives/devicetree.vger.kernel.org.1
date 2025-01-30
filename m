@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA549A229C1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:40:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9970A229CD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:46:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FB5E166949
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:40:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F298166A08
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F171B0F39;
-	Thu, 30 Jan 2025 08:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D5B1AB530;
+	Thu, 30 Jan 2025 08:46:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jx/AKb2j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RVg6h0pf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7691B0422;
-	Thu, 30 Jan 2025 08:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CF301922D8
+	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 08:46:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738226450; cv=none; b=pzAA5G3wou/O1PMbX4tVPHA2Ni10r7j5FC8gwHnTdiay9DdOdJQpoNewVhFnAGRgqIMBiFTXtieefVIPZIrCybYuF2Cg8RszGoFVUkpTWb1Hwt4i6anNSziN5Ua+UZVJDGc03ZE8d8Nn3g2Gh3E5F0adPSMalCfdgLW/XrVp5AE=
+	t=1738226805; cv=none; b=D3oqeG2omwf1a7oHr4gCdS0JiJ6+/omkKIN5Mha7JHy6NkhN0XeXizw3OuCGC0H6FghweHioq70gaIPN96HkvR8AsMfVTSmMbMwKRnoNzU+Va/z6Tr89OBoKb2sYNOh/uKymyTcFwUTlv+JItRKCF3CFpTxp4Xu4cOIj0Vu8dzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738226450; c=relaxed/simple;
-	bh=YvbJnh/HicZ8svAByNknxks8ZnMOCqU0Cb9AnJtFmUU=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=N4poMD1cRAN7xwUVYxNd7cJbq6eI83jNwdVDyaN9RSBYtGIb0+4j+MbVF3jQE4BmHv4/JWt299HWoytiGyG2bZVBS/xiGmNXwZlkBPAC6t+qH9YcpSNmNsvzzbN7VEgMyMnn33b1uCKEKwI+nlhNIXreEs+9ojknCr1B4Hw0bDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jx/AKb2j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5AE8C4CED2;
-	Thu, 30 Jan 2025 08:40:46 +0000 (UTC)
+	s=arc-20240116; t=1738226805; c=relaxed/simple;
+	bh=NRg/4JVVG1mi/HTsZXn7qNMLf2qvPz1xgm7mr6EGP4g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cA6t7jeYdQw4dgxcmybciSwIevQG66NDk+X1F7CAXdhnKSw4rYuwV3xw6JgC0KZroNaC2S69DZs1DsPq9iu22oVKohKQGMSN8/hAsdTmTr7ZLfADrNxfzwxDl9c0KQI9RVEe1fZcCa7lMq7nO7gKb3Q37SXmxevRd9tneUB9kCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RVg6h0pf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 456F3C4CED2;
+	Thu, 30 Jan 2025 08:46:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738226450;
-	bh=YvbJnh/HicZ8svAByNknxks8ZnMOCqU0Cb9AnJtFmUU=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=jx/AKb2jKdDU3K9xze5RT0UAbgJDDbNv8p3XMvh9QIsjmkI5NaEyDbfZWD2z0GRM8
-	 ETXfmzPU2JhSkdT9h2iTm2GFVzqHGeoXq1E96kx5e2IZ4rFVmvp/wR4EbA1Iw0psmu
-	 Il1Sen1fbIQkVGMgq3vhEY+3spvSQjEqE46qV6jUo91U/X8Bo1y9Mcyj3/ZD8PGaGP
-	 HKzxVpVkLoz/9BQbc4LA5GNCE9OcZrU2ma1IimecHw6//blPiM78VEUo1HIokcqd3L
-	 SPDD1Zl+9HmD4Sxzg1q5KA+jeu++w6m7TjCC+d3bfe3t69S4pF+MmlVez7e9SQW5uR
-	 dQV8SOxlTNwNA==
-Message-ID: <104e6b6f-3c1e-4a00-8822-aa6fb4562411@kernel.org>
-Date: Thu, 30 Jan 2025 09:40:44 +0100
+	s=k20201202; t=1738226805;
+	bh=NRg/4JVVG1mi/HTsZXn7qNMLf2qvPz1xgm7mr6EGP4g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RVg6h0pfEuxp/EIBFwms6AIvocEq5pwvqko41EtxpAt1Oyha5G+aRG86GooAiLwva
+	 Gqm2DMWEChpr/ZLeymmjcdlqx3TF+fWVGXd82tGeRWvRkozldzP9n38v7mjp+6SinQ
+	 hOzshnhu0P04ILrZ0a4VEE9/fWH7rB2Nx5IqVxPlSmfUG3oimcNNx3bh+MLgj4MeHK
+	 hwHGiTn08N4tJzTcOFov89e5kQodgk8/IKlqos9TVxd1VwRXDbWuNO7qa46Tv0NogX
+	 +Rb5Ow0enXMlUl9tGGsfBDR8Cm1vsXY3ra83cT/W99FLUeqlB9nH6ukSza3NKNk8re
+	 WFESiL61SAuvw==
+Message-ID: <63b7f4f9-71c3-4847-9693-047d82da957b@kernel.org>
+Date: Thu, 30 Jan 2025 09:46:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/13] dt-bindings: net: wireless: describe the ath12k
- AHB module
+Subject: Re: [PATCH v2] ARM: dts: socfpga: Add basic support for Terrasic's
+ de10-nano
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Dinh Nguyen <dinguyen@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>
+References: <20250130074553.92023-2-u.kleine-koenig@baylibre.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Kalle Valo <kvalo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250130043508.1885026-1-quic_rajkbhag@quicinc.com>
- <20250130043508.1885026-2-quic_rajkbhag@quicinc.com>
- <20250130-cunning-quail-of-opportunity-76d0ad@krzk-bin>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -106,34 +103,94 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250130-cunning-quail-of-opportunity-76d0ad@krzk-bin>
+In-Reply-To: <20250130074553.92023-2-u.kleine-koenig@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 30/01/2025 09:28, Krzysztof Kozlowski wrote:
-> On Thu, Jan 30, 2025 at 10:04:56AM +0530, Raj Kumar Bhagat wrote:
->> Add device-tree bindings for the ATH12K module found in the IPQ5332
->> device.
->>
->> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
->> ---
->>  .../net/wireless/qcom,ath12k-ahb.yaml         | 319 ++++++++++++++++++
->>  1 file changed, 319 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
->> new file mode 100644
->> index 000000000000..bd953a028dc3
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+On 30/01/2025 08:45, Uwe Kleine-König wrote:
+> This dts is enough to make the board boot to Linux with the rootfs on
+> a micro SD card.
 > 
-> Filename should match compatible. This binding does not look like
-> supporting more devices, so there is no much benefit calling it by generic name.
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+> ---
+> Hello,
+> 
+> changes since (implicit) v1 available at
+> https://lore.kernel.org/linux-arm-kernel/20250128172917.4565-2-u.kleine-koenig@baylibre.com/:
+> 
+>  - Use rgmii-id for ethernet/mdio. (Andrew Lunn)
+>  - Add a compatible entry for the machine (only had the SoC before),
+>    fix compatible for accelerometer and various other small
+>    improvements, most of them pointed out by the dt checker.
+>    (Krzysztof Kozlowski)
+> 
+> There are still warnings when the dtb is built, but they all originate
+> from the SoC dtsi.
+> 
+> Something I forgot to say in v1: The accelerometer fails to probe
+> (readout of the device ID yields an error). This also doesn't work for
+> me with the downstream kernel and dtb. I didn't debug that. Is that a
+> reason to drop it?
+> 
+> Best regards
+> Uwe
+> 
+>  arch/arm/boot/dts/intel/socfpga/Makefile      |  1 +
+>  .../socfpga/socfpga_cyclone5_de10nano.dts     | 95 +++++++++++++++++++
+>  2 files changed, 96 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
+> 
+> diff --git a/arch/arm/boot/dts/intel/socfpga/Makefile b/arch/arm/boot/dts/intel/socfpga/Makefile
+> index c467828aeb4b..7f69a0355ea5 100644
+> --- a/arch/arm/boot/dts/intel/socfpga/Makefile
+> +++ b/arch/arm/boot/dts/intel/socfpga/Makefile
+> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
+>  	socfpga_cyclone5_mcvevk.dtb \
+>  	socfpga_cyclone5_socdk.dtb \
+>  	socfpga_cyclone5_de0_nano_soc.dtb \
+> +	socfpga_cyclone5_de10nano.dtb \
+>  	socfpga_cyclone5_sockit.dtb \
+>  	socfpga_cyclone5_socrates.dtb \
+>  	socfpga_cyclone5_sodia.dtb \
+> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
+> new file mode 100644
+> index 000000000000..ec25106caacf
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
+> @@ -0,0 +1,95 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2017, Intel Corporation
+> + *
+> + * based on socfpga_cyclone5_de0_nano_soc.dts
+> + */
+> +/dts-v1/;
+> +
+> +#include "socfpga_cyclone5.dtsi"
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	model = "Terasic DE10-Nano";
+> +	compatible = "terasic,de10-nano", "altr,socfpga-cyclone5", "altr,socfpga";
+
+I already commented on this, you will not get different review.
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
 
 
-I saw now your other patchset, so you have here two devices, but I still
-do not understand why this cannot follow standard naming practice like
-most bindings supporting one or more devices. Like every review we give.
+Please run scripts/checkpatch.pl and fix reported warnings. After that,
+run also `scripts/checkpatch.pl --strict` and (probably) fix more
+warnings. Some warnings can be ignored, especially from --strict run,
+but the code here looks like it needs a fix. Feel free to get in touch
+if the warning is not clear.
 
 Best regards,
 Krzysztof
