@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9970A229CD
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:46:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3E4A229D0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:48:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F298166A08
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:46:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 048271887BD1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D5B1AB530;
-	Thu, 30 Jan 2025 08:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E48C1B043E;
+	Thu, 30 Jan 2025 08:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RVg6h0pf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8nqdkgk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CF301922D8
-	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 08:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B5EF1A8F71;
+	Thu, 30 Jan 2025 08:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738226805; cv=none; b=D3oqeG2omwf1a7oHr4gCdS0JiJ6+/omkKIN5Mha7JHy6NkhN0XeXizw3OuCGC0H6FghweHioq70gaIPN96HkvR8AsMfVTSmMbMwKRnoNzU+Va/z6Tr89OBoKb2sYNOh/uKymyTcFwUTlv+JItRKCF3CFpTxp4Xu4cOIj0Vu8dzU=
+	t=1738226894; cv=none; b=RzVSJ8Soz6Fz8afL2qKFfZp6xXyTiF03o2XpciEg46cj7shuSW0I3QGZCcVfAUfz7oNpTIVZBnao63q/dyLAz6ywq/2POFj4W9mnjRQ4xcnWgh1vPI2FJ5nLdx9gjBFCmiEKbIE89Mk/ZNhWeXim7wNnMsHaWpcG+aXYEpueSrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738226805; c=relaxed/simple;
-	bh=NRg/4JVVG1mi/HTsZXn7qNMLf2qvPz1xgm7mr6EGP4g=;
+	s=arc-20240116; t=1738226894; c=relaxed/simple;
+	bh=FWJwQiogQ+hxCJVsbSYT68kgHA+GtG0m8mRQyC9+PGs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cA6t7jeYdQw4dgxcmybciSwIevQG66NDk+X1F7CAXdhnKSw4rYuwV3xw6JgC0KZroNaC2S69DZs1DsPq9iu22oVKohKQGMSN8/hAsdTmTr7ZLfADrNxfzwxDl9c0KQI9RVEe1fZcCa7lMq7nO7gKb3Q37SXmxevRd9tneUB9kCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RVg6h0pf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 456F3C4CED2;
-	Thu, 30 Jan 2025 08:46:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tOvnlMlIEakrNXSmZonY/nqIUkWD95at3KnlNf7OGjgmhspGAkHtt16mppNbWqVsF/689oibhwk99os1NQdDo1zMdCbbsXOQYTD8Dv2oa3isMSmHZHdmUR6OAnKkMo8PlRUISxwfJdzomy5ux+Tn6tXbD9keFaGz5vhWPkW4P/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n8nqdkgk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA6E7C4CED2;
+	Thu, 30 Jan 2025 08:48:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738226805;
-	bh=NRg/4JVVG1mi/HTsZXn7qNMLf2qvPz1xgm7mr6EGP4g=;
+	s=k20201202; t=1738226893;
+	bh=FWJwQiogQ+hxCJVsbSYT68kgHA+GtG0m8mRQyC9+PGs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RVg6h0pfEuxp/EIBFwms6AIvocEq5pwvqko41EtxpAt1Oyha5G+aRG86GooAiLwva
-	 Gqm2DMWEChpr/ZLeymmjcdlqx3TF+fWVGXd82tGeRWvRkozldzP9n38v7mjp+6SinQ
-	 hOzshnhu0P04ILrZ0a4VEE9/fWH7rB2Nx5IqVxPlSmfUG3oimcNNx3bh+MLgj4MeHK
-	 hwHGiTn08N4tJzTcOFov89e5kQodgk8/IKlqos9TVxd1VwRXDbWuNO7qa46Tv0NogX
-	 +Rb5Ow0enXMlUl9tGGsfBDR8Cm1vsXY3ra83cT/W99FLUeqlB9nH6ukSza3NKNk8re
-	 WFESiL61SAuvw==
-Message-ID: <63b7f4f9-71c3-4847-9693-047d82da957b@kernel.org>
-Date: Thu, 30 Jan 2025 09:46:40 +0100
+	b=n8nqdkgk1zoGYhcUzBBCkhmcFB0QYcJE3pH2NeziUqcUn1RF/jZiCMFKZQT2vZo9S
+	 IMa2HHiLn/ZM63yHUFgndiQy6I0wbsu1KIeFHYvlB+vLYnvzkhig2OBLFY8pGVwXFh
+	 0ncqLYFtA+d9FAA+JFOsfJg7xrpOHvq0MiYHclxnER3LweTOWY5LD4KWG6RdboXp8B
+	 SLYz/qI9RMD5nxZCYvEYRUfjOKdUiqUcCT+e9pstAuHyyJtRgymrniKyF/NFQ+4bgi
+	 AfysMqz2FdXWbWxRAXL+llPYgzucRD+rsCnFJKdw2e8chGd/m/7itZXwfBUB3WekyU
+	 MerEow4OpYnyg==
+Message-ID: <ac1ea985-15cd-4001-9700-a185ceb338d7@kernel.org>
+Date: Thu, 30 Jan 2025 09:48:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ARM: dts: socfpga: Add basic support for Terrasic's
- de10-nano
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Dinh Nguyen <dinguyen@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>
-References: <20250130074553.92023-2-u.kleine-koenig@baylibre.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] arm64: dts: s32g: add the eDMA nodes
+To: Larisa Grigore <larisa.grigore@oss.nxp.com>, Frank Li <Frank.Li@nxp.com>,
+ Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>
+Cc: imx@lists.linux.dev, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, s32@nxp.com,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>
+References: <20250130072951.373027-1-larisa.grigore@oss.nxp.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -103,94 +105,76 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250130074553.92023-2-u.kleine-koenig@baylibre.com>
+In-Reply-To: <20250130072951.373027-1-larisa.grigore@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 30/01/2025 08:45, Uwe Kleine-König wrote:
-> This dts is enough to make the board boot to Linux with the rootfs on
-> a micro SD card.
+On 30/01/2025 08:29, Larisa Grigore wrote:
+> Add the two eDMA nodes in the device tree in order to enable the probing
+> of the S32G2/S32G3 eDMA driver.
 > 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+> Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
 > ---
-> Hello,
+>  arch/arm64/boot/dts/freescale/s32g2.dtsi | 34 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/s32g3.dtsi | 34 ++++++++++++++++++++++++
+>  2 files changed, 68 insertions(+)
 > 
-> changes since (implicit) v1 available at
-> https://lore.kernel.org/linux-arm-kernel/20250128172917.4565-2-u.kleine-koenig@baylibre.com/:
-> 
->  - Use rgmii-id for ethernet/mdio. (Andrew Lunn)
->  - Add a compatible entry for the machine (only had the SoC before),
->    fix compatible for accelerometer and various other small
->    improvements, most of them pointed out by the dt checker.
->    (Krzysztof Kozlowski)
-> 
-> There are still warnings when the dtb is built, but they all originate
-> from the SoC dtsi.
-> 
-> Something I forgot to say in v1: The accelerometer fails to probe
-> (readout of the device ID yields an error). This also doesn't work for
-> me with the downstream kernel and dtb. I didn't debug that. Is that a
-> reason to drop it?
-> 
-> Best regards
-> Uwe
-> 
->  arch/arm/boot/dts/intel/socfpga/Makefile      |  1 +
->  .../socfpga/socfpga_cyclone5_de10nano.dts     | 95 +++++++++++++++++++
->  2 files changed, 96 insertions(+)
->  create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
-> 
-> diff --git a/arch/arm/boot/dts/intel/socfpga/Makefile b/arch/arm/boot/dts/intel/socfpga/Makefile
-> index c467828aeb4b..7f69a0355ea5 100644
-> --- a/arch/arm/boot/dts/intel/socfpga/Makefile
-> +++ b/arch/arm/boot/dts/intel/socfpga/Makefile
-> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
->  	socfpga_cyclone5_mcvevk.dtb \
->  	socfpga_cyclone5_socdk.dtb \
->  	socfpga_cyclone5_de0_nano_soc.dtb \
-> +	socfpga_cyclone5_de10nano.dtb \
->  	socfpga_cyclone5_sockit.dtb \
->  	socfpga_cyclone5_socrates.dtb \
->  	socfpga_cyclone5_sodia.dtb \
-> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
-> new file mode 100644
-> index 000000000000..ec25106caacf
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
-> @@ -0,0 +1,95 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2017, Intel Corporation
-> + *
-> + * based on socfpga_cyclone5_de0_nano_soc.dts
-> + */
-> +/dts-v1/;
+> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> index 7be430b78c83..f73cd5a0906d 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> @@ -317,6 +317,23 @@ usdhc0-200mhz-grp4 {
+>  			};
+>  		};
+>  
+> +		edma0: dma-controller@40144000 {
+> +			#dma-cells = <2>;
+
+Any reason for not following DTS coding style in order of properties?
+This is odd style.
+
+> +			compatible = "nxp,s32g2-edma";
+> +			reg = <0x40144000 0x24000>,
+> +			      <0x4012c000 0x3000>,
+> +			      <0x40130000 0x3000>;
+> +			dma-channels = <32>;
+> +			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "tx-0-15",
+> +					  "tx-16-31",
+> +					  "err";
+> +			clock-names = "dmamux0", "dmamux1";
+> +			clocks = <&clks 63>, <&clks 64>;
+> +		};
 > +
-> +#include "socfpga_cyclone5.dtsi"
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +	model = "Terasic DE10-Nano";
-> +	compatible = "terasic,de10-nano", "altr,socfpga-cyclone5", "altr,socfpga";
+>  		uart0: serial@401c8000 {
+>  			compatible = "nxp,s32g2-linflexuart",
+>  				     "fsl,s32v234-linflexuart";
+> @@ -333,6 +350,23 @@ uart1: serial@401cc000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		edma1: dma-controller@40244000 {
+> +			#dma-cells = <2>;
+> +			compatible = "nxp,s32g2-edma";
+> +			reg = <0x40244000 0x24000>,
+> +			      <0x4022c000 0x3000>,
+> +			      <0x40230000 0x3000>;
+> +			dma-channels = <32>;
+> +			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "tx-0-15",
+> +					  "tx-16-31",
+> +					  "err";
 
-I already commented on this, you will not get different review.
+interrupts, then interrupt-names but:
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-Maybe you need to update your dtschema and yamllint. Don't rely on
-distro packages for dtschema and be sure you are using the latest
-released dtschema.
+> +			clock-names = "dmamux0", "dmamux1";
+> +			clocks = <&clks 63>, <&clks 64>;
 
-
-Please run scripts/checkpatch.pl and fix reported warnings. After that,
-run also `scripts/checkpatch.pl --strict` and (probably) fix more
-warnings. Some warnings can be ignored, especially from --strict run,
-but the code here looks like it needs a fix. Feel free to get in touch
-if the warning is not clear.
+here reversed.
 
 Best regards,
 Krzysztof
