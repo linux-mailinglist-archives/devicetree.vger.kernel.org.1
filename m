@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 914AFA22D9B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 14:21:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F8DA22DAE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 14:25:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 095E21681E3
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 13:21:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E024166E29
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 13:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21EA81E3DC9;
-	Thu, 30 Jan 2025 13:21:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 027691E3796;
+	Thu, 30 Jan 2025 13:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ipeIczgT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZArjtJgJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED6081BEF85;
-	Thu, 30 Jan 2025 13:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22AD819;
+	Thu, 30 Jan 2025 13:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738243302; cv=none; b=GgiM7baPDjv2Q5LiQmlN4GoBRU7hDjveXg3SDoHnUyxxVP/OEZor+BxPD5m/2ukZRgv8ikSQAg6cDU4KzPnz0K/v1aTE3fdAAx1f18F4zRtfUZf57k32cbORpur4v6Qz738vse1YirgDB4kEUwiBsw6zao0fBvkeA5vs3gxEatw=
+	t=1738243528; cv=none; b=daFegD/T+3DVEjZbDsetAhl7YYIhD9ujbB1ikVT6d7ApVQJMrgWynjgi5f0nQwQKsBMozP2KnFKyyAG4Z8GCZ4ZfeK2hh3CQj9Nuw7xPT309XnXFW8OY+eDTOrWsLjxVkAZYkSOT+6Q7LX7sjAfByNbP7N5xHP8meReJ+RJ7Wco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738243302; c=relaxed/simple;
-	bh=/FYFoFx51U6tBMI/OHfLnMY9sPQJJAgn2rePQRkIa+g=;
+	s=arc-20240116; t=1738243528; c=relaxed/simple;
+	bh=SzvFFMSfP6Mm1H6JGD78EZYrFbiROfqXxHife8p2lZ4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SGe+1s7E+iNutk6nmQMtZFQ2XrASaqkJksKGSkgfOHcpdR7HH7o1u/71sMTpWtaz6cd61+3sZHLYT2DtbOWvpk1lwee2/Ji1NOpM5J2l9n3ks21qTfpUJNZ0Qprd6T7SRFkEMQ8VmjTCEALATvLc9dTT1bSIjWy6SK/8SriachU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ipeIczgT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D20FAC4CED2;
-	Thu, 30 Jan 2025 13:21:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LnBS0U37+kFNjmHzEk2JnTko4ULEy4aDad0t1ZKz+eXCangDCkRYnzW1OaS1I4JthYMkqpqtTW1JBYA/iY6EtRSCW58noDSvqEcX6Ue9Chw9envZnq2eZ0qK7JrGkT1HU5UsKHATppNyTc63UH/L8mOHUvyHVNwc8PcqExhpkms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZArjtJgJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28ADAC4CED2;
+	Thu, 30 Jan 2025 13:25:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738243300;
-	bh=/FYFoFx51U6tBMI/OHfLnMY9sPQJJAgn2rePQRkIa+g=;
+	s=k20201202; t=1738243528;
+	bh=SzvFFMSfP6Mm1H6JGD78EZYrFbiROfqXxHife8p2lZ4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ipeIczgTGuQ2tAkN6RTh9IBwpegKN28JEQ/xfVcxBaNGi5FKzgYstmSPXkvoI43iu
-	 kMyp5TWDakgKXKmEdKvV3kzusyshwF17Stqwzb5Pxu7qsLgUBvMLoPQ2rV0E3fQh/8
-	 sUOgM8qC/IJuNJER81hzMrMgXJsjXew5GDqmDLiRB02qbpiJX22UoV7iF33zyizKxc
-	 e19t9uRGkTlt5Xwdt6XE9olfrAowhX1NHc996WQ34AuaEnI/V1lgbGWUdkrWSxbTu9
-	 8/NcQgjhYDzkXTahWtC0SrihNoz8IdlGVDAkyxHB4nsn+/H285NKlcOMH51qqM+JUa
-	 g4z7U/yf5o+Xw==
-Message-ID: <1003b393-770a-4e2b-b5ed-054f1f9072b4@kernel.org>
-Date: Thu, 30 Jan 2025 14:21:31 +0100
+	b=ZArjtJgJOtt2zO8Ds9hhTBZ6Cip7ztSItXYlMI+3Wby3sbIdjSg13JCTjcGVEUrVy
+	 477w5XvibraWxa5LyaOrC/G0C9M5pIH4To5x5yMfj786kHYlLpXJpBJCkpiNodBP2M
+	 c8TgdRfyEwshEvU0J6nr+ANlcEUtaaQuDma+5+I45EUpMED6MQn3ttDJ4rfrmIL8+h
+	 WFAE2eyUxnnOURV6BUVeOwDhVd2U36VsIIzyxHSXTt9FsRzf6eaiqio1MG09jb8Dwj
+	 v5K40ip5cIQZSddX5UNQKXASh6Nfb/dmU4NTX+FgcwgDXNahR/g8E2lL8Guq7KzWHc
+	 /duo7iPWQu1kg==
+Message-ID: <7234f25c-a2aa-4834-931b-aeeb7a49dfa7@kernel.org>
+Date: Thu, 30 Jan 2025 14:25:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/panfrost: Add support for Mali on the MT8370 SoC
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+Subject: Re: [RFC PATCH 3/5] dt-bindings: gpu: Add protected heap name to Mali
+ Valhall CSF binding
+To: Florent Tomasin <florent.tomasin@arm.com>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>,
+ "T . J . Mercier" <tjmercier@google.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>, kernel <kernel@collabora.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- devicetree <devicetree@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-mediatek <linux-mediatek@lists.infradead.org>
-References: <20250116-mt8370-enable-gpu-v1-0-0a6b78e925c8@collabora.com>
- <20250116-mt8370-enable-gpu-v1-2-0a6b78e925c8@collabora.com>
- <20250118-meticulous-black-caracal-ec7f0d@krzk-bin>
- <194b7237128.10f9923a41656565.5574753983898665940@collabora.com>
+ Yong Wu <yong.wu@mediatek.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ nd@arm.com, Akash Goel <akash.goel@arm.com>
+References: <cover.1738228114.git.florent.tomasin@arm.com>
+ <36b57dcf20860398ba83985e1c5b6f6958d08ba7.1738228114.git.florent.tomasin@arm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,19 +120,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <194b7237128.10f9923a41656565.5574753983898665940@collabora.com>
+In-Reply-To: <36b57dcf20860398ba83985e1c5b6f6958d08ba7.1738228114.git.florent.tomasin@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/01/2025 13:15, Louis-Alexis Eyraud wrote:
-> Hello,
-> 
-> sorry for the delay,
+On 30/01/2025 14:08, Florent Tomasin wrote:
+> Allow mali-valhall-csf driver to retrieve a protected
+> heap at probe time by passing the name of the heap
+> as attribute to the device tree GPU node.
 
-You gave yourself 12 days to respond, which is fine. But to me, you gave
-15 minutes and immediately sent v2.
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
 
-So now your v2 will be still rejected.
+Why this cannot be passed by phandle, just like all reserved regions?
+
+From where do you take these protected heaps? Firmware? This would
+explain why no relation is here (no probe ordering, no device links,
+nothing connecting separate devices).
 
 Best regards,
 Krzysztof
