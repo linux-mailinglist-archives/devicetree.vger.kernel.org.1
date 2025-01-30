@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-141808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D42A229A5
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:35:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6005DA229AC
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 09:38:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4ADB71667F6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:35:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA3621668C0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 08:38:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D67401AAA00;
-	Thu, 30 Jan 2025 08:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 603781B0F18;
+	Thu, 30 Jan 2025 08:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rm6+eHmt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="POacsNCt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997E651C5A;
-	Thu, 30 Jan 2025 08:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336911B040C;
+	Thu, 30 Jan 2025 08:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738226112; cv=none; b=c46jYImeESaRFn/X8MpgS1wZ5W5sLbzUvulMdRmtTjKaMwxutpzo/nsmM91jcw0JsZVOVgGUNPolSX2AJp/fU3ZGJpQc6HBWA7Ik17t4TsR82sq3ALfl+rVQACbDHJoTLm08enwcem8a6kgp5X8tB35aX7kDEex59hcKEmtTjfw=
+	t=1738226289; cv=none; b=kmnQma4PsH6yAvGSdI/mDuqW+k7WmgBrtgCn8bZrll8bm/kLBO2MAkZS4PlIVGm5aIqS9pE8UpRLIJ1o9OOatx9ZrMHTkXOprOXC8vqNeaBQqmJXV0C6ezlag6ga3SfqqEyIOIjLbvFCco5Hjol1Hj0RnbcTW6pKEALyKptjNJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738226112; c=relaxed/simple;
-	bh=uAFNIom2egyM9yFIPFGaNT7cgFUuSuPYI10Vu9ykITg=;
+	s=arc-20240116; t=1738226289; c=relaxed/simple;
+	bh=a8pARe+EC3ECTuBLU5pJVHvAEBheRpHsCl5XeHxWQLc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rKrMsKt46ci+EBtnlRIPieGvQfjKSoz+g1+pv0DFSNEEz8DhLTkHeQwfl3Ae1hZfzHAQ8EDdBaG6XiCSS6Cxy3Ay17hRWL0W3HQak58Zrr4xmhN3C71FHMEK6k8bGA7YY6dxTuOAHqFcf6jwVv34Cqu9oK+4a6mu75ZIvp/SsVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rm6+eHmt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1494EC4CED2;
-	Thu, 30 Jan 2025 08:35:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HnfRzl5qrrlnhW3JitLJhzEDw3mV3SreB8f0WPDQ6FgCEs87Slrhua1v2h93Y0gX444wT7meEvJKhM3mN7ixaEYSnodvNvn4NtrzqhSk68oskQ71AjfFl0yfMwVSk4WmBuhW2A1fy8KoA0CZoQhkfggsXVMVEhd7PJe2MFCR/YE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=POacsNCt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B54BC4CED3;
+	Thu, 30 Jan 2025 08:38:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738226112;
-	bh=uAFNIom2egyM9yFIPFGaNT7cgFUuSuPYI10Vu9ykITg=;
+	s=k20201202; t=1738226288;
+	bh=a8pARe+EC3ECTuBLU5pJVHvAEBheRpHsCl5XeHxWQLc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rm6+eHmtk2YwFft4vFcSlVZEQ8ywP+E7Pc7HyQx6vXROJv03gu7yQ5yvOQ6ljMnth
-	 rAqpINETKsnbzufJs6foZWF3gJsiXIQPdMp+xJ0J7IFoY8ZLqnWIg14GYR1M5fKLAV
-	 rFEhLdAHwR8NvjkRkbfWLWn8Ohd67VIK+GdQamVMP/4ciXlvBFsiARhnSmOQ9leH94
-	 35Hdd7w4xiO0/VDfbHptQ+BKm5kVLTXb+iQo6Ck7PfTdTq3ASBgF2JAp3fucyudgvM
-	 Zj/K2JpUfX8YJjQL7kl0GW7q+Lto++TokrHP2kImSZsQajBUC3Ip+932aBeNvQ7oqN
-	 aiqQuEHFSnasw==
-Date: Thu, 30 Jan 2025 09:35:08 +0100
+	b=POacsNCtX6lRKzk9JBfKHFucT9mBexH91JfLW87+bUMnmJp0k7y96kgbTGQ8e2S0i
+	 /7SQjK4y4i2NREvCVI9rYtSRWFDAXP5Z+9vzsQlxaXs0ZkNGklbOItDQMNeP7RMliF
+	 bzKXSeC9Rhuo5aeB0EZdYgfm1f1ovBViGuV7Vydx/orrmU+u5o01ziRaShkMkMQywr
+	 Y6acdaqKTbpnugvrGVD2GNWZZeH5ACYWAfExVAFOWL7y9hJVFhLn+xI1DJjSoPh+UJ
+	 YD+aBmHHYGySy82uqR6Torvweo8lUi3I6m3QEvoEsDBEogUhPDzlwlVy1Xcw36vIkm
+	 lyXS5ZCo3ZblA==
+Date: Thu, 30 Jan 2025 09:38:05 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexey Minnekhanov <alexeymin@postmarketos.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org, 
+	Kalle Valo <kvalo@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Craig Tatlor <ctatlor97@gmail.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: gcc-sdm660: Add missing SDCC
- resets
-Message-ID: <20250130-cheerful-splendid-cockatoo-d833f6@krzk-bin>
-References: <20250129212328.1627891-1-alexeymin@postmarketos.org>
+	Jeff Johnson <jjohnson@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Saravanakumar Duraisamy <quic_saradura@quicinc.com>
+Subject: Re: [RFC PATCH 3/5] wifi: ath12k: add ath12k_hw_regs for IPQ5424
+Message-ID: <20250130-groovy-competent-mastiff-19cc9e@krzk-bin>
+References: <20250130051838.1924079-1-quic_rajkbhag@quicinc.com>
+ <20250130051838.1924079-4-quic_rajkbhag@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +61,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250129212328.1627891-1-alexeymin@postmarketos.org>
+In-Reply-To: <20250130051838.1924079-4-quic_rajkbhag@quicinc.com>
 
-On Thu, Jan 30, 2025 at 12:23:25AM +0300, Alexey Minnekhanov wrote:
-> Add resets for eMMC/SD card blocks that were missed during initial
-> driver submission.
+On Thu, Jan 30, 2025 at 10:48:36AM +0530, Raj Kumar Bhagat wrote:
+> From: Saravanakumar Duraisamy <quic_saradura@quicinc.com>
 > 
-> Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
-> Fixes: f2a76a2955c0 ("clk: qcom: Add Global Clock controller (GCC) driver for SDM660")
+> Add register addresses (ath12k_hw_regs) for new ath12k AHB based
+> WiFi device IPQ5424.
+> 
+> Tested-on: IPQ5424 hw1.0 AHB WLAN.WBE.1.5-01053-QCAHKSWPL_SILICONZ-1
+> Tested-on: IPQ5332 hw1.0 AHB WLAN.WBE.1.3.1-00130-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Saravanakumar Duraisamy <quic_saradura@quicinc.com>
+> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+> ---
+>  drivers/net/wireless/ath/ath12k/hal.h |  3 +
+>  drivers/net/wireless/ath/ath12k/hw.c  | 87 ++++++++++++++++++++++++++-
+>  2 files changed, 89 insertions(+), 1 deletion(-)
+> 
 
-Your SoB is always the last tag, but repeating what I asked during
-previous review - what sort of bug is here? Missing feature is not a bug
-per se.
+That's not a separate patch. Regs do not make any sense on their own,
+so this commit makes no sense on its own.
 
 Best regards,
 Krzysztof
