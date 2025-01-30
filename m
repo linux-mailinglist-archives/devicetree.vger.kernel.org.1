@@ -1,232 +1,177 @@
-Return-Path: <devicetree+bounces-141887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA48AA23125
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 16:47:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0FB4A2315C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 17:00:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 284231888FD8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 15:47:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E382B3A5D97
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 15:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC9C91E9B23;
-	Thu, 30 Jan 2025 15:47:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2621D1EBA03;
+	Thu, 30 Jan 2025 16:00:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kNqhNetF"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="jlmdsHqM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86AAD1E1C22;
-	Thu, 30 Jan 2025 15:47:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 803931E8837
+	for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 15:59:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738252049; cv=none; b=LvZckarFbCHmAYYcLxm6TES2fb5pF/8IXfm51MxfqHL88rEh85s1UImLEmiXD6Rb1TD10ZZGN4RMkxB0yr5WzDfbuoteHed49pRKyKbtxtTCtEBPtKwKX3jw8dThicBkxznkQvTXYdbCmVTKkFdN+YC/Yt4+A8gx1zJhAYLHTog=
+	t=1738252801; cv=none; b=gkLUejI2wwA7DGz+m2d3zSJGBGuOPbhlmixJtbTQFsq4lS73tASqIbX7RLu+Xk6b2dOO8uAbEmquXPH3ABzobvGFZCtqaOzzl+L3UEwWOE0vGRa6qqRg0KXZrVZtchFpnbjUuzLE0imYJH5CnZPMRlOK+oFLkEUm72YEsh8qn1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738252049; c=relaxed/simple;
-	bh=entpPE/XLPTAVOjCVIGfmXrS7TW5SiMVBiEBoUBQ29w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vo+W2GokPkZeeVLppuYCAyXKE7lVAJiVIe4Xn+xEVuu8NE4BMjHiXDQd+mgLQjMbWIntNbS2MOop8PAakCBw8LTi6jgIPT9zjkYoTZjfDXMDc+beK4P1zySsysDhlo+4CV4rpEUkJhthOydYA97Yd96FFb29DDlDjjm691LO7oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kNqhNetF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41A69C4CED2;
-	Thu, 30 Jan 2025 15:47:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738252049;
-	bh=entpPE/XLPTAVOjCVIGfmXrS7TW5SiMVBiEBoUBQ29w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kNqhNetF+tuv+izOBYtId4d7tRJktDS290e2LBOm4cuIvpZ6A7E38D1G0SYYXcSeb
-	 cbfc0TbNwZSvOERlqgXg8URWDnl6mi8Mp31xTLHfotUn9rbZ9vuLWxsC2q8jnvqPyH
-	 efPv2J30V36odxeIFjJ1uDWqbsSqmoauwdBOALu3Y/2p44ccNLjI7DYvOFS0WRVOvT
-	 vtGm9OsViLdQnCS4xO4b/bB9J7BRo4spcc3syfrZBZTBz9PUkhCNwh4lplMD9wrK6n
-	 JaIC9wW9InxbK3UabzuKAkfjlzhg1gt2rwx4vyTzf9J/Kj4WYDk7YEKAoUQp8KBGho
-	 LrO9SaR8Vyt9w==
-Date: Thu, 30 Jan 2025 15:47:19 +0000
-From: Simon Horman <horms@kernel.org>
-To: Basharath Hussain Khaja <basharath@couthit.com>
-Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
-	tony@atomide.com, richardcochran@gmail.com, parvathi@couthit.com,
-	schnelle@linux.ibm.com, rdunlap@infradead.org,
-	diogo.ivo@siemens.com, m-karicheri2@ti.com,
-	jacob.e.keller@intel.com, m-malladi@ti.com,
-	javier.carrasco.cruz@gmail.com, afd@ti.com, s-anna@ti.com,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org, pratheesh@ti.com, prajith@ti.com,
-	vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com,
-	krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
-Subject: Re: [RFC v2 PATCH 03/10] net: ti: prueth: Adds PRUETH HW and SW
- configuration
-Message-ID: <20250130154719.GB13457@kernel.org>
-References: <20250124122353.1457174-1-basharath@couthit.com>
- <20250124122353.1457174-4-basharath@couthit.com>
+	s=arc-20240116; t=1738252801; c=relaxed/simple;
+	bh=ngWQPRETD9N17bAwKGrksUnr574UVGVFHxMohMEaErM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=H9GkqIc6f9uuvW048J075OFs89xNo7cNJSeDkmxIbulkB2t1rniK+OM7D5Za/IoSJqAi9jd0MGF1grxVn9swWODd7EYEdgsYONHp85yDWBuHNNXWVNj1Bb1RwTaoZ7nBoMExSbL7dQhjB3oBMovzIL+ATWLhphVJrzHzsXvkqx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=jlmdsHqM; arc=none smtp.client-ip=209.85.222.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7b6f0afda3fso115278885a.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jan 2025 07:59:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1738252798; x=1738857598; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Vrukcyab91NQAAPHSNd07R2nM2xtss7X+LvbFgz2NCI=;
+        b=jlmdsHqMk2JPh+LrItXa+q0NpMCbv/Ld3CngfnQH6EnRZD9ma6FNG+WnkfrGq2+fGU
+         kjlAKK+M8J5Pz9/wDMeqBB1htfO8S8WuiAinYOApE4mLCXEfdZmttzhtOfbBecwX0Tq8
+         Z+AjNjZyCCSWCooCM3/PYL/4uh7Qk1sFG8HCwnS0zrcbwEoUqDJSEJShQ2SHXBUuE/0u
+         jzBQj53gAHhSv8zTCMBgLhaiaoMrQEkeYX0oUonNZ7yjaKQ1m44F2EbSJQQlq3hNQWrB
+         258j1cyrVr1RGdsgJZHKmMkweclF5IBClM2iVo0kCYr1PT+QGkW08jO3Eqz8yeeVOfxB
+         eSoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738252798; x=1738857598;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vrukcyab91NQAAPHSNd07R2nM2xtss7X+LvbFgz2NCI=;
+        b=jEc7xpropxehK2U6rmwTs3rgN8unw7rC6PcbuHY1AuNFsWe2AQYrHC66ASPxlEZoKL
+         qyqwBAqk64x1lbIAdNjYYNf1L23slMXluWZWlteY/wVMjn+Db/vUT9q1MEAMdDYUkOma
+         jJezpPXBpk7c5qUVBCrsqY102aX1R9OGPUdlfdLHAQIwQq5Y/MCUqcMtWqUlpKFxlq3b
+         elVNKc/gB5PiBHgCn2V7mCxSOiALz+2AxI0SXKrD1MCcbaA+At9Ng82ebbHOqU/OUqiJ
+         CRf8sAA5xbBCimjOGIwzPEfuNIfBp1u+n1s3UDHtIIlpnmZ+sDO8Bldx2gDmgExvwmoY
+         WHWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVtH6mwHleJQW1Dk4Dc6rh5gX61twjfz8L0Qc1bkG/paWKS8IyBnq2Wr5sIXHo6AagsI8JamYSajpIn@vger.kernel.org
+X-Gm-Message-State: AOJu0YyumlPBy6loOF/ca2rhB82GHqw3GmL8UbKPLcakCcrwT4Z2UZzi
+	OTuBNmiyYXUNQsrz7QBxzhtcmS2HKtv3ngMYwgE6d9ReR5NyRy7gJfM+37DYPDY=
+X-Gm-Gg: ASbGncvIWK/9e3S/RnbcMxjFSFYwcJctCiGVv8Kd25ZbJ+li2JIZPh5+dM9FbX28h4E
+	I2FmZZY2odz9U/ftPWwF+rEaSFshfBNJo4Z3GPdHkv8+W0olbIs/DSqvuQu9BFy4WlP55Lg4ICj
+	gu8yMWZKj7XNUExgUrCxsZOFtHMa1aVQyCNncVLOVSeiAy9/Ziu5PfvlpXsu+6YrefLq8mGYLMk
+	TBi7VUEj6xEybELTITHySuRr1GVR8LrIF+ypNKmqqCuB+RvYLOyNuW6jOajoVB9iRZZGwQNeaQ7
+	SX0Okq2R5UQRYj4G
+X-Google-Smtp-Source: AGHT+IHjdyr1ZGxcyMCqDyCVkI8EVFcDwH70UC+E+hsL30A1qjTpY04odV1a3HSLhMUSwyh/u08bDw==
+X-Received: by 2002:a05:620a:44ca:b0:7b7:342:a0a5 with SMTP id af79cd13be357-7bffcda883bmr1361614185a.55.1738252798246;
+        Thu, 30 Jan 2025 07:59:58 -0800 (PST)
+Received: from nicolas-tpx395.localdomain ([2606:6d00:11:e976::7a9])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c00a90d14asm85504285a.104.2025.01.30.07.59.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Jan 2025 07:59:57 -0800 (PST)
+Message-ID: <1a73c3acee34a86010ecd25d76958bca4f16d164.camel@ndufresne.ca>
+Subject: Re: [RFC PATCH 0/5] drm/panthor: Protected mode support for Mali
+ CSF GPUs
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Maxime Ripard <mripard@kernel.org>, Florent Tomasin
+	 <florent.tomasin@arm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Boris
+ Brezillon	 <boris.brezillon@collabora.com>, Steven Price
+ <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>,  Sumit Semwal <sumit.semwal@linaro.org>, Benjamin
+ Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey	
+ <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, "T . J .
+ Mercier"	 <tjmercier@google.com>, Christian =?ISO-8859-1?Q?K=F6nig?=	
+ <christian.koenig@amd.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Yong
+ Wu <yong.wu@mediatek.com>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, 
+	linaro-mm-sig@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, nd@arm.com, Akash Goel
+ <akash.goel@arm.com>
+Date: Thu, 30 Jan 2025 10:59:56 -0500
+In-Reply-To: <3ykaewmjjwkp3y2f3gf5jvqketicd4p2xqyajqtfnsxci36qlm@twidtyj2kgbw>
+References: <cover.1738228114.git.florent.tomasin@arm.com>
+	 <3ykaewmjjwkp3y2f3gf5jvqketicd4p2xqyajqtfnsxci36qlm@twidtyj2kgbw>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250124122353.1457174-4-basharath@couthit.com>
 
-On Fri, Jan 24, 2025 at 05:53:46PM +0530, Basharath Hussain Khaja wrote:
-> From: Roger Quadros <rogerq@ti.com>
-> 
-> Updates for MII_RT hardware peripheral configuration such as RX and TX
-> configuration for PRU0 and PRU1, frame sizes, and MUX config.
-> 
-> Updates for PRU-ICSS firmware register configuration and DRAM, SRAM and
-> OCMC memory initialization, which will be used in the runtime for packet
-> reception and transmission.
-> 
-> DUAL-EMAC memory allocation for software queues and its supporting
-> components such as the buffer descriptors and queue discriptors. These
+Le jeudi 30 janvier 2025 =C3=A0 14:46 +0100, Maxime Ripard a =C3=A9crit=C2=
+=A0:
+> Hi,
+>=20
+> I started to review it, but it's probably best to discuss it here.
+>=20
+> On Thu, Jan 30, 2025 at 01:08:56PM +0000, Florent Tomasin wrote:
+> > Hi,
+> >=20
+> > This is a patch series covering the support for protected mode executio=
+n in
+> > Mali Panthor CSF kernel driver.
+> >=20
+> > The Mali CSF GPUs come with the support for protected mode execution at=
+ the
+> > HW level. This feature requires two main changes in the kernel driver:
+> >=20
+> > 1) Configure the GPU with a protected buffer. The system must provide a=
+ DMA
+> >    heap from which the driver can allocate a protected buffer.
+> >    It can be a carved-out memory or dynamically allocated protected mem=
+ory region.
+> >    Some system includes a trusted FW which is in charge of the protecte=
+d memory.
+> >    Since this problem is integration specific, the Mali Panthor CSF ker=
+nel
+> >    driver must import the protected memory from a device specific expor=
+ter.
+>=20
+> Why do you need a heap for it in the first place? My understanding of
+> your series is that you have a carved out memory region somewhere, and
+> you want to allocate from that carved out memory region your buffers.
+>=20
+> How is that any different from using a reserved-memory region, adding
+> the reserved-memory property to the GPU device and doing all your
+> allocation through the usual dma_alloc_* API?
 
-nit: descriptors
+How do you then multiplex this region so it can be shared between
+GPU/Camera/Display/Codec drivers and also userspace ? Also, how the secure
+memory is allocted / obtained is a process that can vary a lot between SoC,=
+ so
+implementation details assumption should not be coded in the driver.
 
-> software queues are placed in OCMC memory and are shared with CPU by
-> PRU-ICSS for packet receive and transmit.
-> 
-> All declarations and macros are being used from common header file
-> for various protocols.
-> 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> Signed-off-by: Andrew F. Davis <afd@ti.com>
-> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
-> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+Nicolas
 
-...
+>=20
+> Or do you expect to have another dma-buf heap that would call into the
+> firmware to perform the allocations?
+>=20
+> The semantics of the CMA heap allocations is a concern too.
+>=20
+> Another question is how would you expect something like a secure
+> video-playback pipeline to operate with that kind of interface. Assuming
+> you have a secure codec, you would likely get that protected buffer from
+> the codec, right? So the most likely scenario would be to then import
+> that dma-buf into the GPU driver, but not allocate the buffer from it.
+>=20
+> Overall, I think a better abstraction would be to have a heap indeed to
+> allocate your protected buffers from, and then import them in the
+> devices that need them. The responsibility would be on the userspace to
+> do so, but it already kind of does with your design anyway.
+>=20
+> Maxime
 
-> diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.c b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
-
-...
-
-> +static void icssm_prueth_mii_init(struct prueth *prueth)
-> +{
-> +	struct regmap *mii_rt;
-> +	u32 rxcfg_reg, rxcfg;
-> +	u32 txcfg_reg, txcfg;
-> +
-> +	mii_rt = prueth->mii_rt;
-> +
-> +	rxcfg = PRUSS_MII_RT_RXCFG_RX_ENABLE |
-> +		PRUSS_MII_RT_RXCFG_RX_DATA_RDY_MODE_DIS |
-> +		PRUSS_MII_RT_RXCFG_RX_L2_EN |
-> +		PRUSS_MII_RT_RXCFG_RX_CUT_PREAMBLE |
-> +		PRUSS_MII_RT_RXCFG_RX_L2_EOF_SCLR_DIS;
-> +
-> +	/* Configuration of Port 0 Rx */
-> +	rxcfg_reg = PRUSS_MII_RT_RXCFG0;
-> +
-> +	regmap_write(mii_rt, rxcfg_reg, rxcfg);
-> +
-> +	/* Configuration of Port 1 Rx */
-> +	rxcfg_reg = PRUSS_MII_RT_RXCFG1;
-> +
-> +	rxcfg |= PRUSS_MII_RT_RXCFG_RX_MUX_SEL;
-> +
-> +	regmap_write(mii_rt, rxcfg_reg, rxcfg);
-> +
-> +	txcfg = PRUSS_MII_RT_TXCFG_TX_ENABLE |
-> +		PRUSS_MII_RT_TXCFG_TX_AUTO_PREAMBLE |
-> +		PRUSS_MII_RT_TXCFG_TX_32_MODE_EN |
-> +		(TX_START_DELAY << PRUSS_MII_RT_TXCFG_TX_START_DELAY_SHIFT) |
-> +		(TX_CLK_DELAY_100M << PRUSS_MII_RT_TXCFG_TX_CLK_DELAY_SHIFT);
-> +
-> +	/* Configuration of Port 0 Tx */
-> +	txcfg_reg = PRUSS_MII_RT_TXCFG0;
-> +
-> +	regmap_write(mii_rt, txcfg_reg, txcfg);
-> +
-> +	txcfg	|= PRUSS_MII_RT_TXCFG_TX_MUX_SEL;
-
-nit: a space seems more appropriate than a tab before '|='
-
-> +
-> +	/* Configuration of Port 1 Tx */
-> +	txcfg_reg = PRUSS_MII_RT_TXCFG1;
-> +
-> +	regmap_write(mii_rt, txcfg_reg, txcfg);
-> +
-> +	txcfg_reg = PRUSS_MII_RT_RX_FRMS0;
-> +
-> +	/* Min frame length should be set to 64 to allow receive of standard
-> +	 * Ethernet frames such as PTP, LLDP that will not have the tag/rct.
-> +	 * Actual size written to register is size - 1 per TRM. This also
-> +	 * includes CRC/FCS.
-> +	 */
-> +	txcfg = (((PRUSS_MII_RT_RX_FRMS_MIN_FRM - 1) <<
-> +			PRUSS_MII_RT_RX_FRMS_MIN_FRM_SHIFT) &
-> +			PRUSS_MII_RT_RX_FRMS_MIN_FRM_MASK);
-> +
-> +	/* For EMAC, set Max frame size to 1528 i.e size with VLAN.
-> +	 * Actual size written to register is size - 1 as per TRM.
-> +	 * Since driver support run time change of protocol, driver
-> +	 * must overwrite the values based on Ethernet type.
-> +	 */
-> +	txcfg |= (((PRUSS_MII_RT_RX_FRMS_MAX_SUPPORT_EMAC - 1) <<
-> +			   PRUSS_MII_RT_RX_FRMS_MAX_FRM_SHIFT)	&
-> +			   PRUSS_MII_RT_RX_FRMS_MAX_FRM_MASK);
-> +
-> +	regmap_write(mii_rt, txcfg_reg, txcfg);
-> +
-> +	txcfg_reg = PRUSS_MII_RT_RX_FRMS1;
-> +
-> +	regmap_write(mii_rt, txcfg_reg, txcfg);
-> +}
-
-...
-
-> @@ -377,6 +705,70 @@ static int icssm_prueth_probe(struct platform_device *pdev)
->  		}
->  	}
->  
-> +	pruss = pruss_get(prueth->pru0 ? prueth->pru0 : prueth->pru1);
-> +	if (IS_ERR(pruss)) {
-> +		ret = PTR_ERR(pruss);
-> +		dev_err(dev, "unable to get pruss handle\n");
-> +		goto put_pru;
-> +	}
-> +	prueth->pruss = pruss;
-> +
-> +	ret = pruss_cfg_ocp_master_ports(prueth->pruss, 1);
-> +	if (ret) {
-> +		dev_err(dev, "couldn't enabled ocp master port: %d\n", ret);
-> +		goto put_pruss;
-> +	}
-
-FTR, I applied this patch set on top of the patch at the link below
-so that pruss_cfg_ocp_master_ports() is present.
-
-- [PATCH v2 1/1] soc: ti: PRUSS OCP configuration
-  https://lore.kernel.org/all/20250108125937.10604-2-basharath@couthit.com/
-
-  ...
-
-> diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.h b/drivers/net/ethernet/ti/icssm/icssm_prueth.h
-
-...
-
-> +/**
-> + * struct prueth_queue - Information about a queue in memory
-
-struct prueth_queue_info
-
-> + * @buffer_offset: buffer offset in OCMC RAM
-> + * @queue_desc_offset: queue descriptor offset in Shared RAM
-> + * @buffer_desc_offset: buffer descriptors offset in Shared RAM
-> + * @buffer_desc_end: end address of buffer descriptors in Shared RAM
-> + */
-> +struct prueth_queue_info {
-> +	u16 buffer_offset;
-> +	u16 queue_desc_offset;
-> +	u16 buffer_desc_offset;
-> +	u16 buffer_desc_end;
-> +} __packed;
-
-...
 
