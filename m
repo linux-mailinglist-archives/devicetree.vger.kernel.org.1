@@ -1,138 +1,214 @@
-Return-Path: <devicetree+bounces-141944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F40B0A233D9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 19:36:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2756A233F2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 19:42:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54F8D1885823
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 18:36:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0451A162510
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2025 18:42:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D8FC1F152F;
-	Thu, 30 Jan 2025 18:35:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B4CD1F03D7;
+	Thu, 30 Jan 2025 18:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Yroobcci"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MP/S47nA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7434D1F1511;
-	Thu, 30 Jan 2025 18:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E11D31487E1;
+	Thu, 30 Jan 2025 18:42:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738262136; cv=none; b=QJGf0weeFadfwACJu2CQml9or84kqIQHJq6pTnF80kcdMPLslsh9gOBtBYwj2Jqt7HDjnL7HApQbIWAcRNVBVS1OGoGNRjQIgdZhErYwhW3mhJte6CEfXsGbFNCt0Q50nrq9S8aywUD584htAW92rTkJC34gOOcJoWRC/Kmo/Xs=
+	t=1738262536; cv=none; b=uk7teB42kurDzd4gbE9fUcLjL6Yx3d9n7pZ7nzlHXQzATJbvbJk1eQXltm5cJ3SLMaPYZIr8eH0J0g0wFahWrWjOPXu9xV2rPsnf+lTZsqnu6M+fc81+peqXI+L1BfExBpn1s/bqY1AHLtRbLJ0kFvToUA1wTteCifm9OL4HYsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738262136; c=relaxed/simple;
-	bh=72ypbfAx4aTzaSq8RsBOyaCCNNmiJx6es43r+SBSDig=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WAHStPTpUgWe2dLy9MuMR3XhM8ZvW8azKA/DKGdrz4zTaFxUlPxLZdtX5zqDWbdxsS00xpvny5QwiVOlH9g4VO+smnsST3K4iGTLYj8XCJiDPnrz9M1kY4knMjfWYqAmbb5+czV253mkVpAEcOSZi9Eh8BTaA+KcdGbdplss8Nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Yroobcci; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50UHovF9008483;
-	Thu, 30 Jan 2025 18:35:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QjehGn6pM3+5o3M2ZHJw+kez+uzfsB/kjouEUHNTGOg=; b=YroobcciUXp7R+eW
-	5G6kDDwGxrNmB7nM2E5aoiUyBh+RUjGajdgl4J1vz78YGJM8DEc7GdALq3swFSgj
-	dUNFhM8jcN9YNGFDPrM+hTNNqM69WGLUjiV9l6bE/iLCuMiqNYF7USpW6CeHm+In
-	aGcfj1c1WooaQ2t0zI3Go86wSkm050w2RZRhc+tpypEObrcOxu7DAqFWfw+jzRwG
-	BckYrHYzF9OVXr7Oijw0mUumLEUHWYoooBAPfbXS/PeQHqIGQPoE7BffTFc380/W
-	HwWFh/eujz6hlNrazukaUSiCLyB7QPZg0WCvOH8njZonHMnobK8DK0UVXU4MmJF8
-	ta34kw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ge6b042d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Jan 2025 18:35:28 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50UIZRlo017739
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Jan 2025 18:35:27 GMT
-Received: from hu-janathot-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 30 Jan 2025 10:35:22 -0800
-From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marcel Holtmann
-	<marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
-        <quic_anubhavg@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-bluetooth@vger.kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-Subject: [PATCH v9 2/2] Bluetooth: hci_qca: use the power sequencer for wcn6750
-Date: Fri, 31 Jan 2025 00:04:34 +0530
-Message-ID: <20250130183434.2394058-3-quic_janathot@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250130183434.2394058-1-quic_janathot@quicinc.com>
-References: <20250130183434.2394058-1-quic_janathot@quicinc.com>
+	s=arc-20240116; t=1738262536; c=relaxed/simple;
+	bh=7SyZ5zCEJ4aNJvlmHMl8pZTMFw6jNB5EeCSDItXKy7s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P4yJOfiHjZMHC/mZpv/trmq/CY398rr3yNdcaFY/3tpuJn9c1l80+hAEvFqETTDkA0yFT9OFLO+EzBqL9Qj2az9HCgd+4FptXQ13HVz+yfYd0ouxK0mFAH7sdMGBEnCY3tYB0RbQzdJUMqtVLEcx/btiQs/dokii0jsPsb7GX1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MP/S47nA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C3C8C4CED2;
+	Thu, 30 Jan 2025 18:42:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738262535;
+	bh=7SyZ5zCEJ4aNJvlmHMl8pZTMFw6jNB5EeCSDItXKy7s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MP/S47nA8FE9AkuHWURw/yUclraFw1sFDgbUmalMDZV0/vbCb5U0HkRgrIxFDVQbR
+	 jmTquZPkUs7UbzmAwoMc4DmXmNprefYqz2iiZfqflLMIIWSCHcE2hRIARNd4lneK7m
+	 PawsARXf+YXzjgMryCAxyE6UcQQaUJPyr3VIxDkf6Exjpgxl2P8B8nW/c2fmUc4rE6
+	 /hY1qrBH7jbokFST3GNofAdKQ4JRX3Wbzzv8OCwS0oL2+b7aIeFq7xLEcugnTFGnfk
+	 tdXvdFKA/8jTj+TM0Pv/TsAQlqkSBJOKjpuiHhN/iZAiLO+epc56JaVm1vKuGGMtJ+
+	 yFV9Ay6+9RgQg==
+Date: Thu, 30 Jan 2025 18:42:09 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Aurelien Jarno <aurelien@aurel32.net>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-crypto@vger.kernel.org
+Subject: Re: [PATCH 2/7] dt-bindings: rng: add binding for Rockchip RK3588 RNG
+Message-ID: <20250130-anything-scholar-01f4c9145893@spud>
+References: <20250130-rk3588-trng-submission-v1-0-97ff76568e49@collabora.com>
+ <20250130-rk3588-trng-submission-v1-2-97ff76568e49@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HiTambVLdqiiwk_F7qhUEYCxzx8QdonO
-X-Proofpoint-ORIG-GUID: HiTambVLdqiiwk_F7qhUEYCxzx8QdonO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-30_08,2025-01-30_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 phishscore=0 suspectscore=0
- clxscore=1015 impostorscore=0 priorityscore=1501 mlxlogscore=999
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501300141
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hYobnhEFDnkdMhyO"
+Content-Disposition: inline
+In-Reply-To: <20250130-rk3588-trng-submission-v1-2-97ff76568e49@collabora.com>
 
-Older boards are having entry "enable-gpios" in dts, we can safely assume
-latest boards which are supporting PMU node enrty will support power
-sequencer.
 
-Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/bluetooth/hci_qca.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--hYobnhEFDnkdMhyO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
-index 0ac2168f1dc4..d2fd08aceb17 100644
---- a/drivers/bluetooth/hci_qca.c
-+++ b/drivers/bluetooth/hci_qca.c
-@@ -2359,6 +2359,7 @@ static int qca_serdev_probe(struct serdev_device *serdev)
- 	switch (qcadev->btsoc_type) {
- 	case QCA_WCN6855:
- 	case QCA_WCN7850:
-+	case QCA_WCN6750:
- 		if (!device_property_present(&serdev->dev, "enable-gpios")) {
- 			/*
- 			 * Backward compatibility with old DT sources. If the
-@@ -2378,7 +2379,6 @@ static int qca_serdev_probe(struct serdev_device *serdev)
- 	case QCA_WCN3990:
- 	case QCA_WCN3991:
- 	case QCA_WCN3998:
--	case QCA_WCN6750:
- 		qcadev->bt_power->dev = &serdev->dev;
- 		err = qca_init_regulators(qcadev->bt_power, data->vregs,
- 					  data->num_vregs);
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+On Thu, Jan 30, 2025 at 05:31:16PM +0100, Nicolas Frattaroli wrote:
+> The Rockchip RK3588 SoC has two hardware RNGs accessible to the
+> non-secure world: an RNG in the Crypto IP, and a standalone RNG that is
+> new to this SoC.
+>=20
+> Add a binding for this new standalone RNG.
+>=20
+> The RNG is capable of firing an interrupt when entropy is ready, but
+> all known driver implementations choose to poll instead for performance
+> reasons. Hence, make the interrupt optional, as it may disappear in
+> future hardware revisions entirely and certainly isn't needed for the
+> hardware to function.
+>=20
+> The reset is optional as well, as the RNG functions without an explicit
+> reset. Rockchip's downstream driver does not use the reset at all,
+> indicating that their engineers have deemed it unnecessary.
+>=20
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  .../bindings/rng/rockchip,rk3588-rng.yaml          | 61 ++++++++++++++++=
+++++++
+>  MAINTAINERS                                        |  2 +
+>  2 files changed, 63 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.ya=
+ml b/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..dff843fa4bf9d5704bbcd1063=
+98328588d80b02d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rng/rockchip,rk3588-rng.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip RK3588 TRNG
+> +
+> +description: True Random Number Generator on Rockchip RK3588 SoC
+> +
+> +maintainers:
+> +  - Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3588-rng
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: TRNG AHB clock
+> +
+> +  # Optional, not used by some driver implementations
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  # Optional, hardware works without explicit reset
 
+These sorts of comments are not needed, "required" conveys this
+information.
+
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> +    bus {
+> +      #address-cells =3D <2>;
+> +      #size-cells =3D <2>;
+> +
+> +      rng@fe378000 {
+> +        compatible =3D "rockchip,rk3588-rng";
+> +        reg =3D <0x0 0xfe378000 0x0 0x200>;
+> +        interrupts =3D <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        clocks =3D <&scmi_clk SCMI_HCLK_SECURE_NS>;
+> +        resets =3D <&scmi_reset SCMI_SRST_H_TRNG_NS>;
+> +        status =3D "disabled";
+> +      };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index bc8ce7af3303f747e0ef028e5a7b29b0bbba99f4..7daf9bfeb0cb4e9e594b80901=
+2c7aa243b0558ae 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20420,8 +20420,10 @@ F:	include/uapi/linux/rkisp1-config.h
+>  ROCKCHIP RK3568 RANDOM NUMBER GENERATOR SUPPORT
+>  M:	Daniel Golle <daniel@makrotopia.org>
+>  M:	Aurelien Jarno <aurelien@aurel32.net>
+
+> +M:	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+^^
+tbh, not really sure this part of the change should be in this patch
+
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+> +F:	Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml
+>  F:	drivers/char/hw_random/rockchip-rng.c
+> =20
+>  ROCKCHIP RASTER 2D GRAPHIC ACCELERATION UNIT DRIVER
+>=20
+> --=20
+> 2.48.1
+>=20
+
+--hYobnhEFDnkdMhyO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5vIAQAKCRB4tDGHoIJi
+0qgrAQCzakFSQyHjHTH6QESUz0gqsobwUVK1Lds0RZkRNrR/OAD/dXxihZAQuiUY
+9ILx114VGQkUr92cCeWnQD49v7U/hwQ=
+=wfH8
+-----END PGP SIGNATURE-----
+
+--hYobnhEFDnkdMhyO--
 
