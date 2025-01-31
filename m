@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-142144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E9D0A24498
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 22:23:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E4A5A2449A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 22:23:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02AFF163811
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:23:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50DAA7A356A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034091F3FE2;
-	Fri, 31 Jan 2025 21:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186371F4266;
+	Fri, 31 Jan 2025 21:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AMhwrxun"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZVTh5YOW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24C71F3D5A;
-	Fri, 31 Jan 2025 21:23:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54361F3FFA
+	for <devicetree@vger.kernel.org>; Fri, 31 Jan 2025 21:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738358605; cv=none; b=uIgsKGntBqwBAu8DkjsV+2f4dYcubWlL7suDb9qEfx6D3cQjtt1AM7nF75GtuOEAYbqBvGsSZnplHk4+X0vVoXj2btBu1/xWVZZbJ3oZfVMBih1H+az75XEmfr4LshGyIMf3E5mFpPKp39SKOOdxrRFiJPaTaAXFyzew9NYhIWo=
+	t=1738358607; cv=none; b=sJ7Nbe2JAv2DJoqd3RA39gDPXsdHJtud7/IoVUdtJZcwbtF2vJyvjKs/6BNxb4dkhTmpYV0GpdkCb4D3BHV3ce67dSMmVJIzGyJNcgQl/AiqOL6vCmql+yG1fsmBUrQk58xTGX952Y9yt//FvBXBGasHmEOM6p2Pd+aGqHZQUok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738358605; c=relaxed/simple;
-	bh=/OS0LJz7wGEUpGR+VvSZsu8R7CgAohC+kmS8JtEiaVI=;
+	s=arc-20240116; t=1738358607; c=relaxed/simple;
+	bh=LhKmvruLeCM6t4BXmtrDutkIVF5ck5kKXhLD8OcRytk=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=YbNaQmEYM47t68UH4Aac+yH75a6eIa/umbrOr1VY3hfgr3P1/Dzm+SZBgu6Hk3V9TdGgG+bIuCEkRdFcb6RXASqT9BxwGtRKlFoXe/E1aTw57KsQf0GDS+xBrx/3DVi/WKu4Wx0PZiJcZFwdOXMb8FAuhPHcGN18D72vCKZQHQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AMhwrxun; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3A26C4CED1;
-	Fri, 31 Jan 2025 21:23:24 +0000 (UTC)
+	 Message-Id:Subject; b=DghSqF68XQCW6Qhsr310eptrRBgLOFF8iHF+IwC7XfyDtxdbGLq3HW3pcWNseI1KUBO/z+QUq2G6fFbeHU1RtnLXIQ4Aa7yjD38pi2dq4EPxoCwErs5IliE6VKwPrNwEVc8+tUn9Fy7kqFQmJsIwzn/FYS4uwZQbOcyqDVeOVBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZVTh5YOW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F4ECC4AF0C;
+	Fri, 31 Jan 2025 21:23:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738358605;
-	bh=/OS0LJz7wGEUpGR+VvSZsu8R7CgAohC+kmS8JtEiaVI=;
+	s=k20201202; t=1738358606;
+	bh=LhKmvruLeCM6t4BXmtrDutkIVF5ck5kKXhLD8OcRytk=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=AMhwrxuneDEerKPohzvNX4q54TznV3ECcDXgGN5gjOaRoDkjbtomCg7/2fV6fPYku
-	 VcV4M7zmZmqwqbbfHnZA+OPS+ykMcRQ3tNhmZ30B7Y4lp/4y/6LJTNMxh8ZPm+rqJ8
-	 XH5sL2NjUgq1lqPAI0uEQlpxVpeLrQDuo/6tjIg0JtVe3eefQZACbW8FwZImxUwKqA
-	 2yBOqp3XfXenCxWvNASz8upaFKPEq3DuMtg4Yr1C8hNfaepa+z0ppYlx1geJDnnVaD
-	 kzTvtkelBHO6e7z/yYZULxxLUrZTB+zWM4K0gyKmOo9Lul49qdGTVDAKzHcHav/k9X
-	 HPKd01fTMMsww==
-Date: Fri, 31 Jan 2025 15:23:24 -0600
+	b=ZVTh5YOWh7KdS1WWFsmOX/teeIRH8tzWoZ9VUyF7LyhG2xxVbfUIk3QiqJg2tWHTc
+	 DsHKurAgD5rAo2EWeZAyWdHQ5sYU+WareLJcK3JtdyGGts29C1Q30jtqfQk/q6IrOO
+	 nqkUI90KxJ58RkRHbuEEevxM+Q5ydG6akIHhS0zxGXNcGpnFsWMynXn/mKwk9FOYRe
+	 mtdrXcBzfKnsr1vvLMWl5JFEYO2sXZJysWBJQyAfrkMrVh3IFhORnET9fr4QyLkywo
+	 gOnnFZVd7Nu3uJJhrFjI/u2UdU8YsHRmEyWmyfusHFMWV3HmouHU2796jW1XiCeF9a
+	 KUDD3H6k5+QuQ==
+Date: Fri, 31 Jan 2025 15:23:25 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,68 +51,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, linux-arm-kernel@lists.infradead.org, 
- ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org, 
+Cc: linux-arm-kernel@lists.infradead.org, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, 
- Karl Chan <exxxxkc@getgoogleoff.me>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Artur Weber <aweber.kernel@gmail.com>
-To: Ferass El Hafidi <funderscore@postmarketos.org>
-In-Reply-To: <20250131200319.19996-1-funderscore@postmarketos.org>
-References: <20250131200319.19996-1-funderscore@postmarketos.org>
-Message-Id: <173835855352.46011.13506160179490240246.robh@kernel.org>
-Subject: Re: [PATCH 0/2] Add support for Xiaomi Mi TV Stick
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250131210236.36212-6-wsa+renesas@sang-engineering.com>
+References: <20250131210236.36212-6-wsa+renesas@sang-engineering.com>
+Message-Id: <173835855390.46028.13185945524234872285.robh@kernel.org>
+Subject: Re: [PATCH 0/4] ARM: dts: at91: calao_usb: fix various naming
+ problems
 
 
-On Fri, 31 Jan 2025 20:03:17 +0000, Ferass El Hafidi wrote:
-> From: Ferass El Hafidi <funderscore@postmarketos.org>
+On Fri, 31 Jan 2025 22:02:35 +0100, Wolfram Sang wrote:
+> Two patches deal with the either missed or mistyped vendor 'Calao'. The
+> other two patches deal with improper node names as reported by
+> dtbs_check.
 > 
-> This patch series aims to add initial support for the Xiaomi Mi TV
-> Stick.
+> Wolfram Sang (4):
+>   ARM: dts: at91: usb_a9263: fix wrong vendor
+>   ARM: dts: at91: use correct vendor name for Calao boards
+>   ARM: dts: at91: calao_usb: fix button nodes
+>   ARM: dts: at91: usb_a9g20_lpw: use proper mmc node name
 > 
-> Xiaomi Mi TV Stick is a small Amlogic-based Android TV stick released in
-> 2020, and known as `xiaomi-aquaman` internally (in the downstream kernel,
-> u-boot, ...)
-> Its specifications are as follows:
->  * Amlogic S805Y SoC (believed to be mostly identical to S805X)
->  * 8 GB eMMC
->  * 1 GB of RAM
->  * Android TV 9, upgradable to Android TV 10
-> 
-> There are multiple variants:
->  * 1. Green PCB, manufactured in 2020, known UART pinout (helpfully
->    labeled on the board)
->  * 2. Blue PCB, not much documentation about it, presumably manufactured
->    between 2021 and 2023
->  * 3. Green PCB, manufactured in 2023, known UART pinout, some layout
->    changes compared to the 2020 variant
-> 
-> Among these variants, there are many boards using multiple different
-> Wi-Fi chips.  Supporting all of them is out of scope for this patch
-> series.
-> 
-> As of the time of writing this has only been tested on the 3rd variant.
-> It is believed that software-wise all three work mostly the same (if we
-> don't count Wi-Fi), but testing on the other variants would still be
-> appreciated.
-> 
-> The devicetree is based on the Amlogic P241 DTS.
-> 
-> Ferass El Hafidi (2):
->   dt-bindings: arm: amlogic: add Xiaomi Mi TV Stick
->   arm64: dts: amlogic: add support for xiaomi-aquaman/Mi TV Stick
-> 
->  .../devicetree/bindings/arm/amlogic.yaml      |   1 +
->  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->  .../meson-gxl-s805y-xiaomi-aquaman.dts        | 311 ++++++++++++++++++
->  3 files changed, 313 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
+>  arch/arm/boot/dts/microchip/tny_a9260.dts          |  2 +-
+>  arch/arm/boot/dts/microchip/tny_a9260_common.dtsi  |  2 +-
+>  arch/arm/boot/dts/microchip/tny_a9263.dts          |  2 +-
+>  arch/arm/boot/dts/microchip/tny_a9g20.dts          |  2 +-
+>  arch/arm/boot/dts/microchip/usb_a9260.dts          |  2 +-
+>  arch/arm/boot/dts/microchip/usb_a9260_common.dtsi  |  6 ++----
+>  arch/arm/boot/dts/microchip/usb_a9263.dts          |  8 +++-----
+>  arch/arm/boot/dts/microchip/usb_a9g20-dab-mmx.dtsi | 10 ++++------
+>  arch/arm/boot/dts/microchip/usb_a9g20.dts          |  2 +-
+>  arch/arm/boot/dts/microchip/usb_a9g20_common.dtsi  |  2 +-
+>  arch/arm/boot/dts/microchip/usb_a9g20_lpw.dts      |  4 ++--
+>  11 files changed, 18 insertions(+), 24 deletions(-)
 > 
 > --
-> 2.47.1
+> 2.45.2
+> 
 > 
 > 
 
@@ -131,14 +110,9 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250131200319.19996-1-funderscore@postmarketos.org:
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/microchip/' for 20250131210236.36212-6-wsa+renesas@sang-engineering.com:
 
-arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dtb: pwm@86c0: clock-names: False schema does not allow ['clkin0']
-	from schema $id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
-arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dtb: leds: led-white:default-state:0: 'heartbeat' is not one of ['on', 'off', 'keep']
-	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
-arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dtb: leds: led-white: Unevaluated properties are not allowed ('default-state' was unexpected)
-	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+arch/arm/boot/dts/microchip/usb_a9263.dtb: /: failed to match any schema with compatible: ['calao,usb-a9263', 'atmel,at91sam9263', 'atmel,at91sam9']
 
 
 
