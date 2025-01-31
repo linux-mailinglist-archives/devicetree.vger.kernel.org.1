@@ -1,106 +1,260 @@
-Return-Path: <devicetree+bounces-142001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E85A23B2E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 10:20:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89994A23B39
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 10:22:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A133F188A03F
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 09:20:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 325577A14FA
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 09:21:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450D0155393;
-	Fri, 31 Jan 2025 09:20:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE7A187FE4;
+	Fri, 31 Jan 2025 09:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="fO5N0AY6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D0jI3E4Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A2CA1E885;
-	Fri, 31 Jan 2025 09:20:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 376E71E885;
+	Fri, 31 Jan 2025 09:21:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738315214; cv=none; b=VcHwgsEIP4WineT5QHwiUma9NzYTWaY1LECCHvVypNQjaeI1+eKlp8hDxfGVV7TeEOYQg9ZKre6a5PBSYXd/20o52s2OPNLjOX7Y/w4mIwEXYJVjuObDovLPN0AqHL61gsDGQmbf13jVcjZa5bjhfAalCCy84mhLBEKu19SwpAw=
+	t=1738315314; cv=none; b=XMHqR2P8V1Cq39NidZPcCVVwpIKWVcMOqr8YP8FnDjq3+UMBnha2d/KZMx0+RfXV496eiUx/jOEoDyWp/7DvjO/s2TB47BDMxnQTsamPM0lxvUfXgpPS59R6AlceNayvxBvQm78PGZrPc32J/0Q8Gd0evHbVdDTr12Zwdml+EVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738315214; c=relaxed/simple;
-	bh=uBO58v9Hrbhb+JQu8iwnHsYbOYM25bye45XXGOQWJfM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T8gHCRXirSqiF+6GI2zAp+wG6rrqK8HNBzdj0Pk+j5Jni33uqILT2Lj8D2VMaoXNvmf1K1aOArinvkchrRx1s6Y+pyfU7+/DYBnc76/oZtWltsjzrnFWDa0l2zkNRYB6EwCWL7eyISgHB7VGuCs6fI9eFPe4kp+DbnT0a560jy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=fO5N0AY6; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=0B7vxdS52txOQYr8MAUjOPGxnkb0yKArb/TqnTim/JE=; b=fO5N0AY6e9Fe7eGia4ydGVl/AS
-	U5f/5AQpGP2olKzC34QoHN1a2he0xkIe1t39UyugTbsuF0DaAMy4hwn9jxFduUIRVRtEYQXipSgjL
-	lcrYQ0CM0Lzx2V8ORCRr7JriJ4M5AMdoUpMjOpPQoM5w4cmWy/TxbvOArken6/B4lGgYrduzcJM7Q
-	SaXdPbZZjhVhyUnYfmmHnCvW/azD18jKc3IiupUbz/JuKTLqXZ+3T55naGCHmLvoIj2QxpluMUx5c
-	U0TBimeFUZaZSLUxwj6rHskipMgsQRG5sfccRnUvxhennAWMQi6skyE3UQ+eCLWDA8xpmqUwS2nT7
-	UPT5HCaQ==;
-Received: from [212.111.254.164] (helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tdnC4-0006Gx-0H; Fri, 31 Jan 2025 10:20:08 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Olivier Benjamin <olivier.benjamin@bootlin.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Olivier Benjamin <olivier.benjamin@bootlin.com>,
- Dragan Simic <dsimic@manjaro.org>, Ondrej Jirman <megi@xff.cz>
-Subject: Re: [PATCH 0/2] Describe the cameras in the PinePhone Pro dts
-Date: Fri, 31 Jan 2025 10:20:06 +0100
-Message-ID: <5127541.31r3eYUQgx@phil>
-In-Reply-To: <20250119-camera-v1-0-320be4f0dc2b@bootlin.com>
-References: <20250119-camera-v1-0-320be4f0dc2b@bootlin.com>
+	s=arc-20240116; t=1738315314; c=relaxed/simple;
+	bh=twC3YcyOJMBbuTM9ONY4IglfwfU6HbJbELN5+LXfSV0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ja20FAqzhKZ93cVTmml2TKDEVEe2VURMbK1CrpAqUbNRscib/G0eQTxLCsEXXMcq6W16r/HXXq99mggt0TKUREBFFZVSl9yLBsGIXkT8l/2Vx0vfOjRLD/FbkWnBc8++VAr35JHZdvWUapgvQ1kZav5EbNENrC3nC7lXujBh6Q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D0jI3E4Q; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2ef6c56032eso2315658a91.2;
+        Fri, 31 Jan 2025 01:21:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738315312; x=1738920112; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IeN22OSzEjvt98Q9TD9KISzsf453Gty7d8dO0aAuNd8=;
+        b=D0jI3E4Qcta5t6yU+6in/SIPiENcsSQb46YOuEQ0bOcrpC0rhL1uugK/4RAjKI+3HQ
+         RmbNoQU+V47+bDl65zmto716Tlx7yBOoiAUj2CBdBxFoJqbc/SOFY7OAg2lZR1+mhrDv
+         DJGirXKGZI74AD9hvW9Ng2cDZtCNCpPTR2FXbqy7JhbKUIkTqwkiJaIiE46VNvB8DO0P
+         03m3x9B5cA70IACADJL+Mflb3V1x44+OUnsxWP4TRKGRRcOxeqO5Dk/tRSfGO1PpBX9K
+         43vVBGJYWkCgFfl9AmVKHQf/YGnlV0VRgUSkTUrvNtUk7XruPVAXGk/wRkxvv/eE+Sdq
+         qDhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738315312; x=1738920112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IeN22OSzEjvt98Q9TD9KISzsf453Gty7d8dO0aAuNd8=;
+        b=fH6PAkW5M3FrJNq59ZV5hQQttBZhSmgp7g4kgFaPF6cbxgcJeOF4ujyxIWj+wDdHZA
+         USRQQvlc1CmRMNAw2IIlxVY6rW7xVBlXLTnI1ukZGgXNvqQxoB86cSphoPHYGctoNGA7
+         Wq2eBto0ujEcSrR2QHCSlof52tC4wLH1aTVHjHr01FsVcUj8n2uOLaorECaoZrvN25Bw
+         1RbK03W9pVfRhiYy03LVxD2aft54w4NbUEBZy7zjx9A4zV7IT3vdck0XVSVdC+naep/L
+         jHurg523QYq1TbumTGYEk7kdIEAH7+UG1jAWdxM7WfTsg6fg8D4doq6J91K1K+eYU07s
+         DAww==
+X-Forwarded-Encrypted: i=1; AJvYcCW7vAp76usIGr3Zs2+Doac1st/Y2Hw/DtTjeC/HLGvMuy9gtPpEST/G2G14LsTSp9UEsyK6G3TDrD1+3Vw=@vger.kernel.org, AJvYcCW9Fxzy5/19Q3d43r6SWNiKrwm7mSIpQ/O/SJ+/ZpjUQHgdd3AtdGKzxJPa6mhUdabvOO5oWoDMJkreGQ6+@vger.kernel.org, AJvYcCWCGsrPlUWWbZoN+2zGTmuHYANLWn0QxV+MvkncTQHSWk5Plg4od3NIeqhuCPUQ7ZvUO8/RMRTCHGNwMvsh@vger.kernel.org, AJvYcCXWgo4u7y9IxCa5cJhA6K/iiocXCpccsjwlRxJRuGOs791XZ17aa0cqc7dId+kThnqE1FvFgDrbbqppxn0IzphNqZRESA==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6KnW2wYNRtzfaAnsKEVtv9pKy6xNFn5eegh8/UVxP6sKXemUO
+	MFaTgUv9WTKwhcuByKm2wg608VOiW6sDwYKEZ8WYLd/IsYsbDYg0FfevLC4T
+X-Gm-Gg: ASbGnct1WXgO4+w0RdrH1J4thsQxo8K64Cvwo4p+1+ojjYiZYGEo+9taVzYzpRHhaE4
+	IIygMwPVUHRtfQTEAE1vr/tEQHhaRd8zq/isSiXHZR1j3n2A8IX0RNiD9LNEnAyUdwC07Tdryh1
+	k7fuzgWGAau+hoNrRhvD5NbphXkHMK0WFdLMPXWmDJuv6c2GRI9H78Dnzmr3fhnUglLnEyHkFNC
+	m6jzCmGrMAOsVtb4uz6KgOpOFV1lZwRsXji+rNAFYM7AloXVyY5OXt0yacJOLeWKDCj2Jf/srg6
+	1SyY8H8o//+w2726
+X-Google-Smtp-Source: AGHT+IGioM1AR/uwmWOKqUK4+pcO/uZw1qNjjKt/SsLAHjmfzc5juJtHOP5fQMHUCU2+AXs0hRZwMg==
+X-Received: by 2002:a17:90b:2d47:b0:2ee:cdea:ad91 with SMTP id 98e67ed59e1d1-2f83abda2f2mr16207596a91.15.1738315312218;
+        Fri, 31 Jan 2025 01:21:52 -0800 (PST)
+Received: from SC8280XP.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f83bf93ef3sm5366629a91.30.2025.01.31.01.21.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Jan 2025 01:21:51 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	=?UTF-8?q?Ilpo=20J=C3=83=C2=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	Pengyu Luo <mitltlatltl@gmail.com>
+Subject: [PATCH RESEND v6 0/3] platform: arm64: Huawei Matebook E Go embedded controller
+Date: Fri, 31 Jan 2025 17:21:36 +0800
+Message-ID: <20250131092139.6065-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
+This adds binding, drivers and the DT support for the Huawei Matebook E Go
+(sc8280xp-based) Embedded Controller which is also found in Huawei Matebook
+E Go LTE (sc8180x-based), but I don't have the sc8180x one to perform
+tests, so this series enable support for sc8280xp variant only, this series
+provides the following features:
 
-Am Sonntag, 19. Januar 2025, 23:56:58 MEZ schrieb Olivier Benjamin:
-> This series adds support for the Pine64 PinePhone Pro's rear and front
-> cameras in Device Tree.
-> This is based on some of Ondrej Jirman's patches hosted in his tree at
-> https://codeberg.org/megi/linux, but I have also fully reviewed and
-> re-written the code from the RK3399 datasheet, the PinePhone Pro
-> schematic, and the IMX258-0AQH5 software reference manual.
-> 
-> I have tested these changes on my PinePhone Pro and am able to take
-> photos from both cameras using libcamera's cam.
-> 
-> Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
-> ---
-> Olivier Benjamin (2):
->       arm64: dts: PinePhone Pro: describe I2c Bus 1 and IMX258 world camera
->       arm64: dts: PinePhone Pro: describe the OV8858 user camera
+- battery and charger information report
+- charging thresholds control
+- FN lock (An alternative method)
+- LID switch detection
+- Temperature sensors
+- USB Type-C altmode
+- USB Type-C PD(high power)
 
-Patch subject should be
-"arm64: dts: rockchip: describe the OV8858 user camera on PinePhone Pro"
+Thanks to the work of Bjorn and Dmitry([1]), the work of Nikita([2]),
+writing a EC driver won't be suffering. This work refers a lot to their
+work, also, many other works. I mentioned them in commit messages.
 
-patches need an update to accomodate
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=5c96e63301978f4657c9082c55a066763c8db7b1
+Depends: https://lore.kernel.org/linux-arm-msm/20241220160530.444864-1-mitltlatltl@gmail.com
 
-And please name the new regulator nodes similarly
-(regulator-foo)
+[1] https://lore.kernel.org/all/20240614-yoga-ec-driver-v7-0-9f0b9b40ae76@linaro.org/
+[2] https://lore.kernel.org/all/20240315-aspire1-ec-v5-0-f93381deff39@trvn.ru/
 
-Thanks a lot
-Heiko
+base-commit: 853d1f41ba73e78d22e7075d9a95670aab187eba
 
+Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+---
+Changes in v6 RESEND:
+- add Reviewed-by tag (Ilpo)
+- remove extra line
+- rebased on tag next-20250131
+- Link to v6: https://lore.kernel.org/linux-arm-msm/20250123152559.52449-1-mitltlatltl@gmail.com
+
+Changes in v6:
+- refactor one ternary operator expression (Ilpo)
+- replace one expression with &= (Ilpo)
+- use devm_mutex_init() instead of mutex_init() (Ilpo)
+- add Reviewed-by tag for devicetree (Konrad)
+- add explicit cast (void *) to fix warnings when compiling
+- rebased on tag next-20250123
+- Link to v5: https://lore.kernel.org/linux-arm-msm/20250117140348.180681-1-mitltlatltl@gmail.com
+
+Changes in v5 RESEND:
+- rebased on tag next-20250120
+- Link to v5: https://lore.kernel.org/linux-arm-msm/20250117140348.180681-1-mitltlatltl@gmail.com
+
+Changes in v5:
+- handle return code of i2c_transfer() (Bryan)
+- rename threshold validatition function (Bryan)
+- add enumerates and defines for registers (Bryan)
+- drop extra line in header (Heikki)
+- add Reviewed-by tag for devicetree (Krzysztof)
+- Link to v4: https://lore.kernel.org/linux-arm-msm/20250116111559.83641-1-mitltlatltl@gmail.com
+
+Changes in v4:
+- use new API to register hwmon device instead of the deprecated one. (Guenter)
+- add Reviewed-by tag for dt-binding (Krzysztof)
+- drop unnecessary header (Ilpo)
+- use guard mutex (Ilpo)
+- improve comments and naming (Ilpo)
+- add a shallow copy version of extr_resp() (Ilpo)
+- add functions to handle resp and req whose size is 1
+- drop PSY and UCSI subdrivers, commit them once the base driver is upstreamed
+- Link to v3: https://lore.kernel.org/linux-arm-msm/20250113175049.590511-1-mitltlatltl@gmail.com
+
+Changes in v3:
+- Link to v2: https://lore.kernel.org/linux-arm-msm/20250105174159.227831-1-mitltlatltl@gmail.com
+
+dt-binding:
+- drop generic compatibles. (Krzysztof)
+- remove '+' to use literal block style. (Krzysztof)
+
+ec:
+- take struct gaokun_ucsi_reg as parameter (Heikki)
+- add almost all kernel doc comments (Krzysztof, Heikki)
+
+ucsi:
+- drop unnecessary ucsi quirks (Dmitry)
+- add UCSI v1.0 to ucsi.h (Heikki)
+- use gaokun_ucsi_read_cci() to read cci directly (Heikki)
+- drop unnecessary gaokun_ucsi_get_port_num (Heikki)
+- rename member port_num => num_ports (Heikki)
+- fix completion, forgot to signal threads in previous version
+
+dt:
+- fix indentation (Konrad)
+- add a link between role switch and connector
+
+Changes in v2:
+- Link to v1: https://lore.kernel.org/linux-arm-msm/20241227171353.404432-1-mitltlatltl@gmail.com
+
+global:
+- drop qcom's products(i.e. sc8180x, sx8280xp) everywhere, use 'product'-based instead(Krzysztof, Bryan)
+- drop Cc Nikita Travkin, we had discussed the device in PM.
+- add myself to MAINTAINERS
+
+dt-binding:
+- fix building (Rob Herring (Arm))
+- remove unnecessary code (Krzysztof)
+- add bugzilla documentation, insights of gaokun(see [1] or patch[1/5]) (Krzysztof, Aiqun(Maria))
+- explain the difference between PMIC GLink and gaokun EC (Aiqun(Maria))
+
+ec:
+- use Linux style comments (Krzysztof)
+- add a comment for mutex lock (Krzysztof)
+- add more kerneldoc for exported functions (Krzysztof)
+- eliminate unnecessary conditions (Bryan)
+- add a macro for check thresholds (Bryan)
+- improve English (Bryan)
+- use existing sysfs interface(hwmon, psy) whenever possible (Krzysztof)
+- use __le16 and related endianess conversion function for temp data (Ilpo)
+- drop alias for packet headers (Ilpo)
+- avoid hardcoding i2c msgs size (Aiqun(Maria))
+- add a comment for the sleep in critial region (Bryan, Aiqun(Maria))
+- use macro to construct packet (Bryan, Aiqun(Maria))
+
+wmi:
+- dropped
+
+ucsi:
+- reorder headers (Bryan)
+- a comment for the orientation map macro (Bryan)
+- make mux mode map more explicit(minus six is very clear now) (Bryan, Dmitry)
+- handle port update exceptions return (Bryan)
+- a comment for the UCSI quirks (Dmitry)
+- use the inline hint for the short register function (Dmitry)
+- use the API with delay to handle register instead of a direct sleep (Bryan)
+- handle unfinished initialization early
+
+psy:
+- add charging related sysfs to here (Krzysztof, Dmitry)
+- document ABI for power_supply sysfs (Krzysztof)
+- drop charging threshold, use smart charging instead
+
+dts:
+- correct indentation, properties' order. (Konrad)
+
+Pengyu Luo (3):
+  dt-bindings: platform: Add Huawei Matebook E Go EC
+  platform: arm64: add Huawei Matebook E Go EC driver
+  arm64: dts: qcom: gaokun3: Add Embedded Controller node
+
+ .../bindings/platform/huawei,gaokun-ec.yaml   | 124 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts | 163 ++++
+ drivers/platform/arm64/Kconfig                |  20 +
+ drivers/platform/arm64/Makefile               |   1 +
+ drivers/platform/arm64/huawei-gaokun-ec.c     | 825 ++++++++++++++++++
+ .../linux/platform_data/huawei-gaokun-ec.h    |  79 ++
+ 7 files changed, 1219 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/platform/huawei,gaokun-ec.yaml
+ create mode 100644 drivers/platform/arm64/huawei-gaokun-ec.c
+ create mode 100644 include/linux/platform_data/huawei-gaokun-ec.h
+
+-- 
+2.47.1
 
 
