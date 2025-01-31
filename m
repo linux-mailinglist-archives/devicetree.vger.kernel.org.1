@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F0DEA239DA
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 08:20:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04C11A23A1A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 08:27:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A76A3A951B
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 07:20:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1306188A7B5
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 07:27:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D707B1487E1;
-	Fri, 31 Jan 2025 07:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF93156F4A;
+	Fri, 31 Jan 2025 07:26:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HmscNsAT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hajy3JfK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49284683;
-	Fri, 31 Jan 2025 07:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC38155C88;
+	Fri, 31 Jan 2025 07:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738308046; cv=none; b=uQOmXShaAMSBZ6D3U2aLwgpkEEOb2nipfD9UUi8ote7MdDzk6y0lrfHvgp9ilKPCTaVtqtC2xBp88LGSLupBFp0HMbTVlzjNcxY5OdLv+5a/OpbQ2YUPwQd3otKRTvnJU0zQRD4UllWas3DCqHWTxVTxO9j5ZGC4iQhMBCDv7aA=
+	t=1738308411; cv=none; b=G+tw3sI40WuoIX159zr4eJDTZkHXSu9SxSRAjF4lBSF+CNncR0RzljMEBiKFIbRiKv6vhy/pZaMVSk//Iji4fIYJrkjDw3eRGixvCb88znr1SvvpLLcOBA97xkXIzrHvLwENlpWa5O+PjYDQxyufDdU2xVsBOrKRmPwDFpRJHYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738308046; c=relaxed/simple;
-	bh=T3LERifbHz41jcQeAfmYdIhO9AWtPypjY6kagxa/IuE=;
+	s=arc-20240116; t=1738308411; c=relaxed/simple;
+	bh=Q2e7UALnZghKuCGZEzriVZeAWWaFg32d8OizcQKQJh0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mTwJ85t4ZH4mEN2A3aEKSqHwM4MrFDo4+5HSVd7IfAhGcSmKZNqMeWF2bzhJGP/ox07eGa2/vvcRersbqj4ydLYs/nFPLQ6SG3agUviRPGesqct25ydU74w5aOF1TkFaCxuc4hSahiyJXOebI6s4c+eDQSWBJRPKvmtagMf/lPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HmscNsAT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C654C4CED1;
-	Fri, 31 Jan 2025 07:20:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=lcCUguxvPvlqonRXtWQfhiV+ZCcvqJZ5PJUjUjyhYo9uZVoEEFGQ6H3uNIStt3IpdvwQI6ba4EdvZjVPHBthth5+b/xBUyPbsj05f6r4cBQM/Anl85qAfV8tMzOJnYTJKeR2pK6L+2b+ef9gWlxhlFkVI+Cb26oMtUcHpu8giXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hajy3JfK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B62F5C4CED1;
+	Fri, 31 Jan 2025 07:26:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738308046;
-	bh=T3LERifbHz41jcQeAfmYdIhO9AWtPypjY6kagxa/IuE=;
+	s=k20201202; t=1738308410;
+	bh=Q2e7UALnZghKuCGZEzriVZeAWWaFg32d8OizcQKQJh0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HmscNsATcABNUAO/htu8KdUb+RgopedfxYTL3nRQlvDkv2Ma5U+rW+ddUh7nLrR23
-	 Hr7EtxeHexDWcEZ/nEA8ORIbzc7d0Mk0pW8U20uVH8kEDnlevcNFnUzlBF8Z+aVy88
-	 /fJWhHokrJSh/7trQT7wFO6OzsrmpDLnJc+O9xlT6v1T2Or4fvZCGpyoStryB6f2TP
-	 RlTbthiMnE9sTovKOHQuAz91QtETnrBH1KfVIugYsOm01g9aDKgYzx7IEWMLPfd2Px
-	 EZV8hcm/rC+CFbCHsU/nJLHZCELU/zNkzasfHbPaLdxWKGrdvviYNmtYEI7EUu2zVi
-	 y52ZanYynoxJA==
-Message-ID: <deef6dcd-27a0-4109-9788-a755fd390f55@kernel.org>
-Date: Fri, 31 Jan 2025 08:20:40 +0100
+	b=Hajy3JfKR7x9BURH9yzp3wI29pfSM8ktf5VzU73hgiA+MiQ/TBigT+jT6AG3kIlnX
+	 bvdysWvyp1wxcp49pQIfhiva0KLf8MlabSUgPjDfOo4Sw+eac6qGg00aik53VHkeed
+	 qLMslTRJMm+Xw+6ZzVl0JL6Syo2JuLsyTJYWfbLq3gs7OmUDfx6wzUEJ/XPnyEjVd4
+	 a8BDD6rKgDElsxltFeJ+Kh0/X3BBWUo8HIotbADc3I/lFRK0RKvseWbgw05p4Npqou
+	 u9aIbKbSwNZOVu489THEMc2KeSqf4dyvph2funwT2/FL1HUivxAfkss6jlP9VRkP0d
+	 mn3jk1jrcjDcQ==
+Message-ID: <3e020ca6-025e-4a88-9aaa-a432d8aa668d@kernel.org>
+Date: Fri, 31 Jan 2025 08:26:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] nvmem: imx-ocotp: Support accessing controller for
- i.MX8M Nano
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250130130101.1040824-1-alexander.stein@ew.tq-group.com>
- <20250130130101.1040824-4-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: Add MDIO interface to
+ rtl9301-switch
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc: "lee@kernel.org" <lee@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "tsbogend@alpha.franken.de"
+ <tsbogend@alpha.franken.de>, "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+ "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+ "sander@svanheule.net" <sander@svanheule.net>,
+ "markus.stockhausen@gmx.de" <markus.stockhausen@gmx.de>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
+ <20250120040214.2538839-3-chris.packham@alliedtelesis.co.nz>
+ <20250122-macho-flat-sawfly-7ca93d@krzk-bin>
+ <db76d5ab-3eda-439d-8b92-c0423d1e39c8@alliedtelesis.co.nz>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,37 +118,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250130130101.1040824-4-alexander.stein@ew.tq-group.com>
+In-Reply-To: <db76d5ab-3eda-439d-8b92-c0423d1e39c8@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/01/2025 14:01, Alexander Stein wrote:
-> +
-> +static int imx_ocotp_grant_access(struct ocotp_priv *priv, struct device_node *parent)
-> +{
-> +	struct device *dev = priv->dev;
-> +
-> +	for_each_available_child_of_node_scoped(parent, child) {
-> +		struct of_phandle_args args;
-> +		u32 id, idx = 0;
-> +
-> +		while (!of_parse_phandle_with_args(child, "access-controllers",
-> +						   "#access-controller-cells",
-> +						   idx++, &args)) {
-> +			of_node_put(args.np);
-> +			if (args.np != dev->of_node)
+On 22/01/2025 21:53, Chris Packham wrote:
+>>>         };
+>>> +
+>>> +      mdio-controller {
+>> No, no resources here, no unit address. Look at other nodes - they have
+>> the resource, the address. Mixing such nodes is clear indication this is
+>> not correct hardware description and you do this only for Linux.
+>>
+>> Fold child device into parent.
+> 
+> In this particular case all the mdio stuff is actually contained to a 
+> range starting at offset 0xca00. I dropped it because it was simpler in 
+> the driver to use the full 16-bit address rather than trying to use 
+> offsets from the base address that didn't correspond to the datasheet. 
+> As you've highlighted that's making the dt-binding impose driver 
+> specifics so would adding back `mdio-controller@ca00` and `reg = <0xca00 
+> 0x200>;` be OK even if the driver doesn't actually use them?
 
-You are using args.np after dropping the reference.
 
-> +				continue;
-> +
-> +			/* Only support one cell */
-> +			if (args.args_count != 1) {
-> +				dev_err(dev, "wrong args count\n");
-> +				continue;
-> +			}
-> +
-
+If this matches the hardware, then yes.
 
 Best regards,
 Krzysztof
