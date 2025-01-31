@@ -1,166 +1,260 @@
-Return-Path: <devicetree+bounces-142059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0766AA23F9C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 16:26:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E69A23FA3
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 16:27:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0E8B3AA0F8
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 15:26:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E9B97A4252
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 15:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D7CF1E7C3B;
-	Fri, 31 Jan 2025 15:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30AED1E7648;
+	Fri, 31 Jan 2025 15:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iMJ4FzvJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kCkLUV0C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1133D1E7648;
-	Fri, 31 Jan 2025 15:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0020F1E5726;
+	Fri, 31 Jan 2025 15:26:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738337163; cv=none; b=qgRUJag90WfvQrFdGE5JGcW3s+alG/9u+oJGmiuLWc7hgWc/kQYsdOcdQPjib9FpogkaJft70UqnaxmG+TkQshTaq2dWoCAlPdvh0ZvXt9vMdIg1UelzDjH5LjyTIDu0oq9yO9cR36HVtDlzHdkTwyd0p8yBqr8jwqfitA1LHu4=
+	t=1738337198; cv=none; b=lgFWRS84FNZgkZrGHrjiV7lGyj5s11bdmpy4g3fY9jHBYby1722GHyLobNvzCic0tu0IA9iwUKivbrTBOcjTPs5sAwHNRSKksA3ukaU13MtR7JwMORGWQOwvNMw66FgtTji/rDzB4v3iDmTR69Sw0DYKDmVZXKFdHBmFfEYiUpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738337163; c=relaxed/simple;
-	bh=jgBL2SB/ocuHszVnx0iYyXxLZskVjZaci4SLkHx3hxs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sFsNQpKtpGR0oGlPVTIMUSxg0ci6X2ilccETqwoo1QhobmKt+yirK/5qk8b2QTRWjffIkHCdMoQONHuuAkN0MIktxADrKW9SpuQK2lU0jIYaG8QIGD1z+rGZB1Bu0pqRFE8He0laatxa/hj34e8eLxq3lMLFog6V8HUJCBFY0k8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iMJ4FzvJ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1738337159;
-	bh=jgBL2SB/ocuHszVnx0iYyXxLZskVjZaci4SLkHx3hxs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=iMJ4FzvJZG5vIGe3vxqjf3l0foEdIcarr7iKJl/CrnkMf4CowcjTRMwDNIGXBIHkb
-	 VdMPzbcKfKSyz9cUxm+5L3/nBiLV4Xn/a5isVKS6tXsGkkQQ5ngAkUR4Gf1iak9y0T
-	 hDZzFNr6eWBM7/W6s5yv1sbo2iaclOtJmHE1xfnnTjLd+SvQgMGYXZZLb7WDSm7RcB
-	 +8jkuMMPJL056AWrfwyhKOaaJYzd8wAGHv350ZfZTiCcaEUOX948fK6PbIkV0v73ND
-	 dlsmJZgC4QQcND/GER6oLIk0sLDD7qAoOar+aYGXHrzMu3UjR3+abK9HhcYTRvshp6
-	 UMH7pNMnEiJRQ==
-Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 09E9917E1067;
-	Fri, 31 Jan 2025 16:25:54 +0100 (CET)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1738337198; c=relaxed/simple;
+	bh=2ULc8BQm7YXjgGqlZjsV9DB9CeqZcoDXnGE2In5vW8Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dnou3waagGbDmSIvH7f+VFIxlzcdurTliQaikcRKN8brL3/+e0uzr7gygwqFjyP8aMmdb7ZItWlQizD3VZqKoaqM29mf1SwO4elejX8oKmj4fejcrZBCsVmrEYqsyedXo7vZ6jj2EFlAV+ujksnaPSRZincFpKfnDRR/Ugha1aY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kCkLUV0C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22F83C4CED1;
+	Fri, 31 Jan 2025 15:26:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738337197;
+	bh=2ULc8BQm7YXjgGqlZjsV9DB9CeqZcoDXnGE2In5vW8Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kCkLUV0CAuTQQxKl8ODLqJGj0vdDlwr8WZoM5FlP8aCtVGSWsRVh7dprcddJe6qeP
+	 r0ST2yxkOx1tHjnjcTaiOzp8UgCKZCDquNy003DM0gYSEURdLXQtlpeMxGBWQBxEQ2
+	 sFbc9sqGtmkJQjSwFqVVEq6j5OBw2IzqpMcyQ/3U5whp/KyHOs5Z/cBFe+Doa9OSpg
+	 0mE7A9znT6OLiO3nQopvgk2Xdv95IxRs8kAeSg/RKDvsn8H5l+QkcNcpxASZ8fM/9J
+	 NLYO6mSt0WVcTytQCSHV0CL3XfO66ZTBHVBnVS9vYuu0kaSlakNKfjy7BHXxyoF+OH
+	 GWKpFpl/Cor7A==
+Date: Fri, 31 Jan 2025 09:26:36 -0600
+From: Rob Herring <robh@kernel.org>
+To: Mahesh Rao <mahesh.rao@intel.com>
+Cc: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Jianfeng Liu <liujianfeng1994@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Sugar Zhang <sugar.zhang@rock-chips.com>,
-	Algea Cao <algea.cao@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	kernel@collabora.com
-Subject: [PATCH v4 2/2] arm64: dts: rockchip: Add HDMI0 audio output on rock-5b
-Date: Fri, 31 Jan 2025 10:23:22 -0500
-Message-ID: <20250131152438.2891507-3-detlev.casanova@collabora.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250131152438.2891507-1-detlev.casanova@collabora.com>
-References: <20250131152438.2891507-1-detlev.casanova@collabora.com>
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Wu Hao <hao.wu@intel.com>, Ho Yin <adrian.ho.yin.ng@altera.com>,
+	Niravkumar L Rabara <nirav.rabara@altera.com>,
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Mahesh Rao <mahesh.rao@altera.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: firmware: stratix10: Convert to
+ json-schema
+Message-ID: <20250131152636.GA3454395-robh@kernel.org>
+References: <20250131-socfpga_sip_svc_misc-v2-0-eeed4ebc35f9@intel.com>
+ <20250131-socfpga_sip_svc_misc-v2-2-eeed4ebc35f9@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250131-socfpga_sip_svc_misc-v2-2-eeed4ebc35f9@intel.com>
 
-Use the simple-audio-card driver with the hdmi0 QP node as CODEC and
-the i2s5 device as CPU.
+On Fri, Jan 31, 2025 at 06:17:25PM +0800, Mahesh Rao wrote:
+> Convert intel,stratix10-svc service layer devicetree
+> binding file from freeform format to json-schema.
+> 
+> Also added DT binding for optional stratix10-soc
+> FPGA manager child node.
+> 
+> Signed-off-by: Mahesh Rao <mahesh.rao@intel.com>
+> ---
+>  .../bindings/firmware/intel,stratix10-svc.txt      | 57 -------------
+>  .../bindings/firmware/intel,stratix10-svc.yaml     | 94 ++++++++++++++++++++++
+>  2 files changed, 94 insertions(+), 57 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/intel,stratix10-svc.txt b/Documentation/devicetree/bindings/firmware/intel,stratix10-svc.txt
+> deleted file mode 100644
+> index 6eff1afd8daf91714d6a18859667d2607e707da7..0000000000000000000000000000000000000000
+> --- a/Documentation/devicetree/bindings/firmware/intel,stratix10-svc.txt
+> +++ /dev/null
+> @@ -1,57 +0,0 @@
+> -Intel Service Layer Driver for Stratix10 SoC
+> -============================================
+> -Intel Stratix10 SoC is composed of a 64 bit quad-core ARM Cortex A53 hard
+> -processor system (HPS) and Secure Device Manager (SDM). When the FPGA is
+> -configured from HPS, there needs to be a way for HPS to notify SDM the
+> -location and size of the configuration data. Then SDM will get the
+> -configuration data from that location and perform the FPGA configuration.
+> -
+> -To meet the whole system security needs and support virtual machine requesting
+> -communication with SDM, only the secure world of software (EL3, Exception
+> -Layer 3) can interface with SDM. All software entities running on other
+> -exception layers must channel through the EL3 software whenever it needs
+> -service from SDM.
+> -
+> -Intel Stratix10 service layer driver, running at privileged exception level
+> -(EL1, Exception Layer 1), interfaces with the service providers and provides
+> -the services for FPGA configuration, QSPI, Crypto and warm reset. Service layer
+> -driver also manages secure monitor call (SMC) to communicate with secure monitor
+> -code running in EL3.
+> -
+> -Required properties:
+> --------------------
+> -The svc node has the following mandatory properties, must be located under
+> -the firmware node.
+> -
+> -- compatible: "intel,stratix10-svc" or "intel,agilex-svc"
+> -- method: smc or hvc
+> -        smc - Secure Monitor Call
+> -        hvc - Hypervisor Call
+> -- memory-region:
+> -	phandle to the reserved memory node. See
+> -	Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> -	for details
+> -
+> -Example:
+> --------
+> -
+> -	reserved-memory {
+> -                #address-cells = <2>;
+> -                #size-cells = <2>;
+> -                ranges;
+> -
+> -                service_reserved: svcbuffer@0 {
+> -                        compatible = "shared-dma-pool";
+> -                        reg = <0x0 0x0 0x0 0x1000000>;
+> -                        alignment = <0x1000>;
+> -                        no-map;
+> -                };
+> -        };
+> -
+> -	firmware {
+> -		svc {
+> -			compatible = "intel,stratix10-svc";
+> -			method = "smc";
+> -			memory-region = <&service_reserved>;
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/firmware/intel,stratix10-svc.yaml b/Documentation/devicetree/bindings/firmware/intel,stratix10-svc.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..e30e79d4c3150f90993e728320e9ef90d484a10d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/intel,stratix10-svc.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/intel,stratix10-svc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Intel Service Layer Driver for Stratix10 SoC
+> +
+> +maintainers:
+> +  - Dinh Nguyen <dinguyen@kernel.org>
+> +  - Mahesh Rao <mahesh.rao@altera.com>
+> +
+> +description:
 
-The simple-audio-card,mclk-fs value is set to 128 as it is done in
-the downstream driver.
+You need '>' on the end to preserve paragraphs.
 
-The #sound-dai-cells value is set to 0 in the hdmi0 node so that it can be
-used as an audio codec node.
+> +  Intel Stratix10 SoC is composed of a 64 bit quad-core ARM Cortex A53 hard
+> +  processor system (HPS) and Secure Device Manager (SDM). When the FPGA is
+> +  configured from HPS, there needs to be a way for HPS to notify SDM the
+> +  location and size of the configuration data. Then SDM will get the
+> +  configuration data from that location and perform the FPGA configuration.
+> +
+> +  To meet the whole system security needs and support virtual machine requesting
+> +  communication with SDM, only the secure world of software (EL3, Exception
+> +  Layer 3) can interface with SDM. All software entities running on other
+> +  exception layers must channel through the EL3 software whenever it needs
+> +  service from SDM.
+> +
+> +  Intel Stratix10 service layer driver, running at privileged exception level
+> +  (EL1, Exception Layer 1), interfaces with the service providers and provides
+> +  the services for FPGA configuration, QSPI, Crypto and warm reset. Service layer
+> +  driver also manages secure monitor call (SMC) to communicate with secure monitor
+> +  code running in EL3.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - intel,stratix10-svc
+> +      - intel,agilex-svc
+> +
+> +  method:
+> +    description: |
+> +                 Supervisory call method to be used to communicate with the
+> +                 secure service layer.
+> +                 Permitted values are:
+> +                 - "smc" : SMC #0, following the SMCCC
+> +                 - "hvc" : HVC #0, following the SMCCC
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  1 +
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 19 +++++++++++++++++++
- 2 files changed, 20 insertions(+)
+Indent by 2 more than 'description'.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index 8cfa30837ce72..790c1c25a3e41 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -1394,6 +1394,7 @@ hdmi0: hdmi@fde80000 {
- 		reset-names = "ref", "hdp";
- 		rockchip,grf = <&sys_grf>;
- 		rockchip,vo-grf = <&vo1_grf>;
-+		#sound-dai-cells = <0>;
- 		status = "disabled";
- 
- 		ports {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index d597112f1d5b8..1909078538367 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -49,6 +49,21 @@ hdmi0_con_in: endpoint {
- 		};
- 	};
- 
-+	hdmi0-sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,mclk-fs = <128>;
-+		simple-audio-card,name = "hdmi0";
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&hdmi0>;
-+		};
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s5_8ch>;
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -318,6 +333,10 @@ i2s0_8ch_p0_0: endpoint {
- 	};
- };
- 
-+&i2s5_8ch {
-+	status = "okay";
-+};
-+
- &package_thermal {
- 	polling-delay = <1000>;
- 
--- 
-2.48.1
+> +
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    enum:
+> +      - smc
+> +      - hvc
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +    description:
+> +      phandle to a reserved memory region for the service layer driver to
+> +      communicate with the secure device manager. For more details see
+> +      Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt.
 
+Please read what that file says.
+
+> +
+> +  fpga-mgr:
+> +    $ref: /schemas/fpga/intel,stratix10-soc-fpga-mgr.yaml
+> +    description: Optional child node for fpga manager to perform fabric configuration.
+> +
+> +required:
+> +  - compatible
+> +  - method
+> +  - memory-region
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    reserved-memory {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      service_reserved: svcbuffer@0 {
+> +              compatible = "shared-dma-pool";
+> +              reg = <0x0 0x0 0x0 0x1000000>;
+> +              alignment = <0x1000>;
+> +              no-map;
+> +      };
+> +    };
+> +
+> +    firmware {
+> +      svc {
+> +        compatible = "intel,stratix10-svc";
+> +        method = "smc";
+> +        memory-region = <&service_reserved>;
+> +
+> +        fpga-mgr {
+> +          compatible = "intel,stratix10-soc-fpga-mgr";
+> +        };
+> +      };
+> +    };
+> +
+> 
+> -- 
+> 2.35.3
+> 
 
