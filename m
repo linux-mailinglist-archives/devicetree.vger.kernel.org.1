@@ -1,102 +1,88 @@
-Return-Path: <devicetree+bounces-142005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8809A23B47
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 10:22:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18F0CA23B7B
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 10:36:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46B38164611
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 09:22:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53F4D188A052
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 09:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910251AE01B;
-	Fri, 31 Jan 2025 09:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 774AB191F6C;
+	Fri, 31 Jan 2025 09:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RTErgEUN"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="plwEMmlJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2107.outbound.protection.outlook.com [40.107.21.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52DD1991CD;
-	Fri, 31 Jan 2025 09:22:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738315339; cv=none; b=u5sucQTiaATxdWl1c3VXHW7JE8yXLSxdHxC2Is3WGjL1RdQhfmNGrdbUecnxzrNe8KQRw6ol1Xq5DCF1yFP/xscRKuSV55+RYw5xGzJsKLP3/GT+13gQF0FpGvPFGFM/vQVvIzapgdp732hq3X8zJ1OFtVFLvIsD815oOmryKWI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738315339; c=relaxed/simple;
-	bh=MTePTFZO0fJY5+8Rwq04Zyp4iZ/qTd/L+xe/WvK/kzw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WVy9A0Wazwk/Cd2jT8ub9XzUUZi4xnaugy02Gl4m+FNS0NfGsG77taF6Wr0KCbOwr3KpLST7pCG1gegxOoil3uhTaK4F8mhWi6OrLeQaSKlCQnHxmr3kzxseM6JU+C4DI5bOvlP1sFZGiI0mbOeHolfVw60YiNVJlBnBejP/Mfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RTErgEUN; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2156e078563so25000055ad.2;
-        Fri, 31 Jan 2025 01:22:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738315337; x=1738920137; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U6kosElOaSMZSNtX69a/Hsyj1tzL+5G6ZJzdXAObE/E=;
-        b=RTErgEUNinzmXF71IRalxjSZr4mjorhGH4d9VNmtYaU/4niXC+X0/+kFO9geuQQQcR
-         tJrP65LT40seJSzrtQhgshf5R0XB0IP6XCqnCCdww1nwrnBeMdUhwEu09GzdhO2Voqrv
-         IbUj4EXQfw13RpBsaniTWNKIl5n45xSvjHUTc854zGXEJYyvU03BBtlHLyFKn+JCe0Sh
-         rHzQd25tdvdRi+o+uZlX8kb8660TNFcTpRhS2OCkQE7RHpVhAF9ocDkbu7M+MxiXp3G+
-         s3vtOZIbEiax+ZjuUD8Xlx8257nj9FLrLSahSz1CWwLLX9ZYM7OQQoK4QuZzwydCiNeq
-         VhWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738315337; x=1738920137;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U6kosElOaSMZSNtX69a/Hsyj1tzL+5G6ZJzdXAObE/E=;
-        b=w1o4EqQc3A0vUQBScZj5w/W4a9DJME0ZmVEL9LtwCMxtzmfaTf+GNPFYBg69gF+LMx
-         DoZ/HTJa32saVtEieg1rlJBafGyy0f3SF7qQEeDZRJhdH85pFSDtafL/jESRhxBRW8Ss
-         ZWxeIKe9ycBAViPmR9mPItt3IF57gkYDyXlBzRGjjG1vSzDbMICy6PKx87ViU0G95UwG
-         9pzME5USHAf7kRha30no2H2RUrYOGxgGX0koaBgBsyw92Q7jf3JwwyvKPpjgxw8MRqES
-         M8zOZxjWSgdo7nWMyrf3t0TeE8C4Pb1ZDIW6ngJDw4cGIKHYD7LPCDudPHX5olawUh1n
-         ZxpA==
-X-Forwarded-Encrypted: i=1; AJvYcCV06P4RXEqF5UIT1z4i5akH9YIM5lD45gCmc7Cm5eWw0B85kGvJQjMNNL6JEpzNMtYc2kdyLa5Uq65o/8wE@vger.kernel.org, AJvYcCWc0aW1si1xMNtpIEBOXtpWsyE2Gb9OUbeZB4lAKbbc05taKP5/GvfUVKdugkisUxR0DEdUUR/tPtolkSg=@vger.kernel.org, AJvYcCX+IIuBNDQShVGbxBawoPA+zX7dXum1PvwSFqgcwap8EXI7GLB3UoWfb178MZ7dvOZzmha1AuEONWTIrSXJWwRJydd2cg==@vger.kernel.org, AJvYcCXzQI2R0+0ti+USgwa/rGSMnckfXfOUOHrWZ8i9pfyYU3ODqiDbXQElP36n4o3vAFeOhTNdOKu9NOMxS88V@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkdafyDgSg4H9JGxDEPknukgFp4+kwExbaYVn+eJLjdnu/M6Y5
-	GxhKy8SaPuYoIq2zJrTLCCPgMlE8N1BpRQN9wlL085hx1v0KbsPj
-X-Gm-Gg: ASbGnctSs2fqTapGrUARgbOzICHd9UvjH7DzdGqtNHCV6SH7T79Miu7hdUmpf1k1ae2
-	nJ6CHunjTBDA8UBYgeezTrngx47ruwtgihxR8QmLdvYa4dLSVwO2Klu1iCgwGpDMD0zkg38oDgS
-	w/Sr6Yx6Jfq4ZW3h55dG+5kwCK4T44pj4BGYT6AoVMyqz5YUDQfEHPajnZQY5caOGqgA0RXP/LX
-	vad+e9HOigY2O9dJ9AgtJqYQEAUGO/0BVyhlf+8ujMSRO2o0RQcn3QE0Hc97vz8DwfpULV4BTgH
-	pU0fszIFLlqeygEV
-X-Google-Smtp-Source: AGHT+IFRiqNQj7MxLr4NO504ORq8PNY5pGBppS/wd9xq7E5Gec4ceQ4SYgJmZodMRIS6ANJgN1z9jQ==
-X-Received: by 2002:a17:902:d488:b0:215:5bd8:9f92 with SMTP id d9443c01a7336-21dd7c46302mr169334755ad.5.1738315336989;
-        Fri, 31 Jan 2025 01:22:16 -0800 (PST)
-Received: from SC8280XP.. ([144.202.86.13])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f83bf93ef3sm5366629a91.30.2025.01.31.01.22.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Jan 2025 01:22:16 -0800 (PST)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=83=C2=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	Pengyu Luo <mitltlatltl@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH RESEND v6 3/3] arm64: dts: qcom: gaokun3: Add Embedded Controller node
-Date: Fri, 31 Jan 2025 17:21:39 +0800
-Message-ID: <20250131092139.6065-4-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250131092139.6065-1-mitltlatltl@gmail.com>
-References: <20250131092139.6065-1-mitltlatltl@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EAA414B08A;
+	Fri, 31 Jan 2025 09:35:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.107
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738316156; cv=fail; b=mP1gf3GFFSAm7BlffCqZnGRvD9zk2QJWidIQDd0hy5O1tCSU95GOgY18Z3NWuI7zfkVoDprS1jMI2izsQmux86TlULwOcwNdzEuXlbfCmZQJfrHb+bzyh0qJmuc98E2rdHRG9iUEav99Bx9PB7nhEsxG3y5LFEp3l+zw4lWC8Js=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738316156; c=relaxed/simple;
+	bh=r5is0k0fIGI/4zQn+OSVVzr0jmlw0fREqyP/IdWF6q8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HSWw9zt9/R0V4AOMOjmtbJu1xCWgaujtRJMgGAeiscZ+hLPei9dE7rlb+Uug2tcBooMxW3DYvWjPm2+P5Y0hq8yzrOktrkgbytn0AVCaarjpo17M7gRQZSOITS+7RQxe69gdKJMUy1XluXMVT1rYU5kO9VjKw8fOjpuqSjVer6U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=plwEMmlJ; arc=fail smtp.client-ip=40.107.21.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GiaRPcYM/Nrb27RrXn/eWHH+Lqnmrjc5TCN+XkTxKhEUDFfjFpTYr0dsscYZQv9kKaljxF564KqXhVifZWr9xA5d4jlYEMqrO+7X3VqhBPwf48k7eWk3IVSh5CN3jNw/Ht17XLSamUpa776HtDnzqtVhM5743FSoF+hp/CCWjM2qfJQF7fconsB2O4Xmc7chOz4nubZcNemapOStvRRynaSa+bhG0BjUdbqUPqgpcSlC8SfvM9K3jZcLDyCOOzqvxFcx9EpJtxvDm+/PuKLsGI0goLZkF/126EZhpAbklvHllL06PTUFJrDHlSOY7C7SdtzHMy9KXZRxqZiLXNLs5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NYL0SXn1tcvikSRW+MpK/FtRjC8MKAGBY5McNWdT5jU=;
+ b=rwqtNttUrI/NVOF1kkukF7O8OzZDb1rLiS+Ici5L7B0HrE3Uw4VJW3B7r+PdSNyP3Dl5DJ/vJQIX4ZWzZ1+FCL8HCft7PelzTCd/knNaCN6qHJxOITyVkGF0SDtGyv82BHLegxCgeg4V5j510W8ay3UG7DVkYBcWQfRFTOdGAySLSedq7SSQ9xeBy0kUi4NjPOOLf19U11/PHs3qK/zBfseHaws6RxzYCvWPZStmhSsrPcNUObHgEiG2EsONwbmpv57itdI1dYm6A1+cnOdwKAdBml0YHzyzQY9ys7ZUX4hjuwsejq1JKUftjyYxFV2RbOTeZ3/Sih0oLVoSJ2PMDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine header.from=phytec.de;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NYL0SXn1tcvikSRW+MpK/FtRjC8MKAGBY5McNWdT5jU=;
+ b=plwEMmlJ2quezLla3eVZ1JjofYvtsptNuHmwGYRIioyArdDNcbKfV5Z3d0oKd403iFQ/HNhawQdJn+qiDi1OhaJ7ZcI1/IkAzBx74v2jrtcD5MU+HPCVfZVVxfxUdWGxpnF/Zp8E0Oq5OL6ifcIiIMrC8637F23AypnbdDOni04yxBbMupMBlsHRQ8VtlqZjnkNS8ZnjO3yr4R26/lGF/Y5BYsaukyqq9mzG3fs50dCmYCC+/j0tsc9XH0M7f2Bxc1aAhI+p60fI8U5UscrNSNhxnGfEFuYJtu8vLn8r8aHrGjjkWhJIAHrFP3JycutXABkGAEyweOMF7E5ROxquFQ==
+Received: from DUZPR01CA0010.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:3c3::12) by VI1P195MB2462.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:800:1cd::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.17; Fri, 31 Jan
+ 2025 09:35:45 +0000
+Received: from DU6PEPF0000B61C.eurprd02.prod.outlook.com
+ (2603:10a6:10:3c3:cafe::ff) by DUZPR01CA0010.outlook.office365.com
+ (2603:10a6:10:3c3::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8398.21 via Frontend Transport; Fri,
+ 31 Jan 2025 09:35:59 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Diagnostix.phytec.de (91.26.50.189) by
+ DU6PEPF0000B61C.mail.protection.outlook.com (10.167.8.135) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8398.14 via Frontend Transport; Fri, 31 Jan 2025 09:35:44 +0000
+Received: from Berlix.phytec.de (172.25.0.12) by Diagnostix.phytec.de
+ (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 31 Jan
+ 2025 10:35:43 +0100
+Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 31 Jan
+ 2025 10:35:43 +0100
+From: Wadim Egorov <w.egorov@phytec.de>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <kees@kernel.org>,
+	<tony.luck@intel.com>, <gpiccoli@igalia.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+Subject: [PATCH 1/2] arm64: dts: ti: k3-am64-phycore-som: Reserve RTOS IPC memory
+Date: Fri, 31 Jan 2025 10:35:30 +0100
+Message-ID: <20250131093531.1054924-1-w.egorov@phytec.de>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,253 +90,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU6PEPF0000B61C:EE_|VI1P195MB2462:EE_
+X-MS-Office365-Filtering-Correlation-Id: a36c9dd7-5c79-4c74-e557-08dd41daa281
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|7416014|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?zhYPzcXKVsR1eC6Ddc430vyd9g8rBIqGsxXUH7j3+4iuFBbRlxOBpsLw7Epc?=
+ =?us-ascii?Q?JObk+Sm5EA3/aE7oZaHA8VwguX9p/Gi0A4SqWIVddbGKh6wx8HPyYnHcvUHZ?=
+ =?us-ascii?Q?wLkIdLK0LIcBpQPLmiAV/yIOcNxr7csYO6bslAs02/wJeUIeGs/QTLWsgLFr?=
+ =?us-ascii?Q?0EDqccymEiAn9Fus7Iu3cwJNrwbOGNnpjozRpL6r7MDDlMVa6GQTXsgP0Njz?=
+ =?us-ascii?Q?vATlgFqSYfDznfxoP3Zxd53vnI2rP+2NAv+GBXjyqicXyCby07ZQ1XhDggS/?=
+ =?us-ascii?Q?iBZSyjs5ytOhTPs2/2pYoE2GjQgTGK7RocT8my5Aqhe7bTrOEU0Rx4CvWNpq?=
+ =?us-ascii?Q?x537g16W70o5tEDdQ8IRZSxNhMQ/IWOmkjqDllLmbhC+bk4HWBPGTR1aMepf?=
+ =?us-ascii?Q?6XWkncQrgadMMkOrvvpNkolYcMxEk56s4c1/wfYPO6+aDsJKn2kO+b2z7Wlt?=
+ =?us-ascii?Q?sVzCS3eiBUYH7617QfT0xDgztiYmRkcRyEfdexgLcAxvoImew7D2uUJn9x5Z?=
+ =?us-ascii?Q?ien64G0C2qXZkQotNfCMzShKQg4DQxNFh25GbwbH4f3lQLAreExwtOWL4zCg?=
+ =?us-ascii?Q?+AiuFDVnv1j0ct3X1x1uMoaqZWDJJJDiEQC3ZitEvVtD5lN6xdj/rNMpZlJy?=
+ =?us-ascii?Q?n3M9BitQUlfs0WlFrO5A1uMgBa+SpLO/xUyO8XPSvSGKFwXdkyGLttrU/M75?=
+ =?us-ascii?Q?ZDCnFKrFJK6ydWIAyvY6+ICP+OEGyPLR1DsqWR4EnoF7T39X8kUPbuijSSVx?=
+ =?us-ascii?Q?4PZzbQDS0sH9dLcgUnPq0BScYuRDZHrkFx6tfhA6n+pBRDbB4jIC1fSh27EE?=
+ =?us-ascii?Q?Xs4iW9d7acJmHHLwXNFg+1qXOGBPXb/cB2rcwvQSXIFyJ1TTq/PgdJcT6HN/?=
+ =?us-ascii?Q?s6XKgdL8TVTA9IDH7DdtkDzFSYqvNyD0dq0E8tvc2L3DSTHx+syU1Btk3Zet?=
+ =?us-ascii?Q?G+67h81MX3P5pQ1cWXvslXF184YYnAfVj+wwMd1omGWxbB34c2WiUKLfSCEV?=
+ =?us-ascii?Q?lcEzxUFYPsRPJkzAK08MeMW1EEU49+Rmb9gM631YKzSI1A+w6y4T7Rc1OIc4?=
+ =?us-ascii?Q?1eXrQxwybIAO49TL/dxslBTFFAfkoKYZVstUx5nNbtZfy/Z78fhRgDT7fYec?=
+ =?us-ascii?Q?hIXoy656LDCt6XPJvCW+obvvlFXbLysJQYxPqoso3OZlPIN7/mtAlyhfOdct?=
+ =?us-ascii?Q?SLoVkPQJNN1RISmSN5XiNhjxCWy5rzJTCbBhxaJ463GWo9DFIkENRIU9pSUL?=
+ =?us-ascii?Q?Oz3PKu+zVFteVrtYYDN0l5ZzBj27/V+5g6j6ZhrC/WBqWgPOdYO+HHjUeWFt?=
+ =?us-ascii?Q?4SZVv/kFhiXbEjcwCYGax6c8z38rAG33mEXCe5FjpFn+DQzRBaMge5414e+F?=
+ =?us-ascii?Q?5TacXi05Tbijhc7uzx6j/89D8i4rSm4jUJ6fPL73Yk34Lu+HnL0mhpRMAN1h?=
+ =?us-ascii?Q?MXqaczHxDXc83s5j5/Nlu5jHqAknPhdKPhJsGjOzJavYs8+Si4LT9Bn0t3tM?=
+ =?us-ascii?Q?VNZKMxvft0okO/U=3D?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(7416014)(82310400026)(376014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2025 09:35:44.0951
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a36c9dd7-5c79-4c74-e557-08dd41daa281
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU6PEPF0000B61C.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P195MB2462
 
-The Embedded Controller in the Huawei Matebook E Go is accessible on &i2c15
-and provides battery and adapter status, port orientation status, as well
-as HPD event notifications for two USB Type-C port, etc.
+Reserve a portion of memory for inter-processor communication between
+all remote processors running RTOS or baremetal firmware.
 
-Add the EC to the device tree and describe the relationship among
-the type-c connectors, role switches, orientation switches and the QMP
-combo PHY.
-
-Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
 ---
- .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts | 163 ++++++++++++++++++
- 1 file changed, 163 insertions(+)
+ arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-index 09b95f89e..1667c7157 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-@@ -28,6 +28,7 @@ / {
- 
- 	aliases {
- 		i2c4 = &i2c4;
-+		i2c15 = &i2c15;
- 		serial1 = &uart2;
- 	};
- 
-@@ -216,6 +217,40 @@ map1 {
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
+index 99a6fdfaa7fb..e8d1b88651e7 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
+@@ -99,6 +99,12 @@ mcu_m4fss_memory_region: m4f-memory@a4100000 {
+ 			reg = <0x00 0xa4100000 0x00 0xf00000>;
+ 			no-map;
  		};
++
++		rtos_ipc_memory_region: ipc-memories@a5000000 {
++			reg = <0x00 0xa5000000 0x00 0x00800000>;
++			alignment = <0x1000>;
++			no-map;
++		};
  	};
  
-+	usb0-sbu-mux {
-+		compatible = "pericom,pi3usb102", "gpio-sbu-mux";
-+
-+		select-gpios = <&tlmm 164 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&usb0_sbu_default>;
-+		pinctrl-names = "default";
-+
-+		orientation-switch;
-+
-+		port {
-+			usb0_sbu_mux: endpoint {
-+				remote-endpoint = <&ucsi0_sbu>;
-+			};
-+		};
-+	};
-+
-+	usb1-sbu-mux {
-+		compatible = "pericom,pi3usb102", "gpio-sbu-mux";
-+
-+		select-gpios = <&tlmm 47 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&usb1_sbu_default>;
-+		pinctrl-names = "default";
-+
-+		orientation-switch;
-+
-+		port {
-+			usb1_sbu_mux: endpoint {
-+				remote-endpoint = <&ucsi1_sbu>;
-+			};
-+		};
-+	};
-+
- 	wcn6855-pmu {
- 		compatible = "qcom,wcn6855-pmu";
- 
-@@ -584,6 +619,97 @@ touchscreen@4f {
- 
- };
- 
-+&i2c15 {
-+	clock-frequency = <400000>;
-+
-+	pinctrl-0 = <&i2c15_default>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+
-+	embedded-controller@38 {
-+		compatible = "huawei,gaokun3-ec";
-+		reg = <0x38>;
-+
-+		interrupts-extended = <&tlmm 107 IRQ_TYPE_LEVEL_LOW>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					ucsi0_hs_in: endpoint {
-+						remote-endpoint = <&usb_0_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					ucsi0_ss_in: endpoint {
-+						remote-endpoint = <&usb_0_qmpphy_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					ucsi0_sbu: endpoint {
-+						remote-endpoint = <&usb0_sbu_mux>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@1 {
-+			compatible = "usb-c-connector";
-+			reg = <1>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					ucsi1_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					ucsi1_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_qmpphy_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					ucsi1_sbu: endpoint {
-+						remote-endpoint = <&usb1_sbu_mux>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &mdss0 {
- 	status = "okay";
- };
-@@ -1004,6 +1130,10 @@ &usb_0_dwc3 {
- 	dr_mode = "host";
- };
- 
-+&usb_0_dwc3_hs {
-+	remote-endpoint = <&ucsi0_hs_in>;
-+};
-+
- &usb_0_hsphy {
- 	vdda-pll-supply = <&vreg_l9d>;
- 	vdda18-supply = <&vreg_l1c>;
-@@ -1025,6 +1155,10 @@ &usb_0_qmpphy_dp_in {
- 	remote-endpoint = <&mdss0_dp0_out>;
- };
- 
-+&usb_0_qmpphy_out {
-+	remote-endpoint = <&ucsi0_ss_in>;
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
-@@ -1033,6 +1167,10 @@ &usb_1_dwc3 {
- 	dr_mode = "host";
- };
- 
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&ucsi1_hs_in>;
-+};
-+
- &usb_1_hsphy {
- 	vdda-pll-supply = <&vreg_l4b>;
- 	vdda18-supply = <&vreg_l1c>;
-@@ -1054,6 +1192,10 @@ &usb_1_qmpphy_dp_in {
- 	remote-endpoint = <&mdss0_dp1_out>;
- };
- 
-+&usb_1_qmpphy_out {
-+	remote-endpoint = <&ucsi1_ss_in>;
-+};
-+
- &usb_2 {
- 	status = "okay";
- };
-@@ -1177,6 +1319,13 @@ i2c4_default: i2c4-default-state {
- 		bias-disable;
- 	};
- 
-+	i2c15_default: i2c15-default-state {
-+		pins = "gpio36", "gpio37";
-+		function = "qup15";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
- 	mode_pin_active: mode-pin-state {
- 		pins = "gpio26";
- 		function = "gpio";
-@@ -1301,6 +1450,20 @@ tx-pins {
- 		};
- 	};
- 
-+	usb0_sbu_default: usb0-sbu-state {
-+		pins = "gpio164";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	usb1_sbu_default: usb1-sbu-state {
-+		pins = "gpio47";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
- 	wcd_default: wcd-default-state {
- 		reset-pins {
- 			pins = "gpio106";
+ 	leds {
 -- 
-2.47.1
+2.34.1
 
 
