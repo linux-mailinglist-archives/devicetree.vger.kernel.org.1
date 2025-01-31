@@ -1,186 +1,165 @@
-Return-Path: <devicetree+bounces-142127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55D9A243AE
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:08:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA041A243C2
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:22:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C00183A86FC
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 20:08:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD15D3A5AFB
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 20:21:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD5DE1F2C26;
-	Fri, 31 Jan 2025 20:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70261F3D4C;
+	Fri, 31 Jan 2025 20:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="l0XR6LBg"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="n1m0IEqc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB07155C88;
-	Fri, 31 Jan 2025 20:08:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D26E1F238E;
+	Fri, 31 Jan 2025 20:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738354090; cv=none; b=Cm0iRQlAAft+2GDNbzjGi7fjJYIa2G/uMWT4kDvwSyVjc+0yeT7eNoYicXmp8oXx+l10n0Flzb4LSbUrotSFZhqXMb2AHaBq1hZ9WVoSw9cRFnq7r0Dfem5kOZdkPZ5XkTmeI290zPFVl5PZV86puxIV120+wkdATCnrRy4oLdE=
+	t=1738354907; cv=none; b=AmfLgPpzsRSDgJ/BZZeQB1MrZ4Qag6QFRd1/3tDqOb+Pdwu05ZpBADPTFVcId8UOqDtCc//WwdYAV9mLz//kQWUlAULuSt9mM7wl+xulS3aVyKF/qUVGM2O5FtYbMFTaHZIhSQc15dsU4OJMT/HQ27ynjnoAr/IHXwTo5n/tbFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738354090; c=relaxed/simple;
-	bh=COXth9vzC9L4DLry/6VVSSD8GXZn+nuLwV2IJYzQEqY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ds3/R01Z3/jaDpLYHkitihVfZHjCilQJ9StT1SK3LzPhPCfBwnvzBWM1PtSqUSgUP4O/YZf0F3IBAvHoRva3AoRhYzwna+ywGZJJTwlLmmzNz+WTE4c8kM8Xv8rIHaDxng6HSPdQb8aggEkyfEgosDqX/GX4KXkLzXX4L55nVkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=l0XR6LBg; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738354088; x=1769890088;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=COXth9vzC9L4DLry/6VVSSD8GXZn+nuLwV2IJYzQEqY=;
-  b=l0XR6LBgA9yOp/GxMcF0BLCdUMbGXMF2KQAWDL/GCsZHH3y8oxoJirH+
-   IU1NlIt4PW8IBGWAIdt3SP0qma4PAQKm3x0B+1aI8/YzsVZr77YthADBN
-   AaRxoRCNQaLXptxubWenhp7fv+aYUfnEtsZwptJ4Fz4k/itGJ4DmGWnus
-   yQ1MnLgvDFDIdJIXtus8emyTJuJBg61JcKdeTsfXF6A1EK5o+jJD9uHpO
-   98zViztUHLetMl2VuGY+rK16i9xM3zQQyNociiYQKdRCNBcMks8B2IEst
-   iHQfYhfhBEtByFnM8c0ieCNaYT4NmY6DOsRwphDvExd3JEt/HCxWDi7Dq
-   A==;
-X-CSE-ConnectionGUID: 2Y6NpFr/RiGI7pRPy9GyCg==
-X-CSE-MsgGUID: qLNJIE9uTy6XsIPl8ed78w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="50316415"
-X-IronPort-AV: E=Sophos;i="6.13,249,1732608000"; 
-   d="scan'208";a="50316415"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2025 12:08:08 -0800
-X-CSE-ConnectionGUID: h5yofnzcQ4u8Trpgo7S3FQ==
-X-CSE-MsgGUID: PxFX4g1OS/GH68anfo97Hw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,249,1732608000"; 
-   d="scan'208";a="109655773"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 31 Jan 2025 12:08:04 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tdxJ3-000n3L-1P;
-	Fri, 31 Jan 2025 20:08:01 +0000
-Date: Sat, 1 Feb 2025 04:07:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pengyu Luo <mitltlatltl@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	Pengyu Luo <mitltlatltl@gmail.com>
-Subject: Re: [PATCH RESEND v6 2/3] platform: arm64: add Huawei Matebook E Go
- EC driver
-Message-ID: <202502010344.KWDBQUG9-lkp@intel.com>
-References: <20250131092139.6065-3-mitltlatltl@gmail.com>
+	s=arc-20240116; t=1738354907; c=relaxed/simple;
+	bh=hTXjfUYY5jkGWVr3mwx6N3NFTy2eiwGjxT5HEGQnA0I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iubfmshvvFwN03TCK9T1WBlt8XRtgI76Aiq6mKJ+H/txp4MxWrGSa7447ENbv1Zf5K50SigslUi4mGsTnfR9Nhv28WFS0xP1IIQA4K7301Th1s8MCBUqtEndiLhsSEmDlLCMWw8cRSIqkP1lKK+sVpVVa4ch7HgnBCJBCaMe7ZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=n1m0IEqc; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50VDHdad013031;
+	Fri, 31 Jan 2025 14:21:07 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=PODMain02222019; bh=ZHHnYJ0H+qOjkw25
+	Mfu1e2Mk+Cj3/9kmu6Acd5OIRLc=; b=n1m0IEqceOeup1+RXBBMO3Tp5DjhSJbC
+	6lj8mg8uZm2tggiLcNpTKE9DkV5YfilLbiTs7Ow82Yc9Fm4ksX9SaoQfOJfbY5kZ
+	HMDfMMlNx/Y7EBkWYmjN7ALzlUdFRTK1hc1B8uOtCspNeFm3n3/xsdnNJe/Y1kjY
+	qSuVitqflyybHxtcWvME6IL9ARrB+qsRo9YlojdONTQLyi0+WNfiKBYYss6iRL8M
+	Lj/O+oZICFG7oMm4xEvKzwf8LcClel4s7g3UoRnM5d+uKibpT/gzTtow8iJFZa/H
+	1dayoXJP0a3PsIt27th5BXy2Q7MSVI0AYcwseZGpaswkD3EjU4xGLw==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 44gf8n168d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 31 Jan 2025 14:21:06 -0600 (CST)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Fri, 31 Jan
+ 2025 20:21:05 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
+ 15.2.1544.14 via Frontend Transport; Fri, 31 Jan 2025 20:21:05 +0000
+Received: from ftrev.crystal.cirrus.com (ftrev.ad.cirrus.com [141.131.145.81])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id D664482026C;
+	Fri, 31 Jan 2025 20:21:00 +0000 (UTC)
+From: Fred Treven <ftreven@opensource.cirrus.com>
+To: James Ogletree <jogletre@opensource.cirrus.com>,
+        Dmitry Torokhov
+	<dmitry.torokhov@gmail.com>,
+        Ben Bright <ben.bright@cirrus.com>, <simont@opensource.cirrus.com>,
+        Charles Keepax
+	<ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald
+	<rf@opensource.cirrus.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>,
+        David Rhodes <david.rhodes@cirrus.com>, Jack Yu
+	<jack.yu@realtek.com>,
+        Igor Prusov <ivprusov@salutedevices.com>,
+        Weidong Wang
+	<wangweidong.a@awinic.com>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        "Luca
+ Ceresoli" <luca.ceresoli@bootlin.com>,
+        Prasad Kumpatla
+	<quic_pkumpatl@quicinc.com>,
+        Paul Handrigan <paulha@opensource.cirrus.com>,
+        Masahiro Yamada <masahiroy@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+        "Karel
+ Balej" <balejk@matfyz.cz>, Heiko Stuebner <heiko@sntech.de>,
+        Jeff LaBundy
+	<jeff@labundy.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        Fred Treven
+	<ftreven@opensource.cirrus.com>
+Subject: [PATCH 0/7] Initial Support for CS40L26
+Date: Fri, 31 Jan 2025 14:20:56 -0600
+Message-ID: <20250131202057.1786324-1-ftreven@opensource.cirrus.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250131092139.6065-3-mitltlatltl@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: HUzqT7mBuyL30WS1jJMSP0uapPcn3gke
+X-Authority-Analysis: v=2.4 cv=YOxlyQGx c=1 sm=1 tr=0 ts=679d30b2 cx=c_pps a=uGhh+3tQvKmCLpEUO+DX4w==:117 a=uGhh+3tQvKmCLpEUO+DX4w==:17 a=VdSt8ZQiCzkA:10 a=78G1mFUK9uwQN7RrU40A:9
+X-Proofpoint-ORIG-GUID: HUzqT7mBuyL30WS1jJMSP0uapPcn3gke
+X-Proofpoint-Spam-Reason: safe
 
-Hi Pengyu,
+Introduce driver for Cirrus Logic Device CS40L26:
+A boosted haptics driver with integrated DSP and
+waveform memory with advanced closed loop algorithms
+and LRA protection.
 
-kernel test robot noticed the following build errors:
+The core CS40L26 driver is in MFD and touches the
+Input Force Feedback subsystem for haptics and
+the ASoC subsystem for audio to haptics streaming.
 
-[auto build test ERROR on 853d1f41ba73e78d22e7075d9a95670aab187eba]
+This patchset includes changes to the CS DSP firmware
+driver which fixes two bugs and introduces support for
+multiple coefficient files.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Pengyu-Luo/dt-bindings-platform-Add-Huawei-Matebook-E-Go-EC/20250131-172427
-base:   853d1f41ba73e78d22e7075d9a95670aab187eba
-patch link:    https://lore.kernel.org/r/20250131092139.6065-3-mitltlatltl%40gmail.com
-patch subject: [PATCH RESEND v6 2/3] platform: arm64: add Huawei Matebook E Go EC driver
-config: powerpc64-randconfig-003-20250201 (https://download.01.org/0day-ci/archive/20250201/202502010344.KWDBQUG9-lkp@intel.com/config)
-compiler: powerpc64-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250201/202502010344.KWDBQUG9-lkp@intel.com/reproduce)
+Fred Treven (7):
+  firmware: cs_dsp: Fix error checking in wseq_write()
+  firmware: cs_dsp: Check for valid num_regs in
+    cs_dsp_wseq_multi_write()
+  firmware: cs_dsp: Add ability to load multiple coefficient files
+  dt-bindings: mfd: cirrus,cs40l26: Support for CS40L26
+  mfd: cs40l26: Add support for CS40L26 core driver
+  ASoC: cs40l26: Support I2S streaming to CS40L26
+  Input: cs40l26 - Add support for CS40L26 haptic driver
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502010344.KWDBQUG9-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   powerpc64-linux-ld: warning: discarding dynamic section .glink
-   powerpc64-linux-ld: warning: discarding dynamic section .plt
-   powerpc64-linux-ld: linkage table error against `devm_hwmon_device_register_with_info'
-   powerpc64-linux-ld: stubs don't match calculated size
-   powerpc64-linux-ld: can not build stubs: bad value
-   powerpc64-linux-ld: drivers/platform/arm64/huawei-gaokun-ec.o: in function `gaokun_ec_probe':
->> drivers/platform/arm64/huawei-gaokun-ec.c:786:(.text+0x16ac): undefined reference to `devm_hwmon_device_register_with_info'
-
-
-vim +786 drivers/platform/arm64/huawei-gaokun-ec.c
-
-   740	
-   741	static int gaokun_ec_probe(struct i2c_client *client)
-   742	{
-   743		struct device *dev = &client->dev;
-   744		struct gaokun_ec *ec;
-   745		int ret;
-   746	
-   747		ec = devm_kzalloc(dev, sizeof(*ec), GFP_KERNEL);
-   748		if (!ec)
-   749			return -ENOMEM;
-   750	
-   751		ret = devm_mutex_init(dev, &ec->lock);
-   752		if (ret)
-   753			return ret;
-   754	
-   755		ec->client = client;
-   756		i2c_set_clientdata(client, ec);
-   757		BLOCKING_INIT_NOTIFIER_HEAD(&ec->notifier_list);
-   758	
-   759		/* Lid switch */
-   760		ec->idev = devm_input_allocate_device(dev);
-   761		if (!ec->idev)
-   762			return -ENOMEM;
-   763	
-   764		ec->idev->name = "LID";
-   765		ec->idev->phys = "gaokun-ec/input0";
-   766		input_set_capability(ec->idev, EV_SW, SW_LID);
-   767	
-   768		ret = input_register_device(ec->idev);
-   769		if (ret)
-   770			return dev_err_probe(dev, ret, "Failed to register input device\n");
-   771	
-   772		ret = gaokun_aux_init(dev, GAOKUN_DEV_PSY, ec);
-   773		if (ret)
-   774			return ret;
-   775	
-   776		ret = gaokun_aux_init(dev, GAOKUN_DEV_UCSI, ec);
-   777		if (ret)
-   778			return ret;
-   779	
-   780		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-   781						gaokun_ec_irq_handler, IRQF_ONESHOT,
-   782						dev_name(dev), ec);
-   783		if (ret)
-   784			return dev_err_probe(dev, ret, "Failed to request IRQ\n");
-   785	
- > 786		ec->hwmon_dev = devm_hwmon_device_register_with_info(dev, "gaokun_ec_hwmon",
-   787								     ec, &gaokun_ec_hwmon_chip_info, NULL);
-   788		if (IS_ERR(ec->hwmon_dev))
-   789			return dev_err_probe(dev, PTR_ERR(ec->hwmon_dev),
-   790					     "Failed to register hwmon device\n");
-   791	
-   792		return 0;
-   793	}
-   794	
+ .../bindings/mfd/cirrus,cs40l26.yaml          |   81 +
+ MAINTAINERS                                   |    4 +-
+ drivers/firmware/cirrus/cs_dsp.c              |   70 +-
+ drivers/input/misc/Kconfig                    |   10 +
+ drivers/input/misc/Makefile                   |    1 +
+ drivers/input/misc/cs40l26-vibra.c            |  669 ++++++++
+ drivers/mfd/Kconfig                           |   29 +
+ drivers/mfd/Makefile                          |    4 +
+ drivers/mfd/cs40l26-core.c                    | 1412 +++++++++++++++++
+ drivers/mfd/cs40l26-i2c.c                     |   63 +
+ drivers/mfd/cs40l26-spi.c                     |   63 +
+ include/linux/firmware/cirrus/cs_dsp.h        |   14 +
+ include/linux/mfd/cs40l26.h                   |  341 ++++
+ sound/soc/codecs/Kconfig                      |   12 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/cs40l26-codec.c              |  523 ++++++
+ 16 files changed, 3281 insertions(+), 17 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/cirrus,cs40l26.yaml
+ create mode 100644 drivers/input/misc/cs40l26-vibra.c
+ create mode 100644 drivers/mfd/cs40l26-core.c
+ create mode 100644 drivers/mfd/cs40l26-i2c.c
+ create mode 100644 drivers/mfd/cs40l26-spi.c
+ create mode 100644 include/linux/mfd/cs40l26.h
+ create mode 100644 sound/soc/codecs/cs40l26-codec.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
