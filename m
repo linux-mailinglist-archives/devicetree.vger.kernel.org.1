@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-142021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92C49A23C26
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 11:22:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE9BEA23C2F
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 11:26:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 062721692E9
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 10:22:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5ACDC1655A5
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 10:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5296F1ABED7;
-	Fri, 31 Jan 2025 10:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A47C917C225;
+	Fri, 31 Jan 2025 10:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iwm9fkzt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bvDYXlpH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2254F1990CD;
-	Fri, 31 Jan 2025 10:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7777A1CA81;
+	Fri, 31 Jan 2025 10:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738318942; cv=none; b=Ne/2FKN8IIEG8TsQliw03pIc3wEGbLnfRN2WSguG1Afr5WIXk8U31Vcc5th0vz6Gb2hTYY8VUZ4ABBRMfoW6bUkSnRyb/hlOlq9wYaGhxFkxVCRCHdAu1Z4nYVc839JYyfie/rkvFBsDD8K6w8jUNO+O5ppH8afJ2JBsxS9H+cY=
+	t=1738319184; cv=none; b=Y+4RUOX7Q6AEqkVJLu0WfmzsgKnsf6ECUWakKJCq2pFuXetGFtHUFererBL9ruY254irSfi0dNaWmcA7sLw/Q+KAWXcX3RlLPNr6d1V55Qqblwo07BihkW+Uq9WvCWHKtNOapE19Zs+ewf3F06J/oI7tfeDResnxkmN5232fcYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738318942; c=relaxed/simple;
-	bh=D4jYMuaX4YLeAV+IoEx49fuETPL6+Eg1ZkXFb/fzVuU=;
+	s=arc-20240116; t=1738319184; c=relaxed/simple;
+	bh=V3XLm3jqDV87bOIFXqgbdozVPjfB0gIa+isPT1R0yjo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Oq2dR8I4b+Zklc1PnXPDJRAsABZQ5pbAzAF839eifaUUUk0Xd8i3z6JPmlaI4afOsU4zTiO4gAsdOPSVmEeHKk0EDIHGCbjQQZ3tdri6eaS5rOc0rlVOAseg1VFfejyqRy7Nv3bCrxW12rScUSc6YM+ESkm5odGwPn2+v+cRb/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iwm9fkzt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32376C4CED1;
-	Fri, 31 Jan 2025 10:22:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jkrT+ta6L4cI2NkbUh1obVtQhA+HVWQPRhIKrXaWrO0kQeG8g7hbuWe6T1m/fvAeDx7rGDK0nhxPX2m7eHJunQbg93yGks//dA/HDc148BH3CMMIbIaSTSsX/W1oDNM+/pJtnzSxsguK50xj35h1M8J3OWloNEgBK3GddfGf4c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bvDYXlpH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DF53C4CED1;
+	Fri, 31 Jan 2025 10:26:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738318941;
-	bh=D4jYMuaX4YLeAV+IoEx49fuETPL6+Eg1ZkXFb/fzVuU=;
+	s=k20201202; t=1738319183;
+	bh=V3XLm3jqDV87bOIFXqgbdozVPjfB0gIa+isPT1R0yjo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Iwm9fkztwLY/7nLk8P4YSTmVA1JOdLCi51rYK8jHZjqOw3nLFjUIYnQuJzHfnh3xw
-	 wqKoMZI//tg1VgrG+fIwmbkQu4OX1rxOc8BLKTN06P/+yz5KwpTS2YTaRPabwhE9u5
-	 WtcbQm0Kt0go0aB/wWEgvldCmWTxjSpYPWSqtK5phInPcRznPaTiNZ4FdLyWFOlEPG
-	 6Zk2UGg9A6Hlt7J9dpgTdAjGct/bM57rT9FWSIR+DFRZZWUufbHUjBaiAQbTFiYFg0
-	 1ec6J+fFH1QamHLr2FyM7B7ZJqZTU18eMwU7WJiKg175dQ51Kj/rgHNok9fAD7ftfq
-	 8h67m2SihzVMQ==
-Message-ID: <cd34e225-b606-42a9-9afb-5e88760d4e75@kernel.org>
-Date: Fri, 31 Jan 2025 11:22:17 +0100
+	b=bvDYXlpHIGviBYOa7I9sdcIebxffrY1ZG0KH5X7vieQkc525bTKUedP5+hRlMIIIi
+	 LX03LDGSw3tZkx5tpCobam2HVQQxg36B+77xTmgiWfNwdWA7P3fYS8JPQLpyNylSiR
+	 fzQdMmLAdDXtI7AxSH+0DOmLM/RMUUfXAihwI3JGJxqwZxUuxUlTCgmLpvujJlRfu7
+	 ALuIbB9bnGn7/51HWkGV/nUqRAQIWS53SeGP7vpS3txYYrJ7HVA44K8vAn4mQCeLeR
+	 yZ6CBuunYY2cWlS/obXUAfIaG6P/dKZbyljYOJr8reVO1/OgHH4YPWs6gwkD0obRpX
+	 nPPAL37fjLE3g==
+Message-ID: <be1a45c8-f595-4b66-8792-1bc255216bfa@kernel.org>
+Date: Fri, 31 Jan 2025 11:26:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: renesas: add initial support for MYIR Remi
- Pi
-To: Julien Massot <julien.massot@collabora.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, kernel@collabora.com
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250131-myir-remi-pi-v3-0-2dda53e79291@collabora.com>
- <20250131-myir-remi-pi-v3-2-2dda53e79291@collabora.com>
+Subject: Re: [PATCH v2 3/3] firmware: stratix10-svc: Add
+ of_platform_default_populate()
+To: Mahesh Rao <mahesh.rao@intel.com>, Moritz Fischer <mdf@kernel.org>,
+ Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Wu Hao <hao.wu@intel.com>, Ho Yin <adrian.ho.yin.ng@altera.com>,
+ Niravkumar L Rabara <nirav.rabara@altera.com>
+Cc: linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Mahesh Rao <mahesh.rao@altera.com>
+References: <20250131-socfpga_sip_svc_misc-v2-0-eeed4ebc35f9@intel.com>
+ <20250131-socfpga_sip_svc_misc-v2-3-eeed4ebc35f9@intel.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,20 +108,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250131-myir-remi-pi-v3-2-2dda53e79291@collabora.com>
+In-Reply-To: <20250131-socfpga_sip_svc_misc-v2-3-eeed4ebc35f9@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/01/2025 10:58, Julien Massot wrote:
-> +
-> +	sdhi0_pins: sd0 {
-> +		sd0_data {
+On 31/01/2025 11:17, Mahesh Rao wrote:
+>  
+> -err_unregister_dev:
+> +err_unregister_fcs_dev:
+> +	platform_device_unregister(svc->intel_svc_fcs);
+> +err_unregister_rsu_dev:
+>  	platform_device_unregister(svc->stratix10_svc_rsu);
+>  err_free_kfifo:
+>  	kfifo_free(&controller->svc_fifo);
+> @@ -1256,6 +1262,8 @@ static void stratix10_svc_drv_remove(struct platform_device *pdev)
+>  	struct stratix10_svc *svc = dev_get_drvdata(&pdev->dev);
+>  	struct stratix10_svc_controller *ctrl = platform_get_drvdata(pdev);
+>  
+> +	of_platform_depopulate(ctrl->dev);
 
 
-Same comments as before.
+I thought you will use devm for this, but well...
 
-See DTS coding style.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
