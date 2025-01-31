@@ -1,182 +1,119 @@
-Return-Path: <devicetree+bounces-142023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B06B7A23C48
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 11:34:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC67EA23C5B
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 11:41:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 918183A7DFD
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 10:33:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 268A47A4137
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 10:40:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8631AF0B4;
-	Fri, 31 Jan 2025 10:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AJKwgYx4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC8D1B415D;
+	Fri, 31 Jan 2025 10:40:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-1909.mail.infomaniak.ch (smtp-1909.mail.infomaniak.ch [185.125.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C66516ABC6;
-	Fri, 31 Jan 2025 10:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C054B1B87F8
+	for <devicetree@vger.kernel.org>; Fri, 31 Jan 2025 10:40:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738319642; cv=none; b=cEYlE0K8uVVm4K6fU7mdiNjGVwqr44fnBT9wHB6LdBNCQKCyYWqoMiq11r3xRaHFQ0BlA5R1C6MB9uOMGhtk1VsvbgjPAO6YduoLAQUtKg1iuCZet6+0HOX2vE342rEKoV8iM95hnuGtuuNpWdSftAY9aA/EyyXf+DWvrapD0OU=
+	t=1738320038; cv=none; b=m6mMgKyVVaNYOWWH8gKNU/QTIUcX99H0083zUJ4tcz2sMACLtIIDcd01KztFLGHkO2Bk+i5vXf40e7cFUQMOp//f7hIVwYK3mAi9vLDgM7x+IdKQvLsWVI5532hSRgdFDpZ8sX5/e8889cQXKMPeR3OaPO+wTc7qSzQ5ORSOOH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738319642; c=relaxed/simple;
-	bh=507IordbBCY3IYNuq34NGFeKCmJd+B5w6IiJLC+fePs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fDTlfEvOUZ2sQo8zEwrZZHBf2pVhbGB11nh9tsgyksuf57g39VTw1QIRJYFxgDQCSN9nZiCi/4OPGC7x9aOTbWh04oSkJn4IgUWPrS5RCyueFuKKszS0TCfQZRoRJHBKuXR9vj+qc9ezoS8AfCuDCQ28drS4ftiUoCDsjE7bh7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AJKwgYx4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3B3EC4CED1;
-	Fri, 31 Jan 2025 10:33:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738319641;
-	bh=507IordbBCY3IYNuq34NGFeKCmJd+B5w6IiJLC+fePs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AJKwgYx4wGk4PbRGB4npZ2QBeZdqUHm9GDObPJLYwi4QVAeIiD/JUAEdJCA4jfVJX
-	 rUJtHR6NXauwiMPCI8XW39mtJWVtbqbHXrWIojC0Q9wyE6Ha2DVWQz1qoFjicDUSz0
-	 hxQIAv3AdOZAcrJShTqAxDvFYg4zExkFycMUDIy3KdBbHiTIwPuM4qfvswmshxj8dz
-	 MQHzCMpmponYQWuk6LezAa/Qlzp5c3quNX8bQml4td8phwAx9E4ghEJBsP5T6Kjc1J
-	 G9dXBO8Z8/Dak5ChT1OTFimS/bk21VAii6mJLZYx+xg9MbvJCPO9DGTYWtgX/cvHT/
-	 gmD2oalMNaqzA==
-Date: Fri, 31 Jan 2025 10:33:52 +0000
-From: Simon Horman <horms@kernel.org>
-To: Basharath Hussain Khaja <basharath@couthit.com>
-Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
-	tony@atomide.com, richardcochran@gmail.com, parvathi@couthit.com,
-	schnelle@linux.ibm.com, rdunlap@infradead.org,
-	diogo.ivo@siemens.com, m-karicheri2@ti.com,
-	jacob.e.keller@intel.com, m-malladi@ti.com,
-	javier.carrasco.cruz@gmail.com, afd@ti.com, s-anna@ti.com,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org, pratheesh@ti.com, prajith@ti.com,
-	vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com,
-	krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
-Subject: Re: [RFC v2 PATCH 06/10] net: ti: prueth: Adds HW timestamping
- support for PTP using PRU-ICSS IEP module
-Message-ID: <20250131103352.GH24105@kernel.org>
-References: <20250124122353.1457174-1-basharath@couthit.com>
- <20250124134056.1459060-7-basharath@couthit.com>
+	s=arc-20240116; t=1738320038; c=relaxed/simple;
+	bh=npV68T6cc2d/6g84pozIwO3MvV2qLbC0blMgXILQh9o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DLEZ3MN2dwH4c7xBepb33FQtavfG+OseMzOODNAwrsajDgLKPqHJ0dvc1jrdDmv4r39YajSDKZCu2MkkErMEzPr1km0LSg6CRfc7AIjXi/unMkea5RTsPCbD0jqiMOTFhpZBaN76DTz89xghhX4wQfL+RG5icR7vKKEo46Ixd/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-4-0000.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10:40ca:feff:fe05:0])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YksqJ4k7lzV2Y;
+	Fri, 31 Jan 2025 11:40:28 +0100 (CET)
+Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YksqH5kWTz4qH;
+	Fri, 31 Jan 2025 11:40:27 +0100 (CET)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH v4 0/4] arm64: dts: rockchip: minimal support for Pre-ICT
+ tester adapter for RK3588 Jaguar + add overlay tests
+Date: Fri, 31 Jan 2025 11:40:14 +0100
+Message-Id: <20250131-pre-ict-jaguar-v4-0-c971e2852e8d@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250124134056.1459060-7-basharath@couthit.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI6onGcC/3XMywrCMBCF4VeRrI3MpHdXvoe4yGXSxkUrSQ2W0
+ nc3LQiF4vLM8P0zC+QdBXY9zcxTdMENfRr5+cR0J/uWuDNpMwEiRwElf/l00iN/yvYtPVcNWGm
+ JamVqllB6W/fZgvdH2p0L4+CnrR9xvf5NReTIK1uWoEyuKtA33ZH308UQW1NR/HgBiEcuOHAsK
+ pNhA5DbA892XNQHniVeKRIWGpM1IPd8WZYvjYXcMSoBAAA=
+X-Change-ID: 20241206-pre-ict-jaguar-b90fafee8bd8
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>, 
+ Michael Riesch <michael.riesch@wolfvision.net>
+Cc: Jonas Karlman <jonas@kwiboo.se>, Dragan Simic <dsimic@manjaro.org>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Infomaniak-Routing: alpha
 
-On Fri, Jan 24, 2025 at 07:10:52PM +0530, Basharath Hussain Khaja wrote:
-> From: Roger Quadros <rogerq@ti.com>
-> 
-> PRU-ICSS IEP module, which is capable of timestamping RX and
-> TX packets at HW level, is used for time synchronization by PTP4L.
-> 
-> This change includes interaction between firmware and user space
-> application (ptp4l) with required packet timestamps. The driver
-> initializes the PRU firmware with appropriate mode and configuration
-> flags. Firmware updates local registers with the flags set by driver
-> and uses for further operation. RX SOF timestamp comes along with
-> packet and firmware will rise interrupt with TX SOF timestamp after
-> pushing the packet on to the wire.
-> 
-> IEP driver is available in upstream and we are reusing for hardware
-> configuration for ICSSM as well. On top of that we have extended it
-> with the changes for AM57xx SoC.
-> 
-> Extended ethtool for reading HW timestamping capability of the PRU
-> interfaces.
-> 
-> Currently ordinary clock (OC) configuration has been validated with
-> Linux ptp4l.
-> 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> Signed-off-by: Andrew F. Davis <afd@ti.com>
-> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
-> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+This adds minimal support for the Pre-ICT tester adapter for RK3588
+Jaguar.
+GPIO3A3, GPIO3A4, GPIO3B2 and GPIO3D2 to GPIO3D5 are all routed to power
+rails and can only be used as input and their bias are important to be
+able to properly detect soldering issues.
 
-...
+Additionally, this adds build-time overlay application tests for all
+Rockchip overlays to try to avoid future regressions.
 
-> diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.c b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+Changes in v4:
+- fix typos in WolfVision patch,
+- added Rb on WolfVision patch,
+- Link to v3: https://lore.kernel.org/r/20250128-pre-ict-jaguar-v3-0-7be2f09d390a@cherry.de
 
-...
+Changes in v3:
+- removed Fixes tag and intent to send to stable as this patch almost
+  doubles the size of the main DTB. Let's not potentially break users of
+  stable releases,
+- added Wolfvision PF5 overlay tests, thanks Michael,
+- added comment on how to add new overlays (via tests), and the side
+  effects,
+- grouped the overlay application test target with the definition of its
+  dependencies (DTB + DTBO(s)),
+- added trailers,
+- Link to v2: https://lore.kernel.org/r/20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de
 
-> @@ -682,9 +899,22 @@ int icssm_emac_rx_packet(struct prueth_emac *emac, u16 *bd_rd_ptr,
->  		src_addr += actual_pkt_len;
->  	}
->  
-> +	if (pkt_info->timestamp) {
-> +		src_addr = (void *)roundup((uintptr_t)src_addr,
-> +					   ICSS_BLOCK_SIZE);
+Changes in v2:
+- add overlay application tests for Edgeble NCM6A WiFi and Rock 5B PCIe
+  Endpoint+SNRS
+- add overlay application test for RK3588 Jaguar + Pre-ICT tester
+  adapter,
+- Link to v1: https://lore.kernel.org/r/20241206-pre-ict-jaguar-v1-1-7f660bd4b70c@cherry.de
 
-Can PTR_ALIGN() be used here?
+---
+Quentin Schulz (4):
+      arm64: dts: rockchip: add overlay test for WolfVision PF5
+      arm64: dts: rockchip: add overlay test for Edgeble NCM6A
+      arm64: dts: rockchip: add overlay tests for Rock 5B PCIe overlays
+      arm64: dts: rockchip: minimal support for Pre-ICT tester adapter for RK3588 Jaguar
 
-> +		dst_addr = &ts;
-> +		memcpy(dst_addr, src_addr, sizeof(ts));
-> +	}
-> +
->  	if (!pkt_info->sv_frame) {
->  		skb_put(skb, actual_pkt_len);
->  
-> +		if (icssm_prueth_ptp_rx_ts_is_enabled(emac) &&
-> +		    pkt_info->timestamp) {
-> +			ssh = skb_hwtstamps(skb);
-> +			memset(ssh, 0, sizeof(*ssh));
-> +			ssh->hwtstamp = ns_to_ktime(ts);
-> +		}
->  		/* send packet up the stack */
->  		skb->protocol = eth_type_trans(skb, ndev);
->  		local_bh_disable();
+ arch/arm64/boot/dts/rockchip/Makefile              |  36 ++++-
+ .../dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso | 171 +++++++++++++++++++++
+ 2 files changed, 202 insertions(+), 5 deletions(-)
+---
+base-commit: 69e858e0b8b2ea07759e995aa383e8780d9d140c
+change-id: 20241206-pre-ict-jaguar-b90fafee8bd8
 
-The code preceding the hunk below is:
+Best regards,
+-- 
+Quentin Schulz <quentin.schulz@cherry.de>
 
-static int icssm_emac_request_irqs(struct prueth_emac *emac)
-{
-	struct net_device *ndev = emac->ndev;
-	int ret;
-
-	ret = request_threaded_irq(emac->rx_irq, NULL, icssm_emac_rx_thread,
-				   IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-				   ndev->name, ndev);
-	if (ret) {
-		netdev_err(ndev, "unable to request RX IRQ\n");
-		return ret;
-	}
-
-> @@ -855,9 +1085,64 @@ static int icssm_emac_request_irqs(struct prueth_emac *emac)
->  		return ret;
->  	}
->  
-> +	if (emac->emac_ptp_tx_irq) {
-> +		ret = request_threaded_irq(emac->emac_ptp_tx_irq,
-> +					   icssm_prueth_ptp_tx_irq_handle,
-> +					   icssm_prueth_ptp_tx_irq_work,
-> +					   IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-> +					   ndev->name, ndev);
-> +		if (ret) {
-> +			netdev_err(ndev, "unable to request PTP TX IRQ\n");
-> +			free_irq(emac->rx_irq, ndev);
-> +			free_irq(emac->tx_irq, ndev);
-
-This seems somewhat asymmetric. This function does request emac->rx_irq
-but not emac->tx_irq. So I don't think it is appropriate to free emac->tx_irq
-here.
-
-Also, I would suggest using a goto label for unwind here.
-
-> +		}
-> +	}
-> +
->  	return ret;
->  }
->  
-
-...
 
