@@ -1,1522 +1,244 @@
-Return-Path: <devicetree+bounces-141985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC97DA2399D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 07:45:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35CC0A239A1
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 07:47:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 360161889C48
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 06:45:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96F86165569
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 06:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F90A14F9CC;
-	Fri, 31 Jan 2025 06:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7686F143723;
+	Fri, 31 Jan 2025 06:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qj2ZSdlJ"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="F4g54ZN1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2076.outbound.protection.outlook.com [40.107.212.76])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4AE1155C88;
-	Fri, 31 Jan 2025 06:44:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738305878; cv=none; b=naqDc9FLtLqHALD8emocNRiC51GVBFPPY8QCGgtYKLPO8WnNUOsIfD6xHuAL1twjaMdFU99W5OKRdi1iuD5IX8U4LfdlqT+q2Im8RFVc6+7mvML0EmpljIsCf/JjVPybbkVRUHIdObkRtXz2M3J8WuB9PsIrLGqbNFtYNJVvymo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738305878; c=relaxed/simple;
-	bh=+QQ0uk9cQsUCxAtzHDM5AHEM7sGxz3Nr/ajhp5LqL4A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=knPVxA0bK4XE1avcTrrnHCe58a5ECSNMf13ynwhNHWzriMJ5TrpJccV172PRli7OgO3/MOh2zKZ/8vDLSKCLuAUCXVxTG3r9me9xQwUKY0EBXduKOnW79dls3TJnaRJEkKojHEJSml8qtruUkepVnSY/5wsAbbdeWcRaDgF5p1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qj2ZSdlJ; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2ef87d24c2dso2204266a91.1;
-        Thu, 30 Jan 2025 22:44:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738305875; x=1738910675; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Uxt7XgylM0RNNQeFvYOcAUiv7nVUhdc6VDeUfR75H2A=;
-        b=Qj2ZSdlJFXA08V3KWomsJaPKGRZPIYjqL7tfBarZtzwCtsIr3MAoUDTB2b8hNPMYmv
-         mMBQaMRgsf7Omdtm2IbQcl0Q73n1GiTPF4/1Gr/Z5OJeWeVeIRsNJHBqWsjSOo9jhy88
-         9HjJjuBk0mafa+nCwC/cjqlXVo9gKAjoHNCDIprq9hN26r4cb+wZDW8Zr5UeM2wbtPJ/
-         R5NWNyZe2ccUoh+cmZ4yWH7n2Oh9EdZQf3EjJvAzrY5mMliXLDS2kqkt4s1Cug8nhIBp
-         Eb2153Djp4+TehISLQ5X9ULfZc4ViB6ukIayKUKpKUJFk9iLXgWVUSQmthcv/aZ3a3cS
-         QozQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738305875; x=1738910675;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Uxt7XgylM0RNNQeFvYOcAUiv7nVUhdc6VDeUfR75H2A=;
-        b=jEBEtdW1kSq3HTXUcQ5mdGEGEXiOGD9TXXyvGZorvfBuZ1j1vAT1sc9m8o5O+3ljBv
-         DzXhE31/UWiMac6cwNGBU/ukXDA+56Maia/+H4c4Hc2cDx4zAK/ZMsiFUd77Tt/NnX87
-         HtkJXHdlFFZt727sYNgh/p51bccQjy+n9cstMYCDv8FeMul4mWVN7lCEy1Ax4mIpPfD3
-         BGdIOIAzXYgzoBL9WthRURH8TNS8dKYnFzxfGIEdJQ1012DQhQJquz7//Rd920zx8uv1
-         AnZ5UhYDMowmTlIVs+jF3BLnoyS2bD7NDqYvDvj49p/piWl0+DHPlUHk8VnBKLMVYzGj
-         +0nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUK40MRY90lo6ALncOnIy6RDINZWlYh9iJGoOqfAbkcl1uDNlqErA3drop4oftEVz+FnDoLotAmAbO9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7kpzn2jqFn7WZgR5+zFL6N32ZcLHxWqGSNuEOF+R4OkCIQaQz
-	X6S8TwsBRCuYunSQNeYWBQXt2h/mEF8ASgZ7xok9iD4CdfrsSHR32nGODpEX
-X-Gm-Gg: ASbGncsw+WlWJtKuwt7ZVPCtFhJjpuxrj6C+F2Ukcjc0+DOIAXshSAxJlYtUVtpA+xE
-	vaLyXvxbKns3E8UpebLS7Jnt87TcdniC7k+EHvl4hQaIayFPWYO6MUjnOxd/vCLvFnwCny2peqZ
-	cbgqNnVMNMvaJ0yReRGvG8ppNREteqrb7Azih8KKJhGVcyBaU3m8lq2e6MRrK/Vk07GQ6jzYz+2
-	qzDna7u8IGTG3zKpU7hGgKBswYbuENrC0aM8PQFOsqZvVsD15x8mleSW/HllTgTBAB7Oc7JpJ0V
-	hj9pamZQwPjYN16vYs4On4FMl0k=
-X-Google-Smtp-Source: AGHT+IHCCGvbadTzQSXOFZiCDedmOYIDDA+dHN78B+HXrjLu5qnI/+PnMm+dRI48nV23T9Oqber2XA==
-X-Received: by 2002:a17:90b:1f86:b0:2ee:aed2:c15c with SMTP id 98e67ed59e1d1-2f83ac8c3famr14496578a91.28.1738305874754;
-        Thu, 30 Jan 2025 22:44:34 -0800 (PST)
-Received: from noel.flets-west.jp ([2405:6586:4480:a10:167:9818:d778:5c14])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f83bfc0ddbsm5098947a91.45.2025.01.30.22.44.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jan 2025 22:44:34 -0800 (PST)
-From: Hironori KIKUCHI <kikuchan98@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] drm: panel: Add a driver for Generic MIPI-DSI/DPI(+SPI) panels
-Date: Fri, 31 Jan 2025 15:43:54 +0900
-Message-ID: <20250131064354.4163579-3-kikuchan98@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250131064354.4163579-1-kikuchan98@gmail.com>
-References: <20250131064354.4163579-1-kikuchan98@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 999B514F70;
+	Fri, 31 Jan 2025 06:47:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.212.76
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738306022; cv=fail; b=m3ZQPc/CafcdVFwif7OujSCxi+MXKdgv/ly6dXV0skwOojjOu2sx3myztZhCOu/Xusq9movL6L58F2vLPXN+iLVqFxGJ1rxmyuoIancIQjOIC1HHTEhjfIaWeH7JSK60qOb8ueUGa9vYEPWA2EDB4qL4xs1RLKDVh89v5Cu86/w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738306022; c=relaxed/simple;
+	bh=Afa3tGsj/xFcMIlcTWDJNZM7HzOnl6p2E6oIWFEUAnM=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=iJg3+R/fz/jgRU8nP7kDZGSu51CyX8EJViF+P7RfuGy7mlC/d78P9xk98LTnR34s28ZYUgpRUS52q+QGm7hacyscf9ZFxIeFLClAHvLN9GDG9YwxvlDxypxsXN0xQQ1nMrv9C53p1po8ImUITr8IC3xIi/guWACYC3M1ta3gHGI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=F4g54ZN1; arc=fail smtp.client-ip=40.107.212.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nXe3ZmQ8nmzTD2kReYWCQlLw5ixsLmVRT9jj99JDXd3qvS7EiXDJsijZGnDmI8mfsSzJgyIe1a2F+fq7vkpiPAHPlIYJpp1YDGvtlrfPuQJbuV9P3TwvQeTtuOIOdJc3UK4zX9VRH5TCGmozdOygFMWgE/wpr8+HHFKBbvDg2/E2qtzgV2UsJyw/VcxpIR0FUPsY9PqbeRHEwqOp+KnM0uDDTguRaAtu4GKkmyN/pmhvFysSEBHGkBCIsgQg6LgwlVZb4tX10Yqx+Qr3gdx8OarjGXUhXYv2h6qlq5PFCDdYmFznOqAo+C0QNceqTOSM+KJ+aerS2yurEyXVapqLlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Afa3tGsj/xFcMIlcTWDJNZM7HzOnl6p2E6oIWFEUAnM=;
+ b=BS6RUxbs4vQpaoYB69e8X8sUPr3AkfyRHWa2wroW5azu5ZLGujJQZjQjU/PG3WNBx+oLJdgR/zqKWvCCjBeLGV5nLkiRnpYKpAd01ad6ozU5SBwhddElWXCIjxN4mk43GbjIlNr/TBpAbpJcgrHcxHHrGvJDxabhnUKdsaKT0r1OlEbrwhXijxzg4UuQ0RbEFVjARXssBLckfWhDfOisIUDCw5Q+yKI24CeBVWrKYExUlbWmlOc6Z2IcvSVWA88c1uYZxnLZDD0eWqsSfd1LjIORKcdCEUXqXzjssYesFA7DcepD/oWPNcTZq5XERIfXuZNu0pZ/rd+nChnWg+3m+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Afa3tGsj/xFcMIlcTWDJNZM7HzOnl6p2E6oIWFEUAnM=;
+ b=F4g54ZN1y3Clj/HbPBqzmT5LC+DGW2/+OCK9CxpfRYukdl94BtHmhqjFap6/AZgQfdxsOMAnKGAOtcZWHf7i5zRXh+LX6TxqlA/XAY+YtvfnbUZZeJ4PNpascCkyCjzOZNZbrJqg1GsnAvGvIZdpsKOsLLuvcYREi+GmJhhs8viW0Pu9I6L9Bi8v4yV+y4Y/09vqZKlLOTOYK8S/lHCd7NVBAiiK9QATJnB2/mArXkpXC1EjqmoIBu2h32whHWcYUvTE5PdCmJ9aH05DKFceXuyNeAV2Aa5TH5972qt9U55a5tjcBnjb+G2pYCWWkjWvrQsf4c2thwVNa6oF4j9mBw==
+Received: from DM4PR12MB5721.namprd12.prod.outlook.com (2603:10b6:8:5c::10) by
+ PH0PR12MB8174.namprd12.prod.outlook.com (2603:10b6:510:298::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8398.20; Fri, 31 Jan 2025 06:46:55 +0000
+Received: from DM4PR12MB5721.namprd12.prod.outlook.com
+ ([fe80::5bbd:73c:90ac:83c7]) by DM4PR12MB5721.namprd12.prod.outlook.com
+ ([fe80::5bbd:73c:90ac:83c7%4]) with mapi id 15.20.8377.021; Fri, 31 Jan 2025
+ 06:46:54 +0000
+From: Kartik Rajput <kkartik@nvidia.com>
+To: Laxman Dewangan <ldewangan@nvidia.com>, "krzk@kernel.org"
+	<krzk@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, Akhil R
+	<akhilrajeev@nvidia.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "andi.shyti@kernel.org"
+	<andi.shyti@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>, "digetx@gmail.com"
+	<digetx@gmail.com>, "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH v2 4/5] i2c: tegra: Add support for SW mutex register
+Thread-Topic: [PATCH v2 4/5] i2c: tegra: Add support for SW mutex register
+Thread-Index: AQHbczHX4TF+SX1mI0GO+pmGjU99G7Mvg40AgAAUnACAANk3gA==
+Date: Fri, 31 Jan 2025 06:46:54 +0000
+Message-ID: <e1c72d7ac3f21ece4bf6a3f4c58f3fc300292b2f.camel@nvidia.com>
+References: <20250130143424.52389-1-kkartik@nvidia.com>
+	 <20250130143424.52389-5-kkartik@nvidia.com>
+	 <febb1225-3c14-4377-90e0-4d4aee307ede@kernel.org>
+	 <0daa503e73099085d84d432bb72a5f79db81a9b1.camel@nvidia.com>
+	 <4b9777cc-0bb3-44c1-92f8-209c30837f20@kernel.org>
+In-Reply-To: <4b9777cc-0bb3-44c1-92f8-209c30837f20@kernel.org>
+Reply-To: Kartik Rajput <kkartik@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.44.4-0ubuntu2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR12MB5721:EE_|PH0PR12MB8174:EE_
+x-ms-office365-filtering-correlation-id: 5e11f278-9469-43b5-6c07-08dd41c30ce5
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700018|921020;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?N2VLZWFqQTJwT3Z3Y1RhZ0MyUitBVlVZcnVOR09ORW5qUVU3WUJKTkxwZXpk?=
+ =?utf-8?B?eCtzb3EvMVFNVUhqa09lWStFNWFnaUFOVXc4YTk3NUFjdTJKdHpHaUdDSGR6?=
+ =?utf-8?B?UU55YnlnU255aEZjTUxNdlQ5Ykt2cTM5QTU1aTM1eitmclVQazZrV0Zkczdl?=
+ =?utf-8?B?bnRtRWt3NHdHeGQ1SC9HaW5QbVpiQVRYZlplSjZzbk5EM3FXQ2dZRlhRV3Qy?=
+ =?utf-8?B?Zk5zYmx6MmlmWURESVk1alE3TlRKS3VUYzV2VFBDMk9BemtPVVNHUnk1SG12?=
+ =?utf-8?B?SDJya1J0eDA4U0dzUi9TbEFmTERKdG5EVlk4ZHg3SGc4bjhLZE5pNzBsZnpw?=
+ =?utf-8?B?ZFFlNWYwTUpFR1BmTklOOFdtNE1ibXRZRjRvSTVyenFMcVNBbEhUc3B1bVU4?=
+ =?utf-8?B?UFlsRENDZnEreXRxYnRzZ1ZRTW96N3lrbWMxOU1CdFdOMndxWlhDRXJkbTI2?=
+ =?utf-8?B?M1ArYmhDMTdnaDZKWGZIREtyR25kTlJyd0tXbmd6YUNPZ29qbE91RncvdWtK?=
+ =?utf-8?B?Z0h0a3dBVnA5ajNwYVFLRTh5VnFoNjlycnJBc1ljdFl2bi9lQUJhSmtZWlJH?=
+ =?utf-8?B?NUJ1WHZCSDZtbFRqaXpzSFBNM09oRzRSWDVsdDRKb01Xck9wZzB0Z1plMVlq?=
+ =?utf-8?B?eUUvWEVXdmUrZ1NwYnR3NXpKUGRwMUdOaTV0ZFZ5Q3d2TmhNNGZWSG1zOG9x?=
+ =?utf-8?B?L1NKMlRaY09BclZNNldkTCtPeGRrTEtFNXVDSWprdjM5cTJQclIvZkduS1RM?=
+ =?utf-8?B?L29yQWk1Ky9SSjBmQ3pXTUxkSjdkak8zZ1V5NlkrZEV2SGlDTmRSNmtjS0hQ?=
+ =?utf-8?B?UGs2TWhaTE9xcEJiU3AyWTE4T2NsWWNoS3U5dU9manRvZHZVNE42UFdqeVFM?=
+ =?utf-8?B?UGdzMExxUHdZS1JwZTNEZXBkZlF4QjF3RllRK0tmZnNZTVFUZkVjbEJkZUJq?=
+ =?utf-8?B?ZmJWY0E1NXU5M2ZzY0NnREpOcjdxRnVuOHpLbXBPOGRoMllCK2FsT2xCWGR0?=
+ =?utf-8?B?dnBOWTdFY1dOdVlLN1VzLzFVcDVzbUhSeTV4MmxnMEdncmFTL2pqQTVzNkpD?=
+ =?utf-8?B?dGEwNE4yZm1ZZ3BTZDVxZzdFRGVvTndVN2VaU2VYWHVRNUVneTV4cTdWL0p5?=
+ =?utf-8?B?OTZQQjkyZUhOTldWeWNyd0RGMUs5TkFCM0drQlIxWFl2Wk5nRVV1ZCtYODBX?=
+ =?utf-8?B?UlRHaC9TQklUN0NVdUlPdkRCTSthUjBhdllpV3prRXpWcUlHdlRkTE5pYTZK?=
+ =?utf-8?B?WDRoQ09xWDlBNTBGTEY3L0NoVHJob2s0clhJb2tzSjhUenpTUkZiNXdHWlpQ?=
+ =?utf-8?B?eExwSE8wS2tzbE4reGVUbUF4ZEZSZE9GYWY3dmhNZXQ3dFJ2SGhRdU9pQTVs?=
+ =?utf-8?B?V3hkYmxteC9MK0ZJa2k3MHdvbXNpWHpGSFdWcjAxc2JtaVE5OG1wOCtVWmFs?=
+ =?utf-8?B?THhpRVlQR1EydlFPZmNoQlpkQXl1QkVuTlFlYlRwc2FlUjkyZnpDTSt4RkpY?=
+ =?utf-8?B?ZTFtVm4rSG9iS3ZIbzVTOTBGS2NXdjR2NENicDdCaDdOZVFiQ0Z3OWxrbHJt?=
+ =?utf-8?B?ZXZyVnlpdW8rQzNHS2VMdWpSMG9HNFc1YnRqWFNJRlgxQkFDdTZ3T1NVTkNR?=
+ =?utf-8?B?bitTT2pyWHBYQ0RKbm1MdDQ5RFNoS29qaVdzV05QQ0J2bWJ0cVRYb1FONlZr?=
+ =?utf-8?B?akp4M3JnbE1rM3kreFpQem9uVXFQcFRJVUZSTHlOa2VEam9hNHJTaEYzKzBJ?=
+ =?utf-8?B?Z3ZETTFRNkhIdncreUloUTQyOXFrSXJLcnJvVGFFQXFjSnY4MmlnRFNBNC9E?=
+ =?utf-8?B?a0Ztc0ttQm5OUjB3WXgrOWR3dktScjdZbk0vUDB1K1FRK1pMQjNtYTNBZStB?=
+ =?utf-8?B?c0owMFYwUVBjdnBsblFZZUV1RFdYdFpYaTRzN0c1djYyTkg0SjdWRllpTHFn?=
+ =?utf-8?B?SWU0V09RSVNPOUlWeTNRamhhaERHQW11Nys5eG5xVU5RTytob05hNDlaSmx0?=
+ =?utf-8?B?ZC9UcXBBRWpnPT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5721.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700018)(921020);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?OFZwL0J2MTAxSWJiekIvZVN5eUNCeFdoc3I0d3V1cjB5aDIvUlczTmVqa042?=
+ =?utf-8?B?dnl1UzZ4czdoNHlsSEVwb1ROYWI4NmFHTXpLckYwVWdya0VWNjM3L05jaENQ?=
+ =?utf-8?B?TUlJV24yZEFXQW9GbHdnb3oydldLQU5GWlltbFMrbjlvWURWSzd4VGU5UnUz?=
+ =?utf-8?B?WWQ3ZnNMbW5EZkl3ejBBZzFrRWtsVThXU3RWU0FTVnY2VkR0OFZZN1RFd1Yz?=
+ =?utf-8?B?bGlZWkczWE5FaEdYSktDR2RwVjN6ZGh5cGorZmRKTTl4QTh2NDdQUGFCaVR3?=
+ =?utf-8?B?QmFrOTZPYVNyZHlVRzV1M1Q5K3o0c2lWS3FRcllOZ0pnMnkyVlNCNGw4WjBi?=
+ =?utf-8?B?aDlVQ3hINmt6UCtYZnl0UU8wKzVTNmVCTlVQSFZqQjBvb2ZrVHowazZpbEtF?=
+ =?utf-8?B?SFh1S0MrRkZIWDJlOWhHWkhCU0kraGtIY01rVTc0ajN6ZVgwN09mL0N6cFJH?=
+ =?utf-8?B?TGRnd2ZTRU0vUmZna2lZYlo2bjBJYWFKNk05d1g1T0lUZndEZzBZYUpueHVm?=
+ =?utf-8?B?RWovY21uRjl5MFphV3NmVU5wWGxNRUZOb0pEYncxTFFDaGtMekV4YlhtWFF4?=
+ =?utf-8?B?cjlxdk02a3VhU0l2cDRYS3FRSTJhWDRUZkJkNkpkWDJzblR3TzNDZ0Z0YW5B?=
+ =?utf-8?B?MWFtWDB0UjFZRlp2bUs3MFgyaVE2aWlGb1VPWmZ1aVhVdE0va0J1eWQrRklq?=
+ =?utf-8?B?ZUxNbm56MHM0MUdkV2l4NDFRdWpReFR3YWpIc0lQNS9sM1NMeDdvUHVuZWJl?=
+ =?utf-8?B?cTRGaVA3OTdIVCt0ZERQRmJNRWg2RHUzNVB3UFlXTjA3cmpKaENVeUJMdE03?=
+ =?utf-8?B?VEM0bnFpeDdMMGZwYVB1ZGRlZTdEQWVncHEycjd6WUpNSnpSR3NkdE5ieWlu?=
+ =?utf-8?B?d3FwSCtrQmNydk82RU9qemc1T2RHY1p0S3ZjaGwxQTZucFI0VWhENnZJdzJX?=
+ =?utf-8?B?NE1PWUt2SUk1M05Vc2Z5UDhJVFJlbW5TZ2xMQmh5WXZhb2d0b3A4cXhMV0g2?=
+ =?utf-8?B?UGQ3cktXWllkY3JybHo0dlNVd0tneTYveUl0UENVOG9kMVVjQWZlTUNXbTBG?=
+ =?utf-8?B?TG1rQlNHU0swV01hTWZkVzlLYlBBeVBnYzJ2ckdsbmlKTHN3M3gvbmhab1Ux?=
+ =?utf-8?B?MW1FR0Z1QnBWOWxOUnN3ZXVZQXpTRndkZUJiTDNQNXJhL1VlT1poSjVvcFI4?=
+ =?utf-8?B?akxUb1NrQStaWjFQWGtSbmo2U3BXSEdsemQ3c0sya2RVek5TRXJKU0JRWnJX?=
+ =?utf-8?B?SmdTWjljYWNrdkxCdythL0pwZTJBVUxlWGp4SjlacW4rVnNVTDR1d3ErNTB4?=
+ =?utf-8?B?YzcxRld0NFljYXBLY3FnakZhdUc1L3M4T2hPUjlvMjJ1L1RUU005VWlhVjJk?=
+ =?utf-8?B?K1lGS2EwKzNUK2IwTUloSnp2ZitVUDdsa0FWVUVXR29qUFRacUsxMmJTakdu?=
+ =?utf-8?B?MXovTGpmZGlQWHkwMGpuMTdXU3V3Q0FMTDVteVEyRjQrRE42bVpTTW9jSDBw?=
+ =?utf-8?B?aVBSaktHbjZrUWx2STg3MjFVRFJ5UUtnR0V0SGJqUjdGS2d3em5HZzQ4cm5W?=
+ =?utf-8?B?RE82OHRCM2ppbCsvYzMrNDdCdFJzOUxycC9vSGI4TXJBeUtyUnA5TlVTUFRq?=
+ =?utf-8?B?SkpWNlVmSnk5NDBJSXFDc2wvT0haQTNTbDE5SkRneFZ5cDJrb3VSYkJkYnRB?=
+ =?utf-8?B?N2lheFdnekVyS3J1SkJ0NjQxQ1gyenZjdlNDamNDWER0cmY2S1ozSnJadzJk?=
+ =?utf-8?B?TmlITDk4cFpGakZQOFpJOGpUVDFsN2dmSmR2NjJxVlZOdVZKTzlyUlFPNWJo?=
+ =?utf-8?B?SFVEWE1BclF5MWsyTlpyWU5UYkpLbVNobWdTdFBjVFRacDJPckZPM1VXZHY4?=
+ =?utf-8?B?QjlSTzhoOXBPNnZLQjU5elcyaWNRVHN3a2ZqZGlrYmRaZUUwQ3g4TUpzVGZ2?=
+ =?utf-8?B?NmViV2IxS2oxQk9RQ1Qwdjl3VEVQUU4zYXJBaWxnZ1FMMmFLK05WTmxmbVU1?=
+ =?utf-8?B?Zmd4Q2RXVit3ZU5DU3dkeXAvTng2MWw1ODBLWjdXajNNd0tvM0gvcVZlRThs?=
+ =?utf-8?B?eEw4WjJRcVRYdkVWN0krOUVqUjZ0aXpRS0VKTy9veUMrN3pOdyt3bVVadWhi?=
+ =?utf-8?B?QzRyc1NKUG52RTNKWlJNWjB6SjVUQi9Xc21IT3RzRU9VL0ZMRGxRMUs4dTlD?=
+ =?utf-8?B?UFE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <10BAD98B84754043A91D2DC9B92ADC35@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5721.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e11f278-9469-43b5-6c07-08dd41c30ce5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jan 2025 06:46:54.7096
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mIzInpm9LkAxLhsDAhCFmfozbX3jBGuxtJ6/Dtld3eEEI4WsQTLOuc7ZgYsOc0rc2bFgeVTT1enDZZqlJuT9Tw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8174
 
-Although the MIPI specifications define how to communicate with a panel
-to display an image, some panels still require a panel-specific
-initialization sequence to be sent.
-
-This is a driver for such generic MIPI-DSI/DPI panels that require
-initialization with a simple command sequence before use.
-
-Its fundamental approach is similar to `panel-mipi-dbi` driver,
-which sends an initialization sequence stored in a firmware file.
-
-Moreover, this driver allows display modes, timings, and panel
-configuration parameters to be stored in the same file or in DT.
-
-Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
----
- drivers/gpu/drm/panel/Kconfig      |   10 +
- drivers/gpu/drm/panel/Makefile     |    1 +
- drivers/gpu/drm/panel/panel-mipi.c | 1355 ++++++++++++++++++++++++++++
- 3 files changed, 1366 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-mipi.c
-
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index d7469c565d1..46eea1974a0 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -408,6 +408,16 @@ config DRM_PANEL_MANTIX_MLAF057WE51
- 	  has a resolution of 720x1440 pixels, a built in backlight and touch
- 	  controller.
- 
-+config DRM_PANEL_MIPI
-+	tristate "Generic MIPI-DSI/DPI(+SPI) panel"
-+	depends on OF
-+	depends on SPI || DRM_MIPI_DSI
-+	select DRM_MIPI_DBI if SPI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to enable support for Generic MIPI-DSI /
-+	  MIPI-DPI(+SPI) panels.
-+
- config DRM_PANEL_NEC_NL8048HL11
- 	tristate "NEC NL8048HL11 RGB panel"
- 	depends on GPIOLIB && OF && SPI
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 7dcf72646ca..22276255a7b 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -40,6 +40,7 @@ obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
- obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
- obj-$(CONFIG_DRM_PANEL_LG_SW43408) += panel-lg-sw43408.o
- obj-$(CONFIG_DRM_PANEL_MAGNACHIP_D53E6EA8966) += panel-magnachip-d53e6ea8966.o
-+obj-$(CONFIG_DRM_PANEL_MIPI) += panel-mipi.o
- obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
- obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
- obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3052C) += panel-newvision-nv3052c.o
-diff --git a/drivers/gpu/drm/panel/panel-mipi.c b/drivers/gpu/drm/panel/panel-mipi.c
-new file mode 100644
-index 00000000000..bcbaa15b62a
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-mipi.c
-@@ -0,0 +1,1355 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Generic MIPI-DSI/DPI(+SPI) Panel Driver
-+ *
-+ * Supported panels:
-+ * - A generic MIPI-DSI panel which implements basic DCS
-+ * - A generic MIPI-DPI panel which implements basic DCS over SPI
-+ *
-+ * Copyright (C) 2025, Hironori KIKUCHI <kikuchan98@gmail.com>
-+ */
-+
-+#include <drm/drm_mipi_dbi.h>
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <linux/backlight.h>
-+#include <linux/bitfield.h>
-+#include <linux/debugfs.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/firmware.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/media-bus-format.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/spi/spi.h>
-+#include <video/display_timing.h>
-+#include <video/mipi_display.h>
-+#include <video/of_display_timing.h>
-+#include <video/videomode.h>
-+
-+/*
-+ * The display panel configuration can be stored in a firmware file,
-+ * under the firmware directory of the system.
-+ *
-+ * The name of the file is `panels/<firmware-name>.panel`, where the
-+ * 'firmware-name' should be defined as the property of the device
-+ * in the Device Tree, otherwise the first `compatible` string is used.
-+ *
-+ * File Layout:
-+ *     A binary file composed with the following data:
-+ *         <header>
-+ *         <config>
-+ *         <timings>
-+ *         <init-sequence>
-+ *
-+ * The 'header':
-+ *     A `struct panel_firmware_header`.
-+ *     The `file_format_version` must be `1`.
-+ *
-+ * The 'config':
-+ *     A `struct panel_firmware_config`.
-+ *     The values are in big-endian.
-+ *
-+ * The 'timings':
-+ *     An array of `struct panel_firmware_panel_timing`.
-+ *     Its length is `num_timings` in the config.
-+ *     The values are in big-endian.
-+ *
-+ * The 'init-sequence':
-+ *     MIPI commands to execute when the display pipeline is enabled.
-+ *     This is used to configure the display controller, and it may
-+ *     contains panel specific parameters as well.
-+ *
-+ *     The commands are encoded and stored in a byte array:
-+ *
-+ *         0x00             : sleep 10 ms
-+ *         0x01 <M>         : MIPI command <M> with no arguments
-+ *         0x02 <M> <a>     : MIPI command <M> with 1 argument <a>
-+ *         0x03 <M> <a> <b> : MIPI command <M> with 2 arguments <a> <b>
-+ *                :
-+ *         0x7f <M> <...>   : MIPI command <M> with 126 arguments <...>
-+ *         0x80             : sleep 100 ms
-+ *         0x81 - 0xff      : reserved
-+ *
-+ *     Example:
-+ *         command 0x11
-+ *         sleep 10ms
-+ *         command 0xb1 arguments 0x01 0x2c 0x2d
-+ *         command 0x29
-+ *         sleep 130ms
-+ *
-+ *     Byte sequence:
-+ *         0x01 0x11
-+ *         0x00
-+ *         0x04 0xb1 0x01 0x2c 0x2d
-+ *         0x01 0x29
-+ *         0x80 0x00 0x00 0x00
-+ *
-+ */
-+static const u8 panel_firmware_magic[15] = {
-+	0x50, 0x41, 0x4e, 0x45, 0x4c, 0x2d, 0x46, 0x49,
-+	0x52, 0x4d, 0x57, 0x41, 0x52, 0x45, 0x00,
-+};
-+
-+struct panel_firmware_header {
-+	u8 magic[15];
-+	u8 file_format_version; /* must be 1 */
-+} __packed;
-+
-+struct panel_firmware_config {
-+	u16 width_mm, height_mm;
-+	u16 rotation;
-+	u8 _reserved_1[2];
-+	u8 _reserved_2[8];
-+
-+	u16 reset_delay; /* delay after the reset command, in ms */
-+	u16 init_delay; /* delay for sending the initial command sequence, in ms */
-+	u16 sleep_delay; /* delay after the sleep command, in ms */
-+	u16 backlight_delay; /* delay for enabling the backlight, in ms */
-+	u16 _reserved_3[4];
-+
-+	u16 dsi_lanes; /* unsigned int */
-+	u16 dsi_format; /* enum mipi_dsi_pixel_format */
-+	u32 dsi_mode_flags; /* unsigned long */
-+	u32 bus_flags; /* struct drm_bus_flags */
-+	u8 _reserved_4[2];
-+	u8 preferred_timing;
-+	u8 num_timings;
-+} __packed;
-+
-+struct panel_firmware_panel_timing {
-+	u16 hactive;
-+	u16 hfp;
-+	u16 hslen;
-+	u16 hbp;
-+
-+	u16 vactive;
-+	u16 vfp;
-+	u16 vslen;
-+	u16 vbp;
-+
-+	u32 dclk; /* in kHz */
-+	u32 flags; /* include/drm/drm_modes.h DRM_MODE_FLAG_* */
-+
-+	u8 _reserved_1[8];
-+} __packed;
-+
-+struct panel_commands {
-+	const u8 *data;
-+	size_t size;
-+};
-+
-+struct panel_firmware {
-+	const struct firmware *blob;
-+	const struct panel_firmware_config *config;
-+	const struct panel_firmware_panel_timing *timings;
-+	struct panel_commands commands;
-+};
-+
-+struct panel_mipi {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct mipi_dbi dbi;
-+
-+	struct mutex lock;
-+
-+	struct regulator_bulk_data supplies[2];
-+	struct gpio_desc *reset;
-+
-+	unsigned int reset_delay;
-+	unsigned int init_delay;
-+	unsigned int sleep_delay;
-+	unsigned int backlight_delay;
-+
-+	unsigned int dsi_lanes;
-+	enum mipi_dsi_pixel_format dsi_format;
-+
-+	/* Panel info */
-+	u32 width_mm, height_mm;
-+	u32 bus_format, bus_flags;
-+	enum drm_panel_orientation orientation;
-+
-+	struct list_head mode_list;
-+
-+	struct panel_firmware *firmware;
-+	struct panel_commands commands;
-+
-+	int (*write_command)(struct panel_mipi *mipi, const u8 *buf,
-+			     size_t len);
-+	int (*read_command)(struct panel_mipi *mipi, u8 cmd, u8 *buf,
-+			    size_t len);
-+
-+	/* DMA-able buffer */
-+	u8 initial_display_id[3];
-+	u8 display_id[3];
-+
-+	/* debugfs */
-+	struct dentry *debugfs;
-+	u8 recvbuf[1024];
-+	size_t recvlen;
-+};
-+
-+static inline struct panel_mipi *to_panel_mipi(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct panel_mipi, panel);
-+}
-+
-+static int panel_mipi_dsi_write(struct panel_mipi *mipi, const u8 *buf,
-+				size_t len)
-+{
-+	int ret;
-+
-+	ret = mipi_dsi_dcs_write_buffer(mipi->dsi, buf, len);
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int panel_mipi_dbi_write(struct panel_mipi *mipi, const u8 *buf,
-+				size_t len)
-+{
-+	return mipi_dbi_command_stackbuf(&mipi->dbi, buf[0], buf + 1, len - 1);
-+}
-+
-+#define panel_mipi_write(mipi, ...)                                \
-+	({                                                         \
-+		u8 _buf[] = { __VA_ARGS__ };                       \
-+		mipi->write_command(mipi, _buf, ARRAY_SIZE(_buf)); \
-+	})
-+
-+static int panel_mipi_dsi_read(struct panel_mipi *mipi, u8 cmd, u8 *buf,
-+			       size_t len)
-+{
-+	return mipi_dsi_dcs_read(mipi->dsi, cmd, buf, len);
-+}
-+
-+static int panel_mipi_dbi_read(struct panel_mipi *mipi, u8 cmd, u8 *buf,
-+			       size_t len)
-+{
-+	return mipi_dbi_command_buf(&mipi->dbi, cmd, buf, len);
-+}
-+
-+#define panel_mipi_read(mipi, cmd, buf, len) \
-+	(mipi)->read_command((mipi), (cmd), (buf), (len))
-+
-+static unsigned long panel_mipi_dsi_set_mode_flags(struct panel_mipi *mipi,
-+						   unsigned long new_flags)
-+{
-+	unsigned long old_flags;
-+
-+	if (!mipi->dsi)
-+		return 0;
-+
-+	old_flags = mipi->dsi->mode_flags;
-+
-+	mipi->dsi->mode_flags = new_flags;
-+
-+	return old_flags;
-+}
-+
-+static bool panel_mipi_dsi_set_lpm(struct panel_mipi *mipi, bool set)
-+{
-+	unsigned long old_flags;
-+
-+	if (!mipi->dsi)
-+		return false;
-+
-+	old_flags = panel_mipi_dsi_set_mode_flags(
-+		mipi, set ? mipi->dsi->mode_flags | MIPI_DSI_MODE_LPM :
-+			    mipi->dsi->mode_flags & ~MIPI_DSI_MODE_LPM);
-+
-+	return old_flags & MIPI_DSI_MODE_LPM ? true : false;
-+}
-+
-+#define PANEL_MIPI_TRANSACTION(mipi, stmt)   \
-+	do {                                 \
-+		mutex_lock(&(mipi)->lock);   \
-+		do {                         \
-+			stmt;                \
-+		} while (0);                 \
-+		mutex_unlock(&(mipi)->lock); \
-+	} while (0)
-+
-+#define PANEL_MIPI_TRANSACTION_LPM(mipi, lpm, stmt)                       \
-+	PANEL_MIPI_TRANSACTION(                                           \
-+		mipi,                                                     \
-+		bool _lpm_backup = panel_mipi_dsi_set_lpm((mipi), (lpm)); \
-+		do { stmt; } while (0);                                   \
-+		panel_mipi_dsi_set_lpm((mipi), _lpm_backup))
-+
-+static int panel_mipi_validate_commands(struct panel_mipi *mipi, const u8 *data,
-+					size_t size, size_t *valid_len)
-+{
-+	size_t i = 0;
-+
-+	/* sanity check */
-+	while (i < size) {
-+		u8 inst = data[i];
-+		bool ext = (inst & 0x80) ? true : false;
-+		u8 len = inst & 0x7f;
-+
-+		if (ext && len > 0)
-+			return -EINVAL; /* reserved */
-+
-+		if (i + 1 + len > size)
-+			break;
-+
-+		i += 1 + len;
-+	}
-+
-+	*valid_len = i;
-+
-+	return 0;
-+}
-+
-+static int panel_mipi_load_commands(struct panel_mipi *mipi, const u8 *data,
-+				    size_t size)
-+{
-+	int err;
-+	size_t valid_len;
-+
-+	err = panel_mipi_validate_commands(mipi, data, size, &valid_len);
-+	if (err)
-+		return err;
-+
-+	if (valid_len != size)
-+		return -EINVAL;
-+
-+	mipi->commands.data = data;
-+	mipi->commands.size = size;
-+
-+	return 0;
-+}
-+
-+static int panel_mipi_write_commands(struct panel_mipi *mipi, const u8 *data,
-+				     size_t size)
-+{
-+	const u8 *read_commands;
-+	unsigned int write_memory_bpw;
-+	size_t i = 0;
-+	int err = 0;
-+
-+	if (!data)
-+		return 0;
-+
-+	/*
-+	 * Disable interpretation for special commands for DBI
-+	 *
-+	 * This is required because the vendor specific custom commands
-+	 * may change its command set to the other.
-+	 */
-+	read_commands = mipi->dbi.read_commands;
-+	write_memory_bpw = mipi->dbi.write_memory_bpw;
-+	mipi->dbi.read_commands = NULL;
-+	mipi->dbi.write_memory_bpw = 8;
-+
-+	while (i < size) {
-+		u8 inst = data[i++];
-+		bool ext = (inst & 0x80) ? true : false;
-+		u8 len = inst & 0x7f;
-+
-+		if (len == 0x00) {
-+			msleep(ext ? 100 : 10);
-+			continue;
-+		}
-+
-+		err = mipi->write_command(mipi, data + i, len);
-+
-+		if (err)
-+			break;
-+
-+		i += len;
-+	}
-+
-+	/* restore */
-+	mipi->dbi.read_commands = read_commands;
-+	mipi->dbi.write_memory_bpw = write_memory_bpw;
-+
-+	return err;
-+}
-+
-+static int panel_mipi_read_firmware(const struct device *dev,
-+				    struct panel_mipi *mipi,
-+				    const struct panel_firmware *firmware)
-+{
-+	int rotation;
-+	int err;
-+
-+	if (!firmware)
-+		return 0;
-+
-+	err = panel_mipi_load_commands(mipi, firmware->commands.data,
-+				       firmware->commands.size);
-+	if (err) {
-+		dev_err(dev, "firmware: Malformed command sequence\n");
-+		return err;
-+	}
-+
-+	mipi->width_mm = be16_to_cpu(firmware->config->width_mm);
-+	mipi->height_mm = be16_to_cpu(firmware->config->height_mm);
-+
-+	rotation = be16_to_cpu(firmware->config->rotation);
-+	if (rotation == 0)
-+		mipi->orientation = DRM_MODE_PANEL_ORIENTATION_NORMAL;
-+	else if (rotation == 90)
-+		mipi->orientation = DRM_MODE_PANEL_ORIENTATION_RIGHT_UP;
-+	else if (rotation == 180)
-+		mipi->orientation = DRM_MODE_PANEL_ORIENTATION_BOTTOM_UP;
-+	else if (rotation == 270)
-+		mipi->orientation = DRM_MODE_PANEL_ORIENTATION_LEFT_UP;
-+	else {
-+		dev_err(dev, "firmware: Invalid rotation %u\n", rotation);
-+		return -EINVAL;
-+	}
-+
-+	if (firmware->config->reset_delay)
-+		mipi->reset_delay = be16_to_cpu(firmware->config->reset_delay);
-+	if (firmware->config->init_delay)
-+		mipi->init_delay = be16_to_cpu(firmware->config->init_delay);
-+	if (firmware->config->sleep_delay)
-+		mipi->sleep_delay = be16_to_cpu(firmware->config->sleep_delay);
-+	if (firmware->config->backlight_delay)
-+		mipi->backlight_delay =
-+			be16_to_cpu(firmware->config->backlight_delay);
-+
-+	if (firmware->config->bus_flags)
-+		mipi->bus_flags = be32_to_cpu(firmware->config->bus_flags);
-+
-+	return 0;
-+}
-+
-+static struct panel_firmware *panel_mipi_load_firmware(struct device *dev)
-+{
-+	const struct firmware *blob;
-+	const struct panel_firmware_header *hdr;
-+	const struct panel_firmware_config *config;
-+	const struct panel_firmware_panel_timing *timings;
-+	struct panel_firmware *firmware;
-+	const char *firmware_name;
-+	size_t command_offset;
-+	char filename[128];
-+	int err;
-+
-+	err = of_property_read_string_index(dev->of_node, "compatible", 0,
-+					    &firmware_name);
-+	if (err)
-+		return NULL;
-+
-+	/* Use firmware-name instead if any */
-+	of_property_read_string(dev->of_node, "firmware-name", &firmware_name);
-+
-+	snprintf(filename, sizeof(filename), "panels/%s.panel", firmware_name);
-+	err = firmware_request_nowarn(&blob, filename, dev);
-+	if (err)
-+		return NULL;
-+
-+	hdr = (const struct panel_firmware_header *)blob->data;
-+
-+	if (blob->size < sizeof(*hdr)) {
-+		dev_err(dev, "firmware: %s: file size %zu is too small\n",
-+			filename, blob->size);
-+		err = -EINVAL;
-+		goto err;
-+	}
-+
-+	if (memcmp(hdr->magic, panel_firmware_magic, sizeof(hdr->magic))) {
-+		dev_err(dev, "firmware: %s: Bad magic %15ph\n", filename,
-+			hdr->magic);
-+		err = -EINVAL;
-+		goto err;
-+	}
-+
-+	if (hdr->file_format_version != 1) {
-+		dev_err(dev, "firmware: %s: version %u is not supported\n",
-+			filename, hdr->file_format_version);
-+		err = -EINVAL;
-+		goto err;
-+	}
-+
-+	config = (struct panel_firmware_config *)(blob->data + sizeof(*hdr));
-+	timings = (struct panel_firmware_panel_timing *)(blob->data +
-+							 sizeof(*hdr) +
-+							 sizeof(*config));
-+	command_offset = sizeof(*hdr) + sizeof(*config) +
-+			 config->num_timings * sizeof(*timings);
-+	if (blob->size < command_offset) {
-+		dev_err(dev, "firmware: %s: file size %zu is too small\n",
-+			filename, blob->size);
-+		err = -EINVAL;
-+		goto err;
-+	}
-+
-+	firmware = devm_kzalloc(dev, sizeof(*firmware), GFP_KERNEL);
-+	if (!firmware) {
-+		err = -ENOMEM;
-+		goto err;
-+	}
-+
-+	firmware->blob = blob;
-+	firmware->config = config;
-+	firmware->timings = timings;
-+	firmware->commands.data = blob->data + command_offset;
-+	firmware->commands.size = blob->size - command_offset;
-+
-+	dev_info(dev, "firmware: %s: loaded successfully\n", filename);
-+
-+	return firmware;
-+
-+err:
-+	release_firmware(blob);
-+
-+	return ERR_PTR(err);
-+}
-+
-+static int panel_mipi_read_display_id(struct panel_mipi *mipi, u8 *dest)
-+{
-+	return panel_mipi_read(mipi, MIPI_DCS_GET_DISPLAY_ID, dest, 3);
-+}
-+
-+static int panel_mipi_enable(struct drm_panel *panel)
-+{
-+	struct panel_mipi *mipi = to_panel_mipi(panel);
-+	int err;
-+
-+	PANEL_MIPI_TRANSACTION(mipi, {
-+		err = panel_mipi_write(mipi, MIPI_DCS_SET_DISPLAY_ON);
-+	});
-+	if (err)
-+		return err;
-+
-+	if (panel->backlight) {
-+		/* Wait for the picture to be ready before enabling backlight */
-+		msleep(mipi->backlight_delay);
-+	}
-+
-+	return 0;
-+}
-+
-+static int panel_mipi_disable(struct drm_panel *panel)
-+{
-+	struct panel_mipi *mipi = to_panel_mipi(panel);
-+	int err = 0;
-+
-+	PANEL_MIPI_TRANSACTION(mipi, {
-+		err = panel_mipi_write(mipi, MIPI_DCS_SET_DISPLAY_OFF);
-+	});
-+
-+	return err;
-+}
-+
-+static int panel_mipi_prepare(struct drm_panel *panel)
-+{
-+	struct panel_mipi *mipi = to_panel_mipi(panel);
-+	int err;
-+
-+	err = regulator_bulk_enable(ARRAY_SIZE(mipi->supplies), mipi->supplies);
-+	if (err)
-+		return err;
-+
-+	PANEL_MIPI_TRANSACTION(mipi, {
-+		/* Reset the chip */
-+		if (mipi->reset) {
-+			gpiod_set_value_cansleep(mipi->reset, 1);
-+			msleep(mipi->reset_delay);
-+			gpiod_set_value_cansleep(mipi->reset, 0);
-+		}
-+
-+		msleep(mipi->init_delay);
-+
-+		/* Read the Display ID */
-+		if (!panel_mipi_read_display_id(mipi,
-+						mipi->initial_display_id)) {
-+			dev_info(panel->dev, "MIPI Display ID: %3phN\n",
-+				 mipi->initial_display_id);
-+		}
-+
-+		/* Write the init-sequence */
-+		err = panel_mipi_write_commands(mipi, mipi->commands.data,
-+						mipi->commands.size);
-+		if (err)
-+			break;
-+
-+		/* Ensure to exit from a sleep mode */
-+		err = panel_mipi_write(mipi, MIPI_DCS_EXIT_SLEEP_MODE);
-+		if (err)
-+			break;
-+		msleep(mipi->sleep_delay);
-+
-+		/*
-+		 * Read the Display ID again,
-+		 * because the init-sequence might have changed the ID.
-+		 */
-+		if (!panel_mipi_read_display_id(mipi, mipi->display_id) &&
-+		    memcmp(mipi->initial_display_id, mipi->display_id,
-+			   sizeof(mipi->display_id))) {
-+			dev_info(panel->dev,
-+				 "MIPI Display ID: %3phN (changed)\n",
-+				 mipi->display_id);
-+		}
-+	});
-+
-+	if (err) {
-+		regulator_bulk_disable(ARRAY_SIZE(mipi->supplies),
-+				       mipi->supplies);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int panel_mipi_unprepare(struct drm_panel *panel)
-+{
-+	struct panel_mipi *mipi = to_panel_mipi(panel);
-+	int err;
-+
-+	PANEL_MIPI_TRANSACTION(mipi, {
-+		err = panel_mipi_write(mipi, MIPI_DCS_ENTER_SLEEP_MODE);
-+		if (err)
-+			dev_warn(panel->dev, "Failed to enter a sleep mode\n");
-+		msleep(mipi->sleep_delay);
-+	});
-+
-+	if (mipi->reset) {
-+		gpiod_set_value_cansleep(mipi->reset, 1);
-+		msleep(mipi->reset_delay);
-+	}
-+
-+	regulator_bulk_disable(ARRAY_SIZE(mipi->supplies), mipi->supplies);
-+
-+	return 0;
-+}
-+
-+static int panel_mipi_get_modes(struct drm_panel *panel,
-+				struct drm_connector *connector)
-+{
-+	struct panel_mipi *mipi = to_panel_mipi(panel);
-+	struct drm_display_mode *mode;
-+	unsigned int count = 0;
-+
-+	list_for_each_entry(mode, &mipi->mode_list, head) {
-+		struct drm_display_mode *dmode;
-+
-+		dmode = drm_mode_duplicate(connector->dev, mode);
-+		if (!dmode)
-+			return -EINVAL;
-+
-+		drm_mode_probed_add(connector, dmode);
-+		count++;
-+	}
-+
-+	connector->display_info.bpc = 8;
-+	connector->display_info.width_mm = mipi->width_mm;
-+	connector->display_info.height_mm = mipi->height_mm;
-+	connector->display_info.bus_flags = mipi->bus_flags;
-+	drm_display_info_set_bus_formats(&connector->display_info,
-+					 &mipi->bus_format, 1);
-+
-+	/*
-+	 * TODO: Remove once all drm drivers call
-+	 * drm_connector_set_orientation_from_panel()
-+	 */
-+	drm_connector_set_panel_orientation(connector, mipi->orientation);
-+
-+	return count;
-+}
-+
-+static enum drm_panel_orientation
-+panel_mipi_get_orientation(struct drm_panel *panel)
-+{
-+	struct panel_mipi *mipi = to_panel_mipi(panel);
-+
-+	return mipi->orientation;
-+}
-+
-+#ifdef CONFIG_DEBUG_FS
-+
-+static int display_id_show(struct seq_file *s, void *data)
-+{
-+	struct drm_panel *panel = s->private;
-+	struct panel_mipi *mipi = to_panel_mipi(panel);
-+	int err = 0;
-+
-+	PANEL_MIPI_TRANSACTION(mipi, {
-+		err = panel_mipi_read_display_id(mipi, mipi->display_id);
-+		if (err)
-+			break;
-+
-+		seq_printf(s, "%3phN\n", mipi->display_id);
-+	});
-+
-+	return err;
-+}
-+DEFINE_SHOW_ATTRIBUTE(display_id);
-+
-+static int initial_display_id_show(struct seq_file *s, void *data)
-+{
-+	struct drm_panel *panel = s->private;
-+	struct panel_mipi *mipi = to_panel_mipi(panel);
-+
-+	seq_printf(s, "%3phN\n", mipi->initial_display_id);
-+
-+	return 0;
-+}
-+
-+DEFINE_SHOW_ATTRIBUTE(initial_display_id);
-+
-+static int commands_open(struct inode *inode, struct file *file)
-+{
-+	struct panel_mipi *mipi = inode->i_private;
-+
-+	mipi->recvlen = 0;
-+	file->private_data = mipi;
-+
-+	return 0;
-+}
-+
-+static ssize_t commands_write(struct file *file, const char __user *data,
-+			      size_t size, loff_t *pos)
-+{
-+	struct panel_mipi *mipi = file->private_data;
-+	ssize_t s = min_t(u64, sizeof(mipi->recvbuf) - mipi->recvlen, size);
-+	size_t valid_len;
-+	int err;
-+
-+	if (!s || !mipi)
-+		return -EINVAL;
-+
-+	if (copy_from_user(mipi->recvbuf + mipi->recvlen, data, s))
-+		return -EINVAL;
-+
-+	mipi->recvlen += s;
-+
-+	err = panel_mipi_validate_commands(mipi, mipi->recvbuf, mipi->recvlen,
-+					   &valid_len);
-+	if (err)
-+		return err;
-+
-+	if (valid_len > 0) {
-+		PANEL_MIPI_TRANSACTION(mipi, {
-+			err = panel_mipi_write_commands(mipi, mipi->recvbuf,
-+							valid_len);
-+		});
-+		if (err)
-+			return err;
-+
-+		mipi->recvlen -= valid_len;
-+		if (mipi->recvlen)
-+			memmove(mipi->recvbuf, mipi->recvbuf + valid_len,
-+				mipi->recvlen);
-+	}
-+
-+	return s;
-+}
-+
-+static int commands_release(struct inode *inode, struct file *file)
-+{
-+	struct panel_mipi *mipi = inode->i_private;
-+
-+	if (mipi->recvlen) {
-+		dev_err(mipi->panel.dev, "Premature end of commands\n");
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct file_operations commands_fops = {
-+	.owner = THIS_MODULE,
-+	.open = commands_open,
-+	.write = commands_write,
-+	.release = commands_release,
-+};
-+
-+#endif
-+
-+static void panel_mipi_debugfs_init(struct device *dev, struct panel_mipi *mipi)
-+{
-+#ifdef CONFIG_DEBUG_FS
-+	struct dentry *dir;
-+
-+	mipi->debugfs = debugfs_lookup("panel-mipi", NULL);
-+	if (!mipi->debugfs)
-+		mipi->debugfs = debugfs_create_dir("panel-mipi", NULL);
-+
-+	dir = debugfs_create_dir(dev_name(dev), mipi->debugfs);
-+	debugfs_create_file("display-id", 0600, dir, mipi, &display_id_fops);
-+	debugfs_create_file("initial-display-id", 0600, dir, mipi,
-+			    &initial_display_id_fops);
-+	debugfs_create_file("commands", 0600, dir, mipi, &commands_fops);
-+#endif
-+}
-+
-+static void panel_mipi_debugfs_remove(struct panel_mipi *mipi)
-+{
-+#ifdef CONFIG_DEBUG_FS
-+	debugfs_remove_recursive(mipi->debugfs);
-+	mipi->debugfs = NULL;
-+#endif
-+}
-+
-+static const struct drm_panel_funcs panel_mipi_funcs = {
-+	.prepare = panel_mipi_prepare,
-+	.unprepare = panel_mipi_unprepare,
-+	.enable = panel_mipi_enable,
-+	.disable = panel_mipi_disable,
-+	.get_modes = panel_mipi_get_modes,
-+	.get_orientation = panel_mipi_get_orientation,
-+};
-+
-+static int panel_mipi_add_mode(struct device *dev, struct panel_mipi *mipi,
-+			       const struct drm_display_mode *src_mode,
-+			       const char *source)
-+{
-+	struct drm_display_mode *mode;
-+
-+	mode = devm_kzalloc(dev, sizeof(*mode), GFP_KERNEL);
-+	if (!mode)
-+		return -ENOMEM;
-+
-+	drm_mode_copy(mode, src_mode);
-+
-+	if (!mode->clock)
-+		mode->clock = mode->htotal * mode->vtotal * 60 / 1000;
-+
-+	mode->type |= DRM_MODE_TYPE_DRIVER;
-+
-+	dev_info(dev, "Modeline " DRM_MODE_FMT " added by %s\n",
-+		 DRM_MODE_ARG(mode), source);
-+
-+	list_add_tail(&mode->head, &mipi->mode_list);
-+
-+	return 0;
-+}
-+
-+static int panel_mipi_firmware_read_modes(const struct panel_firmware *firmware,
-+					  struct drm_display_mode *mode,
-+					  u32 *bus_flags, unsigned int i)
-+{
-+	const struct panel_firmware_panel_timing *timings =
-+		&firmware->timings[i];
-+
-+	if (!firmware || i >= firmware->config->num_timings)
-+		return -ENOENT;
-+
-+	if (!timings->hactive || !timings->vactive)
-+		return -ENOENT;
-+
-+	memset(mode, 0, sizeof(*mode));
-+
-+	mode->clock = be32_to_cpu(timings->dclk);
-+
-+	mode->hdisplay = be16_to_cpu(timings->hactive);
-+	mode->hsync_start = mode->hdisplay + be16_to_cpu(timings->hfp);
-+	mode->hsync_end = mode->hsync_start + be16_to_cpu(timings->hslen);
-+	mode->htotal = mode->hsync_end + be16_to_cpu(timings->hbp);
-+
-+	mode->vdisplay = be16_to_cpu(timings->vactive);
-+	mode->vsync_start = mode->vdisplay + be16_to_cpu(timings->vfp);
-+	mode->vsync_end = mode->vsync_start + be16_to_cpu(timings->vslen);
-+	mode->vtotal = mode->vsync_end + be16_to_cpu(timings->vbp);
-+
-+	mode->flags = be32_to_cpu(timings->flags);
-+
-+	drm_mode_set_name(mode);
-+
-+	if (bus_flags && firmware->config->bus_flags)
-+		*bus_flags = be32_to_cpu(firmware->config->bus_flags);
-+
-+	return 0;
-+}
-+
-+static void drm_display_mode_from_timing(const struct display_timing *timing,
-+					 struct drm_display_mode *dmode,
-+					 u32 *bus_flags)
-+{
-+	struct videomode vm;
-+
-+	videomode_from_timing(timing, &vm);
-+
-+	memset(dmode, 0, sizeof(*dmode));
-+	drm_display_mode_from_videomode(&vm, dmode);
-+
-+	if (bus_flags)
-+		drm_bus_flags_from_videomode(&vm, bus_flags);
-+}
-+
-+static int panel_mipi_read_of_display_timings(struct device *dev,
-+					      struct panel_mipi *mipi)
-+{
-+	struct device_node *np = dev->of_node;
-+	struct device_node *timings_np;
-+	struct display_timings *timings;
-+	struct drm_display_mode mode = {};
-+	u32 bus_flags;
-+	unsigned int i;
-+	int err;
-+
-+	/* To avoid the not found error message */
-+	timings_np = of_get_child_by_name(np, "display-timings");
-+	if (!timings_np)
-+		return 0;
-+	of_node_put(timings_np);
-+
-+	/* Then, load timings as usual */
-+	timings = of_get_display_timings(np);
-+	if (!timings)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "%pOF: Failed to get 'display-timings'\n",
-+				     dev->of_node);
-+
-+	for (i = 0; i < timings->num_timings; i++) {
-+		drm_display_mode_from_timing(timings->timings[i], &mode,
-+					     &bus_flags);
-+
-+		if (timings->native_mode == i)
-+			mode.type |= DRM_MODE_TYPE_PREFERRED;
-+
-+		err = panel_mipi_add_mode(dev, mipi, &mode, "display-timings");
-+		if (err)
-+			return err;
-+		if (bus_flags)
-+			mipi->bus_flags = bus_flags;
-+	}
-+
-+	display_timings_release(timings);
-+
-+	return 0;
-+}
-+
-+static int panel_mipi_probe_modes(struct device *dev, struct panel_mipi *mipi)
-+{
-+	unsigned int i = 0;
-+	u32 bus_flags = 0;
-+	struct drm_display_mode mode = {};
-+	struct display_timing timing = {};
-+	int err;
-+
-+	INIT_LIST_HEAD(&mipi->mode_list);
-+
-+	/* Read firmware first */
-+	for (i = 0; mipi->firmware && i < mipi->firmware->config->num_timings;
-+	     i++) {
-+		if (!panel_mipi_firmware_read_modes(mipi->firmware, &mode,
-+						    &bus_flags, i)) {
-+			if (mipi->firmware->config->preferred_timing == i)
-+				mode.type |= DRM_MODE_TYPE_PREFERRED;
-+
-+			err = panel_mipi_add_mode(dev, mipi, &mode, "firmware");
-+			if (err)
-+				return err;
-+			if (bus_flags)
-+				mipi->bus_flags = bus_flags;
-+		}
-+	}
-+
-+	/* Read `display-timings` and append if any */
-+	err = panel_mipi_read_of_display_timings(dev, mipi);
-+	if (err)
-+		return err;
-+
-+	/* Read `panel-timing` and append if any */
-+	err = of_get_display_timing(dev->of_node, "panel-timing", &timing);
-+	if (err && err != -ENOENT)
-+		return err;
-+	else if (!err) {
-+		drm_display_mode_from_timing(&timing, &mode, &bus_flags);
-+		err = panel_mipi_add_mode(dev, mipi, &mode, "panel-timing");
-+		if (err)
-+			return err;
-+		if (bus_flags)
-+			mipi->bus_flags = bus_flags;
-+	}
-+
-+	if (list_empty(&mipi->mode_list))
-+		return dev_err_probe(dev, -EINVAL, "No modes defined\n");
-+
-+	return 0;
-+}
-+
-+static void panel_mipi_cleanup(void *data)
-+{
-+	struct panel_mipi *mipi = (struct panel_mipi *)data;
-+
-+	panel_mipi_debugfs_remove(mipi);
-+
-+	drm_panel_remove(&mipi->panel);
-+	drm_panel_disable(&mipi->panel);
-+	drm_panel_unprepare(&mipi->panel);
-+
-+	if (mipi->firmware)
-+		release_firmware(mipi->firmware->blob);
-+}
-+
-+static int
-+panel_mipi_backlight_update_status(struct backlight_device *backlight)
-+{
-+	struct panel_mipi *mipi = dev_get_drvdata(&backlight->dev);
-+	int level = backlight_get_brightness(backlight);
-+	int err;
-+
-+	PANEL_MIPI_TRANSACTION_LPM(mipi, false, {
-+		err = panel_mipi_write(mipi, MIPI_DCS_SET_DISPLAY_BRIGHTNESS,
-+				       level, level);
-+	});
-+
-+	return err;
-+}
-+
-+static int
-+panel_mipi_backlight_get_brightness(struct backlight_device *backlight)
-+{
-+	return backlight_get_brightness(backlight);
-+}
-+
-+static const struct backlight_ops panel_mipi_backlight_ops = {
-+	.get_brightness = panel_mipi_backlight_get_brightness,
-+	.update_status = panel_mipi_backlight_update_status,
-+};
-+
-+static int panel_mipi_set_backlight(struct drm_panel *panel, struct device *dev,
-+				    struct panel_mipi *mipi)
-+{
-+	int err;
-+
-+	err = drm_panel_of_backlight(panel);
-+	if (err)
-+		return err;
-+
-+	if (!panel->backlight) {
-+		struct backlight_device *backlight = NULL;
-+		struct backlight_properties props = {
-+			.max_brightness = 255,
-+			.type = BACKLIGHT_RAW,
-+		};
-+
-+		backlight = devm_backlight_device_register(
-+			dev, dev_name(dev), dev, mipi,
-+			&panel_mipi_backlight_ops, &props);
-+		if (IS_ERR(backlight))
-+			return PTR_ERR(backlight);
-+
-+		panel->backlight = backlight;
-+	}
-+
-+	return 0;
-+}
-+
-+static int panel_mipi_probe(struct device *dev, int connector_type)
-+{
-+	struct panel_mipi *mipi;
-+	int err;
-+
-+	mipi = devm_kzalloc(dev, sizeof(*mipi), GFP_KERNEL);
-+	if (!mipi)
-+		return -ENOMEM;
-+
-+	mutex_init(&mipi->lock);
-+
-+	/* Get `power-supply` and `io-supply` (if any) */
-+	mipi->supplies[0].supply = "power";
-+	mipi->supplies[1].supply = "io";
-+	err = devm_regulator_bulk_get(dev, ARRAY_SIZE(mipi->supplies),
-+				      mipi->supplies);
-+	if (err < 0) {
-+		return dev_err_probe(dev, err,
-+				     "%pOF: Failed to get regulators\n",
-+				     dev->of_node);
-+	}
-+
-+	/* GPIO for /RESET */
-+	mipi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(mipi->reset))
-+		return dev_err_probe(dev, PTR_ERR(mipi->reset),
-+				     "%pOF: Failed to get GPIO for RESET\n",
-+				     dev->of_node);
-+
-+	/* Default values */
-+	mipi->bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-+	mipi->reset_delay = 1;
-+	mipi->init_delay = 10;
-+	mipi->sleep_delay = 120;
-+	mipi->backlight_delay = 120;
-+
-+	/* Load from the firmware */
-+	mipi->firmware = panel_mipi_load_firmware(dev);
-+	if (IS_ERR(mipi->firmware))
-+		return dev_err_probe(dev, PTR_ERR(mipi->firmware),
-+				     "Failed to load a firmware\n");
-+	err = panel_mipi_read_firmware(dev, mipi, mipi->firmware);
-+	if (err)
-+		return err;
-+
-+	/* Load panel modes */
-+	err = panel_mipi_probe_modes(dev, mipi);
-+	if (err)
-+		return err;
-+
-+	/* Load overrides from the DT */
-+	const struct property *prop =
-+		of_find_property(dev->of_node, "init-sequence", NULL);
-+	if (prop && prop->value && prop->length > 0) {
-+		err = panel_mipi_load_commands(mipi, prop->value, prop->length);
-+		if (err)
-+			return dev_err_probe(
-+				dev, err, "%pOF: Malformed command sequence\n",
-+				dev->of_node);
-+	}
-+	of_property_read_u32(dev->of_node, "width-mm", &mipi->width_mm);
-+	of_property_read_u32(dev->of_node, "height-mm", &mipi->height_mm);
-+	of_property_read_u32(dev->of_node, "reset-delay", &mipi->reset_delay);
-+	of_property_read_u32(dev->of_node, "init-delay", &mipi->init_delay);
-+	of_property_read_u32(dev->of_node, "sleep-delay", &mipi->sleep_delay);
-+	of_property_read_u32(dev->of_node, "backlight-delay",
-+			     &mipi->backlight_delay);
-+	if (of_find_property(dev->of_node, "rotation", NULL)) {
-+		err = of_drm_get_panel_orientation(dev->of_node,
-+						   &mipi->orientation);
-+		if (err)
-+			return dev_err_probe(dev, err,
-+					     "%pOF: Invalid rotation\n",
-+					     dev->of_node);
-+	}
-+
-+	/* DRM panel setup */
-+	drm_panel_init(&mipi->panel, dev, &panel_mipi_funcs, connector_type);
-+
-+	err = panel_mipi_set_backlight(&mipi->panel, dev, mipi);
-+	if (err)
-+		return dev_err_probe(dev, err, "Failed to set backlight\n");
-+
-+	drm_panel_add(&mipi->panel);
-+
-+	dev_set_drvdata(dev, mipi);
-+
-+	panel_mipi_debugfs_init(dev, mipi);
-+
-+	return devm_add_action_or_reset(dev, panel_mipi_cleanup, mipi);
-+}
-+
-+static unsigned long panel_mipi_read_dsi_mode_props(struct device_node *np)
-+{
-+	unsigned long mode = 0;
-+
-+	mode |= of_property_read_bool(np, "dsi-mode-video") ?
-+			MIPI_DSI_MODE_VIDEO :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-mode-video-burst") ?
-+			MIPI_DSI_MODE_VIDEO_BURST :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-mode-video-sync-pulse") ?
-+			MIPI_DSI_MODE_VIDEO_SYNC_PULSE :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-mode-video-auto-vert") ?
-+			MIPI_DSI_MODE_VIDEO_AUTO_VERT :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-mode-video-hse") ?
-+			MIPI_DSI_MODE_VIDEO_HSE :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-mode-video-no-hfp") ?
-+			MIPI_DSI_MODE_VIDEO_NO_HFP :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-mode-video-no-hbp") ?
-+			MIPI_DSI_MODE_VIDEO_NO_HBP :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-mode-video-no-hsa") ?
-+			MIPI_DSI_MODE_VIDEO_NO_HSA :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-mode-vsync-flush") ?
-+			MIPI_DSI_MODE_VSYNC_FLUSH :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-mode-no-eot-packet") ?
-+			MIPI_DSI_MODE_NO_EOT_PACKET :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-clock-non-continuous") ?
-+			MIPI_DSI_CLOCK_NON_CONTINUOUS :
-+			0;
-+	mode |= of_property_read_bool(np, "dsi-mode-lpm") ? MIPI_DSI_MODE_LPM :
-+							    0;
-+	mode |= of_property_read_bool(np, "dsi-hs-pkt-end-aligned") ?
-+			MIPI_DSI_HS_PKT_END_ALIGNED :
-+			0;
-+
-+	return mode;
-+}
-+
-+static int panel_mipi_dsi_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct panel_mipi *mipi;
-+	const char *format;
-+	int err;
-+
-+	err = panel_mipi_probe(&dsi->dev, DRM_MODE_CONNECTOR_DSI);
-+	if (err)
-+		return err;
-+
-+	mipi = dev_get_drvdata(&dsi->dev);
-+	mipi->dsi = dsi;
-+	mipi->write_command = panel_mipi_dsi_write;
-+	mipi->read_command = panel_mipi_dsi_read;
-+
-+	/* Default values */
-+	dsi->lanes = 1;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = 0;
-+
-+	/* Read from the firmware */
-+	if (mipi->firmware) {
-+		dsi->lanes = be16_to_cpu(mipi->firmware->config->dsi_lanes);
-+		dsi->format = be16_to_cpu(mipi->firmware->config->dsi_format);
-+		dsi->mode_flags =
-+			be32_to_cpu(mipi->firmware->config->dsi_mode_flags);
-+	}
-+
-+	/* Load from the DT */
-+	of_property_read_u32(dsi->dev.of_node, "dsi-lanes", &dsi->lanes);
-+	if (!of_property_read_string(dsi->dev.of_node, "dsi-format", &format)) {
-+		if (!strcmp(format, "rgb888"))
-+			dsi->format = MIPI_DSI_FMT_RGB888;
-+		else if (!strcmp(format, "rgb666"))
-+			dsi->format = MIPI_DSI_FMT_RGB666;
-+		else if (!strcmp(format, "rgb666-packed"))
-+			dsi->format = MIPI_DSI_FMT_RGB666_PACKED;
-+		else if (!strcmp(format, "rgb565"))
-+			dsi->format = MIPI_DSI_FMT_RGB565;
-+		else
-+			return dev_err_probe(&dsi->dev, -EINVAL,
-+					     "%pOF: Unknown dsi-format '%s'\n",
-+					     dsi->dev.of_node, format);
-+	}
-+	dsi->mode_flags |= panel_mipi_read_dsi_mode_props(dsi->dev.of_node);
-+
-+	if (!dsi->lanes)
-+		return dev_err_probe(&dsi->dev, -EINVAL,
-+				     "dsi-lanes == 0 for DSI panel\n");
-+
-+	/* Adjust bus_format */
-+	switch (dsi->format) {
-+	case MIPI_DSI_FMT_RGB888:
-+		mipi->bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-+		break;
-+	case MIPI_DSI_FMT_RGB666:
-+		mipi->bus_format = MEDIA_BUS_FMT_RGB666_1X24_CPADHI;
-+		break;
-+	case MIPI_DSI_FMT_RGB666_PACKED:
-+		mipi->bus_format = MEDIA_BUS_FMT_RGB666_1X18;
-+		break;
-+	case MIPI_DSI_FMT_RGB565:
-+		mipi->bus_format = MEDIA_BUS_FMT_RGB565_1X16;
-+		break;
-+	}
-+
-+	err = mipi_dsi_attach(dsi);
-+	if (err)
-+		return dev_err_probe(&dsi->dev, err, "Failed to init DSI\n");
-+
-+	return 0;
-+}
-+
-+static int panel_mipi_spi_probe(struct spi_device *spi)
-+{
-+	struct panel_mipi *mipi;
-+	struct gpio_desc *dc;
-+	int err;
-+
-+	err = panel_mipi_probe(&spi->dev, DRM_MODE_CONNECTOR_DPI);
-+	if (err)
-+		return err;
-+
-+	mipi = dev_get_drvdata(&spi->dev);
-+	mipi->write_command = panel_mipi_dbi_write;
-+	mipi->read_command = panel_mipi_dbi_read;
-+
-+	dc = devm_gpiod_get_optional(&spi->dev, "dc", GPIOD_OUT_LOW);
-+	if (IS_ERR(dc))
-+		return dev_err_probe(&spi->dev, PTR_ERR(dc),
-+				     "Failed to get GPIO for D/CX\n");
-+
-+	err = mipi_dbi_spi_init(spi, &mipi->dbi, dc);
-+	if (err)
-+		return dev_err_probe(&spi->dev, err, "Failed to init SPI\n");
-+
-+	return 0;
-+}
-+
-+static void panel_mipi_dsi_remove(struct mipi_dsi_device *dsi)
-+{
-+	mipi_dsi_detach(dsi);
-+}
-+
-+static const struct of_device_id panel_mipi_dsi_of_match[] = {
-+	{ .compatible = "panel-mipi-dsi" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, panel_mipi_dsi_of_match);
-+
-+static const struct of_device_id panel_mipi_spi_of_match[] = {
-+	{ .compatible = "panel-mipi-dpi-spi" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, panel_mipi_spi_of_match);
-+
-+static const struct spi_device_id panel_mipi_spi_ids[] = {
-+	{ "panel-mipi-dpi-spi" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(spi, panel_mipi_spi_ids);
-+
-+static struct mipi_dsi_driver panel_mipi_dsi_driver = {
-+	.probe		= panel_mipi_dsi_probe,
-+	.remove		= panel_mipi_dsi_remove,
-+	.driver = {
-+		.name		= "panel-mipi",
-+		.of_match_table	= panel_mipi_dsi_of_match,
-+	},
-+};
-+
-+static struct spi_driver panel_mipi_spi_driver = {
-+	.probe		= panel_mipi_spi_probe,
-+	.id_table	= panel_mipi_spi_ids,
-+	.driver = {
-+		.name		= "panel-mipi",
-+		.of_match_table	= panel_mipi_spi_of_match,
-+	},
-+};
-+
-+static int __init panel_mipi_driver_init(void)
-+{
-+	int err;
-+
-+	if (IS_ENABLED(CONFIG_SPI)) {
-+		err = spi_register_driver(&panel_mipi_spi_driver);
-+		if (err)
-+			return err;
-+	}
-+
-+	if (IS_ENABLED(CONFIG_DRM_MIPI_DSI)) {
-+		err = mipi_dsi_driver_register(&panel_mipi_dsi_driver);
-+		if (err) {
-+			if (IS_ENABLED(CONFIG_SPI))
-+				spi_unregister_driver(&panel_mipi_spi_driver);
-+			return err;
-+		}
-+	}
-+
-+	return 0;
-+}
-+module_init(panel_mipi_driver_init);
-+
-+static void __exit panel_mipi_driver_exit(void)
-+{
-+	if (IS_ENABLED(CONFIG_DRM_MIPI_DSI))
-+		mipi_dsi_driver_unregister(&panel_mipi_dsi_driver);
-+
-+	if (IS_ENABLED(CONFIG_SPI))
-+		spi_unregister_driver(&panel_mipi_spi_driver);
-+}
-+module_exit(panel_mipi_driver_exit);
-+
-+MODULE_DESCRIPTION("Generic MIPI-DSI/DPI(+SPI) Panel Driver");
-+MODULE_AUTHOR("Hironori KIKUCHI <kikuchan98@gmail.com>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.48.1
-
+T24gVGh1LCAyMDI1LTAxLTMwIGF0IDE4OjQ5ICswMTAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiBFeHRlcm5hbCBlbWFpbDogVXNlIGNhdXRpb24gb3BlbmluZyBsaW5rcyBvciBhdHRh
+Y2htZW50cw0KPiANCj4gDQo+IE9uIDMwLzAxLzIwMjUgMTc6MzUsIEthcnRpayBSYWpwdXQgd3Jv
+dGU6DQo+ID4gPiA+IMKgLyoqDQo+ID4gPiA+IEBAIC0zNzIsNiArMzgyLDEwMyBAQCBzdGF0aWMg
+dm9pZCBpMmNfcmVhZHNsKHN0cnVjdA0KPiA+ID4gPiB0ZWdyYV9pMmNfZGV2DQo+ID4gPiA+ICpp
+MmNfZGV2LCB2b2lkICpkYXRhLA0KPiA+ID4gPiDCoMKgwqDCoMKgIHJlYWRzbChpMmNfZGV2LT5i
+YXNlICsgdGVncmFfaTJjX3JlZ19hZGRyKGkyY19kZXYsIHJlZyksDQo+ID4gPiA+IGRhdGEsIGxl
+bik7DQo+ID4gPiA+IMKgfQ0KPiA+ID4gPiANCj4gPiA+ID4gK3N0YXRpYyBpbnQgdGVncmFfaTJj
+X3BvbGxfcmVnaXN0ZXIoc3RydWN0IHRlZ3JhX2kyY19kZXYNCj4gPiA+ID4gKmkyY19kZXYsDQo+
+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCB1MzIgcmVnLCB1MzIgbWFzaywgdTMyDQo+ID4gPiA+IGRlbGF5X3VzLA0K
+PiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgdTMyIHRpbWVvdXRfdXMpDQo+ID4gPiA+ICt7DQo+ID4gPiA+ICvCoMKg
+wqDCoCB2b2lkIF9faW9tZW0gKmFkZHIgPSBpMmNfZGV2LT5iYXNlICsNCj4gPiA+ID4gdGVncmFf
+aTJjX3JlZ19hZGRyKGkyY19kZXYsIHJlZyk7DQo+ID4gPiA+ICvCoMKgwqDCoCB1MzIgdmFsOw0K
+PiA+ID4gPiArDQo+ID4gPiA+ICvCoMKgwqDCoCBpZiAoIWkyY19kZXYtPmF0b21pY19tb2RlKQ0K
+PiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiByZWFkbF9yZWxheGVkX3Bv
+bGxfdGltZW91dChhZGRyLCB2YWwsDQo+ID4gPiA+ICEodmFsICYNCj4gPiA+ID4gbWFzayksDQo+
+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZWxheV91cywNCj4g
+PiA+ID4gdGltZW91dF91cyk7DQo+ID4gPiA+ICsNCj4gPiA+ID4gK8KgwqDCoMKgIHJldHVybiBy
+ZWFkbF9yZWxheGVkX3BvbGxfdGltZW91dF9hdG9taWMoYWRkciwgdmFsLCAhKHZhbA0KPiA+ID4g
+PiAmDQo+ID4gPiA+IG1hc2spLA0KPiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIGRlbGF5X3VzLA0KPiA+ID4gPiB0aW1lb3V0X3VzKTsNCj4gPiA+ID4gK30NCj4gPiA+
+ID4gKw0KPiA+ID4gPiArc3RhdGljIGludCB0ZWdyYV9pMmNfbXV0ZXhfdHJ5bG9jayhzdHJ1Y3Qg
+dGVncmFfaTJjX2Rldg0KPiA+ID4gPiAqaTJjX2RldikNCj4gPiA+ID4gK3sNCj4gPiA+ID4gK8Kg
+wqDCoMKgIHUzMiB2YWwsIGlkOw0KPiA+ID4gPiArDQo+ID4gPiA+ICvCoMKgwqDCoCB2YWwgPSBp
+MmNfcmVhZGwoaTJjX2RldiwgSTJDX1NXX01VVEVYKTsNCj4gPiA+ID4gK8KgwqDCoMKgIGlkID0g
+RklFTERfR0VUKEkyQ19TV19NVVRFWF9HUkFOVCwgdmFsKTsNCj4gPiA+ID4gK8KgwqDCoMKgIGlm
+IChpZCAhPSAwICYmIGlkICE9IEkyQ19TV19NVVRFWF9JRCkNCj4gPiA+ID4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCByZXR1cm4gMDsNCj4gPiA+ID4gKw0KPiA+ID4gPiArwqDCoMKgwqAgdmFs
+ID0gRklFTERfUFJFUChJMkNfU1dfTVVURVhfUkVRVUVTVCwgSTJDX1NXX01VVEVYX0lEKTsNCj4g
+PiA+ID4gK8KgwqDCoMKgIGkyY193cml0ZWwoaTJjX2RldiwgdmFsLCBJMkNfU1dfTVVURVgpOw0K
+PiA+ID4gDQo+ID4gPiBBbmQgaG93IGRvIHlvdSBleGFjdGx5IHByZXZlbnQgY29uY3VycmVudCwg
+b3ZlcndyaXRpbmcgd3JpdGU/DQo+ID4gPiBUaGlzDQo+ID4gPiBsb29rcw0KPiA+ID4gbGlrZSBw
+dXJlIHJhY2UuDQo+ID4gPiANCj4gPiANCj4gPiBUaGUgSTJDX1NXX01VVEVYX0dSQU5UIGZpZWxk
+IHJlZmxlY3RzIHRoZSBpZCBvZiB0aGUgY3VycmVudCBtdXRleA0KPiA+IG93bmVyLiBUaGUgSTJD
+X1NXX01VVEVYX0dSQU5UIGZpZWxkIGRvZXMgbm90IGNoYW5nZSB3aXRoIG92ZXJ3cml0ZXMNCj4g
+PiB0bw0KPiA+IHRoZSBJMkNfU1dfTVVURVhfUkVRVUVTVCBmaWVsZCwgdW5sZXNzIEkyQ19TV19N
+VVRFWF9SRVFVRVNUIGZpZWxkDQo+ID4gaXMNCj4gPiBjbGVhcmVkLg0KPiANCj4gDQo+IFNvIHNl
+Y29uZCBjb25jdXJyZW50IHdyaXRlIHRvIEkyQ19TV19NVVRFWF9SRVFVRVNUIHdpbGwgZmFpbA0K
+PiBzaWxlbnRseSwNCj4gYW5kIHlvdSByZWx5IG9uIGJlbG93IGNoZWNrIHdoaWNoIElEIHN1Y2Nl
+ZWRlZCB0byB3cml0ZT8NCj4gDQoNCkNvcnJlY3QuDQoNCj4gSWYgdGhhdCBpcyBob3cgaXQgd29y
+a3MsIHRoZW4gc2hvdWxkIHN1Y2NlZWQuLi4gZXhjZXB0IHRoZSB0cm91YmxlIGlzDQo+IHRoYXQg
+eW91IHVzZSBoZXJlIGkyY19yZWFkbC93cml0ZWwgd3JhcHBlcnMgKHdoaWNoIHdhcyBhbHJlYWR5
+IGEgcG9vcg0KPiBpZGVhLCBiZWNhdXNlIGl0IGhpZGVzIHRoZSBpbXBsZW1lbnRhdGlvbiBmb3Ig
+bm8gcmVhbCBnYWluKSBhbmQgaXQNCj4gdHVybnMNCj4gb3V0IHRoZXkgaGFwcGVuIHRvIGJlIHJl
+bGF4ZWQgbWFraW5nIGFsbCB5b3VyIGFzc3VtcHRpb25zIGFib3V0DQo+IG9yZGVyaW5nDQo+IGlu
+YWNjdXJhdGUuIFlvdSBuZWVkIHRvIHN3aXRjaCB0byBub24tcmVsYXhlZCBBUEkuDQo+IA0KDQpB
+Y2suIEkgd2lsbCB1cGRhdGUgdGhlIGltcGxlbWVudGF0aW9uIHRvIHVzZSBub24tcmVsYXhlZCBB
+UElzIGluc3RlYWQuDQoNCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQoNClRoYW5r
+cyAmIFJlZ2FyZHMsDQpLYXJ0aWsNCg==
 
