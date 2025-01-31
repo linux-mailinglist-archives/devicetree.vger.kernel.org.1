@@ -1,56 +1,53 @@
-Return-Path: <devicetree+bounces-142031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 608F8A23CDA
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 12:24:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D112AA23CE2
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 12:25:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D10CB169127
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 11:24:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E47A169228
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 11:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7538C1BEF6A;
-	Fri, 31 Jan 2025 11:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8EF1C1F00;
+	Fri, 31 Jan 2025 11:25:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D19601BEF76;
-	Fri, 31 Jan 2025 11:24:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE681C07D8;
+	Fri, 31 Jan 2025 11:25:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738322694; cv=none; b=nPLk5AxiOw1KKeLQ56qgDUut3eEy846v17cEIjVW65/WgggjUjxojO9LyKu3OKD5jyDP8qAt7gV0o1qb8qGuw3S20nrDSugGRN9cgF3KhofQ/Ll+z+JtGcSFdDjCuUMmjcJblR5LNeREfbyS9kx6gVflyffO6XoetitqEvt2ruQ=
+	t=1738322709; cv=none; b=g17MiQ3CtaQyNnHzJfA06iUgpDgQdKb7qEEzZIi/Ny7cv1Yz2jTcPZbkS9JRCt+8pf04kzZyg5RJLCS1GaQBDJDVM/H5BWn2oFjQVtqjimtPh5ffu0OH+rhisaiy9fOjMhh8/3aLCBmD1vkDEbJ/kN2BQ/G4jY9dGGUTKtQ6j38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738322694; c=relaxed/simple;
-	bh=Razb5A3EOkUCckwSM4B4QlOW2D1ADC/mraBAz7AOfwc=;
+	s=arc-20240116; t=1738322709; c=relaxed/simple;
+	bh=xkjLPOUFdStFkZR6dTtEfOV+H1++fjcpJmV3LX9cx9M=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IV6s7tPsBLGEJQP1PQ7aTas9NsUcAyY0QwANvLg8wMlGl6jfazP4FfN5Ce/yHA3QAveO9S60lByT1E0PUqKb83t5C6Br6rlwPlhX7AU8rOETdDnaZi0Ad7sKR5bD+bU2TsWRqVWg1tMOpw/h5eqSCkVpDpskOxMtNWv5lXZxCJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+	 MIME-Version; b=jRRQvCNYrzwehIzxWsMcY69c3GiEqe//eoevvfm+jjCBu+J6Vge7e91eI5nfbR6F5SuHcsPaY9aekUiT2mBp6VDX1Ro8tq1fwk9DMbjb8rm1XPj2XtUzdtar6VrZF7BREQElP+f3PnL78CGeVfKg5xcxntL50ru12bidZq1m52Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: 7Kwq5QGiQK6osUHEhIJHiw==
-X-CSE-MsgGUID: s/eIg+xhTuCDOmbIhbe/nw==
+X-CSE-ConnectionGUID: SvTUpaueR4S1tzvuM/H9yw==
+X-CSE-MsgGUID: 0RBlHLKhShqGRdA2l5DtHA==
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 31 Jan 2025 20:24:50 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 31 Jan 2025 20:25:01 +0900
 Received: from localhost.localdomain (unknown [10.226.92.122])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 610484018228;
-	Fri, 31 Jan 2025 20:24:36 +0900 (JST)
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5D6794017D84;
+	Fri, 31 Jan 2025 20:24:45 +0900 (JST)
 From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
 Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 1/8] dt-bindings: mmc: renesas,sdhi: Document RZ/G3E support
-Date: Fri, 31 Jan 2025 11:24:16 +0000
-Message-ID: <20250131112429.119882-2-biju.das.jz@bp.renesas.com>
+Subject: [PATCH v2 4/8] arm64: dts: renesas: r9a09g047: Add SDHI0-SDHI2 nodes
+Date: Fri, 31 Jan 2025 11:24:19 +0000
+Message-ID: <20250131112429.119882-5-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250131112429.119882-1-biju.das.jz@bp.renesas.com>
 References: <20250131112429.119882-1-biju.das.jz@bp.renesas.com>
@@ -62,62 +59,88 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The SD/MMC block on the RZ/G3E ("R9A09G047") SoC is similar to that
-of the RZ/V2H, but the SD0 channel has only dedicated pins, so we must
-use SD_STATUS register to control voltage and power enable (internal
-regulator), for non-fixed voltage (SD) MMC interface. However, it is
-optional for fixed voltage MMC interface (eMMC).
-
-For SD1 and SD2 channels, we can either use gpio regulator or internal
-regulator (using SD_STATUS register) for voltage switching.
-
-Document RZ/G3E SDHI IP support with optional internal regulator for
-both RZ/G3E and RZ/V2H SoC.
+Add SDHI0-SDHI2 nodes to RZ/G3E ("R9A09G047") SoC DTSI.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
 v1->v2:
- * Dropped tags.
- * Documented internal regulator as optional property for both RZ/G3E and
-   RZ/V2H SoCs.
+ * Status of internal regulator is disabled in the SoC .dtsi. Override
+   the status in the board DTS when needed.
 ---
- .../devicetree/bindings/mmc/renesas,sdhi.yaml    | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 60 ++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-index af378b9ff3f4..773baa6c2656 100644
---- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-+++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-@@ -68,6 +68,9 @@ properties:
-               - renesas,sdhi-r9a08g045 # RZ/G3S
-               - renesas,sdhi-r9a09g011 # RZ/V2M
-           - const: renesas,rzg2l-sdhi
-+      - items:
-+          - const: renesas,sdhi-r9a09g047 # RZ/G3E
-+          - const: renesas,sdhi-r9a09g057 # RZ/V2H(P)
- 
-   reg:
-     maxItems: 1
-@@ -211,6 +214,19 @@ allOf:
-         sectioned off to be run by a separate second clock source to allow
-         the main core clock to be turned off to save power.
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,sdhi-r9a09g057
-+    then:
-+      properties:
-+        vqmmc-regulator:
-+          type: object
-+          description: VQMMC SD regulator
-+          $ref: /schemas/regulator/regulator.yaml#
-+          unevaluatedProperties: false
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+index c93aa16d0a6e..8d4717d4cf14 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+@@ -410,6 +410,66 @@ gic: interrupt-controller@14900000 {
+ 			interrupt-controller;
+ 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+ 		};
 +
- required:
-   - compatible
-   - reg
++		sdhi0: mmc@15c00000  {
++			compatible = "renesas,sdhi-r9a09g047", "renesas,sdhi-r9a09g057";
++			reg = <0x0 0x15c00000 0 0x10000>;
++			interrupts = <GIC_SPI 735 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 736 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 0xa3>, <&cpg CPG_MOD 0xa5>,
++				 <&cpg CPG_MOD 0xa4>, <&cpg CPG_MOD 0xa6>;
++			clock-names = "core", "clkh", "cd", "aclk";
++			resets = <&cpg 0xa7>;
++			power-domains = <&cpg>;
++			status = "disabled";
++
++			vqmmc_sdhi0: vqmmc-regulator {
++				regulator-name = "SDHI0-VQMMC";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				status = "disabled";
++			};
++		};
++
++		sdhi1: mmc@15c10000 {
++			compatible = "renesas,sdhi-r9a09g047", "renesas,sdhi-r9a09g057";
++			reg = <0x0 0x15c10000 0 0x10000>;
++			interrupts = <GIC_SPI 737 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 738 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 0xa7>, <&cpg CPG_MOD 0xa9>,
++				 <&cpg CPG_MOD 0xa8>, <&cpg CPG_MOD 0xaa>;
++			clock-names = "core", "clkh", "cd", "aclk";
++			resets = <&cpg 0xa8>;
++			power-domains = <&cpg>;
++			status = "disabled";
++
++			vqmmc_sdhi1: vqmmc-regulator {
++				regulator-name = "SDHI1-VQMMC";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				status = "disabled";
++			};
++		};
++
++		sdhi2: mmc@15c20000 {
++			compatible = "renesas,sdhi-r9a09g047", "renesas,sdhi-r9a09g057";
++			reg = <0x0 0x15c20000 0 0x10000>;
++			interrupts = <GIC_SPI 739 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 740 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 0xab>, <&cpg CPG_MOD 0xad>,
++				 <&cpg CPG_MOD 0xac>, <&cpg CPG_MOD 0xae>;
++			clock-names = "core", "clkh", "cd", "aclk";
++			resets = <&cpg 0xa9>;
++			power-domains = <&cpg>;
++			status = "disabled";
++
++			vqmmc_sdhi2: vqmmc-regulator {
++				regulator-name = "SDHI2-VQMMC";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				status = "disabled";
++			};
++		};
+ 	};
+ 
+ 	timer {
 -- 
 2.43.0
 
