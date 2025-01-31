@@ -1,138 +1,147 @@
-Return-Path: <devicetree+bounces-142143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C00EA24492
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 22:21:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E9D0A24498
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 22:23:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8140165123
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:21:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02AFF163811
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504261F2C59;
-	Fri, 31 Jan 2025 21:20:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034091F3FE2;
+	Fri, 31 Jan 2025 21:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rIPp4FA5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AMhwrxun"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165A4139E;
-	Fri, 31 Jan 2025 21:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24C71F3D5A;
+	Fri, 31 Jan 2025 21:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738358458; cv=none; b=IaLIYcniIB4kRteIgVT9srGs9VOAw3+Ds73wlqsMF74o7GtS0IKp2bQiBZqzowPVANLImoUSf1iKwOACwB+8Fsb/mdq81/1NvoRHbmiHpSazIqXk6c1t3B4MBAoj2IUvB1qySP737kewSYC7qu8KjquSN/7wEyw0Kvsa9wVV3Ak=
+	t=1738358605; cv=none; b=uIgsKGntBqwBAu8DkjsV+2f4dYcubWlL7suDb9qEfx6D3cQjtt1AM7nF75GtuOEAYbqBvGsSZnplHk4+X0vVoXj2btBu1/xWVZZbJ3oZfVMBih1H+az75XEmfr4LshGyIMf3E5mFpPKp39SKOOdxrRFiJPaTaAXFyzew9NYhIWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738358458; c=relaxed/simple;
-	bh=tNv/VPiXdMNnDJUXI1YEFGfxy4fPeU/bg99THsTfA/k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OafmNLMQdPV10Q+RVXXjaMeHGQtVtL6PB5JY/Sj9fxsMJ2b7S9oneTBtRrJWVRTuDmq5J0EK0J8MpB+stYwW7BZWK1XsaZ9pcCoWQRz1U+vMTg6kl/Z/0pbHdtEngMS4Jr6OMKOpZPAwmwiWcdv1mn5mPjOfzMoF7maIQEiaopE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rIPp4FA5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE2B8C4CED1;
-	Fri, 31 Jan 2025 21:20:52 +0000 (UTC)
+	s=arc-20240116; t=1738358605; c=relaxed/simple;
+	bh=/OS0LJz7wGEUpGR+VvSZsu8R7CgAohC+kmS8JtEiaVI=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=YbNaQmEYM47t68UH4Aac+yH75a6eIa/umbrOr1VY3hfgr3P1/Dzm+SZBgu6Hk3V9TdGgG+bIuCEkRdFcb6RXASqT9BxwGtRKlFoXe/E1aTw57KsQf0GDS+xBrx/3DVi/WKu4Wx0PZiJcZFwdOXMb8FAuhPHcGN18D72vCKZQHQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AMhwrxun; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3A26C4CED1;
+	Fri, 31 Jan 2025 21:23:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738358457;
-	bh=tNv/VPiXdMNnDJUXI1YEFGfxy4fPeU/bg99THsTfA/k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rIPp4FA57oHcCqItKND1wp9QdcvekUIf5cJHwp9p2z/fob2sNEPGcZwsazEB/WxGt
-	 MGarS/gRgs/B422r8YMo/PuBUnVWz99WMIMUcbgIEQWdy7UqvRFvMrtWxp+6eA1u8l
-	 U3bTtcUiJU+WHguX0DhhwZY5Gsw/TGb1ILRO+llkebBnShHzd0bVSZoxxSGicJ3fom
-	 gkpWF/IMZte1JWMm7ZtTi5FFbtF9GQ18Xiqljom9ZLWiyaDsLhNjIGuZm8CVbs8WrS
-	 fELoPrAaL7VYnKwX/h8qT/4GJ/uiDbRj00+Qx0sC70n4CISMFgms9sXsMLg8KXrIgt
-	 syNxt1MQp576Q==
-Message-ID: <33f8a68f-46d8-472f-8061-52800e5bd014@kernel.org>
-Date: Fri, 31 Jan 2025 22:20:51 +0100
+	s=k20201202; t=1738358605;
+	bh=/OS0LJz7wGEUpGR+VvSZsu8R7CgAohC+kmS8JtEiaVI=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=AMhwrxuneDEerKPohzvNX4q54TznV3ECcDXgGN5gjOaRoDkjbtomCg7/2fV6fPYku
+	 VcV4M7zmZmqwqbbfHnZA+OPS+ykMcRQ3tNhmZ30B7Y4lp/4y/6LJTNMxh8ZPm+rqJ8
+	 XH5sL2NjUgq1lqPAI0uEQlpxVpeLrQDuo/6tjIg0JtVe3eefQZACbW8FwZImxUwKqA
+	 2yBOqp3XfXenCxWvNASz8upaFKPEq3DuMtg4Yr1C8hNfaepa+z0ppYlx1geJDnnVaD
+	 kzTvtkelBHO6e7z/yYZULxxLUrZTB+zWM4K0gyKmOo9Lul49qdGTVDAKzHcHav/k9X
+	 HPKd01fTMMsww==
+Date: Fri, 31 Jan 2025 15:23:24 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v6 0/3] platform: arm64: Huawei Matebook E Go
- embedded controller
-To: Pengyu Luo <mitltlatltl@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=83=C2=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-References: <20250131092139.6065-1-mitltlatltl@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250131092139.6065-1-mitltlatltl@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, linux-arm-kernel@lists.infradead.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, 
+ Karl Chan <exxxxkc@getgoogleoff.me>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Artur Weber <aweber.kernel@gmail.com>
+To: Ferass El Hafidi <funderscore@postmarketos.org>
+In-Reply-To: <20250131200319.19996-1-funderscore@postmarketos.org>
+References: <20250131200319.19996-1-funderscore@postmarketos.org>
+Message-Id: <173835855352.46011.13506160179490240246.robh@kernel.org>
+Subject: Re: [PATCH 0/2] Add support for Xiaomi Mi TV Stick
 
-On 31/01/2025 10:21, Pengyu Luo wrote:
-> This adds binding, drivers and the DT support for the Huawei Matebook E Go
-> (sc8280xp-based) Embedded Controller which is also found in Huawei Matebook
-> E Go LTE (sc8180x-based), but I don't have the sc8180x one to perform
-> tests, so this series enable support for sc8280xp variant only, this series
-> provides the following features:
+
+On Fri, 31 Jan 2025 20:03:17 +0000, Ferass El Hafidi wrote:
+> From: Ferass El Hafidi <funderscore@postmarketos.org>
 > 
-> - battery and charger information report
-> - charging thresholds control
-> - FN lock (An alternative method)
-> - LID switch detection
-> - Temperature sensors
-> - USB Type-C altmode
-> - USB Type-C PD(high power)
+> This patch series aims to add initial support for the Xiaomi Mi TV
+> Stick.
+> 
+> Xiaomi Mi TV Stick is a small Amlogic-based Android TV stick released in
+> 2020, and known as `xiaomi-aquaman` internally (in the downstream kernel,
+> u-boot, ...)
+> Its specifications are as follows:
+>  * Amlogic S805Y SoC (believed to be mostly identical to S805X)
+>  * 8 GB eMMC
+>  * 1 GB of RAM
+>  * Android TV 9, upgradable to Android TV 10
+> 
+> There are multiple variants:
+>  * 1. Green PCB, manufactured in 2020, known UART pinout (helpfully
+>    labeled on the board)
+>  * 2. Blue PCB, not much documentation about it, presumably manufactured
+>    between 2021 and 2023
+>  * 3. Green PCB, manufactured in 2023, known UART pinout, some layout
+>    changes compared to the 2020 variant
+> 
+> Among these variants, there are many boards using multiple different
+> Wi-Fi chips.  Supporting all of them is out of scope for this patch
+> series.
+> 
+> As of the time of writing this has only been tested on the 3rd variant.
+> It is believed that software-wise all three work mostly the same (if we
+> don't count Wi-Fi), but testing on the other variants would still be
+> appreciated.
+> 
+> The devicetree is based on the Amlogic P241 DTS.
+> 
+> Ferass El Hafidi (2):
+>   dt-bindings: arm: amlogic: add Xiaomi Mi TV Stick
+>   arm64: dts: amlogic: add support for xiaomi-aquaman/Mi TV Stick
+> 
+>  .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+>  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+>  .../meson-gxl-s805y-xiaomi-aquaman.dts        | 311 ++++++++++++++++++
+>  3 files changed, 313 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
+> 
+> --
+> 2.47.1
+> 
 > 
 
-Why are you resending?
 
-Previous version was only week ago and minimal time is two weeks. Plus
-its merge window, so this resend is unjustified.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Best regards,
-Krzysztof
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250131200319.19996-1-funderscore@postmarketos.org:
+
+arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dtb: pwm@86c0: clock-names: False schema does not allow ['clkin0']
+	from schema $id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
+arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dtb: leds: led-white:default-state:0: 'heartbeat' is not one of ['on', 'off', 'keep']
+	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dtb: leds: led-white: Unevaluated properties are not allowed ('default-state' was unexpected)
+	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+
+
+
+
+
 
