@@ -1,127 +1,151 @@
-Return-Path: <devicetree+bounces-142189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF3FDA245A1
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 00:17:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A04FFA245AE
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 00:41:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9088018898CA
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 23:17:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 854593A6C98
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 23:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E011F428E;
-	Fri, 31 Jan 2025 23:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B07519F103;
+	Fri, 31 Jan 2025 23:41:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rvx0G/da"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mZPgsRek"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2A0B1F3FDB;
-	Fri, 31 Jan 2025 23:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CBF1487C1;
+	Fri, 31 Jan 2025 23:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738365447; cv=none; b=UPzSJ4Ydbdr3K31I1aZ/z9u0mzDraeAv4pNovXi9PCkN2J8F6T892fciBewsfgx4jdNUcKWR1bwJ2i9MvTxkjdjW+pa72z9MiFuvxQX2yvYuFVnFOjgc92lWW6ngp8ipkFt1XGs5fvROsBSvVtmrlfcSVixe6Qc0kVai9tXue3Y=
+	t=1738366865; cv=none; b=RnBRk875QWJnbsbDRjEXuXbWuDz7kBsDcW2x3sMTk8qMYwf5wnWv8rG+hW1Ej5Pqc1efievHo/8ayAS0l6esGDqXTx81dnZ4rTdweagr05C3vUWYa1lmVVYkS7IoRGPac1svphllWhXTKLsFOdUC8JixDUnFt5XKL1tE4lUFh/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738365447; c=relaxed/simple;
-	bh=7weosOB2tkJzFFCK1j2kvlQUUXPViwlIjKFLoG1vu/o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=H12wUM51c7nsSwVpt6XwIdfwAqIdkholF5vXckOoJQRLA1+bdtsL6GxXz2k6TxsgqYLch8th30In0qLkuocaVZUnjLDYNlxUE8nRJKElFcKqWE/vSscQz55T2Q+Xdab4JGFtoYeOf2vq5BDIkN491MO3i4cJUB5MuO4TZ+IQx3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rvx0G/da; arc=none smtp.client-ip=209.85.167.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3eba347aa6fso1638956b6e.3;
-        Fri, 31 Jan 2025 15:17:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738365444; x=1738970244; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/rSvVS0xRSmkwB2ilC6LIMN2F2AJg2DEhA8U1xiK1AM=;
-        b=Rvx0G/dad/pfJWw/M458DKI02+P3tQ1p9PLl7C/edM11C5vJFhr3gAPhrvoj7R+V2H
-         HVARlD/LJ71PiNEoW6+JFx10hdzgcG/colPzz776nccX/Kza9bT5YOjOeMzCpsxjJx/c
-         bjHghemhfKVJSxwdl+BQlsBI7NFfJrB1j4POoMNbXZQNPKwz/RL9Pp8oBTU1/f6BeYcj
-         FGsQTbeftRqsYyoCqHwVsZIfVdt9Z+HblFFjzSsN1B9otcNwyvfy1nNRBiM0P6gQx5x/
-         fHlmDuEOIuFKdKCp5CAynEY+mICnxbu5HIM+ViDQ1iUWVjiKoMReCoD1Dwutg/dkbN7X
-         /+ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738365444; x=1738970244;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/rSvVS0xRSmkwB2ilC6LIMN2F2AJg2DEhA8U1xiK1AM=;
-        b=b3XHxT+I8GUq5GB8bUmzNeG0qzbQols4RmYMGx8jVo0hgtGY0iIyjq6kx0gcGTwISj
-         Q8g5o97PGVsWXxXOpI9rn5ltLOMNZcIFP9LUwWLvNvBaG/saqLFK8TvW/z5BXV1OsSD8
-         eaKz9a8egzE2/LHgYyB1aefnthK0wj1eyMeaU/Nvg3uYCxYRbhthcg/S6aJj/3buVoLJ
-         EHOSIUrSIOSawRpXp8/00XemNLbk0FP67MxNS/4DML2p3J87soghZJhUx5HpS/tv2E2+
-         ej5P76AWyD8XLt1A0/FiI5pkln/yFoXc2pXEqUOa8CcHLq72CGrqLs8AnGSaRnbbMRHX
-         1uoA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJsIxZPEn/EoyXEbqP2RWqipJRdOZw2uY6v8IOwN8PSCtfmY6pLCL9sXM9o0Wo667VrdddoNIC7w==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzqk2R9W2nvu8ZZa2Jol3W4hiF+HemGrCo1fqglHSeDSsjtvVQX
-	sAitxWrxJxmThO656CWCYorzuTJJ4EsC/Pdxs64BRp5Qy4D65yK1
-X-Gm-Gg: ASbGncvwPiKMzLOLINz/XFAc4+jAWLyZ+pSds1tvzMSpoGWx4BoqjiweKzWTt5kPjAR
-	CJdjdHsFPpo1d9cBqf2Vg7PXk5he0xKY5bpaY4dG1E+jZHMUmPOT8NeyFNbujmlgfrvE8+OMXk2
-	MBqyUrwKHPyiqsCcQgOTybE8fTZOCdNaj8/PsuzNj4KoF0cUmW43WYod4IsYKx4H+bgTJJv+Fcf
-	OO1sLDKxhPD6JDVdpoNzTqRVJ74lRIQ715WoRBmOzSMUDsK1vhtJAAHX387qhEz9KOqOXzHIQbT
-	ZmqnukSUSZsKz/9vG/jKNk/i474wazaDd3k=
-X-Google-Smtp-Source: AGHT+IH9EIO5UKi3zjTou7NgE9ZwpqTCVd5TQ3cdZ+Vw8R7Vh7mtJwLawupTinMPajo6ILkkJKilEw==
-X-Received: by 2002:a05:6808:19a4:b0:3e6:580e:f12c with SMTP id 5614622812f47-3f323a3eb95mr9621264b6e.10.1738365444654;
-        Fri, 31 Jan 2025 15:17:24 -0800 (PST)
-Received: from localhost.localdomain ([2600:1700:fb0:1bcf:d061:e6e5:c6da:b514])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f33365bf31sm1099128b6e.34.2025.01.31.15.17.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Jan 2025 15:17:24 -0800 (PST)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-sunxi@lists.linux.dev
-Cc: devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	lee@kernel.org,
-	samuel@sholland.org,
-	jernej.skrabec@gmail.com,
-	wens@csie.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	sre@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 5/5] arm64: dts: allwinner: rg35xx: Add no-thermistor property for battery
-Date: Fri, 31 Jan 2025 17:14:55 -0600
-Message-ID: <20250131231455.153447-6-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250131231455.153447-1-macroalpha82@gmail.com>
-References: <20250131231455.153447-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1738366865; c=relaxed/simple;
+	bh=uKwvk3KMuFPC/JlSa0m1mvGvWUngrmBgCkTgHBBycX0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ElEHDj9PwWCUazrTxpsjMZh3gT2IG22M2HqXaPKS2zOcfWnw0V38NIPcxG3bMVc3hOyReUtndCTifpQkLpLxRv+djOgIIhfmgpZfFves2k4VWTLYFW9/enzcs7mH7Exs3+0eAwf95gdKxaZGGBqlry1C3OLja7XnpFm7hvWgtTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mZPgsRek; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50VNeuaM2615028
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 31 Jan 2025 17:40:56 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1738366856;
+	bh=WoabQOIO7BqEmHMvwAU48qnHgarITzPKF9dEIQzwpHk=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=mZPgsRekWBzNXLMw+JsvJpCz5v0TSd1PYzWlRTr/TKLZ0sEhUAMnKzRW3m2ZFJeQ2
+	 RKk4FPIGfWAbathUmvIZxTIPJvtxV4zLyHqlHeY2yA+PFZwB9Ja6mnfSKDzfxIrbQI
+	 XtQn1juIjNYMoilIpP57maVjWZohktF411vM13wM=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50VNeu0D090728
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 31 Jan 2025 17:40:56 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 31
+ Jan 2025 17:40:55 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 31 Jan 2025 17:40:56 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50VNee8d052831;
+	Fri, 31 Jan 2025 17:40:40 -0600
+Message-ID: <1c2c67b7-987e-4b92-b0be-c0b2f25adae6@ti.com>
+Date: Fri, 31 Jan 2025 17:40:40 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/9] arm64: dts: ti: k3-am62-wakeup: Add wakeup r5f
+ node
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hari Nagalla
+	<hnagalla@ti.com>
+References: <20250131214611.3288742-1-jm@ti.com>
+ <20250131214611.3288742-2-jm@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250131214611.3288742-2-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On 1/31/25 3:46 PM, Judith Mendez wrote:
+> From: Hari Nagalla <hnagalla@ti.com>
+> 
 
-Add the property of x-powers,no-thermistor for the battery of the
-Anbernic RG35XX series of H700 devices.
+Subject should capitalize R5F
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts      | 1 +
- 1 file changed, 1 insertion(+)
+> AM62 SoC devices have a single core R5F processor in wakeup domain.
+> The R5F processor in wakeup domain is used as a device manager
+> for the SoC.
+> 
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+> Changes since v1:
+> - disable each device node in the voltage domain files and
+>    enable at the board level file
+> - fix firmware names
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 25 ++++++++++++++++++++++
+>   1 file changed, 25 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> index 9b8a1f85aa15c..12b1520974ade 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> @@ -106,6 +106,31 @@ wkup_rti0: watchdog@2b000000 {
+>   		status = "reserved";
+>   	};
+>   
+> +	wkup_r5fss0: r5fss@78000000 {
+> +		compatible = "ti,am62-r5fss";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x78000000 0x00 0x78000000 0x8000>,
+> +				 <0x78100000 0x00 0x78100000 0x8000>;
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-index a231abf1684a..0c89ccc662a2 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-@@ -237,6 +237,7 @@ axp_adc: adc {
- 		battery_power: battery-power {
- 			compatible = "x-powers,axp717-battery-power-supply";
- 			monitored-battery = <&battery>;
-+			x-powers,no-thermistor;
- 		};
- 
- 		regulators {
--- 
-2.43.0
+Odd alignment, looks like you have an extra tab on the above line
 
+Andrew
+
+> +		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
+> +		status = "disabled";
+> +
+> +		wkup_r5fss0_core0: r5f@78000000 {
+> +			compatible = "ti,am62-r5f";
+> +			reg = <0x78000000 0x00008000>,
+> +			      <0x78100000 0x00008000>;
+> +			reg-names = "atcm", "btcm";
+> +			ti,sci = <&dmsc>;
+> +			ti,sci-dev-id = <121>;
+> +			ti,sci-proc-ids = <0x01 0xff>;
+> +			resets = <&k3_reset 121 1>;
+> +			firmware-name = "am62-wkup-r5f0_0-fw";
+> +			ti,atcm-enable = <1>;
+> +			ti,btcm-enable = <1>;
+> +			ti,loczrama = <1>;
+> +		};
+> +	};
+> +
+>   	wkup_vtm0: temperature-sensor@b00000 {
+>   		compatible = "ti,j7200-vtm";
+>   		reg = <0x00 0xb00000 0x00 0x400>,
 
