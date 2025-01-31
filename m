@@ -1,242 +1,148 @@
-Return-Path: <devicetree+bounces-142080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45CB2A240C3
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 17:39:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A9A9A240D2
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 17:41:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF9063AA809
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 16:36:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9986E18849AF
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 16:40:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40FE1F3D2B;
-	Fri, 31 Jan 2025 16:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4077D1EF0B8;
+	Fri, 31 Jan 2025 16:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="PBo//0gJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pb4H5z1+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013016.outbound.protection.outlook.com [40.107.159.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A601F2C5B;
-	Fri, 31 Jan 2025 16:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.16
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738341276; cv=fail; b=A3k06QjycIe8g3NScx2GqFDpbUe2Dxyf5tQjbO5dioQHcsh0MKKl8E47hYz1BaDwfglwvflwJt3zebmPvshlB3D3V6hFphCpIKEX9FlzcpPwyDarZaJAaDpKjdsY7UMoKje4Z2vuP9IKWiGeecMkH2KRYL4Wf/EVHXOpj2mGWco=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738341276; c=relaxed/simple;
-	bh=LtDzLy16sKf9e9KLaID6gsEQtuZx3XwfGmwrjuf8uvQ=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBEEB1E3784
+	for <devicetree@vger.kernel.org>; Fri, 31 Jan 2025 16:36:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738341412; cv=none; b=IaNfYTa6/Byl+o2zPEyLhhb7WfmchHU6rpEi9ZzT7vpCK1ETz+WV9I1KE3qsQMQv/eEaNfu47Xbe6lw1577LAAE2on4y65+fOQDPGpLCxDGJqfJ5HozrKotssO7Muf+jWqaboSmWgn6Mpn2egopnDYyBJkCLr21ST6pNpy1scB8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738341412; c=relaxed/simple;
+	bh=p0VPgA+jkv871ikjZhyvSRtdccIWBvWj2uD+8piZL4A=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CnsO/HOrK7AsnRbrg5hfb+1Khf/5/esFSd/D2nHlFQc8ar6tXW+LIT7UeWDW10SAV5vhO896huvR3gotHBlsge3nvumDuNEb7eHiF7HP+HsVDNi1QNRZ21mgDnC7f8sYZozrGqIyDLjbLKlGaoRps5i+G+KAPI2gFr3mvToBofU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=PBo//0gJ; arc=fail smtp.client-ip=40.107.159.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MhQrhhhSELkS+N/Z5eaXrp0/qIvWPzRhgNnKm7SW94jU2XzaEA/8/KmcR5EoPiVBPhs9gG1Koi3UCfpDvlZbFSo+K8CkNs7pjZTh5ch1BjYm85RW77rjjfp47t3o76dCZwNfb2InKCvMg0vz3rmtnNf8xSSMBj7oyahcazwuXUB43uR1UeJEdfKXmRaM34Dp05Gr2LaXuK5VT65eB1D12OBjoTVelXMhKTpvSBl7CtUheg/Ic9Hptp/FfV7y+aaSW9SCTKtR0yOCggezwTVeuAd0JSIBfloS/qnu0YQpA4kZlIEVqYXkxgwXIJnpTVgb2ruNQUtpi37I5qVq/cU8UA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zN0lYccTmUd8XK8t0ve3fyUBpYkTPy1IvSRvyTXpf/o=;
- b=UWMPD3YulibdyV1GRQYJdhCI/NPZKkDQGWsk6HTMwAtU1uRP88E3cSUk7xdVXuDiqmuMcGGSQG1w1dAf1AWE+7wzYbM1U/rO0QV8zbGD3LVrWZToDSpwiVlLZanqzHRx+OQVneYGZUYph4VEFaZnly7xvoEzOqvNVux7FkSfcFk2C2ZmAIhJwD2enQL01ZXs76H1PuD/cC43QTPb8enC2CSLKPG45kQnFFFt90RxZVWsG6Z/7UlwWzWon2XcGxq1MXDurB4fPGo+kafZehmE7J0dLuf/KvIaZMr7F7e1G70iH/S8Fpbf45etO1aFD4CV6oeP/mvXrTE8DoOA3zyqLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zN0lYccTmUd8XK8t0ve3fyUBpYkTPy1IvSRvyTXpf/o=;
- b=PBo//0gJt9BdWnJC2YL3V5We4dNQbLfnjILJ9uVkHFbfagf/dkmG4kWXUUw/EsMyz+R1iJydOyZdMRo3jHploQdFiho+EjqFuEbBmvS12noEDop8/jZAtHihxuwwBmgBXXt4UVp4Q27KTHhCEzQRPqVp3XuVNZBAt4JGfTW/kldFgpeHp6DSaW252MXip+uoByNQorhzqnMNcCwcVfXH2Ki+zvGTnfYBtVzpC0wU9U3NRk8R74QtFqrxXJGn9dg+lV5+IrL2x8tNCqWcLRykl9yu6EWXJfglpdbJTTalHTzdxWckOH7oeKkddjekXKLzysR/KV+s5UL+crl3uPOQsQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AS4PR04MB9576.eurprd04.prod.outlook.com (2603:10a6:20b:4fe::12)
- by AS8PR04MB8529.eurprd04.prod.outlook.com (2603:10a6:20b:420::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.20; Fri, 31 Jan
- 2025 16:34:30 +0000
-Received: from AS4PR04MB9576.eurprd04.prod.outlook.com
- ([fe80::9cf2:8eae:c3d1:2f30]) by AS4PR04MB9576.eurprd04.prod.outlook.com
- ([fe80::9cf2:8eae:c3d1:2f30%6]) with mapi id 15.20.8398.017; Fri, 31 Jan 2025
- 16:34:30 +0000
-From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-To: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
-	devicetree@vger.kernel.org,
+	 MIME-Version; b=r1uAPaF8AsakuHOaWhqMzl+6l/WQZ4OaPtKHmKoG5QXEXcNTdPhkIvUAQYWaDpx0g1oTX2UeuA7uUCPajuPcr/a0OMQQGzcM6nAG/QFDaLJoeq9d8Miiya4NV0quRqfnDpPu6lxBnmye94s2Q1ADXzcvc5RX7vBxg5qTERnLlTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pb4H5z1+; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-435f8f29f8aso17020955e9.2
+        for <devicetree@vger.kernel.org>; Fri, 31 Jan 2025 08:36:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738341408; x=1738946208; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jtFQ9J65cFd3o5+YuJiRQk+pzjY2xY2gR0s0VLRS55E=;
+        b=Pb4H5z1+Uu1LC8ZqRqt/P5NWQsurbhn7JcySfZX6An198Q2IsO9PhH23acJmjw4Zau
+         W3XZrvsjczpr5olBdeyCdVUhkLlOptsiwxF3BDl1ZS29KcVUN4cK630K+cruTKbbrYp3
+         c7vd+tLuv+7N0shWqkB2n2p1pXoAf+c2yvvAaTB2RuTubC9S2qQnjVu4sGPkdkiCjhzf
+         Cuf2uqhlD6HkMi9W6WwaXphSti3XL28YMPgpngbvjfLb5ONeuen7Fimgfb6g+3FPOmYN
+         h4dS+RYMZC1rljFPJfTDqC9RxtQVLHOf0rS5xtPUK/+ca5NGziTU5rkxJNBglDZ9hm88
+         4sPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738341408; x=1738946208;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jtFQ9J65cFd3o5+YuJiRQk+pzjY2xY2gR0s0VLRS55E=;
+        b=qYWsAnzlPAOSnTHOwSKIcYsEpL87CI7NJeJcS/cRj4lsEwZgek0gRTqPdR2nM3Kl34
+         pq1Bg+Y9xsHUhyojfrT1e4VDl2elhC/wWGGJTqd/IY1s3E1TLcDk48deec0ZFY03ms7N
+         YmcCzFWyALuPAT2Lp1bRYz0OnWnyZXkUas1BelASN4lAE3Hni+peb3pP5QdwiKKLEKrI
+         ORkRpQ6DnS3UwqX6y5l4bfsysXpMgaxHu3iy8jyA0hd141JtkD2x1OGOE9sV2BzH+470
+         hyDDeP4i9FXYvrg5TyefVYhTSX+KujiBzzQbtNFdl5CXFbCVnTySXMfERB5laMp5axum
+         v+YQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU4QQw9HDp7r3MdbMz9OwuIb9uTWo0yl/rwq/RqMzU7wZInCKhnwmPoqK8gg1qJDBeFj127cByCDuQ/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyD7Nqr3U37JLrVTYPryyiesKzLymvVRC8rx+vLGywOHmSLxoxk
+	8CUplKhD/qEOKiDsQcx1tTxVeLQF7xGj1oqd9xr2PCdleT0rrgYT6lCYW8drfsE=
+X-Gm-Gg: ASbGnctqjk3y0wNO0K9d/4pV+ZLbolPU+TKh0qySED5Cbm7cTk8XI3fVhucVP0eIetT
+	3NM2Zz/0wj3RcEbURPq6HBzzWvrcmIuJA+jUOZW0tSLxS94V9f7ZPvPEvVKZcJfcrQc4YxSBaGx
+	tF3Dw6bKYlqg3XfMQU0fetCuj0YqSvlzF0SMe+MphkOObuUfvP6Le0SgmoQGkNTo5g9MDIJazEO
+	X6zvtgW4gBRCuAncGhHhWGiPI2ugtshp/l9h7KO+vtTg9KZ/smF83ZyptKqlk8fMrSdC68eGwVr
+	JXmmI+fo/Sbpe8Y=
+X-Google-Smtp-Source: AGHT+IF5Phsc9N8X46dajNfJWnr4UVEjpzVbx4Mq2WI4DCkq1bHDvZhiQxOuFhDTImar5RTr5xSPFA==
+X-Received: by 2002:a05:6000:4008:b0:386:459e:655d with SMTP id ffacd0b85a97d-38c51952173mr9891268f8f.20.1738341407991;
+        Fri, 31 Jan 2025 08:36:47 -0800 (PST)
+Received: from pop-os.. ([145.224.90.107])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c5c1e8f53sm4975118f8f.100.2025.01.31.08.36.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Jan 2025 08:36:39 -0800 (PST)
+From: James Clark <james.clark@linaro.org>
+To: quic_jiegan@quicinc.com
+Cc: quic_tingweiz@quicinc.com,
+	quic_jinlmao@quicinc.com,
+	coresight@lists.linaro.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [RFC 02/12] dt-bindings: i2c: maxim,max96712: add a couple of new properties
-Date: Fri, 31 Jan 2025 18:33:56 +0200
-Message-Id: <20250131163408.2019144-3-laurentiu.palcu@oss.nxp.com>
+	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	suzuki.poulose@arm.com,
+	mike.leach@linaro.org,
+	alexander.shishkin@linux.intel.com,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andersson@kernel.org,
+	konradybcio@kernel.org,
+	James Clark <james.clark@linaro.org>
+Subject: [PATCH 0/3] coresight: Alloc trace ID after building the path
+Date: Fri, 31 Jan 2025 16:36:12 +0000
+Message-Id: <20250131163617.1730505-1-james.clark@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250131163408.2019144-1-laurentiu.palcu@oss.nxp.com>
-References: <20250131163408.2019144-1-laurentiu.palcu@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM9P192CA0028.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:20b:21d::33) To AS4PR04MB9576.eurprd04.prod.outlook.com
- (2603:10a6:20b:4fe::12)
+In-Reply-To: <d5332d6d-237f-4b78-9eaf-2619bd97b7bd@quicinc.com>
+References: <d5332d6d-237f-4b78-9eaf-2619bd97b7bd@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9576:EE_|AS8PR04MB8529:EE_
-X-MS-Office365-Filtering-Correlation-Id: da647c7d-5ea1-419c-186f-08dd42152300
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?WUg2EEV1DY+RQEGoA6C5o7CVv24HrIQX477KsDMXelvuvvtkCN3XzpZiPAGu?=
- =?us-ascii?Q?9JyA14BSKfZ3YBAKiKP5ts4aXgNQAGzvQ655hILbg5yeNJw90X6Niu7Iddqm?=
- =?us-ascii?Q?+bQK7adeDZsTx5m0XcZhow827qlDHtssakIEWvR1qhwx94R8vHfulF0I0frQ?=
- =?us-ascii?Q?lbsUgSDrF/Bkls4DBXTmjiaYjDs0svqc2epczkw1sor+HHHiB06rFmHE+8AJ?=
- =?us-ascii?Q?UQdT2+TMlBd8+gOABtLnoq6MYA7djPUGx9RNabqlgj2/c+/Pdv8NtaxqPoJ1?=
- =?us-ascii?Q?BZuyqZVYg6P3bhBo5poralYkbZvqrufxNAD0/SOv56MD42GGIgfWi3xL7jpb?=
- =?us-ascii?Q?UQaGGv6us9LAmvLVtlFjuI3pHtsURBPgGAA9c+gMFlHTMe3q0GLesQcNPiAf?=
- =?us-ascii?Q?psnJ117tdXo23U5ikpZ6bqhHkuJOwpO5FZCJGte89ZxA/3F8k/1Aznnx+V43?=
- =?us-ascii?Q?WeN/QsTpRIb19CAUCe1GAolAhjpDsKqAkgzq4gmBaHiAUrfjp0iFeE+BB8XV?=
- =?us-ascii?Q?vM6lX2BwtTfuSckPjYi9cXHAHoEil0XJ6RTWLl15Aa7BQ9a+mRPWjAk6NCPT?=
- =?us-ascii?Q?6dziHUgjdniMtKvmoYruZYItT3kvLneUCri/gZq4ZW9ZAqs3yUsC+WISofRk?=
- =?us-ascii?Q?yS11oedn4Wdxw7GZbcX8eVcFsIys8i4B/yS8BhI17eCBM9U/oXUhkZqU6lQB?=
- =?us-ascii?Q?/4uzmAcWD3EVVC4cYQexlIswrPUP5E8rGrwLJ1f0GgOL1dTiXiQoaq+lXuTz?=
- =?us-ascii?Q?ipTt16LnaHOSpzfqRVQlnmSuUPKkbYV+OnHU+IkRidCm9LXd46cqr8Ji+57M?=
- =?us-ascii?Q?m7suM3Xdlqf5pFfrlFa42bWTy+B/38SChS4lsmjT6nbeXHpojj1ZSmwidH1o?=
- =?us-ascii?Q?p6cLsgtSbZYnRMWFCiGV2UybkxAGLw/QTGsAcYCkc0hcZh8SoO71YimqJNq4?=
- =?us-ascii?Q?5YwvVnIh19h4sIiwMhCqRnQDnBJvx0OdT/SqcEFkuEnNv+fxkOXUraGIOKP0?=
- =?us-ascii?Q?fJr7U7d2sYIZ7KqVNTjzpzA6E+m9/mo0IG2zOoxqKbZ2I4gUnXJ67qWy1lvQ?=
- =?us-ascii?Q?e5AJzjxMRkr5gl1s2rfjWoHew0fSHFWwMr+YyFOnHO80KtUWRrJ9uSV/ZZom?=
- =?us-ascii?Q?LQ4Ig36akGwNI1p251ZAwdl49xtziK+3MXC+HG0m71zMYJF8KZPTcrr8GEPh?=
- =?us-ascii?Q?welxsGvigK12wg23fnKxLPvHdhO7d2D5OEbI/4yEgIIN5bTAeq+dlddocMfp?=
- =?us-ascii?Q?d5YF8PDI7ozpSY9mjSH/o8ps6vWpYp9oIp/V/7o8g2qOTbHUYVf/vhJw1ogc?=
- =?us-ascii?Q?h72LrdHO/tJghrfRD5Iq/KMOuID3WrSLt2QMfAlDM7eOoYL1PZDuFoNxpQfQ?=
- =?us-ascii?Q?4wnmkDpgEGnnzQtZz25feHjwbuTD?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9576.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?GaWb3qpS/ALlJfxpf+0/s03+k14hfCFAWhqhYrDf0KLcgBo7N/TvxH99jeNJ?=
- =?us-ascii?Q?BOHe3d8DToveYTkhvpYyAsRsp9m895qlMYCMSu2YHgtvEOZmmF85Clr2pUR/?=
- =?us-ascii?Q?imbC6TsVVgGeBsx8A8nsXmSQ1EzTLtc5K6DrpNOUc6W+hTrXNcEpXmSi09og?=
- =?us-ascii?Q?TrbA1MtBthDFFR+O4QNh/Q1U0IAuCFKqwvrSjkKywx9nlCqPg/WZrTY6QH/J?=
- =?us-ascii?Q?c458LNstF/8kmaPPpZBzpLfcC3qnY0VWY6hg6875g2DwIEWCXkBs3QddlRIN?=
- =?us-ascii?Q?f5AltFzpRdjG01mcJ/+mQJweUN+Bu29HI20FdHdBlBjE2P/okihwYHMX7UIp?=
- =?us-ascii?Q?YCvcHRonlyh1bUc33nRhZxuxJ+TBraP4s0KZHjea0aoB/AiKGrQg+MQQ85H4?=
- =?us-ascii?Q?6WtTyjvL+GLmFJhXfn7BnaaiR1ZghkJgk+c6n3cwWQQV+HMOc2UPboQmXM9a?=
- =?us-ascii?Q?6X6BEenJVK92GC8Z8E7wqKWnxSvHsQRSpgFplSMbwd0asQSh6yx0MxCi1n/P?=
- =?us-ascii?Q?O/ojuDWFc6A71W/tE7r8382wg1qMAN9t6w82NNwV4AO0YvN1yHROypyXe/ka?=
- =?us-ascii?Q?W3WyZ6z3dToPMN46cRs1A0Lvr9TmKoCQhKhh6MZ8Prkn9TwHlGzuoE2PgN1/?=
- =?us-ascii?Q?hCiqzmxulPjKMTZe+0v0+Xm3Foip5zQH18W8kx9r/LC0MLl9zV1XvLSv9cc+?=
- =?us-ascii?Q?8EASxSJgdWccQd84WXys/mOdXMGmehRG+4wqkUhkXKBUEaBQ6y/slvCVR2pL?=
- =?us-ascii?Q?PEt6/Zhd/zgWBQ/WcbF0qJSP2vS0OegSOIXFqHTghE2OuU51S9l5GPlu5eE1?=
- =?us-ascii?Q?G1QLP7NTZW2yvVl30Ij/cyZnRWLHoHWgc4JGTblEU2VjGdF2lL7rOw5T8WAa?=
- =?us-ascii?Q?CB5W51+bEsJFQMNurd2GXC3E3gJNZGX19YbQtmAersVLXu/MQ7nHBsMz3VsI?=
- =?us-ascii?Q?2BdkeddkLZlzEtCnIrOSqSwqgrsuY7C+lyT9aJoMIpQcOmdgcvUmfrrCu/+U?=
- =?us-ascii?Q?lfNfPIefXDa329xYVcCvlOuolMYi6ctpd5ZynwOSlTbuRuHuZ9lqIzpZcG8L?=
- =?us-ascii?Q?a8MSxj6XSbaxXc1YVXwz9TxqlI9vWmSwlxBip303WNp6QrVRb6aC/HPYXF29?=
- =?us-ascii?Q?SL3PCXAx2IudF7GU4qqU3qCZHw/tvloO6dX4pgyJdaiatjby929qQq9XNTyN?=
- =?us-ascii?Q?djlV2Ea0Kh3DEf/yzlqusFPF6kuwigMT5iKp3cLRCrQlZg3BJEWy5+5oWWF0?=
- =?us-ascii?Q?B/0W2pcGl033vViJdrU59mlrh8tB0o3xeoBOv44l7Sb2v7Usbi+CA93kOnwP?=
- =?us-ascii?Q?oEPNzyLnp+E3cMgkHs300Tp03Tj6cH7AqLbU/vQY596Hf6Ss7ku7ZXvxCWOZ?=
- =?us-ascii?Q?UNenBESDaboypRJd1XqT/oE5V51im5EDO8RHYyn8kklHufiT7V9n01m/P9sQ?=
- =?us-ascii?Q?ZwgVfnzMxzR+G+NW/TVkl7DzRKlT1Wy6bmN6XJUgz/aKQ+l4OmfptQCOyOQE?=
- =?us-ascii?Q?TuIwUnZ27JWY2bH5IGpR5vygGLRB6OP2cJhkAU6CfAHJwwKGbVd8F8iNvDBh?=
- =?us-ascii?Q?Ji4H/nFwqBxJE5NB8yIHTXw/1KhK90bBpefmT6spj8mXmfxR4TJfthA4VMbL?=
- =?us-ascii?Q?jQ=3D=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: da647c7d-5ea1-419c-186f-08dd42152300
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9576.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2025 16:34:30.7171
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lW6D4LjSAMdqxbitwIVVjuvk65WhOTVAzGMLxrHmUICS1HD8faTvMVoErD2iQXX18KVYr14EsZ/ySzy0FmeNMw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8529
+Content-Transfer-Encoding: 8bit
 
-Add new properties for configuring FSYNC functionality and operation
-mode, as the chip can support both tunneling and pixel modes.
+Proof of concept to support CTCU device. Applies to Jie's patchset in
+the parent email. I think this would be a good simplification, it
+removes some code and makes things a bit clearer, and works for both the
+old and new CTCU requirements. It will require merging into the parent
+patchset somehow as it undoes some of those changes.
 
-While at it, add the maxim,max96724 compatible to the bindings since it
-was already added in the driver some time back.
+James Clark (3):
+  coresight: Don't save handle in path
+  coresight: Export coresight_get_sink()
+  coresight: Alloc trace ID after building the path
 
-Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
----
- .../bindings/media/i2c/maxim,max96712.yaml    | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
+ drivers/hwtracing/coresight/coresight-core.c  | 107 +++++++++++++-----
+ drivers/hwtracing/coresight/coresight-dummy.c |   9 +-
+ drivers/hwtracing/coresight/coresight-etb10.c |   8 +-
+ .../hwtracing/coresight/coresight-etm-perf.c  |  20 ++--
+ drivers/hwtracing/coresight/coresight-etm.h   |   1 -
+ .../coresight/coresight-etm3x-core.c          |  84 ++------------
+ .../coresight/coresight-etm3x-sysfs.c         |   3 +-
+ .../coresight/coresight-etm4x-core.c          |  83 ++------------
+ .../coresight/coresight-etm4x-sysfs.c         |   4 +-
+ drivers/hwtracing/coresight/coresight-etm4x.h |   1 -
+ drivers/hwtracing/coresight/coresight-priv.h  |  17 +--
+ drivers/hwtracing/coresight/coresight-stm.c   |   5 +-
+ drivers/hwtracing/coresight/coresight-sysfs.c |   6 +-
+ .../hwtracing/coresight/coresight-tmc-etf.c   |   9 +-
+ .../hwtracing/coresight/coresight-tmc-etr.c   |  13 +--
+ drivers/hwtracing/coresight/coresight-tmc.h   |   2 +-
+ drivers/hwtracing/coresight/coresight-tpda.c  |   3 +-
+ drivers/hwtracing/coresight/coresight-tpdm.c  |   3 +-
+ drivers/hwtracing/coresight/coresight-tpiu.c  |   2 +-
+ drivers/hwtracing/coresight/coresight-trbe.c  |   4 +-
+ drivers/hwtracing/coresight/ultrasoc-smb.c    |   8 +-
+ include/linux/coresight.h                     |  25 +++-
+ 22 files changed, 159 insertions(+), 258 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-index 26f85151afbd3..410004f3a032f 100644
---- a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-@@ -36,6 +36,48 @@ properties:
- 
-   enable-gpios: true
- 
-+  '#gpio-cells':
-+    const: 2
-+    description: |
-+      First cell is the GPIO pin number, second cell is the flags. The GPIO pin
-+      number must be in range of [0, 11].
-+
-+  gpio-controller: true
-+
-+  maxim,operation-mode:
-+    description: |
-+      Deserializer mode of operation: 0 - tunneling mode, 1 - pixel mode
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1]
-+    default: 0
-+
-+  maxim,fsync-config:
-+    description: |
-+      Frame synchronization (FSYNC) is used to align images sent from multiple
-+      sources in surround-view applications and is required for concatenation.
-+      In FSYNC mode, the deserializer sends a sync signal to each serializer;
-+      the serializers then send the signal to the connected sensor.
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 2
-+    items:
-+      - description: |
-+          FSYNC mode:
-+            0 - off, no FSYNC generation
-+            1 - internal, GPIO is not used as input or output
-+            2 - master, GPIO pin is used to drive a slave deserializer
-+            3 - slave, GPIO pin is used as FSYNC input driven by a master device
-+        enum: [0, 1, 2, 3]
-+        default: 0
-+      - description: |
-+          FSYNC TX ID: GPIO ID used for transmitting FSYNC signal
-+        minimum: 0
-+        maximum: 31
-+        default: 0
-+      - description: |
-+          FSYNC pin: 0 - MFP0, 1 - MFP7. Not used for internal mode.
-+        enum: [0, 1]
-+        default: 0
-+
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
-@@ -92,6 +134,9 @@ examples:
-     #include <dt-bindings/gpio/gpio.h>
-     #include <dt-bindings/media/video-interfaces.h>
- 
-+    maxim,operation-mode = <0>;
-+    maxim,fsync-config = <1 0>;
-+
-     i2c@e6508000 {
-             #address-cells = <1>;
-             #size-cells = <0>;
 -- 
-2.44.1
+2.34.1
 
 
