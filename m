@@ -1,217 +1,162 @@
-Return-Path: <devicetree+bounces-142008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7251BA23B92
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 10:44:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86DB5A23B97
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 10:48:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1C977A2D4D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 09:43:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02420168501
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 09:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2133D18A6CF;
-	Fri, 31 Jan 2025 09:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="cBHUYUO6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E35C1714C0;
+	Fri, 31 Jan 2025 09:48:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063F2155393;
-	Fri, 31 Jan 2025 09:44:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738316673; cv=pass; b=Yc95jb6RAMkeS17PH+3Q+uuG+1B5XScjsjUeyn1kuuU21+w+efE7Mxut+u7kycxW+pB/NQXlSPjm7jM5T+7nVZA1XYT/6xHVWHrIpPkCPxTchKMd7MMzXp6ChBirrhoW4PsP+4Qt95LsDYDThQY72E+sUn8HDPHeuzjwgINCxJQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738316673; c=relaxed/simple;
-	bh=paGzEoi/QSH1/CXsTEX2WbNaAdlTMrMj8uP4WxhU5ZI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Npb36SOMPAEbCgm1gUiOl+OLVd7cM7ao0fvE15cBnVRY7gTy+vA8LOON1WvWWkX8qaAhTFCRTcRGzmqU5FeCImYGP8X5uIddhnbdYqW/PDdmY9N3WsSnX0+hkz3vv+bByNHk9viORyRm6PQm8OvWYfclp0PI1CJP7lBB6yP2Jm4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=cBHUYUO6; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1738316631; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=O+8GsUz06uMmRr7Bdid+cRMrb/6hpguS+VcdRiHKxUb0tgU9pj3BBrKn+4j4+Kz9PyVzR5WjMiqCG4TRt68fqtf+V9Cv/eLnf3jdnzQSLkYMoW3rWnD2jqz4TAU23ThZTNM3xLlCCFSF3z6CAabNZEnfmXkcAF1tDUesprhWu4Q=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1738316631; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=MmJv3L+eZ/sNXSvW474bg5iy0+Z7o6xX/pDPZGEj3Ng=; 
-	b=S5ddfO5ntiwA7c1EPKB0bQozZND9SWf7CG/qlVkrawkhkUcZVKXN3BzOtyrWsm5QYzDKvZgiQh2O16DRoPVK1SA1p0Fwgz9BQU7llGKQP6kTsHwvu7uvbsi1f8nLVc+cPIrwQbaN7A+ktEffkV6/ujuNs4jogH58eHUIEP3atN8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1738316631;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=MmJv3L+eZ/sNXSvW474bg5iy0+Z7o6xX/pDPZGEj3Ng=;
-	b=cBHUYUO6+5+VBiWBdHybhQgVtrqBelSEtdU26DaI4swbkAZMHBCjCA8kNdmhC4jS
-	6mMARl6eg5rvoXvFaRKixZQV57n6Nf6BOZ8lNhxhflpcHCgCbl547vZXC4VgRcWJhvy
-	6aHjMT86T7YC/hZwA2ZvL/1ZTflRrF8R39v2IlPs=
-Received: by mx.zohomail.com with SMTPS id 1738316626127798.141295591807;
-	Fri, 31 Jan 2025 01:43:46 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Olivia Mackall <olivia@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Daniel Golle <daniel@makrotopia.org>, Aurelien Jarno <aurelien@aurel32.net>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-crypto@vger.kernel.org
-Subject: Re: [PATCH 2/7] dt-bindings: rng: add binding for Rockchip RK3588 RNG
-Date: Fri, 31 Jan 2025 10:43:41 +0100
-Message-ID: <4955605.GXAFRqVoOG@workhorse>
-In-Reply-To: <979564a4-c8e9-4427-8019-349d0794d9af@kernel.org>
-References:
- <20250130-rk3588-trng-submission-v1-0-97ff76568e49@collabora.com>
- <20250130-rk3588-trng-submission-v1-2-97ff76568e49@collabora.com>
- <979564a4-c8e9-4427-8019-349d0794d9af@kernel.org>
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6054322B;
+	Fri, 31 Jan 2025 09:48:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738316908; cv=none; b=s7Us+DfIyo/NI8p+7OnhwDt2mLTnrRcjt6xRQuN6iZ762j3wAcZmaNp+Bp8R0eM6GvyWWzF0YOW7zy5tgbDdyHcLL9H30N8PSUwJ/f3pjpDRR3U6sRR62vm3nSjecyn9IXvdjQx74OyFYbv3P71+zna4GjsLawlRw/idV7MafhE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738316908; c=relaxed/simple;
+	bh=xRljolmy4EZjS4PJvqMfPGESDbrhnm1m1LnJSC7HGq4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bQetQE6Dii+pHULnMyntfBqc0w/EpVtfvCWGNHRuxcbGxTMewVfmFWANJjIvWCf/9wJ/ezjNKTCzI8fkjSzlBaJ6R3D0nnRxYqt5r5vs65a42bc4ONoec5bj9RRDw6j+bBCPOq7Jvv3Cy110ax42rEPiFio71Tx3ijo8teQe4Fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: Z+PrpjS4SYKuLNBTu5ZRNg==
+X-CSE-MsgGUID: VxM4iI87TweP3hHFzGXvqg==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 31 Jan 2025 18:48:18 +0900
+Received: from localhost.localdomain (unknown [10.226.92.122])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id E4CBC40165B8;
+	Fri, 31 Jan 2025 18:48:14 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] of: base: Add of_get_available_child_by_name()
+Date: Fri, 31 Jan 2025 09:48:10 +0000
+Message-ID: <20250131094812.118340-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Friday 31 January 2025 09:30:51 Central European Standard Time Krzysztof 
-Kozlowski wrote:
-> On 30/01/2025 17:31, Nicolas Frattaroli wrote:
-> > +title: Rockchip RK3588 TRNG
-> > +
-> > +description: True Random Number Generator on Rockchip RK3588 SoC
-> > +
-> > +maintainers:
-> > +  - Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - rockchip,rk3588-rng
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: TRNG AHB clock
-> > +
-> > +  # Optional, not used by some driver implementations
-> 
-> What driver implementations? Downstream? They do not matter, because
-> they are full of all sort of crap.
+There are lot of drivers using of_get_child_by_name() followed
+by of_device_is_available() to check the child node availabilty
+by name for a given parent. Provide a helper for these users to
+simplify the code.
 
-Downstream and this very driver in the series. The patch includes a lengthy 
-explanation of why all known implementations have foregone using the 
-interrupt.
+Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+grep showed the below files will be the user for this new API.
+I will be updating these drivers once this patch is in mainline.
 
-> Can this block have interrupt really disconnected? This is the question
-> you should answer.
+drivers/net/dsa/rzn1_a5psw.c
+drivers/net/can/rcar/rcar_canfd.c
 
-I do not have the gift of prescience. If you want me to make the interrupt 
-required even though it is pointless just because all hardware that implements 
-this that I'm currently aware of does have the interrupt then I will add it as 
-a required property.
+drivers/net/ethernet/mediatek/mtk_star_emac.c
+drivers/net/dsa/mt7530.c
+drivers/net/dsa/sja1105/sja1105_mdio.c
+drivers/net/dsa/qca/qca8k-8xxx.c
+drivers/net/wireless/mediatek/mt76/mac80211.c
+drivers/net/ethernet/ibm/emac/core.c
+drivers/net/ethernet/ti/am65-cpsw-nuss.c
+drivers/net/ethernet/actions/owl-emac.c
+drivers/net/ethernet/mediatek/mtk_eth_soc.c
+drivers/media/platform/samsung/exynos4-is/media-dev.h
+drivers/gpu/drm/tegra/rgb.c
+drivers/gpu/drm/msm/adreno/adreno_gpu.c
+drivers/clk/davinci/pll.c
+---
+ drivers/of/base.c  | 28 ++++++++++++++++++++++++++++
+ include/linux/of.h |  9 +++++++++
+ 2 files changed, 37 insertions(+)
+
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index af6c68bbb427..3f5119fbfdb4 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -824,6 +824,34 @@ struct device_node *of_get_child_by_name(const struct device_node *node,
+ }
+ EXPORT_SYMBOL(of_get_child_by_name);
  
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  # Optional, hardware works without explicit reset
-> 
-> Just because bootloader did something? With that reasoning nothing is
-> ever required because firmware can abstract it. Either you have there a
-> reset or not. In this particular case your driver is irrelevant.
-
-No, it's not the bootloader that does it, it's the hardware itself. It's 
-power-on reset. Hardware can reset itself without software, I don't know where 
-the assumption of it being done by the bootloader comes from.
-
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +
-> 
-> BTW, there is a binding for Rockchip TRNG, with a bit different clocks
-> so I have feeling yours is incomplete here.
-
-I know and they're not. As the cover letter states, this is different hardware 
-from the other Rockchip TRNG. This hardware only has one clock. It is a 
-separate binding with different clocks because it is different hardware.
-
-The patch's message also states this:
-
-> [...] and a standalone RNG that is new to this SoC.
-> 
-> Add a binding for this new standalone RNG.
-
-It's a standalone RNG that is new to this SoC. It has different registers, and 
-different clock requirements.
-
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> > +    bus {
-> > +      #address-cells = <2>;
-> > +      #size-cells = <2>;
-> > +
-> > +      rng@fe378000 {
-> > +        compatible = "rockchip,rk3588-rng";
-> > +        reg = <0x0 0xfe378000 0x0 0x200>;
-> > +        interrupts = <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +        clocks = <&scmi_clk SCMI_HCLK_SECURE_NS>;
-> > +        resets = <&scmi_reset SCMI_SRST_H_TRNG_NS>;
-> > +        status = "disabled";
-> 
-> Examples cannot be disabled.
-
-Okay, I will fix this.
-
-> > +      };
-> > +    };
-> > +
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index
-> > bc8ce7af3303f747e0ef028e5a7b29b0bbba99f4..7daf9bfeb0cb4e9e594b809012c7aa2
-> > 43b0558ae 100644 --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -20420,8 +20420,10 @@ F:	include/uapi/linux/rkisp1-config.h
-> > 
-> >  ROCKCHIP RK3568 RANDOM NUMBER GENERATOR SUPPORT
-> >  M:	Daniel Golle <daniel@makrotopia.org>
-> >  M:	Aurelien Jarno <aurelien@aurel32.net>
-> > 
-> > +M:	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> 
-> Like Conor said, this is not really relevant and should be a separate patch.
-
-Should just the added M be a separate patch or also adding the file to the 
-MAINTAINERS file? Because if the latter is separate then I think checkpatch 
-will yell at me, and if the former is separate then the binding's statement 
-that it is maintained by me is disconnected from what's in the MAINTAINERS 
-file.
-
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-
-
-
++/**
++ * of_get_available_child_by_name - Find the child node availabilty by name for a given parent
++ * @node:	parent node
++ * @name:	child name to look for.
++ *
++ * This function looks for child node for given matching name and check the
++ * device availability for use.
++ *
++ * Return: A node pointer if found, with refcount incremented, use
++ * of_node_put() on it when done.
++ * Returns NULL if node is not found.
++ */
++struct device_node *of_get_available_child_by_name(const struct device_node *node,
++						   const char *name)
++{
++	struct device_node *child;
++
++	for_each_child_of_node(node, child)
++		if (of_node_name_eq(child, name))
++			break;
++
++	if (child && !of_device_is_available(child))
++		of_node_put(child);
++
++	return child;
++}
++EXPORT_SYMBOL(of_get_available_child_by_name);
++
+ struct device_node *__of_find_node_by_path(const struct device_node *parent,
+ 						const char *path)
+ {
+diff --git a/include/linux/of.h b/include/linux/of.h
+index eaf0e2a2b75c..9d6b8a61607f 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -301,6 +301,8 @@ extern struct device_node *of_get_compatible_child(const struct device_node *par
+ 					const char *compatible);
+ extern struct device_node *of_get_child_by_name(const struct device_node *node,
+ 					const char *name);
++extern struct device_node *of_get_available_child_by_name(const struct device_node *node,
++							  const char *name);
+ 
+ /* cache lookup */
+ extern struct device_node *of_find_next_cache_node(const struct device_node *);
+@@ -578,6 +580,13 @@ static inline struct device_node *of_get_child_by_name(
+ 	return NULL;
+ }
+ 
++static inline struct device_node *of_get_available_child_by_name(
++					const struct device_node *node,
++					const char *name)
++{
++	return NULL;
++}
++
+ static inline int of_device_is_compatible(const struct device_node *device,
+ 					  const char *name)
+ {
+-- 
+2.43.0
 
 
