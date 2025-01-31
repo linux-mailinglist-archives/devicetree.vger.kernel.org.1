@@ -1,145 +1,86 @@
-Return-Path: <devicetree+bounces-142055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A199A23EFD
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 15:08:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C6C4A23F90
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 16:22:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 468093A422E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 14:07:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E031163D1E
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 15:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 112241C8FD6;
-	Fri, 31 Jan 2025 14:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FFB01DF26F;
+	Fri, 31 Jan 2025 15:22:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uLvqD7AD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h3dzLlh1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8F3B1B87E9;
-	Fri, 31 Jan 2025 14:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BDD1C1F29;
+	Fri, 31 Jan 2025 15:22:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738332476; cv=none; b=ZiQipWDhCAOvCuC1sLXoOHoYZ3RBfv0sUfBTWHD0P3YnsCS5A/178EOO1k139uisx5SSwYubnS9t/oAApSsSy4Dx+4XG4p02KVpMrkM1Qu1B55gV8biKpKCps3hLhrVn/jo8B6frpCgTiSkmq0sMfL9/7EVHeU6XWqF5a3VkVuE=
+	t=1738336973; cv=none; b=UeQmQ7UmqwengBWUy+eb7binWInp+llH2ykRPZJOjJHrYuflso/XoRkj5IRHabE6esfUEa36RtUC3Lb+7ANPtciWFZwRbih2pH64IQC7bIWn2Il7RMsTWyP1g3t7P0JjmZP/kK906rwFw8PYqMGTG0ccTS7+qn8ryOGZiqAqD1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738332476; c=relaxed/simple;
-	bh=91PRDFTScaL13tOsC+DeQ4JyN56p/kP/RLQ4/vRE+hM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NeRAb38XkR0Z4jKUWCIzXPb/73ldKaTAZYH2fb2TugET4cx5IoWf1rFswdHRFNlHX8j8b/hc1WPvbUKAnTVrJOtF9QLdukR+bRyQa3XCZTAzc6xl9kGwNcJP6654wwUKa4cxWqM6DnoWat+EVonMvt+AgL1+HL+Qfvm6d6+EIao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uLvqD7AD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E25DC4CED1;
-	Fri, 31 Jan 2025 14:07:50 +0000 (UTC)
+	s=arc-20240116; t=1738336973; c=relaxed/simple;
+	bh=2XSUwqfKsVEp3IMiM6NQTuflLjZEWzIWnFosGHmPs2o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PPejAEB9sPajkNdSupViI2RupZUAK/RNg/SVOSGqkhFU/uNkALO7q7CzNVVIhBxK/WzWIWTeW7/4xK2smi38aQjavYoOinjSFxsBY80Gzi4h+jovNWGKZDbvRjfFlKWDeKBaiPcp3nRgjD3AGiXu3CvI63qRCroPpSWCeXoWNlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h3dzLlh1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83966C4CED1;
+	Fri, 31 Jan 2025 15:22:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738332475;
-	bh=91PRDFTScaL13tOsC+DeQ4JyN56p/kP/RLQ4/vRE+hM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uLvqD7ADPflx7G9ZdYBxWd9Gi0DHJPdYftD7xQoKDUWmZqgdLEMSIxeVi42F8ZthV
-	 t67IjHYeN4lXLMxSEvPdEpg1ECqz+WlcBU7t8IlItq0u+ulNsHx0zQXbcdLi1JTMrc
-	 DhLj8m1rawvSeU/OM4hRD5fevNduumDy4ZwFuOqzlnMMznMYyIELl/awrq0E8Nqhmg
-	 j/wPyOr/zY5mvTNbOmHK2rpTyx06DOjE54JeKYzlWUm5arHtrmru3RXueAgfXZRdde
-	 RhiPC9fvoDPAmxynjzxAJewmEV8HPe6lEwg2N8uIIdLF111BU7DAdnDsmqX2QLXuZD
-	 EswvWAFKq//0A==
-Message-ID: <77e5166f-37f6-4931-b071-1c926cfe707c@kernel.org>
-Date: Fri, 31 Jan 2025 15:07:49 +0100
+	s=k20201202; t=1738336972;
+	bh=2XSUwqfKsVEp3IMiM6NQTuflLjZEWzIWnFosGHmPs2o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h3dzLlh1NaPsV31KDezvmTY4PNSIBxDRjKMUrfttkMI0R3aEHvxwQKqmvfvVFgNXX
+	 U+W2wQwOmKYGKiALGcw2rYbPdxJiC64fsOeFzyY8Uk1DrEGeKY4QV9UZFRq7fBAMZB
+	 fWXZXc2e3KPnV+eQ7llS/yPiVUOpNou6xeglaazE1Gi1Npk5tq8WTolg4AyvRL9dcD
+	 QWubyfwgdxvxQw9HAqIGZyhnAba/xB59FVaDqrOMHJZ9L2I1jO/PNdOGobRxSsx5JW
+	 TaNTLZoEroKWuTIecapgOqGszrhIGugpqBExJl9bTADiYg/vK6wTcMtnX74h0QwGXm
+	 bG0wl7XMULpKw==
+Date: Fri, 31 Jan 2025 09:22:51 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Mahesh Rao <mahesh.rao@intel.com>
+Cc: linux-kernel@vger.kernel.org, Tom Rix <trix@redhat.com>,
+	devicetree@vger.kernel.org,
+	Niravkumar L Rabara <nirav.rabara@altera.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mahesh Rao <mahesh.rao@altera.com>, Wu Hao <hao.wu@intel.com>,
+	Dinh Nguyen <dinguyen@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+	Moritz Fischer <mdf@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-fpga@vger.kernel.org, Ho Yin <adrian.ho.yin.ng@altera.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: fpga: stratix10: Convert to
+ json-schema
+Message-ID: <173833697109.3454158.16328631398672207648.robh@kernel.org>
+References: <20250131-socfpga_sip_svc_misc-v2-0-eeed4ebc35f9@intel.com>
+ <20250131-socfpga_sip_svc_misc-v2-1-eeed4ebc35f9@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] nvmem: imx-ocotp: Support accessing controller for
- i.MX8M Nano
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250130130101.1040824-1-alexander.stein@ew.tq-group.com>
- <20250130130101.1040824-4-alexander.stein@ew.tq-group.com>
- <deef6dcd-27a0-4109-9788-a755fd390f55@kernel.org>
- <4989387.31r3eYUQgx@steina-w>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <4989387.31r3eYUQgx@steina-w>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250131-socfpga_sip_svc_misc-v2-1-eeed4ebc35f9@intel.com>
 
-On 31/01/2025 14:50, Alexander Stein wrote:
->>> +
->>> +		while (!of_parse_phandle_with_args(child, "access-controllers",
->>> +						   "#access-controller-cells",
->>> +						   idx++, &args)) {
->>> +			of_node_put(args.np);
->>> +			if (args.np != dev->of_node)
->>
->> You are using args.np after dropping the reference.
-> 
-> Indeed, but is it really a problem? The args.np pointer is still the same.
-> So the comparison is unaffected.
-> 
-> Both branches need to drop the reference, no?
 
-Ah, indeed, you do not use the reference except pointer comparison. It's
-fine, maybe a bit less usual, but as you mentioned other alternative
-also does not look good, so fine for me.
-
-> But the following looks awefull as well.
->> if (args.np != dev->of_node) {
->> 	of_node_put(args.np);
->> 	continue;
->> }
->> of_node_put(args.np);
+On Fri, 31 Jan 2025 18:17:24 +0800, Mahesh Rao wrote:
+> Convert intel,stratix10-soc fpga manager devicetree
+> binding file from freeform format to json-schema.
 > 
-Best regards,
-Krzysztof
+> Signed-off-by: Mahesh Rao <mahesh.rao@intel.com>
+> ---
+>  .../fpga/intel,stratix10-soc-fpga-mgr.yaml         | 36 ++++++++++++++++++++++
+>  .../bindings/fpga/intel-stratix10-soc-fpga-mgr.txt | 18 -----------
+>  2 files changed, 36 insertions(+), 18 deletions(-)
+> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
