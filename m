@@ -1,202 +1,117 @@
-Return-Path: <devicetree+bounces-142094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 523DBA241C9
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 18:19:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C6FA241ED
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 18:35:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E055D1884E6A
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 17:19:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19E69167A6D
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 17:35:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1B91EC00C;
-	Fri, 31 Jan 2025 17:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 313691CD215;
+	Fri, 31 Jan 2025 17:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="eF7K20Vp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wq68nPlM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD12953368;
-	Fri, 31 Jan 2025 17:19:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738343984; cv=pass; b=H58ZPWAvowC6vlEaLVtUFegAtPa76/SwlWpI6c39jr00ezij9IQzlj2GsL0AjyoHM92Q8eyulmOhfDpptA1OM/qoHlFiWy9AYDMlYb+sjUo8buxNiGb2g5D3i7R44ffFYhgwh7GgnwNJJ9MwIwigrj21XZMfx97KEvKFHjxUMOg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738343984; c=relaxed/simple;
-	bh=rRsMibEo2mJYge4wiIcI4H/kHMBdX7g9FLSSXwSvB9g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tIi7E0O/YouMHSyDWIBeIUYGDLcs+cmnRhTZ3BQgn6uW2RSY5bC5hJ5Hegedg+1rMLYLZybXe1eAFUn2rTP+vM3LoU+OnOYOYvhiIHD6hJn84qqtwmOJOCZ45wFW9fio67QtinsW58M15ypvFd7VyITPs8ex72FVpbBtwKVlizU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=eF7K20Vp; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1738343913; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=f/iY1x4utYyIJED6fcvaaas089qhpFaxupg+RoEoMQeB+BTvtDqhYcOFQGdubiFfRuu84pFe08958yXNfTH9uHNIac2N8eBs1B+5fCbX7Hb1NXt+XHPPkAt/CXCw6PwVwzZkx0EHHi2oYdKbecHIpmdrujZBSFG3/S1jdlIawrc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1738343913; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=KxrVvNWFsLdjUGWz01VmAu7gb3IK9lnKuIig2vYIG3M=; 
-	b=aJZJy3fNsdSZ/j+Zi+T3eeHc0pOZqnKJPjdWRZKsWg6BnUXfeRrdr9h+BC0T+EZOBGLJ+CqYojzHJhepG9AZ9iy3YlFzTP+IhDZv/8PLxieD+p6HM3/4PLNlASm+7X16N0tpInXWdfHgxiAAl3pV4TXOfWNJyVzhEIHnjjRFHCk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1738343913;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=KxrVvNWFsLdjUGWz01VmAu7gb3IK9lnKuIig2vYIG3M=;
-	b=eF7K20VpljQSTO45wK2hF3MA4A4e8+K7HQHEdei9dYVEu/VvFe36L9NjbJN5mSQ2
-	bN0MzTRmOaLuDdvsAVNf0ZljnKCKNn0WRyQfdh1d1zPpSyl78ht8ukpizB64YLhKyTK
-	bob/pDfCQQekFArnBL0P3dMu+HAX9UmZRxW+9h7A=
-Received: by mx.zohomail.com with SMTPS id 1738343906427960.6186911597109;
-	Fri, 31 Jan 2025 09:18:26 -0800 (PST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Algea Cao <algea.cao@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- dri-devel@lists.freedesktop.org,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, kernel@collabora.com,
- David Airlie <airlied@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sugar Zhang <sugar.zhang@rock-chips.com>, linux-rockchip@lists.infradead.org,
- Alexey Charkov <alchark@gmail.com>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Johan Jonker <jbx6244@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
- linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jianfeng Liu <liujianfeng1994@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject:
- Re: [PATCH v3 2/2] arm64: dts: rockchip: Add HDMI0 audio output on rock-5b
-Date: Fri, 31 Jan 2025 12:18:23 -0500
-Message-ID: <3668702.iIbC2pHGDl@trenzalore>
-In-Reply-To: <8ad30e14-e785-4e3a-ba92-644e7fb07759@cherry.de>
-References:
- <20250130165126.2292107-1-detlev.casanova@collabora.com>
- <20250130165126.2292107-3-detlev.casanova@collabora.com>
- <8ad30e14-e785-4e3a-ba92-644e7fb07759@cherry.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 118B2A935;
+	Fri, 31 Jan 2025 17:35:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738344939; cv=none; b=Ayl/hOG9gu5jTPEKk5UZm4HNYsRVaf9GE5o9kvqgqfZ0LTYXKCvIc7WxHzocDMvXY2AFkCiRgc37oLsTy+C9VExdmqiwfiycmlqKabe5iyy62Dx1UlMQJDDE0S6XDbewzWJZCr0DA++oDw7Wv2ijrfnB9pPv51HCcaxu+CuN4k4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738344939; c=relaxed/simple;
+	bh=rW/B4c2sktY5pFvCmp9zGsQDBPR2h/vT8lB1yr2iSH4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=spO0NM+DwU4S4xlxfwhRmcyBRk2umkoMkrbGOWPsIgs5Y6CMACDzetDyPktCy8Lo+wU7uv1+GPEnq67vaNr3zQSZDJPgToJvHaPiyT3x0GvKE/wocq8BeWUCZP1BlH54miyjvtpqbT1qPfuzErUyzP6JcOBpwa0Ey3hZ0iZRvXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wq68nPlM; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50VHZFQY2570155
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 31 Jan 2025 11:35:15 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1738344916;
+	bh=Xjkl3LwHhuNZADTBKn5p4bEX9MlgLUjUqR1mFpJOXTQ=;
+	h=From:To:CC:Subject:Date;
+	b=wq68nPlM4i31ObmHT4NGapHViMt/hhLqArlIWfDGZVhsl0/uAI4m1nHJqUO53284I
+	 LijKQ6i0tcrCgnoKmp/BvhZGEuq32dY1+c9QSp09p7V94i7S8HOdJ6Nb+tFEQ/74ke
+	 Hkc0l0NSPjFR8FI2Wlz0s/di2NyYXYyjjTRpUqRI=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50VHZFjp028756
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 31 Jan 2025 11:35:15 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 31
+ Jan 2025 11:35:15 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 31 Jan 2025 11:35:15 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50VHZFtS070396;
+	Fri, 31 Jan 2025 11:35:15 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am625-beagleplay: Reserve 128MiB of global CMA
+Date: Fri, 31 Jan 2025 11:35:08 -0600
+Message-ID: <20250131173508.1338842-1-nm@ti.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Quentin,
+In the same lines of commit 9e8560556f9c ("arm64: dts: ti:
+k3-am62x-sk-common: Reserve 128MiB of global CMA"), reserve global CMA
+pool for:
 
-On Friday, 31 January 2025 11:38:34 EST Quentin Schulz wrote:
-> Hi Detlev,
-> 
-> On 1/30/25 5:45 PM, Detlev Casanova wrote:
-> > Use the simple-audio-card driver with the hdmi0 QP node as CODEC and
-> > the i2s5 device as CPU.
-> > 
-> > The simple-audio-card,mclk-fs value is set to 128 as it is done in
-> > the downstream driver.
-> > 
-> > The #sound-dai-cells value is set to 0 in the hdmi0 node so that it can be
-> > used as an audio codec node.
-> > 
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > ---
-> > 
-> >   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  1 +
-> >   .../boot/dts/rockchip/rk3588-rock-5b.dts      | 19 +++++++++++++++++++
-> >   2 files changed, 20 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi index
-> > 8cfa30837ce72..790c1c25a3e41 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > @@ -1394,6 +1394,7 @@ hdmi0: hdmi@fde80000 {
-> > 
-> >   		reset-names = "ref", "hdp";
-> >   		rockchip,grf = <&sys_grf>;
-> >   		rockchip,vo-grf = <&vo1_grf>;
-> > 
-> > +		#sound-dai-cells = <0>;
-> > 
-> >   		status = "disabled";
-> >   		
-> >   		ports {
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts index
-> > d597112f1d5b8..1909078538367 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > @@ -49,6 +49,21 @@ hdmi0_con_in: endpoint {
-> > 
-> >   		};
-> >   	
-> >   	};
-> > 
-> > +	hdmi0-sound {
-> > +		compatible = "simple-audio-card";
-> > +		simple-audio-card,format = "i2s";
-> > +		simple-audio-card,mclk-fs = <128>;
-> > +		simple-audio-card,name = "hdmi0";
-> > +
-> > +		simple-audio-card,codec {
-> > +			sound-dai = <&hdmi0>;
-> > +		};
-> > +
-> > +		simple-audio-card,cpu {
-> > +			sound-dai = <&i2s5_8ch>;
-> > +		};
-> > +	};
-> > +
-> 
-> This is SoC specific and not board specific I believe. I2S5 is not
-> usable anywhere else but with HDMI0 controller if I've read the TRM
-> properly.
-> 
-> Therefore, I would suggest to move this to rk3588-base.dtsi (with
-> status=disabled; and when hdmi1-sound comes up, to rk3588-extra.dtsi),
-> the same way we've done for RK3399 for example.
+LCD Display: 16MiB, HDMI (1080p): 16MiB, GPU: 16MiB, CSI2 1 1080p
+sensor: 32MiB with a 32MiB set for other peripherals and a 16MiB
+buffer.
 
-Indeed, I only could test on a Rock 5B, but I think it can be moved to the SoC 
-DTS.
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-> The only hesitation I have is that HDMI0 can use either I2S or SPDIF for
-> audio, both audio controllers internal exclusive to HDMI0/1 controller.
-> But the user could anyway define their own simple audio card for spdif
-> or modify this one if they wanted to.
-
-So some boards will use I2S and some SPDIF ? Or any board can be used with one 
-or the other ?
-The disabled status makes sense as hdmi is disabled in the SoC tree as well. 
-So if a user wants to use SPDIF instead, they could keep hdmi0-sound disabled 
-and add their own simple-audio-card compatible node.
-
-> I've tested with my suggested change and same changes than for Rock 5B
-> DTS on RK3588 Tiger Haikou with speaker-test -c 2 -t wav, left is left,
-> right is right :)
-> 
-> I'm not giving my Tb here as the commit title is specifically about Rock
-> 5B and I haven't tested this series on it. If you had a separate patch
-> for the hdmi sound node and enabling it on Rock 5b, I would have given
-> my Tb on the former and not the latter.
-
-Thank you for testing anyway ! I will move the node and enable it in all board 
-dts that already enable hdmi0.
-
-
-Detlev.
-
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+index 75c80290b12a..a5469f2712f0 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+@@ -65,6 +65,14 @@ ramoops: ramoops@9ca00000 {
+ 			pmsg-size = <0x8000>;
+ 		};
+ 
++		/* global cma region */
++		linux,cma {
++			compatible = "shared-dma-pool";
++			reusable;
++			size = <0x00 0x8000000>;
++			linux,cma-default;
++		};
++
+ 		secure_tfa_ddr: tfa@9e780000 {
+ 			reg = <0x00 0x9e780000 0x00 0x80000>;
+ 			no-map;
+-- 
+2.47.0
 
 
