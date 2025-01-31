@@ -1,154 +1,208 @@
-Return-Path: <devicetree+bounces-142122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8488DA24381
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 20:42:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6EDEA2439A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:01:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96F4A3A87F3
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 19:42:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47CA4188A5BE
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 20:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83E581F3FEB;
-	Fri, 31 Jan 2025 19:42:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AFF31EC011;
+	Fri, 31 Jan 2025 20:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bDLks/1s"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="FqHPEQ6p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4881F3FD9;
-	Fri, 31 Jan 2025 19:42:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEE8914885B;
+	Fri, 31 Jan 2025 20:01:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738352523; cv=none; b=GHkCEQACn7+CoMHfCy0RPdMEAn25FmO7YAB+3mu5b+1gLLNemICJagPnapNRIUW5mRej2TdIieMY7K0AH4syUMJssJdei5889SF7/8TcqKdSjqF+qmU6p42xTWH4Blx4H/G6kPG00x6IuBPupeSQYJknxseDFgg0EwH74eCflpg=
+	t=1738353700; cv=none; b=dFRHa1z03lYo6P+iUKpzlgnJgcF1KLIsAziwQKvLff1wgylbspRpN2LzlVnqW0sFHteg0RFkgu/XLeMukNVzbsyRoA+hPvXyIG8/YPKC0G9IiEVA4gLs6NuyqVVN+Rtgm3n12bFFRCCq2VQU4pjbVEa3JSgvpdaV1WoUrGbj+9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738352523; c=relaxed/simple;
-	bh=rzk8vrtBxsOfx7ZO1hhNFoa+WYNN7QPqD8TRe0Mfta8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=VtTu2LeZamPK7jjJLonmg+qOJPwQPfWUr1c8Gr3WBP8dCeKVbsBTWSjCmTMDSe9oHFpzoOx9g+IMG1IXqP6/9dYNwoCRxoa5dUairpRnsClSWeulf6o3CHAhBTXkRMCnwk3+Q7UYdCfBJcH81bSkzg6qTYT/zb2xXHXBNIvdQFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bDLks/1s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3570CC4CED1;
-	Fri, 31 Jan 2025 19:42:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738352522;
-	bh=rzk8vrtBxsOfx7ZO1hhNFoa+WYNN7QPqD8TRe0Mfta8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=bDLks/1srt/Fjj1x+n4PVdvCLkdptjU8hW62ciVNJOGm5BgzHwS0LLAy6CGYN31Zy
-	 DeEVqgjUveU7PgiTlbU2pe67BvSNr9SuK1uvY1ROGibd27gQsK0o2quQDkKaoYFWf1
-	 nyqGxU1ihHM7XqZHLJB7k/j711g6tqNTIXoCbg824rW0Li5A20zJ0Z3TARBQQO/g8i
-	 E+WoNX9n+JGB+x/eiKuWLoclD1lz6+90gfP7KJITyiDyj2ASsTmaxUkRo7nEsqeq17
-	 yKMbtyQmKix6f4sdTP0vagMNH63dKZgzyX9BnoGHdliE4ODoHjG2VN3jrY7UYbJEWy
-	 ctpY+zxHcPOIw==
-Date: Fri, 31 Jan 2025 13:42:01 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1738353700; c=relaxed/simple;
+	bh=PQC6lO+NQ+lEKD+JRu90LE3Nqd7VmbhE6PsaGMSNg4M=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZW2zOARahGLt9qNyDQwGH+PqgLzlPjnB9uhGUhqsUeh5sKWMnfgG15C+nXsvFb1vvpofA2Eo7bG6hKU3/MPQ2Uedgl+jmw7O1J/0DSfDI3ckrUcxjcrRnYnyqG+UteIxKCoFwif6j/cFzjumQ6TaWmR+YLTVup7x1tA5E1hkjn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=FqHPEQ6p; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50V6sHmu015898;
+	Fri, 31 Jan 2025 14:01:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	PODMain02222019; bh=BCT2AIKVtExqG27DTd5hLqvs/DalIumwuqwNjQzI47U=; b=
+	FqHPEQ6psZPN6NmzW8I6i0lSw4HeXnUTU8lsD6+yLoPP2gZFJsPYyhVnYwc8wXy4
+	vr3lb6guF3ifNsk/Xsv28Mf5Dn/b3rimb/ZhFF0oh6r4r8yTVXyntxA35/FCSMgc
+	pr9RSL2BpfnJnnQlwV+VDFaydpE1bawJ/w/8q8Bs0gTdF64/+mH+Rid7gFZFBoor
+	sG2WAFkSUhFRQttbp91hZ0IYPfVlDyq1i2oO+aNzBP7L2mj4tQg/A+PIUnqlF1ch
+	KRhaiyOYdAfRC1GnfW1wSuVbQfIPNSKvD0SMm4H869jQtHCmvz28p9n2kBwIQfBp
+	FV4pPbEB4XX8+OcUpgWw/g==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 44gf92157r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 31 Jan 2025 14:01:29 -0600 (CST)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Fri, 31 Jan
+ 2025 20:01:27 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
+ 15.2.1544.14 via Frontend Transport; Fri, 31 Jan 2025 20:01:27 +0000
+Received: from ftrev.crystal.cirrus.com (ftrev.ad.cirrus.com [141.131.145.81])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id E335C82026C;
+	Fri, 31 Jan 2025 20:01:25 +0000 (UTC)
+From: Fred Treven <ftreven@opensource.cirrus.com>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Fred
+ Treven" <ftreven@opensource.cirrus.com>,
+        <patches@opensource.cirrus.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 4/7] dt-bindings: mfd: cirrus,cs40l26: Support for CS40L26
+Date: Fri, 31 Jan 2025 13:56:35 -0600
+Message-ID: <20250131195639.1784933-5-ftreven@opensource.cirrus.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250131195639.1784933-1-ftreven@opensource.cirrus.com>
+References: <20250131195639.1784933-1-ftreven@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: lars@metafoo.de, subbaraman.narayanamurthy@oss.qualcomm.com, 
- thara.gopinath@gmail.com, linux-pm@vger.kernel.org, krzk+dt@kernel.org, 
- anjelique.melendez@oss.qualcomm.com, rafael@kernel.org, 
- daniel.lezcano@linaro.org, conor+dt@kernel.org, sboyd@kernel.org, 
- konradybcio@kernel.org, lukasz.luba@arm.com, lee@kernel.org, 
- amitk@kernel.org, jic23@kernel.org, david.collins@oss.qualcomm.com, 
- devicetree@vger.kernel.org, cros-qcom-dts-watchers@chromium.org, 
- quic_skakitap@quicinc.com, linux-kernel@vger.kernel.org, 
- neil.armstrong@linaro.org, andersson@kernel.org, linux-iio@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org, 
- quic_kamalw@quicinc.com, agross@kernel.org, rui.zhang@intel.com
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-In-Reply-To: <20250131183242.3653595-4-jishnu.prakash@oss.qualcomm.com>
-References: <20250131183242.3653595-1-jishnu.prakash@oss.qualcomm.com>
- <20250131183242.3653595-4-jishnu.prakash@oss.qualcomm.com>
-Message-Id: <173835251665.3936506.9049448203737374721.robh@kernel.org>
-Subject: Re: [PATCH V5 3/5] dt-bindings: iio: adc: Add support for QCOM
- PMIC5 Gen3 ADC
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: ZOhKIyHsomEWzO-6H9LTUrxzuEZSi2Gb
+X-Authority-Analysis: v=2.4 cv=JPXBs9Kb c=1 sm=1 tr=0 ts=679d2c19 cx=c_pps a=uGhh+3tQvKmCLpEUO+DX4w==:117 a=uGhh+3tQvKmCLpEUO+DX4w==:17 a=VdSt8ZQiCzkA:10 a=gEfo2CItAAAA:8 a=w1d2syhTAAAA:8 a=wuh2pNzbNvaVoUcC6a8A:9 a=sptkURWiP4Gy88Gu7hUp:22
+ a=YXXWInSmI4Sqt1AkVdoW:22
+X-Proofpoint-ORIG-GUID: ZOhKIyHsomEWzO-6H9LTUrxzuEZSi2Gb
+X-Proofpoint-Spam-Reason: safe
 
+Introduce required basic devicetree parameters for the
+initial commit of CS40L26.
 
-On Sat, 01 Feb 2025 00:02:40 +0530, Jishnu Prakash wrote:
-> For the PMIC5-Gen3 type PMICs, ADC peripheral is present in HW for the
-> following PMICs: PMK8550, PM8550, PM8550B and PM8550VX PMICs.
-> 
-> It is similar to PMIC5-Gen2, with SW communication to ADCs on all PMICs
-> going through PBS(Programmable Boot Sequence) firmware through a single
-> register interface. This interface is implemented on SDAM (Shared
-> Direct Access Memory) peripherals on the master PMIC PMK8550 rather
-> than a dedicated ADC peripheral.
-> 
-> Add documentation for PMIC5 Gen3 ADC and macro definitions for ADC
-> channels and virtual channels (combination of ADC channel number and
-> PMIC SID number) per PMIC, to be used by clients of this device.
-> 
-> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-> ---
-> Changes since v4:
-> - Added ADC5 Gen3 documentation in a separate new file to avoid complicating
->   existing VADC documentation file further to accomodate this device, as
->   suggested by reviewer.
-> 
-> Changes since v3:
-> - Added ADC5 Gen3 documentation changes in existing qcom,spmi-vadc.yaml file
->   instead of adding separate file and updated top-level constraints in documentation
->   file based on discussion with reviewers.
-> - Dropped default SID definitions.
-> - Addressed other reviewer comments.
-> 
-> Changes since v2:
-> - Moved ADC5 Gen3 documentation into a separate new file.
-> 
-> Changes since v1:
-> - Updated properties separately for all compatibles to clarify usage
->   of new properties and updates in usage of old properties for ADC5 Gen3.
-> - Avoided updating 'adc7' name to 'adc5 gen2' and just left a comment
->   mentioning this convention.
-> - Used predefined channel IDs in individual PMIC channel definitions
->   instead of numeric IDs.
-> - Addressed other comments from reviewers.
-> 
->  .../bindings/iio/adc/qcom,spmi-adc5-gen3.yaml | 157 ++++++++++++++++++
->  .../iio/adc/qcom,spmi-vadc-common.yaml        |   4 +-
->  .../bindings/iio/adc/qcom,spmi-vadc.yaml      |   2 +
->  .../iio/adc/qcom,spmi-adc5-gen3-pm8550.h      |  46 +++++
->  .../iio/adc/qcom,spmi-adc5-gen3-pm8550b.h     |  85 ++++++++++
->  .../iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h    |  22 +++
->  .../iio/adc/qcom,spmi-adc5-gen3-pmk8550.h     |  52 ++++++
->  include/dt-bindings/iio/adc/qcom,spmi-vadc.h  |  81 +++++++++
->  8 files changed, 447 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-adc5-gen3.yaml
->  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h
->  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h
->  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h
->  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h
-> 
+Signed-off-by: Fred Treven <ftreven@opensource.cirrus.com>
+---
+ .../bindings/mfd/cirrus,cs40l26.yaml          | 81 +++++++++++++++++++
+ MAINTAINERS                                   |  4 +-
+ 2 files changed, 83 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/cirrus,cs40l26.yaml
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250131183242.3653595-4-jishnu.prakash@oss.qualcomm.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/mfd/cirrus,cs40l26.yaml b/Documentation/devicetree/bindings/mfd/cirrus,cs40l26.yaml
+new file mode 100644
+index 000000000000..a3cccb1a2d92
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/cirrus,cs40l26.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/cirrus,cs40l26.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cirrus Logic CS40L26 Boosted Haptic Amplifier
++
++maintainers:
++  - Fred Treven <ftreven@opensource.cirrus.com>
++  - patches@opensource.cirrus.com
++
++description:
++  CS40L26 is a Boosted Haptic Driver with Integrated DSP, Waveform Memory,
++  Advanced Closed Loop Algorithms, and LRA protection
++
++properties:
++  compatible:
++    enum:
++      - cirrus,cs40l26a
++      - cirrus,cs40l27b
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  va-supply:
++    description: Regulator for VA analog voltage
++
++  vp-supply:
++    description: Regulator for VP voltage
++
++  cirrus,bst-ipk-microamp:
++    description:
++      Maximum current that can be drawn by the device's boost converter.
++    multipleOf: 50000
++    minimum: 1600000
++    maximum: 4800000
++    default: 4500000
++
++  cirrus,bst-ctl-microvolt:
++    description: Maximum target voltage to which DSP may increase the VBST supply.
++    multipleOf: 50000
++    minimum: 2550000
++    maximum: 11000000
++    default: 11000000
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      haptic-driver@58 {
++        compatible = "cirrus,cs40l26a";
++        reg = <0x58>;
++        interrupt-parent = <&gpio>;
++        interrupts = <57 IRQ_TYPE_LEVEL_LOW>;
++        reset-gpios = <&gpio 54 GPIO_ACTIVE_LOW>;
++        va-supply = <&vreg>;
++        vp-supply = <&vreg>;
++        cirrus,bst-ctl-microvolt = <2600000>;
++        cirrus,bst-ipk-microamp = <1650000>;
++      };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index bc8ce7af3303..9c4105bf0a32 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -5546,11 +5546,11 @@ F:	sound/soc/codecs/cs*
+ 
+ CIRRUS LOGIC HAPTIC DRIVERS
+ M:	James Ogletree <jogletre@opensource.cirrus.com>
+-M:	Fred Treven <fred.treven@cirrus.com>
++M:	Fred Treven <ftreven@opensource.cirrus.com>
+ M:	Ben Bright <ben.bright@cirrus.com>
+ L:	patches@opensource.cirrus.com
+ S:	Supported
+-F:	Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
++F:	Documentation/devicetree/bindings/input/cirrus,cs40l*
+ F:	drivers/input/misc/cs40l*
+ F:	drivers/mfd/cs40l*
+ F:	include/linux/mfd/cs40l*
+-- 
+2.34.1
 
 
