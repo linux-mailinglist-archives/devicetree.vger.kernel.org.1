@@ -1,312 +1,209 @@
-Return-Path: <devicetree+bounces-141993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96A04A23A48
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 08:47:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20176A23A9A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 09:31:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B9B17A2901
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 07:46:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F9F3167DD1
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 08:31:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0251145A18;
-	Fri, 31 Jan 2025 07:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFD11537C6;
+	Fri, 31 Jan 2025 08:30:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pEqKMybv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pn6RgJgA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877084C79;
-	Fri, 31 Jan 2025 07:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A8A14D29B;
+	Fri, 31 Jan 2025 08:30:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738309636; cv=none; b=VBxl0ukuBH41ihY1NfFtDDp2ZMthg8P8brM1EGrG6YDdLd5fbTmcbqx0Oa5v1NztJaoy7uuQA7HX+xY0Lhfrmh26uAqosCZo7h6OeIgxy/HXxSvE7GKslQVsmN7qdP0Y04N2+RCkLUazpn9rLDkCK+ta8w4vVIY/kPfFiefxot8=
+	t=1738312259; cv=none; b=h2eN7srawpRJZLX9PqRXHPcykKMsV1qPfQqAQ+av8XLjzJEHCNRmCZTKwHQx1QCpDeZ1kpbiCRN4aA8LBKxcw6m8NP8e7aYgdkHwjxM5MDT3pmIRQzDSI6nGvvJUPxHKzo/RJn0fFx4PS0TKneJ+tHfs04FzLMbJ24dnCyWNCB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738309636; c=relaxed/simple;
-	bh=ccZFHqJNBUQZKzR/Y4K1/cN5filuLBXWBcaSuM5q6BI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NykOAAgv1k5Ty6a4XIlVJEKleHhbIgRX/EvHO6N5mf+hp7vXkjwWL5waIFQZVqiG0IScGC87jjiQIETH3/wza8iQQ4kq7XO+P/6Oh3NeHzlxjbEzXsd4lGwrANmgdy8IZGHyoe+clfKuZJtFfaTHSWNo2WDhM/AhgxyFcqIZmzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pEqKMybv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48CEDC4CED1;
-	Fri, 31 Jan 2025 07:47:15 +0000 (UTC)
+	s=arc-20240116; t=1738312259; c=relaxed/simple;
+	bh=7o50BdANCPRn/R5e6hJKywbK5tgqxRIv0dt46oyprvs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P4gIceVEhd57zlzfn8zWw6Gg25DbYMN1U7BPkuhhLoPo25eB2vCo2LgAAM7FoBZz2g0NrL4aU/EtMQ54hwZDn95im3yQ1lqWGRYBCTpNqY+b9zNdMtCOFBswX/7r2nsvkuAZ+lX8Cg/4rs4n5Zfj4wh+AHIstj26Zfz18N0f61Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pn6RgJgA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BAFBC4CED1;
+	Fri, 31 Jan 2025 08:30:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738309635;
-	bh=ccZFHqJNBUQZKzR/Y4K1/cN5filuLBXWBcaSuM5q6BI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pEqKMybv1aBK22Pq9pmJUU6R/Yhk43HLgK4t9onviHtjLZUKtd5F87rvEwHFgN5pJ
-	 71aAdDpkGNpXpFGISZgejVt0DhYmXeBPeFtPw+PIsM4AnCbJGAfSkL+Tm3HWTP/qci
-	 9rmRJ/i2B1AxJFMD0Rh1h7jWozTVqBTODKB37Bhs8wEjqNdCLaUx7/3kKzTJhPyhsv
-	 NxyTvDzImyIcVbY2JVVYNkyxV9Djlg4UNG4mqqULo/i1K1WFnjD/7xySz03D5DmNeK
-	 LdBqHjRF6FrAhx6izwUAIWzyJc8MmTD2qwj6D/oZ/MMx9HGRceKlcUZORYJ9gm1+Mj
-	 vVTkoG+ujvm8Q==
-Date: Fri, 31 Jan 2025 08:47:12 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Hironori KIKUCHI <kikuchan98@gmail.com>
-Cc: linux-kernel@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add generic
- MIPI-DSI/DPI panels
-Message-ID: <20250131-whispering-ermine-of-wealth-d3d88c@krzk-bin>
-References: <20250131064354.4163579-1-kikuchan98@gmail.com>
- <20250131064354.4163579-2-kikuchan98@gmail.com>
+	s=k20201202; t=1738312259;
+	bh=7o50BdANCPRn/R5e6hJKywbK5tgqxRIv0dt46oyprvs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pn6RgJgAIdSxd+7AV8sdFDKic9/I28vHyLtfVc+y3IfoDBuhujNvtZR9S8Br+GdhI
+	 NikSBRd8m8IqzoRXLiXEOG7c9kWolcczBy8RnA3QcuLlu14ynJLPFo/4B/KXNmlX0x
+	 RkTWP9WZKPvV8tgd4AgjKRFTXISRzqnEc0k9f4dHSvOhwL08PVY4Ijb2Bj9nZ1l0ko
+	 kFrORuuHW4LgO/BI4A29ximDb+FmdJ4TGwt2taau1B2iOU4moQBs7Pvsf9FHR9LOUW
+	 UqndXnUrISrnn/WRCR3ycWOsJj03g863zzBZLXF4yKfjul0t4Yv6zPVutIXMaR94vZ
+	 91lXgwaCNGgaA==
+Message-ID: <979564a4-c8e9-4427-8019-349d0794d9af@kernel.org>
+Date: Fri, 31 Jan 2025 09:30:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250131064354.4163579-2-kikuchan98@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/7] dt-bindings: rng: add binding for Rockchip RK3588 RNG
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Olivia Mackall <olivia@selenic.com>, Herbert Xu
+ <herbert@gondor.apana.org.au>, Daniel Golle <daniel@makrotopia.org>,
+ Aurelien Jarno <aurelien@aurel32.net>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-crypto@vger.kernel.org
+References: <20250130-rk3588-trng-submission-v1-0-97ff76568e49@collabora.com>
+ <20250130-rk3588-trng-submission-v1-2-97ff76568e49@collabora.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250130-rk3588-trng-submission-v1-2-97ff76568e49@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jan 31, 2025 at 03:43:53PM +0900, Hironori KIKUCHI wrote:
-> This is a binding for generic MIPI-DSI/DPI panels that require
-> initialization with a simple command sequence before use.
-> 
-> Although the `panel-simple` binding exists for generic panels, it is not
-> suitable for panels that require initialization via their communication
-> bus, as such panels cannot be considered "simple".
-> 
-> While many dedicated bindings exist for such panels, the generic panels
-> are not complex enough to warrant a dedicated binding because they only
-> require a "simple" initialization before use.
-
-All hardware warrants a dedicated binding. I don't get from where did
-you take such rule that you can skip actual hardware specific aspects.
-
-> 
-> This binding addresses that gap.
-> 
-> Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-> ---
->  .../bindings/display/panel/panel-mipi.yaml    | 244 ++++++++++++++++++
->  1 file changed, 244 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi.yaml
-> new file mode 100644
-> index 00000000000..681614333d8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi.yaml
-> @@ -0,0 +1,244 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-mipi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On 30/01/2025 17:31, Nicolas Frattaroli wrote:
+> +title: Rockchip RK3588 TRNG
 > +
-> +title: Generic MIPI-DSI/DPI Panels Requiring Initialization
+> +description: True Random Number Generator on Rockchip RK3588 SoC
 > +
 > +maintainers:
-> +  - Hironori KIKUCHI <kikuchan98@gmail.com>
-> +
-> +description:
-> +  This is a binding for generic MIPI-DSI/DPI panels that require
-> +  initialization with a simple command sequence before use.
+> +  - Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > +
 > +properties:
 > +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - panel-mipi-dsi
-> +          - panel-mipi-dpi-spi
-
-Missing device specific compatibles.
-
-> +      - items:
-> +          - {}
-> +          - enum:
-> +              - panel-mipi-dsi
-> +              - panel-mipi-dpi-spi
+> +    enum:
+> +      - rockchip,rk3588-rng
 > +
 > +  reg:
-> +    description: DSI / SPI channel used by that screen
 > +    maxItems: 1
 > +
-> +  power-supply: true
+> +  clocks:
+> +    items:
+> +      - description: TRNG AHB clock
 > +
-> +  io-supply:
-> +    description: I/O system regulator.
-> +      No need to set if this is the same as polwer-supply.
-> +
-> +  dc-gpios:
-> +    maxItems: 1
-> +    description: Controller data/command selection (D/CX) in 4-line SPI mode.
-> +      If not set, the controller is in 3-line SPI mode.
-> +      Disallowed for DSI.
-> +
-> +  width-mm: true
-> +  height-mm: true
-> +  panel-timing: true
-> +  display-timings: true
-> +
-> +  reset-delay:
-> +    description: Delay (in ms) after the reset command
+> +  # Optional, not used by some driver implementations
 
-So use proper unit suffixes. Everywhere.
+What driver implementations? Downstream? They do not matter, because
+they are full of all sort of crap.
+
+Can this block have interrupt really disconnected? This is the question
+you should answer.
 
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  init-delay:
-> +    description: Delay (in ms) for sending the initial command sequence
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  sleep-delay:
-> +    description: Delay (in ms) after the sleep command
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  backlight-delay:
-> +    description: Delay (in ms) for enabling the backlight
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  port: true
-> +  reset-gpios: true
-> +  rotation: true
-> +
-> +  backlight: true
-> +
-> +  init-sequence:
-> +    description: Encoded initial command sequence.
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +
-> +  firmware-name:
+> +  interrupts:
 > +    maxItems: 1
 > +
-> +  dsi-mode-video:
-> +    description: Enable MIPI_DSI_MODE_VIDEO.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-mode-video-burst:
-> +    description: Enable MIPI_DSI_MODE_VIDEO_BURST.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-mode-video-sync-pulse:
-> +    description: Enable MIPI_DSI_MODE_VIDEO_SYNC_PULSE.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-mode-video-auto-vert:
-> +    description: Enable MIPI_DSI_MODE_VIDEO_AUTO_VERT.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-mode-video-hse:
-> +    description: Enable MIPI_DSI_MODE_VIDEO_HSE.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-mode-video-no-hfp:
-> +    description: Enable MIPI_DSI_MODE_VIDEO_NO_HFP.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-mode-video-no-hbp:
-> +    description: Enable MIPI_DSI_MODE_VIDEO_NO_HBP.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-mode-video-no-hsa:
-> +    description: Enable MIPI_DSI_MODE_VIDEO_NO_HSA.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-mode-vsync-flush:
-> +    description: Enable MIPI_DSI_MODE_VSYNC_FLUSH.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-mode-no-eot-packet:
-> +    description: Enable MIPI_DSI_MODE_NO_EOT_PACKET.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-clock-non-continuous:
-> +    description: Enable MIPI_DSI_CLOCK_NON_CONTINUOUS.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-mode-lpm:
-> +    description: Enable MIPI_DSI_MODE_LPM.
-> +      Disallowed for SPI.
-> +    type: boolean
-> +
-> +  dsi-hs-pkt-end-aligned:
+> +  # Optional, hardware works without explicit reset
 
-All this must be deduced from the compatible which makes this binding
-redundant.  This binding is a no-go for me for obvious reasons: is not
-specific and you try to bypass the exact rule of bindings to be specific
-about hardware.
+Just because bootloader did something? With that reasoning nothing is
+ever required because firmware can abstract it. Either you have there a
+reset or not. In this particular case your driver is irrelevant.
 
-
-> +    description: Enable MIPI_DSI_HS_PKT_END_ALIGNED.
-> +      Disallowed for SPI.
-> +    type: boolean
+> +  resets:
+> +    maxItems: 1
 > +
 > +required:
 > +  - compatible
 > +  - reg
+> +  - clocks
 > +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - panel-mipi-dpi-spi
-> +    then:
-> +      # SPI mode
-> +      $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +      properties:
-> +        dsi-mode-video: false
-> +        dsi-mode-video-burst: false
-> +        dsi-mode-video-sync-pulse: false
-> +        dsi-mode-video-auto-vert: false
-> +        dsi-mode-video-hse: false
-> +        dsi-mode-video-no-hfp: false
-> +        dsi-mode-video-no-hbp: false
-> +        dsi-mode-video-no-hsa: false
-> +        dsi-mode-vsync-flush: false
-> +        dsi-mode-no-eot-packet: false
-> +        dsi-clock-non-continuous: false
-> +        dsi-mode-lpm: false
-> +        dsi-hs-pkt-end-aligned: false
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - panel-mipi-dsi
-> +    then:
-> +      # DSI mode
-> +      properties:
-> +        dc-gpios: false
-> +
-> +unevaluatedProperties: false
+
+
+BTW, there is a binding for Rockchip TRNG, with a bit different clocks
+so I have feeling yours is incomplete here.
+
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    dsi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
+> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> +    bus {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
 > +
-> +        panel@0 {
-> +            compatible = "vendor,some-panel", "panel-mipi-dsi";
+> +      rng@fe378000 {
+> +        compatible = "rockchip,rk3588-rng";
+> +        reg = <0x0 0xfe378000 0x0 0x200>;
+> +        interrupts = <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        clocks = <&scmi_clk SCMI_HCLK_SECURE_NS>;
+> +        resets = <&scmi_reset SCMI_SRST_H_TRNG_NS>;
+> +        status = "disabled";
 
-Undocumented compatible.
+Examples cannot be disabled.
+
+> +      };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index bc8ce7af3303f747e0ef028e5a7b29b0bbba99f4..7daf9bfeb0cb4e9e594b809012c7aa243b0558ae 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20420,8 +20420,10 @@ F:	include/uapi/linux/rkisp1-config.h
+>  ROCKCHIP RK3568 RANDOM NUMBER GENERATOR SUPPORT
+>  M:	Daniel Golle <daniel@makrotopia.org>
+>  M:	Aurelien Jarno <aurelien@aurel32.net>
+> +M:	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
+Like Conor said, this is not really relevant and should be a separate patch.
+
+
 
 Best regards,
 Krzysztof
-
 
