@@ -1,118 +1,121 @@
-Return-Path: <devicetree+bounces-142029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AE46A23C95
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 12:03:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C2C9A23CD6
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 12:24:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAD5616842E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 11:03:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD863169110
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 11:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE01B1B6CE1;
-	Fri, 31 Jan 2025 11:02:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="AsPyoanP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A1F71BF7E8;
+	Fri, 31 Jan 2025 11:24:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B6F322E;
-	Fri, 31 Jan 2025 11:02:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738321379; cv=pass; b=mWf+rX+ybMwlBcM2ZggjfQvvbxDxOQ1UWDNwyXb6SL5KedJylgdFJ6dIfRYM18mQZrNB6AcJrh3Ly3/citYqWFBM9JhZbmJUfA7YvJISG1MmqHr2XsVxNpXKxR/H25lQCXq8Drs+6gBegbQj85Lt8VLSuNxqZ6ZKJw0SKZp+1pk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738321379; c=relaxed/simple;
-	bh=ezAMBD29GkkB4e4t8a/2A1rSsnKm9LPumN4NESuMnWY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ovoLeXED2X7b7qgwcXL2v9FDI1fM+qlmf28AbwZvzEMg+YR+1HUz7Ag1dTXUbM4NPhwhzxP7d72o7TayOryF0hvJvkE9cz21GlwCVe9O3mRCEeuxC7MThT2Jcpuv8RtT2lmrm+enxu8UMoCCuxaWfTpxov+81TBX3bntWIpLNMo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=AsPyoanP; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1738321347; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Hkql+bgGsvPgUJbPyMiWHR3VvDrgD3/F2Fvco6ZqedgPxoNDct9nPoroK/UOC1kg8fiKi2MwL6CgzCAE9/gzg+T1Mk/Ly2GWJSHMUtmWzSIMwqycUrHJHMLwwhLw8iJbxWJN72z1lyC0zLymeHrPlQTegGctm93eEpsF9ka2wBY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1738321347; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ezAMBD29GkkB4e4t8a/2A1rSsnKm9LPumN4NESuMnWY=; 
-	b=WSkZ36BG4IYlZYIZSpBtsHGTfoBKrNrVDfaB0tSwC/7NfiFt6NlFho0ZcVElMwuh8Caup6iLzQ6Bd7JCBaCb5ufANpTjllZt+UWXOMFZ64xw9t7MYOmuL0aykqsGXOSd/1DClH6fhba/X4oX+gjFxdkVLeDDFRdnrXWke6jCCFk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
-	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1738321347;
-	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=ezAMBD29GkkB4e4t8a/2A1rSsnKm9LPumN4NESuMnWY=;
-	b=AsPyoanPmBfmqtoZVvtj7k2FLUm21bkSi7HNPPMp6hR2oKm2q94Lfi7d+mr4lpz/
-	dMn9S51J90ADF/Qj45pmfVL4/k7kCTjMGoR9DwKrOHHKj4EVM7qXoaT0Wnf13hXiPYZ
-	wZ0BSVaw5ZheIl4LueSw73Y7ZVpWXx0WqFE+H7VU=
-Received: by mx.zohomail.com with SMTPS id 1738321342354706.4067778296129;
-	Fri, 31 Jan 2025 03:02:22 -0800 (PST)
-Message-ID: <8b924147e03693d04e1800b19a65ac773b699365.camel@collabora.com>
-Subject: Re: [PATCH 2/3] drm/panfrost: Add support for Mali on the MT8370 SoC
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard	
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
-	 <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Boris
- Brezillon <boris.brezillon@collabora.com>, Steven Price	
- <steven.price@arm.com>, kernel <kernel@collabora.com>, dri-devel	
- <dri-devel@lists.freedesktop.org>, devicetree <devicetree@vger.kernel.org>,
-  linux-kernel <linux-kernel@vger.kernel.org>, linux-arm-kernel
- <linux-arm-kernel@lists.infradead.org>,  linux-mediatek
- <linux-mediatek@lists.infradead.org>
-Date: Fri, 31 Jan 2025 12:01:51 +0100
-In-Reply-To: <1003b393-770a-4e2b-b5ed-054f1f9072b4@kernel.org>
-References: <20250116-mt8370-enable-gpu-v1-0-0a6b78e925c8@collabora.com>
-	 <20250116-mt8370-enable-gpu-v1-2-0a6b78e925c8@collabora.com>
-	 <20250118-meticulous-black-caracal-ec7f0d@krzk-bin>
-	 <194b7237128.10f9923a41656565.5574753983898665940@collabora.com>
-	 <1003b393-770a-4e2b-b5ed-054f1f9072b4@kernel.org>
-Organization: Collabora Ltd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0F9A1BEF76;
+	Fri, 31 Jan 2025 11:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738322681; cv=none; b=TFOj2GKvq54PcXOHrj6BN8H9ViMoI8U1FUJ9kyw4aUNjgzuYKXqHR8lJQ0bYmqpJsmZ3VLPNDyvRM88hr1jNYDphTncg40BcJszd0XtHFubdb/hlQgM/cuycohNQjSO6tpFbZgC8Ci0qGYgEdA+ReBwoC2i8khemTi+VtfgbZnM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738322681; c=relaxed/simple;
+	bh=Sj4t5fRgIb5ZaiNWIY/URGjgf5gzl5XqYdNvYx+QV2g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bGr/ZvxXL7YVyuzOlH0N5MFlyulFRUq9ZHvBNIIBVcEB8ECxc+pQksEu0MWoHy2Mo2bU6s/8IHNfAxFYTF+SmNd+J+ige3d8yruUSsKNlEJK/wVyDkxqZAAzGjRb46CTRGMJceDI/Bu585TEEffe6F0XDmaOCGMoxdT8TuR+mGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: 5zf9B5YbSQ2OW8BgCbMgkg==
+X-CSE-MsgGUID: zr5LKEGcSm6aBCApGUOSEQ==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 31 Jan 2025 20:24:37 +0900
+Received: from localhost.localdomain (unknown [10.226.92.122])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0B24E4017BBB;
+	Fri, 31 Jan 2025 20:24:31 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v2 0/8] Add RZ/G3E SDHI support
+Date: Fri, 31 Jan 2025 11:24:15 +0000
+Message-ID: <20250131112429.119882-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
-On Thu, 2025-01-30 at 14:21 +0100, Krzysztof Kozlowski wrote:
-> On 30/01/2025 13:15, Louis-Alexis Eyraud wrote:
-> > Hello,
-> >=20
-> > sorry for the delay,
->=20
-> You gave yourself 12 days to respond, which is fine. But to me, you
-> gave
-> 15 minutes and immediately sent v2.
->=20
-> So now your v2 will be still rejected.
->=20
-> Best regards,
-> Krzysztof
+The SD/MMC block on the RZ/G3E ("R9A09G047") SoC is similar to that
+of the RZ/V2H, but the SD0 channel has only dedicated pins, so we must
+use SD_STATUS register to control voltage and power enable (internal
+regulator).
 
-Hello Krzysztof,
+For SD1 and SD2 channel we can either use gpio regulator or internal
+regulator (using SD_STATUS register) for voltage switching.
 
-my apologies if you felt offended I sent my v2 patchset too early after
-replying on the mailing list.
-I meant well.
+For SD0, fixed voltage(eMMC) uses fixed regulator and non-fixed voltage
+(SD) uses internal regulator.
 
-As I felt your first remarks were appropriate and precise enough to me,
-I've submitted a second version so that the modifications to review
-could be available shortly after my reply.=20
+v1->v2:
+ * Collected tags.
+ * Documented internal regulator as optional property for both RZ/G3E and
+   RZ/V2H SoCs.
+ * Updated commit description for regulator used in SD0 fixed and
+   non-fixed voltage case in patch#3.
+ * As the node enabling of internal regulator is controlled through status,
+   added a check for device availability.
+ * Status of internal regulator is disabled in the SoC .dtsi. Override
+   the status in the board DTS when needed.
+ * Added support for enabling SDHI internal regulator in RZ/V2H
+ * Added missing header file gpio.h
+ * Used fixed regulator for eMMC on SD0 and dropped sd0-iovs pins for
+   eMMC.
+ * Sorted pinctrl nodes for sd2
+ * Enabled internal regulator for SD2.
+ * Added support for enabling SD on SDHI0
+ * Replaced the regulator usd_vdd_3p3v->reg_3p3v.
+ * Renamed the gpio-hog node sd1-pwr-en->sd1-pwr-en-hog.
+ * Sorted sd1 pin ctrl nodes.
 
-I'll be more cautious next time.
+Biju Das (8):
+  dt-bindings: mmc: renesas,sdhi: Document RZ/G3E support
+  mmc: renesas_sdhi: Arrange local variables in reverse xmas tree order
+  mmc: renesas_sdhi: Add support for RZ/G3E SoC
+  arm64: dts: renesas: r9a09g047: Add SDHI0-SDHI2 nodes
+  arm64: dts: renesas: r9a09g057: Add support for enabling SDHI internal
+    regulator
+  arm64: dts: renesas: rzg3e-smarc-som: Enable SDHI{0,2}
+  arm64: dts: renesas: rzg3e-smarc-som: Add support for enable SD on
+    SDHI0
+  arm64: dts: renesas: r9a09g047e57-smarc: Enable SDHI1
 
-Regards,
-Louis-Alexis
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml |  16 ++
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  60 +++++++
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   |  49 ++++++
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    |  21 +++
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |   4 +-
+ .../boot/dts/renesas/renesas-smarc2.dtsi      |  18 ++
+ .../boot/dts/renesas/rzg3e-smarc-som.dtsi     | 158 ++++++++++++++++++
+ drivers/mmc/host/renesas_sdhi.h               |   1 +
+ drivers/mmc/host/renesas_sdhi_core.c          | 136 ++++++++++++++-
+ drivers/mmc/host/tmio_mmc.h                   |   5 +
+ 10 files changed, 465 insertions(+), 3 deletions(-)
+
+-- 
+2.43.0
+
 
