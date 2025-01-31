@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-142142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23999A2448E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 22:18:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C00EA24492
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 22:21:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B663D1884CEF
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:18:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8140165123
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:21:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2161F193A;
-	Fri, 31 Jan 2025 21:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504261F2C59;
+	Fri, 31 Jan 2025 21:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oLbPDdsA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rIPp4FA5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B77F0139E;
-	Fri, 31 Jan 2025 21:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165A4139E;
+	Fri, 31 Jan 2025 21:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738358315; cv=none; b=NHxhl/+xEcpdW3TVzhelBVliIueSpFppsN0AxFuLh3tj3LkiZb7iYxadkt8nz9q0H4EVI04BQUtHIxtKv0260D6uWCDK0/56UkVurk9qF/k+vCzhvKbhXtgTS6Uou1xf3GABNuoE7mlfnpCgHpo0fYgwM687CWthr8N3z/n6LzI=
+	t=1738358458; cv=none; b=IaLIYcniIB4kRteIgVT9srGs9VOAw3+Ds73wlqsMF74o7GtS0IKp2bQiBZqzowPVANLImoUSf1iKwOACwB+8Fsb/mdq81/1NvoRHbmiHpSazIqXk6c1t3B4MBAoj2IUvB1qySP737kewSYC7qu8KjquSN/7wEyw0Kvsa9wVV3Ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738358315; c=relaxed/simple;
-	bh=sM66QRyKMeDsKq/54eUtBNYXdMr+6numAYXYD8J90eU=;
+	s=arc-20240116; t=1738358458; c=relaxed/simple;
+	bh=tNv/VPiXdMNnDJUXI1YEFGfxy4fPeU/bg99THsTfA/k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JWx60BoN26ClZ61yvpSqmUzsh3gkErb7ByR0osmL66u6QNF26L9OoXpmNgA0oDsv0gpTJHJ9mLr5+KAIPP5Vz9uaFZCnGGrVYXvk04cSIWkjyq1pDupRanu26t9rwWzGHLBVG3xz+nSHWq2UKK25prw3Xd1LatWrVE0k0x/284g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oLbPDdsA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AEF8C4CED1;
-	Fri, 31 Jan 2025 21:18:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OafmNLMQdPV10Q+RVXXjaMeHGQtVtL6PB5JY/Sj9fxsMJ2b7S9oneTBtRrJWVRTuDmq5J0EK0J8MpB+stYwW7BZWK1XsaZ9pcCoWQRz1U+vMTg6kl/Z/0pbHdtEngMS4Jr6OMKOpZPAwmwiWcdv1mn5mPjOfzMoF7maIQEiaopE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rIPp4FA5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE2B8C4CED1;
+	Fri, 31 Jan 2025 21:20:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738358315;
-	bh=sM66QRyKMeDsKq/54eUtBNYXdMr+6numAYXYD8J90eU=;
+	s=k20201202; t=1738358457;
+	bh=tNv/VPiXdMNnDJUXI1YEFGfxy4fPeU/bg99THsTfA/k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oLbPDdsAMVcj3J8Pve6PZtT2wvHC8PTe1Qzx3j5VGPw6nbo9AUbVYUSPYI3yh0p3J
-	 ifjhD6MNSex6CszIGFcVMJ3fXgo7vtazv32Ck/syk8YC69P85P/ugE6ROBG4NOGWcC
-	 KliFmBlZCyFVzNmxw7zQLq8NzbPpfWS62uPNsnVWlOM4C52UyHTNvHF2nJBs2RjDR4
-	 uKHb3DtHidtJLSn20fANGWlELKgY2Ef00ZE2kvCZqsQurEWYTmS8WCNtJ+Nu2HRZPp
-	 eDiO2EThEiCX2+PG1Zm/9zO+Vrn4S9JpP25/Zqzq0EXaLbiSWrM2hoCc0uOIW1KQbc
-	 2ARA+2gVIvrKw==
-Message-ID: <c898680c-f1ac-4bfa-ac18-4b4b5c241dab@kernel.org>
-Date: Fri, 31 Jan 2025 22:18:24 +0100
+	b=rIPp4FA57oHcCqItKND1wp9QdcvekUIf5cJHwp9p2z/fob2sNEPGcZwsazEB/WxGt
+	 MGarS/gRgs/B422r8YMo/PuBUnVWz99WMIMUcbgIEQWdy7UqvRFvMrtWxp+6eA1u8l
+	 U3bTtcUiJU+WHguX0DhhwZY5Gsw/TGb1ILRO+llkebBnShHzd0bVSZoxxSGicJ3fom
+	 gkpWF/IMZte1JWMm7ZtTi5FFbtF9GQ18Xiqljom9ZLWiyaDsLhNjIGuZm8CVbs8WrS
+	 fELoPrAaL7VYnKwX/h8qT/4GJ/uiDbRj00+Qx0sC70n4CISMFgms9sXsMLg8KXrIgt
+	 syNxt1MQp576Q==
+Message-ID: <33f8a68f-46d8-472f-8061-52800e5bd014@kernel.org>
+Date: Fri, 31 Jan 2025 22:20:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] Initial Support for CS40L26
-To: Fred Treven <ftreven@opensource.cirrus.com>,
- James Ogletree <jogletre@opensource.cirrus.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Ben Bright <ben.bright@cirrus.com>, simont@opensource.cirrus.com,
- Charles Keepax <ckeepax@opensource.cirrus.com>,
- Richard Fitzgerald <rf@opensource.cirrus.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, David Rhodes <david.rhodes@cirrus.com>,
- Jack Yu <jack.yu@realtek.com>, Igor Prusov <ivprusov@salutedevices.com>,
- Weidong Wang <wangweidong.a@awinic.com>, Binbin Zhou
- <zhoubinbin@loongson.cn>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
- Paul Handrigan <paulha@opensource.cirrus.com>,
- Masahiro Yamada <masahiroy@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
- Karel Balej <balejk@matfyz.cz>, Heiko Stuebner <heiko@sntech.de>,
- Jeff LaBundy <jeff@labundy.com>
-Cc: linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20250131202057.1786324-1-ftreven@opensource.cirrus.com>
+Subject: Re: [PATCH RESEND v6 0/3] platform: arm64: Huawei Matebook E Go
+ embedded controller
+To: Pengyu Luo <mitltlatltl@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=83=C2=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-hwmon@vger.kernel.org
+References: <20250131092139.6065-1-mitltlatltl@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,26 +108,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250131202057.1786324-1-ftreven@opensource.cirrus.com>
+In-Reply-To: <20250131092139.6065-1-mitltlatltl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/01/2025 21:20, Fred Treven wrote:
-> Introduce driver for Cirrus Logic Device CS40L26:
-> A boosted haptics driver with integrated DSP and
-> waveform memory with advanced closed loop algorithms
-> and LRA protection.
+On 31/01/2025 10:21, Pengyu Luo wrote:
+> This adds binding, drivers and the DT support for the Huawei Matebook E Go
+> (sc8280xp-based) Embedded Controller which is also found in Huawei Matebook
+> E Go LTE (sc8180x-based), but I don't have the sc8180x one to perform
+> tests, so this series enable support for sc8280xp variant only, this series
+> provides the following features:
 > 
-> The core CS40L26 driver is in MFD and touches the
-> Input Force Feedback subsystem for haptics and
-> the ASoC subsystem for audio to haptics streaming.
+> - battery and charger information report
+> - charging thresholds control
+> - FN lock (An alternative method)
+> - LID switch detection
+> - Temperature sensors
+> - USB Type-C altmode
+> - USB Type-C PD(high power)
 > 
-> This patchset includes changes to the CS DSP firmware
-> driver which fixes two bugs and introduces support for
-> multiple coefficient files.
 
-I got two emails from you out of this entire set, not even threaded. I
-think rest of your posting got lost.
+Why are you resending?
+
+Previous version was only week ago and minimal time is two weeks. Plus
+its merge window, so this resend is unjustified.
 
 Best regards,
 Krzysztof
