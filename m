@@ -1,339 +1,158 @@
-Return-Path: <devicetree+bounces-142052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E74EA23EBB
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 14:54:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8789AA23EEF
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 15:03:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 322CF1889C88
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 13:54:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 430F016919C
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 14:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC97D1CB337;
-	Fri, 31 Jan 2025 13:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7EF51CF284;
+	Fri, 31 Jan 2025 14:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="dX/L/JSs";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="ctYS/y5c"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="rtUqgxeJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F43D1C5D72;
-	Fri, 31 Jan 2025 13:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69CBB1C760A
+	for <devicetree@vger.kernel.org>; Fri, 31 Jan 2025 14:03:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738331657; cv=none; b=oKtf7SJU5BS8UAkSKySlUo/CcUAU6I/10XYfAfCHuIjW7vdYhyyK79FSs/gpLg1+aZAiWgsWOLJ19SaRMRsfsSUdaTLqTyY01WjHEn1gvga8ua/EjK/rZ3805jiZh9A41W9bo+NZinyF7OsUQCySnr6crQ6AaAsKJ61dZNXw9ys=
+	t=1738332196; cv=none; b=qx3UJvQUaKHZNhIkPrXd+anIJ8nCFqJNuXDV/Ac+ld3qCsgVl3k3Z6WMDnuxhQpwNgXBULvrNPn9rOcirIB+gXTDcIupLWp17zmdlGd7I7A978raqMjCTVdLDIfqSXvu0CASdT2Z/XmnrZXFlszwy3fUaCowCi/N0DrtQr3ElPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738331657; c=relaxed/simple;
-	bh=3Z35BJI9mvy50yMjGm4PIrv9QpGNucM7XHgLdenAYEc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Zqme7o16Ll7+pof9RQx+2hvM3Akg6GSLc1rMyxHPwWBltp0cQO92v+uxYm+/1gqAcMcSq7ATtNzXi1vE1G7YSqbMeZORmVYG172mNPHMgrrXf/DVcfbCdvLA/n25g4NlPabAruZv1jeWRxE90TSD4sW9ai2vrFz3sW/k1H3+1sg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=dX/L/JSs; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=ctYS/y5c reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1738331654; x=1769867654;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=/QZB+c4vz3gK2C8YI8nQ7dnMMdgQ34mpMKt5yfmxvEw=;
-  b=dX/L/JSsGJOHSKpqe6ldMwsGlkdP0vCQIsa4ep65Y5Rus4hvQub+xWRD
-   SU3X5btLjn1WyZmYtxhnxlQPsyGjELwJHeenlEWjZk+Otj5kGvJ9RK3By
-   kI8/7DAfonHwclWW3dZejtfk8R4efNhUzfcVQfVrguAeobbxCP9kUGmVw
-   UvDCiF6XTRxZ5ApVEs0se9VFTBa8Vi/Wguq2X6TkzTOqLhyh14/EkqtGf
-   Iv1uNQ7LcmQ+ruoniK3Az73BuxMwkw0wL7rhy8cy6cmN+ZVUYGEFTvXP9
-   XvHCqsj+U+5v9Vgma29LOUGFNeE7I5a6WKUutJ+Y+B66vgZfmrqBCsTcT
-   g==;
-X-CSE-ConnectionGUID: uVW/17usSSK4EMO6sCV8Qw==
-X-CSE-MsgGUID: /Ot5scxoR66WHux+Z85ozw==
-X-IronPort-AV: E=Sophos;i="6.13,248,1732575600"; 
-   d="scan'208";a="41406968"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 31 Jan 2025 14:54:12 +0100
-X-CheckPoint: {679CD604-4-1CE016C0-E589DA3E}
-X-MAIL-CPID: 9363A84F764F3A6F88C9FCC0A2363E63_1
-X-Control-Analysis: str=0001.0A682F22.679CD604.0039,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2D7E616B67E;
-	Fri, 31 Jan 2025 14:54:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1738331647;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/QZB+c4vz3gK2C8YI8nQ7dnMMdgQ34mpMKt5yfmxvEw=;
-	b=ctYS/y5c7PF26SO1xRPJM4kzDAhkuSj+fTmkB7ftrnzZ311QeHVto2eZ1NqW3RYXDmp4M+
-	IMm5/6D+h6mgHHB6ZoedzbwqkTM2xIYH1OKxs+Z0Uhb1upA2tl2MoxqMyvYQNdzgXDFhi1
-	oWPj5N1VBqhoOCCv5ecCr338zQCB1QuIXIyDMFUxZHO+6V5NBDkYUpRJZSROsIRr1XfiT8
-	lMGYwnpcFCWNdFJFYt1zWmNSLFVOj4UEHC3rRdpTeQzT9+ymA4a8qHkiEnBcH4jduhvx+N
-	HwyWctti29LZcVcMOy39V6NDQqTPsuffK/PKq+isgzDtow27asHR85wu8QPBuA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] nvmem: imx-ocotp: Support accessing controller for i.MX8M Nano
-Date: Fri, 31 Jan 2025 14:54:06 +0100
-Message-ID: <4961006.GXAFRqVoOG@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <Z5ur+NF9UlXJSWtL@lizhi-Precision-Tower-5810>
-References: <20250130130101.1040824-1-alexander.stein@ew.tq-group.com> <20250130130101.1040824-4-alexander.stein@ew.tq-group.com> <Z5ur+NF9UlXJSWtL@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1738332196; c=relaxed/simple;
+	bh=k6iepJ3khtCHe4wAP+Co9RM2WKV6wPbtel3+iGpB+ZM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iH6T3L915C3OWm6EEaiQ8JvXHMgzqsor5gHflYjNb+1+qmWGpz2aq25+8RVWKGdUZSKYawHTwLGvaovsU8qNvAmf7MUDlhxyB3rIh59NVeDXCWhyPWwhBrAddnAhKGNU99IW/yZjPziaX/rrssRJtBko84kwmdXyGNC+9DwKN70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=rtUqgxeJ; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 9FA0D240101
+	for <devicetree@vger.kernel.org>; Fri, 31 Jan 2025 15:03:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1738332191; bh=k6iepJ3khtCHe4wAP+Co9RM2WKV6wPbtel3+iGpB+ZM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=rtUqgxeJqyjfeci389WwyVR3ezEklT/hG71YuMEM/th4+OQ59ErBQRc/+lh1XpvEE
+	 ARpoFnYEIaLOsT8bfAf2MGITZGJJJnBqvY+i1tSSxHXmLoebinLWZIrjXBgSAUj3du
+	 UPFDJr+mS6r4SeVtaBKT7Y3I7HRaKADOT88LsZoSnGmZ9QZNYhd9ZLxg5GejJbaMj2
+	 rObowSmd9hkyrWs/4LhJj3LxbDSkWXNkeF/oty1/5J9X2CTACIl7pLuuGb1/Ql1nML
+	 eDRmowT95Q+BGvmfr9bEhksCP3PjPZk/SuM2qbQd2uouOpsET6v60CmGEvE/PVyKLh
+	 VqP7g55lON8xA==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YkyK53T11z6v08;
+	Fri, 31 Jan 2025 15:03:05 +0100 (CET)
+Date: Fri, 31 Jan 2025 14:03:05 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Rob Herring <robh@kernel.org>
+Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	Scott Wood <oss@buserror.net>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Subject: Re: [PATCH 5/9] dt-bindings: dma: Convert fsl,elo*-dma bindings to
+ YAML
+Message-ID: <Z5zYGdZU-IXwIuR6@probook>
+References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
+ <20250126-ppcyaml-v1-5-50649f51c3dd@posteo.net>
+ <20250127044735.GD3106458-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250127044735.GD3106458-robh@kernel.org>
 
-Hi,
-
-Am Donnerstag, 30. Januar 2025, 17:42:32 CET schrieb Frank Li:
-> On Thu, Jan 30, 2025 at 02:01:00PM +0100, Alexander Stein wrote:
-> > i.MX8M OCOTP supports a specific peripheral or function being fused
-> > which means disabled, so
-> >  - Introduce disable_fuse for a list of possible fused peripherals.
-> >  - Iterate all nodes to check accessing permission. If not
-> >    allowed to be accessed, detach the node
-> >
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+On Sun, Jan 26, 2025 at 10:47:35PM -0600, Rob Herring wrote:
+> On Sun, Jan 26, 2025 at 07:59:00PM +0100, J. Neuschäfer wrote:
+> > The devicetree bindings for Freescale DMA engines have so far existed as
+> > a text file. This patch converts them to YAML, and specifies all the
+> > compatible strings currently in use in arch/powerpc/boot/dts.
+> > 
+> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 > > ---
-> >  drivers/nvmem/Kconfig     |   3 ++
-> >  drivers/nvmem/imx-ocotp.c | 105 +++++++++++++++++++++++++++++++++++++-
-> >  2 files changed, 107 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> > index 8671b7c974b93..ba5c928cab520 100644
-> > --- a/drivers/nvmem/Kconfig
-> > +++ b/drivers/nvmem/Kconfig
-> > @@ -84,6 +84,9 @@ config NVMEM_IMX_OCOTP
-> >  	  This driver can also be built as a module. If so, the module
-> >  	  will be called nvmem-imx-ocotp.
-> >
-> > +	  If built as modules, any other driver relying on this working
-> > +	  as access controller also needs to be a module as well.
-> > +
-> >  config NVMEM_IMX_OCOTP_ELE
-> >  	tristate "i.MX On-Chip OTP Controller support"
-> >  	depends on ARCH_MXC || COMPILE_TEST
-> > diff --git a/drivers/nvmem/imx-ocotp.c b/drivers/nvmem/imx-ocotp.c
-> > index c5086a16450ac..e3ea026a37d0d 100644
-> > --- a/drivers/nvmem/imx-ocotp.c
-> > +++ b/drivers/nvmem/imx-ocotp.c
-> > @@ -23,6 +23,7 @@
-> >  #include <linux/of.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/slab.h>
-> > +#include <dt-bindings/nvmem/fsl,imx8mn-ocotp.h>
-> >
-> >  #define IMX_OCOTP_OFFSET_B0W0		0x400 /* Offset from base address of the
-> >  					       * OTP Bank0 Word0
-> > @@ -91,11 +92,20 @@ struct ocotp_ctrl_reg {
-> >  	u32 bm_rel_shadows;
-> >  };
-> >
-> > +#define OCOTP_MAX_NUM_GATE_WORDS 4
-> > +
-> > +struct disable_fuse {
-> > +	u32 fuse_addr;
-> > +	u32 mask;
-> > +};
-> > +
-> >  struct ocotp_params {
-> >  	unsigned int nregs;
-> >  	unsigned int bank_address_words;
-> >  	void (*set_timing)(struct ocotp_priv *priv);
-> >  	struct ocotp_ctrl_reg ctrl;
-> > +	u32 num_disables;
-> > +	struct disable_fuse *disables;
-> >  };
-> >
-> >  static int imx_ocotp_wait_for_busy(struct ocotp_priv *priv, u32 flags)
-> > @@ -552,11 +562,25 @@ static const struct ocotp_params imx8mm_params =
-=3D {
-> >  	.ctrl =3D IMX_OCOTP_BM_CTRL_DEFAULT,
-> >  };
-> >
-> > +struct disable_fuse imx8mn_disable_fuse[] =3D {
-> > +		[IMX8MN_OCOTP_M7_DISABLE]	=3D { .fuse_addr =3D 20, .mask =3D BIT(8) =
-},
-> > +		[IMX8MN_OCOTP_M7_MPU_DISABLE]	=3D { .fuse_addr =3D 20, .mask =3D BIT=
-(9) },
-> > +		[IMX8MN_OCOTP_M7_FPU_DISABLE]	=3D { .fuse_addr =3D 20, .mask =3D BIT=
-(10) },
-> > +		[IMX8MN_OCOTP_USB_OTG1_DISABLE]	=3D { .fuse_addr =3D 20, .mask =3D B=
-IT(11) },
-> > +		[IMX8MN_OCOTP_GPU3D_DISABLE]	=3D { .fuse_addr =3D 20, .mask =3D BIT(=
-24) },
-> > +		[IMX8MN_OCOTP_MIPI_DSI_DISABLE]	=3D { .fuse_addr =3D 20, .mask =3D B=
-IT(28) },
-> > +		[IMX8MN_OCOTP_ENET_DISABLE]	=3D { .fuse_addr =3D 20, .mask =3D BIT(2=
-9) },
-> > +		[IMX8MN_OCOTP_MIPI_CSI_DISABLE]	=3D { .fuse_addr =3D 20, .mask =3D B=
-IT(30) },
-> > +		[IMX8MN_OCOTP_ASRC_DISABLE]	=3D { .fuse_addr =3D 20, .mask =3D BIT(3=
-1) },
-> > +};
->=20
-> Can we direct define IMX8MN_OCOTP_M7_DISABLE as BIT(8), so avoid this
-> map data?
+> >  .../devicetree/bindings/dma/fsl,elo-dma.yaml       | 129 +++++++++++++
+> >  .../devicetree/bindings/dma/fsl,elo3-dma.yaml      | 105 +++++++++++
+> >  .../devicetree/bindings/dma/fsl,eloplus-dma.yaml   | 120 ++++++++++++
+> >  .../devicetree/bindings/powerpc/fsl/dma.txt        | 204 ---------------------
+> >  4 files changed, 354 insertions(+), 204 deletions(-)
+[...]
+> > +patternProperties:
+> > +  "^dma-channel@.*$":
+> > +    type: object
+> 
+>        additionalProperties: false
 
-This would be possible for imx8mn, but not for imx8mp which uses
-multiples fuses for disables. This is an excerpt from imx8mp WIP
-> struct disable_fuse imx8mp_disable_fuse[] =3D {
-> 	[IMX8MP_OCOTP_CAN_DISABLE]		=3D { .fuse_addr =3D 16, .mask =3D BIT(28) },
-> 	[IMX8MP_OCOTP_CAN_FD_DISABLE]		=3D { .fuse_addr =3D 16, .mask =3D BIT(29=
-) },
-> 	[IMX8MP_OCOTP_VPU_VC8000E_DISABLE]	=3D { .fuse_addr =3D 16, .mask =3D BI=
-T(30) },
-> 	[IMX8MP_OCOTP_IMG_ISP1_DISABLE]		=3D { .fuse_addr =3D 20, .mask =3D BIT(=
-0) },
-> 	[IMX8MP_OCOTP_IMG_ISP2_DISABLE]		=3D { .fuse_addr =3D 20, .mask =3D BIT(=
-1) },
-> 	[IMX8MP_OCOTP_IMG_DEWARP_DISABLE]	=3D { .fuse_addr =3D 20, .mask =3D BIT=
-(2) },
-> };
+I'll add it.
 
-Notice the fuse_addr of 16 and 20.
+> (The tools should have highlighted this)
+
+With dtschema 2024.11 installed, "make dt_binding_check
+DT_SCHEMA_FILES=fsl,elo-dma.yaml" does not highlight this.
 
 > > +
-> >  static const struct ocotp_params imx8mn_params =3D {
-> >  	.nregs =3D 256,
-> >  	.bank_address_words =3D 0,
-> >  	.set_timing =3D imx_ocotp_set_imx6_timing,
-> >  	.ctrl =3D IMX_OCOTP_BM_CTRL_DEFAULT,
-> > +	.num_disables =3D ARRAY_SIZE(imx8mn_disable_fuse),
-> > +	.disables =3D imx8mn_disable_fuse,
-> >  };
-> >
-> >  static const struct ocotp_params imx8mp_params =3D {
-> > @@ -589,6 +613,81 @@ static void imx_ocotp_fixup_dt_cell_info(struct nv=
-mem_device *nvmem,
-> >  	cell->read_post_process =3D imx_ocotp_cell_pp;
-> >  }
-> >
-> > +static int imx_ocotp_check_access(struct ocotp_priv *priv, u32 id)
-> > +{
-> > +	u32 addr, mask, ret, val;
+> > +    properties:
+> > +      compatible:
+> > +        items:
+> > +          - enum:
+> > +              - fsl,mpc8315-dma-channel
+> > +              - fsl,mpc8323-dma-channel
+> > +              - fsl,mpc8347-dma-channel
+> > +              - fsl,mpc8349-dma-channel
+> > +              - fsl,mpc8360-dma-channel
+> > +              - fsl,mpc8377-dma-channel
+> > +              - fsl,mpc8378-dma-channel
+> > +              - fsl,mpc8379-dma-channel
+> > +          - const: fsl,elo-dma-channel
 > > +
-> > +	if (id >=3D priv->params->num_disables) {
-> > +		dev_err(priv->dev, "Index %d too large\n", id);
-> > +		return -EACCES;
-> > +	}
+> > +      reg:
+> > +        maxItems: 1
 > > +
-> > +	addr =3D priv->params->disables[id].fuse_addr;
-> > +	mask =3D priv->params->disables[id].mask;
+> > +      cell-index:
+> > +        description: DMA channel index starts at 0.
 > > +
-> > +	ret =3D imx_ocotp_read(priv, addr, &val, sizeof(val));
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	dev_dbg(priv->dev, "id:%d addr:%#x mask:0x%08x\n", id, addr, mask);
-> > +	/* true means disabled */
-> > +	if (val & mask)
-> > +		return -EACCES;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int imx_ocotp_grant_access(struct ocotp_priv *priv, struct devi=
-ce_node *parent)
-> > +{
-> > +	struct device *dev =3D priv->dev;
-> > +
-> > +	for_each_available_child_of_node_scoped(parent, child) {
-> > +		struct of_phandle_args args;
-> > +		u32 id, idx =3D 0;
-> > +
-> > +		while (!of_parse_phandle_with_args(child, "access-controllers",
-> > +						   "#access-controller-cells",
-> > +						   idx++, &args)) {
-> > +			of_node_put(args.np);
-> > +			if (args.np !=3D dev->of_node)
-> > +				continue;
-> > +
-> > +			/* Only support one cell */
-> > +			if (args.args_count !=3D 1) {
-> > +				dev_err(dev, "wrong args count\n");
-> > +				continue;
-> > +			}
-> > +
-> > +			id =3D args.args[0];
-> > +
-> > +			dev_dbg(dev, "Checking node: %pOF disable ID: %d\n", child, id);
-> > +
-> > +			if (imx_ocotp_check_access(priv, id)) {
-> > +				of_detach_node(child);
-> > +				dev_info(dev, "%pOF: disabled by fuse, device driver will not be p=
-robed\n",
-> > +					 child);
-> > +			}
-> > +		}
-> > +
-> > +		imx_ocotp_grant_access(priv, child);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
->=20
-> Can we have one method to share above code logic to avoid copy-paste to
-> every ocotp driver? Anyway, we can improve that later.
+> > +      interrupts: true
+> 
+> You have to define how many interrupts and what they are.
 
-I need to check with STM32 implementation. The imx-ocotp-ele might use the
-same function as here.
+Will do.
+
+(and the same for the other two files)
+
 
 Best regards,
-Alexander
-
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
->=20
->=20
-> > +
-> > +static int imx_ocotp_access_control(struct ocotp_priv *priv)
-> > +{
-> > +	struct device_node *root __free(device_node) =3D of_find_node_by_path=
-("/");
-> > +
-> > +	if (!priv->params->disables)
-> > +		return 0;
-> > +
-> > +	if (WARN_ON(!root))
-> > +		return -EINVAL;
-> > +
-> > +	return imx_ocotp_grant_access(priv, root);
-> > +}
-> > +
-> >  static int imx_ocotp_probe(struct platform_device *pdev)
-> >  {
-> >  	struct device *dev =3D &pdev->dev;
-> > @@ -622,9 +721,13 @@ static int imx_ocotp_probe(struct platform_device =
-*pdev)
-> >  	imx_ocotp_clr_err_if_set(priv);
-> >  	clk_disable_unprepare(priv->clk);
-> >
-> > +	platform_set_drvdata(pdev, priv);
-> > +
-> >  	nvmem =3D devm_nvmem_register(dev, &imx_ocotp_nvmem_config);
-> > +	if (IS_ERR(nvmem))
-> > +		return PTR_ERR(nvmem);
-> >
-> > -	return PTR_ERR_OR_ZERO(nvmem);
-> > +	return imx_ocotp_access_control(priv);
-> >  }
-> >
-> >  static struct platform_driver imx_ocotp_driver =3D {
-> > --
-> > 2.34.1
-> >
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+J. Neuschäfer
 
