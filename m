@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-142147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DFBEA244A1
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 22:29:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39310A244A2
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 22:30:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E01C7A3144
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:28:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31ACF3A7C2B
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 21:30:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B5B1F3FE8;
-	Fri, 31 Jan 2025 21:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC6316E863;
+	Fri, 31 Jan 2025 21:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XOgsxYEk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uxJdV2W+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23AE01F3D48
-	for <devicetree@vger.kernel.org>; Fri, 31 Jan 2025 21:28:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E21153838
+	for <devicetree@vger.kernel.org>; Fri, 31 Jan 2025 21:30:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738358939; cv=none; b=NQLCEnxYUDibPxKBPOR/h/3f82+/WQ9mc7purZr09+oQtmNOZJnBiVLLldRA2eKXj5yuJdCe6QkENjwDZovJzR5l4aoSkiYx51rObp8o05zHX59s8ECry36NM9Bg+6GEI6Z0FDAVThnKlEFFB32kUR9D4oV6Uo4HJKmE1U3f5XU=
+	t=1738359028; cv=none; b=ZQOviQuTvcRYGvQFmJswFiKot2cqfl9fMqZEGWBfP7Cpvdh/xA38YCogHYpbbfHrQPcRzLDqN+mNUIc34BSsKTpUQeNi9gU5G+XaxoAs59ZE2SN7O88+3++HIfJA1jRES2D3nysAVow4uvgTX9XeW6JjR+Z5cH9iC9dqBUB/+jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738358939; c=relaxed/simple;
-	bh=bAgGSlIq1qMHep+J1+stPqfYcb4rLu9zEiARLEBcPI8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BEExFk+8/NO6ggGV8tiD9H1UpZ2PkEaRO/pg3f6h+BUy6/CvjyxN9i5Lp6lTMQxRpnm46RXns7DQWhwPxQcceRJZnRt5vdlLpurWOGIoHlNWfCtEWi3zFhdQD65z1ACKi6LgReFK5CrxJdVVArHhXovFiTMgIrSJqs+8ktKtuUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XOgsxYEk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C9D6C4CED1;
-	Fri, 31 Jan 2025 21:28:54 +0000 (UTC)
+	s=arc-20240116; t=1738359028; c=relaxed/simple;
+	bh=qDINTlPxQymDLbevwzzL1B3CUmaH8CMGQeY4Heeb/oM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Ycg28PtPmuwY08Kb84rTyiSg/0qzLLu42uOExm9ONPBfw6tTv/s1FUnfoTxa+1xYCLFQRLvdLVtTr6u/6XpvZyouelUxj+UWgasBThxwiaH/MwnWuBTHFykJmwsX1PKQIVrr3oRRr9V20IUmE5GGEio1xCGkmep2lLQD4J8RZVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uxJdV2W+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55473C4CED1;
+	Fri, 31 Jan 2025 21:30:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738358938;
-	bh=bAgGSlIq1qMHep+J1+stPqfYcb4rLu9zEiARLEBcPI8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XOgsxYEkOiqrwvTZWrUkRnaOoSOtUwJiA1eirRgKsEoLTpAYuIDUmGJRGRUEATGvk
-	 Z+JJXmhdVfTtTYFgImnTBAwDA7AbrZrkY1szH61KbUVzwGoLyr5wcdcw4Fa+vdFh/8
-	 P/xIbp4M4fYp1C+W/nMBST6vOXQAO1wt+8L6lSW/Dd61f10Z146ORHHPgMUAjvtcrG
-	 HdvxF9guK6WmTXDWuyl+qzDKHtuLlIgIGhAaLTUow+9SOOF0S1l1e8/HF8rFWt62MK
-	 OKgse1CN/SqUfE20SpUu7a9XIddZ+1lkNizl4GiqUjHBGMkDFcdWgPzm821hSRKCPr
-	 bjXYfx2vxJM8w==
-Message-ID: <3101a214-1498-4671-9062-89d2f9d8369b@kernel.org>
-Date: Fri, 31 Jan 2025 22:28:52 +0100
+	s=k20201202; t=1738359027;
+	bh=qDINTlPxQymDLbevwzzL1B3CUmaH8CMGQeY4Heeb/oM=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=uxJdV2W+D9G2ay6CYvGEg2AdWc5XN6Fa0KI5ftAPg+7sWDibXHRKqEl37IF8HB/T4
+	 aBl3ZlrIRhuHIBxAMbK3ZQuIzjjzb+/lIJnoNksUcE5+vInA/nWrxFJp+dCNGRKcxx
+	 QE2b5yk61Aey3628udrNt0nfSu+XZCwDLksckckazoHE+LN8tVSlHWFlOBWMZatstl
+	 LnkxxEwHh5IUfPjeLFavn/bDFFC5SmMxia/ypjhIRbTjn4rxZRV/mRuohBL/51unrU
+	 /AFifDdCmHOMq2tzGHzdtxKfVJ3oVUHeXvz3FoOaEd7UAMOLBVIcjGTmF2Kwopz/uW
+	 hIIBWzoAMU8xg==
+Message-ID: <582275fe-4c0d-46b8-8fb6-3f977b275da0@kernel.org>
+Date: Fri, 31 Jan 2025 22:30:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,6 +52,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2] ARM: dts: socfpga: Add basic support for Terrasic's
  de10-nano
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
  "Rob Herring (Arm)" <robh@kernel.org>
 Cc: Andrew Lunn <andrew@lunn.ch>, Dinh Nguyen <dinguyen@kernel.org>,
@@ -60,7 +61,7 @@ Cc: Andrew Lunn <andrew@lunn.ch>, Dinh Nguyen <dinguyen@kernel.org>,
 References: <20250130074553.92023-2-u.kleine-koenig@baylibre.com>
  <173828013131.1872475.6879199940703724951.robh@kernel.org>
  <qkruehkvdduotjzhut3w2fpbr364dtd2vztpewoy3h3j55bqxt@e5niklwtpuue>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <3101a214-1498-4671-9062-89d2f9d8369b@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -105,31 +106,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <qkruehkvdduotjzhut3w2fpbr364dtd2vztpewoy3h3j55bqxt@e5niklwtpuue>
+In-Reply-To: <3101a214-1498-4671-9062-89d2f9d8369b@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 31/01/2025 17:47, Uwe Kleine-König wrote:
->> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
->> are fixed by another series. Ultimately, it is up to the platform
->> maintainer whether these warnings are acceptable or not. No need to reply
->> unless the platform maintainer has comments.
+On 31/01/2025 22:28, Krzysztof Kozlowski wrote:
+> On 31/01/2025 17:47, Uwe Kleine-König wrote:
+>>> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+>>> are fixed by another series. Ultimately, it is up to the platform
+>>> maintainer whether these warnings are acceptable or not. No need to reply
+>>> unless the platform maintainer has comments.
+>>>
+>>> If you already ran DT checks and didn't see these error(s), then
+>>> make sure dt-schema is up to date:
+>>>
+>>>   pip3 install dtschema --upgrade
+>>>
+>>>
+>>> New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/intel/' for 20250130074553.92023-2-u.kleine-koenig@baylibre.com:
 >>
->> If you already ran DT checks and didn't see these error(s), then
->> make sure dt-schema is up to date:
+>> Maybe I can learn something here: Is there a command that only checks
+>> this single dtb file?
 >>
->>   pip3 install dtschema --upgrade
->>
->>
->> New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/intel/' for 20250130074553.92023-2-u.kleine-koenig@baylibre.com:
 > 
-> Maybe I can learn something here: Is there a command that only checks
-> this single dtb file?
-> 
+> You asked about this and I gave you the link to blog describing this twice.
 
-You asked about this and I gave you the link to blog describing this twice.
-
-See also `make help` for proper arch.
+Actually only once at v2. I thought I mentioned testing on v1, but
+apparently not.
 
 Best regards,
 Krzysztof
