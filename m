@@ -1,125 +1,126 @@
-Return-Path: <devicetree+bounces-142183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B567A24536
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 23:25:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8401FA24596
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 00:17:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C34B16603B
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 22:25:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 962FB3A67E0
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 23:17:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0CAD1F3D5C;
-	Fri, 31 Jan 2025 22:25:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A41481B414B;
+	Fri, 31 Jan 2025 23:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qLvMVuXs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KILOcC0G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70C81547E4;
-	Fri, 31 Jan 2025 22:25:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1428815575D;
+	Fri, 31 Jan 2025 23:17:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738362320; cv=none; b=Eu+UuzTyVKtub3sF28FFZQgcgbPOJcHlnnsPsCir0UDW0ORh6b8PzWHEVu/ZM43ItEDELiCRxe7YLWmiG+vbv8SZK7OQXIkp3TKwtTgRTsujGUMp8zs1UvVErL6iuVoHqpn5zZKJ0fuOJiKhh1zK1mJT3h3Rhe6BNM34pDRCRdk=
+	t=1738365443; cv=none; b=t47HFI3v3izt8Qv6rED0ghmZ0sVzQEuP5UL12kJp099g6iahC/+qL6gxPBCMUy0LACwGIdd9HVlKsG5iNEVUdcrFBf+zqEoxg/doR0rdzm6RxgAZnavUWmvlsJ2j84BK1X8Zn8i6Cg6872WWQo9YnLa9szdQy4l1w3dtOtHgV4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738362320; c=relaxed/simple;
-	bh=vl24BqivGjhLYX6axlg/21Ey2N6zTIaWDZ7/dHU2DKI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CpMV9qmpmHuoKLDNoXVzQH32GYgnF03vc2WWzsHBeKAzKzlcn55brj/SSMRfrza1RtD8ioEUroVjbrFCZh5x/dWDSHEzxJSQYbYzSvvt3LfDgusymJhXAfSueiqwJ80yL29N/OBq/5G5CBbCNu49Gqxf1DJLClwYWSZ7NoeW7r0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qLvMVuXs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AA78C4CEE1;
-	Fri, 31 Jan 2025 22:25:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738362320;
-	bh=vl24BqivGjhLYX6axlg/21Ey2N6zTIaWDZ7/dHU2DKI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=qLvMVuXsG97Diz4bMQF1/q5zAkilBPjCKweZIwU4+/NHOTAv09BZvY/wJ8/FBI49B
-	 V/LHoTphny64tQBM43Q7rLtbALej2dbG+xtQ7ASoANjx+H0IiRtMFugCgRzL/iNAMc
-	 zaHTCxH7Xo9bYVXXJXdAQmaFWGd3kxX/Ia8F7dh4VjCXLbhGOFAgkEQDhLU05wMBdq
-	 VCa9MTRrRjoYQtuIi9t7wQJzXA/kZ6mmFgvxl0Ob4GoIKwWGw0Nvox+nuQK1LFNjbn
-	 +qdP5Lna5SzmPV1mdERxhfelVRLDUgYrwqjR3+X6RLGFoOY8yuLlB11dMLsPlbwG8m
-	 IohEt5dU+e2dw==
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5db6890b64eso4586097a12.3;
-        Fri, 31 Jan 2025 14:25:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVfHIfjHs0382+T1hKNc+meQexhoinc0uv6nFSyb5IRK+qMORWueUdoG+lctb/HqQVITbrH4E58YSjy2fzT@vger.kernel.org, AJvYcCXHQLa88+J2okPaEG/yt27fiaZhAXD2XnG/I7AqZ3BbDTfv7yQFHEoLU5Zp7w9S4oTUZmDZBLMiorMx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhtnjdnT1jVtvKbmkC6L1u3JmkC1yMGOhHw/7ouy1iGMHKFQVq
-	yzk4rNbt1BeaUN+IFDu5lZeBxJptcHV0gXXaQGm3jcjZaGtgYSJe1T6FVlVbPSeJ7gvUgOGyR3L
-	qaIsYYgWu5/aOXyXlMWTzhiERgA==
-X-Google-Smtp-Source: AGHT+IE5vrGGJ5Zm1+RS3K1jNpAzW9Otpq5deNsBcjcVaXmxnBPZjCC2liQHw+ACI9IhEnmNLkswm+ORG1zbl53uTdw=
-X-Received: by 2002:a05:6402:84c:b0:5d3:e9fd:9a15 with SMTP id
- 4fb4d7f45d1cf-5dc5f0084abmr14029562a12.32.1738362318826; Fri, 31 Jan 2025
- 14:25:18 -0800 (PST)
+	s=arc-20240116; t=1738365443; c=relaxed/simple;
+	bh=YapN2yvZIwdswNXYbi1VrbhQHoJ9NYwGj54en8q3GcE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aCbO1UCEhlknchWSOt3wXnbzW/+oNCXzxVeBguzPu2w0xHbL+Khic1f6Sh5s43VN19JJwrxG8WERCNE7Mh5R7nYYudRn46SuF0B00nC5iz+wJfOG9d6ENyxbEMFZHq3BmTJyYYplRLosQdg0DOVfeZAbwcCWDYfiRnuuX6bOr6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KILOcC0G; arc=none smtp.client-ip=209.85.167.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3eb87127854so613631b6e.2;
+        Fri, 31 Jan 2025 15:17:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738365441; x=1738970241; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yA0ZMs3D/azII+yrcqeVKwM8wsWt4qgAa1Wy8fUSpJ8=;
+        b=KILOcC0GuDdt2CkVmYAm2BJ9jfbhVKUgjwvJiiryuv04H6gBat3JSRt7gCjWCbe6uy
+         Qb24J0ggxkj7vcKkDtzdN+ihDWU/jQv6u8qreYL/VMLD+5y+DEqZqPly8CMTgrYvX3rT
+         uQDuZiF+WsMqi0kHWJvou5TpqGSFGwcRkIFh8N91QfzZ7HH/SffoAqSv1923c7zsMOOj
+         mLMqKuXx5TGCsTrMqH58f6b933Ka5ukicLxybbC6l6+F8J50/kVSDfdglN81ElMyD+dJ
+         DJ/WfamrsVqOiiRDfKznD8qzy1wp7d8wA8EhN0QRWpeQ6rT6zmwv0H1YWgE1QyhDVyTS
+         G7cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738365441; x=1738970241;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yA0ZMs3D/azII+yrcqeVKwM8wsWt4qgAa1Wy8fUSpJ8=;
+        b=LIvm+GZKRZhSsWILVuszmIPEGkf0tIE3aqmns6Hu8oxKm/oUXZ3n0LbVBYCSEZnI0p
+         IArLoDBYs4RIZ+BlTb+m24gviImMq2A6r2OqdIXEOQWHzKkumPQ8Dw89L2jsemqccDSP
+         iyqFfCR8erM/8qdLdGt2yKH1mB+LJZxA65oYL4qlN2jrQDBREnLnCn1+6jbSo1uLZZLq
+         41gSUpxVHrE7vprBs2AsJKECHMtK92/g8udI/xf8pH8P2VVi8dlv8r9+OHRhj4YsEkc1
+         vAyQfZquC9meckDdgHXIcbb2gZ8q5xki2XI5Ysg/1q5xjQPTVlRug5nknno5sF642s7I
+         Sk6A==
+X-Forwarded-Encrypted: i=1; AJvYcCU3iUPUf0wSiU/rYkSNzmj9Y7/9yEEkNbfqOg9FMLF79FzTpBGuM1TQbW2bwqeZG00a69wmuOIauQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0XSLhvLhjA5Uh9W6ll6gjuYZlo3koGranQw05hNsx8zsJRQwW
+	mYFk9x9SN8IDgRYFOyPWQUQtZCqsguYlABB3Nrq+YXoqig7CWJzN
+X-Gm-Gg: ASbGncuPmOEHjT8i8z/+5f/o89VueH9TuHpgki3FETcx38Eex9SSIG0OLVtFo/qeVq8
+	8H1iDDu9QYYhSJZH6duWjbDrYQo1/kWXeM6E/1XaH/5AlvnoYv3K/f9zAUf2jKn4AQ/yoVI9eHw
+	yRyigmha2noRpQx5KUjgRX61EhiRZG8GjjCFZpEBDL7+I8HNabS/6IiRNLT3xZTmqcF+ENUC2NV
+	HET8RjBj5fnX0uu0tlGgcDAS3ZjWylT1oxsMpvV+1RdXv16ODybXLUKQuPeW4sK0GPvpMa14U7Q
+	KE/n7QDZxXaNPVGxHG62EigE8gBbIFSfHn4=
+X-Google-Smtp-Source: AGHT+IF5zsoG/jawq548wfM27QRPX4FYVr58VStU1xLHndeakk40y9CTMujkL8ITr+DZKnbHxokUnA==
+X-Received: by 2002:a05:6808:3197:b0:3e6:3867:d107 with SMTP id 5614622812f47-3f323a158e3mr10821535b6e.7.1738365440973;
+        Fri, 31 Jan 2025 15:17:20 -0800 (PST)
+Received: from localhost.localdomain ([2600:1700:fb0:1bcf:d061:e6e5:c6da:b514])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f33365bf31sm1099128b6e.34.2025.01.31.15.17.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Jan 2025 15:17:20 -0800 (PST)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-sunxi@lists.linux.dev
+Cc: devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	lee@kernel.org,
+	samuel@sholland.org,
+	jernej.skrabec@gmail.com,
+	wens@csie.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	sre@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/5] Fix RG35XX Battery Charging Issues
+Date: Fri, 31 Jan 2025 17:14:50 -0600
+Message-ID: <20250131231455.153447-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250114181359.4192564-1-masahiroy@kernel.org> <20250114181359.4192564-4-masahiroy@kernel.org>
-In-Reply-To: <20250114181359.4192564-4-masahiroy@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 31 Jan 2025 16:25:07 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJyNiUF8--wz2DsngUAuSUboq8oqZRxAzqY+iBRM7rkjQ@mail.gmail.com>
-X-Gm-Features: AWEUYZmE_vBws_oo0KO86dAjktU5Se11A4_0qwRKYjGYL0pB6r16BeUDQIMsBBE
-Message-ID: <CAL_JsqJyNiUF8--wz2DsngUAuSUboq8oqZRxAzqY+iBRM7rkjQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] microblaze: remove unnecessary system.dts
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: Michal Simek <monstr@monstr.eu>, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 14, 2025 at 12:15=E2=80=AFPM Masahiro Yamada <masahiroy@kernel.=
-org> wrote:
->
-> The default image linux.bin does not contain any DTB, but a separate
-> system.dtb is compiled.
->
-> Michal Simek clearly explained "system.dtb is really old dtb more for
-> demonstration purpose and nothing else and likely it is not working on
-> any existing board." [1]
->
-> The system.dts is not necessary even for demonstration purposes. There
-> is no need to compile out-of-tree *.dts under arch/microblaze/boot/dts/
-> unless it is embedded into the kernel. Users can directly use dtc.
->
-> [1]: https://lore.kernel.org/all/d2bdfbfd-3721-407f-991e-566d48392add@amd=
-.com/
->
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
->
->  arch/microblaze/boot/dts/Makefile   |   3 +-
->  arch/microblaze/boot/dts/system.dts | 353 ----------------------------
->  2 files changed, 1 insertion(+), 355 deletions(-)
->  delete mode 100644 arch/microblaze/boot/dts/system.dts
->
-> diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/dts=
-/Makefile
-> index 932dc7550a1b..fa0a6c0854ca 100644
-> --- a/arch/microblaze/boot/dts/Makefile
-> +++ b/arch/microblaze/boot/dts/Makefile
-> @@ -1,8 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->  #
->
-> -dtb-y :=3D system.dtb
-> -
->  ifneq ($(DTB),)
->  obj-y +=3D linked_dtb.o
->
-> @@ -11,6 +9,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
->
->  # Generate system.dtb from $(DTB).dtb
->  ifneq ($(DTB),system)
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Can't this be dropped as setting DTB=3Dsystem.dtb should work if there's
-not an in-tree system.dts anymore.
+The Anbernic RG35XX devices sometimes fail to charge when the register
+for the battery temperature sensor is set to the incorrect value either
+by user error or an incorrectly programmed efuse. Allow users to
+hard-code if a temperature sensor is not present (which is the case for
+all Anbernic RGxx series devices) to prevent this issue from causing
+problems. Additionally, a bug was identified with the handling of PMU
+faults while this fix was being tested.
 
-> +targets +=3D system.dtb
->  $(obj)/system.dtb: $(obj)/$(DTB).dtb FORCE
->         $(call if_changed,copy)
->  endif
+Chris Morgan (5):
+  power: supply: axp20x_battery: Fix fault handling for AXP717
+  dt-bindings: power: supply: axp20x-battery: Add x-powers,no-thermistor
+  mfd: axp20x: AXP717: Add AXP717_TS_PIN_CFG to writeable regs
+  power: supply: axp20x_battery: Update temp sensor for AXP717 from
+    device tree
+  arm64: dts: allwinner: rg35xx: Add no-thermistor property for battery
+
+ .../x-powers,axp20x-battery-power-supply.yaml | 22 ++++++--
+ .../sun50i-h700-anbernic-rg35xx-2024.dts      |  1 +
+ drivers/mfd/axp20x.c                          |  2 +-
+ drivers/power/supply/axp20x_battery.c         | 50 +++++++++++++------
+ include/linux/mfd/axp20x.h                    |  1 +
+ 5 files changed, 56 insertions(+), 20 deletions(-)
+
+-- 
+2.43.0
+
 
