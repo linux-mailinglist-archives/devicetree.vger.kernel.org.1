@@ -1,148 +1,118 @@
-Return-Path: <devicetree+bounces-142036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B029EA23D26
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 12:30:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D16A23D3E
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 12:40:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E13F188A515
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 11:31:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA2013A9C4F
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 11:40:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC7B51C243D;
-	Fri, 31 Jan 2025 11:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF6101C3F36;
+	Fri, 31 Jan 2025 11:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="Mx0r3qb1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923AC1C173D;
-	Fri, 31 Jan 2025 11:29:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D2FA1C174E
+	for <devicetree@vger.kernel.org>; Fri, 31 Jan 2025 11:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738322952; cv=none; b=PDykL5YIRaUJrwszLXFB2lDmDtbh2LPfc7cWCBRJmtKZxOtjUCQ8rMp8UlFnjgHKtaFaOH4mrXFWJlqrZR1IHYHQwbBAQdRzVtrKhSNIb9YvGrf4RyjgFG1TmOVn4wB5ZFAIRdQ6d2I7oBsCpYrQNIpw5lVn2DAG6J3QKsEIl9s=
+	t=1738323592; cv=none; b=lsQE9z9wKfF58a8DifQIBWgrDWt1BnNWhc166r4jB0JflQKJ+vnqCJtpWn+kRI2iKfn9SySRgJDL9VUEMHF/ddtB2NNuB7ah4CsHfCUSnGD+NUTz4ByupIZrWxK88qgJL0kELYgvUUYTxQ/8hFpoO7+z6zedtcHBTKaUb9PzUt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738322952; c=relaxed/simple;
-	bh=i1uj7+Uas0u6N3Sko6/zoEab3vA4a3EBIJ2E5MD2fhg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jzf/cvFzLdunFKe5R5kGdg/UqSiTV45M1C+gNfcFVguVpZaSy0HET7jApG5RmMzhSMd0F4mrjcZqSCeymcpON+q0MXyo4jWV1G3rA6FAeCz9iwcH7nFgneu5RpXmBa9fu5hmY1ACDyGeqC779LxpXHCStqi9xBykE8d7d7U9r+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: c5rCoLmwTg2G+3RwrjQPWw==
-X-CSE-MsgGUID: 7sf8hJ92Q4SLXxuQeCLpsg==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 31 Jan 2025 20:29:09 +0900
-Received: from localhost.localdomain (unknown [10.226.92.122])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 8F56A42E4450;
-	Fri, 31 Jan 2025 20:28:55 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1738323592; c=relaxed/simple;
+	bh=476EBTGgcI5xdYOaJ6LQa3tfmwSruyF9mYzvA+HovWU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WMigdtiMrjXOQtaQJVlURtY1Hzyqr0oKhLJ3zATCyP+gzViTUulSQyf7Qy4q1IlMPzQheU10UFi6u307rchoXm8GLPqZyt90KcGNhV0nOFUmVweTJpDK+unbpAMVH27GpnMDdT2gGgjYi90n2Mg0g6Mu/9JQfVfa+UBy0fPyM1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=Mx0r3qb1; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id D9938240104
+	for <devicetree@vger.kernel.org>; Fri, 31 Jan 2025 12:33:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1738323225; bh=476EBTGgcI5xdYOaJ6LQa3tfmwSruyF9mYzvA+HovWU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=Mx0r3qb1A3UOSK2f5X2f8aZ/cla4BLWe91L6NYbDILMpq/Q2MMYQSatiaKTOK+wET
+	 j7OgiaufoPmoH/+Snv9ZwjkcNdXlH/NMIaqvl1zBf2tED2piB0SqSTRwBf6x2OjfzR
+	 /dFI1h+CGXmNQZh+TmIOXgNZuPk7SxlnDbT0VnojHMx/TWeOE4Q09ia2UYHvcIYMPJ
+	 mz6v71TLSUzt1+7woDn4qz/AL6OuEDPhJTIIEhPEA6CGUqUToYtXKGHt6s5x0xzKTw
+	 pHrCPKbTzrTKW3Fv4istIHCrFGWwa/sBMobWilniKzQXYhR2cfFyRi2ydyGf8uvOpu
+	 JEXELxAsRJREw==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4Ykv0g42F0z9rxF;
+	Fri, 31 Jan 2025 12:33:39 +0100 (CET)
+Date: Fri, 31 Jan 2025 11:33:39 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Frank Li <Frank.li@nxp.com>
+Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	Scott Wood <oss@buserror.net>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 5/8] arm64: dts: renesas: r9a09g057: Add support for enabling SDHI internal regulator
-Date: Fri, 31 Jan 2025 11:28:46 +0000
-Message-ID: <20250131112849.120078-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250131112849.120078-1-biju.das.jz@bp.renesas.com>
-References: <20250131112849.120078-1-biju.das.jz@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Subject: Re: [PATCH 0/9] YAML conversion of several Freescale/PowerPC DT
+ bindings
+Message-ID: <Z5y1E6TUclqzV2Rp@probook>
+References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
+ <Z5qr1VkKSlyBE/E4@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z5qr1VkKSlyBE/E4@lizhi-Precision-Tower-5810>
 
-Add support for enabling SDHI internal regulator, by overriding the
-status on the board DTS, when needed.
+On Wed, Jan 29, 2025 at 05:29:41PM -0500, Frank Li wrote:
+> On Sun, Jan 26, 2025 at 07:58:55PM +0100, J. Neuschäfer wrote:
+> > This is a spin-off of the series titled
+> > "powerpc: MPC83xx cleanup and LANCOM NWAPP2 board".
+> >
+> > During the development of that series, it became clear that many
+> > devicetree bindings for Freescale MPC8xxx platforms are still in the old
+> > plain-text format, or don't exist at all, and in any case don't mention
+> > all valid compatible strings.
+> >
+> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> 
+> Please cc imx@lists.linux.dev next time
+> 
+> Frank
 
-While at it, rename the gpio regulator label vqmmc_sdhi1->vqmmc_sdhi1_gpio
-to avoid conflicts with internal regulator node names.
+Will do.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2:
- * New patch.
----
- arch/arm64/boot/dts/renesas/r9a09g057.dtsi    | 21 +++++++++++++++++++
- .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |  4 ++--
- 2 files changed, 23 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-index f7a2f8ca864f..3b8dae0b2eb6 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-@@ -602,6 +602,13 @@ sdhi0: mmc@15c00000  {
- 			resets = <&cpg 0xa7>;
- 			power-domains = <&cpg>;
- 			status = "disabled";
-+
-+			vqmmc_sdhi0: vqmmc-regulator {
-+				regulator-name = "SDHI0-VQMMC";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		sdhi1: mmc@15c10000 {
-@@ -615,6 +622,13 @@ sdhi1: mmc@15c10000 {
- 			resets = <&cpg 0xa8>;
- 			power-domains = <&cpg>;
- 			status = "disabled";
-+
-+			vqmmc_sdhi1: vqmmc-regulator {
-+				regulator-name = "SDHI1-VQMMC";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		sdhi2: mmc@15c20000 {
-@@ -628,6 +642,13 @@ sdhi2: mmc@15c20000 {
- 			resets = <&cpg 0xa9>;
- 			power-domains = <&cpg>;
- 			status = "disabled";
-+
-+			vqmmc_sdhi2: vqmmc-regulator {
-+				regulator-name = "SDHI2-VQMMC";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				status = "disabled";
-+			};
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-index 0b705c987b6c..1ecea3872e94 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-@@ -53,7 +53,7 @@ reg_3p3v: regulator1 {
- 		regulator-always-on;
- 	};
- 
--	vqmmc_sdhi1: regulator-vccq-sdhi1 {
-+	vqmmc_sdhi1_gpio: regulator-vccq-sdhi1 {
- 		compatible = "regulator-gpio";
- 		regulator-name = "SDHI1 VccQ";
- 		gpios = <&pinctrl RZV2H_GPIO(A, 2) GPIO_ACTIVE_HIGH>;
-@@ -244,7 +244,7 @@ &sdhi1 {
- 	pinctrl-1 = <&sdhi1_pins>;
- 	pinctrl-names = "default", "state_uhs";
- 	vmmc-supply = <&reg_3p3v>;
--	vqmmc-supply = <&vqmmc_sdhi1>;
-+	vqmmc-supply = <&vqmmc_sdhi1_gpio>;
- 	bus-width = <4>;
- 	sd-uhs-sdr50;
- 	sd-uhs-sdr104;
--- 
-2.43.0
-
+Best regards,
+J. Neuschäfer
 
