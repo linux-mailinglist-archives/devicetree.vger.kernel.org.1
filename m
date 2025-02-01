@@ -1,151 +1,154 @@
-Return-Path: <devicetree+bounces-142262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D74EA24A61
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 17:31:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD17A24A70
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 17:34:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23D5F18876E7
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:31:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98DAF166118
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74081C0DED;
-	Sat,  1 Feb 2025 16:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9CC1C5D51;
+	Sat,  1 Feb 2025 16:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4FLLJxV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bVCfhuZV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D27208A9;
-	Sat,  1 Feb 2025 16:31:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF7A1BBBD4;
+	Sat,  1 Feb 2025 16:34:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738427464; cv=none; b=oUxHQ/aA+hlIXFEnr5VG4rAi0L1hMGyojoutsPf1WnS3muyVrImmS4pLYV6rBWmqunpXAZ442PZ5WqP8MiQ+Lj/XpeNnNe8FLE7N5C4VJYldCwrgj5c2vh1ZkheUeb/Q+5awE6DZvJI0/F4U5buqY9VQO1xkMhfSocLa3u+lSgU=
+	t=1738427670; cv=none; b=BQFeYUPJw1xxbQ8q0E1J46tDeWICMaj9U7W1Pf2UeSucFCWSmthZ38xAL5eoZiXF34xJzyg4RoZVgQRUWDW/eFslCJpkTqNB4qM6TIe/kjQYBPm/gfNZjF5I7HwB0m2ikXkvr7O75yx2lRjr3wl2x4VouG+9d9PMrJeuDTpOhLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738427464; c=relaxed/simple;
-	bh=MQVsCV+rKnGhM+DyLpC+tfup9Av4qyn8X8ziPTES9Vo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bkm7rdIVgM0cIFacLglPouErY6R4le1sUE7x1krpp7VDig8eQ/zVcWbZHz7EdBewHCzXv15gwEHBHtUPdfHrLJuMAABqup85sZnseXjlAGtlaFbppYAupg+JNll9e59QOmKtnFhC7XQ+JjKZY4lYodrLbNDlFOtYn+OWrKNL6Gk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B4FLLJxV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3277C4CED3;
-	Sat,  1 Feb 2025 16:30:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738427464;
-	bh=MQVsCV+rKnGhM+DyLpC+tfup9Av4qyn8X8ziPTES9Vo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=B4FLLJxV6wErqsmRi2JsDyRToMwuu/8jDvBLXHs4945WFGuxy4aNnf+kq6AUanR/t
-	 hUcAVePqCfn4A0gUOdoQWnN4+aAyCY5SSrEVu5osdxMQrQu6aGQrH6VIiwvtdBb6+v
-	 V1V6KL8rZrHOX4Uio78ZQXyqYnkouNREJIa0NmzUGN7AMi7r9aPAD/H8yqAXY1QIoh
-	 DKvKGSgRvzT8XvTvkWfmCLTL134kJDXWptS+VcHmrZ5mAUueMPmHaTo0SjLjkElkg7
-	 IcT3RU5MBLXG4yA0Ii9LrSoNdMphdiUpD5332p9YkqFy5K9AAKL2hwk2166CoLVtZ0
-	 /5fMYndlqAOUg==
-Date: Sat, 1 Feb 2025 16:30:51 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Linus
- Walleij <linus.walleij@linaro.org>, Nuno Sa <nuno.sa@analog.com>, David
- Lechner <dlechner@baylibre.com>, Dumitru Ceclan <mitrutzceclan@gmail.com>,
- Trevor Gamblin <tgamblin@baylibre.com>, Matteo Martelli
- <matteomartelli3@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Subject: Re: [RFC PATCH 0/5] Support ROHM BD79124 ADC/GPO
-Message-ID: <20250201163051.1d54cdd7@jic23-huawei>
-In-Reply-To: <5cc01bc7-95b7-4a58-86d7-d4293e0e9966@gmail.com>
-References: <cover.1738328714.git.mazziesaccount@gmail.com>
-	<20250131170840.00002dc8@huawei.com>
-	<5cc01bc7-95b7-4a58-86d7-d4293e0e9966@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1738427670; c=relaxed/simple;
+	bh=tDyhorXyf61KzIVLARtJ1pBbB+25Ayo/ggH84SDJlfc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ASEYBex3vmPjiXWmm6sR4sqDO+htZdyEVCRQpSnAeXxCRTUpN/vocr8NjRJUtDw8sl8XzG7Q8QElEbW7WgcD46rAcfGhHQ29BIFe2hCXB9w16ZbfLE/Un6s/OogTfR3Jtzu8eWX2eMeGLioUFhsvqTM8TZmJE44IyfvcbzxPwrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bVCfhuZV; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-219f8263ae0so55794965ad.0;
+        Sat, 01 Feb 2025 08:34:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738427668; x=1739032468; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/rw5CDGeNAXHcIv9I05e+KmdzvvrpagDx33eTW7QaPk=;
+        b=bVCfhuZVUAJhdmZE9eXcUN+YERXj8rGHskv1MZtFl+OchoWPWKlLMGJZmqRip27Dq1
+         RAZeoJfGrT5ul4ikZP4xihpzqWC3/q75BLdsZlWenrXBQG9xbiNiDiTtUfAOqMkW77aA
+         gwQNlt7T5Ey260AjFQ2L0X+6U5sLzEFfYbFJ7QROEEK8UUzs1dHCXGAC/o64MXo204aP
+         Lxi8GI4bsBUq1z6nc+doY7qzSvfildaTxgKMZCorf1o5TrIaGYWkMrYdYus+i8kLvU3F
+         PeiOVAeXGxuA2Tk/h4Gq0QembYIb45sTGluIC8J0F4ZaasBIObwHtjKd6BHkMCunOjAp
+         5Pqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738427668; x=1739032468;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/rw5CDGeNAXHcIv9I05e+KmdzvvrpagDx33eTW7QaPk=;
+        b=cu89l0Laf/MQfAdwyOebUK0NiUOMERNTA+cEtOO2mB72c3ckLdRfNBcafJGTSsEvzi
+         i0jHbpPECL9OYmez8kU81gE+mFPCIMtPq8sRsqlVfYjscA6u5WLloqwSb7Zukh0RQC3Y
+         HOjow8RHFXW4KD00yFNV8T6aM/ureRjjLVRKxeEH0s/Doqn7mdqYH17OVWNL10Jr8A3B
+         1QNgu2Uvqg5KFSvrvxuK2LOcbxewu3Kr/2vnrJAALa9kDJ9TQ9+Ba9Xr05L2rV67UYfa
+         oBKD3iwvmKkbYMpvlwPJugFDvGzczJUxXbt7EEniyADZkacgSx/O2TLcP4T7yPt8Y9Vo
+         zZNg==
+X-Forwarded-Encrypted: i=1; AJvYcCUByWVSzgtoMzz9dyLS30Sx+/3KsJW2D8XZiWme0UjrQA2lyjecFvpRTFOojbD5+7CRDYvTAk3+WREuHjc=@vger.kernel.org, AJvYcCVGwK3kW+y1tOcgATv0abAtHqYSeEyVBlic1vedtKE5xs7DCM7/NebiizRIyS7C3192Wa3j1vrgT2uutP1uUA==@vger.kernel.org, AJvYcCVtyvCPj+n15+XmzYP+y8rNQ0VHCqRWmQ/49seFbZ3Om/OKfww00p2Ke1vUgpLI/7lh+sSb36r9yQZaRpj/F2jMHnaUmQ==@vger.kernel.org, AJvYcCWVXJOvN5kH8jMl+Y3RVBDmT5Iz+gHioLd/xkTQXfnVFCTiTio7RAQDsoKfxE5pHX9c6an1eiONIIrS@vger.kernel.org, AJvYcCXICwEnIzPIaMFaNYsKe46JujbOhokeTH+vhc89PdJ9Q3134/kZ2gt5qY6oKr4pXmdSnjgyid09UwLzN9uK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZx6mvtzhkyED0IJmxZJG5MransRVQsmbvbsfP+7gTLNPapO8V
+	6AdOzLCeIyx/B4bFE2punkK31GIzh0LJKj4lqrwKpqSJsjLZeXTN
+X-Gm-Gg: ASbGncvoNK/2EGwUZ1ie7Lfy9pz9Q2JIxYL2biHJp0FWDTBqXmkngSGar1Y/KLD59zs
+	YrBiFo3kqXd7vFyUfYwBXlQYD9qv9OZDUSRgc7skno3NOpay0P/X3qll4vmW8Qod3WmMMcFT3TX
+	qi+IEvWjoXARGXuRt38R8ttYmxjg8cV6tQWmPuyfYVYi+eWQ4idQooOrFNkrXgFC1jcQHIAZjw7
+	d/+cv6kRGWxUYLGkwtyk3mXjxyGheU3SOJLmiTfHPPJ833wvvTTRKb1Qy/du70HxXQZ5vp/YWR0
+	F8ev8YE9mY09+Rvj
+X-Google-Smtp-Source: AGHT+IHYIyyhQyCr4zJPxBlGg+rtfSQqSyIltCCmOB3F05c1HfP75Mvwy2uLT513Sf7dOCP4Tekigg==
+X-Received: by 2002:a17:902:ce91:b0:216:2259:a4bd with SMTP id d9443c01a7336-21dd7e08915mr223414495ad.52.1738427667889;
+        Sat, 01 Feb 2025 08:34:27 -0800 (PST)
+Received: from SC8280XP.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21de331efafsm47660075ad.217.2025.02.01.08.34.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Feb 2025 08:34:27 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: konrad.dybcio@oss.qualcomm.com
+Cc: andersson@kernel.org,
+	bryan.odonoghue@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	hdegoede@redhat.com,
+	ilpo.jarvinen@linux.intel.com,
+	jdelvare@suse.com,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	krzk@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@roeck-us.net,
+	mitltlatltl@gmail.com,
+	platform-driver-x86@vger.kernel.org,
+	robh@kernel.org
+Subject: Re: [PATCH RESEND v6 0/3] platform: arm64: Huawei Matebook E Go embedded controller
+Date: Sun,  2 Feb 2025 00:34:13 +0800
+Message-ID: <20250201163416.2774-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <018281e0-001a-4587-b775-a9df6e54f75e@oss.qualcomm.com>
+References: <018281e0-001a-4587-b775-a9df6e54f75e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sat, 1 Feb 2025 17:00:51 +0200
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-
-> Hi Jonathan,
-> 
-> Thanks a ton for the help! :)
-> 
-> On 31/01/2025 19:08, Jonathan Cameron wrote:
-> > On Fri, 31 Jan 2025 15:34:43 +0200
-> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> >   
-> >> Support ROHM BD79124 ADC.
+On Sat, Feb 1, 2025 at 11:35 PM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+> On 1.02.2025 8:38 AM, Pengyu Luo wrote:
+> > On Sat, Feb 1, 2025 at 5:20 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >> On 31/01/2025 10:21, Pengyu Luo wrote:
+> >>> This adds binding, drivers and the DT support for the Huawei Matebook E Go
+> >>> (sc8280xp-based) Embedded Controller which is also found in Huawei Matebook
+> >>> E Go LTE (sc8180x-based), but I don't have the sc8180x one to perform
+> >>> tests, so this series enable support for sc8280xp variant only, this series
+> >>> provides the following features:
+> >>>
+> >>> - battery and charger information report
+> >>> - charging thresholds control
+> >>> - FN lock (An alternative method)
+> >>> - LID switch detection
+> >>> - Temperature sensors
+> >>> - USB Type-C altmode
+> >>> - USB Type-C PD(high power)
+> >>>
 > >>
-> >> Quite usual stuff. 12-bit, 8-channel ADC with threshold monitoring.
+> >> Why are you resending?
 > >>
-> >> Except that:
-> >>   - each ADC input pin can be configured as a general purpose output.
-> >>   - manually starting an ADC conversion and reading the result would
-> >>     require the I2C _master_ to do clock stretching(!) for the duration
-> >>     of the conversion... Let's just say this is not well supported.
-> >>   - IC supports 'autonomous measurement mode' and storing latest results
-> >>     to the result registers. This mode is used by the driver due to the
-> >>     "peculiar" I2C when doing manual reads.
-> >>
-> >> I sent this as an RFC because I implemented the pin purposing (GPO/ADC)
-> >> using pinmux - which I've never done for upstream stuff before. Hence
-> >> it's better to ask if this makes sense, or if there is better way to go.
-> >> Anyways, resulted drivers spread to 3 subsystems (MFD, pinctrl and IIO)  
-> > In principle nothing against pin mux for this.
-> > There are other options though if pin mux ends up being too complex.
-> > 
-> > - provide ADC channels in the binding channel@x etc.
-> > Anything else is freely available as a GPIO.
-> > Normal GPIO bindings etc for those.
-> > 
-> > The channel bit is common on SoC ADC anyway where we don't want to
-> > expose channels that aren't wired out.  
+> >> Previous version was only week ago and minimal time is two weeks. Plus
+> >> its merge window, so this resend is unjustified.
+> >
+> > Sorry, I am still new to the process, I may have misunderstood something.
+> > I sent it because I had got at leaset one reviewed tag for every patch
+> > from the corresponding subsystem maintainer. Can I expect that there would
+> > be no reviewing? All I need to do is wait for it to be applied.
 > 
-> Thanks for the insight on how things are usually done :)
+> Generally if people have a concern, they'll share it with you.
+> It may be that one review is not enough, this is up to the maintainer.
 > 
-> I think the only reason for having all the channels visible in IIO, 
-> could be, if there was a need to provide a runtime configuration.
+> You don't need to resend after you get new tags, the maintainer tools will
+> pick those up when the patches are being applied.
 > 
-> > For combined ADC GPIO chips we normally don't bother with an MFD.
-> > Just host the gpio driver in the ADC one unless there is a strong
-> > reasons someone will put this down for GPIO usage only.  
+> Patches are generally not picked up by maintainers in the timeframe between
+> stable vX.Y release and vX.(Y+1)-rc1, this is the time when Linus accepts
+> code that has been sitting in the maintainers' branches for some time and
+> getting build/functionality tested in linux-next over the previous cycle
 > 
-> I don't really know about that. I don't like arguing, yet I seem to do 
-> that all the time XD
-> 
-> I personally like using MFD and having smaller drivers in relevant 
-> subsystems, because it tends to keep the drivers leaner - and allows 
-> re-use of drivers when some of the hardware blocks are re-used. In some 
-> cases this results (much) cleaner drivers.
 
-I'm fully in agreement with MFD being useful, but for very simple
-parts of a device it can be overkill. 
-> 
-> (Let's assume they did "new" ADC, and just dropped the GPO from it. With 
-> the MFD the deal is to add new compatible, and have an MFD cell array 
-> without the pinctrl/GPO matching this new device. And lets imagine they 
-> later add this ADC to a PMIC. We add yet another MFD cell array for this 
-> new device, with a cell for the regulators, power-supply and the ADC... 
-> The same platform subdevice can be re-used to drive ADC (well, with 
-> added register offsets)).
-> 
-> Allright. I believe you have more experience on this area than I do, but 
-> I definitely think MFD has it's merits also for ADCs - they do tend to 
-> put ADCs to all kinds of devices (like in PMICs after all, although 
-> maybe not with 8 channels and less often without an accumulator).
+It is helpful, thanks for explanation.
 
-It's a trade off.  Sometimes we just have a little code duplication
-to the need for a more complex design.
-
-Enjoy the rest of Fosdem
-
-Jonathan
+Best wishes,
+Pengyu
 
