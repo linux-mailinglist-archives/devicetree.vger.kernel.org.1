@@ -1,151 +1,161 @@
-Return-Path: <devicetree+bounces-142190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A04FFA245AE
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 00:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 745A0A246F0
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 04:42:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 854593A6C98
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2025 23:41:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AEE23A872B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 03:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B07519F103;
-	Fri, 31 Jan 2025 23:41:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 098AF26296;
+	Sat,  1 Feb 2025 03:42:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mZPgsRek"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ldNPT2YF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CBF1487C1;
-	Fri, 31 Jan 2025 23:41:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF4C33E1;
+	Sat,  1 Feb 2025 03:42:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738366865; cv=none; b=RnBRk875QWJnbsbDRjEXuXbWuDz7kBsDcW2x3sMTk8qMYwf5wnWv8rG+hW1Ej5Pqc1efievHo/8ayAS0l6esGDqXTx81dnZ4rTdweagr05C3vUWYa1lmVVYkS7IoRGPac1svphllWhXTKLsFOdUC8JixDUnFt5XKL1tE4lUFh/0=
+	t=1738381359; cv=none; b=eXFWFC7+7Xrl0dV9NCT8qZFK32shiPF4kFMeoCjwFaeVHF5X1szyoMipm1jXGw2W5jeFIbQyVz/56S6a2RZXOKijlXNQpoXuwMVamlP4/oJ/+sVXuldwhCHmpscDT97YEMK6NdHO53A28WMB/qOK9loppMKuOFjP42+slUilhtw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738366865; c=relaxed/simple;
-	bh=uKwvk3KMuFPC/JlSa0m1mvGvWUngrmBgCkTgHBBycX0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ElEHDj9PwWCUazrTxpsjMZh3gT2IG22M2HqXaPKS2zOcfWnw0V38NIPcxG3bMVc3hOyReUtndCTifpQkLpLxRv+djOgIIhfmgpZfFves2k4VWTLYFW9/enzcs7mH7Exs3+0eAwf95gdKxaZGGBqlry1C3OLja7XnpFm7hvWgtTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mZPgsRek; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50VNeuaM2615028
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 31 Jan 2025 17:40:56 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738366856;
-	bh=WoabQOIO7BqEmHMvwAU48qnHgarITzPKF9dEIQzwpHk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=mZPgsRekWBzNXLMw+JsvJpCz5v0TSd1PYzWlRTr/TKLZ0sEhUAMnKzRW3m2ZFJeQ2
-	 RKk4FPIGfWAbathUmvIZxTIPJvtxV4zLyHqlHeY2yA+PFZwB9Ja6mnfSKDzfxIrbQI
-	 XtQn1juIjNYMoilIpP57maVjWZohktF411vM13wM=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50VNeu0D090728
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 31 Jan 2025 17:40:56 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 31
- Jan 2025 17:40:55 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 31 Jan 2025 17:40:56 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50VNee8d052831;
-	Fri, 31 Jan 2025 17:40:40 -0600
-Message-ID: <1c2c67b7-987e-4b92-b0be-c0b2f25adae6@ti.com>
-Date: Fri, 31 Jan 2025 17:40:40 -0600
+	s=arc-20240116; t=1738381359; c=relaxed/simple;
+	bh=+rV+UmrUYpJG4kNlKMeTfDc9h3wP1MafTeKi0Yp8HRg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sidZSJdJvg4K+1ylqyBShkSFNbypgLpTCpzJRstHMNOS5Nvr53vHypsPS0I8UFt5I5oietC9jxEkY1I4USCp/x0PyjeUCqfn6oeqS4P1/eJUdfFDQVW4g94MnESVC/XdZ+NXnoLie1cmO5z2v5GodrgKI+WGAT0VGYXIvGINA4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ldNPT2YF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 267F2C4CEDF;
+	Sat,  1 Feb 2025 03:42:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738381359;
+	bh=+rV+UmrUYpJG4kNlKMeTfDc9h3wP1MafTeKi0Yp8HRg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ldNPT2YFPENPWqGxVza8ikixvx42cQQDy5uicIeXGs0K+r9tEUYxHCPSvTlIsWfVs
+	 JmpqzOgAbROiamQZeEcG4UHtzxXlRnNJN3eyOh3C1DnuV3GnMwIxT4PHA0P/gENVSP
+	 oPotjRceQ/b9spp9EPHnNKHvJW1/YiGi8xn7b9YrpoGDWYVumwnh5p78imBhCJIVfE
+	 ObWuv1BQFNQp+HGGzN1Aybs7BakOs0bhSKNOyHtd8RnIif5KlHA5IdJDyWunqKCjr6
+	 J2DbUAJ7TYLyg/DHzoKS0xxsME49bZmzfNr4p+NvnjLhdaKcTSbLjaCW1ztKj3PB5l
+	 By04PDbdPzt6A==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-543cc81ddebso2965320e87.1;
+        Fri, 31 Jan 2025 19:42:39 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVQQlQ5pzKTF4JUYbZDCTNp1xHzkxbESkufswx3Tk6iei/RP4IM0tjIPgwrECeqFXF+I2YMQoIDkeks@vger.kernel.org, AJvYcCWtA1ob6Xpn5T42pDFSMoXtC+QKdV5iNRsyGLV8guHBHLBPydKMkvZr5vAp2ByZfbIda7HxlxP3ZByKG9KR@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywlq8heOmHZh39eDZZuIDcmJdm4xPb1C0DS9StePu4UQ2g2Qrup
+	BbdncqoxN3NjlbXAkf/TxwTV053nw0KpiEii86r7/xhsFIgys56Zv/EJHrWXLM/BFdlrV8KhcaQ
+	u/wrefKqnsGuySgM+IX+6fccIPpQ=
+X-Google-Smtp-Source: AGHT+IE8xi7yEZVZiNkHiMJ1Oz93VREX7MH40nif54ifmsI5dRu/2tNLO7bSLRikmgv3pDSskmDFuatI+sQbmvZPgLU=
+X-Received: by 2002:a05:6512:1383:b0:542:2192:3eb6 with SMTP id
+ 2adb3069b0e04-543e4c3ffc6mr3959976e87.52.1738381357745; Fri, 31 Jan 2025
+ 19:42:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/9] arm64: dts: ti: k3-am62-wakeup: Add wakeup r5f
- node
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla
-	<hnagalla@ti.com>
-References: <20250131214611.3288742-1-jm@ti.com>
- <20250131214611.3288742-2-jm@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250131214611.3288742-2-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250114181359.4192564-1-masahiroy@kernel.org>
+ <20250114181359.4192564-4-masahiroy@kernel.org> <CAL_JsqJyNiUF8--wz2DsngUAuSUboq8oqZRxAzqY+iBRM7rkjQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqJyNiUF8--wz2DsngUAuSUboq8oqZRxAzqY+iBRM7rkjQ@mail.gmail.com>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Sat, 1 Feb 2025 12:42:01 +0900
+X-Gmail-Original-Message-ID: <CAK7LNATCFFQFYenkY2F5HkXx_otub9ebuTHJOD_TLiqCDnYN0w@mail.gmail.com>
+X-Gm-Features: AWEUYZm1-QNKCjq_U3BOQQAq_pO2Vl-X6R_qTFZTLVQDy4GjoVnyDhzeIplsKOA
+Message-ID: <CAK7LNATCFFQFYenkY2F5HkXx_otub9ebuTHJOD_TLiqCDnYN0w@mail.gmail.com>
+Subject: Re: [PATCH 4/4] microblaze: remove unnecessary system.dts
+To: Rob Herring <robh@kernel.org>
+Cc: Michal Simek <monstr@monstr.eu>, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 1/31/25 3:46 PM, Judith Mendez wrote:
-> From: Hari Nagalla <hnagalla@ti.com>
-> 
+On Sat, Feb 1, 2025 at 7:25=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Jan 14, 2025 at 12:15=E2=80=AFPM Masahiro Yamada <masahiroy@kerne=
+l.org> wrote:
+> >
+> > The default image linux.bin does not contain any DTB, but a separate
+> > system.dtb is compiled.
+> >
+> > Michal Simek clearly explained "system.dtb is really old dtb more for
+> > demonstration purpose and nothing else and likely it is not working on
+> > any existing board." [1]
+> >
+> > The system.dts is not necessary even for demonstration purposes. There
+> > is no need to compile out-of-tree *.dts under arch/microblaze/boot/dts/
+> > unless it is embedded into the kernel. Users can directly use dtc.
+> >
+> > [1]: https://lore.kernel.org/all/d2bdfbfd-3721-407f-991e-566d48392add@a=
+md.com/
+> >
+> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> > ---
+> >
+> >  arch/microblaze/boot/dts/Makefile   |   3 +-
+> >  arch/microblaze/boot/dts/system.dts | 353 ----------------------------
+> >  2 files changed, 1 insertion(+), 355 deletions(-)
+> >  delete mode 100644 arch/microblaze/boot/dts/system.dts
+> >
+> > diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/d=
+ts/Makefile
+> > index 932dc7550a1b..fa0a6c0854ca 100644
+> > --- a/arch/microblaze/boot/dts/Makefile
+> > +++ b/arch/microblaze/boot/dts/Makefile
+> > @@ -1,8 +1,6 @@
+> >  # SPDX-License-Identifier: GPL-2.0
+> >  #
+> >
+> > -dtb-y :=3D system.dtb
+> > -
+> >  ifneq ($(DTB),)
+> >  obj-y +=3D linked_dtb.o
+> >
+> > @@ -11,6 +9,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
+> >
+> >  # Generate system.dtb from $(DTB).dtb
+> >  ifneq ($(DTB),system)
+>
+> Can't this be dropped as setting DTB=3Dsystem.dtb should work if there's
+> not an in-tree system.dts anymore.
 
-Subject should capitalize R5F
+I believe this ifneq is necessary, just in case
+a user adds system.dtb to arch/microblaze/boot/dts/.
 
-> AM62 SoC devices have a single core R5F processor in wakeup domain.
-> The R5F processor in wakeup domain is used as a device manager
-> for the SoC.
-> 
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
-> Changes since v1:
-> - disable each device node in the voltage domain files and
->    enable at the board level file
-> - fix firmware names
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 25 ++++++++++++++++++++++
->   1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> index 9b8a1f85aa15c..12b1520974ade 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> @@ -106,6 +106,31 @@ wkup_rti0: watchdog@2b000000 {
->   		status = "reserved";
->   	};
->   
-> +	wkup_r5fss0: r5fss@78000000 {
-> +		compatible = "ti,am62-r5fss";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x78000000 0x00 0x78000000 0x8000>,
-> +				 <0x78100000 0x00 0x78100000 0x8000>;
+'system.dtb' is a special name because
+arch/microblaze/boot/dts/linked_dtb.S wraps it.
 
-Odd alignment, looks like you have an extra tab on the above line
+So, $(DTB) is copied to system.dtb, and then
+it is wrapped by linked_dtb.S.
 
-Andrew
+If $(DTB) is already 'system',
+we cannot copy system.dtb to itself.
 
-> +		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
-> +		status = "disabled";
-> +
-> +		wkup_r5fss0_core0: r5f@78000000 {
-> +			compatible = "ti,am62-r5f";
-> +			reg = <0x78000000 0x00008000>,
-> +			      <0x78100000 0x00008000>;
-> +			reg-names = "atcm", "btcm";
-> +			ti,sci = <&dmsc>;
-> +			ti,sci-dev-id = <121>;
-> +			ti,sci-proc-ids = <0x01 0xff>;
-> +			resets = <&k3_reset 121 1>;
-> +			firmware-name = "am62-wkup-r5f0_0-fw";
-> +			ti,atcm-enable = <1>;
-> +			ti,btcm-enable = <1>;
-> +			ti,loczrama = <1>;
-> +		};
-> +	};
-> +
->   	wkup_vtm0: temperature-sensor@b00000 {
->   		compatible = "ti,j7200-vtm";
->   		reg = <0x00 0xb00000 0x00 0x400>,
+
+See the definition of cmd_copy in scripts/Makefile.lib
+
+cmd_copy =3D cat $< > $@
+
+
+"cat system.dtb > system.dtb"
+would create an empty system.dtb
+
+
+
+
+
+
+>
+> > +targets +=3D system.dtb
+> >  $(obj)/system.dtb: $(obj)/$(DTB).dtb FORCE
+> >         $(call if_changed,copy)
+> >  endif
+
+
+
+--=20
+Best Regards
+Masahiro Yamada
 
