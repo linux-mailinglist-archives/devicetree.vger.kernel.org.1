@@ -1,161 +1,101 @@
-Return-Path: <devicetree+bounces-142191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 745A0A246F0
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 04:42:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90622A24707
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 05:38:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AEE23A872B
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 03:42:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFA657A2E27
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 04:37:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 098AF26296;
-	Sat,  1 Feb 2025 03:42:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ldNPT2YF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F69A1B960;
+	Sat,  1 Feb 2025 04:37:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF4C33E1;
-	Sat,  1 Feb 2025 03:42:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35836C2F2;
+	Sat,  1 Feb 2025 04:37:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738381359; cv=none; b=eXFWFC7+7Xrl0dV9NCT8qZFK32shiPF4kFMeoCjwFaeVHF5X1szyoMipm1jXGw2W5jeFIbQyVz/56S6a2RZXOKijlXNQpoXuwMVamlP4/oJ/+sVXuldwhCHmpscDT97YEMK6NdHO53A28WMB/qOK9loppMKuOFjP42+slUilhtw=
+	t=1738384677; cv=none; b=YY1reSbOiqegR03lry+zJsEeDUCW2XyWTcffhrAbbeFYZrOk6eN1apUJN6XbxREBs+wDhu7Y8uka9YjaMsrHypOc3qUlHpRACsISmn4zHsIgXg9mNemac+jWne8qCxaX9TeCWa6jO1U3nLbmIQ1ZD9JLE01BTnqX00CbPDLHOdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738381359; c=relaxed/simple;
-	bh=+rV+UmrUYpJG4kNlKMeTfDc9h3wP1MafTeKi0Yp8HRg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sidZSJdJvg4K+1ylqyBShkSFNbypgLpTCpzJRstHMNOS5Nvr53vHypsPS0I8UFt5I5oietC9jxEkY1I4USCp/x0PyjeUCqfn6oeqS4P1/eJUdfFDQVW4g94MnESVC/XdZ+NXnoLie1cmO5z2v5GodrgKI+WGAT0VGYXIvGINA4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ldNPT2YF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 267F2C4CEDF;
-	Sat,  1 Feb 2025 03:42:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738381359;
-	bh=+rV+UmrUYpJG4kNlKMeTfDc9h3wP1MafTeKi0Yp8HRg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ldNPT2YFPENPWqGxVza8ikixvx42cQQDy5uicIeXGs0K+r9tEUYxHCPSvTlIsWfVs
-	 JmpqzOgAbROiamQZeEcG4UHtzxXlRnNJN3eyOh3C1DnuV3GnMwIxT4PHA0P/gENVSP
-	 oPotjRceQ/b9spp9EPHnNKHvJW1/YiGi8xn7b9YrpoGDWYVumwnh5p78imBhCJIVfE
-	 ObWuv1BQFNQp+HGGzN1Aybs7BakOs0bhSKNOyHtd8RnIif5KlHA5IdJDyWunqKCjr6
-	 J2DbUAJ7TYLyg/DHzoKS0xxsME49bZmzfNr4p+NvnjLhdaKcTSbLjaCW1ztKj3PB5l
-	 By04PDbdPzt6A==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-543cc81ddebso2965320e87.1;
-        Fri, 31 Jan 2025 19:42:39 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVQQlQ5pzKTF4JUYbZDCTNp1xHzkxbESkufswx3Tk6iei/RP4IM0tjIPgwrECeqFXF+I2YMQoIDkeks@vger.kernel.org, AJvYcCWtA1ob6Xpn5T42pDFSMoXtC+QKdV5iNRsyGLV8guHBHLBPydKMkvZr5vAp2ByZfbIda7HxlxP3ZByKG9KR@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywlq8heOmHZh39eDZZuIDcmJdm4xPb1C0DS9StePu4UQ2g2Qrup
-	BbdncqoxN3NjlbXAkf/TxwTV053nw0KpiEii86r7/xhsFIgys56Zv/EJHrWXLM/BFdlrV8KhcaQ
-	u/wrefKqnsGuySgM+IX+6fccIPpQ=
-X-Google-Smtp-Source: AGHT+IE8xi7yEZVZiNkHiMJ1Oz93VREX7MH40nif54ifmsI5dRu/2tNLO7bSLRikmgv3pDSskmDFuatI+sQbmvZPgLU=
-X-Received: by 2002:a05:6512:1383:b0:542:2192:3eb6 with SMTP id
- 2adb3069b0e04-543e4c3ffc6mr3959976e87.52.1738381357745; Fri, 31 Jan 2025
- 19:42:37 -0800 (PST)
+	s=arc-20240116; t=1738384677; c=relaxed/simple;
+	bh=uGRk8WEnP2dxQpPeQLUz+KOsuJ2PkeHqrxzk1MCM5HA=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=oI33DFhdJY6daTIXsg0/uQFgfaKjSE0ZMIkmaEr/oMp7UjfcngAOy2sgA/V9FnotKWo/+ShfokfasD8LmvIItQrt8edoGKmi4jMUbU4CqY2/JiIaCFCfnQ3XiRSeUU+g0ZUVV2COGmVnTm3VTvlLZzYavntsMM6w+wuIN4OD2g8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1te5GP-0000000076H-0inf;
+	Sat, 01 Feb 2025 04:37:49 +0000
+Date: Sat, 1 Feb 2025 04:37:43 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH RESEND] arm64: dts: mediatek: mt7622: readd syscon to pciesys
+ node
+Message-ID: <98bc223d174c7f544e8f6c4f0caa8fa144f2f4dc.1738384400.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250114181359.4192564-1-masahiroy@kernel.org>
- <20250114181359.4192564-4-masahiroy@kernel.org> <CAL_JsqJyNiUF8--wz2DsngUAuSUboq8oqZRxAzqY+iBRM7rkjQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqJyNiUF8--wz2DsngUAuSUboq8oqZRxAzqY+iBRM7rkjQ@mail.gmail.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Sat, 1 Feb 2025 12:42:01 +0900
-X-Gmail-Original-Message-ID: <CAK7LNATCFFQFYenkY2F5HkXx_otub9ebuTHJOD_TLiqCDnYN0w@mail.gmail.com>
-X-Gm-Features: AWEUYZm1-QNKCjq_U3BOQQAq_pO2Vl-X6R_qTFZTLVQDy4GjoVnyDhzeIplsKOA
-Message-ID: <CAK7LNATCFFQFYenkY2F5HkXx_otub9ebuTHJOD_TLiqCDnYN0w@mail.gmail.com>
-Subject: Re: [PATCH 4/4] microblaze: remove unnecessary system.dts
-To: Rob Herring <robh@kernel.org>
-Cc: Michal Simek <monstr@monstr.eu>, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Sat, Feb 1, 2025 at 7:25=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Jan 14, 2025 at 12:15=E2=80=AFPM Masahiro Yamada <masahiroy@kerne=
-l.org> wrote:
-> >
-> > The default image linux.bin does not contain any DTB, but a separate
-> > system.dtb is compiled.
-> >
-> > Michal Simek clearly explained "system.dtb is really old dtb more for
-> > demonstration purpose and nothing else and likely it is not working on
-> > any existing board." [1]
-> >
-> > The system.dts is not necessary even for demonstration purposes. There
-> > is no need to compile out-of-tree *.dts under arch/microblaze/boot/dts/
-> > unless it is embedded into the kernel. Users can directly use dtc.
-> >
-> > [1]: https://lore.kernel.org/all/d2bdfbfd-3721-407f-991e-566d48392add@a=
-md.com/
-> >
-> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> > ---
-> >
-> >  arch/microblaze/boot/dts/Makefile   |   3 +-
-> >  arch/microblaze/boot/dts/system.dts | 353 ----------------------------
-> >  2 files changed, 1 insertion(+), 355 deletions(-)
-> >  delete mode 100644 arch/microblaze/boot/dts/system.dts
-> >
-> > diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/d=
-ts/Makefile
-> > index 932dc7550a1b..fa0a6c0854ca 100644
-> > --- a/arch/microblaze/boot/dts/Makefile
-> > +++ b/arch/microblaze/boot/dts/Makefile
-> > @@ -1,8 +1,6 @@
-> >  # SPDX-License-Identifier: GPL-2.0
-> >  #
-> >
-> > -dtb-y :=3D system.dtb
-> > -
-> >  ifneq ($(DTB),)
-> >  obj-y +=3D linked_dtb.o
-> >
-> > @@ -11,6 +9,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
-> >
-> >  # Generate system.dtb from $(DTB).dtb
-> >  ifneq ($(DTB),system)
->
-> Can't this be dropped as setting DTB=3Dsystem.dtb should work if there's
-> not an in-tree system.dts anymore.
+From: Christian Marangi <ansuelsmth@gmail.com>
 
-I believe this ifneq is necessary, just in case
-a user adds system.dtb to arch/microblaze/boot/dts/.
+The sata node references the pciesys with the property
+mediatek,phy-mode and that is used as a syscon to access the pciesys
+registers.
 
-'system.dtb' is a special name because
-arch/microblaze/boot/dts/linked_dtb.S wraps it.
+Readd the syscon compatible to pciesys node to restore correct
+functionality of the SATA interface.
 
-So, $(DTB) is copied to system.dtb, and then
-it is wrapped by linked_dtb.S.
+Cc: stable@vger.kernel.org
+Co-developed-by: Frank Wunderlich <frank-w@public-files.de>
+Fixes: 3ba5a6159434 ("arm64: dts: mediatek: mt7622: fix clock controllers")
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+---
+Note that the dt-bindings part of the original series has already been
+applied with commit 9f7809c6a882 ("dt-bindings: clock: mediatek: add
+syscon compatible for mt7622 pciesys").
 
-If $(DTB) is already 'system',
-we cannot copy system.dtb to itself.
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+index e3421fd2c0ef..0710b8959ae8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+@@ -790,7 +790,7 @@ u2port1: usb-phy@1a0c5000 {
+ 	};
+ 
+ 	pciesys: clock-controller@1a100800 {
+-		compatible = "mediatek,mt7622-pciesys";
++		compatible = "mediatek,mt7622-pciesys", "syscon";
+ 		reg = <0 0x1a100800 0 0x1000>;
+ 		#clock-cells = <1>;
+ 		#reset-cells = <1>;
+-- 
+2.48.1
 
-See the definition of cmd_copy in scripts/Makefile.lib
-
-cmd_copy =3D cat $< > $@
-
-
-"cat system.dtb > system.dtb"
-would create an empty system.dtb
-
-
-
-
-
-
->
-> > +targets +=3D system.dtb
-> >  $(obj)/system.dtb: $(obj)/$(DTB).dtb FORCE
-> >         $(call if_changed,copy)
-> >  endif
-
-
-
---=20
-Best Regards
-Masahiro Yamada
 
