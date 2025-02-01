@@ -1,158 +1,134 @@
-Return-Path: <devicetree+bounces-142274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39DFEA24B84
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 20:12:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E68A24B93
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 20:31:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D7B73A5BA2
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 19:12:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2675C1886D0D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 19:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91EF12CD8B;
-	Sat,  1 Feb 2025 19:12:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D988F1CAA76;
+	Sat,  1 Feb 2025 19:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UR/9SWNi"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="dtbzPnOz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3AA2BAF4;
-	Sat,  1 Feb 2025 19:12:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92F3D156885
+	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 19:31:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738437174; cv=none; b=OgX+D2z01P+RZjXWGCnLy9qi0ujjOk6aP6Rw71bhL3kSgLRdVKiStyeo5tyerD7xC/UlHj6JlbXgeU29v/iaTUtYoHKNV7i44W3CaMmFZyWm2+PwzqpIh3VbGGZRuUoohb774dMg3dTTDeK2ahXS81o+M849+qyFeTuu8Y8BoW8=
+	t=1738438305; cv=none; b=D1kvW4/aZUQAVCdH4j7Rfbk57aNoxNf2FKSv924h1pdy9bbgs1BIjG2+lF3uFwS0/G1Cv16bTSvL8MolXcB1C+yjP+4WXhZTYNcLcWGod1lBMfryNqlClsLMFOW7QkvDntvDAK7s8AllgijDqWG9miV/BfGj3Fnis2TOdN1fCmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738437174; c=relaxed/simple;
-	bh=0QBqcNKzY+SzopvrW4jWa8UfPfe7MKUSyO4YO4sZ7WA=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=T6NqvY0i59QM/JIrhyymWg+pYWgUi2xppCE61mq/SpNe/Tahh/tCo7sPNBS9YWzl/ctQeO0Db+ROioa6qrL5axONEnXgJTqdZCEcYjFAkIUiPvcDhWmOFZ2qw65pemBQzgEQQZTshy02+/Vzfs9seT1Nldo2dDCN9NSCw20TY7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UR/9SWNi; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738437173; x=1769973173;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=0QBqcNKzY+SzopvrW4jWa8UfPfe7MKUSyO4YO4sZ7WA=;
-  b=UR/9SWNilDTDmzl4pIW6TyJoARnLFHbiCOe/MuPzSWYdu8jlvVENBixf
-   AFup+AWLFVddUsjCQFyB+DeyEydrNgl9LrCQDCP4KtEWkp3IUOTJsLUIR
-   371Efuvtejyibt6LS/7OOjcDZ16DgamKuixjZX5Vq/mf1q25eOaH7Miy6
-   jsHn3AV/smb1d9hHCxNDChess/hyHmBFaW0LR2ffNSVoQNVynZ58QMceV
-   UtVCSuzqZLN5x46CsQ74Kcgk7fwdezvntZjqzO5iecjhBDrTOWYo2+QBF
-   a2zEA4HNluEYCE+kXO9DnKdRrTNYQuq+4ISc1RHnTHIQWt65o1tSi0GqK
-   A==;
-X-CSE-ConnectionGUID: OFEzObQZS+Gl/ZRjtFHQEg==
-X-CSE-MsgGUID: AkquYbtOQbWpf8MU0rbNMQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11333"; a="61451874"
-X-IronPort-AV: E=Sophos;i="6.13,252,1732608000"; 
-   d="scan'208";a="61451874"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2025 11:12:52 -0800
-X-CSE-ConnectionGUID: zxXLNLOvQP+skVgiWe8S3g==
-X-CSE-MsgGUID: M9OVu734TNeiEA/md8FO/w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="147115919"
-Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
-  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2025 11:12:50 -0800
-Date: Sat, 1 Feb 2025 11:12:51 -0800 (PST)
-From: matthew.gerlach@linux.intel.com
-To: Krzysztof Kozlowski <krzk@kernel.org>
-cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
-    robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
-    conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com, 
-    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org, matthew.gerlach@altera.com, 
-    peter.colberg@altera.com
-Subject: Re: [PATCH v5 3/5] arm64: dts: agilex: add dtsi for PCIe Root Port
-In-Reply-To: <40a3dced-defe-412d-b5b2-efcc9619d172@kernel.org>
-Message-ID: <7c802294-97f6-3e9-4028-686484a525c5@linux.intel.com>
-References: <20250127173550.1222427-1-matthew.gerlach@linux.intel.com> <20250127173550.1222427-4-matthew.gerlach@linux.intel.com> <ea614dc5-ad24-4795-b9ba-fa682eda428f@kernel.org> <22cb714e-db76-b07-8572-2f70f6848369@linux.intel.com>
- <40a3dced-defe-412d-b5b2-efcc9619d172@kernel.org>
+	s=arc-20240116; t=1738438305; c=relaxed/simple;
+	bh=HZbqx5xulv5zudDzvhZ6JmDTU32zqHaH8w824mouxiE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jWmUzp4F2pIzVW/GNRLCzpOh0OQlrJXXes7msYQqJSKMzuHDxXiOyq6PHic64coMKza9NbADojUHgZPvJpPhSo2Ih2YWX4Dlz9jA4FFQxOlJugg7RhiB/9hRQNfg5BWwUOqIsmEDLPTv+qO9eV1/Pz33I8QSt5w9aY1VkdK7H54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=dtbzPnOz; arc=none smtp.client-ip=91.218.175.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1738438297;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=cAxBGxxajUiVZRBP6T0mE6Os5RyWlNWFqjL6ZgqSOfM=;
+	b=dtbzPnOzKIZdrHJ92mUPenoHQIDCXCvVtBwv0JF+ackg3KR2kKdbNDcTbq2Uh0he8evs3h
+	kjnyPV3xJT1urgtfrekagsjgxXvxqa1rvAmTKCHQeVNQsFMk6Wu9KFB0vBAPlxF4sjWTfn
+	7S2VxwA6akQfTENzdmCqxIjsKZHuLLPic7DVKDu2KlTfpI4bs8yzrmz8solCTywr4k4iJj
+	TXwwiatUD3O3LtQCdNKSdKjLY4v33hdtz+0jKsofIlpwAI8F9Z683YfFFn/Omi69ltBQAC
+	yBhUJeFlBs21qP4Y0Oy9hoYx6V7yU6vulBjF1VlrLi/HIL2wEz2voNv4tEjXhw==
+From: Ferass El Hafidi <funderscore@postmarketos.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	funderscore@postmarketos.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Artur Weber <aweber.kernel@gmail.com>,
+	Karl Chan <exxxxkc@getgoogleoff.me>,
+	Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v2 0/2] Add support for Xiaomi Mi TV Stick
+Date: Sat,  1 Feb 2025 19:30:42 +0000
+Message-ID: <20250201193044.28856-1-funderscore@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
+This patch series aims to add initial support for the Xiaomi Mi TV
+Stick.
 
+Xiaomi Mi TV Stick is a small Amlogic-based Android TV stick released in 
+2020, and known as `xiaomi-aquaman` internally (in the downstream kernel,
+u-boot, ...)
+Its specifications are as follows:
+ * Amlogic S805Y SoC (believed to be mostly identical to S805X)
+ * 8 GB eMMC
+ * 1 GB of RAM
+ * Android TV 9, upgradable to Android TV 10
 
-On Thu, 30 Jan 2025, Krzysztof Kozlowski wrote:
+There are multiple variants:
+ * 1. Green PCB, manufactured in 2020, known UART pinout (helpfully 
+   labeled on the board)
+ * 2. Blue PCB, not much documentation about it, presumably manufactured
+   between 2021 and 2023
+ * 3. Green PCB, manufactured in 2023, known UART pinout, some layout
+   changes compared to the 2020 variant
 
-> On 29/01/2025 20:42, matthew.gerlach@linux.intel.com wrote:
->>
->>
->> On Wed, 29 Jan 2025, Krzysztof Kozlowski wrote:
->>
->>> On 27/01/2025 18:35, Matthew Gerlach wrote:
->>>> Add the base device tree for support of the PCIe Root Port
->>>> for the Agilex family of chips.
->>>>
->>>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>>> ---
->>>> v3:
->>>>  - Remove accepted patches from patch set.
->>>>
->>>> v2:
->>>>  - Rename node to fix schema check error.
->>>> ---
->>>>  .../intel/socfpga_agilex_pcie_root_port.dtsi  | 55 +++++++++++++++++++
->>>>  1 file changed, 55 insertions(+)
->>>>  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
->>>>
->>>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
->>>> new file mode 100644
->>>> index 000000000000..50f131f5791b
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
->>>> @@ -0,0 +1,55 @@
->>>> +// SPDX-License-Identifier:     GPL-2.0
->>>
->>> Odd spaces in SPDX tag.
->>
->> Yes, there should only be one space.
->>
->>>
->>>> +/*
->>>> + * Copyright (C) 2024, Intel Corporation
->>>> + */
->>>> +&soc0 {
->>>> +	aglx_hps_bridges: fpga-bus@80000000 {
->>>> +		compatible = "simple-bus";
->>>> +		reg = <0x80000000 0x20200000>,
->>>> +		      <0xf9000000 0x00100000>;
->>>> +		reg-names = "axi_h2f", "axi_h2f_lw";
->>>
->>> Where is this binding defined?
->>
->> The bindings for these reg-names are not currently defined anywhere, but
->
-> Then you cannot use them.
->
->> they are also referenced in the following:
->>      Documentation/devicetree/bindings/soc/intel/intel,hps-copy-engine.yaml
->>      arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
->> I am not exactly sure where the right place is to define them, maybe
->> Documentation/devicetree/bindings/arm/intel,socfpga.yaml. On the other
->> hand, no code references these names; so it might make sense to just
->> remove them.
->
-> In general: nowhere, because simple bus does not have such properties.
-> It's not about reg-names only - you cannot have reg. You just did not
-> define here simple-bus.
+Among these variants, there are many boards using multiple different
+Wi-Fi chips.  Supporting all of them is out of scope for this patch
+series.
 
-I understand. I will remove reg and reg-names.
+As of the time of writing this has only been tested on the 3rd variant.
+It is believed that software-wise all three work mostly the same (if we 
+don't count Wi-Fi), but testing on the other variants would still be
+appreciated.
 
->
-> Best regards,
-> Krzysztof
->
+The devicetree is based on the Amlogic P241 DTS.
 
-Thanks for the review,
-Matthew Gerlach
+Changes since v1 [1]:
+ * remove useless nodes: cvbs-connector, ethmac, internal_phy, ir
+ * add `amlogic,s805y` DT binding section
+ * add S805Y dtsi: meson-gxl-s805y.dtsi
+ * adjust DT `model` to "Xiaomi Mi TV Stick (Aquaman)"
+ * explain the changes being done a bit more in the commit message for
+   the DT patch
+ * drop `clocks` and `clock-names` from pwm_ef (background: [2])
+ * change sound `model` to "XIAOMI-AQUAMAN"
+
+[1]: https://lore.kernel.org/all/20250131200319.19996-1-funderscore@postmarketos.org/
+[2]: https://lore.kernel.org/linux-amlogic/20241227212514.1376682-1-martin.blumenstingl@googlemail.com/
+
+Ferass El Hafidi (2):
+  dt-bindings: arm: amlogic: add S805Y and Mi TV Stick
+  arm64: dts: amlogic: add support for xiaomi-aquaman/Mi TV Stick
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   7 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../meson-gxl-s805y-xiaomi-aquaman.dts        | 288 ++++++++++++++++++
+ .../boot/dts/amlogic/meson-gxl-s805y.dtsi     |  10 +
+ 4 files changed, 306 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
+
+-- 
+2.47.1
+
 
