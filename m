@@ -1,302 +1,144 @@
-Return-Path: <devicetree+bounces-142208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A34A2485A
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 11:51:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC95BA2485F
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 11:52:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 276701884994
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 10:51:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08B547A11D4
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 10:51:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 366251547DC;
-	Sat,  1 Feb 2025 10:51:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QhqJfzpD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF768152787;
+	Sat,  1 Feb 2025 10:52:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04A4F14F126
-	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 10:51:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E6EC43179;
+	Sat,  1 Feb 2025 10:52:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738407085; cv=none; b=DB07DmMj3qyKDxCBzZKbnY2fv0LLmDf6hclO/sK0m1F42+t2uTdZuE+Vf5rHTxdS9P/dnre3Cz+rBmA+iUi/JazBOlZo2AG6AlNrb5Ikls03712+HsuE55Au6RE4YvDHppDrEV4CViu9gA3vzf/Lv2bgw2yIssl4XPBwMCSgfGI=
+	t=1738407161; cv=none; b=pzpPDxWDIMZAbfMt7pykCUU/o42PMl3sp6vYgQKriOQzOinf/iFYs9j34irySY+n31d+92NpDw/kpUa2+Cth/P2oXMC6GjdrcpL9hKgIwC0YYxBvJT+Lktf+I4lNJ+1WA5EXXqc7aWKIuRLfuKgd5CFVpP+Dqed0mCu0XJibMDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738407085; c=relaxed/simple;
-	bh=migs4nuGhw2xK6z+2KDjzRYlQ7PWaRtOe4pSEl9UuGY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qMxWUtB0Hmac3xtlqwWc8eqwsRVq9HiDf2uTVt9vfFNq+aN2T3hsAQK9v7aYmyYMnfOohd1R9j+OLVQ9XNjMtnyoA8WJjbLpHIPnmpDrKkiRDiM0q5oCkIJOTnl4y2aiy1V641mlk1z1AuPPpGE0W/5dIEpSpWs8JI6NPfecwFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QhqJfzpD; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-54024aa9febso2825290e87.1
-        for <devicetree@vger.kernel.org>; Sat, 01 Feb 2025 02:51:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738407081; x=1739011881; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=eG7oXAFW4LQ6SvRbOZQ4aHfwSPiaY1Og2nqTKC+EPIU=;
-        b=QhqJfzpD+Jd3S6X7ORVcNvEQJ46uH5aWUmjnMVs/X8UZGhEmIDz+oHJNH5mNEZUocd
-         xLKaL8aWfm48plBnGKNdzw9UTtVeqxUI5U1fz8yXbts7bh6aqs58ULe0My6uTJNDxndi
-         Hgl5vajAqgo9jdItBd5Hlv2gUuCEbtUZkdKwBP/zOwvHXv0CBMr/SgTdeN99FEAKwleH
-         O5JJYdK1UK45g9Sw2wE73rMX9z6+kUOZcwiNmDJMqnOstotuGO4/+pPywEfbVI4NFbzV
-         tdPXax3DKb+xafM8sRdmgqcuPkRb9tpqWf5qEDRx4U3hpPbOMeTdjPtCTxhLqDxk6dbu
-         mftw==
+	s=arc-20240116; t=1738407161; c=relaxed/simple;
+	bh=GftBZ8rMZl72TpEgFZw+F1ogkNcPyAqM9PkddAl2/cw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Vgvs7jnHGAGdDHalvj3OMq6LxyAvMl4np6Y99c6aFTNRqmGheEUi4dcOdNSNrVe/mVSIrkApCxu7oiYrVCHq9cOxK1vgFPORGo8OO1NWHefod9+1/zSImTkTSEh7qpzVDxmifJG0loCJeARrSB6tjKg49gQYFp0XrNBllaSABxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-303548a9361so20854361fa.0;
+        Sat, 01 Feb 2025 02:52:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738407081; x=1739011881;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eG7oXAFW4LQ6SvRbOZQ4aHfwSPiaY1Og2nqTKC+EPIU=;
-        b=RC/X7997MGxP/YTVG94q2CqHc6P+7fdLig04IDXo89vL/p2uai5z9q+7Cnr1WzLuDj
-         5wJDkUbfBwxJ6xUumCjNPD698Mw0s5wf33/IAFefZDFvvwdJo6orPgR9OWzuolNjrARi
-         LA1rgOq5Q+zugLleINXcQAntl+k5NamH4U/tVKOSloQoq65zbg525lLxRlDxBl2Jrn72
-         F1Mfr5FSDOLUyrVO5rdS81DnwGAgMCsy4vyZPXMD8G2jW9k6X9inpp69f3YEz0tH+giQ
-         bwa0dkNOrO8PqZ9HrZJoaMP0DucS+fme3VAVMxdM5hrTYgqPUt9K6mmQCoS7+5QxBPIt
-         wEJw==
-X-Forwarded-Encrypted: i=1; AJvYcCX4L6CmER2y27qR7oD2/z7cA+Lngf9WiXrlSYDXqWucsVBgp6fuLuJ5WHIGapoTSiakL9rbAwRj9RFZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrvRoE5iKxFhPhCmNSZfVx6gtyLIW3TlhkFbf2jJQpeman00Zm
-	VXeaTiK641qgdMfA5kI4v/FTF582zJITgbX2uInpIW5f8fF0u6+jyJfyufvseBRMN+YlfcynGWF
-	JlBFn32f7
-X-Gm-Gg: ASbGncticAa1XlIt4t47KNy4Ou8Po6zL7QCmwc3TSC6t/Zh8+SVa7QHO32QwfS7ikgG
-	jifHK5OUYbOBEfHRouK3jeGgP0e1VH+ARrJkoon7I6aKjWYfjpC17ofWRYTyS6W0Bn73F94waga
-	3t9HzAEFSOL8GoPrGRjHuNcY8awjvgG0qZi2hV5K9T4aSdCWxZK7KbcZqoajouhDkx9R4eDRFzQ
-	MjGZHlz8sMFfooD8llghVWb/0vQzArrZn7IwGfrwXCqkjjFkVSjgMcYYMiMhBMLyraXYnhHIXSo
-	euqPv0vQCUtA/0Oq3lCVgMA7ppz+P/4g9m/Hw0YJQhZ5PD8LAH8Wco/20sZWupXF0CIp/DA=
-X-Google-Smtp-Source: AGHT+IHJ9Jsfraup8/voZFuR8bxlr06SQrF4VHVDcUUAfmkcF+odhumDGda7cm47OWiopau+2nD9aw==
-X-Received: by 2002:a05:6512:33c9:b0:542:29b6:9c27 with SMTP id 2adb3069b0e04-543e4c3fd62mr4836646e87.51.1738407081004;
-        Sat, 01 Feb 2025 02:51:21 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307a3069991sm8041131fa.11.2025.02.01.02.51.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Feb 2025 02:51:19 -0800 (PST)
-Date: Sat, 1 Feb 2025 12:51:17 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/4] Bluetooth: qca: add WCN3950 support
-Message-ID: <zyteorkanz7maln5srrw4qmv2kuogmuidy4fxiazsnwwatqpkh@wkaeci4euxc6>
-References: <20250201-rb1-bt-v1-0-ae896c4923d8@linaro.org>
- <20250201-rb1-bt-v1-2-ae896c4923d8@linaro.org>
+        d=1e100.net; s=20230601; t=1738407156; x=1739011956;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kRwFI5d8wyEyXjJelLyWqjx7Awrgh8zTXgtWY1JnNlU=;
+        b=X8OTknu3yKff9aa1GmAcg+mswUN2TUNT882ozCY8rPDOBI555hzUjKz/afFQDblX0d
+         dn5vtAX0VBmX6j7WSTMm603mUo2IafeslU7KinT5oEvuRNveXXBV+b4heSOWAvEXaj3k
+         FptIgE5no3SoB2820puSRJKOkBEXq4GrUKDumu6+1ZU71oNXuk8makzgC3UU2H0mi1My
+         QleS7hG3Wk5wZo8sN2nobWKSZzLVTc1l3ZJHvnUCUsEex49675Yy6uSIiqu0GPk2+R7j
+         hYI14MMJmlCEPImzWvVg76ZlOfjyDQaHw/B2NYQVap8uakR//Pc9hmRCH6OiPxhH34e+
+         OkVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+dVDQf9EK0Sk4uEO4t8oCfYU2yZm6RW2frEwOrdimbbUQx6KLo3ctXl0QFI4fV1ud0TXpEYiLME0Z@vger.kernel.org, AJvYcCVo97Rj2rM0wINYQfxvZ08ItCiPzrk+wnsi18xta7ICWhzEzJC6Lq6yRek6bYjL3BkPQIbb9GvQ6dY=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxfWhJFdahYRWILla8tI4ac0RY5+0uSmnuONSHpOeD/IXwZOBc
+	+zyH4wByA9r1c1fnv6HPlmrKZ6n+d2BOsQn4EkPPVSUJOuEMCN1akWZXt+Iv
+X-Gm-Gg: ASbGncsr8BHd+FjrzDg56LFS6V2/YTPKMdBTd1Qts/cpEEhIk1MK0ufiEapkMSM+VNt
+	CnqP0g47h1wSgg0W2pbJbFOCZrRXbpdO7OhWq6CPKkccDpG2yF6HY7Kp+IFhMaLyELcHX3FV+Y/
+	ORY82cKhxhNwk4Di3pl9p5tMWWZ+zB4jPIEVXVQayQl73AdtSUdbd/CdMbG1l0KzMGpb3NgCpAA
+	5vkQJL1zzm2JoLfngo83XhlUOY8HfmK3AYQGppEAQcjrXmW+dFmP8HFmJhKYATJW7iwkTrAB94N
+	fzTChbzEjGsrJtVCeQ7kACFKv/huE3AOtzpIns+ZZjJ7GC/D
+X-Google-Smtp-Source: AGHT+IH/PPNHWI3Tkoic6SIzL9t9xmsPWm8yqRwHJi3qr69nfc8BYcHtYID8+EHSgcZKFKBPDIMC1g==
+X-Received: by 2002:a05:651c:198b:b0:302:3356:3a98 with SMTP id 38308e7fff4ca-3079690e18emr52232371fa.37.1738407156161;
+        Sat, 01 Feb 2025 02:52:36 -0800 (PST)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307a3088d3asm8427871fa.39.2025.02.01.02.52.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Feb 2025 02:52:35 -0800 (PST)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30613802a04so27097161fa.2;
+        Sat, 01 Feb 2025 02:52:35 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU4jLhvb+e25Uu3T7+X9xkoOK+MXVC0ddlBGClnSJrw2h/LkRe68MCUH5GL5BhBn29qZ/yhYWbGKl0z@vger.kernel.org, AJvYcCUNGEMQK4TddHMYhqp8l2ez0jjuGT8kt2cbqA3RVVwz3kb9oTv8SpFJhbF+4U24841aPSlExK4KQnM=@vger.kernel.org
+X-Received: by 2002:a05:651c:502:b0:304:4e03:f9d9 with SMTP id
+ 38308e7fff4ca-307968e0a20mr54218521fa.28.1738407155636; Sat, 01 Feb 2025
+ 02:52:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250201-rb1-bt-v1-2-ae896c4923d8@linaro.org>
+References: <20250131231455.153447-1-macroalpha82@gmail.com> <20250131231455.153447-4-macroalpha82@gmail.com>
+In-Reply-To: <20250131231455.153447-4-macroalpha82@gmail.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Sat, 1 Feb 2025 18:52:23 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65p+_woYGKRrQs2aKRJO1LdYW4eA0h2kiyMTUhgZ9DNrA@mail.gmail.com>
+X-Gm-Features: AWEUYZmavIApcVldzJqk3l2AkjKAa_El4sfI4mNDa0tSr-IA5hYLt6odr6wR63o
+Message-ID: <CAGb2v65p+_woYGKRrQs2aKRJO1LdYW4eA0h2kiyMTUhgZ9DNrA@mail.gmail.com>
+Subject: Re: [PATCH 3/5] mfd: axp20x: AXP717: Add AXP717_TS_PIN_CFG to
+ writeable regs
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, lee@kernel.org, samuel@sholland.org, 
+	jernej.skrabec@gmail.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
+	robh@kernel.org, sre@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Feb 01, 2025 at 11:18:13AM +0200, Dmitry Baryshkov wrote:
-> WCN3950 is another example of the WCN39xx BT/WiFI family of chips. It
-> requires different firmware files and has different current
-> requirements, so add it as a separate SoC type.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Sat, Feb 1, 2025 at 7:17=E2=80=AFAM Chris Morgan <macroalpha82@gmail.com=
+> wrote:
+>
+> From: Chris Morgan <macromorgan@hotmail.com>
+>
+> Add AXP717_TS_PIN_CFG (register 0x50) to the table of writeable
+> registers so that the temperature sensor can be configured by the
+> battery driver.
+>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  drivers/bluetooth/btqca.c   |  9 +++++++++
->  drivers/bluetooth/btqca.h   |  1 +
->  drivers/bluetooth/hci_qca.c | 25 +++++++++++++++++++++++++
->  3 files changed, 35 insertions(+)
-> 
-> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
-> index cdf09d9a9ad27c080f27c5fe8d61d76085e1fd2c..4d259d8447774ac7adfcc44d7cfb5bf41774289c 100644
-> --- a/drivers/bluetooth/btqca.c
-> +++ b/drivers/bluetooth/btqca.c
-> @@ -821,6 +821,10 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->  			snprintf(config.fwname, sizeof(config.fwname),
->  				 "qca/crbtfw%02x.tlv", rom_ver);
->  			break;
-> +		case QCA_WCN3950:
-> +			snprintf(config.fwname, sizeof(config.fwname),
-> +				 "qca/cmbtfw%02x.tlv", rom_ver);
-> +			break;
->  		case QCA_WCN3988:
->  			snprintf(config.fwname, sizeof(config.fwname),
->  				 "qca/apbtfw%02x.tlv", rom_ver);
-> @@ -891,6 +895,10 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->  					 "qca/crnv%02x.bin", rom_ver);
->  			}
->  			break;
-> +		case QCA_WCN3950:
-> +			snprintf(config.fwname, sizeof(config.fwname),
-> +				 "qca/cmnv%02x.bin", rom_ver);
+>  drivers/mfd/axp20x.c       | 2 +-
+>  include/linux/mfd/axp20x.h | 1 +
+>  2 files changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
+> index cff56deba24f..baf51dea98b0 100644
+> --- a/drivers/mfd/axp20x.c
+> +++ b/drivers/mfd/axp20x.c
+> @@ -222,7 +222,7 @@ static const struct regmap_range axp717_writeable_ran=
+ges[] =3D {
+>         regmap_reg_range(AXP717_PMU_FAULT, AXP717_MODULE_EN_CONTROL_1),
+>         regmap_reg_range(AXP717_MIN_SYS_V_CONTROL, AXP717_BOOST_CONTROL),
+>         regmap_reg_range(AXP717_VSYS_V_POWEROFF, AXP717_VSYS_V_POWEROFF),
+> -       regmap_reg_range(AXP717_IRQ0_EN, AXP717_IRQ4_EN),
+> +       regmap_reg_range(AXP717_IRQ0_EN, AXP717_TS_PIN_CFG),
 
-WCN3950 1.3 might need to use additional NVM variants. I'll send the
-updated patchset tomorrow. The RB1 board uses version 1.2 of the chip.
+Please add a separate entry. As you can see immediately below,
+there is a separate entry for the IRQ status registers. We're
+not allowing writes to unknown registers.
 
-> +			break;
->  		case QCA_WCN3988:
->  			snprintf(config.fwname, sizeof(config.fwname),
->  				 "qca/apnv%02x.bin", rom_ver);
-> @@ -948,6 +956,7 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->  	 * VsMsftOpCode.
->  	 */
->  	switch (soc_type) {
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> diff --git a/drivers/bluetooth/btqca.h b/drivers/bluetooth/btqca.h
-> index 9d28c88002257bae31249457b98a5df1df26efe4..10ba8ebfe80fa43827e5c05f9ad643ecb2cea872 100644
-> --- a/drivers/bluetooth/btqca.h
-> +++ b/drivers/bluetooth/btqca.h
-> @@ -145,6 +145,7 @@ enum qca_btsoc_type {
->  	QCA_INVALID = -1,
->  	QCA_AR3002,
->  	QCA_ROME,
-> +	QCA_WCN3950,
->  	QCA_WCN3988,
->  	QCA_WCN3990,
->  	QCA_WCN3998,
-> diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
-> index 0ac2168f1dc4f8ae2f7a3b2912e7f5b5b8115cac..b39889ce0e8ff9d97f72eb8e70cb9c6825984c82 100644
-> --- a/drivers/bluetooth/hci_qca.c
-> +++ b/drivers/bluetooth/hci_qca.c
-> @@ -623,6 +623,7 @@ static int qca_open(struct hci_uart *hu)
->  		qcadev = serdev_device_get_drvdata(hu->serdev);
->  
->  		switch (qcadev->btsoc_type) {
-> +		case QCA_WCN3950:
->  		case QCA_WCN3988:
->  		case QCA_WCN3990:
->  		case QCA_WCN3991:
-> @@ -1366,6 +1367,7 @@ static int qca_set_baudrate(struct hci_dev *hdev, uint8_t baudrate)
->  
->  	/* Give the controller time to process the request */
->  	switch (qca_soc_type(hu)) {
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> @@ -1452,6 +1454,7 @@ static unsigned int qca_get_speed(struct hci_uart *hu,
->  static int qca_check_speeds(struct hci_uart *hu)
->  {
->  	switch (qca_soc_type(hu)) {
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> @@ -1494,6 +1497,7 @@ static int qca_set_speed(struct hci_uart *hu, enum qca_speed_type speed_type)
->  		 * changing the baudrate of chip and host.
->  		 */
->  		switch (soc_type) {
-> +		case QCA_WCN3950:
->  		case QCA_WCN3988:
->  		case QCA_WCN3990:
->  		case QCA_WCN3991:
-> @@ -1528,6 +1532,7 @@ static int qca_set_speed(struct hci_uart *hu, enum qca_speed_type speed_type)
->  
->  error:
->  		switch (soc_type) {
-> +		case QCA_WCN3950:
->  		case QCA_WCN3988:
->  		case QCA_WCN3990:
->  		case QCA_WCN3991:
-> @@ -1746,6 +1751,7 @@ static int qca_regulator_init(struct hci_uart *hu)
->  	}
->  
->  	switch (soc_type) {
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> @@ -1776,6 +1782,7 @@ static int qca_regulator_init(struct hci_uart *hu)
->  	qca_set_speed(hu, QCA_INIT_SPEED);
->  
->  	switch (soc_type) {
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> @@ -1807,6 +1814,7 @@ static int qca_power_on(struct hci_dev *hdev)
->  		return 0;
->  
->  	switch (soc_type) {
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> @@ -1891,6 +1899,7 @@ static int qca_setup(struct hci_uart *hu)
->  		soc_name = "qca2066";
->  		break;
->  
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> @@ -1925,6 +1934,7 @@ static int qca_setup(struct hci_uart *hu)
->  	clear_bit(QCA_SSR_TRIGGERED, &qca->flags);
->  
->  	switch (soc_type) {
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> @@ -1958,6 +1968,7 @@ static int qca_setup(struct hci_uart *hu)
->  	}
->  
->  	switch (soc_type) {
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> @@ -2046,6 +2057,17 @@ static const struct hci_uart_proto qca_proto = {
->  	.dequeue	= qca_dequeue,
->  };
->  
-> +static const struct qca_device_data qca_soc_data_wcn3950 __maybe_unused = {
-> +	.soc_type = QCA_WCN3950,
-> +	.vregs = (struct qca_vreg []) {
-> +		{ "vddio", 15000  },
-> +		{ "vddxo", 60000  },
-> +		{ "vddrf", 155000 },
-> +		{ "vddch0", 585000 },
-> +	},
-> +	.num_vregs = 4,
-> +};
-> +
->  static const struct qca_device_data qca_soc_data_wcn3988 __maybe_unused = {
->  	.soc_type = QCA_WCN3988,
->  	.vregs = (struct qca_vreg []) {
-> @@ -2338,6 +2360,7 @@ static int qca_serdev_probe(struct serdev_device *serdev)
->  		qcadev->btsoc_type = QCA_ROME;
->  
->  	switch (qcadev->btsoc_type) {
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> @@ -2374,6 +2397,7 @@ static int qca_serdev_probe(struct serdev_device *serdev)
->  			break;
->  		}
->  		fallthrough;
-> +	case QCA_WCN3950:
->  	case QCA_WCN3988:
->  	case QCA_WCN3990:
->  	case QCA_WCN3991:
-> @@ -2683,6 +2707,7 @@ static const struct of_device_id qca_bluetooth_of_match[] = {
->  	{ .compatible = "qcom,qca6174-bt" },
->  	{ .compatible = "qcom,qca6390-bt", .data = &qca_soc_data_qca6390},
->  	{ .compatible = "qcom,qca9377-bt" },
-> +	{ .compatible = "qcom,wcn3950-bt", .data = &qca_soc_data_wcn3950},
->  	{ .compatible = "qcom,wcn3988-bt", .data = &qca_soc_data_wcn3988},
->  	{ .compatible = "qcom,wcn3990-bt", .data = &qca_soc_data_wcn3990},
->  	{ .compatible = "qcom,wcn3991-bt", .data = &qca_soc_data_wcn3991},
-> 
-> -- 
-> 2.39.5
-> 
+ChenYu
 
--- 
-With best wishes
-Dmitry
+>         regmap_reg_range(AXP717_IRQ0_STATE, AXP717_IRQ4_STATE),
+>         regmap_reg_range(AXP717_ICC_CHG_SET, AXP717_CV_CHG_SET),
+>         regmap_reg_range(AXP717_DCDC_OUTPUT_CONTROL, AXP717_CPUSLDO_CONTR=
+OL),
+> diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
+> index c3df0e615fbf..3c5aecf1d4b5 100644
+> --- a/include/linux/mfd/axp20x.h
+> +++ b/include/linux/mfd/axp20x.h
+> @@ -137,6 +137,7 @@ enum axp20x_variants {
+>  #define AXP717_IRQ2_STATE              0x4a
+>  #define AXP717_IRQ3_STATE              0x4b
+>  #define AXP717_IRQ4_STATE              0x4c
+> +#define AXP717_TS_PIN_CFG              0x50
+>  #define AXP717_ICC_CHG_SET             0x62
+>  #define AXP717_ITERM_CHG_SET           0x63
+>  #define AXP717_CV_CHG_SET              0x64
+> --
+> 2.43.0
+>
+>
 
