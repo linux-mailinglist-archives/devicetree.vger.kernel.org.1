@@ -1,168 +1,316 @@
-Return-Path: <devicetree+bounces-142228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C0E0A24955
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 14:15:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5801A2495E
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 14:26:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 232DD1886F55
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 13:15:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 802A33A7EA3
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 13:26:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD8811ADC8B;
-	Sat,  1 Feb 2025 13:14:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8C3B1ADC9E;
+	Sat,  1 Feb 2025 13:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P+LJk11N"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="SkVy7t4i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88F9E1885AD;
-	Sat,  1 Feb 2025 13:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEFA91ADC86;
+	Sat,  1 Feb 2025 13:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738415696; cv=none; b=HI8db5GE+1eTEEp2sWGjhDU1BOpHcuZCgfVJ/MqXCkOyehFBUdhquh+MbzW2kGiFmzg0EmLU1Q+8hwHqGtF/81U7i3elQ6FB2x2K9wf0qWdJKf1H7vCRPKKkMZYemDTscKUr5Yserwl7xrtUJirGh+qCsUcNYZAUa1To5x6vXKQ=
+	t=1738416374; cv=none; b=h86Evzp++7cFWBe/28uL4L64EPvEUbqeur0uSrr4IFutaIOvSO2BBXkxLsRNtZyvBf4vU3k36j4V6r6vtBfv2IEKYIZnRTUIjd5f3qTAcUX0Hs2v3CgaHzwhc+9waTpITTDHduBnp1RAUni3uuLB/7HSdN366r/kbFIvq8WzWeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738415696; c=relaxed/simple;
-	bh=Cn2nZHnSTH+FBfATcC78w8zbQW6SSI1lGefI8uphhok=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tGUnBSYyzw51ZyOrHliSuXs59MfTX6SsWLHLkiMCykczkbLWQ8CT71mNUQZwsfOTSzZkH0iUfOAGmBbHWxRSjqqaClI4kgTcOjLTbDQ4IcnFnrct7MY3Shg8VWpWcAHugwSMJmq9Mhd5pcF950EZo/7ZPjZdGOz762xsPOY+Sh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P+LJk11N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 832D1C4CED3;
-	Sat,  1 Feb 2025 13:14:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738415696;
-	bh=Cn2nZHnSTH+FBfATcC78w8zbQW6SSI1lGefI8uphhok=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=P+LJk11NQmPW5dxhdcfXbVeM4/0Kb8UrBF3QM7acTl9KoXifxqNmiDu9vIKSGYorl
-	 zFhbxSpXm8ZHJBM6/N/NOFJwHHGkBO2/e7cUqja0lVj0whgyAExHqV5Guf69HkNeTc
-	 rdlwbaV0SCNwg5sx6Q6eQUswprRxQJ0bIy2AZSTXwzHM1a3dDMS/MV3dWbzqIm6nH3
-	 fqiELVadQPWo4ylVU5Hm1UTDR94yHPctm4luS/nc00VnuqeCqz8YzyjWkTXzR6a0p1
-	 KA9iikFA7zLGeYIL9udIt4pK+e6lOcYbDMYCda2HTLx+MgldbSwkPsKScKZ0wy/Z7D
-	 XIbxSk/4ZjJFQ==
-Date: Sat, 1 Feb 2025 13:14:45 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alexandru
- Ardelean <aardelean@baylibre.com>, David Lechner <dlechner@baylibre.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Guillaume Stols
- <gstols@baylibre.com>
-Subject: Re: [PATCH v3 10/10] iio: adc: ad7606: add support for writing
- registers when using backend
-Message-ID: <20250201131445.12ceb7e9@jic23-huawei>
-In-Reply-To: <20250129-wip-bl-ad7606_add_backend_sw_mode-v3-10-c3aec77c0ab7@baylibre.com>
-References: <20250129-wip-bl-ad7606_add_backend_sw_mode-v3-0-c3aec77c0ab7@baylibre.com>
-	<20250129-wip-bl-ad7606_add_backend_sw_mode-v3-10-c3aec77c0ab7@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1738416374; c=relaxed/simple;
+	bh=b3O/qSbqNNQ28t3nk7RjAgzIrSwggCwl7A5uBoO1iaY=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=aczAN1ekFkISO4QvCCNspVX1A1EzzKOiJwxJiqOpOfXHZwAaaFtAGghCC6ZPiqTz+fr9BYC7ESTT24olreEGZiqzio7UoVqn5BzoNSPw6u7/kwVvNc+wCcGpydJ0Vi6Upb9PJNeDV+VMTGCV24AfSmMBynsvfzNIlKEwhuTqjwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=SkVy7t4i; arc=none smtp.client-ip=162.240.238.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
+	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=T7G3hSUc9bTIrJebJihtbB+qLlY0pl3Vs5vlzJrMpIE=; b=SkVy7t4imij8wKcsbqYb3ZTVaV
+	9cxy5eHu5FDYeZm1TR4XgWapoNjlIwZ8sSAw7vJ93fj2H7bdk5LkyXojq2Eimi1eBq6low1x4aaFS
+	y5s+YY+WOsRnssN7ApakP0rDbalVYdWBerukgeqb1ILe10CCQ7iM2+TmZxvm7zLQtx8Imcqc+OgtZ
+	JNmVTNedPgt90+eaQ6GR3C8PTxqRtKYbKI5DLb+8P+Y6e88SasGx0bSsI+TtO7TsUZw3wCv8NWN8C
+	edt2B+WFOZ01jf6wP/Ew9fBNOEC10DDambnM5cSS4TAfmjmuC64aTA1yC+1+l+avJFz3LGs9baf9v
+	k2RBrTZw==;
+Received: from [122.175.9.182] (port=63123 helo=zimbra.couthit.local)
+	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <basharath@couthit.com>)
+	id 1teDVW-0003sY-2y;
+	Sat, 01 Feb 2025 18:55:59 +0530
+Received: from zimbra.couthit.local (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTPS id 71F301781C56;
+	Sat,  1 Feb 2025 18:55:47 +0530 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTP id 4A67A1782035;
+	Sat,  1 Feb 2025 18:55:47 +0530 (IST)
+Received: from zimbra.couthit.local ([127.0.0.1])
+	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id bv297qfT9IZd; Sat,  1 Feb 2025 18:55:47 +0530 (IST)
+Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
+	by zimbra.couthit.local (Postfix) with ESMTP id 02E011781C56;
+	Sat,  1 Feb 2025 18:55:47 +0530 (IST)
+Date: Sat, 1 Feb 2025 18:55:46 +0530 (IST)
+From: Basharath Hussain Khaja <basharath@couthit.com>
+To: horms <horms@kernel.org>
+Cc: basharath <basharath@couthit.com>, danishanwar <danishanwar@ti.com>, 
+	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
+	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
+	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
+	conor+dt <conor+dt@kernel.org>, nm <nm@ti.com>, 
+	ssantosh <ssantosh@kernel.org>, tony <tony@atomide.com>, 
+	richardcochran <richardcochran@gmail.com>, 
+	parvathi <parvathi@couthit.com>, schnelle <schnelle@linux.ibm.com>, 
+	rdunlap <rdunlap@infradead.org>, diogo ivo <diogo.ivo@siemens.com>, 
+	m-karicheri2 <m-karicheri2@ti.com>, 
+	jacob e keller <jacob.e.keller@intel.com>, 
+	m-malladi <m-malladi@ti.com>, 
+	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
+	afd <afd@ti.com>, s-anna <s-anna@ti.com>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+	netdev <netdev@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	linux-omap <linux-omap@vger.kernel.org>, 
+	pratheesh <pratheesh@ti.com>, prajith <prajith@ti.com>, 
+	vigneshr <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
+	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
+	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
+	mohan <mohan@couthit.com>
+Message-ID: <269561652.481649.1738416346650.JavaMail.zimbra@couthit.local>
+In-Reply-To: <20250130114145.GM113107@kernel.org>
+References: <20250124122353.1457174-1-basharath@couthit.com> <20250124122353.1457174-3-basharath@couthit.com> <20250130114145.GM113107@kernel.org>
+Subject: Re: [RFC v2 PATCH 02/10] net: ti: prueth: Adds ICSSM Ethernet
+ driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
+Thread-Topic: prueth: Adds ICSSM Ethernet driver
+Thread-Index: iTYs9GBoUdW9vbTht5x/pdwNyAgDdQ==
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
+X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Wed, 29 Jan 2025 12:03:11 +0100
-Angelo Dureghello <adureghello@baylibre.com> wrote:
 
-> From: Guillaume Stols <gstols@baylibre.com>
+> On Fri, Jan 24, 2025 at 05:53:45PM +0530, Basharath Hussain Khaja wrote:
+>> From: Roger Quadros <rogerq@ti.com>
+>> 
+>> Updates Kernel configuration to enable PRUETH driver and its dependencies
+>> along with makefile changes to add the new PRUETH driver.
+>> 
+>> Changes includes init and deinit of ICSSM PRU Ethernet driver including
+>> net dev registration and firmware loading for DUAL-MAC mode running on
+>> PRU-ICSS2 instance.
+>> 
+>> Changes also includes link handling, PRU booting, default firmware loading
+>> and PRU stopping using existing remoteproc driver APIs.
+>> 
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>> Signed-off-by: Andrew F. Davis <afd@ti.com>
+>> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+>> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
 > 
-> Add the logic for effectively enabling the software mode for the
-> iio-backend, i.e. enabling the software mode channel configuration and
-> implementing the register writing functions.
+> ...
 > 
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-> Co-developed-by: Angelo Dureghello <adureghello@baylibre.com>
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+>> diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+>> b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+> 
+> ...
+> 
+>> +static int icssm_emac_set_boot_pru(struct prueth_emac *emac,
+>> +				   struct net_device *ndev)
+>> +{
+>> +	const struct prueth_firmware *pru_firmwares;
+>> +	struct prueth *prueth = emac->prueth;
+>> +	const char *fw_name;
+>> +	int ret;
+>> +
+>> +	pru_firmwares = &prueth->fw_data->fw_pru[emac->port_id - 1];
+>> +	fw_name = pru_firmwares->fw_name[prueth->eth_type];
+>> +	if (!fw_name) {
+>> +		netdev_err(ndev, "eth_type %d not supported\n",
+>> +			   prueth->eth_type);
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	ret = rproc_set_firmware(emac->pru, fw_name);
+>> +	if (ret) {
+>> +		netdev_err(ndev, "failed to set PRU0 firmware %s: %d\n",
+>> +			   fw_name, ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = rproc_boot(emac->pru);
+>> +	if (ret) {
+>> +		netdev_err(ndev, "failed to boot PRU0: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +/**
+>> + * icssm_emac_ndo_open - EMAC device open
+>> + * @ndev: network adapter device
+>> + *
+>> + * Called when system wants to start the interface.
+>> + *
+>> + * Return: 0 for a successful open, or appropriate error code
+>> + */
+>> +static int icssm_emac_ndo_open(struct net_device *ndev)
+>> +{
+>> +	struct prueth_emac *emac = netdev_priv(ndev);
+>> +	int ret;
+>> +
+>> +	ret = icssm_emac_set_boot_pru(emac, ndev);
+>> +	if (ret)
+>> +		netdev_err(ndev, "failed to boot PRU: %d\n", ret);
+> 
+> Hi Roger, Basharath, all,
+> 
+> icssm_emac_set_boot_pru() already logs errors, including the one above.
+> So this log seems unnecessary to me.
+> 
+> Also, should an error be returned here?  If so, it looks like
+> icssm_emac_set_boot_pru() should release resources allocated by
+> rproc_set_firmware() if rproc_boot() fails.
+> 
 
-A few trivial things inline.
+Agreed. We will remove the extra print and make sure allocated resources
+are released appropriately in the next version.
 
-> diff --git a/drivers/iio/adc/ad7606_par.c b/drivers/iio/adc/ad7606_par.c
-> index 64733b607aa8..19d93ae49e1d 100644
-> --- a/drivers/iio/adc/ad7606_par.c
-> +++ b/drivers/iio/adc/ad7606_par.c
-> @@ -19,6 +19,7 @@
+>> +
+>> +	/* start PHY */
+>> +	phy_start(emac->phydev);
+>> +
+>> +	return 0;
+>> +}
+> 
+> ...
+> 
+>> +static int icssm_prueth_netdev_init(struct prueth *prueth,
+>> +				    struct device_node *eth_node)
+>> +{
+>> +	struct prueth_emac *emac;
+>> +	struct net_device *ndev;
+>> +	enum prueth_port port;
+>> +	enum prueth_mac mac;
+>> +	int ret;
+>> +
+>> +	port = icssm_prueth_node_port(eth_node);
+>> +	if (port == PRUETH_PORT_INVALID)
+>> +		return -EINVAL;
+>> +
+>> +	mac = icssm_prueth_node_mac(eth_node);
+>> +	if (mac == PRUETH_MAC_INVALID)
+>> +		return -EINVAL;
+>> +
+>> +	ndev = devm_alloc_etherdev(prueth->dev, sizeof(*emac));
+>> +	if (!ndev)
+>> +		return -ENOMEM;
+>> +
+>> +	SET_NETDEV_DEV(ndev, prueth->dev);
+>> +	emac = netdev_priv(ndev);
+>> +	prueth->emac[mac] = emac;
+>> +	emac->prueth = prueth;
+>> +	emac->ndev = ndev;
+>> +	emac->port_id = port;
+>> +
+>> +	/* by default eth_type is EMAC */
+>> +	switch (port) {
+>> +	case PRUETH_PORT_MII0:
+>> +		emac->pru = prueth->pru0;
+>> +		break;
+>> +	case PRUETH_PORT_MII1:
+>> +		emac->pru = prueth->pru1;
+>> +		break;
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +	/* get mac address from DT and set private and netdev addr */
+>> +	ret = of_get_ethdev_address(eth_node, ndev);
+>> +	if (!is_valid_ether_addr(ndev->dev_addr)) {
+>> +		eth_hw_addr_random(ndev);
+>> +		dev_warn(prueth->dev, "port %d: using random MAC addr: %pM\n",
+>> +			 port, ndev->dev_addr);
+>> +	}
+>> +	ether_addr_copy(emac->mac_addr, ndev->dev_addr);
+>> +
+>> +	/* connect PHY */
+>> +	emac->phydev = of_phy_get_and_connect(ndev, eth_node,
+>> +					      icssm_emac_adjust_link);
+>> +	if (!emac->phydev) {
+>> +		dev_dbg(prueth->dev, "PHY connection failed\n");
+>> +		ret = -EPROBE_DEFER;
+> 
+> Perhaps I misunderstand things, but if this occurs then
+> presumably icssm_prueth_netdev_init() will be called again.
+> And for each time this occirs another ndev will be allocated
+> by devm_alloc_etherdev(), each of which will only be freed
+> once the device is eventually torn-down.
+> 
+> I wonder if it would be better to free ndev here.
+> Which I think would imply using a non-mdev allocation for symmetry.
+> 
+> Similarly for resources allocated in the caller icssm_prueth_probe().
+> 
 
->  
-> -static int ad7606_bi_update_scan_mode(struct iio_dev *indio_dev, const unsigned long *scan_mask)
-> +static const struct iio_chan_spec ad7606b_bi_sw_channels[] = {
-> +	AD7606_BI_SW_CHANNEL(0),
-> +	AD7606_BI_SW_CHANNEL(1),
-> +	AD7606_BI_SW_CHANNEL(2),
-> +	AD7606_BI_SW_CHANNEL(3),
-> +	AD7606_BI_SW_CHANNEL(4),
-> +	AD7606_BI_SW_CHANNEL(5),
-> +	AD7606_BI_SW_CHANNEL(6),
-> +	AD7606_BI_SW_CHANNEL(7),
-> +};
-> +
-> +static int ad7606_par_bus_update_scan_mode(struct iio_dev *indio_dev,
-> +					   const unsigned long *scan_mask)
->  {
->  	struct ad7606_state *st = iio_priv(indio_dev);
->  	unsigned int c, ret;
-> @@ -48,7 +61,8 @@ static int ad7606_bi_update_scan_mode(struct iio_dev *indio_dev, const unsigned
->  	return 0;
->  }
->  
-> -static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio_dev)
-> +static int ad7606_par_bus_setup_iio_backend(struct device *dev,
-> +					    struct iio_dev *indio_dev)
->  {
->  	struct ad7606_state *st = iio_priv(indio_dev);
->  	unsigned int ret, c;
-> @@ -86,9 +100,56 @@ static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio
->  	return 0;
->  }
->  
-> +static int ad7606_par_bus_reg_read(struct iio_dev *indio_dev, unsigned int addr)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	int val, ret;
-> +	struct ad7606_platform_data *pdata =  st->dev->platform_data;
-Bonus space before st that shouldn't be there.
+Agreed, we will address this error case and free the resources appropriately.
 
-I'd also reorder this to have int val, ret last.
+>> +		goto free;
+>> +	}
+>> +
+>> +	/* remove unsupported modes */
+>> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_10baseT_Full_BIT);
+>> +
+>> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
+>> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_100baseT_Half_BIT);
+>> +
+>> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_Pause_BIT);
+>> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_Asym_Pause_BIT);
+>> +
+>> +	ndev->netdev_ops = &emac_netdev_ops;
+>> +
+>> +	return 0;
+>> +free:
+> 
+> nit: This doesn't free anything.
+> 
 
-> +
-> +	ret = iio_device_claim_direct_mode(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = pdata->bus_reg_read(st->back, addr, &val);
-> +
-> +	iio_device_release_direct_mode(indio_dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return val;
-> +}
-> +
-> +static int ad7606_par_bus_reg_write(struct iio_dev *indio_dev,
-> +				    unsigned int addr, unsigned int val)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	struct ad7606_platform_data *pdata =  st->dev->platform_data;
+Sure. We will address in the next version.
 
-Same bonus space.
+>> +	prueth->emac[mac] = NULL;
+>> +
+>> +	return ret;
+>> +}
+> 
+> ...
 
-> +	int ret;
-> +
-> +	ret = iio_device_claim_direct_mode(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = pdata->bus_reg_write(st->back, addr, val);
-> +
-> +	iio_device_release_direct_mode(indio_dev);
-> +
-> +	return ret;
-> +}
-
+Thanks & Best Regards,
+Basharath
 
