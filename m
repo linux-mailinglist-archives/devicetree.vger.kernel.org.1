@@ -1,160 +1,154 @@
-Return-Path: <devicetree+bounces-142247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E516EA249EC
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:36:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C30A3A249EF
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:36:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60CE416486B
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 15:35:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2BE61887352
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 15:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 046621C1F20;
-	Sat,  1 Feb 2025 15:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB95F1C54BB;
+	Sat,  1 Feb 2025 15:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5dGmrwr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WdlqMDsn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB83A16F265;
-	Sat,  1 Feb 2025 15:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 579571C2324
+	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 15:35:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738424150; cv=none; b=gQq/4WQMVly/Arr1g1EvnUw2B3arFcskAei3EryQQU9z1CMYVArMn1OgTn46jQIwWJwmA8mSiTST094O8yj2kdFAQwFW3tEgHCT5Dzl/RgPXxtILJeq2zxjpKs1le4PxE0RZqrktGvm58HZ/v2e/rhxVoGF7A02u6on+dyGF7qs=
+	t=1738424160; cv=none; b=BEh0rbfsF6E8Gs8P9X965Z/1TUAFMOwv4+m7gxQjFixRumfljH8SnNLzquca9Swjy6dKK/zD0E2cz+GVckL1eiPNSz2TMbyqSsHXaf5ZQC9yr4p47hQgc20+lcQvKDshS9RcSsG9dFhTjZz7kipxx0NcBhkdyMIwLhDC1yA/pdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738424150; c=relaxed/simple;
-	bh=gdaQDzjILI94jdST7ElLYSDSe1zmq6F1j9pYdNHiRh0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GB2pTMmvJLzUlG3kYT/QU/Y4gJNsY8pcKMljW7erlBVCXi06oF2lRv28vkV86p1MBzlX5ItqRPgyrYLX9Mvj3SUvhI67A+Snp1Ni5vt1CmLAH+a9Y2RQh9e0Rk6oOyRDuCtgbruLiDWbFZbjb2adFmG9MkfHs7442tPq49gupEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H5dGmrwr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 200F6C4CED3;
-	Sat,  1 Feb 2025 15:35:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738424150;
-	bh=gdaQDzjILI94jdST7ElLYSDSe1zmq6F1j9pYdNHiRh0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=H5dGmrwrVklRSs8FPZElk5LGaETVowTVK+XD01Yq8Ka8rtZTynayTqkLmoyTQUhil
-	 I8Pw1YF42M6BLQoRDqa9yvXjQRlDmtEoo+EKYcLb3o00rtn2Jdej6Nd7UlqDYdtq/n
-	 4Xt8Cx2D7SFy3DYqeKMq4sEOm2DSaZ9WmT8pveMOsEPJP56cQdX8UDMeGjReECOZGu
-	 H3XW3nkmXIKrBDBBSHDziV+layb7BlMm9IrezoQ39dvDRw+z1+/Kw9N1XLroYTAKcW
-	 7sU1VlpXilNGqYExsI7PKL1pbF26FWeza5BDEEehrLit4GafKm6O4MrPGccTXg73VP
-	 hsdqzuqGxSOlw==
-Date: Sat, 1 Feb 2025 15:35:39 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, Sergiu Cuciurean
- <sergiu.cuciurean@analog.com>, <lars@metafoo.de>,
- <Michael.Hennerich@analog.com>, <marcelo.schmitt@analog.com>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <jonath4nns@gmail.com>, <marcelo.schmitt1@gmail.com>
-Subject: Re: [PATCH v2 10/16] iio: adc: ad7768-1: Move buffer allocation to
- a separate function
-Message-ID: <20250201153539.5617b5b8@jic23-huawei>
-In-Reply-To: <e39115cee88524f05c8a628b0d3836928c6cc190.1737985435.git.Jonathan.Santos@analog.com>
-References: <cover.1737985435.git.Jonathan.Santos@analog.com>
-	<e39115cee88524f05c8a628b0d3836928c6cc190.1737985435.git.Jonathan.Santos@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1738424160; c=relaxed/simple;
+	bh=zdc+MNv+j9zAnb2Y2FpDgGxuLasNGKL5Lamfb9DXLyo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ggpnnSHnpWU0mb4p+v0PMKueJmQsqmqJfi7hXBuoYdyetST8mYFnmD9zMyQ+uUg2t9XgeWEAw6h16egmJ6iqv2a5nWf/jiTu+5h+mkRUpqSgqrv7Bp8aEAn4L3yZZYo+LwqA60AWQOBR7h8HLJgA4b5Lu5cH5bbSBi2RlcRwpS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WdlqMDsn; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2164b662090so60116595ad.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Feb 2025 07:35:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738424157; x=1739028957; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=NgK4G7cVRPxNbsx8fhvydaH8JOFZ6CJwy0WoHgTVDx8=;
+        b=WdlqMDsn3+6qfS3MR6gez899T57GARhTDPJ7WarJEMDMuP+7fNHSHrMSbK0PsZf92f
+         5S/rA2zVIdXTEgP73Z2AlVtN6Qj9fyAyDbKmeWsKxLiVlINqYm2zg/y6v8qjLyB5ohoa
+         qtQx0y/WtpzDUzPF+W5XpoV5VQLlmBojVFPQBcYh2g5F8S3tac/i4g4qoGqelvAmmIKU
+         GkDcJPZirXqGEir6N4S+m0ieMs/UKh7JGBCXhUotabX/ePF2DADaZQcaala2FPgkQGG5
+         TzbKwerZfEmDDoYmn50T+t/M3hVK/mTzgEKwg50QhDs5PKMLf3a1EzMNER5RJW2GY1hz
+         VVKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738424157; x=1739028957;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NgK4G7cVRPxNbsx8fhvydaH8JOFZ6CJwy0WoHgTVDx8=;
+        b=UQWOwCL5BrN/ez8WJfYoX3dP0twLda6BJTTdvDx+tHHwMzjp408VnR4q+sLrkCPDvy
+         pQpbGl9hBSDcQEww6oMFU4wkKfvwwnHd6yNjDj5mbnRwkY+qAAbYuyDdh/iaAMPrD1y6
+         ygOGa0eVLf3dYzbOcqMmxCcTelfzXd5Yx/C5B+SL3qM87ww5GEXMHAbMfI9ATUSZHcjl
+         Ds+uwGklBptWTkLEW65oXjbKL7z4HnwqpecMt3Uo24RwxUAphvnXBj9XVfLJvlHuR2Bu
+         ICDwi8Qfwixpkg6L/4pPGpRQVmoZx5siyhQYwjnEL8pXj0xJdTAZjzbutdHJ6p6vKpWJ
+         8RfA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOSj7jRP2Ds3RMOU1hUuaDB/Rv4CwEfqmlJFGbyJk906dJ8DjuZcHmu+s6sfo2ssIfOBXh9KAbPrHG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOmwwZDT0JUz5IUu4JtWIZaKYOdjBclgr4zpU0e3PT3hgJD1QF
+	mHnzN4XI2aBnJrhqTfZRmOtH0G+RWgVXflRcT/Lj5OV2Ds/mPzkWCHCOCjGkwQ==
+X-Gm-Gg: ASbGnct8sD9RIduaeGPfC/mVtyltze/MjAgsWx4H+CZfqVq/MtnI/gnV1YuuI4AcTm9
+	0rJGA9T26xdGjTOdWgGqTf3nre80AyuxazGBo1RK9dUOlH7Io4mLyC+fpeBPwsohKdhUF7YdwPs
+	atx674odyEkz5GMt+jdwsQiX28KG9aC+3pBei+sdhLP1UAlMc+Im3vwPudJg/mNxpRL31mhWfrh
+	uNcmEIjt3jF/lpZ+WjPhCohGYmamtu/6kAvAkHHHPFrZlLDPVaABD0hx3CJIooKv/LSJAJDJE4p
+	grGtl4aJVCktjVqba342UwCzfj8=
+X-Google-Smtp-Source: AGHT+IGzlTHcr2GwqKspBtJB7T7HsAuTwQj90njS9oPWBHSKjkl6folIH9PdSTDNGx/ngMu4/vXRyg==
+X-Received: by 2002:a05:6300:710f:b0:1ed:a565:f80e with SMTP id adf61e73a8af0-1eda566b50cmr5077054637.14.1738424157428;
+        Sat, 01 Feb 2025 07:35:57 -0800 (PST)
+Received: from thinkpad ([120.56.202.249])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-acec047944csm4891617a12.54.2025.02.01.07.35.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Feb 2025 07:35:56 -0800 (PST)
+Date: Sat, 1 Feb 2025 21:05:49 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v6 7/7] arm64: dts: rockchip: Add UFS support for RK3576
+ SoC
+Message-ID: <20250201153549.dusrfjrxxrizmcfa@thinkpad>
+References: <1737428427-32393-1-git-send-email-shawn.lin@rock-chips.com>
+ <1737428427-32393-8-git-send-email-shawn.lin@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1737428427-32393-8-git-send-email-shawn.lin@rock-chips.com>
 
-On Mon, 27 Jan 2025 12:13:19 -0300
-Jonathan Santos <Jonathan.Santos@analog.com> wrote:
-
-> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+On Tue, Jan 21, 2025 at 11:00:27AM +0800, Shawn Lin wrote:
+> Add ufshc node to rk3576.dtsi, so the board using UFS could
+> enable it.
 > 
-> This change moves the buffer allocation in a separate function, making
-> space for adding another type of iio buffer if needed.
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Small nit below.
+
 > 
-> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
-Jonathan, this one needs your sign off to reflect that you handled
-the patch as part of it's path to upstream.  I can't apply
-anything that is missing such SoB.
-
-
 > ---
-> v2 Changes:
-> * Interrupt and completion moved out from ad7768_triggered_buffer_alloc(). 
-> ---
->  drivers/iio/adc/ad7768-1.c | 44 ++++++++++++++++++++++----------------
->  1 file changed, 26 insertions(+), 18 deletions(-)
 > 
-> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-> index 5e2093be9b92..8487b9a06609 100644
-> --- a/drivers/iio/adc/ad7768-1.c
-> +++ b/drivers/iio/adc/ad7768-1.c
-> @@ -599,6 +599,31 @@ static const struct regmap_config ad7768_regmap_config = {
->  	.max_register = AD7768_REG_MCLK_COUNTER,
->  };
+> Changes in v6:
+> - remove comments suggested by Mani
+> 
+> Changes in v5: None
+> Changes in v4: None
+> Changes in v3: None
+> Changes in v2: None
+> 
+>  arch/arm64/boot/dts/rockchip/rk3576.dtsi | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> index 4dde954..bb786bd 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> @@ -1221,6 +1221,30 @@
+>  			};
+>  		};
 >  
-> +static int ad7768_triggered_buffer_alloc(struct iio_dev *indio_dev)
-> +{
-> +	struct ad7768_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	st->trig = devm_iio_trigger_alloc(indio_dev->dev.parent, "%s-dev%d",
-> +					  indio_dev->name,
-> +					  iio_device_id(indio_dev));
-> +	if (!st->trig)
-> +		return -ENOMEM;
-> +
-> +	st->trig->ops = &ad7768_trigger_ops;
-> +	iio_trigger_set_drvdata(st->trig, indio_dev);
-> +	ret = devm_iio_trigger_register(indio_dev->dev.parent, st->trig);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->trig = iio_trigger_get(st->trig);
-> +
-> +	return devm_iio_triggered_buffer_setup(indio_dev->dev.parent, indio_dev,
-> +					       &iio_pollfunc_store_time,
-> +					       &ad7768_trigger_handler,
-> +					       &ad7768_buffer_ops);
-> +}
-> +
->  static int ad7768_probe(struct spi_device *spi)
->  {
->  	struct ad7768_state *st;
-> @@ -669,20 +694,6 @@ static int ad7768_probe(struct spi_device *spi)
->  		return ret;
->  	}
->  
-> -	st->trig = devm_iio_trigger_alloc(&spi->dev, "%s-dev%d",
-> -					  indio_dev->name,
-> -					  iio_device_id(indio_dev));
-> -	if (!st->trig)
-> -		return -ENOMEM;
-> -
-> -	st->trig->ops = &ad7768_trigger_ops;
-> -	iio_trigger_set_drvdata(st->trig, indio_dev);
-> -	ret = devm_iio_trigger_register(&spi->dev, st->trig);
-> -	if (ret)
-> -		return ret;
-> -
-> -	indio_dev->trig = iio_trigger_get(st->trig);
-> -
->  	init_completion(&st->completion);
->  
->  	ret = ad7768_set_channel_label(indio_dev, ARRAY_SIZE(ad7768_channels));
-> @@ -696,10 +707,7 @@ static int ad7768_probe(struct spi_device *spi)
->  	if (ret)
->  		return ret;
->  
-> -	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-> -					      &iio_pollfunc_store_time,
-> -					      &ad7768_trigger_handler,
-> -					      &ad7768_buffer_ops);
-> +	ret = ad7768_triggered_buffer_alloc(indio_dev);
->  	if (ret)
->  		return ret;
->  
+> +		ufshc: ufshc@2a2d0000 {
+> +			compatible = "rockchip,rk3576-ufshc";
+> +			reg = <0x0 0x2a2d0000 0 0x10000>,
+> +			      <0x0 0x2b040000 0 0x10000>,
+> +			      <0x0 0x2601f000 0 0x1000>,
+> +			      <0x0 0x2603c000 0 0x1000>,
+> +			      <0x0 0x2a2e0000 0 0x10000>;
 
+Use 0x0 for consistency.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
