@@ -1,244 +1,204 @@
-Return-Path: <devicetree+bounces-142271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F277A24B28
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 18:31:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E5BA24B60
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 19:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8380D163FBC
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 17:31:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EAA61640C5
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 18:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D7E1F2379;
-	Sat,  1 Feb 2025 17:29:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75BD51CAA7C;
+	Sat,  1 Feb 2025 18:07:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xt3z897L"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZMe2V8sB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5E81EBFEF
-	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 17:29:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3681CAA68;
+	Sat,  1 Feb 2025 18:07:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738430969; cv=none; b=a6YTAz1IcLx6a727R82aBBl73TwONiP7bSYJS5zntgVC4VnfQNKNF7pN4YECcL5B5+wzj76yUCPG8QepZCv/KmkreSagYfVlGkNPBV+/Xq27bMP1RjSAdcJeWVR2anWL8tGwa3dgHzbwpA5cwC8om3htNBQkOXQ5/nZZBHm9HUM=
+	t=1738433242; cv=none; b=stfRkkKC0DVClLpRti2QdiXMCPcI6Fu5wLD3hdU9Ybv+se2baO6lPWllU0a3p/CEfdO09cXuOhlnfmowP+lM2K9NBdmWjOj/KQ1w/F5lQkgQ8q4i946ZYawZ9ClpV/gWeUfZSIHnmPLXh5nl4QdkrqrdrCAp37r5nisI0StsJoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738430969; c=relaxed/simple;
-	bh=JNFb6Y/XdVHYoGkQV0QeQUNrQN1lFqLu5lpLIO5kuFE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Mg5p3Naxx4ARX7MF9U6nkvpRQXIABjs2a7lKN2eFVZJJiKRZ6kRWa5LxufCd98h8v/ntB5DPyQfyNwOMahjvXam8oMnkIgAJQvnMtVD0zjMO/jqck4bCdQrjrT/kubFfP3iooq6hIZXQP6SRyJ555n9H+H+jyImgk9zTC5I4qVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Xt3z897L; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30036310158so23702911fa.0
-        for <devicetree@vger.kernel.org>; Sat, 01 Feb 2025 09:29:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738430964; x=1739035764; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ov3UCovqBDyElf7wgQMMIsdctTosh7cq25mLIhj+V3w=;
-        b=Xt3z897LjaabPzY8ydXsVLPV9aAVS+Y0nYZJ+QvH5m76lupwowkUPjGDyxfIBGYX/k
-         ppOH3UGPliwA5Th0WRsh4XGRo/0B2MFUJLib3TSEW58iUBZOkJINQkp1sVb8nJR7wJhR
-         0UdkoAnlUuEyAZGreovvP1nyzdOLGHp3oChvs2SneuLPXP6w0cf4q0Dlof11/dBRVQKS
-         xixSTCc64M5l6revooqDe0HHS13SMV8hoTGSkns3MYivV+0Qj7EXzbm61ZvBVuMje/Ov
-         fX547j+cCo7MA9cBjnR/NcmVRZRWt9FChxtofIoF6hVdaxQeu2TbIxkV7EUuyj6nAX/T
-         sXdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738430964; x=1739035764;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ov3UCovqBDyElf7wgQMMIsdctTosh7cq25mLIhj+V3w=;
-        b=EIb7FV6HJmgEmBTLygbetxaXU9owshJKMCTWOkTQZlOfFLaehKdT7dPlXJndCHoGCJ
-         g9dqmpMHEej628jQsCN2HlkZLL/dIz18g4APegVAc14+CJuVYXK3kMZmgrwjj4aUZMWD
-         HUqjt8CpSd+5Xo7cn/G5iGdyZQPvzwtUA0bPUDDcZz26xIafgtGEA+4WM1KqHlzTPUQn
-         fWZBXOFexbI2v2CQlXttyzUak0N53alunUk2inC3vm7bonn08ejrtmOpiBwAeJKpoq84
-         h7Ot7NjTWFepJJfoi+XXpsIAReAYZh2ULOvUfaOhEKULcpARAkWVgJFNtQZQIBbE9irO
-         01rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVdpFunXaF0j7g6q7WIkG4xwzdcyZ1oNg3RoAkzZOL21jX6BYmOBamv8sqcRrYnKqexe7BMCunUG7E0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvPz8IhneE16zkDqu3H8u3jLc3xwnYJqis3XnP4TCGbJhY1V5V
-	J5PTpOohPrjJ2pLR2XER5jrF0N2sGry3u5inhI5WS+/tbgkP2qPQrbJl4+ashvo=
-X-Gm-Gg: ASbGncuodxiiKQk8H7/OV+jTnkqQQHlZqx7W1ig39mGF9ffwbKlsgqy8IF+0ENubkto
-	m2R3fqAwWIUGPERpAf9zNkEiubjNIRwgTHTGtf1keHZXLw0av4OBfuUcVIXXBopdARqMiNZtYe9
-	Qehjeo/3S/HRMJ0/nzqemVzt6io+DKLPfnBQP1DO7YNPsHkwZo6wZHi4vpWeEohutR3mHBC0Fcp
-	KTc8pPmkHfoaFQ1hSqu2jRzixhEsbDC/8VAVVhS7pdEylZrHI6PSpFMA03IROMA7wG3YNn5Q99m
-	W4FX/UbJwKD7HHbtOS6hlYI=
-X-Google-Smtp-Source: AGHT+IEbRAFVDv4wTeAOfLKEfZhaMBcWT2J7LrursaaQv5WU+GnTo7mwskIzR3eETtUbLXdwcpyTng==
-X-Received: by 2002:a05:651c:198a:b0:302:48fd:6922 with SMTP id 38308e7fff4ca-30796975cb1mr53729091fa.37.1738430964458;
-        Sat, 01 Feb 2025 09:29:24 -0800 (PST)
-Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307a3099ec4sm8852161fa.48.2025.02.01.09.29.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Feb 2025 09:29:23 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 01 Feb 2025 19:29:12 +0200
-Subject: [PATCH v2 6/6] arm64: dts: qcom: qrb2210-rb1: add Bluetooth
- support
+	s=arc-20240116; t=1738433242; c=relaxed/simple;
+	bh=QNjg3ckstEEe8MylKQY/66Zc4nhJCM5qeaytIXE5Ikw=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=cRA4MSf38jiE67rrwEMx0mtTmdmM3iRB4ZcC3FCaOUXH5WE7ktucHwu/S6dcvaO/0QA/CxlND+wL6Hoi49M+OBvSzgfWmDwNnx31MfaAIakSdODP2Cprie/ehqfHEHApPKtnT420QdKrqj9Nc11nycnUyn3Xg0+F4ZGLznUvjBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZMe2V8sB; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738433241; x=1769969241;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=QNjg3ckstEEe8MylKQY/66Zc4nhJCM5qeaytIXE5Ikw=;
+  b=ZMe2V8sB/4Xxxv/RH1rk5UUyJ9qLOnJ1bx5TaLemL4yzsFeHqx9oNOmc
+   kHnvTPU2WK9hGn+nfH5GId1JegSYm5nxcCgZQ+CIKrbaakcmfRfz2MbO9
+   L8Pf9gxvMPqP5iBtbinyg5+wRsuE+2+P6f1PwqK715lGZ9S/lAsx/Qa9m
+   65Bb8DSQWb0F0iJWhhlsckqKQarbceTnZkdySb6LbrAtWbaKUyEIh4dUv
+   OAp3Y9OXSfC+NAtyho5zIxsMyoUWG6QcYXIXAGFtjcPOkahkX/pZpiT9x
+   UAR0rcanBexTNf/IqtxHQvX0PdzSg8xNcR2ABvOcPywo7AIr/5k5HDcbd
+   w==;
+X-CSE-ConnectionGUID: OOttOwsmTn2E5p3KXiu68w==
+X-CSE-MsgGUID: 82O3ECdVTk+L+2UM+SdisQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11333"; a="61450125"
+X-IronPort-AV: E=Sophos;i="6.13,252,1732608000"; 
+   d="scan'208";a="61450125"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2025 10:07:20 -0800
+X-CSE-ConnectionGUID: m2JodxUcQdu2VuJbrdAcFA==
+X-CSE-MsgGUID: KV7B0kQXT4+nYjN0w365YA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="133160352"
+Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2025 10:07:20 -0800
+Date: Sat, 1 Feb 2025 10:07:19 -0800 (PST)
+From: matthew.gerlach@linux.intel.com
+To: Frank Li <Frank.li@nxp.com>
+cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+    robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
+    conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com, 
+    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, matthew.gerlach@altera.com, 
+    peter.colberg@altera.com
+Subject: Re: [PATCH v5 3/5] arm64: dts: agilex: add dtsi for PCIe Root Port
+In-Reply-To: <Z5qS1NKSRn8pSqg1@lizhi-Precision-Tower-5810>
+Message-ID: <41edda71-de9d-e4e0-ef62-83e98f753e@linux.intel.com>
+References: <20250127173550.1222427-1-matthew.gerlach@linux.intel.com> <20250127173550.1222427-4-matthew.gerlach@linux.intel.com> <Z5qS1NKSRn8pSqg1@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250201-rb1-bt-v2-6-fd44011749bb@linaro.org>
-References: <20250201-rb1-bt-v2-0-fd44011749bb@linaro.org>
-In-Reply-To: <20250201-rb1-bt-v2-0-fd44011749bb@linaro.org>
-To: Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
- Rocky Liao <quic_rjliao@quicinc.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3096;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=JNFb6Y/XdVHYoGkQV0QeQUNrQN1lFqLu5lpLIO5kuFE=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnnlnl6CkypxUXZ9gNuva9FfZ1nAkgiRypC9/7h
- OQqeNg9FquJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ55Z5QAKCRCLPIo+Aiko
- 1TtvB/wKMPlfxck0+/eT+LF7golYJzAMWvXOVVT19yKb2FEW8oGVgxbEShBYDGikfO5MqXFER3q
- XYF5fiQK8uUQHWwdNnJRF9qxRvoPBxszSxhEOyI9sZicxSrT5vOyaajmlFTQd/+TkA/C8f1NVor
- w8U8CkPmtMLez1qcebKQ3D17MC2To/m7qFohl1jeJsmQBRs6z9T0PxpLwtlDgK0R0tjG+A7TmqH
- xAQTOVeXfKHY2/0a1/MHqQNgPiefsKUYF2GdgbJvOUkiwnk9dmn2b7V4e5ZUZnLur7nWuShRTLn
- SGbm9WWEpwtQUtwLltGcAOEcr8kgz/aCQk64pCVh6rm5L4Kj
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
-Add support for the onboard WCN3950 BT/WiFi chip. Corresponding firmware
-has been merged to linux-firmware and should be available in the next
-release.
 
-Bluetooth: hci0: setting up wcn399x
-Bluetooth: hci0: QCA Product ID   :0x0000000f
-Bluetooth: hci0: QCA SOC Version  :0x40070120
-Bluetooth: hci0: QCA ROM Version  :0x00000102
-Bluetooth: hci0: QCA Patch Version:0x00000001
-Bluetooth: hci0: QCA controller version 0x01200102
-Bluetooth: hci0: QCA Downloading qca/cmbtfw12.tlv
-Bluetooth: hci0: QCA Downloading qca/cmnv12.bin
-Bluetooth: hci0: QCA setup on UART is completed
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 82 ++++++++++++++++++++++++++++++++
- 1 file changed, 82 insertions(+)
+On Wed, 29 Jan 2025, Frank Li wrote:
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-index 7a789b41c2f1887f0c41ae24da2e2fe8915ab13c..b9248505fadd3b986e188976435b786f43975dc3 100644
---- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-@@ -15,6 +15,7 @@ / {
- 
- 	aliases {
- 		serial0 = &uart4;
-+		serial1 = &uart3;
- 		sdhc1 = &sdhc_1;
- 		sdhc2 = &sdhc_2;
- 	};
-@@ -549,6 +550,66 @@ can@0 {
- };
- 
- &tlmm {
-+	uart3_default: uart3-default-state {
-+		cts-pins {
-+			pins = "gpio8";
-+			function = "qup3";
-+			drive-strength = <2>;
-+			bias-bus-hold;
-+		};
-+
-+		rts-pins {
-+			pins = "gpio9";
-+			function = "qup3";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		tx-pins {
-+			pins = "gpio10";
-+			function = "qup3";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		rx-pins {
-+			pins = "gpio11";
-+			function = "qup3";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	uart3_sleep: uart3-sleep-state {
-+		cts-pins {
-+			pins = "gpio8";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-bus-hold;
-+		};
-+
-+		rts-pins {
-+			pins = "gpio9";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		tx-pins {
-+			pins = "gpio10";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		rx-pins {
-+			pins = "gpio11";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	lt9611_rst_pin: lt9611-rst-state {
- 		pins = "gpio41";
- 		function = "gpio";
-@@ -584,6 +645,27 @@ key_volp_n: key-volp-n-state {
- 	};
- };
- 
-+&uart3 {
-+	/delete-property/ interrupts;
-+	interrupts-extended = <&intc GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
-+			      <&tlmm 11 IRQ_TYPE_LEVEL_HIGH>;
-+	pinctrl-0 = <&uart3_default>;
-+	pinctrl-1 = <&uart3_sleep>;
-+	pinctrl-names = "default", "sleep";
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3950-bt";
-+
-+		vddio-supply = <&pm4125_l15>;
-+		vddxo-supply = <&pm4125_l13>;
-+		vddrf-supply = <&pm4125_l10>;
-+		vddch0-supply = <&pm4125_l22>;
-+		enable-gpios = <&tlmm 87 GPIO_ACTIVE_HIGH>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
- /* UART connected to the Micro-USB port via a FTDI chip */
- &uart4 {
- 	compatible = "qcom,geni-debug-uart";
+> On Mon, Jan 27, 2025 at 11:35:48AM -0600, Matthew Gerlach wrote:
+>> Add the base device tree for support of the PCIe Root Port
+>> for the Agilex family of chips.
+>>
+>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>> ---
+>> v3:
+>>  - Remove accepted patches from patch set.
+>>
+>> v2:
+>>  - Rename node to fix schema check error.
+>> ---
+>>  .../intel/socfpga_agilex_pcie_root_port.dtsi  | 55 +++++++++++++++++++
+>>  1 file changed, 55 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+>> new file mode 100644
+>> index 000000000000..50f131f5791b
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+>> @@ -0,0 +1,55 @@
+>> +// SPDX-License-Identifier:     GPL-2.0
+>> +/*
+>> + * Copyright (C) 2024, Intel Corporation
+>> + */
+>> +&soc0 {
+>> +	aglx_hps_bridges: fpga-bus@80000000 {
+>> +		compatible = "simple-bus";
+>> +		reg = <0x80000000 0x20200000>,
+>> +		      <0xf9000000 0x00100000>;
+>> +		reg-names = "axi_h2f", "axi_h2f_lw";
+>> +		#address-cells = <0x2>;
+>> +		#size-cells = <0x1>;
+>> +		ranges = <0x00000000 0x00000000 0x80000000 0x00040000>,
+>> +			 <0x00000000 0x10000000 0x90100000 0x0ff00000>,
+>> +			 <0x00000000 0x20000000 0xa0000000 0x00200000>,
+>> +			 <0x00000001 0x00010000 0xf9010000 0x00008000>,
+>> +			 <0x00000001 0x00018000 0xf9018000 0x00000080>,
+>> +			 <0x00000001 0x00018080 0xf9018080 0x00000010>;
+>> +
+>> +		pcie_0_pcie_aglx: pcie@200000000 {
+>> +			reg = <0x00000000 0x10000000 0x10000000>,
+>> +			      <0x00000001 0x00010000 0x00008000>,
+>> +			      <0x00000000 0x20000000 0x00200000>;
+>> +			reg-names = "Txs", "Cra", "Hip";
+>> +			interrupt-parent = <&intc>;
+>> +			interrupts = <GIC_SPI 0x14 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <0x1>;
+>> +			device_type = "pci";
+>> +			bus-range = <0x0000000 0x000000ff>;
+>> +			ranges = <0x82000000 0x00000000 0x00100000 0x00000000 0x10000000 0x00000000 0x0ff00000>;
+>
+> This convert to pci address 0x0010_0000..0x1000_0000 from parent bus address
+> 0x1000_0000..0x1ff0_0000
+>
+> aglx_hps_bridges bridge convert 0x90100000..0xa000_0000 (cpu address) to
+> 0x1000_0000..0x1ff0_0000 according to ranges[1](second entry).
+>
+> Just want to confirm that "0x1000_0000..0x1ff0_0000" is actually reflect
+> hardware behavior.
 
--- 
-2.39.5
+As far as I know, these conversions reflect the actual hardware behavior, 
+but I will investigate further to confirm.
 
+>
+> On going a thread
+> https://lore.kernel.org/linux-pci/Z5pfiJyXB3NtGSfe@lizhi-Precision-Tower-5810/T/#t
+>
+> Try to clean up all cpu_addr_fixup() or similar fixup() in pci root complex
+> drivers, but which require dtsi reflect the real hardware behavior.
+>
+> In most current pci driver, even "0x1000_0000..0x1ff0_0000" is wrong, it
+> still work by drivers' fixup. If dts correct descript hardware, these
+> fixup can be removed.
+
+The current driver, drivers/pci/controller/pcie-altera.c, does not have 
+any cpu_addr_fix(); so I think the dts is properly describing the 
+hardware, but I will continue to investigate and follow the thread
+to clean the fixups.
+
+>
+> best regards
+> Frank
+
+Thanks for the feedback,
+Matthew Gerlach
+
+>
+>> +			msi-parent = <&pcie_0_msi_irq>;
+>> +			#address-cells = <0x3>;
+>> +			#size-cells = <0x2>;
+>> +			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
+>> +			interrupt-map = <0x0 0x0 0x0 0x1 &pcie_0_pcie_aglx 0 0 0 0x1>,
+>> +					<0x0 0x0 0x0 0x2 &pcie_0_pcie_aglx 0 0 0 0x2>,
+>> +					<0x0 0x0 0x0 0x3 &pcie_0_pcie_aglx 0 0 0 0x3>,
+>> +					<0x0 0x0 0x0 0x4 &pcie_0_pcie_aglx 0 0 0 0x4>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		pcie_0_msi_irq: msi@10008080 {
+>> +			compatible = "altr,msi-1.0";
+>> +			reg = <0x00000001 0x00018080 0x00000010>,
+>> +			      <0x00000001 0x00018000 0x00000080>;
+>> +			reg-names = "csr", "vector_slave";
+>> +			interrupt-parent = <&intc>;
+>> +			interrupts = <GIC_SPI 0x13 IRQ_TYPE_LEVEL_HIGH>;
+>> +			msi-controller;
+>> +			num-vectors = <0x20>;
+>> +			status = "disabled";
+>> +		};
+>> +	};
+>> +};
+>> --
+>> 2.34.1
+>>
+>
 
