@@ -1,144 +1,178 @@
-Return-Path: <devicetree+bounces-142209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC95BA2485F
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 11:52:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8717AA2486D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 12:01:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08B547A11D4
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 10:51:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B31C18890FD
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 11:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF768152787;
-	Sat,  1 Feb 2025 10:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A422B1448C7;
+	Sat,  1 Feb 2025 11:01:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="OghGsq9q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E6EC43179;
-	Sat,  1 Feb 2025 10:52:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC3217BD6;
+	Sat,  1 Feb 2025 11:01:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738407161; cv=none; b=pzpPDxWDIMZAbfMt7pykCUU/o42PMl3sp6vYgQKriOQzOinf/iFYs9j34irySY+n31d+92NpDw/kpUa2+Cth/P2oXMC6GjdrcpL9hKgIwC0YYxBvJT+Lktf+I4lNJ+1WA5EXXqc7aWKIuRLfuKgd5CFVpP+Dqed0mCu0XJibMDk=
+	t=1738407712; cv=none; b=qXm6Oj3e6z71QTsXDv/g4+vORk6P7Yr+WMJFVQZUMP257n/KUE/6vEYz+087OrVgeWIV6rrpSF0IzqwovwCKeYr/vhtZQwArXZ/lZ1M85hmgx3vaBpg8MjPJqaROGunEESiIINwYcoVdO9a1HAwxLYZDdoxmoud+p06r30ZvMPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738407161; c=relaxed/simple;
-	bh=GftBZ8rMZl72TpEgFZw+F1ogkNcPyAqM9PkddAl2/cw=;
+	s=arc-20240116; t=1738407712; c=relaxed/simple;
+	bh=k4VeygnUS+nfavsjUsvt0PYTReb4TcKfgJiP756W5XY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Vgvs7jnHGAGdDHalvj3OMq6LxyAvMl4np6Y99c6aFTNRqmGheEUi4dcOdNSNrVe/mVSIrkApCxu7oiYrVCHq9cOxK1vgFPORGo8OO1NWHefod9+1/zSImTkTSEh7qpzVDxmifJG0loCJeARrSB6tjKg49gQYFp0XrNBllaSABxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-303548a9361so20854361fa.0;
-        Sat, 01 Feb 2025 02:52:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738407156; x=1739011956;
+	 To:Cc:Content-Type; b=guvbSsr4grfwm6CLDMiakOho6wYgvKZaUr7I2iOdELYXGOh7tpYlC6HgTHo/v0uakS08k4C3ldAQ/4RYwKXR8AI7B3ZNAYDEdP8UBa35U4msxEeEceRR5NIDPq1qAZev9luuyc2Yv5NeoxSJlHZs0EOBqT3O/ebinhqh0LS4sHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=OghGsq9q; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-216634dd574so33759505ad.2;
+        Sat, 01 Feb 2025 03:01:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1738407710; x=1739012510; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kRwFI5d8wyEyXjJelLyWqjx7Awrgh8zTXgtWY1JnNlU=;
-        b=X8OTknu3yKff9aa1GmAcg+mswUN2TUNT882ozCY8rPDOBI555hzUjKz/afFQDblX0d
-         dn5vtAX0VBmX6j7WSTMm603mUo2IafeslU7KinT5oEvuRNveXXBV+b4heSOWAvEXaj3k
-         FptIgE5no3SoB2820puSRJKOkBEXq4GrUKDumu6+1ZU71oNXuk8makzgC3UU2H0mi1My
-         QleS7hG3Wk5wZo8sN2nobWKSZzLVTc1l3ZJHvnUCUsEex49675Yy6uSIiqu0GPk2+R7j
-         hYI14MMJmlCEPImzWvVg76ZlOfjyDQaHw/B2NYQVap8uakR//Pc9hmRCH6OiPxhH34e+
-         OkVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV+dVDQf9EK0Sk4uEO4t8oCfYU2yZm6RW2frEwOrdimbbUQx6KLo3ctXl0QFI4fV1ud0TXpEYiLME0Z@vger.kernel.org, AJvYcCVo97Rj2rM0wINYQfxvZ08ItCiPzrk+wnsi18xta7ICWhzEzJC6Lq6yRek6bYjL3BkPQIbb9GvQ6dY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxfWhJFdahYRWILla8tI4ac0RY5+0uSmnuONSHpOeD/IXwZOBc
-	+zyH4wByA9r1c1fnv6HPlmrKZ6n+d2BOsQn4EkPPVSUJOuEMCN1akWZXt+Iv
-X-Gm-Gg: ASbGncsr8BHd+FjrzDg56LFS6V2/YTPKMdBTd1Qts/cpEEhIk1MK0ufiEapkMSM+VNt
-	CnqP0g47h1wSgg0W2pbJbFOCZrRXbpdO7OhWq6CPKkccDpG2yF6HY7Kp+IFhMaLyELcHX3FV+Y/
-	ORY82cKhxhNwk4Di3pl9p5tMWWZ+zB4jPIEVXVQayQl73AdtSUdbd/CdMbG1l0KzMGpb3NgCpAA
-	5vkQJL1zzm2JoLfngo83XhlUOY8HfmK3AYQGppEAQcjrXmW+dFmP8HFmJhKYATJW7iwkTrAB94N
-	fzTChbzEjGsrJtVCeQ7kACFKv/huE3AOtzpIns+ZZjJ7GC/D
-X-Google-Smtp-Source: AGHT+IH/PPNHWI3Tkoic6SIzL9t9xmsPWm8yqRwHJi3qr69nfc8BYcHtYID8+EHSgcZKFKBPDIMC1g==
-X-Received: by 2002:a05:651c:198b:b0:302:3356:3a98 with SMTP id 38308e7fff4ca-3079690e18emr52232371fa.37.1738407156161;
-        Sat, 01 Feb 2025 02:52:36 -0800 (PST)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307a3088d3asm8427871fa.39.2025.02.01.02.52.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Feb 2025 02:52:35 -0800 (PST)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30613802a04so27097161fa.2;
-        Sat, 01 Feb 2025 02:52:35 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU4jLhvb+e25Uu3T7+X9xkoOK+MXVC0ddlBGClnSJrw2h/LkRe68MCUH5GL5BhBn29qZ/yhYWbGKl0z@vger.kernel.org, AJvYcCUNGEMQK4TddHMYhqp8l2ez0jjuGT8kt2cbqA3RVVwz3kb9oTv8SpFJhbF+4U24841aPSlExK4KQnM=@vger.kernel.org
-X-Received: by 2002:a05:651c:502:b0:304:4e03:f9d9 with SMTP id
- 38308e7fff4ca-307968e0a20mr54218521fa.28.1738407155636; Sat, 01 Feb 2025
- 02:52:35 -0800 (PST)
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IgviFgiTRKBQorySpqmLCZcfPI+S5PYXE7dN7JoWph0=;
+        b=OghGsq9qBtKbKLo9srk5Xdx5eBNtEzL8+lyNIY7/dAyOVOyyUOsQ3mpDM+j0uq0eEl
+         ngShSViOUP96QDaZeQvmJ3lR4TRTRy1EfzxmAeM9Ygq+yYKP5T1By86lOr16iq3ipDit
+         zzwA9XrHIlzDB+uPdaKH0FgL36EmJntMUe8D0TrV00Q/aXbctMKk9L3q8TsKSoF4ugko
+         nQaSOD76KLa8NWvcIdsvC7ujwtx8LUQcMjvyMR+PESVKPPGRibcWq5zjDc9Hm/WuZ2Rp
+         h1RabIH7wODUG1s8lgdAC4MwB80cvx6QIijmytrlW3yc6gxrNj75bdSfiH8LlPQUZ2Ai
+         ziSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738407710; x=1739012510;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IgviFgiTRKBQorySpqmLCZcfPI+S5PYXE7dN7JoWph0=;
+        b=b3pApy5CvpSC/KS1gmnkRRKZxW6mtb+JqHEUXsJQhyU1dpuSFReeDPr5FwYAcTUDe4
+         Ht9rhkHUGkzbN8XJ5ED5cRNSyR26t1gwiZYfdWb1F+OwmXBdfUoKmK1U/8tYESz/UhJJ
+         7+cQhF3dcRzDBkFjKxnO4G0cG06mAExm3HwDmRPkQp5lCncNYSSk8RiCjNW61Rg/ALNw
+         k/TvQqBxkp38J+zfZ7ykgvGAGSceH7YpTkOk7ajfpAlYOHzLUPksPG83u7mVFbc7GoCQ
+         lffXN6Hb+TkH8YhqCkNGHfEtQ8eR5wY6ZFvoN8JMN34jCumma+aknSZh2MRhB8sMGFBD
+         YYrg==
+X-Forwarded-Encrypted: i=1; AJvYcCU9CgR6cg5LNmOTX0UFQxs+0mTMjhqUjhYISTIhR8mMxr2TEkfFkPemuvXAYGnyVgqecrxr8WkP0B0B@vger.kernel.org, AJvYcCX/ApilIK8X9qScDHNLfQl+Mrgp8XXg6RILXONHaTz7/+z7Ha7I6sz82wg11hzF7+3+GuzKWfOE0ebISFck@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGCO+JXcaiHLFvL2nbhzH3yxqjEGnNvteNiGWY+qZboAD90gQP
+	4Pge5KQxFkVFzN7vfZuzSAZoGHC92l2dPF4GRyIl5ZJasMvtSDAVlnMs6rQKAl22Tr+sdpK4iKY
+	jS8+i/DfrchBSLFzPYzth6IogFAE=
+X-Gm-Gg: ASbGncsD2Z9xq3q0iz/FfUkJ0LuHrixRHVTVujEEhZr37Gkkf+ZyzLIwbNRJLfMbYaD
+	gS1rHmKSJc9KqK+RQ6l43m/ZmPP4+NxzNcvgYuyFzUozYYEEVd0zI+ed2/DSe88S95eZf08usv6
+	xKXB+f629iUXE=
+X-Google-Smtp-Source: AGHT+IGrcFP3fi7nZj16nCl5OL6FPEPmSqptYgvrx04MREEDcnn7VynJHZBiOuPcwfy53f71XzvVP/oyU5M11jIaiKw=
+X-Received: by 2002:a17:902:e84b:b0:215:b087:5d62 with SMTP id
+ d9443c01a7336-21dd7deec73mr235159955ad.36.1738407710240; Sat, 01 Feb 2025
+ 03:01:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250131231455.153447-1-macroalpha82@gmail.com> <20250131231455.153447-4-macroalpha82@gmail.com>
-In-Reply-To: <20250131231455.153447-4-macroalpha82@gmail.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Sat, 1 Feb 2025 18:52:23 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65p+_woYGKRrQs2aKRJO1LdYW4eA0h2kiyMTUhgZ9DNrA@mail.gmail.com>
-X-Gm-Features: AWEUYZmavIApcVldzJqk3l2AkjKAa_El4sfI4mNDa0tSr-IA5hYLt6odr6wR63o
-Message-ID: <CAGb2v65p+_woYGKRrQs2aKRJO1LdYW4eA0h2kiyMTUhgZ9DNrA@mail.gmail.com>
-Subject: Re: [PATCH 3/5] mfd: axp20x: AXP717: Add AXP717_TS_PIN_CFG to
- writeable regs
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org, lee@kernel.org, samuel@sholland.org, 
-	jernej.skrabec@gmail.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, sre@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+References: <20250131200319.19996-1-funderscore@postmarketos.org> <20250131200319.19996-3-funderscore@postmarketos.org>
+In-Reply-To: <20250131200319.19996-3-funderscore@postmarketos.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 1 Feb 2025 12:01:39 +0100
+X-Gm-Features: AWEUYZkXEqHyhsd8L6lSp8TYewHZzKYzaHWOXDWjpy_w3xCcDMFYNnIQJ6qrfB4
+Message-ID: <CAFBinCA+=aqE_=eMFtwpHYVX+8CrtecvHexpHNe_7nh_dDhKYw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: add support for
+ xiaomi-aquaman/Mi TV Stick
+To: Ferass El Hafidi <funderscore@postmarketos.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht, Artur Weber <aweber.kernel@gmail.com>, 
+	Karl Chan <exxxxkc@getgoogleoff.me>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Feb 1, 2025 at 7:17=E2=80=AFAM Chris Morgan <macroalpha82@gmail.com=
-> wrote:
->
-> From: Chris Morgan <macromorgan@hotmail.com>
->
-> Add AXP717_TS_PIN_CFG (register 0x50) to the table of writeable
-> registers so that the temperature sensor can be configured by the
-> battery driver.
->
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  drivers/mfd/axp20x.c       | 2 +-
->  include/linux/mfd/axp20x.h | 1 +
->  2 files changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
-> index cff56deba24f..baf51dea98b0 100644
-> --- a/drivers/mfd/axp20x.c
-> +++ b/drivers/mfd/axp20x.c
-> @@ -222,7 +222,7 @@ static const struct regmap_range axp717_writeable_ran=
-ges[] =3D {
->         regmap_reg_range(AXP717_PMU_FAULT, AXP717_MODULE_EN_CONTROL_1),
->         regmap_reg_range(AXP717_MIN_SYS_V_CONTROL, AXP717_BOOST_CONTROL),
->         regmap_reg_range(AXP717_VSYS_V_POWEROFF, AXP717_VSYS_V_POWEROFF),
-> -       regmap_reg_range(AXP717_IRQ0_EN, AXP717_IRQ4_EN),
-> +       regmap_reg_range(AXP717_IRQ0_EN, AXP717_TS_PIN_CFG),
+Hello,
 
-Please add a separate entry. As you can see immediately below,
-there is a separate entry for the IRQ status registers. We're
-not allowing writes to unknown registers.
+thanks for the patch - I have a few small comments below.
 
-ChenYu
+On Fri, Jan 31, 2025 at 9:05=E2=80=AFPM Ferass El Hafidi
+<funderscore@postmarketos.org> wrote:
+[...]
+> +       cvbs-connector {
+> +               /* No CVBS connector */
+> +               status =3D "disabled";
+> +       };
+You're inheriting  "meson-gxl-s805x.dtsi" but I can't see that this -
+or its parents - define a cvbs-connector node anywhere.
+Can we just omit it completely
 
->         regmap_reg_range(AXP717_IRQ0_STATE, AXP717_IRQ4_STATE),
->         regmap_reg_range(AXP717_ICC_CHG_SET, AXP717_CV_CHG_SET),
->         regmap_reg_range(AXP717_DCDC_OUTPUT_CONTROL, AXP717_CPUSLDO_CONTR=
-OL),
-> diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
-> index c3df0e615fbf..3c5aecf1d4b5 100644
-> --- a/include/linux/mfd/axp20x.h
-> +++ b/include/linux/mfd/axp20x.h
-> @@ -137,6 +137,7 @@ enum axp20x_variants {
->  #define AXP717_IRQ2_STATE              0x4a
->  #define AXP717_IRQ3_STATE              0x4b
->  #define AXP717_IRQ4_STATE              0x4c
-> +#define AXP717_TS_PIN_CFG              0x50
->  #define AXP717_ICC_CHG_SET             0x62
->  #define AXP717_ITERM_CHG_SET           0x63
->  #define AXP717_CV_CHG_SET              0x64
-> --
-> 2.43.0
->
->
+[...]
+> +       vcc_5v: regulator-vcc-5v {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "VCC_5V";
+> +               regulator-min-microvolt =3D <5000000>;
+> +               regulator-max-microvolt =3D <5000000>;
+> +       };
+> +
+> +
+nit-pick: since you're planning to send a v2 anyways, keep it at one
+blank line here
+
+[...]
+> +&ethmac {
+> +       /* No Ethernet connector */
+> +       status =3D "disabled";
+> +};
+Similar to the cvbs-connector: status =3D "disabled" should be the default =
+here
+
+> +&internal_phy {
+> +       pinctrl-0 =3D <&eth_link_led_pins>, <&eth_act_led_pins>;
+> +       pinctrl-names =3D "default";
+> +};
+why are there Ethernet LED pins if there's no Ethernet connector?
+
+> +&ir {
+> +       /* No IR */
+> +       status =3D "disabled";
+> +};
+This is also disabled by default
+
+[...]
+> +&pwm_ef {
+> +       status =3D "okay";
+> +       pinctrl-0 =3D <&pwm_e_pins>;
+> +       pinctrl-names =3D "default";
+> +       clocks =3D <&clkc CLKID_FCLK_DIV4>;
+> +       clock-names =3D "clkin0";
+> +};
+Please drop clocks and clock-names to make this work with linux-next.
+Background: [0] is queued for the next release and it means that the
+PWM controller driver will now pick the "best" clock on it's own and
+overriding here will likely result in your board not booting.
+
+[...]
+> +&usb {
+> +       status =3D "okay";
+> +       dr_mode =3D "host";
+> +};
+> +
+> +&usb2_phy0 {
+> +       phy-supply =3D <&vcc_5v>;
+> +};
+I'm guilty of this myself and I think you can be better here:
+Use vbus-supply =3D <&vcc_5v>; in the &usb node to correctly describe
+where the USB VBUS signal is coming from.
+(I believe that the PHY is not internally powered by 5V as the SoC
+doesn't take any 5V inputs)
+
+
+Best regards,
+Martin
+
+
+[0] https://lore.kernel.org/linux-amlogic/20241227212514.1376682-1-martin.b=
+lumenstingl@googlemail.com/
 
