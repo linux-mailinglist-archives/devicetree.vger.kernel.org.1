@@ -1,355 +1,153 @@
-Return-Path: <devicetree+bounces-142193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0D90A2471A
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 06:27:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 751E9A24723
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 06:45:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 653BF188993B
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 05:27:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5FBD16703B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 05:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 427DD3D3B3;
-	Sat,  1 Feb 2025 05:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BDA73C463;
+	Sat,  1 Feb 2025 05:45:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZkUDyv4u"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cnlEh6Mp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738CB2F5E;
-	Sat,  1 Feb 2025 05:27:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08781F50F;
+	Sat,  1 Feb 2025 05:45:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738387636; cv=none; b=mHFA4ar9JmHy4WVKNVHGriWx4Oa3SdsmBvRVctA+S04jYNazYNgsLsfEbUKHp9iTeY93QiUzW6PF99AryeMzNWZ9b5y/jArrAMWMqGMPt92lTQ9pLk5HrEfSiWzgqu8XUqUKr/NsBdP1hDDAw2e3bVAGCgf321XQxydTLMxTkpo=
+	t=1738388755; cv=none; b=PmzIzyoprEacIZNEgJp4HqpiAo7SaUdz9DYA/EgO5H5WLxYn9MuhiWaynVXq8tpiLiPi30SyhZSd2rLm4YAn/JJz8zcMzW2D+KPW9BQisPhL3vCWDl41HMRZ8zJcBzb5BnXEcBQI7e9z1zfzfvUedbuU6HKWN7+XcB3xZUVj0as=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738387636; c=relaxed/simple;
-	bh=DgmuRhc7kbOR6yTf3oMbAEk3V8/dAh+V4NZULu3LncU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=joQ5u8499iPxJ793PVg76zOQWYo3CJdnrw/UCYofxlMQJolw7glo5eKRIwTg3TecjmPXC3uQJ5pGA+wi1DWaKZYqQ9gOo0PmqZVS82LOiM+xO48yDEADwmLlc4obrj7hQdgz8yberIkURm7c3KD2/TYyT66Pl6WpgvWfVqq9AaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZkUDyv4u; arc=none smtp.client-ip=209.85.219.170
+	s=arc-20240116; t=1738388755; c=relaxed/simple;
+	bh=qbawXxUKP6zDQlebdU6+x0n3usE9wNb94Sv/W0Ffz74=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=aW8Zf+DgoEULM9kVf+wL9tZbCbDsoJn6cmkquDd3NloOQaxJkRSqmLJ53T/ndehqbTtwiUrHCHVaSIvAUxfs0UhHQIygAVRuTqGUxh9002+cKfZOroUGZK1sILfevDwBDSMXjl3agWV3S5W/497LjaeQt5NgFkTdXcDajFxgZgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cnlEh6Mp; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e5aef3523f9so51336276.3;
-        Fri, 31 Jan 2025 21:27:14 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43624b2d453so31534395e9.2;
+        Fri, 31 Jan 2025 21:45:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738387633; x=1738992433; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1738388751; x=1738993551; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=emzT1Kp7AzEwfFxKgwUWQ/uqx4Iw5IKg65hav48u4j4=;
-        b=ZkUDyv4uzxxJjd3rNYSBrCbx6vzgEmxVlWF10t0xmMuxFajcFluXymEKLnWHzisCC6
-         r/p/J4Bzbmd1tCTnLx9HyMV6/lYyHBNUA8wa1pxGpFbkb1+4rMBOb63iwW3gOjbR4MJ+
-         Dx55iraDLbmcJhdMkc6ks4G1YxdYAHMGA0d6VVUZLIeCyqWkCVH/w8jd2nLC5jjnvwAe
-         s526hGL8rltE3iUv7tEAUJ0SDYyV7zKJF0gIu6t43u5IPtKZfXCY08J1pXh3AqhP0T5h
-         YgzFLT9o7I5r8arA7i+Zy9fTPqjmvfgD9aJuEh4VkdYfLI5g6Em9cgKeafVaFuqSmOgv
-         U7Lw==
+        bh=G85DeTf/oB1QdDKSnZYOTyqELILiv8N6DE1BpyFXcGE=;
+        b=cnlEh6MpzV9QR9Y/SV/sPuLkM8eGhlGsOSvvwkn8Febh+ealj8nxOhAAOrm9Kzcp9H
+         Hrr+UvJShZdVtUllNIb6a+KuB9BtlQbt2VCPNv6HOJzOislM6N/88WvRPDiLJsLarRqK
+         WeI32xDpossGezYIiG2KHFrpbRehq2kZ9x8v8jqZIvsIkYPKJpoFlziLdQzYYglidn4P
+         UFJdLQOaei8LRfvaun4Ho10T8EEK2KfHy7HK+0N8GqV3OSG8kPok1IaKshNGbSnQIuie
+         yQZROka9LjQPt/955Kx3vCie0j1dfJoGze7N6OgAVhxErQOCPlzCrdE0hhXAt/DgivBT
+         h8jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738387633; x=1738992433;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1738388751; x=1738993551;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=emzT1Kp7AzEwfFxKgwUWQ/uqx4Iw5IKg65hav48u4j4=;
-        b=vySB8fEqKf0PNslCuncWF9M8GRNzcFsFxO53LMPFy3wf3yQMR4HPbmSbJkjr768xe2
-         N2LFhT84LO/cnZTqN880ukX5C/jsaXFK+QubVIvp/rkTxnDyf5KxTOEVO+PkKbZZkggq
-         08LZoEuaKYcx1Qn/h8BTE/ycMw25r+LCWUASwCJUdGa3oKXmx2D/iBkGhUacHezgN631
-         sm5DhoaFCAnid0YwOm8HvnY97vPiF3B7zyXoodKGTLl5Ob9HLUPcFONmwnDwJg4APlR3
-         vbpYmsCQGRNwTOHlk0kF7CXowtcMvZ+S0rmyD8goidfSsWKOIgHx3YNANWGXiGHoUNdc
-         7qSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWtkzJM4bNCPzZo2+xN2vbmCaKjzbKGsk3XwhR18ra4z0fEBI2nyaGbQJ3psjSpUz+uQNujYDusINBT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZx+N0+ORtUQjlTfq1iMo5YtsjFcdjYtg9EX3BiuqvHquXce2U
-	c55YiSPTtwAVScXs7R5blyjjt5QJ2c0eE2OBZ/PkWDGehBwAwXy+UGhBtI4jbYQT38gRz5Gq6FL
-	4HHUh/N5XW2RFL1Ao24worY28UhQ=
-X-Gm-Gg: ASbGncuoE7p/x5YMHYunV1j0MUEKSot1qn8Fy+yVUiCGPm5JlFdS/wvVJAsST3J1Usf
-	cmQ9cYFt53gWTCpL2ca5JIPJ6wbugJWHbNQ9/yv6Cngu+UGckQT415/LybUkH22GWFAUTguwTcx
-	JQqMkCeV+gzyWY6tzshSE0ZoPiNJAB
-X-Google-Smtp-Source: AGHT+IHsLPn+ZYUGj1al8pEm+g4HaWDEXW779heuQ0gvXB1oMVyKWHxqfJUAVVx0BNYF61JMajYUGle1gWdPn6wD4gE=
-X-Received: by 2002:a05:6902:18c9:b0:e57:5f47:220e with SMTP id
- 3f1490d57ef6-e58a4acefcemr10789790276.11.1738387633189; Fri, 31 Jan 2025
- 21:27:13 -0800 (PST)
+        bh=G85DeTf/oB1QdDKSnZYOTyqELILiv8N6DE1BpyFXcGE=;
+        b=SSwj+kq7KBuGZes+FxLflWW7J0sfNaIrHEQqpr1FqyysTrEND1lYgnHpIHXYDgOQ84
+         mnsPbUBgwLocOuILra4VQUpefeuMudia48fwYNjbMQYNI/C1almbuRYFtQZ+TbpuVnj2
+         ooBJQndIbnf8YrD82+XMp7fJdGwRIZkSkHZE0Wds2tHSvwPHcNG5y/s4QO+3LDcwJjAR
+         cm0ndg0Xz7uOFoNysRUi3q4eG6WnhHZPOD809+78fY9zrXkwcR0ZifbY0Szn1Urev8KA
+         /KYulIFXNeh7NalBfgjK63k0kzMM9SkgyaeSwdiJZ/a542VsVEu/QYtqjBj3YqAfhR4j
+         nTQA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwy7ZVDrZpOe6Nbfrb5T3rWWfnbdufdy5q4orUggZ3ZeaJ9NsSI9j4yxsxiVtN+F42JEIwIVVutxXG@vger.kernel.org, AJvYcCXRDsN+HQ6pXEdwKaf7DLutCd+aiPCQn7J24O7PP1Wy1ar7yvCwg4zdoaFxlDgicU6OzvdCX3eYAuWFvxKW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3xK4VetnQFVtUbYLZbEJCocf05UTvJBa6vvi5xOJ2Avd7Yoi3
+	Cq/R0u3n3ha1+BDVaKfJUsvBrP7h4QNdfITYe5YJpTUwdtfLLxVr
+X-Gm-Gg: ASbGncugF2zXax15xWZgKdT3MgnEtQOWkQqt29sGnHZ1cdLedXMdGj51160PNia6lMa
+	6HWh5UFVdNTqTOr+dlxYoiybh3mXydYEVOUwKAqMd9zdAyyE1PORsHazmhuKRIle+jlY/XuyN2M
+	+BRoIlCQH+Dj8tBlEvgU+uCTdp65eCR0EeIioI9dqQtkHYGnkm6j+2QzmLUK4zGCJQ/wcHjBeR3
+	q8IhXzwVAwBmWp19DV1dVqlFRC97dAr0NWoKGh7armRvMx/WnfwcLjfK1EehaYzo8cbcFQOx1Bl
+	LYathi6Y8xXjQPBVjaOOes1CTaI2XNEgBx/7Pg==
+X-Google-Smtp-Source: AGHT+IGpv3U1XmTljvPm+aRio29IyVxb1CqNPRL0HcUV182tHRVmnYjMR4+uddkC3ZNgOv4PVJZSsQ==
+X-Received: by 2002:a05:600c:5027:b0:434:a26c:8291 with SMTP id 5b1f17b1804b1-438dc40d36emr133099025e9.24.1738388750948;
+        Fri, 31 Jan 2025 21:45:50 -0800 (PST)
+Received: from smtpclient.apple ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c5c11b363sm6349836f8f.40.2025.01.31.21.45.47
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 31 Jan 2025 21:45:50 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250131064354.4163579-1-kikuchan98@gmail.com>
- <20250131064354.4163579-2-kikuchan98@gmail.com> <20250131-whispering-ermine-of-wealth-d3d88c@krzk-bin>
-In-Reply-To: <20250131-whispering-ermine-of-wealth-d3d88c@krzk-bin>
-From: Hironori KIKUCHI <kikuchan98@gmail.com>
-Date: Sat, 1 Feb 2025 14:27:02 +0900
-X-Gm-Features: AWEUYZmlC20fbFyF1NFI_utnTK3XdirCuJ97-yb3PuYVg8ICYPoatoThGkURPoo
-Message-ID: <CAG40kxH8URoL655=2N3+PAjCGV8Dun7hNyDv=0Wpd1MSQYttGw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add generic MIPI-DSI/DPI panels
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.200.121\))
+Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add Xiaomi Mi TV Stick
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20250131200319.19996-2-funderscore@postmarketos.org>
+Date: Sat, 1 Feb 2025 09:45:34 +0400
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht,
+ Artur Weber <aweber.kernel@gmail.com>,
+ Karl Chan <exxxxkc@getgoogleoff.me>
 Content-Transfer-Encoding: quoted-printable
+Message-Id: <5D2DE475-BD47-4AAB-9638-3F1BF6C57811@gmail.com>
+References: <20250131200319.19996-1-funderscore@postmarketos.org>
+ <20250131200319.19996-2-funderscore@postmarketos.org>
+To: Ferass El Hafidi <funderscore@postmarketos.org>
+X-Mailer: Apple Mail (2.3826.200.121)
 
-Hello Krzysztof,
+> On 1 Feb 2025, at 12:03=E2=80=AFam, Ferass El Hafidi =
+<funderscore@postmarketos.org> wrote:
+>=20
+> From: Ferass El Hafidi <funderscore@postmarketos.org>
+>=20
+> Add support for xiaomi-aquaman.
+>=20
+> Signed-off-by: Ferass El Hafidi <funderscore@postmarketos.org>
+> ---
+> Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+> 1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml =
+b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> index 0647851ae..0db7038b9 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -70,6 +70,7 @@ properties:
+>           - enum:
+>               - amlogic,p241
+>               - libretech,aml-s805x-ac
+> +              - xiaomi,aquaman
 
-Thank you for your feedback.
+If this is S805Y not S805X, you should add a new binding section for
+S805Y devices, and add the board there.
 
-On Fri, Jan 31, 2025 at 4:47=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Fri, Jan 31, 2025 at 03:43:53PM +0900, Hironori KIKUCHI wrote:
-> > This is a binding for generic MIPI-DSI/DPI panels that require
-> > initialization with a simple command sequence before use.
-> >
-> > Although the `panel-simple` binding exists for generic panels, it is no=
-t
-> > suitable for panels that require initialization via their communication
-> > bus, as such panels cannot be considered "simple".
-> >
-> > While many dedicated bindings exist for such panels, the generic panels
-> > are not complex enough to warrant a dedicated binding because they only
-> > require a "simple" initialization before use.
->
-> All hardware warrants a dedicated binding. I don't get from where did
-> you take such rule that you can skip actual hardware specific aspects.
->
-> >
-> > This binding addresses that gap.
-> >
-> > Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-> > ---
-> >  .../bindings/display/panel/panel-mipi.yaml    | 244 ++++++++++++++++++
-> >  1 file changed, 244 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/pan=
-el-mipi.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi=
-.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi.yaml
-> > new file mode 100644
-> > index 00000000000..681614333d8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi.yaml
-> > @@ -0,0 +1,244 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/panel-mipi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Generic MIPI-DSI/DPI Panels Requiring Initialization
-> > +
-> > +maintainers:
-> > +  - Hironori KIKUCHI <kikuchan98@gmail.com>
-> > +
-> > +description:
-> > +  This is a binding for generic MIPI-DSI/DPI panels that require
-> > +  initialization with a simple command sequence before use.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - enum:
-> > +          - panel-mipi-dsi
-> > +          - panel-mipi-dpi-spi
->
-> Missing device specific compatibles.
->
-> > +      - items:
-> > +          - {}
-> > +          - enum:
-> > +              - panel-mipi-dsi
-> > +              - panel-mipi-dpi-spi
-> > +
-> > +  reg:
-> > +    description: DSI / SPI channel used by that screen
-> > +    maxItems: 1
-> > +
-> > +  power-supply: true
-> > +
-> > +  io-supply:
-> > +    description: I/O system regulator.
-> > +      No need to set if this is the same as polwer-supply.
-> > +
-> > +  dc-gpios:
-> > +    maxItems: 1
-> > +    description: Controller data/command selection (D/CX) in 4-line SP=
-I mode.
-> > +      If not set, the controller is in 3-line SPI mode.
-> > +      Disallowed for DSI.
-> > +
-> > +  width-mm: true
-> > +  height-mm: true
-> > +  panel-timing: true
-> > +  display-timings: true
-> > +
-> > +  reset-delay:
-> > +    description: Delay (in ms) after the reset command
->
-> So use proper unit suffixes. Everywhere.
->
->
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +
-> > +  init-delay:
-> > +    description: Delay (in ms) for sending the initial command sequenc=
-e
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +
-> > +  sleep-delay:
-> > +    description: Delay (in ms) after the sleep command
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +
-> > +  backlight-delay:
-> > +    description: Delay (in ms) for enabling the backlight
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +
-> > +  port: true
-> > +  reset-gpios: true
-> > +  rotation: true
-> > +
-> > +  backlight: true
-> > +
-> > +  init-sequence:
-> > +    description: Encoded initial command sequence.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +
-> > +  firmware-name:
-> > +    maxItems: 1
-> > +
-> > +  dsi-mode-video:
-> > +    description: Enable MIPI_DSI_MODE_VIDEO.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-mode-video-burst:
-> > +    description: Enable MIPI_DSI_MODE_VIDEO_BURST.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-mode-video-sync-pulse:
-> > +    description: Enable MIPI_DSI_MODE_VIDEO_SYNC_PULSE.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-mode-video-auto-vert:
-> > +    description: Enable MIPI_DSI_MODE_VIDEO_AUTO_VERT.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-mode-video-hse:
-> > +    description: Enable MIPI_DSI_MODE_VIDEO_HSE.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-mode-video-no-hfp:
-> > +    description: Enable MIPI_DSI_MODE_VIDEO_NO_HFP.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-mode-video-no-hbp:
-> > +    description: Enable MIPI_DSI_MODE_VIDEO_NO_HBP.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-mode-video-no-hsa:
-> > +    description: Enable MIPI_DSI_MODE_VIDEO_NO_HSA.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-mode-vsync-flush:
-> > +    description: Enable MIPI_DSI_MODE_VSYNC_FLUSH.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-mode-no-eot-packet:
-> > +    description: Enable MIPI_DSI_MODE_NO_EOT_PACKET.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-clock-non-continuous:
-> > +    description: Enable MIPI_DSI_CLOCK_NON_CONTINUOUS.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-mode-lpm:
-> > +    description: Enable MIPI_DSI_MODE_LPM.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +  dsi-hs-pkt-end-aligned:
->
-> All this must be deduced from the compatible which makes this binding
-> redundant.  This binding is a no-go for me for obvious reasons: is not
-> specific and you try to bypass the exact rule of bindings to be specific
-> about hardware.
+e.g. I did this for S905L (GXLX) devices:
+=
+https://patchwork.kernel.org/project/linux-amlogic/patch/20240604084134.33=
+15841-1-christianshewitt@gmail.com/
 
-Ok, I'll delete these redundant properties, and deduce from the compatible.
+Christian
 
->
-> > +    description: Enable MIPI_DSI_HS_PKT_END_ALIGNED.
-> > +      Disallowed for SPI.
-> > +    type: boolean
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +allOf:
-> > +  - $ref: panel-common.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - panel-mipi-dpi-spi
-> > +    then:
-> > +      # SPI mode
-> > +      $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +      properties:
-> > +        dsi-mode-video: false
-> > +        dsi-mode-video-burst: false
-> > +        dsi-mode-video-sync-pulse: false
-> > +        dsi-mode-video-auto-vert: false
-> > +        dsi-mode-video-hse: false
-> > +        dsi-mode-video-no-hfp: false
-> > +        dsi-mode-video-no-hbp: false
-> > +        dsi-mode-video-no-hsa: false
-> > +        dsi-mode-vsync-flush: false
-> > +        dsi-mode-no-eot-packet: false
-> > +        dsi-clock-non-continuous: false
-> > +        dsi-mode-lpm: false
-> > +        dsi-hs-pkt-end-aligned: false
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - panel-mipi-dsi
-> > +    then:
-> > +      # DSI mode
-> > +      properties:
-> > +        dc-gpios: false
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    dsi {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        panel@0 {
-> > +            compatible =3D "vendor,some-panel", "panel-mipi-dsi";
->
-> Undocumented compatible.
->
-> Best regards,
-> Krzysztof
->
+>           - const: amlogic,s805x
+>           - const: amlogic,meson-gxl
+>=20
+> --=20
+> 2.47.1
+>=20
+>=20
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
-Regards,
-kikuchan.
 
