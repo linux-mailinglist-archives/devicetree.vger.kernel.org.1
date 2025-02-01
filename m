@@ -1,161 +1,313 @@
-Return-Path: <devicetree+bounces-142213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 529AAA24885
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 12:27:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33159A2488A
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 12:34:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D6E83A551C
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 11:27:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F910188896D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 11:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C3CE146D55;
-	Sat,  1 Feb 2025 11:27:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 806C6157A67;
+	Sat,  1 Feb 2025 11:34:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="G3TSBP8W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y3DNKCdl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6284A3E
-	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 11:27:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4937525760;
+	Sat,  1 Feb 2025 11:34:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738409259; cv=none; b=lGuVIjgJa9vr29dJNCJQypr74UPDEpv+6DJPWRucllx4uvReYWaDLmTV4o34oNf0Sv7fizdPGJw4lzSJhd2FQ9hd4Hb7jSXon6cyWEnMB7IRswBAnMk8cufWr5wpNXXOLxw0JRAC9GStxH2UA8OkETnovbzQzK6us0NLsBWjWiw=
+	t=1738409657; cv=none; b=EH1yDrflDDMTrVuOoZpFRd7ucfZ82hS6DQxInN9o2nf5sNWuBcQ6ooqI2zjVGy3GRCmbRxaBoU9/Zm85nN6OW/fyyN35jJuJ4ZiWMjZAyv5eYU04GCwDhqiOJ4ym1H19jCBFEEZZdWTdsG5PiJchDUz+1wkcVK7eOz+uXayTmWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738409259; c=relaxed/simple;
-	bh=vB6/h1KcrFmEdlE/GksrLoQANMkYAz5qEknNQL2HYtg=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=b6kkbZCa8JzP8fIcfZv8UQ8cnKSe1kMTxnkK92EMTDGSeCWinwi6Y8Uyb4WRY/mDT1BUn+D/jpD/7im/t42sYHrcaah3pcPeUEyOGcgLAqR1SOep+mn8/K8gi6j2L3xMag89xg8S8L+3aPN0VH9ANrp3h/0hVFymN4dC9NAguOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=G3TSBP8W; arc=none smtp.client-ip=212.227.15.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1738409253; x=1739014053; i=wahrenst@gmx.net;
-	bh=bYnYzdN0LrCXG6ExV5L0/rVoVwbxiqa7GQkmlFTH544=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
-	 MIME-Version:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=G3TSBP8WTtQhoJGG5ROQtbFoE3LoegLhXNR1tZMAauHQgpHmBbyfRtfDF0VLUT8Y
-	 tCy9h3hvl4NfmCX+L32gexhfD982wkRCmLDC3NXWj0D3UR5OvLTMEn9XmGjww7CLN
-	 8Joapv4eqtdJarIa2aKAv5Dp7FJxa0pRzK1of+xLCcy9XrDYVXp1MU47K1tIC3cak
-	 tE/4IvHRFET9tNUyNZWEHjdlW/uof1LEmjwVFOCmMdY5sKOIR80gPjKAWZdYjvDAv
-	 KWHLxlH2sC13p+XmnO2vZU0IyP/KJA8ZW3ItJVKMyciV8YYHmBcVqP94jSl1iPcVt
-	 wZcemISWtmaGFMQNrw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from stefanw-SCHENKER ([37.4.251.153]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MbAh0-1t2w6H2uNc-00p9it; Sat, 01
- Feb 2025 12:27:33 +0100
-From: Stefan Wahren <wahrenst@gmx.net>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Peter Robinson <pbrobinson@gmail.com>,
-	"Ivan T . Ivanov" <iivanov@suse.de>,
-	linux-arm-kernel@lists.infradead.org,
-	bcm-kernel-feedback-list@broadcom.com,
-	kernel-list@raspberrypi.com,
-	devicetree@vger.kernel.org,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH] ARM: dts: bcm2711: Fix xHCI power-domain
-Date: Sat,  1 Feb 2025 12:27:29 +0100
-Message-Id: <20250201112729.31509-1-wahrenst@gmx.net>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1738409657; c=relaxed/simple;
+	bh=FrpZsbP2/uqqlpmV9owZx7N7u+9rg/ypvnTHzl8h6hQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eh/MAghdT4Z2cSx+a+qZTdt+z3s4NGqcHOikIBhtJ4mhax/AJ0oKXqnTheCXF1MeXyHcJj4ShSiNaAYXck8t4KqrJAa4lv+1sErjVVwbHgiB5cdhTMvxjG7RU2ZbK9WAgEOyvjc8sWB5kUdKyqBlurRnSBo06ENvQ01125IpgqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y3DNKCdl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D335C4CED3;
+	Sat,  1 Feb 2025 11:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738409653;
+	bh=FrpZsbP2/uqqlpmV9owZx7N7u+9rg/ypvnTHzl8h6hQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Y3DNKCdlNWgAd+OQeVROOh8z0aqG5YvACuG3sQsbDgH13veUff6Ef0vPzbh2QEPGv
+	 RDaMYnwSo9df79sNw5OtXLorKo77MySGXGhcO9xIXJpTLoPluxc7JcwmHADw/Q6/A1
+	 LZ1Sswi2cMS51A5rbsEgEB7K+z8QCv4o1+8hR3WxQY2X0nWuqCKYRDAWQR6VvJEZ2k
+	 FSyuTqEI6RB21jgPegXY4uzVZs1yxkv5YZUZBkA3etWeEBPJD1C/agt6cjNBy89FHX
+	 Ek4vUQ+Po5LVDc4EqE9fVjweS+aqynFcHg02BAtZ5BYzHGZMxJ4bAEvr9YJI0Jbf05
+	 XTIdWmvzg8VVA==
+Date: Sat, 1 Feb 2025 11:33:58 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ agross@kernel.org, andersson@kernel.org, dmitry.baryshkov@linaro.org,
+ konradybcio@kernel.org, daniel.lezcano@linaro.org, sboyd@kernel.org,
+ amitk@kernel.org, thara.gopinath@gmail.com, lee@kernel.org,
+ rafael@kernel.org, subbaraman.narayanamurthy@oss.qualcomm.com,
+ david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
+ quic_kamalw@quicinc.com, rui.zhang@intel.com, lukasz.luba@arm.com,
+ lars@metafoo.de, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org,
+ quic_skakitap@quicinc.com, neil.armstrong@linaro.org
+Subject: Re: [PATCH V5 3/5] dt-bindings: iio: adc: Add support for QCOM
+ PMIC5 Gen3 ADC
+Message-ID: <20250201113358.565de2e1@jic23-huawei>
+In-Reply-To: <20250131183242.3653595-4-jishnu.prakash@oss.qualcomm.com>
+References: <20250131183242.3653595-1-jishnu.prakash@oss.qualcomm.com>
+	<20250131183242.3653595-4-jishnu.prakash@oss.qualcomm.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:7Luia7K8HRu8CPOl1DZ08abjM5+xgYl6+BOu88agzhpkP0jXD1X
- 9pOsI/PcMy39byVfxit6gBAfewIyG8DZzXFCPECtN/c8fIGpO60NKXLpZbkryFGFCIcwQd1
- BldWA9krEwsRZCrdnSVCtPs0I9S5cFKQ1Clpukh+rWwGIJhvarB72GXtY1OWUjLV3XkSpYM
- ayYgMgCWc8EeYwhSbo6VA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:qjyS1YNOivs=;+t/VVUx408bqwOLwq2hirzJWUbM
- v81cja39T5S77mtVXJfp8frg337c1TPNdE3lHZIPqcT/ja3qIzke5KjLmxk42ww7xsy1LELdh
- rnV5PT+Uo5WFZPC7EaOuCD16yD2/IZclfEIKgdVI/3YSpbGxbwCSnD+pX/uXY68RmKuh66QK9
- J7TvcfizuS0Wm5ajaKRH00P/5k7QOHfDd92Fu6OLqQZ57zh/d5WzDY695caAnR7dUYJk6YFGN
- dmucf9gATPxliCxppPFbbuVYaFzjmNNDAyRRGVCApVx6+C8KbHGqMVzgAcBOiA9V3re1468HE
- 7NRzIvn9zZbYH0PsE5NOEfZfMYhEnve62b5DMdtAWrQDb71o2XfxUm0PlNWnsehcIsjCJu1E7
- vblydDW3gYuGqn7H2PVipLaPuTFGS2rYtT/WA7gT5KT7eR/V73nI4JI+o0LEB6RG1kBcAZUin
- NyDRfcRMVextnFuJ6/0qERlL5b/1XoCalET1nykT5cEapqVSF3RIYTJgBzC1CEDWdS6MttW/v
- 0I6z+gE2+i6BOaFg9UE94RRa4PJoR9d/h4ysgpn3bYN/0nvc6KgVLycsGn2/eOKpsWZrts/YT
- 3Rz7XIzAP/ysv0RpSdgqaxrssqQEkaaOpId+j1MaARIqmi+ceuHJ8QrP4W8X4sWVYTrf01Njd
- XnpSU4DOh2JzvpXirrqFG+evmsUZO3bDfUELHvQOBz9a5/Nl9pHj64WGhMmu1SsntEEe7YFzD
- yne7qQRdlwWd4pLNgmhxHbTKFvBKsGOkAOP7MMvkIPXOTCky6l6pPZnaKByoNGhYxxAMI0xXk
- d7Y+hhFxKfFrFFwMjLXWco1XDLHYA08b9EzlsizrSAPAmSxSOHxFEwF4JhB0U3wg0BjmKWhee
- zET/J108O9DSCVYapUnn0qzdRdXqtjZWNhRF16TtQj24zM2VijGJr3IlbVzqnuqgRPtaVhCaW
- yjTFyAF9U1uj98skdqMOohXhkyYCwHS3t5NjE8aeLPm5n/ekEluJRuK/Vo5tHOnBLDS77k3V1
- gfVdlAYMzNufItTxOs7rWk25e5cVQApCq8qZ5dK+PE/8NciDH973FxKFp/5HGxYnw9prFGuvr
- mTy33DriGLG7VHdAOILvHONEPp3B0tkPrymRsFCFZhwdf97XaxDQsNnmFwaDvfCXF6mXb6922
- us6AAYcahWROp/PpChW+450OrIJUDSwGVHkRuvo6QXS/h0Y6rgJKTSDQTezJebAC+cdvsmBhz
- alBU5Zf8ytZaOmaX8+c+8B9ZIiZ1XGHPmOG3yMJ3aRDXfNoNV2NmVFo2KxXnLKq8lVAHOtTnj
- tPL958u6yuCj+cSwjvIX+Py6KQDZGEAy8ymmPx8T4hgTgRNSQbuRGBDxxnGDXHADQnLUyam53
- zEWVzjsLR6eoc8oA==
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-During s2idle tests on the Raspberry CM4 the VPU firmware always crashes
-on xHCI power-domain resume:
+On Sat,  1 Feb 2025 00:02:40 +0530
+Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
 
-root@raspberrypi:/sys/power# echo freeze > state
-[   70.724347] xhci_suspend finished
-[   70.727730] xhci_plat_suspend finished
-[   70.755624] bcm2835-power bcm2835-power: Power grafx off
-[   70.761127]  USB: Set power to 0
+> For the PMIC5-Gen3 type PMICs, ADC peripheral is present in HW for the
+> following PMICs: PMK8550, PM8550, PM8550B and PM8550VX PMICs.
+> 
+> It is similar to PMIC5-Gen2, with SW communication to ADCs on all PMICs
+> going through PBS(Programmable Boot Sequence) firmware through a single
+> register interface. This interface is implemented on SDAM (Shared
+> Direct Access Memory) peripherals on the master PMIC PMK8550 rather
+> than a dedicated ADC peripheral.
+> 
+> Add documentation for PMIC5 Gen3 ADC and macro definitions for ADC
+> channels and virtual channels (combination of ADC channel number and
+> PMIC SID number) per PMIC, to be used by clients of this device.
 
-[   74.653040]  USB: Failed to set power to 1 (-110)
+A few really minor comments inline given you are going to be doing a v6
+for the build errors Rob's bot found.  I guess this is racing
+with some other changes.
 
-This seems to be caused because of the mixed usage of
-raspberrypi-power and bcm2835-power at the same time. So avoid
-the usage of the VPU firmware power-domain driver, which
-prevents the VPU crash.
+> 
+> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> ---
+> Changes since v4:
+> - Added ADC5 Gen3 documentation in a separate new file to avoid complicating
+>   existing VADC documentation file further to accomodate this device, as
+>   suggested by reviewer.
+> 
+> Changes since v3:
+> - Added ADC5 Gen3 documentation changes in existing qcom,spmi-vadc.yaml file
+>   instead of adding separate file and updated top-level constraints in documentation
+>   file based on discussion with reviewers.
+> - Dropped default SID definitions.
+> - Addressed other reviewer comments.
+> 
+> Changes since v2:
+> - Moved ADC5 Gen3 documentation into a separate new file.
+> 
+> Changes since v1:
+> - Updated properties separately for all compatibles to clarify usage
+>   of new properties and updates in usage of old properties for ADC5 Gen3.
+> - Avoided updating 'adc7' name to 'adc5 gen2' and just left a comment
+>   mentioning this convention.
+> - Used predefined channel IDs in individual PMIC channel definitions
+>   instead of numeric IDs.
+> - Addressed other comments from reviewers.
+> 
+>  .../bindings/iio/adc/qcom,spmi-adc5-gen3.yaml | 157 ++++++++++++++++++
+>  .../iio/adc/qcom,spmi-vadc-common.yaml        |   4 +-
+>  .../bindings/iio/adc/qcom,spmi-vadc.yaml      |   2 +
+>  .../iio/adc/qcom,spmi-adc5-gen3-pm8550.h      |  46 +++++
+>  .../iio/adc/qcom,spmi-adc5-gen3-pm8550b.h     |  85 ++++++++++
+>  .../iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h    |  22 +++
+>  .../iio/adc/qcom,spmi-adc5-gen3-pmk8550.h     |  52 ++++++
+>  include/dt-bindings/iio/adc/qcom,spmi-vadc.h  |  81 +++++++++
+>  8 files changed, 447 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-adc5-gen3.yaml
+>  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h
+>  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h
+>  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h
+>  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-adc5-gen3.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-adc5-gen3.yaml
+> new file mode 100644
+> index 000000000000..d6f2d18623d4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-adc5-gen3.yaml
+> @@ -0,0 +1,157 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/qcom,spmi-adc5-gen3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm's SPMI PMIC ADC5 Gen3
+> +
+> +maintainers:
+> +  - Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> +
+> +description: |
+> +  SPMI PMIC5 Gen3 voltage ADC (ADC) provides interface to
 
-Fixes: 522c35e08b53 ("ARM: dts: bcm2711: Add BCM2711 xHCI support")
-Link: https://github.com/raspberrypi/linux/issues/6537
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-=2D--
- arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi | 5 -----
- arch/arm/boot/dts/broadcom/bcm2711.dtsi     | 1 +
- 2 files changed, 1 insertion(+), 5 deletions(-)
+Trivial but slightly short wrap. I think dt bindings use 80 chars
+as the limit.
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi b/arch/arm/boot/d=
-ts/broadcom/bcm2711-rpi.dtsi
-index 6bf4241fe3b7..c78ed064d166 100644
-=2D-- a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-@@ -1,7 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- #include "bcm2835-rpi.dtsi"
+> +  clients to read voltage. It is a 16-bit sigma-delta ADC.
+> +  It also performs the same thermal monitoring function as
+> +  the existing ADC_TM devices.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,spmi-adc5-gen3
+> +
+> +  reg:
+> +    items:
+> +      - description: SDAM0 base address in the SPMI PMIC register map
+> +      - description: SDAM1 base address
+> +    minItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  '#io-channel-cells':
+> +    const: 1
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: SDAM0 end of conversion (EOC) interrupt
+> +      - description: SDAM1 EOC interrupt
+> +    minItems: 1
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: sdam0
+> +      - const: sdam1
+> +    minItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - '#io-channel-cells'
+> +  - interrupts
+> +  - interrupt-names
+> +
+> +patternProperties:
+> +  "^channel@[0-9a-f]+$":
+> +    type: object
+> +    unevaluatedProperties: false
+> +    description: |
+Doesn't look like it needs formatting. So no need for |
 
--#include <dt-bindings/power/raspberrypi-power.h>
- #include <dt-bindings/reset/raspberrypi,firmware-reset.h>
+> +      Represents the external channels which are connected to the ADC.
 
- / {
-@@ -101,7 +100,3 @@ &v3d {
- &vchiq {
- 	interrupts =3D <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
- };
--
--&xhci {
--	power-domains =3D <&power RPI_POWER_DOMAIN_USB>;
--};
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/b=
-roadcom/bcm2711.dtsi
-index e4e42af21ef3..5eaec6c6a1df 100644
-=2D-- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-@@ -610,6 +610,7 @@ xhci: usb@7e9c0000 {
- 			#address-cells =3D <1>;
- 			#size-cells =3D <0>;
- 			interrupts =3D <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-+			power-domains =3D <&pm BCM2835_POWER_DOMAIN_USB>;
- 			/* DWC2 and this IP block share the same USB PHY,
- 			 * enabling both at the same time results in lockups.
- 			 * So keep this node disabled and let the bootloader
-=2D-
-2.34.1
+Maybe better to move ref before description.
+
+> +    $ref: /schemas/iio/adc/qcom,spmi-vadc-common.yaml
+> +
+> +    properties:
+> +      qcom,decimation:
+> +        enum: [ 85, 340, 1360 ]
+> +        default: 1360
+> +
+> +      qcom,hw-settle-time:
+> +        enum: [ 15, 100, 200, 300, 400, 500, 600, 700, 1000, 2000, 4000,
+> +                8000, 16000, 32000, 64000, 128000 ]
+
+Might be more readable as groups of 8. We love powers of two ;)
+
+> +        default: 15
+> +
+> +      qcom,avg-samples:
+> +        enum: [ 1, 2, 4, 8, 16 ]
+> +        default: 1
+> +
+> +      qcom,adc-tm:
+> +        description:
+> +          ADC_TM is a threshold monitoring feature in HW which can be enabled on any
+> +          ADC channel, to trigger an IRQ for threshold violation. In earlier ADC
+> +          generations, it was implemented in a separate device (documented in
+> +          Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml.)
+> +          In Gen3, this feature can be enabled in the same ADC device for any channel
+> +          and threshold monitoring and IRQ triggering are handled in FW (PBS) instead of
+> +          another dedicated HW block.
+> +          This property indicates ADC_TM monitoring is done on this channel.
+> +        type: boolean
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h>
+> +    #include <dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h>
+> +    #include <dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h>
+> +    #include <dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    pmic {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      adc@9000 {
+> +        compatible = "qcom,spmi-adc5-gen3";
+> +        reg = <0x9000>, <0x9100>;
+> +        interrupts = <0x0 0x90 0x1 IRQ_TYPE_EDGE_RISING>,
+> +                      <0x0 0x91 0x1 IRQ_TYPE_EDGE_RISING>;
+> +        interrupt-names = "sdam0", "sdam1";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        #io-channel-cells = <1>;
+> +        #thermal-sensor-cells = <1>;
+> +
+> +        /* PMK8550 Channel nodes */
+> +        channel@3 {
+> +          reg = <PMK8550_ADC5_GEN3_DIE_TEMP(0)>;
+> +          label = "pmk8550_die_temp";
+> +          qcom,pre-scaling = <1 1>;
+> +        };
+> +
+> +        channel@44 {
+> +          reg = <PMK8550_ADC5_GEN3_AMUX_THM1_XO_THERM_100K_PU(0)>;
+> +          label = "pmk8550_xo_therm";
+> +          qcom,pre-scaling = <1 1>;
+> +          qcom,ratiometric;
+> +          qcom,hw-settle-time = <200>;
+> +          qcom,adc-tm;
+> +        };
+> +
+> +        /* PM8550 Channel nodes */
+> +        channel@103 {
+> +          reg = <PM8550_ADC5_GEN3_DIE_TEMP(1)>;
+> +          label = "pm8550_die_temp";
+> +          qcom,pre-scaling = <1 1>;
+> +        };
+> +
+> +        /* PM8550B Channel nodes */
+> +        channel@78f {
+> +          reg = <PM8550B_ADC5_GEN3_VBAT_SNS_QBG(7)>;
+> +          label = "pm8550b_vbat_sns_qbg";
+> +          qcom,pre-scaling = <1 3>;
+> +        };
+> +
+> +        /* PM8550VS_C Channel nodes */
+> +        channel@203 {
+> +          reg = <PM8550VS_ADC5_GEN3_DIE_TEMP(2)>;
+> +          label = "pm8550vs_c_die_temp";
+> +          qcom,pre-scaling = <1 1>;
+> +        };
+> +      };
+> +    };
+
 
 
