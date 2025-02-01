@@ -1,214 +1,260 @@
-Return-Path: <devicetree+bounces-142233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FBDBA24991
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 15:40:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0F2CA24992
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 15:45:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C0183A7690
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 14:40:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB34D1886111
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 14:45:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A7161BEF81;
-	Sat,  1 Feb 2025 14:40:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32A7D1A23BE;
+	Sat,  1 Feb 2025 14:45:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CRyEnErp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HSECrB8x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B6C1BEF7A
-	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 14:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F09352557A;
+	Sat,  1 Feb 2025 14:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738420807; cv=none; b=PHxCBayv0r0z+VRCim+9gOl3hGAzZuKIPp8m7iTj2AkqgX6Wl01BsVxPAZ59E0SE3Ep3JTkfG7cBz71udkj7W1LZ4MowQZBaKFnRpNSst996jedwTeDWJpl3cxSFcwFhI+pwCRwOWb3tYKlGEcsC5zpVp8FvviTEUMrkIw2utmA=
+	t=1738421129; cv=none; b=VDPOjFjMZrGQGLbG1xL+Drz/T5n5kjqsDBhIxjON6TYSnNkvh3TNXEWue972GglIuaBJkAmzfgQELuMS8Ee4dcXjd3huewCPQlNEQeobelGpzCYDgqwS4oS91uiEtdytUjd2p2/B86HCL7XeMglzlGEymAcM8S6BeMBbBXJklzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738420807; c=relaxed/simple;
-	bh=UETDdbZTrbH3aziuRcpTKdm0bPASnj4ies4k7W717dM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=EmdaM4XJCkG5OJwe2JKFfmR8vyjoR5Tc56u092Amk7oTfS6zzj2paEXDCKFdMxHKUnDt3u3dG9VGJvwpIEPJNBwGRERjD1FT6K117tV7odqbMDNIzbtAxzFAhTzJVT8XjxfdJGrL1uEZm7XqNm3Z5IwBXiHP/3AjFP+yhuMgH4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CRyEnErp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDDE2C4CED3;
-	Sat,  1 Feb 2025 14:40:06 +0000 (UTC)
+	s=arc-20240116; t=1738421129; c=relaxed/simple;
+	bh=h3fZCiwYRqE+HzDA39f3dJWcnPSExT0LTqlrCDBkB58=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GQR5IsvM9RXY0AOR7pitUYJaXY1Cy/29OmKUkJIx7rvvAGh/CxBC1MWVWhcpzjdZ3N44S2Eaop612u8OidrmGFE0V+98h6q5x1HiGD416+3WiN/4v9DCGa/SNqTBr8CyiZD0k6Ps1U9nwWAcsx0klj6xO16MdnY/qZLsfuWWpUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HSECrB8x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F00BC4CED3;
+	Sat,  1 Feb 2025 14:45:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738420807;
-	bh=UETDdbZTrbH3aziuRcpTKdm0bPASnj4ies4k7W717dM=;
-	h=From:Date:Subject:To:Cc:From;
-	b=CRyEnErp+gTzppgdtRpJOp9Pyqp7y1CBRVJnXwFkiwt/YjwUPREIeCG6PevpTFbox
-	 QR+HrzaSSJsr61BUaGzoW58rxBUUDpCT4ZJcXzzam3uGxWw9HRU5tixVw/X35V/Nw3
-	 UnTbOFS3ZvPkszSYK6g/knfVWpweXHwQAyA6yC8XBu85KNACCrnWyp4IPDV7hlE+Qy
-	 iynevsfj4OShU+FXm/kQBVJiy9tk5nIsdRDjMyAZANH1ld+ZMq8k0VTc/GGOWZTX/z
-	 vdDm6tF3FzGagXbHrm5z7DgjrtPT6BI0SfsC7eN492IRSW+qQsXQLawHxWGbsi01Gd
-	 DUgSrEtgXdhmQ==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Sat, 01 Feb 2025 15:39:48 +0100
-Subject: [PATCH] arm64: dts: Introduce more nodes to EN7581 SoC evaluation
- board
+	s=k20201202; t=1738421128;
+	bh=h3fZCiwYRqE+HzDA39f3dJWcnPSExT0LTqlrCDBkB58=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=HSECrB8xldQtWVeQBa8kxeKXdsP5+rf3GUGm1FuQKumPFn9mgJkiiVi48gNMehOIO
+	 dtXx8RJn4Ug8DwRTS66WSQUiIhauUlXklMTHKT5amuUjVlCc42XJT0x9hI/JAm5ZJj
+	 2V9zjebOfslfNb8dyEBaSDTl8yMlMVtXTCK+cRGWhPZHOQCV5xVotg4GQSvJZ9RTeU
+	 chIkMOuIZTIe9bX4PJgU4gKO5tENSqhOan51xOaA6TxfqKtfH8XKCN2lS3JxqFBlaa
+	 Z2r4YPJKqb7ZJ3Plv8KpUrW3N0GFghAkLi9Cwjqojk5wpxedxYl2SzKEPG76aTvkGo
+	 Mt4feo6HkR8Gw==
+Date: Sat, 1 Feb 2025 14:45:17 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Robert Budai <robert.budai@analog.com>
+Cc: <lars@metafoo.de>, <Michael.Hennerich@analog.com>, <nuno.sa@analog.com>,
+ <ramona.gradinariu@analog.com>, <antoniu.miclaus@analog.com>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <corbet@lwn.net>, <lanzano.alex@gmail.com>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v5 1/6] iio: imu: adis: Add custom ops struct
+Message-ID: <20250201144517.56b0e636@jic23-huawei>
+In-Reply-To: <20250129082053.19077-2-robert.budai@analog.com>
+References: <20250129082053.19077-1-robert.budai@analog.com>
+	<20250129082053.19077-2-robert.budai@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250201-en7581-dts-spi-pinctrl-v1-1-aaa4a9dfc4a6@kernel.org>
-X-B4-Tracking: v=1; b=H4sIADMynmcC/x3MTQqAIBBA4avErBtQyf6uEi1KpxoIEyciiO6et
- PwW7z0glJgE+uKBRBcLHyFDlwW4bQorIftsMMpYZZRGCo1tNfpTUCJj5ODOtGOlazW3xrqp85D
- jmGjh+x8P4/t+YVDV12gAAAA=
-X-Change-ID: 20250201-en7581-dts-spi-pinctrl-4160b825ca9d
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- Lorenzo Bianconi <lorenzo@kernel.org>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Add the following nodes to EN7581 SoC and EN7581 evaluation board:
-- clock controller
-- rng controller
-- pinctrl
-- i2c controllers
-- spi nand controller
+On Wed, 29 Jan 2025 10:20:41 +0200
+Robert Budai <robert.budai@analog.com> wrote:
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- arch/arm64/boot/dts/airoha/en7581-evb.dts |  8 +++
- arch/arm64/boot/dts/airoha/en7581.dtsi    | 90 +++++++++++++++++++++++++++++++
- 2 files changed, 98 insertions(+)
+> This patch introduces a custom ops struct letting users define
+> custom read and write functions. Some adis devices might define
+> a completely different spi protocol from the one used in the
+> default implementation.
+Wrap at 75 chars, not around 62
 
-diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-index cf58e43dd5b21dbf4f64e305a4b4a2daee100858..1126da4b795f5d5df9725ec4d75cd9353b011710 100644
---- a/arch/arm64/boot/dts/airoha/en7581-evb.dts
-+++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-@@ -24,3 +24,11 @@ memory@80000000 {
- 		reg = <0x0 0x80000000 0x2 0x00000000>;
- 	};
- };
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&snfi {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-index 55eb1762fb11364877695960f5a2d3e42caf8611..b1cf650efd78c6c20d19e7f18c204cf5862215c0 100644
---- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-+++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-@@ -2,6 +2,7 @@
- 
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/clock/en7523-clk.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -150,5 +151,94 @@ uart1: serial@1fbf0000 {
- 			interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-frequency = <1843200>;
- 		};
-+
-+		scuclk: clock-controller@1fa20000 {
-+			compatible = "airoha,en7581-scu";
-+			reg = <0x0 0x1fb00000 0x0 0x970>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
-+		rng@1faa1000 {
-+			compatible = "airoha,en7581-trng";
-+			reg = <0x0 0x1faa1000 0x0 0xc04>;
-+			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		system-controller@1fbf0200 {
-+			compatible = "syscon", "simple-mfd";
-+			reg = <0x0 0x1fbf0200 0x0 0xc0>;
-+
-+			en7581_pinctrl: pinctrl {
-+				compatible = "airoha,en7581-pinctrl";
-+
-+				interrupt-parent = <&gic>;
-+				interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+			};
-+		};
-+
-+		i2cclock: i2cclock@0 {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+
-+			/* 20 MHz */
-+			clock-frequency = <20000000>;
-+		};
-+
-+		i2c0: i2c0@1fbf8000 {
-+			compatible = "mediatek,mt7621-i2c";
-+			reg = <0x0 0x1fbf8000 0x0 0x100>;
-+
-+			clocks = <&i2cclock>;
-+
-+			/* 100 kHz */
-+			clock-frequency = <100000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			status = "disable";
-+		};
-+
-+		i2c1: i2c1@1fbf8100 {
-+			compatible = "mediatek,mt7621-i2c";
-+			reg = <0x0 0x1fbf8100 0x0 0x100>;
-+
-+			clocks = <&i2cclock>;
-+
-+			/* 100 kHz */
-+			clock-frequency = <100000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			status = "disable";
-+		};
-+
-+		snfi: spi@1fa10000 {
-+			compatible = "airoha,en7581-snand";
-+			reg = <0x0 0x1fa10000 0x0 0x140>,
-+			      <0x0 0x1fa11000 0x0 0x160>;
-+
-+			clocks = <&scuclk EN7523_CLK_SPI>;
-+			clock-names = "spi";
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			status = "disabled";
-+
-+			spi_nand: nand@0 {
-+				compatible = "spi-nand";
-+				reg = <0>;
-+				spi-max-frequency = <50000000>;
-+				spi-tx-bus-width = <1>;
-+				spi-rx-bus-width = <2>;
-+			};
-+		};
- 	};
- };
+Otherwise this looks fine to me.  Could have been merged
+with patch 2 as that just adds another op, but that's not important.
 
----
-base-commit: 7605336e9d136c14c94482ce7385de783f2f748e
-change-id: 20250201-en7581-dts-spi-pinctrl-4160b825ca9d
-
-Best regards,
--- 
-Lorenzo Bianconi <lorenzo@kernel.org>
+>=20
+> Co-developed-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> Co-developed-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> Signed-off-by: Robert Budai <robert.budai@analog.com>
+> ---
+>  drivers/iio/imu/adis.c       | 16 +++++++++++++---
+>  include/linux/iio/imu/adis.h | 28 +++++++++++++++++++++-------
+>  2 files changed, 34 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/drivers/iio/imu/adis.c b/drivers/iio/imu/adis.c
+> index 494171844812..54915c7a3e76 100644
+> --- a/drivers/iio/imu/adis.c
+> +++ b/drivers/iio/imu/adis.c
+> @@ -223,13 +223,13 @@ int __adis_update_bits_base(struct adis *adis, unsi=
+gned int reg, const u32 mask,
+>  	int ret;
+>  	u32 __val;
+> =20
+> -	ret =3D __adis_read_reg(adis, reg, &__val, size);
+> +	ret =3D adis->ops->read(adis, reg, &__val, size);
+>  	if (ret)
+>  		return ret;
+> =20
+>  	__val =3D (__val & ~mask) | (val & mask);
+> =20
+> -	return __adis_write_reg(adis, reg, __val, size);
+> +	return adis->ops->write(adis, reg, __val, size);
+>  }
+>  EXPORT_SYMBOL_NS_GPL(__adis_update_bits_base, "IIO_ADISLIB");
+> =20
+> @@ -468,7 +468,7 @@ int adis_single_conversion(struct iio_dev *indio_dev,
+> =20
+>  	guard(mutex)(&adis->state_lock);
+> =20
+> -	ret =3D __adis_read_reg(adis, chan->address, &uval,
+> +	ret =3D adis->ops->read(adis, chan->address, &uval,
+>  			      chan->scan_type.storagebits / 8);
+>  	if (ret)
+>  		return ret;
+> @@ -488,6 +488,11 @@ int adis_single_conversion(struct iio_dev *indio_dev,
+>  }
+>  EXPORT_SYMBOL_NS_GPL(adis_single_conversion, "IIO_ADISLIB");
+> =20
+> +static const struct adis_ops adis_default_ops =3D {
+> +	.read =3D __adis_read_reg,
+> +	.write =3D __adis_write_reg,
+> +};
+> +
+>  /**
+>   * adis_init() - Initialize adis device structure
+>   * @adis:	The adis device
+> @@ -517,6 +522,11 @@ int adis_init(struct adis *adis, struct iio_dev *ind=
+io_dev,
+> =20
+>  	adis->spi =3D spi;
+>  	adis->data =3D data;
+> +	if (!adis->ops->write && !adis->ops->read)
+> +		adis->ops =3D &adis_default_ops;
+> +	else if (!adis->ops->write || !adis->ops->read)
+> +		return -EINVAL;
+> +
+>  	iio_device_set_drvdata(indio_dev, adis);
+> =20
+>  	if (data->has_paging) {
+> diff --git a/include/linux/iio/imu/adis.h b/include/linux/iio/imu/adis.h
+> index e6a75356567a..04140b36712a 100644
+> --- a/include/linux/iio/imu/adis.h
+> +++ b/include/linux/iio/imu/adis.h
+> @@ -94,6 +94,18 @@ struct adis_data {
+>  	unsigned int burst_max_speed_hz;
+>  };
+> =20
+> +/**
+> + * struct adis_ops: Custom ops for adis devices.
+> + * @write: Custom spi write implementation.
+> + * @read: Custom spi read implementation.
+> + */
+> +struct adis_ops {
+> +	int (*write)(struct adis *adis, unsigned int reg, unsigned int value,
+> +		     unsigned int size);
+> +	int (*read)(struct adis *adis, unsigned int reg, unsigned int *value,
+> +		    unsigned int size);
+> +};
+> +
+>  /**
+>   * struct adis - ADIS device instance data
+>   * @spi: Reference to SPI device which owns this ADIS IIO device
+> @@ -102,6 +114,7 @@ struct adis_data {
+>   * @burst: ADIS burst transfer information
+>   * @burst_extra_len: Burst extra length. Should only be used by devices =
+that can
+>   *		     dynamically change their burst mode length.
+> + * @ops: ops struct for custom read and write functions
+>   * @state_lock: Lock used by the device to protect state
+>   * @msg: SPI message object
+>   * @xfer: SPI transfer objects to be used for a @msg
+> @@ -117,6 +130,7 @@ struct adis {
+> =20
+>  	const struct adis_data	*data;
+>  	unsigned int		burst_extra_len;
+> +	const struct adis_ops	*ops;
+>  	/**
+>  	 * The state_lock is meant to be used during operations that require
+>  	 * a sequence of SPI R/W in order to protect the SPI transfer
+> @@ -169,7 +183,7 @@ int __adis_read_reg(struct adis *adis, unsigned int r=
+eg,
+>  static inline int __adis_write_reg_8(struct adis *adis, unsigned int reg,
+>  				     u8 val)
+>  {
+> -	return __adis_write_reg(adis, reg, val, 1);
+> +	return adis->ops->write(adis, reg, val, 1);
+>  }
+> =20
+>  /**
+> @@ -181,7 +195,7 @@ static inline int __adis_write_reg_8(struct adis *adi=
+s, unsigned int reg,
+>  static inline int __adis_write_reg_16(struct adis *adis, unsigned int re=
+g,
+>  				      u16 val)
+>  {
+> -	return __adis_write_reg(adis, reg, val, 2);
+> +	return adis->ops->write(adis, reg, val, 2);
+>  }
+> =20
+>  /**
+> @@ -193,7 +207,7 @@ static inline int __adis_write_reg_16(struct adis *ad=
+is, unsigned int reg,
+>  static inline int __adis_write_reg_32(struct adis *adis, unsigned int re=
+g,
+>  				      u32 val)
+>  {
+> -	return __adis_write_reg(adis, reg, val, 4);
+> +	return adis->ops->write(adis, reg, val, 4);
+>  }
+> =20
+>  /**
+> @@ -208,7 +222,7 @@ static inline int __adis_read_reg_16(struct adis *adi=
+s, unsigned int reg,
+>  	unsigned int tmp;
+>  	int ret;
+> =20
+> -	ret =3D __adis_read_reg(adis, reg, &tmp, 2);
+> +	ret =3D adis->ops->read(adis, reg, &tmp, 2);
+>  	if (ret =3D=3D 0)
+>  		*val =3D tmp;
+> =20
+> @@ -227,7 +241,7 @@ static inline int __adis_read_reg_32(struct adis *adi=
+s, unsigned int reg,
+>  	unsigned int tmp;
+>  	int ret;
+> =20
+> -	ret =3D __adis_read_reg(adis, reg, &tmp, 4);
+> +	ret =3D adis->ops->read(adis, reg, &tmp, 4);
+>  	if (ret =3D=3D 0)
+>  		*val =3D tmp;
+> =20
+> @@ -245,7 +259,7 @@ static inline int adis_write_reg(struct adis *adis, u=
+nsigned int reg,
+>  				 unsigned int val, unsigned int size)
+>  {
+>  	guard(mutex)(&adis->state_lock);
+> -	return __adis_write_reg(adis, reg, val, size);
+> +	return adis->ops->write(adis, reg, val, size);
+>  }
+> =20
+>  /**
+> @@ -259,7 +273,7 @@ static int adis_read_reg(struct adis *adis, unsigned =
+int reg,
+>  			 unsigned int *val, unsigned int size)
+>  {
+>  	guard(mutex)(&adis->state_lock);
+> -	return __adis_read_reg(adis, reg, val, size);
+> +	return adis->ops->read(adis, reg, val, size);
+>  }
+> =20
+>  /**
 
 
