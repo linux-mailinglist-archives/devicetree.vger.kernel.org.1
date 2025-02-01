@@ -1,166 +1,139 @@
-Return-Path: <devicetree+bounces-142202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2137A247FA
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 10:31:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 713BCA2481D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 11:06:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99DB03A22C6
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 09:31:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11A321888B7E
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 10:07:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1051145B00;
-	Sat,  1 Feb 2025 09:31:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABA051474C9;
+	Sat,  1 Feb 2025 10:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mWa5qUSZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A378B7DA9C;
-	Sat,  1 Feb 2025 09:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A359E140E38;
+	Sat,  1 Feb 2025 10:06:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738402307; cv=none; b=J1VT9YHtTS5O2re6uT2k3nBzwDqSBDgZ2sUKx9Q4Kn8tvVfCigjK9JFCofue4Qu0c126hRmIKWA1GjB8rK6mVB7FinYodNl/+x3X+Wu+8ZD38vRSzpb2aLpl1ydhJO+yZeRbqqFPSlay1VloCnf5+xUbn0FlnYcXbPB8IohTpLY=
+	t=1738404414; cv=none; b=hOBl9iJPf7mDTTsofKYMnarJ/iNYSwutCEsxBaO/vOZdQizDWdHFw64K6f7WVwB0QwNljSd5hN9Szc3ZIG2vWsY2I/1pQ1NysiC2dUAClYrtVnWJLqwEybaNtz7wv0JZpbdbAq1fG5XWzSnmIbRnqcXyGeUNa4kXycmq3p418mI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738402307; c=relaxed/simple;
-	bh=5RZtMtNLu0Q41bSJXCFOKdjwtWS9Rl8VTytdJTIKDwA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CPz9t708bX/RsoFssFafXyQe/k7/Xcj48cR4fEGGFy+2czYD1d4K1C5PoqhKDWY0Z6Km6F/fKrOJQWJ1ESwrzAlghbLFGeHPwI5t7yuPDW4b/lxFav47LVc8Iyx1hxhg0q6Suj++aijQ8q0oYpdP9gDuLdWIaoWtqLQs/i3huHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: AkWdZp+FTmOL0FXebDBvzw==
-X-CSE-MsgGUID: l7gPDljdTleUh2byncMmtA==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 01 Feb 2025 18:31:43 +0900
-Received: from localhost.localdomain (unknown [10.226.92.62])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 8AC2941D4003;
-	Sat,  1 Feb 2025 18:31:28 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2] of: base: Add of_get_available_child_by_name()
-Date: Sat,  1 Feb 2025 09:31:24 +0000
-Message-ID: <20250201093126.7322-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1738404414; c=relaxed/simple;
+	bh=luDz7nI8Z256mCk8I1VhfshnLLJ2vZ3M4FOHRZSBCY0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fDOKdd8VP9v5d8+zq+csz/f0usK0qS6oG2RRiUTSiQ2VMqyuWC8pGDRw/Fp+Owt/m7ypAx3qwOfaFE/EUvraeeL/ecH0ppKLUZysMT63KnPASzyAEg/ysXhDUx54fX1MRfZU6FfNzM8YVTL5wKKQOehyZYmMggKMxiPNt6O44Zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mWa5qUSZ; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738404413; x=1769940413;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=luDz7nI8Z256mCk8I1VhfshnLLJ2vZ3M4FOHRZSBCY0=;
+  b=mWa5qUSZNsVZCaVJYWpS+CdXFitLHa7CfdPRHFdO1EzsfFq/zBlKXOAX
+   d7lCK0NawZSA0CVMXxmRq7bjSwNzfC+4r4f6BfqCxS88mdtgZVEQb0FWr
+   752FBHhD29ZYT2EybNHrIlGkjdhmjL/CZpO2QNyE72aLFmaqTarGbuzYA
+   gg4Ja6/KbkNIgMFdL4M3P9hWfiaWHiMC/SnMTLSLDfvvJCZV/FDz/8pkt
+   t9BTpIojR43Px2DELHJmbp4X5ySzYHkFiZ2OqAA5i9niX8v2hMINLzJ/H
+   6dHi+gEBLcq4gqsMX5r0ezWSXlWOXil7udO+GP6lTZGOl7F0nT9YpfMC7
+   Q==;
+X-CSE-ConnectionGUID: KhSR4uSSRYGoMHkL24Lhug==
+X-CSE-MsgGUID: 9obNOxFZQRWtofe4m8eh3A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="50350373"
+X-IronPort-AV: E=Sophos;i="6.13,251,1732608000"; 
+   d="scan'208";a="50350373"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2025 02:06:52 -0800
+X-CSE-ConnectionGUID: z3vE1xROSnC5BDhYcDTqew==
+X-CSE-MsgGUID: 04/zztnwRc6n0ytaPWhdEw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,251,1732608000"; 
+   d="scan'208";a="110415798"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 01 Feb 2025 02:06:46 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1teAOh-000nzT-1T;
+	Sat, 01 Feb 2025 10:06:43 +0000
+Date: Sat, 1 Feb 2025 18:06:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>, jic23@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	agross@kernel.org, andersson@kernel.org,
+	dmitry.baryshkov@linaro.org, konradybcio@kernel.org,
+	daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
+	thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
+	subbaraman.narayanamurthy@oss.qualcomm.com,
+	david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
+	quic_kamalw@quicinc.com
+Cc: oe-kbuild-all@lists.linux.dev, rui.zhang@intel.com, lukasz.luba@arm.com,
+	lars@metafoo.de, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	cros-qcom-dts-watchers@chromium.org,
+	jishnu.prakash@oss.qualcomm.com, quic_skakitap@quicinc.com,
+	neil.armstrong@linaro.org
+Subject: Re: [PATCH V5 4/5] iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+Message-ID: <202502011915.MIBVfCtZ-lkp@intel.com>
+References: <20250131183242.3653595-5-jishnu.prakash@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250131183242.3653595-5-jishnu.prakash@oss.qualcomm.com>
 
-There are lot of drivers using of_get_child_by_name() followed by
-of_device_is_available() to find the available child node by name for a
-given parent. Provide a helper for these users to simplify the code.
+Hi Jishnu,
 
-Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * Updated commit description.
- * Updated kerneldoc comment block
- * Avoided code duplication by using of_get_child_by_name().
+kernel test robot noticed the following build errors:
 
-Note:
-grep showed the below files will be the users for this new API.
-I will be updating these drivers once this patch is in mainline.
+[auto build test ERROR on 5ffa57f6eecefababb8cbe327222ef171943b183]
 
-drivers/net/dsa/rzn1_a5psw.c
-drivers/net/can/rcar/rcar_canfd.c
+url:    https://github.com/intel-lab-lkp/linux/commits/Jishnu-Prakash/dt-bindings-iio-adc-Move-QCOM-ADC-bindings-to-iio-adc-folder/20250201-023723
+base:   5ffa57f6eecefababb8cbe327222ef171943b183
+patch link:    https://lore.kernel.org/r/20250131183242.3653595-5-jishnu.prakash%40oss.qualcomm.com
+patch subject: [PATCH V5 4/5] iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20250201/202502011915.MIBVfCtZ-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250201/202502011915.MIBVfCtZ-lkp@intel.com/reproduce)
 
-drivers/net/ethernet/mediatek/mtk_star_emac.c
-drivers/net/dsa/mt7530.c
-drivers/net/dsa/sja1105/sja1105_mdio.c
-drivers/net/dsa/qca/qca8k-8xxx.c
-drivers/net/wireless/mediatek/mt76/mac80211.c
-drivers/net/ethernet/ibm/emac/core.c
-drivers/net/ethernet/ti/am65-cpsw-nuss.c
-drivers/net/ethernet/actions/owl-emac.c
-drivers/net/ethernet/mediatek/mtk_eth_soc.c
-drivers/media/platform/samsung/exynos4-is/media-dev.h
-drivers/gpu/drm/tegra/rgb.c
-drivers/gpu/drm/msm/adreno/adreno_gpu.c
-drivers/clk/davinci/pll.c
----
- drivers/of/base.c  | 27 +++++++++++++++++++++++++++
- include/linux/of.h |  9 +++++++++
- 2 files changed, 36 insertions(+)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502011915.MIBVfCtZ-lkp@intel.com/
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index af6c68bbb427..e37b088f1fad 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -824,6 +824,33 @@ struct device_node *of_get_child_by_name(const struct device_node *node,
- }
- EXPORT_SYMBOL(of_get_child_by_name);
- 
-+/**
-+ * of_get_available_child_by_name - Find the available child node by name for a given parent
-+ * @node:	parent node
-+ * @name:	child name to look for.
-+ *
-+ * This function looks for child node for given matching name and checks the
-+ * device's availability for use.
-+ *
-+ * Return: A node pointer if found, with refcount incremented, use
-+ * of_node_put() on it when done.
-+ * Returns NULL if node is not found.
-+ */
-+struct device_node *of_get_available_child_by_name(const struct device_node *node,
-+						   const char *name)
-+{
-+	struct device_node *child;
-+
-+	child = of_get_child_by_name(node, name);
-+	if (child && !of_device_is_available(child)) {
-+		of_node_put(child);
-+		return NULL;
-+	}
-+
-+	return child;
-+}
-+EXPORT_SYMBOL(of_get_available_child_by_name);
-+
- struct device_node *__of_find_node_by_path(const struct device_node *parent,
- 						const char *path)
- {
-diff --git a/include/linux/of.h b/include/linux/of.h
-index eaf0e2a2b75c..9d6b8a61607f 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -301,6 +301,8 @@ extern struct device_node *of_get_compatible_child(const struct device_node *par
- 					const char *compatible);
- extern struct device_node *of_get_child_by_name(const struct device_node *node,
- 					const char *name);
-+extern struct device_node *of_get_available_child_by_name(const struct device_node *node,
-+							  const char *name);
- 
- /* cache lookup */
- extern struct device_node *of_find_next_cache_node(const struct device_node *);
-@@ -578,6 +580,13 @@ static inline struct device_node *of_get_child_by_name(
- 	return NULL;
- }
- 
-+static inline struct device_node *of_get_available_child_by_name(
-+					const struct device_node *node,
-+					const char *name)
-+{
-+	return NULL;
-+}
-+
- static inline int of_device_is_compatible(const struct device_node *device,
- 					  const char *name)
- {
+All errors (new ones prefixed by >>):
+
+   drivers/iio/adc/qcom-adc5-gen3-common.c: In function 'adc5_gen3_update_dig_param':
+>> drivers/iio/adc/qcom-adc5-gen3-common.c:72:18: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
+      72 |         *data |= FIELD_PREP(ADC5_GEN3_DIG_PARAM_CAL_SEL_MASK, prop->cal_method);
+         |                  ^~~~~~~~~~
+
+
+vim +/FIELD_PREP +72 drivers/iio/adc/qcom-adc5-gen3-common.c
+
+    67	
+    68	void adc5_gen3_update_dig_param(struct adc5_channel_common_prop *prop, u8 *data)
+    69	{
+    70		/* Update calibration select and decimation ratio select */
+    71		*data &= ~(ADC5_GEN3_DIG_PARAM_CAL_SEL_MASK | ADC5_GEN3_DIG_PARAM_DEC_RATIO_SEL_MASK);
+  > 72		*data |= FIELD_PREP(ADC5_GEN3_DIG_PARAM_CAL_SEL_MASK, prop->cal_method);
+    73		*data |= FIELD_PREP(ADC5_GEN3_DIG_PARAM_DEC_RATIO_SEL_MASK, prop->decimation);
+    74	}
+    75	EXPORT_SYMBOL(adc5_gen3_update_dig_param);
+    76	
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
