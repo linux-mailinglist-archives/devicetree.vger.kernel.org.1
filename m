@@ -1,140 +1,141 @@
-Return-Path: <devicetree+bounces-142196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DED34A2478C
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 08:38:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B934A247E3
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 10:18:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88B2318869BD
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 07:39:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C34C01885746
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 09:18:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35F46136671;
-	Sat,  1 Feb 2025 07:38:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C3CB149C57;
+	Sat,  1 Feb 2025 09:18:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gy4nv8CU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dxs6qfoK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1EC2AD2C;
-	Sat,  1 Feb 2025 07:38:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D558DBA34
+	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 09:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738395533; cv=none; b=B0750jCADSmm0hBiQhREukO//iWSMRgar0vhPgVowFZQRfs9cSGV0rixVYLFal94H4b15xCOQmJYCutjlx5C/8/Fh5ZA4os+S3UWknMPjiIifcaz9RYz5yxB9/y1fvaVxG7II797iR3W+XaNZ2RxofMYwt42R97nLgGi4amBvzQ=
+	t=1738401507; cv=none; b=IScpHo4jtCTc4IGGNttBLt2m24dJ5D+ufaPu6lOIg3AwTz0qRPx1K7kNn2SL4mJPTaY6XuI/NAY/LzXqZUAMwv3IJhd/XYB4P8K81pkbtEOWuGOGg/Cm1rFjU2530g3e5OUnfHe1YW+ayP3FxZI5zr59sZvwuZ1p3Ck9M2SiYh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738395533; c=relaxed/simple;
-	bh=9xmvHIq9dsoshm+uhUroh5H2iby22JoiDwJUC4ufiTU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uYCSDC+nQd1cp4/aRuAxaMmcaYeal8kxXUJBTf3kEVhB/iZGaH0HIrJnhgxeMOZmZZ0bXQd4SmbFW6EJv3VgwtadMEFSzR2ULEj3ZJNhhPbFyQ4BOxzWH3lf3DGNI8Ox3MBOh6kHNuN60IrSEuMqh0EH/xSFQ1G2PXZhn1paPAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gy4nv8CU; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2161eb95317so48351115ad.1;
-        Fri, 31 Jan 2025 23:38:51 -0800 (PST)
+	s=arc-20240116; t=1738401507; c=relaxed/simple;
+	bh=4qP1R4QL7a2XCzsO9D2B+ppmsFIePsnOmtMp2m3zHrg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TG1ag6zXBEumYRAv5eAU55TiwJU4uYm1TZhLT6ZxmOWk/wWGeaOC/cul2MlmDpPFLOqbL1+pCNDtzwRzqWP2Qp0l83eXSTVpH6DUFUBbfUAD7FfZ80iOTEgCOKaUOR8rx2MGpg0Uqxbc99M7PIXLtcdZHMUpR4ZGEFKGVWyaW20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dxs6qfoK; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-540218726d5so2610421e87.2
+        for <devicetree@vger.kernel.org>; Sat, 01 Feb 2025 01:18:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738395531; x=1739000331; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9xmvHIq9dsoshm+uhUroh5H2iby22JoiDwJUC4ufiTU=;
-        b=gy4nv8CU8XdDxtKiQT9BGQbldOULrx6auZ8fHmSo4Lu1FZQy/c2hUPApuCpg5irj+R
-         dzeiGgtABFCTwJIAFV0uhWLw27nZnH/gTj46QZg+WwSR6sGU44+QjBtF7Dzkc7Q6iXX1
-         h/CyUE+PIf11pXANqIAOdg0B8lx5ZiUm3CmeesRsa4myQeSyaYba9NLKHA9LQ4RQIhGW
-         z+/GqvPQ2cr2edIShefP1dUs/5XNSxFgDWh9icdhG05dJSyJTnG/4tK+fPQTL3aTmZOB
-         zwXfiZ5phOCy/KTLEw3ipuSvdR9Pe6aiZ4Hc8kyeDk0QLgGhKqsh/PVy/Rh6sdNOKfMl
-         /vNA==
+        d=linaro.org; s=google; t=1738401502; x=1739006302; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dzmrjdR0yHCLpHq8/GHmK7t2cRCAh1HvefbrwzlazCI=;
+        b=Dxs6qfoKd4IaVC7JQ/y49jS9UraL0NV/paZo3N0ZKmFHbJYOhjy9Zxr5CuJa/nZrJt
+         YcxHUOM+3+a+DPnD2/cMVF1vf7yTf426L86aQdumNpCiPHYQAaW6yaEOLe70D8qB0qs5
+         8QKV2b6zagea3Z2oqzVyZsNo4Gj37FQYiT+zjUQKf51fXgpykr7ncmMoxEn7yBhH6HbO
+         Q23HCk28ICfyE8SXVr4/vDZYPkbO/dmzBjGU9K0YqB5Y5G+wbYJN/C7wIUGmg9xZLXrr
+         FSpZA26O+jgyqwv5IKcbpn0v+YiV0k4rKHF1DTvn0xOJjTXcNYTdgVDHy6odkBScMUAu
+         YXog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738395531; x=1739000331;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9xmvHIq9dsoshm+uhUroh5H2iby22JoiDwJUC4ufiTU=;
-        b=iMAiwEcuIQEiympzeY8l4BT50LAhCM7Vv6XzBPUCx6BOE0PiGGdipDVBQos/vnRqxL
-         VrNJfSAZHfUUkIDdLFXS1PSBCIpas/HZKvyXLUrtGspg3QokHZYP7EcD5D8vahl9jQuI
-         aCL00/cKu7F5OWOdWfivNnHPmYDaj8mMOfzO686skmSsyQy4t5iW0vrFfAA1HeykVImC
-         YLHvc4A+t7DmgEJ5sE1nik/mBPtCuCuFzGvhEhbM5n8o5gn1MGwuIa+6jm84Vxa2JoLN
-         M5b6hkLcUDTGOeeqF66lbEKGMH5N+AsB7OKcRfxqOuPbsuRYVwf7VAjRhIMjf8BY3b/a
-         a+Aw==
-X-Forwarded-Encrypted: i=1; AJvYcCV37Fib72Huq4iuH1BQNWgEDdSjAsKMkz4uoy/lErvHtqVAn9dWuwKk/R8pqro8IPvZ8rROOXgc+0Y3E+k=@vger.kernel.org, AJvYcCWkxL8bJzEe526KpcZA4DVrOAhU1H7Ix9BS/IoiPNeYHXAbbPUw0JhzZUG2YbSgdiNn7LlJVTYt81zn@vger.kernel.org, AJvYcCWy5t2rtFLg/ftmbKcD77mQaYBSqPGDQH7USRN7eLWdxtvsRtXO2Vv0/YhW8J3QsFhXK3cv3hU/eEU7YD88wg==@vger.kernel.org, AJvYcCWzmTeXMCI19iAa1lSG03CKqEsfi+m27JEGP4Z3I5cFDKUkwLmxJyYw9YTNrsz+4mCPrzKH6Rxlw7orOy2v@vger.kernel.org, AJvYcCXLk1AqoayVw3kMWIO7rVHBLP9S+11PRy60JDX8ouha2JuTepty4mEXlUbZvB4MgjDcX0MuTJfvkU0brPErx1io5T2S2g==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiSps+IFpF4w4tIxHOpQtuOzy6dq0jKBGTTA4LWugM+LIBjvn5
-	QTo7Za9x8q1fyVxD8P87fkmtjI/0mwzeY0+aFBAxiwQN/lXPfKnw
-X-Gm-Gg: ASbGnct2h49gLJyRlQpTaXeLgpuOH30CiYeBx9q5jTLWbnyw4vUSzbW98zA4VNo7R90
-	5u7sQA0b0KPA2RYNpvH+dhf19rcR3rz3ngjt39WLkJQ9twi2GY8caxCu+BjQwekhLcE+00Dcw0w
-	JNUKMQtF23cUzOM62nYEA2piGB+emoLYe/enpareamWZF6WQOoj3UNi1jY3/zHV3Svi8gR0DGfx
-	bcWJet0/3VrsgmNaDm+WljHZt+evpO+cacwTA2YykPGzZhflGzA/b4Sovt+j85UF9CJfkmwdH+A
-	0DOwTiZ+Mkqc+k3S
-X-Google-Smtp-Source: AGHT+IEH7GLuMVenB+DGZ11031+0Z7QM64QuG4lUZJW7bAL42hdA0RgOGjpRPyREV+YjQByA00/2yQ==
-X-Received: by 2002:a17:902:d50f:b0:21a:8716:faab with SMTP id d9443c01a7336-21dd7d78cd3mr216024245ad.16.1738395530815;
-        Fri, 31 Jan 2025 23:38:50 -0800 (PST)
-Received: from SC8280XP.. ([144.202.86.13])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21de31edc21sm40719225ad.42.2025.01.31.23.38.43
+        d=1e100.net; s=20230601; t=1738401502; x=1739006302;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dzmrjdR0yHCLpHq8/GHmK7t2cRCAh1HvefbrwzlazCI=;
+        b=Ra5pfawyF8XhvaO4vZl70NRV/UgGlNSRlpb5lQbysDVH1+BwsnBtN9J1Q8MdbEgGZ9
+         0g/yB3Y3tSzM3hAXA3owXk1nQG0+F9Ax0A6mLJMQey+/2/cxcZE8S4agPsM3YM7MuUXu
+         uR6QQYVD8qgjadL1Q69j3ETSPGAVXIFyq9OJhOAx4tQWVnHD9s+ZgGEgDsdYSsRyq2GS
+         v1awMeHxv2SQvzgcHFN1SrM2aB4dN2SKvLjnhF+T0LalFbTFwr3b5f5xHc35Kn9lSzaq
+         tOhHlJSnhUrQRro3skwj1v1KCci0MlK7QH+UuQqlpc6dYlx7ISKDU4NQ7hXC3QicJu3/
+         GZ5g==
+X-Forwarded-Encrypted: i=1; AJvYcCUUGXSZ+LS1N+DXXzpoywSaE9VBY362gebuuCyrAX82BZo5NrECbAP4kJSI3hbfU1wLBVbwVOR4kBdf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmK/fYHE2L1jAItt72JqfB6DswAJhGz8d5z+Vzn2lKENyuZGba
+	9SyNIHk+8KLdXZACKph/7+d97pEvHZu0mOGDmhaUZqQKcqKmLNZQxjo02E04rYM=
+X-Gm-Gg: ASbGnctO7DRKInuguQimsy9f1IgiSwKFNZm6/dSuYO5HueBCBoTpRqioLWQMgn/HSmF
+	xfpTqCb6ve6lUtIBpqo7M9xIzv9X1YbjzdRywt5y3J1Yz8M9M+rAWp3Mm/NyA+/8V5JRMyAl0CD
+	fJRvkqi6Yg7aXVY65c8Q+rtRh8Oytcl6ABF0HgTqyQe0H0CVTBTDubC2v2tffBbOGNcUBivB+Hr
+	gt5FjpwWNlmd3Ioq8r+hW3suxDc0JmbqeHd53qVkfh6Zkc0+AKyGTVaQQ4B2CrjDhPG2BdIjizB
+	OPQO8HMB7LgNeqWDKNAUnsc=
+X-Google-Smtp-Source: AGHT+IGVbi1/vJeJZWONWsavIaow1nP64zjVv/L4qoDCyPBTEHnkS/T9hx2T8QVksVHMBre6z5V30g==
+X-Received: by 2002:a05:6512:3b26:b0:540:1c6e:f040 with SMTP id 2adb3069b0e04-543e4c3c355mr4857407e87.45.1738401501922;
+        Sat, 01 Feb 2025 01:18:21 -0800 (PST)
+Received: from umbar.lan ([192.130.178.90])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebe0ff47sm711234e87.93.2025.02.01.01.18.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Jan 2025 23:38:50 -0800 (PST)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: krzk@kernel.org
-Cc: andersson@kernel.org,
-	bryan.odonoghue@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	hdegoede@redhat.com,
-	ilpo.jarvinen@linux.intel.com,
-	jdelvare@suse.com,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@roeck-us.net,
-	mitltlatltl@gmail.com,
-	platform-driver-x86@vger.kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH RESEND v6 0/3] platform: arm64: Huawei Matebook E Go embedded controller
-Date: Sat,  1 Feb 2025 15:38:37 +0800
-Message-ID: <20250201073838.3278-1-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <33f8a68f-46d8-472f-8061-52800e5bd014@kernel.org>
-References: <33f8a68f-46d8-472f-8061-52800e5bd014@kernel.org>
+        Sat, 01 Feb 2025 01:18:20 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 0/4] Bluetooth: qca: add Qualcomm WCN3950 BT/WiFi chip
+ support
+Date: Sat, 01 Feb 2025 11:18:11 +0200
+Message-Id: <20250201-rb1-bt-v1-0-ae896c4923d8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANPmnWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIwND3aIkQ92kEt3k1GTzRGNDE0tLwxQloOKCotS0zAqwQdGxtbUAUgv
+ G81gAAAA=
+X-Change-ID: 20250201-rb1-bt-cec7a314991d
+To: Marcel Holtmann <marcel@holtmann.org>, 
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
+ Rocky Liao <quic_rjliao@quicinc.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1089;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=4qP1R4QL7a2XCzsO9D2B+ppmsFIePsnOmtMp2m3zHrg=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnnebbtNjOJgirn/5PLm6n0j45AEUUDo2C+tic5
+ 6NH8XK5JgiJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ53m2wAKCRCLPIo+Aiko
+ 1ayfB/0QH2dT03oTJ6DN4/zrzi+DPNgB3ZgIfqZ5dB8phqZQPBtPlaaE2H06julMFthnRdGyDED
+ 5HJleC2c7WhaW5CsgUikyj00hB0fHbSKZsObxKcdi2epEIWaWW6lxb1yv4zfP5SCOkhkjBHEcW/
+ D1Mxu8Zq3ixhVg0H89H7DRD3J0S0L4O0X1/ZnVYehCixInevwXk3qsBFWAJh2Ryw1whxofZM/Vl
+ iw1Xnqnib4v+bKGOIFDAelHkUXNzFrnzPtJjAupV6vg04OnAgFYJKryOqqbWod5wjy89GUiaUBK
+ kyDaKQXag0RkZrjgobJ13pIqMGycu5/VmtP8eSyl1Z0aYoVa
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On Sat, Feb 1, 2025 at 5:20 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> On 31/01/2025 10:21, Pengyu Luo wrote:
-> > This adds binding, drivers and the DT support for the Huawei Matebook E Go
-> > (sc8280xp-based) Embedded Controller which is also found in Huawei Matebook
-> > E Go LTE (sc8180x-based), but I don't have the sc8180x one to perform
-> > tests, so this series enable support for sc8280xp variant only, this series
-> > provides the following features:
-> >
-> > - battery and charger information report
-> > - charging thresholds control
-> > - FN lock (An alternative method)
-> > - LID switch detection
-> > - Temperature sensors
-> > - USB Type-C altmode
-> > - USB Type-C PD(high power)
-> >
->
-> Why are you resending?
->
-> Previous version was only week ago and minimal time is two weeks. Plus
-> its merge window, so this resend is unjustified.
+Qualcomm Robotics RB1 platform uses a new member of the WCN39xx family
+of BT/WiFi chips. Add support for this member of the family and enable
+it to be used on the RB1 board.
 
-Sorry, I am still new to the process, I may have misunderstood something.
-I sent it because I had got at leaset one reviewed tag for every patch
-from the corresponding subsystem maintainer. Can I expect that there would
-be no reviewing? All I need to do is wait for it to be applied.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Dmitry Baryshkov (4):
+      dt-bindings: net: bluetooth: qualcomm: document WCN3950
+      Bluetooth: qca: add WCN3950 support
+      arm64: dts: qcom: qcm2290: add UART3 device
+      arm64: dts: qcom: qrb2210-rb1: add Bluetooth support
 
-For merge window, I noticed pr from platform-driver-x86 had been merged a
-week ago. Maybe I shouldn't assume for every subsystem.
+ .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |  2 +
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi              | 15 ++++
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts           | 81 ++++++++++++++++++++++
+ drivers/bluetooth/btqca.c                          |  9 +++
+ drivers/bluetooth/btqca.h                          |  1 +
+ drivers/bluetooth/hci_qca.c                        | 25 +++++++
+ 6 files changed, 133 insertions(+)
+---
+base-commit: 88b6bfc04cc5f60ce79c25cd27fe83f7fb4468bf
+change-id: 20250201-rb1-bt-cec7a314991d
 
-Best wishes,
-Pengyu
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
