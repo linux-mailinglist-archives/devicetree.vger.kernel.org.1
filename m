@@ -1,107 +1,167 @@
-Return-Path: <devicetree+bounces-142218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F44A248E9
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 13:16:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF6CA248F1
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 13:17:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B63221885CF1
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 12:16:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7AF53A8E69
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 12:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0DF015B0F2;
-	Sat,  1 Feb 2025 12:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D25146D68;
+	Sat,  1 Feb 2025 12:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qGTpMXaT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AEF910E0;
-	Sat,  1 Feb 2025 12:16:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9DD10E0;
+	Sat,  1 Feb 2025 12:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738412165; cv=none; b=i1UR9qVvnNpnam+GprcVyDkjx2SyeB6HWdOYSa9DP1uSWFaNHEclA/ajWFCxaK4zi/3ggbYhZGicWuoI62bN91A26pqKn87r+q3p+SBzXx6UQv6XXtZdvq2qG5PYMJSbfp/7dzlU+ciN45D4HeZZv/2PMGS3DQXUT1HS2L5Iydo=
+	t=1738412215; cv=none; b=DEvlu9d0IYQuJZMnDUGqo67kZSshNqxDepTtFhhqcGtOZaVaRhSLi3M6xTR9MvTv6V4vZ1N1LSyVXd+alNUtFHZJc7Ex5GddpzZe4rpu9UFzkAPP8wuGXOiJxZ7fLVN9c9tNuLu7lCacB6UTWZ5XbEPg/eBG1lfx4PHZJuefcJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738412165; c=relaxed/simple;
-	bh=b8U7QmhWk7y+Hx06WSqrwTDfcKEo/BG8sdQWG27SdjI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PDc/ZoAXif8rcSdOBRuVoynewLueUbNYzxdzMhMV4o6WV78lkIPGrlFJTROQdrfiaCyh3QcKcMQA2fj4kH+rckfPSBuB1aRv+hBbi3nyRFWYz4XXLbxbEgDaYnWAv+jsbxxjKUK0BXzAzb/taUiNMIFdPiYoK7GOiSwNFcTv6Ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
-Received: from [192.168.10.14] (dynamic-176-000-016-040.176.0.pool.telefonica.de [176.0.16.40])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: pmenzel)
-	by mx.molgen.mpg.de (Postfix) with ESMTPSA id A9CD161E647B8;
-	Sat, 01 Feb 2025 13:15:33 +0100 (CET)
-Message-ID: <13d5026c-3274-4b90-b941-22f08a8ebdc4@molgen.mpg.de>
-Date: Sat, 1 Feb 2025 13:15:29 +0100
+	s=arc-20240116; t=1738412215; c=relaxed/simple;
+	bh=QnYD3OHN1APboHaaBk2QkON9NMRe/FRmrahjz9mSLTM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VW0UoY9xQrSopVPyG++w1ZZtD9SvoK+jY06BZ+mUeqol9AKNs1gtJVMgUBucX/H7Y4FZNdQpSiLy3YUhjZZStSkpF1DWJUvhKx0WTDyLGklg7Lz6+1OpgyXs+zq4oYasKPnMZZRqud2thApDM//iwCCU5l2M9sVG5T8qXbjjw4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qGTpMXaT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AD52C4CED3;
+	Sat,  1 Feb 2025 12:16:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738412215;
+	bh=QnYD3OHN1APboHaaBk2QkON9NMRe/FRmrahjz9mSLTM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qGTpMXaTPcE/N7GIot4YmqlRszV2+5nmFPfqmymkvCZCzVRFuFJeXNatfK3a7oelY
+	 4LsqG7Xpf+ohyRG7DalllgjrJqg+l348HCzaDLx9Rgoq/WL0V3n0C9rDffEDaGD0RO
+	 DLuU/vKZOq3Fn/NR28SDO79vLUqaafy+N+10rAemlh9nllJBNuU1Zg8ePq6odrN1pi
+	 PSmYadC9ZMFXGf9v0+nW7Nlqtq/JcFBFFr0sDkygJRhNMbjLrvIhjD3sXAn0E754mk
+	 GmyKrbuyE5fRat6M5G7zwU2jGTXAsKHFSmA0ELvHXDWDZZTVGv7GdU3unfa/vGjmO3
+	 nX00SLuhl4Hbg==
+Date: Sat, 1 Feb 2025 13:16:52 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: airoha: Add the pbus-csr node for
+ EN7581 SoC
+Message-ID: <Z54QtFIpX6a1eBm0@lore-desk>
+References: <20250115-en7581-pcie-pbus-csr-v1-0-40d8fcb9360f@kernel.org>
+ <20250115-en7581-pcie-pbus-csr-v1-1-40d8fcb9360f@kernel.org>
+ <20250118-sturgeon-of-incredible-endeavor-73a815@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] Bluetooth: qca: add WCN3950 support
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
- Rocky Liao <quic_rjliao@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20250201-rb1-bt-v1-0-ae896c4923d8@linaro.org>
- <20250201-rb1-bt-v1-2-ae896c4923d8@linaro.org>
-Content-Language: en-US
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20250201-rb1-bt-v1-2-ae896c4923d8@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Dear Dmitry,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xdV9V4QeKacnl1fi"
+Content-Disposition: inline
+In-Reply-To: <20250118-sturgeon-of-incredible-endeavor-73a815@krzk-bin>
 
 
-Thank you for the patch.
+--xdV9V4QeKacnl1fi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Am 01.02.25 um 10:18 schrieb Dmitry Baryshkov:
-> WCN3950 is another example of the WCN39xx BT/WiFI family of chips. It
-> requires different firmware files and has different current
-> requirements, so add it as a separate SoC type.
+> On Wed, Jan 15, 2025 at 06:32:30PM +0100, Lorenzo Bianconi wrote:
+> > This patch adds the pbus-csr document bindings for EN7581 SoC.
+>=20
+> Please do not use "This commit/patch/change", but imperative mood. See
+> longer explanation here:
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/sub=
+mitting-patches.rst#L95
 
-Is the firmware publicly available already? (In patch 4/4 you write, it 
-is, and I found it [1].) I find such information helpful in commit 
-messages, and also the firmware names:
+ack, I will fix it in v2
 
-•   qca/cmbtfw12.tlv
-•   qca/cmbtfw13.tlv
-•   qca/cmnv12.bin
-•   qca/cmnv13.bin
+>=20
+> > The airoha pbus-csr block provides a configuration interface for the
+> > PBUS controller used to detect if a given address is on PCIE0, PCIE1 or
+> > PCIE2.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  .../bindings/arm/airoha,en7581-pbus-csr.yaml       | 41 ++++++++++++++=
+++++++++
+> >  1 file changed, 41 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/arm/airoha,en7581-pbus-c=
+sr.yaml b/Documentation/devicetree/bindings/arm/airoha,en7581-pbus-csr.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..80b237e195cd3607645efe3=
+fda1eb6152134481c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/arm/airoha,en7581-pbus-csr.yaml
+> > @@ -0,0 +1,41 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/arm/airoha,en7581-pbus-csr.yaml#
+>=20
+> arm is only top level bindings and ARM stuff. This is soc.
 
-Do you also have a datasheet name to review the vregs?
+in this case we should create an airoha folder in
+'Documentation/devicetree/bindings/soc', correct?
 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/bluetooth/btqca.c   |  9 +++++++++
->   drivers/bluetooth/btqca.h   |  1 +
->   drivers/bluetooth/hci_qca.c | 25 +++++++++++++++++++++++++
->   3 files changed, 35 insertions(+)
+>=20
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Airoha Pbus CSR Controller for EN7581 SoC
+> > +
+> > +maintainers:
+> > +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> > +
+> > +description:
+> > +  The airoha pbus-csr block provides a configuration interface for the=
+ PBUS
+> > +  controller used to detect if a given address is on PCIE0, PCIE1 or P=
+CIE2.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - airoha,en7581-pbus-csr
+>=20
+> Does not fit standard syscon bindings?
 
-[…]
+I think standard syscon is fine. In this case we could drop this patch. Agr=
+ee?
 
-The rest looks good.
+Regards,
+Lorenzo
 
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
-Kind regards,
+--xdV9V4QeKacnl1fi
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Paul
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ54QtAAKCRA6cBh0uS2t
+rGPKAP9AV9aNELAnQMAvN6T3ATp+1UdQqYNuozqYanheocrXTQEA3ANKLoaql0H9
+KBX3Imbz0GhzL2vi2MiGUzicgh24HwU=
+=Cqhn
+-----END PGP SIGNATURE-----
 
-[1]: 
-https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/?id=421017641e6a6ef389190ac3edf67885183f3de0
+--xdV9V4QeKacnl1fi--
 
