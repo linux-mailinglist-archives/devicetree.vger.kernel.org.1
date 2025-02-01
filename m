@@ -1,134 +1,292 @@
-Return-Path: <devicetree+bounces-142257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110F3A24A1F
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 17:04:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A46B4A24A3F
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 17:19:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77AFC3A76EE
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:04:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1ACDD16506B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:19:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A14621C5D55;
-	Sat,  1 Feb 2025 16:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E53D1C5490;
+	Sat,  1 Feb 2025 16:19:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lcgn+w5P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XmmPA2jQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04361C5D4F;
-	Sat,  1 Feb 2025 16:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE38E2F56;
+	Sat,  1 Feb 2025 16:19:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738425868; cv=none; b=hNw8MLdCxkv0LFa1Zzprr6NEASAimPO73B18hCKPds7SMl2s2R5zQKy86d0y1wt03iMBQnTH5xj+BUz8peSGqjXvROSDVpwioy3ydfpCt9lwz/wuVND1WUigNfKpHaONJuQzUylVUep3dPVODHfLVtxbEsKLMvDPizxso0DNKrM=
+	t=1738426782; cv=none; b=Wr4sAE4RiZg8iYvthyDaEa1j0ilKe8Hj2nRVYRQyOZ4mLP8CRJgVmHq4TpzZXJi4TrODJ3oc8cdQaQjDDYnzFNuhGvAn774YNRaJ2+zGLIhOJ33fYI84JSzcyxA+QmzICEk/us2TA2dtZfqbmz9TfO0+KfserPd1bzmxkoG7JJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738425868; c=relaxed/simple;
-	bh=I4MzQGJ/XOlvmg1qM+M5R17X2i7Dg0JfSmlnBulmUM0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bhhg6OSB1frEVEgkr1uTdTHxZ11IF4DFY0pk0Xe/IP+RdzggfeTNiX7NsvdFg9L+dNOetg03eYzp2VrMGPcUW8Jl1ddHSNZtHiTsv6aabJFqY6iLLwvZLovoBeJ5QmFHG08GQb5MIfb+QQ81MacLimRiIASzgYKMaLr8Xe+KG3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lcgn+w5P; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5401be44b58so3219848e87.0;
-        Sat, 01 Feb 2025 08:04:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738425865; x=1739030665; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G/FHkEyEgm2mZD4oKyZRqvHHFUf2hu9d5AgxmkFkN0E=;
-        b=Lcgn+w5P1N8gSVgcRLSRL7UCBs5WcecymLjPn/phHf0WUlxKy6LCxo3kueBREC4Ao/
-         NYhqzRIXykrQBW5XjqaFVgjTdkaGyIlUbFAas2QViAfYTULJnzasUm2Utm2UAR0UNVlV
-         Tw0Ce46l+DT4flPX4y6uQ0j2zgOWlBMSOC3DzHi6tUHadJQ2Like0HpNLO038hJBfPla
-         BYrDfbxdvECXx/0eVF/qISccgD3HFkQzDLu8DicxogE34KUnlOeepX1VhKlfbSYupr7k
-         Pjj8kZpt4fLzBDoqJ6Exse4kloEcNajFyuWR1rkrJv7JfvK+WOabpc7AruqdYB/yYWV6
-         zFLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738425865; x=1739030665;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G/FHkEyEgm2mZD4oKyZRqvHHFUf2hu9d5AgxmkFkN0E=;
-        b=C99FJ2vHztFBVX1LmFRl34yIZF2/WKwMRdL+yeede7gNyeti34c1UzefGCEQKb1B3a
-         PztcDmSU2mBM3gdCi4FdbnCGaBVx8LGM/XbWhjD+F0DWh31lH9ucnic/Pm9kUjeKlmBv
-         /FdwnUT04pzXobTeL0wjXUiAcGtHWLUCTDScpu3q+v071/elaH04B7XPoNkoZAWB+rvT
-         fiOmergYZLx81ee9JTP7/uB7OsUkLLwrpYHCayErXS5nGIGv/QEXrlK3aghVgi9hOfwU
-         m+ZdIe0JtuZmzrLTLL+FrPDk+7+3fyD8kLciW1CjJoj3ls0surGrOuPri774+jY1cdde
-         0YMA==
-X-Forwarded-Encrypted: i=1; AJvYcCV7tX2k3e+jbSo7j3BLEF0ARAup9RtKLSCHTjsYRbzysJC1QD5VWM0b5OYo9VOq36TszKxdKKZ060cs@vger.kernel.org, AJvYcCVwUy58uppuvcrUQ8K03QD94aV1US6i2ZGUmmi2N6ktBsIpa13qCFAfSNHAKlp5M18YvTIrt3rvs6qVhYZf@vger.kernel.org, AJvYcCXtGPSkESdObLci74sIHIQDbXKXzPmU11szYzQ4e8g9sf9xvUakPxiuQKjHuFXjAEkB5l7H5RBSEpdZ3g==@vger.kernel.org, AJvYcCXvp6SYcihgewexTSneuZMhztMEsBZYRfxKHsta8LLdD8BvagXl3HKcSlxH2P8SzybdPRgDFvzTCXbR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKQMsXkfxFRFx8A1INxs2Z9S7Rbx6bTJjewuoarxXTPRuO9X2n
-	0BBGxYtAZ27i4TEAqbSfovVJ5W4Cm7TG/l7+nHcGXUdGtvwSa/tN
-X-Gm-Gg: ASbGnct2FRfP5oDWw4fqb5n9fNCpyWkdQwRe5lBXSdqrmEmb92V6wGulLS5SBOoKqmK
-	A1K/TK4qWNOVyxeXpl9TedEbMG1YaC9mRPYrJz8eJgRcPRJJHwPR+Cg9sZxxiIfhxJyXVzO4ck5
-	XUo6Gu5DESI32WH1/HlktIKVM6seS6gi1PQryQqgGKuoNKjCFetWni16jt7Hf5UPZTj5CQNxWff
-	0+zMh80nEKflb+0p08nQrEgxLgTp7TBtvw2YgDrNNj4tj7rmEaCEynjbp+Cg9gjsIVorMAv6Uf2
-	Jb7LSsZgkZ7KvIZApCCfPonbdXyvAwbvq9n15ORueigxICH+GEcdgDb7
-X-Google-Smtp-Source: AGHT+IEHgoBRAFDpT9ajz7rHokftbme9Oe99VBKzXpPXpyz0eK0jMQNt2qgRHPVoygEZHpYt4EeRLw==
-X-Received: by 2002:a05:6512:3501:b0:540:1e5e:3876 with SMTP id 2adb3069b0e04-543e4c3fcc9mr4511664e87.52.1738425864690;
-        Sat, 01 Feb 2025 08:04:24 -0800 (PST)
-Received: from [192.168.1.110] (85-23-190-22.bb.dnainternet.fi. [85.23.190.22])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebebec13sm777072e87.229.2025.02.01.08.04.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Feb 2025 08:04:22 -0800 (PST)
-Message-ID: <d3c2d681-4f92-4e09-8c81-c050723c25e8@gmail.com>
-Date: Sat, 1 Feb 2025 18:04:20 +0200
+	s=arc-20240116; t=1738426782; c=relaxed/simple;
+	bh=DY5NDVYk7SPwl1aCk3edxfLAY7ludyGB6iGKYhQhItQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HFlfq61QSEFUz5tcMH/78x5j8u8SF/REnqS+yvdguiN3ajddQhzUQtLSOakJcYs81H5hO6Fk2VWna/HQZuL7689V1Rcf1BTYDQKuoUpnrhwaT5v+bXXH9/LFGUEsc8Pbc8QAIjZV5irHaWRG2Ffx4Z6ZIkx6yz3b5K1+o3KrEHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XmmPA2jQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4853DC4CED3;
+	Sat,  1 Feb 2025 16:19:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738426781;
+	bh=DY5NDVYk7SPwl1aCk3edxfLAY7ludyGB6iGKYhQhItQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=XmmPA2jQ1bhbxy+69mwiq+c4FixlOTgEGnjM9fSl1VQri3TGr5Qv5yNXYB/nxKD05
+	 /BqimMYImS6hU1koEPntpW+JqNCJxqlPioB28+ANwWtr8xxmIxq3+2GwsFLGXC7tDK
+	 CeeSfxZkqTdYhEiI0gd/nP4Sf6ktZcJnDEHyexYde5pE+R4rO8Ld0TmkyxS3wf+r6d
+	 wk861r77taUqGt/aIOQ3MUK7/51DWIH0MyJOZN0hGBTGUILxVX1cNjYML6EnlffbTH
+	 gCXtVmTmKO3lI0D0oSS1aD4DGbbc2WW5/wIHyWaY72D8/hE6ewclq5BjmkPwvcnN55
+	 ekeHthQGtoW7g==
+Date: Sat, 1 Feb 2025 16:19:32 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>
+Subject: Re: [PATCH v11 8/8] iio: adc: ad4851: add ad485x driver
+Message-ID: <20250201161932.08417b99@jic23-huawei>
+In-Reply-To: <20250127105726.6314-9-antoniu.miclaus@analog.com>
+References: <20250127105726.6314-1-antoniu.miclaus@analog.com>
+	<20250127105726.6314-9-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/5] mfd: Add ROHM BD79124 ADC/GPO
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Linus Walleij <linus.walleij@linaro.org>, Nuno Sa <nuno.sa@analog.com>,
- David Lechner <dlechner@baylibre.com>,
- Dumitru Ceclan <mitrutzceclan@gmail.com>,
- Trevor Gamblin <tgamblin@baylibre.com>,
- Matteo Martelli <matteomartelli3@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <cover.1738328714.git.mazziesaccount@gmail.com>
- <cc30cf6859b5e5a7320282709f428cd42717ac6b.1738328714.git.mazziesaccount@gmail.com>
- <20250131171436.00002583@huawei.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250131171436.00002583@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 31/01/2025 19:14, Jonathan Cameron wrote:
-> On Fri, 31 Jan 2025 15:37:06 +0200
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Mon, 27 Jan 2025 12:57:26 +0200
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+
+> Add support for the AD485X a fully buffered, 8-channel simultaneous
+> sampling, 16/20-bit, 1 MSPS data acquisition system (DAS) with
+> differential, wide common-mode range inputs.
 > 
->> Add core driver for the ROHM BD79124 ADC / GPO.
->>
->> The core driver launches the sub-drivers for the pinmux/GPO and for the
->> IIO ADC. It also provides the regmap, and forwards the IRQ resource to
->> the ADC.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> As per response in cover letter. This is a common device combination and so
-> far I don't think we ever bothered with an MFD. Lots of ADCs provide
-> GPIO chips as well so I'd just squash it into the ADC driver.
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Nearly there, but I think an issue with the allocation of the iio_chan_spec
+array has gotten through.  In general, pass the non const data for that
+around until you are ready to commit to not changing it any more and only
+then set the pointer and number of channels in the struct iio_dev.
 
-You may be right with this. I still need to digest this a bit as I 
-explaned in the cover letter discussion :)
+Jonathan
 
-All of your inline comments were valid and I agree with them. Noticing 
-the single IC limitation was great!
+> diff --git a/drivers/iio/adc/ad4851.c b/drivers/iio/adc/ad4851.c
+> new file mode 100644
+> index 000000000000..a49959679e75
+> --- /dev/null
+> +++ b/drivers/iio/adc/ad4851.c
+> @@ -0,0 +1,1302 @@
 
-I'll address all the findings if I keep the MFD approach.
+> +
+> +#define AD4851_IIO_CHANNEL							\
+> +	.type = IIO_VOLTAGE,							\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_CALIBSCALE) |			\
+> +		BIT(IIO_CHAN_INFO_CALIBBIAS) |					\
+> +		BIT(IIO_CHAN_INFO_SCALE),					\
+> +	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),		\
+> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ) |		\
+> +		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),				\
+> +	.info_mask_shared_by_all_available =					\
+> +		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),				\
+> +	.indexed = 1,
+Typically don't have a trailling comma here...
+> +
+> +/*
+> + * In case of AD4858_IIO_CHANNEL the scan_type is handled dynamically during the
+> + * parse_channels function.
+> + */
+> +#define AD4858_IIO_CHANNEL							\
+> +{										\
+> +	AD4851_IIO_CHANNEL							\
+> +}
+> +
+> +#define AD4857_IIO_CHANNEL							\
+> +{										\
+> +	AD4851_IIO_CHANNEL							\
 
-Yours,
-	-- Matti
+.. so you can have one here and it looks more like normal assignment.
+of just set this in the other channel parsing functions so that the template
+is the same for all devices.
+
+
+> +	.scan_type = {								\
+> +		.sign = 'u',							\
+> +		.realbits = 16,							\
+> +		.storagebits = 16,						\
+> +	},									\
+> +}
+> +
+> +static int ad4851_parse_channels(struct iio_dev *indio_dev,
+> +				 const struct iio_chan_spec ad4851_chan)
+> +{
+> +	struct ad4851_state *st = iio_priv(indio_dev);
+> +	struct device *dev = &st->spi->dev;
+> +	struct iio_chan_spec *channels;
+> +	unsigned int num_channels, reg;
+> +	unsigned int index = 0;
+> +	int ret;
+> +
+> +	num_channels = device_get_child_node_count(dev);
+> +	if (num_channels > AD4851_MAX_CH_NR)
+> +		return dev_err_probe(dev, -EINVAL, "Too many channels: %u\n",
+> +				     num_channels);
+> +
+> +	channels = devm_kcalloc(dev, num_channels, sizeof(*channels), GFP_KERNEL);
+> +	if (!channels)
+> +		return -ENOMEM;
+> +
+> +	indio_dev->channels = channels;
+> +	indio_dev->num_channels = num_channels;
+> +
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		ret = fwnode_property_read_u32(child, "reg", &reg);
+> +		if (reg >= AD4851_MAX_CH_NR)
+> +			return dev_err_probe(dev, ret,
+> +					     "Invalid channel number\n");
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Missing channel number\n");
+> +		*channels = ad4851_chan;
+> +		channels->scan_index = index++;
+> +		channels->channel = reg;
+> +
+> +		if (fwnode_property_present(child, "diff-channels")) {
+> +			channels->channel2 = reg + st->info->max_channels;
+> +			channels->differential = 1;
+> +		}
+> +
+> +		channels++;
+> +
+> +		st->bipolar_ch[reg] = fwnode_property_read_bool(child, "bipolar");
+> +
+> +		if (st->bipolar_ch[reg]) {
+> +			channels->scan_type.sign = 's';
+> +		} else {
+> +			ret = regmap_write(st->regmap, AD4851_REG_CHX_SOFTSPAN(reg),
+> +					   AD4851_SOFTSPAN_0V_40V);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad4857_parse_channels(struct iio_dev *indio_dev)
+> +{
+> +	const struct iio_chan_spec ad4851_chan = AD4857_IIO_CHANNEL;
+> +
+> +	return ad4851_parse_channels(indio_dev, ad4851_chan);
+> +}
+> +
+> +static int ad4858_parse_channels(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4851_state *st = iio_priv(indio_dev);
+> +	struct device *dev = &st->spi->dev;
+> +	struct iio_chan_spec *ad4851_channels;
+> +	const struct iio_chan_spec ad4851_chan = AD4858_IIO_CHANNEL;
+> +	int ret;
+> +
+> +	ad4851_channels = (struct iio_chan_spec *)indio_dev->channels;
+
+Casting away a const is normally a 'bad smell' but there is more
+going on here than just that.
+Who allocated this?  At this point I'm fairly sure no one did yet
+> +
+> +	ret = ad4851_parse_channels(indio_dev, ad4851_chan);
+
+It's allocated in here.
+
+Create a function with the 'functionality' of ad4851_parse_channels along
+lines of this (returns num channels if positive)
+
+static int ad4851_parse_channels_common(struct iio_dev *indio_dev,
+					const struct iio_chan_spec ad4851_chan,
+				        struct iio_chan_spec **chans)
+{
+	struct ad4851_state *st = iio_priv(indio_dev);
+	struct device *dev = &st->spi->dev;
+	struct iio_chan_spec *channels;
+	unsigned int num_channels, reg;
+	unsigned int index = 0;
+	int ret;
+
+	num_channels = device_get_child_node_count(dev);
+	if (num_channels > AD4851_MAX_CH_NR)
+		return dev_err_probe(dev, -EINVAL, "Too many channels: %u\n",
+				     num_channels);
+
+	channels = devm_kcalloc(dev, num_channels, sizeof(*channels), GFP_KERNEL);
+	if (!channels)
+		return -ENOMEM;
+
+//	indio_dev->channels = channels;
+//	indio_dev->num_channels = num_channels;
+
+	device_for_each_child_node_scoped(dev, child) {
+		ret = fwnode_property_read_u32(child, "reg", &reg);
+		if (reg >= AD4851_MAX_CH_NR)
+			return dev_err_probe(dev, ret,
+					     "Invalid channel number\n");
+		if (ret)
+			return dev_err_probe(dev, ret,
+					     "Missing channel number\n");
+		*channels = ad4851_chan;
+		channels->scan_index = index++;
+		channels->channel = reg;
+
+		if (fwnode_property_present(child, "diff-channels")) {
+			channels->channel2 = reg + st->info->max_channels;
+			channels->differential = 1;
+		}
+
+		channels++;
+
+		st->bipolar_ch[reg] = fwnode_property_read_bool(child, "bipolar");
+
+		if (st->bipolar_ch[reg]) {
+			channels->scan_type.sign = 's';
+		} else {
+			ret = regmap_write(st->regmap, AD4851_REG_CHX_SOFTSPAN(reg),
+					   AD4851_SOFTSPAN_0V_40V);
+			if (ret)
+				return ret;
+		}
+	}
+//and get back the channels + how many
+	*chans = channels;
+
+	return num_channels;
+}
+
+Then in the callers, do other stuff to chanels as necessary before finally
+assigning iio_dev->channels and iio_dev->num_channels when they are actually
+constant as we've finished filling them in.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		ad4851_channels->has_ext_scan_type = 1;
+> +		if (fwnode_property_present(child, "bipolar")) {
+> +			ad4851_channels->ext_scan_type = ad4851_scan_type_20_b;
+> +			ad4851_channels->num_ext_scan_type = ARRAY_SIZE(ad4851_scan_type_20_b);
+> +
+> +		} else {
+> +			ad4851_channels->ext_scan_type = ad4851_scan_type_20_u;
+> +			ad4851_channels->num_ext_scan_type = ARRAY_SIZE(ad4851_scan_type_20_u);
+> +		}
+> +		ad4851_channels++;
+> +	}
+> +
+> +	return 0;
+> +}
 
 
