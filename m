@@ -1,79 +1,87 @@
-Return-Path: <devicetree+bounces-142251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A36BA249F8
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:38:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70EE4A24A00
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:41:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75F35165516
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 15:38:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC74B164838
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 15:41:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87521C330D;
-	Sat,  1 Feb 2025 15:38:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFA81C3BEA;
+	Sat,  1 Feb 2025 15:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BXQB4MMP"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VGZd1DJv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC84D10E0;
-	Sat,  1 Feb 2025 15:38:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24811C3021
+	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 15:41:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738424308; cv=none; b=Mrr9uhXKjC0QRJuI1sPpr/RypEOp1F/mK6Ui83V0WlY6zSDL+8yFfPtYpKNAOiLcvrHQ5cTsg9mysjhJ2Q5EBNooVuA6IghpRNNr6WoXLS0WpxukH8wXqwIr7dIlZCNKcgdvaqqp28g0unsNmx5PNyeacPS7LNHLEsGUvYHlEjo=
+	t=1738424490; cv=none; b=IbTJnKFeX5lHNPATPcInCMFeVRnQ4LnGgxnXfocylOJI+AqoClbfa2AvU32hYbHq9xXd23RvpsLNeP1sM4MF0SgHyq3i52lQLL23tMdnzLhPg34KhxFGzMxyhUj17J2dQSpkiq1FGtWUom2tZzW/aaAEeyRNxWJVpdV/dcox4+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738424308; c=relaxed/simple;
-	bh=6+YqugB3vmMM7dXGp3kW50YfVzv5C2TudQME5klJel0=;
+	s=arc-20240116; t=1738424490; c=relaxed/simple;
+	bh=EAuWRFSzbZPoOpQmGlt+48A6Rn20tQZRvUQGrlXcIUQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K4PRxUoi5Xyak1dlzJlao2XpdtdhfJ6SCC4lqp9pzR7N2WJDwqMx3xWO8SPf3oKSuMoYSYT3viC9k+fxlKoqjIM2MmzIFIl2jCHP/0k8ElgwxeATyz28OWsf8B3dOoX3MlfmZi6jY2ZNrF/BbD6CBEuHkJcmLrrglPEdsW0jsqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BXQB4MMP; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-53f22fd6887so3071306e87.2;
-        Sat, 01 Feb 2025 07:38:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738424305; x=1739029105; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hl1qmmUm0lswNBXxrSaCqGMbG3k3q1JNiizWUxh5hII=;
-        b=BXQB4MMPNlz9YBCMB72SszYcJmMaNFh2U1NLfJi6gj2OwBvabr+XMdN2tFS2DRi1tX
-         MrsdCQ7hTjtcTMWiqgavr7a70pyCiSGEHfeGnj3axUhug4Soi2JjhHGZu2h6+DkCt1ru
-         IjA/QgOZkLWnOgTPuZOCZKVvPpLJAapUzFj/Qrw5JW3/MdEbQwH+kefQMFLuJvUxKzeE
-         rCeyGkvRIn8n0Us2rZeDbg1N2r281R7OLTVkoy9LcZ4QMwHu4df/lfGcAyMrWCyMKqML
-         G7H7MxxS5GSvHga4EdM//VehCGQsAQzwXA32YLEaPcplrU9NkMx3e35NNR0wpPlSNvJe
-         Kf2A==
+	 In-Reply-To:Content-Type; b=SnyX1ut5Kj2Q5mN9lDc0q8zz2bxnbyLFKqHSkDFawQklBDZF4Yx+1LpZCs9otZuVhS5hgacHL2Z/ZQLmfUYc3eyMeJpJVA4DMibuLix+wfOD3Rov8cM341Rdp7+qdSztMCyFh8YZWAXgttp75wrIrVuvefLGAyYZdZB/r4TbOws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VGZd1DJv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 511EtuGK004902
+	for <devicetree@vger.kernel.org>; Sat, 1 Feb 2025 15:41:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	umkiEAbpIImGcjGndXh17mm8/qWIyQJoDQy7OHBf4jc=; b=VGZd1DJvhNGRK4ca
+	S7TiRRN57sYwgrt/Q4ihs/e+7II9DK7oNX+5qGWoDbgbB+MAXgHV4d2hwAYSBsNe
+	L2gH1MgLk45l0tGzGmWOBsgU8gIlnT3WyyRXuN9pVESbtUMpyMkEiLiT+63L1WV/
+	+Ri1kRm2rTkfgr4KvBgKpNsyXFQaUQlr8I1Im9CxVyUgdQQGzx9aPhlmZ/JbknE9
+	KA7N4DeBh62tTtihcpGYtoyGYk4XNU6dRD+xgy04klnXJh1IA/Mu9iFKAcsoiNou
+	AgrJ/K5JELyipEtBYJ7FCbHryv70cXuXd8vVfRVgtFeDRSGHBEl3ZxWtj8WpULcp
+	YJz9dA==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44hd5y13c1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 01 Feb 2025 15:41:27 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6e19bfc2025so9216026d6.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Feb 2025 07:41:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738424305; x=1739029105;
+        d=1e100.net; s=20230601; t=1738424487; x=1739029287;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hl1qmmUm0lswNBXxrSaCqGMbG3k3q1JNiizWUxh5hII=;
-        b=brfvfnsjmLtYHaz/+jPgL6wLZF/+MptnN5RnJPNtP+A2WZDTd4EuCzGizP/ilZWUpD
-         NGp0n5NTgHGislq7wT3tqrGK2ADL3fuD8pGlc76n/e5Znx1UUF+iTro7BnjwFZ6weDOw
-         dWJoLmoB3O1cvZISSKZDVShqsFP5BdPLAsBIYSYNZ7ebo+3oHpFwXOb1f9y4BvLulebx
-         8+9eMTVNSq4/c9cYjAFED5eHr3IT3HWF6X3P5EEzSG5Jaq6xnl7W4eDzbYk2bX4q0+NQ
-         99TRR3LPLMtzt5HUZr27mv7R/zqxLrdvvrjEfXt0Zt0VorAoR/XVqutmqkCEjwlGvn5t
-         qrcg==
-X-Forwarded-Encrypted: i=1; AJvYcCUIdwDQG6XsQpltT0cdJ/P8Nletro71fAS0h4shPKICcEpqDAznfQOdMES3bDoDSm2eNr8BabcKpfTKHzda@vger.kernel.org, AJvYcCUZHCIyhi/Axt/UCSxX3yxQglD/a7kIJ4wQTyUSVJs/cVrNU3bb1D4vZZmfs05Nug0esyLhTBhuoY6j@vger.kernel.org, AJvYcCVV0/M2ReBw0IsRGe4pfXYW7U4WvtutAl9D6bEyQU8g3znLEvVh7w/aYwlrHlQB1aHjurR1z8JsFEdp@vger.kernel.org, AJvYcCX8xlt7+WnZyAyD2LclSMhRDSntHqtAFfRioYeKm1Or2v7L0SmxY/op63p52EtLKJW7VTRiFe6By9Qanw==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwL+zYKoXK+HHqGzYndbTV4eC6cHoKZIwShh+chmeeUstuRDuRx
-	EPiWPZQXstzEM+Xj+qtfk2pF0i8lPmc7Hi88JWfSTDdzbo10cgpn0jiJHA==
-X-Gm-Gg: ASbGnctxuDNZVQwi7IzsHMo0JaSGIDUIIwVUCwRPQ6WxRbtCkrbnt7KFOIh1bMdazaY
-	akfVHooTRid9FhlMTL6rSYAKw3lb1FLMkKZjNs0Zz1bWFErs1fCSg1Nph2R0Dlznti95QUrpiIh
-	pJFBOvlHCViRduLqd/DjM2Tj9VOUSwxo4lNsFyt7npaRszZ5M80Gf/OAveSt5aaojKEsI8NSLLs
-	wyReeXn4Hf65RKbnM8WYZ6kO0XzPNo5TUyao6U7EtGlUrGvYPeHqkRxx31rUQz0eSY2j/mZwHG+
-	BHJ/OILlZuqa4ww82aFZsWNlK7atW78Nqplkg7yl3KzIIoKwGu8bLrEr
-X-Google-Smtp-Source: AGHT+IFBW4Zgtlrqa9nazIfabbiNg+jyRCtT+yNUD0PlCskZ3/ni1PajHRQnr85exXraq9rQrLiPqA==
-X-Received: by 2002:a05:6512:3b07:b0:540:1fd6:4e4f with SMTP id 2adb3069b0e04-543e4beb22dmr4630101e87.22.1738424304452;
-        Sat, 01 Feb 2025 07:38:24 -0800 (PST)
-Received: from [192.168.1.110] (85-23-190-22.bb.dnainternet.fi. [85.23.190.22])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebe219c4sm777293e87.105.2025.02.01.07.38.20
+        bh=umkiEAbpIImGcjGndXh17mm8/qWIyQJoDQy7OHBf4jc=;
+        b=eR1LJxsYq4qVzQhlR4Bnsj7X37L0TkPMlQN/HtN28xagDOAmSP2z+GkoylopfYYper
+         JhUMKXvLUEkQ9GFbiT9jWgDKx0NMblAKkA4ZXQ07e/SegVl1mBmZC1eEpue8SrPVTcg7
+         3r6b+ChtgQjQ4ljvea7U8G8WdM7rgKFTM3b7gCmfFnbE2SFZ7rKkYrLuwiuh3Pjbd+sO
+         nVj/eN1LfPG7SOwIRd+eG7lZ4ymHYne8Eykq1KgE2ZQTHPv5oOVqkDKCFvFba/hz5SkS
+         X7nWbKptw38LALqpgpvnIzt85fSJVaSD1pyfhdts1JkohY67N+oh291BxjHMEv8UNUJS
+         cJJA==
+X-Forwarded-Encrypted: i=1; AJvYcCXdgoyluaN3598aTB4iZspaICJEcQZ2YzUASBtHuUEB9ovjOSdHA3rXyWOdBReIt2rYwYETdI8My7Z5@vger.kernel.org
+X-Gm-Message-State: AOJu0YymEEVmoi2ZsZfRuMXYGwiFLXrhCrO/rjyq5AX3srAEPPfaGviP
+	13MtbDNhsIxrDger88NvqKwco3/osdhzFKAOsr3e6r3huM9gs/QHPpolGUucs27BRXvHj0aSL3r
+	ElnGNQTKz8oWp/1Mc0GsvTtWuSVG+GwUmv6m3Om26VQv1FZ46inlFx9s1I9tc
+X-Gm-Gg: ASbGncvKnlA7ivOklMWyUzJrt9NyZE9TxF68maa7xe1gyGKxpSSkoow9dsskt7b5ot8
+	gzLnX9MZsXYK9ZDWjU8Gpsqap892xsALeQRtXRIqXgxz9YCQkXVyyA/CsetQffOIqK5zQvShFKu
+	0amZ3b8a9+CKcBdvvLnn2/mih1gCgMkF/yRzSLLl7wQCKHesGczKrbxYGTFjbU2ItXPiN71gr1q
+	5gA3YodFfkhrIyxAk+Wz+e24Ck4kCUKZiSwj2XXRqx5CxFhTpPeRnWeUwWDXgyC3NUXQueYqPG+
+	MLgdruOOu97+LAs8TMdB/BqW89KD4+TyAK+k8ZsogCD2pvj6ImYGVW+yF5Y=
+X-Received: by 2002:a05:620a:27cf:b0:7b6:dc5c:de2 with SMTP id af79cd13be357-7c009b91905mr601833985a.13.1738424486434;
+        Sat, 01 Feb 2025 07:41:26 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEnUksznpySe3iXS6aTkOqcqTJDL3C7UtJvJBqhbC+hblm/2idTj1UbgWT0n0clixn0WjRITw==
+X-Received: by 2002:a05:620a:27cf:b0:7b6:dc5c:de2 with SMTP id af79cd13be357-7c009b91905mr601832685a.13.1738424486005;
+        Sat, 01 Feb 2025 07:41:26 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dc8eaafa38sm1592278a12.76.2025.02.01.07.41.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Feb 2025 07:38:22 -0800 (PST)
-Message-ID: <566f15dc-8901-4377-8407-8eac8a54bfe4@gmail.com>
-Date: Sat, 1 Feb 2025 17:38:20 +0200
+        Sat, 01 Feb 2025 07:41:25 -0800 (PST)
+Message-ID: <80948a6f-1cd4-47b3-9218-f5ab0c25eb3b@oss.qualcomm.com>
+Date: Sat, 1 Feb 2025 16:41:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,132 +89,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/5] iio: adc: Support ROHM BD79124 ADC
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Linus Walleij <linus.walleij@linaro.org>, Nuno Sa <nuno.sa@analog.com>,
- David Lechner <dlechner@baylibre.com>,
- Dumitru Ceclan <mitrutzceclan@gmail.com>,
- Trevor Gamblin <tgamblin@baylibre.com>,
- Matteo Martelli <matteomartelli3@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <cover.1738328714.git.mazziesaccount@gmail.com>
- <e44851669ce7e91d1295ab7352535c93b89d35bf.1738328714.git.mazziesaccount@gmail.com>
- <20250131174118.0000209a@huawei.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250131174118.0000209a@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sm8650: drop cpu thermal passive
+ trip points
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250129-topic-sm8650-thermal-cpu-idle-v3-0-62ab1a64098d@linaro.org>
+ <20250129-topic-sm8650-thermal-cpu-idle-v3-1-62ab1a64098d@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250129-topic-sm8650-thermal-cpu-idle-v3-1-62ab1a64098d@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 39lUJATHfRccUbLthuqOjodrTYLHpEpg
+X-Proofpoint-ORIG-GUID: 39lUJATHfRccUbLthuqOjodrTYLHpEpg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-01_07,2025-01-31_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ phishscore=0 mlxscore=0 impostorscore=0 spamscore=0 clxscore=1015
+ lowpriorityscore=0 mlxlogscore=999 adultscore=0 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502010136
 
-On 31/01/2025 19:41, Jonathan Cameron wrote:
-> On Fri, 31 Jan 2025 15:37:48 +0200
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On 29.01.2025 10:43 AM, Neil Armstrong wrote:
+> On the SM8650, the dynamic clock and voltage scaling (DCVS) is done in an
+> hardware controlled loop using the LMH and EPSS blocks with constraints and
+> OPPs programmed in the board firmware.
 > 
->> The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The ADC supports
->> an automatic measurement mode, with an alarm interrupt for out-of-window
->> measurements. The window is configurable for each channel.
->>
->> The I2C protocol for manual start of the measurement and data reading is
->> somewhat peculiar. It requires the master to do clock stretching after
->> sending the I2C slave-address until the slave has captured the data.
->> Needless to say this is not well suopported by the I2C controllers.
+> Since the Hardware does a better job at maintaining the CPUs temperature
+> in an acceptable range by taking in account more parameters like the die
+> characteristics or other factory fused values, it makes no sense to try
+> and reproduce a similar set of constraints with the Linux cpufreq thermal
+> core.
 > 
->  From what I recall that is in the I2C spec, so in theory should be supported.
-> Ah well.
-
-Could be I am mistaken then. Or, maybe I just misused the term "master 
-to do clock stretching".
-
-I know that it is not rare the slave device is keeping the clock down 
-for extended period (in this case so that the measurement would be 
-completed) - but at least I am not aware of any APIs which could be used 
-to cause the _master_ side to keep the SCL low for an extended period 
-after receiving the ACK (after sending the slave address). In this case 
-it would require this driver to be able to set a time for how long the 
-master would keep SCL low after sensing the slave address, before 
-sending the "command" bytes.
-
-|S|ADDRESS+R|a|STRETCH|8-bit-i2c-frame|A|8-bit-i2c-frame|A|STRETCH|8-bit-i2c...
-
-Above denotes this "master stretching". CAPITALs are initiated by 
-master, lowercase by slave. S, is start, a is ack and R is read-bit.
-
-If there is a standard way to implement this in Linux side, then I might 
-consider using it as it'd allowed much higher capture rates.
-
->> It is worth noting that the ADC input pins can be also configured as
->> general purpose outputs. The pin mode should be configured using pincmux
->> driver.
+> In addition, the tsens IP is responsible for monitoring the temperature
+> across the SoC and the current settings will heavily trigger the tsens
+> UP/LOW interrupts if the CPU temperatures reaches the hardware thermal
+> constraints which are currently defined in the DT. And since the CPUs
+> are not hooked in the thermal trip points, the potential interrupts and
+> calculations are a waste of system resources.
 > 
-> We shouldn't be presenting channels that are configure for GPIOs as
-> ADC channels.  It is very rare that there is a usecase for any
-> dynamic switching.
-
-Thanks :) If the dynamic switching is rare, then you're definitely 
-right. I need to see if using the pinmux still makes sense, and if we 
-can implement this while using (separate) pinmux driver.
-
-> Normally it's a case of what is wired and
-> so static.
-
-I should implement a device which can be controlled via it's analog 
-output line :) If nothing else then a device shutting down when it's 
-output is pulled low ;)
-
-...Well, I have no real use-case for dynamic config either.
-
->  Hence build the iio_chan_spec array for just the
-> channels you want, not the the lot.  Channel sub nodes in the
-> DT are how we most commonly specify what is wired.
-
-Hmm. That'd mean the ADC channels _must_ be defined in DT in order to be 
-usable(?) Well, if this is the usual way, then it should be well known 
-by users. Thanks.
-
-...
-
->> +		if (BIT(i) & i_lo) {
->> +			ecode = IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, i,
->> +					IIO_EV_TYPE_THRESH, IIO_EV_DIR_FALLING);
->> +
->> +			iio_push_event(idev, ecode, d->timestamp);
-> The same interrupt thing doesn't apply to falling? That's odd.
+> Drop the current passive trip points and only leave the critical trip
+> point that will trigger a software system reboot before an hardware
+> thermal shutdown in the allmost impossible case the hardware DCVS cannot
+> handle the temperature surge.
 > 
-
-It does. So, not odd, just a regular bug :) Thanks!
-
->> +		}
->> +	}
->> +
-
-...
-
->> +
->> +	irq = platform_get_irq_byname_optional(pdev, "thresh-alert");
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 180 -----------------------------------
+>  1 file changed, 180 deletions(-)
 > 
-> Is there more than one?  If not why do we need to do it by name?
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 25e47505adcb790d09f1d2726386438487255824..95509ce2713d4fcc3dbe0c5cd5827312d5681af4 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -5751,18 +5751,6 @@ cpu2-top-thermal {
+>  			thermal-sensors = <&tsens0 5>;
+>  
+>  			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> -					type = "passive";
+> -				};
 
-I kind of like doing it by name when the IRQs come from a MFD device - 
-which can name them. It is no real extra cost (well, maybe bytes of the 
-added string in kernel, but I guess it's not relevant with only few 
-interrupts) - but it makes it very hard to get it wrong, and it 
-documents the purpose of the IRQ.
+Feel free to drop polling-delay-passive from these nodes too
 
->> +	if (irq < 0) {
->> +		if (irq == -EPROBE_DEFER)
->> +			return irq;
-
-...
-
-I do thank you for, and agree with, all the rest of the comments!
-
-Yours,
-	-- Matti
+Konrad
 
