@@ -1,141 +1,161 @@
-Return-Path: <devicetree+bounces-142259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82800A24A4D
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 17:23:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E28B6A24A59
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 17:26:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 099B916383E
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:23:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FBE7165F1C
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3418B1C5D62;
-	Sat,  1 Feb 2025 16:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757551C5D5D;
+	Sat,  1 Feb 2025 16:26:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OX/rt15I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HV3YMCpE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB2B1C5D4D
-	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 16:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411C31C1F1F;
+	Sat,  1 Feb 2025 16:26:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738426978; cv=none; b=dr5d81G2kMdWFEPGqVjjqDp1+HXknS9ypm2r7luL6aja29DxAT0mmc/UKIOLiNdpw2Q23LgpQPCh1xwkVDQi2wHAn/5vvbG8radPCzUAPYqiUm2kgfsW9VVU+CS8j2xbIOUDnTefPuo0T5qx/vURYoQztcGSbim53kVYCKlc15E=
+	t=1738427204; cv=none; b=SNVEvHi24zwzehOXmr6GcFz9K5RDnSea6K0xmDNl+mnpWkg5hjjsJPMglRXgECYp0mTvAS1xFPFwDcWrOIlDOpc2ZMW7qTN8DLqfSU46b05TzeqKE29YZNbrVysWF2QPztwjFYc7j5WNs2+wI55000L7k3961Gbu5wLcKTNxZ3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738426978; c=relaxed/simple;
-	bh=LbDVqPMvfAWfXJowInDbnFGLIDjIttLqtOOQlAS8pGw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XMz+8zaYfZyi8o9/Ndpe4n9sPCsvrhM+choWj0tmtBjygMcO9A4HQu9MhiCSX5WV39x70sUvccByfxsi/yhINrXq749UGMZq/ga2PlNXj+iNPvbNJPJEgE7RkUoTO1TG1OQYuLoV7IG71U2treWipMjQpzF3QT5C4NbAweYfD5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OX/rt15I; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-54020b0dcd2so4396429e87.1
-        for <devicetree@vger.kernel.org>; Sat, 01 Feb 2025 08:22:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738426974; x=1739031774; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SB7/q7mnWnKXhmf35fp13ZHl7rRS7BiN5dapcuwGPeA=;
-        b=OX/rt15IW29OL+xjayqZh64v6p5R/Z2FGsLEiF4rqPoYksyoTEWzNQ+Qq6WiiqF2R0
-         EHocATq1sS7RWNCdaruf7V+3iZieQETslEWNFmvfFbanAPSPeSKc3Tmc3vDfDa7iBkt1
-         IOPj5XHSf2Ty0Nt9ql9ekAeFlThafllissmGTWvDmKHdrwvYhk5eYyh5OlpxuHjKzH4K
-         6dsQxMUOJMCXYWzs7bFKFfbuyarA2y4okFowqPS8i6PgshBHX3oCX9CAqNKb59dO2uOH
-         4AuzQKGkYbK5VxcSKnQIhj9LXEJ3V8vKzM9PVDrx36Nl5bghAuvzJtt51wC8DGpEoJGs
-         ytww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738426974; x=1739031774;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SB7/q7mnWnKXhmf35fp13ZHl7rRS7BiN5dapcuwGPeA=;
-        b=J2apPqxoFCgY6MbgZo5WA2JOCdNOxa7Ihz2cpD0L3BcImDND7JbefZAZm1Nx/bIMMp
-         XgsLOn9W7LxdK7dd4xG9lGmDpdSdWvrH5AYcagYtga0mem5l3PJm/mGW2tpSaM6oyMbL
-         GsmJjcgr1A9lrxO7xa748ysWutlZMcR32uZCbyiC/mF3bAPjH2lQQO27ujAlmpUwyfk9
-         KgIpMTjYW3bdbzV8NBuFn+pQjtXO3C0INavIe7UKJNV/lb5TEvqO7hlKtbjaXg/Hdj96
-         DwQKVI6nelGyf4a24D9Oj/IkVCZplv82O2FuNLf7KkmsQxfiz001C/umVoK4xMewLUYL
-         i1ZA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjSOiZW661nOUb5KrY8pdQhNXDWrDm2HHx3gTFf9XAinTnI00CfzgBAdlHJpv3Rfjw1OZZna3046w9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHKb0SibA1yqR2dozssuINzDEazQOu4dV1Sbz3QPzwvWEVXGfk
-	aVzVhXQgLBTlUhg+jP6Ii8xSC+5oisjyQPHTwlhXmBunhSDMF5sRW8yHu6iohao=
-X-Gm-Gg: ASbGncvusarjH6O/NMESHT2Pcn5otbzN+ehHcGcgLIDQoxuYaR9KqgK4UHw661/amiS
-	bnSXBstJMrAOacL22RUz/C6aztA7aw2SpL+HQgl3j7pcRz6H3gHIBnLYnRMoUD0dFFKmUsWtFyZ
-	1+wwE1OohC0Aa3lvpaWFUO85DI//HBTgTxCi+J/YeyL+Mx3adKnYvu6Yc+9XTRB6qsAKBw/Xy+M
-	yMiWu1LGu5M+RLTDKwO0BxEZfqcpmMaI8bK620G5Ybl8TnqYudOti1U5P8Qb/jP0V547PG6FmM8
-	iXIy4dKnwY/ji+Caok5KIuBecZwrvXFo3UXJBOD6Iyl7FzKYAo4IN2CDo1CJ/uMtB8VsxUw=
-X-Google-Smtp-Source: AGHT+IFY/QJCu1OV6j/yI8VCFmTa4eC9LGUKAVzD6ktYAmvjnDqZxme+ljXVZ2YnCurb6YGeEXAzfQ==
-X-Received: by 2002:a05:6512:684:b0:542:21f8:d6bd with SMTP id 2adb3069b0e04-543f0f30d1cmr2521222e87.22.1738426974213;
-        Sat, 01 Feb 2025 08:22:54 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebebef3fsm765925e87.257.2025.02.01.08.22.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Feb 2025 08:22:52 -0800 (PST)
-Date: Sat, 1 Feb 2025 18:22:50 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: qcm2290: add UART3 device
-Message-ID: <jc5lpkfhlrz3wwfyl4zrsrgsnwiowrxr6dadqf2vsjedxcn55k@yijjjvteuowy>
-References: <20250201-rb1-bt-v1-0-ae896c4923d8@linaro.org>
- <20250201-rb1-bt-v1-3-ae896c4923d8@linaro.org>
- <55195890-b7d2-4df8-b8c5-fa2768e90094@oss.qualcomm.com>
+	s=arc-20240116; t=1738427204; c=relaxed/simple;
+	bh=GrQn/vAlhRLico+evNaO6oFN5ihzECkatA5KFLG8epU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Y5bmonTfeOlBJBcHlt2VXexceWMBeYmJfQGkeCmv6TYgRrgDeS+CHgVVtR3iQ4D3yjYphHLk4G6PNMDa3wP2dyuDOjtdej2TDUSduRenjdOy9wk3QoP8VKlXCEubhR84Zs6eHXyUQj9dTXi/J1JvQjGOEXHp5QDdWZb36kTR44U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HV3YMCpE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73EBBC4CED3;
+	Sat,  1 Feb 2025 16:26:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738427203;
+	bh=GrQn/vAlhRLico+evNaO6oFN5ihzECkatA5KFLG8epU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=HV3YMCpE0fMsqjf8JOo6uBiUl/hLYUT2UK7xHIh/quoXBmLxDhdAlCvSJ7/VngWUm
+	 wfi6eCv/X4YMj4fnF3ASioL4EHzw21SaW/NEcEDOGLzNwAfBCkqMy7wUVqaPWvCG8o
+	 6KMkbk9+Gon4xhivbE6NlCydzbuwGDhbSgZ9+rB9NGvQ6rN8wzznF0P6gKg5zYk9+u
+	 d/ZKs46jep5fZ/3yfrMH/nCvqCyQtaQU9WYZb3v0pi86Gg2SAyMuvMPoQrqaavUe6z
+	 89mxzLm2Qf7A032mg11iy/2U1FdZm9tO0GT3jss2NnDxRffVrkKFXt/7D1mb737rNl
+	 1zyGf4iwbJN1A==
+Date: Sat, 1 Feb 2025 16:26:31 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Linus
+ Walleij <linus.walleij@linaro.org>, Nuno Sa <nuno.sa@analog.com>, David
+ Lechner <dlechner@baylibre.com>, Dumitru Ceclan <mitrutzceclan@gmail.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>, Matteo Martelli
+ <matteomartelli3@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [RFC PATCH 3/5] iio: adc: Support ROHM BD79124 ADC
+Message-ID: <20250201162631.2eab9a9a@jic23-huawei>
+In-Reply-To: <566f15dc-8901-4377-8407-8eac8a54bfe4@gmail.com>
+References: <cover.1738328714.git.mazziesaccount@gmail.com>
+	<e44851669ce7e91d1295ab7352535c93b89d35bf.1738328714.git.mazziesaccount@gmail.com>
+	<20250131174118.0000209a@huawei.com>
+	<566f15dc-8901-4377-8407-8eac8a54bfe4@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <55195890-b7d2-4df8-b8c5-fa2768e90094@oss.qualcomm.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, Feb 01, 2025 at 04:19:01PM +0100, Konrad Dybcio wrote:
-> On 1.02.2025 10:18 AM, Dmitry Baryshkov wrote:
-> > On QCM2290-based devices the SE3 is used for the Bluetooth chips. Add
-> > corresponding device node.
+On Sat, 1 Feb 2025 17:38:20 +0200
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+
+> On 31/01/2025 19:41, Jonathan Cameron wrote:
+> > On Fri, 31 Jan 2025 15:37:48 +0200
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >   
+> >> The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The ADC supports
+> >> an automatic measurement mode, with an alarm interrupt for out-of-window
+> >> measurements. The window is configurable for each channel.
+> >>
+> >> The I2C protocol for manual start of the measurement and data reading is
+> >> somewhat peculiar. It requires the master to do clock stretching after
+> >> sending the I2C slave-address until the slave has captured the data.
+> >> Needless to say this is not well suopported by the I2C controllers.  
 > > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/qcm2290.dtsi | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
+> >  From what I recall that is in the I2C spec, so in theory should be supported.
+> > Ah well.  
+> 
+> Could be I am mistaken then. Or, maybe I just misused the term "master 
+> to do clock stretching".
+> 
+> I know that it is not rare the slave device is keeping the clock down 
+> for extended period (in this case so that the measurement would be 
+> completed) - but at least I am not aware of any APIs which could be used 
+> to cause the _master_ side to keep the SCL low for an extended period 
+> after receiving the ACK (after sending the slave address). In this case 
+> it would require this driver to be able to set a time for how long the 
+> master would keep SCL low after sensing the slave address, before 
+> sending the "command" bytes.
+> 
+> |S|ADDRESS+R|a|STRETCH|8-bit-i2c-frame|A|8-bit-i2c-frame|A|STRETCH|8-bit-i2c...
+> 
+> Above denotes this "master stretching". CAPITALs are initiated by 
+> master, lowercase by slave. S, is start, a is ack and R is read-bit.
+
+Ah. That is indeed more unusual. You were correct that i was thinking
+of the client side doing the stretching!
+
+> 
+> If there is a standard way to implement this in Linux side, then I might 
+> consider using it as it'd allowed much higher capture rates.
+Not that I'm aware of. 
+
+Wolfram, have you seen anything like this?
+
+> 
+> >> It is worth noting that the ADC input pins can be also configured as
+> >> general purpose outputs. The pin mode should be configured using pincmux
+> >> driver.  
 > > 
-> > diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-> > index f0746123e594d5ce5cc314c956eaca11556a9211..5f92eb16482a0ea5f8436cfa7e55849f171ebd24 100644
-> > --- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-> > @@ -1239,6 +1239,21 @@ &qup_virt SLAVE_QUP_CORE_0 RPM_ALWAYS_TAG>,
-> >  				status = "disabled";
-> >  			};
-> >  
-> > +			uart3: serial@4a8c000 {
-> > +				compatible = "qcom,geni-uart";
-> > +				reg = <0x0 0x04a8c000 0x0 0x4000>;
-> > +				interrupts = <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>;
-> > +				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
-> > +				clock-names = "se";
-> > +				interconnects = <&qup_virt MASTER_QUP_CORE_0 RPM_ALWAYS_TAG
-> > +						 &qup_virt SLAVE_QUP_CORE_0 RPM_ALWAYS_TAG>,
-> > +						<&bimc MASTER_APPSS_PROC RPM_ALWAYS_TAG
-> > +						 &config_noc MASTER_APPSS_PROC RPM_ALWAYS_TAG>;
+> > We shouldn't be presenting channels that are configure for GPIOs as
+> > ADC channels.  It is very rare that there is a usecase for any
+> > dynamic switching.  
 > 
-> This path doesn't look quite right.. there'MASTER_APPSS_PROC is only
-> on one of these.
-
-Hmm. I should check my c&p source then.
-
+> Thanks :) If the dynamic switching is rare, then you're definitely 
+> right. I need to see if using the pinmux still makes sense, and if we 
+> can implement this while using (separate) pinmux driver.
 > 
-> + RPM_ACTIVE_TAG
+> > Normally it's a case of what is wired and
+> > so static.  
 > 
-> Konrad
+> I should implement a device which can be controlled via it's analog 
+> output line :) If nothing else then a device shutting down when it's 
+> output is pulled low ;)
+> 
+> ...Well, I have no real use-case for dynamic config either.
+> 
+> >  Hence build the iio_chan_spec array for just the
+> > channels you want, not the the lot.  Channel sub nodes in the
+> > DT are how we most commonly specify what is wired.  
+> 
+> Hmm. That'd mean the ADC channels _must_ be defined in DT in order to be 
+> usable(?) Well, if this is the usual way, then it should be well known 
+> by users. Thanks.
 
--- 
-With best wishes
-Dmitry
+Yes. We basically have two types of binding wrt to channels.
+1) Always there - no explicit binding, but also no way to describe
+   anything specific about the channels.
+2) Subnode per channel with stuff from adc.yaml and anything device
+   specific.  Only channels that that have a node are enabled.
+
+There are a few drivers that for historical reasons support both
+options with 'no channels' meaning 'all channels'.
+
+J
 
