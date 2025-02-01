@@ -1,160 +1,160 @@
-Return-Path: <devicetree+bounces-142246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B184AA249E8
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:35:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E516EA249EC
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 16:36:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8622B3A62ED
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 15:35:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60CE416486B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 15:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3486B1C54A5;
-	Sat,  1 Feb 2025 15:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 046621C1F20;
+	Sat,  1 Feb 2025 15:35:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VMayfFx8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5dGmrwr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD9A1C5499
-	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 15:35:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB83A16F265;
+	Sat,  1 Feb 2025 15:35:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738424103; cv=none; b=cLjqpbQab5oufqmxFkg9W9EBpaMfZxCCQDJIHf9t6Bjp1HQbd321gI6HU8Kc9oZrjtD5bJkd34Rgx9qFck/3mrLfLAyhfN9L3jxO55jq1k8hpVT8lz+tXzL1Prvti8O0GGVVkeKz4B+Kdv5gXfAuBbh0hjgrNPOUyXlDAPaqehA=
+	t=1738424150; cv=none; b=gQq/4WQMVly/Arr1g1EvnUw2B3arFcskAei3EryQQU9z1CMYVArMn1OgTn46jQIwWJwmA8mSiTST094O8yj2kdFAQwFW3tEgHCT5Dzl/RgPXxtILJeq2zxjpKs1le4PxE0RZqrktGvm58HZ/v2e/rhxVoGF7A02u6on+dyGF7qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738424103; c=relaxed/simple;
-	bh=bFAlX9Yw3zAId4rQvxlQtWfQn87XYaykSHeA0KAMUz0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mt7mIOX80RKq+eVsD6fvqlw/SEb5s58PejhtXH5e4Z7CSuMPEvGPNmaCwXx/91OxA5UHxu5/OXS4il3ZYyFpZioYNOiOqvudX39o6Pxnqnm2KzmM7vc4fZjY4MvGi0zwgCsOwWbP3NWRs5wSEmS3EK5d3gNkmYWY95nIfLdbg4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VMayfFx8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5117hADc020981
-	for <devicetree@vger.kernel.org>; Sat, 1 Feb 2025 15:35:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zrIrvnnRIyc/5mFkHnsqUBBHTVd65NqEjNn8jUu18Sw=; b=VMayfFx8FntlmzV3
-	uPSCFPGIQrwVmxhkauAST3rLjpqa5JzsyYgcui99R6LNd/LuzsBKCq0eLyJPsF+5
-	6ngzyk7aJjOqDCYlw6TXyVvJCCv5N1dcradV+cWfUBq6CBR5ylf/RkbFgGR5iMYT
-	tQkuOyQeDK8CNgwqQnX/+dtaLfsHpeITMW4fhcDzkg7DduAak4AwpCQXJ1M43RrM
-	f+FPmRESNg3L4wQ+oXZ9xFFt5iBqTOqxb6jp+aBYE4yXQv0s0TgrleXHrvO0nTKI
-	ffpS+BMTXQzlANZ/Z1k6N1uCSPHJtO6K3oH5YllRnUXlVluTIj802XBjaeHZxkZA
-	yohOpw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44hd5ph310-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 01 Feb 2025 15:35:00 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7b6faf8b78aso45137885a.0
-        for <devicetree@vger.kernel.org>; Sat, 01 Feb 2025 07:35:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738424099; x=1739028899;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zrIrvnnRIyc/5mFkHnsqUBBHTVd65NqEjNn8jUu18Sw=;
-        b=JOwcnKHBe7nIM33DKmbdnd/6v3gvkXvqw1+WCbfRiiZ/VwyaGj//py1XD42wgHMX7x
-         kQ21h9OnqEXi61zmaNHCWGpQdnG2Zsxd4/vrQYqwxJkLxmtX+SFYgmPpIcK7/ISSuId7
-         XhTngREtad6ReiUKV8mK9Tcncv0YWSK4eXHToSw61TioQp6Ob8Jg28XQGP0S8Thv4fpG
-         4CEQK0a8S/Fo5mxReLOASunyqosqjkYG7U1iUhHEeVIS0j7buTG4zBeRCUg4FjFx6bSP
-         Ia+PxvQU8rzauifQuNu7+9BgtZPC/BgskRA4TTBBgYTK6raPObL1yPWPqI+ayzTx5sVx
-         VgaA==
-X-Forwarded-Encrypted: i=1; AJvYcCUrzN6fNV6EtBYq3Q/jLJ11PREPZaXuAldDuPDftWMNWdyjNi9WKnHKcpQ1ibGcvA0HtauYKSyahG4B@vger.kernel.org
-X-Gm-Message-State: AOJu0YwstOJ1lN43yABTG5hhnFOXyN5r/KTb85Utzo01NRtT5pwKa+og
-	gsYv9y9HHEfrl/7gzC4caNohfAZUlYmkD1XXpZBLMFf+Z2Erj0aTRE8wyKrZg3TTMnwJBg4p5ee
-	VViZjn088DWl00QYKIAPpcrUZh9uS0TQSBT0/N/m4aBYL9Ecwgo9I5onHHSnx
-X-Gm-Gg: ASbGnctBXTlTIe1zu+xB+mhsT0/eLDxA1M4dsYROUUW3Q3lP2uox3miTKIAksI1PSpV
-	VvAKUe84iVSwjldkflfMiwgqtbdSnkIGeGqAfqYCjevGcjD6JaefCpxjSMotYhbuquga4ReSb8H
-	JtXZKTYocpJQo4movpMeKh4zQSirMIcgsEGWfHlpujSV4IRirRX60xJ+zO9MNVYVz/OXZ7Zu3I+
-	EAtZ9Y5Fv3kE7YaXbt2gSm/RMjx4azsubqCTPb3opzX244dGCsFD1EFn0V6q5+MIkBBp5huGsRo
-	e0Kp0hVkfxAj9Il+PtQ9X++o7x8klxBIWIKizqb0AwG0yVVT71ZNVPWsds8=
-X-Received: by 2002:a05:620a:394b:b0:7be:3cf2:5b46 with SMTP id af79cd13be357-7bffcd08abcmr854076585a.8.1738424099482;
-        Sat, 01 Feb 2025 07:34:59 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFirUnyGDgs8wPVUM3euWC3sTxD2Z//mPAJqoUOuR3NowkG8sTRXo2rMo1sVSLvEobVTe0hVQ==
-X-Received: by 2002:a05:620a:394b:b0:7be:3cf2:5b46 with SMTP id af79cd13be357-7bffcd08abcmr854074185a.8.1738424099055;
-        Sat, 01 Feb 2025 07:34:59 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab6e47a8005sm454195066b.32.2025.02.01.07.34.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Feb 2025 07:34:58 -0800 (PST)
-Message-ID: <018281e0-001a-4587-b775-a9df6e54f75e@oss.qualcomm.com>
-Date: Sat, 1 Feb 2025 16:34:55 +0100
+	s=arc-20240116; t=1738424150; c=relaxed/simple;
+	bh=gdaQDzjILI94jdST7ElLYSDSe1zmq6F1j9pYdNHiRh0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GB2pTMmvJLzUlG3kYT/QU/Y4gJNsY8pcKMljW7erlBVCXi06oF2lRv28vkV86p1MBzlX5ItqRPgyrYLX9Mvj3SUvhI67A+Snp1Ni5vt1CmLAH+a9Y2RQh9e0Rk6oOyRDuCtgbruLiDWbFZbjb2adFmG9MkfHs7442tPq49gupEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H5dGmrwr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 200F6C4CED3;
+	Sat,  1 Feb 2025 15:35:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738424150;
+	bh=gdaQDzjILI94jdST7ElLYSDSe1zmq6F1j9pYdNHiRh0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=H5dGmrwrVklRSs8FPZElk5LGaETVowTVK+XD01Yq8Ka8rtZTynayTqkLmoyTQUhil
+	 I8Pw1YF42M6BLQoRDqa9yvXjQRlDmtEoo+EKYcLb3o00rtn2Jdej6Nd7UlqDYdtq/n
+	 4Xt8Cx2D7SFy3DYqeKMq4sEOm2DSaZ9WmT8pveMOsEPJP56cQdX8UDMeGjReECOZGu
+	 H3XW3nkmXIKrBDBBSHDziV+layb7BlMm9IrezoQ39dvDRw+z1+/Kw9N1XLroYTAKcW
+	 7sU1VlpXilNGqYExsI7PKL1pbF26FWeza5BDEEehrLit4GafKm6O4MrPGccTXg73VP
+	 hsdqzuqGxSOlw==
+Date: Sat, 1 Feb 2025 15:35:39 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, Sergiu Cuciurean
+ <sergiu.cuciurean@analog.com>, <lars@metafoo.de>,
+ <Michael.Hennerich@analog.com>, <marcelo.schmitt@analog.com>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <jonath4nns@gmail.com>, <marcelo.schmitt1@gmail.com>
+Subject: Re: [PATCH v2 10/16] iio: adc: ad7768-1: Move buffer allocation to
+ a separate function
+Message-ID: <20250201153539.5617b5b8@jic23-huawei>
+In-Reply-To: <e39115cee88524f05c8a628b0d3836928c6cc190.1737985435.git.Jonathan.Santos@analog.com>
+References: <cover.1737985435.git.Jonathan.Santos@analog.com>
+	<e39115cee88524f05c8a628b0d3836928c6cc190.1737985435.git.Jonathan.Santos@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v6 0/3] platform: arm64: Huawei Matebook E Go
- embedded controller
-To: Pengyu Luo <mitltlatltl@gmail.com>, krzk@kernel.org
-Cc: andersson@kernel.org, bryan.odonoghue@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, hdegoede@redhat.com,
-        ilpo.jarvinen@linux.intel.com, jdelvare@suse.com,
-        konradybcio@kernel.org, krzk+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux@roeck-us.net,
-        platform-driver-x86@vger.kernel.org, robh@kernel.org
-References: <33f8a68f-46d8-472f-8061-52800e5bd014@kernel.org>
- <20250201073838.3278-1-mitltlatltl@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250201073838.3278-1-mitltlatltl@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: CDajvnkq9C2Fcd6iotMGh7KEoB_d0XfS
-X-Proofpoint-GUID: CDajvnkq9C2Fcd6iotMGh7KEoB_d0XfS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-01_06,2025-01-31_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- adultscore=0 phishscore=0 lowpriorityscore=0 priorityscore=1501
- clxscore=1015 bulkscore=0 mlxlogscore=998 malwarescore=0 suspectscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502010135
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 1.02.2025 8:38 AM, Pengyu Luo wrote:
-> On Sat, Feb 1, 2025 at 5:20 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On 31/01/2025 10:21, Pengyu Luo wrote:
->>> This adds binding, drivers and the DT support for the Huawei Matebook E Go
->>> (sc8280xp-based) Embedded Controller which is also found in Huawei Matebook
->>> E Go LTE (sc8180x-based), but I don't have the sc8180x one to perform
->>> tests, so this series enable support for sc8280xp variant only, this series
->>> provides the following features:
->>>
->>> - battery and charger information report
->>> - charging thresholds control
->>> - FN lock (An alternative method)
->>> - LID switch detection
->>> - Temperature sensors
->>> - USB Type-C altmode
->>> - USB Type-C PD(high power)
->>>
->>
->> Why are you resending?
->>
->> Previous version was only week ago and minimal time is two weeks. Plus
->> its merge window, so this resend is unjustified.
+On Mon, 27 Jan 2025 12:13:19 -0300
+Jonathan Santos <Jonathan.Santos@analog.com> wrote:
+
+> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
 > 
-> Sorry, I am still new to the process, I may have misunderstood something.
-> I sent it because I had got at leaset one reviewed tag for every patch
-> from the corresponding subsystem maintainer. Can I expect that there would
-> be no reviewing? All I need to do is wait for it to be applied.
+> This change moves the buffer allocation in a separate function, making
+> space for adding another type of iio buffer if needed.
+> 
+> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+Jonathan, this one needs your sign off to reflect that you handled
+the patch as part of it's path to upstream.  I can't apply
+anything that is missing such SoB.
 
-Generally if people have a concern, they'll share it with you.
-It may be that one review is not enough, this is up to the maintainer.
 
-You don't need to resend after you get new tags, the maintainer tools will
-pick those up when the patches are being applied.
+> ---
+> v2 Changes:
+> * Interrupt and completion moved out from ad7768_triggered_buffer_alloc(). 
+> ---
+>  drivers/iio/adc/ad7768-1.c | 44 ++++++++++++++++++++++----------------
+>  1 file changed, 26 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+> index 5e2093be9b92..8487b9a06609 100644
+> --- a/drivers/iio/adc/ad7768-1.c
+> +++ b/drivers/iio/adc/ad7768-1.c
+> @@ -599,6 +599,31 @@ static const struct regmap_config ad7768_regmap_config = {
+>  	.max_register = AD7768_REG_MCLK_COUNTER,
+>  };
+>  
+> +static int ad7768_triggered_buffer_alloc(struct iio_dev *indio_dev)
+> +{
+> +	struct ad7768_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	st->trig = devm_iio_trigger_alloc(indio_dev->dev.parent, "%s-dev%d",
+> +					  indio_dev->name,
+> +					  iio_device_id(indio_dev));
+> +	if (!st->trig)
+> +		return -ENOMEM;
+> +
+> +	st->trig->ops = &ad7768_trigger_ops;
+> +	iio_trigger_set_drvdata(st->trig, indio_dev);
+> +	ret = devm_iio_trigger_register(indio_dev->dev.parent, st->trig);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->trig = iio_trigger_get(st->trig);
+> +
+> +	return devm_iio_triggered_buffer_setup(indio_dev->dev.parent, indio_dev,
+> +					       &iio_pollfunc_store_time,
+> +					       &ad7768_trigger_handler,
+> +					       &ad7768_buffer_ops);
+> +}
+> +
+>  static int ad7768_probe(struct spi_device *spi)
+>  {
+>  	struct ad7768_state *st;
+> @@ -669,20 +694,6 @@ static int ad7768_probe(struct spi_device *spi)
+>  		return ret;
+>  	}
+>  
+> -	st->trig = devm_iio_trigger_alloc(&spi->dev, "%s-dev%d",
+> -					  indio_dev->name,
+> -					  iio_device_id(indio_dev));
+> -	if (!st->trig)
+> -		return -ENOMEM;
+> -
+> -	st->trig->ops = &ad7768_trigger_ops;
+> -	iio_trigger_set_drvdata(st->trig, indio_dev);
+> -	ret = devm_iio_trigger_register(&spi->dev, st->trig);
+> -	if (ret)
+> -		return ret;
+> -
+> -	indio_dev->trig = iio_trigger_get(st->trig);
+> -
+>  	init_completion(&st->completion);
+>  
+>  	ret = ad7768_set_channel_label(indio_dev, ARRAY_SIZE(ad7768_channels));
+> @@ -696,10 +707,7 @@ static int ad7768_probe(struct spi_device *spi)
+>  	if (ret)
+>  		return ret;
+>  
+> -	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
+> -					      &iio_pollfunc_store_time,
+> -					      &ad7768_trigger_handler,
+> -					      &ad7768_buffer_ops);
+> +	ret = ad7768_triggered_buffer_alloc(indio_dev);
+>  	if (ret)
+>  		return ret;
+>  
 
-Patches are generally not picked up by maintainers in the timeframe between
-stable vX.Y release and vX.(Y+1)-rc1, this is the time when Linus accepts
-code that has been sitting in the maintainers' branches for some time and
-getting build/functionality tested in linux-next over the previous cycle
-
-Konrad
 
