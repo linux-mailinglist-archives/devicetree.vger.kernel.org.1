@@ -1,135 +1,161 @@
-Return-Path: <devicetree+bounces-142212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38F95A24875
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 12:08:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 529AAA24885
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 12:27:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F38B164D76
-	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 11:08:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D6E83A551C
+	for <lists+devicetree@lfdr.de>; Sat,  1 Feb 2025 11:27:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD7E1537A8;
-	Sat,  1 Feb 2025 11:08:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C3CE146D55;
+	Sat,  1 Feb 2025 11:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="G3TSBP8W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15D4B19A;
-	Sat,  1 Feb 2025 11:08:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6284A3E
+	for <devicetree@vger.kernel.org>; Sat,  1 Feb 2025 11:27:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738408126; cv=none; b=HrvJpTteaZMc1o0fh7gqbcXt+clTAZedKBYsJ267o4Xd/X4HfC4RUduJ9g5CTUZbQY/6lg2zHdbfVtTehiPqrxb/4ptOjwh4XKbLCV3Axrv+p8okUE6uK/07+tWQ+7ZQ6THdPFgC5pDKWqEei89AHqHu9SLI0OimyTGi4QyykjI=
+	t=1738409259; cv=none; b=lGuVIjgJa9vr29dJNCJQypr74UPDEpv+6DJPWRucllx4uvReYWaDLmTV4o34oNf0Sv7fizdPGJw4lzSJhd2FQ9hd4Hb7jSXon6cyWEnMB7IRswBAnMk8cufWr5wpNXXOLxw0JRAC9GStxH2UA8OkETnovbzQzK6us0NLsBWjWiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738408126; c=relaxed/simple;
-	bh=lV2M1tUa4SWHGmKYz293Rfyic2j7Zxh3fh/VhcUO9mk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HRAULcVARkwLgaEHgScR+h2JViMMXdH2H5pFRwe54Cmsb0UUjpMI0J5HCZdICnaoT0Y8ippdo8UZOUY01gVTTNSVvAsVH9Cc/1r+wyiOLt+i4wY5cVWXUqK2+w3eyHE2b7BMNuZs+rDhSl9ALV+1N4xNSagRnX3utw34mxAeAW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-543cc81ddebso3234822e87.1;
-        Sat, 01 Feb 2025 03:08:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738408122; x=1739012922;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zJdFRpY9/VgrRdJOyKoz6hilS+1z3UkKtKPtOxUttZo=;
-        b=K2hOsnNAjpsApCJ8p9+FL7pORg2ZujoXpNtAFiSVw+cn12E9bIWNVR/deXAYS8lVEn
-         1AIOkf64h3UEYX5wfN/6FiedTf4a1UaoOLsLBi1FBXXF4aIZ3kuprpvXC/2nkXnYE0MO
-         IjTYdtChLPh0wM1WAHNQaH7CRjYyqEFnMWga0vptYlzE9lMrDvq/tYVUUDqE4aFQvWqp
-         29PcceknBAvdrPYCImKtf4C6s69jYmxIHag+wGgcW0mBSZ1cbkV4Vj2BaFE08lL4ED75
-         OlNfVOCxNnZxnwMUxK2HJQhjUoKw4bXflu4167lReLkHoaD5aAGJPD6psOkVN2taYka3
-         EKJg==
-X-Forwarded-Encrypted: i=1; AJvYcCVuMECbUblC06KwWhe3JU1D+x9cJw+c/VafjhSyEgc7+M+b/axvEiR1iWW5zHKO0QFj8/TYCQJjU1Tm@vger.kernel.org, AJvYcCXbtgnOpS/KHPpp4/izYbVgf/qpaojpYlShlPQIi47Br3lBclMo5byrdDjwAnFtCXYyN18jXP/SAJI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkPPwtX+FfrTRJCfPZl0egodrF5wex4UtIIhEvhFC8/Y4WdocC
-	UygtKX0sPcK0YoQxDnhamn7s1c3Fv6JyilUeUZwQWmHoIBMg5fs/OwI8Ev2g
-X-Gm-Gg: ASbGnctS96F0tVUzQE3bZ9gEjK4bo/nB3eET+ye9xKQExKLe48NG3PtNh+LjxstntDG
-	hJsPW8KHODaXr3fBuzjGoh1ZDWtCwiSNUxJDwidEIo1Ou2V5tkVaVztNFY1YnMs6FfExAtA5Pfm
-	zbgg/4RgkTjCWJP01vvEa2IDWsBGw03TBvqBbOGYu1E1KLTHV9SKacyHvNQN92n29mzUOJ43ZGL
-	6GbaRlr/Y+fc6vY4l65jaqgb5VRu+WukreZ4iPDp3ipgXBVW93pMfrWj4ZFpySkDtAwd1Y0eFun
-	hnD7an8NB3LcwFN2epK5j9lBXQkhg0PIDUipQdtVOyhm0q5z
-X-Google-Smtp-Source: AGHT+IEvvGuT9l7QynQdhRuG0fHwjiOstf8aganqygVYeT4w2Nb2XESEv7Ek0z6f1SAy/Zx4wjQrOw==
-X-Received: by 2002:a05:6512:118b:b0:542:2e04:eb6f with SMTP id 2adb3069b0e04-543e4beaafbmr4711851e87.14.1738408121638;
-        Sat, 01 Feb 2025 03:08:41 -0800 (PST)
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebe219c4sm728947e87.105.2025.02.01.03.08.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Feb 2025 03:08:41 -0800 (PST)
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-30229d5b21cso20665351fa.1;
-        Sat, 01 Feb 2025 03:08:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUIEhTGe3u9T0VijWY8xNvvmdhEqP+z0jdlrWZYVkKUa6sZMHd3UX+SfiQBJlZbTHQMeQfuy+fXIZxS@vger.kernel.org, AJvYcCVOWoNKQYxmiEtE6NooUUgCOL+We+WfYcVkAI/bL3vrmfm3Sj/5h1cranO1vjrFSfuI19NM2PqqL50=@vger.kernel.org
-X-Received: by 2002:a05:651c:50e:b0:305:d86a:4f01 with SMTP id
- 38308e7fff4ca-3079696b37fmr54303631fa.31.1738408121144; Sat, 01 Feb 2025
- 03:08:41 -0800 (PST)
+	s=arc-20240116; t=1738409259; c=relaxed/simple;
+	bh=vB6/h1KcrFmEdlE/GksrLoQANMkYAz5qEknNQL2HYtg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=b6kkbZCa8JzP8fIcfZv8UQ8cnKSe1kMTxnkK92EMTDGSeCWinwi6Y8Uyb4WRY/mDT1BUn+D/jpD/7im/t42sYHrcaah3pcPeUEyOGcgLAqR1SOep+mn8/K8gi6j2L3xMag89xg8S8L+3aPN0VH9ANrp3h/0hVFymN4dC9NAguOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=G3TSBP8W; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1738409253; x=1739014053; i=wahrenst@gmx.net;
+	bh=bYnYzdN0LrCXG6ExV5L0/rVoVwbxiqa7GQkmlFTH544=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
+	 MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=G3TSBP8WTtQhoJGG5ROQtbFoE3LoegLhXNR1tZMAauHQgpHmBbyfRtfDF0VLUT8Y
+	 tCy9h3hvl4NfmCX+L32gexhfD982wkRCmLDC3NXWj0D3UR5OvLTMEn9XmGjww7CLN
+	 8Joapv4eqtdJarIa2aKAv5Dp7FJxa0pRzK1of+xLCcy9XrDYVXp1MU47K1tIC3cak
+	 tE/4IvHRFET9tNUyNZWEHjdlW/uof1LEmjwVFOCmMdY5sKOIR80gPjKAWZdYjvDAv
+	 KWHLxlH2sC13p+XmnO2vZU0IyP/KJA8ZW3ItJVKMyciV8YYHmBcVqP94jSl1iPcVt
+	 wZcemISWtmaGFMQNrw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from stefanw-SCHENKER ([37.4.251.153]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MbAh0-1t2w6H2uNc-00p9it; Sat, 01
+ Feb 2025 12:27:33 +0100
+From: Stefan Wahren <wahrenst@gmx.net>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Peter Robinson <pbrobinson@gmail.com>,
+	"Ivan T . Ivanov" <iivanov@suse.de>,
+	linux-arm-kernel@lists.infradead.org,
+	bcm-kernel-feedback-list@broadcom.com,
+	kernel-list@raspberrypi.com,
+	devicetree@vger.kernel.org,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH] ARM: dts: bcm2711: Fix xHCI power-domain
+Date: Sat,  1 Feb 2025 12:27:29 +0100
+Message-Id: <20250201112729.31509-1-wahrenst@gmx.net>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250131231455.153447-1-macroalpha82@gmail.com>
-In-Reply-To: <20250131231455.153447-1-macroalpha82@gmail.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Sat, 1 Feb 2025 19:08:28 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67YFBoTaDb2_M9w5zVgDrc0dQofg1B=tOrO23zjUQncEQ@mail.gmail.com>
-X-Gm-Features: AWEUYZmt5WAKw7Sa62l6O-dikObFL-05KwH7Ig2AS6totJP4XZ-9LOk_VWKpsrQ
-Message-ID: <CAGb2v67YFBoTaDb2_M9w5zVgDrc0dQofg1B=tOrO23zjUQncEQ@mail.gmail.com>
-Subject: Re: [PATCH 0/5] Fix RG35XX Battery Charging Issues
-To: Chris Morgan <macroalpha82@gmail.com>, lee@kernel.org
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org, samuel@sholland.org, jernej.skrabec@gmail.com, 
-	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, sre@kernel.org, 
-	Chris Morgan <macromorgan@hotmail.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:7Luia7K8HRu8CPOl1DZ08abjM5+xgYl6+BOu88agzhpkP0jXD1X
+ 9pOsI/PcMy39byVfxit6gBAfewIyG8DZzXFCPECtN/c8fIGpO60NKXLpZbkryFGFCIcwQd1
+ BldWA9krEwsRZCrdnSVCtPs0I9S5cFKQ1Clpukh+rWwGIJhvarB72GXtY1OWUjLV3XkSpYM
+ ayYgMgCWc8EeYwhSbo6VA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:qjyS1YNOivs=;+t/VVUx408bqwOLwq2hirzJWUbM
+ v81cja39T5S77mtVXJfp8frg337c1TPNdE3lHZIPqcT/ja3qIzke5KjLmxk42ww7xsy1LELdh
+ rnV5PT+Uo5WFZPC7EaOuCD16yD2/IZclfEIKgdVI/3YSpbGxbwCSnD+pX/uXY68RmKuh66QK9
+ J7TvcfizuS0Wm5ajaKRH00P/5k7QOHfDd92Fu6OLqQZ57zh/d5WzDY695caAnR7dUYJk6YFGN
+ dmucf9gATPxliCxppPFbbuVYaFzjmNNDAyRRGVCApVx6+C8KbHGqMVzgAcBOiA9V3re1468HE
+ 7NRzIvn9zZbYH0PsE5NOEfZfMYhEnve62b5DMdtAWrQDb71o2XfxUm0PlNWnsehcIsjCJu1E7
+ vblydDW3gYuGqn7H2PVipLaPuTFGS2rYtT/WA7gT5KT7eR/V73nI4JI+o0LEB6RG1kBcAZUin
+ NyDRfcRMVextnFuJ6/0qERlL5b/1XoCalET1nykT5cEapqVSF3RIYTJgBzC1CEDWdS6MttW/v
+ 0I6z+gE2+i6BOaFg9UE94RRa4PJoR9d/h4ysgpn3bYN/0nvc6KgVLycsGn2/eOKpsWZrts/YT
+ 3Rz7XIzAP/ysv0RpSdgqaxrssqQEkaaOpId+j1MaARIqmi+ceuHJ8QrP4W8X4sWVYTrf01Njd
+ XnpSU4DOh2JzvpXirrqFG+evmsUZO3bDfUELHvQOBz9a5/Nl9pHj64WGhMmu1SsntEEe7YFzD
+ yne7qQRdlwWd4pLNgmhxHbTKFvBKsGOkAOP7MMvkIPXOTCky6l6pPZnaKByoNGhYxxAMI0xXk
+ d7Y+hhFxKfFrFFwMjLXWco1XDLHYA08b9EzlsizrSAPAmSxSOHxFEwF4JhB0U3wg0BjmKWhee
+ zET/J108O9DSCVYapUnn0qzdRdXqtjZWNhRF16TtQj24zM2VijGJr3IlbVzqnuqgRPtaVhCaW
+ yjTFyAF9U1uj98skdqMOohXhkyYCwHS3t5NjE8aeLPm5n/ekEluJRuK/Vo5tHOnBLDS77k3V1
+ gfVdlAYMzNufItTxOs7rWk25e5cVQApCq8qZ5dK+PE/8NciDH973FxKFp/5HGxYnw9prFGuvr
+ mTy33DriGLG7VHdAOILvHONEPp3B0tkPrymRsFCFZhwdf97XaxDQsNnmFwaDvfCXF6mXb6922
+ us6AAYcahWROp/PpChW+450OrIJUDSwGVHkRuvo6QXS/h0Y6rgJKTSDQTezJebAC+cdvsmBhz
+ alBU5Zf8ytZaOmaX8+c+8B9ZIiZ1XGHPmOG3yMJ3aRDXfNoNV2NmVFo2KxXnLKq8lVAHOtTnj
+ tPL958u6yuCj+cSwjvIX+Py6KQDZGEAy8ymmPx8T4hgTgRNSQbuRGBDxxnGDXHADQnLUyam53
+ zEWVzjsLR6eoc8oA==
 
-On Sat, Feb 1, 2025 at 7:17=E2=80=AFAM Chris Morgan <macroalpha82@gmail.com=
-> wrote:
->
-> From: Chris Morgan <macromorgan@hotmail.com>
->
-> The Anbernic RG35XX devices sometimes fail to charge when the register
-> for the battery temperature sensor is set to the incorrect value either
-> by user error or an incorrectly programmed efuse. Allow users to
-> hard-code if a temperature sensor is not present (which is the case for
-> all Anbernic RGxx series devices) to prevent this issue from causing
-> problems. Additionally, a bug was identified with the handling of PMU
-> faults while this fix was being tested.
->
-> Chris Morgan (5):
->   power: supply: axp20x_battery: Fix fault handling for AXP717
->   dt-bindings: power: supply: axp20x-battery: Add x-powers,no-thermistor
->   mfd: axp20x: AXP717: Add AXP717_TS_PIN_CFG to writeable regs
+During s2idle tests on the Raspberry CM4 the VPU firmware always crashes
+on xHCI power-domain resume:
 
->   power: supply: axp20x_battery: Update temp sensor for AXP717 from
->     device tree
+root@raspberrypi:/sys/power# echo freeze > state
+[   70.724347] xhci_suspend finished
+[   70.727730] xhci_plat_suspend finished
+[   70.755624] bcm2835-power bcm2835-power: Power grafx off
+[   70.761127]  USB: Set power to 0
 
-Lee, FYI this power supply patch has a compile time dependency on the
-mfd patch, due to the new register offset macro.
+[   74.653040]  USB: Failed to set power to 1 (-110)
 
-Chris, in the future, if you are aware of build time dependencies,
-please mention them in the cover letter. That would help maintainers
-sort out how to land things.
+This seems to be caused because of the mixed usage of
+raspberrypi-power and bcm2835-power at the same time. So avoid
+the usage of the VPU firmware power-domain driver, which
+prevents the VPU crash.
 
+Fixes: 522c35e08b53 ("ARM: dts: bcm2711: Add BCM2711 xHCI support")
+Link: https://github.com/raspberrypi/linux/issues/6537
+Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+=2D--
+ arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi | 5 -----
+ arch/arm/boot/dts/broadcom/bcm2711.dtsi     | 1 +
+ 2 files changed, 1 insertion(+), 5 deletions(-)
 
-Thanks
-ChenYu
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi b/arch/arm/boot/d=
+ts/broadcom/bcm2711-rpi.dtsi
+index 6bf4241fe3b7..c78ed064d166 100644
+=2D-- a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
+@@ -1,7 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ #include "bcm2835-rpi.dtsi"
 
+-#include <dt-bindings/power/raspberrypi-power.h>
+ #include <dt-bindings/reset/raspberrypi,firmware-reset.h>
 
->   arm64: dts: allwinner: rg35xx: Add no-thermistor property for battery
->
->  .../x-powers,axp20x-battery-power-supply.yaml | 22 ++++++--
->  .../sun50i-h700-anbernic-rg35xx-2024.dts      |  1 +
->  drivers/mfd/axp20x.c                          |  2 +-
->  drivers/power/supply/axp20x_battery.c         | 50 +++++++++++++------
->  include/linux/mfd/axp20x.h                    |  1 +
->  5 files changed, 56 insertions(+), 20 deletions(-)
->
-> --
-> 2.43.0
->
+ / {
+@@ -101,7 +100,3 @@ &v3d {
+ &vchiq {
+ 	interrupts =3D <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+ };
+-
+-&xhci {
+-	power-domains =3D <&power RPI_POWER_DOMAIN_USB>;
+-};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/b=
+roadcom/bcm2711.dtsi
+index e4e42af21ef3..5eaec6c6a1df 100644
+=2D-- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+@@ -610,6 +610,7 @@ xhci: usb@7e9c0000 {
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <0>;
+ 			interrupts =3D <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains =3D <&pm BCM2835_POWER_DOMAIN_USB>;
+ 			/* DWC2 and this IP block share the same USB PHY,
+ 			 * enabling both at the same time results in lockups.
+ 			 * So keep this node disabled and let the bootloader
+=2D-
+2.34.1
+
 
