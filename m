@@ -1,187 +1,123 @@
-Return-Path: <devicetree+bounces-142340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A0CA2505C
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 23:42:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BFA1A25064
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 23:46:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37D95162715
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 22:42:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91B7418850FA
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 22:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C932147F6;
-	Sun,  2 Feb 2025 22:42:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40A92147F1;
+	Sun,  2 Feb 2025 22:46:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=asahilina.net header.i=@asahilina.net header.b="WQ3Ic9mU"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="fuN52ii/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60E8E1F55EB;
-	Sun,  2 Feb 2025 22:42:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.63.210.85
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 025BA1D5143
+	for <devicetree@vger.kernel.org>; Sun,  2 Feb 2025 22:46:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738536151; cv=none; b=f+xpg4mId60NVJl+z9XBMoRC9BONBHf55ZyK8lkxXMa0QdcOz9le/gOmXFTBwBOoCmHINoZLbwFvJtX57R1KbAbgPsVtxqi4yVP2S7G04M9WTYxM9A/3kE7LctBBUIIzs49O3UFjRKTpQaveC/4LiPFycf4dW4BM81MCHbpUb0U=
+	t=1738536372; cv=none; b=CuGIM6u9rb1YG/yU1Euk9SV4Hq2T0QMoDI2eS1zp5Yldm2MeUc9GnrSUOzMK6tYfMgSRuIVYGwXLal7TjVTfFjUh+xJO0IaUfJYwfKt8TACO87OLCAD0wMFzcsbPUknjYNMyDwa2qmGWukz6UOEAbNNxksj+xCRp9z6e2QbUOUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738536151; c=relaxed/simple;
-	bh=qSNoil9KM8+5HeFGOJ9HYPvfydxNnPOxjUHmJ65r2fY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a6HN/RK346qrYGmugDT25d4Jnj2/yRwLBkGucaClzVZPXyN0v8mt7TTTZBLlLIFjdIomzD9pF3KABv4XqAX8m6x6i2O8jskPlRZnxC9BYaZmk/rCVuzkIPOuYDVVigOZes+9fNJ1TpI24+mbZEgX4MZrhns00qfPRp6eqKfzfv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=asahilina.net; spf=pass smtp.mailfrom=asahilina.net; dkim=pass (2048-bit key) header.d=asahilina.net header.i=@asahilina.net header.b=WQ3Ic9mU; arc=none smtp.client-ip=212.63.210.85
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=asahilina.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=asahilina.net
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: lina@asahilina.net)
-	by mail.marcansoft.com (Postfix) with ESMTPSA id 42AE842657;
-	Sun,  2 Feb 2025 22:42:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
-	s=default; t=1738536144;
-	bh=qSNoil9KM8+5HeFGOJ9HYPvfydxNnPOxjUHmJ65r2fY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=WQ3Ic9mURPvoG/AaMLD4RQFLDALdZS6SmEi8tZsq7afD8QWjRbVsHhy16voA/pgcJ
-	 UpCtZ1Ylf/u1RBjNVp2lBrZnof0QQLwrSYasU/HZGVWnhf89kMtHcyGghaI8PK9Pb3
-	 L2fxM+EFZ+Kqwo+d9apSDjkSSP9aret6Adr94Pve4pj8vNqBMGTNLZtn/1u46EZVAw
-	 TUr2GKM9N4X1/eq0FBfrnYmCpaii1RO5S0vgkqDNCzlsetw4/vYGic/XWb4YOW8pWu
-	 S/YnPf3Nop1drymu6x3HoE0gXippHt1N6T5sdw3iujG95+Zy29SQtY7S7Jt08Lsx1J
-	 YxImPiSOaPmTw==
-Message-ID: <e271d8a1-493d-40b4-8328-2146eef26d0d@asahilina.net>
-Date: Mon, 3 Feb 2025 07:42:19 +0900
+	s=arc-20240116; t=1738536372; c=relaxed/simple;
+	bh=AgL8Vh4o01HqqDUJ+cWv0Odl6D4wHVO6sMsIgzd0wkE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Rik/7h7NdbDUxU9ya9O1DYGzkITVW7M2wWiXJ3t56iacBRNvlnzoV6q7BEGEdFcuC5cuk3yrCS9ka+CBy3Q5Jf5tQrxuiNAR4PwrIUT/+oNlXINU4IctW7tESR6uwfNHvSk9FhvXMIEE+Ss47/MAtzdeDckoO+7Cay70p90XlpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=fuN52ii/; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4361e89b6daso25596415e9.3
+        for <devicetree@vger.kernel.org>; Sun, 02 Feb 2025 14:46:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1738536369; x=1739141169; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YMxp+N8AKPgVkLLt+tNd5Z5gGgVjKJ6HI6C9QfMvPDY=;
+        b=fuN52ii/hTOy3qleFmXOZlsz7f5wuimSH6LILVnaC6e1QCacxvOPpY++PV6hls7bLk
+         Q32pjDUBgMdoW/Pr8hqLHyHVFhBO7co62VBmpxuvLULCK8XRV6Y/ijrB5NnI5eTLX1hu
+         5MWFVXJE0meVofQLwE4e3o2D3rGrWqKOIWB0+h+DV0jFMGvaVeAs1pCf9YcNJj4xB5pp
+         W4kpnBgEns5tslGl6WLlwZwKh/kDNoJ3CLszjCKVjgz+LDyXmvA/v3ayCVWNs33KukfA
+         0PTovCGWx2H1v8//xLB70WqV7pqNzq2386ORQRIX9mkSB/iaNDWmxis6hBehMRrDw0FF
+         pUTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738536369; x=1739141169;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YMxp+N8AKPgVkLLt+tNd5Z5gGgVjKJ6HI6C9QfMvPDY=;
+        b=Glr3PcXSJOIg7fppq+VnmfJosm9uteCecLyXZyUmm45QzWB1Kz+15ElJwJk1p4+Jep
+         m4tot9OpomTLrBXQuBmg5yCZD/1VMGvtmevjSTLyS4D3+jkb0f2xtXGiCLYT5zR/ojjw
+         hptULtqZzrSEprsWouXUBgE1nr2VzzHOxjQiq1UDCNe3HBSA9P22NjF1CIFDja2uB8vX
+         u1ilFEw8nQ0ZkSeRSV22usEcQ4T6zLQj1G+evzBFZAoX86mb3iPzoJEunLiDwP4yeysI
+         Wkg7B6eHbw9OR6zrfMQ2gLCY5mae9IjoEoYSF8aIT35LGPh6S2zKuAYFcJ/Mbatj35YY
+         t9JA==
+X-Forwarded-Encrypted: i=1; AJvYcCXPiHtHZPMdk8RAh7IfuxfxhXNQ/qFwmSf5EedWN2DM9kmtcYsSz3DOaeSyb7gHCbGT9gzuq4B8h5gl@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTRgbhPHQ94ls7+j0ZBi+MlPTJkM72Buiz7ZzAmW6EW2k81gVq
+	XRfo0BnQTWYduKwhCg+emL9VB+9tnufkdzkryCF7jRwW181khT2k1jI+Aj4jLj0=
+X-Gm-Gg: ASbGncudro5gELn8ds9GL7bMfLxClFYFI2chR/i5GRVxGJwKVtEC0UcZcA7o/HcEG9a
+	hRJo9ZQIl/Xznwjs8Q+q3U8BhAlVL1kOdCS8g3hUyxFxW29RnpyZNKfs8sJcuYc8lg/94p82dV3
+	57s3qEHR1vtArq5e14oBCQ/4lviDnrE3AN/NdGV+8X/ckZHrjB/GOTndPNAi+IPZNd0C38iDJk1
+	cWedccAawPRGfBLilvtZ0dw0jDmDe25BMfrqDp7MLRpsSLLSHykw7ilosoGaey9Bae9Rgp4Pr76
+	LjtOFROVcK4y6jJhfyqMtJ+0Ti4=
+X-Google-Smtp-Source: AGHT+IGcFZzU17tuXtMYl8AEybTSN0illAVTYf2xaoCzTK9YBwUnEwlsFBobc6i+n1sl9bjYkSI4Bw==
+X-Received: by 2002:a05:600c:3d9b:b0:434:ff08:202b with SMTP id 5b1f17b1804b1-438dc3c360dmr159424395e9.12.1738536368984;
+        Sun, 02 Feb 2025 14:46:08 -0800 (PST)
+Received: from [100.64.0.4] ([2a02:a03f:6bc3:6b01:62c7:350e:556e:d0f0])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438dcc80e61sm170849605e9.34.2025.02.02.14.46.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Feb 2025 14:46:08 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/2] Enable panel and GPU on Fairphone 5
+Date: Sun, 02 Feb 2025 23:45:50 +0100
+Message-Id: <20250202-fp5-display-v1-0-f52bf546e38f@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 07/16] rust: add `io::{Io, IoRaw}` base types
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
- ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
- gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
- tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
- airlied@gmail.com, fujita.tomonori@gmail.com, pstanner@redhat.com,
- ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
- daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com,
- j@jannau.net, fabien.parent@linaro.org, chrisi.schrefl@gmail.com,
- paulmck@kernel.org, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, rcu@vger.kernel.org
-References: <20241212163357.35934-1-dakr@kernel.org>
- <20241212163357.35934-8-dakr@kernel.org> <Z2BTSbOjWa8R29i5@cassiopeiae>
- <e8da15f0-5b97-4569-842c-891cdf886978@asahilina.net>
- <Z5_vlx1BZuJGOvK7@pollux>
-Content-Language: en-US
-From: Asahi Lina <lina@asahilina.net>
-In-Reply-To: <Z5_vlx1BZuJGOvK7@pollux>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ71n2cC/x3MTQqAIBBA4avIrBvwBwm6SrQQHWsgTBSiEO+et
+ PwW7zWoVJgqLKJBoZsrX2lATQL84dJOyGEYtNRWKm0wZouBaz7di7P15EnLYCjCKHKhyM9/W7f
+ eP08/RqZdAAAA
+X-Change-ID: 20250123-fp5-display-75cece20d3ef
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marijn Suijten <marijn.suijten@somainline.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+X-Mailer: b4 0.14.2
 
+Now since upstream DPU driver can use 1:1:1 DSC topology, we can finally
+enable the panel and GPU on Fairphone 5.
 
+Depends on https://lore.kernel.org/linux-arm-msm/20250122-dpu-111-topology-v2-1-505e95964af9@somainline.org/
 
-On 2/3/25 7:20 AM, Danilo Krummrich wrote:
-> Hi Lina,
-> 
-> On Mon, Feb 03, 2025 at 06:19:57AM +0900, Asahi Lina wrote:
-> 
->>
->>
->> On 12/17/24 1:20 AM, Danilo Krummrich wrote:
->>> On Thu, Dec 12, 2024 at 05:33:38PM +0100, Danilo Krummrich wrote:
->>>> +/// IO-mapped memory, starting at the base address @addr and spanning @maxlen bytes.
->>>> +///
->>>> +/// The creator (usually a subsystem / bus such as PCI) is responsible for creating the
->>>> +/// mapping, performing an additional region request etc.
->>>> +///
->>>> +/// # Invariant
->>>> +///
->>>> +/// `addr` is the start and `maxsize` the length of valid I/O mapped memory region of size
->>>> +/// `maxsize`.
->>>> +///
->>>> +/// # Examples
->>>> +///
->>>> +/// ```no_run
->>>> +/// # use kernel::{bindings, io::{Io, IoRaw}};
->>>> +/// # use core::ops::Deref;
->>>> +///
->>>> +/// // See also [`pci::Bar`] for a real example.
->>>> +/// struct IoMem<const SIZE: usize>(IoRaw<SIZE>);
->>>> +///
->>>> +/// impl<const SIZE: usize> IoMem<SIZE> {
->>>> +///     /// # Safety
->>>> +///     ///
->>>> +///     /// [`paddr`, `paddr` + `SIZE`) must be a valid MMIO region that is mappable into the CPUs
->>>> +///     /// virtual address space.
->>>> +///     unsafe fn new(paddr: usize) -> Result<Self>{
->>>> +///         // SAFETY: By the safety requirements of this function [`paddr`, `paddr` + `SIZE`) is
->>>> +///         // valid for `ioremap`.
->>>> +///         let addr = unsafe { bindings::ioremap(paddr as _, SIZE.try_into().unwrap()) };
->>
->> This is a problematic API. ioremap() does not work on some platforms
->> like Apple Silicon. Instead, you have to use ioremap_np() for most devices.
->>
->> Please add a bindings::resource abstraction and use that to construct
->> IoMem. Then, you can check the flags for
->> bindings::IORESOURCE_MEM_NONPOSTED and use the appropriate function,
->> like this:
-> 
-> This is just a very simplified example of how to use `IoRaw` and `Io` base
-> types in the scope of an example section within a doc-comment.
-> 
-> There is an actual `IoMem` implementation including a struct resource
-> abstraction [1] from Daniel though. Maybe you want to have a look at this
-> instead.
-> 
-> [1] https://lore.kernel.org/rust-for-linux/20250130220529.665896-1-daniel.almeida@collabora.com/
-> 
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Konrad Dybcio (1):
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Enable the GPU
 
-That's what I get for skimming too much... I thought this had the actual
-implementation. Sorry!
+Luca Weiss (1):
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Enable display
 
->>
->> https://github.com/AsahiLinux/linux/blob/fce34c83f1dca5b10cc2c866fd8832a362de7974/rust/kernel/io_mem.rs#L152
->>
->>
->>>> +///         if addr.is_null() {
->>>> +///             return Err(ENOMEM);
->>>> +///         }
->>>> +///
->>>> +///         Ok(IoMem(IoRaw::new(addr as _, SIZE)?))
->>>> +///     }
->>>> +/// }
->>>> +///
->>>> +/// impl<const SIZE: usize> Drop for IoMem<SIZE> {
->>>> +///     fn drop(&mut self) {
->>>> +///         // SAFETY: `self.0.addr()` is guaranteed to be properly mapped by `Self::new`.
->>>> +///         unsafe { bindings::iounmap(self.0.addr() as _); };
->>>> +///     }
->>>> +/// }
->>>> +///
->>>> +/// impl<const SIZE: usize> Deref for IoMem<SIZE> {
->>>> +///    type Target = Io<SIZE>;
->>>> +///
->>>> +///    fn deref(&self) -> &Self::Target {
->>>> +///         // SAFETY: The memory range stored in `self` has been properly mapped in `Self::new`.
->>>> +///         unsafe { Io::from_raw(&self.0) }
->>>> +///    }
->>>> +/// }
->>>> +///
->>>> +///# fn no_run() -> Result<(), Error> {
->>>> +/// // SAFETY: Invalid usage for example purposes.
->>>> +/// let iomem = unsafe { IoMem::<{ core::mem::size_of::<u32>() }>::new(0xBAAAAAAD)? };
->>>> +/// iomem.writel(0x42, 0x0);
->>>> +/// assert!(iomem.try_writel(0x42, 0x0).is_ok());
->>>> +/// assert!(iomem.try_writel(0x42, 0x4).is_err());
->>>> +/// # Ok(())
->>>> +/// # }
->>>> +/// ```
->>>> +#[repr(transparent)]
->>>> +pub struct Io<const SIZE: usize = 0>(IoRaw<SIZE>);
-> 
+ arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 102 ++++++++++++++++++++-
+ 1 file changed, 97 insertions(+), 5 deletions(-)
+---
+base-commit: adff68376f7a6872be00d87720764b30f3ad1059
+change-id: 20250123-fp5-display-75cece20d3ef
 
-~~ Lina
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
 
