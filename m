@@ -1,155 +1,127 @@
-Return-Path: <devicetree+bounces-142334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E454BA24FD4
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 20:34:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2AD2A24FDD
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 20:57:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDD173A3ADC
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 19:34:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32C9A16346A
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 19:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B5641C64;
-	Sun,  2 Feb 2025 19:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B20181FE477;
+	Sun,  2 Feb 2025 19:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FbN+JRDr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZliaSi0N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADD7E8F6C;
-	Sun,  2 Feb 2025 19:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77EC6BE67;
+	Sun,  2 Feb 2025 19:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738524894; cv=none; b=chD6Hg4uPXHe5mGa3BUyP+4nU+kA40jlHSFlzgnWucwqLONrTHFSszx5Q48vVytiUyBwlGIgfTXenAJx3Y+4L059+WQqpRGlzJtCiQYW4Ka9EV5G7rvciNtqZBPCcKFzniEs4zry6QlPCT294XQgCZ+B+eJKLVErbXPDS2m/Q0Q=
+	t=1738526267; cv=none; b=F+AVEa2VWdsPUGAlP6xZf+4u95SSI8SyfZSf3psTYtS0vxj8Rr7/7jqh+W/doO/asd8Ag/Cw7O4ZZcLrVBTvzPN4Seam/6Ou1JOC5LsDgaJ0ybPBNsJq/coDjhZRA443YvPeiTHBL5Nfkl7meVyNQaSh9oG6jxis5qvE03CZ3P8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738524894; c=relaxed/simple;
-	bh=K2iI3AiKvjoEFvWs1oYEwnuQSWAbsXtBtq6KCTpCm8s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=diQy30dKn3LxNF3a1q86irOpKFb3IqCzxbCoCsV+uW9fiarLKrqZqf6Aqt0RONF3LNf53lazSu9uJm8INusb/jn2noB7Dp686ax69WtLzUQcZwtZUzzz887tlMUIGpEFA0fWh0vTPEX+tV4pcqYRKz6wcz30B8n2rTfuR11QK4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FbN+JRDr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD378C4CED1;
-	Sun,  2 Feb 2025 19:34:53 +0000 (UTC)
+	s=arc-20240116; t=1738526267; c=relaxed/simple;
+	bh=fj2gd9lh84yaGtViLS4opTR3wYTKKm5xnBKtcZGGF8Y=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Og/jWbmZMW43u6UQqrDC5sDqxinyFAEmLjb70IFBsvqywFfESPbnraV9V123UopdFkbR7AuckG9ZqpjAOtJ5kP+fZBvaHQD6GMYlT/IF6twu8LQO8d5kHkLVxh59ic8hzoaz47k4QNvPJqOrYn1motYETL+p0SI0fh9i447HFno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZliaSi0N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92DAAC4CED1;
+	Sun,  2 Feb 2025 19:57:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738524894;
-	bh=K2iI3AiKvjoEFvWs1oYEwnuQSWAbsXtBtq6KCTpCm8s=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=FbN+JRDrD7nKr2dLBNZOe1qC5aTOv060C1/q8JE2jiFqpQZfLWCDIQ+vBM7WVNPF0
-	 CbNRTCsKPrraZwXbK+C6dIr8cRj8OoVb9fRzlKOqMkm9LWL0FWD7KpDaXQv6PnTzar
-	 VYyYAbh0aY7JvMwLHcXdW/SeuLmpwdKUqCHbcN0YrtVzJZpxOZy/I0wErBhtYsTRJm
-	 X2FTJAE44lFt05ch1YlEgJpGSE0vyBL87XergSHCM8bjAxtRsL1BGqHaFAZmZmqAXl
-	 Myfn6cCiNzhPR32po55YKJNj9dVSeM5yczAgBdD94pJWhv+PV5PgwM7GMTBpvSf7Wt
-	 /3kw0y5UnTBoA==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Sun, 02 Feb 2025 20:34:24 +0100
-Subject: [PATCH v2 2/2] PCI: mediatek-gen3: Configure PBUS_CSR registers
- for EN7581 SoC
+	s=k20201202; t=1738526266;
+	bh=fj2gd9lh84yaGtViLS4opTR3wYTKKm5xnBKtcZGGF8Y=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=ZliaSi0NvAFlYF1vi3PEsLeNqGBkm97/l5U7AMHGa4e3nietTq+XWlvqBFa+P3XHv
+	 6AXAepOC+O8aKqnaVdgU9r6HgdKqUntkQTrLgFYc3qb6iV1UvXOLalmlPAtazqlTRj
+	 BOtS6LYgt8JDUSBVU6J+Q1j+S1eRVDT5C5RuebDayYkWLOTSkVEAAdRljFZIU4C748
+	 qj3EVjftQujQZdv1gc4DaJVVtjqp2WL8V7yCX5slCI4aEsqXjKQUNho1T1IfNnUaPi
+	 X+u/Zxkv8vGxsvMcRj3MexJXU8wEWnpqbVFC8T1gol0kn4I4MQV9/Pg2HUdRDr36UF
+	 5YU5kDq+nnmuA==
+Message-ID: <52dd7137-ba7f-4a96-a3e1-c6de2d21b7c1@kernel.org>
+Date: Sun, 2 Feb 2025 20:57:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: usb: snps,dwc3: Add property for imod
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Badhri Jagan Sridharan <badhri@google.com>
+Cc: Thinh.Nguyen@synopsys.com, gregkh@linuxfoundation.org,
+ felipe.balbi@linux.intel.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, johnyoun@synopsys.com, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ jameswei@google.com, stable@kernel.org
+References: <20250202035100.31235-1-badhri@google.com>
+ <20250202-purring-ambitious-axolotl-4c6ff4@krzk-bin>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250202-purring-ambitious-axolotl-4c6ff4@krzk-bin>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250202-en7581-pcie-pbus-csr-v2-2-65dcb201c9a9@kernel.org>
-References: <20250202-en7581-pcie-pbus-csr-v2-0-65dcb201c9a9@kernel.org>
-In-Reply-To: <20250202-en7581-pcie-pbus-csr-v2-0-65dcb201c9a9@kernel.org>
-To: Ryder Lee <ryder.lee@mediatek.com>, 
- Jianjun Wang <jianjun.wang@mediatek.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Lorenzo Bianconi <lorenzo@kernel.org>
-X-Mailer: b4 0.14.2
 
-Configure PBus base address and address mask to allow the hw
-to detect if a given address is on PCIE0, PCIE1 or PCIE2.
+On 02/02/2025 15:11, Krzysztof Kozlowski wrote:
+> On Sun, Feb 02, 2025 at 03:50:59AM +0000, Badhri Jagan Sridharan wrote:
+>> This change adds `snps,device-mode-intrpt-mod-interval`
+> 
+> Thank you for your patch. There is something to discuss/improve.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/pci/controller/pcie-mediatek-gen3.c | 30 ++++++++++++++++++++++++++++-
- 1 file changed, 29 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
-index aa24ac9aaecc749b53cfc4faf6399913d20cdbf2..9c2a592cae959de8fbe9ca5c5c2253f8eadf2c76 100644
---- a/drivers/pci/controller/pcie-mediatek-gen3.c
-+++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-@@ -15,6 +15,7 @@
- #include <linux/irqchip/chained_irq.h>
- #include <linux/irqdomain.h>
- #include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/msi.h>
- #include <linux/of_device.h>
-@@ -24,6 +25,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
- #include <linux/reset.h>
- 
- #include "../pci.h"
-@@ -127,6 +129,13 @@
- 
- #define PCIE_MTK_RESET_TIME_US		10
- 
-+#define PCIE_EN7581_PBUS_ADDR(_n)	(0x00 + ((_n) << 3))
-+#define PCIE_EN7581_PBUS_ADDR_MASK(_n)	(0x04 + ((_n) << 3))
-+#define PCIE_EN7581_PBUS_BASE_ADDR(_n)	\
-+	((_n) == 2 ? 0x28000000 :	\
-+	 (_n) == 1 ? 0x24000000 : 0x20000000)
-+#define PCIE_EN7581_PBUS_BASE_ADDR_MASK	GENMASK(31, 26)
-+
- /* Time in ms needed to complete PCIe reset on EN7581 SoC */
- #define PCIE_EN7581_RESET_TIME_MS	100
- 
-@@ -931,7 +940,8 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie *pcie)
- static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
- {
- 	struct device *dev = pcie->dev;
--	int err;
-+	struct regmap *map;
-+	int err, slot;
- 	u32 val;
- 
- 	/*
-@@ -945,6 +955,24 @@ static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
- 	/* Wait for the time needed to complete the reset lines assert. */
- 	msleep(PCIE_EN7581_RESET_TIME_MS);
- 
-+	map = syscon_regmap_lookup_by_phandle(dev->of_node,
-+					      "mediatek,pbus-csr");
-+	if (IS_ERR(map))
-+		return PTR_ERR(map);
-+
-+	/*
-+	 * Configure PBus base address and address mask to allow the
-+	 * hw to detect if a given address is on PCIE0, PCIE1 or PCIE2.
-+	 */
-+	slot = of_get_pci_domain_nr(dev->of_node);
-+	if (slot < 0)
-+		return slot;
-+
-+	regmap_write(map, PCIE_EN7581_PBUS_ADDR(slot),
-+		     PCIE_EN7581_PBUS_BASE_ADDR(slot));
-+	regmap_write(map, PCIE_EN7581_PBUS_ADDR_MASK(slot),
-+		     PCIE_EN7581_PBUS_BASE_ADDR_MASK);
-+
- 	/*
- 	 * Unlike the other MediaTek Gen3 controllers, the Airoha EN7581
- 	 * requires PHY initialization and power-on before PHY reset deassert.
+Also one more note:
 
--- 
-2.48.1
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
+
+Best regards,
+Krzysztof
 
