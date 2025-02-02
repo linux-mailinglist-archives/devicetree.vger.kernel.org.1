@@ -1,94 +1,62 @@
-Return-Path: <devicetree+bounces-142302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2680A24E1E
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 14:07:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8793DA24E31
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 14:24:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96C1A164A1F
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 13:07:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 354071885DC3
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 13:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562D61D88CA;
-	Sun,  2 Feb 2025 13:07:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DFC1D63D2;
+	Sun,  2 Feb 2025 13:24:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZPuaUrIf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="quO+gtAP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 303B11D88B4
-	for <devicetree@vger.kernel.org>; Sun,  2 Feb 2025 13:07:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33892746D;
+	Sun,  2 Feb 2025 13:24:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738501629; cv=none; b=jGIgpHV9TfoYT1Lpu84tIHU4lNj4gWBy1RBbpein2q9oTxEZuS2FvDOISNiwMOD3TG4CBfsgE0VU6pyOim4Ub0bZLN6yM4uUS6xzTWie7DRgZVhMXZD36tLSh+jlWK1bhN9nbKAAP8/A4dJheGimORX+Q00pWTUbuO7aKUPe8ZI=
+	t=1738502667; cv=none; b=qzSmpgBqCQnByIV21Zeig/HxDh8uDfmGfwOGako8UrlBw2/RDzf2ifJb3ZU270iutoFlGdZ/FrteDUt38tW9klA15OatN3ZRyLF9iogwZDQdjoEdB+GjCypMFRPdwp42xWCC7o/NcDxNBeW5NWyJPkr/fU3VJ5wcciEymACSzeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738501629; c=relaxed/simple;
-	bh=+EFGRjLtEDuefczYzpPUkBPKWRCgjH8wwNEFT9iTrkY=;
+	s=arc-20240116; t=1738502667; c=relaxed/simple;
+	bh=o/QA4a3yfupBgO6h2sIehTP5xuRwv6WZE/LItNQNjkk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QyrHbOQitXd15Bvt6fj5nhRH1JKCWsOoB/kir7aBw7yn5bI5BZSAMFM6SFUR++zS7pg2+WKAqhzipVCIV4PG519OUy3HaiLtFa2gZiBRA/4+mf9yaDTNEZuK+vEj4WrmW53isa24x8rHJXxaDcIsPomXrAdPwuI9BHzhPrZh7Nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZPuaUrIf; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2166360285dso56373515ad.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Feb 2025 05:07:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738501626; x=1739106426; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=AEtSfESy0LXYwcIk97/DpCu1vJYOD5v/63GGs+ly7q8=;
-        b=ZPuaUrIfJ1jFPO3pxFs+T4RtFaDUhunlW9+cgPXo4y3x00qJ6HYW1PQNWAphHucMwc
-         StlOdSI/13Y9GUDKAHAqP52ws4sKsneAfU8iPV/CfbqZooXn9GhblkuEJktrXPvqBHMl
-         vWrA7sYXjP3MuR2akJegqGMNnVHvwI1jab8bOY2dkkuKuuFkeh9cNEPi+VmLqMXk29dI
-         2PIJb4LXXaIyyKkCvyNlTX2QxiWAufu8cxLD9om/B1r80Gn3MjXQvz78ln2Wvv2XsOaq
-         B7miCFt0VQZvTVHPJL/Sx4Nz7LGmiGZYA/eZScgjd2rV3XKFpoo86ape/A0+bAxG3nRj
-         NFRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738501626; x=1739106426;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AEtSfESy0LXYwcIk97/DpCu1vJYOD5v/63GGs+ly7q8=;
-        b=DCWQ0rDYq34316f8gpflpqgxMpQGc/C+Q2Aa6eFlsWW0obpdP/MNFLjbjisXyKMAxU
-         On0GDINkrraYvSUQuXrzUQlNO+gySIVOMMcUnnXuPwOI7HdnRd27LupxzOtDd3arB3xe
-         IUZ5JTNKHdW2HP7VCuUMXQ/jGJwGhM3lu3ewEJC9asexv6/xxYNym+GB5PiLfk5cpKU0
-         F4WHqxm8FpwZjqm457nYn6NAjlXjX79k596VTS4XR9YXa6xSeR6LcOfdNWtJvI+NuOjL
-         JkhjrNsUxifZDrL3ZG53CjpcE08iXzxh3QrOkVRLw8/TAoCxnNulPdukyWhxvNXyxyWt
-         CALg==
-X-Forwarded-Encrypted: i=1; AJvYcCVFR37+YflVNhu0/PxO5AFomJt8lsOO0rRil+/hGWsbpj/m/NhdUbXnEYUIcPmUERh9LBnuyA7sMY1K@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyfgi63cQcD76Xn8Lo6fmTc3wnDxJZuZEUztvYSIWFT8o8p0qSD
-	8AFyiBdiZnk5HBXWfMNmN1g8VNIwl8EkdN2jgXDzvuJcVgLGMZmmj+slcyaeQQ==
-X-Gm-Gg: ASbGnctZ4SS/iS/Wl82Pgk2vc6VGAEWkHQSw4JkJEZP/1vS5blBRsmZ24k31L2dreVT
-	kd7H/KmLuIiw9xgID1HZ7uDOomQDyhMS3RQb6fHIW5pdXCFisfhUV5HUQNuNB+114p50LJo3jOI
-	g+38itwOTI84xu7T89IndlVCYld0TdwrDkxGFNHxPyVHOq+vFmUvax7Sfn80mHaC8p2rJscSWbx
-	vwg1QJdp7VJDuInWa8sG8hvB4hirddo4v0zy3tOlF5NS0JAhzgwMyn6VWDDVMdQrBk0JBLMkpV1
-	p2D3BhF+SYiJM9ZJxdfR4ne+wMA=
-X-Google-Smtp-Source: AGHT+IGf7rXJRyTcFI27feBfmhjEX0I+8c58hz5t6F6Q1lohSE/2dfBnbL0zXQhaGDdbLonQJ6VASA==
-X-Received: by 2002:a17:903:1106:b0:216:2426:7668 with SMTP id d9443c01a7336-21dd7c62a86mr264119375ad.13.1738501626198;
-        Sun, 02 Feb 2025 05:07:06 -0800 (PST)
-Received: from thinkpad ([120.60.136.252])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-acebddbb1a4sm6169353a12.7.2025.02.02.05.07.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Feb 2025 05:07:05 -0800 (PST)
-Date: Sun, 2 Feb 2025 18:36:57 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	jingoohan1@gmail.com, p.zabel@pengutronix.de,
-	johan+linaro@kernel.org, quic_schintav@quicinc.com,
-	cassel@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	fabrice.gasnier@foss.st.com
-Subject: Re: [PATCH v4 03/10] PCI: stm32: Add PCIe host support for STM32MP25
-Message-ID: <20250202130657.zcnvnnwclxup6y7i@thinkpad>
-References: <20250128120745.334377-1-christian.bruel@foss.st.com>
- <20250128120745.334377-4-christian.bruel@foss.st.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=c2kxiDjAtVt0ToCxihS0hQh+A1gKdcVxZh9LnnwugVaGF7JMUwM4HUNFCQXXyWQQ5AtM7cyOJKWkQBgHcUnaLoI1NSP82/Vk9yhUqsoNUvS2PrOmQLMUPGmLuTCNML/TdY+RjdWDSILxlk14nKSadS7tK0S+n/no9cYHgWXLJhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=quO+gtAP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 868DBC4CED1;
+	Sun,  2 Feb 2025 13:24:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738502666;
+	bh=o/QA4a3yfupBgO6h2sIehTP5xuRwv6WZE/LItNQNjkk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=quO+gtAPcOEYdBG9JD1mpcY9aFy5AtYJRpAbBNKvjMCoLQA9OIuSbhD9+7A6A8845
+	 mdCVbbHiYN0dBJCB+Clna8bkSvocKNuglkP6KgC1PlwNQpGPfQCZHXfW2CSNz8wiDc
+	 i+p/Ch5s1okw6NIo++Yk39Z+C3nIjXPDgG0vgFLp197rqd57QCJtPyxKp/1HlhCOVX
+	 /jcto8cteu7dzMz805YAsMDxkm5b2fuqPyWKQK7gjlYwjGo2DEGtuZpo6Wh8dd+Wjj
+	 KWBBSoCCZnKqkBXwz0FYCwjoLKf4t1pKmq/zF5wh3TtH7H06kUhklqSSo9AaQghq1N
+	 05XvmMxIZgCAg==
+Date: Sun, 2 Feb 2025 14:24:22 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Artur Weber <aweber.kernel@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Stanislav Jakubek <stano.jakubek@gmail.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v3 2/7] dt-bindings: mfd: brcm,bcm59056: Add compatible
+ for BCM59054
+Message-ID: <20250202-noisy-impala-of-triumph-c9aa8b@krzk-bin>
+References: <20250131-bcm59054-v3-0-bbac52a84787@gmail.com>
+ <20250131-bcm59054-v3-2-bbac52a84787@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,511 +65,107 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250128120745.334377-4-christian.bruel@foss.st.com>
+In-Reply-To: <20250131-bcm59054-v3-2-bbac52a84787@gmail.com>
 
-On Tue, Jan 28, 2025 at 01:07:38PM +0100, Christian Bruel wrote:
-> Add driver for the STM32MP25 SoC PCIe Gen1 2.5 GT/s and Gen2 5GT/s
-> controller based on the DesignWare PCIe core.
+On Fri, Jan 31, 2025 at 07:13:50PM +0100, Artur Weber wrote:
+> The BCM59054 MFD is fairly similar to the BCM59056, and will use
+> the same driver. Add compatible and specify the allowed regulator
+> nodes.
 > 
-> Supports MSI via GICv2m, Single Virtual Channel, Single Function
-> 
-> Supports wakeup-source from gpio wake_irq with dw_pcie_wake_irq_handler
-> for host wakeup.
-> 
-
-"Supports WAKE# GPIO" is what should be mentioned above.
-
-> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 > ---
->  drivers/pci/controller/dwc/Kconfig      |  12 +
->  drivers/pci/controller/dwc/Makefile     |   1 +
->  drivers/pci/controller/dwc/pcie-stm32.c | 372 ++++++++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-stm32.h |  15 +
->  4 files changed, 400 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-stm32.c
->  create mode 100644 drivers/pci/controller/dwc/pcie-stm32.h
+> Changes in v3:
+> - Split regulator node into separate file
+> - Removed quotes around compatible
+> ---
+>  .../devicetree/bindings/mfd/brcm,bcm59056.yaml     | 26 +++++++++-
+>  .../bindings/regulator/brcm,bcm59054.yaml          | 55 ++++++++++++++++++++++
+>  2 files changed, 79 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index b6d6778b0698..0c18879b604c 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -389,6 +389,18 @@ config PCIE_SPEAR13XX
->  	help
->  	  Say Y here if you want PCIe support on SPEAr13XX SoCs.
+> diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml
+> index 3296799eb452fca2a4b03699fcb5aa27005a8e8d..87d663416ed9e7f5ec4aa25c1aa2d9e650c42e2c 100644
+> --- a/Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml
+> @@ -11,7 +11,9 @@ maintainers:
 >  
-> +config PCIE_STM32
-> +	tristate "STMicroelectronics STM32MP25 PCIe Controller (host mode)"
-> +	depends on ARCH_STM32 || COMPILE_TEST
-> +	depends on PCI_MSI
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Enables support for the DesignWare core based PCIe host controller
-> +	  found in STM32MP25 SoC.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called pcie-stm32.
-> +
->  config PCI_DRA7XX
->  	tristate
+>  properties:
+>    compatible:
+> -    const: brcm,bcm59056
+> +    enum:
+> +      - brcm,bcm59054
+> +      - brcm,bcm59056
 >  
-> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> index a8308d9ea986..576d99cb3bc5 100644
-> --- a/drivers/pci/controller/dwc/Makefile
-> +++ b/drivers/pci/controller/dwc/Makefile
-> @@ -28,6 +28,7 @@ obj-$(CONFIG_PCIE_UNIPHIER) += pcie-uniphier.o
->  obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
->  obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
->  obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
-> +obj-$(CONFIG_PCIE_STM32) += pcie-stm32.o
->  
->  # The following drivers are for devices that use the generic ACPI
->  # pci_root.c driver but don't support standard ECAM config access.
-> diff --git a/drivers/pci/controller/dwc/pcie-stm32.c b/drivers/pci/controller/dwc/pcie-stm32.c
-> new file mode 100644
-> index 000000000000..d5e473bb390f
-> --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pcie-stm32.c
-> @@ -0,0 +1,372 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * STMicroelectronics STM32MP25 PCIe root complex driver.
-> + *
-> + * Copyright (C) 2024 STMicroelectronics
+>    reg:
+>      maxItems: 1
+> @@ -22,7 +24,6 @@ properties:
+>    regulators:
+>      type: object
+>      description: Container node for regulators.
+> -    $ref: ../regulator/brcm,bcm59056.yaml
 
-2025?
+Refs should rather stay here, so I don't think keeping these devices in
+one binding makes it simpler.
 
-> + * Author: Christian Bruel <christian.bruel@foss.st.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/pinctrl/devinfo.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-> +#include "pcie-designware.h"
-> +#include "pcie-stm32.h"
-> +#include "../../pci.h"
-> +
-> +struct stm32_pcie {
-> +	struct dw_pcie pci;
-> +	struct regmap *regmap;
-> +	struct reset_control *rst;
-> +	struct phy *phy;
-> +	struct clk *clk;
-> +	struct gpio_desc *perst_gpio;
-> +	struct gpio_desc *wake_gpio;
-> +	unsigned int wake_irq;
-> +};
-> +
-> +static void stm32_pcie_deassert_perst(struct stm32_pcie *stm32_pcie)
-> +{
-> +	gpiod_set_value(stm32_pcie->perst_gpio, 0);
-> +
-> +	if (stm32_pcie->perst_gpio)
-> +		msleep(PCIE_T_RRS_READY_MS);
-> +}
-> +
-> +static void stm32_pcie_assert_perst(struct stm32_pcie *stm32_pcie)
-> +{
-> +	gpiod_set_value(stm32_pcie->perst_gpio, 1);
-> +}
-> +
-> +static int stm32_pcie_start_link(struct dw_pcie *pci)
-> +{
-> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-> +
-> +	return regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
-> +				  STM32MP25_PCIECR_LTSSM_EN,
-> +				  STM32MP25_PCIECR_LTSSM_EN);
-> +}
-> +
-> +static void stm32_pcie_stop_link(struct dw_pcie *pci)
-> +{
-> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-> +
-> +	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
-> +			   STM32MP25_PCIECR_LTSSM_EN, 0);
-> +}
-> +
-> +static int stm32_pcie_suspend(struct device *dev)
-> +{
-> +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
-> +
-> +	if (device_may_wakeup(dev))
-> +		enable_irq_wake(stm32_pcie->wake_irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static int stm32_pcie_resume(struct device *dev)
-> +{
-> +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
-> +
-> +	if (device_may_wakeup(dev))
-> +		disable_irq_wake(stm32_pcie->wake_irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static int stm32_pcie_suspend_noirq(struct device *dev)
-> +{
+Simpler - drop ref and add properties compatible with enum for your
+regulator compatibles.
 
-Can you consider making use of dw_pcie_{suspend/resume}_noirq()?
+...
 
-> +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
+> +$id: http://devicetree.org/schemas/regulator/brcm,bcm59054.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	stm32_pcie_stop_link(&stm32_pcie->pci);
+> +title: Broadcom BCM59054 Power Management IC regulators
 > +
-> +	stm32_pcie_assert_perst(stm32_pcie);
+> +description: |
+> +  This is a part of device tree bindings for the BCM590XX family of power
+> +  management ICs.
 > +
-> +	clk_disable_unprepare(stm32_pcie->clk);
+> +  See also Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml for
+> +  additional information and example.
 > +
-> +	if (!device_may_wakeup(dev))
-> +		phy_exit(stm32_pcie->phy);
+> +maintainers:
+> +  - Artur Weber <aweber.kernel@gmail.com>
 > +
-> +	return pinctrl_pm_select_sleep_state(dev);
-> +}
+> +# The valid regulator node names for BCM59054 are:
+> +#   rfldo, camldo1, camldo2, simldo1, simldo2, sdldo, sdxldo,
+> +#   mmcldo1, mmcldo2, audldo, micldo, usbldo, vibldo,
+> +#   csr, iosr1, iosr2, mmsr, sdsr1, sdsr2, vsr,
+> +#   gpldo1, gpldo2, gpldo3, tcxldo, lvldo1, lvldo2
 > +
-> +static int stm32_pcie_resume_noirq(struct device *dev)
-> +{
-> +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
-> +	struct dw_pcie_rp *pp = &stm32_pcie->pci.pp;
-> +	int ret;
-> +
-> +	/*
-> +	 * The core clock is gated with CLKREQ# from the COMBOPHY REFCLK,
-> +	 * thus if no device is present, must force it low with an init pinmux
-> +	 * to be able to access the DBI registers.
-> +	 */
-> +	if (!IS_ERR(dev->pins->init_state))
-> +		ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
-> +	else
-> +		ret = pinctrl_pm_select_default_state(dev);
-> +
-> +	if (ret) {
-> +		dev_err(dev, "Failed to activate pinctrl pm state: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (!device_may_wakeup(dev)) {
-> +		ret = phy_init(stm32_pcie->phy);
-> +		if (ret) {
-> +			pinctrl_pm_select_default_state(dev);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = clk_prepare_enable(stm32_pcie->clk);
-> +	if (ret)
-> +		goto err_phy_exit;
-> +
-> +	stm32_pcie_deassert_perst(stm32_pcie);
-> +
-> +	ret = dw_pcie_setup_rc(pp);
-> +	if (ret)
-> +		goto err_disable_clk;
-> +
-> +	ret = stm32_pcie_start_link(&stm32_pcie->pci);
-> +	if (ret)
-> +		goto err_disable_clk;
-> +
-> +	/* Ignore errors, the link may come up later */
-> +	dw_pcie_wait_for_link(&stm32_pcie->pci);
+> +patternProperties:
+> +  "^(cam|sim|mmc)ldo[1-2]$":
+> +    type: object
 
-These can be dropped when using dw_pcie_resume_noirq().
+Missin unevaluatedProperties everywhere. Look how other bindings do it.
 
+> +    $ref: /schemas/regulator/regulator.yaml#
 > +
-> +	pinctrl_pm_select_default_state(dev);
+> +  "^(rf|sd|sdx|aud|mic|usb|vib|tcx)ldo$":
+> +    type: object
+> +    $ref: /schemas/regulator/regulator.yaml#
 > +
-> +	return 0;
+> +  "^(c|mm|v)sr$":
+> +    type: object
+> +    $ref: /schemas/regulator/regulator.yaml#
 > +
-> +err_disable_clk:
-> +	stm32_pcie_assert_perst(stm32_pcie);
-> +	clk_disable_unprepare(stm32_pcie->clk);
+> +  "^(io|sd)sr[1-2]$":
+> +    type: object
+> +    $ref: /schemas/regulator/regulator.yaml#
 > +
-> +err_phy_exit:
-> +	phy_exit(stm32_pcie->phy);
-> +	pinctrl_pm_select_default_state(dev);
+> +  "^gpldo[1-3]$":
+> +    type: object
+> +    $ref: /schemas/regulator/regulator.yaml#
 > +
-> +	return ret;
-> +}
+> +  "^lvldo[1-2]$":
+> +    type: object
+> +    $ref: /schemas/regulator/regulator.yaml#
 > +
-> +static const struct dev_pm_ops stm32_pcie_pm_ops = {
-> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(stm32_pcie_suspend_noirq,
-> +				  stm32_pcie_resume_noirq)
-> +	SYSTEM_SLEEP_PM_OPS(stm32_pcie_suspend, stm32_pcie_resume)
-> +};
-> +
-> +static const struct dw_pcie_host_ops stm32_pcie_host_ops = {
-> +};
-> +
-> +static const struct dw_pcie_ops dw_pcie_ops = {
-> +	.start_link = stm32_pcie_start_link,
-> +	.stop_link = stm32_pcie_stop_link
-> +};
-> +
-> +static int stm32_add_pcie_port(struct stm32_pcie *stm32_pcie,
-> +			       struct platform_device *pdev)
-> +{
-> +	struct device *dev = stm32_pcie->pci.dev;
-> +	struct dw_pcie_rp *pp = &stm32_pcie->pci.pp;
-> +	int ret;
-> +
+> +properties:
+> +  "vbus":
 
-You need to assert PERST# before configuring the resources.
+No quotes.
 
-> +	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = phy_init(stm32_pcie->phy);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
-> +				 STM32MP25_PCIECR_TYPE_MASK,
-> +				 STM32MP25_PCIECR_RC);
-> +	if (ret)
-> +		goto err_phy_exit;
-> +
-> +	reset_control_assert(stm32_pcie->rst);
-> +	reset_control_deassert(stm32_pcie->rst);
-> +
-> +	ret = clk_prepare_enable(stm32_pcie->clk);
-> +	if (ret) {
-> +		dev_err(dev, "Core clock enable failed %d\n", ret);
-> +		goto err_phy_exit;
-> +	}
-> +
-> +	stm32_pcie_deassert_perst(stm32_pcie);
-> +
-> +	pp->ops = &stm32_pcie_host_ops;
-> +	ret = dw_pcie_host_init(pp);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to initialize host: %d\n", ret);
-> +		goto err_disable_clk;
-> +	}
+Best regards,
+Krzysztof
 
-Technically, dw_pcie_host_init() is not related to root port. So please move it
-to probe() instead.
-
-> +
-> +	return 0;
-> +
-> +err_disable_clk:
-> +	clk_disable_unprepare(stm32_pcie->clk);
-> +	stm32_pcie_assert_perst(stm32_pcie);
-> +
-> +err_phy_exit:
-> +	phy_exit(stm32_pcie->phy);
-> +
-> +	return ret;
-> +}
-> +
-> +static int stm32_pcie_parse_port(struct stm32_pcie *stm32_pcie)
-> +{
-> +	struct device *dev = stm32_pcie->pci.dev;
-> +	struct device_node *root_port;
-> +
-> +	root_port = of_get_next_available_child(dev->of_node, NULL);
-> +
-> +	stm32_pcie->phy = devm_of_phy_get(dev, root_port, NULL);
-> +	if (IS_ERR(stm32_pcie->phy))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->phy),
-> +				     "Failed to get pcie-phy\n");
-
-OF refcount not decremented in both the error and success case.
-
-> +
-> +	stm32_pcie->perst_gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(root_port),
-> +						       "reset", GPIOD_OUT_HIGH, NULL);
-> +	if (IS_ERR(stm32_pcie->perst_gpio)) {
-> +		if (PTR_ERR(stm32_pcie->perst_gpio) != -ENOENT)
-> +			return dev_err_probe(dev, PTR_ERR(stm32_pcie->perst_gpio),
-> +					     "Failed to get reset GPIO\n");
-> +		stm32_pcie->perst_gpio = NULL;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "wakeup-source")) {
-
-As per the current logic, 'wakeup-source' is applicable even without WAKE# GPIO,
-which doesn't make sense.
-
-> +		stm32_pcie->wake_gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(root_port),
-> +							      "wake", GPIOD_IN, NULL);
-> +
-> +		if (IS_ERR(stm32_pcie->wake_gpio)) {
-> +			if (PTR_ERR(stm32_pcie->wake_gpio) != -ENOENT)
-> +				return dev_err_probe(dev, PTR_ERR(stm32_pcie->wake_gpio),
-> +						     "Failed to get wake GPIO\n");
-> +			stm32_pcie->wake_gpio = NULL;
-> +		}
-
-Hmm. I think we need to move WAKE# handling inside drivers/pci/pcie/portdrv.c
-since that is responsible for the root port. While other root port properties
-have some dependency with the RC (like PERST#, PHY etc...), WAKE# handling could
-be moved safely.
-
-And once done, it can benefit all platforms.
-
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int stm32_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct stm32_pcie *stm32_pcie;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	stm32_pcie = devm_kzalloc(dev, sizeof(*stm32_pcie), GFP_KERNEL);
-> +	if (!stm32_pcie)
-> +		return -ENOMEM;
-> +
-> +	stm32_pcie->pci.dev = dev;
-> +	stm32_pcie->pci.ops = &dw_pcie_ops;
-> +
-> +	stm32_pcie->regmap = syscon_regmap_lookup_by_compatible("st,stm32mp25-syscfg");
-> +	if (IS_ERR(stm32_pcie->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->regmap),
-> +				     "No syscfg specified\n");
-> +
-> +	stm32_pcie->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(stm32_pcie->clk))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->clk),
-> +				     "Failed to get PCIe clock source\n");
-> +
-> +	stm32_pcie->rst = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(stm32_pcie->rst))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->rst),
-> +				     "Failed to get PCIe reset\n");
-> +
-> +	ret = stm32_pcie_parse_port(stm32_pcie);
-> +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, stm32_pcie);
-> +
-> +	if (stm32_pcie->wake_gpio) {
-> +		stm32_pcie->wake_irq = gpiod_to_irq(stm32_pcie->wake_gpio);
-> +
-> +		ret = devm_request_threaded_irq(&pdev->dev,
-> +						stm32_pcie->wake_irq, NULL,
-> +						dw_pcie_wake_irq_handler,
-> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> +						"wake_irq", stm32_pcie->pci.dev);
-> +
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Failed to request WAKE IRQ: %d\n", ret);
-> +	}
-> +
-> +	ret = devm_pm_runtime_enable(dev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to enable runtime PM %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = pm_runtime_resume_and_get(dev);
-
-Why do you need to do PM resume here? Is there a parent that needs to be resumed
-now? I know that other controller drivers have this pattern, but most of them
-are just doing it wrong.
-
-Most likely you need pm_runtime_set_active() before devm_pm_runtime_enable().
-
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to get runtime PM %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = stm32_add_pcie_port(stm32_pcie, pdev);
-> +	if (ret)  {
-
-Nit: double space.
-
-> +		pm_runtime_put_sync(&pdev->dev);
-> +		return ret;
-> +	}
-> +
-> +	if (stm32_pcie->wake_gpio)
-> +		device_set_wakeup_capable(dev, true);
-> +
-> +	return 0;
-> +}
-> +
-> +static void stm32_pcie_remove(struct platform_device *pdev)
-> +{
-> +	struct stm32_pcie *stm32_pcie = platform_get_drvdata(pdev);
-> +	struct dw_pcie_rp *pp = &stm32_pcie->pci.pp;
-> +
-> +	if (stm32_pcie->wake_gpio)
-> +		device_init_wakeup(&pdev->dev, false);
-> +
-> +	dw_pcie_host_deinit(pp);
-> +
-> +	stm32_pcie_assert_perst(stm32_pcie);
-> +
-> +	clk_disable_unprepare(stm32_pcie->clk);
-> +
-> +	phy_exit(stm32_pcie->phy);
-> +
-> +	pm_runtime_put_sync(&pdev->dev);
-> +}
-> +
-> +static const struct of_device_id stm32_pcie_of_match[] = {
-> +	{ .compatible = "st,stm32mp25-pcie-rc" },
-> +	{},
-> +};
-> +
-> +static struct platform_driver stm32_pcie_driver = {
-> +	.probe = stm32_pcie_probe,
-> +	.remove = stm32_pcie_remove,
-> +	.driver = {
-> +		.name = "stm32-pcie",
-> +		.of_match_table = stm32_pcie_of_match,
-> +		.pm = &stm32_pcie_pm_ops,
-> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> +	},
-> +};
-> +
-> +module_platform_driver(stm32_pcie_driver);
-> +
-> +MODULE_AUTHOR("Christian Bruel <christian.bruel@foss.st.com>");
-> +MODULE_DESCRIPTION("STM32MP25 PCIe Controller driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_DEVICE_TABLE(of, stm32_pcie_of_match);
-> diff --git a/drivers/pci/controller/dwc/pcie-stm32.h b/drivers/pci/controller/dwc/pcie-stm32.h
-> new file mode 100644
-> index 000000000000..3efd00937d3d
-> --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pcie-stm32.h
-> @@ -0,0 +1,15 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * ST PCIe driver definitions for STM32-MP25 SoC
-> + *
-> + * Copyright (C) 2024 STMicroelectronics - All Rights Reserved
-> + * Author: Christian Bruel <christian.bruel@foss.st.com>
-> + */
-> +
-> +#define to_stm32_pcie(x)	dev_get_drvdata((x)->dev)
-> +
-> +#define STM32MP25_PCIECR_TYPE_MASK	GENMASK(11, 8)
-> +#define STM32MP25_PCIECR_LTSSM_EN	BIT(2)
-> +#define STM32MP25_PCIECR_RC		BIT(10)
-> +
-> +#define SYSCFG_PCIECR			0x6000
-
-You can just move these definitions inside the driver itself.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
