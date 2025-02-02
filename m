@@ -1,202 +1,207 @@
-Return-Path: <devicetree+bounces-142290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13849A24D53
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 10:42:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD6DA24D61
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 10:56:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DAA21884C05
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 09:42:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F7621884413
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 09:56:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E1B1D54F2;
-	Sun,  2 Feb 2025 09:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87B301D5AA0;
+	Sun,  2 Feb 2025 09:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MNU7IPTV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i6jIF1J6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F2817580;
-	Sun,  2 Feb 2025 09:42:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9255DF58;
+	Sun,  2 Feb 2025 09:56:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738489358; cv=none; b=tLUbJnuJKdz2pZzBurVDL4JcH+Cr8ira28Kux5UuIgph6uWwdDyhjgn/rIIy6xcPdQ5a3vdUYc+HeJ2/NHoz8FbE2cAQddF6E1em3++YWqxEI2mk7jrhLIl8O7urU318ea1X+MBfUo+sqmdSBCJ+iuqmkz2euZAEiu+0AQxHGH4=
+	t=1738490182; cv=none; b=TcCcDFphAFJFYErWKXr1DUYh7JtWP/RU4lLaKezwNxc9CbLgXQLiWbo0qnXHvqTqSEg7xKnlHJLTYHEtq3eDjLVHwB0izrVuktE9ooI28aXLUIb4kk6Wo/PjKHS1mqsVVdvITXlWco5AEA47za6JXaD1fVhoPNcDbquf56x5XK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738489358; c=relaxed/simple;
-	bh=uAcHndF4ypXlGfCYyOtriXxYdQvRmPbX7xM+I5T+BFU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XvDYkKOA9L3JgTun6nGh1/0vlANL27pzWlFkr4XfYz0NFJ82y3cF5eGQXBC8Y7nMn+RTYPqk3emL0zss5BClBYb7Jri3iTH/ywEHzk0hsdmV9d/g0y24BiCXB8ClkZVyIfvs1KnnuXTbkuyEU8KStBn0GiP1/9rklfNFAoZvQi0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MNU7IPTV; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5129gVwS2003669
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sun, 2 Feb 2025 03:42:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738489351;
-	bh=L/i4eRZNbI/2LmwrJhJ+kldcgaXTdKy2bIex3xqeu3Y=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=MNU7IPTVB3lbOGGEs3E+uSvqf/2w70m1y7OUnHVIWJblL1LOQBpzXkcAxRQkmZt1v
-	 QUdNxe5SsIvGW7Hctjt/PqgnxGli5/z0QMMhO6zV14J8P8HI2coB1WhZ0DR5iFtkut
-	 LMhrPhBMEBTUaKAQ8z4gbErN+KZ7FMqjJXe9YYhI=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5129gVDu023079
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 2 Feb 2025 03:42:31 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 2
- Feb 2025 03:42:31 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 2 Feb 2025 03:42:30 -0600
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.104])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5129gTt3124995;
-	Sun, 2 Feb 2025 03:42:30 -0600
-Date: Sun, 2 Feb 2025 15:12:29 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-j742s2-evm: Add overlay to
- enable USB0 Type-A
-Message-ID: <yui6gakfnu43wrpupqjzodd2hcwk4tbqrjunauottazjvxbx3l@in54codtcgg3>
-References: <20250124124150.2024963-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1738490182; c=relaxed/simple;
+	bh=6g64UpUzwYIf7Rd36kw73lEBmTgRffCJoWWngczo0H4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mA6vTkyHOhawZaXv+sMFZ0kG82ItTH8moG9kx6V0wBwmqyFO7BTyaoRavpHGGFiB2CBflaUbQ40g9NTwAOueaYt4Ukl5Sb5ECpwxTN0KIgc6Hu4dd6Yk1D/Z3FAGxnXIA5Uk9eUkIfRCIYAmlI21Z+ixfoqxM9jH8ZZ1L+YJB/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i6jIF1J6; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-385de9f789cso2584674f8f.2;
+        Sun, 02 Feb 2025 01:56:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738490179; x=1739094979; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ieNuIIPzVWLZMXOFdlK3olUaAK8OK9i96qegW/onpbc=;
+        b=i6jIF1J6BkcxLwukNTat+9gsjXIkZcaCX08YaRTRNXBqA2oXxUPsck28/+OUc9IBHO
+         bF3irs1woor+OydFbSY1pcMrR1fNLACwO3URSB8Ve23Y/IvRGnuXkJDQFTiddm4TETS+
+         RaDlmpIxxXaIYYDbCMf469VMO4UNFCIh7Cr20Yn3jWB74eocp/tmnDXh2jlTyFhKQU0p
+         G41kYfNEOAIg73MAtgWLKCH86aa6/qGjj/xZ6D021bXHWFlQzYVl73K5k+ei04D+e7jd
+         WCkXl9muHux+v/5Oa5jtPcrMW06DaPOI18YUIjmQ5lcBf2R1N7il+EO2RGw9vkQFQsQA
+         M4ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738490179; x=1739094979;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ieNuIIPzVWLZMXOFdlK3olUaAK8OK9i96qegW/onpbc=;
+        b=ppJX6h6dJrddGHB5wG2qyRCGd5Dn/aav8A8rh8zPxuAwHP7yV7a+H6yuhS9IlAqzG6
+         2SWI5ejYsAdASZl3FUni7NN3LxVFYpwmsgisWXP5BHqgsMHzLj0lzBvhgOx9TCI3zpDo
+         TFYSHSB1g91nOJRg/DDciL1M+ZwD6FXYYPT+m0qNnpVSw1avYe7yFlpp8Gf13ZgVJcYM
+         tFvbZTrfNDIka4Bw6ih0IL7Ne96tnqEP5HWv0xDuwZrfhxJi1riJZDZHdLpmIRxP5zDu
+         6+OKRGJtPoKQRcU+JUiNtQcXbU/651Vrt5sWTV8y9yv8xO91mfMFRR5aYsn2qJBvEv1B
+         l/tA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjGFwRTiE3+HiXCBgsyQahRSss3LCrCAx7Hibwpn1oNQMckWC5aIADOsyLJPrbECWp9BCIyY/y1M9hkyh6@vger.kernel.org, AJvYcCVFsYLrD39sZblxU15LlxOJ6H8w+MjmbkJiUNMJrtaVVjls8IvqQZCBsy60GOw5/WoeJHNGQ9VnI22E@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqIWPtYQGhTPbqi0MWkFDTgZI4pqj/FxxPpnu+WwNP4Ncz0ZBV
+	Fk/NQW45+ehI77O2waI3wslsE9MNL3QUl+J7FPu/lnHHBzFxwZqNku73dw==
+X-Gm-Gg: ASbGncska1/isi1KrznhBamCp368Ahbbr2CjT0jxUfn4PXdkkLJIHfuvH3h2ZEShM6D
+	GXQEcAmLsBG3zyfHB3JTt5pbxm3Mt32iMOYF/EpXlSQxMAGGNKzeS4Urx4lE8EtIlDbR9iAirTO
+	QlGuSLBem4lVhQXAl/xMxgnSqRP6/8aoVIbAG29D6wiV4t2x/U9l6aYv2EGYww0wFDvuAEsHEj1
+	qG/b3IlsfzM71ly2GiZPGCZuiIzBXgaprp8ofwRSsRew9YWUah6Z3N/DDkOvu8cspydBnhyEGTq
+	/UcjK3eRYOOqhA1xwyg+FB/kRIhvzaaLfK8iFz4pRynoViaftPu7nas=
+X-Google-Smtp-Source: AGHT+IH2N1UXUlNgMRrYCmzawu/nQG2XG9SVLFZtSnjOQ26z/EDkDV1CClmIxuiGxX0hc4lqLvfR3w==
+X-Received: by 2002:a05:6000:1365:b0:38a:888c:a727 with SMTP id ffacd0b85a97d-38c5195dd2amr12639405f8f.25.1738490178665;
+        Sun, 02 Feb 2025 01:56:18 -0800 (PST)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438e23e6bf8sm114132475e9.23.2025.02.02.01.56.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Feb 2025 01:56:18 -0800 (PST)
+Date: Sun, 2 Feb 2025 10:56:16 +0100
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Artur Weber <aweber.kernel@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v3 1/7] dt-bindings: mfd: brcm,bcm59056: Convert to YAML
+Message-ID: <Z59BQB_cBgTDm4ie@standask-GA-A55M-S2HP>
+References: <20250131-bcm59054-v3-0-bbac52a84787@gmail.com>
+ <20250131-bcm59054-v3-1-bbac52a84787@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250124124150.2024963-1-s-vadapalli@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <20250131-bcm59054-v3-1-bbac52a84787@gmail.com>
 
-On Fri, Jan 24, 2025 at 06:11:49PM +0530, Siddharth Vadapalli wrote:
+On Fri, Jan 31, 2025 at 07:13:49PM +0100, Artur Weber wrote:
+> Convert devicetree bindings for the Broadcom BCM59056 PMU MFD from
+> TXT to YAML format. This patch does not change any functionality;
+> the bindings remain the same.
+> 
+> The bindings have been split into two parts: the MFD binding and
+> a separate binding for the regulator node, to simplify the addition
+> of other models later (which have different regulators).
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 
-This patch has been merged with the following series due to Makefile
-dependencies:
-https://lore.kernel.org/r/20250202093636.2699064-1-s-vadapalli@ti.com/
-and therefore has been superseded by its equivalent in the above series.
+[snip]
+
+> +  regulators:
+> +    type: object
+> +    description: Container node for regulators.
+> +    $ref: ../regulator/brcm,bcm59056.yaml
+
+Use the full path, so /schemas/regulator/brcm,bcm59056.yaml#
+The description seems unnecessary, you can drop it.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic: bcm59056@8 {
+
+Node names should be generic. And drop unused label.
+Should just look like this:
+	pmic@8 {
+
+> +            compatible = "brcm,bcm59056";
+> +            reg = <0x08>;
+> +            interrupts = <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>;
+
+#include <dt-bindings/interrupt-controller/irq.h> ?
+V2 seems to have it, not sure why you dropped this.
+
+> +
+> +            regulators {
+> +                rfldo_reg: rfldo {
+
+Unused label, drop.
+
+> +                    regulator-min-microvolt = <1200000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/regulator/brcm,bcm59056.yaml b/Documentation/devicetree/bindings/regulator/brcm,bcm59056.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..8939004d5a3f079c05d313bed4a2f07fbc473bac
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/brcm,bcm59056.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/brcm,bcm59056.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM59056 Power Management IC regulators
+> +
+> +description: |
+> +  This is a part of device tree bindings for the BCM590XX family of power
+> +  management ICs.
+
+This doesn't really say anything. Also AFAIK these are only part of BCM59056,
+not the entire BCM590XX family.
+Maybe say here something like:
+"The BCM59056 PMIC integrates X regulators, their valid names are
+ lorem, ipsum, etc.
+> +
+> +  See also Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml for
+> +  additional information and example.
+> +
+> +maintainers:
+> +  - Artur Weber <aweber.kernel@gmail.com>
+> +
+> +# The valid regulator node names for BCM59056 are:
+> +#   rfldo, camldo1, camldo2, simldo1, simldo2, sdldo, sdxldo,
+> +#   mmcldo1, mmcldo2, audldo, micldo, usbldo, vibldo,
+> +#   csr, iosr1, iosr2, msr, sdsr1, sdsr2, vsr,
+> +#   gpldo1, gpldo2, gpldo3, gpldo4, gpldo5, gpldo6,
+> +#   vbus
+
+This should probably be a part of the description, not just a comment.
+Could be argued to drop it since it's also described below in
+patternProperties, but this is easier to read, so IMO would be better to keep.
 
 Regards,
-Siddharth.
-
-> The USB0 instance of the USB controller on both the J742S2 EVM and the
-> J784S4 EVM supports a single USB interface at a time among the following:
-> 1. USB3.1 Gen1 Type C interface
-> 2. Two USB2.0 Type A interfaces via an on-board USB Hub.
-> 
-> By default, the USB3.1 Gen1 Type C interface is supported on both of the
-> EVMs. Enable the USB2.0 Type A interface by configuring the USB2.0_MUX_SEL
-> mux. Additionally, set the Dual-Role Mode to Host since a Type-A interface
-> is only associated with the Host Mode of operation.
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> 
-> Hello,
-> 
-> This patch is based on linux-next tagged next-20250124.
-> Since Linux boot is broken on all TI K3 SoCs including
-> J742S2 and J784S4 due to:
-> https://github.com/torvalds/linux/commit/ba5095ebbc7a
-> as indicated at:
-> https://lore.kernel.org/r/b2413460-ec8b-4c77-99b8-4c32b262439a@ti.com/
-> this patch was tested on J784S4-EVM by reverting the aforementioned commit.
-> Logs validating the USB2.0 Type-A Connector on J784S4-EVM using a USB Pen
-> Drive:
-> https://gist.github.com/Siddharth-Vadapalli-at-TI/663d703912ae574e39d7a78421e404c8
-> 
-> Regards,
-> Siddharth.
-> 
->  arch/arm64/boot/dts/ti/Makefile               |  7 +++++
->  .../ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso  | 29 +++++++++++++++++++
->  2 files changed, 36 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 8a4bdf87e2d4..95b8fd0981d7 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -127,6 +127,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-pcie0-pcie1-ep.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
-> +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-j742s2-evm-usb0-type-a.dtbo
->  
->  # Boards with J742S2 SoC
->  dtb-$(CONFIG_ARCH_K3) += k3-j742s2-evm.dtb
-> @@ -209,10 +210,14 @@ k3-j721e-sk-csi2-dual-imx219-dtbs := k3-j721e-sk.dtb \
->  	k3-j721e-sk-csi2-dual-imx219.dtbo
->  k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
->  	k3-j721s2-evm-pcie1-ep.dtbo
-> +k3-j742s2-evm-usb0-type-a-dtbs := k3-j742s2-evm.dtb \
-> +	k3-j784s4-j742s2-evm-usb0-type-a.dtbo
->  k3-j784s4-evm-pcie0-pcie1-ep-dtbs := k3-j784s4-evm.dtb \
->  	k3-j784s4-evm-pcie0-pcie1-ep.dtbo
->  k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
->  	k3-j784s4-evm-quad-port-eth-exp1.dtbo
-> +k3-j784s4-evm-usb0-type-a-dtbs := k3-j784s4-evm.dtb \
-> +	k3-j784s4-j742s2-evm-usb0-type-a.dtbo
->  k3-j784s4-evm-usxgmii-exp1-exp2-dtbs := k3-j784s4-evm.dtb \
->  	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
->  dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
-> @@ -243,8 +248,10 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->  	k3-j721e-evm-pcie1-ep.dtb \
->  	k3-j721e-sk-csi2-dual-imx219.dtb \
->  	k3-j721s2-evm-pcie1-ep.dtb \
-> +	k3-j742s2-evm-usb0-type-a.dtb \
->  	k3-j784s4-evm-pcie0-pcie1-ep.dtb \
->  	k3-j784s4-evm-quad-port-eth-exp1.dtb \
-> +	k3-j784s4-evm-usb0-type-a.dtb \
->  	k3-j784s4-evm-usxgmii-exp1-exp2.dtb
->  
->  # Enable support for device-tree overlays
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso
-> new file mode 100644
-> index 000000000000..ba15d72d86d6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso
-> @@ -0,0 +1,29 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/**
-> + * DT Overlay for enabling USB0 instance of USB on J784S4 and J742S2 EVMs for
-> + * Host Mode of operation with the Type-A Connector.
-> + *
-> + * J784S4 EVM Product Link: https://www.ti.com/tool/J784S4XEVM
-> + * J742S2 EVM Product Link: https://www.ti.com/tool/J742S2XH01EVM
-> + *
-> + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +&exp2 {
-> +	p12-hog {
-> +		/* P12 - USB2.0_MUX_SEL */
-> +		gpio-hog;
-> +		gpios = <12 GPIO_ACTIVE_HIGH>;
-> +		output-high;
-> +		line-name = "USB2.0_MUX_SEL";
-> +	};
-> +};
-> +
-> +&usb0 {
-> +	dr_mode = "host";
-> +};
-> -- 
-> 2.43.0
-> 
+Stanislav
 
