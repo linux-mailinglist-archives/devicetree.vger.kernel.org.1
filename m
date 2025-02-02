@@ -1,371 +1,543 @@
-Return-Path: <devicetree+bounces-142337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573D0A24FF4
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 21:35:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 023B1A25013
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 22:20:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9BD8162DF9
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 20:35:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84CED1883CF7
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 21:20:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 645A71E0B9C;
-	Sun,  2 Feb 2025 20:35:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBAEA1FC0F0;
+	Sun,  2 Feb 2025 21:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ya.ru header.i=@ya.ru header.b="CSQea95y"
+	dkim=pass (2048-bit key) header.d=asahilina.net header.i=@asahilina.net header.b="uXYQ5lxg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward101d.mail.yandex.net (forward101d.mail.yandex.net [178.154.239.212])
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 236D91DC985;
-	Sun,  2 Feb 2025 20:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.212
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D1AC1CDA3F;
+	Sun,  2 Feb 2025 21:20:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.63.210.85
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738528519; cv=none; b=J83nu/nnjyAgnCwy02FQ0tfzha82TiCWtTOcHG+uJfhB2Iu+oRIydl/5qjeLSPmpLbpxHHed1nHHL4matp6og9ntiHSJIv5cKhRSS3hIaIW7KJM2WbrtMOtqSpzzrMKSFJsf/H3rA5TSuIap5EKbeay39J//pN3JJWm4oIcjPBo=
+	t=1738531211; cv=none; b=mxhcSQ/OF0kzQfmG70ydcuCKxEa+e2qVhMTbZPAXEXCsoidno+2HM1L0Pj59gwlKoqqasUcuilJtlmDAxscHgexNu8y8k1+LKEHYWM7noSbuy0YXRZDcyWP2YcLo+8Bm8IsUnMvFF+9cG2Ob6dZ0g8qnIiJDdxquHCiacLQ88kQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738528519; c=relaxed/simple;
-	bh=B5cy6+gRRqmWH1eCroUA0hFOyLoj8fVXrAPWJG4brnE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f2ui1PtVDaDVDJvZSsOI/+/KEgGpX9QogPVAlIAFCUw0tjCxFs8D9SC/499SvCi7Ahgh0k6c3rAwCsJzQqNTRE7umqKLdCgSJlvYbyaS98k+yoibiIezDHpMLc7S6rf8HirzALejTdFJl3CAgOOmM47kcFUBA4aRpjsTYCUAXjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ya.ru; spf=pass smtp.mailfrom=ya.ru; dkim=pass (1024-bit key) header.d=ya.ru header.i=@ya.ru header.b=CSQea95y; arc=none smtp.client-ip=178.154.239.212
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ya.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ya.ru
-Received: from mail-nwsmtp-smtp-production-main-90.myt.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-90.myt.yp-c.yandex.net [IPv6:2a02:6b8:c12:288:0:640:d35:0])
-	by forward101d.mail.yandex.net (Yandex) with ESMTPS id 477E460906;
-	Sun,  2 Feb 2025 23:35:05 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-90.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id wYpXeKDOhGk0-IOqKZa5Q;
-	Sun, 02 Feb 2025 23:35:03 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ya.ru; s=mail;
-	t=1738528503; bh=5rKcZJY29bNaWdT+17+7U8GuqPLJU4SRzpugbbuKOc4=;
-	h=Message-ID:Subject:References:To:From:In-Reply-To:Cc:Date;
-	b=CSQea95ybmKLeA1PZavBV28WAG6bh595O+y5TydwxmO5vuEEwbc9asjkzAomJiRR9
-	 Zwp4bZRK8g7J7CNrmC9uy17dbNQnmUu15CA2Hl8k++brc0cx4j5cENITKBEMggFXXa
-	 RKEKqWypjMgsS+z6U6GvoH1j477XHSs85BN6NbaU=
-Authentication-Results: mail-nwsmtp-smtp-production-main-90.myt.yp-c.yandex.net; dkim=pass header.i=@ya.ru
-Date: Sun, 2 Feb 2025 23:34:58 +0300
-From: Pavel Golikov <paullo612@ya.ru>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: andy.yan@rock-chips.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	quentin.schulz@cherry.de, Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Daniel Semkowicz <dse@thaumatec.com>,
-	Dmitry Yashin <dmt.yashin@gmail.com>,
-	Pavel Golikov <paullo612@ya.ru>
-Subject: Re: [PATCH v4 1/3] drm/bridge/synopsys: Add MIPI DSI2 host
- controller bridge
-Message-ID: <20250202203458.GA52719@pgolikov-home-desktop>
-References: <20241209231021.2180582-1-heiko@sntech.de>
- <20241209231021.2180582-2-heiko@sntech.de>
+	s=arc-20240116; t=1738531211; c=relaxed/simple;
+	bh=iPP9jbE23nENC6ZB4Po5IZxyRp0t+vUbHd7mej+49NE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Kn1XiZWmV1nGonrox5gZao5cvrcBxnGc7e01J8DpiM6Xi8a0m9ugt4WN40Akld18cn3hxky6oX0+mr8a7R7GLjSXNqoIdw24q46kTsDEY1UbGWliAMycKJKz1+IpqZPbdGglR1/zELPMWgOp5oZlWb9QvW7goRHafCzk7NlMSrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=asahilina.net; spf=pass smtp.mailfrom=asahilina.net; dkim=pass (2048-bit key) header.d=asahilina.net header.i=@asahilina.net header.b=uXYQ5lxg; arc=none smtp.client-ip=212.63.210.85
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=asahilina.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=asahilina.net
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: lina@asahilina.net)
+	by mail.marcansoft.com (Postfix) with ESMTPSA id 40B33425F5;
+	Sun,  2 Feb 2025 21:20:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
+	s=default; t=1738531203;
+	bh=iPP9jbE23nENC6ZB4Po5IZxyRp0t+vUbHd7mej+49NE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=uXYQ5lxghhDgkoKH8cioL1jPYsrD2LzRhKGrDcebuBUXYg117aqatj9YBB0kpDkQx
+	 RMNldd8cIxzHzA4oRsWDhvXPZkhwtDG2wlWZC2Pz/KqxC6yZdQrrAckVe7IuLS+lpS
+	 RU1tlNBxLbBgMOTWPumP0wK60UQ28tKmTn7+VM19iBmIKHaRTHTHLKa36aZ3Deoc+8
+	 wC5/fu5O+8IZVjwjpdcv9HW3wi/sZyr+/291VxOVXO3sYlnZ2XClOnefBpRxeaJF9V
+	 xYBhkZN8KkyOAkN5UiKxgk9PT0ZydibqLqPw3UcK8c0O3o4jAgC6BxQoGvC0bi+2DL
+	 KUO/B2hObMRIg==
+Message-ID: <e8da15f0-5b97-4569-842c-891cdf886978@asahilina.net>
+Date: Mon, 3 Feb 2025 06:19:57 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241209231021.2180582-2-heiko@sntech.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 07/16] rust: add `io::{Io, IoRaw}` base types
+To: Danilo Krummrich <dakr@kernel.org>, gregkh@linuxfoundation.org,
+ rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+ a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+ fujita.tomonori@gmail.com, pstanner@redhat.com, ajanulgu@redhat.com,
+ lyude@redhat.com, robh@kernel.org, daniel.almeida@collabora.com,
+ saravanak@google.com, dirk.behme@de.bosch.com, j@jannau.net,
+ fabien.parent@linaro.org, chrisi.schrefl@gmail.com, paulmck@kernel.org
+Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org, rcu@vger.kernel.org
+References: <20241212163357.35934-1-dakr@kernel.org>
+ <20241212163357.35934-8-dakr@kernel.org> <Z2BTSbOjWa8R29i5@cassiopeiae>
+Content-Language: en-US
+From: Asahi Lina <lina@asahilina.net>
+In-Reply-To: <Z2BTSbOjWa8R29i5@cassiopeiae>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
 
-On Tue, Dec 10, 2024 at 12:10:19AM +0100, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
+
+On 12/17/24 1:20 AM, Danilo Krummrich wrote:
+> On Thu, Dec 12, 2024 at 05:33:38PM +0100, Danilo Krummrich wrote:
+>> I/O memory is typically either mapped through direct calls to ioremap()
+>> or subsystem / bus specific ones such as pci_iomap().
+>>
+>> Even though subsystem / bus specific functions to map I/O memory are
+>> based on ioremap() / iounmap() it is not desirable to re-implement them
+>> in Rust.
+>>
+>> Instead, implement a base type for I/O mapped memory, which generically
+>> provides the corresponding accessors, such as `Io::readb` or
+>> `Io:try_readb`.
+>>
+>> `Io` supports an optional const generic, such that a driver can indicate
+>> the minimal expected and required size of the mapping at compile time.
+>> Correspondingly, calls to the 'non-try' accessors, support compile time
+>> checks of the I/O memory offset to read / write, while the 'try'
+>> accessors, provide boundary checks on runtime.
+>>
+>> `IoRaw` is meant to be embedded into a structure (e.g. pci::Bar or
+>> io::IoMem) which creates the actual I/O memory mapping and initializes
+>> `IoRaw` accordingly.
+>>
+>> To ensure that I/O mapped memory can't out-live the device it may be
+>> bound to, subsystems must embed the corresponding I/O memory type (e.g.
+>> pci::Bar) into a `Devres` container, such that it gets revoked once the
+>> device is unbound.
+>>
+>> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+>> Tested-by: Daniel Almeida <daniel.almeida@collabora.com>
+>> Reviewed-by: Daniel Almeida  <daniel.almeida@collabora.com>
+>> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+>> ---
+>>  rust/helpers/helpers.c |   1 +
+>>  rust/helpers/io.c      | 101 ++++++++++++++++
+>>  rust/kernel/io.rs      | 260 +++++++++++++++++++++++++++++++++++++++++
+>>  rust/kernel/lib.rs     |   1 +
+>>  4 files changed, 363 insertions(+)
+>>  create mode 100644 rust/helpers/io.c
+>>  create mode 100644 rust/kernel/io.rs
+>>
+>> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
+>> index 060750af6524..63f9b1da179f 100644
+>> --- a/rust/helpers/helpers.c
+>> +++ b/rust/helpers/helpers.c
+>> @@ -14,6 +14,7 @@
+>>  #include "cred.c"
+>>  #include "err.c"
+>>  #include "fs.c"
+>> +#include "io.c"
+>>  #include "jump_label.c"
+>>  #include "kunit.c"
+>>  #include "mutex.c"
+>> diff --git a/rust/helpers/io.c b/rust/helpers/io.c
+>> new file mode 100644
+>> index 000000000000..1dde6374c0e2
+>> --- /dev/null
+>> +++ b/rust/helpers/io.c
+>> @@ -0,0 +1,101 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +
+>> +#include <linux/io.h>
+>> +
+>> +void __iomem *rust_helper_ioremap(phys_addr_t offset, size_t size)
+>> +{
+>> +	return ioremap(offset, size);
+>> +}
+>> +
+>> +void rust_helper_iounmap(volatile void __iomem *addr)
+>> +{
+>> +	return iounmap(addr);
 > 
-> Add a Synopsys Designware MIPI DSI host DRM bridge driver for their
-> DSI2 host controller, based on the Rockchip version from the driver
-> rockchip/dw-mipi-dsi2.c in their vendor-kernel with phy & bridge APIs.
+> Copy-paste mistake, obviously this return statement shouldn't be here.
 > 
-> While the driver is heavily modelled after the previous IP, the register
-> set of this DSI2 controller is completely different and there are also
-> additional properties like the variable-width phy interface.
+>> +}
+>> +
+>> +u8 rust_helper_readb(const volatile void __iomem *addr)
+>> +{
+>> +	return readb(addr);
+>> +}
+>> +
+>> +u16 rust_helper_readw(const volatile void __iomem *addr)
+>> +{
+>> +	return readw(addr);
+>> +}
+>> +
+>> +u32 rust_helper_readl(const volatile void __iomem *addr)
+>> +{
+>> +	return readl(addr);
+>> +}
+>> +
+>> +#ifdef CONFIG_64BIT
+>> +u64 rust_helper_readq(const volatile void __iomem *addr)
+>> +{
+>> +	return readq(addr);
+>> +}
+>> +#endif
+>> +
+>> +void rust_helper_writeb(u8 value, volatile void __iomem *addr)
+>> +{
+>> +	writeb(value, addr);
+>> +}
+>> +
+>> +void rust_helper_writew(u16 value, volatile void __iomem *addr)
+>> +{
+>> +	writew(value, addr);
+>> +}
+>> +
+>> +void rust_helper_writel(u32 value, volatile void __iomem *addr)
+>> +{
+>> +	writel(value, addr);
+>> +}
+>> +
+>> +#ifdef CONFIG_64BIT
+>> +void rust_helper_writeq(u64 value, volatile void __iomem *addr)
+>> +{
+>> +	writeq(value, addr);
+>> +}
+>> +#endif
+>> +
+>> +u8 rust_helper_readb_relaxed(const volatile void __iomem *addr)
+>> +{
+>> +	return readb_relaxed(addr);
+>> +}
+>> +
+>> +u16 rust_helper_readw_relaxed(const volatile void __iomem *addr)
+>> +{
+>> +	return readw_relaxed(addr);
+>> +}
+>> +
+>> +u32 rust_helper_readl_relaxed(const volatile void __iomem *addr)
+>> +{
+>> +	return readl_relaxed(addr);
+>> +}
+>> +
+>> +#ifdef CONFIG_64BIT
+>> +u64 rust_helper_readq_relaxed(const volatile void __iomem *addr)
+>> +{
+>> +	return readq_relaxed(addr);
+>> +}
+>> +#endif
+>> +
+>> +void rust_helper_writeb_relaxed(u8 value, volatile void __iomem *addr)
+>> +{
+>> +	writeb_relaxed(value, addr);
+>> +}
+>> +
+>> +void rust_helper_writew_relaxed(u16 value, volatile void __iomem *addr)
+>> +{
+>> +	writew_relaxed(value, addr);
+>> +}
+>> +
+>> +void rust_helper_writel_relaxed(u32 value, volatile void __iomem *addr)
+>> +{
+>> +	writel_relaxed(value, addr);
+>> +}
+>> +
+>> +#ifdef CONFIG_64BIT
+>> +void rust_helper_writeq_relaxed(u64 value, volatile void __iomem *addr)
+>> +{
+>> +	writeq_relaxed(value, addr);
+>> +}
+>> +#endif
+>> diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
+>> new file mode 100644
+>> index 000000000000..7ec3341bb411
+>> --- /dev/null
+>> +++ b/rust/kernel/io.rs
+>> @@ -0,0 +1,260 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +
+>> +//! Memory-mapped IO.
+>> +//!
+>> +//! C header: [`include/asm-generic/io.h`](srctree/include/asm-generic/io.h)
+>> +
+>> +use crate::error::{code::EINVAL, Result};
+>> +use crate::{bindings, build_assert};
+>> +
+>> +/// Raw representation of an MMIO region.
+>> +///
+>> +/// By itself, the existence of an instance of this structure does not provide any guarantees that
+>> +/// the represented MMIO region does exist or is properly mapped.
+>> +///
+>> +/// Instead, the bus specific MMIO implementation must convert this raw representation into an `Io`
+>> +/// instance providing the actual memory accessors. Only by the conversion into an `Io` structure
+>> +/// any guarantees are given.
+>> +pub struct IoRaw<const SIZE: usize = 0> {
+>> +    addr: usize,
+>> +    maxsize: usize,
+>> +}
+>> +
+>> +impl<const SIZE: usize> IoRaw<SIZE> {
+>> +    /// Returns a new `IoRaw` instance on success, an error otherwise.
+>> +    pub fn new(addr: usize, maxsize: usize) -> Result<Self> {
+>> +        if maxsize < SIZE {
+>> +            return Err(EINVAL);
+>> +        }
+>> +
+>> +        Ok(Self { addr, maxsize })
+>> +    }
+>> +
+>> +    /// Returns the base address of the MMIO region.
+>> +    #[inline]
+>> +    pub fn addr(&self) -> usize {
+>> +        self.addr
+>> +    }
+>> +
+>> +    /// Returns the maximum size of the MMIO region.
+>> +    #[inline]
+>> +    pub fn maxsize(&self) -> usize {
+>> +        self.maxsize
+>> +    }
+>> +}
+>> +
+>> +/// IO-mapped memory, starting at the base address @addr and spanning @maxlen bytes.
+>> +///
+>> +/// The creator (usually a subsystem / bus such as PCI) is responsible for creating the
+>> +/// mapping, performing an additional region request etc.
+>> +///
+>> +/// # Invariant
+>> +///
+>> +/// `addr` is the start and `maxsize` the length of valid I/O mapped memory region of size
+>> +/// `maxsize`.
+>> +///
+>> +/// # Examples
+>> +///
+>> +/// ```no_run
+>> +/// # use kernel::{bindings, io::{Io, IoRaw}};
+>> +/// # use core::ops::Deref;
+>> +///
+>> +/// // See also [`pci::Bar`] for a real example.
+>> +/// struct IoMem<const SIZE: usize>(IoRaw<SIZE>);
+>> +///
+>> +/// impl<const SIZE: usize> IoMem<SIZE> {
+>> +///     /// # Safety
+>> +///     ///
+>> +///     /// [`paddr`, `paddr` + `SIZE`) must be a valid MMIO region that is mappable into the CPUs
+>> +///     /// virtual address space.
+>> +///     unsafe fn new(paddr: usize) -> Result<Self>{
+>> +///         // SAFETY: By the safety requirements of this function [`paddr`, `paddr` + `SIZE`) is
+>> +///         // valid for `ioremap`.
+>> +///         let addr = unsafe { bindings::ioremap(paddr as _, SIZE.try_into().unwrap()) };
+
+This is a problematic API. ioremap() does not work on some platforms
+like Apple Silicon. Instead, you have to use ioremap_np() for most devices.
+
+Please add a bindings::resource abstraction and use that to construct
+IoMem. Then, you can check the flags for
+bindings::IORESOURCE_MEM_NONPOSTED and use the appropriate function,
+like this:
+
+https://github.com/AsahiLinux/linux/blob/fce34c83f1dca5b10cc2c866fd8832a362de7974/rust/kernel/io_mem.rs#L152
+
+
+>> +///         if addr.is_null() {
+>> +///             return Err(ENOMEM);
+>> +///         }
+>> +///
+>> +///         Ok(IoMem(IoRaw::new(addr as _, SIZE)?))
+>> +///     }
+>> +/// }
+>> +///
+>> +/// impl<const SIZE: usize> Drop for IoMem<SIZE> {
+>> +///     fn drop(&mut self) {
+>> +///         // SAFETY: `self.0.addr()` is guaranteed to be properly mapped by `Self::new`.
+>> +///         unsafe { bindings::iounmap(self.0.addr() as _); };
+>> +///     }
+>> +/// }
+>> +///
+>> +/// impl<const SIZE: usize> Deref for IoMem<SIZE> {
+>> +///    type Target = Io<SIZE>;
+>> +///
+>> +///    fn deref(&self) -> &Self::Target {
+>> +///         // SAFETY: The memory range stored in `self` has been properly mapped in `Self::new`.
+>> +///         unsafe { Io::from_raw(&self.0) }
+>> +///    }
+>> +/// }
+>> +///
+>> +///# fn no_run() -> Result<(), Error> {
+>> +/// // SAFETY: Invalid usage for example purposes.
+>> +/// let iomem = unsafe { IoMem::<{ core::mem::size_of::<u32>() }>::new(0xBAAAAAAD)? };
+>> +/// iomem.writel(0x42, 0x0);
+>> +/// assert!(iomem.try_writel(0x42, 0x0).is_ok());
+>> +/// assert!(iomem.try_writel(0x42, 0x4).is_err());
+>> +/// # Ok(())
+>> +/// # }
+>> +/// ```
+>> +#[repr(transparent)]
+>> +pub struct Io<const SIZE: usize = 0>(IoRaw<SIZE>);
+>> +
+>> +macro_rules! define_read {
+>> +    ($(#[$attr:meta])* $name:ident, $try_name:ident, $type_name:ty) => {
+>> +        /// Read IO data from a given offset known at compile time.
+>> +        ///
+>> +        /// Bound checks are performed on compile time, hence if the offset is not known at compile
+>> +        /// time, the build will fail.
+>> +        $(#[$attr])*
+>> +        #[inline]
+>> +        pub fn $name(&self, offset: usize) -> $type_name {
+>> +            let addr = self.io_addr_assert::<$type_name>(offset);
+>> +
+>> +            // SAFETY: By the type invariant `addr` is a valid address for MMIO operations.
+>> +            unsafe { bindings::$name(addr as _) }
+>> +        }
+>> +
+>> +        /// Read IO data from a given offset.
+>> +        ///
+>> +        /// Bound checks are performed on runtime, it fails if the offset (plus the type size) is
+>> +        /// out of bounds.
+>> +        $(#[$attr])*
+>> +        pub fn $try_name(&self, offset: usize) -> Result<$type_name> {
+>> +            let addr = self.io_addr::<$type_name>(offset)?;
+>> +
+>> +            // SAFETY: By the type invariant `addr` is a valid address for MMIO operations.
+>> +            Ok(unsafe { bindings::$name(addr as _) })
+>> +        }
+>> +    };
+>> +}
+>> +
+>> +macro_rules! define_write {
+>> +    ($(#[$attr:meta])* $name:ident, $try_name:ident, $type_name:ty) => {
+>> +        /// Write IO data from a given offset known at compile time.
+>> +        ///
+>> +        /// Bound checks are performed on compile time, hence if the offset is not known at compile
+>> +        /// time, the build will fail.
+>> +        $(#[$attr])*
+>> +        #[inline]
+>> +        pub fn $name(&self, value: $type_name, offset: usize) {
+>> +            let addr = self.io_addr_assert::<$type_name>(offset);
+>> +
+>> +            // SAFETY: By the type invariant `addr` is a valid address for MMIO operations.
+>> +            unsafe { bindings::$name(value, addr as _, ) }
+>> +        }
+>> +
+>> +        /// Write IO data from a given offset.
+>> +        ///
+>> +        /// Bound checks are performed on runtime, it fails if the offset (plus the type size) is
+>> +        /// out of bounds.
+>> +        $(#[$attr])*
+>> +        pub fn $try_name(&self, value: $type_name, offset: usize) -> Result {
+>> +            let addr = self.io_addr::<$type_name>(offset)?;
+>> +
+>> +            // SAFETY: By the type invariant `addr` is a valid address for MMIO operations.
+>> +            unsafe { bindings::$name(value, addr as _) }
+>> +            Ok(())
+>> +        }
+>> +    };
+>> +}
+>> +
+>> +impl<const SIZE: usize> Io<SIZE> {
+>> +    /// Converts an `IoRaw` into an `Io` instance, providing the accessors to the MMIO mapping.
+>> +    ///
+>> +    /// # Safety
+>> +    ///
+>> +    /// Callers must ensure that `addr` is the start of a valid I/O mapped memory region of size
+>> +    /// `maxsize`.
+>> +    pub unsafe fn from_raw(raw: &IoRaw<SIZE>) -> &Self {
+>> +        // SAFETY: `Io` is a transparent wrapper around `IoRaw`.
+>> +        unsafe { &*core::ptr::from_ref(raw).cast() }
+>> +    }
+>> +
+>> +    /// Returns the base address of this mapping.
+>> +    #[inline]
+>> +    pub fn addr(&self) -> usize {
+>> +        self.0.addr()
+>> +    }
+>> +
+>> +    /// Returns the maximum size of this mapping.
+>> +    #[inline]
+>> +    pub fn maxsize(&self) -> usize {
+>> +        self.0.maxsize()
+>> +    }
+>> +
+>> +    #[inline]
+>> +    const fn offset_valid<U>(offset: usize, size: usize) -> bool {
+>> +        let type_size = core::mem::size_of::<U>();
+>> +        if let Some(end) = offset.checked_add(type_size) {
+>> +            end <= size && offset % type_size == 0
+>> +        } else {
+>> +            false
+>> +        }
+>> +    }
+>> +
+>> +    #[inline]
+>> +    fn io_addr<U>(&self, offset: usize) -> Result<usize> {
+>> +        if !Self::offset_valid::<U>(offset, self.maxsize()) {
+>> +            return Err(EINVAL);
+>> +        }
+>> +
+>> +        // Probably no need to check, since the safety requirements of `Self::new` guarantee that
+>> +        // this can't overflow.
+>> +        self.addr().checked_add(offset).ok_or(EINVAL)
+>> +    }
+>> +
+>> +    #[inline]
+>> +    fn io_addr_assert<U>(&self, offset: usize) -> usize {
+>> +        build_assert!(Self::offset_valid::<U>(offset, SIZE));
+>> +
+>> +        self.addr() + offset
+>> +    }
+>> +
+>> +    define_read!(readb, try_readb, u8);
+>> +    define_read!(readw, try_readw, u16);
+>> +    define_read!(readl, try_readl, u32);
+>> +    define_read!(
+>> +        #[cfg(CONFIG_64BIT)]
+>> +        readq,
+>> +        try_readq,
+>> +        u64
+>> +    );
+>> +
+>> +    define_read!(readb_relaxed, try_readb_relaxed, u8);
+>> +    define_read!(readw_relaxed, try_readw_relaxed, u16);
+>> +    define_read!(readl_relaxed, try_readl_relaxed, u32);
+>> +    define_read!(
+>> +        #[cfg(CONFIG_64BIT)]
+>> +        readq_relaxed,
+>> +        try_readq_relaxed,
+>> +        u64
+>> +    );
+>> +
+>> +    define_write!(writeb, try_writeb, u8);
+>> +    define_write!(writew, try_writew, u16);
+>> +    define_write!(writel, try_writel, u32);
+>> +    define_write!(
+>> +        #[cfg(CONFIG_64BIT)]
+>> +        writeq,
+>> +        try_writeq,
+>> +        u64
+>> +    );
+>> +
+>> +    define_write!(writeb_relaxed, try_writeb_relaxed, u8);
+>> +    define_write!(writew_relaxed, try_writew_relaxed, u16);
+>> +    define_write!(writel_relaxed, try_writel_relaxed, u32);
+>> +    define_write!(
+>> +        #[cfg(CONFIG_64BIT)]
+>> +        writeq_relaxed,
+>> +        try_writeq_relaxed,
+>> +        u64
+>> +    );
+>> +}
+>> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+>> index 5702ce32ec8e..6c836ab73771 100644
+>> --- a/rust/kernel/lib.rs
+>> +++ b/rust/kernel/lib.rs
+>> @@ -79,6 +79,7 @@
+>>  
+>>  #[doc(hidden)]
+>>  pub use bindings;
+>> +pub mod io;
+>>  pub use macros;
+>>  pub use uapi;
+>>  
+>> -- 
+>> 2.47.1
+>>
 > 
-> Tested-by: Daniel Semkowicz <dse@thaumatec.com>
-> Tested-by: Dmitry Yashin <dmt.yashin@gmail.com>
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-[..]
-> +static void dw_mipi_dsi2_set_data_stream_mode(struct dw_mipi_dsi2 *dsi2)
-> +{
-> +	u32 mode;
-> +	int ret;
-> +
-> +	regmap_write(dsi2->regmap, DSI2_MODE_CTRL, DATA_STREAM_MODE);
-> +	ret = regmap_read_poll_timeout(dsi2->regmap, DSI2_MODE_STATUS,
-> +				       mode, mode & DATA_STREAM_MODE,
-> +				       1000, MODE_STATUS_TIMEOUT_US);
-> +	if (ret < 0)
-> +		dev_err(dsi2->dev, "failed to enter data stream mode\n");
-> +}
-> +
-> +static void dw_mipi_dsi2_set_cmd_mode(struct dw_mipi_dsi2 *dsi2)
-> +{
-> +	u32 mode;
-> +	int ret;
-> +
-> +	regmap_write(dsi2->regmap, DSI2_MODE_CTRL, COMMAND_MODE);
-> +	ret = regmap_read_poll_timeout(dsi2->regmap, DSI2_MODE_STATUS,
-> +				       mode, mode & COMMAND_MODE,
-> +				       1000, MODE_STATUS_TIMEOUT_US);
-> +	if (ret < 0)
-> +		dev_err(dsi2->dev, "failed to enter data stream mode\n");
+> 
 
-We've failed to enter command mode, not stream mode. Wrong error message caused
-by copy and paste?
+~~ Lina
 
-> +}
-> +
-> +static void dw_mipi_dsi2_host_softrst(struct dw_mipi_dsi2 *dsi2)
-> +{
-
-Looks like it is necessary to also do apb reset here, like vendor kernel does.
-Without apb reset, panel sometimes does not properly come up after DPMS switch.
-
-Tested with
-
-modetest -M rockchip -w 83:DPMS:3
-
-I'm not sure whether it is Debian specific, but setting connector's DPMS property
-to OFF causes immediate panel reset. Something is restoring its value to ON
-immediately.
-
-> +	regmap_write(dsi2->regmap, DSI2_SOFT_RESET, 0x0);
-> +	usleep_range(50, 100);
-> +	regmap_write(dsi2->regmap, DSI2_SOFT_RESET,
-> +		   SYS_RSTN | PHY_RSTN | IPI_RSTN);
-> +}
-
-...
-
-> +static void dw_mipi_dsi2_phy_ratio_cfg(struct dw_mipi_dsi2 *dsi2)
-> +{
-> +	struct drm_display_mode *mode = &dsi2->mode;
-> +	u64 sys_clk = clk_get_rate(dsi2->sys_clk);
-> +	u64 pixel_clk, ipi_clk, phy_hsclk;
-> +	u64 tmp;
-> +
-> +	/*
-> +	 * in DPHY mode, the phy_hstx_clk is exactly 1/16 the Lane high-speed
-> +	 * data rate; In CPHY mode, the phy_hstx_clk is exactly 1/7 the trio
-> +	 * high speed symbol rate.
-> +	 */
-> +	phy_hsclk = DIV_ROUND_CLOSEST_ULL(dsi2->lane_mbps * USEC_PER_SEC, 16);
-> +
-> +	/* IPI_RATIO_MAN_CFG = PHY_HSTX_CLK / IPI_CLK */
-> +	pixel_clk = mode->crtc_clock * MSEC_PER_SEC;
-> +	ipi_clk = pixel_clk / 4;
-> +
-> +	tmp = DIV_ROUND_CLOSEST_ULL(phy_hsclk << 16, ipi_clk);
-> +	regmap_write(dsi2->regmap, DSI2_PHY_IPI_RATIO_MAN_CFG,
-> +		   PHY_IPI_RATIO(tmp));
-> +
-> +	/*
-> +	 * SYS_RATIO_MAN_CFG = MIPI_DCPHY_HSCLK_Freq / MIPI_DCPHY_HSCLK_Freq
-> +	 */
-
-According to TRM
-
-SYS_RATIO_MAN_CFG = MIPI_DCPHY_HSCLK_Freq / SYS_CLK_Freq
-
-So, this comment is simply wrong. Looks like a typo. Also, earlier comment does
-not mention _Freq part in frequency names. Maybe it would be better to make it
-consistent?
-
-> +	tmp = DIV_ROUND_CLOSEST_ULL(phy_hsclk << 16, sys_clk);
-> +	regmap_write(dsi2->regmap, DSI2_PHY_SYS_RATIO_MAN_CFG,
-> +		   PHY_SYS_RATIO(tmp));
-> +}
-> +
-> +static void dw_mipi_dsi2_lp2hs_or_hs2lp_cfg(struct dw_mipi_dsi2 *dsi2)
-> +{
-> +	const struct dw_mipi_dsi2_phy_ops *phy_ops = dsi2->plat_data->phy_ops;
-> +	struct dw_mipi_dsi2_phy_timing timing;
-> +	int ret;
-> +
-> +	ret = phy_ops->get_timing(dsi2->plat_data->priv_data,
-> +				  dsi2->lane_mbps, &timing);
-> +	if (ret)
-> +		dev_err(dsi2->dev, "Retrieving phy timings failed\n");
-> +
-> +	regmap_write(dsi2->regmap, DSI2_PHY_LP2HS_MAN_CFG, PHY_LP2HS_TIME(timing.data_lp2hs));
-> +	regmap_write(dsi2->regmap, DSI2_PHY_HS2LP_MAN_CFG, PHY_HS2LP_TIME(timing.data_hs2lp));
-
-I also had to set DSI2_PHY_MAX_RD_T_MAN_CFG to 10000 as it is done in
-dw-mipi-dsi (v1) driver to make my panel work properly in LPM mode.
-
-> +}
-
-...
-
-> +static const struct regmap_config dw_mipi_dsi2_regmap_config = {
-> +	.name = "dsi2-host",
-> +	.reg_bits = 32,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +	.fast_io = true,
-
-Maybe it would be good to also set max_register here to make proper regmap
-available through debugfs? Or max_register_is_0 otherwise? Without this, only
-first register is available for dumping.
-
-Not quite relevant here, as this bridge is not currently used alone, but
-relevant for Rockchip specific glue driver.
-
-> +};
-
-...
-
-
-I've managed to successfully enable my DSI panel [0]. It has Lincoln Technology
-Solutions ZV070WUV-L50 board [1], which, in turn, is based on Focal Tech FT7250
-display controller.
-
-This panel works flawlessly with rk3568 (but at most at ~55 Hz refresh rate,
-because rk3568 does not support modes higher than 1920x1080@60, so, I had to
-lower refresh rate to make it work). But has some troubles with rk3588. It
-works fine with vendor kernel with LPM disabled and "auto-calculation-mode"
-device tree property set. As far as I can understand, auto calculation mode is
-not going to be supported by mainline, and disabling LPM is not an option to
-me.
-
-So, to make it work with this series I had to increase PHY_SYS_RATIO twice.
-
-Maybe Andy could shade the light on what automatic mode calculation algorithm
-does? Why in automatic mode PHY_SYS_RATIO value is twice larger than value
-computed by formula in DSI controller application note?
-
-Panel configuration:
-
-static const struct drm_display_mode default_mode_lincoln = {
-	.hdisplay    = 1200,
-	.hsync_start = 1200 + 20,
-	.hsync_end   = 1200 + 20 + 8,
-	.htotal      = 1200 + 20 + 8 + 22,
-	.vdisplay    = 1920,
-	.vsync_start = 1920 + 178,
-	.vsync_end   = 1920 + 178 + 8,
-	.vtotal      = 1920 + 178 + 8 + 32,
-	.clock       = 148500,
-	.width_mm    = 94,
-	.height_mm   = 151,
-};
-
-dsi->lanes = 4;
-dsi->format = MIPI_DSI_FMT_RGB888;
-dsi->mode_flags = MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_VIDEO |
-	MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_MODE_VIDEO_BURST;
-
-Regmap diff between manual mode and automatic mode:
-
-diff --git a/root/regs_manual b/root/regs_auto
-index 117cb5b..5dce301 100644
---- a/root/regs_manual
-+++ b/root/regs_auto
-@@ -7,9 +7,9 @@
- 018: 00000000
- 01c: 00000003
- 020: 00000303
--024: 00000001
-+024: 00000000
- 028: 00000000
--02c: 0161082c
-+02c: 04b70728
- 030: 00000000
- 034: 00000000
- 038: 00000000
-@@ -65,20 +65,20 @@
- 100: 00000130
- 104: 00000900
- 108: 001f0000
--10c: 000cb0b5
--110: 00000000
--114: 000ae64f
--118: 00000000
-+10c: 00000000
-+110: 0013be38
-+114: 00000000
-+118: 00114671
- 11c: 00000000
--120: 00000000
-+120: 000003d3
- 124: 00000000
--128: 00000000
-+128: 00952167
- 12c: 00000000
--130: 00000000
--134: 0001aaab
--138: 00000000
--13c: 00002d21
--140: 00000000
-+130: 00658920
-+134: 00000000
-+138: 0001aaad
-+13c: 00000000
-+140: 00005a41
- 144: 00000000
- 148: 00000000
- 14c: 00000000
-@@ -129,7 +129,7 @@
- 200: 00000002
- 204: 00000000
- 208: ffff0000
--20c: 00100072
-+20c: 00000072
- 210: 00000000
- 214: 00000000
- 218: 00000000
-@@ -191,20 +191,20 @@
- 2f8: 00000000
- 2fc: 00000000
- 300: 00000050
--304: 00035555
--308: 00000000
--30c: 00092aab
--310: 00000000
--314: 01f40000
--318: 00000000
--31c: 0208d555
--320: 00000000
--324: 00000008
--328: 00000000
--32c: 00000020
--330: 00000000
--334: 00000780
--338: 00000000
--33c: 000000b2
--340: 00000000
-+304: 00000000
-+308: 0003555a
-+30c: 00000000
-+310: 00092ab7
-+314: 00000000
-+318: 01f402bc
-+31c: 00000000
-+320: 0208d82e
-+324: 00000000
-+328: 00000008
-+32c: 00000000
-+330: 00000020
-+334: 00000000
-+338: 00000780
-+33c: 00000000
-+340: 000000b2
- 344: 000004b0
-
-The only irrelevant difference here is LPM mode enable bit.
-
-Calculated hsclk is 61875000, sys clk is 351000000, MIPI lane speed is
-990 mbps. VOP pixel clock is 37125000 if it is relevant in any way.
-
-Thanks, Pavel
-
-[0] https://www.hello-lighting.com/product/7-0-ips-1200x1920/
-[1] http://www.microtech-lcd.cn/upfile/202109/2021092649634025.jpg
 
