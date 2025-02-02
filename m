@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-142294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E817A24DD6
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 13:16:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0EDFA24DDC
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 13:16:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50AFC3A525A
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 12:16:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2E1A3A3950
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 12:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AF481D86C0;
-	Sun,  2 Feb 2025 12:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888BE1D90B6;
+	Sun,  2 Feb 2025 12:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JL4GkBxB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yi4uvw1h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3E21D798E
-	for <devicetree@vger.kernel.org>; Sun,  2 Feb 2025 12:16:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 837C31D88BF
+	for <devicetree@vger.kernel.org>; Sun,  2 Feb 2025 12:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738498569; cv=none; b=iBruuoGTHSxF/8uAJITfgs4B8y7duKKNBQXhCkB4w0nMndkeu8CNvOhlLLmMd0cR+huE/g+2uVaqqzeQIJnuTj8nopQpjNuaVR/Rs8k3qpynTa33uda7C4POELOAEdC+jaUNs0mSUr3Q1l5s6KVXKHDEsPrchG1xdws3Rjo+6yk=
+	t=1738498572; cv=none; b=f6ejeo9uauSqoAg0d1eh2uFiELJYvQ0QmFrjquvXELvTdPKZ1dgy4pm2KlAVlkV27x+/Xj0z3tFf9iyOMuXtarQ8WZYqsiZrasZdeW6RRDa0mIS78Q3q46P9ankUC1iFpUH7KQva42XqJ+0hSg+ZDbEu7p2B+pmoFad9/XlELpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738498569; c=relaxed/simple;
-	bh=/d/geU3OxC4Nkibrq9A3Ew2gwBiXmZo2CHTH+6Gy0Vc=;
+	s=arc-20240116; t=1738498572; c=relaxed/simple;
+	bh=XL7ng8U88IdS02LpqkHkwAED27Q7ZWUI6j1I8zn2UOs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EG4jkhCu3v7FMuH144sfJG+mh7yFdo37nZpE8cnp3fResEO3qtqrdKFSwDLht/9WDd+DLhYFTbDBdzlL8+om/bi063VsUAYCI266kp3/ch7iN8cdyd7m5Y+5tIuO4tri0960kvHQ9ndV5lkwrpadzawcwVd1SG/reSLsv5yhWJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JL4GkBxB; arc=none smtp.client-ip=209.85.167.51
+	 In-Reply-To:To:Cc; b=Fel95y+6ajewCIGepu7Ln3yHkIUCfawJ27issrxK9SWlov8uPT+iSXnNvzHvlUc/LHE0NSQ+dAYUp1uwvIiTQPYI/hV31GTG7589pTNvwJj5JJShkAWDppx5C8zdOZ5ZRHeND6ihV0TZMPlcaWAtRj+8DOprHtd/fIT4mZJ7X68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yi4uvw1h; arc=none smtp.client-ip=209.85.167.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5401c52000fso3356729e87.2
-        for <devicetree@vger.kernel.org>; Sun, 02 Feb 2025 04:16:07 -0800 (PST)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5401bd6cdb7so3560909e87.2
+        for <devicetree@vger.kernel.org>; Sun, 02 Feb 2025 04:16:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738498566; x=1739103366; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1738498568; x=1739103368; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/Dk7ljpeNS9WkTUfxOFg/JBajDxdcbPw39k3Tq9ImKI=;
-        b=JL4GkBxBbSlI0/wHjLKBhSuaSJ7t9Q5DiBXxkc2u7JVhuPzfIJmz+/8PyI8M9iPwmw
-         mONIP0VSf14x83Fa0R+DdYEtJjFgaXA79df7H4YznQbYSNhFy6QUBzVNQ/GWuIdMBJjy
-         Lbly12zucWNvw46adQ8K1j8i/GgK+It/NmHP53rNrno1VwHFbynshx5hmUq8ejmzTj9v
-         F1qVnuLWZCEcU2LyXAJWgIb3DEHNPwNNHt/nWF3NCNyEyeWwKV1whoMLY8Do+16UBgIA
-         GYrj/9yRNeX52FeeXe3/Pu9f6c4BLj2cJvmoD/VD1wXTHToADggvtH4uMBOMkDlrqeUf
-         EukA==
+        bh=0uDfHhxafnqOPaFWheOWVq1hqVSH+SO7a7CETbeXIaY=;
+        b=yi4uvw1hfcswZ2VQxp3nDkBa55RPmjGgBYmwe+CA+jXBHXVVMdlbB/zKmnI8qd5Yqf
+         gJuglgJbb9RGXJmeutypPMJ2/DhI89YmWj3cm25dA0UdudeLUEU+LMz/6xUCTRNOynqs
+         9MAAW7LrziYzckbGCdFONcpTDNLb2GjjQcfyJKsfRud3CuUS1dM10DuJKFgSz7X48Eiw
+         JW9n10g57JucPHyBQQFugKeuGv8kGAW2falBzNMprDEFSO/OWSC/VpiSk+WQllJIHuKx
+         7ro3YmL3hYuFnAYr1ZdzfxcJ9Iyy+5y2V3+AdhGZ9/daqpBdW5Ll/h2DN1aDlrneqSzt
+         /MHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738498566; x=1739103366;
+        d=1e100.net; s=20230601; t=1738498568; x=1739103368;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/Dk7ljpeNS9WkTUfxOFg/JBajDxdcbPw39k3Tq9ImKI=;
-        b=rDNgBjV7cejpED7q7ygCU1l4QyzBNxkF/NYyb7a9F7bV9LCLllBC59X8ciKKK8IpuA
-         Q90bBOWG27v2w15kCCCc9YyCdQDsjva63Wv0UtZ+S1OFo3E8/vEL9/sp91/DC50yg24y
-         pe0yj+K9KFguolyA5qE3VExmQyzjNrfGKBZPHz79jWPML878qdYrKoaUgWAYNLsOhiI9
-         HIFNVra6K3BUS4DXbdsVm2YUyUd5pnKluNcihFuI4vWFfNEaO6I/ePQfYPn3IUzj+OLf
-         uado8/Z9jOcbMUmg3eBcLLDQ/mDcNNqRn+g8jjmNAO4/omTHvpivTShe3I14wWEaMUgR
-         MXrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWczPMYTeK7qR6xWvKNcsnZnSN1jvp13qCaTeQ3nZRFpARxtZOyhGup69ec8Zvd6N3O61yIwYp9S6T+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzex5iLT2P1csmkKln1n69CDDx4SMhBqDIdC4z/eLug8iCDD2mQ
-	N2HEZVp6k8mxvgdDVEqdMbCG+5x5EFMDk/6+xm5XUy/KYx/iFZvkaNbowcUWyn8=
-X-Gm-Gg: ASbGncuok0c0U1a3fw9EYChX1Xub6bvQ8rURhDbfZDXgE8TbOpYQ5czw7aQZgc5iW6t
-	HFbUJOBgkNbASLSQBhBZMG2atXNxBXPogEkXP7yEN5MP/4GYrIfDv/p+OtVuji+dArAxsU9EhjF
-	VfNpMKah11/x4Ebr88BIi08Ihq8AKcuhBE/DO59S/3zSCSG0KYmoLTESn2ZyL6EGh5tTRdm5xy4
-	h/xv4RcwJgA2rGhjSc8WfbW+pZtFCwdZH2FDd/iezADR9Kdjg/G1p3M/X2XnqfgWUrpeVPTHJ9Z
-	JkT6wbK6r5xG4eRBi+MWBPg=
-X-Google-Smtp-Source: AGHT+IGP98WumGAvva+L5oENy7ZtjMAo+pqO/eBrk6bMfEKIlWE1R/0IRGd/QpefZzWafsWgZy/y2w==
-X-Received: by 2002:a05:6512:32c3:b0:541:1c49:26a with SMTP id 2adb3069b0e04-543e4c41038mr6109076e87.43.1738498566072;
-        Sun, 02 Feb 2025 04:16:06 -0800 (PST)
+        bh=0uDfHhxafnqOPaFWheOWVq1hqVSH+SO7a7CETbeXIaY=;
+        b=K0BGWAmN7FPNRBjY56CJJ6h21RheNwk10RM9GxaAb/n2hdg3rPKkIpf8d9S6n6Q3qI
+         xp7O6t2DFpIO68kipFWy9kNSZDhVjWtYbH+gjz0SJEucrICgxcHc9UGcNyuB7bGSMxow
+         d46DmWZQjoV+FSWeP3dyetttQXdO2oEa13wOOkkNAEjtx6fFqQAcJC9RstU5KvrvMZlL
+         w1JM4gkc3wkEcilChnMpI/Mc9npvIgj0Z0RVR1qDdOadpsfwtPl1a91RNcnpfyMEWEAX
+         YRX04fTQP6yRIFkkGzpgYwPaNKggt8y3FC7cFqndqQicLqa5XwcqbN9fLQ5uVh2Yc/6e
+         YlrA==
+X-Forwarded-Encrypted: i=1; AJvYcCVYAY2Y2MZqTecvtUL1HVEL52cJxVra20QXZMNEiBWp1jVbhXyifpIKqIWY0e+dI4gbHX+xWstJRF7j@vger.kernel.org
+X-Gm-Message-State: AOJu0YwL9PMwWWAgbW3pZQ4w9FdVCbmJJd1vzCrwZbLKipRGl6GYE+GZ
+	S+a67pukFBfh4Rx15Ck6e5AyUFHaWJh9rrfefn7CZyrg7fyWWON1zjA93nQArxk=
+X-Gm-Gg: ASbGncu7nDPAVLR32o3swkt52+TX7wsk5HwDuUvJzsCYwuBlxx4E1L30MaRR/D+9akT
+	AE2AbeGgreo3d5n3hPp6ymf/4s6YbNb4vpIW1bPIOZZCnc5tHpgZFfeIfWzneUQPqdoqnitDwDK
+	sLUisdBUKtrGrdpxzT1NMhYESWt3JrCzAgaFoZ55PyK06xFWLqLb+wgV1Zt8t2FzfcFFmrD+QBG
+	Saxiv+LYfJX+gfsCC+CsXGADOlm+/6nr4sCn5OSkqf4hg3uA07tiy7nVHgl0PatLUyQ1toPQtpT
+	QqVGTEiduX/I0N3KlpLBtjc=
+X-Google-Smtp-Source: AGHT+IGkAqb29ObwLsStliQ3X+p82fx7N71ujUtJWUx9Mh0vkbbBSuYVWVgq/RcqBea9q4sf1SX4og==
+X-Received: by 2002:a05:6512:2344:b0:540:20eb:80c5 with SMTP id 2adb3069b0e04-543e4c2565fmr6341236e87.37.1738498568556;
+        Sun, 02 Feb 2025 04:16:08 -0800 (PST)
 Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebeb0a4esm950663e87.114.2025.02.02.04.16.03
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebeb0a4esm950663e87.114.2025.02.02.04.16.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Feb 2025 04:16:04 -0800 (PST)
+        Sun, 02 Feb 2025 04:16:07 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sun, 02 Feb 2025 14:15:57 +0200
-Subject: [PATCH v3 1/6] dt-bindings: net: bluetooth: qualcomm: document
- WCN3950
+Date: Sun, 02 Feb 2025 14:15:58 +0200
+Subject: [PATCH v3 2/6] Bluetooth: qca: simplify WCN399x NVM loading
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250202-rb1-bt-v3-1-6797a4467ced@linaro.org>
+Message-Id: <20250202-rb1-bt-v3-2-6797a4467ced@linaro.org>
 References: <20250202-rb1-bt-v3-0-6797a4467ced@linaro.org>
 In-Reply-To: <20250202-rb1-bt-v3-0-6797a4467ced@linaro.org>
 To: Marcel Holtmann <marcel@holtmann.org>, 
@@ -98,47 +97,60 @@ To: Marcel Holtmann <marcel@holtmann.org>,
 Cc: linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1201;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1590;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=/d/geU3OxC4Nkibrq9A3Ew2gwBiXmZo2CHTH+6Gy0Vc=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnn2IBFNJQoyc6Q4TD+Kypa+h8oMgJ1mr88BTN7
- iUCRw7nItiJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ59iAQAKCRCLPIo+Aiko
- 1dQvCACSiRQJBXKmOxljdACfeKHT2m75Y5VpbZRWKMkcI4H0buAMvopgfIgG9wPFTf/dek+VG6p
- lqKqBfxIV+KU99Dcb7wxL0JW5UBsMx23ADuVZLjUmdCSJq+tSakpNlbdkmaeXyV/PNUD/ULwhyZ
- MGX56kw39F9vBS3TgKHbv7ncPOqS1mNm006aKml/MWzxKqFLXt6mlofqI7V/K82io+gfHeSK9am
- Rnln3hHL6poko2ReUQcMCvpYBAcF7RmwaYk9th1OWVNRCsz9QpGgjdzztVW0T5JFUbjNWxd5VvI
- hen+Oa3myvAKVNmTcGGAZt6U1MMoI4lAB/6hVDsISJPP0Mgz
+ bh=XL7ng8U88IdS02LpqkHkwAED27Q7ZWUI6j1I8zn2UOs=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnn2IBLOuD4AebbL9VEvX8M3u7zFk8VAl9gGNdQ
+ alwF5QoryyJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ59iAQAKCRCLPIo+Aiko
+ 1c7XB/9loxRdO1eIDrFUhixVzmgXgsB59i1s7L7w88DJXzg+vTbZ7lC5QDBnyZP6T+XNLr3SZ/0
+ qA+mMVM1Gu36R1ereCfMUgQCm3kfd+KCkYq1lQCjew5UxQC19mSU6UXmRQ+9QaY3iK63cgaf1ua
+ PahJOxwqmNyGBi8BilFp6nLftFFiLLQzGorraEs2Lum8LOd18X1sPV6fv66Fhbp2xuFa5WsHZbd
+ wJujrE8PgFeOnjtxYLt8crEUMwl0y1/b2ULnMKZ8rmfpwW/scXcH8HJ0PnTZFRNp6vEWmKYQHk7
+ 0RBh2sM7fMqwb3wWlJVJ5f0EgRDT6DLHmaiCgGZi74ajIrv4
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-WCN3950 is another member of the WiFi/BT WCN39xx family of the chips. It
-requires different firmware, so document it as a new compat string.
+The WCN399x code has two separate cases for loading the NVM data. In
+preparation to adding support for WCN3950, which also requires similar
+quirk, split the "variant" to be specified explicitly and merge two
+snprintfs into a single one.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/bluetooth/btqca.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-index a72152f7e29b490003114dae1e36df85cba384df..6353a336f382e4dd689d1f50a624079aa83b2ffa 100644
---- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-+++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-@@ -19,6 +19,7 @@ properties:
-       - qcom,qca2066-bt
-       - qcom,qca6174-bt
-       - qcom,qca9377-bt
-+      - qcom,wcn3950-bt
-       - qcom,wcn3988-bt
-       - qcom,wcn3990-bt
-       - qcom,wcn3991-bt
-@@ -138,6 +139,7 @@ allOf:
-         compatible:
-           contains:
-             enum:
-+              - qcom,wcn3950-bt
-               - qcom,wcn3988-bt
-               - qcom,wcn3990-bt
-               - qcom,wcn3991-bt
+diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
+index cdf09d9a9ad27c080f27c5fe8d61d76085e1fd2c..7d6b02fe2040ff16d9d62de683571e1e1900fe85 100644
+--- a/drivers/bluetooth/btqca.c
++++ b/drivers/bluetooth/btqca.c
+@@ -785,6 +785,7 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+ 		   const char *firmware_name, const char *rampatch_name)
+ {
+ 	struct qca_fw_config config = {};
++	const char *variant = "";
+ 	int err;
+ 	u8 rom_ver = 0;
+ 	u32 soc_ver;
+@@ -883,13 +884,11 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+ 		case QCA_WCN3990:
+ 		case QCA_WCN3991:
+ 		case QCA_WCN3998:
+-			if (le32_to_cpu(ver.soc_id) == QCA_WCN3991_SOC_ID) {
+-				snprintf(config.fwname, sizeof(config.fwname),
+-					 "qca/crnv%02xu.bin", rom_ver);
+-			} else {
+-				snprintf(config.fwname, sizeof(config.fwname),
+-					 "qca/crnv%02x.bin", rom_ver);
+-			}
++			if (le32_to_cpu(ver.soc_id) == QCA_WCN3991_SOC_ID)
++				variant = "u";
++
++			snprintf(config.fwname, sizeof(config.fwname),
++				 "qca/crnv%02x%s.bin", rom_ver, variant);
+ 			break;
+ 		case QCA_WCN3988:
+ 			snprintf(config.fwname, sizeof(config.fwname),
 
 -- 
 2.39.5
