@@ -1,138 +1,168 @@
-Return-Path: <devicetree+bounces-142300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30E45A24DF6
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 13:25:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEB79A24DFA
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 13:31:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 172B67A108E
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 12:24:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56A62162F13
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 12:31:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78AE1D63FB;
-	Sun,  2 Feb 2025 12:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA771D79A0;
+	Sun,  2 Feb 2025 12:31:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vQtiRviz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NyNVDl1y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3488C1B6CFB
-	for <devicetree@vger.kernel.org>; Sun,  2 Feb 2025 12:25:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F17CC1D5CCC
+	for <devicetree@vger.kernel.org>; Sun,  2 Feb 2025 12:31:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738499137; cv=none; b=DBduQhXFxUl6kymt2mDWL6X7Bf1uP8wBcoo4u+9R67DyUcATP/8njTTxZaM8cKzjSylY2+fw6PW9jjCSdTZ4J3L+D+sfBK7NNLKugVGnFnYoMmN4k8/G7xk7YTVqA5N5wEplt15IaZ2m2NppYUc461nHf+TsQavNbmMJp0Q94Yo=
+	t=1738499463; cv=none; b=Pfv1AAu74N+XYxdnrkkk0wUhYbLQ/MVYP/h+dNI/RK0MWuZcaAQZ4P7eFGYq0+fyKP2mAsLrSKMjTk2tnzxQXFEGych9WuXXbispbBUSwHzOe+MbNoUpmBP9lExtOBY6pJYZQlY3Y61vJpN8dapU2sMCBpGPCOusud2aUqPB6tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738499137; c=relaxed/simple;
-	bh=AKrFDaqSespToDeYf5ycPRVqYqGb0AuEW2tYGwEf1kY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tY0frqT7g52wb35tn+4y+SZBT1Suoy54yBXQFOHZ4bvEoPeaugQTPlip5o6bO/H84W4GO2Az24iMv86lUNiQqhz31bX/2Erq3Hhg0uvb/je96JVfSfkmJ/2YEQNqHNskSYay1Tg8HQI2PZ5ePokr3dqfvP7ipHsj7Nx2vXAHfO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vQtiRviz; arc=none smtp.client-ip=209.85.214.173
+	s=arc-20240116; t=1738499463; c=relaxed/simple;
+	bh=8XkcDIU79KYn3BQikPV7cgBJWei8V9IOQLVVrLhURck=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=MwmOAmBDEGBSoZxkxqjDf45l5I9GCAJaxCEsh1G63nSaJGyP947oQ4Xax0e5LU4RaCmhkxTxW8NISywfjVSk2cA9vqkF4fdJbf3sBCMDeCC0kqakI2m8l4dr5hVFx9ASUmim7+ifKd6DvKbgOP61MJbdRUM6dKS0rfLlr+xYjco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NyNVDl1y; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-21ddab8800bso46517845ad.3
-        for <devicetree@vger.kernel.org>; Sun, 02 Feb 2025 04:25:35 -0800 (PST)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3862ca8e0bbso2948823f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Feb 2025 04:31:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738499135; x=1739103935; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uETwJAYLiI++YAvvMckAL69wPehGQ7drAEjc1+6UWe4=;
-        b=vQtiRvizOxYKfQl1CTz9S7bZCUyc7ZO7Dz019a8tswW9nTyECUON6AGexA+umu1pVZ
-         Yoh9pjSwtFKBywBAtDOl5mWioXsomPA6mutsEXV/GPWNpSwt9o+VGprS5lVA5QWqJnQs
-         xPBIy547F993gbBikw0vIzMwc7uTuXK44k5JbxGYOV+tqLvcDguA2bDnZbbuAtuU4dtb
-         RJHLXbGzJfa9albRRhllgQ98lv+E6FgsolrSvZRnia6XVOZbcf+yfezMZglDCd7+yLzS
-         iFwfMrMasxHyBjAEhvUtX7O6vNJ3VJyXkrRoiODX9GKCzAnG8aH8jFQSxCUEREDkspDH
-         TwpQ==
+        d=linaro.org; s=google; t=1738499459; x=1739104259; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=q+p0ohduqaZ7edLUoQ+HYNori1GSc42S4tYMlilYNvY=;
+        b=NyNVDl1yrdC+uHkOVWjqkNDP/VY/TSHsRAYBVS/tY/VB9g/UklJRQmRED5fHHW4+rt
+         CkqOt3Eip4VMYEx1sWOgKfnCquoRgNW0lu8l8Of6hDaS5ZxKB7Z32c/6bzE62USEBmUN
+         Qjd896Opp7mUf9XSN5e84w/5FJjAFJiY//othHygggjGTm686UHEpwzh3bDcx2bwKZ+1
+         IUvz/jMqBqHmWR2QRJv7LzWyPp1PZvLDDnLcI6/wLbY2kUPKKnI9U4ILTvDH7x1L9P/G
+         KAQIsrHwcafuXOLJXWB/Gidu8Hph7DZXLQwdREj7x4XBuNLIteyAc9WFP4CGVsSa/20r
+         IRZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738499135; x=1739103935;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uETwJAYLiI++YAvvMckAL69wPehGQ7drAEjc1+6UWe4=;
-        b=g4lQqXqaztYaZZ4PWiOuCZlr19hgSfzykQaBWVUIS3oAf73NbchuRDOzzmO8haMPAe
-         hbyc8YbNMugB6L0idjb5um6LjChZFv/9XRcDCJwWFMoKoO1FJyXgCo6YAfToCzRzOqeK
-         0sR1fSP5PKkpAtokH3Fe7xB42ggsn2tVTe9uihb4ERkZoz3zPM5hGZcIe1ClNOz4vw3a
-         BZVWTMgkM6fvRUjASgYeFWLZf23IZi315SG7kkKvGn+K5myAm2SSrJWGUwdQNG3QUqBt
-         k5YTMrnGF+BjPzrGizAotWAQXdUofsZsyj+VqiAPgqV4jvIbs7Puss9I3x1TJEPK/0N5
-         j/hA==
-X-Forwarded-Encrypted: i=1; AJvYcCWGcFVQhI9KFnkrI62i2MkDNT5Pyis2Rj3Efi+HunspUj+xPo7GVmua6BYEgnCrSkQYaMYUt3NVLPY7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPLcUv1TMTr7bMzJ0XMFyE13BhR1Pob8oiW/vv7bzCF2tM+Uxs
-	VSsSUhNMSGGw3I1CQQAHytyD2kKljZNRb98ZsA7nRH2n/V5ICeblPVFcMh4ZRQ==
-X-Gm-Gg: ASbGncu+5eQ16NMsOUAOiah74QmlrG60vR7R2x4VdMniDmH129lmVlG3KozRIIB39CS
-	gEQfM5ghBLfc7F06d3mL9wnKaZokqQ10At/aAB7An2vavmueuBR4t0eW15roD2cJggQnR77DjE9
-	T72VbLScM+UpqVMaFGRwxfbeoKb4luPz8nJN9DxHxe0zqAGGsurjJ+Xo4tq5smh2Vg69eiwIEKy
-	vYD2Yg8X6UB42jBzdosjCcyMSs/kb0MHkwPWbXQ3D2yVcg7MO/+VP7qGvDaKITGRXQpDmwhqfjX
-	288xMn/mZwcPh6F5dJk8TwBp2jI=
-X-Google-Smtp-Source: AGHT+IFWA1PkbYOvPhddgrggwj4vKffI2QbvJQaiOGMB+TdTMcR+A/IqI39Yf7APF00zFjplkX/PAQ==
-X-Received: by 2002:a05:6a00:3a01:b0:725:9cc4:2354 with SMTP id d2e1a72fcca58-72fd0be1847mr24747903b3a.10.1738499135407;
-        Sun, 02 Feb 2025 04:25:35 -0800 (PST)
-Received: from thinkpad ([120.60.136.252])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72fe69ccea1sm6411268b3a.122.2025.02.02.04.25.30
+        d=1e100.net; s=20230601; t=1738499459; x=1739104259;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q+p0ohduqaZ7edLUoQ+HYNori1GSc42S4tYMlilYNvY=;
+        b=nf39IjC6Qo0WhSEfsuDnu7rYkeYNpW2xd5kYQLOk6hqh9yPStA/ctaZouxGEN3oDDm
+         S73If9BGWItJHaLukZzlcJG1dusHDr2XrC/UamW5xClUjOuEE4qqycO/4/HakJk6KCV8
+         yBs+RvqtEDvFJO8DZeNTj5wuPHa+nUmUPiTDpn2Dl+oU7d+MdDXgTx1LQR/yg7NWoJC6
+         7iJRGxrg/iO0r5ZkgaHksOQq3z1pobxT1Pi/K3DihtfPKpFF6wyU/iVkk1ZoXJ4FOPOL
+         IWn2V8/2KOaeaC8gcIQ8Snv9r/93sBbVWia1WxtzhMowCOdm/+2MdeP1R5xs7YMrO45n
+         7c/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVvdbV590LKmh/6kw0Fr3UAYYTeX0tnOhKyPDsIciWoEAQasf4UC90Bvy0V22r5DedbSO6QInfqb60g@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAKr+h9LLp7O2jH7Uals+TMyJ1N5HxwElqet8zKdg9rMpHNf1I
+	0YYw/I+H931xZoH9wygSw622fQqaX6jUM7LWpTOK8r/5hIaZ1dc6fTGG9i0CUHY=
+X-Gm-Gg: ASbGncvCDLfRYr6bewL3IQiHf0MeCz0XVbabzoT/ZZ49iOQbaA81A4d6DfNY3MrGrhC
+	niSOTQfpP6sGp2gee5cERmOYtrxhfXYjSVj1hd5dKqggHlQOfqWlbbdRyijNGlT1QAGu6iqyHAT
+	DTsokUaMJOC1aisErNfI67vT5nsQo8ay1Xwg5p+Sf1YVWtOgpviXTdIH2pNlPLAISNmgVr9NmB2
+	Q2UA1Y+l+F+Q2nRsU93wa4p3gija4SufyZ6QqAGT0uFwk8lZ92sXhNmFXVAISziC95CEDM2hOJ3
+	IA0/8taTYWB9xf8i7J4P
+X-Google-Smtp-Source: AGHT+IG3DguqEpjs4KAq3Q5U108MHFsGzy1qjHj3g8CQKeY2xRe7mNrhaVjuu1vZih3UFfYOgwaFPQ==
+X-Received: by 2002:a05:6000:18ae:b0:38a:9fdb:7307 with SMTP id ffacd0b85a97d-38c51f8b280mr19894271f8f.43.1738499459090;
+        Sun, 02 Feb 2025 04:30:59 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-38c5c11b363sm9753396f8f.40.2025.02.02.04.30.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Feb 2025 04:25:34 -0800 (PST)
-Date: Sun, 2 Feb 2025 17:55:27 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	jingoohan1@gmail.com, p.zabel@pengutronix.de,
-	johan+linaro@kernel.org, quic_schintav@quicinc.com,
-	cassel@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	fabrice.gasnier@foss.st.com
-Subject: Re: [PATCH v4 01/10] dt-bindings: PCI: Add STM32MP25 PCIe Root
- Complex bindings
-Message-ID: <20250202122527.ggy5ccz7o4umyhif@thinkpad>
-References: <20250128120745.334377-1-christian.bruel@foss.st.com>
- <20250128120745.334377-2-christian.bruel@foss.st.com>
+        Sun, 02 Feb 2025 04:30:57 -0800 (PST)
+Date: Sun, 2 Feb 2025 15:30:54 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Esteban Blanc <eblanc@baylibre.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, Esteban Blanc <eblanc@baylibre.com>
+Subject: Re: [PATCH v3 2/6] iio: adc: ad4030: add driver for ad4030-24
+Message-ID: <4e0118d0-0992-4d71-8dfb-8b75c0f51a17@stanley.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250128120745.334377-2-christian.bruel@foss.st.com>
+In-Reply-To: <20250130-eblanc-ad4630_v1-v3-2-052e8c2d897d@baylibre.com>
 
-On Tue, Jan 28, 2025 at 01:07:36PM +0100, Christian Bruel wrote:
+Hi Esteban,
 
-[...]
+kernel test robot noticed the following build warnings:
 
-> +    pcie@48400000 {
-> +        compatible = "st,stm32mp25-pcie-rc";
-> +        device_type = "pci";
-> +        reg = <0x48400000 0x400000>,
-> +              <0x10000000 0x10000>;
-> +        reg-names = "dbi", "config";
-> +        #interrupt-cells = <1>;
-> +        interrupt-map-mask = <0 0 0 7>;
-> +        interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0 0 0 2 &intc 0 0 GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0 0 0 3 &intc 0 0 GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0 0 0 4 &intc 0 0 GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>;
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +        ranges = <0x01000000 0x0 0x00000000 0x10010000 0x0 0x10000>,
-> +                 <0x02000000 0x0 0x10020000 0x10020000 0x0 0x7fe0000>,
-> +                 <0x42000000 0x0 0x18000000 0x18000000 0x0 0x8000000>;
-> +        dma-ranges = <0x42000000 0x0 0x80000000 0x80000000 0x0 0x80000000>;
-> +        clocks = <&rcc CK_BUS_PCIE>;
-> +        resets = <&rcc PCIE_R>;
-> +        msi-parent = <&v2m0>;
-> +        wakeup-source;
+url:    https://github.com/intel-lab-lkp/linux/commits/Esteban-Blanc/dt-bindings-iio-adc-add-ADI-ad4030-ad4630-and-ad4632/20250130-191153
+base:   ffd294d346d185b70e28b1a28abe367bbfe53c04
+patch link:    https://lore.kernel.org/r/20250130-eblanc-ad4630_v1-v3-2-052e8c2d897d%40baylibre.com
+patch subject: [PATCH v3 2/6] iio: adc: ad4030: add driver for ad4030-24
+config: um-randconfig-r071-20250202 (https://download.01.org/0day-ci/archive/20250202/202502021354.T5JOCCcy-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
 
-Does this property really need to be present? If the WAKE# gpio is supported,
-isn't it implied that the RC is a wakeup source?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202502021354.T5JOCCcy-lkp@intel.com/
 
-- Mani
+smatch warnings:
+drivers/iio/adc/ad4030.c:263 ad4030_spi_read() warn: calling memset(x, y, ARRAY_SIZE());
+
+vim +263 drivers/iio/adc/ad4030.c
+
+8cfce061c9e580 Esteban Blanc 2025-01-30  242  static int ad4030_spi_read(void *context, const void *reg, size_t reg_size,
+8cfce061c9e580 Esteban Blanc 2025-01-30  243  			   void *val, size_t val_size)
+8cfce061c9e580 Esteban Blanc 2025-01-30  244  {
+8cfce061c9e580 Esteban Blanc 2025-01-30  245  	int ret;
+8cfce061c9e580 Esteban Blanc 2025-01-30  246  	struct ad4030_state *st = context;
+8cfce061c9e580 Esteban Blanc 2025-01-30  247  	struct spi_transfer xfer = {
+8cfce061c9e580 Esteban Blanc 2025-01-30  248  		.tx_buf = st->tx_data,
+8cfce061c9e580 Esteban Blanc 2025-01-30  249  		.rx_buf = st->rx_data.raw,
+8cfce061c9e580 Esteban Blanc 2025-01-30  250  		.bits_per_word = 8,
+8cfce061c9e580 Esteban Blanc 2025-01-30  251  		.len = reg_size + val_size,
+8cfce061c9e580 Esteban Blanc 2025-01-30  252  		.speed_hz = AD4030_SPI_MAX_REG_XFER_SPEED,
+8cfce061c9e580 Esteban Blanc 2025-01-30  253  	};
+8cfce061c9e580 Esteban Blanc 2025-01-30  254  
+8cfce061c9e580 Esteban Blanc 2025-01-30  255  	if (xfer.len > ARRAY_SIZE(st->tx_data) ||
+
+These ARRAY_SIZE() checks work fine before ->tx_data is a u8 but really
+is should be sizeof().
+
+8cfce061c9e580 Esteban Blanc 2025-01-30  256  	    xfer.len > ARRAY_SIZE(st->rx_data.raw))
+
+Same.
+
+8cfce061c9e580 Esteban Blanc 2025-01-30  257  		return  -EINVAL;
+8cfce061c9e580 Esteban Blanc 2025-01-30  258  
+8cfce061c9e580 Esteban Blanc 2025-01-30  259  	ret = ad4030_enter_config_mode(st);
+8cfce061c9e580 Esteban Blanc 2025-01-30  260  	if (ret)
+8cfce061c9e580 Esteban Blanc 2025-01-30  261  		return ret;
+8cfce061c9e580 Esteban Blanc 2025-01-30  262  
+8cfce061c9e580 Esteban Blanc 2025-01-30 @263  	memset(st->tx_data, 0, ARRAY_SIZE(st->tx_data));
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^^
+same.
+
+8cfce061c9e580 Esteban Blanc 2025-01-30  264  	memcpy(st->tx_data, reg, reg_size);
+8cfce061c9e580 Esteban Blanc 2025-01-30  265  
+8cfce061c9e580 Esteban Blanc 2025-01-30  266  	ret = spi_sync_transfer(st->spi, &xfer, 1);
+8cfce061c9e580 Esteban Blanc 2025-01-30  267  	if (ret)
+8cfce061c9e580 Esteban Blanc 2025-01-30  268  		return ret;
+8cfce061c9e580 Esteban Blanc 2025-01-30  269  
+8cfce061c9e580 Esteban Blanc 2025-01-30  270  	memcpy(val, &st->rx_data.raw[reg_size], val_size);
+8cfce061c9e580 Esteban Blanc 2025-01-30  271  
+8cfce061c9e580 Esteban Blanc 2025-01-30  272  	return ad4030_exit_config_mode(st);
+8cfce061c9e580 Esteban Blanc 2025-01-30  273  }
 
 -- 
-மணிவண்ணன் சதாசிவம்
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
