@@ -1,188 +1,156 @@
-Return-Path: <devicetree+bounces-142292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0346A24D71
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 11:08:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED8D1A24DD4
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 13:16:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC99A3A4203
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 10:08:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD31F7A2732
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 12:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB9BB1D516F;
-	Sun,  2 Feb 2025 10:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B6BB1D79A0;
+	Sun,  2 Feb 2025 12:16:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mgKzirUB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ee7hKAbU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D48A111AD;
-	Sun,  2 Feb 2025 10:08:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94630149C4D
+	for <devicetree@vger.kernel.org>; Sun,  2 Feb 2025 12:16:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738490886; cv=none; b=McyDGEMPNSaacgLIJCiMwNzbQxmWM8h07qyi3euaOOGVoXkfP3XXRIt8t8m+FyDSogNnxwPlqEDl08cZipkpB89aZoGTjOU3slitaN82dXD6JceVNd1pXlPM8Oi8vRNyXEww39B/HymF8T30DKhRB9SwdILsgrIXHorub4d1fA8=
+	t=1738498568; cv=none; b=U9esjoywLXghAI7vjh6qrWKL1vyjbYRAXOfbPQi6qfl09IgZNky/ilV7dA9E2amtVs03naJ8+VYGbdIJQVDgs2PeK4gPIeLv43Ku1VXormBzqAWdCEM4J52p3c6YhHbSgQjjYhKzoTqHlY8D2nvo05y3p6NePZ5lhRaPZLsr8pI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738490886; c=relaxed/simple;
-	bh=Qsexnj/CP0F5r6ktpbAQfdb0NXCwvVNJghz5UJCF+tc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LOrDQ8U61iNpDJMNOQkAoYvOViK7kYPzGxb7SeZHDIUbbUXYQ5UWfa1rTpsDJPIWzK6z+03+YgdEmFyUvEsJ4Pznhzz7L5hIq4LtcQSSWPrwxpHFi/SKBZ9vvnHrulbkCxO/GZwQNRqK4b5RXwylUQkmf/uaaxVqwy1IzasLQks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mgKzirUB; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-38be3bfb045so2999036f8f.0;
-        Sun, 02 Feb 2025 02:08:04 -0800 (PST)
+	s=arc-20240116; t=1738498568; c=relaxed/simple;
+	bh=EfZHDUsPcSnK5tXC58XOykRPo22t1YthuhBDTBInV4Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=frlGB5pBYdgv04RiqEFPG7lmcN10P72g+PLThP+mrZ00/uQCqAtxlTOIwZTEhPqMNdLinYmB/7FN/vI3uSg6C50a3p7ID8vZDPYYifYjhspJW7YlOcnhx7BllYx3RTIyiQ7a+Isw0apm57hnfTETvQJ1sFywKg25S+62muLP77I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ee7hKAbU; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-53f22fd6832so3843197e87.1
+        for <devicetree@vger.kernel.org>; Sun, 02 Feb 2025 04:16:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738490883; x=1739095683; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jFdoI8Ju1M/PWn7HdIABw+L7KS/gVbS5DzsMo/puQzA=;
-        b=mgKzirUBiYnfR874cCKqmUdpTIKiUfqOFs0Gz+PECkbaynjauJBO0FlIgq6evdmzH2
-         YdnaUKxyKRlR1pPEUxqvUF3AoetWq99FbklkqpQDGt3ZJk/an5nLDSobCvH4tquv6zDu
-         VLAMzhE9c6RaFtpCpKQ/rx6ztxlOlVBQLeE5tRRU06XY/j1aElNq7bmJkz3ROwi6QkYI
-         YFNndx4dmW041ZOykIDQbxpfSlC1GmECwvgOjZ6NjjGU6OUuypsyxN+H6Vzn/aENBRNf
-         aPLNl41fyA7NkmwTrNMPwBSTdcZnjuPgqgJHRTZ3sERbZSQ5kYLsK0wxIeRk7t1mZTHA
-         XANw==
+        d=linaro.org; s=google; t=1738498564; x=1739103364; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6LNdjOFUy9msGxetoNYZqZg+jBROeA3M9i1VLA/rJNA=;
+        b=ee7hKAbUWEbkFyu+bGTGeFQvJlbNnCcGyJUzAchLlN3xIzmvG128iroZLX2I7rw/HV
+         FX/d7BNccLUanOaqunY+pCRIvhSG0Nx5lCG7SF5kiS4JyooA+0n6gL6INrCbFcT33W5+
+         dwV8Q15GexU2W5oMz2scJaIJMlf0rYnswFI5q1Yc0LT7durpj3X/MZZy21d10BXDR/gA
+         lEY6ytI/HDYSDXJrW3B1QYIbzvVdXqOjeg1YMVr1zfURdLIaBQMfd74gyZT9mfYFUMkY
+         2DK574BjXdysbMkuVrFgG58Pa5N93KWWTCmzuiC1vcdLoAzo9jeP01VweKvqKTAXABOb
+         D0Fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738490883; x=1739095683;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jFdoI8Ju1M/PWn7HdIABw+L7KS/gVbS5DzsMo/puQzA=;
-        b=p85eZ1Hk5EXnhb0/6DH6porxxW54o6+awu7SabwPcA5//1VNuUP9JiVtjr4ensJl9s
-         b4hjUbkD61bJd0770TeHVLRLUFNuqoAe7wPKCQbR7VHkYhraUVLoMuLb423xRjtXKX/D
-         SlR19uVcNwgl1KFcIqRyqn9/hDwWoMbrxQmrB+XzPVhOShKFUDqSJCGVU+iYYDgtwmyV
-         KYbL2WkQxRYbT+4NsO3w9+2NEMqfw1q1FXH1zjGJmUbElCgk5b1BTNO8MZ2W/JyxhMhv
-         ons63yADHM5E2F2V3QC8G/2Fa34x0L+XImHHC/LsENrFJjIJyCVs8u0iS11amdJlJ7NB
-         2pSw==
-X-Forwarded-Encrypted: i=1; AJvYcCUPsLFMtYpKhXZpa0nmoc1UItImYgi0TpjQsp2VLsPvtlsBswzF3hs36SV/s8EzbfXpLq+4jvyh1Jk6OCY0@vger.kernel.org, AJvYcCX5PkFWmkc3XUtW43ftCZLeIOJwoR28jP61GWPVLtnZy6ZL6IfqPzNPuY46dEuBugGJ+wH9JU8w7YQ6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaEsdcb7MOQdjBdJfE9Vs2hcqAbG4sNrerPafe9row0EHkSjjK
-	dbIPJwnEIBvidEux9Jrq7bXCxT5qy+R9B3UloZy2iz/Xtjf0UfA2qhnq3w==
-X-Gm-Gg: ASbGncure2YqLUTs2I+P/y/tjBTYKQh/rLosKpesJGp1FYX3i1IfdueOnE2D3+3aT7X
-	MGMKqXgwubEZ2K2zD85rvW8IRwF2hp2WGVE0pR0VZlZmRVFXqC6nH3d8YwEfhhtfQVq0wqndn+1
-	AyhR9DlRmIXZUvkGhChGhvxei70lLF0CQHLcch3/E1+4Chk34rOuqerYrUsmeJhFFptXp4nM5+4
-	CAnTfJmylDpTIsks4qZl7AWr18Fxcjs1CaN7R5eEngj24pTXbY1ZqEh+HGggG2mnsbeD/XuNkiE
-	pyS2tXozHzphoxQZ1nMI8MdBCd8Rd3e2ZmnLiVlgy+M7nkvMTmbAjjE=
-X-Google-Smtp-Source: AGHT+IGNKkQ6RmFbtSpubVq9TAAF3iwlIDcdrUun9xtcXNmIq2ukjQ9eiZ018uRqNCSUVc1oCXaPPQ==
-X-Received: by 2002:a5d:588e:0:b0:385:faec:d945 with SMTP id ffacd0b85a97d-38c5a96fdd7mr11060147f8f.9.1738490883129;
-        Sun, 02 Feb 2025 02:08:03 -0800 (PST)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c5c1b576csm9693529f8f.63.2025.02.02.02.08.02
+        d=1e100.net; s=20230601; t=1738498564; x=1739103364;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6LNdjOFUy9msGxetoNYZqZg+jBROeA3M9i1VLA/rJNA=;
+        b=nTRnrb+/sQvHvW81X41lUSyo8zv5uEOW8mgLIQYF6DsZQzt4cPw5MVlpLuoZ1d1Ap7
+         K833BgvOayd0altcpnOS0Voq8TgSq+qpxPEOZd/ZO1UdLSiV4VVJdsJl+MGWSy00GY38
+         UF9+KECZ/VbhnIOZOcDq8UvJYn7o8eP35/XwZx72TMGBjuMeTvoy4jZvIxEt5GE1HwtJ
+         CAnxPHX2jUHJcoJUcwGKKgLkb5nLR714TWszxcvZsTwWaFB9dVZJLOLnuHLPpVA/5bjn
+         ueSespUCarg/DSuxW7xVnNi+4UhJBpTbi+cDD/iGUt9XRTSH+KmHipBzHuCv/wUG58Wn
+         k7Rg==
+X-Forwarded-Encrypted: i=1; AJvYcCXhAFe3euNCE2UgnZq5efDN9B41nWh/yiRPbbrSl1c5W3iAcSFW4rSpsNUb9MCvWH2+MTgFNYHVB2fS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoYBUCd6k4XYeZQqm1/FDsHJK8CKtLuAy0u1/B41cAfIx3rsWr
+	CAJoN+ZrEXUR29pXWjQ1QhtB0KvrtvEqY2hMd6JAau6r1n6eFdgc4pQlRgBK9PM=
+X-Gm-Gg: ASbGncsk7EbtsvtoQ++JBqAFCv63eBm9PWc6VStCNBqpfaMx2D2RKOOyhtybV2og/ll
+	jioS4nbx8c0MlMw0bycmy5y2KAtpLHjBY7+uX17T9Ya9+JYs6a/m1ZFoUcxF3htPb9i2fUaK4sB
+	IbhsRd7W7mItgDKkYcRp/lQRu/CQouV8QOm82ckRdPlbpaBWErhvEM5V82wHOS56xLfUQ/+O6ac
+	zI2zJOjdYoWCDH3dMNcKYJogN48RvCXGyfWlNkgz517nxDpF5p/S2rf3A6LjKaBkmVbwotaSWim
+	CoWeUI0Gta5fOU9wcetiAtA=
+X-Google-Smtp-Source: AGHT+IGlGtmf0KUkZvargRF+oOYj+wlI1hErSzY/qrXuyNlsP665sHb8ntKOEwzl04XAomqofcNbaw==
+X-Received: by 2002:a05:6512:ac7:b0:540:1e7e:ca80 with SMTP id 2adb3069b0e04-543e4c0385fmr5757225e87.30.1738498563596;
+        Sun, 02 Feb 2025 04:16:03 -0800 (PST)
+Received: from umbar.lan ([192.130.178.90])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebeb0a4esm950663e87.114.2025.02.02.04.16.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Feb 2025 02:08:02 -0800 (PST)
-Date: Sun, 2 Feb 2025 11:08:00 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v3 2/7] dt-bindings: mfd: brcm,bcm59056: Add compatible
- for BCM59054
-Message-ID: <Z59EAM9l7t4Z5Q5g@standask-GA-A55M-S2HP>
-References: <20250131-bcm59054-v3-0-bbac52a84787@gmail.com>
- <20250131-bcm59054-v3-2-bbac52a84787@gmail.com>
+        Sun, 02 Feb 2025 04:16:02 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 0/6] Bluetooth: qca: add Qualcomm WCN3950 BT/WiFi chip
+ support
+Date: Sun, 02 Feb 2025 14:15:56 +0200
+Message-Id: <20250202-rb1-bt-v3-0-6797a4467ced@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250131-bcm59054-v3-2-bbac52a84787@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPxhn2cC/22MywrCMBBFf6XM2kgmjbZx5X+Ii7zaDkgjSQlKy
+ b+bdie6PJd7zgrJR/IJLs0K0WdKFOYK7aEBO+l59IxcZRBcnLjgyKJBZhZmve10i1IpdFDPz+g
+ Heu2h273yRGkJ8b13M27rTyIj40z7Xp2tVKJ1/fVBs47hGOIIWyOL/56o3uCk5IidVMZ8eaWUD
+ /TNFIjVAAAA
+X-Change-ID: 20250201-rb1-bt-cec7a314991d
+To: Marcel Holtmann <marcel@holtmann.org>, 
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
+ Rocky Liao <quic_rjliao@quicinc.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1674;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=EfZHDUsPcSnK5tXC58XOykRPo22t1YthuhBDTBInV4Q=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnn2IANSnjds/f1Nt7i59BHqYwxFRU+otGuJdeW
+ vI6E3P16RCJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ59iAAAKCRCLPIo+Aiko
+ 1QxJCACWWP+qPEPdzLI0bok/aIFVc60aqobEI7Nt5vzyq5cXAI12Od98YsUNd4wMajy0RuuxJi9
+ J1/jLrD1RzxMW3R88bdI1XYZYU2fh3umKL7QnTpdeGNoBsRArpeoO/N2uVSBzeRmmpcMGQmqL58
+ BnP7nseSN2UsNFFkBDtEmQYNKCRbXSfgdt/kkUpkHgxqAcG/7Hqse7M7ZYPtS4Y+7tkV9vxh6I+
+ ibVQEoj3nr/nYmyKaWMl7dS747VIcnOynAbmrgyy2ZQApaleUmwO7pY6xR9yey1wBvrmC7T472B
+ PogeMwGZ1N7qMdF9V9AxKXn9Rg7wyF7RXZYEtopmhxkXLBJi
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On Fri, Jan 31, 2025 at 07:13:50PM +0100, Artur Weber wrote:
-> The BCM59054 MFD is fairly similar to the BCM59056, and will use
-> the same driver. Add compatible and specify the allowed regulator
-> nodes.
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+Qualcomm Robotics RB1 platform uses a new member of the WCN39xx family
+of BT/WiFi chips. Add support for this member of the family and enable
+it to be used on the RB1 board.
 
-[snip]
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Changes in v3:
+- Mention new firmware files.
+- Link to v2: https://lore.kernel.org/r/20250201-rb1-bt-v2-0-fd44011749bb@linaro.org
 
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm59054
-> +    then:
-> +      properties:
-> +        regulators:
-> +          $ref: ../regulator/brcm,bcm59054.yaml
+Changes in v2:
+- Corrected QUP interconnects (Konrad)
+- Added /delete-property/ interrupts and an empty line before status
+  (Konrad)
+- Enabled downloading of different NVMs as required for v1.3 of the chip.
+- Link to v1: https://lore.kernel.org/r/20250201-rb1-bt-v1-0-ae896c4923d8@linaro.org
 
-Full path.
+---
+Dmitry Baryshkov (6):
+      dt-bindings: net: bluetooth: qualcomm: document WCN3950
+      Bluetooth: qca: simplify WCN399x NVM loading
+      Bluetooth: qca: add WCN3950 support
+      arm64: dts: qcom: qcm2290: fix (some) of QUP interconnects
+      arm64: dts: qcom: qcm2290: add UART3 device
+      arm64: dts: qcom: qrb2210-rb1: add Bluetooth support
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm59056
-> +    then:
-> +      properties:
-> +        regulators:
-> +          $ref: ../regulator/brcm,bcm59056.yaml
+ .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |  2 +
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi              | 31 +++++---
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts           | 82 ++++++++++++++++++++++
+ drivers/bluetooth/btqca.c                          | 27 +++++--
+ drivers/bluetooth/btqca.h                          |  4 ++
+ drivers/bluetooth/hci_qca.c                        | 25 +++++++
+ 6 files changed, 156 insertions(+), 15 deletions(-)
+---
+base-commit: a1d1e1f2fae5fcb5f2e43b81afa9596c606e683d
+change-id: 20250201-rb1-bt-cec7a314991d
 
-Full path.
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-> +
->  examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> diff --git a/Documentation/devicetree/bindings/regulator/brcm,bcm59054.yaml b/Documentation/devicetree/bindings/regulator/brcm,bcm59054.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..719621c7f0e71cd9368f4d7243c79aaa97ca7255
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/brcm,bcm59054.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/brcm,bcm59054.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom BCM59054 Power Management IC regulators
-> +
-> +description: |
-> +  This is a part of device tree bindings for the BCM590XX family of power
-> +  management ICs.
-
-Same comment as patch 1.
-
-> +
-> +  See also Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml for
-> +  additional information and example.
-> +
-> +maintainers:
-> +  - Artur Weber <aweber.kernel@gmail.com>
-> +
-> +# The valid regulator node names for BCM59054 are:
-> +#   rfldo, camldo1, camldo2, simldo1, simldo2, sdldo, sdxldo,
-> +#   mmcldo1, mmcldo2, audldo, micldo, usbldo, vibldo,
-> +#   csr, iosr1, iosr2, mmsr, sdsr1, sdsr2, vsr,
-> +#   gpldo1, gpldo2, gpldo3, tcxldo, lvldo1, lvldo2
-
-Same comment as patch 1.
-
-> +
-> +patternProperties:
-> +  "^(cam|sim|mmc)ldo[1-2]$":
-> +    type: object
-> +    $ref: /schemas/regulator/regulator.yaml#
-
-As Rob's bot pointed out, you're missing unevaluatedProperties: false in
-all of these.
-
-Regards,
-Stanislav
 
