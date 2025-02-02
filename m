@@ -1,126 +1,141 @@
-Return-Path: <devicetree+bounces-142324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D7AA24F78
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 19:38:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D7F3A24F86
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 19:50:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46C0F3A4679
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 18:38:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13BFC3A45E1
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2025 18:49:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A8811F791E;
-	Sun,  2 Feb 2025 18:38:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94A851B6D06;
+	Sun,  2 Feb 2025 18:49:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="HBreNpT+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L+kyDozn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0861FBE87;
-	Sun,  2 Feb 2025 18:38:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B4D435966;
+	Sun,  2 Feb 2025 18:49:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738521518; cv=none; b=h/Yq4EZH49p8EQmODpB54IHiZRibnirjBNUpc2sjRUdg4zy+xOJgUek5BezHiz32sYnmJ5K+xsksDmEOKZGJbHmEevUpjfBA+vFE9Rvo6uN3mu6mWHNyDyGVKTX0d6jcUewU42Xo0ctSrly/5AHwXr/w8HhdGCDAovNYlKSm25Q=
+	t=1738522195; cv=none; b=fPFLNVmvi5NuQ3zQu83jG7JbMrcBCfH+C8Ry2LD9dVGd71yKY/qf2eovBudfR7dgEGgGBHiUe+C2SjL6eJxb4KArxr5tuWeKzluRKy1oJB1xxTX5rst4I6gIvxdDoRqK8IvCAkR1aadKGccYbIXCPp/h9du7QjOvzmYbsRj7VzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738521518; c=relaxed/simple;
-	bh=/1IewTiZbmQBp1G6EX+8pjxa8xy0IWsaV+GmJE5iXFo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=U0BnfIMOa750vjIslGbS4uwn9jVoLXkA/QANLLU6WS1Mj5sGLrm182vcqljElINWsOaam1rdIeRBx1+wbJzzsXZYhD9xLuLMnX/FrPhH4YNM2MWWk8S4IjcDQ2mzJv3Zx0fSv2d8HbABj6tXiofjpknBlp580bCCm2smkhXeRGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=HBreNpT+; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 071CB254F1;
-	Sun,  2 Feb 2025 19:38:34 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 6AhsCCaCtE3s; Sun,  2 Feb 2025 19:38:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1738521508; bh=/1IewTiZbmQBp1G6EX+8pjxa8xy0IWsaV+GmJE5iXFo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=HBreNpT+ttIa8CGLsZ5CcF08z1c+8sveRXPbZMTmUUqy+hblw1ddRyHjLiZ0MF+ok
-	 i4NIJ1nrlvWjQWg0ey2lCnu3lzxdsZrzMRMdI1sSjIcPAdkDR5bLdubxACk/5cjmAt
-	 433/Vfo/4G98V59OJdNA9NCcvFJ9p87sa/gG/69toYtftkF+NI2HhHqe3FLhUfjBjC
-	 BHFYtaNMBK1hlnk+Bb8jBZhdXygk0tj/JhHg5SJUYPwe5ln4LuIbNQe+dus9GNzHfJ
-	 B6IGV6HHlm5pQs2WJKZpS57JyFSwR8OVy/ggV+GCat4U1rzSBd0RK2zKjBtPBIK75J
-	 goaIpxd1Nqgrg==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Mon, 03 Feb 2025 00:06:34 +0530
-Subject: [PATCH 01/33] dt-bindings: hwinfo: samsung,exynos-chipid: add
- exynos7870-chipid compatible
+	s=arc-20240116; t=1738522195; c=relaxed/simple;
+	bh=D03A+CoIWZFnvc8Hp6vQ9pm+8DMtUD7yaOC2/CdTX8Y=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=NQ91AgdEAxDpjUkLzkdoVqLzzqrpQ/UaXpjrKnjTBR6di96HrwUraQV2sc2QmnN9xloM11Gmm+N1ZgCvXYSCbKauv7Geq9doMKMRGEpBcxzy1LTR8zP6ITk6JnmGCHU00xsSq4lyZBmibl+ZBL5wsjOBWZSnwwCgBBTsN6vrxv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L+kyDozn; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738522194; x=1770058194;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=D03A+CoIWZFnvc8Hp6vQ9pm+8DMtUD7yaOC2/CdTX8Y=;
+  b=L+kyDoznoMxURnjzvZ+7Dcwu1OICQITVRnIi29tZxo/po+T6a+M/CWRj
+   nsmTi3UNFk3lQTGUVWr6IQBZZU6HjqHvR4s0qE8nq30BCDzAu9OhuUeZg
+   DkZ/VxJnmHLkIiYGt+Bu2/YnJiWd4NAtujTJLW31RKv9phNxPVpd/iYq5
+   0j7Xt0nJMU4zgWCI/CtU5FtPqucv1zIuorzOhbTSigpILyGUk5Xn4M8Mt
+   DZVDTHcFg3iKijo5D6WvQ2HQLaPcGQ2b3FF/Bavj9f4GefLAy4VCH3kgh
+   0lnBsDacWS2kM9WvibweDpgsDYCbjSoFg68LXf8niCvl90Z/yCWNzaaNb
+   A==;
+X-CSE-ConnectionGUID: aKyj8BHwSWy1J2Qn7aGDEQ==
+X-CSE-MsgGUID: YiK6aTG7SeWGJmizx8sRNQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11334"; a="42772404"
+X-IronPort-AV: E=Sophos;i="6.13,254,1732608000"; 
+   d="scan'208";a="42772404"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2025 10:49:53 -0800
+X-CSE-ConnectionGUID: 6bTL8Z3tSQiqsyHm26MA/A==
+X-CSE-MsgGUID: 7dAhIhjyT/S/n4TOc3Qu1g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="110970549"
+Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
+  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2025 10:49:52 -0800
+Date: Sun, 2 Feb 2025 10:49:52 -0800 (PST)
+From: matthew.gerlach@linux.intel.com
+To: Krzysztof Kozlowski <krzk@kernel.org>
+cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+    robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
+    conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com, 
+    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, matthew.gerlach@altera.com, 
+    peter.colberg@altera.com
+Subject: Re: [PATCH v5 3/5] arm64: dts: agilex: add dtsi for PCIe Root Port
+In-Reply-To: <dd51fdae-0e00-44a9-a5a0-e536ba60fd8c@kernel.org>
+Message-ID: <56486d91-5ca-d85-eca1-1ce2df25238@linux.intel.com>
+References: <20250127173550.1222427-1-matthew.gerlach@linux.intel.com> <20250127173550.1222427-4-matthew.gerlach@linux.intel.com> <ea614dc5-ad24-4795-b9ba-fa682eda428f@kernel.org> <22cb714e-db76-b07-8572-2f70f6848369@linux.intel.com>
+ <40a3dced-defe-412d-b5b2-efcc9619d172@kernel.org> <7c802294-97f6-3e9-4028-686484a525c5@linux.intel.com> <dd51fdae-0e00-44a9-a5a0-e536ba60fd8c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250203-exynos7870-v1-1-2b6df476a3f0@disroot.org>
-References: <20250203-exynos7870-v1-0-2b6df476a3f0@disroot.org>
-In-Reply-To: <20250203-exynos7870-v1-0-2b6df476a3f0@disroot.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Conor Dooley <conor@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Lee Jones <lee@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andi Shyti <andi.shyti@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
- Jaehoon Chung <jh80.chung@samsung.com>, 
- Vivek Gautam <gautam.vivek@samsung.com>, 
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Kees Cook <kees@kernel.org>, 
- Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: Sergey Lisov <sleirsgoevy@gmail.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, 
- linux-phy@lists.infradead.org, linux-usb@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org, 
- linux-mmc@vger.kernel.org, linux-hardening@vger.kernel.org, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738521464; l=984;
- i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=/1IewTiZbmQBp1G6EX+8pjxa8xy0IWsaV+GmJE5iXFo=;
- b=HPseafre3G8+clhlVS1WJKZVT7jwJzhFKM2sGawnkEHiBn7JiPjXw4NhJ7G0nQFgC59FtSAIa
- XxYQgScGyr/BRyfi3Ksk7w2C/l3g5/Gjn12L8Ju83LEviQCRTS4bHfn
-X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
- pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
-Add the compatible string "samsung,exynos7870-chipid" to the documentation,
-with a fallback to "samsung,exynos4210-chipid".
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml b/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
-index 385aac7161a0db9334a92d78a57a125f23ca1920..9105ad48563a42ecaeb3dbca37df734d5b93f52c 100644
---- a/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
-+++ b/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
-@@ -19,6 +19,7 @@ properties:
-           - enum:
-               - samsung,exynos5433-chipid
-               - samsung,exynos7-chipid
-+              - samsung,exynos7870-chipid
-           - const: samsung,exynos4210-chipid
-       - items:
-           - enum:
+On Sun, 2 Feb 2025, Krzysztof Kozlowski wrote:
 
--- 
-2.48.1
+> On 01/02/2025 20:12, matthew.gerlach@linux.intel.com wrote:
+>>>
+>>>> they are also referenced in the following:
+>>>>      Documentation/devicetree/bindings/soc/intel/intel,hps-copy-engine.yaml
+>>>>      arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+>>>> I am not exactly sure where the right place is to define them, maybe
+>>>> Documentation/devicetree/bindings/arm/intel,socfpga.yaml. On the other
+>>>> hand, no code references these names; so it might make sense to just
+>>>> remove them.
+>>>
+>>> In general: nowhere, because simple bus does not have such properties.
+>>> It's not about reg-names only - you cannot have reg. You just did not
+>>> define here simple-bus.
+>>
+>> I understand. I will remove reg and reg-names.
+>
+> If you have there IO address space, then removal does not sound right,
+> either. You just need to come with the bindings for this dedicated
+> device, whatever this is. There is no description here, not much in
+> commit msg, so I don't know what is the device you are adding. PCI has
+> several bindings, so is this just host bridge?
 
+The device associated with two address ranges may be best described as a 
+simple-bus. It is a bus between the CPU and the directly connected FPGA in 
+the same package as the SOC. The design programmed into the FPGA 
+determines the device(s) connected to the bus. The hardware implementing 
+this bus does have reset lines which allow for safely reprogramming the 
+FPGA while the SOC is running, which implies appropriate bindings as you 
+suggest. Something like the following might make sense:
+
+ 	aglx_hps_bridges: fpga-bus@80000000 {
+ 		compatible = "altr,agilex-hps-fpga-bridge", "simple-bus";
+ 		reg = <0x80000000 0x20200000>,
+ 		      <0xf9000000 0x00100000>;
+ 		reg-names = "axi_h2f", "axi_h2f_lw";
+ 		#address-cells = <0x2>;
+ 		#size-cells = <0x1>;
+ 		ranges = <0x00000000 0x00000000 0x80000000 0x00040000>,
+ 			 <0x00000000 0x10000000 0x90100000 0x0ff00000>,
+ 			 <0x00000000 0x20000000 0xa0000000 0x00200000>,
+ 			 <0x00000001 0x00010000 0xf9010000 0x00008000>,
+ 			 <0x00000001 0x00018000 0xf9018000 0x00000080>,
+ 			 <0x00000001 0x00018080 0xf9018080 0x00000010>;
+ 		reset = <&rst SOC2FPGA_RESET>, <&rst LWHPS2FPGA_RESET>;
+ 		reset-names = "soc2fpga", "lwhps2fpga";
+ 		...
+ 	};
+
+>
+> Best regards,
+> Krzysztof
+>
+Thank you for the feedback,
+Matthew Gerlach
 
