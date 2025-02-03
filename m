@@ -1,183 +1,205 @@
-Return-Path: <devicetree+bounces-142613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3541BA25EA1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:26:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 575C4A25E9D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:26:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B7CC3A200E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:20:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB6C7161710
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:25:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B6B720967A;
-	Mon,  3 Feb 2025 15:21:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qRu0qJIn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB25D2063C4;
+	Mon,  3 Feb 2025 15:25:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0F620897E
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 15:20:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A87E204C04;
+	Mon,  3 Feb 2025 15:25:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738596060; cv=none; b=dCsnfGqZ5BInu0GNs+9DgYDBW2AoWKj8Xz7vdWzTpuO+bQR90nvWgJBtSn6WTulMVXum9fDDtkBplLVuMDcA4UXvRN5pRDYC8BdVf2DGfxfoP9/xNYh71TCey1DmuhvTtt2NimoWVL6vX5WX0KHM3icbSRuZOl1Bq2jLgHLPrcc=
+	t=1738596324; cv=none; b=o5tEo6osVfiQoijFNi0l3wsA2B3+8m846W7VA6m7WKFj9TgRrAisKaHqQISPHrBUv2JOHTzLzEGYaQaIvRZQhbVP9hAHA9fuV74d3Sj02Py7l7nZS7LkDU94ClwojTQs+LTrdarHkk9E0rpYhqLpIG1N1caANiNLklCNsIrgFWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738596060; c=relaxed/simple;
-	bh=1pk/fGGnQgOxwIyL078JGo17yd4G/o1v6YPLxHS7VdY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BIXQ/12BElzjdOL3RRKIgHSuyPm4AIdK3DiZEao+080pdIPb3aml9EH+cvLJTN1hcO5Asen+BuyTDsZz1MIXxcivJp/nyxLWKMt1avHhiSHLuZOq9V9Nr2m12mPqC4KGNURp0UvRhF2gnwE3URXhD8VopKLT6m5wX/E+7MkzkeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qRu0qJIn; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-216426b0865so77445995ad.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 07:20:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738596058; x=1739200858; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+QBWhANjAr1OtmbGA6f8TwWPn8UUhnW9g2jYfFPH9TA=;
-        b=qRu0qJInPUmAHKzq3a5kBOKBjuVaPMA58FwgGmx30Jcu3Xn7043NpDz1x+Y2aHVIgR
-         LxenLOKt6YAHkkyJWmsdS0hRHlUJESCLgN0k4muZfsB3ZEaLmE2+jbGsg8xJwHn3mJTX
-         TloHMjaUwuwvxpRqyJlv3MVqHf2zgvbWfGej4KAUciwZnJhCh3fhs+0Y6fkiSFGpuMbj
-         9NI3T7oy99sXsZ3AFKRJ5lknnV6UXXHRRKKqEgo++oQsvmoEOcSKRTPQzXNk2DXduIH9
-         fioz7lJgubcNAnYF79eEZwZcLoEn8T9oihPUh8ce7kGjtGLsIJWe/FZG1VOjvaCO6DFG
-         u1hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738596058; x=1739200858;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+QBWhANjAr1OtmbGA6f8TwWPn8UUhnW9g2jYfFPH9TA=;
-        b=umiLWJnQ7yCDrqqv4GUQ4zvCtxG5x7BCZMewqODGmnGKlpGy61ebrrDWp8p51rp+ca
-         cdDfUda01peSFpujIdn7+UFQNzo2nac6LjdFAfhZ833dEzN2PCADIl+xXwDAQTNlVFT0
-         eHcSCYm2129JHFR/GW2JVM4jBBZSk5wMMKH2eDFFZAJjmBxBxm7EUQTdiuMppKeoyRhy
-         5CIDE+6bZV9R+p0706RkmqDe+IJKFuDg0ShQASUKtMaxR8sldFQI610EIf5uXyjkjl3M
-         sWmM5pbHMbH3ftP4DuKjDYt+lj5Pwj4DQkT2wYT2auUUkLVSNIkZruAWJ83uPU5vAwM5
-         ikHg==
-X-Forwarded-Encrypted: i=1; AJvYcCV6nnMAzz4Swt7qTEDth+cTnh9Dwjo50Bf1UFj6EJ0mtV0mNo269E2PcFki+Ps9/p1vYDPMSjR9WJag@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxb0ls46WwtLhCyKc3Qfp/XoGIfWwITklrubxSG3juEoNx4M+zq
-	XtgmKYrBv2z4Atwxev2yI9uRIWorlkLd1Zz6sBkoWM9bKSG7g3tbQFiKWgf6MGnHP6c/qbUkAww
-	=
-X-Gm-Gg: ASbGncvhPZG/Gj17cD8UzLfkYTfOwGF9XsBqiLWuUr4uPk+Ok2BP3K+Dy0lY42k0m7N
-	NbSG90zEvbue/dtOGJjopnEn8RHUrMp+j98LM2ruI9zHDRj5DZO1HUiCtAES/HG/2kJSv/lxS/5
-	laPOPZcBnvnhHrg6XJE5rD9JK/OjVFsraZl8FdiheHBrk/4ErjNH5PaX2fMeZiWehqyRqmVH85Y
-	QJegWqKjTme3xewrhOMd0+w8wML/koQVMMHpV+OOjK7lCdOK5azAeQM8lkE/+21wvMcNzj8V9RM
-	u8ftJLvt7IjmMdbYQY/yvMfUiQ==
-X-Google-Smtp-Source: AGHT+IGSJSMOvMrFBAciSyZK7WnnknN8UNArG9prlqW7rQYL/0HyxOSeul8ibO5cwBLiZ/VXl0y4dw==
-X-Received: by 2002:a17:903:23c5:b0:216:30f9:93d4 with SMTP id d9443c01a7336-21dd7c55e5cmr196882845ad.8.1738596058155;
-        Mon, 03 Feb 2025 07:20:58 -0800 (PST)
-Received: from thinkpad ([120.60.129.34])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21de3306012sm77356935ad.179.2025.02.03.07.20.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Feb 2025 07:20:57 -0800 (PST)
-Date: Mon, 3 Feb 2025 20:50:52 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	konrad.dybcio@oss.qualcomm.com, quic_mrana@quicinc.com,
-	quic_vbadigan@quicinc.com, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH v4 3/4] PCI: dwc: Improve handling of PCIe lane
- configuration
-Message-ID: <20250203152052.kwbmt6bhjzv55ddk@thinkpad>
-References: <20250124-preset_v2-v4-0-0b512cad08e1@oss.qualcomm.com>
- <20250124-preset_v2-v4-3-0b512cad08e1@oss.qualcomm.com>
+	s=arc-20240116; t=1738596324; c=relaxed/simple;
+	bh=LHx2jv3DzF/zEliW+d9kmeskkTFn+kWCn6Wl6XkI4Yg=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Yqd1aSN7rWvxbuecKCIrGNTRVJwNZhf5YAH05BQOsaVmEwcLZsCM1PiEc5BeFSeUzykl4GrNRrXZEKz+/c0evtOkXihdPaw4397W+kUfGI8yuJNLklTV8CbZQvRGIOl8vqgwDiDz3lBR849N9SY7Replh/XxG3rDOp3bAuQlxUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Ymqy25m0Yz6D8xn;
+	Mon,  3 Feb 2025 23:23:06 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id AE733140B63;
+	Mon,  3 Feb 2025 23:25:19 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 3 Feb
+ 2025 16:25:19 +0100
+Date: Mon, 3 Feb 2025 15:25:17 +0000
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
+CC: David Lechner <dlechner@baylibre.com>, "jic23@kernel.org"
+	<jic23@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "linux-iio@vger.kernel.org"
+	<linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-pwm@vger.kernel.org"
+	<linux-pwm@vger.kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>, "Angelo
+ Dureghello" <adureghello@baylibre.com>
+Subject: Re: [PATCH v11 5/8] iio: adc: adi-axi-adc: set data format
+Message-ID: <20250203152517.000028ca@huawei.com>
+In-Reply-To: <CY4PR03MB33993EE62F4E1B3939F213B29BF52@CY4PR03MB3399.namprd03.prod.outlook.com>
+References: <20250127105726.6314-1-antoniu.miclaus@analog.com>
+	<20250127105726.6314-6-antoniu.miclaus@analog.com>
+	<08d8e97d-752d-4fa7-95f0-d828ef80f7b8@baylibre.com>
+	<CY4PR03MB33993EE62F4E1B3939F213B29BF52@CY4PR03MB3399.namprd03.prod.outlook.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250124-preset_v2-v4-3-0b512cad08e1@oss.qualcomm.com>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-On Fri, Jan 24, 2025 at 04:52:49PM +0530, Krishna Chaitanya Chundru wrote:
-> Currently even if the number of lanes hardware supports is equal to
-> the number lanes provided in the devicetree, the driver is trying to
-> configure again the maximum number of lanes which is not needed.
-> 
-> Update number of lanes only when it is not equal to hardware capability.
-> 
-> And also if the num-lanes property is not present in the devicetree
-> update the num_lanes with the maximum hardware supports.
-> 
-> Introduce dw_pcie_link_get_max_link_width() to get the maximum lane
-> width the hardware supports.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware-host.c |  3 +++
->  drivers/pci/controller/dwc/pcie-designware.c      | 14 +++++++++++++-
->  drivers/pci/controller/dwc/pcie-designware.h      |  1 +
->  3 files changed, 17 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 3e41865c7290..2cd0acbf9e18 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -504,6 +504,9 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  
->  	dw_pcie_iatu_detect(pci);
->  
-> +	if (pci->num_lanes < 1)
-> +		pci->num_lanes = dw_pcie_link_get_max_link_width(pci);
-> +
->  	/*
->  	 * Allocate the resource for MSG TLP before programming the iATU
->  	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index 6d6cbc8b5b2c..acb2a963ae1a 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -736,6 +736,16 @@ static void dw_pcie_link_set_max_speed(struct dw_pcie *pci)
->  
->  }
->  
-> +int dw_pcie_link_get_max_link_width(struct dw_pcie *pci)
-> +{
-> +	u32 lnkcap;
-> +	u8 cap;
-> +
-> +	cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> +	lnkcap = dw_pcie_readl_dbi(pci, cap + PCI_EXP_LNKCAP);
-> +	return FIELD_GET(PCI_EXP_LNKCAP_MLW, lnkcap);
-> +}
-> +
->  static void dw_pcie_link_set_max_link_width(struct dw_pcie *pci, u32 num_lanes)
->  {
->  	u32 lnkcap, lwsc, plc;
-> @@ -1069,6 +1079,7 @@ void dw_pcie_edma_remove(struct dw_pcie *pci)
->  
->  void dw_pcie_setup(struct dw_pcie *pci)
->  {
-> +	int num_lanes = dw_pcie_link_get_max_link_width(pci);
->  	u32 val;
->  
->  	dw_pcie_link_set_max_speed(pci);
-> @@ -1102,5 +1113,6 @@ void dw_pcie_setup(struct dw_pcie *pci)
->  	val |= PORT_LINK_DLL_LINK_EN;
->  	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
->  
-> -	dw_pcie_link_set_max_link_width(pci, pci->num_lanes);
-> +	if (num_lanes != pci->num_lanes)
+On Mon, 3 Feb 2025 11:02:58 +0000
+"Miclaus, Antoniu" <Antoniu.Miclaus@analog.com> wrote:
 
-Move this check inside dw_pcie_link_set_max_link_width() where we are already
-checking for !num_lanes.
+>  
+> > On 1/27/25 4:57 AM, Antoniu Miclaus wrote:  
+> > > Add support for selecting the data format within the AXI ADC ip.
+> > >
+> > > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+> > > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > > ---
+> > > no changes in v11.
+> > >  drivers/iio/adc/adi-axi-adc.c | 46  
+> > +++++++++++++++++++++++++++++++++++  
+> > >  1 file changed, 46 insertions(+)
+> > >
+> > > diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
+> > > index d2e1dc63775c..3c213ca5ff8e 100644
+> > > --- a/drivers/iio/adc/adi-axi-adc.c
+> > > +++ b/drivers/iio/adc/adi-axi-adc.c
+> > > @@ -45,6 +45,12 @@
+> > >  #define ADI_AXI_ADC_REG_CTRL			0x0044
+> > >  #define    ADI_AXI_ADC_CTRL_DDR_EDGESEL_MASK	BIT(1)
+> > >
+> > > +#define ADI_AXI_ADC_REG_CNTRL_3			0x004c
+> > > +#define   AD485X_CNTRL_3_PACKET_FORMAT_MSK	GENMASK(1, 0)
+> > > +#define   AD485X_PACKET_FORMAT_20BIT		0x0
+> > > +#define   AD485X_PACKET_FORMAT_24BIT		0x1
+> > > +#define   AD485X_PACKET_FORMAT_32BIT		0x2
+> > > +
+> > >  #define ADI_AXI_ADC_REG_DRP_STATUS		0x0074
+> > >  #define   ADI_AXI_ADC_DRP_LOCKED		BIT(17)
+> > >
+> > > @@ -312,6 +318,45 @@ static int axi_adc_interface_type_get(struct  
+> > iio_backend *back,  
+> > >  	return 0;
+> > >  }
+> > >
+> > > +static int axi_adc_data_size_set(struct iio_backend *back, unsigned int size)
+> > > +{
+> > > +	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
+> > > +	unsigned int val;
+> > > +
+> > > +	switch (size) {
+> > > +	/*
+> > > +	 * There are two different variants of the AXI AD485X IP block, a 16-bit
+> > > +	 * and a 20-bit variant.
+> > > +	 * The 0x0 value (AD485X_PACKET_FORMAT_20BIT) is corresponding  
+> > also to  
+> > > +	 * the 16-bit variant of the IP block.
+> > > +	 */
+> > > +	case 16:
+> > > +	case 20:
+> > > +		val = AD485X_PACKET_FORMAT_20BIT;
+> > > +		break;
+> > > +	case 24:
+> > > +		val = AD485X_PACKET_FORMAT_24BIT;
+> > > +		break;
+> > > +	/*
+> > > +	 * The 0x2 (AD485X_PACKET_FORMAT_32BIT) corresponds only to  
+> > the 20-bit  
+> > > +	 * variant of the IP block. Setting this value properly is ensured by
+> > > +	 * the upper layers of the drivers calling the axi-adc functions.
+> > > +	 * Also, for 16-bit IP block, the 0x2  
+> > (AD485X_PACKET_FORMAT_32BIT)  
+> > > +	 * value is handled as maximum size available which is 24-bit for this
+> > > +	 * configuration.
+> > > +	 */
+> > > +	case 32:
+> > > +		val = AD485X_PACKET_FORMAT_32BIT;
+> > > +		break;
+> > > +	default:
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	return regmap_update_bits(st->regmap,  
+> > ADI_AXI_ADC_REG_CNTRL_3,  
+> > > +				  AD485X_CNTRL_3_PACKET_FORMAT_MSK,
+> > > +  
+> > FIELD_PREP(AD485X_CNTRL_3_PACKET_FORMAT_MSK, val));  
+> > > +}
+> > > +
+> > >  static struct iio_buffer *axi_adc_request_buffer(struct iio_backend *back,
+> > >  						 struct iio_dev *indio_dev)
+> > >  {
+> > > @@ -360,6 +405,7 @@ static const struct iio_backend_ops adi_axi_adc_ops  
+> > = {  
+> > >  	.test_pattern_set = axi_adc_test_pattern_set,
+> > >  	.chan_status = axi_adc_chan_status,
+> > >  	.interface_type_get = axi_adc_interface_type_get,
+> > > +	.data_size_set = axi_adc_data_size_set,
+> > >  	.debugfs_reg_access = iio_backend_debugfs_ptr(axi_adc_reg_access),
+> > >  	.debugfs_print_chan_status =  
+> > iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),  
+> > >  };  
+> > 
+> > Why was [1] not addressed?
+> > 
+> > [1]: https://urldefense.com/v3/__https://lore.kernel.org/linux-
+> > iio/9c262f599fb9b42feac99cfb541723a0a6f50e6b.camel@gmail.com/__;!!A
+> > 3Ni8CS0y2Y!6uVytAwWUCsEazOUTACecMQkbMuHBF95sbla50CbTUFkZkyxS
+> > -S7jMOCczpoyKCjtAKvMOyrt0ukYwcXC_l5q60$  
+> 
+> Indeed it was not addressed. I remained with the impression that adding part prefix
+> in the macro definitions was enough. I will add the compatible string support.
+> Although I have a question in order to minimize the number of versions to be sent
+> In the future. Should I add a separate patch for the compatible support (which
+> will not add value independently) or should I include it in this patch which adds
+> custom function for data format for the AD485x IP core?
 
-- Mani
+Binding docs update needs to be a separate patch.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Also, we should probably only set axi_adc_data_size_set in iio_backend_ops for
+that ID.  So you'll need to pick from two copies of adi_axi_adc_ops
+which probably means two iio_backend_info structures.
+That data_size_set callback should not be set for cases that don't use it
+(so the generic IP if I understand this correctly).
+
+Similar to that part of:
+https://lore.kernel.org/all/20250129-wip-bl-ad7606_add_backend_sw_mode-v3-7-c3aec77c0ab7@baylibre.com/
+
+Hmm. This is looking like a messy merge.
+
+Angelo, Antoniu,
+
+Please figure out between you an order to the series so who is going to have
+to rebase.  If this one goes first, may be worth pulling part of
+patch 6 from Angelo's set to introduce struct axi_adc_info with what
+this patch needs (just the backend_info pointer and maybe version?)
+
+Thanks,
+
+Jonathan
+
 
