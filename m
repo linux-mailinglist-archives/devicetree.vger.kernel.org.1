@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-142402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD11A25433
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:19:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EFADA2542F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:18:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46219188125A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:19:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B015164C6E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:18:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2DA12080FD;
-	Mon,  3 Feb 2025 08:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F658201268;
+	Mon,  3 Feb 2025 08:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="nVLjUxqB"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="oHHYGW0s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51795207DE4;
-	Mon,  3 Feb 2025 08:16:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 468B01FCF44;
+	Mon,  3 Feb 2025 08:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738570582; cv=none; b=hG+pjFqbfMBM9opMFb7p9b/kVDobS42hxfJMv7UpIRGdLFJs6CiLxayn343I7P5peY4jrd2w5EdPfKh3wUZmWRjzI0butBmNjrUVM6wZsKI0CCxeaLANoe88U2WTpuJHf6hEQnZf7hD7x1WahO/5KLt/rcfO076n2G4hvRh6GJg=
+	t=1738570579; cv=none; b=gfakWs89+gxNerD5kzDAWLUPZRKV5mXAfvnh3nXhCDJ8Ts02391FRTizG19fxeEJ6yWW8/MoW+bXIRnEy+qFOoYz0BSlE3njXgh5WXAxZ2f9gM6m9SQp2zw696R2CV3qH5v6Dkql6xqGBCfxupYhJC5tBMf38Ts03YGynt3aw50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738570582; c=relaxed/simple;
-	bh=BsauXE9nKeWRfzmzDj0Frx1cH/ntoi+uf87BQGOlPk4=;
+	s=arc-20240116; t=1738570579; c=relaxed/simple;
+	bh=ASk+1EUFh/3yGcug6P+8aM8sBlqnk8vvU6roFzb5m7o=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gp0puYOcJdVc62lFdgTBJvA1/Q6763CzLEhtL0/V/BY5YEabaYW4MBmxpia/EMgLHO2oXGV3PWfehiEihpXROKOZrZJc6DN/lK2nQBRoIUIgt9Vncd765u4avz2uC9/OpBvUeDRqjaST2U7ZXPU+iwkS6BU9XSeq373FqCNQq/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=nVLjUxqB; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=dxX5X/0x2Shw5zDFfoWdSPD5IYrxXsP0fdBPFNh0tlaO078EQqJot040myvp+YOfMezz39CxK+BKzOKXsJM1ct2pCP7TqFfqi/Xuje+COfHsnhBTXvJNiL5tIfhZtHbfVZ9/bsIc+8iyFt/o845S2dvRfP2GEgOHUqkUd+IOiTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=oHHYGW0s; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,33 +37,36 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=reaWstUDNn0gyEm8JVdVpAA3G71FH+2FgWs8P9PO6rU=; b=nVLjUxqBX4etEg5dNV5JFfCarZ
-	IXEYAiNM4brMmYnTMeE2CZpsnz/eodjPJxcZFzkqt7/E6HkQhpTDPhI4+eiyKEZaw0Uaydm6qercL
-	ja3HZJgnzM94qVzbIHd3rWwykeSprH5AjgepTQBo/SoEmDRdtuF9hS8Lodjs43m/jbXrkK3+thWmT
-	eOBukXrqEkj0arHWS+DMj2RZfxUdZZ2t3BxqM+Twp3T+yA82Y96yB+PBcMhDGfFS7beHBDGPHLZ2v
-	3YBXYJnOaIgqkWydKz1S6QWF+GeIXA/AQCja8a7wRZWMatStWxxKlWpgsyyk5QVqTErKYRuA77LxU
-	xplVYf0w==;
+	bh=sSvbgIR7n2lPQ5jF97vs92quNf19M7v9euIe9lcmFwk=; b=oHHYGW0srNc2mV8G6aLmA1buct
+	V8f4DpO36yp8tLTIeAGHhb54c+7wmfDW/I/bCmQp7VCoXcmW5nXb8n7gNS3ehsq03b5xXK7wIJ9+e
+	DgOpi/oFxnyo44sqzI0ZoM5TiBxuMazHdLwMCTbMKJRiQt7JMqKsJR7eiFhVSsl9WyU3XP7eDZVKc
+	9CcBReE2wPzCFtUcPa7s+F0bYJGvQQRVoxtzy/+G+uXckao2GA7ZM0fThUwoUu0dX7uOKkDvXn9G+
+	Nvn6KQMd5lShd583hS83SJZXfiOd+qKaOHT5Rym7ga+qBoF1835ZVhzTyGJ+PxlZ0D1dHLPsEO4sV
+	taC4MJYw==;
 Received: from i53875b5c.versanet.de ([83.135.91.92] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tercj-0005Vr-E8; Mon, 03 Feb 2025 09:16:05 +0100
+	id 1tercj-0005Vr-Ug; Mon, 03 Feb 2025 09:16:06 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Tianling Shen <cnsztl@gmail.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	krzk+dt@kernel.org,
-	dsimic@manjaro.org,
-	robh@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix lcdpwr_en pin for Cool Pi GenBook
-Date: Mon,  3 Feb 2025 09:15:53 +0100
-Message-ID: <173857053622.78657.7882688074333021130.b4-ty@sntech.de>
+	stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: change eth phy mode to rgmii-id for orangepi r1 plus lts
+Date: Mon,  3 Feb 2025 09:15:54 +0100
+Message-ID: <173857053620.78657.17789947285666303605.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250113104825.2390427-1-andyshrk@163.com>
-References: <20250113104825.2390427-1-andyshrk@163.com>
+In-Reply-To: <20250119091154.1110762-1-cnsztl@gmail.com>
+References: <20250119091154.1110762-1-cnsztl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,16 +77,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 13 Jan 2025 18:47:34 +0800, Andy Yan wrote:
-> According to the schematic, the lcdpwr_en pin is GPIO0_C4,
-> not GPIO1_C4.
+On Sun, 19 Jan 2025 17:11:54 +0800, Tianling Shen wrote:
+> In general the delay should be added by the PHY instead of the MAC,
+> and this improves network stability on some boards which seem to
+> need different delay.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: Fix lcdpwr_en pin for Cool Pi GenBook
-      commit: 52f5d7de3dc5ea9350170949d0ec19a9f0676e35
+[1/1] arm64: dts: rockchip: change eth phy mode to rgmii-id for orangepi r1 plus lts
+      commit: a6a7cba17c544fb95d5a29ab9d9ed4503029cb29
 
 Best regards,
 -- 
