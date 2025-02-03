@@ -1,74 +1,77 @@
-Return-Path: <devicetree+bounces-142787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60B28A26673
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:20:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 253F1A26697
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:30:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DFD718857EE
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 22:20:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C84BC7A2409
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 22:29:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A85E51FF7D4;
-	Mon,  3 Feb 2025 22:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96BBF1FF7B0;
+	Mon,  3 Feb 2025 22:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QnWSwFKL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gg38RWDy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 783BE1F92A;
-	Mon,  3 Feb 2025 22:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58D0E18B46E;
+	Mon,  3 Feb 2025 22:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738621220; cv=none; b=udVyPaa1PREV0a7F4t/urrFx3dIBmmDWyinLnsP/qsKn6Sg/JIzobZ5V1LFTxpkOnP5OrOSfzxsRtgetibk2sWYZy6Zprqq3ScTmKMShkD+7WMPjQhCvdrb51q4MAAyI8W7CkX64zIq1Wo/+SKwI+uWwVwdyPyBqJxaNyx28bZs=
+	t=1738621822; cv=none; b=lNXb6m1PZZSOWAHD+fLNVgsmCGaWqL3HRxdWWNY8hRroJzC5cQuiptncPQCi4PPYoTM6jZck/2J+SqMth/56TZKu2e8TJIJ9FB+Su2I/pq1sIq6Nm5Vrjr1TGifdSnrsbzvEgukpG6rFzd0AShhwP5FJbCrn3B02P195LRGovWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738621220; c=relaxed/simple;
-	bh=YHnhH8TGTVwn5M7n1rEBKbWfWUvHH1qfDMRyCsjzgVE=;
+	s=arc-20240116; t=1738621822; c=relaxed/simple;
+	bh=nQVY1dDboaeGX4s/kBcCQBGi1C5MiXmG7BkFyi87hcI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TQcnyVDbZP9Nx0rxz6FXiqA/3z4IsDzzdvq4q5Q1MmF5XSziJuVlmYp8n1vhjuSfUko64XM3pohae/dmRznGchIIupBsvhl98hQ6AF7ChTwFfDEGQ+aXFYXm/N9cNIxGm6vZnrzlGsSEX2J5uLmPLP9OXyrfG5ufIyaT7QSS3qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QnWSwFKL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 976C1C4CED2;
-	Mon,  3 Feb 2025 22:20:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lhHI4MerArmT4d4KjHktef337UHa/81RBqB4q2VQbARBSZTVXwu42WqWsZIeXc2CnamqabJHrjCfS6C/pOcBapykuPGTlR+IM5reE/Q4eYFPJjBAeo3SEydtpPS0dFMXN4/j70SgtXzAxYo9mXx5Z3qvwB1r+s1C99kQiEm59eg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gg38RWDy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78F2DC4CED2;
+	Mon,  3 Feb 2025 22:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738621219;
-	bh=YHnhH8TGTVwn5M7n1rEBKbWfWUvHH1qfDMRyCsjzgVE=;
+	s=k20201202; t=1738621821;
+	bh=nQVY1dDboaeGX4s/kBcCQBGi1C5MiXmG7BkFyi87hcI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QnWSwFKLxV/bQd8Pu43Oh88t0R1YK305mRti99NklxLCDM0Lm6X4CobKomvMce48o
-	 CJATxa7dNjXBRUU1KZFnCV8ixqVdgVzC87ccgl7Sq1Bi0+Q/H1rHXLx2RjeP4Wj4qu
-	 OWalL9BWbFK1TyGzAK1hwJI6yXhG7v/m/Hworcp/EhC+IH+Hvt9a3ELy9rzH7cn9D1
-	 vSJbfqK9y80/BMpPk/HjMOsbrg2dc5Ep+DtlZ33gqlvI06JOy3id8tMXJgKbzZhVsz
-	 t8i3JCc/m7Me1D4zc4VSNpUOLsMiYzgwesxFK482/eyNHr4d5FORsSPtW+OJ2ety47
-	 nTXAg33bTK6FA==
-Date: Mon, 3 Feb 2025 16:20:18 -0600
+	b=Gg38RWDyo4/DO/c18+GqHN9+P5Wj0kKkr03sEttx6ObUNrE30x4KSUURwsJdmro44
+	 r1LafdcOekf3nL3YGCvs+3+yW00QdBSEe+8OyaWQLKifKsJ4fMJf4LDHz20+Moa8OQ
+	 qvQKnaUDlTbuVIOTIsmOunydTlpH74XO4lmUqJc++rYDB2hvFYjn6RwK8RFSwel9w/
+	 wHL56G7hOk8/eBS+lDJcg4XvbVAf2PVXLYqMeVh60gmDqF4mudpvg1YGdHMIAYUz+w
+	 1v3HZICV3H8pjbLZHYHudE11xTWGwErGoW/5juK8WYRrXbFSA/61sXhQcB4IpEG5iK
+	 XgapaV/Jv7wvg==
+Date: Mon, 3 Feb 2025 16:30:20 -0600
 From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, "Guoniu.zhou" <guoniu.zhou@nxp.com>,
-	Robby Cai <robby.cai@nxp.com>,
-	Robert Chiras <robert.chiras@nxp.com>,
-	Mirela Rabulea <mirela.rabulea@nxp.com>,
-	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Subject: Re: [PATCH 08/14] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
- i.MX8QM compatible strings
-Message-ID: <20250203222018.GA226659-robh@kernel.org>
-References: <20250131-8qxp_camera-v1-0-319402ab606a@nxp.com>
- <20250131-8qxp_camera-v1-8-319402ab606a@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atishp@atishpatra.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v2 02/17] dt-bindings: mailbox: Add bindings for RPMI
+ shared memory transport
+Message-ID: <20250203223020.GA277987-robh@kernel.org>
+References: <20250203084906.681418-1-apatel@ventanamicro.com>
+ <20250203084906.681418-3-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,99 +80,188 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250131-8qxp_camera-v1-8-319402ab606a@nxp.com>
+In-Reply-To: <20250203084906.681418-3-apatel@ventanamicro.com>
 
-On Fri, Jan 31, 2025 at 04:33:53PM -0500, Frank Li wrote:
-> From: Robert Chiras <robert.chiras@nxp.com>
+On Mon, Feb 03, 2025 at 02:18:51PM +0530, Anup Patel wrote:
+> Add device tree bindings for the common RISC-V Platform Management
+> Interface (RPMI) shared memory transport as a mailbox controller.
 > 
-> Add compatible strings for i.MX8QM platform. Remove fsl,mipi-phy-gpr from
-> required properties and add 'phys', since i.MX8QM use standard phy
-> interface.
-> 
-> Keep the same restriction for other compatible strings.
-> 
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
-> Reviewed-by: Robby Cai <robby.cai@nxp.com>
-> Reviewed-by: Mirela Rabulea <mirela.rabulea@nxp.com>
-> Reviewed-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
->  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 30 ++++++++++++++++++++--
->  1 file changed, 28 insertions(+), 2 deletions(-)
+>  .../mailbox/riscv,rpmi-shmem-mbox.yaml        | 150 ++++++++++++++++++
+>  1 file changed, 150 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> index 2a14e3b0e0040..91c4d8fbb1f8c 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> @@ -18,6 +18,8 @@ properties:
->    compatible:
->      enum:
->        - fsl,imx8mq-mipi-csi2
-> +      - fsl,imx8qm-mipi-csi2
-> +      - fsl,imx8ulp-mipi-csi2
->  
->    reg:
->      maxItems: 1
-> @@ -39,13 +41,18 @@ properties:
->        - const: ui
->  
->    power-domains:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    resets:
->      items:
->        - description: CORE_RESET reset register bit definition
->        - description: PHY_REF_RESET reset register bit definition
->        - description: ESC_RESET reset register bit definition
-> +    minItems: 1
+> diff --git a/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml b/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml
+> new file mode 100644
+> index 000000000000..c339df5d9e24
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml
+> @@ -0,0 +1,150 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/riscv,rpmi-shmem-mbox.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +  phys:
+> +title: RISC-V Platform Management Interface (RPMI) shared memory mailbox
+> +
+> +maintainers:
+> +  - Anup Patel <anup@brainfault.org>
+> +
+> +description: |
+> +  The RISC-V Platform Management Interface (RPMI) [1] defines a common shared
+> +  memory based RPMI transport. This RPMI shared memory transport integrates as
+> +  mailbox controller in the SBI implementation or supervisor software whereas
+> +  each RPMI service group is mailbox client in the SBI implementation and
+> +  supervisor software.
+> +
+> +  ===========================================
+> +  References
+> +  ===========================================
+> +
+> +  [1] RISC-V Platform Management Interface (RPMI)
+> +      https://github.com/riscv-non-isa/riscv-rpmi/releases
+> +
+> +properties:
+> +  compatible:
+> +    const: riscv,rpmi-shmem-mbox
+> +
+> +  reg:
+> +    oneOf:
+> +      - items:
+> +          - description: A2P request queue base address
+> +          - description: P2A acknowledgment queue base address
+> +          - description: P2A request queue base address
+> +          - description: A2P acknowledgment queue base address
+> +          - description: A2P doorbell address
+> +      - items:
+> +          - description: A2P request queue base address
+> +          - description: P2A acknowledgment queue base address
+> +          - description: P2A request queue base address
+> +          - description: A2P acknowledgment queue base address
+> +      - items:
+> +          - description: A2P request queue base address
+> +          - description: P2A acknowledgment queue base address
+> +          - description: A2P doorbell address
+> +      - items:
+> +          - description: A2P request queue base address
+> +          - description: P2A acknowledgment queue base address
+> +
+> +  reg-names:
+> +    oneOf:
+> +      - items:
+> +          - const: a2p-req
+> +          - const: p2a-ack
+> +          - const: p2a-req
+> +          - const: a2p-ack
+> +          - const: doorbell
+> +      - items:
+> +          - const: a2p-req
+> +          - const: p2a-ack
+> +          - const: p2a-req
+> +          - const: a2p-ack
+
+These first 2 items lists can be combined with the addition of 
+'minItems: 4'
+
+> +      - items:
+> +          - const: a2p-req
+> +          - const: p2a-ack
+> +          - const: doorbell
+> +      - items:
+> +          - const: a2p-req
+> +          - const: p2a-ack
+> +
+> +  interrupts:
 > +    maxItems: 1
->  
->    fsl,mipi-phy-gpr:
->      description: |
-> @@ -113,9 +120,28 @@ required:
->    - clock-names
->    - power-domains
->    - resets
-> -  - fsl,mipi-phy-gpr
->    - ports
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx8qm-mipi-csi2
-> +              - fsl,imx8ulp-mipi-csi2
-> +    then:
-> +      required:
-> +        - phys
-> +    else:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-
-The max is already 1.
-
-> +        resets:
-> +          minItems: 3
-
-1, 2, or 3 resets is valid for imx8qm and imx8ulp?
-
-2 power-domains are also now valid?
-
-> +      required:
-> +        - fsl,mipi-phy-gpr
+> +    description:
+> +      The RPMI shared memory transport supports wired interrupt specified by
+> +      this property as the P2A doorbell.
 > +
->  additionalProperties: false
->  
->  examples:
-> 
+> +  msi-parent:
+> +    description:
+> +      The RPMI shared memory transport supports MSI as P2A doorbell and this
+> +      property specifies the target MSI controller.
+> +
+> +  riscv,slot-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 64
+> +    description:
+> +      Power-of-2 RPMI slot size of the RPMI shared memory transport.
+> +
+> +  riscv,doorbell-mask:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0xffffffff
+> +    description:
+> +      Update only the register bits of doorbell defined by the mask (32 bit).
+> +
+> +  riscv,doorbell-value:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0x1
+> +    description:
+> +      Value written to the doorbell register bits (32-bit access) specified
+> +      by the riscv,db-mask property.
+
+You mean riscv,doorbell-mask?
+
+I'm confused why you would need both? If the value to write is fixed 
+here, then why do you need a mask? You could just mask the value here.
+
+I assume there's some dependency between these 2 properties. That needs 
+to be captured with 'dependencies'.
+
+> +
+> +  "#mbox-cells":
+> +    const: 1
+> +    description:
+> +      The first cell specifies RPMI service group ID.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - riscv,slot-size
+> +  - "#mbox-cells"
+> +
+> +anyOf:
+> +  - required:
+> +      - interrupts
+> +  - required:
+> +      - msi-parent
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    // Example 1 (RPMI shared memory with only 2 queues):
+> +    mailbox@10080000 {
+> +        compatible = "riscv,rpmi-shmem-mbox";
+> +        reg = <0x10080000 0x10000>,
+> +              <0x10090000 0x10000>,
+> +              <0x100a0000 0x4>;
+> +        reg-names = "a2p-req", "p2a-ack", "doorbell";
+> +        msi-parent = <&imsic_mlevel>;
+> +        riscv,slot-size = <64>;
+> +        #mbox-cells = <1>;
+> +    };
+> +  - |
+> +    // Example 2 (RPMI shared memory with only 4 queues):
+> +    mailbox@10001000 {
+> +        compatible = "riscv,rpmi-shmem-mbox";
+> +        reg = <0x10001000 0x800>,
+> +              <0x10001800 0x800>,
+> +              <0x10002000 0x800>,
+> +              <0x10002800 0x800>,
+> +              <0x10003000 0x4>;
+> +        reg-names = "a2p-req", "p2a-ack", "p2a-req", "a2p-ack", "doorbell";
+> +        msi-parent = <&imsic_mlevel>;
+> +        riscv,slot-size = <64>;
+> +        riscv,doorbell-mask = <0x00008000>;
+> +        riscv,doorbell-value = <0x00008000>;
+> +        #mbox-cells = <1>;
+> +    };
 > -- 
-> 2.34.1
+> 2.43.0
 > 
 
