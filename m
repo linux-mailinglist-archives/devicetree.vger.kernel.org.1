@@ -1,141 +1,238 @@
-Return-Path: <devicetree+bounces-142539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D689A25AE8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 14:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2F69A25AEB
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 14:32:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D11753A2CF1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 13:31:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 857953A6F29
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 13:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D872054EE;
-	Mon,  3 Feb 2025 13:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E56B20550F;
+	Mon,  3 Feb 2025 13:32:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O7wVcHe3"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="nxAkXTkk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD9820459A
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 13:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406AF25A631;
+	Mon,  3 Feb 2025 13:32:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738589500; cv=none; b=JU90SmbiV9cMQyBKVv2ekWlsbt3RhAAZBMJJF2RIRQt9YWPMdi+wv09IZ9VfDTM5QVi+hA9uPXu2b7xRgyX69YVGbKYUeDeRiB6YAUop0moaH/iSyyyqnrSW4Yv3NCaOZOdh+TvWcgQSD18nELUqIQjxfCtGeDAWjEUtpxFeu6s=
+	t=1738589553; cv=none; b=sTi7iMGqA/5R5R+hQydsJROQ1IwChByhmS74VXIL+4yc9FfrCzHP/3ClndRD4PG/aSzuYzSooYCxn8yWy6+d+F9ttF/L0V540MhaWySvzS203+dzzIUlo+iX6zIaM4mjy/Rmy/ZfrKrZUGZI5izHiX1rEKkD49vW2KaC5/tGbOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738589500; c=relaxed/simple;
-	bh=Eund3jyuYpLBfbJJeLLP1e2poBQTo0E2uMapFZwaFzc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wv3KWmm8nmCwsY+8uQ4cx+peajasTPmYkAYSZA7ENN6u0I1cZwFLHQdeNy1XDH6amJggbtQLIkukOBQTtK/CJJn0LHluBeNlFagQttpMH9B9w05sY607Tpvqo+T7NSjs+BFtXnkteHB7togZhtY+gbS8/ufzdLyRVdm19LGx2dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O7wVcHe3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 513BEUlK002263
-	for <devicetree@vger.kernel.org>; Mon, 3 Feb 2025 13:31:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vrASFeD/RX4xjdEkuTjuGfeyLiwa5UYBF/k0/MGX+wA=; b=O7wVcHe33uKMHIdB
-	WsoiU0cihmV9AEnr+jhall6c4D0pX22Wqm9WGGWczeZV32GWHINPm0EQ5PJmHdQk
-	hkpdymHTAvZffi9B5+/tLTfvQTjqjolLRECssI7b45cGSC6FWFVd2rD8Gd/3Tfxq
-	f0ohtR6kXZyCvIjH6ffi7Jyo9CWlVFAaSqoVFPwJCUVENRIo1vDy7Mzqww8ohJ2Z
-	9mfsZunWU7l8Y605lRqUVQ6SFlZsEZh/aYRc90upTOiyi2NJhPUYw5uMCrM+LV1s
-	NkybT3WC3/BB0WYaXqZK4lthx1I1wfy15Omfw3P3eh1i0zDMxT6qRGROrEjcnySj
-	CgM7oQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44jvrkgf12-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 13:31:38 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7b6ea8fc9acso42803785a.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 05:31:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738589497; x=1739194297;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vrASFeD/RX4xjdEkuTjuGfeyLiwa5UYBF/k0/MGX+wA=;
-        b=QdK3yiGrp6Jj+9BD5rLGmSrZAEFsfLQIiJ9MsHMf3IdZiRFF7N7/kdh1kVpJxKqenn
-         KU/8RYu1zJw8kqfjUCR0ALagaXzrxMaK9ViDParnsE+PnuJINgECcbbUPzonkHZiFmj6
-         J2mL5437zGRAsTU092+A3+BkVH3LZ2R2LCYszpaewO6plSrs44ME149jfVTgX8WfyfTU
-         zicjvBqKGO5G2oGTYwcwvT3RuVfrqlsRe3NikE/reR0T+u+NInaBgIAwMFSF5G5Xeml0
-         M/a4HNlAyV2RBvmtcNXYIwmALsPaqS1sJHzWmRyffGbAsbVG8HE4doDFlhARAoJlmH9l
-         WeKg==
-X-Forwarded-Encrypted: i=1; AJvYcCWEbpk0LxvO+etEGNi51EQ+1hA/BvF5DotAcQDGZaD9TRLe4Sdb0RHIRlCM7s88RtDSQFSE0cF1JvEU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzm+CPURQOSZQiMYtRP78BrpOUfySqnfyay9KBD0Aub7aLmpYg4
-	8EJsb9c7PQ8YcG1OuSMtKe0VFsaeiHGgOyZVoTChJsTY3/NT0u8rqnz/PCZqXG++MxRcQdPSDGC
-	LR/i/LArZQ1LNLg5WCsNKt9SIOmTN5OwZOI/EBqIG2RWimhTPRMRz7ZhWMOyT
-X-Gm-Gg: ASbGncsohMoyi4np2oNeUFT9T0tBk8vuoTpZGlDXMe1EoTa244KLZyXlQ21TWmli/q/
-	59Po+WFc03/akWAVynMexwWV0KrVCGMwfM/toYrLOH/zAFtlbM9KaRPuBPB+fp+gMFmZsqQVTBN
-	alT+5C17SoMRc1KLSqwwGe48fOfmvWtO5XZkHyDua4qjOj30/AEnE+YkFoRt8m+/n4WpzdcztAJ
-	7dlc+3Man2m/8YNaqmj1uiR5GJIVBzRcj0Ncj3STtqoVhm019JIF5Q48JXsmw2/0ouKMHC2g6Al
-	naDNLiBZQyYwx2CoJuyJ3S/kn4rv9Rf/F7SUxuP8s/vTH9XH64YFEsWK/3k=
-X-Received: by 2002:a05:620a:2893:b0:7bf:f916:fb04 with SMTP id af79cd13be357-7bffccc3ab8mr1241595385a.3.1738589496888;
-        Mon, 03 Feb 2025 05:31:36 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEs68EfozOwNdu+DSV1z08SRJZ9lyVINlog+cHHktp74/5Pcqzu8Q9zG+4nimud0zJg8y7AmA==
-X-Received: by 2002:a05:620a:2893:b0:7bf:f916:fb04 with SMTP id af79cd13be357-7bffccc3ab8mr1241593685a.3.1738589496538;
-        Mon, 03 Feb 2025 05:31:36 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab6e4a54fdbsm750176966b.162.2025.02.03.05.31.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Feb 2025 05:31:36 -0800 (PST)
-Message-ID: <e1f066f2-d8ff-457d-8d10-c08b525013c1@oss.qualcomm.com>
-Date: Mon, 3 Feb 2025 14:31:34 +0100
+	s=arc-20240116; t=1738589553; c=relaxed/simple;
+	bh=NWDhWtA0DUZLQLtHB543IZHP0ifSYiqe2MzuHajgCB0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CTsbKfSpWvaif9rMYs8MaVPSxmNuIOpyRC5S8JJLyrirJMWRxNec+c4zi/SzE26cbpxlYLIvptwGV3QiC7utmKhDH4UAXqnjz2F9ix2v9Si9vzScW3w8dw9jwXaflgIyDah94iJJ95VI6GS9kB5A0tyv+YsjJlLkRvmuIXDqnDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=nxAkXTkk; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 99AE0664;
+	Mon,  3 Feb 2025 14:31:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1738589476;
+	bh=NWDhWtA0DUZLQLtHB543IZHP0ifSYiqe2MzuHajgCB0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nxAkXTkktDL9U0Jbldw6M913VAtsNtZesiVK7ObpaOzNRlUfdIGrz9JUbzcdZ8aoJ
+	 sxyeNvM9VEM3v2RpeOS4RCcmiocR2lrDc6GzU84yq15k8+cBql1rU5dteHWJ4C8AX6
+	 t3Ba3YXnsHMxe6q9WKsasWozAlcO2QSoAr5v+Eb8=
+Date: Mon, 3 Feb 2025 15:32:24 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mirela Rabulea <mirela.rabulea@nxp.com>, mchehab@kernel.org,
+	sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
+	robh@kernel.org, krzk+dt@kernel.org, bryan.odonoghue@linaro.org,
+	laurentiu.palcu@nxp.com, robert.chiras@nxp.com,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	LnxRevLi@nxp.com, kieran.bingham@ideasonboard.com,
+	hdegoede@redhat.com, dave.stevenson@raspberrypi.com,
+	mike.rudenko@gmail.com, alain.volmat@foss.st.com,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	alexander.stein@ew.tq-group.com, umang.jain@ideasonboard.com,
+	zhi.mao@mediatek.com, festevam@denx.de, julien.vuillaumier@nxp.com,
+	alice.yuan@nxp.com
+Subject: Re: [PATCH v3 2/4] media: ox05b1s: Add omnivision OX05B1S raw sensor
+ driver
+Message-ID: <20250203133224.GA22963@pendragon.ideasonboard.com>
+References: <20250124001243.446511-1-mirela.rabulea@nxp.com>
+ <20250124001243.446511-3-mirela.rabulea@nxp.com>
+ <20250124-benevolent-rat-of-tolerance-3a7eea@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sm8650: setup gpu thermal with
- higher temperatures
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250203-topic-sm8650-thermal-cpu-idle-v4-0-65e35f307301@linaro.org>
- <20250203-topic-sm8650-thermal-cpu-idle-v4-2-65e35f307301@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250203-topic-sm8650-thermal-cpu-idle-v4-2-65e35f307301@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 59Wyt7n6JCcAtnGxtFmrEPYE9WYUWY90
-X-Proofpoint-GUID: 59Wyt7n6JCcAtnGxtFmrEPYE9WYUWY90
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-03_05,2025-01-31_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 malwarescore=0 bulkscore=0 clxscore=1015 mlxscore=0
- adultscore=0 impostorscore=0 suspectscore=0 mlxlogscore=977
- priorityscore=1501 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2501170000 definitions=main-2502030100
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250124-benevolent-rat-of-tolerance-3a7eea@krzk-bin>
 
-On 3.02.2025 2:23 PM, Neil Armstrong wrote:
-> On the SM8650, the dynamic clock and voltage scaling (DCVS) for the GPU
-> is done from the HLOS, but the GPU can achieve a much higher temperature
-> before failing according the reference downstream implementation.
+On Fri, Jan 24, 2025 at 09:07:01AM +0100, Krzysztof Kozlowski wrote:
+> On Fri, Jan 24, 2025 at 02:12:41AM +0200, Mirela Rabulea wrote:
+> > +
+> > +static int ox05b1s_read_chip_id(struct ox05b1s *sensor)
+> > +{
+> > +	struct device *dev = &sensor->i2c_client->dev;
+> > +	u64 chip_id = 0;
+> > +	char *camera_name;
+> > +	int ret = 0;
+> > +
+> > +	ret = cci_read(sensor->regmap, OX05B1S_REG_CHIP_ID, &chip_id, NULL);
 > 
-> Set higher temperatures in the GPU trip points corresponding to
-> the temperatures provided by Qualcomm in the dowstream source, much
-> closer to the junction temperature and with a higher critical
-> temperature trip in the case the HLOS DCVS cannot handle the
-> temperature surge.
-> 
-> The tsens MAX_THRESHOLD is set to 120C on those platforms, so set
-> the hot to 110C to leave a chance to HLOS to react and critical to
-> 115C to avoid the monitor thermal shutdown.
-> 
-> Fixes: 497624ed5506 ("arm64: dts: qcom: sm8650: Throttle the GPU when overheating")
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+> This suggests these are compatible devices. But in the binding you said
+> they are not... so your binding is not correct. Express compatibility
+> with proper fallback.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Unfortunately we can't do that for camera sensors. It's important for
+drivers to be able to identify the camera sensor model without having to
+power up the device at probe time, depending on what device the sensor
+is integrated in. For instance, with camera sensors found in laptops,
+the privacy LED is often connected to the sensor power supply, and a
+flashing privacy light when booting scares users.
 
-Konrad
+Reading the ID register at probe time is fine when running on a platform
+where the sensor can be powered up when probing, so the driver isn't
+wrong doing so. It's also fine for drivers to not implement the no-power
+probe right away. DT bindings however need to be ready for this, so a
+fallback string can't be used.
+
+> > +	if (ret) {
+> > +		dev_err(dev, "Camera chip_id read error\n");
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	switch (chip_id) {
+> > +	case 0x580542:
+> > +		camera_name = "ox05b1s";
+> > +		break;
+> > +	default:
+> > +		camera_name = "unknown";
+> > +		break;
+> > +	}
+> > +
+> > +	if (chip_id == sensor->model->chip_id) {
+> > +		dev_dbg(dev, "Camera %s detected, chip_id=%llx\n", camera_name, chip_id);
+> > +	} else {
+> > +		dev_err(dev, "Detected %s camera (chip_id=%llx), but expected %s (chip_id=%x)\n",
+> > +			camera_name, chip_id, sensor->model->name, sensor->model->chip_id);
+> > +		ret = -ENODEV;
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> 
+> ...
+> 
+> > +
+> > +static const struct of_device_id ox05b1s_of_match[] = {
+> > +	{
+> > +		.compatible = "ovti,ox05b1s",
+> 
+> And this is incomplete, according to current binding, so it seems you
+> wanted to make them compatible just did not write the binding like that?
+> 
+> Confusing.
+> 
+> > +		.data = &ox05b1s_data,
+> > +	},
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, ox05b1s_of_match);
+> > +
+> > +static struct i2c_driver ox05b1s_i2c_driver = {
+> > +	.driver = {
+> > +		.name  = "ox05b1s",
+> > +		.pm = pm_ptr(&ox05b1s_pm_ops),
+> > +		.of_match_table	= ox05b1s_of_match,
+> > +	},
+> > +	.probe	= ox05b1s_probe,
+> > +	.remove = ox05b1s_remove,
+> > +};
+> > +
+> > +module_i2c_driver(ox05b1s_i2c_driver);
+> > +MODULE_DESCRIPTION("Omnivision OX05B1S MIPI Camera Subdev Driver");
+> > +MODULE_AUTHOR("Mirela Rabulea <mirela.rabulea@nxp.com>");
+> > +MODULE_LICENSE("GPL");
+> > diff --git a/drivers/media/i2c/ox05b1s/ox05b1s_modes.c b/drivers/media/i2c/ox05b1s/ox05b1s_modes.c
+> > new file mode 100644
+> > index 000000000000..1f3b822d4482
+> > --- /dev/null
+> > +++ b/drivers/media/i2c/ox05b1s/ox05b1s_modes.c
+> > @@ -0,0 +1,63 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Register configurations for all sensor supported modes
+> > + * Copyright (C) 2024, NXP
+> > + * Copyright (C) 2024, Omnivision
+> > + * Copyright (C) 2024, Verisilicon
+> > + *
+> > + */
+> > +
+> > +#include "ox05b1s.h"
+> > +
+> > +/*
+> > + * Register configuration for Omnivision OX05B1S raw camera
+> > + * 2592X1944_30FPS_FULL_RGBIr 2592 1944
+> > + */
+> > +struct ox05b1s_reg ovx5b_init_setting_2592x1944[] = {
+> 
+> Why this is not const? I commented last time with the same.
+> 
+> > +	{ 0x0107, 0x01 },
+> > +	{ 0x0307, 0x02 },
+> > +	{ 0x034a, 0x05 },
+> > +	{ 0x040b, 0x5c },
+> > +	{ 0x040c, 0xcd },
+> > +	{ 0x3009, 0x2e },
+> > +	{ 0x3219, 0x08 },
+> > +	{ 0x3684, 0x6d },
+> > +	{ 0x3685, 0x6d },
+> > +	{ 0x3686, 0x6d },
+> > +	{ 0x3687, 0x6d },
+> > +	{ 0x368c, 0x07 },
+> > +	{ 0x368d, 0x07 },
+> > +	{ 0x368e, 0x07 },
+> > +	{ 0x368f, 0x00 },
+> > +	{ 0x3690, 0x04 },
+> > +	{ 0x3691, 0x04 },
+> > +	{ 0x3692, 0x04 },
+> > +	{ 0x3693, 0x04 },
+> > +	{ 0x3698, 0x00 },
+> > +	{ 0x36a0, 0x05 },
+> > +	{ 0x36a2, 0x16 },
+> > +	{ 0x36a3, 0x03 },
+> > +	{ 0x36a4, 0x07 },
+> > +	{ 0x36a5, 0x24 },
+> > +	{ 0x36e3, 0x09 },
+> > +	{ 0x3702, 0x0a },
+> > +	{ 0x3821, 0x04 }, /* mirror */
+> > +	{ 0x3822, 0x10 },
+> > +	{ 0x382b, 0x03 },
+> > +	{ 0x3866, 0x10 },
+> > +	{ 0x386c, 0x46 },
+> > +	{ 0x386d, 0x08 },
+> > +	{ 0x386e, 0x7b },
+> > +	{ 0x4802, 0x00 },
+> > +	{ 0x481b, 0x3c },
+> > +	{ 0x4837, 0x19 },
+> > +	{ /* sentinel*/ },
+> > +};
+> > +
+> > +struct ox05b1s_reglist ox05b1s_reglist_2592x1944[] = {
+> 
+> Why not const?
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Regards,
+
+Laurent Pinchart
 
