@@ -1,225 +1,240 @@
-Return-Path: <devicetree+bounces-142653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69AABA26027
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:33:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB7E3A2602D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:33:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D0BD7A14DF
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:32:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D29CB3AB16E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:33:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB15020B1EA;
-	Mon,  3 Feb 2025 16:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48AF320B1EC;
+	Mon,  3 Feb 2025 16:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="Yt5uzt6p"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ArvF0MjG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011012.outbound.protection.outlook.com [52.101.70.12])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988D220B1F3
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 16:33:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738600383; cv=fail; b=tSHAXoi5spXJ3twit8ejbAYdlyNfCNnW9dVZJeDtHl/bqQKFocEbM8T+aDWmb5vdHYmLPFQTTIW4i0Ht+8w9JXIO+KE7ont+CHZW1aMaiujtSb/6YOGBAvBmgWKiPco+PJvrP37It2ytmCJKAhS/voagakk0fH/NkFIet+0dbUA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738600383; c=relaxed/simple;
-	bh=HlKApALj3YDgDdaL3NZM5Pf1eSa1U08D0mRPYn14Nlo=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=FNaLN+46eD1ZFLB0J0gLr5R8BaueIzK+oh7/5p95SYEXYczEZKAYSj/NgkrEt1OieiDebqT7STxzaZHnOU8mq4TPEQsPbeTH0/Uj5lF3yEeWY6WUeM1dUh9axYgyaETHxiF6psCDmImG8CseXXwLgEAeeor6awJzTDfehECGhKc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=Yt5uzt6p; arc=fail smtp.client-ip=52.101.70.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FAEj/7UmEuLMyf7hib71ReIOZ51EuDgV7ifzDL2wBMgmU8C+rpIRY7h7OJVTShxBV/f0fmXv5qeNw7pCX46d5E3zTyLtEnCTEeq+vHkrmDSUJeaWHw+eNEqgB9jtCTRDDXvDxuVuSrhO3r5UM1zrpYIiTMSEN8LGIvXHMj0bNKJblZl56HNxp7Dze+yG1dS0zYZ5uv6IABrGP+qc8t1jy7hiqeqNJCSJTA8ZlN6eKWez0JZvuaceb0aeUFQXqzLdHWoVxqzm3fRvixkb3B7uScFNNz0zzPkF4d7NIZyj6M5zMgY6DQ2oY3sPe/wec7+7fotJDD9ar52soUc2QCfe3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oqp7KPuNqOQdOD7HydZS3/2eb5t7cxzRHUzMu+Riiak=;
- b=SLQ1pMdOMPuzSg+cQCQAlQJi0WjkMDI6YXwnDczLZfLXH/FSPeQZ6ltzrNKfmw8aaY6DqK0XywHGMTmtk3RWtfgpyvdoiQZwCQIeTDIRS4dsVlYPUp928b2QT2nkw4ThN/rPvSKKQfZgJnu0iMxpDAoJvZ1yqrJRoKjC5EcY1CUHFjgEgcK4mH6mVgoNHFFTA5Yy0RacjaRECq1aceXBuaKr8vh/NqA3/n5GrskjsEUe9BxjhbywnK9B06GE3E2qVoF5lFY+erUMx7lsObzYe5p2AyGzvVzRC2P72+qZGwrf4uW1Mm0S6Aiav7xNz/VXa/nznXeNkq0JI4eSUwRakg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oqp7KPuNqOQdOD7HydZS3/2eb5t7cxzRHUzMu+Riiak=;
- b=Yt5uzt6pDleyv54EHMhK+XY+RxDRQvYxm6Z2lJzo+G5WgvztUw4SInZ/FLeB55XHaq3Hsg1Gw4hbZblNLlR8aedzMsNteNdbqqWyq0LSWEfDY3ZwBGOJ18W04CQqzE118YpUk0B5l+V8VN+jSAbyvjMxdPcsmWdqI2SnGX0x8tE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by AS1PR04MB9432.eurprd04.prod.outlook.com (2603:10a6:20b:4d8::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.25; Mon, 3 Feb
- 2025 16:32:57 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%3]) with mapi id 15.20.8398.021; Mon, 3 Feb 2025
- 16:32:55 +0000
-Message-ID: <7266daa9-b031-4c45-8711-c4e6e4be7095@cherry.de>
-Date: Mon, 3 Feb 2025 17:32:53 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: remove rk3588 optee node
-To: Chris Morgan <macromorgan@hotmail.com>
-Cc: Chris Morgan <macroalpha82@gmail.com>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- sebastian.reichel@collabora.com, heiko@sntech.de, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org
-References: <20250130181005.6319-1-macroalpha82@gmail.com>
- <5d0ae245-1ad3-4e3c-9c68-28babc7290a6@cherry.de>
- <DM6PR19MB3722A5CCBF3FBEAC59189642A5E82@DM6PR19MB3722.namprd19.prod.outlook.com>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <DM6PR19MB3722A5CCBF3FBEAC59189642A5E82@DM6PR19MB3722.namprd19.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR0P281CA0045.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:48::14) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1312C20B1E2
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 16:33:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738600396; cv=none; b=UoyDANcaaUE9bvde58wzwMx2gwmB6bJS2QiESHPl/BC5vFOTFxvtPRo3G5TGKReabC8Hc3yHhRgU0ZO2sOOETibAgOkyx34nQr0ZxfbiWQcyAz80SKfbcSwxxKwJUdLNr9XzcwkLy2+AlW5j7Tuu1S0V19szqhkBM3D+eTvPY6k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738600396; c=relaxed/simple;
+	bh=U+GrBy7CreIDx2WaSsCRH8V9c01JYi8AGBXlihMsrUk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=JvRFI8WiFpwWwWWDbx27GHmT6OLlPqDjIP/lYhYYBoRK4oO7M+1xLEYXT1sOjysZ7fkoy5neTTVr9m9WtooyQFP2sb5ZXxN0DpJUod+7eErDJzLJwUnMnMd4+q1wMl39kZYQ+TyKx9/9b6mHf7oWWhgQuz0ti1b0sF1QM7LLV04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ArvF0MjG; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250203163312euoutp02a4357870241570df8650d366137a8e0d~gv9hnODlS0333403334euoutp020
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 16:33:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250203163312euoutp02a4357870241570df8650d366137a8e0d~gv9hnODlS0333403334euoutp020
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1738600392;
+	bh=jgdfJb5XmANzNdoB6KpErLTImnQzyQ4B5YNgFymn8uo=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=ArvF0MjG65fVMg69mkVaEVQOM6koztY9TK3I68u4PfB9Btah+WikaNfHO5Oo/PTXM
+	 7TMg1K8w3oBy5zF124yeE403UwXtSsHwJCt8Y8Ivfpxrn6PZGs3Eu0KQOVK1+GeMry
+	 c5Wv4yZZu53nS6/sy2qyjNRjOBQnpmBS66hcz93k=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250203163311eucas1p2e70de128fc35f5c0eed7024ef5d4a289~gv9g78N882024920249eucas1p2r;
+	Mon,  3 Feb 2025 16:33:11 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id 26.35.20397.7CFE0A76; Mon,  3
+	Feb 2025 16:33:11 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250203163311eucas1p17f75b2012c9341f93af43f586809a81e~gv9giSMB20911509115eucas1p1R;
+	Mon,  3 Feb 2025 16:33:11 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250203163311eusmtrp2f22113419fcf9cc31b947cee8f00f0da~gv9ggTqyx3261232612eusmtrp27;
+	Mon,  3 Feb 2025 16:33:11 +0000 (GMT)
+X-AuditID: cbfec7f5-ed1d670000004fad-37-67a0efc7874e
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id B5.E1.19654.7CFE0A76; Mon,  3
+	Feb 2025 16:33:11 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250203163309eusmtip2fde20ae086616fd76f79d37061338a0b~gv9fQ-z-u2728927289eusmtip2B;
+	Mon,  3 Feb 2025 16:33:09 +0000 (GMT)
+Message-ID: <6bdd711e-6515-43b9-aec1-4d90b87ff09f@samsung.com>
+Date: Mon, 3 Feb 2025 17:33:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|AS1PR04MB9432:EE_
-X-MS-Office365-Filtering-Correlation-Id: c53ad5cd-fef4-4cb0-1ddf-08dd447068c9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?N2N3VTh1WWFMTE0rUkh6OWFjTzMzZ0dleGNNTDdVQ01QODVuNXhyQnJkRkFn?=
- =?utf-8?B?b1gxckFMYVZZNVR3U3Flak1CK2UyWjdVQXo2T0I1YllCRG9SWFN6QUF6QVFh?=
- =?utf-8?B?RXh3M21MSmN6WCtPdUxWeUlkakprUDlFVy96UVpjUWVHL2ZHYkMrOXUzZ29S?=
- =?utf-8?B?amxmVjUrYnlLZk8vVUJWVlQxUm5QZ3FDT3g5dzFLTHdQSVNYZ2J2dC9KRDFj?=
- =?utf-8?B?NnhaT2FwNFhVT2VIRG9yazRIQXN6ajZ4Z1d1Y2YxbHgzK1hqdnJqZUIxMTU5?=
- =?utf-8?B?cnlGMmlIQm51aVEweDVXZ3Y3MjJnTVdwYTc5YXpKWnZ3OStmTE1HeHQ0Und5?=
- =?utf-8?B?aVNCdkdVMWl3U3g1VExPd0VETEVsdjhIdXlWbGdBRmZ5aWw0ZlFCYlNuUHRk?=
- =?utf-8?B?enZJdWVPSHNiSUUvYXlra1BvRjVMK1NpQ3QyYWl4Ukc0YmxLbEhrNFB6V1Ri?=
- =?utf-8?B?ZUFwTmZPc2RGUzloaDRDbTI3c1R0Sko0RWlNZlFqb0VZZ3I4TTZuQ0Z5S2FV?=
- =?utf-8?B?dktqeDlUc0dBVnREaGRzSFZyMlU2NUxhdWdwTEJ5OXhsUjVMcGJsUHptcHpP?=
- =?utf-8?B?Rk1pUlNUeXdyZUVCaGxFaVBEZWhraGRlckt1cFdCSkRYMHZvRlNhckZ3UHV5?=
- =?utf-8?B?cDFIemo2UlpqYVVIVnV4blJoVTNrYUY3YUo0Z3dEWE9iVGtVc2FSLzBzWHhp?=
- =?utf-8?B?OXVaaWxPTUJPQkorMVZuaUZIMmltb01XRUVpcGxDbUdIeDZmbWFjUEk0U3g5?=
- =?utf-8?B?NFVkQ0dGSC9FZ3d2TlR2QVVhSWtoL0tVbUcxTkRHcHgrclBGTnFzazdCOWJn?=
- =?utf-8?B?alUrMTVJcWREejhkbDMyN2IvWDFFK2ozbEpMem5vdmdmSm9JVG9KVDJ1bkpL?=
- =?utf-8?B?SE8wQ25aOTh3ZnZrczdCaUxlSTZaWlp3V2w4Q2l3WWk3SVZPUHk1ZWdiOG1s?=
- =?utf-8?B?WEtNWFJCYURHNEhwSzFzUFlweG5hQ0RzL3haQVRDNVpVUVpaWjc0ZHNPNFFv?=
- =?utf-8?B?SUV1RGp1Qndvc3RSSUc2YzVnS3VsT2Qrd3habW5WN1YzdTl0V2tGZXQ4bHVJ?=
- =?utf-8?B?cm4vRjlQSmNXSU9CWWVSRDBpZ0lNdGVHck1nZk5DdTBKOTJxdFhkb1JCcW5F?=
- =?utf-8?B?bU42blVicUpPb05TbEltL245Z3VGWUNrb1BQV1hHNitRa1ZiZGxMemZmVDhL?=
- =?utf-8?B?cUhMOGpmb2xSVDV5Sk1hVklOOUpYZVpMUDZjeHoyaE5NbFBGZFdvcE9QVTc1?=
- =?utf-8?B?N3VMbXI4SEZCWWVZVURnWUoxZVZISCtxNS9tZ3VvSThnOEphSGxBemJaNGdW?=
- =?utf-8?B?c0JkT20yVnVUQXdzYkpHVXNzWlkxQ0huakxSU3lOVVNlb3IxS2F6eXNjc0Z2?=
- =?utf-8?B?L0YvK2IzdlUxQi9qVkVwQU5FNUNpenRVRkZuMWo1RTZtcWRuWlBlcmZZLy9i?=
- =?utf-8?B?anhYOEIzQjBTU3ExWGoxWGlVNkxHMkVaZ3lvUUNTQ1hTdkVGQ1Q0enIrOTI0?=
- =?utf-8?B?UGhRdnFhZ3VyTzFrL0xXeG9panMxYTFMZHR5Zm1OK0NuenJyMHFiWjRDbndM?=
- =?utf-8?B?UjRzZy9obkp3NDZNR01ER25jUFpKTU1TMkQ4RGJLUSs3Zkt6UjRqczFmaGpG?=
- =?utf-8?B?S2tLRTJtc3VRWExseUVLTkkvM3lna3kxdmZ5bXJOMkNybURhcG9GOEdhR25D?=
- =?utf-8?B?cnZFeVBnMW5KZlZnMTZlOXhkTStXZ3o2NW82MnVkVDNjU2NzZEM2Z1BUbWwy?=
- =?utf-8?B?M1ZwZXNuNWlmT1pkUmRXRXpxTURaYjN4M2J4djQ4U0llaUpyYTd0Q1VXU1RB?=
- =?utf-8?B?WW5UcXl6RXprdlFObDFsVDNLejhvRWZXeVhDRnRpVUpoeGhPODI2d0YvN3RX?=
- =?utf-8?Q?s2u8I0UL2Ohed?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Y09RNjlIWVhqK05MOVY2NnloeEdQOGp4d2pzcU91MlZPTkRuRUhLQWhTUXo4?=
- =?utf-8?B?SDgzYTQxS2JwSlNVVVlMb0VOdEJEY0RjTG1LU0hGK3VaRWg2RCt5NzJtZmJB?=
- =?utf-8?B?VVhJVm1qMWdUVUM1RDVBeFhIMVZ5anlaUXY5cjVtZkhFcWlxZW50bktOQzNF?=
- =?utf-8?B?bmZTQk9SK1hmRDdsTE5VNlBJVTEyTFp0MmJlTzBqbnR6ZEZIbFVLaTFXZmx0?=
- =?utf-8?B?U0NrVGdwSkY5NFptZkh2SzRPQkdseEU4K0FvNEwxaWZRanE1d09aQ3ZwQlFI?=
- =?utf-8?B?Z3RSVUV2T3pCbWpiL2pJSGpUb1NqcUVoWU9NTHVXajlMblRNR2tVV2JObHVV?=
- =?utf-8?B?UExOL2tKWDdxS3lzWXYrSUNRTThqTWo3TjVxcitNTUZLa2w2c28ycjNIanM3?=
- =?utf-8?B?RTdGaTdOclE0MnJDdzI4QUdTdmxMaTdXVEg0c0Q0WDBPQ1FuTWJNa1ZzNjA3?=
- =?utf-8?B?K1kxNUxqRFJPSXh4ZmxCTWFRZFBtM0tFV25NSVZGN3ByVmFTNzJ5eklHbnhX?=
- =?utf-8?B?REtsRjlQa1d6eGR0M0dONVAvakp5TzlCR3c0U3F4dzlEd3RzS21lSDR5RkZz?=
- =?utf-8?B?R1JyaVpLbnJMaStHY3UvSGxZd1JKcWZIWnVyL2pOdlNlaTdyZnhhR244VlVG?=
- =?utf-8?B?dnk4aE8zWlN6SHVUSlZyZHJFVkdGK2dIcG5CYXFXVC9rZkE0NUJ2a1lUWHRn?=
- =?utf-8?B?VEhRR1pKTkRXcW1qbkU4djI5dGJjRktvNlkwQ1lYUTFsZU5Tbk9IUDF2bTdq?=
- =?utf-8?B?bWVOVjdYQUw4TWt4M1dDRklWQkpCeXMzWG5lbHZpYUoyc2Y3WXFiSFgzSU1F?=
- =?utf-8?B?bFpCVm1JVUNwZFNPK2V3MHJ6TmN0MmpwYVZKTURTWHdaTGphOTZOdTlNSExj?=
- =?utf-8?B?bVJHZG8xVDlzSjdoSHp3QzFrcTdLZTdmNWY5Y3RPa0d2Vk1xYXdEL1R4dVhy?=
- =?utf-8?B?Wm9jQTE1MWt0VzhUTFBNbFpVMGtwSC81R0JxVE1xOFhDYnBjMzB2ODdwT3ZC?=
- =?utf-8?B?eG8yNlF4aWtOaVdMelc1YlJXS1hBbTIyTUdOSDVzNEhCajk3Q0RvTUFuSmQw?=
- =?utf-8?B?dVByT0lYcFJuWnM4SlRNSXVIRUdwKzRseTRibDllelJDODlka3JZS2pENHNU?=
- =?utf-8?B?dWpPNEJXV0VZcXY0WDUzMTNlU3d4Zmk3V3NlZWVId1NCSmhxTzNFTXh4NnZw?=
- =?utf-8?B?Q3NId0xnakNoQzdBcDhxdGJrYnV3YkhXMHZvcDNKQmU1bytQeGluZ0JtMUFx?=
- =?utf-8?B?Z3RhY0xDM25JMHpYSFdVMUFlbmFibnZjamticm5ac0h3NXNqZDJycjlINzdu?=
- =?utf-8?B?Z2RqSGRIMXFiRnlJNlhGR3hTc2U0ZHZkMTZCVGVGRzJnWmVpekhQaU00czd5?=
- =?utf-8?B?WWU2V3RYV0t0QVhKNlMrMGtJMWZ5YklZUkNpbU12OEp6N1hCNDJQVmNHWHNT?=
- =?utf-8?B?S1hsbE4yRW9wMm1mVTZ6WThTL1hYdmplNnY0ZUZFUUl5aERwMEFOeXM1V3dD?=
- =?utf-8?B?dStyb05reGxndkVpNGw2Vlhrc1JZTHk1Z2M1VmxCekpSbzVwQWljNHlqL1BK?=
- =?utf-8?B?TnkrUmM5TW91bURjQ0ZtRFVWaHN5a1dOdU9qdVRORzdUdER4cG9ROS8wKy9u?=
- =?utf-8?B?Sk8wNHlQaGgwaCt5YmxXQ3ZFVnIrS0pXYWR4SFR4ZGw0V2U2UzVNWkxYTGZ3?=
- =?utf-8?B?SnNyRHBTK2s2cnFIZ084TVFCWVZya2JjRGltQ3RkTngySERvRHJhMG02RFNF?=
- =?utf-8?B?UFZnZVRXa2NKSEUrcDBQbWZua0xlUlRGcjUxT29rQkloTXBhNzJmeW1JNUJh?=
- =?utf-8?B?WlVRWHN1ajduaVpRaldyTm93aTkrUXU5WDJVTGtaVzJ5MHlNcjdmQmVjdGZp?=
- =?utf-8?B?WUpiSHhDcyt0QkV0KzFUZE10UnFEakxub2tYLzh1V1NQVEpkU0tzd1RaSHlR?=
- =?utf-8?B?S2VTdHY2VVU1b3dhQkxKNnJwWmJtL0lQUEpYN0Jmd200aTNxbTdzY1Zqa2la?=
- =?utf-8?B?OUtDTFZCSkFzckV3NW95VTNTcUpEeU16MTBoZkxoSHRlOWo4MVJmZGcrWkF2?=
- =?utf-8?B?VnRZMHVWZm9uMDF5QmVPM1ZKdUlSeXhXUmlwUDZkSjRpdjNoUlNDZnBtMzlu?=
- =?utf-8?B?bkZwY3pPRHZvd0Y1MzVQQXloSDAyeTBkRVFEYU9RUG1LWUN4TWhvQTNsdGFZ?=
- =?utf-8?B?OVE9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: c53ad5cd-fef4-4cb0-1ddf-08dd447068c9
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2025 16:32:55.2970
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gYx3T4R/m/XX1ysi9vE+71BwUY+dwuWOeXAS++ksS/RuDG8jIyQkZmn57AQAGE4Tmk5u2u2HpIPT7v3bWtr2yIRIMZ81f+Nr+n9CS9WNyIQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9432
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/18] Enable drm/imagination BXM-4-64 Support for
+ LicheePi 4A
+To: Matt Coster <Matt.Coster@imgtec.com>, "mturquette@baylibre.com"
+	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"drew@pdp7.com" <drew@pdp7.com>, "guoren@kernel.org" <guoren@kernel.org>,
+	"wefu@redhat.com" <wefu@redhat.com>, "jassisinghbrar@gmail.com"
+	<jassisinghbrar@gmail.com>, "paul.walmsley@sifive.com"
+	<paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, Frank Binns
+	<Frank.Binns@imgtec.com>, "maarten.lankhorst@linux.intel.com"
+	<maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
+	<mripard@kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+	"airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
+	<simona@ffwll.ch>, "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+	"jszhang@kernel.org" <jszhang@kernel.org>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "m.szyprowski@samsung.com"
+	<m.szyprowski@samsung.com>
+Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <ed7a463e-9654-41c3-91f6-f3f877fd9a20@imgtec.com>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUxTZxTHfW5v771U6y4FwxN1MJvNbE4QqjEPG0Nwc7tx02z7MMxMNhu9
+	KUYorpVtkGUg5VWLuAG+XOxaGRNWpAItBToKWEkLoo3oBEd4S3SDMl6KwBYxo7Nc3Pj2O+f8
+	zzn/8+ShBBI7sZ46qjzBqpTyJCkhwq3OJ+5w17RBEdlVHYo6+8ox1PCUI9FVuxtD+g63EA3d
+	tWDo1/lpApl+v0OiMftJHPVW6UikcV4jkIcbItCMdkiI7tkuEWi2sAMg62w2gWo6Bkl0eaYB
+	RxVNNoByC64IUc/NPWhwqBNHnntaAcrlXkC+liYSLfbW4ahsqo1ElonvhMhVk4Cy20rwuBeZ
+	6Qc5JDPh8eDMjfw5krH/ZcCZZm6QZLTNtwBTbywgmIHeFoL5oesjZvi0C2PMFRlMdo0TY4r+
+	iWSmW+8TzBmLETB3NX3kh5JPRTFH2KSjX7KqbbGHRInltyax41mhX+eVXMYyQQs8BQIoSO+A
+	jTo9cQqIKAldBaCJMwv5YA5Am6kM8MEsgK1PTMLnLT1jJcuqSgDPjd7E+WASwLnrfhVFielY
+	qJlQ+Rtw+mVoKnbgfhbTgbDr4qMlXkeHweH+C6Sfg+gEmHW7aMlHMN1IwTPm4aWCgM4UwPyz
+	3/IcAvsf6TE/E7QMjlTqlxwFPNs1VTiK85owqGkoE/gHQbpHBO/UOpZtvwMLz3cDnoPguMtC
+	8rwR+pr5oZBOgSMNjwU8fwObta5lfhMOuBcI/2EC+jV4zbaNT8fDPGc77k9Dei18MBnIW1gL
+	v7eeF/BpMczPlfDqzbBUW/jfUneVFTsLpNyKV+FWHMmtOIb7f68B4EYQwqaqkxWseruS/SpC
+	LU9WpyoVEYdTkuvBsx/eveiabwJV4zMRDoBRwAEgJZAGi7sbDQqJ+Ig8LZ1VpXyuSk1i1Q6w
+	gcKlIeLythyFhFbIT7DHWPY4q3pexaiA9ZlY1sMuma7voMVX1/1Wd3Uc9zCx8/1g7+OMvezq
+	pHWriyT7UmLlitpN1e3EH7oDGfPRV3YVJxyK36pKn25UyVoy6vsURHXOwKUklzvhWMTCuc7J
+	Ovt9bd4Yycn2Xf0kcTJ6g3HsC+Fn3sDMk8SUd5Px9dOeqFW1UzEjrUGhO4NjNqZ/MF/5dqzn
+	lSjQ5BjPt635ZY2SzPJGrdqq+rh9Z6j0+hvh7xksu/dWbC4bcSuDrGE/qQ9rircjzVOvg2Z+
+	i/txzp1m3r+QpousuNGh18u2HAi/0D82suPVNNo5Gv1nqb7AFu/bb1809bzb5Dv4sxO+RICa
+	XTnK3ViBec/tUv3Fv6W4OlEetUWgUsv/BUg5I2RQBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPKsWRmVeSWpSXmKPExsVy+t/xe7rH3y9IN2juYLE4cX0Rk8XW37PY
+	LdbsPcdkMf/IOVaLe5e2MFlc+fqezWLd0wvsFi/2NrJYXFsxl92i+dh6NouXs+6xWXzsucdq
+	cXnXHDaLz71HGC22fW5hs1h75C67xcKPW1ksluzYxWjR1rmM1eLiKVeLu/dOsFi8vNzDbNE2
+	i9/i/54d7Bb/rm1ksZj9bj+7xZY3E1ktjq8Nt2jZP4XFQdbj/Y1Wdo83L1+yeBzu+MLusffb
+	AhaPnbPusnv07DzD6LFpVSebx51re9g85p0M9LjffZzJY/OSeo+WtceYPPr/Gni833eVzaNv
+	yypGj0vN19kDhKL0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLL
+	Uov07RL0MhadectU0CRX0T5lIVMD4x6JLkZODgkBE4mLL6awdjFycQgJLGWUmD7tMgtEQkbi
+	WvdLKFtY4s+1LjYQW0jgNaPEjo/KXYwcHLwCdhLNb4pAwiwCKhLrJh8CK+cVEJQ4OfMJmC0q
+	IC9x/9YMdhBbWCBcoulsPxvILhGBvRwSu278ZAFxmAUamCVWzb7BDHHFcUaJpVNvgLUzC4hL
+	3HoynwnEZhMwkniwfD4riM0JtPld73MWkCuYBdQl1s8TgiiXl2jeOpt5AqPQLCSHzEIyaRZC
+	xywkHQsYWVYxiqSWFuem5xYb6RUn5haX5qXrJefnbmIEpqxtx35u2cG48tVHvUOMTByMhxgl
+	OJiVRHhPb1+QLsSbklhZlVqUH19UmpNafIjRFBgYE5mlRJPzgUkzryTe0MzA1NDEzNLA1NLM
+	WEmcl+3K+TQhgfTEktTs1NSC1CKYPiYOTqkGpkmT2wK0y0tzT+9dVDvl59kVnyQuebUsahCP
+	lfc9mZou9mz1PQd141UTT1SL/v7xVFR+2ZcLvRUFkecMlWacLF9Xw9VotezFllduDWH3jCtL
+	J2ys4ZvOd8FXV/dHkkHlhFMT+oNeatrecDu4e2bv+ygGGblPrtx/fA39WB5Ob+u9dDO2t3iG
+	cJSufZjTNnZNl1nsiTdOPT20qcQjec4Zzjli35SmzZVYdK97+9X0d42Lgu54LNCr8J2n9si+
+	eX5L+MlwJwmdnc8Tv+vlPc56cYuzdQ9TY9La7SXnl/ds0T34rmBexe4NjrdqNTz8WqU5j12Z
+	7iodsEohKVYiQ+oYuyZvaGjTyy1ty2Y/vv30vxJLcUaioRZzUXEiAECvIAbiAwAA
+X-CMS-MailID: 20250203163311eucas1p17f75b2012c9341f93af43f586809a81e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250128194825eucas1p14e2cb0a85c397dea297e9c4177cf1585
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250128194825eucas1p14e2cb0a85c397dea297e9c4177cf1585
+References: <CGME20250128194825eucas1p14e2cb0a85c397dea297e9c4177cf1585@eucas1p1.samsung.com>
+	<20250128194816.2185326-1-m.wilczynski@samsung.com>
+	<ed7a463e-9654-41c3-91f6-f3f877fd9a20@imgtec.com>
 
-Hi Chris,
 
-On 1/31/25 5:59 PM, Chris Morgan wrote:
-> On Fri, Jan 31, 2025 at 05:46:20PM +0100, Quentin Schulz wrote:
->> Hi Chris,
+
+On 1/31/25 16:39, Matt Coster wrote:
+> On 28/01/2025 19:47, Michal Wilczynski wrote:
+>> The LicheePi 4A board, featuring the T-HEAD TH1520 SoC, includes an Imagination
+>> Technologies BXM-4-64 GPU. Initial support for this GPU was provided through a
+>> downstream driver [1]. Recently, efforts have been made to upstream support for
+>> the Rogue family GPUs, which the BXM-4-64 is part of [2].
 >>
->> On 1/30/25 7:10 PM, Chris Morgan wrote:
-[...]
->>> When Optee is not present or used, the node will trigger a probe
->>> that generates a (harmless) message on the kernel log.
->>>
+>> While the initial upstream driver focused on the AXE-1-16 GPU, newer patches
+>> have introduced support for the BXS-4-64 GPU [3]. The modern upstream
+>> drm/imagination driver is expected to support the BXM-4-64 as well [4][5]. As
+>> this support is being developed, it's crucial to upstream the necessary glue
+>> code including clock and power-domain drivers so they're ready for integration
+>> with the drm/imagination driver.
 >>
->> And what if we have OP-TEE without this node present, which would be
->> possible if we have CONFIG_SPL_ATF_NO_PLATFORM_PARAM set in U-Boot?
+>> Recent Progress:
 >>
->> I guess we could detect from U-Boot if a TEE is loaded as part of u-boot.itb
->> and fixup the DTB otherwise to mark this node as status = "disabled"?
+>> Firmware Improvements:
+>> Since August, the vendor has provided updated firmware
+>> [6][7] that correctly initiates the firmware for the BXM-4-64.
 >>
+>> Mesa Driver Testing:
+>> The vendor-supplied Mesa driver [8] partially works with Vulkan examples, such
+>> as rendering a triangle using Sascha Willems' Vulkan samples [9]. Although the
+>> triangle isn't rendered correctly (only the blue background appears), shader
+>> job submissions function properly, and IOCTL calls are correctly invoked.  For
+>> testing, we used the following resources:
+>>
+>> Kernel Source: Custom kernel with necessary modifications [10].
+>> Mesa Driver: Vendor-provided Mesa implementation [11].
+>>
+>> Dependencies:
+>> Testing required a functional Display Processing Unit (DPU) and HDMI driver,
+>> which are currently not upstreamed. Efforts are underway to upstream the DPU
+>> DC8200 driver used in StarFive boards [12], which is the same DPU used on the
+>> LicheePi 4A. Once the DPU and HDMI drivers are upstreamed, GPU support can be
+>> fully upstream.
+>>
+>> Testing Status:
+>> This series has been tested by performing a probe-only operation, confirming
+>> that the firmware begins execution. The probe function initiates firmware
+>> execution and waits for the firmware to flip a specific status bit.
+>>
+>> [   12.637880] powervr ffef400000.gpu: [drm] loaded firmware powervr/rogue_36.52.104.182_v1.fw
+>> [   12.648979] powervr ffef400000.gpu: [drm] FW version v1.0 (build 6645434 OS)
+>> [   12.678906] [drm] Initialized powervr 1.0.0 for ffef400000.gpu on minor 0
+>>
+>> Power Management:
+>> Full power management capabilities require implementing the T-HEAD SoC AON
+>> protocol messaging via the hardware mailbox. Support for the mailbox was merged
+>> in kernel 6.13 [13], and the AON protocol implementation is part of this
+>> series, since v2. Therefore this series support full power management
+>> capabilities for the GPU driver.
+>>
+>> Thanks everyone for taking the time to review the last revision ! Your
+>> guidance and the direction was very helpful.
 > 
-> Based on my understanding of how each of these projects communicate
-> with each other, Optee can only work if you either include both the
-> Optee node in the firmware AND the reserved memory nodes yourself, or
-> if you have neither and let U-Boot do it (by including each of these
-> patches as well as setting the CONFIG_SPL_ATF_NO_PLATFORM_PARAM). So
-> basically just this node alone is insufficient for it to work today.
+> Hi Michal,
+> 
+> This is awesome, thanks for contributing! I apologise for not responding
+> to earlier versions (things have been pretty busy here), but they have
+> very much been on my radar.
+> 
+> I see you're already aware of my other B-Series patchs[3]; would you
+> mind rebasing these changes on top of those? We're making some not
+> insignificant changes to the bindings which will conflict with any new
+> GPUs added in the meantime. I'll leave comments in this series where I
+> suspect the conflicts will appear.
+> 
+> Cheers,
+> Matt
+
+
+Hi Matt,
+
+Thanks for your review, and no worries about the delay it’s totally
+understandable. I appreciate the heads-up about the dt-bindings work in
+progress. I just wanted to share a working solution for now, but I’ll
+definitely rebase these patches once your changes are in place.
+
+Cheers, Michal
+
 > 
 
-Therefore I think we should either have this node defined + the 
-reserved-memory node (with hardcoded address and size if guaranteed to 
-be stable forever) added or nothing.
-
-Can we mark a reserved-memory node as "disabled"? If not, then we should 
-rather have nothing at all I believe.
-
-> The core issue is that Optee requires you to map the memory as
-> reserved so that Linux doesn't try to use it. You can either do that
-> yourself or you can have U-Boot do it automatically. Having the Optee
-> node in the devicetree makes no sense today unless we also carve out
-> the memory.
 > 
-
-We should patch U-boot to add these nodes to the DT if an OP-TEE OS is 
-passed and either SPL_ATF_NO_PLATFORM_PARAM=y or we cannot detect the 
-OP-TEE nodes in the kernel DT. What do you think?
-
-Cheers,
-Quentin
 
