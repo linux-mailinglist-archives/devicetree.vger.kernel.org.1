@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-142401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3CAFA25441
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:20:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91003A2541F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:18:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CA8D3A5641
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:18:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E73C1881FB0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35F0E2080C1;
-	Mon,  3 Feb 2025 08:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11BED202C40;
+	Mon,  3 Feb 2025 08:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="MVBkHUZq"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="xWKctEdP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92905206F3A;
-	Mon,  3 Feb 2025 08:16:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469401FE475;
+	Mon,  3 Feb 2025 08:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738570582; cv=none; b=hnhYE86h0JDHoPzNgjbllbF4QcsxvGiw/THHuSyXJs7Pg7O+/ahi3J4WqBhIrYu1+inioM1EvRE1/bm27PuBpLooW6TTY1MSC4BdL1xHXzP9JQZZxqmWquq95AZUlklJ1+NHAvBl6Mb32yWGMKuK4vWhjHD09asjMFf47gBCxlc=
+	t=1738570579; cv=none; b=hTwsoTSKuXv2+bWVkHUr9rW0TEmscNnSWanvhJQLkK5KWsyMsZ6GfNsfCE0OmbJ2O78PE10+eEF5gjSpSBYI8GCeoY3ZnwWeZ3KvmkoLYAIY/rlAMwu9cJVhHChk3yChDdrpZ/W3zxj3PdSU3BUzHf5lw9YvCxEmEatLZl4TvEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738570582; c=relaxed/simple;
-	bh=fDfnTD/jnBdLem0v+cEPI9L//YYA5v5r7mZzMN3mAOc=;
+	s=arc-20240116; t=1738570579; c=relaxed/simple;
+	bh=oO5KhbZvLDUuMkeBqDs72JzMia8xQMReg2IbrapGNqU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=esrifhmSAsDPHEwVxJrM1BdncX1OrrY8VJ/pbHDCFY1+3NLcMJOoVf0KM57oobzfpyvgrF6yMfO2smAEPrFXsC25msDzOHNtYoYAbrjiwjAYw3uNvlv1O5P94eaxCjdJC/SpEd99zXTqd9CFttOWcddgaGajCJmpvYBaPqg0l4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=MVBkHUZq; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=jSH4OEaEZ+8Z9zqJ1gwQq4y5gLqd5ZBIn85h9xRMxUESU49dCjlSp5JhjdsGj4+K/6NVkkMeJZwuP8w+PKpnwZgdjI0kzg16xcHjXasSEOKs7ff1bb1u+Gcft9qraYXs68CNMfuaOqU8vHT2EtuBJXdCurjCF4fKmxoQNVkFH00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=xWKctEdP; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,34 +37,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=r24954j0p83e4iaisXbIHzASJ/hedULNQIzGrOvva9U=; b=MVBkHUZqYiC0jbcoOvC2m9tlao
-	uS8bSj5DCT7Rh72PREbBtwNYnwXwvZcN415feVn9KvXYFUE7b51dH0r4Clr/RAOucJLzpN5SfbtYV
-	+c1/mGBTHTTAjPFOsLNxT7kph9lUXjuj1aoHzFNlcRxABgzHKNB+fKJCTsFz96zzvuI2rs3ltm/eL
-	QaQbvRje1PyjItf9Vt67pymwMiQuhsN2O86vEjNYHrlZe4n8PQB0Wm8Nqld+QmaCMgWsbAMzkL4M4
-	cmJz4xmmW9GSp1yQFCe8xeGZnFGqDbDWX7xC2YHQpmqI+ZcbKFWXOMvmijpAos8Y/klI/+ji+nWei
-	8ObiVG/w==;
+	bh=Ik41dgyjlw+9TChaY48btmDAd5C/ThMKLX6iSZ9VoAc=; b=xWKctEdPbbCKrsivx/7r2nEIyB
+	U+C++sN4iBu7EvVHMpajdHRlZKDqC6Edqm7Prchbqw3HWhBgtFX6gkdEU+A/wXVGiX+ZTGl9hn7rQ
+	8hqjw6cJ6qVdGz5beu0xK52JtplVbumoWFT1kRMpUTo0fza2J2Tab3bugKZlYkI6px0nSXSERQCtk
+	PvAIKGdpDJLf6erb6OFyV1imD4gJnyWgMsMn5nl7W1RgzRdPYug0+7dX9hlvNitE6Ds5YMEjaeunQ
+	JjTLDkSh8AgTh5sKSpnB9LtrHN2071LjAeh6Uw2dCuHppBJjvWrXV+PFYD7UZwXSCcGQmRWwfU+pD
+	rcqxQ47Q==;
 Received: from i53875b5c.versanet.de ([83.135.91.92] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tercm-0005Vr-Kz; Mon, 03 Feb 2025 09:16:08 +0100
+	id 1tercn-0005Vr-1W; Mon, 03 Feb 2025 09:16:09 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
-	Jianfeng Liu <liujianfeng1994@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Rothwell <sfr@canb.auug.org.au>,
+To: linux-arm-kernel@lists.infradead.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Enable HDMI on armsom-sige7
-Date: Mon,  3 Feb 2025 09:16:00 +0100
-Message-ID: <173857053621.78657.10703057328583669922.b4-ty@sntech.de>
+	linux-kernel@vger.kernel.org,
+	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	quentin.schulz@cherry.de
+Subject: Re: [PATCH v2 0/2] Disable DMA on secondary UART on PX30 Ringneck
+Date: Mon,  3 Feb 2025 09:16:01 +0100
+Message-ID: <173857053620.78657.12420738003783521778.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250115023327.2881820-1-liujianfeng1994@gmail.com>
-References: <20250115023327.2881820-1-liujianfeng1994@gmail.com>
+In-Reply-To: <20250121125604.3115235-1-lukasz.czechowski@thaumatec.com>
+References: <20250121125604.3115235-1-lukasz.czechowski@thaumatec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,15 +74,27 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 15 Jan 2025 10:33:21 +0800, Jianfeng Liu wrote:
-> Add the necessary DT changes to enable HDMI on ArmSoM Sige7.
+On Tue, 21 Jan 2025 13:56:02 +0100, Lukasz Czechowski wrote:
+> The PX30-uQ7 (Ringneck) SoM has two external UARTs, connected to
+> uart0 and uart5 controllers on the PX30 SoC. The uart5 does not
+> expose RTS/CTS pins on the Q7 connector, as they are used for
+> different purposes. It was observed that UART controllers without
+> hardware flow controller behave unstable if the DMA is enabled.
+> This patch series moves the pinctrl-0 to SoM dtsi file and uses
+> /delete-property/ to remove DMA from this UART controller.
+> ----
+> Changes v2:
+>  - Update commit message of patch 1/2
+>  - Add Cc: stable@vger.kernel.org
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: Enable HDMI on armsom-sige7
-      commit: 1a6a05d15195f74596d5209b4fd8b781a33b7fbe
+[1/2] arm64: dts: rockchip: Move uart5 pin configuration to SoM dtsi
+      commit: 4eee627ea59304cdd66c5d4194ef13486a6c44fc
+[2/2] arm64: dts: rockchip: Disable DMA for uart5 on px30-ringneck
+      commit: 11534d3c53d5f3bd93285f8c1adcb793a733ad60
 
 Best regards,
 -- 
