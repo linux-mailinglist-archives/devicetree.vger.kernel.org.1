@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-142795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DB95A2673E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:59:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8C7A2675F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:01:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 059213A3DB1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 22:59:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58EA81638E7
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2291F21129D;
-	Mon,  3 Feb 2025 22:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2981201103;
+	Mon,  3 Feb 2025 23:01:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OTeOxERb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jq3YEzbM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5AED211269;
-	Mon,  3 Feb 2025 22:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95442B2D7;
+	Mon,  3 Feb 2025 23:01:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738623578; cv=none; b=f9ocA32nRc0bYGBsZH+0DQl6fH8XijgUG3ZQ4HQm5a2/RXzWAAegnK3uAh3V/SjawyIWGnYOjCUUikKWGodEnRANTUCZRVgB84F32fG9VFlxX646De+RwFwO9//zpG++nXEwqB/q/ezIyKDr1wdtj7AOqmDcy/X4PvvU8t+Ukk8=
+	t=1738623663; cv=none; b=Ixj99vlWhW67fHSs+FSOJLNM/ps98XoVpNtJyVKmlmwBDQNNim3RO7yCj6VyjRGIOGIkSU9xb4JVqVRjoDqOiHzZHpxiUjqU59Tgo5SxCMf0ceQIIWBry2IZs/uWGooME9WV+X5RyzoOg2oUptmF1BHjqHEQA2Hpwp3s74xEt5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738623578; c=relaxed/simple;
-	bh=g/ZpLB90eEOtSKmAoZjBPulwgV8zka0al3gfWNHs9n8=;
+	s=arc-20240116; t=1738623663; c=relaxed/simple;
+	bh=SYLHmixviQoIpESsL58YplO1Ev5dZ26Prpu2dtnbuok=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TGTc73Uu0QERVGrgJpvdmYEkYJAxfBZKkL9B2g2JfmLRm34t0C3ZWmlYRWGfu44fhLu9QClJbNlMD3zGJfNHt8w1/BkwTz09yDL9vxT7dlE1R0TpsSqTHFf1Bv1/k3l6yyORHqa1XZqxlZJHbISQ5eH1O6KnUS+f5WAXsQOLGik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OTeOxERb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C83C4CEE0;
-	Mon,  3 Feb 2025 22:59:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rhYpoEq5RL516zlu36bSuaLRxUtGXs1AhDRZwDU5w7gGdMu+L/UNNGEla2zV7kCt2EUoW8/GQM81HWsytNpZFrBIb9AymTYf5FNPMELo+nVNz3cUIJ0md5567QQjhubXFC3hzpc9T8Bhdof8f138ocYCVPyu1t+hzLm1aNsG1J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jq3YEzbM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1E9EC4CEE0;
+	Mon,  3 Feb 2025 23:01:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738623577;
-	bh=g/ZpLB90eEOtSKmAoZjBPulwgV8zka0al3gfWNHs9n8=;
+	s=k20201202; t=1738623663;
+	bh=SYLHmixviQoIpESsL58YplO1Ev5dZ26Prpu2dtnbuok=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OTeOxERbmFkaL7RFQMUtdWRsZR6lVYCGgTWdYXsuXmQ3DlUF70Bf33zf5vWoZ+uzh
-	 nM7vQ4OwORmXeU7RCjSalG2kMcGP96FNOGfnqBK8OyrsCJM1pdru8ETJ9anM0k9uXL
-	 PbXXMoh/m+BkBSITiRdJ6E+GLUNEk+UneVn45BFyEuKRO5XGe6X5ZQjFuFDlPK0MdX
-	 Nk1GtETvQwtwZ1SPzK/0CRLBCjb/IElDP5Qb1G9Zeq5kpU/dW3PHfMt7Mq4rY54U1w
-	 tvRhiuNwMT7qYl/8HgyUeCPY977YZGH5GBDVknkAdU+21RV5eXFdo+awxvQFHzw5Em
-	 cLpA4rg6RqLsA==
-Date: Mon, 3 Feb 2025 16:59:36 -0600
+	b=jq3YEzbM5g1Jc+vUThYy5+MzRuB3bVDl2bV+KXfIhcBq1SqkHDVZR9uF0PSR7edhq
+	 OK1TgAxRSETSpJzFvxPYOl+oP1HA832d0+fnt3JI8B28hmqSm7pEj2Bo9UF/0q+ffB
+	 0LaiQCs9mwJe1NjKFNZTIOGLJ9PWJdvCiHlVBXn9cHEkoWTWyb4jX8dVaz3X7JE8ND
+	 1AsIJGnFPLRDUAdcKEytwK/kuThZp/5uartgvC+gZhFCFXIk24+Nhmpw5eJNIYc151
+	 DRJcf/MRWOWVmFN4UsWAxVEQNn/yXhie7sRS+ugRGHEtyaGZRKDnj1kTcNDug3lIPg
+	 4Vf8O/WXy2GCw==
+Date: Mon, 3 Feb 2025 17:01:01 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Danila Tikhonov <danila@jiaxyga.com>
-Cc: conor+dt@kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, andersson@kernel.org,
-	linux-kernel@vger.kernel.org, konradybcio@kernel.org,
-	krzk+dt@kernel.org, brgl@bgdev.pl, linux@mainlining.org
-Subject: Re: [PATCH 3/4] dt-bindings: eeprom: at24: Add compatible for
- Giantec GT24P128E
-Message-ID: <173862357520.500395.299611236712032118.robh@kernel.org>
-References: <20250203111429.22062-1-danila@jiaxyga.com>
- <20250203111429.22062-4-danila@jiaxyga.com>
+To: Potin Lai <potin.lai.pt@gmail.com>
+Cc: Quan Nguyen <quan@os.amperecomputing.com>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Patrick Williams <patrick@stwcx.xyz>,
+	Potin Lai <potin.lai@quantatw.com>,
+	openipmi-developer@lists.sourceforge.net,
+	Cosmo Chou <cosmo.chou@quantatw.com>,
+	Corey Minyard <corey@minyard.net>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] bindings: ipmi: ssif-bmc: Add property to adjust
+ response timeout
+Message-ID: <173862366090.502195.2408290922979845637.robh@kernel.org>
+References: <20250203-ssif-response-timeout-ms-v1-0-6fe279740181@gmail.com>
+ <20250203-ssif-response-timeout-ms-v1-1-6fe279740181@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +65,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250203111429.22062-4-danila@jiaxyga.com>
+In-Reply-To: <20250203-ssif-response-timeout-ms-v1-1-6fe279740181@gmail.com>
 
 
-On Mon, 03 Feb 2025 14:14:28 +0300, Danila Tikhonov wrote:
-> Add the compatible for another 128Kb EEPROM from Giantec.
+On Mon, 03 Feb 2025 21:09:13 +0800, Potin Lai wrote:
+> The SSIF response is handled by a userspace application, which may exceed
+> the default 500 ms timeout when the BMC or application is under heavy load.
 > 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> Add a new device tree property, `timeout-ms`, allowing platforms to adjust
+> the response timeout based on their specific requirements. This helps
+> prevent timeouts in scenarios where longer processing times are expected.
+> 
+> Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
 > ---
->  Documentation/devicetree/bindings/eeprom/at24.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
