@@ -1,155 +1,123 @@
-Return-Path: <devicetree+bounces-142679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 315BDA26178
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:30:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C20C3A2617B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:31:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A34EA18877F0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:30:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49BB41654F0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF79920408E;
-	Mon,  3 Feb 2025 17:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A26020897C;
+	Mon,  3 Feb 2025 17:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M2YorSiE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t24P9316"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DF0E205AA9
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 17:30:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703FD3A8CB
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 17:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738603831; cv=none; b=fI1RRG8I0TfEMczYUrkbrn8nN4ukvI3NUgZJJbZRLfcy1Q9KdfmNsCpaO+GCRJuRwd6f/eDfe4JTGPag3V2x7iZq1ec1z30Mwh64jWHw039BVPMyl2r+NxHC1NqvX0vcz/ohF9n9GoOQmq1EYXFngil22NurntSuQHitIhcbnc0=
+	t=1738603895; cv=none; b=R/97MlYvjriXKcpVbWiJcCywt2EBhmoAmJPj2g57zBC/hVwQvmc0TdDKhVMD35IQRJu1Cgz0P4t4+2GKP1gHMwe/RG80xE21yT2gRlIP84blU4iALPCT9G5klk9cIDzhsMAQqLmCe8LBY9jRZCik8yNcA9leOdxORtycm3E+Zpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738603831; c=relaxed/simple;
-	bh=EcWyugv2Wzk+zrYc1pAVwZTt8kXAmRy3pdppnr/ONyY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tDUXQ2MJctYMJBdXMpZNhUZTx8+HAR1O+6Fy4OsE0ePs7+HQt/29RU/4Y11snnbZiw1XmyYziD9IUWPeLwqiL++3W8TVfcLBaRNyXnP6AXj9oMsv6kbl3pKPR7qtjqrslqvv7ysz8fOa8nDypTCKwQndEoUFBPwHAbRScQpbpNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M2YorSiE; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2165cb60719so83904465ad.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 09:30:30 -0800 (PST)
+	s=arc-20240116; t=1738603895; c=relaxed/simple;
+	bh=YDhUgtlTAwS0RUw95kPd9JoxS0ZWO9dvD7Jku166Tt4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hkshwikwbh9ru1PyxmtI5B4TbEPwvLkeDInz1cq31bsIp+yyrDhcD8jhu+xwrlzCRnGtRzMYFD2kiSxhLMlxeYYgWYe0kxwu3IHGOJou8YAwMlHPcaX7PyITyTDj5+/I4moAcTmxZZIiB9hWKnqIs1QoAAd9JjgUmCbvGnw4meU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t24P9316; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-54024ecc33dso4842900e87.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 09:31:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738603829; x=1739208629; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=U+3jIvZnmKA6FZPn3NDJLwBHo+QpViaEYNsBITnjd8w=;
-        b=M2YorSiEXqgwRdC4SzL50JU7KIRxGA3XfsWz4BV4zzbF/pxKKQFsAXQdSUfCuM8MNw
-         rjTYxuRJVG7FjkXBO77P0znSHDXqkmY6I1IqFtdG+G+DbZd/CQHVnQeNNX0XkShDFbV7
-         3fsAezWrIO2ogbNQqhRieipvLLRB4NH78JoMklcXYkKnjVttQkgKd6hzPx213OJpFJhv
-         NRI4NWzIyf/VqEyma0N59l8pQw+w6boucVXRSoQMzVIAMb2R9Pv6mRT0ECdQ9+E3P9SS
-         WKw6suxpoYnMTju0p/R4r4kpjsjJi+GkJaOMd+4W0YZW5EosojdUagmDn75YGoRbhVDX
-         7utg==
+        d=linaro.org; s=google; t=1738603891; x=1739208691; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6J5C2NglTFNy0YpzDKyoh02/sMog3Gz9jf3ZxrSeYfw=;
+        b=t24P931678LDgB+s2sBHZpIsNlMNDP0oCo2SCHo46E5E79nI4B4V39HDZNVPslfErR
+         jNZGNXhJmVbW/lYv9BnmB/haYl/swEXYaTjaZyvr2CQEODZD6/4Z3vuRxkdKfGlfdGIS
+         vtebGYVoJuU0gFeY7VlIRT3hLxDrlSExCo5hNcwM1RrNrikigRUSaXc39RH7pHFkheyL
+         2v94bgdpHH53Cu0ZGRzHnXUwB7F0CCdYaj6AnLbLNlLSgMRC/q+YP9boN+QAc80zayAy
+         b0G9nLn99/HxtEnlBkk7Bh6iEpCuIRfM0CRTjyK/RveuwOtJz4GY1w9uXXQOn6ULJc3V
+         VotQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738603829; x=1739208629;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U+3jIvZnmKA6FZPn3NDJLwBHo+QpViaEYNsBITnjd8w=;
-        b=mRd9SH0495XmR8ZZoNettX7xaM7dsulXhAhC9+a4gxFiffMXLMFklgt6abl657X8kA
-         zaHE3SwMBj5M0ydUdYHExT1r0efj/59pekJ0oAIRbcs0tnEldRnD9e1FLRmHfRx6XZU9
-         fN8IGL6otRefgaIWBSyctrtx274WPpkSIZZdbJAY/9wTDGX699SIlzycv3+SGEvR3QiN
-         /gX2+z9JuiRPGDvyg+lf1ZTDoP+xqWW3oDGXkk0rKmAeakVlPSI84pPmy3pSKk9KiAGh
-         dkxl8y54pHspyBZlQqcDgpIX959nikCB5g39FZ5ZbNozBu0IWcQPPU4KXj2fcQNSEFP7
-         z+Ww==
-X-Forwarded-Encrypted: i=1; AJvYcCXHmPVjYXNEf1MUj5EeeHEpzqj7FztYpHLqmABNRS+10osB5LgtMbS0LcLmdnJM4MWGMdMW9XE0VqF1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxwzcb3kwxnbVrCzh1ucBxDBDYwF2AzeZu4FHqU3gofx3kJOcov
-	zl51dp+SyyXYquNFkZINK1Pr3nuxMuMWqwk2htnKD5Ex3ISsP7xf
-X-Gm-Gg: ASbGncv6YHPoldgCu68oUs0LPV0w9akuKICQHTzefpxe/7HZXd6YjEtW2wZw7b+JeAv
-	zh9sH5sPtJ5n41i8Zvil++QwGSwovJYlHFi68KkWKRbdjm9+rkFjiWagiz5Gghwo+arautg7ue1
-	ErzhZTdP16FbawqIQrb76tHFpGn3FCODOK/M5GJSLL1Nl+5bic6n7Uo7ml8Rkl5tZ4ko9olmGH9
-	Q3iLLRtUvvZVu2sAEZKX+1IXqVEVSni5tW89iKCbjkaJpzDq1ZeQFcOmZfTsYreY/+PAuIdDwsn
-	dL1l+rZTNDzmu1R6mNk78o3DVdcJ
-X-Google-Smtp-Source: AGHT+IE8nNjdmDUBWWzeT2S1Qot1ZFFEd8cLym1Jv/D9+lSJXgZUh9NGk6KW9hQBaAEr8zUWODiSLg==
-X-Received: by 2002:a17:902:eb54:b0:215:a2f2:cfbf with SMTP id d9443c01a7336-21dd7c66954mr227001515ad.18.1738603829496;
-        Mon, 03 Feb 2025 09:30:29 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:dbf:9aeb:2ad1:3bf9])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21de3300880sm79896195ad.168.2025.02.03.09.30.26
+        d=1e100.net; s=20230601; t=1738603891; x=1739208691;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6J5C2NglTFNy0YpzDKyoh02/sMog3Gz9jf3ZxrSeYfw=;
+        b=UScnlBAWEBV4CkN8HmXVyIPNVQ3hSY8JkYEG5ZovoN/cINca0R3psFIBmO1yU2P5vC
+         trFegIlKCFE5dGz19LxgCqpfxX2fKDiuqWSxT5VB5U8QTLyo7HZc8K4oQTQAkJs+OcPQ
+         R+4C9dj8+pTtYJqfecJQI3oCa4pvpSm8jXuXivSbpoJaCcSKC/Tn1UHgn/FvsMUBl5Ep
+         LzstEb61mZQydm7zquuX5kVSWhorK2OnAH75YAz3USsRNW9oniJVyf0+P3SinJx4YFil
+         +4M7St8ehmNXSF0M3mKewhvdTVZq+TbeLD6WL0H/VPCHWxfcPwdCS1OgImPfID8fcfhD
+         t/Pg==
+X-Forwarded-Encrypted: i=1; AJvYcCVSNFlptN88AOxDZ2Uzo+pYEmZ6D3uA4PK130Il3541qnQfJNo8z2Lv1vRatWMZNbQwgeINkyNd0wgz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSDDZXTVxHBElyWMLiFp7u3QXpfV5QOag1TZ8WvW3pjDrBKG0O
+	ITz2rGfsz12n0sPrtNFm1qUI3uFRwWFrIodQeOt659/sPLtwbJKdesSc2I+1+rE=
+X-Gm-Gg: ASbGnct7CJjTWAMpkQ0RqOJS8U0XciW0Kwc4FANM13W/LLPIzx1ic6T7w6GB1OqJ1mU
+	qMB7gtvUCP8vGNXW9Rho0e6gNdJOLUi2XPTIkRWgCQByzR8ZEmZ2l07eZaOorjiQksDI3EJjY4a
+	+FMwseH4HM6d4XzpY3wqfYR4O5TqQsdaom5WNaz9LmvpjYwhzUt0aYRZnER63uOQw+lH5Ilrx67
+	mmcj/eJ7mkBzcMtYl5XjSXoPRg4WGjde42rCwgRq0wuv76k2lEJB16aKcgiZ8+LS+TU0FmIwrkQ
+	vTx30VwmPnb+P9sGPqLoICzEil6fkRpQ64LzNHMcu9FcdL0Vo2fb1stBQEdulY3h8TEzQ8E=
+X-Google-Smtp-Source: AGHT+IFkNKZpMLqmFDZoDeQKhVlcO9/NhY+aFDQECzKLKClwYk71/Jrbal9oPP0TJgwbGI19n1UGFg==
+X-Received: by 2002:a05:6512:3183:b0:542:8cb0:88a8 with SMTP id 2adb3069b0e04-543e4c3fffamr7547584e87.52.1738603891401;
+        Mon, 03 Feb 2025 09:31:31 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebeb06bbsm1347935e87.146.2025.02.03.09.31.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Feb 2025 09:30:28 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ARM: dts: imx28-sps1: Fix GPIO LEDs description
-Date: Mon,  3 Feb 2025 14:30:20 -0300
-Message-Id: <20250203173020.39830-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Mon, 03 Feb 2025 09:31:30 -0800 (PST)
+Date: Mon, 3 Feb 2025 19:31:28 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>, =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Louis Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 2/4] drm/atomic-helper: Introduce
+ drm_atomic_helper_reset_crtc()
+Message-ID: <tk7ygprxgujdok4eo4iipmqs2bnsecxngltz2mk7kyqwl3ufpl@23rygh6g5iam>
+References: <20250203161607.223731-1-herve.codina@bootlin.com>
+ <20250203161607.223731-3-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250203161607.223731-3-herve.codina@bootlin.com>
 
-From: Fabio Estevam <festevam@denx.de>
+On Mon, Feb 03, 2025 at 05:16:04PM +0100, Herve Codina wrote:
+> drm_atomic_helper_reset_crtc() allows to reset the CRTC active outputs.
+> 
+> This resets all active components available between the CRTC and
+> connectors.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  drivers/gpu/drm/drm_atomic_helper.c | 41 +++++++++++++++++++++++++++++
+>  include/drm/drm_atomic_helper.h     |  2 ++
+>  2 files changed, 43 insertions(+)
+> 
 
-According to leds-gpio.yaml, the LED nodes should not contain
-unit addresses. Remove them.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Also, 'default-trigger' is not a valid property. Change it to
-'linux,default-trigger'.
-
-These changes fix the following dt-schema warnings: 
-
-led@1: Unevaluated properties are not allowed ('reg' was unexpected)
-led@2: Unevaluated properties are not allowed ('reg' was unexpected)
-led@3: Unevaluated properties are not allowed ('default-trigger', 'reg' were unexpected)
-leds: '#address-cells', '#size-cells' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/nxp/mxs/imx28-sps1.dts | 13 ++++---------
- 1 file changed, 4 insertions(+), 9 deletions(-)
-
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-sps1.dts b/arch/arm/boot/dts/nxp/mxs/imx28-sps1.dts
-index 0f01dded4e3d..ca62e7933116 100644
---- a/arch/arm/boot/dts/nxp/mxs/imx28-sps1.dts
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-sps1.dts
-@@ -24,30 +24,25 @@ reg_usb0_vbus: regulator-0 {
- 	};
- 
- 	leds {
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		compatible = "gpio-leds";
- 		status = "okay";
- 
--		led@1 {
-+		led-1 {
- 			label = "sps1-1:yellow:user";
- 			gpios = <&gpio0 6 0>;
- 			linux,default-trigger = "heartbeat";
--			reg = <0>;
- 		};
- 
--		led@2 {
-+		led-2 {
- 			label = "sps1-2:red:user";
- 			gpios = <&gpio0 3 0>;
- 			linux,default-trigger = "heartbeat";
--			reg = <1>;
- 		};
- 
--		led@3 {
-+		led-3 {
- 			label = "sps1-3:red:user";
- 			gpios = <&gpio0 0 0>;
--			default-trigger = "heartbeat";
--			reg = <2>;
-+			linux,default-trigger = "heartbeat";
- 		};
- 
- 	};
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
