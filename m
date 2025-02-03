@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-142396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91003A2541F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:18:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF49A2549A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:40:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E73C1881FB0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:18:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D2F41881EA8
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:40:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11BED202C40;
-	Mon,  3 Feb 2025 08:16:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFCA1FBC86;
+	Mon,  3 Feb 2025 08:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="xWKctEdP"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="lgenNZl3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469401FE475;
-	Mon,  3 Feb 2025 08:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6701D7E50
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 08:40:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738570579; cv=none; b=hTwsoTSKuXv2+bWVkHUr9rW0TEmscNnSWanvhJQLkK5KWsyMsZ6GfNsfCE0OmbJ2O78PE10+eEF5gjSpSBYI8GCeoY3ZnwWeZ3KvmkoLYAIY/rlAMwu9cJVhHChk3yChDdrpZ/W3zxj3PdSU3BUzHf5lw9YvCxEmEatLZl4TvEc=
+	t=1738572007; cv=none; b=i21ztq6weROp69mUaKzYz4zHOhvER7LpoDTUSfHnJ6aO/ngxm1cSD9VwLijgn9FwF4EIXOdTUDDWPZdKiGUiz9FVaddXQ9GtQEuIqE5cBPpfHmYAFH2ouvn1by+ljidOnG/ekohRsy0I/YiuGUNMTtH/uswttKe9yBAKWtnHqAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738570579; c=relaxed/simple;
-	bh=oO5KhbZvLDUuMkeBqDs72JzMia8xQMReg2IbrapGNqU=;
+	s=arc-20240116; t=1738572007; c=relaxed/simple;
+	bh=2gC/5O38TjrgaXYc2UParLmtt6IMLZ5EuP2IBcULbrs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jSH4OEaEZ+8Z9zqJ1gwQq4y5gLqd5ZBIn85h9xRMxUESU49dCjlSp5JhjdsGj4+K/6NVkkMeJZwuP8w+PKpnwZgdjI0kzg16xcHjXasSEOKs7ff1bb1u+Gcft9qraYXs68CNMfuaOqU8vHT2EtuBJXdCurjCF4fKmxoQNVkFH00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=xWKctEdP; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=QwWJ4kiVyIImWSl82cpFf64rcXeaxfI3ql4+EZndC54uIWk+oC9KxKDd+djqxQ+x4bN9fbfpQiBpP02SGiKoYm987Blj5w0C+HqPTyt5J2cQRFH6HSf4toYmb5YMrCz9A62GCB0tc9ujVw6oL3m/ICFuFWqSlfFFLuIW02WLpLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=lgenNZl3; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,33 +37,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Ik41dgyjlw+9TChaY48btmDAd5C/ThMKLX6iSZ9VoAc=; b=xWKctEdPbbCKrsivx/7r2nEIyB
-	U+C++sN4iBu7EvVHMpajdHRlZKDqC6Edqm7Prchbqw3HWhBgtFX6gkdEU+A/wXVGiX+ZTGl9hn7rQ
-	8hqjw6cJ6qVdGz5beu0xK52JtplVbumoWFT1kRMpUTo0fza2J2Tab3bugKZlYkI6px0nSXSERQCtk
-	PvAIKGdpDJLf6erb6OFyV1imD4gJnyWgMsMn5nl7W1RgzRdPYug0+7dX9hlvNitE6Ds5YMEjaeunQ
-	JjTLDkSh8AgTh5sKSpnB9LtrHN2071LjAeh6Uw2dCuHppBJjvWrXV+PFYD7UZwXSCcGQmRWwfU+pD
-	rcqxQ47Q==;
+	bh=yI7nEKwf8euL226QHbemgP0cT38UVnbpkgOgS9dADV0=; b=lgenNZl332Ve5vm4eX/+9cM0jH
+	SLriyULUX5HIGrxCaUfHB2YNOuITMZDaTbkpzyRhCf3pG71xuq/zhaZ6KvWLNXFcnOKcw7r1u9Ssx
+	cORVh6gWztCRJosTiyg176YVn3jI4BK/a9SoETqSrx0HNL4Q8h5PYPbn+T4bkiXXbuTUYWho2ay6D
+	cLM6j7Ci7nONYKpLMDhCwmYKAYpi8O86SePlSjmL1CLMbp1PIjCgYW0ZP2Y9d2iq79pmpn+1kiw3X
+	4vGTP1xKxdvGOjzahegp6BG417Q1TSr4arqrsXum0Um+e/zMifX7crQYoFOJU/aumN+6ADwSEQKU8
+	VmQkYKVg==;
 Received: from i53875b5c.versanet.de ([83.135.91.92] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tercn-0005Vr-1W; Mon, 03 Feb 2025 09:16:09 +0100
+	id 1tercn-0005Vr-Ga; Mon, 03 Feb 2025 09:16:09 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: linux-arm-kernel@lists.infradead.org,
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
+	dsimic@manjaro.org,
+	twoerner@gmail.com,
+	didi.debian@cknow.org,
+	jbx6244@gmail.com,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	quentin.schulz@cherry.de
-Subject: Re: [PATCH v2 0/2] Disable DMA on secondary UART on PX30 Ringneck
-Date: Mon,  3 Feb 2025 09:16:01 +0100
-Message-ID: <173857053620.78657.12420738003783521778.b4-ty@sntech.de>
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable USB OTG for Radxa ROCK Pi E
+Date: Mon,  3 Feb 2025 09:16:02 +0100
+Message-ID: <173857053619.78657.16527102347598350426.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250121125604.3115235-1-lukasz.czechowski@thaumatec.com>
-References: <20250121125604.3115235-1-lukasz.czechowski@thaumatec.com>
+In-Reply-To: <20250129064004.162136-1-naoki@radxa.com>
+References: <20250129064004.162136-1-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,27 +76,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 21 Jan 2025 13:56:02 +0100, Lukasz Czechowski wrote:
-> The PX30-uQ7 (Ringneck) SoM has two external UARTs, connected to
-> uart0 and uart5 controllers on the PX30 SoC. The uart5 does not
-> expose RTS/CTS pins on the Q7 connector, as they are used for
-> different purposes. It was observed that UART controllers without
-> hardware flow controller behave unstable if the DMA is enabled.
-> This patch series moves the pinctrl-0 to SoM dtsi file and uses
-> /delete-property/ to remove DMA from this UART controller.
-> ----
-> Changes v2:
->  - Update commit message of patch 1/2
->  - Add Cc: stable@vger.kernel.org
+On Wed, 29 Jan 2025 06:40:04 +0000, FUKAUMI Naoki wrote:
+> The Radxa ROCK Pi E has USB D+/D- signals on the 40-pin header[1].
+> Enable it for use as an OTG port.
 > 
-> [...]
+> [1] https://docs.radxa.com/en/rockpi/rockpie/hardware/gpio
+> 
+> 
 
 Applied, thanks!
 
-[1/2] arm64: dts: rockchip: Move uart5 pin configuration to SoM dtsi
-      commit: 4eee627ea59304cdd66c5d4194ef13486a6c44fc
-[2/2] arm64: dts: rockchip: Disable DMA for uart5 on px30-ringneck
-      commit: 11534d3c53d5f3bd93285f8c1adcb793a733ad60
+[1/1] arm64: dts: rockchip: Enable USB OTG for Radxa ROCK Pi E
+      commit: 0cd57b5e5dde94129a13f6d2897cdb82f8943f9f
 
 Best regards,
 -- 
