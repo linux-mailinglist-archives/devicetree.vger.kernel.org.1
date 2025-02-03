@@ -1,158 +1,176 @@
-Return-Path: <devicetree+bounces-142443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E302A255C4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:25:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B81F0A255D2
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:28:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1011316495A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:25:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A6B0167566
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:28:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1FA61FF1BF;
-	Mon,  3 Feb 2025 09:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7FD81FF1D3;
+	Mon,  3 Feb 2025 09:28:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lCIEv6Bv"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WEkCUQUj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA2C1D5176;
-	Mon,  3 Feb 2025 09:25:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38AE51FF61C;
+	Mon,  3 Feb 2025 09:28:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738574725; cv=none; b=ro3otlcwF9eiSio7Olwun+xdwYsAP8UmwHzAlnqWmkjqMGxlVE+yDOauY4yU4hbT+HtmOjsaiBVeWl2uVP0j5l2ugf2hgRsdeiPRpLvEYR66vtjU00z+oIpp259DZvgqoZ9DhHtVS1rATV+P6doVct5kQj3raTCcQw1HJl+N9z8=
+	t=1738574902; cv=none; b=rVkKY+jGkrFIJODioN30cd7TASv2rO+zA76/K1DlwJvM2f7qIbnFgNKz2ZtTvv+UYWT0saQuDtL2MAhQLFSABDV9rVg21cyROZ1qQgLm2eKoEtxBtJgwCccm6sk9HQdpRwYnpa7HLfZIah7VgJZCtzhbtJ21euLn2U2XFWgPsn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738574725; c=relaxed/simple;
-	bh=ruYBLYQL0qLEkSgQB6asPUY130gP0Tm1+lbl5ZxAfzc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CYNXjQq4GSi7qaZIUwVAUhg09FpIxO9rZGC4Hvk/xQcQW/6bbRh4EjYwzuYaqTGYHTXa/jlWFirLhwUAAh9N6EYEgmaRXsAs8m/FLmbmt8F+GSVl8TrWQKcYvFEi+KktOSy4mEaT0f/CBCwBUaUgiCev7ac6dvIZpS/yKZUnLHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=lCIEv6Bv; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1738574721;
-	bh=ruYBLYQL0qLEkSgQB6asPUY130gP0Tm1+lbl5ZxAfzc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=lCIEv6BvXlPzZ4jmRbWLRWJV78zQQcoqIEEcNEUbovPcXq1IfKInkIMI/TJiZGJ43
-	 /2SVU4791RDomk3Wj1kYb/6Jqndk+aKo9Joh5Xg34DvuwQgDjJwe+5Y+4LZYl4jScH
-	 inaG9zZjpieCVt8aQ1YUK0ubN7S3dc+Y642ZcnPRiiaQz+B42pI1uR9MaBmed63RGU
-	 vjvxN3GbqjOakH/kypww7VsA9jO/wIpwR8ismxoz+3LYf0gOj06ZcnKORAS1LhG2Qv
-	 r5sF7ySXoNU+3lJbgGlY7sCLU88d5Mk2c4QGjNLEYB2dmfxXh7ETNY7ipAo9wLp0XV
-	 v/CjAZg5YZJIQ==
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bbrezillon)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8DB5617E0E37;
-	Mon,  3 Feb 2025 10:25:20 +0100 (CET)
-Date: Mon, 3 Feb 2025 10:25:13 +0100
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Florent Tomasin <florent.tomasin@arm.com>, Vinod Koul
- <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Steven Price
- <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Sumit Semwal
- <sumit.semwal@linaro.org>, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>,
- John Stultz <jstultz@google.com>, "T . J . Mercier" <tjmercier@google.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Yong Wu <yong.wu@mediatek.com>,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- nd@arm.com, Akash Goel <akash.goel@arm.com>
-Subject: Re: [RFC PATCH 0/5] drm/panthor: Protected mode support for Mali
- CSF GPUs
-Message-ID: <20250203102513.1a020577@collabora.com>
-In-Reply-To: <Z5ulnIuzapOVBQgb@phenom.ffwll.local>
-References: <cover.1738228114.git.florent.tomasin@arm.com>
-	<Z5ulnIuzapOVBQgb@phenom.ffwll.local>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1738574902; c=relaxed/simple;
+	bh=TpujSEcge8EYKw1QhJY7JTWk7WVpg4aAMiegf3GmC8U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=drXGIb3PgPfcKxkpcLfxPQhWtj+A8IAo+UoAmNX5tnulsnzOjqSUgS1/viv8/R48jq9yb9m+peQtaj0ciqy/iwMwCPPjcK58k0PItT3OPSl31hXd1BW8W9VNwLPSiFswUObnVC3cgXK5DoOClMZbn3qdh0yQGcNZaClvRX3hFwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WEkCUQUj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5138CbJP031483;
+	Mon, 3 Feb 2025 09:28:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Mn+PnTGOb4HsErWV3eK1Lm1zv+wphpiGyn5+Yosvbtk=; b=WEkCUQUjhWxN8IHb
+	a+A/xeDlnoN7XaeENcl9p7YkxxXNV34V4fnANuRzk0H5YASamVCwzV4cPEd8f0AO
+	bxcArNLXPR8a47Hkd3ghueuoU9Zh5YXSLRmx+oCd/UPqbyRfRILBpHGWN31eecEw
+	mx8KoKTr4dZT+glYuK00kcb4blYszS3RbBKDig1XcOU+Gyw+aTDVa4t1FtB2LmZv
+	ydUxzOgg/n0Jd8dTh/BQ5bGKmjUaXfWVV9tU7cLLqnpO1G+dV1fOIj+HBaQ6/xdi
+	6USvArSdluIIsuUVxgM5rZycMleZ8yxKkePTT30o8dyvSOcZEAHW32yk8xIjpQN5
+	g4qTdg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44jt3ar537-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Feb 2025 09:28:09 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5139S98P001452
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 3 Feb 2025 09:28:09 GMT
+Received: from [10.216.21.39] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Feb 2025
+ 01:28:01 -0800
+Message-ID: <4dab19d0-22eb-2395-56fd-758c3c0d8bc7@quicinc.com>
+Date: Mon, 3 Feb 2025 14:57:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v9 00/28] Qualcomm iris video decoder driver
+Content-Language: en-US
+To: Johan Hovold <johan@kernel.org>,
+        Stefan Schmidt
+	<stefan.schmidt@linaro.org>
+CC: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Hans
+ Verkuil" <hverkuil@xs4all.nl>,
+        Sebastian Fricke
+	<sebastian.fricke@collabora.com>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Nicolas Dufresne
+	<nicolas@ndufresne.ca>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
+	<u.kleine-koenig@baylibre.com>,
+        Jianhua Lu <lujianhua000@gmail.com>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        Vedang Nagar
+	<quic_vnagar@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>
+References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
+ <Z3_kLJ6Oy6m9D_wU@hovoldconsulting.com>
+ <CAEvtbuvHUF6tEiFOUUtqLh5hHf_Us+yA6TwtcmokM26v+QBLgg@mail.gmail.com>
+ <Z6CBrMus4SdSG9oF@hovoldconsulting.com>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <Z6CBrMus4SdSG9oF@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: tvZEWs4jbm0pUGZUtl8u2I2gNHwiYjP4
+X-Proofpoint-ORIG-GUID: tvZEWs4jbm0pUGZUtl8u2I2gNHwiYjP4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-03_04,2025-01-31_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 lowpriorityscore=0 mlxlogscore=999
+ impostorscore=0 bulkscore=0 malwarescore=0 clxscore=1015 adultscore=0
+ spamscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502030074
 
-On Thu, 30 Jan 2025 17:15:24 +0100
-Simona Vetter <simona.vetter@ffwll.ch> wrote:
 
-> On Thu, Jan 30, 2025 at 01:08:56PM +0000, Florent Tomasin wrote:
-> > Hi,
-> > 
-> > This is a patch series covering the support for protected mode execution in
-> > Mali Panthor CSF kernel driver.
-> > 
-> > The Mali CSF GPUs come with the support for protected mode execution at the
-> > HW level. This feature requires two main changes in the kernel driver:
-> > 
-> > 1) Configure the GPU with a protected buffer. The system must provide a DMA
-> >    heap from which the driver can allocate a protected buffer.
-> >    It can be a carved-out memory or dynamically allocated protected memory region.
-> >    Some system includes a trusted FW which is in charge of the protected memory.
-> >    Since this problem is integration specific, the Mali Panthor CSF kernel
-> >    driver must import the protected memory from a device specific exporter.
-> > 
-> > 2) Handle enter and exit of the GPU HW from normal to protected mode of execution.
-> >    FW sends a request for protected mode entry to the kernel driver.
-> >    The acknowledgment of that request is a scheduling decision. Effectively,
-> >    protected mode execution should not overrule normal mode of execution.
-> >    A fair distribution of execution time will guaranty the overall performance
-> >    of the device, including the UI (usually executing in normal mode),
-> >    will not regress when a protected mode job is submitted by an application.
-> > 
-> > 
-> > Background
-> > ----------
-> > 
-> > Current Mali Panthor CSF driver does not allow a user space application to
-> > execute protected jobs on the GPU. This use case is quite common on end-user-device.
-> > A user may want to watch a video or render content that is under a "Digital Right
-> > Management" protection, or launch an application with user private data.
-> > 
-> > 1) User-space:
-> > 
-> >    In order for an application to execute protected jobs on a Mali CSF GPU the
-> >    user space application must submit jobs to the GPU within a "protected regions"
-> >    (range of commands to execute in protected mode).
-> > 
-> >    Find here an example of a command buffer that contains protected commands:
-> > 
-> > ```
-> >           <--- Normal mode ---><--- Protected mode ---><--- Normal mode --->
-> >    +-------------------------------------------------------------------------+
-> >    | ... | CMD_0 | ... | CMD_N | PROT_REGION | CMD_N+1 | ... | CMD_N+M | ... |
-> >    +-------------------------------------------------------------------------+
-> > ```
-> > 
-> >    The PROT_REGION command acts as a barrier to notify the HW of upcoming
-> >    protected jobs. It also defines the number of commands to execute in protected
-> >    mode.
-> > 
-> >    The Mesa definition of the opcode can be found here:
-> > 
-> >      https://gitlab.freedesktop.org/mesa/mesa/-/blob/main/src/panfrost/lib/genxml/v10.xml?ref_type=heads#L763  
+On 2/3/2025 2:13 PM, Johan Hovold wrote:
+> On Wed, Jan 22, 2025 at 04:34:51PM +0100, Stefan Schmidt wrote:
+>> On Thu, 9 Jan 2025 at 15:58, Johan Hovold <johan@kernel.org> wrote:
+>>> On Thu, Dec 12, 2024 at 05:21:22PM +0530, Dikshita Agarwal wrote:
 > 
-> Is there also something around that implements egl_ext_protected_context
-> or similar in mesa?
+>>>> Introduce support for Qualcomm new video acceleration hardware i.e.
+>>>> iris, used for video stream decoding.
+>>>
+>>>> Note: A harmless onetime error log "Lucid PLL latch failed. Output may
+>>>> be unstable!" is seen during bootup.  It doesn't impact any video
+>>>> usecase and is currently under discussion.
+>>>
+>>> This could be an indication that some resources are not described
+>>> correctly and could potentially require both binding and driver changes
+>>> to address.
+>>>
+>>> This is also something which could cause trouble later (e.g. during
+>>> suspend) even if you manage to get the clock running after boot.
+>>>
+>>> Generally, you should not be introducing any new warnings; they are
+>>> there to let you know that something is wrong.
+>>>
+>>> Where is this issue being discussed?
+>>>
+>>> I think we at least need a public analysis and understanding of the
+>>> problem before merging this.
+>>
+>> Taniya Das proposed a patchset to reconfigure PLL in the clk-alpha-pll
+>> which allows the videocc-sm8550 driver to configure it correctly.
+>> https://lore.kernel.org/linux-arm-msm/20250113-support-pll-reconfigure-v1-0-1fae6bc1062d@quicinc.com/T/
+>>
+>> I tested the Iris driver with this patchset and I am no longer seeing
+>> the Lucid PLL latch failed warning.
+> 
+> Thanks for the pointer. Please make sure to reference this series (and
+> summarise the underlying issue) when resending this series.
+> 
+> Judging from a quick look the approach taken there seems like a bit of a
+> hack so it may not get merged in its current form. IIUC fixing the PLL
+> issue properly may depend on adding support for multiple power domains
+> to the clock drivers.
+It would be good if you can add your comment to the PLL fix series [1] so that
+the patch owner can discuss on your suggestion.
+Regards,
+Vikash
 
-I'll be looking at a mesa implementation for EGL_EXT_protected_content
-in the coming weeks. I'll probably get back to reviewing the panthor
-implementation when I have something working in mesa.
-
-> I think that's the minimal bar all the protected gpu
-> workload kernel support patches cleared thus far, since usually getting
-> the actual video code stuff published seems to be impossible.
+[1]
+https://lore.kernel.org/linux-arm-msm/20250113-support-pll-reconfigure-v1-0-1fae6bc1062d@quicinc.com/T/
 
