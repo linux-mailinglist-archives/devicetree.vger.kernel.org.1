@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-142682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07431A26188
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:36:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D585A26189
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:39:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ED353A3533
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:36:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAF1D3A3BC2
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47A3720B808;
-	Mon,  3 Feb 2025 17:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C81020C465;
+	Mon,  3 Feb 2025 17:39:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BWH6zYfR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sd56bM18"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B763A8CB
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 17:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5433920B808
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 17:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738604206; cv=none; b=WQj7WIsUc9rEUTyMQzzgWsOgK2qSBUfvf9VRXRNtYOfGAVLgJ1PITweP5DMOO0WDQderTUuzHfVBKodNiLIEU7zl5PhhNQddtrd+hXfSI4UmEsWz4awaVWjBMSBT6csfIJOZ7xayCiOYo0HBLnDA/BOM/tmeUvhO08nuyeCuDQs=
+	t=1738604353; cv=none; b=K/r3sCh99SL21kkxrqi0527ngCXZX1ChhQoANrCKD5mW7P+sOTYWoZvoTzIwsJl8/pM1Gy/mSWk4z0Qie41omYKuIHedZ+O/73YX1HDH03TZdlFlOn6FrHXJv2LNUDJU0/GYOVYzb+ZO/QH0fqigIL6q+FRqJHaFep8jcfcBjyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738604206; c=relaxed/simple;
-	bh=QASbM/CpD2LMAyGAq9qJB9y7bnfBxh/dPhTjVZvyUaY=;
+	s=arc-20240116; t=1738604353; c=relaxed/simple;
+	bh=5mInefIuuuwP0f5Z81MhnTgNOiwfNR3KLp/ooMTnWbI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GD7gV6Op9BbvXFZfPu0Mwdyv7Hz2hJ28Z8O3gClNbJ9ixR/AGk4PAGQvPCUZXFUMATrRpF7RufxrGBe0N5Ato2ZOF/4EXXXRBLLaS1J94JtuBSW8PzpSJHg7eyNPn3CH0WNICyJzVDhDjPyEN/fwoMVXtKI38/NJDoQv1jQThIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BWH6zYfR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45F65C4CED2;
-	Mon,  3 Feb 2025 17:36:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=FMgKtmXvg9w8mBE0NqtGTUCbFR2v0HSCdBAWcGaBQkINIWggqpFbzM7oIRqeEmMDIwJRruXNtg5Mo3bFOZr/G+gHTCeMGTjsIdsj/6aTteAfwSm5BAqUXMOMpiOoxIvWr21bYpAvwNpw9W7GkT3OWzpAmmD8Z+h1bXgFsGgEETI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sd56bM18; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17AC3C4CED2;
+	Mon,  3 Feb 2025 17:39:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738604206;
-	bh=QASbM/CpD2LMAyGAq9qJB9y7bnfBxh/dPhTjVZvyUaY=;
+	s=k20201202; t=1738604352;
+	bh=5mInefIuuuwP0f5Z81MhnTgNOiwfNR3KLp/ooMTnWbI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BWH6zYfR5tjxro2Xvs3xa4n8CarLELYUdEJJiT5UODYNyVkIXEaQ+tbmJ7hKFGd/S
-	 QG+5rv36vZynxM0+x2cY3CQWWO4k7DGIpRIJZBL2Cizn8pIdOarakxqIOjzhwG6Urr
-	 0NArcI61IFzMtc9BLZbsWk8V7TTc6xNg8sqTIx2cXQL8PXSbSPMYVJhYrlkdjarPWw
-	 /l5IFVmleyp1dh+Xn+JFK/HmiOiDWmSlcfdUwsDF09RykwBXAvXkTXV3ZY2l0d1nlc
-	 JCFOXos/NwVsI6xqadTwpencLUI7BXeMP9dT/xq4nMc1TrI24aO8W3x61q7iulAK0t
-	 2/4lmxMzKleyw==
-Message-ID: <a961f69e-970c-4ee3-bc94-40704c6ea643@kernel.org>
-Date: Mon, 3 Feb 2025 18:36:42 +0100
+	b=Sd56bM18y88LEh62vLc2N5i+4EF5oI3Nly+lst+VkuCVjYjqgf1vE73RblZbfLJgb
+	 9NYmzhKpGFJSMBBdXOnKpNRBGx2x8TEA1FEGIj/ZVref96vIhjLM0wtLr98X8AtKu9
+	 Jp36m81WvoobHfapaOJMUXExHJYk30mYjPCic2ZRwEk1L0aGeDyKWjg87Y2T+A/9Rg
+	 sg3uN7KaVMhyFWloKmUo/mfEYXQVh7S+kdiP+AIpZwjsQqIK3QFby7WHTUEkfJvB0J
+	 2uppgRpwpXgT3DrqB8zdaOtsQq3Z4hyXXBPknFeOBfN3YEWTKbBWHiV54alGg4hmXe
+	 mBT/UYbSypYHg==
+Message-ID: <f3148bf2-952c-419d-9e83-b6c9f1d47d67@kernel.org>
+Date: Mon, 3 Feb 2025 18:39:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: altera: Add compatible for Terasic's
- DE10-nano
+Subject: Re: [PATCH v3 2/2] ARM: dts: socfpga: Add basic support for
+ Terrasic's de10-nano
 To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
  Dinh Nguyen <dinguyen@kernel.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <cover.1738600838.git.u.kleine-koenig@baylibre.com>
- <8714f54eb78a2bacf508debb7844abfea78767ee.1738600838.git.u.kleine-koenig@baylibre.com>
-Content-Language: en-US
+ <0cb54b0340ef021e309e49ca0de97809a8c8ee9c.1738600838.git.u.kleine-koenig@baylibre.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -104,20 +104,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <8714f54eb78a2bacf508debb7844abfea78767ee.1738600838.git.u.kleine-koenig@baylibre.com>
+In-Reply-To: <0cb54b0340ef021e309e49ca0de97809a8c8ee9c.1738600838.git.u.kleine-koenig@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 On 03/02/2025 17:46, Uwe Kleine-König wrote:
-> The Terasic DE10-nano development board features a Cyclone5 FPGA, USB,
-> HDMI output and an Arduino compatible header.
-> 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/arm/altera.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@0 {
+> +		/* 1 GiB */
+> +		device_type = "memory";
+> +		reg = <0x0 0x40000000>;
+> +	};
+> +
+> +	soc {
+> +		fpga: bus@ff200000 {
+> +			compatible = "simple-bus";
+> +			reg = <0xff200000 0x00200000>;
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Are you sure simple-bus allows this? IOW, no warnings from simple-bus
+schema? To my knowledge, simple-bus allows only objects, except the few
+allowed properties (and reg is not allowed because it is bus, not a device).
+
+Nice coincidence with other patchset from Intel also claiming FPGA with
+resources is the bus, although there it could be root port.
 
 Best regards,
 Krzysztof
