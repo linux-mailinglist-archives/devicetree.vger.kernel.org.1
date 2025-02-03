@@ -1,193 +1,123 @@
-Return-Path: <devicetree+bounces-142607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A71FA25E1A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:13:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B58BAA25E2D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:15:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FBCD168FFA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:09:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7957E7A1631
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50EA4209663;
-	Mon,  3 Feb 2025 15:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2142E20B202;
+	Mon,  3 Feb 2025 15:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gq5AQg80"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="q/zdFTDm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C19620897C
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 15:08:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B68C20AF95;
+	Mon,  3 Feb 2025 15:13:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738595340; cv=none; b=jVVQWJKB6POPtUBmx1ARi0GcJPdP7EghMx0qEeqlsY9rwoe9SFpKiXi8ZhW55snHcXc5B7G95w5Clnw1zdxvO6bdLp0FhJG43eXaK4ugBqBwDS7oLYIl2aGFD3CqmRh3K4faAC2JWl9/TMEP18q910eh9Q8WQME1jUp+owEAiyo=
+	t=1738595604; cv=none; b=bzvpO74JPKU+04xlVeYno3IiUU7k1RctnNg3kqw1k5n/DJZHLUh4XkNBOiqmMgAQpekb9RJ15I6rmzftfFUV7juyIDisUYtkNJtEMcvaGIPk35NGpHB3fzqT4Wx1BXAOuNKeYHQXsVUSgfSwACDpihAY8nvxA2QzW86cA82K1BM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738595340; c=relaxed/simple;
-	bh=H2VxtfLjRgDMEkL8lutZkw6RV1QTTIhNQ1OHrEPbnpc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qSjq5lK3ll5Ml5hdt7IWLZv+fqWUguvz01YJimSJVP07RSnbOw/7tqFgzvJwP/l6s8B4yzPQO5KUBQp8aZ8PaloIE6HUyVF/FHimJg3BP6K6kvXMCi30b2Q1FS/WWaieS6ykFpstl6RnfRUTjsYsIDNrHxQKa8jf9YAyNdWRjd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gq5AQg80; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-21644aca3a0so105380605ad.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 07:08:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738595338; x=1739200138; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tNJuttpR9ZTjDV/l1jMgUgWhO6WwINcyvVT+7TM8akc=;
-        b=Gq5AQg80UTglR0tlxKx9+RRpKzyfY2K3rs/GW7MiT29gFAcD2M5bIP9MV0i6d4znpC
-         H0GzE87Ct/aKkB9/cb+Eg6G8cRLGF02rB3TqMSzOocrRZbKVpxHWzk83rm0f03olLjT+
-         tgxayqXwmCmEsDxCy1je6Sid7zkZZqsgpCJx7c0rrEfPBoXd7kQJ3uBQRT8BFuIZwO6y
-         urK3NBQELpCvP+RCKraq1OqVhLGeD8vqHYVkUPw2wTGdf2Sd15jaqKa14u1jUOXaJmbj
-         HECQV17xLZCKyjITIGxEuAMwHIz/lfpUDik0Az29K3FeXS6dAA/y9wmFFrwSGSs9UNmI
-         JcQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738595338; x=1739200138;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tNJuttpR9ZTjDV/l1jMgUgWhO6WwINcyvVT+7TM8akc=;
-        b=vPnjegTnWDGXXuddOSPhf8YJN1AsGX2102wU5imtghJl/HLdA/FPorzfmBqPujT5pU
-         NcxVNJ+wnl65fVzyMX6fUR3YTI+hqEW8irFf/F1rqNSvlgsw3IpLuLvDGkcef0e3UmK8
-         Zhn8XzxqK82Z+2T13ID2gJ0Mx/V3yEZ6HP6T5rGxeMSvCDRCGIIgrArx4UPMcOwt/ckp
-         NkTyhTibas+a/j9GvbDIgjcWW9uxvcXCpbeOiefeIdd4bQyKTWPqzOfVept+IzsA4pGz
-         P8Z0nX5DJ5A0fSdGs82bvp7I3fnXx2yCsjw+tJNtxxCfvKttKNm4s7K7+Z+5wRrmc6Ta
-         SXLA==
-X-Forwarded-Encrypted: i=1; AJvYcCV/OOuyRXZQigDq5RgJUknxByteQ1RtwwpLdNbuAp/mI5cA+0QmkgtQvdDoFMtk/HWIC91BeEkdTNsx@vger.kernel.org
-X-Gm-Message-State: AOJu0YywznQZz+ZhPDTB7OpyfNkAU1QM9IGxMJB19VdAacntbY5XcBc2
-	NjKZlw/9zenQGFXGKJkFj8saMvZXExrcLpl3nCFhwrsn1Zpwakq/gZFlrfnmtw==
-X-Gm-Gg: ASbGnct6uLSa5GJQvyqx8tM69tBgdY7cXktbUEcqPW0ZersMmJw8jsawQEEjLDJ08Kv
-	VtBh4vezBgU57+yhU2wzDwzChXsDjdxxBvk+Kf2/pfcOqBxrCJaPuZ4q3bXZlfJyUlo8E3OXOhU
-	ln+RKa1fS8Oz6uu5YHQ9wMagEyRZdY+kFwp+NPxXmrHNX9Xr/6+Rco15Y787Cf4TFmVMl2FliBR
-	mssYc0lXX+tzk4VRVZ0BCxmdWVZA/J14u5jwlelirc1mA4FwSrv/PMRPy9VQA3fm0/BnahL1bJm
-	n5HuD0JOcoAjMAtBaBSjc6KEnw==
-X-Google-Smtp-Source: AGHT+IEZb9kYuWencbwluM7c4b3QTHaf56X5Dqp18EvM3dc0h2OMqMVo+Pn2s8eDLXdA1N1UiIMUFg==
-X-Received: by 2002:a05:6a20:9383:b0:1db:eead:c588 with SMTP id adf61e73a8af0-1ed7a6c8ac5mr38752070637.29.1738595336636;
-        Mon, 03 Feb 2025 07:08:56 -0800 (PST)
-Received: from thinkpad ([120.60.129.34])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-acebddbb1dfsm8203509a12.5.2025.02.03.07.08.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Feb 2025 07:08:56 -0800 (PST)
-Date: Mon, 3 Feb 2025 20:38:49 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	konrad.dybcio@oss.qualcomm.com, quic_mrana@quicinc.com,
-	quic_vbadigan@quicinc.com, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH v4 2/4] PCI: of: Add API to retrieve equalization presets
- from device tree
-Message-ID: <20250203150849.nexmt3ywv7x4b7e3@thinkpad>
-References: <20250124-preset_v2-v4-0-0b512cad08e1@oss.qualcomm.com>
- <20250124-preset_v2-v4-2-0b512cad08e1@oss.qualcomm.com>
+	s=arc-20240116; t=1738595604; c=relaxed/simple;
+	bh=4HCs6OFZWMXIhTxw4czDcvPojN7671mjOsnj6eA6SlY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UIsqodLQRWma1LQf8h3b3qDMHpuZsabmgi7drw3K62up4/fEPB8f6H43bAJPjhCyJLsRanOq3PhGHodgU0JRdCIrgIQuMjMvFAJAIsA0j3rGf3vvZsgmWwd4or+WGisgpuaJVw4K8ot1tubsV/IbPdz9HBphAJXD5rXHUgGj0EM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=q/zdFTDm; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5137Wpdf014517;
+	Mon, 3 Feb 2025 15:13:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pp1; bh=GnZSA81vFyz6mQj6HOVF+YCcu2rgvLk4RSORNs/b8
+	mc=; b=q/zdFTDmPMhFTcf1eTQHK4tOKTaP0hMAYit3z/UBzgTZlLMprlVcWv/cZ
+	M2s2u9/u5Q33CvBUgXK3JAGr+iqIEf6O+OehYje74hgejuXVO3qbhw4VM2vjKASz
+	Qg5DscfIjXbaTP51D/fg/uQcdRq6KL9AeyVa6NVfjV1Td2fnEao3HVoRDYyr4is1
+	hm5iGBqNu+KpxOpkmx0RF1HHhDO+jAzlOt9piKrXv2AEZiV8m5HppzlWcc9iEv4C
+	8AItQO81v9es9+AOTdsWHHFaapJpm3FiCHso5Y1ruuM0uN7akUQ7tGcnAUuxcU1e
+	Q9GoijWYlfzOdMMy36woC0xP71Z1g==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 44jsgnj38n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Feb 2025 15:13:10 +0000 (GMT)
+Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 513F8mLw002595;
+	Mon, 3 Feb 2025 15:13:09 GMT
+Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 44jsgnj38h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Feb 2025 15:13:09 +0000 (GMT)
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma11.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 513D3VMK021486;
+	Mon, 3 Feb 2025 15:13:09 GMT
+Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
+	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 44j0n16kh6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Feb 2025 15:13:09 +0000
+Received: from smtpav05.dal12v.mail.ibm.com (smtpav05.dal12v.mail.ibm.com [10.241.53.104])
+	by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 513FD8fW21627588
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 3 Feb 2025 15:13:08 GMT
+Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id ABFDE58065;
+	Mon,  3 Feb 2025 15:13:08 +0000 (GMT)
+Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 5EC5B58056;
+	Mon,  3 Feb 2025 15:13:08 +0000 (GMT)
+Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
+	by smtpav05.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Mon,  3 Feb 2025 15:13:08 +0000 (GMT)
+From: Ninad Palsule <ninad@linux.ibm.com>
+To: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, ratbert@faraday-tech.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc: Ninad Palsule <ninad@linux.ibm.com>
+Subject: [PATCH v1 0/1] Document phys modes for ftgmac100
+Date: Mon,  3 Feb 2025 09:12:54 -0600
+Message-ID: <20250203151306.276358-1-ninad@linux.ibm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250124-preset_v2-v4-2-0b512cad08e1@oss.qualcomm.com>
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: WTOSwCyHZ-zAh-AxMtKnOMoOODplOrzq
+X-Proofpoint-ORIG-GUID: SjiK9Pdka_G6DROcrAzgWnkDALd1CxLZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-03_06,2025-01-31_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=943 phishscore=0
+ mlxscore=0 priorityscore=1501 clxscore=1015 adultscore=0 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502030110
 
-On Fri, Jan 24, 2025 at 04:52:48PM +0530, Krishna Chaitanya Chundru wrote:
-> PCIe equalization presets are predefined settings used to optimize
-> signal integrity by compensating for signal loss and distortion in
-> high-speed data transmission.
-> 
-> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
-> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
-> configure lane equalization presets for each lane to enhance the PCIe
-> link reliability. Each preset value represents a different combination
-> of pre-shoot and de-emphasis values. For each data rate, different
-> registers are defined: for 8.0 GT/s, registers are defined in section
-> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
-> an extra receiver preset hint, requiring 16 bits per lane, while the
-> remaining data rates use 8 bits per lane.
-> 
-> Based on the number of lanes and the supported data rate, this function
-> reads the device tree property and stores in the presets structure.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  drivers/pci/of.c  | 47 +++++++++++++++++++++++++++++++++++++++++++++++
->  drivers/pci/pci.h | 24 +++++++++++++++++++++++-
->  2 files changed, 70 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index dacea3fc5128..7aa17c0042c5 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -826,3 +826,50 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
->  	return slot_power_limit_mw;
->  }
->  EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
-> +
-> +/**
-> + * of_pci_get_equalization_presets - Parses the "eq-presets-ngts" property.
-> + *
-> + * @dev: Device containing the properties.
-> + * @presets: Pointer to store the parsed data.
-> + * @num_lanes: Maximum number of lanes supported.
-> + *
-> + * If the property is present read and store the data in the preset structure
-> + * assign default value 0xff to indicate property is not present.
-> + *
-> + * If the property is not found or is invalid, returns 0.
+Hello,
+Please review the documentation changes of phys modes for ftgmac100 driver.
+Initially I sent it with follwoing patchset:
+20250116203527.2102742-2-ninad@linux.ibm.com
 
-Use "Return:" prefix to define the return value. Like,
+Rob Herring ACKed it. Andrew Lunn asked me to send this patch separately
+to netdev.
 
-	"Return: 0 if the property is not available or successfully parsed,
-		 errno otherwise."
+Ninad Palsule (1):
+  dt-bindings: net: faraday,ftgmac100: Add phys mode
 
-> + */
-> +int of_pci_get_equalization_presets(struct device *dev,
-> +				    struct pci_eq_presets *presets,
-> +				    int num_lanes)
-> +{
-> +	char name[20];
-> +	int ret;
-> +
-> +	presets->eq_presets_8gts[0] = 0xff;
-> +	if (of_property_present(dev->of_node, "eq-presets-8gts")) {
-> +		ret = of_property_read_u16_array(dev->of_node, "eq-presets-8gts",
-> +						 presets->eq_presets_8gts, num_lanes);
-
-As Konrad mentioned, you can use -EINVAL from these APIs to determine whether
-the property exists or not.
-
-> +		if (ret) {
-> +			dev_err(dev, "Error reading eq-presets-8gts %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	for (int i = 0; i < EQ_PRESET_TYPE_MAX; i++) {
-> +		presets->eq_presets_Ngts[i][0] = 0xff;
-> +		snprintf(name, sizeof(name), "eq-presets-%dgts", 8 << (i + 1));
-> +		if (of_property_present(dev->of_node, name)) {
-> +			ret = of_property_read_u8_array(dev->of_node, name,
-> +							presets->eq_presets_Ngts[i],
-> +							num_lanes);
-> +			if (ret) {
-> +				dev_err(dev, "Error %s %d\n", name, ret);
-
-"Error reading..."
-
-- Mani
+ Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.43.0
+
 
