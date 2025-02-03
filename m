@@ -1,159 +1,132 @@
-Return-Path: <devicetree+bounces-142407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37132A25499
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:39:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22BBFA254AE
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:43:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E3321883585
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:39:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6D02161E18
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DCF81FBE9C;
-	Mon,  3 Feb 2025 08:38:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386171FBE9C;
+	Mon,  3 Feb 2025 08:43:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJD1AePS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="moU2QYT4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D659D1D7E50;
-	Mon,  3 Feb 2025 08:38:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8AB51FBC92;
+	Mon,  3 Feb 2025 08:43:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738571938; cv=none; b=oetnAs9NABpTjk5SPHi27TeHjWdnsDphqcM6jpzT63dESggPpC8XkcvgVtamMOPj2jZA5b3zuZVerDsYAVhlafVpJpz4UdRg1DHv5qvcCVouCx0Ri3cPibfn+VvA5ATfzOFDNbkvimOuok7M3qi2zBC96Sl7wSGx9567dEA6AH0=
+	t=1738572201; cv=none; b=KGe252LYa6EuVRBj3AQS2kL4TSVAcHwDUn9K7FIyi0gPKNIWWgPNLhOmxlAy8Jt6i+V8EowpSeZ4ara0yhC1Mz7hJ7dWGI6pqM8uVJigPW0PLBoHWGDghYzRhy2hpgbitvAJppl7gqThIuhWM6L1QsjjOxfhOXiKA+X5AxqVZ54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738571938; c=relaxed/simple;
-	bh=tn2D/VXU3gO/10cPKSVc8ExofoOyoDNBmyGrz4AHorQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LgC9ALmLcfFouFN4Tbmhymdcw9ZhrW5GHzj90wyZuz2OZuQdsfsj4xdelz/ephU9auzFsCkJhiorVhBJNkWwCCINqVHhY3fQ/qissI9DywuPM19j9qKM0KXdt3v4KQsRGxYsHMgcwB8qlxcfo+AGzkslewWZMsKmUi62zSnO7aY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJD1AePS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D083C4CED2;
-	Mon,  3 Feb 2025 08:38:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738571937;
-	bh=tn2D/VXU3gO/10cPKSVc8ExofoOyoDNBmyGrz4AHorQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XJD1AePSGYwbioAb3WD4/DaRdqVJx86k9Bzfr76DIsjvOVKDl3UpC5Z8mWTjmylg1
-	 Bc8CUIz4LWEhU57kSly8ZnU3sD93k7vhpuLy6uhC+5wCl6r2/J1qDdCoBdXqlJ1+IM
-	 VvqBRJGwX3lj5UtIu1SbfbWbd+X7nMly6v/Y6k97/QtNO7ldRbmZIEzi+WCWAWGt4K
-	 UJAame1Rzn1JAA+OwZ60w93WeKw23eJPHitaf/F476ENkNSxKWQeR/Qdy9xG6KlEm/
-	 NKYiKx6QzF4osT3Q3fr1gBw0FK5yvI0EO5bQvsZVyDw45BTFsgSFOTQ089FiJxE5QG
-	 RQFXHiWUgAdzA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1teryu-000000006Yr-03dx;
-	Mon, 03 Feb 2025 09:39:00 +0100
-Date: Mon, 3 Feb 2025 09:39:00 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-	Vikash Garodia <quic_vgarodia@quicinc.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Nicolas Dufresne <nicolas@ndufresne.ca>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	Jianhua Lu <lujianhua000@gmail.com>,
-	Stefan Schmidt <stefan.schmidt@linaro.org>,
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of
- SM8250 SoC
-Message-ID: <Z6CApNuSlPGvVL2k@hovoldconsulting.com>
-References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
- <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
- <Z3_nCPk_g8znto4A@hovoldconsulting.com>
- <64f8bebd-35e1-c743-b212-e1a3292bade2@quicinc.com>
- <Z4EuiPEw8mvDQ2gv@hovoldconsulting.com>
- <24334fb8-4d83-eb06-aee3-dfe1f8e4937b@quicinc.com>
- <552972B8-1ACA-4243-A8E3-8F48DAF39C5C@linaro.org>
+	s=arc-20240116; t=1738572201; c=relaxed/simple;
+	bh=bc1imZ392wL8wBviv+l/3GFL8qfrorBj1RgtEI1IFNE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JZKMR//ihOmAGlDHC+rLzLRE27JswV0mBVgEnFeoNU0+W0U+r4BFn7WElXHbsPxktnRJHilvPfy+eYXjFQg+/K679FhlGi/qscvaF0S6+cIKAYh14plhEhKM9YAXEBzedeE5wECi5yw0TUvpEyd3PV2qGxFlkFeqCmTSvwdzGsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=moU2QYT4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5135kj5x006360;
+	Mon, 3 Feb 2025 08:43:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0KFPGyBP8cFud5VuycCONVstDIPld15I4GQjTCSxAiM=; b=moU2QYT4a/pEO839
+	qWSTwy7IR3/Ztry758QifN065S8qqKp5pSdoFbxOWqNUEgYGzxaApeFO21taw+qO
+	xg2XCL12xdamXvsJ+gf6em/JMGmsZjI4ioy0LnxpkJROCAyrpg+jLF4pI9Hb/elr
+	scRfvd8uiRMDBGCU8eHcoV9r1zwkN8jc1faim6AR4k441wMcgyprprer+wVytWDM
+	4/JGewvP4LRwirm2jbo0JuHzJGqUtNaniqToCbphZHCDdQVOzJHx81a7+MMv585n
+	rK/zr3R6zMTToin39wNSS2DZmU4U7j13aRAK6fT2Ik9n3ULk8TJF9w16fwEGzVl6
+	9HCbbg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44jqxw0c8k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Feb 2025 08:43:13 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5138hCWu017000
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 3 Feb 2025 08:43:12 GMT
+Received: from [10.216.42.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Feb 2025
+ 00:43:09 -0800
+Message-ID: <a3c7b0e6-a440-4452-83a2-eb95de0de9bc@quicinc.com>
+Date: Mon, 3 Feb 2025 14:13:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <552972B8-1ACA-4243-A8E3-8F48DAF39C5C@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/13] dt-bindings: net: wireless: describe the ath12k
+ AHB module
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <ath12k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        Kalle Valo
+	<kvalo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jeff Johnson
+	<jjohnson@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250130043508.1885026-1-quic_rajkbhag@quicinc.com>
+ <20250130043508.1885026-2-quic_rajkbhag@quicinc.com>
+ <20250130-cunning-quail-of-opportunity-76d0ad@krzk-bin>
+ <104e6b6f-3c1e-4a00-8822-aa6fb4562411@kernel.org>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <104e6b6f-3c1e-4a00-8822-aa6fb4562411@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Lj1rFYiMu8IQ3m0ApuY4ljvBmZW9USKk
+X-Proofpoint-GUID: Lj1rFYiMu8IQ3m0ApuY4ljvBmZW9USKk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-03_03,2025-01-31_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
+ adultscore=0 impostorscore=0 clxscore=1015 lowpriorityscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502030069
 
-On Fri, Jan 10, 2025 at 08:01:21PM +0200, Dmitry Baryshkov wrote:
-> On 10 January 2025 19:30:30 EET, Dikshita Agarwal <quic_dikshita@quicinc.com> wrote:
-> >
-> >
-> >On 1/10/2025 7:58 PM, Johan Hovold wrote:
-> >> On Thu, Jan 09, 2025 at 11:18:29PM +0530, Vikash Garodia wrote:
-> >>> On 1/9/2025 8:41 PM, Johan Hovold wrote:
-> >>>> On Thu, Dec 12, 2024 at 05:21:49PM +0530, Dikshita Agarwal wrote:
-> >>>>> Initialize the platform data and enable video driver probe of SM8250
-> >>>>> SoC. Add a kernel param to select between venus and iris drivers for
-> >>>>> platforms supported by both drivers, for ex: SM8250.
-> >>>>
-> >>>> Why do you want to use a module parameter for this? What would be the
-> >>>> default configuration? (Module parameters should generally be avoided.)
-> >> 
-> >>> This was discussed during v4 [1] and implemented as per suggestion
-> >>>
-> >>> [1]
-> >>> https://lore.kernel.org/linux-media/eea14133-2152-37bb-e2ff-fcc7ed4c47f5@quicinc.com/
-> >> 
-> >> First, the background and motivation for this still needs to go in the
-> >> commit message (and be mentioned in the cover letter).
-> >> 
-> >> Second, what you implemented here is not even equivalent to what was
-> >> done in the mdm drm driver since that module parameter is honoured by
-> >> both drivers so that at most one driver tries to bind to the platform
-> >> device.
-> >> 
-> >> With this patch as it stands, which driver ends up binding depends on
-> >> things like link order and what driver has been built a module, etc. (as
-> >> I pointed out below).
-> >> 
-> >>>> Why not simply switch to the new driver (and make sure that the new
-> >>>> driver is selected if the old one was enabled in the kernel config)?
-> >> 
-> >>> Its about the platform in migration i.e sm8250. Since new driver is not yet
-> >>> feature parity with old driver, choice is provided to client if it wants to use
-> >>> the new driver (default being old driver for sm8250)
-> >> 
-> >> This should be described in the commit message, along with details on
-> >> what the delta is so that the reasoning can be evaluated.
-> >> 
-> >> And I'm still not sure using a module parameter for this is the right
-> >> thing to do as it is generally something that should be avoided.
-> >> 
-> >I understand your concern of using module params.
-> >I will modify it to rely on Kconfig to select the driver (suggested by
-> >Hans) instead of module param.
+On 1/30/2025 2:10 PM, Krzysztof Kozlowski wrote:
+> On 30/01/2025 09:28, Krzysztof Kozlowski wrote:
+>> On Thu, Jan 30, 2025 at 10:04:56AM +0530, Raj Kumar Bhagat wrote:
+>>> Add device-tree bindings for the ATH12K module found in the IPQ5332
+>>> device.
+>>>
+>>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>>> ---
+>>>  .../net/wireless/qcom,ath12k-ahb.yaml         | 319 ++++++++++++++++++
+>>>  1 file changed, 319 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>>> new file mode 100644
+>>> index 000000000000..bd953a028dc3
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>>
+>> Filename should match compatible. This binding does not look like
+>> supporting more devices, so there is no much benefit calling it by generic name.
 > 
-> Please don't. This makes it impossible to perform side-by-side
-> comparison.
+> 
+> I saw now your other patchset, so you have here two devices, but I still
+> do not understand why this cannot follow standard naming practice like
+> most bindings supporting one or more devices. Like every review we give.
+> 
 
-Why? You can have two kernel builds and run the same tests. And you
-obviously cannot run iris and venus on the same hardware at once anyway.
-
-> Also as venus and iris drivers are not completely
-> equivalent wrt supported platforms, distributions will have to select
-> whether to disable support for older platforms or for new platforms:
-> Kconfig dependency will make it impossible to enable support for both
-> kinds.
-
-You shouldn't have both enabled. The only reason for keeping support
-for the same hardware in both drivers is that the iris support is
-incomplete and considered experimental. No one should enable that except
-for development and evaluation purposes until the driver is up to par.
-And then you drop support from the old driver along with the config
-option.
-
-Johan
+Sure, we can rename the filename to match the compatibles - "qcom,ipq5x-wifi.yaml".
 
