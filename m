@@ -1,324 +1,356 @@
-Return-Path: <devicetree+bounces-142718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E31AA263BB
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 20:25:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94EEEA263BF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 20:28:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27693188677C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 19:26:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35EB31883B36
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 19:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A1F20AF96;
-	Mon,  3 Feb 2025 19:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090861D63D5;
+	Mon,  3 Feb 2025 19:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beims.me header.i=@beims.me header.b="nJiKzJpD";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="q61s0vZa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MGR5paI7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2F6209F22;
-	Mon,  3 Feb 2025 19:25:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0AB2AF10;
+	Mon,  3 Feb 2025 19:28:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738610740; cv=none; b=tnq1WbSywhpPndgf9sQVqigxt8kQ8Y0myQdZQzIK4Rhc36ulZxWQ/Ci4LFeGm7rwz+e+IiCPBaYdL81boOA3w+SWqBmp/pxJrz58JT8j2wcFIXxN+wykaLkRcdJAHELrDY+oXN0fltkLGczjelMF2e2Wt3D/1zIgJ+NpmdOgibw=
+	t=1738610914; cv=none; b=il2QLsTIXCYab9kIz2G7/A1CFCVFYiRL87kOEcF3YVxdn4L6Lc6XXHHUMkxsByRS/mzzjfs5V6G/S6Uy8zqravgEoYXGjclfwhp9TKbwNGBJnOHXtYUf/kvCR6y4dFyfWhc3GYynvS+21PNyXUR1GMPmQyRsCDUMfqhgctTJkCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738610740; c=relaxed/simple;
-	bh=HJgMhVYKmo1LpCbV5Sm58gs256gbFZ4C3uwnZiw2VUg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ot5bI4LfrKQb4dIQH7hdFAHHa+rjH4kCr01RJu/5w1jYBuh2qaExmVSFp4j+INlHtq7oJOIf9by094JT6Ifrn7HR1mN2Udlsi5HbD0CSSY+4ZmSPcmCmFIHu1oE5G3CVlqmVwxsNtaMhPpgSMKawpWLMT6rtt+/0OQ5pV7KCuE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=beims.me; spf=pass smtp.mailfrom=beims.me; dkim=pass (2048-bit key) header.d=beims.me header.i=@beims.me header.b=nJiKzJpD; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=q61s0vZa; arc=none smtp.client-ip=202.12.124.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=beims.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=beims.me
-Received: from phl-compute-01.internal (phl-compute-01.phl.internal [10.202.2.41])
-	by mailfout.stl.internal (Postfix) with ESMTP id 58A96114017A;
-	Mon,  3 Feb 2025 14:25:37 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-01.internal (MEProxy); Mon, 03 Feb 2025 14:25:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=beims.me; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1738610737;
-	 x=1738697137; bh=2Hgo1jRUZ9s9TXxYIqNPV38Gn6KA2bh3Lhj0CvQNpgQ=; b=
-	nJiKzJpDhFyd34EVjkRUO9OS3PqE/WVvVA3/lYZc3KHiaYRgcB06jdMBB3tQaWmd
-	jxkrtl7KhCaZy15qwh8JT+1Nj4YEU+NDIsrkIQe1QwZf0+gLNAq27SChC+prSfQX
-	7E17+u1/HeYpk0fPB7uvc/xVTupDiposcy1bFyoADnExGE4wI0l+IoBQfKxRBCIq
-	wKg+TK1XfITaCWNdM3wCUpiaX9UhireUa2TyFPbwzGhvykk9GnvMgxUbrm4ve/3F
-	b3RTvu/D0dZutyMNsNXoQ9haeZ4s84tCSzqQwgPZPykR+6LpXkipZxAti+vuOvjI
-	mqKfwzsxnLMvSU9y059ZYg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1738610737; x=
-	1738697137; bh=2Hgo1jRUZ9s9TXxYIqNPV38Gn6KA2bh3Lhj0CvQNpgQ=; b=q
-	61s0vZawASRcLa7egkJZDWnb3Dj1Y64QhJUJ2bQx8yxUveZrJdiy/JLbtEdwO0mN
-	pBpKJeuajilHLeIhFutEJI5kw2PhV08eDwlBYpE+0r9nAwKoZGXuU2fWOo45ZfPi
-	GIYgyH2oUFgY0mXLYW6u6dr3znIKGvT+M+3MqKUgroL3Q+pGlk1X0xyc9nW2J5ed
-	t8wS/3dKJjlfnddFXtyWRC/6zzhknslfljkVo8tF0NGCYRmpB0Exj0R39iqIrOB4
-	l0SHNVptBUfQ/2FMwTcJ/CrT7eZMLsh/MMAV2Kr/yuXgjsYbGD9O/KWPU+pdvnNC
-	Q+v4D16bywxvMLOe4FUVw==
-X-ME-Sender: <xms:MRihZzqOSYRHjLRpCSWRnLROgOEwAW5_8OdQ_9fP9zhVTfwXPATfFw>
-    <xme:MRihZ9rGhxpnBXf4-PUtc9jg3isgMgMjuERxSJzPpq45O5Ny78s_JWtHm5oTSM3NV
-    TU8TrltB4PigJXqZwQ>
-X-ME-Received: <xmr:MRihZwPfz5wQOk6KU119BhzKe1xvwfUme7i-YNfgNj6edOFGjVMLEGU4VVkMbQW4Ug>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddukeeggecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfgggtgfesthekredtredt
-    jeenucfhrhhomheprhgrfhgrvghlsegsvghimhhsrdhmvgenucggtffrrghtthgvrhhnpe
-    eggeeffeegveffleejtdeggeetgfffueehgeegtedvgeefudevveehheetvdehtdenucev
-    lhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrrghfrggvlh
-    essggvihhmshdrmhgvpdhnsggprhgtphhtthhopedvtddpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtoheprggurhhivghnrdhgrhgrshhsvghinhesghhmrghilhdrtghomhdprh
-    gtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthht
-    ohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhope
-    hrfhhoshhssehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlrghurhgvnhhtrdhpihhn
-    tghhrghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtohepjhhonhgrsh
-    eskhifihgsohhordhsvgdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtgesghhm
-    rghilhdrtghomhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlih
-    hnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhhrihhprghrugeskhgvrhhnvghl
-    rdhorhhg
-X-ME-Proxy: <xmx:MRihZ24Shvz7DHqBS8BtGP8meqzyLjwkHRFwtqtyZl8bmTbmJX0QEQ>
-    <xmx:MRihZy5xUJdxwXpEMaQwCbx6XcBVzXb_64phOk3GNUIkwlRLQCKPXQ>
-    <xmx:MRihZ-ggPm6xwiJVnifaQE4IxnQvx-DqVy22XksGvlUrA0tp0ljurQ>
-    <xmx:MRihZ04Egrr8_UKi1dpL92goBtbO2khOi4csOIRewH_AlD_zqjlqow>
-    <xmx:MRihZ44gglIyra6qfsWAKtghpnywUpN53CS9293PWO65NhkNO51NpVge>
-Feedback-ID: idc214666:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 3 Feb 2025 14:25:32 -0500 (EST)
-From: rafael@beims.me
-To: Adrien Grassein <adrien.grassein@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>
-Cc: Rafael Beims <rafael.beims@toradex.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] drm/bridge: lt8912b: Add support for audio
-Date: Mon,  3 Feb 2025 16:23:56 -0300
-Message-ID: <20250203192401.244651-3-rafael@beims.me>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250203192401.244651-1-rafael@beims.me>
-References: <20250203192401.244651-1-rafael@beims.me>
+	s=arc-20240116; t=1738610914; c=relaxed/simple;
+	bh=oijApHXXVYwpLxcEH6bptuirH3kIVpa683QkgZ9dEoE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=vFfZ15nLTnsKVAIg8dRHoFbZr/QSDL8VBgu0i0novqwdEJB7QFiOdt9MhF5r1Z5p0exE7p0OcyRZwL0YA4vldauWUDG5+ubGE6jeXM7gf7bS6ETLmf/rsjTVZI2bQDs+Iuwf4W8iocL0z9KgvBpsVruzvcDuH8LgyykJC1K0eY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MGR5paI7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 513E6wtg005738;
+	Mon, 3 Feb 2025 19:28:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fUZ3qpjdH8VxFJdAKetwNy2C9ZImZ5JTVEfFi+umL6M=; b=MGR5paI7PLjnBZIh
+	58U4MeRVKNuv94ye6/SoIgvf91JWM2S1K69CLVSjuZlavtVIRHryHumIUcuJkxfv
+	OjSTOPMgobu9lgCTjo5Z9YiAjf9TXuFuLojnl0Fu90owv1yRjwhDPrU+JbqEr9wR
+	iIMiTnTP9kVx0Cdia44PV06mnXtpM0aGiQ0fvLkLeXpCZ9qFvYs0J1fNN9hCrUTU
+	CT093KxqSLWKMs8SjQl0MSTpEdGDZf6Uoaj7h2dMwyhb6XLy6uZyZasraoX59Lqi
+	f+Bvqe4eazwpehgp5Vfo+aP1HTwSRfjLD8TLSokdivsD3U+yjen+rDzIIfIYxZDR
+	wZDVQA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44jy9g0s43-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Feb 2025 19:28:29 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 513JSTWR016942
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 3 Feb 2025 19:28:29 GMT
+Received: from [10.110.24.255] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Feb 2025
+ 11:28:28 -0800
+Message-ID: <1200f51b-2ee3-446d-9098-df946ef3a359@quicinc.com>
+Date: Mon, 3 Feb 2025 11:28:27 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] soc: qcom: llcc-qcom: Add support for LLCC V6
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Conor Dooley
+	<conor@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Satya Durga
+ Srinivasu Prabhala" <quic_satyap@quicinc.com>,
+        Trilok Soni
+	<quic_tsoni@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250113-sm8750_llcc_master-v1-0-5389b92e2d7a@quicinc.com>
+ <20250113-sm8750_llcc_master-v1-2-5389b92e2d7a@quicinc.com>
+ <0b574941-30f3-41ec-ad6a-094371ef4d95@oss.qualcomm.com>
+Content-Language: en-US
+From: Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <0b574941-30f3-41ec-ad6a-094371ef4d95@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: pQAagOz-bXQzEhnyYApEKU3CBc-LjLDQ
+X-Proofpoint-ORIG-GUID: pQAagOz-bXQzEhnyYApEKU3CBc-LjLDQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-03_08,2025-01-31_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ phishscore=0 lowpriorityscore=0 adultscore=0 mlxscore=0 mlxlogscore=999
+ spamscore=0 impostorscore=0 bulkscore=0 clxscore=1015 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502030141
 
-From: Rafael Beims <rafael.beims@toradex.com>
 
-Add support for HDMI codec with audio coming from the I2S input.
-Support 48kHz and 96kHz sample rate, with 16 bits word size.
 
-Co-developed-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-Signed-off-by: Rafael Beims <rafael.beims@toradex.com>
----
- drivers/gpu/drm/bridge/Kconfig           |   1 +
- drivers/gpu/drm/bridge/lontium-lt8912b.c | 107 ++++++++++++++++++++++-
- 2 files changed, 107 insertions(+), 1 deletion(-)
+On 1/28/2025 6:01 AM, Konrad Dybcio wrote:
+> On 13.01.2025 10:26 PM, Melody Olvera wrote:
+>> Add support for LLCC V6. V6 adds several additional usecase IDs,
+>> rearrages several registers and offsets, and supports slice IDs
+>> over 31, so add a new function for programming LLCC V6.
+>>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
+>>   drivers/soc/qcom/llcc-qcom.c       | 212 ++++++++++++++++++++++++++++++++++++-
+>>   include/linux/soc/qcom/llcc-qcom.h |   8 ++
+>>   2 files changed, 216 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+>> index 56823b6a2facc4345265e29b60da24a391e3707d..4379b5baa011aa850a2b65ec20b32519d9331be4 100644
+>> --- a/drivers/soc/qcom/llcc-qcom.c
+>> +++ b/drivers/soc/qcom/llcc-qcom.c
+>> @@ -35,6 +35,9 @@
+>>   #define ATTR0_RES_WAYS_MASK           GENMASK(15, 0)
+>>   #define ATTR0_BONUS_WAYS_MASK         GENMASK(31, 16)
+>>   #define ATTR0_BONUS_WAYS_SHIFT        16
+>> +#define ATTR2_PROBE_TARGET_WAYS_SHIFT 4
+>> +#define ATTR2_FIXED_SIZE_SHIFT        8
+>> +#define ATTR2_PRIORITY_SHIFT          12
+> I'd be a great fan of defining these as fields with GENMASK, which you
+> would later fill with FIELD_PREP, so as to avoid potential leakage into
+> neighbouring bitfields
 
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index 6b4664d91faa..489ce1041203 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -117,6 +117,7 @@ config DRM_ITE_IT6505
- 
- config DRM_LONTIUM_LT8912B
- 	tristate "Lontium LT8912B DSI/HDMI bridge"
-+	select SND_SOC_HDMI_CODEC if SND_SOC
- 	depends on OF
- 	select DRM_PANEL_BRIDGE
- 	select DRM_KMS_HELPER
-diff --git a/drivers/gpu/drm/bridge/lontium-lt8912b.c b/drivers/gpu/drm/bridge/lontium-lt8912b.c
-index 52da204f5740..2100b41e5f61 100644
---- a/drivers/gpu/drm/bridge/lontium-lt8912b.c
-+++ b/drivers/gpu/drm/bridge/lontium-lt8912b.c
-@@ -8,6 +8,8 @@
- #include <linux/gpio/consumer.h>
- #include <linux/i2c.h>
- #include <linux/media-bus-format.h>
-+#include <linux/of_graph.h>
-+#include <linux/platform_device.h>
- #include <linux/regmap.h>
- 
- #include <drm/drm_probe_helper.h>
-@@ -16,6 +18,8 @@
- #include <drm/drm_mipi_dsi.h>
- #include <drm/drm_of.h>
- 
-+#include <sound/hdmi-codec.h>
-+
- #include <video/videomode.h>
- 
- #define I2C_MAIN 0
-@@ -24,7 +28,10 @@
- #define I2C_CEC_DSI 1
- #define I2C_ADDR_CEC_DSI 0x49
- 
--#define I2C_MAX_IDX 2
-+#define I2C_AUDIO 2
-+#define I2C_ADDR_AUDIO 0x4a
-+
-+#define I2C_MAX_IDX 3
- 
- struct lt8912 {
- 	struct device *dev;
-@@ -38,6 +45,7 @@ struct lt8912 {
- 	struct drm_bridge *hdmi_port;
- 
- 	struct mipi_dsi_device *dsi;
-+	struct platform_device *audio_pdev;
- 
- 	struct gpio_desc *gp_reset;
- 
-@@ -226,6 +234,7 @@ static int lt8912_init_i2c(struct lt8912 *lt, struct i2c_client *client)
- 	struct i2c_board_info info[] = {
- 		{ I2C_BOARD_INFO("lt8912p0", I2C_ADDR_MAIN), },
- 		{ I2C_BOARD_INFO("lt8912p1", I2C_ADDR_CEC_DSI), },
-+		{ I2C_BOARD_INFO("lt8912p2", I2C_ADDR_AUDIO), },
- 	};
- 
- 	if (!lt)
-@@ -754,6 +763,97 @@ static int lt8912_put_dt(struct lt8912 *lt)
- 	return 0;
- }
- 
-+static int lt8912_hdmi_hw_params(struct device *dev, void *data,
-+				 struct hdmi_codec_daifmt *fmt,
-+				 struct hdmi_codec_params *hparms)
-+{
-+	struct lt8912 *lt = data;
-+	unsigned int audio_params = 0x08; /* 16 bit word size */
-+
-+	if (hparms->sample_width != 16)
-+		return -EINVAL;
-+
-+	if (hparms->sample_rate == 48000)
-+		audio_params |= 0x20;
-+	else if (hparms->sample_rate == 96000)
-+		audio_params |= 0xa0;
-+	else
-+		return -EINVAL;
-+
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x0f, audio_params);
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x35, 0x00);
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x36, 0x18);
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x37, 0x00);
-+
-+	return 0;
-+}
-+
-+static int lt8912_audio_startup(struct device *dev, void *data)
-+{
-+	struct lt8912 *lt = data;
-+
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x34, 0xe2);
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x3c, 0x60);
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x07, 0xf0);
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x06, 0x08);
-+
-+	return 0;
-+}
-+
-+static void lt8912_audio_shutdown(struct device *dev, void *data)
-+{
-+	struct lt8912 *lt = data;
-+
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x06, 0x00);
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x07, 0x00);
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x34, 0x52);
-+	regmap_write(lt->regmap[I2C_AUDIO], 0x3c, 0x40);
-+}
-+
-+static int lt8912_hdmi_i2s_get_dai_id(struct snd_soc_component *component,
-+				      struct device_node *endpoint)
-+{
-+	struct of_endpoint of_ep;
-+	int ret;
-+
-+	ret = of_graph_parse_endpoint(endpoint, &of_ep);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (of_ep.port != 2)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static const struct hdmi_codec_ops lt8912_codec_ops = {
-+	.hw_params = lt8912_hdmi_hw_params,
-+	.audio_shutdown = lt8912_audio_shutdown,
-+	.audio_startup = lt8912_audio_startup,
-+	.get_dai_id = lt8912_hdmi_i2s_get_dai_id,
-+};
-+
-+static int lt8912_audio_init(struct device *dev, struct lt8912 *lt)
-+{
-+	struct hdmi_codec_pdata codec_data = {
-+		.ops = &lt8912_codec_ops,
-+		.max_i2s_channels = 2,
-+		.i2s = 1,
-+		.data = lt,
-+	};
-+
-+	lt->audio_pdev = platform_device_register_data(dev, HDMI_CODEC_DRV_NAME,
-+						       PLATFORM_DEVID_AUTO,
-+						       &codec_data, sizeof(codec_data));
-+
-+	return PTR_ERR_OR_ZERO(lt->audio_pdev);
-+}
-+
-+static void lt8912_audio_exit(struct lt8912 *lt)
-+{
-+	platform_device_unregister(lt->audio_pdev);
-+}
-+
- static int lt8912_probe(struct i2c_client *client)
- {
- 	static struct lt8912 *lt;
-@@ -788,6 +888,10 @@ static int lt8912_probe(struct i2c_client *client)
- 	if (ret)
- 		goto err_attach;
- 
-+	ret = lt8912_audio_init(dev, lt);
-+	if (ret)
-+		goto err_attach;
-+
- 	return 0;
- 
- err_attach:
-@@ -803,6 +907,7 @@ static void lt8912_remove(struct i2c_client *client)
- {
- 	struct lt8912 *lt = i2c_get_clientdata(client);
- 
-+	lt8912_audio_exit(lt);
- 	drm_bridge_remove(&lt->bridge);
- 	lt8912_free_i2c(lt);
- 	lt8912_put_dt(lt);
--- 
-2.47.2
+Ack.
+
+>
+>>   #define LLCC_STATUS_READ_DELAY        100
+>>   
+>>   #define CACHE_LINE_SIZE_SHIFT         6
+>> @@ -49,6 +52,10 @@
+>>   #define LLCC_TRP_ATTR0_CFGn(n)        (0x21000 + SZ_8 * n)
+>>   #define LLCC_TRP_ATTR1_CFGn(n)        (0x21004 + SZ_8 * n)
+>>   #define LLCC_TRP_ATTR2_CFGn(n)        (0x21100 + SZ_4 * n)
+>> +#define LLCC_V6_TRP_ATTR0_CFGn(n)     (0x41000 + SZ_64 * n)
+>> +#define LLCC_V6_TRP_ATTR1_CFGn(n)     (0x41008 + SZ_64 * n)
+>> +#define LLCC_V6_TRP_ATTR2_CFGn(n)     (0x41010 + SZ_64 * n)
+>> +#define LLCC_V6_TRP_ATTR3_CFGn(n)     (0x41014 + SZ_64 * n)
+>>   
+>>   #define LLCC_TRP_SCID_DIS_CAP_ALLOC   0x21f00
+>>   #define LLCC_TRP_PCB_ACT              0x21f04
+>> @@ -62,10 +69,22 @@
+>>   #define LLCC_TRP_ALGO_CFG7	      0x21f28
+>>   #define LLCC_TRP_WRSC_CACHEABLE_EN    0x21f2c
+>>   #define LLCC_TRP_ALGO_CFG8	      0x21f30
+>> +#define LLCC_V6_TRP_SCID_DIS_CAP_ALLOC	0x42000
+>> +#define LLCC_V6_TRP_ALGO_CFG1		0x42008
+>> +#define LLCC_V6_TRP_ALGO_CFG2		0x42010
+>> +#define LLCC_V6_TRP_ALGO_CFG3		0x42018
+>> +#define LLCC_V6_TRP_ALGO_CFG4		0x42020
+>> +#define LLCC_V6_TRP_ALGO_CFG5		0x42028
+>> +#define LLCC_V6_TRP_ALGO_CFG6		0x42030
+>> +#define LLCC_V6_TRP_ALGO_CFG7		0x42038
+>> +#define LLCC_V6_TRP_ALGO_CFG8		0x42040
+>> +#define LLCC_V6_TRP_WRSC_EN		0x42080
+>> +#define LLCC_V6_TRP_WRSC_CACHEABLE_EN	0x42088
+>>   
+>>   #define LLCC_VERSION_2_0_0_0          0x02000000
+>>   #define LLCC_VERSION_2_1_0_0          0x02010000
+>>   #define LLCC_VERSION_4_1_0_0          0x04010000
+>> +#define LLCC_VERSION_6_0_0_0          0X06000000
+>>   
+>>   /**
+>>    * struct llcc_slice_config - Data associated with the llcc slice
+>> @@ -3161,6 +3180,33 @@ static const struct llcc_edac_reg_offset llcc_v2_1_edac_reg_offset = {
+>>   	.drp_ecc_db_err_syn0 = 0x52120,
+>>   };
+>>   
+>> +static const struct llcc_edac_reg_offset llcc_v6_edac_reg_offset = {
+>> +	.trp_ecc_error_status0 = 0x47448,
+>> +	.trp_ecc_error_status1 = 0x47450,
+>> +	.trp_ecc_sb_err_syn0 = 0x47490,
+>> +	.trp_ecc_db_err_syn0 = 0x474d0,
+>> +	.trp_ecc_error_cntr_clear = 0x47444,
+>> +	.trp_interrupt_0_status = 0x47600,
+>> +	.trp_interrupt_0_clear = 0x47604,
+>> +	.trp_interrupt_0_enable = 0x47608,
+>> +
+>> +	/* LLCC Common registers */
+>> +	.cmn_status0 = 0x6400c,
+>> +	.cmn_interrupt_0_enable = 0x6401c,
+>> +	.cmn_interrupt_2_enable = 0x6403c,
+>> +
+>> +	/* LLCC DRP registers */
+>> +	.drp_ecc_error_cfg = 0x80000,
+>> +	.drp_ecc_error_cntr_clear = 0x80004,
+>> +	.drp_interrupt_status = 0x80020,
+>> +	.drp_interrupt_clear = 0x80028,
+>> +	.drp_interrupt_enable = 0x8002c,
+>> +	.drp_ecc_error_status0 = 0x820f4,
+>> +	.drp_ecc_error_status1 = 0x820f8,
+>> +	.drp_ecc_sb_err_syn0 = 0x820fc,
+>> +	.drp_ecc_db_err_syn0 = 0x82120,
+>> +};
+>> +
+>>   /* LLCC register offset starting from v1.0.0 */
+>>   static const u32 llcc_v1_reg_offset[] = {
+>>   	[LLCC_COMMON_HW_INFO]	= 0x00030000,
+>> @@ -3173,6 +3219,13 @@ static const u32 llcc_v2_1_reg_offset[] = {
+>>   	[LLCC_COMMON_STATUS0]	= 0x0003400c,
+>>   };
+>>   
+>> +/* LLCC register offset starting from v6.0.0 */
+>> +static const u32 llcc_v6_reg_offset[] = {
+> It's sort of weird to have some registers be version-define with a common
+> name and keep others with a version-in-the-macro-name
+
+I agree. There exists a version of this change which moves the offset
+macros to these structs if that's preferred; I wanted some feedback
+on what folks would prefer here.
+
+>
+>> +	[LLCC_COMMON_HW_INFO]	= 0x00064000,
+>> +	[LLCC_COMMON_STATUS0]	= 0x0006400c,
+>> +
+> Stray newline
+
+Ack.
+
+>
+>> +};
+>> +
+>>   static const struct qcom_llcc_config qcs615_cfg[] = {
+>>   	{
+>>   		.sct_data	= qcs615_data,
+>> @@ -3869,6 +3922,149 @@ static int _qcom_llcc_cfg_program(const struct llcc_slice_config *config,
+>>   	return ret;
+>>   }
+>>   
+>> +static int _qcom_llcc_cfg_program_v6(const struct llcc_slice_config *config,
+>> +				  const struct qcom_llcc_config *cfg)
+>> +{
+>> +	int ret;
+>> +	u32 attr0_cfg, attr1_cfg, attr2_cfg, attr3_cfg;
+>> +	u32 attr0_val, attr1_val, attr2_val, attr3_val;
+>> +	u32 disable_cap_alloc, wren, wr_cache_en;
+>> +	u32 stale_en, stale_cap_en, mru_uncap_en, mru_rollover;
+>> +	u32 alloc_oneway_en, ovcap_en, ovcap_prio, vict_prio;
+>> +	u32 slice_offset, reg_offset;
+>> +	struct llcc_slice_desc *desc;
+>> +	const struct llcc_slice_config *slice_cfg;
+>> +	u32 sz = 0;
+> Reverse-Christmas-tree, please
+
+Ack.
+
+>
+>> +
+>> +	slice_cfg = cfg->sct_data;
+> This one it would make sense to initialize at declaration time
+
+Sure thing.
+
+>
+>> +	sz = cfg->size;
+> This one seems unused?
+
+Lemme double-check; will remove if so.
+
+>
+>> +
+>> +	attr0_cfg = LLCC_V6_TRP_ATTR0_CFGn(config->slice_id);
+>> +	attr1_cfg = LLCC_V6_TRP_ATTR1_CFGn(config->slice_id);
+>> +	attr2_cfg = LLCC_V6_TRP_ATTR2_CFGn(config->slice_id);
+>> +	attr3_cfg = LLCC_V6_TRP_ATTR3_CFGn(config->slice_id);
+>> +
+>> +	attr0_val = config->res_ways;
+>> +	attr1_val = config->bonus_ways;
+>> +	attr2_val = config->cache_mode;
+>> +	attr2_val |= config->probe_target_ways << ATTR2_PROBE_TARGET_WAYS_SHIFT;
+>> +	attr2_val |= config->fixed_size << ATTR2_FIXED_SIZE_SHIFT;
+>> +	attr2_val |= config->priority << ATTR2_PRIORITY_SHIFT;
+>> +
+>> +	attr3_val = MAX_CAP_TO_BYTES(config->max_cap);
+>> +	attr3_val /= drv_data->num_banks;
+>> +	attr3_val >>= CACHE_LINE_SIZE_SHIFT;
+>> +
+>> +	ret = regmap_write(drv_data->bcast_regmap, attr0_cfg, attr0_val);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_write(drv_data->bcast_regmap, attr1_cfg, attr1_val);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_write(drv_data->bcast_regmap, attr2_cfg, attr2_val);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_write(drv_data->bcast_regmap, attr3_cfg, attr3_val);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	slice_offset = config->slice_id % 32;
+>> +	reg_offset = (config->slice_id / 32) * 4;
+>> +
+>> +	if (!cfg->skip_llcc_cfg) {
+> Do we have about this case on any v6 platform?
+
+AFAICT no; I can remove it.
+
+>
+>> +		disable_cap_alloc = config->dis_cap_alloc << slice_offset;
+>> +		ret = regmap_write(drv_data->bcast_regmap,
+>> +			LLCC_V6_TRP_SCID_DIS_CAP_ALLOC + reg_offset,
+>> +			disable_cap_alloc);
+>> +
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	wren = config->write_scid_en << slice_offset;
+>> +	ret = regmap_update_bits(drv_data->bcast_regmap,
+>> +			LLCC_V6_TRP_WRSC_EN + reg_offset,
+>> +			BIT(slice_offset), wren);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	wr_cache_en = config->write_scid_cacheable_en << slice_offset;
+>> +	ret = regmap_update_bits(drv_data->bcast_regmap,
+>> +			LLCC_V6_TRP_WRSC_CACHEABLE_EN + reg_offset,
+>> +			BIT(slice_offset), wr_cache_en);
+>> +	if (ret)
+>> +		return ret;
+> So the initial ATTRn configs are different for v6, but this part and later
+> are identical, bar the register offset difference. Let's try to abstract
+> that through cfg->reg_offset
+
+Agreed.
+
+>
+>> +	stale_en = config->stale_en << slice_offset;
+>> +	ret = regmap_update_bits(drv_data->bcast_regmap,
+>> +			LLCC_V6_TRP_ALGO_CFG1 + reg_offset,
+>> +			BIT(slice_offset), stale_en);
+> Updating these calls to use bitfields instead of opencoded shifting would
+> be a welcome addition as well, but perhaps that could be stuck at the end
+> of the series as a general/housekeeping improvement
+
+Ok; will do.
+
+Thanks,
+Melody
 
 
