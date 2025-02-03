@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-142399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74C8BA2543A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:20:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B11EA2543B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:20:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 457063A4F99
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAC883A8E82
 	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:18:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B15207A22;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160CE207A25;
 	Mon,  3 Feb 2025 08:16:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="wVtWgjgt"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="GgmKnNv6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FBCD1FBE88;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC2E1FCD04;
 	Mon,  3 Feb 2025 08:16:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738570581; cv=none; b=MavOaKNi8fPWobALBcB5VS5pz5Ojv3uipN0uYinQo0pUbtekRxJU+4aZhiIWYhaivH0ZslxliX4LMgbw09E6sN30Tzst8DtzDfpfD7DBXUH/u9yzAkT4XUNvJRvu/UgpI4AyPlLPO9j/cV2IwZdfNlfqeOXKtqxGeUZeN8fLDoY=
+	t=1738570581; cv=none; b=OL0pZGudP4xG0vNO95fdFOL6flMMfa2/XGSH3+xceSOPieD1+W9lZbe9iHJjjQIfjtw40yvHPFu8MqZRQ9q4Og9ROSErVYjwrsha7d7ZGgIbU+pWnOR8ZJcFJACR34XVO1Hcg0tCCEaI7QcVQj+eFoDkkq9d97jt2ymQaZxMOnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1738570581; c=relaxed/simple;
-	bh=BnLa6i9uHTei5BUGODcN7bebF1kVtW6DZS3sGD/Lx6U=;
+	bh=SYFOY9/9pS1ZDSN8y3IFVW/NJY04xzmPim1RwnXSvqc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=j2Hqoyr3+yFolyugDNBISbMQkUejwJWN4GwK5tvaa4HMEhlnmtkKNpTrmxhSazWvbHNPrvK74rNZXDztXAaWEnt4/dYDxTnguWj5ePpJAludi99pBZLvKhfOnfZ/LjoTLF8fFXBTPSG07vhyYUVD5baIiRhQUom6Xgj/ZilOGpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=wVtWgjgt; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=EC4AmInxT5aZ/PXo3/GQuQIzysezNNF55k6Yt6qo+XMYQ6sQ1bx7GTVsQHOaZLnDqhRYqzlqIMI1U9ldmzsknc9AbFaJpe1OQrL3R4VDD6aQCwsiRlbX0BwCXT0RqQnfN74TRBBOf3jQzFPK1H7lc3A5Xnbna/HeUmYESJJGAUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=GgmKnNv6; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,38 +37,34 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=W4nx1cYB2XMya5dsknAcGEuuSmOAaTjn1xFWh2exy+4=; b=wVtWgjgtbp2wxfGovdDNbeIw0E
-	EK1DVFc4xJIWIQwM8SK8cRKLncxvRuaFsv9BkE3sExkoDVmzBORvBTcZ8MUJp/gB1iJvtHVsJjDFK
-	k82QPc9SoMUbcfmK/QGYscdGDZXhnG/YUZ2DdZwVj/rDK0WTJzo9j7YcUDtJVt3WFo6Por+nohmVZ
-	k4avGC5VXYb04RXQC1opmK6BIqwJ3eUz36D6yuVo+S8XaFxCsIQBQJ98Hya2Hkq/5PXm0per0zxko
-	vCNA3LIqDtzGYtLgOIkqOASfCFfATZ25mEDLuW3r7KJXpFijwVeGLLZ0r1NrfzlDtUFyxZTbuIpyy
-	07QCjOgQ==;
+	bh=jbaX86Vv1lBq83NgqcccZ8mOTJ42/HTehRVjxGwkm0U=; b=GgmKnNv6FAgIQv4tMugK1+eBHc
+	+b1WEH4vrQqN6pBfNEUMbP5Ro3V9+JjnBm76d4pODXAKFgG2PsRjyoTanO6AKsHAK0bgK7Tl316S8
+	31SWcz4bXnl5vLu5mtR3ejF+vfJ9H+KvCPCpMrO8aZ3V2S31FJgkr/6abgXR0n4on9WHp/tWCwNHv
+	6O+npo3Nke0HiIMep76ma6Y5IYgLkadKVTeksWUGSyOBD6U0m/SFxf6LdIIawgzDYVGvs3q7IoEMe
+	4Jj/BCNeBt6+YVqMXpFT5uu1LDb6rzhH+9YfJ8EL7zCnaumwumuKqlMNEQrYEIA0VdczJMrxMtuBi
+	vUIPZh1w==;
 Received: from i53875b5c.versanet.de ([83.135.91.92] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tercl-0005Vr-GX; Mon, 03 Feb 2025 09:16:07 +0100
+	id 1tercl-0005Vr-VB; Mon, 03 Feb 2025 09:16:08 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
-	Alexander Shiyan <eagle.alexander923@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
+	Quentin Schulz <foss+kernel@0leil.net>
+Cc: Heiko Stuebner <heiko@sntech.de>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Fix broken tsadc pinctrl names for rk3588
-Date: Mon,  3 Feb 2025 09:15:57 +0100
-Message-ID: <173857053617.78657.9000996460900671824.b4-ty@sntech.de>
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: add support for sound output over HDMI on RK3399 Puma Haikou
+Date: Mon,  3 Feb 2025 09:15:58 +0100
+Message-ID: <173857053615.78657.12726189850185217501.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250130053849.4902-1-eagle.alexander923@gmail.com>
-References: <20250130053849.4902-1-eagle.alexander923@gmail.com>
+In-Reply-To: <20250130-rk3399-hdmi-audio-v1-1-406244333111@cherry.de>
+References: <20250130-rk3399-hdmi-audio-v1-1-406244333111@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,21 +75,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 30 Jan 2025 08:38:49 +0300, Alexander Shiyan wrote:
-> The tsadc driver does not handle pinctrl "gpio" and "otpout".
-> Let's use the correct pinctrl names "default" and "sleep".
-> Additionally, Alexey Charkov's testing [1] has established that
-> it is necessary for pinctrl state to reference the &tsadc_shut_org
-> configuration rather than &tsadc_shut for the driver to function correctly.
+On Thu, 30 Jan 2025 16:14:25 +0100, Quentin Schulz wrote:
+> The Haikou carrierboard exposes an HDMI connector and audio can also
+> be output, therefore let's enable it on RK3399 Puma.
 > 
-> [1] https://lkml.org/lkml/2025/1/24/966
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: Fix broken tsadc pinctrl names for rk3588
-      commit: 5c8f9a05336cf5cadbd57ad461621b386aadb762
+[1/1] arm64: dts: rockchip: add support for sound output over HDMI on RK3399 Puma Haikou
+      commit: 29fd3d7f8317d738b340ca7f5144bf915243cdea
 
 Best regards,
 -- 
