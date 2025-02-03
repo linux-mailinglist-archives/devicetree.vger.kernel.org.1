@@ -1,259 +1,138 @@
-Return-Path: <devicetree+bounces-142445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC439A255D7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:29:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D33D5A255F4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:35:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4458A18829A3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:29:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 803593A5CC3
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:34:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0562B1FF1D3;
-	Mon,  3 Feb 2025 09:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685641FF605;
+	Mon,  3 Feb 2025 09:35:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="FHubVYEU"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PLHJ9DLF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2068.outbound.protection.outlook.com [40.107.22.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5691F5428;
-	Mon,  3 Feb 2025 09:29:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738574959; cv=fail; b=LSa+TlwwdKdYgYAJ4vAUooM3ERXNNhXKqrufZCzTqp5AyAiFMPokyyVUhXDGn2wuLW+s3dgAg3NrefZwj+LDzXbuyLLWmLENgqFrzZGw3EMz8clgO1apsfeVMtAeOiMJaI/1Utp4XmmHE/X+3GaCGmrfCRm4Wfm1KFtxJ8Xex9c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738574959; c=relaxed/simple;
-	bh=Apm9LYZGhVUfodtq7b9jtizaXBNGVeSbaVi4Gbmm8qk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=gRoPAsOLJAXPbM5DBqIxII9Ar4BV51BbrYoMs51ieC2qekKL0B3EwhYcmjGbaH64kbVuWpmBuMfoPLM9BWNBwUKLjX4ZoRIjeZlce8+ZkNGp1hz+oXe7WEjlCQwGNf5RmLKJwYelUdu3xwWmV144oCerYwlX0JyAsKt1mG6D8kY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=FHubVYEU; arc=fail smtp.client-ip=40.107.22.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i5DNChcpQBywbEo5o0gInydx8cakYOWiE95agw3aT3/umZlmE3Z409ysXju07vYRZASLuUjToseXeCtdp4Iql1ZBO2NN19SQ4ACYsWiGq1zgQdoc0KwgsO6F944TW769kWh/xPb14PI8WeklMvrPylkxPlTvaqFg5SuHUnTiyY8B+0B3EiczFjMVS23dyBxczUV/bBsH0miYk9F/9Fo0+OX02vJg69QaRHtjO8+gY+RworusdxOYqlMPjv3xfVOU+y4qlf2/+j+g5ISPP5o3VmduD2/BpOqfm8L7KPkCmSG7JTO1wFTQ4GcuCy/WJvy5YROcxVdw23sNd/WpqJL5Rg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kqeKTGjgTi9SgJp0N0F1ysNYuI+ZnOdVVGN5GeA0j/s=;
- b=Fv9pSj6yJrWIRoeVYq1PD9sx5dn/wBmGcpPUcpt1kkD/NxiZiE5hJQ2MeUe//tnCj73Q4XAfOAtm7Ih3vkI9d/w/YqMUw3hXHOlBmHVuYHEdXjaTVJHP1Acse2X40mIQuCgPr8QDLem4b13wxOpE3JeQLmBFJjw0rGX/dB33ymh1s2B3/p2pxMH+pGMTQzTMr3cSLvJ4E5gMHN2vkWpsbv2G9kcC6n0Lm8WoqsI0ffDHV8MWUlCZIgtGAR2XC9WSmgADsRpmhoxH7gmGSPXR4kJT/CFiA+CuNX8lVf4Mbzmj4ODEgdOYTTC13WiES58xQ+Ov/5AvmgUCE2GWXfNLmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kqeKTGjgTi9SgJp0N0F1ysNYuI+ZnOdVVGN5GeA0j/s=;
- b=FHubVYEUYQ+RIUAdg6CcgoakYMaoCPO2XTl1lMSVDjn5W/xBAId/P3FF2GdJHi36FcemsaidrTd5deG2UTkUZbk/k1y7gDBnrubPDYs+ePEfLil+LteOpsvDoMvar6p/hqFXW3ELXfIH9Y2QbGNZxNlsU73z3e8g+6ef9vtk5ug=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by AM8PR04MB7985.eurprd04.prod.outlook.com (2603:10a6:20b:234::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.25; Mon, 3 Feb
- 2025 09:29:11 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%3]) with mapi id 15.20.8398.021; Mon, 3 Feb 2025
- 09:29:10 +0000
-Message-ID: <d26a841a-07ab-421c-98f5-282a7ee651e8@cherry.de>
-Date: Mon, 3 Feb 2025 10:29:09 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: Add HDMI0 audio output on
- rock-5b
-To: Detlev Casanova <detlev.casanova@collabora.com>,
- linux-kernel@vger.kernel.org
-Cc: Algea Cao <algea.cao@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- dri-devel@lists.freedesktop.org,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, kernel@collabora.com,
- David Airlie <airlied@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sugar Zhang <sugar.zhang@rock-chips.com>,
- linux-rockchip@lists.infradead.org, Alexey Charkov <alchark@gmail.com>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Johan Jonker <jbx6244@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
- linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jianfeng Liu <liujianfeng1994@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20250130165126.2292107-1-detlev.casanova@collabora.com>
- <20250130165126.2292107-3-detlev.casanova@collabora.com>
- <8ad30e14-e785-4e3a-ba92-644e7fb07759@cherry.de>
- <3668702.iIbC2pHGDl@trenzalore>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <3668702.iIbC2pHGDl@trenzalore>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0015.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c8::7) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD04E1FF1DA
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 09:34:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738575300; cv=none; b=LkUAC2+mhr7vuBhNrSaEWAnvksxriohhbw2dPKdbFinw4jWqc0n2RHXTJQPn1K3W02ImhkQ0xDGqFt0E6KofI3DmyPPiXt3m7UXoKoF5VW+x2VGNhEk4jTjsiENEnSzP7BafDQO3B7pwIVGWT/nJ1f3Z0DOw9JOZYwnM8aEy19o=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738575300; c=relaxed/simple;
+	bh=4iSXCSQD+iqnPgY9Sq7mg/18cYhXxnnkILGNsHGeDb0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QYOqHxDqqtnYcUv2u+8WVwGElMexpdsyFHbDWXXY39vJ13SGmx9RGsxxfgu7CknPsbMlA505xRU+dqlty3cTPlDCnQ4uM/Kf3CumFemb1+bvh4VrIuZ86vnJTLhSNmyFK7I4heEmgsU1spawW/71KvMWcJSW8SQrHOaBzjqsC5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PLHJ9DLF; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4361dc6322fso27837565e9.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 01:34:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738575296; x=1739180096; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XQniEnlPqREiFOfpNWpo606nSBL+SggHNXBd+i0UwbA=;
+        b=PLHJ9DLFqptZXbuWoPwutv9pSn1ahfiY5+ucrsoybD7ly2AW+YmZ3Gmx6R2TdMEE1o
+         btC8ecK8mD8kRL+iB3v/0++FTS0QNL9W/bL0+IB3OgJD5iNUm4TLKZc4nmBU3oIh+B5B
+         UApebPEIp/I00bbQUJsF+gNtUThrvIA11a58/gLU8AhRTYkUgL0HWyF4T0xx267b/J2Z
+         Ct5qKPRWEhpwp8wGG8QFuoklcDGzkgAI3QCX+nBtqf5kKrYgdMN6JaxC6qcVZfqdfBQE
+         wrlcVwgCn5KeWn3MjYOL2epoLgvGmPggRXuFdo3PwCngsqVKzSJDGw7qhq72VO1MaSo4
+         aWgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738575296; x=1739180096;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XQniEnlPqREiFOfpNWpo606nSBL+SggHNXBd+i0UwbA=;
+        b=I4X5YfXHO1f6kcdOxRoh2zqAhZ1msIodI93i4BACfeSwtE9cYdm7QBHgEDJbCtPMzb
+         hWYvUVuM0G0hNitt75ZAWShxGbEFy5s55KElpwn0VTx4a3zI6FnFZOCBARcLcXMUto84
+         78Y+SFzAo6ilTBgYFnkAqYz+S+CfGxNVo4+D/ij+NjPRpG892vs1jMbjfU1Y8J0yoGDc
+         7rMfHMTg1sqeS5pZ86PZSDR9cZbmso9gS9XSjZzvdXVa5o9wc2JA4xzk244lLy6av89x
+         BCYNvk88uS57us26dNEhewZcmwbH/wJLpI+ILOtaf9qjfOdbH7vgZzwJxwta/dVSXl4O
+         ce7g==
+X-Forwarded-Encrypted: i=1; AJvYcCXrZPEG9GRgw5dxbV8BHFsZSZfRVX3Jy8GWzg72Bopu3BbbJ9+XudcZZDSliJ3CY3NOeWEBMqhsrVVY@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAnZ04DBRAnlbFG4ggDJvnNqvi5gL4f9H25owXEI2ceWZHc+1F
+	lnO/nslAngK8ubDhToiv+68RUhbQx3O7LTZWDOlkkiwvgAdWuRZkmBaqXeOnoTU=
+X-Gm-Gg: ASbGncuHIAIQUVtP4izS+ZPXGU2pE7rtdlaEie1jyL7Nj1nibShxl5/WWkn5Pol8zVj
+	01PXsV7UFFVlgSE4CuX0FfVyfO9imaJNdPNkxezrB7FIRPQhqeNeGbDy6miWtNLmad0nrkpVhpV
+	638s0KC8zBPZRyPTgfhBTwZ8uHSm/YoIEfhXbvxkh68QTdztISMYgSO4yik2sZOR9EY8uD3uuwj
+	zNnnVLCljcia2tXIEUf37P+95X99weeKUak8X2kD4Aax46AUbgBKxvT7ZtRnpGyLQNWVcU8qrri
+	mi9vfri6VO1A
+X-Google-Smtp-Source: AGHT+IGAS4aZe1uEvA/6IkSMVPyhPq7FXIW82d+vI0jBSD7HAnozIOs8zd6eghdccvxRb8J90wOJQQ==
+X-Received: by 2002:a05:6000:4011:b0:386:3328:6106 with SMTP id ffacd0b85a97d-38c520a35dcmr20209543f8f.35.1738575295835;
+        Mon, 03 Feb 2025 01:34:55 -0800 (PST)
+Received: from localhost ([2001:4090:a245:80cb:f705:a3ac:14fe:4e1b])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-38c5c0ec7aasm12136166f8f.5.2025.02.03.01.34.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Feb 2025 01:34:55 -0800 (PST)
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH 0/3] arm64: dts: ti: k3-am62*-sk: Add wkup/mcu_uart0
+ aliases
+Date: Mon, 03 Feb 2025 10:34:09 +0100
+Message-Id: <20250203-topic-am62-serial-aliases-v6-14-v1-0-f26d4124a9f1@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|AM8PR04MB7985:EE_
-X-MS-Office365-Filtering-Correlation-Id: 94a2a80e-866d-4ee5-2ec4-08dd44353725
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?YStYYzBRWkRaempodTVxQmljK1pTTGFHMmJxcnY3YVd0VllEbjdjdTJhVzhY?=
- =?utf-8?B?NVh4UFRxMENpL2lHOGdHbGE4MUsyMkQ0ZVprZ1ZIb0R6amFQY1hYcmY1SHR0?=
- =?utf-8?B?bHFTaE8zUVVKVE5NcHJDcGt1UXg3VjExK1hudWlXRXVjbDZ3SEtLRXN2aUNj?=
- =?utf-8?B?bHBZbDkvUXU0Yko1akJQVDNIZG1oRFdCMWNMVGhBMXl0RVpKTkduRjY1V3lk?=
- =?utf-8?B?REpCeUlvS3g5VkQ2Qzc3RTZqRUIxYUFLRExWYVlaRUwzeGpmNWZKNy9RaS9Q?=
- =?utf-8?B?V240TTZiMGt1L0NjNlVCbW1uNVZCVlQxWkJYYVJqUXRNM3gvR0Fna0tkcWNM?=
- =?utf-8?B?Vi9kbkFmMWU2anFKRmwzVEtvSmpSd0dycjg5aEpLL3A5TzNIeW5YUDVybUI1?=
- =?utf-8?B?dVFNSlk1U3lyRmt0QWY2UzA1bGQvTXAvM0RwbEoraThCcjVPYVFQV2dYcDF3?=
- =?utf-8?B?TnViZnlmbjVTSGEwL1JTYW1CZysrRzR4Mlgya1o5MEVPQzdCa2FDVko5QWtX?=
- =?utf-8?B?RVlUenNHVEFId1ZXSTRXditycTQxdDdpZ1pUSjI4UlhCcGFNQ0YyNnNldmp3?=
- =?utf-8?B?MCt2VjRnMkdwS0Rmb1paWHY0TkYzbkltNHM4UldkNGtsNks1aDBPcWJjcG1D?=
- =?utf-8?B?dWVDTFRFN2FZeWJFdEdRTnV4UlpsUGQxbFM3UGIyMGNuRW9QbVY4R3cyR3ls?=
- =?utf-8?B?QVV5YUhCUHl5U25zbnhvazA5eGtWZWUwU0UyV0t1UUFuNStSZWFXcVNRamxq?=
- =?utf-8?B?SHV0ajlnWGJ6SVN4SmJmcENMVC93K2ZDTU83dDZCNmNGcXFFNkkybVppVWZ0?=
- =?utf-8?B?cExGWFZIQUxwdGtLZHBLV3NSdkZMNTJubUQrbVZTTEVSZW1IYXJHUzl5S3Yz?=
- =?utf-8?B?TjRuVUFZV0hnU0VlUjBzQ0hDb3gwaXRTWjRQWWVMdnljelVCRFl5eGVvblUw?=
- =?utf-8?B?L0wrQk5JcWM5Nlg4Tk56SGljVTlkeVJrTi9KeXpER2xQUktzSExjZnVrbEdS?=
- =?utf-8?B?YWhEWUhPZFJjNGVNT0toM3BvOWp6OVBJQWVaSG5aZ3FCV0ZsR2J0NTFMZWRh?=
- =?utf-8?B?U0lkOTVvbnY1MHl5eG5PZ3hLUSs1dENzL3JKeHJldWsvQkxpS3RQM08rb2Vi?=
- =?utf-8?B?YmxGeHh2dTJGM2VtWkozOENFUVFiOERaWkI3YnFQZTdvV2c3UVBpVlFXbnV2?=
- =?utf-8?B?d2R3STJqSjF4ZWswNnNGQTFDejVvdnNqUEdmVzBJbXZDbDJ1VzFzRExIajRm?=
- =?utf-8?B?bmtUbkt6U25FMEViUHRwQkhFbmovTU83eGx0VmJWS0JEUkNvaWpZdEJ4MTRE?=
- =?utf-8?B?aXZQVmVMUzN2WS93RlU1aUhHcks0NnFSWU5oWUUwK0ZJZm9Sbm5zWERZcW5D?=
- =?utf-8?B?UjFpMzVqTHlBUmVUV3NzcC9BRG45ODVDMGl3dTBlOTlUWGhKbHVtZzgyVG5q?=
- =?utf-8?B?WU5lTXNQdnN0a0dIMUpQWjhmd2swU01KeXNqMzlaK04vTU1ETTNZQ3ByM05V?=
- =?utf-8?B?eVN0ZEI5VjlxeEgyQWR5SGJqUXRQZXUrWHdYcDl6WTFCNHp3SEMwckJVcmVS?=
- =?utf-8?B?ditJZXhxVUpQMGJDTVF6MGtXbzBrR0FjbmRNS0FuODVYdDBFZHlQTXNsSUFo?=
- =?utf-8?B?OUlEUUxJT3JsWjA2dVlWaTY2dTYrVXE5NUdhc3YrUlJkSkxUQ0RCa1ZvMkU1?=
- =?utf-8?B?RjJTMjlEWkF3UzZSYjI3eDBLMVVGQmxVY01mOElyWnRYY2RVQ3g3UVladFBT?=
- =?utf-8?B?RjVZajYvdFFhNENBTW5ML3lqVUx4YjVpbGxOVHZVWjhjcjhlTVg1R3U0UUdv?=
- =?utf-8?B?ZU1LQk9VRUV1MW1aZDNkWU9BWW5sTWlIMFBNSVNlK2tVaTVzK0FyUGQ1RUZ4?=
- =?utf-8?Q?7W5l5ObS4z+L7?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cXlNcnVVY1Vic0xxRDhocGwrVG5XM3NxK250SUNVZWJYellhaElmaG0zWnBk?=
- =?utf-8?B?cXZoalVlcFdaMnBINUpMeFhpa1ZEaHAvbTcwb1ZwdFVRaEJkU0QrTkJZWC95?=
- =?utf-8?B?SnFISkRyQ2tWWnVGd2lhNVY4V1BHSGF1KzNTVVM1aUdDSUNET3NNQ1lWYWtY?=
- =?utf-8?B?ejk1SjJ1ZThoZDduZ0o0RFFabWxrVEJRSVUxbm1EM3o5WWwxL2d2Ny9YUkFO?=
- =?utf-8?B?b3VSZjNqZFA5WVd0UEtseHkzKzVjaDd0NHpuWERMSkxHYzlucmZBT3FQdE8v?=
- =?utf-8?B?dWIyK1NFN2V0SXVSMXF1Q0hDeGQ5eStEMVVTYlpIL29MNDRPZmx2SW9EbUpx?=
- =?utf-8?B?UDhYUGd5SkJMOHhDODJDZVBxKzVKYVVXN1FTRXpXWWhBSWhZMnJQdzY5UVpn?=
- =?utf-8?B?NW1IZksvdWZSNDVGaDVwY05ORUN2NTliSHZaTVVOaHJENXhpWjdaM28wZWRC?=
- =?utf-8?B?Q0R6UGJwSnNPR0FYVU1yQWtZbURsSnhKQW9RT1JzNjNSYlJ3bTNsbk4rWEds?=
- =?utf-8?B?VWo3YXZ2dTZ6dExkck80YUZvVkNMeEZkRnZMckRWWTBMWi8rQTNMcE1mRkIw?=
- =?utf-8?B?eE1KU094c3p5MkJiZ09XSlJtejRPS2hyQkpETjd2R29aYnV3eUdGMWhOTUVF?=
- =?utf-8?B?bjJhTW41ZHlZY1d1VEhiMWxxOUQ5VGtQN1R2UUMzcUFadXl6YnlVeXVaWFJW?=
- =?utf-8?B?djdCSERMZnB2dk9hOWxaNjRFcStwbDN6TTViZStoZGJEUC8yMVdCRE1HdEU2?=
- =?utf-8?B?M2wxc2hDUmF6YXB6NTkybEZyejMvNytmSlJFUkdoZElyeUxZU2l2aEFtSnUv?=
- =?utf-8?B?MWgyTFZxb1RLNUxuWENXb2Y5ZHpobURPR1cxQnkxZW1Xdzd4alA0MVAxN0py?=
- =?utf-8?B?QXc5UXAzQkpSTi94ZW9zMHhTMDhxTGFjWDlDVExySmYwRDlCRDBnV1JnSDh3?=
- =?utf-8?B?bUk3dkRudm5vWnBkeG4xOFRJeFo0Z1VKY1AxWHlGNXVEbDBuYlA4Kzc3Q09s?=
- =?utf-8?B?RGFXdzUwNkpHS2pmWW4xZ0lQS2J0U3NMMGdRWVRWRkVWWDg4a2xjaisyWTE5?=
- =?utf-8?B?eDNmazdWWU1TRXFNM1M1eGxPTC9ZYjNSWTl3eXAwRzdzV0tSQlZkQzA2clZJ?=
- =?utf-8?B?MWxkRC9GODV1dk5kbTNHbCtqQnNjcGxRYVRqK2ZFelV1Unh6cXJMVnBQTUZE?=
- =?utf-8?B?azZCSDVCTGM1MkJMWG5SWnJrYjlqMEMxbUd2RzkrcTR4UC8ySTJBV2dOTzhm?=
- =?utf-8?B?ZGZ5VWZQK2N4aFZLalNPdnNJWFVvYloyNllja0xGa0xQaStGam8zTXVJbW9j?=
- =?utf-8?B?RldvVFB1MU4yRldmNEEwSW4xczgrYWliUDJOQWJHYitnN2xlc2V4dXhYaHpV?=
- =?utf-8?B?TUJteFladWZNNkNLWHZsRW1BUEVOMUdKSjB5UlpoWGhmNXZMTTVSSTJKb2lQ?=
- =?utf-8?B?L1pqaDhkMytVbEtBSUoxNFFSWGw5UTg1NXRyTW5ONDcrY1loTW8xb2lCMzRV?=
- =?utf-8?B?eWxpS0pvZGgrWmJvYU1RLytVS3VhMnJtUm5UL1ZTVGFha25PVVFzRU5ONmpS?=
- =?utf-8?B?cjkrajRWcnNQQ3Y5ckwwNFdydFZpRy8zQ3U3ME1UT0tCTy9CNlI3UmJJd1NO?=
- =?utf-8?B?ZHkzSUdkTmxUYVBpVjlHem5EU0dpd1BpZFVNM0VRWHVRK1N5M2R6LzJTeE9N?=
- =?utf-8?B?QzBud00yVEVUMlMvODFPZTZ4clV6Z2cxWEZ5ZFFyN1Y4Qy8vOUdFRGdidmJh?=
- =?utf-8?B?K3hwbTNTUlAzeCt6ZVpSWnZBSDZMWXlYVTV5a1JZMVlqbnIxd2h1ekVCWldr?=
- =?utf-8?B?cTIvYUozdTFFdTF1N2x4L1lqL1NVRE5oS0F6ZVR0OGE5Wlkzb1ltSDJkd0Uw?=
- =?utf-8?B?dGoyREhjbHhqTkQzcXZSKzlLb2pOeENRS3hFU3A4Y25kbEFkeHBoNlJHMmdI?=
- =?utf-8?B?M29lWWhHdHE0b2k1VFlMbFBsWUZGdGJUYkhpRmFlb0x3V2EvY2VRUkRnS3lk?=
- =?utf-8?B?dzMvTEw0UVdWbmcyL0xSQm9SU0o4RHBqeGFuUW8raUczUjRSMGpkSmZ4WkRH?=
- =?utf-8?B?UGFzemFRMnVLZkFkQ1VjVXpKUWgybFFKTUpUZ3EwZ0V4RzE4elNyUjJGRlho?=
- =?utf-8?B?Mys5K2dWZG9xdzNjRDNITVNQeVIzWFpKNytOVmo3OXZBRytPSkxyN080bkph?=
- =?utf-8?B?Q1E9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94a2a80e-866d-4ee5-2ec4-08dd44353725
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2025 09:29:10.7368
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ErnKurHCnPu+1lZsYvJfXgx0TNa85Lor0Qo9ms51v0d+X8noKXrhbXLhtPTcIe4OGFfjyOctKIcPnDtm7pDXPZ6RRmuOKxY/jnpwSzTDkdA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7985
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJGNoGcC/x2NSQqEQAwAvyI5G2jjBvOVwUO00xpwoyMiiH+fH
+ o91qKobTKKKwSe7IcqpptuaoMgzGCZeR0H1iYEc1Y5cice264C8NIR/lWfkWdnE8GywqLCtyNd
+ lCL53LaTKHiXo9R6+3fP8AJM+k2txAAAA
+X-Change-ID: 20250203-topic-am62-serial-aliases-v6-14-742d53ffdb07
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Dhruva Gole <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Markus Schneider-Pargmann <msp@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=816; i=msp@baylibre.com;
+ h=from:subject:message-id; bh=4iSXCSQD+iqnPgY9Sq7mg/18cYhXxnnkILGNsHGeDb0=;
+ b=owGbwMvMwCGm0rPl0RXRdfaMp9WSGNIX9M7e8vPOM4FNq18/+x1yXmo6w/K/WnxyykWT3ls06
+ zE+a1vp31HKwiDGwSArpshy98PCd3Vy1xdErHvkCDOHlQlkCAMXpwBMJGM9I8OiGdnTonxCHZbx
+ V3bZfbkaXHmFq/XyO/sTXTW392zmX/OG4Q/HpAm6x0y9nxt1M4j+Mfgcq8Wi4i9TXyJv8lA6aOG
+ PPFYA
+X-Developer-Key: i=msp@baylibre.com; a=openpgp;
+ fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
 
-Hi Detlev,
+Hi,
 
-On 1/31/25 6:18 PM, Detlev Casanova wrote:
-> Hi Quentin,
-> 
-> On Friday, 31 January 2025 11:38:34 EST Quentin Schulz wrote:
->> Hi Detlev,
->>
->> On 1/30/25 5:45 PM, Detlev Casanova wrote:
-[...]
->> The only hesitation I have is that HDMI0 can use either I2S or SPDIF for
->> audio, both audio controllers internal exclusive to HDMI0/1 controller.
->> But the user could anyway define their own simple audio card for spdif
->> or modify this one if they wanted to.
-> 
-> So some boards will use I2S and some SPDIF ? Or any board can be used with one
-> or the other ?
+add serial aliases for wkup and mcu uart0. Add them to have the same
+order on all boards as well.
 
-Considering this is all SoC-internal, boards could decide what they want 
-to use but I'm not sure what would make them pick one over the other? I 
-still don't really understand why this option even exists to be honest 
-(why Rockchip provided it I mean), I'm not sure what does using SPDIF 
-bring over using I2S in that context? Maybe the number of channels? 
-Maybe specific rates? Different power domain, clock domain, etc?
+Best
+Markus
 
-> The disabled status makes sense as hdmi is disabled in the SoC tree as well.
+Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 
-Yup, we're not sure the board will have an HDMI connector (or bridge 
-using the HDMI controller), so it needs to be disabled on the SoC level.
+---
+Markus Schneider-Pargmann (2):
+      arm64: dts: ti: k3-am62x-sk-common: Add serial aliases
+      arm64: dts: ti: k3-am62a7-sk: Add serial alias
 
-> So if a user wants to use SPDIF instead, they could keep hdmi0-sound disabled
-> and add their own simple-audio-card compatible node.
-> 
+Vibhore Vardhan (1):
+      arm64: dts: ti: k3-am62p5-sk: Add serial alias
 
-Exactly, or reuse but modify hdmi0-sound as well. Plenty of options :)
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts        | 1 +
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts        | 1 +
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 2 ++
+ 3 files changed, 4 insertions(+)
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250203-topic-am62-serial-aliases-v6-14-742d53ffdb07
 
->> I've tested with my suggested change and same changes than for Rock 5B
->> DTS on RK3588 Tiger Haikou with speaker-test -c 2 -t wav, left is left,
->> right is right :)
->>
->> I'm not giving my Tb here as the commit title is specifically about Rock
->> 5B and I haven't tested this series on it. If you had a separate patch
->> for the hdmi sound node and enabling it on Rock 5b, I would have given
->> my Tb on the former and not the latter.
-> 
-> Thank you for testing anyway ! I will move the node and enable it in all board
-> dts that already enable hdmi0.
-> 
+Best regards,
+-- 
+Markus Schneider-Pargmann <msp@baylibre.com>
 
-Up to you, I usually refrain from sending patches for boards I cannot 
-test especially for new features and let each board's 
-maintainer/contributor send a patch for it. I for sure won't mind if 
-RK3588 Tiger support isn't in your v4 :)
-
-I'm not actively following the linux-rockchip ML, so please consider 
-adding me in Cc of the v4 if you want my Rb or Tb trailers :)
-
-Cheers,
-Quentin
 
