@@ -1,95 +1,160 @@
-Return-Path: <devicetree+bounces-142408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF49A2549A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:40:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D2D9A2544D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:22:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D2F41881EA8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:40:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F86018857D8
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 08:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFCA1FBC86;
-	Mon,  3 Feb 2025 08:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6AB1FAC23;
+	Mon,  3 Feb 2025 08:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="lgenNZl3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QTelIAoZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6701D7E50
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 08:40:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94B5C26AE4;
+	Mon,  3 Feb 2025 08:22:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738572007; cv=none; b=i21ztq6weROp69mUaKzYz4zHOhvER7LpoDTUSfHnJ6aO/ngxm1cSD9VwLijgn9FwF4EIXOdTUDDWPZdKiGUiz9FVaddXQ9GtQEuIqE5cBPpfHmYAFH2ouvn1by+ljidOnG/ekohRsy0I/YiuGUNMTtH/uswttKe9yBAKWtnHqAs=
+	t=1738570968; cv=none; b=NnrNKxdsAlqfhSaxhQB82qHwy9DhM/QnKvr8KDagx5vZxj4cEmo0aMxBK04u6TxFZPHnIJRmrCOOSgwIytudLiFMVPEV2lvGbP/gkIcalaAbMSuPWmXYZtke8+XCWJif1VWefZLpXdxnxOv51c6PD5P85Dnwd78hOXi5UpFDMOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738572007; c=relaxed/simple;
-	bh=2gC/5O38TjrgaXYc2UParLmtt6IMLZ5EuP2IBcULbrs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QwWJ4kiVyIImWSl82cpFf64rcXeaxfI3ql4+EZndC54uIWk+oC9KxKDd+djqxQ+x4bN9fbfpQiBpP02SGiKoYm987Blj5w0C+HqPTyt5J2cQRFH6HSf4toYmb5YMrCz9A62GCB0tc9ujVw6oL3m/ICFuFWqSlfFFLuIW02WLpLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=lgenNZl3; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=yI7nEKwf8euL226QHbemgP0cT38UVnbpkgOgS9dADV0=; b=lgenNZl332Ve5vm4eX/+9cM0jH
-	SLriyULUX5HIGrxCaUfHB2YNOuITMZDaTbkpzyRhCf3pG71xuq/zhaZ6KvWLNXFcnOKcw7r1u9Ssx
-	cORVh6gWztCRJosTiyg176YVn3jI4BK/a9SoETqSrx0HNL4Q8h5PYPbn+T4bkiXXbuTUYWho2ay6D
-	cLM6j7Ci7nONYKpLMDhCwmYKAYpi8O86SePlSjmL1CLMbp1PIjCgYW0ZP2Y9d2iq79pmpn+1kiw3X
-	4vGTP1xKxdvGOjzahegp6BG417Q1TSr4arqrsXum0Um+e/zMifX7crQYoFOJU/aumN+6ADwSEQKU8
-	VmQkYKVg==;
-Received: from i53875b5c.versanet.de ([83.135.91.92] helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tercn-0005Vr-Ga; Mon, 03 Feb 2025 09:16:09 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dsimic@manjaro.org,
-	twoerner@gmail.com,
-	didi.debian@cknow.org,
-	jbx6244@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable USB OTG for Radxa ROCK Pi E
-Date: Mon,  3 Feb 2025 09:16:02 +0100
-Message-ID: <173857053619.78657.16527102347598350426.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250129064004.162136-1-naoki@radxa.com>
-References: <20250129064004.162136-1-naoki@radxa.com>
+	s=arc-20240116; t=1738570968; c=relaxed/simple;
+	bh=4D7ohBd8vmVNBGTLY4YrjYleLW9zHfaWxTOXamEVLwY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RQWbel7JxRfJh23g25M7ttYPFds1ePR5AI2gSykiqI7Qcigu+ywbz6DIhTE4rPPJfl3xKNppnwNB6534u7+A7jADAKVgG43+bn96puKOf6vU3PhZNd7x3WPxzJTZwEbqRBRETzut4LL85y37I5Dobyy+uwfUS3fTZ1ryqOhdotQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QTelIAoZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC841C4CED2;
+	Mon,  3 Feb 2025 08:22:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738570968;
+	bh=4D7ohBd8vmVNBGTLY4YrjYleLW9zHfaWxTOXamEVLwY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QTelIAoZeqoIWeB3c1gNsMUXJ6xWGMo4LmQp5j7AgoESIts8OpPCaGRYezr4evlGx
+	 sRwgqa9PHWgnsvDtEaMiTF/i9WWzC7lECrFOx+6kNvKbZI3Aoz3DX3WweG1lWwXDp5
+	 1cewTdIfkg1l08fCeiZ7nFkpRcbJoWkua3Ouufy+vpiZD8O5vuI9to1LH8UXlBcpLP
+	 jRFBeM2CC0DRxnnxBkwwNVIGKAakJO9TmOLNpisLrr8nKHddC2k1j7yiDasYhER6N7
+	 Tth2Jmvx+3ga2eL5/ZWlmsu15Yw34U2Jwe6QicvWpC+h8GDoPQ+L8q+Wf3I0wa6Mcp
+	 bCX0lCdkl/VYg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1terjH-000000006IC-0zOo;
+	Mon, 03 Feb 2025 09:22:51 +0100
+Date: Mon, 3 Feb 2025 09:22:51 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Dikshita Agarwal <quic_dikshita@quicinc.com>,
+	quic_vgarodia@quicinc.com, mchehab@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, p.zabel@pengutronix.de, hverkuil@xs4all.nl,
+	sebastian.fricke@collabora.com, bryan.odonoghue@linaro.org,
+	dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
+	nicolas@ndufresne.ca, u.kleine-koenig@baylibre.com,
+	stefan.schmidt@linaro.org, lujianhua000@gmail.com,
+	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski@linaro.org
+Subject: Re: [RFC PATCH v10 1/2] media: iris: introduce helper module to
+ select video driver
+Message-ID: <Z6B822-6UTxQfX46@hovoldconsulting.com>
+References: <20250128080429.3911091-1-quic_dikshita@quicinc.com>
+ <20250128080429.3911091-2-quic_dikshita@quicinc.com>
+ <5070e1f1-914b-4654-88ef-3566e3eee9ca@kernel.org>
+ <f1344e49-61b6-4115-ae88-55b4a3cfed28@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f1344e49-61b6-4115-ae88-55b4a3cfed28@quicinc.com>
 
+On Fri, Jan 31, 2025 at 10:44:28AM -0800, Abhinav Kumar wrote:
+> On 1/29/2025 2:44 AM, Krzysztof Kozlowski wrote:
+> > On 28/01/2025 09:04, Dikshita Agarwal wrote:
 
-On Wed, 29 Jan 2025 06:40:04 +0000, FUKAUMI Naoki wrote:
-> The Radxa ROCK Pi E has USB D+/D- signals on the 40-pin header[1].
-> Enable it for use as an OTG port.
+> >> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
+> >> index 954cc7c0cc97..276461ade811 100644
+> >> --- a/drivers/media/platform/qcom/iris/iris_probe.c
+> >> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+> >> @@ -196,6 +196,9 @@ static int iris_probe(struct platform_device *pdev)
+> >>   	u64 dma_mask;
+> >>   	int ret;
+> >>   
+> >> +	if (!video_drv_should_bind(&pdev->dev, true))
+> >> +		return -ENODEV;
+> > 
+> > Wouldn't it mark the probe as failed and cause dmesg regressions?
+
+No, this is perfectly fine. Probe can return -ENODEV and driver core
+will continue with any further matches.
+
+> >> +#if !IS_REACHABLE(CONFIG_VIDEO_QCOM_VENUS) || !IS_REACHABLE(CONFIG_VIDEO_QCOM_IRIS)
+> >> +bool video_drv_should_bind(struct device *dev, bool is_iris_driver)
+> >> +{
+> >> +	/* If just a single driver is enabled, use it no matter what */
+> >> +	return true;
+> >> +}
+> >> +
+> >> +#else
+> >> +static bool prefer_venus = true;
+> >> +MODULE_PARM_DESC(prefer_venus, "Select whether venus or iris driver should be preferred");
+> >> +module_param(prefer_venus, bool, 0444);
+> > 
+> > 
+> > The choice of driver is by module blacklisting, not by failing probes.
+> > 
+> > I don't understand why this patchset is needed and neither commit msg
+> > nor above longer code comment explain me that. Just blacklist the module.
+
+> Summarizing the discussion with myself, Krzysztof and Dmitry:
 > 
-> [1] https://docs.radxa.com/en/rockpi/rockpie/hardware/gpio
-> 
-> 
+> 1) module blacklisting solution will not be ideal if users want to have 
+> both venus and iris or either of them built-in
 
-Applied, thanks!
+Module blacklisting is not the way to go, you shouldn't have two drivers
+racing to bind to the same device ever.
 
-[1/1] arm64: dts: rockchip: Enable USB OTG for Radxa ROCK Pi E
-      commit: 0cd57b5e5dde94129a13f6d2897cdb82f8943f9f
+> 2) with current approach, one of the probes (either venus or iris) will 
+> certainly fail as video_drv_should_bind() will fail for one of them. 
+> This can be considered as a regression and should not happen.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+How can that be a regression? One driver must fail to probe (see above).
+ 
+> Solution: If the user prefers iris driver and iris driver has not probed 
+> yet, and if venus tries to probe ahead of iris we keep -EDEFERing till 
+> iris probes and succeeds. Vice-versa when the preference is venus as well.
+
+This sounds wrong too.
+
+Look, first you guys need to explain *why* you want to have two drivers
+for the same hardware (not just to me, in the commit message and cover
+letter).
+
+That's something that really should never be the case and would need to
+be motivated properly.
+
+Second, if the reasons for keeping both drivers are deemed justifiable,
+you need to come up with mechanism for only binding one of them.
+
+I already told you that module parameters is not the way to go here (and
+the msm drm driver's abuse of module parameters is not a good precedent
+here).
+
+If this is a transitional thing (which it must be), then just add a
+Kconfig symbol to determine which driver should probe. That's good
+enough for evaluating whatever needs to be evaluated, and doesn't
+depend on adding anti-patterns like module parameters (and helper
+modules for them).
+
+Keep it simple.
+
+Johan
 
