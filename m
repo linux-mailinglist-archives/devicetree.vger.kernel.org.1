@@ -1,132 +1,186 @@
-Return-Path: <devicetree+bounces-142693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88BFAA261D6
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:59:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AC9FA2628B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 19:33:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A87343A5E97
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:59:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79D6F3A7504
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:33:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39DA920D51A;
-	Mon,  3 Feb 2025 17:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D62F20E713;
+	Mon,  3 Feb 2025 18:32:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AOEeJXiz"
+	dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="DeWC6pRo";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="BC98GYkI";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="ajmjCBND"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fallback1.i.mail.ru (fallback1.i.mail.ru [79.137.243.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F22F20CCC2;
-	Mon,  3 Feb 2025 17:59:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6418B20E704;
+	Mon,  3 Feb 2025 18:32:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.137.243.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738605569; cv=none; b=gbXRU28CJmxMBmDBFRn6AyKuj5EkSx0pNwyXh7+6wWXBt9wStGS+pIwcZh6ZWqnUihQTodGX90t9G2XHRE6c/Zyv7LJWjsFOX0igusszTDOFtJ602fdz9PMajebWWEihavK+mmCYvFLfLIgwGQOzv7NK++m4RwDIh3rCGrU0EJk=
+	t=1738607552; cv=none; b=c7tLAzkAISik/1ltjhpn/p0PlNe8rx8fo/+x738NcdALZGwbUO+8dK/vyh+KvRiT41PjGRuPAgrhk5oxJBMVLuyR7WM+DFOfQhNSWtP9iTjdXAjlSLATgL9BckJBYN/L2Vyn334yuOkTfA+AppFrB77HJ6RUOJtkuefTR3oDpeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738605569; c=relaxed/simple;
-	bh=AUER33bF8X2nOm+wUEypxYpT4PvLJjy+RDxrtlPILcc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uHfEfBAixf3CT4CmAdnBFpDMxG88QVUqxDpG9eqKYyis+bvEQn+oXJx7zt9bxdfmTQgmB4WrQ7xL+CEgaKKoBsP9p66qGCmtbLvxEYX5NG6fZksVwaYhpmXSB389cVpkkXqhVWRWkz+STUneBPXD+FvaONJk5nrfvvNAr5OIAFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AOEeJXiz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 000B4C4CED2;
-	Mon,  3 Feb 2025 17:59:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738605568;
-	bh=AUER33bF8X2nOm+wUEypxYpT4PvLJjy+RDxrtlPILcc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AOEeJXizesFFzWrVj9yU8TThjiUV7H+yy1OtZ6xO08s3tPV08L9bnreUTn1to6Job
-	 j+ifpBkRNLb0dF/cn1Gvb/y44J0QktVuUkK/v5q3smtZL2X+FQcgjaZa+VFaem/FhT
-	 w2gxfHdT8sodO2XOvzm4cp8fmQemgHdvYCU4k3eYGIJZQ29mmbsdZAV0TT4gvNwLXr
-	 bxrQKq54xPOUYAVwQNHO7hZ0n61jVW6eXlHQ1SkGR/14jezXiw53PK2OWiRZ/U3dJL
-	 WdQVHpMCgSiqYmtpTfgBeC3JePCweb/AxxV/GIQpOgMvr5dLVysynJzFxBBs3+FTlF
-	 8StULWF4M2/GQ==
-Message-ID: <90670ea5-7710-47fe-94d2-db3db363da0e@kernel.org>
-Date: Mon, 3 Feb 2025 18:59:21 +0100
+	s=arc-20240116; t=1738607552; c=relaxed/simple;
+	bh=gbnqMsjBbar7L5IkcxQWuIBrW21wwM7jzvysuJgWk5s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UgjTwWJtZhmuMQZEguEKwL2PdPti5uk6XNCcuXS+jmvgr4uG37+914fhzP9v64P74Rxb7Rv6ReeAetDrNzDf1L8zbWZeoV2lBtARvxKIj/weYogk7DUDPj9n+epDHQocdPdG0Lwjd7Ec9pel05XAqo45fdEj+AfQA1IvA5dcz2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com; spf=pass smtp.mailfrom=jiaxyga.com; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=DeWC6pRo; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=BC98GYkI; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=ajmjCBND; arc=none smtp.client-ip=79.137.243.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jiaxyga.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com; s=mailru;
+	h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=D7JRFzFEare/oFNaQJiakwJpq4E0pQkd2/w9tDmKTqw=;
+	t=1738607549;x=1738697549; 
+	b=DeWC6pRofGD7d5nfFu7rCK4WFWL/dWaMAjBsECvOICTjKWtchQUdpIbLlqjUZXEFXpLqTt+mpvHcb8Q4+wlO5q93jtm3EpAbmDs0QSQ7yTb2WEYvd7Zit6TG8aKsbGQ8UNuLjHV++oPy5FNG3H+qY3jEf4iN478JGhIGP7ko5Ao=;
+Received: from [10.113.26.107] (port=52868 helo=send262.i.mail.ru)
+	by fallback1.i.mail.ru with esmtp (envelope-from <danila@jiaxyga.com>)
+	id 1tf0yU-000zpC-CA; Mon, 03 Feb 2025 21:15:10 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
+	; s=mailru; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+	Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive:X-Cloud-Ids;
+	bh=D7JRFzFEare/oFNaQJiakwJpq4E0pQkd2/w9tDmKTqw=; t=1738606510; x=1738696510; 
+	b=BC98GYkIhf7SHAed8xAJquTrfQJUoaDxnqsC94m0fZu7esO3T4eRUmKRCEKFdX8+g5EKnCy/aNS
+	mQZtO4VYTUzHLKdW4eD3ixU9xUcxr5iB39YAB4RqyWTYNKCNvlEwbQheu72PJCQ7kPMoLvEZgdO1p
+	TGIlUsYIrBLbDbsi3RI=;
+Received: from [10.113.188.174] (port=48258 helo=send264.i.mail.ru)
+	by exim-fallback-5fbdbdcb77-7lmmm with esmtp (envelope-from <danila@jiaxyga.com>)
+	id 1tf0yL-00000000FA4-3QGz; Mon, 03 Feb 2025 21:15:02 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
+	; s=mailru; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+	Date:Subject:Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+	List-Owner:List-Archive:X-Cloud-Ids:Disposition-Notification-To;
+	bh=D7JRFzFEare/oFNaQJiakwJpq4E0pQkd2/w9tDmKTqw=; t=1738606501; x=1738696501; 
+	b=ajmjCBNDH9Og/zmCjKzP+Pl//2SDrwqtFJc1aaPH6tJK4VD9GJCnyUkWOUGfmErl2qEjVtY/Be5
+	RuZJhT5zY0mbJPqhtj3l+i6aImyEhP+UZt7gQU/yT/2jpADXv8VpzqIJK2Dyye3cype4NOstSFVOj
+	zMZO1rcEpPg+dqWAgEQ=;
+Received: by exim-smtp-6d97ff8cf4-crh4d with esmtpa (envelope-from <danila@jiaxyga.com>)
+	id 1tf0y4-00000000H1P-2H7S; Mon, 03 Feb 2025 21:14:45 +0300
+From: Danila Tikhonov <danila@jiaxyga.com>
+To: neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andersson@kernel.org,
+	konradybcio@kernel.org,
+	robdclark@gmail.com,
+	quic_abhinavk@quicinc.com,
+	dmitry.baryshkov@linaro.org,
+	sean@poorly.run,
+	marijn.suijten@somainline.org,
+	jonathan@marek.ca,
+	jun.nie@linaro.org,
+	fekz115@gmail.com
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	freedreno@lists.freedesktop.org,
+	linux@mainlining.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Danila Tikhonov <danila@jiaxyga.com>
+Subject: [PATCH 0/4] sm7325-nothing-spacewar: Add and enable the panel
+Date: Mon,  3 Feb 2025 21:14:23 +0300
+Message-ID: <20250203181436.87785-1-danila@jiaxyga.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: amlogic: add S805Y and Mi TV
- Stick
-To: Ferass El Hafidi <funderscore@postmarketos.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Artur Weber <aweber.kernel@gmail.com>, Karl Chan <exxxxkc@getgoogleoff.me>,
- Christian Hewitt <christianshewitt@gmail.com>
-References: <20250203174346.13737-1-funderscore@postmarketos.org>
- <20250203174346.13737-2-funderscore@postmarketos.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250203174346.13737-2-funderscore@postmarketos.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: B8F34718100C35BD
+X-77F55803: 4F1203BC0FB41BD985D89FF3B425BBEFB48FEBABD90F3B7401DE346ACC8939A6CD62213F67905E7A3696776F0B98519CBDA1AADECFE04B855B746C49C5A93FB624BDAFD5E9761C67FEDCCBD3DDE7F493
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE7B7733D0215A2F71AEA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F79006378F586D843116CFB2EA1F7E6F0F101C6723150C8DA25C47586E58E00D9D99D84E1BDDB23E98D2D38BC08E230531AC9C90D48C84F60DA7BD9C119A65102D8A25FFE0C136DC086F5BCDA471835C12D1D9774AD6D5ED66289B5278DA827A17800CE77FFCE1C639F4728C9FA2833FD35BB23D2EF20D2F80756B5F868A13BD56FB6657A471835C12D1D977725E5C173C3A84C3A367EA73E0D98AAD117882F4460429728AD0CFFFB425014E868A13BD56FB6657D81D268191BDAD3DC09775C1D3CA48CF05E80F4396618BB276E601842F6C81A12EF20D2F80756B5FB606B96278B59C4276E601842F6C81A127C277FBC8AE2E8B406C66621D3021AFD81D268191BDAD3D3666184CF4C3C14F3FC91FA280E0CE3D1A620F70A64A45A98AA50765F79006372E808ACE2090B5E1725E5C173C3A84C3C5EA940A35A165FF2DBA43225CD8A89F890A246B268E114E5E1C53F199C2BB95B5C8C57E37DE458BEDA766A37F9254B7
+X-C1DE0DAB: 0D63561A33F958A5D4AF5AD9AAC5B2B25002B1117B3ED696750175D3FA3F03671E49B01306B5E3AD823CB91A9FED034534781492E4B8EEAD14747542773C033FC79554A2A72441328621D336A7BC284946AD531847A6065A535571D14F44ED41
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CF123DA26E3BF0E2AAF0A13BBC0A68F25BA3F27AC1796CF9F1BBB2732F3F50E1D614625291CC5E48B9C56FE0738BD31C043FCBB3ED5EEAA176139AD299E36D9692B5D06203C12B99C4354DA1E504E663BD02C26D483E81D6BE72B480F99247062FEE42F474E8A1C6FD34D382445848F2F3
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojks+hT+CyYL1/eAliXkWy9g==
+X-Mailru-Sender: 9EB879F2C80682A0D0AE6A344B45275FF5005910AAC186731356DD24693B53BC3C74BFA4BD2A0242BE2B9809F5EE1A3E2C62728BC403A049225EC17F3711B6CF1A6F2E8989E84EC137BFB0221605B344978139F6FA5A77F05FEEDEB644C299C0ED14614B50AE0675
+X-Mras: Ok
+X-Mailru-Src: fallback
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B4A84B4964F946E17EB1A91FC540E416C1F01E828FDC9BC856049FFFDB7839CE9E725523CC1EE150EB27A37986E63DEF09B751DBE7BA36A3DC8D4C3B0D36B3506639594C5AF30C0DD2
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5+wYjsrrSY/u6NqYXWMR0/V85CnFjCYTu9APdQH0PvpnP5qz8aO2mjTJzjHGC4ogvVuzB3zfVUBtENeZ6b5av1fnCBE34JUDkWdM6QxE+Ga5d8voMtmXfSpaVNpzbQKl5AyxHfUpwjuv
+X-Mras: Ok
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B4A84B4964F946E17EB1A91FC540E416C1BDB3A1FA17F234B6049FFFDB7839CE9E725523CC1EE150EB483549C658F0D40FE1F6A45164BAA1708DC51D434ABBA9C3
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5+wYjsrrSY/u6NqYXWMR0/V85CnFjCYTu9APdQH0PvpnP5qz8aO2mjTJzjHGC4ogvVuzB3zfVUBtENeZ6b5av1fnCBE34JUDkWdM6QxE+Ga5d8voMtmXfSqf+jS9K0O6j7JdENjvzQK2
+X-Mailru-MI: 20000000000000800
+X-Mras: Ok
 
-On 03/02/2025 18:43, Ferass El Hafidi wrote:
-> Add support for the Amlogic S805Y SoC and the Xiaomi Mi TV Stick (aka.
-> xiaomi-aquaman).  The S805Y is very similar to the S805X, with just a
-> few minor differences.
-> 
-> Signed-off-by: Ferass El Hafidi <funderscore@postmarketos.org>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+This patch series adds support for the Visionox RM692E5 panel, which is
+used on the Nothing Phone (1) and then adds it to the DTS.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+But before adding to DTS we need to allow all bpc values ​​in DSC code,
+because Visionox RM692E5 has a bpc value of 10. Also we need to make sure
+that the DSC patch for 1.1.1 topology was applied.
 
+To: Neil Armstrong <neil.armstrong@linaro.org> 
+To: Jessica Zhang <quic_jesszhan@quicinc.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Rob Clark <robdclark@gmail.com>
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Sean Paul <sean@poorly.run>
+To: Marijn Suijten <marijn.suijten@somainline.org>
+To: Jonathan Marek <jonathan@marek.ca>
+To: Jun Nie <jun.nie@linaro.org>
+To: Eugene Lepshy <fekz115@gmail.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: freedreno@lists.freedesktop.org
+Cc: linux@mainlining.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 
-Best regards,
-Krzysztof
+Danila Tikhonov (1):
+  dt-bindings: display: panel: Add Visionox RM692E5
+
+Eugene Lepshy (3):
+  drm/panel: Add Visionox RM692E5 panel driver
+  drm/msm/dsi: Allow all bpc values
+  arm64: dts: qcom: sm7325-nothing-spacewar: Enable panel and GPU
+
+ .../display/panel/visionox,rm692e5.yaml       |  77 ++++
+ .../boot/dts/qcom/sm7325-nothing-spacewar.dts |  53 ++-
+ drivers/gpu/drm/msm/dsi/dsi_host.c            |   7 +-
+ drivers/gpu/drm/panel/Kconfig                 |  10 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-visionox-rm692e5.c    | 433 ++++++++++++++++++
+ 6 files changed, 573 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/visionox,rm692e5.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-visionox-rm692e5.c
+
+-- 
+2.48.1
+
 
