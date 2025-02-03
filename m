@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-142530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C180A25A71
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 14:12:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFECA25A79
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 14:12:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C42D7A197E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 13:11:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BF893A7277
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 13:12:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A8B2054E1;
-	Mon,  3 Feb 2025 13:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF5B205514;
+	Mon,  3 Feb 2025 13:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IFhPc/8a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R/Tu1xXv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8310B204F6E;
-	Mon,  3 Feb 2025 13:11:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DAE02054FE;
+	Mon,  3 Feb 2025 13:11:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738588309; cv=none; b=sV9mH2SqW0m/B5j/J67lgrFIkqili36QjCkt2V1bImXV1XXd8pcu6L3v9q/UUOLbug1BsdRotk88xEnGiF+/7+1B/Pe5UnuDvrEchWY8CBl68EynPgWgo/1hSkMxhJTYgxTdJIeG1gwgz+QTbiEWtZcnRIA/BoxDZAz116vwoiY=
+	t=1738588312; cv=none; b=jN9PpfOk6EVVZRAwtOHgdxNRhcaAfjYNq2q+m7nIf30VA4irytw7Vsy4szvFVMRlDO44ME4OlgeYTgsqP9CdbFQ0/tKlcRWWxzTUot+gzYLNe2OqhtAj/cdA98JhrSr2GIdM2sjbCleIs74b80gNImcbApoCrCDcV6AWah5GdB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738588309; c=relaxed/simple;
-	bh=qw6/oRijMeiMYBDoqhdnPazfxbD4I4FYFWBsgfYvwO0=;
+	s=arc-20240116; t=1738588312; c=relaxed/simple;
+	bh=/kUKPWCuiO07PV8wX+eiL75OEyrHSx5RcfpFsjZDG/U=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sLABNn0KhBHmtRkeZcvjsl6Uop6WJJ2nW6C19Fqv3BiA7EP2URBF+AHWKbFs3fY130SMuK7U6GpCmrdQGM3b/ueKk8dIVPK6rSmXX2I7tMt7D4swgj1sQSzhpXb5UPIJQQdX7o/h4WLBljtoyVOnidN/NDW4RJ1hRFdb0CRrgBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IFhPc/8a; arc=none smtp.client-ip=209.85.214.175
+	 In-Reply-To:To:Cc; b=MbmD7If0GBNlwMAJjuljXSN4cE8+Pqm6dec36O2p6TDJe9n2xOARQ7agINVBRhbcvRdroNM7rB8LZ7sbTsHHnBrVopwp95RiGB3OedoSzQjD79taScO/rfXNvXl+jz9sV41BtYCqUNLEGqUQPEH4ZNb84xJVcu09cAYQtKUtOZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R/Tu1xXv; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-21c2f1b610dso99600005ad.0;
-        Mon, 03 Feb 2025 05:11:48 -0800 (PST)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-21661be2c2dso71411685ad.1;
+        Mon, 03 Feb 2025 05:11:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738588308; x=1739193108; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1738588310; x=1739193110; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=b1FY1lFZx1d7qtietTMvsLIGmuJzU+GwniaWJjqysAo=;
-        b=IFhPc/8akn+kkvH/oMCrlcG/ly0gNu2eI9I4EwhkOewi1A0+jrDhgVWlcLGSvMob3X
-         MRQdtBXOFXdrVUOX3WVPCAUFs+NSJzaDIxPeDdmrFWfFOkvPL4+u6G6qpwzHRt1cfAyk
-         RXoH044cSA4nhsfXMV4wlfnF82fqz7bD/pHEmzR9+5cjdXimzTdwv20NuQ//dJ7k8axb
-         Iu8RbggCJQcyPFVLDch8TsUVyri1VtecV1NHiEg105br+mZIw5t7HVyQxO1Z+KwyNDZV
-         YYNCOMspqPzgABy6cRHa0sts88gp0yAjfcxhvYKOEiAb4G68PLS8tv7/XS4PJSATG6/b
-         q3zg==
+        bh=PDJizsvXaw9+teo3wUwPkWJCqORZkNmTQyuSkt5H4CY=;
+        b=R/Tu1xXviQ7NcPSxGHEdzVPunZZ0m6slMxzZimLBpQGtcuSS2+/UbH3MT0B4ktBqNk
+         oTBsN7D3mJlfHNsSappFQFl5oQbTBzh8ArTnclGGudV8ct6E771OlfB1SnCowjvQOrU2
+         OmZ7f7Pn2IBPqMq3hlHLpeOoiJ7VsjUQyrJ97XXYznN7pMmZ8rLHEFjRsbkp7oa3yqFR
+         Ys9K6oy4Lbyxhbf89JVvElTx3L/XzcBD15hGTsNkMx95qLYxATKTxVvd/52O5O0p18FY
+         XeHYWypTaQ75scY8S2gwaT053U0kX4J/tX6WNky5YhVyQ2Y6pwJ9aKvjgCFDMa74rLjT
+         DfOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738588308; x=1739193108;
+        d=1e100.net; s=20230601; t=1738588310; x=1739193110;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=b1FY1lFZx1d7qtietTMvsLIGmuJzU+GwniaWJjqysAo=;
-        b=VXPo2pb36YhnN4Uwox3kHoCN6JdU+xqcg+nxkewM1crl5yKWk0n575Uk0g5AB/8xlA
-         0CS6qRfcKicTvWGHW8pW3ZLkfOxyFusA7dZgPqxKlcxVGbRj1DVLukdu/k3fwpPLCFEW
-         AYPvAwVqUz4NApGWeRBks+Dz/Sjz09allmMYBaAqXnVSe8jatNd8F4qfpo0y5LUGGwhn
-         YYh51KnEBdTRNpP4mS6jQ6Id/ZXS8qLCFEHp32s0OPlEfaWdCECKtXXU2A5kL95eb/J1
-         /eomgys3zJMsnRoxZrbj7Ziwqr+8X9GHrpZrTcGS7bwwyVOaU30sNEm88iQpksUoNoBM
-         tmUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUolP/2IgiOYQF5KyUq/H5XOKHxDIBHSl1ih2+MlAMSkKdDCbKKac7D4Iv7Fz6WJ+fX0yoNB5jnUWv2@vger.kernel.org, AJvYcCWDuk/ZtA9YmtmqvkjROszm0eS1DUwIu29f/pJGc/JsN3Fw2MXKWMlU2Axsa6JDxw3QX4bq3be4f1TKDb7u@vger.kernel.org
-X-Gm-Message-State: AOJu0YygyyquWnT7BLdlW0PRMgw99q0Fhdx8R3LDenD+4LgZXOvIJk16
-	i5vh9JT8WJQbO65+blzC7NRJiAFAVnGS8QcrXhiXT7mCMORZWTcn
-X-Gm-Gg: ASbGnctmucBNQU+vBMKsBCM70niaMEtwsCC9jKwT3KNPDLh43DcSmDA0igrLvn0PNrI
-	KSk2qoapHrIqp6x0dlXtLJPf/FVtfSXP/ZwAuMyhTMav4AffTAOtUJJKgA5FI5jO6lgdCnq3IYW
-	SKOx9uuVPoF/B15Bw/gB+F2ZQCsoGagsLbdKa6fYxEtbGzmIRS2joGychBN/RVVShUm1c6Wmkah
-	8iETgRAgdJSz5CqapZR/pyPcrsOOna6jOUTwXfqCufVsMKXDBJTVN9suQAOtvLJ6XJiVDY3k0Vq
-	kxIw70XwUVyVfEM8+AIe6Ns4TsabZvy229yqUmRNYQl0HL9S+izaAzTMncEZn9ORCEOi
-X-Google-Smtp-Source: AGHT+IGT7jAJmUUjkG0BGyDGRldNkdDhZUJrCU7FxK0JnZjhlR1jS8uZ/XiuM5Sfwz08ryIp703/Tg==
-X-Received: by 2002:a05:6a21:9102:b0:1e1:faa:d8cf with SMTP id adf61e73a8af0-1ed7a6e1efcmr39872358637.40.1738588307666;
-        Mon, 03 Feb 2025 05:11:47 -0800 (PST)
+        bh=PDJizsvXaw9+teo3wUwPkWJCqORZkNmTQyuSkt5H4CY=;
+        b=OcENpwby9BzxMPoDwCHaHMNZeoJBZTp9d2o78x6S8rr9W8atLBXpyqXj5gH0fsAmZ2
+         7Qo3DexvW4d4fAWneOZlkFCIpte1NJ3z5lDbDBD8GIITVqQchr7W9uqfYfa2gY/LnDYc
+         Uisp53wkpPcUrX8LKR1vz5ZmygqiG0HOrPI6kkfy8tf8hpDLeGMVdUkaFVKUWpX5X27R
+         llQyGjJAxWJeAAqm6+4344YLYQvpqxWd3CCzenyy0Asafr0VuLRjpwC242bgcykJOPAh
+         ejRQ+fKckwm8hDVH01y5Aa1XNjAUEIBSORKv1SK1wKi+JGFoJ6jSSkAPlYlFpPEEAvuZ
+         m1PQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVtZOv+XPO0N9/hsQmEb60lg8fiaRawI3ngDgSPW0eZSXFpL9mU5Fn/8TTsaY9A64LSbW10eCxZ3G+b@vger.kernel.org, AJvYcCWqStASMFhENLP1Qcmkc0N5mckBW8MWEuG/gsT1mvA4eC3umW74EVnTQQV/mQAU61LadE5d0Vlq0YDAEu+V@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNA7dNkwxxbyslh7KBTGvbB1VIPsXmETrLp2cT87N/5wUFHYXA
+	PQ50Dvol1GKKkPFEEZtplu+7NDkaW6heWnTL7DdnpareXQncpvCi
+X-Gm-Gg: ASbGncs9cpD6WmXAsBzQ39cAtkwDi6uFbWMRucxkkAU5Sgg/hz99LdIu7E36x5PxhkE
+	2+7ZydXp2Nu2X3QTUd/Yu4e5j0UJWpP+JJgjEhbofGIcy5KaIhH9Bqza0k7WUmHxQxOKJ5VudUh
+	Ch8xpJUOZfE1s+01JDShzU7Ev5u1Cu+sDb1R357gV85uytJkkPY9nlsYslu31R1z9j4K/plnVeg
+	KFnxUmwDTyPwZVEWteRmSzbrdPUEWzu/Qp0xnlr3KE6wyOBrBZp75kBLP5+3Gr2eIYn7ByKwG8x
+	cxGdjY23VZOmi9/VsJ+6tyIhD0I3cj0VPN/Yu0dJ2p7PixXmrrCDWx/aTren+9mHZY5L
+X-Google-Smtp-Source: AGHT+IHvk6/UEgPuUarQoM3QIGf47jIEwUV97FOhse5NsNON8UUQENswlYanuyKROZD7+6+YsdUArQ==
+X-Received: by 2002:a05:6a00:244a:b0:725:f097:ed21 with SMTP id d2e1a72fcca58-72fd0c62288mr30218643b3a.15.1738588310373;
+        Mon, 03 Feb 2025 05:11:50 -0800 (PST)
 Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72fe631be3csm8377629b3a.7.2025.02.03.05.11.45
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72fe631be3csm8377629b3a.7.2025.02.03.05.11.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Feb 2025 05:11:47 -0800 (PST)
+        Mon, 03 Feb 2025 05:11:50 -0800 (PST)
 From: Potin Lai <potin.lai.pt@gmail.com>
-Date: Mon, 03 Feb 2025 21:09:13 +0800
-Subject: [PATCH 1/2] bindings: ipmi: ssif-bmc: Add property to adjust
- response timeout
+Date: Mon, 03 Feb 2025 21:09:14 +0800
+Subject: [PATCH 2/2] ipmi: ssif_bmc: Add support for adjustable response
+ timeout
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250203-ssif-response-timeout-ms-v1-1-6fe279740181@gmail.com>
+Message-Id: <20250203-ssif-response-timeout-ms-v1-2-6fe279740181@gmail.com>
 References: <20250203-ssif-response-timeout-ms-v1-0-6fe279740181@gmail.com>
 In-Reply-To: <20250203-ssif-response-timeout-ms-v1-0-6fe279740181@gmail.com>
 To: Corey Minyard <corey@minyard.net>, Rob Herring <robh@kernel.org>, 
@@ -96,43 +96,59 @@ Cc: openipmi-developer@lists.sourceforge.net, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Cosmo Chou <cosmo.chou@quantatw.com>, 
  Potin Lai <potin.lai@quantatw.com>, Potin Lai <potin.lai.pt@gmail.com>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738588302; l=1068;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738588302; l=1887;
  i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
- bh=qw6/oRijMeiMYBDoqhdnPazfxbD4I4FYFWBsgfYvwO0=;
- b=GphBV5ux1rtL3yI82K1iZX8DbcLYPnDAEW6mgZAMtCBvCuJhsB8VvMB4KdeNGred/5XaW2fjV
- WP5bZpBWXC/A135QX0XhY812LMteOCwmJd80L8SKtM26uG24A5FJwPW
+ bh=/kUKPWCuiO07PV8wX+eiL75OEyrHSx5RcfpFsjZDG/U=;
+ b=6Osmui4mmnSoBdZ1gq0ddokpf1z0Xv5oKdw5ZwDKeeh07nb1EchIXM0IDY8TT+h+DkK/rim1B
+ L1S67E8or2BDDYV7xxZSB+Phz0qXdRGzMx2ulkUpkk+1OR2qQ8mhX57
 X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
  pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
 
-The SSIF response is handled by a userspace application, which may exceed
-the default 500 ms timeout when the BMC or application is under heavy load.
+Implement support for the `timeout-ms` device tree property, allowing
+platforms to adjust the userspace response timeout as needed.
 
-Add a new device tree property, `timeout-ms`, allowing platforms to adjust
-the response timeout based on their specific requirements. This helps
-prevent timeouts in scenarios where longer processing times are expected.
+If `timeout-ms` is not specified, the default response timeout remains
+500 ms. This ensures compatibility while providing flexibility for
+platforms that require longer timeouts due to BMC or application load.
 
 Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
 ---
- Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/char/ipmi/ssif_bmc.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml b/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
-index 02b662d780bb..c8a863d44f97 100644
---- a/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
-+++ b/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
-@@ -19,6 +19,12 @@ properties:
-   reg:
-     maxItems: 1
+diff --git a/drivers/char/ipmi/ssif_bmc.c b/drivers/char/ipmi/ssif_bmc.c
+index 310f17dd9511..8f0fbc941936 100644
+--- a/drivers/char/ipmi/ssif_bmc.c
++++ b/drivers/char/ipmi/ssif_bmc.c
+@@ -87,6 +87,7 @@ struct ssif_bmc_ctx {
+ 	/* Timeout waiting for response */
+ 	struct timer_list       response_timer;
+ 	bool                    response_timer_inited;
++	u32                     response_timeout;
+ 	/* Flag to identify a Multi-part Read Transaction */
+ 	bool                    is_singlepart_read;
+ 	u8                      nbytes_processed;
+@@ -331,7 +332,8 @@ static void handle_request(struct ssif_bmc_ctx *ssif_bmc)
+ 		timer_setup(&ssif_bmc->response_timer, response_timeout, 0);
+ 		ssif_bmc->response_timer_inited = true;
+ 	}
+-	mod_timer(&ssif_bmc->response_timer, jiffies + msecs_to_jiffies(RESPONSE_TIMEOUT));
++	mod_timer(&ssif_bmc->response_timer, jiffies +
++		  msecs_to_jiffies(ssif_bmc->response_timeout));
+ }
  
-+  timeout-ms:
-+    minimum: 0
-+    maximum: 4294967295
-+    default: 500
-+    description: Response timeout in millisecond.
+ static void calculate_response_part_pec(struct ssif_part_buffer *part)
+@@ -809,6 +811,10 @@ static int ssif_bmc_probe(struct i2c_client *client)
+ 	if (!ssif_bmc)
+ 		return -ENOMEM;
+ 
++	if (of_property_read_u32(client->dev.of_node, "timeout-ms",
++				 &ssif_bmc->response_timeout))
++		ssif_bmc->response_timeout = RESPONSE_TIMEOUT;
 +
- required:
-   - compatible
-   - reg
+ 	spin_lock_init(&ssif_bmc->lock);
+ 
+ 	init_waitqueue_head(&ssif_bmc->wait_queue);
 
 -- 
 2.31.1
