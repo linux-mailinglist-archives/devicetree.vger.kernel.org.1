@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-142651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB583A26003
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:30:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C767A26005
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:30:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F1DB18851F9
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D6EC166CBC
 	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:30:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40B0220B1F6;
-	Mon,  3 Feb 2025 16:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5415720B20E;
+	Mon,  3 Feb 2025 16:30:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="YmygVOyP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I4RYxHBV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8140120AF80
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 16:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C1220B207;
+	Mon,  3 Feb 2025 16:30:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738600241; cv=none; b=m4eTEqqNtosAS6L88bShvZFYf86tI6lRYg1IBmGIrZOb9XMdNoE66+9QUJHoZAL/mHKsOzXCeRFA3CgCA9TykCeD8vl1WNNstK1irE0XDmPqoQTGFz1pEnaikxhfy1ZXYjApCq0xC7etnx4XE0YTfMIfL8CWHgPLB7rzmUQ8ZjE=
+	t=1738600242; cv=none; b=CGC1XDulUpUYxgwkNrVN5wA9aRzefbV0aN3DlC+6v90aP86u7PflNEoGxGcOZrpGtfn/UrsC5xLL0GjfogehVTxzeKp2BVFpbHUUJW2oo6kDTKBowpexJ6gc5e8INE7DIr3qjvpOlVLzYycPcyvOpwDgisG1rM5Tbbh9UY4VQqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738600241; c=relaxed/simple;
-	bh=n//MYP3HUKx2pg/IUyZ4yEkd7tkeIUN66Lf4iSZKjfo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Z7O6pRdlOjmL3s+CMQbMgViSdFfmgSRDSqX6fN4BFXfOuii8YGketqzVu9cjlhzDdzZRcCiOWrRfqGAf6b8N1ahYZqOOiJYDgWvELAXe9AU52jvgo4CiDTlglGLcGQ1lPyz1qGecBZO7zug9GkLuFd5mocRP75N6YA5Gb+OHbMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=YmygVOyP; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3862f32a33eso2073444f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 08:30:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1738600235; x=1739205035; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4w6UmI8zApfFjzpF1ITEcZX/xk8zGVgfYD57VZOtxmU=;
-        b=YmygVOyPfx2xU82WgLP5AzM/iZBAGAlkO4DtesIi3VmF6rGufd6qWFvcR5bj1uao/8
-         BgJycXocc6X0b9VkmUAt/p2bRMMnGl+dhrnH2lp9DL+WScXKXEfXikvbTZnDf6FG5uKP
-         ijD5eZ2r4qW9IGeTzu+GD+cyVgh5WM91EuimuExIYTfS/30AvUnJepWb8I5QkwUyV6NC
-         1VPdXph3Z9rhv2mgHcYK0ENAjGeovUK0zrYE0uHY1yRP+rYGiijgVuIz53MTZ9Lfbx8K
-         Ci5QJui9YnGqepoYLO5PEiD0EOvkJq5k0WH5wJ5Gw715z0XoXW2M8PzhB+khNqxXErjE
-         +UAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738600235; x=1739205035;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4w6UmI8zApfFjzpF1ITEcZX/xk8zGVgfYD57VZOtxmU=;
-        b=G4klzpWfw+A/y/pD1+fJ/FsKZ2R925S+Tsp+d7PnrBo3PMMm2haU9skJCEOMV/cgtR
-         a8iXwdu7+wTVe7ZNGd4nnJAps/vO0bkB0TcIFBHcSR1kgrGmyF9mqg8tiaYQXQhU0xGi
-         feDOJQ0IYr67CgjIbFDwoiyEfJrX52VB5m7pILvFRH34Kl0rAeOQ+QnwpoGEAbBM+z6H
-         wkeokeXQJfdrIyHV3t53YAx02q9+VtBfHAzx0Eg28H4vjyLrzg1KA5EL7fxua934z186
-         mS0S2x6631CZKJfSa1vc5piPggEyEfRmdZniz8IFxdfcBqMYweM22YUPgmX2ZHDcLN31
-         bSCA==
-X-Forwarded-Encrypted: i=1; AJvYcCWzt1qsCL6HWOVioZYZoVws9QW5pYDesIMQiivif4gSgJdnqLretYJ7v4ZCyan6q6zA3eIc9Qp2GtZN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvtSqk095FimlQiYFjizAtvu8nCOyp2fEFuv8EEAgFlBuglyMW
-	ZvbqFC293bh4L5jMcUEgHkmYiWYI2zyT2DqeaHrwkl8Kraxt7kOlcWpyC3lF9HprLmtXWt2DiJQ
-	q
-X-Gm-Gg: ASbGncutBRLJYlP3sNCck9uvmnYUETksf7IWuRsmMPxphThyptUgvfkxErfoejZqNR8
-	WMRtlCi6yZ46CYiILg4/i/HwbEfBC/bD1p7rN/6ytNQET3nLWbd0WVVpEngOMWW3KXl/U3qbBQx
-	Uo+huVBHamtMmKPYLOk+T+mmo5EXIgKLyEgwmKVMHQZLH3vcdNZY/lLyyqEdLf3AKJUpRy2xAkk
-	2EXSoW31Mea1O2RvC9/9qebYI6KbAjFN6MSvHB6xpFDRwVWUKYYb4QFK+RjpSS9oTffpN4NI5SG
-	WIAXT0lR4bhYimPt/kmFpOTY
-X-Google-Smtp-Source: AGHT+IHDKGWZDdu9KvAZ5cKLRS+DMqDNkg23q/oCJosK4PIMEE8v9HnxxhxTqL283NqvyKO/CgE6nA==
-X-Received: by 2002:a5d:6d86:0:b0:38a:518d:97b with SMTP id ffacd0b85a97d-38c519311d8mr17660310f8f.11.1738600233881;
-        Mon, 03 Feb 2025 08:30:33 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.173])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c5c1b579dsm13247381f8f.78.2025.02.03.08.30.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Feb 2025 08:30:33 -0800 (PST)
-Message-ID: <11da7631-8eae-4ffa-a131-2a8b33e0743d@tuxon.dev>
-Date: Mon, 3 Feb 2025 18:30:31 +0200
+	s=arc-20240116; t=1738600242; c=relaxed/simple;
+	bh=120P35t0XBzvjLG3h/43PRKPKE7064XAzI5+6M4pGiw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RHcZ96PCHQrB8EmSIpdFcdkTEDPvhr0be2XhhEo7alsA2a/WV1Vaxlgd+RovrAQa+qHva5ODhEyLm/Y51hhx7XgyeiGdfyDSylfvTwOyDGOnHG4DCXkhe2VO9feGoT3uVcAnrEGyTYYjjhcaA5SLv2ObdxqP4JlTG5Q9griA79o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I4RYxHBV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0EE4C4CEE3;
+	Mon,  3 Feb 2025 16:30:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738600240;
+	bh=120P35t0XBzvjLG3h/43PRKPKE7064XAzI5+6M4pGiw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=I4RYxHBV1C2i8NyJw3yvvEnBvI6OimsTgYyNfOOJLiOyLYaCZdfKb0syzuCsAe8r/
+	 g+0BUlYNYiLhqXFzmoMWMKyPNDgsw8ym7jXrTyJxhBZsPODwNaH4sQAkRd7siNEZkM
+	 z3fAZfdZhowW862/u1tZ70Bdoag0gGvT0gzLrqY45dBdSm3McT8xJwyjyJpMBrQvRg
+	 eVQwMLhBneFs2bn/L14LvTeRXK7R/A73NaEQSBvb5kJan7eefvTiXAZMtsPQfGwgrC
+	 YeDU5gETsKK+t0dyoRW+wj2lA84yoNA7tyVXpxIN6mruEiC9nl1XV32cQH6A5h+o98
+	 MSGrhHmDPhb6w==
+Message-ID: <cc1c34f0-0737-469d-a826-2df7f29f6cf3@kernel.org>
+Date: Mon, 3 Feb 2025 17:30:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,328 +50,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] thermal: of: Export non-devres helper to
- register/unregister thermal zone
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: rafael@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, p.zabel@pengutronix.de, ulf.hansson@linaro.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
- <20250103163805.1775705-3-claudiu.beznea.uj@bp.renesas.com>
- <Z5pkUNNvsWPjRQvy@mai.linaro.org>
- <65a16c3f-456e-40ec-91b0-afb57269ed46@tuxon.dev>
- <Z5tPR_tv7vWDkUI7@mai.linaro.org>
- <6ed7d545-82d7-4bca-95ec-95447586bb58@tuxon.dev>
- <b496d933-3c57-4b02-ab65-0582a30939af@linaro.org>
- <98ddf1b6-1804-4116-b4e2-f54a62c27966@tuxon.dev>
- <7d1bf72b-183a-429d-9a0c-10e1936a9abe@linaro.org>
- <e7374f91-a65d-4882-8a9b-de478582e09e@tuxon.dev>
+Subject: Re: [PATCH v9 6/7] arm64: dts: qcom: ipq5332: Add PCIe related nodes
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, bhelgaas@google.com,
+ lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+ kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ p.zabel@pengutronix.de, dmitry.baryshkov@linaro.org,
+ quic_nsekar@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Cc: Praveenkumar I <quic_ipkumar@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250128062708.573662-1-quic_varada@quicinc.com>
+ <20250128062708.573662-7-quic_varada@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <e7374f91-a65d-4882-8a9b-de478582e09e@tuxon.dev>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250128062708.573662-7-quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Hi, Daniel,
+On 28/01/2025 07:27, Varadarajan Narayanan wrote:
+>  
+> @@ -479,6 +519,230 @@ frame@b128000 {
+>  				status = "disabled";
+>  			};
+>  		};
+> +
+> +		pcie1: pcie@18000000 {
+> +			compatible = "qcom,pcie-ipq5332", "qcom,pcie-ipq9574";
+> +			reg = <0x00088000 0x3000>,
 
-On 31.01.2025 01:16, Claudiu Beznea wrote:
-> Hi, Daniel,
-> 
-> On 31.01.2025 00:33, Daniel Lezcano wrote:
->> On 30/01/2025 21:53, Claudiu Beznea wrote:
->>> Hi, Daniel,
->>>
->>> On 30.01.2025 19:24, Daniel Lezcano wrote:
->>>> On 30/01/2025 11:30, Claudiu Beznea wrote:
->>>>>
->>>>>
->>>>> On 30.01.2025 12:07, Daniel Lezcano wrote:
->>>>>> On Thu, Jan 30, 2025 at 11:08:03AM +0200, Claudiu Beznea wrote:
->>>>>>> Hi, Daniel,
->>>>
->>>> [ ... ]
->>>>
->>>>>>>> Would the IP need some cycles to capture the temperature accurately
->>>>>>>> after the
->>>>>>>> clock is enabled ?
->>>>>>>
->>>>>>> There is nothing about this mentioned about this in the HW manual of the
->>>>>>> RZ/G3S SoC. The only points mentioned are as described in the driver
->>>>>>> code:
->>>>>>> - wait at least 3us after each IIO channel read
->>>>>>> - wait at least 30us after enabling the sensor
->>>>>>> - wait at least 50us after setting OE bit in TSU_SM
->>>>>>>
->>>>>>> For this I chose to have it implemented as proposed.
->>>>>>
->>>>>> IMO, disabling/enabling the clock between two reads through the pm
->>>>>> runtime may
->>>>>> not be a good thing, especially if the system enters a thermal situation
->>>>>> where
->>>>>> it has to mitigate.
->>>>>>
->>>>>> Without any testing capturing the temperatures and compare between the
->>>>>> always-on
->>>>>> and on/off, it is hard to say if it is true or not. Up to you to test
->>>>>> that or
->>>>>> not. If you think it is fine, then let's go with it.
->>>>>
->>>>> I tested it with and w/o the runtime PM and on/off support (so, everything
->>>>> ON from the probe) and the reported temperature values were similar.
->>>>
->>>>
->>>> Did you remove the roundup to 0.5°C ?
->>>
->>> I did the testing as suggested and, this time, collected results and
->>> compared side by side. I read the temperature for 10 minutes, 60 seconds
->>> after the Linux prompt showed up. There is, indeed, a slight difference b/w
->>> the 2 cases.
->>>
->>> When the runtime PM doesn't touch the clocks on read the reported
->>> temperature varies b/w 53-54 degrees while when the runtime PM
->>> enables/disables the clocks a single read reported 55 degrees, the rest
->>> reported 54 degrees.
->>>
->>> I plotted the results side by side here:
->>> https://i2.paste.pics/f07eaeddc2ccc3c6695fe5056b52f4a2.png?
->>> trs=0a0eaab99bb59ebcb10051eb298f437c7cd50c16437a87392aebc16cd9013e18&rand=vWXm2VTrbt
->>>
->>> Please let me know how do you consider it.
->>
-> 
-> After sending this to you I figured it out that precision is lost somewhere
-> so I re-tested it with the following diff (multiplied parts of the equation
-> with 1000):
-> 
-> diff --git a/drivers/thermal/renesas/rzg3s_thermal.c
-> b/drivers/thermal/renesas/rzg3s_thermal.c
-> index 6719f9ca05eb..84e18ff69d7c 100644
-> --- a/drivers/thermal/renesas/rzg3s_thermal.c
-> +++ b/drivers/thermal/renesas/rzg3s_thermal.c
-> @@ -83,7 +83,7 @@ static int rzg3s_thermal_get_temp(struct
-> thermal_zone_device *tz, int *temp)
->         }
-> 
->         ret = 0;
-> -       ts_code_ave = DIV_ROUND_CLOSEST(ts_code_ave, TSU_READ_STEPS);
-> +       ts_code_ave = DIV_ROUND_CLOSEST(MCELSIUS(ts_code_ave), TSU_READ_STEPS);
-> 
->         /*
->          * According to the HW manual (section 40.4.4 Procedure for
-> Measuring the Temperature)
-> @@ -91,11 +91,8 @@ static int rzg3s_thermal_get_temp(struct
-> thermal_zone_device *tz, int *temp)
->          *
->          * Tj = (ts_code_ave - priv->calib0) * 165 / (priv->calib0 -
-> priv->calib1) - 40
->          */
-> -       *temp = DIV_ROUND_CLOSEST((ts_code_ave - priv->calib1) * 165,
-> -                                 (priv->calib0 - priv->calib1)) - 40;
-> -
-> -       /* Report it in mili degrees Celsius and round it up to 0.5 degrees
-> Celsius. */
-> -       *temp = roundup(MCELSIUS(*temp), 500);
-> +       *temp = DIV_ROUND_CLOSEST((u64)(ts_code_ave -
-> MCELSIUS(priv->calib1)) * MCELSIUS(165),
-> +                                 MCELSIUS(priv->calib0 - priv->calib1)) -
-> MCELSIUS(40);
-> 
->  rpm_put:
->         pm_runtime_mark_last_busy(dev);
-> 
-> With this, the results seems similar b/w runtime PM and no runtime PM cases.
-> 
-> The tests were executed after the board was off for few hours. The
-> first test was with runtime PM suspend/resume on each read. Then the board
-> was rebooted and re-run the test w/o runtime PM suspend/resume on reads.
-> 
-> Figure with results is here:
-> https://i2.paste.pics/5f353a4f04b07b4bead3086624aba23f.png?trs=0a0eaab99bb59ebcb10051eb298f437c7cd50c16437a87392aebc16cd9013e18&rand=5n34QNjWID
-> 
-> 
->> Thanks for taking the time to provide a figure
->>
->> Testing thermal can be painful because it should be done under certain
->> conditions.
->>
->> I guess there was no particular work load on the system when running the
->> tests.
-> 
-> No load, indeed.
-> 
->>
->> At the first glance, it seems, without the pm runtime, the measurement is
->> more precise as it catches more thermal changes. But the test does not give
->> information about the thermal behavior under stress. And one second
->> sampling is too long to really figure it out.
->>
->> In the kernel source tree, there is a tool to read the temperature in an
->> optimized manner, you may want to use it to read the temperature at a
->> higher rate. It is located in tools/thermal/thermometer
->>
->> Compiling is a bit fuzzy ATM, so until it is fixed, here are the steps:
->>
->> (you should install libconfig-dev and libnl-3-dev packages).
->>
->> cd $LINUX_DIR/tools/thermal/lib
->> make
->> LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$LINUX_DIR/tools/thermal/lib
->>
->> cd $LINUX_DIR/tools
->> make thermometer
->>
->>
->>
->> Then change directory:
->>
->> cd $LINUX_DIR/tools/thermal/thermometer
->>
->>
->> Run the tool:
->>
->> ./thermometer -o out -c t.conf -l DEBUG -- <my_command>
->>
->>
->> The content of the configuration file t.conf is:
->>
->> thermal-zones = (
->>           {    name = "cpu[0_9].*-thermal";
->>         polling = 100; }
->>       )
->>
->> All the captured data will be in the 'out' directory
->>
->> For 'my_command', I suggest to use a script containing:
->>
->> sleep 10; dhrystone -t 1 -r 120; sleep 10
->>
->> If you need the dhrystone binary, let me know.
->>
->> The thermal zone device tree configuration should be changed to use a 65°C
->> passive trip point instead of 100°C (and the kernel setup with the step
->> wise governor as default).
->>>> The resulting figure from the temperature should show a flat temperature
->> figure during 10 seconds, then the temperature increasing until reaching
->> the temperature threshold of 65°C, the temperature stabilizing around it,
->> then followed by a temperature decreasing when the test finishes.
->>
->> If the temperature does not reach the limit, decrease the trip point
->> temperature or increase the dhrystone duration (the -r 120 option)
->>
->> At this point, you should the test with and without pm runtime but in order
->> to have consistent results, you should wait ~20 minutes between two tests.
->>
->> The shape of the figures will give the immediate information about how the
->> mitigation vs thermal sensor vs cooling device behave.
->>
->> Additionally, you can enable the thermal DEBUGFS option and add the
->> collected information statistics from /sys/kernel/debug/thermal/*** in the
->> results.
->>
->>
->> Hope that helps
-> 
-> Thank you for all these details. I'll have a look on it but starting with
-> Monday as I won't have access to setup in the following days.
+So as Konrad pointed out now, this was never tested. It's not we who
+should run tests for you. It's you.
 
-I re-run the tests with the thermometer application that you indicated.
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
 
-This is the conf I used:
-
-thermal-zones = (
-          {    name = "cpu-thermal";
-        polling = 100; }
-      )
-
-The used device tree is as follows:
-
-	thermal-zones {
-		cpu_thermal: cpu-thermal {
-			polling-delay-passive = <250>;
-			polling-delay = <1000>;
-			thermal-sensors = <&tsu>;
-			sustainable-power = <423>;
-
-			cooling-maps {
-				map0 {
-					trip = <&target>;
-					cooling-device = <&cpu0 0 2>;
-					contribution = <1024>;
-				};
-			};
-
-			trips {
-				sensor_crit: sensor-crit {
-					temperature = <125000>;
-					hysteresis = <1000>;
-					type = "critical";
-				};
-
-				target: trip-point {
-					temperature = <56000>;
-					hysteresis = <1000>;
-					type = "passive";
-				};
-			};
-		};
-	};
-
-I executed with:
-
-time ./thermometer -o out -l DEBUG -c t.conf -- ./test.sh
-
-where test.sh is:
-
-sleep 10; time echo 100000000 | dhry; sleep 10
-
-My dhry has no -t or -r option so I passed the number of runs checking that
-the test executes for 120 seconds.
-
-I executed first the thermometer application with runtime PM suspend/resume
-on temperature read, then wait for ~25 minutes then executed the tests w/o
-runtime PM suspend/resume on temperature read.
-
-The output of the thermometer application is as follows:
-
-- runtime PM suspend/resume when reading: https://p.fr33tux.org/5bbb4d
-- no runtime PM suspend/resumes when reading: https://p.fr33tux.org/c9a7cf
-- full console log while testing: https://p.fr33tux.org/ace3a6
-
-I also plotted the results for visual comparison as follows:
-
-1/ RPM + no-RPM (continuous time base):
-https://i2.paste.pics/c3956d15a7a889a9e1ee5b60529b42f6.png?rand=axUi4IsA1C
-
-2/ RPM + no-RPM (first samples, for side by side comparison):
-https://i2.paste.pics/e2a30af590e28a091415e3afb74eb0ac.png?rand=XQhoxUe1EM
-
-3/ RPM only:
-https://i2.paste.pics/977d4de070b8e2a19694ae2b4ba3c5fc.png?rand=IfZOkonRd9
-
-4/ no-RPM only:
-https://i2.paste.pics/5d6e3d0a124e5e4b3b8b397d7b5b057c.png?rand=UaigrMRNvy
-
-Please let me know how your input.
-
-Thank you,
-Claudiu
-
-
-> 
-> Thank you,
-> Claudiu
-> 
->>
->>
->>
->>
->>
->>
-> 
-
+Best regards,
+Krzysztof
 
