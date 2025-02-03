@@ -1,417 +1,121 @@
-Return-Path: <devicetree+bounces-142720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73F41A26420
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 20:55:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C917EA26426
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 20:57:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DE993A2366
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 19:55:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 687BD3A6D82
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 19:57:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F32620A5E8;
-	Mon,  3 Feb 2025 19:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6043120A5C5;
+	Mon,  3 Feb 2025 19:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="1qXBYg1T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GwzGCyl+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E571B204592
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 19:55:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3070A2C859;
+	Mon,  3 Feb 2025 19:57:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738612522; cv=none; b=s8GRRUf+U09BZ8TkvfFPnyKFLNkGxjRWUPsuVbzFADdbHYSyTJHpSE8EoVJVSt+ATqNvG6FPyy7nydGUCH8skJcP9CftrcjzGcEUr01Tn+n8CVP4WCu1tNHluJo6I+noOh7zajbeudiU6+WAI5KThWIsrM12BMjVf57HieZZpNg=
+	t=1738612671; cv=none; b=b7eZ2bUGLtrs6brBukIs1IZyqJF7wvrv6OGSQRQQP2Jmyl6xeBnm3Sqj6RtoNqYlrGg+gBUeifGsKvulpNXiHC+IveXzZcZaQu62cz3vIFO3+F569dkUGjyBX788paZIBdlSdp7c+F4F8xB4VzDJWCmLrf9ZPpnxW7yxV5dbQBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738612522; c=relaxed/simple;
-	bh=BDZHGe3iemPGez3pzwaLOI7GEAerd/phH6DGRMNp+Rk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=RR7cBT/PcL34YIRZZVLEqMjx/qZKdja7QiQcuj90F4T1qbJD3kV5w4lT9yy4SzAANjifM1PY4qiFPL51l5MkhRRrAHo3BmweVZvOD8aZHIwdBM03xH1dXS2vfB5sw9gnUk4T0kMiUewHN4NHhNVQwdFSCWILL7NNVw6E+AtTHUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=1qXBYg1T; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-388cae9eb9fso2777918f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 11:55:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1738612518; x=1739217318; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D8YhPTaXfXtAUhE+gdweJ01mmY6a0qqNP4efKoxnGZQ=;
-        b=1qXBYg1TjwCdsYw1Odt8X0bQXtsBYWdL9tur4qFYEiikHgYmD81Yezqmj6qzj3VW2z
-         BDYZxJzkClWEpH0ptIYWRoCGkBOqwT68a622ue5PPB0P0ePY6JcmJ75sQeJEypd6HybC
-         vKphrpQ2HmMvX7F/PUwbnhL6OC+Y9STxrrV2uRgpjZ+2F5OdS9SeyqDK2XMx7tvPjF84
-         M3MFkc0ctwbeDZgWDmVde+5EO1BdEKTF7tm3qp475g+oH2clgEG4kVMba9hj9pMKmCYM
-         MpZ3FoqHN57RCXLe48qFplPR30jfAVY4lapWr5ccZkx5SZXYrMmIe6tQJUjpKtyoKuPL
-         o9KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738612518; x=1739217318;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=D8YhPTaXfXtAUhE+gdweJ01mmY6a0qqNP4efKoxnGZQ=;
-        b=Y7sWTdmOFNfzw7psd1sHQLSRKDslZajtXRQRW8qx4fnCQmyg+40HNh0V2KgpwtVwgA
-         O/eyHP+mVygsT0S58zmLM9LzGlSvkqXTvgZvPYpt1efZcGZsGotCKk4Iubgvgxa3xOpb
-         Kj84nGiO9tIx0hCzrYWvvuKHrClvvR3bQDxjVdZ3HZhcH9j+RLuz0m7jnG8wW5pPSGgY
-         32cGVrZwiCDF+CHxvqnD4m4/TJfs92Oh/+UN0YfUaSqQHO422dVaCL+kHsQfcEfZJg+j
-         9y+jJCYVDlXWUehzL17UTPNEup06F7NpXQIOoHXbnFiVlJn5rh0fd4WlCYZDJt36qCy9
-         Dh7w==
-X-Forwarded-Encrypted: i=1; AJvYcCU9JmehRo47XwX5AwKux6JC43M7GyZd5PlF2uRtLeQswclnC9UJEbJlSwyUfnPDPNm5f/GYB0FG5BVS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyg9vAkRhR4q3wMdDpQmMInpfHv3MBi6hmLG5U81pcY91esxRal
-	IqUPU28hKNO6lqcVjJzv0KSdzqDsFPb9SEPv7W2ayzaDFHZ8EMRJ6sEt10pwr3s=
-X-Gm-Gg: ASbGnctGXvfDJRlQ0cHQLz2EM07Zeov17qtRFgrV6juwOl+e9jBIuwrFNiBMl+rX1Qu
-	QCAO8DGcSTRIQ17nmQMRfRw3uI2e3OeK9GAlLHLNqd6KQDAQfm1JMncArp+f1HFCsH73RVtN/qk
-	WM4lLo5ZQc8dgxkQzyI4obxndrfGtcneYXzvRRobCMZ7f2yE8AV1BIBd7D3BYEsEr/7btbOg+X3
-	Ur2wLC+1xzzc4Drm8ANjotVRWRPOG+ftGsHeA0LzLJlseRzxKdizkzmqOveCbzCZMxR1ch1dHJT
-	bPUMv0nqGKH7c/bAjF8/lpc=
-X-Google-Smtp-Source: AGHT+IGUb0hkRoS5GVIYb0W1IYzz8SmBTmBgFWuSomLYc+ljWVnKU0RMxTGBNhLRiNl/wb16fxed3A==
-X-Received: by 2002:a5d:6d86:0:b0:38c:5c7a:dfae with SMTP id ffacd0b85a97d-38c5c7ae299mr16338581f8f.43.1738612518074;
-        Mon, 03 Feb 2025 11:55:18 -0800 (PST)
-Received: from localhost ([2a02:a03f:6bc3:6b01:62c7:350e:556e:d0f0])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c5c122e59sm13824214f8f.55.2025.02.03.11.55.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Feb 2025 11:55:17 -0800 (PST)
+	s=arc-20240116; t=1738612671; c=relaxed/simple;
+	bh=durZiyUzKeQV8I7CDYBd9bdRLrh73k2nsD8U1EuoMNI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=XPFa7tmfNxy9fr7mwJLuCHdSYCRX3giuK/aXL61TAbpNSHc/9zDNraeJ+inBVWQmqFW9UwDWyJGOwu2gadPRBfT25pJBp6ureryVyF5LlNmM/f6YWMlcLq1rxGcLz3ZtzmXYCh/ZxkEq1DPPFQTlEr5UQwLBCqo3RJDGnOffwJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GwzGCyl+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A37BDC4CED2;
+	Mon,  3 Feb 2025 19:57:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738612670;
+	bh=durZiyUzKeQV8I7CDYBd9bdRLrh73k2nsD8U1EuoMNI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=GwzGCyl+NjMgN6QiwVEbFS1WawVGL2e3kcTGvNzQUqJ9W93Jk/xBCjut6IL6lN30t
+	 HPAiZoCt9knGKLw4BWT+5jplUrJ08LSqhhNEmlFN+bBgRsmvencGfc53E8lb9L2oZF
+	 IrHMnff+KS1Ktq1Mw9A0JJb9TvavUnidAHJHV+A3rcRQiGlOhcmyTdM/3/4G18/tYe
+	 LZv4hPRa1RIu/hS8qqM+xX8wDtHO6NPv75H8KhKoUxOQzxRd0g9XUX1VZhKOx3cUkh
+	 VFUSFeZ2vPwFIc56CMBTXcYsy5cyKcwnhfVrE18N3OQnEtQr4cbuZ5anw4eEW+VAPp
+	 nBE5nGZeSZF2w==
+From: Mark Brown <broonie@kernel.org>
+To: linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>, 
+ Conor Dooley <conor@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Frieder Schrempf <frieder.schrempf@kontron.de>, 
+ imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org, 
+ Rob Herring <robh@kernel.org>, Robin Gong <yibin.gong@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+ Frieder Schrempf <frieder@fris.de>
+Cc: Bo Liu <liubo03@inspur.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
+ Joy Zou <joy.zou@nxp.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+In-Reply-To: <20241218152842.97483-1-frieder@fris.de>
+References: <20241218152842.97483-1-frieder@fris.de>
+Subject: Re: (subset) [PATCH v3 0/9] Use correct LDO5 control registers for
+ PCA9450
+Message-Id: <173861266637.674751.16665389874730608623.b4-ty@kernel.org>
+Date: Mon, 03 Feb 2025 19:57:46 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 03 Feb 2025 20:55:17 +0100
-Message-Id: <D7J2P81TEPM2.3I05E0D61QV6Y@fairphone.com>
-Cc: <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <phone-devel@vger.kernel.org>,
- <linux@mainlining.org>, <~postmarketos/upstreaming@lists.sr.ht>
-Subject: Re: [PATCH 2/2] Input: goodix_berlin - Add support for Berlin-A
- series
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Jens Reidel" <adrian@travitia.xyz>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Bastien Nocera" <hadess@hadess.net>, "Hans de Goede"
- <hdegoede@redhat.com>, "Neil Armstrong" <neil.armstrong@linaro.org>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250203174309.21574-1-adrian@travitia.xyz>
- <20250203174309.21574-3-adrian@travitia.xyz>
-In-Reply-To: <20250203174309.21574-3-adrian@travitia.xyz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-1b0d6
 
-On Mon Feb 3, 2025 at 6:43 PM CET, Jens Reidel wrote:
-> The current implementation of the goodix_berlin driver lacks support for
-> revisions A and B of the Berlin IC. This change adds support for the
-> gt9897 IC, which is a Berlin-A revision part.
->
-> The differences between revision D and A are rather minor, a handful of
-> address changes and a slightly larger read buffer. They were taken from
-> the driver published by Goodix, which does a few more things that don't
-> appear to be necessary for the touchscreen to work properly.
+On Wed, 18 Dec 2024 16:27:23 +0100, Frieder Schrempf wrote:
+> This is a follow-up of [1].
+> 
+> The main objective of this is to fix the PCA9450 driver to
+> use the correct control register for the LDO5 regulator.
+> 
+> Currently the control register to use for LDO5 is hardcoded to
+> LDO5CTRL_H. This is wrong for two reasons:
+> 
+> [...]
 
-Thanks for sending this, works fine on Fairphone 5 on v6.14-rc1 kernel,
-after also applying these general fixes:
-https://lore.kernel.org/linux-input/20250103-goodix-berlin-fixes-v1-0-b0147=
-37b08b2@fairphone.com/
+Applied to
 
-Tested-by: Luca Weiss <luca.weiss@fairphone.com>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Regards
-Luca
+Thanks!
 
->
-> Signed-off-by: Jens Reidel <adrian@travitia.xyz>
-> ---
->  drivers/input/touchscreen/goodix_berlin.h     |  9 ++++
->  .../input/touchscreen/goodix_berlin_core.c    | 27 +++++++++---
->  drivers/input/touchscreen/goodix_berlin_i2c.c |  6 ++-
->  drivers/input/touchscreen/goodix_berlin_spi.c | 44 +++++++++++++++----
->  4 files changed, 72 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/input/touchscreen/goodix_berlin.h b/drivers/input/to=
-uchscreen/goodix_berlin.h
-> index 38b6f9ddbdef..a5232e58c166 100644
-> --- a/drivers/input/touchscreen/goodix_berlin.h
-> +++ b/drivers/input/touchscreen/goodix_berlin.h
-> @@ -12,6 +12,15 @@
-> =20
->  #include <linux/pm.h>
-> =20
-> +enum goodix_berlin_ic_type {
-> +	IC_TYPE_BERLIN_A,
-> +	IC_TYPE_BERLIN_D,
-> +};
-> +
-> +struct goodix_berlin_ic_data {
-> +	enum goodix_berlin_ic_type ic_type;
-> +};
-> +
->  struct device;
->  struct input_id;
->  struct regmap;
-> diff --git a/drivers/input/touchscreen/goodix_berlin_core.c b/drivers/inp=
-ut/touchscreen/goodix_berlin_core.c
-> index 3fc03cf0ca23..b892ab901d64 100644
-> --- a/drivers/input/touchscreen/goodix_berlin_core.c
-> +++ b/drivers/input/touchscreen/goodix_berlin_core.c
-> @@ -12,7 +12,7 @@
->   * to the previous generations.
->   *
->   * Currently the driver only handles Multitouch events with already
-> - * programmed firmware and "config" for "Revision D" Berlin IC.
-> + * programmed firmware and "config" for "Revision A/D" Berlin IC.
->   *
->   * Support is missing for:
->   * - ESD Management
-> @@ -20,7 +20,7 @@
->   * - "Config" update/flashing
->   * - Stylus Events
->   * - Gesture Events
-> - * - Support for older revisions (A & B)
-> + * - Support for revision B
->   */
-> =20
->  #include <linux/bitfield.h>
-> @@ -28,6 +28,7 @@
->  #include <linux/input.h>
->  #include <linux/input/mt.h>
->  #include <linux/input/touchscreen.h>
-> +#include <linux/of.h>
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/sizes.h>
-> @@ -54,9 +55,11 @@
->  #define GOODIX_BERLIN_DEV_CONFIRM_VAL		0xAA
->  #define GOODIX_BERLIN_BOOTOPTION_ADDR		0x10000
->  #define GOODIX_BERLIN_FW_VERSION_INFO_ADDR	0x10014
-> +#define GOODIX_BERLIN_FW_VERSION_INFO_ADDR_A	0x1000C
-> =20
->  #define GOODIX_BERLIN_IC_INFO_MAX_LEN		SZ_1K
->  #define GOODIX_BERLIN_IC_INFO_ADDR		0x10070
-> +#define GOODIX_BERLIN_IC_INFO_ADDR_A		0x10068
-> =20
->  #define GOODIX_BERLIN_CHECKSUM_SIZE		sizeof(u16)
-> =20
-> @@ -297,9 +300,16 @@ static void goodix_berlin_power_off(struct goodix_be=
-rlin_core *cd)
-> =20
->  static int goodix_berlin_read_version(struct goodix_berlin_core *cd)
->  {
-> +	const struct goodix_berlin_ic_data *ic_data =3D of_device_get_match_dat=
-a(cd->dev);
-> +	int fw_version_info_addr;
->  	int error;
-> =20
-> -	error =3D regmap_raw_read(cd->regmap, GOODIX_BERLIN_FW_VERSION_INFO_ADD=
-R,
-> +	if (ic_data->ic_type =3D=3D IC_TYPE_BERLIN_A)
-> +		fw_version_info_addr =3D GOODIX_BERLIN_FW_VERSION_INFO_ADDR_A;
-> +	else
-> +		fw_version_info_addr =3D GOODIX_BERLIN_FW_VERSION_INFO_ADDR;
-> +
-> +	error =3D regmap_raw_read(cd->regmap, fw_version_info_addr,
->  				&cd->fw_version, sizeof(cd->fw_version));
->  	if (error) {
->  		dev_err(cd->dev, "error reading fw version, %d\n", error);
-> @@ -358,16 +368,23 @@ static int goodix_berlin_parse_ic_info(struct goodi=
-x_berlin_core *cd,
-> =20
->  static int goodix_berlin_get_ic_info(struct goodix_berlin_core *cd)
->  {
-> +	const struct goodix_berlin_ic_data *ic_data =3D of_device_get_match_dat=
-a(cd->dev);
->  	u8 *afe_data __free(kfree) =3D NULL;
->  	__le16 length_raw;
->  	u16 length;
-> +	int ic_info_addr;
->  	int error;
-> =20
-> +	if (ic_data->ic_type =3D=3D IC_TYPE_BERLIN_A)
-> +		ic_info_addr =3D GOODIX_BERLIN_IC_INFO_ADDR_A;
-> +	else
-> +		ic_info_addr =3D GOODIX_BERLIN_IC_INFO_ADDR;
-> +
->  	afe_data =3D kzalloc(GOODIX_BERLIN_IC_INFO_MAX_LEN, GFP_KERNEL);
->  	if (!afe_data)
->  		return -ENOMEM;
-> =20
-> -	error =3D regmap_raw_read(cd->regmap, GOODIX_BERLIN_IC_INFO_ADDR,
-> +	error =3D regmap_raw_read(cd->regmap, ic_info_addr,
->  				&length_raw, sizeof(length_raw));
->  	if (error) {
->  		dev_err(cd->dev, "failed get ic info length, %d\n", error);
-> @@ -380,7 +397,7 @@ static int goodix_berlin_get_ic_info(struct goodix_be=
-rlin_core *cd)
->  		return -EINVAL;
->  	}
-> =20
-> -	error =3D regmap_raw_read(cd->regmap, GOODIX_BERLIN_IC_INFO_ADDR,
-> +	error =3D regmap_raw_read(cd->regmap, ic_info_addr,
->  				afe_data, length);
->  	if (error) {
->  		dev_err(cd->dev, "failed get ic info data, %d\n", error);
-> diff --git a/drivers/input/touchscreen/goodix_berlin_i2c.c b/drivers/inpu=
-t/touchscreen/goodix_berlin_i2c.c
-> index ad7a60d94338..b3fd063b4242 100644
-> --- a/drivers/input/touchscreen/goodix_berlin_i2c.c
-> +++ b/drivers/input/touchscreen/goodix_berlin_i2c.c
-> @@ -53,8 +53,12 @@ static const struct i2c_device_id goodix_berlin_i2c_id=
-[] =3D {
-> =20
->  MODULE_DEVICE_TABLE(i2c, goodix_berlin_i2c_id);
-> =20
-> +static const struct goodix_berlin_ic_data gt9916_data =3D {
-> +	.ic_type =3D IC_TYPE_BERLIN_D,
-> +};
-> +
->  static const struct of_device_id goodix_berlin_i2c_of_match[] =3D {
-> -	{ .compatible =3D "goodix,gt9916", },
-> +	{ .compatible =3D "goodix,gt9916", .data =3D &gt9916_data },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, goodix_berlin_i2c_of_match);
-> diff --git a/drivers/input/touchscreen/goodix_berlin_spi.c b/drivers/inpu=
-t/touchscreen/goodix_berlin_spi.c
-> index 0662e87b8692..f48f11a76b6d 100644
-> --- a/drivers/input/touchscreen/goodix_berlin_spi.c
-> +++ b/drivers/input/touchscreen/goodix_berlin_spi.c
-> @@ -10,6 +10,7 @@
->  #include <linux/unaligned.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
->  #include <linux/regmap.h>
->  #include <linux/spi/spi.h>
->  #include <linux/input.h>
-> @@ -19,9 +20,13 @@
->  #define GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN	1
->  #define GOODIX_BERLIN_REGISTER_WIDTH		4
->  #define GOODIX_BERLIN_SPI_READ_DUMMY_LEN	3
-> +#define GOODIX_BERLIN_SPI_READ_DUMMY_LEN_A	4
->  #define GOODIX_BERLIN_SPI_READ_PREFIX_LEN	(GOODIX_BERLIN_SPI_TRANS_PREFI=
-X_LEN + \
->  						 GOODIX_BERLIN_REGISTER_WIDTH + \
->  						 GOODIX_BERLIN_SPI_READ_DUMMY_LEN)
-> +#define GOODIX_BERLIN_SPI_READ_PREFIX_LEN_A	(GOODIX_BERLIN_SPI_TRANS_PRE=
-FIX_LEN + \
-> +						 GOODIX_BERLIN_REGISTER_WIDTH + \
-> +						 GOODIX_BERLIN_SPI_READ_DUMMY_LEN_A)
->  #define GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN	(GOODIX_BERLIN_SPI_TRANS_PREF=
-IX_LEN + \
->  						 GOODIX_BERLIN_REGISTER_WIDTH)
-> =20
-> @@ -33,32 +38,41 @@ static int goodix_berlin_spi_read(void *context, cons=
-t void *reg_buf,
->  				  size_t val_size)
->  {
->  	struct spi_device *spi =3D context;
-> +	const struct goodix_berlin_ic_data *ic_data =3D of_device_get_match_dat=
-a(&spi->dev);
->  	struct spi_transfer xfers;
->  	struct spi_message spi_msg;
->  	const u32 *reg =3D reg_buf; /* reg is stored as native u32 at start of =
-buffer */
-> +	ssize_t read_prefix_len, read_dummy_len;
->  	int error;
-> =20
-> +	if (ic_data->ic_type =3D=3D IC_TYPE_BERLIN_A) {
-> +		read_prefix_len =3D GOODIX_BERLIN_SPI_READ_PREFIX_LEN_A;
-> +		read_dummy_len =3D GOODIX_BERLIN_SPI_READ_DUMMY_LEN_A;
-> +	} else {
-> +		read_prefix_len =3D GOODIX_BERLIN_SPI_READ_PREFIX_LEN;
-> +		read_dummy_len =3D GOODIX_BERLIN_SPI_READ_DUMMY_LEN;
-> +	}
-> +
->  	if (reg_size !=3D GOODIX_BERLIN_REGISTER_WIDTH)
->  		return -EINVAL;
-> =20
->  	u8 *buf __free(kfree) =3D
-> -		kzalloc(GOODIX_BERLIN_SPI_READ_PREFIX_LEN + val_size,
-> -			GFP_KERNEL);
-> +		kzalloc(read_prefix_len + val_size, GFP_KERNEL);
->  	if (!buf)
->  		return -ENOMEM;
-> =20
->  	spi_message_init(&spi_msg);
->  	memset(&xfers, 0, sizeof(xfers));
-> =20
-> -	/* buffer format: 0xF1 + addr(4bytes) + dummy(3bytes) + data */
-> +	/* buffer format: 0xF1 + addr(4bytes) + dummy(3/4bytes) + data */
->  	buf[0] =3D GOODIX_BERLIN_SPI_READ_FLAG;
->  	put_unaligned_be32(*reg, buf + GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN);
->  	memset(buf + GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + GOODIX_BERLIN_REGISTE=
-R_WIDTH,
-> -	       0xff, GOODIX_BERLIN_SPI_READ_DUMMY_LEN);
-> +	       0xff, read_dummy_len);
-> =20
->  	xfers.tx_buf =3D buf;
->  	xfers.rx_buf =3D buf;
-> -	xfers.len =3D GOODIX_BERLIN_SPI_READ_PREFIX_LEN + val_size;
-> +	xfers.len =3D read_prefix_len + val_size;
->  	xfers.cs_change =3D 0;
->  	spi_message_add_tail(&xfers, &spi_msg);
-> =20
-> @@ -68,7 +82,7 @@ static int goodix_berlin_spi_read(void *context, const =
-void *reg_buf,
->  		return error;
->  	}
-> =20
-> -	memcpy(val_buf, buf + GOODIX_BERLIN_SPI_READ_PREFIX_LEN, val_size);
-> +	memcpy(val_buf, buf + read_prefix_len, val_size);
->  	return error;
->  }
-> =20
-> @@ -123,6 +137,7 @@ static const struct input_id goodix_berlin_spi_input_=
-id =3D {
-> =20
->  static int goodix_berlin_spi_probe(struct spi_device *spi)
->  {
-> +	const struct goodix_berlin_ic_data *ic_data =3D of_device_get_match_dat=
-a(&spi->dev);
->  	struct regmap_config regmap_config;
->  	struct regmap *regmap;
->  	size_t max_size;
-> @@ -137,7 +152,10 @@ static int goodix_berlin_spi_probe(struct spi_device=
- *spi)
->  	max_size =3D spi_max_transfer_size(spi);
-> =20
->  	regmap_config =3D goodix_berlin_spi_regmap_conf;
-> -	regmap_config.max_raw_read =3D max_size - GOODIX_BERLIN_SPI_READ_PREFIX=
-_LEN;
-> +	if (ic_data->ic_type =3D=3D IC_TYPE_BERLIN_A)
-> +		regmap_config.max_raw_read =3D max_size - GOODIX_BERLIN_SPI_READ_PREFI=
-X_LEN_A;
-> +	else
-> +		regmap_config.max_raw_read =3D max_size - GOODIX_BERLIN_SPI_READ_PREFI=
-X_LEN;
->  	regmap_config.max_raw_write =3D max_size - GOODIX_BERLIN_SPI_WRITE_PREF=
-IX_LEN;
-> =20
->  	regmap =3D devm_regmap_init(&spi->dev, NULL, spi, &regmap_config);
-> @@ -153,13 +171,23 @@ static int goodix_berlin_spi_probe(struct spi_devic=
-e *spi)
->  }
-> =20
->  static const struct spi_device_id goodix_berlin_spi_ids[] =3D {
-> +	{ "gt9897" },
->  	{ "gt9916" },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(spi, goodix_berlin_spi_ids);
-> =20
-> +static const struct goodix_berlin_ic_data gt9897_data =3D {
-> +	.ic_type =3D IC_TYPE_BERLIN_A,
-> +};
-> +
-> +static const struct goodix_berlin_ic_data gt9916_data =3D {
-> +	.ic_type =3D IC_TYPE_BERLIN_D,
-> +};
-> +
->  static const struct of_device_id goodix_berlin_spi_of_match[] =3D {
-> -	{ .compatible =3D "goodix,gt9916", },
-> +	{ .compatible =3D "goodix,gt9897", .data =3D &gt9897_data },
-> +	{ .compatible =3D "goodix,gt9916", .data =3D &gt9916_data },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, goodix_berlin_spi_of_match);
+[1/9] dt-bindings: regulator: pca9450: Add properties for handling LDO5
+      commit: f9cbf56b0a1966d977df87d15a5bdbff2c342062
+[2/9] arm64: dts: imx8mp-skov-reva: Use hardware signal for SD card VSELECT
+      commit: b5ec74c2aec76fbdff9bc16951455602e11902bf
+[3/9] Revert "regulator: pca9450: Add SD_VSEL GPIO for LDO5"
+      commit: c73be62caabbec6629689c705aea65e5ce364d5d
+[4/9] regulator: pca9450: Fix control register for LDO5
+      commit: 3ce6f4f943ddd9edc03e450a2a0d89cb025b165b
+[5/9] regulator: pca9450: Fix enable register for LDO5
+      commit: f5aab0438ef17f01c5ecd25e61ae6a03f82a4586
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
