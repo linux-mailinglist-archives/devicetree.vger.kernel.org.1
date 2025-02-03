@@ -1,129 +1,158 @@
-Return-Path: <devicetree+bounces-142509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B15B6A25993
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 13:40:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1ACA259EF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 13:50:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41D121634B3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 12:40:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA33818807E0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 12:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508AC2046A5;
-	Mon,  3 Feb 2025 12:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937C2204C1C;
+	Mon,  3 Feb 2025 12:48:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="NiCsXrG7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i6INJIPg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1304F20468D;
-	Mon,  3 Feb 2025 12:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8299A207644;
+	Mon,  3 Feb 2025 12:48:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738586423; cv=none; b=hEiBGCzunqjS3tpalGUO8RnIeje4+A3PJH1ZHtQqDb7XIlx/DNLeqRIQ6BB2RiuKzg9qyOACvPSBo3hZ2JB7K9/hgy9qa9zKrE+bde0u6jz0AMrBtqgUiId+W5Fgcwq6Dt671RjIhosbE74Pu3ANu9lxA1Wmh5AjBsm+Ntfnw7I=
+	t=1738586917; cv=none; b=Pq8Y8Rfog2uBPurQw4zVsm/55Pu3l+/Py60UDu1e1dn17LfJCyHQNxem9Z+ThT8Ek6vc+EQiDZ6UzQrf7zEIN1Tfc6+RxazHDKvlN8bB3d4C5JOKoT75fCCa/O0qWMaE8vn2q8hTRF7iogB9B2AbNFhiK2gN47EEB1Tmvf2OzRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738586423; c=relaxed/simple;
-	bh=AkDFsgM8ht/4xOTKn+YGxCP4v6cjlpjp8uRWn5voH7o=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=p+Jl7/QB4J7x5+L3u6xAPXXe+wUQE7B0L3Dr7akbvtjo6Uk2M83BtoP9Q6TZBP+UXOW4OH0VCoGlp/pRTGdEnQ2JbgsCHNZOBXGsyhk+JRLzSvzvL36zHlP2gOBY2TKYiYdO6mE71dyCMnCptjF0oLoaS/N/3gAlMN48t0Ma55g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=NiCsXrG7; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id E576025CAA;
-	Mon,  3 Feb 2025 13:40:17 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id kOJee6X8J05I; Mon,  3 Feb 2025 13:40:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1738586417; bh=AkDFsgM8ht/4xOTKn+YGxCP4v6cjlpjp8uRWn5voH7o=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=NiCsXrG7LpnG5w/NFwLl1Xf4k91ChodYcxZdyx5YPPOd49ovtD7MWdYY8MSqveHJL
-	 AjJK0tAADkF89VLXYecmauRE5Gbv5iijR/wWAk4bwUHJvvvhXCYprAkat0d0TGYHIf
-	 ykOg1aVULxEsuMRLAo+lnp61mnypYcYTcGh8agQvcbDbQ93GggzGqmU2WdUo/fnERe
-	 cf0a6u52bgH+nL3XJ9zgtBTU2ZwrsvKehCSZyQANT07sLZRkG2mrLpJPC599dAG4RR
-	 gPgmAg3QdVtp9K9GV7ZrzkCmvJgfX0tErHPHs9P/aQnPsTEdcVAPpr+zHZOgyA1afb
-	 2mgxyQClmL60Q==
+	s=arc-20240116; t=1738586917; c=relaxed/simple;
+	bh=iof820EKKKMpDSBwk/VGn90Y3m/jD1O5AzQTcc0iV8k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oE1oRy04tJvUQhfA+2bVuKWyjAyPs/8JYABeuAAHuui6GNaMkwcJF8YfP5/5vH0fDtagHP48RCiKsxWsRWuOAfFDtX5cSUANNArB3Vx0bT9Gbp/GLbW+ICdds1EuYjzqIu20R87mqMRoHXmSZRutfRVw7mAYmEXOPlIeRhRpEa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i6INJIPg; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-21670dce0a7so88582995ad.1;
+        Mon, 03 Feb 2025 04:48:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738586914; x=1739191714; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=twHwwtRQqwdawa+fPo20Qdo3qbha0a8mea1KZO6bLrk=;
+        b=i6INJIPgbeW+13ci9tpU2UZKB191iJrVmubTn3sJ/3tbQWQgeZyxXCQCV+UtDeo+x8
+         VdVGhtpWWMEtTy+SFbES+eK4NA2pAqwqmQhEvE/FMEwvzg4ER82T7xkkGW0B/9aN1/hQ
+         blyYio6TAARfOV/WRA4MScdAT44DvnNYn0EmUwl14WD4QXW393Md7GvkRZ3i1lPBWIzD
+         0GCrAsmej4n9VpruJICQ6aIScbnQK59Z2x9p+XbWT9M1yhMgAwJUCXorQG2iZSrxO/L+
+         On1qawoyn+COqPD7or+J57iJ01uIqS8WgAzv1T4PrNbrHiM+3Rob+2AyMsiwND4tN3NB
+         xZ4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738586914; x=1739191714;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=twHwwtRQqwdawa+fPo20Qdo3qbha0a8mea1KZO6bLrk=;
+        b=VYGBZ1Df0qkXSvYalqfbcaZnYnQbR2h0R73RtwLyYxYPVdKC1aYILp8vKdgkGOZI0j
+         ms/Nd7F4+eE0e/O8qV/zwXMqY3B0lBIWKGDbrBfoImv1FV0j2x2a/FoyO2jv7ewvyLTy
+         ExpTQAEtnEE4mGw78K3zyIheA9KHqFWNKS0jS5akpkw28nI9EpaoWeBZ8oVhfrXcQMnr
+         CHN4g2xlFbVEtYELSlCEyiPKT4whCIpgdwsOh9sxYGBCwC4wTu/lexbc/t/YHbSVaWBe
+         r7SruZlGTXGugjUWap/WO2KmOvvNJlfdCVvWffxZm3tNcVcKl/gsqQuvj6e9lQ1tSHcb
+         ES6w==
+X-Forwarded-Encrypted: i=1; AJvYcCUocDWAy7RsjrBZc9XfHTX2cDwcQyBQc9FXMgJiROA0zC0QGRsYzPGV5xrwosGzQpr9aUr6UcXMZ0oV@vger.kernel.org, AJvYcCXsH3q1yZXLv84AwK8a8ZmKYR8ogF8YB4jVTcwnE1OQluNkOIYdNyxinQipjm37dVLm6MfctndyidM0JEEY@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTykrZnahhnpTqDHnbVrCUTGKH6thDAIixiWnxRJDPkZO/kZu+
+	TzWwsWI11Kyn7XU1G3Vz3pLLt/reDzqXFbCZTENJIkts7gHrLpvS/Cj8fVE7
+X-Gm-Gg: ASbGncuGNU1dnT5bofv5X9SGkfdQyI/amJcQ93nJUS95qxVjgWsZUq9KVBnsdBtkQOW
+	umsXByB66+200kYR4mztpHFRKOBgydNWYChzaJrQOyGzX4xCdq+48WD+tnVfAJm7GtG9IO60S4v
+	lN38wZqp2FuJfTE6cO0fs0Ig0hPlKEGXIjT2bz5tyLZImaS1rvBllsURh+Lp9kuSPF3HiyPzoWE
+	zVcrhnZqFQzALgedGr8bmYhaaZwbC78DFs0vQb5VSXrKnfVK/Hm6iXaUjyjPIUgHr0+Jb3Lpo6i
+	MtOmE9kNrgGDRL75
+X-Google-Smtp-Source: AGHT+IFkG16Fy+xKUEcl7Zhyfj8sYFQhncAIzcxpAp+kKdyRiKIyPZxsk0Bgs26S0+b7QvEEARtYmQ==
+X-Received: by 2002:a17:903:2a8b:b0:216:3c36:69a7 with SMTP id d9443c01a7336-21dd7de0fc4mr329572215ad.45.1738586913809;
+        Mon, 03 Feb 2025 04:48:33 -0800 (PST)
+Received: from nick-mbp.. ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-acebddbb0d4sm7835225a12.10.2025.02.03.04.48.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Feb 2025 04:48:33 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH RESEND 0/9] Add Apple A7-A11, T2 SoC cpufreq nodes
+Date: Mon,  3 Feb 2025 20:43:39 +0800
+Message-ID: <20250203124747.41541-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 03 Feb 2025 12:40:16 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>, Alim
- Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki
- <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Tomasz
- Figa <tomasz.figa@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
- <jirislaby@kernel.org>, Lee Jones <lee@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Vinod Koul
- <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Marek
- Szyprowski <m.szyprowski@samsung.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Andi Shyti <andi.shyti@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Jaehoon Chung
- <jh80.chung@samsung.com>, Vivek Gautam <gautam.vivek@samsung.com>, Thinh
- Nguyen <Thinh.Nguyen@synopsys.com>, Kees Cook <kees@kernel.org>, Tony Luck
- <tony.luck@intel.com>, "Guilherme G . Piccoli" <gpiccoli@igalia.com>, Sergey
- Lisov <sleirsgoevy@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-hardening@vger.kernel.org, Kaustabh
- Chakraborty <kauschluss@disroot.org>
-Subject: Re: [PATCH 02/33] dt-bindings: clock: add clock definitions for
- exynos7870 CMU
-In-Reply-To: <20250203-enigmatic-remarkable-beagle-709955@krzk-bin>
-References: <20250203-exynos7870-v1-0-2b6df476a3f0@disroot.org>
- <20250202190758.14986-1-kauschluss@disroot.org>
- <20250203-enigmatic-remarkable-beagle-709955@krzk-bin>
-Message-ID: <c1249f2f6ac8a2f5a1dcb3bbbba647f9@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2025-02-03 07:54, Krzysztof Kozlowski wrote:
-> On Mon, Feb 03, 2025 at 12:37:58AM +0530, Kaustabh Chakraborty wrote:
->> From: Sergey Lisov <sleirsgoevy@gmail.com>
->> 
->> Add unique identifiers for exynos7870 clocks for every bank. It adds all
->> clocks of CMU_MIF, CMU_DISPAUD, CMU_G3D, CMU_ISP, CMU_MFCMSCL, and
->> CMU_PERI.
->> 
->> Signed-off-by: Sergey Lisov <sleirsgoevy@gmail.com>
->> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->> ---
->>  include/dt-bindings/clock/exynos7870.h | 324 +++++++++++++++++++++++++
->>  1 file changed, 324 insertions(+)
-> 
-> Look at git log - that's never a separate commit.
+This series adds performance-controller and operating-points-v2 cpufreq
+nodes for Apple A7-A11, T2 SoCs.
 
-Hmm, I see past examples which are mixed.
+Dependencies:
 
-2ae5c2c3f8d586b709cf67efe94488be397d7544
-Exynos850 CMU (c. 2021). CMU definitions are in a separate commit.
+- arm64: dts: apple: Split s8000/s8003 SoC DTS files
+https://lore.kernel.org/asahi/20250203113949.14760-1-towinchenmi@gmail.com/T
 
-591020a516720e9eba1c4b1748cb73b6748e445f
-Exynos7885 CMU (c. 2021). CMU definitions are in a separate commit.
+- Device Tree for Apple T2 (T8012) SoC devices
+https://lore.kernel.org/asahi/20250203114417.16453-1-towinchenmi@gmail.com/T
 
-while
+Note, this will have conflicts with Apple A7-A11, T2 PMGR nodes [1] due to
+both of the series adding things to the same part of the .dts files, they are
+unrelated, so keep both of additions.
 
-96bd6224f07b8bf73e0359f15a3d7678118494e6
-Exynos5433 CMU (c. 2015). CMU definitions and driver are in a single commit.
+1: https://lore.kernel.org/asahi/20250203121831.36053-1-towinchenmi@gmail.com/T
 
-Let me know if I should still continue with the approach you mentioned.
+Nick Chan
 
-> 
-> Best regards,
-> Krzysztof
+---
+Nick Chan (9):
+  arm64: dts: apple: s5l8960x: Add cpufreq nodes
+  arm64: dts: apple: t7000: Add cpufreq nodes
+  arm64: dts: apple: t7001: Add cpufreq nodes
+  arm64: dts: apple: Add cpufreq nodes for S8000/S8003
+  arm64: dts: apple: s8001: Add cpufreq nodes
+  arm64: dts: apple: t8010: Add cpufreq nodes
+  arm64: dts: apple: t8011: Add cpufreq nodes
+  arm64: dts: apple: t8012: Add cpufreq nodes
+  arm64: dts: apple: t8015: Add cpufreq nodes
+
+ arch/arm64/boot/dts/apple/s5l8960x-5s.dtsi    |   1 +
+ arch/arm64/boot/dts/apple/s5l8960x-air1.dtsi  |   1 +
+ arch/arm64/boot/dts/apple/s5l8960x-mini2.dtsi |   1 +
+ arch/arm64/boot/dts/apple/s5l8960x-opp.dtsi   |  45 +++++++
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi       |  10 ++
+ arch/arm64/boot/dts/apple/s5l8965x-opp.dtsi   |  45 +++++++
+ arch/arm64/boot/dts/apple/s800-0-3.dtsi       |  10 ++
+ arch/arm64/boot/dts/apple/s8000.dtsi          |  53 +++++++-
+ arch/arm64/boot/dts/apple/s8001.dtsi          |  59 +++++++++
+ arch/arm64/boot/dts/apple/s8003.dtsi          |  53 +++++++-
+ arch/arm64/boot/dts/apple/t7000-6.dtsi        |   4 +
+ arch/arm64/boot/dts/apple/t7000-j42d.dts      |   4 +
+ arch/arm64/boot/dts/apple/t7000-mini4.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/t7000.dtsi          |  46 +++++++
+ arch/arm64/boot/dts/apple/t7001.dtsi          |  52 ++++++++
+ arch/arm64/boot/dts/apple/t8010-7.dtsi        |   8 ++
+ arch/arm64/boot/dts/apple/t8010-ipad6.dtsi    |   8 ++
+ arch/arm64/boot/dts/apple/t8010.dtsi          |  86 ++++++++++++
+ arch/arm64/boot/dts/apple/t8011.dtsi          |  79 +++++++++++
+ arch/arm64/boot/dts/apple/t8012.dtsi          |  83 ++++++++++++
+ arch/arm64/boot/dts/apple/t8015.dtsi          | 123 ++++++++++++++++++
+ 21 files changed, 773 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/apple/s5l8960x-opp.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s5l8965x-opp.dtsi
+
+
+base-commit: a14d9039c2aea103eeedc5602ebab731ef3eb73e
+-- 
+2.48.1
+
 
