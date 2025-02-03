@@ -1,414 +1,105 @@
-Return-Path: <devicetree+bounces-142684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFFCDA26191
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:41:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BDAFA261BD
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:51:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E4E3166CBC
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:41:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0D011882DDC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:51:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4455720C489;
-	Mon,  3 Feb 2025 17:41:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UeGplCNi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32D2620D4E4;
+	Mon,  3 Feb 2025 17:51:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from forward204d.mail.yandex.net (forward204d.mail.yandex.net [178.154.239.217])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B14920C465
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 17:41:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C183A8CB;
+	Mon,  3 Feb 2025 17:51:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.217
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738604468; cv=none; b=PoU+mgqNJweEsRLdHZeJUZ2QWq0oCa6+TYVC2+GLS4Jo+JJ7FY4RDYRzuwiv21EIrzG96fDI+Ly903GvqAUD1VyN6JECEbasJNa+hYkWyfbTz1MX6atXDg8o1Kq6GqEa7AiHQb9Tu1QDgl5eCvFvwy1MDFewDyZIyCElKEGIRcw=
+	t=1738605080; cv=none; b=SVSeCUM4syvy/vPJCukP2Iw1j2XGh588cxXM2x5nMN/A1bu6z66YRWoIVOcLNxKUohe68CUjhBzXmAJ6T1J4k11mhQGnP19slAU7VZF1IMIEthk9lhg/LSCfW5pl1yBfowlP2EFSBj3MJM6nFOgVD5o4j0Oo1wjYSK/3yd+D0Jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738604468; c=relaxed/simple;
-	bh=qx6SzSl1pzndZQJN1qARrzkmtmUMKuAOM17ZDLIwPLw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C4fpLXjRVgqN+8wATC9nhFjmg/mfmnc2juBtABxlfsSKG5I9tAQTszSbPE6RyRsNmWOqwb+yBrxqey0JdeTVCIOZz/eHojRrNpkx3dXgU1yX55YUVB8Bysb0ml2IZyKAdpEZvVu89e861+z8JAx76TMuoTYk/YBT97haNKrzCqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UeGplCNi; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2164b662090so92436505ad.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 09:41:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738604465; x=1739209265; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Jc4txm5k91aOH0PDpEgnd/B3XO8sxa1Y0noFk72AFGo=;
-        b=UeGplCNioTN+XSdOYoaVZ4ztGut4qm8Ciix1w2T562l9kEYakmf1SbQYX5S1nqnO/A
-         1yoeK861u8NKq5yGbDz9/nM9Hhaqr0HBWekN1w8Eex55RCHcfQG+66LdpcKkqPb+vk7d
-         HKRbASMfsFuu/NJ2u99XH4il1fowaobKK5KiQP6x1xYVB7B0KElYnUa/ZF1bm4YUoGVZ
-         bLK8ROS8/oAXYkkqrcRwhpXh48wkkPWp8HvFANR63lQu7O15K+pU23APYdMiYCwZUMwu
-         eHbUKfgHzhIV7/Datqkz37M+/2RbxGBPTCNsaEKKo60/zOdwXBCM/jBBIeAi/kpgctJe
-         w9ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738604465; x=1739209265;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jc4txm5k91aOH0PDpEgnd/B3XO8sxa1Y0noFk72AFGo=;
-        b=kfEceyJf4klxPW6+Aipnqf5b7DY1Z5Qe8S0uAC1THSIp9Ccsj9m8M65lnkSDQtm6RE
-         OUjeh0AsVEHAosaxJ5C5o666db9zaG3m2MLT/MG6IpfC295HwO7/Uuqo6iT9JPBB+Nz1
-         Ou1T+zdrvPOULqr+QZyQsl7EFmHnWAv308nLKyokgkNSg1leubeQIJUBxATqtzEGO+Ep
-         A5I58ZxodGajj96MbVQ9WUg/pQnHL8iYRskdbZvKpNUfY+ZKSxNHwpwpMjfwQmOAJ+Nv
-         hB/5bZwnhj9g6QYw8cB1iYZ7GAXYgMDznIGJysmj42me2FhyyNWnNyq/kyHlNY7trjtW
-         o7RQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVzAzOX1+OXmnlWlkj3jq8w0HzMGKh6rBuswVc5x0ZkM50K4OSLrw1e1ouN0Npfu5oGeb29yKTLtSDg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxF6ihnEJxaiCjQlUhh6seO/6bIYrGCKrWaOw1gBqDSmkO3D62h
-	r/QE+HMiOzbHg/KC8cOj+xyXFM5cO6lnLCgyK2g8y2YELpkv0RTcNZIe+qo4qA==
-X-Gm-Gg: ASbGncuzlHUE+gyjQ5/BGzhsu1O075dNjHQ66i04JjWudcJ8PmT4zf/EvfgidYQcE1t
-	Xu6oXvr6nsgefxwZeISjjl7YfvnIbIXrJrqtl2G/PB99/r3sXedGRWqGTybPbWmziAdJP1Mc6Xy
-	BIa8ltnlM4Z+/FPFkizu5UEkEEfeh/qIRUhd99cTJHEnsBmf5LJf3wgj9pQQTb6krgFvrpPN4hJ
-	2HBjILJ4G8Vd0S7K6jKDr3Lq8zri8SWSbFA+4WWYvG+eTHmqjUMQkMi2fMKZHdlNuBMsEXsZEZW
-	LCUhUXGpmO9lCuvVNaevnLRucQ==
-X-Google-Smtp-Source: AGHT+IEXuhXDfLQheB0CwwJea+oShjMxbR0KS/ste/5V1usvYDbgkRviKo/xEnR44zqlAv99bR2jyQ==
-X-Received: by 2002:a05:6a00:2908:b0:726:64a5:5f67 with SMTP id d2e1a72fcca58-72fd0c03db4mr31901545b3a.12.1738604465518;
-        Mon, 03 Feb 2025 09:41:05 -0800 (PST)
-Received: from thinkpad ([120.60.129.34])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72fe6a1a773sm8823217b3a.166.2025.02.03.09.41.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Feb 2025 09:41:05 -0800 (PST)
-Date: Mon, 3 Feb 2025 23:11:00 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jingoohan1@gmail.com,
-	michal.simek@amd.com, bharat.kumar.gogada@amd.com
-Subject: Re: [PATCH v8 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
-Message-ID: <20250203174100.uohiowulqtlkjp32@thinkpad>
-References: <20250129113029.64841-1-thippeswamy.havalige@amd.com>
- <20250129113029.64841-4-thippeswamy.havalige@amd.com>
+	s=arc-20240116; t=1738605080; c=relaxed/simple;
+	bh=yQhfC/yggsxzdwf3kw2jCq81VaVX9MTlNmUkAKdj9fE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=plbQ6Jxq3icCZTDum2GR+1XX64Pwp5G36zjY4y3y55Gp3wYd79YsXC8dEWu9n0+tge0+1asff16icwHi2lmKhx4QcPqUMUm4EES9DnJtbQVHM3kNCWF6P0eJd2iddtYlkI2BknRI0bH4/ezGyRZwxEf4OFneyjpM/Qnlfp8HW8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=travitia.xyz; spf=none smtp.mailfrom=travitia.xyz; arc=none smtp.client-ip=178.154.239.217
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=travitia.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=travitia.xyz
+Received: from forward103d.mail.yandex.net (forward103d.mail.yandex.net [IPv6:2a02:6b8:c41:1300:1:45:d181:d103])
+	by forward204d.mail.yandex.net (Yandex) with ESMTPS id 1859A64406;
+	Mon,  3 Feb 2025 20:43:40 +0300 (MSK)
+Received: from mail-nwsmtp-smtp-production-main-35.klg.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-35.klg.yp-c.yandex.net [IPv6:2a02:6b8:c42:3ba4:0:640:5b85:0])
+	by forward103d.mail.yandex.net (Yandex) with ESMTPS id 31E2060069;
+	Mon,  3 Feb 2025 20:43:29 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-35.klg.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id PhnTWxOOeeA0-EYz3Kaa5;
+	Mon, 03 Feb 2025 20:43:27 +0300
+X-Yandex-Fwd: 1
+Authentication-Results: mail-nwsmtp-smtp-production-main-35.klg.yp-c.yandex.net; dkim=pass
+From: Jens Reidel <adrian@travitia.xyz>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bastien Nocera <hadess@hadess.net>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Luca Weiss <luca.weiss@fairphone.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	linux@mainlining.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Jens Reidel <adrian@travitia.xyz>
+Subject: [PATCH 0/2] Add Goodix Berlin-A series support
+Date: Mon,  3 Feb 2025 18:43:07 +0100
+Message-ID: <20250203174309.21574-1-adrian@travitia.xyz>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250129113029.64841-4-thippeswamy.havalige@amd.com>
 
-On Wed, Jan 29, 2025 at 05:00:29PM +0530, Thippeswamy Havalige wrote:
-> Add support for AMD MDB (Multimedia DMA Bridge) IP core as Root Port.
-> 
-> The Versal2 devices include MDB Module. The integrated block for MDB along
-> with the integrated bridge can function as PCIe Root Port controller at
-> Gen5 32-Gb/s operation per lane.
-> 
-> Bridge supports error and legacy interrupts and are handled using platform
-> specific interrupt line in Versal2.
-> 
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> ---
-> changes in v2:
-> -------------
-> - Update Gen5 speed in the patch description.
-> - Modify Kconfig file.
-> - Update string _leg_ to intx.
-> - Get platform structure through automic variables.
-> - Remove _rp_ in function.
-> Changes in v3:
-> --------------
-> -None.
-> Changes in v4:
-> --------------
-> -None.
-> Changes in v5:
-> --------------
-> -None.
-> Changes in v6:
-> --------------
-> - Remove pdev automatic variable.
-> - Update register name to slcr.
-> - Fix whitespace.
-> - remove Spurious extra line.
-> - Update Legacy to INTx.
-> - Add space before (SLCR).
-> - Update menuconfig description.
-> Changes in v7:
-> --------------
-> - None.
-> Changes in v8:
-> --------------
-> - Remove inline keyword.
-> - Fix indentations.
-> - Add AMD MDB prefix to interrupt names.
-> - Remove Kernel doc.
-> - Fix return types.
-> - Modify dev_warn to dev_warn_once.
-> - Add Intx handler & callbacks.
-> ---
->  drivers/pci/controller/dwc/Kconfig        |  11 +
->  drivers/pci/controller/dwc/Makefile       |   1 +
->  drivers/pci/controller/dwc/pcie-amd-mdb.c | 476 ++++++++++++++++++++++
->  3 files changed, 488 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-amd-mdb.c
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index b6d6778b0698..61d119646749 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -27,6 +27,17 @@ config PCIE_AL
->  	  required only for DT-based platforms. ACPI platforms with the
->  	  Annapurna Labs PCIe controller don't need to enable this.
->  
-> +config PCIE_AMD_MDB
-> +	bool "AMD MDB Versal2 PCIe Host controller"
-> +	depends on OF || COMPILE_TEST
-> +	depends on PCI && PCI_MSI
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Say Y here if you want to enable PCIe controller support on AMD
-> +	  Versal2 SoCs. The AMD MDB Versal2 PCIe controller is based on DesignWare
-> +	  IP and therefore the driver re-uses the Designware core functions to
-> +	  implement the driver.
-> +
->  config PCI_MESON
->  	tristate "Amlogic Meson PCIe controller"
->  	default m if ARCH_MESON
-> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> index a8308d9ea986..ae27eda6ec5e 100644
-> --- a/drivers/pci/controller/dwc/Makefile
-> +++ b/drivers/pci/controller/dwc/Makefile
-> @@ -3,6 +3,7 @@ obj-$(CONFIG_PCIE_DW) += pcie-designware.o
->  obj-$(CONFIG_PCIE_DW_HOST) += pcie-designware-host.o
->  obj-$(CONFIG_PCIE_DW_EP) += pcie-designware-ep.o
->  obj-$(CONFIG_PCIE_DW_PLAT) += pcie-designware-plat.o
-> +obj-$(CONFIG_PCIE_AMD_MDB) += pcie-amd-mdb.o
->  obj-$(CONFIG_PCIE_BT1) += pcie-bt1.o
->  obj-$(CONFIG_PCI_DRA7XX) += pci-dra7xx.o
->  obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
-> diff --git a/drivers/pci/controller/dwc/pcie-amd-mdb.c b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> new file mode 100644
-> index 000000000000..94b83fa649ae
-> --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> @@ -0,0 +1,476 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * PCIe host controller driver for AMD MDB PCIe Bridge
-> + *
-> + * Copyright (C) 2024-2025, Advanced Micro Devices, Inc.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/kernel.h>
-> +#include <linux/init.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/resource.h>
-> +#include <linux/types.h>
-> +
-> +#include "pcie-designware.h"
-> +
-> +#define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
-> +#define AMD_MDB_TLP_IR_MASK_MISC		0x4C4
-> +#define AMD_MDB_TLP_IR_ENABLE_MISC		0x4C8
-> +
-> +#define AMD_MDB_PCIE_IDRN_SHIFT			16
-> +
-> +/* Interrupt registers definitions */
-> +#define AMD_MDB_PCIE_INTR_CMPL_TIMEOUT		15
-> +#define AMD_MDB_PCIE_INTR_INTA_ASSERT		16
-> +#define AMD_MDB_PCIE_INTR_INTB_ASSERT		18
-> +#define AMD_MDB_PCIE_INTR_INTC_ASSERT		20
-> +#define AMD_MDB_PCIE_INTR_INTD_ASSERT		22
-> +#define AMD_MDB_PCIE_INTR_PM_PME_RCVD		24
-> +#define AMD_MDB_PCIE_INTR_PME_TO_ACK_RCVD	25
-> +#define AMD_MDB_PCIE_INTR_MISC_CORRECTABLE	26
-> +#define AMD_MDB_PCIE_INTR_NONFATAL		27
-> +#define AMD_MDB_PCIE_INTR_FATAL			28
-> +
-> +#define IMR(x) BIT(AMD_MDB_PCIE_INTR_ ##x)
-> +#define AMD_MDB_PCIE_IMR_ALL_MASK			\
-> +	(						\
-> +		IMR(CMPL_TIMEOUT)	|		\
-> +		IMR(INTA_ASSERT)	|		\
-> +		IMR(INTB_ASSERT)	|		\
-> +		IMR(INTC_ASSERT)	|		\
-> +		IMR(INTD_ASSERT)	|		\
-> +		IMR(PM_PME_RCVD)	|		\
-> +		IMR(PME_TO_ACK_RCVD)	|		\
-> +		IMR(MISC_CORRECTABLE)	|		\
-> +		IMR(NONFATAL)		|		\
-> +		IMR(FATAL)				\
-> +	)
-> +
-> +#define AMD_MDB_TLP_PCIE_INTX_MASK	GENMASK(23, 16)
-> +
-> +/**
-> + * struct amd_mdb_pcie - PCIe port information
-> + * @pci: DesignWare PCIe controller structure
-> + * @slcr: MDB System Level Control and Status Register (SLCR) Base
-> + * @intx_domain: INTx IRQ domain pointer
-> + * @mdb_domain: MDB IRQ domain pointer
+This series adds support for the Goodix Berlin-A series touch ICs
+(gt9897). This was tested on a Xiaomi 11 Lite 5G NE (xiaomi-lisa),
+which uses the gt9897 IC connected over SPI. I am not aware of any
+device that has gt9897 connected over I2C and therefore could not
+test it, so I didn't add a compatible in the I2C driver.
 
-intx_irq is not defined.
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bastien Nocera <hadess@hadess.net>
+To: Hans de Goede <hdegoede@redhat.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Luca Weiss <luca.weiss@fairphone.com>
+Cc: linux-input@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: phone-devel@vger.kernel.org
+Cc: linux@mainlining.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Signed-off-by: Jens Reidel <adrian@travitia.xyz>
 
-> + */
-> +struct amd_mdb_pcie {
-> +	struct dw_pcie			pci;
-> +	void __iomem			*slcr;
-> +	struct irq_domain		*intx_domain;
-> +	struct irq_domain		*mdb_domain;
-> +	int				intx_irq;
-> +};
-> +
-> +static const struct dw_pcie_host_ops amd_mdb_pcie_host_ops = {
-> +};
-> +
-> +static inline u32 pcie_read(struct amd_mdb_pcie *pcie, u32 reg)
+Jens Reidel (2):
+  dt-bindings: input: goodix,gt9916: Document gt9897 compatible
+  Input: goodix_berlin - Add support for Berlin-A series
 
-'inline' keyword is not removed.
-
-Also, why are you insisting of keeping this wrapper? It literally adds 0 value.
-
-> +{
-> +	return readl_relaxed(pcie->slcr + reg);
-> +}
-> +
-> +static inline void pcie_write(struct amd_mdb_pcie *pcie,
-> +			      u32 val, u32 reg)
-> +{
-> +	writel_relaxed(val, pcie->slcr + reg);
-> +}
-> +
-> +static void amd_mdb_mask_intx_irq(struct irq_data *data)
-> +{
-> +	struct amd_mdb_pcie *pcie = irq_data_get_irq_chip_data(data);
-> +	struct dw_pcie *pci = &pcie->pci;
-> +	struct dw_pcie_rp *port = &pci->pp;
-> +	unsigned long flags;
-> +	u32 mask, val;
-> +
-> +	mask = BIT(data->hwirq + AMD_MDB_PCIE_IDRN_SHIFT);
-> +
-> +	raw_spin_lock_irqsave(&port->lock, flags);
-> +	val = pcie_read(pcie, AMD_MDB_TLP_IR_MASK_MISC);
-> +	pcie_write(pcie, (val & (~mask)), AMD_MDB_TLP_IR_ENABLE_MISC);
-> +	raw_spin_unlock_irqrestore(&port->lock, flags);
-> +}
-> +
-> +static void amd_mdb_unmask_intx_irq(struct irq_data *data)
-> +{
-> +	struct amd_mdb_pcie *pcie = irq_data_get_irq_chip_data(data);
-> +	struct dw_pcie *pci = &pcie->pci;
-> +	struct dw_pcie_rp *port = &pci->pp;
-> +	unsigned long flags;
-> +	u32 mask;
-> +	u32 val;
-> +
-> +	mask = BIT(data->hwirq + AMD_MDB_PCIE_IDRN_SHIFT);
-> +
-> +	raw_spin_lock_irqsave(&port->lock, flags);
-> +	val = pcie_read(pcie, AMD_MDB_TLP_IR_MASK_MISC);
-> +	pcie_write(pcie, (val | mask), AMD_MDB_TLP_IR_ENABLE_MISC);
-> +	raw_spin_unlock_irqrestore(&port->lock, flags);
-> +}
-> +
-> +static struct irq_chip amd_mdb_intx_irq_chip = {
-> +	.name		= "AMD MDB INTx",
-> +	.irq_mask	= amd_mdb_mask_intx_irq,
-> +	.irq_unmask	= amd_mdb_unmask_intx_irq,
-> +};
-> +
-> +/**
-> + * amd_mdb_pcie_intx_map - Set the handler for the INTx and mark IRQ
-> + * as valid
-
-Make use of 80 column width.
-
-> + * @domain: IRQ domain
-> + * @irq: Virtual IRQ number
-> + * @hwirq: HW interrupt number
-> + *
-> + * Return: Always returns 0.
-> + */
-> +static int amd_mdb_pcie_intx_map(struct irq_domain *domain,
-> +				 unsigned int irq, irq_hw_number_t hwirq)
-> +{
-> +	irq_set_chip_and_handler(irq, &amd_mdb_intx_irq_chip,
-> +				 handle_level_irq);
-> +	irq_set_chip_data(irq, domain->host_data);
-> +	irq_set_status_flags(irq, IRQ_LEVEL);
-> +
-> +	return 0;
-> +}
-> +
-> +/* INTx IRQ Domain operations */
-> +static const struct irq_domain_ops amd_intx_domain_ops = {
-> +	.map = amd_mdb_pcie_intx_map,
-> +};
-> +
-> +static int amd_mdb_pcie_init_port(struct amd_mdb_pcie *pcie)
-> +{
-> +	int val;
-> +
-> +	/* Disable all TLP Interrupts */
-> +	pcie_write(pcie, pcie_read(pcie, AMD_MDB_TLP_IR_ENABLE_MISC) &
-> +		   ~AMD_MDB_PCIE_IMR_ALL_MASK,
-> +		   AMD_MDB_TLP_IR_ENABLE_MISC);
-> +
-> +	/* Clear pending TLP interrupts */
-> +	pcie_write(pcie, pcie_read(pcie, AMD_MDB_TLP_IR_STATUS_MISC) &
-> +		   AMD_MDB_PCIE_IMR_ALL_MASK,
-> +		   AMD_MDB_TLP_IR_STATUS_MISC);
-> +
-> +	/* Enable all TLP Interrupts */
-> +	val = pcie_read(pcie, AMD_MDB_TLP_IR_ENABLE_MISC);
-> +	pcie_write(pcie, (val | AMD_MDB_PCIE_IMR_ALL_MASK),
-> +		   AMD_MDB_TLP_IR_ENABLE_MISC);
-
-Why can't you just do,
-
-	pcie_write(pcie, AMD_MDB_PCIE_IMR_ALL_MASK, AMD_MDB_TLP_IR_ENABLE_MISC);
-
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t amd_mdb_pcie_event_flow(int irq, void *args)
-> +{
-> +	struct amd_mdb_pcie *pcie = args;
-> +	unsigned long val;
-> +	int i;
-> +
-> +	val = pcie_read(pcie, AMD_MDB_TLP_IR_STATUS_MISC);
-> +	val &= ~pcie_read(pcie, AMD_MDB_TLP_IR_MASK_MISC);
-> +	for_each_set_bit(i, &val, 32)
-> +		generic_handle_domain_irq(pcie->mdb_domain, i);
-> +	pcie_write(pcie, val, AMD_MDB_TLP_IR_STATUS_MISC);
-
-Again, it is a good practice to clear the interrupts before processing them. If
-there are any technical reason to not do so, please explain. Your reply in the
-previous version didn't add much value.
-
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-
-[...]
-
-> +static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
-
-add_pcie_port() is not logically correct as you are not adding any port (root
-port). Maybe reword it to amd_mdb_pcie_init()?
-
-- Mani
+ .../input/touchscreen/goodix,gt9916.yaml      |  1 +
+ drivers/input/touchscreen/goodix_berlin.h     |  9 ++++
+ .../input/touchscreen/goodix_berlin_core.c    | 27 +++++++++---
+ drivers/input/touchscreen/goodix_berlin_i2c.c |  6 ++-
+ drivers/input/touchscreen/goodix_berlin_spi.c | 44 +++++++++++++++----
+ 5 files changed, 73 insertions(+), 14 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.48.1
+
 
