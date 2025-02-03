@@ -1,125 +1,132 @@
-Return-Path: <devicetree+bounces-142627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A52CA25F52
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:56:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA1CA25F6D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:02:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3D1D164904
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:56:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 377663A3691
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A1D220A5C7;
-	Mon,  3 Feb 2025 15:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34869204C2F;
+	Mon,  3 Feb 2025 16:02:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S1JxrfM0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I9KS/Mii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A44F20A5C2
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 15:56:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0835B1D63DD;
+	Mon,  3 Feb 2025 16:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738598213; cv=none; b=gpkNoC1Uaci4awUyfpIPiIepHd6JFEuh3zIeErFmfml6/XeFDRBlLvtvVbP82QvfAxYceupPyEJTxvcZeWfpjHbHGXiqlTkpynFTixc/rpMTfcGBR/RQkqBAjIvwJSakwLnNvY8TsNWRIoCq2jrQUhFXpYMiOXFfL3M6zj3p+Y0=
+	t=1738598524; cv=none; b=dZ75hfw/4BKGIK3P/fttXBo2e8aYE4+oZmCoxm5kUwUdlJaxkFCKOO3cGAFi6zKyZoHvtPMz9EZ9dJqkluNKLZBBpiWUECuRo2CjTx1rcgBN3AOGtrwEAL5+HOv8bAibW7L0XHoBQINToF967AyVWnEeOhUEK8eLWTPUatuuwbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738598213; c=relaxed/simple;
-	bh=sXfqWlwbcujmw1i93Pe17OOd8xLt9XzHJjEUzliQeOg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ByFH67vzg5M3YmtkH7oltbO42g5diKm7I0SoDW2fLB1bIuLCbm2GrDVZJvTtFNVRoeLEJQJ9rgkVIU3CKL9E6bwxonxgU4zqIhXnhndEdvIJi9ThWelWgp2E/hpnQc0CYmdDYlu8h3r0cph+rwVcHsjHWZEdqKc2Cf5+ReOjq5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S1JxrfM0; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5401c68b89eso4190549e87.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 07:56:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738598209; x=1739203009; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XuPn9eD2+NZOGE/JtJyvNpoPT7dTMzCQ+q+2GtUzeK0=;
-        b=S1JxrfM0v0G8hrKeCjKTCMBHw03ur2dIvKYKxkMychNvFC3AKZY6y8iUX529AgukQm
-         HDlkV9bogJPxbXyrHa6Vqy1/ZDENnhsxNalBC2hi8aQ3bSZpFwFSFWV52hZ4y+cS4bpN
-         O+aPwggTSL4VD7D+Tg1C6ihRtZCUf8+s2oTCi6/JtMr8Uh6SaFjFLoq69FhE6JiiVjzV
-         wrGKqXcrJXYXPzKagtwx+Lsk24/wdCJo3pxX4vAT6P3JWENzr2SEguvRZHrTw/hTnDnn
-         SyaIES8YXGdGOh+PzEg+8Xbj2l2eGgRGNmrHoEiSDiVrDs+NbWs46NN7uEgFHXLpdhBL
-         2hEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738598209; x=1739203009;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XuPn9eD2+NZOGE/JtJyvNpoPT7dTMzCQ+q+2GtUzeK0=;
-        b=Z6laBk+YywErROlzRgn4MepoRs2wGQ63zMI4BfRYKz2ZmNWi6dJeGSX67mHpFyGZ0I
-         MkEZK7b2+orNghyQCg0Mp1hybbMKZHuvWxonXjz30UmoBcFZCFm9gd3EaN2vQpPvQA7K
-         uyAdfNBnQJAC2xVW3NZCcZQ+D9moGoJnT/YMO45y5rx4IZ5M3TWTVpoLRVXD933GDg5y
-         C31y/42YadAvLdrkIqQZRhOB9wler9kWbZ4Q7duvdARZwpfZLpTMfgM6UYglkBvKjmE0
-         NdiUHgwT693FC3GfnVfMAwmtxtOlfVQu6A+ipv2kfV+AxJXfa113fVX35u0CbRhRZe0B
-         wnbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV8M9m1qTg+Wy0RXCQhIUVmyavgtDBJWbxZW86SPVsGYrcC/AdnkdrYwbWKEgd7ioKbEBlhrHmIzOO9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7vmdBiugPZUM1cH6LVkHkmW9zsA2eYvNS67Kku/mTV58GAECF
-	dSL3hYSgGFLYgcTDA8RXvJj32o0+rDOZieYN5AUFjnPFBPXlPpR3D6omdMjfmJw=
-X-Gm-Gg: ASbGnctxpTKlbA48DMX08pxxF2/JOYFnR+JpFGFGJ5QrlgOVMypRPXzOMMi5flY/0mg
-	dMfAy5nRS5WczggO5vE9LeuZi+N7LkhaTDYKcuElKlGujo/H7bGmheY0dDsirlXgLdEtvQpeiVc
-	QJ60VjcF8udv8UgdXRFSXjUQWlnpy3bS0RHx3/6cxxMfroYJeRnfhVQePZJDnI6ydZVj0jNizkt
-	PUqUdy5eqUA9j+Gxblejgu5P9ICxvf1c5AlzZhAVy8T1pJbFS8Ea/eiqZTac04WfSKko67vGJ6L
-	W0DltILHXlIlCd25CFHiUpIs++glp2DTyxnsNjL1OCQeZ3uH3P3abzR9xkCO26AgbBLVKoM=
-X-Google-Smtp-Source: AGHT+IHSnoSCZLZHMn/lU1E0tDL4ALU9pDTSYGpNUSZmjEf9hrT7l0l/+rTZfGCvvt4GZkbgG33ukQ==
-X-Received: by 2002:a05:6512:3e09:b0:543:9b0d:d388 with SMTP id 2adb3069b0e04-543f0f25369mr4615484e87.19.1738598209413;
-        Mon, 03 Feb 2025 07:56:49 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebeb797fsm1333435e87.189.2025.02.03.07.56.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Feb 2025 07:56:49 -0800 (PST)
-Date: Mon, 3 Feb 2025 17:56:46 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Louis Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 3/4] drm/vc4: hdmi: Use drm_atomic_helper_reset_crtc()
-Message-ID: <lu2crev4ikpn2tu6mizmvi4oorb7tbat2uxmcci3qekqi4ohqq@vfps25gpnurk>
-References: <20250203145824.155869-1-herve.codina@bootlin.com>
- <20250203145824.155869-4-herve.codina@bootlin.com>
+	s=arc-20240116; t=1738598524; c=relaxed/simple;
+	bh=4SOGZvOaekagYSOdFlhRq9Mi7M/irJXQFpp55w2Pnjw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=olI1NvS6uCgW9ZlMWChLqFU4Z2lCkEMXOTHoVNJTpswC+8A6nXe6DgBSdVDHXu4ILEvsERRlDoO06ju35XgIImmwZgLTtzk5t0vyTedrZNY+783uULx0dWEZ2wY7Nm2bMAlDc6l9zTGEwW5P9Dsk2StEywm6/949pG7is2UP/yQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I9KS/Mii; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75567C4CED2;
+	Mon,  3 Feb 2025 16:01:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738598523;
+	bh=4SOGZvOaekagYSOdFlhRq9Mi7M/irJXQFpp55w2Pnjw=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=I9KS/MiibRSI2Ryxjqm7t0PljJAXoeskl6/xHFQFUm0yFMnJtBAkXQ+sF+Ry7rhOl
+	 VkqMoBVH6h5VrnN4REBsew7ng6oTGp8PZaefRGXv/3QRGofug/xfseROZ44rFG8eXK
+	 ShFyKw3ufT74BBUYDVMJ0VcTYxaqTLB4+vi0PsgH9sV54EoJJNRoXomXq2jkO6CeUI
+	 CUR0VaTv0CXWvQ2vt3Z1ovtBj0BatJpiHLSS9MCSVgcpUXKIr5u5wtxfnpNSU92eHk
+	 kXkyxOlUzzVJV9t4pVB0Hsp1P7CUZIwbUSMatBZSqeH0b1fkteUA15gMhDYI+qESUf
+	 cEMiXofmyuVyw==
+Message-ID: <6271c4e0-de99-4d40-a147-8f742edcb362@kernel.org>
+Date: Mon, 3 Feb 2025 17:01:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250203145824.155869-4-herve.codina@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/9] bindings: ipmi: Add binding for IPMB device intf
+To: Ninad Palsule <ninad@linux.ibm.com>, brgl@bgdev.pl,
+ linus.walleij@linaro.org, minyard@acm.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, openipmi-developer@lists.sourceforge.net,
+ netdev@vger.kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+ devicetree@vger.kernel.org, eajames@linux.ibm.com,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20250203144422.269948-1-ninad@linux.ibm.com>
+ <20250203144422.269948-2-ninad@linux.ibm.com>
+ <6def1c5d-d1a0-4a6f-9db2-453692d5423d@kernel.org>
+ <c06056b4-db8a-4c0b-b061-aa596d3519f8@linux.ibm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <c06056b4-db8a-4c0b-b061-aa596d3519f8@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 03, 2025 at 03:58:22PM +0100, Herve Codina wrote:
-> The current code uses a the reset_pipe() local function to reset the
-> CRTC outputs.
+On 03/02/2025 16:17, Ninad Palsule wrote:
+> Hi Krzysztof,
 > 
-> drm_atomic_helper_reset_crtc() has been introduced recently and it
-> performs exact same operations.
+> Thanks for the review.
 > 
-> In order to avoid code duplication, use the new helper instead of the
-> local function.
 > 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  drivers/gpu/drm/vc4/vc4_hdmi.c | 30 +-----------------------------
->  1 file changed, 1 insertion(+), 29 deletions(-)
+>>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>>> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+>> You still need to fix the subject. Why patch #1 has bindings but patch
+>> #2 dt-bindings? Why can't this be consistent?
 > 
+> What is preferred now a days? bindings or dt-bindings?
+dt-bindings. nowadays? submitting patches asks for this since 2018.
 
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
