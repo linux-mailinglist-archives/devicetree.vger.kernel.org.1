@@ -1,233 +1,128 @@
-Return-Path: <devicetree+bounces-142802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF864A267B3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:16:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A01BA267F7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:44:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 758493A0479
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:16:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56EAB1884E14
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8720211A31;
-	Mon,  3 Feb 2025 23:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E01321147F;
+	Mon,  3 Feb 2025 23:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="J4+LWMbz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U2XgL4fp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77929211A27;
-	Mon,  3 Feb 2025 23:07:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 066011FFC58;
+	Mon,  3 Feb 2025 23:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738624027; cv=none; b=V6QbNspKMGkMKrmwhv/y+zL8DXOozsJgJ/BkOpcwBIuIfNAdAB66djfMlRjXbv4r3Z//S4aie8jsoLY6uqxC833txmK72qJNpCmZEFtcpki8CSXseUzDEZVIzFuA3REMeKa3i/4p29oo+CJor7GifkqRIp92acztMxpgsNXHjpE=
+	t=1738626286; cv=none; b=U5+DmBL+8QvB6HlaBcZbH/rwHElC1k25b7zCO7TpB2mTSjjfv0AQ5xFSJE13+MBYJPZnZrqGrjfJ1ulbwBzoFuTagyVesd0pY29+yU5RhCUfOCQpQdzhZ4UHcBJ/t8v0gw+8z25ypqcc5+FrjVIzsTzdEtkXiDChB4aFIp6/GbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738624027; c=relaxed/simple;
-	bh=QOkURqoudhap7sMwmWyDRFppy+OU7xBqYJPCSMM5a2w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=OuRuMVRIzwEPyiKj/GeUV3GRQN03NgyQWSAJ+WIkCp3KPfyT/nv9VbWZF6B/zR2rwmcN27yqZZVaHURF6XCpGfllRkIuDD2tzknVCjGhdVidgZ1C4s692imEIT49BnEidQd+i/oyN0NZZ8vNJLTU8Gmh7EQK21PRQp6g6da4PVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=J4+LWMbz; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 513N6pUY2225606
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 3 Feb 2025 17:06:52 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738624012;
-	bh=am/bBarvIeEoB5opdd4q8vGhdTQUm42S7bkaACiTuoA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=J4+LWMbzbzlmvqlxzlBATR6IMUM3oiu4dKA8Mxiy9wtwCL0AXpkyG2KxG7XWgZseV
-	 M+ehRmqIqc3zlgiAjebSSjJCskoz7N3lsEv60hk7mMtFBzWv9aBefTiwuhO08hU4LW
-	 qVOLbAoO91IajFLNVKu6JhWegVj0jyVhj1p8UWhA=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 513N6pha106199
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 3 Feb 2025 17:06:51 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 3
- Feb 2025 17:06:51 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 3 Feb 2025 17:06:51 -0600
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 513N6pSl025658;
-	Mon, 3 Feb 2025 17:06:51 -0600
-Message-ID: <469ee404-fe33-471e-8652-e9206f7f433b@ti.com>
-Date: Mon, 3 Feb 2025 17:06:51 -0600
+	s=arc-20240116; t=1738626286; c=relaxed/simple;
+	bh=v+AuDIgJ0k5UvEy9luF0KK3FYg1kQKwaER5D0fle/no=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=HrYxnhfQt/AaWyTa670eLAQ1DqmXtclqNuiDvcbJhAA2bCj7UEN93/gkRq415LwFI7c3UMt/IbbgesFKE0IAuMpLqdTR8+ljDTddsVYjxWFhzHFMaXFc0j/skUFiK0Xy1/DMeLv30Umla68cGaYC3YZ4vPmBDZSYHJ+fdqdgagY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U2XgL4fp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C69AC4CEE0;
+	Mon,  3 Feb 2025 23:44:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738626285;
+	bh=v+AuDIgJ0k5UvEy9luF0KK3FYg1kQKwaER5D0fle/no=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=U2XgL4fpLohrYMGFQsDpDmoiPq6PrVe58w/FVxQ1fSm6Umxk/MnowFc4T+9SDrFJ4
+	 mcrvcRiXNn8XAyBuXP6FdT/090h2HmDh+4AsGf+/H8UIx403WZM75wXVaMTu7Lg3Mk
+	 f10mFaCI98UMvtWTqWCyi2/t1D3fAesnYY+vDIj7be9yqMpr58hdzQVh+y90LdjZ5K
+	 E0E+8eTLfmvHVDd/8Ye4KIa/wmqM5KZpeEvhhawF5g1ZOULtfi6dgqFk0SfZU03wfP
+	 1ChFA5M2zxRLWUNuMBOXLINQZLiRZDQBluRBFZHdHZbDsGoqztoJE8eidGzWW2NiBT
+	 IBmBMulY3HlhQ==
+Date: Mon, 3 Feb 2025 17:44:43 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v6 05/10] clk: rp1: Add support for clocks provided by RP1
+Message-ID: <20250203234443.GA810409@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/9] arm64: dts: ti: k3-am62a7-sk: Enable ipc with
- remote processors
-To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla
-	<hnagalla@ti.com>
-References: <20250131214611.3288742-1-jm@ti.com>
- <20250131214611.3288742-6-jm@ti.com>
- <0ab5c5ec-cde3-41f1-8adf-2419b31497c1@ti.com>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <0ab5c5ec-cde3-41f1-8adf-2419b31497c1@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b12caa1c8c674a56afa7b2de780d9ae5423159a3.1736776658.git.andrea.porta@suse.com>
 
-Hi Andrew,
+On Mon, Jan 13, 2025 at 03:58:04PM +0100, Andrea della Porta wrote:
+> RaspberryPi RP1 is an MFD providing, among other peripherals, several
+> clock generators and PLLs that drives the sub-peripherals.
+> Add the driver to support the clock providers.
 
-On 2/3/25 4:53 PM, Andrew Davis wrote:
-> On 1/31/25 3:46 PM, Judith Mendez wrote:
->> From: Devarsh Thakkar <devarsht@ti.com>
->>
->> For each remote proc, reserve memory for IPC and bind the mailbox
->> assignments. Two memory regions are reserved for each remote processor.
->> The first region of 1MB of memory is used for Vring shared buffers
->> and the second region is used as external memory to the remote processor
->> for the resource table and for tracebuffer allocations.
->>
->> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
->> Signed-off-by: Judith Mendez <jm@ti.com>
->> ---
->> Changes since v1:
->> - add patches 5-9 to enable ipc and complete device nodes
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 78 +++++++++++++++++++++++++
->>   1 file changed, 78 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts 
->> b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
->> index a6f0d87a50d8a..6f4b037537fec 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
->> @@ -61,11 +61,41 @@ secure_ddr: optee@9e800000 {
->>               no-map;
->>           };
->> +        wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
->> +            compatible = "shared-dma-pool";
->> +            reg = <0x00 0x9c800000 0x00 0x100000>;
->> +            no-map;
->> +        };
->> +
->>           wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
->>               compatible = "shared-dma-pool";
->>               reg = <0x00 0x9c900000 0x00 0x01e00000>;
->>               no-map;
->>           };
->> +
->> +        mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@9b800000 {
->> +            compatible = "shared-dma-pool";
->> +            reg = <0x00 0x9b800000 0x00 0x100000>;
->> +            no-map;
->> +        };
->> +
->> +        mcu_r5fss0_core0_memory_region: r5f-dma-memory@9b900000 {
->> +            compatible = "shared-dma-pool";
->> +            reg = <0x00 0x9b900000 0x00 0x0f00000>;
-> 
-> There is a leading 0 here and in a couple other places.
-> 
-> s/0x0f00000/0xf00000
+> +#define PLL_PRIM_DIV1_SHIFT		16
+> +#define PLL_PRIM_DIV1_WIDTH		3
+> +#define PLL_PRIM_DIV1_MASK		GENMASK(PLL_PRIM_DIV1_SHIFT + \
+> +						PLL_PRIM_DIV1_WIDTH - 1, \
+> +						PLL_PRIM_DIV1_SHIFT)
+> +
+> +#define PLL_PRIM_DIV2_SHIFT          12
+> +#define PLL_PRIM_DIV2_WIDTH          3
+> +#define PLL_PRIM_DIV2_MASK           GENMASK(PLL_PRIM_DIV2_SHIFT + \
+> +                                             PLL_PRIM_DIV2_WIDTH - 1, \
+> +                                             PLL_PRIM_DIV2_SHIFT)
 
-Ok, will check all other memory carveouts and fix.
+Maybe this is standard drivers/clk style, but this seems like overkill
+to me.  I think this would be sufficient and easier to read:
 
-> 
->> +            no-map;
->> +        };
->> +
->> +        c7x_0_dma_memory_region: c7x-dma-memory@99800000 {
->> +            compatible = "shared-dma-pool";
->> +            reg = <0x00 0x99800000 0x00 0x100000>;
->> +            no-map;
->> +        };
->> +
->> +        c7x_0_memory_region: c7x-memory@99900000 {
->> +            compatible = "shared-dma-pool";
->> +            reg = <0x00 0x99900000 0x00 0x01f00000>;
-> 
-> 0x01f00000 ? What is this size, all other firmware in all other
-> K3 use 0xf00000 (16MB), that should be enough for any sane firmware.
-> If some firmware needs more it is probably doing something hacky
-> like leaving space for buffer passing internally. That space should
-> be provided from a shared dma-buf pool or similar mechanism.
+  #define PLL_PRIM_DIV1_MASK   GENMASK(18, 16)
+  #define PLL_PRIM_DIV2_MASK   GENMASK(14, 12)
 
-That is fine, will change to 16MB. (:
+> +static unsigned long rp1_pll_recalc_rate(struct clk_hw *hw,
+> +					 unsigned long parent_rate)
+> +{
+> +	struct rp1_clk_desc *pll = container_of(hw, struct rp1_clk_desc, hw);
+> +	struct rp1_clockman *clockman = pll->clockman;
+> +	const struct rp1_pll_data *data = pll->data;
+> +	u32 prim, prim_div1, prim_div2;
+> +
+> +	prim = clockman_read(clockman, data->ctrl_reg);
+> +	prim_div1 = (prim & PLL_PRIM_DIV1_MASK) >> PLL_PRIM_DIV1_SHIFT;
+> +	prim_div2 = (prim & PLL_PRIM_DIV2_MASK) >> PLL_PRIM_DIV2_SHIFT;
 
-~ Judith
+And then here, I think you can just use FIELD_GET():
 
-> 
-> Make this 0xf00000 and fix the firmware.
-> 
-> Andrew
-> 
->> +            no-map;
->> +        };
->>       };
->>       opp-table {
->> @@ -737,3 +767,51 @@ dpi1_out: endpoint {
->>           };
->>       };
->>   };
->> +
->> +&mailbox0_cluster0 {
->> +    mbox_r5_0: mbox-r5-0 {
->> +        ti,mbox-rx = <0 0 0>;
->> +        ti,mbox-tx = <1 0 0>;
->> +    };
->> +};
->> +
->> +&mailbox0_cluster1 {
->> +    mbox_c7x_0: mbox-c7x-0 {
->> +        ti,mbox-rx = <0 0 0>;
->> +        ti,mbox-tx = <1 0 0>;
->> +    };
->> +};
->> +
->> +&mailbox0_cluster2 {
->> +    mbox_mcu_r5_0: mbox-mcu-r5-0 {
->> +        ti,mbox-rx = <0 0 0>;
->> +        ti,mbox-tx = <1 0 0>;
->> +    };
->> +};
->> +
->> +&wkup_r5fss0 {
->> +    status = "okay";
->> +};
->> +
->> +&wkup_r5fss0_core0 {
->> +    mboxes = <&mailbox0_cluster0>, <&mbox_r5_0>;
->> +    memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
->> +        <&wkup_r5fss0_core0_memory_region>;
->> +};
->> +
->> +&mcu_r5fss0 {
->> +    status = "okay";
->> +};
->> +
->> +&mcu_r5fss0_core0 {
->> +    mboxes = <&mailbox0_cluster2>, <&mbox_mcu_r5_0>;
->> +    memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
->> +            <&mcu_r5fss0_core0_memory_region>;
->> +};
->> +
->> +&c7x_0 {
->> +    mboxes = <&mailbox0_cluster1>, <&mbox_c7x_0>;
->> +    memory-region = <&c7x_0_dma_memory_region>,
->> +            <&c7x_0_memory_region>;
->> +    status = "okay";
->> +};
+  prim_div1 = FIELD_GET(PLL_PRIM_DIV1_MASK, prim);
+  prim_div2 = FIELD_GET(PLL_PRIM_DIV2_MASK, prim);
 
+It looks like the same could be done for PLL_SEC_DIV_MASK,
+PLL_CS_REFDIV_SHIFT, PLL_PH_PHASE_SHIFT, CLK_CTRL_AUXSRC_MASK, etc.
 
