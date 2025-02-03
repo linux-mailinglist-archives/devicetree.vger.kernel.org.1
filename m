@@ -1,203 +1,133 @@
-Return-Path: <devicetree+bounces-142611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32AE7A25E84
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:23:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F87A25E7B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:22:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB8CA3A8409
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:17:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A132E1886073
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:18:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8BB8209678;
-	Mon,  3 Feb 2025 15:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 290B2209695;
+	Mon,  3 Feb 2025 15:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bqxzwYD7"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="Nlc1VyEi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D6B208995
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 15:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85AF4209678;
+	Mon,  3 Feb 2025 15:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738595817; cv=none; b=UWcGk/JQ8FwayG9i3VAw9bN56VkPD2BY7xpCN043qG0qbhuFDAc5D8fa2+PoKKb/ACLYLpCP33qb08fAlJzia61ImbTP2HqOMga7Qd5BxzH7xngSb+tt8iE1PGu+PZ2Z//jWxo/2uphic34DKTCVlvnMyOI1kLaBfTvvMfIk9/s=
+	t=1738595903; cv=none; b=SEYS+yxGqJARw6MLWL/eGRJKBPcfHoh+PeJXgdloN2VNTWGeoOjfkhCWG4AUEbClFpY9e/V/WtzpI/KE1COgHg/a64J9ZX0556yBq4HRMYGBIMI+WRW+gqifLo2LIXkqspVlU8jzW5jYp4jNf1+F0bmgPvGONGSrXuTtofssW3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738595817; c=relaxed/simple;
-	bh=cTbrNYJLCNdhhwnl8aRo/ZlBGCgcrth/NNaKS4Dl3I4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UgqxwwJ9pzKS9pbyvHVLCQmR+pPX0U5DzBM+tF+6XJ4kyNCqH4ewxF8sGs2mBUlD+DqvOif8UBgoUAJL+jsS+zsxhogp6DrOEjgt+GATRDJizvXZjAGKz33iLJjo1WBADJQkgYjl5EtjfVlZ3PN8rMQ6TI40HzIKlnHrW3b5E9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bqxzwYD7; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5439a6179a7so4799978e87.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 07:16:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738595813; x=1739200613; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vyj67VRTVYAUNFxIG4OB3HpFs4YteBVpT2TtAqLX6IY=;
-        b=bqxzwYD74+gmpc19QIPgSZvpZEIONYQ5r9FegQRbqzokR6ZsIg9D6kTWxv+lJJwvSf
-         hdDbFGXSjdZOQzcUonkZjPyiNNg1JRmc5TsO7Vs1EHR2jhMJfakTWPvfJY7bAfvdXIuy
-         ZT8mdWe8lj79VqiQv4MCCp4VXtLnv0Jcb2vhS7IWkeFlEbtbV/2pc1BsIfvrJO/GfomE
-         xEOyW7pezMiGggv9Zf/34d7yEIaJat2wG3WSSFR/rWOgaaFy5FsCbFdvA6hcF+c5jE2h
-         tMSoG8VhnJR1NavOzLSaxhtmqtFdbO3pukFvXsMSJeQTpdH53ZNEw0EbJRWPQIw075Ce
-         S8Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738595813; x=1739200613;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Vyj67VRTVYAUNFxIG4OB3HpFs4YteBVpT2TtAqLX6IY=;
-        b=j8NmhqyUCvHMv0TOcDjL96Fkm4fHskrUeRpHwFCLJGPqdL+kVfdCD5uwIzjNds3Z2/
-         rL9gAtbLfuThPoYgto/T4WTBushM3DXFi6GwRwitBhozKh5/d4JOpOdwyDioxYjn9Dwz
-         qPVniPUMTl/f6i3d6y1DInsWZhWYYhz/Xl8I+J5FdlD5Lwx0wHXzEMLzLrpv3ljZhmDU
-         ETxk0yYD2ulocWHYQFAgQEdrQsa56EapQD6VHlfSXKpx8ogIzdGPcYFiZYbF1K6OkF37
-         wBVAJMTHYUdFd0d6eAMFsqUpOJ92bbAxyD2nWrnVoR6edRhDrzp7tJ1+bOtavPsWPYy4
-         MWOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVpEC3s530d82VdjjdxXm1BodaDuiVymywC3etlOXUpNFOiYlEzNAJTLkc0ltShyH7w7ltIBMzLm7kb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWb9XkroFdx7A+gcGSKw97FuzYyRh2rPK9Ryo27bgMkVL4mtiL
-	5qU1nhaSpClBb4RU42ax0F8zWVihR0W6H/1uwN+opkETAbikO4IvBlbHQYrjSTM=
-X-Gm-Gg: ASbGncto4aUtbkiJ7HAoOx1KkHV8/xffxARGhywJo2WObUiEXWMcWK8lrIxb2Wu0Zw2
-	0Y81hh5YFxSPFXZYw56prq+ncb/GsztuXjVl16bwgbv2iSIW/BNd/5RAtd7hC5K21ScNej+xuUg
-	LRJch6Er4Tq3VRuwXGf9uNlJHmeAjb0KeSeWYV7VHlO0qU1j5R1wjVq6LbCxUTiVaRJNjR0Q9gY
-	e+1dhQARQAFIxT1JhmFPB1p20qfrm6tKtoxTYlUy7Ub71pGnc71McjF7sJgbrcqZf9Nn0LHlckm
-	xB6J1+lCoSH8imFg8CIOfVWu0DwoYWse0MTc7SmvNrVCtklyTGbqUGD0nrrXcWnNZ2NQcn8=
-X-Google-Smtp-Source: AGHT+IFvcunhehAneV8WOuwnEKnlJW9yoQuXlRAFhfSrhoXK3pww1JqdTTeDy8iee3YPZkps+263Uw==
-X-Received: by 2002:a05:6512:2343:b0:543:e4de:3e12 with SMTP id 2adb3069b0e04-543f0f25405mr4806134e87.18.1738595813396;
-        Mon, 03 Feb 2025 07:16:53 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebebec5esm1322732e87.236.2025.02.03.07.16.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Feb 2025 07:16:51 -0800 (PST)
-Date: Mon, 3 Feb 2025 17:16:50 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Dikshita Agarwal <quic_dikshita@quicinc.com>, 
-	quic_vgarodia@quicinc.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	p.zabel@pengutronix.de, hverkuil@xs4all.nl, sebastian.fricke@collabora.com, 
-	bryan.odonoghue@linaro.org, neil.armstrong@linaro.org, nicolas@ndufresne.ca, 
-	u.kleine-koenig@baylibre.com, stefan.schmidt@linaro.org, lujianhua000@gmail.com, 
-	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org
-Subject: Re: [RFC PATCH v10 1/2] media: iris: introduce helper module to
- select video driver
-Message-ID: <tqbm672pi223ipcw7btiemlb745weeeiy4gnazzeghozhq2emj@wppbkms6hir5>
-References: <20250128080429.3911091-1-quic_dikshita@quicinc.com>
- <20250128080429.3911091-2-quic_dikshita@quicinc.com>
- <5070e1f1-914b-4654-88ef-3566e3eee9ca@kernel.org>
- <f1344e49-61b6-4115-ae88-55b4a3cfed28@quicinc.com>
- <Z6B822-6UTxQfX46@hovoldconsulting.com>
+	s=arc-20240116; t=1738595903; c=relaxed/simple;
+	bh=FXUWYE8g8BYPC2v17zxasOkU9NpiTsWavbxDyJuAJcc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=RH/aYQE3WXjzFPhcBGOWpTma5dvBxSxQ4zEdXlRIpIr778MtXEaB5d+chehblWkfRwhqg2/72djCGnZ81Z2QLKozsoMLCisO/+4h4EYQIVtE9JfeoqvKKLOnn3IdEw+yS5ikH55989w5+c/N9TiaiQMtpl9gYhRhNzHRdOSpBxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=Nlc1VyEi; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5137X6YA014781;
+	Mon, 3 Feb 2025 15:17:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=VQ4RqG
+	5wX63XHkwCiEdYMzRbUoNudhkrKOhuQwdpm0I=; b=Nlc1VyEiuQjiYLbh9pocM7
+	CLzpw0KGTWnPjmqHhoJdctttDND+tQK9HnMGI7+5OzI4UOPiC2g1jfxT+E/4BtIV
+	sRXuqVCYEY+QMYpq+kzCJlXYPJJKcC/jr+wBiAnRpFY1GMFrD3kBYJg2cRwGp8VN
+	3vDv5GV8RucvxRppCS/1GVFpv1u6Bscij0K+xur3Wb5seNOMbt1BYWKIU0Ts97yT
+	yV9Ttyl3qwNR7zYjITItgwJC86BAgbspV7aWTEhxK+vwY8P2JFALSNld4SwgDHCL
+	AU/IXMdkZIM/eZ4ifT84xINshzb+HcutkwCXvamEvqn+VMPoIEEZ7wRGln1XR9ow
+	==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 44jsgnj3w7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Feb 2025 15:17:40 +0000 (GMT)
+Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 513FGR11024317;
+	Mon, 3 Feb 2025 15:17:40 GMT
+Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 44jsgnj3w4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Feb 2025 15:17:40 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 513C7pcF024493;
+	Mon, 3 Feb 2025 15:17:39 GMT
+Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
+	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 44hxxmxxnf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Feb 2025 15:17:39 +0000
+Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
+	by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 513FHcae18088686
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 3 Feb 2025 15:17:38 GMT
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 5F3EC58059;
+	Mon,  3 Feb 2025 15:17:38 +0000 (GMT)
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 301B95804B;
+	Mon,  3 Feb 2025 15:17:37 +0000 (GMT)
+Received: from [9.24.12.86] (unknown [9.24.12.86])
+	by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Mon,  3 Feb 2025 15:17:37 +0000 (GMT)
+Message-ID: <c06056b4-db8a-4c0b-b061-aa596d3519f8@linux.ibm.com>
+Date: Mon, 3 Feb 2025 09:17:36 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z6B822-6UTxQfX46@hovoldconsulting.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/9] bindings: ipmi: Add binding for IPMB device intf
+To: Krzysztof Kozlowski <krzk@kernel.org>, brgl@bgdev.pl,
+        linus.walleij@linaro.org, minyard@acm.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, andrew+netdev@lunn.ch,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, openipmi-developer@lists.sourceforge.net,
+        netdev@vger.kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+        devicetree@vger.kernel.org, eajames@linux.ibm.com,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+References: <20250203144422.269948-1-ninad@linux.ibm.com>
+ <20250203144422.269948-2-ninad@linux.ibm.com>
+ <6def1c5d-d1a0-4a6f-9db2-453692d5423d@kernel.org>
+Content-Language: en-US
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <6def1c5d-d1a0-4a6f-9db2-453692d5423d@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: bmeP0_XdLDJr4zTpejIH4blsVibc7Jc7
+X-Proofpoint-ORIG-GUID: LEkVc5s_HyeQNjFOjksxZRwmsKHp-Du9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-03_06,2025-01-31_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=994 phishscore=0
+ mlxscore=0 priorityscore=1501 clxscore=1015 adultscore=0 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502030110
 
-On Mon, Feb 03, 2025 at 09:22:51AM +0100, Johan Hovold wrote:
-> On Fri, Jan 31, 2025 at 10:44:28AM -0800, Abhinav Kumar wrote:
-> > On 1/29/2025 2:44 AM, Krzysztof Kozlowski wrote:
-> > > On 28/01/2025 09:04, Dikshita Agarwal wrote:
-> 
-> > >> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
-> > >> index 954cc7c0cc97..276461ade811 100644
-> > >> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> > >> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> > >> @@ -196,6 +196,9 @@ static int iris_probe(struct platform_device *pdev)
-> > >>   	u64 dma_mask;
-> > >>   	int ret;
-> > >>   
-> > >> +	if (!video_drv_should_bind(&pdev->dev, true))
-> > >> +		return -ENODEV;
-> > > 
-> > > Wouldn't it mark the probe as failed and cause dmesg regressions?
-> 
-> No, this is perfectly fine. Probe can return -ENODEV and driver core
-> will continue with any further matches.
-> 
-> > >> +#if !IS_REACHABLE(CONFIG_VIDEO_QCOM_VENUS) || !IS_REACHABLE(CONFIG_VIDEO_QCOM_IRIS)
-> > >> +bool video_drv_should_bind(struct device *dev, bool is_iris_driver)
-> > >> +{
-> > >> +	/* If just a single driver is enabled, use it no matter what */
-> > >> +	return true;
-> > >> +}
-> > >> +
-> > >> +#else
-> > >> +static bool prefer_venus = true;
-> > >> +MODULE_PARM_DESC(prefer_venus, "Select whether venus or iris driver should be preferred");
-> > >> +module_param(prefer_venus, bool, 0444);
-> > > 
-> > > 
-> > > The choice of driver is by module blacklisting, not by failing probes.
-> > > 
-> > > I don't understand why this patchset is needed and neither commit msg
-> > > nor above longer code comment explain me that. Just blacklist the module.
-> 
-> > Summarizing the discussion with myself, Krzysztof and Dmitry:
-> > 
-> > 1) module blacklisting solution will not be ideal if users want to have 
-> > both venus and iris or either of them built-in
-> 
-> Module blacklisting is not the way to go, you shouldn't have two drivers
-> racing to bind to the same device ever.
-> 
-> > 2) with current approach, one of the probes (either venus or iris) will 
-> > certainly fail as video_drv_should_bind() will fail for one of them. 
-> > This can be considered as a regression and should not happen.
-> 
-> How can that be a regression? One driver must fail to probe (see above).
+Hi Krzysztof,
 
-I also don't think that it's a regression. I think Krzysztof was
-concerned about the 'failed to bind' messages in dmesg.
+Thanks for the review.
 
-> > Solution: If the user prefers iris driver and iris driver has not probed 
-> > yet, and if venus tries to probe ahead of iris we keep -EDEFERing till 
-> > iris probes and succeeds. Vice-versa when the preference is venus as well.
-> 
-> This sounds wrong too.
-> 
-> Look, first you guys need to explain *why* you want to have two drivers
-> for the same hardware (not just to me, in the commit message and cover
-> letter).
->
-> That's something that really should never be the case and would need to
-> be motivated properly.
 
-I think it has been written several time (not sure about this commit):
-to provide a way for a migration path _while_ people are working on Iris
-features. Being able to A/B test Venus and Iris drivers and to report
-possible regressions or lack of those on the common platforms supported
-by those (sm8250 at this moment).
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+> You still need to fix the subject. Why patch #1 has bindings but patch
+> #2 dt-bindings? Why can't this be consistent?
 
-> Second, if the reasons for keeping both drivers are deemed justifiable,
-> you need to come up with mechanism for only binding one of them.
-> 
-> I already told you that module parameters is not the way to go here (and
-> the msm drm driver's abuse of module parameters is not a good precedent
-> here).
-> 
-> If this is a transitional thing (which it must be), then just add a
-> Kconfig symbol to determine which driver should probe. That's good
-> enough for evaluating whatever needs to be evaluated, and doesn't
-> depend on adding anti-patterns like module parameters (and helper
-> modules for them).
-
-No, Kconfig complicates A/B testing. What you usually want to do is to
-boot a kernel, then go over a bunch of files testing that they work with
-both drivers. Kconfig implies booting abother kernel, etc.
-
-> 
-> Keep it simple.
-> 
-> Johan
+What is preferred now a days? bindings or dt-bindings?
 
 -- 
-With best wishes
-Dmitry
+Thanks & Regards,
+Ninad
+
 
