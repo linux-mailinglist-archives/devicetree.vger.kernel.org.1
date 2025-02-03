@@ -1,192 +1,155 @@
-Return-Path: <devicetree+bounces-142678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 879FBA26152
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:22:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 315BDA26178
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:30:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8D513A555B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:22:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A34EA18877F0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7EDB20E6FA;
-	Mon,  3 Feb 2025 17:21:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF79920408E;
+	Mon,  3 Feb 2025 17:30:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bd0N0r7l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M2YorSiE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1F820A5F3;
-	Mon,  3 Feb 2025 17:21:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DF0E205AA9
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 17:30:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738603260; cv=none; b=Naw4cys1AFV6JgftWD7VYCHGMX70xhqRImJekkEWi8NFMtpijgZz2aQec/zO6/QjmCEJtnEhiEq/SdaejPoEw1U2HSCg3jUpLfKRB67IdQOU3Ox3QoJtORQcOTPP7QBrBDqlway3QXO/iPNu/TeTTgCUb4C37d0Vgx7vrKsmW9Q=
+	t=1738603831; cv=none; b=fI1RRG8I0TfEMczYUrkbrn8nN4ukvI3NUgZJJbZRLfcy1Q9KdfmNsCpaO+GCRJuRwd6f/eDfe4JTGPag3V2x7iZq1ec1z30Mwh64jWHw039BVPMyl2r+NxHC1NqvX0vcz/ohF9n9GoOQmq1EYXFngil22NurntSuQHitIhcbnc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738603260; c=relaxed/simple;
-	bh=P2dS8GHtqYrlLqUONRfpPwLacv4SW0pS7ajQGuRV60c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ELviuzooIR2Fi5mVFhE8avmJ30Fl1teaINLruqxhPGIN8y9+79QHMrI7+N9t0INc6er75KbayOFUrNftKjqwF+meUyFganDjgqfaK+B/c//NeBx+U2fsuMMa6PAZKn/zrW8TyC3XAxk61Ivlq+bQwrZ8GfQ6U7PUNLuAPFwIz8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bd0N0r7l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4919C4CEEF;
-	Mon,  3 Feb 2025 17:20:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738603259;
-	bh=P2dS8GHtqYrlLqUONRfpPwLacv4SW0pS7ajQGuRV60c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bd0N0r7lRdJH3EOLVz0vXqPd6ULZMMIDqxyHjFiIfvlXWHPVd2JzGXwi/GA1HIuq6
-	 HHkRyoeWgV7FIbmdK13UzmFqfNFoCRoE4xSVxKOhNyVpcOFAvO4MdDcW7WFg6AVJ1x
-	 QB+Jxi4Cb+IcZMcEDYLXfOojBc15UXT1e9VBqY0dqu4XobE4hNoYAHeSjFxbec9O11
-	 SrE/ZeFEDKnFvizfZ4VxSXGno3D+2NHiLoFKLkIG3bgmAgZ/P4aeX2SmkA/ooZ+TvZ
-	 6Pkads2h9ctpUvdy+kqsyomY+x8ZynDCf0B/MkNdwRq05SRnuOQyhQjLV8nDogSVMF
-	 9eWuiaaclBIPQ==
-Date: Mon, 3 Feb 2025 17:20:54 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Nikola Jelic <nikola.jelic83@gmail.com>
-Cc: lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, rwalton@cmlmicro.com
-Subject: Re: [PATCH 2/2] ASoC: codecs: cmx655: Add CML's CMX655D codec
-Message-ID: <177e0b6d-e8e0-41e1-bccf-0b84b178678d@sirena.org.uk>
-References: <20250203170117.12004-1-nikola.jelic83@gmail.com>
- <20250203170117.12004-2-nikola.jelic83@gmail.com>
+	s=arc-20240116; t=1738603831; c=relaxed/simple;
+	bh=EcWyugv2Wzk+zrYc1pAVwZTt8kXAmRy3pdppnr/ONyY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tDUXQ2MJctYMJBdXMpZNhUZTx8+HAR1O+6Fy4OsE0ePs7+HQt/29RU/4Y11snnbZiw1XmyYziD9IUWPeLwqiL++3W8TVfcLBaRNyXnP6AXj9oMsv6kbl3pKPR7qtjqrslqvv7ysz8fOa8nDypTCKwQndEoUFBPwHAbRScQpbpNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M2YorSiE; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2165cb60719so83904465ad.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 09:30:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738603829; x=1739208629; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=U+3jIvZnmKA6FZPn3NDJLwBHo+QpViaEYNsBITnjd8w=;
+        b=M2YorSiEXqgwRdC4SzL50JU7KIRxGA3XfsWz4BV4zzbF/pxKKQFsAXQdSUfCuM8MNw
+         rjTYxuRJVG7FjkXBO77P0znSHDXqkmY6I1IqFtdG+G+DbZd/CQHVnQeNNX0XkShDFbV7
+         3fsAezWrIO2ogbNQqhRieipvLLRB4NH78JoMklcXYkKnjVttQkgKd6hzPx213OJpFJhv
+         NRI4NWzIyf/VqEyma0N59l8pQw+w6boucVXRSoQMzVIAMb2R9Pv6mRT0ECdQ9+E3P9SS
+         WKw6suxpoYnMTju0p/R4r4kpjsjJi+GkJaOMd+4W0YZW5EosojdUagmDn75YGoRbhVDX
+         7utg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738603829; x=1739208629;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U+3jIvZnmKA6FZPn3NDJLwBHo+QpViaEYNsBITnjd8w=;
+        b=mRd9SH0495XmR8ZZoNettX7xaM7dsulXhAhC9+a4gxFiffMXLMFklgt6abl657X8kA
+         zaHE3SwMBj5M0ydUdYHExT1r0efj/59pekJ0oAIRbcs0tnEldRnD9e1FLRmHfRx6XZU9
+         fN8IGL6otRefgaIWBSyctrtx274WPpkSIZZdbJAY/9wTDGX699SIlzycv3+SGEvR3QiN
+         /gX2+z9JuiRPGDvyg+lf1ZTDoP+xqWW3oDGXkk0rKmAeakVlPSI84pPmy3pSKk9KiAGh
+         dkxl8y54pHspyBZlQqcDgpIX959nikCB5g39FZ5ZbNozBu0IWcQPPU4KXj2fcQNSEFP7
+         z+Ww==
+X-Forwarded-Encrypted: i=1; AJvYcCXHmPVjYXNEf1MUj5EeeHEpzqj7FztYpHLqmABNRS+10osB5LgtMbS0LcLmdnJM4MWGMdMW9XE0VqF1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxwzcb3kwxnbVrCzh1ucBxDBDYwF2AzeZu4FHqU3gofx3kJOcov
+	zl51dp+SyyXYquNFkZINK1Pr3nuxMuMWqwk2htnKD5Ex3ISsP7xf
+X-Gm-Gg: ASbGncv6YHPoldgCu68oUs0LPV0w9akuKICQHTzefpxe/7HZXd6YjEtW2wZw7b+JeAv
+	zh9sH5sPtJ5n41i8Zvil++QwGSwovJYlHFi68KkWKRbdjm9+rkFjiWagiz5Gghwo+arautg7ue1
+	ErzhZTdP16FbawqIQrb76tHFpGn3FCODOK/M5GJSLL1Nl+5bic6n7Uo7ml8Rkl5tZ4ko9olmGH9
+	Q3iLLRtUvvZVu2sAEZKX+1IXqVEVSni5tW89iKCbjkaJpzDq1ZeQFcOmZfTsYreY/+PAuIdDwsn
+	dL1l+rZTNDzmu1R6mNk78o3DVdcJ
+X-Google-Smtp-Source: AGHT+IE8nNjdmDUBWWzeT2S1Qot1ZFFEd8cLym1Jv/D9+lSJXgZUh9NGk6KW9hQBaAEr8zUWODiSLg==
+X-Received: by 2002:a17:902:eb54:b0:215:a2f2:cfbf with SMTP id d9443c01a7336-21dd7c66954mr227001515ad.18.1738603829496;
+        Mon, 03 Feb 2025 09:30:29 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:dbf:9aeb:2ad1:3bf9])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21de3300880sm79896195ad.168.2025.02.03.09.30.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Feb 2025 09:30:28 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] ARM: dts: imx28-sps1: Fix GPIO LEDs description
+Date: Mon,  3 Feb 2025 14:30:20 -0300
+Message-Id: <20250203173020.39830-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="uURq+iX14aolRxxP"
-Content-Disposition: inline
-In-Reply-To: <20250203170117.12004-2-nikola.jelic83@gmail.com>
-X-Cookie: May your camel be as swift as the wind.
+Content-Transfer-Encoding: 8bit
 
+From: Fabio Estevam <festevam@denx.de>
 
---uURq+iX14aolRxxP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+According to leds-gpio.yaml, the LED nodes should not contain
+unit addresses. Remove them.
 
-On Mon, Feb 03, 2025 at 06:01:17PM +0100, Nikola Jelic wrote:
+Also, 'default-trigger' is not a valid property. Change it to
+'linux,default-trigger'.
 
-This looks like a new version of:
+These changes fix the following dt-schema warnings: 
 
-   https://lore.kernel.org/linux-sound/20250121230903.89808-2-nikola.jelic83@gmail.com/
+led@1: Unevaluated properties are not allowed ('reg' was unexpected)
+led@2: Unevaluated properties are not allowed ('reg' was unexpected)
+led@3: Unevaluated properties are not allowed ('default-trigger', 'reg' were unexpected)
+leds: '#address-cells', '#size-cells' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
 
-but it's not identified as v2 (nor does it have a changelog of any
-kind, inter-version or otherwise).
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm/boot/dts/nxp/mxs/imx28-sps1.dts | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
 
-> +static int cmx655_i2c_probe(struct i2c_client *client)
-> +{
-> +	int ret;
-> +
-> +	ret =
-> +	    cmx655_common_register_component(&client->dev,
-> +					     devm_regmap_init_i2c(client,
-> +								  &cmx655_regmap),
-> +					     client->irq);
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-sps1.dts b/arch/arm/boot/dts/nxp/mxs/imx28-sps1.dts
+index 0f01dded4e3d..ca62e7933116 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-sps1.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-sps1.dts
+@@ -24,30 +24,25 @@ reg_usb0_vbus: regulator-0 {
+ 	};
+ 
+ 	leds {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+ 		compatible = "gpio-leds";
+ 		status = "okay";
+ 
+-		led@1 {
++		led-1 {
+ 			label = "sps1-1:yellow:user";
+ 			gpios = <&gpio0 6 0>;
+ 			linux,default-trigger = "heartbeat";
+-			reg = <0>;
+ 		};
+ 
+-		led@2 {
++		led-2 {
+ 			label = "sps1-2:red:user";
+ 			gpios = <&gpio0 3 0>;
+ 			linux,default-trigger = "heartbeat";
+-			reg = <1>;
+ 		};
+ 
+-		led@3 {
++		led-3 {
+ 			label = "sps1-3:red:user";
+ 			gpios = <&gpio0 0 0>;
+-			default-trigger = "heartbeat";
+-			reg = <2>;
++			linux,default-trigger = "heartbeat";
+ 		};
+ 
+ 	};
+-- 
+2.34.1
 
-This would be more legible if you used a temporary variable to store the
-regmap.
-
-> +	cmx655_common_unregister_component(&client->dev);
-> +	gpiod_set_value_cansleep(cmx655_data->reset_gpio, 1);
-
-Why isn't the GPIO set in the common unregister function?
-
-> +	*ndiv = 0;
-> +	*pll_ctrl = 0;
-> +	switch (clk_id) {
-> +	case (CMX655_SYSCLK_RCLK):
-> +	case (CMX655_SYSCLK_LPO):
-> +	case (CMX655_SYSCLK_LRCLK):
-
-The brackets around the constants here are weird.
-
-> +	ret = cmx655_get_sys_clk_config(cmx655_dai_data->sys_clk,
-> +					primary_mode, srate_setting,
-> +					&clk_src, &rdiv, &ndiv, &pll_ctrl);
-> +	if (ret < 0) {
-> +		dev_err(component->dev,
-> +			"Failed to get system clock settings %i\n", ret);
-> +	}
-
-We then proceed to use the configuration?
-
-> +	} else {
-> +		cmx655_dai_data->best_clk_running = true;
-> +	}
-> +	if (snd_soc_component_test_bits(component, CMX655_CLKCTRL,
-
-Some blank lines between blocks would help a lot with legibility
-throughout the driver.
-
-> +		/* Wait for filters to settle */
-> +		if (snd_soc_component_test_bits
-> +		    (component, CMX655_RVF, CMX655_VF_DCBLOCK,
-> +		     CMX655_VF_DCBLOCK) == 0) {
-
-Please try to follow the kernel coding style more, here just putting one
-parameter per line with normal indentation is probably better.
-
-> +static const unsigned int cmx655_rate_vals[] = {
-> +	8000, 16000, 32000, 48000
-> +};
-> +
-> +static const struct snd_pcm_hw_constraint_list cmx655_rate_constraint = {
-> +	.count = ARRAY_SIZE(cmx655_rate_vals),
-> +	.list = cmx655_rate_vals,
-> +};
-> +
-> +static int cmx655_dai_startup(struct snd_pcm_substream *stream,
-> +			      struct snd_soc_dai *dai)
-> +{
-> +	int ret = 0;
-> +
-> +	ret = snd_pcm_hw_constraint_list(stream->runtime, 0,
-> +					 SNDRV_PCM_HW_PARAM_RATE,
-> +					 &cmx655_rate_constraint);
-> +	return ret;
-> +}
-
-If the driver just supports a constant set of constraints why set them
-dynamically - set them in the rates for the DAI.
-
-> +	SOC_SINGLE_TLV("ALC Gain Playback Volume", CMX655_ALCGAIN, 0, 12, 0,
-> +		       cmx655_alc_gain),
-
-A gain is a volume.
-
-> +	SOC_SINGLE("Companding Switch", CMX655_SAIMUX, 4, 1, 0),
-> +	SOC_ENUM("Companding Type Enum", cmx655_companding_enum),
-
-No Enum, the control is for Companding Type.
-
-> +	/* Custom widgets for Mics to get them to turn on before switches */
-> +	{.id = snd_soc_dapm_mic,
-> +	 .name = "Left Mic",
-1
-> +	{.id = snd_soc_dapm_mic,
-> +	 .name = "Right Mic",
-
-Define a macro for the repated pattern if one is really needed.
-
---uURq+iX14aolRxxP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeg+vYACgkQJNaLcl1U
-h9CbsQf7BCs+95QxVhm7B3ze3hoq8Rvu5+GsuuMm48L2o/UOLD6lGMEZDudLdeFM
-F4MLULBjL3bQHldpZCfi/aFohUn/5VYirlCa06Xh8iWoXyESzyW799Uj9xbJ6bqc
-l33JjhSc5H7XH6fLuRS6eBfuZBj3wickOmiygwvM9LtsO6CZZ58qwJMiaC+QJJHR
-XsxiH/bu/Q8XzwRX/pq0yPSBI+sKOkJoP8j9cqtFnckMprhsambiVoTxStjjYzvY
-UZUy0mfyR6GSKQ/HmgGct+ob1LCygX1Gc8RcGhd7mm+rgn4F0iQPwtc/qQLvgW9K
-9rXk6FdaQuqvY2xtSVr/42JbDyhMTw==
-=r05U
------END PGP SIGNATURE-----
-
---uURq+iX14aolRxxP--
 
