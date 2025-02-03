@@ -1,86 +1,82 @@
-Return-Path: <devicetree+bounces-142799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C8CDA267A5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:12:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8829BA267AA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:14:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1098C3A4BC9
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:11:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12243160361
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:14:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63568214207;
-	Mon,  3 Feb 2025 23:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C0C21322B;
+	Mon,  3 Feb 2025 23:05:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W73U2Do3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sBGCaUtz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF0412144A8;
-	Mon,  3 Feb 2025 23:04:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC020211A07;
+	Mon,  3 Feb 2025 23:05:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738623894; cv=none; b=TaNrv0QsjGWubpYxwYM4oPNdLhIYLkZknSM3Gwl4cH7AT+3VK5Gn5QM9unERcZVT/2h9XsQjsDTBuf2OLgsAyrRjwMgQq0svzd07+XoqQQOKQMhX5MYXr3KuuyEcpv6e/GoBwDxw7bWE31ENEUDXr1Y/nHR+RDclMP+NUAM4mjI=
+	t=1738623944; cv=none; b=afuSJghnSZFw7jg0/5nFwGr0JRaxB+Zs/uNyRcQdEugw2V1R0VoRUjdeU3eTWTuPXwWb1pW16WtRddaCmR9CoB7RzEDgG8QmEkr7km3lqvvNmqszJb+zg1ZxvyOpd2t+Bu/nHFPhsRt9mR8JNJQWVmbno4CIsxbD+F4oPOmYtEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738623894; c=relaxed/simple;
-	bh=8LXNfDj0XbdIAmhPvi+TuYd1/opSOX2Sn7nRqUMekVU=;
+	s=arc-20240116; t=1738623944; c=relaxed/simple;
+	bh=I5tThkY58MIXwmPRE79kDyvNP0k17+Se/rPn1Ph6njQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oEHiDOLh+shMvqUv+F65Bm8WjB8Y4mTQBVNwz8+7qJ0SWD+yW8OGmU9uEBdgYX468cge9JLDltE91ikC0J5RoHFNLPhBZTD/7idcBfrlypwNoRSO6WcxJ2BmWCTFJz2E9n784BeMi/cY0tcunm/gbNYAKAdcDmCm+zYDEjz2Vfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W73U2Do3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6B72C4CEEA;
-	Mon,  3 Feb 2025 23:04:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UiCmM31XshRwHnwKKGUaH/K/w70t5HJWHIHsR4+8+6ZZ7TaUEGqLVCFfY7G+bDe0uwRve++bGasbGNiDd1sa4Zx2EFflPgotqCQAb3AJaitjSb5wILKoEW+9uG3Bdc+ZHdYy6KL6q9G/XB6IH19YiQZ7HOY2K1/PS6SlhSHRqUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sBGCaUtz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28B2DC4CEEA;
+	Mon,  3 Feb 2025 23:05:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738623893;
-	bh=8LXNfDj0XbdIAmhPvi+TuYd1/opSOX2Sn7nRqUMekVU=;
+	s=k20201202; t=1738623944;
+	bh=I5tThkY58MIXwmPRE79kDyvNP0k17+Se/rPn1Ph6njQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W73U2Do3p8HRpob25XLwSf3uFb+Uj7d/dFfMIyFRZwRt7Foo28qldEsHhuEr9Heun
-	 A9z/eoBtcyF2nTtz2xAMc5oYBLvgFCVNfhLfDsZi5UMyOzJV8ZwlFNnBpqr2sZsrfT
-	 sXLfoAdGPWyUMLtEcYR2Mbna2AXWtk9ynv9dR7MhTmcJPk/9WqYl07AKMu/zmbPY0b
-	 v/mYDKfMtkgiWWK+6wMl+rNOMhuCxuoPip9ZDKzHRSec9oHP8a4VOVJIwwjMPm5xsr
-	 2QnmeGncsFD5N5KDaQ9H6jvDOC9imsSR/UFMTbQ41ikzR18cID0hlssuc3rS25xo67
-	 u12dLkBwxJdhA==
-Date: Mon, 3 Feb 2025 17:04:51 -0600
+	b=sBGCaUtzvOxHO8GBP2eECpz8YLaf0GaYSTeugJk84ymUIAUj57FosRywdBEG7fw4K
+	 tNT4zpF6CHoCRMwPdaYuOS575s4G+9uMIJ4V60VBs4n+f6A5oHjI/HMHbwC6tLrAkO
+	 Fwz2knwZ4MN/JMOAIlW4lToVFf4lKs9H3GUrC6tU8V6Yo8QzboHSsZy1CaDRVJiGHc
+	 rpA4D/aY0DEEjI2cMZ5mEysUJMsvKCQMXplqqzQfcrAkFmFlFVgxJcJnFVWIMdk6MS
+	 As4j0dETGOy5lWWaZ2Gn6gDz+Fn985VosletOFzLd8bzlZYrFm6zUnMoJcNeHvoAE9
+	 tEH/47YRT0wXQ==
+Date: Mon, 3 Feb 2025 17:05:42 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Danila Tikhonov <danila@jiaxyga.com>
-Cc: maarten.lankhorst@linux.intel.com, konradybcio@kernel.org,
-	freedreno@lists.freedesktop.org, linux@mainlining.org,
-	tzimmermann@suse.de, dmitry.baryshkov@linaro.org,
-	devicetree@vger.kernel.org, quic_abhinavk@quicinc.com,
-	~postmarketos/upstreaming@lists.sr.ht, krzk+dt@kernel.org,
-	jun.nie@linaro.org, fekz115@gmail.com, robdclark@gmail.com,
-	marijn.suijten@somainline.org, simona@ffwll.ch, airlied@gmail.com,
-	mripard@kernel.org, conor+dt@kernel.org, sean@poorly.run,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	quic_jesszhan@quicinc.com, neil.armstrong@linaro.org,
-	linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-	jonathan@marek.ca
-Subject: Re: [PATCH 1/4] dt-bindings: display: panel: Add Visionox RM692E5
-Message-ID: <173862389119.509853.11162021545785979711.robh@kernel.org>
-References: <20250203181436.87785-1-danila@jiaxyga.com>
- <20250203181436.87785-2-danila@jiaxyga.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Ferry Toth <fntoth@gmail.com>, Felipe Balbi <balbi@kernel.org>,
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: dwc3: Add a property to reserve
+ endpoints
+Message-ID: <173862394233.512701.17343597756592829862.robh@kernel.org>
+References: <20250203191524.3730346-1-andriy.shevchenko@linux.intel.com>
+ <20250203191524.3730346-2-andriy.shevchenko@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250203181436.87785-2-danila@jiaxyga.com>
+In-Reply-To: <20250203191524.3730346-2-andriy.shevchenko@linux.intel.com>
 
 
-On Mon, 03 Feb 2025 21:14:24 +0300, Danila Tikhonov wrote:
-> The Visionox RM692E5 is a 6.55” AMOLED panel used in Nothing Phone (1)
-> (sm7325-nothing-spacewar).
+On Mon, 03 Feb 2025 21:10:53 +0200, Andy Shevchenko wrote:
+> Some of the endpoints may be reserved by hardware for different purposes,
+> e.g., tracing control and output. This is the case, for instance, on
+> Intel Merrifield and Moorefield platforms that reserve a few and USB driver
+> may not use them for the regular transfers. Add the respective bindings.
 > 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 > ---
->  .../display/panel/visionox,rm692e5.yaml       | 77 +++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/visionox,rm692e5.yaml
+>  .../devicetree/bindings/usb/snps,dwc3-common.yaml     | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
