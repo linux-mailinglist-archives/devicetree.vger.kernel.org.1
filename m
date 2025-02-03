@@ -1,156 +1,83 @@
-Return-Path: <devicetree+bounces-142782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 027B2A2664C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:02:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B507A2665C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:06:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9465A3A53D0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 22:02:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50A957A288B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 22:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B00B1FECC5;
-	Mon,  3 Feb 2025 22:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49BB21FF610;
+	Mon,  3 Feb 2025 22:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oMpqO6Vk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DPdXEuIw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3731F182B4;
-	Mon,  3 Feb 2025 22:02:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE3F182B4;
+	Mon,  3 Feb 2025 22:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738620152; cv=none; b=Xpn8QlQvRPTcSVfjbbHbrICowPlcZGJICbC7uT2e6JZgrFrM3AEMWIUmJq6tROWV2ngJu7FdBdabK5AnPfb4u3wcMkX5/P+R840kM8JuTY74xW/Wm3oGFOi0uzEIcAc5EZn3L5jfZfu7IY1GKPVLJ4lDJSUbGfCWkRxtcEp82+U=
+	t=1738620374; cv=none; b=UUTGVKLT6s+OPxl6X01QwSLzWFErzhCxlxAOB4Vm9rMcocq5fHzNa51Rl3YM5TJJrbfmqYgiuUtn9wIYnWDJQQDZKRwqnZu+FTEtIryGXhaWV39U0OHdFy3xIU2vr6Rue+dBjdZkk+xSWF9xLKCCOIeJmj0LppICT35e5PAMpYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738620152; c=relaxed/simple;
-	bh=4MG6GO9DO9XXRUtRL6e1XPm8IlP29lzu4zko2OYSN4I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WH0JojDfwarNyS8k/QgG1keMSLG6uqC+yscvK0OBGlakOg6d70gEY2W34HgLMTClhZs1u7b61SZTgUh2ESwKN1v2Gfy7g4pWJ01BHE2JEMsudxhsD/qaw5h6RrOepmL1flJitlJOtdTBicxVzEn5OhYBdh1LGxDrSsddSRZt3z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oMpqO6Vk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F7D4C4CED2;
-	Mon,  3 Feb 2025 22:02:31 +0000 (UTC)
+	s=arc-20240116; t=1738620374; c=relaxed/simple;
+	bh=yzyPuuX2I9mlAd8wRAXfCiQT5z1CNGqnwskd/rkgtMo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mkhtAe+RQAyGpjE1D6S/pA5EBzZ66YygzwwmtsXOJkvpC341c2Dk06g3eqlOMkKnQ4mSSynhYGQprws/Q7FXogvwlUfU84oaiCUD9UZoojq+jDjscf/1+ovrub9aKUrW8PLO5Q5Fp8B+NB5D4ywWya0pW4ITUOsrCuYbPBt0sQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DPdXEuIw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACF91C4CED2;
+	Mon,  3 Feb 2025 22:06:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738620151;
-	bh=4MG6GO9DO9XXRUtRL6e1XPm8IlP29lzu4zko2OYSN4I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oMpqO6VkqzpV+wbAibm7M8luRjJhxkCgqeGU7rn9lXqAg4ZtVc1T5FmKx3eq6W2xG
-	 consJmclmmkd7RVsl+PIG1Q+LinmL9Pdm8cQUnkzO1Z0+W8n8tv68OC6VXmiEkUuTv
-	 XKrEH3CIw0jZ3VZTlKR6LaRLO1+2hFrG/0zATTbcycZoicVhtSsWTp5Y08uOMR9dYk
-	 SrsKZaSDuCfNnW9LmkBev3uEA6lv01VdSgyO5nYUzYJ370KV1Jz3F8blq6rLpDsyxx
-	 I86WpWwDG0MWroQky/1hjH/4JLm8IbI1FwI92BqwtDQ67KZN6WMGZahMdroT3yz7vS
-	 WEucqe692Lp4Q==
-Date: Mon, 3 Feb 2025 16:02:30 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, "Guoniu.zhou" <guoniu.zhou@nxp.com>,
-	Robby Cai <robby.cai@nxp.com>,
-	Robert Chiras <robert.chiras@nxp.com>
-Subject: Re: [PATCH 01/14] dt-bindings: phy: Add MIPI CSI PHY for i.MX8Q
-Message-ID: <20250203220230.GA120569-robh@kernel.org>
-References: <20250131-8qxp_camera-v1-0-319402ab606a@nxp.com>
- <20250131-8qxp_camera-v1-1-319402ab606a@nxp.com>
+	s=k20201202; t=1738620372;
+	bh=yzyPuuX2I9mlAd8wRAXfCiQT5z1CNGqnwskd/rkgtMo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=DPdXEuIw9QSyalNNyNjvv0XnpXXT0IqYas4P/nhGlrVRWsP4nTb8KYoNaYGYSxUsl
+	 TeL7MI6sihNDnf2Az3fWZOkz28xm/43DHoKN/1xukR5ZkJ1QYiOGo9UodinK8o9Q4m
+	 mHgWYffCmXMrWCzQyxGA4qBgvsA6XA+r+Zsny+GIfc8HqrgIVjTJn5eifr0L66cOmJ
+	 dIG0GjgKiFTV7dwqSU+U93IwBfmT9VmtAfw9b6rfQCGPEw2WyzxXxKS5h4Shq5EKFp
+	 1BMIih6q+UVPnT/QekmCcjKzgjVwixFXRmZ9WQurhZKSMuEWd4oJhUa8DVATYeVRBs
+	 M0XTJmnfkqffg==
+Date: Mon, 3 Feb 2025 14:06:10 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Joey Lu <a0987203069@gmail.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
+ alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
+ schung@nuvoton.com, yclu4@nuvoton.com, peppe.cavallaro@st.com,
+ linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH net-next v8 0/3] Add support for Nuvoton MA35D1 GMAC
+Message-ID: <20250203140610.4a0bbad4@kernel.org>
+In-Reply-To: <20250203054200.21977-1-a0987203069@gmail.com>
+References: <20250203054200.21977-1-a0987203069@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250131-8qxp_camera-v1-1-319402ab606a@nxp.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jan 31, 2025 at 04:33:46PM -0500, Frank Li wrote:
-> Add MIPI CSI phy binding doc for i.MX8QXP, i.MX8QM and i.MX8ULP.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../bindings/phy/fsl,imx8qxp-mipi-cphy.yaml        | 53 ++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8qxp-mipi-cphy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8qxp-mipi-cphy.yaml
-> new file mode 100644
-> index 0000000000000..c6cbedd9ed114
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8qxp-mipi-cphy.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/fsl,imx8qxp-mipi-cphy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8 SoC MIPI CSI PHY
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  compatible:
-> +    enum:
-> +      - fsl,imx8qxp-mipi-cphy
-> +      - fsl,imx8ulp-mipi-cphy
+On Mon,  3 Feb 2025 13:41:57 +0800 Joey Lu wrote:
+> This patch series is submitted to add GMAC support for Nuvoton MA35D1
+> SoC platform. This work involves implementing a GMAC driver glue layer
+> based on Synopsys DWMAC driver framework to leverage MA35D1's dual GMAC
+> interface capabilities.
 
-Where's imx8qm?
+The tree is open when we say that it's open, you posted this 9 hours
+before the announcement:
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - "#phy-cells"
-> +  - compatible
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx8qxp-mipi-cphy
-> +    then:
-> +      required:
-> +        - reg
+https://lore.kernel.org/all/20250203065423.03f4cec4@kernel.org/
 
-How is the device accessed with no registers?
-
-> +        - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    phy@58221000 {
-> +            compatible = "fsl,imx8qxp-mipi-cphy";
-> +            reg = <0x58221000 0x10000>;
-> +            #phy-cells = <0>;
-> +            power-domains = <&pd 0>;
-> +    };
-> +
-> 
-> -- 
-> 2.34.1
-> 
+Sorry but keeping this in the queue would be unfair to people who
+follow the rules.
+-- 
+pw-bot: defer
 
