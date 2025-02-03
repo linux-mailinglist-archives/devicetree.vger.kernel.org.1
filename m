@@ -1,73 +1,67 @@
-Return-Path: <devicetree+bounces-142438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A24A25583
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:12:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C9F0A2558F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:15:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE92B3A1757
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:12:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C035162A95
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:15:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8793C1FDA78;
-	Mon,  3 Feb 2025 09:12:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91B21FAC3D;
+	Mon,  3 Feb 2025 09:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="XYZGNxQO"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="MnNTZ48F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com [91.218.175.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DC5179BD;
-	Mon,  3 Feb 2025 09:12:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE14A45016
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 09:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738573929; cv=none; b=dTbpxbeAHW+fl3MpBYxagCCRe/45HFQLqA58PhqnLH+NOECQp20yFkOvkHDc52xz31k1gYRKrL+8386J7+np+7eGAHn03Fhu5cQRiGK77w0tkj76lrnHKc81RqSndMtY7CRVNyPKikU0MFK3upqH7DlU2Q6Wq/Z3CxSltFLSgEk=
+	t=1738574153; cv=none; b=THNlxfvVTtDquNj/+IC8SFr0V7WdHzPecn4N0iQhWUdeNmnacD0pE8QavcmInuXV0PEi+p86P9i1FJPnKvopRGirYJqx0sYhtRpVEvotoD89d/YG83Q4q08xdnbHJJeDXU6dvaH+i9I3yZqC9Kh79KcJksjOzHia3L7HQS3HaK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738573929; c=relaxed/simple;
-	bh=GoZ1I8nwjXJDyNzuyNG8kMf4j9q65G9XZXlJCuRM9Ss=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=P3wxt8fhcB6DIvD+9ctHSj2QQnSxFO6/VF5x2W468p+Tr0nTtLZMrMtm0nSKagks2EvoIGniXXy+hNDkAJT9zxAgPh5XRTfb+jbT738t3nwhb15hqI0Jai8HuGfmYXxLLDN1qPYcds5NS7L//ylUTinNG+GF/UoBeKREKKk9Umw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=XYZGNxQO; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1738573928; x=1770109928;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=GoZ1I8nwjXJDyNzuyNG8kMf4j9q65G9XZXlJCuRM9Ss=;
-  b=XYZGNxQO60fzPPhnyTIkL5It8wIAZtf62L3r9fnNzhqZmT7dUebiAIzK
-   ormGc0d4wOgoZiODnpw43MOfOEN6XdLCodq13CFFBM1W/IXr2Cnlv9CS0
-   /FHBsXK4NU712rgYxdwgklYwqxXb+NW05TLpb1DaYUXGdsA9g3Ubaeh3y
-   Y2r0saW/1+6Zt/pSS61KljeLtYBA7Ka4MrCg1pv68nI2NCuOnom0ceZ96
-   Vb9f2TgPA9CX8Cg2s5moIeoslc9AQOhJvXxjUOVGB/zf5vmc0ellTyq4c
-   mub6dJzW0oehA9HgRCnl41T34av/gpQv9aRDpQZmSToadcZXFIsQVoW1W
-   g==;
-X-CSE-ConnectionGUID: 7vGpeTJvQHexY+vrjMcrEA==
-X-CSE-MsgGUID: pxeKEp38Sx+/HvgXMb1IHw==
-X-IronPort-AV: E=Sophos;i="6.13,255,1732604400"; 
-   d="scan'208";a="268528704"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Feb 2025 02:12:07 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 3 Feb 2025 02:11:47 -0700
-Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 3 Feb 2025 02:11:43 -0700
-From: Andrei Simion <andrei.simion@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
-	<alexandre.belloni@bootlin.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-sound@vger.kernel.org>, Andrei Simion
-	<andrei.simion@microchip.com>
-Subject: [PATCH v2] ASoC: dt-bindings: atmel,at91-ssc: Convert to YAML format
-Date: Mon, 3 Feb 2025 11:11:12 +0200
-Message-ID: <20250203091111.21667-1-andrei.simion@microchip.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1738574153; c=relaxed/simple;
+	bh=xswKRni51SsEyKv9zwB5pKsjneGd3ae8Tzow2Ypm4jE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=V/jrRr3wx3UfcimBzPJf/RtWEcbhg5tXxhtMwolzoLIR2NFsyBoYHZrZJWYNOatHYp32W90JRHgur1aBnpOvbiDXRkMRVoMv1O/em5Q0r6VLxLvYTVJt8ciAe6Kw9xfILcpGhw4Yna1NEwzGHOiwfGmiw1CSDa4tgNiJeiUv2yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=MnNTZ48F; arc=none smtp.client-ip=91.218.175.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1738574143;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=LAvNIFwT6eJl2TJJB5CO7XsRCIXELrpv+C++Li8Acbs=;
+	b=MnNTZ48FVxUSvN/Uj/sac/5spztCo+eWbmyhtSirbuGJw/Lt03SaC+fTLazSW1GRhpuTgO
+	iOc6h8V+nVCTpxMgxArJvuYXcf+N0LafpMbAw7WZpMmb1cGSX9OSSdGCZlSXlebSrTKUqC
+	2mtnnNRW/GY3ymDmoDbMwnb9KAXeGAZBQrFtYWJLdDVX8MCPFz1/P4C9fGw6sSDZhwqhWi
+	vP4qtVAYpx+TVDRPIOCxce9WQ55bj7z/Svlq209E2AanPsY4CzQWGMvDoRIEtJ/o3f8FC9
+	yC8o8cKIpaMPdoTfkRAtsHG5O9nVxacKMjoxSRY2qxSJVMOfC47EUe5kZDwKzA==
+From: Ferass El Hafidi <funderscore@postmarketos.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	funderscore@postmarketos.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Artur Weber <aweber.kernel@gmail.com>,
+	Karl Chan <exxxxkc@getgoogleoff.me>,
+	Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v3 0/2] Add support for Xiaomi Mi TV Stick
+Date: Mon,  3 Feb 2025 09:14:51 +0000
+Message-ID: <20250203091453.15751-1-funderscore@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,215 +69,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-Migadu-Flow: FLOW_OUT
 
-Convert devicetree binding atmel-ssc.txt to YAML format.
-Update the documentation supported file for MICROCHIP SSC DRIVER.
+This patch series aims to add initial support for the Xiaomi Mi TV
+Stick.
 
-Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
----
-v1 -> v2:
-- squash MAINTAINERS patch
-- place this yaml in sound directory
-- reword the commit title
-- reword the commit message
-- add #sound-dai-cells const 0
-- add required
-- include ref dai-common.yaml#
-- fix the logic for the required properties for DMA transfer
-- update examples by adding #sound-dai-cells = <0>
-- drop unnecessary description
-- drop compatible for sam9x7-ssc because is not the intent of the patch
----
- .../devicetree/bindings/misc/atmel-ssc.txt    |  50 ---------
- .../bindings/sound/atmel,at91-ssc.yaml        | 104 ++++++++++++++++++
- MAINTAINERS                                   |   2 +-
- 3 files changed, 105 insertions(+), 51 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/misc/atmel-ssc.txt
- create mode 100644 Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
+Xiaomi Mi TV Stick is a small Amlogic-based Android TV stick released in 
+2020, and known as `xiaomi-aquaman` internally (in the downstream kernel,
+u-boot, ...)
+Its specifications are as follows:
+ * Amlogic S805Y SoC (believed to be mostly identical to S805X)
+ * 8 GB eMMC
+ * 1 GB of RAM
+ * Android TV 9, upgradable to Android TV 10
 
-diff --git a/Documentation/devicetree/bindings/misc/atmel-ssc.txt b/Documentation/devicetree/bindings/misc/atmel-ssc.txt
-deleted file mode 100644
-index f9fb412642fe0..0000000000000
---- a/Documentation/devicetree/bindings/misc/atmel-ssc.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--* Atmel SSC driver.
--
--Required properties:
--- compatible: "atmel,at91rm9200-ssc" or "atmel,at91sam9g45-ssc"
--	- atmel,at91rm9200-ssc: support pdc transfer
--	- atmel,at91sam9g45-ssc: support dma transfer
--- reg: Should contain SSC registers location and length
--- interrupts: Should contain SSC interrupt
--- clock-names: tuple listing input clock names.
--	Required elements: "pclk"
--- clocks: phandles to input clocks.
--
--
--Required properties for devices compatible with "atmel,at91sam9g45-ssc":
--- dmas: DMA specifier, consisting of a phandle to DMA controller node,
--  the memory interface and SSC DMA channel ID (for tx and rx).
--  See Documentation/devicetree/bindings/dma/atmel-dma.txt for details.
--- dma-names: Must be "tx", "rx".
--
--Optional properties:
--  - atmel,clk-from-rk-pin: bool property.
--     - When SSC works in slave mode, according to the hardware design, the
--       clock can get from TK pin, and also can get from RK pin. So, add
--       this parameter to choose where the clock from.
--     - By default the clock is from TK pin, if the clock from RK pin, this
--       property is needed.
--  - #sound-dai-cells: Should contain <0>.
--     - This property makes the SSC into an automatically registered DAI.
--
--Examples:
--- PDC transfer:
--ssc0: ssc@fffbc000 {
--	compatible = "atmel,at91rm9200-ssc";
--	reg = <0xfffbc000 0x4000>;
--	interrupts = <14 4 5>;
--	clocks = <&ssc0_clk>;
--	clock-names = "pclk";
--};
--
--- DMA transfer:
--ssc0: ssc@f0010000 {
--      compatible = "atmel,at91sam9g45-ssc";
--      reg = <0xf0010000 0x4000>;
--      interrupts = <28 4 5>;
--      dmas = <&dma0 1 13>,
--	     <&dma0 1 14>;
--      dma-names = "tx", "rx";
--      pinctrl-names = "default";
--      pinctrl-0 = <&pinctrl_ssc0_tx &pinctrl_ssc0_rx>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml b/Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
-new file mode 100644
-index 0000000000000..a05e614318242
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
-@@ -0,0 +1,104 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/atmel,at91-ssc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel Serial Synchronous Serial (SSC)
-+
-+maintainers:
-+  - Andrei Simion <andrei.simion@microchip.com>
-+
-+description:
-+  The Atmel Synchronous Serial Controller (SSC) provides a versatile
-+  synchronous communication link for audio and telecom applications,
-+  supporting protocols like I2S, Short Frame Sync, and Long Frame Sync.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - atmel,at91rm9200-ssc
-+      - atmel,at91sam9g45-ssc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+
-+  dmas:
-+    items:
-+      - description: TX DMA Channel
-+      - description: RX DMA Channel
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  atmel,clk-from-rk-pin:
-+    description:
-+      Specify the clock source for the SSC (Synchronous Serial Controller)
-+      when operating in slave mode. By default, the clock is sourced from
-+      the TK pin.
-+    type: boolean
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - atmel,at91sam9g45-ssc
-+    then:
-+      required:
-+        - dmas
-+        - dma-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/at91.h>
-+    #include <dt-bindings/dma/at91.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    ssc@100000 {
-+       compatible = "atmel,at91sam9g45-ssc";
-+       reg = <0x100000 0x4000>;
-+       interrupts = <28 IRQ_TYPE_LEVEL_HIGH 5>;
-+       dmas = <&dma0 (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
-+                     AT91_XDMAC_DT_PERID(38))>,
-+              <&dma0 (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
-+                     AT91_XDMAC_DT_PERID(39))>;
-+       dma-names = "tx", "rx";
-+       clocks = <&pmc PMC_TYPE_PERIPHERAL 28>;
-+       clock-names = "pclk";
-+       #sound-dai-cells = <0>;
-+    };
-+
-+    ssc@c00000 {
-+      compatible = "atmel,at91rm9200-ssc";
-+      reg = <0xc00000 0x4000>;
-+      interrupts = <14 IRQ_TYPE_LEVEL_HIGH 5>;
-+      clocks = <&pmc PMC_TYPE_PERIPHERAL 14>;
-+      clock-names = "pclk";
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ce7bf07c8afa2..6d593729a6d00 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15633,7 +15633,7 @@ M:	Claudiu Beznea <claudiu.beznea@tuxon.dev>
- M:	Andrei Simion <andrei.simion@microchip.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Supported
--F:	Documentation/devicetree/bindings/misc/atmel-ssc.txt
-+F:	Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
- F:	drivers/misc/atmel-ssc.c
- F:	include/linux/atmel-ssc.h
- 
+There are multiple variants:
+ * 1. Green PCB, manufactured in 2020, known UART pinout (helpfully 
+   labeled on the board)
+ * 2. Blue PCB, not much documentation about it, presumably manufactured
+   between 2021 and 2023
+ * 3. Green PCB, manufactured in 2023, known UART pinout, some layout
+   changes compared to the 2020 variant
 
-base-commit: 00f3246adeeacbda0bd0b303604e46eb59c32e6e
+Among these variants, there are many boards using multiple different
+Wi-Fi chips.  Supporting all of them is out of scope for this patch
+series.
+
+As of the time of writing this has only been tested on the 3rd variant.
+It is believed that software-wise all three work mostly the same (if we 
+don't count Wi-Fi), but testing on the other variants would still be
+appreciated.
+
+The devicetree is based on the Amlogic P241 DTS.
+
+Changes since v2 [1]:
+ * fix SoB/From mismatch
+
+Changes since v1 [2]:
+ * remove useless nodes: cvbs-connector, ethmac, internal_phy, ir
+ * add `amlogic,s805y` DT binding section
+ * add S805Y dtsi: meson-gxl-s805y.dtsi
+ * adjust DT `model` to "Xiaomi Mi TV Stick (Aquaman)"
+ * explain the changes being done a bit more in the commit message for
+   the DT patch
+ * drop `clocks` and `clock-names` from pwm_ef (background: [3])
+ * change sound `model` to "XIAOMI-AQUAMAN"
+
+[1]: https://lore.kernel.org/all/20250201193044.28856-1-funderscore@postmarketos.org/
+[2]: https://lore.kernel.org/all/20250131200319.19996-1-funderscore@postmarketos.org/
+[3]: https://lore.kernel.org/linux-amlogic/20241227212514.1376682-1-martin.blumenstingl@googlemail.com/
+
+Ferass El Hafidi (2):
+  dt-bindings: arm: amlogic: add S805Y and Mi TV Stick
+  arm64: dts: amlogic: add support for xiaomi-aquaman/Mi TV Stick
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   7 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../meson-gxl-s805y-xiaomi-aquaman.dts        | 288 ++++++++++++++++++
+ .../boot/dts/amlogic/meson-gxl-s805y.dtsi     |  10 +
+ 4 files changed, 306 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
+
 -- 
-2.34.1
+2.47.1
 
 
