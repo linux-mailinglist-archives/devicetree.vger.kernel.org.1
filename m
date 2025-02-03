@@ -1,135 +1,134 @@
-Return-Path: <devicetree+bounces-142451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14F38A2561B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:44:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC700A2562F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:45:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 749A91644BD
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:44:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C7E61885AD5
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:45:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C4B0200BB4;
-	Mon,  3 Feb 2025 09:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EEB11FF7C8;
+	Mon,  3 Feb 2025 09:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eHBh3SPc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mMpiZKc1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A26B200130;
-	Mon,  3 Feb 2025 09:43:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2DBE1FF7C3;
+	Mon,  3 Feb 2025 09:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738575819; cv=none; b=UEUsUh6YkaSK+Y3r+XhP+k5uyoJrQzjnzl7Y/UAuN890Sz3ruxSA+6veowviGsJSjP2f8197q0ASXGwTOMKhEzTTqqUZHf7EUdrY9oF65w9E2kZD4IwciSekjjI/xizahMhbf2Q61jA/Fs4ztBv1I9FCqYZri7wq8IW0WADsLWA=
+	t=1738575884; cv=none; b=HodDk3+gHniMlpwvb2rAzxyGU3x12ntPlU738VUqeBws+UxQcaGdNpWPQgbhVblxPoA+ESnRmmMgcoF9tYcTzasBOsz6kLwVXPlxD8BagVcju1mY4euSr/LZAlGmHlC+ILpHEaQx2cxPV/OYkUbT4D2kT6GQotJHFkt+bE+BmU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738575819; c=relaxed/simple;
-	bh=aQY5nT189S5QUoHa13vFWQRg/WET3r3m2ffZ4yejuzQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WLyMCASCZs6A4f8na0izI1fmehJSWuY4cn9XIz8Rbpo5pMfDSnvVOmerz9Rd3t4Xbq0LRwjXcreqzqveveiFXmbEyidSN81e/dH0Y7tuivWP6SPglIawvQGEGBFhHWOou0ONssgTV1F/x4l2nBpv+7goZkpbMF6vSqp4oF2bFVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eHBh3SPc; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738575817; x=1770111817;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=aQY5nT189S5QUoHa13vFWQRg/WET3r3m2ffZ4yejuzQ=;
-  b=eHBh3SPcLRimgSFdiQ6rrfE69oukDuc5ycUmeQOgmy6xsuisuCYdrG4S
-   P5DoKIXNN+z4isPK86fiW9M6S9Z6W8uHEMoFtqN+d5tLWKCgtKoeJuPmW
-   QO/1T5WN3isxcSmLoz1wkhqIktExv8Yhy35hUAFyv5JeA4tzzVnW4y5Gc
-   80l1JihWYInQEQPstxD4pRvlvDctSn/eF4Fkdc2gAmqNw5jIf4Lb9FO0R
-   RRkNqIowTYQ6m8muPZE1vMQmsutQqbS2kqroRd9IhCb0BbPhEuIQDmyc1
-   oKgwcT0SsrMRb9CQmoxP6NAgGYC3Gv5RHIR2eOkwWnFoFaFBfdGVeZxkf
-   g==;
-X-CSE-ConnectionGUID: f0awBSW7S9GPRK2Qpxdzzw==
-X-CSE-MsgGUID: 0MtTElyXRzO6Qbr3hY7aAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50476119"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
-   d="scan'208";a="50476119"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2025 01:43:36 -0800
-X-CSE-ConnectionGUID: LLrcAqr0Rlm/ruY5605yCQ==
-X-CSE-MsgGUID: oFZ70KHIRg+AEWH/Kc4nCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="115392397"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2025 01:43:30 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1teszG-00000007mu6-17QX;
-	Mon, 03 Feb 2025 11:43:26 +0200
-Date: Mon, 3 Feb 2025 11:43:26 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 12/17] ACPI: property: Add support for nargs_prop
- in acpi_fwnode_get_reference_args()
-Message-ID: <Z6CPvteWv89Xo70j@smile.fi.intel.com>
-References: <20250203084906.681418-1-apatel@ventanamicro.com>
- <20250203084906.681418-13-apatel@ventanamicro.com>
+	s=arc-20240116; t=1738575884; c=relaxed/simple;
+	bh=gxdfI5WrcRHDD2llHshM5Duzx8/HXQUlsmDY2FonnOI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RbYWB5S8xKTo2WtJ8v89w0FxG3su2fDaFWe7Ec7oGJQaOFol75McHFwvfZYsHF4Bgcmd4pL99SfMWq5OhLzo2eMjzo8tlfwhuyCIk68Qn7TdhvAYY1S4v+/rU4bnrV8HhwTe+K9hfrEZk+XI3k+eTPpnL/Spf9cBYPQFaCpB3cY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mMpiZKc1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5138CVjD031453;
+	Mon, 3 Feb 2025 09:44:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	g2DFr8O0VMaWPwK0ueg3lGyqTuoLafEqVtZgKNF8Qq4=; b=mMpiZKc1ctumbGZH
+	hhITUglLt+Sl5PWErTTybucNccie1DuSJqcK3NzyhyJiypI2EULfqbs4lytxYMRP
+	HSUEdcQ7ZAo8p1NVRlYes0Bc6L7I5hTkckAHbHUV93PQPXPO+dFiAiMThYij6kf8
+	xwSQ+ok5Jqf9PpRlD90V6CYRCuxwdlymSAVHOtArYTkUE0LwNtUvOy2BJX3L6v/T
+	HkOPuyxjBS9tMNpAiOAh7eryTRQqDdzskKr0cslzyEOMMuCtfxavldNL8Ch9vkvl
+	vZ5v6cspbxOHQOlKo2NsBhtixP++6iVEz5u3CQniSQiMg+mX46+JXBbZ12t7nMf/
+	UAIm5A==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44jt3ar672-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Feb 2025 09:44:35 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5139iYLN001103
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 3 Feb 2025 09:44:34 GMT
+Received: from [10.216.42.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Feb 2025
+ 01:44:31 -0800
+Message-ID: <7d5f7b4c-2a55-41c7-b85c-cb4cd76d553f@quicinc.com>
+Date: Mon, 3 Feb 2025 15:14:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250203084906.681418-13-apatel@ventanamicro.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 07/13] wifi: ath12k: add support for fixed QMI firmware
+ memory
+To: Krzysztof Kozlowski <krzk@kernel.org>, <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250130043508.1885026-1-quic_rajkbhag@quicinc.com>
+ <20250130043508.1885026-8-quic_rajkbhag@quicinc.com>
+ <4c9b512f-59d2-4d96-a899-5af4de2c823e@kernel.org>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <4c9b512f-59d2-4d96-a899-5af4de2c823e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lw-e8y6ZMt4lsEKxF5uTHuk6yG7IqSW9
+X-Proofpoint-ORIG-GUID: lw-e8y6ZMt4lsEKxF5uTHuk6yG7IqSW9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-03_04,2025-01-31_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 lowpriorityscore=0 mlxlogscore=986
+ impostorscore=0 bulkscore=0 malwarescore=0 clxscore=1015 adultscore=0
+ spamscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502030076
 
-On Mon, Feb 03, 2025 at 02:19:01PM +0530, Anup Patel wrote:
-> From: Sunil V L <sunilvl@ventanamicro.com>
+On 1/30/2025 1:16 PM, Krzysztof Kozlowski wrote:
+> On 30/01/2025 05:35, Raj Kumar Bhagat wrote:
+>> @@ -2646,6 +2663,136 @@ static int ath12k_qmi_alloc_target_mem_chunk(struct ath12k_base *ab)
+>>  	return ret;
+>>  }
+>>  
+>> +static int ath12k_qmi_assign_target_mem_chunk(struct ath12k_base *ab)
+>> +{
+>> +	struct device_node *mem_node;
+>> +	struct resource res, m3_res;
+>> +	u32 bdf_start_addr;
+>> +	int i, idx, ret;
+>> +
+>> +	for (i = 0, idx = 0; i < ab->qmi.mem_seg_count; i++) {
+>> +		switch (ab->qmi.target_mem[i].type) {
+>> +		case HOST_DDR_REGION_TYPE:
+>> +			mem_node = ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
 > 
-> fwnode_get_reference_args() which is common for both DT and ACPI passes
-> a property name like #mbox-cells which needs to be fetched from the
-> reference node to determine the number of arguments needed for the
-> property. However, the ACPI version of this function doesn't support
-> this and simply ignores the parameter passed from the wrapper function.
-> Add support for dynamically finding number of arguments by reading the
-> nargs property value. Update the callers to pass extra parameter.
+> 
+> Why cannot you use existing API for reserved memory -
+> of_reserved_mem_lookup()?
+> 
 
-I don't like this (implementation).
+The of_reserved_mem_lookup() requires reserved memory node to read the memory and
+return in the structure "struct reserved_mem".
 
-It seems that we basically have two parameters which values are duplicating
-each other. This is error prone API and confusing in the cases when both are
-defined. If you want property, add a new API that takes const char *nargs
-and relies on the property be present.
+The of_reserved_mem_lookup() would be used after we get the reserved memory node
+using the API - ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
 
-Your patch becomes much simpler, and solution is robust against potential
-confusion on how to treat the corner cases.
-
-Note, Rafael might have different opinion and his has the last word. But
-here just my view on the implementation details.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+In next version we would use of_reserved_mem_lookup(), Something like below:
+    mem_node = ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
+    struct reserved_mem res = of_reserved_mem_lookup(mem_node)
 
