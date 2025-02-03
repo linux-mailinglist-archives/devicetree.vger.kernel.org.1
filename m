@@ -1,112 +1,123 @@
-Return-Path: <devicetree+bounces-142624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88D72A25F4B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:55:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9411CA25F4D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:56:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51E5C7A18A9
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:54:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 153A31646E9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:56:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC79D209F5C;
-	Mon,  3 Feb 2025 15:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202A7209F5C;
+	Mon,  3 Feb 2025 15:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tB1euvvQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uIujRaaZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E808B209F4B;
-	Mon,  3 Feb 2025 15:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BDC20A5C0
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 15:56:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738598111; cv=none; b=h0q/mHN+U30AmQdkELzvYaXUx305uQ2e/SUK4QVQgc4808f8OmYISsx8nZjoZ7ByruhwBc6nNUTsBVZGjtxnr7+pF8wxs7hPmmpkfPo5RMHS+0GZqMBN298vp1P+Nqv2xoEz16sfl0Euha2RrV8GecWsJMOKzQm7YFzB5a8duvM=
+	t=1738598199; cv=none; b=a1uvuilLYlXtt+Tp5FhVhuiQLWdMmvSb6Y3UioGw8r2GP4DeCkur6grlZDEjBYUxqTUsHKPNsDWp64dMBUcFkRk9mohMW7eqtGwylcZIprUPCYVEyu/9o4wZaMN7CbrXu+frExrqluC7uNPb5Idy0gb8bZPe5Xqzac5+/A7njTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738598111; c=relaxed/simple;
-	bh=n/hH6PNPxfHVD55kb5BG84TXlfe37h/EzyVzGmekBwU=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PUq/0Lb7nFB1rvJzP+2aDDA3Qki1mEBCM+4WuYBMstZr6bqNsUeYhLDgzpQ35u+7CTNfncU30zYzGSRMUA02/e0XXSpN+SH4/c1KCFWPLQo9OS4FCh0zy+Z/qo5w90vHD6z92mGz1qCT0u5lWNIYKAfoti14ndbK81uiJ0Juk0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tB1euvvQ; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 513FsXHW3043567
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Mon, 3 Feb 2025 09:54:33 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738598073;
-	bh=Dq1PoOo0p++A7ZJP/LcK53A+0MmTH8P0JsBail5lC0k=;
-	h=From:To:CC:Subject:Date;
-	b=tB1euvvQUNk1ywi7/+AgFc7bgBNKgyoinFrhYgTw/tnQsdTKZa1gBdUJNP3T7HGBe
-	 JNKKyJDioZkRjmPngr03vlqznABnWp6+FXpvTCnQcJVNtsiq7Tr6ii0QHn3RZVmT5L
-	 8pzSRWpwQnEfNkFVJbtwxlt5AC58UNCuudjppTbg=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 513FsXLC080734;
-	Mon, 3 Feb 2025 09:54:33 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 3
- Feb 2025 09:54:32 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 3 Feb 2025 09:54:32 -0600
-Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 513FsVe0035874;
-	Mon, 3 Feb 2025 09:54:32 -0600
-From: Devarsh Thakkar <devarsht@ti.com>
-To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
-        <airlied@gmail.com>, <maarten.lankhorst@linux.intel.com>,
-        <mripard@kernel.org>, <tzimmermann@suse.de>,
-        <dri-devel@lists.freedesktop.org>, <simona@ffwll.ch>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <praneeth@ti.com>, <vigneshr@ti.com>, <aradhya.bhatia@linux.dev>,
-        <s-jain1@ti.com>, <r-donadkar@ti.com>, <j-choudhary@ti.com>,
-        <h-shenoy@ti.com>, <devarsht@ti.com>, <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2] dt-bindings: display: ti: Fix compatible for am62a7 dss
-Date: Mon, 3 Feb 2025 21:24:31 +0530
-Message-ID: <20250203155431.2174170-1-devarsht@ti.com>
-X-Mailer: git-send-email 2.39.1
+	s=arc-20240116; t=1738598199; c=relaxed/simple;
+	bh=I6rSF3OmEBlc0hI6fkaomscsvVbmUsuMkJ0IXitAoDY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uYt1OfayGOZm817o/04PZFIiI+SqJfF0wUCO2AmoZzl4k/Q6sHa/fD6szyWU/YSIn7Bn9QwbzQ8+DAB6+jIrhOQLKXScyd53v3ULCkwUi3hhLwEQiM1ZbTYBQlGRVMelo3d/eJiE3ZEmi4Wi4dJF9onVRInzYkrLMByQb2rrmtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uIujRaaZ; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53f22fd6887so4567826e87.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 07:56:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738598195; x=1739202995; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+ufx9LndyQ+Q8Y+4pq9rBmtvxrTRSiMJivVKQTd2MhM=;
+        b=uIujRaaZRYJPaMrC54IMH3gxVzKsQbjGBCTeKHs2Q3jGlF8Ib1JmipSWHpyktmhgGS
+         eWFWwgmSVA1fnJVF6oaXaI9+lN/56FiCRfwEenls90eThbv0pQWIZoT1UMmDcCdEFPWN
+         4zeUo5Q3qGecNiSM2LV5CQ6uCIhzMrE4qPR7E8st9vwg8dMU/qLe+x6ATpgGwYq7Y87a
+         vKXj93vQcj9t8hy/uB5wQBqhJQX3Hc45hqQ5sfQAo8oAHLHP5XGbXwXhTsUbRpqi/Oo8
+         jVVcIyLGGmf1Wvm8S9cE/PHuqX+EpzIZi7/r7kRaIBvFo18a9aw3gsrpKN2HsLjYJZ4+
+         ywoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738598195; x=1739202995;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+ufx9LndyQ+Q8Y+4pq9rBmtvxrTRSiMJivVKQTd2MhM=;
+        b=peApkEwC0Xy998/z7JN8TPaY1lIZacJn8SsC9jp65Vv3e9ng0fZ5gc6B2DLfySjSNW
+         4Hp0mBNqF7z6LVN/6S7bEX5Se2slLauidafRfRuF6EOf2na0+dYc/mgsd0l32vMTeOeb
+         9SLKoNAyK+6Or+I7Imxr1GH0PXGvofhSU0/D7N3GQlBrbeTcDqnhiuq3kDpu972B4TYE
+         TlqrPtcVKHUlo5oDmsPo+Flb6fwP2CWaGNFFJ+uv+brnRnEoTXq9CUqrSuh1Xs2G54SI
+         /XGrsqC2UKsHdVErrjlefmoyrkQaSPoyxvMOx8w5krHFOP6Qa9IoarRMYprAaMJceFCx
+         EbAg==
+X-Forwarded-Encrypted: i=1; AJvYcCVrFJjlgozy/nO/mSQkBAN6ZJJ/4tRw34RHJbGntk8U51cgBJWbkKqk8PRqC7YWtomiN3ELiam6aqlG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5qFOeIxGTu0AUj9SZQOEex5ucBua1Jn/hw+Sl3kzSRv1mq8Lf
+	og5tqbVy+JVVCHwW+NXkjdo1tqnBT7lB/5Mkmugg5zs4G3392+laK5VOHtPoaQI=
+X-Gm-Gg: ASbGncsnWMfJMVqH1JFysc6hQ/Zd+UC2HyzGxXmMCaWLXS5N5tMyhZSFEV0qHzSfJXn
+	W+snp14x/mGc0YKeU8AXmPjD/aKsvJwD2+kCobuEZLhT4whCL3CBK8QeZcdQEeW4loqTZELa0ZH
+	yepTpg+T8CDLsrXMJsPzeaqqAbYuUpoX/K5RbmqstuciZUshZaLr4iniB7e9DH1C1FyDEIyambs
+	9bEhCyibBiTjTAijfSKx4d2+s3GGCKxZV/2YwJRxgRNPHXcHlsgLQecfIgoGQH2DNFyhGDjkREG
+	PZivfn1tSiR3+D+9kwdEwnFQqplK3nctgne2MX6+2f+z5rKObaVAJaHHZwwxPPsKMaeg3xo=
+X-Google-Smtp-Source: AGHT+IFT9JYuit2k0e9HSaZLgvpA0Li63Lnd/rY7xCOAkHWEzZCyLSO/loAyRrahXsnWpzZ++/uVIQ==
+X-Received: by 2002:a05:6512:33c9:b0:542:29b6:9c27 with SMTP id 2adb3069b0e04-543e4c3fd62mr7381291e87.51.1738598195122;
+        Mon, 03 Feb 2025 07:56:35 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebeb071csm1327031e87.134.2025.02.03.07.56.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Feb 2025 07:56:34 -0800 (PST)
+Date: Mon, 3 Feb 2025 17:56:33 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>, =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Louis Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 2/4] drm/atomic-helper: Introduce
+ drm_atomic_helper_reset_crtc()
+Message-ID: <76stqnzkm5itcoavv4vl7hbjiiujtenov3qaigdikxqjsuyif4@jhanrdhw5jly>
+References: <20250203145824.155869-1-herve.codina@bootlin.com>
+ <20250203145824.155869-3-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250203145824.155869-3-herve.codina@bootlin.com>
 
-Fix incorrect format of compatible string (comma instead of hyphen) for
-TI's AM62A7 SoC.
+On Mon, Feb 03, 2025 at 03:58:21PM +0100, Herve Codina wrote:
+> drm_atomic_helper_reset_crtc() allows to reset the CRTC active outputs.
+> 
+> This resets all active components available between the CRTC and
+> connectors.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  drivers/gpu/drm/drm_atomic_helper.c | 41 +++++++++++++++++++++++++++++
+>  include/drm/drm_atomic_helper.h     |  2 ++
+>  2 files changed, 43 insertions(+)
+> 
 
-s/ti,am62a7,dss/ti,am62a7-dss
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Fixes: 7959ceb767e4 ("dt-bindings: display: ti: Add support for am62a7 dss")
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
----
-V2: Add Reviewed-by and update commit msg
----
- Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-index 55e3e490d0e6..31c4ffcb599c 100644
---- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-+++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-@@ -23,7 +23,7 @@ properties:
-   compatible:
-     enum:
-       - ti,am625-dss
--      - ti,am62a7,dss
-+      - ti,am62a7-dss
-       - ti,am65x-dss
- 
-   reg:
 -- 
-2.39.1
-
+With best wishes
+Dmitry
 
