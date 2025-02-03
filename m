@@ -1,105 +1,270 @@
-Return-Path: <devicetree+bounces-142690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79DA4A261B3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:49:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BE61A261CD
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:58:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29F2D7A2A2B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:48:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C48281882BE4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:58:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E79D920D516;
-	Mon,  3 Feb 2025 17:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED37020E00E;
+	Mon,  3 Feb 2025 17:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="Dl4Nh2+x"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="mUURczHt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5F5420408E
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 17:49:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B46220D4E4
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 17:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738604944; cv=none; b=F7URGpbh92ZheTtMPSt/+PFmwhZO71f5eFq64rLwp+berGQHslr0K3l8WbTONRzgAxzmV2oJwGrYBp21H9UlXYiXz/wsXZnZnakTo76LVKPE6PizNL1sMZA0Qib6ezRcQ9eiJCPdGewMM2Y8lAu7w9O6n+cpkaJff4DIrD4ghzc=
+	t=1738605511; cv=none; b=ny85+v8F2M9Otg95PIkxLIT5oIPiXHRVHr66xrNPFdkfCBYu7FDNc6hvPQbwKBGooO9r9Pn4fmvNytFIGGq1ZlE5iTL5CJOmLm3rwcKwy3EnmT6sTAiimpgyGBR84PCIk2arbOzwoZ7C4aPATkP5b9DjUfKORYpaj2cbq7YtaGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738604944; c=relaxed/simple;
-	bh=P7qsgwAoBh5F5PSnZbuhjlaHSVDOEQdeNekKrcCa3rE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:Cc:To:
-	 References:In-Reply-To; b=QqUtgFrfpJZHnZmiv+innH0Gbl0r2Yq/n0IGo42dMLbG71hV6UnwOxxGHBjuJdfxLt6osHTma/G89ZBCFyVlazvwiPns8q6helP5bnWzxdZxwZrcK+qhjOIjRC9m3wLQLfy6DpQznyaYhq4kxW94ViMVjMO0ppW/XP8C7X2SyZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=Dl4Nh2+x; arc=none smtp.client-ip=91.218.175.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+	s=arc-20240116; t=1738605511; c=relaxed/simple;
+	bh=ukYC8bU+gRxdHbHGb4xF8yvaBNpwJHV8mA7MECJZAEU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=TLyhxvlXLe8vMtLStvXTlnSEg5gtvggcZZGL2E3obXJxP4hoq5qSw35j58ZDkXEZ0N1dd1cJagEJvRX58iwTsNQIIigKLFjGUkl8jU171U+geArxs73egkVl4cQDY4y9NsuC4GvSVHcrGzTZNbcB2RKP4XvVh3CQj1mft7Tn7Tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=mUURczHt; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250203175827euoutp01e9ba7ebe177c2dd14c4e6bc12f857d43~gxH9JdBfV0296002960euoutp01c
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 17:58:27 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250203175827euoutp01e9ba7ebe177c2dd14c4e6bc12f857d43~gxH9JdBfV0296002960euoutp01c
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1738605507;
+	bh=oB8LLzwbooAPaWEM+Y0kHxlx9ubp+CpytH8cBLFeUhQ=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=mUURczHtAoTDbB0FbnYUwVZAVREebzKDnEFfXDG5T8nQP5dp0MpaixNHgpf3pdV/n
+	 qvKCtOFjhW1ipbrSb1w0nSZomMuJINZ3EhMr85fHx6PAuhAlapsP6WZP+mQ6cxoArr
+	 jNtbebyCSRmJmrerNcvsFvRn22J+EMMuMe499H/4=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20250203175826eucas1p1f91a7a22351ac258c5dc7954ded52990~gxH8Y55o92679526795eucas1p1T;
+	Mon,  3 Feb 2025 17:58:26 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id 38.40.20397.2C301A76; Mon,  3
+	Feb 2025 17:58:26 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250203175824eucas1p183992086c6d11614686d9c3a5bd69141~gxH7IYZ161697816978eucas1p1k;
+	Mon,  3 Feb 2025 17:58:24 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250203175824eusmtrp29bb55cb77fc80cea7f96c94fb56fc8c2~gxH7HlxyW1484114841eusmtrp2D;
+	Mon,  3 Feb 2025 17:58:24 +0000 (GMT)
+X-AuditID: cbfec7f5-e59c770000004fad-4e-67a103c294ba
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 39.88.19654.0C301A76; Mon,  3
+	Feb 2025 17:58:24 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250203175823eusmtip2f86af6640dd3450e986c7e1d73c09e1b~gxH56OqW11343113431eusmtip2d;
+	Mon,  3 Feb 2025 17:58:23 +0000 (GMT)
+Message-ID: <c7a441bc-8465-46fe-a883-2a7eee3d3922@samsung.com>
+Date: Mon, 3 Feb 2025 18:58:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1738604936;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wAX7PNJtWVKYZDJ8A6Vtwdu0ZwlwN4Kc8QcVWARzBUk=;
-	b=Dl4Nh2+xLRGqNzL1rYOZED8vMwiHr3x2pPvpB52PjVCFvthQUL2ZFzLnRp5fN//2W2d2u7
-	U2ipKgQH0DL8xQ2vG5oWTH+F48OzGdbA12TG2ESWG1QJuPqi/qHB6iWNKnIlvLtDcR8elo
-	EDS39mOHTj3E13IaEDFJP1OaV8HjHghPYTEDVIc+0rX1pQEfBdFL2e/Gqn7ESeQYkO5QVI
-	v3sFQOAuz/T1+tOqKeowoRDk/aXO6TxtaEWSkLkjf/gUqAroOxkY2/R1gjt4K3zVDuSQ7t
-	bNFwL/xoYZPYTpPAFQPjjV6juO2nhN0H1u1b8Ads7t7qNMkTw0H8TcGsAnqnxA==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 03 Feb 2025 17:48:08 +0000
-Message-Id: <D7IZZVD446TD.EPLWERDL77DJ@postmarketos.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: amlogic: add support for
- xiaomi-aquaman/Mi TV Stick
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Ferass El Hafidi" <funderscore@postmarketos.org>
-Cc: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
- "Artur Weber" <aweber.kernel@gmail.com>, "Karl Chan"
- <exxxxkc@getgoogleoff.me>, "Christian Hewitt" <christianshewitt@gmail.com>
-To: "Ferass El Hafidi" <funderscore@postmarketos.org>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Kevin Hilman" <khilman@baylibre.com>, "Jerome
- Brunet" <jbrunet@baylibre.com>, "Martin Blumenstingl"
- <martin.blumenstingl@googlemail.com>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, <linux-amlogic@lists.infradead.org>
-References: <20250203091453.15751-1-funderscore@postmarketos.org>
- <20250203091453.15751-3-funderscore@postmarketos.org>
-In-Reply-To: <20250203091453.15751-3-funderscore@postmarketos.org>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 12/18] dt-bindings: gpu: Add support for T-HEAD
+ TH1520 GPU
+To: Matt Coster <Matt.Coster@imgtec.com>, "mturquette@baylibre.com"
+	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"drew@pdp7.com" <drew@pdp7.com>, "guoren@kernel.org" <guoren@kernel.org>,
+	"wefu@redhat.com" <wefu@redhat.com>, "jassisinghbrar@gmail.com"
+	<jassisinghbrar@gmail.com>, "paul.walmsley@sifive.com"
+	<paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, Frank Binns
+	<Frank.Binns@imgtec.com>, "maarten.lankhorst@linux.intel.com"
+	<maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
+	<mripard@kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+	"airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
+	<simona@ffwll.ch>, "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+	"jszhang@kernel.org" <jszhang@kernel.org>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "m.szyprowski@samsung.com"
+	<m.szyprowski@samsung.com>
+Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <2fe3d93f-62ac-4439-ac17-d81137f6410a@imgtec.com>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se1BUVRzHOffevXdZW7isOJygWlsayjQUZepkjeGMTjfDChtn7eFjzTsL
+	8bJdyKQEGoHBZaFdgxFXZQEdQYZH4bIPBHbakBXIHcJ4yGOhGWDkFW5g6CYQy7Xiv8/v9/ue
+	7+8xh4+LGshAfkxCEqtIkMVJSAFhbHnkeMWGl8i3GLsE6FZPKYbq/tZRqLLRgSF9s4OHnJ0G
+	DP32YIZE1aMdFLrX+C2BussvUeh0Sw2JxnVOErnUTh66U3+RRLO5zQAZZzNIVNU8SKESVx2B
+	rpjrAco6c5WHfm3bjQadtwg0fkeNoyydL1pqMFNosftHAl34w0ohw5SWh+xVUpRhzScinmVm
+	ejMpZmp8nGB+zp6jmMa/ignGohukGLXlF8DUVpwhmYHuBpIpao1ihnLsGHP9ShqTUdWCMd8t
+	bGFmmrpIJs9QAZjO0z3UB6KPBW8eY+NivmQVm3ccEUQvNY6Sx++Jv+oZrCHTwVyACvD5kA6H
+	OWPhKuDNF9HlALYVbVcBwTLPAaianwRcMAvgYksrz6PyPLCprRhXKANw8GoeyQXTABpmb1Ae
+	lZDeASuvuYCHCfoFOPy4n8fl/WDr+RHCw+toMRzqK1zRr6U/hN1l7hVXf9rEh3nXh1YKOJ2O
+	w2xNKscBsG9Ej3mYpLfC4TL9iqn3cjOT2YVzGjE0TV/EPUaQvi2Avf3tODf3Lmi+PUdwvBZO
+	2A0Ux8/AJQtnCulEOFz35xP9N9Citj/hN+CAw016DobTG2BN/WYuvRP+lHOX4O7oA3un/bgR
+	fOBZ4zmcSwthdpaIU4fAAnXuf00d5UZMAyS6VVfRrVpSt2oZ3f99iwFRAQLYZGW8nFVuS2BP
+	hCpl8crkBHnoZ4nxtWD5g7cv2h+YQfmEK9QGMD6wAcjHJf7CdlOxXCQ8JjuZwioSDyuS41il
+	DQTxCUmAsNSaKRfRclkSG8uyx1nFv1WM7x2YjvmaH56NMyURbMTGduppt+pFef3A0fbzXQVr
+	Qr5+Var/pKT5ix/eXn/gbk16Ssqa6tLHG1yiSYnE7pY2fCSNmjz1vdJXGnjTOypy/cS+dYWp
+	bz1K22VVl73v9Nf0BucdbD36Uv9zoe4bvwf0AK3p9ViX9PLO0uAi7d6N782bxMzh4HOjqQ+j
+	ver8+nbfVGoPdGA+lWnzW+uN217bG85T1X5aZNgjaAqrHiugN22P3198sinfeW0kaKIktT/C
+	ViTC7cITC1OHQoI6JL0tmlPPHxHff2e/RR3pUGVrw7wOjsV4zeWqLPrMGeVTbZ3vau4X7mla
+	8M2P7eiYij60L3LT5c9zSHGShFBGy8JexhVK2T+FywTjTwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrIKsWRmVeSWpSXmKPExsVy+t/xe7oHmBemG9zZZGpx4voiJoutv2ex
+	W6zZe47JYv6Rc6wW9y5tYbK48vU9m8W6pxfYLV7sbWSxuLZiLrtF87H1bBYvZ91js/jYc4/V
+	4vKuOWwWn3uPMFps+9zCZrH2yF12i4Uft7JYLNmxi9GirXMZq8XFU64Wd++dYLF4ebmH2aJt
+	Fr/F/z072C3+XdvIYjH73X52iy1vJrJaHF8bbtGyfwqLg6zH+xut7B5vXr5k8Tjc8YXdY++3
+	BSweO2fdZffo2XmG0WPTqk42jzvX9rB5zDsZ6HG/+ziTx+Yl9R4ta48xefT/NfB4v+8qm0ff
+	llWMHpear7MHCEXp2RTll5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZKunb2aSk5mSW
+	pRbp2yXoZfzf+5St4IV8xfW769kaGL+IdzFyckgImEgc6tnP1MXIxSEksJRR4vDifjaIhIzE
+	te6XLBC2sMSfa11sEEWvGSVOTZ3FBJLgFbCTWLPyIyOIzSKgIvHgz21WiLigxMmZT8CaRQXk
+	Je7fmsEOYgsLBEtMnvGPEWSQiMBeDoldN36ygDjMAg3MEqtm32CGWPGPUeL6jTdgdzALiEvc
+	ejIfbB2bgJHEg+XzwVZwAq3evuMjUAMHUI26xPp5QhDl8hLb385hnsAoNAvJIbOQTJqF0DEL
+	SccCRpZVjCKppcW56bnFRnrFibnFpXnpesn5uZsYgWlr27GfW3Ywrnz1Ue8QIxMH4yFGCQ5m
+	JRHe09sXpAvxpiRWVqUW5ccXleakFh9iNAUGxkRmKdHkfGDizCuJNzQzMDU0MbM0MLU0M1YS
+	52W7cj5NSCA9sSQ1OzW1ILUIpo+Jg1OqgWnBxjfK2euWe5yxcmi05vfcsNVE49rL/bM8vHlU
+	Am7qM9zOX7RKMXndI5miDFHNp/ZhfBOEZQ33dj6RWHBkj+y5mmyXMjbjV6ma3s2fQ6yConcs
+	f51c5nvbecs227Ovvyfzf7cWPCgS3GllomS1k5+lerWnWG/H+vkp12+WqN25sSzt9KbZD/bJ
+	qHVN3rVAKnDl7IM9eeGq3LaZG75LTzoZ3Ml29nvn49Syi4/XNIeoXpsdXf/hfPBcxXZ5yW8/
+	ZE5ekL7846m4z/XLM47xrGd2++kb7b5h/o29iyPaU+JVAtn6pp7SbTnSo9Ko8jmpeWfYytd8
+	CetuK6m2SH9WCPWYK6byRn6nkJVSo1ffPCWW4oxEQy3mouJEAMgz11fkAwAA
+X-CMS-MailID: 20250203175824eucas1p183992086c6d11614686d9c3a5bd69141
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250128194841eucas1p29048dc05a26475d8323a7a318a8c7a25
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250128194841eucas1p29048dc05a26475d8323a7a318a8c7a25
+References: <20250128194816.2185326-1-m.wilczynski@samsung.com>
+	<CGME20250128194841eucas1p29048dc05a26475d8323a7a318a8c7a25@eucas1p2.samsung.com>
+	<20250128194816.2185326-13-m.wilczynski@samsung.com>
+	<2fe3d93f-62ac-4439-ac17-d81137f6410a@imgtec.com>
 
-On Mon Feb 3, 2025 at 9:14 AM UTC, Ferass El Hafidi wrote:
-<...>
-> +&uart_AO {
-> +	status =3D "okay";
-> +	pinctrl-0 =3D <&uart_ao_a_pins>;
-> +	pinctrl-names =3D "default";
-> +};
-> +
-> +&usb {
-> +	status =3D "okay";
-> +	dr_mode =3D "otg";
-> +};
-> +
-> +&usb2_phy0 {
-> +	vbus-supply =3D <&vcc_5v>;
-> +};
 
-I just noticed a typo.  This part should've been:
 
-	&usb {
-		status =3D "okay";
-		dr_mode =3D "otg";
-		vbus-supply =3D <&vcc_5v>;
-	}
+On 1/31/25 16:39, Matt Coster wrote:
+> On 28/01/2025 19:48, Michal Wilczynski wrote:
+>> Add bindings for the PowerVR BXM-4-64 GPU integrated in the T-HEAD
+>> TH1520 SoC.  This GPU requires two clocks.
+> 
+> None of the IMG Rogue GPUs use two clocks; they're all either one or
+> three. The TRM for the TH1520 I have shows the standard three (core,
+> cfg and mem). I mentioned this on P2 ("clk: thead: Add clock support for
+> VO subsystem in T-Head TH1520 SoC"); can you add the missing clock here
+> too?
+> 
+>> Document the integration details including clock, reset, power domain
+>> and interrupt assignments. Add a dt-bindings example showing the proper
+>> usage of the compatible string "thead,th1520-gpu" along with
+>> "img,img-bxm".
+>>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>> ---
+>>  .../bindings/gpu/img,powervr-rogue.yaml       | 39 +++++++++++++++++--
+>>  1 file changed, 35 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>> index bb607d4b1e07..b0d9635704d8 100644
+>> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>> @@ -12,10 +12,15 @@ maintainers:
+>>  
+>>  properties:
+>>    compatible:
+>> -    items:
+>> -      - enum:
+>> -          - ti,am62-gpu
+>> -      - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - ti,am62-gpu
+>> +          - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
+>> +      - items:
+>> +          - enum:
+>> +              - thead,th1520-gpu
+>> +          - const: img,img-bxm
+> 
+> This is going to be the main conflict between this series and the other
+> B-Series series I mentioned on the cover letter. One of the main changes
+> in that series is to rework how our compatible strings are structured;
+> that would make this "thead,th1520-gpu", "img,img-bxm-4-64",
+> "img,img-rogue". Would you mind holding this change back until the other
+> series lands so we can avoid carrying a second deprecated compatible
+> string?
 
-Sent a v4 to fix it:
-https://lore.kernel.org/linux-amlogic/20250203174346.13737-1-funderscore@po=
-stmarketos.org/
+Sure that's completely fine !
 
-Cheers.
+> 
+>>  
+>>    reg:
+>>      maxItems: 1
+>> @@ -60,6 +65,17 @@ allOf:
+>>          clocks:
+>>            maxItems: 1
+>>  
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: thead,th1520-gpu
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          minItems: 2
+>> +          maxItems: 2
+> 
+> As mentioned before, this doesn't represent the hardware. Please bump to
+> 3 and add the missing clock.
+> 
+>> +
+>>  examples:
+>>    - |
+>>      #include <dt-bindings/interrupt-controller/irq.h>
+>> @@ -74,3 +90,18 @@ examples:
+>>          interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+>>          power-domains = <&k3_pds 187 TI_SCI_PD_EXCLUSIVE>;
+>>      };
+>> +
+>> +    #include <dt-bindings/clock/thead,th1520-clk-ap.h>
+>> +    #include <dt-bindings/power/thead,th1520-power.h>
+>> +    #include <dt-bindings/reset/thead,th1520-reset.h>
+>> +
+>> +    gpu: gpu@fff0000 {
+>> +        compatible = "thead,th1520-gpu", "img,img-bxm";
+>> +        reg = <0xfff0000 0x1000>;
+>> +        interrupt-parent = <&plic>;
+>> +        interrupts = <102 IRQ_TYPE_LEVEL_HIGH>;
+>> +        clocks = <&clk CLK_GPU_CORE>, <&clk CLK_GPU_CFG_ACLK>;
+>> +        clock-names = "core", "mem";
+> 
+> You have CFG mapped to "mem" here. Out of curiosity, was that mismatch
+> required to make things work?
+
+Yeah exactly, I understand that from the GPU perspective there are three
+clocks, but only two are programmable from the SoC perspective.
+
+So maybe a placeholder clock should be added in the devicetree then,
+since the clock exists, but is reserved.
+
+> 
+> Cheers,
+> Matt
+> 
+>> +        power-domains = <&pd TH1520_GPU_PD>;
+>> +        resets = <&rst TH1520_RESET_ID_GPU>;
+>> +    };
+> 
 
