@@ -1,87 +1,65 @@
-Return-Path: <devicetree+bounces-142525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DB76A25A58
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 14:08:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38D72A25A60
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 14:09:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94CC63A60DF
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 13:07:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C4F47A2284
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 13:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B298C204C29;
-	Mon,  3 Feb 2025 13:08:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BF10204F67;
+	Mon,  3 Feb 2025 13:09:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oR2NBUKQ"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ZIzSEIpT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2837EC139
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 13:07:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A058E204C3E
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 13:09:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738588080; cv=none; b=ZsGsw8igcY5V9j3OdS68T0K7FlXDU6wgRv3erAxSDmqJ8F1RP1CPDSSHIs4FDtpU4LVpj0FgOMLGXrKBVgO9zTGj2GuGIQ5n87MYMluyJugE/fWLRPJ0vEbRZUqQrsuLEEg91xCZTrwcd466PENWj+BDs29hqFeH3p8tSEpWMW4=
+	t=1738588148; cv=none; b=lBx0/j0ulMzI5h1rpBggciD0wwFySyHdgL9pSmYfJtAVY7JcwlGaKOZ4A6MzS/mkUMANUf9YhUvBsm7M+ccg+Pxyg+AfM02gpWCLglcj5cqwVcIxeCsZacK8oxRRhpiak/FYglZcW6E/rHPiXPB3mq+uGO9Y85qS76QYZELRcSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738588080; c=relaxed/simple;
-	bh=WWw+K9LAmi9SdlLNI+IAamnYBiiIiqnarRUibDNdU+o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u4UgfBAk9KHu/n6q5QjCT9CGTcHOh6DW3b7qLx2HD8zzv3aRYxk4aqBFow5xG9IUx/d362O3q+kAyZN6No9qo98JeJWwAnvaWAYre3kxOdUMfRse5Y5xEugAuZw1mn505G3d9fAVSeZQEp4GHrSPb/1UkDtV7tioK1DhtJtjXwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oR2NBUKQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5135kZmN006251
-	for <devicetree@vger.kernel.org>; Mon, 3 Feb 2025 13:07:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HHQbos0F5o8aVGN+bxdm35249+HKbFkE1Tu5vGmxSwg=; b=oR2NBUKQ7/7OVoEz
-	75Z3S7Zi+G+LZmrUzGcpm86o+ATl/EufZiB0ZgLofGPG1yyLZiKL71K3kds4BD1b
-	io5BosJk90tr2DaGkCLxHIk0fSSOZD1FLWIkjgq7SdRiuuJxAV1bUIb7PRqVTNmZ
-	HgnhRWO7xsvt/2zjnkz3M/WbSF545hG/I/CRZmtuhPnEMC2rF9AY582TwJvqQtK3
-	ulKJnUFQ3kYGUM/997y11W5t/wAxZ/5Vb6DOnYGGUVeEjF2j/1WP5nLv26CtfBDO
-	3/EoGPka/7COUwWhQlCpimrd6gFwctpRzAlPU9TwpjXrEaYHu+78LcxuefK/4omZ
-	ZV+zhw==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44jqxw14yw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 13:07:57 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6dfba8de3cdso15086156d6.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 05:07:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738588077; x=1739192877;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HHQbos0F5o8aVGN+bxdm35249+HKbFkE1Tu5vGmxSwg=;
-        b=EjBRK4Yd+U/Eu5roGU6eIPxqHupkqrmqP0yFOVyCDzO5wab2zN7HwpoVT57XWpiSGG
-         5pPcShk+muwPQxLzHgew90DVsyLBMd2TzAGoxPL7ylaGriRaWF6pUO5TcSh6TRzhQKxp
-         Jd1r24+z8z4Equ2JAxdsjy0oY4LUCY4oAwc9sYEa3uzveGKj46nLjwwrOQMNFGmdq8sN
-         7ufmT1X6Uof5Vcf8UU8MzfQ8t1vzbNnAqDTvpPh+KH+pcrR7OW4Rw/iEKYSZ3bgDoiKf
-         fAStB8vgtHwgTZd4ErehFcSAGUWkCMG3pX2a7NDemkrGgK3e2x8ORwSY1cZGT+olN9HE
-         f1Sg==
-X-Forwarded-Encrypted: i=1; AJvYcCVhvOy3fiu19lCJRhTwJOEx8uq80LnPYmyEycIF7ZBwVBXy51O6BWB0lnaq58xmVhNYWg+m8sxTwxs3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2gQl6tfLCfanTKiPvqJuqm+aMSUBHfJ87ozkkTSZut92ZsNK7
-	+ED1kGZCNT6qW2YTJ81inaeafpsn4mxr/xZylca5rzthAm0fjo4fpADNgsMGzhfr3Xm9Ey2cggY
-	5uooQyDvKdsMwKoqvYJfKMi0ucP4J0CcSBUMKUnqxWE1aocIYg6nPQfAiiNZF
-X-Gm-Gg: ASbGncuva216xF2TymeSoad3dC84AtV/PFHQD9ouo7Gz5fiUKoMqaUGWcmLxeOLtC2m
-	lagE0vMSzU7bFQdMn4l+4ykMO8KpojFWGqryR624+tsAkuTyq+tF60KN2m/ZoelmRur0DoVf9eh
-	Pv8sfdh1mShy+nfgf7TEcGlUBJ0KdEw/oclHcJWwyS6/krM0GvVUlajIzgqsem45pZxw11E+KxD
-	MJePk9M9SzzOdFcOIV8NSHLQ6+CTML3/LRRhJlEiQPILA7aobxFBzmssl0CYK1b/cGJ3LEh9/DW
-	IClu9SkAlguwjCsyNMmK3emFy9d2XVDLKcQyHYT8nE8y7eeTd7zZws7MLhc=
-X-Received: by 2002:a05:620a:2550:b0:7b6:d026:29f with SMTP id af79cd13be357-7c009afc404mr999177085a.1.1738588077088;
-        Mon, 03 Feb 2025 05:07:57 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHvZLxGFmUqIUuPB9CPetG+6orsrmU4X1UOL7phutO1KWwcJSP9Qy+xUEKLVon5cWbx4x4Pgw==
-X-Received: by 2002:a05:620a:2550:b0:7b6:d026:29f with SMTP id af79cd13be357-7c009afc404mr999174385a.1.1738588076548;
-        Mon, 03 Feb 2025 05:07:56 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab6e47a8268sm753013366b.28.2025.02.03.05.07.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Feb 2025 05:07:56 -0800 (PST)
-Message-ID: <7fef1b3a-6b63-47fd-a3a8-346bded682c3@oss.qualcomm.com>
-Date: Mon, 3 Feb 2025 14:07:54 +0100
+	s=arc-20240116; t=1738588148; c=relaxed/simple;
+	bh=GDCSiGKumchsCLvW4RTp/AlX8Fvnpt+Z/TW2GqZF3NU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QAyJznwgeu9TIFv+P14OP51phAxTt/4GlpoDxZHjqwRpR2cpNiwzLp9AInpODsktuWoMWJTbPH/vzTxFdNG6zNLBXusjkhHi2MqpJJKmEvi4/huS9HZCaP8RUvT2HuOe+QddQmJBNUFmlbxsIqtWKeKZXyYoysS0pijK9ZAzlKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ZIzSEIpT; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1738588147; x=1770124147;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=GDCSiGKumchsCLvW4RTp/AlX8Fvnpt+Z/TW2GqZF3NU=;
+  b=ZIzSEIpTCzcoZa4dOM6Lkmi4W7A9Czhl2ckQZ1kzNL4dL0zjz8dPChqC
+   xD/Y54B7dqzd8JiW17aupXidkcQzWWPj1Ed5ukjZ6hMy9yeacTiaUyqrl
+   9l66c2wN/g0XkQEkfOkXd4oUoM5pen31mGbLPyPf51d5L7xVbZB3i4DK0
+   qgimSseP65bXskCPT3X6xL7Uve1+dkEOt7QvHy7hvMe10VYmwvJpMMcIF
+   Hu8qHKx6+Cvrj1p9pG9L2jZ/3CkvHrLIx9H72F8E/+Y1mSOJYnEiWGDfT
+   oe6QPJ07o2UVKXZt+jGl2ejjinB8L3uNZkvhYJu9URep7fdKhFzcXY9LM
+   A==;
+X-CSE-ConnectionGUID: PZia51+RR3iwDczuUzl0MA==
+X-CSE-MsgGUID: fHD8+wFCR+OSDR2TKoB+yg==
+X-IronPort-AV: E=Sophos;i="6.13,255,1732604400"; 
+   d="scan'208";a="37204349"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Feb 2025 06:09:06 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 3 Feb 2025 06:08:37 -0700
+Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Mon, 3 Feb 2025 06:08:35 -0700
+Message-ID: <f4fc0326-dc2a-40cc-822c-61530aa2a267@microchip.com>
+Date: Mon, 3 Feb 2025 14:08:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,64 +67,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sm8650: setup gpu thermal with
- higher temperatures
-To: neil.armstrong@linaro.org, Konrad Dybcio
- <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250129-topic-sm8650-thermal-cpu-idle-v3-0-62ab1a64098d@linaro.org>
- <20250129-topic-sm8650-thermal-cpu-idle-v3-2-62ab1a64098d@linaro.org>
- <3db4b41c-0d29-468a-875b-eec3cced5aa5@linaro.org>
- <292ed7db-aa9a-4dd3-a887-70e0ccf346c2@oss.qualcomm.com>
- <82828c3a-ed8c-42b8-b603-bc73d3be7497@linaro.org>
+Subject: Re: [PATCH 0/4] ARM: dts: at91: calao_usb: fix various naming
+ problems
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	<linux-arm-kernel@lists.infradead.org>
+CC: Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, Conor Dooley <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob
+ Herring <robh@kernel.org>
+References: <20250131210236.36212-6-wsa+renesas@sang-engineering.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <82828c3a-ed8c-42b8-b603-bc73d3be7497@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20250131210236.36212-6-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: Nq01OpqkogIOqQpj_QMF1in0RT2OM62G
-X-Proofpoint-GUID: Nq01OpqkogIOqQpj_QMF1in0RT2OM62G
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-03_05,2025-01-31_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- phishscore=0 bulkscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
- adultscore=0 impostorscore=0 clxscore=1015 lowpriorityscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502030097
 
-On 3.02.2025 9:23 AM, neil.armstrong@linaro.org wrote:
-> On 01/02/2025 16:37, Konrad Dybcio wrote:
->> On 29.01.2025 3:41 PM, Neil Armstrong wrote:
->>> On 29/01/2025 10:43, Neil Armstrong wrote:
->>>> On the SM8650, the dynamic clock and voltage scaling (DCVS) for the GPU
->>>> is done from the HLOS, but the GPU can achieve a much higher temperature
->>>> before failing according the the reference downstream implementation.
->>>>
->>>> Set higher temperatures in the GPU trip points corresponding to
->>>> the temperatures provided by Qualcomm in the dowstream source, much
->>>> closer to the junction temperature and with a higher critical
->>>> temperature trip in the case the HLOS DCVS cannot handle the
->>>> temperature surge.
->>>
->>> Since the tsens MAX_THRESHOLD which leads to a system
->>> monitor thermal shutdown is set at 120C, I need to lower
->>> the critical and hot trip point, so please ignore this patchset.
->>
->> Should we make the "critical" trip point something like 110 or so? If
->> LMH triggers a hard shutdown at 120, the OS will not have any time to
->> take action. And 120 sounds like we're pushing it quite hard anyway.
+On 31/01/2025 at 22:02, Wolfram Sang wrote:
+> Two patches deal with the either missed or mistyped vendor 'Calao'. The
+> other two patches deal with improper node names as reported by
+> dtbs_check.
 > 
+> Wolfram Sang (4):
+>    ARM: dts: at91: usb_a9263: fix wrong vendor
+>    ARM: dts: at91: use correct vendor name for Calao boards
+>    ARM: dts: at91: calao_usb: fix button nodes
+>    ARM: dts: at91: usb_a9g20_lpw: use proper mmc node name
+
+Series looks good to me:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+Thanks Wolfram. Regards,
+   Nicolas
+
+>   arch/arm/boot/dts/microchip/tny_a9260.dts          |  2 +-
+>   arch/arm/boot/dts/microchip/tny_a9260_common.dtsi  |  2 +-
+>   arch/arm/boot/dts/microchip/tny_a9263.dts          |  2 +-
+>   arch/arm/boot/dts/microchip/tny_a9g20.dts          |  2 +-
+>   arch/arm/boot/dts/microchip/usb_a9260.dts          |  2 +-
+>   arch/arm/boot/dts/microchip/usb_a9260_common.dtsi  |  6 ++----
+>   arch/arm/boot/dts/microchip/usb_a9263.dts          |  8 +++-----
+>   arch/arm/boot/dts/microchip/usb_a9g20-dab-mmx.dtsi | 10 ++++------
+>   arch/arm/boot/dts/microchip/usb_a9g20.dts          |  2 +-
+>   arch/arm/boot/dts/microchip/usb_a9g20_common.dtsi  |  2 +-
+>   arch/arm/boot/dts/microchip/usb_a9g20_lpw.dts      |  4 ++--
+>   11 files changed, 18 insertions(+), 24 deletions(-)
 > 
-> My plan is to harmonize and use 110 for hot and 115 for critical, and
-> if available any passive cooling devices is available at 95C
+> --
+> 2.45.2
+> 
 
-sounds good!
-
-Konrad
 
