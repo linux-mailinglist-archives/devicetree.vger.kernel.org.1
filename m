@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-142722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 191ECA26462
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 21:25:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9527A2646C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 21:31:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92D7F162476
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 20:25:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEC3818855C2
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 20:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9FF820DD5C;
-	Mon,  3 Feb 2025 20:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFF0920E000;
+	Mon,  3 Feb 2025 20:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="LWm2nX3r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X4CKZWXM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE9F420AF7B
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 20:24:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A05F0153801;
+	Mon,  3 Feb 2025 20:31:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738614297; cv=none; b=ZR6yj1xO1r+4LdY/xVRba5ryrjceJOCukzobeNb/RWpB+5dSL8aJnI1rbS4jk88L0GAV2row1J/IT8BBy9aqHmyd/8O/Oft+isMa/okPx9JzEwXKnNa0yLY5Lf2yL+kVjHydG4dHDTtq0jpTbbabcwrx5yp8++yrfYXFcV6s1Wk=
+	t=1738614712; cv=none; b=WE4VDjB2xrJEIMz/6QBrCkxMJnqns20j1riHts86Z8rQm51hXNMJPCG6+pXmeOykTCLmDRHiBMeQdXMjurfsQDCK2KYDig9pwhLFopjLiTeeZLDwvY4Tr48b3C7IgfBdYEJypy/fL4UZteTFvQRLyd5SpM2ZXUI/4jH7S3cWAG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738614297; c=relaxed/simple;
-	bh=4ZBhPOFz5eul4AYPe6eHBKQQNaWdLcFFW5q5R1zympQ=;
+	s=arc-20240116; t=1738614712; c=relaxed/simple;
+	bh=5eOxy8BIXo5rG346U1T+Y7S+7T3xpUd4UZPysTMJV4Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y7kd55G4dSCfLLjbHuUSeT0l/Z1qZMgtZyFb0wVkJJYbO8ImYpttb+ooYPSKl9Sf7Lnv7oG9jEKAmwkJQRRfV3mEuI3hDvgH2UDiqzW4WvfMiVoGXn6nLZ5NKTvPJ2zZZL1v0PltcIuDN9/wluaGEYS0il+Acvy/T+UIaqq4R0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=LWm2nX3r; arc=none smtp.client-ip=209.85.166.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-854a68f5aeeso85228439f.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 12:24:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1738614295; x=1739219095; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hk9JFObA4COff1XvgL6pyI7Lgpee7/4aC4TK3AK7tuo=;
-        b=LWm2nX3r4yuzLJk7bOC4zGbj5+8RlS9DO117ViHxA3RN2J2sFGf0/0GgeAsohuqu1a
-         dxLbznRbKU3anqRnheABr+NdfYUa4//B4hRp4v9hnA8Tk/Uyz0D2wVYSali6/xwWF9dO
-         5OR9hTIGUgXRC1e3XEBBCxLQIqEY4cTMRf2Nwp3lU5nfjaqqTin4Tq6Xh6p2j2xQHaLS
-         OdlLlBJHZ1zOKKlkoktIlb8rGz9evpMVLxJFBLNEh71+OfQlUJd2d3giJsNe1W4l7sPf
-         DYAdoZNPj2Rm8N7/8JwFuWUcCGWRQEZi2yE1CzeyXG36E35ChYoC81EUE8TjFmiEPKUW
-         Z9Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738614295; x=1739219095;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hk9JFObA4COff1XvgL6pyI7Lgpee7/4aC4TK3AK7tuo=;
-        b=mCnVpbLG+RgnymqASzPlCd3+zxY/zsrz+DK+cvsQXbNsT1aW2ci/qG1ZW7O3QxBAHS
-         sjRv6wjljd+qFEQ1o/bcLP3iBJ5nS3gWgL9gsk9CC7nCcQ7g9Uz+BnVEZ62k9UMfxDEK
-         vFgPMe/oAYeyXIbxTiFqes/mFiK3/kvx4fH+wrLBEz8+9lkA6+IfxaJYVoyzCKNLs/x7
-         bejib7lBum4T5g90krowrq16BHCkYimxpfdF4TlX5gPMkuhpp37abwyp3Z+gu/Z0Xb4r
-         YEP6CXehG+IVemFQo6sjE5ddPoi5lOVFzLhEOQPJozQknYzay0/WfIQUgLRBtEsmVI02
-         JxfA==
-X-Forwarded-Encrypted: i=1; AJvYcCXDq/I1VVmGwdJ/8dbn02QvNePxPylQsqJHLCcaZS7kkdXcFr5JpSXVdh/3v2SEabRN5qavK/gQ+9cB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwF9rgKMobhB+WCTiKkfnxyuCyy6ICf2NIrMptCtLxrSGcrvJIQ
-	0VCBQAtGbPHwcYk2JQXyq1kc4D+BdzvqWy/MtSIIjIzdPhn499jJUP1Dj1UaEEo=
-X-Gm-Gg: ASbGncuJtXLJz2LsXe8Lb3MjAeYjtv9f5vq7HFphguJPb5alokuK27tl8L7Y9ru6r11
-	8oGuZgs5tbjp5ItpfNdoECIUwyd67O2yDK/Yw2IWytqdxQ+97HPFPP2LVahENzwC03Qo9xeRrMb
-	6UiTnPbu0jMW+xsgrG2h0M0lqGxtAmT5O/DMX8Wq0KvzJik8PEugmUVBDesaUvXpOKCEv3sElo5
-	ZVAc9++O1pGkxmBMzbN1iDDX2IbnUqzWGy1ILWG/GTvNHsnqno1HxXNASd6p8ASbfJ3EmCbdyeR
-	xSOtrfCl/XfMBK+vqT2/D99rHZgDDvV0MEofljk=
-X-Google-Smtp-Source: AGHT+IHEJGxfKm/XxR5HOi6egCzTPsETR1qnlZiOaKKIny+VHepRdiI6w/LjA3M3OvHKbwmvA+nh+Q==
-X-Received: by 2002:a05:6602:3f0b:b0:84a:5201:570b with SMTP id ca18e2360f4ac-854006dfe26mr2249929239f.0.1738614294882;
-        Mon, 03 Feb 2025 12:24:54 -0800 (PST)
-Received: from [100.64.0.1] ([165.188.116.9])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ec7458ef58sm2399719173.5.2025.02.03.12.24.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Feb 2025 12:24:54 -0800 (PST)
-Message-ID: <237ce4e3-d66f-43ee-bd4e-38007dc750e5@sifive.com>
-Date: Mon, 3 Feb 2025 14:24:52 -0600
+	 In-Reply-To:Content-Type; b=qS5g9RCImmAdeRcQLlN1NghhnMpuyRc7cBzlxfm8Yx6O3sSZHDFFWPHs7l7GvcFx1ljCySRQECkPs7XPYp7X8AQEDO7ay0mn5yBxedy72wf9nvIJgWe+sbC3MWqhbjo5TAwkxpdBQOzJMPTdJLvbwMZUm4kbPuYTeT/wO8kYx8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X4CKZWXM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E52EC4CED2;
+	Mon,  3 Feb 2025 20:31:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738614712;
+	bh=5eOxy8BIXo5rG346U1T+Y7S+7T3xpUd4UZPysTMJV4Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=X4CKZWXM3xA0OhbYlw7moYCJJakyIks1FP16VkJfBYugZ+kYBv1aTDMg7mSB+Qp5z
+	 z5ykrhPg/Xor+4IDnp3JHVaVjOkatkLzaF6NoMGctlj989AM4V+tNdiGV6FiKocrit
+	 ejaDQ/LDnsPzxzEyy1upsiwDYTce/1RydshpKt9S/SBJUGY7/Z3oz9ODT3H//e43b0
+	 JCrAwlRr9vL6nl+qmNPEjBzrHod6POKQAlcdHpb92X8Ik3Fe3H5RBA1ctdDTY6nIAZ
+	 BPexrCl95mcMnDsoZRrjzY89gjq0MCNg3ohSRKhxaKzMX17KsiN7+Dmo/MutrsaKc7
+	 7Cp1kKVTgXVNQ==
+Message-ID: <e52e6257-1091-4cf8-a757-c2ddbe348a77@kernel.org>
+Date: Mon, 3 Feb 2025 21:31:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,154 +50,178 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v3 1/3] dt-bindings: clock: Add bindings for Canaan
- K230 clock controller
-To: Xukai Wang <kingxukai@zohomail.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Troy Mitchell <TroyMitchell988@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>
-References: <20250203-b4-k230-clk-v3-0-362c79124572@zohomail.com>
- <20250203-b4-k230-clk-v3-1-362c79124572@zohomail.com>
-From: Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: Add cmx655 codec
+To: Nikola Jelic <nikola.jelic83@gmail.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, perex@perex.cz, tiwai@suse.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: rwalton@cmlmicro.com
+References: <20250203170117.12004-1-nikola.jelic83@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20250203-b4-k230-clk-v3-1-362c79124572@zohomail.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20250203170117.12004-1-nikola.jelic83@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 2025-02-03 8:49 AM, Xukai Wang wrote:
-> This patch adds the Device Tree binding for the clock controller
-> on Canaan k230. The binding defines the new clocks available and
-> the required properties to configure them correctly.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
-> ---
->  .../devicetree/bindings/clock/canaan,k230-clk.yaml | 43 +++++++++++++++++++
->  include/dt-bindings/clock/canaan,k230-clk.h        | 49 ++++++++++++++++++++++
->  2 files changed, 92 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..d7220fa30e4699a68fa5279c04abc63c1905fa4a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/canaan,k230-clk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On 03/02/2025 18:01, Nikola Jelic wrote:
 > +
-> +title: Canaan Kendryte K230 Clock
+> +title: CML Micro CMX655D codec
 > +
 > +maintainers:
-> +  - Xukai Wang <kingxukai@zohomail.com>
+> +  - Richard Walton <rwalton@cmlmicro.com>
+> +  - Nikola Jelic <nikola.jelic83@gmail.com>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  The CMX655D is an ultra-low power voice codec.
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    const: canaan,k230-clk
+> +    enum:
+> +      - cml,cmx655d
 > +
 > +  reg:
-> +    items:
-> +      - description: PLL control registers.
-> +      - description: Sysclk control registers.
-
-From the way the driver is structured, this looks rather like two separate
-hardware blocks, not two groups of registers for a single hardware block. For
-example, the driver registers two clock providers for the same DT node, with
-overlapping indexes. This doesn't work. Either you need two separate DT nodes --
-one for the PLLs and another for the sysclks -- or you need to include the PLLs
-in the binding header below at non-overlapping indexes.
-
-Regards,
-Samuel
-
-> +
-> +  clocks:
 > +    maxItems: 1
 > +
-> +  '#clock-cells':
-> +    const: 1
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  reset-gpios:
+> +    description: GPIO used for codec reset, negative logic
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    maxItems: 1
+
+Describe the names or drop. Look how other bindings do it - there is
+never syntax like that alone.
+
+> +
+> +  pinctrl-names:
+> +    maxItems: 1
+
+Drop property, not needed here.
+
+> +
+> +  pinctr-0:
+> +    maxItems: 1
+
+Drop property, not needed and not correct.
+
+> +
+
+> +  cmx655,classd-oc-reset-attempts:
+> +    description: Maximum number of times to reset CMX655 class-D
+> +      following a overcurrent event.
+> +      Default = 5, >10000 = disable limit.
+
+Missing constraints, min/max. Drop also redundant part - schema already
+says default 5.
+
+But more important, I am not sure why this is board-configurable.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 5
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - clocks
-> +  - '#clock-cells'
 > +
-> +additionalProperties: false
+> +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
-> +    clock-controller@91102000 {
-> +        compatible = "canaan,k230-clk";
-> +        reg = <0x91102000 0x1000>,
-> +              <0x91100000 0x1000>;
-> +        clocks = <&osc24m>;
-> +        #clock-cells = <1>;
-> +    };
-> diff --git a/include/dt-bindings/clock/canaan,k230-clk.h b/include/dt-bindings/clock/canaan,k230-clk.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..47d966fda5771615dad8ade64eeec42a9b27696e
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/canaan,k230-clk.h
-> @@ -0,0 +1,49 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Kendryte Canaan K230 Clock Drivers
-> + *
-> + * Author: Xukai Wang <kingxukai@zohomail.com>
-> + */
-> +
-> +#ifndef CLOCK_K230_CLK_H
-> +#define CLOCK_K230_CLK_H
-> +
-> +/* Kendryte K230 SoC clock identifiers (arbitrary values). */
-> +#define K230_CPU0_SRC			0
-> +#define K230_CPU0_ACLK			1
-> +#define K230_CPU0_PLIC			2
-> +#define K230_CPU0_NOC_DDRCP4		3
-> +#define K230_CPU0_PCLK			4
-> +#define K230_PMU_PCLK			5
-> +#define K230_HS_HCLK_HIGH_SRC		6
-> +#define K230_HS_HCLK_HIGH_GATE		7
-> +#define K230_HS_HCLK_SRC		8
-> +#define K230_HS_SD0_HS_AHB_GAT		9
-> +#define K230_HS_SD1_HS_AHB_GAT		10
-> +#define K230_HS_SSI1_HS_AHB_GA		11
-> +#define K230_HS_SSI2_HS_AHB_GA		12
-> +#define K230_HS_USB0_HS_AHB_GA		13
-> +#define K230_HS_USB1_HS_AHB_GA		14
-> +#define K230_HS_SSI0_AXI15		15
-> +#define K230_HS_SSI1			16
-> +#define K230_HS_SSI2			17
-> +#define K230_HS_QSPI_AXI_SRC		18
-> +#define K230_HS_SSI1_ACLK_GATE		19
-> +#define K230_HS_SSI2_ACLK_GATE		20
-> +#define K230_HS_SD_CARD_SRC		21
-> +#define K230_HS_SD0_CARD_TX		22
-> +#define K230_HS_SD1_CARD_TX		23
-> +#define K230_HS_SD_AXI_SRC		24
-> +#define K230_HS_SD0_AXI_GATE		25
-> +#define K230_HS_SD1_AXI_GATE		26
-> +#define K230_HS_SD0_BASE_GATE		27
-> +#define K230_HS_SD1_BASE_GATE		28
-> +#define K230_HS_OSPI_SRC		29
-> +#define K230_HS_USB_REF_50M		30
-> +#define K230_HS_SD_TIMER_SRC		31
-> +#define K230_HS_SD0_TIMER_GATE		32
-> +#define K230_HS_SD1_TIMER_GATE		33
-> +#define K230_HS_USB0_REFERENCE		34
-> +#define K230_HS_USB1_REFERENCE		35
-> +
-> +#endif /* CLOCK_K230_CLK_H */
-> 
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        status = "okay";
 
+Drop
+
+> +        codec: cmx655 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+audio-codec, codec etc.
+
+> +            reg = <0x54>;
+> +            #sound-dai-cells = <0>;
+> +            compatible = "cml,cmx655d";
+
+Follow DTS coding style. compatible must be first.
+
+> +            reset-gpios = <&gpio 24 1>;
+
+Use defines for standard flags.
+
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <25 0x2>;
+
+Use defines for standard flags.
+
+> +            interrupt-names = "irq";
+
+Drop
+
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&ev6550DHAT_pins>;
+
+
+
+Best regards,
+Krzysztof
 
