@@ -1,202 +1,208 @@
-Return-Path: <devicetree+bounces-142363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43B4A251F5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 06:11:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AAF6A25211
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 06:43:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F2793A52B0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 05:11:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F9F93A4622
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 05:43:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B811F339A1;
-	Mon,  3 Feb 2025 05:11:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF718126C05;
+	Mon,  3 Feb 2025 05:43:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hpXa7Huo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H5PXWv/+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAEEC23A6;
-	Mon,  3 Feb 2025 05:11:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1572486355;
+	Mon,  3 Feb 2025 05:43:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738559515; cv=none; b=kEon7j3qTxvxVl6jayMYZPreQCdMEaw0NZX9kqyjk1KyalscWXthcN/ALOPXUim/+5nCaCUbzx20jY3raRfflllhlFSgQDzyJQOXwiPytUPaF43xt35Y3pGyYskAQtumNITN1CvhZzFsi1FAp8k/dCEStB1/97wGui0dq9o3F1Q=
+	t=1738561426; cv=none; b=b53X+hCUEwdrnVLMoVJKoA36nZa8OGvcG57SFuoKbxjLslgPdTWw4FMn991ecTw0rdepO1h/rtK4fCcRut1PMAPxxJYrQoyHrSL/g9sCcO6B42jGtXKkQJIR+bHqM3Qrfy1KH1ZlRsczWLH2gIUxSze06AXpPx4biSBx5j09bxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738559515; c=relaxed/simple;
-	bh=EE5BWW6S+jQVlXUrEb1w/ROXsxiLZ2ytZwHRHQ0G4Tw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PoptKsypCCpliC3TkpsJug3sp4B7TKWtyMtjr/JIYh80k1v5C9lZIXLLgG9yy466IFP03RoKI9lW2S/c5kHZFWbNcAgIwH/DICBMBPczHTysZdXmLQk27pFmCMo5CMOXdF+Rrt+CJDyewpIdrr1GO5M7ShplM2m0iDhqrgR3/Bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hpXa7Huo; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51313f8F028359;
-	Mon, 3 Feb 2025 05:11:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LAnVZy9dnDxfBGSk1QI1Ada8QoUxoMy+3kYJsHo6mqA=; b=hpXa7Huo+HdByZ76
-	YstxHE53ta5ZWIl52uhE6hmeUeiUJ2do2JPA/BIoK+r54tbefmkMAWuSoeNnxbWV
-	UmvL8W0JjdoB+scFz84twJNxs5g6WhpdQfLce2USUTqDuscYg9E8bXrWdVRaGWPM
-	8yHhR+iHHyDcFv77QH8pEFfQsUpcB3OM5poQK1n2BkFllEfFA3onDaWROe0/tJer
-	Dy183Xv3HqpXKKVdeej5279MYkHiZgdC6beg0BogAQot/xbNfrXeJ7n9Ax3LvuCN
-	oUa2A69dgL5QNAcisvVlUWHh6BssK5pB+SOTj3IMJknLkDQTsMnzYdhqh9TCxSGv
-	WNrB6A==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44jkt9ga08-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Feb 2025 05:11:49 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5135Bm0Q011488
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 3 Feb 2025 05:11:48 GMT
-Received: from [10.219.57.57] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 2 Feb 2025
- 21:11:44 -0800
-Message-ID: <0d4e9563-4a1c-4b7d-b075-eb5a6595ebe4@quicinc.com>
-Date: Mon, 3 Feb 2025 10:41:35 +0530
+	s=arc-20240116; t=1738561426; c=relaxed/simple;
+	bh=auSOcwIiAravbYr639Krp/AZ8pXk/IF/2JGAtH5PQf0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tUK3rkVD/VAQyQUfOTOZfZbchB4KafGX9PTiEAXJRWa9yb4/ZeqXy3PzjuGzmiIm8SDd4DyQMqeG3asW9se5crfuzpKtKfNUVRgTDstoLmJBpG60ocFC0KhgvqrMjGQRxpiL/0lmYwImO53ZZIP4X3IoTxIaxNUp8gaeLBT+YmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H5PXWv/+; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2165cb60719so69267575ad.0;
+        Sun, 02 Feb 2025 21:43:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738561424; x=1739166224; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4FGOb/kuuSUyymnQVyBkrBupzFYWT4l1pdvKkJ2J+xI=;
+        b=H5PXWv/+mn2M6twPzSWLizqzg1bPShmfsObk2M9ZEG+wdZ0l2nYSQm+R/99TJ0vR5X
+         5mtgq5+FMeRnLmbjuT9NW6uyZFdFEuuwtlj/Nxc9eWsfMvtg1S+xwaK/qAaHEqRnAc5b
+         tKYg4Hd8t7UxeHWxgDlzOprCHWAfMi0FL4kmEhGqMfjMTOffSo3ElHFw5EYRI43RGSYb
+         +9DZ+XKFX2n47mFJ7sD7dyD0lO1pj0WmOfnGsot3usoZ756HXVI3JqpreHV6uoHLm5KY
+         kzM66j8rUoupsvrrNXOfS13+3sXSVwm0EjUU2bFAeYTAqr557gz+Ww2UAQh3CYpP4Pl9
+         4CNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738561424; x=1739166224;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4FGOb/kuuSUyymnQVyBkrBupzFYWT4l1pdvKkJ2J+xI=;
+        b=fZ8koBWraMVupxNzyq6tRBvpO+ts61zQ/PnBgitq8Jsk4y+fgxQlrl72HPx36RB2V4
+         ZdAtWGXlSM12QGi+pQJC0o9IaSBFzvD24t1FjyxpQKZjOlqVLvfd+oMQwi33AEn0U5Yc
+         UMP/gviNt28vEpH+UKiL3yX6v82DXgFBGNKiVy4yY/64bHdbXZhHFJxA4Q1V7Ac2AEy8
+         UG3bVCIIbv2w3nDAe5XvxvPvp65/8bUpgVbkwAQCtkH7PPZ4VvUf5gOBvMfJyNU5VZdZ
+         pL3NsYSRjFmZ0TkQ++DzbrIT5EExy4iP72i1OrAW1XxB5j2gESkx6VnihHH1VTD6kLIM
+         3LCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVu0VlCDy+i/2AdHhPHQRdHEH4HUIFIvnbSZzfnrTh7Vf0NUJ+Z2is8LeT6WbY/nzT2JrZ4vQwP@vger.kernel.org, AJvYcCX/p7JPiBKBDExG2HtZYOy/lsxL2VJhWP03K6AukVTLwQTOv+7GoBAXNBkquPLusVr0AELs/vrmpHFz1akK@vger.kernel.org, AJvYcCXfq17BqSGcjxCiO6naV3xYX9ulI2w0fVW8vy7a1lgMPiadlMKhHkaQ+/Z2eVt5arq8GlQcWV/vPtoY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAsX1HLdLUX/XFkeIuaep8oN5MwydlP5vQ7gnH8QIkoz1YbJbF
+	siJ/sWgelVkJ+9fOeEnvQgqe3t/dNO2gHHS5D6dBZQpDPTGc4yo9
+X-Gm-Gg: ASbGnctiHAlU3Z7E+QoHut1BP7HQkZOpSNC8AesZ9Z7cArE3f0Xc4YNy1OxInoTqh6f
+	tAeSjNcVTH4GKfFZrR1EneLn47klJklE5RrSg3uoih5KvJaX7ru7OGC55Lgi6fx45GdPUnQE2F1
+	9259eYIL+Ngc6+oEeQf8XV6oywZcyECtLB2FRhxA0gmpnEvUdFmRsyhnXITSWhghp0XnvMkt7g3
+	UIleGjM1yXe9rF0ha6FcqJZ+4zDaV91NJThDXdYB3SW3x3wYu0mc7d/lfKjovcTZmosnS4XlH+5
+	O0zKXDVeQGSOqM33eebNKqsM4kEwZEGO7G24Y4JSN/pSk8Ug8vdrxGH0
+X-Google-Smtp-Source: AGHT+IFZo0ftKSRImunKlJXQj0l7sQfkYC+YNDQdjmv/qB1QLAW3j7xBuAzdPaBhuWUb5WL8D9R29g==
+X-Received: by 2002:a17:902:f546:b0:215:8d49:e2a7 with SMTP id d9443c01a7336-21dd7df98f8mr329030855ad.50.1738561424238;
+        Sun, 02 Feb 2025 21:43:44 -0800 (PST)
+Received: from yclu-ubuntu.. (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21de32ea5fesm66894555ad.132.2025.02.02.21.43.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Feb 2025 21:43:43 -0800 (PST)
+From: Joey Lu <a0987203069@gmail.com>
+To: andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com,
+	richardcochran@gmail.com
+Cc: alexandre.torgue@foss.st.com,
+	joabreu@synopsys.com,
+	ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	yclu4@nuvoton.com,
+	peppe.cavallaro@st.com,
+	linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Joey Lu <a0987203069@gmail.com>
+Subject: [PATCH net-next v8 0/3] Add support for Nuvoton MA35D1 GMAC
+Date: Mon,  3 Feb 2025 13:41:57 +0800
+Message-Id: <20250203054200.21977-1-a0987203069@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs8300: Add device node for
- gfx_smmu
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>
-CC: <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Prakash Gupta
-	<quic_guptap@quicinc.com>
-References: <20241227110024.30203-1-quic_pbrahma@quicinc.com>
- <1c8af731-c551-4d72-84a0-f14d57bec4ec@oss.qualcomm.com>
- <e7abe34c-9df9-425b-933e-cc744a63b80c@quicinc.com>
- <41fd6b59-249d-4f19-9ff8-4ae169a6db05@oss.qualcomm.com>
- <27aa8dc3-34b9-40e7-93bc-e52118b46138@quicinc.com>
- <ba800255-e2b0-4b92-9ff0-f7ed744fec8c@oss.qualcomm.com>
- <d28f5482-81bc-4600-9a60-872dadd22b96@quicinc.com>
- <5defdbcb-f134-4332-8b63-50794da6e2cd@oss.qualcomm.com>
-Content-Language: en-US
-From: Pratyush Brahma <quic_pbrahma@quicinc.com>
-In-Reply-To: <5defdbcb-f134-4332-8b63-50794da6e2cd@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tggpiVwz1r45JOWcdr0WxbkBM82PCFPy
-X-Proofpoint-GUID: tggpiVwz1r45JOWcdr0WxbkBM82PCFPy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-03_02,2025-01-31_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- lowpriorityscore=0 malwarescore=0 mlxlogscore=999 adultscore=0
- clxscore=1015 priorityscore=1501 suspectscore=0 phishscore=0
- impostorscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2501170000 definitions=main-2502030043
 
+This patch series is submitted to add GMAC support for Nuvoton MA35D1
+SoC platform. This work involves implementing a GMAC driver glue layer
+based on Synopsys DWMAC driver framework to leverage MA35D1's dual GMAC
+interface capabilities.
 
-On 2/1/2025 9:21 PM, Konrad Dybcio wrote:
-> On 30.01.2025 6:40 AM, Pratyush Brahma wrote:
->> On 1/29/2025 7:56 PM, Konrad Dybcio wrote:
->>> On 28.01.2025 11:02 AM, Pratyush Brahma wrote:
->>>> On 1/9/2025 8:56 PM, Konrad Dybcio wrote:
->>>>> On 8.01.2025 1:10 PM, Pratyush Brahma wrote:
->>>>>> On 12/30/2024 6:49 PM, Konrad Dybcio wrote:
->>>>>>> On 27.12.2024 12:00 PM, Pratyush Brahma wrote:
->>>>>>>> Add the device node for gfx smmu that is required for gpu
->>>>>>>> specific address translations.
->>>>>>>>
->>>>>>>> This patch depends on the patch series [1] posted by Imran Shaik
->>>>>>>> adding the clock support for gpu.
->>>>>>>>
->>>>>>>> [1] https://lore.kernel.org/all/802d32f1-ff7e-4d61-83f1-f804ee1750ed@oss.qualcomm.com/
->>>>>>>>
->>>>>>>> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
->>>>>>>> ---
->>>>>>>>      arch/arm64/boot/dts/qcom/qcs8300.dtsi | 37 +++++++++++++++++++++++++++
->>>>>>>>      1 file changed, 37 insertions(+)
->>>>>>>>
->>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->>>>>>>> index 80226992a65d..8eb688e2df0a 100644
->>>>>>>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->>>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->>>>>>>> @@ -816,6 +816,43 @@
->>>>>>>>                  #power-domain-cells = <1>;
->>>>>>>>              };
->>>>>>>>      +        adreno_smmu: iommu@3da0000 {
->>>>>>>> +            compatible = "qcom,qcs8300-smmu-500", "qcom,adreno-smmu",
->>>>>>>> +                   "qcom,smmu-500", "arm,mmu-500";
->>>>>>>> +            reg = <0x0 0x3da0000 0x0 0x20000>;
->>>>>>>> +            #iommu-cells = <2>;
->>>>>>>> +            #global-interrupts = <2>;
->>>>>>>> +            dma-coherent;
->>>>>>>> +
->>>>>>>> +            power-domains = <&gpucc GPU_CC_CX_GDSC>;
->>>>>>>> +            clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
->>>>>>>> +                 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
->>>>>>>> +                 <&gpucc GPU_CC_AHB_CLK>,
->>>>>>>> +                 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
->>>>>>>> +                 <&gpucc GPU_CC_CX_GMU_CLK>,
->>>>>>>> +                 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
->>>>>>>> +                 <&gpucc GPU_CC_HUB_AON_CLK>;
->>>>>>>> +            clock-names = "gcc_gpu_memnoc_gfx_clk",
->>>>>>>> +                      "gcc_gpu_snoc_dvm_gfx_clk",
->>>>>>>> +                      "gpu_cc_ahb_clk",
->>>>>>>> +                      "gpu_cc_hlos1_vote_gpu_smmu_clk",
->>>>>>>> +                      "gpu_cc_cx_gmu_clk",
->>>>>>>> +                      "gpu_cc_hub_cx_int_clk",
->>>>>>>> +                      "gpu_cc_hub_aon_clk";
->>>>>>> Most of these entries look totally bogus, please make sure you only
->>>>>>> reference the ones actually required
->>>>>> These entries are exactly similar to the ones we use in sa8775p as well [1] and the usecases
->>>>>> haven't changed between qcs8300 and sa8775p.
->>>>>>
->>>>>> Can you please let me know which entries you find irrelevant here?
->>>>> Well, I'm particularly unsure about CX_GMU and the HUB clocks.
->>>>> I >>don't think<< they don't have much to do with the SMMU, but please
->>>>> check internally with someone who knows for sure
->>>> I checked internally and found that these clocks are required for gpu smmu operations
->>>> as we don't use interconnect voting mechanism here as we do downstream. Hence the
->>>> list of clocks is same across all targets using gpu smmu as described in [1] previously.
->>> I managed to dig up some documents too.. It seems you're right, however the order
->>> is supposed to be slightly different:
->>>
->>> GPU_CC_CX_GMU_CLK
->>> GPU_CC_HUB_CX_INT_CLK
->>> GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK
->>> GCC_GPU_MEMNOC_GFX_CLK
->>>
->>> Unsure if it *actually* matters given we've added them in a random order on a
->>> multitude of platforms and there haven't been any visible adverse effects.
->> Thanks for checking this. We haven't really adhered to this order in
->> most of our platforms and things have been running fine. So I guess it doesn't matter.
->> However, I'll still send out the next patchset in the order you've mentioned. Just so that we
->> are in consonance, the final order would look like the following. Please correct me if you'd
->> prefer otherwise.
->>
->>                  clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
->>                                 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
->>                                 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
->>                                 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
->>                                 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
->>                                 <&gpucc GPU_CC_AHB_CLK>,
->>                                 <&gpucc GPU_CC_HUB_AON_CLK>;
-> Looks good, please double-check if it works without clk_ignore_unused
-Thanks. Yes, these have been tested without clk_ignore_unused. I will 
-send out the next set of patches
-with this order.
->
-> Konrad
+Overview:
+  1. Added a GMAC driver glue layer for MA35D1 SoC, providing support for
+  the platform's two GMAC interfaces.
+  2. Added device tree settings, with specific configurations for our
+  development boards:
+    a. SOM board: Configured for two RGMII interfaces.
+    b. IoT board: Configured with one RGMII and one RMII interface.
+  3. Added dt-bindings for the GMAC interfaces.
+
+v8:
+  - Update dwmac-nuvoton driver
+    - Improve the driver.
+    - Update the license to GPL.
+    - Update the description in Kconfig. 
+
+v7:
+  - Update dwmac-nuvoton driver
+    - Update probe function to use stmmac_pltfr_probe instead.
+
+v6:
+  - Update dwmac-nuvoton driver
+    - Use NVT as the previx for all functions, structs, and defines.
+    - Remove unnecessary comments.
+
+v5:
+  - Update yaml
+    - Remove the properties already defined in snps dwmac.
+  - Update dwmac-nuvoton driver
+    - Add a comment to explain the override of PMT flag.
+
+v4:
+  - Update yaml
+    - Remove unnecessary property 'select'.
+    - Remove unnecessary compatible entries and fix items.
+    - Specify number of entries for 'reg'.
+    - Remove already defined property 'phy-handle'.
+    - Update example.
+    - Modify the property internal path delay to match the driver.
+  - Update dtsi
+    - Move 'status' to be the last property.
+  - Update dwmac-nuvoton driver
+    - Use remove instead of remove_new.
+    - Use dev_err_probe instead.
+
+v3:
+  - Update yaml
+    - Fix for dt_binding_check warnings & errors.
+    - Add compatible in snps dwmac.
+  - Update dtsi
+    - Update dtsi to follow examples in yaml.
+  - Update dwmac-nuvoton driver
+    - Fix for auto build test warnings.
+    - Invalid path delay arguments will be returned.
+
+v2:
+  - Update yaml
+    - Rename file to align with the compatible property.
+    - Add an argument to syscon to replace mac-id,
+      with corresponding descriptions.
+    - Use tx-internal-delay-ps and rx-internal-delay-ps properties for
+      configurable path delay with corresponding descriptions,
+      allowing selection between GMAC internal and PHY.
+    - Add all supported phy-mode options.
+    - Remove unused properties.
+  - Update dtsi
+    - Modify syscon configuration to include an argument for
+      GMAC interface selection.
+  - Update dwmac-nuvoton driver
+    - Remove redundant device information print statements.
+    - Remove non-global parameters.
+    - Retrieve GMAC interface selection from the syscon argument.
+    - Parse Tx and Rx path delays by correct properties.
+    - Update configurations to support Wake-on-LAN.
+
+Joey Lu (3):
+  dt-bindings: net: nuvoton: Add schema for Nuvoton MA35 family GMAC
+  arm64: dts: nuvoton: Add Ethernet nodes
+  net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton MA35 family
+
+ .../bindings/net/nuvoton,ma35d1-dwmac.yaml    | 126 ++++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  12 ++
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  10 +
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |  54 ++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 182 ++++++++++++++++++
+ 8 files changed, 398 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
 
 -- 
-Thanks and Regards
-Pratyush Brahma
+2.34.1
 
 
