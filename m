@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-142618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11499A25EE9
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:37:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4320CA25EEA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:37:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96073160803
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:37:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 186F71881354
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08BD22080E6;
-	Mon,  3 Feb 2025 15:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 985EB209F4C;
+	Mon,  3 Feb 2025 15:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eGzyDH2Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ENwwrB+P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D901A201270
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 15:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0A6209F35;
+	Mon,  3 Feb 2025 15:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738597026; cv=none; b=CpeTSinwvElYN9Fqb5bjQD2fVHs1SvyzveLPOZGZpICMXT47OYv+R507L2nC5O0DW4CoxbpjnyGoiRmbmL/K/Pk/DKm5kbq3MSKIdurDwlvoWRCEtkgKePha9OVVJleyRbvXO3wPYozb8ClTFZuNMKCjTUQ2CFqIcmryEbZ4wVI=
+	t=1738597028; cv=none; b=edKSKfdiewCFHRBfM2DDz+vS1ycXhARFLgDIiDv2NaoVxDwo3+gzBBg6ZnrMcZsH7li+tLzwTcA7M+oVPtKxBZ+HmMsjnF6x4HXrOIzTpoQGkJs2wnjkAobYJpUqDfiT1ACcSfLon6dGQ5OJ3qRprFo4MIdFxaB14jDgQzqb5ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738597026; c=relaxed/simple;
-	bh=io2jOiAYZgNPcYe++cli+V+FY1fGXApzfdK6XF5tjp0=;
+	s=arc-20240116; t=1738597028; c=relaxed/simple;
+	bh=PzVDimxpMVmqHkj6Wi8NHyIcxugKilb5dXJ7vtyncGw=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=dO/kcVzWLt964Fihci1KVXfcM/8qB5jGbP5PYECdqDgaWW0i0rNy5Nta9oVrqmrqKR6XssMluGvDepY8QtBh1AVlBdQZLJWFIiCmngEPYQ4hJfR4Zd0TAnACsQ0M9EQbpIyvmuptRy6fFlX2OlPXYoC9o26uVoZLXdh/qYLndh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eGzyDH2Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A999C4CED2;
-	Mon,  3 Feb 2025 15:37:06 +0000 (UTC)
+	 Message-Id:Subject; b=W9vtVVaSA2zY4GdubDvbRH/rkbuUoqbSFdK6BHkZeV3BSRMlG/185jNkeDxwL42KlfrJLGXHOPpOwFwVa3d4Sw6RVsy0kMc+R7KINsyuMByah6SPU3gJ7K+beNi90/V8Nf1+i5stSjxPA+6OgX9ASTdq6KL6ikLnduFb66t9W90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ENwwrB+P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9637AC4CED2;
+	Mon,  3 Feb 2025 15:37:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738597026;
-	bh=io2jOiAYZgNPcYe++cli+V+FY1fGXApzfdK6XF5tjp0=;
+	s=k20201202; t=1738597027;
+	bh=PzVDimxpMVmqHkj6Wi8NHyIcxugKilb5dXJ7vtyncGw=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=eGzyDH2Y86s92rWyDtvP8hZxFLJ+cZGw9ftTxnO7NxJEKpZpf2435DcsVMEFOm2dU
-	 3z8jQmwU/UvrL49IRy1PA6c6tzqebmnzQYdN+Zgabmp3e4jTCMTBsX8DRmiFQyaWvE
-	 6eOUSmeVg6ZtFvwKirZCqlrTrB+W5s61cWOaIIS4exjoRsZyd8pUOI4I9rpqOLxAfU
-	 yIxuXT1CPpw/QWJXf7AU7QfMaD7wYdpIz0PZJgbkBehTaDgRpawm7DTOdOYApkr7zc
-	 peSUsXcJ90EArpqRWF2ZpD/MQ8HzLggZqB9sODgBvvTq6o9ZIhNykq+khzzO5yZyVf
-	 wbeZN0S5/2kcg==
-Date: Mon, 03 Feb 2025 09:37:05 -0600
+	b=ENwwrB+P1O9DXWFXtTId6TOjG5TTATnupf0gmJ2sTRcTu4lyUdFovAU/eUzQ33KvV
+	 gRd01o1WzL2QjEYeKoUUeLTzTOiUHINKsc0bmUDKRASlB5KS8X52jggQMAtAKQPjHK
+	 OGkJD0YddrfzUFnV9miCIWB2uDXB0eBeVREQGZZGL9xmmUewJBxnX85+kZc6fysa19
+	 VsXdYm6D/BHqd5K/d8g0dX5zwIKdNpyq0F+JMOOE1vwva9qDOgsjceU4u+OihF+4HK
+	 sNtXJSfA5S7pFdTaxzEEDBEvK7x+tFkN4LuxRIG5LjAI/5EzMiy0QRweHAh51v2Npj
+	 nJxB4nWaXaz6w==
+Date: Mon, 03 Feb 2025 09:37:06 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,32 +51,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, linux-mediatek@lists.infradead.org, 
+Cc: linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Woojung Huh <woojung.huh@microchip.com>, Paolo Abeni <pabeni@redhat.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, devicetree@vger.kernel.org, 
+ Eric Dumazet <edumazet@google.com>, 
+ linux-stm32@st-md-mailman.stormreply.com, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-In-Reply-To: <20250201-en7581-dts-spi-pinctrl-v1-1-aaa4a9dfc4a6@kernel.org>
-References: <20250201-en7581-dts-spi-pinctrl-v1-1-aaa4a9dfc4a6@kernel.org>
-Message-Id: <173859694682.2601632.260969145001463720.robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: Introduce more nodes to EN7581 SoC
- evaluation board
+ Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
+ netdev@vger.kernel.org, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ kernel@pengutronix.de
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+In-Reply-To: <20250203085820.609176-1-o.rempel@pengutronix.de>
+References: <20250203085820.609176-1-o.rempel@pengutronix.de>
+Message-Id: <173859694746.2601652.11244969424431209545.robh@kernel.org>
+Subject: Re: [PATCH v3 0/4] Add support for Priva E-Measuringbox board
 
 
-On Sat, 01 Feb 2025 15:39:48 +0100, Lorenzo Bianconi wrote:
-> Add the following nodes to EN7581 SoC and EN7581 evaluation board:
-> - clock controller
-> - rng controller
-> - pinctrl
-> - i2c controllers
-> - spi nand controller
+On Mon, 03 Feb 2025 09:58:16 +0100, Oleksij Rempel wrote:
+> This patch series introduces support for the Priva E-Measuringbox board
+> based on the ST STM32MP133 SoC. The set includes all the necessary
+> changes for device tree bindings, vendor prefixes, thermal support, and
+> board-specific devicetree to pass devicetree validation and checkpatch
+> tests.
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  arch/arm64/boot/dts/airoha/en7581-evb.dts |  8 +++
->  arch/arm64/boot/dts/airoha/en7581.dtsi    | 90 +++++++++++++++++++++++++++++++
->  2 files changed, 98 insertions(+)
+> changes v2:
+> - drop: dt-bindings: net: Add TI DP83TD510 10BaseT1L PHY
+> 
+> Oleksij Rempel (2):
+>   dt-bindings: vendor-prefixes: Add prefix for Priva
+>   dt-bindings: arm: stm32: Add Priva E-Measuringbox board
+> 
+> Roan van Dijk (2):
+>   arm: dts: stm32: Add thermal support for STM32MP131
+>   arm: dts: stm32: Add Priva E-Measuringbox devicetree
+> 
+>  .../devicetree/bindings/arm/stm32/stm32.yaml  |   6 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/arm/boot/dts/st/Makefile                 |   1 +
+>  arch/arm/boot/dts/st/stm32mp131.dtsi          |  35 ++
+>  arch/arm/boot/dts/st/stm32mp133c-prihmb.dts   | 496 ++++++++++++++++++
+>  5 files changed, 540 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/st/stm32mp133c-prihmb.dts
+> 
+> --
+> 2.39.5
+> 
+> 
 > 
 
 
@@ -94,24 +115,12 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/airoha/' for 20250201-en7581-dts-spi-pinctrl-v1-1-aaa4a9dfc4a6@kernel.org:
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/st/' for 20250203085820.609176-1-o.rempel@pengutronix.de:
 
-arch/arm64/boot/dts/airoha/en7581-evb.dtb: soc: i2cclock@0: 'anyOf' conditional failed, one must be fixed:
-	'reg' is a required property
-	'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm64/boot/dts/airoha/en7581-evb.dtb: system-controller@1fbf0200: compatible: ['syscon', 'simple-mfd'] is too short
-	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml#
-arch/arm64/boot/dts/airoha/en7581-evb.dtb: i2cclock@0: clock-frequency: 20000000 is greater than the maximum of 5000000
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-controller.yaml#
-arch/arm64/boot/dts/airoha/en7581-evb.dtb: i2c0@1fbf8000: 'resets' is a required property
-	from schema $id: http://devicetree.org/schemas/i2c/mediatek,mt7621-i2c.yaml#
-arch/arm64/boot/dts/airoha/en7581-evb.dtb: i2c1@1fbf8100: 'resets' is a required property
-	from schema $id: http://devicetree.org/schemas/i2c/mediatek,mt7621-i2c.yaml#
-arch/arm64/boot/dts/airoha/en7581-evb.dtb: i2c1@1fbf8100: status: 'oneOf' conditional failed, one must be fixed:
-	['disable'] is not of type 'object'
-	'disable' is not one of ['okay', 'disabled', 'reserved', 'fail', 'fail-needs-probe']
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+arch/arm/boot/dts/st/stm32mp133c-prihmb.dtb: adc@48004000: adc@0:interrupts: 0 was expected
+	from schema $id: http://devicetree.org/schemas/iio/adc/st,stm32-adc.yaml#
+arch/arm/boot/dts/st/stm32mp133c-prihmb.dtb: adc@48003000: adc@0:interrupts: 0 was expected
+	from schema $id: http://devicetree.org/schemas/iio/adc/st,stm32-adc.yaml#
 
 
 
