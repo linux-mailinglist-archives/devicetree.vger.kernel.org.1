@@ -1,535 +1,266 @@
-Return-Path: <devicetree+bounces-142459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 352DAA25718
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 11:40:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB11A2572F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 11:43:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C94783A1D60
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:40:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 141773A4DBA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:43:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCE920101E;
-	Mon,  3 Feb 2025 10:40:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100FF201022;
+	Mon,  3 Feb 2025 10:43:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="c4n8tVP2"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fiKjVDL9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73D06200BA9;
-	Mon,  3 Feb 2025 10:40:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738579215; cv=none; b=qBFPZh1nuYsH5v0285qe4MMJaEEqf1Y3VlDWObgUgOf7ZNQjn3qUpepw+bOrNMD/EEcaoaLG726u1gzaEVvO2JvuYZdYM/djivluMXZZq5M7NjYytWNGQ1Qkff6aBMvjYlcADAO0l6vG0FxUi40wdbtI+iJLfHkglUUaNhmoKKQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738579215; c=relaxed/simple;
-	bh=d9bnQ06DO7o8o7Yyf6ImAcjPuUXrdTdUfK7SQ7Ls68Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oCIlvX9vKHlPPmIqaNfu93Z6xFopSgRvU0h9vEx/EQyKkamtnHFzKf4WXWIGukA+LgzJXSMFu8xGhZZJZ0CfPWRs0wVKyzyVcLpBbFul/gaB/445IezNLxM7r26II6txyKCc9J7lPgjLqDjiwF3+bsgAC7JCgG0xiMCQk+n51kw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=c4n8tVP2; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E62820101A;
+	Mon,  3 Feb 2025 10:43:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.13
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738579417; cv=fail; b=RnUJF9wZrshyYCXhOr/UQavHrFJcHr3r8xyXKvKaIOxexbxO6LEvp05JL/kv3wNMyqGWsxu/72RVV19LGvfmLoUQ76mYsmzj6HwmcXbyT0Dw9eB3h4JdhoSNzleqY4adKKmcL4nGVFoXVE5zVOK3mCkbuEyYz7/zq03UWSUoUj8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738579417; c=relaxed/simple;
+	bh=a+8TYH5Iyp9CzxnUF5WY0/cN9nyUkPgvCQsuK6J2D0o=;
+	h=Message-ID:Date:From:Subject:To:CC:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=pMrlQswEC7lAEjWVlP0bID4Zq1G7SYc8+YPCEV0NHXao+i8D4oz5csWJUxCfz0SxbkCIs/TXmyBL55U1E6Zoqox+QbS9K7bA4JOcsLLG7s+o6jhRQjSAwSVEq82GZyXxCwnpwEOv1+fVwKtUEc364vs9/uEz6Y9ZiFts+cC4dDc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fiKjVDL9; arc=fail smtp.client-ip=198.175.65.13
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738579212; x=1770115212;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=d9bnQ06DO7o8o7Yyf6ImAcjPuUXrdTdUfK7SQ7Ls68Y=;
-  b=c4n8tVP2QzxqOL1xt6CVvb1ixzuE3XwwxKm0sNyVkVdeEjZY8nOryS38
-   WcTEmtYknpPWd+HolvAPUYuxCu+aFtb8yrWG6S8aSxzUv7LfgNNFt4Dbp
-   8QIxG7UZQ1qSs/Q8FjEoEAYYtFKsQo8Fw5rFu+731SmXrPMGkWcyxD+t4
-   qWstoLfU4bKUIJGEizX4wwTnqMCgmziKzwnYskXm/shY55UWuRWOyIFHu
-   TKD2UT6NnRI/t++fdwgmSa/RFOH4vZayhte/Y6Y84jglI0yOOPsTsEZW7
-   TmYUM5Jf8ucI6Y/FcJd1EY4i6xBVCFDIZKyynGcfIOwMY295KTXc+P2Vn
-   A==;
-X-CSE-ConnectionGUID: ndsNiHF/TRmmcdVouI9yaA==
-X-CSE-MsgGUID: M+UlcJ6DTu+eiKtqSfZNUQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11334"; a="41899846"
+  t=1738579417; x=1770115417;
+  h=message-id:date:from:subject:to:cc:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=a+8TYH5Iyp9CzxnUF5WY0/cN9nyUkPgvCQsuK6J2D0o=;
+  b=fiKjVDL9nYfddcpBCnT2z8se1c2G+OrcjFGNMV/ndB94NcGGIKeSPhjw
+   XdwtG6UBc0PkR+5xHoLzlOZeFHGO6gfhTO/VZDDgkLDNYa2awsir8+A9J
+   7fUaJGjihGQIzNdRmtsz0Fd8z7is2DbwCvviisyG21pR5Rvk8F3cm38LF
+   FtXI7HfZMJaeRNjLtMYVXNHzOk6YB11VdtzJPLPDcKmpzsLZRCKFSfVa/
+   8gB8CoUaVTUEvnWwIfDl7wQe8w+PL5Lrsg6bCGbGvsCpWDwcK/xUQzx7o
+   CJbO78sWAw4ENe3w1MKdKT4ucTkaST33tbRKeeSvgNdLf5+UgDX1Ft9Ug
+   g==;
+X-CSE-ConnectionGUID: nHMIBq1AS0aa/JvjN2jcoQ==
+X-CSE-MsgGUID: f8OsIbkdTLO3Mx0Q6AMRpA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11334"; a="50057635"
 X-IronPort-AV: E=Sophos;i="6.13,255,1732608000"; 
-   d="scan'208";a="41899846"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2025 02:40:11 -0800
-X-CSE-ConnectionGUID: wVdStkHSSNSCc0uj4NkzOQ==
-X-CSE-MsgGUID: f6KZqfDiSimv5rhMm+cJ7w==
+   d="scan'208";a="50057635"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2025 02:43:36 -0800
+X-CSE-ConnectionGUID: RCSqstKeSr2TKXz2GCkysg==
+X-CSE-MsgGUID: Ws/IcmtER7q1DL1hNwnAhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,255,1732608000"; 
-   d="scan'208";a="110084518"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 03 Feb 2025 02:40:08 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tets5-000qoF-16;
-	Mon, 03 Feb 2025 10:40:05 +0000
-Date: Mon, 3 Feb 2025 18:39:39 +0800
-From: kernel test robot <lkp@intel.com>
-To: Amirreza Zarrabi <quic_azarrabi@quicinc.com>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Sumit Garg <sumit.garg@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org, op-tee@lists.trustedfirmware.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Amirreza Zarrabi <quic_azarrabi@quicinc.com>
-Subject: Re: [PATCH v2 6/8] tee: add Qualcomm TEE driver
-Message-ID: <202502031838.MfZgQhYA-lkp@intel.com>
-References: <20250202-qcom-tee-using-tee-ss-without-mem-obj-v2-6-297eacd0d34f@quicinc.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="114874220"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+  by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 03 Feb 2025 02:43:35 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 3 Feb 2025 02:43:34 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Mon, 3 Feb 2025 02:43:34 -0800
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.42) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Mon, 3 Feb 2025 02:43:34 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=L/Ea7ugcwNF8KAxT/prjpqgG+h8WZjQVstmeDgr+JVGeLizw6HzC4/UoSXPosIFLiDufqLpbj3VP7+UBra6N0ZiSGN8FeWGtVUSWEGsci4fjhjbCxeCMcDzp0JT+1M66u8AonMz4Ns5i7j4B/aeci1EYOr6taUCWZCTj83Fb9A8xy3GNUMrzRb6bTgU8XbeWDRrW73CvFCUi0EwLMf3QsFHfoMiHIqfCdV/CcISBhluLf8ZLNbbwVO0f2LHVvqCaf7my/ggvFc9MFAA9h5rPecollMS2zjwvPQVB5IdU1/hAgDv0NsiWfuQKIP8yRBl/TOrrde/Pk+qU0VS5bIMrbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/AvLldaILnpQMEbawAZpgwsl/htKjYpjYluSZ7h7DGM=;
+ b=KPHpTfTjtR2nQtmHtmCj/7YyjPvDFurA38MISJGJSd2vO2Eu3THv1i5FO0PDXpZ9cTaOuMnakX+KAIa6PYvysrP6YDUuQGFm/ks8X1TZFySc9C6SM72Ar9SuDBsVfEZGPjqNQpKwZ9O2hyaSu3EYVuIMBq+jo1tiy7nTVDnZwtgNF1yKd0iuaebwiELhDrj+mHIAgpoprQ8S+FSvci0ZLtdURqb3ckQ5HsjJzCKHgkgLDQbMyY4NJNspAIBjrHe8He+k1Qpj3pHK8iOcoacuawUA6PmTa+WrpIEWr46EeoLLrbpQQDtPqu7qs3iKbNMjs3jkcY5f5pel6fsObbBHDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7972.namprd11.prod.outlook.com (2603:10b6:8:124::22)
+ by SJ0PR11MB4831.namprd11.prod.outlook.com (2603:10b6:a03:2d2::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.22; Mon, 3 Feb
+ 2025 10:43:04 +0000
+Received: from DS0PR11MB7972.namprd11.prod.outlook.com
+ ([fe80::6cd6:7196:3abd:2c3]) by DS0PR11MB7972.namprd11.prod.outlook.com
+ ([fe80::6cd6:7196:3abd:2c3%3]) with mapi id 15.20.8398.025; Mon, 3 Feb 2025
+ 10:43:04 +0000
+Message-ID: <48c715c2-64ac-4e24-973c-515c8814ea07@intel.com>
+Date: Mon, 3 Feb 2025 16:12:54 +0530
+User-Agent: Mozilla Thunderbird
+From: Mahesh Rao <mahesh.rao@intel.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: firmware: stratix10: Convert to
+ json-schema
+To: Rob Herring <robh@kernel.org>
+CC: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>, Tom Rix
+	<trix@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>, Wu Hao <hao.wu@intel.com>, Ho Yin
+	<adrian.ho.yin.ng@altera.com>, Niravkumar L Rabara <nirav.rabara@altera.com>,
+	<linux-fpga@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Mahesh Rao <mahesh.rao@altera.com>
+References: <20250131-socfpga_sip_svc_misc-v2-0-eeed4ebc35f9@intel.com>
+ <20250131-socfpga_sip_svc_misc-v2-2-eeed4ebc35f9@intel.com>
+ <20250131152636.GA3454395-robh@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20250131152636.GA3454395-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0P287CA0015.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:d9::10) To DS0PR11MB7972.namprd11.prod.outlook.com
+ (2603:10b6:8:124::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250202-qcom-tee-using-tee-ss-without-mem-obj-v2-6-297eacd0d34f@quicinc.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7972:EE_|SJ0PR11MB4831:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5de2361c-1f1b-4248-cfac-08dd443f89e9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Y2FYWnp5ZGVvMG9uNUQxbXY3Q1RWdWV4RVR5MXVvdndhQU1JVEpOc0taOW8w?=
+ =?utf-8?B?L01ScnlqTkJVbWdMaXA1NWprMmFqYTY5QUJhejE5djVTMlVZaFZ6dFBuWm1X?=
+ =?utf-8?B?VzQzQjFxdUxhK2orZEJhU3NUNWhzNm9kSWVYRnpSaEhkbGFldkcxK3QwY3Yr?=
+ =?utf-8?B?c2REZEtpcXlZMGJibEU3MEVQRnF1NGpidVd2VHk0MDMxRjNQKzZhd2lCV2Rp?=
+ =?utf-8?B?eW0wRE9jMktLYW9NSWlXZzRBRFhQWDRFbDA2UUpmcjdLSUpLbTFLNjRUd3RW?=
+ =?utf-8?B?NlhpODFYYzJqVHVGbDJMbHVnNWZvdURKUWpLaURDSmJ0QTduY3JZc3REVFd2?=
+ =?utf-8?B?NTZyNmxaS2xZSzdqNzhBQUlhVEcvVEp5bCtlR1FuMGVhMEhwdVhLbWlMVEps?=
+ =?utf-8?B?NWlQZlVoeUExZEZYMlBodCsvcTQ3TzZiaGZCR2FUQlZkc1FuNDJ5eFpYamg4?=
+ =?utf-8?B?a0tqc1NuU3NyTWdXOG1TdUs4U015VWRuVnJOUXc2WVpya2lnNTV2ek1GcU9B?=
+ =?utf-8?B?RU1wVG0xQk95Njd2ZEJXVWp6b016UGdkcGhEL3dsWWdVbnluMnk0WlVuSlcw?=
+ =?utf-8?B?a1RkWlA5UmFaZmc5eGs0MERDbGN6a0RYRlp2aVFWOWpXbkVQK1BDbCtFUWdV?=
+ =?utf-8?B?U0NvREZ3Nm9MamtLN1JXNWx6NDUwWGJ0R0VDV01EVkd2V2Q0QkRvRTI2UGZq?=
+ =?utf-8?B?a1hWanRVQmJyRytQVThzRmVlRzlrMzJZM2ZoeWIvcnQzV2N1VWsrS2tDT0tH?=
+ =?utf-8?B?NVFHb2VIZndWcmdWUDdhUjJkL3BvSkdZSXdnMTdHSmpwd3FTRlBHa042Nmxk?=
+ =?utf-8?B?YUZKSnZ2YmNQQm1tekloY2kzb2FmUk1xNGlBL1ZIL0NXN1pyMVo0VWtQUHV2?=
+ =?utf-8?B?b3VabWg5R3lrUlVzK3M3Z1JENlhuYS96RVpRK25wODhzckltWGJ1ejlVeXp0?=
+ =?utf-8?B?dVB0bzNMNGo4NkdJeXFQaDY2aWsvUVJnWmpENW4xUDVFOWt2QjRxOXZVZTdE?=
+ =?utf-8?B?M2lERFpnYmtSZUZvZE5naVRlU21RVVcxVXJqRXVQUTNKZHNHek1XSW8ydFM4?=
+ =?utf-8?B?eit6OGxWdHZ1UnZvRWFaajJQaVViRVVSeDFkSHhRSVhFQXUxQzZZS3l3bXVK?=
+ =?utf-8?B?Yzk2eFpCU0Z6Nk5reUVNVUtjRjNhWm5xVjZSY0xEcVNNZWUvMkMrKzEyMFRY?=
+ =?utf-8?B?cURhaXl2UjZoNEQ4OFVzWllseGN3TzJudEV2SW5DMzNRQU9tVExkSTVBbUJj?=
+ =?utf-8?B?dUJ5aXJqNnlIWXBKY2FDd2ZxR3NLdngrTUZGR1YzNk9EOUdXTVprc05reG1H?=
+ =?utf-8?B?dFh6OEp2YjBObHJnSUtuTTBXTmRIbEZYOVdtUnFTQjg0VWQrVlgvbGpVb2pZ?=
+ =?utf-8?B?dTI0T3NiZno0SDBmWVgrOWpoQ0M1MTRlNlh0dE9WNXhVdlZwdzkwNWdTZGJH?=
+ =?utf-8?B?WFJBcGxJVGdNci84MUxMdEhqUnNsZU5NazVGZEhnbzBpcnNXaWxOQnVsN0VO?=
+ =?utf-8?B?eGFJSk5zRXBqc0U2NlBtYVZSMHdwVUZzK1MwQ2tQZjJSMVMydk9hUGJFeTdS?=
+ =?utf-8?B?TDMvbDkydWhGZXcvSHhoRjlNTktkTjdDYitTSitxVEc0SkFIbUtnTWp6LzF4?=
+ =?utf-8?B?OVJ2dlB6cTZFOXorTEpGU0JONExObzVpa1JYNW8xc2ZrNlVMS1d6RU1nbS9P?=
+ =?utf-8?B?V3V3QTV4dkh1NENINStFYUxJbUtaOTY4elFtTk4vUlNvSU1XekN2N3pGc2t3?=
+ =?utf-8?B?NGlXM3BEdGdya3RhRXp4VklrNW11Ky90OHJFN213Mk9Ia0JCTFBKNnYzNzVX?=
+ =?utf-8?B?RE1sRGZqUC9pM0hOUnM2QzVqUnhMdkxqRmhTd2daL2tMV2FoeW02ckxjandr?=
+ =?utf-8?Q?DsTABCT/B7aQB?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR11MB7972.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NERjWUlIR2ZlUllaem5qemU0NVpQdWxZTU0zTjI1MklSbnU1L1lwRDJHMTBT?=
+ =?utf-8?B?V0M2Z0tPS3lKaDZVMTBudHplcTduVXl6cEEyd2FhMG5LYlIxRVJDeS8zdHpB?=
+ =?utf-8?B?bEk0T3VxWVcvY2thZlZLa0hRNjNyQ3QzMEJDV2s2OGJkajFRcFBsMXRoYTNr?=
+ =?utf-8?B?eTRWblEyKy9iYmF1cHZvNENtNDNtblJJUXI4QXc1ZVN2UHlmbDZJb2wzc2hl?=
+ =?utf-8?B?R3UxbnJqWHZOMGFvMXhvSWcrcGt2Q0lpUHJla1plV2ZSNVhqaEFhOHdBR1BZ?=
+ =?utf-8?B?NmVJakVtVjhVdnVVWW5pc0tZMlRQbmhPZ0lzNDZZalYzTnVBSjhPQnEzZzND?=
+ =?utf-8?B?a1g2bmFBeEhWRXZxTGk5cnlPV3Rrazd4eFoxMkVwa2pnakNvbjZhZ290WjdJ?=
+ =?utf-8?B?aDR4aDlpN1g3bnJ6dGp5dmFRNEN5Y1NoR2pNL0hPYUhHWS9HY21pOHAwWEVs?=
+ =?utf-8?B?SXlyaEl6a0pjTzZSK1lsc2dXcFpDaTQxSTNiZ3J4SFFHUTB6NExmT2ZPd3NW?=
+ =?utf-8?B?T0JUaG1hdXM4c1lmYTBJWnJOMitCRXJFMkg4TDRxQzBCazJROC9iVEFIQUNV?=
+ =?utf-8?B?ME93WUg1eWpDalp2MUtjaWo3em4vQk9MR3pHamVpRjVNNlpYb0xQMHl5SWhk?=
+ =?utf-8?B?RnY5Yy93WU02Wm4wV0NyRzFxREFUbEU2S3hqSHNYd1diaGJRcThPbUxpczRp?=
+ =?utf-8?B?YnNhQktneDUyOWd0VjJvL2gyaHNwQTVaZjJJUzg0NmlNWDB6U2dmamNVeXZo?=
+ =?utf-8?B?N1MvMHVGK2VPZUlna1BUVVljUTRjdHpKc0E3cWVHWFo1Q3l6Sk5qWVVVYXVr?=
+ =?utf-8?B?NGRyR1BpYWdxL242M1lyRmdmR1M5cHRNUk1kcU40VG5JTlJtN0RPVHVFQU5P?=
+ =?utf-8?B?YklWdVZwUzV1bnRnQm9SeGhScjRycit4ZHFXaVhqTlJqdlh2MUZSZC82L2VV?=
+ =?utf-8?B?bVRoR2ZMTGkzR3BuZVpyZlRtQXBsVGo2azdIbTBzdXBxQWFjc0ROc0htRjNy?=
+ =?utf-8?B?Q2JnazJKWUgxRjZ4dVFvaitxdjJ4elRNZ2Q1c1lYNW1idEp5Tk9NLzJyVGJX?=
+ =?utf-8?B?M1NyT3FPdEI1cWIwaUZHa2pDTEdKQlhFdFRsNXFGelM4UHArTFVQZmk2TkZJ?=
+ =?utf-8?B?ekI4UTYwbkYrMWM1L0NCYythTThZNGR1QUZQOXdwUlZlYXlkYjUwU250VlVH?=
+ =?utf-8?B?QlMwMGlJcTJicTdEMlpETmNrWks2K1gxTGdEcGNjYmcrRlVjOGo4OXFSQzI0?=
+ =?utf-8?B?Y09oSHIrWndUelBKd0xUQ2V5QkRoYWkvSWJKT0cwYkVWb3N2QXJrVkM4QXkz?=
+ =?utf-8?B?YmNIamhhVDFiUjZ0dnBHbzIvQS8xMXVnVnNZaENxblowc1M3N2hpaUJ6TVJV?=
+ =?utf-8?B?QjB5RDNid2VFMzEvL2drREVvMVNtd2VNZ29MaTNCWUZURDdwalFIOGFhZ2xp?=
+ =?utf-8?B?Qmd2by9lUXV1WWhXcGhCV283cFB0cHV5N0FmeTdoRjdzNGFrVkdLTGM2ZGpa?=
+ =?utf-8?B?b3FzSmpveVZoK09GZTVSLy8wdWNPb1phNzhMc1JTTU1tY2VDRjNuZDcvK2ho?=
+ =?utf-8?B?YXh2Y21lbHpUUEovRTdFWXY0SFA4cDJPWWJtMVlDUHJkOUpGY0xoaFlPV1Qz?=
+ =?utf-8?B?dkIwemk4azJHeHhNYTltcHA5MjBSM3JZR2ZGbTRUQUJHZGl5WFpzOU9IQXVL?=
+ =?utf-8?B?djZnWEp4S1hQKzFqbS8rOUk3SXMxeTVNSHEvdEwvdEpMNVpaOC84QnZpS1RH?=
+ =?utf-8?B?ZmxjWUtvd2tIU1FmL0dVaStwTHlUaWQ3SUd1eVorWnM0MjhwUDY4QUNRVlBa?=
+ =?utf-8?B?M0dnQnJJN0dnS1BHRjdIclllcFFLdHZ5Q01YakRkU0xEaW42YW8vektxbCs5?=
+ =?utf-8?B?TjlReFM3ckxjdzRVdE12RVo4WWNRb3dMNy9UWE0xRTJpNFhzajc3WFl0cmps?=
+ =?utf-8?B?K1ZGMXdPV3NEUG5aL3dlVGJQWER3WUZMVXhWSndwbEIyb0xFQy9jREJibU15?=
+ =?utf-8?B?am93ZjZwMnJJUkxKcEtFMUtxS1pHUkMrTzRMUHlRaGtmRFFhSlIzZDNLeHBk?=
+ =?utf-8?B?RFlBREZUQXluQkl0OTB0ZEpmWE1reVA2MVd4ZGpwaGVyczRNSlBJdmlzSDZ0?=
+ =?utf-8?Q?yn06yVY7Wua7w9HY3JamoNtC3?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5de2361c-1f1b-4248-cfac-08dd443f89e9
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7972.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2025 10:43:04.7464
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Z5cCHQRZUUh+j8kgyHTp1JtFsqIjVq6mLiwe96qRMwEdUFSAM6Gyo+SsxyNPykbKwlXIpU/kUKblWJpaM8qkDA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4831
+X-OriginatorOrg: intel.com
 
-Hi Amirreza,
+Hi Rob,
 
-kernel test robot noticed the following build errors:
+On 31-01-2025 08:56 pm, Rob Herring wrote:
+> On Fri, Jan 31, 2025 at 06:17:25PM +0800, Mahesh Rao wrote:
+>> Convert intel,stratix10-svc service layer devicetree
+>> binding file from freeform format to json-schema.
+>>
+>> Also added DT binding for optional stratix10-soc
+>> FPGA manager child node.
+>>
+>> Signed-off-by: Mahesh Rao<mahesh.rao@intel.com>
+>> ---
+>> +maintainers:
+>> +  - Dinh Nguyen<dinguyen@kernel.org>
+>> +  - Mahesh Rao<mahesh.rao@altera.com>
+>> +
+>> +description:
+> You need '>' on the end to preserve paragraphs.
+  Will make the change.
+> +      - intel,stratix10-svc
+> +      - intel,agilex-svc
+> +
+> +  method:
+> +    description: |
+> +                 Supervisory call method to be used to communicate with the
+> +                 secure service layer.
+> +                 Permitted values are:
+> +                 - "smc" : SMC #0, following the SMCCC
+> +                 - "hvc" : HVC #0, following the SMCCC
+> Indent by 2 more than 'description'.
+OK, will add the change.
+>> +  memory-region:
+>> +    maxItems: 1
+>> +    description:
+>> +      phandle to a reserved memory region for the service layer driver to
+>> +      communicate with the secure device manager. For more details see
+>> +      Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt.
+> Please read what that file says.
 
-[auto build test ERROR on dab2734f8e9ecba609d66d1dd087a392a7774c04]
+reserved-memory is moved to dtschema, shall I change this to the following?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Amirreza-Zarrabi/tee-allow-a-driver-to-allocate-a-tee_device-without-a-pool/20250203-104846
-base:   dab2734f8e9ecba609d66d1dd087a392a7774c04
-patch link:    https://lore.kernel.org/r/20250202-qcom-tee-using-tee-ss-without-mem-obj-v2-6-297eacd0d34f%40quicinc.com
-patch subject: [PATCH v2 6/8] tee: add Qualcomm TEE driver
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20250203/202502031838.MfZgQhYA-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250203/202502031838.MfZgQhYA-lkp@intel.com/reproduce)
+memory-region:
+     maxItems: 1
+     description:
+       Phandle to a reserved memory region for the service layer driver to
+       communicate with the secure device manager.
+       (See reserved-memory in dtschema project.)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502031838.MfZgQhYA-lkp@intel.com/
+Is this what is required?
 
-All errors (new ones prefixed by >>):
+Best regards
 
->> drivers/tee/qcomtee/call.c:419:40: error: use of undeclared identifier '__free_kfree'; did you mean '__free_pages'?
-     419 |         struct qcomtee_object_invoke_ctx *oic __free(kfree) = NULL;
-         |                                               ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:41:1: note: expanded from here
-      41 | __free_kfree
-         | ^
-   include/linux/gfp.h:359:13: note: '__free_pages' declared here
-     359 | extern void __free_pages(struct page *page, unsigned int order);
-         |             ^
->> drivers/tee/qcomtee/call.c:419:40: error: 'cleanup' function '__free_pages' must take 1 parameter
-     419 |         struct qcomtee_object_invoke_ctx *oic __free(kfree) = NULL;
-         |                                               ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:41:1: note: expanded from here
-      41 | __free_kfree
-         | ^
-   drivers/tee/qcomtee/call.c:421:24: error: use of undeclared identifier '__free_kfree'; did you mean '__free_pages'?
-     421 |         struct qcomtee_arg *u __free(kfree) = NULL;
-         |                               ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:42:1: note: expanded from here
-      42 | __free_kfree
-         | ^
-   include/linux/gfp.h:359:13: note: '__free_pages' declared here
-     359 | extern void __free_pages(struct page *page, unsigned int order);
-         |             ^
-   drivers/tee/qcomtee/call.c:421:24: error: 'cleanup' function '__free_pages' must take 1 parameter
-     421 |         struct qcomtee_arg *u __free(kfree) = NULL;
-         |                               ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:42:1: note: expanded from here
-      42 | __free_kfree
-         | ^
->> drivers/tee/qcomtee/call.c:439:8: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     439 |         oic = kzalloc(sizeof(*oic), GFP_KERNEL);
-         |               ^
->> drivers/tee/qcomtee/call.c:439:6: error: incompatible integer to pointer conversion assigning to 'struct qcomtee_object_invoke_ctx *' from 'int' [-Wint-conversion]
-     439 |         oic = kzalloc(sizeof(*oic), GFP_KERNEL);
-         |             ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/tee/qcomtee/call.c:444:6: error: call to undeclared function 'kcalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     444 |         u = kcalloc(arg->num_params + 1, sizeof(*u), GFP_KERNEL);
-         |             ^
->> drivers/tee/qcomtee/call.c:444:4: error: incompatible integer to pointer conversion assigning to 'struct qcomtee_arg *' from 'int' [-Wint-conversion]
-     444 |         u = kcalloc(arg->num_params + 1, sizeof(*u), GFP_KERNEL);
-         |           ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/tee/qcomtee/call.c:584:39: error: use of undeclared identifier '__free_kfree'; did you mean '__free_pages'?
-     584 |         struct qcomtee_context_data *ctxdata __free(kfree) = NULL;
-         |                                              ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:51:1: note: expanded from here
-      51 | __free_kfree
-         | ^
-   include/linux/gfp.h:359:13: note: '__free_pages' declared here
-     359 | extern void __free_pages(struct page *page, unsigned int order);
-         |             ^
-   drivers/tee/qcomtee/call.c:584:39: error: 'cleanup' function '__free_pages' must take 1 parameter
-     584 |         struct qcomtee_context_data *ctxdata __free(kfree) = NULL;
-         |                                              ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:51:1: note: expanded from here
-      51 | __free_kfree
-         | ^
-   drivers/tee/qcomtee/call.c:586:12: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     586 |         ctxdata = kzalloc(sizeof(*ctxdata), GFP_KERNEL);
-         |                   ^
->> drivers/tee/qcomtee/call.c:586:10: error: incompatible integer to pointer conversion assigning to 'struct qcomtee_context_data *' from 'int' [-Wint-conversion]
-     586 |         ctxdata = kzalloc(sizeof(*ctxdata), GFP_KERNEL);
-         |                 ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/tee/qcomtee/call.c:623:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     623 |         kfree(ctxdata);
-         |         ^
-   drivers/tee/qcomtee/call.c:655:26: error: use of undeclared identifier '__free_kfree'; did you mean '__free_pages'?
-     655 |         struct qcomtee *qcomtee __free(kfree) = NULL;
-         |                                 ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:58:1: note: expanded from here
-      58 | __free_kfree
-         | ^
-   include/linux/gfp.h:359:13: note: '__free_pages' declared here
-     359 | extern void __free_pages(struct page *page, unsigned int order);
-         |             ^
-   drivers/tee/qcomtee/call.c:655:26: error: 'cleanup' function '__free_pages' must take 1 parameter
-     655 |         struct qcomtee *qcomtee __free(kfree) = NULL;
-         |                                 ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:58:1: note: expanded from here
-      58 | __free_kfree
-         | ^
-   drivers/tee/qcomtee/call.c:659:12: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     659 |         qcomtee = kzalloc(sizeof(*qcomtee), GFP_KERNEL);
-         |                   ^
->> drivers/tee/qcomtee/call.c:659:10: error: incompatible integer to pointer conversion assigning to 'struct qcomtee *' from 'int' [-Wint-conversion]
-     659 |         qcomtee = kzalloc(sizeof(*qcomtee), GFP_KERNEL);
-         |                 ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/tee/qcomtee/call.c:721:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     721 |         kfree(qcomtee);
-         |         ^
-   18 errors generated.
---
->> drivers/tee/qcomtee/core.c:51:11: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-      51 |         object = kzalloc(sizeof(*object), GFP_KERNEL);
-         |                  ^
->> drivers/tee/qcomtee/core.c:51:9: error: incompatible integer to pointer conversion assigning to 'struct qcomtee_object *' from 'int' [-Wint-conversion]
-      51 |         object = kzalloc(sizeof(*object), GFP_KERNEL);
-         |                ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/tee/qcomtee/core.c:62:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-      62 |         kfree(object->name);
-         |         ^
->> drivers/tee/qcomtee/core.c:378:12: error: call to undeclared function 'copy_from_user'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     378 |                 else if (copy_from_user(ptr, u[i].b.uaddr, u[i].b.size))
-         |                          ^
->> drivers/tee/qcomtee/core.c:458:12: error: call to undeclared function 'copy_to_user'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     458 |                 else if (copy_to_user(u[i].b.uaddr, ptr, u[i].b.size))
-         |                          ^
-   5 errors generated.
---
->> drivers/tee/qcomtee/user_obj.c:238:4: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     238 |                         kfree(ureq);
-         |                         ^
->> drivers/tee/qcomtee/user_obj.c:252:28: error: use of undeclared identifier '__free_kfree'; did you mean '__free_pages'?
-     252 |         struct qcomtee_ureq *ureq __free(kfree) = NULL;
-         |                                   ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:59:1: note: expanded from here
-      59 | __free_kfree
-         | ^
-   include/linux/gfp.h:359:13: note: '__free_pages' declared here
-     359 | extern void __free_pages(struct page *page, unsigned int order);
-         |             ^
->> drivers/tee/qcomtee/user_obj.c:252:28: error: 'cleanup' function '__free_pages' must take 1 parameter
-     252 |         struct qcomtee_ureq *ureq __free(kfree) = NULL;
-         |                                   ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:59:1: note: expanded from here
-      59 | __free_kfree
-         | ^
->> drivers/tee/qcomtee/user_obj.c:255:9: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     255 |         ureq = kzalloc(sizeof(*ureq), GFP_KERNEL);
-         |                ^
->> drivers/tee/qcomtee/user_obj.c:255:7: error: incompatible integer to pointer conversion assigning to 'struct qcomtee_ureq *' from 'int' [-Wint-conversion]
-     255 |         ureq = kzalloc(sizeof(*ureq), GFP_KERNEL);
-         |              ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/tee/qcomtee/user_obj.c:336:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     336 |         kfree(ureq);
-         |         ^
-   drivers/tee/qcomtee/user_obj.c:352:9: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     352 |         ureq = kzalloc(sizeof(*ureq), GFP_KERNEL);
-         |                ^
-   drivers/tee/qcomtee/user_obj.c:352:7: error: incompatible integer to pointer conversion assigning to 'struct qcomtee_ureq *' from 'int' [-Wint-conversion]
-     352 |         ureq = kzalloc(sizeof(*ureq), GFP_KERNEL);
-         |              ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/tee/qcomtee/user_obj.c:361:3: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     361 |                 kfree(ureq);
-         |                 ^
-   drivers/tee/qcomtee/user_obj.c:370:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     370 |         kfree(uo);
-         |         ^
-   drivers/tee/qcomtee/user_obj.c:394:42: error: use of undeclared identifier '__free_kfree'; did you mean '__free_pages'?
-     394 |         struct qcomtee_user_object *user_object __free(kfree) = NULL;
-         |                                                 ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:82:1: note: expanded from here
-      82 | __free_kfree
-         | ^
-   include/linux/gfp.h:359:13: note: '__free_pages' declared here
-     359 | extern void __free_pages(struct page *page, unsigned int order);
-         |             ^
-   drivers/tee/qcomtee/user_obj.c:394:42: error: 'cleanup' function '__free_pages' must take 1 parameter
-     394 |         struct qcomtee_user_object *user_object __free(kfree) = NULL;
-         |                                                 ^
-   include/linux/cleanup.h:200:33: note: expanded from macro '__free'
-     200 | #define __free(_name)   __cleanup(__free_##_name)
-         |                                   ^
-   <scratch space>:82:1: note: expanded from here
-      82 | __free_kfree
-         | ^
-   drivers/tee/qcomtee/user_obj.c:398:16: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     398 |         user_object = kzalloc(sizeof(*user_object), GFP_KERNEL);
-         |                       ^
->> drivers/tee/qcomtee/user_obj.c:398:14: error: incompatible integer to pointer conversion assigning to 'struct qcomtee_user_object *' from 'int' [-Wint-conversion]
-     398 |         user_object = kzalloc(sizeof(*user_object), GFP_KERNEL);
-         |                     ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/tee/qcomtee/user_obj.c:484:8: error: call to undeclared function 'copy_to_user'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     484 |                         if (copy_to_user(params[i].u.ubuf.uaddr, u[i].b.addr,
-         |                             ^
->> drivers/tee/qcomtee/user_obj.c:561:8: error: call to undeclared function 'copy_from_user'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     561 |                         if (copy_from_user(u[i].b.addr, params[i].u.ubuf.uaddr,
-         |                             ^
-   drivers/tee/qcomtee/user_obj.c:672:3: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     672 |                 kfree(ureq);
-         |                 ^
-   17 errors generated.
+Mahesh Rao
 
-
-vim +419 drivers/tee/qcomtee/call.c
-
-   406	
-   407	/**
-   408	 * qcomtee_object_invoke() - Invoke a QTEE object.
-   409	 * @ctx: TEE context.
-   410	 * @arg: ioctl arguments.
-   411	 * @params: parameters for the object.
-   412	 *
-   413	 * Return: On success, returns 0; on failure, returns < 0.
-   414	 */
-   415	static int qcomtee_object_invoke(struct tee_context *ctx,
-   416					 struct tee_ioctl_object_invoke_arg *arg,
-   417					 struct tee_param *params)
-   418	{
- > 419		struct qcomtee_object_invoke_ctx *oic __free(kfree) = NULL;
-   420		struct qcomtee_context_data *ctxdata = ctx->data;
- > 421		struct qcomtee_arg *u __free(kfree) = NULL;
-   422		struct qcomtee_object *object;
-   423		int i, ret, result;
-   424	
-   425		if (qcomtee_params_check(params, arg->num_params))
-   426			return -EINVAL;
-   427	
-   428		/* First, handle reserved operations: */
-   429		if (arg->op == QCOMTEE_OBJREF_OP_RELEASE) {
-   430			del_qtee_object(arg->object, ctxdata);
-   431	
-   432			return 0;
-   433		} else if (arg->op > QCOMTEE_OBJREF_OP_MIN) {
-   434			return -EINVAL;
-   435		}
-   436	
-   437		/* Otherwise, invoke a QTEE object: */
-   438	
- > 439		oic = kzalloc(sizeof(*oic), GFP_KERNEL);
-   440		if (!oic)
-   441			return -ENOMEM;
-   442	
-   443		/* +1 for ending QCOMTEE_ARG_TYPE_INV. */
- > 444		u = kcalloc(arg->num_params + 1, sizeof(*u), GFP_KERNEL);
-   445		if (!u)
-   446			return -ENOMEM;
-   447	
-   448		/* Get an object to invoke. */
-   449		if (arg->object == TEE_OBJREF_NULL) {
-   450			/* Use ROOT if TEE_OBJREF_NULL is invoked. */
-   451			if (qcomtee_root_object_check(arg->op, params, arg->num_params))
-   452				return -EINVAL;
-   453	
-   454			object = ROOT_QCOMTEE_OBJECT;
-   455		} else if (find_qtee_object(&object, arg->object, ctxdata)) {
-   456			return -EINVAL;
-   457		}
-   458	
-   459		ret = qcomtee_params_to_args(u, params, arg->num_params, ctx);
-   460		if (ret)
-   461			goto out;
-   462	
-   463		ret = qcomtee_object_do_invoke(oic, object, arg->op, u, &result);
-   464		if (ret) {
-   465			qcomtee_arg_for_each_input_object(i, u) {
-   466				qcomtee_user_object_set_notify(u[i].o, false);
-   467				qcomtee_object_put(u[i].o);
-   468			}
-   469	
-   470			goto out;
-   471		}
-   472	
-   473		if (!result) {
-   474			/* Assume service is UNAVAIL if unable to process the result. */
-   475			if (qcomtee_params_from_args(params, u, arg->num_params, ctx))
-   476				result = QCOMTEE_MSG_ERROR_UNAVAIL;
-   477		} else {
-   478			/*
-   479			 * qcomtee_params_to_args() gets a copy of IO for the driver to
-   480			 * make sure they do not get released while in the middle of
-   481			 * invocation. On success (!result), qcomtee_params_from_args()
-   482			 * puts them.
-   483			 */
-   484			qcomtee_arg_for_each_input_object(i, u)
-   485				qcomtee_object_put(u[i].o);
-   486		}
-   487	
-   488		arg->ret = result;
-   489	out:
-   490		qcomtee_object_put(object);
-   491	
-   492		return ret;
-   493	}
-   494	
-   495	/**
-   496	 * qcomtee_supp_recv() - Wait for a request for the supplicant.
-   497	 * @ctx: TEE context.
-   498	 * @op: requested operation on the object.
-   499	 * @num_params: number of elements in the parameter array.
-   500	 * @params: parameters for @op.
-   501	 *
-   502	 * The first parameter is a meta %TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INOUT.
-   503	 * On input, it provides a user buffer. This buffer is used for parameters of
-   504	 * type %TEE_IOCTL_PARAM_ATTR_TYPE_UBUF_INPUT in qcomtee_cb_params_from_args().
-   505	 * On output, the object ID and request ID are stored in the meta parameter.
-   506	 *
-   507	 * @num_params is updated to the number of parameters that actually exist
-   508	 * in @params on return.
-   509	 *
-   510	 * Return: On success, returns 0; on failure, returns < 0.
-   511	 */
-   512	static int qcomtee_supp_recv(struct tee_context *ctx, u32 *op, u32 *num_params,
-   513				     struct tee_param *params)
-   514	{
-   515		struct qcomtee_user_object_request_data data;
-   516		void __user *uaddr;
-   517		size_t ubuf_size;
-   518		int i, ret;
-   519	
-   520		if (!*num_params)
-   521			return -EINVAL;
-   522	
-   523		/* We expect the first parameter to be an INOUT + meta parameter. */
-   524		if (params->attr !=
-   525		    (TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INOUT | TEE_IOCTL_PARAM_ATTR_META))
-   526			return -EINVAL;
-   527	
-   528		/* Other parameters are none. */
-   529		for (i = 1; i < *num_params; i++)
-   530			if (params[i].attr)
-   531				return -EINVAL;
-   532	
-   533		if (!IS_ALIGNED(params->u.value.a, 8))
-   534			return -EINVAL;
-   535	
-   536		/* User buffer and size from meta parameter. */
-   537		uaddr = u64_to_user_ptr(params->u.value.a);
-   538		ubuf_size = params->u.value.b;
-   539		/* Process TEE parameters. +/-1 to ignore the meta parameter. */
-   540		ret = qcomtee_user_object_select(ctx, params + 1, *num_params - 1,
-   541						 uaddr, ubuf_size, &data);
-   542		if (ret)
-   543			return ret;
-   544	
-   545		params->u.value.a = data.object_id;
-   546		params->u.value.b = data.id;
-   547		params->u.value.c = 0;
-   548		*op = data.op;
-   549		*num_params = data.np + 1;
-   550	
-   551		return 0;
-   552	}
-   553	
-   554	/**
-   555	 * qcomtee_supp_send() - Submit a response for a request.
-   556	 * @ctx: TEE context.
-   557	 * @errno: return value for the request.
-   558	 * @num_params: number of elements in the parameter array.
-   559	 * @params: returned parameters.
-   560	 *
-   561	 * The first parameter is a meta %TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_OUTPUT.
-   562	 * It specifies the request ID this response belongs to.
-   563	 *
-   564	 * Return: On success, returns 0; on failure, returns < 0.
-   565	 */
-   566	static int qcomtee_supp_send(struct tee_context *ctx, u32 errno, u32 num_params,
-   567				     struct tee_param *params)
-   568	{
-   569		if (!num_params)
-   570			return -EINVAL;
-   571	
-   572		/* We expect the first parameter to be an OUTPUT + meta parameter. */
-   573		if (params->attr != (TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_OUTPUT |
-   574				     TEE_IOCTL_PARAM_ATTR_META))
-   575			return -EINVAL;
-   576	
-   577		/* Process TEE parameters. +/-1 to ignore the meta parameter. */
-   578		return qcomtee_user_object_submit(ctx, params + 1, num_params - 1,
-   579						  params->u.value.a, errno);
-   580	}
-   581	
-   582	static int qcomtee_open(struct tee_context *ctx)
-   583	{
-   584		struct qcomtee_context_data *ctxdata __free(kfree) = NULL;
-   585	
- > 586		ctxdata = kzalloc(sizeof(*ctxdata), GFP_KERNEL);
-   587		if (!ctxdata)
-   588			return -ENOMEM;
-   589	
-   590		idr_init(&ctxdata->qtee_objects_idr);
-   591		spin_lock_init(&ctxdata->qtee_lock);
-   592		idr_init(&ctxdata->reqs_idr);
-   593		INIT_LIST_HEAD(&ctxdata->reqs_list);
-   594		mutex_init(&ctxdata->reqs_lock);
-   595		init_completion(&ctxdata->req_c);
-   596	
-   597		ctx->data = no_free_ptr(ctxdata);
-   598	
-   599		return 0;
-   600	}
-   601	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
