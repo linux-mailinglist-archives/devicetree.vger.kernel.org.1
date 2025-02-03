@@ -1,224 +1,83 @@
-Return-Path: <devicetree+bounces-142797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58F81A26767
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:01:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3795EA26776
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:03:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1A8718835F0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:01:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE33C163A92
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ACB621170B;
-	Mon,  3 Feb 2025 23:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 354C9212B09;
+	Mon,  3 Feb 2025 23:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="TR1u7KMd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WVcI6wDT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EDE21147F
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 23:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6ECB21148D;
+	Mon,  3 Feb 2025 23:02:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738623686; cv=none; b=JSfrtNjQ5h+AtVN/4nam3BAqvxofOeedA9c9tEY1KLU1HcXGNzLXevOaJC8lFhYGmzcTU8Zc5CY2CMSYZs73rwhWQ7HipFdTze2unb5IZxsi0pJxijEXeWNHdiOJjYG9oYzOp0w1/g4UEs12MWTKzyC0TNPf7+NZLg2OkluBbeg=
+	t=1738623773; cv=none; b=tcTO8CVjsEzaSdiV9Mr3l4yTmdkiTaqiBnn2/xHQs0J7SS865+kGCZiRehqcPEW9TEQdqk9c2nmX444ATvno/IgUp9zziatL+v7ZhoQSeTI3uIawHlTb8/hAjeh7t4Gb5JsEIIZbQNkd9FndthrtAdSglIYvqmlP0B+UH0XCjtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738623686; c=relaxed/simple;
-	bh=JX6YgyI3XB5KZmwCC3kBcbBo+cVpHlL6lsPqGTgoxeA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y4hjKeVT7+sSzUY9kjtFcNNTBupLdnbHxcpIUAMp1S6jxCCgumnLC4A36tnoj/a0CP3Rz5qq8h3Jit8eWYN2Wqag+jl9Im3JiyCyF26yfWLMe+epKiH+jdZv0+kurbJatau84pr9la3eSKpBuXDKd+WUjUG/SEcA960yChdXkwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=TR1u7KMd; arc=none smtp.client-ip=209.85.167.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3eba559611aso1424870b6e.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 15:01:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738623681; x=1739228481; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q48N32/BZzAOoxhPyz3+9vdM39rBTv/9Tu2+c8AC5Nc=;
-        b=TR1u7KMdbhzMYP9oF0mbItwasEVKnR3dcvon5gwbwTryxzXJxf/p6WhbNNPjyf2MA1
-         cHEtllG4Z+HxCbHULwOmw3NXlrVOIAr83ucKd2YW9E8p1LnWCjwu7C9TMeZzmHZDQV4n
-         qVmtqIOD8nSAdF52CtzDHMo8fQD8nh7RGVyH3VzqlMHToDtQzpATsiA3VWLF+6gEiL9j
-         GyJRtYBLNLzFvw8n4re2GJwr2Zga+nv1JJDQoHan2UjMwEvhFLxWYx9DqrrQs4PO+8g+
-         kMUg1dFTXHUzuhwn8dZHFXDSwlyjt8fMFcEWCVVQhPKhS1d4BDtzq3Jc+KNAxoNe32IF
-         I6uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738623681; x=1739228481;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q48N32/BZzAOoxhPyz3+9vdM39rBTv/9Tu2+c8AC5Nc=;
-        b=Y0felzM7gnz5WkeyAvzLsOYwSqEhwwYIelWCfaoMAK333Zx7NFWsQJuz26jsdIoikx
-         m04Qo5KldEm9kHpRTcAef7L7+PAI5IN3VC2gPgg46Nv1Ojan0clPTSs+AD7rcanGDXix
-         uFE4oAruhQcAtxSbWZ34qjPw2787yduEg6+J8MhnCoKmUbu+OTNX1FC63LAejZNs2PfF
-         GmbTYke/kmt0Y7zSHeJO+ped7gIP6mLoqElNfOziY5VlHCC3byhBaezTyyljUJ1UlkOo
-         Z6Yc0XHVE3CFcgMyYy4xy6nX7d1f6rIVHWmtVgAy/G2HTjCWL/lGXFsxT0Mv5sXYHk8c
-         xK7w==
-X-Forwarded-Encrypted: i=1; AJvYcCU2vZHaudMc3ghoC48RN8SywLQOZEZJD6BSla7gHKTbKR+j9IcZmHpwZ0/MmXsrVtS/Rv5Dlg7dVNU4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUUl6/KjQ1Y+ECK7FuN1Kd40QrGII/UP/BD03g+w+kRCnQrSOp
-	h0MlF7lPlFLbGc2oiLW84u9wtYTNi0G6hPZF6SnMtZq9/76S2x7m0TLikUl2Jvs=
-X-Gm-Gg: ASbGncuSWu4A1WEBAcMUOvOJVzJsIlk21WfYR8SHE7Z2aEr8ZVRvs6J3GGUMwxlJozD
-	SimzCR9Doo2A0qrlKdCcu1Uh6VOPFeCmSWadK4P4z2JE2A9mhljPmdn0YimdicOA7u66CxMNi4F
-	FPaF8eRtGrFDgJplUj0/FTC8EWGBkeoNG4kTV8H7lvy/9oDbKaxemEif77855zSoAe9izMmTgSd
-	osaqtisXC+8/UItDwJ7XbB044cKeF/w2pTbCtRaMwdgt9+UpB66lY/f6EM82dHNEiFx+mXhlrQB
-	1i4MpQ4pDekOFWy2V1mseihfStopahOaTZnjRgHFN/ROt3YiViVu
-X-Google-Smtp-Source: AGHT+IFvQHZNew9RMVh3oMkAV8tgG3NqgZ2zFveyRCk4EzbOqbrzrj7jrDhOfm9blPA9OWsKbsUncQ==
-X-Received: by 2002:a05:6870:3127:b0:29e:55ae:6170 with SMTP id 586e51a60fabf-2b32f26ff66mr16402322fac.29.1738623681468;
-        Mon, 03 Feb 2025 15:01:21 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2b356196935sm3599125fac.17.2025.02.03.15.01.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Feb 2025 15:01:20 -0800 (PST)
-Message-ID: <9f209ff0-e56c-47a1-8df0-603d30d36ccb@baylibre.com>
-Date: Mon, 3 Feb 2025 17:01:18 -0600
+	s=arc-20240116; t=1738623773; c=relaxed/simple;
+	bh=Ik/acs2fxYmB9dYW8Lr6jv74jb0VD4Bwmp5LIbEzDys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JTiPvCEAucpkrAnKTHfuiiVg6rDSekBOFLW9WSMO6EKOgx64xnwMmmijVI44UCRfzxb8fdysz4LYj4iD67Pz8huneRUtwqI+F1QNZQpaCNFCZf32DmHkDyENoLbUOx/cXHunYQnVV/shfCdjrNsn6VbyZfScrJbENXEhMLeQ+y0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVcI6wDT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A8F6C2BC9E;
+	Mon,  3 Feb 2025 23:02:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738623773;
+	bh=Ik/acs2fxYmB9dYW8Lr6jv74jb0VD4Bwmp5LIbEzDys=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WVcI6wDTXmsDYqsZSukBYpA2p4ha4kYI4kTeNM0XStm+RENQDGbPN2lRiHl8IdwL5
+	 d0AvjLZBpsZDy6GTHUlrfSU8bTQ61mqlzwWULZNOsq29BkrNh2rdumME0xmmd8AgWf
+	 FCdtE2eRAba41HihXlXDouhUTaqm5mV5WD5DyLAZ9GYLxf7wCZm23PgoBrP7+ax0mI
+	 OUbxfIOFB0h9J7iwkqEUndQo7MhyaKY3bbm1/WVapXqiZ8dvAQfvcjlyW1T4UaK09U
+	 au7bfb9Kdgp462dR2h9y6Ibz5HWEJRxa3OmZLRewMK3QtTx7i9oovLZb74bmh9ulif
+	 vsFE1DuWzHb4g==
+Date: Mon, 3 Feb 2025 17:02:51 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jens Reidel <adrian@travitia.xyz>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux@mainlining.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, phone-devel@vger.kernel.org,
+	devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+	Luca Weiss <luca.weiss@fairphone.com>, linux-kernel@vger.kernel.org,
+	Bastien Nocera <hadess@hadess.net>, linux-input@vger.kernel.org,
+	Hans de Goede <hdegoede@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: input: goodix,gt9916: Document gt9897
+ compatible
+Message-ID: <173862377059.504653.11429517895166366748.robh@kernel.org>
+References: <20250203174309.21574-1-adrian@travitia.xyz>
+ <20250203174309.21574-2-adrian@travitia.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] docs: iio: add AD7191
-To: Alisa-Dariana Roman <alisadariana@gmail.com>,
- "Rob Herring (Arm)" <robh@kernel.org>,
- Alisa-Dariana Roman <alisa.roman@analog.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Ramona Gradinariu <ramona.bolboaca13@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>
-References: <20250203133254.313106-1-alisa.roman@analog.com>
- <20250203133254.313106-4-alisa.roman@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250203133254.313106-4-alisa.roman@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250203174309.21574-2-adrian@travitia.xyz>
 
-On 2/3/25 7:31 AM, Alisa-Dariana Roman wrote:
-> Add documentation for AD7191 driver.
+
+On Mon, 03 Feb 2025 18:43:08 +0100, Jens Reidel wrote:
+> Document the Goodix GT9897 which is a Berlin-A series touchscreen
+> controller IC by Goodix.
 > 
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+> Signed-off-by: Jens Reidel <adrian@travitia.xyz>
 > ---
->  Documentation/iio/ad7191.rst | 250 +++++++++++++++++++++++++++++++++++
->  Documentation/iio/index.rst  |   1 +
->  2 files changed, 251 insertions(+)
->  create mode 100644 Documentation/iio/ad7191.rst
+>  .../devicetree/bindings/input/touchscreen/goodix,gt9916.yaml     | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/iio/ad7191.rst b/Documentation/iio/ad7191.rst
-> new file mode 100644
-> index 000000000000..b55f3c13e45a
-> --- /dev/null
-> +++ b/Documentation/iio/ad7191.rst
-> @@ -0,0 +1,250 @@
-> +.. SPDX-License-Identifier: GPL-2.0-only
-> +
-> +==============
-> +AD7191 driver
-> +==============
-> +
-> +Device driver for Analog Devices AD7191 ADC.
-> +
-> +==================
-> +Supported devices
-> +==================
-> +
-> +* `AD7191 <https://www.analog.com/AD7191>`_
-> +
-> +The AD7191 is a high precision, low noise, 24-bit Σ-Δ ADC with integrated PGA.
-> +It features two differential input channels, an internal temperature sensor, and
-> +configurable sampling rates.
-> +
-> +=====================
-> +Device Configuration
-> +=====================
-> +
 
-I would call this section the `Devicetree/wiring` section since devicetree has
-to do with how the chip is wired up.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-The existing `Device Tree Bindings` section at the end pretty much just repeats
-the DT bindings .yml doc, so we could drop that section from this doc.
-
-What you have written in this section already covers it very well.
-
-> +--------------------
-> +Pin Configuration
-> +--------------------
-
-I think it looks the nicest when the --- exactly line up with the text and I
-think that is the usual kernel style as well.
-
-Example:
-
------------------
-Pin Configuration
------------------
-
-Same applies to the rest of the doc.
-
-
-> +===================
-> +Device Attributes
-> +===================
-
-There isn't really anything unusual about attributes on this chip compared to
-typical ADCs, so I would be OK if we left out this section. If we do keep it
-though, I think we should write out the full attribute name since some are
-separate, some shared_by_type and some shared_by_all, so they have different
-prefixes.
-
-> +
-> +The AD7191 provides several attributes through the IIO sysfs interface:
-> +
-> +-----------------------------------
-> +Voltage Input Differential Channels
-> +-----------------------------------
-> +
-> ++-------------------+----------------------------------------------------------+
-> +| Attribute         | Description                                              |
-> ++===================+==========================================================+
-> +| raw               | Raw ADC output value                                     |
-> ++-------------------+----------------------------------------------------------+
-> +| scale             | Scale factor to convert raw value to voltage             |
-> ++-------------------+----------------------------------------------------------+
-> +| offset            | Voltage offset                                           |
-> ++-------------------+----------------------------------------------------------+
-> +| sampling_frequency| Current sampling frequency setting                       |
-> ++-------------------+----------------------------------------------------------+
-> +
-> +--------------------
-> +Temperature Sensor
-> +--------------------
-> +
-> ++-------------------+----------------------------------------------------------+
-> +| Attribute         | Description                                              |
-> ++===================+==========================================================+
-> +| raw               | Raw temperature sensor output value                      |
-> ++-------------------+----------------------------------------------------------+
-> +| scale             | Scale factor to convert raw value to temperature         |
-> ++-------------------+----------------------------------------------------------+
-> +| offset            | Temperature calibration offset                           |
-> ++-------------------+----------------------------------------------------------+
-> +
-> +--------------------
-> +Available Attributes
-> +--------------------
-> +
-> +The following attributes show available configuration options:
-> +
-> +- sampling_frequency_available: List of supported sampling frequencies
-> +- scale_available: List of supported scale factors (based on PGA settings)
-> +
-
-One of these days, we should probably write a generic page on the common
-attributes raw/scale/offset and somewhat common sampling_frequency/
-oversampling_ratio (probably a few more that I'm forgetting). :-)
 
