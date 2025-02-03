@@ -1,113 +1,82 @@
-Return-Path: <devicetree+bounces-142344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FFE6A250E2
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 01:40:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D15E8A25128
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 02:51:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1B781632D4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 00:40:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EA97163029
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 01:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2ED7A957;
-	Mon,  3 Feb 2025 00:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PyqpF2fb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33BF111A8;
+	Mon,  3 Feb 2025 01:51:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2988A923;
-	Mon,  3 Feb 2025 00:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCC56136;
+	Mon,  3 Feb 2025 01:51:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738543224; cv=none; b=iU+4x5uylLtjp+ICG0/8gT4nrrrpwpmMhApCa6DOyWJ7Vvgc6kQ3QnXmsPPOE4hJQW0+M4wPCihCQ6VuHByAJV6qRnH6+RLeRWSaMORKlsS8dsRv2fmg28tE7v8KpXouu/8W0IbHKfiO5fI1Ny4CdsCgAwYkRPkfF5k6L/weKoE=
+	t=1738547507; cv=none; b=HXv9oSjwrsc+e1tNjklIDJQ48c0ZqPBiR0Aekc80zcJIq+kOxB0FmLq5Zfxqar3UBgOay4RTeYgqcv99jU332adkTk+IYgz5Gi3qrzUaExAlwU4KQXVTPc22XcFHjeHgGyRm/utb1ZsXmO/ree5+d3XJAiow7yt+sejV5jrOstc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738543224; c=relaxed/simple;
-	bh=yFpcQjapUhFlMoyn5dZeQvZi9M6hLoZut6pJ5JCbk14=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pLqepNhVFtgLkHSJkadRn0KfonWgMmptEZDzxp2Bs+23Q5ps+p4rb7QaHI80jmx7K/KRGdgXEirRj1BG9jABokhjlfg9pt8ntcM2CREHT2BdriQh/aiNHoqjUwqF4Nf/i0el+7/I+fTeGhq+CJLovIxIPiahty6bkgmdophsvGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PyqpF2fb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9B5DC4CED1;
-	Mon,  3 Feb 2025 00:40:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738543224;
-	bh=yFpcQjapUhFlMoyn5dZeQvZi9M6hLoZut6pJ5JCbk14=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PyqpF2fbdQoud7wT9cT5VNhwC3PlncrxVJleMZ9HJltM9HR7hyuozrikXWCzAgUH1
-	 uy1WXVX57L6zz0y7hh49r0kqp59Nez6LKrPcWEb+pQoF5sK1X8IIH8ZGZRod/suNSi
-	 KSuk6xfAcz83JBOCWVfUMuZPwG2PrbM8JamR11efyWt0IQpT9mmczn3VarUu5Hu8zI
-	 wPBDLU16cCtg0X6CJqhFd/JeK4e32MevH8q5vFgp1V+CdPkv9UU5OuAMSXC0ZF+cDy
-	 iM3ZET1cPICtVzU7JA3+9HT1QWHxBK4u3L6cbvyrWp23vPEr78YzPWU2kiR/7WcY/x
-	 0YZD3VVvRxlDQ==
-Date: Mon, 3 Feb 2025 00:40:13 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, aaro.koskinen@iki.fi, andreas@kemnade.info,
-	khilman@baylibre.com, rogerq@kernel.org, tony@atomide.com,
-	jerome.neanne@baylibre.com, linux-omap@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	m-leonard@ti.com, praneeth@ti.com, christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v1 1/2] regulator: dt-bindings: Add TI TPS65214 PMIC
- bindings
-Message-ID: <8f5ed865-cd21-4b20-af17-dfc52e28b4d3@sirena.org.uk>
-References: <20250116223740.429515-1-s-ramamoorthy@ti.com>
- <20250116223740.429515-2-s-ramamoorthy@ti.com>
+	s=arc-20240116; t=1738547507; c=relaxed/simple;
+	bh=yyavM60DxR6SYYgvBwO70UChJbDUQ0j1pOFNYqME7HY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=h4077nnrNd6V7+6sBp+s1PWbDI6xdQr8HvC15HkAsODLDAxPcEkm2GBpvK1X0asDZsSLsS4ZpF06mx+Ye422D/PXk9G4ZqmuWF/0MG1ixEbmNPZBSJCCWxw4l0CCjIYW7xYVm77QGUI81g/PmfZ5wtj7oyV7cIP9Ku+jmAHgkG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from hay.lan. (unknown [IPv6:2605:59c0:20f3:a400:6ecf:39ff:fe00:8375])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id B841EB2232DD;
+	Mon,  3 Feb 2025 02:41:35 +0100 (CET)
+From: E Shattow <e@freeshell.de>
+To: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	E Shattow <e@freeshell.de>
+Subject: [PATCH v2 0/5] riscv: dts: starfive: jh7110-common: Sync downstream U-Boot changes
+Date: Sun,  2 Feb 2025 17:37:06 -0800
+Message-ID: <20250203013730.269558-1-e@freeshell.de>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Dq0AMyPFi9HfGhlH"
-Content-Disposition: inline
-In-Reply-To: <20250116223740.429515-2-s-ramamoorthy@ti.com>
-X-Cookie: Monitor not included.
+Content-Transfer-Encoding: 8bit
+
+U-Boot boot loader has adopted using the Linux dt-rebasing tree for dts
+with StarFive VisionFive2 board target (and related JH7110 common boards).
+Sync the minimum changes from jh7110-common.dtsi needed for boot so these
+can be dropped from U-Boot.
+
+Changes since v1:
+  Do not set unused eeprom label.
+  Do not set no-op zero-value assigned-clock-rates, adjust commit message.
+
+E Shattow (5):
+  riscv: dts: starfive: jh7110-common: replace syscrg clock assignments
+  riscv: dts: starfive: jh7110-common: qspi flash setting read-delay 2
+    cycles max 100MHz
+  riscv: dts: starfive: jh7110-common: assign 24MHz clock-frequency to
+    uart0
+  riscv: dts: starfive: jh7110-common: add eeprom node to i2c5
+  riscv: dts: starfive: jh7110-common: bootph-pre-ram hinting needed by
+    boot  loader
+
+ .../boot/dts/starfive/jh7110-common.dtsi      | 28 +++++++++++++++----
+ 1 file changed, 23 insertions(+), 5 deletions(-)
 
 
---Dq0AMyPFi9HfGhlH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+base-commit: 708d55db3edbe2ccf88d94b5f2e2b404bc0ba37c
+-- 
+2.47.2
 
-On Thu, Jan 16, 2025 at 04:37:39PM -0600, Shree Ramamoorthy wrote:
-> - TPS65214 is a Power Management IC with 3 Buck regulators and 2 LDOs.
-> - TPS65214 has 2 LDOS and 1 GPO, whereas TPS65219 has 4 LDOs and 2 GPOs.
-> - TPS65214's LDO1 maps to TPS65219's LDO3.
-> - A key difference between TPS65215 & TPS65214 are the LDO current and
->   voltage output ranges and the configurable options available.
-> - The remaining features for both devices are the same.
->=20
-> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-> ---
->  .../bindings/regulator/ti,tps65219.yaml          | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
-
-This doesn't apply against current code, please check and resend:
-
-Applying: regulator: dt-bindings: Add TI TPS65214 PMIC bindings
-error: sha1 information is lacking or useless (Documentation/devicetree/bin=
-dings/regulator/ti,tps65219.yaml).
-error: could not build fake ancestor
-Patch failed at 0001 regulator: dt-bindings: Add TI TPS65214 PMIC bindings
-
---Dq0AMyPFi9HfGhlH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmegEGwACgkQJNaLcl1U
-h9Bj6gf/bscQ3ay2ZunvUqfVUvNiyLmEX8Q4ni7nSi5pFiUOC/L7OUdCFkvSe85t
-KbGgK+XtDI0IMRKPc1rqbWyGdqXgi7p7EIWumGwAhXGQfPGqMvtu70auiHla/Vrs
-DST9xViPAsqBiE/LmHlVS8zIWbDfTiuDjI1m1x5298ZD4v3+Wj9oD+v28LJr5yD7
-C6uqWjJNRALZMTiPc8bbT0m42dsI6RKxCOcXs0b6H6gyq6FAHKYF44S5CPadSR8S
-fMFN2hsx+JBAHxuf/VI2NH1CBrcIjokyR2bjTfArgw1+Rsa0v77LSFPvssI9l+O3
-gqKzSJdFGI8epL7Qn3mOQJY1QQE0dA==
-=FC/2
------END PGP SIGNATURE-----
-
---Dq0AMyPFi9HfGhlH--
 
