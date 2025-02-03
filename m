@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-142701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 530FEA2626B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 19:30:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA93AA26270
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 19:30:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 294B71881E17
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:30:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96D8D3A7218
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 18:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 541A62116F2;
-	Mon,  3 Feb 2025 18:28:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CFFF20E71C;
+	Mon,  3 Feb 2025 18:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hnbbm+8d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cZBsriQZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 135F120F098;
-	Mon,  3 Feb 2025 18:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42D820E02A;
+	Mon,  3 Feb 2025 18:28:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738607282; cv=none; b=i/CF/cylkS1O9o2AkmqdSwEYYTxmXprlEa2wVzppF8ifSZc8RJ6sq7tTGuqdOF99unwyY8wSY4Qoom0dgPtNsJg/ITKt6zkN1UvyANxMvL9QJyA89OxUz7PF1/eLLk6P7apgfdKwQN/fcdomVCdSCZNgc2o3xg1aff6VIiK/pfE=
+	t=1738607304; cv=none; b=Bbc4vQ+Rc4qgZuHbbL7GOE/iXX+HuWfUE5LXSJ9gI38K53njWozy6fymqOvFi/XGukq3uoE+o5/tYsmFt3MFB50iLXqzrIkZ85pfB1qoXWEHEbMAVeGaYzlKkKrbzCQoTSdGrZjmaLG5XikaJoQCM7632/eQOf3aqLXmTtUiTzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738607282; c=relaxed/simple;
-	bh=j6QY1ALFobq2N/DPHsWZlH3iFEMeCCQWmy90WW7dn2Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F89VCBHg+BQwLrdHhM3PTVr4To25vcshpyZdo4l2PCpJqYWlNKF4F4KRWzFHHPLIPg+Q/iU40hxM+iftSOlKZzTY963yZO3tjUsZG4nHdAn6ZwBvumzOLop8qP5L/+7sjqTybzBrfMcjtoR2ZMUXqPpcDG6f2+rD2fzf1xKsQ5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hnbbm+8d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEA4EC4CED2;
-	Mon,  3 Feb 2025 18:28:00 +0000 (UTC)
+	s=arc-20240116; t=1738607304; c=relaxed/simple;
+	bh=1c8bbSUiSo4k8NW3nonAQq0DtXPO5ln/b9UfOacx1H8=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=BcJcveia5+qFHUgPsOLSR5N+zqm6eldvUcuv51ZXk5XPZpfWhR39WzXxMQFfA9HuzhD0PL0781x7B9/O3B8sYWlp9NW2UyXBs+PmID9HwgHdvP+ses6QkIaYdajF7QGiJmiLYBX7lo1m2T9cdp468d/Db/OpI1DbknzQFkrEWRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cZBsriQZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 265CAC4CED2;
+	Mon,  3 Feb 2025 18:28:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738607281;
-	bh=j6QY1ALFobq2N/DPHsWZlH3iFEMeCCQWmy90WW7dn2Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hnbbm+8dCFdJki12PScz0Xj4K8W3cpni97cZY48MKKCvm7A0fXXY/fGXjPsIlTKc7
-	 9++SiKYwLFw1xi8l/+HEPpwTh/utHMczHLtONvMwnfV9cjGh7vTxl0EtqDhBbJ30Cb
-	 cCzx/Db6rXfU5K07mW/8GAMyoD+XH+5bmFWgN5PphmDOulC5rCk1DgE2PrmckCBGtT
-	 dStaGDzsbrNVfjNp9Cd0HirGfgLxMMAJJ8N32JL/yYr4C9GNUR1XomebDo9OSv9ecu
-	 zOKEtdvyf1VBzxYtbJMXT1TiKERAT8Q9DTY80s7TIEoYcGohUdkpkbZ1lwNGA5/zGr
-	 513x/O4iV5XjQ==
-Date: Mon, 3 Feb 2025 12:27:59 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: tomi.valkeinen@ideasonboard.com, tzimmermann@suse.de,
-	conor+dt@kernel.org, praneeth@ti.com, vigneshr@ti.com,
-	maarten.lankhorst@linux.intel.com, s-jain1@ti.com, simona@ffwll.ch,
-	airlied@gmail.com, dri-devel@lists.freedesktop.org,
-	r-donadkar@ti.com, devicetree@vger.kernel.org, j-choudhary@ti.com,
-	aradhya.bhatia@linux.dev, linux-kernel@vger.kernel.org,
-	h-shenoy@ti.com, krzysztof.kozlowski@linaro.org, krzk+dt@kernel.org,
-	jyri.sarha@iki.fi, mripard@kernel.org
-Subject: Re: [PATCH v2] dt-bindings: display: ti: Fix compatible for am62a7
- dss
-Message-ID: <173860727794.3352453.14301718625197300615.robh@kernel.org>
-References: <20250203155431.2174170-1-devarsht@ti.com>
+	s=k20201202; t=1738607304;
+	bh=1c8bbSUiSo4k8NW3nonAQq0DtXPO5ln/b9UfOacx1H8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=cZBsriQZS1EwV0AZh5a0GP9X+ElOuP4MjVxLs9jgJi7FkWZb2mN3+1JtGmjoAWp43
+	 uxKpNOplcQiQKkYWc3XPI9lj11Apz8ognBtTHtE2kztPhAYrddwkCXhedx/mSewdjg
+	 YZTEynI2WTmFBgo3X1Vj/uw97PQIWOoKWO/wOr2TmNq98RNB2sXYpj6yoQTnlFtH1N
+	 hL3slYQfbzsQqKi/o9RuX8KWXSTao6sGaEVs4fh0EcByDQfnrcvZ1Vbd6QV7JHGsil
+	 7EYXoYeabyNYQGfRRu3MAmeVeyCb1AQUBOn85y8XRLYgs2VygAjTZQhrrZNek7ejSo
+	 TDJMRoCUnoXsg==
+Date: Mon, 3 Feb 2025 12:28:22 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jingoohan1@gmail.com, michal.simek@amd.com,
+	bharat.kumar.gogada@amd.com
+Subject: Re: [PATCH v8 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
+Message-ID: <20250203182822.GA793389@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,25 +60,200 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250203155431.2174170-1-devarsht@ti.com>
+In-Reply-To: <20250129113029.64841-4-thippeswamy.havalige@amd.com>
 
+On Wed, Jan 29, 2025 at 05:00:29PM +0530, Thippeswamy Havalige wrote:
+> Add support for AMD MDB (Multimedia DMA Bridge) IP core as Root Port.
 
-On Mon, 03 Feb 2025 21:24:31 +0530, Devarsh Thakkar wrote:
-> Fix incorrect format of compatible string (comma instead of hyphen) for
-> TI's AM62A7 SoC.
-> 
-> s/ti,am62a7,dss/ti,am62a7-dss
-> 
-> Fixes: 7959ceb767e4 ("dt-bindings: display: ti: Add support for am62a7 dss")
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> ---
-> V2: Add Reviewed-by and update commit msg
-> ---
->  Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+> +#define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
+> +#define AMD_MDB_TLP_IR_MASK_MISC		0x4C4
+> +#define AMD_MDB_TLP_IR_ENABLE_MISC		0x4C8
+> +
+> +#define AMD_MDB_PCIE_IDRN_SHIFT			16
 
-Applied, thanks!
+Remove this _SHIFT #define and use something like this instead:
 
+  #define AMD_MDB_PCIE_INTX_BIT(x) FIELD_PREP(AMD_MDB_TLP_PCIE_INTX_MASK, BIT(x))
+
+I don't know what exactly the right name for that is; it looks like
+maybe these bits apply to all the above registers
+(AMD_MDB_TLP_IR_STATUS_MISC, AMD_MDB_TLP_IR_MASK_MISC,
+AMD_MDB_TLP_IR_ENABLE_MISC)
+
+> +#define AMD_MDB_PCIE_INTR_INTA_ASSERT		16
+> +#define AMD_MDB_PCIE_INTR_INTB_ASSERT		18
+> +#define AMD_MDB_PCIE_INTR_INTC_ASSERT		20
+> +#define AMD_MDB_PCIE_INTR_INTD_ASSERT		22
+
+It's kind of weird that these skip the odd-numbered bits, since
+dw_pcie_rp_intx_flow(), amd_mdb_mask_intx_irq(),
+amd_mdb_unmask_intx_irq() only use bits 19:16.  Something seems wrong
+and needs either a fix or a comment about why this is the way it is.
+
+> +#define IMR(x) BIT(AMD_MDB_PCIE_INTR_ ##x)
+> +#define AMD_MDB_PCIE_IMR_ALL_MASK			\
+> +	(						\
+> +		IMR(CMPL_TIMEOUT)	|		\
+> +		IMR(INTA_ASSERT)	|		\
+> +		IMR(INTB_ASSERT)	|		\
+> +		IMR(INTC_ASSERT)	|		\
+> +		IMR(INTD_ASSERT)	|		\
+> +		IMR(PM_PME_RCVD)	|		\
+> +		IMR(PME_TO_ACK_RCVD)	|		\
+> +		IMR(MISC_CORRECTABLE)	|		\
+> +		IMR(NONFATAL)		|		\
+> +		IMR(FATAL)				\
+> +	)
+> +
+> +#define AMD_MDB_TLP_PCIE_INTX_MASK	GENMASK(23, 16)
+
+I would drop AMD_MDB_PCIE_INTR_INTA_ASSERT, etc, and just use
+AMD_MDB_TLP_PCIE_INTX_MASK in the AMD_MDB_PCIE_IMR_ALL_MASK
+definition.
+
+If there are really eight bits of INTx-related things here for the
+four INTx interrupts, I think you should make two #defines to separate
+them out.
+
+> +static void amd_mdb_mask_intx_irq(struct irq_data *data)
+> +{
+> +	struct amd_mdb_pcie *pcie = irq_data_get_irq_chip_data(data);
+> +	struct dw_pcie *pci = &pcie->pci;
+> +	struct dw_pcie_rp *port = &pci->pp;
+> +	unsigned long flags;
+> +	u32 mask, val;
+> +
+> +	mask = BIT(data->hwirq + AMD_MDB_PCIE_IDRN_SHIFT);
+> +
+> +	raw_spin_lock_irqsave(&port->lock, flags);
+> +	val = pcie_read(pcie, AMD_MDB_TLP_IR_MASK_MISC);
+
+  val &= ~AMD_MDB_PCIE_INTX_BIT(data->hwirq);
+  pcie_write(pcie, val, AMD_MDB_TLP_IR_ENABLE_MISC);
+
+> +	pcie_write(pcie, (val & (~mask)), AMD_MDB_TLP_IR_ENABLE_MISC);
+> +	raw_spin_unlock_irqrestore(&port->lock, flags);
+> +}
+> +
+> +static void amd_mdb_unmask_intx_irq(struct irq_data *data)
+> +{
+> +	struct amd_mdb_pcie *pcie = irq_data_get_irq_chip_data(data);
+> +	struct dw_pcie *pci = &pcie->pci;
+> +	struct dw_pcie_rp *port = &pci->pp;
+> +	unsigned long flags;
+> +	u32 mask;
+> +	u32 val;
+> +
+> +	mask = BIT(data->hwirq + AMD_MDB_PCIE_IDRN_SHIFT);
+> +
+> +	raw_spin_lock_irqsave(&port->lock, flags);
+> +	val = pcie_read(pcie, AMD_MDB_TLP_IR_MASK_MISC);
+
+  val |= AMD_MDB_PCIE_INTX_BIT(data->hwirq);
+
+> +	pcie_write(pcie, (val | mask), AMD_MDB_TLP_IR_ENABLE_MISC);
+> +	raw_spin_unlock_irqrestore(&port->lock, flags);
+> +}
+> +
+> +static struct irq_chip amd_mdb_intx_irq_chip = {
+> +	.name		= "AMD MDB INTx",
+> +	.irq_mask	= amd_mdb_mask_intx_irq,
+> +	.irq_unmask	= amd_mdb_unmask_intx_irq,
+
+Prefer
+
+  .irq_mask       = amd_mdb_intx_irq_mask,
+  .irq_unmask     = amd_mdb_intx_irq_unmask,
+
+so the function names match the grep pattern of the function pointers
+(".*_irq_mask").
+
+> +static struct irq_chip amd_mdb_event_irq_chip = {
+> +	.name		= "AMD MDB RC-Event",
+> +	.irq_mask	= amd_mdb_mask_event_irq,
+> +	.irq_unmask	= amd_mdb_unmask_event_irq,
+
+Same function name comment.
+
+> +static irqreturn_t dw_pcie_rp_intx_flow(int irq, void *args)
+> +{
+> +	struct amd_mdb_pcie *pcie = args;
+> +	unsigned long val;
+> +	int i;
+> +
+> +	val = FIELD_GET(AMD_MDB_TLP_PCIE_INTX_MASK,
+> +			pcie_read(pcie, AMD_MDB_TLP_IR_STATUS_MISC));
+> +
+> +	for_each_set_bit(i, &val, 4)
+
+  for_each_set_bit(..., PCI_NUM_INTX)
+
+> +		generic_handle_domain_irq(pcie->intx_domain, i);
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+> +
+> +static irqreturn_t amd_mdb_pcie_intr_handler(int irq, void *args)
+> +{
+> +	struct amd_mdb_pcie *pcie = args;
+> +	struct device *dev;
+> +	struct irq_data *d;
+> +
+> +	dev = pcie->pci.dev;
+> +
+> +	d = irq_domain_get_irq_data(pcie->mdb_domain, irq);
+> +	if (intr_cause[d->hwirq].str)
+> +		dev_warn(dev, "%s\n", intr_cause[d->hwirq].str);
+> +	else
+> +		dev_warn_once(dev, "Unknown IRQ %ld\n", d->hwirq);
+
+What's the point of an interrupt handler that only logs it?
+
+> +	return IRQ_HANDLED;
+> +}
+
+> +static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
+> +				 struct platform_device *pdev)
+> +{
+> +	struct dw_pcie *pci = &pcie->pci;
+> +	struct dw_pcie_rp *pp = &pci->pp;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	pcie->slcr = devm_platform_ioremap_resource_byname(pdev, "slcr");
+> +	if (IS_ERR(pcie->slcr))
+> +		return PTR_ERR(pcie->slcr);
+> +
+> +	ret = amd_mdb_pcie_init_irq_domains(pcie, pdev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	amd_mdb_pcie_init_port(pcie);
+
+amd_mdb_pcie_init_port() doesn't initialize anything other than
+disabling/clearing/enabling interrupts.  Seems like it could be
+squashed into amd_mdb_setup_irq() or called from there so it's
+obvious that it's interrupt-related.
+
+> +	ret = amd_mdb_setup_irq(pcie, pdev);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to set up interrupts\n");
+> +		goto out;
+> +	}
+> +
+> +	pp->ops = &amd_mdb_pcie_host_ops;
+> +
+> +	ret = dw_pcie_host_init(pp);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to initialize host\n");
+> +		goto out;
+> +	}
+> +
+> +	return 0;
+> +
+> +out:
+> +	amd_mdb_pcie_free_irq_domains(pcie);
+> +	return ret;
+> +}
 
