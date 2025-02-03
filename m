@@ -1,136 +1,162 @@
-Return-Path: <devicetree+bounces-142784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC4A4A26660
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:07:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57DA5A26669
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:12:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FF76165291
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 22:07:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D07041653DF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 22:12:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A7F209684;
-	Mon,  3 Feb 2025 22:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172BE209684;
+	Mon,  3 Feb 2025 22:12:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V+hxIZm6"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Ue2x718p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51395182B4;
-	Mon,  3 Feb 2025 22:06:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1594C182B4;
+	Mon,  3 Feb 2025 22:12:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738620417; cv=none; b=riLSMeQ6qPLzvVVJT2riwOhVkt8JCeMGE2A9uYVyHVwZPFgGu2Xg9KQ3WGfA1P4ak67LCUeK0OMdnarY4FSfwI1q9w9CGUih8M7qXivzAoUI48MvwMpmxbUTcY9YA0CL/bEE24PEUxthFjnt2OegNGfBZZjRNvqLYrfQiv6WGBk=
+	t=1738620764; cv=none; b=Nf2DCPWuWN9Mesout6gG60ITiMESwLXwzhbtsM9xexH8UaJdU6O2z6NWyfvHY8yxCAyfuZZb0Fu6Iptg2sruMe4pP17uYcDqSS26+ScYcns4MaO6xvASCA4ff6G3AIkpa4QzqzNSLNpZCFW5/fWilmUNc/c1P5HAvv4EasLpKws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738620417; c=relaxed/simple;
-	bh=OPQj1Abt3xsx43s9Y7uZoXay8fLRxRNIDzNqC0JHfuU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z5V31gBKvBJnu8bOHZM/T703XhOdhjTGeQ4N8AKAFqhcIQ/1LTq56MAlEJL0GUToLFsQwsgCyJvtWrudvaL8XMOoKqFq9oB2BTbO5rIiHuo73xIGrJsrd+SEiIypmeojflHYrpIs2Xih7B9i9jMxLI5Mv6GG/+bE+GVsBZ3VBes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V+hxIZm6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C982C4CED2;
-	Mon,  3 Feb 2025 22:06:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738620416;
-	bh=OPQj1Abt3xsx43s9Y7uZoXay8fLRxRNIDzNqC0JHfuU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V+hxIZm69ec87/kixoCd7sjM5/QXCqZOvZubHEi9QPXScZMTZ73pCrWL6DBEKZEA0
-	 M0vThFr4EA0C1QmAK6oshEBEuNR4VKhqb5cn6tr+z8ViUlGaUVZa/7EZmP3ljnQ5Al
-	 PxP8pkQnMguBWsQpLERdnpHB3yLFOPRmSQ+ntL8j3JxE+VRzyKGfAfV4/Jz91c9X60
-	 nnvtOvjWLXnZH+k26K5p3FwqFYKfG/v87rpSW7Wtiy14YMl09x380kiBhr93acWWGH
-	 ceQnfBYSe8by5T/CoXXRxE+yLxDxgysHiuKwHCb3z8FyPQyro3HoHa52w9pMaFCCQ1
-	 3YyJ2+kAmEhYw==
-Date: Mon, 3 Feb 2025 16:06:55 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, "Guoniu.zhou" <guoniu.zhou@nxp.com>,
-	Robby Cai <robby.cai@nxp.com>,
-	Robert Chiras <robert.chiras@nxp.com>
-Subject: Re: [PATCH 03/14] dt-bindings: reset: Add reset controller for
- i.MX8QM and i.MX8QXP
-Message-ID: <20250203220655.GA123074-robh@kernel.org>
-References: <20250131-8qxp_camera-v1-0-319402ab606a@nxp.com>
- <20250131-8qxp_camera-v1-3-319402ab606a@nxp.com>
+	s=arc-20240116; t=1738620764; c=relaxed/simple;
+	bh=NsRTrXKomzHTefKbNl8Fxxih3U7UqON2ERThnZ0x/YY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Gk8nCquMJI/Pj8XJRoSx5wYlaPIoZxtUbnv8b54vIFlSoQLtZWHVwIFOu/zyrrYYcJ1kqgZXGv8gPFhJHEVU7Tkbjz48ObroMJMjE8FJ22vmSf7mfbmfksR2JOqmahpWSuLOXo1oZQM+chUqfsAB81Nzk0wPkVC4jyGRkgZm3WE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Ue2x718p; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 513MCZbG2218398
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Mon, 3 Feb 2025 16:12:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1738620755;
+	bh=OfI9dlLcSjW6HM4VB+FL+prEF7OaRxVLjKZpK9XkkAs=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Ue2x718piSpMFvKdib39neMBkky7Ugk6w3cDbVaR0ZJLKXQgpHuMspFfW84AgKqOY
+	 U4751Rk+D96+MjZugGZX6WeQCqUcADXDBPUQn1A7xLBh/n/Bv3ZCoTOwL+2pJDaP/3
+	 ufZiSKPCXrIE6h61DHA0vyePvmo79mAmxuBszfMA=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 513MCZm1065356;
+	Mon, 3 Feb 2025 16:12:35 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 3
+ Feb 2025 16:12:35 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 3 Feb 2025 16:12:35 -0600
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 513MCZB6086602;
+	Mon, 3 Feb 2025 16:12:35 -0600
+Message-ID: <6fe74c50-1430-4556-90b5-f635fb48e6fb@ti.com>
+Date: Mon, 3 Feb 2025 16:12:35 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250131-8qxp_camera-v1-3-319402ab606a@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/9] arm64: dts: ti: k3-am62-wakeup: Add wakeup r5f
+ node
+To: Andrew Davis <afd@ti.com>, <devicetree@vger.kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Hari Nagalla <hnagalla@ti.com>, Nishanth
+ Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20250131214611.3288742-1-jm@ti.com>
+ <20250131214611.3288742-2-jm@ti.com>
+ <1c2c67b7-987e-4b92-b0be-c0b2f25adae6@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <1c2c67b7-987e-4b92-b0be-c0b2f25adae6@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, Jan 31, 2025 at 04:33:48PM -0500, Frank Li wrote:
-> Add binding doc for reset controller of i.MX8QM and i.MX8QXP, which use
-> System Controller Firmware(SCU) reset some peripherals, such as CSI.
+Hi Andrew,
+
+On 1/31/25 5:40 PM, Andrew Davis wrote:
+> On 1/31/25 3:46 PM, Judith Mendez wrote:
+>> From: Hari Nagalla <hnagalla@ti.com>
+>>
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/reset/fsl,imx-scu.yaml     | 35 ++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
+> Subject should capitalize R5F
+
+Will fix in v3, thanks
+
 > 
-> diff --git a/Documentation/devicetree/bindings/reset/fsl,imx-scu.yaml b/Documentation/devicetree/bindings/reset/fsl,imx-scu.yaml
-> new file mode 100644
-> index 0000000000000..6046df8723262
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/fsl,imx-scu.yaml
-> @@ -0,0 +1,35 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/fsl,imx-scu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8 SCU Reset
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +description:
-> +  i.MX8QM and i.MX8QXP System Controller Firmware(SCU) provide reset for
-> +  some peripheral.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx-scu-reset
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - '#reset-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    reset-controller {
-> +        compatible = "fsl,imx-scu-reset";
-> +        #reset-cells = <1>;
+>> AM62 SoC devices have a single core R5F processor in wakeup domain.
+>> The R5F processor in wakeup domain is used as a device manager
+>> for the SoC.
+>>
+>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>> Changes since v1:
+>> - disable each device node in the voltage domain files and
+>>    enable at the board level file
+>> - fix firmware names
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 25 ++++++++++++++++++++++
+>>   1 file changed, 25 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>> index 9b8a1f85aa15c..12b1520974ade 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>> @@ -106,6 +106,31 @@ wkup_rti0: watchdog@2b000000 {
+>>           status = "reserved";
+>>       };
+>> +    wkup_r5fss0: r5fss@78000000 {
+>> +        compatible = "ti,am62-r5fss";
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges = <0x78000000 0x00 0x78000000 0x8000>,
+>> +                 <0x78100000 0x00 0x78100000 0x8000>;
+> 
+> Odd alignment, looks like you have an extra tab on the above line
 
-This should just be a property in the parent SCU node. You don't need a 
-node for every provider.
+Hmm missed this, thanks will fix.
 
-We need a binding for the SCU as a whole.
+~ Judith
 
-Rob
+> 
+> Andrew
+> 
+>> +        power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
+>> +        status = "disabled";
+>> +
+>> +        wkup_r5fss0_core0: r5f@78000000 {
+>> +            compatible = "ti,am62-r5f";
+>> +            reg = <0x78000000 0x00008000>,
+>> +                  <0x78100000 0x00008000>;
+>> +            reg-names = "atcm", "btcm";
+>> +            ti,sci = <&dmsc>;
+>> +            ti,sci-dev-id = <121>;
+>> +            ti,sci-proc-ids = <0x01 0xff>;
+>> +            resets = <&k3_reset 121 1>;
+>> +            firmware-name = "am62-wkup-r5f0_0-fw";
+>> +            ti,atcm-enable = <1>;
+>> +            ti,btcm-enable = <1>;
+>> +            ti,loczrama = <1>;
+>> +        };
+>> +    };
+>> +
+>>       wkup_vtm0: temperature-sensor@b00000 {
+>>           compatible = "ti,j7200-vtm";
+>>           reg = <0x00 0xb00000 0x00 0x400>,
+
 
