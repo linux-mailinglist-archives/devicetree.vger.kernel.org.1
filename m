@@ -1,194 +1,289 @@
-Return-Path: <devicetree+bounces-142622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB316A25EF7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:38:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DB13A25EFB
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FEAB161717
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:37:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7218B160C07
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CCD920A5E3;
-	Mon,  3 Feb 2025 15:37:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BF59209F52;
+	Mon,  3 Feb 2025 15:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TpiY7HNG"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="bZCI+ubZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2041.outbound.protection.outlook.com [40.107.21.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6D820A5CF
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 15:37:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738597054; cv=none; b=fpBXMJhiu5d/rBF7kwKNnGiDOUAaHzIrZiKZdsw9k39AqwxMeYW1vZfHtODSPeIKmcX5AcLb8TgP5k4qO7tkw6MvrptI14jOX/vd+XRCKtIitk8Xee/hD5ZoD2Nwcuylzo/O0WxTwYItlwKYshGu/K38ruThrKV+cNCqXihb/qQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738597054; c=relaxed/simple;
-	bh=fXSwyb6kluFm+mPLGWZ4iJ5T4rAna3D85/lI9eoXJ/g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BEpuv9AZvVu2mK+fmjR1EEMuzOFgeL1f8MOd208b2YSZ/BL+DKbmiwJvgf7FFWdjqqn728B3FyiDvl/OTxDtgQCHptwha90dKDofrLqD20ChuxwcG39OlyGhzEppgW06HFGor2uY1X8W7Bph+Rm1O9l1WT3A0gfKqQnhM5oQMjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TpiY7HNG; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-54298ec925bso5219836e87.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 07:37:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738597051; x=1739201851; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UHRIhzqvNH1bzn0adefvZWos6ZS5C0TEuaPKGujIOQI=;
-        b=TpiY7HNGSkPhFMjPF96dMgtKofwLOuWS4oXrZAhxjPtpf+OmGsadqTiOhlQGKx7ymm
-         Qxu2fQ+50v91dRjkoot8X7DxphsKitpL3+QIsyXB+RKoWkxCkvyKyKgdm7OlmugmJ0d6
-         SRPiwp8kWRgLQgHU6Zwfibwx2xKgYcHGRKclx8Dzkqiu5LXQ/+HyPQGX6c1TBQedNDqr
-         8XLwpw35Azd3iDbzM+QT1ZkfawbAWX+toqxc9h1n4Hmyn87ixrjOtIDN+c3nWsJApWuT
-         ILbCqB6/g/u5eHSxfORLQJgCk+64Y1s1teflNmSNS+UeAw9xDHTT0jUKIp2WE6lo/iP/
-         cWaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738597051; x=1739201851;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UHRIhzqvNH1bzn0adefvZWos6ZS5C0TEuaPKGujIOQI=;
-        b=KHYJiG/aMB7zW+zY07kioE62owW73rS6zYuQD5x0VxR6Pdk4rFhthQ947ubC3qwEk5
-         XypwnZjLumW+4eADAGxR+sKFN3AvTK0k/JNfrB1Mqo8ers0vWoYyGtZCk8rUH6ez6eff
-         S8A84TzHpePHVakkLDoU5Gm+K6bg3r1sIn6e+Q2GmgqWNTc3/R2xnBYcqPpFs25YpsBQ
-         nzO4d3w/rEp079IlfpM2mGevcLa152Pqx1dIMfW3tLtGAeii8c/JShSzkmfl8j99eDTv
-         l1vYwvpzDHCYmee6MB2WyDPUjKP11sc7gkTPXOaeXPozXj4LkauFEN3aUNMaoRgxybD6
-         VEWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX0AW3qSHZg2Du7Nb/6iaFf64NTduhBFxsUOxctTljCkkbegp5QMJB0swwyi1H1FtmdHWEtQqCIMKw5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdeOp+Xizdgv10A80hPBXm8JvPNjTxzj5Z/GF6MXZzrfGwtS3F
-	q+kT0Rezygis9TlypHSesVcTBZA+jiMTLEYdLvPAD3UTVGodsPFKF6WHhtFem4c=
-X-Gm-Gg: ASbGncviR1qOjBkpg/RMOU06giCEvWbmRQ4RkXGFZyxeaWhumfHAu68r0fXgiWObw8b
-	3aY1YPPm0sNHkkeCjIhqLPOgbMziKre8XovlOZWN19vdZEF949LEWaW5E2oZU+CTjZNkNy+WeO+
-	AgtZgjg75qc7lRmHQQGdGY1WMQU59dJWUUkceWOJ0lZlHSwkK5cfeJLZ98kWgtsji7OqxTtLRtV
-	BrQjezxEXcUw/8j34GwTI6liGgWa8NbtlFKqpZ+DwEkJmNLh7V6vTTNmcNY2J5BgP5aEh6ntQJu
-	ARRdTjON4iRMsSl7GNtYFGbVR41Q3GVGRGyIHGqLGYLUGcr0ly3MkSPOXLRSp74eunJuFA0=
-X-Google-Smtp-Source: AGHT+IGh+KF+0uAYGcEmgM7tPX/mz+NrDdDUP0TAAcJzdf4B7LZrgSe3h4Ylxvx3xmOG8C7EsGJV7w==
-X-Received: by 2002:a05:6512:3c8f:b0:543:bbe1:b0fe with SMTP id 2adb3069b0e04-543e4c03049mr7131057e87.24.1738597050676;
-        Mon, 03 Feb 2025 07:37:30 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebeb0993sm1308210e87.132.2025.02.03.07.37.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Feb 2025 07:37:30 -0800 (PST)
-Date: Mon, 3 Feb 2025 17:37:28 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>, 
-	Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, Jianhua Lu <lujianhua000@gmail.com>, 
-	Stefan Schmidt <stefan.schmidt@linaro.org>, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of
- SM8250 SoC
-Message-ID: <fhqlt5xsz7yyrbnvhnovt66gzldjjbitpeznlvxztobdxmjnuw@d4avd5fq3muh>
-References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
- <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
- <Z3_nCPk_g8znto4A@hovoldconsulting.com>
- <64f8bebd-35e1-c743-b212-e1a3292bade2@quicinc.com>
- <Z4EuiPEw8mvDQ2gv@hovoldconsulting.com>
- <24334fb8-4d83-eb06-aee3-dfe1f8e4937b@quicinc.com>
- <552972B8-1ACA-4243-A8E3-8F48DAF39C5C@linaro.org>
- <Z6CApNuSlPGvVL2k@hovoldconsulting.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3B91FFC69;
+	Mon,  3 Feb 2025 15:39:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738597152; cv=fail; b=LUp6Hq/vVsQXKz6DFbtTk+eCmOVToSx4WRrBjQ4nSDaQt+w/2EVaLbKXE731lxsHLQ5m52dhrLw1HgOZxycsupuzFB2GGEiGta3Z0awXAb9ON4RD7DHwZrZKI3NCPtXubEKNiaS5UsePZXeK7vGh0VaUxlqym1msAOYYevwcM2o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738597152; c=relaxed/simple;
+	bh=LMYBxZIO0fI4l7ke+XDLrzdHZ9IWUb68khNDJhQhOTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=s6eFV0Ru2VG1AUHtlSDtffU/240/vgaUje3XBaAY2VcByvhj0cUIZRT5wJOGAXTYcCEv64cn8muNOZS7Rtqe+9MUhUpoGwHnKwnk7QlnLbHRDqLpk33mHCwk+J8CR90NgcmR19zKZqJUVoV18nqIOnHdAmNk3HujfESSv6zIqMM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=bZCI+ubZ; arc=fail smtp.client-ip=40.107.21.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jShCI7riv61eUicSJBjMgEonGqPrhkmcJNuxCHFRaRGSMRdmmOrbWoUvKZ0tsiUqDPFhPITq9SkVe2J+SYFOHIcfDV5/NqBSw2QJwotuckApz1wC97cHd0++9uxc9FxkOFc9fNstJrwZ13j2lG/qbpYhc7JmO0jKaB8nytWOChdDai2HxHpAn38kT6fj/HNLtdWONDsukHbtBdWFKoAIRm0iLnlSr2KB4wh58M1R2fPiJqAwT9wpWfRVtBBhC56RzyzMK9d3LLT13Cle8DGYmzcqdkUW/vihEpRRfrlO+esxRdVaFAhksRayNkNcMbz3b6aBQMJnm1GX/0/0E1vrDA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zWY27lDsAtP1r/eqjdYWBVgraKpugSKogNUv+POAL+0=;
+ b=MqSTT4v6LUYSUhOSgAm/DC5i4n6esvNPM6A7iIqrot9mD498vWwwWHYceKY2pg1GP2+CZPA96mTAutyCprucosaEOvmqbe7s1vxwBszU9lQgK0tYsgIFoyw6hsyvJLyCnJkJL5vhSEluCNK7vJmdY8MLnckETUm+5j5yqeUXzV/QDv37zQtBWW5d69kOreFbTJLOes2afqwG5NA1w9GmmgFBQFJPiwSlE6iuRnW6QNs0v7SQc6+rDbOeVnMzx9YxGeV1FpnI5LOn2+1N90IpbvxXpkyUMJGUjo6x4B0h1UdPDEsHYOhnK1IJ7t/SrjhfR52GfVSLr2wCqm5qcYnt+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zWY27lDsAtP1r/eqjdYWBVgraKpugSKogNUv+POAL+0=;
+ b=bZCI+ubZlZzLqcq8JzJ7iiQcYiTZ0bbgYq7V29ff6otLWWlx71smhrm2paYCYqGlElOT1N+8RssLXd8/aaYMKJEr/zDt5JJQpxs2DHp9X25FjtXx7twmUkEdjVh/5a1+8s/ydjwX8wSo7K7VXHlF+b6iCTX8Z3NELKTAzJLPc8NPcljWYN/p8HmrVyFndzRdAReO0Bb0rzxBDY+9e3PT6P/GdZ6isULPiXC49KVPvDpo3Gag3FzM/HUbx5hn+QlmcH9+WDBfMwV6wn8psGOA/lWXFX71rsD5bdJeqBIKbkBYOwFtQFxBke0DWIWbu2pxX/TkIQ33FUvdg1CeGmOGkw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA4PR04MB8030.eurprd04.prod.outlook.com (2603:10a6:102:cc::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.24; Mon, 3 Feb
+ 2025 15:39:06 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8398.021; Mon, 3 Feb 2025
+ 15:39:06 +0000
+Date: Mon, 3 Feb 2025 10:38:55 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Larisa Grigore <larisa.grigore@oss.nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	s32@nxp.com, clizzi@redhat.com, aruizrui@redhat.com,
+	eballetb@redhat.com
+Subject: Re: [PATCH v2 1/2] arm64: dts: s32g: add the eDMA nodes
+Message-ID: <Z6DjD+5aYRL/I50H@lizhi-Precision-Tower-5810>
+References: <20250203080919.1814455-1-larisa.grigore@oss.nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250203080919.1814455-1-larisa.grigore@oss.nxp.com>
+X-ClientProxiedBy: BYAPR05CA0012.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::25) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z6CApNuSlPGvVL2k@hovoldconsulting.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB8030:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e20d557-7d29-48ef-2d1f-08dd4468e4f2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?pcByATVD988+8NLPvEEcct1Y4y/FmKfzSsKrO2Swgh5XDXlaqEqcUOzrTK1s?=
+ =?us-ascii?Q?dBKVAdE281tzGlZfYrueCL12aqVUqTQNdP13/umYwE1OVce2PIyMb2tkyedA?=
+ =?us-ascii?Q?k9UhNQxpHFw232oC+EfjazluTpgM0oGUnnfS81rhJBfdHufVX04PuQV+TkUK?=
+ =?us-ascii?Q?TQuYB0zsmgGD6ZXbZ65HtvttpLZ3QCofZt934L2jmAow2KRbCmI8WJ/WDn7+?=
+ =?us-ascii?Q?YDkbZR/Cj6xg7T0n7IE/8fwul82reC3qKTXpPnaCLaDeUs7a2ZSK2+dhUiSm?=
+ =?us-ascii?Q?FUiJJTfOuITSujYoaq3CN8QBKVpE75ZA2a2vx23rYGRQR1215ARRc+ZfBazh?=
+ =?us-ascii?Q?FCAD79qsNXJ+rJdlpW+mX7SKCPu1kVUqhemG6GbUHjtzLDxT+xQx+1aJeDGo?=
+ =?us-ascii?Q?crBBPHs2Ja4MxsvArGlBhU6whPX4t4Eoi3nC8GeRnt4Jsi9quflgnpFcxSZo?=
+ =?us-ascii?Q?gJFmhD7n/Wsg0FTtd3qJ8kWxU9RG8JJHKvLv1Tyh5V+tUUcGKPyV7wlq1YAo?=
+ =?us-ascii?Q?8K27o0QQ0bgNmsXoy7vyQfkSbPe0QBUaHGptq7vPUFpotd0v7UCYJ+zYOCN/?=
+ =?us-ascii?Q?08t8anTLyioncdZMgSnXd9GGVvCSohhSpxwDxALohVj7fP7Mywq6ykWmmK8n?=
+ =?us-ascii?Q?I5CwRl+e0J4OucR4sMXbDZEFXobqUpEaObVyp/HD1/2RxYWc85aSVQe82aIC?=
+ =?us-ascii?Q?68XxRNydABQr+ahIRo2xGrwGKM6yr748OgSTF8yEUc/zaEsIaZdW2KpJRx5r?=
+ =?us-ascii?Q?kpbUxWR/Z8LyXe/OPtX9zJOP+X2J7N0gaAhU83LJiPey6CIRJIEADlwuM4Lc?=
+ =?us-ascii?Q?7YrZrgtGmc13TZfwQ6eN8FsiRN9E6zuslenv9RjRyiIsw3/DB2Y68zP1Pyu6?=
+ =?us-ascii?Q?akLEirDiBRzlAefZa4CWzpDO5wVNO3hshjbx4HkhS50Kayz5LDu9SJWKb1E9?=
+ =?us-ascii?Q?g8Ty+7B0zg2O4TM+vmNMu7OZ4x2AC3K6x6jmAXAw1XSi9ihx0C0JvbZT18Q6?=
+ =?us-ascii?Q?4og88IxWLQxJA9YrFMtXXda1GJC/UMNkKuixs30+OGZ+Rr5J3BPN0FKWRJ1B?=
+ =?us-ascii?Q?tCX7wPS42PqVoGb1DDCCxnjCWWVm0vVQRuB84P71FIcFY9YppLPDDAeNiFwj?=
+ =?us-ascii?Q?xrPMzFWhc9fT1myDEFg9M8Wmufl803EFiqnIffAL8W/DWxjSuvnj46eBvjev?=
+ =?us-ascii?Q?T1dlK7WldBujCekL54SQ2ZwnnQknnYmsJvdOBpwYXWBomf+D6/RbbYYsdmLj?=
+ =?us-ascii?Q?WlF7G9cDTLamNOtgS5lY9rzIyuuaO1DQc+ysQ69CPlBCb9HGE6U+lbJ9Y0Dv?=
+ =?us-ascii?Q?p2ThtxsvCwybbu+9TLptmgSz5xJfAWvoSZEzDQYzMuMicOGzrv+wrjN8pDeN?=
+ =?us-ascii?Q?pbT1PYNg5+QWNVTFecnEpRv03zSqUcmsTOXIGz+l+tzFvsiFU3PTVkeqL9hd?=
+ =?us-ascii?Q?eeHI1ly5ZeayhGiZyw/VWj0Nt/4dcHpN?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?nv8irXzBzcZECc6kNumj5X7tg/A1bf8cz8AqD+tHfTda0vCmwrZQ6r0sIk3g?=
+ =?us-ascii?Q?+SUzcO3sMwJ+6/MFqP+0cmEplYXAbi5Qiisiw8UsIO/cE1UqCuGfK4PyHPdp?=
+ =?us-ascii?Q?SoD54rYPviO/nvhFkgqaDPGABJMV/DloM2IUeBpEWlk4NbhmvoY/sk2ai9/d?=
+ =?us-ascii?Q?THIIkLSeGSo4Hhkwswt10lwRtZ7HraYJpT/w/p7pCBZGRvDPmyz9ukgolr1p?=
+ =?us-ascii?Q?++Hqrodw8RPDKl9d5y1HVNFDJHnT4domSp9S7YN/XLE7lfBBU7pS6OMbqCEa?=
+ =?us-ascii?Q?/Jp6GLcpVOPL2vqKjtlhkgiyTFcNjsUGnJXuyH7MnBkpXGyPgF7viDWW1IzO?=
+ =?us-ascii?Q?YtEvl06WtN+vI9Og3AlP+6E4cimivAJvsqIJh4iFzNbhuWgZCslbJB2qWwJ/?=
+ =?us-ascii?Q?NkVs1nRI0GpPlSISWPosIGLeqyu0eYXG01AyErTCCVH9uQ3ObCMhcVGGPmeD?=
+ =?us-ascii?Q?3feU24BXXQ98QRw2pCRtHl3GlIByVQf4u8CGx1LUVUxcZ0IEY4xxWpfotYiy?=
+ =?us-ascii?Q?kmRG24B9tmJRUulGNN8MCfQnEjdMIhqXaXBYLXQZBQlFwE0TpEOagy6tJP6t?=
+ =?us-ascii?Q?0orFccXod8/waKbHjdmjLSIxDu2ydUadzzHoGmpTkH4p/xz0NUfN1xczcbWt?=
+ =?us-ascii?Q?nFU20h1I5c8WACmb1U0v/AcbDjN15VoFqYW9FB50OoRynY9FCAYo2Tg0tnRf?=
+ =?us-ascii?Q?RRY8ZkkQkXTyvV0cSha02uit9X8LQKlPVCU8fpIUe8mppRBIJ3J0Nfv1+LZz?=
+ =?us-ascii?Q?G7xAwczZUVC/4xdifFdtrxOuEkBvf8EP8ZhOxM52aIc7B8Rd3VQjuxE9mS+C?=
+ =?us-ascii?Q?RqJll5uJKKrcduvxwNPzxxxrFS7JmUxBm3z88HNgqgoLSN0J39U/4eEemdP3?=
+ =?us-ascii?Q?tU81lSHiB0eFr+cPPJ4JZfwqEBGh7fAMZ/8rCOu9WbrTpI5R0v88Gt6yNoEh?=
+ =?us-ascii?Q?YIpfOUobVOf3jmyCNrMWt6LVXRf6DKLtw0SgHlp47xBeyYXxRJntiAnntB3M?=
+ =?us-ascii?Q?nmu4CTFBDeCO3ObiRJ2jfnloTK0JfKrY4w8WMr6A0c5d6Jbpd4LU8YiSlzZh?=
+ =?us-ascii?Q?oOEpiyPv7lO3NnyBXjyQfz59QIpdd7rE0RTentOrI9Pchgv3/6EegVXiBiYN?=
+ =?us-ascii?Q?2uLyKNmrASjko0mSIu2Sr35w13BL/+be6bvh5Xyo0hjQexTbobisNIeeZsve?=
+ =?us-ascii?Q?0E5lABYeyNP0Q0RUjCsq92acZ5j5VEpGV4o4s2kc3e06lH2I1PP2yDQHfFUR?=
+ =?us-ascii?Q?COnOeFURsQ3NPZVwTpaytYEHGeiitAWGDfQ3xQbC5lqaWq2LvBO8nElSoz4l?=
+ =?us-ascii?Q?NFyYRXIKLR8lF/xvoE6LQfwaM/C9m298U+OsQz36eNbR3yBCmCCTyXCa7TdF?=
+ =?us-ascii?Q?UvRGS9YDA9UlIT2ZoIQkjeftxcJG5Kh2F6W5wJa4SRSmnkDTRXZt0w4DZEIO?=
+ =?us-ascii?Q?uSrknBDt0QM5XnH7YIVSEBmU/Y7HPZM59UgeroucAGI1NlRYMOTJirDDr+Qs?=
+ =?us-ascii?Q?lEzK848tpTj7f3ARUa7prl6OMgIMWKO1UqENzWfgQQyihZVFhcpo5iewMsub?=
+ =?us-ascii?Q?Woiu57Vg0y/+ovfqruTZj9vnRfRY+qgYqCSUpsQV?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e20d557-7d29-48ef-2d1f-08dd4468e4f2
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2025 15:39:06.6440
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /CWUI/1PVe0fOHdDSA2ZAlvyQWlpesvFJIJJeWcUgZEroQDS/tCsjy5eRL9mVy7J9Xg+QETYmmfHOlL6Mf3fcw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB8030
 
-On Mon, Feb 03, 2025 at 09:39:00AM +0100, Johan Hovold wrote:
-> On Fri, Jan 10, 2025 at 08:01:21PM +0200, Dmitry Baryshkov wrote:
-> > On 10 January 2025 19:30:30 EET, Dikshita Agarwal <quic_dikshita@quicinc.com> wrote:
-> > >
-> > >
-> > >On 1/10/2025 7:58 PM, Johan Hovold wrote:
-> > >> On Thu, Jan 09, 2025 at 11:18:29PM +0530, Vikash Garodia wrote:
-> > >>> On 1/9/2025 8:41 PM, Johan Hovold wrote:
-> > >>>> On Thu, Dec 12, 2024 at 05:21:49PM +0530, Dikshita Agarwal wrote:
-> > >>>>> Initialize the platform data and enable video driver probe of SM8250
-> > >>>>> SoC. Add a kernel param to select between venus and iris drivers for
-> > >>>>> platforms supported by both drivers, for ex: SM8250.
-> > >>>>
-> > >>>> Why do you want to use a module parameter for this? What would be the
-> > >>>> default configuration? (Module parameters should generally be avoided.)
-> > >> 
-> > >>> This was discussed during v4 [1] and implemented as per suggestion
-> > >>>
-> > >>> [1]
-> > >>> https://lore.kernel.org/linux-media/eea14133-2152-37bb-e2ff-fcc7ed4c47f5@quicinc.com/
-> > >> 
-> > >> First, the background and motivation for this still needs to go in the
-> > >> commit message (and be mentioned in the cover letter).
-> > >> 
-> > >> Second, what you implemented here is not even equivalent to what was
-> > >> done in the mdm drm driver since that module parameter is honoured by
-> > >> both drivers so that at most one driver tries to bind to the platform
-> > >> device.
-> > >> 
-> > >> With this patch as it stands, which driver ends up binding depends on
-> > >> things like link order and what driver has been built a module, etc. (as
-> > >> I pointed out below).
-> > >> 
-> > >>>> Why not simply switch to the new driver (and make sure that the new
-> > >>>> driver is selected if the old one was enabled in the kernel config)?
-> > >> 
-> > >>> Its about the platform in migration i.e sm8250. Since new driver is not yet
-> > >>> feature parity with old driver, choice is provided to client if it wants to use
-> > >>> the new driver (default being old driver for sm8250)
-> > >> 
-> > >> This should be described in the commit message, along with details on
-> > >> what the delta is so that the reasoning can be evaluated.
-> > >> 
-> > >> And I'm still not sure using a module parameter for this is the right
-> > >> thing to do as it is generally something that should be avoided.
-> > >> 
-> > >I understand your concern of using module params.
-> > >I will modify it to rely on Kconfig to select the driver (suggested by
-> > >Hans) instead of module param.
-> > 
-> > Please don't. This makes it impossible to perform side-by-side
-> > comparison.
-> 
-> Why? You can have two kernel builds and run the same tests. And you
-> obviously cannot run iris and venus on the same hardware at once anyway.
+On Mon, Feb 03, 2025 at 10:09:19AM +0200, Larisa Grigore wrote:
+> Add the two eDMA nodes in the device tree in order to enable the probing
+> of the S32G2/S32G3 eDMA driver.
+>
+> Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
+> ---
+>
+> v2: Moved #dma-cells before dma-channels and clock-names after clocks.
 
-At once not. But unbindng and rebinding another driver works perfectly.
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-> > Also as venus and iris drivers are not completely
-> > equivalent wrt supported platforms, distributions will have to select
-> > whether to disable support for older platforms or for new platforms:
-> > Kconfig dependency will make it impossible to enable support for both
-> > kinds.
-> 
-> You shouldn't have both enabled. The only reason for keeping support
-> for the same hardware in both drivers is that the iris support is
-> incomplete and considered experimental. No one should enable that except
-> for development and evaluation purposes until the driver is up to par.
-> And then you drop support from the old driver along with the config
-> option.
-
-That's the plan. This modparam is a temporal thing for transition
-period. And yes, as a developers / platform enablers we want to be able
-to have a quick turnaround between drivers.
-
-Please stop forcing your decisions on other people. The Linux kernel and
-its development process has always been about providing a possibility,
-not a policy.
-
-> 
-> Johan
-
--- 
-With best wishes
-Dmitry
+>
+>  arch/arm64/boot/dts/freescale/s32g2.dtsi | 34 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/s32g3.dtsi | 34 ++++++++++++++++++++++++
+>  2 files changed, 68 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> index 7be430b78c83..64eac1dde05b 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> @@ -317,6 +317,23 @@ usdhc0-200mhz-grp4 {
+>  			};
+>  		};
+>
+> +		edma0: dma-controller@40144000 {
+> +			compatible = "nxp,s32g2-edma";
+> +			reg = <0x40144000 0x24000>,
+> +			      <0x4012c000 0x3000>,
+> +			      <0x40130000 0x3000>;
+> +			#dma-cells = <2>;
+> +			dma-channels = <32>;
+> +			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "tx-0-15",
+> +					  "tx-16-31",
+> +					  "err";
+> +			clocks = <&clks 63>, <&clks 64>;
+> +			clock-names = "dmamux0", "dmamux1";
+> +		};
+> +
+>  		uart0: serial@401c8000 {
+>  			compatible = "nxp,s32g2-linflexuart",
+>  				     "fsl,s32v234-linflexuart";
+> @@ -333,6 +350,23 @@ uart1: serial@401cc000 {
+>  			status = "disabled";
+>  		};
+>
+> +		edma1: dma-controller@40244000 {
+> +			compatible = "nxp,s32g2-edma";
+> +			reg = <0x40244000 0x24000>,
+> +			      <0x4022c000 0x3000>,
+> +			      <0x40230000 0x3000>;
+> +			#dma-cells = <2>;
+> +			dma-channels = <32>;
+> +			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "tx-0-15",
+> +					  "tx-16-31",
+> +					  "err";
+> +			clocks = <&clks 63>, <&clks 64>;
+> +			clock-names = "dmamux0", "dmamux1";
+> +		};
+> +
+>  		uart2: serial@402bc000 {
+>  			compatible = "nxp,s32g2-linflexuart",
+>  				     "fsl,s32v234-linflexuart";
+> diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
+> index 6c572ffe37ca..4f6201d6c08a 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
+> @@ -374,6 +374,23 @@ usdhc0-200mhz-grp4 {
+>  			};
+>  		};
+>
+> +		edma0: dma-controller@40144000 {
+> +			compatible = "nxp,s32g3-edma", "nxp,s32g2-edma";
+> +			reg = <0x40144000 0x24000>,
+> +			      <0x4012c000 0x3000>,
+> +			      <0x40130000 0x3000>;
+> +			#dma-cells = <2>;
+> +			dma-channels = <32>;
+> +			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "tx-0-15",
+> +					  "tx-16-31",
+> +					  "err";
+> +			clocks = <&clks 63>, <&clks 64>;
+> +			clock-names = "dmamux0", "dmamux1";
+> +		};
+> +
+>  		uart0: serial@401c8000 {
+>  			compatible = "nxp,s32g3-linflexuart",
+>  				     "fsl,s32v234-linflexuart";
+> @@ -390,6 +407,23 @@ uart1: serial@401cc000 {
+>  			status = "disabled";
+>  		};
+>
+> +		edma1: dma-controller@40244000 {
+> +			compatible = "nxp,s32g3-edma", "nxp,s32g2-edma";
+> +			reg = <0x40244000 0x24000>,
+> +			      <0x4022c000 0x3000>,
+> +			      <0x40230000 0x3000>;
+> +			#dma-cells = <2>;
+> +			dma-channels = <32>;
+> +			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "tx-0-15",
+> +					  "tx-16-31",
+> +					  "err";
+> +			clocks = <&clks 63>, <&clks 64>;
+> +			clock-names = "dmamux0", "dmamux1";
+> +		};
+> +
+>  		uart2: serial@402bc000 {
+>  			compatible = "nxp,s32g3-linflexuart",
+>  				     "fsl,s32v234-linflexuart";
+> --
+> 2.47.0
+>
 
