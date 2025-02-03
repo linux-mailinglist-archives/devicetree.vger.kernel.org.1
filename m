@@ -1,92 +1,103 @@
-Return-Path: <devicetree+bounces-142574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D097A25CE5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:40:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 961E3A25D6A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 15:53:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 440CA7A06D5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 14:39:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86A6E3B19B4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 14:44:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 015F0213E9C;
-	Mon,  3 Feb 2025 14:31:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A8D720AF68;
+	Mon,  3 Feb 2025 14:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zb+GY5TI"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mkC0nb7A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C76FA213E83
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 14:31:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A931C17993;
+	Mon,  3 Feb 2025 14:39:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738593086; cv=none; b=YCfKbQoQ++kL9rZlxkB6bZ/ifPmtWnrFRLQLOvNv/W07WBswcshCvRYkMSbl7aiyz5r8WzKHsC1rqmu7iMgYGMj3iNn8z4/lDIBxr91TfK+HV5KfG6zO2VxD4RQOlK8UEWVWmDShNCB7JKQo61i4P/WgWqHcXs+U8OjrTkH/fA4=
+	t=1738593563; cv=none; b=ModJ8TXDtTsZHHY7Wn9hRFwf0k6All2WM7T+sPR9K9HT6lOdB3rJk2Pp8uoTmHSrq1FaCyGdZCUcoeyCICXDGQ4JxO/C9BownrKqsh/0+6DNinTklLKdMWiJuiF5gCuUEOxnASenjKlcnP3oBOJDtzaezBV45fPMwmw6UZPPZIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738593086; c=relaxed/simple;
-	bh=DQrineTon4oBDwNOMF4wAf5CmVWaPXA6hctLTPhSRGY=;
+	s=arc-20240116; t=1738593563; c=relaxed/simple;
+	bh=dA12J9ikOMHFZHgkM871xf7LoUD101cGevQzk/6n9tU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OeUu2LRRu1Zm0bJ1lNJvwSI0bqo/b9Sy7DVJSntg/oTOXX3UOuSQH6Mb0SIqL+5AOmDlhhC3XYZzAJ5YBFZwKA1GV6/FE/U45BYCJvASix3YqFp6zDipzbnF1c/y6F5t/NGkav55bsz/YFmw974DYZ9uxfKuZ43Qt/iJG+RvNm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zb+GY5TI; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5439e331cceso5144640e87.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 06:31:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738593083; x=1739197883; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=TVDFcnyLh4wiaaDr8pcIi9tA5w30/ZdPI8YjayS2Hzg=;
-        b=zb+GY5TIhM2nbK06gYj/ZNfnr2LTdO2txfz9X/A5chWrBFx2IU1ezNk9jPmQmSTxtv
-         R8r9XlKzhmL0FqqVP8KgiDOZ4RLYBz6RTKPYeiaWb4MQ65p43NrBNtWzDB9vZ3um+ISA
-         v179MO1PyEWcugimeTGIjyZQUFThabrzPgOpClQRrliD7Nd8xCZ3Yrvvkr9VBdnHjW72
-         nNJJpFzuBSqn+TNQ7YfsG6BRHAjiEz6rhXeSWzNWIoL/woNu3puY+Ra10miLTNAwnj8/
-         CD+i/kr9EHmNkfWqMre4Ja4JCl5z6jA7CetlwjY1GZr3w1qtdY44jFRrfS605EjY8TaS
-         FQoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738593083; x=1739197883;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TVDFcnyLh4wiaaDr8pcIi9tA5w30/ZdPI8YjayS2Hzg=;
-        b=Ja7jgv8l0pQ8YsgdTOQ62Lgi6eCy1qmYkCqRplui64O2OZdwSn0d6/q53rECfU3YnJ
-         HT3faMs2MREyBE0uE2tvVhrojtRNxJtO3x5UshgW9zKbZvQgerlojzc97LmPlGX843p2
-         eJ/AGP3i9dDWDOGBdbs+iszrfnyb2Ps+XXZ/ysOrVFZUbe/PkF67GhUrebJ6UG9HU/de
-         oZlSzxX5hlc2JmtmiiGSfeQv0EH97S0NOfOC4/WhHu53l/G9ZCeNjNr1BzZ2gVRKIDjX
-         Z3jT65e8EukZucMCi1C3mG68bIOGez9vfyPXkw1kQWNrW5NMJPcW4APaug1I7p1H5A+Y
-         z2WQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUo0YjC/AsY1AEmuwcAVQ7K0X6nZFJulDxbzSEpcd4Q1tBm16DEmR/LNcGxiSNPhHaSQWdFzOU5qNgm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzpgrLGp5x/JzOVX+ZRL9IcD6oveI2/MbRcYUqHJJ04PVtZ4nA
-	0pBJDqPMkgRowQ/eNuVFObynVHI/reXAlRmJwstQzij7CUUp2mIYqEDTEa5Tg2Q=
-X-Gm-Gg: ASbGncuQDUWU/Y1FJ629SNkO5FPWaJdKyn9u3xsDzR8JVgOJCXfyK4KsCPDiu5VPzuP
-	X6Z7j1pRbs4OhTTES4YVGZ/g4f+c0VmLsXNQFfivdY8XWo3Ls5YQ5apAdEg4DpvXztpvqK82pbn
-	9dB+4kXunVBlLwOH6z4a5O6PZbsU1zPm1ZJImZFAaWt+CTfuLN77iVH3X6sqcfpiW+XkNAVVRqC
-	JQR4FyPtYpeQZ+6blr8Q0sO50A1bYdvffIfW2Ya9QH5z4RU5UWnGZI87LwOQfjBR0VEsWkimAPm
-	dp5aAaliOCP0NMRUsHOb9r0FrA7WoEjHgx2n6tv58m8s5ZFerqev/bjPaksKC0tCgprO4C8=
-X-Google-Smtp-Source: AGHT+IHUghVJimpcvkNuryRp2QSiMsGJ5k9kaBv83gYo738k+5t/tc8gK88ES/UIqhPDyfIJKtVIKA==
-X-Received: by 2002:a05:651c:508:b0:300:33b1:f0cc with SMTP id 38308e7fff4ca-307968fcfb9mr89069701fa.34.1738593082745;
-        Mon, 03 Feb 2025 06:31:22 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307a33f7cd2sm14901271fa.65.2025.02.03.06.31.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Feb 2025 06:31:21 -0800 (PST)
-Date: Mon, 3 Feb 2025 16:31:19 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 6/6] arm64: dts: qcom: qrb2210-rb1: add Bluetooth
- support
-Message-ID: <ajojztm3jr6iciwqhlbc7xnndlhrq6z7z6bvbbnb7sjlybqjqq@e6sdxcjolmd3>
-References: <20250202-rb1-bt-v3-0-6797a4467ced@linaro.org>
- <20250202-rb1-bt-v3-6-6797a4467ced@linaro.org>
- <a6fe746c-c5e2-4c39-afa8-46b225256cb9@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=iz9G3+6EOv3FwmrRWDW9Gx7WmxCctmSefoJHD7LgWdgIuV+4cvIPDylZiph7ywW12la/BnweIg1uJ5unOsc6sa1LZIW+RLIpSsqHbuzZF6Av8EX5eBglF5kj+xFQ5OPoY8lfnUsyOw2wJ07fL3f0H7ID2RaBFfpcZ9jembh4HHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mkC0nb7A; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738593562; x=1770129562;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=dA12J9ikOMHFZHgkM871xf7LoUD101cGevQzk/6n9tU=;
+  b=mkC0nb7A7u0Los7MObt3fsCCwRNubmIBzD22sHVxLg03yTFvU6Q5bmyb
+   9FS29PFms0zpIHCO6xtCj5nVyEUUCT/ZsnImkjBkulaaxNDAePoRjNupR
+   eu7i147TBJvSciPRV0rwdhcBeI9H/t9SAD5k94XyQGxdlLv3VGMROuUbv
+   K9WOQbNHG5zYnA9c/k2My30ryCnkh9lXwSGB1bP74SDgHJQEIEhKQbVXK
+   TuvH0pPF+XmU0csAi+nsPqZjRsbRecrrWReepY9qbv8Mx2odtL6UzHO8g
+   q01OrM5BIUQHrMVV2ARqbgLWHKExAhPyIukHuhDd09sux7nHhGNcH36t4
+   w==;
+X-CSE-ConnectionGUID: NBGP5es5RKqH8+aU6a2dPQ==
+X-CSE-MsgGUID: rRY6V6HAR8CpRkAe/++ahA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="39226920"
+X-IronPort-AV: E=Sophos;i="6.13,256,1732608000"; 
+   d="scan'208";a="39226920"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2025 06:39:21 -0800
+X-CSE-ConnectionGUID: /2Cyhkc9SySXsArDog+jaQ==
+X-CSE-MsgGUID: rC94I25uQ6qErBJa9Mq56Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,256,1732608000"; 
+   d="scan'208";a="110199299"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2025 06:39:15 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1texbT-00000007rJ0-0hyj;
+	Mon, 03 Feb 2025 16:39:11 +0200
+Date: Mon, 3 Feb 2025 16:39:10 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Sunil V L <sunilvl@ventanamicro.com>
+Cc: Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atishp@atishpatra.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v2 12/17] ACPI: property: Add support for nargs_prop
+ in acpi_fwnode_get_reference_args()
+Message-ID: <Z6DVDicVEgmSyGcT@smile.fi.intel.com>
+References: <20250203084906.681418-1-apatel@ventanamicro.com>
+ <20250203084906.681418-13-apatel@ventanamicro.com>
+ <Z6CPvteWv89Xo70j@smile.fi.intel.com>
+ <20250203105840.GH3713119@black.fi.intel.com>
+ <Z6C1cg3cqik8ZxvU@sunil-laptop>
+ <20250203123658.GI3713119@black.fi.intel.com>
+ <Z6DJ9kmNx4JoqRg-@sunil-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,44 +106,80 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a6fe746c-c5e2-4c39-afa8-46b225256cb9@oss.qualcomm.com>
+In-Reply-To: <Z6DJ9kmNx4JoqRg-@sunil-laptop>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Mon, Feb 03, 2025 at 02:50:52PM +0100, Konrad Dybcio wrote:
-> On 2.02.2025 1:16 PM, Dmitry Baryshkov wrote:
-> > Add support for the onboard WCN3950 BT/WiFi chip. Corresponding firmware
-> > has been merged to linux-firmware and should be available in the next
-> > release.
+On Mon, Feb 03, 2025 at 07:21:50PM +0530, Sunil V L wrote:
+> On Mon, Feb 03, 2025 at 02:36:58PM +0200, Mika Westerberg wrote:
+> > On Mon, Feb 03, 2025 at 05:54:18PM +0530, Sunil V L wrote:
+> > > On Mon, Feb 03, 2025 at 12:58:40PM +0200, Mika Westerberg wrote:
+> > > > On Mon, Feb 03, 2025 at 11:43:26AM +0200, Andy Shevchenko wrote:
+> > > > > On Mon, Feb 03, 2025 at 02:19:01PM +0530, Anup Patel wrote:
+> > > > > > From: Sunil V L <sunilvl@ventanamicro.com>
+> > > > > > 
+> > > > > > fwnode_get_reference_args() which is common for both DT and ACPI passes
+> > > > > > a property name like #mbox-cells which needs to be fetched from the
+> > > > > > reference node to determine the number of arguments needed for the
+> > > > > > property. However, the ACPI version of this function doesn't support
+> > > > > > this and simply ignores the parameter passed from the wrapper function.
+> > > > > > Add support for dynamically finding number of arguments by reading the
+> > > > > > nargs property value. Update the callers to pass extra parameter.
+> > > > > 
+> > > > > I don't like this (implementation).
+> > > > 
+> > > > Agree.
+> > > > 
+> > > > > It seems that we basically have two parameters which values are duplicating
+> > > > > each other. This is error prone API and confusing in the cases when both are
+> > > > > defined. If you want property, add a new API that takes const char *nargs
+> > > > > and relies on the property be present.
+> > > > 
+> > > > Also this is not really needed for ACPI case because it has types so it can
+> > > > distinguish references from integer. Having separate property for this just
+> > > > makes things more complex than they need to be IMHO.
+> > > 
+> > > Thanks! Andy and Mika for your kind feedback. I agree that having both
+> > > property name and nargs is confusing and also ACPI would not need
+> > > nargs_prop. In fact, I think ACPI doesn't need even nargs integer value
+> > > as well from the caller since all integers after the reference are
+> > > counted as arguments.  However, the issue is acpi_get_ref_args() assumes
+> > > that caller passes valid num_args. But typically the common
+> > > fwnode_property_get_reference_args() doesn't usually pass both valid
+> > > values. So, should fwnode_property_get_reference_args() pass both
+> > > nargs_prop (for DT) and nargs (for ACPI). Or do you mean it is better to
+> > > remove the check for num_args in the loop inside acpi_get_ref_args()
+> > > function?
 > > 
-> > Bluetooth: hci0: setting up wcn399x
-> > Bluetooth: hci0: QCA Product ID   :0x0000000f
-> > Bluetooth: hci0: QCA SOC Version  :0x40070120
-> > Bluetooth: hci0: QCA ROM Version  :0x00000102
-> > Bluetooth: hci0: QCA Patch Version:0x00000001
-> > Bluetooth: hci0: QCA controller version 0x01200102
-> > Bluetooth: hci0: QCA Downloading qca/cmbtfw12.tlv
-> > Bluetooth: hci0: QCA Downloading qca/cmnv12.bin
-> > Bluetooth: hci0: QCA setup on UART is completed
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
+> > Can you show an example of a case you are trying to solve with this? So far
+> > we have been able to go with the current implementation so why this is
+> > needed now?
 > 
-> [...]
+> Basically one can call fwnode_property_get_reference_args()
+> irrespective of DT/ACPI. The case we are trying is like below.
 > 
-> > +&uart3 {
-> > +	/delete-property/ interrupts;
-> > +	interrupts-extended = <&intc GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
-> > +			      <&tlmm 11 IRQ_TYPE_LEVEL_HIGH>;
-> > +	pinctrl-0 = <&uart3_default>;
-> > +	pinctrl-1 = <&uart3_sleep>;
-> > +	pinctrl-names = "default", "sleep";
-> > +	status = "okay";
+> if (fwnode_property_get_reference_args(dev->fwnode, "mboxes",
+> 					       "#mbox-cells", 0, index, &fwspec)) {
+> ...
+> }
 > 
-> As you're going to resend, please add a newline before status
+> As you can see this works for DT since OF interface handles
+> "#mbox-cells". But since nargs is passed as 0, it won't work for ACPI
+> due to the reason I mentioned earlier.
+> 
+> Mandating to pass both "#mbox-cell" and valid nargs count looks
+> redundant to me.
 
-I thought I added it, but it seems it got lost during the plane landing.
-Do you want me to resend it?
+Ah, interesting. The original change that introduces this 3e3119d3088f ("device
+property: Introduce fwnode_property_get_reference_args") hadn't been reviewed
+by Mika or me, that's probably why we are not familiar with.
+
+Since interface is already established, I would recommend to fix
+this as proposed, i.e. with a new API. This is the way to match
+how OF seems to be doing.
 
 -- 
-With best wishes
-Dmitry
+With Best Regards,
+Andy Shevchenko
+
+
 
