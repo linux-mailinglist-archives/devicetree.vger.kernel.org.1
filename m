@@ -1,135 +1,289 @@
-Return-Path: <devicetree+bounces-142437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7660AA25574
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:09:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A24A25583
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 10:12:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A3051885E6A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:09:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE92B3A1757
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 09:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33A511FF610;
-	Mon,  3 Feb 2025 09:07:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8793C1FDA78;
+	Mon,  3 Feb 2025 09:12:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CwOv10Rz"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="XYZGNxQO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5329D1E0B9C;
-	Mon,  3 Feb 2025 09:07:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DC5179BD;
+	Mon,  3 Feb 2025 09:12:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738573664; cv=none; b=J4FX/9NMjpN81J6k9tsjmcxj8S3vf0AA5xqXJbwIeTivuD+7rH+4uBW/AHgJdeYLBj9ndrvY5Uha8h9pLSZkhes73JYEy6tXmzANfiqmHt1NFwMAhVBZFd5cNQ1DL21Ba+zDBxFuxb8FLt7KQpi92KkA63gHI9c9CKv5pttRcRk=
+	t=1738573929; cv=none; b=dTbpxbeAHW+fl3MpBYxagCCRe/45HFQLqA58PhqnLH+NOECQp20yFkOvkHDc52xz31k1gYRKrL+8386J7+np+7eGAHn03Fhu5cQRiGK77w0tkj76lrnHKc81RqSndMtY7CRVNyPKikU0MFK3upqH7DlU2Q6Wq/Z3CxSltFLSgEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738573664; c=relaxed/simple;
-	bh=LrNaaAN8CgnFf01cXAm64Gx08zjhLQl+u8QYVB21upg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=M8dnnbsxz5RnnrVwkqBJOqdOq4Ki1sVG/3TT+molL0SGtqQyhpZFCT8IDQkm4WG4SekhNGc42x0i7tEv4LqHR390mR5bCg8Qnwqm3MHsjkxCKhIV5T7ATN9dF0K9O+4MPVNoY+q/Kh5l6o0qkohP3zDjhe2P8vXUdjRmp4iEx9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CwOv10Rz; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 512LjB2r002355;
-	Mon, 3 Feb 2025 09:07:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5IFJybb1pcE7296a9/K0sJwN2gUdU48QFivEoX0a/tA=; b=CwOv10Rz0A8i3B2d
-	eDMBndMgXdyaiBCA2LYnmFNjBYqpDf5BOa6iHHk6RFb81eTMEN01BOswJzfrYnHZ
-	Lfs7jVgYKAaosoumrx9MjCgNKOyVea255LAIo2mbs6yYjaPoxYdOsrscpNc76bj0
-	054frG6ObWkqA9OIz+WXFAkPpwZQIDS9kX7XOUHdcFa3EOhQPH1zGAWfOsndfRYk
-	tjJQGOR5S6QQgiZDbuY+vmDTyuP4dpuCPxvFKfiuHc5Zu+mdgU68vMzjN04tt9Ji
-	dOSiFNBVZiGBVWUFWaWMPtdADQEk1iY24ojvzszVYdIeGqxhyryRag9RZvwyhVYu
-	G/jHZA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44jc0t18tr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Feb 2025 09:07:30 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51397UwK005999
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 3 Feb 2025 09:07:30 GMT
-Received: from [10.216.42.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Feb 2025
- 01:07:26 -0800
-Message-ID: <2f0b8022-c04d-4375-af47-b3f7d4cb9ba2@quicinc.com>
-Date: Mon, 3 Feb 2025 14:37:23 +0530
+	s=arc-20240116; t=1738573929; c=relaxed/simple;
+	bh=GoZ1I8nwjXJDyNzuyNG8kMf4j9q65G9XZXlJCuRM9Ss=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=P3wxt8fhcB6DIvD+9ctHSj2QQnSxFO6/VF5x2W468p+Tr0nTtLZMrMtm0nSKagks2EvoIGniXXy+hNDkAJT9zxAgPh5XRTfb+jbT738t3nwhb15hqI0Jai8HuGfmYXxLLDN1qPYcds5NS7L//ylUTinNG+GF/UoBeKREKKk9Umw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=XYZGNxQO; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1738573928; x=1770109928;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=GoZ1I8nwjXJDyNzuyNG8kMf4j9q65G9XZXlJCuRM9Ss=;
+  b=XYZGNxQO60fzPPhnyTIkL5It8wIAZtf62L3r9fnNzhqZmT7dUebiAIzK
+   ormGc0d4wOgoZiODnpw43MOfOEN6XdLCodq13CFFBM1W/IXr2Cnlv9CS0
+   /FHBsXK4NU712rgYxdwgklYwqxXb+NW05TLpb1DaYUXGdsA9g3Ubaeh3y
+   Y2r0saW/1+6Zt/pSS61KljeLtYBA7Ka4MrCg1pv68nI2NCuOnom0ceZ96
+   Vb9f2TgPA9CX8Cg2s5moIeoslc9AQOhJvXxjUOVGB/zf5vmc0ellTyq4c
+   mub6dJzW0oehA9HgRCnl41T34av/gpQv9aRDpQZmSToadcZXFIsQVoW1W
+   g==;
+X-CSE-ConnectionGUID: 7vGpeTJvQHexY+vrjMcrEA==
+X-CSE-MsgGUID: pxeKEp38Sx+/HvgXMb1IHw==
+X-IronPort-AV: E=Sophos;i="6.13,255,1732604400"; 
+   d="scan'208";a="268528704"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Feb 2025 02:12:07 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 3 Feb 2025 02:11:47 -0700
+Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Mon, 3 Feb 2025 02:11:43 -0700
+From: Andrei Simion <andrei.simion@microchip.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
+	<alexandre.belloni@bootlin.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-sound@vger.kernel.org>, Andrei Simion
+	<andrei.simion@microchip.com>
+Subject: [PATCH v2] ASoC: dt-bindings: atmel,at91-ssc: Convert to YAML format
+Date: Mon, 3 Feb 2025 11:11:12 +0200
+Message-ID: <20250203091111.21667-1-andrei.simion@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/13] dt-bindings: net: wireless: describe the ath12k
- AHB module
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, <ath12k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250130043508.1885026-1-quic_rajkbhag@quicinc.com>
- <20250130043508.1885026-2-quic_rajkbhag@quicinc.com>
- <b3637222-d79a-4019-8155-d14abbadd6f7@oss.qualcomm.com>
-Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <b3637222-d79a-4019-8155-d14abbadd6f7@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: JdTKmWgd7-duw_WL0P8Do8ZpM87UROdj
-X-Proofpoint-GUID: JdTKmWgd7-duw_WL0P8Do8ZpM87UROdj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-03_03,2025-01-31_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- lowpriorityscore=0 mlxlogscore=884 bulkscore=0 mlxscore=0 malwarescore=0
- adultscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502030072
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 1/31/2025 12:37 AM, Jeff Johnson wrote:
-> On 1/29/2025 8:34 PM, Raj Kumar Bhagat wrote:
->> Add device-tree bindings for the ATH12K module found in the IPQ5332
->> device.
->>
->> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
->> ---
->>  .../net/wireless/qcom,ath12k-ahb.yaml         | 319 ++++++++++++++++++
->>  1 file changed, 319 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
->> new file mode 100644
->> index 000000000000..bd953a028dc3
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
->> @@ -0,0 +1,319 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +# Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/wireless/qcom,ath12k-ahb.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Technologies ath12k wireless devices (AHB)
->> +
->> +maintainers:
->> +  - Kalle Valo <kvalo@kernel.org>
-> 
-> sadly, you should remove Kalle since he resigned as a maintainer this week
-> 
+Convert devicetree binding atmel-ssc.txt to YAML format.
+Update the documentation supported file for MICROCHIP SSC DRIVER.
 
-Will update.
+Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+---
+v1 -> v2:
+- squash MAINTAINERS patch
+- place this yaml in sound directory
+- reword the commit title
+- reword the commit message
+- add #sound-dai-cells const 0
+- add required
+- include ref dai-common.yaml#
+- fix the logic for the required properties for DMA transfer
+- update examples by adding #sound-dai-cells = <0>
+- drop unnecessary description
+- drop compatible for sam9x7-ssc because is not the intent of the patch
+---
+ .../devicetree/bindings/misc/atmel-ssc.txt    |  50 ---------
+ .../bindings/sound/atmel,at91-ssc.yaml        | 104 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 105 insertions(+), 51 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/misc/atmel-ssc.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
+
+diff --git a/Documentation/devicetree/bindings/misc/atmel-ssc.txt b/Documentation/devicetree/bindings/misc/atmel-ssc.txt
+deleted file mode 100644
+index f9fb412642fe0..0000000000000
+--- a/Documentation/devicetree/bindings/misc/atmel-ssc.txt
++++ /dev/null
+@@ -1,50 +0,0 @@
+-* Atmel SSC driver.
+-
+-Required properties:
+-- compatible: "atmel,at91rm9200-ssc" or "atmel,at91sam9g45-ssc"
+-	- atmel,at91rm9200-ssc: support pdc transfer
+-	- atmel,at91sam9g45-ssc: support dma transfer
+-- reg: Should contain SSC registers location and length
+-- interrupts: Should contain SSC interrupt
+-- clock-names: tuple listing input clock names.
+-	Required elements: "pclk"
+-- clocks: phandles to input clocks.
+-
+-
+-Required properties for devices compatible with "atmel,at91sam9g45-ssc":
+-- dmas: DMA specifier, consisting of a phandle to DMA controller node,
+-  the memory interface and SSC DMA channel ID (for tx and rx).
+-  See Documentation/devicetree/bindings/dma/atmel-dma.txt for details.
+-- dma-names: Must be "tx", "rx".
+-
+-Optional properties:
+-  - atmel,clk-from-rk-pin: bool property.
+-     - When SSC works in slave mode, according to the hardware design, the
+-       clock can get from TK pin, and also can get from RK pin. So, add
+-       this parameter to choose where the clock from.
+-     - By default the clock is from TK pin, if the clock from RK pin, this
+-       property is needed.
+-  - #sound-dai-cells: Should contain <0>.
+-     - This property makes the SSC into an automatically registered DAI.
+-
+-Examples:
+-- PDC transfer:
+-ssc0: ssc@fffbc000 {
+-	compatible = "atmel,at91rm9200-ssc";
+-	reg = <0xfffbc000 0x4000>;
+-	interrupts = <14 4 5>;
+-	clocks = <&ssc0_clk>;
+-	clock-names = "pclk";
+-};
+-
+-- DMA transfer:
+-ssc0: ssc@f0010000 {
+-      compatible = "atmel,at91sam9g45-ssc";
+-      reg = <0xf0010000 0x4000>;
+-      interrupts = <28 4 5>;
+-      dmas = <&dma0 1 13>,
+-	     <&dma0 1 14>;
+-      dma-names = "tx", "rx";
+-      pinctrl-names = "default";
+-      pinctrl-0 = <&pinctrl_ssc0_tx &pinctrl_ssc0_rx>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml b/Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
+new file mode 100644
+index 0000000000000..a05e614318242
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
+@@ -0,0 +1,104 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/atmel,at91-ssc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel Serial Synchronous Serial (SSC)
++
++maintainers:
++  - Andrei Simion <andrei.simion@microchip.com>
++
++description:
++  The Atmel Synchronous Serial Controller (SSC) provides a versatile
++  synchronous communication link for audio and telecom applications,
++  supporting protocols like I2S, Short Frame Sync, and Long Frame Sync.
++
++properties:
++  compatible:
++    enum:
++      - atmel,at91rm9200-ssc
++      - atmel,at91sam9g45-ssc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: pclk
++
++  dmas:
++    items:
++      - description: TX DMA Channel
++      - description: RX DMA Channel
++
++  dma-names:
++    items:
++      - const: tx
++      - const: rx
++
++  atmel,clk-from-rk-pin:
++    description:
++      Specify the clock source for the SSC (Synchronous Serial Controller)
++      when operating in slave mode. By default, the clock is sourced from
++      the TK pin.
++    type: boolean
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++allOf:
++  - $ref: dai-common.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - atmel,at91sam9g45-ssc
++    then:
++      required:
++        - dmas
++        - dma-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/at91.h>
++    #include <dt-bindings/dma/at91.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    ssc@100000 {
++       compatible = "atmel,at91sam9g45-ssc";
++       reg = <0x100000 0x4000>;
++       interrupts = <28 IRQ_TYPE_LEVEL_HIGH 5>;
++       dmas = <&dma0 (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
++                     AT91_XDMAC_DT_PERID(38))>,
++              <&dma0 (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
++                     AT91_XDMAC_DT_PERID(39))>;
++       dma-names = "tx", "rx";
++       clocks = <&pmc PMC_TYPE_PERIPHERAL 28>;
++       clock-names = "pclk";
++       #sound-dai-cells = <0>;
++    };
++
++    ssc@c00000 {
++      compatible = "atmel,at91rm9200-ssc";
++      reg = <0xc00000 0x4000>;
++      interrupts = <14 IRQ_TYPE_LEVEL_HIGH 5>;
++      clocks = <&pmc PMC_TYPE_PERIPHERAL 14>;
++      clock-names = "pclk";
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ce7bf07c8afa2..6d593729a6d00 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15633,7 +15633,7 @@ M:	Claudiu Beznea <claudiu.beznea@tuxon.dev>
+ M:	Andrei Simion <andrei.simion@microchip.com>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Supported
+-F:	Documentation/devicetree/bindings/misc/atmel-ssc.txt
++F:	Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
+ F:	drivers/misc/atmel-ssc.c
+ F:	include/linux/atmel-ssc.h
+ 
+
+base-commit: 00f3246adeeacbda0bd0b303604e46eb59c32e6e
+-- 
+2.34.1
+
 
