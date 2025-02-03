@@ -1,156 +1,104 @@
-Return-Path: <devicetree+bounces-142531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DFECA25A79
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 14:12:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C91AFA25A68
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 14:10:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BF893A7277
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 13:12:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B8121647A4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 13:10:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF5B205514;
-	Mon,  3 Feb 2025 13:11:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R/Tu1xXv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98871204C31;
+	Mon,  3 Feb 2025 13:10:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DAE02054FE;
-	Mon,  3 Feb 2025 13:11:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC202036E1
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 13:10:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738588312; cv=none; b=jN9PpfOk6EVVZRAwtOHgdxNRhcaAfjYNq2q+m7nIf30VA4irytw7Vsy4szvFVMRlDO44ME4OlgeYTgsqP9CdbFQ0/tKlcRWWxzTUot+gzYLNe2OqhtAj/cdA98JhrSr2GIdM2sjbCleIs74b80gNImcbApoCrCDcV6AWah5GdB0=
+	t=1738588229; cv=none; b=phe4X2VLZbJtKlIzQBlBgR+LOx0vl34U9LsT/LBYl8DgpgdfRVZit6MuA5Q9qTvjeKXKxrJL2lmaGGi0+W+Jj1NWcI9nxDOzCyVXrzHlO3YSspcOBan0u3Kox0/MVLZIDikRvidtgbsR/xtEeQePeUarNLOBGtM3dNabyZqjUiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738588312; c=relaxed/simple;
-	bh=/kUKPWCuiO07PV8wX+eiL75OEyrHSx5RcfpFsjZDG/U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MbmD7If0GBNlwMAJjuljXSN4cE8+Pqm6dec36O2p6TDJe9n2xOARQ7agINVBRhbcvRdroNM7rB8LZ7sbTsHHnBrVopwp95RiGB3OedoSzQjD79taScO/rfXNvXl+jz9sV41BtYCqUNLEGqUQPEH4ZNb84xJVcu09cAYQtKUtOZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R/Tu1xXv; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-21661be2c2dso71411685ad.1;
-        Mon, 03 Feb 2025 05:11:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738588310; x=1739193110; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PDJizsvXaw9+teo3wUwPkWJCqORZkNmTQyuSkt5H4CY=;
-        b=R/Tu1xXviQ7NcPSxGHEdzVPunZZ0m6slMxzZimLBpQGtcuSS2+/UbH3MT0B4ktBqNk
-         oTBsN7D3mJlfHNsSappFQFl5oQbTBzh8ArTnclGGudV8ct6E771OlfB1SnCowjvQOrU2
-         OmZ7f7Pn2IBPqMq3hlHLpeOoiJ7VsjUQyrJ97XXYznN7pMmZ8rLHEFjRsbkp7oa3yqFR
-         Ys9K6oy4Lbyxhbf89JVvElTx3L/XzcBD15hGTsNkMx95qLYxATKTxVvd/52O5O0p18FY
-         XeHYWypTaQ75scY8S2gwaT053U0kX4J/tX6WNky5YhVyQ2Y6pwJ9aKvjgCFDMa74rLjT
-         DfOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738588310; x=1739193110;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PDJizsvXaw9+teo3wUwPkWJCqORZkNmTQyuSkt5H4CY=;
-        b=OcENpwby9BzxMPoDwCHaHMNZeoJBZTp9d2o78x6S8rr9W8atLBXpyqXj5gH0fsAmZ2
-         7Qo3DexvW4d4fAWneOZlkFCIpte1NJ3z5lDbDBD8GIITVqQchr7W9uqfYfa2gY/LnDYc
-         Uisp53wkpPcUrX8LKR1vz5ZmygqiG0HOrPI6kkfy8tf8hpDLeGMVdUkaFVKUWpX5X27R
-         llQyGjJAxWJeAAqm6+4344YLYQvpqxWd3CCzenyy0Asafr0VuLRjpwC242bgcykJOPAh
-         ejRQ+fKckwm8hDVH01y5Aa1XNjAUEIBSORKv1SK1wKi+JGFoJ6jSSkAPlYlFpPEEAvuZ
-         m1PQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVtZOv+XPO0N9/hsQmEb60lg8fiaRawI3ngDgSPW0eZSXFpL9mU5Fn/8TTsaY9A64LSbW10eCxZ3G+b@vger.kernel.org, AJvYcCWqStASMFhENLP1Qcmkc0N5mckBW8MWEuG/gsT1mvA4eC3umW74EVnTQQV/mQAU61LadE5d0Vlq0YDAEu+V@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNA7dNkwxxbyslh7KBTGvbB1VIPsXmETrLp2cT87N/5wUFHYXA
-	PQ50Dvol1GKKkPFEEZtplu+7NDkaW6heWnTL7DdnpareXQncpvCi
-X-Gm-Gg: ASbGncs9cpD6WmXAsBzQ39cAtkwDi6uFbWMRucxkkAU5Sgg/hz99LdIu7E36x5PxhkE
-	2+7ZydXp2Nu2X3QTUd/Yu4e5j0UJWpP+JJgjEhbofGIcy5KaIhH9Bqza0k7WUmHxQxOKJ5VudUh
-	Ch8xpJUOZfE1s+01JDShzU7Ev5u1Cu+sDb1R357gV85uytJkkPY9nlsYslu31R1z9j4K/plnVeg
-	KFnxUmwDTyPwZVEWteRmSzbrdPUEWzu/Qp0xnlr3KE6wyOBrBZp75kBLP5+3Gr2eIYn7ByKwG8x
-	cxGdjY23VZOmi9/VsJ+6tyIhD0I3cj0VPN/Yu0dJ2p7PixXmrrCDWx/aTren+9mHZY5L
-X-Google-Smtp-Source: AGHT+IHvk6/UEgPuUarQoM3QIGf47jIEwUV97FOhse5NsNON8UUQENswlYanuyKROZD7+6+YsdUArQ==
-X-Received: by 2002:a05:6a00:244a:b0:725:f097:ed21 with SMTP id d2e1a72fcca58-72fd0c62288mr30218643b3a.15.1738588310373;
-        Mon, 03 Feb 2025 05:11:50 -0800 (PST)
-Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72fe631be3csm8377629b3a.7.2025.02.03.05.11.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Feb 2025 05:11:50 -0800 (PST)
-From: Potin Lai <potin.lai.pt@gmail.com>
-Date: Mon, 03 Feb 2025 21:09:14 +0800
-Subject: [PATCH 2/2] ipmi: ssif_bmc: Add support for adjustable response
- timeout
+	s=arc-20240116; t=1738588229; c=relaxed/simple;
+	bh=3V9EWmDSZmuk3+piik4gYUDhM6wjBadbX05witTb86g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PVvvB48TD/U8HitmmMblTthd4LDNU8hVYFcIaqL4GxT5qdCzmYqk3zAzW6Iz+8/pl1xJ0/RY8iOli0JZQcRTwHSWbhmurwobSGuaufF+xGU5oZtUfwVqLQR/mCwgwGQbkcm8n1CYXonXzRiyVPAAI1jgpIb85ppnQ3RzgXeJ6Y4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tewDL-0003ae-Ae; Mon, 03 Feb 2025 14:10:11 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tewDK-003IYN-0p;
+	Mon, 03 Feb 2025 14:10:10 +0100
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id BB1113B7A82;
+	Mon, 03 Feb 2025 13:10:07 +0000 (UTC)
+Date: Mon, 3 Feb 2025 14:10:06 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, 
+	linux-stm32@st-md-mailman.stormreply.com, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Leonard =?utf-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH stm32-next v3 0/2] ARM: dts: stm32: lxa-fairytux2: add
+ gen{1,2} boards
+Message-ID: <20250203-congenial-falcon-of-destiny-43b5c0-mkl@pengutronix.de>
+References: <20250121-lxa-fairytux-v3-0-8d42d7d232fb@pengutronix.de>
+ <173764775141.3793586.6690578690442295161.robh@kernel.org>
+ <20250123-urban-belligerent-bullfinch-2fa9e6-mkl@pengutronix.de>
+ <8f28bbc1-1ada-41b2-bff2-5ad549c934a5@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250203-ssif-response-timeout-ms-v1-2-6fe279740181@gmail.com>
-References: <20250203-ssif-response-timeout-ms-v1-0-6fe279740181@gmail.com>
-In-Reply-To: <20250203-ssif-response-timeout-ms-v1-0-6fe279740181@gmail.com>
-To: Corey Minyard <corey@minyard.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Quan Nguyen <quan@os.amperecomputing.com>, 
- Patrick Williams <patrick@stwcx.xyz>
-Cc: openipmi-developer@lists.sourceforge.net, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Cosmo Chou <cosmo.chou@quantatw.com>, 
- Potin Lai <potin.lai@quantatw.com>, Potin Lai <potin.lai.pt@gmail.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738588302; l=1887;
- i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
- bh=/kUKPWCuiO07PV8wX+eiL75OEyrHSx5RcfpFsjZDG/U=;
- b=6Osmui4mmnSoBdZ1gq0ddokpf1z0Xv5oKdw5ZwDKeeh07nb1EchIXM0IDY8TT+h+DkK/rim1B
- L1S67E8or2BDDYV7xxZSB+Phz0qXdRGzMx2ulkUpkk+1OR2qQ8mhX57
-X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
- pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <8f28bbc1-1ada-41b2-bff2-5ad549c934a5@foss.st.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Implement support for the `timeout-ms` device tree property, allowing
-platforms to adjust the userspace response timeout as needed.
+On 03.02.2025 13:00:13, Alexandre TORGUE wrote:
+> > > My bot found new DTB warnings on the .dts files added or changed in t=
+his
+> > > series.
+> >=20
+> > This patch doesn't touch the offending file "ste-hrefv60plus-tvk.dtb".
+> > Might be a new warning, but not due to this patch, could this be a false
+> > positive?
+>=20
+> Can you reproduce ?
 
-If `timeout-ms` is not specified, the default response timeout remains
-500 ms. This ensures compatibility while providing flexibility for
-platforms that require longer timeouts due to BMC or application load.
+Nope!
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
----
- drivers/char/ipmi/ssif_bmc.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+> On my side I can't. As you said the reported error has
+> no link with your patch. I'll merge it.
 
-diff --git a/drivers/char/ipmi/ssif_bmc.c b/drivers/char/ipmi/ssif_bmc.c
-index 310f17dd9511..8f0fbc941936 100644
---- a/drivers/char/ipmi/ssif_bmc.c
-+++ b/drivers/char/ipmi/ssif_bmc.c
-@@ -87,6 +87,7 @@ struct ssif_bmc_ctx {
- 	/* Timeout waiting for response */
- 	struct timer_list       response_timer;
- 	bool                    response_timer_inited;
-+	u32                     response_timeout;
- 	/* Flag to identify a Multi-part Read Transaction */
- 	bool                    is_singlepart_read;
- 	u8                      nbytes_processed;
-@@ -331,7 +332,8 @@ static void handle_request(struct ssif_bmc_ctx *ssif_bmc)
- 		timer_setup(&ssif_bmc->response_timer, response_timeout, 0);
- 		ssif_bmc->response_timer_inited = true;
- 	}
--	mod_timer(&ssif_bmc->response_timer, jiffies + msecs_to_jiffies(RESPONSE_TIMEOUT));
-+	mod_timer(&ssif_bmc->response_timer, jiffies +
-+		  msecs_to_jiffies(ssif_bmc->response_timeout));
- }
- 
- static void calculate_response_part_pec(struct ssif_part_buffer *part)
-@@ -809,6 +811,10 @@ static int ssif_bmc_probe(struct i2c_client *client)
- 	if (!ssif_bmc)
- 		return -ENOMEM;
- 
-+	if (of_property_read_u32(client->dev.of_node, "timeout-ms",
-+				 &ssif_bmc->response_timeout))
-+		ssif_bmc->response_timeout = RESPONSE_TIMEOUT;
-+
- 	spin_lock_init(&ssif_bmc->lock);
- 
- 	init_waitqueue_head(&ssif_bmc->wait_queue);
+Thanks,
+Marc
 
--- 
-2.31.1
-
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
