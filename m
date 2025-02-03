@@ -1,72 +1,48 @@
-Return-Path: <devicetree+bounces-142654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB7E3A2602D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:33:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB5DCA26036
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:34:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D29CB3AB16E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:33:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5815E7A10CC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48AF320B1EC;
-	Mon,  3 Feb 2025 16:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C6AB20B1F7;
+	Mon,  3 Feb 2025 16:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ArvF0MjG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CjtwPXwD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1312C20B1E2
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 16:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C60420B1EC;
+	Mon,  3 Feb 2025 16:34:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738600396; cv=none; b=UoyDANcaaUE9bvde58wzwMx2gwmB6bJS2QiESHPl/BC5vFOTFxvtPRo3G5TGKReabC8Hc3yHhRgU0ZO2sOOETibAgOkyx34nQr0ZxfbiWQcyAz80SKfbcSwxxKwJUdLNr9XzcwkLy2+AlW5j7Tuu1S0V19szqhkBM3D+eTvPY6k=
+	t=1738600469; cv=none; b=uNEd7w06ffSBas98ellLAgB5WOFYimLU4a0GaaLUcVw2HupdTLrq/1b5DkXKYBKUh+R0fiQNYqOvekAMEZsq4O9Y9PGuuazgNVSzHRwMlXMxiSmehKA/zdRNz7+L/7y5xiCrON/7PNg8c8xQGsYJeIzjbjQ3sRB137DxVI1TCFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738600396; c=relaxed/simple;
-	bh=U+GrBy7CreIDx2WaSsCRH8V9c01JYi8AGBXlihMsrUk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=JvRFI8WiFpwWwWWDbx27GHmT6OLlPqDjIP/lYhYYBoRK4oO7M+1xLEYXT1sOjysZ7fkoy5neTTVr9m9WtooyQFP2sb5ZXxN0DpJUod+7eErDJzLJwUnMnMd4+q1wMl39kZYQ+TyKx9/9b6mHf7oWWhgQuz0ti1b0sF1QM7LLV04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ArvF0MjG; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250203163312euoutp02a4357870241570df8650d366137a8e0d~gv9hnODlS0333403334euoutp020
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 16:33:12 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250203163312euoutp02a4357870241570df8650d366137a8e0d~gv9hnODlS0333403334euoutp020
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1738600392;
-	bh=jgdfJb5XmANzNdoB6KpErLTImnQzyQ4B5YNgFymn8uo=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=ArvF0MjG65fVMg69mkVaEVQOM6koztY9TK3I68u4PfB9Btah+WikaNfHO5Oo/PTXM
-	 7TMg1K8w3oBy5zF124yeE403UwXtSsHwJCt8Y8Ivfpxrn6PZGs3Eu0KQOVK1+GeMry
-	 c5Wv4yZZu53nS6/sy2qyjNRjOBQnpmBS66hcz93k=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20250203163311eucas1p2e70de128fc35f5c0eed7024ef5d4a289~gv9g78N882024920249eucas1p2r;
-	Mon,  3 Feb 2025 16:33:11 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id 26.35.20397.7CFE0A76; Mon,  3
-	Feb 2025 16:33:11 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250203163311eucas1p17f75b2012c9341f93af43f586809a81e~gv9giSMB20911509115eucas1p1R;
-	Mon,  3 Feb 2025 16:33:11 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250203163311eusmtrp2f22113419fcf9cc31b947cee8f00f0da~gv9ggTqyx3261232612eusmtrp27;
-	Mon,  3 Feb 2025 16:33:11 +0000 (GMT)
-X-AuditID: cbfec7f5-ed1d670000004fad-37-67a0efc7874e
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id B5.E1.19654.7CFE0A76; Mon,  3
-	Feb 2025 16:33:11 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250203163309eusmtip2fde20ae086616fd76f79d37061338a0b~gv9fQ-z-u2728927289eusmtip2B;
-	Mon,  3 Feb 2025 16:33:09 +0000 (GMT)
-Message-ID: <6bdd711e-6515-43b9-aec1-4d90b87ff09f@samsung.com>
-Date: Mon, 3 Feb 2025 17:33:09 +0100
+	s=arc-20240116; t=1738600469; c=relaxed/simple;
+	bh=QzAhLfygH1VmeI6a93oc1pLJc+Tl3u3i4HIkwZDVWdY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sgdDBATogLe/h+Q+qbX8cR1pWMNwBo7m5+vhbARnVmq5PGAyZ+SH1arKkgFuopCVD2zG4LPiZ0tcZ+61hpbnnAtiet5UQtkRid7otUd/U1HWBfqTCh0SlLkQKAwrjchqgKa2X1dCq+LGkOcPj2Pz2aI3FUH8wht43CBZr2uK0BM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CjtwPXwD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36F7CC4CED2;
+	Mon,  3 Feb 2025 16:34:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738600468;
+	bh=QzAhLfygH1VmeI6a93oc1pLJc+Tl3u3i4HIkwZDVWdY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CjtwPXwDLEP0VrI4vKCdbZ5sa0hagVfZ6VCFikPp3SIMjIT+bd+8zP61i4gnuuaGe
+	 tyUHQVeU2MOtAfxQ40rKhVyJUw6URKi3RSBZOL2YgezMtkfHA9kS951Om2RhNxIS3w
+	 5CnGn/QNR0XTrcUcaXFgZD+jswBRTnlKwDbQnniB2ggyYJ2DPDCeKohSVNCBkHJnda
+	 YH3iovjmXPMLXxFdNYYnLiIlzULAvDveZhf48NhLB2eUe/7MLnFcheO0cfnuQHAodH
+	 1DMVIL7oqN1Kmx6obxz0f2s09WLl/lxVfdFJtsra+enPJ1HIyEtV0i4nWXWFQTjRcO
+	 hBiS65sjjbRaQ==
+Message-ID: <0708dbf1-5914-4372-9df2-5cf590fd7bd6@kernel.org>
+Date: Mon, 3 Feb 2025 17:34:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,167 +50,138 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/18] Enable drm/imagination BXM-4-64 Support for
- LicheePi 4A
-To: Matt Coster <Matt.Coster@imgtec.com>, "mturquette@baylibre.com"
-	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"drew@pdp7.com" <drew@pdp7.com>, "guoren@kernel.org" <guoren@kernel.org>,
-	"wefu@redhat.com" <wefu@redhat.com>, "jassisinghbrar@gmail.com"
-	<jassisinghbrar@gmail.com>, "paul.walmsley@sifive.com"
-	<paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, Frank Binns
-	<Frank.Binns@imgtec.com>, "maarten.lankhorst@linux.intel.com"
-	<maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
-	<mripard@kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
-	"airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
-	<simona@ffwll.ch>, "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-	"jszhang@kernel.org" <jszhang@kernel.org>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>, "m.szyprowski@samsung.com"
-	<m.szyprowski@samsung.com>
-Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Subject: Re: [RFC PATCH v10 1/2] media: iris: introduce helper module to
+ select video driver
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Johan Hovold <johan@kernel.org>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>, quic_vgarodia@quicinc.com,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ p.zabel@pengutronix.de, hverkuil@xs4all.nl, sebastian.fricke@collabora.com,
+ bryan.odonoghue@linaro.org, neil.armstrong@linaro.org, nicolas@ndufresne.ca,
+ u.kleine-koenig@baylibre.com, stefan.schmidt@linaro.org,
+ lujianhua000@gmail.com, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org
+References: <20250128080429.3911091-1-quic_dikshita@quicinc.com>
+ <20250128080429.3911091-2-quic_dikshita@quicinc.com>
+ <5070e1f1-914b-4654-88ef-3566e3eee9ca@kernel.org>
+ <f1344e49-61b6-4115-ae88-55b4a3cfed28@quicinc.com>
+ <Z6B822-6UTxQfX46@hovoldconsulting.com>
+ <tqbm672pi223ipcw7btiemlb745weeeiy4gnazzeghozhq2emj@wppbkms6hir5>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <ed7a463e-9654-41c3-91f6-f3f877fd9a20@imgtec.com>
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUxTZxTHfW5v771U6y4FwxN1MJvNbE4QqjEPG0Nwc7tx02z7MMxMNhu9
-	KUYorpVtkGUg5VWLuAG+XOxaGRNWpAItBToKWEkLoo3oBEd4S3SDMl6KwBYxo7Nc3Pj2O+f8
-	zzn/8+ShBBI7sZ46qjzBqpTyJCkhwq3OJ+5w17RBEdlVHYo6+8ox1PCUI9FVuxtD+g63EA3d
-	tWDo1/lpApl+v0OiMftJHPVW6UikcV4jkIcbItCMdkiI7tkuEWi2sAMg62w2gWo6Bkl0eaYB
-	RxVNNoByC64IUc/NPWhwqBNHnntaAcrlXkC+liYSLfbW4ahsqo1ElonvhMhVk4Cy20rwuBeZ
-	6Qc5JDPh8eDMjfw5krH/ZcCZZm6QZLTNtwBTbywgmIHeFoL5oesjZvi0C2PMFRlMdo0TY4r+
-	iWSmW+8TzBmLETB3NX3kh5JPRTFH2KSjX7KqbbGHRInltyax41mhX+eVXMYyQQs8BQIoSO+A
-	jTo9cQqIKAldBaCJMwv5YA5Am6kM8MEsgK1PTMLnLT1jJcuqSgDPjd7E+WASwLnrfhVFielY
-	qJlQ+Rtw+mVoKnbgfhbTgbDr4qMlXkeHweH+C6Sfg+gEmHW7aMlHMN1IwTPm4aWCgM4UwPyz
-	3/IcAvsf6TE/E7QMjlTqlxwFPNs1VTiK85owqGkoE/gHQbpHBO/UOpZtvwMLz3cDnoPguMtC
-	8rwR+pr5oZBOgSMNjwU8fwObta5lfhMOuBcI/2EC+jV4zbaNT8fDPGc77k9Dei18MBnIW1gL
-	v7eeF/BpMczPlfDqzbBUW/jfUneVFTsLpNyKV+FWHMmtOIb7f68B4EYQwqaqkxWseruS/SpC
-	LU9WpyoVEYdTkuvBsx/eveiabwJV4zMRDoBRwAEgJZAGi7sbDQqJ+Ig8LZ1VpXyuSk1i1Q6w
-	gcKlIeLythyFhFbIT7DHWPY4q3pexaiA9ZlY1sMuma7voMVX1/1Wd3Uc9zCx8/1g7+OMvezq
-	pHWriyT7UmLlitpN1e3EH7oDGfPRV3YVJxyK36pKn25UyVoy6vsURHXOwKUklzvhWMTCuc7J
-	Ovt9bd4Yycn2Xf0kcTJ6g3HsC+Fn3sDMk8SUd5Px9dOeqFW1UzEjrUGhO4NjNqZ/MF/5dqzn
-	lSjQ5BjPt635ZY2SzPJGrdqq+rh9Z6j0+hvh7xksu/dWbC4bcSuDrGE/qQ9rircjzVOvg2Z+
-	i/txzp1m3r+QpousuNGh18u2HAi/0D82suPVNNo5Gv1nqb7AFu/bb1809bzb5Dv4sxO+RICa
-	XTnK3ViBec/tUv3Fv6W4OlEetUWgUsv/BUg5I2RQBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPKsWRmVeSWpSXmKPExsVy+t/xe7rH3y9IN2juYLE4cX0Rk8XW37PY
-	LdbsPcdkMf/IOVaLe5e2MFlc+fqezWLd0wvsFi/2NrJYXFsxl92i+dh6NouXs+6xWXzsucdq
-	cXnXHDaLz71HGC22fW5hs1h75C67xcKPW1ksluzYxWjR1rmM1eLiKVeLu/dOsFi8vNzDbNE2
-	i9/i/54d7Bb/rm1ksZj9bj+7xZY3E1ktjq8Nt2jZP4XFQdbj/Y1Wdo83L1+yeBzu+MLusffb
-	AhaPnbPusnv07DzD6LFpVSebx51re9g85p0M9LjffZzJY/OSeo+WtceYPPr/Gni833eVzaNv
-	yypGj0vN19kDhKL0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLL
-	Uov07RL0MhadectU0CRX0T5lIVMD4x6JLkZODgkBE4mLL6awdjFycQgJLGWUmD7tMgtEQkbi
-	WvdLKFtY4s+1LjYQW0jgNaPEjo/KXYwcHLwCdhLNb4pAwiwCKhLrJh8CK+cVEJQ4OfMJmC0q
-	IC9x/9YMdhBbWCBcoulsPxvILhGBvRwSu278ZAFxmAUamCVWzb7BDHHFcUaJpVNvgLUzC4hL
-	3HoynwnEZhMwkniwfD4riM0JtPld73MWkCuYBdQl1s8TgiiXl2jeOpt5AqPQLCSHzEIyaRZC
-	xywkHQsYWVYxiqSWFuem5xYb6RUn5haX5qXrJefnbmIEpqxtx35u2cG48tVHvUOMTByMhxgl
-	OJiVRHhPb1+QLsSbklhZlVqUH19UmpNafIjRFBgYE5mlRJPzgUkzryTe0MzA1NDEzNLA1NLM
-	WEmcl+3K+TQhgfTEktTs1NSC1CKYPiYOTqkGpkmT2wK0y0tzT+9dVDvl59kVnyQuebUsahCP
-	lfc9mZou9mz1PQd141UTT1SL/v7xVFR+2ZcLvRUFkecMlWacLF9Xw9VotezFllduDWH3jCtL
-	J2ys4ZvOd8FXV/dHkkHlhFMT+oNeatrecDu4e2bv+ygGGblPrtx/fA39WB5Ob+u9dDO2t3iG
-	cJSufZjTNnZNl1nsiTdOPT20qcQjec4Zzjli35SmzZVYdK97+9X0d42Lgu54LNCr8J2n9si+
-	eX5L+MlwJwmdnc8Tv+vlPc56cYuzdQ9TY9La7SXnl/ds0T34rmBexe4NjrdqNTz8WqU5j12Z
-	7iodsEohKVYiQ+oYuyZvaGjTyy1ty2Y/vv30vxJLcUaioRZzUXEiAECvIAbiAwAA
-X-CMS-MailID: 20250203163311eucas1p17f75b2012c9341f93af43f586809a81e
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250128194825eucas1p14e2cb0a85c397dea297e9c4177cf1585
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250128194825eucas1p14e2cb0a85c397dea297e9c4177cf1585
-References: <CGME20250128194825eucas1p14e2cb0a85c397dea297e9c4177cf1585@eucas1p1.samsung.com>
-	<20250128194816.2185326-1-m.wilczynski@samsung.com>
-	<ed7a463e-9654-41c3-91f6-f3f877fd9a20@imgtec.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <tqbm672pi223ipcw7btiemlb745weeeiy4gnazzeghozhq2emj@wppbkms6hir5>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-
-On 1/31/25 16:39, Matt Coster wrote:
-> On 28/01/2025 19:47, Michal Wilczynski wrote:
->> The LicheePi 4A board, featuring the T-HEAD TH1520 SoC, includes an Imagination
->> Technologies BXM-4-64 GPU. Initial support for this GPU was provided through a
->> downstream driver [1]. Recently, efforts have been made to upstream support for
->> the Rogue family GPUs, which the BXM-4-64 is part of [2].
+On 03/02/2025 16:16, Dmitry Baryshkov wrote:
+> On Mon, Feb 03, 2025 at 09:22:51AM +0100, Johan Hovold wrote:
+>> On Fri, Jan 31, 2025 at 10:44:28AM -0800, Abhinav Kumar wrote:
+>>> On 1/29/2025 2:44 AM, Krzysztof Kozlowski wrote:
+>>>> On 28/01/2025 09:04, Dikshita Agarwal wrote:
 >>
->> While the initial upstream driver focused on the AXE-1-16 GPU, newer patches
->> have introduced support for the BXS-4-64 GPU [3]. The modern upstream
->> drm/imagination driver is expected to support the BXM-4-64 as well [4][5]. As
->> this support is being developed, it's crucial to upstream the necessary glue
->> code including clock and power-domain drivers so they're ready for integration
->> with the drm/imagination driver.
+>>>>> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
+>>>>> index 954cc7c0cc97..276461ade811 100644
+>>>>> --- a/drivers/media/platform/qcom/iris/iris_probe.c
+>>>>> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+>>>>> @@ -196,6 +196,9 @@ static int iris_probe(struct platform_device *pdev)
+>>>>>   	u64 dma_mask;
+>>>>>   	int ret;
+>>>>>   
+>>>>> +	if (!video_drv_should_bind(&pdev->dev, true))
+>>>>> +		return -ENODEV;
+>>>>
+>>>> Wouldn't it mark the probe as failed and cause dmesg regressions?
 >>
->> Recent Progress:
+>> No, this is perfectly fine. Probe can return -ENODEV and driver core
+>> will continue with any further matches.
 >>
->> Firmware Improvements:
->> Since August, the vendor has provided updated firmware
->> [6][7] that correctly initiates the firmware for the BXM-4-64.
+>>>>> +#if !IS_REACHABLE(CONFIG_VIDEO_QCOM_VENUS) || !IS_REACHABLE(CONFIG_VIDEO_QCOM_IRIS)
+>>>>> +bool video_drv_should_bind(struct device *dev, bool is_iris_driver)
+>>>>> +{
+>>>>> +	/* If just a single driver is enabled, use it no matter what */
+>>>>> +	return true;
+>>>>> +}
+>>>>> +
+>>>>> +#else
+>>>>> +static bool prefer_venus = true;
+>>>>> +MODULE_PARM_DESC(prefer_venus, "Select whether venus or iris driver should be preferred");
+>>>>> +module_param(prefer_venus, bool, 0444);
+>>>>
+>>>>
+>>>> The choice of driver is by module blacklisting, not by failing probes.
+>>>>
+>>>> I don't understand why this patchset is needed and neither commit msg
+>>>> nor above longer code comment explain me that. Just blacklist the module.
 >>
->> Mesa Driver Testing:
->> The vendor-supplied Mesa driver [8] partially works with Vulkan examples, such
->> as rendering a triangle using Sascha Willems' Vulkan samples [9]. Although the
->> triangle isn't rendered correctly (only the blue background appears), shader
->> job submissions function properly, and IOCTL calls are correctly invoked.  For
->> testing, we used the following resources:
+>>> Summarizing the discussion with myself, Krzysztof and Dmitry:
+>>>
+>>> 1) module blacklisting solution will not be ideal if users want to have 
+>>> both venus and iris or either of them built-in
 >>
->> Kernel Source: Custom kernel with necessary modifications [10].
->> Mesa Driver: Vendor-provided Mesa implementation [11].
+>> Module blacklisting is not the way to go, you shouldn't have two drivers
+>> racing to bind to the same device ever.
 >>
->> Dependencies:
->> Testing required a functional Display Processing Unit (DPU) and HDMI driver,
->> which are currently not upstreamed. Efforts are underway to upstream the DPU
->> DC8200 driver used in StarFive boards [12], which is the same DPU used on the
->> LicheePi 4A. Once the DPU and HDMI drivers are upstreamed, GPU support can be
->> fully upstream.
+>>> 2) with current approach, one of the probes (either venus or iris) will 
+>>> certainly fail as video_drv_should_bind() will fail for one of them. 
+>>> This can be considered as a regression and should not happen.
 >>
->> Testing Status:
->> This series has been tested by performing a probe-only operation, confirming
->> that the firmware begins execution. The probe function initiates firmware
->> execution and waits for the firmware to flip a specific status bit.
->>
->> [   12.637880] powervr ffef400000.gpu: [drm] loaded firmware powervr/rogue_36.52.104.182_v1.fw
->> [   12.648979] powervr ffef400000.gpu: [drm] FW version v1.0 (build 6645434 OS)
->> [   12.678906] [drm] Initialized powervr 1.0.0 for ffef400000.gpu on minor 0
->>
->> Power Management:
->> Full power management capabilities require implementing the T-HEAD SoC AON
->> protocol messaging via the hardware mailbox. Support for the mailbox was merged
->> in kernel 6.13 [13], and the AON protocol implementation is part of this
->> series, since v2. Therefore this series support full power management
->> capabilities for the GPU driver.
->>
->> Thanks everyone for taking the time to review the last revision ! Your
->> guidance and the direction was very helpful.
+>> How can that be a regression? One driver must fail to probe (see above).
 > 
-> Hi Michal,
-> 
-> This is awesome, thanks for contributing! I apologise for not responding
-> to earlier versions (things have been pretty busy here), but they have
-> very much been on my radar.
-> 
-> I see you're already aware of my other B-Series patchs[3]; would you
-> mind rebasing these changes on top of those? We're making some not
-> insignificant changes to the bindings which will conflict with any new
-> GPUs added in the meantime. I'll leave comments in this series where I
-> suspect the conflicts will appear.
-> 
-> Cheers,
-> Matt
+> I also don't think that it's a regression. I think Krzysztof was
+> concerned about the 'failed to bind' messages in dmesg.
 
+I never used word "regression" alone. I said "dmesg regression", which
+means you have error in logs or any system facility which provides you
+self-information about device probe history. I don't remember if -ENODEV
+leads to any printks, so maybe I am wrong here, but regardless normal
+and expected operation of a driver should never result in -ERRNO, except
+deferred probe of course.
 
-Hi Matt,
-
-Thanks for your review, and no worries about the delay it’s totally
-understandable. I appreciate the heads-up about the dt-bindings work in
-progress. I just wanted to share a working solution for now, but I’ll
-definitely rebase these patches once your changes are in place.
-
-Cheers, Michal
-
-> 
-
-> 
+Best regards,
+Krzysztof
 
