@@ -1,61 +1,72 @@
-Return-Path: <devicetree+bounces-142800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8829BA267AA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:14:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD8B1A267B0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:16:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12243160361
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:14:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97D4C7A41D6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C0C21322B;
-	Mon,  3 Feb 2025 23:05:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52CDE211A19;
+	Mon,  3 Feb 2025 23:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sBGCaUtz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s/Oqgb1r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC020211A07;
-	Mon,  3 Feb 2025 23:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACD62116F4;
+	Mon,  3 Feb 2025 23:06:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738623944; cv=none; b=afuSJghnSZFw7jg0/5nFwGr0JRaxB+Zs/uNyRcQdEugw2V1R0VoRUjdeU3eTWTuPXwWb1pW16WtRddaCmR9CoB7RzEDgG8QmEkr7km3lqvvNmqszJb+zg1ZxvyOpd2t+Bu/nHFPhsRt9mR8JNJQWVmbno4CIsxbD+F4oPOmYtEQ=
+	t=1738623981; cv=none; b=Bbi6vaY48CbLyUWtsnEXsbw2SpNkL0lX/FeyY1UvAG687XutsxoA9dPrc8llYEhWcw47KwW3Yo4GK2khOkNTGCJh7FsjFMxBlvzu4xoEAVa2DOCczS1mYh+9x/sZBJszoErIAdE5u4omrsfPkeEVCxKiKHgjMt92a8RTo7IalVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738623944; c=relaxed/simple;
-	bh=I5tThkY58MIXwmPRE79kDyvNP0k17+Se/rPn1Ph6njQ=;
+	s=arc-20240116; t=1738623981; c=relaxed/simple;
+	bh=8BS2LzvHcY78r1DdXYDr56TTF+ncuwdpHMuL/41500s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UiCmM31XshRwHnwKKGUaH/K/w70t5HJWHIHsR4+8+6ZZ7TaUEGqLVCFfY7G+bDe0uwRve++bGasbGNiDd1sa4Zx2EFflPgotqCQAb3AJaitjSb5wILKoEW+9uG3Bdc+ZHdYy6KL6q9G/XB6IH19YiQZ7HOY2K1/PS6SlhSHRqUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sBGCaUtz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28B2DC4CEEA;
-	Mon,  3 Feb 2025 23:05:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mv3ZRv12H+omImsDkzFBhwSdZgzzcvuvwBFqVMbsmHj1s5mywUlo9bg3WfkN+jRgRr/2SII+GV2cf5q8k6Fkjy4k4CINDL+yJbt+a21muwm3Mcu3IIJp+jMCghU+UmI8u0h2DQ2vseuXWgbNZbsI5ObEohLywUyRzqZPNZ75SjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s/Oqgb1r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07A40C4CEF0;
+	Mon,  3 Feb 2025 23:06:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738623944;
-	bh=I5tThkY58MIXwmPRE79kDyvNP0k17+Se/rPn1Ph6njQ=;
+	s=k20201202; t=1738623980;
+	bh=8BS2LzvHcY78r1DdXYDr56TTF+ncuwdpHMuL/41500s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sBGCaUtzvOxHO8GBP2eECpz8YLaf0GaYSTeugJk84ymUIAUj57FosRywdBEG7fw4K
-	 tNT4zpF6CHoCRMwPdaYuOS575s4G+9uMIJ4V60VBs4n+f6A5oHjI/HMHbwC6tLrAkO
-	 Fwz2knwZ4MN/JMOAIlW4lToVFf4lKs9H3GUrC6tU8V6Yo8QzboHSsZy1CaDRVJiGHc
-	 rpA4D/aY0DEEjI2cMZ5mEysUJMsvKCQMXplqqzQfcrAkFmFlFVgxJcJnFVWIMdk6MS
-	 As4j0dETGOy5lWWaZ2Gn6gDz+Fn985VosletOFzLd8bzlZYrFm6zUnMoJcNeHvoAE9
-	 tEH/47YRT0wXQ==
-Date: Mon, 3 Feb 2025 17:05:42 -0600
+	b=s/Oqgb1r/aQwrhI+H5DguR4mvIzCqhBGEL1v2+HGxur3qlKR10e5vJyTvtKuLnzpt
+	 2Py18GBs3H7WVtbqksGT2LX6xTei47UOovGqk9O6fXrdcnOYIU31eKwhofsVhY9CQD
+	 o8s2StGGt9Q303awQLnXL3V9NJiEDaGMjdbfcbybvutzdfXzPji6De2oE8c0fnKj1O
+	 CiT83JoMsJQGL+Z+8/G1vO0v8CAKVXxBYyTyM9PGzcf1awaq3Q1bEyMv18ZxsChxPl
+	 o0WMur3EI03qosHXattpMjJUmPh9wgahW5UKkBjAswivrhsSbgZLptVjTXwLNAjDz4
+	 xSH7cilbv7Izw==
+Date: Mon, 3 Feb 2025 17:06:18 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Ferry Toth <fntoth@gmail.com>, Felipe Balbi <balbi@kernel.org>,
-	linux-usb@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: dwc3: Add a property to reserve
- endpoints
-Message-ID: <173862394233.512701.17343597756592829862.robh@kernel.org>
-References: <20250203191524.3730346-1-andriy.shevchenko@linux.intel.com>
- <20250203191524.3730346-2-andriy.shevchenko@linux.intel.com>
+To: rafael@beims.me
+Cc: Simona Vetter <simona@ffwll.ch>,
+	Rafael Beims <rafael.beims@toradex.com>,
+	Robert Foss <rfoss@kernel.org>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	dri-devel@lists.freedesktop.org,
+	Adrien Grassein <adrien.grassein@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	David Airlie <airlied@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: lt8912b: Add I2S audio
+ input port
+Message-ID: <173862397834.518293.5664388217181154431.robh@kernel.org>
+References: <20250203192401.244651-1-rafael@beims.me>
+ <20250203192401.244651-2-rafael@beims.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,19 +75,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250203191524.3730346-2-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20250203192401.244651-2-rafael@beims.me>
 
 
-On Mon, 03 Feb 2025 21:10:53 +0200, Andy Shevchenko wrote:
-> Some of the endpoints may be reserved by hardware for different purposes,
-> e.g., tracing control and output. This is the case, for instance, on
-> Intel Merrifield and Moorefield platforms that reserve a few and USB driver
-> may not use them for the regular transfers. Add the respective bindings.
+On Mon, 03 Feb 2025 16:23:55 -0300, rafael@beims.me wrote:
+> From: Rafael Beims <rafael.beims@toradex.com>
 > 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Add the I2S audio input port for audio over HDMI support.
+> 
+> Signed-off-by: Rafael Beims <rafael.beims@toradex.com>
 > ---
->  .../devicetree/bindings/usb/snps,dwc3-common.yaml     | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>  .../bindings/display/bridge/lontium,lt8912b.yaml          | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
