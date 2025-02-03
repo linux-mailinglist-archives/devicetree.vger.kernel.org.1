@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-142629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B1D3A25F76
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:04:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C6BDA25F80
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 17:06:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F5661885528
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:05:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63CC91885AF7
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 16:06:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA1C20A5CB;
-	Mon,  3 Feb 2025 16:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED5320A5FD;
+	Mon,  3 Feb 2025 16:06:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jM3uMism"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HMraxU5g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7801D1F37B8
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 16:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7984E20A5FB
+	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 16:06:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738598697; cv=none; b=WN2p6LDQmAjxKPN+TDfOlErTqm2/ERPH2/OF0pnVkgXzjhFjFTFGZiL5SSkzQjN19yyQ/gqM4mj7whDLarVDjikVHH7wn4tLltXtTB7HrZkEnlwpWel/EYVhO5sybLtIY/JcNTiP1XX0Ln4QE8TRCYWDvLVOJpQ8bn/xK4dvu80=
+	t=1738598776; cv=none; b=hMcYI09i8jv6tHfPXuRHbTV4pWiNSxyBB+DS9sRY6WTHo1zSAG75nKvCaWeWQJlTMJDOdBTVh1mAQ/gduqfmofVOMLnI8XzMnfp19tpWpyKRlgKKNjsgN94KtMJ/Ev9yFzmIZvXL7WkL+gt4X0W9Z//AV8Em8ACu0pmvizTpB68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738598697; c=relaxed/simple;
-	bh=7FjBxVu/LhoU+doPPigSf0Xw4zscztcg6rt4zZBNwu0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ny2yAcp2n5TCTpuGb8dkJctvmiCl1eXxOIl7cBAwLvX6izdD4Rk30w2VXV/dxbrNXYXuyk3V+awaVagWTNMGemOYQg3igZuw6ZalPSQV+TOHe1vkOSV+lACkaj2axIizMiLFg4mgdyXS7iakzu7IaX7VFwkOo1JIs1BT7o6+sss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jM3uMism; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98204C4CED2;
-	Mon,  3 Feb 2025 16:04:53 +0000 (UTC)
+	s=arc-20240116; t=1738598776; c=relaxed/simple;
+	bh=mSbDzPlk5Z+rNAsJadL1MHdAe4MLtI17BJ5GbRPHpHM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=rgLpP/4BeJAcmxiUnfMkqBhqLBHLMGKutmNsxIcTXZhByW0nr02l4td6rMFjH+sVnN/2MJJjXmwzXJraOZ8rMLOgpgZUltIQfk0cRMEH5qbiu8CNUMMoW7PSDUEmAU/0i+nuQentZr7an19qBxl6NvA54bAUwgQP3fmBoQivS/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HMraxU5g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 161C6C4CED2;
+	Mon,  3 Feb 2025 16:06:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738598696;
-	bh=7FjBxVu/LhoU+doPPigSf0Xw4zscztcg6rt4zZBNwu0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jM3uMismr/ChWUVeoV2YhcqcnMllDmO9AgrW7KznMUSsoefw7tpz15V06zASAnX6B
-	 vSH7OVO1xdv6bSYASl+9+lz4CZ/MdVBJadMg+bTh2P4L0efSLSWXvvGvs1kTCPMsXQ
-	 k+lc422FaIia4jVosaaCD7zMqMJPt3Zje09fjIu4zTy7aZcrh8aagOdF96KNfxVmtc
-	 qqX9D1YlgXX3gKZG05C9BQW/YTBRv/Fpq6FolIni9ZzUuupbo3HqqHgW7Sk8nCT2np
-	 BbyMSk5ttZacAWRScW+2Ec0CW8ppE/X5YlH+h8te9iE0KDnoT/KPL1cML3eNaEf6+e
-	 ZJlL0BDMeeseg==
-Message-ID: <4656ae57-c6a1-48ac-a60f-72d7b988c307@kernel.org>
-Date: Mon, 3 Feb 2025 17:04:51 +0100
+	s=k20201202; t=1738598775;
+	bh=mSbDzPlk5Z+rNAsJadL1MHdAe4MLtI17BJ5GbRPHpHM=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=HMraxU5gWTtOelwhavBDPXS6Qbgwywwshr4EekNnc5sP4hLIllE2Ox5WqSg4VMyh+
+	 ffeUTi3sngmfyj4EVRIwOvr5/NPKE5jx/6PGZMvdIAkYAzR31MgDjaElsFpQhin9ly
+	 44CQYYsrxdOp4/6xhrBLwc48FE1l0uLRR9RoeGyqnkTIU5OsHJaRx2/W/+P8h7EWru
+	 t5XS92ZyBloTnv3m7DHDdsDCSbGDWxPpGCksVUOWeVbfomSB/M7mq4ZhCtPFjSea3L
+	 lszu+zKygmiPUEARD6XwqMptVSM6l84/6j8KBpXM/lKjcYjN3rkQ3ZE0tmGEo15+RJ
+	 gh9kXu2uMDQiQ==
+Message-ID: <231c1f01-dea1-4c39-bbe1-cb629f7c109d@kernel.org>
+Date: Mon, 3 Feb 2025 17:06:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,6 +52,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] arm64: dts: Introduce more nodes to EN7581 SoC evaluation
  board
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Lorenzo Bianconi <lorenzo@kernel.org>,
  Matthias Brugger <matthias.bgg@gmail.com>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -60,7 +61,7 @@ To: Lorenzo Bianconi <lorenzo@kernel.org>,
 Cc: linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
  devicetree@vger.kernel.org
 References: <20250201-en7581-dts-spi-pinctrl-v1-1-aaa4a9dfc4a6@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <4656ae57-c6a1-48ac-a60f-72d7b988c307@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -105,141 +106,39 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250201-en7581-dts-spi-pinctrl-v1-1-aaa4a9dfc4a6@kernel.org>
+In-Reply-To: <4656ae57-c6a1-48ac-a60f-72d7b988c307@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/02/2025 15:39, Lorenzo Bianconi wrote:
-> Add the following nodes to EN7581 SoC and EN7581 evaluation board:
-> - clock controller
-> - rng controller
-> - pinctrl
-> - i2c controllers
-> - spi nand controller
+On 03/02/2025 17:04, Krzysztof Kozlowski wrote:
+>> +
+>> +		rng@1faa1000 {
+>> +			compatible = "airoha,en7581-trng";
+>> +			reg = <0x0 0x1faa1000 0x0 0xc04>;
+>> +			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+>> +		};
+>> +
+>> +		system-controller@1fbf0200 {
+>> +			compatible = "syscon", "simple-mfd";
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-Missing prefix for vendor.
-
->  arch/arm64/boot/dts/airoha/en7581-evb.dts |  8 +++
->  arch/arm64/boot/dts/airoha/en7581.dtsi    | 90 +++++++++++++++++++++++++++++++
->  2 files changed, 98 insertions(+)
+> These are never allowed alone. I am pretty sure I added proper checks
+> which should point it out, so I think you did not really test your DTS.
 > 
-> diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> index cf58e43dd5b21dbf4f64e305a4b4a2daee100858..1126da4b795f5d5df9725ec4d75cd9353b011710 100644
-> --- a/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> +++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> @@ -24,3 +24,11 @@ memory@80000000 {
->  		reg = <0x0 0x80000000 0x2 0x00000000>;
->  	};
->  };
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +};
-> +
-> +&snfi {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> index 55eb1762fb11364877695960f5a2d3e42caf8611..b1cf650efd78c6c20d19e7f18c204cf5862215c0 100644
-> --- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-> +++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> @@ -2,6 +2,7 @@
->  
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/en7523-clk.h>
->  
->  / {
->  	interrupt-parent = <&gic>;
-> @@ -150,5 +151,94 @@ uart1: serial@1fbf0000 {
->  			interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
->  			clock-frequency = <1843200>;
->  		};
-> +
-> +		scuclk: clock-controller@1fa20000 {
-> +			compatible = "airoha,en7581-scu";
-> +			reg = <0x0 0x1fb00000 0x0 0x970>;
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
-> +		rng@1faa1000 {
-> +			compatible = "airoha,en7581-trng";
-> +			reg = <0x0 0x1faa1000 0x0 0xc04>;
-> +			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		system-controller@1fbf0200 {
-> +			compatible = "syscon", "simple-mfd";
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check W=1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+> for instructions).
+> Maybe you need to update your dtschema and yamllint. Don't rely on
+> distro packages for dtschema and be sure you are using the latest
+> released dtschema.
+> 
 
-These are never allowed alone. I am pretty sure I added proper checks
-which should point it out, so I think you did not really test your DTS.
+Now I see Rob's report:
+arch/arm64/boot/dts/airoha/en7581-evb.dtb: system-controller@1fbf0200:
+compatible: ['syscon', 'simple-mfd'] is too short
+which confirms untested code. Schema is there for a reason. :(
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-Maybe you need to update your dtschema and yamllint. Don't rely on
-distro packages for dtschema and be sure you are using the latest
-released dtschema.
-
-
-> +			reg = <0x0 0x1fbf0200 0x0 0xc0>;
-> +
-> +			en7581_pinctrl: pinctrl {
-> +				compatible = "airoha,en7581-pinctrl";
-> +
-> +				interrupt-parent = <&gic>;
-> +				interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +		};
-> +
-> +		i2cclock: i2cclock@0 {
-> +			#clock-cells = <0>;
-> +			compatible = "fixed-clock";
-> +
-> +			/* 20 MHz */
-> +			clock-frequency = <20000000>;
-> +		};
-> +
-> +		i2c0: i2c0@1fbf8000 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-i2c@
-
-> +			compatible = "mediatek,mt7621-i2c";
-> +			reg = <0x0 0x1fbf8000 0x0 0x100>;
-> +
-> +			clocks = <&i2cclock>;
-> +
-> +			/* 100 kHz */
-> +			clock-frequency = <100000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			status = "disable";
-> +		};
-> +
-> +		i2c1: i2c1@1fbf8100 {
 Best regards,
 Krzysztof
 
