@@ -1,59 +1,82 @@
-Return-Path: <devicetree+bounces-143006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96DF2A2797D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:13:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1113BA2798D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:16:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA7131881D58
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:13:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B28827A50D0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7720216E35;
-	Tue,  4 Feb 2025 18:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA2721766A;
+	Tue,  4 Feb 2025 18:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hf5aon4q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b2rbyC2b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 769C621323A;
-	Tue,  4 Feb 2025 18:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E653C78F4A;
+	Tue,  4 Feb 2025 18:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738692811; cv=none; b=XN7T/PiGGrMx1MZez/x+yBJmtQxbteoU9kOvqfvumYq40/niOewsP9hZ8p7mDin9gCFOcqthc7BhaMvfD0GeLZwV1SfLus/Bho1Ml37oalzJ+CqS+S4FNIPdLVE/Hsag5bZjmO9ten20rl9faImHIdX2tWspyF3yN/UZevMMz6M=
+	t=1738692987; cv=none; b=GOBZze1WZI3PIzEbFbFM/DYs5wS918Ag0bphjsUIegPU2cRWGXF7QZLYA16T0OOvVdijAIqVAg9TXogc24RSrloiAJPdvX5yuJZHIZtUEiZqVda9waJSj3SpnvwQJosn0FhWIPq/4eEedUmmbNJ3ioMlSD8YjWREMJZQAAjO/Aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738692811; c=relaxed/simple;
-	bh=kng2DyWqA6JNggrFjlRb12di5rEVwAZW0UowZQv67Dk=;
+	s=arc-20240116; t=1738692987; c=relaxed/simple;
+	bh=dmGkjt2zNEiAgl6N9re2M4LE4xSbtASeqzfY0ChaYqQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pYZIITLzNShzOaCVaWeaCrz9o2ozvW+T6N7Jnfjmc+NLbK2Fd2d52CKfGo61P5M6nCrfk6//hMbZraSwG4HrDuZIkaKcR3rJqqAmhUST9ZHmHs58fGMfV5Y879lIvX+/pFRJCEzWNtY0PZ17uUavueGPuxF/Kmup3gYDvCijrpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hf5aon4q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C6E4C4CEDF;
-	Tue,  4 Feb 2025 18:13:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FUQK+nUX6aEnjMMY4J51O8TOFIYacoo+TEOPWIyD0q9bIZ2g25L9Gpv//iP2MKZwhVaERF5hpfx9ktfbq/MYrmrfhVzIddEB+MhBRkB0pbSUJAzsDxnKce1buonurc8f1bVQRWgZdHa7k84C4jZiZuyOwlQlY4YINQRVf2QxP98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b2rbyC2b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64F21C4CEDF;
+	Tue,  4 Feb 2025 18:16:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738692810;
-	bh=kng2DyWqA6JNggrFjlRb12di5rEVwAZW0UowZQv67Dk=;
+	s=k20201202; t=1738692986;
+	bh=dmGkjt2zNEiAgl6N9re2M4LE4xSbtASeqzfY0ChaYqQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hf5aon4qmPlqr4e++nSMJgvbrB3O224PLfXIuYjCkj744Yg2dzK+Z2AIkiAIFElBm
-	 rNWNNLp3/rANocqTUJU+tJr55DRrrqRyDCgR8gH+wFbfyA30meY7LQVluU6wlCnYCH
-	 JRdZ4FChhk1gugaCtikxrEBZy/29ZMCsYmsfYXR35qlgqeOtAQWAKY0qI3SttiSShq
-	 3ES8dyRIsIPqQ0suLHUWJm/gyRUgh4bTtqMwZPkgrusWj7NiAHLIhxmszAOdq/1cRz
-	 lxW4jZC34BX2o0e1AMSp43157jv5chMWOF5W8clTvycuQSTHWn4MvMsI1nQwEh33tO
-	 j1TvVDDYwMLNg==
-Date: Tue, 4 Feb 2025 18:13:26 +0000
+	b=b2rbyC2bZq476y9HKzgTYiM2Xc1LS8wT5IY0iDXZoAcPwDZPvoNEugkvA6mcOCNB8
+	 RJ4fLX4BkO4ZhXkOnsLWZHSLB0yjPddBnC9mywKlMKda6THJ8ZdKfZi/oM++vwZVnL
+	 VaWoSxz4foT3b68sy1qtAGjpHbIQ5SvKXVCF7DaTj/lse75FmzkkpeTvevyfIQUxE0
+	 LNQ3hxtMUS+OBadhM+AAsSQlmOSexS0z5ykGzKQ+ryp1F2bdWVJVlS2+gZcfTr7Z+1
+	 24MRpJZw0YgOCJh25zJ9zH0Ya2wtFhzIqaLkuDAX6wXjCcCN6jVaC7IUod/8hn8ZyK
+	 5JoNKYf4VU/cQ==
+Date: Tue, 4 Feb 2025 18:16:17 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Kaustabh Chakraborty <kauschluss@disroot.org>,
-	Rob Herring <robh@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Sergey Lisov <sleirsgoevy@gmail.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add chip ID for Exynos7870 SoC
-Message-ID: <20250204-stump-irritably-9a888742b1f7@spud>
-References: <20250204-exynos7870-chipid-v1-0-0bf2db08e621@disroot.org>
- <339ea40f-6bc7-42ad-a5c2-f57b3be8cc39@kernel.org>
+To: Basharath Hussain Khaja <basharath@couthit.com>
+Cc: danishanwar <danishanwar@ti.com>, rogerq <rogerq@kernel.org>,
+	andrew+netdev <andrew+netdev@lunn.ch>, davem <davem@davemloft.net>,
+	edumazet <edumazet@google.com>, kuba <kuba@kernel.org>,
+	pabeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>,
+	nm <nm@ti.com>, ssantosh <ssantosh@kernel.org>,
+	tony <tony@atomide.com>, richardcochran <richardcochran@gmail.com>,
+	parvathi <parvathi@couthit.com>, schnelle <schnelle@linux.ibm.com>,
+	rdunlap <rdunlap@infradead.org>, diogo ivo <diogo.ivo@siemens.com>,
+	m-karicheri2 <m-karicheri2@ti.com>, horms <horms@kernel.org>,
+	jacob e keller <jacob.e.keller@intel.com>,
+	m-malladi <m-malladi@ti.com>,
+	javier carrasco cruz <javier.carrasco.cruz@gmail.com>,
+	afd <afd@ti.com>, s-anna <s-anna@ti.com>,
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+	netdev <netdev@vger.kernel.org>,
+	devicetree <devicetree@vger.kernel.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>,
+	linux-omap <linux-omap@vger.kernel.org>,
+	pratheesh <pratheesh@ti.com>, prajith <prajith@ti.com>,
+	vigneshr <vigneshr@ti.com>, praneeth <praneeth@ti.com>,
+	srk <srk@ti.com>, rogerq <rogerq@ti.com>,
+	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>,
+	mohan <mohan@couthit.com>
+Subject: Re: [RFC v2 PATCH 01/10] dt-bindings: net: ti: Adds DUAL-EMAC mode
+ support on PRU-ICSS2 for AM57xx SOCs
+Message-ID: <20250204-mutilated-throwing-59cabf18f187@spud>
+References: <20250124122353.1457174-1-basharath@couthit.com>
+ <20250124122353.1457174-2-basharath@couthit.com>
+ <20250124-reoccupy-music-3803c753f8af@spud>
+ <504387436.449923.1738127812232.JavaMail.zimbra@couthit.local>
+ <20250129-vowed-dingbat-cfb5c5b8ede4@spud>
+ <2028988664.494856.1738585795471.JavaMail.zimbra@couthit.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,53 +84,55 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="t2zFMrcacXUKjbe6"
+	protocol="application/pgp-signature"; boundary="K8COnd4nDaIlA8yU"
 Content-Disposition: inline
-In-Reply-To: <339ea40f-6bc7-42ad-a5c2-f57b3be8cc39@kernel.org>
+In-Reply-To: <2028988664.494856.1738585795471.JavaMail.zimbra@couthit.local>
 
 
---t2zFMrcacXUKjbe6
+--K8COnd4nDaIlA8yU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 04, 2025 at 08:53:31AM +0100, Krzysztof Kozlowski wrote:
-> On 03/02/2025 21:32, Kaustabh Chakraborty wrote:
-> > This patch series is a part of Exynos7870 upstreaming.
+On Mon, Feb 03, 2025 at 05:59:55PM +0530, Basharath Hussain Khaja wrote:
+> >> >> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >> >> +    description:
+> >> >> +      phandle to Enhanced Capture (eCAP) event for ICSS
+> >> >=20
+> >> > Why do you need phandles for these things, can they not be looked up=
+ by
+> >> > compatible? (e.g. multiple devices on one SoC).
+> >> >=20
+> >>=20
+> >> ecap is another peripheral similar to IEP in ICSSM/ICSSG. We have crea=
+ted a
+> >> separate driver for possible reuse with ICSSG in future.
 > >=20
-> > Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> > ---
-> > Kaustabh Chakraborty (2):
-> >       dt-bindings: hwinfo: samsung,exynos-chipid: add exynos7870-chipid=
- compatible
-> >       soc: samsung: exynos-chipid: add support for exynos7870
+> > That's not an answer to my question.
 > >=20
-> >  Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml | =
-1 +
-> >  drivers/soc/samsung/exynos-chipid.c                                 | =
-1 +
-> >  2 files changed, 2 insertions(+)
 >=20
-> When I asked to split, I said per subsystem. Soc is one subsystem.
-> Everything targeting SoC should be in one patchset. get_maintainers.pl
-> tells the name of the subsystem and its maintainers.
->=20
-> If there is going to be resend/new version, combine patchsets for soc
-> into one patchset (just like the example I gave last time).
+> We can use compatible if we have only one instance of a peripheral in the=
+ SOC.=20
+> On the AM57x SOC we have two identical ICSS instances(ICSS1 and ICSS2). S=
+o we=20
+> use phandles to differentiate between the two instances. Currently this p=
+atch=20
+> series adds support for ICSS2 instance on the AM57x SOC. Support for ICSS=
+1 instance=20
+> will be added in subsequent patches.
 
-And please send patches to the address people list in maintainers, don't
-modify the addresses.
+Cool, that's an acceptance answer, thanks.
 
---t2zFMrcacXUKjbe6
+--K8COnd4nDaIlA8yU
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6JYxgAKCRB4tDGHoIJi
-0jLeAQDdvqoiOqQKqVa5LNCQXQV66EX+r7UEIBsCt9LVGuMpewEAw0yZ2uQRkO3F
-3PnnDGci0d1yk9WSOgA3ys9/3IWmagU=
-=OWFK
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6JZcQAKCRB4tDGHoIJi
+0gnAAQC1oGfhZbnFSM/mPgMlsOYSL9Jy1uxEojT2QLRGkF15CQEA9H2GXROw3Fk2
+eXUwUknLlmzd/8uguMbvTucbVOMokgs=
+=3zMy
 -----END PGP SIGNATURE-----
 
---t2zFMrcacXUKjbe6--
+--K8COnd4nDaIlA8yU--
 
