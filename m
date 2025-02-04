@@ -1,140 +1,243 @@
-Return-Path: <devicetree+bounces-142901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E611EA27001
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 12:11:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F13DDA27038
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 12:29:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 856A63A78F0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 11:11:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A4C03A60F1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 11:29:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144BF20C025;
-	Tue,  4 Feb 2025 11:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACFFE20C02B;
+	Tue,  4 Feb 2025 11:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="t0CDFcQN"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="RzRMPyal"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCE820C007;
-	Tue,  4 Feb 2025 11:11:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C14C206F1B;
+	Tue,  4 Feb 2025 11:29:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738667487; cv=none; b=aaEEI/znMvTyC6xDiko1AOQrBXYLaTw1rJfL4W/39qwEWX5GD4x4ZgNLGAY2OCDgo8OAcakatxka1dYH0YhxLgvc2rQGhvQo6FyAvfGC8lFC+WAf1rEZdWp8QpwhQ4fish4il91rOC/fSUjUZ9unh3kPyao8kzQ336oyf30dzIk=
+	t=1738668594; cv=none; b=GvUeQrTJRWAv1gzq5cxef8yUjq5s9oFg0/ZZj1W5CSlfJUPiWI0XajiKu/jI498VNqUuIpfAj+2VHkW4vnFVNwrVatcxP6Uer2m+87vJst60n5JRBULDAUJNGpn8nP2H93p6ES7HoVSlInTCTvtZhV2fcfsc2eGqeLUo+R1Qr0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738667487; c=relaxed/simple;
-	bh=6BdCL7s1iOcMcXo6FMo76vx8Hg+CVwpDBhiRLj2EHew=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=c7nmlys2UaaZARgHiB22l1olHocTETZqpLAnDOqtHrrCHN9MU1oViPkpx9IBVGsHwJWvxrQjnA7G0PrQi3Xu9bM5AbMXd3UoD/HUNwBfTvmjv1qtjCgOI/pnTYy8GtAA+wb2st9+8fMXBlQkGRK4w8ZarYHOp/0uewT+YR+gpSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=t0CDFcQN; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 514B5lTL024169;
-	Tue, 4 Feb 2025 12:10:50 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	0WdoHNg8xzFLJxEL4fv90uErYqTslBGCXG3a5iCB0zM=; b=t0CDFcQNm4sq4RLe
-	P6QcQUvjxBtR+zTQdExTiv7FuDc7RvLNt/+W8EGtAt1qFm5873EFgc8OZl89rBvL
-	J68jpJaul4J30+XlXHImIJu7M2yK/H2ZBBLgFWn5DrNxNH7RQZxMUwmjoXiCZ2D0
-	qVLqXuY1pVFAmMslVEev4Pqt9iiOxZctFHgDd64Gp6hozOeCzX+HvIWfTph9s2Bo
-	AQF4NZQ04/f2KCivFW9nq85GczPXDOrRDVFp9nHypemcXZU+r3eyjPIKMTOpopcl
-	zDMG5kW0+v6/DRKcFINk4EchsCX7sDQk1VSLyWCRV3Q0upcQKPPTvOndDccL+pYK
-	DhQXaw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44jwu3v5j5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 04 Feb 2025 12:10:50 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B0B314005A;
-	Tue,  4 Feb 2025 12:09:21 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B78D92945D8;
-	Tue,  4 Feb 2025 12:07:08 +0100 (CET)
-Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 4 Feb
- 2025 12:07:07 +0100
-Message-ID: <3fa73c47-12af-46c3-8573-7d6800202e17@foss.st.com>
-Date: Tue, 4 Feb 2025 12:07:06 +0100
+	s=arc-20240116; t=1738668594; c=relaxed/simple;
+	bh=BDDY/zvSe6CpvcNY3L5W4cA+qjCQTYq+4vejfpYSNRQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=qK4y5NMx6H945+uODpgaCqipruBJGUxiAzptLhLse7jcjd7l1jtQ3JupaoeADCNytFsxyrXe+Ptv8RoOPZsEUUQ9z4EQ5wHrlN9BEDxIb2f/jRpDh/vTgQJBgy2Maqn7Jkf9srhuLVsGOWYCxKPdk0MuV2DEJqZkNV9FUtarL7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=RzRMPyal; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 01/10] dt-bindings: PCI: Add STM32MP25 PCIe Root
- Complex bindings
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <jingoohan1@gmail.com>, <p.zabel@pengutronix.de>,
-        <johan+linaro@kernel.org>, <quic_schintav@quicinc.com>,
-        <cassel@kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <fabrice.gasnier@foss.st.com>
-References: <20250128120745.334377-1-christian.bruel@foss.st.com>
- <20250128120745.334377-2-christian.bruel@foss.st.com>
- <20250202122527.ggy5ccz7o4umyhif@thinkpad>
-From: Christian Bruel <christian.bruel@foss.st.com>
-Content-Language: en-US
-In-Reply-To: <20250202122527.ggy5ccz7o4umyhif@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1738668125;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LL6EynQq/CqLtTBz5TS778NAparj4/zu88pSMnCePWE=;
+	b=RzRMPyaljUx6qDqfChSH4IDeOvzTMlqJydPipK0cvuIfAsU/EzEm9K32gPRYYGIVcL22pz
+	fH2QDI4tSGOZeceUoxJv4J3ToL88I+BGM9uM14HcTYTutMVL+2WQ60A+YwJcwKJipD/Ufl
+	FBhB1rGmFY7t/f9V1wFpH2sGGpB1vxXBdCjHwQAMWD0TjrWL+2UE9HB3rr1j3F9m0Np82R
+	FUWh2qPaAOqkt6PRWKEI2mCBJ9OMRBMxZjxUO5r2qCBRW6V22S5FYWZcyBJB93DxmXmvOQ
+	1MSmkxgjhDCY65PUIKWFqhsBB3mPaaJmDwR3tMlh2ACO9x0wNkgX8eGtb2eJIA==
+Date: Tue, 04 Feb 2025 12:22:04 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <foss+kernel@0leil.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jagan
+ Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>, Michael Riesch
+ <michael.riesch@wolfvision.net>, Jonas Karlman <jonas@kwiboo.se>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Quentin
+ Schulz <quentin.schulz@cherry.de>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 3/4] arm64: dts: rockchip: add overlay tests for Rock
+ 5B PCIe overlays
+In-Reply-To: <20250131-pre-ict-jaguar-v4-3-c971e2852e8d@cherry.de>
+References: <20250131-pre-ict-jaguar-v4-0-c971e2852e8d@cherry.de>
+ <20250131-pre-ict-jaguar-v4-3-c971e2852e8d@cherry.de>
+Message-ID: <77b5d0efa6e56bb391575aeeb4d1be80@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-04_05,2025-01-31_02,2024-11-22_01
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Hello all,
 
+I'm sorry for being late to the party.  Please, see some important
+notes below;  to sum it up, we'll need to rework this a bit.
 
-On 2/2/25 13:25, Manivannan Sadhasivam wrote:
-> On Tue, Jan 28, 2025 at 01:07:36PM +0100, Christian Bruel wrote:
+On 2025-01-31 11:40, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
 > 
-> [...]
+> According to commit 40658534756f ("arm64: dts: rockchip: Add rock5b
+> overlays for PCIe endpoint mode"), Rock 5B can operate in PCIe endpoint
+> mode. For that to work, the rk3588-rock-5b-pcie-ep.dtbo overlay needs 
+> to
+> be applied on Rock 5B base Device Tree. If that Rock 5B is connected to
+> another Rock 5B, the latter needs to apply the
+> rk3588-rock-5b-pcie-srns.dtbo overlay.
 > 
->> +    pcie@48400000 {
->> +        compatible = "st,stm32mp25-pcie-rc";
->> +        device_type = "pci";
->> +        reg = <0x48400000 0x400000>,
->> +              <0x10000000 0x10000>;
->> +        reg-names = "dbi", "config";
->> +        #interrupt-cells = <1>;
->> +        interrupt-map-mask = <0 0 0 7>;
->> +        interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
->> +                        <0 0 0 2 &intc 0 0 GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
->> +                        <0 0 0 3 &intc 0 0 GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
->> +                        <0 0 0 4 &intc 0 0 GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>;
->> +        #address-cells = <3>;
->> +        #size-cells = <2>;
->> +        ranges = <0x01000000 0x0 0x00000000 0x10010000 0x0 0x10000>,
->> +                 <0x02000000 0x0 0x10020000 0x10020000 0x0 0x7fe0000>,
->> +                 <0x42000000 0x0 0x18000000 0x18000000 0x0 0x8000000>;
->> +        dma-ranges = <0x42000000 0x0 0x80000000 0x80000000 0x0 0x80000000>;
->> +        clocks = <&rcc CK_BUS_PCIE>;
->> +        resets = <&rcc PCIE_R>;
->> +        msi-parent = <&v2m0>;
->> +        wakeup-source;
+> In order to make sure the overlays are still valid in the future, let's
+> add a validation test by applying the overlays on top of the main base
+> at build time.
 > 
-> Does this property really need to be present? If the WAKE# gpio is supported,
-> isn't it implied that the RC is a wakeup source?
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Niklas Cassel <cassel@kernel.org>
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
 > 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile
+> b/arch/arm64/boot/dts/rockchip/Makefile
+> index
+> 267966ea69b194887d59e38a4220239a90a91306..ebcd16ce976ebe56a98d9685228980cd1f2f180a
+> 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -150,8 +150,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += 
+> rk3588-orangepi-5-plus.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
+> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
+> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
+> @@ -186,3 +184,11 @@ rk3568-wolfvision-pf5-vz-2-uhd-dtbs :=
+> rk3568-wolfvision-pf5.dtb \
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
+>  rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
+>  	rk3588-edgeble-neu6a-wifi.dtbo
+> +
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtb
+> +rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb \
+> +	rk3588-rock-5b-pcie-ep.dtbo
+> +
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtb
+> +rk3588-rock-5b-pcie-srns-dtbs := rk3588-rock-5b.dtb \
+> +	rk3588-rock-5b-pcie-srns.dtbo
 
-the wakeup-source property is useless indeed with the wake_gpio, will 
-remove,
+After a quite lengthy excursion into the scripts/Makefile.dtbs and
+scripts/Makefile.lib files, I'm afraid that the approach taken in
+this patch isn't right.  Please allow me to explain.
 
-thanks.
+Let's have a look at arch/arm64/boot/dts/ti/Makefile first, as an
+example that provides already existing DT overlay checks.  Here's
+an excerpt from that Makefile, which also provides an important cue
+by mentioning CONFIG_OF_ALL_DTBS:
 
-Christian
+   12 dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
+   13 dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-ov5640.dtbo
+   14 dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
 
-> - Mani
-> 
+  135 # Build time test only, enabled by CONFIG_OF_ALL_DTBS
+  136 k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
+  137         k3-am625-beagleplay-csi2-ov5640.dtbo
+  138 k3-am625-beagleplay-csi2-tevi-ov5640-dtbs := 
+k3-am625-beagleplay.dtb \
+  139         k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
+
+  213 dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+  214         k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
+
+As visible above, the DT overlays get added to dtb-$(CONFIG_ARCH_K3)
+as .dtbo files (not as .dtb files), while the build-time DT overlay
+tests specify the dependency chains for the overlays.
+
+Even more importantly, the build-time overlay tests aren't supposed
+to be executed until CONFIG_OF_ALL_DTBS is selected, which actually
+gets handled at the very start of scripts/Makefile.dtbs:
+
+    3 # If CONFIG_OF_ALL_DTBS is enabled, all DT blobs are built
+    4 dtb-$(CONFIG_OF_ALL_DTBS) += $(dtb-)
+
+The way this patch modifies arch/arm64/boot/dts/rockchip/Makefile
+actually isn't correct, despite apparently producing the desired
+outcome, because the way it adds rk3588-rock-5b-pcie-ep.dtb and
+rk3588-rock-5b-pcie-srns.dtb (instead of adding proper .dtbo names)
+to dtb-$(CONFIG_ARCH_ROCKCHIP) effectively creates some kind of
+"phony targets" that indeed "get the job done", but unfortunately
+in a wrong way.  The "phony targets" are handled by the following
+"magic" in scripts/Makefile.dtbs:
+
+    6 # Composite DTB (i.e. DTB constructed by overlay)
+    7 multi-dtb-y := $(call multi-search, $(dtb-y), .dtb, -dtbs)
+    8 # Primitive DTB compiled from *.dts
+    9 real-dtb-y := $(call real-search, $(dtb-y), .dtb, -dtbs)
+   10 # Base DTB that overlay is applied onto
+   11 base-dtb-y := $(filter %.dtb, $(call real-search, $(multi-dtb-y), 
+.dtb, -dtbs))
+
+   18 targets         += $(real-dtb-y)
+
+Let's have a look at the relevant part of the output produced when
+"make dtbs" is executed with this patch applied:
+
+   DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtbo
+   OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtb
+   DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtbo
+   OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtb
+
+Note the "OVL .*dtb" lines above, in which the ".*dtb" parts are
+the above-mentioned "phony targets".  The above-quoted "magic" in
+scripts/Makefile.dtbs is what "unfolds" those "phony targets" to
+make them apparently produce the desired outcome, by populating
+the $(real-dtb-y) variable with "rk3588-rock-5b-pcie-ep.dtbo
+rk3588-rock-5b.dtb rk3588-rock-5b-pcie-srns.dtbo", as the proper
+.dtbo names that get passed to the dtc utility.
+
+Even more "magic" in scripts/Makefile.dtbs "unfolds" the "phony
+targets" to have the build-time DT overlay tests performed in the
+apparently proper way, while they actually shouldn't be performed
+unless CONFIG_OF_ALL_DTBS is also selected.
+
+With all this is mind, this patch should be reworked to follow
+the right approach for defining build-time DT overlay tests, which
+is illustrated in arch/arm64/boot/dts/ti/Makefile.  In particular,
+we should just add the following DT overlay test definitions to
+arch/arm64/boot/dts/rockchip/Makefile:
+
+174 # Build-time tests only, enabled by CONFIG_OF_ALL_DTBS
+175 rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb \
+176         rk3588-rock-5b-pcie-ep.dtbo
+177 rk3588-rock-5b-pcie-srns-dtbs := rk3588-rock-5b.dtb \
+178         rk3588-rock-5b-pcie-srns.dtbo
+179 dtb- += rk3588-rock-5b-pcie-ep.dtb \
+180         rk3588-rock-5b-pcie-srns.dtb
+
+You'll notice that the $(dtb-) variable pretty much again contains
+the same "phony targets", but that's the way they should actually
+be used.  I'm not very happy with the way they're specified, but
+we should follow the approach from arch/arm64/boot/dts/ti/Makefile
+anyway, and possibly improve the whole thing later.
+
+I'd actually prefer to just have these test definitions added to the
+end of arch/arm64/boot/dts/ti/Makefile, without moving the .dtbo lines
+around.  That would keep the tests separate, which should be more
+readable when we get more of them defined.
+
+With the above-proposed changes in place, and with CONFIG_OF_ALL_DTBS
+selected, the relevant part of the "make dtbs" output looks like this:
+
+   DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb
+   DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtbo
+   DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtbo
+   OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtb
+   OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtb
+
+No more "phony targets" in the produced output. :)
 
