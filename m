@@ -1,110 +1,300 @@
-Return-Path: <devicetree+bounces-142938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3ABA27459
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 15:28:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4C5A27470
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 15:33:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C9803A315F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 14:28:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29BCC7A2651
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 14:32:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC0E2135D3;
-	Tue,  4 Feb 2025 14:28:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vQEoA0zj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F8A213230;
+	Tue,  4 Feb 2025 14:33:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19412135CD;
-	Tue,  4 Feb 2025 14:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509652D057;
+	Tue,  4 Feb 2025 14:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738679291; cv=none; b=LeJ5ph7vbQSvuZOgUJK2wInXQsfX/mpUVacp16ydVfjEgd4hV6BPBfCOJGe43Yd++WTK5LXjBzxTqd5d2ImeyHSKoygnumL/HsvKrAg3KG00TnfEF/kIer39C6yRaOk57mUvYJSpTuTs/SVkQYTeYI0EsyGwVJ8bIm2Jx96ZF3g=
+	t=1738679592; cv=none; b=Qc2ft1esq9lpfE+sDxILB3oFWhU6ss8rC4YR2mgZQa3AQbKs5ERYXkSGSzQMp96svk3YjEc5cwIEG7yBpLbLLQol4AyWdGaJO+Mys/nJJ7YougyJjGqUOtrKFNWD2SiE+IzG1N29Y8rJXP05fDWCsu1jdzZxgfvZsSPkAvCzWq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738679291; c=relaxed/simple;
-	bh=yk5WtGeAX0utttGwRTmJMREP9MkKnH5xe5K91AxJU7w=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=fflcaJ6ULTGiDM9XUeEYxKrfDFFkOijz9yurS1PqFLN3ju/9+w6/wdWt/1f7LI/raeHO/M8qpQ8OBGZPyODyWpie4kHt4KNAsF7jcesDekGv3GhaP8mSVOhZlPXRW8GernXKM+T9SrNu34T/6UYIW/m/O/C1rSafy36z8jq8at4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vQEoA0zj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04DC5C4CEDF;
-	Tue,  4 Feb 2025 14:28:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738679291;
-	bh=yk5WtGeAX0utttGwRTmJMREP9MkKnH5xe5K91AxJU7w=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=vQEoA0zj11UGUt2d0hdvvz2e+PxZqlYrpiqJ/zANLF8sZ2eHVKUdGScjmm4i4g+Jj
-	 GGsaXWrIxj5oeBPHOKS2yrGLj8NEdwEw8Bo1CUM/PSWne902IXvqzueCRagxXssLcn
-	 IZjzrjiN0Ee86BCAVz2UYAd8TkNzIgMvIijAEYWbPBi3EbvV7+bOJV9o64WyihG6X1
-	 IFkPIIxMRPG5feqaTgN/JBWF1lv+SdNmdr1nxbll4nwJyE6DGs7j4WvhmqXz1CAabp
-	 B1Vj2wEvOmrFiHyy9MhtsL/gjCYPynIXBT9wS2djnxONWv17kz/Rg42pYuzKPr/vf7
-	 bEBGTg755xxNw==
-Date: Tue, 04 Feb 2025 08:28:09 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1738679592; c=relaxed/simple;
+	bh=3R63IJE4ryM7OJvdDBZ43Xj4Z2vvihHK05SYN6fsRXU=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=vErRheuOTIxEcSueYoaZ4kYdO1214p+DOHDl6Fl893wbNhyLmcN9vbVE9wrmrwrFfF1Yw1NOIAskyI9p+nZbWGxokwYBKn46UcLiITm6CmDEZbiLmZvQhq/0meCn1oHLVsAjO2n/37XSLCeBOMIhXKoBQyJ+YM4slAvONjyz9gY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4YnQkt2SxVz6L4vs;
+	Tue,  4 Feb 2025 22:30:30 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id B29B1140B67;
+	Tue,  4 Feb 2025 22:33:05 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 4 Feb
+ 2025 15:33:04 +0100
+Date: Tue, 4 Feb 2025 14:33:03 +0000
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+CC: Daniel Lezcano <daniel.lezcano@linaro.org>, Claudiu
+	<claudiu.beznea@tuxon.dev>, <rafael@kernel.org>, <rui.zhang@intel.com>,
+	<lukasz.luba@arm.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <geert+renesas@glider.be>, <magnus.damm@gmail.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <p.zabel@pengutronix.de>,
+	<linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>, "Claudiu
+ Beznea" <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH 2/6] thermal: of: Export non-devres helper to
+ register/unregister thermal zone
+Message-ID: <20250204143303.0000174a@huawei.com>
+In-Reply-To: <CAPDyKFq40KB6jKapnm0mOkFGB9-7VEGiBhNrVn_2fzrcziq0=Q@mail.gmail.com>
+References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
+	<20250103163805.1775705-3-claudiu.beznea.uj@bp.renesas.com>
+	<46c8e8ff-ea39-4dbd-a26c-67fcabf4b589@linaro.org>
+	<CAPDyKFq40KB6jKapnm0mOkFGB9-7VEGiBhNrVn_2fzrcziq0=Q@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Florian Fainelli <f.fainelli@gmail.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, 
- Andrew Davis <afd@ti.com>, Andrew Lunn <andrew@lunn.ch>, 
- linux-kernel@vger.kernel.org, Russell King <linux@armlinux.org.uk>, 
- netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- "David S. Miller" <davem@davemloft.net>
-To: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-In-Reply-To: <20250204-dp83822-tx-swing-v3-1-9798e96500d9@liebherr.com>
-References: <20250204-dp83822-tx-swing-v3-0-9798e96500d9@liebherr.com>
- <20250204-dp83822-tx-swing-v3-1-9798e96500d9@liebherr.com>
-Message-Id: <173867928985.2681882.12579959912610885418.robh@kernel.org>
-Subject: Re: [PATCH net-next v3 1/3] dt-bindings: net: ethernet-phy: add
- property tx-amplitude-100base-tx-percent
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml100009.china.huawei.com (7.191.174.83) To
+ frapeml500008.china.huawei.com (7.182.85.71)
+
+On Wed, 15 Jan 2025 16:42:37 +0100
+Ulf Hansson <ulf.hansson@linaro.org> wrote:
+
+> On Thu, 9 Jan 2025 at 18:34, Daniel Lezcano <daniel.lezcano@linaro.org> w=
+rote:
+> >
+> >
+> > Ulf,
+> >
+> > can you have a look at this particular patch please ?
+> >
+> > Perhaps this scenario already happened in the past and there is an
+> > alternative to fix it instead of this proposed change =20
+>=20
+> I think the patch makes sense.
+>=20
+> If there is a PM domain that is attached to the device that is
+> managing the clocks for the thermal zone, the detach procedure
+> certainly needs to be well controlled/synchronized.
+>=20
+Does this boil down to the same issue as
+https://lore.kernel.org/linux-iio/20250128105908.0000353b@huawei.com/
+?
+
+Just to point out there is another way like is done in i2c:
+https://elixir.bootlin.com/linux/v6.12.6/source/drivers/i2c/i2c-core-base.c=
+#L630
+
+Register a devres_release_group() in bus probe() and release it before
+the dev_pm_domain_detach() call.  That keeps the detach procedure well
+controlled and synchronized as it is entirely in control of the driver.
+
+That IIO thread has kind of died out for now though with no resolution
+so far.
+
+Jonathan
 
 
-On Tue, 04 Feb 2025 14:09:15 +0100, Dimitri Fedrau wrote:
-> Add property tx-amplitude-100base-tx-percent in the device tree bindings
-> for configuring the tx amplitude of 100BASE-TX PHYs. Modifying it can be
-> necessary to compensate losses on the PCB and connector, so the voltages
-> measured on the RJ45 pins are conforming.
-> 
-> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> ---
->  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ethernet-phy.yaml: properties:tx-amplitude-100base-tx-percent: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250204-dp83822-tx-swing-v3-1-9798e96500d9@liebherr.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> >
+> >
+> > On 03/01/2025 17:38, Claudiu wrote: =20
+> > > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> > >
+> > > On the Renesas RZ/G3S (and other Renesas SoCs, e.g., RZ/G2{L, LC, UL}=
+),
+> > > clocks are managed through PM domains. These PM domains, registered on
+> > > behalf of the clock controller driver, are configured with
+> > > GENPD_FLAG_PM_CLK. In most of the Renesas drivers used by RZ SoCs, the
+> > > clocks are enabled/disabled using runtime PM APIs.
+> > >
+> > > During probe, devices are attached to the PM domain controlling their
+> > > clocks. Similarly, during removal, devices are detached from the PM d=
+omain.
+> > >
+> > > The detachment call stack is as follows:
+> > >
+> > > device_driver_detach() ->
+> > >    device_release_driver_internal() ->
+> > >      __device_release_driver() ->
+> > >        device_remove() ->
+> > >          platform_remove() ->
+> > >         dev_pm_domain_detach()
+> > >
+> > > In the upcoming Renesas RZ/G3S thermal driver, the
+> > > struct thermal_zone_device_ops::change_mode API is implemented to
+> > > start/stop the thermal sensor unit. Register settings are updated wit=
+hin
+> > > the change_mode API.
+> > >
+> > > In case devres helpers are used for thermal zone register/unregister =
+the
+> > > struct thermal_zone_device_ops::change_mode API is invoked when the
+> > > driver is unbound. The identified call stack is as follows:
+> > >
+> > > device_driver_detach() ->
+> > >    device_release_driver_internal() ->
+> > >      device_unbind_cleanup() ->
+> > >        devres_release_all() ->
+> > >          devm_thermal_of_zone_release() ->
+> > >         thermal_zone_device_disable() ->
+> > >           thermal_zone_device_set_mode() ->
+> > >             rzg3s_thermal_change_mode()
+> > >
+> > > The device_unbind_cleanup() function is called after the thermal devi=
+ce is
+> > > detached from the PM domain (via dev_pm_domain_detach()).
+> > >
+> > > The rzg3s_thermal_change_mode() implementation calls
+> > > pm_runtime_resume_and_get()/pm_runtime_put_autosuspend() before/after
+> > > accessing the registers. However, during the unbind scenario, the
+> > > devm_thermal_of_zone_release() is invoked after dev_pm_domain_detach(=
+).
+> > > Consequently, the clocks are not enabled, as the device is removed fr=
+om
+> > > the PM domain at this time, leading to an Asynchronous SError Interru=
+pt.
+> > > The system cannot be used after this.
+> > >
+> > > Add thermal_of_zone_register()/thermal_of_zone_unregister(). These wi=
+ll
+> > > be used in the upcomming RZ/G3S thermal driver.
+> > >
+> > > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com> =20
+>=20
+> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+>=20
+> Kind regards
+> Uffe
+>=20
+> > > ---
+> > >   drivers/thermal/thermal_of.c |  8 +++++---
+> > >   include/linux/thermal.h      | 14 ++++++++++++++
+> > >   2 files changed, 19 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_o=
+f.c
+> > > index fab11b98ca49..8fc35d20db60 100644
+> > > --- a/drivers/thermal/thermal_of.c
+> > > +++ b/drivers/thermal/thermal_of.c
+> > > @@ -329,11 +329,12 @@ static bool thermal_of_should_bind(struct therm=
+al_zone_device *tz,
+> > >    *
+> > >    * @tz: a pointer to the thermal zone structure
+> > >    */
+> > > -static void thermal_of_zone_unregister(struct thermal_zone_device *t=
+z)
+> > > +void thermal_of_zone_unregister(struct thermal_zone_device *tz)
+> > >   {
+> > >       thermal_zone_device_disable(tz);
+> > >       thermal_zone_device_unregister(tz);
+> > >   }
+> > > +EXPORT_SYMBOL_GPL(thermal_of_zone_unregister);
+> > >
+> > >   /**
+> > >    * thermal_of_zone_register - Register a thermal zone with device n=
+ode
+> > > @@ -355,8 +356,8 @@ static void thermal_of_zone_unregister(struct the=
+rmal_zone_device *tz)
+> > >    *  - ENOMEM: if one structure can not be allocated
+> > >    *  - Other negative errors are returned by the underlying called f=
+unctions
+> > >    */
+> > > -static struct thermal_zone_device *thermal_of_zone_register(struct d=
+evice_node *sensor, int id, void *data,
+> > > -                                                         const struc=
+t thermal_zone_device_ops *ops)
+> > > +struct thermal_zone_device *thermal_of_zone_register(struct device_n=
+ode *sensor, int id, void *data,
+> > > +                                                  const struct therm=
+al_zone_device_ops *ops)
+> > >   {
+> > >       struct thermal_zone_device_ops of_ops =3D *ops;
+> > >       struct thermal_zone_device *tz;
+> > > @@ -429,6 +430,7 @@ static struct thermal_zone_device *thermal_of_zon=
+e_register(struct device_node *
+> > >
+> > >       return ERR_PTR(ret);
+> > >   }
+> > > +EXPORT_SYMBOL_GPL(thermal_of_zone_register);
+> > >
+> > >   static void devm_thermal_of_zone_release(struct device *dev, void *=
+res)
+> > >   {
+> > > diff --git a/include/linux/thermal.h b/include/linux/thermal.h
+> > > index 69f9bedd0ee8..adbb4092a064 100644
+> > > --- a/include/linux/thermal.h
+> > > +++ b/include/linux/thermal.h
+> > > @@ -195,13 +195,23 @@ struct thermal_zone_params {
+> > >
+> > >   /* Function declarations */
+> > >   #ifdef CONFIG_THERMAL_OF
+> > > +struct thermal_zone_device *thermal_of_zone_register(struct device_n=
+ode *sensor, int id, void *data,
+> > > +                                                  const struct therm=
+al_zone_device_ops *ops);
+> > >   struct thermal_zone_device *devm_thermal_of_zone_register(struct de=
+vice *dev, int id, void *data,
+> > >                                                         const struct =
+thermal_zone_device_ops *ops);
+> > >
+> > > +void thermal_of_zone_unregister(struct thermal_zone_device *tz);
+> > >   void devm_thermal_of_zone_unregister(struct device *dev, struct the=
+rmal_zone_device *tz);
+> > >
+> > >   #else
+> > >
+> > > +static inline
+> > > +struct thermal_zone_device *thermal_of_zone_register(struct device_n=
+ode *sensor, int id, void *data,
+> > > +                                                  const struct therm=
+al_zone_device_ops *ops)
+> > > +{
+> > > +     return ERR_PTR(-ENOTSUPP);
+> > > +}
+> > > +
+> > >   static inline
+> > >   struct thermal_zone_device *devm_thermal_of_zone_register(struct de=
+vice *dev, int id, void *data,
+> > >                                                         const struct =
+thermal_zone_device_ops *ops)
+> > > @@ -209,6 +219,10 @@ struct thermal_zone_device *devm_thermal_of_zone=
+_register(struct device *dev, in
+> > >       return ERR_PTR(-ENOTSUPP);
+> > >   }
+> > >
+> > > +static inline void thermal_of_zone_unregister(struct thermal_zone_de=
+vice *tz)
+> > > +{
+> > > +}
+> > > +
+> > >   static inline void devm_thermal_of_zone_unregister(struct device *d=
+ev,
+> > >                                                  struct thermal_zone_=
+device *tz)
+> > >   { =20
+> >
+> >
+> > --
+> > <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for =
+ARM SoCs
+> >
+> > Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> > <http://twitter.com/#!/linaroorg> Twitter |
+> > <http://www.linaro.org/linaro-blog/> Blog =20
+>=20
 
 
