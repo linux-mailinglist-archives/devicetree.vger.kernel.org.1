@@ -1,371 +1,366 @@
-Return-Path: <devicetree+bounces-142934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD6EDA27369
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 14:55:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7339A27379
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 14:55:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4B421887C68
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 13:54:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E1A63A3AC5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 13:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30EE2144C7;
-	Tue,  4 Feb 2025 13:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9517211491;
+	Tue,  4 Feb 2025 13:37:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="w/OCtv96"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="sBWwEVxM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2078.outbound.protection.outlook.com [40.107.105.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4D920E002;
-	Tue,  4 Feb 2025 13:35:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738676146; cv=none; b=FGRxDXQ0d4enmzEEFVOKvq3oiq8cpNf3Sad7VtVOfIDEuKJ/LagjkFLjOUC8gWKjhkII966VilWB7xSevV/EfaViE7kH0LIP1fZHTF7HhPEWzQD8lBqF/U1fb5Xk0HWdgo6u6W7kdouGgE1vbEEAd2b2kXFKq2lzsfW1s974hNk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738676146; c=relaxed/simple;
-	bh=BJpjppNG+zKL4oLwHasFmdAqFzT9WGyvFfz7lGv02TA=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=kH9CULXOkk/waKDZAn8mHbhpPir+ZkVLbRsE0xrwvplo6TN1F7UI1E1qaXj6GHxXQhz2NJhRL3CXTb/JsI4OE1gdb3cu2OK84bFDxggdaQh/1ERm49V0vOL0dVPb2f7hmLXi1tqNMFWql4mBrU74QEBZy6MtJGdM3n7pXX7YZYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=w/OCtv96; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21DBB38FAD;
+	Tue,  4 Feb 2025 13:37:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.78
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738676271; cv=fail; b=tetylC0mCwPc1rDF3L6lMXbqwCWG4KbccqB1x7TmT1XjC+01jurrmNoNR8bZgK+eum1v0Nbi3yo314AtKXIw4q6RUPqW9phHKMiR3lybV7hXSI/kQmVdHjYYIFZa6JUqOZHgM8q4/nzP7huxwEeqLmqPOm2EIFURfLYierI5PQg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738676271; c=relaxed/simple;
+	bh=rj2FxlyVREWi5OfuGdNMYUKODj/mEHoUs0+ZwF8t2mE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=lC7Vu9Y6CBnxndW7ecYx6NygRcecsugMPoV/ZTi6zles6NxPhP5nTWdSb78dDbVKCl4s6/GWpVdDfYVP5Vm9UYEMwRSmqpTd1ipmgWtFZ3omjQ3wfKnbl4is4BAL+e7O1kyRTFrSNBf/pXjzwul021bMg+gc4zzUobBlkr+yfF4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=fail (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=sBWwEVxM reason="signature verification failed"; arc=fail smtp.client-ip=40.107.105.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZholX+XGcI7fF0XfabYeUE0zOWUU/14Enul9bUjBSSZba5UFEZIKT200Ox+vI6kRuNQs31KFWqNDwvMfIdbotlR6vQDn+RY48ALHgHpRch/G1FoCEUsXJ8OvVTRGkq0VwX+TVFrPti+6m4zy/z/unYFL4lvTed/sTN5ccr0660sQnL/BfKp3Zc714QA4UrUzXC196De1xm3YUqUfy+ww5pnz9uYpOSXW2yIJ+fsoNTCJZ1MgdqqYVayS3bpcr8kRU40OeiO63nSpgQWbyPi+3XlQ4cH4toMNKHulS0HffJOPITOFfiv2hgJ+g+SqTO9Gg8ygme/xldvoB1X6DqLZdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qhBnq96MuLdH8vkpuoLONOCXLQcTcDtSQUKwf9WXZaA=;
+ b=W83N7fYKRUvZPdW8dkuVR5Cs0RMZY/lvPnPf+1cSw6WM6ic9a2vK0H1SleTh6zL0ivF7z0zEr4vcQ4in0GeoSC5NR3h8EnBipPnqPxJi1OMwLF3FPxwqzjYwgQvPGK+FNFiT8JLB8OV5SmcDP/PCYUcYv9+8I53uVZX6Y8NNVWYdGRDRwMkFIvgPJ9DxxgUp7ZJVI94S/3s/83shwJKNGkIPDTE2Xguv65yv2kvpTKKwezyt+X0Wxs4QWeYV9hjBi1EpbSWZrTH8WIJ8t0j1TiFprIhgQoaWf6GrIqEXhKrm7RRIycmq2BzNmpxxY+Cs1lv70ul/CY5YtHvI8pl+tw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qhBnq96MuLdH8vkpuoLONOCXLQcTcDtSQUKwf9WXZaA=;
+ b=sBWwEVxMl9ytPuqq0C752XSuvCaKQWjRcamiYjbKx0f/Z0Ns+2XlliVOJKo8B/SEC0nNeVPpMmvpF6OhBb2uYy14ctc8wRUHOkboIQNVQ/9P4NtXxzBHruPjQXG1xd6Xs87sXOm87HCs0bLzbn5Dz2+oBcyK73rKO9FhebtOFppsj7lGEVM7votnZKW2OJiGzjm6nFzYmhOV1LAUnAXUSj9bdOuREZ2k5PJVn7t2kpdkR1unycZHOIGPVzGB4aDlmdE0AumxO7iC6klWc8lSFGCK77+6DB6fjepFuqOw6kj/WJkj6YBzPOOrO13PhdFkzGnB1JHfaGKrZ9EgII3Jqw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AS4PR04MB9576.eurprd04.prod.outlook.com (2603:10a6:20b:4fe::12)
+ by AM7PR04MB7142.eurprd04.prod.outlook.com (2603:10a6:20b:113::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.24; Tue, 4 Feb
+ 2025 13:37:44 +0000
+Received: from AS4PR04MB9576.eurprd04.prod.outlook.com
+ ([fe80::9cf2:8eae:c3d1:2f30]) by AS4PR04MB9576.eurprd04.prod.outlook.com
+ ([fe80::9cf2:8eae:c3d1:2f30%6]) with mapi id 15.20.8398.025; Tue, 4 Feb 2025
+ 13:37:44 +0000
+Date: Tue, 4 Feb 2025 15:37:39 +0200
+From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-staging@lists.linux.dev
+Subject: Re: [RFC 00/12] staging: media: max96712: Add support for streams
+ and multiple sensors
+Message-ID: <nudueclozwhjiv3xp3goxobn2xz33mkbxgy3vhneipsepy3ece@njvaprjyewaa>
+References: <20250131163408.2019144-1-laurentiu.palcu@oss.nxp.com>
+ <20250204123925.GA3720681@ragnatech.se>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250204123925.GA3720681@ragnatech.se>
+X-ClientProxiedBy: AS4P189CA0010.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5d7::14) To AS4PR04MB9576.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4fe::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1738676141;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kvBsIYlSRDocRThQe1QajLzrfnVwDIRPt2pu5vzVeio=;
-	b=w/OCtv96wqXzkV27OwKQajxsEG25scNCh4fWGsSiqz5jhj+QGewziS/h86EkJjztDYv4R2
-	RfGhv+VKM4YPjARKu9HpgRIg3AgwHbcyvMCGPFkbAJRA22P0aIhuA6J3Tx0wRVfs9eJdMr
-	BgSyTyZuas03ZEfKbtnwf2CSXjKz0OnkgRDk/zzadjNJDkGRkHbutPgQ+v8nvpil68ZrJK
-	8wa3f/t3HnF89CJ/8zvAuagK6MEk7HX9bvnLwnhqpbGXDezQznEXDKYd1/TkUzIg35gLFE
-	Eo63EE2hr1hIFOwy8PgeOEfGVVTgLSwbovyFajM9eSlK39WwAahWcaDtzjz7qQ==
-Date: Tue, 04 Feb 2025 14:35:40 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jagan Teki
- <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>, Michael Riesch
- <michael.riesch@wolfvision.net>, Jonas Karlman <jonas@kwiboo.se>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 3/4] arm64: dts: rockchip: add overlay tests for Rock
- 5B PCIe overlays
-In-Reply-To: <3de1cc52-5579-41b1-a333-0c4e81f96fbd@cherry.de>
-References: <20250131-pre-ict-jaguar-v4-0-c971e2852e8d@cherry.de>
- <20250131-pre-ict-jaguar-v4-3-c971e2852e8d@cherry.de>
- <77b5d0efa6e56bb391575aeeb4d1be80@manjaro.org>
- <3de1cc52-5579-41b1-a333-0c4e81f96fbd@cherry.de>
-Message-ID: <cb8f370474df88d1194d9ee92d3ca4e0@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9576:EE_|AM7PR04MB7142:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed143093-7dfd-47d4-2a60-08dd45211ab2
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|1800799024|27256017;
+X-Microsoft-Antispam-Message-Info:
+ =?iso-8859-1?Q?kr8o6xTBw8ayHDHlSLlf7oOipEG/P0T2zq1C7XzthMAJJ7OG+oz+pF7yiq?=
+ =?iso-8859-1?Q?cMRXMj09eV8ZvFMAHA35PJ2LaOdXQVIRxZ2rgqFjg8UXLNRwbzfBPCOu1M?=
+ =?iso-8859-1?Q?4NGfucah51ZfLVOyDhnQUS1ElWCdlpfxguSs9qmmt0GJd5/HUT8KpDQpyE?=
+ =?iso-8859-1?Q?NLiNnDKRAB8zOTdYvIXhPiLKwNsZFSdg2LXz8kY38C8mj0k8e7pLm29T6D?=
+ =?iso-8859-1?Q?Aur4BPVfTo1rhAioIrZYfmaZdVce5jnx0CTl6HOgy5UnXeANPcYJdA+ht6?=
+ =?iso-8859-1?Q?Vfy+93ksLoMJsmybKuOgOrPz6ghb75zzRXPyXjJ9hWoJwrsFa3+xGkJdPt?=
+ =?iso-8859-1?Q?WNyzOg43ANfa/fhsyDOFpu8zmXKi8DyNYJjzAsFpAhXnyO8TeTlCj977xy?=
+ =?iso-8859-1?Q?G1MUVY033yLAGUUxXcvnK6kghMvUK1C5rc9z9ciQ90whrxsSnzUwqP8iqM?=
+ =?iso-8859-1?Q?BcXD8C+qM538Sd7BGJURER4tfsu4cLjRCgtDj5suFYpzKvtOQGIAICRhMT?=
+ =?iso-8859-1?Q?fL25FlrimodVXqENzHPhi5W8A3/OQXtJ62h25Mw4VEljIiau2WD1eP0hH3?=
+ =?iso-8859-1?Q?+qo/2ncgFU/Lto1B/CUPIYgqxfY6ek9cpGx6JIUVKHBQeqzhRkzkB3nJoa?=
+ =?iso-8859-1?Q?XIzToR32A9tH1fvdmd5P0yPQRLkgPZRzOnYKHi/YxuRCOKicqBvA9EL2xS?=
+ =?iso-8859-1?Q?br0DTLGvyHDeDUYBKU0Pt/otjxEBK53U6YSRxAa1a/S97A3Ja8rcXrWxQs?=
+ =?iso-8859-1?Q?x3kw9xkIlL7sYq+xU+OZBKVZ5P2e1loI+IrsJg3EwhscgEk4L726kgtD61?=
+ =?iso-8859-1?Q?Wq8jGt/FpNPqHXdlyB1zm5qKzopAhsXwkGvOlU+gAv3PsfcDNFLVIJFfSN?=
+ =?iso-8859-1?Q?AVC+qYlvpqTuxTywQOvDLstmNyTPEE31Di44uJrmvZs6pVePNQxKLy9ZL0?=
+ =?iso-8859-1?Q?a/cj3l5/q/AdhE93VAkNl4BPGt7GB45XGAOyTjPUDaAyBKY0N7feBHv1jO?=
+ =?iso-8859-1?Q?ctkFiOribjrqNWP3ZNCrz+RfINLjy7ZXtrQunulC35W72nZm8adtQeRxKB?=
+ =?iso-8859-1?Q?g0OvyNZdMu6EJIbBfO3fGVVFIupjv0OsrTzlUvIxzyFywvmnTvvFbl/tUD?=
+ =?iso-8859-1?Q?YYp4NykSsyG3Uj4PCknW5NK6HFeLs9gZD6J2Q9I+ktaCNzxnxIYBAiJonc?=
+ =?iso-8859-1?Q?LFkknZio0ZxTfraJnMVmCbtiONQdpMiISTBjm1XaaAnlI/pzoQlu3oJvEz?=
+ =?iso-8859-1?Q?Kl7H/JFWdJbjj4QaB3h3MNHSxyEC+XJ0udTOsNglf0/Gzf6VvdnfJg5wwq?=
+ =?iso-8859-1?Q?3u3m4wY0Uul3jNKqUEfxn1Vlq/IOW/STDBvykA5JMbETbt4XHWovcUOAfQ?=
+ =?iso-8859-1?Q?TfU4d2vQPORMY407h6IgKG/UkqJMs20Nay98q8XvJBhUU4LKZHbXJmOdlL?=
+ =?iso-8859-1?Q?9/KFFJG7gy6wbH4T?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9576.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(27256017);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?iso-8859-1?Q?fSghM7VVG3LSS3n2731Eapj6fY0Pu0Py68eCMy4yY8BG/5W1oduQXWtAHe?=
+ =?iso-8859-1?Q?bWZ8DwIketsVfaFOZpgiXdIyMU8L7rtc6y2d8UNaXW8sSsrmcRJEmPNBgJ?=
+ =?iso-8859-1?Q?TlQhJi8u6na6cDi9pEfY/bdS8mxARtnFf1AqEFO0/kg6WkZrma2JiG02X/?=
+ =?iso-8859-1?Q?Jl36Ms32Kl8kK61DsLzRzyhmwj/LsUjO2OBebjTBlABihPl9XqKFeu/auz?=
+ =?iso-8859-1?Q?yL6xn163O7uV0a03v1nOcRbTeAV3IJhEgBjA15XRJZ+4oWW3Iqkl4RoP8P?=
+ =?iso-8859-1?Q?rZ6TsGJSR/lXyZTNhIrCidp14v17OqP7CquAodjzhQTO9c6YsAxQNPM/cM?=
+ =?iso-8859-1?Q?xjbdav6YK1Y8sAB757gohoT6uezbup91D9oFoa/U6DDxoAWiQxcEhr/cE6?=
+ =?iso-8859-1?Q?xBA0IhKOG6phnY0RJUKdn4JJw9JAQato2Nu91GKWKMuF3VL8js803Q7dWH?=
+ =?iso-8859-1?Q?IL/ZQdnm3+9D7LZIgBtmwoANv5brGsiXTLHThBRblP1goxbHbH6e8GO0ij?=
+ =?iso-8859-1?Q?28IfOAPCtiHMD/egyfCX3HlfexudIFLRcgngC9SfnDMLrZ1+CDIcDUa50s?=
+ =?iso-8859-1?Q?C95FcKaYptLqhjXF1cC5Yv0PlMuuCXSPTGZd0Yd2CsbsueZIyqC/I57kpg?=
+ =?iso-8859-1?Q?wlEDVO4W9OE79f5p4XHZ3CmByMUgTYqMbtdcdCSYobEEjVUVSus5+o/Hys?=
+ =?iso-8859-1?Q?2UhivzLlNIVaMZ/czSzAU+r6llSrhNsYKsMKdQvbPf9wvSHhW0HMSNfvTB?=
+ =?iso-8859-1?Q?Tqyh+Z5gWqGV+VV1aFEZKjod1jz2NuBXc+f8GF4AVmRzErY+mnEcS15bM8?=
+ =?iso-8859-1?Q?2kmbARgc39oj95FfTBl7BiALEpIV1GUMKWmw7ixriV4/ty2s57sCEd94AG?=
+ =?iso-8859-1?Q?gLdzpZ/rwksn/NfeQkBcNHw6z8sFQZ1hDdpzjQ2OjfglyquxPuIQ3WJPYx?=
+ =?iso-8859-1?Q?8stMTkfgiEa23pfjyVFUvWgAY8NA5a3Y16ee9TouzfYHeFbKqa5ekz+Naa?=
+ =?iso-8859-1?Q?pGuuOW192uuMLd0c3pQzhT8JnnAhvW23WbGo59Vrb8qd4LVWKwvyGv27LP?=
+ =?iso-8859-1?Q?arK0bFr8zR36BRwg9mcg5uQ/0IWTtQeFxXlgUp+cnfFoT3NxrneLMGaz/F?=
+ =?iso-8859-1?Q?cs/YTCmQ/Wx8GqiTSLK4xZivgi6Zn0jOTpuxsReyKzGAG1J9a6CtbwOZko?=
+ =?iso-8859-1?Q?6qxmjhgaEcL4XmErmhC1AVjAhjkbavY/Fc3Ikk/oJoLqhw1qIKNZ+thqVC?=
+ =?iso-8859-1?Q?TYeOwILXjRj2dBJEb1Uk90QaWAo4MzZU+zeYMNIvaVl1bIAioWeDKSHu2G?=
+ =?iso-8859-1?Q?dD+Tx7RHEbl5d7BV998nVxbaddb0gji7rlTRmb0oZUfPgLrMoFZY160zyq?=
+ =?iso-8859-1?Q?UsX1FXrcGR9gb6UifBZVrlzTBuvAbAtBgYkJpPE3GKGBTffnuGPSYGeu3k?=
+ =?iso-8859-1?Q?Tf5B5jFp7f3mwnLifjkXEM/abU8uOt9TKvm8lkgOwFuj0AIgQF98IX+v5i?=
+ =?iso-8859-1?Q?L50kRypyc3TztCqQZKDQPe6cH3BolM6YN/UeMFizjyK6g/Djil/+ZCLT3B?=
+ =?iso-8859-1?Q?uiLyM+TGdsOsohSBULlE09Xe8HQT/ZGdwaV27B6+RW0Tj6/eUM09AlV9qc?=
+ =?iso-8859-1?Q?HPP1J0dneEkTyKUsPz8Q6JcakVOYkZffaz1yrkNw3gU75eBFJ4gpJi1w?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed143093-7dfd-47d4-2a60-08dd45211ab2
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9576.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2025 13:37:44.3559
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: s/ld63LpO/KDO8x6ZVOD4PAyx7jRIxG7hh/vI3f24f3QFDu6ydrIQ0I5nXiZ2Cq4qkQPe1eLfvlOMXOCM6evGw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7142
 
-Hello Quentin,
+Hi Niklas,
 
-On 2025-02-04 13:20, Quentin Schulz wrote:
-> On 2/4/25 12:22 PM, Dragan Simic wrote:
->> > On 2025-01-31 11:40, Quentin Schulz wrote:
->>> From: Quentin Schulz <quentin.schulz@cherry.de>
->>> 
->>> According to commit 40658534756f ("arm64: dts: rockchip: Add rock5b
->>> overlays for PCIe endpoint mode"), Rock 5B can operate in PCIe 
->>> endpoint
->>> mode. For that to work, the rk3588-rock-5b-pcie-ep.dtbo overlay needs 
->>> to
->>> be applied on Rock 5B base Device Tree. If that Rock 5B is connected 
->>> to
->>> another Rock 5B, the latter needs to apply the
->>> rk3588-rock-5b-pcie-srns.dtbo overlay.
->>> 
->>> In order to make sure the overlays are still valid in the future, 
->>> let's
->>> add a validation test by applying the overlays on top of the main 
->>> base
->>> at build time.
->>> 
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Reviewed-by: Niklas Cassel <cassel@kernel.org>
->>> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
->>> ---
->>>  arch/arm64/boot/dts/rockchip/Makefile | 10 ++++++++--
->>>  1 file changed, 8 insertions(+), 2 deletions(-)
->>> 
->>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile
->>> b/arch/arm64/boot/dts/rockchip/Makefile
->>> index
->>> 267966ea69b194887d59e38a4220239a90a91306..ebcd16ce976ebe56a98d9685228980cd1f2f180a
->>> 100644
->>> --- a/arch/arm64/boot/dts/rockchip/Makefile
->>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->>> @@ -150,8 +150,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5- 
->>> plus.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
->>> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
->>> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
->>> @@ -186,3 +184,11 @@ rk3568-wolfvision-pf5-vz-2-uhd-dtbs :=
->>> rk3568-wolfvision-pf5.dtb \
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
->>>  rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
->>>      rk3588-edgeble-neu6a-wifi.dtbo
->>> +
->>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtb
->>> +rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb \
->>> +    rk3588-rock-5b-pcie-ep.dtbo
->>> +
->>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtb
->>> +rk3588-rock-5b-pcie-srns-dtbs := rk3588-rock-5b.dtb \
->>> +    rk3588-rock-5b-pcie-srns.dtbo
->> 
->> After a quite lengthy excursion into the scripts/Makefile.dtbs and
->> scripts/Makefile.lib files, I'm afraid that the approach taken in
->> this patch isn't right.  Please allow me to explain.
->> 
->> Let's have a look at arch/arm64/boot/dts/ti/Makefile first, as an
->> example that provides already existing DT overlay checks.  Here's
->> an excerpt from that Makefile, which also provides an important cue
->> by mentioning CONFIG_OF_ALL_DTBS:
->> 
->>    12 dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
->>    13 dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-ov5640.dtbo
->>    14 dtb-$(CONFIG_ARCH_K3) += 
->> k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
->> 
->>   135 # Build time test only, enabled by CONFIG_OF_ALL_DTBS
->>   136 k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb 
->> \
->>   137         k3-am625-beagleplay-csi2-ov5640.dtbo
->>   138 k3-am625-beagleplay-csi2-tevi-ov5640-dtbs := k3-am625- 
->> beagleplay.dtb \
->>   139         k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
->> 
->>   213 dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->>   214         k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
->> 
->> As visible above, the DT overlays get added to dtb-$(CONFIG_ARCH_K3)
->> as .dtbo files (not as .dtb files), while the build-time DT overlay
->> tests specify the dependency chains for the overlays.
->> 
->> Even more importantly, the build-time overlay tests aren't supposed
->> to be executed until CONFIG_OF_ALL_DTBS is selected, which actually
->> gets handled at the very start of scripts/Makefile.dtbs:
->> 
->>     3 # If CONFIG_OF_ALL_DTBS is enabled, all DT blobs are built
->>     4 dtb-$(CONFIG_OF_ALL_DTBS) += $(dtb-)
+Thanks for giving this series a test. More comments below.
+
+On Tue, Feb 04, 2025 at 01:39:25PM +0100, Niklas S�derlund wrote:
+> Hi Laurentiu,
 > 
-> Do you have something to back your argument that build time tests
-> should only be done when CONFIG_OF_ALL_DTBS is enabled? For now this
-> seems like it's your interpretation of the use for the symbol. Though
-> I agree that if you had any test you absolutely didn't want to run in
-> normal times, hiding them behind CONFIG_OF_ALL_DTBS would be the thing
-> to do.
+> Thanks for your work. I'm happy someone with a both GMSL cameras and a 
+> max96712 found time to work on this driver.
 
-Well, it isn't my interpretation of CONFIG_OF_ALL_DTBS, it's actually
-how arch/arm64/boot/dts/ti/Makefile uses it already for the DT overlay
-tests, which I already explained above.
+I don't have a max96712 unfortunately. Our setup is based on max96724.
 
-Also, I already wrote that I'm not very happy with the way the config
-option CONFIG_OF_ALL_DTBS is tied to the DT overlay tests.  I'll get
-back to that below.
-
->> The way this patch modifies arch/arm64/boot/dts/rockchip/Makefile
->> actually isn't correct, despite apparently producing the desired
->> outcome, because the way it adds rk3588-rock-5b-pcie-ep.dtb and
->> rk3588-rock-5b-pcie-srns.dtb (instead of adding proper .dtbo names)
->> to dtb-$(CONFIG_ARCH_ROCKCHIP) effectively creates some kind of
->> "phony targets" that indeed "get the job done", but unfortunately
->> in a wrong way.  The "phony targets" are handled by the following
->> "magic" in scripts/Makefile.dtbs:
->> 
->>     6 # Composite DTB (i.e. DTB constructed by overlay)
->>     7 multi-dtb-y := $(call multi-search, $(dtb-y), .dtb, -dtbs)
->>     8 # Primitive DTB compiled from *.dts
->>     9 real-dtb-y := $(call real-search, $(dtb-y), .dtb, -dtbs)
->>    10 # Base DTB that overlay is applied onto
->>    11 base-dtb-y := $(filter %.dtb, $(call real-search, $(multi-dtb- 
->> y), .dtb, -dtbs))
->> 
->>    18 targets         += $(real-dtb-y)
->> 
->> Let's have a look at the relevant part of the output produced when
->> "make dtbs" is executed with this patch applied:
->> 
->>    DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtbo
->>    OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtb
->>    DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtbo
->>    OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtb
->> 
->> Note the "OVL .*dtb" lines above, in which the ".*dtb" parts are
->> the above-mentioned "phony targets".  The above-quoted "magic" in
->> scripts/Makefile.dtbs is what "unfolds" those "phony targets" to make 
->> them apparently produce the desired outcome, by populating
->> the $(real-dtb-y) variable with "rk3588-rock-5b-pcie-ep.dtbo
->> rk3588-rock-5b.dtb rk3588-rock-5b-pcie-srns.dtbo", as the proper
->> .dtbo names that get passed to the dtc utility.
->> 
->> Even more "magic" in scripts/Makefile.dtbs "unfolds" the "phony
->> targets" to have the build-time DT overlay tests performed in the
->> apparently proper way, while they actually shouldn't be performed
->> unless CONFIG_OF_ALL_DTBS is also selected.
 > 
-> I understand the symbol CONFIG_OF_ALL_DTBS as "should build all DTBs
-> for all architectures and do tests" and not "tests must only be run
-> when CONFIG_OF_ALL_DTBS is selected". I find it so useful to test the
-> application of overlays to the base DTB that I don't think it's
-> necessarily a good idea to hide those behind CONFIG_OF_ALL_DTBS.
-
-As I wrote above, I'm not very happy with it either.  I'll explain
-that further below.
-
->> With all this is mind, this patch should be reworked to follow
->> the right approach for defining build-time DT overlay tests, which
->> is illustrated in arch/arm64/boot/dts/ti/Makefile.  In particular,
->> we should just add the following DT overlay test definitions to
->> arch/arm64/boot/dts/rockchip/Makefile:
->> 
->> 174 # Build-time tests only, enabled by CONFIG_OF_ALL_DTBS
->> 175 rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb \
->> 176         rk3588-rock-5b-pcie-ep.dtbo
->> 177 rk3588-rock-5b-pcie-srns-dtbs := rk3588-rock-5b.dtb \
->> 178         rk3588-rock-5b-pcie-srns.dtbo
->> 179 dtb- += rk3588-rock-5b-pcie-ep.dtb \
->> 180         rk3588-rock-5b-pcie-srns.dtb
->> 
->> You'll notice that the $(dtb-) variable pretty much again contains
->> the same "phony targets", but that's the way they should actually
->> be used.  I'm not very happy with the way they're specified, but
->> we should follow the approach from arch/arm64/boot/dts/ti/Makefile
->> anyway, and possibly improve the whole thing later.
+> On 2025-01-31 18:33:54 +0200, Laurentiu Palcu wrote:
+> > Hi,
+> > 
+> > This series adds more functionality to the existing max96712 staging
+> > driver allowing multiple sensors to be connected through other
+> > compatible serializers. I tried to split the changes in smaller logical
+> > changes to make them easier to review while not altering the existing
+> > VPG functionality but I could squash all of them together if needed.
 > 
-> What I don't like about this is that it allows to build the DTBO
-> without providing a build time application test which means
-> maintainer(s) and reviewer(s) need to pay even more attention to the
-> patch than simply looking at it matching the patterns of how other
-> DTBOs are built. Also, you now need to enable CONFIG_OF_ALL_DTBS to
-> run the tests, which isn't enabled in the default defconfig for arm64.
-> I would assume we have some bots building patches/master with those
-> options enabled but it might be a bit too late already.
-
-I already agreed above about CONFIG_OF_ALL_DTBS being suboptimal,
-but I don't think that the need for making sure the tests are present
-would be an issue.  Making sure that the tests are defined should be
-simply part of the reviewing, and running those tests is actually
-a good way to make revieving a bit easier.  Thus, reviewers should
-actually be motivated to make sure the tests are present.
-
->> I'd actually prefer to just have these test definitions added to the
->> end of arch/arm64/boot/dts/ti/Makefile, without moving the .dtbo lines
->> around.  That would keep the tests separate, which should be more
->> readable when we get more of them defined.
+> With this series and it's listed dependencies applied my CI tests using 
+> the VPG breaks. The controls to select test-pattern seems to be invalid,
 > 
-> And more likely to forget about adding either the tests or the DTBO
-> explicit rule.
+>     $ yavta --set-control '0x009f0903 0' /dev/v4l-subdev6
+>     Device /dev/v4l-subdev6 opened.
+>     unable to set control 0x009f0903: Permission denied (13).
+>     Unable to get format: Inappropriate ioctl for device (25).
 
-Well, if someone can't remember either of those, then I don't see how
-they can remember many other rules required to write DT code. :)
+That's my bad... :/ I have never tried to change test patterns and I
+didn't spot the bug. The below change should fix that:
 
-FWIW, both TI and Qualcomm place the test definitions separately from
-the additions to dtb-$(CONFIG_ARCH_XYZ).
+diff --git a/drivers/staging/media/max96712/max96712.c b/drivers/staging/media/max96712/max96712.c
+index b4c3d1d3c9539..6d6dea0a335c7 100644
+--- a/drivers/staging/media/max96712/max96712.c
++++ b/drivers/staging/media/max96712/max96712.c
+@@ -1315,10 +1315,10 @@ static int max96712_v4l2_register(struct max96712_priv *priv)
 
->> With the above-proposed changes in place, and with CONFIG_OF_ALL_DTBS
->> selected, the relevant part of the "make dtbs" output looks like this:
->> 
->>    DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb
->>    DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtbo
->>    DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtbo
->>    OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtb
->>    OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtb
->> 
->> No more "phony targets" in the produced output. :)
+        v4l2_ctrl_handler_init(&priv->ctrl_handler, 2);
+
+-       v4l2_ctrl_new_int_menu(&priv->ctrl_handler, NULL, V4L2_CID_LINK_FREQ,
++       link_freq_ctrl = v4l2_ctrl_new_int_menu(&priv->ctrl_handler, NULL, V4L2_CID_LINK_FREQ,
+                               0, 0, &priv->link_freq);
+
+-       link_freq_ctrl = v4l2_ctrl_new_std_menu_items(&priv->ctrl_handler, &max96712_ctrl_ops,
++       v4l2_ctrl_new_std_menu_items(&priv->ctrl_handler, &max96712_ctrl_ops,
+                                                      V4L2_CID_TEST_PATTERN,
+                                                      ARRAY_SIZE(max96712_test_pattern) - 1,
+                                                      0, 0, max96712_test_pattern);
+
 > 
-> Funnily enough, I would prefer to see OVL for overlays rather than
-> DTC, but I guess it's just one more occurrence of developers
-> disagreeing on how to name things :)
-
-I actually agree with that, just like I prefer to see .dtbo files
-as additions to dtb-$(CONFIG_ARCH_XYZ).  It's all about the overlays,
-so they should be both specified and echoed back.
-
-Moreover, we currently also have additional .dtb files with applied
-overlays left after the build and installed afterwards, which doesn't
-make much sense to me.  To me, those additional .dtb files should be
-deleted as build artefacts and not installed.
-
-> I kind of disagree with the feedback here as this only takes
-> ti/Makefile as example while **all** other aarch64 Makefile have
-> different logic, the one I'm using here for amlogic (meson), NXP
-> (freescale), qcom (Qualcomm), Renesas, Xilinx and even Aarch32 NXP,
-> and the one we currently use (no build tests) for Mediatek.
-
-Hmm, I see.  To me, the approach taken by TI is more clear, simply
-because having .dtb filenames, instead of .dtbo filenames, as part of
-dtb-$(CONFIG_ARCH_XYZ) is much less readable.  When you see a .dtbo
-there, it's clear that it's an overlay, and as I wrote above, it's
-all about the overlays, so they should be both specified in Makefiles
-and echoed back by the build system.
-
-> If we agree to what you suggest here we cancel the side-effect of
-> having the symbols in the base DTB that this patch series introduces.
-> This can go both ways, either good (DT symbols in = nothing to do for
-> the user, get the base DTB and your DTBO, put in /boot and tada) or
-> bad (DT symbols in = big size increase for base DTB). Moreover,
-> enabling CONFIG_OF_ALL_DTBS would now generate a different DTB than
-> when it's not (keeping the symbols in). If we wanted to keep the
-> symbols in, we would need to modify DTC_FLAGS as well.
-> This could help make the decision(s) as well.
+>     (/dev/v4l-subdev6 here is max96712 1-0049)
 > 
-> So I would say without much more context on the actual expected use
-> for CONFIG_OF_ALL_DTBS that it's up to one's taste, and considering
-> the precedent here, likely up to each architecture maintainers' taste.
-
-Good point.  This just shows how suboptimal is tying CONFIG_OF_ALL_DTBS
-with the DT overlay tests.  Perhaps it would be best to remove that
-association, while keeping the ability to specify .dtbo filenames in
-dtb-$(CONFIG_ARCH_XYZ).  Specifying .dtb files there simply looks wrong
-to me, as I already explained above.
-
-> I won't be too difficult to convince here, just want some "authority"
-> or a piece of history about CONFIG_OF_ALL_DTBS that would go your
-> direction, before doing the change. I believe automated build tests
-> without needing to enable a symbol, and that taking DTB and DTBO from
-> the build output and apply DTBO on top of DTB works without having to
-> go through some length to get the symbols, are good reasons to keep it
-> the way it is in this patch series.
-
-I'd like the most to perform the above-proposed "divorcing" of the DT
-overlay tests from CONFIG_OF_ALL_DTBS, so we don't have to enable any
-additional options to have the overlay tests run automatically, but
-to keep .dtbo filenames in dtb-$(CONFIG_ARCH_XYZ).  I think that would
-bring the best of both worlds, so to speak.
-
-> Additionally, depending on the feedback, I assume we want to migrate
-> all current architectures building DTBO to be consistent and use the
-> same logic (perhaps not for Mediatek because doing so would keep the
-> DT symbols in the DTB, which drastically increases the size of the
-> DT).
+>     $ yavta -c10 --file=/tmp/vin-capture/isp0-checkerboard-#.bin /dev/video0
+>     Device /dev/video0 opened.
+>     Device `R_Car_VIN' on `platform:e6ef0000.video' (driver 'rcar_vin') supports video, capture, without mplanes.
+>     Video format: ABGR32 (34325241) 1920x1080 (stride 7680) field none buffer size 8294400
+>     8 buffers requested.
+>     length: 8294400 offset: 0 timestamp type/source: mono/EoF
+>     Buffer 0/0 mapped at address 0xffffbe5d7000.
+>     length: 8294400 offset: 32768 timestamp type/source: mono/EoF
+>     Buffer 1/0 mapped at address 0xffffbddee000.
+>     length: 8294400 offset: 65536 timestamp type/source: mono/EoF
+>     Buffer 2/0 mapped at address 0xffffbd605000.
+>     length: 8294400 offset: 98304 timestamp type/source: mono/EoF
+>     Buffer 3/0 mapped at address 0xffffbce1c000.
+>     length: 8294400 offset: 131072 timestamp type/source: mono/EoF
+>     Buffer 4/0 mapped at address 0xffffbc633000.
+>     length: 8294400 offset: 163840 timestamp type/source: mono/EoF
+>     Buffer 5/0 mapped at address 0xffffbbe4a000.
+>     length: 8294400 offset: 196608 timestamp type/source: mono/EoF
+>     Buffer 6/0 mapped at address 0xffffbb661000.
+>     length: 8294400 offset: 229376 timestamp type/source: mono/EoF
+>     Buffer 7/0 mapped at address 0xffffbae78000.
+>     Unable to start streaming: Invalid argument (22).
 > 
-> Does anyone from DT maintainership have feedback to provide on what is
-> expected here generally wrt building and testing DTBOs?
+> I read in patch 12/12 "The user can also switch over to testing the test 
+> pattern by configuring the routes accordingly", but not how to do that 
+> to achieve the same functionality as the staging driver. Inspecting the 
+> media graph gives little help. Would it be possible to extend the cover 
+> letter with this information?
+
+I can do that, sure, but routing setup depends on the board you test on... :/
+Basically, the deserializer media node has 6 pads now. Pad 4 is first CSI
+output port and pad 6 is the internal VPG source pad. By default, the route
+from internal VPG pad to pad 4 is active. So, you shouldn't need to set any
+routes on max96712 node for testing VPG. This is how it looks like:
+
+- entity 120: max96712 2-0027 (7 pads, 5 links, 1 route)      
+              type V4L2 subdev subtype Unknown flags 0
+              device node name /dev/v4l-subdev11                                                        
+        routes:                          
+                6/0 -> 4/0 [ACTIVE]
+        pad0: Sink                                                                                      
+                <- "max96717 8-0040":1 []                                                               
+        pad1: Sink                              
+                <- "max96717 9-0040":1 []                                                               
+        pad2: Sink                                                                                                                                                                                              
+                <- "max96717 10-0040":1 []          
+        pad3: Sink                                                                                      
+                <- "max96717 14-0040":1 []                                                              
+        pad4: Source                            
+                [stream:0 fmt:RGB888_1X24/1920x1080 field:none colorspace:srgb]
+                -> "csidev-4ad30000.csi":0 []
+        pad5: Source
+        pad6: Sink, Internal
+                [stream:0 fmt:RGB888_1X24/1920x1080 field:none colorspace:srgb]
+
+Below is the test script I use to set the routings and links for all the
+pipeline in order to test VPG. I'm testing on an i.MX95 board.
+
+./media-ctl -r
+./media-ctl -d /dev/media0 -R '"max96712 2-0027" [6/0 -> 4/0 [1]]'
+./media-ctl -d /dev/media0 --set-v4l2 '"max96712 2-0027":6/0 [fmt:RGB24/1920x1080 field:none]'
+./media-ctl -d /dev/media0 -R '"csidev-4ad30000.csi" [0/0 -> 1/0 [1]]'
+./media-ctl -d /dev/media0 --set-v4l2 '"csidev-4ad30000.csi":0/0 [fmt:RGB24/1920x1080 field:none]'
+./media-ctl -d /dev/media0 -R '"4ac10000.syscon:formatter@20" [0/0 -> 1/0 [1]]'
+./media-ctl -d /dev/media0 --set-v4l2 '"4ac10000.syscon:formatter@20":0/0 [fmt:RGB24/1920x1080 field:none]'
+./media-ctl -d /dev/media0 -R '"crossbar" [2/0 -> 7/0 [1]]'
+./media-ctl -d /dev/media0 --set-v4l2 '"crossbar":2/0 [fmt:RGB24/1920x1080 field:none]'
+./media-ctl -d /dev/media0 --set-v4l2 '"mxc_isi.2":0/0 [fmt:RGB24/1920x1080 field:none]'
+./media-ctl -d /dev/media0 -l "'max96712 2-0027':4 -> 'csidev-4ad30000.csi':0 [1]"
+
+./v4l2-ctl --device /dev/video2 --set-fmt-video=width=1920,height=1080,pixelformat=RGB3 --stream-mmap --stream-count=100
+
+However, I suspect that, in your case, the downstream drivers do not support
+streams and streaming cannot start. But I might be wrong though...
+
 > 
-> Does Heiko have an opinion on what he would prefer to see happening
-> for Rockchip?
+> To be clear, I don't care about the change in behavior as this driver 
+> obviously primary aim should be to  support GMSL2 cameras, not 
+> test-pattern generation. It is important for me that it is possible to 
+> enable the test pattern generation $somehow at runtime (i.e. no DTS 
+> changes). As this is the only method I have to test a bunch of boards.
+
+That's the idea. I can switch between capturing from sensors and generating the
+test pattern at runtime. I don't do any changes in the DTB. However, I believe
+the downstream devices need to support streams as well in order to work.
+
+> 
+> It would also be nice if the patterns generated (output frames) as 
+> closely as possible would resembles what is generated today. That way I 
+> don't have to alter my CI pipelines too much :-)
+
+I didn't touch the pattern generation part at all. From what I can see, it
+looks the same.
+
+Thanks,
+Laurentiu
+
+> 
+> > 
+> > The series only supports tunneling mode and uses the first MIPI-CSI
+> > port. Support for more functionality can be added later, if needed.
+> > 
+> > I sent the set as a RFC because it depends on Sakari's pending internal
+> > pads patch which is needed if we want to have an elegant solution for
+> > allowing the user to switch between streaming from sensors or just
+> > video pattern generation.
+> > 
+> > Also, the set depends on my previous series which was not yet merged:
+> > https://patchwork.linuxtv.org/project/linux-media/list/?series=14255
+> > 
+> > Thanks,
+> > Laurentiu
+> > 
+> > Laurentiu Palcu (11):
+> >   dt-bindings: i2c: maxim,max96712: add a couple of new properties
+> >   staging: media: max96712: convert to using CCI register access helpers
+> >   staging: media: max96712: change DT parsing routine
+> >   staging: media: max96712: add link frequency V4L2 control
+> >   staging: media: max96712: add I2C mux support
+> >   staging: media: max96712: add support for streams
+> >   staging: media: max96712: allow enumerating MBUS codes
+> >   staging: media: max96712: add set_fmt routine
+> >   staging: media: max96712: add gpiochip functionality
+> >   staging: media: max96712: add fsync support
+> >   staging: media: max96712: allow streaming from connected sensors
+> > 
+> > Sakari Ailus (1):
+> >   media: mc: Add INTERNAL pad flag
+> > 
+> >  .../bindings/media/i2c/maxim,max96712.yaml    |   45 +
+> >  .../media/mediactl/media-types.rst            |    8 +
+> >  drivers/media/mc/mc-entity.c                  |   10 +-
+> >  drivers/staging/media/max96712/max96712.c     | 1406 +++++++++++++++--
+> >  include/uapi/linux/media.h                    |    1 +
+> >  5 files changed, 1352 insertions(+), 118 deletions(-)
+> > 
+> > -- 
+> > 2.44.1
+> > 
+> 
+> -- 
+> Kind Regards,
+> Niklas S�derlund
 
