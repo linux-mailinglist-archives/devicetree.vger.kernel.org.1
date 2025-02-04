@@ -1,171 +1,171 @@
-Return-Path: <devicetree+bounces-142833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D302A26B1C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 05:33:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05938A26B9A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 06:57:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD5271882C70
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 04:33:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F7DF161812
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 05:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53EC01487ED;
-	Tue,  4 Feb 2025 04:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6138D1FF7B0;
+	Tue,  4 Feb 2025 05:57:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="AZ5+ijlK"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="foSWOD45"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F1425A635;
-	Tue,  4 Feb 2025 04:33:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C15281FC118;
+	Tue,  4 Feb 2025 05:57:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738643601; cv=none; b=m096MCp8qOUc6wOEfX61Wc4mNqBaKp+Z2h4ZEXfZyZn2j2jOA2tdndRKNwA1b1IB43B0UNYYmQOTVBKcEwx+s93EQuALDd+dJGmP/J36oLWx9xJ7zHVn4o8WWSg1Le+FnwgWTKkCvDSAbqAhqg33lBfxL1/SEiWtzND8XLTvHYg=
+	t=1738648670; cv=none; b=VsbplZPJ9rRgT2zZo8Ji+8mmVDV/yOr6HoFGZHRphx5v9O9Sm383VbTtjOmxJz2DvUN9guabL3PPxrVGui8RoVexwBNTH/eeU4pogqSgs3J1UEiqNAUcqMVAqyIaA7gI3mom39kJC6LeYcEPxzVmm6IxgoU5GSWlxJCrhCuT9b4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738643601; c=relaxed/simple;
-	bh=OVO7pPvS9it63pRV7s9Xy2kC4yPGFJZs59pPpi//UPs=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=EjpvnbTXGYbSC/x0KYmDlASGlVBKK+3C0Zg1S4EAujYi0+DchGvjDKGX7+gTmT6gNKdvJmbK0x7eruXEWNxBRZ8Rw5q86kEdiRLKMP7jxBOxKun0O3EvyGQFjct5nlwYigTds9DLvNxLpcZmkAYbApnBprmauNXRMIoAhsMmlPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=AZ5+ijlK; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1738643597;
-	bh=OVO7pPvS9it63pRV7s9Xy2kC4yPGFJZs59pPpi//UPs=;
-	h=Subject:From:To:Date:In-Reply-To:References;
-	b=AZ5+ijlKDQgxKTEifzz0lMAm8+CID+Vq9cW8amOSUOU2Lnrbgnn+RCsZMj1J/bF9P
-	 IXpGFNm7WoQQrR5ryZs0gtv7IJQ3SiM/fDn72Ih4I/3VGF2Bp/MKobboggFt1+xwPE
-	 20bsV5MIrHoCNcVNagNJVt72f4eopKbWzvG+eqWWe7fsd1hDwWs7vJFg5vOctzsb2t
-	 gUfSqg0iYSd5RlppAuDM2qcmEB8YxwbJspydO//mUNV6Xhu+4fceeckJJy3Mn7gSUv
-	 EtsHS5/nOLzIYgNbpyy78UmaGA5ttbtGugGQBuhz2hKfevC4/FMBLMO1bOPGqqbJV2
-	 T3oJaaY0oFD8A==
-Received: from [192.168.68.112] (58-7-156-140.dyn.iinet.net.au [58.7.156.140])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id D96DD734A6;
-	Tue,  4 Feb 2025 12:33:13 +0800 (AWST)
-Message-ID: <79b819b6d06e3be0aa7e7f6872353f103294710c.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v7 0/9] DTS updates for system1 BMC
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Ninad Palsule <ninad@linux.ibm.com>, brgl@bgdev.pl, 
- linus.walleij@linaro.org, minyard@acm.org, robh@kernel.org,
- krzk+dt@kernel.org,  conor+dt@kernel.org, andrew+netdev@lunn.ch,
- davem@davemloft.net,  edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com,  openipmi-developer@lists.sourceforge.net,
- netdev@vger.kernel.org, joel@jms.id.au,  devicetree@vger.kernel.org,
- eajames@linux.ibm.com,  linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org
-Date: Tue, 04 Feb 2025 15:03:13 +1030
-In-Reply-To: <20250203144422.269948-1-ninad@linux.ibm.com>
-References: <20250203144422.269948-1-ninad@linux.ibm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1738648670; c=relaxed/simple;
+	bh=z7yLwVe/qG0pjtK8OhJpHQpZZtPLKHGuXFvPv4qFrNA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=B8pJZeed4ForZPePOfweoulWKlaOY5UWm7UdumKRTVT3/GrGfVWx+04Pf+hk1k2gAUK/YcIyLQjSI3PxRHbPBAsxDH243ziH0umDtYMkRWoKNC191YYjr23Hq52uwB9MIzy1qdHcq35nxSRpTX8xYTow6X+zkajSDBM+F0iZJbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=foSWOD45; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 513JlrHr029157;
+	Tue, 4 Feb 2025 05:57:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iEHyUVvDWy5Ero2/csVx2ZNWJ1I1N67ham97sJ6bR1I=; b=foSWOD45sNVZ4YC3
+	e7DOc4Dpi/Q24vXNDhB8BObFbnS9scG5+shPnAdUmgDPVvEAPHNdeuT8VncYpLVY
+	GUkjOvTJzH6wM63YzVnU8PATj2E9nQcJUiVQEKGNterYlAMw2OAWHEUKB5A1yN+y
+	J3dfP3Jvwzgnses4tdCJ4BgqcOGlraNd7fc2kn8riUL+NPJ9Xox4kGverjpsWeLO
+	Z9otY0Q8mhKfFeEJjo8W4ceU9p1pS9/T3vU2kraZtDmfcbnz0Cf7bI5WhwR2kBER
+	JLwGusj6MtkELXBattqJ5SvM+Cr/IgXj/NhOSAxtJQVBLu8EGWr0Q5OAIp8786pC
+	zo00fg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44k492h2kj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Feb 2025 05:57:43 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5145vgrH007585
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 4 Feb 2025 05:57:42 GMT
+Received: from [10.216.42.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Feb 2025
+ 21:57:38 -0800
+Message-ID: <345519bb-ba1c-4bcc-a03c-5557f8f40035@quicinc.com>
+Date: Tue, 4 Feb 2025 11:27:35 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/13] dt-bindings: net: wireless: describe the ath12k
+ AHB module
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <ath12k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        Kalle Valo
+	<kvalo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jeff Johnson
+	<jjohnson@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250130043508.1885026-1-quic_rajkbhag@quicinc.com>
+ <20250130043508.1885026-2-quic_rajkbhag@quicinc.com>
+ <20250130-cunning-quail-of-opportunity-76d0ad@krzk-bin>
+ <724a4822-469a-45bb-bfb1-c02b54e971a3@quicinc.com>
+ <aaabcc7a-8234-4753-a8d1-ab36afdafa2e@kernel.org>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <aaabcc7a-8234-4753-a8d1-ab36afdafa2e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: p9D-a9lWuHf6ggdTz0eID7ur7bmOJ6Pc
+X-Proofpoint-ORIG-GUID: p9D-a9lWuHf6ggdTz0eID7ur7bmOJ6Pc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-04_03,2025-01-31_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 mlxscore=0 adultscore=0 lowpriorityscore=0
+ malwarescore=0 suspectscore=0 mlxlogscore=999 bulkscore=0 spamscore=0
+ clxscore=1015 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502040046
 
-Hi Ninad,
+On 2/3/2025 3:39 PM, Krzysztof Kozlowski wrote:
+> On 03/02/2025 10:05, Raj Kumar Bhagat wrote:
+>>
+>>>> +    items:
+>>>> +      - const: q6-region
+>>>> +      - const: m3-dump
+>>>> +      - const: q6-caldb
+>>>> +      - const: mlo-global-mem
+>>>> +
+>>>> +  qcom,ath12k-calibration-variant:
+>>>> +    $ref: /schemas/types.yaml#/definitions/string
+>>> Why this is named after ath12k? Why this is just not
+>>> "qcom,calibration-variant"? None of the other properties have ath12k in
+>>> their names, so why this one in the WSI schema was named like that?
+>>>
+>>
+>> This property is added after the below comment.
+>> https://lore.kernel.org/all/qzjgpwemwaknwbs3dwils6kaa5c3inabfvkaryvc32kblzfhy3@6yduooj4dk63/
+>>
+>> This `ath12k` in the name of this property is inherited from the 'qcom,ath10k.yaml' and
+>> 'qcom,ath11k.yaml'. Same was followed for WSI schema as well.
+> 
+> They do not have ath12k prefix in the name, so I don't understand.
+> 
 
-On Mon, 2025-02-03 at 08:44 -0600, Ninad Palsule wrote:
-> Hello,
->=20
-> Please review the patch set version 7.
->=20
-> V7:
-> ---
-> =C2=A0 - Updated pattern in the ast2400-gpio.yaml
-> =C2=A0 - Dropped "dt-bindings: net: faraday,ftgmac100" patch sending it
-> =C2=A0=C2=A0=C2=A0 separately.
->=20
-> V6:
-> ---
-> =C2=A0 - Fixed dt_binding_check errors for ipmb-dev.yaml
-> =C2=A0 - Changed the hog parsing pattern in ast2400-gpio
->=20
-> V5:
-> ---
-> =C2=A0 - Improved IPBM device documentation.
-> =C2=A0 - Added the hog parsing in ast2400-gpio
->=20
-> V4:
-> ---
-> =C2=A0 - Removed "Add RGMII support" patch as it needs some work from the
-> =C2=A0=C2=A0=C2=A0 driver side.
-> =C2=A0 - Improved IPBM device documentation.
-> =C2=A0 - There is a new warning in CHECK_DTBS which are false positive so
-> =C2=A0=C2=A0=C2=A0 ignored them.
-> =C2=A0=C2=A0=C2=A0 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb:
-> gpio@1e780000: 'hog-0', 'hog-1', 'hog-2', 'hog-3' do not match any of
-> the regexes: 'pinctrl-[0-9]+'
->=20
-> V3:
-> ---
-> =C2=A0 - Fixed dt_binding_check warnings in ipmb-dev.yaml
-> =C2=A0 - Updated title and description in ipmb-dev.yaml file.
-> =C2=A0 - Updated i2c-protocol description in ipmb-dev.yaml file.
->=20
-> V2:
-> ---
-> =C2=A0 Fixed CHECK_DTBS errors by
-> =C2=A0=C2=A0=C2=A0 - Using generic node names
-> =C2=A0=C2=A0=C2=A0 - Documenting phy-mode rgmii-rxid in ftgmac100.yaml
-> =C2=A0=C2=A0=C2=A0 - Adding binding documentation for IPMB device interfa=
-ce
->=20
-> NINAD PALSULE (6):
+I meant that, 'qcom,ath10k.yaml' has qcom,ath10k-calibration-variant and
+'qcom,ath11k.yaml' has qcom,ath11k-calibration-variant. The same name pattern
+has been inherited.
 
-Why is your name all in caps here but not for the binding patches
-below? Can you fix that up?
+> People, start re-using properties, not creating one per each binding.
+> 
+>>
+>>>> +    description:
+>>>> +      String to uniquely identify variant of the calibration data for designs
+>>>> +      with colliding bus and device ids
+>>> I don't think this property is here possible. How could you have on the
+>>> same SoC different devices?
+>>
+>> The WiFi controller in the SoC includes an internal or external Front-End Module (FEM).
+>> These FEMs can vary and require different calibration data. This property uniquely
+> 
+> 1. So exactly the same SoC package has different FEMs?
+> 
 
-> =C2=A0 ARM: dts: aspeed: system1: Add IPMB device
-> =C2=A0 ARM: dts: aspeed: system1: Add GPIO line name
-> =C2=A0 ARM: dts: aspeed: system1: Reduce sgpio speed
-> =C2=A0 ARM: dts: aspeed: system1: Update LED gpio name
-> =C2=A0 ARM: dts: aspeed: system1: Remove VRs max8952
-> =C2=A0 ARM: dts: aspeed: system1: Mark GPIO line high/low
->=20
-> Ninad Palsule (3):
-> =C2=A0 bindings: ipmi: Add binding for IPMB device intf
+Yes, the WiFi component of the same SoC package can have different FEMs.
 
-This one needs an ack from Corey if I'm to take it.
+> 2. How does it exactly work? Different bins? Different revisions?
+> 
 
-> =C2=A0 dt-bindings: gpio: ast2400-gpio: Add hogs parsing
+The calibration board data for different variant are packed into firmware binary 'board-2.bin'.
+Thus, board-2.bin can contain multiple board data for various variants. Ath12k driver selects
+the correct board data based on the variant. The "qcom,ath12k-calibration-variant" is used
+as one of the parameter to select the correct board data from board-2.bin.
 
-This one needs an ack from Linus W or Bartosz if I'm to take it.
-However, it's also causing some grief from Rob's bot:
+> 3. How is it supposed to work in practice - you have one board, but
+> might have different SoCs inside? Which calibration data would you use
+> in such case?
+> 
 
-https://lore.kernel.org/all/173859694889.2601726.10618336219726193824.robh@=
-kernel.org/
+The SoC in the following statement 'you have one board, but might have different SoCs inside'
+, I am assuming SoC to be WiFi controller/component.
 
-As the reported nodes should all be hogs the name shouldn't matter
-anywhere else (as far as I'm aware). It would be nice if all the
-warnings were cleaned up before we merged the binding update. That way
-we don't cause everyone else looking at the CHECK_DTBS=3Dy output more
-grief than they already get for the Aspeed devicetrees.
-
-In order to not get bogged down it might be worth splitting out both
-the IPMB- and GPIO- related patches like you did the FTGMAC100 patch,
-and then I can merge what remains (from a quick look they seem
-relatively uncontroversial).
-
-Andrew
-
-> =C2=A0 ARM: dts: aspeed: system1: Disable gpio pull down
->=20
-> =C2=A0.../bindings/gpio/aspeed,ast2400-gpio.yaml=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0 6 +
-> =C2=A0.../devicetree/bindings/ipmi/ipmb-dev.yaml=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 56 +++++++
-> =C2=A0.../dts/aspeed/aspeed-bmc-ibm-system1.dts=C2=A0=C2=A0=C2=A0=C2=A0 |=
- 139 +++++++++++-----
-> --
-> =C2=A03 files changed, 147 insertions(+), 54 deletions(-)
-> =C2=A0create mode 100644 Documentation/devicetree/bindings/ipmi/ipmb-
-> dev.yaml
->=20
-
+Consider, if we have two WiFi (qcom,ipq5332-wifi) controller with different FEM in IPQ5332 board.
+Then in the DTS we have two wifi node. Each wifi node in DTS will have different value for
+'qcom,ath12k-calibration-variant'. With the help of this property driver will be able to
+download the correct calibration board data from board-2.bin.
 
