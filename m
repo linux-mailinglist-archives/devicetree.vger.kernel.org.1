@@ -1,124 +1,141 @@
-Return-Path: <devicetree+bounces-142819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1D5BA269E3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 02:37:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 450FDA26A64
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 04:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 285D9165BDA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 01:37:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C69B93A5F89
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 03:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 544E38632C;
-	Tue,  4 Feb 2025 01:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5014F142E83;
+	Tue,  4 Feb 2025 03:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q+2EgQi6"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="uO754Zj5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7662478F30
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 01:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E7725A640
+	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 03:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738633017; cv=none; b=c9FxlDN/v0P1xhmOAFC0U51yTkftDyDWiOMKtdmCqWpkKoXignVwmRhSBrUbGWn2rlOyIryQwdg3CJnsZ+/MLvkyP08LDjulxxEbsftlt2iiQU/xIXGUjqp2sTLCs1md0aOcdfPOwNoqggSxEjnMPybVWE54XUEGzAIZ5uNs0H0=
+	t=1738638181; cv=none; b=Rub5D0LRob66vikAW3Gg61Wtb5s4HGp3IeEIJzphDBd3VkuXY1LjaLS8s/UU1tpS7KCxOd1xQKj2N6lyka+DKJTMdt0V0wlofsDddzlGGalED3K0QP46+jIH6QHGIDaRCxfbZTF4T8FMQOrFSQRB/3WgsBJmGy3pOOcIyaRmSgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738633017; c=relaxed/simple;
-	bh=gQJg4Yjqg4bWR3kSEamLIlUZAPB4Qx9PFeNNXZoa5lQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=I4zVsnsrdY9K2ZnPEc3EL3WgdJZnWfr26P9i13QCCA5uoGH0jNNK64f8d/7UML1c1h6EpK5WY7w0Bv1GMuGQ1bW/F5KLK6/RN9VAd2OvqCVbiYPEyo75dg0Vtpl+sFCuQhPTcBaLLyDm7LvhSK8Ts1ZwTAtwxhHOoHtsZaWQ/Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q+2EgQi6; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6f6c90b51c3so29978887b3.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 17:36:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738633014; x=1739237814; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ROq+7dop8/gAZioS6LiNRBVOkjkfWTu5NLRN5pWfuk0=;
-        b=q+2EgQi6ngOhd4dLGCCZZJVm7WJXXDCun1z5h9NY3FuXQ0rx8cBL1P91MVKMVwmCxB
-         poI3bD+LBjaAdFdMtqySnVkHOC3JzOxRc3p0/d/wD+9PCZjRGLGftv2kOC1G6eFcMhfB
-         vv9p6QeohdaNIKh46lO7NTBqjBgLWwYsffZWOC3UWTj8r0yvzKKDtUBHd/PHv8d68KMK
-         DRxlGfEKXTSKbVRw0dXTUgnzP64bDKAsW+IC/6kuJo5hIyvQE3YhJXc6oytriWT3ssND
-         F3xTKM9/69I/SE/xKu2IX+ETX4ONQZ+m/eqLJGrg1Oa9+Poyw5oE4TVKDHxtAZ5c+uLG
-         FNWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738633014; x=1739237814;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ROq+7dop8/gAZioS6LiNRBVOkjkfWTu5NLRN5pWfuk0=;
-        b=ZPENcIZSiHkT78+a3Cmlqh0V+5d4GA/Yck4dQIaIlhppx/USwcuA8yUgkNsFKMgJy6
-         d60+I9y4M4E00crZ31woEbCMBsX4KmBgMiVOYT5fQiUuZ+rfPMuGIX6BiUi2U3BDdaEy
-         12lU1/yV4rQ0ZezzB9cmgeBgEPkkI9RH7xDwYk4O9/gLN1TdRxBtWyJhhm/xoCOtVssc
-         4a4uf6Ws7SVEl9nnytr9+NmG6DodEQYYK+PVRYlW9+p40jwIULHQfESLzzDqhXx+NDpi
-         xyRByhRMbo2sYrWOvhHOm/1YNfe3r3OC5iFqBywj8Tg0e2dwGCnXlV2o+qSMir7RZ2a8
-         7Zgg==
-X-Forwarded-Encrypted: i=1; AJvYcCXa+l59YNE3bYqMytxnVbqaP7463VAv/6vQethLwCQehYY/rAY72DDrW9S59XLzfxupCLQHI9Te9l2N@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyj2i2TuwwqhmKdLtCeWbvqJSnY7xRASLT18PMMneC3fYE52Vw7
-	bceiaLkCerfLl+XCWenw/oWZE90LGZUT28ihdusRdZ/1zd2SENTcm9V+h7xJYTP/DtnqMDYdxMe
-	yrg/4pPxxr0tIdEWmLjTFyVNM/1UC98ynjXEfRw==
-X-Gm-Gg: ASbGncsR50fkQauae0fiO/MmyBn3hGzq9722vEdzXReVbawQl0WM/Wn4YgPqdAZFkCJ
-	nuJznguDcvQKMYT15EvStxilO0f+JXMKEaj9g5GjNh+1959J9EDyXWxbKEFwfn0I0xjaVOAbT72
-	glILTqnZ6umTlvy+FkrToDWXBlMuYZ
-X-Google-Smtp-Source: AGHT+IEndGqJLe3lRomYw81FxRc4rJi4daHHHTKmvJkj4axffR2/iXurAfxujNYq1cogoGYH72n70X+vXXmF4hJGdBY=
-X-Received: by 2002:a05:690c:c99:b0:6f6:7ef2:fe74 with SMTP id
- 00721157ae682-6f7a8426a5dmr180536937b3.32.1738633014293; Mon, 03 Feb 2025
- 17:36:54 -0800 (PST)
+	s=arc-20240116; t=1738638181; c=relaxed/simple;
+	bh=AljLlpBgRQjQAfgQN6eKucpPl/dPKCNkhE58V6Yjsck=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pU/WIA2iC3n3S19TI9M+pKAwezMQUsGHEjOwb5d0DWzUrpL4LhNCpTLvyayR1oWCOTd8Uh3+tKZLfvd3ynMAD8PZ/i/vCwZNp53wwIBpqD7oJDuK6TQLvgQGQAxyEbvdzXA9449crewGa0ELYE9sY4Ki1wOdUJMbWbAW7dzR/uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=uO754Zj5; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 7B0762C022F;
+	Tue,  4 Feb 2025 16:02:55 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1738638175;
+	bh=HqWCWRRdDyMbbXsv5hMVrTkG8PiypX6mT+KFCWzynx4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=uO754Zj5/KgoOr+unZAlS/Zag7tSGnMpzkRzLbVDd+pVSes1jVmMj6I5yw0Si9zf0
+	 DdJ2MmRR/UOJoPXc/pTb+oSo9qgNcwI49hbIPrlWZeIZf2D8Z6UrwKGGuqxLgaISnS
+	 lba8xS0UEyzg6ZK8w+A9fiI+gP1OqR+StE0WQYYZrBjNE9F4odScLdSuXp7V7gxusE
+	 CPyrOpwzjr2yKH7RoNvYUiyTGSI9draKQFNP+S0b9bmcfwNdp7CsmK409YrGJnuYMJ
+	 Bs9y9Pm1P6cm9Tf68LMfTcqCJirmT/nAWmvxYsFtOqzEQU0C8WZ+U0wX3/796HTYM1
+	 B1JqIjCuxAVDw==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B67a1835f0000>; Tue, 04 Feb 2025 16:02:55 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 46C0513EE36;
+	Tue,  4 Feb 2025 16:02:55 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id 412532804B6; Tue,  4 Feb 2025 16:02:55 +1300 (NZDT)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	tsbogend@alpha.franken.de,
+	hkallweit1@gmail.com,
+	linux@armlinux.org.uk,
+	sander@svanheule.net,
+	daniel@makrotopia.org,
+	markus.stockhausen@gmx.de
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH net-next v6 0/6] RTL9300 MDIO driver
+Date: Tue,  4 Feb 2025 16:02:43 +1300
+Message-ID: <20250204030249.1965444-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250113-sm8750_ufs_master-v1-0-b3774120eb8c@quicinc.com>
- <20250113-sm8750_ufs_master-v1-2-b3774120eb8c@quicinc.com>
- <vry7yib4jtvyc5baruetqb2msy4j4ityv2s6z5smrz6rqjfb5l@xoharscfhz5n> <6873e397-dbc0-4c30-8c08-a65ee7cd6e01@quicinc.com>
-In-Reply-To: <6873e397-dbc0-4c30-8c08-a65ee7cd6e01@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 4 Feb 2025 03:36:42 +0200
-X-Gm-Features: AWEUYZlF9xRy7fPmY8vHPfUe0fIEvkxweH_j9r0Xv-PAz5SBxJgUbog5Km9Pvw4
-Message-ID: <CAA8EJprjxMtkefY+90cLGVgz-bDf=VXnaa0eH4ESAC6nf5vrLA@mail.gmail.com>
-Subject: Re: [PATCH 2/5] phy: qcom-qmp-ufs: Add PHY Configuration support for SM8750
-To: Nitin Rawat <quic_nitirawa@quicinc.com>
-Cc: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, 
-	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-scsi@vger.kernel.org, Manish Pandey <quic_mapa@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=QNvLRRLL c=1 sm=1 tr=0 ts=67a1835f a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=T2h4t0Lz3GQA:10 a=2fb9Dq4sOb5bA3HnAgEA:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-Hello,
+This series adds a driver for the MDIO controller on the RTL9300 family
+of devices. The controller is a little unique in that we can't access the=
+ SMI
+interfaces directly. This means we need to use the hardware description f=
+rom
+the DTS to compute a mapping of switch port to mdio bus/address.
 
-On Mon, 3 Feb 2025 at 10:03, Nitin Rawat <quic_nitirawa@quicinc.com> wrote:
+Note that the dt-bindings: mfd patch is dependent on the dt-bindings: net=
+ patch.
 
-Your email client has corrupted all quotation levels. Please fix its
-configuration so that you can not compose HTML email. Or switch to a
-normal text-based email client like Mutt or Gnus.
+It looks as if we're off Google's naughty list. It's kind of hard to tell=
+.
 
-No additional comments can be provided to this email.
+This iteration makes use of the ethernet-ports property to figure out the
+mapping from port to PHY which removes the need for any extar vendor spec=
+ific
+properties.
 
->
->
-> On 1/14/2025 4:19 PM, Dmitry Baryshkov wrote:
->
-> On Mon, Jan 13, 2025 at 01:46:25PM -0800, Melody Olvera wrote:
->
-> From: Nitin Rawat <quic_nitirawa@quicinc.com>
->
-> Add SM8750 specific register layout and table configs. The serdes
-> TX RX register offset has changed for SM8750 and hence keep UFS
-> specific serdes offsets in a dedicated header file.
+I've sent this as net-next. The first 4 patches could probably come in vi=
+a
+net-next if the mfd maintainers are happy with that. Not sure about the m=
+ips
+ones. I've included them because the updated bindings will start complain=
+ing
+about missing properties on the one in-tree dts file.
 
--- 
-With best wishes
-Dmitry
+Chris Packham (6):
+  dt-bindings: mfd: Add switch to RTL9300
+  dt-bindings: net: Add Realtek MDIO controller
+  dt-bindings: mfd: Add MDIO interface to rtl9301-switch
+  net: mdio: Add RTL9300 MDIO driver
+  mips: dts: realtek: Add MDIO controller
+  mips: dts: cameo-rtl9302c: Add switch block
+
+ .../bindings/mfd/realtek,rtl9301-switch.yaml  |  47 +-
+ .../bindings/net/realtek,rtl9301-mdio.yaml    |  86 ++++
+ .../cameo-rtl9302c-2x-rtl8224-2xge.dts        |  96 ++++
+ arch/mips/boot/dts/realtek/rtl930x.dtsi       |  33 ++
+ drivers/net/mdio/Kconfig                      |   7 +
+ drivers/net/mdio/Makefile                     |   1 +
+ drivers/net/mdio/mdio-realtek-rtl9300.c       | 472 ++++++++++++++++++
+ 7 files changed, 741 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/net/realtek,rtl9301=
+-mdio.yaml
+ create mode 100644 drivers/net/mdio/mdio-realtek-rtl9300.c
+
+--=20
+2.48.1
+
 
