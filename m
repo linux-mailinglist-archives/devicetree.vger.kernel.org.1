@@ -1,266 +1,183 @@
-Return-Path: <devicetree+bounces-142875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B2B2A26DF6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 10:12:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 926D6A26E48
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 10:29:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1249016432E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 09:12:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18096165777
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 09:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17622207A0B;
-	Tue,  4 Feb 2025 09:12:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A239207A33;
+	Tue,  4 Feb 2025 09:29:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="YFVFIA05"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ontwalZR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2047.outbound.protection.outlook.com [40.107.21.47])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3172207A05
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 09:12:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738660358; cv=fail; b=EXuJPwBLUv5MSTTNrFm5RljJxGEebDCsdF/RbgsslVZQXAGUd7IHKTtSuVPNTQvXMeymG1u32WbhJyX24u05EULNDZi3IOOKjZAxBGde66fSKWZPcmvqcftSvm8Yk64zveYliCO0v7QtLUzHO87P0xwxlgOGHV09GMo0dNkiDNs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738660358; c=relaxed/simple;
-	bh=h+mleXoGszvr2x0mQyAQZQ18to/g6+nBqxPaUG3o1UY=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=RO9v21pPhnaUVgfpJtMfmHtZ1T1blc+lpfHbE8fjHPLfZOdy+8KFMTdO3mFOATKy/5hcNGS359G5G6odWy7s8SzwBhcWR0TzhoAMVhzmsVi08W1/p64Aq56qjcTRIFgXvYC8fbNf6yk8/5GGcpwJwA40KURKb/89XCXOTshAzQg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=YFVFIA05; arc=fail smtp.client-ip=40.107.21.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i05yuBfcE9RDPqaaCmn7YmtvxyOVCLN9qVg+bPKedEvgE4sOsXtVBR5QAiZ7TSoicPWByp/SNwPw/SLCXg04PcHHn2/rf1eR8HbucN/f51V5ACTYotCcDhdgmw3bpSX+s7ckGhtV01Y33T6hJP9ElI4/BZFe3W4u2B/s28UWv9o6HqDvIvuBYH2LizhCI/YyOFMaRqMlov4oN8wE/QE3d1LX6EDTwk+AsYykQbyGcwqcgv0st0I0CSPyaYy8l4MQfuvAm6zhiJzXLi5EWmzQYk65UdA4BRp6xpCC7cxB8jKilKwVouXkBplsO3h8Bpetzq5SA0c774WAYj9LHvPDKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HSAdwMvMBiOOPxArMpF7rCm1Q+NOaoaRx+A2hp31tfc=;
- b=k8r6xUJHzfloZNJNAYwegUbdHdhqXH5u7wU+dlnHIAIjEdjk8S1LS+KNUbae/Po5rdwBUqyF6mNEKyL8yuB/hMc1SVhHS4OfwJlY98AMeAvA8qbluNUZEt0uYhFW8wZuJ9Hy92Uv0POk06B1yFo1PxaQnkeXMB4SyqjYYzkSSNmbDq1Lsa8H3drjWJI+ra8quAygKv2urbsH1j8riCXa0+wR80+tO7Zoy+9czjWYKX4WdRvWh+Na+YHOkFnbFNW2rcPYn95ps9pr0UW3bb+YneYB4AupfCQMuuy7dY53nk9uQtpNw92/LlDn6WgCuchxT4+ZCz2qgAvoMPqtVQC9jA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HSAdwMvMBiOOPxArMpF7rCm1Q+NOaoaRx+A2hp31tfc=;
- b=YFVFIA05tn3g2Z0u8VRG3vNZ9EbHBuqXE6F9QUdLnM6jyOTjw6wnW2Bqc3fR5CdcekRHO+SrX7VV76y1eJe0HSHnOUtUIRUgW1mqMHfrhnVayxGnOohgiGiWvGQbenm7Y/6vErv9vWAmBEiJOsYScsjv0wG1LGupIsgl8lQjpu0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by GVXPR04MB10355.eurprd04.prod.outlook.com (2603:10a6:150:1db::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.25; Tue, 4 Feb
- 2025 09:12:28 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%3]) with mapi id 15.20.8398.021; Tue, 4 Feb 2025
- 09:12:28 +0000
-Message-ID: <40c37c4e-b98f-47bf-a4ad-b977be5a6d49@cherry.de>
-Date: Tue, 4 Feb 2025 10:12:26 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: remove rk3588 optee node
-To: Chris Morgan <macromorgan@hotmail.com>
-Cc: Chris Morgan <macroalpha82@gmail.com>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- sebastian.reichel@collabora.com, heiko@sntech.de, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org
-References: <20250130181005.6319-1-macroalpha82@gmail.com>
- <5d0ae245-1ad3-4e3c-9c68-28babc7290a6@cherry.de>
- <DM6PR19MB3722A5CCBF3FBEAC59189642A5E82@DM6PR19MB3722.namprd19.prod.outlook.com>
- <7266daa9-b031-4c45-8711-c4e6e4be7095@cherry.de>
- <MN2PR19MB3728B870175A9568773D9BD0A5F52@MN2PR19MB3728.namprd19.prod.outlook.com>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <MN2PR19MB3728B870175A9568773D9BD0A5F52@MN2PR19MB3728.namprd19.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR3P281CA0096.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a1::8) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF95207A00;
+	Tue,  4 Feb 2025 09:29:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738661364; cv=none; b=EDTIGa906qsm+wAnKz+0IiXX06UiIRoJEHsWucU2vMPy+DOHT2Mb3JBEaAyJljb80esWY6ZbkyTWWfFUgsy6cJnrD1xf6SOMZH45uLh5CTBciLz61i1RgIppsjES4ZPJy6c5z+SHey/dtaPvIGvBb4pWiTiN0SPdIrfw+i/yzYU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738661364; c=relaxed/simple;
+	bh=eMSZR184pNyYKO7OZQpI/SBXyNlp7dxGDDy8hNjjVA4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Lag7cWzeEa2aMcLh4vvpAl+B11ya4r94ihximVbj0wB5l2GFfI4O6CuxjFrQAn2Tvf5y5QBJl22qpe41KmaXaUtMZiULRirHQU+gVS0nh1sbYVib+ZsHFQbaL7rq7bEMHSPF2D9q5DN9dfVxXhRabeiRk2b8QaZJNUJaKoihZ+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ontwalZR; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 665AA433C9;
+	Tue,  4 Feb 2025 09:29:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1738661359;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=VV8/JHm8kIK/rlo3rcbyj1LmcZAByFGrKx7EJ2T+XlA=;
+	b=ontwalZRkhxk+02Z9CEucuzMfxcvDDXM09d24+a+16xeyxUM7oMb5yYjNNYXHzmIAfLeyc
+	hV9z9Fk9/fOyoMAfR4Xiu4VFBesSrTEptv0+CY1+ghtXvPEYL5UjpU461lZLeedwsYKp0m
+	zCqQuBabfo+ryJidFG4thK+SUwmkVw430mmh+DtZCQAolcH2Olxb++YcGos9nIcY+mdCE+
+	aSZKrWFSlR6L35z7yMvU8c9AQTqH/MimM4kY2Id2sIrocl7yRxwqpEwSfkprG16qbXteO/
+	thMD4YZf5v5m4nSpBh9NHVzl6wgoUcO5yfFcoY3hY8OiMAN3OPMXBla98hKImQ==
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH v7 0/9] misc: Support TI FPC202 dual-port controller
+Date: Tue, 04 Feb 2025 10:29:11 +0100
+Message-Id: <20250204-fpc202-v7-0-78b4b8a35cf1@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|GVXPR04MB10355:EE_
-X-MS-Office365-Filtering-Correlation-Id: c4f93b85-6a93-4f67-c357-08dd44fc0bb8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZGFLWG9qdGIxMm5XanZ2T2xST0lzTDk0dnhkK1BsdzBKMXpzVWo2M0dzdm9w?=
- =?utf-8?B?bFVyRTVTV3Q4RjBPUnJLZEI4T3lVRysvbkEzeU9la3ZndEJqVGR1a0wzc1lQ?=
- =?utf-8?B?bzF1dGVnZ3Y4UldrNDFoVmZ6V0pPeGRqZVZTQlBGTGRYRm9jNU1uN3N4UERY?=
- =?utf-8?B?Wm5JU2dmeFhDQ1NmVFRvQk9JZ2ZSQ2EwY0YwWU1zcEZuOC9YVExUWEx4bDVS?=
- =?utf-8?B?WU1oMTNHQlBmWk1iM0lFN1JCbG4yc0ZmRlRRNVRRUjQyUDhHbW1yaHhPRGts?=
- =?utf-8?B?L2xLSWp3S3Rqc3hRYktjcnRRMDhFa1REUXVGdUFPZzNFR3ovbDJtRjNzUXc0?=
- =?utf-8?B?a0IrZFN2NlY3K2xQSDljc0dvN09aSjVwU1hIVkFKWUFJUmFQWkh5UzNFOWpP?=
- =?utf-8?B?UzlVOUIxYWFkblNxZmR6UUxTY1BnQVJRMlNwNm9DVVNXTVM4YStwcjlad2Nr?=
- =?utf-8?B?VFMrT1RreDVpcTB0WEZWREVOa0xUTnN1czA0TjM5aTRlcXg5NllGenFMRUxP?=
- =?utf-8?B?Y21xcjArdTV1a1lUaGNiUTZaRkVraGJmT0pMNVBpTWgrTTZmM2ZuSWEzTkcr?=
- =?utf-8?B?b0d4M0o3S0ZsUlo4cjZVbU15QTAwUWRQWHE5Njk2aXo4L1BIOTlFZTFJR3Vo?=
- =?utf-8?B?TFg0VG51ajI0MGVieTVpeHo2VVhqNjdJVFFWTWU5NmZtaE5ya3BXZEV1UDFv?=
- =?utf-8?B?YjBVL3h4Um9QYkdvMkdQbkNZL2RRRkhXTEN1NDU5M3lXdmtSRDNqYnpzM0li?=
- =?utf-8?B?cGFWMEIyczBSdmJtZnBERG8wQnBwMVFZTlZMWjRiZUlMSWxVc2xCUlVuQjhy?=
- =?utf-8?B?bzhaREp2dng2SGVoSkJ3KzM2N1ArSjhlbnNmek1VSWxNNkVKcCtXWjZLaFho?=
- =?utf-8?B?WkpnUzFFN0NXRDJJVGM2T3RoMWRzaUN2U0QzMFQ5VGNZaVgyS3BMZFk3MkNC?=
- =?utf-8?B?QlU5a1hKdjByaUtxNW9RYUZyT0Z2NjJmRzJvcWVIZnVtbGU5YkVKdlVSdzdV?=
- =?utf-8?B?TXlOQjRweTdpbE9IMlRHajNwQlRma2FnM1lQYUxJWStxbzQzbi82T3lTQVBQ?=
- =?utf-8?B?NXNwczJHS2wxQlc0QVd6a0VGRWtFQldhbTgweW9tZzMyR3pMQnRqa0cxUjFI?=
- =?utf-8?B?bmlIdnJaK3lHNE44Y3ZKbjBJYTJ4NEx1LzUvSWhGbVdUd3d1VVFoTVRjRVZG?=
- =?utf-8?B?MXFaanNkYzRZbHNLRWNjU1NSazM5ZGJiT0o5d2cwSGY2aFpQZXpwdXJpVzBB?=
- =?utf-8?B?VTI4VjE5TlRrc2hGKyswcUtUZkZGWHU5ZWhsbFR1dmZoU0J0ZVBsb1dLMjU0?=
- =?utf-8?B?WG5CVzZrWFBseDZuN08wNmN5UmlCVEcxTGM4WE5wSGtQR0pWVUFmMHlPRENE?=
- =?utf-8?B?Rk5PeWJFVjJCT0NLcCszRGFWaDU5M2ExRmlTZ2JBbGtvZXVSdUw1VnJ6ZnNE?=
- =?utf-8?B?dEJBMlQ3bzNEN3k1dEhId1Z2Z2R5ZzBsSEJSTFhTcG9vQnZaTkJCbi94Ynho?=
- =?utf-8?B?b3ZJWDkxOEl0RkFpUUowbm5mWUhrZVVkdHF3RFZYY2lENXA2WmFNNVE1VEE5?=
- =?utf-8?B?MEhPd0Z1aG1LUGtvb3RkTFVpTG5vTGRkY0dPQllYcTh2VTdDbjJHQWJETGdO?=
- =?utf-8?B?eFFnQ0hSbmY0T3ZvL0ZETFJHOFhnM3BjemsyNFNFd3ozZmFjNVZqdkZrOURS?=
- =?utf-8?B?eS9jalQ2TFZuSVc1VjZtMTFzMHRXdjhFd2Q3dGN1N0t0dHFQYWhDU2QrcTM5?=
- =?utf-8?B?MjFLWndWUnZ4NFNCc2ZsVXhMMkxxRS96eFNMdXN4dzRLbzR0YzUzMXNmVnFO?=
- =?utf-8?B?aHZWZmprVW5rWHNnZjIra2JNSHZUc2JhYXZlNld5YU5ET1gyZGxDM1hjTkY1?=
- =?utf-8?Q?IrC67LPfDULsQ?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?YU1rNk03WElSNUZuaTE5NXNlR3dxZlB0dDVwV0o4UGtFN09GZFlxL3VVMXFX?=
- =?utf-8?B?eWdZa0FYczVuTFE1VTV0Nzdmd1Zqb3FOQ3cvK1ZYRUZNYUlIWDdIVU0yVk1m?=
- =?utf-8?B?SUtlU2R4KzZiTjhUbXJ3cnkzbTRTUldYOUw3dWdScXRqQ3BrbEhJSzVHNm84?=
- =?utf-8?B?QmhDZ0JYbzY5MG9aaU1pV2RDMXRzcmFHVUJqT3lWQ0ZHN3lGVlMrVzZJR25l?=
- =?utf-8?B?cTRKR0lENk9lcWNESUhJVDg5SjVkRk9BQVB2em4rM2cyVEo2VlVjR0R0Mm5u?=
- =?utf-8?B?OW5yWk9MRitocHFueWVFVjB3NHY1WVVTemVKVWFXR3NpUWxzQmQ1NU40cm1L?=
- =?utf-8?B?Z2tmVXhmNGJQeUNIR3A3YlA4b2dNbDRlaEYzVG5QeVk2NUFnRGFHSkVCckFW?=
- =?utf-8?B?RURGcnlsV3JoQlNORWszNXFtVTRZOTVEd3dRSTJ1K3l3eTZUQXZCdjNvdzhr?=
- =?utf-8?B?enA3NVhIZUZHZCtjdzdmeCtEQVllN0NweVBtYmNEdVVEdVVCU2ZkUUwzcytQ?=
- =?utf-8?B?OHN3WVJ1eTBuQUpFMGtGeGhPU0VIZnIzSUNVZHB1MndCR1dvT0l6RFZ5d2xP?=
- =?utf-8?B?YnoxMGE4K2pVWTVSSE15K2ErVU5wZ3hYVlhzOUxEZ3JYTFZ4R2JkK0ZHemt2?=
- =?utf-8?B?Mzd5dS82SDFGVjNLbUUxeXcxZkZMeElrMDNKOWdPM3FoWkJVa0NLM2JNVkxR?=
- =?utf-8?B?Q1RSZW04eFUvVHFlUnJ2UFRPYUcxd3RxajNtK2Z0WEh1YnZOeERsZDVLdVl6?=
- =?utf-8?B?Y1lLd2Q4Z2pYRWNac0JmVGUzU0VhSXptY0ZUQlJDWGNQTkNmNVBFRWdpZE5q?=
- =?utf-8?B?T0MvT0RBNFh4NVhMeDhvMHdubFBGSXBXSzg5QnlTMjBzYndkSTJibm9Ib1p6?=
- =?utf-8?B?am1zYTRIQWZBVXlHRmwxZGgyc2JWaENGOExiT3ZPYXBkR2RMbnB2USs5WHAr?=
- =?utf-8?B?QXJDbjhGMTJEdUp6ZDZnd0YyaEtSY2FBVDJ3U0pnM05vc21VNjhSRzJTM0ZN?=
- =?utf-8?B?Ym5sZmtrV2VTMFg2K0JyUUFVamVKK3F6SVZpZ2ZnT2JEaFN1aFZldWFGcDdh?=
- =?utf-8?B?SmlRVUVwV1pPVC9SbnIyRUdVcG56OThuOWptbWp2cjZBeG1CZW5valc3M0h2?=
- =?utf-8?B?Q0ZDOGpyeU9rbVNUUzc3WnczdXFxcnlnaTFubTRYejBxZWFaK0huV0VZc3E5?=
- =?utf-8?B?WXdlNlloVHFjZ3BTNWxmQ21HZjh0R2VSVmdReVZQYjBjNER6dWFSSTRlRU9C?=
- =?utf-8?B?QjRoNXd6TFhKcnpkL0puMmQyekhMZmlyUWpzcURSNTZCby9vZGEzTHhGTERT?=
- =?utf-8?B?MmlENXNlTCtOYkhvWVRQeUNxQXg0cDhDWnltVmtmTzAxakJXbTFpRSs0L1ZG?=
- =?utf-8?B?ZEl6YTNjYUE5cW5xS3dnYlZEb3hweHIrbkVKcE9UNVJON0t3L0JSb0MxT25R?=
- =?utf-8?B?bGtiWG1VSUFGdVdtdkR4WUsvQldiN3JUNE84MTBnNjV1UFdEQmlmYmU1bG5o?=
- =?utf-8?B?ejlhRHo3UTJHZlJobUZTK2IybUIycXdGMDFHTXVYVkdpSlAvWXlGSW9FQU5q?=
- =?utf-8?B?SEM1MUV2cWcxbzI3L1ZxZEUrc29XWlNTakZBdDNPVTEzaFRNK3BXeUYzamJ0?=
- =?utf-8?B?RUZCbHM1ZG1nTElJemMvakw2Ti9TcHQ1NzFHajRVRE5UT0dwZ0JkWjdEeERK?=
- =?utf-8?B?L0loVG9FVVVXVkpTRlgramxieHYveUxUbFFNUWM2UXRmZE9sSTF6Y1FxU2dU?=
- =?utf-8?B?Nld2V2NPOU9nNkN5cURNVG83dTAvZHZrbDkwdXpiSlErQkxXSmdpellmYVM5?=
- =?utf-8?B?ckk4TDdXZEJTV29QeWpZRGpNcVBGem1laG1YK2V2M1krVmlMTzVFaVFhb1Nu?=
- =?utf-8?B?cjBDWkZMcHJ0RUduTXIwSE1IM3JXZnVEdXpTN2M3TDJyT0Y0b1FVK3lWTDQx?=
- =?utf-8?B?T2JoSmRucVpjYTVVQWtPdVpscENUYndnZForbTNuVzZvWVdZR1NCQ0hUZElC?=
- =?utf-8?B?bFJtUzRkR29QZHJQMHg2YlJiM3dva1RiK2h0elVGY1hrQmdOWndUbjhibkl2?=
- =?utf-8?B?K0d2bTdUN01zaUdYd2RjWVVjVXlRUTA5SEVuMFRmc3FCRU9zQm1xcFdKYWVn?=
- =?utf-8?B?RWFoR0lCdnhFd1lIdDdoTTFCZk1jS2tvdXNMN1VxZ0FLS0piM1BqbmxxeU85?=
- =?utf-8?B?d2c9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4f93b85-6a93-4f67-c357-08dd44fc0bb8
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2025 09:12:28.0057
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: u5NiKeX9yWUQzoEHPhnUW894z2CGrzPyqFuio4TVI9AApd+nedMqBn4AjV51ec8tK1K1fMtCJox7vx7aVD9r+JCo5nUAc+Wx0O28eBFkNf4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10355
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOjdoWcC/2XQzW7DIAwH8FepOI8JjIGw095j6oHPFWkLVVJFq
+ 6q8+5xObTLlZiN+f2xubMxDzSN7O9zYkKc61tZTY18OLJ58/5l5TdQzEIBSSMvLOVLNTRHBKke
+ 17RhdPg+51J970MeR+lMdL2243nMnuZz+RUjRPSImyQUvGSEa14Xo4D20dvmq/Wts32wJmWAD5
+ QqBoEXMWKQDD2kP1QaCfkJFUGHuTIhBB232EFcISjwhLi8aGcDZROPaPdQPqMV2R03Qo3I+OOe
+ S9ntoNlCuoxqCCa1X2NEfa/UfzvP8C3pbyVC7AQAA
+X-Change-ID: 20241017-fpc202-6f0b739c2078
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, 
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-media@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ Romain Gantois <romain.gantois@bootlin.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdduhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffufffkgggtgffvvefosehtjeertdertdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkeeggeegheffueefieevffefleeuieegveejhfeiudelkeegleelgeduveefkeeunecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduledvrdduieekrddtrddufegnpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopegrrhhnugesrghrnhgusgdruggvpdhrtghpthhtoheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepuggvrhgvkhdrkhhivghrnhgrnhesrghmugdrtghomhdprhgtphhtt
+ hhopehtohhmihdrvhgrlhhkvghinhgvnhesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtohepughrrghgrghnrdgtvhgvthhitgesrghmugdrtghomhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhguihdrshhhhihtiheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Hi Chris,
+Hello everyone,
 
-On 2/3/25 10:27 PM, Chris Morgan wrote:
-> On Mon, Feb 03, 2025 at 05:32:53PM +0100, Quentin Schulz wrote:
->> Hi Chris,
->>
->> On 1/31/25 5:59 PM, Chris Morgan wrote:
->>> On Fri, Jan 31, 2025 at 05:46:20PM +0100, Quentin Schulz wrote:
->>>> Hi Chris,
->>>>
->>>> On 1/30/25 7:10 PM, Chris Morgan wrote:
->> [...]
->>>>> When Optee is not present or used, the node will trigger a probe
->>>>> that generates a (harmless) message on the kernel log.
->>>>>
->>>>
->>>> And what if we have OP-TEE without this node present, which would be
->>>> possible if we have CONFIG_SPL_ATF_NO_PLATFORM_PARAM set in U-Boot?
->>>>
->>>> I guess we could detect from U-Boot if a TEE is loaded as part of u-boot.itb
->>>> and fixup the DTB otherwise to mark this node as status = "disabled"?
->>>>
->>>
->>> Based on my understanding of how each of these projects communicate
->>> with each other, Optee can only work if you either include both the
->>> Optee node in the firmware AND the reserved memory nodes yourself, or
->>> if you have neither and let U-Boot do it (by including each of these
->>> patches as well as setting the CONFIG_SPL_ATF_NO_PLATFORM_PARAM). So
->>> basically just this node alone is insufficient for it to work today.
->>>
->>
->> Therefore I think we should either have this node defined + the
->> reserved-memory node (with hardcoded address and size if guaranteed to be
->> stable forever) added or nothing.
->>
->> Can we mark a reserved-memory node as "disabled"? If not, then we should
->> rather have nothing at all I believe.
-> 
-> I honestly would just rather remove this node. The reason I say that is
-> while we support Optee with the RK3399, RK3228, the PX30, and the
-> RK3588; howver only the RK3588 has the node already populated in Linux.
-> 
+This is version seven of my series which adds support for the TI FPC202
+dual-port controller. This is an unusual kind of device which is used as a
+low-speed signal aggregator for various types of SFP-like hardware ports.
 
-And we have a product based on PX30 that has OP-TEE OS running without a 
-hardcoded node in the DTS, so that's a valid point of comparison to me. 
-That seems to justify the deletion to me!
+The FPC202 exposes an I2C, or SPI (not supported in this series) control
+interface, which can be used to access two downstream I2C busses, along
+with a set of low-speed GPIO signals for each port. It also has I2C address
+translation (ATR) features, which allow multiple I2C devices with the same
+address (e.g. SFP EEPROMs at address 0x50) to be accessed from the upstream
+control interface on different addresses.
 
->>
->>> The core issue is that Optee requires you to map the memory as
->>> reserved so that Linux doesn't try to use it. You can either do that
->>> yourself or you can have U-Boot do it automatically. Having the Optee
->>> node in the devicetree makes no sense today unless we also carve out
->>> the memory.
->>>
->>
->> We should patch U-boot to add these nodes to the DT if an OP-TEE OS is
->> passed and either SPL_ATF_NO_PLATFORM_PARAM=y or we cannot detect the OP-TEE
->> nodes in the kernel DT. What do you think?
->>
-> 
-> We would have to assume some hard coded values in that event as I'm not
-> aware of a mechanism to grab them at runtime from Optee except when you
-> pass it a device tree. That said I think the concern above where you
+I've chosen to add this driver to the misc subsystem, as it doesn't
+strictly belong in either the i2c or gpio sybsystem, and as far as I know
+it is the first device of its kind to be added to the kernel.
 
-Yes, but that would be the same as BL31 for example and an expected side 
-effect of using CONFIG_SPL_ATF_NO_PLATFORM_PARAM except if there's a way 
-to provide information back from TEE to U-Boot without using the params 
-that would be passed by U-Boot to TF-A had we 
-CONFIG_SPL_ATF_NO_PLATFORM_PARAM disabled.
+Along with the FPC202 driver itself, this series also adds support for
+dynamic address translation to the i2c-atr module. This allows I2C address
+translators to update their translation table on-the-fly when they receive
+transactions to unmapped clients. This feature is needed by the FPC202
+driver to access up to three logical I2C devices per-port, given that the
+FPC202 address translation table only has two address slots.
 
-> mention "guaranteed to be stable forever" is the problem, as even now
-> the current address in the Optee upstream project conflicts with the
-> kernel_comp_addr_r in upstream U-Boot, necessesitating one of them be
-> changed (I'm attempting to change the Optee one, for what it's worth).
-> 
+Best Regards,
 
-I think it makes more sense to change the load addresses in U-Boot, 
-especially since those are just the default values for variables which 
-are configurable per board type, per board or even per boot, so it's 
-something one would be able to modify without necessarily rebuilding 
-anything. Essentially, it's easier to move that around than checking 
-which OP-TEE OS version one is booting before providing advice on where 
-to load the image? Up to you though, no strong opinion there.
+Romain
 
-Cheers,
-Quentin
+Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+---
+Changes in v7:
+- Removed a superfluous log message
+- Link to v6: https://lore.kernel.org/r/20250115-fpc202-v6-0-d47a34820753@bootlin.com
+
+Changes in v6:
+- Replaced spaces with tabs in misc Makefile
+- Link to v5: https://lore.kernel.org/r/20250108-fpc202-v5-0-a439ab999d5a@bootlin.com
+
+Changes in v5:
+- Used mutex guards in ub960 and fpc202 drivers
+- Changed wording of some i2c-atr logs
+- Link to v4: https://lore.kernel.org/r/20241230-fpc202-v4-0-761b297dc697@bootlin.com
+
+Changes in v4:
+- Fixed unbalanced refcounting in FPC202 port probing path
+- Fixed KASAN bug by setting alias_pool "shared" flag properly
+- Dropped requirement for both FPC202 ports to be described in the DT
+- Enabled dynamic translation by default, dropped support for non dynamic translation
+- Used aliased_addrs list instead of insufficient bitmap in ub960 driver
+- Added i2c_atr_destroy_c2a() function matching i2c_atr_create_c2a()
+- Fixed list corruption bug in dynamic address translation
+- Indented Kconfig entry with tabs instead of spaces
+- Link to v3: https://lore.kernel.org/r/20241125-fpc202-v3-0-34e86bcb5b56@bootlin.com
+
+Changes in v3:
+- Described the "reg" property of downstream ports in the FPC202 bindings
+- Link to v2: https://lore.kernel.org/r/20241118-fpc202-v2-0-744e4f192a2d@bootlin.com
+
+Changes in v2:
+- Renamed port nodes to match i2c adapter bindings.
+- Declared atr ops struct as static const.
+- Free downstream ports during FPC202 removal.
+- Link to v1: https://lore.kernel.org/r/20241108-fpc202-v1-0-fe42c698bc92@bootlin.com
+
+---
+Romain Gantois (9):
+      dt-bindings: misc: Describe TI FPC202 dual port controller
+      media: i2c: ds90ub960: Replace aliased clients list with address list
+      media: i2c: ds90ub960: Protect alias_use_mask with a mutex
+      i2c: use client addresses directly in ATR interface
+      i2c: move ATR alias pool to a separate struct
+      i2c: rename field 'alias_list' of struct i2c_atr_chan to 'alias_pairs'
+      i2c: support per-channel ATR alias pools
+      i2c: Support dynamic address translation
+      misc: add FPC202 dual port controller driver
+
+ .../devicetree/bindings/misc/ti,fpc202.yaml        |  94 ++++
+ MAINTAINERS                                        |   7 +
+ drivers/i2c/i2c-atr.c                              | 483 ++++++++++++++-------
+ drivers/media/i2c/ds90ub913.c                      |   9 +-
+ drivers/media/i2c/ds90ub953.c                      |   9 +-
+ drivers/media/i2c/ds90ub960.c                      |  49 ++-
+ drivers/misc/Kconfig                               |  11 +
+ drivers/misc/Makefile                              |   1 +
+ drivers/misc/ti_fpc202.c                           | 438 +++++++++++++++++++
+ include/linux/i2c-atr.h                            |  54 ++-
+ 10 files changed, 964 insertions(+), 191 deletions(-)
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20241017-fpc202-6f0b739c2078
+
+Best regards,
+-- 
+Romain Gantois <romain.gantois@bootlin.com>
+
 
