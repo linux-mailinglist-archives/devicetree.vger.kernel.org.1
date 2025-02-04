@@ -1,352 +1,180 @@
-Return-Path: <devicetree+bounces-142804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C242A2681B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:56:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16FC3A2689A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 01:32:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4B6E3A555A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2025 23:56:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9550E3A3DF8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 00:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 134CE211A03;
-	Mon,  3 Feb 2025 23:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D73E12B63;
+	Tue,  4 Feb 2025 00:32:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="aRTFx9+s"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="agfste1p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2052.outbound.protection.outlook.com [40.107.22.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E8F2433D9
-	for <devicetree@vger.kernel.org>; Mon,  3 Feb 2025 23:56:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738627000; cv=none; b=oJeKApe+ig5mt0Yd9/6vfyBivosKwrvhlw8xIJCA39q/3mhuYaAEBZU6J7MYivR3ZRUHMCyw5sM0cRYh9MkbbXIl91hfpjogg43sd6/1jpGgfPObYVtdLU99W3tyIVVam46v+8mvyDHFtQTYG/HjaAwqW1Y5Oct2tcE6j/eMuBE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738627000; c=relaxed/simple;
-	bh=6bfY8esdXKtLqUQd1fhPDdkAXXiFdyuuVoqjvQgGpVo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QrxlJXzlLkRwQx1h0hI1tUbpaDIXg4whqYc4zc+vd2G9kMDzEUWV47Dr6VtrJc6gb2gPikTM2d1+tZUF7Ichx7vtJ5T9E5pS8CaDcwVwqtgdjNQ79AsCYu6bqo65SC9KGZ/aFvLhKtlE8KACdC3XO+lg5muBbTWxFlZgoUEtbRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=aRTFx9+s; arc=none smtp.client-ip=209.85.167.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3ebb4aae80dso2237200b6e.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 15:56:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738626995; x=1739231795; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/xu2q60ftFjil+2WyZ+3K18tmew3edKyX9djWiudgYE=;
-        b=aRTFx9+s0MjeFRsivw+cyxKArgJ7YwGUJptaF7MmyKdS0vwiHsVUKCJ68pvAgv+4Ne
-         XBNeIrqfpzb1hbc6MVQvOlblJ5yLIxrsl5cbbMSI/YcwTEpOUZf3zAPAOeaH6QXMgIHu
-         wBdaadknnkF/6eMDA3U6+aJ7eEEKtc6OuBQMebsjqf2Gxql2QoKzmFTU35djxcwWBxn/
-         EfJ1Gk3XxKd38MMQbRwepE8NNkLKOoOYKhaYeMXcTihzRrHlwgtjPk6cUMUwTRqPPdCb
-         2Fe/c3Belojg2MHZH6fJHrktS/PX2FPebdX/hhfmvdrbk3AetHVnfFvhaSB5pD1U5G9G
-         sMxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738626995; x=1739231795;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/xu2q60ftFjil+2WyZ+3K18tmew3edKyX9djWiudgYE=;
-        b=I3Ai40RmhTd1VPiMEaUKq7rs6almKm//mX5SIPoydzNkPfWCb/tm6g3dVHuBOuvzA1
-         RH1sivAG4CAD0NZOharYMyLvsxdIP0qjG6nBDJMtvQQC+/ADtzZr1rHeKjJK4xBjLPhR
-         7fRJE/3wlV8g6EXEHctcuDRPExx38b5lWxmlAq7PPiMPgo2J19ZyJVAmY8L7CfaSBvvD
-         Qbcc+RmYBVNlOdlcpXNBgmhnAAHhaV5OH91AGJJcSr5vLaIeIC/6+zfGzK0QdnO/y6oe
-         gtfj9JR3qwcdPhuVl0fuaOCpK6hnQN91Bs3vylUX4o1uRstTG0iQ7ZqXjZhIxh57t6GM
-         8ffw==
-X-Forwarded-Encrypted: i=1; AJvYcCWffQFEKLzPIVraLcQwwiE60lR85ZCPLHDZfz0daZWk0zO3Z8iLOloZ3fON+4zCceDb7THOdKDjX+W6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkRNXo4Gn9FNCh1zQnLVqNWV1vv1t8QQXIrxJAr0V0ZRaidd0t
-	IbbdEhVS22xeaek4Pbq+DqhZUpMvfQbl8oEmiIKv1Ki8DLwxHJgpj9eToxHQNXI=
-X-Gm-Gg: ASbGncvBc7CbPpNjnKE8Jub+Y//Wh6IfIoNqHYFPPGN74oWvuAhZlb3yPmbghRTYjLm
-	/NnFtDC+kHU/OLOEH4KqUe1OgtlKS6Mgns7SMmuancVo2Dta523jH9e6JKekAKE6czMjzqSwoDd
-	t2ehCchNOBY1YpRiI7MM3QfB8U8f2YIRDnIPPco9VdYu3njroOgr7+dRTHFisedm0CHYH5nWksG
-	PWb2DVBELaxgm/GsSPco6nORUSipxzfXkOl1Jfp4muAAUT4kXqCa7v3/SfIN5/SJNjWA3gvIJ4u
-	a29UT+/Tq8t3x2j6ADQpkeekCWSzOKyb6dqtfmITIuR4vH24h9of
-X-Google-Smtp-Source: AGHT+IHLl4B1e5FWZOT9Bo5mYCa5NQELHRFmSzg8P8PhZmuN4UoXnvrT9yW4CejfgIHVoT9bJuRkBQ==
-X-Received: by 2002:a05:6808:308a:b0:3f1:f540:e6db with SMTP id 5614622812f47-3f323a56073mr15363987b6e.17.1738626995299;
-        Mon, 03 Feb 2025 15:56:35 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5fc104cc33dsm2919764eaf.14.2025.02.03.15.56.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Feb 2025 15:56:33 -0800 (PST)
-Message-ID: <3f03b03d-9f41-4683-a284-df48afbee83e@baylibre.com>
-Date: Mon, 3 Feb 2025 17:56:32 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FF0410E4;
+	Tue,  4 Feb 2025 00:32:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738629152; cv=fail; b=b1VnCMR6jPwjJeVyvXnTuu570wJZnDlirRXYevFNc/4YUaGt2IAwPSyy4Pffss/+AZN87RW0ykLRp1tTeyVZNX94UIKAUHt24DESLlZNSw0bm5WEaTAs3dWXkkc0bXoU7ecnD8USxfj1uDp+L/qWOWp3YlsTqLc7nG7IYLvg/rM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738629152; c=relaxed/simple;
+	bh=/xV/IOQuHpZNwYd+fjOixvGNA4GaqiQtkuvDwt+WWR4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Hkgk3wNKWwXjrw4lFgxxg9X6R4ZpAls+GJh0TaS1HpCovH3zkJdjNPG70veNgLVFrtf5/qFZNUqH5oYm9HLIVL2oXr9qKh+AP+nsXwC0axlI7+4AOMLt1RQrpdgyju/lBfQHrSduHOQLAAo2GIj0OxDCZPdjjQxuppkNRxPFTDM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=agfste1p; arc=fail smtp.client-ip=40.107.22.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZWHmclGX043663qOYiJySqJwT3Z8OjsrTjtR0tRDeOLXgaGYy6LpA5D1MF6SAZ0FLG2pN7dJZ8buj5uU1kyF8QJL581bGp/z0C2i1PMCEt0s8jql95HbAtq+4P6Vt9Q1t3Cz+hwjlxtHUS9iNhIB6EKdt5bAUZkUj4sqU7+3jOzGAe6oYyz0tpeNIhA/DgWgs8H+LiPhDSVAcP5hs/lgVcW6LGAfr3zRPRtZOKH/nNiCYWLu1Tantrw6D2jWhq5DCmUsdjGkGM7tG2crMzlBJKMytMcpVLqGYp1oLI/euIL6+KeBQvQqhYIvBNjjgSaOzJ5cTmTm5DvzR9/FUq6f1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/xV/IOQuHpZNwYd+fjOixvGNA4GaqiQtkuvDwt+WWR4=;
+ b=cwEovOqjnSv4g3nYQdLc3ojNcklAbKDJ1wkDCAdwQLG0HsluqPkgz8pkuVqL252mjAtaTqAFHdJvlQEcDkuaJw1rlhPW7ZQydf6ez1J/1M79stv/O9dqHhDTmZ9w/06eTHwsA0nwljm8iba/cB60NXAgaRYg1TWr127fLKS5SDKQBDlu4tWCX+evovyFnv1aGHFZPqtCeyc+eO54DLMlfdoBv/R6BwY2bklKLu+wu3q7FVds7LHL2W9OC8ZkzCCMaq/lVC/J9+91dtSiQMdT8aDPZVXDsyBUZmK25xHDc2M9C/tCbKSl646cM5bFxXo4VsRGhpAjB+EqsmNmVxBztw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/xV/IOQuHpZNwYd+fjOixvGNA4GaqiQtkuvDwt+WWR4=;
+ b=agfste1pEu7JSRW509gWRmfGbBtGbPVPnfBBT0DRF0BrAkus49Cd/vAi08sGJTzJrohi96SCkFYqSdJQTdE4FtYen1f1EjiIzDDYWmHQqSlEWw8D6c8/xeYygTHH6YUGxO2aXowPPsKoJtkWGZl+AjMWI/Q43Be2jj92JXJ9Ep54md5cU/GpfzOEwtin8ZTGS/umhGErfcz8BMeU9bVXElxqXnTE7nS6phNTldGg0kjF/C84FYUa6lMpxr9zRJCjzuL9YklVjnr7tPKlH5ZlkxKjD/T9+eNcHxdGv5WwqrPB8q4hG30lm4glAO2TambjEVAbyBUOgCY86J5BWKjqbw==
+Received: from DB9PR04MB8461.eurprd04.prod.outlook.com (2603:10a6:10:2cf::20)
+ by PA2PR04MB10259.eurprd04.prod.outlook.com (2603:10a6:102:409::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.26; Tue, 4 Feb
+ 2025 00:32:27 +0000
+Received: from DB9PR04MB8461.eurprd04.prod.outlook.com
+ ([fe80::b1b9:faa9:901b:c197]) by DB9PR04MB8461.eurprd04.prod.outlook.com
+ ([fe80::b1b9:faa9:901b:c197%5]) with mapi id 15.20.8398.021; Tue, 4 Feb 2025
+ 00:32:27 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: imx: fsl,aips-bus: Ensure all properties are
+ defined
+Thread-Topic: [PATCH] dt-bindings: imx: fsl,aips-bus: Ensure all properties
+ are defined
+Thread-Index: AQHbdoLdsiTmqE9IPkyXqrKqJ3HXibM2S2rA
+Date: Tue, 4 Feb 2025 00:32:27 +0000
+Message-ID:
+ <DB9PR04MB846118E6883D79526C5C190388F42@DB9PR04MB8461.eurprd04.prod.outlook.com>
+References: <20250203213027.8284-1-robh@kernel.org>
+In-Reply-To: <20250203213027.8284-1-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DB9PR04MB8461:EE_|PA2PR04MB10259:EE_
+x-ms-office365-filtering-correlation-id: a88b9788-f960-4d8c-d77c-08dd44b36740
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?cS24rLGs7T2D2Rv5QRJVrOOyAllehz+29EMev8loifAx0qfH0alieO3jRcnb?=
+ =?us-ascii?Q?fW5syvDamprHriUIXvU6+gZW6yBfApTNHS7Kqj5bk2xSYUo+pNK+xUp5wcix?=
+ =?us-ascii?Q?TzUG9hi8EQkWdg6sAMQ7+Ur6B1aevlm6+Wcd3TUpxwUbviUnL0rMFiqXkozt?=
+ =?us-ascii?Q?BGXN3NF/I7Pji/70GcdPSzgXfmzUpE14hUtyHMqnF9o38bRmFwM7cqB+OL3O?=
+ =?us-ascii?Q?3vJvstEEw9foDmjL3jPvJOumbPoUYJgAeqSMpTl3A+EqfHLYrDjV8gCzo7jh?=
+ =?us-ascii?Q?EfHuNSW+gZVGaboTEvoYmnrHJh6TZtNtW/d1fYvBMb4HgJB/stfNy3YlevFe?=
+ =?us-ascii?Q?FTIM+871RiNX8R6BpCVAiEK0aEMB8Y7rbzrApqg2/N2ijW5YBjadmEDnWsz8?=
+ =?us-ascii?Q?e1vzyuOsZXuAXV9wCkIGbmhU3JzmRekZpHQbeEyr+CuvPxxwzIIIJ0juCbHI?=
+ =?us-ascii?Q?G6ME1pq3JVFs5OBpDYkjBsp9ZF4drGV/7wQwT7CCmCFi2IGew6ZK9RSrPVGt?=
+ =?us-ascii?Q?tcDqBUG0HPeCiy/fSC2M3yIwnF0rfIpwXtbc9JHtlDhVqT2LqRUKI3EF73v+?=
+ =?us-ascii?Q?/4jJPVbfTc8pITMB/pdxH2BGfiAE2C0q6gnNWrmVygE6S2DFX2BsCu5ITw3L?=
+ =?us-ascii?Q?seh1QfAAa9t5g+hPoFrb7eOv61wdCY3fPX/peKZ8WqoVdb/gX8si1YGhEdhi?=
+ =?us-ascii?Q?8UOHqJKjmJmCTF9TayyimSEaHSigvl/Pcfyj7LJvoxjm9et1+GAujyq9xZjC?=
+ =?us-ascii?Q?5w74avurFofDiUp0OdOIG1T75TdwXd6P1Ayky16PHR+WQ/ScVBUXWAv9XbE2?=
+ =?us-ascii?Q?ovKfouF2P/8KnKp6J2baBbOm3lajockiH+0rPXvCIq0Xl0VI7wMOwySS5IUq?=
+ =?us-ascii?Q?8n2PTGKSGWHgz1I9hHSR1sFB1f0JVXeTYHrVrlUHDhRmtWPwR5+NfLQyJq3W?=
+ =?us-ascii?Q?kPZ9kNAyqBBs6LJ//rRy/ghz/ziCiJsE1z+qBrOsuywtSmOyoD1kugLGZ5Y6?=
+ =?us-ascii?Q?5Q+fiIC0q/rJoqsr+p4GCuNrQyxZLwAtKQjcrgNBiEW5AXXJIgpDMXYvywua?=
+ =?us-ascii?Q?TZKl4NJGKAan3tDpmx0E3NaEmOyszy05U611kYMB9kZdYD/qFYZBeFapZwCH?=
+ =?us-ascii?Q?ekJZ/JyaVOIndC0SJx8Qez3Ryt+yPy+yfoPCFftkMYYFmba281D+HA/ZYQA5?=
+ =?us-ascii?Q?5C2AuEbwrtLFkKBPLU3L8w+/8OydsBbYHK7PVaA2TvrxhL37uDjdvWm4ag+v?=
+ =?us-ascii?Q?X29q+y9Nk1Y9ueKzRLsCshxDVbYMP3II2domfOSPHnGOfSgA1jSrQIGMRaVL?=
+ =?us-ascii?Q?NilqXxDP8SbMn1I2UkFYCs3b0DvehX4PT+aSw1PMhjmC0HaDjpLJbmKh3Qfu?=
+ =?us-ascii?Q?gSoBfNVtznZCe1EHUZVqctswvvWaNRp7m7K17feKHmHdfPPt10nrK3Il11iU?=
+ =?us-ascii?Q?T9v2TUdyUBA4XYTeIVe7U8ocAAAj/17U?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8461.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?nbMLKwjKeVwuuw4qSxRMAUzffQazsvTGi2M8eM2tOZldx/l8m/JXZX9ES7YL?=
+ =?us-ascii?Q?FOcnjwg21kML3yDNzZqGbaYpbILJoP5ct63BMBzyY6SSKl1tp4Stq9mt53sv?=
+ =?us-ascii?Q?XhB5X6rLnD8GLnYAWYJcICQZNTSro37XscELMrc/o/7BbsHM1XN2SuPFhPlv?=
+ =?us-ascii?Q?1jWRPi6lnkmAREzs8+C1Al+1bWCCCLdRTfm0w8wj1nAmZragRQ/ZWLazDxGY?=
+ =?us-ascii?Q?dYNpJALLHO8tJEHTkr7aKpoI+Tl4xD69E4qH1k8+/c/3DRsapLWaaOuk38vw?=
+ =?us-ascii?Q?NOgbVHgZ9Z9YSPP5pKYIZkB88Z5C93LaXkt6mLXrJznDPJG26aLG/Tp/oMJR?=
+ =?us-ascii?Q?I66bjniU8hfi7pcQdvaUwMb6Te75vR6haOFqtie7i07IMgRiS60ZyH29R82g?=
+ =?us-ascii?Q?3nOTMAgEtmICSQfDLcaTHe2tJX+oy1AVQhQTQV7fOlaBt4VofJRPEOwnNRUs?=
+ =?us-ascii?Q?crwCdq/dfvRVS6cFhPWWpDXopkv6cW68JQ/qWlRio39H8gZ6dwxvZRRu4lje?=
+ =?us-ascii?Q?KcCwnouX+2Un3rrVlAr8Kst/hFCfV2SxUDzCI8e7xhcd2BnXTEpb/ygBNB3B?=
+ =?us-ascii?Q?cbTs+25E2ndywAUeUPcaBTX24yjQjnvWmrbe947WtEoZc96PlltRqaj4D5dT?=
+ =?us-ascii?Q?u2QTslIXiktGuLxETC5nc7Z/GCMZbHa7TOi5h0CpmCMJgECxHLGj3S4Kydsl?=
+ =?us-ascii?Q?PwaluOGKoraT1bDGTOmzk64ktMoH9MKWDD+7OS4a5z9zdOOV5sitluhzvp3O?=
+ =?us-ascii?Q?jAQ3bRWfkZP1i8bHmIbJcr0z1Tx1iq4Tzhv6LZwm0RcxLr64FArCCBDAGlMf?=
+ =?us-ascii?Q?oCmmafYvgPg0kRdA3DOpnyeHdJXhXIvYCEAy/v1c7CrO7uw39YLNyTZgQsxu?=
+ =?us-ascii?Q?RQrQfiSqXtIl/0BqOFC+syKU46w2e+StB0UKcovhqzs5h1BL050t2oCQt9Hc?=
+ =?us-ascii?Q?Lss26A0biXoSmlFvU2jmH1/UOJbng1tWvfTqaoymBdrkIocf+BlPQC4c29Zm?=
+ =?us-ascii?Q?FmZuVAblQWIq/d1nVPLftlVhXsLT7Jjczh462zqkNibeNiogCHKZNDKiUwzd?=
+ =?us-ascii?Q?nom6ZKTCeYs2oKxxPPO4B+6Xyxc/VCsdwP7dafOwqQuTqaQNbjsuza2U9AaP?=
+ =?us-ascii?Q?3CY0r6H1Yf9bBR9pZc4150u84GUbGxlVQHwfPsJoFlN46jmL2wq9PaVvhCXR?=
+ =?us-ascii?Q?in2nOzV5n9iToL6qNMOebp74nN9uTi2luneG8aDY17jV21R9iYSqsz0WyHYs?=
+ =?us-ascii?Q?UDEAsHwzAO5MRRWSmkHmLHfmc4w9YpeyjLGiI9f+9s+C60Z8W+ozpOfUnZ2X?=
+ =?us-ascii?Q?AiKrW3H/uSAlRtiHrPWmZKI7PS+esR3g3RdCMAwpDJ5ZOswkuZRFFWNDOctp?=
+ =?us-ascii?Q?Y62Fc0lFpWuOFx6CqxYRk7lQeaH/zWcY6bb594uIqkvLGqdehwNn4qxSfaCs?=
+ =?us-ascii?Q?OaIe1gEj66ffD+O9kXdZ1V528K1+eHaV8vHuHAXTWAGbCKgMB2k3oVfvN+AK?=
+ =?us-ascii?Q?XIKHkujFqZky6pPLfOaferCGF6eVjE04lB/hFngFaemULP7tIO/rhAR+u12T?=
+ =?us-ascii?Q?hhq9qlQntIEOHf3haNs=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] iio: adc: ad7191: add AD7191
-To: Alisa-Dariana Roman <alisadariana@gmail.com>,
- "Rob Herring (Arm)" <robh@kernel.org>,
- Alisa-Dariana Roman <alisa.roman@analog.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Ramona Gradinariu <ramona.bolboaca13@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>
-References: <20250203133254.313106-1-alisa.roman@analog.com>
- <20250203133254.313106-3-alisa.roman@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250203133254.313106-3-alisa.roman@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8461.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a88b9788-f960-4d8c-d77c-08dd44b36740
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Feb 2025 00:32:27.8556
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HApqgT5e6imoHRX0ZOgkew9cMz4atUg5HfHSFVr5Cbge2GBbM1YF8Vb5fgOoWyhVpYyl6GvbPbWxrFMB3p18TQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10259
 
-On 2/3/25 7:31 AM, Alisa-Dariana Roman wrote:
-> AD7191 is a pin-programmable, ultra-low noise 24-bit sigma-delta ADC
-> designed for precision bridge sensor measurements. It features two
-> differential analog input channels, selectable output rates,
-> programmable gain, internal temperature sensor and simultaneous
-> 50Hz/60Hz rejection.
-> 
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
+> Subject: [PATCH] dt-bindings: imx: fsl,aips-bus: Ensure all properties ar=
+e
+> defined
+>=20
+> Device specific schemas should not allow undefined properties which is
+> what 'additionalProperties: true' allows. Add a reference to simple-
+> bus.yaml which has the additional properties used, and fix this
+> constraint.
+>=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-...
-
-> +struct ad7191_state {
-> +	struct ad_sigma_delta		sd;
-> +	struct mutex			lock; /* Protect device state */
-> +
-> +	struct gpio_descs		*odr_gpios;
-> +	struct gpio_descs		*pga_gpios;
-> +	struct gpio_desc		*temp_gpio;
-> +	struct gpio_desc		*chan_gpio;
-> +
-> +	u16				int_vref_mv;
-> +	u32				scale_avail_gpio[4][2];
-> +	u32				scale_avail_pinstrap[1][2];
-> +	const u32			(*scale_avail)[2];
-
-This feels a bit reduant to have two arrays and then a pointer to one of those
-arrays. We could just have a single static const array of 4 and use that in both
-cases. (also see further comments later)
-
-> +	size_t				scale_avail_size;
-> +	u32				scale_index;
-> +	u32				samp_freq_avail_gpio[4];
-> +	u32				samp_freq_avail_pinstrap[1];
-> +	const u32			*samp_freq_avail;
-
-ditto
-
-> +	size_t				samp_freq_avail_size;
-> +	u32				samp_freq_index;
-> +
-> +	struct clk			*mclk;
-> +};
-> +
-> +static int ad7191_set_channel(struct ad_sigma_delta *sd, unsigned int address)
-> +{
-> +	struct ad7191_state *st = ad_sigma_delta_to_ad7191(sd);
-> +	u8 temp_gpio_val, chan_gpio_val;
-> +
-> +	if (!FIELD_FIT(AD7191_CHAN_MASK | AD7191_TEMP_MASK, address))
-> +		return -EINVAL;
-> +
-> +	chan_gpio_val = FIELD_GET(AD7191_CHAN_MASK, address);
-> +	temp_gpio_val = FIELD_GET(AD7191_TEMP_MASK, address);
-> +
-> +	gpiod_set_value(st->chan_gpio, chan_gpio_val);
-> +	gpiod_set_value(st->temp_gpio, temp_gpio_val);
-> +
-> +	return 0;
-> +}
-> +
-...
-
-> +
-> +static int ad7191_config_setup(struct iio_dev *indio_dev)
-> +{
-> +	struct ad7191_state *st = iio_priv(indio_dev);
-> +	struct device *dev = &st->sd.spi->dev;
-> +	/* Sampling frequencies in Hz, see Table 5 */
-> +	const int samp_freq[4] = { 120, 60, 50, 10 };
-
-As per my earlier suggestion, we can make this static const...
-
-> +	/* Gain options, see Table 7 */
-> +	const int gain[4] = { 1, 8, 64, 128 };
-
-ditto
-
-> +	int odr_value, odr_index, pga_value, pga_index, i, ret;
-> +	u64 scale_uv;
-> +
-> +	st->samp_freq_index = 0;
-> +	st->scale_index = 0;
-> +
-> +	ret = device_property_read_u32(dev, "adi,odr-value", &odr_value);
-
-Shoud also check if (ret && ret != -EINVAL) first to catch other errors like
-someone put a string in the .dts instead of a u32.
-
-> +	if (ret == -EINVAL) {
-> +		st->odr_gpios = devm_gpiod_get_array(dev, "odr", GPIOD_OUT_LOW);
-> +		if (IS_ERR(st->odr_gpios))
-> +			return dev_err_probe(dev, PTR_ERR(st->odr_gpios),
-> +					     "Failed to get odr gpios.\n");
-> +
-> +		for (i = 0; i < ARRAY_SIZE(samp_freq); i++)
-> +			st->samp_freq_avail_gpio[i] = samp_freq[i];
-> +
-> +		st->samp_freq_avail = st->samp_freq_avail_gpio;
-> +		st->samp_freq_avail_size = ARRAY_SIZE(st->samp_freq_avail_gpio);
-
-...then here instead of copying...
-
-		st->samp_freq_avail = samp_freq;
-		st->samp_freq_avail_size = ARRAY_SIZE(samp_freq);
-
-> +	} else {
-> +		for (i = 0; i < ARRAY_SIZE(samp_freq); i++) {
-> +			if (odr_value != samp_freq[i])
-> +				continue;
-> +			odr_index = i;
-
-missing break;?
-
-Also, should we error if match not found? Otherwise we could have uninitalized
-odr_index;
-
-> +		}
-> +
-> +		st->samp_freq_avail_pinstrap[0] = samp_freq[odr_index];
-> +
-> +		st->samp_freq_avail = st->samp_freq_avail_pinstrap;
-> +		st->samp_freq_avail_size = ARRAY_SIZE(st->samp_freq_avail_pinstrap);
-> +
-
-and here...
-
-		st->samp_freq_avail = &samp_freq[odr_index];
-		st->samp_freq_avail_size = 1;
-
-> +		st->odr_gpios = NULL;
-> +	}
-> +
-> +	ret = device_property_read_u32(dev, "adi,pga-value", &pga_value);
-
-ditto about error checking
-
-> +	if (ret == -EINVAL) {
-> +		st->pga_gpios = devm_gpiod_get_array(dev, "pga", GPIOD_OUT_LOW);
-> +		if (IS_ERR(st->pga_gpios))
-> +			return dev_err_probe(dev, PTR_ERR(st->pga_gpios),
-> +					     "Failed to get pga gpios.\n");
-> +
-> +		for (i = 0; i < ARRAY_SIZE(st->scale_avail_gpio); i++) {
-> +			scale_uv = ((u64)st->int_vref_mv * NANO) >>
-> +				(indio_dev->channels[0].scan_type.realbits - 1);
-> +			do_div(scale_uv, gain[i]);
-> +			st->scale_avail_gpio[i][1] = do_div(scale_uv, NANO);
-> +			st->scale_avail_gpio[i][0] = scale_uv;
-> +		}
-> +
-> +		st->scale_avail = st->scale_avail_gpio;
-> +		st->scale_avail_size = ARRAY_SIZE(st->scale_avail_gpio);
-> +	} else {
-> +		for (i = 0; i < ARRAY_SIZE(gain); i++) {
-> +			if (pga_value != gain[i])
-> +				continue;
-> +			pga_index = i;
-> +		}
-> +
-> +		scale_uv = ((u64)st->int_vref_mv * NANO) >>
-> +			(indio_dev->channels[0].scan_type.realbits - 1);
-> +		do_div(scale_uv, gain[pga_index]);
-> +		st->scale_avail_pinstrap[0][1] = do_div(scale_uv, NANO);
-> +		st->scale_avail_pinstrap[0][0] = scale_uv;
-> +
-> +		st->scale_avail = st->scale_avail_pinstrap;
-> +		st->scale_avail_size = ARRAY_SIZE(st->scale_avail_pinstrap);
-> +
-> +		st->pga_gpios = NULL;
-> +	}
-
-and ditto about st->scale_avail and pinstrap matching for loop
-
-> +
-> +	st->temp_gpio = devm_gpiod_get(dev, "temp", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->temp_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->temp_gpio),
-> +				     "Failed to get temp gpio.\n");
-> +
-> +	st->chan_gpio = devm_gpiod_get(dev, "chan", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->chan_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->chan_gpio),
-> +				     "Failed to get chan gpio.\n");
-> +
-> +	return 0;
-> +}
-> +
-
-...
-
-> +
-> +static int ad7191_set_gain(struct ad7191_state *st, int gain_index)
-> +{
-> +	unsigned long value = gain_index;
-> +
-> +	st->scale_index = gain_index;
-> +
-> +	return gpiod_set_array_value_cansleep(st->pga_gpios->ndescs,
-> +					      st->pga_gpios->desc,
-> +					      st->pga_gpios->info, &value);
-> +}
-
-Depending on timing, we might be able to take advantage of [1].
-
-But it isn't merged yet and needs another revision and you are very fast, so
-don't wait on it. ;-)
-
-[1]: https://lore.kernel.org/linux-iio/20250131-gpio-set-array-helper-v1-0-991c8ccb4d6e@baylibre.com/
-
-
-> +
-> +static const struct iio_chan_spec ad7191_channels[] = {
-> +	{
-> +		.type = IIO_TEMP,
-> +		.address = AD7191_CH_TEMP,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +				      BIT(IIO_CHAN_INFO_OFFSET),
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),
-
-Should this one be info_mask_separate?
-
-Since this is a multiplexed ADC and not simelutaneous sampling, I would expect
-that if the ORD pins are set to 10Hz (0.1s period), then a buffered read with
-all channels enabled would take 0.3s to do the 3 samples (effective sample rate
-of 3.33Hz), but if only one channel was enabled in the buffer, then it only
-takes 0.1s to do all of the samples (effective sample rate is 10Hz).
-
-The iio convention is to use info_mask_separate for the sampling_frequency
-attribute to indicate that the rate only applies to each individual channel
-and not the combined rate to do one "set" of samples for all enabled channels.
-
-A sampling_frequency attribute that was shared_by_all would mean that on each
-period equivlent to this rate, all samples are read no matter how many channels
-were enabled for a buffered read.
-
-> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
-> +		.scan_type = {
-> +			.sign = 'u',
-> +			.realbits = 24,
-> +			.storagebits = 32,
-> +			.endianness = IIO_BE,
-> +		},
-> +	},
-
+Acked-by: Peng Fan <peng.fan@nxp.com>
 
 
