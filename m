@@ -1,179 +1,140 @@
-Return-Path: <devicetree+bounces-142899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EA0CA26F84
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 11:48:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E611EA27001
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 12:11:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D03823A673D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 10:48:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 856A63A78F0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 11:11:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D462720B1EF;
-	Tue,  4 Feb 2025 10:48:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144BF20C025;
+	Tue,  4 Feb 2025 11:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gsN6deVy"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="t0CDFcQN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B5FD20B1E0;
-	Tue,  4 Feb 2025 10:48:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCE820C007;
+	Tue,  4 Feb 2025 11:11:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738666110; cv=none; b=Wy//Gq3eApwHR2NMaO0vcBYXaD4ROBWUemfNulls3biF+7CDSGDun9M3rNdNDyqWmtEaQSWxPW9aRKKQf33tQWI+GYHFtFmCnkhm1UYyMhC5dk1+uFOb3t0QtFYjXbUdJMRgwkH4B/BBadfIVOWdCCCxwRk0iDY0UKsOu9nRuOw=
+	t=1738667487; cv=none; b=aaEEI/znMvTyC6xDiko1AOQrBXYLaTw1rJfL4W/39qwEWX5GD4x4ZgNLGAY2OCDgo8OAcakatxka1dYH0YhxLgvc2rQGhvQo6FyAvfGC8lFC+WAf1rEZdWp8QpwhQ4fish4il91rOC/fSUjUZ9unh3kPyao8kzQ336oyf30dzIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738666110; c=relaxed/simple;
-	bh=iIOyQqK2JUjh2rscZEMfvq/pbw9sd7AmroWd/zVeCuk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GMS4dCUAuMUVnWKqYLK57l+lYba4AnBnbmzOWN5dIIBsUtTj9/yYdxdO6JQ5gTLcwy/WeUgQpNBQ14dxSfDjrG+7eQwD+2bnOxeleK4jXPO5EhVj/hDvG+NLMPDd6tTkJm0Z9SgZdF1kpZ3e+lb+nzhAAGRXBDfHaQwwSvYnqN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gsN6deVy; arc=none smtp.client-ip=209.85.222.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-866dc3cd96eso129414241.3;
-        Tue, 04 Feb 2025 02:48:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738666108; x=1739270908; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LC2vRRW/Kf2UPav9OdbBLlCMqBd9LT0RXpPkOPJfFNY=;
-        b=gsN6deVyM4PduuvSftJ9D1shD6bapEUP6SN7fAjYxVYcX15z4wvKcrXpkvNy40dZ8v
-         TYgpRYoUYFBnBH0M59Jqj+6OilxnLdiblP1R9eFdvUmXF8FVoDV3fpRz5Sez6Xps7wjI
-         7Az1aYgDpxy1cM0yXEh0UjtRCQ8lpIgmyGLA7zG9ZUOlozIZKQxSI3HxZ2f4ZDmUdN5s
-         k9jJygKIJTK0iild0POo+EB/4lg3g5Z5JI/5a7oJwTa2s4/vPTHYSzGyuLQrtEglbrGo
-         3FHtMQSipsDMzyADR2j79sYI8Bo6tvAL82uzVRa5kmRNY8udiuqxXYL8wqTLQo8k9Wot
-         xHbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738666108; x=1739270908;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LC2vRRW/Kf2UPav9OdbBLlCMqBd9LT0RXpPkOPJfFNY=;
-        b=cYnJU8EQ1PxQgizV6puAbiZEILUXhzbcy5lXOiiIZaBlCuBrixuPgOn0HoP0IqzXFM
-         ZM9fJ/sLZGADrysEJusWAlxzw/VRK9JgNo6UwnWFzO5xTXn3anBAsIfCu2Tey9OiZavy
-         1/TFglB+4eSuZXpUhb7ekQ9qb8ZNAyfiBA1ew3YM0HM+ebpE4Rq+lieNGmWJganN9WaS
-         iFIyrN97Pv/aQr5ZeCQi9knLKiCie7psyFj8itKtd/lUci2BJVowSZ/QALBH+ISCi9of
-         ikAwdjXX4MZCBa0+2SOdCseNSgmMwNLuQ0an5t8/yuKXHE3CfkROs5Xn9VdTEOP3huOx
-         QWog==
-X-Forwarded-Encrypted: i=1; AJvYcCUNBV46aWF0r2hUccaZd/dpIoe2DylFBSIM8B2gi+Ya0s/Ie+rQ6QuKBlikpbNCYlEhbZrsGcwmnoYOz9WMXiqRPsk=@vger.kernel.org, AJvYcCVT4YMs+LOcqlGWRoCSy83N8JpT6MsItZAaRfx0MqQJ95xv0hmeGuNHa9LOORf/6uZzP4j/FJaI+0s1TMsU@vger.kernel.org, AJvYcCWFSDDlu+DKheY36ErdMHtSuxQAg9+taMU98ifqs3WrWHx2yJ+/U5qS9/ONH2OY9aaj3YLP2ed+Us6k@vger.kernel.org, AJvYcCWc25LOgYVZHSQ5YoE2pY3lOPsYPCYjXu4l8Qdtuw2nxwXt2W59pw5Fslg1T3cxYWguJ/+yfMU+BAju@vger.kernel.org, AJvYcCXehd813UH7VwusDGC5KcHlvirPUN0TcE7sCcUZjNW/VvciDRWlMwNe8H11sghvNpWOHdNQuvPfwpRmW8jXXS8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOaTVoDTXITqgyuj3czoMdcDpzYq5mfgQZWf7PQL0lWGRDS5L8
-	nw3fhQ4Bo6riiRCbzVlTpXu1RJNBP7+NONFV63OBIJrKMgwV2QiO22e21k8UvUVfOI+Tkr4+pPZ
-	q9Cqk84w/1uPNXjmbOzGjfePBmFmCwtwuGsDxXg==
-X-Gm-Gg: ASbGncsrH8cza2vh/iX0hXNl/SliuLP6MMKqjStFkgTPlJe7uy52PR5iul08mVks9rB
-	0Z1iDfZke+2gFNpqfjBPTPk9PFB1dVg/5L2Bg93o1QKmc4DGdEQbCIeDkd80y2b7TEWa/psxM
-X-Google-Smtp-Source: AGHT+IHcocGGipmX2tlrKsnQTcJY6JRWYgrNpEAV/bSPbiniGDmvkDVtYdocUMr0YE++t2jaDjHLk1KBJqx3xSwtuiI=
-X-Received: by 2002:a05:6122:45a1:b0:50a:b728:5199 with SMTP id
- 71dfb90a1353d-51e9e4fdb03mr20990003e0c.7.1738666107927; Tue, 04 Feb 2025
- 02:48:27 -0800 (PST)
+	s=arc-20240116; t=1738667487; c=relaxed/simple;
+	bh=6BdCL7s1iOcMcXo6FMo76vx8Hg+CVwpDBhiRLj2EHew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=c7nmlys2UaaZARgHiB22l1olHocTETZqpLAnDOqtHrrCHN9MU1oViPkpx9IBVGsHwJWvxrQjnA7G0PrQi3Xu9bM5AbMXd3UoD/HUNwBfTvmjv1qtjCgOI/pnTYy8GtAA+wb2st9+8fMXBlQkGRK4w8ZarYHOp/0uewT+YR+gpSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=t0CDFcQN; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 514B5lTL024169;
+	Tue, 4 Feb 2025 12:10:50 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	0WdoHNg8xzFLJxEL4fv90uErYqTslBGCXG3a5iCB0zM=; b=t0CDFcQNm4sq4RLe
+	P6QcQUvjxBtR+zTQdExTiv7FuDc7RvLNt/+W8EGtAt1qFm5873EFgc8OZl89rBvL
+	J68jpJaul4J30+XlXHImIJu7M2yK/H2ZBBLgFWn5DrNxNH7RQZxMUwmjoXiCZ2D0
+	qVLqXuY1pVFAmMslVEev4Pqt9iiOxZctFHgDd64Gp6hozOeCzX+HvIWfTph9s2Bo
+	AQF4NZQ04/f2KCivFW9nq85GczPXDOrRDVFp9nHypemcXZU+r3eyjPIKMTOpopcl
+	zDMG5kW0+v6/DRKcFINk4EchsCX7sDQk1VSLyWCRV3Q0upcQKPPTvOndDccL+pYK
+	DhQXaw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44jwu3v5j5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Feb 2025 12:10:50 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B0B314005A;
+	Tue,  4 Feb 2025 12:09:21 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B78D92945D8;
+	Tue,  4 Feb 2025 12:07:08 +0100 (CET)
+Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 4 Feb
+ 2025 12:07:07 +0100
+Message-ID: <3fa73c47-12af-46c3-8573-7d6800202e17@foss.st.com>
+Date: Tue, 4 Feb 2025 12:07:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <TY3PR01MB11346D7617436A7779B6697B3861F2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <20250114200335.GA1626474-robh@kernel.org> <e74391e7-c7ab-422b-9dab-dbde9ce55204@roeck-us.net>
-In-Reply-To: <e74391e7-c7ab-422b-9dab-dbde9ce55204@roeck-us.net>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 4 Feb 2025 10:48:02 +0000
-X-Gm-Features: AWEUYZkjdRPGf4IpLF2l35NAVBIXPh_8XYPcTIQ85vWtHQ6cImY8aU7Ha3TVdr0
-Message-ID: <CA+V-a8vBi9Dmrm00N=xNNRPPi4TBk2ZBBkPEyC2YBDAa8gN4hA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] Add support to retrieve the bootstatus from
- watchdog for RZ/V2H(P) SoC
-To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 01/10] dt-bindings: PCI: Add STM32MP25 PCIe Root
+ Complex bindings
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <jingoohan1@gmail.com>, <p.zabel@pengutronix.de>,
+        <johan+linaro@kernel.org>, <quic_schintav@quicinc.com>,
+        <cassel@kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <fabrice.gasnier@foss.st.com>
+References: <20250128120745.334377-1-christian.bruel@foss.st.com>
+ <20250128120745.334377-2-christian.bruel@foss.st.com>
+ <20250202122527.ggy5ccz7o4umyhif@thinkpad>
+From: Christian Bruel <christian.bruel@foss.st.com>
+Content-Language: en-US
+In-Reply-To: <20250202122527.ggy5ccz7o4umyhif@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-04_05,2025-01-31_02,2024-11-22_01
 
-Hi Guenter and Rob,
 
-On Tue, Jan 14, 2025 at 8:17=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> =
-wrote:
->
-> On 1/14/25 12:03, Rob Herring wrote:
-> > On Mon, Jan 13, 2025 at 11:38:08AM +0000, Biju Das wrote:
-> >> Hi Prabhakar,
-> >>
-> >>> -----Original Message-----
-> >>> From: Prabhakar <prabhakar.csengg@gmail.com>
-> >>> Sent: 13 January 2025 11:24
-> >>> Subject: [PATCH v3 0/6] Add support to retrieve the bootstatus from w=
-atchdog for RZ/V2H(P) SoC
-> >>>
-> >>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >>>
-> >>> Hi All,
-> >>>
-> >>> This patch series adds SYSCON support to retrieve boot status informa=
-tion for RZ/V2H(P) SoC.
-> >>> Summary of Changes,
-> >>>
-> >>>      Clock:
-> >>>          Add syscon compatible support to the CPG block in bindings a=
-nd
-> >>>          device trees.
-> >>>
-> >>>      Watchdog:
-> >>>          Document the renesas,r9a09g057-syscon-wdt-errorrst property.
-> >>>          Update the watchdog driver to fetch and report boot status v=
-ia
-> >>>          Error Reset Registers (CPG_ERROR_RSTm).
-> >>>
-> >>>      Device Tree:
-> >>>          Add the syscon property to CPG and WDT nodes in R9A09G057 an=
-d
-> >>>          R9A09G047 SoC DTSI.
-> >>>
-> >>> These changes enable the watchdog driver to identify boot sources lik=
-e Power-on Reset and Watchdog
-> >>> Reset, improving system diagnostics.
-> >>
-> >> This means that, we should assume U-boot/bootloader should not clear t=
-he WDT reset status bit.
-> >>
-> >> If they clear it, there should be a way to propagate it from u-boot/bo=
-otloader to linux,
-> >> otherwise, we get wrong bootstatus in linux.
-> >> But the clearing of watchdog status by one of the cases:
-> >>
-> >> 1) u-boot identify the boot source and clear the status bit
-> >> 2) u-boot identify the boot source and does not clear the status bit, =
-but linux clear it.
-> >> 3) u-boot does not touch WDT status bits, but linux clear it.
-> >
-> > Sounds like the same problem as this[1]. If that works for you, please
-> > comment there. Always better if there is more than 1 user for something
-> > "common".
-> >
-> > Rob
-> >
-> > [1]https://lore.kernel.org/devicetree-spec/48defa98-9718-4997-86cb-b171=
-187708a6@cherry.de/T/#u
->
-> If this ends up being provided through /chosen, it should probably be sup=
-ported
-> in the watchdog core.
->
-There wasn't any conclusion on the thread [0]. Can you please
-recommend how you want me to proceed on this series.
 
-[0] https://lore.kernel.org/devicetree-spec/48defa98-9718-4997-86cb-b171187=
-708a6@cherry.de/T/#m2f1c7f5c8166522982cecf9351903ab06ca4f9ee
+On 2/2/25 13:25, Manivannan Sadhasivam wrote:
+> On Tue, Jan 28, 2025 at 01:07:36PM +0100, Christian Bruel wrote:
+> 
+> [...]
+> 
+>> +    pcie@48400000 {
+>> +        compatible = "st,stm32mp25-pcie-rc";
+>> +        device_type = "pci";
+>> +        reg = <0x48400000 0x400000>,
+>> +              <0x10000000 0x10000>;
+>> +        reg-names = "dbi", "config";
+>> +        #interrupt-cells = <1>;
+>> +        interrupt-map-mask = <0 0 0 7>;
+>> +        interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
+>> +                        <0 0 0 2 &intc 0 0 GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
+>> +                        <0 0 0 3 &intc 0 0 GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
+>> +                        <0 0 0 4 &intc 0 0 GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>;
+>> +        #address-cells = <3>;
+>> +        #size-cells = <2>;
+>> +        ranges = <0x01000000 0x0 0x00000000 0x10010000 0x0 0x10000>,
+>> +                 <0x02000000 0x0 0x10020000 0x10020000 0x0 0x7fe0000>,
+>> +                 <0x42000000 0x0 0x18000000 0x18000000 0x0 0x8000000>;
+>> +        dma-ranges = <0x42000000 0x0 0x80000000 0x80000000 0x0 0x80000000>;
+>> +        clocks = <&rcc CK_BUS_PCIE>;
+>> +        resets = <&rcc PCIE_R>;
+>> +        msi-parent = <&v2m0>;
+>> +        wakeup-source;
+> 
+> Does this property really need to be present? If the WAKE# gpio is supported,
+> isn't it implied that the RC is a wakeup source?
+> 
 
-Cheers,
-Prabhakar
+the wakeup-source property is useless indeed with the wake_gpio, will 
+remove,
+
+thanks.
+
+Christian
+
+> - Mani
+> 
 
