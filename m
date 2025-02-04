@@ -1,418 +1,184 @@
-Return-Path: <devicetree+bounces-142858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85761A26D3E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 09:26:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03218A26D53
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 09:30:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12BBB3A2F1C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 08:25:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77C061881F45
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 08:30:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07830206F0A;
-	Tue,  4 Feb 2025 08:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 969042066F5;
+	Tue,  4 Feb 2025 08:30:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="em9L8v7+"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="ut9NOAtY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2040.outbound.protection.outlook.com [40.107.243.40])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642B12066C4
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 08:25:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738657550; cv=none; b=monPEUcQ6fvrnfIJ38XF6FS0fm4/mtNQ5kQ8/7oE7M5GhsrPSDzcstXvM5g15dAfSsmfsjzJp3rDinX9eqPQ9WytYvZ+ZtVbKBWD4Jr33saBnlPkL/6nIIyF5G2CCZmqHoT6Ge+FZCzfA5wPV0t3gayRxW4hh+0O/kkusdmoCCk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738657550; c=relaxed/simple;
-	bh=tJqlIVFoV2fmSJXs4lRTdbKZh55uWKwbP0bRYFL/fz0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=diO25fuDKp5OqEzXgm8WBDfr+9W0WmuBxLu8QqfR7U2wjnQIpkWl+iFst3aPElqRbRj74RHxLFdKWNbB/zb9az1fCPzSIQ4YtVWf8vi6L6VNWdcOb2C2ma5QJjdSxa+vy1Gtd4hJ32eiHBvlkcsQRjYYr4ZX+nJhtRT5eDt3Sbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=em9L8v7+; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-38da72cc47bso292930f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Feb 2025 00:25:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738657546; x=1739262346; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5X3KlExed7jQYj3Zt5TttzYieEc006daRenyOTS/L5Y=;
-        b=em9L8v7+VZhBnHw11Ns84qCLTTtriFr+uQOBZd/M85dGGf5rAE+ixP+Hq3qmJrh4XM
-         N/otQGB0OV/brM739HlYjRUvH+kjhC59e74TvfnX77ie/BKJ0TzR9fvv3LqD0OqRxZXL
-         stHXfAk3JaBOzNQWYN7+ry+0WfEBBHw02noHDy6WagIesU0CezT2V3HffEIv9WNfnvme
-         +7rP1OsxC3oYvC4S+FO0wIcFvY7MXaipUDFOV9Ya8CVSZmwvlKGS5/1PdKv8subEclUF
-         Nw73tqa6V6AMqxJ+3sfOCXKBa/fOCksqGTspVKp1HNDV6jyXcGC2Yq47Lqcex5EWWolD
-         afwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738657546; x=1739262346;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5X3KlExed7jQYj3Zt5TttzYieEc006daRenyOTS/L5Y=;
-        b=GFmg5I6CXlPwFLA1brc9feuzvy6R6bwuuwsUEdxAnam3LHWb6QPdI+TLIaRseFwy/w
-         Lwbmxw6ClkohkrAB/sIxL5lDWv2WpoVP/wmw7nLwquGNgVLyKtLO0tK2Ud2yMECH8h3X
-         m5pPWqmx8rKAo5IS1MR17t4o1SuNl6Eodw1i0ZgjxcrCSw8RjuyjNGH0WNYCl5ZytJ6h
-         dhqdoq6CnFPXBmwgQXy3j9XzeQACrWq3oLY7GcCygsKwEHkV8wmbOKTmdRSRAUdVpgaH
-         izjflm8YqI652phBUYeyI9HI0soY+SZa9u48b6zCNMhkmA3XEwqhDo0olfmQDmEJUVfE
-         fCgw==
-X-Forwarded-Encrypted: i=1; AJvYcCUF4p4Ak5hQWp6VfFNPrklTAY4MMqPfg0CeJsQ3zJTHSkgxS0oFhOY6Pmqz9QZ1R6DYcm5VPvSeLLD7@vger.kernel.org
-X-Gm-Message-State: AOJu0YykaG3PSPitjfnZKhzccazMWG8b7I+TLGpTbPbp1bQ1ZAS9/3bA
-	/ol1jGf+7QqfDJ1raQYIv72qDJrwGK7v46iMEaqMDmXrEwjzx7V7VOx8REBn5jQA0KpxSOTLXlA
-	U
-X-Gm-Gg: ASbGncsU8uxnIOQ16j1sPU24zonqsqM+bQnTMRPxGPdbmPffdjpuVARmds8DELYBbDs
-	xLq1qNj8rky7EiLEuPIilPXIYJ+z0vrN5D43/yS+aaIy+VneeY/5HuJymOPy4HW/2JC55ABZuB9
-	moYIbSVaHYJY6P3pPE67sg7KHC5eD3UY58wB2/Pj68R0/Xysc9t8osTGGlPCOFAI8mYgmc1//QI
-	mRfWDSH2/2gNO9sPxUVSK3S1GfV4Vowr4sQQ+MOp6tYTR6ELBkWHmwit6PrEqoLCSm8Ta6fIp/y
-	9Au+/cjWDK36cXD5irQu5OO9S5J46iLmdZb8sAayzESJggWZat8xffqHMVfXLbiojiy8
-X-Google-Smtp-Source: AGHT+IEIn8TASNoC+AhVC8v4SiDFZgSEGmJVO4sTfGESmM38PP44cwLUEcx9uF/Ii7X5V5Fw8E4L2g==
-X-Received: by 2002:a5d:6d82:0:b0:38c:5c9a:eaca with SMTP id ffacd0b85a97d-38c5c9aee4fmr14987906f8f.3.1738657545487;
-        Tue, 04 Feb 2025 00:25:45 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8db5:d196:bd48:5fbb? ([2a01:e0a:982:cbb0:8db5:d196:bd48:5fbb])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c5c1b51e1sm15058267f8f.77.2025.02.04.00.25.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Feb 2025 00:25:45 -0800 (PST)
-Message-ID: <69cb8423-c3c8-4c29-91f2-42e6ad41597b@linaro.org>
-Date: Tue, 4 Feb 2025 09:25:44 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17E82063E1;
+	Tue,  4 Feb 2025 08:30:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.40
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738657849; cv=fail; b=FrZW2PNn5vLDGTmgbbWERmSDtqCUskcNZ7PQXtwbRHx3QxPUySeACGVtGY58Dj1mfa/FjST037U3FQcuta/MP+s4a2xIxKXvu0w5NY0VY8qp4dStYkcxiobs1tFsB2d7mtiauivy39N0qKKUj6FzH2ytedTYQb4kIqYIvNIEoLg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738657849; c=relaxed/simple;
+	bh=zcUd6ZGAK5lceQCkrXB4KHd4SzFnEBp5Y2OOPlYKA2E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=aib+bX/dnd5Fc/4Keu3hd9gacSvIuqYeZKXFgNz3xVEmnh9LKvZzupfiXIWUvHgAzB1BZgqQJxmckuYVSUSnLApzeZQ74oCLzPOFFILYD9tpjEuv+uHbW9XJhl8XRLo8WIe58LZQmzB8L+Ry+FV6rwz6kh2FN6tBHy4ociesjIc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=ut9NOAtY; arc=fail smtp.client-ip=40.107.243.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=B4we+Y9feBe8rgXzg/1PBlNVTZYzOWeQs/bj2fINZ4+qwK0+40Wwm3OUYX6ol4/XPqT4e3vHnabh3YtXSSOBdp8pwN5m+Bd9UCAPfEIsoNLfXkhqhXSBDtjFfn2a5tSspdtpT1UFLsUU0RNzhSnnJmWxEIdtPKuu8j/s4p+weDAihu1bEZ3CKmAak2FteacD3JhyTMO3h/sJvOxGytW9xMOgebJuwtZ5Vzp/xe980OABffZDkISXnhZHpMcgtkEPGSXR3DWoXN3Wbjdi+AMgDCuLpsJo9DZYIvegWpYE09oyfz6kMhLipHqnmIkVBMCwIDivcFW1dDDLMlsofry+Zw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2v3dLiYD6an0fDYWVVCs7eGZl8kILwD/oLGMz8Q4a1g=;
+ b=NZaL3f8ke5JQf6S4tkhVC16W3FN1zIODxEgbON3JzbLIiq9tdjLW+kNjq6R3LtBYpO34AUbNFt0e+GjXkF1Odwz0l5ERo39fDV8gxpQrHr7loQEQ+gS3DrEcHeeqGMMYPZlvFoW6BSXrkKY5zAIag8rjS5D2f9aSWEav+oGcgApBxm/mUsxxwQVC5yrDubkLNYQXwPIZtie8qPPyjuaiQ8E6gBr8KGzApsxsigiIXoQ6n8OiiMXZlgBAOueb2eUIP6m3CRMJ40VKApyKifOQ94Utk10uH8OymCXxZ3EevnC6jPgu2mbNTYH0HI+xzIHaJsfAFJ/Y7g5cCK6Bd9PFvg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2v3dLiYD6an0fDYWVVCs7eGZl8kILwD/oLGMz8Q4a1g=;
+ b=ut9NOAtYN1JwCtud5CB+ITUEonzQ0TPgXYCiTQ75Thj9i2gS9oJOi9NvpJJqjtVLh82u29MUofA2Mkh7Pk4qB7ZNsEchKLllVGbYKZoVtzVIby7aJ40IUbaeVbASL19PJlKTdMswxrgOKFJosW9o9E+Gf76+RwV18ilyIFG/OZM=
+Received: from SN4PR0501CA0011.namprd05.prod.outlook.com
+ (2603:10b6:803:40::24) by MN2PR12MB4125.namprd12.prod.outlook.com
+ (2603:10b6:208:1d9::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.24; Tue, 4 Feb
+ 2025 08:30:44 +0000
+Received: from SA2PEPF00003AE6.namprd02.prod.outlook.com
+ (2603:10b6:803:40:cafe::10) by SN4PR0501CA0011.outlook.office365.com
+ (2603:10b6:803:40::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8398.26 via Frontend Transport; Tue,
+ 4 Feb 2025 08:30:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SA2PEPF00003AE6.mail.protection.outlook.com (10.167.248.6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8398.14 via Frontend Transport; Tue, 4 Feb 2025 08:30:43 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 4 Feb
+ 2025 02:30:40 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated
+ list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v2 0/2] arm64: versal-net: Add description for VN-X board
+Date: Tue, 4 Feb 2025 09:30:31 +0100
+Message-ID: <cover.1738657826.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] Input: goodix_berlin - Add support for Berlin-A
- series
-To: Jens Reidel <adrian@travitia.xyz>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bastien Nocera <hadess@hadess.net>,
- Hans de Goede <hdegoede@redhat.com>
-Cc: Luca Weiss <luca.weiss@fairphone.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, linux@mainlining.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20250203174309.21574-1-adrian@travitia.xyz>
- <20250203174309.21574-3-adrian@travitia.xyz>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250203174309.21574-3-adrian@travitia.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1321; i=michal.simek@amd.com; h=from:subject:message-id; bh=zcUd6ZGAK5lceQCkrXB4KHd4SzFnEBp5Y2OOPlYKA2E=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhvSFFzQu83yO/LO4OOKc1VRL1T3XHrdEBAevkw3fe/Dwq 8gnkz5ldMSyMAgyMciKKbJI21w5s7dyxhThi4flYOawMoEMYeDiFICJmO1mWNA+b6LOt8QvPLfW KO4+7vj+zh4e3TcM87Tv2n0z6LuY3ZQ+X8NjsudDrcgVugA=
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003AE6:EE_|MN2PR12MB4125:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa4be0c1-25fa-4b03-32ea-08dd44f63762
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?2Cl2v7gkAJmwCQKLsOzDk68cpE5QTh89XS5k9+m0exvSKeAUREt+VL/NmV3l?=
+ =?us-ascii?Q?MXHHozG9pFdrPo5vKHj34ROffJgeiV0f6OnLvl1jorva4X70XMP47qUaCDVs?=
+ =?us-ascii?Q?qsRV/ePkXY07RWWNwxiJKA3z2OK4EPNzZQ9Dlc9cCjm9xCqDYSXsiIcFD3KZ?=
+ =?us-ascii?Q?d9JRrgf1ZN5yK8FC5BnZC7rOzAWf2KQea2lWE52I/1hTXe1SkbleH8fzhgIQ?=
+ =?us-ascii?Q?TUPe8JEjXTSumZ2uWdH70yoA2j3YavQWIUkci4HUCYpXHbKD25z3DvmNZFwP?=
+ =?us-ascii?Q?gq4dKKURrRUQ0UEcfu2TGCkMeLLJbi70ldaTIA/hJ4hZkr8jK/YHqHZemaMx?=
+ =?us-ascii?Q?hw++f0D0me0doshSP2AaJDYBqC9aREeGkUIp4v3sCYfEHiC21oXLc1PjYAv/?=
+ =?us-ascii?Q?CKqmquEEAM/Hi2K7d2XihXe4naPMnF5VCZX/93rOAOn6eM7eBTF8hX6uFZqA?=
+ =?us-ascii?Q?y7ToWdWlkFZ+HyigbWVzt1JaTxvwgL9gTVaHeSt/7VlmphWmnDBpd9tMacys?=
+ =?us-ascii?Q?h4AkDjGx0vZDQS08klSGw8uZV4PYp/novrl3yrxxPYS9zwQQymZtITDDhRP/?=
+ =?us-ascii?Q?uLrRkugLl2s89RZ9to8HZCeC7hUTnplAoOuu0wWjmrNLM+KzfOez10HrcVog?=
+ =?us-ascii?Q?X3L2jORQT834Vm+53v9tBwjPbLZBn7LvavAY5oSal7Rd7499JK2q2IJKMdU4?=
+ =?us-ascii?Q?0XQJBPXwE1fMhB1Fjr8OyRUIdsd1HEKVxsJtW+XABxhGTR6Z3U3XWXIFCJ0z?=
+ =?us-ascii?Q?wuNDl6LFttDj6elMbcu3XnopSCLJmAUFwjlVN/xFpepCDjqNbk2NPCpLlzN2?=
+ =?us-ascii?Q?FIeckXqIRG1P1++pU/no+fn8VBkzsSChC4e5AZNwcUGLuUh4rIY/zeEOXA7H?=
+ =?us-ascii?Q?psu0RoXS/kGhMqaQ0KHmqWfrFdtxcKBTylmR5bjE0xZLuVbCWG4Nv0nz5u+8?=
+ =?us-ascii?Q?a+UiVdE4itSGLXCuAiylbzmaSIWRa+HYa0CXHnZji+zhKZp60DLvKC+tma+V?=
+ =?us-ascii?Q?Gp7RuiwneexiMp36/y4JyNSWUaYYwCx0hWkLQF3bUiK8DcxqUDPIKhrZn88v?=
+ =?us-ascii?Q?QMJcZYOGaSqGiKeFbU32kbH6ncNG4cSawAyEF9yITNT/1cDUZRDYvOuj1ro8?=
+ =?us-ascii?Q?N7dS7yNj/borCvcBfJHA2zG2WOTgo1kN0/fXTy+e/kFYArtpAnkZ8gotq55B?=
+ =?us-ascii?Q?WEvnNTqnL/GSziF97GJWqMPSX1YR3LSqT78twUjnjr8kZ9d06CSGmb7PBgOG?=
+ =?us-ascii?Q?V+Uso7MmmwGfgRtgYE1t3TUPMIkjqjLfm5/mWNod5Uh/uPb6SSkIk2iSEkf4?=
+ =?us-ascii?Q?g2Jes9gP9UgNIgzGPAlq0c5RuzejSm9SmaFfWLML37SVt3Vw1npVi7zBB0qD?=
+ =?us-ascii?Q?b+4D/vn4PynhrfVq0o04zuVAFjZpisbu9HF5WS9Daq8GYAn2M/AdYXy7RcPs?=
+ =?us-ascii?Q?08K65PAMEgNEInC9VBwoBT7UzAwEn1+z3ybm/5thA6O/wNqccBLHnnJgcQcD?=
+ =?us-ascii?Q?nnFVvjYvk+x6kpc=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2025 08:30:43.7523
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa4be0c1-25fa-4b03-32ea-08dd44f63762
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SA2PEPF00003AE6.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4125
 
 Hi,
 
-On 03/02/2025 18:43, Jens Reidel wrote:
-> The current implementation of the goodix_berlin driver lacks support for
-> revisions A and B of the Berlin IC. This change adds support for the
-> gt9897 IC, which is a Berlin-A revision part.
-> 
-> The differences between revision D and A are rather minor, a handful of
-> address changes and a slightly larger read buffer. They were taken from
-> the driver published by Goodix, which does a few more things that don't
-> appear to be necessary for the touchscreen to work properly.
-> 
-> Signed-off-by: Jens Reidel <adrian@travitia.xyz>
-> ---
->   drivers/input/touchscreen/goodix_berlin.h     |  9 ++++
->   .../input/touchscreen/goodix_berlin_core.c    | 27 +++++++++---
->   drivers/input/touchscreen/goodix_berlin_i2c.c |  6 ++-
->   drivers/input/touchscreen/goodix_berlin_spi.c | 44 +++++++++++++++----
->   4 files changed, 72 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/input/touchscreen/goodix_berlin.h b/drivers/input/touchscreen/goodix_berlin.h
-> index 38b6f9ddbdef..a5232e58c166 100644
-> --- a/drivers/input/touchscreen/goodix_berlin.h
-> +++ b/drivers/input/touchscreen/goodix_berlin.h
-> @@ -12,6 +12,15 @@
->   
->   #include <linux/pm.h>
->   
-> +enum goodix_berlin_ic_type {
-> +	IC_TYPE_BERLIN_A,
-> +	IC_TYPE_BERLIN_D,
-> +};
-> +
-> +struct goodix_berlin_ic_data {
-> +	enum goodix_berlin_ic_type ic_type;
-> +};
-> +
->   struct device;
->   struct input_id;
->   struct regmap;
-> diff --git a/drivers/input/touchscreen/goodix_berlin_core.c b/drivers/input/touchscreen/goodix_berlin_core.c
-> index 3fc03cf0ca23..b892ab901d64 100644
-> --- a/drivers/input/touchscreen/goodix_berlin_core.c
-> +++ b/drivers/input/touchscreen/goodix_berlin_core.c
-> @@ -12,7 +12,7 @@
->    * to the previous generations.
->    *
->    * Currently the driver only handles Multitouch events with already
-> - * programmed firmware and "config" for "Revision D" Berlin IC.
-> + * programmed firmware and "config" for "Revision A/D" Berlin IC.
->    *
->    * Support is missing for:
->    * - ESD Management
-> @@ -20,7 +20,7 @@
->    * - "Config" update/flashing
->    * - Stylus Events
->    * - Gesture Events
-> - * - Support for older revisions (A & B)
-> + * - Support for revision B
->    */
->   
->   #include <linux/bitfield.h>
-> @@ -28,6 +28,7 @@
->   #include <linux/input.h>
->   #include <linux/input/mt.h>
->   #include <linux/input/touchscreen.h>
-> +#include <linux/of.h>
->   #include <linux/regmap.h>
->   #include <linux/regulator/consumer.h>
->   #include <linux/sizes.h>
-> @@ -54,9 +55,11 @@
->   #define GOODIX_BERLIN_DEV_CONFIRM_VAL		0xAA
->   #define GOODIX_BERLIN_BOOTOPTION_ADDR		0x10000
->   #define GOODIX_BERLIN_FW_VERSION_INFO_ADDR	0x10014
-> +#define GOODIX_BERLIN_FW_VERSION_INFO_ADDR_A	0x1000C
->   
->   #define GOODIX_BERLIN_IC_INFO_MAX_LEN		SZ_1K
->   #define GOODIX_BERLIN_IC_INFO_ADDR		0x10070
-> +#define GOODIX_BERLIN_IC_INFO_ADDR_A		0x10068
->   
->   #define GOODIX_BERLIN_CHECKSUM_SIZE		sizeof(u16)
->   
-> @@ -297,9 +300,16 @@ static void goodix_berlin_power_off(struct goodix_berlin_core *cd)
->   
->   static int goodix_berlin_read_version(struct goodix_berlin_core *cd)
->   {
-> +	const struct goodix_berlin_ic_data *ic_data = of_device_get_match_data(cd->dev);
-> +	int fw_version_info_addr;
->   	int error;
->   
-> -	error = regmap_raw_read(cd->regmap, GOODIX_BERLIN_FW_VERSION_INFO_ADDR,
-> +	if (ic_data->ic_type == IC_TYPE_BERLIN_A)
-> +		fw_version_info_addr = GOODIX_BERLIN_FW_VERSION_INFO_ADDR_A;
-> +	else
-> +		fw_version_info_addr = GOODIX_BERLIN_FW_VERSION_INFO_ADDR;
-> +
-> +	error = regmap_raw_read(cd->regmap, fw_version_info_addr,
->   				&cd->fw_version, sizeof(cd->fw_version));
->   	if (error) {
->   		dev_err(cd->dev, "error reading fw version, %d\n", error);
-> @@ -358,16 +368,23 @@ static int goodix_berlin_parse_ic_info(struct goodix_berlin_core *cd,
->   
->   static int goodix_berlin_get_ic_info(struct goodix_berlin_core *cd)
->   {
-> +	const struct goodix_berlin_ic_data *ic_data = of_device_get_match_data(cd->dev);
->   	u8 *afe_data __free(kfree) = NULL;
->   	__le16 length_raw;
->   	u16 length;
-> +	int ic_info_addr;
->   	int error;
->   
-> +	if (ic_data->ic_type == IC_TYPE_BERLIN_A)
-> +		ic_info_addr = GOODIX_BERLIN_IC_INFO_ADDR_A;
-> +	else
-> +		ic_info_addr = GOODIX_BERLIN_IC_INFO_ADDR;
-> +
->   	afe_data = kzalloc(GOODIX_BERLIN_IC_INFO_MAX_LEN, GFP_KERNEL);
->   	if (!afe_data)
->   		return -ENOMEM;
->   
-> -	error = regmap_raw_read(cd->regmap, GOODIX_BERLIN_IC_INFO_ADDR,
-> +	error = regmap_raw_read(cd->regmap, ic_info_addr,
->   				&length_raw, sizeof(length_raw));
->   	if (error) {
->   		dev_err(cd->dev, "failed get ic info length, %d\n", error);
-> @@ -380,7 +397,7 @@ static int goodix_berlin_get_ic_info(struct goodix_berlin_core *cd)
->   		return -EINVAL;
->   	}
->   
-> -	error = regmap_raw_read(cd->regmap, GOODIX_BERLIN_IC_INFO_ADDR,
-> +	error = regmap_raw_read(cd->regmap, ic_info_addr,
->   				afe_data, length);
->   	if (error) {
->   		dev_err(cd->dev, "failed get ic info data, %d\n", error);
-> diff --git a/drivers/input/touchscreen/goodix_berlin_i2c.c b/drivers/input/touchscreen/goodix_berlin_i2c.c
-> index ad7a60d94338..b3fd063b4242 100644
-> --- a/drivers/input/touchscreen/goodix_berlin_i2c.c
-> +++ b/drivers/input/touchscreen/goodix_berlin_i2c.c
-> @@ -53,8 +53,12 @@ static const struct i2c_device_id goodix_berlin_i2c_id[] = {
->   
->   MODULE_DEVICE_TABLE(i2c, goodix_berlin_i2c_id);
->   
-> +static const struct goodix_berlin_ic_data gt9916_data = {
-> +	.ic_type = IC_TYPE_BERLIN_D,
-> +};
-> +
->   static const struct of_device_id goodix_berlin_i2c_of_match[] = {
-> -	{ .compatible = "goodix,gt9916", },
-> +	{ .compatible = "goodix,gt9916", .data = &gt9916_data },
+add description for VN-X board with Versal NET SoC to see how that SoC look
+like. DT binding patch was sent already as v1 but make more sense to send
+it together also with board description to see full description.
 
-Please also update the i2c_device_id table with the driver_data and use i2c_get_match_data().
+v1 of DT binding patch is at
+https://lore.kernel.org/all/20250108113338.20289-1-shubhrajyoti.datta@amd.com/
 
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, goodix_berlin_i2c_of_match);
-> diff --git a/drivers/input/touchscreen/goodix_berlin_spi.c b/drivers/input/touchscreen/goodix_berlin_spi.c
-> index 0662e87b8692..f48f11a76b6d 100644
-> --- a/drivers/input/touchscreen/goodix_berlin_spi.c
-> +++ b/drivers/input/touchscreen/goodix_berlin_spi.c
-> @@ -10,6 +10,7 @@
->   #include <linux/unaligned.h>
->   #include <linux/kernel.h>
->   #include <linux/module.h>
-> +#include <linux/of.h>
->   #include <linux/regmap.h>
->   #include <linux/spi/spi.h>
->   #include <linux/input.h>
-> @@ -19,9 +20,13 @@
->   #define GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN	1
->   #define GOODIX_BERLIN_REGISTER_WIDTH		4
->   #define GOODIX_BERLIN_SPI_READ_DUMMY_LEN	3
-> +#define GOODIX_BERLIN_SPI_READ_DUMMY_LEN_A	4
->   #define GOODIX_BERLIN_SPI_READ_PREFIX_LEN	(GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + \
->   						 GOODIX_BERLIN_REGISTER_WIDTH + \
->   						 GOODIX_BERLIN_SPI_READ_DUMMY_LEN)
-> +#define GOODIX_BERLIN_SPI_READ_PREFIX_LEN_A	(GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + \
-> +						 GOODIX_BERLIN_REGISTER_WIDTH + \
-> +						 GOODIX_BERLIN_SPI_READ_DUMMY_LEN_A)
->   #define GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN	(GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + \
->   						 GOODIX_BERLIN_REGISTER_WIDTH)
->   
-> @@ -33,32 +38,41 @@ static int goodix_berlin_spi_read(void *context, const void *reg_buf,
->   				  size_t val_size)
->   {
->   	struct spi_device *spi = context;
-> +	const struct goodix_berlin_ic_data *ic_data = of_device_get_match_data(&spi->dev);
->   	struct spi_transfer xfers;
->   	struct spi_message spi_msg;
->   	const u32 *reg = reg_buf; /* reg is stored as native u32 at start of buffer */
-> +	ssize_t read_prefix_len, read_dummy_len;
->   	int error;
->   
-> +	if (ic_data->ic_type == IC_TYPE_BERLIN_A) {
-> +		read_prefix_len = GOODIX_BERLIN_SPI_READ_PREFIX_LEN_A;
-> +		read_dummy_len = GOODIX_BERLIN_SPI_READ_DUMMY_LEN_A;
-> +	} else {
-> +		read_prefix_len = GOODIX_BERLIN_SPI_READ_PREFIX_LEN;
-> +		read_dummy_len = GOODIX_BERLIN_SPI_READ_DUMMY_LEN;
-> +	}
-> +
->   	if (reg_size != GOODIX_BERLIN_REGISTER_WIDTH)
->   		return -EINVAL;
->   
->   	u8 *buf __free(kfree) =
-> -		kzalloc(GOODIX_BERLIN_SPI_READ_PREFIX_LEN + val_size,
-> -			GFP_KERNEL);
-> +		kzalloc(read_prefix_len + val_size, GFP_KERNEL);
->   	if (!buf)
->   		return -ENOMEM;
->   
->   	spi_message_init(&spi_msg);
->   	memset(&xfers, 0, sizeof(xfers));
->   
-> -	/* buffer format: 0xF1 + addr(4bytes) + dummy(3bytes) + data */
-> +	/* buffer format: 0xF1 + addr(4bytes) + dummy(3/4bytes) + data */
->   	buf[0] = GOODIX_BERLIN_SPI_READ_FLAG;
->   	put_unaligned_be32(*reg, buf + GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN);
->   	memset(buf + GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + GOODIX_BERLIN_REGISTER_WIDTH,
-> -	       0xff, GOODIX_BERLIN_SPI_READ_DUMMY_LEN);
-> +	       0xff, read_dummy_len);
->   
->   	xfers.tx_buf = buf;
->   	xfers.rx_buf = buf;
-> -	xfers.len = GOODIX_BERLIN_SPI_READ_PREFIX_LEN + val_size;
-> +	xfers.len = read_prefix_len + val_size;
->   	xfers.cs_change = 0;
->   	spi_message_add_tail(&xfers, &spi_msg);
->   
-> @@ -68,7 +82,7 @@ static int goodix_berlin_spi_read(void *context, const void *reg_buf,
->   		return error;
->   	}
->   
-> -	memcpy(val_buf, buf + GOODIX_BERLIN_SPI_READ_PREFIX_LEN, val_size);
-> +	memcpy(val_buf, buf + read_prefix_len, val_size);
->   	return error;
->   }
->   
-> @@ -123,6 +137,7 @@ static const struct input_id goodix_berlin_spi_input_id = {
->   
->   static int goodix_berlin_spi_probe(struct spi_device *spi)
->   {
-> +	const struct goodix_berlin_ic_data *ic_data = of_device_get_match_data(&spi->dev);
->   	struct regmap_config regmap_config;
->   	struct regmap *regmap;
->   	size_t max_size;
-> @@ -137,7 +152,10 @@ static int goodix_berlin_spi_probe(struct spi_device *spi)
->   	max_size = spi_max_transfer_size(spi);
->   
->   	regmap_config = goodix_berlin_spi_regmap_conf;
-> -	regmap_config.max_raw_read = max_size - GOODIX_BERLIN_SPI_READ_PREFIX_LEN;
-> +	if (ic_data->ic_type == IC_TYPE_BERLIN_A)
-> +		regmap_config.max_raw_read = max_size - GOODIX_BERLIN_SPI_READ_PREFIX_LEN_A;
-> +	else
-> +		regmap_config.max_raw_read = max_size - GOODIX_BERLIN_SPI_READ_PREFIX_LEN;
->   	regmap_config.max_raw_write = max_size - GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN;
->   
->   	regmap = devm_regmap_init(&spi->dev, NULL, spi, &regmap_config);
-> @@ -153,13 +171,23 @@ static int goodix_berlin_spi_probe(struct spi_device *spi)
->   }
->   
->   static const struct spi_device_id goodix_berlin_spi_ids[] = {
-> +	{ "gt9897" },
->   	{ "gt9916" },
+That's why this series is sent as v2.
 
-You may also pass driver_data here aswell and use spi_get_device_match_data() instead.
+Thanks,
+Michal
 
->   	{ },
->   };
->   MODULE_DEVICE_TABLE(spi, goodix_berlin_spi_ids);
->   
-> +static const struct goodix_berlin_ic_data gt9897_data = {
-> +	.ic_type = IC_TYPE_BERLIN_A,
-> +};
-> +
-> +static const struct goodix_berlin_ic_data gt9916_data = {
-> +	.ic_type = IC_TYPE_BERLIN_D,
-> +};
-> +
->   static const struct of_device_id goodix_berlin_spi_of_match[] = {
-> -	{ .compatible = "goodix,gt9916", },
-> +	{ .compatible = "goodix,gt9897", .data = &gt9897_data },
-> +	{ .compatible = "goodix,gt9916", .data = &gt9916_data },
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, goodix_berlin_spi_of_match);
+Changes in v2:
+- Remove | from description
+- Change description
+- Update subject to match VN-X
+- Add description for VN-X
+- New patch in series
+
+Michal Simek (1):
+  arm64: versal-net: Add description for b2197-00 revA board
+
+Shubhrajyoti Datta (1):
+  dt-bindings: soc: Add new VN-X board description based on Versal NET
+
+ .../bindings/soc/xilinx/xilinx.yaml           |  11 +-
+ arch/arm64/boot/dts/xilinx/Makefile           |   2 +
+ .../arm64/boot/dts/xilinx/versal-net-clk.dtsi | 231 ++++++
+ .../xilinx/versal-net-vn-x-b2197-01-revA.dts  | 116 +++
+ arch/arm64/boot/dts/xilinx/versal-net.dtsi    | 752 ++++++++++++++++++
+ 5 files changed, 1110 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/xilinx/versal-net-clk.dtsi
+ create mode 100644 arch/arm64/boot/dts/xilinx/versal-net-vn-x-b2197-01-revA.dts
+ create mode 100644 arch/arm64/boot/dts/xilinx/versal-net.dtsi
+
+-- 
+2.43.0
 
 
