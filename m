@@ -1,95 +1,164 @@
-Return-Path: <devicetree+bounces-143036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 413F2A27B6C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:39:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B665A27B78
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:40:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F4FE1885C01
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:39:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A980F161720
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C89204F6C;
-	Tue,  4 Feb 2025 19:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E16D218AC3;
+	Tue,  4 Feb 2025 19:40:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="boOQs8h2"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="PwrUb4y3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99832204C20;
-	Tue,  4 Feb 2025 19:39:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7BB2163BA;
+	Tue,  4 Feb 2025 19:40:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738697972; cv=none; b=lVjh6lLAIrO/TfpWtof867q09Ty9bRg8JUfTfxmYNgVaVg2Qd2BlwgseG/UlTKFkhDPRnZqBYcBtuYnzC4JrRttdn0L337t9ZMWlgFSrFUE1cTZ/LUMMXIOl+2vvmcMMqM4C9rJV8Lh4wOwunOSd8Z7m2VGgB4GFEFkvsQPn2lM=
+	t=1738698042; cv=none; b=pZ5Pz8sCM5okbRlSNDyos6Z4OoinrT5jxRfaBQrzhqxRf0GLUNLySapUzXXyCdxqvvPxArvSHIeVS1aV80PrAw1KIkmt2r648xI+sjpvm1pw00tPgCZ5E28i6iMDXnlRK0aDAi7cU6SYIS4HqeEw9SY1TX5wYuyafsihFocXWKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738697972; c=relaxed/simple;
-	bh=0Np7nYbz3nCicHvUP3D9GR6lV8vm/nvO3gDD/5+HKCE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RANLZD8PGoXRA3g+EeduhYu5boi2fSi/ILnH9L3adF4vN1qCcJgXJtqWR0qNyZbGXX79GnTr5IuEbKNsF8Kr0tatZ7oYy7LKO03+HsrQbZaRAjz6wqwCYlYzGJwh+mulUEjJvQ4GjE2foYSbYBiNKYPF5WOVnYyz4kjZBwXrirM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=boOQs8h2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D832C4CEDF;
-	Tue,  4 Feb 2025 19:39:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738697972;
-	bh=0Np7nYbz3nCicHvUP3D9GR6lV8vm/nvO3gDD/5+HKCE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=boOQs8h2XWSoS4iAGBHxakWjY3BHKlRpj/SftZe4xXKWPqkax0yi4ElxGVONmjVbJ
-	 uvvKwXqrVQFsfYggCvccH4hZJc1yRtytfzNRXGaoWlocaURVqAC//H+xt1cy4mj8G5
-	 heEazKwosS6DsQz3xQruJcx3FI8Fxt0c6OWlcqWoMs/PR5/hB3dZfm4uP+NM47uyM7
-	 gr87ghEwi1Co1rY4pgOaF8Cu9KZcdp+oE6Nz8lo28lXmrryWkiRbpI4RoJ14U9RkC2
-	 R6e0LgBorReUoxevnGloDbogTxdvY2HSwa8a6HEXAzq8kymvJ5v4tJFDoyCvndgV7Q
-	 tDbbNl2syQCsw==
-Date: Tue, 4 Feb 2025 19:39:27 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: arasan,nand-controller: Ensure all
- properties are defined
-Message-ID: <20250204-remedial-expansion-56cca89037c1@spud>
-References: <20250203213042.12657-1-robh@kernel.org>
+	s=arc-20240116; t=1738698042; c=relaxed/simple;
+	bh=935j198xxMOYZli3ZMj/non5C9e9cHIycLV8pKfOP8Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=VOzzCh1NIECVCtti1Zz/tmKBWi9eVPEiYMn7kGoVYt1nwKjbJF38T+s+zmv4VnVIyjaq35GcM+QRscZJTJAPXYlUoK2V30J40brKjYdROlcDH8mTXQ9mLdjYHoUxZFncVVZp54TEOyxK1sR1qMMW7SptQ+gllPXKWQz2//FXd+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=PwrUb4y3; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 514GEoDk029325;
+	Tue, 4 Feb 2025 19:40:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=L0+ep8
+	JKH1qnWrvTGJ8l/LlGnrRt9fPRrJ/gx5Vk9ZE=; b=PwrUb4y3MmwnbtPg+ZzKUr
+	+/8JqqtwjhhBk3mEKl0dmG8JHNmk3j4mjOgFhiCoGSqB0BSDM4zUnZoxqSPOcPiw
+	8nlNFh+GDjKEKMBusvQZrDCYKzDHGh2Ylq2nC6ymV35pBYeDbCsjYmjNnsF6MELa
+	2hmKFbN9QHOBSsfmbC5S6edM+YStnJyPAvtle8tg9x2Eq1P3mRTZx3rjaoVi1lb0
+	gvIjQwtdwjSOSLRTP/su3jjdBeRFZspIag88OXEd4a+4vXh29uKJPoVZn8vUkDu2
+	O6e9xEbDnatuWQ6ZACzjkrw6DWqrk//B9eIKZGooug3jErrfn754cG7JZ7uIOusQ
+	==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 44k8y9n2fk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Feb 2025 19:40:07 +0000 (GMT)
+Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 514JRPbB010902;
+	Tue, 4 Feb 2025 19:40:07 GMT
+Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 44k8y9n2ff-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Feb 2025 19:40:07 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 514JXoDo024540;
+	Tue, 4 Feb 2025 19:40:05 GMT
+Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
+	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 44hxxn55q4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Feb 2025 19:40:05 +0000
+Received: from smtpav03.wdc07v.mail.ibm.com (smtpav03.wdc07v.mail.ibm.com [10.39.53.230])
+	by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 514Je4OI26739230
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 4 Feb 2025 19:40:05 GMT
+Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id D765F58054;
+	Tue,  4 Feb 2025 19:40:04 +0000 (GMT)
+Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 95E905805F;
+	Tue,  4 Feb 2025 19:40:02 +0000 (GMT)
+Received: from [9.67.69.251] (unknown [9.67.69.251])
+	by smtpav03.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Tue,  4 Feb 2025 19:40:02 +0000 (GMT)
+Message-ID: <66e2e5e4-5ce5-442c-ba0f-d12cbe79e868@linux.ibm.com>
+Date: Tue, 4 Feb 2025 13:40:01 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XOwSPoDBnQePLHKv"
-Content-Disposition: inline
-In-Reply-To: <20250203213042.12657-1-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 0/9] DTS updates for system1 BMC
+To: Andrew Jeffery <andrew@codeconstruct.com.au>, brgl@bgdev.pl,
+        linus.walleij@linaro.org, minyard@acm.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, andrew+netdev@lunn.ch,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, openipmi-developer@lists.sourceforge.net,
+        netdev@vger.kernel.org, joel@jms.id.au, devicetree@vger.kernel.org,
+        eajames@linux.ibm.com, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20250203144422.269948-1-ninad@linux.ibm.com>
+ <79b819b6d06e3be0aa7e7f6872353f103294710c.camel@codeconstruct.com.au>
+Content-Language: en-US
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <79b819b6d06e3be0aa7e7f6872353f103294710c.camel@codeconstruct.com.au>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: BhN8vCZp0wt20C1zuEMO0Dx_nRHE2XX9
+X-Proofpoint-ORIG-GUID: WZwPJdOGC93lfCtccZ-FJMqUiy-K5W1k
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-04_09,2025-02-04_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ mlxlogscore=965 suspectscore=0 lowpriorityscore=0 clxscore=1015
+ spamscore=0 mlxscore=0 adultscore=0 impostorscore=0 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502040145
+
+Hi Andrew,
+
+Thank you for the review.
+
+>>
+>> NINAD PALSULE (6):
+> 
+> Why is your name all in caps here but not for the binding patches
+> below? Can you fix that up?
+
+Fixed in the version 9
 
 
---XOwSPoDBnQePLHKv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>> Ninad Palsule (3):
+>>    bindings: ipmi: Add binding for IPMB device intf
+> 
+> This one needs an ack from Corey if I'm to take it.
+> 
+>>    dt-bindings: gpio: ast2400-gpio: Add hogs parsing
+> 
+> This one needs an ack from Linus W or Bartosz if I'm to take it.
+> However, it's also causing some grief from Rob's bot:
+> 
+> https://lore.kernel.org/all/173859694889.2601726.10618336219726193824.robh@kernel.org/
+> 
+> As the reported nodes should all be hogs the name shouldn't matter
+> anywhere else (as far as I'm aware). It would be nice if all the
+> warnings were cleaned up before we merged the binding update. That way
+> we don't cause everyone else looking at the CHECK_DTBS=y output more
+> grief than they already get for the Aspeed devicetrees.
+> 
+> In order to not get bogged down it might be worth splitting out both
+> the IPMB- and GPIO- related patches like you did the FTGMAC100 patch,
+> and then I can merge what remains (from a quick look they seem
+> relatively uncontroversial).
+> 
 
-On Mon, Feb 03, 2025 at 03:30:41PM -0600, Rob Herring (Arm) wrote:
-> Device specific schemas should not allow undefined properties which is
-> what 'unevaluatedProperties: true' allows. Fix this constraint.
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+The warnings are fixed by different patch by Krzysztof. As there are no 
+more changes then I will wait for other responses. If I don't get those 
+response in couple of days then I will split it.
+https://lore.kernel.org/linux-kernel/20250116085947.87241-1-krzysztof.kozlowski@linaro.org/
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I am also planning to fix old warnings in the system1 dts in separate patch.
 
---XOwSPoDBnQePLHKv
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+-- 
+Thanks & Regards,
+Ninad
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6Js7wAKCRB4tDGHoIJi
-0ofNAQDFmCSDgJmpUf5xFTf8IyUT1tSKqy1zxhN9AYpQTbk9zwD8CB7gM85XGLbc
-+0Ypwqd3Eu02o04XFEH+xuwsyWL/Dwc=
-=Xye+
------END PGP SIGNATURE-----
-
---XOwSPoDBnQePLHKv--
 
