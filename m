@@ -1,364 +1,193 @@
-Return-Path: <devicetree+bounces-142947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8373A275A3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 16:19:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8388EA275AB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 16:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49D857A0795
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 15:18:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 397041883520
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 15:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE5B214205;
-	Tue,  4 Feb 2025 15:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC25C214207;
+	Tue,  4 Feb 2025 15:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eW7ZgJ6B"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jxpU1tKg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011053.outbound.protection.outlook.com [52.101.65.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC7220C039
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 15:19:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738682372; cv=none; b=oKF3AgmOpW8lj7y5ZzVAlGWxeBs+/tTlOZaTHulVZHF/PJ2Q5aNIcupwoGp59gXuyZKjpGAiCin6n1Q2f1oooaw9Vw/bkCpCExJeBZz6yLSFIdQdI81JH5Q931yFRFPZ//shmfVAxesJo+2265ckBPjTTsVz7ssPUjqVLRIgbtk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738682372; c=relaxed/simple;
-	bh=NbSqlF/6R91OVHOYruWqHeNzoGj0pygDRXAJ6C41ebk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L7/uwYYPQIUI0nYX4IfsYYkM4euNxvm/rADd1F5oAKTfChha9slskDyWtIyKAiLQ7QtIPJ6dnSPXjSHshz2w2wxUUCdnVIxu9qtb+uKRYCTvjJp+nBoJQXflTxTNirxJ1NFXv5exEzH/5nKJacbSPUpMq9YjkLBTwiM53Zzx+To=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eW7ZgJ6B; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53f22fd6832so6258694e87.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Feb 2025 07:19:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738682367; x=1739287167; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ptWJ7zdNtWBMDj+P9H5d/yhoNBNJZeSvROVnxn8+Cy0=;
-        b=eW7ZgJ6BAdvmWHdhDY2kxifplNZx985Q8//FVAJulrtLi/v4ypJ69iaryJ/eiH5oox
-         Fnxh4aFXmOSK80+lmhndN+M9U4kw8tpktzQCqa++iLE/Vc2NwQSMUlORYUoY8nfHtE0s
-         2nny+0YiL9/uf03RSysovFhDFaVHB7cf/3D1Fs5h3Ss4zpvkODdpcUA5wqorBqsxSrKg
-         0YT5+8p71XamPtllwsHhbLLNPt+/VaswUukGj74BliTzkK9zwHry4fASyd+s5XMKJhLL
-         3WKZSz6TSDzKrOtnCPdhzVTmgdloiwJHn4xWdR6vT+NgYYdknaFyoexXWWjO98fLm2bO
-         m42Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738682367; x=1739287167;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ptWJ7zdNtWBMDj+P9H5d/yhoNBNJZeSvROVnxn8+Cy0=;
-        b=Xd3/tfMew7gEm48Gz6D45m2NAQQ/81DVaOFZ24V0efAuSxmGxlIgxhB6hfwZLbfFGf
-         g1QXKTqPexYczIxxy2pHzwQiLNsk+G/J8tC8by2ioUcP30DbBb1YeGaEjsxvhxdrdMIv
-         /UZONNVbZuJgtnHWXHrxR/5DDAETeZvjoqELjMzlNjYLXri6oqdr8ujuXlB2/XzpJ2/Q
-         3ttqIzLlijiYbROHRARiE8CrED9Kheyr6E81r36c9l1wyfZ6jNyTraqawz3GHq3l+Ty3
-         xaimJGYMnCbIJ32MUww5RlMFwyfyvkDUPiuKweqnh6zzhBV8dgH6usiFsV7r/NaYqFMD
-         HhFg==
-X-Forwarded-Encrypted: i=1; AJvYcCX6ZDcCs342x2kmn5I0q10ku+eivBWYioTPfUsMzEGKLjGJVKuBrvIJzI+jWVrTw9A3nimtAojk8L4+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxzu0J49Ed9/vzsJ4evmzm3KP9lcuNhGH/DaZxgY+Safpe9coID
-	iXIdvQtcHc7L6Qqa+wO2ZqTvxJdI00hPJTiVnaAkKlDA3wk/cb0Hya7XzSEoWhc=
-X-Gm-Gg: ASbGnctSUDgW4cpZ3OW9AGPUxjUkYvfB18Eg/sTy2SqOTg3ArUtri2AiZ/jbZPOuuc9
-	zHkNy/Bqk/xuZvoLQ15CUDMkhwlyS9T6AWRAL8Rx/c1OKvwhh1j3UxzD+YbAy1O32HRwiUXtDNf
-	HtygCYjlAsYRDc+YP1brh/Tr7nWDpA1/ECqWwYg44XNtfDSS7DaLaHkbVlDCq1CiezceJNlHzUu
-	MsA3sui/9QuxgBCNxKssEEE9CbUeKeHsLpjDDwmTe2BZ0u7R1UG9i3XCFAy8Hcmb4U9OfH6R9Nf
-	6fnIKkcaq0xAlku0GRDRhLjAGDNPkMUKmjx5lqOWA1haFwNpL60oyfNOoLnQ2ZnUNAhab+k=
-X-Google-Smtp-Source: AGHT+IE2qVzH17AZUiAiSfRIP9fn/n6qJoeyUN6d/KnBt+D7ZA4ynyd5JH2BepJz0FL+EGOxxpTguA==
-X-Received: by 2002:a19:ee07:0:b0:540:206b:c355 with SMTP id 2adb3069b0e04-543e4beaca5mr6791855e87.19.1738682367068;
-        Tue, 04 Feb 2025 07:19:27 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebeb0b40sm1604056e87.112.2025.02.04.07.19.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Feb 2025 07:19:26 -0800 (PST)
-Date: Tue, 4 Feb 2025 17:19:24 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: Melody Olvera <quic_molvera@quicinc.com>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, 
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8750: Add USB support to SM8750
- platforms
-Message-ID: <flwitkfqnrrz7kq7qwzxfjauxvysegpxhxtftofalfmgdde57t@cwtoj3s2676z>
-References: <20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com>
- <20250113-sm8750_usb_master-v1-7-09afe1dc2524@quicinc.com>
- <lk26ltslmijj7tj2kst2wsvd6d2hyj3zjzcwavwl63evjhcgdh@ewqliiijispu>
- <4a18ddb1-a7f4-41ae-b115-516b1710cbde@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBA59213E84;
+	Tue,  4 Feb 2025 15:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738682470; cv=fail; b=XhpGSj1vq6HlnDeew1lkD1/jBL3869KAaYPXuRrEgB2U59K2Zz7Zzx+O3Nd5NQlKzNkrfw+esZ6GbR2GqejXdiRd4bR/f0SYQ+ewTqMoWpafQLZJ+qi2haJ74e9SMujGvw42Qh8oKa+qof9lmI542i+5J7TSWOf876FV/u2JbkY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738682470; c=relaxed/simple;
+	bh=4Gic9XBtI/IIVKjQDVeWU+omOYj/XV1i7/Xo7yfQUGc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=CiivL0npbNhqWTQfJS3OCFlSP/j/XIrxTVR1bKb/Gj6vcva94Uq23PTOp0jhD0m6y83XvWU7iZ7nz9IxTfdMLiYaEiA53A4a5G0TONWHw0MtgSRV4aLRIYx0vouuCcioRdk+0IXUiS6SACJGF75gcTbU1v+a+EsCuLRihyUBXPs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jxpU1tKg; arc=fail smtp.client-ip=52.101.65.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FYWcCfGWNLRfd7INTH0nbHt00EEvUuhFvECFWPmLDBlOjdqUxHFN8m1WT/puGGbARUbfGQqTkW/dm7tH1s5G3nql+19qZuI2PfrADnZmHA7b1PzoDhrpgJCuYaxj0R5vlHYrSuR+ngDOBXBQ6lRev8kIp+hMADrLeLoBjcvEMBW0hGMbK4SecIEXWrAuoWxH7wUKFrjuux6FcKYU5V/hbnxNCX52iv56LNGeBffHcbRMBTHNKfq4CefjtFeiCOEISkF2zXoUx+Biuqbqyp+4tnpoLV5uqpgRV0fZdu9/8LRNzT0m8kipXDQk78nvUppo1DDt+CWORPz4/+QAL9lR2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4Gic9XBtI/IIVKjQDVeWU+omOYj/XV1i7/Xo7yfQUGc=;
+ b=gFH/pxUyIk/CnHOEi/dWOSZPSPCaQqu5G7chEA8mtF7BqqgMicIBhqzm81u1y37UfN2Vx7bCn6n/6N7FpfdSyH4rOGr660F3vy6H7MQMo/3iZbv/Jf5cWCiiVZvRGG5yayWYAMvKUf0LH+j0guQMKZ0Fi2R4AamtJYVVGUnyNHQpHbZFfD7VD1T1Tk2zj5sbJ1ygpikVktAaWfskM8PXMI6ES7VkaMIkcs6tMtgP5MtNpCpOoCFWl3ZHrhWEls/HoygKy4KrqcvyDVdBsrrC7bwNZGGgYWFBa8GneNTYXcy0ArRUjIjltutO5X5UURCalvImmG0UhwE6A8ZbhkrwQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4Gic9XBtI/IIVKjQDVeWU+omOYj/XV1i7/Xo7yfQUGc=;
+ b=jxpU1tKgdT5ICSExkw9sdsxJqDIsEjClqhd7jEo4T1MoS0NuVRFkZ11FdkLKKr9IjnkGP8MWGFwtdD4cSdYy5cZ6XIzVzwCdfkJjK4zq72eQbbxIhGjB2BXZwxrT9NEtRBSJTVTm1FZrQoO6hy0DsYZn1+4bP8tvbv4W0s9yAr9Oolv/f1wRPgujGvCSrIR9+eykkyGFCC3li1knPzdP/aZfdg8zFtbeiy6y3NJwid8Heslu5QoujY3EVhCrijAJvEqJao6RoueaWlond/FfWZuC61imI2Qr2hhZ/ZkqWdaSKegFFRJ8rxhpNf17tSEiqmXhwBJhSFCakE2qMfpg7A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB7554.eurprd04.prod.outlook.com (2603:10a6:20b:2da::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.26; Tue, 4 Feb
+ 2025 15:21:05 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8398.021; Tue, 4 Feb 2025
+ 15:21:05 +0000
+Date: Tue, 4 Feb 2025 10:20:55 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	NXP S32 Linux <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH v5 0/3] add I2C DTS support for S32G2/S32G3 SoCs
+Message-ID: <Z6IwV5zYqGgiqFcj@lizhi-Precision-Tower-5810>
+References: <20250113110512.506007-1-ciprianmarian.costea@oss.nxp.com>
+ <afde74d0-b4d4-4907-bfd0-59f68861245a@oss.nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <afde74d0-b4d4-4907-bfd0-59f68861245a@oss.nxp.com>
+X-ClientProxiedBy: SJ0PR03CA0152.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::7) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4a18ddb1-a7f4-41ae-b115-516b1710cbde@quicinc.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB7554:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5bd4576c-4e62-4aef-c569-08dd452f8aee
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|52116014|7416014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?aBOPlyp/dywFTvEmiKLP44/mGkNIePL+HCT2+7GqK2jAHBcyP6iEpeVXTnJi?=
+ =?us-ascii?Q?x7kXkR+KtCrA2J/xIu88pDZww9WVOUpWwSjKvmHzlS2D06XfkWgzoHB5Xkan?=
+ =?us-ascii?Q?NAx2UnGGC8+pSMUNXFUkYrR2rJFTvb88jevedyNMSZY+j8+eZ4r5U1s/CN8+?=
+ =?us-ascii?Q?cSX1vHngfJNd83IpRXk1ZzMuVM4y0x4UT13GQP6L2FGtYPLQ4RoOj9qTDOG9?=
+ =?us-ascii?Q?h7bU7JSuc8Y8a7nXqGazieaUuZ84pPm0raI6VjTk8wYkeZiXcO7y8bRQ3YBX?=
+ =?us-ascii?Q?6bXzBSONO2N6EDf2gonlhgMP3bMpcX0dAP+4YuGdFy5biUz53awytEXiweUa?=
+ =?us-ascii?Q?4gbYN9h6/XDJUb9eCTO4zGXQp9gwPuhJHBsjHqbN/lvWPNPAeopG7p2F3G2x?=
+ =?us-ascii?Q?sDqJes3+l8pyKxA4uAh11RoO4ohxwlG1VGN/nT7Wm0vU4KKnfr2k8ePJ3Uoc?=
+ =?us-ascii?Q?EYH3KMyp7l/byXcphP8YLG3g0V7PZjXesariyoL+6VcSliQHerW4DK79fA/d?=
+ =?us-ascii?Q?EJOS43CnI6k2qxVpffSbEzztSpcDTjddBZc/fyxzT1FkKsx6/pIClWajIcfG?=
+ =?us-ascii?Q?xlNPlKh6V8TXRZDCc+cSOYO2oNJmFbIw2AivLYLbXAAjbSlotkXHqs7gLrtW?=
+ =?us-ascii?Q?j+46o993oDCkaC7b3h1YIQRCcY9exV04QbjJqTBAPSpclqwEgbBG12PPv+fe?=
+ =?us-ascii?Q?lcCC0hPb9+YavEOtFMOwN73duiIEAbQ2MrpTJLsy78zVa1g5ZrOx+k0ZSrNM?=
+ =?us-ascii?Q?/W8ONusiQy2BotrCDy18v5aUe+ops/Eve0x5uRfjsjZB0umGi1p9UwHVitvb?=
+ =?us-ascii?Q?cvGv5OKCK8la4NMkAOx18D48aOM3zpDl9qoU9pMGWZJHPdTjCf5UP2JzIZA9?=
+ =?us-ascii?Q?3OQoZlm5dgSUqA0r7iBRps7UL3hd1NyKEWu/ePxcj3VQpSlf0q+eZP9wt7i3?=
+ =?us-ascii?Q?u17nDjbnq3IegQnkhkEoqe2KUAs0LFBIc+Yw42t7YqzNU/wweBuV2v+yxlSX?=
+ =?us-ascii?Q?KLBpXUQ5TK8ssu24Yp4sI1QF/opJF9ONjaHgC65NbkWnCTbOGQHEWdlnIsiS?=
+ =?us-ascii?Q?DU3bnVsXg3EKBd3UPZ9OipIauInqz0Uh6tGfz7nbIAA1+uhJ9dgrg4+ERymR?=
+ =?us-ascii?Q?22dIqxLSVOAtfySFA5ooeNFlHb0RzoSektHfvvIINc6j9Y9oXMQO41vxyzyX?=
+ =?us-ascii?Q?WNt0q4gEc9pCdCAwFy/7Hn++KJw4FJtHB6Rdi4iqVj2cAvNouEp59hp4ESvQ?=
+ =?us-ascii?Q?s+ZqJR0mhIii3CS9MNAY7E1WZMYS3SBZAzI40iPU9tRfhD6M2yjSpBDbDgGG?=
+ =?us-ascii?Q?orurVFOUBI4ClxXNtQYrk9sGY1s6dpgRoVR/AZ8eo6JUWNuRvnz1VwSZayln?=
+ =?us-ascii?Q?q/iLiLAzmngOzlnoICKeLIXxBHpZqtqarueYcen115Q75e81m15RRKBi8oOW?=
+ =?us-ascii?Q?2RsMIXwJMtwGRe0xClVv/vPaa/xswJH3?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?NkhDkWq9GTi36jEhT0j4p2hE3Wv5fAggFLRg41Wni1ZfFiCeOgla3IcjNArM?=
+ =?us-ascii?Q?N8ni5t7bTGTYqOOzx28fmoYL6ZqTulji29g607Ke71fgIX+0sBgcFBk6REhi?=
+ =?us-ascii?Q?fUdh/a7VsF70ytZDyVQccNrkIyxBHT6XdzxUs73hjdz6SFDQXeHUN7VRWxdH?=
+ =?us-ascii?Q?MMlDcqAwJVaM42+QOqnrDQU/aN2t5JUOsTovBs41tUUN2xpgzzI3p+sTmkGD?=
+ =?us-ascii?Q?EhypUoIYxazJlC7KcGwY6hGBCf6+i5CX/arS11h7qFzHAsBTTn1dwKGBQ8fL?=
+ =?us-ascii?Q?QVpcCfTG7TLfiW/sWZ3F3Z7PBguqSEu3rHNC9FP0Vp1sVPlfbwgqsSsGCTdS?=
+ =?us-ascii?Q?ntTXaV2vikNCLnE34FAVUniZ4qIhf4DIAvVibR3364zDI3u0EO7zjBFFmZpQ?=
+ =?us-ascii?Q?NtD6ZscIV/Sh4PLY1y7n4Iji43YjSSxSDIEqMARJori3QxbLcxPiGkFiOaVT?=
+ =?us-ascii?Q?0lbrcREQ/+eB/K7/IpNVq+FSRU4Mj1LJvIqIBsFOhgEfe4XKicvnLUNEMOEW?=
+ =?us-ascii?Q?Q1bF41CAYra6RmPe+L8sWTEGSCs28gRZxus318Bl4Y2d0D7xP4iXNJM/IAaR?=
+ =?us-ascii?Q?TbtITMSlvaPomhp9h9Hpa/hcS39tUlPKxbidmP5so3/pENAVoPwbNxMtluqP?=
+ =?us-ascii?Q?NUzShOKRo9OrPsIvq7Sk7Iuw0gK7ipBTEAp1FFnikwo5xzYfEZlooIRjc3G+?=
+ =?us-ascii?Q?B6PGwyj6xJVE97zEoXcUbZYmND11oK4Afk5f17JRrr9f2LoHM6AVtZr1gkon?=
+ =?us-ascii?Q?+Id6XFEIFAojiBktcazmWzh8zsePrrrnUDTEOVi99n+jACg7Hm0uzeEZWvxH?=
+ =?us-ascii?Q?QkwMJAIfr2RsR/45T61/yxpvK58AWgOzpyFP9QWEmVY3xydfwZ+RwRpUgY+1?=
+ =?us-ascii?Q?otS/5xsosXzBjge0PqAitBBorI80W5vsUF5G27crAtfFz5y07TTgqxDYvmTS?=
+ =?us-ascii?Q?Ta4IznhS4IsVq9GcOgJxdultYFIDXvdACZKqU4v52jZQ6MGSvhO7YajrPkpV?=
+ =?us-ascii?Q?NJD6OONdLUGJkmBx/5EEiIuyaypyPDef/B7cNlfx9VE6Xx0tUtyiCKgu1Urf?=
+ =?us-ascii?Q?C8Z6AaTs7/MhAnTaRRny0uJsRaYKWplw/2s0Npr8Dqci/rwm/inu/MOWf49I?=
+ =?us-ascii?Q?HkmYo4X9hNoaJwRf9px+149QPSGxpQ6ccYfs23WZC7aOaP6EeJUTIDJD5fAK?=
+ =?us-ascii?Q?6G1QK6kvAJIpzA8BzKG1v/Lpgjediics9V+prYa44dcJbqEGuDyk3TVHwDJe?=
+ =?us-ascii?Q?1mYpml4SOMwFryvJauE6cG8sIEmq2UKONaocai2tKQQCMfbofAryXXYm0g3D?=
+ =?us-ascii?Q?BRpkt+T2dLePUhsJf8A1WFnvspUGrlqHLeMCCLtHZVSpzcmfN5zTjZ0BPgAk?=
+ =?us-ascii?Q?bXs8xiu6Fr2V1LlC8o4VZOEb1eHyhysbYe7JiPdUjp+/ZNnLyQlJQdGQSKR/?=
+ =?us-ascii?Q?2671yqWTSp8oMJpUvt/EV808rU82RIfNoiK34s4SglvhQtPwZhNSDWOe3ktr?=
+ =?us-ascii?Q?rgIov9PTANL3Lhhdss6k8JfiHr/+A4eHXVdOJd4dLgW9/gx1BhYSrMZwe3g6?=
+ =?us-ascii?Q?UZQMJrYHuxlyMIbftt8=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5bd4576c-4e62-4aef-c569-08dd452f8aee
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2025 15:21:05.5004
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: icHYN1uy/2SGWuNsUePuZShhW9Ivd1Md4RUODeCv6QMWv7Qd9uagZa/vurQRmVoOJRRvjd80e6pk1I2GgnDZ4Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7554
 
-On Mon, Feb 03, 2025 at 07:21:52PM -0800, Wesley Cheng wrote:
-> 
-> On 1/14/2025 2:38 AM, Dmitry Baryshkov wrote:
-> > On Mon, Jan 13, 2025 at 01:52:13PM -0800, Melody Olvera wrote:
-> >> From: Wesley Cheng <quic_wcheng@quicinc.com>
-> >>
-> >> Enable USB support on SM8750 MTP and QRD variants. SM8750 has a QMP combo
-> >> PHY for the SSUSB path, and a M31 eUSB2 PHY for the HSUSB path.
-> >>
-> >> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> >> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> >> ---
-> >>  arch/arm64/boot/dts/qcom/sm8750-mtp.dts |  24 ++++++
-> >>  arch/arm64/boot/dts/qcom/sm8750-qrd.dts |  24 ++++++
-> >>  arch/arm64/boot/dts/qcom/sm8750.dtsi    | 134 ++++++++++++++++++++++++++++++++
-> > Separate SoC and board patches.
+On Tue, Feb 04, 2025 at 12:12:34PM +0200, Ciprian Marian Costea wrote:
+> On 1/13/2025 1:05 PM, Ciprian Costea wrote:
+> > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 > >
-> >>  3 files changed, 182 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/qcom/sm8750-mtp.dts b/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
-> >> index 9e3aacad7bdab6848e86f8e45e04907e1c752a07..059eccbbc3fb05fc8806e36d35dc469d44443a26 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
-> >> +++ b/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
-> >> @@ -792,3 +792,27 @@ &tlmm {
-> >>  &uart7 {
-> >>  	status = "okay";
-> >>  };
-> >> +
-> >> +&usb_1 {
-> >> +	status = "okay";
-> >> +};
-> >> +
-> >> +&usb_1_dwc3 {
-> >> +	dr_mode = "peripheral";
-> >> +};
-> >> +
-> >> +&usb_1_hsphy {
-> >> +	vdd-supply = <&vreg_l2d_0p88>;
-> >> +	vdda12-supply = <&vreg_l3g_1p2>;
-> >> +
-> >> +	phys = <&pmih0108_eusb2_repeater>;
-> >> +
-> >> +	status = "okay";
-> >> +};
-> >> +
-> >> +&usb_dp_qmpphy {
-> >> +	vdda-phy-supply = <&vreg_l3g_1p2>;
-> >> +	vdda-pll-supply = <&vreg_l2d_0p88>;
-> >> +
-> >> +	status = "okay";
-> >> +};
-> >> diff --git a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-> >> index f77efab0aef9bab751a947173bcdcc27df7295a8..01c0af643626917614fbd68cf8962ef947ca6548 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-> >> +++ b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-> >> @@ -790,3 +790,27 @@ &tlmm {
-> >>  &uart7 {
-> >>  	status = "okay";
-> >>  };
-> >> +
-> >> +&usb_1 {
-> >> +	status = "okay";
-> >> +};
-> >> +
-> >> +&usb_1_dwc3 {
-> >> +	dr_mode = "peripheral";
-> >> +};
-> >> +
-> >> +&usb_1_hsphy {
-> >> +	vdd-supply = <&vreg_l2d_0p88>;
-> >> +	vdda12-supply = <&vreg_l3g_1p2>;
-> >> +
-> >> +	phys = <&pmih0108_eusb2_repeater>;
-> >> +
-> >> +	status = "okay";
-> >> +};
-> >> +
-> >> +&usb_dp_qmpphy {
-> >> +	vdda-phy-supply = <&vreg_l3g_1p2>;
-> >> +	vdda-pll-supply = <&vreg_l2d_0p88>;
-> >> +
-> >> +	status = "okay";
-> >> +};
-> >> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-> >> index 3bbd7d18598ee0a3a0d5130c03a3166e1fc14d82..54522fd3d0e11c3cff02beaf1d249fe654cacc0f 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-> >> @@ -10,6 +10,7 @@
-> >>  #include <dt-bindings/interconnect/qcom,icc.h>
-> >>  #include <dt-bindings/interconnect/qcom,sm8750-rpmh.h>
-> >>  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >> +#include <dt-bindings/phy/phy-qcom-qmp.h>
-> >>  #include <dt-bindings/power/qcom,rpmhpd.h>
-> >>  #include <dt-bindings/power/qcom-rpmpd.h>
-> >>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> >> @@ -1966,6 +1967,139 @@ lpass_lpicx_noc: interconnect@7420000 {
-> >>  			#interconnect-cells = <2>;
-> >>  		};
-> >>  
-> >> +		usb_1_hsphy: phy@88e3000 {
-> >> +			compatible = "qcom,sm8750-m31-eusb2-phy";
-> >> +			reg = <0x0 0x88e3000 0x0 0x29c>;
-> >> +
-> >> +			clocks = <&tcsrcc TCSR_USB2_CLKREF_EN>;
-> >> +			clock-names = "ref";
-> >> +
-> >> +			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
-> >> +
-> >> +			#phy-cells = <0>;
-> >> +
-> >> +			status = "disabled";
-> >> +		};
-> >> +
-> >> +		usb_dp_qmpphy: phy@88e8000 {
-> >> +			compatible = "qcom,sm8750-qmp-usb3-dp-phy";
-> >> +			reg = <0x0 0x088e8000 0x0 0x3000>;
-> >> +
-> >> +			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-> >> +				 <&rpmhcc RPMH_CXO_CLK>,
-> >> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> >> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> >> +			clock-names = "aux",
-> >> +				      "ref",
-> >> +				      "com_aux",
-> >> +				      "usb3_pipe";
-> >> +
-> >> +			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
-> >> +				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
-> >> +			reset-names = "phy",
-> >> +				      "common";
-> >> +
-> >> +			power-domains = <&gcc GCC_USB3_PHY_GDSC>;
-> >> +
-> >> +			#clock-cells = <1>;
-> >> +			#phy-cells = <1>;
-> > Missing orientation-switch and ports{} description.
-> 
-> At least for this initial submission/series, we haven't yet defined the PMIC GLINK connections yet, so does it make sense to include these now?  Basically, even if we define that connection, since I'm not aware if the enablement of PMIC GLINK has been added, it would be nil, as it would be the one responsible for registering the type C port. 
-
-Note, I haven't said anything about PMIC GLINK. The QMP is still an
-orientation-switch, no matter if there is a PMIC GLINK, native TCPM
-implementation or any other external Type-C controller. Likewise the QMP
-still has 3 ports, one going to DP, one going to USB3 controller and the
-last one being empty.
-
-Also, please wrap your comments, it's hard to read them otherwise. The
-recommended width is 72-75 chars.
-
-> 
-> >> +
-> >> +			status = "disabled";
-> >> +		};
-> >> +
-> >> +		usb_1: usb@a6f8800 {
-> >> +			compatible = "qcom,sm8750-dwc3", "qcom,dwc3";
-> >> +			reg = <0x0 0x0a6f8800 0x0 0x400>;
-> >> +			status = "disabled";
-> >> +			#address-cells = <2>;
-> >> +			#size-cells = <2>;
-> >> +			ranges;
-> >> +
-> >> +			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
-> >> +				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
-> >> +				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
-> >> +				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
-> >> +				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-> >> +				 <&tcsrcc TCSR_USB3_CLKREF_EN>;
-> >> +			clock-names = "cfg_noc",
-> >> +				      "core",
-> >> +				      "iface",
-> >> +				      "sleep",
-> >> +				      "mock_utmi",
-> >> +				      "xo";
-> >> +
-> >> +			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-> >> +					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
-> >> +			assigned-clock-rates = <19200000>, <200000000>;
-> >> +
-> >> +			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
-> >> +						  <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-> >> +					      <&pdc 14 IRQ_TYPE_EDGE_BOTH>,
-> >> +					      <&pdc 15 IRQ_TYPE_EDGE_BOTH>,
-> >> +					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
-> >> +			interrupt-names = "pwr_event",
-> >> +					  "hs_phy_irq",
-> >> +					  "dp_hs_phy_irq",
-> >> +					  "dm_hs_phy_irq",
-> >> +					  "ss_phy_irq";
-> >> +
-> >> +			power-domains = <&gcc GCC_USB30_PRIM_GDSC>;
-> >> +			required-opps = <&rpmhpd_opp_nom>;
-> >> +
-> >> +			resets = <&gcc GCC_USB30_PRIM_BCR>;
-> >> +
-> >> +			interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
-> >> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
-> >> +			interconnect-names = "usb-ddr", "apps-usb";
-> >> +
-> >> +			usb_1_dwc3: usb@a600000 {
-> >> +				compatible = "snps,dwc3";
-> >> +				reg = <0x0 0x0a600000 0x0 0xe000>;
-> >> +
-> >> +				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-> >> +
-> >> +				iommus = <&apps_smmu 0x40 0x0>;
-> >> +
-> >> +				phys = <&usb_1_hsphy>, <&usb_dp_qmpphy QMP_USB43DP_USB3_PHY>;
-> >> +				phy-names = "usb2-phy", "usb3-phy";
-> >> +
-> >> +				snps,hird-threshold = /bits/ 8 <0x0>;
-> >> +				snps,usb2-gadget-lpm-disable;
-> >> +				snps,dis_u2_susphy_quirk;
-> >> +				snps,dis_enblslpm_quirk;
-> >> +				snps,dis-u1-entry-quirk;
-> >> +				snps,dis-u2-entry-quirk;
-> >> +				snps,is-utmi-l1-suspend;
-> >> +				snps,usb3_lpm_capable;
-> >> +				snps,usb2-lpm-disable;
-> >> +				snps,has-lpm-erratum;
-> >> +				tx-fifo-resize;
-> >> +
-> >> +				dr_mode = "peripheral";
-> > This goes to the board files.
+> > This patchset aims to add two changes to the S32G2/S32G3 dtsi support:
+> > - Adding I2C dts support for S32G SoC based boards
+> > - Centralize the common part of 'S32G-EVB' and 'S32G-RDB' board revisions
+> > into dtsi files. This refactor will serve I2C in this patchset, but in the
+> > future it will also be used for other modules such as : FlexCAN and DSPI.
 > >
-> >> +
-> >> +				dma-coherent;
-> >> +
-> >> +				ports {
-> >> +					#address-cells = <1>;
-> >> +					#size-cells = <0>;
-> >> +
-> >> +					port@0 {
-> >> +						reg = <0>;
-> >> +
-> >> +						usb_1_dwc3_hs: endpoint {
-> >> +						};
-> >> +					};
-> >> +
-> >> +					port@1 {
-> >> +						reg = <1>;
-> >> +
-> >> +						usb_1_dwc3_ss: endpoint {
-> > QMP endpoint.
-> 
-> Same as above comment.
+...
+> >
+>
+> Hello,
+>
+> Is there any more feedback on this patchset ? I see that it is hanging for a
+> while. Just want to check.
 
-It is independent of Type-C integration, so it should be linked to the
-QMP PHY.
+After linus create v6.14-rc1 tag, shawn will take care.
 
-> 
-> Thanks
-> 
-> Wesley Cheng
-> 
+Frank
 
--- 
-With best wishes
-Dmitry
+>
+> Best Regards,
+> Ciprian
 
