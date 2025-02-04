@@ -1,275 +1,164 @@
-Return-Path: <devicetree+bounces-142992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B6DA2780E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:12:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B665A27819
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:15:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03ACC3A140A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:11:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE1D51881F15
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:15:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6C12153E3;
-	Tue,  4 Feb 2025 17:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405E021423C;
+	Tue,  4 Feb 2025 17:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hu44rliW"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KsgkX9ml"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 458E52144DC;
-	Tue,  4 Feb 2025 17:11:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5CFD1547D8;
+	Tue,  4 Feb 2025 17:15:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738689064; cv=none; b=rYOMZVcoP0kbNM5O3IlkIFYVlVOJsnwMjbVbBQPuHlLLBa5LoVyoHWfpXEmvHUjtPMfJIrLcwima/3yQviKuqavBiDoXtCLmh2ebsmu2ZEzQa93Q/rWN7gADn4CxgAFZAAcjwOFXb/r1zn7Rw8q7Ubj2BFlaookpYuzwoTehbuA=
+	t=1738689338; cv=none; b=b5dsS0qrlVFQrdW0yF5b+HA4a+wlq6SH/GfLWFoqRyXTDf4xDMYAbtxrouPrzt3Muc1j7+s2QN1Rdlj3hC4O4dMedSuV4mND4g7Lq/IuhAyGjmC/5FqhG/2YiCBTM4QF39kM+PksgWH2TtMQ4mb+ftxrCf0GBF1dyRpwPxL0XLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738689064; c=relaxed/simple;
-	bh=j8nBnBK0YzkTPxOef8vbqJrD7jMe/NJ3VIVEj3v4b8U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WvsxQnTyO2gnZTxqcdJvEbWrWWdsJ0WwnCU4s6Tt279eqc7vTWcDA9zHordefUE3/k5H00nkbE9XjYWVliDWwdKSG8dt8Q36Ne/J5UA7cOY0lTba7TJqcW3k7CoEv7qQTuflX0JhY1k73KL9dKOOXX534gtA3hE3ab0jqFiZb6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hu44rliW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4386EC4CEDF;
-	Tue,  4 Feb 2025 17:11:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738689063;
-	bh=j8nBnBK0YzkTPxOef8vbqJrD7jMe/NJ3VIVEj3v4b8U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hu44rliWuJH5FbirzaMmHDxAeJALj9fTEVYUjjaJtUyIdNssqVpPKHVmfNL6y+pRs
-	 QLsQEpVKSsXy05ZidoKtcW9DA6Rj3e0ynuNobIft6yOk7bu1FrHg9nIzt6wyrYfYMh
-	 7shV1GyHhw7ihtxemy8FaDrGZw64qI6kh2OmTZ1UKKD6lKiuWKOVG3pSiGy7aHbk3y
-	 l+PnaP76I6sRLWoXdv6m1TXk+eOEFc3MmMdyiyReT34AAFe+9ILLBGX/RxZowOC58c
-	 N5gc2dHJSyMzg55jml+17yoogn1lWY9LtF6WpYZmBXYeat4FFZ6WcyeVtCb/MInVzr
-	 tr9+KrTVtRQqQ==
-Date: Tue, 4 Feb 2025 18:11:01 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Louis Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-Message-ID: <20250204-crouching-alligator-of-success-ab52f8@houat>
-References: <20250108101907.410456-1-herve.codina@bootlin.com>
- <20250108101907.410456-4-herve.codina@bootlin.com>
- <20250114-juicy-authentic-mushroom-cfcdfb@houat>
- <20250114135456.5366eb2a@bootlin.com>
- <20250116-archetypal-bulldog-of-expression-fcc937@houat>
- <20250117091213.647bf0e6@bootlin.com>
- <20250204-chocolate-lionfish-of-luck-10ebb8@houat>
- <20250204163404.0a6b6526@bootlin.com>
+	s=arc-20240116; t=1738689338; c=relaxed/simple;
+	bh=D4dDCeCtCvK0b+cHySHXx6/Bt2dV9Y0VXU7kJjskQHM=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=ulpSmvwSXL0rAebZQ3yciDxtbqpnw/DrYSZCWSsDB4qR9Po88KnMbFzdoDgt4s03VMWlmbCjyhMpDpohMA4+bQcYTURdwd0rpzW1zGYauxYxsPkZyOoo6BYJa7meE+vQzSHUQs07C1MNceS/ER1F3CO6+AGnyLb1KxY35RplQM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KsgkX9ml; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738689336; x=1770225336;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=D4dDCeCtCvK0b+cHySHXx6/Bt2dV9Y0VXU7kJjskQHM=;
+  b=KsgkX9mlk0/lO6bHA+AcATpRS3pnsti2kE6LvY70vfAlME5GXu0wZ6y4
+   CGTb+BOmQ5LJqj6lDFEvfF8IIfls16Y9W8Ys+caLLl2FFA70oIrD3wQSh
+   Vo4AhezdGhzR0ItJCD86+L/ANRvHPz44lCIaxML8YVFK0DvpyJges+3tS
+   XLRhdF1FI/I4Tgg6KGiGqPYXbU4LyQD2XGp8chJwKoSWL77mRWWaNdb4h
+   6Uh9kuD59rsgjYds4Vrf8PCinPjEwStaxyog5CcA4a+ZK7XNf+XPUPQkt
+   pJZ9Ov5w3Oz5XD+EZ2vgHIv4N+5FVaTYuid4BJ9eYkj8OzvF+7CKZ3UDO
+   g==;
+X-CSE-ConnectionGUID: erkThfHLTnCZA2d2SgLzSQ==
+X-CSE-MsgGUID: VC2DI/wQSDqLRTQYOwLbEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="42067063"
+X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; 
+   d="scan'208";a="42067063"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Feb 2025 09:15:35 -0800
+X-CSE-ConnectionGUID: VSrj3jrtQ+SRS7EtX16cDg==
+X-CSE-MsgGUID: xKCo2uCySw6hDVyux856ug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; 
+   d="scan'208";a="111235463"
+Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
+  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Feb 2025 09:15:34 -0800
+Date: Tue, 4 Feb 2025 09:15:34 -0800 (PST)
+From: matthew.gerlach@linux.intel.com
+To: Krzysztof Kozlowski <krzk@kernel.org>
+cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+    robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
+    conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com, 
+    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, matthew.gerlach@altera.com, 
+    peter.colberg@altera.com
+Subject: Re: [PATCH v5 3/5] arm64: dts: agilex: add dtsi for PCIe Root Port
+In-Reply-To: <2323e446-14fd-462e-9fd2-d707f7d3802d@kernel.org>
+Message-ID: <1f8885db-1346-ed9e-dc3a-3938def7f472@linux.intel.com>
+References: <20250127173550.1222427-1-matthew.gerlach@linux.intel.com> <20250127173550.1222427-4-matthew.gerlach@linux.intel.com> <ea614dc5-ad24-4795-b9ba-fa682eda428f@kernel.org> <22cb714e-db76-b07-8572-2f70f6848369@linux.intel.com>
+ <40a3dced-defe-412d-b5b2-efcc9619d172@kernel.org> <7c802294-97f6-3e9-4028-686484a525c5@linux.intel.com> <dd51fdae-0e00-44a9-a5a0-e536ba60fd8c@kernel.org> <56486d91-5ca-d85-eca1-1ce2df25238@linux.intel.com> <2323e446-14fd-462e-9fd2-d707f7d3802d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="47yeuap5jfflsyvy"
-Content-Disposition: inline
-In-Reply-To: <20250204163404.0a6b6526@bootlin.com>
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
 
---47yeuap5jfflsyvy
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-MIME-Version: 1.0
 
-On Tue, Feb 04, 2025 at 04:34:04PM +0100, Herve Codina wrote:
-> On Tue, 4 Feb 2025 16:17:10 +0100
-> Maxime Ripard <mripard@kernel.org> wrote:
->=20
-> > Hi,
-> >=20
-> > On Fri, Jan 17, 2025 at 09:12:13AM +0100, Herve Codina wrote:
-> > > Hi Maxime,
-> > >=20
-> > > On Thu, 16 Jan 2025 09:38:45 +0100
-> > > Maxime Ripard <mripard@kernel.org> wrote:
-> > >  =20
-> > > > On Tue, Jan 14, 2025 at 01:54:56PM +0100, Herve Codina wrote: =20
-> > > > > Hi Maxime,
-> > > > >=20
-> > > > > On Tue, 14 Jan 2025 08:40:51 +0100
-> > > > > Maxime Ripard <mripard@kernel.org> wrote:
-> > > > >=20
-> > > > > ...
-> > > > >    =20
-> > > > > > > =20
-> > > > > > > +static int sn65dsi83_reset_pipe(struct sn65dsi83 *sn65dsi83)
-> > > > > > > +{
-> > > > > > > +	struct drm_atomic_state *state =3D ERR_PTR(-EINVAL);
-> > > > > > > +	struct drm_device *dev =3D sn65dsi83->bridge.dev;
-> > > > > > > +	struct drm_connector_state *connector_state;
-> > > > > > > +	struct drm_modeset_acquire_ctx ctx;
-> > > > > > > +	struct drm_connector *connector;
-> > > > > > > +	int err;
-> > > > > > > +
-> > > > > > > +	/*
-> > > > > > > +	 * Reset active outputs of the related CRTC.
-> > > > > > > +	 *
-> > > > > > > +	 * This way, drm core will reconfigure each components in t=
-he CRTC
-> > > > > > > +	 * outputs path. In our case, this will force the previous =
-component to
-> > > > > > > +	 * go back in LP11 mode and so allow the reconfiguration of=
- SN64DSI83
-> > > > > > > +	 * bridge.
-> > > > > > > +	 *
-> > > > > > > +	 * Keep the lock during the whole operation to be atomic.
-> > > > > > > +	 */
-> > > > > > > +
-> > > > > > > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
-> > > > > > > +
-> > > > > > > +	state =3D drm_atomic_helper_duplicate_state(dev, &ctx);
-> > > > > > > +	if (IS_ERR(state)) {
-> > > > > > > +		err =3D PTR_ERR(state);
-> > > > > > > +		goto unlock;
-> > > > > > > +	}     =20
-> > > > > >=20
-> > > > > > No, you must not allocate a new state for this, you need to reu=
-se the
-> > > > > > existing state. You'll find it in bridge->base.state->state.   =
-=20
-> > > > >=20
-> > > > > Thanks for pointing that. I didn't know about bridge->base.state-=
->state.
-> > > > >=20
-> > > > > I will use that if using the state is still relevant (see next co=
-mment).
-> > > > >    =20
-> > > > > >    =20
-> > > > > > > +	state->acquire_ctx =3D &ctx;
-> > > > > > > +
-> > > > > > > +	connector =3D drm_atomic_get_old_connector_for_encoder(stat=
-e,
-> > > > > > > +							     sn65dsi83->bridge.encoder);
-> > > > > > > +	if (!connector) {
-> > > > > > > +		err =3D -EINVAL;
-> > > > > > > +		goto unlock;
-> > > > > > > +	}
-> > > > > > > +
-> > > > > > > +	connector_state =3D drm_atomic_get_connector_state(state, c=
-onnector);
-> > > > > > > +	if (IS_ERR(connector_state)) {
-> > > > > > > +		err =3D PTR_ERR(connector_state);
-> > > > > > > +		goto unlock;
-> > > > > > > +	}
-> > > > > > > +
-> > > > > > > +	err =3D drm_atomic_helper_reset_pipe(connector_state->crtc,=
- &ctx);
-> > > > > > > +	if (err < 0)
-> > > > > > > +		goto unlock;     =20
-> > > > > >=20
-> > > > > > And you'll find the crtc in bridge->encoder->crtc.   =20
-> > > > >=20
-> > > > > I am a bit confused. I looked at the drm_encoder structure [1] an=
-d the crtc
-> > > > > field available in this structure should not be used by atomic dr=
-ivers. They
-> > > > > should rely on &drm_connector_state.crtc.   =20
-> > > >=20
-> > > > You're right, it's deprecated but used by most bridges anyway.
-> > > >=20
-> > > > I made a series of changes after reviewing your series to address s=
-ome
-> > > > issues with the current bridge API, most notably
-> > > >=20
-> > > > https://lore.kernel.org/dri-devel/20250115-bridge-connector-v1-25-9=
-a2fecd886a6@kernel.org/ =20
-> > >=20
-> > > Thanks for pointing that, indeed, it clarify many things!
-> > >  =20
-> > > >  =20
-> > > > > In my case, I have the feeling that I should get the ctrc from th=
-e current
-> > > > > state (i.e. bridge->base.state->state) using the sequence provide=
-d in this
-> > > > > current patch:
-> > > > >   Retrieve the connector with drm_atomic_get_old_connector_for_en=
-coder()   =20
-> > > >=20
-> > > > Retrieving the old connector makes no sense though. It's the connec=
-tor
-> > > > that was formerly associated with your encoder. It might work, it m=
-ight
-> > > > not, it's not what you're looking for.
-> > > >  =20
-> > > > >   Retrieve the connector state with drm_atomic_get_connector_stat=
-e()   =20
-> > > >=20
-> > > > drm_atomic_get_connector_state will allocate and pull the connector
-> > > > state into the drm_atomic_state, even if it wasn't part of it befor=
-e, so
-> > > > it's not great. And you don't need it in the first place, you only =
-need
-> > > > the current active CRTC. =20
-> > >=20
-> > > Yes, I agree with that, I only need the active CRTC.
-> > >=20
-> > > I tried to get the current atomic_state from:
-> > >   1) bridge->base.state->state
-> > >   2) drm_bridge_state->base.state
-> > >=20
-> > > In both cases, it is NULL. Looking at Sima's reply in your series
-> > > explained that:
-> > >   https://lore.kernel.org/dri-devel/Z4juJy7kKPbI2BDb@phenom.ffwll.loc=
-al/
-> > >=20
-> > > If I understood correctly those pointers are explicitly cleared.
-> > >=20
-> > > So, with all of that, either:
-> > >   a) I wait for your series to be applied in order to use your the cr=
-tc field from
-> > >      drm_bridge_state added by:
-> > >        https://lore.kernel.org/dri-devel/20250115-bridge-connector-v1=
--25-9a2fecd886a6@kernel.org/#t
-> > >   b) I use the old school bridge->encoder->crtc for the moment
-> > >=20
-> > > Do you mind if I use the bridge->encoder->crtc way for the next itera=
-tion of
-> > > my series? =20
-> >=20
-> > Yeah, it makes sense.
->=20
-> I already send a wrong v4 (sorry) and a correct v5 with modifications in
-> this way :)
->=20
-> >=20
-> > Still, it would be great if you could test my series on your setup and =
-see if it helps :)
->=20
-> Of course, I can test updated version of your series.
->=20
-> I already try to get the current atomic_state exactly the same way as you=
- do
-> in your series and the pointer is NULL in my case.
+On Sun, 2 Feb 2025, Krzysztof Kozlowski wrote:
 
-I sent a second version today, let me know if it works.
+> On 02/02/2025 19:49, matthew.gerlach@linux.intel.com wrote:
+>>
+>>
+>> On Sun, 2 Feb 2025, Krzysztof Kozlowski wrote:
+>>
+>>> On 01/02/2025 20:12, matthew.gerlach@linux.intel.com wrote:
+>>>>>
+>>>>>> they are also referenced in the following:
+>>>>>>      Documentation/devicetree/bindings/soc/intel/intel,hps-copy-engine.yaml
+>>>>>>      arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+>>>>>> I am not exactly sure where the right place is to define them, maybe
+>>>>>> Documentation/devicetree/bindings/arm/intel,socfpga.yaml. On the other
+>>>>>> hand, no code references these names; so it might make sense to just
+>>>>>> remove them.
+>>>>>
+>>>>> In general: nowhere, because simple bus does not have such properties.
+>>>>> It's not about reg-names only - you cannot have reg. You just did not
+>>>>> define here simple-bus.
+>>>>
+>>>> I understand. I will remove reg and reg-names.
+>>>
+>>> If you have there IO address space, then removal does not sound right,
+>>> either. You just need to come with the bindings for this dedicated
+>>> device, whatever this is. There is no description here, not much in
+>>> commit msg, so I don't know what is the device you are adding. PCI has
+>>> several bindings, so is this just host bridge?
+>>
+>> The device associated with two address ranges may be best described as a
+>> simple-bus. It is a bus between the CPU and the directly connected FPGA in
+>> the same package as the SOC. The design programmed into the FPGA
+>> determines the device(s) connected to the bus. The hardware implementing
+>
+> So it is part of FPGA?
 
-Maxime
+Technically, the PCIe Tiles are hard IP, but they are connected to the 
+processor through the FPGA.
 
---47yeuap5jfflsyvy
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+>> this bus does have reset lines which allow for safely reprogramming the
+>
+> Then it is not simple-bus. Simple-bus is our construct for simple
+> devices. You cannot have something a bit more complex and call it
+> simple-bus.
+>
+>> FPGA while the SOC is running, which implies appropriate bindings as you
+>> suggest. Something like the following might make sense:
+>>
+>>  	aglx_hps_bridges: fpga-bus@80000000 {
+>>  		compatible = "altr,agilex-hps-fpga-bridge", "simple-bus";
+>
+> FPGA bridge maybe, but not simple-bus. It does not look like a simple
+> bus if you have here some resources.
 
------BEGIN PGP SIGNATURE-----
+FPGA bridge is a more accurate description of the actual hardware than 
+simple-bus. This bridge does have two address ranges to access the FPGA. 
+One address range is considered "light-weight" intended for register 
+accesses in the FPGA, while the other a full featured AXI interface 
+suitable DMA.
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ6JKJAAKCRAnX84Zoj2+
-dlduAYDGdElqziyGD1EYwKUBbyUiUwak4pS//61mf1+oH5R5d1/vM2nxCH3Qeq4t
-oXh81xIBfi+mPBGMBa70pE9wG5O3JBEnts9Fll49h0ii0CMGPfAx8LNJ/y4yGIK0
-LM+uvDmuQQ==
-=w+tk
------END PGP SIGNATURE-----
-
---47yeuap5jfflsyvy--
+>
+>>  		reg = <0x80000000 0x20200000>,
+>>  		      <0xf9000000 0x00100000>;
+>>  		reg-names = "axi_h2f", "axi_h2f_lw";
+>>  		#address-cells = <0x2>;
+>>  		#size-cells = <0x1>;
+>>  		ranges = <0x00000000 0x00000000 0x80000000 0x00040000>,
+>>  			 <0x00000000 0x10000000 0x90100000 0x0ff00000>,
+>>  			 <0x00000000 0x20000000 0xa0000000 0x00200000>,
+>>  			 <0x00000001 0x00010000 0xf9010000 0x00008000>,
+>>  			 <0x00000001 0x00018000 0xf9018000 0x00000080>,
+>>  			 <0x00000001 0x00018080 0xf9018080 0x00000010>;
+>>  		reset = <&rst SOC2FPGA_RESET>, <&rst LWHPS2FPGA_RESET>;
+> Best regards,
+> Krzysztof
+>
+Thanks for the feedback,
+Matthew Gerlach
 
