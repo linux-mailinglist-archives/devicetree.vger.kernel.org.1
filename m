@@ -1,93 +1,93 @@
-Return-Path: <devicetree+bounces-142870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBD00A26DB0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 09:51:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06751A26DB3
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 09:51:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A00D3A75DC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 08:51:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6994E1885AF1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 08:51:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C5E5207DE5;
-	Tue,  4 Feb 2025 08:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE06207E1D;
+	Tue,  4 Feb 2025 08:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="px5PMI1D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WccpIako"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C38720766E
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 08:50:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA48D207A00
+	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 08:51:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738659060; cv=none; b=E3SxUL9yIUIorigwN/J+dLYJsc++sUMjbCEQSUeHCavCG3sHzHN846XwCsqiqefJq9XatkXWpge4yxZcfvy5ESJiWkF5RYhOL0E3xbKPRnqGvCnAWpPXFEI0uUR+fzzsnckPQUYBOMDkWToalkuXRdtG0TwB4XEC5c7tLI+vOiM=
+	t=1738659062; cv=none; b=K9hMpbVQ5Wn3wBwjthokDTgeABmfIDQkbSY02UiXWU/0IvcBzmpFNk2ZTVP8Pr83ruyax/isknWzeA7BfFW1Wl5NbwVNgeY2KhT2mwX8BHz/Glg7FMVCrkMdF1OzNXmaRnI1js/ZbOH0O9nFQsErfarZBdFiumSKY7yngn22tM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738659060; c=relaxed/simple;
-	bh=1Ycwyt/5fAWWZEZs5FhLsYPnTHEm+vCc2lxvvceXYOk=;
+	s=arc-20240116; t=1738659062; c=relaxed/simple;
+	bh=c6sdauT4NAjCLcdSLhhpbauGdNlBvhu97kIIicEbFCo=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=YbsBIcoSIt+GsCiKwkayvPWKEcFudUQfj6su+pgDvTMounZsoLZJn0Je2GpeQA3W6Nqu4V1jPIZtYfbRYifH43XSGL/VX8WDY7DrxlQ9kB8sWWH5PyyJFv9p+5t+LByAdDZDIDsPVqwj0biLES8zlrnEOpH3/DBxxLAOKrUIiWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=px5PMI1D; arc=none smtp.client-ip=209.85.221.41
+	 MIME-Version:Content-Type; b=BgLSzbThPmTaNhCy1xeVIgh6Yq8///RTGcmIC8E1LgaDHUNJ+u8UOTk99r3uux9+9XeCQMTdqVdpgxKoG1O/MkFzJQvoOe9Tx4c+3amcihC3GEvEiCq+tqqDgsHzKr5IdMgoEXYPs8iF427PbEnlEo0nDgMu+MfacCqCA37RACU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WccpIako; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-385db79aafbso257543f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Feb 2025 00:50:57 -0800 (PST)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-38c5ba0be37so291975f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Feb 2025 00:51:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738659056; x=1739263856; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1738659059; x=1739263859; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Jpjq4HH/L303d8hbOgy1GctH27ZSA0LF9W5MJwsB/1w=;
-        b=px5PMI1D1bBb/KE/SH9gipn3mCjgEDIFxG268ZBW/1oNMfeJKhRHHbQS8A9LbCn+jD
-         jDw5wd57uzraXDeriXJzv8X/pYd41A66TS878md36497UTYzzzPTjqBbqJN5SsGhdafC
-         ndwiArqBuOAKyJc3skE1ffjc1iVg3PEpnmsbUp2BfsNOKOgiMU2tRsgGlXiEw5/UGPTZ
-         9esqPdgoAr0tTz5ib8VfoGIpbD+r7ufkxvFBid5CyKh4ho32dAR48bt/Kz5UdlWmXHRo
-         iMMropXEeuEug1BRn7qcryKJLIOCol9YXST6UHy31a9Mmang7F3lEuZ7tdfifdIgzQq7
-         SH4g==
+        bh=BCr1bIjcarrRGLKq6p0An5lU4Quq+4hAEYJWhfURG2U=;
+        b=WccpIakoL1eoJcWs/SS/O/QB1hI7ZbyadkE9kdIYhzetbSnwfRcde1kK0IQ8v/sHhn
+         bIXvFt9ba0+8yf0Kd94MvAYVo230DGmZ+4Mgq9bARa9kMQpOBUguUnxeTt5sHQeJJT9i
+         3WtaF7fki0GWAX0YV6w3Y0JJJ5cfb7LWOdKHWF3js2XP/ViUZaN8ZmxODkzQ6yT03ye0
+         fFwOq/E85qK6l5dosFv+I1LAKnWX7NEvcnl44L7ttDlQmxVHBu/iDlCqFAF6hD1FUsTY
+         PY8w1Cop6LkNRRZo9sxMRXiLsbBMYptQBrnxZFVLeAb/yf/emsK8bdh6xOO83WeJ3Rxr
+         Wnzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738659056; x=1739263856;
+        d=1e100.net; s=20230601; t=1738659059; x=1739263859;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Jpjq4HH/L303d8hbOgy1GctH27ZSA0LF9W5MJwsB/1w=;
-        b=J55+rkFcWTIxMkJVb9EeLscFcY4zDQZrIFqprGsOdZNSrX4gFakPrbvlPvBWbfn1F0
-         48guioK7kxI6I3ipr7F/F1YqnGtRTRIZDupXAfxUz9gLzgDWel1H01dKzuH0ng5mBkKv
-         858Elfa8BojiVQSQwT6+KmCOzlw3eQWKb2BublIwYhripelfm6Ack2x5KMvuJb6XEgIJ
-         vbBWmoZh/pBCcvSUsxUtrrP6CXaJlLIii02WckUY3Og9ue/j8V9Gs/Sa8K97jMXrPKqs
-         u/wiWq9ri2hI4ksO2hAs+LC3XF9eGi0/mH8hh+hUgMqZ5efnEy2P9kxokBPti4pGhk4N
-         RB6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXPwX9CI5DKnmmF6vtrKPcWR212iD6J+K3enA8nXDBpoKM6ID/OoeB198DL0SoeUDN477MdHcvm7WuS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyr8dhpaAAndZgKb1hX6G9OzbcxsddspL6MHXv5U1ynmVn/WqII
-	Mr30Q6NNNXFnzDdcgAfOMbdjdIVYho7zpwTxWxYVYGIfmKZyIvui22j6ESNbGqXP7qQ+2ZFj6Da
-	5
-X-Gm-Gg: ASbGncuy74NwqhOhgH8DkI4CLxF/wYM99bwI93F8dxcyFyrMdvHQZlzxuzNqGcrGZJL
-	3qnX7P/7ZSvbC8Zh+J86buqxSmPmngHudWi2UVgDx9V96CewVklvHM8WFgZAEDD/3l6StHSBREd
-	+XFtMmxU6CHCQJWb4qwZmgraq8EyejYmOBCcvuIdnXqXemxp6LfRVtbjDT7CYIBm1WohHy3mADG
-	GM5N2pVzOze/jdDjNmt0KmNRED3AJOBrYAQROCMLRM7QNYnWfz3ZQgpI3zatwsxRNoUmfdyDYj7
-	dbpA6nZFBZ7prlEYvkvkwFnv97on5ic=
-X-Google-Smtp-Source: AGHT+IHdiae6H+/UVJL8cfd8QClyqaqjeHMTsfDKILCpxZ9f0zfpd+1iofPbuWssQnGq4TD+3TOuRA==
-X-Received: by 2002:a05:6000:188e:b0:38a:615c:8266 with SMTP id ffacd0b85a97d-38c5a4ac5e1mr6208751f8f.1.1738659056201;
-        Tue, 04 Feb 2025 00:50:56 -0800 (PST)
+        bh=BCr1bIjcarrRGLKq6p0An5lU4Quq+4hAEYJWhfURG2U=;
+        b=SDiYp9NCPUAkr+iXG80NQf99zKpuGFmBv9grsBXVrMK1g0HZhYVbmvJlswDPOcw5Vp
+         iV3gm+M4UbUuSV56ZHfcpQAajak6QFHDPuXMHB+Yp0VWAA6EZpKrLSK4UsSPu+WYHHlz
+         viv49TZ/L6FMxza78S96Y72DzuB3hFV6SRlqyUSZf/KBxgjWnGtNY35RIX1sm1ZFqtZH
+         PfBUb3w1dgYAZwCFQzxAU3bH/H5zhAaLHGU5B+IVPADsgKk0GDT+qjj+sRH4+tn5ufnL
+         ZtqA8hcoJK6kxqR4EZ2IYuT0KRNAa0ensuflXZqBMHajTYAk85XbXfDJC2GfphbFyvH4
+         RVmw==
+X-Forwarded-Encrypted: i=1; AJvYcCXmTjtUgWx4sq2bikddua6VwVYAU/kqFckQL1GakLGImVJe/QXASEO8d9fZdZeZkgZmKOfBv9OoSVo9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym4ppGcMa1bjHE8bw/A4ove76SqcJujVrFEsYnTYW8IlrxdSGH
+	+yoixY4wYLWyoSdl+7L5Q13mpfwii314ihpQ5gXvduVYZncb/vXs+SrK4vlNbyA=
+X-Gm-Gg: ASbGncvYi9I1jfkkF2pKxmzKM0OSrHeDBRXsEWrNCKNCep1LMOCkTzBGVXrMhBrT2zE
+	CddXj43nO+UG+VajJ33jLMpPZ8cab9Fbliy7VOs3ME6yNtltcDQfgkw30HoU7hoI2Jgqaw5BQti
+	rs9kELCzUaZoZj41FtT+Y0B4SR/vNlxhJMgiWhcryUfpPQutgNBG7x+tAw6bl6W5rIoAy6LZWjf
+	icCmGSS5FsWZI5AWOewast52N3ufuUJYUpfVNkRzjnR1gWGioFAe7A56gDIcKy9IXj/x2qlwxHT
+	v4k/qF8Sqa7+VL1ku3h+jbBhdcHYpXM=
+X-Google-Smtp-Source: AGHT+IHYuKkYPbhh9kBPc87DdQpAZ9zcHEHdGkABawo/Qtr0EqGi6f6CTD8BUqoqUJP8UloWPAQavg==
+X-Received: by 2002:a05:6000:1848:b0:38d:9e86:2b24 with SMTP id ffacd0b85a97d-38da4e440aemr794591f8f.8.1738659059133;
+        Tue, 04 Feb 2025 00:50:59 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.218.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38daf27bbf5sm503066f8f.48.2025.02.04.00.50.54
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38daf27bbf5sm503066f8f.48.2025.02.04.00.50.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Feb 2025 00:50:55 -0800 (PST)
+        Tue, 04 Feb 2025 00:50:58 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-In-Reply-To: <20250117-gs101-simplefb-v4-0-a5b90ca2f917@linaro.org>
-References: <20250117-gs101-simplefb-v4-0-a5b90ca2f917@linaro.org>
-Subject: Re: [PATCH v4 0/4] Google Pixel 6 (simple) framebuffer support
-Message-Id: <173865905488.26600.14592491106010269073.b4-ty@linaro.org>
-Date: Tue, 04 Feb 2025 09:50:54 +0100
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250104-exynos990-cmu-v1-0-9f54d69286d6@mentallysanemainliners.org>
+References: <20250104-exynos990-cmu-v1-0-9f54d69286d6@mentallysanemainliners.org>
+Subject: Re: [PATCH 0/2] Add CMU_PERIS support for Exynos990 SoC
+Message-Id: <173865905768.26600.7188664956285706035.b4-ty@linaro.org>
+Date: Tue, 04 Feb 2025 09:50:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,35 +95,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Fri, 17 Jan 2025 17:09:53 +0000, André Draszik wrote:
-> This series enables simple framebuffer support on Google Pixel 6 and
-> Pixel 6 Pro.
+On Sat, 04 Jan 2025 21:05:55 +0100, Igor Belwon wrote:
+> This small patchset adds support for CMU_PERIS for the
+> Exynos990 SoC.
 > 
-> Even if simple-framebuffer is deprecated and DRM should be used
-> instead, having it available in DT is beneficial for several reasons at
-> this point in time (the phone uses an OLED display):
-> * energy consumption goes down significantly, as it changes from white
->   (as left by bootloader) to black (linux console), and we generally
->   don't run out of battery anymore when plugged into a USB port
-> * less of a burn-in effect I assume
-> * phone stays cooler due to reduced energy consumption by display
+> Best regards
+> Igor
+> 
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] dt-bindings: arm: google: add gs101-raven
-      https://git.kernel.org/krzk/linux/c/2f88cffbfe61a9e257aa6d9cf03e1b9567cfc910
-[2/4] arm64: dts: exynos: gs101-oriole: configure simple-framebuffer
-      https://git.kernel.org/krzk/linux/c/befbb62c61a5f5ef547355f2f726a0926916a12c
-[3/4] arm64: dts: exynos: gs101-oriole: move common Pixel6 & 6Pro parts into a .dtsi
-      https://git.kernel.org/krzk/linux/c/58dbafb73173a944657c4a0d480d2cce50bff2bd
-[4/4] arm64: dts: exynos: gs101-raven: add new board file
-      https://git.kernel.org/krzk/linux/c/825c4bfd5c526b6fd18c8ad8503761143c90a142
+[1/2] dt-bindings: clock: exynos990: Add CMU_PERIS block
+      https://git.kernel.org/krzk/linux/c/7fa119f5707f12f3ac00726345ea6b7a22977ab6
+[2/2] clk: samsung: exynos990: Add CMU_PERIS block
+      https://git.kernel.org/krzk/linux/c/3214e7c0cfd29b1f0d80e0a4708145326d759d68
 
 Best regards,
 -- 
