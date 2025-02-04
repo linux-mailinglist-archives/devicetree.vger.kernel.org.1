@@ -1,171 +1,115 @@
-Return-Path: <devicetree+bounces-142834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05938A26B9A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 06:57:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70DAFA26C11
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 07:16:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F7DF161812
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 05:57:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07D6018891D2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 06:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6138D1FF7B0;
-	Tue,  4 Feb 2025 05:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD62B20371F;
+	Tue,  4 Feb 2025 06:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="foSWOD45"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="khtQu4b3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C15281FC118;
-	Tue,  4 Feb 2025 05:57:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5B02010F5;
+	Tue,  4 Feb 2025 06:16:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738648670; cv=none; b=VsbplZPJ9rRgT2zZo8Ji+8mmVDV/yOr6HoFGZHRphx5v9O9Sm383VbTtjOmxJz2DvUN9guabL3PPxrVGui8RoVexwBNTH/eeU4pogqSgs3J1UEiqNAUcqMVAqyIaA7gI3mom39kJC6LeYcEPxzVmm6IxgoU5GSWlxJCrhCuT9b4=
+	t=1738649789; cv=none; b=VOVHlyqw1Z4Wd17K0v3nmzi4zFc99MI/OVtTG1OaJzcBfOigtzv5jMWdoSy8IocAySnJMl3dKRQNr1jfx9OR/iHXn++vGAxK03Y2mHyAjo1Cnep0GX6L4iAl3A3+hPEsfIZzh8igQlguEU0D8PqiF6pGB8sYetwMsvboRXRB/zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738648670; c=relaxed/simple;
-	bh=z7yLwVe/qG0pjtK8OhJpHQpZZtPLKHGuXFvPv4qFrNA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=B8pJZeed4ForZPePOfweoulWKlaOY5UWm7UdumKRTVT3/GrGfVWx+04Pf+hk1k2gAUK/YcIyLQjSI3PxRHbPBAsxDH243ziH0umDtYMkRWoKNC191YYjr23Hq52uwB9MIzy1qdHcq35nxSRpTX8xYTow6X+zkajSDBM+F0iZJbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=foSWOD45; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 513JlrHr029157;
-	Tue, 4 Feb 2025 05:57:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iEHyUVvDWy5Ero2/csVx2ZNWJ1I1N67ham97sJ6bR1I=; b=foSWOD45sNVZ4YC3
-	e7DOc4Dpi/Q24vXNDhB8BObFbnS9scG5+shPnAdUmgDPVvEAPHNdeuT8VncYpLVY
-	GUkjOvTJzH6wM63YzVnU8PATj2E9nQcJUiVQEKGNterYlAMw2OAWHEUKB5A1yN+y
-	J3dfP3Jvwzgnses4tdCJ4BgqcOGlraNd7fc2kn8riUL+NPJ9Xox4kGverjpsWeLO
-	Z9otY0Q8mhKfFeEJjo8W4ceU9p1pS9/T3vU2kraZtDmfcbnz0Cf7bI5WhwR2kBER
-	JLwGusj6MtkELXBattqJ5SvM+Cr/IgXj/NhOSAxtJQVBLu8EGWr0Q5OAIp8786pC
-	zo00fg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44k492h2kj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 04 Feb 2025 05:57:43 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5145vgrH007585
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 4 Feb 2025 05:57:42 GMT
-Received: from [10.216.42.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Feb 2025
- 21:57:38 -0800
-Message-ID: <345519bb-ba1c-4bcc-a03c-5557f8f40035@quicinc.com>
-Date: Tue, 4 Feb 2025 11:27:35 +0530
+	s=arc-20240116; t=1738649789; c=relaxed/simple;
+	bh=zjS3zd5vuTY58LmRAJm8hUGz/mIPQs9tjeo+yJzl+HY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RW8VmBbPtqPtTPOVLusoRW4yBlV5WWwwdOIZyeNwN4CFraYOOH1MBCy0ElIiCjdV485LIEGX/OKZ5g764FAA0mlZd+Y1TJaXTNJglyUr6FsDXQv7R493p6cxvpnp9VP6qd0BNl+2+Qxko5lBzuRu3qp1vqjDf4Osjl7+JbUrkAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=khtQu4b3; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5146FsWT2282123
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 4 Feb 2025 00:15:54 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1738649754;
+	bh=zQsmjfXL3L54NtdkjfV8zRzMvCvtGgrmcg68EwqgnUw=;
+	h=From:To:CC:Subject:Date;
+	b=khtQu4b3lhrL3/ZCHopNqOQP5poA/i/fM2ojf/NbrEutoe41Ccoo1yVFGDPa0OJB5
+	 +hGpCs63E7KUS4iC+h7LWGh+glBWvJGUna+CS8O7IT1z1Wir7C5vOHERxH8evVE184
+	 vw99z7D53UJl++tDOoaq+QUJpXEoHhIeAjW6yWxs=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5146Fs2b023282
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 4 Feb 2025 00:15:54 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
+ Feb 2025 00:15:53 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 4 Feb 2025 00:15:53 -0600
+Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5146FqDv075196;
+	Tue, 4 Feb 2025 00:15:53 -0600
+From: Devarsh Thakkar <devarsht@ti.com>
+To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
+        <airlied@gmail.com>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>,
+        <dri-devel@lists.freedesktop.org>, <simona@ffwll.ch>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <praneeth@ti.com>, <vigneshr@ti.com>, <aradhya.bhatia@linux.dev>,
+        <s-jain1@ti.com>, <r-donadkar@ti.com>, <j-choudhary@ti.com>,
+        <h-shenoy@ti.com>, <devarsht@ti.com>
+Subject: [PATCH v2 0/2] Add support for AM62L DSS
+Date: Tue, 4 Feb 2025 11:45:50 +0530
+Message-ID: <20250204061552.3720261-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.39.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/13] dt-bindings: net: wireless: describe the ath12k
- AHB module
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <ath12k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        Kalle Valo
-	<kvalo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jeff Johnson
-	<jjohnson@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250130043508.1885026-1-quic_rajkbhag@quicinc.com>
- <20250130043508.1885026-2-quic_rajkbhag@quicinc.com>
- <20250130-cunning-quail-of-opportunity-76d0ad@krzk-bin>
- <724a4822-469a-45bb-bfb1-c02b54e971a3@quicinc.com>
- <aaabcc7a-8234-4753-a8d1-ab36afdafa2e@kernel.org>
-Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <aaabcc7a-8234-4753-a8d1-ab36afdafa2e@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: p9D-a9lWuHf6ggdTz0eID7ur7bmOJ6Pc
-X-Proofpoint-ORIG-GUID: p9D-a9lWuHf6ggdTz0eID7ur7bmOJ6Pc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-04_03,2025-01-31_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 mlxscore=0 adultscore=0 lowpriorityscore=0
- malwarescore=0 suspectscore=0 mlxlogscore=999 bulkscore=0 spamscore=0
- clxscore=1015 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502040046
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 2/3/2025 3:39 PM, Krzysztof Kozlowski wrote:
-> On 03/02/2025 10:05, Raj Kumar Bhagat wrote:
->>
->>>> +    items:
->>>> +      - const: q6-region
->>>> +      - const: m3-dump
->>>> +      - const: q6-caldb
->>>> +      - const: mlo-global-mem
->>>> +
->>>> +  qcom,ath12k-calibration-variant:
->>>> +    $ref: /schemas/types.yaml#/definitions/string
->>> Why this is named after ath12k? Why this is just not
->>> "qcom,calibration-variant"? None of the other properties have ath12k in
->>> their names, so why this one in the WSI schema was named like that?
->>>
->>
->> This property is added after the below comment.
->> https://lore.kernel.org/all/qzjgpwemwaknwbs3dwils6kaa5c3inabfvkaryvc32kblzfhy3@6yduooj4dk63/
->>
->> This `ath12k` in the name of this property is inherited from the 'qcom,ath10k.yaml' and
->> 'qcom,ath11k.yaml'. Same was followed for WSI schema as well.
-> 
-> They do not have ath12k prefix in the name, so I don't understand.
-> 
+This adds support for DSS subsystem present in TI's AM62L SoC
+which supports single display pipeline with DPI output which
+is also routed to DSI Tx controller within the SoC.
 
-I meant that, 'qcom,ath10k.yaml' has qcom,ath10k-calibration-variant and
-'qcom,ath11k.yaml' has qcom,ath11k-calibration-variant. The same name pattern
-has been inherited.
+Change Log:
+V2:
+- Fix incorrect format of compatible string (comma instead of
+  hyphen) for AM62L SoC
+- Use separate register space and helper functions for AM62L
+  due to minor differences in register offset/bit position differences
+  for first plane
 
-> People, start re-using properties, not creating one per each binding.
-> 
->>
->>>> +    description:
->>>> +      String to uniquely identify variant of the calibration data for designs
->>>> +      with colliding bus and device ids
->>> I don't think this property is here possible. How could you have on the
->>> same SoC different devices?
->>
->> The WiFi controller in the SoC includes an internal or external Front-End Module (FEM).
->> These FEMs can vary and require different calibration data. This property uniquely
-> 
-> 1. So exactly the same SoC package has different FEMs?
-> 
+Rangediff:
+V1->V2
+- https://gist.github.com/devarsht/11d47f25ca9fea6976e6284330ddf443
 
-Yes, the WiFi component of the same SoC package can have different FEMs.
+NOTE: This series needs to be applied on top of AM62A dt-binding fix:
+https://lore.kernel.org/all/20250203155431.2174170-1-devarsht@ti.com/
 
-> 2. How does it exactly work? Different bins? Different revisions?
-> 
+Devarsh Thakkar (2):
+  dt-bindings: display: ti,am65x-dss: Add support for AM62L DSS
+  drm/tidss: Add support for AM62L display subsystem
 
-The calibration board data for different variant are packed into firmware binary 'board-2.bin'.
-Thus, board-2.bin can contain multiple board data for various variants. Ath12k driver selects
-the correct board data based on the variant. The "qcom,ath12k-calibration-variant" is used
-as one of the parameter to select the correct board data from board-2.bin.
+ .../bindings/display/ti/ti,am65x-dss.yaml     |  25 +++-
+ drivers/gpu/drm/tidss/tidss_dispc.c           | 140 ++++++++++++++++++
+ drivers/gpu/drm/tidss/tidss_dispc.h           |   2 +
+ drivers/gpu/drm/tidss/tidss_drv.c             |   1 +
+ 4 files changed, 167 insertions(+), 1 deletion(-)
 
-> 3. How is it supposed to work in practice - you have one board, but
-> might have different SoCs inside? Which calibration data would you use
-> in such case?
-> 
+-- 
+2.39.1
 
-The SoC in the following statement 'you have one board, but might have different SoCs inside'
-, I am assuming SoC to be WiFi controller/component.
-
-Consider, if we have two WiFi (qcom,ipq5332-wifi) controller with different FEM in IPQ5332 board.
-Then in the DTS we have two wifi node. Each wifi node in DTS will have different value for
-'qcom,ath12k-calibration-variant'. With the help of this property driver will be able to
-download the correct calibration board data from board-2.bin.
 
