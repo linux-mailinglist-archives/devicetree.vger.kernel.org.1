@@ -1,207 +1,145 @@
-Return-Path: <devicetree+bounces-142944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 076A3A2753A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 16:03:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30CF3A27745
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:38:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 725C03A0208
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 15:02:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B941C16155C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 16:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1265D216601;
-	Tue,  4 Feb 2025 14:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9172153E9;
+	Tue,  4 Feb 2025 16:38:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OXQmRbUe"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="J/Dpc3Tx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804C62147FE
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 14:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92D520D4F2;
+	Tue,  4 Feb 2025 16:38:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738681174; cv=none; b=ObCa0v1Ih+rGZiAwNDxFNwYOF9b9JLU2NtomhuA2jZv3QzNfk7F185QIxEU2F9pXFdFm6mY6l5/ZBBaGRJ+AJHxrOtf6tlzSVJRaGRD4OWnBYUSV8WETjz/mFlRIMtdXnYV+0cPRL4r4hwbiD6lqXZGxJiU40NV/v8bXX9HgXD8=
+	t=1738687085; cv=none; b=CrCJHCjt+xnXO/uNLlVxHva7uMIa3V2Cyg6+Etm14yO2TOwrhusTA92SzpCjlqenXydqPMPzImhbdW0Y2NKU64rA2Gb1JYjA8gnTc7vIaXK3vZ+LceKbgIMieJxwA5LOtNuoxjVTnBXZNTk0EOmSJ+YZIISUbB1jJ0TjblUZF8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738681174; c=relaxed/simple;
-	bh=KWQ4BG3za9QufMezrdbyMAgIcWYZGzuv+UP/bPj7EE4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f1S0/v2U+RZ2AgqS594QK9GMMewwDNz+7QPqoIUZrdLGxUsnfwgR0bo8514yesQ/wKmNXSflyiy/D+4hw7HlUAqsoZi32VAqaLJQci+QWGpVYYN2GVT7tX+BMf6QGFGX6pnW/HeR0X19OpD6zIsGrR/OCXVLpFdO7Bnj6BlJFSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OXQmRbUe; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53e389d8dc7so5643615e87.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Feb 2025 06:59:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738681168; x=1739285968; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=t1DYlp7BOgCsO/bvivOkdwsvShb36ZFFcwsQF/5DCtw=;
-        b=OXQmRbUevyIMbv/s1yr9i9rQchDDc7qJ2hGP72sdA8jx2zTqcoGQuSMhbYS0/S5GLL
-         e5jwxQsSUF9HIhS5wGr0ignmOWr/G49rpxUJtQonGLalESeFRY/ubEPvrm4XmgrLQKQO
-         wjSNfQM7qvjZ0dBmcC7YxT3qnQLYfSQ7EQfMHpk6+LHsA6qV8E+W1g3+DLKmwhnix4Ui
-         vIK2dhLVBtHnw78NRy87HHvu9nA+NYol5lOXcfsasSlcV658DYyLsLvqERRjCMaaxnrJ
-         EpzIekiLMPSs6iY1zvK+8Bg9lE2JRaieDzZ/2VFWpcLcVfehoIMC70VOpsFu04/Ut/go
-         +Gow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738681168; x=1739285968;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t1DYlp7BOgCsO/bvivOkdwsvShb36ZFFcwsQF/5DCtw=;
-        b=dsHWYBsVis0etp+m7OVTbATAMqTer0BW21Qmvo7YcVa3ktkLQigWg5NalGaFej/OGv
-         HvrWvjLQO2fdZPpKnraB/nQacsdurcZOTNdXn/clzWzynD0uRQYeczmSUwkmuMjxyOOJ
-         VWJhJ7lp7Wkkr6+hkf/KMInJiE3FL//L2oo8l18NBT2ilk7O9Vv6srfymlC3mYeeVxbD
-         F6hkSqlUu+4zOocD7ItrD9HD8km0Xk4bs7PvSSDaKqsLyk7gWdHp4CBbC2shkPXwY71x
-         WVnQAwG+T1GzHLNl9WUQKx/+hlNi5ajCUPGHEe0PFaTK8ovm4hmbKqcyoclk4XCQ5kTo
-         TNkA==
-X-Forwarded-Encrypted: i=1; AJvYcCXw/yEjCo7t0xfFOS8pcLXKza75qcZiDAWiYgfCuRj3DCcl1C0EqrOEI2Gl7lv1HN920SUAS5zRZUgW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQXiTk2ZY7+aqVeL02A7KeRZe60VqSLOHJrxHqKPZXc60Q38kF
-	yjJxLsZlkBN+nW/MR3tZWGoL6VBGTUm983GHG7TpZEvYaKABwwhSpIGe3ukMpfs=
-X-Gm-Gg: ASbGnctu56PcyKtUy4NjiM5c8y7IL7klG+Xu2N1qwfazSD+XEhMBrwdq8m9AMhVZMMT
-	W6IwqhdA9fKu2eVLq27dsCYE9QZDJHppB2G/7pDkhXuwiYaSAZH/NEDjSs0EJGipnH4blG7MN+Z
-	WUuaDO+eFbxZhJeAqwp/UlvNDNuq/H43nEv1UH3HXfdrRScW4g8ykW7bKcNUguDmmzrPnAbfz/n
-	uS3+VmQ+bcXjQoAH0b5rCEDDjNq3DffaDcZI0k2rD1VqdGo+m31ZiXDG84TAMgKzmIAFCu4DClK
-	72KPiCtSb4UG0/ZtMUSzT+qVyR5/M1IeLa5dVLbJ4bO5KH0yPM2s25oWZyLGlaEMHuoTyVE=
-X-Google-Smtp-Source: AGHT+IE7b+udRsOmYgAUchqywxLPloRDcPecM5jIJa9qMOD6OPTAHNII/xMHMBXskhTGDDkZ3IE7zA==
-X-Received: by 2002:ac2:48a1:0:b0:542:9883:26f with SMTP id 2adb3069b0e04-543e4c3a1demr7204191e87.50.1738681168494;
-        Tue, 04 Feb 2025 06:59:28 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebe0f8f5sm1636690e87.58.2025.02.04.06.59.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Feb 2025 06:59:27 -0800 (PST)
-Date: Tue, 4 Feb 2025 16:59:25 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: Melody Olvera <quic_molvera@quicinc.com>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, 
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/7] phy: qcom: qmp-combo: Add new PHY sequences for
- SM8750
-Message-ID: <ofaioilki5qxdq2x5fpbpuk6mid6i6slpyqzwol4e2s4cwdwsf@lgpqy2zil4j6>
-References: <20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com>
- <20250113-sm8750_usb_master-v1-4-09afe1dc2524@quicinc.com>
- <tcm2hn7rpzaazntp5r7ag466ynacexnke43e6ypm4q5mrrlkdb@nem3gzib2l2v>
- <0ec95cca-45ed-4805-8ebd-03563d55627e@quicinc.com>
+	s=arc-20240116; t=1738687085; c=relaxed/simple;
+	bh=iZxr5kI6Nt+9ll2rFIZkKqtFcDCd2+fWpG0a1BXS/s0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jqQq8rSom2FZaQ/YkOhutMkmx/cdEzQ+XVR5lVye6+SPsjTfMBmKCga8UsSRK123xRDDuVek5R/Eub4w32QSPFUqatF37k7PAjApPM3IM8Z6NhzsiZi94Cykkrz87Yh9OVrK3cc2n5hfpMFsZKoe8j9AHY8HQ1EGJz+y/LxHaL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=J/Dpc3Tx; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 514E1rpR006925;
+	Tue, 4 Feb 2025 11:37:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=f+IaR5QmLrnWJQXIuJGyLQlZrh8
+	FtyTOpN7BpgX7PM8=; b=J/Dpc3TxexqZLJJE7BDjgPpnsAVcHMpUY1prckYemMP
+	zUKhFOEYmOm0G6g5j28fNxaMafK33mq1Jf647n6jSqgNd9I7EYuATrIR4S8CSSYb
+	DpR0eMqwJLkWLzvZXb1pasE1hhpqfP+ZFZSfRc4ZKlR0MeeKJN5nwDvryEGIGvYk
+	BvNLcLVM8lI0ZVZYXl9ZBrL8Rscd7IkJb0P7qqNnQmk53PXpN6ldoXWhJirvJXTF
+	u/C45fS4Fu2UlZBR9auDR0nxjJtF9Ovj+javIg9AH9+ImQQJY2yacAI/G3pfBk5u
+	6mBhTRI5M/VvNal2iCAaQW/rZEZWmOQjMoGMXDlSqqw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 44kma3gnsd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Feb 2025 11:37:43 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 514GbgGL047803
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 4 Feb 2025 11:37:42 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 4 Feb 2025 11:37:42 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 4 Feb 2025 11:37:42 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 4 Feb 2025 11:37:42 -0500
+Received: from desktop-robi.ad.analog.com ([10.48.65.85])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 514GbMFF009577;
+	Tue, 4 Feb 2025 11:37:24 -0500
+From: Robert Budai <robert.budai@analog.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Alexandru Ardelean
+	<alexandru.ardelean@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        "Rob
+ Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Nuno Sa <nuno.sa@analog.com>,
+        "Ramona
+ Gradinariu" <ramona.gradinariu@analog.com>,
+        David Lechner
+	<dlechner@baylibre.com>,
+        Marcelo Schmitt <marcelo.schmitt@analog.com>,
+        "Trevor Gamblin" <tgamblin@baylibre.com>,
+        Paul Cercueil
+	<paul@crapouillou.net>,
+        Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Robert
+ Budai <robert.budai@analog.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+Subject: [PATCH v6 0/6] 	Add support for ADIS16550
+Date: Tue, 4 Feb 2025 16:36:04 +0200
+Message-ID: <20250204143612.85939-1-robert.budai@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <0ec95cca-45ed-4805-8ebd-03563d55627e@quicinc.com>
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=Df7tqutW c=1 sm=1 tr=0 ts=67a24257 cx=c_pps a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17 a=IkcTkHD0fZMA:10 a=T2h4t0Lz3GQA:10 a=f1vxr5TaGUlwJKkhg4gA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: qBxa-k-AL21U-T9CvPeP75Kg5xXf35HO
+X-Proofpoint-ORIG-GUID: qBxa-k-AL21U-T9CvPeP75Kg5xXf35HO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-04_08,2025-02-04_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
+ spamscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0
+ bulkscore=0 priorityscore=1501 mlxscore=0 clxscore=1011 suspectscore=0
+ classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502040127
 
-On Mon, Feb 03, 2025 at 07:31:29PM -0800, Wesley Cheng wrote:
-> 
-> On 1/14/2025 2:23 AM, Dmitry Baryshkov wrote:
-> > On Mon, Jan 13, 2025 at 01:52:10PM -0800, Melody Olvera wrote:
-> >> From: Wesley Cheng <quic_wcheng@quicinc.com>
-> >>
-> >> Add new register offsets and PHY values for SM8750. Some of the previous
-> >> definitions can be leveraged from older PHY versions as offsets within
-> >> registers have not changed. This also updates the PHY sequence that is
-> >> recommended after running hardware characterization.
-> >>
-> >> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> >> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> >> ---
-> >>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 198 ++++++++++++++++++++++++++++++
-> >>  1 file changed, 198 insertions(+)
-> >>
-> >> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> >> index b09fa00e9fe7db8d97b7179ee15d3f07fe578b0c..823a60029ea6acbd1f0f8c7d27aaa58de39ed758 100644
-> >> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> >> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> >> @@ -1471,6 +1471,139 @@ static const struct qmp_phy_init_tbl x1e80100_usb43dp_pcs_tbl[] = {
-> >>  	QMP_PHY_INIT_CFG(QPHY_V6_N4_PCS_EQ_CONFIG5, 0x10),
-> >>  };
-> >>  
-> >> +static const struct qmp_phy_init_tbl sm8750_usb3_serdes_tbl[] = {
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_STEP_SIZE1_MODE1, 0xc0),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_STEP_SIZE2_MODE1, 0x01),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE1, 0x02),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE1, 0x16),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE1, 0x36),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CORECLK_DIV_MODE1, 0x04),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE1, 0x16),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE1, 0x41),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE1, 0x41),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MSB_MODE1, 0x00),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START1_MODE1, 0x55),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START2_MODE1, 0x75),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START3_MODE1, 0x01),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x01),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE1_MODE1, 0x25),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE2_MODE1, 0x02),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE1, 0x5c),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE1, 0x0f),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE0, 0x5c),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE0, 0x0f),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_STEP_SIZE1_MODE0, 0xc0),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_STEP_SIZE2_MODE0, 0x01),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE0, 0x02),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE0, 0x16),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE0, 0x36),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0x08),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x1a),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x41),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MSB_MODE0, 0x00),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START1_MODE0, 0x55),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START2_MODE0, 0x75),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START3_MODE0, 0x01),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE1_MODE0, 0x25),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE2_MODE0, 0x02),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BG_TIMER, 0x0a),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_EN_CENTER, 0x01),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_PER1, 0x62),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_PER2, 0x02),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_BUF_ENABLE, 0x0c),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_EN_SEL, 0x1a),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_CFG, 0x14),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_MAP, 0x04),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CORE_CLK_EN, 0x20),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_CONFIG_1, 0x16),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_AUTO_GAIN_ADJ_CTRL_1, 0xb6),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_AUTO_GAIN_ADJ_CTRL_2, 0x4a),
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_AUTO_GAIN_ADJ_CTRL_3, 0x36),
-> > The only difference from sm8550_usb3_serdes_tbl, it has 0x37 here.
-> Not sure what the suggestion is here.  I think in general I would want to have a separate table for each chipset, considering that settings may change/evolve.  Currently, if you're asking to re-use the sm8550 table to avoid re-defining this sequence, I think it'll be confusing to folks when they refer to this SOC's PHY settings.
+*** BLURB HERE ***
 
+Robert Budai (6):
+  iio: imu: adis: Add custom ops struct
+  iio: imu: adis: Add reset to custom ops
+  iio: imu: adis: Add DIAG_STAT register
+  dt-bindings: iio: Add adis16550 bindings
+  iio: imu: adis16550: add adis16550 support
+  docs: iio: add documentation for adis16550 driver
 
-No suggestion, merely a question if both tables are correct or not.
-
-> >> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_ADDITIONAL_MISC, 0x0c),
-> >> +};
-> >> +
-> > [...]
-> >
-> >> @@ -1781,6 +1914,22 @@ static const struct qmp_combo_offsets qmp_combo_offsets_v5 = {
-> >>  	.dp_dp_phy	= 0x2200,
-> >>  };
-> >>  
-> >> +static const struct qmp_combo_offsets qmp_combo_offsets_v8 = {
-> > Why is it v8? Is the actual PHY also v8 rather than v6?
-> Yes, actual QMP PHY major rev is v8.  If we want to, I can generate a separate v8 based header files if that is better.  However, most of the offsets for the registers we're taking advantage of in the actual driver has the same offsets as previous revisions.
-
-If all registers of a particular set (QSERDE, TX/RX, PCS) are the same,
-then it should be fine to reuse those (although it creates some
-questions). If the majority is the same, but there are some differences,
-please create new header file. It is definitely easier to verify that
-the patch is correct if every piece has the same version.
+ .../bindings/iio/imu/adi,adis16550.yaml       |   83 ++
+ Documentation/iio/adis16550.rst               |  376 ++++++
+ Documentation/iio/index.rst                   |    1 +
+ MAINTAINERS                                   |    9 +
+ drivers/iio/imu/Kconfig                       |   13 +
+ drivers/iio/imu/Makefile                      |    1 +
+ drivers/iio/imu/adis.c                        |   36 +-
+ drivers/iio/imu/adis16550.c                   | 1156 +++++++++++++++++
+ include/linux/iio/imu/adis.h                  |   34 +-
+ 9 files changed, 1696 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+ create mode 100644 Documentation/iio/adis16550.rst
+ create mode 100644 drivers/iio/imu/adis16550.c
 
 -- 
-With best wishes
-Dmitry
+2.39.5
+
 
