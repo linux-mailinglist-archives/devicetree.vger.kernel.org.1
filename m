@@ -1,267 +1,143 @@
-Return-Path: <devicetree+bounces-143052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2572A27C6D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 21:05:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E42F9A27C99
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 21:15:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AE8E165997
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:05:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ABEA3A3E2E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:15:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A6A214233;
-	Tue,  4 Feb 2025 20:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E573F219A9D;
+	Tue,  4 Feb 2025 20:14:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ATqxfuIi"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="j+bv7sTF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43FC14B094;
-	Tue,  4 Feb 2025 20:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D12E21767A
+	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 20:14:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738699499; cv=none; b=ikzxlCo5P5d2rydWolcUF+zZVUgmvmVqSfEsw+43hsiADjjFiAAjP1y6+O4HLqpgyTef9tTH9Km4poDYLK3IGmLgqZVDFLeo6H3KHkC1WgUshDKOyahH13FsfDY3xiZlesqK0zl0VUDkpR2t8JJXp+YBOgiM0yDw5aEKy1snNY0=
+	t=1738700096; cv=none; b=euQmHFjEU4eUHyqVFS2cwDyUbDKWPf3NPgwPF9z8uKyOQocJ9hJjQumpzy+tUkzAqiVxVx+ck9vceh3ktDAvMthizCNxzPODOjw9w1bif75p4yKpdYPFQ3UHbPvY2UgxUn9GytkTmG5unjtmb65Uvx8KyKdrzIAbs6L1sTcrjCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738699499; c=relaxed/simple;
-	bh=6y3E8+OpE5ZmqjX7Om9uPkD+ZQQXyu1GMUrqnd3TjQk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JHa0/pwhn3IvK/N+IniLqc3WgNTcsXkpHQ+K62FGBmNpOU2fEZscyZz7zjSeWhQNQ2LXupQMlOTifcH+xqdvSFe2J9TWiO5eOTnD6OOH0PH7a1mqpIpOA0HHsutsAqfA6KwM2/k9flKcoAbTCoU/LOpaGO8MK7PX1JcpuQGPcd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ATqxfuIi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CF3FC4CEE2;
-	Tue,  4 Feb 2025 20:04:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738699499;
-	bh=6y3E8+OpE5ZmqjX7Om9uPkD+ZQQXyu1GMUrqnd3TjQk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ATqxfuIih0h8cjA2h0bfzeW8/14cKwjo0aYg/EDyMiNfuHEuMgbIUArMXwpxbH8tQ
-	 Da4cVQL4P8+pftQUNXCfpHfx7R/c8T5y9fXpFVdrQBkPwgdoDHoEsw5o2N/iwNbzt8
-	 snOmZS5hwa+n4hlL3owOGHovG/7gC5BR91zkSxLubTB/2goLFqeTbHt28F5FnmdKY4
-	 hCflsbEgNgW4l3dpav/XeOnh8UfB9jdhSJ/P2ICbj8kqOcpTDEmCzBb1u2EZeyPCm/
-	 PCiZB/g/1ohi/zf1NFeXq1TtDI49Zm/hGspFF4kYcp0temKz7YcZ9Fx3qzuE1DJICk
-	 QRfqRdleBGwGQ==
-Date: Tue, 4 Feb 2025 20:04:46 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
- <michal.simek@xilinx.com>, <git@xilinx.com>, Anand Ashok Dumbre
- <anand.ashok.dumbre@xilinx.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, "Conor Dooley"
- <conor+dt@kernel.org>, Damien Le Moal <dlemoal@kernel.org>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, Harini Katakam
- <harini.katakam@amd.com>, Jakub Kicinski <kuba@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, "Lars-Peter Clausen" <lars@metafoo.de>,
- Mark Brown <broonie@kernel.org>, Michael Tretter
- <m.tretter@pengutronix.de>, Michael Turquette <mturquette@baylibre.com>,
- Mubin Sayyed <mubin.sayyed@amd.com>, Nicolas Ferre
- <nicolas.ferre@microchip.com>, Niklas Cassel <cassel@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Shyam Pandey
- <radhey.shyam.pandey@amd.com>, Stephen Boyd <sboyd@kernel.org>, Vinod Koul
- <vkoul@kernel.org>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
- BINDINGS" <devicetree@vger.kernel.org>, "open list:DMA GENERIC OFFLOAD
- ENGINE SUBSYSTEM" <dmaengine@vger.kernel.org>, "moderated list:ARM/ZYNQ
- ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, "open list:COMMON CLK
- FRAMEWORK" <linux-clk@vger.kernel.org>, "open list:LIBATA SUBSYSTEM (Serial
- and Parallel ATA drivers)" <linux-ide@vger.kernel.org>, "open list:XILINX
- AMS DRIVER" <linux-iio@vger.kernel.org>, "open list:SPI SUBSYSTEM"
- <linux-spi@vger.kernel.org>, "open list:USB SUBSYSTEM"
- <linux-usb@vger.kernel.org>, "open list:NETWORKING DRIVERS"
- <netdev@vger.kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: xilinx: Deprecate header with firmware
- constants
-Message-ID: <20250204200446.32bfb3f8@jic23-huawei>
-In-Reply-To: <2a6f0229522327939e6893565e540b75f854a37b.1738600745.git.michal.simek@amd.com>
-References: <cover.1738600745.git.michal.simek@amd.com>
-	<2a6f0229522327939e6893565e540b75f854a37b.1738600745.git.michal.simek@amd.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1738700096; c=relaxed/simple;
+	bh=nurUDXp2o4MyvC3A0GkMdYpyppUckZpuZWdZNoV48dk=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=fhSIVm8yYH+A+uAKQvMSYLa8OCWLr/IgewLshfYYpeWWXfypZbmBvPj6GuLYD8PJwBUMljBDZa9V9IjG1Wnx9GMETn/dkcvW0eaeZprhtLMPWukIMJdwrsLy5MCbx0q3O6lCy8F1cc5QrYv3WZN7o7Qva/7Zm/8AStna3+rjymk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=j+bv7sTF; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 97F032C0504;
+	Wed,  5 Feb 2025 09:14:50 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1738700090;
+	bh=nurUDXp2o4MyvC3A0GkMdYpyppUckZpuZWdZNoV48dk=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=j+bv7sTFl3xyS2iPOJ7LZgGQavE8W4YOZZ2LwjJH7D7kFAI/WWY1ktWFn6VSJk/6q
+	 RcUAiOjKwH6gmtF0R9lxPOtmRP3+eFnVdZP5FxmJSnPQYZP4sjtIIvULwefJuB6Dv3
+	 zOTGDYxbDZMPfYtnqq4DDJw2wSbYGJ6zyGumXzOErgPIxVDNOHRoNU4F1DrIyMcQbe
+	 EsClpNdJKP5d5wT1Rexjy1jLrh6/UN29vqDpTzcM+xo8/R7W3PPfimtp2ojX+e5dkR
+	 JbOGjSxfLf6px3NwLcs82dS6B1tWgWqXfp3Qrd1kRDeU1SxxaPoFqdd1R+AI39MXvE
+	 hQa1gv8hU5xcA==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B67a2753a0001>; Wed, 05 Feb 2025 09:14:50 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Wed, 5 Feb 2025 09:14:50 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1544.014; Wed, 5 Feb 2025 09:14:50 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "lee@kernel.org" <lee@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
+	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>, "tsbogend@alpha.franken.de"
+	<tsbogend@alpha.franken.de>, "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+	"linux@armlinux.org.uk" <linux@armlinux.org.uk>, "sander@svanheule.net"
+	<sander@svanheule.net>, "daniel@makrotopia.org" <daniel@makrotopia.org>,
+	"markus.stockhausen@gmx.de" <markus.stockhausen@gmx.de>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH net-next v6 1/6] dt-bindings: mfd: Add switch to RTL9300
+Thread-Topic: [PATCH net-next v6 1/6] dt-bindings: mfd: Add switch to RTL9300
+Thread-Index: AQHbdrFNdM+zCo+02kyxGj8ZSMB8nrM18P+AgADKkoA=
+Date: Tue, 4 Feb 2025 20:14:50 +0000
+Message-ID: <3087ea19-8c2a-47c8-adbe-d05009c6f07b@alliedtelesis.co.nz>
+References: <20250204030249.1965444-1-chris.packham@alliedtelesis.co.nz>
+ <20250204030249.1965444-2-chris.packham@alliedtelesis.co.nz>
+ <20250204-eccentric-deer-of-felicity-02b7ee@krzk-bin>
+In-Reply-To: <20250204-eccentric-deer-of-felicity-02b7ee@krzk-bin>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <FF262CAB6F67264C92EB4994F80E6A84@alliedtelesis.co.nz>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=QNvLRRLL c=1 sm=1 tr=0 ts=67a2753a a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=T2h4t0Lz3GQA:10 a=0d4TXYnWXBS5P1Ol6EEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 
-On Mon, 3 Feb 2025 17:39:11 +0100
-Michal Simek <michal.simek@amd.com> wrote:
-
-> Firmware contants do not fit the purpose of bindings because they are not
-> independent IDs for abstractions. They are more or less just contants which
-> better to wire via header with DT which is using it.
-> That's why add deprecated message to dt binding header and also update
-> existing dt bindings not to use macros from the header  and replace them by
-> it's value. Actually value is not relevant because it is only example.
-> 
-> The similar changes have been done by commit 9d9292576810 ("dt-bindings:
-> pinctrl: samsung: deprecate header with register constants").
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-For IIO
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> ---
-> 
->  Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml  | 4 +---
->  .../bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml           | 3 +--
->  .../devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml       | 3 +--
->  Documentation/devicetree/bindings/net/cdns,macb.yaml       | 7 +++----
->  Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 3 +--
->  Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml     | 3 +--
->  include/dt-bindings/clock/xlnx-zynqmp-clk.h                | 7 +++++++
->  7 files changed, 15 insertions(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
-> index 9952e0ef7767..6ad78429dc74 100644
-> --- a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
-> +++ b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
-> @@ -163,11 +163,9 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
->      #include <dt-bindings/power/xlnx-zynqmp-power.h>
->      #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
-> -    #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
->      #include <dt-bindings/phy/phy.h>
->  
->      sata: ahci@fd0c0000 {
-> @@ -175,7 +173,7 @@ examples:
->          reg = <0xfd0c0000 0x200>;
->          interrupt-parent = <&gic>;
->          interrupts = <0 133 IRQ_TYPE_LEVEL_HIGH>;
-> -        clocks = <&zynqmp_clk SATA_REF>;
-> +        clocks = <&zynqmp_clk 22>;
->          ceva,p0-cominit-params = /bits/ 8 <0x0F 0x25 0x18 0x29>;
->          ceva,p0-comwake-params = /bits/ 8 <0x04 0x0B 0x08 0x0F>;
->          ceva,p0-burst-params = /bits/ 8 <0x0A 0x08 0x4A 0x06>;
-> diff --git a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
-> index ac3198953b8e..b5399c65a731 100644
-> --- a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
-> +++ b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
-> @@ -75,7 +75,6 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
->  
->      fpd_dma_chan1: dma-controller@fd500000 {
->        compatible = "xlnx,zynqmp-dma-1.0";
-> @@ -84,7 +83,7 @@ examples:
->        interrupts = <0 117 0x4>;
->        #dma-cells = <1>;
->        clock-names = "clk_main", "clk_apb";
-> -      clocks = <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
-> +      clocks = <&zynqmp_clk 19>, <&zynqmp_clk 31>;
->        xlnx,bus-width = <128>;
->        dma-coherent;
->      };
-> diff --git a/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml b/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
-> index 8cbad7e792b6..a403392fb263 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
-> @@ -193,7 +193,6 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
->  
->      bus {
->          #address-cells = <2>;
-> @@ -204,7 +203,7 @@ examples:
->              interrupt-parent = <&gic>;
->              interrupts = <0 56 4>;
->              reg = <0x0 0xffa50000 0x0 0x800>;
-> -            clocks = <&zynqmp_clk AMS_REF>;
-> +            clocks = <&zynqmp_clk 70>;
->              #address-cells = <1>;
->              #size-cells = <1>;
->              #io-channel-cells = <1>;
-> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> index 3c30dd23cd4e..8d69846b2e09 100644
-> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> @@ -197,7 +197,6 @@ examples:
->      };
->  
->    - |
-> -    #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
->      #include <dt-bindings/power/xlnx-zynqmp-power.h>
->      #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
->      #include <dt-bindings/phy/phy.h>
-> @@ -210,9 +209,9 @@ examples:
->                      interrupt-parent = <&gic>;
->                      interrupts = <0 59 4>, <0 59 4>;
->                      reg = <0x0 0xff0c0000 0x0 0x1000>;
-> -                    clocks = <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM1_REF>,
-> -                             <&zynqmp_clk GEM1_TX>, <&zynqmp_clk GEM1_RX>,
-> -                             <&zynqmp_clk GEM_TSU>;
-> +                    clocks = <&zynqmp_clk 31>, <&zynqmp_clk 105>,
-> +                             <&zynqmp_clk 51>, <&zynqmp_clk 50>,
-> +                             <&zynqmp_clk 44>;
->                      clock-names = "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
->                      #address-cells = <1>;
->                      #size-cells = <0>;
-> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> index 04d4d3b4916d..02cf1314367b 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> @@ -65,14 +65,13 @@ allOf:
->  
->  examples:
->    - |
-> -    #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
->      soc {
->        #address-cells = <2>;
->        #size-cells = <2>;
->  
->        qspi: spi@ff0f0000 {
->          compatible = "xlnx,zynqmp-qspi-1.0";
-> -        clocks = <&zynqmp_clk QSPI_REF>, <&zynqmp_clk LPD_LSBUS>;
-> +        clocks = <&zynqmp_clk 53>, <&zynqmp_clk 82>;
->          clock-names = "ref_clk", "pclk";
->          interrupts = <0 15 4>;
->          interrupt-parent = <&gic>;
-> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> index 00f87a558c7d..b5843f4d17d8 100644
-> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> @@ -101,7 +101,6 @@ examples:
->      #include <dt-bindings/dma/xlnx-zynqmp-dpdma.h>
->      #include <dt-bindings/power/xlnx-zynqmp-power.h>
->      #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
-> -    #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
->      #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
->      #include <dt-bindings/phy/phy.h>
->      axi {
-> @@ -113,7 +112,7 @@ examples:
->              #size-cells = <0x2>;
->              compatible = "xlnx,zynqmp-dwc3";
->              reg = <0x0 0xff9d0000 0x0 0x100>;
-> -            clocks = <&zynqmp_clk USB0_BUS_REF>, <&zynqmp_clk USB3_DUAL_REF>;
-> +            clocks = <&zynqmp_clk 32>, <&zynqmp_clk 34>;
->              clock-names = "bus_clk", "ref_clk";
->              power-domains = <&zynqmp_firmware PD_USB_0>;
->              resets = <&zynqmp_reset ZYNQMP_RESET_USB1_CORERESET>,
-> diff --git a/include/dt-bindings/clock/xlnx-zynqmp-clk.h b/include/dt-bindings/clock/xlnx-zynqmp-clk.h
-> index cdc4c0b9a374..f0f7ddd3dcbd 100644
-> --- a/include/dt-bindings/clock/xlnx-zynqmp-clk.h
-> +++ b/include/dt-bindings/clock/xlnx-zynqmp-clk.h
-> @@ -9,6 +9,13 @@
->  #ifndef _DT_BINDINGS_CLK_ZYNQMP_H
->  #define _DT_BINDINGS_CLK_ZYNQMP_H
->  
-> +/*
-> + * These bindings are deprecated, because they do not match the actual
-> + * concept of bindings but rather contain pure firmware values.
-> + * Instead include the header in the DTS source directory.
-> + */
-> +#warning "These bindings are deprecated. Instead use the header in the DTS source directory."
-> +
->  #define IOPLL			0
->  #define RPLL			1
->  #define APLL			2
-
+SGkgS3J6eXN6dG9mLA0KDQpPbiAwNC8wMi8yMDI1IDIxOjA5LCBLcnp5c3p0b2YgS296bG93c2tp
+IHdyb3RlOg0KPiBPbiBUdWUsIEZlYiAwNCwgMjAyNSBhdCAwNDowMjo0NFBNICsxMzAwLCBDaHJp
+cyBQYWNraGFtIHdyb3RlOg0KPj4gQWRkIGJpbmRpbmdzIGZvciB0aGUgZXRoZXJuZXQtc3dpdGNo
+IHBvcnRpb24gb2YgdGhlIFJUTDkzMDAuDQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgUGFj
+a2hhbSA8Y2hyaXMucGFja2hhbUBhbGxpZWR0ZWxlc2lzLmNvLm56Pg0KPj4gLS0tDQo+Pg0KPj4g
+Tm90ZXM6DQo+PiAgICAgIENoYW5nZXMgaW4gdjY6DQo+PiAgICAgIC0gTmV3DQo+PiAgICAgIC0g
+SSdkIGxpa2UgdG8gZW5mb3JjZSB0aGUgcHJvcGVydHkgYmVpbmcgImV0aGVybmV0LXBvcnRzIiBi
+dXQgSSBzZWUgdGhlDQo+PiAgICAgICAgZ2VuZXJpYyBiaW5kaW5nIGFsbG93cyAicG9ydHMiIGFz
+IHdlbGwuIENhbiBJIGp1c3QgYWRkIGV0aGVybmV0LXBvcnRzOg0KPj4gICAgICAgIHR5cGU6IG9i
+amVjdCBoZXJlIG9yIGRvZXMgYnkgZHJpdmVyIG5lZWQgdG8gaGFuZGxlIGJvdGggInBvcnRzIiBh
+bmQNCj4+ICAgICAgICAiZXRoZXJuZXQtcG9ydHMiIChJIHNlZSBzb21lIGRvIGFuZCBzb21lIGRv
+bid0KS4NCj4+DQo+PiAgIC4uLi9iaW5kaW5ncy9tZmQvcmVhbHRlayxydGw5MzAxLXN3aXRjaC55
+YW1sICAgICB8IDE2ICsrKysrKysrKysrKysrKy0NCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDE1IGlu
+c2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4+DQo+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9yZWFsdGVrLHJ0bDkzMDEtc3dpdGNoLnlhbWwg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL3JlYWx0ZWsscnRsOTMwMS1z
+d2l0Y2gueWFtbA0KPj4gaW5kZXggZjA1MzMwM2FiMWU2Li5jYjU0YWJkYTVlNmEgMTAwNjQ0DQo+
+PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL3JlYWx0ZWsscnRs
+OTMwMS1zd2l0Y2gueWFtbA0KPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL21mZC9yZWFsdGVrLHJ0bDkzMDEtc3dpdGNoLnlhbWwNCj4+IEBAIC0xNCw2ICsxNCw4IEBA
+IGRlc2NyaXB0aW9uOg0KPj4gICAgIG51bWJlciBvZiBkaWZmZXJlbnQgcGVyaXBoZXJhbHMgYXJl
+IGFjY2Vzc2VkIHRocm91Z2ggYSBjb21tb24gcmVnaXN0ZXIgYmxvY2ssDQo+PiAgICAgcmVwcmVz
+ZW50ZWQgaGVyZSBhcyBhIHN5c2NvbiBub2RlLg0KPj4gICANCj4+ICskcmVmOiAvc2NoZW1hcy9u
+ZXQvZXRoZXJuZXQtc3dpdGNoLnlhbWwjDQo+PiArDQo+PiAgIHByb3BlcnRpZXM6DQo+PiAgICAg
+Y29tcGF0aWJsZToNCj4+ICAgICAgIGl0ZW1zOg0KPj4gQEAgLTQ1LDcgKzQ3LDcgQEAgcmVxdWly
+ZWQ6DQo+PiAgICAgLSBjb21wYXRpYmxlDQo+PiAgICAgLSByZWcNCj4+ICAgDQo+IEkgZG9uJ3Qg
+Z2V0IHdoeSB0aGlzIGRldmljZSByZWNlaXZlcyBub3cgY2hpbGRyZW4gd2l0aG91dCBhZGRyZXNz
+ZXMuDQo+IEVpdGhlciB5b3VyIGNoaWxkcmVuIGhhdmUgJ3JlZycgb3IgdGhleSBkbyBub3QuIE1p
+eGluZyBpcyBhIHNpZ24gb2YgYQ0KPiBtZXNzLCBsaWtlIHRoaXMgd2FzIG5ldmVyIGFjdHVhbGx5
+IHNpbXBsZS1tZmQuDQo+DQo+IFlvdSB3b3VsZCBnZXQgdGhpcyBjb21tZW50IGlmIHlvdSBwb3N0
+ZWQgY29tcGxldGUgc2NoZW1hIHRoZSBmaXJzdCB0aW1lLg0KDQpZZXMgZmFpciBlbm91Z2guIEkg
+dGhpbmsgSSBlcnJlZCB0b28gZmFyIG9uIHRoZSBzaWRlIG9mIHRyeWluZyB0byBzZW5kIA0Kc21h
+bGwgY2h1bmtzIChhbmQgYWxzbyBub3Qgd2FudGluZyB0byBjb21taXQgdG8gYSBiaW5kaW5nIGJl
+Zm9yZSBJIGhhZCANCndvcmtpbmcgZHJpdmVycykuDQoNClNvIGhvdyBkbyB3ZSBtb3ZlIGZvcndh
+cmQ/IFRoZXJlJ3Mgb25lIG1vcmUgcGF0Y2ggSSBoYXZlbid0IHNlbnQgeWV0IA0KdGhhdCBhZGRz
+IGludGVycnVwdHMgZm9yIHRoZSBzd2l0Y2ggYmxvY2suIEJ1dCBvdGhlciB0aGFuIHRoYXQgSSB0
+aGluayANCndoYXQgSSBoYXZlIG5vdyBjb3ZlcnMgYWxsIG9mIHRoZSBtYWpvciBjb21wb25lbnRz
+IGluIHRoaXMgY2hpcC4NCg0KVGhlcmUncyBvbmx5IG9uZSBpbi10cmVlIGJvYXJkIHRoYXQgdXNl
+cyB0aGlzIGFuZCBJJ20gdGhlIG1haW50YWluZXIgb2YgDQppdCBzbyB3aXRoZHJhd2luZyB0aGUg
+bWZkIGJpbmRpbmcgYW5kIHJlcGxhY2luZyBpdCB3aXRoIHNvbWV0aGluZyBlbHNlIA0KaXMgbm90
+IG91dCBvZiB0aGUgcXVlc3Rpb24uIFRoZXJlIG1heSBiZSBzb21lIGNvbXBsYWludHMgZnJvbSBt
+YWtlIA0KZHRic19jaGVjayB3aGlsZSB3ZSBnZXQgdGhpcyBzb3J0ZWQgYnV0IGhvcGVmdWxseSB3
+ZSBjYW4gZ2V0IHRoYXQgZG9uZSBzb29uLg0KDQo=
 
