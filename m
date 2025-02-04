@@ -1,244 +1,113 @@
-Return-Path: <devicetree+bounces-142896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B3DFA26F23
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 11:16:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C43A26F8F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 11:50:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 873C11615D7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 10:15:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DE001666F6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 10:50:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB82204F63;
-	Tue,  4 Feb 2025 10:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4E320AF8B;
+	Tue,  4 Feb 2025 10:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="gyoueOkS"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="GzPVw4qJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2081.outbound.protection.outlook.com [40.107.22.81])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E1F13C9D4;
-	Tue,  4 Feb 2025 10:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.81
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738664155; cv=fail; b=kOoeChYb82q0lrNV/aFWGtC213v4IZPejKGeX3pl+DpntpepqmL8EQ8dCRXcY99jDnFcIUYpIaq5WYEj7grWEsJ1d/QfZwHBFAKZGcKtEVCOn7EbWcJ2bOE4qEGm1th2WSq6vG4rMPMWoAuGDxFau5wC9Yo/T2gk0Y0xYGMmAn4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738664155; c=relaxed/simple;
-	bh=FNN3gI+xDTFZY1BQ148Tqnw83fIjRRyypSiNG6Ushfg=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=T4XuZgCiTaz/m1lalFSsXT1nZvhEGWiK/uIYwfzKWY+Fs22+g+4RFQ/q9ZRcUPijc3pJMI0CbFwDrWKR0ox2CxaBwuiZXijpPNYRt049+FvZyWW/3ycNDwFhM8LSGt4ND6YAwqo/gtgvQPnFfm/WblKtali7TZ3MjClQbslYEYE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=gyoueOkS; arc=fail smtp.client-ip=40.107.22.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NC1NLhi1c8BRIlf7iVPjdd1q8F7NO1oVDJ/413x7T9h/g8WwT9Uj/it+2JvDLOaL0ofRzYdKsYLQyhpHZZPVmn5LecRdkrlP5HYfnEHSR1SPOZyNMbG07WwPa158uFSudusf87s+ODZH494dPFe3Otd0ZVChZYiEFNy2edkVj/h0T6l1jEyv3euevuUWxpNy9YWeA1O41pnM5C1lJvk414F6flecjoIX5F2oaNgHE5hy0DUwNUlWlFV/zCaXTV9bOpBG0atNFdQsPVCtFemgiWnt4/YU28KarvzV11ueSRAnykHDZ1YJ9W+XGyNpqyIJxm4CpOQ1FtVCFl8ekK7y9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=INao4iY1AKMX3axCoVuPM7vg9v0A4PUEBGQC9APCHvI=;
- b=B7sUrmoSM6+wGMpG0bTiZDNopa8I6HI89TS0YJhFj2S9YGwD808OsafNno/XfnnBBxSQ1DXSf3ug4lpwfUCFrtCBFUCZi2n8ynNQD2BXkXnvZ0uTZBz6nvLjCUGneer5yP/fb22cIFwCZGAgayb4P9VuZR7ytBqOYHBCs4AKx1xbDZTPoGZCYXw6n4ZhOxVwd9Nfzb1/EoAw1Cmr3yCGa+r0MMSZE9UyQOqT0w0Uyl7slo5nl4rjLYl4Q2rsyPqBWgape6MNmuqGNf/8UiWlX5Mi8n3qOeaZLkGKmuQ+866pvhqs3WwS2+cYL69UcAZVPLf9uIqUNFbPVosnGOYjrA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=INao4iY1AKMX3axCoVuPM7vg9v0A4PUEBGQC9APCHvI=;
- b=gyoueOkSSEHIoJb5f3JrelPSXSuDrylyGIu6W0SdjDrkzA6X8QaJaq3wOPDn2H+QhO18MXN9uG6gziK4jlXL9WAtTxCF4lQEgs0kI/g+M8DsglYXvZyfqdgSnAFtzPpJl8X/NCBTJuRXi5oHv+sQiaDA4NBL2ivRj/D21oIdIA4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by DU4PR04MB10624.eurprd04.prod.outlook.com (2603:10a6:10:592::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.24; Tue, 4 Feb
- 2025 10:15:50 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%3]) with mapi id 15.20.8398.021; Tue, 4 Feb 2025
- 10:15:50 +0000
-Message-ID: <fdf9016e-5bde-4800-bdd6-02e159a63592@cherry.de>
-Date: Tue, 4 Feb 2025 11:15:48 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] arm64: dts: rockchip: Enable HDMI0 audio output
- for Rock 5B
-To: Detlev Casanova <detlev.casanova@collabora.com>,
- linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Alexey Charkov <alchark@gmail.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>, Jianfeng Liu <liujianfeng1994@gmail.com>,
- Niklas Cassel <cassel@kernel.org>, FUKAUMI Naoki <naoki@radxa.com>,
- Kever Yang <kever.yang@rock-chips.com>, Johan Jonker <jbx6244@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Algea Cao <algea.cao@rock-chips.com>, Chen-Yu Tsai <wens@csie.org>,
- Sugar Zhang <sugar.zhang@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org, kernel@collabora.com
-References: <20250203171925.126309-1-detlev.casanova@collabora.com>
- <20250203171925.126309-4-detlev.casanova@collabora.com>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <20250203171925.126309-4-detlev.casanova@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0450.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c6::11) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E29920AF9D
+	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 10:50:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738666219; cv=none; b=Hx7pKkQTICIcX/jsTv8gG4i3v+CcCgUlcGAjN0qghK+ZmScEE4621Ue+zMuWcvuN/qPHQvvLaL3ejoUmK1VYvEXvPaEFcF0o+eSNSJNJzrnm46Gjt/6F4wltcgxSl6RdvXjV1mWNGfs/8sXpm9fNzBi6gmioFdo1Q25Z9x42pWU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738666219; c=relaxed/simple;
+	bh=9ipP3kFnBl1cxLbmAISW/VKp/4wIJ90jIpMVzpvjG9g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L/Zw7xS/oFO0eggOeCXLQregKawIOUalhpgKeNmmrZqwlURO5CBv4KnoggUK/0UZoBaZuCzsbvlkrVcBt24LCpkAFIOHGEoj3IbwBf919bLkgaVIf1oPxbLThTKb1NZbPHgzXCqXO+NwhE7H0LEUc2/4vzNjcwno6D5H/Sr02TM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=GzPVw4qJ; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=9ipP
+	3kFnBl1cxLbmAISW/VKp/4wIJ90jIpMVzpvjG9g=; b=GzPVw4qJyLJyd/fbQZ7G
+	uL0XNaCAeSc1FjwBXAdyx/TbqvrdPZ41HSB9TUdxoPwF/BHJVRVRgcG4oaDcNeWC
+	xM84N1Ff7EXsxNck/rkvBfJb9Rvb37RLeczgc/HAM1kq3lJQATtWNveEcaRJM/co
+	fT2kpE9zNAR6owBTc5yV0xZ28fj/++IqvKzUxFsS0R7S5aZLBDMSwQGchlMFqkhs
+	6/qO90c9z/GqHS+s1611+UK6dd2eHVgnINEjkwKctnNJaBZTYBydPi9pjbmJHunf
+	sIMbSF5xM0tDUzl3mSMC+GF7GM5XYZw1wjvPf/DLrglrfrGxGEp0zwCVaZZ2E4PV
+	6g==
+Received: (qmail 3006169 invoked from network); 4 Feb 2025 11:43:33 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 4 Feb 2025 11:43:33 +0100
+X-UD-Smtp-Session: l3s3148p1@JEQlrk4tDIm5aIpF
+Date: Tue, 4 Feb 2025 11:43:32 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH 0/4] ARM: dts: at91: calao_usb: fix various naming
+ problems
+Message-ID: <Z6HvVDV0tE99w3od@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	"Rob Herring (Arm)" <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>
+References: <20250131210236.36212-6-wsa+renesas@sang-engineering.com>
+ <173835855390.46028.13185945524234872285.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|DU4PR04MB10624:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e6a5838-87c4-408e-6204-08dd4504e622
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|7416014|376014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?aS9jZ2ErQzJiV2JCK0NKakZKcUc1YnV0NFJSdVpKOFcyMExwQytoVENlaEJE?=
- =?utf-8?B?UnU3ZU9CeXJRUHkza3FPM3lMRHk1emxicnYzSXlMWTdxYlRHcGE5TURkM3Ja?=
- =?utf-8?B?Z09BYWhRUTVhV0M0dEcrVU9GZkRNR09Ca2d2MVpsM05TSTlhajdiVnM0OVM3?=
- =?utf-8?B?UDRwVEd4TVpQZ1BFeTE2eFVHenExRTJCU0hlVDNGNE56cUw3ZjJyb0graGZY?=
- =?utf-8?B?cFFxcGZHL0t2R1hSNUJrUWpnMlNvaFZsNFJFZVJaSUJBL0NZaU9tcnAzWDk5?=
- =?utf-8?B?bmZxNkxtd29OWUVJem5DUmp5VGNPV3N6VmxsWlNMTm9BdHRvUkEzTEtRTVc4?=
- =?utf-8?B?eHpMd2U1RDN1MUowT0xPVlFrRHhNK2Y5eHBLWmM1Y2RKb3lBT1BOWVFSNHl3?=
- =?utf-8?B?bjFJbEtna3N4djlFVXNzaHdnL2w2OGorMklhQm9zSFJhOHVHbk5ya2FwTC85?=
- =?utf-8?B?bjFOa2x4Q3c5TXhESnhSeDRucmNWN0FLUXZ6ZGJ0VUJNOWJBSEluSmpzQnRM?=
- =?utf-8?B?bFVzS2xPcS9JZTJveXRKUCtnMGs0UTdBcGZUOVM4RzBURkJQWmJscXlXdFpa?=
- =?utf-8?B?STBCcU9icWRNL2RQNVNTWGJzdkNyYWRNYVc2TU14VFVjWkFKRUM1K2x1RjFS?=
- =?utf-8?B?N1RBTDNKd2puWklKa3BPc1l0UzZ1M0ExelhYSFRRM1VjamVPamd1TWd3aENr?=
- =?utf-8?B?bnQ4LzgvNXcxNmFST0thRGZaNkJoT1c3dXpNTDR3Y2tEQW1kSWRrQnYra2t1?=
- =?utf-8?B?d3lKajBLS0VuWFFlWlhoYWFNNWRhVTM5TG42a1Bkb1hQUkpURGI2QXNCMmNk?=
- =?utf-8?B?YTJlK0l5QkxVcmVVQ1RSdWowQ1lpU0ltYmlkK3Q0L1hVZG90YkExTDE2b3V5?=
- =?utf-8?B?TjBrM0M2THpEQUhRQkdzZWpzUncxV1NrWjJwV2lSUC91cG1ZNjlvQ01kbWFY?=
- =?utf-8?B?Y1ZwamZVMmk5M2lxdnRmTW1zcjhkUUp0MTc2aUF6UGFpcjZvK2FWL1lhdUxE?=
- =?utf-8?B?N2RjT3p1NGtDUVlnaDVDTFRzSFhBMktZVDZvNW1TSXNzSThrQWJFc3Nka2Vn?=
- =?utf-8?B?djZHUlVtNDd6UllvSEk3RUREcUZHVW5vY1BFL2lUYnZ5dWRRMkE2S0xkWWdH?=
- =?utf-8?B?dnFQWDdVUWRuVHZhWkc2ZGt1K3Q4VzB2QXpObjNEaGxkVHdlazlUem5VL1Fi?=
- =?utf-8?B?T0g2RTBBSnZaTys2YytWSzhiOXlrQ1J4Q3hrNDJPTktqcURMQXRsbmRXbm9L?=
- =?utf-8?B?eXd5eGVmelU5Mng2Z0cvcVVaZ3p6ZVNINElneWQzNElENU83Nyt6Sy9YY0dC?=
- =?utf-8?B?c1RTZmxpL2R6akU1NXEvZjAxQ2lrWkhGSVdpOEJIUWlSRi9meUVBU2RkQmh4?=
- =?utf-8?B?MC8yQ1N3Z0w2dXY1d0xLNXlQSUZ6K1RYSmN5dEpzZ1pLR2d4aXN1SjNQQUNV?=
- =?utf-8?B?SjBYcHBVVTV0d0trQ0xrUWEwNDZmQk1TNmNLWHpucXMwNHR5eVlkMWJUSXZu?=
- =?utf-8?B?U000ZVVkUEMyR2xldVhMbDVxV0w4QjkvbDZRdzAzMEFySnZKN28yQUc1eXB3?=
- =?utf-8?B?ZWY1M0xJOTdGdEc0SkJoYytxdUxmaDJLU0ZFaVVCSmttL1NTbWN5RGxXNExI?=
- =?utf-8?B?dmdhNGY1WHBEbG5jUFYrMlRSMldpaU9wdWo4blcvRUJhVktPNDA0SFFSbXhW?=
- =?utf-8?B?Q3lGcHdsRkhIazBwK285M0o4MTdVV0NVM1hZenM5NzZkb1JsejI1azhobHo0?=
- =?utf-8?B?U3hZbHRUbjZzejFTOVhsaDdVWVl4Q2thRTBNMUNZS2lDeE5aUC85dDB1UGpH?=
- =?utf-8?B?cTY3NnhsdUlxekF2U2JOekpzdVI3MGRSblIrZFF1V3p0M2Y2V0xFanFtbUht?=
- =?utf-8?Q?eyGM+FIm/RK98?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?c05aRXcvMUpYT1FxQ2VENjVwMC9RYkNZU0lOQUlpWC9WRlJEMDJjY1N5ODhE?=
- =?utf-8?B?NkIvZVgycmRGem9ia3NUUVk2dm0raHltVThpajZFS2xENUN0SE04clJWVjcw?=
- =?utf-8?B?ekZycmx0dFVoUlY4akxOMXBBVWg4cE1TYVhEMXZ0UGF2dXNKaEZZazQyMVVw?=
- =?utf-8?B?KzJDOTJoU2ozSk1mMXJPSjVhRC85WFhub3dlZGVCcGp6Z3N1MXAwaFBpcnBo?=
- =?utf-8?B?bUt5R1pJaXQ5enczVytJWXJtU2JoODM5Vk9mRTVaQnplRU1ua29UZFpiL0R2?=
- =?utf-8?B?dlRZamVnV25CR0NXRS9WWGpKRXUyZHZ3MFNYUFBUcE85N1A3NyszU3FlbmxQ?=
- =?utf-8?B?cFNWTDBRWCtFbWtnOEdhRENtV2FuMERCTG82S2g3YTBsSG5pS1doYXdsQzd4?=
- =?utf-8?B?LzNXbVAzVU91MlRkTTIycnNxY1h3WFZQbCtQcnJjbENRWmVLaUZIZ05DNWxU?=
- =?utf-8?B?dnBpeWE5emFtWkJiVzFjdW5ZR2M2ajNoUlJoNlJSVHJ5Z2VoNUJSSnRaNEFR?=
- =?utf-8?B?b1VUV2s3TVFDRm5ISVAzV2JhaVY0d3VpSGt2U2haRVhuUlBuTUQ0ZTJBeHRX?=
- =?utf-8?B?ZnNMVnJObE9iTFh0NVlFc1lFQjhjbytIdm1qd2VRVmdmZG42NCthek15OWJY?=
- =?utf-8?B?UWFOZDRPd29NdWtLZnRjZWZpNDVxa1FWL0M0Sk12UDg3SVpQMExWTmNoNURs?=
- =?utf-8?B?M1l6SHh6aWpZeHJiYUZ2cmNtVlN2ZGdtWmVCaVh5ZG1CYlovNTRXODZIYzkz?=
- =?utf-8?B?Y1c2SS9uY2YyY25JRDVvUW9Pay95WHE3RlNWMEpjaHpsQ1FGeThQaTE1SmVH?=
- =?utf-8?B?Zjd1TEYvNlRzT2RxcDNvK2tmcVJqdTgxUUxNTHBxZysxV2gzcnJxT3ZveTdY?=
- =?utf-8?B?THE0U3ZleDhEd0QvRmN2Q2wzZC96cmN3ditHVC9QU00rWkY0d0kxc3FmTXFr?=
- =?utf-8?B?ZnpNaVpEd3FieW5ldVo4a1VzK3l1cCtJZGQ1amEwVC9sOHJIK3VuczdZR1lu?=
- =?utf-8?B?MHdKSkh1dXdTYXJXT29KTkZDbVU3NVEvRTVQNzB1bWRkNmdDSkEwSkRtRkNs?=
- =?utf-8?B?Nzl4dFhuWWtnM0F5d1NXRDU2MUllNzh0OGpYWW1vQXhWVjEyUEJ4bGlTaGc3?=
- =?utf-8?B?OU5ybmVWZHdvYlNqOWFzaEdUa1pFNDRHQVR2REVBWFJvUUNxL0FqeUJSWmV3?=
- =?utf-8?B?azk4RHlHMHlBUWdkSFNhQXNJU2JRbVZ2c0p2bnh1VlhWcDdvbGxZRmxrQzBR?=
- =?utf-8?B?a1J5TkxwMmNvZVJsZ0RzL0xkdG5CTVdWU2I4ZU9laWlwd1BHMmEvb1ppeHR5?=
- =?utf-8?B?bkxyNS9iYk1mMzhCNkwyS3Vta2RnZGplTGtjRWQ3T3p0d0F6ZS8xaGV1cHVv?=
- =?utf-8?B?ZEVCdDQ5YTdQajd3dDN5dFJIK3J6TVp1S1dGYW9tZytwaXltSnBPWEY2NmF1?=
- =?utf-8?B?SjlLQnFmbTU0Zkw1S1kwWGdJUGlZRTlPR0NNdjc3MkhINTJWRERIY3hJZmpx?=
- =?utf-8?B?RVFxV2pVVmdGWHMzK0JNWER2LzVBOEFtTEpKRTcyMHdKV3RXZ216V08zY0dp?=
- =?utf-8?B?MjcxRDhXeW9qZ3JORjE3emhBVlFicTR4MkxxUTRzbkxZSE04aWZpUDlGbFhp?=
- =?utf-8?B?eG90TkpOYTdlMFJ3UWpsZkVobEc2SjlvNjd2czV1cXdtRTlRSis4aU9vdnAv?=
- =?utf-8?B?RVg3MzFZWG8zeUZKQzVPQXJlVDUyZjVoYTJOSlpLTmp3RnVFZ3JZblhxRUhH?=
- =?utf-8?B?Q1IxVnI4ei9BQmwvUE96dkgyZFVZeGpJNEYrL1JGN01naURvdGNCS1R0WlRv?=
- =?utf-8?B?VnBtb1BTcHFGNTlxMVlQbGttQXZ2YVAwazZNOEk0cUlJZnA0b2pXSm1GVmVt?=
- =?utf-8?B?Z1VLUGFUbEJiSW9RcVZ4YkJZZ0NnTGZJVTV5R1hrSTZ1eGl4UWFKMk5vV1NZ?=
- =?utf-8?B?NzZFSDMwZGViNmxDNEwvSklRRjFRalhzZTlDa3FuMytWVzhPYklUNVVOdnpm?=
- =?utf-8?B?UEYrWXhHZ2NNbEhOVWFzK25aVEZDeTVUMkFRekY3OUFrOGhPVHkzTHB2aGhQ?=
- =?utf-8?B?RzA0ZmNIalBSVHFhbTRPeEdvdlJzRnhNNUNKWDFvMGdlWm9TWiszZm5lQnM0?=
- =?utf-8?B?dnY4a2hSTjNaaTRBQ1NKYllYQTZCTDAyZS9BR2dyaE1OcXNmUHJwK2M2WS8r?=
- =?utf-8?B?ZlE9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e6a5838-87c4-408e-6204-08dd4504e622
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2025 10:15:50.1019
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FVLYaMtDb5RlZOWPCa0RSiiDRkLsLwpzpTib67dUqD8jc6bmZQJVVewZqkIqJRXjRfANXL27ikGpa77nBCeQkR5jlxRWSE6SdIkWDvHAZXQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10624
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kuNg0v0oHwc+O7+H"
+Content-Disposition: inline
+In-Reply-To: <173835855390.46028.13185945524234872285.robh@kernel.org>
 
-Hi Detlev,
 
-On 2/3/25 6:16 PM, Detlev Casanova wrote:
-> HDMI audio is available on the Rock 5B HDMI TX port.
-> Enable it.
-> 
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+--kuNg0v0oHwc+O7+H
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
 
-Will try to remember to send patches for RK3588 Tiger Haikou and RK3588 
-Jaguar once those patches get merged :)
+> arch/arm/boot/dts/microchip/usb_a9263.dtb: /: failed to match any schema with compatible: ['calao,usb-a9263', 'atmel,at91sam9263', 'atmel,at91sam9']
 
-Thanks!
-Quentin
+I forgot to mention there is a dependency. As I need to resend the
+dependency anyhow, I will put it into the series.
 
-> ---
->   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> index d597112f1d5b8..88ff5d9db2817 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -204,6 +204,10 @@ &gpu {
->   	status = "okay";
->   };
->   
-> +&hdmi0_sound {
-> +	status = "okay";
-> +};
-> +
->   &hdmi0 {
->   	status = "okay";
->   };
-> @@ -318,6 +322,10 @@ i2s0_8ch_p0_0: endpoint {
->   	};
->   };
->   
-> +&i2s5_8ch {
-> +	status = "okay";
-> +};
-> +
->   &package_thermal {
->   	polling-delay = <1000>;
->   
 
+--kuNg0v0oHwc+O7+H
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmeh71AACgkQFA3kzBSg
+KbZZhRAAnyOerZ2rDH0wAShdaSb2n/zw0gASiSdkVv6VgfRFgbX3S1+YuxwiWWqP
+YM1OLrMBfGUSCLx9DZSy+Ph/ZxWX89BQP/NobQ76R/GCn7/7HnQNMsmobUzrDORe
+UQWebxjEvbLPb/Wj8DSFC383jWV9b4/WYI8CQyU1MVQn+YsR0pACkPJGywWYegjV
+Txwv5y8qqZhnUShKyAR4ZOzSMqQio8+XCjWzfQ2Ocm4kqP3P1bY1w5cx4O7D6gBk
+BsoXoFMOCiscHAcHnlSLUOJflPt981FPApRJ5uS8ivscanZz2xoOqLCZHv9GkP43
+oXY1XPs2k+UzRQSJN84s28L8MHNBuOG8lRV7IiQG1shgp99bhLsSw68d/lqcXnq1
+a8k9sn7VXNHS8XJCGaLKjCQS04o5QI7AiS47+RV/gF1F7eiZ6ngwJQuTFFoJyPiy
+zWM5EC9JLgFzxiF3U0jk4u4gP28vMZC3Idx5bZbmB1d+ejokiB9lek4S6/SvuJgB
+iXrd+KzHJc7aohAiIJA8p5HcPfIlVbh5X4nXiyt6bGNskFAXfTij0wa0huecMyZm
+RmvH7Xe5YBuYUArvgWDsbrk3hwQX49qi6OZsTCQ2/p2T6lzrk7g/qzu6NZbhV8Ca
+Xjs2GGRde/jsy/U72N8E5UI9f3X/NutLwzkqfCXX/bqZI6SDPng=
+=/aAy
+-----END PGP SIGNATURE-----
+
+--kuNg0v0oHwc+O7+H--
 
