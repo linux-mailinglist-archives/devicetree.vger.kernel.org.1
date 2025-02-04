@@ -1,106 +1,78 @@
-Return-Path: <devicetree+bounces-143001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C761A278AB
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65EB2A27913
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:55:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B6AB1886E28
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:38:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 461261887DC0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7E47217656;
-	Tue,  4 Feb 2025 17:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C363E2165E6;
+	Tue,  4 Feb 2025 17:55:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JqeLuFId"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="RmYK1/HX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 112A42163AF;
-	Tue,  4 Feb 2025 17:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4DD215F5A;
+	Tue,  4 Feb 2025 17:55:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738690613; cv=none; b=nYwPN0rkF+86mlH+92CWhG6Q+p3NkG+APRDbpLQ2GsuyXeIU/S2LeHTIDUb3kgBq/3x9QIrSspEyzwsewXRNph0tp+DLhieUysFY64gHEJKDrQKMIMN0YE75BXdwLbUUVe8elniPKkrCF/vGf3l9uIr3e4qwQfovjSt0rpB96Og=
+	t=1738691719; cv=none; b=LlC1jXKUY7lBZnGAu3rWuh4E5EqNgs1QS8OcN+sD2j+JniRSyzUEGyOEmWJstu2uerJW/eBIHNuqZrmiYYlNpomjp0FLvMMzMj9pd6u94VdG/RqcnOaFFHwyMq8qTXoOT+jAm4NAUhQ2PYTn+YolfDSfZuT2Q7MV4Bj0be7LzOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738690613; c=relaxed/simple;
-	bh=pIXT1Hs1aUtzZe3Mmj8B+f4h66p4s3gODDX3GQGG9jk=;
+	s=arc-20240116; t=1738691719; c=relaxed/simple;
+	bh=eKkjbpvmMcUWCmAAn0Q+Qi2GwIWAsBjIOjlZJX/J/t0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YjfRffhlrm+/jTZdJsT5vWcxIP3e6AiXlSEPGsGvcXzEMJ6xqMtE0r0LMELcAQRDcGz39psmVwHJ/aEbNIgP9w/7rmQV+K8pLMH9fGbcajKt/TrUApkNl44y6874GWCY6Hi2XF5Aj9R8GXqigkC3fqRZx4TUqLMr/1AXXOyrfE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JqeLuFId; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738690612; x=1770226612;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pIXT1Hs1aUtzZe3Mmj8B+f4h66p4s3gODDX3GQGG9jk=;
-  b=JqeLuFIdWOkz9cJWnwzAp6+wUvF8Ptcxk8v0yd4nzz4In2Ema1YQudwX
-   AXJd71UoeRHkdGhY1kIl7XGUFj9q5GMoJNGUazp1NkofHJ3wPE6kzsoE7
-   zIf0CN9pedv4Ph/pY1ObEE/f/ShikONKandcqjZGz15VoXndfQ14k+Juq
-   V31QHYT2Pl8gy7L+fJ4AI7m3eKVJaIcvoL1AMZofyh75rTF4lB3wiPjQ2
-   6ylztqTtmREcCkRdvRqGNyKJycsf+UczP8ZIiHSktHxEdJFzUIjCvVR2l
-   Xm+dGKtkKaP80FbOTgycoG9P03+cnxbpwP7z9qdUMFenJv20XeE9+Aj19
-   Q==;
-X-CSE-ConnectionGUID: yeIKk6AZSz+hacf7Lj7qHA==
-X-CSE-MsgGUID: sIYvCpe4QVmlRDRTgJ2HTA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="64583761"
-X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; 
-   d="scan'208";a="64583761"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Feb 2025 09:36:51 -0800
-X-CSE-ConnectionGUID: wCA9AbmgQMu5wOszPK0wRg==
-X-CSE-MsgGUID: fMhha4lFQUKbtEVcr0PRXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; 
-   d="scan'208";a="110494598"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Feb 2025 09:36:45 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tfMqn-00000008DQ7-3FFR;
-	Tue, 04 Feb 2025 19:36:41 +0200
-Date: Tue, 4 Feb 2025 19:36:41 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Sunil V L <sunilvl@ventanamicro.com>
-Cc: Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=EJ7QOe8+4Nid05CiYT5xwA1t/I3kijOvV2vLC8Z2TpFTUGCTPyJwpDQtTZSZC3DTpKVWR0IWnwbmB6sgAfJ4SalvnXkrfnb5r6ivq4AeUgba/y6Ptbc9EJQ8a+0mXCEx5zEFktqk+PGIbFC/2LTzK02ykVB2YljNFARTTykDkFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=RmYK1/HX; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=X+m8Z/jlxHVarmXMBJ9vHq1s4OI5ALJ7QeQ4FYkMmrU=; b=RmYK1/HXwlDsydBS1UzBO8C+Jq
+	ENGfvbKHsqrNMGqu6hid4sknnUEOtrhV2cLRNulN9R8gAIlD70mQw7ovqOuB8JWCo2MalML4lF+Fs
+	G/j3FBcdBgkwi2/SBe4+j9onM+tiq0pzZH1wy7JWHXE/OODxrK9EWlZwWmX+L/TreAHfu1NkMvQab
+	IX4C9SSuyRlrikn1hYTdcoOvVBVYWnhb1zhi52GI8/xbA4iIkLnDh24Iyb72LhxkkON1VCsxn1Gj7
+	MXiLxeWpt+l+a3d9nDfut4bHH34kQF8IRsG5pbJIRSYhsWLUEWW6ulVU/O/oMHJQu5yn5VWB7yRfB
+	oqd/LDgQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33282)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tfN8U-0004Jt-12;
+	Tue, 04 Feb 2025 17:55:00 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tfN8P-0001Zt-2z;
+	Tue, 04 Feb 2025 17:54:53 +0000
+Date: Tue, 4 Feb 2025 17:54:53 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: dimitri.fedrau@liebherr.com
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 12/17] ACPI: property: Add support for nargs_prop
- in acpi_fwnode_get_reference_args()
-Message-ID: <Z6JQKQnBeB2Z9XQY@smile.fi.intel.com>
-References: <20250203084906.681418-1-apatel@ventanamicro.com>
- <20250203084906.681418-13-apatel@ventanamicro.com>
- <Z6CPvteWv89Xo70j@smile.fi.intel.com>
- <20250203105840.GH3713119@black.fi.intel.com>
- <Z6C1cg3cqik8ZxvU@sunil-laptop>
- <20250203123658.GI3713119@black.fi.intel.com>
- <Z6DJ9kmNx4JoqRg-@sunil-laptop>
- <Z6DVDicVEgmSyGcT@smile.fi.intel.com>
- <Z6DVn8u-2EwMaMR4@smile.fi.intel.com>
- <Z6JHG-nqFWDv-jpE@sunil-laptop>
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Dimitri Fedrau <dima.fedrau@gmail.com>
+Subject: Re: [PATCH net-next v3 2/3] net: phy: Add helper for getting tx
+ amplitude gain
+Message-ID: <Z6JUbW72_CqCY9Zq@shell.armlinux.org.uk>
+References: <20250204-dp83822-tx-swing-v3-0-9798e96500d9@liebherr.com>
+ <20250204-dp83822-tx-swing-v3-2-9798e96500d9@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,45 +81,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z6JHG-nqFWDv-jpE@sunil-laptop>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20250204-dp83822-tx-swing-v3-2-9798e96500d9@liebherr.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Tue, Feb 04, 2025 at 10:28:03PM +0530, Sunil V L wrote:
-> On Mon, Feb 03, 2025 at 04:41:35PM +0200, Andy Shevchenko wrote:
-> > > Ah, interesting. The original change that introduces this 3e3119d3088f ("device
-> > > property: Introduce fwnode_property_get_reference_args") hadn't been reviewed
-> > > by Mika or me, that's probably why we are not familiar with.
-> > > 
-> > > Since interface is already established, I would recommend to fix
-> > > this as proposed, i.e. with a new API. This is the way to match
-> > > how OF seems to be doing.
-> > 
-> > For the reference see implementation of of_fwnode_get_reference_args()
-> > 
-> > 	if (nargs_prop)
-> > 		ret = of_parse_phandle_with_args(to_of_node(fwnode), prop,
-> > 						 nargs_prop, index, &of_args);
-> > 	else
-> > 		ret = of_parse_phandle_with_fixed_args(to_of_node(fwnode), prop,
-> > 						       nargs, index, &of_args);
-> > 
-> > 
-> Thanks!. I can do similar. But the change in
-> __acpi_node_get_property_reference() will be still required since that
-> is the place where the actual decoding of AML object is done. That would
-> be similar to __of_parse_phandle_with_args() as well. Hope that is fine.
+On Tue, Feb 04, 2025 at 02:09:16PM +0100, Dimitri Fedrau via B4 Relay wrote:
+>  #if IS_ENABLED(CONFIG_OF_MDIO)
+> -static int phy_get_int_delay_property(struct device *dev, const char *name)
+> +static int phy_get_u32_property(struct device *dev, const char *name)
+>  {
+>  	s32 int_delay;
+>  	int ret;
+> @@ -3108,7 +3108,7 @@ static int phy_get_int_delay_property(struct device *dev, const char *name)
+>  	return int_delay;
 
-You don't need that. Split the core part to local static helper that
-takes whatever it needs, but being not visible to anyone outside
-drivers/acpi/property.c. And build the current helper and new visible one
-on the basis of this split. For better reviewing and maintaining you can
-split this approach to two patches: 1) preparatory by splitting a new
-local helper; 2) the introduction of a new API.
+Hmm. You're changing the name of this function from "int" to "u32", yet
+it still returns "int".
 
+What range of values are you expecting to be returned by this function?
+If it's the full range of u32 values, then that overlaps with the error
+range returned by device_property_read_u32().
+
+I'm wondering whether it would be better to follow the example set by
+these device_* functions, and pass a pointer for the value to them, and
+just have the return value indicating success/failure.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
