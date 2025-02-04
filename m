@@ -1,164 +1,213 @@
-Return-Path: <devicetree+bounces-142993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B665A27819
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:15:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2314A2782C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:19:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE1D51881F15
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:15:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57A041883C6A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405E021423C;
-	Tue,  4 Feb 2025 17:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KsgkX9ml"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE10215F7E;
+	Tue,  4 Feb 2025 17:19:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5CFD1547D8;
-	Tue,  4 Feb 2025 17:15:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D99221516C
+	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 17:19:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738689338; cv=none; b=b5dsS0qrlVFQrdW0yF5b+HA4a+wlq6SH/GfLWFoqRyXTDf4xDMYAbtxrouPrzt3Muc1j7+s2QN1Rdlj3hC4O4dMedSuV4mND4g7Lq/IuhAyGjmC/5FqhG/2YiCBTM4QF39kM+PksgWH2TtMQ4mb+ftxrCf0GBF1dyRpwPxL0XLQ=
+	t=1738689551; cv=none; b=Ha8yU2802EOjXV2cOubaoytyeJ2ihxnxgVRed/QM6FNhvo7JFOVGO6O6dH4SjXHC/tgJVs3YNFXuQ3iltakXNbmjWUhLfmscFh7I1BTmqyMhTnDWmG2ofgYZp8JmWcru3gRiRPPLWqsRoxUU8O5mk/FYq7x1S4z+fIupW95h2Y0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738689338; c=relaxed/simple;
-	bh=D4dDCeCtCvK0b+cHySHXx6/Bt2dV9Y0VXU7kJjskQHM=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=ulpSmvwSXL0rAebZQ3yciDxtbqpnw/DrYSZCWSsDB4qR9Po88KnMbFzdoDgt4s03VMWlmbCjyhMpDpohMA4+bQcYTURdwd0rpzW1zGYauxYxsPkZyOoo6BYJa7meE+vQzSHUQs07C1MNceS/ER1F3CO6+AGnyLb1KxY35RplQM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KsgkX9ml; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738689336; x=1770225336;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=D4dDCeCtCvK0b+cHySHXx6/Bt2dV9Y0VXU7kJjskQHM=;
-  b=KsgkX9mlk0/lO6bHA+AcATpRS3pnsti2kE6LvY70vfAlME5GXu0wZ6y4
-   CGTb+BOmQ5LJqj6lDFEvfF8IIfls16Y9W8Ys+caLLl2FFA70oIrD3wQSh
-   Vo4AhezdGhzR0ItJCD86+L/ANRvHPz44lCIaxML8YVFK0DvpyJges+3tS
-   XLRhdF1FI/I4Tgg6KGiGqPYXbU4LyQD2XGp8chJwKoSWL77mRWWaNdb4h
-   6Uh9kuD59rsgjYds4Vrf8PCinPjEwStaxyog5CcA4a+ZK7XNf+XPUPQkt
-   pJZ9Ov5w3Oz5XD+EZ2vgHIv4N+5FVaTYuid4BJ9eYkj8OzvF+7CKZ3UDO
-   g==;
-X-CSE-ConnectionGUID: erkThfHLTnCZA2d2SgLzSQ==
-X-CSE-MsgGUID: VC2DI/wQSDqLRTQYOwLbEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="42067063"
-X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; 
-   d="scan'208";a="42067063"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Feb 2025 09:15:35 -0800
-X-CSE-ConnectionGUID: VSrj3jrtQ+SRS7EtX16cDg==
-X-CSE-MsgGUID: xKCo2uCySw6hDVyux856ug==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; 
-   d="scan'208";a="111235463"
-Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
-  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Feb 2025 09:15:34 -0800
-Date: Tue, 4 Feb 2025 09:15:34 -0800 (PST)
-From: matthew.gerlach@linux.intel.com
-To: Krzysztof Kozlowski <krzk@kernel.org>
-cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
-    robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
-    conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com, 
-    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org, matthew.gerlach@altera.com, 
-    peter.colberg@altera.com
-Subject: Re: [PATCH v5 3/5] arm64: dts: agilex: add dtsi for PCIe Root Port
-In-Reply-To: <2323e446-14fd-462e-9fd2-d707f7d3802d@kernel.org>
-Message-ID: <1f8885db-1346-ed9e-dc3a-3938def7f472@linux.intel.com>
-References: <20250127173550.1222427-1-matthew.gerlach@linux.intel.com> <20250127173550.1222427-4-matthew.gerlach@linux.intel.com> <ea614dc5-ad24-4795-b9ba-fa682eda428f@kernel.org> <22cb714e-db76-b07-8572-2f70f6848369@linux.intel.com>
- <40a3dced-defe-412d-b5b2-efcc9619d172@kernel.org> <7c802294-97f6-3e9-4028-686484a525c5@linux.intel.com> <dd51fdae-0e00-44a9-a5a0-e536ba60fd8c@kernel.org> <56486d91-5ca-d85-eca1-1ce2df25238@linux.intel.com> <2323e446-14fd-462e-9fd2-d707f7d3802d@kernel.org>
+	s=arc-20240116; t=1738689551; c=relaxed/simple;
+	bh=48SY1O6657ygyTl0Qqylk4SilVwsM+xj4X+rzO7pz30=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=aETuU+vKv8n4sPdsKQg8+Jvi12vVWDKI9pqiv85Ati014aqMh0PWKdF/0zmHlcLA0ix1L0VPWf4hhY1S1qsw08N1H7YUpNN9RfPKGJx5LugbbLUJxuFN2s4B/XWl8mi6PSjAd8YtQUXFh4j1WLsOcKjroP2g9trsDAO8rtIwDCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tfMZF-0005M0-My; Tue, 04 Feb 2025 18:18:33 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tfMZC-003VAT-0S;
+	Tue, 04 Feb 2025 18:18:30 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tfMZC-000B3w-05;
+	Tue, 04 Feb 2025 18:18:30 +0100
+Message-ID: <48261cdfab6e0bc16e5327664b06728e1894422a.camel@pengutronix.de>
+Subject: Re: [PATCH v4 09/18] reset: thead: Add TH1520 reset controller
+ driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Michal Wilczynski <m.wilczynski@samsung.com>, Matt Coster
+ <Matt.Coster@imgtec.com>, "mturquette@baylibre.com"
+ <mturquette@baylibre.com>,  "sboyd@kernel.org" <sboyd@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+ "drew@pdp7.com" <drew@pdp7.com>, "guoren@kernel.org" <guoren@kernel.org>,
+ "wefu@redhat.com" <wefu@redhat.com>, "jassisinghbrar@gmail.com"
+ <jassisinghbrar@gmail.com>,  "paul.walmsley@sifive.com"
+ <paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>, 
+ "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, Frank Binns
+ <Frank.Binns@imgtec.com>,  "maarten.lankhorst@linux.intel.com"
+ <maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
+ <mripard@kernel.org>,  "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "airlied@gmail.com" <airlied@gmail.com>,  "simona@ffwll.ch"
+ <simona@ffwll.ch>, "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>, 
+ "jszhang@kernel.org" <jszhang@kernel.org>, "m.szyprowski@samsung.com"
+ <m.szyprowski@samsung.com>
+Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
+	"devicetree@vger.kernel.org"
+	 <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	 <linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	 <linux-riscv@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
+	 <dri-devel@lists.freedesktop.org>, "linux-pm@vger.kernel.org"
+	 <linux-pm@vger.kernel.org>
+Date: Tue, 04 Feb 2025 18:18:29 +0100
+In-Reply-To: <e83ea320-23f0-41ed-934c-2f1687b55ec1@samsung.com>
+References: <20250128194816.2185326-1-m.wilczynski@samsung.com>
+	 <CGME20250128194836eucas1p151c4fc83a17173fd1b79bfc959976301@eucas1p1.samsung.com>
+	 <20250128194816.2185326-10-m.wilczynski@samsung.com>
+	 <816db99d-7088-4c1a-af03-b9a825ac09dc@imgtec.com>
+	 <e83ea320-23f0-41ed-934c-2f1687b55ec1@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+On Mo, 2025-02-03 at 19:15 +0100, Michal Wilczynski wrote:
+>=20
+> On 1/31/25 16:39, Matt Coster wrote:
+> > On 28/01/2025 19:48, Michal Wilczynski wrote:
+> > > Add reset controller driver for the T-HEAD TH1520 SoC that manages
+> > > hardware reset lines for various subsystems. The driver currently
+> > > implements support for GPU reset control, with infrastructure in plac=
+e
+> > > to extend support for NPU and Watchdog Timer resets in future updates=
+.
+> > >=20
+> > > Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> > > ---
+> > >  MAINTAINERS                  |   1 +
+> > >  drivers/reset/Kconfig        |  10 ++
+> > >  drivers/reset/Makefile       |   1 +
+> > >  drivers/reset/reset-th1520.c | 178 +++++++++++++++++++++++++++++++++=
+++
+> > >  4 files changed, 190 insertions(+)
+> > >  create mode 100644 drivers/reset/reset-th1520.c
+> > >=20
+[...]
+> > > diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th152=
+0.c
+> > > new file mode 100644
+> > > index 000000000000..48afbc9f1cdd
+> > > --- /dev/null
+> > > +++ b/drivers/reset/reset-th1520.c
+> > > @@ -0,0 +1,178 @@
+[...]
+> > > +static void th1520_rst_gpu_enable(struct regmap *reg,
+> > > +				  struct mutex *gpu_seq_lock)
+> > > +{
+> > > +	int val;
+> > > +
+> > > +	mutex_lock(gpu_seq_lock);
+> > > +
+> > > +	/* if the GPU is not in a reset state it, put it into one */
+> > > +	regmap_read(reg, TH1520_GPU_RST_CFG, &val);
+> > > +	if (val)
+> > > +		regmap_update_bits(reg, TH1520_GPU_RST_CFG,
+> > > +				   TH1520_GPU_RST_CFG_MASK, 0x0);
 
+BIT(2) is not documented, but cleared here.
 
-On Sun, 2 Feb 2025, Krzysztof Kozlowski wrote:
+> > > +
+> > > +	/* rst gpu clkgen */
+> > > +	regmap_set_bits(reg, TH1520_GPU_RST_CFG, TH1520_GPU_SW_CLKGEN_RST);
+> >=20
+> > Do you know what this resets? From our side, the GPU only has a single
+> > reset line (which I assume to be GPU_RESET).
+>=20
+> This is clock generator reset, as described in the manual 5.4.2.6.1
+> GPU_RST_CFG. It does reside in the same register as the GPU reset line.
+>=20
+> I think this is required because the MEM clock gate is somehow broken
+> and marked as 'reserved' in manual, so instead as a workaround, since we
+> can't reliably enable the 'mem' clock it's a good idea to reset the
+> whole CLKGEN of the GPU.
 
-> On 02/02/2025 19:49, matthew.gerlach@linux.intel.com wrote:
->>
->>
->> On Sun, 2 Feb 2025, Krzysztof Kozlowski wrote:
->>
->>> On 01/02/2025 20:12, matthew.gerlach@linux.intel.com wrote:
->>>>>
->>>>>> they are also referenced in the following:
->>>>>>      Documentation/devicetree/bindings/soc/intel/intel,hps-copy-engine.yaml
->>>>>>      arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
->>>>>> I am not exactly sure where the right place is to define them, maybe
->>>>>> Documentation/devicetree/bindings/arm/intel,socfpga.yaml. On the other
->>>>>> hand, no code references these names; so it might make sense to just
->>>>>> remove them.
->>>>>
->>>>> In general: nowhere, because simple bus does not have such properties.
->>>>> It's not about reg-names only - you cannot have reg. You just did not
->>>>> define here simple-bus.
->>>>
->>>> I understand. I will remove reg and reg-names.
->>>
->>> If you have there IO address space, then removal does not sound right,
->>> either. You just need to come with the bindings for this dedicated
->>> device, whatever this is. There is no description here, not much in
->>> commit msg, so I don't know what is the device you are adding. PCI has
->>> several bindings, so is this just host bridge?
->>
->> The device associated with two address ranges may be best described as a
->> simple-bus. It is a bus between the CPU and the directly connected FPGA in
->> the same package as the SOC. The design programmed into the FPGA
->> determines the device(s) connected to the bus. The hardware implementing
+If this is a workaround for broken gating of the "mem" clock, would it
+be possible (and reasonable) to make this a separate reset control that
+is handled by the clock driver? ...
+
+> > > +
+> > > +	/*
+> > > +	 * According to the hardware manual, a delay of at least 32 clock
+> > > +	 * cycles is required between de-asserting the clkgen reset and
+> > > +	 * de-asserting the GPU reset. Assuming a worst-case scenario with
+> > > +	 * a very high GPU clock frequency, a delay of 1 microsecond is
+> > > +	 * sufficient to ensure this requirement is met across all
+> > > +	 * feasible GPU clock speeds.
+> > > +	 */
+> > > +	udelay(1);
+> >=20
+> > I don't love that this procedure appears in the platform reset driver.
+> > I appreciate it may not be clear from the SoC TRM, but this is the
+> > standard reset procedure for all IMG Rogue GPUs. The currently
+> > supported TI SoC handles this in silicon, when power up/down requests
+> > are sent so we never needed to encode it in the driver before.
+> >=20
+> > Strictly speaking, the 32 cycle delay is required between power and
+> > clocks being enabled and the reset line being deasserted. If nothing
+> > here touches power or clocks (which I don't think it should), the delay
+> > could potentially be lifted to the GPU driver.
+
+... This could be expressed as a delay between clk_prepare_enable() and
+reset_control_deassert() in the GPU driver then.
+
+> Yeah you're making excellent points here, I think it would be a good   =
+=20
+> idea to place the delay in the GPU driver, since this is specific to the
+> whole family of the GPU's not the SoC itself.
 >
-> So it is part of FPGA?
+> > Is it expected that if a device exposes a reset in devicetree that it
+> > can be cleanly reset without interaction with the device driver itself?
+> > I.E. in this case, is it required that the reset driver alone can clean=
+ly
+> > reset the GPU?
 
-Technically, the PCIe Tiles are hard IP, but they are connected to the 
-processor through the FPGA.
+No, the "resets" property should just describe the physical
+connection(s) between reset controller and the device.
 
->
->> this bus does have reset lines which allow for safely reprogramming the
->
-> Then it is not simple-bus. Simple-bus is our construct for simple
-> devices. You cannot have something a bit more complex and call it
-> simple-bus.
->
->> FPGA while the SOC is running, which implies appropriate bindings as you
->> suggest. Something like the following might make sense:
->>
->>  	aglx_hps_bridges: fpga-bus@80000000 {
->>  		compatible = "altr,agilex-hps-fpga-bridge", "simple-bus";
->
-> FPGA bridge maybe, but not simple-bus. It does not look like a simple
-> bus if you have here some resources.
+It is fine for the device driver to manually assert the reset, enable
+clocks and power, delay, and then deassert the reset, if that is the
+device specific reset procedure.
 
-FPGA bridge is a more accurate description of the actual hardware than 
-simple-bus. This bridge does have two address ranges to access the FPGA. 
-One address range is considered "light-weight" intended for register 
-accesses in the FPGA, while the other a full featured AXI interface 
-suitable DMA.
+> I'm not sure what the community as a whole thinks about that, so maybe
+> someone else can answer this, but I would code SoC specific stuff in the
+> reset driver for the SoC, and the GPU specific stuff (like the delay) in
+> the GPU driver code. I wasn't sure whether the delay was specific to the
+> SoC or the GPU so I've put it here.
 
->
->>  		reg = <0x80000000 0x20200000>,
->>  		      <0xf9000000 0x00100000>;
->>  		reg-names = "axi_h2f", "axi_h2f_lw";
->>  		#address-cells = <0x2>;
->>  		#size-cells = <0x1>;
->>  		ranges = <0x00000000 0x00000000 0x80000000 0x00040000>,
->>  			 <0x00000000 0x10000000 0x90100000 0x0ff00000>,
->>  			 <0x00000000 0x20000000 0xa0000000 0x00200000>,
->>  			 <0x00000001 0x00010000 0xf9010000 0x00008000>,
->>  			 <0x00000001 0x00018000 0xf9018000 0x00000080>,
->>  			 <0x00000001 0x00018080 0xf9018080 0x00000010>;
->>  		reset = <&rst SOC2FPGA_RESET>, <&rst LWHPS2FPGA_RESET>;
-> Best regards,
-> Krzysztof
->
-Thanks for the feedback,
-Matthew Gerlach
+I agree.
+
+regards
+Philipp
 
