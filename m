@@ -1,153 +1,171 @@
-Return-Path: <devicetree+bounces-142840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0ACBA26C2B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 07:35:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6535BA26C80
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 08:13:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9BC91888959
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 06:35:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE9C716624C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 07:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9322036F3;
-	Tue,  4 Feb 2025 06:35:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE5D204C2C;
+	Tue,  4 Feb 2025 07:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="TyGt/mYd"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="idF5xVtW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A4D20010B
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 06:35:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E30E2046B1
+	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 07:13:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738650931; cv=none; b=YgoJSgFKLhc75pN2X+CEYAV0deqCSYKGmApQcbaxkHOQWwO/vYsD26oy0kWfE2Q9xvAJebM45hDQJ1kwVI2TXE+4ouxU6sDBIVMWKeENJnO9PN2i2fK1N1d81heD4A6PLb5nvLw9xrLM576248fBzRfUv9OVHXgUKtdvNLwD2C4=
+	t=1738653187; cv=none; b=gfJD0unu3jKwXdV2VWeOWUlpbYnxkn7Z7NdWBnnHYar9qsiCInz8YNvOpBUnf7pPSzftl1HkpfWMTH6onrDPVXhDOXcUzjJhsdDueqO5fBT+JoqamR13bzf0n3BIMXpf8Spv+J/1IQqXHkqb5PnlENU6t3VutsJ9qkzgVoyLogI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738650931; c=relaxed/simple;
-	bh=L4IPFLUZXPgCzGDRwvYzbZVZH31xHwtQ3BWg+rkmdck=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SeCdNZ8lb9EfhMsU8f7Ja4gstt+WNgRn21ehPxnB2TOF58MX72veDuHnUc62BFkSEdJK2qVW/080ZN2whseosMbaXlEte2jGWQlre6Z6uiiZBrEP1PY2VleuYdQN9zYFpjxnu7wGlHv0M2Q0v5cjM35ENDWeQPhkA5PKJdNZ0Ho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=TyGt/mYd; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-21f0444b478so4509605ad.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 22:35:29 -0800 (PST)
+	s=arc-20240116; t=1738653187; c=relaxed/simple;
+	bh=KFABDXCSdsrd6uOQFOAccAAGvzed5qXZNHOtmv6ybdY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PAGNcDJR+KMjlB0G1LePr5heMUL7QbdciE96J7JT5TrI2shwG3b4dk64nobJJlGKR8ELhDTyrRwdJPD2Z1mGTCB0OdU8KCBi+itgVaMM6YVKuZV8K0UgJeUIdBpK/jl9WbRLak2sxcoF3Jxx663I9sGkigb5Yb7g2atPE7gtMNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=idF5xVtW; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab6ed8a5a04so861211966b.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 23:13:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1738650928; x=1739255728; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NMHiHPDNCUJ48N5qcuZlI6iRMY6kpg7JJf8A3gbeaKQ=;
-        b=TyGt/mYdwBkYF02/SBxoWhiPVXjlUnmcaU9iZ+l1BHQ9uuYAwHlsX78BzEAGQGOA/z
-         KCeQS3lg3Io8+F2q3UB4TtvSbd3IFaS9hIgkVeiDBW6ShZRc1+NJT4EVj90/sX+QqgMl
-         5mvLwLMZ20fR5UB7ouvnnUM6jTcXPihjUAAo0xdUJAJkSRaxEULp0jdOSg7tma+SdyJE
-         SG75ZXJhW5mjJM2/0I6Z+kc3xdqNf+SOZknTI7fvjQUL9Ka9VkhPxu9pGbCYQP3awEf0
-         2yIE2xvKyLwb1+F3wLWAydbfvhmF1pRsMWoDKo6j2vynBtHP05WQ9x2vD4j4NxeN+ReW
-         Sm+Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738653182; x=1739257982; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JFQ8QgaVc56ZWSK1ugpzWPCE6fH4oiEdiJ9FyYFmdnY=;
+        b=idF5xVtW3Q+EzWs8WneAG6bHrlwLL5twm6fpV4wOB1nJldIJbEr3vIUZcj1TM5gODX
+         j5iXtb8DittunYzC0bKYxts1qknTLPAu7OGJR/qDF2T4QZDFRyvcsVKvv3Xlloxyww17
+         6qeNwSD6ohHnLUj7HLQ3ZbFc7mcxjS084ycGg526DXIw8lJHh53+asXPH+e89BLv0bZT
+         KiRrTguZYwk2OqVJyPuvNSnm/pl2sq9FjLYBxkGLG+T4kkVVIXUctS2bcXr68Y9q+vfB
+         BwM/Lb9tzmLILN72MFN1Zm4BcoLMIjt/UAaq57ZePWFjM5EpRnZLvnS4gPw4/g+0j4JZ
+         jtQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738650928; x=1739255728;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NMHiHPDNCUJ48N5qcuZlI6iRMY6kpg7JJf8A3gbeaKQ=;
-        b=f8il+ZzGfCkAiPIfHWPcXqFrJpF7Gm8TQJsiX9EDDIwY07/3T7fTz/0bbNAr7yikza
-         o3cxeozKti2C4a0L3JjS1TJgy0vgR4oRi9LyhWXvDNpcmiIBAAwjytzB+1F6UT6zShJV
-         jkCKcZ6iCDVJF5vN34lfjkocCIqS+U+SUtdUT6tRkmYzC/den9skWlqqE3kND8kgIaqU
-         HulLa/8VEXSt/IuhxPpmRZ3gZLHPUjPwvzadirOo/fAHqJrLpjkfV67To9kYVDkLwlX4
-         csjgGC7vNQJRqktCqRGXrzwZ+50kBdDZGl5xPe8B3qS+FiMP3h5xsAN8stprmaxnrsT5
-         WfAw==
-X-Forwarded-Encrypted: i=1; AJvYcCX+2um0MahsND9aJwb5PCt+F8pEwLjojv/fgGZSxdDXctG+hvWoJeQSHC7I9Gly5t+kCba432gPM/m4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxr4jTBCzOSWkKitiY9/pINSCiwaAjFOOPQ8sfE+xYKVZYJVMhe
-	UgQKebYEzUpdow5oW5dVgkwXdrwKavn86u9Npm31rxGBg/r8U1ePH7ZAiEEkjJL8N/pKBrpTn9l
-	+wBNjYYZbEwoALzCwth2OLoAaN5Gcjcd/xbIYFQ==
-X-Gm-Gg: ASbGncuC7X5e3LsoXIZMnP9TdsUGy8ZQVPzXhyxGVDaQ3CqKvbpBZNQrbOljKbZt07C
-	et+r1KjiSbNzq7dg1l46EwKoLnQFUiJfXpfEjQ9QoIIQFQzghbJQgNPk9XhBQnVYIvRWQPJ6cQh
-	M=
-X-Google-Smtp-Source: AGHT+IFG/yEpW4K/pBHBk3/3BqLXGkFedpykl/V/VPy5N/H80JyAnUu1lUWvkGlaAAzc1oYTPiZqDlNAWdxjP6mgSAs=
-X-Received: by 2002:a05:6a00:2d8e:b0:725:cfa3:bc76 with SMTP id
- d2e1a72fcca58-72fd0bce05cmr36986225b3a.4.1738650928448; Mon, 03 Feb 2025
- 22:35:28 -0800 (PST)
+        d=1e100.net; s=20230601; t=1738653182; x=1739257982;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JFQ8QgaVc56ZWSK1ugpzWPCE6fH4oiEdiJ9FyYFmdnY=;
+        b=PBirfjf8BCOixqY+/UgfvjKrchlzn+3fAXMgq3UsYSKv1JowaXHr9nYFzEKd80hkD8
+         sOudNA71Djt/nFYac+8cMMgzY/HvhbGiuWdG//8NTFCFy+XK6X3JI2sV7aqetNIL/s25
+         X9fikzIW4mcsCTLflF73tmzk0LpmByBhijMa8dmSsz/RdMcH580uyH4ADP0MLnsyaIhE
+         yVEQSyChrnxD9PbBuqrgVHCV1srvMB+W/zwmk23FKPR0L+AU3OpVgpLD9EAwWkyajU4N
+         i5n3oqZjsrVFpbtxrua2j1DXxEwt4JdNb2V3YXG2vwcFgyFi2HsSYn/0ql6nLEsksSc1
+         wVog==
+X-Forwarded-Encrypted: i=1; AJvYcCX3THUA+Wtf88z+9f4hsrKkTXS1lxJj3ShJbMkVAby6sqEcrsWgrvetwJ/EFC1Kc++HTmGSkQ5oeW+x@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjQR737N0hcqTuvJGqnqDEdWyNu8YgwoB7IxZOmXbN9+D0v8vv
+	bActvlxqSrDPVYmSDVdt82va6Okx+k5dJjhi4PbNQF32mcIQtN70BKt1DWTqYpA=
+X-Gm-Gg: ASbGncu9Cj756RCT62uiq9Z+hsiF8Wimb8vRV3ZIRDOgTbUCrtwN5zchyPA3CGf3CtW
+	zMItfs6MKGn8ep9RXStRj85zIAi59Wu2EucO6ANRNDrs+P7S4A7EAO0HkXl1ntZWdt9qECrraXJ
+	32KVFOO1A5I6RK9kMuHcRQnH/EXjMq5g7rqMT6llD3dcTdaH4FXjjNFCzqmpUJQYLY+4DDFOsW6
+	gTEZEedf9FlcOlr5CFWtOocQJ2Kz7kS9erM60jgErVWsy2sr3y+bvoLvRjVjJ2iIhwrHk8j9t2T
+	9LsIlKu/XWmAUwk9/ynQ
+X-Google-Smtp-Source: AGHT+IFoOvj0APUYqVIcX7Wv45PC/CJ7eVsrS5D9kApDpCu+Tt2rJbGbqowsoSxGkScrHKvOo9aWxg==
+X-Received: by 2002:a17:906:dc8b:b0:ab2:b72e:cf44 with SMTP id a640c23a62f3a-ab6cfc8730fmr2899312066b.2.1738653182133;
+        Mon, 03 Feb 2025 23:13:02 -0800 (PST)
+Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dc723e4ceasm8755845a12.21.2025.02.03.23.13.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Feb 2025 23:13:01 -0800 (PST)
+Date: Tue, 4 Feb 2025 08:12:58 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/2] ARM: dts: socfpga: Add basic support for
+ Terrasic's de10-nano
+Message-ID: <nq7bixxzabjkaa65icm2rh4ejumjm63tq3drqmvq27qdjrr5hy@cnean3edfbyq>
+References: <cover.1738600838.git.u.kleine-koenig@baylibre.com>
+ <0cb54b0340ef021e309e49ca0de97809a8c8ee9c.1738600838.git.u.kleine-koenig@baylibre.com>
+ <f3148bf2-952c-419d-9e83-b6c9f1d47d67@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250127-counter_delegation-v3-0-64894d7e16d5@rivosinc.com>
- <20250127-counter_delegation-v3-9-64894d7e16d5@rivosinc.com> <20250128-jubilance-mosaic-e3a81199aec8@spud>
-In-Reply-To: <20250128-jubilance-mosaic-e3a81199aec8@spud>
-From: Atish Kumar Patra <atishp@rivosinc.com>
-Date: Mon, 3 Feb 2025 22:35:18 -0800
-X-Gm-Features: AWEUYZmuaq61PKoOBoJPiVshD43YM3UyPResBSMNdOEGC5qC9mJGFE-MKtc9ZW4
-Message-ID: <CAHBxVyFVYwQ=aiB+RBrQNMQiu4K4uzPgyz8Tn=dUjeN8KKd=sw@mail.gmail.com>
-Subject: Re: [PATCH v3 09/21] RISC-V: Add Smcntrpmf extension parsing
-To: Conor Dooley <conor@kernel.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Anup Patel <anup@brainfault.org>, Atish Patra <atishp@atishpatra.org>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
-	Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Jiri Olsa <jolsa@kernel.org>, 
-	Ian Rogers <irogers@google.com>, Adrian Hunter <adrian.hunter@intel.com>, weilin.wang@intel.com, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, kvm@vger.kernel.org, 
-	kvm-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-perf-users@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wlj5wtagrjnpwtkb"
+Content-Disposition: inline
+In-Reply-To: <f3148bf2-952c-419d-9e83-b6c9f1d47d67@kernel.org>
+
+
+--wlj5wtagrjnpwtkb
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 2/2] ARM: dts: socfpga: Add basic support for
+ Terrasic's de10-nano
+MIME-Version: 1.0
 
-On Tue, Jan 28, 2025 at 10:11=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Mon, Jan 27, 2025 at 08:59:50PM -0800, Atish Patra wrote:
-> > Smcntrpmf extension allows M-mode to enable privilege mode filtering
-> > for cycle/instret counters. However, the cyclecfg/instretcfg CSRs are
-> > only available only in Ssccfg only Smcntrpmf is present.
-> >
-> > That's why, kernel needs to detect presence of Smcntrpmf extension and
-> > enable privilege mode filtering for cycle/instret counters.
-> >
-> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> > ---
-> >  arch/riscv/include/asm/hwcap.h | 1 +
-> >  arch/riscv/kernel/cpufeature.c | 1 +
-> >  2 files changed, 2 insertions(+)
-> >
-> > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hw=
-cap.h
-> > index 2f5ef1dee7ac..42b34e2f80e8 100644
-> > --- a/arch/riscv/include/asm/hwcap.h
-> > +++ b/arch/riscv/include/asm/hwcap.h
-> > @@ -104,6 +104,7 @@
-> >  #define RISCV_ISA_EXT_SMCSRIND               95
-> >  #define RISCV_ISA_EXT_SSCCFG            96
-> >  #define RISCV_ISA_EXT_SMCDELEG          97
-> > +#define RISCV_ISA_EXT_SMCNTRPMF         98
-> >
-> >  #define RISCV_ISA_EXT_XLINUXENVCFG   127
-> >
-> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeat=
-ure.c
-> > index b584aa2d5bc3..ec068c9130e5 100644
-> > --- a/arch/riscv/kernel/cpufeature.c
-> > +++ b/arch/riscv/kernel/cpufeature.c
-> > @@ -394,6 +394,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D=
- {
-> >       __RISCV_ISA_EXT_DATA(smmpm, RISCV_ISA_EXT_SMMPM),
-> >       __RISCV_ISA_EXT_SUPERSET(smnpm, RISCV_ISA_EXT_SMNPM, riscv_xlinux=
-envcfg_exts),
-> >       __RISCV_ISA_EXT_DATA(smstateen, RISCV_ISA_EXT_SMSTATEEN),
-> > +     __RISCV_ISA_EXT_DATA(smcntrpmf, RISCV_ISA_EXT_SMCNTRPMF),
-> >       __RISCV_ISA_EXT_DATA(smcsrind, RISCV_ISA_EXT_SMCSRIND),
->
-> Isn't the order here wrong?
->  * 3. Standard supervisor-level extensions (starting with 'S') must be li=
-sted
->  *    after standard unprivileged extensions.  If multiple supervisor-lev=
-el
->  *    extensions are listed, they must be ordered alphabetically.
+On Mon, Feb 03, 2025 at 06:39:09PM +0100, Krzysztof Kozlowski wrote:
+> On 03/02/2025 17:46, Uwe Kleine-K=F6nig wrote:
+> > +
+> > +	chosen {
+> > +		stdout-path =3D "serial0:115200n8";
+> > +	};
+> > +
+> > +	memory@0 {
+> > +		/* 1 GiB */
+> > +		device_type =3D "memory";
+> > +		reg =3D <0x0 0x40000000>;
+> > +	};
+> > +
+> > +	soc {
+> > +		fpga: bus@ff200000 {
+> > +			compatible =3D "simple-bus";
+> > +			reg =3D <0xff200000 0x00200000>;
+>=20
+>=20
+> Are you sure simple-bus allows this? IOW, no warnings from simple-bus
+> schema? To my knowledge, simple-bus allows only objects, except the few
+> allowed properties (and reg is not allowed because it is bus, not a devic=
+e).
 
-Yeah. Fixed it. Thanks for catching.
+I double checked to have a recent dtschema[1] and removing the reg line
+doesn't change the output of
+
+	make [...] intel/socfpga/socfpga_cyclone5_de10nano.dtb CHECK_DTBS=3D1
+
+But I agree that in the presence of
+
+	ranges =3D <0x00000000 0xff200000 0x00200000>;
+
+the reg property isn't useful.
+
+I'll wait a bit for more comments and then will send a v4 without that
+reg line. (Unless Dinh is happy with my patch otherwise and applies it
+fixing up for this issue themselves. *hinthint* :-)
+
+> Nice coincidence with other patchset from Intel also claiming FPGA with
+> resources is the bus, although there it could be root port.
+
+There results no action item for me from this statement, right?
+
+Best regards
+Uwe
+
+[1] pip3 install dtschema --upgrade --user --break-system-packages
+
+--wlj5wtagrjnpwtkb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmehvfcACgkQj4D7WH0S
+/k5p6Qf+NG5nI+S0uGoFSwIFogGlx57g1Gp9Bgn0L0+w09hnkYYeW8LBcD0HGmki
+rlLH12jIrXeBTMJ9ay9/gNXySZ76o3RHI+3fbxhXjChNSBbmEx+rhOhz8q5vCFTU
+6IUDpyEWv6mzQxORxbOpn6N4XOolW5yI4vXnVRNKUIvinCtcZbyN/v+PHHrCUjgb
+sAkZ4G3xeN7DSLAk39kOT/sMV0RqxndVJarBtMTqKnhbsEp8KuAKbr65SdWwgpD+
+j82BCvZUw+Yjd7JbUXQ+AB0S3nA6Rc/wtth0wZ1ThQDUVnrvcSi3bJqMzbQUCquR
+kOOSbuaFLrfmxBaQlrdWYwA7UMTpcQ==
+=42aF
+-----END PGP SIGNATURE-----
+
+--wlj5wtagrjnpwtkb--
 
