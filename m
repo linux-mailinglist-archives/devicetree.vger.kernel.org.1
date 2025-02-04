@@ -1,115 +1,124 @@
-Return-Path: <devicetree+bounces-142810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DFAAA2695C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 02:18:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D5BA269E3
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 02:37:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F23C165A50
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 01:17:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 285D9165BDA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 01:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC8BD159596;
-	Tue,  4 Feb 2025 01:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 544E38632C;
+	Tue,  4 Feb 2025 01:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="s71++ir/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q+2EgQi6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 176AB1547C5;
-	Tue,  4 Feb 2025 01:16:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7662478F30
+	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 01:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738631810; cv=none; b=r29HcvtdVVRu/7ljYvJDLj7XqlutBT+EBiNZ6BFwHYsiNgc8QH10FDUjo6k00gFUJBW82F+/CHHhocZO0pV7zFerf8OgKTR+rqTXBJXVAxQPkVD9h6n0O6PVKS85VpnfU6JxwrV8963RV6qTOl+DhZ7IQjjI1xon3iXTJ/EOsSI=
+	t=1738633017; cv=none; b=c9FxlDN/v0P1xhmOAFC0U51yTkftDyDWiOMKtdmCqWpkKoXignVwmRhSBrUbGWn2rlOyIryQwdg3CJnsZ+/MLvkyP08LDjulxxEbsftlt2iiQU/xIXGUjqp2sTLCs1md0aOcdfPOwNoqggSxEjnMPybVWE54XUEGzAIZ5uNs0H0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738631810; c=relaxed/simple;
-	bh=zzrHzlKEkyjjsRmg4GnZ5U8t6TlaYXGT1FAKUM7/PRc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ggo/OAnEt7ruzD0Y0q3TDlwCYEk4/KeA9oVgjNxMDStLq9VbHWIdlWgNRL1oj+cRLB2nppEaKFqtmSQv9tl9/NMB0etxdloOkfIRzETEa1HMZEVQDofzTFQOs4XHd7tCM6EAGNHh2zLNa5w0jqJW0ZhfyjofLRAdJZMO791fXz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=s71++ir/; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5141GgHk3125063
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Mon, 3 Feb 2025 19:16:42 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738631802;
-	bh=laHUzbl6EYkZWabOSGF1G7dJ99tlrUvmMKbkQOHLx2w=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=s71++ir/fYT3pcOaIfLHa07N77w7kury0D/WVVDo4VcLdhQivDbYdKuQrTdXBunnj
-	 z5EokfbUXELFOHwxEM+c2wurLopLI+uApXzXI52TasZ537BOZrGnPl3AUOaKCgg+s2
-	 0z5NKC9xYNByq/riVJHTlhpJiKj/J14+v40wWfO8=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5141GgUR046974;
-	Mon, 3 Feb 2025 19:16:42 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 3
- Feb 2025 19:16:42 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 3 Feb 2025 19:16:42 -0600
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5141GfAX024451;
-	Mon, 3 Feb 2025 19:16:42 -0600
-From: Judith Mendez <jm@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>,
-        Hari Nagalla
-	<hnagalla@ti.com>
-Subject: [PATCH v3 9/9] arm64: dts: ti: k3-am62a7-sk: Reserve main_rti4 for C7x DSP
-Date: Mon, 3 Feb 2025 19:16:41 -0600
-Message-ID: <20250204011641.1523561-10-jm@ti.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250204011641.1523561-1-jm@ti.com>
-References: <20250204011641.1523561-1-jm@ti.com>
+	s=arc-20240116; t=1738633017; c=relaxed/simple;
+	bh=gQJg4Yjqg4bWR3kSEamLIlUZAPB4Qx9PFeNNXZoa5lQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=I4zVsnsrdY9K2ZnPEc3EL3WgdJZnWfr26P9i13QCCA5uoGH0jNNK64f8d/7UML1c1h6EpK5WY7w0Bv1GMuGQ1bW/F5KLK6/RN9VAd2OvqCVbiYPEyo75dg0Vtpl+sFCuQhPTcBaLLyDm7LvhSK8Ts1ZwTAtwxhHOoHtsZaWQ/Ek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q+2EgQi6; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6f6c90b51c3so29978887b3.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Feb 2025 17:36:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738633014; x=1739237814; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ROq+7dop8/gAZioS6LiNRBVOkjkfWTu5NLRN5pWfuk0=;
+        b=q+2EgQi6ngOhd4dLGCCZZJVm7WJXXDCun1z5h9NY3FuXQ0rx8cBL1P91MVKMVwmCxB
+         poI3bD+LBjaAdFdMtqySnVkHOC3JzOxRc3p0/d/wD+9PCZjRGLGftv2kOC1G6eFcMhfB
+         vv9p6QeohdaNIKh46lO7NTBqjBgLWwYsffZWOC3UWTj8r0yvzKKDtUBHd/PHv8d68KMK
+         DRxlGfEKXTSKbVRw0dXTUgnzP64bDKAsW+IC/6kuJo5hIyvQE3YhJXc6oytriWT3ssND
+         F3xTKM9/69I/SE/xKu2IX+ETX4ONQZ+m/eqLJGrg1Oa9+Poyw5oE4TVKDHxtAZ5c+uLG
+         FNWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738633014; x=1739237814;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ROq+7dop8/gAZioS6LiNRBVOkjkfWTu5NLRN5pWfuk0=;
+        b=ZPENcIZSiHkT78+a3Cmlqh0V+5d4GA/Yck4dQIaIlhppx/USwcuA8yUgkNsFKMgJy6
+         d60+I9y4M4E00crZ31woEbCMBsX4KmBgMiVOYT5fQiUuZ+rfPMuGIX6BiUi2U3BDdaEy
+         12lU1/yV4rQ0ZezzB9cmgeBgEPkkI9RH7xDwYk4O9/gLN1TdRxBtWyJhhm/xoCOtVssc
+         4a4uf6Ws7SVEl9nnytr9+NmG6DodEQYYK+PVRYlW9+p40jwIULHQfESLzzDqhXx+NDpi
+         xyRByhRMbo2sYrWOvhHOm/1YNfe3r3OC5iFqBywj8Tg0e2dwGCnXlV2o+qSMir7RZ2a8
+         7Zgg==
+X-Forwarded-Encrypted: i=1; AJvYcCXa+l59YNE3bYqMytxnVbqaP7463VAv/6vQethLwCQehYY/rAY72DDrW9S59XLzfxupCLQHI9Te9l2N@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyj2i2TuwwqhmKdLtCeWbvqJSnY7xRASLT18PMMneC3fYE52Vw7
+	bceiaLkCerfLl+XCWenw/oWZE90LGZUT28ihdusRdZ/1zd2SENTcm9V+h7xJYTP/DtnqMDYdxMe
+	yrg/4pPxxr0tIdEWmLjTFyVNM/1UC98ynjXEfRw==
+X-Gm-Gg: ASbGncsR50fkQauae0fiO/MmyBn3hGzq9722vEdzXReVbawQl0WM/Wn4YgPqdAZFkCJ
+	nuJznguDcvQKMYT15EvStxilO0f+JXMKEaj9g5GjNh+1959J9EDyXWxbKEFwfn0I0xjaVOAbT72
+	glILTqnZ6umTlvy+FkrToDWXBlMuYZ
+X-Google-Smtp-Source: AGHT+IEndGqJLe3lRomYw81FxRc4rJi4daHHHTKmvJkj4axffR2/iXurAfxujNYq1cogoGYH72n70X+vXXmF4hJGdBY=
+X-Received: by 2002:a05:690c:c99:b0:6f6:7ef2:fe74 with SMTP id
+ 00721157ae682-6f7a8426a5dmr180536937b3.32.1738633014293; Mon, 03 Feb 2025
+ 17:36:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250113-sm8750_ufs_master-v1-0-b3774120eb8c@quicinc.com>
+ <20250113-sm8750_ufs_master-v1-2-b3774120eb8c@quicinc.com>
+ <vry7yib4jtvyc5baruetqb2msy4j4ityv2s6z5smrz6rqjfb5l@xoharscfhz5n> <6873e397-dbc0-4c30-8c08-a65ee7cd6e01@quicinc.com>
+In-Reply-To: <6873e397-dbc0-4c30-8c08-a65ee7cd6e01@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 4 Feb 2025 03:36:42 +0200
+X-Gm-Features: AWEUYZlF9xRy7fPmY8vHPfUe0fIEvkxweH_j9r0Xv-PAz5SBxJgUbog5Km9Pvw4
+Message-ID: <CAA8EJprjxMtkefY+90cLGVgz-bDf=VXnaa0eH4ESAC6nf5vrLA@mail.gmail.com>
+Subject: Re: [PATCH 2/5] phy: qcom-qmp-ufs: Add PHY Configuration support for SM8750
+To: Nitin Rawat <quic_nitirawa@quicinc.com>
+Cc: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, 
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-scsi@vger.kernel.org, Manish Pandey <quic_mapa@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Hari Nagalla <hnagalla@ti.com>
+Hello,
 
-The main rti4 watchdog timer is used by the C7x DSP, so reserve the
-timer in the linux device tree.
+On Mon, 3 Feb 2025 at 10:03, Nitin Rawat <quic_nitirawa@quicinc.com> wrote:
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-Signed-off-by: Judith Mendez <jm@ti.com>
----
-Changes since v2:
-- No change
----
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+Your email client has corrupted all quotation levels. Please fix its
+configuration so that you can not compose HTML email. Or switch to a
+normal text-based email client like Mutt or Gnus.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index f03b06b7de51d..ffa437873f6d1 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -820,3 +820,8 @@ &c7x_0 {
- 			<&c7x_0_memory_region>;
- 	status = "okay";
- };
-+
-+/* main_rti4 is used by C7x DSP */
-+&main_rti4 {
-+	status = "reserved";
-+};
+No additional comments can be provided to this email.
+
+>
+>
+> On 1/14/2025 4:19 PM, Dmitry Baryshkov wrote:
+>
+> On Mon, Jan 13, 2025 at 01:46:25PM -0800, Melody Olvera wrote:
+>
+> From: Nitin Rawat <quic_nitirawa@quicinc.com>
+>
+> Add SM8750 specific register layout and table configs. The serdes
+> TX RX register offset has changed for SM8750 and hence keep UFS
+> specific serdes offsets in a dedicated header file.
+
 -- 
-2.48.0
-
+With best wishes
+Dmitry
 
