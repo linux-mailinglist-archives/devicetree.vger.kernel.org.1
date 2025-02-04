@@ -1,123 +1,175 @@
-Return-Path: <devicetree+bounces-143025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134DBA27AE4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:10:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF89DA27AF5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:13:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89D4C3A17CC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:10:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBC111886AD4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:13:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABADC217730;
-	Tue,  4 Feb 2025 19:10:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181B2218E8B;
+	Tue,  4 Feb 2025 19:12:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dUmwDAYB"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="jq6MlJpZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8855F153828;
-	Tue,  4 Feb 2025 19:10:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37F2B216E2C;
+	Tue,  4 Feb 2025 19:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738696203; cv=none; b=pUowxXrrDqiiN4bDJfokm/wH+Sq9cvKhFpquZrmXoBF/jsDSzMnAIenJvW7CnMxsvu4YN1uvsManfdn06n8diFlgGwSsuO/nGzQih1jBHoW4FZBBe2dpBz4QX970MNQ10UpNZc3iH9DbOPqWav3t6+sE19WfzzDU3DPGm+tZ/Jg=
+	t=1738696379; cv=none; b=J641xsr3nui9sVPBvx/p4s1LWXIt3s7m2djQXAHQ3IokWiVfgEyTooJYO2le8+6mQbqZP2Kq95fq4YoSCbl/bgNMqfIQyYBRGm6g7irkAyx5VzhPLSswxzlhwLRRnXWjxLBzEQa4VYlP0PjxxuETzchd5QBorQWiwvAYbljke18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738696203; c=relaxed/simple;
-	bh=b4lG0grI4DA3hkJUXvapkD8ACE9OrDCTHg9y5xuY66o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=a5FAFcVjr3Kv9WVIGrjz+y+cF6fkPx24Qvc6W6HA/WRNLWIALgKGoCpamu/97WUoAcnuhfX8bsZn9xvITNoVIF++EEEWm0PodYLR8vVCfRsg4NZeCfLq/SWB00kFxdTbD3NfBsLUsyferbZm6+CSPBjsFB34xM6H6gDOv384A2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dUmwDAYB; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 514J9Lb42450620
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 4 Feb 2025 13:09:21 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738696161;
-	bh=9UznfyhxXl/v9zHInozAixapXW1F8apNcxOMuxzIt5Y=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=dUmwDAYBaSKhoQ8VLvB0cE7a6ENYXEl/1lpLNIqCn6vxUWhcjzp/lro3ALTypSU8f
-	 bDyE8uapnM0kqb5Ko0Dda9osNmpRrEDfZxxy4n7CkqoNNomR/+Q3LJ33/n07CNYIXe
-	 wMLVBf4P/eegmZ258V5Exg4aGysDMNdrDi+5A7+o=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 514J9L2k075089
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 4 Feb 2025 13:09:21 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
- Feb 2025 13:09:21 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 4 Feb 2025 13:09:21 -0600
-Received: from [128.247.29.251] (dmz007xyy.dhcp.ti.com [128.247.29.251])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 514J9KRN014651;
-	Tue, 4 Feb 2025 13:09:20 -0600
-Message-ID: <4198b469-f874-431f-a2de-b4ffa2975c08@ti.com>
-Date: Tue, 4 Feb 2025 13:09:20 -0600
+	s=arc-20240116; t=1738696379; c=relaxed/simple;
+	bh=FCIkZ0zHX1EVPvEVggmjenYOAR1uVCfUxfqVrxA7GlQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=rPNn02bYsnzw1PJZy7iCkOwmySB0M3HqENEvpmvFgRICsNvU4TkrlBSs1z2j7NxJOiabNjG/yvdwg+dkeYhJNSdtfspzzt0TGm+YFq0ejyrfo4+zrQZ91zQy3BVNA56wn9j1XM0Ds2FvqFsgA1ZD8ZpVSIMBmVFPCT4XPfPRIhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=jq6MlJpZ; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 7129B25A3E;
+	Tue,  4 Feb 2025 20:12:53 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id lB-3S3gQlaZ0; Tue,  4 Feb 2025 20:12:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1738696369; bh=FCIkZ0zHX1EVPvEVggmjenYOAR1uVCfUxfqVrxA7GlQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=jq6MlJpZr8ft6w8g/+vvrwXEZuTgbHJNoelhxvy2jRHZBaxB/RriKpGrZGYciN+lB
+	 4kptKc8R7mBa0eu+SANMw1Ws3ko/kEErBqqQCNiiafl3wsFpSgZFq2+sr4F5tJuxTL
+	 AjYmZsaFUE2qHmmR+FlfmQRHqERU82uOUiONH5pExNbXlqFctIiHW+FD2pSWzGgQOV
+	 +3gCqtlAFxfDe29JcAXdPm8Q94XFial1JGh5y5lGE1OE4sSM7Bf7kUGiQ6WmnhRq5B
+	 VHGh59zuo8PJ8LedxF02Ew/7R2TqRyscloKMlf7gwYgHpwfLukJtkiT10i4ZHhvP7C
+	 Po9P8WFmeqIeg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/5] regulator: dt-bindings: Add TI TPS65214 PMIC
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>, <andreas@kemnade.info>,
-        <khilman@baylibre.com>, <rogerq@kernel.org>, <tony@atomide.com>,
-        <lee@kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <m-leonard@ti.com>, <praneeth@ti.com>
-References: <20250131221139.342967-1-s-ramamoorthy@ti.com>
- <20250131221139.342967-3-s-ramamoorthy@ti.com>
- <746798a0-1a35-4a3f-aa9b-6edfd724bf10@kernel.org>
-Content-Language: en-US
-From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-Organization: PMIC
-In-Reply-To: <746798a0-1a35-4a3f-aa9b-6edfd724bf10@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Date: Tue, 04 Feb 2025 19:12:48 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Kees
+ Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, "Guilherme G.
+ Piccoli" <gpiccoli@igalia.com>, Sergey Lisov <sleirsgoevy@gmail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, Kaustabh Chakraborty
+ <kauschluss@disroot.org>
+Subject: Re: [PATCH v2 2/5] arm64: dts: exynos: add initial devicetree support
+ for exynos7870
+In-Reply-To: <00aa901b-5de9-4b72-a157-c54ad29df458@gmail.com>
+References: <20250204-exynos7870-v2-0-56313165ef0c@disroot.org>
+ <20250204-exynos7870-v2-2-56313165ef0c@disroot.org>
+ <00aa901b-5de9-4b72-a157-c54ad29df458@gmail.com>
+Message-ID: <199646ca71487cd6d2593c9b8bd7fa69@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi,
+On 2025-02-04 18:22, Ivaylo Ivanov wrote:
+> On 2/3/25 22:46, Kaustabh Chakraborty wrote:
+>> Exynos7870 is an arm64 SoC manufactured by Samsung and announced in
+>> 2016. It is present in multiple mid-range Samsung phones and tablets.
+>>
+>> Add basic devicetree support for the SoC, which includes CMUs, pin
+>> controllers, I2C, UART, DW-MMC, and USB-DRD.
+>>
+>> Co-developed-by: Sergey Lisov <sleirsgoevy@gmail.com>
+>> Signed-off-by: Sergey Lisov <sleirsgoevy@gmail.com>
+>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>> ---
+>>  arch/arm64/boot/dts/exynos/exynos7870-pinctrl.dtsi | 1035 ++++++++++++++++++++
+>>  arch/arm64/boot/dts/exynos/exynos7870.dtsi         |  722 ++++++++++++++
+>>  2 files changed, 1757 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/exynos/exynos7870-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos7870-pinctrl.dtsi
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..28ff409c4fdc5f766d92617ea2df7be2112c28d1
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/exynos/exynos7870-pinctrl.dtsi
+>> @@ -0,0 +1,1035 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Samsung Exynos7870 SoC pin-mux and pin-config device tree source
+>> + *
+>> + * Copyright (c) 2015 Samsung Electronics Co., Ltd.
+>> + */
+>> +
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include "exynos-pinctrl.h"
+>> +
+>> +&pinctrl0 {
+> 
+> I haven't had enough time to look deeper, but these are my 2 cents:
+> 
+> 
+> Can you label them according to their block name rather than numbers?
+> For example, pinctrl_abox (make sure to keep them alphabetically sorted
+> as well).
 
-On 2/1/25 5:42 AM, Krzysztof Kozlowski wrote:
-> On 31/01/2025 23:11, Shree Ramamoorthy wrote:
->>   
->> @@ -98,6 +102,16 @@ required:
->>   additionalProperties: false
->>   
->>   allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: ti,tps65214
->> +    then:
->> +      properties:
->> +        regulators:
->> +          patternProperties:
->> +            "^ldo[3-4]$": false
-> So now, when you combined these patches, you can easily see that you are
-> duplicating your other "then:" from patch #1. Just combine these into
-> enum. Don't duplicate.
->
+Can do. The rationale behind keeping it numeric was that the names were
+kind of misleading in some cases.
+
+> 
+>> +	etc0: etc0-gpio-bank {
+>> +		gpio-controller;
+
+...
+
+>> diff --git a/arch/arm64/boot/dts/exynos/exynos7870.dtsi b/arch/arm64/boot/dts/exynos/exynos7870.dtsi
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..11129e37fc86ebaee01684ed6841c932dd6cbc8a
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/exynos/exynos7870.dtsi
+>> @@ -0,0 +1,722 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Samsung Exynos7870 SoC device tree source
+>> + *
+>> + * Copyright (c) 2015 Samsung Electronics Co., Ltd.
+>> + */
+>> +
+>> +#include <dt-bindings/clock/exynos7870.h>
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include <dt-bindings/soc/samsung,boot-mode.h>
+>> +
+
+...
+
+>> +
+>> +			reboot-mode {
+>> +				compatible = "syscon-reboot-mode";
+>> +				offset = <0x080c>;
+>> +				mode-bootloader = <EXYNOS7870_BOOT_BOOTLOADER>;
+>> +				mode-download = <EXYNOS7870_BOOT_DOWNLOAD>;
+>> +				mode-recovery = <EXYNOS7870_BOOT_RECOVERY>;
+>> +			};
+>> +		};
+>> +
+
+...
+
+>> +
+>> +#include "exynos7870-pinctrl.dtsi"
+>> +#include "arm/samsung/exynos-syscon-restart.dtsi"
+> 
+> Didn't this already include a reboot node?
+
+Yes, I believe you've confused it with the *reboot-mode* node as defined
+above.
+
+> 
 > Best regards,
-> Krzysztof
-
-Thank you for reviewing! I'll add in this feedback, and send a v5 soon pending any other feedback.
-
-
--- 
-Best,
-Shree Ramamoorthy
-PMIC Software Engineer
-
+> Ivaylo
+> 
+>>
 
