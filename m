@@ -1,132 +1,111 @@
-Return-Path: <devicetree+bounces-142852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C128BA26CDC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 08:53:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12561A26D06
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 09:10:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5575F16260B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 07:53:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABAE57A3DF7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 08:09:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5DA42063DC;
-	Tue,  4 Feb 2025 07:53:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10A62063E9;
+	Tue,  4 Feb 2025 08:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iVB0S9ZK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F0uXKFq3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4937205E3B;
-	Tue,  4 Feb 2025 07:53:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8FF86358;
+	Tue,  4 Feb 2025 08:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738655616; cv=none; b=NiU77AKPZApPtJ30d15ksqlKpKBIRIoeXqrcryZrDPnwgaTtff/6PWtXtfrdYFLIzPSn+vFyeSMfUpWjtsM3FFQIVpwCGFJpMX8Vr+McmxHFhs+7r00gJraBnusDRPLu8j6vhnsvmR+dsj9EzK6/KGP95il16ueE3RLreRi0ogQ=
+	t=1738656591; cv=none; b=Pdt+SeLg4FrdjMOu8Acs7rt6pd3fU5X3aLgGOOHBvIs2PPZYEH50Anp42E2oruTicAoNNg950cwXmOZZ1p9OxQ6w3/4O8nVaCKPT1C2V2dE/qkb9CoCFVnP6XGjVe/DXIrzmADIbMLA0+DhP9L0ns65ypyzjF1ET1bjtX1HQOUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738655616; c=relaxed/simple;
-	bh=6li0nTXDpwk/xunVkZoNszRwoScOYPjfrU33f4c3TUE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FwKebiVnEuxx/hkguxyAeXp1wLRHiuQoKAMWfy1wAUB5I9Hn4Nl4ci/6PlfyCVzAENBE7owpJ7pR7lgG10CAZMmkdGZN8xozVcNJ966UONLYQhgPW31hE3ejTcBBCGLuwGnjPtu7zFOgPEtCnpveyLl9wxBEZ8PfsNR02y7OiT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iVB0S9ZK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E3ACC4CEDF;
-	Tue,  4 Feb 2025 07:53:33 +0000 (UTC)
+	s=arc-20240116; t=1738656591; c=relaxed/simple;
+	bh=bFm8xckl9GEGcjJ/G3JflsLV5lI4LkrRhOF3B9n4yCE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PZC6A0ZcnRPXCvb/s9+LGDBUdAUFUZQUdFQRVj7lEUSEgDm9Y9J4DgbGpsbnr7F3GQy98Jrw0NKzmA5ckvRhdP4lC/vONRdSUOUf64Hiibr76WEcM/+XNgePydbqeeaaAGBWhLOgOLLEp3w9J/WSP2k+RmqVam8H+N+Yjy+NkvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F0uXKFq3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34E93C4CEDF;
+	Tue,  4 Feb 2025 08:09:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738655616;
-	bh=6li0nTXDpwk/xunVkZoNszRwoScOYPjfrU33f4c3TUE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iVB0S9ZKvWsh0nnWGNUyCbUj1z6czoHkbsSj87qk/KUT+H+n+FB2Z8ib/rxnbXlRf
-	 C8uXYHu0ZmHq2Gx08/lnDeeRW/avcHvA1czjjuDYhcpIblZ2uVgHZK4VZE0Icf/9yp
-	 llYW+L5kqgyvQOVQIllIR4+doRsLiYhCMNOUezFYUi+cJnjtovGVKe46k9kejtGn8r
-	 zhIDUMxEcWHjLD3g18hKIaq3mTd9LZmm7SPLSDUkOI1cWp7/IfdFMFbyZAFpeistmH
-	 6jbmEl0FjuLWavjlbAT+KrDIx+QmeXyJcVxkPkVJAtwKWgIUXsXpAEjyAvQddOEnBU
-	 sbkpvkBQYLA9g==
-Message-ID: <339ea40f-6bc7-42ad-a5c2-f57b3be8cc39@kernel.org>
-Date: Tue, 4 Feb 2025 08:53:31 +0100
+	s=k20201202; t=1738656591;
+	bh=bFm8xckl9GEGcjJ/G3JflsLV5lI4LkrRhOF3B9n4yCE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=F0uXKFq3SSSp8fS36uflCRro+a6/F9mmeGmlgEgAgX8GYXeD4vTIzRhFmEKVU66qo
+	 w7CsvJbCHHYPSdkTrIYS8f0VYY2v+tUZnR7MRTTs/3x7QStdt8QcY+8QaPAjc2DD/H
+	 5bGJQCr4jwE999d6F5vQgaPWwK44kODqbstNDvEokHmtbsfMSF9Im6JCV6mHtOKTMO
+	 sdJQdciwj/AK/Rg4g4f+La3/K6L2qdZAGjCPmItShoIU9kX7t2d7Zcc7FnxYFjiG5o
+	 tMGSShZXQCGesvB1aVbNYYXugR3b5lLPu2/0W1JPHk7p9JHtEwsuSc37P5+HUN++5A
+	 bm6l9CG/JI9OQ==
+Date: Tue, 4 Feb 2025 09:09:47 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de, 
+	hkallweit1@gmail.com, linux@armlinux.org.uk, sander@svanheule.net, 
+	daniel@makrotopia.org, markus.stockhausen@gmx.de, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH net-next v6 1/6] dt-bindings: mfd: Add switch to RTL9300
+Message-ID: <20250204-eccentric-deer-of-felicity-02b7ee@krzk-bin>
+References: <20250204030249.1965444-1-chris.packham@alliedtelesis.co.nz>
+ <20250204030249.1965444-2-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Add chip ID for Exynos7870 SoC
-To: Kaustabh Chakraborty <kauschluss@disroot.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Sergey Lisov <sleirsgoevy@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250204-exynos7870-chipid-v1-0-0bf2db08e621@disroot.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250204-exynos7870-chipid-v1-0-0bf2db08e621@disroot.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250204030249.1965444-2-chris.packham@alliedtelesis.co.nz>
 
-On 03/02/2025 21:32, Kaustabh Chakraborty wrote:
-> This patch series is a part of Exynos7870 upstreaming.
+On Tue, Feb 04, 2025 at 04:02:44PM +1300, Chris Packham wrote:
+> Add bindings for the ethernet-switch portion of the RTL9300.
 > 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
-> Kaustabh Chakraborty (2):
->       dt-bindings: hwinfo: samsung,exynos-chipid: add exynos7870-chipid compatible
->       soc: samsung: exynos-chipid: add support for exynos7870
 > 
->  Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml | 1 +
->  drivers/soc/samsung/exynos-chipid.c                                 | 1 +
->  2 files changed, 2 insertions(+)
+> Notes:
+>     Changes in v6:
+>     - New
+>     - I'd like to enforce the property being "ethernet-ports" but I see the
+>       generic binding allows "ports" as well. Can I just add ethernet-ports:
+>       type: object here or does by driver need to handle both "ports" and
+>       "ethernet-ports" (I see some do and some don't).
+> 
+>  .../bindings/mfd/realtek,rtl9301-switch.yaml     | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml b/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
+> index f053303ab1e6..cb54abda5e6a 100644
+> --- a/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
+> @@ -14,6 +14,8 @@ description:
+>    number of different peripherals are accessed through a common register block,
+>    represented here as a syscon node.
+>  
+> +$ref: /schemas/net/ethernet-switch.yaml#
+> +
+>  properties:
+>    compatible:
+>      items:
+> @@ -45,7 +47,7 @@ required:
+>    - compatible
+>    - reg
+>  
 
-When I asked to split, I said per subsystem. Soc is one subsystem.
-Everything targeting SoC should be in one patchset. get_maintainers.pl
-tells the name of the subsystem and its maintainers.
+I don't get why this device receives now children without addresses.
+Either your children have 'reg' or they do not. Mixing is a sign of a
+mess, like this was never actually simple-mfd.
 
-If there is going to be resend/new version, combine patchsets for soc
-into one patchset (just like the example I gave last time).
+You would get this comment if you posted complete schema the first time.
 
 Best regards,
 Krzysztof
+
 
