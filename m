@@ -1,156 +1,145 @@
-Return-Path: <devicetree+bounces-142925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58733A2728A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 14:15:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 832FFA272A2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 14:22:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C03B11882CFE
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 13:15:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F9E1166A45
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 13:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59862215054;
-	Tue,  4 Feb 2025 12:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12A89212D6C;
+	Tue,  4 Feb 2025 12:58:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LxDLjHsZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MXsOXZnn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE6E20B1E1
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 12:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4B421128A;
+	Tue,  4 Feb 2025 12:58:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738673673; cv=none; b=Y7TQQ3GW0TBkRhydJBosLj4QynZNFF9N8AskHqyaPEuJlnPJ40fUaEGEIvdaHw/+ZiIGL3vaUWXpNpxog1WzLIt6K2ZQlSd3GAWvTGh15XJiXVV87zCxw8YpNjjVd5AMNizY8mVIKWb0s+LnbDa6YqTnF1DukhjopG+Vt4orhx8=
+	t=1738673908; cv=none; b=TSkrxq2pdQ/sOEP0Yjm8/qOxQrWqvfXVbBHMLmA3zHvqMHzWiDLzJbEStbnQDtEyPhaCsTQ65WWtnnx6BckjJDsf3Mot+ZPR+O/7Ymxoi6W7iHDC/UvAG9kSTPs7rPw1QbOKaWNj6hzHZcWyClHfaYsnBoJNppLaLFf1eZSWO60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738673673; c=relaxed/simple;
-	bh=ynSUJ63SuLhCXyf2usS1JVLKxrhDuZv8kV79M/Jon+I=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=JS6Dl4R1T/JI53Np9iqTozOITpHA+fPhdd5ba7x3f7EMU8jov/M7bdShKNq+QiSkQCum3hDZbFW94IEp2MUuX79COVo+GOsQAkyhdoZYFzECl4PUMFkuqtKLEs1gyr6MdCbOXZZa8vqtmZszCvKsTtDlALQnuBYDmHp5eyp7DrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=LxDLjHsZ; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4363ae65100so64788475e9.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Feb 2025 04:54:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738673669; x=1739278469; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fSDieL9GBtvsQS7Ye0zV4eVocVG/YaV0pHO+Q0/Wne4=;
-        b=LxDLjHsZPwDJHzkD+Eim7w5Zmh4tZJddvIc26w2ntrXWaPAcPVrs9D+/dkx4bgJvIH
-         Tqlv/kNkn840rWVSTbjF+yDxbg882vYfVskYls3e+MMo+K82eFSG46lIhSs9fKocNzae
-         m78PVoCyZs7WZUUHPSTCUoV8FVX38o9hN5m0yrNB6c3mLIDdGCNK95oU/LXr43LxrUqe
-         aWmBdXsAgSACZJLm/A1vzQcziT7VzJVKvQVONOZgbg0o7eP3v9kaSPaRrh2wK3ZUYnMK
-         YoI8Y3phTWWXT2L+qWhFE1LqB88TPEgttiAA+V1PIQZ7T8VLbE+o8j7CG2mpZRDuKxvZ
-         oRcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738673669; x=1739278469;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fSDieL9GBtvsQS7Ye0zV4eVocVG/YaV0pHO+Q0/Wne4=;
-        b=iaEO0pmkJ/5u4JpHvSuUAbpWFEn1Hvj8xc36hiZAppUXLyXYZgjG/I+H+i+IK18ien
-         Qg03Czc/tbPiprnc3qIng8miM7mPbxnbHSuhBInmTI3Sl7NpC+g/0hdkQTBNcp/WhwWS
-         WaD4LXGC2cphiZ2OILXUikib5OINiylaldnNslB/JdfmXl2Amu9Yz+wVAR+5/E/ZeAzt
-         Gs/x3q8APgH2tExa2qZpyK3izz+WU7tcgaSTPBaFV3bu/J1AyfDL6D1oyzW9lk3lzhbL
-         nMtz1GwErP/XDjkd2tkZ7jY76CdZxqMvQXsTh9WdKryEKrE84F+CTsFy+0X7FHtGQo22
-         qzqw==
-X-Forwarded-Encrypted: i=1; AJvYcCWOY3MQFi0ISB+o1KUc1APfHXTdKdx3iI++vfowIp1MNvVOfXmi3u57v5RYlCv6BEj+rT70FonDmp3Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSsV984YEpQy0/e+CuI7W+JF3wxhXeABe06EhLH3QgAgyMqGca
-	ENBQcTnvCYU9RKUjrR/F/4zUa4bLl58TPGMd2Ot/+BbCYialj6dF6DdNNNlvXoOpQk1uDmG/x3p
-	11lI=
-X-Gm-Gg: ASbGnctts8zFGmv+Fu3aMfU+HnqWakSq/8q5yAT5aIq6aFKR4Ve6WToTHsHve3Uvevs
-	92FCEIFZYkwqcqyuv85bS3KIjcLhQp8KCgq53mw1f6LWezNCd8ZWxmlpCpXbF7wIi0fa8ytkyZm
-	lC3kXbtG1nHDPtkL7kqmudACY5jsR5qWzJ0fOgvJ3S6yrLlAoetpcWm5I60iHYa1NljFbldmIsp
-	OtdjbxV6SK0BiAe266S3IkXge2kOS1IxDnBcpFDCiMhj/UG/i3633dDAqBDlJaer8foNrFoHclH
-	m54TL40hkHi52rwQ0AEz81ojKiE0qdJwy340E+w1beJFvWKs9O/oH17KCxSAwdYrxkUVGg==
-X-Google-Smtp-Source: AGHT+IFouneBDH4lcmisK2CqC0lJVk1uEkk/8hKiuwfY//uH+O/ijh/ARezQ4p0atRjAsVemu/oJlw==
-X-Received: by 2002:a05:600c:3d05:b0:436:18d0:aa6e with SMTP id 5b1f17b1804b1-438dc3ab518mr293284155e9.5.1738673668943;
-        Tue, 04 Feb 2025 04:54:28 -0800 (PST)
-Received: from localhost (amontpellier-556-1-148-206.w109-210.abo.wanadoo.fr. [109.210.4.206])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4390692a66esm14765885e9.0.2025.02.04.04.54.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Feb 2025 04:54:28 -0800 (PST)
+	s=arc-20240116; t=1738673908; c=relaxed/simple;
+	bh=pXe2aqU/rvOurFe5wAFRO0y/dkH0dBSuhsyCIBwgDz8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DoIlJ3ZMs/MwC6tGBDka2Pc8dVD15+6oPiqP1nD4t6FZrTYrAzxdav8VpFn8XwLhvTX90fE4pkULvcXaiXCddXsUoVE77USqnnn4kw3mgNLWBrXVL9rgx3JFQe9nnPegAqY2vlpUejT8SOTMzWgzH5c40pnRFJ5x7uB/vzDH9Rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MXsOXZnn; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738673906; x=1770209906;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=pXe2aqU/rvOurFe5wAFRO0y/dkH0dBSuhsyCIBwgDz8=;
+  b=MXsOXZnn6+NyypJaI5KS+5ec1TJZgt9ha8TdtsUP8PrwN69HrLIG1eCa
+   7j3BKKEn0UTVAIGB1Xj7ziYZdUv1VyOx0bFF4fHWpF1JKiGg75hfhCwyl
+   A46JVpCzbh8X+KSzEKitZpLrBb/We+bsBqE//nXe+sZXTwk3QB2AL5Glh
+   gnd9LEPo3E9XM3AYPdeVIsOTdNTvRCszG2XoBPlOV8IyH3gaiIpVrimKO
+   vkcbupGeY1oD9382nHi8ntzTcrVBevanj+WVkT9nybFKbJxVjBAzjXrm3
+   gcE7APX68uzQPkzsyCLJSxwfnCiq9HFdRwPbj/4+qQcnEb+hEpasFwYob
+   A==;
+X-CSE-ConnectionGUID: 2TmuYnEqRjKNy0yJRpAfyg==
+X-CSE-MsgGUID: xqDrg80zSFaDErR46n4Avw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39096970"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; 
+   d="scan'208";a="39096970"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Feb 2025 04:58:20 -0800
+X-CSE-ConnectionGUID: nbAIxL0dS6eCFSr8iU031w==
+X-CSE-MsgGUID: sVwdD2lbR7Ox+IsfL9X7iw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="133834269"
+Received: from apgcp0c531115.png.altera.com ([10.244.76.209])
+  by fmviesa002.fm.intel.com with ESMTP; 04 Feb 2025 04:58:16 -0800
+From: Mahesh Rao <mahesh.rao@intel.com>
+Subject: [PATCH v3 0/3] stratix10: miscellaneous changes and fix for child
+ driver probing
+Date: Tue, 04 Feb 2025 20:58:04 +0800
+Message-Id: <20250204-socfpga_sip_svc_misc-v3-0-697f7f153cfa@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 04 Feb 2025 13:54:27 +0100
-Message-Id: <D7JODK8W4W9W.3OO4GRGNDU5ZX@baylibre.com>
-To: "Jonathan Cameron" <Jonathan.Cameron@huawei.com>
-Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Michael Hennerich"
- <Michael.Hennerich@analog.com>, =?utf-8?q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v3 2/6] iio: adc: ad4030: add driver for ad4030-24
-From: "Esteban Blanc" <eblanc@baylibre.com>
-X-Mailer: aerc 0.18.2
-References: <20250130-eblanc-ad4630_v1-v3-0-052e8c2d897d@baylibre.com>
- <20250130-eblanc-ad4630_v1-v3-2-052e8c2d897d@baylibre.com>
- <20250131181437.00000097@huawei.com>
-In-Reply-To: <20250131181437.00000097@huawei.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANwOomcC/3XNTQqDMBCG4atI1k3Jj9LaVe9RipjJRAdaI4mEF
+ vHujdKFi3b5fjDPzCxiIIzsUswsYKJIfsihDwWDvh065GRzMyVUJaSoefTgxq5tIo1NTNA8KQI
+ 3Bqwzp1YIdWb5dAzo6LWxt3vunuLkw3v7kuS6fkGlfoNJcsHBWLBCly3q8krDhI8j+CdbwaR2i
+ JZ/EJURRLQlGtCVq/fIsiwfwoRKLv0AAAA=
+X-Change-ID: 20250109-socfpga_sip_svc_misc-bbcdfb7a0028
+To: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>, 
+ Tom Rix <trix@redhat.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Wu Hao <hao.wu@intel.com>, Ho Yin <adrian.ho.yin.ng@altera.com>, 
+ Niravkumar L Rabara <nirav.rabara@altera.com>
+Cc: linux-fpga@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Mahesh Rao <mahesh.rao@altera.com>, 
+ Mahesh Rao <mahesh.rao@intel.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738673895; l=1876;
+ i=mahesh.rao@intel.com; s=20250107; h=from:subject:message-id;
+ bh=pXe2aqU/rvOurFe5wAFRO0y/dkH0dBSuhsyCIBwgDz8=;
+ b=lM95x2jqB1+UZAkt0qPglb2/N6GoGEGqdzO60JlJinGdcv2hHpbw9nqjE2WQXhOiQU5H1/K06
+ aQXI3x+tGyGCjYdt2upSK6aHNQLSUMygSjX6q5f3+1BGiaOlwWqI9lE
+X-Developer-Key: i=mahesh.rao@intel.com; a=ed25519;
+ pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
 
-On Fri Jan 31, 2025 at 7:14 PM CET, Jonathan Cameron wrote:
-> On Thu, 30 Jan 2025 12:08:26 +0100
-> Esteban Blanc <eblanc@baylibre.com> wrote:
->
-> > This adds a new driver for the Analog Devices INC. AD4030-24 ADC.
-> >=20
-> > The driver implements basic support for the AD4030-24 1 channel
-> > differential ADC with hardware gain and offset control.
-> >=20
-> > Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
-> Hi Esteban,
->
-> Just one thing in here that actually matters. Question about scaling of
-> the common channel.  The others I could tidy up whilst applying if
-> nothing much else comes up.
->
-> Jonathan
->
->
-> > +static int ad4030_get_chan_scale(struct iio_dev *indio_dev,
-> > +				 struct iio_chan_spec const *chan,
-> > +				 int *val,
-> > +				 int *val2)
-> > +{
-> > +	struct ad4030_state *st =3D iio_priv(indio_dev);
-> > +
-> > +	if (chan->differential) {
-> > +		*val =3D (st->vref_uv * 2) / MILLI;
-> > +		*val2 =3D st->chip->precision_bits;
-> > +		return IIO_VAL_FRACTIONAL_LOG2;
-> > +	}
-> > +
-> > +	*val =3D st->vref_uv / 256;
->
-> This is a bit non obvious.
-> A comment on this scaling might be good to have.
-> Particularly the lack of / MILLI
-> (I think that's a bug?)
+The patch set includes the following changes:
 
-Yes I think that should be:
-``
-*val =3D st->vref_uv / MILLI;
-*val2 =3D 8;
-return IIO_VAL_FRACTIONAL_LOG2;
-``
+- Conversion of the devicetree binding file to JSON-schema for the Stratix10
+  SVC driver and its child stratix10 fpga manager driver.
+- Addition of support for probing the child driver. This fixes the failure
+  of child driver probing as the SVC driver node has been moved out of the
+  SoC node.
 
-So I guess that requires a V4. I will address the other comments there.
+Signed-off-by: Mahesh Rao <mahesh.rao@intel.com>
+---
+Changes in v3:
+  * Updated reserved-memory node as per dt-schema.
+  * Adjusted the indentation and corrected usage for
+    multi-paragraph description in stratix10-svc
+    binding file.
 
-Thanks for your time,
+- Link to v2: https://lore.kernel.org/r/20250131-socfpga_sip_svc_misc-v2-0-eeed4ebc35f9@intel.com
 
---=20
-Esteban "Skallwar" Blanc
-BayLibre
+Changes in v2:
+  * Added brief description on stratix10 soc fpga manager
+    in the binding files.
+  * method property in stratix10-svc binding file was
+    changed to array of strings.
+  * Updated/fixed the usage of of_platform_depopulate()
+    in the stratix10-svc driver.
+
+- Link to v1: https://lore.kernel.org/r/20250122-socfpga_sip_svc_misc-v1-0-cbdcd034ae34@intel.com
+
+---
+Mahesh Rao (3):
+      dt-bindings: fpga: stratix10: Convert to json-schema
+      dt-bindings: firmware: stratix10: Convert to json-schema
+      firmware: stratix10-svc: Add of_platform_default_populate()
+
+ .../bindings/firmware/intel,stratix10-svc.txt      | 57 -------------
+ .../bindings/firmware/intel,stratix10-svc.yaml     | 93 ++++++++++++++++++++++
+ .../fpga/intel,stratix10-soc-fpga-mgr.yaml         | 36 +++++++++
+ .../bindings/fpga/intel-stratix10-soc-fpga-mgr.txt | 18 -----
+ drivers/firmware/stratix10-svc.c                   | 14 +++-
+ 5 files changed, 140 insertions(+), 78 deletions(-)
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250109-socfpga_sip_svc_misc-bbcdfb7a0028
+
+Best regards,
+-- 
+Mahesh Rao <mahesh.rao@intel.com>
 
 
