@@ -1,138 +1,139 @@
-Return-Path: <devicetree+bounces-143007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1113BA2798D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:16:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC4FBA27999
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:19:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B28827A50D0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:15:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F6FB3A28C0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA2721766A;
-	Tue,  4 Feb 2025 18:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03117217672;
+	Tue,  4 Feb 2025 18:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b2rbyC2b"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="QLuSB3Cp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E653C78F4A;
-	Tue,  4 Feb 2025 18:16:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22CE217655
+	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 18:19:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738692987; cv=none; b=GOBZze1WZI3PIzEbFbFM/DYs5wS918Ag0bphjsUIegPU2cRWGXF7QZLYA16T0OOvVdijAIqVAg9TXogc24RSrloiAJPdvX5yuJZHIZtUEiZqVda9waJSj3SpnvwQJosn0FhWIPq/4eEedUmmbNJ3ioMlSD8YjWREMJZQAAjO/Aw=
+	t=1738693161; cv=none; b=KhDOsuBnaLZ0Y3ySSWV6ZY/kX8XHmPBzFUsvyjMMsxYdOU4QxxpWGPoG0CoUIjiNhax6/ggUrIxLrXgAW1hT4NaXAgRPdecLyrtFzipYhVMg3HTw6xP1bqD8KCyn28pqAYtB+2NPJPsb1FmHlLcI/xIoHo5vePQUMxsOSDlX23A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738692987; c=relaxed/simple;
-	bh=dmGkjt2zNEiAgl6N9re2M4LE4xSbtASeqzfY0ChaYqQ=;
+	s=arc-20240116; t=1738693161; c=relaxed/simple;
+	bh=TCqqBaH/6DxhhY4LxUIZxLWTUzfo7FZ0g9lCT/VEHVQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FUQK+nUX6aEnjMMY4J51O8TOFIYacoo+TEOPWIyD0q9bIZ2g25L9Gpv//iP2MKZwhVaERF5hpfx9ktfbq/MYrmrfhVzIddEB+MhBRkB0pbSUJAzsDxnKce1buonurc8f1bVQRWgZdHa7k84C4jZiZuyOwlQlY4YINQRVf2QxP98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b2rbyC2b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64F21C4CEDF;
-	Tue,  4 Feb 2025 18:16:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738692986;
-	bh=dmGkjt2zNEiAgl6N9re2M4LE4xSbtASeqzfY0ChaYqQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b2rbyC2bZq476y9HKzgTYiM2Xc1LS8wT5IY0iDXZoAcPwDZPvoNEugkvA6mcOCNB8
-	 RJ4fLX4BkO4ZhXkOnsLWZHSLB0yjPddBnC9mywKlMKda6THJ8ZdKfZi/oM++vwZVnL
-	 VaWoSxz4foT3b68sy1qtAGjpHbIQ5SvKXVCF7DaTj/lse75FmzkkpeTvevyfIQUxE0
-	 LNQ3hxtMUS+OBadhM+AAsSQlmOSexS0z5ykGzKQ+ryp1F2bdWVJVlS2+gZcfTr7Z+1
-	 24MRpJZw0YgOCJh25zJ9zH0Ya2wtFhzIqaLkuDAX6wXjCcCN6jVaC7IUod/8hn8ZyK
-	 5JoNKYf4VU/cQ==
-Date: Tue, 4 Feb 2025 18:16:17 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Basharath Hussain Khaja <basharath@couthit.com>
-Cc: danishanwar <danishanwar@ti.com>, rogerq <rogerq@kernel.org>,
-	andrew+netdev <andrew+netdev@lunn.ch>, davem <davem@davemloft.net>,
-	edumazet <edumazet@google.com>, kuba <kuba@kernel.org>,
-	pabeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>,
-	nm <nm@ti.com>, ssantosh <ssantosh@kernel.org>,
-	tony <tony@atomide.com>, richardcochran <richardcochran@gmail.com>,
-	parvathi <parvathi@couthit.com>, schnelle <schnelle@linux.ibm.com>,
-	rdunlap <rdunlap@infradead.org>, diogo ivo <diogo.ivo@siemens.com>,
-	m-karicheri2 <m-karicheri2@ti.com>, horms <horms@kernel.org>,
-	jacob e keller <jacob.e.keller@intel.com>,
-	m-malladi <m-malladi@ti.com>,
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>,
-	afd <afd@ti.com>, s-anna <s-anna@ti.com>,
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-	netdev <netdev@vger.kernel.org>,
-	devicetree <devicetree@vger.kernel.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>,
-	linux-omap <linux-omap@vger.kernel.org>,
-	pratheesh <pratheesh@ti.com>, prajith <prajith@ti.com>,
-	vigneshr <vigneshr@ti.com>, praneeth <praneeth@ti.com>,
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>,
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>,
-	mohan <mohan@couthit.com>
-Subject: Re: [RFC v2 PATCH 01/10] dt-bindings: net: ti: Adds DUAL-EMAC mode
- support on PRU-ICSS2 for AM57xx SOCs
-Message-ID: <20250204-mutilated-throwing-59cabf18f187@spud>
-References: <20250124122353.1457174-1-basharath@couthit.com>
- <20250124122353.1457174-2-basharath@couthit.com>
- <20250124-reoccupy-music-3803c753f8af@spud>
- <504387436.449923.1738127812232.JavaMail.zimbra@couthit.local>
- <20250129-vowed-dingbat-cfb5c5b8ede4@spud>
- <2028988664.494856.1738585795471.JavaMail.zimbra@couthit.local>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CgyTNb2ajuA4lOY59p1Jy08zh/zteI4Abpp3wX/IyYibzL+mtXDHGX49eLTc+hks4pAGl5I3It+ZY0nKFWF5Bx3M6Yd1SdrZBjj8JJopxdFwWMmO2xK8CCip9GcFd03Kyroys46PEjCGw1cq0qb91MTt/eCC5ykEbbnh5fTkWIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=QLuSB3Cp; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 2A288240028
+	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 19:19:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1738693152; bh=TCqqBaH/6DxhhY4LxUIZxLWTUzfo7FZ0g9lCT/VEHVQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=QLuSB3Cp5wmxvy0AcnxYAbea4vAVqLHQ2qWlm36gLR16yyS9Z6v9YRiCvyp4j4gn5
+	 LgZDTviocjTkkrBZfKjqIX7HKrKmbEgZd5usiMBwfyowuAzH7n9ya5rw+1WcRG1Oim
+	 61l/YRbLQ/MuqjUeCkWoQ1kkGDN+vaSKCCpYDwnidKomCYAjqhFy+gkv+aXN4VknA6
+	 SHTFc7qSWaWjKRuglfENNnh6zyhAw0zuaTMO+sMLjEjkDm5sMj/UWLXt8eIducymRH
+	 jcDEMinpzWrqCDL2LTwSNhNU1eiDWLfNxb9bwY4wxFJwO7H3iV26supD7Xr4Uco5Zq
+	 7tomMw0Ep2Izg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YnWpc4lyZz6tw4;
+	Tue,  4 Feb 2025 19:19:03 +0100 (CET)
+Date: Tue,  4 Feb 2025 18:19:03 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Rob Herring <robh@kernel.org>
+Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	Scott Wood <oss@buserror.net>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Subject: Re: [PATCH 5/9] dt-bindings: dma: Convert fsl,elo*-dma bindings to
+ YAML
+Message-ID: <Z6JaFxfwC0tAB4uQ@probook>
+References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
+ <20250126-ppcyaml-v1-5-50649f51c3dd@posteo.net>
+ <20250127044735.GD3106458-robh@kernel.org>
+ <Z5zYGdZU-IXwIuR6@probook>
+ <CAL_JsqJAX1QbXvG16NV2g6DGece6KiG_V-uyKQQLA618Oq9miw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="K8COnd4nDaIlA8yU"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <2028988664.494856.1738585795471.JavaMail.zimbra@couthit.local>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqJAX1QbXvG16NV2g6DGece6KiG_V-uyKQQLA618Oq9miw@mail.gmail.com>
+
+On Fri, Jan 31, 2025 at 04:16:07PM -0600, Rob Herring wrote:
+> On Fri, Jan 31, 2025 at 8:03 AM J. Neuschäfer <j.ne@posteo.net> wrote:
+> >
+> > On Sun, Jan 26, 2025 at 10:47:35PM -0600, Rob Herring wrote:
+> > > On Sun, Jan 26, 2025 at 07:59:00PM +0100, J. Neuschäfer wrote:
+> > > > The devicetree bindings for Freescale DMA engines have so far existed as
+> > > > a text file. This patch converts them to YAML, and specifies all the
+> > > > compatible strings currently in use in arch/powerpc/boot/dts.
+> > > >
+> > > > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > > > ---
+> > > >  .../devicetree/bindings/dma/fsl,elo-dma.yaml       | 129 +++++++++++++
+> > > >  .../devicetree/bindings/dma/fsl,elo3-dma.yaml      | 105 +++++++++++
+> > > >  .../devicetree/bindings/dma/fsl,eloplus-dma.yaml   | 120 ++++++++++++
+> > > >  .../devicetree/bindings/powerpc/fsl/dma.txt        | 204 ---------------------
+> > > >  4 files changed, 354 insertions(+), 204 deletions(-)
+> > [...]
+> > > > +patternProperties:
+> > > > +  "^dma-channel@.*$":
+> > > > +    type: object
+> > >
+> > >        additionalProperties: false
+> >
+> > I'll add it.
+> >
+> > > (The tools should have highlighted this)
+> >
+> > With dtschema 2024.11 installed, "make dt_binding_check
+> > DT_SCHEMA_FILES=fsl,elo-dma.yaml" does not highlight this.
+> 
+> Actually, it's the top-level 'addtionalProperties: true' that disables
+> the check here. That should be false as well.
+
+Noted. This did indeed help me find more errors.
 
 
---K8COnd4nDaIlA8yU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Feb 03, 2025 at 05:59:55PM +0530, Basharath Hussain Khaja wrote:
-> >> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> >> +    description:
-> >> >> +      phandle to Enhanced Capture (eCAP) event for ICSS
-> >> >=20
-> >> > Why do you need phandles for these things, can they not be looked up=
- by
-> >> > compatible? (e.g. multiple devices on one SoC).
-> >> >=20
-> >>=20
-> >> ecap is another peripheral similar to IEP in ICSSM/ICSSG. We have crea=
-ted a
-> >> separate driver for possible reuse with ICSSG in future.
-> >=20
-> > That's not an answer to my question.
-> >=20
->=20
-> We can use compatible if we have only one instance of a peripheral in the=
- SOC.=20
-> On the AM57x SOC we have two identical ICSS instances(ICSS1 and ICSS2). S=
-o we=20
-> use phandles to differentiate between the two instances. Currently this p=
-atch=20
-> series adds support for ICSS2 instance on the AM57x SOC. Support for ICSS=
-1 instance=20
-> will be added in subsequent patches.
-
-Cool, that's an acceptance answer, thanks.
-
---K8COnd4nDaIlA8yU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6JZcQAKCRB4tDGHoIJi
-0gnAAQC1oGfhZbnFSM/mPgMlsOYSL9Jy1uxEojT2QLRGkF15CQEA9H2GXROw3Fk2
-eXUwUknLlmzd/8uguMbvTucbVOMokgs=
-=3zMy
------END PGP SIGNATURE-----
-
---K8COnd4nDaIlA8yU--
+Best regards,
+J. Neuschäfer
 
