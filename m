@@ -1,130 +1,221 @@
-Return-Path: <devicetree+bounces-142941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C592AA27495
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 15:41:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E3EAA274A1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 15:43:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6051418857D5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 14:41:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2D237A1C15
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 14:42:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E14213E78;
-	Tue,  4 Feb 2025 14:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wpE5x9b7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3E32139B6;
+	Tue,  4 Feb 2025 14:43:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC774213E68
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 14:41:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5B402135BC;
+	Tue,  4 Feb 2025 14:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738680078; cv=none; b=kE5nSyzN87sz81HXbIVmSVLsyD+3dHyz6nZv3syxtSYTOXRO16Oxq8PocGUB9v+4cGBqDklC+GeXjeGZHpV4GY5QG+CjArl4ssXKAlJMX39J9Cr2gjxDw1TAcVx+UrcF/Oyr+fp6mNNsCOCijzMzCodBw2EH+clOp7fCPJeHSEI=
+	t=1738680198; cv=none; b=GN1KTxqPWifcefpGi+a/3dvNzew4/9XI/SltzpiPrPfMEhbBr+S4WJeOcK5eeqyaXiF7pqDEwkp56N9KAUyl7zBINqvjGz8MVQwZC1n1bRyWh+eTXTdG1oDi6ya0C3V/TgStDGl2NnF+E8WW5sdh0TS0rMxw9v5VFAJc0Q741cU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738680078; c=relaxed/simple;
-	bh=xciwRpSI5XqyMyBnlUUeLe3S99Neg5b9gILeI/GIpwo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j1MMnRD8e+PECw3yWWU0pUkk2x+O2Y10uNOwoD/ZPQtS2seUZUU5sfRLOT3HgbAsAyXxvR8/GnhyQBrpBlRnxZBhQOcs2xNHgk00QtXRgZe7ttkE+6a9fntm8UfaSlUwSRvmfECgcW99eCO6K84N7t4+1RAIMLWypMC1LIc4W7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wpE5x9b7; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6efe4e3d698so39698427b3.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Feb 2025 06:41:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738680075; x=1739284875; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=EF+r9NNxLbDk/ebkiEvokGAZWgyNc1LNBVM+BzVWg9c=;
-        b=wpE5x9b7dNligu2rzSgThMHRj2bjED3OmxbR97P60sUYqed9QmLSINmFqyVh4tf9Gy
-         YETKFfG2knPMlHelnGWWez2bk/3Z1iU3niAoUsYuR+DUjwsS0O5HOrZm7EoFg6sD0+sG
-         4Wr/r/eoPT7AJLIso/EaCQqiUa3Aq3QlJsl/v43I7jJyLttHg2AIT4MgVy+CMgXIf+ow
-         RHX0Xk1ZzV7f5/04KHCi80tM85w4l//QU9GcJsILw8+gy+oSATYhT6uyidP0RCDcbcb6
-         BUFb+xsIXxhuy9qFQBbYwrZj4qm14vwUTGL4mthWv6wsTKOCtHbxa53yMLkMwiv8cKGC
-         wrgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738680075; x=1739284875;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EF+r9NNxLbDk/ebkiEvokGAZWgyNc1LNBVM+BzVWg9c=;
-        b=kVGE+FnhKSQBoK1Vee8XM9JJXfV/JQT/guFS5KIOgV+Dan9Qa7NJyoM91Y7was9YqR
-         +KVnTaMilsmrnaOsWNugEL0NvrTccY5AyASd0bvK6Cay6j0IBdbUjFpoRvQsGx/nZpDk
-         xqwwA9dadLczwPHkQmP+HhrUm2hIDF7GBM2PWQvVhuPQMbTIKd8KZW5X7HORIIptOmz6
-         rmN6JSU1PQHDPkBK7xwtxxitLBt5B69Mpel8GCd6tnmHCOkTkNWCa3ebL9E1KT0283Td
-         431zkeTCMQWHuLm9agBqXHtYblQgqTXTq5gE4rgmm/mtOE4Yceet54jEHbiyTiiKudE7
-         LuSA==
-X-Forwarded-Encrypted: i=1; AJvYcCV5RfNTchupob0aR6R8oP6pZ0vXVINgkbi3v+yHHdyQ/asX8N++NrDjhMIg/N0FUa8StwhLdlezsCRN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYcMqb2MYwW/nqZTZXnpFIW8dTxVtbjAKOTylyy7D4TbNBFFDe
-	IeOQZm3X28geonUd6/n7hPoM1Gmq9Nmu5clE9lfoW67v1bcBSUWobTrGFnwLas+dnV2IvqUrT1u
-	QYLJjsFK9wAGaUM3ZhNiF0s8zhLDRBB6pKgGyTA==
-X-Gm-Gg: ASbGnctxohgG7doxlRPJ/gzyO9MiCtQoNa3V27l7wVogPM3686oJUPkoKHO19/v00zz
-	8CM4Q8kw94d4IxWzz9ZXU8mMbEERvp7/uiQuzBUbC+hx1pBZw1pc7n78jN988G9IS2Y8AWFsJig
-	==
-X-Google-Smtp-Source: AGHT+IEpnkfSycqPRh+Z07WB0BectMY1SNCWpsEsIbu8oOLWTzZvsbivUhx3HQINWbxmrSjJNPlwmk23VwhhmtN2WTY=
-X-Received: by 2002:a05:6902:15ce:b0:e58:a221:3a9 with SMTP id
- 3f1490d57ef6-e58a4bbe06dmr19324834276.32.1738680075609; Tue, 04 Feb 2025
- 06:41:15 -0800 (PST)
+	s=arc-20240116; t=1738680198; c=relaxed/simple;
+	bh=DBK6s+YgOk3NpEYbVIfXExkgTDf93wrg4yVddjEVZlI=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=las9+JJ7pffMQozJOEcHUi3SsOHF43/8bKfF3MchwWTbNlLvN7UM5ERLFb/se+nKmkA0Kh5f7g7SbehttmA/Vxs63tmMvGbAlbiZ1TGsCj2aBxCSoFFFK71aWX/6zoPMdN+SCtNMwkQsoMvVHrDSO+uUp22SBeE7cds6w1YWqTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4YnR0V3CYxz6J9yR;
+	Tue,  4 Feb 2025 22:42:18 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 3FDDD140B3C;
+	Tue,  4 Feb 2025 22:43:11 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 4 Feb
+ 2025 15:43:10 +0100
+Date: Tue, 4 Feb 2025 14:43:09 +0000
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: "Sperling, Tobias" <Tobias.Sperling@Softing.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Tobias Sperling via B4 Relay
+	<devnull+tobias.sperling.softing.com@kernel.org>, Lars-Peter Clausen
+	<lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] iio: adc: Add driver for ADS7128 / ADS7138
+Message-ID: <20250204144309.000043e6@huawei.com>
+In-Reply-To: <BE1P281MB24209585E1552B80272D5448EFF52@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+References: <20241122-adc_ml-v1-0-0769f2e1bbc1@softing.com>
+	<20241122-adc_ml-v1-2-0769f2e1bbc1@softing.com>
+	<20241124124205.02453a0c@jic23-huawei>
+	<BE1P281MB24209585E1552B80272D5448EFF52@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241202-rpmpd-sm6375-v1-1-12a4f0182133@fairphone.com>
-In-Reply-To: <20241202-rpmpd-sm6375-v1-1-12a4f0182133@fairphone.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 4 Feb 2025 15:40:39 +0100
-X-Gm-Features: AWEUYZkH2hVyWKZ_6ijh2Gez9rMugPxnbEqXZ7spv-yBTuw-Kqn2vafUUBFeJuk
-Message-ID: <CAPDyKFrARi_9Yy7155-XAkgz5LhzaERsuf5DzrS+H6Yb4AkRtw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: power: rpmpd: Fix comment for SM6375
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100009.china.huawei.com (7.191.174.83) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-On Mon, 2 Dec 2024 at 17:25, Luca Weiss <luca.weiss@fairphone.com> wrote:
->
-> During an earlier commit, the comment from SM6350 was copied without
-> modifying. Adjust the comment to reflect the defines.
->
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+On Mon, 3 Feb 2025 16:57:19 +0000
+"Sperling, Tobias" <Tobias.Sperling@Softing.com> wrote:
 
-Applied for next, thanks!
+> Hi Jonathan,
+> thanks for the great feedback, I tried to improve all the mentioned things, just
+> some comments/questions inline.
+> 
+> Regards,
+> Tobi
+> 
+> > > +static const struct ads71x8_freq_bits ads71x8_samp_freq[] = {
+> > > +	{163, 0x1F}, {244, 0x1E}, {326, 0x1D}, {488, 0x1C}, {651, 0x1B},
+> > > +	{977, 0x1A}, {1302, 0x19}, {1953, 0x18}, {2604, 0x17}, {3906, 0x16},
+> > > +	{5208, 0x15}, {7813, 0x14}, {10417, 0x13}, {15625, 0x12}, {20833, 0x11},
+> > > +	{31250, 0x10}, {41667, 0x09}, {62500, 0x08}, {83333, 0x07},
+> > > +	{125000, 0x06}, {166667, 0x05}, {250000, 0x04}, {333333, 0x03},
+> > > +	{500000, 0x02}, {666667, 0x01}, {1000000, 0x0}  
+> > Format this as something like.
+> > 	{ 163, 0x1F }, { 244, 0x1E }, { 326, 0x1D }, { 488, 0x1C },
+> > 	{ 651, 0x1B }, { 977, 0x1A }, { 1302, 0x19 }, { 1953, 0x18 },
+> > 
+> > So with more spaces and with a power of 2 entries on each line to make it easy
+> > for people to work out the matching.
+> > 
+> > Once you use read_avail as requested below, you may well just want to use
+> > the index of the array for the second field and have a simple array of value
+> > assuming no holes that I'm missing.  
+> 
+> There would have been some holes, as some register values lead to the same frequency.
+> I just changed this to repeat these values then in the list. Should be fine now and the
+> array's index can be used now.
 
-Kind regards
-Uffe
+Ok.  Generally when that happens we don't export repeats in read_avail.
+
+So may be back to this approach :(
+
+> 
+> > > +static ssize_t ads71x8_read_stats(struct iio_dev *indio_dev, uintptr_t priv,
+> > > +	const struct iio_chan_spec *chan, char *buf)
+> > > +{
+> > > +	struct ads71x8_data *data = iio_priv(indio_dev);
+> > > +	int ret;
+> > > +	u8 values[2];
+> > > +
+> > > +	switch (priv) {
+> > > +	case ADS71x8_STATS_MIN:
+> > > +		ret = ads71x8_i2c_read_block(data->client,
+> > > +			ADS71x8_REG_MIN_LSB_CH(chan->channel), values,
+> > > +			ARRAY_SIZE(values));
+> > > +		if (ret < 0)
+> > > +			return ret;
+> > > +		break;
+> > > +	case ADS71x8_STATS_MAX:
+> > > +		ret = ads71x8_i2c_read_block(data->client,
+> > > +			ADS71x8_REG_MAX_LSB_CH(chan->channel), values,
+> > > +			ARRAY_SIZE(values));
+> > > +		if (ret < 0)
+> > > +			return ret;
+> > > +		break;
+> > > +	default:
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	return sprintf(buf, "%d\n", ((values[1] << 8) | values[0]));  
+> > 
+> > I've no ideas what this is, so needs docs.  
+> 
+> See comment below regarding custom ABI.
+> 
+> > That last bit is a get_unaligned_le16() though so use that to make it
+> > explicit what is going on.  
+> 
+> > > +};
+> > > +
+> > > +static const struct attribute_group ads71x8_attribute_group = {
+> > > +	.attrs = ads71x8_attributes,
+> > > +};
+> > > +
+> > > +static const struct iio_info ti_ads71x8_info = {
+> > > +	.attrs = &ads71x8_attribute_group,
+> > > +	.read_raw = &ads71x8_read_raw,
+> > > +	.write_raw = &ads71x8_write_raw,
+> > > +	.read_event_value = &ads71x8_read_event,
+> > > +	.write_event_value = &ads71x8_write_event,
+> > > +	.read_event_config = &ads71x8_read_event_config,
+> > > +	.write_event_config = &ads71x8_write_event_config,  
+> > Definitely worth thinking about whether the device can be used to
+> > some degree at least without interrupts.  It is annoyingly common
+> > for board designers to not wire them.
+> > 
+> > If it is easy to support (without events) from the start that
+> > is a nice to have. If more complex we can leave it until we know
+> > of actual hardware.  
+> 
+> In general, this driver could be used without interrupts. What remains
+> is the reading of the ADC values, which probably is sufficient most of
+> the time.
+> Is this what you had in mind?
+
+Yes.
+
+> 
+> > > +static const struct iio_chan_spec_ext_info ads71x8_ext_info[] = {
+> > > +	{"stats_min", IIO_SEPARATE, ads71x8_read_stats, NULL,  
+> > ADS71x8_STATS_MIN},  
+> > > +	{"stats_max", IIO_SEPARATE, ads71x8_read_stats, NULL,  
+> > ADS71x8_STATS_MAX},  
+> > > +	{},  
+> > 	{ "stats_min", ...
+> > 	{ }
+> > 
+> > No comma for terminating entries as we don't want it to be easy to add more
+> > after them.
+> > 
+> > However, the fields in this structure are non obvious, so
+> > 	{
+> > 		.name = "stats_min",
+> > etc
+> > preferred.
+> > 
+> > This is custom ABI, so I'd expect to see a file under
+> > Documentation/ABI/testing/sysfs-bus-iio-*
+> > that explains what these are.
+> > 
+> > Adding custom ABI however is a hard thing, so provide plenty of information
+> > to see if these are justified or not.
+> > Superficially they sound like debugfs things rather than suitable for sysfs.  
+> 
+> In the current configuration the IC is automatically making some statistics about
+> the minimal and maximum value that were seen on each channel, which can be
+> read back by this ABI.
+> This as quick info, do you think it makes sense to add this as custom ABI?
+  
+For max we do have existing ABI peak and trough (only one user of that)
+https://elixir.bootlin.com/linux/v6.13.1/source/Documentation/ABI/testing/sysfs-bus-iio#L363
+Would those work for you?
+
+> 
+> Otherwise, making this part of the debugfs, I guess you are talking about
+> granting access via debugfs_reg_access of the iio_info, don't you?
+> And this then also needs docu in "Documentation/ABI/testing/debugfs-bus-iio-*",
+> doesn't it?
+
+This doesn't really feel like a feature intended for debug, so better to
+use main ABI. If we need to add something we can.
 
 
-> ---
->  include/dt-bindings/power/qcom-rpmpd.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
-> index df599bf462207267a412eac8e01634189a696a59..d9b7bac309537cbfd2488e7d4fe21d195c919ef5 100644
-> --- a/include/dt-bindings/power/qcom-rpmpd.h
-> +++ b/include/dt-bindings/power/qcom-rpmpd.h
-> @@ -65,7 +65,7 @@
->  #define SM6350_MSS     4
->  #define SM6350_MX      5
->
-> -/* SM6350 Power Domain Indexes */
-> +/* SM6375 Power Domain Indexes */
->  #define SM6375_VDDCX           0
->  #define SM6375_VDDCX_AO        1
->  #define SM6375_VDDCX_VFL       2
->
-> ---
-> base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
-> change-id: 20241202-rpmpd-sm6375-06582e126d7f
->
-> Best regards,
-> --
-> Luca Weiss <luca.weiss@fairphone.com>
->
->
+Jonathan
+
+
 
