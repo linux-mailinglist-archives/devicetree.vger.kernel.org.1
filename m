@@ -1,127 +1,151 @@
-Return-Path: <devicetree+bounces-142970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 863C5A276B0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:01:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDBE6A276A7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:00:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C5E3164B77
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 16:01:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 961193A10A7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 16:00:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC9312153CE;
-	Tue,  4 Feb 2025 16:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5B2214A67;
+	Tue,  4 Feb 2025 16:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eMrULHvC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rgKJ1p4D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 152A9215193;
-	Tue,  4 Feb 2025 16:01:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE7D4AD2D;
+	Tue,  4 Feb 2025 16:00:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738684864; cv=none; b=g9iWUsZwpCbbqLkVBseYCkaX3g/Hv5h5Gx5IqOGl8NUYJBLhjyyH20vTmOGmkW8LjlGvhlirB/2ShMxtWWEu3cGZjIVy6ip5CQOh4q7hLj/ukaOT5ZQmVRtIY5znDAHcwnQzfkBgyt2VTvr80dnvCGsO2E5i6+N2AtgR3LaQaKU=
+	t=1738684827; cv=none; b=GSZPwBgbPAtUfmoEsUJbOSpnoYmNbN7XNY+ROScBsjmWAwXafdDFA9sjvUo54bxcGt7ENIxPBOJXzb72GGd34hG7BkIUU5ZMKRGwzzg1xotvvmDfldDB0JAYy62QMuEUdtyp/fSBHDQ9MBh+jLSf4y9j4cAa1Opj9SSTA78JW5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738684864; c=relaxed/simple;
-	bh=7weosOB2tkJzFFCK1j2kvlQUUXPViwlIjKFLoG1vu/o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=seTZI+S6L2TkU/8ZUJNJZbYVPvNDSonalxTAp998m+HXrHKRqbqEQ3f2gVWa1d7tYrXvd/KOPlXZNxqQxMcggKJGPebSqLJEcGo2cUp3seruHEvDLemqQl2yWyrEdOkbIFTvq9Uv81q9Awow2lXjhkYBSDgfhDKRGK9C8YX4Zas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eMrULHvC; arc=none smtp.client-ip=209.85.167.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3eba50d6da7so1622853b6e.2;
-        Tue, 04 Feb 2025 08:01:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738684862; x=1739289662; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/rSvVS0xRSmkwB2ilC6LIMN2F2AJg2DEhA8U1xiK1AM=;
-        b=eMrULHvCK5HnghdjIaxXbiD+cLh/elT+2TXobt/aWM7i/fbvVU5f/7ST9iu0tWPeP+
-         HdttYrCzuXBeD5s7TbtSrsVVPRMeCzIAIUbIDDVxfWzPcQPAqg4L1Ph0GQZQYk9bHRgg
-         2ThQQYeHWPIvL9p9ixRVv/xX6fHMbGolHqMlsA3bi5tEjsROEVNcEh5OfA7iCByhEiN0
-         Wvz1PjG1lW0EZ6pQRWQmq0+IwMaQKGjugxIMJzQOdFNJ8Lr4uI+A25QYL4KCA9UZ1KqU
-         EEp8RyDE0Lf55hqP8T1b0ohL9V3xE2Hr8WZ0dQFegJivtOjZ/RXy4RJsVPh9I2jpDCUl
-         6xZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738684862; x=1739289662;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/rSvVS0xRSmkwB2ilC6LIMN2F2AJg2DEhA8U1xiK1AM=;
-        b=PytG/SC3SekNMB59dJiUX1YbbmMCZZ2N17bNPsM7bTpTinjXOausdq4xHfOdWHpsOm
-         I8crOMgG6242gcmarRNpMKPZmvcTn23EYwPlYRSlNgZbCVmDZRTeuol7T6EKaF3YclDF
-         3WWDKkcB21WRLqwsRCWBco9b4LtKK4uPPIBl6GCfO/8VBWIwMNEA6d+5pubMdSc4c5U1
-         yZ9/uoiJZ7pogaA12ga4bJyJuAC3dnrNAlHKSs6af4OlI4GBLQSU8yyPjDlxtz/Altt4
-         +eiBcCSsjdniyftN6I/O5TPImwwoqFyB+35Wrfp6dpvQmo4hrDL6o17WlMBg4apqTR5p
-         ma0A==
-X-Forwarded-Encrypted: i=1; AJvYcCWrDbJVevsO/wfumnbp9TQt2weC13Nm/3Lo8YhUnaDF+Z834YmxTTSEfQATmHrQzzZBTPs302/OLw==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXeGqHtV0O1ApPKF4y8JSOiamxyTNNZMwdtsxKHVH98qXbljYg
-	tfylb0bVGD7s2xogocxHyrF75NSwwxOJm8LMWfKGzbJXBI6wLRv/
-X-Gm-Gg: ASbGncuXJZQRRZv642yW063Wfe86AQ+VlTeQHPph7DrdqQZVGuopsOyVhFJgMu4eUsv
-	BeIawErvK0gFE2I1qUTnFBKOmzisGU3spENqFxydwCBi/9rPyn2+FqoF9Tp0Vwar8laNcLVO7zR
-	puJp/hkwa25E4jlba5aaUUucW4MrJ2WqPAA8vDn+HsvCmQ0WRk3Nk5GqCA6+x1Kop3V7fSuCHH3
-	bPgbap3ncC2Saw5SirZBZRy3xXoRzqFBDRFPVROVZmYo1HBGB6T4bv479bYnXPsYfNjSnm33Kl8
-	dMDoTjdTdiuft67LJnZmJJVAk/9T2EWCPAc=
-X-Google-Smtp-Source: AGHT+IE3z8YgAXuefr7n/D2BdGgHaUpfeLviUWLi9pX/f/gVplrK/fZcFaRQf6HzqmNZD0k+ePy/Aw==
-X-Received: by 2002:a05:6808:3319:b0:3e6:63bb:ed4e with SMTP id 5614622812f47-3f323b3d227mr17390749b6e.27.1738684862198;
-        Tue, 04 Feb 2025 08:01:02 -0800 (PST)
-Received: from localhost.localdomain ([2600:1700:fb0:1bcf:f8ca:b029:fcc5:5836])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f33365be86sm3039570b6e.31.2025.02.04.08.01.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Feb 2025 08:01:01 -0800 (PST)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-sunxi@lists.linux.dev
-Cc: devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	lee@kernel.org,
-	samuel@sholland.org,
-	jernej.skrabec@gmail.com,
-	wens@csie.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	sre@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V2 4/4] arm64: dts: allwinner: rg35xx: Add no-thermistor property for battery
-Date: Tue,  4 Feb 2025 09:58:34 -0600
-Message-ID: <20250204155835.161973-5-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250204155835.161973-1-macroalpha82@gmail.com>
-References: <20250204155835.161973-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1738684827; c=relaxed/simple;
+	bh=Y5jRzQ9prbbWhoH9ZFvlpRlFbPAwHmYS/b/imvrO3B0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dyXz199LETfooyj0NuXNLR16KfaAQtKt1PaLZWCWHe6g+HGVY8oml01PSE4+x0GOq/xi0EHYDBR8+Qq8fZ5IU6uVtKOXU0UHc2dQgYcL7cfnrRbngrb2XD71RHQ1L46+P/bziBMIHInYaTaCCgE5i0yMs5WA7VSUNxeRzpnJ2DM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rgKJ1p4D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E23F7C4CEE2;
+	Tue,  4 Feb 2025 16:00:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738684827;
+	bh=Y5jRzQ9prbbWhoH9ZFvlpRlFbPAwHmYS/b/imvrO3B0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rgKJ1p4DWdQ/7V/H0JpcZiu5V5bmcchaIxxsHltZ1YAHkqf3utApMvvupeXW2s6i0
+	 tAHjmyrudZoWoz8x3yV8iXKd6HIXH9E3bDOcnyV3rxRHsvdCF4DsrQfMPeIvTr1j8m
+	 7DcjVhhdEf3ZvFOCnxjLNpVRw2cJbmTj01n6cLGVTsMJ9vxI0DhQ5Yqm54tV61My9/
+	 YqJzUwRyF/tRmZRjy0mxo/MsgF1/WrZBPZFIg+A1hcPdjhmvt7gp1WMvyjloYhJx6J
+	 Tl0AWNfvZtsrRq9gq0DR1pph6Ml2bfRCOGH4NlNSU9SGL1O8KXWt1saVyzXDluFlID
+	 ureXtr+Aox9HA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tfLLj-000000000S9-0vQw;
+	Tue, 04 Feb 2025 17:00:31 +0100
+Date: Tue, 4 Feb 2025 17:00:31 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Dikshita Agarwal <quic_dikshita@quicinc.com>,
+	quic_vgarodia@quicinc.com, mchehab@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, p.zabel@pengutronix.de, hverkuil@xs4all.nl,
+	sebastian.fricke@collabora.com, bryan.odonoghue@linaro.org,
+	neil.armstrong@linaro.org, nicolas@ndufresne.ca,
+	u.kleine-koenig@baylibre.com, stefan.schmidt@linaro.org,
+	lujianhua000@gmail.com, linux-arm-msm@vger.kernel.org,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org
+Subject: Re: [RFC PATCH v10 1/2] media: iris: introduce helper module to
+ select video driver
+Message-ID: <Z6I5nx2Wt3bbBmSI@hovoldconsulting.com>
+References: <20250128080429.3911091-1-quic_dikshita@quicinc.com>
+ <20250128080429.3911091-2-quic_dikshita@quicinc.com>
+ <5070e1f1-914b-4654-88ef-3566e3eee9ca@kernel.org>
+ <f1344e49-61b6-4115-ae88-55b4a3cfed28@quicinc.com>
+ <Z6B822-6UTxQfX46@hovoldconsulting.com>
+ <tqbm672pi223ipcw7btiemlb745weeeiy4gnazzeghozhq2emj@wppbkms6hir5>
+ <Z6HehbKL88LW1lxC@hovoldconsulting.com>
+ <hpcf7olw3ody7ns4ibdeoc5qrkmh3fgeqbhjd4eqwfuanevzoa@plenabtrjqi5>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <hpcf7olw3ody7ns4ibdeoc5qrkmh3fgeqbhjd4eqwfuanevzoa@plenabtrjqi5>
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Tue, Feb 04, 2025 at 04:55:58PM +0200, Dmitry Baryshkov wrote:
+> On Tue, Feb 04, 2025 at 10:31:49AM +0100, Johan Hovold wrote:
+> > On Mon, Feb 03, 2025 at 05:16:50PM +0200, Dmitry Baryshkov wrote:
+> > > On Mon, Feb 03, 2025 at 09:22:51AM +0100, Johan Hovold wrote:
+> > > > On Fri, Jan 31, 2025 at 10:44:28AM -0800, Abhinav Kumar wrote:
 
-Add the property of x-powers,no-thermistor for the battery of the
-Anbernic RG35XX series of H700 devices.
+> > And we're still waiting to hear the answers to all of Hans' questions. I
+> > still haven't seen anyone explaining why any of this is needed. You
+> > could have just continued letting Venus support 8250 so presumably there
+> > is some benefit in using Iris instead. Which? And is that potential
+> > benefit important enough to not just wait until Iris is up to par
+> > feature wise?
+> 
+> Because that's exactly opposite of what Iris developers are trying to
+> do: SM8250 and SM8550 belong to two different generations of the FW
+> interface. By supporting both of them in the Iris driver the developers
+> can verify that the internal driver abstractions are good enough. It has
+> been discussed in one of the threads (or in telcos) related to the first
+> iterations of this driver. We definitely don't want to end up in Venus
+> situation, where the abstractions were added afterwards and in some
+> cases they are not the best ones.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts      | 1 +
- 1 file changed, 1 insertion(+)
+Ok, but as I've said a number of times already, information like this
+needs to be included in the cover letter and commit message of what is
+posted to the list.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-index a231abf1684a..0c89ccc662a2 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-@@ -237,6 +237,7 @@ axp_adc: adc {
- 		battery_power: battery-power {
- 			compatible = "x-powers,axp717-battery-power-supply";
- 			monitored-battery = <&battery>;
-+			x-powers,no-thermistor;
- 		};
- 
- 		regulators {
--- 
-2.43.0
+Maintainers and reviewers obviously have no idea what you discussed in
+some internal teleconference and can't be expected to remember or dig
+this out from some old email thread either.
 
+> The plan is to use sm8250 as a "bridge" between two drivers, verifying
+> that they are on par during development, then drop sm8250 from Venus
+> driver. Then move sc7280 support too, drop all HFD_VERSION_6XX support
+> from Venus, cleanup the remnants.
+
+Ok, but venus would still remain for some older hardware? It's just the
+"hfi gen1" ones that would move to the iris eventually?
+
+> I think most of that information should have been a part of the main
+> Iris series. If it is not, please comment there, so that those commit
+> messages can be updated.
+
+Unfortunately it was not, which I also pointed in my comments to the
+Iris series.
+
+> > I'm sure you have some answers, but you need to provide them as part of
+> > the series.
+
+> > Unbinding and rebinding drivers is not part of any normal work flow
+> > expect possibly during development. And a developer can easily compare
+> > Venus and Iris for 8250 without a module parameter too.
+> 
+> Yes, we are talking about development. And yes, modparam helps. If you'd
+> like to do two separate kernel builds, that's fine.
+
+Please just motivate why you think this is needed as part of the
+submission. And make sure that the implementation is sane (e.g. not some
+random probe defer indefinitely thing).
+
+Like I said, having two drivers for the same hardware is normally not
+something that is acceptable, and this would need to be a transitional
+thing as we both agree. One way to guarantee that is to not expose it to
+regular users until it is ready (e.g. a Kconfig hidden behind
+CONFIG_EXPERT or similar). Otherwise, I fear you'll end up supporting
+both forever (with at least one of them bitrotting behind that module
+parameter over time).
+
+Johan
 
