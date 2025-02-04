@@ -1,58 +1,69 @@
-Return-Path: <devicetree+bounces-143028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94675A27B13
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:22:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06A74A27B26
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:25:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12DF81885A53
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:22:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B65B3A1035
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4DD9218AC4;
-	Tue,  4 Feb 2025 19:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E5F215F6E;
+	Tue,  4 Feb 2025 19:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oiTKmsma"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EkegLUID"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7BBD204F85;
-	Tue,  4 Feb 2025 19:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B85C4204F8B;
+	Tue,  4 Feb 2025 19:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738696964; cv=none; b=DUDgupFrBdiBf5nI6QyjhEDcZq7CZxAgS7MMv0KBB8zVP8xxsgwOu/5+3EbhNa7KVG0gJefbYRYCUFtXcx0fe8U9F7HeX8cvJgyYXrw0tuEedPDB4XN7gKWnLc2AvBJAP2g/sLiZL/Ba+uM9+6GP7Dk3kOlk/mOfwbBCtIFuASM=
+	t=1738697136; cv=none; b=MU6/qB5GBA2hLIbslC1SEJ1dxPmTSBARc8Sn0X4ZdfdVwut+poCpM2fgki9Q0sopWC3jol9VRM6IgNmQWINSWbnxtf8lpJ11Eo8/fPuQroypjaRJ6xDHiBlL6V7L88kyMT8Q8d99T//mfwKz1CU9laEFKgYV4TDtXLrS0hckdQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738696964; c=relaxed/simple;
-	bh=JIIYJevLdmFj/UppSjoqdwt4o9oRsJRr08DNrl9bKjM=;
+	s=arc-20240116; t=1738697136; c=relaxed/simple;
+	bh=C6Iapfq1eN3KSPLnP8LaEMpuydv5QeVLO70ImxSYOeQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eSvBSgkQHmz9Syl9ORhlz+2nmHIayt5s6JNaxOQHzeYJTXm1rlQwkMKxBLz7upkyNzLjdHNmPxhwAveRtNyPYaFsmgs2Pr4gcbfYRnGQDuB2nc/RKTq/bnU4/MvqOQQiYf2eP4uIJsn8Hv+CX4s6X4upuzPyWIaHgTwLFt+z624=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oiTKmsma; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F32D1C4CEDF;
-	Tue,  4 Feb 2025 19:22:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FBYgQiiaXOAfxl6VcPuxEQ3DxWjHfB2YzAnopVcjfggzIphSl1CwhoHd4Dzy1CHkUVCjFJvo0ajLHWH52FOXlHSMWKzb+RUC5NgoqJYPYjkJkQqRQg7dtfAhgEWbpOOxTtYzGLyJSQOeXUodV2Iki8ldB6wOlBeZ6dKQtYt4ALQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EkegLUID; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8918EC4CEDF;
+	Tue,  4 Feb 2025 19:25:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738696964;
-	bh=JIIYJevLdmFj/UppSjoqdwt4o9oRsJRr08DNrl9bKjM=;
+	s=k20201202; t=1738697136;
+	bh=C6Iapfq1eN3KSPLnP8LaEMpuydv5QeVLO70ImxSYOeQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oiTKmsmaawtyzK3gFz6SoL3CCBbX2odSetSm8/RtFli99hdpbpEMGz5b45YIz2Lg+
-	 3Y79cu+JjhlDD+sXz341Q6Lhk7gp/U2662fsol5SY/SexMRIK1S3JaEc4tMOWgkJqu
-	 85SkbHnqeZ/jHVL3UtoHdl14znHvI9LacUUVRRXHzPsajkngZ+8TiFgsnYkDwzcz28
-	 gbqZFk3x2CzQE/e5/23LZDZwUPEyu09jG4qDAic5Bq9cg8RRO1oiTMvqt2PW91NgA+
-	 BWfs4iLOJQPUHOgTFbtrwsZRUsje5DMFW/84+OI4Ab3yhhMaTjBRq85LF1j7cAnRbZ
-	 mqHsCzf2E7c0Q==
-Date: Tue, 4 Feb 2025 19:22:39 +0000
+	b=EkegLUIDoeeFsitVAc7ehJ4HIo4qixvTQGtxNEjREDzypAC/nbQUqmXamK3uOxlBQ
+	 ISalFDepIxyck7aBS61AnsBeiVBfDhPB8SG6G07VxUQQZ57RVgdRyOph2cgsfxSazZ
+	 1hUcF6PGxNuNoPVunSxZXv0NXkIBjo3Z68qCew1E+Nbg5jTaaAhDM3S74whlmjCQ2T
+	 gamzu4Bp0mUaM4DSliYvYKPRxyvyPeplVjX/8HjFmFE1F7Ew8LY2zj86KzhtdBiTKA
+	 vZRVEuR3T8QeF4UlppsxWZbmW4qXrcV1S8pUO1zPx0M/bWQOkGsV3sAyHPUqJMNqx4
+	 jwhyJvQ8/LlQg==
+Date: Tue, 4 Feb 2025 19:25:30 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, broonie@kernel.org,
-	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Robert Budai <robert.budai@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Alexandru Ardelean <alexandru.ardelean@analog.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ir38060: Move & update dt binding
-Message-ID: <20250204-mulled-evaluate-8a690cdfbd4d@spud>
-References: <20250204180306.2755444-1-naresh.solanki@9elements.com>
+	Jonathan Corbet <corbet@lwn.net>, Nuno Sa <nuno.sa@analog.com>,
+	Ramona Gradinariu <ramona.gradinariu@analog.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Paul Cercueil <paul@crapouillou.net>,
+	David Lechner <dlechner@baylibre.com>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v6 4/6] dt-bindings: iio: Add adis16550 bindings
+Message-ID: <20250204-helium-marbled-a0863a0a18a8@spud>
+References: <20250204143612.85939-1-robert.budai@analog.com>
+ <20250204143612.85939-5-robert.budai@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,176 +71,168 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HYb3Nichi2MrG9QF"
+	protocol="application/pgp-signature"; boundary="lomlFNdTSMH+4T1Z"
 Content-Disposition: inline
-In-Reply-To: <20250204180306.2755444-1-naresh.solanki@9elements.com>
+In-Reply-To: <20250204143612.85939-5-robert.budai@analog.com>
 
 
---HYb3Nichi2MrG9QF
+--lomlFNdTSMH+4T1Z
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 04, 2025 at 11:33:03PM +0530, Naresh Solanki wrote:
-> Move dt binding under hwmon/pmbus & align accordingly.
+On Tue, Feb 04, 2025 at 04:36:08PM +0200, Robert Budai wrote:
+> Document the ADIS16550 device devicetree bindings.
 >=20
-> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> Co-developed-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> Signed-off-by: Robert Budai <robert.budai@analog.com>
 > ---
->  .../hwmon/pmbus/infineon,ir38060.yaml         | 61 +++++++++++++++++++
->  .../bindings/regulator/infineon,ir38060.yaml  | 45 --------------
->  2 files changed, 61 insertions(+), 45 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineo=
-n,ir38060.yaml
->  delete mode 100644 Documentation/devicetree/bindings/regulator/infineon,=
-ir38060.yaml
 >=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir380=
-60.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.ya=
-ml
+> v6:
+> - applied blank line suggestions
+> - added clock-frequency dependency change suggestions
+> - yamllint corrections
+>=20
+>  .../bindings/iio/imu/adi,adis16550.yaml       | 83 +++++++++++++++++++
+>  MAINTAINERS                                   |  9 ++
+>  2 files changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis165=
+50.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml=
+ b/Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
 > new file mode 100644
-> index 000000000000..e1f683846a54
+> index 000000000000..8750bb937979
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,ir38060.yaml#
+> +$id: http://devicetree.org/schemas/iio/imu/adi,adis16550.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Infineon Buck Regulators with PMBUS interfaces
+> +title: Analog Devices ADIS16550 and similar IMUs
 > +
 > +maintainers:
-> +  - Not Me.
-
-How the hell did this get merged!
-
+> +  - Nuno Sa <nuno.sa@analog.com>
+> +  - Ramona Gradinariu <ramona.gradinariu@analog.com>
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
 > +
 > +properties:
 > +  compatible:
 > +    enum:
-> +      - infineon,ir38060
-> +      - infineon,ir38064
-> +      - infineon,ir38164
-> +      - infineon,ir38263
+> +      - adi,adis16550
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  regulators:
-> +    type: object
+> +  spi-cpha: true
+> +  spi-cpol: true
+> +
+> +  spi-max-frequency:
+> +    maximum: 15000000
+> +
+> +  vdd-supply: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
 > +    description:
-> +      list of regulators provided by this controller.
-
-Can you explain why this change is justified? Your commit message is
-explaining what you're doing but not why it's okay to do.
-
-Cheers,
-Conor.
-
+> +      Must be the device tree identifier of the RESET pin. If specified,
+> +      it will be asserted during driver probe. As the line is active low,
+> +      it should be marked GPIO_ACTIVE_LOW.
+> +    maxItems: 1
 > +
-> +    properties:
-> +      vout:
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        type: object
+> +  clocks:
+> +    description: If not provided, then the internal clock is used.
+> +    maxItems: 1
 > +
-> +        unevaluatedProperties: false
-> +
-> +    additionalProperties: false
+> +  clock-frequency:
+> +    description: Clock frequency in Hz when an external clock is used.
+> +    oneOf:
+> +      - minimum: 1
+> +        maximum: 128
+> +      - minimum: 3000
+> +        maximum: 4500
+
+I don't get why this is a property, to be honest. When you've got an
+external clock, why isn't the frequency obtained from the clock provider
+node?
+
 > +
 > +required:
 > +  - compatible
 > +  - reg
+> +  - interrupts
+> +  - spi-cpha
+> +  - spi-cpol
+> +  - spi-max-frequency
+> +  - vdd-supply
 > +
-> +unevaluatedProperties: false
+> +dependentRequired:
+> +  clock: [clock-frequency]
+         ^
+typo, missing s.
+
 > +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +additionalProperties: false
 > +examples:
 > +  - |
-> +    i2c {
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
 > +        #address-cells =3D <1>;
 > +        #size-cells =3D <0>;
-> +
-> +        regulator@34 {
-> +            compatible =3D "infineon,ir38060";
-> +            reg =3D <0x34>;
-> +
-> +            regulators {
-> +                vout {
-> +                    regulator-name =3D "p5v_aux";
-> +                    regulator-min-microvolt =3D <437500>;
-> +                    regulator-max-microvolt =3D <1387500>;
-> +                };
-> +            };
+> +        imu@0 {
+> +            compatible =3D "adi,adis16550";
+> +            reg =3D <0>;
+> +            spi-max-frequency =3D <15000000>;
+> +            spi-cpol;
+> +            spi-cpha;
+> +            vdd-supply =3D <&vdd>;
+> +            interrupts =3D <4 IRQ_TYPE_EDGE_FALLING>;
+> +            interrupt-parent =3D <&gpio>;
 > +        };
 > +    };
-> diff --git a/Documentation/devicetree/bindings/regulator/infineon,ir38060=
-=2Eyaml b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
-> deleted file mode 100644
-> index e6ffbc2a2298..000000000000
-> --- a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
-> +++ /dev/null
-> @@ -1,45 +0,0 @@
-> -# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> -%YAML 1.2
-> ----
-> -$id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
-> -$schema: http://devicetree.org/meta-schemas/core.yaml#
-> -
-> -title: Infineon Buck Regulators with PMBUS interfaces
-> -
-> -maintainers:
-> -  - Not Me.
-> -
-> -allOf:
-> -  - $ref: regulator.yaml#
-> -
-> -properties:
-> -  compatible:
-> -    enum:
-> -      - infineon,ir38060
-> -      - infineon,ir38064
-> -      - infineon,ir38164
-> -      - infineon,ir38263
-> -
-> -  reg:
-> -    maxItems: 1
-> -
-> -required:
-> -  - compatible
-> -  - reg
-> -
-> -unevaluatedProperties: false
-> -
-> -examples:
-> -  - |
-> -    i2c {
-> -      #address-cells =3D <1>;
-> -      #size-cells =3D <0>;
-> -
-> -      regulator@34 {
-> -        compatible =3D "infineon,ir38060";
-> -        reg =3D <0x34>;
-> -
-> -        regulator-min-microvolt =3D <437500>;
-> -        regulator-max-microvolt =3D <1387500>;
-> -      };
-> -    };
->=20
-> base-commit: bfbb730c4255e1965d202f48e7aa71baa9a7c65b
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6247500cf427..8913e13dcaef 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1452,6 +1452,15 @@ W:	https://ez.analog.com/linux-software-drivers
+>  F:	Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
+>  F:	drivers/iio/imu/adis16475.c
+> =20
+> +ANALOG DEVICES INC ADIS16550 DRIVER
+> +M:	Nuno Sa <nuno.sa@analog.com>
+> +M:	Ramona Gradinariu <ramona.gradinariu@analog.com>
+> +M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Supported
+> +W:	https://ez.analog.com/linux-software-drivers
+> +F:	Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+> +
+>  ANALOG DEVICES INC ADM1177 DRIVER
+>  M:	Michael Hennerich <Michael.Hennerich@analog.com>
+>  L:	linux-hwmon@vger.kernel.org
 > --=20
-> 2.42.0
+> 2.39.5
 >=20
 
---HYb3Nichi2MrG9QF
+--lomlFNdTSMH+4T1Z
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6Jo/wAKCRB4tDGHoIJi
-0n1LAQCvwcmBoxgsSDIQxYp6veyw89f+ngZJgwza+NLCdV/5GAEAqLOh4I/JlmHW
-myWJFQTOAi+LyrfwSTy4LXwa7z9UVQk=
-=+Bh3
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6JpqgAKCRB4tDGHoIJi
+0lTiAP9e6BRlww3AQv+1TYSurfPow3DxH41y1tAXXv4SEgN/zgEA5cDzyf95Jnme
+0lIESiiWqveA1p+YjP24DyX6NbeWpQ4=
+=Kcg6
 -----END PGP SIGNATURE-----
 
---HYb3Nichi2MrG9QF--
+--lomlFNdTSMH+4T1Z--
 
