@@ -1,159 +1,194 @@
-Return-Path: <devicetree+bounces-142952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A08C1A27601
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 16:36:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F7D0A2761D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 16:38:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4D091887389
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 15:35:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2EC37A17A5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 15:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B4062144A6;
-	Tue,  4 Feb 2025 15:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C8C215196;
+	Tue,  4 Feb 2025 15:37:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FRHDnsg9"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="fYrbbgsj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B802213E90
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 15:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738683333; cv=none; b=sFiQU0xBwBp2EXFvJs6q1I5niTjs6eHM77lofM+onJyfPAMQst7fKMtmD96wpizA42CBqXn2SLUaAq83Iz+vZz43Obyg1/y3CCSNonOV7ULzx7gEEgiBBbnT+x1sKzyAVQlmjIS8TjmhjJ7Q1NdkbGKiKeMQEfsRbX5d1UKB1Lg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738683333; c=relaxed/simple;
-	bh=DVWVLiFZX3pBISObkfjiwN9Rg1VSfP0CMx9QbuGF9Gg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iRCXR94Yerab1eitunCD7zrtaxhV+ZzhOx287dg8BlUFFlzMQDw2jNWaI0n1IvvMV8m/WzkIb4AwPujVpGL39fnffbdRzoF3ws2bCftPJkJPOaDXBO/9TKqroO4K+iRNAXHQI7ypybmE5gwCT+VbRJIez021FGgSHzewcx45RVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FRHDnsg9; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-30616d71bb0so58971801fa.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Feb 2025 07:35:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738683329; x=1739288129; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mo0faCQWMQesSAiWhpm/M42GsGQUGBhbD7joezmU+YI=;
-        b=FRHDnsg9MKBV4f9bynE26YGmNgIvZ0f99xhfh9dtV7M34uxUY6s5dQgdhi5V2KIriW
-         4LLi7HhwFXLEHy2F1X405q76BnQLcsBDv84BtlK8TrKZ3MlgCQ+8Tu2mFElMw2+XVRk6
-         b0TuWjzu2Z0AkjsyJkTUESv59kDksXGZOL4FfJhs1MvD/UY8a2leHUR13KBcEPiQeXte
-         Y8pDv4sf7wZFbUsbMgX92xKFZsiqHChchUr0V7f7ZphF2zj+eZd6mDWEA2sH02dc6rFD
-         FFD6sV9dJRMlEcxa9JcjwF6MGfCYikjWJSIAEdDue33Mu4THV5MSX8H/AAH99UrcBsdu
-         tgXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738683329; x=1739288129;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Mo0faCQWMQesSAiWhpm/M42GsGQUGBhbD7joezmU+YI=;
-        b=vbofBTB5WM3mermOGeBRg/lNLw/pwIlaK8jw0LY1zmcUV7dB16iJsCw9oD5qPzEadu
-         xcLbBxbn/kd21Q4nPfqOTJ3oYLQsB6w+MDeriseLpAfK5PDu8MF5cCGDDXZS8mGqRNvL
-         oyXN02+vE7lheaQbmUsdJPoSjtX77bpqtZ5QJbFVyQVSDJM2Q6QAVJRGjBKRzB6AxkGU
-         lCpKV9hKx7SbUxGzPacjCnmLa31eJMpawVdNRg8Sygrz6Tg0HkvDN6x3wb235yREt9la
-         B+S70gaycSeQ6lfhWvyBQqLsuDHb8LzFPDVK75yZXMxe+CYnOowhJzp0a90kKOoygarV
-         x6yQ==
-X-Forwarded-Encrypted: i=1; AJvYcCULaK3Xm9fLEu4kyQujy7DZpzv1OulxfCor4NU8dUWafRUoyerpWIjWj9OEUFDh2YorAefoBT2r9axu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLPhUdU9Fzsf8rc0VVdXWJxpQJSCX+X6YSAUaxF0OdcSDnBrgS
-	QDwM/jxFW8yZaIyHfeEY9yyHEM6EMMhnz7u1ZKDtuVZfg3AsphLVeCfsP9qLVaI=
-X-Gm-Gg: ASbGncu4Ihm+I/FwCwpXrfjKsXF+16oyCKEfSNk2WjNnFoaGUM63dTUBO4b1i/lVcMI
-	INnZNxG5amD1CvB5gQHTCftKchS2jw2+jDplwvLINZ146EOA+AabrwWOJnKwHs/v3GCfNFRV4ax
-	81pRDHeoSEKi0aWjMKg4PmvkFkDffb05u45cw0ANcQh4UZeEAs7EAIHfbmSs3eVyFIjR5rXX8Bi
-	qnQMBB0D1t4hwUG4qAQnOV7Pu3eTljHkCUw7rPhMc5h4AOuJQTj7Fql6OqHubPNBHYB+kPOwSDb
-	XFxFArFE5jua6iCcrRqCzswlWBOLFvx5SB1QRxtHaePDVJzm8S1qggI3qq3zqgPf7S746dI=
-X-Google-Smtp-Source: AGHT+IGSOdu+12crB/KrJD62kGAd9vR+Tk3cUEAAA23UqBKca/FTqES0sbInnGw1I1bv8/42+SlQng==
-X-Received: by 2002:a2e:9fc5:0:b0:302:22e6:5f8 with SMTP id 38308e7fff4ca-30796878ee0mr112854481fa.22.1738683328930;
-        Tue, 04 Feb 2025 07:35:28 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307a33f7747sm18683361fa.76.2025.02.04.07.35.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Feb 2025 07:35:27 -0800 (PST)
-Date: Tue, 4 Feb 2025 17:35:26 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>, 
-	Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, Jianhua Lu <lujianhua000@gmail.com>, 
-	Stefan Schmidt <stefan.schmidt@linaro.org>, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of
- SM8250 SoC
-Message-ID: <uc2rve7hqf4mmvobinaxzf5qncglysfeg2lbxmxvxapsewhgxh@2ppf757u352g>
-References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
- <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
- <Z3_nCPk_g8znto4A@hovoldconsulting.com>
- <64f8bebd-35e1-c743-b212-e1a3292bade2@quicinc.com>
- <Z4EuiPEw8mvDQ2gv@hovoldconsulting.com>
- <24334fb8-4d83-eb06-aee3-dfe1f8e4937b@quicinc.com>
- <552972B8-1ACA-4243-A8E3-8F48DAF39C5C@linaro.org>
- <Z6CApNuSlPGvVL2k@hovoldconsulting.com>
- <fhqlt5xsz7yyrbnvhnovt66gzldjjbitpeznlvxztobdxmjnuw@d4avd5fq3muh>
- <Z6HjbXZsR9QmXxKy@hovoldconsulting.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E852144BF;
+	Tue,  4 Feb 2025 15:37:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738683443; cv=pass; b=sJSyoV+3Kc9u1wNNTSzD+yvurJ8Gxh0jtCXxIG2BG0mOCAzdY4tkdNYt0/3osTtJeQm2YVfkHwYHxd2Plqf39k0jJN88Hgi4jhph8055FKptR/7sU4R7GjKvZuJFmD6ioJ4SQewO+03LjgaMWQ9+nmw9r5pZvxJ/22Rvkkea4i4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738683443; c=relaxed/simple;
+	bh=VvA9T/6/1ouApmi0pVoVzoVvdkTJ5i4k2HhcQaBOuKE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XtM56uo8Xy55yFoLTgy87x6IevzP92/oGW2dOaEh36m5cOG17CQ+rQQgocLuAgzU0reIqMQ52in8IyxwZK1OwteRffk8O+QkrXpxidX+9kkEWPztMWj52KH8DpHilQfHsaHd8OWlrxWR40Na4tcVmmM/PSC+WUPbeF5E4qCdouc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=fYrbbgsj; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1738683388; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=k0lgcf1dvRGVLSzSiPJVLuQRIu+lEHgND/pww59nuxqUd0/lQn+LsTsRPZjQCfo5jHJLo7gLOo/zjoqWUVqnW/eVOJ5f3N/xTEk2WRM2JDTkZ0rstqXZtxgSZiinbFIHY3QNiYCs00P5Zp7kT4Z+Vdcjr5+/g7ft+cYUvR4w0Hc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1738683388; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=8ujLKurGvDlQE7460495fVpBsgx7EB711zNkKXoYjcI=; 
+	b=H2HkuFYUt57HAPyC5c9ZYxe9rw0ZohIGkiA6SgqJ/xE4QHfSoRp7BVR8jx/5kqUA8gi+hKZ/BvpVaINmVhlGQKCwyr3PFyFjvnvIf80vAGgy2wPLA8ftzk1B+tlx7XsJPzVFJM0/4qW9PyUOogX0L9+7IkrPuKUI+byx2iNo/Gw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1738683388;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=8ujLKurGvDlQE7460495fVpBsgx7EB711zNkKXoYjcI=;
+	b=fYrbbgsj+lEyEKT5sYIq9OsndC4T4I9xa4kcOd2en8mHuqe3IdM6uQT8DwXwuuUW
+	dSrdojQi2q6hA0kEEE/mLC7+xpXfi2YblxwHv2AwB29Pd7PpeK4pbZdfub3++Xvn/Fe
+	dAlfLHY+w8jt+IKvbFgqFZjstUJMSVt0uCVTF1LA=
+Received: by mx.zohomail.com with SMTPS id 17386833845484.547279568763543;
+	Tue, 4 Feb 2025 07:36:24 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v2 0/7] RK3588 Hardware Random Number Generator Driver
+Date: Tue, 04 Feb 2025 16:35:45 +0100
+Message-Id: <20250204-rk3588-trng-submission-v2-0-608172b6fd91@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z6HjbXZsR9QmXxKy@hovoldconsulting.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANEzomcC/4WNQQ6CMBBFr0K6dkwpTmldeQ/DAmqBiUDNFImGc
+ HcLF3D5fvLeX0X0TD6Ka7YK9gtFClMCdcqE6+up80CPxEJJhTIvJPCzQGNg5qmD+G5GirsCElE
+ hOqu1sSLJL/YtfY7wvUrcU5wDf4+fJd/Xv8klBwm2bNtSozb+Ym8uDEPdBK7PLoyi2rbtBzI5c
+ OrAAAAA
+X-Change-ID: 20250130-rk3588-trng-submission-055255c96689
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Olivia Mackall <olivia@selenic.com>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, 
+ Daniel Golle <daniel@makrotopia.org>, Aurelien Jarno <aurelien@aurel32.net>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ XiaoDong Huang <derrick.huang@rock-chips.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Lin Jinhan <troy.lin@rock-chips.com>
+X-Mailer: b4 0.14.2
 
-On Tue, Feb 04, 2025 at 10:52:45AM +0100, Johan Hovold wrote:
-> On Mon, Feb 03, 2025 at 05:37:28PM +0200, Dmitry Baryshkov wrote:
-> > On Mon, Feb 03, 2025 at 09:39:00AM +0100, Johan Hovold wrote:
-> > > On Fri, Jan 10, 2025 at 08:01:21PM +0200, Dmitry Baryshkov wrote:
-> 
-> > > > Also as venus and iris drivers are not completely
-> > > > equivalent wrt supported platforms, distributions will have to select
-> > > > whether to disable support for older platforms or for new platforms:
-> > > > Kconfig dependency will make it impossible to enable support for both
-> > > > kinds.
-> > > 
-> > > You shouldn't have both enabled. The only reason for keeping support
-> > > for the same hardware in both drivers is that the iris support is
-> > > incomplete and considered experimental. No one should enable that except
-> > > for development and evaluation purposes until the driver is up to par.
-> > > And then you drop support from the old driver along with the config
-> > > option.
-> > 
-> > That's the plan. This modparam is a temporal thing for transition
-> > period. And yes, as a developers / platform enablers we want to be able
-> > to have a quick turnaround between drivers.
-> > 
-> > Please stop forcing your decisions on other people. The Linux kernel and
-> > its development process has always been about providing a possibility,
-> > not a policy.
-> 
-> That's just not true. The rule is to not have two drivers for the same
-> hardware (even if we very rarely have accepted some well-motivated
-> exceptions).
-> 
-> I understand that you may have an unorthodox view of this as you work on
-> the MSM DRM driver, but hiding incomplete and broken code behind module
-> parameters so that you can game the upstreaming process (e.g. like you
-> did for the eDP PSR feature) is simply not a model that anyone should
-> follow.
+This series adds support for the Rockchip RK3588's standalone hardware
+random number generator to the existing mainline rockchip-rng driver.
 
-Let me point you the aic7xxx story, we had, if my memory is correct,
-three drivers working with the same hardware at some point, during
-transition period.
+The RK3588 has several hardware random number generators, one in each
+the secure-world and non-secure-world crypto accelerator, and one
+standalone one in each the secure-world and non-secure-world, so 4
+hwrngs in total. This series adds support for the standalone hwrng,
+which is an entirely new IP on this SoC and distinct from the one in the
+Crypto IP.
 
-Regarding eDP PSR. It wasn't my implementation, so that's not correct
-comparison. MDP5 -> DPU migration is mine and yes, it is implemented in
-this way as we can trigger CI jobs having a single kernel, as developers
-we can switch between MDP5 and DPU drivers in a quick way, etc.
+The decision to integrate this into the existing rockchip-rng driver was
+made based on a few factors:
 
+1. The driver is fairly small.
+2. While not much code is shared, some code is, specifically relating to
+   power management, the hwrng interface and the probe function.
+3. I don't want users to figure out why "CONFIG_HW_RANDOM_ROCKCHIP"
+   doesn't enable the RK3588 one, and I really don't see a reason to
+   build without both of them considering the other RK3588 TRNG (for
+   which there is not yet a driver iirc) *does* share code with the
+   existing rockchip-rng driver.
+
+Here are the rngtest5 results from this new driver on my board:
+
+  user@debian-rockchip-rock5b-rk3588:~$ cat /sys/class/misc/hw_random/rng_current 
+  rockchip-rng
+  user@debian-rockchip-rock5b-rk3588:~$ sudo cat /dev/hwrng | rngtest -c 10000 
+  [...]
+  rngtest: bits received from input: 200000032
+  rngtest: FIPS 140-2 successes: 9990
+  rngtest: FIPS 140-2 failures: 10
+  rngtest: FIPS 140-2(2001-10-10) Monobit: 1
+  rngtest: FIPS 140-2(2001-10-10) Poker: 0
+  rngtest: FIPS 140-2(2001-10-10) Runs: 5
+  rngtest: FIPS 140-2(2001-10-10) Long run: 4
+  rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
+  rngtest: input channel speed: (min=212.255; avg=29089.272; max=19531250.000)Kibits/s
+  rngtest: FIPS tests speed: (min=64.005; avg=102.494; max=153.818)Mibits/s
+  rngtest: Program run time: 11292340 microseconds
+
+As you can see, the quality of the entropy is quite good, and the
+throughput is an acceptable 29 Mibit/s.
+
+The series starts out with two patches for the bindings. The bindings
+are separate from the rockchip,rk3568-rng bindings, as the required
+properties differ. The SCMI reset ID numbers are needed because mainline
+uses a different reset numbering scheme, but TF-A uses the downstream
+numbering scheme as far as I know. The TRNG must be reset through SCMI.
+
+Next up are two cleanup patches for the existing driver. Even if a
+decision is made to split the drivers for whatever reason, these two
+patches should be used in the rk3568-rng driver as they get rid of small
+peculiarities in the code without meaningfully changing how the driver
+works.
+
+Next up is the main driver patch that adds support for the new TRNG. As
+the driver was developed by reading the downstream vendor code for this
+particular device and reworking it, I've included the downstream vendor
+developer who wrote the driver as a Co-developed-by tag with their
+existing downstream sign-off.
+
+The penultimate patch adds the node to the rk3588-base.dtsi, and
+enables it.
+
+The final patch adds myself to the MAINTAINERS of this driver and these
+bindings.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v2:
+- Drop mailmap patch
+- driver: restore the OF matching to how it was, and change soc_data to
+  const
+- dts: get rid of the board specific DTS enablement and instead enable
+  it in rk3588-base
+- bindings: drop the change of adding myself to maintainers from the
+  bindings patch, make it a separate patch
+- bindings: get rid of the comments
+- bindings: set status = "okay" in the example
+- bindings: make interrupts property required
+- Add a patch to add me to the MAINTAINERS for this driver/binding
+- Link to v1: https://lore.kernel.org/r/20250130-rk3588-trng-submission-v1-0-97ff76568e49@collabora.com
+
+---
+Nicolas Frattaroli (7):
+      dt-bindings: reset: Add SCMI reset IDs for RK3588
+      dt-bindings: rng: add binding for Rockchip RK3588 RNG
+      hwrng: rockchip: store dev pointer in driver struct
+      hwrng: rockchip: eliminate some unnecessary dereferences
+      hwrng: rockchip: add support for rk3588's standalone TRNG
+      arm64: dts: rockchip: Add rng node to RK3588
+      MAINTAINERS: add Nicolas Frattaroli to rockchip-rng maintainers
+
+ .../bindings/rng/rockchip,rk3588-rng.yaml          |  60 +++++
+ MAINTAINERS                                        |   2 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |   9 +
+ drivers/char/hw_random/Kconfig                     |   3 +-
+ drivers/char/hw_random/rockchip-rng.c              | 250 ++++++++++++++++++---
+ include/dt-bindings/reset/rockchip,rk3588-cru.h    |  41 +++-
+ 6 files changed, 335 insertions(+), 30 deletions(-)
+---
+base-commit: 72deda0abee6e705ae71a93f69f55e33be5bca5c
+change-id: 20250130-rk3588-trng-submission-055255c96689
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
 
