@@ -1,140 +1,235 @@
-Return-Path: <devicetree+bounces-143027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DF55A27AF8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:13:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94675A27B13
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:22:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59BD218868E6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:13:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12DF81885A53
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8848219A9F;
-	Tue,  4 Feb 2025 19:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4DD9218AC4;
+	Tue,  4 Feb 2025 19:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LsnVG076"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oiTKmsma"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B3A219A93;
-	Tue,  4 Feb 2025 19:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7BBD204F85;
+	Tue,  4 Feb 2025 19:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738696381; cv=none; b=l6J1aMHEX+tUIcw/9SEACaernLUP/wgASeQhaDXwPycdHG0pE4gS9Nv2kbim+/9MWYt7befW+K9T3GDUEYCwayoMAIvoEOvhxJ/SdgnMoJSJTXZB++bSOTR+LxNw6TSU287+FySqeoOFbLOsaURU14CrV6qoAbCc7QUrM9CfFEk=
+	t=1738696964; cv=none; b=DUDgupFrBdiBf5nI6QyjhEDcZq7CZxAgS7MMv0KBB8zVP8xxsgwOu/5+3EbhNa7KVG0gJefbYRYCUFtXcx0fe8U9F7HeX8cvJgyYXrw0tuEedPDB4XN7gKWnLc2AvBJAP2g/sLiZL/Ba+uM9+6GP7Dk3kOlk/mOfwbBCtIFuASM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738696381; c=relaxed/simple;
-	bh=1THVtKrMcOwql2HvcgydagEphDPzJ/ij91ccjkdhQxM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZCHEiAxRwbS3KQS/hyFjiA/tNrr/4rdtORwUSdVRZc01Y7LQHsPFiFsZ/e46PmEyZ3VB7f8Iow9ex4nyrRBH+77YPrvhVNsMxUiPqfiuUqXN67mMllHsQjTT0m15DOij8IsZ6ryE0T7wgHZswVLV9e7yHsChzU2MReGsRJMNamc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LsnVG076; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4DB5C4CEDF;
-	Tue,  4 Feb 2025 19:12:56 +0000 (UTC)
+	s=arc-20240116; t=1738696964; c=relaxed/simple;
+	bh=JIIYJevLdmFj/UppSjoqdwt4o9oRsJRr08DNrl9bKjM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eSvBSgkQHmz9Syl9ORhlz+2nmHIayt5s6JNaxOQHzeYJTXm1rlQwkMKxBLz7upkyNzLjdHNmPxhwAveRtNyPYaFsmgs2Pr4gcbfYRnGQDuB2nc/RKTq/bnU4/MvqOQQiYf2eP4uIJsn8Hv+CX4s6X4upuzPyWIaHgTwLFt+z624=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oiTKmsma; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F32D1C4CEDF;
+	Tue,  4 Feb 2025 19:22:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738696380;
-	bh=1THVtKrMcOwql2HvcgydagEphDPzJ/ij91ccjkdhQxM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LsnVG076SFA8DyQOoNJh6S+7jp2HGrUzzhq25tzLvttmFCifAPhICxz/Ce68fJf3t
-	 sy8Y0et71iNKTcD6X5lLtpD8kfcoRCvHE4mAYK+cfeat1MNtP2vRJGwedr3NlqH0up
-	 Ktvn6a5hNcBlN8+YWELPcmY0J2PhtaCEFb3XxVCFaPVmxtUTPgWGS4vfbRR+799xjj
-	 DRVcydwqq0R36qVRU9fPQov+IhddpxnQS3rqpetYtt/gwOAEqbdj5tKHpmozKeoaQ8
-	 2HLaIecvlrMrtOvccTfdqVD3qmYFoMCd5je1FvTHVF1UDQLhdEoZq57zet7KVJzRvu
-	 1kJwIJqO5TKrg==
-Message-ID: <aa674597-a4be-4305-b85b-0a0b4d05f231@kernel.org>
-Date: Tue, 4 Feb 2025 20:12:54 +0100
+	s=k20201202; t=1738696964;
+	bh=JIIYJevLdmFj/UppSjoqdwt4o9oRsJRr08DNrl9bKjM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oiTKmsmaawtyzK3gFz6SoL3CCBbX2odSetSm8/RtFli99hdpbpEMGz5b45YIz2Lg+
+	 3Y79cu+JjhlDD+sXz341Q6Lhk7gp/U2662fsol5SY/SexMRIK1S3JaEc4tMOWgkJqu
+	 85SkbHnqeZ/jHVL3UtoHdl14znHvI9LacUUVRRXHzPsajkngZ+8TiFgsnYkDwzcz28
+	 gbqZFk3x2CzQE/e5/23LZDZwUPEyu09jG4qDAic5Bq9cg8RRO1oiTMvqt2PW91NgA+
+	 BWfs4iLOJQPUHOgTFbtrwsZRUsje5DMFW/84+OI4Ab3yhhMaTjBRq85LF1j7cAnRbZ
+	 mqHsCzf2E7c0Q==
+Date: Tue, 4 Feb 2025 19:22:39 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, broonie@kernel.org,
+	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ir38060: Move & update dt binding
+Message-ID: <20250204-mulled-evaluate-8a690cdfbd4d@spud>
+References: <20250204180306.2755444-1-naresh.solanki@9elements.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] arm64: dts: exynos: add initial devicetree support
- for exynos7870
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Kaustabh Chakraborty <kauschluss@disroot.org>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Kees Cook <kees@kernel.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: Sergey Lisov <sleirsgoevy@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20250204-exynos7870-v2-0-56313165ef0c@disroot.org>
- <20250204-exynos7870-v2-2-56313165ef0c@disroot.org>
- <00aa901b-5de9-4b72-a157-c54ad29df458@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <00aa901b-5de9-4b72-a157-c54ad29df458@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 04/02/2025 19:22, Ivaylo Ivanov wrote:
->> +
->> +#include <dt-bindings/clock/exynos7870.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/soc/samsung,boot-mode.h>
->> +
->> +/ {
->> +	compatible = "samsung,exynos7870";
->> +	#address-cells = <2>;
->> +	#size-cells = <1>;
->> +
->> +	/* Samsung's bootloader (S-BOOT) checks for these DT properties */
->> +	model_info-hw_rev = <0>;
->> +	model_info-hw_rev_end = <255>;
->> +	model_info-chip = <7870>;
-> 
-> You could skip the properties with a shim bootloader like uniLoader. Up to
-> Krzysztof to decide if you should keep these.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="HYb3Nichi2MrG9QF"
+Content-Disposition: inline
+In-Reply-To: <20250204180306.2755444-1-naresh.solanki@9elements.com>
 
 
-There is a strict dtbs_check W=1 requirement (see MAINTAINERS file and
-maintainer profile), so I think this answers here :). Sorry, no exceptions.
+--HYb3Nichi2MrG9QF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Tue, Feb 04, 2025 at 11:33:03PM +0530, Naresh Solanki wrote:
+> Move dt binding under hwmon/pmbus & align accordingly.
+>=20
+> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> ---
+>  .../hwmon/pmbus/infineon,ir38060.yaml         | 61 +++++++++++++++++++
+>  .../bindings/regulator/infineon,ir38060.yaml  | 45 --------------
+>  2 files changed, 61 insertions(+), 45 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineo=
+n,ir38060.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/infineon,=
+ir38060.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir380=
+60.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.ya=
+ml
+> new file mode 100644
+> index 000000000000..e1f683846a54
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,ir38060.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Infineon Buck Regulators with PMBUS interfaces
+> +
+> +maintainers:
+> +  - Not Me.
+
+How the hell did this get merged!
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - infineon,ir38060
+> +      - infineon,ir38064
+> +      - infineon,ir38164
+> +      - infineon,ir38263
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    type: object
+> +    description:
+> +      list of regulators provided by this controller.
+
+Can you explain why this change is justified? Your commit message is
+explaining what you're doing but not why it's okay to do.
+
+Cheers,
+Conor.
+
+> +
+> +    properties:
+> +      vout:
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        type: object
+> +
+> +        unevaluatedProperties: false
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        regulator@34 {
+> +            compatible =3D "infineon,ir38060";
+> +            reg =3D <0x34>;
+> +
+> +            regulators {
+> +                vout {
+> +                    regulator-name =3D "p5v_aux";
+> +                    regulator-min-microvolt =3D <437500>;
+> +                    regulator-max-microvolt =3D <1387500>;
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/regulator/infineon,ir38060=
+=2Eyaml b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+> deleted file mode 100644
+> index e6ffbc2a2298..000000000000
+> --- a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+> +++ /dev/null
+> @@ -1,45 +0,0 @@
+> -# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> -%YAML 1.2
+> ----
+> -$id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+> -$schema: http://devicetree.org/meta-schemas/core.yaml#
+> -
+> -title: Infineon Buck Regulators with PMBUS interfaces
+> -
+> -maintainers:
+> -  - Not Me.
+> -
+> -allOf:
+> -  - $ref: regulator.yaml#
+> -
+> -properties:
+> -  compatible:
+> -    enum:
+> -      - infineon,ir38060
+> -      - infineon,ir38064
+> -      - infineon,ir38164
+> -      - infineon,ir38263
+> -
+> -  reg:
+> -    maxItems: 1
+> -
+> -required:
+> -  - compatible
+> -  - reg
+> -
+> -unevaluatedProperties: false
+> -
+> -examples:
+> -  - |
+> -    i2c {
+> -      #address-cells =3D <1>;
+> -      #size-cells =3D <0>;
+> -
+> -      regulator@34 {
+> -        compatible =3D "infineon,ir38060";
+> -        reg =3D <0x34>;
+> -
+> -        regulator-min-microvolt =3D <437500>;
+> -        regulator-max-microvolt =3D <1387500>;
+> -      };
+> -    };
+>=20
+> base-commit: bfbb730c4255e1965d202f48e7aa71baa9a7c65b
+> --=20
+> 2.42.0
+>=20
+
+--HYb3Nichi2MrG9QF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6Jo/wAKCRB4tDGHoIJi
+0n1LAQCvwcmBoxgsSDIQxYp6veyw89f+ngZJgwza+NLCdV/5GAEAqLOh4I/JlmHW
+myWJFQTOAi+LyrfwSTy4LXwa7z9UVQk=
+=+Bh3
+-----END PGP SIGNATURE-----
+
+--HYb3Nichi2MrG9QF--
 
