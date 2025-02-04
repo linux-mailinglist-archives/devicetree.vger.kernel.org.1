@@ -1,67 +1,61 @@
-Return-Path: <devicetree+bounces-143030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C98A27B37
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:27:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A76A27B3B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 20:28:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A953B3A5C14
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:27:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB1ED3A3795
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 19:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08154217658;
-	Tue,  4 Feb 2025 19:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0F1217703;
+	Tue,  4 Feb 2025 19:28:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="If/fF4qy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JlBxqcOv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF44F2147E9;
-	Tue,  4 Feb 2025 19:26:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587742040B3;
+	Tue,  4 Feb 2025 19:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738697212; cv=none; b=JrdBXVYcROdyzPS88Nzf0t3T2MOwEgY0wlfvIx5mCYgVXRLc+AMzLhJaNyhLPSEIkUK6bJq8n6p/UfUtldybnqlNB51Z2SrRZ18zs13EGw97ARzr4ZFyIyHXhy0Nv94naDRo+m9c4jR757vo5EfU3tNRYbAAyrEXYAoZ+ypxGx8=
+	t=1738697300; cv=none; b=QVsymst8dt/QvzeMt48UXH7+D1uVsaC0tUG05Txi8mcrfXz7zfDruv0lABVYicEnql23eX+VrhIBBr0CvcaGXcNBLw0PHdHkSBbsrI2JEATYZkvUf5iVKlJGan8r3jjO0pYY0L60gTENqlyobxr/iPajYs8rfQ72hV8gC612o1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738697212; c=relaxed/simple;
-	bh=CUugQ4UB8ewPvEhGFpWRj7jO44gq3NLTzSwK4Ta4SAY=;
+	s=arc-20240116; t=1738697300; c=relaxed/simple;
+	bh=payM3Lv0i2tFvtWvDl+mDAKVdtJ2xzD5z915sZ87mYA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nRkjqWd3l0kW16c/LdsOAVWAA1AFOWpmg1rGZwxGlDS0yqXAsCFO3nfXY22w4WjtI6Gq0jAFTiycVMQBSURR1M48/E0FSUBCQJUXi7pUKb7lT7XR93XN/M/FEB7ijZ7ZNRmvrYoZ8TDR/dxsP2adcO2YQ6QmeU7CRM81Dp/ncNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=If/fF4qy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E16DC4CEDF;
-	Tue,  4 Feb 2025 19:26:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eusaGo3g3n86/jy+WjjCjn2h3FjxMFueL3bvOlwlQS6q7GITEmEvDjKbsNgcjE+hj7I8H2Ss6YGXCBds2eCFymX7u0mDvtQgCjJaw20WYkAqimSssF82LVvbqy7LqGLT7UZP/fGEhEEl8lCaSZjIqyv9M4kmKbM9F+wUdGn7ILU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JlBxqcOv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CD53C4CEDF;
+	Tue,  4 Feb 2025 19:28:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738697212;
-	bh=CUugQ4UB8ewPvEhGFpWRj7jO44gq3NLTzSwK4Ta4SAY=;
+	s=k20201202; t=1738697299;
+	bh=payM3Lv0i2tFvtWvDl+mDAKVdtJ2xzD5z915sZ87mYA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=If/fF4qyzjOA0+yCmOfYWkWbEyXoVZvtmd/BWQJb/Z9Whx5AQd32XjDQEApfnoCas
-	 uK3WEjCmaJeTXU24HtocZuLB4vDzq1o3Xb9xZ0cdS7rGqx4L30j4zsUloD+1vJ2I1w
-	 oKYn16tFe+PvCkqe9oBJV+aGSNoaBr8735ZQVvNMOvEqSIyB1T8WMkXoLNhbqrsDA8
-	 Sxv6YIJjBuOTPPhtnVQtwRak96ircyn28PQ92eB5lF9nfzNN6M2t92hcV4sBLoyP7/
-	 92MFLyUW39LLt7ffwe5qaRZphEFKIRW4PeguGrxNaZFsNxGZYQh75+dWpDhhu/N7/G
-	 V3vnVHAl4jlFg==
-Date: Tue, 4 Feb 2025 19:26:46 +0000
+	b=JlBxqcOvfeSKjGTyrXHq2OUXcbNTe7hFhrMrHfk2gMRrSHXyVv01XMrWEVwUFFrj0
+	 IRONpv9NOGWvsgRhCuyYaB/cGcpNML15JDbRoR5WWuwqSX2E8xII3dZPg2a92osys7
+	 yoPvTrpxCLGiyG9xbXL1ODndgIPRgSJp4zge2DI8bHvj5FwEE9fVstdSLxN7K3BD+G
+	 5wXKNXjp1v+Xtg8wVBj2YMNBuMfD2S1JcB+CBy+JyNaB18JIbJl7tkd685xMZDaLiw
+	 9KTJ9D3Kv9wah1hSom4WKjnfVWI1m+livcPswyoQMyOhFGjpW33lfHAipZ4U6HnH+n
+	 a18+G+46kmu1g==
+Date: Tue, 4 Feb 2025 19:28:15 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+	git@xilinx.com, Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-crypto@vger.kernel.org
-Subject: Re: [PATCH v2 2/7] dt-bindings: rng: add binding for Rockchip RK3588
- RNG
-Message-ID: <20250204-monologue-throng-c6772c089404@spud>
-References: <20250204-rk3588-trng-submission-v2-0-608172b6fd91@collabora.com>
- <20250204-rk3588-trng-submission-v2-2-608172b6fd91@collabora.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: soc: Add new VN-X board description
+ based on Versal NET
+Message-ID: <20250204-vitally-catering-7006a7c6c1df@spud>
+References: <cover.1738657826.git.michal.simek@amd.com>
+ <6e4486141cf9b1d36b03624cc73621b2e3bba894.1738657826.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,45 +63,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3oc7PGcIEvdR+5za"
+	protocol="application/pgp-signature"; boundary="rihF7DvlGIW5aR1L"
 Content-Disposition: inline
-In-Reply-To: <20250204-rk3588-trng-submission-v2-2-608172b6fd91@collabora.com>
+In-Reply-To: <6e4486141cf9b1d36b03624cc73621b2e3bba894.1738657826.git.michal.simek@amd.com>
 
 
---3oc7PGcIEvdR+5za
+--rihF7DvlGIW5aR1L
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 04, 2025 at 04:35:47PM +0100, Nicolas Frattaroli wrote:
-> The Rockchip RK3588 SoC has two hardware RNGs accessible to the
-> non-secure world: an RNG in the Crypto IP, and a standalone RNG that is
-> new to this SoC.
+On Tue, Feb 04, 2025 at 09:30:32AM +0100, Michal Simek wrote:
+> From: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 >=20
-> Add a binding for this new standalone RNG. It is distinct hardware from
-> the existing rockchip,rk3568-rng, and therefore gets its own binding as
-> the two hardware IPs are unrelated other than both being made by the
-> same vendor.
+> The Versal NET (Networked Adaptive Compute Acceleration Platform) from
+> AMD/Xilinx is a next-generation adaptive platform designed for high
+> performance computing, networking, and AI acceleration. It is part of the
+> Versal ACAP (Adaptive Compute Acceleration Platform) family.
 >=20
-> The RNG is capable of firing an interrupt when entropy is ready.
->=20
-> The reset is optional, as the hardware does a power-on reset, and
-> functions without the software manually resetting it.
->=20
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---3oc7PGcIEvdR+5za
+--rihF7DvlGIW5aR1L
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6Jp9gAKCRB4tDGHoIJi
-0sZwAPwNeNLYaxfWC1AxcDB1tYjKebikVvcKzjwoZADBtieSSQEA6/BVaYCQIuCs
-363NNSW6ibIXN0SYog0H3t+JFHlysQ4=
-=mXHF
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6JqTwAKCRB4tDGHoIJi
+0g4uAP9NqvqiRCTrc4sSRsD1Ar/ITRdkdCG5QK+HJofHimbPaAD9GQoMS2RdTGPX
+WUyBpEzXaR1CSHZCIk4qZYHnkiM2/wQ=
+=gypN
 -----END PGP SIGNATURE-----
 
---3oc7PGcIEvdR+5za--
+--rihF7DvlGIW5aR1L--
 
