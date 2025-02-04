@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-142853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12561A26D06
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 09:10:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EED3AA26D0F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 09:14:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABAE57A3DF7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 08:09:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83B0016549E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 08:14:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10A62063E9;
-	Tue,  4 Feb 2025 08:09:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D2E82066C2;
+	Tue,  4 Feb 2025 08:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F0uXKFq3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R4QJJz6c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8FF86358;
-	Tue,  4 Feb 2025 08:09:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2264D204C1D;
+	Tue,  4 Feb 2025 08:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738656591; cv=none; b=Pdt+SeLg4FrdjMOu8Acs7rt6pd3fU5X3aLgGOOHBvIs2PPZYEH50Anp42E2oruTicAoNNg950cwXmOZZ1p9OxQ6w3/4O8nVaCKPT1C2V2dE/qkb9CoCFVnP6XGjVe/DXIrzmADIbMLA0+DhP9L0ns65ypyzjF1ET1bjtX1HQOUU=
+	t=1738656854; cv=none; b=Vg9zF+eOuatpJLCmJ/FzQtv3DyG2Mt7wgqCUg78Vz0d3Y7GKiU8/60uiSU8gmoGzhLVdBNY3OHp1t5zeyUFCly3WmlyyMwIDXJ5SbUIARHbssffza/yKQcWLTgpNkFk9BZag5kX4Db6o2HZb01x5q6nhu7WtW2bxY67tdc9VyrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738656591; c=relaxed/simple;
-	bh=bFm8xckl9GEGcjJ/G3JflsLV5lI4LkrRhOF3B9n4yCE=;
+	s=arc-20240116; t=1738656854; c=relaxed/simple;
+	bh=NABi+abZbTj0AxkLzpEHm04MmqQQL8FK5laY+2FfNwI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PZC6A0ZcnRPXCvb/s9+LGDBUdAUFUZQUdFQRVj7lEUSEgDm9Y9J4DgbGpsbnr7F3GQy98Jrw0NKzmA5ckvRhdP4lC/vONRdSUOUf64Hiibr76WEcM/+XNgePydbqeeaaAGBWhLOgOLLEp3w9J/WSP2k+RmqVam8H+N+Yjy+NkvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F0uXKFq3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34E93C4CEDF;
-	Tue,  4 Feb 2025 08:09:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WM+A1wDPE5Ne1BFe7PSBvjycFKMsXf/iDgQecBGEXHaYHBfZg2CZug//IpSFSshIw9mWsaEWUqx9kRBaFOg2FgOMv9IuPfVOzNduRjQQYcnxUhNNxPjj3lE3PLbXvqWcWf8qRrb/7zdd2nBgqsDekyJ2swbzZewCJO0ekxe2byg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R4QJJz6c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1D47C4CEDF;
+	Tue,  4 Feb 2025 08:14:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738656591;
-	bh=bFm8xckl9GEGcjJ/G3JflsLV5lI4LkrRhOF3B9n4yCE=;
+	s=k20201202; t=1738656853;
+	bh=NABi+abZbTj0AxkLzpEHm04MmqQQL8FK5laY+2FfNwI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F0uXKFq3SSSp8fS36uflCRro+a6/F9mmeGmlgEgAgX8GYXeD4vTIzRhFmEKVU66qo
-	 w7CsvJbCHHYPSdkTrIYS8f0VYY2v+tUZnR7MRTTs/3x7QStdt8QcY+8QaPAjc2DD/H
-	 5bGJQCr4jwE999d6F5vQgaPWwK44kODqbstNDvEokHmtbsfMSF9Im6JCV6mHtOKTMO
-	 sdJQdciwj/AK/Rg4g4f+La3/K6L2qdZAGjCPmItShoIU9kX7t2d7Zcc7FnxYFjiG5o
-	 tMGSShZXQCGesvB1aVbNYYXugR3b5lLPu2/0W1JPHk7p9JHtEwsuSc37P5+HUN++5A
-	 bm6l9CG/JI9OQ==
-Date: Tue, 4 Feb 2025 09:09:47 +0100
+	b=R4QJJz6ctD223xa9a+xa05n4ENBX/8rHr5yspO2YdRb6DRclEGBcgo2w882H8sw6t
+	 KT4FYsSr8f/eTWV2Iaw3sNeBIREzv4ychkMfAu3ehcE9Cgs36b5YlXPDoXluDhEKjz
+	 V1ovvCOaxdhJwtM94ANrgNvXtH9II1C1fLQMs8m6xY4UqQeelG11Ab85oqbe9yRsu2
+	 bIqMRQ5Aa/QUre750ifxr9g8UjJUZ+dN7jZPFlQ8W95rJ2HsM+xkT1czQLiGGikheU
+	 p9PMNksdnSCfytde1FrPatbWT104sKvGNieLJ6BvrkmIzo0DbIBIep9gHK4M477EvZ
+	 loOWQ3P7KlrmQ==
+Date: Tue, 4 Feb 2025 09:14:10 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
-	kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de, 
-	hkallweit1@gmail.com, linux@armlinux.org.uk, sander@svanheule.net, 
-	daniel@makrotopia.org, markus.stockhausen@gmx.de, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH net-next v6 1/6] dt-bindings: mfd: Add switch to RTL9300
-Message-ID: <20250204-eccentric-deer-of-felicity-02b7ee@krzk-bin>
-References: <20250204030249.1965444-1-chris.packham@alliedtelesis.co.nz>
- <20250204030249.1965444-2-chris.packham@alliedtelesis.co.nz>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Ryder Lee <ryder.lee@mediatek.com>, 
+	Jianjun Wang <jianjun.wang@mediatek.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: mediatek-gen3: Add
+ mediatek,pbus-csr phandle property
+Message-ID: <20250204-fiery-wisteria-marmoset-97af90@krzk-bin>
+References: <20250202-en7581-pcie-pbus-csr-v2-0-65dcb201c9a9@kernel.org>
+ <20250202-en7581-pcie-pbus-csr-v2-1-65dcb201c9a9@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,48 +65,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250204030249.1965444-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20250202-en7581-pcie-pbus-csr-v2-1-65dcb201c9a9@kernel.org>
 
-On Tue, Feb 04, 2025 at 04:02:44PM +1300, Chris Packham wrote:
-> Add bindings for the ethernet-switch portion of the RTL9300.
+On Sun, Feb 02, 2025 at 08:34:23PM +0100, Lorenzo Bianconi wrote:
+> Introduce the mediatek,pbus-csr property for the pbus-csr syscon node
+> available on EN7581 SoC. The airoha pbus-csr block provides a configuration
+> interface for the PBUS controller used to detect if a given address is on
+> PCIE0, PCIE1 or PCIE2.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
-> 
-> Notes:
->     Changes in v6:
->     - New
->     - I'd like to enforce the property being "ethernet-ports" but I see the
->       generic binding allows "ports" as well. Can I just add ethernet-ports:
->       type: object here or does by driver need to handle both "ports" and
->       "ethernet-ports" (I see some do and some don't).
-> 
->  .../bindings/mfd/realtek,rtl9301-switch.yaml     | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml b/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
-> index f053303ab1e6..cb54abda5e6a 100644
-> --- a/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
-> @@ -14,6 +14,8 @@ description:
->    number of different peripherals are accessed through a common register block,
->    represented here as a syscon node.
->  
-> +$ref: /schemas/net/ethernet-switch.yaml#
-> +
->  properties:
->    compatible:
->      items:
-> @@ -45,7 +47,7 @@ required:
->    - compatible
->    - reg
->  
+>  .../devicetree/bindings/pci/mediatek-pcie-gen3.yaml          | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 
-I don't get why this device receives now children without addresses.
-Either your children have 'reg' or they do not. Mixing is a sign of a
-mess, like this was never actually simple-mfd.
-
-You would get this comment if you posted complete schema the first time.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
