@@ -1,651 +1,521 @@
-Return-Path: <devicetree+bounces-142979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1AC4A2771E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:27:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67ECBA2779A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:52:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2948B164E9B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 16:27:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FA5218869B8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 16:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F312153CF;
-	Tue,  4 Feb 2025 16:27:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C00521576F;
+	Tue,  4 Feb 2025 16:52:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Ndf4c3Yw"
+	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="ZEHBxZNg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC56215170;
-	Tue,  4 Feb 2025 16:27:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1620B86324;
+	Tue,  4 Feb 2025 16:52:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738686458; cv=none; b=V/49woLKd7JfoXNAoVKJQqwmZsghI3B8kPHAOnhEagE89/eJWSWNlNj0ogyyymsWFBVbNNAckPcIpnV6GVBNH2rHgl05vh7++bIvEXmXn21Qzb8g10rUDumDqO62nGpBMLEDKVQHzmW+8Ubq/2bsE2vIlPxoPL7H83i5qkA0kOs=
+	t=1738687948; cv=none; b=oiZmeLURU68RhkbGsijiY+ALnFqL2buNfdCZUK8RYD9bhuIgYGPc4qXmDh+0Ne6MqHcR5Mvb88z55w7VWR3APAQVwIiWdwG+lEbhBqxy+gW3eXQvEO5Cdm+xmJwYZUtlENf8zO70CQZnUh1mCJfI90OQ4h+mUdVwpGyowDn1ZSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738686458; c=relaxed/simple;
-	bh=18AKuIhRKg93IcWY1shmZslYEXBdujMopqiE0MjpfxM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nBirlue7FWAvuCWzaUHuo1OvFBlzZ6ltlQBIvH2pVb563+mVL4i4r9+aZ4XLVeA4wkBL764hODdAPJiMucQ2PVmFLG85UHpDwnzNfwbFHkvqNn5TQSLoGwbx0NnRT2E5mHlvthaO3srUWVju3uchmzbbftwsvBRiccoQlnIfYRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Ndf4c3Yw; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 514EooFS010239;
-	Tue, 4 Feb 2025 17:27:03 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	vBqJU0VJ9b0hw2k+f88TiFDvfm37U6arpWYPUOrPFDE=; b=Ndf4c3YwOMwhkdwh
-	bRUUWteqdnaeZdThT9zTjz/W7dDDraA6YpoTN2KIJJhSQjvsV8YZHM8tgbzdHX98
-	1o4xxNfl4FzeCI32ZE5St7kMrwQoUzhVf0uluUzI63pwgZ1jLG/RB7S+CCbNRXHN
-	mi2BG1/myFXJmtMVwEOIZsZI1q7hVS2FD/3axmOOmsPglh/1MgwQGgiw9xlNPzRk
-	jRIKxl3dKEpVFaf3aeuRMvSaHAh7uOpkl3dxhz6TL5gc+ksfPqCGymsGyQ3PHT1c
-	NLqJawOF/I1F0kWqE0M29x76NxhcUX6m8Z7GdrfX5mmlhSQK7a+AzHeNR7N19gRY
-	vJylDg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44kmjw8hmc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 04 Feb 2025 17:27:03 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6A99F400DE;
-	Tue,  4 Feb 2025 17:25:33 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EFCF12ABD4D;
-	Tue,  4 Feb 2025 17:23:07 +0100 (CET)
-Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 4 Feb
- 2025 17:23:07 +0100
-Message-ID: <f4be9537-5631-4d11-9237-0cc421891669@foss.st.com>
-Date: Tue, 4 Feb 2025 17:23:05 +0100
+	s=arc-20240116; t=1738687948; c=relaxed/simple;
+	bh=bmQpIzXM2BQbbfb4O0ebO9cw12Ob53P8fvvbR1G3MWs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jlSfhPI5Wwy48lWNIbbakU9QU20M8o1R0wyYUI98P6sNs1p01jIopufAUCXFfrDAn6iFMhPk6/zuBaIm2xF+6YKumWrbAIpdLAsKH+ihzyC21ulwDO02LAyjxFt+8B8XOAPEq34dICMRX2tJzJh5cdRJ+eUB8pTnkdEycmgo1qQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=ZEHBxZNg; arc=none smtp.client-ip=217.92.40.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1115A1483A3A;
+	Tue,  4 Feb 2025 17:52:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1738687934;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=CEdF0jhoG/B0a4ES0SlrhCki6yzDX3XnbYxVQbv/gYw=;
+	b=ZEHBxZNgpTtAP/BAslYrTS06RLxAvyDhs0dCf9GN6erkZZ9dQHg6+d6kU5ex744wF/yc5X
+	SJh5Yo1xYY27VhaoErIyQ2z07vTxX1/Af/KrpKPHEJ6RV/YgQ1iN993AL/WEb49qcCwm0A
+	xQRILYXXTPQqgNovN5ONpv7N1tMQEJ63TaGa62QOZTO/v69Vn4egISfgrMWjTWMXSp3G3J
+	CCeOTZb37IVDfcII9tvWygGgygkz3H57qIqFJHT7USyhQWfqaDL75mCE6dbQM7uQUzprHd
+	I7Do+R4/vzVnW26ht3Zgn2GePOrRFvoLkunlscaHapwznhEZopGU20P2xaY0LQ==
+From: Alexander Dahl <ada@thorsis.com>
+To: devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Peter Rosin <peda@axentia.se>,
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Microchip (AT91) SoC support),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] ARM: dts: microchip: Move address/size-cells properties to SoC dtsi
+Date: Tue,  4 Feb 2025 17:52:04 +0100
+Message-Id: <20250204165205.2375940-1-ada@thorsis.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/10] PCI: stm32: Add PCIe host support for STM32MP25
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <jingoohan1@gmail.com>, <p.zabel@pengutronix.de>,
-        <johan+linaro@kernel.org>, <quic_schintav@quicinc.com>,
-        <cassel@kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <fabrice.gasnier@foss.st.com>
-References: <20250128120745.334377-1-christian.bruel@foss.st.com>
- <20250128120745.334377-4-christian.bruel@foss.st.com>
- <20250202130657.zcnvnnwclxup6y7i@thinkpad>
-From: Christian Bruel <christian.bruel@foss.st.com>
-Content-Language: en-US
-In-Reply-To: <20250202130657.zcnvnnwclxup6y7i@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-04_08,2025-02-04_01,2024-11-22_01
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+Avoids warnings with board dts files enabling ethernet-controller node
+together with phy child node(s).
 
+Signed-off-by: Alexander Dahl <ada@thorsis.com>
+---
+ arch/arm/boot/dts/microchip/at91-dvk_su60_somc.dtsi    | 4 ----
+ arch/arm/boot/dts/microchip/at91-sam9_l9260.dts        | 2 --
+ arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts | 2 --
+ arch/arm/boot/dts/microchip/at91-sam9x60ek.dts         | 2 --
+ arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi    | 2 --
+ arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi  | 2 --
+ arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts    | 2 --
+ arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts  | 2 --
+ arch/arm/boot/dts/microchip/at91-sama5d3_xplained.dts  | 4 ----
+ arch/arm/boot/dts/microchip/at91-sama7g5ek.dts         | 4 ----
+ arch/arm/boot/dts/microchip/at91-tse850-3.dts          | 3 ---
+ arch/arm/boot/dts/microchip/at91-vinco.dts             | 3 ---
+ arch/arm/boot/dts/microchip/at91rm9200.dtsi            | 2 ++
+ arch/arm/boot/dts/microchip/at91sam9260.dtsi           | 2 ++
+ arch/arm/boot/dts/microchip/at91sam9263.dtsi           | 2 ++
+ arch/arm/boot/dts/microchip/at91sam9g45.dtsi           | 2 ++
+ arch/arm/boot/dts/microchip/at91sam9x5_macb0.dtsi      | 2 ++
+ arch/arm/boot/dts/microchip/at91sam9x5_macb1.dtsi      | 2 ++
+ arch/arm/boot/dts/microchip/sam9x60.dtsi               | 4 ++++
+ arch/arm/boot/dts/microchip/sam9x7.dtsi                | 2 ++
+ arch/arm/boot/dts/microchip/sama5d2.dtsi               | 2 ++
+ arch/arm/boot/dts/microchip/sama5d3_emac.dtsi          | 2 ++
+ arch/arm/boot/dts/microchip/sama5d3_gmac.dtsi          | 2 ++
+ arch/arm/boot/dts/microchip/sama5d3xcm_cmp.dtsi        | 2 --
+ arch/arm/boot/dts/microchip/sama5d3xmb_cmp.dtsi        | 2 --
+ arch/arm/boot/dts/microchip/sama5d3xmb_emac.dtsi       | 2 --
+ arch/arm/boot/dts/microchip/sama5d3xmb_gmac.dtsi       | 2 --
+ arch/arm/boot/dts/microchip/sama7g5.dtsi               | 4 ++++
+ 28 files changed, 28 insertions(+), 40 deletions(-)
 
-On 2/2/25 14:06, Manivannan Sadhasivam wrote:
-> On Tue, Jan 28, 2025 at 01:07:38PM +0100, Christian Bruel wrote:
->> Add driver for the STM32MP25 SoC PCIe Gen1 2.5 GT/s and Gen2 5GT/s
->> controller based on the DesignWare PCIe core.
->>
->> Supports MSI via GICv2m, Single Virtual Channel, Single Function
->>
->> Supports wakeup-source from gpio wake_irq with dw_pcie_wake_irq_handler
->> for host wakeup.
->>
-> 
-> "Supports WAKE# GPIO" is what should be mentioned above.
+diff --git a/arch/arm/boot/dts/microchip/at91-dvk_su60_somc.dtsi b/arch/arm/boot/dts/microchip/at91-dvk_su60_somc.dtsi
+index 3542ad8a243ea..d72a97da900d2 100644
+--- a/arch/arm/boot/dts/microchip/at91-dvk_su60_somc.dtsi
++++ b/arch/arm/boot/dts/microchip/at91-dvk_su60_somc.dtsi
+@@ -110,8 +110,6 @@ &can1 {
+ };
+ 
+ &macb0 {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+ 	status = "okay";
+ 
+ 	ethernet-phy@7 {
+@@ -132,8 +130,6 @@ ethernet-phy@7 {
+ };
+ 
+ &macb1 {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+ 	status = "okay";
+ 
+ 	ethernet-phy@1 {
+diff --git a/arch/arm/boot/dts/microchip/at91-sam9_l9260.dts b/arch/arm/boot/dts/microchip/at91-sam9_l9260.dts
+index 2fb51b9aca2ae..f62d5c92021ae 100644
+--- a/arch/arm/boot/dts/microchip/at91-sam9_l9260.dts
++++ b/arch/arm/boot/dts/microchip/at91-sam9_l9260.dts
+@@ -63,8 +63,6 @@ slot@1 {
+ 			macb0: ethernet@fffc4000 {
+ 				pinctrl-0 = <&pinctrl_macb_rmii &pinctrl_macb_rmii_mii_alt>;
+ 				phy-mode = "mii";
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				status = "okay";
+ 
+ 				ethernet-phy@1 {
+diff --git a/arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts
+index b9ffd9e5faacc..9f26d9d25cab5 100644
+--- a/arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts
++++ b/arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts
+@@ -239,8 +239,6 @@ uart7: serial@200 {
+ 
+ &macb0 {
+ 	phy-mode = "rmii";
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_macb0_rmii>;
+ 	status = "okay";
+diff --git a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
+index cdc56b53299d1..65e01bad1c8d4 100644
+--- a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
++++ b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
+@@ -311,8 +311,6 @@ &i2s {
+ 
+ &macb0 {
+ 	phy-mode = "rmii";
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_macb0_rmii>;
+ 	status = "okay";
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
+index 8ac85dac5a969..38f67290bc7a0 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
++++ b/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
+@@ -84,8 +84,6 @@ kernel@200000 {
+ 			macb0: ethernet@f8008000 {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&pinctrl_macb0_default>;
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				phy-mode = "rmii";
+ 
+ 				ethernet-phy@7 {
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
+index ef11606a82b31..dc6e21cd241bc 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
++++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
+@@ -206,8 +206,6 @@ regulator-state-mem {
+ &macb0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_macb0_default>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+ 	phy-mode = "rmii";
+ 
+ 	ethernet-phy@0 {
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts b/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts
+index e4ae60ef5f8a0..2e7aa0c3b87ee 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts
+@@ -139,8 +139,6 @@ spi0: spi@f8000000 {
+ 			macb0: ethernet@f8008000 {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&pinctrl_macb0_default &pinctrl_macb0_phy_irq>;
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				phy-mode = "rmii";
+ 				status = "okay";
+ 
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
+index 4bab3f25b855a..839716f8ab646 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
+@@ -147,8 +147,6 @@ flash@0 {
+ 			macb0: ethernet@f8008000 {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&pinctrl_macb0_default &pinctrl_macb0_phy_irq>;
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				phy-mode = "rmii";
+ 				status = "okay";
+ 
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d3_xplained.dts b/arch/arm/boot/dts/microchip/at91-sama5d3_xplained.dts
+index 5662992cf213e..6b977f8b5852d 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d3_xplained.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama5d3_xplained.dts
+@@ -132,8 +132,6 @@ vddana_reg: LDO_REG2 {
+ 
+ 			macb0: ethernet@f0028000 {
+ 				phy-mode = "rgmii-rxid";
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				status = "okay";
+ 
+ 				ethernet-phy@7 {
+@@ -201,8 +199,6 @@ i2c2: i2c@f801c000 {
+ 
+ 			macb1: ethernet@f802c000 {
+ 				phy-mode = "rmii";
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				status = "okay";
+ 
+ 				ethernet-phy@1 {
+diff --git a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+index 0f5e6ad438dd9..e7f79dd733beb 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+@@ -512,8 +512,6 @@ spi11: spi@400 {
+ };
+ 
+ &gmac0 {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_gmac0_default
+ 		     &pinctrl_gmac0_mdio_default
+@@ -532,8 +530,6 @@ ethernet-phy@7 {
+ };
+ 
+ &gmac1 {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_gmac1_default
+ 		     &pinctrl_gmac1_mdio_default
+diff --git a/arch/arm/boot/dts/microchip/at91-tse850-3.dts b/arch/arm/boot/dts/microchip/at91-tse850-3.dts
+index 9d58a3931207e..cc902925c6545 100644
+--- a/arch/arm/boot/dts/microchip/at91-tse850-3.dts
++++ b/arch/arm/boot/dts/microchip/at91-tse850-3.dts
+@@ -264,9 +264,6 @@ &macb1 {
+ 
+ 	phy-mode = "rmii";
+ 
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+ 	phy0: ethernet-phy@3 {
+ 		reg = <3>;
+ 
+diff --git a/arch/arm/boot/dts/microchip/at91-vinco.dts b/arch/arm/boot/dts/microchip/at91-vinco.dts
+index ecbdacf48708e..f2df2e9164a7c 100644
+--- a/arch/arm/boot/dts/microchip/at91-vinco.dts
++++ b/arch/arm/boot/dts/microchip/at91-vinco.dts
+@@ -129,9 +129,6 @@ timer@1 {
+ 			macb1: ethernet@fc028000 {
+ 				phy-mode = "rmii";
+ 				status = "okay";
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				status = "okay";
+ 
+ 				ethernet-phy@1 {
+ 					reg = <0x1>;
+diff --git a/arch/arm/boot/dts/microchip/at91rm9200.dtsi b/arch/arm/boot/dts/microchip/at91rm9200.dtsi
+index 02a838541dc35..cafb62f1d64da 100644
+--- a/arch/arm/boot/dts/microchip/at91rm9200.dtsi
++++ b/arch/arm/boot/dts/microchip/at91rm9200.dtsi
+@@ -219,6 +219,8 @@ macb0: ethernet@fffbc000 {
+ 				pinctrl-0 = <&pinctrl_macb_rmii>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 24>;
+ 				clock-names = "ether_clk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/microchip/at91sam9260.dtsi b/arch/arm/boot/dts/microchip/at91sam9260.dtsi
+index 0038183e9a531..85cf1e8fa48ac 100644
+--- a/arch/arm/boot/dts/microchip/at91sam9260.dtsi
++++ b/arch/arm/boot/dts/microchip/at91sam9260.dtsi
+@@ -634,6 +634,8 @@ macb0: ethernet@fffc4000 {
+ 				pinctrl-0 = <&pinctrl_macb_rmii>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 21>, <&pmc PMC_TYPE_PERIPHERAL 21>;
+ 				clock-names = "hclk", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/microchip/at91sam9263.dtsi b/arch/arm/boot/dts/microchip/at91sam9263.dtsi
+index b95d4016ae9f6..267db664deedb 100644
+--- a/arch/arm/boot/dts/microchip/at91sam9263.dtsi
++++ b/arch/arm/boot/dts/microchip/at91sam9263.dtsi
+@@ -633,6 +633,8 @@ macb0: ethernet@fffbc000 {
+ 				pinctrl-0 = <&pinctrl_macb_rmii>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 21>, <&pmc PMC_TYPE_PERIPHERAL 21>;
+ 				clock-names = "hclk", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/microchip/at91sam9g45.dtsi b/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
+index 157d306ef5c98..04e607951c299 100644
+--- a/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
++++ b/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
+@@ -750,6 +750,8 @@ macb0: ethernet@fffbc000 {
+ 				pinctrl-0 = <&pinctrl_macb_rmii>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 25>, <&pmc PMC_TYPE_PERIPHERAL 25>;
+ 				clock-names = "hclk", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/microchip/at91sam9x5_macb0.dtsi b/arch/arm/boot/dts/microchip/at91sam9x5_macb0.dtsi
+index 222aa30f68603..31b0e29bc8ec3 100644
+--- a/arch/arm/boot/dts/microchip/at91sam9x5_macb0.dtsi
++++ b/arch/arm/boot/dts/microchip/at91sam9x5_macb0.dtsi
+@@ -50,6 +50,8 @@ macb0: ethernet@f802c000 {
+ 				pinctrl-0 = <&pinctrl_macb0_rmii>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 24>, <&pmc PMC_TYPE_PERIPHERAL 24>;
+ 				clock-names = "hclk", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 		};
+diff --git a/arch/arm/boot/dts/microchip/at91sam9x5_macb1.dtsi b/arch/arm/boot/dts/microchip/at91sam9x5_macb1.dtsi
+index 26bf9b5de9ee4..3ef5d4920b85a 100644
+--- a/arch/arm/boot/dts/microchip/at91sam9x5_macb1.dtsi
++++ b/arch/arm/boot/dts/microchip/at91sam9x5_macb1.dtsi
+@@ -38,6 +38,8 @@ macb1: ethernet@f8030000 {
+ 				pinctrl-0 = <&pinctrl_macb1_rmii>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 27>, <&pmc PMC_TYPE_PERIPHERAL 27>;
+ 				clock-names = "hclk", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 		};
+diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+index b8b2c1ddf3f1e..dc2289685238f 100644
+--- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
++++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+@@ -1035,6 +1035,8 @@ macb0: ethernet@f802c000 {
+ 				interrupts = <24 IRQ_TYPE_LEVEL_HIGH 3>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 24>, <&pmc PMC_TYPE_PERIPHERAL 24>;
+ 				clock-names = "hclk", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -1044,6 +1046,8 @@ macb1: ethernet@f8030000 {
+ 				interrupts = <27 IRQ_TYPE_LEVEL_HIGH 3>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 27>, <&pmc PMC_TYPE_PERIPHERAL 27>;
+ 				clock-names = "hclk", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/microchip/sam9x7.dtsi b/arch/arm/boot/dts/microchip/sam9x7.dtsi
+index b217a908f5253..60d04c0a0b33f 100644
+--- a/arch/arm/boot/dts/microchip/sam9x7.dtsi
++++ b/arch/arm/boot/dts/microchip/sam9x7.dtsi
+@@ -971,6 +971,8 @@ gmac: ethernet@f802c000 {
+ 			clock-names = "hclk", "pclk", "tx_clk", "tsu_clk";
+ 			assigned-clocks = <&pmc PMC_TYPE_GCK 67>;
+ 			assigned-clock-rates = <266666666>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 			status = "disabled";
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/microchip/sama5d2.dtsi b/arch/arm/boot/dts/microchip/sama5d2.dtsi
+index 3f99451aef832..204976294ce6e 100644
+--- a/arch/arm/boot/dts/microchip/sama5d2.dtsi
++++ b/arch/arm/boot/dts/microchip/sama5d2.dtsi
+@@ -387,6 +387,8 @@ macb0: ethernet@f8008000 {
+ 					     <67 IRQ_TYPE_LEVEL_HIGH 3>;        /* Queue 2 */
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 5>, <&pmc PMC_TYPE_PERIPHERAL 5>;
+ 				clock-names = "hclk", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/microchip/sama5d3_emac.dtsi b/arch/arm/boot/dts/microchip/sama5d3_emac.dtsi
+index 5d7ce13de8ccf..a202147e2dc3c 100644
+--- a/arch/arm/boot/dts/microchip/sama5d3_emac.dtsi
++++ b/arch/arm/boot/dts/microchip/sama5d3_emac.dtsi
+@@ -41,6 +41,8 @@ macb1: ethernet@f802c000 {
+ 				pinctrl-0 = <&pinctrl_macb1_rmii>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 35>, <&pmc PMC_TYPE_PERIPHERAL 35>;
+ 				clock-names = "hclk", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 		};
+diff --git a/arch/arm/boot/dts/microchip/sama5d3_gmac.dtsi b/arch/arm/boot/dts/microchip/sama5d3_gmac.dtsi
+index 884df7a54dbb6..28771a1ea2355 100644
+--- a/arch/arm/boot/dts/microchip/sama5d3_gmac.dtsi
++++ b/arch/arm/boot/dts/microchip/sama5d3_gmac.dtsi
+@@ -71,6 +71,8 @@ macb0: ethernet@f0028000 {
+ 				pinctrl-0 = <&pinctrl_macb0_data_rgmii &pinctrl_macb0_signal_rgmii>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 34>, <&pmc PMC_TYPE_PERIPHERAL 34>;
+ 				clock-names = "hclk", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 		};
+diff --git a/arch/arm/boot/dts/microchip/sama5d3xcm_cmp.dtsi b/arch/arm/boot/dts/microchip/sama5d3xcm_cmp.dtsi
+index 362806afef44f..54e130da1914f 100644
+--- a/arch/arm/boot/dts/microchip/sama5d3xcm_cmp.dtsi
++++ b/arch/arm/boot/dts/microchip/sama5d3xcm_cmp.dtsi
+@@ -46,8 +46,6 @@ timer@1 {
+ 
+ 			macb0: ethernet@f0028000 {
+ 				phy-mode = "rgmii";
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 
+ 				ethernet-phy@1 {
+ 					reg = <0x1>;
+diff --git a/arch/arm/boot/dts/microchip/sama5d3xmb_cmp.dtsi b/arch/arm/boot/dts/microchip/sama5d3xmb_cmp.dtsi
+index 5d9e97fecf834..6f9dd98a708f2 100644
+--- a/arch/arm/boot/dts/microchip/sama5d3xmb_cmp.dtsi
++++ b/arch/arm/boot/dts/microchip/sama5d3xmb_cmp.dtsi
+@@ -126,8 +126,6 @@ &pinctrl_adc0_ad4_sleep
+ 			macb1: ethernet@f802c000 {
+ 				phy-mode = "rmii";
+ 
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				phy0: ethernet-phy@1 {
+ 					/*interrupt-parent = <&pioE>;*/
+ 					/*interrupts = <30 IRQ_TYPE_EDGE_FALLING>;*/
+diff --git a/arch/arm/boot/dts/microchip/sama5d3xmb_emac.dtsi b/arch/arm/boot/dts/microchip/sama5d3xmb_emac.dtsi
+index a5dd41cd9522d..16c3f2468fe09 100644
+--- a/arch/arm/boot/dts/microchip/sama5d3xmb_emac.dtsi
++++ b/arch/arm/boot/dts/microchip/sama5d3xmb_emac.dtsi
+@@ -12,8 +12,6 @@ apb {
+ 			macb1: ethernet@f802c000 {
+ 				phy-mode = "rmii";
+ 
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				phy0: ethernet-phy@1 {
+ 					interrupt-parent = <&pioE>;
+ 					interrupts = <30 IRQ_TYPE_EDGE_FALLING>;
+diff --git a/arch/arm/boot/dts/microchip/sama5d3xmb_gmac.dtsi b/arch/arm/boot/dts/microchip/sama5d3xmb_gmac.dtsi
+index d750da38ff3cc..fef978f0e0ea3 100644
+--- a/arch/arm/boot/dts/microchip/sama5d3xmb_gmac.dtsi
++++ b/arch/arm/boot/dts/microchip/sama5d3xmb_gmac.dtsi
+@@ -11,8 +11,6 @@ ahb {
+ 		apb {
+ 			macb0: ethernet@f0028000 {
+ 				phy-mode = "rgmii";
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 
+ 				ethernet-phy@1 {
+ 					reg = <0x1>;
+diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts/microchip/sama7g5.dtsi
+index 17bcdcf0cf4a0..eac00084b4def 100644
+--- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
++++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
+@@ -855,6 +855,8 @@ gmac0: ethernet@e2800000 {
+ 			clock-names = "pclk", "hclk", "tx_clk", "tsu_clk";
+ 			assigned-clocks = <&pmc PMC_TYPE_GCK 51>;
+ 			assigned-clock-rates = <125000000>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -865,6 +867,8 @@ gmac1: ethernet@e2804000 {
+ 				     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&pmc PMC_TYPE_PERIPHERAL 52>, <&pmc PMC_TYPE_PERIPHERAL 52>;
+ 			clock-names = "pclk", "hclk";
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 			status = "disabled";
+ 		};
+ 
 
-OK. dropping wakeup-source property as well
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+-- 
+2.39.5
 
-> 
->> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
->> ---
->>   drivers/pci/controller/dwc/Kconfig      |  12 +
->>   drivers/pci/controller/dwc/Makefile     |   1 +
->>   drivers/pci/controller/dwc/pcie-stm32.c | 372 ++++++++++++++++++++++++
->>   drivers/pci/controller/dwc/pcie-stm32.h |  15 +
->>   4 files changed, 400 insertions(+)
->>   create mode 100644 drivers/pci/controller/dwc/pcie-stm32.c
->>   create mode 100644 drivers/pci/controller/dwc/pcie-stm32.h
->>
->> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
->> index b6d6778b0698..0c18879b604c 100644
->> --- a/drivers/pci/controller/dwc/Kconfig
->> +++ b/drivers/pci/controller/dwc/Kconfig
->> @@ -389,6 +389,18 @@ config PCIE_SPEAR13XX
->>   	help
->>   	  Say Y here if you want PCIe support on SPEAr13XX SoCs.
->>   
->> +config PCIE_STM32
->> +	tristate "STMicroelectronics STM32MP25 PCIe Controller (host mode)"
->> +	depends on ARCH_STM32 || COMPILE_TEST
->> +	depends on PCI_MSI
->> +	select PCIE_DW_HOST
->> +	help
->> +	  Enables support for the DesignWare core based PCIe host controller
->> +	  found in STM32MP25 SoC.
->> +
->> +	  This driver can also be built as a module. If so, the module
->> +	  will be called pcie-stm32.
->> +
->>   config PCI_DRA7XX
->>   	tristate
->>   
->> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
->> index a8308d9ea986..576d99cb3bc5 100644
->> --- a/drivers/pci/controller/dwc/Makefile
->> +++ b/drivers/pci/controller/dwc/Makefile
->> @@ -28,6 +28,7 @@ obj-$(CONFIG_PCIE_UNIPHIER) += pcie-uniphier.o
->>   obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
->>   obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
->>   obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
->> +obj-$(CONFIG_PCIE_STM32) += pcie-stm32.o
->>   
->>   # The following drivers are for devices that use the generic ACPI
->>   # pci_root.c driver but don't support standard ECAM config access.
->> diff --git a/drivers/pci/controller/dwc/pcie-stm32.c b/drivers/pci/controller/dwc/pcie-stm32.c
->> new file mode 100644
->> index 000000000000..d5e473bb390f
->> --- /dev/null
->> +++ b/drivers/pci/controller/dwc/pcie-stm32.c
->> @@ -0,0 +1,372 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * STMicroelectronics STM32MP25 PCIe root complex driver.
->> + *
->> + * Copyright (C) 2024 STMicroelectronics
-> 
-> 2025?
-> 
->> + * Author: Christian Bruel <christian.bruel@foss.st.com>
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/mfd/syscon.h>
->> +#include <linux/of_platform.h>
->> +#include <linux/phy/phy.h>
->> +#include <linux/pinctrl/devinfo.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/regmap.h>
->> +#include <linux/reset.h>
->> +#include "pcie-designware.h"
->> +#include "pcie-stm32.h"
->> +#include "../../pci.h"
->> +
->> +struct stm32_pcie {
->> +	struct dw_pcie pci;
->> +	struct regmap *regmap;
->> +	struct reset_control *rst;
->> +	struct phy *phy;
->> +	struct clk *clk;
->> +	struct gpio_desc *perst_gpio;
->> +	struct gpio_desc *wake_gpio;
->> +	unsigned int wake_irq;
->> +};
->> +
->> +static void stm32_pcie_deassert_perst(struct stm32_pcie *stm32_pcie)
->> +{
->> +	gpiod_set_value(stm32_pcie->perst_gpio, 0);
->> +
->> +	if (stm32_pcie->perst_gpio)
->> +		msleep(PCIE_T_RRS_READY_MS);
->> +}
->> +
->> +static void stm32_pcie_assert_perst(struct stm32_pcie *stm32_pcie)
->> +{
->> +	gpiod_set_value(stm32_pcie->perst_gpio, 1);
->> +}
->> +
->> +static int stm32_pcie_start_link(struct dw_pcie *pci)
->> +{
->> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
->> +
->> +	return regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
->> +				  STM32MP25_PCIECR_LTSSM_EN,
->> +				  STM32MP25_PCIECR_LTSSM_EN);
->> +}
->> +
->> +static void stm32_pcie_stop_link(struct dw_pcie *pci)
->> +{
->> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
->> +
->> +	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
->> +			   STM32MP25_PCIECR_LTSSM_EN, 0);
->> +}
->> +
->> +static int stm32_pcie_suspend(struct device *dev)
->> +{
->> +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
->> +
->> +	if (device_may_wakeup(dev))
->> +		enable_irq_wake(stm32_pcie->wake_irq);
->> +
->> +	return 0;
->> +}
->> +
->> +static int stm32_pcie_resume(struct device *dev)
->> +{
->> +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
->> +
->> +	if (device_may_wakeup(dev))
->> +		disable_irq_wake(stm32_pcie->wake_irq);
->> +
->> +	return 0;
->> +}
->> +
->> +static int stm32_pcie_suspend_noirq(struct device *dev)
->> +{
-> 
-> Can you consider making use of dw_pcie_{suspend/resume}_noirq()?
-
-I considered this, but dw_pcie_suspend_noirq needs to be tweaked as it 
-checks both the pme_turn_off hook and whether we are entering into L2, 
-which we don't support.
-
-For the former, I can check the PCI_EXP_DEVSTAT_AUXPD capability before 
-polling for L2 LTSSM. It looks like only the Layerscape platform uses 
-this. I will need a Tested-by for this new dw_pcie_suspend_noirq.
-
-Do you advise keeping stm32_pcie_suspend_noirq or modifying 
-dw_pcie_suspend_noirq to this effect?
-
-Thanks,
-
-> 
->> +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
->> +
->> +	stm32_pcie_stop_link(&stm32_pcie->pci);
->> +
->> +	stm32_pcie_assert_perst(stm32_pcie);
->> +
->> +	clk_disable_unprepare(stm32_pcie->clk);
->> +
->> +	if (!device_may_wakeup(dev))
->> +		phy_exit(stm32_pcie->phy);
->> +
->> +	return pinctrl_pm_select_sleep_state(dev);
->> +}
->> +
->> +static int stm32_pcie_resume_noirq(struct device *dev)
->> +{
->> +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
->> +	struct dw_pcie_rp *pp = &stm32_pcie->pci.pp;
->> +	int ret;
->> +
->> +	/*
->> +	 * The core clock is gated with CLKREQ# from the COMBOPHY REFCLK,
->> +	 * thus if no device is present, must force it low with an init pinmux
->> +	 * to be able to access the DBI registers.
->> +	 */
->> +	if (!IS_ERR(dev->pins->init_state))
->> +		ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
->> +	else
->> +		ret = pinctrl_pm_select_default_state(dev);
->> +
->> +	if (ret) {
->> +		dev_err(dev, "Failed to activate pinctrl pm state: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	if (!device_may_wakeup(dev)) {
->> +		ret = phy_init(stm32_pcie->phy);
->> +		if (ret) {
->> +			pinctrl_pm_select_default_state(dev);
->> +			return ret;
->> +		}
->> +	}
->> +
->> +	ret = clk_prepare_enable(stm32_pcie->clk);
->> +	if (ret)
->> +		goto err_phy_exit;
->> +
->> +	stm32_pcie_deassert_perst(stm32_pcie);
->> +
->> +	ret = dw_pcie_setup_rc(pp);
->> +	if (ret)
->> +		goto err_disable_clk;
->> +
->> +	ret = stm32_pcie_start_link(&stm32_pcie->pci);
->> +	if (ret)
->> +		goto err_disable_clk;
->> +
->> +	/* Ignore errors, the link may come up later */
->> +	dw_pcie_wait_for_link(&stm32_pcie->pci);
-> 
-> These can be dropped when using dw_pcie_resume_noirq().
-
-OK for dw_pcie_resume_noirq if we can keep it balanced with 
-dw_pcie_suspend_noirq
-
-> 
->> +
->> +	pinctrl_pm_select_default_state(dev);
->> +
->> +	return 0;
->> +
->> +err_disable_clk:
->> +	stm32_pcie_assert_perst(stm32_pcie);
->> +	clk_disable_unprepare(stm32_pcie->clk);
->> +
->> +err_phy_exit:
->> +	phy_exit(stm32_pcie->phy);
->> +	pinctrl_pm_select_default_state(dev);
->> +
->> +	return ret;
->> +}
->> +
->> +static const struct dev_pm_ops stm32_pcie_pm_ops = {
->> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(stm32_pcie_suspend_noirq,
->> +				  stm32_pcie_resume_noirq)
->> +	SYSTEM_SLEEP_PM_OPS(stm32_pcie_suspend, stm32_pcie_resume)
->> +};
->> +
->> +static const struct dw_pcie_host_ops stm32_pcie_host_ops = {
->> +};
->> +
->> +static const struct dw_pcie_ops dw_pcie_ops = {
->> +	.start_link = stm32_pcie_start_link,
->> +	.stop_link = stm32_pcie_stop_link
->> +};
->> +
->> +static int stm32_add_pcie_port(struct stm32_pcie *stm32_pcie,
->> +			       struct platform_device *pdev)
->> +{
->> +	struct device *dev = stm32_pcie->pci.dev;
->> +	struct dw_pcie_rp *pp = &stm32_pcie->pci.pp;
->> +	int ret;
->> +
-> 
-> You need to assert PERST# before configuring the resources.
-
-It is already initialized to GPIOD_OUT_HIGH in gpiod_get, I can have an 
-explicit stm32_pcie_assert_perst but is it necessary ?
-
-> 
->> +	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = phy_init(stm32_pcie->phy);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
->> +				 STM32MP25_PCIECR_TYPE_MASK,
->> +				 STM32MP25_PCIECR_RC);
->> +	if (ret)
->> +		goto err_phy_exit;
->> +
->> +	reset_control_assert(stm32_pcie->rst);
->> +	reset_control_deassert(stm32_pcie->rst);
->> +
->> +	ret = clk_prepare_enable(stm32_pcie->clk);
->> +	if (ret) {
->> +		dev_err(dev, "Core clock enable failed %d\n", ret);
->> +		goto err_phy_exit;
->> +	}
->> +
->> +	stm32_pcie_deassert_perst(stm32_pcie);
->> +
->> +	pp->ops = &stm32_pcie_host_ops;
->> +	ret = dw_pcie_host_init(pp);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to initialize host: %d\n", ret);
->> +		goto err_disable_clk;
->> +	}
-> 
-> Technically, dw_pcie_host_init() is not related to root port. So please move it
-> to probe() instead.
-
-OK will move, thanks
-
-> 
->> +
->> +	return 0;
->> +
->> +err_disable_clk:
->> +	clk_disable_unprepare(stm32_pcie->clk);
->> +	stm32_pcie_assert_perst(stm32_pcie);
->> +
->> +err_phy_exit:
->> +	phy_exit(stm32_pcie->phy);
->> +
->> +	return ret;
->> +}
->> +
->> +static int stm32_pcie_parse_port(struct stm32_pcie *stm32_pcie)
->> +{
->> +	struct device *dev = stm32_pcie->pci.dev;
->> +	struct device_node *root_port;
->> +
->> +	root_port = of_get_next_available_child(dev->of_node, NULL);
->> +
->> +	stm32_pcie->phy = devm_of_phy_get(dev, root_port, NULL);
->> +	if (IS_ERR(stm32_pcie->phy))
->> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->phy),
->> +				     "Failed to get pcie-phy\n");
-> 
-> OF refcount not decremented in both the error and success case.
-
-I don't understand your point, isn't devm_of_phy_get managed to 
-decrement the phy resources ?
-
-> 
->> +
->> +	stm32_pcie->perst_gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(root_port),
->> +						       "reset", GPIOD_OUT_HIGH, NULL);
->> +	if (IS_ERR(stm32_pcie->perst_gpio)) {
->> +		if (PTR_ERR(stm32_pcie->perst_gpio) != -ENOENT)
->> +			return dev_err_probe(dev, PTR_ERR(stm32_pcie->perst_gpio),
->> +					     "Failed to get reset GPIO\n");
->> +		stm32_pcie->perst_gpio = NULL;
->> +	}
->> +
->> +	if (device_property_read_bool(dev, "wakeup-source")) {
-> 
-> As per the current logic, 'wakeup-source' is applicable even without WAKE# GPIO,
-> which doesn't make sense.
-
-Agree, wakeup-source is not needed
-
-> 
->> +		stm32_pcie->wake_gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(root_port),
->> +							      "wake", GPIOD_IN, NULL);
->> +
->> +		if (IS_ERR(stm32_pcie->wake_gpio)) {
->> +			if (PTR_ERR(stm32_pcie->wake_gpio) != -ENOENT)
->> +				return dev_err_probe(dev, PTR_ERR(stm32_pcie->wake_gpio),
->> +						     "Failed to get wake GPIO\n");
->> +			stm32_pcie->wake_gpio = NULL;
->> +		}
-> 
-> Hmm. I think we need to move WAKE# handling inside drivers/pci/pcie/portdrv.c
-> since that is responsible for the root port. While other root port properties
-> have some dependency with the RC (like PERST#, PHY etc...), WAKE# handling could
-> be moved safel >
-> And once done, it can benefit all platforms.
-
-OK I'll check if there is a convenient way to do this through a 
-port_service
-
-> 
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int stm32_pcie_probe(struct platform_device *pdev)
->> +{
->> +	struct stm32_pcie *stm32_pcie;
->> +	struct device *dev = &pdev->dev;
->> +	int ret;
->> +
->> +	stm32_pcie = devm_kzalloc(dev, sizeof(*stm32_pcie), GFP_KERNEL);
->> +	if (!stm32_pcie)
->> +		return -ENOMEM;
->> +
->> +	stm32_pcie->pci.dev = dev;
->> +	stm32_pcie->pci.ops = &dw_pcie_ops;
->> +
->> +	stm32_pcie->regmap = syscon_regmap_lookup_by_compatible("st,stm32mp25-syscfg");
->> +	if (IS_ERR(stm32_pcie->regmap))
->> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->regmap),
->> +				     "No syscfg specified\n");
->> +
->> +	stm32_pcie->clk = devm_clk_get(dev, NULL);
->> +	if (IS_ERR(stm32_pcie->clk))
->> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->clk),
->> +				     "Failed to get PCIe clock source\n");
->> +
->> +	stm32_pcie->rst = devm_reset_control_get_exclusive(dev, NULL);
->> +	if (IS_ERR(stm32_pcie->rst))
->> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->rst),
->> +				     "Failed to get PCIe reset\n");
->> +
->> +	ret = stm32_pcie_parse_port(stm32_pcie);
->> +	if (ret)
->> +		return ret;
->> +
->> +	platform_set_drvdata(pdev, stm32_pcie);
->> +
->> +	if (stm32_pcie->wake_gpio) {
->> +		stm32_pcie->wake_irq = gpiod_to_irq(stm32_pcie->wake_gpio);
->> +
->> +		ret = devm_request_threaded_irq(&pdev->dev,
->> +						stm32_pcie->wake_irq, NULL,
->> +						dw_pcie_wake_irq_handler,
->> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
->> +						"wake_irq", stm32_pcie->pci.dev);
->> +
->> +		if (ret)
->> +			return dev_err_probe(dev, ret, "Failed to request WAKE IRQ: %d\n", ret);
->> +	}
->> +
->> +	ret = devm_pm_runtime_enable(dev);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to enable runtime PM %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = pm_runtime_resume_and_get(dev);
-> 
-> Why do you need to do PM resume here? Is there a parent that needs to be resumed
-> now? I know that other controller drivers have this pattern, but most of them
-> are just doing it wrong.
-
-OK, so just pm_runtime_get_noresume() should be enough
-
-> 
-> Most likely you need pm_runtime_set_active() before devm_pm_runtime_enable().
-
-OK
-
-> 
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to get runtime PM %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = stm32_add_pcie_port(stm32_pcie, pdev);
->> +	if (ret)  {
-> 
-> Nit: double space.
-> 
->> +		pm_runtime_put_sync(&pdev->dev);
->> +		return ret;
->> +	}
->> +
->> +	if (stm32_pcie->wake_gpio)
->> +		device_set_wakeup_capable(dev, true);
->> +
->> +	return 0;
->> +}
->> +
->> +static void stm32_pcie_remove(struct platform_device *pdev)
->> +{
->> +	struct stm32_pcie *stm32_pcie = platform_get_drvdata(pdev);
->> +	struct dw_pcie_rp *pp = &stm32_pcie->pci.pp;
->> +
->> +	if (stm32_pcie->wake_gpio)
->> +		device_init_wakeup(&pdev->dev, false);
->> +
->> +	dw_pcie_host_deinit(pp);
->> +
->> +	stm32_pcie_assert_perst(stm32_pcie);
->> +
->> +	clk_disable_unprepare(stm32_pcie->clk);
->> +
->> +	phy_exit(stm32_pcie->phy);
->> +
->> +	pm_runtime_put_sync(&pdev->dev);
->> +}
->> +
->> +static const struct of_device_id stm32_pcie_of_match[] = {
->> +	{ .compatible = "st,stm32mp25-pcie-rc" },
->> +	{},
->> +};
->> +
->> +static struct platform_driver stm32_pcie_driver = {
->> +	.probe = stm32_pcie_probe,
->> +	.remove = stm32_pcie_remove,
->> +	.driver = {
->> +		.name = "stm32-pcie",
->> +		.of_match_table = stm32_pcie_of_match,
->> +		.pm = &stm32_pcie_pm_ops,
->> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
->> +	},
->> +};
->> +
->> +module_platform_driver(stm32_pcie_driver);
->> +
->> +MODULE_AUTHOR("Christian Bruel <christian.bruel@foss.st.com>");
->> +MODULE_DESCRIPTION("STM32MP25 PCIe Controller driver");
->> +MODULE_LICENSE("GPL");
->> +MODULE_DEVICE_TABLE(of, stm32_pcie_of_match);
->> diff --git a/drivers/pci/controller/dwc/pcie-stm32.h b/drivers/pci/controller/dwc/pcie-stm32.h
->> new file mode 100644
->> index 000000000000..3efd00937d3d
->> --- /dev/null
->> +++ b/drivers/pci/controller/dwc/pcie-stm32.h
->> @@ -0,0 +1,15 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * ST PCIe driver definitions for STM32-MP25 SoC
->> + *
->> + * Copyright (C) 2024 STMicroelectronics - All Rights Reserved
->> + * Author: Christian Bruel <christian.bruel@foss.st.com>
->> + */
->> +
->> +#define to_stm32_pcie(x)	dev_get_drvdata((x)->dev)
->> +
->> +#define STM32MP25_PCIECR_TYPE_MASK	GENMASK(11, 8)
->> +#define STM32MP25_PCIECR_LTSSM_EN	BIT(2)
->> +#define STM32MP25_PCIECR_RC		BIT(10)
->> +
->> +#define SYSCFG_PCIECR			0x6000
-> 
-> You can just move these definitions inside the driver itself.
-> 
-
-Some definitions will be duplicated with the ep driver, but on the other 
-side this file is very small... is it OK to duplicate definitions 
-instead of having the bitfields together ?
-
-
-> - Mani
-> 
 
