@@ -1,185 +1,167 @@
-Return-Path: <devicetree+bounces-143064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A29CEA27F49
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 00:10:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6142AA27F72
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 00:20:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 046541887DC6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 23:10:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E010A165495
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 23:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03C021C19F;
-	Tue,  4 Feb 2025 23:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB1F21B8F8;
+	Tue,  4 Feb 2025 23:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QDsM5Ufp"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="e/LSWgbH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF72D21C182
-	for <devicetree@vger.kernel.org>; Tue,  4 Feb 2025 23:09:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E935B2054E3;
+	Tue,  4 Feb 2025 23:20:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738710601; cv=none; b=UvUOqYXmt9/LNtg2umoaN5M215oD19HXJHuwRtMlDKEm8gtMBYIClArpW1RlhTK5SoaGrb4Uqhe7fuPmKh+pQvsAfYEUvV3V24D6GI8yme22JtoTsfHqUQRFl+N44iBcvi33skVo3hDAWZk0zrpKTwfc8oGCYYtLZep7OfmFtWM=
+	t=1738711217; cv=none; b=B0kMoMj5Pju3UkaXz2xOGGZFjS4gdusRxHm3zTqI6OD62HUDtgGti94aOsPkJbgF/cE7y4R9QRZVarLdj8Ag0vD0tmLKa7hUohekNphAdwDCmqRjs69oP4XAX6iTtIWgqg7TQaE9/vbXrnDwouFIPZY8jg1Xh/7Ft4aVAb0HIcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738710601; c=relaxed/simple;
-	bh=Tr3yoOpc+aUCZ3WR1eWrKlLDLn/mpgv5+47ZSyVt7t8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MbQqjYB2tyAt7cQBXqvFWE13jHCizRluP4bagDhFMWrrT8nbC+Z0OBi22XuTVPGehk4Jntlqh4bC67cVN3XSjcEL9hoN2+9o+JOaugTTcmarFTfcCOuesgbzCg2QymfwjZQdRQRD1lQP7LFupRGQ0uXU4Sj/5PEN2fuxZir60wc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QDsM5Ufp; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-54024aa9febso6182640e87.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Feb 2025 15:09:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738710598; x=1739315398; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nqBH/92bU047lJT992e74kfygOOu+glyfbvkM1AfW+Q=;
-        b=QDsM5UfpdxAyGgE2FYVLIN8nf9V5Z30h7QcjTZoP/dMtVISI+XB827PJKC5+xkSBba
-         LPSSO5yI1L0v02QQnT3rEecRyoBN90cyCpjsP8jevKebwJVYLMi4QgkmY0fzrwh0qu++
-         VBFFTOU+9ltk3fxKT47sSH/+fjFmCEU7rio/TySY3xUPqe97cKzBOUk6pUKBZ3DRRMwf
-         f/KZdjguRlawqz7z1DGAck37ra/KdKo+9wPvmfhXPO+Whh2FpEAVmmAhwSvAlmamx9qj
-         4Zi8RPG7rEYOsH9O2Q83XbLNKg8hbgpfm2fQSITd2sq3WJPqHd/tLWq3UQCiP45JjtPX
-         PbDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738710598; x=1739315398;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nqBH/92bU047lJT992e74kfygOOu+glyfbvkM1AfW+Q=;
-        b=o+SBkvmt8zgpuQxjRQG8BSkDv7IvDQzpezNzqtHiH8hP0zs5iLp0dDYB8pXYShoOXN
-         DXy0KHDiKQG2z1E/M+SOYwHJWs3RLhleXcOMwJxVmqXKmaPS0L+hoMrrEM5cOLt4X86h
-         mTDkI4TmoXMhUwbVd7NCYjGtVwpKZfHR+8fRT6lCvC5lp1moqXA5NI6vdzqDvw/P9IuM
-         oBKJBMEMWtBJjh4Nz4tl7lNuNVh/zbd1nxi8SV6daAEIdUDJoy/hRP9ufq3R7ReATmYV
-         3Yck36cfOw0axyu206juA5c+BWbVPVgLyHFm8RthDEX32xL35gNxE6OaTskPh1xq0mmE
-         jOcA==
-X-Forwarded-Encrypted: i=1; AJvYcCURXi0ODCdwiebdVYcjPYZU4gF3y12oB0wuiT7DVZvLmoAaBYX1dlLsMg1rcMrHQhYX7TWlq8BixI2l@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5Mx8mY74N1RJBDZp8pcPz09CABxUguNzIDsxN7JAazVqwFcmQ
-	cFEDWDUNAXUA/kpBUzeodCtByzITVCbWyd3NsI2WORaOoPZUUaDQFkFYERodxaQ=
-X-Gm-Gg: ASbGncvNcoYb15eA6/BnmH2d6jCOJfHJxD35c7Y4juLjr//aZQNju1PLY4xxny9ltrs
-	nkasakVmJ4RshEpU/iiECq49AKScUCi8Y3QotGGT0cNAu544XmK1Fy4+6KxADIAnha89/UeiIQe
-	q64DdVsp4CWX8E8qzEtEUTVFrMbkLfXnHD4GRCzuTG59/E3lAs7tHXebhOLI3g4Clq/YxMb0eS5
-	EN4N3x6eivtg/JPr0vll0e2Dmi2lCUa79YUzCGPPoA5jH4GeJCpUwBaczcj0B5FWdyhJB8MfyiJ
-	BiXFeoSFnzRrsxPI6MgzhU7eZnsS8vF6Ed3xHve9kAjIbEshipZXFAqQeQtB7ybIRzgZEX8=
-X-Google-Smtp-Source: AGHT+IEELZ8FSvbCFuNEq7BY3WyOIESWb6FMG5glo4rOY4FFUtqeWFyPekF53qhtLY38H7lEzdqSXA==
-X-Received: by 2002:a05:6512:b97:b0:540:1b07:e033 with SMTP id 2adb3069b0e04-54405a6a714mr169956e87.45.1738710597714;
-        Tue, 04 Feb 2025 15:09:57 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543ebe0fda2sm1735053e87.65.2025.02.04.15.09.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Feb 2025 15:09:56 -0800 (PST)
-Date: Wed, 5 Feb 2025 01:09:53 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Dikshita Agarwal <quic_dikshita@quicinc.com>, 
-	quic_vgarodia@quicinc.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	p.zabel@pengutronix.de, hverkuil@xs4all.nl, sebastian.fricke@collabora.com, 
-	bryan.odonoghue@linaro.org, neil.armstrong@linaro.org, nicolas@ndufresne.ca, 
-	u.kleine-koenig@baylibre.com, stefan.schmidt@linaro.org, lujianhua000@gmail.com, 
-	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org
-Subject: Re: [RFC PATCH v10 1/2] media: iris: introduce helper module to
- select video driver
-Message-ID: <ilqfs6miq55ahyxjnhniv4k654vstfugmpswo5wld2ncgxxcx3@vsbr4bdl7y64>
-References: <20250128080429.3911091-1-quic_dikshita@quicinc.com>
- <20250128080429.3911091-2-quic_dikshita@quicinc.com>
- <5070e1f1-914b-4654-88ef-3566e3eee9ca@kernel.org>
- <f1344e49-61b6-4115-ae88-55b4a3cfed28@quicinc.com>
- <Z6B822-6UTxQfX46@hovoldconsulting.com>
- <tqbm672pi223ipcw7btiemlb745weeeiy4gnazzeghozhq2emj@wppbkms6hir5>
- <Z6HehbKL88LW1lxC@hovoldconsulting.com>
- <hpcf7olw3ody7ns4ibdeoc5qrkmh3fgeqbhjd4eqwfuanevzoa@plenabtrjqi5>
- <Z6I5nx2Wt3bbBmSI@hovoldconsulting.com>
+	s=arc-20240116; t=1738711217; c=relaxed/simple;
+	bh=hTXjfUYY5jkGWVr3mwx6N3NFTy2eiwGjxT5HEGQnA0I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PKMZjZm8bOFu47H7/zmKRgdZHqyZl1jMiINn/oa9rTmpRw+OvFx3cPs1OYpK0VwFyU/AuuZVNmlzuDYDnovOeyuVqtl+qh56qUgDh9v7jgWg3OsrsuGz5japyMH3ggf3NiM2p8+y2IjxNkQOw8X4/ilifQ+TLFXHSH1L/q3H5kQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=e/LSWgbH; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 514FmiGj029318;
+	Tue, 4 Feb 2025 17:19:18 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=PODMain02222019; bh=ZHHnYJ0H+qOjkw25
+	Mfu1e2Mk+Cj3/9kmu6Acd5OIRLc=; b=e/LSWgbHbdqAy5e4Au0YqEACXX3/BJ2R
+	5eL7sDXobIum2lr0Q2e2nMK3KRClXtMJhuWxncQ3pwjp7Xz4FxU8dIaNHo+qNQZl
+	396BEi0pdbkDdw+yUjZurhSi07DB1ycpz36MSURdy8rsiSSsWJ5I1nFshgiPsU7c
+	DmXWJ87vcSSRcdkV82q5qefHOeZ8aBr2l5l7ZKu+Mw3549XlgDwJ2tOhqDRIITRJ
+	Ah+lfubPWAZaYyTbTQToSQPFrybuzWOy9O9l6/IaDlr9kT/8Rh7okIIvVgqvMfvn
+	FSZtRWrBYoMHRKcmVAJikRQeonuVPn4g0exYwqEhJcyHQZ98NRo5cg==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 44hhw53pjr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Feb 2025 17:19:18 -0600 (CST)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Tue, 4 Feb
+ 2025 23:19:15 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
+ 15.2.1544.14 via Frontend Transport; Tue, 4 Feb 2025 23:19:10 +0000
+Received: from ftrev.crystal.cirrus.com (ftrev.ad.cirrus.com [141.131.145.81])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 53E69820248;
+	Tue,  4 Feb 2025 23:19:06 +0000 (UTC)
+From: Fred Treven <ftreven@opensource.cirrus.com>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Simon
+ Trimmer" <simont@opensource.cirrus.com>,
+        Charles Keepax
+	<ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald
+	<rf@opensource.cirrus.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        James Ogletree <jogletre@opensource.cirrus.com>,
+        Ben Bright
+	<ben.bright@cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Jeff LaBundy
+	<jeff@labundy.com>, Heiko Stuebner <heiko@sntech.de>,
+        Karel Balej
+	<balejk@matfyz.cz>,
+        Igor Prusov <ivprusov@salutedevices.com>,
+        Jack Yu
+	<jack.yu@realtek.com>,
+        Weidong Wang <wangweidong.a@awinic.com>,
+        Binbin Zhou
+	<zhoubinbin@loongson.cn>,
+        Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
+        "Paul
+ Handrigan" <paulha@opensource.cirrus.com>,
+        Masahiro Yamada
+	<masahiroy@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+        Fred Treven
+	<ftreven@opensource.cirrus.com>
+CC: <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <linux-sound@vger.kernel.org>
+Subject: [PATCH RESEND 0/7] Initial Support for CS40L26
+Date: Tue, 4 Feb 2025 17:18:29 -0600
+Message-ID: <20250204231835.2000457-1-ftreven@opensource.cirrus.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z6I5nx2Wt3bbBmSI@hovoldconsulting.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: QamCuf7WV-kZl5nFaQXqFsH101IxiZvn
+X-Authority-Analysis: v=2.4 cv=W/3CVQWk c=1 sm=1 tr=0 ts=67a2a076 cx=c_pps a=uGhh+3tQvKmCLpEUO+DX4w==:117 a=uGhh+3tQvKmCLpEUO+DX4w==:17 a=T2h4t0Lz3GQA:10 a=78G1mFUK9uwQN7RrU40A:9
+X-Proofpoint-GUID: QamCuf7WV-kZl5nFaQXqFsH101IxiZvn
+X-Proofpoint-Spam-Reason: safe
 
-On Tue, Feb 04, 2025 at 05:00:31PM +0100, Johan Hovold wrote:
-> On Tue, Feb 04, 2025 at 04:55:58PM +0200, Dmitry Baryshkov wrote:
-> > On Tue, Feb 04, 2025 at 10:31:49AM +0100, Johan Hovold wrote:
-> > > On Mon, Feb 03, 2025 at 05:16:50PM +0200, Dmitry Baryshkov wrote:
-> > > > On Mon, Feb 03, 2025 at 09:22:51AM +0100, Johan Hovold wrote:
-> > > > > On Fri, Jan 31, 2025 at 10:44:28AM -0800, Abhinav Kumar wrote:
-> 
-> > > And we're still waiting to hear the answers to all of Hans' questions. I
-> > > still haven't seen anyone explaining why any of this is needed. You
-> > > could have just continued letting Venus support 8250 so presumably there
-> > > is some benefit in using Iris instead. Which? And is that potential
-> > > benefit important enough to not just wait until Iris is up to par
-> > > feature wise?
-> > 
-> > Because that's exactly opposite of what Iris developers are trying to
-> > do: SM8250 and SM8550 belong to two different generations of the FW
-> > interface. By supporting both of them in the Iris driver the developers
-> > can verify that the internal driver abstractions are good enough. It has
-> > been discussed in one of the threads (or in telcos) related to the first
-> > iterations of this driver. We definitely don't want to end up in Venus
-> > situation, where the abstractions were added afterwards and in some
-> > cases they are not the best ones.
-> 
-> Ok, but as I've said a number of times already, information like this
-> needs to be included in the cover letter and commit message of what is
-> posted to the list.
-> 
-> Maintainers and reviewers obviously have no idea what you discussed in
-> some internal teleconference and can't be expected to remember or dig
-> this out from some old email thread either.
-> 
-> > The plan is to use sm8250 as a "bridge" between two drivers, verifying
-> > that they are on par during development, then drop sm8250 from Venus
-> > driver. Then move sc7280 support too, drop all HFD_VERSION_6XX support
-> > from Venus, cleanup the remnants.
-> 
-> Ok, but venus would still remain for some older hardware? It's just the
-> "hfi gen1" ones that would move to the iris eventually?
+Introduce driver for Cirrus Logic Device CS40L26:
+A boosted haptics driver with integrated DSP and
+waveform memory with advanced closed loop algorithms
+and LRA protection.
 
-Yes. At least for the foreseable future. Nobody has explored an option
-of moving older hardware to the Iris driver.
+The core CS40L26 driver is in MFD and touches the
+Input Force Feedback subsystem for haptics and
+the ASoC subsystem for audio to haptics streaming.
 
-> 
-> > I think most of that information should have been a part of the main
-> > Iris series. If it is not, please comment there, so that those commit
-> > messages can be updated.
-> 
-> Unfortunately it was not, which I also pointed in my comments to the
-> Iris series.
-> 
-> > > I'm sure you have some answers, but you need to provide them as part of
-> > > the series.
-> 
-> > > Unbinding and rebinding drivers is not part of any normal work flow
-> > > expect possibly during development. And a developer can easily compare
-> > > Venus and Iris for 8250 without a module parameter too.
-> > 
-> > Yes, we are talking about development. And yes, modparam helps. If you'd
-> > like to do two separate kernel builds, that's fine.
-> 
-> Please just motivate why you think this is needed as part of the
-> submission. And make sure that the implementation is sane (e.g. not some
-> random probe defer indefinitely thing).
-> 
-> Like I said, having two drivers for the same hardware is normally not
-> something that is acceptable, and this would need to be a transitional
-> thing as we both agree. One way to guarantee that is to not expose it to
-> regular users until it is ready (e.g. a Kconfig hidden behind
-> CONFIG_EXPERT or similar). Otherwise, I fear you'll end up supporting
-> both forever (with at least one of them bitrotting behind that module
-> parameter over time).
+This patchset includes changes to the CS DSP firmware
+driver which fixes two bugs and introduces support for
+multiple coefficient files.
 
-I think I'm fine with hiding IRIS behind CONFIG_EXPERT, might be a good
-idea.
+Fred Treven (7):
+  firmware: cs_dsp: Fix error checking in wseq_write()
+  firmware: cs_dsp: Check for valid num_regs in
+    cs_dsp_wseq_multi_write()
+  firmware: cs_dsp: Add ability to load multiple coefficient files
+  dt-bindings: mfd: cirrus,cs40l26: Support for CS40L26
+  mfd: cs40l26: Add support for CS40L26 core driver
+  ASoC: cs40l26: Support I2S streaming to CS40L26
+  Input: cs40l26 - Add support for CS40L26 haptic driver
+
+ .../bindings/mfd/cirrus,cs40l26.yaml          |   81 +
+ MAINTAINERS                                   |    4 +-
+ drivers/firmware/cirrus/cs_dsp.c              |   70 +-
+ drivers/input/misc/Kconfig                    |   10 +
+ drivers/input/misc/Makefile                   |    1 +
+ drivers/input/misc/cs40l26-vibra.c            |  669 ++++++++
+ drivers/mfd/Kconfig                           |   29 +
+ drivers/mfd/Makefile                          |    4 +
+ drivers/mfd/cs40l26-core.c                    | 1412 +++++++++++++++++
+ drivers/mfd/cs40l26-i2c.c                     |   63 +
+ drivers/mfd/cs40l26-spi.c                     |   63 +
+ include/linux/firmware/cirrus/cs_dsp.h        |   14 +
+ include/linux/mfd/cs40l26.h                   |  341 ++++
+ sound/soc/codecs/Kconfig                      |   12 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/cs40l26-codec.c              |  523 ++++++
+ 16 files changed, 3281 insertions(+), 17 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/cirrus,cs40l26.yaml
+ create mode 100644 drivers/input/misc/cs40l26-vibra.c
+ create mode 100644 drivers/mfd/cs40l26-core.c
+ create mode 100644 drivers/mfd/cs40l26-i2c.c
+ create mode 100644 drivers/mfd/cs40l26-spi.c
+ create mode 100644 include/linux/mfd/cs40l26.h
+ create mode 100644 sound/soc/codecs/cs40l26-codec.c
 
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
