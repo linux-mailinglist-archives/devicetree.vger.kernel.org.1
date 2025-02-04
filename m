@@ -1,237 +1,275 @@
-Return-Path: <devicetree+bounces-142991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-142992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C2F1A27806
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:11:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7B6DA2780E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 18:12:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98D443A880F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:09:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03ACC3A140A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2025 17:11:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D728217659;
-	Tue,  4 Feb 2025 17:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6C12153E3;
+	Tue,  4 Feb 2025 17:11:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="DovUD6N/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hu44rliW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 673A221638A;
-	Tue,  4 Feb 2025 17:07:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738688856; cv=pass; b=lgcv/nkox5NgrTu2VZoNnESoi2l6sLbAuBg1YkJ5LA8NPOPLFIdgv/7V2A6dde3xCxxbTH3RXflsBsXCBftuXgtC23umt2onvnYeK79bVS0oZPQG4o5SuS+tPgTBoW34NET/zjK733cmsGNwHQCw8KHZ9qRy1fsfXWAwcCY6y8U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738688856; c=relaxed/simple;
-	bh=3aizgtkyv+vyDjr/YzeQveJFTdDlVYb50Uzzlt1Cnt4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G68dtnXfsbcyj7YMQCvNu6OdAFaOYoU3EKttX2cjQzUn/Dc0rH639jyXSifJWv0o3soPEyTmPBczsXN4q6QB+rHcmmvYyf7ISGG8ExGldg6V5/Xs2HLMQOFhMirCHew4+W+RJVaDkHPsDDGQ4f4m7gqw0oO5sUH2rNklOwtiuBs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=DovUD6N/; arc=pass smtp.client-ip=136.143.188.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1738688834; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=UKjD3CPU5LdLmJHrs9IvCjNrg/fKunRdRaInbr0+/Vrib/z/A9Y1/1XKZ59q/TkAXdSjn4ltFL49ouoXC0NUxv6gYUksmlDF/kjlkkcD2TadX627mH1wSt/4sW+qYkWFFZnRcGCTidZkUv3Q9zqvARa8QF5EI2T/tld72PECWpo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1738688834; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=/1H455YKzcoh4msMSl2MwzBYNQnAg4q7KrJ23YCw80U=; 
-	b=P10qHI1QhFsOFehZwP+Qftbs2BCN/1DOE+7ntrx7DyE2IHJ7L8Cz67cy7/umkmhWi+8XBGc3qsk73tJenuBT6Pl/VsNIYVWJcOjscF6an052OvgYicz2XHA+v9+sjqs0y1rFCRzzuoFylwe9O/J6HSkOBmq3I+8m5WBTJXLFFVc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
-	dmarc=pass header.from=<kingxukai@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1738688834;
-	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
-	bh=/1H455YKzcoh4msMSl2MwzBYNQnAg4q7KrJ23YCw80U=;
-	b=DovUD6N/FMEEDj/H/LHxdqYExu4lEcta0tSd6oDDCiCvvifQ9UXVAl102LkTt7W0
-	6ejqPQfYwKa+eYsYXwV2ZyJbOusenySUqNRT9IIn1xSbuz5fJ7yKySPTVK9ZqEqAcqH
-	tsXdQX7QYuJsLVPqNiPspYMGgPrPlP4gUaVamV30=
-Received: by mx.zohomail.com with SMTPS id 1738688830787231.45268121999618;
-	Tue, 4 Feb 2025 09:07:10 -0800 (PST)
-Message-ID: <525d4b18-4ce9-4448-a9b9-dfce4aa15ee3@zohomail.com>
-Date: Wed, 5 Feb 2025 01:06:57 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 458E52144DC;
+	Tue,  4 Feb 2025 17:11:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738689064; cv=none; b=rYOMZVcoP0kbNM5O3IlkIFYVlVOJsnwMjbVbBQPuHlLLBa5LoVyoHWfpXEmvHUjtPMfJIrLcwima/3yQviKuqavBiDoXtCLmh2ebsmu2ZEzQa93Q/rWN7gADn4CxgAFZAAcjwOFXb/r1zn7Rw8q7Ubj2BFlaookpYuzwoTehbuA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738689064; c=relaxed/simple;
+	bh=j8nBnBK0YzkTPxOef8vbqJrD7jMe/NJ3VIVEj3v4b8U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WvsxQnTyO2gnZTxqcdJvEbWrWWdsJ0WwnCU4s6Tt279eqc7vTWcDA9zHordefUE3/k5H00nkbE9XjYWVliDWwdKSG8dt8Q36Ne/J5UA7cOY0lTba7TJqcW3k7CoEv7qQTuflX0JhY1k73KL9dKOOXX534gtA3hE3ab0jqFiZb6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hu44rliW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4386EC4CEDF;
+	Tue,  4 Feb 2025 17:11:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738689063;
+	bh=j8nBnBK0YzkTPxOef8vbqJrD7jMe/NJ3VIVEj3v4b8U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Hu44rliWuJH5FbirzaMmHDxAeJALj9fTEVYUjjaJtUyIdNssqVpPKHVmfNL6y+pRs
+	 QLsQEpVKSsXy05ZidoKtcW9DA6Rj3e0ynuNobIft6yOk7bu1FrHg9nIzt6wyrYfYMh
+	 7shV1GyHhw7ihtxemy8FaDrGZw64qI6kh2OmTZ1UKKD6lKiuWKOVG3pSiGy7aHbk3y
+	 l+PnaP76I6sRLWoXdv6m1TXk+eOEFc3MmMdyiyReT34AAFe+9ILLBGX/RxZowOC58c
+	 N5gc2dHJSyMzg55jml+17yoogn1lWY9LtF6WpYZmBXYeat4FFZ6WcyeVtCb/MInVzr
+	 tr9+KrTVtRQqQ==
+Date: Tue, 4 Feb 2025 18:11:01 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Louis Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+Message-ID: <20250204-crouching-alligator-of-success-ab52f8@houat>
+References: <20250108101907.410456-1-herve.codina@bootlin.com>
+ <20250108101907.410456-4-herve.codina@bootlin.com>
+ <20250114-juicy-authentic-mushroom-cfcdfb@houat>
+ <20250114135456.5366eb2a@bootlin.com>
+ <20250116-archetypal-bulldog-of-expression-fcc937@houat>
+ <20250117091213.647bf0e6@bootlin.com>
+ <20250204-chocolate-lionfish-of-luck-10ebb8@houat>
+ <20250204163404.0a6b6526@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v3 1/3] dt-bindings: clock: Add bindings for Canaan
- K230 clock controller
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Troy Mitchell <TroyMitchell988@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>
-References: <20250203-b4-k230-clk-v3-0-362c79124572@zohomail.com>
- <20250203-b4-k230-clk-v3-1-362c79124572@zohomail.com>
- <237ce4e3-d66f-43ee-bd4e-38007dc750e5@sifive.com>
-From: Xukai Wang <kingxukai@zohomail.com>
-Content-Language: en-US
-In-Reply-To: <237ce4e3-d66f-43ee-bd4e-38007dc750e5@sifive.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Feedback-ID: rr08011227a499705bedd88d51f0cfd560000033583ae4408614494e6bce16ec0ea8b0a69522ce2dfd91b3d0:zu080112276e35433809ba80609751686e00008039a89b06b66fee628922148895a733f30129b83e56e766c5:rf0801122bd12795581b912999f26052ca000078a8f2585976c3819e36b85f046ce5eb9ac08fdd07b64b353c03d6797f:ZohoMail
-X-ZohoMailClient: External
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="47yeuap5jfflsyvy"
+Content-Disposition: inline
+In-Reply-To: <20250204163404.0a6b6526@bootlin.com>
 
 
-On 2025/2/4 04:24, Samuel Holland wrote:
-> On 2025-02-03 8:49 AM, Xukai Wang wrote:
->> This patch adds the Device Tree binding for the clock controller
->> on Canaan k230. The binding defines the new clocks available and
->> the required properties to configure them correctly.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
->> ---
->>  .../devicetree/bindings/clock/canaan,k230-clk.yaml | 43 +++++++++++++++++++
->>  include/dt-bindings/clock/canaan,k230-clk.h        | 49 ++++++++++++++++++++++
->>  2 files changed, 92 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..d7220fa30e4699a68fa5279c04abc63c1905fa4a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
->> @@ -0,0 +1,43 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/canaan,k230-clk.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Canaan Kendryte K230 Clock
->> +
->> +maintainers:
->> +  - Xukai Wang <kingxukai@zohomail.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: canaan,k230-clk
->> +
->> +  reg:
->> +    items:
->> +      - description: PLL control registers.
->> +      - description: Sysclk control registers.
-> From the way the driver is structured, this looks rather like two separate
-> hardware blocks, not two groups of registers for a single hardware block. For
-> example, the driver registers two clock providers for the same DT node, with
-> overlapping indexes. This doesn't work. Either you need two separate DT nodes --
-> one for the PLLs and another for the sysclks -- or you need to include the PLLs
-> in the binding header below at non-overlapping indexes.
->
-> Regards,
-> Samuel
-Thank you for your feedback.
+--47yeuap5jfflsyvy
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+MIME-Version: 1.0
 
-You mentioned the issue of registering two clock providers on the same
-DT node with overlapping indexes, which was indeed my oversight.
+On Tue, Feb 04, 2025 at 04:34:04PM +0100, Herve Codina wrote:
+> On Tue, 4 Feb 2025 16:17:10 +0100
+> Maxime Ripard <mripard@kernel.org> wrote:
+>=20
+> > Hi,
+> >=20
+> > On Fri, Jan 17, 2025 at 09:12:13AM +0100, Herve Codina wrote:
+> > > Hi Maxime,
+> > >=20
+> > > On Thu, 16 Jan 2025 09:38:45 +0100
+> > > Maxime Ripard <mripard@kernel.org> wrote:
+> > >  =20
+> > > > On Tue, Jan 14, 2025 at 01:54:56PM +0100, Herve Codina wrote: =20
+> > > > > Hi Maxime,
+> > > > >=20
+> > > > > On Tue, 14 Jan 2025 08:40:51 +0100
+> > > > > Maxime Ripard <mripard@kernel.org> wrote:
+> > > > >=20
+> > > > > ...
+> > > > >    =20
+> > > > > > > =20
+> > > > > > > +static int sn65dsi83_reset_pipe(struct sn65dsi83 *sn65dsi83)
+> > > > > > > +{
+> > > > > > > +	struct drm_atomic_state *state =3D ERR_PTR(-EINVAL);
+> > > > > > > +	struct drm_device *dev =3D sn65dsi83->bridge.dev;
+> > > > > > > +	struct drm_connector_state *connector_state;
+> > > > > > > +	struct drm_modeset_acquire_ctx ctx;
+> > > > > > > +	struct drm_connector *connector;
+> > > > > > > +	int err;
+> > > > > > > +
+> > > > > > > +	/*
+> > > > > > > +	 * Reset active outputs of the related CRTC.
+> > > > > > > +	 *
+> > > > > > > +	 * This way, drm core will reconfigure each components in t=
+he CRTC
+> > > > > > > +	 * outputs path. In our case, this will force the previous =
+component to
+> > > > > > > +	 * go back in LP11 mode and so allow the reconfiguration of=
+ SN64DSI83
+> > > > > > > +	 * bridge.
+> > > > > > > +	 *
+> > > > > > > +	 * Keep the lock during the whole operation to be atomic.
+> > > > > > > +	 */
+> > > > > > > +
+> > > > > > > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
+> > > > > > > +
+> > > > > > > +	state =3D drm_atomic_helper_duplicate_state(dev, &ctx);
+> > > > > > > +	if (IS_ERR(state)) {
+> > > > > > > +		err =3D PTR_ERR(state);
+> > > > > > > +		goto unlock;
+> > > > > > > +	}     =20
+> > > > > >=20
+> > > > > > No, you must not allocate a new state for this, you need to reu=
+se the
+> > > > > > existing state. You'll find it in bridge->base.state->state.   =
+=20
+> > > > >=20
+> > > > > Thanks for pointing that. I didn't know about bridge->base.state-=
+>state.
+> > > > >=20
+> > > > > I will use that if using the state is still relevant (see next co=
+mment).
+> > > > >    =20
+> > > > > >    =20
+> > > > > > > +	state->acquire_ctx =3D &ctx;
+> > > > > > > +
+> > > > > > > +	connector =3D drm_atomic_get_old_connector_for_encoder(stat=
+e,
+> > > > > > > +							     sn65dsi83->bridge.encoder);
+> > > > > > > +	if (!connector) {
+> > > > > > > +		err =3D -EINVAL;
+> > > > > > > +		goto unlock;
+> > > > > > > +	}
+> > > > > > > +
+> > > > > > > +	connector_state =3D drm_atomic_get_connector_state(state, c=
+onnector);
+> > > > > > > +	if (IS_ERR(connector_state)) {
+> > > > > > > +		err =3D PTR_ERR(connector_state);
+> > > > > > > +		goto unlock;
+> > > > > > > +	}
+> > > > > > > +
+> > > > > > > +	err =3D drm_atomic_helper_reset_pipe(connector_state->crtc,=
+ &ctx);
+> > > > > > > +	if (err < 0)
+> > > > > > > +		goto unlock;     =20
+> > > > > >=20
+> > > > > > And you'll find the crtc in bridge->encoder->crtc.   =20
+> > > > >=20
+> > > > > I am a bit confused. I looked at the drm_encoder structure [1] an=
+d the crtc
+> > > > > field available in this structure should not be used by atomic dr=
+ivers. They
+> > > > > should rely on &drm_connector_state.crtc.   =20
+> > > >=20
+> > > > You're right, it's deprecated but used by most bridges anyway.
+> > > >=20
+> > > > I made a series of changes after reviewing your series to address s=
+ome
+> > > > issues with the current bridge API, most notably
+> > > >=20
+> > > > https://lore.kernel.org/dri-devel/20250115-bridge-connector-v1-25-9=
+a2fecd886a6@kernel.org/ =20
+> > >=20
+> > > Thanks for pointing that, indeed, it clarify many things!
+> > >  =20
+> > > >  =20
+> > > > > In my case, I have the feeling that I should get the ctrc from th=
+e current
+> > > > > state (i.e. bridge->base.state->state) using the sequence provide=
+d in this
+> > > > > current patch:
+> > > > >   Retrieve the connector with drm_atomic_get_old_connector_for_en=
+coder()   =20
+> > > >=20
+> > > > Retrieving the old connector makes no sense though. It's the connec=
+tor
+> > > > that was formerly associated with your encoder. It might work, it m=
+ight
+> > > > not, it's not what you're looking for.
+> > > >  =20
+> > > > >   Retrieve the connector state with drm_atomic_get_connector_stat=
+e()   =20
+> > > >=20
+> > > > drm_atomic_get_connector_state will allocate and pull the connector
+> > > > state into the drm_atomic_state, even if it wasn't part of it befor=
+e, so
+> > > > it's not great. And you don't need it in the first place, you only =
+need
+> > > > the current active CRTC. =20
+> > >=20
+> > > Yes, I agree with that, I only need the active CRTC.
+> > >=20
+> > > I tried to get the current atomic_state from:
+> > >   1) bridge->base.state->state
+> > >   2) drm_bridge_state->base.state
+> > >=20
+> > > In both cases, it is NULL. Looking at Sima's reply in your series
+> > > explained that:
+> > >   https://lore.kernel.org/dri-devel/Z4juJy7kKPbI2BDb@phenom.ffwll.loc=
+al/
+> > >=20
+> > > If I understood correctly those pointers are explicitly cleared.
+> > >=20
+> > > So, with all of that, either:
+> > >   a) I wait for your series to be applied in order to use your the cr=
+tc field from
+> > >      drm_bridge_state added by:
+> > >        https://lore.kernel.org/dri-devel/20250115-bridge-connector-v1=
+-25-9a2fecd886a6@kernel.org/#t
+> > >   b) I use the old school bridge->encoder->crtc for the moment
+> > >=20
+> > > Do you mind if I use the bridge->encoder->crtc way for the next itera=
+tion of
+> > > my series? =20
+> >=20
+> > Yeah, it makes sense.
+>=20
+> I already send a wrong v4 (sorry) and a correct v5 with modifications in
+> this way :)
+>=20
+> >=20
+> > Still, it would be great if you could test my series on your setup and =
+see if it helps :)
+>=20
+> Of course, I can test updated version of your series.
+>=20
+> I already try to get the current atomic_state exactly the same way as you=
+ do
+> in your series and the pointer is NULL in my case.
 
-The actual situation is that PLLs are only used for internal
-configuration by PLL_DIVs, and since PLL_DIVs do not be directly invoked
-using `clock=<PLL_DIVs Index>` in the DT node, there is no need to use
-`devm_of_clk_hw_add_provider` to add them as clock providers.
+I sent a second version today, let me know if it works.
 
-Therefore, I will remove the code that registers PLL_DIVs as clock
-providers ant its `onecell_get` function.
+Maxime
 
-Moreover, since PLLs are only used internally by PLL_DIVs and do not
-need to be exposed as clock providers externally, 
+--47yeuap5jfflsyvy
+Content-Type: application/pgp-signature; name="signature.asc"
 
-so I think there is no need to modify the implementation to separate
-them into PLLs and sysclk.
+-----BEGIN PGP SIGNATURE-----
 
-If there's anything I might have overlooked or misunderstood, please
-feel free to point it out.
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ6JKJAAKCRAnX84Zoj2+
+dlduAYDGdElqziyGD1EYwKUBbyUiUwak4pS//61mf1+oH5R5d1/vM2nxCH3Qeq4t
+oXh81xIBfi+mPBGMBa70pE9wG5O3JBEnts9Fll49h0ii0CMGPfAx8LNJ/y4yGIK0
+LM+uvDmuQQ==
+=w+tk
+-----END PGP SIGNATURE-----
 
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  '#clock-cells':
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - '#clock-cells'
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    clock-controller@91102000 {
->> +        compatible = "canaan,k230-clk";
->> +        reg = <0x91102000 0x1000>,
->> +              <0x91100000 0x1000>;
->> +        clocks = <&osc24m>;
->> +        #clock-cells = <1>;
->> +    };
->> diff --git a/include/dt-bindings/clock/canaan,k230-clk.h b/include/dt-bindings/clock/canaan,k230-clk.h
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..47d966fda5771615dad8ade64eeec42a9b27696e
->> --- /dev/null
->> +++ b/include/dt-bindings/clock/canaan,k230-clk.h
->> @@ -0,0 +1,49 @@
->> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->> +/*
->> + * Kendryte Canaan K230 Clock Drivers
->> + *
->> + * Author: Xukai Wang <kingxukai@zohomail.com>
->> + */
->> +
->> +#ifndef CLOCK_K230_CLK_H
->> +#define CLOCK_K230_CLK_H
->> +
->> +/* Kendryte K230 SoC clock identifiers (arbitrary values). */
->> +#define K230_CPU0_SRC			0
->> +#define K230_CPU0_ACLK			1
->> +#define K230_CPU0_PLIC			2
->> +#define K230_CPU0_NOC_DDRCP4		3
->> +#define K230_CPU0_PCLK			4
->> +#define K230_PMU_PCLK			5
->> +#define K230_HS_HCLK_HIGH_SRC		6
->> +#define K230_HS_HCLK_HIGH_GATE		7
->> +#define K230_HS_HCLK_SRC		8
->> +#define K230_HS_SD0_HS_AHB_GAT		9
->> +#define K230_HS_SD1_HS_AHB_GAT		10
->> +#define K230_HS_SSI1_HS_AHB_GA		11
->> +#define K230_HS_SSI2_HS_AHB_GA		12
->> +#define K230_HS_USB0_HS_AHB_GA		13
->> +#define K230_HS_USB1_HS_AHB_GA		14
->> +#define K230_HS_SSI0_AXI15		15
->> +#define K230_HS_SSI1			16
->> +#define K230_HS_SSI2			17
->> +#define K230_HS_QSPI_AXI_SRC		18
->> +#define K230_HS_SSI1_ACLK_GATE		19
->> +#define K230_HS_SSI2_ACLK_GATE		20
->> +#define K230_HS_SD_CARD_SRC		21
->> +#define K230_HS_SD0_CARD_TX		22
->> +#define K230_HS_SD1_CARD_TX		23
->> +#define K230_HS_SD_AXI_SRC		24
->> +#define K230_HS_SD0_AXI_GATE		25
->> +#define K230_HS_SD1_AXI_GATE		26
->> +#define K230_HS_SD0_BASE_GATE		27
->> +#define K230_HS_SD1_BASE_GATE		28
->> +#define K230_HS_OSPI_SRC		29
->> +#define K230_HS_USB_REF_50M		30
->> +#define K230_HS_SD_TIMER_SRC		31
->> +#define K230_HS_SD0_TIMER_GATE		32
->> +#define K230_HS_SD1_TIMER_GATE		33
->> +#define K230_HS_USB0_REFERENCE		34
->> +#define K230_HS_USB1_REFERENCE		35
->> +
->> +#endif /* CLOCK_K230_CLK_H */
->>
+--47yeuap5jfflsyvy--
 
