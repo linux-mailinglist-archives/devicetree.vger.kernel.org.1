@@ -1,63 +1,88 @@
-Return-Path: <devicetree+bounces-143198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB613A28738
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:59:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EEEDA28743
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:02:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39B99168FA8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:59:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE79C1889614
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24EF822A801;
-	Wed,  5 Feb 2025 09:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8668821C16E;
+	Wed,  5 Feb 2025 10:02:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W9ZxUfDG"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="NhHdZ4Ew"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F901D7985;
-	Wed,  5 Feb 2025 09:59:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C80852163BE
+	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 10:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738749578; cv=none; b=IbmvkmoDvPkyH8yU6/7SThnQkOStB64Z8K2RFxbTAEoYlSyCqVOEpJxE1jN08EoTN/BnvQlwZQFeYxLZhsL47Srcjo+DEva50+MF6LNmtNKZm9GaKwI5lS88jvcCWErdUOK35NKmnXK5MCVFIpWH++64goSQKQZqHH5s8zvzq2Y=
+	t=1738749729; cv=none; b=FKp2gyDI5rsHqsi4mJQqc/TOAMhDJcPCB3Z6iIvSacEInnomVARtl6wBRTK6RwM+h9GnaAkCrLtBY0arSflk3SodrXd3PDdhqs2xeTUYC+mLcmT7Z+06lav036Z/b+EfS5orZbVTJl53+AYJPywiEg8jm9Rn4RZkfPCWj3k7IhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738749578; c=relaxed/simple;
-	bh=BMMdGh0m1XSUjpnLw1cw4cmZPbOCtVdzE3BdNEFI+QM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nOIBh446nhE31RC9EsRZiiaX7Jw6T+pwIrCs3MOs8otpxTVnBXUbx21vheC2UGzNou0yERmXype+Z80kOoXa/7/bix3EfQ7Iomevnk5+mrhCgEEKFHV5QJNj5H29wvkz9SZqI0GQ+u47DzNICFslrH1V8JOSxom09FNnDPwtgH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=W9ZxUfDG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51561pTb023597;
-	Wed, 5 Feb 2025 09:59:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1DRDwzg7jRP9FoY4EZ2cmdf6ROjlJkCPnZVzZlK67l0=; b=W9ZxUfDGLF9mnh8W
-	8vgth5FT3Gy9QnhHn7rKVCHIPcHAGXQxE0TvB8iv56hOgDD4aR8Q8fkQjLgzPfxp
-	v/Af1AcpRjTgo9QMvgJ0Nxqkrp6PmBS3DLf5kmpqbcHEUMugEnTdmsRZsFagyldQ
-	eVG9nIbHhDr9rOvvos8wiqI0t/vQVDbF6qIvvJ45Z4pY7XyVs5KUzxBN5ulXfGx4
-	zhRnmz9/flsncUtXIt3rSAiVGTigAE9VW2k1pVBjgQKcIkYw7AXgMblL4hZsc2Es
-	lQYaaxYlF5gsajPT8z+H7XBdYR9edJXxsntIzE3soXBKTzbwOhPTvZTIB4Y7TGDX
-	todGNg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44m2bxrghf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Feb 2025 09:59:30 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5159xUMO019677
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Feb 2025 09:59:30 GMT
-Received: from [10.151.41.196] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Feb 2025
- 01:59:26 -0800
-Message-ID: <8fc38912-f1f2-438d-a8ab-bfabb31825fb@quicinc.com>
-Date: Wed, 5 Feb 2025 15:29:06 +0530
+	s=arc-20240116; t=1738749729; c=relaxed/simple;
+	bh=E0PTNIwQS5JcJ66tT1ZxxvzSk70T0G2+/RcDJA8kSH4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P45S42UV0578Dz9vbzw67TOuZlXuun0rqg4vB0VILM890tFhrDaE6usyTMXkXryhy+KzKxgMCd2gIG6ogZzmXnbu1eF1Jl5SpUjD4qH11EsjoqcBMAhJGeuCCnvnHZb8apJ2fiwyoPAGPYEBTCruAp+ZulKHHcS/HSbeOiDcS/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=NhHdZ4Ew; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id AE2C83F682
+	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 10:02:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1738749722;
+	bh=lRkR+WYaons/jJVqBwYKIgchNhk8mrQWriNR5CVl3/0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type;
+	b=NhHdZ4Ew/XkUXa222qi6TdUYpJQmVXy92bSTutSshYFoHdia9ILRwslnkAS8KgINC
+	 b27GkY6KpH5auJ3ytQAKU8JF9saQrnUipGCH378YDKykTXN3ve3b9NW5z5T4Q1t/hp
+	 XoY56BN/AHwDDB09j/g9SvFNrMcOUTV8PXTcK2Tg31hUbVwySSvDx6SRRshiZh+YFW
+	 edxlVILdbcZ7e8ipytC6ABSy2TVcavc31RovDsVVhDcvvNSw7PQ05CCVzN+GU/Zb2l
+	 +Ro4q8xgi7zyBe8u3M3lzg7eIU/yWEGQEO778TCR9E1Hww5uLXfPnRzB4eyAuotOE9
+	 4yj4ILZqw+dBg==
+Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-4359eb032c9so46306385e9.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 02:02:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738749722; x=1739354522;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lRkR+WYaons/jJVqBwYKIgchNhk8mrQWriNR5CVl3/0=;
+        b=vHebW0DXv4UbkqtDSd1CYtngit0p8Km44uCpd6Y90FotQkXlpuQbdTIbLNiMQPXFJp
+         Q4F8mz6wqg4vQC1tUtFKkXMMDlOhC+YSUQ1TKPQ8GVcOlKZFHcD773UW+nhx3KazZJkn
+         49dBbfwuNM0DYpRH4gQhbY5p5mS2Wve8lydgnzFhaq4/HUvZPCplxhOVol3u5AY7uzRJ
+         Oj4eRr+Wz8gK73DDWKb3+sGXwhnriTfZIJhAp+wmd3a94ygi6QHgyeFdzqmgyd2lrVen
+         b4ZD7k0iT8JSqvT51cawzzs0YeWKDigQxs0vJ9O1xyOsIUJSGt/Ljk6Pb7LRBm9Ct+AG
+         XM9g==
+X-Forwarded-Encrypted: i=1; AJvYcCX+9UWTpAStgLQEBqO4zVz4d3iImh5S1OozEQlJBtTnTUFOM4pcYnSs3sbQNPshtuF39cYxtaWEAmo3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgRi+kGHYnMxfanaDjwCUPXi8/evPcpSIoG7Uf2n2Hkjfbz4hL
+	OvqXepnZu/DEeGyEmIPQbXVsa+qMSK5ZNF/pmLR3DhW7F7ZElp6z68djD01Bv4lmQJ1tIfHf5Wj
+	FZRTGS0wjcD4P+nBFM/iVNFa/p8pN4lsMlf+wTSbITmRtTzZFrHxkdFGIg8PHdbISVurj+bO1Mi
+	0=
+X-Gm-Gg: ASbGnctO2iDQ11kP4MYshu+tui10UsAVBSezGA02TW8a0Mb1CrAO8FSNa7Jul9Q9B5I
+	jQi1JLJKEIWJHvMMNx1rVbCKCkSCc1stAV4wKsZZxC6PtcYkqqeJfbGMut/GPtAWvntJNwPFinI
+	4/AQVotiK5Y8O9XjAtCRpod+rw4SHkPRa1Xj5Q08nyTVK8Z8L2vp6BrbayQc43DzvLFMnEBl+4H
+	nEiYlqVQKyT5Wlr6bQGCsueOhbj1OhK4haXmZ9v4KHxS+sd06c8IKwkQDaLxloQ6yXfg5ogGIxW
+	cYFIIrzAeahGW2vAMjN+JJVaZ6JXb1IZgeqtUeMHP5r5Vg58edtpN+TqjO7FS2c/GpA8oQg=
+X-Received: by 2002:a05:600c:46d4:b0:42c:c28c:e477 with SMTP id 5b1f17b1804b1-4390d55fc82mr14932065e9.23.1738749721724;
+        Wed, 05 Feb 2025 02:02:01 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGq8om1DDyQcOOxkaGbGiKq7JJDXixn8Voguht0gmaJQbiYzhmBxXZIPIdniNSl3ZJ3CUhAFQ==
+X-Received: by 2002:a05:600c:46d4:b0:42c:c28c:e477 with SMTP id 5b1f17b1804b1-4390d55fc82mr14931765e9.23.1738749721365;
+        Wed, 05 Feb 2025 02:02:01 -0800 (PST)
+Received: from ?IPV6:2a02:3035:6e0:9052:36d8:1776:f263:97eb? ([2a02:3035:6e0:9052:36d8:1776:f263:97eb])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4390daf7dbcsm15922705e9.30.2025.02.05.02.01.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Feb 2025 02:02:00 -0800 (PST)
+Message-ID: <206a6ada-1ef9-47f3-b1cf-fb1a1540e95c@canonical.com>
+Date: Wed, 5 Feb 2025 11:01:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,100 +90,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 07/13] wifi: ath12k: add support for fixed QMI firmware
- memory
-To: Krzysztof Kozlowski <krzk@kernel.org>, <ath12k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250130043508.1885026-1-quic_rajkbhag@quicinc.com>
- <20250130043508.1885026-8-quic_rajkbhag@quicinc.com>
- <4c9b512f-59d2-4d96-a899-5af4de2c823e@kernel.org>
- <7d5f7b4c-2a55-41c7-b85c-cb4cd76d553f@quicinc.com>
- <962dc257-f7a6-49c7-b760-a31fd84e7a56@kernel.org>
- <c7d9842a-96bf-41aa-8046-52c3e45f90d4@quicinc.com>
- <f8b8a39d-043a-4be0-9024-c080cf864e7b@kernel.org>
+Subject: Re: [PATCH v2 5/5] riscv: dts: starfive: jh7110-common:
+ bootph-pre-ram hinting needed by boot loader
+To: Hal Feng <hal.feng@linux.starfivetech.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, E Shattow <e@freeshell.de>,
+ Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+References: <20250203013730.269558-1-e@freeshell.de>
+ <20250203013730.269558-6-e@freeshell.de>
+ <25B3D8909DBCC21B+43663a76-4afa-44ae-95e2-3a8792de614c@linux.starfivetech.com>
 Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <f8b8a39d-043a-4be0-9024-c080cf864e7b@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+In-Reply-To: <25B3D8909DBCC21B+43663a76-4afa-44ae-95e2-3a8792de614c@linux.starfivetech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Jm_ina_HOBmu5klqHlDOJakEN7WiTm66
-X-Proofpoint-GUID: Jm_ina_HOBmu5klqHlDOJakEN7WiTm66
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-05_04,2025-02-05_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- mlxscore=0 impostorscore=0 suspectscore=0 mlxlogscore=999 bulkscore=0
- priorityscore=1501 adultscore=0 lowpriorityscore=0 spamscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502050079
 
-On 2/5/2025 2:37 PM, Krzysztof Kozlowski wrote:
-> On 04/02/2025 10:06, Raj Kumar Bhagat wrote:
->> On 2/3/2025 3:42 PM, Krzysztof Kozlowski wrote:
->>> On 03/02/2025 10:44, Raj Kumar Bhagat wrote:
->>>> On 1/30/2025 1:16 PM, Krzysztof Kozlowski wrote:
->>>>> On 30/01/2025 05:35, Raj Kumar Bhagat wrote:
->>>>>> @@ -2646,6 +2663,136 @@ static int ath12k_qmi_alloc_target_mem_chunk(struct ath12k_base *ab)
->>>>>>  	return ret;
->>>>>>  }
->>>>>>  
->>>>>> +static int ath12k_qmi_assign_target_mem_chunk(struct ath12k_base *ab)
->>>>>> +{
->>>>>> +	struct device_node *mem_node;
->>>>>> +	struct resource res, m3_res;
->>>>>> +	u32 bdf_start_addr;
->>>>>> +	int i, idx, ret;
->>>>>> +
->>>>>> +	for (i = 0, idx = 0; i < ab->qmi.mem_seg_count; i++) {
->>>>>> +		switch (ab->qmi.target_mem[i].type) {
->>>>>> +		case HOST_DDR_REGION_TYPE:
->>>>>> +			mem_node = ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
->>>>>
->>>>>
->>>>> Why cannot you use existing API for reserved memory -
->>>>> of_reserved_mem_lookup()?
->>>>>
->>>>
->>>> The of_reserved_mem_lookup() requires reserved memory node to read the memory and
->>>> return in the structure "struct reserved_mem".
->>>>
->>>> The of_reserved_mem_lookup() would be used after we get the reserved memory node
->>>> using the API - ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
->>>>
->>>> In next version we would use of_reserved_mem_lookup(), Something like below:
->>>>     mem_node = ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
->>>
->>> Then why do you need ath12k_core_get_reserved_mem_by_name() in the first
->>> place? Just use of_reserved_mem_lookup() directly. Why do you need to
->>> parse phandle before of_reserved_mem_lookup()?
->>>
+On 2/5/25 08:57, Hal Feng wrote:
+> On 2/3/2025 9:37 AM, E Shattow wrote:
+>> Add bootph-pre-ram hinting to jh7110-common.dtsi:
+>>    - i2c5_pins and i2c-pins subnode for connection to eeprom
+>>    - eeprom node
+>>    - qspi flash configuration subnode
+>>    - memory node
+>>    - uart0 for serial console
 >>
->> Sorry, I'm having difficulty understanding this.
->> We have the WiFi node at ab->dev->of_node, but we don't have a node for the reserved-memory
->> 'q6-region'. The of_reserved_mem_lookup() function requires the device node for 'q6-region'.
+>>    With this the U-Boot SPL secondary program loader may drop such
+>>    overrides when using dt-rebasing with JH7110 OF_UPSTREAM board targets.
 >>
->> Could you please suggest how we can use of_reserved_mem_lookup() without obtaining the
->> 'q6-region' node first.
+>> Signed-off-by: E Shattow <e@freeshell.de>
+>> ---
+>>   arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>> index 30c5f3487c8b..c9e7ae59ee7c 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>> @@ -28,6 +28,7 @@ chosen {
+>>   	memory@40000000 {
+>>   		device_type = "memory";
+>>   		reg = <0x0 0x40000000 0x1 0x0>;
+>> +		bootph-pre-ram;
+>>   	};
+>>   
+>>   	gpio-restart {
+>> @@ -247,6 +248,7 @@ emmc_vdd: aldo4 {
+>>   	};
+>>   
+>>   	eeprom@50 {
+>> +		bootph-pre-ram;
+>>   		compatible = "atmel,24c04";
+>>   		reg = <0x50>;
+>>   		pagesize = <16>;
+>> @@ -323,6 +325,7 @@ &qspi {
+>>   	nor_flash: flash@0 {
+>>   		compatible = "jedec,spi-nor";
+>>   		reg = <0>;
+>> +		bootph-pre-ram;
+>>   		cdns,read-delay = <2>;
+>>   		spi-max-frequency = <100000000>;
+>>   		cdns,tshsl-ns = <1>;
+>> @@ -405,6 +408,7 @@ GPOEN_SYS_I2C2_DATA,
+>>   	};
+>>   
+>>   	i2c5_pins: i2c5-0 {
+>> +		bootph-pre-ram;
+>>   		i2c-pins {
+>>   			pinmux = <GPIOMUX(19, GPOUT_LOW,
+>>   					      GPOEN_SYS_I2C5_CLK,
+>> @@ -413,6 +417,7 @@ GPI_SYS_I2C5_CLK)>,
+>>   					      GPOEN_SYS_I2C5_DATA,
+>>   					      GPI_SYS_I2C5_DATA)>;
+>>   			bias-disable; /* external pull-up */
+>> +			bootph-pre-ram;
+>>   			input-enable;
+>>   			input-schmitt-enable;
+>>   		};
+>> @@ -641,6 +646,7 @@ GPOEN_DISABLE,
+>>   };
+>>   
+>>   &uart0 {
+>> +	bootph-pre-ram;
+>>   	clock-frequency = <24000000>;
+>>   	pinctrl-names = "default";
+>>   	pinctrl-0 = <&uart0_pins>;
 > 
-> 
-> Hm, it seems you are not using it for this device, so indeed you need to
-> parse phandle. You can still code it simpler -
-> of_property_match_string() is not necessary and
-> of_address_to_resource()+of_node_put()  could be in the
-> ath12k_core_get_reserved_mem()
-> 
+> What about &mmc0, &mmc1, &qspi, &sysgpio, &mmc0_pins, &mmc1_pins, &i2c5?
+> Why not add "bootph-pre-ram;" for them?
 
-Thanks, will make it simpler.
+Would they be needed before relocation of U-Boot to DRAM?
+
+Best regards
+
+Heinrich
 
 
