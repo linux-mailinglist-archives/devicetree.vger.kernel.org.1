@@ -1,157 +1,161 @@
-Return-Path: <devicetree+bounces-143409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B930A29A27
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 20:34:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3419A29A30
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 20:35:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDB27166432
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 19:33:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A64DF18821BC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 19:35:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8456214215;
-	Wed,  5 Feb 2025 19:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A900320127B;
+	Wed,  5 Feb 2025 19:35:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j0LatF6S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kkAVgl1X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8FB20C026;
-	Wed,  5 Feb 2025 19:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780491FF5F4;
+	Wed,  5 Feb 2025 19:35:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738783996; cv=none; b=ThIw9/63pdPzXbr5PEPY8y6ZY8/DdoTpruGe1js9kxdjoCDdWzn6rXOQuDw7MZgdAZo9cHrM3yZwHoIEaYuXIrdBMOqeq9VV42vtPEWJ2tGj9BjsTPSWFUAp6cXf9PAzcUfhUBWUcQN90t0Bko6WEKLsaf4N3DXZ1mAh8jVvy34=
+	t=1738784115; cv=none; b=sru7cxYGiu1mKI13untadRXGtUGWv0iQQGEG9QxbHOJqFWavS73tQrdPXCNpKgav1FUmuErKAybffGL6gcN+LX4MZcbNgH9SwJCEQd/tdgFhADvtknYfdBxBF9+kCCo0BszQCHWfBYOZZOpiL5ORl2S9wLyVV4EJ1U67WR1MaIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738783996; c=relaxed/simple;
-	bh=B/kqz7BMCRcXcNkULlXWbe8rQqpjmskiXpQUTOkxG2A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MH4sbamfwb8Cej/sKJe5tA8z0uQokrLxstThqNB3w4N6/OPklrVZ80GHLkGW8ZEFPfxFthk6VRoEiyzcdaeNJzVU1Zrc7t33XaE8mFlf+oaMs7IIFAjAntMeo4CyUfqBloBm6ktIinDkXzhTxNid5ed43e9KnycVRhblcBb1vz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j0LatF6S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9931DC4CED1;
-	Wed,  5 Feb 2025 19:33:15 +0000 (UTC)
+	s=arc-20240116; t=1738784115; c=relaxed/simple;
+	bh=ShcZHGBdifSRfT1a3wdja/S42QVCg8pR07DE0bj9C2A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E7BK/HNBnPQ1Ww7GelOP/gd5srXdCPUMu6k39l+S95WN4fUrBICeO1eFcAQKcTM8pm1+sG/lvr1y5mrnhLxrCaXqvn1EdC22nbVm6RFY4WPjUYeKmujWtYiQY2DR6tpShmu05XtUyWJKYIJ/i82Fw3pk4v6MF8NpcsKQuQH3iVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kkAVgl1X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B83FC4CED1;
+	Wed,  5 Feb 2025 19:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738783996;
-	bh=B/kqz7BMCRcXcNkULlXWbe8rQqpjmskiXpQUTOkxG2A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j0LatF6SvEfeeYJE9BNmmmeizE1IeFzFC658QJrATwfK6HNFvVLtJrAkMQtMMNUTj
-	 okszOcVt1KpVOzZieCzo1NLZRZflHzBEm2hCN4KoYXqhRSDywgacluxdY7BMG5db3x
-	 EteR5UMxvyv3meUlTb+w/IxDbB+Dj/eO5qHxpvLYsEGTgLwsgYIa9O7r0ymes11/2r
-	 /ceQUFUrMPdni1DrgeYEGvQQ/f9YSwBCaVz0r7y9OEwT7A5hWkASoGSzEAJcMXQ1PO
-	 4E7IgS/cU0UERNM5gFeBk2mPdGvROfdLIox5FUZ76UkNhPj3qJTgYRFHAQbp2nadRb
-	 vQmPlv5stGGBw==
-Date: Wed, 5 Feb 2025 20:33:13 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH net-next 09/13] dt-bindings: net: airoha: Add airoha,npu
- phandle property
-Message-ID: <Z6O8-dUrLNmvnW1u@lore-desk>
-References: <20250205-airoha-en7581-flowtable-offload-v1-0-d362cfa97b01@kernel.org>
- <20250205-airoha-en7581-flowtable-offload-v1-9-d362cfa97b01@kernel.org>
- <20250205-cleaver-evaluator-648c8f0b99bb@spud>
+	s=k20201202; t=1738784114;
+	bh=ShcZHGBdifSRfT1a3wdja/S42QVCg8pR07DE0bj9C2A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kkAVgl1Xjzt1q8t/CAipXH+qrumDPqWOhCqysT2XJzi3Q4mjx7rhEr5vXrre6CZwu
+	 UYBobVOwJGrYY9J0ZnXTjbgFC8CEzK141Cb6yitgYkWG61mAwSPZ5M39xC0ZcAm3Du
+	 n97+odZ/wJpzq+jCACoBPJM2OueummlRWdb5KPKLNW3hQ0rmqbCPzoht2HTFKlCpza
+	 AoxJOn1lPHCf5xHScmmz2J1Vo5x8WknrjEUVj/BPpDvyd9j9E2f//UPP1VYzPUyAjS
+	 S6KkzuwSOPqt30Q5H7BVKna7OkfGcqMo2l5qGMQq7Xp1IDt0GBdM9OGjo/0nV0PryN
+	 mlMk1g1q1BHKg==
+Message-ID: <73d4153e-cc03-45ba-ae2e-3b9f4baf7346@kernel.org>
+Date: Wed, 5 Feb 2025 20:35:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OLRYiDtnqR+Ktbpf"
-Content-Disposition: inline
-In-Reply-To: <20250205-cleaver-evaluator-648c8f0b99bb@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: usb: snps,dwc3: Add property for imod
+To: Badhri Jagan Sridharan <badhri@google.com>
+Cc: Thinh.Nguyen@synopsys.com, gregkh@linuxfoundation.org,
+ felipe.balbi@linux.intel.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, johnyoun@synopsys.com, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ jameswei@google.com, stable@kernel.org
+References: <20250202035100.31235-1-badhri@google.com>
+ <20250202-purring-ambitious-axolotl-4c6ff4@krzk-bin>
+ <CAPTae5+j9N=RBpfHVE-As+dz7HzrxXAH1enWrmSdFzu6DuaTBA@mail.gmail.com>
+ <80172550-a3d7-4d56-927c-ff63debc79f8@kernel.org>
+ <CAPTae5+xF0B64AhT5fjMU9tcW8cT9smO5eUD=Wpsiw2CKAhDAQ@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAPTae5+xF0B64AhT5fjMU9tcW8cT9smO5eUD=Wpsiw2CKAhDAQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 05/02/2025 19:19, Badhri Jagan Sridharan wrote:
+>>>>
+>>>>> +      during device mode operation. A value of 0 disables the interrupt
+>>>>> +      throttling logic and interrupts are generated immediately if event
+>>>>> +      count becomes non-zero. Otherwise, the interrupt is signaled when
+>>>>> +      all of the following conditons are met which are, EVNT_HANDLER_BUSY
+>>>>> +      is 0, event count is non-zero and at least 250ns increments of this
+>>>>> +      value has elapsed since the last time interrupt was de-asserted.
+>>>>
+>>>> Why is this property of a board? Why different boards would wait
+>>>> different amount of time?
+>>>
+>>> Interrupt moderation allows batch processing of events reported by the
+>>> controller.
+>>> A very low value of snps,device-mode-intrpt-mod-interval-ns implies
+>>> that the controller will interrupt more often to make the host
+>>> processor process a smaller set of events Vs a larger value will wake
+>>> up the host processor at longer intervals to process events (likely
+>>> more). So depending what the board is designed for this can be tuned
+>>> to achieve the needed outcome.
+>>
+>> I do not see dependency on the board. Host has the same CPU always, so
+>> it processes with the same speed.
+> 
+>  By "host processor", I am referring to the CPU which is scheduling
+> the TRBs and responding to the events reported by the Synopsys DWC3
+> controller. In a nutshell, the CPU which is driving the  Synopsys DWC3
+> controller. The Synopsys DWC3 controller could be paired with any CPU
+> configuration and therefore is "Host has the same CPU always" a fair
+> assumption to be made ?
 
---OLRYiDtnqR+Ktbpf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Not really, this is part of a SoC, so DWC3 controller is always here
+fixed per given setup with given CPU. You claim that this is independent
+of SoC, but so far arguments do not support that statement. This is
+related to given SoC, so no need for this property and you can deduce
+everything from SoC.
 
-> On Wed, Feb 05, 2025 at 07:21:28PM +0100, Lorenzo Bianconi wrote:
-> > Introduce the airoha,npu property for the npu syscon node available on
-> > EN7581 SoC. The airoha Network Processor Unit (NPU) is used to offload
-> > network traffic forwarded between Packet Switch Engine (PSE) ports.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml | 8 +++++=
-+++
-> >  1 file changed, 8 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-eth.ya=
-ml b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> > index c578637c5826db4bf470a4d01ac6f3133976ae1a..6388afff64e990a20230b0c=
-4e58534aa61f984da 100644
-> > --- a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> > +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> > @@ -63,6 +63,12 @@ properties:
-> >    "#size-cells":
-> >      const: 0
-> > =20
-> > +  airoha,npu:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle to the syscon node used to configure the NPU module
-> > +      used for traffic offloading.
->=20
-> Why do you need a phandle for this, instead of a lookup by compatible?
-> Do you have multiple instances of this ethernet controller on the
-> device, that each need to look up a different npu?
+You push this as a property because you (or vendor) do not want to
+upstream your SoC. That's common pattern, seen here many times. BTW,
+good counter argument would be to show me patches for upstream DTS users
+of this. Actually that would be very easy way to finish discussion...
+but there are no patches, right? Why? Because it is not upstream and it
+is done for downstream solution. Sorry, no. Develop code how upstream
+develops, not downstream.
 
-actually not, but looking up via the compatible string has been naked by
-Krzysztof on a different series [0].
-
-Regards,
-Lorenzo
-
-[0] https://patchwork.kernel.org/project/linux-pci/patch/20250115-en7581-pc=
-ie-pbus-csr-v1-2-40d8fcb9360f@kernel.org/
-
->=20
-> > +
-> >  patternProperties:
-> >    "^ethernet@[1-4]$":
-> >      type: object
-> > @@ -132,6 +138,8 @@ examples:
-> >                       <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
-> >                       <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-> > =20
-> > +        airoha,npu =3D <&npu>;
-> > +
-> >          #address-cells =3D <1>;
-> >          #size-cells =3D <0>;
-> > =20
-> >=20
-> > --=20
-> > 2.48.1
-> >=20
-
-
-
---OLRYiDtnqR+Ktbpf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ6O8+QAKCRA6cBh0uS2t
-rBuDAQC8IfaonQoR+OsBNVLR3QqRP2V9u+fgOgmLkd8nLqxJXgD+LlNv2zJCpRM4
-mPz3craYS9w8t05bFQju9tmeKJ0FSQ4=
-=7CSn
------END PGP SIGNATURE-----
-
---OLRYiDtnqR+Ktbpf--
+Best regards,
+Krzysztof
 
