@@ -1,167 +1,164 @@
-Return-Path: <devicetree+bounces-143197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B55A28725
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:56:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB613A28738
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:59:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAB3A18853BA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:56:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39B99168FA8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:59:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A3222ACDF;
-	Wed,  5 Feb 2025 09:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24EF822A801;
+	Wed,  5 Feb 2025 09:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="f85GYVav"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W9ZxUfDG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 923E722A4ED;
-	Wed,  5 Feb 2025 09:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F901D7985;
+	Wed,  5 Feb 2025 09:59:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738749354; cv=none; b=KOwMYo8dPwU9lOSU9kiha4LvFUV9Ex1G4b8Pbrrqe/7OlOL+P/Eqb/KFS+NDzEsbYfwPn+2ecCzhShjGZKDsh/GABiDkrtFMBf12Y2hJUdgF8iu1MHNSkiJPF0PJTGoqIVFf8DOdnpKLJnw8AJG6MfZvu109TtVuWpmjuDSipAY=
+	t=1738749578; cv=none; b=IbmvkmoDvPkyH8yU6/7SThnQkOStB64Z8K2RFxbTAEoYlSyCqVOEpJxE1jN08EoTN/BnvQlwZQFeYxLZhsL47Srcjo+DEva50+MF6LNmtNKZm9GaKwI5lS88jvcCWErdUOK35NKmnXK5MCVFIpWH++64goSQKQZqHH5s8zvzq2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738749354; c=relaxed/simple;
-	bh=juUmvjJB6cYN04ExXM8nyniU2O+Plp7bVycEkuK8aAI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=llkGPt0o33UaUGZRJqtXlcTmIaT+M0fEuL52DWevN77YoIooFc5FAnqw6V8PEWjBTpKa7ufQl75pnGsGZNr3uoovgjjpMc84gT7MgA/d7eX8E6Mh4nTTevyC34mA8ozGd/e7VbHCxIRMhkyLfc8YYX/9yFmkZr25/tX19GSJwhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=f85GYVav; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 6C44C43419;
-	Wed,  5 Feb 2025 09:55:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1738749350;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=r1Q/Kgs+ZlVqX6ytI6zaw2RB7jNNEUJCoJx72kvQuBk=;
-	b=f85GYVavlQpiXP+nIwAuKxYgQlFS65E6POm8Hqwj9Fb8MRvDCMH6J7ji/3TpCY87zMnZ+j
-	1YMJG7FkuxJrezZvXB83XlJH6Ya7HiTUmZYXGSVnP5e0ZK2tHRNZA2jkvApc8oMwrbyxO5
-	x8ArXop3f0yagd3yRo1aGGbtVnTyWWGO51Xf04cFKvxjJItdzkz0g2DMWKlXWtzQlu0tIZ
-	avsxCrgFG5B1LJV5prXzf6XhwWeblwNteglHfnX7U7DByeII4zAFxOWEEl+q7bPvS1V5oy
-	+eSR/S+EBjPl/EPzGmBRm7aMlgPXjcekMTZ3NNcfpQhOzOLU5AdFy52ZrIgNlw==
-From: Herve Codina <herve.codina@bootlin.com>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Herve Codina <herve.codina@bootlin.com>
-Cc: linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v3 2/2] pwm: Add support for pwm nexus dt bindings
-Date: Wed,  5 Feb 2025 10:55:43 +0100
-Message-ID: <20250205095547.536083-3-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250205095547.536083-1-herve.codina@bootlin.com>
-References: <20250205095547.536083-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1738749578; c=relaxed/simple;
+	bh=BMMdGh0m1XSUjpnLw1cw4cmZPbOCtVdzE3BdNEFI+QM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nOIBh446nhE31RC9EsRZiiaX7Jw6T+pwIrCs3MOs8otpxTVnBXUbx21vheC2UGzNou0yERmXype+Z80kOoXa/7/bix3EfQ7Iomevnk5+mrhCgEEKFHV5QJNj5H29wvkz9SZqI0GQ+u47DzNICFslrH1V8JOSxom09FNnDPwtgH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=W9ZxUfDG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51561pTb023597;
+	Wed, 5 Feb 2025 09:59:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1DRDwzg7jRP9FoY4EZ2cmdf6ROjlJkCPnZVzZlK67l0=; b=W9ZxUfDGLF9mnh8W
+	8vgth5FT3Gy9QnhHn7rKVCHIPcHAGXQxE0TvB8iv56hOgDD4aR8Q8fkQjLgzPfxp
+	v/Af1AcpRjTgo9QMvgJ0Nxqkrp6PmBS3DLf5kmpqbcHEUMugEnTdmsRZsFagyldQ
+	eVG9nIbHhDr9rOvvos8wiqI0t/vQVDbF6qIvvJ45Z4pY7XyVs5KUzxBN5ulXfGx4
+	zhRnmz9/flsncUtXIt3rSAiVGTigAE9VW2k1pVBjgQKcIkYw7AXgMblL4hZsc2Es
+	lQYaaxYlF5gsajPT8z+H7XBdYR9edJXxsntIzE3soXBKTzbwOhPTvZTIB4Y7TGDX
+	todGNg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44m2bxrghf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Feb 2025 09:59:30 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5159xUMO019677
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 5 Feb 2025 09:59:30 GMT
+Received: from [10.151.41.196] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Feb 2025
+ 01:59:26 -0800
+Message-ID: <8fc38912-f1f2-438d-a8ab-bfabb31825fb@quicinc.com>
+Date: Wed, 5 Feb 2025 15:29:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvfedufecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeuuddtvedthedtgfeugeeujeetueehjeffteevtdeugfffffdufedtuedvgeelfeenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgdphhgvlhhopehlohgtrghlhhhoshhtrdhlohgtrghlughomhgrihhnpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedutddprhgtphhtthhopehukhhlvghinhgvkheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtp
- hhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhugidqphifmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-GND-Sasl: herve.codina@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 07/13] wifi: ath12k: add support for fixed QMI firmware
+ memory
+To: Krzysztof Kozlowski <krzk@kernel.org>, <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250130043508.1885026-1-quic_rajkbhag@quicinc.com>
+ <20250130043508.1885026-8-quic_rajkbhag@quicinc.com>
+ <4c9b512f-59d2-4d96-a899-5af4de2c823e@kernel.org>
+ <7d5f7b4c-2a55-41c7-b85c-cb4cd76d553f@quicinc.com>
+ <962dc257-f7a6-49c7-b760-a31fd84e7a56@kernel.org>
+ <c7d9842a-96bf-41aa-8046-52c3e45f90d4@quicinc.com>
+ <f8b8a39d-043a-4be0-9024-c080cf864e7b@kernel.org>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <f8b8a39d-043a-4be0-9024-c080cf864e7b@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Jm_ina_HOBmu5klqHlDOJakEN7WiTm66
+X-Proofpoint-GUID: Jm_ina_HOBmu5klqHlDOJakEN7WiTm66
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-05_04,2025-02-05_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ mlxscore=0 impostorscore=0 suspectscore=0 mlxlogscore=999 bulkscore=0
+ priorityscore=1501 adultscore=0 lowpriorityscore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502050079
 
-Platforms can have a standardized connector/expansion slot that exposes
-signals like PWMs to expansion boards in an SoC agnostic way.
+On 2/5/2025 2:37 PM, Krzysztof Kozlowski wrote:
+> On 04/02/2025 10:06, Raj Kumar Bhagat wrote:
+>> On 2/3/2025 3:42 PM, Krzysztof Kozlowski wrote:
+>>> On 03/02/2025 10:44, Raj Kumar Bhagat wrote:
+>>>> On 1/30/2025 1:16 PM, Krzysztof Kozlowski wrote:
+>>>>> On 30/01/2025 05:35, Raj Kumar Bhagat wrote:
+>>>>>> @@ -2646,6 +2663,136 @@ static int ath12k_qmi_alloc_target_mem_chunk(struct ath12k_base *ab)
+>>>>>>  	return ret;
+>>>>>>  }
+>>>>>>  
+>>>>>> +static int ath12k_qmi_assign_target_mem_chunk(struct ath12k_base *ab)
+>>>>>> +{
+>>>>>> +	struct device_node *mem_node;
+>>>>>> +	struct resource res, m3_res;
+>>>>>> +	u32 bdf_start_addr;
+>>>>>> +	int i, idx, ret;
+>>>>>> +
+>>>>>> +	for (i = 0, idx = 0; i < ab->qmi.mem_seg_count; i++) {
+>>>>>> +		switch (ab->qmi.target_mem[i].type) {
+>>>>>> +		case HOST_DDR_REGION_TYPE:
+>>>>>> +			mem_node = ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
+>>>>>
+>>>>>
+>>>>> Why cannot you use existing API for reserved memory -
+>>>>> of_reserved_mem_lookup()?
+>>>>>
+>>>>
+>>>> The of_reserved_mem_lookup() requires reserved memory node to read the memory and
+>>>> return in the structure "struct reserved_mem".
+>>>>
+>>>> The of_reserved_mem_lookup() would be used after we get the reserved memory node
+>>>> using the API - ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
+>>>>
+>>>> In next version we would use of_reserved_mem_lookup(), Something like below:
+>>>>     mem_node = ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
+>>>
+>>> Then why do you need ath12k_core_get_reserved_mem_by_name() in the first
+>>> place? Just use of_reserved_mem_lookup() directly. Why do you need to
+>>> parse phandle before of_reserved_mem_lookup()?
+>>>
+>>
+>> Sorry, I'm having difficulty understanding this.
+>> We have the WiFi node at ab->dev->of_node, but we don't have a node for the reserved-memory
+>> 'q6-region'. The of_reserved_mem_lookup() function requires the device node for 'q6-region'.
+>>
+>> Could you please suggest how we can use of_reserved_mem_lookup() without obtaining the
+>> 'q6-region' node first.
+> 
+> 
+> Hm, it seems you are not using it for this device, so indeed you need to
+> parse phandle. You can still code it simpler -
+> of_property_match_string() is not necessary and
+> of_address_to_resource()+of_node_put()  could be in the
+> ath12k_core_get_reserved_mem()
+> 
 
-The support for nexus node [1] has been added to handle those cases in
-commit bd6f2fd5a1d5 ("of: Support parsing phandle argument lists through
-a nexus node"). This commit introduced of_parse_phandle_with_args_map()
-to handle nexus nodes in a generic way and the gpio subsystem adopted
-the support in commit c11e6f0f04db ("gpio: Support gpio nexus dt
-bindings").
-
-A nexus node allows to remap a phandle list in a consumer node through a
-connector node in a generic way. With this remapping supported, the
-consumer node needs to knwow only about the nexus node. Resources behind
-the nexus node are decoupled by the nexus node itself.
-
-This is particularly useful when this consumer is described in a
-device-tree overlay. Indeed, to have the exact same overlay reused with
-several base systems the overlay needs to known only about the connector
-is going to be applied to without any knowledge of the SoC (or the
-component providing the resource) available in the system.
-
-As an example, suppose 3 PWMs connected to a connector. The connector
-PWM 0 and 2 comes from the PWM 1 and 3 of the pwm-controller1. The
-connector PWM 1 comes from the PWM 4 of the pwm-controller2. An
-expansion device is connected to the connector and uses the connector
-PMW 1.
-
-Nexus node support in PWM allows the following description:
-	soc {
-		soc_pwm1: pwm-controller1 {
-			#pwm-cells = <3>;
-		};
-
-		soc_pwm2: pwm-controller2 {
-			#pwm-cells = <3>;
-		};
-	};
-
-	connector: connector {
-		#pwm-cells = <3>;
-		pwm-map = <0 0 0 &soc_pwm1 1 0 0>,
-			  <1 0 0 &soc_pwm2 4 0 0>,
-			  <2 0 0 &soc_pwm1 3 0 0>;
-		pwm-map-mask = <0xffffffff 0x0 0x0>;
-		pwm-map-pass-thru = <0x0 0xffffffff 0xffffffff>;
-	};
-
-	expansion_device {
-		pwms = <&connector 1 57000 0>;
-	};
-
-From the expansion device point of view, the PWM requested is the PWM 1
-available at the connector regardless of the exact PWM wired to this
-connector PWM 1. Thanks to nexus node remapping described at connector
-node, this PWM is the PWM 4 of the pwm-controller2.
-
-The nexus node remapping handling consists in handling #pwm-cells,
-pwm-map, pwm-map-mask and pwm-map-pass-thru properties. This is already
-supported by of_parse_phandle_with_args_map() thanks to its stem_name
-parameter.
-
-Add support for nexus node device-tree binding and the related remapping
-in the PWM subsystem by simply using of_parse_phandle_with_args_map()
-instead of of_parse_phandle_with_args().
-
-[1] https://github.com/devicetree-org/devicetree-specification/blob/v0.4/source/chapter2-devicetree-basics.rst#nexus-nodes-and-specifier-mapping
-
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- drivers/pwm/core.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/pwm/core.c b/drivers/pwm/core.c
-index ccd54c089bab..a4eedf09922d 100644
---- a/drivers/pwm/core.c
-+++ b/drivers/pwm/core.c
-@@ -1716,8 +1716,7 @@ static struct pwm_device *of_pwm_get(struct device *dev, struct device_node *np,
- 			return ERR_PTR(index);
- 	}
- 
--	err = of_parse_phandle_with_args(np, "pwms", "#pwm-cells", index,
--					 &args);
-+	err = of_parse_phandle_with_args_map(np, "pwms", "pwm", index, &args);
- 	if (err) {
- 		pr_err("%s(): can't parse \"pwms\" property\n", __func__);
- 		return ERR_PTR(err);
--- 
-2.47.1
+Thanks, will make it simpler.
 
 
