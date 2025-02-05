@@ -1,239 +1,200 @@
-Return-Path: <devicetree+bounces-143296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34079A290E7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:42:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A4E0A29194
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:53:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4498E188ADF2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:41:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EF861694B9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718C21714CF;
-	Wed,  5 Feb 2025 14:40:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF8D190678;
+	Wed,  5 Feb 2025 14:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="cLgXJWLA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LaYQKHsb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA17F376;
-	Wed,  5 Feb 2025 14:40:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 444C818FDA5;
+	Wed,  5 Feb 2025 14:42:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738766457; cv=none; b=mddVELhGtMGuKrbcAZOt+Ku0lh1NzvfxRwDan5sBSV1bzwjm4xLQuGJ8sKNHQe7OO+XNV6/6jGk8l6t10lsonsQjKPzjtx/SvTbtpNP3cpXpqwC1n9gfH8IGZRNtMfFNYM6XJ6kU9Wz/vT/0wyjoUlp2lv0keENtQytDRaE1J0c=
+	t=1738766541; cv=none; b=J1E55W94Wew/5i+VXX6RtI84k1/iFJGWGfn+kX1jCqGYlEbI1rjv3okiLszbJiE+Ut4D5cFltkYsvxixM0RrsB8x0maDGB72+tGDSRE5Q2+i/RrPB4SJ3mC0LtLUzq/sflR2yvIRxBC1mXPWqJwv8hKhR3aKsVcGiYctF5mlCn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738766457; c=relaxed/simple;
-	bh=PKEwQJtMppnnCrd/A7LT0nMscPJpOdf1mwdXkQb97J8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CHFo7kTa4b89nfW4nhvrFBrADYj4iRPGWF+QycOOmPlOt5cR9fp6Edj3MWh+vVaHyzZ7R3ArJ7UBwG/zMPRtB8g/9vYKYznsf7O9i2f+nZUcZG75kHgETBl478IDPTlCtO1qAXrfSdIKQOc6+HM7FOqhaUbNK7HcbonBmWbPRcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=cLgXJWLA; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2FF991038193F;
-	Wed,  5 Feb 2025 15:40:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1738766451;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cEiBKmEICWctotPHCUAWGTwbH/Iy+hrCjjP5QKi/9Lo=;
-	b=cLgXJWLAdAMZvNv+TCbu3Fl/9FxjBS8zH7YHTKts/CjAxxH5YGIV4eGxb6BU2yIjt7+yb+
-	8r/EGuxZtRCFA3dYOFw6yk1NU56YSKX6LfoV5/780QCG0fKpirmzFbkP8DbsZe6jBsySVU
-	AJFeXmosGVZHKGIpRNa9CVZp0b4ibN8O6DoL7nV7+BCCs9gBRwXyoi5WLcYQ5JA84kmyJc
-	A+3cCN08MaudaM2OTRcqq2aN1oP4Bqfr2dusv+piah0EYAPetkqzo2L8arhp0CL0a68szQ
-	8DIlW9B5/EY+xjYxFvBYC5IQPGrV6Ap58bCHAgvnnZgt0zXWui0SYxrKdhu1sQ==
-Date: Wed, 5 Feb 2025 15:40:44 +0100
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Stefan
- Wahren <wahrenst@gmx.net>
-Subject: Re: [RESEND PATCH v11 1/3] dt-bindings: display: Add
- powertip,{st7272|hx8238a} as DT Schema description
-Message-ID: <20250205154044.7b1fd2c5@wsk>
-In-Reply-To: <20250203132108.77f2123c@wsk>
-References: <20250109154149.1212631-1-lukma@denx.de>
-	<20250203132108.77f2123c@wsk>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1738766541; c=relaxed/simple;
+	bh=VGNIL2ngEXO2rgXRSeJHStFd2S70dN82fpb4kRBxmlE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=W/Jsm0s86R20vb0m4y+AxEqrNHryfvwgjTjBPNXS5RzaZLwOhVLinfciXbPb8OgfBDkY057J8S+rCc8u03YGMUU2F87US3c/l9jfCnYP2tpM2LKG9oEIlFBrDxZOawi/gwWsgaQnBiIOGU7bhhJV8Gj8GTANotC7ux+PrZDZCn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LaYQKHsb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1299DC4CEDD;
+	Wed,  5 Feb 2025 14:42:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738766541;
+	bh=VGNIL2ngEXO2rgXRSeJHStFd2S70dN82fpb4kRBxmlE=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=LaYQKHsbMH0IlhxCbJBI7At84kU2Pnw2OExLBJQkWCp3JuKHXlE4NoP10Ekn7U9ra
+	 LzxYr7QhD2ecdgnatLcgHkIrj21gSnTFAq0l/BzsExbUCVnMeEHuyAKU25qyizfvTa
+	 Kipm9eWSkHKlHoVP49hyqwwZC35ugl8rG0pW9CEBPHdMnAVZdRPHQYWbQKXiICxXuJ
+	 yRLP5aHa9ehLwLiuUw5M2yut0ekNAAaUrFk0su00Sl3tL3A+7HAH8S1Gvz3rc+xmcC
+	 gQ9+x0bgWLk16zUHrNiPch+OUOb92PQ7Y6z14M2FBNKXqlMvHiEu/j1rh5uehlDyQo
+	 QT9qfRqOtEHQQ==
+Message-ID: <248000f5-63db-492c-884d-ac72db337493@kernel.org>
+Date: Wed, 5 Feb 2025 15:42:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/NX.kk_nUKqVaGcqUC8c2=oO";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] dt-bindings: i3c: Add Qualcomm I3C master
+ controller bindings
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
+ alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
+ linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250205143109.2955321-1-quic_msavaliy@quicinc.com>
+ <20250205143109.2955321-2-quic_msavaliy@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250205143109.2955321-2-quic_msavaliy@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---Sig_/NX.kk_nUKqVaGcqUC8c2=oO
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On 05/02/2025 15:31, Mukesh Kumar Savaliya wrote:
+> Add device tree bindings for the Qualcomm I3C master controller. This
+> includes the necessary documentation and properties required to describe
+> the hardware in the device tree.
 
-Dear Community,
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-> Dear Community,
->=20
-> > This patch provides the DT Schema description of:
-> > - powertip,st7272  320 x 240 LCD display
-> > - powertip,hx8238a 320 x 240 LCD display
-> >=20
-> > Used with the different HW revisions of btt3 devices.
-> >  =20
->=20
-> Gentle ping on this window... I hope that it will make it into
+Use modern terminology, which means:
+s/master/whatever else or even nothing/
+See other recent bindings and discussions.
 
-Not "ping on this window" :-) but on this patch :-)
 
-> upstream during this merge window.
->=20
-> Thanks in advance.
->=20
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >=20
-> > Changes for v9:
-> > - New patch
-> >=20
-> > Changes for v10:
-> > - None
-> >=20
-> > Changes for v11:
-> > - Combine both separate dt-bindings patches for powertip,st7272 and
-> >   powertip,hx8238a into one
-> > - Drop the quotes for in "title" entry of powertip*.yaml files
-> > ---
-> >  .../display/panel/powertip,hx8238a.yaml       | 29
-> > +++++++++++++++++++ .../display/panel/powertip,st7272.yaml        |
-> > 29 +++++++++++++++++++ 2 files changed, 58 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
-> > create mode 100644
-> > Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
-> > b/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
-> > new file mode 100644 index 000000000000..b7d74faeb5d5 --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
-> > @@ -0,0 +1,29 @@ +# SPDX-License-Identifier: GPL-2.0-only OR
-> > BSD-2-Clause +%YAML 1.2
-> > +---
-> > +$id:
-> > http://devicetree.org/schemas/display/panel/powertip,hx8238a.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml# +
-> > +title: Powertip Electronic Technology Co. 320 x 240 LCD panel
-> > +
-> > +maintainers:
-> > +  - Lukasz Majewski <lukma@denx.de>
-> > +
-> > +allOf:
-> > +  - $ref: panel-dpi.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: powertip,hx8238a
-> > +      - {} # panel-dpi, but not listed here to avoid false select
-> > +
-> > +  height-mm: true
-> > +  panel-timing: true
-> > +  port: true
-> > +  power-supply: true
-> > +  width-mm: true
-> > +
-> > +additionalProperties: false
-> > +
-> > +...
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
-> > b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
-> > new file mode 100644 index 000000000000..f3622800f13f --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
-> > @@ -0,0 +1,29 @@ +# SPDX-License-Identifier: GPL-2.0-only OR
-> > BSD-2-Clause +%YAML 1.2
-> > +---
-> > +$id:
-> > http://devicetree.org/schemas/display/panel/powertip,st7272.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml# +
-> > +title: Powertip Electronic Technology Co. 320 x 240 LCD panel
-> > +
-> > +maintainers:
-> > +  - Lukasz Majewski <lukma@denx.de>
-> > +
-> > +allOf:
-> > +  - $ref: panel-dpi.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: powertip,st7272
-> > +      - {} # panel-dpi, but not listed here to avoid false select
-> > +
-> > +  height-mm: true
-> > +  panel-timing: true
-> > +  port: true
-> > +  power-supply: true
-> > +  width-mm: true
-> > +
-> > +additionalProperties: false
-> > +
-> > +... =20
->=20
->=20
->=20
->=20
-> Best regards,
->=20
-> Lukasz Majewski
->=20
-> --
->=20
-> DENX Software Engineering GmbH,      Managing Director: Erika Unter
-> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email:
-> lukma@denx.de
+> 
+> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> ---
+>  .../bindings/i3c/qcom,i3c-master.yaml         | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml
+> new file mode 100644
+> index 000000000000..ad63ea779fd6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml
 
+Filename matching compatible.
+
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i3c/qcom,i3c-master.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm I3C master controller
+> +
+> +maintainers:
+> +  - Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> +
+> +allOf:
+> +  - $ref: i3c.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,geni-i3c
+
+No SoC? So to be sure: you claim all future SoCs will be using exactly
+the same interface. No new compatibles, no new properties will be added.
+
+> +
+> +  reg:
+> +    minItems: 1
+
+Drop
+
+> +    maxItems: 2
+
+Drop and instead list and describe items
+
+
+> +
+> +  clocks:
+> +    minItems: 1
+
+Look at other bindings. There is never code like this.
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: se-clk
+
+Drop clock-names
+
+> +
+> +  interrupts-extended:
+> +    minItems: 1
+> +    maxItems: 3
+
+As well - there is never an interrupts-extended property. Just interrupts.
+
+Also drop constraints and list items.
 
 
 
 Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/NX.kk_nUKqVaGcqUC8c2=oO
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmejeGwACgkQAR8vZIA0
-zr26xggAneqSbPpy5mv8Ai9RLDSjNCc66Zdwn6xEQ1QHl2zwo2neclEt7RRCRXC1
-k8e5eu/5fagPSCCrZLJbMSYLENWkdYfx/RG5WMjaAeypsLKTpbHHfp3R1RWihe+f
-TppC0mjbvF+a3Yu1y80L2myhIaWFPZtgjW0cx50h5CRtSFeopgrpUB7aXNGanyGR
-JrL4/OiQ65yKiyewwjRVPSHsqfvq7RnhKFR9znVSiUgnhgv81QgGRybI8GtrwLST
-NvSbxfelBlFeBQ1G8cqhXbfX3efIo/wy/P1C/ILRU0fVgBiUIz1Y68s3CuySnA52
-3/EsVzfwOo3PpqQQpY0xecKeZtHlhg==
-=Z4og
------END PGP SIGNATURE-----
-
---Sig_/NX.kk_nUKqVaGcqUC8c2=oO--
+Krzysztof
 
