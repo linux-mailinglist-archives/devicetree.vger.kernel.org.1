@@ -1,123 +1,131 @@
-Return-Path: <devicetree+bounces-143220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8627BA288F0
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:12:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 731B0A28951
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:31:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C00E3AF860
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:06:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5A437A3ECA
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C7A522CBC9;
-	Wed,  5 Feb 2025 11:03:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DA722A4D9;
+	Wed,  5 Feb 2025 11:31:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GbevU2dF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gauss.telenet-ops.be (gauss.telenet-ops.be [195.130.132.49])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BCF622CBDF
-	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 11:03:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EADD151988;
+	Wed,  5 Feb 2025 11:31:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738753414; cv=none; b=h379gRTlO/AglpkZRcGMKGn3k/p+RV4AK3xZWQ/WEycALYYTreWTbMkhWwEP/UEbmCU4K2BYk170vxQ7yqy2eghXXQr6T68R9F76iVgFrIqTrlAF8joRIsQpko74kM9mw6Ru8IItGEViPsEoWndwWtJud65VQZqz/gVRY6M50kQ=
+	t=1738755091; cv=none; b=LVX6x/3Xl1ONEBDcbBZfpbumtXFgtzFewKKhcFsEvY6gx/bdcEse1hgwscjX/QYmdlALIfL0WG0tbveAYomWcRMJzGVFeGgeGxzTLWIzj4FeABiwJC5Nb7LXiTz3zFKsrfovKjj9zQbqglYBZGvfURhS/vOsR7U4injaZxHEIRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738753414; c=relaxed/simple;
-	bh=Gb8T/2ma94I3zk+0P0WpSFqJJHsKr/c2dnhyu/mr/7s=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mTBOgIPkNOwxqAjofyA0uxkVhCYzoMXpZKtzkBqpqjFyrep3OOXYYl0IuMN+KSjHgdfHqVjbbDwnN++dpPJhykddiEt4IRGHiPRemw3/dg6FeCTwhr1aFJVCnG5qx+6MjU/o9kovq4gBjU3PjP0PPaUUktgBp+eskR98aUQ8ZsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-	by gauss.telenet-ops.be (Postfix) with ESMTPS id 4Yny5Z3xpPz4x52N
-	for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 12:03:30 +0100 (CET)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:c448:5c9f:5d50:ad45])
-	by laurent.telenet-ops.be with cmsmtp
-	id 9n3M2E0045P95W301n3MM5; Wed, 05 Feb 2025 12:03:22 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.97)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1tfdBU-0000000Fss8-3JJ8;
-	Wed, 05 Feb 2025 12:03:20 +0100
-Received: from geert by rox.of.borg with local (Exim 4.97)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1tfdBg-00000006O1x-3TeW;
-	Wed, 05 Feb 2025 12:03:20 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] arm64: dts: freescale: Switch to hp-det-gpios
-Date: Wed,  5 Feb 2025 12:03:19 +0100
-Message-ID: <accb30064064bb5987520b8c7e74a941b08140e6.1738753123.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1738755091; c=relaxed/simple;
+	bh=xQAaiWRI837QqZGq4g1Cv6e3xoqXAuFxADtXvurZNqc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=UK5i+CmewbTdrkWtRmv1uMFfQVvyNno+PAUqZEo+zsBV9tncZU+yoMRLOv6npr5E+LXnEZ1a7wbfAyqX1uH86Btl+8hq3mIaDnizFuAj8Tyyr5wJvet2wk1tIlX5z8x8ApNbMShH4scFSrkgbSlbkY/Qh9ZkaFIO+BHl+Ebohos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GbevU2dF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAFE2C4CED1;
+	Wed,  5 Feb 2025 11:31:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738755090;
+	bh=xQAaiWRI837QqZGq4g1Cv6e3xoqXAuFxADtXvurZNqc=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=GbevU2dFgaMlqwyQwZNJYtErr7VOyHiV1wH+q+o8XG6qxUlCvCX7tIXyfTYRkseGT
+	 JYCzuxuw4bTM+F65Fg++T7eVNn+qzsFqvyai1JOk6J22SAwq2itGWMn7A4EjQQlVTh
+	 weWg/lTiZ5//1R3c85D0bL41ew569d1QH8T9Z9NEXkRYvlaN4u53KNO9VQy2eeeOUn
+	 YzYuo1dLYJb7ByWVhNly+pEm0QRsXsS02gB+AHneRR8AKxVwJw0KisEMoS9lY1TMoq
+	 lLwy5QaD38a0+UwaVDvknq10QizzadWuf13l9UwIN5npMardUuV3p+2wWVmC11u9Yi
+	 0CCxw//qS3EfQ==
+Message-ID: <0f77480d-e93c-44e2-ae9b-615b2368a011@kernel.org>
+Date: Wed, 5 Feb 2025 12:31:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: socfpga: agilex5: add NAND board file
+To: niravkumar.l.rabara@intel.com, Dinh Nguyen <dinguyen@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, nirav.rabara@altera.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250205101318.1778757-1-niravkumar.l.rabara@intel.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250205101318.1778757-1-niravkumar.l.rabara@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Replace the deprecated "hp-det-gpio" property by "hp-det-gpios" in
-Freescale Generic ASoC Sound Card device nodes.
+On 05/02/2025 11:13, niravkumar.l.rabara@intel.com wrote:
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
+> new file mode 100644
+> index 000000000000..ccc9be2cd7c6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
+> @@ -0,0 +1,89 @@
+> +// SPDX-License-Identifier:     GPL-2.0
+> +/*
+> + * Copyright (C) 2025, Altera Corporation
+> + */
+> +#include "socfpga_agilex5.dtsi"
+> +
+> +/ {
+> +	model = "SoCFPGA Agilex5 SoCDK";
+> +	compatible = "intel,socfpga-agilex5-socdk", "intel,socfpga-agilex5";
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - Dependency commit cfd1054c65eefec3 ("ASoC: fsl-asoc-card: Add missing
-    handling of {hp,mic}-dt-gpios") is in v6.13.
----
- arch/arm64/boot/dts/freescale/imx8qm-mek.dts      | 2 +-
- arch/arm64/boot/dts/freescale/imx8qxp-mek.dts     | 2 +-
- arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-index 50fd3370f7dce9b3..fe186b4bcb48ccbf 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-@@ -249,7 +249,7 @@ sound-wm8960 {
- 		model = "wm8960-audio";
- 		audio-cpu = <&sai1>;
- 		audio-codec = <&wm8960>;
--		hp-det-gpio = <&lsio_gpio0 31 GPIO_ACTIVE_HIGH>;
-+		hp-det-gpios = <&lsio_gpio0 31 GPIO_ACTIVE_HIGH>;
- 		audio-routing =	"Headphone Jack", "HP_L",
- 				"Headphone Jack", "HP_R",
- 				"Ext Spk", "SPK_LP",
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-index be79c793213a53f6..190a19b0a2f5a445 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-@@ -213,7 +213,7 @@ sound-wm8960 {
- 		model = "wm8960-audio";
- 		audio-cpu = <&sai1>;
- 		audio-codec = <&wm8960>;
--		hp-det-gpio = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
-+		hp-det-gpios = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
- 		audio-routing = "Headphone Jack", "HP_L",
- 				"Headphone Jack", "HP_R",
- 				"Ext Spk", "SPK_LP",
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-index 8bc066c3760cb13b..4ba86a6e7e28907b 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-@@ -183,7 +183,7 @@ sound-wm8962 {
- 		model = "wm8962-audio";
- 		audio-cpu = <&sai3>;
- 		audio-codec = <&wm8962>;
--		hp-det-gpio = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-+		hp-det-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
- 		audio-routing = "Headphone Jack", "HPOUTL",
- 				"Headphone Jack", "HPOUTR",
- 				"Ext Spk", "SPKOUTL",
--- 
-2.43.0
+You cannot use other boards compatibles. Different device, different
+compatible.
 
+Best regards,
+Krzysztof
 
