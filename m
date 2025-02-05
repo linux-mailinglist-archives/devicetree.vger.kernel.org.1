@@ -1,333 +1,239 @@
-Return-Path: <devicetree+bounces-143235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 325F4A289C3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:56:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35620A28A32
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 13:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3C401631C8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:56:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E68521888CF2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:25:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F1322332A;
-	Wed,  5 Feb 2025 11:56:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D4822CBD4;
+	Wed,  5 Feb 2025 12:24:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WiL6YqpV"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="T95rmct+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB8D621CFF0;
-	Wed,  5 Feb 2025 11:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F276922CBCF;
+	Wed,  5 Feb 2025 12:24:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738756576; cv=none; b=haoBzpbMTDBTMRLln0wcsuFIIU6CdPVDdonPPhgdm0PiOQSizf2yuGQi/tNXouRhoLgQFISRlSw1Vvu2Pb/bRupEkF448h1j9PNpTgitUZLLvNTV/XYLVuzoRn6lNpurmeaQzgqAsQ7w07S1MjlbN5pMkEpZ30B3Q3mZA9kmeEk=
+	t=1738758296; cv=none; b=EPCXoLJeQiG/HJY0lMZKhPK6UBdZPE7F2PYYlL9Ll/jFsriQLXmcee3v5IhixyRYpuUzIcguvqsp28OziUjCLvgh9yaOtqUKe3hpqeuVblA7IZ4nfH5wNtAHixh6+BGcnKJajwq+fNoKMwf45xWTbEMSv31eg8RYjGKIKZtuY5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738756576; c=relaxed/simple;
-	bh=ZeNqWnGBUHdjbh6jxGItIR1Qfr8YwI/0OgUmeErnptw=;
-	h=Message-ID:Date:MIME-Version:Subject:References:From:To:CC:
-	 In-Reply-To:Content-Type; b=dfMrG9EfjXJQxgV0RYEC/HxA9DGS2MKFf7X1lw7b69qdbSxrmicYA9XEOR3yO9kBYrxkHNpSb+nRTrb38hoMPuZDqvmLkkCzWBqp4/9seBClRSqUNrjCzZChuISGJlvyQlq0q/nVoOxJkfs1x+3VMDnkHD28iFjM7Tpnb6yFi9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WiL6YqpV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 515Ah8BT025274;
-	Wed, 5 Feb 2025 11:56:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	H97mfn5h6EgoPMU2fFHXHGRuHucEZel5RK4+JcfSGKA=; b=WiL6YqpVeIPIzXqN
-	TkmLeTHDba1mPx6qsqgICceKurWrFEb263VOReRLrK6AP3TFcOXiG8b1HgRShy9F
-	/6404nHlcanC75b+jXMKPau086cRHaxvYYaZ/z7/I2Kq5zP3fMfhlLkLNy+ZIsPN
-	VD0pc0g5DCZX9RoBhbye6ZQ3VWZBDftFiKwQkfQzKBOe+4yvfKYzINixE/Vn+zmn
-	1FLBbMWEHzQI9axKMV83Q4IK00FnYqvzp7BjMWa+3o87DI0ApedB25nK0XfE8JJt
-	SU3KXBiXf7Nu1BGMLvZIoa4aYkHqABbKruxDhkJDsw5c4z7hSG/6NbItDZrzNjcW
-	wyru6g==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44m6fqr5mn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Feb 2025 11:56:09 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 515Bu7XR017852
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Feb 2025 11:56:07 GMT
-Received: from [10.219.0.139] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Feb 2025
- 03:56:02 -0800
-Message-ID: <3c0746c2-ec51-4ce9-82e4-80191c4894bc@quicinc.com>
-Date: Wed, 5 Feb 2025 17:25:59 +0530
+	s=arc-20240116; t=1738758296; c=relaxed/simple;
+	bh=dpc/3d2Ymx8Og5qx3RhHpAeonikVzPi3qyOCTmn2pvg=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=qDJ5ve851gEcGwdNKrI3MfnQwwvrKq0zT9iC8dRr75xve16tM4/jLAbNQ7h/KZ+mGNqgswQzEMNkYTT8K55WIjSkFhRmThQoFH18dntmb9POCgkn9T2LmhZNDoLoHrnrJfU9IgeORtzDADup2Fh6/Zq8DLqiU39wrpm+lXG8f18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=T95rmct+; arc=none smtp.client-ip=162.240.238.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
+	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=IX6S+s8EeF017CitJ0Amm6YZClGj6PE4I3uBra4Hybs=; b=T95rmct+50ggaPOhZQXO5EXRKt
+	SzqAyadJCTHnS47NVlioNc1Nb+vLxPAxMOpb/Lr8N6osbpDCcdN63v47oQwPxLG9TM8iHpJQGOcKa
+	mxfUIaLig+XCLE6k9KiHg/bwRQnirwkz8TUnYUGxFYUA5/ViyGYXOD+hP/JKOT4u8l3VSMrvUFPlm
+	H/6yUK/K85IztWd1blooChHX+1sMKPOM64Hw8RUycuWB/maiQfnh2Sfo1LsHYBqhUiOwHa9mWe0MP
+	LjtL2DQdm+BjakRd2wBYDjyWZnV9nem3EjF5AOtcxBURpkKNPC8nI4D4Hdx72wTfsOCuQneF/etw4
+	X1lMPdKA==;
+Received: from [122.175.9.182] (port=21369 helo=zimbra.couthit.local)
+	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <basharath@couthit.com>)
+	id 1tfeSP-0007fK-0V;
+	Wed, 05 Feb 2025 17:54:41 +0530
+Received: from zimbra.couthit.local (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTPS id 91D1A1783F46;
+	Wed,  5 Feb 2025 17:54:32 +0530 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTP id 708381783FF1;
+	Wed,  5 Feb 2025 17:54:32 +0530 (IST)
+Received: from zimbra.couthit.local ([127.0.0.1])
+	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id NEkAupy8cBz9; Wed,  5 Feb 2025 17:54:32 +0530 (IST)
+Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
+	by zimbra.couthit.local (Postfix) with ESMTP id 003331783F46;
+	Wed,  5 Feb 2025 17:54:31 +0530 (IST)
+Date: Wed, 5 Feb 2025 17:54:31 +0530 (IST)
+From: Basharath Hussain Khaja <basharath@couthit.com>
+To: horms <horms@kernel.org>
+Cc: basharath <basharath@couthit.com>, danishanwar <danishanwar@ti.com>, 
+	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
+	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
+	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
+	conor+dt <conor+dt@kernel.org>, nm <nm@ti.com>, 
+	ssantosh <ssantosh@kernel.org>, tony <tony@atomide.com>, 
+	richardcochran <richardcochran@gmail.com>, 
+	parvathi <parvathi@couthit.com>, schnelle <schnelle@linux.ibm.com>, 
+	rdunlap <rdunlap@infradead.org>, diogo ivo <diogo.ivo@siemens.com>, 
+	m-karicheri2 <m-karicheri2@ti.com>, 
+	jacob e keller <jacob.e.keller@intel.com>, 
+	m-malladi <m-malladi@ti.com>, 
+	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
+	afd <afd@ti.com>, s-anna <s-anna@ti.com>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+	netdev <netdev@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	linux-omap <linux-omap@vger.kernel.org>, 
+	pratheesh <pratheesh@ti.com>, prajith <prajith@ti.com>, 
+	vigneshr <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
+	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
+	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
+	mohan <mohan@couthit.com>
+Message-ID: <1980208448.516541.1738758271732.JavaMail.zimbra@couthit.local>
+In-Reply-To: <20250131103352.GH24105@kernel.org>
+References: <20250124122353.1457174-1-basharath@couthit.com> <20250124134056.1459060-7-basharath@couthit.com> <20250131103352.GH24105@kernel.org>
+Subject: Re: [RFC v2 PATCH 06/10] net: ti: prueth: Adds HW timestamping
+ support for PTP using PRU-ICSS IEP module
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/2] arm64: dts: qcom: qcs6490-rb3gen: add and enable
- BT node
-References: <20250130183434.2394058-2-quic_janathot@quicinc.com>
- <4de200f8-5924-449d-a5a7-cf08306cb916@quicinc.com>
-Content-Language: en-US
-From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marcel Holtmann
-	<marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
-        <quic_anubhavg@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-bluetooth@vger.kernel.org>
-In-Reply-To: <4de200f8-5924-449d-a5a7-cf08306cb916@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: sIlujtZCgxI0vyA7y-nSviLlrz2Fzo04
-X-Proofpoint-ORIG-GUID: sIlujtZCgxI0vyA7y-nSviLlrz2Fzo04
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-05_05,2025-02-05_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- priorityscore=1501 mlxscore=0 mlxlogscore=999 lowpriorityscore=0
- adultscore=0 suspectscore=0 impostorscore=0 clxscore=1015 spamscore=0
- phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502050096
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
+Thread-Topic: prueth: Adds HW timestamping support for PTP using PRU-ICSS IEP module
+Thread-Index: hqQUi4g5G9OQqwwgSSWJWploNUaQCQ==
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
+X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
 
-Hi All,
-
-On 1/31/2025 4:33 PM, Janaki Ramaiah Thota wrote:
-> Add the PMU node for WCN6750 present on the qcs6490-rb3gen
-> board and assign its power outputs to the Bluetooth module.
+> On Fri, Jan 24, 2025 at 07:10:52PM +0530, Basharath Hussain Khaja wrote:
+>> From: Roger Quadros <rogerq@ti.com>
+>> 
+>> PRU-ICSS IEP module, which is capable of timestamping RX and
+>> TX packets at HW level, is used for time synchronization by PTP4L.
+>> 
+>> This change includes interaction between firmware and user space
+>> application (ptp4l) with required packet timestamps. The driver
+>> initializes the PRU firmware with appropriate mode and configuration
+>> flags. Firmware updates local registers with the flags set by driver
+>> and uses for further operation. RX SOF timestamp comes along with
+>> packet and firmware will rise interrupt with TX SOF timestamp after
+>> pushing the packet on to the wire.
+>> 
+>> IEP driver is available in upstream and we are reusing for hardware
+>> configuration for ICSSM as well. On top of that we have extended it
+>> with the changes for AM57xx SoC.
+>> 
+>> Extended ethtool for reading HW timestamping capability of the PRU
+>> interfaces.
+>> 
+>> Currently ordinary clock (OC) configuration has been validated with
+>> Linux ptp4l.
+>> 
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>> Signed-off-by: Andrew F. Davis <afd@ti.com>
+>> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+>> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
 > 
-> In WCN6750 module sw_ctrl and wifi-enable pins are handled
-> in the wifi controller firmware. Therefore, it is not required
-> to have those pins' entries in the PMU node.
+> ...
 > 
-> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-> ---
->   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 167 ++++++++++++++++++-
->   1 file changed, 166 insertions(+), 1 deletion(-)
+>> diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+>> b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/ 
-> boot/dts/qcom/qcs6490-rb3gen2.dts
-> index 7a36c90ad4ec..0a3243499dfb 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -1,6 +1,6 @@
->   // SPDX-License-Identifier: BSD-3-Clause
->   /*
-> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights 
-> reserved.
-> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights 
-> reserved.
->    */
->    /dts-v1/;
-> @@ -34,6 +34,7 @@ / {
->        aliases {
->           serial0 = &uart5;
-> +        serial1 = &uart7;
->       };
->        chosen {
-> @@ -218,6 +219,63 @@ vph_pwr: vph-pwr-regulator {
->           regulator-min-microvolt = <3700000>;
->           regulator-max-microvolt = <3700000>;
->       };
-> +
-> +    wcn6750-pmu {
-> +        compatible = "qcom,wcn6750-pmu";
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&bt_en>;
-> +        vddaon-supply = <&vreg_s7b_0p972>;
-> +        vddasd-supply = <&vreg_l11c_2p8>;
-> +        vddpmu-supply = <&vreg_s7b_0p972>;
-> +        vddrfa0p8-supply = <&vreg_s7b_0p972>;
-> +        vddrfa1p2-supply = <&vreg_s8b_1p272>;
-> +        vddrfa1p7-supply = <&vreg_s1b_1p872>;
-> +        vddrfa2p2-supply = <&vreg_s1c_2p19>;
-> +
-> +        bt-enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
-> +
-> +        regulators {
-> +            vreg_pmu_rfa_cmn: ldo0 {
-> +                regulator-name = "vreg_pmu_rfa_cmn";
-> +            };
-> +
-> +            vreg_pmu_aon_0p59: ldo1 {
-> +                regulator-name = "vreg_pmu_aon_0p59";
-> +            };
-> +
-> +            vreg_pmu_wlcx_0p8: ldo2 {
-> +                regulator-name = "vreg_pmu_wlcx_0p8";
-> +            };
-> +
-> +            vreg_pmu_wlmx_0p85: ldo3 {
-> +                regulator-name = "vreg_pmu_wlmx_0p85";
-> +            };
-> +
-> +            vreg_pmu_btcmx_0p85: ldo4 {
-> +                regulator-name = "vreg_pmu_btcmx_0p85";
-> +            };
-> +
-> +            vreg_pmu_rfa_0p8: ldo5 {
-> +                regulator-name = "vreg_pmu_rfa_0p8";
-> +            };
-> +
-> +            vreg_pmu_rfa_1p2: ldo6 {
-> +                regulator-name = "vreg_pmu_rfa_1p2";
-> +            };
-> +
-> +            vreg_pmu_rfa_1p7: ldo7 {
-> +                regulator-name = "vreg_pmu_rfa_1p7";
-> +            };
-> +
-> +            vreg_pmu_pcie_0p9: ldo8 {
-> +                regulator-name = "vreg_pmu_pcie_0p9";
-> +            };
-> +
-> +            vreg_pmu_pcie_1p8: ldo9 {
-> +                regulator-name = "vreg_pmu_pcie_1p8";
-> +            };
-> +        };
-> +    };
->   };
->    &apps_rsc {
-> @@ -799,6 +857,39 @@ &pon_resin {
->       status = "okay";
->   };
->   +&qup_uart7_cts {
-> +    /*
-> +     * Configure a bias-bus-hold on CTS to lower power
-> +     * usage when Bluetooth is turned off. Bus hold will
-> +     * maintain a low power state regardless of whether
-> +     * the Bluetooth module drives the pin in either
-> +     * direction or leaves the pin fully unpowered.
-> +     */
-> +    bias-bus-hold;
-> +};
-> +
-> +&qup_uart7_rts {
-> +    /* We'll drive RTS, so no pull */
-> +    drive-strength = <2>;
-> +    bias-disable;
-> +};
-> +
-> +&qup_uart7_rx {
-> +    /*
-> +     * Configure a pull-up on RX. This is needed to avoid
-> +     * garbage data when the TX pin of the Bluetooth module is
-> +     * in tri-state (module powered off or not driving the
-> +     * signal yet).
-> +     */
-> +    bias-pull-up;
-> +};
-> +
-> +&qup_uart7_tx {
-> +    /* We'll drive TX, so no pull */
-> +    drive-strength = <2>;
-> +    bias-disable;
-> +};
-> +
->   &qupv3_id_0 {
->       status = "okay";
->   };
-> @@ -842,12 +933,86 @@ &sdhc_2 {
->   &tlmm {
->       gpio-reserved-ranges = <32 2>, /* ADSP */
->                      <48 4>; /* NFC */
-> +
-> +    bt_en: bt-en-state {
-> +        pins = "gpio85";
-> +        function = "gpio";
-> +        output-low;
-> +        bias-disable;
-> +    };
-> +
-> +    qup_uart7_sleep_cts: qup-uart7-sleep-cts-state {
-> +        pins = "gpio28";
-> +        function = "gpio";
-> +        /*
-> +         * Configure a bias-bus-hold on CTS to lower power
-> +         * usage when Bluetooth is turned off. Bus hold will
-> +         * maintain a low power state regardless of whether
-> +         * the Bluetooth module drives the pin in either
-> +         * direction or leaves the pin fully unpowered.
-> +         */
-> +        bias-bus-hold;
-> +    };
-> +
-> +    qup_uart7_sleep_rts: qup-uart7-sleep-rts-state {
-> +        pins = "gpio29";
-> +        function = "gpio";
-> +        /*
-> +         * Configure pull-down on RTS. As RTS is active low
-> +         * signal, pull it low to indicate the BT SoC that it
-> +         * can wakeup the system anytime from suspend state by
-> +         * pulling RX low (by sending wakeup bytes).
-> +         */
-> +        bias-pull-down;
-> +    };
-> +
-> +    qup_uart7_sleep_rx: qup-uart7-sleep-rx-state {
-> +        pins = "gpio31";
-> +        function = "gpio";
-> +        /*
-> +         * Configure a pull-up on RX. This is needed to avoid
-> +         * garbage data when the TX pin of the Bluetooth module
-> +         * is floating which may cause spurious wakeups.
-> +         */
-> +        bias-pull-up;
-> +    };
-> +
-> +    qup_uart7_sleep_tx: qup-uart7-sleep-tx-state {
-> +        pins = "gpio30";
-> +        function = "gpio";
-> +        /*
-> +         * Configure pull-up on TX when it isn't actively driven
-> +         * to prevent BT SoC from receiving garbage during sleep.
-> +         */
-> +        bias-pull-up;
-> +    };
->   };
->    &uart5 {
->       status = "okay";
->   };
->   +&uart7 {
-> +    /delete-property/interrupts;
-> +    interrupts-extended = <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
-> +                <&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
-> +    pinctrl-1 =  <&qup_uart7_sleep_cts>, <&qup_uart7_sleep_rts>,
-> +        <&qup_uart7_sleep_tx>, <&qup_uart7_sleep_rx>;
-> +    pinctrl-names = "default", "sleep";
-> +    status = "okay";
-> +
-> +    bluetooth: bluetooth {
-> +        compatible = "qcom,wcn6750-bt";
-> +        vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-> +        vddaon-supply = <&vreg_pmu_aon_0p59>;
-> +        vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-> +        vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-> +        vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
-> +        vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-> +        max-speed = <3200000>;
-> +    };
-> +};
-> +
->   &usb_1 {
->       status = "okay";
->   };
+> ...
+> 
+>> @@ -682,9 +899,22 @@ int icssm_emac_rx_packet(struct prueth_emac *emac, u16
+>> *bd_rd_ptr,
+>>  		src_addr += actual_pkt_len;
+>>  	}
+>>  
+>> +	if (pkt_info->timestamp) {
+>> +		src_addr = (void *)roundup((uintptr_t)src_addr,
+>> +					   ICSS_BLOCK_SIZE);
+> 
+> Can PTR_ALIGN() be used here?
+> 
 
-Could you please help to review this change? Thanks!
+We are making sure Both roundup() and PTR_ALIGN() will point to 
+the same address location. We will change this in the next version.
 
-Regards,
-Janakiram
+>> +		dst_addr = &ts;
+>> +		memcpy(dst_addr, src_addr, sizeof(ts));
+>> +	}
+>> +
+>>  	if (!pkt_info->sv_frame) {
+>>  		skb_put(skb, actual_pkt_len);
+>>  
+>> +		if (icssm_prueth_ptp_rx_ts_is_enabled(emac) &&
+>> +		    pkt_info->timestamp) {
+>> +			ssh = skb_hwtstamps(skb);
+>> +			memset(ssh, 0, sizeof(*ssh));
+>> +			ssh->hwtstamp = ns_to_ktime(ts);
+>> +		}
+>>  		/* send packet up the stack */
+>>  		skb->protocol = eth_type_trans(skb, ndev);
+>>  		local_bh_disable();
+> 
+> The code preceding the hunk below is:
+> 
+> static int icssm_emac_request_irqs(struct prueth_emac *emac)
+> {
+>	struct net_device *ndev = emac->ndev;
+>	int ret;
+> 
+>	ret = request_threaded_irq(emac->rx_irq, NULL, icssm_emac_rx_thread,
+>				   IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+>				   ndev->name, ndev);
+>	if (ret) {
+>		netdev_err(ndev, "unable to request RX IRQ\n");
+>		return ret;
+>	}
+> 
+>> @@ -855,9 +1085,64 @@ static int icssm_emac_request_irqs(struct prueth_emac
+>> *emac)
+>>  		return ret;
+>>  	}
+>>  
+>> +	if (emac->emac_ptp_tx_irq) {
+>> +		ret = request_threaded_irq(emac->emac_ptp_tx_irq,
+>> +					   icssm_prueth_ptp_tx_irq_handle,
+>> +					   icssm_prueth_ptp_tx_irq_work,
+>> +					   IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+>> +					   ndev->name, ndev);
+>> +		if (ret) {
+>> +			netdev_err(ndev, "unable to request PTP TX IRQ\n");
+>> +			free_irq(emac->rx_irq, ndev);
+>> +			free_irq(emac->tx_irq, ndev);
+> 
+> This seems somewhat asymmetric. This function does request emac->rx_irq
+> but not emac->tx_irq. So I don't think it is appropriate to free emac->tx_irq
+> here.
+> 
+> Also, I would suggest using a goto label for unwind here.
+> 
+
+Sure. We will clean this in the next version.
+
+>> +		}
+>> +	}
+>> +
+>>  	return ret;
+>>  }
+>>  
+> 
+> ...
+
+Thanks & Best Regards,
+Basharath
 
