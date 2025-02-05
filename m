@@ -1,44 +1,48 @@
-Return-Path: <devicetree+bounces-143150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A124A284EA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:24:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6605A284F0
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:28:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0FD13A503B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:24:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 499373A14E9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D3D62288E9;
-	Wed,  5 Feb 2025 07:24:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592172288CF;
+	Wed,  5 Feb 2025 07:28:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Py9eFSyR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1A922288DE
-	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 07:24:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26CF721C16F;
+	Wed,  5 Feb 2025 07:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738740290; cv=none; b=LpK9RvE3ZKhDP+GKy74IiDqlVV8+MLYgIKpFWLr7VCm3ri3/qTa53PfhMdCO3XOpFkX+jWe6KLS8B+MuK24MPxJ6Bwn8EXxL6GywLY14vM5pVQCmzTCehpGaXVNkvJO14f8VW4HkHyKsaEc1mvDNY5xdlD/n0mQMUGMwCIdCcpE=
+	t=1738740490; cv=none; b=sPkuf7hBQ0rLX47/PBON/IX4NEIe70dGy8/fRvkz1svqCc7RNQ6JmwzlRMJauJN+eD1G7PETYSLGZBQX/jrTw5ba4NB9CUQbh/iDWUt1Ka0YH4s/3AMLybeRBC8Ow1hYW0g4TjKVqCMj/FJukzc06clxF/OXiFA1T3Zo8Pp3LU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738740290; c=relaxed/simple;
-	bh=Lk/11lAIKFzIP8/qA85loJm3Wscdj7M9rdvYTQp75jY=;
+	s=arc-20240116; t=1738740490; c=relaxed/simple;
+	bh=Mtk3GPiawz6xM56KH+DJhCTEAZ8bddN3kYMWpzWZj2U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RPKGrJBV1o7t2g9TJqM2zJBoe1JIj8+jxIN2Ccvb630ZySEe+15TYPmcoi4lJlRiF/4pLYbLdyUqq9sO/DrAKNvYQ977dijI4/E7Jgqh51XdFlx3mxr9QAxQmsh9qzY8mBc/LDERa44ir1H/ZWENx+uNA6L0h5s+UZPBjd/htyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.starfivetech.com; spf=none smtp.mailfrom=linux.starfivetech.com; arc=none smtp.client-ip=54.204.34.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.starfivetech.com
-X-QQ-mid: bizesmtpsz10t1738740211teyq6f
-X-QQ-Originating-IP: eYyzO5QSXnnXIwL7uGmtDShdouU8nJoM7QM9YL0sLyQ=
-Received: from [192.168.125.117] ( [113.72.145.41])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 05 Feb 2025 15:23:30 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 16571871631840008166
-Message-ID: <EA1B602AAF2011A6+78e19956-822a-46a5-8f67-c99ee79510d1@linux.starfivetech.com>
-Date: Wed, 5 Feb 2025 15:23:29 +0800
+	 In-Reply-To:Content-Type; b=HJjAq7T/i0CJ88wlmWgpCed8YbpLUWjlDg13yHjppU13ZjwcG3C6o495Y2n+pMFkdh2vlmld38yVEzK+8xrHyGo6v9JtKKNl/MFg6GvjzFhH8OSdPQiVoC6NMrCNKb++3PZmt5QlrvK/wsIJignvBXQu6UOcTMdzLzE5POsKieQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Py9eFSyR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CE7BC4CED1;
+	Wed,  5 Feb 2025 07:28:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738740489;
+	bh=Mtk3GPiawz6xM56KH+DJhCTEAZ8bddN3kYMWpzWZj2U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Py9eFSyRUEtY/p4T17HMXZ6qxQQsU0ieBz9iWBnZgzu6jp31QwKHISJ+9l44f/CeH
+	 b39DerG2O2Rkvmvz1qx3lEFbxObouTrZR305+htCWS59QlNy2c9mrudQdvF08X1lQr
+	 z+2E3vQhtyUDBSzuR2zpElazSzx5RI74D42jaRtU8sXQbwLoAbXJmpcgCgqlZJEHnM
+	 hZy53PCfGf/c3l+x6pegq3VraO1gsDqY82nqHZtWMHRUOuV9NaKd5y+Ks8EL6Ba8Hq
+	 TozPUOSMo7KpqBDCfLRiZu9D9pacDqwUdmDXJJfjKhxZtQgNdAnBsFTBykPZgj5E7/
+	 4ZPp5jufNmpEA==
+Message-ID: <6be49594-87a1-4e5a-8f68-4c5b5ee1708a@kernel.org>
+Date: Wed, 5 Feb 2025 08:28:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,67 +50,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] riscv: dts: starfive: jh7110-common: assign 24MHz
- clock-frequency to uart0
-To: E Shattow <e@freeshell.de>, Conor Dooley <conor@kernel.org>,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20250203013730.269558-1-e@freeshell.de>
- <20250203013730.269558-4-e@freeshell.de>
+Subject: Re: [PATCH v4 0/3] Support ExynosAutov920 ufs phy driver
+To: Alim Akhtar <alim.akhtar@samsung.com>,
+ =?UTF-8?B?J+uCmOyGjOybkC9TT1dPTiBOQSc=?= <sowon.na@samsung.com>,
+ vkoul@kernel.org
+Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, kishon@kernel.org
+References: <CGME20241226031145epcas2p4fa41b44749a7f675364437856d01a4c6@epcas2p4.samsung.com>
+ <20241226031142.1764652-1-sowon.na@samsung.com>
+ <000001db658c$4dce63c0$e96b2b40$@samsung.com>
+ <080d01db7786$ed980e90$c8c82bb0$@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Hal Feng <hal.feng@linux.starfivetech.com>
-In-Reply-To: <20250203013730.269558-4-e@freeshell.de>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <080d01db7786$ed980e90$c8c82bb0$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpsz:linux.starfivetech.com:qybglogicsvrgz:qybglogicsvrgz5a-1
-X-QQ-XMAILINFO: NhdiEwnVOUqElu8RlIrSrq6wW33PQPQxE+mopJvaL0gDADNO/nTo6RLC
-	ymWFITs28FUnujYHeDy0VRt7HgSOMQD1/beGj0HcJ832rVijeJX1MjKB3NpNxaDx6dIhzlZ
-	oPGsxUHvkTWxMHGFNa1RS3VHfTWh0a0Q8tyUJ0tLgYTQG7I3M6DGlO+J6qG27wnMqw8+3s4
-	taETCjZpnYgyisT1ne15fI3c3wub81mlJm3iiWFn34nniPpZM1knNNMl5+noDSvzz79lJUG
-	m76mvOmCixEEwbnQfwTpnUhn9Vf36KC3zSZpX1HxLXuTrdJ1CX6IxsqgOiOOO01FJmtjEr0
-	3Ds70ev0DG9swHuuJQfC8AIgz4fdUIklhuhsE/k0k6fbc5OQqGfbpdRjTN8zDYJkHv/eR6A
-	EQ9TfgecaLL6+O+5F8VMelgTTBzjb3LN6ULLbpPvfFoQ5FbzwBO4LtQ7ZkSf/74lnL1fABN
-	4fxYcT+5bmSLQWDQUhnHhtD7id/eLvzoO0DTTGfs+isCKbYNAsKzmcaEaw9401fwhQj0VjG
-	R3eXlE4FqnY/br09u04vPpIvzXckAbDVJt3RUPM3ADTFQDrERwVBh5DIRsbh8gtS/TmHAzt
-	3CUZlx1TmdXxlR+OyozyOsAWM0mbfQLiACPmg1oUMuJL/ekBi4HqWukiKKpXzPQ6fbWRLmb
-	6hIndQVUq3XWpU+b+/zeo2SUysv2AwJWvewjAl88Pv/UB5q5OtaCy//CBpJYrtVijYuBdfs
-	t/MIbi/oKw0Teud/ZLfpMJ0B3bG1V3y4By52dmuU4xcayl+HFoeuOOfkjJkGvwgNVnSIJov
-	IifK85KEbA9i4OpVFzk3mCcWEcFvLa4x7rD535VqGhu3d0qTdFkY9Y3i0pHvNHhx/y7+kOX
-	5zD27Q87Tw2wSClDD4IDWF0nf5VgwlGhxdTXFjxByPWuOFpqIAZ2CctvohgIxg98qWfj55g
-	6mYirkkSS6+Npi+ku/Bqvfi6C6jnLStYfmy8=
-X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
-X-QQ-RECHKSPAM: 0
+Content-Transfer-Encoding: 8bit
 
-On 2/3/2025 9:37 AM, E Shattow wrote:
-> Set uart0 clock-frequency for better compatibility with operating system
-> and downstream boot loader SPL secondary program loader.
+On 05/02/2025 05:32, Alim Akhtar wrote:
+> Hello Krzysztof / Vinod
 > 
-> Signed-off-by: E Shattow <e@freeshell.de>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> index 8a59c3001339..6bb13af82147 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> @@ -635,6 +635,7 @@ GPOEN_DISABLE,
->  };
->  
->  &uart0 {
-> +	clock-frequency = <24000000>;
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&uart0_pins>;
->  	status = "okay";
+>> -----Original Message-----
+>> From: 나소원/SOWON NA <sowon.na@samsung.com>
+>> Sent: Monday, January 13, 2025 12:55 PM
+>> To: vkoul@kernel.org
+>> Cc: krzk+dt@kernel.org; linux-kernel@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-samsung-soc@vger.kernel.org;
+>> robh@kernel.org; krzk@kernel.org; conor+dt@kernel.org;
+>> alim.akhtar@samsung.com; kishon@kernel.org
+>> Subject: RE: [PATCH v4 0/3] Support ExynosAutov920 ufs phy driver
+>>
+>> Hi Vinod,
+>>
+>>> -----Original Message-----
+>>> From: Sowon Na <sowon.na@samsung.com>
+>>
+> [Snip]
+>> I can't see these patches in -next yet, do let me know if anything is missing to
+>> be addressed from myside.
+>>
+> Which tree will this series go through? 
 
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+
+phy goes through phy. I take the DTS once the bindings got accepted. I
+cannot take it earlier for obvious reasons - warnings.
 
 Best regards,
-Hal
-
+Krzysztof
 
