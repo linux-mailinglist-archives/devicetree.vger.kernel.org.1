@@ -1,121 +1,152 @@
-Return-Path: <devicetree+bounces-143120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2E3EA2834D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 05:19:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB9A0A28365
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 05:32:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F79C7A2870
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 04:18:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 196E83A4EE3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 04:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B41A20C00C;
-	Wed,  5 Feb 2025 04:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4162721A43C;
+	Wed,  5 Feb 2025 04:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="cL60qL2u"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="rVVfJkXk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF4D17F7;
-	Wed,  5 Feb 2025 04:19:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC95215778
+	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 04:32:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738729167; cv=none; b=foTDhNkqzgrHMEQRwfZpbsbnz5ggG9lKo1RIBA6flZy8t/qbekgNgYQgU8/puIsqbGSsXGK6by41YhMvZv5H0QKgfv8eSE0WWkuDDgF9Ir/t2cFVnt3zwMIWfiJw1cHwUBo6IjGRr7c6rM+yk3aJFz2qIryQNIXY8vgofyJjYRw=
+	t=1738729941; cv=none; b=Dxu42bk8NhekOauI8dE8bY81WkAGttFRP9v9NzLMot+zTpQS2+ln1Nk1sg3nPlVvfrSpmA2j/0naoGgi1SzK5B3NuCW0F9wc/gGV/Y+cFGet7oQw8jt68xhUacYki3kHMazNxvNp+/XSGTXKXCFJ9+OvtO3vqaOBe8BAyhMdPBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738729167; c=relaxed/simple;
-	bh=kEp82TZcTFzdsH3ySV9d4fygaV26WlGKIZz5L3vog10=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=rUK3/7RRhI1CeaXqtQ/PSHl+GsNinyB+1uZo/n6W8sdHqWDRY9H1AMrtlkDv4BAdLUpb6T4SsvOiHhINkzEQw200MIemDmo4V1hRJxgJlDUXgsDmZAhZw535ZrAhn+8rms51x5vD85eri/eAWF6yNWK1chlgq7DzuB+19XirXPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=cL60qL2u; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1738729166; x=1770265166;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=kEp82TZcTFzdsH3ySV9d4fygaV26WlGKIZz5L3vog10=;
-  b=cL60qL2u4nQj3lk2gzIs0pcUZjB6Qqjxz6SjzZoC7WpIUflI2BChY4Fs
-   ImkAJpg7z5q12G2YSbrzFiqBLpN++Jwqt3ci/8DstAFNG7lXxveHeU+4k
-   OeSp/AUbWywSIokfGY6jIWd+19JjPMcCLwy+/1PzwSCUsr/xczg5yh5k4
-   Rthtfig6jHAfbf2IPpHZPvsYQjmBDjtGW3yjeCR1VNY8VJk+IzNVeJhbj
-   nm7HJ6w/xbLD1n1bkGgB6jicax+SX86tUsnl7yNeWBvmIvwhqIkND1Dud
-   UxMitBbc7KrHkOz8HtXapWvBY1MC2pPhAenME1QS4w7IqHtSNmpoz1iyA
-   w==;
-X-CSE-ConnectionGUID: 2PqXhkWGQbSMV5Mi2wf2oQ==
-X-CSE-MsgGUID: HinrJpVLRrauwdmn8wS93g==
-X-IronPort-AV: E=Sophos;i="6.13,260,1732604400"; 
-   d="scan'208";a="37284659"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Feb 2025 21:19:25 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 4 Feb 2025 21:18:50 -0700
-Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Tue, 4 Feb 2025 21:18:46 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Wed, 5 Feb 2025 09:48:45 +0530
-Subject: [PATCH] dt-bindings: iio: light: fix missing type definition
+	s=arc-20240116; t=1738729941; c=relaxed/simple;
+	bh=muj42tyeArJlDap25NrLqG4C3MwLw+2Bs0jim938Rt0=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=jLqX08pclc16HqvP+XxI9xfKH/+DPb+2l4Rr7Xy50J2gVIKmqGnbKECbx9R7F7RzRiR9Axi1C5G5cG7yh6o7EN7mqpQm/02BZONixL2dEOCyX3o7lBh7G17xNWAVCmYugJarpbEXD71eW/o20fT/FeviBSCSeth0wTaqlMwpgMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=rVVfJkXk; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250205043216epoutp04292b8817aa1fe58071099e8cecb833dd~hNapLxH8Z1808718087epoutp049
+	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 04:32:16 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250205043216epoutp04292b8817aa1fe58071099e8cecb833dd~hNapLxH8Z1808718087epoutp049
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1738729936;
+	bh=muj42tyeArJlDap25NrLqG4C3MwLw+2Bs0jim938Rt0=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=rVVfJkXkNM4+ORYrriZW/IURQDIBmT9YxDVzisGWMtE5ceOPYP3GUfFimRGdXikhu
+	 N/kjQjwArlsD+vvFjjrrgIs5jI0PxABOPpb8gREXy+Qz/QJ9WiySn/LMr595GTpWhB
+	 b9Sq61KJGoLbRFxYmgou6IhmIomKwDlZcVTJwGyY=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+	20250205043216epcas5p4c35ec9557541c7a3a0cd3b289ab5671c~hNaou06632827328273epcas5p4m;
+	Wed,  5 Feb 2025 04:32:16 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.181]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4YnnQ60cFFz4x9QK; Wed,  5 Feb
+	2025 04:32:14 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+	epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	D3.30.19956.DC9E2A76; Wed,  5 Feb 2025 13:32:14 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250205043213epcas5p2fe2c5d145ce2caef582fa2e977a7b576~hNamZm0y00178501785epcas5p2J;
+	Wed,  5 Feb 2025 04:32:13 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250205043213epsmtrp27c0b673b0deea66310db225e85847a08~hNamY0OuK1380613806epsmtrp2t;
+	Wed,  5 Feb 2025 04:32:13 +0000 (GMT)
+X-AuditID: b6c32a4b-fd1f170000004df4-c5-67a2e9cd87d3
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	D9.43.23488.DC9E2A76; Wed,  5 Feb 2025 13:32:13 +0900 (KST)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250205043209epsmtip1521c464368bd125cbd4eb08cca2fa0c2~hNaizkCtT2478124781epsmtip1M;
+	Wed,  5 Feb 2025 04:32:09 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: =?UTF-8?B?J+uCmOyGjOybkC9TT1dPTiBOQSc=?= <sowon.na@samsung.com>,
+	<vkoul@kernel.org>
+Cc: <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+	<robh@kernel.org>, <krzk@kernel.org>, <conor+dt@kernel.org>,
+	<kishon@kernel.org>
+In-Reply-To: <000001db658c$4dce63c0$e96b2b40$@samsung.com>
+Subject: RE: [PATCH v4 0/3] Support ExynosAutov920 ufs phy driver
+Date: Wed, 5 Feb 2025 10:02:05 +0530
+Message-ID: <080d01db7786$ed980e90$c8c82bb0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQH4Gf4Ht2pT+J2pScYPrVRUV1+UogJvt6+kANXfQc+y5KuVAA==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLJsWRmVeSWpSXmKPExsWy7bCmhu65l4vSDSa1MFqs2XuOyWL+kXOs
+	Fkdb/zNbvJx1j83i/PkN7BaXd81hs5hxfh+Txf89O9gtfv88xGSx884JZgcuj02rOtk8+ras
+	YvT4vEkugDkq2yYjNTEltUghNS85PyUzL91WyTs43jne1MzAUNfQ0sJcSSEvMTfVVsnFJ0DX
+	LTMH6BYlhbLEnFKgUEBicbGSvp1NUX5pSapCRn5xia1SakFKToFJgV5xYm5xaV66Xl5qiZWh
+	gYGRKVBhQnbGnaZXbAW3OSqWbNFqYNzE0cXIySEhYCKxclMDaxcjF4eQwG5GiRs3TzFBOJ8Y
+	JZZ0/WeBcL4xSjTsamKEabm18QwzRGIvo8SXKQuhWl4ySsz4eQisik1AV2LH4jY2EFtEIFLi
+	z9IfbCBFzAKXGSX+HpjCDJLgFLCSOHL2EFCCg0NYwFFi2hcukDCLgIpEW9c1JhCbV8BSYs2r
+	I8wQtqDEyZlPWEBsZgFtiWULXzNDXKQg8fPpMlaQMSICThKt7d4QJeISL48eYYcomckh8We5
+	JITtIvHz7RI2CFtY4tXxLVA1UhKf3+2FildLrN8wjwXC7mCUaNxeA2HbS+x8dJMFZBWzgKbE
+	+l36EKv4JHp/P2ECCUsI8Ep0tAlBVKtKNL+7CjVFWmJidzcrhO0h8eF/H/sERsVZSP6aheSv
+	WUgemIWwbAEjyypGydSC4tz01GLTAuO81HJ4bCfn525iBKdTLe8djI8efNA7xMjEwXiIUYKD
+	WUmE9/T2BelCvCmJlVWpRfnxRaU5qcWHGE2BgT2RWUo0OR+Y0PNK4g1NLA1MzMzMTCyNzQyV
+	xHmbd7akCwmkJ5akZqemFqQWwfQxcXBKNTA1G/NzT939653EP86sBf660YJ9Xnzu3/JOfG2c
+	mRJbFZbY+ljPNffwxIq9h7I3n+AtnVS8cm3RR8bzxrrXY2qENv5RPRH9L5rzZcGWwuPOqTsC
+	O9WVjOdpLbefs6L2zvblN5r+X1/Y+fNmA0tD3sqly9Ib7I9caurLkvp58pD6u4j9NcI3E6P/
+	szKHVf99erbGKr94d+7vSXmHJ5ntufnOszWs9+TiKebPrVOXHl02PffQtN9XlR6HOYnJsa54
+	u8U+Zt19s+797B/W3Zr86WRg+xPNDLsoT3nu+WWzipfnSeW9+f287+vVpuDMCfNkL3aae21e
+	t2/vu6n2Apf5TrGe910WIdZ0nvuU1aNXN5S1lViKMxINtZiLihMB3UKaSTAEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpnkeLIzCtJLcpLzFFi42LZdlhJTvfsy0XpBlevqlms2XuOyWL+kXOs
+	Fkdb/zNbvJx1j83i/PkN7BaXd81hs5hxfh+Txf89O9gtfv88xGSx884JZgcuj02rOtk8+ras
+	YvT4vEkugDmKyyYlNSezLLVI3y6BK+PGsbuMBUvZKuZdkG5gnMfaxcjJISFgInFr4xnmLkYu
+	DiGB3YwSi9/cYINISEtc3ziBHcIWllj57zk7RNFzRok/d24wgSTYBHQldixuA2sQEYiU+LP0
+	BxtIEbPAbUaJiU8usMONXfR+JVgHp4CVxJGzh4CqODiEBRwlpn3hAgmzCKhItHVdAyvhFbCU
+	WPPqCDOELShxcuYTFhCbWUBbovdhKyOMvWzha2aI6xQkfj5dxgoyUkTASaK13RuiRFzi5dEj
+	7BMYhWchmTQLyaRZSCbNQtKygJFlFaNkakFxbnpusmGBYV5quV5xYm5xaV66XnJ+7iZGcFxp
+	aexgfPetSf8QIxMH4yFGCQ5mJRHe09sXpAvxpiRWVqUW5ccXleakFh9ilOZgURLnXWkYkS4k
+	kJ5YkpqdmlqQWgSTZeLglGpgyqpt3GV1trAtQiskRTZ76YvpC6bNVm+ffsPL+gn3z3d6QVId
+	eRLOFZlTjB2OcHPVWC9wF5GvYxI0febyKKCoelPPnPr2l9udU1Vj7GK6n4rzTAkIbbdTKZCx
+	ZEk7NGVF9UL76GvHZ0zeJK4pOPuaorPw/BPiwc+Pm36Y67FRx7c0bl3JHOfSX9cl5u7e+GUO
+	V67/yReVW1qu61mlmf86v9QnpW9lPJNQaLOaHdPmEulv8Xe/TsqoEZJ5/Krg0qyzO46ufmiV
+	5mtcXsJ1ffuFt07ir/f5th4WOHvxcd8+luXr+GqjE39m8miVRzZqbr64/0jOrCYWMemLp10d
+	Cx7FnOS78fQgv/b0AyuKApYqsRRnJBpqMRcVJwIAfFJd0RoDAAA=
+X-CMS-MailID: 20250205043213epcas5p2fe2c5d145ce2caef582fa2e977a7b576
+X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250205-brcm-binding-v1-1-a996a840d2d6@microchip.com>
-X-B4-Tracking: v=1; b=H4sIAKTmomcC/x3MQQqAIBBA0avIrBNUULGrRIvUyWaRhUIE4t2Tl
- m/xf4OKhbDCzBoUfKjSlQfkxCAcW07IKQ6DEkoLJTT3JZzcU46UE7fSm+iciMYijOQuuNP775a
- 19w+cauLjXgAAAA==
-To: Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>, Jonathan Cameron
-	<jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Dharma Balasubiramani
-	<dharma.b@microchip.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738729126; l=1139;
- i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
- bh=kEp82TZcTFzdsH3ySV9d4fygaV26WlGKIZz5L3vog10=;
- b=KTRjWvKAPsdG4LpG06pf7j96uYK8YoKgCTYboPncyNHAEmtbaXAhAE8a83QuYcMV8smWAJnhp
- HMdf/2T8UcmDRBaQEZ8Xiub3QhYV+hqCLle1PRLkajs8b9Ia9mniNm6
-X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
- pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241226031145epcas2p4fa41b44749a7f675364437856d01a4c6
+References: <CGME20241226031145epcas2p4fa41b44749a7f675364437856d01a4c6@epcas2p4.samsung.com>
+	<20241226031142.1764652-1-sowon.na@samsung.com>
+	<000001db658c$4dce63c0$e96b2b40$@samsung.com>
 
-Add the missing type definition for ps-cancellation-current-picoamp property.
+Hello Krzysztof / Vinod
 
-Fixes: 47736b32d1b8 ("dt-bindings: iio: light: Add APDS9160 binding")
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
- Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml b/Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml
-index bb1cc4404a55..f9c35c29fe04 100644
---- a/Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml
-+++ b/Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml
-@@ -37,6 +37,7 @@ properties:
-     maximum: 63
- 
-   ps-cancellation-current-picoamp:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-     description:
-       Proximity sensor crosstalk cancellation current in picoampere.
-       This parameter adjusts the current in steps of 2400 pA up to 276000 pA.
-
----
-base-commit: 40b8e93e17bff4a4e0cc129e04f9fdf5daa5397e
-change-id: 20250205-brcm-binding-71b6d990d67e
-
-Best regards,
--- 
-Dharma Balasubiramani <dharma.b@microchip.com>
-
+> -----Original Message-----
+> From: =EB=82=98=EC=86=8C=EC=9B=90/SOWON=20NA=20<sowon.na=40samsung.com>=
+=0D=0A>=20Sent:=20Monday,=20January=2013,=202025=2012:55=20PM=0D=0A>=20To:=
+=20vkoul=40kernel.org=0D=0A>=20Cc:=20krzk+dt=40kernel.org;=20linux-kernel=
+=40vger.kernel.org;=0D=0A>=20devicetree=40vger.kernel.org;=20linux-samsung-=
+soc=40vger.kernel.org;=0D=0A>=20robh=40kernel.org;=20krzk=40kernel.org;=20c=
+onor+dt=40kernel.org;=0D=0A>=20alim.akhtar=40samsung.com;=20kishon=40kernel=
+.org=0D=0A>=20Subject:=20RE:=20=5BPATCH=20v4=200/3=5D=20Support=20ExynosAut=
+ov920=20ufs=20phy=20driver=0D=0A>=20=0D=0A>=20Hi=20Vinod,=0D=0A>=20=0D=0A>=
+=20>=20-----Original=20Message-----=0D=0A>=20>=20From:=20Sowon=20Na=20<sowo=
+n.na=40samsung.com>=0D=0A>=20=0D=0A=5BSnip=5D=0D=0A>=20I=20can't=20see=20th=
+ese=20patches=20in=20-next=20yet,=20do=20let=20me=20know=20if=20anything=20=
+is=20missing=20to=0D=0A>=20be=20addressed=20from=20myside.=0D=0A>=20=0D=0AW=
+hich=20tree=20will=20this=20series=20go=20through?=20=0D=0A=0D=0A>=20Best=
+=20regards,=0D=0A>=20Sowon=20Na.=0D=0A=0D=0A=0D=0A
 
