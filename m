@@ -1,156 +1,204 @@
-Return-Path: <devicetree+bounces-143142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80536A284AA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:53:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 390A3A28431
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:17:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AA72166602
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 06:53:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA223165790
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 06:17:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BCDC22836C;
-	Wed,  5 Feb 2025 06:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3252621E097;
+	Wed,  5 Feb 2025 06:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="OztpeoIQ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ou5XS87t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49202.qiye.163.com (mail-m49202.qiye.163.com [45.254.49.202])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FA221517A;
-	Wed,  5 Feb 2025 06:53:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C592165E0;
+	Wed,  5 Feb 2025 06:17:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738738430; cv=none; b=VpcYmCeesjgBdUORSqfhJCYwgp/xfI4NERZp+hPSDzpSpQRhdSw2ERlF+Ve7k7SM4HI9UuyQcs0X5wITHFpDjuRsedVAENy0xqIhArPxrSzHIgikR0GUDzYoEo0LpGPzFrCjIZZrt/Z6cjKdjfDsUw+csCQR30BdZFN4byjRzrI=
+	t=1738736257; cv=none; b=fOIfNcWbN+wLUoeOLo3HKxgjrqtrWkQl+tjh1lg1/AemRLLIj5byaMeQBmepjtBBgzpKh6DSX0hGNq7lU75MgDTos2Sfaiykydg5vVVYx7wmJ36jhdGQl3LX9q73Gr6gtvnPJJuPbUUHLOYn0tUgTS4b0GzWUWzhY6shSY0IuUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738738430; c=relaxed/simple;
-	bh=yT2vByNZnLKMoecatN+Y+a/G5hoWbJR7ZL8sZCSE3Pc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=pp+xTeio5FiqdEo0T2vlJe35o5uJ1qAl+lqdycPnVDLyvMRoTX1Vxtwl3ImprYEqnodZcOLf62j5EfQToevsyhVI5GQSUZj7XlVE2bNvqBxYJs8yoCW43VU4tcjQuLRZECfyK4Op0VJVXSpMRFiap13+iQtUS1GnsVBdDtcvsYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=OztpeoIQ; arc=none smtp.client-ip=45.254.49.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id a34e52b8;
-	Wed, 5 Feb 2025 14:18:19 +0800 (GMT+08:00)
-From: Shawn Lin <shawn.lin@rock-chips.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	YiFeng Zhao <zyf@rock-chips.com>,
-	Liang Chen <cl@rock-chips.com>,
-	linux-scsi@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH v7 5/7] scsi: ufs: core: Export ufshcd_dme_reset() and ufshcd_dme_enable()
-Date: Wed,  5 Feb 2025 14:15:54 +0800
-Message-Id: <1738736156-119203-6-git-send-email-shawn.lin@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1738736156-119203-1-git-send-email-shawn.lin@rock-chips.com>
-References: <1738736156-119203-1-git-send-email-shawn.lin@rock-chips.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ09ITVZOTR9LTx1NHRlMHkNWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a94d4c26db509cckunma34e52b8
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MU06PCo6MjINDgtDODcpHCpJ
-	L08KCglVSlVKTEhDTEhNSEtKS0xDVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUlJQkg3Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=OztpeoIQaadXhInVaxSz6SrW4MXIUqpglyw6hyB8h8SQrPlnunzycFFkxFC+wLbo0e58uU+GTGnvT9MlnCUnwTR8mWI8LBz2pURW7hdDWMhrnWMPiUPSwmvNM3Uu9/HJuvKdcYSNQCS8xYrNXbNYzRBjVVxzT0KYqI/ynUkA8kk=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=tQBe00/5+XR3AuyJ7x8v0mQNDVOcfg72dNI5pbcGOVo=;
-	h=date:mime-version:subject:message-id:from;
+	s=arc-20240116; t=1738736257; c=relaxed/simple;
+	bh=tqgeSNiL5pBeIt17AW330eomXgbp7TBHF4c6qsfUNDo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OLOMgFhmD0TtVr2idteSgvsoskI8JYccOBq1mzmtoyqzvOvtpSQmX8XdIlFhbTLWIY2kREBb6PnCTBKVgXkJ9Qsdf8kWVtqggh3zel+gtt/jYEa+Krixg4ESH7crQYZ2UuC6cvEAj/zucx6hBI8EnIKj02NVB3Q/79Y7XZq2oZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ou5XS87t; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5151IQGp015623;
+	Wed, 5 Feb 2025 06:17:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	J6IK9WY8Uzi7WzFh6C2+V/Sv3sw7HBprbK9HmSbTDR4=; b=ou5XS87tn/0VoMPo
+	5uLvvGzMNePQwY1pMoSo+AXjPUCeQdJc8bECDv7uU9mzn0zSka9NjNbNObLachpp
+	MtafrVzAwaQIBeMfdF9yH5DgNqakl8nWOAgB/QkK9l43MnVvQA5LPCaIK8y3smLL
+	d9ce92ahBqeivHJBD8HrHHT+yIpzmHvqonCviFFFCN3WvseKpwZjXDR79zlleSF3
+	L2jFbIGQPWG1Z5152jNWm86rnk6OFSiFPY1PWtO7eWNgkMEraPi1mKP1MTY0uJbi
+	1TCwF51JU7kIYPIGrCfN3Hz33cKCFvkzJirrkskDAHNiZfbk1q5iOSmZaVN7G5Do
+	Ba2BOA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44kx77rhag-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Feb 2025 06:17:22 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5156HM4a032119
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 5 Feb 2025 06:17:22 GMT
+Received: from [10.50.51.18] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 4 Feb 2025
+ 22:17:15 -0800
+Message-ID: <69dc3c64-e0b7-a453-a73b-6a3c9dbded7d@quicinc.com>
+Date: Wed, 5 Feb 2025 11:47:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [RFC PATCH v10 1/2] media: iris: introduce helper module to
+ select video driver
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Johan Hovold
+	<johan@kernel.org>
+CC: Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>, <quic_vgarodia@quicinc.com>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <hverkuil@xs4all.nl>,
+        <sebastian.fricke@collabora.com>, <bryan.odonoghue@linaro.org>,
+        <neil.armstrong@linaro.org>, <nicolas@ndufresne.ca>,
+        <u.kleine-koenig@baylibre.com>, <stefan.schmidt@linaro.org>,
+        <lujianhua000@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <krzysztof.kozlowski@linaro.org>
+References: <20250128080429.3911091-1-quic_dikshita@quicinc.com>
+ <20250128080429.3911091-2-quic_dikshita@quicinc.com>
+ <5070e1f1-914b-4654-88ef-3566e3eee9ca@kernel.org>
+ <f1344e49-61b6-4115-ae88-55b4a3cfed28@quicinc.com>
+ <Z6B822-6UTxQfX46@hovoldconsulting.com>
+ <tqbm672pi223ipcw7btiemlb745weeeiy4gnazzeghozhq2emj@wppbkms6hir5>
+ <Z6HehbKL88LW1lxC@hovoldconsulting.com>
+ <hpcf7olw3ody7ns4ibdeoc5qrkmh3fgeqbhjd4eqwfuanevzoa@plenabtrjqi5>
+ <Z6I5nx2Wt3bbBmSI@hovoldconsulting.com>
+ <ilqfs6miq55ahyxjnhniv4k654vstfugmpswo5wld2ncgxxcx3@vsbr4bdl7y64>
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+In-Reply-To: <ilqfs6miq55ahyxjnhniv4k654vstfugmpswo5wld2ncgxxcx3@vsbr4bdl7y64>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: g1yqstij3JKZM-pW7MGK0YgJ2alVn5LK
+X-Proofpoint-GUID: g1yqstij3JKZM-pW7MGK0YgJ2alVn5LK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-05_02,2025-02-05_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 spamscore=0 malwarescore=0 phishscore=0
+ clxscore=1015 suspectscore=0 mlxlogscore=999 priorityscore=1501
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502050048
 
-These two APIs will be used by glue driver if they need a different
-HCE process.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
----
 
-Changes in v7: None
-Changes in v6:
-- replace host drivers with glue drivers suggested by Mani
-- add Main's review tag
+On 2/5/2025 4:39 AM, Dmitry Baryshkov wrote:
+> On Tue, Feb 04, 2025 at 05:00:31PM +0100, Johan Hovold wrote:
+>> On Tue, Feb 04, 2025 at 04:55:58PM +0200, Dmitry Baryshkov wrote:
+>>> On Tue, Feb 04, 2025 at 10:31:49AM +0100, Johan Hovold wrote:
+>>>> On Mon, Feb 03, 2025 at 05:16:50PM +0200, Dmitry Baryshkov wrote:
+>>>>> On Mon, Feb 03, 2025 at 09:22:51AM +0100, Johan Hovold wrote:
+>>>>>> On Fri, Jan 31, 2025 at 10:44:28AM -0800, Abhinav Kumar wrote:
+>>
+>>>> And we're still waiting to hear the answers to all of Hans' questions. I
+>>>> still haven't seen anyone explaining why any of this is needed. You
+>>>> could have just continued letting Venus support 8250 so presumably there
+>>>> is some benefit in using Iris instead. Which? And is that potential
+>>>> benefit important enough to not just wait until Iris is up to par
+>>>> feature wise?
+>>>
+>>> Because that's exactly opposite of what Iris developers are trying to
+>>> do: SM8250 and SM8550 belong to two different generations of the FW
+>>> interface. By supporting both of them in the Iris driver the developers
+>>> can verify that the internal driver abstractions are good enough. It has
+>>> been discussed in one of the threads (or in telcos) related to the first
+>>> iterations of this driver. We definitely don't want to end up in Venus
+>>> situation, where the abstractions were added afterwards and in some
+>>> cases they are not the best ones.
+>>
+>> Ok, but as I've said a number of times already, information like this
+>> needs to be included in the cover letter and commit message of what is
+>> posted to the list.
+>>
+>> Maintainers and reviewers obviously have no idea what you discussed in
+>> some internal teleconference and can't be expected to remember or dig
+>> this out from some old email thread either.
+>>
+>>> The plan is to use sm8250 as a "bridge" between two drivers, verifying
+>>> that they are on par during development, then drop sm8250 from Venus
+>>> driver. Then move sc7280 support too, drop all HFD_VERSION_6XX support
+>>> from Venus, cleanup the remnants.
+>>
+>> Ok, but venus would still remain for some older hardware? It's just the
+>> "hfi gen1" ones that would move to the iris eventually?
+> 
+> Yes. At least for the foreseable future. Nobody has explored an option
+> of moving older hardware to the Iris driver.
+> 
+>>
+>>> I think most of that information should have been a part of the main
+>>> Iris series. If it is not, please comment there, so that those commit
+>>> messages can be updated.
+>>
+>> Unfortunately it was not, which I also pointed in my comments to the
+>> Iris series.
+>>
+>>>> I'm sure you have some answers, but you need to provide them as part of
+>>>> the series.
+>>
+>>>> Unbinding and rebinding drivers is not part of any normal work flow
+>>>> expect possibly during development. And a developer can easily compare
+>>>> Venus and Iris for 8250 without a module parameter too.
+>>>
+>>> Yes, we are talking about development. And yes, modparam helps. If you'd
+>>> like to do two separate kernel builds, that's fine.
+>>
+>> Please just motivate why you think this is needed as part of the
+>> submission. And make sure that the implementation is sane (e.g. not some
+>> random probe defer indefinitely thing).
+>>
+>> Like I said, having two drivers for the same hardware is normally not
+>> something that is acceptable, and this would need to be a transitional
+>> thing as we both agree. One way to guarantee that is to not expose it to
+>> regular users until it is ready (e.g. a Kconfig hidden behind
+>> CONFIG_EXPERT or similar). Otherwise, I fear you'll end up supporting
+>> both forever (with at least one of them bitrotting behind that module
+>> parameter over time).
+> 
+> I think I'm fine with hiding IRIS behind CONFIG_EXPERT, might be a good
+> idea.
+Are you suggesting to add a dependency on CONFIG_EXPERT for IRIS driver?
+Something like:
+config VIDEO_QCOM_IRIS
+        tristate "Qualcomm iris V4L2 decoder driver"
+        depends on EXPERT
 
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
+This will impact the enablement of iris driver on SM8550 as well.
+And will this also be needed to be captured in cover letter?
 
- drivers/ufs/core/ufshcd.c | 6 ++++--
- include/ufs/ufshcd.h      | 2 ++
- 2 files changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/ufs/core/ufshcd.c b/drivers/ufs/core/ufshcd.c
-index cd404ad..d9cb60d 100644
---- a/drivers/ufs/core/ufshcd.c
-+++ b/drivers/ufs/core/ufshcd.c
-@@ -4002,7 +4002,7 @@ static int ufshcd_dme_link_startup(struct ufs_hba *hba)
-  *
-  * Return: 0 on success, non-zero value on failure.
-  */
--static int ufshcd_dme_reset(struct ufs_hba *hba)
-+int ufshcd_dme_reset(struct ufs_hba *hba)
- {
- 	struct uic_command uic_cmd = {
- 		.command = UIC_CMD_DME_RESET,
-@@ -4016,6 +4016,7 @@ static int ufshcd_dme_reset(struct ufs_hba *hba)
- 
- 	return ret;
- }
-+EXPORT_SYMBOL_GPL(ufshcd_dme_reset);
- 
- int ufshcd_dme_configure_adapt(struct ufs_hba *hba,
- 			       int agreed_gear,
-@@ -4041,7 +4042,7 @@ EXPORT_SYMBOL_GPL(ufshcd_dme_configure_adapt);
-  *
-  * Return: 0 on success, non-zero value on failure.
-  */
--static int ufshcd_dme_enable(struct ufs_hba *hba)
-+int ufshcd_dme_enable(struct ufs_hba *hba)
- {
- 	struct uic_command uic_cmd = {
- 		.command = UIC_CMD_DME_ENABLE,
-@@ -4055,6 +4056,7 @@ static int ufshcd_dme_enable(struct ufs_hba *hba)
- 
- 	return ret;
- }
-+EXPORT_SYMBOL_GPL(ufshcd_dme_enable);
- 
- static inline void ufshcd_add_delay_before_dme_cmd(struct ufs_hba *hba)
- {
-diff --git a/include/ufs/ufshcd.h b/include/ufs/ufshcd.h
-index 650ff23..31661a4 100644
---- a/include/ufs/ufshcd.h
-+++ b/include/ufs/ufshcd.h
-@@ -1369,6 +1369,8 @@ extern int ufshcd_system_thaw(struct device *dev);
- extern int ufshcd_system_restore(struct device *dev);
- #endif
- 
-+extern int ufshcd_dme_reset(struct ufs_hba *hba);
-+extern int ufshcd_dme_enable(struct ufs_hba *hba);
- extern int ufshcd_dme_configure_adapt(struct ufs_hba *hba,
- 				      int agreed_gear,
- 				      int adapt_val);
--- 
-2.7.4
-
+Thanks,
+Dikshita
+> 
 
