@@ -1,48 +1,44 @@
-Return-Path: <devicetree+bounces-143159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8684AA28519
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:49:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6893DA28530
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:59:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7422418828F0
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:49:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DA5A3A6063
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:59:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B073F2288E2;
-	Wed,  5 Feb 2025 07:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sv8ZJzTz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D339228C96;
+	Wed,  5 Feb 2025 07:58:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDD42139C9;
-	Wed,  5 Feb 2025 07:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48C3B229B27
+	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 07:58:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738741745; cv=none; b=SbZ9V8gb38p7YJX+HopX7UCVfyubaZH1Lt1WnVZ7hfvzTf2wzbcGwkKmIasQTQvzyWxS1enMqrUy3nWLi70dzB+Ft8G9S93cG7WUIXYnq4gfxLjUH4aD5BOaDCrdfYqM9knzpemjzdEOtv30FB9Cp7uwtlcs9fL/kBeCjszBPiU=
+	t=1738742338; cv=none; b=eNlPfv+2syTBpMAN+BMMZH7tGAtdgvzf/9NU6IBMq2Qsi1Sft/KJlVhSRdNRFPlZf3337ByiZOpqnKBlP6cII9NkMIp3obA48WJSDWVs7Me6Q2IOhorTZGh2hLMYeoqSyjNovK2lkHHl8SKtC17aaOEV7bqaCMKa5+BEAY/LiRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738741745; c=relaxed/simple;
-	bh=Qw/0yWcANrMoXnTl4P+9ue7UVDNlxb5psQJThBWBFaY=;
+	s=arc-20240116; t=1738742338; c=relaxed/simple;
+	bh=kCYpgBMK7Rzj+V3RRv0t4HfrublkMmMqXKbRjCktDYA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IL6TpJlZ1PeoMbHj0qG746StMhMGmIgafA40DW6ABUM3ivuVeYX2f8luTmF2xMBYfyD4iDf4yXhtCi5LlD3ioHyUu/y4LIs5cIam5wlFxmPdep2hoIiuc64nElRJmZ4LN6urhT2LtyE4i72lYibOKQ4+qamHQvJU8ssI6Mie3Bk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sv8ZJzTz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26362C4CED1;
-	Wed,  5 Feb 2025 07:49:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738741745;
-	bh=Qw/0yWcANrMoXnTl4P+9ue7UVDNlxb5psQJThBWBFaY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Sv8ZJzTzRjZTGo1UGH6BRpLl2PRniI9Qe4x+s6+Zlo1H5J9yw0Kdc+EXoRtY0uz/d
-	 XTEkAmsOeeSKLCC2d++dlrDZL3ngiyb/MH876EyUphTTeP1TARB5wNgjq0QrrJndwg
-	 wK11/k0cD+f4kOYzTfAw7Tnz8Bx+z0yyt7cNudHrME8v3t33l8Av+NuEMH9Gbr7jJf
-	 HAcQYosTtABgjDcZWPHXirP2YKmhxPSBRJiN0KH0J2NLPLlwzoiZlbzcD0XFU+hItp
-	 48KdV9iviHmWhQoOn9ETIuvQ6FVt90Y7HfWhJomxc3ReU9RttWoA1DMYk5A5CtPNOE
-	 yqsenCxZ0+KZw==
-Message-ID: <53511b7c-aec3-4846-ab68-05958d585516@kernel.org>
-Date: Wed, 5 Feb 2025 08:48:59 +0100
+	 In-Reply-To:Content-Type; b=uwPqHAo62NVKuJp0ZaPmaeAFDg7HrTwsgDhHezC5qQuNhvXoyIlKny9v1O7ZXhSil2kjEj01m4xsdAuVqjGFuzaqSTKPItFUX1eUa+oVT25tfgPdV6RdmuXgovFOoVjU5xQhiNa5TKvnmIlrFV5piVDk5eGso8b+09CKpKU3gig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.starfivetech.com; spf=none smtp.mailfrom=linux.starfivetech.com; arc=none smtp.client-ip=18.194.254.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.starfivetech.com
+X-QQ-mid: bizesmtpsz8t1738742253t7hgm8u
+X-QQ-Originating-IP: LhoYFQ+iWEQs6p+Ju1KUL8CfXjPMNyGFDkrdyseJg5Y=
+Received: from [192.168.125.117] ( [113.72.145.41])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 05 Feb 2025 15:57:31 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4618514360899873354
+Message-ID: <25B3D8909DBCC21B+43663a76-4afa-44ae-95e2-3a8792de614c@linux.starfivetech.com>
+Date: Wed, 5 Feb 2025 15:57:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,98 +46,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Add chip ID for Exynos7870 SoC
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Sergey Lisov <sleirsgoevy@gmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250204-exynos7870-chipid-v1-0-0bf2db08e621@disroot.org>
- <339ea40f-6bc7-42ad-a5c2-f57b3be8cc39@kernel.org>
- <e9d9388d0adacd5599c6c6f5b7f33f87@disroot.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 5/5] riscv: dts: starfive: jh7110-common:
+ bootph-pre-ram hinting needed by boot loader
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <e9d9388d0adacd5599c6c6f5b7f33f87@disroot.org>
+To: E Shattow <e@freeshell.de>, Emil Renner Berthing <kernel@esmil.dk>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <20250203013730.269558-1-e@freeshell.de>
+ <20250203013730.269558-6-e@freeshell.de>
+From: Hal Feng <hal.feng@linux.starfivetech.com>
+In-Reply-To: <20250203013730.269558-6-e@freeshell.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpsz:linux.starfivetech.com:qybglogicsvrgz:qybglogicsvrgz5a-1
+X-QQ-XMAILINFO: Nng40AJHpBv6Fu2aJymXzS0AhJjJLn2lphaWOVuVC6W/CsVvoOiX1tHc
+	KcOwYveyuzl0rtd/49/7st8AVqv8vL1UJUVoTwuRRxv79NydJlNlDPxXy5rySkAuVyA4nb9
+	UmIjxpLgonvHAEA89X2g9/SxDTicC0tMJxZ7qKrx/5JdnvMSmxb6Etnxdtten/yR0LYwzeG
+	0Zp7Q7gvf8xEIpCvTQ8yrr+omv5Q8ixUGINFCWifrhNmvCpsDR24J8bjT2JgyhYTM+BMDD6
+	zXeiyQI80EZXZktVbEqqh/71McBeK9+MyNn4W5GNChWsADUYBOhM0noxpnseG2BXL6Eegy7
+	8ROtqpx4WxASxeXNOiqkyYvl/8E9XZCVOrQHQr3l1Hv3cVGmv4/hskaLEfSHl+7N3T3snEk
+	F1IcTT5oiVzcwC1JMtXN1FojK3baRDnL0CC9U+REPf42eMDlOQK/p+ORdgnuVOyYLFuY9jL
+	ZkGgleDe2aYQN4BxoacXiB+a8012yn9LS2q48YgzsBq+hbnED1Irq4w9y7UYLpd1JHfv31I
+	hJr1ZXMre4GdCMjMr1qpRqJTusoytFg+PQrBwmXfTNj86L6bno0wMqKC6cvnWlv6KFQmYNt
+	wLSzJqRRkxRUAMa8T6M7JVRiAVK40MVWhXA2Wp+oT22bjlKRz9nPlWOK6M/ydcix5KAOTm0
+	Xgg6nMkG5WsjoV+EK+uVHx8n+RxGgwTEVqhMclezGmw1414aIEp0J/PEBSGsrKRIrr7QeN1
+	RBo00h6lhJY1YG9WohfhNDUBxYrRtkQQQmB0GZa+Vo8AxhLscjsSM2MJBQKaxqjfKiYvvye
+	/2/1NxLqGmqsLxHh1/JkKp3LkZGYpJHzNm7hY3mfFrCJwFRGjFg61t/6VXm3f/apY8RBfRt
+	bh5utTd+mFjptQl8kPH7FvEeddYEeovhixfz4fVaJvNr9kz60Dei2TpJpxziQhH17+kEMBG
+	Jk+zO3nsmr/k6Nw1UFWmZnH928AUo1W7LfUnFSzIqYGKl8xTb69lKiQNdCDH+j6f3Il8=
+X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
+X-QQ-RECHKSPAM: 0
 
-On 04/02/2025 20:29, Kaustabh Chakraborty wrote:
-> On 2025-02-04 07:53, Krzysztof Kozlowski wrote:
->> On 03/02/2025 21:32, Kaustabh Chakraborty wrote:
->>> This patch series is a part of Exynos7870 upstreaming.
->>>
->>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->>> ---
->>> Kaustabh Chakraborty (2):
->>>       dt-bindings: hwinfo: samsung,exynos-chipid: add exynos7870-chipid compatible
->>>       soc: samsung: exynos-chipid: add support for exynos7870
->>>
->>>  Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml | 1 +
->>>  drivers/soc/samsung/exynos-chipid.c                                 | 1 +
->>>  2 files changed, 2 insertions(+)
->>
->> When I asked to split, I said per subsystem. Soc is one subsystem.
->> Everything targeting SoC should be in one patchset. get_maintainers.pl
->> tells the name of the subsystem and its maintainers.
->>
->> If there is going to be resend/new version, combine patchsets for soc
->> into one patchset (just like the example I gave last time).
+On 2/3/2025 9:37 AM, E Shattow wrote:
+> Add bootph-pre-ram hinting to jh7110-common.dtsi:
+>   - i2c5_pins and i2c-pins subnode for connection to eeprom
+>   - eeprom node
+>   - qspi flash configuration subnode
+>   - memory node
+>   - uart0 for serial console
 > 
-> Alright, so I'll move these patches to the one which has the devicetrees.
+>   With this the U-Boot SPL secondary program loader may drop such
+>   overrides when using dt-rebasing with JH7110 OF_UPSTREAM board targets.
 > 
-> There's also a Documentation/devicetree/bindings/soc/ patch in
-> exynos7870-pmu-clocks [1]. The CLKOUT driver uses the compatible declared
-> in there, i.e., the CLKOUT driver depends on that commit. So, should it
-> stay there? Or...?
+> Signed-off-by: E Shattow <e@freeshell.de>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> index 30c5f3487c8b..c9e7ae59ee7c 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> @@ -28,6 +28,7 @@ chosen {
+>  	memory@40000000 {
+>  		device_type = "memory";
+>  		reg = <0x0 0x40000000 0x1 0x0>;
+> +		bootph-pre-ram;
+>  	};
+>  
+>  	gpio-restart {
+> @@ -247,6 +248,7 @@ emmc_vdd: aldo4 {
+>  	};
+>  
+>  	eeprom@50 {
+> +		bootph-pre-ram;
+>  		compatible = "atmel,24c04";
+>  		reg = <0x50>;
+>  		pagesize = <16>;
+> @@ -323,6 +325,7 @@ &qspi {
+>  	nor_flash: flash@0 {
+>  		compatible = "jedec,spi-nor";
+>  		reg = <0>;
+> +		bootph-pre-ram;
+>  		cdns,read-delay = <2>;
+>  		spi-max-frequency = <100000000>;
+>  		cdns,tshsl-ns = <1>;
+> @@ -405,6 +408,7 @@ GPOEN_SYS_I2C2_DATA,
+>  	};
+>  
+>  	i2c5_pins: i2c5-0 {
+> +		bootph-pre-ram;
+>  		i2c-pins {
+>  			pinmux = <GPIOMUX(19, GPOUT_LOW,
+>  					      GPOEN_SYS_I2C5_CLK,
+> @@ -413,6 +417,7 @@ GPI_SYS_I2C5_CLK)>,
+>  					      GPOEN_SYS_I2C5_DATA,
+>  					      GPI_SYS_I2C5_DATA)>;
+>  			bias-disable; /* external pull-up */
+> +			bootph-pre-ram;
+>  			input-enable;
+>  			input-schmitt-enable;
+>  		};
+> @@ -641,6 +646,7 @@ GPOEN_DISABLE,
+>  };
+>  
+>  &uart0 {
+> +	bootph-pre-ram;
+>  	clock-frequency = <24000000>;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&uart0_pins>;
 
-The binding stays with the driver.
-
-
-
+What about &mmc0, &mmc1, &qspi, &sysgpio, &mmc0_pins, &mmc1_pins, &i2c5?
+Why not add "bootph-pre-ram;" for them?
 
 Best regards,
-Krzysztof
+Hal
+
 
