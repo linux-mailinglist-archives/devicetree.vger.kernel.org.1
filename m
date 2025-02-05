@@ -1,136 +1,156 @@
-Return-Path: <devicetree+bounces-143148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC7F7A284CE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:01:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3887A28626
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:08:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA320188660F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:01:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 358B81885B26
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:08:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA009219A7D;
-	Wed,  5 Feb 2025 07:01:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BFA222A4F3;
+	Wed,  5 Feb 2025 09:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jeAsW1p1"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="btvd4bzt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49218.qiye.163.com (mail-m49218.qiye.163.com [45.254.49.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5514721773E;
-	Wed,  5 Feb 2025 07:01:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0061E228CBA;
+	Wed,  5 Feb 2025 09:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738738905; cv=none; b=bw4V4Ysgg4C1EiAAODA30wgPeuZiVcTJCJJ7HMA0JnwI1b1Vh5MOJ8p/7DdcsH9DCWHVwt9x7MZ/j8MibtDSW6ui+0fM8fuXsA6VUpQwU1hYAspvs8LKVnevhQRAifQIDTLRlnudUadnOqytcec7cdbb0gcCScayV6DgR1mgaPU=
+	t=1738746495; cv=none; b=vCXbkyJ27stE31Sqf78lsg+edkomrAz7bND44wKmDQQ4/Ohz5m9DhLuFsF1SqNAWLPZRbfKuaVv92HENxNEEcuo/mu7ib5+pW/6+cGi+C/wYHDK9gO2xC7C5DT4MmgnfRctIInRLTDVR3EiHYU+x5RL2J4HQISi6LVeovTwvpz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738738905; c=relaxed/simple;
-	bh=yxW7QMaAB0nuL2yZCjk4W1zhHXFyqyCXjnl61MZJ/hI=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=tPtaqyhNqXeygQzXUUn7uO4cSv+8en7PVVXxNziuCG9mNfYs3LxQ7Cmron7jd0Qw5xuszutk1w2a8AEyPSrXdJv0iS657YwRNdTW24EkqHvjilJb6lQprVrtCa8m6CklEcHYLOcS/jZkR/OfArD++WO7Qro+TTev+QcACoSGDNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jeAsW1p1; arc=none smtp.client-ip=209.85.167.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3eb9a0a2089so4126212b6e.1;
-        Tue, 04 Feb 2025 23:01:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738738903; x=1739343703; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VetlIju5pkNjg/WmtiNabYY/80QVE5zZqTlQOK48sTE=;
-        b=jeAsW1p1tUzTybDtLaLpfcBriUdjO2oP24xtG1DmSLiXPJu9Ss8CuUHjPXNwYnF1kx
-         LwRCvOHg076FoL5ipfzYYOSeNayn12snRLKuy895LxtD8eYOe7KP+GHPhd63SMyYQTMU
-         cVb2LLUhSFYU/gOx2yYri75xmEFqegChkEgrh1DyAqF33mjCiAzKACncS/AdJdTuSJ0D
-         DkzcAqfrjxN7dbwz6ydeXetWj5qSnVfrhYEuckVHZQn8KxgQn+Bjp8EkSt76kRHepDmS
-         XOfVKZOR723Ym9M+3GknmNdNA1lZNt98V5GZdmSy7su7VBSykC5J1dtcCGgEWJ8YEhKa
-         cH4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738738903; x=1739343703;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VetlIju5pkNjg/WmtiNabYY/80QVE5zZqTlQOK48sTE=;
-        b=wjb1RA1joZNPKqzZ/4WKDXU6jjYxWht4N6rCwPShPxFybnKRHwf4KZtv+LpSWmZt60
-         su5x0GKJiI6NGDa0+ub9KyqDyeAMXZHxqWYvgwAL1TxNneSTTQ1TdJ0hWgYd+0ol3BbP
-         jw+sHJ+hLJxqn2kTWD7NdsBLfTpLtbS1N2iH6TivGSsDG007T4Otw5Sbm7Ut+1aUqfrv
-         TEAvHrxsyjpHQbVE0phK70h7Mz/nbqc23p/1Md8r66S4JF61GCqkaFM5CuDW2IU58pnx
-         jBP9PC3+45lbImZrRg8o11diIRFz9ya+r/xPENUyfCbqGckqKtvqLySasbOZZbdBfwmg
-         PmYg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXb8zJeuyBb/DqMGOCWmE05uSUlBAhx0vh0VvPH1JS+Q3ScLrjn+JKtW8AVaBIzj19JIIN/3PMEFvv@vger.kernel.org, AJvYcCX2YdqQ0vcTkmpdquh2iHDXI6FU28w3GVOczGeySmJFU29MZTuEtEvkZrMA966dDS7b/e26HSEYvBA5O+F0@vger.kernel.org, AJvYcCXHcMQM/wU4i9/F4DzN6S7czu7AoqIsM7m2K+CJQumQyvQkkGZ4AmDK4oIJKAZSMB3n0HYSKFC7LxoU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWJnH9/Lj/NIrSeb15ikwkuyKgNrueGSgog/qIG2+ErIbk2qew
-	tWKVr2C6SXTvQGDVXtuPhJ6+cUMxuhAeX0GofVNsjdGD8B64QKVt
-X-Gm-Gg: ASbGncvrHFyC+IHCGDmsgCi+Q+spNaVHwPun+n3PwWqKNlSTl5HOXdY24XZgk0yAHFR
-	QJKGUqgZgitY1TcUTCdPuQZcvMXlFU4D5iBKlH8yM8hW8NQMYvEJEI5Qd8tWb+P8FdHSLHFRlFo
-	2IoPfDS0RcUyRfdy8NCR1xgjNDs+c88pDzxcga2DByX3tg/jMS2m1Lnm5hO5Gs4nsJ2WOigEm8s
-	yHgNZGh0Jbr3iVOGyHR/K0KElBSyrUlo14YPU7o+MfV/xbsAGZXKn15tGInk+bHSnyGoxU+iBLr
-	jE8w48sl3TZLAys83gGJbYtlvQ==
-X-Google-Smtp-Source: AGHT+IHsN/LcSCw5m80/mGufauWzvwto1G8RpGC+M5RvbFWxlmw2NwUKjbpX1R3EQj/I7XUX3H7gJw==
-X-Received: by 2002:a05:6808:3c8a:b0:3eb:638d:5e28 with SMTP id 5614622812f47-3f37c0e5a0bmr1104846b6e.4.1738738903247;
-        Tue, 04 Feb 2025 23:01:43 -0800 (PST)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f33367f6c6sm3441313b6e.42.2025.02.04.23.01.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Feb 2025 23:01:42 -0800 (PST)
-From: Chen Wang <unicornxw@gmail.com>
-To: ukleinek@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	unicorn_wang@outlook.com,
-	inochiama@outlook.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com,
-	haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	chunzhi.lin@sophgo.com
-Subject: [PATCH v7 3/3] riscv: sophgo: dts: add pwm controller for SG2042 SoC
-Date: Wed,  5 Feb 2025 15:01:34 +0800
-Message-Id: <f376e16c0ee0cdac51bb91421d78defc0601627a.1738737617.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1738737617.git.unicorn_wang@outlook.com>
-References: <cover.1738737617.git.unicorn_wang@outlook.com>
+	s=arc-20240116; t=1738746495; c=relaxed/simple;
+	bh=bZCdFFptngTG0hFG0P6Ls3pR19DeLNruPnqgWd3AOT8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BtMJ4TVzeUL+NuNFGZb/fGB/p3Dx+yan3FwOJSDY3fYlDiDWVlonC5mFa93DkxdDcqeBJp7EBfU+03COb0TAnCxxm4X0HnKtDcK9E1hD9g//wGgcunTMrVdwzQn+xDPUNhIUWnL+TfUHB2gEtYcW6dMPneDkrvo37UvJm4N8w40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=btvd4bzt; arc=none smtp.client-ip=45.254.49.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.30] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id a2f6aecf;
+	Wed, 5 Feb 2025 10:18:31 +0800 (GMT+08:00)
+Message-ID: <b85a4449-f178-4877-9ba7-65ddcc231052@rock-chips.com>
+Date: Wed, 5 Feb 2025 10:18:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] Revert "arm64: dts: rockchip: Increase VOP clk
+ rate on RK3328"
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, kever.yang@rock-chips.com,
+ heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20250125011545.15547-1-zhangqing@rock-chips.com>
+ <20250125011545.15547-3-zhangqing@rock-chips.com>
+ <d1ddec89-08d5-4eed-8ecc-7df47294230a@kwiboo.se>
+From: zhangqing <zhangqing@rock-chips.com>
+In-Reply-To: <d1ddec89-08d5-4eed-8ecc-7df47294230a@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk9NTFZPGUtISk1NTUxLHh9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
+	9VSktLVUpCS0tZBg++
+X-HM-Tid: 0a94d3e6e17103a3kunma2f6aecf
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mz46Pyo6EjIJGhQyFyMPGg09
+	TEIaCUxVSlVKTEhDTElKQkpJTUNOVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU9LTUk3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=btvd4bzt9LMDt9sePPl5TCU6js+OoOuX0XD0PnJMAA5dUVJif3cBsEOSWfFan99MzUBSvi5QTyGysRWh1s7jo2pfiS7gSJz3h2jiekDJaTNIAMNbhpDOGj7PDLa+aC0GdK5I0mzeyP7vrtTNgkc3wi/txmf0CmlAFb8S6ewZGt8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=/1w0LAq2M+/NtKCh0lzYTdc188jbF90/W0yNry5dtdc=;
+	h=date:mime-version:subject:message-id:from;
 
-From: Chen Wang <unicorn_wang@outlook.com>
 
-SG2042 has one PWM controller, which has 4 pwm output channels.
+在 2025/1/26 5:39, Jonas Karlman 写道:
+> Hi Elaine,
+>
+> On 2025-01-25 02:15, Elaine Zhang wrote:
+>> This reverts commit 0f2ddb128fa20f8441d903285632f2c69e90fae1.
+>>
+>> Before changing the PLL frequency, in order to avoid overclocking the
+>> child clock, set the child clock to a large div first, and then set the
+>> CLK as required after the PLL is set.
+> This commit message does not match what this patch does. In this patch
+> you revert a change and in next patch you re-introduce same thing
+> slightly different.
+>
+> As mentioned in v1, see [1], you should merge both patches as a single
+> fix, if a fix really is needed.
+Ok, This will be fixed in the next release.
+>
+> Testing on a rk3328-rock64 I see no difference before or after these
+> changes. Please describe what this fixes because clk_summary show same
+> clock tree and rates before and after this fix.
+The clock tree might see the same result.
 
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
----
- arch/riscv/boot/dts/sophgo/sg2042.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+It is not safe or correct to set the child clock frequency before 
+setting the PLL frequency, and the parent clock PLL frequency may not be 
+the final expected value at this time.
+Therefore, the correct setting of the child clock frequency should be 
+after the PLL frequency is set.
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index e62ac51ac55a..4449c762d663 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -165,6 +165,15 @@ port2a: gpio-controller@0 {
- 			};
- 		};
- 
-+		pwm: pwm@703000c000 {
-+			compatible = "sophgo,sg2042-pwm";
-+			reg = <0x70 0x3000c000 0x0 0x20>;
-+			#pwm-cells = <3>;
-+			clocks = <&clkgen GATE_CLK_APB_PWM>;
-+			clock-names = "apb";
-+			resets = <&rstgen RST_PWM>;
-+		};
-+
- 		pllclk: clock-controller@70300100c0 {
- 			compatible = "sophgo,sg2042-pll";
- 			reg = <0x70 0x300100c0 0x0 0x40>;
+The partial clock is set before the PLL setting frequency, which is to 
+prevent the child clock from overclocking when the PLL is set, so ensure 
+that the child clock is at a safe frequency before setting the PLL, and 
+reset the child clock frequency after the PLL is set.
+>
+> Also for next revert patch you send, please include the patch author in
+> the recipient list :-)
+>
+> [1] https://lore.kernel.org/all/cae9cb0a-1500-4fbc-bbf4-a6266549bcb9@kwiboo.se/
+>
+> Regards,
+> Jonas
+>
+>> Fixes: 0f2ddb128fa2 ("arm64: dts: rockchip: Increase VOP clk rate on RK3328")
+>>
+>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/rk3328.dtsi | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+>> index 7d992c3c01ce..f3ef8cbfbdae 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+>> @@ -852,8 +852,8 @@
+>>   			<0>, <24000000>,
+>>   			<24000000>, <24000000>,
+>>   			<15000000>, <15000000>,
+>> -			<300000000>, <100000000>,
+>> -			<400000000>, <100000000>,
+>> +			<100000000>, <100000000>,
+>> +			<100000000>, <100000000>,
+>>   			<50000000>, <100000000>,
+>>   			<100000000>, <100000000>,
+>>   			<50000000>, <50000000>,
+>
 -- 
-2.34.1
+张晴
+瑞芯微电子股份有限公司
+Rockchip Electronics Co.,Ltd
+地址：福建省福州市铜盘路软件大道89号软件园A区21号楼
+Add:No.21 Building, A District, No.89 Software Boulevard Fuzhou, Fujian 350003, P.R.China
+Tel:+86-0591-83991906-8601
+邮编：350003
+E-mail:elaine.zhang@rock-chips.com
+****************************************************************************
+保密提示：本邮件及其附件含有机密信息，仅发送给本邮件所指特定收件人。若非该特定收件人，请勿复制、使用或披露本邮件的任何内容。若误收本邮件，请从系统中永久性删除本邮件及所有附件，并以回复邮件或其他方式即刻告知发件人。福州瑞芯微电子有限公司拥有本邮件信息的著作权及解释权，禁止任何未经授权许可的侵权行为。
+
+IMPORTANT NOTICE: This email is from Fuzhou Rockchip Electronics Co., Ltd .The contents of this email and any attachments may contain information that is privileged, confidential and/or exempt from disclosure under applicable law and relevant NDA. If you are not the intended recipient, you are hereby notified that any disclosure, copying, distribution, or use of the information is STRICTLY PROHIBITED. Please immediately contact the sender as soon as possible and destroy the material in its entirety in any format. Thank you.
+
+****************************************************************************
 
 
