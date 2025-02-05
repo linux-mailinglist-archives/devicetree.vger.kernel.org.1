@@ -1,120 +1,154 @@
-Return-Path: <devicetree+bounces-143329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3380A29641
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:27:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB4AA2965D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:31:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A921C3A173C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:27:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3436A165856
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:31:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D1B21DC9BA;
-	Wed,  5 Feb 2025 16:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C54F1DE2B4;
+	Wed,  5 Feb 2025 16:29:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oBYoH8FQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lCi0elgY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C59E1DA11B;
-	Wed,  5 Feb 2025 16:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D8AE1DDC28;
+	Wed,  5 Feb 2025 16:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738772857; cv=none; b=sYwyLpVuwhVZ7fNunVGk3uHMUJUxYiIlyTK4mSor1640cN7M6uPGOFsUTCMoT7YQLo+DnT1Aa6D7RkeHTDK4bbpqs7/8X6upDTrb5cbZnJd6IDEOUfRfXe6RyA2TAAkceMbsUMQY19CYeoB0c/qrcEgEFy/+RqNZ8q2d8q1/L7E=
+	t=1738772973; cv=none; b=j2Okc4JO470QWieaYPu6bFFZvj8bfmCvWTPejM2Ka/VR/mQlrnWwTJMj7WjRjExO/Viu2VD+JXvmbFoaq/SQIs8zhOXvF2f415YW3Q/frSs2rZS7vDFDHowbyErAJV/0Bl/KjmPTp0zAsN3YML67KKTJ6EL8ib/ffX4DzNutu8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738772857; c=relaxed/simple;
-	bh=vJ4rRARvHvI+TqMh5YEfuph2abkuxCb70so77AF6Lp0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VhLUYalPiDMLcIIaH6SSHFuNX0juhpDRmKsfJvCZLyhaENp/MI99nUAXsgSakSg7AP0KfVBMD9JQZEwMMW494yb1YHm2kFYQJygUHbfHbibSgcTqC7Cwejo99sgcqRicuqVYtWYGOR6n2Mb7/AXLoVHjxEKdQK9r2RWHR5Jl8ks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oBYoH8FQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DD8ECC4CEE9;
-	Wed,  5 Feb 2025 16:27:36 +0000 (UTC)
+	s=arc-20240116; t=1738772973; c=relaxed/simple;
+	bh=d0uZKmyfPtM1dxbl4GJ+Vu5RdmQBS52EMFV3irgcQYo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AzRJ14e5QlQN1L1I3tABzGUuAGQUnYTmcoQ7F3lb+MCkWgfaDE5IqQWzftiqaqayIlT7Go4F+WLaNm1niTudMce9ho/UpNYQ5tQLmmQ9KlnYeR7jUEvSLONjrD7aCEnkxaRDqqPQHYPeFdQZt+kXr8ttEp7cvCO+X94lIty60Os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lCi0elgY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E759C4CED1;
+	Wed,  5 Feb 2025 16:29:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738772856;
-	bh=vJ4rRARvHvI+TqMh5YEfuph2abkuxCb70so77AF6Lp0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=oBYoH8FQJZr7/lf2sPIABAnMt7AYeSZT5VT0e7iTTfqYUtJZtQphVswITPCmQI0YJ
-	 ABn6i1Z57rPrw49DrF6sqE1KDMstcVO+oY0ZYsYQJJ45OjvBW2xJ8rtmqTKOjd9Gjo
-	 je/jDKLpWWfPBTMkIooAssei0n5HADSjLiPM2liF69PKqTmL3gxuPRZ4AUNbGeRQzK
-	 z9kJC3Vej/+1ysLnUJS3jFz7U4kb3W2TfH1L/5+OcKZhvvXWI+uXXVGOsTm4L44DpY
-	 5gK9BL9DjiSaFvqixure23n0HGC9Hi6pvhvUpeaQWD6Ve1ADcrUYixeKatI/Qsqw3J
-	 /A9JMkH3JTt9g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D4182C02192;
-	Wed,  5 Feb 2025 16:27:36 +0000 (UTC)
-From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
-Date: Wed, 05 Feb 2025 17:27:29 +0100
-Subject: [PATCH v6 4/4] MAINTAINERS: Add entries for Apple Z2 touchscreen
- driver
+	s=k20201202; t=1738772972;
+	bh=d0uZKmyfPtM1dxbl4GJ+Vu5RdmQBS52EMFV3irgcQYo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lCi0elgYle0tH9injXPplB/uayOG/myK3mKLZ2q1Zj8BoH+JmAGLhxk5VSsSHLIdf
+	 bN1YUcrt0RLW34e6z/qPB/Imj13wNSwO5ZxgZeJhSGhpaqZ9n12+zUAKrVR9QP4qfr
+	 edMBapiqqKDCIl0JuOnZHRzzOXAk2tj2eKD87swe8PhEa4zHrrNk2Q9s6m4jAVM34C
+	 qAqpKQedbvp+AtCO4cjbwcQ/voa9E9ibwRTV088SxPSAKe3UKaDnFXq35VMEitABnz
+	 IKxzggXdF5TzCEjF0ZQL0cnlXdl1su3dUoLyvtkxWbdv0cHLteQjAKh6GPHzZ+8pmw
+	 gpoDtZpZi7Nvw==
+Date: Wed, 5 Feb 2025 17:29:30 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 2/2] pwm: Add support for pwm nexus dt bindings
+Message-ID: <6js6k6xz3vuqshq2pfwqifby4t5q54ftztxxw2rau4j23xx2y5@u5xubi6v3uil>
+References: <20250205095547.536083-1-herve.codina@bootlin.com>
+ <20250205095547.536083-3-herve.codina@bootlin.com>
+ <ejdh76c4r44gxsdi7gwed65ste3wuunki2jgavc3wsfri5yaex@jccsywdfadgp>
+ <20250205143737.1315baba@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250205-z2-v6-4-cc60cbee1d5b@gmail.com>
-References: <20250205-z2-v6-0-cc60cbee1d5b@gmail.com>
-In-Reply-To: <20250205-z2-v6-0-cc60cbee1d5b@gmail.com>
-To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Sasha Finkelstein <fnkl.kernel@gmail.com>, 
- Neal Gompa <neal@gompa.dev>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738772855; l=1303;
- i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
- bh=InMRbHicu7oJRHDFwDtDafdNISTi0qP6MkyrWoUFJQU=;
- b=xB0JKoSqykV9wlskFcjmP+6fAkYQNyG1lRoLMX1kTL0Rv1ZzVdYu1QRXcXpJFUFmmkhDqt5mV
- 7zc6n+VFzDZD5Y+yJu+TRz+BWZZB3B0aFrfVPzPrmQD4yw96UzHgil5
-X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
-X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
- auth_id=283
-X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Reply-To: fnkl.kernel@gmail.com
-
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-
-Add the MAINTAINERS entries for the driver
-
-Reviewed-by: Neal Gompa <neal@gompa.dev>
-Acked-by: Sven Peter <sven@svenpeter.dev>
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a87ddad78e26f28ffd0f3433560d6db1518f9f95..8b3776eb748e128f87c44886b117e0652447fb37 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2191,6 +2191,7 @@ F:	Documentation/devicetree/bindings/clock/apple,nco.yaml
- F:	Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
- F:	Documentation/devicetree/bindings/dma/apple,admac.yaml
- F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
-+F:	Documentation/devicetree/bindings/input/touchscreen/apple,z2-multitouch.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
- F:	Documentation/devicetree/bindings/iommu/apple,dart.yaml
- F:	Documentation/devicetree/bindings/iommu/apple,sart.yaml
-@@ -2211,6 +2212,7 @@ F:	drivers/dma/apple-admac.c
- F:	drivers/pmdomain/apple/
- F:	drivers/i2c/busses/i2c-pasemi-core.c
- F:	drivers/i2c/busses/i2c-pasemi-platform.c
-+F:	drivers/input/touchscreen/apple_z2.c
- F:	drivers/iommu/apple-dart.c
- F:	drivers/iommu/io-pgtable-dart.c
- F:	drivers/irqchip/irq-apple-aic.c
-
--- 
-2.48.1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="56vutjr4wmd3jj6f"
+Content-Disposition: inline
+In-Reply-To: <20250205143737.1315baba@bootlin.com>
 
 
+--56vutjr4wmd3jj6f
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 2/2] pwm: Add support for pwm nexus dt bindings
+MIME-Version: 1.0
+
+Hello Herv=E9,
+
+On Wed, Feb 05, 2025 at 02:37:37PM +0100, Herve Codina wrote:
+> On Wed, 5 Feb 2025 12:38:32 +0100
+> Uwe Kleine-K=F6nig <ukleinek@kernel.org> wrote:
+> > Does this also work if &soc_pwm2 has #pwm-cells =3D <2>? Would I need j=
+ust
+> >=20
+> > 	pwm-map =3D <0 0 0 &soc_pwm1 1 0 0>,
+> > 		  <1 0 0 &soc_pwm2 4 0>,
+> > 		  <2 0 0 &soc_pwm1 3 0 0>;
+>=20
+> Yes, exactly.
+>=20
+> >=20
+> > then and
+> >=20
+> > 	pwms =3D <&connector 1 57000 0>;
+> >=20
+> > would then have the same effect as
+> >=20
+> > 	pwms =3D <&soc_pwm2 4 57000>
+>=20
+> Yes, the last 0 (or any other values) in pwms =3D <&connector 1 57000 0> =
+is
+> simply dropped in the translation (#pwm-cells =3D 3 in connector nexus to
+> #pwm-cells =3D 2 in soc_pwm1 node).
+>=20
+> In more generic terms, it works in translation from #pwm-cells =3D N to
+> #pwm-cells =3D M by simply dropping the last N-M values.
+>=20
+> Also note that even if values are dropped, you need to have them set when
+> you point the nexus node because #pwm-cells =3D 3 is set in the connector
+> node and need to be fixed and usable for all the entries in the
+> pwm-map table.
+
+Makes sense.
+
+> > and the 0 is dropped then? Could I adapt the mapping that the effect is
+> >=20
+> > 	pwms =3D <&soc_pwm2 57000 0>
+>=20
+> In this one, I think you miss the PWM number
+>=20
+> If I read correctly this line you ask for the PWM 57000 from the soc_pwm2
+> controller. This doesn't make sense :)
+
+Some pwm chip devices with only a single output line use this. The first
+paramter is the default period (which is passed in the 2nd parameter
+normally) and the 2nd paramter are flags (normally the 3rd parameter).
+Back then the rationale was that for such hardware, the line index is
+zero always anyhow, and so could better be skipped.
+
+Compare of_pwm_xlate_with_flags() to of_pwm_single_xlate(). pwm-pxa is
+the single offender using the latter. Thinking about that, it's easy
+enough to fix without breaking compatibility. I'll tackle that.
+
+So for a PWM on pxa `<&soc_pwm2 57000 0>` works fine.
+
+Best regards
+Uwe
+
+--56vutjr4wmd3jj6f
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmejkecACgkQj4D7WH0S
+/k4fTwgAsEzABfbbBa/jWtTTBq123MvJs2pfyldUvykMIIugEjnMYwtBMtdIw8kS
+0PS9lDalHKCedoLAFZb6F0jlP/NXskM1g1QtFDd4Jj5UKsAoGZE9McUIDnKQ2d3x
+OP+EMwS8xxgiEaDxh5JAwyohByfLBVIsmlv8XSO1E6deyTQkdNFdt7j835eF6KmO
+hPVP6ifgcjbSTINdz+KP53TbLc4sfIRpjZoG7jJ6ITv8HmRfpaZ2czQUvuVJtpcV
+1Uq4E5xlVIwqtIcxSPEayIjABm6hJjOdixKdoPi1/FjWh+/bAiZaqjAMo5oIpzxC
+TroXi9PjpYswyRcM0pJrBbDqn3f9ZA==
+=kiW0
+-----END PGP SIGNATURE-----
+
+--56vutjr4wmd3jj6f--
 
