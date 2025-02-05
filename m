@@ -1,147 +1,335 @@
-Return-Path: <devicetree+bounces-143225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24A6DA2897E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:40:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D3F4A28985
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:41:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62D4A1889439
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:40:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAF6E18896F4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:41:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8C1022F16B;
-	Wed,  5 Feb 2025 11:38:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GOlzdv72"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97EDE22C328;
+	Wed,  5 Feb 2025 11:39:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3E522C33C;
-	Wed,  5 Feb 2025 11:38:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87AD222B8A0;
+	Wed,  5 Feb 2025 11:39:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738755515; cv=none; b=U3H0eQBwCVtAHJaVRMFPiVRxNlZavvutU0ru8+xHKZrA0WtUiomIT3fJ9ZOZV4hF7BCSWId4NexaPAoHcXyfsAFkdux9pAzqPbXc1hNe435PF7uvvgY1indpiX+GPAF1Sfejonnh34KidAAx7oNIzPAF0m+V90ChBCFX5iMc3go=
+	t=1738755594; cv=none; b=U6oibl8fwWk+fyOxABmPyV1QNuf9hfEwxPwkAOM1YILgTtnk68qOYIwmFSMof6omD4Sk9CmEYBTcfz4o6DLzqUPLlM9jo3RJHcwYgbVHa7oTzuu7grAkSzDej/JkAB4QxYt7MjunwbYWCPkt2moYHIFUJ0euEZc9zRJVMndp/aA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738755515; c=relaxed/simple;
-	bh=x8+1s0Ah3mFSTwPv6B2rss8bo5kzc6RZeN8bjPk3g6M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nf1B9tXeOzIqPa5tFTSiNNqmW9YcrSemRIUnjn6Ic6QK3X7Dd2RPAG+Hr1KcB/C2d9JP1Bc+zIH3ac5gmqu6kzymiRXC5j8Aj4I57PlydACZwFyvk41yXArpMXhc6O1oHF26dGwdyiwIDjeaFfft7Muldm+IgVxvrvtKeSyAo00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GOlzdv72; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B339CC4CED1;
-	Wed,  5 Feb 2025 11:38:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738755515;
-	bh=x8+1s0Ah3mFSTwPv6B2rss8bo5kzc6RZeN8bjPk3g6M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GOlzdv725i1D5UTnyvUxNAlhPHvMEeWJ4i8ejxVMQ/NsY4tY4sBX+fY17ZEdP3vXK
-	 giFFk1OlAP0vZE+09TNJZGGgJfRkXoIe0jX6viCZnE+BEYvMb1G7jsTksVT42cToGp
-	 wNIJ14LFTuKJDiGsfn0jP7PWcRfceR/zs2TlXd7iDo/uI0LDl2BWwWL6h4+CMQsKRg
-	 sptHimavIOraPnwwoXER63zxwE6n/MjuR2yqkxwUKEPntQG2sRRX2XVSDFeJVg3cdM
-	 Ef5YQzdNeS4nkZPTP8kIgtP9IA4xzf70WNFMzctt4Ja+ichoIZj6wb/Vsco7NbFa9i
-	 JuCgEVBnGGtSQ==
-Date: Wed, 5 Feb 2025 12:38:32 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 2/2] pwm: Add support for pwm nexus dt bindings
-Message-ID: <ejdh76c4r44gxsdi7gwed65ste3wuunki2jgavc3wsfri5yaex@jccsywdfadgp>
-References: <20250205095547.536083-1-herve.codina@bootlin.com>
- <20250205095547.536083-3-herve.codina@bootlin.com>
+	s=arc-20240116; t=1738755594; c=relaxed/simple;
+	bh=JuhDBXqqW8GETPfT0ftd0AdkeZW0m2a2KI7DDoLASms=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dVRDZrjNCbyKA5+/ag4yphOSCLPUtcBwtOLDkYRAR4IKjl+tTKMmMzwmWoa94dexS3rYG0MPdjExeGhRdLpmHJE9whKeHlEUtcjLPIJp8z237DIeJbilsBcdhpIN04W20WV+/p8dvrkHoKyvaFr8aE1Oh8Zk7JmIEZDmWNPvZtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4YnyrQ6QDcz6L4tl;
+	Wed,  5 Feb 2025 19:37:10 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 17349140C98;
+	Wed,  5 Feb 2025 19:39:49 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 5 Feb
+ 2025 12:39:48 +0100
+Date: Wed, 5 Feb 2025 11:39:46 +0000
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+CC: Ulf Hansson <ulf.hansson@linaro.org>, Daniel Lezcano
+	<daniel.lezcano@linaro.org>, <rafael@kernel.org>, <rui.zhang@intel.com>,
+	<lukasz.luba@arm.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <geert+renesas@glider.be>, <magnus.damm@gmail.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <p.zabel@pengutronix.de>,
+	<linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>, "Claudiu
+ Beznea" <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH 2/6] thermal: of: Export non-devres helper to
+ register/unregister thermal zone
+Message-ID: <20250205113946.00002fbb@huawei.com>
+In-Reply-To: <567adde6-a348-41c0-b415-80daf16d3dbb@tuxon.dev>
+References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
+	<20250103163805.1775705-3-claudiu.beznea.uj@bp.renesas.com>
+	<46c8e8ff-ea39-4dbd-a26c-67fcabf4b589@linaro.org>
+	<CAPDyKFq40KB6jKapnm0mOkFGB9-7VEGiBhNrVn_2fzrcziq0=Q@mail.gmail.com>
+	<20250204143303.0000174a@huawei.com>
+	<567adde6-a348-41c0-b415-80daf16d3dbb@tuxon.dev>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qd3k6jnvok4jbmcm"
-Content-Disposition: inline
-In-Reply-To: <20250205095547.536083-3-herve.codina@bootlin.com>
-
-
---qd3k6jnvok4jbmcm
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 2/2] pwm: Add support for pwm nexus dt bindings
-MIME-Version: 1.0
+X-ClientProxiedBy: lhrpeml500006.china.huawei.com (7.191.161.198) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-Hello,
+On Wed, 5 Feb 2025 10:33:39 +0200
+Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
 
-I really like this mechanism. Assuming the dt guys are happy yet, I
-intend to merge it. Just some detail question below.
-
-On Wed, Feb 05, 2025 at 10:55:43AM +0100, Herve Codina wrote:
-> Nexus node support in PWM allows the following description:
-> 	soc {
-> 		soc_pwm1: pwm-controller1 {
-> 			#pwm-cells =3D <3>;
-> 		};
+> Hi, Jonathan,
 >=20
-> 		soc_pwm2: pwm-controller2 {
-> 			#pwm-cells =3D <3>;
-> 		};
-> 	};
+> On 04.02.2025 16:33, Jonathan Cameron wrote:
+> > On Wed, 15 Jan 2025 16:42:37 +0100
+> > Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> >  =20
+> >> On Thu, 9 Jan 2025 at 18:34, Daniel Lezcano <daniel.lezcano@linaro.org=
+> wrote: =20
+> >>>
+> >>>
+> >>> Ulf,
+> >>>
+> >>> can you have a look at this particular patch please ?
+> >>>
+> >>> Perhaps this scenario already happened in the past and there is an
+> >>> alternative to fix it instead of this proposed change   =20
+> >>
+> >> I think the patch makes sense.
+> >>
+> >> If there is a PM domain that is attached to the device that is
+> >> managing the clocks for the thermal zone, the detach procedure
+> >> certainly needs to be well controlled/synchronized.
+> >> =20
+> > Does this boil down to the same issue as
+> > https://lore.kernel.org/linux-iio/20250128105908.0000353b@huawei.com/
+> > ? =20
 >=20
-> 	connector: connector {
-> 		#pwm-cells =3D <3>;
-> 		pwm-map =3D <0 0 0 &soc_pwm1 1 0 0>,
-> 			  <1 0 0 &soc_pwm2 4 0 0>,
-> 			  <2 0 0 &soc_pwm1 3 0 0>;
-> 		pwm-map-mask =3D <0xffffffff 0x0 0x0>;
-> 		pwm-map-pass-thru =3D <0x0 0xffffffff 0xffffffff>;
-> 	};
+> Yes, as described in the cover letter.
 >=20
-> 	expansion_device {
-> 		pwms =3D <&connector 1 57000 0>;
-> 	};
+> >=20
+> > Just to point out there is another way like is done in i2c:
+> > https://elixir.bootlin.com/linux/v6.12.6/source/drivers/i2c/i2c-core-ba=
+se.c#L630
+> >=20
+> > Register a devres_release_group() in bus probe() and release it before
+> > the dev_pm_domain_detach() call.  That keeps the detach procedure well
+> > controlled and synchronized as it is entirely in control of the driver.=
+ =20
+>=20
+> From the IIO thread I got that Ulf doesn't consider it a good approach for
+> all the cases.
+>=20
 
-Does this also work if &soc_pwm2 has #pwm-cells =3D <2>? Would I need just
+Maybe true (I'll let Ulf comment!) and I think the solution proposed here is
+not great because it is putting the cost on every driver rather than solving
+the basic problem in one place (and there is clear precedence in other
+bus subsystems). Ideally I'd like more people to get involved in that discu=
+ssion.
 
-	pwm-map =3D <0 0 0 &soc_pwm1 1 0 0>,
-		  <1 0 0 &soc_pwm2 4 0>,
-		  <2 0 0 &soc_pwm1 3 0 0>;
+Jonathan
 
-then and
 
-	pwms =3D <&connector 1 57000 0>;
 
-would then have the same effect as
+> Thank you,
+> Claudiu
+>=20
+> >=20
+> > That IIO thread has kind of died out for now though with no resolution
+> > so far.
+> >=20
+> > Jonathan
+> >=20
+> >  =20
+> >>>
+> >>>
+> >>> On 03/01/2025 17:38, Claudiu wrote:   =20
+> >>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>>
+> >>>> On the Renesas RZ/G3S (and other Renesas SoCs, e.g., RZ/G2{L, LC, UL=
+}),
+> >>>> clocks are managed through PM domains. These PM domains, registered =
+on
+> >>>> behalf of the clock controller driver, are configured with
+> >>>> GENPD_FLAG_PM_CLK. In most of the Renesas drivers used by RZ SoCs, t=
+he
+> >>>> clocks are enabled/disabled using runtime PM APIs.
+> >>>>
+> >>>> During probe, devices are attached to the PM domain controlling their
+> >>>> clocks. Similarly, during removal, devices are detached from the PM =
+domain.
+> >>>>
+> >>>> The detachment call stack is as follows:
+> >>>>
+> >>>> device_driver_detach() ->
+> >>>>    device_release_driver_internal() ->
+> >>>>      __device_release_driver() ->
+> >>>>        device_remove() ->
+> >>>>          platform_remove() ->
+> >>>>         dev_pm_domain_detach()
+> >>>>
+> >>>> In the upcoming Renesas RZ/G3S thermal driver, the
+> >>>> struct thermal_zone_device_ops::change_mode API is implemented to
+> >>>> start/stop the thermal sensor unit. Register settings are updated wi=
+thin
+> >>>> the change_mode API.
+> >>>>
+> >>>> In case devres helpers are used for thermal zone register/unregister=
+ the
+> >>>> struct thermal_zone_device_ops::change_mode API is invoked when the
+> >>>> driver is unbound. The identified call stack is as follows:
+> >>>>
+> >>>> device_driver_detach() ->
+> >>>>    device_release_driver_internal() ->
+> >>>>      device_unbind_cleanup() ->
+> >>>>        devres_release_all() ->
+> >>>>          devm_thermal_of_zone_release() ->
+> >>>>         thermal_zone_device_disable() ->
+> >>>>           thermal_zone_device_set_mode() ->
+> >>>>             rzg3s_thermal_change_mode()
+> >>>>
+> >>>> The device_unbind_cleanup() function is called after the thermal dev=
+ice is
+> >>>> detached from the PM domain (via dev_pm_domain_detach()).
+> >>>>
+> >>>> The rzg3s_thermal_change_mode() implementation calls
+> >>>> pm_runtime_resume_and_get()/pm_runtime_put_autosuspend() before/after
+> >>>> accessing the registers. However, during the unbind scenario, the
+> >>>> devm_thermal_of_zone_release() is invoked after dev_pm_domain_detach=
+().
+> >>>> Consequently, the clocks are not enabled, as the device is removed f=
+rom
+> >>>> the PM domain at this time, leading to an Asynchronous SError Interr=
+upt.
+> >>>> The system cannot be used after this.
+> >>>>
+> >>>> Add thermal_of_zone_register()/thermal_of_zone_unregister(). These w=
+ill
+> >>>> be used in the upcomming RZ/G3S thermal driver.
+> >>>>
+> >>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>   =
+=20
+> >>
+> >> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+> >>
+> >> Kind regards
+> >> Uffe
+> >> =20
+> >>>> ---
+> >>>>   drivers/thermal/thermal_of.c |  8 +++++---
+> >>>>   include/linux/thermal.h      | 14 ++++++++++++++
+> >>>>   2 files changed, 19 insertions(+), 3 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_=
+of.c
+> >>>> index fab11b98ca49..8fc35d20db60 100644
+> >>>> --- a/drivers/thermal/thermal_of.c
+> >>>> +++ b/drivers/thermal/thermal_of.c
+> >>>> @@ -329,11 +329,12 @@ static bool thermal_of_should_bind(struct ther=
+mal_zone_device *tz,
+> >>>>    *
+> >>>>    * @tz: a pointer to the thermal zone structure
+> >>>>    */
+> >>>> -static void thermal_of_zone_unregister(struct thermal_zone_device *=
+tz)
+> >>>> +void thermal_of_zone_unregister(struct thermal_zone_device *tz)
+> >>>>   {
+> >>>>       thermal_zone_device_disable(tz);
+> >>>>       thermal_zone_device_unregister(tz);
+> >>>>   }
+> >>>> +EXPORT_SYMBOL_GPL(thermal_of_zone_unregister);
+> >>>>
+> >>>>   /**
+> >>>>    * thermal_of_zone_register - Register a thermal zone with device =
+node
+> >>>> @@ -355,8 +356,8 @@ static void thermal_of_zone_unregister(struct th=
+ermal_zone_device *tz)
+> >>>>    *  - ENOMEM: if one structure can not be allocated
+> >>>>    *  - Other negative errors are returned by the underlying called =
+functions
+> >>>>    */
+> >>>> -static struct thermal_zone_device *thermal_of_zone_register(struct =
+device_node *sensor, int id, void *data,
+> >>>> -                                                         const stru=
+ct thermal_zone_device_ops *ops)
+> >>>> +struct thermal_zone_device *thermal_of_zone_register(struct device_=
+node *sensor, int id, void *data,
+> >>>> +                                                  const struct ther=
+mal_zone_device_ops *ops)
+> >>>>   {
+> >>>>       struct thermal_zone_device_ops of_ops =3D *ops;
+> >>>>       struct thermal_zone_device *tz;
+> >>>> @@ -429,6 +430,7 @@ static struct thermal_zone_device *thermal_of_zo=
+ne_register(struct device_node *
+> >>>>
+> >>>>       return ERR_PTR(ret);
+> >>>>   }
+> >>>> +EXPORT_SYMBOL_GPL(thermal_of_zone_register);
+> >>>>
+> >>>>   static void devm_thermal_of_zone_release(struct device *dev, void =
+*res)
+> >>>>   {
+> >>>> diff --git a/include/linux/thermal.h b/include/linux/thermal.h
+> >>>> index 69f9bedd0ee8..adbb4092a064 100644
+> >>>> --- a/include/linux/thermal.h
+> >>>> +++ b/include/linux/thermal.h
+> >>>> @@ -195,13 +195,23 @@ struct thermal_zone_params {
+> >>>>
+> >>>>   /* Function declarations */
+> >>>>   #ifdef CONFIG_THERMAL_OF
+> >>>> +struct thermal_zone_device *thermal_of_zone_register(struct device_=
+node *sensor, int id, void *data,
+> >>>> +                                                  const struct ther=
+mal_zone_device_ops *ops);
+> >>>>   struct thermal_zone_device *devm_thermal_of_zone_register(struct d=
+evice *dev, int id, void *data,
+> >>>>                                                         const struct=
+ thermal_zone_device_ops *ops);
+> >>>>
+> >>>> +void thermal_of_zone_unregister(struct thermal_zone_device *tz);
+> >>>>   void devm_thermal_of_zone_unregister(struct device *dev, struct th=
+ermal_zone_device *tz);
+> >>>>
+> >>>>   #else
+> >>>>
+> >>>> +static inline
+> >>>> +struct thermal_zone_device *thermal_of_zone_register(struct device_=
+node *sensor, int id, void *data,
+> >>>> +                                                  const struct ther=
+mal_zone_device_ops *ops)
+> >>>> +{
+> >>>> +     return ERR_PTR(-ENOTSUPP);
+> >>>> +}
+> >>>> +
+> >>>>   static inline
+> >>>>   struct thermal_zone_device *devm_thermal_of_zone_register(struct d=
+evice *dev, int id, void *data,
+> >>>>                                                         const struct=
+ thermal_zone_device_ops *ops)
+> >>>> @@ -209,6 +219,10 @@ struct thermal_zone_device *devm_thermal_of_zon=
+e_register(struct device *dev, in
+> >>>>       return ERR_PTR(-ENOTSUPP);
+> >>>>   }
+> >>>>
+> >>>> +static inline void thermal_of_zone_unregister(struct thermal_zone_d=
+evice *tz)
+> >>>> +{
+> >>>> +}
+> >>>> +
+> >>>>   static inline void devm_thermal_of_zone_unregister(struct device *=
+dev,
+> >>>>                                                  struct thermal_zone=
+_device *tz)
+> >>>>   {   =20
+> >>>
+> >>>
+> >>> --
+> >>> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software fo=
+r ARM SoCs
+> >>>
+> >>> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> >>> <http://twitter.com/#!/linaroorg> Twitter |
+> >>> <http://www.linaro.org/linaro-blog/> Blog   =20
+> >> =20
+> >  =20
+>=20
 
-	pwms =3D <&soc_pwm2 4 57000>
-
-and the 0 is dropped then? Could I adapt the mapping that the effect is
-
-	pwms =3D <&soc_pwm2 57000 0>
-
-instead?
-
-This smells a bit ugly and I wonder if this gives a motivation to extend
-the binding for PWMs that use #pwm-cells =3D <2> (or less) to also accept
-the default 3-cell binding.
-
-Best regards
-Uwe
-
---qd3k6jnvok4jbmcm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmejTbYACgkQj4D7WH0S
-/k5vyAf9FOgn+HGiXgkWzG2MSqoyD7G+Ta7HNABQ0lpkYOS5LXVy/HpvpjuQ0eeX
-UE3mHJjwu5etDarD3ZrrDoiuUleIgV4L8ua9ITv+L+UeLkOl0FoQ/1/+mVulfROP
-Wt1Cwul1CTLVKAF3QGuNgXhBDomBnLv7Kku7U/VHk66RPCPi81OwH1K+dDwmKE+u
-n+lG7x8yh5cG+uqrnBrGd8tqqRsWlaOfwZO8zL+cz7b82eW1fqVwYTtve+hmAcvo
-R9etj4qSchawmbIP5reKmoOSLzu/DbYq4Qq2oyflSJ2p3urfmnZ7QD6xzRHY0+7d
-emvxiLg64T0GSrwNajfWbX6dCz7iXw==
-=d/w7
------END PGP SIGNATURE-----
-
---qd3k6jnvok4jbmcm--
 
