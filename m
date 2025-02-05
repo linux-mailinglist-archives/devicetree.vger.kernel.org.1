@@ -1,70 +1,60 @@
-Return-Path: <devicetree+bounces-143413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A52C8A29A88
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 21:01:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C742AA29A95
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 21:04:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07F673A1C76
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 20:01:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 341353A45F9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 20:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 606F31E0DE4;
-	Wed,  5 Feb 2025 20:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CEA4204092;
+	Wed,  5 Feb 2025 20:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JPLkhPCg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FeJTukVY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375551519AD;
-	Wed,  5 Feb 2025 20:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA7EF510;
+	Wed,  5 Feb 2025 20:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738785692; cv=none; b=QrJuHdnidwpi9GgbJGSaE2Jbmewl21fK/qZIgaE0PRkDAtDrTlky3nrPZt4L8Gs5Dp42bqbS6JXbs9VnapJoLYKabqWwhHOjBwXXZySytDlUX1UADmL/vJ77aOXkakaP8TWtZz28pjgs+ugE0csaFROhKNNtHN0n7ccxcnwnRr4=
+	t=1738785842; cv=none; b=ssvgAcCayZ5Vi4ouDwmn0rNa/KT3eEBFkwEsCFK5rWG0GGDhqxj2gDZg1Wh/Z8GVYuz3znuGoh9IHVjFzLkRsSkQGClkAOH+5KkWR/NCbf3IMCfwC+F8IIPsUJbv5CaowcOWQgWMvU1CnpQugQt1bt0yq+VF0cSg7QoyfYbC61Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738785692; c=relaxed/simple;
-	bh=zOnN62hnfOYzsZsZ1yqWDdh3AcKyO5WluPvt8FnYicU=;
+	s=arc-20240116; t=1738785842; c=relaxed/simple;
+	bh=cqtvkklhEhB0dODG1Vl5z2G6YHW2NJWGENWdGBrHkeA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l5O3H6WrKZGP2Ys63xvdOgklOf5AfT8IS3yZbTFOpaU3dv6HeEiJfHCKfN2BmzpZQrEFOAvgf1Z7szrfVwdUA0JYMOYE5+GqZcF4R+Y/tuOFDSWGS6mBXepwUrVtsr2SQH08C14qDi2VE+mUJs3MYxVt2PKGYrYOgjxowXbm+qQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JPLkhPCg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA7F6C4CED1;
-	Wed,  5 Feb 2025 20:01:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HL3kd3lfeup9Uvb9z0/L+mNe9oClmOfBChf7gLiMauefKz6dWYLL8hvtXNHn+PKQJVf6Ht9yeE+E6WhgQHf2engA8mQffWaNiZmlkIShNfbXFHQuPpKOQDIUs+tIUVcX1NCQXYqZEek7ImBlLO26OhSBRhcKi6D8mNz1J1LlzLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FeJTukVY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F00FC4CEE2;
+	Wed,  5 Feb 2025 20:03:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738785692;
-	bh=zOnN62hnfOYzsZsZ1yqWDdh3AcKyO5WluPvt8FnYicU=;
+	s=k20201202; t=1738785842;
+	bh=cqtvkklhEhB0dODG1Vl5z2G6YHW2NJWGENWdGBrHkeA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JPLkhPCgFcstIW6OHk4zmyDv9D3tzA3HND/6+cSNek0HdfolFYop5s6BZUn3En3bZ
-	 rem8N/fPzYbxFU63P8N9r1N5yZF3W7f54JomMGeQyiaWmckAQumkuQeWjE1vcn1nWB
-	 ixjmLoMJoX6RMCFqmzIYcBay0qaH/iAtijhb04QthI+dscnlheIuypco1Q3UunkUaO
-	 dXU6yuL+NHiUNlgraYHUOtZMXZ2TIliSSkalEWTgvY9GDEqynPmZVIXFXhYgYtoRV9
-	 0hyG7Jd2+cmR4J+IaOWnjaguuk4MhaI6p2w5o8aCU572qhwPg4iXc9bTLIY/O0jDbE
-	 teYhHL8fNV74Q==
-Date: Wed, 5 Feb 2025 20:01:26 +0000
+	b=FeJTukVY0r2+phkxY4vD1jGpBVAhNBTpFgl7sCJyqr5cAVb85N2ySX0U5TOnmxGnr
+	 uT+MouOjlbg6gjpSWcawzcDxsZ1F1ty4mcxqkGp+usJM2eX9b9/kle9wneOylRKc86
+	 PsSvRjOczvK79o4dUc1GxFdUSqK/Ix2Vq5+wYP/zit5fwwHg+ZpRLiHAQKv1xCmJJw
+	 9HFwuunW1YNhKOaqfKF7dWFU0DOSdCQgoYRXgztu9RCNem1DS8KI7dli94pFhmsWNZ
+	 zl1be9nY8up9x0rDNGn/NjvJkhqiBCDbGlxvGi3ljzL2lN+oo5xkKJaHZVEhiKCYfm
+	 G//JPB5h0LU+g==
+Date: Wed, 5 Feb 2025 20:03:57 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH net-next 09/13] dt-bindings: net: airoha: Add airoha,npu
- phandle property
-Message-ID: <20250205-disagree-motive-517efca2b90c@spud>
-References: <20250205-airoha-en7581-flowtable-offload-v1-0-d362cfa97b01@kernel.org>
- <20250205-airoha-en7581-flowtable-offload-v1-9-d362cfa97b01@kernel.org>
- <20250205-cleaver-evaluator-648c8f0b99bb@spud>
- <Z6O8-dUrLNmvnW1u@lore-desk>
+	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: ROHM BD79124 ADC/GPO
+Message-ID: <20250205-stalemate-shorthand-5a29fbc4081f@spud>
+References: <cover.1738761899.git.mazziesaccount@gmail.com>
+ <4e6cd143d3e896587528a415c8623ecd610fac55.1738761899.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,99 +62,177 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="6JLUwNNYYeOqsh0O"
+	protocol="application/pgp-signature"; boundary="vu8978jfQni0yQFt"
 Content-Disposition: inline
-In-Reply-To: <Z6O8-dUrLNmvnW1u@lore-desk>
+In-Reply-To: <4e6cd143d3e896587528a415c8623ecd610fac55.1738761899.git.mazziesaccount@gmail.com>
 
 
---6JLUwNNYYeOqsh0O
+--vu8978jfQni0yQFt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 05, 2025 at 08:33:13PM +0100, Lorenzo Bianconi wrote:
-> > On Wed, Feb 05, 2025 at 07:21:28PM +0100, Lorenzo Bianconi wrote:
-> > > Introduce the airoha,npu property for the npu syscon node available on
-> > > EN7581 SoC. The airoha Network Processor Unit (NPU) is used to offload
-> > > network traffic forwarded between Packet Switch Engine (PSE) ports.
-> > >=20
-> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml | 8 +++=
-+++++
-> > >  1 file changed, 8 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-eth.=
-yaml b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> > > index c578637c5826db4bf470a4d01ac6f3133976ae1a..6388afff64e990a20230b=
-0c4e58534aa61f984da 100644
-> > > --- a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> > > @@ -63,6 +63,12 @@ properties:
-> > >    "#size-cells":
-> > >      const: 0
-> > > =20
-> > > +  airoha,npu:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description:
-> > > +      Phandle to the syscon node used to configure the NPU module
-> > > +      used for traffic offloading.
-> >=20
-> > Why do you need a phandle for this, instead of a lookup by compatible?
-> > Do you have multiple instances of this ethernet controller on the
-> > device, that each need to look up a different npu?
+On Wed, Feb 05, 2025 at 03:34:29PM +0200, Matti Vaittinen wrote:
+> Add binding document for the ROHM BD79124 ADC / GPO.
 >=20
-> actually not, but looking up via the compatible string has been naked by
-> Krzysztof on a different series [0].
-
-Hmm, I disagree with adding phandles that are not needed. I don't agree
-that there's no reuse, if you can treat the phandle identically on a new
-device, in all likelihood, that node should have a fallback to the
-existing one.
-
-That said, the bigger problem in what you link is the ABI break caused by
-requiring the presence of a new node. I'd NAK that patch too.
-
+> ROHM BD79124 is a 8-channel, 12-bit ADC. The input pins can also be used
+> as general purpose outputs.
 >=20
-> Regards,
-> Lorenzo
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+> Revision history:
+> RFC v1 =3D> v2:
+>  - drop MFD and represent directly as ADC
+>  - drop pinmux and treat all non ADC channel pins as GPOs
+> ---
+>  .../bindings/iio/adc/rohm,bd79124.yaml        | 114 ++++++++++++++++++
+>  1 file changed, 114 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/rohm,bd7912=
+4.yaml
 >=20
-> [0] https://patchwork.kernel.org/project/linux-pci/patch/20250115-en7581-=
-pcie-pbus-csr-v1-2-40d8fcb9360f@kernel.org/
->=20
-> >=20
-> > > +
-> > >  patternProperties:
-> > >    "^ethernet@[1-4]$":
-> > >      type: object
-> > > @@ -132,6 +138,8 @@ examples:
-> > >                       <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
-> > >                       <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-> > > =20
-> > > +        airoha,npu =3D <&npu>;
-> > > +
-> > >          #address-cells =3D <1>;
-> > >          #size-cells =3D <0>;
-> > > =20
-> > >=20
-> > > --=20
-> > > 2.48.1
-> > >=20
->=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml =
+b/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
+> new file mode 100644
+> index 000000000000..50889dc6b9a8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
+> @@ -0,0 +1,114 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/rohm,bd79124.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ROHM BD79124 ADC/GPO
+> +
+> +maintainers:
+> +  - Matti Vaittinen <mazziesaccount@gmail.com>
+> +
+> +description: |
+> +  The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The ADC supports
+> +  an automatic measurement mode, with an alarm interrupt for out-of-wind=
+ow
+> +  measurements. ADC input pins can be also configured as general purpose
+> +  outputs.
+> +
+> +properties:
+> +  compatible:
+> +    const: rohm,bd79124
+> +
+> +  reg:
+> +    description:
+> +      I2C slave address.
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 1
+> +    description:
+> +      The pin number.
+> +
+> +  vdd-supply: true
+> +
+> +  iovdd-supply: true
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^channel@[0-9a-f]+$":
+
+You can only have 8 channels, there's no need for this to be so
+permissive, right?
+Otherwise, this looks good enough to me.
+
+> +    type: object
+> +    $ref: /schemas/iio/adc/adc.yaml#
+> +    description: Represents ADC channel.
+> +
+> +    properties:
+> +      reg:
+> +        description: AIN pin number
+> +        minimum: 0
+> +        maximum: 7
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - iovdd-supply
+> +  - vdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/leds/common.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +        adc: adc@10 {
+> +            compatible =3D "rohm,bd79124";
+> +            reg =3D <0x10>;
+> +
+> +            interrupt-parent =3D <&gpio1>;
+> +            interrupts =3D <29 8>;
+> +
+> +            vdd-supply =3D <&dummyreg>;
+> +            iovdd-supply =3D <&dummyreg>;
+> +
+> +            #address-cells =3D <1>;
+> +            #size-cells =3D <0>;
+> +
+> +            channel@0 {
+> +                reg =3D <0>;
+> +            };
+> +            channel@1 {
+> +                reg =3D <1>;
+> +            };
+> +            channel@2 {
+> +                reg =3D <2>;
+> +            };
+> +            channel@3 {
+> +                reg =3D <3>;
+> +            };
+> +            channel@4 {
+> +                reg =3D <4>;
+> +            };
+> +            channel@5 {
+> +                reg =3D <5>;
+> +            };
+> +            channel@6 {
+> +                reg =3D <6>;
+> +            };
+> +        };
+> +    };
+> --=20
+> 2.48.1
 >=20
 
 
 
---6JLUwNNYYeOqsh0O
+--vu8978jfQni0yQFt
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6PDlgAKCRB4tDGHoIJi
-0sRCAP9d6SH8K30LUrgTiCNUSGDr2F3QfyW4PrcGQhOC7aQb0gD9GmCcJdrSa90i
-ABDTHH6uK3n8fQsIKfLUMyZLM/drUAY=
-=pu0V
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6PELQAKCRB4tDGHoIJi
+0nAdAP4jXKqyfRAMMvjzMrlM0XfhisGC3LV05/dS61edgIUhNwEApAM8EcrfeloJ
+x1zImD4zFU0fcyXdWWfFA28lc32iHA0=
+=u2gq
 -----END PGP SIGNATURE-----
 
---6JLUwNNYYeOqsh0O--
+--vu8978jfQni0yQFt--
 
