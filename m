@@ -1,123 +1,222 @@
-Return-Path: <devicetree+bounces-143279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E735A28EF4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:19:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A08A28F06
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:20:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 453EC3A99CD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:18:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10E9C160C0B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:20:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3564522A;
-	Wed,  5 Feb 2025 14:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A576B14B080;
+	Wed,  5 Feb 2025 14:20:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YP3L5Ao7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZlMAjmbo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7D014A28;
-	Wed,  5 Feb 2025 14:18:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 743261519BE;
+	Wed,  5 Feb 2025 14:20:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738765115; cv=none; b=gMCes+1+h5LqR4JjYnpnEyjTBvCdUpKxjZfJb9kGc8GHHZVoPCnwD+ogsayKqoXv1EhmQO92cTzLEp99dXud1II/QQgB/sRJ4FhYZLaDpe+07QbCqXWgxnIsZFK9Z0gJMtKvG7LV26Fb8o7cSH7MkdetH8UVcPuqcSYyUSlX+IU=
+	t=1738765240; cv=none; b=RKC0Ui/9ybOI+s7vNtHetZB0KKqQLIBLv4K1seOhtjtNyzqRPU1deyw2w2OiJqmnlbg/rPnvZI15FOX5KzgHpuFEcLPubGgEX6fGpMcXMJQFDvVi839AFQJCfT96rzz9SsKUg6ilkhb01HTDlLIPQ98mbTbFUIzYKskHkCe7ROY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738765115; c=relaxed/simple;
-	bh=aZBMMyaxCDfhJnnHsdLjPCpzBvuSsrTgVOQZffpvq5s=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ucNAP91Up7vvHShqoIW4nF7qRBI6foqiFIl5nP6MXRzedwHsEBTzndaMrKpdOzy7d6VqEBnkFX15/fm6lYhdzY5+oB/IdtuIHYonttBVrrtlXhZljlSVpWUPm+AIo2v97fzN0g+hcryhUcKL8vsy3Pc3ePG6GLvjnI3M6bL23Gk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YP3L5Ao7; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A812520457;
-	Wed,  5 Feb 2025 14:18:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1738765105;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+jcjhIK6Qww9CRS3+S8VD/DtB2JrJ0nIx9XhierQplY=;
-	b=YP3L5Ao7Wf+re27gX/s4xqtwPqGfwk0ZmMDq3SrxFJbv8S67S8OyiVelQI1GgnaTwCi8ya
-	l9NTD+q/gkOPvaXXcmPExY07nPGGV4HinqGGk0bAl89qrnczltvNOhFhg3iMaFbh6E6Dee
-	mF6GzumW2IcsqsWXg2ro3erjxBfabBGSofGcZuJ0DfU4q/wMW9SLz4SYMSgYApjUmTswVf
-	BysAd0P1WbsAPXmQ8uEOyAlhDUH9aFB/3fZDPJ+WdmvmYwZM38dLBVaTUD8jb/L/tMr0QJ
-	pK+yq+nzyVmVzDt9rybYqejy+8QtH8gQatx4TIYxJpAnmA4NGmMDz94e7wjntg==
-Date: Wed, 5 Feb 2025 15:18:22 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Donald Hunter
- <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-doc@vger.kernel.org, Kyle Swenson
- <kyle.swenson@est.tech>, Dent Project <dentproject@linuxfoundation.org>,
- kernel@pengutronix.de, Maxime Chevallier <maxime.chevallier@bootlin.com>,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v4 27/27] dt-bindings: net: pse-pd:
- ti,tps23881: Add interrupt description
-Message-ID: <20250205151822.06f60e8d@kmaincent-XPS-13-7390>
-In-Reply-To: <uv2grnchczucf4vxxzaprfkc6ap56z6uqzaew3qtjqpvmtaqbb@kuv62yntqyfr>
-References: <20250103-feature_poe_port_prio-v4-0-dc91a3c0c187@bootlin.com>
- <20250103-feature_poe_port_prio-v4-27-dc91a3c0c187@bootlin.com>
- <uv2grnchczucf4vxxzaprfkc6ap56z6uqzaew3qtjqpvmtaqbb@kuv62yntqyfr>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1738765240; c=relaxed/simple;
+	bh=yoec46gh87HaP4fDB1yuBhMWsZEwbV90eci8orhKPq0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Pq/7mjc8RvLxwrHYPkDOKtPh0m/N6cr2cDNAFc1ykd2miflvLaRpMYUdU9WTWHDqa0egnaeE0rvcLLRosOsNOiS0VQ6OaKGDNVd1EkzhMacw+6rt24+KA7NSQ2fLbLXdIWhoj4aEJFekylzol8jlSUbHlpCyFWfyFl2pFDRW9JQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZlMAjmbo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EA8DC4CED1;
+	Wed,  5 Feb 2025 14:20:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738765240;
+	bh=yoec46gh87HaP4fDB1yuBhMWsZEwbV90eci8orhKPq0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=ZlMAjmbohWFds9Oumf1XiNL+EsBOg0WoQK7nNbp/+kDfWUlvNPMpYVQpaivAlFElj
+	 +7R6QBiygD3F2p+gK8lxyl9aS8UodkDapsowSKXluihI9fkpsmLTqBjZDzorSQ604a
+	 CPt5TNQ+hTGIBSauGlaVEh0kgMmvPaA2iT3k6TABDPpnQc/ibOx++YU+2ElbJ4ML85
+	 i8NZRCChyNUm7sS95URe7ieZyzzyKrNc3uAszEjHZ+hOvt8g+j+ThPyQGXfakZUBm7
+	 +hjoQTm9ba5FFebh3qUyvv+oaLkQQO8RKtpD9DtDmtFdH6+bi97cahxF0HaCIP9ITD
+	 5f1uDYSN7+68Q==
+Date: Wed, 5 Feb 2025 08:20:38 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>,
+	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+	"Simek, Michal" <michal.simek@amd.com>,
+	"Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>
+Subject: Re: [PATCH v8 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
+Message-ID: <20250205142038.GA910930@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvfeeikecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefguddtfeevtddugeevgfevtdfgvdfhtdeuleetffefffffhffgteekvdefudeiieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvjedprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepohdrrhgvmhhpvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiiv
- ghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvth
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SN7PR12MB720115611148E80D555A1A1E8BF72@SN7PR12MB7201.namprd12.prod.outlook.com>
 
-Hello Krzysztof,
+On Wed, Feb 05, 2025 at 11:53:53AM +0000, Havalige, Thippeswamy wrote:
+> > -----Original Message-----
+> > From: Havalige, Thippeswamy
+> > Sent: Wednesday, February 5, 2025 5:08 PM
+> > To: Bjorn Helgaas <helgaas@kernel.org>
+> > Cc: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com;
+> > manivannan.sadhasivam@linaro.org; robh@kernel.org; krzk+dt@kernel.org;
+> > conor+dt@kernel.org; linux-pci@vger.kernel.org; devicetree@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; jingoohan1@gmail.com; Simek, Michal
+> > <michal.simek@amd.com>; Gogada, Bharat Kumar
+> > <bharat.kumar.gogada@amd.com>
+> > Subject: RE: [PATCH v8 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
 
-On Sat, 4 Jan 2025 10:44:49 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > > It's kind of weird that these skip the odd-numbered bits,
+> > > > > since dw_pcie_rp_intx_flow(), amd_mdb_mask_intx_irq(),
+> > > > > amd_mdb_unmask_intx_irq() only use bits 19:16.  Something
+> > > > > seems wrong and needs either a fix or a comment about why
+> > > > > this is the way it is.
+> > > >
+> > > > ... the odd bits are meant for deasserting inta, intb intc &
+> > > > intd I ll include this in my next patch
 
-> On Fri, Jan 03, 2025 at 10:13:16PM +0100, Kory Maincent wrote:
-> > From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> >=20
-> > Add an interrupt property to the device tree bindings for the TI TPS238=
-81
-> > PSE controller. The interrupt is primarily used to detect classification
-> > and disconnection events, which are essential for managing the PSE
-> > controller in compliance with the PoE standard.
-> > =20
-> > @@ -62,6 +65,7 @@ unevaluatedProperties: false
-> >  required:
-> >    - compatible
-> >    - reg
-> > +  - interrupts =20
->=20
-> Why? That's an ABI change. Commit msg mentions something like "essential
-> for standard" so are you saying nothing here was working according to
-> standard before?
+Tangent: I don't know what "deassert" would mean here, since INTx is
+an *incoming* interrupt and the Root Port is the receiver and can mask
+or acknowledge the interrupt but not really deassert it.
 
-Yes indeed, the disconnection management did not follow the standard. Witho=
-ut
-this series, the power on the ports of this controller is not shut down aft=
-er a
-Powered Device disconnection. Unfortunately, I did not noticed this before.
+> > > > > > +#define IMR(x) BIT(AMD_MDB_PCIE_INTR_ ##x)
+> > > > > > +#define AMD_MDB_PCIE_IMR_ALL_MASK			\
+> > > > > > +	(						\
+> > > > > > +		IMR(CMPL_TIMEOUT)	|		\
+> > > > > > +		IMR(INTA_ASSERT)	|		\
+> > > > > > +		IMR(INTB_ASSERT)	|		\
+> > > > > > +		IMR(INTC_ASSERT)	|		\
+> > > > > > +		IMR(INTD_ASSERT)	|		\
+> > > > > > +		IMR(PM_PME_RCVD)	|		\
+> > > > > > +		IMR(PME_TO_ACK_RCVD)	|		\
+> > > > > > +		IMR(MISC_CORRECTABLE)	|		\
+> > > > > > +		IMR(NONFATAL)		|		\
+> > > > > > +		IMR(FATAL)				\
+> > > > > > +	)
+> > > > > > +
+> > > > > > +#define AMD_MDB_TLP_PCIE_INTX_MASK	GENMASK(23, 16)
+> > > > >
+> > > > > I would drop AMD_MDB_PCIE_INTR_INTA_ASSERT, etc, and just
+> > > > > use AMD_MDB_TLP_PCIE_INTX_MASK in the
+> > > > > AMD_MDB_PCIE_IMR_ALL_MASK definition.
+> > > > >
+> > > > > If there are really eight bits of INTx-related things here
+> > > > > for the four INTx interrupts, I think you should make two
+> > > > > #defines to separate them out.
+> > >
+> > > > Yes, there are 8 intx related bits I ll define them in my next
+> > > > patch.  I was in confusion here regarding "PCI_NUM_INTX "
+> > > > since this macro indicates INTA INTB INTC INTD bits so I
+> > > > discarded deassert bits here.
+> > >
+> > > It seems like what you have is a single 8-bit field that
+> > > contains both assert and deassert info, interspersed.
+> > > GENMASK()/FIELD_GET() isn't enough to really separate them.
+> > > Maybe you can do something like this:
+> > >
+> > >   #define AMD_MDB_TLP_PCIE_INTX_MASK          GENMASK(23, 16)
+> > >
+> > >   #define AMD_MDB_PCIE_INTR_INTX_ASSERT(x)    BIT(1 << x)
+> > >
+> > > If you don't need the deassert bits, a comment would be useful,
+> > > but there's no point in adding a #define for them.  If you do
+> > > need them, maybe this:
+> > >
+> > >   #define AMD_MDB_PCIE_INTR_INTX_DEASSERT(x)  BIT((1 << x) + 1)
+> > >
+> > > > > > +static irqreturn_t dw_pcie_rp_intx_flow(int irq, void *args) {
+> > > > > > +	struct amd_mdb_pcie *pcie = args;
+> > > > > > +	unsigned long val;
+> > > > > > +	int i;
+> > > > > > +
+> > > > > > +	val = FIELD_GET(AMD_MDB_TLP_PCIE_INTX_MASK,
+> > > > > > +			pcie_read(pcie, AMD_MDB_TLP_IR_STATUS_MISC));
+> > > > > > +
+> > > > > > +	for_each_set_bit(i, &val, 4)
+> > > > >
+> > > > >   for_each_set_bit(..., PCI_NUM_INTX)
+> > >
+> > > > In next patch I will update value to 8 here.
+> > >
+> > > And here you could do:
+> > >
+> > >   val = FIELD_GET(AMD_MDB_TLP_PCIE_INTX_MASK,
+> > >                   pcie_read(pcie, AMD_MDB_TLP_IR_STATUS_MISC));
+> > >
+> > >   for (i = 0; i < PCI_NUM_INTX; i++) {
+> > >     if (val & AMD_MDB_PCIE_INTR_INTX_ASSERT(i))
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+> > This condition never met observing zero here.
+
+> To satisfy this condition need to modify macros as following.
+> #define AMD_MDB_PCIE_INTR_INTX_ASSERT(x)    BIT(x)
+> #define AMD_MDB_PCIE_INTR_INTX_DEASSERT(x)    BIT(x+1)
+
+Maybe I don't understand how the assert/deassert bits are laid out in
+the register.
+
+The original patch has this:
+
+  +#define AMD_MDB_PCIE_INTR_INTA_ASSERT    16
+  +#define AMD_MDB_PCIE_INTR_INTB_ASSERT    18
+  +#define AMD_MDB_PCIE_INTR_INTC_ASSERT    20
+  +#define AMD_MDB_PCIE_INTR_INTD_ASSERT    22
+
+and if the odd bits are for deassert I thought that meant they would
+look like this:
+
+   #define AMD_MDB_PCIE_INTR_INTA_DEASSERT  17
+   #define AMD_MDB_PCIE_INTR_INTB_DEASSERT  19
+   #define AMD_MDB_PCIE_INTR_INTC_DEASSERT  21
+   #define AMD_MDB_PCIE_INTR_INTD_DEASSERT  23
+
+  +#define AMD_MDB_TLP_PCIE_INTX_MASK     GENMASK(23, 16)
+
+If we extract AMD_MDB_TLP_PCIE_INTX_MASK with FIELD_GET(),
+the field gets shifted right by 16, so we should end up with
+something like this:
+
+  INTA assert     0000 0001  ==  BIT(0)
+  INTA deassert   0000 0010  ==  BIT(1)
+  INTB assert     0000 0100  ==  BIT(2)
+  INTB deassert   0000 1000  ==  BIT(3)
+  INTC assert     0001 0000  ==  BIT(4)
+  INTC deassert   0010 0000  ==  BIT(5)
+  INTD assert     0100 0000  ==  BIT(6)
+  INTD deassert   1000 0000  ==  BIT(7)
+
+But maybe that's not how they're actually laid out?
+
+I think the argument to AMD_MDB_PCIE_INTR_INTX_ASSERT() should
+be the hwirq (0..3 for INTA..INTD), so if we use
+
+  #define AMD_MDB_PCIE_INTR_INTX_ASSERT(x)    BIT(x)
+  #define AMD_MDB_PCIE_INTR_INTX_DEASSERT(x)  BIT(x+1)
+
+as you propose, don't the assert/deassert bits collide?
+
+  AMD_MDB_PCIE_INTR_INTX_ASSERT(0)   == BIT(0) for INTA assert
+  AMD_MDB_PCIE_INTR_INTX_ASSERT(1)   == BIT(1) for INTB assert
+
+  AMD_MDB_PCIE_INTR_INTX_DEASSERT(0) == BIT(1) for INTA deassert
+
+> > >       generic_handle_domain_irq(pcie->intx_domain, i);
+> > >
+> > > > > > +		generic_handle_domain_irq(pcie->intx_domain, i);
 
