@@ -1,243 +1,130 @@
-Return-Path: <devicetree+bounces-143210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA04AA287D5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:21:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAFDCA2880A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:31:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7C423A2524
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:21:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C750F1699D1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B964922AE42;
-	Wed,  5 Feb 2025 10:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC09722CBD2;
+	Wed,  5 Feb 2025 10:29:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="b+GKZ/Tk"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="FAtARg6h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE1C22A80E
-	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 10:21:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C45B22B8A9
+	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 10:29:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738750898; cv=none; b=d4KwwdDQ399Q2i4vJQ2eWQiSZP+5KhszgLZ82EppCoXzyM24McKfagm9NfgKemP5t6cuYsCmQGTf1WyrO6qAP8imdPtQA9C9Ph9pPPuWqCjGjq1nZJaiwXH0iTLY4YwPzjZvlSa2sWJiS8AQ8+VcGxQc1O7QhufC51ra52EFiJ0=
+	t=1738751379; cv=none; b=jcvoiNgWEd9Qkc3NptPs6Ek6hVnG5mc2nkCEE8pLg05308Ty9OJM3HNXPcZayInIsojEHmnqJmmU2m8WOsruwgx6YStHxZUgjrDeLWtWMOi3jU2ZWOJyU42gK3iqdwUHMbwxU57ea2V1DxwPBPV+tgJTKAMXGwKFCv+LDIVDXIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738750898; c=relaxed/simple;
-	bh=anD1hX4vyABnouaiaiLF/noQ9Xhmr7W6cDfU7pFNGW0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QFXwUVA/Ye8KXfBUMmtZob0BBmBrxzca270hjOq1/Wdruquw/G92NyrxKKqKt7EaMqYkkwNcbIpvbg/UvJqZXTrTBo7AyYDBgN5Z1yFl751w4AnJjGbGnPfuxuWDKl1FoFuyUyD84e2bT3oH3QUk8MWraGCYczg7ajLPXl3Ikro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=b+GKZ/Tk; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2f9c3124f31so2517630a91.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 02:21:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1738750895; x=1739355695; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=EuQ3J4kWJ3ri60Lfegtwjc7QriqYdwD8vaVj4liUaDg=;
-        b=b+GKZ/Tkn3gyUuwU3mcd9xz1FHDYXXK0RVW4GU4BJgMrfg3SVbr47AZ0Lo7bDh56n6
-         ABoGdQ8oSGgkjgHWk8bTHZQ6SR7KgP/KFx7cUedNYB+aO4CUz4YDpfezeJqj25hdVGDB
-         ywGWaclnyRhng814j5FduWVUIiKCWvsjiRTwSDOiKiscIClE+loeYOOqxWnPljmDMZ1E
-         T3HytKrjVmqDSOqFYdnaw/5Tq7i34wxuNQe/bA5pAETGK8qdDFhWfUcm5XOllYc6AEut
-         VhhAUEhwKWaTFVas546eWLtccOm6bVz8k2h3Y2bPbnN2e3MaldLq/3qOJrzJ2FKWurhK
-         dYtQ==
+	s=arc-20240116; t=1738751379; c=relaxed/simple;
+	bh=WI78ijGtjowcHXJYrXtfWT/69d/eQD/yPSkusz9kD7Q=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jpdQOts1PcDVcLsr8oxVjL5QVHtBDqSyV+/EH9M5njbCsRXmUPLgPHn58qP01ID5Us3uDa8DtghLC8zkHiBYuUFsIcWx3bJRHnlZIwoZIUnE6OzQ5tYmJVGoQAD5uZ7dVYd3e8JM38487rjDDKtnTvcDyEaNyYo+vj7DECbG8ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=FAtARg6h; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-oa1-f69.google.com (mail-oa1-f69.google.com [209.85.160.69])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 391373F874
+	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 10:29:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1738751372;
+	bh=6p5dlNzJ/YPPjs/DSFQLsa5sUOHCa5xG63IkAekOvh0=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=FAtARg6hgwwQSPh5y5NmSeKybqTMW5Owxwd563KoOAs7dd9Qu933kSYPe619Li8gn
+	 5LbeRVQdxwuNfc1ItPLJhdaEhX+yaDw9MgSgT8pKhVc44RuRKHSPwiHmv/65CwEqH0
+	 /TOJWWQAl8tGoAQoDIWnRocCGaAm8FqyoJC+Jyyrl+Yox4vFl9tw/qmLlyD1GQc3fh
+	 2cJuEmqeJpsVwCm/MwSQhCU95bKP7+Bb1gBcE8rWrnC1by16VHK6aolbHkxZLlIxg8
+	 /6KCnSgfpiLS8JGjcFI8zct7JzvpGjIoO8TIiv59OWtnasoKtpDOm31u63U8x6iT4I
+	 ZY54ZpU3PJIBA==
+Received: by mail-oa1-f69.google.com with SMTP id 586e51a60fabf-29fb55d5357so6302942fac.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 02:29:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738750895; x=1739355695;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EuQ3J4kWJ3ri60Lfegtwjc7QriqYdwD8vaVj4liUaDg=;
-        b=KaxaPdfx0EarqCVnEi7tcaisgDFcjWKKFXQfrSCq2or7T3byIj5r2f/s4uAIBauY84
-         MFUcvWUVMnXN+cjPluJB0pyxCpemrwP0yr9tHCNEysRrSOg/P+LkSLcnHvPj84kMfXa/
-         KINcykRqzrihYeSrSTaP3MhEDUcvaJ/xtPoQGq1r0Y2aTKNh1aD13WSGFDFRuOkx+cdu
-         WZmvbLMiXA59ir5+8hOT39mwPH3AIBxBh/PiT7xPqtX8wntCp1oFu2JDES2AmdzkcROC
-         jEq1HTBGzVIR0kitEjshAKUbYSbCtaDSIW3wC9ljDRGygOF3Mi5I9ExrZbH7hfbcrtI4
-         VLcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV3rbMGEo0eM1fR0rft7avuG7iOI3bpcrkZeEk1xC11WpUEYEwN74pvbZTozlz+SW2Fto5diyWc+FhX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8iCE+ZYiFm+TtROwqgAJTU1KC+a9VFXUyhDdJoiljJkOdujmD
-	yor2wQQp8b/Yfn8MEMvk3wvhyv6BjJEVtgNuWvZuUkDPnMV8/ugHpc4jYvCwX1XHRCLx7TW864o
-	x0S5rI/rT4wGTsAWO3lObNpZ1ZDqaPpQzB4bp6A==
-X-Gm-Gg: ASbGncuk8j0mk3Ulm87R6jjee6CYcIyGKA6EnLk9XcfI9lKLfJvLjwrnt8SBWQX3++I
-	YP4m56fdyQUdGBmjh3VgCNmuQiicKs2cgIxa9x3G1Q6x+lMdPjIxfIB9FG1uB+nnbomMsx4o6
-X-Google-Smtp-Source: AGHT+IE4mWtWl3q8deE4V0jA5EbYfQzg28VPhIr52IYthmXy/9uOjjBqU4UmKtU6hUdsMQrwjiU19akf5MZRt9Tf3jE=
-X-Received: by 2002:a17:90a:d605:b0:2f1:30c8:6e75 with SMTP id
- 98e67ed59e1d1-2f9e08625d2mr3048419a91.32.1738750895521; Wed, 05 Feb 2025
- 02:21:35 -0800 (PST)
+        d=1e100.net; s=20230601; t=1738751370; x=1739356170;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6p5dlNzJ/YPPjs/DSFQLsa5sUOHCa5xG63IkAekOvh0=;
+        b=o9QghhuA+n1p5ms3FTSPAXdJK0/JJrFgR6tl+LxnkY5Glcgc4iTDbsi94cN20oaycx
+         NqCXTAxUPUOrN6iEAUIZmpgUFmE0fYcmxCengCQAVtPb1D/hmdRrCqLgK2WCvhb5eg23
+         6/C4sim3UWI68DrknijylwRJ8hDHKLufAWifY+pC0HqjJeUHPa5+2unIBFvP8ciRueXR
+         y28vL4EcMsXX23T9UHKUJhiuAxaeB+83++qckj8bYy870DTHDn8c/giJoemU6iCdrYnY
+         jK6GGDmwVdBVvIQvyc9pxzptLFf7Vvy7coZWlUZJ4PM21unwtMGiXkGrvey9uViVnLBT
+         tq5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVgjERbWALjb2hAwPNkOn1Wi5cet9upkvGNIZWTrBhrEXTo+tGB+w6EnsQ1ONkixJx47/XczcHAS7Kr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQ0U7U77j/RNz2H8j/pOW6X2wDXvAEiAeMMVdvfFxX9g966x/C
+	aMX8mjIvdAZAO+HnY8mmG29xy38LuW7Zpp20Qs0RzYJPybL+gme1GQKVnJ5LtitceL07bQLDVDV
+	vt4Omdg6Zi098EEi8rix6Sg6x4WYaSWceGkiQp8j/YVb0mpSGl0SXWxDe7o+mQihvnPsk3J9BLF
+	1EtQO99H24F7KAzKpQ9+hOxEAlz+pgN2a3UdgWbFULU5fTtyK9pQ==
+X-Gm-Gg: ASbGncvC3TI6POIS5tsIgbXu4bhpsrPX9w3v/hi2QR7jUh82dIm7do7aWF+AsrludFm
+	1ojOpYSYoi5hQK/ckyoyI0lHOY/Ynh3rpPfsiyfgXMEGVMTw8nU0FT74+qUh4b25f8DxkJOxAM4
+	McrSDzOAhyGReV6LQ=
+X-Received: by 2002:a05:6870:15c4:b0:29d:c764:f873 with SMTP id 586e51a60fabf-2b8051189e7mr1412754fac.31.1738751370731;
+        Wed, 05 Feb 2025 02:29:30 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IED9P+bVZqPUW7UO2uWic3Ql/tfX6w4dwltPlCCIcZdxoXy1RTbFe/BWTDvYa6FU+eq3MorrYQsqOpUrQqy/Ck=
+X-Received: by 2002:a05:6870:15c4:b0:29d:c764:f873 with SMTP id
+ 586e51a60fabf-2b8051189e7mr1412739fac.31.1738751370456; Wed, 05 Feb 2025
+ 02:29:30 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 5 Feb 2025 10:29:30 +0000
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 5 Feb 2025 10:29:30 +0000
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20250203013730.269558-4-e@freeshell.de>
+References: <20250203013730.269558-1-e@freeshell.de> <20250203013730.269558-4-e@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250204180306.2755444-1-naresh.solanki@9elements.com> <20250204-mulled-evaluate-8a690cdfbd4d@spud>
-In-Reply-To: <20250204-mulled-evaluate-8a690cdfbd4d@spud>
-From: Naresh Solanki <naresh.solanki@9elements.com>
-Date: Wed, 5 Feb 2025 15:51:25 +0530
-X-Gm-Features: AWEUYZmtaSVzMmCyygCiwlcJ57XcbjkpPoJ4c8qlHOFqnBIImbd_vRZ_P4tzlOw
-Message-ID: <CABqG17jHKfwJEfZxto_YA4opS8=QwqTqfNdkku8kcEv2_iW+XA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ir38060: Move & update dt binding
-To: Conor Dooley <conor@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, broonie@kernel.org, 
-	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Mime-Version: 1.0
+Date: Wed, 5 Feb 2025 10:29:30 +0000
+X-Gm-Features: AWEUYZkWYCph906PZJ8Zu7NPROce5GWqOyVjvIksBicpE8lH4z17iclUJfeqp4U
+Message-ID: <CAJM55Z95pwTZmw-WPcUaB1BGpVoNgaRYYjUnqSFcLTNyVmZahg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] riscv: dts: starfive: jh7110-common: assign 24MHz
+ clock-frequency to uart0
+To: E Shattow <e@freeshell.de>, Conor Dooley <conor@kernel.org>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Conor,
+E Shattow wrote:
+> Set uart0 clock-frequency for better compatibility with operating system
+> and downstream boot loader SPL secondary program loader.
+>
+> Signed-off-by: E Shattow <e@freeshell.de>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> index 8a59c3001339..6bb13af82147 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> @@ -635,6 +635,7 @@ GPOEN_DISABLE,
+>  };
+>
+>  &uart0 {
+> +	clock-frequency = <24000000>;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&uart0_pins>;
+>  	status = "okay";
 
+The uart0 node already has a reference to the uart0_core clock, so it shouldn't
+need this property.
 
-On Wed, 5 Feb 2025 at 00:52, Conor Dooley <conor@kernel.org> wrote:
->
-> On Tue, Feb 04, 2025 at 11:33:03PM +0530, Naresh Solanki wrote:
-> > Move dt binding under hwmon/pmbus & align accordingly.
-> >
-> > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> > ---
-> >  .../hwmon/pmbus/infineon,ir38060.yaml         | 61 +++++++++++++++++++
-> >  .../bindings/regulator/infineon,ir38060.yaml  | 45 --------------
-> >  2 files changed, 61 insertions(+), 45 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
-> > new file mode 100644
-> > index 000000000000..e1f683846a54
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,ir38060.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Infineon Buck Regulators with PMBUS interfaces
-> > +
-> > +maintainers:
-> > +  - Not Me.
->
-> How the hell did this get merged!
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - infineon,ir38060
-> > +      - infineon,ir38064
-> > +      - infineon,ir38164
-> > +      - infineon,ir38263
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  regulators:
-> > +    type: object
-> > +    description:
-> > +      list of regulators provided by this controller.
->
-> Can you explain why this change is justified? Your commit message is
-> explaining what you're doing but not why it's okay to do.
-This is based on other similar dt-bindings under hwmon/pmbus.
-
-Regards,
-Naresh
->
-> Cheers,
-> Conor.
->
-> > +
-> > +    properties:
-> > +      vout:
-> > +        $ref: /schemas/regulator/regulator.yaml#
-> > +        type: object
-> > +
-> > +        unevaluatedProperties: false
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        regulator@34 {
-> > +            compatible = "infineon,ir38060";
-> > +            reg = <0x34>;
-> > +
-> > +            regulators {
-> > +                vout {
-> > +                    regulator-name = "p5v_aux";
-> > +                    regulator-min-microvolt = <437500>;
-> > +                    regulator-max-microvolt = <1387500>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
-> > deleted file mode 100644
-> > index e6ffbc2a2298..000000000000
-> > --- a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
-> > +++ /dev/null
-> > @@ -1,45 +0,0 @@
-> > -# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > -%YAML 1.2
-> > ----
-> > -$id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
-> > -$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > -
-> > -title: Infineon Buck Regulators with PMBUS interfaces
-> > -
-> > -maintainers:
-> > -  - Not Me.
-> > -
-> > -allOf:
-> > -  - $ref: regulator.yaml#
-> > -
-> > -properties:
-> > -  compatible:
-> > -    enum:
-> > -      - infineon,ir38060
-> > -      - infineon,ir38064
-> > -      - infineon,ir38164
-> > -      - infineon,ir38263
-> > -
-> > -  reg:
-> > -    maxItems: 1
-> > -
-> > -required:
-> > -  - compatible
-> > -  - reg
-> > -
-> > -unevaluatedProperties: false
-> > -
-> > -examples:
-> > -  - |
-> > -    i2c {
-> > -      #address-cells = <1>;
-> > -      #size-cells = <0>;
-> > -
-> > -      regulator@34 {
-> > -        compatible = "infineon,ir38060";
-> > -        reg = <0x34>;
-> > -
-> > -        regulator-min-microvolt = <437500>;
-> > -        regulator-max-microvolt = <1387500>;
-> > -      };
-> > -    };
-> >
-> > base-commit: bfbb730c4255e1965d202f48e7aa71baa9a7c65b
-> > --
-> > 2.42.0
-> >
+/Emil
 
