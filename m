@@ -1,98 +1,141 @@
-Return-Path: <devicetree+bounces-143205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 889EDA28798
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:10:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD947A287B4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:15:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2439116A501
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:10:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1984C1693C1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E530C22B582;
-	Wed,  5 Feb 2025 10:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326A322AE45;
+	Wed,  5 Feb 2025 10:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UIXaXcP7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E71JHkwh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E8821A945;
-	Wed,  5 Feb 2025 10:09:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 368CE22A4ED;
+	Wed,  5 Feb 2025 10:15:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738750166; cv=none; b=lLqvvzXYYewMwcAxmMxBwrq6kRTAXD4BT9DzVJs1iGqZh6OnkbkkPRyRqwmY/az5fM35gqoNAsgmD2zZAtxG3Z5UcsAEzZUpbabx0i/5g+H/V1RBFC4h+UFEYTuOdjWBf/M2i0U3UltuzLcw8k4kBtSD33gzpWpefDTm6xs2KR8=
+	t=1738750528; cv=none; b=nJZT4/8IxGZ3M5AIscye6N+TOoB5nW2m2YFD7kHCLyuiC/VQ//Upfo1THHZwK9nyhZA/CoITKpM7TCsZR3eu75v34UKW+vBkH+QZc2S/98ggqMcjpqOa+qtVC7QI5m28kAbyuYwueYi7dyAncJF5kKR1+Rmo9w+axzo6PQl94/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738750166; c=relaxed/simple;
-	bh=wcO0snABHQ/EQlJRhm7GcrcM4rAy14UC6Dnnsk8wbVc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KdhJ8xoJts4ykCOnc/goFIXu4Z7uKw5XE/7tZrx/TYeS1VQUMMM5ZdEoprdORM2xljXE4sa3OEMAsG+vlDFebk4OZ4qocFJTTo4gXA4rt60DGfpHNloTB7c44bkHOKzA7UKyO7VMIWPFRmdczwnfyX/rHoxwAc3a08Ie0OeweSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UIXaXcP7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1C25C4CEE6;
-	Wed,  5 Feb 2025 10:09:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738750166;
-	bh=wcO0snABHQ/EQlJRhm7GcrcM4rAy14UC6Dnnsk8wbVc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UIXaXcP7VjYb2tahYBouaQIsm+B0Pj3pEpFHpBM5QBAsZBEe14pnRaexLj++442Pf
-	 C+wbRjwLmL+m5FMZ6DdkbPL0lPKCac6q1v56Sf7Nm0lmyhQFqyvFTocKDcpTEYFnII
-	 07398xW6at2BojjUi9thVCWhZQ06wiZXuRhR6KkhWYJS9eonnLNKseKwZg+yfYmcmF
-	 BcrRsLrH4d4NxkMZchWCfmXpv5gDVHsCvFUrmMUKBIti3lHZc4qN2OwS916MoKvT7w
-	 othU07/kideZpBID3TIi2Ilh+VWB/tOdvG32QQ2a9D7EHieD4jnjbqGShYqHghS2h5
-	 SOXglgoRjlKGw==
-Date: Wed, 5 Feb 2025 11:09:23 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Fred Treven <ftreven@opensource.cirrus.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Trimmer <simont@opensource.cirrus.com>, Charles Keepax <ckeepax@opensource.cirrus.com>, 
-	Richard Fitzgerald <rf@opensource.cirrus.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	James Ogletree <jogletre@opensource.cirrus.com>, Ben Bright <ben.bright@cirrus.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	David Rhodes <david.rhodes@cirrus.com>, Jeff LaBundy <jeff@labundy.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Karel Balej <balejk@matfyz.cz>, 
-	Igor Prusov <ivprusov@salutedevices.com>, Jack Yu <jack.yu@realtek.com>, 
-	Weidong Wang <wangweidong.a@awinic.com>, Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Prasad Kumpatla <quic_pkumpatl@quicinc.com>, Paul Handrigan <paulha@opensource.cirrus.com>, 
-	Masahiro Yamada <masahiroy@kernel.org>, Nuno Sa <nuno.sa@analog.com>, alsa-devel@alsa-project.org, 
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH RESEND 4/7] dt-bindings: mfd: cirrus,cs40l26: Support for
- CS40L26
-Message-ID: <20250205-large-brass-stoat-9c0fe5@krzk-bin>
-References: <20250204231835.2000457-1-ftreven@opensource.cirrus.com>
- <20250204231835.2000457-5-ftreven@opensource.cirrus.com>
+	s=arc-20240116; t=1738750528; c=relaxed/simple;
+	bh=OX/ctnigpgu43lTK7xFJcSkeJZlHrN45vDpeKZLrJHE=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=CNiPcyjRszUmr4aoVT/LWevhgLfbfrvaXR7nmF7GvAnO+uLsmou5sydQ2nOns+hNMR2BM2CRHSHHG+sFMQtUPVlqdnF1BGc7o4SJ6YN/LY0ALN3LO+LTSx7gPe3CCVDWH+F7s9APxa607gJM+Aafwv9kLIkY1Krd6dUAm7634Ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E71JHkwh; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738750526; x=1770286526;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=OX/ctnigpgu43lTK7xFJcSkeJZlHrN45vDpeKZLrJHE=;
+  b=E71JHkwhQE5GVmXDJD7Urj4G2i3t+Yt3kAc0VepcsXDRqe0iDiLRubhX
+   z3nUpkE4CE0o+EhBRnofDWkWfD4d4u5nFNuJbjWTXAWlaVIploWl79vmq
+   qtUqHFE6QclBvfjHpqYWraZAzkKB7i/NM77MXCE7Mu2qoAhHGRw+wll/k
+   7LYYVRAAfpWBXq+HkLinO6VNO0Fy+wHFV/JKRaSpkZninAZppbC2lD9H8
+   iBQ9sxODoXfrviORID88UGN1ZQr+k+J96OQK+3F0M9SX7OYE6IDxDQt2T
+   n/HvaIHlPmULqDUqEQoZMes0+VMDbtcEACB8el1PaEZaov6wtO/j5ppqz
+   w==;
+X-CSE-ConnectionGUID: ABMWvrqjR4uyCIqoS3jIFQ==
+X-CSE-MsgGUID: h8C7WsB4RByOcbQ7wBPePQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="50700206"
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; 
+   d="scan'208";a="50700206"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2025 02:15:26 -0800
+X-CSE-ConnectionGUID: 7L7ExEuNSTqGNIlqMBV76A==
+X-CSE-MsgGUID: 2lTpRANCS/6zhV1TYERXNA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="110708642"
+Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
+  by orviesa010.jf.intel.com with ESMTP; 05 Feb 2025 02:15:23 -0800
+From: niravkumar.l.rabara@intel.com
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	niravkumar.l.rabara@intel.com,
+	nirav.rabara@altera.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: socfpga: agilex5: add qspi flash node
+Date: Wed,  5 Feb 2025 18:11:53 +0800
+Message-Id: <20250205101153.1778622-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250204231835.2000457-5-ftreven@opensource.cirrus.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Feb 04, 2025 at 05:18:33PM -0600, Fred Treven wrote:
-> Introduce required basic devicetree parameters for the
-> initial commit of CS40L26.
-> 
-> Signed-off-by: Fred Treven <ftreven@opensource.cirrus.com>
-> ---
->  .../bindings/mfd/cirrus,cs40l26.yaml          | 81 +++++++++++++++++++
->  MAINTAINERS                                   |  4 +-
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-I don't understand why you decided to resend the same two days *AFTER*
-you received review.
+Add Micron qspi nor flash node for Intel SoCFPGA Agilex5.
 
-No, implement the review you already got. Resending the same in such
-case is not only unnecessary noise but actually ignores/skips the
-review.
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+---
 
-NAK
+changes in v2:
+  * Removed unexpected properties to fix dts build warnings.
 
-Best regards,
-Krzysztof
+Link to v1:https://lore.kernel.org/all/20250108112834.2880709-1-niravkumar.l.rabara@intel.com/
+ 
+ .../boot/dts/intel/socfpga_agilex5_socdk.dts  | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+index c533e5a3a610..5eda77242c5d 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+@@ -25,6 +25,37 @@ &osc1 {
+ 	clock-frequency = <25000000>;
+ };
+ 
++&qspi {
++	status = "okay";
++	flash@0 {
++		compatible = "micron,mt25qu02g", "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <100000000>;
++		m25p,fast-read;
++		cdns,read-delay = <2>;
++		cdns,tshsl-ns = <50>;
++		cdns,tsd2d-ns = <50>;
++		cdns,tchsh-ns = <4>;
++		cdns,tslch-ns = <4>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			qspi_boot: partition@0 {
++				label = "u-boot";
++				reg = <0x0 0x04200000>;
++			};
++
++			root: partition@4200000 {
++				label = "root";
++				reg = <0x04200000 0x0be00000>;
++			};
++		};
++	};
++};
++
+ &uart0 {
+ 	status = "okay";
+ };
+-- 
+2.25.1
 
 
