@@ -1,143 +1,315 @@
-Return-Path: <devicetree+bounces-143405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31655A299CC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 20:10:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A53A299D6
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 20:12:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D5271610DE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 19:10:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C60DB18813C6
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 19:12:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257E71FF1B3;
-	Wed,  5 Feb 2025 19:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 331971FF1BA;
+	Wed,  5 Feb 2025 19:12:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IW9+39AI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SGmIV2gE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F421FECD4;
-	Wed,  5 Feb 2025 19:10:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E525944F;
+	Wed,  5 Feb 2025 19:12:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738782635; cv=none; b=LSZUKBEDb4hfNPSSq7Mc6EZNxH3ALq2Tbb4BS2FQLR8ODXZgdEYlinT1R8oHOxoYCnlCVj7YNXhsIsQ4CPl5cDER1IlTVi2ojqQJhjuHrKiPegVh+Y0q1EGMFa9LKQiCpQrsTyPbnO8Bjp+hePa2wRlnubXG6VxinHatxodieqg=
+	t=1738782750; cv=none; b=EoP2lO39NsDtw6QD6xcBqy+Byc3Yuy0PxVRlk4+yO08J43ZNXAAioaUUN02saL0UfhLpo8m89KCgE0NT8RNGS6Ga/vKpqsSe2Hb8y6LI8s52nRbJ+CbW8YsWcWlQD9Xc3MBD4LYy8nq/DihmASZgdYsKzuVwghsmfOxe+9kZKnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738782635; c=relaxed/simple;
-	bh=ETdqFpdQWKnBh+I298fz06UxdSXFr90lIy6URSg4kaA=;
+	s=arc-20240116; t=1738782750; c=relaxed/simple;
+	bh=0Eq0ZYNUhCReqOWxdlMg8o8bLR+CDrQ9vCkt6Kdkx14=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FC4Pxiyw5DkyypyqsKULrC+m4btDmTjQdMvSLsU5kaJ2VfcSP+FZAEk1WpJmxFQYZmTzRZ8UiOZAY3jnK9kEGB1GyJ0XxKaoxHZBdVSjHkMbHsCBNil8QqKOoUH1tgej32MA556udqWyrhkcq0EGg0PQPlLKtGX5s00lCmDAegE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IW9+39AI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19032C4CED1;
-	Wed,  5 Feb 2025 19:10:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738782634;
-	bh=ETdqFpdQWKnBh+I298fz06UxdSXFr90lIy6URSg4kaA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IW9+39AID1lcEbXaiCKZIk7Cm+9fGecb98BRFaRHhP9a1Iyi3q9gmTF0VE+8Gqdz6
-	 6Gn3MD174LfUMy2NeBzeXsMH66CTU4yWmleh54TGTdYvywqkeSWFULL3UeTmJ4UmpO
-	 EhrA66XdJDnwXnJCUSt/+6KbgSDUsy97XJflygurMKjb6jH27FBAJR2IcqHGqzBuQ0
-	 rXCqaRMa4d8QxePE6ZYQl2vTvHym5SKVhHHeF/vFQsAe8f+2rML9WgboYcBcubtXzq
-	 9gyiIdc5MukId3ZAjg6yjOEwoXCW92eam1wc3FM9/L0LUxgr//JEP52TxjR7MzWPtu
-	 IzvlMlC6Gb90g==
-Date: Wed, 5 Feb 2025 19:10:28 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZZYLkthR3meS+haiOw5m0FJ6KbO+gm5OgYQYaaTY8mr7E1mf2tIt16OnyscLLiRirKzj66G55jjjqRfwqHmrfWilu/vsGgYfavLEy9c93aI4CCN7A2vxJqol3ckBoHxfK9Ho/+uCgjwEcbP5o2q4ctY4Y5G/e4mvTDxw2M2ja5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SGmIV2gE; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ab34a170526so25425966b.0;
+        Wed, 05 Feb 2025 11:12:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738782746; x=1739387546; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Oketx7tDIhcuG5rUx6z6XVclJQ29lq6S1BBw1NvvIew=;
+        b=SGmIV2gExRmWHjgrvYbWWh1TRHDSEXoHDwCvoRt2LBYOuN5qlc53KOY90Q8j5OgGaN
+         6hY1bvKc11JsGG1o9WudHj1MgGBDpky9qDF9oxImJRzJolGxJsi5WnJUy1VZm/HOHwRu
+         8elsnVAjvyi/+/YYK4HQdHeedheq82DRyUu4ZLeuis4N8xXdn2aYKQev28E0URokS4K6
+         M0FGX7kbK7W0rJeQisivHRQFNdqDLBV8AfT1tuFHa0sOWzkf/MlCjgw5dHOZm/+5x24u
+         7Jr5hk4To8iSaqHVdEngjeG/V/R1/7PFqZ9nhHOvVw0ROZn4CSYLBKbtmY0yGOodryC2
+         Qa9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738782746; x=1739387546;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Oketx7tDIhcuG5rUx6z6XVclJQ29lq6S1BBw1NvvIew=;
+        b=O6VG+ZY4e8hex1vpezbI3BqNxGHZJBwpu2ROduG8KTLYDklRPYRoJD2qmioGl8NGz7
+         kdjL5MNoA3IO8PnXoD+YnwhE5Yy1P0jmmuaxtw/DbY2jxmaKc8FC+BHns+d1v2Wtbxz3
+         M6QcOh+iuOwIm3sYB9ZZk7wNjmBmjssL2aPQvvYhqpwNB1P7IOVu0gxggttCcqdMsiBz
+         OA7YRETWWkMh494U2xTCK24cPwQHo2uDJb4JFIIn5s0aQABDn7o1URhQJ9UBd2uym8K8
+         xc9uliyNE6M8NvhhuYyNovwayPZhmax6hlFJTzC5epLWzVjc4SQtQgJEas/TWx05X8lR
+         ZDoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVY3nEdaruNJ0ugJO4ILuiGvT0yTz1ExWT55gOo7szIeeRPvTuFi7fcfA6XsIM70RMjVbfvvtoC85eKzqJJ@vger.kernel.org, AJvYcCXfYnZno1klVqUkXrfSdo6tCpWZD2Lb8zALupV4H4GVxnP2t85i3IB/GIsIajWsNAIof2Cl50J/Pbak@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7v3rVG6VRDy47f8avris8Ji4kh7CTuX1yfpnbvyi43qDXAM4n
+	lBsf2CA9n+WDr9WFzBw0QbW4G+pB+kaaFCRGXJfJnbtx9BlffhBk
+X-Gm-Gg: ASbGncvCAe7Mzn6DTfe/bwaAPw5laKCiyFpIFVMHi+DN0iFkbYIU9IhQvzxbtX84xkk
+	2tvsQ5U7u2mo8aA00PoGEgrfh6/As9pU1F/PLxPIojxgIMgexOzOUie0QSJqmHmI1FscVN3OV3C
+	eSejIdDYgqe/uwlgmhID8qWvQ7fTdwbwJv7zV/eVmbReJzJSsqwDaYUGewlu2NvwiK4p2kk7suw
+	VJWJ/1zotNMsZnK8aMR3ggjusT8ifLGsqOvP1vrq+b0zsqPyK1s50CgcooiiRyj8ByJ2m6y4rB1
+	rGRUwRWiH+Ht73rQFwnNDZA29EZolE5BbghKFU+Z+782HoWYEafsZW8=
+X-Google-Smtp-Source: AGHT+IGpray5ALEav7UkGYXtShsXqdt+BKxXBeppZNjOdLOI9uz6smW+xBNGlpUOsTJ1/IZIjY5H5g==
+X-Received: by 2002:a17:907:1c29:b0:ab6:dd6b:2a3 with SMTP id a640c23a62f3a-ab75e248c8dmr387817266b.22.1738782746161;
+        Wed, 05 Feb 2025 11:12:26 -0800 (PST)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dcebe59ff3sm269102a12.62.2025.02.05.11.12.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Feb 2025 11:12:25 -0800 (PST)
+Date: Wed, 5 Feb 2025 20:12:23 +0100
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Artur Weber <aweber.kernel@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH net-next 09/13] dt-bindings: net: airoha: Add airoha,npu
- phandle property
-Message-ID: <20250205-cleaver-evaluator-648c8f0b99bb@spud>
-References: <20250205-airoha-en7581-flowtable-offload-v1-0-d362cfa97b01@kernel.org>
- <20250205-airoha-en7581-flowtable-offload-v1-9-d362cfa97b01@kernel.org>
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v3 7/7] regulator: bcm590xx: Add support for BCM59054
+ regulators
+Message-ID: <Z6O4F1pCqwK2774W@standask-GA-A55M-S2HP>
+References: <20250131-bcm59054-v3-0-bbac52a84787@gmail.com>
+ <20250131-bcm59054-v3-7-bbac52a84787@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JnOj/fdaK/Kw9pqY"
-Content-Disposition: inline
-In-Reply-To: <20250205-airoha-en7581-flowtable-offload-v1-9-d362cfa97b01@kernel.org>
-
-
---JnOj/fdaK/Kw9pqY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250131-bcm59054-v3-7-bbac52a84787@gmail.com>
 
-On Wed, Feb 05, 2025 at 07:21:28PM +0100, Lorenzo Bianconi wrote:
-> Introduce the airoha,npu property for the npu syscon node available on
-> EN7581 SoC. The airoha Network Processor Unit (NPU) is used to offload
-> network traffic forwarded between Packet Switch Engine (PSE) ports.
->=20
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+Hi Artur,
+
+some notes below.
+
+On Fri, Jan 31, 2025 at 07:13:55PM +0100, Artur Weber wrote:
+> The BCM59056 and BCM59054 are very similar in terms of regulators. Add
+> the register definitions for the BCM59054 and enable support for it in
+> the driver.
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 > ---
->  Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml=
- b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> index c578637c5826db4bf470a4d01ac6f3133976ae1a..6388afff64e990a20230b0c4e=
-58534aa61f984da 100644
-> --- a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> @@ -63,6 +63,12 @@ properties:
->    "#size-cells":
->      const: 0
-> =20
-> +  airoha,npu:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the syscon node used to configure the NPU module
-> +      used for traffic offloading.
 
-Why do you need a phandle for this, instead of a lookup by compatible?
-Do you have multiple instances of this ethernet controller on the
-device, that each need to look up a different npu?
+[snip]
+
+> +	{
+> +		.type = BCM590XX_REG_TYPE_LDO,
+> +		.regmap = BCM590XX_REG_REGMAP_PRI,
+> +		.desc = {
+> +			BCM59054_LDO_DESC(MICLDO, micldo, ldo_1_table),
+> +		},
+> +	},
+
+Downstream has MICLDO fixed at 1.8V.
+Not sure if that isn't just some vendor hack though :/
+
+https://github.com/Samsung-KYLEPROXX/android_kernel_samsung_kyleproxx/blob/cm-13.0/drivers/regulator/bcmpmu-rgltr-bcm59xxx.c#L83
 
 > +
->  patternProperties:
->    "^ethernet@[1-4]$":
->      type: object
-> @@ -132,6 +138,8 @@ examples:
->                       <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-> =20
-> +        airoha,npu =3D <&npu>;
+> +	{
+> +		.type = BCM590XX_REG_TYPE_LDO,
+> +		.regmap = BCM590XX_REG_REGMAP_PRI,
+> +		.desc = {
+> +			BCM59054_LDO_DESC(USBLDO, usbldo, ldo_1_table),
+> +		},
+> +	},
 > +
->          #address-cells =3D <1>;
->          #size-cells =3D <0>;
-> =20
->=20
-> --=20
+> +	{
+> +		.type = BCM590XX_REG_TYPE_LDO,
+> +		.regmap = BCM590XX_REG_REGMAP_PRI,
+> +		.desc = {
+> +			BCM59054_LDO_DESC(VIBLDO, vibldo, ldo_2_table),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_SR,
+> +		.regmap = BCM590XX_REG_REGMAP_PRI,
+> +		.desc = {
+> +			BCM59054_SR_DESC(CSR, csr, dcdc_csr_ranges),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_SR,
+> +		.regmap = BCM590XX_REG_REGMAP_PRI,
+> +		.desc = {
+> +			BCM59054_SR_DESC(IOSR1, iosr1, dcdc_sr_ranges),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_SR,
+> +		.regmap = BCM590XX_REG_REGMAP_PRI,
+> +		.desc = {
+> +			BCM59054_SR_DESC(IOSR2, iosr2, dcdc_sr_ranges),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_SR,
+> +		.regmap = BCM590XX_REG_REGMAP_PRI,
+> +		.desc = {
+> +			BCM59054_SR_DESC(MMSR, mmsr, dcdc_sr_ranges),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_SR,
+> +		.regmap = BCM590XX_REG_REGMAP_PRI,
+> +		.desc = {
+> +			BCM59054_SR_DESC(SDSR1, sdsr1, dcdc_sr_ranges),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_SR,
+> +		.regmap = BCM590XX_REG_REGMAP_PRI,
+> +		.desc = {
+> +			BCM59054_SR_DESC(SDSR2, sdsr2, dcdc_sr_ranges),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_SR,
+> +		.regmap = BCM590XX_REG_REGMAP_PRI,
+> +		.desc = {
+> +			BCM59054_SR_DESC(VSR, vsr, dcdc_vsr_ranges),
+> +		},
+> +	},
+
+VSR seems to be different between BCM59054(A0?) and BCM59054A1.
+These are the A1 ranges.
+Should we differentiate between the two versions, same as downstream?
+
+https://github.com/Samsung-KYLEPROXX/android_kernel_samsung_kyleproxx/blob/cm-13.0/drivers/regulator/bcmpmu-rgltr-bcm59xxx.c#L736
+
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_GPLDO,
+> +		.regmap = BCM590XX_REG_REGMAP_SEC,
+> +		.desc = {
+> +			BCM59054_LDO_DESC(GPLDO1, gpldo1, ldo_1_table),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_GPLDO,
+> +		.regmap = BCM590XX_REG_REGMAP_SEC,
+> +		.desc = {
+> +			BCM59054_LDO_DESC(GPLDO2, gpldo2, ldo_1_table),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_GPLDO,
+> +		.regmap = BCM590XX_REG_REGMAP_SEC,
+> +		.desc = {
+> +			BCM59054_LDO_DESC(GPLDO3, gpldo3, ldo_1_table),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_GPLDO,
+> +		.regmap = BCM590XX_REG_REGMAP_SEC,
+> +		.desc = {
+> +			BCM59054_LDO_DESC(TCXLDO, tcxldo, ldo_1_table),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_GPLDO,
+> +		.regmap = BCM590XX_REG_REGMAP_SEC,
+> +		.desc = {
+> +			BCM59054_LDO_DESC(LVLDO1, lvldo1, ldo_1_table),
+
+According to downstream, this should be ldo_3_table.
+
+https://github.com/Samsung-KYLEPROXX/android_kernel_samsung_kyleproxx/blob/cm-13.0/drivers/regulator/bcmpmu-rgltr-bcm59xxx.c#L683
+
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_GPLDO,
+> +		.regmap = BCM590XX_REG_REGMAP_SEC,
+> +		.desc = {
+> +			BCM59054_LDO_DESC(LVLDO2, lvldo2, ldo_3_table),
+> +		},
+> +	},
+> +
+> +	{
+> +		.type = BCM590XX_REG_TYPE_VBUS,
+> +		.regmap = BCM590XX_REG_REGMAP_SEC,
+> +		.desc = {
+> +			BCM59054_REG_DESC(VBUS, vbus),
+> +			.ops = &bcm590xx_ops_vbus,
+> +			.n_voltages = 1,
+> +			.fixed_uV = 5000000,
+> +			.enable_reg = BCM59054_OTG_CTRL,
+> +			.enable_mask = BCM590XX_VBUS_ENABLE,
+> +		},
+> +	},
+> +};
+> +
+>  static int bcm590xx_probe(struct platform_device *pdev)
+>  {
+>  	struct bcm590xx *bcm590xx = dev_get_drvdata(pdev->dev.parent);
+> @@ -487,8 +864,21 @@ static int bcm590xx_probe(struct platform_device *pdev)
+>  		return -ENOMEM;
+>  
+>  	pmu->mfd = bcm590xx;
+> -	pmu->n_regulators = BCM59056_NUM_REGS;
+> -	pmu->regs = bcm59056_regs;
+> +
+> +	switch (pmu->mfd->device_type) {
+> +	case BCM59054_TYPE:
+> +		pmu->n_regulators = BCM59054_NUM_REGS;
+> +		pmu->regs = bcm59054_regs;
+> +		break;
+> +	case BCM59056_TYPE:
+> +		pmu->n_regulators = BCM59056_NUM_REGS;
+> +		pmu->regs = bcm59056_regs;
+> +		break;
+> +	default:
+> +		dev_err(bcm590xx->dev,
+> +			"unknown device type, could not initialize");
+> +		return -EINVAL;
+
+Missing a '\n' in the error message.
+Could use dev_err_probe as well. Maybe in other places in the driver too.
+
+Regards,
+Stanislav
+
+> +	}
+>  
+>  	platform_set_drvdata(pdev, pmu);
+>  
+> 
+> -- 
 > 2.48.1
->=20
-
---JnOj/fdaK/Kw9pqY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6O3pAAKCRB4tDGHoIJi
-0r90AQCPFWieY3rJFPgYre/U5p5JhiHPBES11cYsO6z7cPd7JgD+LbhWNBtMLabp
-sVw4Vk5SnTfpxAWmdYRThF4q2n8QHAU=
-=ee/X
------END PGP SIGNATURE-----
-
---JnOj/fdaK/Kw9pqY--
+> 
 
