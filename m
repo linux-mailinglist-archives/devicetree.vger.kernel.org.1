@@ -1,43 +1,44 @@
-Return-Path: <devicetree+bounces-143340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AECF8A296B7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:52:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E24A296AF
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:51:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCFE416BD61
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:51:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D84E7188B54B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:51:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AA4A1FFC7E;
-	Wed,  5 Feb 2025 16:48:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA9A1FDE18;
+	Wed,  5 Feb 2025 16:48:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="E466toiG"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="O7xWhQTY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E0C1FDE1E;
-	Wed,  5 Feb 2025 16:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 211341FDE0E;
+	Wed,  5 Feb 2025 16:48:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738774114; cv=none; b=H4t4S7Ly0MWOYo/KQjOXzxw+paUgw+LF/6R0Tbj+e6ubIUOF6uWhKdzPYreWcaxCrcy0ZVQ3/++HPSoVRz/mDnhfWE4UvgPOtAs9ru3k4QhnjZwC/GIOVOjCzTBE0LKH4psbM6o9dDvs7fah6Iu0b34Fx7TEOJ2oCaEAVYJsMCg=
+	t=1738774112; cv=none; b=fteYvKw/XjpVyf5qeYlR9LDhCZvidmpuMPQPWlEL5uZA04WcAX4X4UZrGSWpS+eN4OlZf7SLKwPrDOQhLKFkQoZBz7PgU48jZm8kQxQLli2nEH4UcjgtpdYIRX0d+P3VqOtKuxCgKD9AIP4OQ2gML8eJ2gjGnlKF+U2XvvrmyB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738774114; c=relaxed/simple;
-	bh=DiSxPYZaNdGjbVa7+HmMznS7TO3HVmhhVq4q8g3TJFI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=a3Df0qvz5X0kLklWhn2ZxLb/yRqDrUFfqCZ5Q30+bEk+IbC8ui7B+AOlLfITJlIU9aAMr/3q16azInexkEK7cacdLUrEAeIEHfIZQjvvubcdav4iCFSfg+Rpp8X7VyRjvApp4ARncnIvnWETW5QpfSpsL1qWL3YW0m5WBqna0rw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=E466toiG; arc=none smtp.client-ip=173.249.15.149
+	s=arc-20240116; t=1738774112; c=relaxed/simple;
+	bh=BzXXA/cI0W1sFyho2VjDgr9ILcR75btGyHtzelRuuB8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=az7Tdk7u99yRryM4cYC9P5kGu9hm9EWgAlPaMBcL80BI/HSkuhfTn40kOA1IbSj/a9vjbuk+QhFscbvRaZXTthCtkRq46cPLmUL4SnjOkBKO5+aVJuwA1VuCj3o0sl0QxoZOmRAon+XoR2EeSb6aasSrEwN2zmWZJsNCVZ5YMpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=O7xWhQTY; arc=none smtp.client-ip=173.249.15.149
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
 dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
-	bh=pIRYa9YQsz8w9c0y2kwbYds3kXa55MTpz/4qO0nMzV4=;
-	b=E466toiGSMo5cCsel4l5r/BpNf//jdMTUgi5ROD4EYbs/MBdt2oCPcZu0v2S66IUCq9EbYrCsaTZbjPDMRmOOR1G49e7AjRxFcPq8cAG7/B005bu/CrV9ufC+4i+X+5osoGGI3coh42NdsxbyFcgTGLl4i8HKevToCbey9jUMFo=
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding:In-Reply-To:References;
+	bh=UWzy9f37TLLTSuTbfCAgfOB34y28JpT9kZ7G8h4yvw8=;
+	b=O7xWhQTY+j6CDzuVj0bVlxJdGYjWrYYHy1bIpjot3z0OKBiZvA8+4A70qmAMbVmgiGWva+EQp5goWTKflZsZUgLvlfHkLZgC/VCDFQj//7euFFk5H/F5/dfCuGbSLSIs4twWsR2J8fGzUlqHHPTWavSkB5E8FTYBjj6f1vH0sOM=
 Received: from lukas-hpz440workstation.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
 	by mail.netcube.li with ESMTPSA
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Wed, 5 Feb 2025 17:48:03 +0100
+	; Wed, 5 Feb 2025 17:48:06 +0100
 From: Lukas Schmid <lukas.schmid@netcube.li>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -47,14 +48,17 @@ To: Rob Herring <robh@kernel.org>,
 	Samuel Holland <samuel@sholland.org>,
 	Maxime Ripard <mripard@kernel.org>
 Cc: Lukas Schmid <lukas.schmid@netcube.li>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v9 0/4] Add support for NetCube Systems Kumquat
-Date: Wed,  5 Feb 2025 17:47:09 +0100
-Message-Id: <20250205164716.2509650-1-lukas.schmid@netcube.li>
+Subject: [PATCH v9 1/4] dt-bindings: vendor-prefixes: Add NetCube Systems Austria name
+Date: Wed,  5 Feb 2025 17:47:10 +0100
+Message-Id: <20250205164716.2509650-2-lukas.schmid@netcube.li>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250205164716.2509650-1-lukas.schmid@netcube.li>
+References: <20250205164716.2509650-1-lukas.schmid@netcube.li>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,68 +67,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This series adds dt-bindings and dt's for the NetCube Systems Kumquat board
+NetCube Systems Austria builds Embedded Systems for use in IoT, IIoT, or
+Smart Home scenarios.
 
-Changes in v2:
-  - Fix the devicetrees according to the "dt-schema" and 
-    "make dtbs_check W=1"
-  - Fix the License of the devicetree as requested
-  - Create a cover letter for the patch series
-
-Changes in v3:
-  - Disable rtc inside the SoC again, as the rtc does not work on the board
-  - Add the gpio-reserved-ranges property to the pinctrl bindings
-  - Reorder the nodes in the devicetree to match the order of the nodes in 
-    the sun8i-v3s.dtsi file
-
-Changes in v4:
-  - Moved the dtsi change into a sperate patch
-  - Update commit messages to include better descriptions
-  - Add descriptions to the uarts and mmc nodes in the dts file
-  - Add missing newline at the end of the dts file
-  - Removed the gpio-reserved-ranges property from the dts and from the
-    pinctrl bindings
-  - Remove the rtc status property from the dts file
-
-Changes in v5:
-  - Remove the unused lradc node and it's regualtor, as they are not used
-    on the board
-  - Add another alias for the SoC's rtc as 'rtc1'
-
-Changes in v6:
-  - Add reason why DS3232+ is preferred over internal rtc
-  - Remove redundant pinctrls from mmc0, mmc1 and i2c0
-  - Reordered eeprom0 and spi0/flash@0 properties
-  - Reordered nodes by their node name alias+
-
-Changes in v7:
-  - Disable the external 32kHz crystal oscillator, as it does not work on
-    the board
-
-Changes in v8:
-  - Update the commit messages and cover letter according to the Linux
-    coding style
-
-Changes in v9:
-  - Change interrupts to interrupts-extended for tusb320 and can
-  - Rebased patches on latest master
+Website is still WIP, but the Links on it are active:
+https://netcubesystems.at/
 
 Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Lukas Schmid (4):
-  dt-bindings: vendor-prefixes: Add NetCube Systems Austria name
-  dt-bindings: arm: sunxi: Add NetCube Systems Kumquat board
-  ARM: dts: sunxi: add uart1_pe pinctrl for sun8i-v3s
-  ARM: dts: sunxi: add support for NetCube Systems Kumquat
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/arm/sunxi.yaml        |   5 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm/boot/dts/allwinner/Makefile          |   2 +
- .../allwinner/sun8i-v3s-netcube-kumquat.dts   | 276 ++++++++++++++++++
- arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi    |   6 +
- 5 files changed, 291 insertions(+)
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 5079ca6ce1d1..499ab972f9d2 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1031,6 +1031,8 @@ patternProperties:
+     description: Neofidelity Inc.
+   "^neonode,.*":
+     description: Neonode Inc.
++  "^netcube,.*":
++    description: NetCube Systems Austria
+   "^netgear,.*":
+     description: NETGEAR
+   "^netlogic,.*":
 -- 
 2.39.5
 
