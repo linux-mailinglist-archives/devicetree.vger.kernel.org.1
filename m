@@ -1,145 +1,132 @@
-Return-Path: <devicetree+bounces-143313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1719A295BD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:08:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 153E5A295C4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:09:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 123E43A2136
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:07:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 883FC3A11AA
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:08:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BCFD1D86F7;
-	Wed,  5 Feb 2025 16:07:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F165E190685;
+	Wed,  5 Feb 2025 16:08:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="6afy8HNX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="siNjltJ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 878BA1DAC81;
-	Wed,  5 Feb 2025 16:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6AC91519B1;
+	Wed,  5 Feb 2025 16:08:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738771625; cv=none; b=MLWBqZc2IKMiuda6pFVgMYhbCLPE3mqUQK8IWOeMMxgndQjhzRlDVI5AgAuxOq1LIjAfwCo/+avts6kHFw0HnP9dOGM2pbMzJS261WeLaW+l3aMjqXsgEmn6LFgajq0gjTtRD5G2dmB2Fzf1/L/rNwfKMR6JYouC+LPLY32WD5A=
+	t=1738771696; cv=none; b=U1qnF7qBLPaEu4HcgX5IddcDwTDHedjKKYAvXCM2X+yjM9NLruGCjDHUXF+evlJfcWx8IRThLJ4m2YV2jn8gLCx4sHbnVsXGnNqB5a5n4qGfASmheQOY3+AK3xPecxiqGOlrAexNAgryJ/xuVGQjjlWFrMWqFGW6UT0uXP45EQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738771625; c=relaxed/simple;
-	bh=53VKuWOfgt52pZFgRpANs8PddOmYAtpCNlsKAnzd8KY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jBwoQrNWn7btq4MSBWhlYJMb528FE0i94Zrcf/BO2o4BDHtisRDz1qVb22lFCqqUcfiJcgiToeG1FOsEWYPjuEpn71dk+sjJ/ZgywRl35RGMUCEFtIaBhfKxcT6KZapi5cZTRIrqHlRYVutcHGQFcLXAOlzb/vV6ZyZ/TXmNiTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=6afy8HNX; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 515G0p1F031520;
-	Wed, 5 Feb 2025 17:06:29 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	YzSHclRpZjXdpbypTAK2KFPhVA+qCoQsT3woG1zZJrE=; b=6afy8HNXwQBSd43T
-	W8I2uCt96QhaXrBk5F49orAmd1WXv32fTK/pQNTq7dZ5sVTFqy3+EgJJLGjdmL4F
-	w+o7QnWoOP8w4G/Ej+ABVk5j0NCslt1Gv94j4UxzHBbV2e0x9k1N4uCqwngeuiru
-	j14PHwKduUWpfAf8VBOkUuMBsfX+/F9dqx0zLbw1yU0bcu/pcO84W2iL5BVFvPn5
-	xpDHWtADAoB3otEOEDiTJpsh+TGIuuL7GWt6VSDBOtOBTeDzf5r7pU+7fi5xXSpi
-	ayDUvTQB+njys7UJbC9LcsyTDFaMz+ru6iXiMDLGdaUiVusXhHRG9RYTzCTtG66/
-	qshRwA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44m2ru2mmc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Feb 2025 17:06:29 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 0C44D40046;
-	Wed,  5 Feb 2025 17:05:01 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 489692AF21F;
-	Wed,  5 Feb 2025 17:02:21 +0100 (CET)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 5 Feb
- 2025 17:02:20 +0100
-Message-ID: <6db6e1d4-a0b1-4ce3-9235-d92bb19da1d6@foss.st.com>
-Date: Wed, 5 Feb 2025 17:02:19 +0100
+	s=arc-20240116; t=1738771696; c=relaxed/simple;
+	bh=vVgyPSLuK8V9Z8ZoAgEifbf+M3HZpZDaonS3lABhZZA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bG2lEvy0CqlLtI/NAoNhBKO91V9Zi6KZfdtyS4GwLcDlooc6TWpfVi0usq0I7HvqFRlLQdlTXB4Ma0esDU5b8fOR/KyjsBOoFIPBZTfYV0QjJf6pQHtX7mx91+F8z+M4DCyOERKnQKWu/0Lk39x7iGo4MA8qem4vFctoL1m+qUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=siNjltJ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2F42C4CED1;
+	Wed,  5 Feb 2025 16:08:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738771695;
+	bh=vVgyPSLuK8V9Z8ZoAgEifbf+M3HZpZDaonS3lABhZZA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=siNjltJ3eiZzPl4eC+FZjpQopN9cXA5U6Wy+AtzLimxR+YRrGiPlN11BZhluCbtyT
+	 ZQHvsB+LpSLHMQBaizS9R1cIG0G9TDNxiAfwoykC3y8NsSJWcEQL9g6Hk6y6xX1nwI
+	 emjZnHbUlz2zioORAvQ8Y2rPxg11jtBYOFlBwj4jeajrwgcYvu3tpBLPKPM8F6q+hE
+	 1MxEUeZBch1jkIIExxHlj8yDFO4wspGzU4GQ7wUk1ObC+Dnjgro8Vm75u1s6eDhcfu
+	 0kx8DlSh+IJuhRAhhzGrNQnCjeI7nP7GMnlVYyQ8xU4NcAT8FDKfRQ8OsHc6uR0xrM
+	 uCcvlupTgZrvQ==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Eric Biggers <ebiggers@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
+	Andy Chiu <andybnac@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/6] Add some validation for vector, vector crypto and fp stuff
+Date: Wed,  5 Feb 2025 16:05:06 +0000
+Message-ID: <20250205-cobbler-unpadded-5580c1f5d946@spud>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] Add support for Priva E-Measuringbox board
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
-        "Rob Herring (Arm)"
-	<robh@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Jakub Kicinski <kuba@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Woojung Huh
-	<woojung.huh@microchip.com>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn
-	<andrew+netdev@lunn.ch>,
-        <devicetree@vger.kernel.org>, Eric Dumazet
-	<edumazet@google.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S.
- Miller" <davem@davemloft.net>, <netdev@vger.kernel.org>,
-        <kernel@pengutronix.de>
-References: <20250203085820.609176-1-o.rempel@pengutronix.de>
- <173859694746.2601652.11244969424431209545.robh@kernel.org>
- <Z6Msn8AxgG_JTVNs@pengutronix.de>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <Z6Msn8AxgG_JTVNs@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-05_06,2025-02-05_03,2024-11-22_01
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2079; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=kEfjLL/AKQiPww/DgCF2YWb+qxGGMYe1F7o2flNSwO0=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDOmLe8wCBZcIcX04ktn7hPfcxw9bHRUXnXxqvpfZbe7mU 4eUW+fe7ihlYRDjYJAVU2RJvN3XIrX+j8sO5563MHNYmUCGMHBxCsBEJnIxMpyWvxoQfi/i7U+u KgkVK9kdToWhZx+u3bb1kOQuqds7u4UYfrPLTZhkF3LfySPAUUzgiFW86nS2oBAdNpeM6uK8Jwl CjAA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-Hi Oleksij
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On 2/5/25 10:17, Oleksij Rempel wrote:
-> Hi Alexandre,
-> 
-> On Mon, Feb 03, 2025 at 09:37:06AM -0600, Rob Herring (Arm) wrote:
->>
->> On Mon, 03 Feb 2025 09:58:16 +0100, Oleksij Rempel wrote:
->>> This patch series introduces support for the Priva E-Measuringbox board
->>> based on the ST STM32MP133 SoC. The set includes all the necessary
->>> changes for device tree bindings, vendor prefixes, thermal support, and
->>> board-specific devicetree to pass devicetree validation and checkpatch
->>> tests.
->>>
-> 
-> ...
-> 
->> arch/arm/boot/dts/st/stm32mp133c-prihmb.dtb: adc@48004000: adc@0:interrupts: 0 was expected
->> 	from schema $id: http://devicetree.org/schemas/iio/adc/st,stm32-adc.yaml#
->> arch/arm/boot/dts/st/stm32mp133c-prihmb.dtb: adc@48003000: adc@0:interrupts: 0 was expected
->> 	from schema $id: http://devicetree.org/schemas/iio/adc/st,stm32-adc.yaml#
->
-> 
-> Can I please get your attention here. The reported issue is not related
-> to this patch set. adc@0:interrupts are set in the dtsi file.
+Yo,
 
-Yes I saw this issue too when I tried to merge your series. I'm 
-discussing with STM32 ADC driver owner to fix the issue (either in stm32 
-adc yaml or maybe in schema).
+This series is partly leveraging Clement's work adding a validate
+callback in the extension detection code so that things like checking
+for whether a vector crypto extension is usable can be done like:
+	has_extension(<vector crypto>)
+rather than
+	has_vector() && has_extension(<vector crypto>)
+which Eric pointed out was a poor design some months ago.
 
-Anyway we also have the issue for STM32MP135F-DK board so I'll merge 
-your series as it doesn't introduce the issue.
+The rest of this is adding some requirements to the bindings that
+prevent combinations of extensions disallowed by the ISA.
 
-regards
-Alex
+There's a bunch of over-long lines in here, but I thought that the
+over-long lines were clearer than breaking them up.
 
+Cheers,
+Conor.
 
+v3:
+- rebase on v6.14-rc1
+- split vector crypto validation patch into vector validation and vector
+  crypto validation
+- fix zve64x requiring extension list to match Eric's PR
 
+v2:
+- Fix an inverted clause Clément pointed out
+- Add Zvbb validation, that I had missed accidentally
+- Drop the todo about checking the number of validation rounds,
+  I tried in w/ qemu's max cpu and things looked right
 
-> Kind regards,
-> Oleksij
+CC: Eric Biggers <ebiggers@kernel.org>
+CC: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Paul Walmsley <paul.walmsley@sifive.com>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: "Clément Léger" <cleger@rivosinc.com>
+CC: Andy Chiu <andybnac@gmail.com>
+CC: linux-riscv@lists.infradead.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+
+Conor Dooley (6):
+  RISC-V: add vector extension validation checks
+  RISC-V: add vector crypto extension validation checks
+  RISC-V: add f & d extension validation checks
+  dt-bindings: riscv: d requires f
+  dt-bindings: riscv: add vector sub-extension dependencies
+  dt-bindings: riscv: document vector crypto requirements
+
+ .../devicetree/bindings/riscv/extensions.yaml |  85 +++++++++++
+ arch/riscv/include/asm/cpufeature.h           |   3 +
+ arch/riscv/kernel/cpufeature.c                | 133 +++++++++++++-----
+ 3 files changed, 183 insertions(+), 38 deletions(-)
+
+-- 
+2.45.2
+
 
