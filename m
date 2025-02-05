@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-143334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC79BA29672
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:35:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 791DCA29676
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:36:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 469E816A66C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:35:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0226816A658
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:36:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD9CC19258B;
-	Wed,  5 Feb 2025 16:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339B3191F7A;
+	Wed,  5 Feb 2025 16:36:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ef2oW7TT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D3Gs96YS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B791157465;
-	Wed,  5 Feb 2025 16:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1D417F7;
+	Wed,  5 Feb 2025 16:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738773312; cv=none; b=iZfj5BYwW0/FALWf7s4zs8RjypH8Vo1IuxYUwBzajNNb/GmU4NdHhWGKVfh/dAfN3+0GDc47xycrtwmHXVsgZzU2/t8EmhPVh+1DlAf+OaingY95MJzFkJYl19Dv4K8qnGrnWYdpeI6kLXBtQ6rGUTApY1zm/+aLmgP8/0egRUE=
+	t=1738773378; cv=none; b=Ofdfm+wdmhm9JLD5zY2HX07T0atB/5xiVtfOUiudw8whw3mPy0NprnghnjhL3JaMYwNJnLHHnJ2AdT5rv39yzue8t07Z55cKqRoHMy+yT3TVk+zkJAYZxRMxvCNR2ZB0BQpCPbTIODW0q+kChWHJGYHbWHv338uYnDP9b6I/c+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738773312; c=relaxed/simple;
-	bh=poca9uM9KJpZdizcMGkf7+o6KyB/m+kgE3lsAIBam7k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=COLAWQEXlImD87UlJOqWqCfPcduzC3Av0fOsK8Aw63ItqlGpowpCyToS8AeUcHR0ApKmN2Ee3mEmR7dFJrNaJyh2srsTrDd6nW9/S1FXRCvLoDQ9qBQ9JRcsWrQ+4HHHBTZwtnRWaGZxP3EIu5IO0amK6vZ3KCBvyy4V8Wxufio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ef2oW7TT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 229DFC4CED1;
-	Wed,  5 Feb 2025 16:35:03 +0000 (UTC)
+	s=arc-20240116; t=1738773378; c=relaxed/simple;
+	bh=m+KkLZ0WFhRYUT9MhV67pCyH7ljAwfFdntl25wh0e0M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=buSbIMyogufz6CnO68sSfdWkmbNN3rOHETog4bOrqqu3VySymuGRDAAnyEI88W9MdxTa7gaZnMB2XbaqGP0WG/ThY8YvoAmipcPOQmdAbz/xgJLLaplEg61H1KeV+PlPhR8Soqchb7rwf1t8q10+97b7RsnIxI81pFheAm3R41A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D3Gs96YS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D65FCC4CED1;
+	Wed,  5 Feb 2025 16:36:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738773312;
-	bh=poca9uM9KJpZdizcMGkf7+o6KyB/m+kgE3lsAIBam7k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ef2oW7TTJWrSf2Ve/wzhV28PC5O0QqOYounibJQBYzLZOOTPburvta9Gr04vQTb67
-	 aXiJ49pFgFnSeu1fSgV+lBORCLC4MMuy/N2VhD+pZv54TzwhCiGSl1W7zXxuVtPyCl
-	 nZCq0jocPLauM2me+zmaKbbvxgq14IOmpgUJ1j8HStchKI5YT+B1pb8lC/ZBNz2uJA
-	 OcDmh5Hknaun6p8EJeS4SEFiQJK05z6MniHMR1/nlJqFclQsatwsrq1Xl8peCN8NrS
-	 7N50a6LPVorTdRrMUyLXWNbM4ele+9P5AfIsLTZ8jqTIQejsQT5jgC5Ova/lBoHPov
-	 iZ7XztwStjYwA==
-Message-ID: <25f61085-defa-4c5d-b243-6d51e72aee76@kernel.org>
-Date: Wed, 5 Feb 2025 17:35:01 +0100
+	s=k20201202; t=1738773377;
+	bh=m+KkLZ0WFhRYUT9MhV67pCyH7ljAwfFdntl25wh0e0M=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=D3Gs96YSibgb+/uNEyvDoWQzX9FcoQD3b1wzc4Pby8dk1Xug3hwF4p19kpR3Nf9Xl
+	 Ua8qe73aTPsm3LBbbQKrcM0YrIlE7gu0t02APoQ2nxvb1yMqdh12j3ahuWgG1UcCZd
+	 54JJzQVTDGxs831DLGZwFfEaZMG+BWdf8FluzKglxCnqHoBRw5bAdHCGUeZtHgezio
+	 n4SqmBP21Kc21P1NMdIZh/563K5tGyUJvvoCDeoVivlb3k+cu0KGMLBvuS8PFz/oiz
+	 LrVfNYOPw1BH4tN4Ur+UmeFRIHX1yPPfpYrPZiGy5rGQpmhUM2j22PBdn+PkxWoBMe
+	 VlG7hsSI77ERA==
+Message-ID: <bd1ad035-685e-4684-98e8-e32b98d870f7@kernel.org>
+Date: Wed, 5 Feb 2025 17:36:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 27/27] dt-bindings: net: pse-pd: ti,tps23881:
- Add interrupt description
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>,
- Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>,
- Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de,
- Maxime Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org
-References: <20250103-feature_poe_port_prio-v4-0-dc91a3c0c187@bootlin.com>
- <20250103-feature_poe_port_prio-v4-27-dc91a3c0c187@bootlin.com>
- <uv2grnchczucf4vxxzaprfkc6ap56z6uqzaew3qtjqpvmtaqbb@kuv62yntqyfr>
- <20250205151822.06f60e8d@kmaincent-XPS-13-7390>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: socfpga: agilex5: add NAND board file
+To: "Rabara, Niravkumar L" <niravkumar.l.rabara@intel.com>,
+ Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "nirav.rabara@altera.com" <nirav.rabara@altera.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250205101318.1778757-1-niravkumar.l.rabara@intel.com>
+ <0f77480d-e93c-44e2-ae9b-615b2368a011@kernel.org>
+ <BL3PR11MB6532426A08A1C84AA971E6C3A2F72@BL3PR11MB6532.namprd11.prod.outlook.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -116,31 +105,63 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250205151822.06f60e8d@kmaincent-XPS-13-7390>
+In-Reply-To: <BL3PR11MB6532426A08A1C84AA971E6C3A2F72@BL3PR11MB6532.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/02/2025 15:18, Kory Maincent wrote:
->>> Add an interrupt property to the device tree bindings for the TI TPS23881
->>> PSE controller. The interrupt is primarily used to detect classification
->>> and disconnection events, which are essential for managing the PSE
->>> controller in compliance with the PoE standard.
->>>  
->>> @@ -62,6 +65,7 @@ unevaluatedProperties: false
->>>  required:
->>>    - compatible
->>>    - reg
->>> +  - interrupts  
->>
->> Why? That's an ABI change. Commit msg mentions something like "essential
->> for standard" so are you saying nothing here was working according to
->> standard before?
+On 05/02/2025 14:43, Rabara, Niravkumar L wrote:
+> Hi Krysztof,
 > 
-> Yes indeed, the disconnection management did not follow the standard. Without
-> this series, the power on the ports of this controller is not shut down after a
-> Powered Device disconnection. Unfortunately, I did not noticed this before.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Wednesday, 5 February, 2025 7:31 PM
+>> To: Rabara, Niravkumar L <niravkumar.l.rabara@intel.com>; Dinh Nguyen
+>> <dinguyen@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+>> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
+>> nirav.rabara@altera.com; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org
+>> Subject: Re: [PATCH v2] arm64: dts: socfpga: agilex5: add NAND board file
+>>
+>> On 05/02/2025 11:13, niravkumar.l.rabara@intel.com wrote:
+>>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
+>>> b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
+>>> new file mode 100644
+>>> index 000000000000..ccc9be2cd7c6
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
+>>> @@ -0,0 +1,89 @@
+>>> +// SPDX-License-Identifier:     GPL-2.0
+>>> +/*
+>>> + * Copyright (C) 2025, Altera Corporation  */ #include
+>>> +"socfpga_agilex5.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "SoCFPGA Agilex5 SoCDK";
+>>> +	compatible = "intel,socfpga-agilex5-socdk", "intel,socfpga-agilex5";
+>>
+>>
+>> You cannot use other boards compatibles. Different device, different
+>> compatible.
+>>
+> 
+> Same Agilex5 development kit board supports a separate NAND
+> daughter card.
+> Default daughter card with SDMMC on Agilex5 devkit required to
+> replaced with this NAND daughter card to use NAND flash with
+> Agilex5 devkit. 
 
-This would be useful part of commit msg.
+
+So different boards?
+
+> 
+> Maybe I should replace the "NAND board" to "NAND daughter board" 
+> for the patch title. 
+> 
+> Is this reasonable?
+
+
+Yeah, would be better, but I was not commenting about that. Define what
+is the hardware here and use proper compatibles.
 
 Best regards,
 Krzysztof
