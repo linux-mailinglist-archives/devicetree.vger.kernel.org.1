@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-143164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 034B1A2857C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:26:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92078A28580
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:27:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F268F1887541
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:26:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D4B2164D0E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C610229B2A;
-	Wed,  5 Feb 2025 08:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF8F229B2B;
+	Wed,  5 Feb 2025 08:27:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ccVYXGl1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aLmmQolW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 122E0229B0D;
-	Wed,  5 Feb 2025 08:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1A5229B0D;
+	Wed,  5 Feb 2025 08:27:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738743967; cv=none; b=PqKITnYYuKLffyYz92YbzlopiKoh6mniw+qnmUjADpqDi/nY3zwy3gr7CHEV0cKYWDeiHkgYmDuIO6oK3i4b73E8RtixPxhnpxj0R1S2UVwg70T+6Q5CSKTqsMu/gD488/8prPxE49nHE2EbvyBHUp0CJKYA4qg6l6qwmr9v1u4=
+	t=1738744024; cv=none; b=SuI5ajBHi7VVgFdV5gtNs8BzwpjzH9yLY6VHZbeN3qFDO3G/enKA5cscl6wiNJ+1bX5MOnu2ouabUP4Nr6YSp5l0OoXXPCiRgJFTZNpBAZsJKdyyd5EwGiYo97k2QfdMp+lXBfdR/nTmdAuU5WoWE7mJEjmNIrkbe2P0rlLSw/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738743967; c=relaxed/simple;
-	bh=NjfUcVbPp7VNLRuemltc9018TbIE6zRT+9wxD+QPcgY=;
+	s=arc-20240116; t=1738744024; c=relaxed/simple;
+	bh=fYIY2EVBNOIAb8SVUkw/eXZE0aOWEkEiJNpdJo4l7fY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bNEAyM2UVTZcoOXiJQZITOFZCYMCpUiwf9oKRcpZf9VBLp0mva5iEYSiTsIkNhxf0RCYBJp58CeOjIXMqdoOPnxR0UQN4Mw1OwdVUftXsKj96/NTrerijlWQ5N1lkuPpeRx+d9xLcTECISJlMKIpyfbpO34ArdPldzl4ECYlOmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ccVYXGl1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AB9FC4CED1;
-	Wed,  5 Feb 2025 08:26:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aEHI7O2uR2DA+OnjKOzmm+LSY1tWiya8SIeRO7jBIigNM/Sw4U5eCQY4VS8hM41EEIYnB6ColjCirevLU/qKCtZ4Vt0Vk0NOsV0o/W2Cp+pah6PwAJ/NFoag2/5+IDFtUGyLzdr5UkbyqnJQkf7KZi6yRl/8reeS9YsQgGsSCZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aLmmQolW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51E18C4CED1;
+	Wed,  5 Feb 2025 08:27:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738743966;
-	bh=NjfUcVbPp7VNLRuemltc9018TbIE6zRT+9wxD+QPcgY=;
+	s=k20201202; t=1738744024;
+	bh=fYIY2EVBNOIAb8SVUkw/eXZE0aOWEkEiJNpdJo4l7fY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ccVYXGl1fnfhmzfy5jYUxykmPuVRp1vrRMmUiy/FeNS8eiZpXwZTiHOqaM0qN0FXD
-	 uhVWqI+wjW5ePYBt0HJzDNKb/HXxdRQcwC/tMclIEHxjH/TjD7bkdnJKpcd5L9e4ed
-	 t0vjoj1btr/Ci2cauV6KlKF3sx8bC+GQp+1V3GHM+h0D4eQ+PkSmGBt2JELTCGdYH4
-	 m3635vDlE7NdPpYTtClqRcPCX2vHBqscsriIOwvFt3KKnoZx9EnEnwiOjZQ9xYT1Uj
-	 3Z6ou1ZHngdvVhK35P5Zpqyp0jY1PqbSHzO8cxa3PXo7i+z8DbUivPyFGcx1rCLg1V
-	 E9VXlG8tf0S+w==
-Date: Wed, 5 Feb 2025 09:26:03 +0100
+	b=aLmmQolWDqSbEZsNHmMnGiosQPzZspePvQTDKKov2RufVKPNlM7hclKPtyYnGR+9C
+	 xGSYj8rNGJd8Sz/lf996VNRwMgn7Ydd11CUQ6cdkIIOc1vew3OeU72GrI7v//TvXsC
+	 oaUthW3V0ZKNP8qsibVWEw4lql/e8oznkipVd26Z65LRT5m1ZJ/tM4GKBD7/BZ7/Ad
+	 nIhAwTyvTaquLZPluDntegKrEw6F3pKR1hYfqQ8GBqlLDuf+jFe4Wuwex77xBsdtHO
+	 9msIzeHDQ2nsnzAFOEQe7Ad//ZpgM/A6op+sSk+jAFvvwEeTmhjU+o0VHSuVo79iUw
+	 d2ZgRpUB0norw==
+Date: Wed, 5 Feb 2025 09:27:00 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sergey Lisov <sleirsgoevy@gmail.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: gpu: arm,mali-midgard: add exynos7870-mali
- compatible
-Message-ID: <20250205-spirited-mahogany-mammoth-286ddb@krzk-bin>
-References: <20250204-exynos7870-gpu-v1-1-0db4c163a030@disroot.org>
+	Alim Akhtar <alim.akhtar@samsung.com>, Sergey Lisov <sleirsgoevy@gmail.com>, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: samsung,s3c2410: add
+ exynos7870-i2c compatible
+Message-ID: <20250205-whimsical-industrious-vicugna-3edbda@krzk-bin>
+References: <20250204-exynos7870-i2c-v1-0-63d67871ab7e@disroot.org>
+ <20250204-exynos7870-i2c-v1-1-63d67871ab7e@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250204-exynos7870-gpu-v1-1-0db4c163a030@disroot.org>
+In-Reply-To: <20250204-exynos7870-i2c-v1-1-63d67871ab7e@disroot.org>
 
-On Tue, Feb 04, 2025 at 02:02:55AM +0530, Kaustabh Chakraborty wrote:
-> Exynos7870 SoC uses the ARM Mali T830 GPU, document its compatible
-> string with the appropriate fallback. The T830 compatible is already
-> defined in the panfrost driver, but was commented out as it was unused.
+On Tue, Feb 04, 2025 at 02:03:32AM +0530, Kaustabh Chakraborty wrote:
+> Exynos7870's (non-HS) I2C controllers are entirely compatible with
+> samsung,s3c2440-i2c. Document Exynos7870's compatible string
+> appropriately.
 > 
 > Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 > ---
-> This patch series is a part of Exynos7870 upstreaming.
-> ---
->  Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/i2c/samsung,s3c2410-i2c.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
