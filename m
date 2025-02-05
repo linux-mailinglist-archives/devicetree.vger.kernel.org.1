@@ -1,124 +1,157 @@
-Return-Path: <devicetree+bounces-143193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB23A286E2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:45:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EE4AA28722
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:56:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B012D18895B9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:45:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F36341882B80
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E2222A4E8;
-	Wed,  5 Feb 2025 09:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C36122A80D;
+	Wed,  5 Feb 2025 09:55:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CO+8cPQL"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dpUJgdAv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F9E21A458;
-	Wed,  5 Feb 2025 09:45:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4591D7985;
+	Wed,  5 Feb 2025 09:55:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738748724; cv=none; b=rayQpd+d3GAwqOBLie8ZojpV+ZcrVHgbid8LCIKDRZLY4xejVoic5bTCRkHjNd8iwDsscodYg16jHRqSTKkdEcfEq20z/Xi6bazbQkkyYBHZxfxYVVi/39YI5j3wQLbiLPWOc4UKpRrn0HIFdpAO1/66btAVEv2PqFrljuGOI8k=
+	t=1738749354; cv=none; b=i1UFy0VBbomJ7lBTHdW4JF6tlWndM3pQU4QqGsaRa+Iw/sD7nZSB+Cpv4MMDfDVgCQWQZyFUnJDS8bBnQ6L+Pzvw3eKp7Zp4TgvsV78rBf/mADgwR5C/MmpgkFDjleYLhaBNgYsnbWFqLtQSUmyUOFdXpoNZVXyPZrixq4gwbYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738748724; c=relaxed/simple;
-	bh=jLP9adXJSjXjGgnismCsuHFv2gf3SI2dGFexPu1/4NA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hFyubdEsuNsnyykrnOpAc/3z0YYLUCN3zSrVSy9CMM0iWvfjrYgE+akITIhRiGQ0QukNfIS2xDtcnFoLQUlu8UOCVeS9fYHiu7NZEnGuRXYqf5pEoCeiT8sgvQ49o32z4b64+2TG8wo4AmzJXAcgams+lmEbcvRuT76MGnp4YNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CO+8cPQL; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5159isd62510929
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 5 Feb 2025 03:44:54 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738748694;
-	bh=WZp7TS9OI/YkuzBbR19MVfuH+Jn+hzsj68Bt4sSVdMw=;
-	h=From:To:CC:Subject:Date;
-	b=CO+8cPQL8uJCIhw2ZmiCTxfPWGhU60AzO3P+gslJ5RnXfUEA29epgckOxaroxOnyU
-	 UbdwphxAACos7hzDLlWp/NZ+p5HdmuoqABPaADdiQigD+oQ9XYUAgFGACHNCkEG66M
-	 LXlHS1j/0AnpsJ6awaFjPYxfx9JjSgr2nD3sPHXM=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5159isLe008311
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 5 Feb 2025 03:44:54 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 5
- Feb 2025 03:44:54 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 5 Feb 2025 03:44:54 -0600
-Received: from hp-z2-tower.dhcp.ti.com (hp-z2-tower.dhcp.ti.com [172.24.227.4])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5159iniQ047178;
-	Wed, 5 Feb 2025 03:44:50 -0600
-From: Hrushikesh Salunke <h-salunke@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <r-gunasekaran@ti.com>,
-        <rogerq@kernel.org>, <s-vadapalli@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <h-salunke@ti.com>,
-        <danishanwar@ti.com>, <srk@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-j722s-evm: Fix USB2.0_MUX_SEL to select Type-C
-Date: Wed, 5 Feb 2025 15:14:48 +0530
-Message-ID: <20250205094448.586094-1-h-salunke@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1738749354; c=relaxed/simple;
+	bh=YwytP/lkUK7d8CnnjA+s7S91jCBEZ2Fpd6Ws//b0/uY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lVL7lNTCV+YaJf2F4T5W3CBRvWzilAiuzRdhA7OJVVB3UR2dRehxADW27H6RE+iLHAD8txTp0teP+mi70PnUFunk/cSs74nY/Wg+VOCfBIr7tW7k4RNNZGLqN6kvAUpHv+jrVwi/2x7AUTMwlylrgR98lfu7CedKGrJLUBB0eyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dpUJgdAv; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id 3FA074340A;
+	Wed,  5 Feb 2025 09:55:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1738749349;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=WkkKXNGf6/83mCN+VTO71QRPJh1MmjlW1WXgdCu5wKM=;
+	b=dpUJgdAv8g/4sHTOpUugn00zMR6KglT17NGV4EHA8FgFyLBF08Oxb7sF9MG6jclU7AjqMA
+	dU0GOxYPgT5DLf5SKdUSUXhWPqQAalUB46fDOTx0uKA3XUMC17rwhXMu0cuGmzXN3LyDP4
+	63D9zUQ6+HjxEcQu4pI7A2N6DySPQVa+9CUfPs/+xgVrYVvAbIoCnGA0LXiOVTfbSK1L0C
+	dCpHZu9WDhIQ4M3Ud9LsscxYW48OIxPDC4xL1w4fY/QJRdWj2rAm6CKHa1xRuy6xBmLVcR
+	APQhkEaUrHTCjP/ypVxo6EbPWQ00Ix+lmiB7GmY6Bb92ccwZwJHFtkvli1whCA==
+From: Herve Codina <herve.codina@bootlin.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Herve Codina <herve.codina@bootlin.com>
+Cc: linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v3 0/2] pwm: Add support for pwm nexus node
+Date: Wed,  5 Feb 2025 10:55:41 +0100
+Message-ID: <20250205095547.536083-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvfedufecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepueekkedtieehhfefvdffheekkedufeetfeeulefgudevvedvledtveefveejudetnecuffhomhgrihhnpehgihhthhhusgdrtghomhdpkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgdphhgvlhhopehlohgtrghlhhhoshhtrdhlohgtrghlughomhgrihhnpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedutddprhgtphhtthhopehukhhlvghinhgvkheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrn
+ hgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhugidqphifmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-GND-Sasl: herve.codina@bootlin.com
 
-J722S SOC has two usb controllers USB0 and USB1. USB0 is brought out on
-the EVM as a stacked USB connector which has one Type-A and one Type-C
-port. These Type-A and Type-C ports are connected to MUX so only
-one of them can be enabled at a time.
+Platforms can have a standardized connector/expansion slot that exposes
+PWMs signals to expansion boards.
 
-Commit under Fixes, tries to enable the USB0 instance of USB to
-interface with the Type-C port via the USB hub, by configuring the
-USB2.0_MUX_SEL to GPIO_ACTIVE_HIGH. But it is observed on J722S-EVM
-that Type-A port is enabled instead of Type-C port.
+A nexus node [1] allows to remap a phandle list in a consumer node
+through a connector node in a generic way. With this remapping, the
+consumer node needs to know only about the nexus node. Resources behind
+the nexus node are decoupled by the nexus node itself.
 
-Fix this by setting USB2.0_MUX_SEL to GPIO_ACTIVE_LOW to enable Type-C
-port.
+This is particularly useful when this consumer is described in a
+device-tree overlay. Indeed, to have the exact same overlay reused with
+several base systems the overlay needs to known only about the connector
+is going to be applied to without any knowledge of the SoC (or the
+component providing the resource) available in the system.
 
-Fixes: 485705df5d5f ("arm64: dts: ti: k3-j722s: Enable PCIe and USB support on J722S-EVM")
-Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
----
-This patch is based on commit
-5c8c229261f1 (origin/master, origin/HEAD) Merge tag 'kthreads-fixes-2025-02-04' of git://git.kernel.org/pub/scm/linux/kernel/git/frederic/linux-dynticks
+As an example, suppose 3 PWMs connected to a connector. The connector
+PWM 0 and 2 comes from the PWM 1 and 3 of the pwm-controller1. The
+connector PWM 1 comes from the PWM 4 of the pwm-controller2. An
+expansion device is connected to the connector and uses the connector
+PMW 1.
 
-Changes since v1
-Collected reviewed by tag
+Nexus node support in PWM allows the following description:
+        soc {
+                soc_pwm1: pwm-controller1 {
+                        #pwm-cells = <3>;
+                };
 
-v1: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20250116125726.2549489-1-h-salunke@ti.com/
+                soc_pwm2: pwm-controller2 {
+                        #pwm-cells = <3>;
+                };
+        };
 
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+        connector: connector {
+                #pwm-cells = <3>;
+                pwm-map = <0 0 0 &soc_pwm1 1 0 0>,
+                          <1 0 0 &soc_pwm2 4 0 0>,
+                          <2 0 0 &soc_pwm1 3 0 0>;
+                pwm-map-mask = <0xffffffff 0x0 0x0>;
+                pwm-map-pass-thru = <0x0 0xffffffff 0xffffffff>;
+        };
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index d184e9c1a0a5..adee69607fdb 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -590,7 +590,7 @@ exp1: gpio@23 {
- 		p05-hog {
- 			/* P05 - USB2.0_MUX_SEL */
- 			gpio-hog;
--			gpios = <5 GPIO_ACTIVE_HIGH>;
-+			gpios = <5 GPIO_ACTIVE_LOW>;
- 			output-high;
- 		};
- 
+        expansion_device {
+                pwms = <&connector 1 57000 0>;
+        };
+
+From the expansion device point of view, the PWM requested is the PWM 1
+available at the connector regardless of the exact PWM wired to this
+connector PWM 1. Thanks to nexus node remapping described at connector
+node, this PWM is the PWM 4 of the pwm-controller2.
+
+[1] https://github.com/devicetree-org/devicetree-specification/blob/v0.4/source/chapter2-devicetree-basics.rst#nexus-nodes-and-specifier-mapping
+
+Compared to previous iteration, this v3 series mainly adds the PWM nexus node
+devicetree binding.
+
+Best regards,
+Hervé Codina
+
+Changes v2 -> v3
+  - Patch 1 (new patch)
+    devicetree binding
+
+  - Patch 2 (single patch in v2)
+    Fix typos in commit log DT example.
+    Avoid wildcard for PWM nexus node properties in the commit log.
+
+Changes v1 -> v2
+  v1: https://lore.kernel.org/all/20241202164459.157672-1-herve.codina@bootlin.com/
+
+  - Rework commit log
+
+Herve Codina (2):
+  dt-bindings: pwm: Add support for PWM nexus node
+  pwm: Add support for pwm nexus dt bindings
+
+ .../bindings/pwm/pwm-nexus-node.yaml          | 65 +++++++++++++++++++
+ drivers/pwm/core.c                            |  3 +-
+ 2 files changed, 66 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-nexus-node.yaml
+
 -- 
-2.34.1
+2.47.1
 
 
