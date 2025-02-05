@@ -1,218 +1,126 @@
-Return-Path: <devicetree+bounces-143300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2262A2929E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:04:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74840A29402
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BBB33AC5A2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:57:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 180913AB745
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:11:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B0718BC26;
-	Wed,  5 Feb 2025 14:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA5618B47D;
+	Wed,  5 Feb 2025 15:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bnE4QYFL"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="FuNkhrAH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.web.de (mout.web.de [212.227.15.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7734157465;
-	Wed,  5 Feb 2025 14:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 032C4186284;
+	Wed,  5 Feb 2025 15:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738767212; cv=none; b=MccZH0hlZUa3fJeMFW3T0jjHiyU10JE0F4SmhsB761S1gc1LE3WitFFSxJXwDruRHXjO1xtv0BZK7HxE5jFJcgglIxAmRm2gd4UNTA2Zo7t4iws3PRkcDCfglGkI7PS4fsJrY0ivmT4aYd7awwnV1b101bkKsaWCCReC11VMqCU=
+	t=1738768238; cv=none; b=oV6lu1fm2naFvtqk4g9W9ImlTnS16nHcZQfiR4YBcubO9DNth/mJMIdpmllyJfA3taX1Qge5GT+blMnlfuGzV5BbAqRlH6Gnal6CH0d6u3OgZNCZEfIgyDBH1qdn4siGa2qYiyx+2mWTa6I8orbeYfdTs0cE38Z4O6j8TdpLf4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738767212; c=relaxed/simple;
-	bh=ly4tyRLO/ehfMN/FLCIRG16hKWOkEGsQKwgjdbw72Qs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sBrGzii/luAgG/88wW0tvb0h8yz4Sfsgv49UWWDIRQZXVpA2wz/vqNgr1dcsjgbv8c2+l6Ptcscxgv7AD5dW9llpK94QhqRF1wHeltmDWMoD5xWpRyXloNpErVndOSp/aP31ehpt/c76oLPnj6CpMHDTuTmjA/z53dWE+bfSOCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bnE4QYFL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF1FC4CED1;
-	Wed,  5 Feb 2025 14:53:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738767211;
-	bh=ly4tyRLO/ehfMN/FLCIRG16hKWOkEGsQKwgjdbw72Qs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bnE4QYFLfLaYNfccMdfqWT+RYN9yf+Gjxza7rzCut/1l9oMaUuiijDdd/DhaRbESZ
-	 XgFg6X3q4ifc0Xq8xBrBd3RLOXS/4Y33jlkUTNozgo2VcesBo2wJwSkQaRsQqJZa0a
-	 T67JDf8W1XRZNMD5C9zAXRKf4SEEAxGwkW8xeIPTCdscEvhIh30okn0Sv7Z9Jvpu3E
-	 PHUledK8RTCFdrv8PmcgPFa163+tjJbY8mwv5asDoBKS5o2hovBwjFoJP+EmXlJDXt
-	 0al3PgvxiEK16LH5cWdsPOTO8FTFJ0qmea/GqbeiLRwUna6jGtHUrHA0uLaWFwRXQg
-	 MrFxL1PvPIaEA==
-Date: Wed, 5 Feb 2025 15:53:29 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc: Florent Tomasin <florent.tomasin@arm.com>, 
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Boris Brezillon <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, 
-	Liviu Dudau <liviu.dudau@arm.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	John Stultz <jstultz@google.com>, "T . J . Mercier" <tjmercier@google.com>, 
-	Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Yong Wu <yong.wu@mediatek.com>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, nd@arm.com, 
-	Akash Goel <akash.goel@arm.com>
-Subject: Re: [RFC PATCH 0/5] drm/panthor: Protected mode support for Mali CSF
- GPUs
-Message-ID: <20250205-robust-tall-parrot-69baf7@houat>
-References: <cover.1738228114.git.florent.tomasin@arm.com>
- <3ykaewmjjwkp3y2f3gf5jvqketicd4p2xqyajqtfnsxci36qlm@twidtyj2kgbw>
- <1a73c3acee34a86010ecd25d76958bca4f16d164.camel@ndufresne.ca>
- <ppznh3xnfuqrozhrc7juyi3enxc4v3meu4wadkwwzecj7oxex7@moln2fiibbxo>
- <9d0e381758c0e83882b57102fb09c5d3a36fbf57.camel@ndufresne.ca>
- <1f436caa-1c27-4bbd-9b43-a94dad0d89d0@arm.com>
- <c856a7059171bcc6afd6d829c6c025882855778b.camel@ndufresne.ca>
+	s=arc-20240116; t=1738768238; c=relaxed/simple;
+	bh=5bnC+RMJy9Go74Xk7wf5n2n16fM9EiwTk6qRnyxUz0M=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=e/ecxW3EvZ+86i/+kIu72eDcNKFUI0YGbRH6bT1wrWqV3DUWvJUyfFe24pUuQHuqnMlJjc7tNrZHwliU7lS31LTV8FT2wCJlZnXcEaNOSUKZVJnLwnuTfu6u4Gm/CD6GPeCcqqhjbmGb6hmQ2TbztEpfkEDSh5roj8xwCvJR+vA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=FuNkhrAH; arc=none smtp.client-ip=212.227.15.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1738768233; x=1739373033; i=markus.elfring@web.de;
+	bh=ZTYLfFE7cC+DQ7FxXv045p/gA84CPFiSe7CIyfB3gPw=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=FuNkhrAHcHpgcrJ1R8UThkvUXb5tSzPA65qjDDR8C+8Ln1RsWNgPC1kwuWw+D2x+
+	 sQSA6o1sB6KWw63NXRridI7fAinIMGr/b3iLr1jUSlI4jMll9qL4wTAWVTf0na6Z7
+	 wmHGUDV9/JW0uFeN2jr/R6pBXHGPsFFSWNWdCi9/WFzZN2UVUOF3t8QTJOjsGNa8X
+	 wUMd9HJt1vyPv/2ZwKQ2Zi4engNWhj7TPap7MeOJ7KSuPzfwRA7W9EaHS5Gf2pAeH
+	 b7J8fE3F+tiebfZ2ULuUM8rZ+jrnh8O92salF599hYHKM/A9SZKqoW6+P1UTFw9sR
+	 DYA37Pen7SJ5SHGgTw==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.93.30]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1M5Qq9-1tgVrR1wk1-00EhNq; Wed, 05
+ Feb 2025 16:10:32 +0100
+Message-ID: <f5462109-1603-4866-895c-b5c349261296@web.de>
+Date: Wed, 5 Feb 2025 16:10:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="edrbb66pldmq62jz"
-Content-Disposition: inline
-In-Reply-To: <c856a7059171bcc6afd6d829c6c025882855778b.camel@ndufresne.ca>
-
-
---edrbb66pldmq62jz
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84s?=
+ =?UTF-8?Q?ki?= <kw@linux.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Rob Herring <robh@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Michal Simek <michal.simek@amd.com>
+References: <20250129113029.64841-4-thippeswamy.havalige@amd.com>
+Subject: Re: [PATCH v8 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20250129113029.64841-4-thippeswamy.havalige@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC PATCH 0/5] drm/panthor: Protected mode support for Mali CSF
- GPUs
-MIME-Version: 1.0
+X-Provags-ID: V03:K1:hHjPFyBsqQkZjlLdf4YmgMoKUnnN3S+V7S4jHFw41yxYr9N7tJm
+ tLjQOZeqby2CZ2iUWA3XQisRnZinluElcoVSzF7Bk2mYG17d8pYNmBL0m7ASl2N3jNxeP9d
+ ENWs60isQuYfdknyekw1fol5plBXXIY3jEo8iXA0aqWglpqMUbV7v49SscFmXL8tO40I+y0
+ GOUr8Tmt2HhKeRQM2ZYYw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:y5KBcZ97QHc=;mvS+lr44qC0nRsDpM6iISqhJSIV
+ GodAgrZ7cY5pH7w+jTGJjqHQiK6hgXyN8SyvMhAOOL2vk0yckSftL0a82908aQjXmaSfmVKRJ
+ sjAxdzdKIcPpGS1rIYDN0apgN+Bph7qsh1yyG0knegLgYahfN4EJhhNwjqFHnpCkbn8uaUwy8
+ FSUTC6vA4isva94mNFMOdVZDtDJHzlvQVN5ZToOiA71QOp1VDKOy0ipSCT1Ty335UltlKtVm2
+ eClKjwNUpYmkHWni9MNGXLCpyCd1Ai+aQtOw7mQcSCy9u3NjweqlqAtwF0iIXV/e59IFRDm06
+ 5dsyD4wI4PLBKKNaKRm7YdX4b1MgagmAQy45J3zhWw/2MU0+/QvPUEuXJ8J/54vpI8fKKivVF
+ YrbK+CcuHhTMtZ7rJkrccr0qw2m4dO0hAYX8avPX3AYxUoSvgj5FHU0uI5/Ue4H3UJTUuJ8kr
+ 1uERLFdPHa+9LLgAFipXP/c2hn0GRnqUvkbCgnfTAERITqCIcPQSWoZ5gt/fAR5TBC63CH4t7
+ 1bUf9GHLT30ma6kY84DgDgtvfoomE4fh5OHy1ltgiVIlAqj3eHmj9u9eZ2k1wpFkegIXqcNBY
+ n18Nsc9e9Mky517yjzAz31PemdczFALiyaw1oboy092+0HufoLsG57xJSJqJx6VEc0Z01e0rv
+ fP1rwhnkxHuFjyY8U4rsa0G11qTvjmc39vTRm/LI/zdZTZI5OtB4kn4ZGZNFJHArWxyEvpvqb
+ tJHxIrsI08EUo+iiCGggg6rjn0OwM6hzaWfY2/qd9kYL5qDgHWJqAKHoPi0HxzKsitOKoWy7t
+ U8fcmz338g0+xeVGUn+1Ig1DZPundegragMR7tKXQwBHIwPJNexdIL+S2GVKRxybre1YL4oM1
+ U68jlEHc/02IZtqyNgKR5a3YGf9MXO/gB5IrZ/OOdqhmc2TV0m0r4NmVYmFWxWKoCmmpLUaN5
+ svQthnALpcUVwG+qQS29uLJtUD4UrpNU/82pZGVb51mKYUvjDWoCJQ3eF37dqPOtqQOkvgSMY
+ ep2TSANTlVfqBwB1izge1VFblK8YHmrJPvCdw+VwwXJr4U6g/eGDqAG5oRJyz4F+zzApmW8Qd
+ DLcJn4Mctuu5hzGzoDQCv8Ta+ThXjxUQVldjJGrfM0I8CZpPZaWGuFMhEAoxsaqCB/RQVIen5
+ DK0xCI5GxGFg0W2llqFmNz+XKm/vojNOjkpn0HFkx+zw+AvWIRgBMB/LYfhaemArqRkREUA2i
+ Mk6n6Bw5jF2A7IigPioCpWXTjdsjm1kzWJ+Dvdb/jJE+HgDYUskzmj13RBDn6OU+SQ5MeuTTC
+ trD4t/q9h8e+R0fn6lqAGcxb2d6otOD6hITu3s9Nv7Qe5pyIJiaJ5lD+Dt0DEZKApLZE7W3Zb
+ ye5/HolT3GB4cOXPmvd+6wgke0n0Mrkm1oWznoCEl3SmXiqkD+VCmVdPy2yEikaRi9yJIesZu
+ 32uoDKjN8otSwfT7w7aO5NgggYMU=
 
-On Tue, Feb 04, 2025 at 01:22:58PM -0500, Nicolas Dufresne wrote:
-> Le lundi 03 f=E9vrier 2025 =E0 16:43 +0000, Florent Tomasin a =E9crit=A0:
-> > Hi Maxime, Nicolas
-> >=20
-> > On 30/01/2025 17:47, Nicolas Dufresne wrote:
-> > > Le jeudi 30 janvier 2025 =E0 17:38 +0100, Maxime Ripard a =E9crit=A0:
-> > > > Hi Nicolas,
-> > > >=20
-> > > > On Thu, Jan 30, 2025 at 10:59:56AM -0500, Nicolas Dufresne wrote:
-> > > > > Le jeudi 30 janvier 2025 =E0 14:46 +0100, Maxime Ripard a =E9crit=
-=A0:
-> > > > > > Hi,
-> > > > > >=20
-> > > > > > I started to review it, but it's probably best to discuss it he=
-re.
-> > > > > >=20
-> > > > > > On Thu, Jan 30, 2025 at 01:08:56PM +0000, Florent Tomasin wrote:
-> > > > > > > Hi,
-> > > > > > >=20
-> > > > > > > This is a patch series covering the support for protected mod=
-e execution in
-> > > > > > > Mali Panthor CSF kernel driver.
-> > > > > > >=20
-> > > > > > > The Mali CSF GPUs come with the support for protected mode ex=
-ecution at the
-> > > > > > > HW level. This feature requires two main changes in the kerne=
-l driver:
-> > > > > > >=20
-> > > > > > > 1) Configure the GPU with a protected buffer. The system must=
- provide a DMA
-> > > > > > >    heap from which the driver can allocate a protected buffer.
-> > > > > > >    It can be a carved-out memory or dynamically allocated pro=
-tected memory region.
-> > > > > > >    Some system includes a trusted FW which is in charge of th=
-e protected memory.
-> > > > > > >    Since this problem is integration specific, the Mali Panth=
-or CSF kernel
-> > > > > > >    driver must import the protected memory from a device spec=
-ific exporter.
-> > > > > >=20
-> > > > > > Why do you need a heap for it in the first place? My understand=
-ing of
-> > > > > > your series is that you have a carved out memory region somewhe=
-re, and
-> > > > > > you want to allocate from that carved out memory region your bu=
-ffers.
-> > > > > >=20
-> > > > > > How is that any different from using a reserved-memory region, =
-adding
-> > > > > > the reserved-memory property to the GPU device and doing all yo=
-ur
-> > > > > > allocation through the usual dma_alloc_* API?
-> > > > >=20
-> > > > > How do you then multiplex this region so it can be shared between
-> > > > > GPU/Camera/Display/Codec drivers and also userspace ?
-> > > >=20
-> > > > You could point all the devices to the same reserved memory region,=
- and
-> > > > they would all allocate from there, including for their userspace-f=
-acing
-> > > > allocations.
-> > >=20
-> > > I get that using memory region is somewhat more of an HW description,=
- and
-> > > aligned with what a DT is supposed to describe. One of the challenge =
-is that
-> > > Mediatek heap proposal endup calling into their TEE, meaning knowing =
-the region
-> > > is not that useful. You actually need the TEE APP guid and its IPC pr=
-otocol. If
-> > > we can dell drivers to use a head instead, we can abstract that SoC s=
-pecific
-> > > complexity. I believe each allocated addressed has to be mapped to a =
-zone, and
-> > > that can only be done in the secure application. I can imagine simila=
-r needs
-> > > when the protection is done using some sort of a VM / hypervisor.
-> > >=20
-> > > Nicolas
-> > >=20
-> >=20
-> > The idea in this design is to abstract the heap management from the
-> > Panthor kernel driver (which consumes a DMA buffer from it).
-> >=20
-> > In a system, an integrator would have implemented a secure heap driver,
-> > and could be based on TEE or a carved-out memory with restricted access,
-> > or else. This heap driver would be responsible of implementing the
-> > logic to: allocate, free, refcount, etc.
-> >=20
-> > The heap would be retrieved by the Panthor kernel driver in order to
-> > allocate protected memory to load the FW and allow the GPU to enter/exit
-> > protected mode. This memory would not belong to a user space process.
-> > The driver allocates it at the time of loading the FW and initialization
-> > of the GPU HW. This is a device globally owned protected memory.
->=20
-> This use case also applies well for codec. The Mediatek SCP firmware need=
-s to be
-> loaded with a restricted memory too, its a very similar scenario, plus Me=
-diatek
-> chips often include a Mali. On top of that, V4L2 codecs (in general) do n=
-eed to
-> allocate internal scratch buffer for the IP to write to for things like m=
-otion
-> vectors, reconstruction frames, entropy statistics, etc. The IP will only=
- be
-> able to write if the memory is restricted.
+=E2=80=A6
+> +++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
+> @@ -0,0 +1,476 @@
+=E2=80=A6
+> +static void amd_mdb_mask_intx_irq(struct irq_data *data)
+> +{
+=E2=80=A6
+> +	raw_spin_lock_irqsave(&port->lock, flags);
+> +	val =3D pcie_read(pcie, AMD_MDB_TLP_IR_MASK_MISC);
+> +	pcie_write(pcie, (val & (~mask)), AMD_MDB_TLP_IR_ENABLE_MISC);
+> +	raw_spin_unlock_irqrestore(&port->lock, flags);
+> +}
+=E2=80=A6
 
-BTW, in such a case, do the scratch buffers need to be
-protected/secure/whatever too, or would codecs be able to use any buffer
-as a scratch buffer?
+Under which circumstances would you become interested to apply a statement
+like =E2=80=9Cguard(raw_spinlock_irqsave)(&port->lock);=E2=80=9D?
+https://elixir.bootlin.com/linux/v6.13.1/source/include/linux/spinlock.h#L=
+551
 
-Maxime
-
---edrbb66pldmq62jz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ6N7aAAKCRAnX84Zoj2+
-doTZAYC3KraTKaHat9Tiq3AbNilzp/uyB6OJohhC6KgS8ip7Em2xWpjYSTaqcm0i
-XDstePQBf2GNysp5QIxHwmbP32dTXWpJP67ChoVOCgGc+5xAqzvPeAGxw97hlfZf
-HYSF4lENtQ==
-=HDp7
------END PGP SIGNATURE-----
-
---edrbb66pldmq62jz--
+Regards,
+Markus
 
