@@ -1,129 +1,171 @@
-Return-Path: <devicetree+bounces-143186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B35A2860D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:59:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0797BA28620
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:07:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D2781883928
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:00:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 943AB168B26
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090F022A4D3;
-	Wed,  5 Feb 2025 08:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C11CB229B35;
+	Wed,  5 Feb 2025 09:07:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="qsTZvYSf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MasVflAY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 363AB22A4CD
-	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 08:59:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9356D2288DA;
+	Wed,  5 Feb 2025 09:07:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738745989; cv=none; b=ssaPSEc4UWfoSzFZfgKVk8GdeCmuvy8D0QL+H4Rq0of/uIqmH1eZIia0ynCoIPqZPiM/W3rYUd2KwDI0EF+chi37cs2suUpz2qPALukaZ943LNWtL4+K8E7PLbem5WN9UgxBL1a/I+bXSTnZhKe/wMQ/2X1Ra/LpoDPpe9WQgY8=
+	t=1738746464; cv=none; b=H1whDXDVcm56utccdjSDbnpEc2+4SZbRwji7YnBH1EOI2B+pVdq4CqJ9niBwh+x1uxSokVmKsyfUHIRPt/LucGrcl9C87X7Bt4NMuCKKemig0oJA0pZ6qSjRaOWqAjGXAnAStl+OmC6bT6eUZ6rQ6ynFzg+Ai9Z82SZTp3ejQZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738745989; c=relaxed/simple;
-	bh=4rdH6GrIXB8lz8HjYqpZ22C0ajtDCyflT20HUHPnBBw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eAjsmQkhAvHlkck0JW4DdCxan8zmnEUTLPEGlVENMbmLIBgLP1dYshStz7vJvFpT0EwusVM+uedy7cKSuhjxKO5p/BKv+PtAwo3pukCdRppMZvI2BIABqmCGixvwHUmtvV792G5qB1XkrCe8jf4zfW4I0OhScYyLhMuty7E2wak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=qsTZvYSf; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-436341f575fso75683135e9.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 00:59:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1738745986; x=1739350786; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5wmjz18zqFyKr/G/A4DW/iVZd6rNAAhBzVdAwovC+Hs=;
-        b=qsTZvYSfA2iAaSvNAmjNIfOyMh4C4XDBJbJ8lEHGaDffN7K8UItLD8F2opmcBQGBbU
-         4OvshB2mP8fSP5DC/dJouuENaIueeg1zN1v/q/ek8n1EhT9kaJnL+pq0ESMyhS5QXApi
-         u5nUTgUPgVrel3MlJQ8n1kSiwHvoJyVjLe4T6QDnA2cisHp0ty/SoTB6AN7jczb3zCVU
-         GczYmndR+a0IXfCqlvWXB003PQn3wApz5cJ66kr0/dxfrsFZKh1x6TYblP0bggXNbHuy
-         7te44fmlbzVnwfi0zPYVp7vTM2QmmM8Veoy47SGXZr0kCplpWUjfZefVgHl6JRQQ6Eto
-         jEaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738745986; x=1739350786;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5wmjz18zqFyKr/G/A4DW/iVZd6rNAAhBzVdAwovC+Hs=;
-        b=qeNElOfrrvnjmtNUzZU/slrVaf3gA5tzfnx/dvIEg0UOiemVLsDgUcvr6c65cKRU2I
-         tNE6TDjLfG7bHgaJU+ZQfwMpHu1i661iW6IxunZOHmpr2sLVO9VNSXZhACM9DO5xZ8NA
-         OwVqO5BlxP5uasm4+n0bHE2KUP9bHlKwrB8KstFROzdet0f4DOsrQ3dXZufXhR3+aXAc
-         fBJ/RJvrBGgSHrRVx23BsOCLdbrpmuUCVDEpDqpxdJY5BXcxdIAqHcmYRPtfwlTTs193
-         DjzmymZh96eomzMpFPUUeeozlJ2ar5LR5fBAf7WferWVKwI1qzvmi+se+2udBB0hHXYE
-         NyUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUD2LpwsvaLi1pTYl/48iZMAaRB+sgJVEICQAuY2WIDL0mbZlbmEdUxfGcMI+AgPROzruqFboJuYSqc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIGFyNKlW+j3l9MVLgK0/T8QcPFSd0038DK9m5uAof+N5WNyFR
-	So14Iim65LlE9vDZlbPpn3vy2c8vzRViIkjvUQQ/IyiKKEhJWns0Q0WEuqX6ais=
-X-Gm-Gg: ASbGncvBUoFzhNwfIRV6pfCM0r5VHNvMpDqMphXDVs2a8LQ7qXXRsLVbW9WqteKtTpD
-	IVkPOFIpk3qFsjiim+8rUk+At8OghTwIASMiXPf7MKexi3xalJESYhKvOxgCUDBiGBME3hdknwu
-	cpykhtzKiIwAQ8933T7EnbuzXraEq6jRVqRd5WnlGqD31rnuWUnsiTkdI9vN8yb1yuZ95K70HdG
-	z5AtF/JjlUT2UCi6uyvNKQ+/WUi4RK7BqfDmj1n5rkgWua8NQVUyqKS1Io45KhGhRIjGml1VQa5
-	4IaFnY4SNoo8p2I=
-X-Google-Smtp-Source: AGHT+IHvujR6ocyaWXRib9FJP8dFsztpMFdYT+nb0yAfmtcuRsRIBa6C6+A4Dxp5o66bjEcIRw+i0g==
-X-Received: by 2002:a05:6000:2cd:b0:38c:2745:2df3 with SMTP id ffacd0b85a97d-38db49009a6mr1396467f8f.37.1738745985676;
-        Wed, 05 Feb 2025 00:59:45 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:a766:1fb1:99b5:1d5f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43907f1b570sm33940815e9.1.2025.02.05.00.59.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Feb 2025 00:59:45 -0800 (PST)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: brgl@bgdev.pl,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andersson@kernel.org,
-	konradybcio@kernel.org,
-	Danila Tikhonov <danila@jiaxyga.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux@mainlining.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: (subset) [PATCH 0/4] sm7325-nothing-spacewar: Preparing for the cameras
-Date: Wed,  5 Feb 2025 09:59:43 +0100
-Message-ID: <173874597816.7784.10623106141376200723.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250203111429.22062-1-danila@jiaxyga.com>
-References: <20250203111429.22062-1-danila@jiaxyga.com>
+	s=arc-20240116; t=1738746464; c=relaxed/simple;
+	bh=dT+brue9bZJjCvucpVy58D22kI3f5XOtfMhs1uM9yK4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f4UVkDdnXfZWkhyKA67M8ZOfC1WKjVMN64cuBIEqtfrJ3NvBg6ramp2j02RpA8A4XYKYX8oT6h9r2MApl2nsfQJEAQvIQ3RRqoJyL65YxhYEV4e2gcZsb0Ew/H/pZXdm4qafkya1RKHwUMd+VFyceLOn3io42KZphKWMYprsej8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MasVflAY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3A9BC4CED1;
+	Wed,  5 Feb 2025 09:07:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738746464;
+	bh=dT+brue9bZJjCvucpVy58D22kI3f5XOtfMhs1uM9yK4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MasVflAYp/mJcGP/oEgutBOTMVZYjWqhrZVQzSUYpte7GSgnZ77EO3c3VJetMUHMM
+	 e4Xifam28m02X3uq0qXEu22NGDZXt4OPqYmYMEwiTz4QPWlRuMExdKxQth5MROCJcE
+	 fSS5VxN5umHl95u1iepZp0T1J87sv7VOcdT3WsOqbRR523XDDyU8WZpVF1MRExeupF
+	 7JHAIqt/NczBDkAkgyUl3araUGwtyfEOX2n9MKf358Clfke0KECpzm3qzsUuVUfhkM
+	 G1MpEERMZOcq0RMob9+1g+sjWCnT5J8UnyCUwMcF1MGGHzOBfEI56nWKg7i6T4jKg9
+	 S8kM27RERuKnQ==
+Message-ID: <f8b8a39d-043a-4be0-9024-c080cf864e7b@kernel.org>
+Date: Wed, 5 Feb 2025 10:07:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 07/13] wifi: ath12k: add support for fixed QMI firmware
+ memory
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250130043508.1885026-1-quic_rajkbhag@quicinc.com>
+ <20250130043508.1885026-8-quic_rajkbhag@quicinc.com>
+ <4c9b512f-59d2-4d96-a899-5af4de2c823e@kernel.org>
+ <7d5f7b4c-2a55-41c7-b85c-cb4cd76d553f@quicinc.com>
+ <962dc257-f7a6-49c7-b760-a31fd84e7a56@kernel.org>
+ <c7d9842a-96bf-41aa-8046-52c3e45f90d4@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <c7d9842a-96bf-41aa-8046-52c3e45f90d4@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-
-
-On Mon, 03 Feb 2025 14:14:25 +0300, Danila Tikhonov wrote:
-> Nothing Phone (1) - sm7325-nothing-spacewar has three camera sensors:
-> - Wide sony,imx766
-> - Ultra wide samsung,s5kjn1
-> - Front sony,imx471
-> We tested the UW and Front cameras by hacking the IMX412 in our fork and
-> they work as expected. Wide is a C-PHY sensor, so unfortunately we haven't
-> tested it fully yet.
+On 04/02/2025 10:06, Raj Kumar Bhagat wrote:
+> On 2/3/2025 3:42 PM, Krzysztof Kozlowski wrote:
+>> On 03/02/2025 10:44, Raj Kumar Bhagat wrote:
+>>> On 1/30/2025 1:16 PM, Krzysztof Kozlowski wrote:
+>>>> On 30/01/2025 05:35, Raj Kumar Bhagat wrote:
+>>>>> @@ -2646,6 +2663,136 @@ static int ath12k_qmi_alloc_target_mem_chunk(struct ath12k_base *ab)
+>>>>>  	return ret;
+>>>>>  }
+>>>>>  
+>>>>> +static int ath12k_qmi_assign_target_mem_chunk(struct ath12k_base *ab)
+>>>>> +{
+>>>>> +	struct device_node *mem_node;
+>>>>> +	struct resource res, m3_res;
+>>>>> +	u32 bdf_start_addr;
+>>>>> +	int i, idx, ret;
+>>>>> +
+>>>>> +	for (i = 0, idx = 0; i < ab->qmi.mem_seg_count; i++) {
+>>>>> +		switch (ab->qmi.target_mem[i].type) {
+>>>>> +		case HOST_DDR_REGION_TYPE:
+>>>>> +			mem_node = ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
+>>>>
+>>>>
+>>>> Why cannot you use existing API for reserved memory -
+>>>> of_reserved_mem_lookup()?
+>>>>
+>>>
+>>> The of_reserved_mem_lookup() requires reserved memory node to read the memory and
+>>> return in the structure "struct reserved_mem".
+>>>
+>>> The of_reserved_mem_lookup() would be used after we get the reserved memory node
+>>> using the API - ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
+>>>
+>>> In next version we would use of_reserved_mem_lookup(), Something like below:
+>>>     mem_node = ath12k_core_get_reserved_mem_by_name(ab, "q6-region");
+>>
+>> Then why do you need ath12k_core_get_reserved_mem_by_name() in the first
+>> place? Just use of_reserved_mem_lookup() directly. Why do you need to
+>> parse phandle before of_reserved_mem_lookup()?
+>>
 > 
-> [...]
+> Sorry, I'm having difficulty understanding this.
+> We have the WiFi node at ab->dev->of_node, but we don't have a node for the reserved-memory
+> 'q6-region'. The of_reserved_mem_lookup() function requires the device node for 'q6-region'.
+> 
+> Could you please suggest how we can use of_reserved_mem_lookup() without obtaining the
+> 'q6-region' node first.
 
-Applied, thanks!
 
-[2/4] dt-bindings: eeprom: at24: Add compatible for Puya P24C64F
-      commit: 78d9ee370ed33cd8b662981fe1f47cff7b4f0e43
-[3/4] dt-bindings: eeprom: at24: Add compatible for Giantec GT24P128E
-      commit: 03480898cefe9cb5ba921dba9304703f7574b687
+Hm, it seems you are not using it for this device, so indeed you need to
+parse phandle. You can still code it simpler -
+of_property_match_string() is not necessary and
+of_address_to_resource()+of_node_put()  could be in the
+ath12k_core_get_reserved_mem()
 
 Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Krzysztof
 
