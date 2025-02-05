@@ -1,238 +1,95 @@
-Return-Path: <devicetree+bounces-143414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C742AA29A95
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 21:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25FCFA29AA1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 21:07:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 341353A45F9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 20:03:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 728CA3A7B39
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 20:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CEA4204092;
-	Wed,  5 Feb 2025 20:04:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9EC20E701;
+	Wed,  5 Feb 2025 20:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FeJTukVY"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="KWI3stY9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA7EF510;
-	Wed,  5 Feb 2025 20:04:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62B61FCD07;
+	Wed,  5 Feb 2025 20:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738785842; cv=none; b=ssvgAcCayZ5Vi4ouDwmn0rNa/KT3eEBFkwEsCFK5rWG0GGDhqxj2gDZg1Wh/Z8GVYuz3znuGoh9IHVjFzLkRsSkQGClkAOH+5KkWR/NCbf3IMCfwC+F8IIPsUJbv5CaowcOWQgWMvU1CnpQugQt1bt0yq+VF0cSg7QoyfYbC61Q=
+	t=1738786038; cv=none; b=CurmDHjEvpnvDPDo3IGp4fr+GV7xs3WusbLBPOWEvknu+8nAF02gGjJTrzcd7RjG+dYOcvYVWGnomngY2GacTskFbxuubarQZxBSKjwI3A0YyHxMP/2Tdv4xKx4ulrYEygzAO6J4daOOvA+OFT1jzh3WpKgorYSIZ81fAwHGPfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738785842; c=relaxed/simple;
-	bh=cqtvkklhEhB0dODG1Vl5z2G6YHW2NJWGENWdGBrHkeA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HL3kd3lfeup9Uvb9z0/L+mNe9oClmOfBChf7gLiMauefKz6dWYLL8hvtXNHn+PKQJVf6Ht9yeE+E6WhgQHf2engA8mQffWaNiZmlkIShNfbXFHQuPpKOQDIUs+tIUVcX1NCQXYqZEek7ImBlLO26OhSBRhcKi6D8mNz1J1LlzLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FeJTukVY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F00FC4CEE2;
-	Wed,  5 Feb 2025 20:03:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738785842;
-	bh=cqtvkklhEhB0dODG1Vl5z2G6YHW2NJWGENWdGBrHkeA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FeJTukVY0r2+phkxY4vD1jGpBVAhNBTpFgl7sCJyqr5cAVb85N2ySX0U5TOnmxGnr
-	 uT+MouOjlbg6gjpSWcawzcDxsZ1F1ty4mcxqkGp+usJM2eX9b9/kle9wneOylRKc86
-	 PsSvRjOczvK79o4dUc1GxFdUSqK/Ix2Vq5+wYP/zit5fwwHg+ZpRLiHAQKv1xCmJJw
-	 9HFwuunW1YNhKOaqfKF7dWFU0DOSdCQgoYRXgztu9RCNem1DS8KI7dli94pFhmsWNZ
-	 zl1be9nY8up9x0rDNGn/NjvJkhqiBCDbGlxvGi3ljzL2lN+oo5xkKJaHZVEhiKCYfm
-	 G//JPB5h0LU+g==
-Date: Wed, 5 Feb 2025 20:03:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
-	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: ROHM BD79124 ADC/GPO
-Message-ID: <20250205-stalemate-shorthand-5a29fbc4081f@spud>
-References: <cover.1738761899.git.mazziesaccount@gmail.com>
- <4e6cd143d3e896587528a415c8623ecd610fac55.1738761899.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1738786038; c=relaxed/simple;
+	bh=C9P54FrenDdJEucqhA1xISeuejGibTokneA+93TymeM=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=FYQDUGsV2r/PPugqoEobNufIK1Ij2TByBsjDeUW6EZkZ48wKryLvvg4/13sY/XnGwIiGGCgvZpksLaQttjdfCMuEsBG05UchQYsPlwQF3UE1ln9giv3dPSFDCpSTentfYsfuXknPd3rGDzJ1xdPTjSj+Ql/Zrr01oDK9K+k47uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=KWI3stY9; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 967932523F;
+	Wed,  5 Feb 2025 21:07:07 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id RGvrWEyeHoya; Wed,  5 Feb 2025 21:07:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1738786000; bh=C9P54FrenDdJEucqhA1xISeuejGibTokneA+93TymeM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=KWI3stY9otuBFcOLrpNT8UkLA8tqNEEW+TfEXDa7lRfHfmTPH8bZwwOC2aJLhNQXC
+	 82oNSBEWYBNHAwGg6V73XZrNTNw0LijPaV1q0pDJP4wNmTmKOI2K9sJvP/BDHacC90
+	 iF+k/3hALbqvLsoKkw1Un1LvqjGTSoerGZanYcqSGpybppFjWlh40gJw0RG8PaKe8l
+	 Aph2NLLrdFvUrb6WtbgKrF5QX1xFi3EweyEhSYH59V/y8kycABDNirHYreNi/VRjfu
+	 c/zX7kEgs9JPuk8UBCZTWuYIWppqEKtxh9J1SYGn7S5kXjqzRG73UjLJjtd8v4s+25
+	 0uh0U6aJNuMKA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="vu8978jfQni0yQFt"
-Content-Disposition: inline
-In-Reply-To: <4e6cd143d3e896587528a415c8623ecd610fac55.1738761899.git.mazziesaccount@gmail.com>
+Date: Wed, 05 Feb 2025 20:06:39 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>, Lee Jones
+ <lee@kernel.org>, Sergey Lisov <sleirsgoevy@gmail.com>,
+ linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: Re: [PATCH 1/4] regulator: dt-bindings: add documentation for
+ s2mpu05-pmic regulators
+In-Reply-To: <20250205-keen-taupe-loon-35e0de@krzk-bin>
+References: <20250204-exynos7870-pmic-regulators-v1-0-05adad38102c@disroot.org>
+ <20250204-exynos7870-pmic-regulators-v1-1-05adad38102c@disroot.org>
+ <20250205-keen-taupe-loon-35e0de@krzk-bin>
+Message-ID: <a5e8ebc0dfb35f700e29b75a6fc543cc@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On 2025-02-05 08:32, Krzysztof Kozlowski wrote:
+>> +
+>> +description: |
+>> +  This is a part of device tree bindings for S2M and S5M family of Power
+>> +  Management IC (PMIC).
+>> +
+>> +  The S2MPU05 provides buck and LDO regulators.
+>> +
+>> +  See also Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml for
+>> +  additional information and example.
+>> +
+>> +patternProperties:
+>> +  # 21 LDOs
+>> +  "^LDO([1-9]|10|2[0-9]|3[0-5])$":
+> 
+> Why is there a gap in LDOs?
 
---vu8978jfQni0yQFt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Feb 05, 2025 at 03:34:29PM +0200, Matti Vaittinen wrote:
-> Add binding document for the ROHM BD79124 ADC / GPO.
->=20
-> ROHM BD79124 is a 8-channel, 12-bit ADC. The input pins can also be used
-> as general purpose outputs.
->=20
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> ---
-> Revision history:
-> RFC v1 =3D> v2:
->  - drop MFD and represent directly as ADC
->  - drop pinmux and treat all non ADC channel pins as GPOs
-> ---
->  .../bindings/iio/adc/rohm,bd79124.yaml        | 114 ++++++++++++++++++
->  1 file changed, 114 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/rohm,bd7912=
-4.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml =
-b/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
-> new file mode 100644
-> index 000000000000..50889dc6b9a8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
-> @@ -0,0 +1,114 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/rohm,bd79124.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ROHM BD79124 ADC/GPO
-> +
-> +maintainers:
-> +  - Matti Vaittinen <mazziesaccount@gmail.com>
-> +
-> +description: |
-> +  The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The ADC supports
-> +  an automatic measurement mode, with an alarm interrupt for out-of-wind=
-ow
-> +  measurements. ADC input pins can be also configured as general purpose
-> +  outputs.
-> +
-> +properties:
-> +  compatible:
-> +    const: rohm,bd79124
-> +
-> +  reg:
-> +    description:
-> +      I2C slave address.
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 1
-> +    description:
-> +      The pin number.
-> +
-> +  vdd-supply: true
-> +
-> +  iovdd-supply: true
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^channel@[0-9a-f]+$":
-
-You can only have 8 channels, there's no need for this to be so
-permissive, right?
-Otherwise, this looks good enough to me.
-
-> +    type: object
-> +    $ref: /schemas/iio/adc/adc.yaml#
-> +    description: Represents ADC channel.
-> +
-> +    properties:
-> +      reg:
-> +        description: AIN pin number
-> +        minimum: 0
-> +        maximum: 7
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - iovdd-supply
-> +  - vdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/leds/common.h>
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +        adc: adc@10 {
-> +            compatible =3D "rohm,bd79124";
-> +            reg =3D <0x10>;
-> +
-> +            interrupt-parent =3D <&gpio1>;
-> +            interrupts =3D <29 8>;
-> +
-> +            vdd-supply =3D <&dummyreg>;
-> +            iovdd-supply =3D <&dummyreg>;
-> +
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            channel@0 {
-> +                reg =3D <0>;
-> +            };
-> +            channel@1 {
-> +                reg =3D <1>;
-> +            };
-> +            channel@2 {
-> +                reg =3D <2>;
-> +            };
-> +            channel@3 {
-> +                reg =3D <3>;
-> +            };
-> +            channel@4 {
-> +                reg =3D <4>;
-> +            };
-> +            channel@5 {
-> +                reg =3D <5>;
-> +            };
-> +            channel@6 {
-> +                reg =3D <6>;
-> +            };
-> +        };
-> +    };
-> --=20
-> 2.48.1
->=20
-
-
-
---vu8978jfQni0yQFt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6PELQAKCRB4tDGHoIJi
-0nAdAP4jXKqyfRAMMvjzMrlM0XfhisGC3LV05/dS61edgIUhNwEApAM8EcrfeloJ
-x1zImD4zFU0fcyXdWWfFA28lc32iHA0=
-=u2gq
------END PGP SIGNATURE-----
-
---vu8978jfQni0yQFt--
+LDOs 11-24 are not implemented in the downstream kernel driver. On further
+inspection I was able to find the register addresses, but minimum voltage
+and step values are unknown. :(
 
