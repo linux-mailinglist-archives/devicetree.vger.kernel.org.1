@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-143154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A401A284FD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:34:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F09AA2850A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:45:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33ECF1885557
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:34:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55DF01886A4F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:45:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D8A213E62;
-	Wed,  5 Feb 2025 07:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE23D227BB1;
+	Wed,  5 Feb 2025 07:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IUO8UoyC"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DEw6oHGR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACCE25A649
-	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 07:34:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 396EE21765E;
+	Wed,  5 Feb 2025 07:45:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738740850; cv=none; b=oEScUgyKM/ZSiKsLYAuaY7pR6tI2xvSVRIrBy/z/6Z9y406O0sOzV7YCPbgZYEqA618E6S+Jf45kY2eUh8DtujY3n9rEnqZALPFjH+7O/YGcOlfqiGltTfU+gIiL7Ynn/4gniQsZs7MubVUQbjdwx8ya4Zc8jcXU7W4+HPdfQlQ=
+	t=1738741516; cv=none; b=U76qrlogWLsMj5s+T8gY9y+2GKckVDGt0WjcMZ1Me5mW7/7zebz6jSgGk6Ns2dFa5f/fHJ3APjWnDGySP3tY/ma9okntedCoqWOwxfo1p+fbIgr1sURcfzepAVIdIvpIN+fRQ+vYsMUCAVqE+e0Ny9drrxprQdWbJkiZIGTMFJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738740850; c=relaxed/simple;
-	bh=hfSf8djy5hTtllDF2aFI0BXeoZW85f56NLjc1r4dcOg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RFt04dzE3O1BW/EGDswY8hRaiQAm93HLWWnyYPX5lVSZpxCp4Sm4ZfBlGDMh9ESz1/msQDFU64erLF4bTx9K5IS+SExNVpyzfwaoNWAyNLebolqnctebL4wlpQyYdQwcZNnt5QzW054i1BDkR8MEsYqQxAONK7+2mkKUdnuxiD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IUO8UoyC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E10EC4CED1;
-	Wed,  5 Feb 2025 07:34:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738740850;
-	bh=hfSf8djy5hTtllDF2aFI0BXeoZW85f56NLjc1r4dcOg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IUO8UoyC94v2p/uPu2QedFxw6ksTgCG+xykgtw7nBFNxIutrAuvRkPsnND7CV1JAS
-	 xj48DN1T9GSXMfyWjX9yZ8K/6+YdK2aAr5ZXmsEnmnfH7eiC5iuxmLiuQdCfoxn/oZ
-	 mlcE5udHOAh6EWmdedjtv5NPCyLU4AI0yiXVlnzHntIINWDPzQomhFGW14sfi0Pksv
-	 feJOUMw81pIwILmCmdv65ov7Dzw3UCw/Vbk9y0Yyv/8aWYWn+9a+O1RIPI3qHEvFT+
-	 kxwx2gCcdkB9O/r0Iug93/ZCBi5IVQVjxL442dCkdhxr/feiiknmG+eQ46QXZlNGkO
-	 y/cU1TRiFBarw==
-Message-ID: <8b79700d-f628-4e65-b9a5-63bbc3958cc1@kernel.org>
-Date: Wed, 5 Feb 2025 08:34:04 +0100
+	s=arc-20240116; t=1738741516; c=relaxed/simple;
+	bh=v4EryWRRwymGava8FsQGIfQOwWC83qYo9hDAvdNk4rs=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=niWWqfOKfqh4MGiUBbAiF5hmTFLMkKHMjHMCRxDidIgTUWVU7g0vU5HmNT+lXGjjT/uVll7OBwvbRGrQIUFqQHygnKky0kyblkdyvUeEqNV2Wfo+HYseQYRmomyZUeXJrb8s7olqFbGoMghsVmh33O+0qO4283W6bmakA9gY2fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DEw6oHGR; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51503gGF004701;
+	Wed, 5 Feb 2025 07:44:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	K/K//dAWi6x+8KI7nlUs8PdklqseAGDqAT8TYyRKscE=; b=DEw6oHGRj2+ImEKw
+	G9YVbnetNysHtQTN3sWVZbM4lCNnJopdGrgLEmv544RdTaQWhF7avpahc8VDbsUa
+	KVECXBzMireQs3tFb1T8K2+2Ay4jFqtcjq8DB2OAeucczgc7qzvB6C3lztZm+rGf
+	5cGoHkHH9aIpoYiGcyfH1/sqgMiZ2xOpwsUhV9jj7yQgK5L3aIHV7YyBe+HtO9R6
+	jHFWrWOMWXWR7epNqKvw+zL+s4o33GIa6QrDSoR576di3UUQH8c3xCcv6J08/sv5
+	G74JUiWFDq6eyNbgqvLpSC3EqX1diZUgpAY5bw2cTCSl7Gu3UH+D0BNd2Q17kpAD
+	QdVTtw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44kw440tqd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Feb 2025 07:44:51 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5157iooi005024
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 5 Feb 2025 07:44:50 GMT
+Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 4 Feb 2025
+ 23:44:45 -0800
+Message-ID: <d32b7b8f-fc23-4bef-bcd7-b519c43dc77e@quicinc.com>
+Date: Wed, 5 Feb 2025 15:44:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,110 +65,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: Introduce more nodes to EN7581 SoC evaluation
- board
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-References: <20250201-en7581-dts-spi-pinctrl-v1-1-aaa4a9dfc4a6@kernel.org>
- <4656ae57-c6a1-48ac-a60f-72d7b988c307@kernel.org>
- <231c1f01-dea1-4c39-bbe1-cb629f7c109d@kernel.org>
- <Z6I9JzAVv3VjKOiE@lore-desk>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 0/3] coresight: Alloc trace ID after building the path
+From: Jie Gan <quic_jiegan@quicinc.com>
+To: James Clark <james.clark@linaro.org>
+CC: <quic_tingweiz@quicinc.com>, <quic_jinlmao@quicinc.com>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>, <suzuki.poulose@arm.com>,
+        <mike.leach@linaro.org>, <alexander.shishkin@linux.intel.com>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>
+References: <d5332d6d-237f-4b78-9eaf-2619bd97b7bd@quicinc.com>
+ <20250131163617.1730505-1-james.clark@linaro.org>
+ <33302e34-2e13-4bda-ae44-4c111167dde5@quicinc.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <Z6I9JzAVv3VjKOiE@lore-desk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <33302e34-2e13-4bda-ae44-4c111167dde5@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: gb3Cl6UXuJMToHYAiGtfMCqC5mwkq828
+X-Proofpoint-ORIG-GUID: gb3Cl6UXuJMToHYAiGtfMCqC5mwkq828
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-05_03,2025-02-05_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
+ adultscore=0 spamscore=0 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 mlxscore=0
+ mlxlogscore=999 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2501170000 definitions=main-2502050060
 
-On 04/02/2025 17:15, Lorenzo Bianconi wrote:
->> On 03/02/2025 17:04, Krzysztof Kozlowski wrote:
->>>> +
->>>> +		rng@1faa1000 {
->>>> +			compatible = "airoha,en7581-trng";
->>>> +			reg = <0x0 0x1faa1000 0x0 0xc04>;
->>>> +			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
->>>> +		};
->>>> +
->>>> +		system-controller@1fbf0200 {
->>>> +			compatible = "syscon", "simple-mfd";
->>>
->>> These are never allowed alone. I am pretty sure I added proper checks
->>> which should point it out, so I think you did not really test your DTS.
->>>
->>> It does not look like you tested the DTS against bindings. Please run
->>> `make dtbs_check W=1` (see
->>> Documentation/devicetree/bindings/writing-schema.rst or
->>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->>> for instructions).
->>> Maybe you need to update your dtschema and yamllint. Don't rely on
->>> distro packages for dtschema and be sure you are using the latest
->>> released dtschema.
->>>
+
+
+On 2/5/2025 12:13 PM, Jie Gan wrote:
+> 
+> 
+> On 2/1/2025 12:36 AM, James Clark wrote:
+>> Proof of concept to support CTCU device. Applies to Jie's patchset in
+>> the parent email. I think this would be a good simplification, it
+>> removes some code and makes things a bit clearer, and works for both the
+>> old and new CTCU requirements. It will require merging into the parent
+>> patchset somehow as it undoes some of those changes.
+> Hi, James
+> 
+> I tested the patch series and it works well.
+> 
+> Can I combine these patchsets with mine with co-developed tag?
+> Or are you prefer to submit them independently?
+> 
+> I believe it would be easier to read if we combined the codes together.
+
+Hi, James
+
+Please ignore my questions here. I missed the last paragraph of the 
+description.
+
+I merged your codes with mine and added co-developed and SOB tag.
+
+Sorry for the mistake.
+
+Thanks,
+Jie
+
+> 
 >>
->> Now I see Rob's report:
->> arch/arm64/boot/dts/airoha/en7581-evb.dtb: system-controller@1fbf0200:
->> compatible: ['syscon', 'simple-mfd'] is too short
->> which confirms untested code. Schema is there for a reason. :(
+>> James Clark (3):
+>>    coresight: Don't save handle in path
+>>    coresight: Export coresight_get_sink()
+>>    coresight: Alloc trace ID after building the path
+>>
+>>   drivers/hwtracing/coresight/coresight-core.c  | 107 +++++++++++++-----
+>>   drivers/hwtracing/coresight/coresight-dummy.c |   9 +-
+>>   drivers/hwtracing/coresight/coresight-etb10.c |   8 +-
+>>   .../hwtracing/coresight/coresight-etm-perf.c  |  20 ++--
+>>   drivers/hwtracing/coresight/coresight-etm.h   |   1 -
+>>   .../coresight/coresight-etm3x-core.c          |  84 ++------------
+>>   .../coresight/coresight-etm3x-sysfs.c         |   3 +-
+>>   .../coresight/coresight-etm4x-core.c          |  83 ++------------
+>>   .../coresight/coresight-etm4x-sysfs.c         |   4 +-
+>>   drivers/hwtracing/coresight/coresight-etm4x.h |   1 -
+>>   drivers/hwtracing/coresight/coresight-priv.h  |  17 +--
+>>   drivers/hwtracing/coresight/coresight-stm.c   |   5 +-
+>>   drivers/hwtracing/coresight/coresight-sysfs.c |   6 +-
+>>   .../hwtracing/coresight/coresight-tmc-etf.c   |   9 +-
+>>   .../hwtracing/coresight/coresight-tmc-etr.c   |  13 +--
+>>   drivers/hwtracing/coresight/coresight-tmc.h   |   2 +-
+>>   drivers/hwtracing/coresight/coresight-tpda.c  |   3 +-
+>>   drivers/hwtracing/coresight/coresight-tpdm.c  |   3 +-
+>>   drivers/hwtracing/coresight/coresight-tpiu.c  |   2 +-
+>>   drivers/hwtracing/coresight/coresight-trbe.c  |   4 +-
+>>   drivers/hwtracing/coresight/ultrasoc-smb.c    |   8 +-
+>>   include/linux/coresight.h                     |  25 +++-
+>>   22 files changed, 159 insertions(+), 258 deletions(-)
+>>
 > 
-> actually I have tested them with the following command (but without W=1).
 > 
-> make CHECK_DTBS=y DT_SCHEMA_FILES=airoha airoha/en7581-evb.dtb
-> 
-> - dtschema 2024.11
-> - yamllint 1.35.1
-> 
-> With W=1 I can see more issues, I will fix issues in v2.
 
-Rob's warning does not come from W=1. Your test cmd was incorrect: drop
-DT_SCHEMA_FILES. You must test your code against ENTIRE bindings, not
-some subset.
-
-Best regards,
-Krzysztof
 
