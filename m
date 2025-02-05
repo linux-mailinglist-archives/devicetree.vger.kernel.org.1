@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-143079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41F62A27FE2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 01:02:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD52DA27FF4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 01:05:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF3DB16483D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 00:02:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD759188486B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 00:06:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A297C195;
-	Wed,  5 Feb 2025 00:02:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E36218D;
+	Wed,  5 Feb 2025 00:05:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Ck3e/lCE"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="LRIFxGFF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA0E4B67F;
-	Wed,  5 Feb 2025 00:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF76C173;
+	Wed,  5 Feb 2025 00:05:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738713741; cv=none; b=COPxc/DO+irB2X1w1SypRC4r3tzvOOZ9v5G8tdyl++PaeiYXKfj8pqz23ZRlU1zNh9a31i13El9mJ9hk9VGcxsDkbw233DZ9yyHGAv3UqcKkybSolmEZWSFPerqRwKapf530HK+Q5UxH1OafTNdx8hfEvrnOET1Lmoc3kJ5ycII=
+	t=1738713952; cv=none; b=l0KtU4PtmlvCeexRbED7p/gytGAsCez7BAl4d0KJ6dqwE4eY87C0wi7/CsCf0+FEJAjLIFIaFz6iCdw5L68XNvWoNCuvHeh0E4NkrYoeRauhXFno51RYUCR3sG7nmLMhmdFKKaV+odJoXXZN/zq1mrC1kGUb424iwqSKLZhnDXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738713741; c=relaxed/simple;
-	bh=n9dR3JEhqnb9OApW3VcHCh5n2riOWy7LJANruYsyTtU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=OMiyatGfLMQa/E7+mFUC6RjBOCh/az1L4RVcRZZ/CMDubATsQDG1S3H30k8Fq5euYWQItrE1mSDPsMtenq2TWuh3UdT1Sg69ZbBdhMzkiW/52SPdwaLP6laUAkfcVU8D6BC6kI2cmhIAbGQo9rTpgJbEK8y0Ga2Uh1a7tXG35kM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Ck3e/lCE; arc=none smtp.client-ip=203.29.241.158
+	s=arc-20240116; t=1738713952; c=relaxed/simple;
+	bh=aMffe2cuyieFMT/ZvHdJ4Q+mva2yTWC26VFHFOFlKeI=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=WZF5SQkxafObSkaYRkbDUIoKzBRMA+d8NBAPj7VTPt0Om+jN0/Fw2IcdnP/vTmpys2qqSU/7ulHyks6yn85gS4wGZYI6unrw02YM4mED5Dvc0g+tFD7axALM4MZovtqkc5fUriDwM5z4aD9EOn86ef0xLK0xp9GrfpZJjZnZmJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=LRIFxGFF; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1738713736;
-	bh=n9dR3JEhqnb9OApW3VcHCh5n2riOWy7LJANruYsyTtU=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Ck3e/lCEXFFuuoAL69bUJWIek/Bsj52kXXFN9+Kl+6EcYVipvo8ygxrtNA4uMA1rt
-	 t8UHG4JeGtRi/K1MhrhztJoZrDC6WPv9ESbvBEmNQ8sDfoqES0Q8Dxr7DSXZaCBG7G
-	 FsyjTczGpcz21wcVTOqimjz4E+oHG6J5ABSwcd5nm6vx9P3rhr+I7F5ee6nNxnEnhv
-	 z9AOwwanF4AZO/zfrRJwdBAtop2B8lrKQ394MTiFEPsrMHRBCh/a84XlYfYJhvWiW7
-	 a9/g7PIXNWyWs8tHO/8KTFCI8uh3UXtHQ6dmZyKxzL7IUvqP6jfd3tt7ZgBam590Ec
-	 y2AaxNBlxyPIQ==
+	d=codeconstruct.com.au; s=2022a; t=1738713948;
+	bh=aMffe2cuyieFMT/ZvHdJ4Q+mva2yTWC26VFHFOFlKeI=;
+	h=Subject:From:To:Date:In-Reply-To:References;
+	b=LRIFxGFFHQUulv7+gJaJmDaWZ/PPEQJVmMZGlxQsy7SG15tOvvOCxT6hHwupywBAO
+	 bFTs9JIdo0/N5USrIdXdMxDqzfYs4LDT+w+9d2V2E6DVvPhUXbKta2mrcRSWADjZjJ
+	 IFHRP+OSir09zKCOJGmq5BNwhrDamJW5HcnePqwfJgdo1JUjcRR3AruwfHcdOG7cnG
+	 qKxX8ddUePxs12+jcVYZTdNBiXM3WMdrbFtjW2Xca+mLz/lRWd4bOXsBk568jKtjeo
+	 SrzUlAatdu22ie+tuIF/MRU3W8Vf34yIuNph5y4IBwrSBZ+EBo8i/jo1WRRyHZfnjV
+	 O7vCiBEdMjeRA==
 Received: from [192.168.68.112] (ppp118-210-185-209.adl-adc-lon-bras34.tpg.internode.on.net [118.210.185.209])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id A112C7104E;
-	Wed,  5 Feb 2025 08:02:15 +0800 (AWST)
-Message-ID: <114b92f993a1b5e2c77bbc91b42c21817af2874f.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v9 2/9] dt-bindings: gpio: ast2400-gpio: Add hogs parsing
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 941067104E;
+	Wed,  5 Feb 2025 08:05:46 +0800 (AWST)
+Message-ID: <acf79ff017d7648d4d502b7031b88c4853bf724c.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v7 0/9] DTS updates for system1 BMC
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
 To: Ninad Palsule <ninad@linux.ibm.com>, brgl@bgdev.pl, 
  linus.walleij@linaro.org, minyard@acm.org, robh@kernel.org,
- krzk+dt@kernel.org,  conor+dt@kernel.org,
- openipmi-developer@lists.sourceforge.net, joel@jms.id.au, 
- devicetree@vger.kernel.org, eajames@linux.ibm.com, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Cc: andrew@lunn.ch
-Date: Wed, 05 Feb 2025 10:32:15 +1030
-In-Reply-To: <20250204194115.3899174-3-ninad@linux.ibm.com>
-References: <20250204194115.3899174-1-ninad@linux.ibm.com>
-	 <20250204194115.3899174-3-ninad@linux.ibm.com>
+ krzk+dt@kernel.org,  conor+dt@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net,  edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com,  openipmi-developer@lists.sourceforge.net,
+ netdev@vger.kernel.org, joel@jms.id.au,  devicetree@vger.kernel.org,
+ eajames@linux.ibm.com,  linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org
+Date: Wed, 05 Feb 2025 10:35:46 +1030
+In-Reply-To: <66e2e5e4-5ce5-442c-ba0f-d12cbe79e868@linux.ibm.com>
+References: <20250203144422.269948-1-ninad@linux.ibm.com>
+	 <79b819b6d06e3be0aa7e7f6872353f103294710c.camel@codeconstruct.com.au>
+	 <66e2e5e4-5ce5-442c-ba0f-d12cbe79e868@linux.ibm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -69,21 +70,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-Hi Linus, Bartosz,
-
-On Tue, 2025-02-04 at 13:41 -0600, Ninad Palsule wrote:
-> Allow parsing GPIO controller children nodes with GPIO hogs.
+On Tue, 2025-02-04 at 13:40 -0600, Ninad Palsule wrote:
+> > This one needs an ack from Linus W or Bartosz if I'm to take it.
+> > However, it's also causing some grief from Rob's bot:
+> >=20
+> > https://lore.kernel.org/all/173859694889.2601726.10618336219726193824.r=
+obh@kernel.org/
+> >=20
+> > As the reported nodes should all be hogs the name shouldn't matter
+> > anywhere else (as far as I'm aware). It would be nice if all the
+> > warnings were cleaned up before we merged the binding update. That way
+> > we don't cause everyone else looking at the CHECK_DTBS=3Dy output more
+> > grief than they already get for the Aspeed devicetrees.
+> >=20
+> > In order to not get bogged down it might be worth splitting out both
+> > the IPMB- and GPIO- related patches like you did the FTGMAC100 patch,
+> > and then I can merge what remains (from a quick look they seem
+> > relatively uncontroversial).
+> >=20
 >=20
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
-> ---
-> =C2=A0.../devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 6
-> ++++++
-> =C2=A01 file changed, 6 insertions(+)
+> The warnings are fixed by different patch by Krzysztof. As there are no=
+=20
+> more changes then I will wait for other responses. If I don't get those=
+=20
+> response in couple of days then I will split it.
+> https://lore.kernel.org/linux-kernel/20250116085947.87241-1-krzysztof.koz=
+lowski@linaro.org/
 
-Would you like to take this through the GPIO tree? Otherwise I'm happy
-to take it through the BMC tree with your ack.
+That patch fixes a couple of Marvell systems. I think you might have
+meant this:
+
+https://lore.kernel.org/all/20250116090009.87338-1-krzysztof.kozlowski@lina=
+ro.org/
+
+In which case, I've applied it.
+
+Thanks,
 
 Andrew
 
