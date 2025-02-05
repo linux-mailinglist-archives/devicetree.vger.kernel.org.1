@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-143153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1E65A284F8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:32:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A401A284FD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:34:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B146F18861A3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:32:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33ECF1885557
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:34:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3602538F82;
-	Wed,  5 Feb 2025 07:32:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D8A213E62;
+	Wed,  5 Feb 2025 07:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RBdmBabe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IUO8UoyC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04BD925A649;
-	Wed,  5 Feb 2025 07:32:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACCE25A649
+	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 07:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738740746; cv=none; b=FBM55s3HmiVKY+uNdTagUoGaTPWhFYeNtUtePJYEjbkf5/ngun3YrAcgelIVpeH/H3Dm/9IUPPnPQzpTwk3rmcj6I+oA6YRORyP9FYb57li+Zbkp/6LMuCWlAmY+s5KloykTetpWHTlOfpkGTmYumL1QlBlUcKKh/1cg2+Fb/dc=
+	t=1738740850; cv=none; b=oEScUgyKM/ZSiKsLYAuaY7pR6tI2xvSVRIrBy/z/6Z9y406O0sOzV7YCPbgZYEqA618E6S+Jf45kY2eUh8DtujY3n9rEnqZALPFjH+7O/YGcOlfqiGltTfU+gIiL7Ynn/4gniQsZs7MubVUQbjdwx8ya4Zc8jcXU7W4+HPdfQlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738740746; c=relaxed/simple;
-	bh=Ok2SJNJ1boVfWaDYTt9lMF/TEqdwFpG/blVmAaWqHGw=;
+	s=arc-20240116; t=1738740850; c=relaxed/simple;
+	bh=hfSf8djy5hTtllDF2aFI0BXeoZW85f56NLjc1r4dcOg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FXY6IYaFnShMgkp8V4Zs0yIr8GCk/Ok3QgPtCp4AoDW7VVfpIPnm+lhDoch0ESBC22xznC/UG4hrLnwiC86nePFRE1nBpx0feAjZPmNWrFLmwjJXbpfCa9K+aBucJDBe4fH8m8bb6KtzfO9B8RLLHAR3QFiSnPn2JuNfECBZUYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RBdmBabe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B02FC4CED1;
-	Wed,  5 Feb 2025 07:32:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RFt04dzE3O1BW/EGDswY8hRaiQAm93HLWWnyYPX5lVSZpxCp4Sm4ZfBlGDMh9ESz1/msQDFU64erLF4bTx9K5IS+SExNVpyzfwaoNWAyNLebolqnctebL4wlpQyYdQwcZNnt5QzW054i1BDkR8MEsYqQxAONK7+2mkKUdnuxiD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IUO8UoyC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E10EC4CED1;
+	Wed,  5 Feb 2025 07:34:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738740745;
-	bh=Ok2SJNJ1boVfWaDYTt9lMF/TEqdwFpG/blVmAaWqHGw=;
+	s=k20201202; t=1738740850;
+	bh=hfSf8djy5hTtllDF2aFI0BXeoZW85f56NLjc1r4dcOg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RBdmBabeZ0QTdtqAq3BrMm3dPJM4xWghAitsvvVdCqnv5ATVSQyTLSGeZLDyqpLmP
-	 JQHwHgMtid5XhqgV0Q0uhEovwOt+L/XefD7TJj9YKni+/7EkP83XcEV1MVsxQKBuJt
-	 tjbR5rYn0NvZJ8Yl+1CclXUxr4ONXg//l3KHU3ycJFG/uhHgi51j+tO7VIbcdBuFWZ
-	 ejvm3r68Fs2lOGZO16E9/Yb2F/pe3vKtLUBeBJiNkCk/w4nbbpiLYu8ZcEYCmoChKK
-	 C+I0JrWbAmrLs9jlIkGyx4g9S+Naxjrql9oRWvqN0orO4vFZ/XbUyudrt339NOvrZn
-	 rVeypSKihGhsA==
-Message-ID: <cb615ead-7dcf-430a-8265-60315c9a770b@kernel.org>
-Date: Wed, 5 Feb 2025 08:32:17 +0100
+	b=IUO8UoyC94v2p/uPu2QedFxw6ksTgCG+xykgtw7nBFNxIutrAuvRkPsnND7CV1JAS
+	 xj48DN1T9GSXMfyWjX9yZ8K/6+YdK2aAr5ZXmsEnmnfH7eiC5iuxmLiuQdCfoxn/oZ
+	 mlcE5udHOAh6EWmdedjtv5NPCyLU4AI0yiXVlnzHntIINWDPzQomhFGW14sfi0Pksv
+	 feJOUMw81pIwILmCmdv65ov7Dzw3UCw/Vbk9y0Yyv/8aWYWn+9a+O1RIPI3qHEvFT+
+	 kxwx2gCcdkB9O/r0Iug93/ZCBi5IVQVjxL442dCkdhxr/feiiknmG+eQ46QXZlNGkO
+	 y/cU1TRiFBarw==
+Message-ID: <8b79700d-f628-4e65-b9a5-63bbc3958cc1@kernel.org>
+Date: Wed, 5 Feb 2025 08:34:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/5] arm64: dts: agilex: add dts enabling PCIe Root
- Port
-To: matthew.gerlach@linux.intel.com
-Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
- robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
- conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, matthew.gerlach@altera.com,
- peter.colberg@altera.com
-References: <20250127173550.1222427-1-matthew.gerlach@linux.intel.com>
- <20250127173550.1222427-5-matthew.gerlach@linux.intel.com>
- <58f7925c-dbed-4a5e-8e7d-095bef197931@kernel.org>
- <319e9f53-6910-a144-8752-4bcc47b7cba@linux.intel.com>
- <eb77eec0-7d51-46a0-b5c6-83c68316ef32@kernel.org>
- <4d9b5ca4-bebc-93c3-7d25-14d12899cab6@linux.intel.com>
+Subject: Re: [PATCH] arm64: dts: Introduce more nodes to EN7581 SoC evaluation
+ board
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+References: <20250201-en7581-dts-spi-pinctrl-v1-1-aaa4a9dfc4a6@kernel.org>
+ <4656ae57-c6a1-48ac-a60f-72d7b988c307@kernel.org>
+ <231c1f01-dea1-4c39-bbe1-cb629f7c109d@kernel.org>
+ <Z6I9JzAVv3VjKOiE@lore-desk>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,31 +107,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <4d9b5ca4-bebc-93c3-7d25-14d12899cab6@linux.intel.com>
+In-Reply-To: <Z6I9JzAVv3VjKOiE@lore-desk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/02/2025 17:57, matthew.gerlach@linux.intel.com wrote:
-> 
->>
->>>>> +#include "socfpga_agilex_pcie_root_port.dtsi"
->>>>> +
->>>>
->>>> Missing board compatible, missing bindings.
+On 04/02/2025 17:15, Lorenzo Bianconi wrote:
+>> On 03/02/2025 17:04, Krzysztof Kozlowski wrote:
+>>>> +
+>>>> +		rng@1faa1000 {
+>>>> +			compatible = "airoha,en7581-trng";
+>>>> +			reg = <0x0 0x1faa1000 0x0 0xc04>;
+>>>> +			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +		};
+>>>> +
+>>>> +		system-controller@1fbf0200 {
+>>>> +			compatible = "syscon", "simple-mfd";
 >>>
->>> The model and compatible bindings are inherited from socfpga_agilex_socdk.dts.
+>>> These are never allowed alone. I am pretty sure I added proper checks
+>>> which should point it out, so I think you did not really test your DTS.
+>>>
+>>> It does not look like you tested the DTS against bindings. Please run
+>>> `make dtbs_check W=1` (see
+>>> Documentation/devicetree/bindings/writing-schema.rst or
+>>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>>> for instructions).
+>>> Maybe you need to update your dtschema and yamllint. Don't rely on
+>>> distro packages for dtschema and be sure you are using the latest
+>>> released dtschema.
+>>>
 >>
->> Then this is the same board, so entire DTS should be removed and instead
->> merged into parent DTS. There is no such thing as "inherit" of an
->> compatible.
+>> Now I see Rob's report:
+>> arch/arm64/boot/dts/airoha/en7581-evb.dtb: system-controller@1fbf0200:
+>> compatible: ['syscon', 'simple-mfd'] is too short
+>> which confirms untested code. Schema is there for a reason. :(
 > 
-> It is the same physical board, but the image programmed into the FPGA is 
-> different in so far as the PCIe IP is connected and enabled. This 
-> different FPGA image allows for a PCIe End Point to be plugged in. Is this 
-> difference enough for it be considered and different board?
+> actually I have tested them with the following command (but without W=1).
+> 
+> make CHECK_DTBS=y DT_SCHEMA_FILES=airoha airoha/en7581-evb.dtb
+> 
+> - dtschema 2024.11
+> - yamllint 1.35.1
+> 
+> With W=1 I can see more issues, I will fix issues in v2.
 
-Yes, it can be different board DTS. Look at other vendors how shared
-designs are being actually shared between DTS - DTSI.
+Rob's warning does not come from W=1. Your test cmd was incorrect: drop
+DT_SCHEMA_FILES. You must test your code against ENTIRE bindings, not
+some subset.
 
 Best regards,
 Krzysztof
