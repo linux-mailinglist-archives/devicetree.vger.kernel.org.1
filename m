@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-143310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC344A29550
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:53:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE86A2955A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 16:54:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99DBB3A8A56
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:52:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 943BC1882F1B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E17E1922DE;
-	Wed,  5 Feb 2025 15:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7812B19258E;
+	Wed,  5 Feb 2025 15:53:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gVCtpzzn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dHjrkrYs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC7E1917F1;
-	Wed,  5 Feb 2025 15:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436D318DF65;
+	Wed,  5 Feb 2025 15:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738770733; cv=none; b=YQ+4wWLdYp3FQ/vlUVzNwld2xna15s1XHRQ1TOIaUvzrRYIOr40wvUb1B+ewFGaPnefChOzG7xWgOfpSHHVPkCzzp/+UOOBaw7X5BGTgzSVb/8LgX0ZEY1q+WSkqUkli9pJGqsFLpSvocNfyO3aL64xrEg1EMFaQpPkve0t69As=
+	t=1738770809; cv=none; b=QffxwMvhFN0Mz0UECN2/pHkqYOd1/F6femHZ1AjagTxzOaO758jYEocI+ggHHLzAsfHLnAcGeqGZYcIRJOwPmOoLQdBXcYoV9wHLymQtfe9d/fg7FOvdenQ6WjINqqsuVlf7HuNPiUuJpTq1PJqmpw9C/owp3cHXQVtokyxzisk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738770733; c=relaxed/simple;
-	bh=inFMVc8Ols0LW70mMt2o4nOk4w/ThcAVaXgeY4U+Nyo=;
+	s=arc-20240116; t=1738770809; c=relaxed/simple;
+	bh=a6We4kvNhBywVnW1P8zFRJDQrFJm00H2aj7WRzzKEX8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qTDiXFHXVfOSUhFTGMx/X7egeTBxAYsfV7C9QHsYLSFxu/M5Lxy/B5IRhnxRWCxjD4oEcPwoJr3qQTNbmRUfYzGSQt2WrNbm1eU/kMWTAAp6EHb96nivPb65D0teauZnMPaJsjCewEZ8RiI7Zhp7wZoF0KC74hH3o6KSlIkk91M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gVCtpzzn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EB56C4CED1;
-	Wed,  5 Feb 2025 15:52:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TJTtNsV1P+Us5sbNtoKBlpw9IB5++64MN7VF1ITCE7SIa+R7tzLTu+mxn0SWTEOuK5kRSJSV9qNYlzz27pfIXTdvwPXSYibyWE6RQjvd2kQ79RJJwL7ZPQPa0iKQLuOzbpPoSzDv6IfFOZwStSIRKd6JHC7O5is3aSZeZxAYTA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dHjrkrYs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04B2DC4CED1;
+	Wed,  5 Feb 2025 15:53:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738770732;
-	bh=inFMVc8Ols0LW70mMt2o4nOk4w/ThcAVaXgeY4U+Nyo=;
+	s=k20201202; t=1738770808;
+	bh=a6We4kvNhBywVnW1P8zFRJDQrFJm00H2aj7WRzzKEX8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gVCtpzznuu5jI6PH9vDBWoaAavs09Xy4dt7mA9NFMkyUY4PW4069QVqKbb16TVAGr
-	 DCMIUNwh2Wn+zpwCIIdWkIvj7YAp+t6lHHseyfc8xLQnhr63GYVum0aqk4gTxfU5sL
-	 N7sB/BKJcudcXpYqO4qGP+3UAXtz8yelK3pWPa+wt6L90ItGEyXS2MXJPbfpQXTtD9
-	 fd3YwDnlegRoe2sk0nni4zs2MOvcCyxt8CeHJmaKCR3gY3B6b8cxt4zQgNQ8u0BRKi
-	 l3OQnmC4Y7PD680lCafIfuZBPZsl7wwWPNRfP/ZQZb+N+GXUiqJCVKjua0U3OxUPEQ
-	 R1B3XXyOPpVWA==
-Message-ID: <6d4d93a5-9a03-4cc3-9ef4-ab64562560f3@kernel.org>
-Date: Wed, 5 Feb 2025 16:52:07 +0100
+	b=dHjrkrYsspsFneU9YOcq5JsF2pvq7SBEd3PDp2dfCqBt47YLPfK6pkMvGYiTkPCGt
+	 St404CDWICPjuMC5xkbppkOna4o/kK7s7y/RF2woN802O+txt2hKyhnRK8MEhJzQ/8
+	 y87rGbqZWwlLVCZ6Sz60aNwQf9QX7KmmvBEHZqA2iKNpSnQQA+D9K9KyVV3pZit4tH
+	 QfTUEDTCfSt6BfP5MkGiNs9sFgVJueo7Z/wUOY19aHjV5C9yy5VNytSrfKsTR2ZjLe
+	 ZZ2+BSoZo7uAP9Zr7sAE6tCUqu2I16ykynGgajS0RZ+9EDt9ZX7AcJBp0rzT6l6cn4
+	 hUyJRc/i73XaA==
+Message-ID: <d867f285-b639-4080-beeb-20b75ee3f4a2@kernel.org>
+Date: Wed, 5 Feb 2025 16:53:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: add cpu cache information to
- ExynosAuto-v920
-To: Sudeep Holla <sudeep.holla@arm.com>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: 'Devang Tailor' <dev.tailor@samsung.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, faraz.ata@samsung.com
-References: <CGME20250108054224epcas5p399f3d734f8d9f82e5ae75d183d1a5344@epcas5p3.samsung.com>
- <20250108055012.1938530-1-dev.tailor@samsung.com>
- <006401db73d6$2af35fb0$80da1f10$@samsung.com> <Z5zPpz6WAbPJX701@bogus>
+Subject: Re: [PATCH v9 6/7] arm64: dts: qcom: ipq5332: Add PCIe related nodes
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+ manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, p.zabel@pengutronix.de,
+ dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, Praveenkumar I <quic_ipkumar@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250128062708.573662-1-quic_varada@quicinc.com>
+ <20250128062708.573662-7-quic_varada@quicinc.com>
+ <cc1c34f0-0737-469d-a826-2df7f29f6cf3@kernel.org>
+ <Z6NCSo98YRgG666Q@hu-varada-blr.qualcomm.com>
+ <85f54baa-7d3d-43c3-9944-8f5f3c3006da@kernel.org>
+ <Z6OFSr2vrmPJTp4u@hu-varada-blr.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,31 +112,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z5zPpz6WAbPJX701@bogus>
+In-Reply-To: <Z6OFSr2vrmPJTp4u@hu-varada-blr.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/01/2025 14:27, Sudeep Holla wrote:
+On 05/02/2025 16:35, Varadarajan Narayanan wrote:
+> On Wed, Feb 05, 2025 at 02:47:13PM +0100, Krzysztof Kozlowski wrote:
+>> On 05/02/2025 11:49, Varadarajan Narayanan wrote:
+>>> On Mon, Feb 03, 2025 at 05:30:32PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 28/01/2025 07:27, Varadarajan Narayanan wrote:
+>>>>>
+>>>>> @@ -479,6 +519,230 @@ frame@b128000 {
+>>>>>  				status = "disabled";
+>>>>>  			};
+>>>>>  		};
+>>>>> +
+>>>>> +		pcie1: pcie@18000000 {
+>>>>> +			compatible = "qcom,pcie-ipq5332", "qcom,pcie-ipq9574";
+>>>>> +			reg = <0x00088000 0x3000>,
+>>>>
+>>>> So as Konrad pointed out now, this was never tested. It's not we who
+>>>> should run tests for you. It's you.
 >>>
->> [snip]
->>  > +		l3_cache_cl0: l3-cache0 {
->> You can add one node for cl0 and cl1, say "l3_cache_cl0_cl1" and
->> Remove the specific node for CL1, because both are same.
+>>> This was tested and it did not flag an error since it is having the order
+>>> specified in the bindings. qcom,pcie.yaml has 4 reg specifications. Two of
 >>
+>>
+>> Hm, then please paste results of dtbs_check W=1 testing. Here.
+>>
+>> I am 100% sure you have there warning and I don't understand your
+>> reluctance to run the tests even after pointing it out by two people.
 > 
-> What do you mean by "both are same" ?
-> Do you mean both have exact same properties but are physically different
-> caches ? OR
-> Do you mean it is just one shared cache ?
+> I ran the tests. Not sure which portions to paste. Have attached the full
+> output just in case you are interested in some other detail. Please take a
+> look.
 > 
-> If former, we still need distinct node to get the cacheinfo about
-> shareability correct. If this is about avoiding duplication of errors,
-> you can probably define some macro and avoid it, but we need 2 nodes in
-> the devicetree.
+> Thanks
+> Varada
 > 
-> If latter, you suggestion is correct.
+> 	$ grep ipq.*dtb dtbs-check.log
 
-No answers here, so I drop this patch from my queue.
+Where is the command you have used?
 
 Best regards,
 Krzysztof
