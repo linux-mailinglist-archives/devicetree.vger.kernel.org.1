@@ -1,148 +1,88 @@
-Return-Path: <devicetree+bounces-143203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F502A2877D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:08:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 749B7A2879A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:10:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D62BA3A84AF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:07:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71A7D7A8376
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE49F22DF8B;
-	Wed,  5 Feb 2025 10:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1EB22E3E6;
+	Wed,  5 Feb 2025 10:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Irtg16Tb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SknuGw8y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ABFB22B5A1;
-	Wed,  5 Feb 2025 10:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7956022B8A0;
+	Wed,  5 Feb 2025 10:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738749977; cv=none; b=Lp3fH3v007p01gmhzu+Xf1x10mbxSpIE37Ild665Kz83u6EtvS9U7pxJQRgwqQxx8YZcRdWkAZcH05SNjsXIa9Z77U3/VMlEPl6BtFd+V7rVxwhYdLDB70xXtvfv50pTJ7pJQRVwouGl5OogtkaxRUrROdHqA/4T60cr+QpV3UQ=
+	t=1738749983; cv=none; b=ezgo70LVuEwUYsiXZLGXSi4kDOE6kayc5b6SXVLj3s7z/9641ciHRubAXZMj/24JO7qSs2Wy7Pdw/WDwfah3Fr5NepCfXh8oEdjedj99hVABfFbLbbjMnolZyKBjZHm9v9ONuWymku+brTYXGNnGLx5twjQVpu0TcCAQGkPjCL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738749977; c=relaxed/simple;
-	bh=9blT37ja1It8cIhR7kixRLVaycXv9QA1EF5U7E97CRo=;
+	s=arc-20240116; t=1738749983; c=relaxed/simple;
+	bh=xydcuhIIgDpdVxy+ffJwelTXPHmUbPvOcxb5Zn8Ku6U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ho6AUJVfSrFQD9klBC/N6IjVB26A3U+O9hMpVTSpCdcoAJQw4XZq6CSqF7vglov8BgN0VOGFnbmL9ADFcpapXH7rKlVPjtriyjII+LJALoZvhvbQ/Gez/ddt/nkkVBJ1MHxoJrS0zfjGhwc2EEI1cqcJUQrh6nC9iDdivbpiGk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Irtg16Tb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07FB5C4CEE6;
-	Wed,  5 Feb 2025 10:06:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BiVqogGrZJryNIgss4+NpWxG+kV12E/NhUJXSPcbBfqvR6h0b6fXW4v2Yagp6FaICee6LfXpGEYn2bdbWbAka6fRZs+JnGRc+Hi2x8E+5pa1RR2NGA7UdsiZq37zMGI7sXW2+Do+KIGtFtQ9rkWBDwMLDNwrozlB82RAt4k+cRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SknuGw8y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB690C4CEE3;
+	Wed,  5 Feb 2025 10:06:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738749977;
-	bh=9blT37ja1It8cIhR7kixRLVaycXv9QA1EF5U7E97CRo=;
+	s=k20201202; t=1738749983;
+	bh=xydcuhIIgDpdVxy+ffJwelTXPHmUbPvOcxb5Zn8Ku6U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Irtg16TbS6QQCIbILy3pcNRCMUzDzpvr3vV+8DhTru2TPzZf/se2KD0QWwzUuSwks
-	 vUnsJATiQuhIMSPXM67wQqGJ8vzvvFZcnOs9J+jRUXlrTpUhMPBlleXmZhVghGMJZ7
-	 +6+/KchLtz+CAiMaZlbWj8WAHFF3/u3Kl2cPbamT++o/A0gSsq3a2fJ5D+uuoOIidd
-	 GstmXsz7816VPsbghfD3jkuKgnyF428dhiEOzheitLJtMV/KKvl0biAhMgWyRvKahh
-	 645jzng7TUffgormBNR0owQGm6uJY15dqHcvmUL6XtIesGA224LxFZrUr+iPtZYj2U
-	 eeZzw8J5aAHOA==
-Date: Wed, 5 Feb 2025 11:06:14 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	unicorn_wang@outlook.com, inochiama@outlook.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, 
-	chunzhi.lin@sophgo.com, Sean Young <sean@mess.org>
-Subject: Re: [PATCH v7 2/3] pwm: sophgo: add driver for Sophgo SG2042 PWM
-Message-ID: <ivgsidvdx2ypntnlopww6fiwyuzj2sadt3znyofr54dsz3c5d4@3mr25vhwlwy3>
-References: <cover.1738737617.git.unicorn_wang@outlook.com>
- <ae8ea1bf0bb0a09336cd8b7f627a994630524bba.1738737617.git.unicorn_wang@outlook.com>
+	b=SknuGw8yos3o86s1k+IMQ9+z6lVrxRWX1vLmInZfaPjeIzMaexJpzePuA14+NyoGj
+	 64PXDpjAPeHrhjb00NiRjzhH+2OM6eeMvlvD8DMJ/BppfvJjlW8PM/aTNGr+9VdYa/
+	 RDrxdG1JPFVXcPJHbMM1m9o+vvwev9wMuqGscAJzQDA66PEkHcqDeUQshQnQLvk0Zg
+	 WfckE7mCj6/zgXHJjcOscqZkKoBsBwNHPzR5vvQvS9YygNeobzqscMKbR6OBZoPLO5
+	 obyFyZtp0qLoshc3NUFWaWWB65JgwQKmkCJh1oNp/MWKm+5sWzP+VdxreBZIS4APuC
+	 fxBnbfJfzClmQ==
+Date: Wed, 5 Feb 2025 11:06:20 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Shawn Guo <shawnguo@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH 4/4] dt-bindings: net: smsc,lan9115: Ensure all
+ properties are defined
+Message-ID: <20250205-voracious-tacky-penguin-facbf0@krzk-bin>
+References: <20250203-dt-lan9115-fix-v1-0-eb35389a7365@kernel.org>
+ <20250203-dt-lan9115-fix-v1-4-eb35389a7365@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="arbxzkuj76u4tbwm"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ae8ea1bf0bb0a09336cd8b7f627a994630524bba.1738737617.git.unicorn_wang@outlook.com>
+In-Reply-To: <20250203-dt-lan9115-fix-v1-4-eb35389a7365@kernel.org>
 
+On Mon, Feb 03, 2025 at 03:29:16PM -0600, Rob Herring (Arm) wrote:
+> Device specific schemas should not allow undefined properties which is
+> what 'additionalProperties: true' allows. Add a reference to
+> mc-peripheral-props.yaml which has the additional properties used, and
+> fix this constraint.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+> Please ack and I'll take the series.
+> ---
+>  Documentation/devicetree/bindings/net/smsc,lan9115.yaml | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
 
---arbxzkuj76u4tbwm
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 2/3] pwm: sophgo: add driver for Sophgo SG2042 PWM
-MIME-Version: 1.0
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Hello Chen,
+Best regards,
+Krzysztof
 
-I was tempted to apply this patch while reading throug it until nearly
-the end ...
-
-On Wed, Feb 05, 2025 at 03:01:13PM +0800, Chen Wang wrote:
-> [...]
-> +static int pwm_sg2042_probe(struct platform_device *pdev)
-> +{
-> [...]
-> +	rst =3D devm_reset_control_get_optional_shared_deasserted(dev, NULL);
-> +	if (IS_ERR(rst))
-> +		return dev_err_probe(dev, PTR_ERR(rst), "Failed to get reset\n");
-> +
-> +	chip->ops =3D &pwm_sg2042_ops;
-> +	chip->atomic =3D true;
-> +
-> +	ret =3D devm_pwmchip_add(dev, chip);
-> +	if (ret < 0) {
-> +		reset_control_assert(rst);
-
-This is wrong (well, or unneeded). With
-devm_reset_control_get_optional_shared_deasserted() the devm cleanup
-cares for reasserting the reset.
-
-> +		return dev_err_probe(dev, ret, "Failed to register PWM chip\n");
-> +	}
-> +
-> +	return 0;
-> +}
-
-If you want I can apply and squash the following in:
-
-diff --git a/drivers/pwm/pwm-sophgo-sg2042.c b/drivers/pwm/pwm-sophgo-sg204=
-2.c
-index ce8cf8af3402..ff4639d849ce 100644
---- a/drivers/pwm/pwm-sophgo-sg2042.c
-+++ b/drivers/pwm/pwm-sophgo-sg2042.c
-@@ -174,10 +174,8 @@ static int pwm_sg2042_probe(struct platform_device *pd=
-ev)
- 	chip->atomic =3D true;
-=20
- 	ret =3D devm_pwmchip_add(dev, chip);
--	if (ret < 0) {
--		reset_control_assert(rst);
-+	if (ret < 0)
- 		return dev_err_probe(dev, ret, "Failed to register PWM chip\n");
--	}
-=20
- 	return 0;
- }
-
-ack?
-
-Best regards
-Uwe
-
---arbxzkuj76u4tbwm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmejOBQACgkQj4D7WH0S
-/k7xhAf+NrI5L589ZuQPvEDwS8Qwb4XlzoNnmEFCbOWCj0645JBLD/7WjiTYpfMg
-Kgq30Y3aooAF7lznjQC3Dhgr8AmTEVevm2Cq+zvW0kVXG0AfzN8EZTd72OYJz6xB
-Zibrt+MCzUt45EOrPwYjdndRLjo/M7N35/M24oWLhXKr7bw8DPqGFQwR0Baz/SoX
-jVW41leLuAm8skH4my6WfNcsjCkhF25vo0LQDkUBqJ8jLCxdQ0QmnfzIaDu9nMUe
-GUStrmWJIDzQDCtn6RNIQNPEYv72rjF2BtOVTRxCfD3VBKiOk9TwWA1wLtTVN6Ig
-hFHjxG2+crhEqJZBaoVZd6malV3W4A==
-=0gIf
------END PGP SIGNATURE-----
-
---arbxzkuj76u4tbwm--
 
