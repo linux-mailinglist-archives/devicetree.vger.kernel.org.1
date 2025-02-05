@@ -1,170 +1,113 @@
-Return-Path: <devicetree+bounces-143217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F95DA288CA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:04:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CDEAA288B7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:02:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D189D3A55B4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:00:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 781BE162F24
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7FD22F144;
-	Wed,  5 Feb 2025 10:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C935522C339;
+	Wed,  5 Feb 2025 10:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lTZ/NSfY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iDd3SGBL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA8722F163;
-	Wed,  5 Feb 2025 10:50:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F58922B582;
+	Wed,  5 Feb 2025 10:53:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738752630; cv=none; b=dv1N615UPcP7G+HblRYQuxoS3JbPwLZlAI/ixz37zokjda1JEw85xxzAQw4O9TYeMzjmSslILew5sGpNnsVvYylYTvOyIjQinXYIBbA7fG7bz4srRdm1z+ctrMLheiAjHnwoxX8fegwnCFpwsrv+YNUTKkLtJFhKaujm1L9B6+c=
+	t=1738752820; cv=none; b=l5fShC7DFQmPO06Kg2BsQ4rvBtx2AL1T7kkAlPDd3uKuRsjBqjwc96X0JVZ1K/ghDWy7efiph4rl6WKw9h0aQ4QbA4fc5KLvoUgdkbyQbiv6Tk7VLPJGQriTk5Bg+rCIs1pR/oMMaUokcQ2LfFLFyaVr5FXl50I5Q+c7jIxdjBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738752630; c=relaxed/simple;
-	bh=GAaQoyH6dy87JYZUhbjPz6gyv2TYG+23a7uNbP8s9Ik=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CRz9n18PUK1eTojHAIh3HIsvrHD89VFXrPtfH3awzhCIJcjAspN/pFpCuqr0SL4qjKWB3rB3VXaoxkBQyQi3uHo8euyJJ8mPJCQ0fXLr1Zi3MheEErTUi+gx6M/Ora1D8LS3gwa7LgvaUrLPoTwCvB8GoFPHAs4g9ptgIMDxnuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lTZ/NSfY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5157Fqqd009879;
-	Wed, 5 Feb 2025 10:49:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=yV+6qkgECPgWR+utpQPN2P2B
-	yvpRL9hXJCZEqEup5Oo=; b=lTZ/NSfYhOQuFdRwxhrSwxLFb7Y+cSUcv+tccBJt
-	vZN+xZKwUOAOU2uoCE6n80d+SoWXVpCPXCRv4eJ16smyD8y4pDwqzByfd6i0jbUe
-	UA3rWJr6OkVzdeg9ivJzF97Vj1mPWiUXggpGNMZFeFojdKQeWL+g+eURclrLzyRr
-	wlGKdYkErD2VVbqYPidtvbEo6X3PUaz8b2AMYcgnideeokrbpus8d6u8otDpl4uV
-	t3ZUS/EZqSzwoBtn6O3a71uGedqwhgteILb7vKkY9DoNSasqnmQ0dK03nJHAOum+
-	62aVzeMFBpE6F258uvDWymMpOZjrAQ956RJEq0To5GqvNg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44m3esgfwa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Feb 2025 10:49:57 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 515Ant15000760
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Feb 2025 10:49:55 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 5 Feb 2025 02:49:39 -0800
-Date: Wed, 5 Feb 2025 16:19:46 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <p.zabel@pengutronix.de>, <dmitry.baryshkov@linaro.org>,
-        <quic_nsekar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        Praveenkumar I <quic_ipkumar@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v9 6/7] arm64: dts: qcom: ipq5332: Add PCIe related nodes
-Message-ID: <Z6NCSo98YRgG666Q@hu-varada-blr.qualcomm.com>
-References: <20250128062708.573662-1-quic_varada@quicinc.com>
- <20250128062708.573662-7-quic_varada@quicinc.com>
- <cc1c34f0-0737-469d-a826-2df7f29f6cf3@kernel.org>
+	s=arc-20240116; t=1738752820; c=relaxed/simple;
+	bh=T+3gl+VSZ+Qi/d9r3WJTd8uqTFyuJiVzfw6RNe53BYQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NTObMZdLdM1Q298oljaXS+DALL/A5KMk8WMWPcUC/bqGgMH2LDOOVsw/14/+N+ZL0Xa065hgiEGYOIwiQGao3hvS06vvhuo6KJMIlLRL5jcybiYJWLTER14HmDpQZaD9p/vWO2M806UDLqPafo9v82eV8yL2fMiKOfqX4zUGerQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iDd3SGBL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E04EC4CED1;
+	Wed,  5 Feb 2025 10:53:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738752820;
+	bh=T+3gl+VSZ+Qi/d9r3WJTd8uqTFyuJiVzfw6RNe53BYQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iDd3SGBLbf6wfwR52kJbJY2t3d5Q//YmuOtijtnJaovsfUADjETr5rcQEVkg/fgT6
+	 yIYkpvYhOp1XZ61+yyDUhog3aPmXid9GDgs4I0JTSmEEss2ktIs6XFnhpejfbARPVg
+	 vy6M7pWW+NPFSU1n4+UMFCUmUXXe/Ipt8VRt6HJ74GroO6qfoPeeX6Qzt7ii4gL+/A
+	 l6UIEtQmS7zhPC67+PuKex27eB65jAXN4qpnz6PX7z1J5pyY3zGFuBwxH/cyHw/DOT
+	 V0eZhv1ixc50zFyAQd6YobH4WH3/PSXTHC/vLYH+WZle0pieZEONIwfPfLOh/U/Oxy
+	 2A8tmPpkxkStg==
+Date: Wed, 5 Feb 2025 10:53:35 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: E Shattow <e@freeshell.de>, Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 5/5] riscv: dts: starfive: jh7110-common:
+ bootph-pre-ram hinting needed by boot loader
+Message-ID: <20250205-tricky-passport-b786aba90241@spud>
+References: <20250203013730.269558-1-e@freeshell.de>
+ <20250203013730.269558-6-e@freeshell.de>
+ <CAJM55Z8oWonQBbUHPbMrVmN2HG9Dwjyr6o7L7spJQFhQfj+7Pw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TQwBxH4NgmwT3RhR"
 Content-Disposition: inline
-In-Reply-To: <cc1c34f0-0737-469d-a826-2df7f29f6cf3@kernel.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: LqkeP6FXi5Jc7zuveJvZcqUkz1DwPpMb
-X-Proofpoint-ORIG-GUID: LqkeP6FXi5Jc7zuveJvZcqUkz1DwPpMb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-05_04,2025-02-05_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
- suspectscore=0 priorityscore=1501 mlxscore=0 malwarescore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 adultscore=0 phishscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502050086
+In-Reply-To: <CAJM55Z8oWonQBbUHPbMrVmN2HG9Dwjyr6o7L7spJQFhQfj+7Pw@mail.gmail.com>
 
-On Mon, Feb 03, 2025 at 05:30:32PM +0100, Krzysztof Kozlowski wrote:
-> On 28/01/2025 07:27, Varadarajan Narayanan wrote:
+
+--TQwBxH4NgmwT3RhR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Feb 05, 2025 at 02:35:42AM -0800, Emil Renner Berthing wrote:
+> E Shattow wrote:
+> > Add bootph-pre-ram hinting to jh7110-common.dtsi:
+> >   - i2c5_pins and i2c-pins subnode for connection to eeprom
+> >   - eeprom node
+> >   - qspi flash configuration subnode
+> >   - memory node
+> >   - uart0 for serial console
 > >
-> > @@ -479,6 +519,230 @@ frame@b128000 {
-> >  				status = "disabled";
-> >  			};
-> >  		};
-> > +
-> > +		pcie1: pcie@18000000 {
-> > +			compatible = "qcom,pcie-ipq5332", "qcom,pcie-ipq9574";
-> > +			reg = <0x00088000 0x3000>,
->
-> So as Konrad pointed out now, this was never tested. It's not we who
-> should run tests for you. It's you.
+> >   With this the U-Boot SPL secondary program loader may drop such
+> >   overrides when using dt-rebasing with JH7110 OF_UPSTREAM board target=
+s.
+> >
+> > Signed-off-by: E Shattow <e@freeshell.de>
+>=20
+> I can't find the booph-pre-ram property in any of the schemas in
+> Documentation/devicetree/bindings. Does make ARCH=3Driscv <..> dtbs_check=
+ not
+> complain about this?
 
-This was tested and it did not flag an error since it is having the order
-specified in the bindings. qcom,pcie.yaml has 4 reg specifications. Two of
-them have 'dbi' as the first register space and two of them have 'parf' as
-the first register space. Looks like the constraints with 'dbi' as the
-first entry will match with pcie@xxx and the ones with 'parf' won't match.
+They come directly from dt-schema:
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/boot=
+ph.yaml
 
-Since IPQ5332 follows the constraints specified for sdx55 which has 'parf'
-as the first entry it is not able to match with pcie@xxx value.
+--TQwBxH4NgmwT3RhR
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The initial version that was posted has the first 'reg' entry matching with
-pcie@xxx (please see [1]), since it used the ipq9574 reg constraints. Based
-on the feedback received [2], had to add 'mhi' area also. Since adding
-'mhi' to ipq9574 would result in duplication of the sdx55 reg constraints,
-ipq5332 followed sdx55's constraints resulting in the reg entries getting
-reordered and the first reg entry vs pcie@xxx mismatch happened.
+-----BEGIN PGP SIGNATURE-----
 
-To resolve this, shall I reorder the sdx55 reg bindings (and the affected
-DTS arch/arm/boot/dts/qcom/qcom-sdx55.dtsi). Please let me know.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6NDLwAKCRB4tDGHoIJi
+0hNrAP43qtVDHtQj36YwYboLuBOirdtkgVN1fUhOnVEV0Y1ATwD/YYP2G1xIul75
+f6agMqEHmTC28/AhY8PcgE/JUQIWzgQ=
+=y2pN
+-----END PGP SIGNATURE-----
 
-1 - https://lore.kernel.org/linux-arm-msm/20241204113329.3195627-6-quic_varada@quicinc.com/
-2 - https://lore.kernel.org/linux-arm-msm/6fe09de4-c94c-495d-92a4-aa902d2519ef@oss.qualcomm.com/
-
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
-> Maybe you need to update your dtschema and yamllint. Don't rely on
-> distro packages for dtschema and be sure you are using the latest
-> released dtschema.
-
-I run the following tests before posting the patches and go through the
-output to see if the nodes I added/changed have any errors or if other dtbs
-have been impacted by my bindings changes.
-
-	export ARCH=arm64
-	export W=1
-	export DT_CHECKER_FLAGS='-v -m'
-	export DT_SCHEMA_FILES=qcom
-	export CHECK_DTBS=y
-
-	pip3 install dtschema --upgrade
-
-	make -j 16 dt_binding_check
-
-	make -j 16 dtbs_check
-
-	$ pip show dtschema | grep Version
-	Version: 2024.11
-
-Please let me know if I should add anything else to ensure my setup is up
-to speed.
-
-Thanks
-Varada
+--TQwBxH4NgmwT3RhR--
 
