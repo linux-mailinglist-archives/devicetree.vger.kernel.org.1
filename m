@@ -1,189 +1,128 @@
-Return-Path: <devicetree+bounces-143288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C98C6A28FDB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:29:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E9AAA2900C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:31:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74F2F18825CA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:29:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D32D57A1922
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:30:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D25B15B99E;
-	Wed,  5 Feb 2025 14:29:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84A2814386D;
+	Wed,  5 Feb 2025 14:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="PACWVV/B"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jdnwUfo/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3CBC15990C
-	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 14:29:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5EB2151988;
+	Wed,  5 Feb 2025 14:31:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738765765; cv=none; b=I3u4tEvz5C19LXuQ66mRBTVOpsaTHgYsQokGGacFZmx4qn6jzdgXe8jYYls65aCmWaK7DX8f5UrBlrzAl0+HGAYgYIcY1xw9xPFvKeUV0Yizd2OSHBUTU7ac0MtXeBP7QgvMAyyDwD0bpyMERosWUokYtgCAm1u1eobBtfA7gzQ=
+	t=1738765905; cv=none; b=Hh2G93CRmATohpMKeDO+hrgnDXxVKyiWfov8quaEX1DDg3NrnwTbyJUoK5qKvQis9SShQrfN9g94zETBvyCt3qS/I0m8hisx4am0L7/ZhoGj4y0f05vlJx6TI40U5hNgIrd6pdu298l3nQb8S+1kETsnfFLeFbJS/zscABAIL/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738765765; c=relaxed/simple;
-	bh=e42SIVOUhhbdor72mrNuSIArnji9rVNQMG+KjSfReLQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nbKLb4HjIyxhxlWF3u8el9wD8USlCw9kvuxSJHtc7cFRUuvsw4915fzxlJMWnlq9O3kMLuViDd0UawSayGk+6altHjgs4TOaaVZi/as8SFAignVzC5udRRAg1F5OOuixzEGrw2+jHrcD0MqmFEiziMqmJrpWPS6e2GVnIbU0ymQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=PACWVV/B; arc=none smtp.client-ip=185.67.36.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 308AF240029
-	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 15:29:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1738765761; bh=e42SIVOUhhbdor72mrNuSIArnji9rVNQMG+KjSfReLQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=PACWVV/B2zEXa/3zM3iFyWGMCvq1ep2tJrc4lnPcQd3vMa6GfKW9yWUGJflhWkzB6
-	 mdwFgQnP74Q/JsCwaMpTD/CjCuigxBwGIzzFxwKWVOeHk4MaYvlikd7rp62zTC36An
-	 Agq7QhuBJJS77HdFXurVKxgAqrp2UMVQuGlfqmMXwEUvTE2X+Q7vjO9yeuFfneWNi4
-	 UzFkZdRD0ItU6gs7hUevNamTNwgpLFYRa/IWNqQMQfGMroi2NGU2e/DlG3TmQlVncm
-	 PLI6VUrrsbH50E1C83K8fRG84DpnJGcwKJONJ/5Rq2M0DazTqmw5sg53lAryZJ//tS
-	 +5vr8gbAqJFJA==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4Yp2fz0fXhz9rxQ;
-	Wed,  5 Feb 2025 15:29:14 +0100 (CET)
-Date: Wed,  5 Feb 2025 14:29:14 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Rob Herring <robh@kernel.org>
-Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH 8/9] dt-bindings: spi: Convert Freescale SPI bindings to
- YAML
-Message-ID: <Z6N1uqg4Dji4Pt3X@probook>
-References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
- <20250126-ppcyaml-v1-8-50649f51c3dd@posteo.net>
- <20250127050901.GB3127337-robh@kernel.org>
+	s=arc-20240116; t=1738765905; c=relaxed/simple;
+	bh=DK5BdsHC9FTcHgrgOYmsyFWrjMwYPINHQIFTi/aJ4F8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MIsfY6iiq/Bcq/fsDhq3A24VWvo9Q7HXNi3lqftG8BPFHmq0f4ri9VIk52ZlrQu6YZrbih4PS4vy4UqV5c+drALMJMorqBZmm6Gra+Vmg8Bzr1FchPM7uXd4P2pNj+FZo7cwFxTyb1EqqM6tC/tw6uRmbJMRQs4cdKFKMzSUhLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jdnwUfo/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 515EVYCK025691;
+	Wed, 5 Feb 2025 14:31:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=oByTq9zwLSfVLM6kf11yP1nxs2lm8nXB/3U
+	SzIcPI9M=; b=jdnwUfo/y39CeWgg53YdX1ek9MoXOQCHmkqaZIHDR748/NsIkeF
+	8nnRTx/6EX3xTulz4LayczfVczv7y7nNas28t3H2B7PKOKQyQ1X/TzKu0289T96V
+	6W9iAcPev1cWFbgt3CMDZt/FHO4dWigv4qnGP52BfEnFUBzbFE0Dm+X1j+90opi5
+	xqyvXZGqx4SK0+bHZ3JPukBP8Mo4nXmFRN0XQ/wzcP2vAdAkTCJUupA9Y0Pge0qC
+	TJgoMRmTs/klHGb1ulC5B97r55fXf0N8ySql5qK+/nLzQMbpvczs9ukhqL01FSgf
+	ayBNSKcHloAhz/JRqfEWLEZ/w8aoGqngCFA==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44m9txg00c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Feb 2025 14:31:33 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 515EVUTw026460;
+	Wed, 5 Feb 2025 14:31:30 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 44hcpm8b2n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Feb 2025 14:31:30 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 515EVUP9026455;
+	Wed, 5 Feb 2025 14:31:30 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-msavaliy-hyd.qualcomm.com [10.213.110.207])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 515EVT89026454
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Feb 2025 14:31:30 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 429934)
+	id 575AE2439F; Wed,  5 Feb 2025 20:01:29 +0530 (+0530)
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+To: alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
+        linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Subject: [PATCH v1 0/3] Add Qualcomm i3c master controller driver support
+Date: Wed,  5 Feb 2025 20:01:06 +0530
+Message-Id: <20250205143109.2955321-1-quic_msavaliy@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250127050901.GB3127337-robh@kernel.org>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 50gHAaifOHbal4BnlRd8gV41hFTtbJBh
+X-Proofpoint-GUID: 50gHAaifOHbal4BnlRd8gV41hFTtbJBh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-05_06,2025-02-05_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ bulkscore=0 impostorscore=0 adultscore=0 mlxlogscore=849 clxscore=1015
+ mlxscore=0 spamscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502050114
 
-On Sun, Jan 26, 2025 at 11:09:01PM -0600, Rob Herring wrote:
-> On Sun, Jan 26, 2025 at 07:59:03PM +0100, J. Neuschäfer wrote:
-> > fsl-spi.txt contains the bindings for the fsl,spi and fsl,espi
-> > contollers. Convert them to YAML.
-> > 
-> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> > ---
-> >  .../devicetree/bindings/spi/fsl,espi.yaml          | 56 +++++++++++++++++
-> >  Documentation/devicetree/bindings/spi/fsl,spi.yaml | 71 ++++++++++++++++++++++
-> >  Documentation/devicetree/bindings/spi/fsl-spi.txt  | 62 -------------------
-> >  3 files changed, 127 insertions(+), 62 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/spi/fsl,espi.yaml b/Documentation/devicetree/bindings/spi/fsl,espi.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..350275760210c5763af0c7b1e1522ccbfb97eec7
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/spi/fsl,espi.yaml
-> > @@ -0,0 +1,56 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/spi/fsl,espi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale eSPI (Enhanced Serial Peripheral Interface) controller
-> > +
-> > +maintainers:
-> > +  - J. Neuschäfer <j.ne@posteo.net>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: fsl,mpc8536-espi
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts: true
-> 
-> How many?
-> 
-> > +
-> > +  fsl,espi-num-chipselects:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: The number of the chipselect signals.
-> 
-> Constraints?
-> 
-> > +
-> > +  fsl,csbef:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Chip select assertion time in bits before frame starts
-> 
-> Constraints?
-> 
-> > +
-> > +  fsl,csaft:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Chip select negation time in bits after frame ends
-> 
-> Constraints?
+This patchset adds i3c master support for the qualcomm's QUPV3 based 
+Serial engine (SE) controller. 
 
-I'll add appropriate constraints to all of these.
+The I3C SE(Serial Engine) controller implements I3C master functionality
+as defined in the MIPI Specifications for I3C, Version 1.0. 
 
+This patchset was tested on Kailua SM8550 MTP device and data transfer
+has been tested in I3C SDR mode with i2c and i3c target devices.
 
-> > diff --git a/Documentation/devicetree/bindings/spi/fsl,spi.yaml b/Documentation/devicetree/bindings/spi/fsl,spi.yaml
-[...]
-> > +  clock-frequency:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> Don't need a type.
+Features tested and supported :
+  Standard CCC commands.
+  I3C SDR mode private transfers in PIO mode.
+  I2C transfers in PIO mode.
 
-Will remove
+Mukesh Kumar Savaliya (3):
+  dt-bindings: i3c: Add Qualcomm I3C master controller bindings
+  i3c: master: Add Qualcomm I3C master controller driver
+  MAINTAINERS: Add maintainer for Qualcomm's I3C driver
 
-> 
-> > +    description: input clock frequency to non FSL_SOC cores
-> > +
-> > +  cs-gpios: true
-> > +
-> > +  fsl,spisel_boot:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
+ .../bindings/i3c/qcom,i3c-master.yaml         |   57 +
+ MAINTAINERS                                   |    8 +
+ drivers/i3c/master/Kconfig                    |   12 +
+ drivers/i3c/master/Makefile                   |    1 +
+ drivers/i3c/master/qcom-i3c-master.c          | 1190 +++++++++++++++++
+ 5 files changed, 1268 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml
+ create mode 100644 drivers/i3c/master/qcom-i3c-master.c
 
-I do wonder, what's the difference between
-$ref: /schemas/types.yaml#/definitions/flag and type: boolean?
+-- 
+2.25.1
 
-
-
-Thanks for your review.
-
-Best regards,
-J. Neuschäfer
 
