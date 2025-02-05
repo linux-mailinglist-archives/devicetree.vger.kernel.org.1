@@ -1,139 +1,129 @@
-Return-Path: <devicetree+bounces-143111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29243A281EB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 03:41:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFAD5A282FB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 04:49:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E4567A21BB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 02:40:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30A3B7A0F38
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 03:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1C3210F5A;
-	Wed,  5 Feb 2025 02:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C8D2135A5;
+	Wed,  5 Feb 2025 03:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="apNNpCr8"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="rrM03o8O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01121200A3;
-	Wed,  5 Feb 2025 02:41:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3B7F1EB3E;
+	Wed,  5 Feb 2025 03:49:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738723267; cv=none; b=aD1ITnvNQghtO8+zJzD+zh159UYWLSKWa8XpQBgAsUT9k2b/KNSg8U2ifA/uwjkrENFIiPuilpUft53Cwy2AZfmE/8btdDk6QJus9EqzagThnABzKoSt3A7ObFoB8DqzE2K89OArogiorNFQcvj0vUbQnR18rKxm08v/u6j9bn8=
+	t=1738727367; cv=none; b=n4O/j5pucvl2UOqGFVSnB7+6/pb6Z8YcIZr7Cr+mNuLQMMek5L/WPeHEOKUsc+VIKjt+nFiciPuuHEhu6SnXDJclW9Qfo5gzcYhsy8k/x6Gb20NMY7MUNA1w/8CYapgofzdJ4TizJvHidEuKsQgSxmZ8dnucKvtHmp7GI3rhtTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738723267; c=relaxed/simple;
-	bh=8KHGfVIy6PZ/kQOwVu8+li4ZGBn5wHtCLBclG5gxpZQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RD/GuflF25sRIdlzJRfB6WZsTqWk8YbH5Y0yI7P8mitjaniyMgxi/JLoIEELGtzzQ4N70MIZxBeU8NhJsC78OEEtYhhoOIrzTRUyZdbvtIoDvOv9ugVm2LJnOQfdjlJvRc7vti/SOLMugEZEMQp5uk9t8YxqQ6atzBRoeCYC1Fk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=apNNpCr8; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-21f16af1f71so5530465ad.3;
-        Tue, 04 Feb 2025 18:41:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738723265; x=1739328065; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4twR9JSRKP16NJKHDkljf0dEGI6XOF41Z0J3Jxda0WY=;
-        b=apNNpCr8eMUsUzlN2a68o7vmCtA5w9AyLLMJDASFsr+rw3qLruoM2jYMqIYn7TCVPW
-         8CtrcI1wQowXsN7BQPZ+O5EWbEm2iuMLSwpvdmHCkf3g6m+G1IEcWixixQlcEFJR3Va8
-         zDaMQMu38YDmd5Sn277Rc96e/zdVsWv5PWj2ipLCsm4UKAozjuWwVtqDI/OdVAiKWdZ3
-         P91cqKvbRByDr8nDnfjBj9XH9NKbKofDnmF+4tW7kjI4mXprVFkH1iQu4+PQkx7tY//8
-         /BSAoUpPbHqHrT8qlRxAdTG//D4bp93ltTTsfFSsECQluAt2oNeEWRC3PADVnBwwtIhM
-         1vdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738723265; x=1739328065;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4twR9JSRKP16NJKHDkljf0dEGI6XOF41Z0J3Jxda0WY=;
-        b=Uky7dyqwJ0pMficr4mbkahKeCjvl4swmt8hJ2XqFGA9bQ3B/mmBCrJ5W0cuG4xrXpP
-         pkx959Wkv4QGWSz2h7czI/ExUZ2UOW6uitT3axyYZR6z+wkf8EY8+XZnmD8XuN7UL9Oe
-         CWZWJH9cm5w79l+64kAvmLu2Enq2NmNrFh8mDz+tRqwfqtRxlWcSjazS7giN9QHNVtWx
-         UNWBhmiFdahm2IjmP//uGW/NaqhjReC8EBnaWLhz5O85mv9gPUdK1nE6DUbXrhbwv7gt
-         tHGl9ed5i7yYmGwZ/yepL3ESkZxlU5B43AAbvPLbhiBfKcFRp7xSh2lJJQtSVfRa6oL3
-         mRSA==
-X-Forwarded-Encrypted: i=1; AJvYcCW/udsbmvQAQK9JmT5IBWmiMmJsr3IdHeieyIK4Hos0x1KES7Fl77E7PI32IpEhbRRn8QSo7RZQ51Hf@vger.kernel.org, AJvYcCWPqwiZnkgFh+s4yztpvXK3sNV8ahuJyUQm5YjmV/DWII7A4ozuklsNEpOUAgoWLSbydMgWiEe0EMCTDKRI@vger.kernel.org, AJvYcCWTvfxFOx8jy50DzlMkvvXoC32YEBL2xG7mPKU+gU3hD2k6skhHTT/6TK3vACsPR5pR2qFtSTIMiuOc@vger.kernel.org
-X-Gm-Message-State: AOJu0YybIgiLajFrX254ORYwsSSuRtetpGDgRwVq2AG0FzmuYgAICE4O
-	gxFItVvi/04CobXz9iPojRVO/RvK23tw3EkgRf47bCAxtwcrWLQL
-X-Gm-Gg: ASbGncsng0UPOwYzQAhZHV8muxyCVuJPgAzxXh9CVaNXMm8DC/VRfCP3EmVFIcc9SUE
-	xnRvN7fnnVapMC5lR7SU1DD8oUXl3as+1ybsVRzkkyaQGQYnxEQ1bFl5E6Xzd1JU8oYYOpyn3R1
-	ozTPPh/zSrNCs0cGGXPJcwyy54hh/i46mqCun42zj8CZjEki8hsqS2DxV5l5mUkAXoTmKy03bRd
-	+aGRTK6jJsX+gziacdqDfmqaACgJ4/pu4/01q+3HSnYbGi7t+BG46ngfgfzWve7bdD7s0X2Cr1u
-	3dkojJDtD7bxEiU=
-X-Google-Smtp-Source: AGHT+IHys4xsUz/S+Yv5CD+DsNOj6mj0m+DTH45vx3YlE4Esvw4TgUgeL097Mh2SDR1ToXoDDpMpkQ==
-X-Received: by 2002:a05:6a20:cf83:b0:1e0:f495:1bd9 with SMTP id adf61e73a8af0-1ede881ba1emr1949980637.8.1738723264886;
-        Tue, 04 Feb 2025 18:41:04 -0800 (PST)
-Received: from archie.me ([103.124.138.155])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-acebe856951sm10664577a12.34.2025.02.04.18.41.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Feb 2025 18:41:03 -0800 (PST)
-Received: by archie.me (Postfix, from userid 1000)
-	id 2B46C4208FB6; Wed, 05 Feb 2025 09:41:00 +0700 (WIB)
-Date: Wed, 5 Feb 2025 09:40:59 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Amirreza Zarrabi <quic_azarrabi@quicinc.com>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Sumit Garg <sumit.garg@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, op-tee@lists.trustedfirmware.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 8/8] Documentation: tee: Add Qualcomm TEE driver
-Message-ID: <Z6LPu7WcRFnSCyAq@archie.me>
-References: <20250202-qcom-tee-using-tee-ss-without-mem-obj-v2-0-297eacd0d34f@quicinc.com>
- <20250202-qcom-tee-using-tee-ss-without-mem-obj-v2-8-297eacd0d34f@quicinc.com>
+	s=arc-20240116; t=1738727367; c=relaxed/simple;
+	bh=Y2M37YpkkM+Vyr8bB/bqMI0pllLoH5F4qCf3uTmRpkY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=gvvEM/0VOtGcv5mlIMa6axcWjstt8zSP1qHs9T91a2ehagYZ4Ty2w6mj5t3GN5X2j5kxUf6bGhFPjYqxJzB6oF3TaGBQNZS6Oi3VkXhdgiJhfTz53OUvs+uFdEQQNKqG7G8ds5+Q56r8x/oyL8A1CI3kbGgrtyPYZ85aQB0IjXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=rrM03o8O; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1738727366; x=1770263366;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=Y2M37YpkkM+Vyr8bB/bqMI0pllLoH5F4qCf3uTmRpkY=;
+  b=rrM03o8OaI1B5MplxU+q2aqauOhOdR+7pwpGQn2ZNtoS2PIO3Ye/tPku
+   C89Vts7d7eUvoE6CGp6mRi18evcl1m1EbGkpSA+j+BSwHyB6RcYw2rqmf
+   dDqsYOTuzXCrxVDJF17JceSWv0kd6Xh9Su3RyAu2CDJxnhW0cLobI2PZI
+   RsYn3SziBtjm+v3eRdSwxEQ1FXvO+rs9ePGB+v22sugRxAyDHAzpCMLKK
+   Mv2Z+NG1alNtbecrS541Vh0L1u9oM+rTtA0xJgKLqhzk2hsBL47YezzNP
+   B/LJT+9UzVsUZLpTU0O7eQXJn1m4XMDUH8rOSRHVFBN1ZjHfT9Uqzvfo2
+   w==;
+X-CSE-ConnectionGUID: 9q6sxc6oQ7qZQgsLIprwFg==
+X-CSE-MsgGUID: 3DLtMxkgRhOvagShr5YrNw==
+X-IronPort-AV: E=Sophos;i="6.13,260,1732604400"; 
+   d="scan'208";a="268617910"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Feb 2025 20:49:19 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 4 Feb 2025 20:48:48 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Tue, 4 Feb 2025 20:48:43 -0700
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+Date: Wed, 5 Feb 2025 09:18:40 +0530
+Subject: [PATCH RFC v2] dt-bindings: mmc: mmc-slot: make compatible
+ property optional
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="YU5J0YlSYBp99PA5"
-Content-Disposition: inline
-In-Reply-To: <20250202-qcom-tee-using-tee-ss-without-mem-obj-v2-8-297eacd0d34f@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20250205-mmc-slot-v2-1-da3c5f30e2d9@microchip.com>
+X-B4-Tracking: v=1; b=H4sIAJjfomcC/2WMywrCMBQFf6XctZEmjaR1JQh+gFvpIuZhLpimJ
+ CUoJf9uyNblnDPMDslENAnO3Q7RZEwYlgrs0IFycnkZgroysJ5xyuhEvFckvcNG+pPg4zhpaeQ
+ AVV+jsfhpqQfcb1eY6+gwbSF+Wz7Tdv2XMiWUaKsEF3LQg31ePKoYlMP1qIKHuZTyA3S5ypWpA
+ AAA
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Dharma Balasubiramani
+	<dharma.b@microchip.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738727322; l=1069;
+ i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
+ bh=Y2M37YpkkM+Vyr8bB/bqMI0pllLoH5F4qCf3uTmRpkY=;
+ b=euyPCQtPylPzBTnrVIPruEpcg2aZlyXORKa4vu1AoL4yj1xw9fMuXDNmnsUO4EOkAEw6vL48b
+ HjHTGYLef3/C7DXH+LL04r3Bbck58HswIL+R+2FCxbZpd2p6GQYLrsk
+X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
+ pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
 
+Remove the compatible property from the list of required properties and
+mark it as optional.
 
---YU5J0YlSYBp99PA5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+Changes in v2:
+- Instead of moving the compatible string to the other binding, just make it
+  optional (remove from required list).
+- Link to v1: https://lore.kernel.org/r/20241219-mmc-slot-v1-1-dfc747a3d3fb@microchip.com
+---
+ Documentation/devicetree/bindings/mmc/mmc-slot.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-On Sun, Feb 02, 2025 at 06:43:36PM -0800, Amirreza Zarrabi wrote:
-> +The QTEE driver offers the qcomtee_object, which represents an object wi=
-thin
-              "... provides ..."
-> +both QTEE and the kernel. To access any service in QTEE, a client needs =
-to
-> +invoke an instance of this object. Any structure intended to represent a=
- service
-> +for export to QTEE should include an instance of qcomtee_object::
+diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+index 1f0667828063..ca3d0114bfc6 100644
+--- a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
++++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+@@ -29,7 +29,6 @@ properties:
+     maxItems: 1
+ 
+ required:
+-  - compatible
+   - reg
+ 
+ unevaluatedProperties: false
 
-Thanks.
+---
+base-commit: 40b8e93e17bff4a4e0cc129e04f9fdf5daa5397e
+change-id: 20241219-mmc-slot-0574889daea3
 
---=20
-An old man doll... just what I always wanted! - Clara
+Best regards,
+-- 
+Dharma Balasubiramani <dharma.b@microchip.com>
 
---YU5J0YlSYBp99PA5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZ6LPswAKCRD2uYlJVVFO
-o0KbAP9BjWgtTT9EraVe8ZUmzZ8MQd4wzzlo4o5ckCFleZ3mSgEAxIECwku5zqqh
-UyRE4JypMVgh+6eEDCjJJEOM7BPFvgY=
-=Ma8E
------END PGP SIGNATURE-----
-
---YU5J0YlSYBp99PA5--
 
