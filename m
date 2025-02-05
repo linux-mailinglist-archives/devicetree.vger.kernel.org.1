@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-143152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60612A284F3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:29:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E65A284F8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:32:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2B8A7A06B6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:28:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B146F18861A3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27F8F2288CF;
-	Wed,  5 Feb 2025 07:29:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3602538F82;
+	Wed,  5 Feb 2025 07:32:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ypy4myUh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RBdmBabe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F08A02135A8;
-	Wed,  5 Feb 2025 07:29:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04BD925A649;
+	Wed,  5 Feb 2025 07:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738740570; cv=none; b=gW3I1+1BAjJreIrFvl2QIV3hlF1MLgJjcGCQofYBpZQ0HFOMrep5d8qgiRJf7dMsYdHBt+yAlQ9NbS7KpGx+I4F5/MzWRM5HdL5Wpl2iFIi+5GSOZ7ePFs70xcPr4Ow8IGI8oHAcNj0Kci3V3BFyTSZ+M77xLXK5rI3OUWVZ9KU=
+	t=1738740746; cv=none; b=FBM55s3HmiVKY+uNdTagUoGaTPWhFYeNtUtePJYEjbkf5/ngun3YrAcgelIVpeH/H3Dm/9IUPPnPQzpTwk3rmcj6I+oA6YRORyP9FYb57li+Zbkp/6LMuCWlAmY+s5KloykTetpWHTlOfpkGTmYumL1QlBlUcKKh/1cg2+Fb/dc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738740570; c=relaxed/simple;
-	bh=DDGkskuul2dU7AQiYiQ17lUea5688ZO8WYRSfIqpqo4=;
+	s=arc-20240116; t=1738740746; c=relaxed/simple;
+	bh=Ok2SJNJ1boVfWaDYTt9lMF/TEqdwFpG/blVmAaWqHGw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XlCJ/iT9AGbm99CjyAQali5S7GfJkZPc7dgUyYmgl5oaHQb0Gph4QrD2Tfyx/1E5MOFxe7hE9epL21QmNTlyP7zPmSY22NIWIVw3MeT3SVtHtyEoK2pV60YSQ0ucl06tr6WbMdic7uRo3MVlWhwoUvkIPsUzYzpFsuJXKOvEGxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ypy4myUh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 784DBC4CED1;
-	Wed,  5 Feb 2025 07:29:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=FXY6IYaFnShMgkp8V4Zs0yIr8GCk/Ok3QgPtCp4AoDW7VVfpIPnm+lhDoch0ESBC22xznC/UG4hrLnwiC86nePFRE1nBpx0feAjZPmNWrFLmwjJXbpfCa9K+aBucJDBe4fH8m8bb6KtzfO9B8RLLHAR3QFiSnPn2JuNfECBZUYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RBdmBabe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B02FC4CED1;
+	Wed,  5 Feb 2025 07:32:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738740569;
-	bh=DDGkskuul2dU7AQiYiQ17lUea5688ZO8WYRSfIqpqo4=;
+	s=k20201202; t=1738740745;
+	bh=Ok2SJNJ1boVfWaDYTt9lMF/TEqdwFpG/blVmAaWqHGw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ypy4myUhKtVTYOs6kv8vWw6HDcMsvgLrpkb+Ez6mIN30YkvPK7cuVNK0toJ50FFY8
-	 oYDr/o7Wkwhtr9ba7+GzREP7n2ZOA88rAoOlNqyDn28o+1lsWwIfxTRcgcghm5JXcQ
-	 khyXezfZimYN8h4ShrMCnM/HK1H6xhcpzB4O9Wzta3b+wnC0WQEH+lfUOhy+XoBNha
-	 XOT03M1nh075GNVTNE9gyphJzvyrBMjM2Y+5xqPv4FyFxpAuBURrBKs+VETwb27IU8
-	 5HRNTrRB7iUomRTk/WzUbqo++I+TmMG+iRRapPB7VqfCEnZv47zQBqClq4gg1lrt9a
-	 ODRBTUoECnNqg==
-Message-ID: <7a29f64f-1c65-4f0d-acdd-494258225a1c@kernel.org>
-Date: Wed, 5 Feb 2025 08:29:24 +0100
+	b=RBdmBabeZ0QTdtqAq3BrMm3dPJM4xWghAitsvvVdCqnv5ATVSQyTLSGeZLDyqpLmP
+	 JQHwHgMtid5XhqgV0Q0uhEovwOt+L/XefD7TJj9YKni+/7EkP83XcEV1MVsxQKBuJt
+	 tjbR5rYn0NvZJ8Yl+1CclXUxr4ONXg//l3KHU3ycJFG/uhHgi51j+tO7VIbcdBuFWZ
+	 ejvm3r68Fs2lOGZO16E9/Yb2F/pe3vKtLUBeBJiNkCk/w4nbbpiLYu8ZcEYCmoChKK
+	 C+I0JrWbAmrLs9jlIkGyx4g9S+Naxjrql9oRWvqN0orO4vFZ/XbUyudrt339NOvrZn
+	 rVeypSKihGhsA==
+Message-ID: <cb615ead-7dcf-430a-8265-60315c9a770b@kernel.org>
+Date: Wed, 5 Feb 2025 08:32:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] dt-bindings: mfd: cirrus,cs40l26: Support for CS40L26
-To: Fredrik Treven <ftreven@opensource.cirrus.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, patches@opensource.cirrus.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250131195639.1784933-1-ftreven@opensource.cirrus.com>
- <20250131195639.1784933-5-ftreven@opensource.cirrus.com>
- <20250202-stoic-skunk-of-promise-cc3c4f@krzk-bin>
- <eb2c68a5-e73d-44c9-9d73-0842f88d09e3@opensource.cirrus.com>
+Subject: Re: [PATCH v5 4/5] arm64: dts: agilex: add dts enabling PCIe Root
+ Port
+To: matthew.gerlach@linux.intel.com
+Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
+ robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, matthew.gerlach@altera.com,
+ peter.colberg@altera.com
+References: <20250127173550.1222427-1-matthew.gerlach@linux.intel.com>
+ <20250127173550.1222427-5-matthew.gerlach@linux.intel.com>
+ <58f7925c-dbed-4a5e-8e7d-095bef197931@kernel.org>
+ <319e9f53-6910-a144-8752-4bcc47b7cba@linux.intel.com>
+ <eb77eec0-7d51-46a0-b5c6-83c68316ef32@kernel.org>
+ <4d9b5ca4-bebc-93c3-7d25-14d12899cab6@linux.intel.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,31 +110,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <eb2c68a5-e73d-44c9-9d73-0842f88d09e3@opensource.cirrus.com>
+In-Reply-To: <4d9b5ca4-bebc-93c3-7d25-14d12899cab6@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/02/2025 23:18, Fredrik Treven wrote:
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index bc8ce7af3303..9c4105bf0a32 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -5546,11 +5546,11 @@ F:	sound/soc/codecs/cs*
->>>   
->>>   CIRRUS LOGIC HAPTIC DRIVERS
->>>   M:	James Ogletree <jogletre@opensource.cirrus.com>
->>> -M:	Fred Treven <fred.treven@cirrus.com>
->>> +M:	Fred Treven <ftreven@opensource.cirrus.com>
->>>   M:	Ben Bright <ben.bright@cirrus.com>
->>>   L:	patches@opensource.cirrus.com
->>>   S:	Supported
->>> -F:	Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
->>> +F:	Documentation/devicetree/bindings/input/cirrus,cs40l*
+On 04/02/2025 17:57, matthew.gerlach@linux.intel.com wrote:
+> 
 >>
->> So input or mfd? I don't understand this.
-> The driver is mfd that utilizes both ASoC and Input FF subsystems.
+>>>>> +#include "socfpga_agilex_pcie_root_port.dtsi"
+>>>>> +
+>>>>
+>>>> Missing board compatible, missing bindings.
+>>>
+>>> The model and compatible bindings are inherited from socfpga_agilex_socdk.dts.
+>>
+>> Then this is the same board, so entire DTS should be removed and instead
+>> merged into parent DTS. There is no such thing as "inherit" of an
+>> compatible.
+> 
+> It is the same physical board, but the image programmed into the FPGA is 
+> different in so far as the PCIe IP is connected and enabled. This 
+> different FPGA image allows for a PCIe End Point to be plugged in. Is this 
+> difference enough for it be considered and different board?
 
-And path here is different.
+Yes, it can be different board DTS. Look at other vendors how shared
+designs are being actually shared between DTS - DTSI.
 
 Best regards,
 Krzysztof
