@@ -1,156 +1,141 @@
-Return-Path: <devicetree+bounces-143188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3887A28626
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:08:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321ADA285C2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:41:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 358B81885B26
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:08:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2E17166E5F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BFA222A4F3;
-	Wed,  5 Feb 2025 09:08:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5EF722A4C3;
+	Wed,  5 Feb 2025 08:41:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="btvd4bzt"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="U5mFfZr1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49218.qiye.163.com (mail-m49218.qiye.163.com [45.254.49.218])
+Received: from mail-m155115.qiye.163.com (mail-m155115.qiye.163.com [101.71.155.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0061E228CBA;
-	Wed,  5 Feb 2025 09:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5989422A1EF;
+	Wed,  5 Feb 2025 08:41:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.115
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738746495; cv=none; b=vCXbkyJ27stE31Sqf78lsg+edkomrAz7bND44wKmDQQ4/Ohz5m9DhLuFsF1SqNAWLPZRbfKuaVv92HENxNEEcuo/mu7ib5+pW/6+cGi+C/wYHDK9gO2xC7C5DT4MmgnfRctIInRLTDVR3EiHYU+x5RL2J4HQISi6LVeovTwvpz8=
+	t=1738744867; cv=none; b=dssUi1/SMtUKGmBWcmdtULimMI43zUYZmfuIzCNOclrmXxmwpAdTN1SpFnJTpwyraYm+KHeAgO2ygScUYWyEGsHGEJICycZEcplIBi3Qdc9c6wQSCYncVmcQQJJLUtDc4rdq6MsB0hMBXio3QI9Q5KfxcoI9ffLzTtrLClyGDvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738746495; c=relaxed/simple;
-	bh=bZCdFFptngTG0hFG0P6Ls3pR19DeLNruPnqgWd3AOT8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BtMJ4TVzeUL+NuNFGZb/fGB/p3Dx+yan3FwOJSDY3fYlDiDWVlonC5mFa93DkxdDcqeBJp7EBfU+03COb0TAnCxxm4X0HnKtDcK9E1hD9g//wGgcunTMrVdwzQn+xDPUNhIUWnL+TfUHB2gEtYcW6dMPneDkrvo37UvJm4N8w40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=btvd4bzt; arc=none smtp.client-ip=45.254.49.218
+	s=arc-20240116; t=1738744867; c=relaxed/simple;
+	bh=bNt3g41MbGOhRUtyPJTnQPZ+/OsEb8ekcvaA54K8B9s=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=aUkZTQli1zFZn8Hlsll7O4ZHq4gRQwyD64xJ/A6m7M3tHigZybaMvo/sl1aN4dXN5hAeTFQUZUTW1bQukuD9LKmtHFEo2KRTNdiEZF++4NRPBYAb4Cpe1bmJ2r4OmBvCFmgTq1WCW1Lzl3Mz+1M6B5yUWmJoSZQcam8fCeSxevc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=U5mFfZr1; arc=none smtp.client-ip=101.71.155.115
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.30] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id a2f6aecf;
-	Wed, 5 Feb 2025 10:18:31 +0800 (GMT+08:00)
-Message-ID: <b85a4449-f178-4877-9ba7-65ddcc231052@rock-chips.com>
-Date: Wed, 5 Feb 2025 10:18:38 +0800
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id a34e52fb;
+	Wed, 5 Feb 2025 14:18:36 +0800 (GMT+08:00)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v7 7/7] arm64: dts: rockchip: Add UFS support for RK3576 SoC
+Date: Wed,  5 Feb 2025 14:15:56 +0800
+Message-Id: <1738736156-119203-8-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1738736156-119203-1-git-send-email-shawn.lin@rock-chips.com>
+References: <1738736156-119203-1-git-send-email-shawn.lin@rock-chips.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk9CSFZNTkNLTkxPGU5NGB1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a94d4c2af6d09cckunma34e52fb
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nxw6Myo6ETIQEgs#EjcrHBor
+	EwIwCxFVSlVKTEhDTEhNSEpMQ09PVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpCSEI3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=U5mFfZr1sdZFCWiqy8e46HIrf3ILOWz6zcrZR9gIKDOVFyKDGv9l6sb9Y4BUzQyUBMCa/5Hu29CePBxDLaW2MrUGAyn0cD6yXRuETVSd//zKpxM3HDnMN5T77EtzggDXhfmT0DtyfEpxS+vtowhhug6ZY69/Wh7R+/9/GZOp8rg=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=zXet6/X8S9LRHFBz6ujYL262DrXxbFU9c0/qc0AtD7Q=;
+	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] Revert "arm64: dts: rockchip: Increase VOP clk
- rate on RK3328"
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, kever.yang@rock-chips.com,
- heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250125011545.15547-1-zhangqing@rock-chips.com>
- <20250125011545.15547-3-zhangqing@rock-chips.com>
- <d1ddec89-08d5-4eed-8ecc-7df47294230a@kwiboo.se>
-From: zhangqing <zhangqing@rock-chips.com>
-In-Reply-To: <d1ddec89-08d5-4eed-8ecc-7df47294230a@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk9NTFZPGUtISk1NTUxLHh9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
-	9VSktLVUpCS0tZBg++
-X-HM-Tid: 0a94d3e6e17103a3kunma2f6aecf
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mz46Pyo6EjIJGhQyFyMPGg09
-	TEIaCUxVSlVKTEhDTElKQkpJTUNOVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU9LTUk3Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=btvd4bzt9LMDt9sePPl5TCU6js+OoOuX0XD0PnJMAA5dUVJif3cBsEOSWfFan99MzUBSvi5QTyGysRWh1s7jo2pfiS7gSJz3h2jiekDJaTNIAMNbhpDOGj7PDLa+aC0GdK5I0mzeyP7vrtTNgkc3wi/txmf0CmlAFb8S6ewZGt8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=/1w0LAq2M+/NtKCh0lzYTdc188jbF90/W0yNry5dtdc=;
-	h=date:mime-version:subject:message-id:from;
 
+Add ufshc node to rk3576.dtsi, so the board using UFS could
+enable it.
 
-在 2025/1/26 5:39, Jonas Karlman 写道:
-> Hi Elaine,
->
-> On 2025-01-25 02:15, Elaine Zhang wrote:
->> This reverts commit 0f2ddb128fa20f8441d903285632f2c69e90fae1.
->>
->> Before changing the PLL frequency, in order to avoid overclocking the
->> child clock, set the child clock to a large div first, and then set the
->> CLK as required after the PLL is set.
-> This commit message does not match what this patch does. In this patch
-> you revert a change and in next patch you re-introduce same thing
-> slightly different.
->
-> As mentioned in v1, see [1], you should merge both patches as a single
-> fix, if a fix really is needed.
-Ok, This will be fixed in the next release.
->
-> Testing on a rk3328-rock64 I see no difference before or after these
-> changes. Please describe what this fixes because clk_summary show same
-> clock tree and rates before and after this fix.
-The clock tree might see the same result.
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+---
 
-It is not safe or correct to set the child clock frequency before 
-setting the PLL frequency, and the parent clock PLL frequency may not be 
-the final expected value at this time.
-Therefore, the correct setting of the child clock frequency should be 
-after the PLL frequency is set.
+Changes in v7:
+- Use 0x0 for consistency
+- Collect Mani's acked-by tag
 
-The partial clock is set before the PLL setting frequency, which is to 
-prevent the child clock from overclocking when the PLL is set, so ensure 
-that the child clock is at a safe frequency before setting the PLL, and 
-reset the child clock frequency after the PLL is set.
->
-> Also for next revert patch you send, please include the patch author in
-> the recipient list :-)
->
-> [1] https://lore.kernel.org/all/cae9cb0a-1500-4fbc-bbf4-a6266549bcb9@kwiboo.se/
->
-> Regards,
-> Jonas
->
->> Fixes: 0f2ddb128fa2 ("arm64: dts: rockchip: Increase VOP clk rate on RK3328")
->>
->> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3328.dtsi | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->> index 7d992c3c01ce..f3ef8cbfbdae 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->> @@ -852,8 +852,8 @@
->>   			<0>, <24000000>,
->>   			<24000000>, <24000000>,
->>   			<15000000>, <15000000>,
->> -			<300000000>, <100000000>,
->> -			<400000000>, <100000000>,
->> +			<100000000>, <100000000>,
->> +			<100000000>, <100000000>,
->>   			<50000000>, <100000000>,
->>   			<100000000>, <100000000>,
->>   			<50000000>, <50000000>,
->
+Changes in v6:
+- remove comments suggested by Mani
+
+Changes in v5: None
+Changes in v4: None
+Changes in v3: None
+Changes in v2: None
+
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index 4dde954..bd55bd8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -1221,6 +1221,30 @@
+ 			};
+ 		};
+ 
++		ufshc: ufshc@2a2d0000 {
++			compatible = "rockchip,rk3576-ufshc";
++			reg = <0x0 0x2a2d0000 0x0 0x10000>,
++			      <0x0 0x2b040000 0x0 0x10000>,
++			      <0x0 0x2601f000 0x0 0x1000>,
++			      <0x0 0x2603c000 0x0 0x1000>,
++			      <0x0 0x2a2e0000 0x0 0x10000>;
++			reg-names = "hci", "mphy", "hci_grf", "mphy_grf", "hci_apb";
++			clocks = <&cru ACLK_UFS_SYS>, <&cru PCLK_USB_ROOT>, <&cru PCLK_MPHY>,
++				 <&cru CLK_REF_UFS_CLKOUT>;
++			clock-names = "core", "pclk", "pclk_mphy", "ref_out";
++			assigned-clocks = <&cru CLK_REF_OSC_MPHY>;
++			assigned-clock-parents = <&cru CLK_REF_MPHY_26M>;
++			interrupts = <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains = <&power RK3576_PD_USB>;
++			pinctrl-0 = <&ufs_refclk>;
++			pinctrl-names = "default";
++			resets = <&cru SRST_A_UFS_BIU>, <&cru SRST_A_UFS_SYS>,
++				 <&cru SRST_A_UFS>, <&cru SRST_P_UFS_GRF>;
++			reset-names = "biu", "sys", "ufs", "grf";
++			reset-gpios = <&gpio4 RK_PD0 GPIO_ACTIVE_LOW>;
++			status = "disabled";
++		};
++
+ 		sdmmc: mmc@2a310000 {
+ 			compatible = "rockchip,rk3576-dw-mshc";
+ 			reg = <0x0 0x2a310000 0x0 0x4000>;
 -- 
-张晴
-瑞芯微电子股份有限公司
-Rockchip Electronics Co.,Ltd
-地址：福建省福州市铜盘路软件大道89号软件园A区21号楼
-Add:No.21 Building, A District, No.89 Software Boulevard Fuzhou, Fujian 350003, P.R.China
-Tel:+86-0591-83991906-8601
-邮编：350003
-E-mail:elaine.zhang@rock-chips.com
-****************************************************************************
-保密提示：本邮件及其附件含有机密信息，仅发送给本邮件所指特定收件人。若非该特定收件人，请勿复制、使用或披露本邮件的任何内容。若误收本邮件，请从系统中永久性删除本邮件及所有附件，并以回复邮件或其他方式即刻告知发件人。福州瑞芯微电子有限公司拥有本邮件信息的著作权及解释权，禁止任何未经授权许可的侵权行为。
-
-IMPORTANT NOTICE: This email is from Fuzhou Rockchip Electronics Co., Ltd .The contents of this email and any attachments may contain information that is privileged, confidential and/or exempt from disclosure under applicable law and relevant NDA. If you are not the intended recipient, you are hereby notified that any disclosure, copying, distribution, or use of the information is STRICTLY PROHIBITED. Please immediately contact the sender as soon as possible and destroy the material in its entirety in any format. Thank you.
-
-****************************************************************************
+2.7.4
 
 
