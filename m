@@ -1,258 +1,148 @@
-Return-Path: <devicetree+bounces-143376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CE1EA29863
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 19:07:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5780CA29870
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 19:09:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EC20188A56B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 18:07:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59C2D188A66D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 18:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67B31FCCE1;
-	Wed,  5 Feb 2025 18:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF6C1FCCF6;
+	Wed,  5 Feb 2025 18:09:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="xRPpjKBF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ewFUZzoF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAFC61DC9B3
-	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 18:07:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EED71FCCE2;
+	Wed,  5 Feb 2025 18:09:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738778850; cv=none; b=E/chLsACeWuqdK9bMtcHmUjFXow4ZI9LzLSPIt+Xn0q5KIZkDvV13MypPnlNf4KKJx8OIIQX9ZN0E8d4Rtv1g4mPpL8L8Mvoaw5E06flqIcngwYG17VlV0+04kD4BIcDI5hebgCoxBBDBL/PcUPcLqi/ec+iNfigv5R/UkIkhno=
+	t=1738778976; cv=none; b=f0LFwYGblQwcyH68IMIHKJfLpqS59Tw76q9+oKfZk6QzfeGYB7QvAZP7CXp0J0owQC/UubV9Go4bUAO+d55EQgrmCe7EOcBkQUhBL0/B0F5J6vCn+MoS7RsQDVnWu/Tq37gTNKRj2JVl3ZkIem4UMBe8mNTGiNuPGb/P3LDn+MY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738778850; c=relaxed/simple;
-	bh=ijNuuflNXrUb9eu8IX4GbOOlYC+05reWEq31MswjY30=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CS1Dh6xSjB1K69lKtQ8N4j0xuZGeZmZNApgCrLotI6SWPhlbUCpFoKPss3BvRdYRPdZWQCjleo5aESZyYB3stb3yxgaXljS4QIKvLR7I0yMfOmKXbVBbn77YMlZSPQETTlWKWOqgAfsiPHAPinzlhswe2E/CP2TErwVifVhI8ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=xRPpjKBF; arc=none smtp.client-ip=209.85.160.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-467a17055e6so1114801cf.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 10:07:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1738778848; x=1739383648; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5a3g63YXuRyBGyCYvHoCZXHBrCt33UAX5/d9X21sMZ4=;
-        b=xRPpjKBFsoqaqbEWaaP+WH7qekhTXK96G6wybhIWctpZB3bCwPZEhiBOUOOGYBnMze
-         qiSF3mB3InzOLM2L2e7J7j0lgze9yku86rZDUc1SgpKlMzixliHn9uWLG4vMVLVuFoNC
-         dsQpkwLx7eq1aoMy+NetVpzS1JxZXQPfBQRU/nuajoFHb0TMiKkpMcrrEkWHatt2t4q1
-         qXDfCNMbHQxdM9NFohmw/kzUMeLpliuBWBHrmmVVMpmpbjFMoTStld/DxPySlWWct9gp
-         kh7IN5LGl2CiY0OOx9wuwBxmHl3ygKld2dWyq+pgbr5re/wokG2MQ8Lth7pZb2m+2oUA
-         td+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738778848; x=1739383648;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5a3g63YXuRyBGyCYvHoCZXHBrCt33UAX5/d9X21sMZ4=;
-        b=NJ6J7uXd6+DSs9BMa4LCO0Gc8fyfV1SDBVgd/D4hO3AIrapffQSOAEb9qCB0x0KOrq
-         uD3LYEWzWo04AQarngJeCkQc6Qu/f0Kf0V0RxfNIZQrv+dKcUOMUOxxPp5nVaaEqFBMT
-         FSMquCNV4qMzLBQv3ydBoRC+JD9+YwFhBDCKogpGCZbjvHXKs0dIZ1VjKhDoUP3Gq5JV
-         JTAfEFG6ARgztZjDmiXWiHgGcE3MDPe1bVNSzeejCsDlv7fG+fG2KVx5JFAH2WIs1gPS
-         hehBEiooW/JTuFpAA4oQi+OMxVay84pL5h/MJcXJrooJugY74jH3tHgMWKX5M5MEFpsh
-         5ZAw==
-X-Forwarded-Encrypted: i=1; AJvYcCWCHFLX03/F29+t6tMNBsYQ6Sj3E2VYqybxYNRSDVlYg7q3hllt735gVQQ9Yn0ZeXVx9W1cmFQ1cTGL@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWwWdM6LlgMoVG1+RRUhypaVRA57tMIMVGt/d+/clLkydGvlq3
-	xqMdJ79qQq7TW0bxzFH2sKMazHk/+h20pD745nqq6dCVc9CNO/tY0MWNEiIyySQ=
-X-Gm-Gg: ASbGncuszyIe0RTkdx8hLtCitAzVkO679U16apm0ShM0WiGOWf9GRY2vd/yHGXjwRFV
-	NLdrH/PXijTv8Xeug0guqnG18aBiUrTJheKaxFSozunF2reWeumlwIKmobPjVGP2K4RdUr0fAjb
-	bQTzGT/5kzPs5b0dsMCj8x2QVbpvioMvyFZQtcepIvqLCt2TdyofusjJlhLcBuA/0UwTar2eGoR
-	/ZsKY+vIL+N8WFf81SlyosEltrilYpS4WksZ+7g993LBkkKQr3dBoVK6E5g4RRr56GYLwJRriRe
-	68aDRbLf5kO9Vygc
-X-Google-Smtp-Source: AGHT+IEo4hXzx1g4KENBMeo2s9vL7H7kP3tcfvoRUkgZj0tj3tMn7WAB4E53kizdrimAnj8XyGNu6g==
-X-Received: by 2002:ac8:7e93:0:b0:467:6833:e30c with SMTP id d75a77b69052e-470281e8607mr53959051cf.30.1738778847693;
-        Wed, 05 Feb 2025 10:07:27 -0800 (PST)
-Received: from nicolas-tpx395.localdomain ([2606:6d00:11:e976::7a9])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4702c56c62bsm7919921cf.28.2025.02.05.10.07.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Feb 2025 10:07:27 -0800 (PST)
-Message-ID: <9b5104631f827fe44ad1030c971c72fba9a8ac90.camel@ndufresne.ca>
-Subject: Re: [RFC PATCH 0/5] drm/panthor: Protected mode support for Mali
- CSF GPUs
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Florent Tomasin <florent.tomasin@arm.com>, Vinod Koul
- <vkoul@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Boris Brezillon
- <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, Liviu
- Dudau	 <liviu.dudau@arm.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Thomas Zimmermann
- <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>, Benjamin
- Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey
- <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, "T . J .
- Mercier"	 <tjmercier@google.com>, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Yong
- Wu <yong.wu@mediatek.com>, dmaengine@vger.kernel.org, 
+	s=arc-20240116; t=1738778976; c=relaxed/simple;
+	bh=UgqCtBbMnL3YDT0zAGJzyptc/uBlUlezWyA5TcMQFys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ybv89h7Kml2IEBoSQz5Kg3DG+ZADgu2G8QAwK+hWo4A5aezBIu/fV7dbSR1oDy5KL0pqsniOB8BlrOttfYYYfKc6l8rT8OtacLfb2dQyj+0NTlydk3tjyVAMn02Gn74jAREEjnoAbNecNAy+VbbhUxBOnZgFoYXzsdRIwx9xO58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ewFUZzoF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 424A1C4CED1;
+	Wed,  5 Feb 2025 18:09:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738778975;
+	bh=UgqCtBbMnL3YDT0zAGJzyptc/uBlUlezWyA5TcMQFys=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ewFUZzoFh5gX6yzxQhJCIw7BP0jvb/lIzXdGrFFdRDIMInuHPYUfg0IFMN784YJ9m
+	 AjQ3ImMjNyfehJjuqbWXo4liEKcaEPIT6/a8GmCFJmqCH/Z2BfJhNhcIgbQw9DCw+b
+	 +AGT6msGqqTa824np0mmSGoKDYUoEY0W+m+ISxx6o4Y4DGT9AYYN5gpWuh8Bl/DD+h
+	 rMlFK9B17Zb2eE31c/wATHTVqHLq1UGPJK9MBwilwM62xnubS8cKBx0pBcXczChFh0
+	 UfOfRkNBFi6A1u4leLKCKiLFa68L/GJq+0n7/AY7sVmOv1AxctCBH0URxhJHVfXYZB
+	 L538vml1TfvOg==
+Date: Wed, 5 Feb 2025 19:09:32 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, 
-	linaro-mm-sig@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, nd@arm.com, Akash Goel
- <akash.goel@arm.com>
-Date: Wed, 05 Feb 2025 13:07:25 -0500
-In-Reply-To: <20250205-robust-tall-parrot-69baf7@houat>
-References: <cover.1738228114.git.florent.tomasin@arm.com>
-	 <3ykaewmjjwkp3y2f3gf5jvqketicd4p2xqyajqtfnsxci36qlm@twidtyj2kgbw>
-	 <1a73c3acee34a86010ecd25d76958bca4f16d164.camel@ndufresne.ca>
-	 <ppznh3xnfuqrozhrc7juyi3enxc4v3meu4wadkwwzecj7oxex7@moln2fiibbxo>
-	 <9d0e381758c0e83882b57102fb09c5d3a36fbf57.camel@ndufresne.ca>
-	 <1f436caa-1c27-4bbd-9b43-a94dad0d89d0@arm.com>
-	 <c856a7059171bcc6afd6d829c6c025882855778b.camel@ndufresne.ca>
-	 <20250205-robust-tall-parrot-69baf7@houat>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 2/2] pwm: Add support for pwm nexus dt bindings
+Message-ID: <2qnscxa3rzhnsslwzdms43m336l47qutk6ohfqny44lwofjiwh@r6cfdextnhwn>
+References: <20250205095547.536083-1-herve.codina@bootlin.com>
+ <20250205095547.536083-3-herve.codina@bootlin.com>
+ <ejdh76c4r44gxsdi7gwed65ste3wuunki2jgavc3wsfri5yaex@jccsywdfadgp>
+ <20250205143737.1315baba@bootlin.com>
+ <6js6k6xz3vuqshq2pfwqifby4t5q54ftztxxw2rau4j23xx2y5@u5xubi6v3uil>
+ <20250205181930.3b800a13@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dlmz6zrvchrky5ix"
+Content-Disposition: inline
+In-Reply-To: <20250205181930.3b800a13@bootlin.com>
 
-Le mercredi 05 f=C3=A9vrier 2025 =C3=A0 15:53 +0100, Maxime Ripard a =C3=A9=
-crit=C2=A0:
-> On Tue, Feb 04, 2025 at 01:22:58PM -0500, Nicolas Dufresne wrote:
-> > Le lundi 03 f=C3=A9vrier 2025 =C3=A0 16:43 +0000, Florent Tomasin a =C3=
-=A9crit=C2=A0:
-> > > Hi Maxime, Nicolas
-> > >=20
-> > > On 30/01/2025 17:47, Nicolas Dufresne wrote:
-> > > > Le jeudi 30 janvier 2025 =C3=A0 17:38 +0100, Maxime Ripard a =C3=A9=
-crit=C2=A0:
-> > > > > Hi Nicolas,
-> > > > >=20
-> > > > > On Thu, Jan 30, 2025 at 10:59:56AM -0500, Nicolas Dufresne wrote:
-> > > > > > Le jeudi 30 janvier 2025 =C3=A0 14:46 +0100, Maxime Ripard a =
-=C3=A9crit=C2=A0:
-> > > > > > > Hi,
-> > > > > > >=20
-> > > > > > > I started to review it, but it's probably best to discuss it =
-here.
-> > > > > > >=20
-> > > > > > > On Thu, Jan 30, 2025 at 01:08:56PM +0000, Florent Tomasin wro=
-te:
-> > > > > > > > Hi,
-> > > > > > > >=20
-> > > > > > > > This is a patch series covering the support for protected m=
-ode execution in
-> > > > > > > > Mali Panthor CSF kernel driver.
-> > > > > > > >=20
-> > > > > > > > The Mali CSF GPUs come with the support for protected mode =
-execution at the
-> > > > > > > > HW level. This feature requires two main changes in the ker=
-nel driver:
-> > > > > > > >=20
-> > > > > > > > 1) Configure the GPU with a protected buffer. The system mu=
-st provide a DMA
-> > > > > > > >    heap from which the driver can allocate a protected buff=
-er.
-> > > > > > > >    It can be a carved-out memory or dynamically allocated p=
-rotected memory region.
-> > > > > > > >    Some system includes a trusted FW which is in charge of =
-the protected memory.
-> > > > > > > >    Since this problem is integration specific, the Mali Pan=
-thor CSF kernel
-> > > > > > > >    driver must import the protected memory from a device sp=
-ecific exporter.
-> > > > > > >=20
-> > > > > > > Why do you need a heap for it in the first place? My understa=
-nding of
-> > > > > > > your series is that you have a carved out memory region somew=
-here, and
-> > > > > > > you want to allocate from that carved out memory region your =
-buffers.
-> > > > > > >=20
-> > > > > > > How is that any different from using a reserved-memory region=
-, adding
-> > > > > > > the reserved-memory property to the GPU device and doing all =
-your
-> > > > > > > allocation through the usual dma_alloc_* API?
-> > > > > >=20
-> > > > > > How do you then multiplex this region so it can be shared betwe=
-en
-> > > > > > GPU/Camera/Display/Codec drivers and also userspace ?
-> > > > >=20
-> > > > > You could point all the devices to the same reserved memory regio=
-n, and
-> > > > > they would all allocate from there, including for their userspace=
--facing
-> > > > > allocations.
+
+--dlmz6zrvchrky5ix
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 2/2] pwm: Add support for pwm nexus dt bindings
+MIME-Version: 1.0
+
+Hello Herv=E9,
+
+On Wed, Feb 05, 2025 at 06:19:30PM +0100, Herve Codina wrote:
+> On Wed, 5 Feb 2025 17:29:30 +0100
+> Uwe Kleine-K=F6nig <ukleinek@kernel.org> wrote:
+>=20
+> > On Wed, Feb 05, 2025 at 02:37:37PM +0100, Herve Codina wrote:
+> > > On Wed, 5 Feb 2025 12:38:32 +0100
+> > > Uwe Kleine-K=F6nig <ukleinek@kernel.org> wrote: =20
+> > > > Could I adapt the mapping that the effect is
 > > > >=20
-> > > > I get that using memory region is somewhat more of an HW descriptio=
-n, and
-> > > > aligned with what a DT is supposed to describe. One of the challeng=
-e is that
-> > > > Mediatek heap proposal endup calling into their TEE, meaning knowin=
-g the region
-> > > > is not that useful. You actually need the TEE APP guid and its IPC =
-protocol. If
-> > > > we can dell drivers to use a head instead, we can abstract that SoC=
- specific
-> > > > complexity. I believe each allocated addressed has to be mapped to =
-a zone, and
-> > > > that can only be done in the secure application. I can imagine simi=
-lar needs
-> > > > when the protection is done using some sort of a VM / hypervisor.
-> > > >=20
-> > > > Nicolas
-> > > >=20
+> > > > 	pwms =3D <&soc_pwm2 57000 0> =20
 > > >=20
-> > > The idea in this design is to abstract the heap management from the
-> > > Panthor kernel driver (which consumes a DMA buffer from it).
+> > > In this one, I think you miss the PWM number
 > > >=20
-> > > In a system, an integrator would have implemented a secure heap drive=
-r,
-> > > and could be based on TEE or a carved-out memory with restricted acce=
-ss,
-> > > or else. This heap driver would be responsible of implementing the
-> > > logic to: allocate, free, refcount, etc.
-> > >=20
-> > > The heap would be retrieved by the Panthor kernel driver in order to
-> > > allocate protected memory to load the FW and allow the GPU to enter/e=
-xit
-> > > protected mode. This memory would not belong to a user space process.
-> > > The driver allocates it at the time of loading the FW and initializat=
-ion
-> > > of the GPU HW. This is a device globally owned protected memory.
+> > > If I read correctly this line you ask for the PWM 57000 from the soc_=
+pwm2
+> > > controller. This doesn't make sense :) =20
 > >=20
-> > This use case also applies well for codec. The Mediatek SCP firmware ne=
-eds to be
-> > loaded with a restricted memory too, its a very similar scenario, plus =
-Mediatek
-> > chips often include a Mali. On top of that, V4L2 codecs (in general) do=
- need to
-> > allocate internal scratch buffer for the IP to write to for things like=
- motion
-> > vectors, reconstruction frames, entropy statistics, etc. The IP will on=
-ly be
-> > able to write if the memory is restricted.
+> > Some pwm chip devices with only a single output line use this. The first
+> > paramter is the default period (which is passed in the 2nd parameter
+> > normally) and the 2nd paramter are flags (normally the 3rd parameter).
+> > Back then the rationale was that for such hardware, the line index is
+> > zero always anyhow, and so could better be skipped.
+> >=20
+> > Compare of_pwm_xlate_with_flags() to of_pwm_single_xlate(). pwm-pxa is
+> > the single offender using the latter. Thinking about that, it's easy
+> > enough to fix without breaking compatibility. I'll tackle that.
+> >=20
+> > So for a PWM on pxa `<&soc_pwm2 57000 0>` works fine.
 >=20
-> BTW, in such a case, do the scratch buffers need to be
-> protected/secure/whatever too, or would codecs be able to use any buffer
-> as a scratch buffer?
+> I see. In this case, a parameter shift during translation would be needed=
+ to
+> skip the PWM line index in the translated arguments. This is not currently
+> neither described in device-tree specicication [0] nor handled in the com=
+mon
+> code of_parse_phandle_with_args_map() in the kernel.
 
-They need to be protected yes. Its not very fine grained on the platform I =
-work
-on. When that protection is enabled, the decoder can only read and write fr=
-om
-protected memory. I know there is platform were it can read from both, but
-generally all IOs regardless what they are used for endup with the same
-restriction.
+OK, that's what I expected.
 
-Nicolas
-
-p.s. since Khronos seems to have adopted "protected", perhaps it will be ad=
-vised
-to go for that in the end.
-
+> This use case can appear for resources other than PWMs and IMHO it should=
+ be
+> nice to have it supported.
 >=20
-> Maxime
+> I think this support should proposed out of this series adding support for
+> PWM nexus nodes.
+>=20
+> Is it blocking for this current series ?
 
+Not from my side. If I get an Ack from the dt guys, I'll merge it.
+
+Thanks
+Uwe
+
+--dlmz6zrvchrky5ix
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmejqVoACgkQj4D7WH0S
+/k5KjQf/fLoTm7YFevHSeyuYnbrV5Pl54qHfowekR7rk6ALrPj2U/1EJkeyLSsNo
+fBWzO/V85vn5nFmq25mPwn7PYQ8nKVi64k8XBYdJqiE3JB3R2SwbiZyaLI7a3wyP
+/DxIdYckHQYAYJGqNSss/gzjAJ5lN/oQBr5+AhlgfmdnBgKf0RfVsXOzr84L9csY
+xuWu+c/hPggx+4nRWHBy2iMp5O5ARZSb0Rp9z7hMtgcHQvgjPfcdixAoDs33jLkz
+yygabaqSXIyX3HONJDjUWZyEOgcnR3byVJTMY8/KPWbdMRH89Dqz8l6jduosGd/H
+iRj9cc66uU9q1xLohfAkLA3ncrQ1QQ==
+=qlka
+-----END PGP SIGNATURE-----
+
+--dlmz6zrvchrky5ix--
 
