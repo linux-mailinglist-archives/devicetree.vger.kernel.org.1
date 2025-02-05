@@ -1,85 +1,155 @@
-Return-Path: <devicetree+bounces-143227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F0A9A2898E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:42:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22497A28997
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:42:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C68A18848E3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:41:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A30DE167D08
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 11:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06A122DF89;
-	Wed,  5 Feb 2025 11:40:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB9C22CBFC;
+	Wed,  5 Feb 2025 11:41:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rg4UJO5y"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bKKdUXbE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 808BB22B8A9;
-	Wed,  5 Feb 2025 11:40:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F382422CBF4;
+	Wed,  5 Feb 2025 11:41:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738755622; cv=none; b=W/YNId16buvxpddkgnzYkt+qDEZFPoQhYyW86ooW32Z+CBIwdKuA4Uj0V74PV5d6Rf0DDpWI5Hy3gpduqwQczs8dy7Y9yidNn6MxHo/eh5Ru9MDQVNykvnhu50M652MSpCdle/2q6v+TXsoR7zq7ZsOJ9FptuqyH3Lp8hTHUbrg=
+	t=1738755699; cv=none; b=PLmGw+CTcpZ5Es3ZHDp0sv1GhvJ09bXgyOCSILqkiz8vUB2uJ0vq28Qj8okZLTIjlrKxwKu2O5aa7nxi4ytfGkUgfuG5u1mupzpdsWunt3xM/5KoPnCQRGB1kODnxrkOYpjkRBYcnd+IvmgfxebHmgwZcy6W0QA3yxHFYLzYzGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738755622; c=relaxed/simple;
-	bh=QDt7G7gOuUNyLCqEejR8qfOIVWZF+V9T6WAWyoEhZIk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Me1pRU81EOJXr7GcqQDtjH+7dotbFWuMrQHs+79iFVVyrEoPxR/VZKyeGEDOsFPNQoGNSdiNUCRHANJV8L/ILKhOkOIvr24kBE4o5rLP9mcpm/HYjMMdKKYhUvlYbeqAMll7YLKZivlOseJVd0Ekb58v7OsISN+sAZFi/dD8J0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rg4UJO5y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1213BC4CED1;
-	Wed,  5 Feb 2025 11:40:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738755621;
-	bh=QDt7G7gOuUNyLCqEejR8qfOIVWZF+V9T6WAWyoEhZIk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rg4UJO5yReXufNdwnRYqDQ37/CLIMB5yRoJsoZKrJXcnRnQunnnRJHGmJ4RsSmmwp
-	 6cZ/V45OSSVdxZCrRaRdG7T8MPuKv6rZ2k6U7LG0vOOKqTFdtWEkAM4BXWQtBwq8fU
-	 lb97ybVNng/MdPiHYsB6GxwBGz9xpN4Rdk5CdsUEz24ufcuIbexlDrRAqzaeQTkyf5
-	 IyjaX770PqlUYrPwPx+QxmgZLgzg+0vadmP3MusrCpcsMzS4aIS3btWMmgK58XH39E
-	 H/ihbdfBCjFfE9H5Rvftadq3SMAQWx0iVHo+qc8rNFJgUh8KjIgSTGXPW48gr0Hhxk
-	 LIiVPT497+57w==
-Date: Wed, 5 Feb 2025 12:40:17 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: Ludovic Desroches <ludovic.desroches@microchip.com>, 
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Charan Pedumuru <charan.pedumuru@microchip.com>, 
-	linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Tony Han <tony.han@microchip.com>, 
-	Cristian Birsan <cristian.birsan@microchip.com>
-Subject: Re: [PATCH 2/2] dt-bindings: dma: at_xdmac: document dma-channels
- property
-Message-ID: <20250205-dynamic-scorpion-of-climate-9e7b7b@krzk-bin>
-References: <20250205-mchp-dma-v1-0-124b639d5afe@microchip.com>
- <20250205-mchp-dma-v1-2-124b639d5afe@microchip.com>
+	s=arc-20240116; t=1738755699; c=relaxed/simple;
+	bh=Ghnz9Lrv2cS6vsNZoTNWbx17eDzcBL/Iujr112P/8Vw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TI70HnpLeWxlEBjo6rANkVOfDmPtZPr8IrN7BPPtBm9B+UYzySX7ldnH6/22wUIF4dLRxhjMw+sB9k1Likt4MXRAjRbTFvwp+OIRkJwpy+pRPoLQbrey8dpJfW2+X04w30t4BICGyUtXc5xokatUA5h12BwAGO2pYH++0GUP12M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bKKdUXbE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 515670bq028606;
+	Wed, 5 Feb 2025 11:41:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gJW2wTzYmsHqx4B86jwIraVpK/tuRPJ5kg7vAlsnOoU=; b=bKKdUXbETXEKCqgK
+	lTl/LBDNTpKICKfP/ZYuHIK/godyWTdYrbCaufm23UwgZDsEsMhv7ffZg+7UDc0O
+	6AZPTpuMgF2MrkL3ikOQzPNj7N+s7ByBwIBF3Su/N14LLrd7PqkvQqUybx1x5KLh
+	oEnwlmki4Rr86vD1L0S1JJozNv6YbxNrdjykVD3yJUhniiHFRiU1iQ4epc8Z2qHZ
+	cvB0kF6gP6BPHLVgLZOUpgGPNsd8jD8AxQHeLxj4oTSqJeVewMeyGkh/JpdvL1FT
+	F+NJXHdaS+9R4GH91RU09tGubuMJlZAsOxF5cFeNt7aECIchLNYTiyYRIAVFrql8
+	rfhA1g==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44m2ea0r1e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Feb 2025 11:41:26 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 515BfOUN007965
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 5 Feb 2025 11:41:25 GMT
+Received: from [10.218.7.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Feb 2025
+ 03:41:18 -0800
+Message-ID: <fdc8f80c-ea7c-4bb3-a0f5-06353f2d32f5@quicinc.com>
+Date: Wed, 5 Feb 2025 17:11:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250205-mchp-dma-v1-2-124b639d5afe@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] phy: qcom-qmp-ufs: Add PHY Configuration support for
+ SM8750
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Alim Akhtar
+	<alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche
+	<bvanassche@acm.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross
+	<agross@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Satya Durga
+ Srinivasu Prabhala" <quic_satyap@quicinc.com>,
+        Trilok Soni
+	<quic_tsoni@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        Manish Pandey
+	<quic_mapa@quicinc.com>
+References: <20250113-sm8750_ufs_master-v1-0-b3774120eb8c@quicinc.com>
+ <20250113-sm8750_ufs_master-v1-2-b3774120eb8c@quicinc.com>
+ <vry7yib4jtvyc5baruetqb2msy4j4ityv2s6z5smrz6rqjfb5l@xoharscfhz5n>
+ <6873e397-dbc0-4c30-8c08-a65ee7cd6e01@quicinc.com>
+ <CAA8EJprjxMtkefY+90cLGVgz-bDf=VXnaa0eH4ESAC6nf5vrLA@mail.gmail.com>
+Content-Language: en-US
+From: Nitin Rawat <quic_nitirawa@quicinc.com>
+In-Reply-To: <CAA8EJprjxMtkefY+90cLGVgz-bDf=VXnaa0eH4ESAC6nf5vrLA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: E6W9CvTyEzzFTvMhI20owqA81mW0pP4z
+X-Proofpoint-GUID: E6W9CvTyEzzFTvMhI20owqA81mW0pP4z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-05_05,2025-02-05_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ bulkscore=0 malwarescore=0 suspectscore=0 lowpriorityscore=0
+ priorityscore=1501 mlxlogscore=999 impostorscore=0 clxscore=1015
+ phishscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502050094
 
-On Wed, Feb 05, 2025 at 11:17:03AM +0530, Dharma Balasubiramani wrote:
-> Add document for the property "dma-channels" for XDMA controller.
 
-I don't understand why. You are duplicating dma schema.
 
-The same as with other patch - your commit msg is redundant. You say
-what we see the diff but you never explain why you are doing these
-changes. And in both cases this is really non-obvious.
+On 2/4/2025 7:06 AM, Dmitry Baryshkov wrote:
+> Hello,
+> 
+> On Mon, 3 Feb 2025 at 10:03, Nitin Rawat <quic_nitirawa@quicinc.com> wrote:
+> 
+> Your email client has corrupted all quotation levels. Please fix its
+> configuration so that you can not compose HTML email. Or switch to a
+> normal text-based email client like Mutt or Gnus.
+> 
+> No additional comments can be provided to this email.
+> 
+>>
 
-Apply this feedback to all future contributions - say why you are doing
-changes instead of repeating what subject and diff are already saying.
+Hi Dmitry,
 
-Best regards,
-Krzysztof
+Sorry for the inconvenience. After software update seems there was some
+issue with email client configuration . I have updated the configuration 
+and resent my reply.
+
+Regards,
+Nitin
+
+>>
+>> On 1/14/2025 4:19 PM, Dmitry Baryshkov wrote:
+>>
+>> On Mon, Jan 13, 2025 at 01:46:25PM -0800, Melody Olvera wrote:
+>>
+>> From: Nitin Rawat <quic_nitirawa@quicinc.com>
+>>
+>> Add SM8750 specific register layout and table configs. The serdes
+>> TX RX register offset has changed for SM8750 and hence keep UFS
+>> specific serdes offsets in a dedicated header file.
+> 
 
 
