@@ -1,143 +1,100 @@
-Return-Path: <devicetree+bounces-143346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C243A296F5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 18:09:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 744D2A29805
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 18:52:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CE011884893
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:09:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F5843A8309
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:49:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA661DDA14;
-	Wed,  5 Feb 2025 17:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72941FBEB5;
+	Wed,  5 Feb 2025 17:49:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="HHcL0D7e"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="agCBS0jx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2733B4C76;
-	Wed,  5 Feb 2025 17:09:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96A991F8908;
+	Wed,  5 Feb 2025 17:49:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738775347; cv=none; b=WFGmJ2w9xrSIwznLOswfJnOmriLkG5AEQ5G5i5dds8imQ42+D3L/EmHqBgh4o4A+8sCFRxEd3GLY0WUxTEYXJwNxsYqjU3KMKC61qlcqOUXVdj6aHdfPyv14fu7kxjoVsTL0iJQ9wbwVFPbGWb+e84FAAr6wIcZtvm1TE6J4EK4=
+	t=1738777772; cv=none; b=M2kCrbJ1lnAm1HSOKf2ZDbnxNkcz8LeFL6FjYDsjzv9nESB4kEElRlzCFw3g0XSyy1FjzfN+fXw4Bw8QeRH6GHvfgyZ6VLA5lGVlQpE5JYGxERuJCkIqNwEjIEqDUZN5BCYcOxltzx4AHKrkbtyzZi9/YPijDjCIHWEadRSlBQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738775347; c=relaxed/simple;
-	bh=CbXagtJhrSGSS95bINrZ5cWssD3AwQsuc3B6gL6u2k4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TXeUk0WolvQbXuiq+foW5mDXwRWHLEsQJPHCLNo2HXjMbXA7A8rdDJRnfisXhbDpw4DuFvMFXDsss3klEi+Ch682tTK2Qdm+0neMSMcLQ4DCwhEq4Lm7YoLr3obvDbgCKqxGTIpadA/IL6lw1c4yOvdthrtkTerLoWmF2veQVb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=HHcL0D7e; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=5wOT3p+XzV1SocAEzl8vME7EDx+B302N3XwBDJwQTAw=; b=HHcL0D7eVudx5sZ9hoN8wpNrbI
-	t4b0+DaMY/lTfTeq+vCdBwadnnwopZA99yGVHx3/OGzYQOnTmxaG1p3NKzw/esjxyrB9ydYL7ovmV
-	MdI1fUeGPecHwBzGWYuWLR6PLvr2ovWboTs8+J/Urym3vnDNzAGn4QZ3CowwSyCtnRlQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tfitL-00BFNQ-QE; Wed, 05 Feb 2025 18:08:47 +0100
-Date: Wed, 5 Feb 2025 18:08:47 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-	dimitri.fedrau@liebherr.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1738777772; c=relaxed/simple;
+	bh=InoRUYkTbcYQ+vP4+GqLM2Ee+VA2ASPW5As7qkgLHFY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=tO1yiM19z6SakNccys5xuF2/qsdNGBeSTGGMwB0JvhHPbPYc2xG0vAAG56nxdKr/WJLSiqo1ORW0+gIPr8xd902sJKlk3tiM2YRV2l5QKuG3q2otsYBe19y798ZUNfWpQaixT8ssqVZETiquqt5SVHNMy8fQwjgNCZzlPu1vNm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=agCBS0jx; arc=none smtp.client-ip=173.249.15.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
+dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding:In-Reply-To:References;
+	bh=w+M8tkGYZnAzssMSrKjwe9AXXmu2ZiWoPOQS5vB+XAE=;
+	b=agCBS0jxLuluaV9hV9+j/lZ5sepVlXOxWxc62MKyH/X+4BnenSfYoA7uu/SDZzhhSqbhptJJ5nNLnEReIxjuOiDMHw8DjkfZesFgRkf94usIFTHjVYo0ulNoWFCRJ9YR5oEBFTF3I67+G05hIui7XsEzHnIa8U0iQq2TAaTo1BE=
+Received: from lukas-hpz440workstation.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
+	by mail.netcube.li with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Wed, 5 Feb 2025 17:48:09 +0100
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 2/3] net: phy: Add helper for getting tx
- amplitude gain
-Message-ID: <b28755b0-9104-4295-8cd3-508818445a4b@lunn.ch>
-References: <20250204-dp83822-tx-swing-v3-0-9798e96500d9@liebherr.com>
- <20250204-dp83822-tx-swing-v3-2-9798e96500d9@liebherr.com>
- <Z6JUbW72_CqCY9Zq@shell.armlinux.org.uk>
- <20250205052218.GC3831@debian>
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>
+Cc: Lukas Schmid <lukas.schmid@netcube.li>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v9 2/4] dt-bindings: arm: sunxi: Add NetCube Systems Kumquat board
+Date: Wed,  5 Feb 2025 17:47:11 +0100
+Message-Id: <20250205164716.2509650-3-lukas.schmid@netcube.li>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250205164716.2509650-1-lukas.schmid@netcube.li>
+References: <20250205164716.2509650-1-lukas.schmid@netcube.li>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250205052218.GC3831@debian>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Feb 05, 2025 at 06:22:18AM +0100, Dimitri Fedrau wrote:
-> Am Tue, Feb 04, 2025 at 05:54:53PM +0000 schrieb Russell King (Oracle):
-> > On Tue, Feb 04, 2025 at 02:09:16PM +0100, Dimitri Fedrau via B4 Relay wrote:
-> > >  #if IS_ENABLED(CONFIG_OF_MDIO)
-> > > -static int phy_get_int_delay_property(struct device *dev, const char *name)
-> > > +static int phy_get_u32_property(struct device *dev, const char *name)
-> > >  {
-> > >  	s32 int_delay;
-> > >  	int ret;
-> > > @@ -3108,7 +3108,7 @@ static int phy_get_int_delay_property(struct device *dev, const char *name)
-> > >  	return int_delay;
-> > 
-> > Hmm. You're changing the name of this function from "int" to "u32", yet
-> > it still returns "int".
-> >
-> 
-> I just wanted to reuse code for retrieving the u32, I found
-> phy_get_int_delay_property and renamed it. But the renaming from "int"
-> to "u32" is wrong as you outlined.
-> 
-> > What range of values are you expecting to be returned by this function?
-> > If it's the full range of u32 values, then that overlaps with the error
-> > range returned by device_property_read_u32().
-> >
-> 
-> Values are in percent, u8 would already be enough, so it wouldn't
-> overlap with the error range.
-> 
-> > I'm wondering whether it would be better to follow the example set by
-> > these device_* functions, and pass a pointer for the value to them, and
-> > just have the return value indicating success/failure.
-> >
-> 
-> I would prefer this, but this would mean changes in phy_get_internal_delay
-> if we don't want to duplicate code, as phy_get_internal_delay relies on
-> phy_get_int_delay_property and we change function parameters of
-> phy_get_int_delay_property as you described. I would switch from
-> static int phy_get_int_delay_property(struct device *dev, const char *name)
-> to
-> static int phy_get_u32_property(struct device *dev, const char *name, u32 *val)
-> 
-> Do you agree ?
+The NetCube Systems Kumquat is an Embedded Controller based on the
+Allwinner V3s SoC. It is intended for Smart Home or Industrial automation
+without the need for a traditional PLC
 
-This looks O.K. You should also rename the local variable int_delay.
+Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Humm, that function has other issues.
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 046536d02706..f536cdd2c1a6 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -589,6 +589,11 @@ properties:
+           - const: emlid,neutis-n5h3
+           - const: allwinner,sun8i-h3
+ 
++      - description: NetCube Systems Kumquat
++        items:
++          - const: netcube,kumquat
++          - const: allwinner,sun8i-v3s
++
+       - description: NextThing Co. CHIP
+         items:
+           - const: nextthing,chip
+-- 
+2.39.5
 
-static int phy_get_int_delay_property(struct device *dev, const char *name)
-{
-	s32 int_delay;
-	int ret;
 
-	ret = device_property_read_u32(dev, name, &int_delay);
-	if (ret)
-		return ret;
-
-	return int_delay;
-}
-
-int_delay should really be a u32. if ret is not an error, there should
-be a range check to ensure int_long actually fits in an s32, otherwise
--EINVAL, or maybe -ERANGE.
-
-For delays, we never expect too much more than 2000ps, so no valid DT
-blob should trigger issues here.
-
-     Andrew
 
