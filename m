@@ -1,184 +1,154 @@
-Return-Path: <devicetree+bounces-143145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC1BA284C2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:01:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F29C1A284CB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:01:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15F1B1884AC3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:01:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 686697A186F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3EA421773E;
-	Wed,  5 Feb 2025 07:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21A72288CA;
+	Wed,  5 Feb 2025 07:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XZKMrglM"
+	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="oxPngrbI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1BF025A647;
-	Wed,  5 Feb 2025 07:00:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC7A979FE
+	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 07:01:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738738860; cv=none; b=tyHzGkzpveDGHqkTC6yOwnXZJHrYZJbJfcCegSnsznn6BHzwbFinKgIqOgOvH/u+NTuFw1irDxqB+BhV0gsKEYsUJI1gfnq7xtqnGiNAKUE2+B/roSoLwAMNwazH0ZPmMsb34CGbdaQnIlJb/Tc3MpMMVhnrqsubuHASE211dAo=
+	t=1738738899; cv=none; b=gAYRX7I1FxTY+Db2O7YbtX08NA0UKEOFzR11RYvkqoqsujqpcEz6isWuElRUnF9SD60T2g6mM+Ta0g9izYfbq+s0F2CQESbLaKqcwzhp7EVSOBvCHC/fU17zWZLXLA3pqD+Zs8Rrv0ABQRiNE9VXW6q9A5m8dSkY3PKrEyxMv+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738738860; c=relaxed/simple;
-	bh=7WjeZz4TO/UuK5w9UlH8RWVjZ0WWQQw3zyv05GSNR6k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pMqy3THPJpKfgHCzbqEbQufcK8/xqpzfp8Coyus3ng1mmQ/ScgXsRTY//IAkv2gW3tcy+JStGqUfzJcQbBmppuI6vAV1tlp4HiqDXpnbCs9JfDIDx3nMkG6Gm3qB3tUCKDsMEpNumGlDatZC15+sxUdIlhUdgqPNvvvQJG3uIRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XZKMrglM; arc=none smtp.client-ip=209.85.161.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5fa2685c5c0so2512470eaf.3;
-        Tue, 04 Feb 2025 23:00:57 -0800 (PST)
+	s=arc-20240116; t=1738738899; c=relaxed/simple;
+	bh=VquThC1P7xRhIkunqD4o5ESA2B7nVEhFyRffv7zLiW4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GAd+IMeWr9gy9C/SOIdH3m2kLL6QeZL53GWKwMJfU457ueQslNYyiMY44QmiJaaSjw7OB5mB0fxU6bf2/bjEVDxtNK+/6l1o8EUEO9qTZPDnU+P8VnrOZmyESr6T6kKEvURW/Y4/GE0wrZGIZ3AwbzSSHoAp7wX2Wcm6cAGYgx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=oxPngrbI; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aaec61d0f65so1145373166b.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Feb 2025 23:01:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738738857; x=1739343657; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1738738896; x=1739343696; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FVz8hdajmeQn+sLRJ3LfLAYPYY16G3b35wwKMJMKlco=;
-        b=XZKMrglMrIcKZ92aUDgXEA6zo1F/ZElB5gE6U0vs0qnpxHzSakFhCIMbX+gV9QLme9
-         bjf7qCwTVVTkf4agtiFKTbuD/p6UArod18B+cxehLAUtBBvMyRXbJKsKV26oZs6Tlprw
-         PKo6zcNStD+rD75lp/1mUT9vw5boKFMVQPwWV1NVsCEzEhyZylu3EySfC4rrbtITNL9g
-         TvyiNwoTlvj9lM/IcQe/g05E5zQGRNgYAx40iWWw33wMJmuwk3W53n+Fondmo3mPYRJP
-         eftDO5MJIV4RsL89AnZC9TePPRX3zeJ+uKYv+6Uo/N0Y9SaCgIojjLXHU/RuOvCLZIok
-         6LaA==
+        bh=6fF1eROQX3sxUXGc4VeyxV/l34nZf3RV2dnRfhS7BwQ=;
+        b=oxPngrbIf33VSqUqAnXc5hjADFEX/8LmvSzLfUoqMtnz8a4HvoNNAwe3gilhgJfs0N
+         mBNUvZpGgVdUmo7pbYGVkXb0gaJLfYb2zCDzE3YXDdnKhDt3DiXfjjLJAF84wjAGX5Lw
+         kB5CtRKXqDY8lNJJkW0LIwB2w0ymeuWs9HEuoIrg8dxtCZC2Pa4FxFJQFDYpFr1e/lJz
+         UJhcRyez3HSLFOhvagIYdnwUehr63J7TsU+ITiA+hee/MQ+oo52RWaW4S/VpOpPu2sRT
+         tVCYmFLoQDuwYKYrfTAo4B/KGbG8/5rMaSi/7em+eFK8QS954dAgFQMKM6JebTFDoAnL
+         PkMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738738857; x=1739343657;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1738738896; x=1739343696;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FVz8hdajmeQn+sLRJ3LfLAYPYY16G3b35wwKMJMKlco=;
-        b=LlfCleuqyc88cjfF1CKfkUjPw3DfGdlNc/+es1w/6vUL8N+YHwaZzi1Wnvh0zEEY9/
-         XIkhvpnuSGoVmzoTQyHhvcImKe2fYSsIqlS43kgSCG4QyPFUeWPpZ0udnqUBJvuEb7I8
-         F5V7K+j3l+y9dnUdwbQydW9UPBMoZverRVfLsQiFP+f+5k6Ep07M3lGrb6gSusRaRFKM
-         Dtm/DyUrWbxKPJjYFnSSNoF9crIsq631vH+VKr+y9fPwLyPBYLUvu4lwAKybrkp/M+UW
-         K/chsdq7JFSErBUdys1xGt8r1azedGo2R69b+Nt68BxUKb7iyAczHKfT7Hq9yGiX9lII
-         rLeA==
-X-Forwarded-Encrypted: i=1; AJvYcCVYJN2hgW6mFFGf+I1PW7QI/6aVlE0dyfewMFqz2EG8d6n1FGlt1Bg4JzZ281rc9czUSLtQpwHt2i3hM6O+@vger.kernel.org, AJvYcCVwGiX1cjp3v80q2KCljj2wNif3u0IPQ1XJwTtrpCZJAsWdTfjF8Um9xGZFf0b3jXMiFIZ3XKQ2vNy3@vger.kernel.org, AJvYcCW1Kt0J2KnaVOi5DxwkX7xN6ZsIXcwdfuLNkFRreIKrUp0eT9r9iFRj8mWkMB89QcuDkCGCgNilWBE+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuyH8WovshNAaQUjPhPHZxG/NQe+frbzqjqqMcYbSM1zMKXEwh
-	QKGZcOnQVsd7gCo0WHBXwMvMcNIUV57Cv+DIXPYZTEsnGJ8O7nT6fozSb4Shwl4=
-X-Gm-Gg: ASbGncs8xo69JHguIS2+K+js3E67v8wWmA/NzWCHlSjUZMsaZ28aQxTyNRvfYHugNYl
-	WYfTNsmiI7FYKYLdSI16pmu7FgE/oXv260Q0w1YMS/2ibpVxQLhOwnwoMng0EhXeWdybgRBxq2U
-	jDGLqC4CrVG0lh1VNBKMLY5kgKOC/+expCclCCPVFrPLFk3W7Y4JFuk5CE6a2mh5bI68iKXBxbF
-	msJd+f7ib6S998sUndua3Ma260dqrrGwplxeg2iedpym/Bu+7VG8WfEIvJ2x7glC9mvYJ6acUWN
-	xiU0XLmtnK4z7Hzqu8evmtCdmg==
-X-Google-Smtp-Source: AGHT+IFsHiem+4btGG99h0d6BwMEp2mzewnRG8Nfz6GBsGDnx1ZgDacLy7O2/NhwKDNQhLK60akjwA==
-X-Received: by 2002:a05:6820:1992:b0:5fa:73ed:de8 with SMTP id 006d021491bc7-5fc479ce7demr1475362eaf.6.1738738856694;
-        Tue, 04 Feb 2025 23:00:56 -0800 (PST)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5fc104e29b7sm3598247eaf.17.2025.02.04.23.00.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Feb 2025 23:00:55 -0800 (PST)
-From: Chen Wang <unicornxw@gmail.com>
-To: ukleinek@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	unicorn_wang@outlook.com,
-	inochiama@outlook.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com,
-	haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	chunzhi.lin@sophgo.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 1/3] dt-bindings: pwm: sophgo: add PWM controller for SG2042
-Date: Wed,  5 Feb 2025 15:00:47 +0800
-Message-Id: <d739ea5a1bffcf762248efbe25fae9b9fda6f452.1738737617.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1738737617.git.unicorn_wang@outlook.com>
-References: <cover.1738737617.git.unicorn_wang@outlook.com>
+        bh=6fF1eROQX3sxUXGc4VeyxV/l34nZf3RV2dnRfhS7BwQ=;
+        b=Dq78wdGslTP4oQzD8jdh9G284MTbSmlMPfVh1xdLdNvkHeAAHVjBg5eO6baaiJIZmP
+         auphr+rWYNZ9CUU9T4abyI2lgWjch6GCcJc6yc1gQDUBFKVQ1nY4U/rnoxIz6TXJniAF
+         hhtm84s6e9Zy+e3Ty8XUgKxFqF7bRHtCtC8QCGObPoDdR5rzhPJUrvAi9M9PrpYDrSlh
+         xG2SVMAQcrvscGPWlJ3VfDteRWDd4uvnOOIVaAlBkpdPlGNC1NuFnurPzeVn21zrX94E
+         tezge6vXiDDtadXHl8cFpUG2IxOVldoGZ4pP9t8wWoq+6w38rvTWj1QFWTCRSJmO1Sdc
+         KwIA==
+X-Forwarded-Encrypted: i=1; AJvYcCX8p3Zit/ly8SoCsMzE8YIuWy+/ezgAyjSyAhPXvuMuIPgJpdB9PUNuzKG2ebECqX6lms/SvqqLsm2O@vger.kernel.org
+X-Gm-Message-State: AOJu0YypSB0+B3GWgjKNkgntXTycjnnfGXhKgo7JAJyvBfsV1Voba2Fo
+	qTMCXiYfBjo2MrXtfjctY+pm3z2cgB8wuNLV0MVpSttwiv5epPh+QSF+pGSBz5a8CZVFr8i9CE1
+	V5Xf/QUKBFPHh7zTnuQKpmO7D5uTbOU1Coc0=
+X-Gm-Gg: ASbGnct55ELMtX7W4ij8Baw+XlCDCQjJS0BdeASDcOUvBEocOBVz43rqgX2BmJXkBGz
+	HOy4bPq2qWP/u+ZYQ3zfopgwZWXvdVRxSNH4EY+aCtBgEDm54mUmz/mdewGHJSmshtB1hqWSlEK
+	SIX4Vy28rgyyag/YqwKzd04sk1J2Zpiw==
+X-Google-Smtp-Source: AGHT+IFI7oXEdlBj3f8jzL89HdDtlLGM7Z3J5KZB0+W2fMSSLaeuf+o0GJZWUeGTNxD5BtW3fkD03mVacNdtT4HuvS8=
+X-Received: by 2002:a17:907:9708:b0:ab6:597a:f5ee with SMTP id
+ a640c23a62f3a-ab75e24bff5mr117977666b.12.1738738895951; Tue, 04 Feb 2025
+ 23:01:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250131112849.120078-1-biju.das.jz@bp.renesas.com>
+ <20250131112849.120078-2-biju.das.jz@bp.renesas.com> <TY3PR01MB113469AB8C9B228E73673F88786F42@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB113469AB8C9B228E73673F88786F42@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Date: Wed, 5 Feb 2025 16:01:09 +0900
+X-Gm-Features: AWEUYZlwinpeplzLNCplRUzuuHcgKuUzpp17FercCWalV20ptwh-43hQl1jXVhM
+Message-ID: <CABMQnVJ6OrtAcbCQG4d_gdEDZBJ9C_Ghh1Yrrs=n+HwA8pNGzw@mail.gmail.com>
+Subject: Re: [PATCH v2 5/8] arm64: dts: renesas: r9a09g057: Add support for
+ enabling SDHI internal regulator
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	"biju.das.au" <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Chen Wang <unicorn_wang@outlook.com>
+Hi Biju,
 
-Sophgo SG2042 contains a PWM controller, which has 4 channels and
-can generate PWM waveforms output.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
----
- .../bindings/pwm/sophgo,sg2042-pwm.yaml       | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
+2025=E5=B9=B42=E6=9C=884=E6=97=A5(=E7=81=AB) 18:48 Biju Das <biju.das.jz@bp=
+.renesas.com>:
+>
+> Hi all,
+>
+> I need to send a patch for fixing the build issue for r9a09g057h48-kakip.=
+dts
+> as this board is introduced in latest renesas-devel/linux-next[1].
+>
+> I will send next version, after getting some feedback on the current seri=
+es.
+>
+> arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts:42.36-50.4: ERROR (dup=
+licate_label): /regulator-vccq-sdhi0: Duplicate label 'vqmmc_sdhi0' on /reg=
+ulator-vccq-sdhi0 and /soc/mmc@15c00000/vqmmc-regulator
+>
 
-diff --git a/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml b/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
-new file mode 100644
-index 000000000000..bbb6326d47d7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/sophgo,sg2042-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sophgo SG2042 PWM controller
-+
-+maintainers:
-+  - Chen Wang <unicorn_wang@outlook.com>
-+
-+description:
-+  This controller contains 4 channels which can generate PWM waveforms.
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    const: sophgo,sg2042-pwm
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: apb
-+
-+  resets:
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 3
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/reset/sophgo,sg2042-reset.h>
-+
-+    pwm@7f006000 {
-+        compatible = "sophgo,sg2042-pwm";
-+        reg = <0x7f006000 0x1000>;
-+        #pwm-cells = <3>;
-+        clocks = <&clock 67>;
-+        clock-names = "apb";
-+        resets = <&rstgen RST_PWM>;
-+    };
--- 
-2.34.1
+You may have already made a patch, but I also created a patch and
+confirmed working.
 
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+index d2586d278769e2..090d9c69fd75ec 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+@@ -39,7 +39,7 @@ reg_3p3v: regulator-3v3 {
+         regulator-always-on;
+     };
+
+-    vqmmc_sdhi0: regulator-vccq-sdhi0 {
++    vqmmc_sdhi0_gpio: regulator-vccq-sdhi0 {
+         compatible =3D "regulator-gpio";
+         regulator-name =3D "SDHI0 VccQ";
+         gpios =3D <&pinctrl RZV2H_GPIO(A, 0) GPIO_ACTIVE_HIGH>;
+@@ -129,7 +129,7 @@ &sdhi0 {
+     pinctrl-0 =3D <&sdhi0_pins>;
+     pinctrl-names =3D "default";
+     vmmc-supply =3D <&reg_3p3v>;
+-    vqmmc-supply =3D <&vqmmc_sdhi0>;
++    vqmmc-supply =3D <&vqmmc_sdhi0_gpio>;
+     bus-width =3D <4>;
+
+     status =3D "okay";
+
+> Cheers,
+> Biju
+
+Best regards,
+  Nobuhiro
+
+--=20
+Nobuhiro Iwamatsu
+   iwamatsu at {nigauri.org / debian.org / kernel.org}
+   GPG ID: 32247FBB40AD1FA6
 
