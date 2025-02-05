@@ -1,152 +1,148 @@
-Return-Path: <devicetree+bounces-143423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88F6EA29C13
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 22:47:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69111A29C55
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 23:11:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 666CE1886ED2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 21:47:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E644C188733A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 22:11:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A235E214809;
-	Wed,  5 Feb 2025 21:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A688E217645;
+	Wed,  5 Feb 2025 22:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HM3mRbqu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O43byfws"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D0EB14F9FD;
-	Wed,  5 Feb 2025 21:46:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7228B215F42;
+	Wed,  5 Feb 2025 22:10:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738792017; cv=none; b=GFZfTBL3W5JHNnLKqdV/rMfHG6+ibxs/RhWlie3EVAlerr0kqgkKGHeWsy3S4XCc193K+ZhjuNzZCPy69zyMmva4MvIpzF8i7D7tehNjykamm/BJXL2nCPVjfLT946Dkk6OilVZCyjtrSss0Ugrm9y1+o385FV8vq6xhc5B5xSc=
+	t=1738793456; cv=none; b=pv2qLEaBqcu+/z/zRhZn9bzWqpceyTou0HI58PuimaP5helyvKSlTA21A+MzYrSmmLo9GdE0vqnoPDkNcz2NitGTkcBLY7CFFxYlH6Niw5ebJoGMsLVwXWltZFTsDNFsqMSCVuMgyAHuMGmteAe8OZQ666X3FLWZD3BT2nxYQXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738792017; c=relaxed/simple;
-	bh=ZZlo5vlv8E6Ym59lxdbP8O+5omSGNQvE9oCYPT6Vmg4=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=W87IKWzDWjTc2eZcRetAqLH7CV0fC9kaaKiXmQ41v5NfPSMnnaQWU2sb+RO00FSI1SwyGp3i16mFuDvAN7l0Ij3d7WsTR82oQgWIPfocJoquGJx3ngHMUJcSIpNYYseg4aUiJZLi4pliKow+dpY6DNVxQzZSPZlz2FteJySEo/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HM3mRbqu; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 515LkmER3500201
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 5 Feb 2025 15:46:48 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738792008;
-	bh=5iHMFagFUzTBrSi6prGvxicOIdtThcnaj/EYibmT6U8=;
-	h=Date:Subject:From:To:CC:References:In-Reply-To;
-	b=HM3mRbquemiJxIED2iweuAsNO8vY4bLESJH6ovOI7sRE9XKPMMYWw7530q6qL6JaR
-	 ToqoapeSdJVmmMYbtE2MxGIHEytf+gaDAyC0a7dBj6OvbAKRzGJg7Z/CmSL+hnxlP3
-	 9aS4Os7iqkBrBorYCKbpkzYPYuXtE9O5jtsni7mc=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 515LkmZV060068
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 5 Feb 2025 15:46:48 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 5
- Feb 2025 15:46:47 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 5 Feb 2025 15:46:47 -0600
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 515LklsK035372;
-	Wed, 5 Feb 2025 15:46:47 -0600
-Message-ID: <16cb75e2-8321-4acb-a04a-15027930bdca@ti.com>
-Date: Wed, 5 Feb 2025 15:46:47 -0600
+	s=arc-20240116; t=1738793456; c=relaxed/simple;
+	bh=qammxtTCdNkajaOoaTby8FignidfrfHCpLjOqS0LcOg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Yw29zLn4akJoF3pwkQOstehmtQ2pjJOInA6J2cBLTT+5T2k72BfTHszwG56vF+M8VMSd6/HLm6zzvBH05bSB0bPTzdCeDCX7bJYC85MvkKaPw+C1sn+25jsxFZIra+jpQmrhoQoFnL4hYoQ9svl9PHMqKwt7vstu0XzCz2ZCuV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O43byfws; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A9785C4CEDD;
+	Wed,  5 Feb 2025 22:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738793455;
+	bh=qammxtTCdNkajaOoaTby8FignidfrfHCpLjOqS0LcOg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=O43byfws78Dz/JD8jvij0jUtM1OVNYit25pgFI5DsA6HUbYGMqlfM4AT/OWl2m9he
+	 Mm48CrijlgN6DQGtAEY0kWeHes6iT6ZbM5cOCF1FT6SBlmx8nb6BSYDOyyRv3OSoQU
+	 q7YyQ3usB+quCaKmu5KaLrpFfSmPqe5QIzRLu2dk759jzxjMeP65Kac62k24IMbcHl
+	 dYwPKQ5oTFhAuiFtQbluIhvu56DzJ9eSyeK0WwvB3AKwYA27xRRvWcwyLrO6YWFcFy
+	 1ARFjgst/rJQQ+y7dtGuzjLQvbEH28KLB8NbjN9pw6YKSdIqf8v3ouy+hpJDgRDc/Q
+	 tiAja83XO58tg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D29DC02192;
+	Wed,  5 Feb 2025 22:10:55 +0000 (UTC)
+From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
+Subject: [PATCH v5 0/5] Driver for pre-DCP apple display controller.
+Date: Wed, 05 Feb 2025 23:10:49 +0100
+Message-Id: <20250205-adpdrm-v5-0-4e4ec979bbf2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/9] arm64: dts: ti: k3-am62-wakeup: Add wakeup R5F
- node
-From: Judith Mendez <jm@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>,
-        Hari Nagalla
-	<hnagalla@ti.com>
-References: <20250204011641.1523561-1-jm@ti.com>
- <20250204011641.1523561-2-jm@ti.com>
-Content-Language: en-US
-In-Reply-To: <20250204011641.1523561-2-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-B4-Tracking: v=1; b=H4sIAOrho2cC/2XO3wrCIBTH8VcJrzM8/tvsqveILkyPJbQ2NEYx9
+ u65QWvU5e/g54sDyZgiZrLfDCRhH3Ns72Wo7Ya4q71fkEZfNuGMSwAuqfWdTw3lKjgU3te2AlI
+ edwlDfM6h46nsa8yPNr3mbg/T9S/RA2VUgAFfo0Zp7OHS2HjbubYhU6Lna6YXxgtzhslaCaEdM
+ 79MfJhixS1MTExX0jswwVbhl8k1+35SFobmrLhmVpgAazaO4xu0nLKgQQEAAA==
+X-Change-ID: 20241124-adpdrm-25fce3dd8a71
+To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Alyssa Ross <hi@alyssa.is>, Sasha Finkelstein <fnkl.kernel@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Janne Grunau <j@jannau.net>, Nick Chan <towinchenmi@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738793453; l=2490;
+ i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
+ bh=qammxtTCdNkajaOoaTby8FignidfrfHCpLjOqS0LcOg=;
+ b=QlzP/gahoMXJ+srUfiICxcFqw9YyEMXDvWytbHSBvludlItq7sYvQp5jF/nGBCsOW9XcelQnX
+ OPtkiwMdv9qCe0pr0FlTLJffBj7aN6L54N+KOa3VsQok0SK3QO93p/j
+X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
+ auth_id=283
+X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reply-To: fnkl.kernel@gmail.com
 
-Hi all,
+Hi.
 
-Please do not merge this patch series version.
+This patch series adds support for a secondary display controller
+present on Apple M1/M2 chips and used to drive the display of the
+"touchbar" touch panel present on those. 
 
-I will be including one more node and send out v4, thanks!
+Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+---
+Changes in v5:
+- Moved to using the component framework.
+- Other lifetime fixes
+- Link to v4: https://lore.kernel.org/r/20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com
 
-~ Judith
+Changes in v4:
+- Fixed dt bindings.
+- Link to v3: https://lore.kernel.org/r/20250112-adpdrm-v3-0-c674dc19fa7f@gmail.com
 
-On 2/3/25 7:16 PM, Judith Mendez wrote:
-> From: Hari Nagalla <hnagalla@ti.com>
-> 
-> AM62 SoC devices have a single core R5F processor in wakeup domain.
-> The R5F processor in wakeup domain is used as a device manager
-> for the SoC.
-> 
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
-> Changes since v2:
-> - Fix commit header, capitalize R5F
-> - Fix whitespace issues
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 25 ++++++++++++++++++++++
->   1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> index 9b8a1f85aa15c..061819a64300f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> @@ -106,6 +106,31 @@ wkup_rti0: watchdog@2b000000 {
->   		status = "reserved";
->   	};
->   
-> +	wkup_r5fss0: r5fss@78000000 {
-> +		compatible = "ti,am62-r5fss";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x78000000 0x00 0x78000000 0x8000>,
-> +			 <0x78100000 0x00 0x78100000 0x8000>;
-> +		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
-> +		status = "disabled";
-> +
-> +		wkup_r5fss0_core0: r5f@78000000 {
-> +			compatible = "ti,am62-r5f";
-> +			reg = <0x78000000 0x00008000>,
-> +			      <0x78100000 0x00008000>;
-> +			reg-names = "atcm", "btcm";
-> +			ti,sci = <&dmsc>;
-> +			ti,sci-dev-id = <121>;
-> +			ti,sci-proc-ids = <0x01 0xff>;
-> +			resets = <&k3_reset 121 1>;
-> +			firmware-name = "am62-wkup-r5f0_0-fw";
-> +			ti,atcm-enable = <1>;
-> +			ti,btcm-enable = <1>;
-> +			ti,loczrama = <1>;
-> +		};
-> +	};
-> +
->   	wkup_vtm0: temperature-sensor@b00000 {
->   		compatible = "ti,j7200-vtm";
->   		reg = <0x00 0xb00000 0x00 0x400>,
+Changes in v3:
+- Fixed building as module after splitting out mipi block
+- Addressing the review feedback.
+- Link to v2: https://lore.kernel.org/r/20241126-adpdrm-v2-0-c90485336c09@gmail.com
+
+Changes in v2:
+- Addressing the review feedback.
+- Split out the mipi part of the display controller into a separate device
+- Link to v1: https://lore.kernel.org/r/20241124-adpdrm-v1-0-3191d8e6e49a@gmail.com
+
+---
+Sasha Finkelstein (5):
+      dt-bindings: display: Add Apple pre-DCP display controller
+      drm: adp: Add Apple Display Pipe driver
+      drm: panel: Add a panel driver for the Summit display
+      arm64: dts: apple: Add touchbar screen nodes
+      MAINTAINERS: Add entries for touchbar display driver
+
+ .../display/apple,h7-display-pipe-mipi.yaml        |  83 +++
+ .../bindings/display/apple,h7-display-pipe.yaml    |  88 +++
+ .../bindings/display/panel/apple,summit.yaml       |  58 ++
+ MAINTAINERS                                        |   5 +
+ arch/arm64/boot/dts/apple/t8103-j293.dts           |  31 ++
+ arch/arm64/boot/dts/apple/t8103.dtsi               |  61 ++
+ arch/arm64/boot/dts/apple/t8112-j493.dts           |  31 ++
+ arch/arm64/boot/dts/apple/t8112.dtsi               |  61 ++
+ drivers/gpu/drm/Kconfig                            |   2 +
+ drivers/gpu/drm/Makefile                           |   1 +
+ drivers/gpu/drm/adp/Kconfig                        |  17 +
+ drivers/gpu/drm/adp/Makefile                       |   5 +
+ drivers/gpu/drm/adp/adp-mipi.c                     | 276 +++++++++
+ drivers/gpu/drm/adp/adp_drv.c                      | 617 +++++++++++++++++++++
+ drivers/gpu/drm/panel/Kconfig                      |   9 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-summit.c               | 132 +++++
+ 17 files changed, 1478 insertions(+)
+---
+base-commit: b62cef9a5c673f1b8083159f5dc03c1c5daced2f
+change-id: 20241124-adpdrm-25fce3dd8a71
+
 
 
