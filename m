@@ -1,229 +1,143 @@
-Return-Path: <devicetree+bounces-143373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41532A29820
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 18:55:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F089A29830
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 18:58:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 866CA161EEF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:54:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0A737A1D12
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 17:57:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8C881FC7C1;
-	Wed,  5 Feb 2025 17:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91DB71DDC0D;
+	Wed,  5 Feb 2025 17:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uIIcFEgF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RDbHNPD/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C091FC7E2
-	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 17:54:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D961519AD;
+	Wed,  5 Feb 2025 17:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738778070; cv=none; b=mDg9/QDrNN9a68ZqhYBWaQjpCtjUwQwOwpesAzgzKFdbDT3f5YuPS1J5qexI37xTpZ3dKgorDmlG5VBNaQlytD7/lFse4ASZIHA+KWhY/pwOTsxLkec6OmMdQ9iY3pJbsZ1NyP50/ihQJRY4GmzdeVJLuckjUGHyMygWCdvyKk4=
+	t=1738778311; cv=none; b=cr/Cb4fT6ft6+ngndp6VXxaDkcH43fgMYUTqHn4XGueQTH0MnUFPSHD3o7rVJkuATaaIHp+vHJ9IRL0RjFIpZaacdoj80i6m+4qoGOJqWvvgHqBAO1hiWSWC2EyZc96gP4r/3y3vIwq9IykZ/U5kJVbvKUINTOV1T5Pp3HE4ROU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738778070; c=relaxed/simple;
-	bh=iBU9OUHxDFRwrkGtwor16WU4NZhH5SNhALBCHkrsTmA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t64EdxfliAbI3ScPVTv9Y4ov662QF6Aq3qkdumVf/v7YNKPXdfCOqct1qiSjjjtUkfG00GwW2ypd8sSShv66+MF8Cov+n9vuThPWj3lA+ZSVMPAg72lHmutZTXTlGuzENvecgPslZ+zOkXmQqbVePx6xiQS6pQM4/l5ay8OHK4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uIIcFEgF; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab7157cf352so238012466b.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 09:54:28 -0800 (PST)
+	s=arc-20240116; t=1738778311; c=relaxed/simple;
+	bh=IQ+YnCnK3ZJZCbQU7E1GWEkM/fXgKckB17qO1F85Mzs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ac8V9llyGo+YMtmBrNT6lMZHmZ4Te+LkdXPIhbeaFQvlpBkVdA8GKlfYe6B2omvKqZHWmeiOHOM2kLJqNLpNmWSKImWQsF5plrE2BKm8F1OWAdCNwu/aU3OtVflo+D91S4V/756w/oglX+OwotURShic5d1mxZhLC0squYHxZyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RDbHNPD/; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aaec61d0f65so20903866b.1;
+        Wed, 05 Feb 2025 09:58:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738778067; x=1739382867; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x0qvYmPCyPNFC5gLGw5pr5m26K+35wbL4YftBfSGxVs=;
-        b=uIIcFEgFdnUkUnVH/GXRU7BL1sSHu1S8pSu4W414j6zqHqJR4XiHHlRrGYITZF6RZ4
-         XFlXTcDggO1DPyVQn2Z/aZPecYlG6ZGdrrcC6a8fzgJYAeGn0qCNQAbRdwySVrx5tBfc
-         5nSk3zAHt34cdrhoJBDDR028eO8eXPkQWB5n2nhPfD5r1s4zgezPpPBVMzWNjVgaH3qW
-         CRFa4EFzyuDgEjnjfC3w++pn7WkK3ytQwmHVKAXrYifKaVWZP8NAYpLqU0uvGnOrSCN7
-         RGFo9JTaRFciQxsik0yO85HFUjDZcK1W7WXnCHJQI1QKXii6PuNO+J9ghVVTIeQaAwXe
-         hzNg==
+        d=gmail.com; s=20230601; t=1738778308; x=1739383108; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fMAEufYTCwR87g7HGV6xU9skq8IOQ0ObyPdkgemU744=;
+        b=RDbHNPD/Rjd3VqSAAJFaPexNhgo+SedGRIXBbGjD0FlbR2vA9rcRHqu+2ZpsE1MR1f
+         Bv8BgISyxScONToIK+hqBksyjve2my6rrMpcibu7A+w56I5dG5Gs4fmRjNpDauyq0gQ3
+         aoLMRBs+xrQTAhdUt0tP6MWpfA28CCNZRE+w/sF6VbkDqm4AvD03VifTaw7Kv327R5fO
+         a/2FR/kingPztfC7gEFFdJECCAIAYaEYCoPzId7nfUhCvdd36yNXjbtt7zeytB8COT1I
+         00j3Oq/rNUpGc+xk4JONSCzW2I87ooP1yzFM662VZ7ISGL0pGcXyBaZ91PkVvrU++ugi
+         aRNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738778067; x=1739382867;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=x0qvYmPCyPNFC5gLGw5pr5m26K+35wbL4YftBfSGxVs=;
-        b=jeYkleiTbN/cQtgTAxwrrCW2+FNpreRv7yfCLN6b+JM3tOeSJvbZmOfdTL+00wd66z
-         br3dWMe8/iEnCS0c/XDGB6Fkcz6KDb0xHS0VgDDAX8BVVQgW1cqFjIiKVYP2SfDhV3jY
-         AilexHhoYGQ0u5NX5UFm46cljFpQRjqkplosVe96+Bxs4+WbGtu67Sqbg+aDKbLFPOUT
-         DXtXC7BygWL/22ddQm4ZeYXLUmQbo8V/yvdHTznDx5R7B7w6S38GKL/dME3rtCb0pldL
-         KagDw6tLtUJIBjE/WiwC0qv/1QMciyTZGLHHJf0gtQIzz37dvmqpRoAvhvDoPv2YbTHV
-         676Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWFdo4nFyzSdGu3BWwiXOYSSE4NxRvhBk2fBN6yAwctAK75RyUrrarycJ+/QRe1sT0TZpeCVu3z8G7R@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2vWRn7kDfHAGNQy3uZZR67CKc05PSIqaH8dJkJ4qYhnSOkmFI
-	5mSs9h37neGL8+6jVMuNTC5O6QQUQD5C2KeAG6EJH11vX+1NUBHU0d/n/mNcHRo=
-X-Gm-Gg: ASbGncvcNTuuatvJcbjEljnn0PfMzlC1RUKt2eBctxML43UsotjcjwfzMn70aVW+Kfu
-	1CT069QlBjclaQ/7MX5mzqvsezo1CScnEA5S03PX+eo2+k1nAAzKoDP5gt/RtLGCwXCu6M9gEtg
-	bgst3UJW3ZSyAxcShEF3pZMpUz5wmevYxFxWGef4VXCuj11fvw0YGxiiPDouO9xJL0hughWZzcK
-	TqcLAX7vHmwAItCfyrLbQ7pOaql51+LXa6hTI1zjFdTIAHyDdMCEy0BbijRbesAMhpLa05mLP3T
-	Q3DEePfWEvKd/jkiAeBEkvZuUBZnNVVgEnHogGi1qPjvpoJxhWlnDJh7tw==
-X-Google-Smtp-Source: AGHT+IF92wMPufEGt9cvnv832yheronJqrKc1D31ugycDeyrAicJl2GAOxWT42IXWDLHshxUJkJSnQ==
-X-Received: by 2002:a17:907:7b9f:b0:ab6:ef92:c238 with SMTP id a640c23a62f3a-ab76e9876bdmr31149666b.20.1738778066758;
-        Wed, 05 Feb 2025 09:54:26 -0800 (PST)
-Received: from localhost (p200300f65f018b0400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f01:8b04::1b9])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab6e4a5b5ebsm1131303866b.181.2025.02.05.09.54.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Feb 2025 09:54:26 -0800 (PST)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Daniel Mack <daniel@zonque.org>,
-	Haojian Zhuang <haojian.zhuang@gmail.com>,
-	Robert Jarzmik <robert.jarzmik@free.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: =?UTF-8?q?Herv=C3=A9=20Codina?= <herve.codina@bootlin.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: pxa: Use #pwm-cells = <3> for marvell,pxa-pwm devices
-Date: Wed,  5 Feb 2025 18:54:02 +0100
-Message-ID:  <9722b7efc8b9dfeac6ded6302e026f538cde9518.1738777221.git.u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <cover.1738777221.git.u.kleine-koenig@baylibre.com>
-References: <cover.1738777221.git.u.kleine-koenig@baylibre.com>
+        d=1e100.net; s=20230601; t=1738778308; x=1739383108;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fMAEufYTCwR87g7HGV6xU9skq8IOQ0ObyPdkgemU744=;
+        b=T/JcHTFjEwP+1bfAsQDLsz2fcdKFW5XyXJpAreVs2OeOkBX/CipsaDuwlbNCgey4/J
+         ilc7xgWKNd6pTxQm17fYRKcWefXWld1oPaiHmotUXfT9GhJjEv+x8b9OBiLQmtDMLj1Z
+         LSquK6RwuEFEcy430FecBhO3OiLAoRvXP6aH3osTfXOD8GiVdVrwqzPZ9WNYJFteS3Aw
+         4zDTfgNhe9Jz5i52j3wcGuj4TFqX7U4uWYjWq+zkmoKj7C1HnPNT1NoBB5qVodO3Q8kw
+         OmuqnqEoMbF6J5qr4UICsGMJxSfROBpyu/7ZI2YWZ8n2lpfCc7GidLCjLNAEZuFy1tPv
+         Hw1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUEAc77ZCYh7N163BqnJcnvYgnqodYYrCQvzsm/3keWBKZp4+6sdQlOOQ8H3qyPSAGkUqwyO6wu8Ty3JTal@vger.kernel.org, AJvYcCWdEeft8LU7V+DmUzYTXNMORXvop8WAv/p7wGT6rSV9XC1DVTsOXI/WS/jMpponSpu7J/5X+NXflq1C@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFIG5UorUgfGkW+Gj5Uxq6piXW3wiVvR9yoCeLpRUMeQAcgw4D
+	fjtV0HMSsJATzM9ioAZnarF1IDuce2CfmxDuC8VAAWk6mC/yTukQ
+X-Gm-Gg: ASbGnctCTQMjelqEGgfubTuQifmReeT6NNN776LiNgi/AC1YKiI5M7Gj1OY23DACtwb
+	iesfmx6lUmaYYfnRup/1RyH4IctchL2j4LqYaBpwutMZbkuypvFEERNQcHUB/dGRqizguIOO7NF
+	vsANvjk4qx9Hw9BCrfy+Xf3I8EyW7Y22aDBsHBjdj4zTNSCtATs7uPv/KPItWn1Uo2sGbTSKhTx
+	6BlowShnplOgzJr1kF+qmMRpZrOmT4Q9B+/i0B2nO+mxfRd9iCUc3CTFDkJengmNagsLxDF3qpn
+	6eAbCeLk5xtXxEMCpIM2AMJpbAKvnuntRJqQ1UFSo8BrFIr3tD01XT1+vyQ6CDQ2+Q==
+X-Google-Smtp-Source: AGHT+IGilRrBoelGh6e28f+nxniHAFHixKNw+Hqvl/uNj+kVv7H6qbFpMqopbuHdNVB1hSsL6gks3Q==
+X-Received: by 2002:a17:906:c144:b0:ab2:b4bc:41ef with SMTP id a640c23a62f3a-ab75e2a7677mr388312766b.29.1738778306863;
+        Wed, 05 Feb 2025 09:58:26 -0800 (PST)
+Received: from [192.168.50.244] (83.11.225.21.ipv4.supernova.orange.pl. [83.11.225.21])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab6e49ffe44sm1133806466b.113.2025.02.05.09.58.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Feb 2025 09:58:26 -0800 (PST)
+Message-ID: <ab853605-859d-44c6-8cbd-44391cd677e6@gmail.com>
+Date: Wed, 5 Feb 2025 18:58:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4037; i=u.kleine-koenig@baylibre.com; h=from:subject:message-id; bh=iBU9OUHxDFRwrkGtwor16WU4NZhH5SNhALBCHkrsTmA=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBno6W/v2o83YpyNGfd1Rl33qRbjwDiFw+kiB5NO 7QJ/ueiAxWJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ6OlvwAKCRCPgPtYfRL+ TjimCACv1XnU/EyqtKVJ7VMA0V++XPrQAxgKrYl92evq7HhjlahPkqlzO6fTqUUSkmZOicDP2Et RrsaWMsd7hA1yIZ4GJotAhKIDXOnQ1Ujol08cJVsdgqQmLxWeWf7rqq4POxE7kjegWSbPk9EhNW ewx4DQPY9PYODSmPoRzpDODC7nC+v/hotdTSCdYG/i1P8F+sx7TB953LdLlHnTHuA1ge7R/WLhq u56rGSqjyR2N1aZ5OLDCpRtjO4EcBvqdLlU139QbhlFTU+qcg4YpaMOgX9RfvQUktJ3XIg8G4AS 59lL5JfYfzr6qGEPQUgpPBssvXuddxVMYc8bKSvOEcpWP3PE
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/7] dt-bindings: mfd: brcm,bcm59056: Add compatible
+ for BCM59054
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20250131-bcm59054-v3-0-bbac52a84787@gmail.com>
+ <20250131-bcm59054-v3-2-bbac52a84787@gmail.com>
+ <20250202-noisy-impala-of-triumph-c9aa8b@krzk-bin>
+From: Artur Weber <aweber.kernel@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20250202-noisy-impala-of-triumph-c9aa8b@krzk-bin>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-For consistency with most other pwm bindings, also use 3 cells for
-phandles to PWM devices.
+On 2.02.2025 14:24, Krzysztof Kozlowski wrote:
+> On Fri, Jan 31, 2025 at 07:13:50PM +0100, Artur Weber wrote:
+>> ...
+>> @@ -22,7 +24,6 @@ properties:
+>>     regulators:
+>>       type: object
+>>       description: Container node for regulators.
+>> -    $ref: ../regulator/brcm,bcm59056.yaml
+> 
+> Refs should rather stay here, so I don't think keeping these devices in
+> one binding makes it simpler.
+> 
+> Simpler - drop ref and add properties compatible with enum for your
+> regulator compatibles.
+> 
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
----
- arch/arm/boot/dts/intel/pxa/pxa25x.dtsi                   | 4 ++--
- arch/arm/boot/dts/intel/pxa/pxa27x.dtsi                   | 8 ++++----
- .../arm/boot/dts/intel/pxa/pxa300-raumfeld-controller.dts | 2 +-
- arch/arm/boot/dts/intel/pxa/pxa3xx.dtsi                   | 8 ++++----
- 4 files changed, 11 insertions(+), 11 deletions(-)
+The only problem with that is that the regulator nodes have no
+compatibles. I see two ways out of it: either we add a compatible then
+use the compatible enum (might break existing users who don't have the
+compatible, unless we make the driver ignore it), or if we just want to
+simplify but not add compatibles, list all the refs under an oneOf
+condition (like it's done in
+Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml[1]).
 
-diff --git a/arch/arm/boot/dts/intel/pxa/pxa25x.dtsi b/arch/arm/boot/dts/intel/pxa/pxa25x.dtsi
-index 5f8300e356ad..d25065caeebc 100644
---- a/arch/arm/boot/dts/intel/pxa/pxa25x.dtsi
-+++ b/arch/arm/boot/dts/intel/pxa/pxa25x.dtsi
-@@ -67,14 +67,14 @@ gpio: gpio@40e00000 {
- 		pwm0: pwm@40b00000 {
- 			compatible = "marvell,pxa250-pwm";
- 			reg = <0x40b00000 0x10>;
--			#pwm-cells = <1>;
-+			#pwm-cells = <3>;
- 			clocks = <&clks CLK_PWM0>;
- 		};
- 
- 		pwm1: pwm@40b00010 {
- 			compatible = "marvell,pxa250-pwm";
- 			reg = <0x40b00010 0x10>;
--			#pwm-cells = <1>;
-+			#pwm-cells = <3>;
- 			clocks = <&clks CLK_PWM1>;
- 		};
- 
-diff --git a/arch/arm/boot/dts/intel/pxa/pxa27x.dtsi b/arch/arm/boot/dts/intel/pxa/pxa27x.dtsi
-index a2cbfb3be609..ed07b65cc362 100644
---- a/arch/arm/boot/dts/intel/pxa/pxa27x.dtsi
-+++ b/arch/arm/boot/dts/intel/pxa/pxa27x.dtsi
-@@ -49,28 +49,28 @@ usb0: usb@4c000000 {
- 		pwm0: pwm@40b00000 {
- 			compatible = "marvell,pxa270-pwm", "marvell,pxa250-pwm";
- 			reg = <0x40b00000 0x10>;
--			#pwm-cells = <1>;
-+			#pwm-cells = <3>;
- 			clocks = <&clks CLK_PWM0>;
- 		};
- 
- 		pwm1: pwm@40b00010 {
- 			compatible = "marvell,pxa270-pwm", "marvell,pxa250-pwm";
- 			reg = <0x40b00010 0x10>;
--			#pwm-cells = <1>;
-+			#pwm-cells = <3>;
- 			clocks = <&clks CLK_PWM1>;
- 		};
- 
- 		pwm2: pwm@40c00000 {
- 			compatible = "marvell,pxa270-pwm", "marvell,pxa250-pwm";
- 			reg = <0x40c00000 0x10>;
--			#pwm-cells = <1>;
-+			#pwm-cells = <3>;
- 			clocks = <&clks CLK_PWM0>;
- 		};
- 
- 		pwm3: pwm@40c00010 {
- 			compatible = "marvell,pxa270-pwm", "marvell,pxa250-pwm";
- 			reg = <0x40c00010 0x10>;
--			#pwm-cells = <1>;
-+			#pwm-cells = <3>;
- 			clocks = <&clks CLK_PWM1>;
- 		};
- 
-diff --git a/arch/arm/boot/dts/intel/pxa/pxa300-raumfeld-controller.dts b/arch/arm/boot/dts/intel/pxa/pxa300-raumfeld-controller.dts
-index 12b15945ac6d..9094ec422577 100644
---- a/arch/arm/boot/dts/intel/pxa/pxa300-raumfeld-controller.dts
-+++ b/arch/arm/boot/dts/intel/pxa/pxa300-raumfeld-controller.dts
-@@ -56,7 +56,7 @@ backlight-controller-pwm {
- 		compatible = "pwm-backlight";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm0_pins>;
--		pwms = <&pwm0 10000>;
-+		pwms = <&pwm0 0 10000 0>;
- 		power-supply = <&reg_vbatt>;
- 		status = "disabled";
- 
-diff --git a/arch/arm/boot/dts/intel/pxa/pxa3xx.dtsi b/arch/arm/boot/dts/intel/pxa/pxa3xx.dtsi
-index f9c216f91865..4e69b4da0ba6 100644
---- a/arch/arm/boot/dts/intel/pxa/pxa3xx.dtsi
-+++ b/arch/arm/boot/dts/intel/pxa/pxa3xx.dtsi
-@@ -224,7 +224,7 @@ usb0: usb@4c000000 {
- 		pwm0: pwm@40b00000 {
- 			compatible = "marvell,pxa270-pwm";
- 			reg = <0x40b00000 0x10>;
--			#pwm-cells = <1>;
-+			#pwm-cells = <3>;
- 			clocks = <&clks CLK_PWM0>;
- 			status = "disabled";
- 		};
-@@ -232,7 +232,7 @@ pwm0: pwm@40b00000 {
- 		pwm1: pwm@40b00010 {
- 			compatible = "marvell,pxa270-pwm";
- 			reg = <0x40b00010 0x10>;
--			#pwm-cells = <1>;
-+			#pwm-cells = <3>;
- 			clocks = <&clks CLK_PWM1>;
- 			status = "disabled";
- 		};
-@@ -240,7 +240,7 @@ pwm1: pwm@40b00010 {
- 		pwm2: pwm@40c00000 {
- 			compatible = "marvell,pxa270-pwm";
- 			reg = <0x40c00000 0x10>;
--			#pwm-cells = <1>;
-+			#pwm-cells = <3>;
- 			clocks = <&clks CLK_PWM0>;
- 			status = "disabled";
- 		};
-@@ -248,7 +248,7 @@ pwm2: pwm@40c00000 {
- 		pwm3: pwm@40c00010 {
- 			compatible = "marvell,pxa270-pwm";
- 			reg = <0x40c00010 0x10>;
--			#pwm-cells = <1>;
-+			#pwm-cells = <3>;
- 			clocks = <&clks CLK_PWM1>;
- 			status = "disabled";
- 		};
--- 
-2.47.1
+Personally I'm in favor of keeping this as-is, though, for the benefit
+of the DT linter preventing accidental mixing of bindings for different
+device types (e.g. BCM59056 MFD node with BCM59054 regulators). There's
+at least some precedent for this method[2]. But if making it simple is
+what's considered better, I'll go with one of the aforementioned
+options.
 
+Best regards
+Artur
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml#n147
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml#n69
 
