@@ -1,142 +1,163 @@
-Return-Path: <devicetree+bounces-143161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74C2A28561
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:17:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FDE3A2856B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:18:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 333DB165E44
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:17:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C133B161381
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 08:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9660221D90;
-	Wed,  5 Feb 2025 08:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81D48228CB3;
+	Wed,  5 Feb 2025 08:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RQ4uWsNv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED81229B2E;
-	Wed,  5 Feb 2025 08:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8788215077;
+	Wed,  5 Feb 2025 08:18:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738743428; cv=none; b=E19eBQut7b7SXs7SYPqqq+4bZ5laAnyglD4YOXsVQoXvEHJ3wh++8J71wNWKcsfBmTavQSRX397SrH+2GaTGjoZouC55ia4BeYjjYkkIv4r3S7m6kfVw+GIonNs6VEAqh22XDN/TQS/qgbaUMINKW5R0RaY+0XWgWIcHJ0F3S34=
+	t=1738743531; cv=none; b=PGtrMZsrUSaZeT9wZsPByud5AmMqfW6BkSLAS5ap11IDPGN7GBxS7BVZ2AY+tCIezCQ3NbYA5GW2mDI24aboBaAPr/D/VucyKmduniab1VqtHpqaWdhm4DHVLK3Uk28FIRmPfa0K2Wlzu6GRSTP9D4aJM0DsEwgURaXZJRwQXjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738743428; c=relaxed/simple;
-	bh=MOt/1h5n8QTWGRgnXYLnVhQU1pp96cv+p2s1lwEVnVM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DHrCr2sB+oTkX+I02edcCjuFxfHBZTIZULQneQcN5YoRBupJx0gdZxnYaJ+67KhEIUlfc3UTJcq/Ri7wG9dxpyIlCjrSLoVy61fflbIcm4Hg3mcqD4cNRqX6YQUwE5TF2bs6CI/W3B8jBYUuq8mh1gg2Bc3WUgpHtkaHdJYWaVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1738743531; c=relaxed/simple;
+	bh=4yFYHF9xYptZpF0Uo5Lcj/AR1aNAJOWX6ts3nzJseaw=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Dplou9QtQj6p2a8xYSiWy3vxaYv06REatIqnTq1A9CuAveAAzHlVYHuqnErwaT23AIJP2kgSy4JOmB3YtN4V8ckBStdzMsiCJGtyBu9UeqfTKBUCuAcL/QLL0f2ZaVssY66+hXQ5ksrYlmk8Skh5y1OMBmr9khRy//RlIfKcke4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RQ4uWsNv; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-866d778e797so1055398241.2;
-        Wed, 05 Feb 2025 00:17:06 -0800 (PST)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5dce27a72e8so118544a12.2;
+        Wed, 05 Feb 2025 00:18:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738743528; x=1739348328; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UNW7uXFJKMR9kCFEqLTGkFIRk/6qrajv5bHRhgQljQY=;
+        b=RQ4uWsNv3338UCA+ipMQNzPY5G4qwecPntSeEVjnlWU4NRfd2BTGlDcifuU8+gUYj3
+         r2828MYLgVf8AeWSR5PNhmCDkuTHhNG8AQYnzE9jrMX56HBJ6jnQED1nmDEnNasECYK4
+         /ij++L5Q+zF+VoCzW0m8CuxGa7aG8kbES7i7D628APWDDFzi2bvWo0Foi9DtDdsY+udS
+         lb0f4zB7vMW0s3L2TfkeFoFYJTrc759rU5urUTMKmEbwRTDkMlxY2RK0/Q5I2vi77gTz
+         aCbXSsPl/dERXhd+ElzujujYmClNxhjg/01U2grmvl4Yc3y5kmkEk1VSDJp5wSkBNsFw
+         3P1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738743425; x=1739348225;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e+GGQxRdDlKF2U6aQCZ4kV0Y9j2k/LiW1X1AM4fmKAs=;
-        b=KnVfDhCiAV4XotqRKE1EnUEqhm6dm4JZkGbUHyguGd29HxCZ9+Pe6egQcYxBplCLIi
-         mZDzjgojT8qGsbukqeen0irDf7J+tJoqRvB2aFDkWOXJFlK9fAwWqqu7IJepHwep7zHW
-         x8XsW0to9N+HTauizf4qRJBZRGjr2TE/7c1Mh0WQ+CZmOg2TBU9WxlfoYXoLzzD+sppL
-         vn/cosp4uyZ7xHChnYJuY7dZ1E8jnw06NP4WHnGwjFu8+8FIg6Af3Y3Ka7s4uqjTgX6K
-         lhxUopy3rVBzdJk3q+KyDBOIfWV/W05L8z0m4s4V8Eqs5/3aSFYEI5oKl8l1rsKFG83A
-         N0NQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVxpYfA4hMLlYAYcKXHCcJnDmCv0LYekLOYkAwS2tqpyPuiNFgGg0OIuudun4MHhkK8+aaCNsXeZfXp@vger.kernel.org, AJvYcCWzZ06RosYpidaRg86sltTe88gnz+yiGZxqFVN5Y2HW4LcErRkla+s+fnjHmzIsVjYI+n9ivViN0piQLCvPvIo2paw=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzzp3AVWGO7s0zoN9bbdchoiYJBhem4Ji+jGLpHCSFjdMDt13ob
-	xSeXF+EcLiVxN/macXiahmvVmTMeJStTxhUhD4GFoB7exIIQjosN21zhVNMw
-X-Gm-Gg: ASbGnctZ/waRvvaR8QTPZK8SSqcbWAg1rsDkZLPpPcKsjXWzZ1IwfC7Ee48SnqOEwiI
-	Gg+KwfTwOPGGcAzYH6+R/d+s+8TETI/vD+py9dZHCIMM1nu+SBLlqlYQZo3gE7gOpdPiD3tp8wf
-	aL0W+3bRJChoF8CsUrVKpiNo6FSdVWjp3CsEIL2VcZZQGQZd9ZZhVsuFIHb9JG9nEaEkyPztGtA
-	YowmIRIg5Mkg6rfLlj9Zq9CK52Lo0YI7U3NK9Y2Lgi49TKPPZIYsSNsEv/3bTGNJ4aonvlACK1m
-	+MSxmON7R+kH+7FmcWmcfJLzu8aJzb8sOYg80y9WsNsC27LmIKIWpA==
-X-Google-Smtp-Source: AGHT+IHpHdXSaQTqMVygl8QtVQ0pbzoPnQR7at3hn0PcLFLr/q/JbJGdUnA1Gwb3VDnAW5t5mTvrLg==
-X-Received: by 2002:a05:6102:b10:b0:4b1:1b67:6a5c with SMTP id ada2fe7eead31-4ba47abab86mr1432808137.18.1738743425445;
-        Wed, 05 Feb 2025 00:17:05 -0800 (PST)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-866941f309dsm2418490241.32.2025.02.05.00.17.05
+        d=1e100.net; s=20230601; t=1738743528; x=1739348328;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UNW7uXFJKMR9kCFEqLTGkFIRk/6qrajv5bHRhgQljQY=;
+        b=h7HZaWg7nxSx21VX3hB9hSHh3jNugelNSSyG2sQ03eyktTWFcUATWZQpbE5FpAUzaS
+         CMevZWBOFnqwBsWsFI2/VZaXsw/j+l1NM3dbvgUjPmXvks+KL/ytK67ntEiyWFCsLUew
+         BeEgALDyXqkdoNZJShHpEugyoHbUracJYnsPO7P176BJVMqIVAvd0EFvqpqgFf4UZOLC
+         HkHTB7hPqqBxyUKhBZGVZHRPAnPHvjX0QHb6bIx/6XeLCtsq1Y35jHDQjXCxFU2i8eOv
+         /kdobKaBQCnpmQVcGBKc4xZUBGrlUDdsvEkcVGX+LruceO405W+Zmu0vXEVUZ7gZl75U
+         +0CQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVGHT9biXC8PtFFw7pXSDTgi4f3aSCP3VuoX0WeB3sNHe/YT5TvWBB06BTOifY9CLSX7yb4uSzKgnIegdHzWtaZBmg=@vger.kernel.org, AJvYcCXsiXCJCaJd/XHCBgSmBmDJ37QdQW0mEBzq0RoyMR/XaVj/fqluE3cuuKrdAUrOgvIqbzGZQSL4HfuhY80=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxs0rEsDQm7I/nyPFxtZ+bdHi3i84Ml0wWKmaHsWd7Kc2+OjkY2
+	mMA7D8yxGky4MA7Ar2xC74cIwrKHAfn7fYSRH7HyAEDt8CiMxiY5/oDHXA==
+X-Gm-Gg: ASbGncsQeilcQ2qLhUo6zH1H0IeMjhgsxkwBdBamYkPxSNsEQKv+5D32SvEpnjtkD3I
+	tNNamafvNta2c6gKl040sLeO5wDvqph4nX0uahxuWDsLx/yfyFNiaFYMGF6QGyRG1+Mv0vcv3po
+	j2KdTBsgSavTE9vaw1ci1xnRLp+phnCycJyCeHq5W2jeHdVNCX8aWZgerL8ErRFSdEEARWjKB1A
+	CGg1qpK66K0G6aY0vshUdYoUiS81SchhRRJxoG7PeHaBBhDez7ov9ak4E2BlwD6x3MrL/aL7Pna
+	BlTOeep6wD5D5A1TnWvvGAz5wkfRXvn2AAItMCL8ZuVjz76EnjHm2vJMM46T5l2pgBTiRA==
+X-Google-Smtp-Source: AGHT+IHDbLiE7YoVUr4CvYmahaf4zTpaa81sGHBgInIf/ZKG021o5cEBnKKzmiCc6pqVQHocIMOaAQ==
+X-Received: by 2002:a17:906:db04:b0:ab6:d575:9540 with SMTP id a640c23a62f3a-ab75e34dc14mr153610966b.50.1738743527521;
+        Wed, 05 Feb 2025 00:18:47 -0800 (PST)
+Received: from [192.168.1.105] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7008b2c04sm852094466b.33.2025.02.05.00.18.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Feb 2025 00:17:05 -0800 (PST)
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-866d97710faso895491241.3;
-        Wed, 05 Feb 2025 00:17:05 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUBwbCnd8gk266F4j8UmbKcU39Alg8B4UUm1tzksqJ/sYw3pk7/yL5WeINPZMkZ6SmvhtDGOF4MM4KbC+3ZsBasOog=@vger.kernel.org, AJvYcCWBhyfJvxYuxK7qZtY97NfqRKr9/o4RtVq/9mWi1lRoeN0TnShsm3W3oEceVXorgseA7qcb3vYjcws2@vger.kernel.org
-X-Received: by 2002:a05:6102:2ac8:b0:4af:56a8:737c with SMTP id
- ada2fe7eead31-4ba479c50camr1238470137.12.1738743424957; Wed, 05 Feb 2025
- 00:17:04 -0800 (PST)
+        Wed, 05 Feb 2025 00:18:46 -0800 (PST)
+Message-ID: <dc3dcfe1-2706-449b-8622-2783349e8b41@gmail.com>
+Date: Wed, 5 Feb 2025 10:18:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250131112429.119882-1-biju.das.jz@bp.renesas.com> <20250131112429.119882-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250131112429.119882-5-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 5 Feb 2025 09:16:53 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVnEtoWU5_DTmN6WsftPb1pButHfCzpXEjK1w5OUKzsdQ@mail.gmail.com>
-X-Gm-Features: AWEUYZmEd-oRL5NHJoJ1mdYifR3Jp3QiGAYefJefi0121PhZ99-tfT-tE4WNyMM
-Message-ID: <CAMuHMdVnEtoWU5_DTmN6WsftPb1pButHfCzpXEjK1w5OUKzsdQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/8] arm64: dts: renesas: r9a09g047: Add SDHI0-SDHI2 nodes
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/4] arm64: dts: exynos: update all samsung,mode
+ constants
+Content-Language: en-US
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>,
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250204172803.3425496-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250204172803.3425496-5-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250204172803.3425496-5-ivo.ivanov.ivanov1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Biju,
-
-On Fri, 31 Jan 2025 at 12:25, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add SDHI0-SDHI2 nodes to RZ/G3E ("R9A09G047") SoC DTSI.
+On 2/4/25 19:28, Ivaylo Ivanov wrote:
+> Update all samsung,mode property values to account for renaming USI_V2
+> constants to USI_MODE in the bindings.
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 > ---
-> v1->v2:
->  * Status of internal regulator is disabled in the SoC .dtsi. Override
->    the status in the board DTS when needed.
+>  arch/arm64/boot/dts/exynos/exynos850.dtsi     | 14 +++---
+>  arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 48 +++++++++----------
+>  .../arm64/boot/dts/exynos/exynosautov920.dtsi |  2 +-
+>  .../boot/dts/exynos/google/gs101-oriole.dts   |  4 +-
+>  arch/arm64/boot/dts/exynos/google/gs101.dtsi  |  2 +-
+>  5 files changed, 35 insertions(+), 35 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
+> index f1c8b4613..cb55015c8 100644
+> --- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
+> @@ -651,7 +651,7 @@ usi_uart: usi@138200c0 {
+>  			compatible = "samsung,exynos850-usi";
 
-Thanks for the update!
+...
 
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> @@ -410,6 +410,66 @@ gic: interrupt-controller@14900000 {
->                         interrupt-controller;
->                         interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
->                 };
-> +
-> +               sdhi0: mmc@15c00000  {
-> +                       compatible = "renesas,sdhi-r9a09g047", "renesas,sdhi-r9a09g057";
-> +                       reg = <0x0 0x15c00000 0 0x10000>;
-> +                       interrupts = <GIC_SPI 735 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 736 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&cpg CPG_MOD 0xa3>, <&cpg CPG_MOD 0xa5>,
-> +                                <&cpg CPG_MOD 0xa4>, <&cpg CPG_MOD 0xa6>;
-> +                       clock-names = "core", "clkh", "cd", "aclk";
-> +                       resets = <&cpg 0xa7>;
-> +                       power-domains = <&cpg>;
-> +                       status = "disabled";
-> +
-> +                       vqmmc_sdhi0: vqmmc-regulator {
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> index 387fb779b..b73c152c7 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
 
-sdhi0_vqmmc? (same for the others)
+This patch won't apply anymore since gs101-oriole was moved to pixel-common.
 
-> +                               regulator-name = "SDHI0-VQMMC";
-> +                               regulator-min-microvolt = <1800000>;
-> +                               regulator-max-microvolt = <3300000>;
-> +                               status = "disabled";
-> +                       };
-> +               };
+I didn't see that [1] was applied yesterday. I could make a new patch that
+also covers these changes, but I'd expect the rest of this series to get applied first.
 
-Gr{oetje,eeting}s,
+[1] https://lore.kernel.org/all/20250117-gs101-simplefb-v4-0-a5b90ca2f917@linaro.org/
 
-                        Geert
+> @@ -161,12 +161,12 @@ &usi_uart {
+>  };
+>  
+>  &usi8 {
+> -	samsung,mode = <USI_V2_I2C>;
+> +	samsung,mode = <USI_MODE_I2C>;
+>  	status = "okay";
+>  };
+>  
+>  &usi12 {
+> -	samsung,mode = <USI_V2_I2C>;
+> +	samsung,mode = <USI_MODE_I2C>;
+>  	status = "okay";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> index 302c5beb2..473db46aa 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> @@ -825,7 +825,7 @@ usi_uart: usi@10a000c0 {
+>  				 <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1_IPCLK_0>;
+>  			clock-names = "pclk", "ipclk";
+>  			samsung,sysreg = <&sysreg_peric0 0x1020>;
+> -			samsung,mode = <USI_V2_UART>;
+> +			samsung,mode = <USI_MODE_UART>;
+>  			status = "disabled";
+>  
+>  			serial_0: serial@10a00000 {
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
