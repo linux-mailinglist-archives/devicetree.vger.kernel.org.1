@@ -1,186 +1,114 @@
-Return-Path: <devicetree+bounces-143190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B64E6A28642
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:14:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7589CA28652
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 10:17:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EC2B3A1C5B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:14:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65E201889A5B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 09:17:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3A722A4E1;
-	Wed,  5 Feb 2025 09:14:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qgTAJYj7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E9022A7E7;
+	Wed,  5 Feb 2025 09:17:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A05213240;
-	Wed,  5 Feb 2025 09:14:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3884223301
+	for <devicetree@vger.kernel.org>; Wed,  5 Feb 2025 09:17:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738746844; cv=none; b=Rp20+fTalAJzsT9E6n6q8C/VqdyY00AYhcEdClqEwt8n0TvkMQ53M5KsUV5e+6Bw47dQ5QWYv2s8b1ggGerc3OON320Lt/l4quELfZpUgTlagSSzVi5ZjhW+NsV9P0nTED/ZJZ/SmBZr7YwqZBDKWCbHlzCJtgKTkZCgIiQLQ/g=
+	t=1738747058; cv=none; b=ENSMlxp+zkG3l2pruO8jFy1vhixEeXf5jeFGe5bXJ2m8qAQyw0/lT2gsaw1c90WQYfla+iYyV2OcfFC6ZtXhz/OUnYGwqcSl2Iw8opJMSSZVk/M0fu9JgUBZBfiLJv2IGg8O2/LB3aE6Vh7NJPnQzA6rv5cUTL8WdA63agLae7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738746844; c=relaxed/simple;
-	bh=4C2JCBvwyEf/X2nHPrRMmWtMS/VF3OfV5sTLegNX37Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kKR8vWtTv+0ylpB3d5fisghF1WCZI/stfBA+eVHzY8qseFxLU4qXqTUcF1wXOZmHufTMuzhWH6et9JdK3aOKfsDlSPKKgCEDfMv8YomVtlpx8apR1odS8zXj8+4E+cu7H6sW3Ps3xRDpDS4VyuVgCugyAKSkv4SnVcH3how4roM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qgTAJYj7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D14B7C4CED1;
-	Wed,  5 Feb 2025 09:13:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738746844;
-	bh=4C2JCBvwyEf/X2nHPrRMmWtMS/VF3OfV5sTLegNX37Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qgTAJYj7he3xj5vx6537c+N0Gqm8DOtAgpmH3h1hKA+KhJr6iB1oBfJrM/4FpnYK9
-	 zY5e/VJxhZPBQMwAQQgUeZ/cNHG0tTwtgErxvItRjxJOiVejHN0FirRST+0kSMMJRr
-	 ut6HN5jaAgWOFwxv64Vv/+xG8oEXJQxPIe/ymoaNkxM8LPiXkwuAK/zahlRbALG2V6
-	 WnhtEt6n3F7hqezB6lJRWKI2GEgcZNPpq9Xqoq7IIxVoaMLwm7QWSoFkspkjvCHz2U
-	 W+GDekkfQDVL82VGA+02ti+atf6xdm2gc65+nD7vW0MnGFPN8DVul8qOMJWlmT5kNm
-	 ndaQtCogl6k4A==
-Message-ID: <c0aad911-ecc4-4b04-a453-6da226f76ed2@kernel.org>
-Date: Wed, 5 Feb 2025 10:13:52 +0100
+	s=arc-20240116; t=1738747058; c=relaxed/simple;
+	bh=o36WOV/0qnJVcad9POlQZ7XqwgrvW3fEwoOlVYAxl8g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mJyaxviBomxCgfiTC9n1wnIzi4fvMZb3WqHJ2xo2QEHIMKhhcXKUbuXu3X02rycAS7qqi0AwA9MOcZSGfLOBMOAzQdkRzNWmbxY87gXjIK2aXkhCRDhPp9+YdiRfz8rxoQt0L0tthE3tM1a9DarY33S9E81WDiK2xukowWcwOAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tfbX6-00012e-JN; Wed, 05 Feb 2025 10:17:20 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tfbX5-003buj-0t;
+	Wed, 05 Feb 2025 10:17:19 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tfbX5-00FToZ-0V;
+	Wed, 05 Feb 2025 10:17:19 +0100
+Date: Wed, 5 Feb 2025 10:17:19 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, devicetree@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	kernel@pengutronix.de
+Subject: Re: [PATCH v3 0/4] Add support for Priva E-Measuringbox board
+Message-ID: <Z6Msn8AxgG_JTVNs@pengutronix.de>
+References: <20250203085820.609176-1-o.rempel@pengutronix.de>
+ <173859694746.2601652.11244969424431209545.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/5] dt-bindings: gpu: Add protected heap name to Mali
- Valhall CSF binding
-To: Florent Tomasin <florent.tomasin@arm.com>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>,
- "T . J . Mercier" <tjmercier@google.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Yong Wu <yong.wu@mediatek.com>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- nd@arm.com, Akash Goel <akash.goel@arm.com>
-References: <cover.1738228114.git.florent.tomasin@arm.com>
- <36b57dcf20860398ba83985e1c5b6f6958d08ba7.1738228114.git.florent.tomasin@arm.com>
- <7234f25c-a2aa-4834-931b-aeeb7a49dfa7@kernel.org>
- <4b9deab1-e330-4c93-8260-75276c2bc9ff@arm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <4b9deab1-e330-4c93-8260-75276c2bc9ff@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <173859694746.2601652.11244969424431209545.robh@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 03/02/2025 16:31, Florent Tomasin wrote:
-> Hi Krzysztof
-> 
-> On 30/01/2025 13:25, Krzysztof Kozlowski wrote:
->> On 30/01/2025 14:08, Florent Tomasin wrote:
->>> Allow mali-valhall-csf driver to retrieve a protected
->>> heap at probe time by passing the name of the heap
->>> as attribute to the device tree GPU node.
->>
->> Please wrap commit message according to Linux coding style / submission
->> process (neither too early nor over the limit):
->> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-> Apologies, I think I made quite few other mistakes in the style of the
-> patches I sent. I will work on improving this aspect, appreciated
-> 
->> Why this cannot be passed by phandle, just like all reserved regions?
->>
->> From where do you take these protected heaps? Firmware? This would
->> explain why no relation is here (no probe ordering, no device links,
->> nothing connecting separate devices).
-> 
-> The protected heap is generaly obtained from a firmware (TEE) and could
-> sometimes be a carved-out memory with restricted access.
+Hi Alexandre,
 
-Which is a reserved memory, isn't it?
-
+On Mon, Feb 03, 2025 at 09:37:06AM -0600, Rob Herring (Arm) wrote:
 > 
-> The Panthor CSF kernel driver does not own or manage the protected heap
-> and is instead a consumer of it (assuming the heap is made available by
-> the system integrator).
+> On Mon, 03 Feb 2025 09:58:16 +0100, Oleksij Rempel wrote:
+> > This patch series introduces support for the Priva E-Measuringbox board
+> > based on the ST STM32MP133 SoC. The set includes all the necessary
+> > changes for device tree bindings, vendor prefixes, thermal support, and
+> > board-specific devicetree to pass devicetree validation and checkpatch
+> > tests.
+> > 
+
+...
+
+> arch/arm/boot/dts/st/stm32mp133c-prihmb.dtb: adc@48004000: adc@0:interrupts: 0 was expected
+> 	from schema $id: http://devicetree.org/schemas/iio/adc/st,stm32-adc.yaml#
+> arch/arm/boot/dts/st/stm32mp133c-prihmb.dtb: adc@48003000: adc@0:interrupts: 0 was expected
+> 	from schema $id: http://devicetree.org/schemas/iio/adc/st,stm32-adc.yaml#
 > 
-> I initially used a phandle, but then I realised it would introduce a new
-> API to share the heap across kernel driver. In addition I found this
-> patch series:
-> -
-> https://lore.kernel.org/lkml/20230911023038.30649-1-yong.wu@mediatek.com/#t
-> 
-> which introduces a DMA Heap API to the rest of the kernel to find a
-> heap by name:
-> - dma_heap_find()
-> 
-> I then decided to follow that approach to help isolate the heap
-> management from the GPU driver code. In the Panthor driver, if the
-> heap is not found at probe time, the driver will defer the probe until
-> the exporter made it available.
 
+Can I please get your attention here. The reported issue is not related
+to this patch set. adc@0:interrupts are set in the dtsi file.
 
-I don't talk here really about the driver but even above mediatek
-patchset uses reserved memory bindings.
-
-You explained some things about driver yet you did not answer the
-question. This looks like reserved memory. If it does not, bring
-arguments why this binding cannot be a reserved memory, why hardware is
-not a carve out memory.
-
-Best regards,
-Krzysztof
+Kind regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
