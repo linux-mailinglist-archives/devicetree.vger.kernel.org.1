@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-143130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07B44A283ED
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 06:54:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03816A283FC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 06:57:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 951E17A23D5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 05:53:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE9283A6CE7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 05:57:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C51521E086;
-	Wed,  5 Feb 2025 05:53:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D2A21E0AA;
+	Wed,  5 Feb 2025 05:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MYaPiSsz"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BlErTA6/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C23021C180;
-	Wed,  5 Feb 2025 05:53:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A21221C180;
+	Wed,  5 Feb 2025 05:57:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738734838; cv=none; b=jKNWnxq15lsr5aIIXb+DPG/5y55/zUgPK9p0BT1bgSAZSqXi8wubNlPN9ow9y9uogAWWVfNJ72wNKrDyrHjpN5vVecKnPlpw7XAX3G54J+o4xF7f27hNuzh7U537MRUENdT3nOS1fbmD2odWpbFI5PAVbN9qr7U5bhUZbDDG+0I=
+	t=1738735044; cv=none; b=nj2qTW6hoRKHKpLSo2+s0qLjKHyn6GAS0uUvcJhyFLx7Z7e4g+4FCpvvUvSyilyCr39ZKQ+Sr5MLJRrErtKOQexHAbECI3Or8G7VyY1NmXpSk2ho6Bb+ZxKXPb/VGO/FAM5qidG+MpNFW+xc8KOcq/WF8EM+444BsvdwNxar0Xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738734838; c=relaxed/simple;
-	bh=JeMriPXBCMtMZcRdoaP2GNPIOVqWwAxZYkHWo6fAoYo=;
+	s=arc-20240116; t=1738735044; c=relaxed/simple;
+	bh=KcKw+JaeazFnH7dr3v318+0gumLS8Njvvr9mpbh65sA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IHll4nbYJGcAegYoErT84ofVUUdEmHVBkSzGFcsX8WYiAiki4E+KKIUx3ZBU5UHt4J5OYOBW9oEk6Kp0GsYtXReQM7zqUYLR//ccrX4amrGLmVxxex9viw6LttC1UW6KnEFLfIS/g41QAUMjPwJmTIMFaH21xbhrmksOA6OeUQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MYaPiSsz; arc=none smtp.client-ip=198.47.23.235
+	 In-Reply-To:Content-Type; b=ugQnYaeP0kmb1LBh9sFZ1fAI3rtG4jkzb+ASd4X7vRmmWck9eiEFPpUwYC5ZMBS4/GxV5b+966aRL2JNXu+78kGe8DHRzlClK58KnX9x2YHKqxJNdVyciVqnuguuyPL6jJoEGU9c1mari5sXdeRjIHd8sX0EdzsC8aaHAzgaBS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BlErTA6/; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5155rOGr2539826
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5155v0dw3364505
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 4 Feb 2025 23:53:24 -0600
+	Tue, 4 Feb 2025 23:57:00 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738734804;
-	bh=L+Es0Z7ExR1BfvlZ8zpT2vGl+Yi893ljUGmHDmA3OqQ=;
+	s=ti-com-17Q1; t=1738735020;
+	bh=t/2WmXH+7MwLwzsZBO1JWJrL8bvDXWsF3RF4uzEE/Gw=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=MYaPiSszI6ZiIWmc2IWCuR5Mt7Et2a7+thy8BPTO4tFp26ehmwgmOUFu5ZvZNRFxV
-	 tfNCjLvWgPEaCRTkYUhYi4KmnG87votnt9tBn8xBn6Qnzp1Jx5Zk97e/Sw8UulvsA+
-	 4YKLL+5wwD+4+0XWD4f+HWuMntOo4jKy1HzfDnfs=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5155rOV2068555
+	b=BlErTA6/vqn2L9sZI2Daha/0Cn+PN/IzAhwEZCWHrT9BJVYRWCJLR1Kz/hfrl+Kdj
+	 3/o0vUKk57r85erZmiMMdRIEgxdv/VcHDWShs6OE75S6Jak4KoS197V040EEQUjLgT
+	 nkJcOrXIHNAhgNmN/86LBiXTkfIDBuoP3Duue57A=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5155v0xU070283
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 4 Feb 2025 23:53:24 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 4 Feb 2025 23:57:00 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
- Feb 2025 23:53:23 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2025 23:56:59 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 4 Feb 2025 23:53:23 -0600
+ Frontend Transport; Tue, 4 Feb 2025 23:56:59 -0600
 Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193] (may be forged))
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5155rHMa048688;
-	Tue, 4 Feb 2025 23:53:17 -0600
-Message-ID: <5f122a31-771f-93c9-57fe-bc5766c1fccc@ti.com>
-Date: Wed, 5 Feb 2025 11:23:16 +0530
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5155usfF051863;
+	Tue, 4 Feb 2025 23:56:54 -0600
+Message-ID: <fc7fcd26-601a-5c23-7310-2a18b8cf377c@ti.com>
+Date: Wed, 5 Feb 2025 11:26:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,82 +67,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 2/2] drm/tidss: Add support for AM62L display subsystem
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        "jyri.sarha@iki.fi"
-	<jyri.sarha@iki.fi>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de"
-	<tzimmermann@suse.de>,
-        "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>,
-        "simona@ffwll.ch" <simona@ffwll.ch>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh@kernel.org"
-	<robh@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>
-CC: "Bajjuri, Praneeth" <praneeth@ti.com>,
-        "Raghavendra, Vignesh"
-	<vigneshr@ti.com>,
-        "Jain, Swamil" <s-jain1@ti.com>,
-        "Donadkar, Rishikesh"
-	<r-donadkar@ti.com>,
-        "Choudhary, Jayesh" <j-choudhary@ti.com>,
-        "Shenoy,
- Harikrishna" <h-shenoy@ti.com>,
-        Aradhya Bhatia <aradhya.bhatia@linux.dev>
-References: <20241231090432.3649158-1-devarsht@ti.com>
- <20241231090432.3649158-3-devarsht@ti.com>
- <eab600f6-bfc2-489c-b384-5b620164a556@linux.dev>
- <dea025e1-98d4-2dcf-e729-19c9d49bf3ae@ti.com>
- <c6179f0b-c93f-483b-bfeb-322d800e5170@ideasonboard.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: ti,am65x-dss: Add support
+ for AM62L DSS
 Content-Language: en-US
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+CC: <praneeth@ti.com>, <vigneshr@ti.com>, <aradhya.bhatia@linux.dev>,
+        <s-jain1@ti.com>, <r-donadkar@ti.com>, <j-choudhary@ti.com>,
+        <h-shenoy@ti.com>, <jyri.sarha@iki.fi>, <airlied@gmail.com>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <dri-devel@lists.freedesktop.org>,
+        <simona@ffwll.ch>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+References: <20250204061552.3720261-1-devarsht@ti.com>
+ <20250204061552.3720261-2-devarsht@ti.com>
+ <eb8883f2-fc34-44f5-90a9-f4b14f0c45f2@ideasonboard.com>
 From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <c6179f0b-c93f-483b-bfeb-322d800e5170@ideasonboard.com>
+In-Reply-To: <eb8883f2-fc34-44f5-90a9-f4b14f0c45f2@ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Tomi
+Hi Tomi,
 
->> Thanks for pointing out, I probably missed this since the use-case still
->> worked since VP interrupts were still enabled and those were sufficient to
->> drive the display
->> but the VID underflow interrupts and VID specific bits were probably not
->> enabled at-all due to above miss, so agreed
->> we should probably go ahead with a different reg space for AM62L due to
->> aforementioned differences.
+Thanks for the review.
+On 04/02/25 19:25, Tomi Valkeinen wrote:
+<snip>
+>>     description: |
+>> -  The AM625 and AM65x TI Keystone Display SubSystem with two output
+>> +  The AM625 and AM65x TI Keystone Display SubSystem has two output
+>>     ports and two video planes. In AM65x DSS, the first video port
+>>     supports 1 OLDI TX and in AM625 DSS, the first video port output is
+>>     internally routed to 2 OLDI TXes. The second video port supports DPI
+>>     format. The first plane is full video plane with all features and the
+>>     second is a "lite plane" without scaling support.
+>> +  The AM62A7 display subsystem has a single output port supporting DPI format
+>> +  although similar to AM625 and AM65x Socs, it has two video planes where
+>> first
+>> +  is full video plane with all features and second is a video "lite" plane
+>> which
+>> +  does not support scaling.
 > 
-> I think I disagree here. Afaiu, AM62L has plane at hw index 1 (VIDL1), but the
-> plane at hw index 0 (VID1) is not instantiated in the hardware. But the
-> registers are the same, i.e. AM62L's registers for VIDL1 match AM65x/AM62x
-> registers, right?
-> 
-> If so, we just need to tell the driver the hw index, instead of creating new
-> register offsets as done in v2.
-> 
-> Or am I missing something here? (I haven't looked at the HW manual yet).
+> The part above doesn't belong into "add AM62L" patch. It's also quite
+> confusing. "although similar to..."? Maybe drop the text "although similar to
+> AM625 and AM65x Socs, ", and start a new sentence from "it"?
 > 
 
-No that's not the only difference. For AM62L, the VID_IRQENABLE/STATUS
-registers start at +0x4 as compared to AM65x/AM62x/ :
+Sure, I will split the patch for AM62A and correct above too.
 
-AM62L:
-        [DISPC_VID_IRQENABLE_OFF] =             0x48,
-
-        [DISPC_VID_IRQSTATUS_OFF] =             0x5c,
-
-AM62x/AM65x:
-
-        [DISPC_VID_IRQENABLE_OFF] =             0x44,
-
-        [DISPC_VID_IRQSTATUS_OFF] =             0x58,
-
-So it seems okay to me to have a separate reg offset struct.
+> For the AM62L parts:
+> 
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> 
+>  Tomi
 
 Regards
 Devarsh
