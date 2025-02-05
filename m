@@ -1,334 +1,177 @@
-Return-Path: <devicetree+bounces-143393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54110A298D3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 19:23:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B8C9A29902
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 19:28:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C38C53A9F15
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 18:23:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31983167A16
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 18:28:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CB0B1FFC4B;
-	Wed,  5 Feb 2025 18:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 433F31FF1AC;
+	Wed,  5 Feb 2025 18:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gBUEWd3U"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IYEXCGmN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1521FDE02;
-	Wed,  5 Feb 2025 18:22:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4381FDA89;
+	Wed,  5 Feb 2025 18:28:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738779759; cv=none; b=pAdGS42AEkfXFBG/3nU3enVtqPoblgU0ej9NV36HD0Ivfq0dnIM94zQvAOe2G4UD33UBxeHdKSC9+o15vGGvrgGOWxGWrMYw0RheM7vc7UOvS+9b40D9Wt2wGs1H7vo5cOUusU+91DJDfNXBqSEJcXFLSlE+5LDEFPOBbzV8d1I=
+	t=1738780096; cv=none; b=c88ntnwsqv37A9jj15D0rJHtHg6doO4mhhtIRtW5ySSM+X098UMUxoX4TQOxtS8Ue1nv3/joB8b6oTPCDgceOb/xjBZT/1jcG3ZPew59oFoNowsp9dKK5d/xFzNzANZ3zi1v8MUeyTT3WICwqqaeJW41dINXoXH6fuqgBfFQjIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738779759; c=relaxed/simple;
-	bh=vq1yg8bBwcHYIQZdoIwbIlxcXj/zSlKnkeYluYCBJ54=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XH79NJysdH1PMeFgo1WvmWqnv/btBgbsjjF8IWqMU90mJ9klnFZQtUDZ5+E3J/+eFHUgZkr5Be+As2cqiVaIpPkdCEuQ1Xy8bqaSSrl1vonehOJGVDKoFf1ZKNiYEEMEY01EEq1RCT6OtzCo6a2J2bqr9Wk7CrNazQRCThd2MM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gBUEWd3U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE7A6C4CEDD;
-	Wed,  5 Feb 2025 18:22:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738779758;
-	bh=vq1yg8bBwcHYIQZdoIwbIlxcXj/zSlKnkeYluYCBJ54=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=gBUEWd3Usl5t/QpQMl8FC+mB7+aSdL4UxeO9H8U6lZc75+2MiS11eg8oQ9mJ6bmO6
-	 N937eqez/eFyB5iFdFLaU0hDF3GzdVR2Z9Mruj9CE8SM6L8KJvzqZxwiWuFSIETtQC
-	 ka/xvuGFPs8TrcoakVQ/iI1e44DuxmT25r3qOqHsC/IR89sESeQmJPyJfpRRMp8W+L
-	 Eksf8WBqL+eYpjF8q276VnDhvHrVewEyi+EY3OCSx5NUwhiFq926fNA9ahvt6zX+cL
-	 eAY03IKY5M7ZnPBRmiMEfZjTuycI6V+umYbf7OUpsuS8N9AE1NrsonJq1Puw3BiaQ2
-	 2Nw6L19jghzqw==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Wed, 05 Feb 2025 19:21:32 +0100
-Subject: [PATCH net-next 13/13] net: airoha: Introduce PPE debugfs support
+	s=arc-20240116; t=1738780096; c=relaxed/simple;
+	bh=WIK77QSHrwjdjXP5YguhdLZZtWO37MnzcX3h68pNHDs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hsFNsKxlMWsClsTpLKag01mtEV/mN7trBWhD9W6NHRgDM4r8D2/q56ZjU4UldAek1AuZOFLP7m6SdgYTiNAYCtUIjKjFg4eOoWl+wVgNv9gpMu1djg6i3kkdvHSSLyY/+gxXFRbj1ys2qm/lIeDF4CXBUswFJAe5Ltt4krcc2FM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IYEXCGmN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 515ErZnn011015;
+	Wed, 5 Feb 2025 18:28:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=wox7ET7OjT930xo72QvX45
+	kqjJCIhhqSOwlX3tfnH80=; b=IYEXCGmNG6hONudpz33g2FBHXMJICjkmPr6Fnz
+	8NN6ygTIr+we3IH5Alq8masAF/TpcUqLDE2LXSStauL+RuceqssK/mzCQQJJej0L
+	we8T5IOZugRoKR0WO7OjISkWX/y9Nh0P4bygEcqcHe1hmcrrVQV9v9+C8nFyYS+7
+	ROE+rLT+1cQjWhukKptfTB538MAtXSOTuvYFmNY+2vEQWwikksg+ZDq/8CLpRCq5
+	VVXZ+DUaI77X1JXL8tRIPYyt4lKbel3d7U8TElMwUGURehecEHAerxusYczW+qS0
+	dLb4hyWtwUnaroXaRchgFv2rdfw9mdGhpPwOwg+1vhV6M/AQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ma598jkv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Feb 2025 18:28:08 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 515IS74S016733
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 5 Feb 2025 18:28:07 GMT
+Received: from c194c8e2f407.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 5 Feb 2025 10:28:02 -0800
+From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: Odelu Kukatla <quic_okukatla@quicinc.com>,
+        Mike Tipton
+	<quic_mdtipton@quicinc.com>,
+        Jeff Johnson <quic_jjohnson@quicinc.com>,
+        "Andrew Halaney" <ahalaney@redhat.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH V8 0/7] Add EPSS L3 provider support on SA8775P SoC
+Date: Wed, 5 Feb 2025 18:27:36 +0000
+Message-ID: <20250205182743.915-1-quic_rlaggysh@quicinc.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250205-airoha-en7581-flowtable-offload-v1-13-d362cfa97b01@kernel.org>
-References: <20250205-airoha-en7581-flowtable-offload-v1-0-d362cfa97b01@kernel.org>
-In-Reply-To: <20250205-airoha-en7581-flowtable-offload-v1-0-d362cfa97b01@kernel.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- upstream@airoha.com
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: IgTQUmUuDmjRCzOMCz8lzRAYCDFPBQkY
+X-Proofpoint-ORIG-GUID: IgTQUmUuDmjRCzOMCz8lzRAYCDFPBQkY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-05_06,2025-02-05_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=999 malwarescore=0 adultscore=0 clxscore=1011 phishscore=0
+ bulkscore=0 spamscore=0 mlxscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502050141
 
-Similar to PPE support for Mediatek devices, introduce PPE debugfs
-in order to dump binded and unbinded flows.
+Add Epoch Subsystem (EPSS) L3 provider support on SA8775P SoCs.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/net/ethernet/airoha/Makefile             |   1 +
- drivers/net/ethernet/airoha/airoha_eth.h         |  12 ++
- drivers/net/ethernet/airoha/airoha_ppe.c         |   5 +
- drivers/net/ethernet/airoha/airoha_ppe_debugfs.c | 175 +++++++++++++++++++++++
- 4 files changed, 193 insertions(+)
+Current interconnect framework is based on static IDs for creating node
+and registering with framework. This becomes a limitation for topologies
+where there are multiple instances of same interconnect provider.
+Modified interconnect framework APIs to create and link icc node with
+dynamic IDs, this will help to overcome the dependency on static IDs.
 
-diff --git a/drivers/net/ethernet/airoha/Makefile b/drivers/net/ethernet/airoha/Makefile
-index 50028cfc3e3e04efbdd353b1bd65f46b488637d8..e5321effdbeaeaf7c4ad3c6df9d0261fe12fdd12 100644
---- a/drivers/net/ethernet/airoha/Makefile
-+++ b/drivers/net/ethernet/airoha/Makefile
-@@ -5,4 +5,5 @@
- 
- obj-$(CONFIG_NET_AIROHA) += airoha-eth.o
- airoha-eth-y := airoha_eth.o airoha_ppe.o
-+airoha-eth-$(CONFIG_DEBUG_FS) += airoha_ppe_debugfs.o
- airoha-eth-$(CONFIG_NET_AIROHA_NPU) += airoha_npu.o
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
-index 20e870a5c20091f0bb572f87f111c660b2075c32..b5002b333f9c907e298c5e95c530ba8318a292db 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.h
-+++ b/drivers/net/ethernet/airoha/airoha_eth.h
-@@ -7,6 +7,7 @@
- #ifndef AIROHA_ETH_H
- #define AIROHA_ETH_H
- 
-+#include <linux/debugfs.h>
- #include <linux/etherdevice.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-@@ -501,6 +502,8 @@ struct airoha_ppe {
- 
- 	struct hlist_head *foe_flow;
- 	u16 foe_check_time[PPE_NUM_ENTRIES];
-+
-+	struct dentry *debugfs_dir;
- };
- 
- struct airoha_eth {
-@@ -610,4 +613,13 @@ static inline int airoha_npu_foe_commit_entry(struct airoha_ppe *ppe,
- }
- #endif /* CONFIG_NET_AIROHA_NPU */
- 
-+#if CONFIG_DEBUG_FS
-+int airoha_ppe_debugfs_init(struct airoha_ppe *ppe);
-+#else
-+static inline int airoha_ppe_debugfs_init(struct airoha_ppe *ppe)
-+{
-+	return 0;
-+}
-+#endif
-+
- #endif /* AIROHA_ETH_H */
-diff --git a/drivers/net/ethernet/airoha/airoha_ppe.c b/drivers/net/ethernet/airoha/airoha_ppe.c
-index 00bf30d102ee868ab51d72e09a013adf8d6e1fad..4a0e7e7a7d8cd9a1e7e43bc60588eace31659b14 100644
---- a/drivers/net/ethernet/airoha/airoha_ppe.c
-+++ b/drivers/net/ethernet/airoha/airoha_ppe.c
-@@ -787,6 +787,10 @@ int airoha_ppe_init(struct airoha_eth *eth)
- 	if (err)
- 		goto error_npu_deinit;
- 
-+	err = airoha_ppe_debugfs_init(ppe);
-+	if (err)
-+		goto error_npu_deinit;
-+
- 	return 0;
- 
- error_npu_deinit:
-@@ -804,4 +808,5 @@ void airoha_ppe_deinit(struct airoha_eth *eth)
- 		airoha_npu_deinit(eth->npu);
- 	}
- 	rhashtable_destroy(&eth->flow_table);
-+	debugfs_remove(eth->ppe->debugfs_dir);
- }
-diff --git a/drivers/net/ethernet/airoha/airoha_ppe_debugfs.c b/drivers/net/ethernet/airoha/airoha_ppe_debugfs.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..f79788458903c93ca73d774edaca97f1e08f92a7
---- /dev/null
-+++ b/drivers/net/ethernet/airoha/airoha_ppe_debugfs.c
-@@ -0,0 +1,175 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2025 AIROHA Inc
-+ * Author: Lorenzo Bianconi <lorenzo@kernel.org>
-+ */
-+
-+#include "airoha_eth.h"
-+
-+static void airoha_debugfs_ppe_print_tuple(struct seq_file *m,
-+					   void *src_addr, void *dest_addr,
-+					   u16 *src_port, u16 *dest_port,
-+					   bool ipv6)
-+{
-+	__be32 n_addr[IPV6_ADDR_WORDS];
-+
-+	if (ipv6) {
-+		ipv6_addr_cpu_to_be32(n_addr, src_addr);
-+		seq_printf(m, "%pI6", n_addr);
-+	} else {
-+		seq_printf(m, "%pI4h", src_addr);
-+	}
-+	if (src_port)
-+		seq_printf(m, ":%d", *src_port);
-+
-+	seq_puts(m, "->");
-+
-+	if (ipv6) {
-+		ipv6_addr_cpu_to_be32(n_addr, dest_addr);
-+		seq_printf(m, "%pI6", n_addr);
-+	} else {
-+		seq_printf(m, "%pI4h", dest_addr);
-+	}
-+	if (dest_port)
-+		seq_printf(m, ":%d", *dest_port);
-+}
-+
-+static int airoha_ppe_debugfs_foe_show(struct seq_file *m, void *private,
-+				       bool bind)
-+{
-+	static const char *const ppe_type_str[] = {
-+		[PPE_PKT_TYPE_IPV4_HNAPT] = "IPv4 5T",
-+		[PPE_PKT_TYPE_IPV4_ROUTE] = "IPv4 3T",
-+		[PPE_PKT_TYPE_BRIDGE] = "L2B",
-+		[PPE_PKT_TYPE_IPV4_DSLITE] = "DS-LITE",
-+		[PPE_PKT_TYPE_IPV6_ROUTE_3T] = "IPv6 3T",
-+		[PPE_PKT_TYPE_IPV6_ROUTE_5T] = "IPv6 5T",
-+		[PPE_PKT_TYPE_IPV6_6RD] = "6RD",
-+	};
-+	static const char *const ppe_state_str[] = {
-+		[AIROHA_FOE_STATE_INVALID] = "INV",
-+		[AIROHA_FOE_STATE_UNBIND] = "UNB",
-+		[AIROHA_FOE_STATE_BIND] = "BND",
-+		[AIROHA_FOE_STATE_FIN] = "FIN",
-+	};
-+	struct airoha_ppe *ppe = m->private;
-+	int i;
-+
-+	for (i = 0; i < PPE_NUM_ENTRIES; i++) {
-+		const char *state_str, *type_str = "UNKNOWN";
-+		u16 *src_port = NULL, *dest_port = NULL;
-+		struct airoha_foe_mac_info_common *l2;
-+		unsigned char h_source[ETH_ALEN] = {};
-+		unsigned char h_dest[ETH_ALEN];
-+		struct airoha_foe_entry *hwe;
-+		u32 type, state, ib2, data;
-+		void *src_addr, *dest_addr;
-+		bool ipv6 = false;
-+
-+		hwe = airoha_ppe_foe_get_entry(ppe, i);
-+		if (!hwe)
-+			continue;
-+
-+		state = FIELD_GET(AIROHA_FOE_IB1_STATE, hwe->ib1);
-+		if (!state)
-+			continue;
-+
-+		if (bind && state != AIROHA_FOE_STATE_BIND)
-+			continue;
-+
-+		state_str = ppe_state_str[state % ARRAY_SIZE(ppe_state_str)];
-+		type = FIELD_GET(AIROHA_FOE_IB1_PACKET_TYPE, hwe->ib1);
-+		if (type < ARRAY_SIZE(ppe_type_str) && ppe_type_str[type])
-+			type_str = ppe_type_str[type];
-+
-+		seq_printf(m, "%05x %s %7s", i, state_str, type_str);
-+
-+		switch (type) {
-+		case PPE_PKT_TYPE_IPV4_HNAPT:
-+		case PPE_PKT_TYPE_IPV4_DSLITE:
-+			src_port = &hwe->ipv4.orig_tuple.src_port;
-+			dest_port = &hwe->ipv4.orig_tuple.dest_port;
-+			fallthrough;
-+		case PPE_PKT_TYPE_IPV4_ROUTE:
-+			src_addr = &hwe->ipv4.orig_tuple.src_ip;
-+			dest_addr = &hwe->ipv4.orig_tuple.dest_ip;
-+			break;
-+		case PPE_PKT_TYPE_IPV6_ROUTE_5T:
-+			src_port = &hwe->ipv6.src_port;
-+			dest_port = &hwe->ipv6.dest_port;
-+			fallthrough;
-+		case PPE_PKT_TYPE_IPV6_ROUTE_3T:
-+		case PPE_PKT_TYPE_IPV6_6RD:
-+			src_addr = &hwe->ipv6.src_ip;
-+			dest_addr = &hwe->ipv6.dest_ip;
-+			ipv6 = true;
-+			break;
-+		}
-+
-+		seq_puts(m, " orig=");
-+		airoha_debugfs_ppe_print_tuple(m, src_addr, dest_addr,
-+					       src_port, dest_port, ipv6);
-+
-+		switch (type) {
-+		case PPE_PKT_TYPE_IPV4_HNAPT:
-+		case PPE_PKT_TYPE_IPV4_DSLITE:
-+			src_port = &hwe->ipv4.new_tuple.src_port;
-+			dest_port = &hwe->ipv4.new_tuple.dest_port;
-+			fallthrough;
-+		case PPE_PKT_TYPE_IPV4_ROUTE:
-+			src_addr = &hwe->ipv4.new_tuple.src_ip;
-+			dest_addr = &hwe->ipv4.new_tuple.dest_ip;
-+			seq_puts(m, " new=");
-+			airoha_debugfs_ppe_print_tuple(m, src_addr, dest_addr,
-+						       src_port, dest_port,
-+						       ipv6);
-+			break;
-+		}
-+
-+		if (type >= PPE_PKT_TYPE_IPV6_ROUTE_3T) {
-+			data = hwe->ipv6.data;
-+			ib2 = hwe->ipv6.ib2;
-+			l2 = &hwe->ipv6.l2;
-+		} else {
-+			data = hwe->ipv4.data;
-+			ib2 = hwe->ipv4.ib2;
-+			l2 = &hwe->ipv4.l2.common;
-+			*((__be16 *)&h_source[4]) =
-+				cpu_to_be16(hwe->ipv4.l2.src_mac_lo);
-+		}
-+
-+		*((__be32 *)h_dest) = cpu_to_be32(l2->dest_mac_hi);
-+		*((__be16 *)&h_dest[4]) = cpu_to_be16(l2->dest_mac_lo);
-+		*((__be32 *)h_source) = cpu_to_be32(l2->src_mac_hi);
-+
-+		seq_printf(m, " eth=%pM->%pM etype=%04x data=%08x"
-+			      " vlan=%d,%d ib1=%08x ib2=%08x\n",
-+			   h_source, h_dest, l2->etype, data,
-+			   l2->vlan1, l2->vlan2, hwe->ib1, ib2);
-+	}
-+
-+	return 0;
-+}
-+
-+static int airoha_ppe_debugfs_foe_all_show(struct seq_file *m, void *private)
-+{
-+	return airoha_ppe_debugfs_foe_show(m, private, false);
-+}
-+DEFINE_SHOW_ATTRIBUTE(airoha_ppe_debugfs_foe_all);
-+
-+static int airoha_ppe_debugfs_foe_bind_show(struct seq_file *m, void *private)
-+{
-+	return airoha_ppe_debugfs_foe_show(m, private, true);
-+}
-+DEFINE_SHOW_ATTRIBUTE(airoha_ppe_debugfs_foe_bind);
-+
-+int airoha_ppe_debugfs_init(struct airoha_ppe *ppe)
-+{
-+	ppe->debugfs_dir = debugfs_create_dir("ppe", NULL);
-+	debugfs_create_file("entries", 0444, ppe->debugfs_dir, ppe,
-+			    &airoha_ppe_debugfs_foe_all_fops);
-+	debugfs_create_file("bind", 0444, ppe->debugfs_dir, ppe,
-+			    &airoha_ppe_debugfs_foe_bind_fops);
-+
-+	return 0;
-+}
+Change since v7:
+ - Updated interconnect framework APIs icc_node_create() and
+   icc_link_create() to dynamically allocate IDs for interconnect nodes
+   during creation.
+ - Moved naming conventions to the framework and replaced snprintf() with
+   devm_kasprintf() as suggested.
+ - Updated the icc-rpmh driver and SA8775P SoC provider driver to support
+   dynamic ID allocation.
+ - Revised commit text to explain the use of the existing generic 
+   compatible "qcom,epss-l3".
+ - Addressed other comments regarding the alphabetical ordering of 
+   compatible properties.
+
+Change since v6:
+ - Added icc_node_create_alloc_id() API to dynamically allocate ID while
+   creating the node. Replaced the IDA (ID allocator) with
+   icc_node_create_alloc_id() API to allocate node IDs dynamically.
+ - Removed qcom,epss-l3-perf generic compatible as per the comment.
+ - Added L3 ICC handles for CPU0 and CPU4 in DT, as per Bjorn comment.
+   Link to comment:
+   https://lore.kernel.org/lkml/ww3t3tu7p36qzlhcetaxif2xzrpgslydmuqo3fqvisbuar4bjh@qc2u43dck3qi/
+
+Change since v5:
+ - Reused qcom,sm8250-epss-l3 compatible for sa8775p SoC.
+ - Rearranged the patches, moved dt changes to end of series.
+ - Updated the commit text.
+
+Changes since v4:
+ - Added generic compatible "qcom,epss-l3-perf" and split the driver
+   changes accordingly.
+
+Changes since v3:
+ - Removed epss-l3-perf generic compatible changes. These will be posted
+   as separate patch until then SoC specific compatible will be used for
+   probing.
+
+Changes since v2:
+ - Updated the commit text to reflect the reason for code change.
+ - Added SoC-specific and generic compatible to driver match table.
+
+Changes since v1:
+ - Removed the usage of static IDs and implemented dynamic ID assignment
+   for icc nodes using IDA.
+ - Removed separate compatibles for cl0 and cl1. Both cl0 and cl1
+   devices use the same compatible.
+ - Added new generic compatible for epss-l3-perf.
+
+Jagadeesh Kona (1):
+  arm64: dts: qcom: sa8775p: Add CPU OPP tables to scale DDR/L3
+
+Raviteja Laggyshetty (6):
+  dt-bindings: interconnect: Add EPSS L3 compatible for SA8775P
+  interconnect: core: Add dynamic id allocation support
+  interconnect: qcom: Add multidev EPSS L3 support
+  interconnect: qcom: icc-rpmh: Add dynamic icc node id support
+  interconnect: qcom: sa8775p: Add dynamic icc node id support
+  arm64: dts: qcom: sa8775p: add EPSS l3 interconnect provider
+
+ .../bindings/interconnect/qcom,osm-l3.yaml    |    1 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         |  229 ++
+ drivers/interconnect/core.c                   |   13 +-
+ drivers/interconnect/qcom/icc-rpmh.c          |   16 +-
+ drivers/interconnect/qcom/icc-rpmh.h          |    3 +-
+ drivers/interconnect/qcom/osm-l3.c            |   46 +-
+ drivers/interconnect/qcom/sa8775p.c           | 2194 ++++++++---------
+ 7 files changed, 1246 insertions(+), 1256 deletions(-)
 
 -- 
-2.48.1
+2.39.2
 
 
