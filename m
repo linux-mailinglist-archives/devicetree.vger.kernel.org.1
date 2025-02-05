@@ -1,156 +1,105 @@
-Return-Path: <devicetree+bounces-143238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96EC6A28A85
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 13:42:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43DF5A28A9E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 13:45:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07BCD3A186B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:42:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2CF5168724
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 12:44:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677B622ACC6;
-	Wed,  5 Feb 2025 12:42:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A1C22DF9A;
+	Wed,  5 Feb 2025 12:44:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MTe1WtGJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34AB0151987;
-	Wed,  5 Feb 2025 12:42:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FCC22DF94;
+	Wed,  5 Feb 2025 12:44:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738759373; cv=none; b=IGG8av1J2M9xX3F55UYTuPgVn8lV5SFxQAEiguuLw/M2blW/eWqga9aGx0YI5EN0d16wYmK7g0TnC7uGpbQk5NXuQz++PgxsrglRoEiVjHOylXomZciQm00fnjq2w/RtEmtaSYco1COJX1mDlnvkm8mjRQWXyHPx3nV+67qD52s=
+	t=1738759466; cv=none; b=F/ERfK//JPYRpbKXdWaK6e2FX/L+uzfOZUVjScHtqD05CWCuq5ZbnBR9sIyD/NY6ylFllh3L6wnxqk5zFMXc/4E/hZy8eU3+Lvqc8zzedHTHrv3Y8nVYp/XEepovheq4TXj2JDmlt+igLlS+UnunwNKmGkxrun/onfneNC4PyrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738759373; c=relaxed/simple;
-	bh=YEYdw+RFyZttEyYMNGQiwpZ9nMRJRavaUV89oFfVInc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hJTT6M8a3edwlJ8yiSG1JdvP1Z5wP134LodXIU47wyC8h7js37oDVSqBDyh/tsADvOCrz9W41bjpABBCLrxzwViyALtllIG8MMTo+Eczq05dzsMmyFP7uEGZzopFyRZUmUwWqO7gTd8+tVc9q7agA5yfldguBMd0Ys9l+SAlY4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: qJDgGzujQ7SrbqbP/MsImQ==
-X-CSE-MsgGUID: Pn+2gzssSaqklt7ImdEg4g==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Feb 2025 21:42:48 +0900
-Received: from localhost.localdomain (unknown [10.226.92.225])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9599F41F86AF;
-	Wed,  5 Feb 2025 21:42:43 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH net-next v2 1/7] of: base: Add of_get_available_child_by_name()
-Date: Wed,  5 Feb 2025 12:42:21 +0000
-Message-ID: <20250205124235.53285-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250205124235.53285-1-biju.das.jz@bp.renesas.com>
-References: <20250205124235.53285-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1738759466; c=relaxed/simple;
+	bh=8iLfXxhY+M8Fm+e3Wt34iJHyPl/Cf4DZ4AeRbBEWBC0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=F1mk5PQqS/6MP5X8iOudQxvlxuXF0L9bO5pltF1sp/RLk4A88kAF0h0AFbt8TalhpP6XNYfhMwLLbuDgRqwVF3rc81iynUR0FFuD5gqCMqhowQYUQHR38kSgRGrgXHsn798Nb27l4Po7Dgzd8kxsCFNZG9XDSRNfPCllwNEEL1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MTe1WtGJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0915C4CED1;
+	Wed,  5 Feb 2025 12:44:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738759465;
+	bh=8iLfXxhY+M8Fm+e3Wt34iJHyPl/Cf4DZ4AeRbBEWBC0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=MTe1WtGJDjMorHOW5FQDX7stZjlSIR5BKBb1nxgTOddR23mvtzJEQp2EjZVzmA3ZV
+	 ei0+GAEzHchEnUdtZuCOwUR70IAIDljD3wq+OGubiRws4c3KBEcXPM9JwFjqMDX6Gk
+	 lky7XZSV1SQQh52/glHKiLqJ/TdCv3IEsCErZxgT7Uxv/iL7+fAUtiW3MpcUjZFOBV
+	 SyoHRBf83M+wojx/QWZqkjyOvhGBY5WXJPrts5deDGTOo78yBsvNIeO/31PsWiXsYY
+	 RpRrzKbzFOfiJP7hgh6RT8xYP6wLyWG3c/UqBnSWoLrjM6cUKpQCbJ1T+HjrGNs4Ke
+	 ZapRkjw0hNyDQ==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+ Rob Herring <robh@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <db10e96fbda121e7456d70e97a013cbfc9755f4d.1737533954.git.geert+renesas@glider.be>
+References: <db10e96fbda121e7456d70e97a013cbfc9755f4d.1737533954.git.geert+renesas@glider.be>
+Subject: Re: [PATCH] ASoC: soc-core: Stop using of_property_read_bool() for
+ non-boolean properties
+Message-Id: <173875946347.32457.4558405909681470251.b4-ty@kernel.org>
+Date: Wed, 05 Feb 2025 12:44:23 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-1b0d6
 
-There are lot of drivers using of_get_child_by_name() followed by
-of_device_is_available() to find the available child node by name for a
-given parent. Provide a helper for these users to simplify the code.
+On Wed, 22 Jan 2025 09:21:27 +0100, Geert Uytterhoeven wrote:
+> On R-Car:
+> 
+>     OF: /sound: Read of boolean property 'simple-audio-card,bitclock-master' with a value.
+>     OF: /sound: Read of boolean property 'simple-audio-card,frame-master' with a value.
+> 
+> or:
+> 
+> [...]
 
-Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-previous v2->v2
- * Added Rb tag from Rob.
-v1->previous v2:
- * Updated commit description.
- * Updated kerneldoc comment block
- * Avoided code duplication by using of_get_child_by_name().
----
- drivers/of/base.c  | 27 +++++++++++++++++++++++++++
- include/linux/of.h |  9 +++++++++
- 2 files changed, 36 insertions(+)
+Applied to
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index af6c68bbb427..e37b088f1fad 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -824,6 +824,33 @@ struct device_node *of_get_child_by_name(const struct device_node *node,
- }
- EXPORT_SYMBOL(of_get_child_by_name);
- 
-+/**
-+ * of_get_available_child_by_name - Find the available child node by name for a given parent
-+ * @node:	parent node
-+ * @name:	child name to look for.
-+ *
-+ * This function looks for child node for given matching name and checks the
-+ * device's availability for use.
-+ *
-+ * Return: A node pointer if found, with refcount incremented, use
-+ * of_node_put() on it when done.
-+ * Returns NULL if node is not found.
-+ */
-+struct device_node *of_get_available_child_by_name(const struct device_node *node,
-+						   const char *name)
-+{
-+	struct device_node *child;
-+
-+	child = of_get_child_by_name(node, name);
-+	if (child && !of_device_is_available(child)) {
-+		of_node_put(child);
-+		return NULL;
-+	}
-+
-+	return child;
-+}
-+EXPORT_SYMBOL(of_get_available_child_by_name);
-+
- struct device_node *__of_find_node_by_path(const struct device_node *parent,
- 						const char *path)
- {
-diff --git a/include/linux/of.h b/include/linux/of.h
-index eaf0e2a2b75c..9d6b8a61607f 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -301,6 +301,8 @@ extern struct device_node *of_get_compatible_child(const struct device_node *par
- 					const char *compatible);
- extern struct device_node *of_get_child_by_name(const struct device_node *node,
- 					const char *name);
-+extern struct device_node *of_get_available_child_by_name(const struct device_node *node,
-+							  const char *name);
- 
- /* cache lookup */
- extern struct device_node *of_find_next_cache_node(const struct device_node *);
-@@ -578,6 +580,13 @@ static inline struct device_node *of_get_child_by_name(
- 	return NULL;
- }
- 
-+static inline struct device_node *of_get_available_child_by_name(
-+					const struct device_node *node,
-+					const char *name)
-+{
-+	return NULL;
-+}
-+
- static inline int of_device_is_compatible(const struct device_node *device,
- 					  const char *name)
- {
--- 
-2.43.0
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: soc-core: Stop using of_property_read_bool() for non-boolean properties
+      commit: 6eab7034579917f207ca6d8e3f4e11e85e0ab7d5
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
