@@ -1,125 +1,82 @@
-Return-Path: <devicetree+bounces-143429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C1FBA29C59
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 23:11:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC9FA29C72
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 23:14:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CB0D165F0A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 22:11:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2C987A1B9B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 22:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0846721A42C;
-	Wed,  5 Feb 2025 22:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A9621505F;
+	Wed,  5 Feb 2025 22:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P1aPk5VM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ccisrcf6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD818217F2E;
-	Wed,  5 Feb 2025 22:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 247091FECB9;
+	Wed,  5 Feb 2025 22:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738793456; cv=none; b=k+4izdDxxwuoPkLClB63XD60MCWJ5ArLvVf+S40Uws1yOuY9o1dRACpz23ZXQZ4fEXmjWa+X8WkiSwhed/WY/oC8HibPZL6GqsbFt5/bC0rWnf0OHvo8zex3MA/hXx2Q+/++zQzQyO4pqUVsjqwtyVtvEPZLbpY1Hr4cAzwL3Zc=
+	t=1738793654; cv=none; b=oE+te7/HhLuWu2MGrzz5JLZt2p1OfTVH1gnLiFjRSWQFaf+9mJ1NQuQEJVNVE8Lz0MX9A8WVRmSNrSsD1Jo7z5gKHAHVc5e0MGjkS09sONKfIZLUypn2hGu40TX19+edkCh/yfTGD+MRlrZXJSSbIEJNgqo8PMNxeEXyn9MOeqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738793456; c=relaxed/simple;
-	bh=KBAQykQ4ZDZEmyMlD0bA/wR0zXcfdnw5uGSkiP6UgNQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kk/UXwVBVGf7DGJIAydBObz6mQlZXL791VP5szF6yRqaX7xp5mipR64tu2l0yig6JpWR+GQX36+Iq6gHQqBUJ4RgVdATbnp9WzQ2EhGJuIPVbfVThFAhy/9xyn22BBm0GinoVFvG7N5OdtsfN0KMBuMuptEfRTZ41U+K1yNq4B8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P1aPk5VM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 38A05C4CEF1;
-	Wed,  5 Feb 2025 22:10:56 +0000 (UTC)
+	s=arc-20240116; t=1738793654; c=relaxed/simple;
+	bh=aFGIUdjDssfb7zv8oCBW+9A3XqhSBZ7Ws/3yXdqV4qw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XGlwmVQu3uFX8zMnuBaY0STMmVOxhH7j6ounaI315lrV+J/yT0+1Ybfg7CtPmt3/wvNKHGIYx1xAKGy1Qi1CqLPBy7Im/6fmMMVQVpJDgb+RJ1mGXPgcHGX4EFGxSyVX7+EylQCliKm0rjL57XbCqVkp8aH9Ckj6SlsvjwmdVM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ccisrcf6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 546A2C4CED1;
+	Wed,  5 Feb 2025 22:14:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738793456;
-	bh=KBAQykQ4ZDZEmyMlD0bA/wR0zXcfdnw5uGSkiP6UgNQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=P1aPk5VMgO9FM7GziHJXiUdBW1aYh2bI4C3MtnEF/P2O0ZSevDFF2eqj8XNq2gbmY
-	 tnN2gbvfGErFbwyEYlRhzgq2a2L/q1Pb87GbgiotcFtTTwgX+ba3YIez+ngqH8lVY5
-	 hAjm0KCSt4Psq7LUvKvxxsXRkOBr+vkFLCrpgHTuYx/vTNov0H5h9lDksWOG0w8xg6
-	 9MhBDA8FBmAePRlnLAB3NZTwchA8BwskyEJF+2JJOyLLdoW2MtLtIdzZ5Jqnq3vEE5
-	 AwVmS8FCzXV1vAfGmZJUPnjOGFush6StsvxC7Jcjgi2A7c5LYVsRgCChu9hKPXxBn6
-	 xnSlerAyw1CdQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C1E1C02192;
-	Wed,  5 Feb 2025 22:10:56 +0000 (UTC)
-From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
-Date: Wed, 05 Feb 2025 23:10:54 +0100
-Subject: [PATCH v5 5/5] MAINTAINERS: Add entries for touchbar display
- driver
+	s=k20201202; t=1738793653;
+	bh=aFGIUdjDssfb7zv8oCBW+9A3XqhSBZ7Ws/3yXdqV4qw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ccisrcf6pF6AGzbnBuURM8Dv+heEsWDX6RNMMBwPOCdU01pSaFz21peydVldIdVtA
+	 FF/QfYkiw0Xt1Kp4bsHkYmp5ujsM7trdKzoNZbY87KveivGmDgzkpzURfsHfl0s5Nh
+	 xGSmYxAwY9t2hluRbWdkLX4geDtzaHCQGDDTY6UwRDviwkGDgGohuUxSqGmMTnUGUD
+	 aFeiuWX/p2XAEcMO8vzHewxhRh6TJm9V2IrpGTSysYjjKFn5pE1m6PmDAWllq+wxsd
+	 mzc8BJJKLhExxDpNqGYg1HgBNpEki1ma/qnqH5yxsVQ71W45C/9PSi4l2jSmlsfAV1
+	 HMzfb+57UH1+w==
+Date: Wed, 5 Feb 2025 23:14:08 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Sergey Lisov <sleirsgoevy@gmail.com>, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 0/2] Introduce support for Exynos7870 I2C and HSI2C
+Message-ID: <wiyifuogjo5rbqwohi46czhymsdj3zp5k4ex77uqommuiwlopm@27vjaksxlfhw>
+References: <20250204-exynos7870-i2c-v1-0-63d67871ab7e@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250205-adpdrm-v5-5-4e4ec979bbf2@gmail.com>
-References: <20250205-adpdrm-v5-0-4e4ec979bbf2@gmail.com>
-In-Reply-To: <20250205-adpdrm-v5-0-4e4ec979bbf2@gmail.com>
-To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Alyssa Ross <hi@alyssa.is>, Sasha Finkelstein <fnkl.kernel@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738793453; l=1420;
- i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
- bh=0u4/uYjoe2DaEvjc/SQO9Hc50mMhOj/1inT7JrKfgM4=;
- b=iAMCyaTdmzX1to9BPOpiGdbLwmYaf21Tj+jU8faAlxYBgzUog2CBJHwJlymHwnkcf2pdBVZWX
- brf8vMNRwbmALTFpuP+AeYGeHZYvLNPSfAWlvQkJ+mR5O2b46RC7K0F
-X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
-X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
- auth_id=283
-X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Reply-To: fnkl.kernel@gmail.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250204-exynos7870-i2c-v1-0-63d67871ab7e@disroot.org>
 
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Hi Kaustabh,
 
-Add the MAINTAINERS entries for the driver
+On Tue, Feb 04, 2025 at 02:03:31AM +0530, Kaustabh Chakraborty wrote:
+> Document devicetree bindings for I2C and HSI2C drivers for Exynos7870.
+> 
+> This patch series is a part of Exynos7870 upstreaming.
+> 
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+> Kaustabh Chakraborty (2):
+>       dt-bindings: i2c: samsung,s3c2410: add exynos7870-i2c compatible
+>       dt-bindings: i2c: exynos5: add exynos7870-hsi2c compatible
 
-Acked-by: Sven Peter <sven@svenpeter.dev>
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
----
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
+merged to i2c/i2c-host.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a87ddad78e26f28ffd0f3433560d6db1518f9f95..4ce0d3bcf67910d909ba41261535dcb14a24a7b7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2189,6 +2189,9 @@ F:	Documentation/devicetree/bindings/arm/apple.yaml
- F:	Documentation/devicetree/bindings/arm/apple/*
- F:	Documentation/devicetree/bindings/clock/apple,nco.yaml
- F:	Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
-+F:	Documentation/devicetree/bindings/display/apple,h7-display-pipe-mipi.yaml
-+F:	Documentation/devicetree/bindings/display/apple,h7-display-pipe.yaml
-+F:	Documentation/devicetree/bindings/display/panel/apple,summit.yaml
- F:	Documentation/devicetree/bindings/dma/apple,admac.yaml
- F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
-@@ -2208,6 +2211,8 @@ F:	drivers/bluetooth/hci_bcm4377.c
- F:	drivers/clk/clk-apple-nco.c
- F:	drivers/cpufreq/apple-soc-cpufreq.c
- F:	drivers/dma/apple-admac.c
-+F:	drivers/gpu/drm/adp/
-+F:	drivers/gpu/drm/panel/panel-summit.c
- F:	drivers/pmdomain/apple/
- F:	drivers/i2c/busses/i2c-pasemi-core.c
- F:	drivers/i2c/busses/i2c-pasemi-platform.c
-
--- 
-2.48.1
-
-
+Thanks,
+Andi
 
