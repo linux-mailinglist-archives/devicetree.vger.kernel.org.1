@@ -1,129 +1,153 @@
-Return-Path: <devicetree+bounces-143293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6625A29038
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:33:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 351FDA29093
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:37:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D25FE164385
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:33:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6BEA97A27A3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A65166F06;
-	Wed,  5 Feb 2025 14:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E820C158218;
+	Wed,  5 Feb 2025 14:37:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=inria.fr header.i=@inria.fr header.b="OthwYV5w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail2-relais-roc.national.inria.fr (mail2-relais-roc.national.inria.fr [192.134.164.83])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96E51632DA;
-	Wed,  5 Feb 2025 14:32:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648B0151988;
+	Wed,  5 Feb 2025 14:37:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.134.164.83
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738765971; cv=none; b=hCBuAkSHLo9J/Pr4LQesjgMtY/BPA0N7vlU9rBIopIhImES3bL3bLmXiFpn2pvkDuGXXDfqblZ4VdcslxxY6BU2NZSSMtSC+1eFwyimjCTqEC7uvRYUxkNxD8jw5NLCVTdPvt0a9bhw4/30jMuv9uEOEwJh/LtGcYVUclSvxc1U=
+	t=1738766268; cv=none; b=oKdmU/RPs7nuWzoSQIVpyKRVJbaC9ePC+iAhQb/ycSc4Rabu69OAtIfGGNIjP/1eWDQ608Dvq8lewS9kYMKmUFX0rhejpm8SqSN7uALUeK4ihCRyVVPj+sx+3gFAUZoEEBE6eZt4cLaFMdprxIB866H/DCM/JOQ3RmoOt+ypeGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738765971; c=relaxed/simple;
-	bh=0bYuOke5HicLvyysSTvwmqkgRqMgEAHNqs3w4ITvTZQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W/IgWt5fdvlO9Nc15TF13a6BcsgpAIoYt2mq479DVRDIOz4uzRt0/NNIr4OBFpv19Ip4AGXh9zoVp1c6jwqVQKzbQ/DLqNwsqnyq97BvT2Xbbcs7NmGnFxOawbn34bMydOkcAjFFlWvkSV04yVENlbRl3LoaBUjNkLJZ0kRAa68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AD32C4CED1;
-	Wed,  5 Feb 2025 14:32:47 +0000 (UTC)
-Message-ID: <fc9d5253-9e78-4b12-8b1c-96c97b0f4438@xs4all.nl>
-Date: Wed, 5 Feb 2025 15:32:46 +0100
+	s=arc-20240116; t=1738766268; c=relaxed/simple;
+	bh=h8qst0td1zw5Z6H2Ng460RAkS+IiIOF6nYwMXJpMbGE=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=YBN8KPxKdYG/qAJR391DaSG0IIQ/0Q2Qgjhrr2xbPWSMTfMJ0wqGNYpjrJryYvuSyGPLDwC68HdX3ovBZ8pPPt8W8sbME+LXnCTvMfXxlEQlhpOCqWStgx2FvV4tNRFOhGs0XieKSZjAXDqWWMEAoYCCe/5K1dkj1GZctclDWM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=inria.fr; spf=pass smtp.mailfrom=inria.fr; dkim=pass (1024-bit key) header.d=inria.fr header.i=@inria.fr header.b=OthwYV5w; arc=none smtp.client-ip=192.134.164.83
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=inria.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inria.fr
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=inria.fr; s=dc;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=itgBDC2ytdn3pApg+pHXH0qGhVL8pA2oRw6633a5lAI=;
+  b=OthwYV5wrElKxcU5ZzK55lkxWqcJr2FwvnedSBKAOTKkwRxKFoq92Yt5
+   Q0nt+fykWP9tIpdTWySA2aWO1Hzl/aORwpFmfm7Y3KD/N8taGfDnDqGZH
+   szkQAn+uGcj3L79tlOtjStzc2JuZW2xukWRLcScNTsfyyMRwQw6ilWOGI
+   Q=;
+Authentication-Results: mail2-relais-roc.national.inria.fr; dkim=none (message not signed) header.i=none; spf=SoftFail smtp.mailfrom=julia.lawall@inria.fr; dmarc=fail (p=none dis=none) d=inria.fr
+X-IronPort-AV: E=Sophos;i="6.13,261,1732575600"; 
+   d="scan'208";a="206751283"
+Received: from dt-lawall.paris.inria.fr ([128.93.67.65])
+  by mail2-relais-roc.national.inria.fr with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2025 15:36:36 +0100
+Date: Wed, 5 Feb 2025 15:36:36 +0100 (CET)
+From: Julia Lawall <julia.lawall@inria.fr>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+cc: Julia Lawall <Julia.Lawall@inria.fr>, 
+    Nicolas Palix <nicolas.palix@imag.fr>, Rob Herring <robh@kernel.org>, 
+    Saravana Kannan <saravanak@google.com>, 
+    Wolfram Sang <wsa+renesas@sang-engineering.com>, cocci@inria.fr, 
+    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH/RFC v2] coccinelle: of_table: Do not add commas after
+ sentinels
+In-Reply-To: <f4d11c2e43697681678cf3fe0b2781bcd3bf3884.1738765482.git.geert+renesas@glider.be>
+Message-ID: <6abd97ee-b9fe-d2eb-4486-b1c43efc0e5@inria.fr>
+References: <f4d11c2e43697681678cf3fe0b2781bcd3bf3884.1738765482.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v10 27/28] media: iris: enable video driver probe of
- SM8250 SoC
-To: Johan Hovold <johan@kernel.org>
-Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>, quic_vgarodia@quicinc.com,
- quic_abhinavk@quicinc.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, p.zabel@pengutronix.de, sebastian.fricke@collabora.com,
- bryan.odonoghue@linaro.org, dmitry.baryshkov@linaro.org,
- neil.armstrong@linaro.org, nicolas@ndufresne.ca,
- u.kleine-koenig@baylibre.com, stefan.schmidt@linaro.org,
- lujianhua000@gmail.com, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org
-References: <20250116070234.4027116-1-quic_dikshita@quicinc.com>
- <a3cafc25-3453-4a2d-81fb-71730982ddc0@xs4all.nl>
- <Z6Nz5r8Z1BhtD2KZ@hovoldconsulting.com>
-Content-Language: en-US, nl
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <Z6Nz5r8Z1BhtD2KZ@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII
 
-On 05/02/2025 15:21, Johan Hovold wrote:
-> On Wed, Feb 05, 2025 at 02:15:25PM +0100, Hans Verkuil wrote:
-> 
->> This discussion about probing the driver is holding up the merging of this
->> driver unnecessarily. For now, only support the iris driver for SM8250 SoC
->> if the venus driver is not enabled:
->>
->> #if !IS_REACHABLE(CONFIG_VIDEO_QCOM_VENUS)
->>
->> That should be uncontroversial, and allows us to merge the iris driver.
-> 
-> Sounds good to me, but that should be IS_ENABLED() as otherwise which
-> driver ends up binding depends on whether venus is built as a module or
-> not.
 
-You are right, good catch.
 
-Regards,
+On Wed, 5 Feb 2025, Geert Uytterhoeven wrote:
 
-	Hans
+> It does not make sense to have a comma after a sentinel, as any new
+> elements must be added before the sentinel.  Hence do not add the comma
+> when adding the sentinel.
+>
+> Include the comma after the previous entry, else it will appear after the
+> sentinel.
+>
+> Add a comment to clarify the purpose of the empty element.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v2:
+>   - Add devicetree people.
+>
+> This is a patch I wrote last year.
+> My original intention was to create a Coccinelle script to remove
+> commas after sentinels, and annotate them, to automate the creation of
+> patches like commit 0256b6aeee11d705 ("pinctrl: renesas: Annotate
+> sentinels in tables").  Unfortunately I could not get that work (blame
+> it on this being my first experiment with Coccinelle).  Hence I gave up,
+> and instead settled for adapting the existing script to not add these
+> commas in the first place...
+>
+> Known issues:
+>
+>   1. This generates patches like:
+>
+> 	+	{/* sentinel */}
+>
+>      while I would prefer to see:
+>
+> 	+	{ /* sentinel */ }
+>
+>      Is there a way to do that, or should I just post-process the
+>      generated patches?
 
-> 
-> Johan
+Try running with --smpl-spacing.
 
+julia
+
+>
+>   2. If the array contains a "{ NULL }" element, this is still flagged
+>      as a missing sentinel:
+>
+> 	-	{ NULL }
+> 	+	{ NULL },
+> 	+	{},
+>
+>      Note that this is a pre-existing issue.
+> ---
+>  scripts/coccinelle/misc/of_table.cocci | 7 +++----
+>  1 file changed, 3 insertions(+), 4 deletions(-)
+>
+> diff --git a/scripts/coccinelle/misc/of_table.cocci b/scripts/coccinelle/misc/of_table.cocci
+> index 4693ea7447534144..7ade9766dee89c70 100644
+> --- a/scripts/coccinelle/misc/of_table.cocci
+> +++ b/scripts/coccinelle/misc/of_table.cocci
+> @@ -37,15 +37,14 @@ struct \(of_device_id \| i2c_device_id \| platform_device_id\) arr[] = {
+>  	...,
+>  	{
+>  	.var = E,
+> --	}
+> -+	},
+> -+	{ }
+> +	},
+> ++	{ /* sentinel */ }
+>  };
+>  |
+>  struct \(of_device_id \| i2c_device_id \| platform_device_id\) arr[] = {
+>  	...,
+>  	{ ..., E, ... },
+> -+	{ },
+> ++	{ /* sentinel */ }
+>  };
+>  )
+>
+> --
+> 2.43.0
+>
+>
 
