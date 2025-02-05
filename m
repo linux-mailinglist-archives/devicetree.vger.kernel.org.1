@@ -1,182 +1,188 @@
-Return-Path: <devicetree+bounces-143143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB98A284B6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:57:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88757A284BC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 07:59:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 712ED1888372
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 06:57:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77FEB16728C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 06:59:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB4C21E085;
-	Wed,  5 Feb 2025 06:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F6A2288C1;
+	Wed,  5 Feb 2025 06:59:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="BWbJPoFz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ck98GAYm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 660B0214A6B;
-	Wed,  5 Feb 2025 06:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C83538F82;
+	Wed,  5 Feb 2025 06:59:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738738622; cv=none; b=dUHBroxFBADZw5w9DIzyxqEnH/1zsETfSnr46sI+xpP7qb4ICchfjXWv6JITOYDqAW7M7HcfNW7Gku0xz6gzTjhqHj932uda5C8B4Jy7yoHYBq2/jVmYNu5Mv28ww0aBvsl4N3S7xKMtTnvMjQY/igyRvs3b9C7hoCqKpN0rEao=
+	t=1738738777; cv=none; b=pOScXdoMmbb82+OfDcMfhNjQm1CXR8Ocjtc3bSAyDjhPM99Luo6QCxlNkyzc2nqamNkySi9Npothdgxu8d10Cx0f9klxpj4dHPOebyOzaFJryYFh5pPMq/rmAexQr16a+p36qJZA9mwyGF79Emz86mWtvSKFCjmtRM23r9nnedc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738738622; c=relaxed/simple;
-	bh=wTAlPlOR+MYQRcwVVV1xfdmfe7enZp9ryKNE3mSZvbE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QWswZvw6zmDK7DBLft9VQRO75yr4gevW/RyfTfqQFhZ2W2U6FgPBvL4cttwUuhs0ndlrwAe/+U4MPEvbsZ/ZVD8ZSSI9l895QtlM0TruM1UREEU21J8OTAHwfwkAHJtGALl9K7Ul/hp+RTPbSotfR2f/RUhvnrFACttgoHhetec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=BWbJPoFz; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7E97B250;
-	Wed,  5 Feb 2025 07:55:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1738738545;
-	bh=wTAlPlOR+MYQRcwVVV1xfdmfe7enZp9ryKNE3mSZvbE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BWbJPoFzXk7PORbSH2mpiNQ9XwARTnOqJmUEjxTdQSQTugc2ai+hKCvD4AwvMvLNo
-	 bSj4I3h0i+uk71hxojhKRET+LnKs3nNWQDccL0W8pQzCuPQ7wgwKxXKH0PASqTWYQO
-	 Xpp7oY6iAc4bH+4gSniqQmWVslBC5vesdS+2WsHQ=
-Message-ID: <f6b20a29-1205-4f5e-87b6-fec58bd43545@ideasonboard.com>
-Date: Wed, 5 Feb 2025 08:56:53 +0200
+	s=arc-20240116; t=1738738777; c=relaxed/simple;
+	bh=fRuzMNeIAnVp4Dufyy+ThQ4Ejb/BDdKzdbPr3bAUMh4=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version:Content-Type; b=oP2X+gmGmH5zxAbdfIsOaOv2sJOzRt5CUXcDY41rEPH6VxpRzK6iqjyH2YTBLeOCxYzA4xwEpRN9gAUkQ3DdzxoBKIBYaV6+4OL3nZjmxKvWIsUzFQyDRnhSqcaD8K8EnZyiQEI75w11mVh8jdcj5BVofv3/VBEpSy7rnxqSxoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ck98GAYm; arc=none smtp.client-ip=209.85.210.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-71e2a32297dso344332a34.0;
+        Tue, 04 Feb 2025 22:59:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738738775; x=1739343575; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UUFk6TgopSWQITCEbcE120wI7n+sBN7sqpPKgJ7PFf0=;
+        b=Ck98GAYm+w8mzpSPw7dj/dnr6JSBmROmF2qb64SFxqqJpERSEmzcuySdqkXW8cVmUT
+         5f8oSSNoCT1mAy70IQatwisYWPvqTqYMzkoc7MpcERQdeOM50cKEuKyRcuh/WuRzDuqa
+         FG0eOlOK+0jp/sVClJ2fDMcxqBB1OCGKwdEjdS6drcSJt8BAamjhEkC6FAG9BojkaJ7S
+         ZAOwgRKoFu2tud5XXziDo0t3yOFIh3jEpoCb/c61OJs5FPnxeS5j7CeqKq+Vu8WiTbiS
+         HUR31iz5esF3vuzdqeTBPx1r5csFxIcDJmXYi8VpBFzr0IvlR7qzYaZVLKYjMicPZPCP
+         0KNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738738775; x=1739343575;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UUFk6TgopSWQITCEbcE120wI7n+sBN7sqpPKgJ7PFf0=;
+        b=QYo9t2AyVTgpFS5GIIDlQJAbj8Qpp6HkWdRgC7+nGhbzFiR92QxXaAw1wVi7afYPbh
+         09gIBMaaU8W4lb8PfZqRFeX4yM8e+oTMFLkFy1C0mbnTqvLbDobLESsAbKf98VOAntQ3
+         85121YQKQm3xJgbw8G3f4poluVmvIoKpXmwI1xxkU/ZaE7gLY0lCCNi3SuNRWMcSCaqi
+         b2BAwhkjY3G0IAjgIK6/eXTCYveh79olAR86H2WWpgUyrg5VBKJI3j2lBNx2CGHSRGeO
+         5fkswzytqj/3FDqFkkrChO0bysGgMJmDDORHSzZKzuQzVnRDnoMoA1broQz7CDG6c1qC
+         COpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUydahQgcDEh6NEbY+cwVRIEHflCDPg1oQv4PuVlQ3teKTBUoPcwob7mIR/d+Xrwmfaz81MCJIWW5EfkYKB@vger.kernel.org, AJvYcCWMIgZcJLbvWzy2ovbd/zICkCxgic7eCOyzM3ICKptnKxQs+1oubJtoy+RjS8prnrhuM3cz7RQAIixg@vger.kernel.org, AJvYcCWVwqNH88b4ybNg2rSUm6nC6WV2zBg7dq1TOXMOy78543NCxiQtH9v8ogsJNyU6hBZ3Ewbc0+XUxnMM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRTTPGdFn2CAZ6YcX/C3yzABAhHCr6WLrKNexw4sJvikBplY5M
+	XjcCiBSgOP5zLkI4eIVt8m6CUAKmh41fbBHrCkeVlwzK6GolecTz
+X-Gm-Gg: ASbGncs101oXPOOnLxWj1cqdp+P6F7r6zojRJzaT9boHsor6dgDNLjyGB9YZR2rjCM3
+	a+bNiCUNPELa1dlMrZ8DlkSUpz5/6X+98Bl5Y4qG+PQgh4FPSAYzOdQv7x4A686oECs9+L9ZE/R
+	bkbhXCkZAyJENSdu2tGcBuEW8nM2UY8R8bmYMGtLkBgmqRdds9juTp0txzDETsC8DEhI1p6E3qY
+	DZu5xwVILaUOqHJiMMrytX40/VnO2LtCXPlxwPqcLzNU1xkIY90fxuTJJpZCvWOZoHD+Cfspsk4
+	EBx19enyIDs5EnxlIVe1JKGUVQ==
+X-Google-Smtp-Source: AGHT+IFG1SDTKozMPahzThei5PB6whL1v2BM+EVscsLeVPRgrXAkEdyUvEUjkRuufTiB8wtsfVoRXA==
+X-Received: by 2002:a05:6830:3204:b0:71d:efeb:7c78 with SMTP id 46e09a7af769-726976bd30cmr3273225a34.14.1738738774982;
+        Tue, 04 Feb 2025 22:59:34 -0800 (PST)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-726617cba50sm3804291a34.16.2025.02.04.22.59.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Feb 2025 22:59:33 -0800 (PST)
+From: Chen Wang <unicornxw@gmail.com>
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	unicorn_wang@outlook.com,
+	inochiama@outlook.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	chunzhi.lin@sophgo.com
+Subject: [PATCH v7 0/3] pwm: Add pwm driver for Sophgo SG2042
+Date: Wed,  5 Feb 2025 14:59:16 +0800
+Message-Id: <cover.1738737617.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/tidss: Add support for AM62L display subsystem
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: "Bajjuri, Praneeth" <praneeth@ti.com>,
- "Raghavendra, Vignesh" <vigneshr@ti.com>, "Jain, Swamil" <s-jain1@ti.com>,
- "Donadkar, Rishikesh" <r-donadkar@ti.com>,
- "Choudhary, Jayesh" <j-choudhary@ti.com>,
- "Shenoy, Harikrishna" <h-shenoy@ti.com>,
- Aradhya Bhatia <aradhya.bhatia@linux.dev>,
- "jyri.sarha@iki.fi" <jyri.sarha@iki.fi>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "simona@ffwll.ch" <simona@ffwll.ch>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
-References: <20241231090432.3649158-1-devarsht@ti.com>
- <20241231090432.3649158-3-devarsht@ti.com>
- <eab600f6-bfc2-489c-b384-5b620164a556@linux.dev>
- <dea025e1-98d4-2dcf-e729-19c9d49bf3ae@ti.com>
- <c6179f0b-c93f-483b-bfeb-322d800e5170@ideasonboard.com>
- <5f122a31-771f-93c9-57fe-bc5766c1fccc@ti.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <5f122a31-771f-93c9-57fe-bc5766c1fccc@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Chen Wang <unicorn_wang@outlook.com>
 
-On 05/02/2025 07:53, Devarsh Thakkar wrote:
-> Hi Tomi
-> 
->>> Thanks for pointing out, I probably missed this since the use-case still
->>> worked since VP interrupts were still enabled and those were sufficient to
->>> drive the display
->>> but the VID underflow interrupts and VID specific bits were probably not
->>> enabled at-all due to above miss, so agreed
->>> we should probably go ahead with a different reg space for AM62L due to
->>> aforementioned differences.
->>
->> I think I disagree here. Afaiu, AM62L has plane at hw index 1 (VIDL1), but the
->> plane at hw index 0 (VID1) is not instantiated in the hardware. But the
->> registers are the same, i.e. AM62L's registers for VIDL1 match AM65x/AM62x
->> registers, right?
->>
->> If so, we just need to tell the driver the hw index, instead of creating new
->> register offsets as done in v2.
->>
->> Or am I missing something here? (I haven't looked at the HW manual yet).
->>
-> 
-> No that's not the only difference. For AM62L, the VID_IRQENABLE/STATUS
-> registers start at +0x4 as compared to AM65x/AM62x/ :
-> 
-> AM62L:
->          [DISPC_VID_IRQENABLE_OFF] =             0x48,
-> 
->          [DISPC_VID_IRQSTATUS_OFF] =             0x5c,
-> 
-> AM62x/AM65x:
-> 
->          [DISPC_VID_IRQENABLE_OFF] =             0x44,
-> 
->          [DISPC_VID_IRQSTATUS_OFF] =             0x58,
+Add driver for pwm controller of Sophgo SG2042 SoC.
 
-But they actually don't start at different offsets.
+Thanks,
+Chen
 
-AM62L TRM has:
+---
 
-DSS_COMMON_VID_IRQENABLE_1  3020 0048h
-DSS_COMMON_VID_IRQSTATUS_1  3020 005Ch
+Changes in v7:
+  The patch series is based on v6.14-rc1.
 
-AM65X TRM has:
+  Fixed following issues as per comments from Uwe Kleine-König, thanks.
 
-DSS0_COMMON_VID_IRQENABLE_1  04A0 0048h
-DSS0_COMMON_VID_IRQSTATUS_1  04A0 005Ch
+  - dt-bindings: change value of "#pwm-cells" from 2 to 3.
+  - driver: rename variables period/hlperiod to period_ticks/hlperiod_ticks and
+    improve coding of apply()/get_state(); use
+    devm_reset_control_get_optional_shared_deasserted() instead of
+    devm_reset_control_get_optional_shared() and reset_control_deassert();
+    add more comments and other miscellaneous code improvements.
 
-It's just that on AM62L the VID0 isn't instantiated in the hardware. 
-VID1 is at the same place.
+Changes in v6:
+  Nothing major changes just rebased onto v6.13-rc1 and retested. You can
+  simply review or test the patches at the link [6].
 
-  Tomi
+Changes in v5:
+  The patch series is based on v6.12-rc1. You can simply review or test
+  the patches at the link [5].
+
+  Updated driver to add resets property for pwm controller node as per
+  suggestion from Inochi.
+
+Changes in v4:
+  The patch series is based on v6.12-rc1. You can simply review or test
+  the patches at the link [4].
+
+  Updated driver to set property atomic of pwm_chip to true as per suggestion
+  from Sean.
+
+Changes in v3:
+  The patch series is catched up with v6.12-rc1. You can simply review or test
+  the patches at the link [3].
+
+  Add patch #3 for dts part change.
+
+Changes in v2:
+  The patch series is based on v6.11-rc6. You can simply review or test the
+  patches at the link [2].
+
+  Fixed following issues as per comments from Yixun Lan, Krzysztof Kozlowski
+  and Uwe Kleine-König, thanks.
+
+  - Some minor issues in dt-bindings.
+  - driver issues, use macros with name prefix for registers access; add
+    limitations comments; fixed potential calculation overflow problem;
+    add .get_state() callback and other miscellaneous code improvements.
+
+Changes in v1:
+  The patch series is based on v6.11-rc6. You can simply review or test the
+  patches at the link [1].
+
+Link: https://lore.kernel.org/linux-riscv/cover.1725536870.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/cover.1725931796.git.unicorn_wang@outlook.com/ [2]
+Link: https://lore.kernel.org/linux-riscv/cover.1728355974.git.unicorn_wang@outlook.com/ [3]
+Link: https://lore.kernel.org/linux-riscv/cover.1729037302.git.unicorn_wang@outlook.com/ [4]
+Link: https://lore.kernel.org/linux-riscv/cover.1729843087.git.unicorn_wang@outlook.com/ [5]
+Link: https://lore.kernel.org/linux-riscv/cover.1733281657.git.unicorn_wang@outlook.com/ [6]
+---
+
+Chen Wang (3):
+  dt-bindings: pwm: sophgo: add PWM controller for SG2042
+  pwm: sophgo: add driver for Sophgo SG2042 PWM
+  riscv: sophgo: dts: add pwm controller for SG2042 SoC
+
+ .../bindings/pwm/sophgo,sg2042-pwm.yaml       |  58 ++++++
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   9 +
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-sophgo-sg2042.c               | 196 ++++++++++++++++++
+ 5 files changed, 274 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-sophgo-sg2042.c
+
+
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+-- 
+2.34.1
 
 
