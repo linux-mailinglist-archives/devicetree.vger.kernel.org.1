@@ -1,126 +1,137 @@
-Return-Path: <devicetree+bounces-143399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66EE6A29914
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 19:29:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7736CA298B7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 19:22:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F7EE165AEC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 18:29:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DBCE1682AC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 18:22:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55BA81FDA85;
-	Wed,  5 Feb 2025 18:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B011FCFCA;
+	Wed,  5 Feb 2025 18:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AKr7Bwoh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6808211A0B;
-	Wed,  5 Feb 2025 18:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.53.165.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 409901FCCE1;
+	Wed,  5 Feb 2025 18:22:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738780120; cv=none; b=qJGeh6oD+YhBFlyRUW5aMVMSzEsMhita/vzL4YrTtR+Vxo9SoJIARKgmQ9xzSVd5qxSJzKwW6J3CYmfdcznGMqq3g2vXjQ2Jwi0Ra0Kyhb9VtADDCXHqSspS4+ntnNPw3gecrW17Esp9xsQ/eobML4uUXuVtXosz6CCb/J3Mefg=
+	t=1738779723; cv=none; b=NL5mkNLWxMevKi+nsDnGiEOTIlWwHBhaybkBh/qrJw+NXOQFDyRe3RYwfzAdxOi/Hqx+Eit7xXq6eAr/48NOMyd36lrpFkga7Ofnm4p64s7cnrH4fXBojWag+UmhqsC2VjglZoumfhebFr2RBHBaLJ7W76ExVzIISryh6ch7n7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738780120; c=relaxed/simple;
-	bh=V1KvqEekI6n0A5vDzT+2qWrO7ACO3vGWNpHxLhdYSd4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qUPQFt0XC5c2xYopfmdzLjZqpvXXiv171/4HKFLE+2QvbWQDumatdkNp/nNGEP39BdeM0jx/uYdo4a/MC0aaKsmhsmdrCdN3CPAAP4/7CNMsprEdHXt/pWOoogm74p/0jQXB1SiNKZONSGmQQpdAgY0UvKi3U8cbEwIz7ZfhGfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr; spf=pass smtp.mailfrom=skole.hr; arc=none smtp.client-ip=161.53.165.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=skole.hr
-Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-	by mx.skole.hr (mx.skole.hr) with ESMTP id B067D82216;
-	Wed,  5 Feb 2025 19:21:12 +0100 (CET)
-From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje.mihanovic@skole.hr>
-To: Daniel Mack <daniel@zonque.org>,
- Haojian Zhuang <haojian.zhuang@gmail.com>,
- Robert Jarzmik <robert.jarzmik@free.fr>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>
-Cc: =?UTF-8?B?SGVydsOp?= Codina <herve.codina@bootlin.com>,
- linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/3] pwm: pxa: Use #pwm-cells = <3>
-Date: Wed, 05 Feb 2025 19:19:46 +0100
-Message-ID: <2769312.mvXUDI8C0e@radijator>
-In-Reply-To: <cover.1738777221.git.u.kleine-koenig@baylibre.com>
-References: <cover.1738777221.git.u.kleine-koenig@baylibre.com>
+	s=arc-20240116; t=1738779723; c=relaxed/simple;
+	bh=SqMKmdlV8li1b5GqGJ7nzzQ4TW5jigeCPr1xbGk1wJA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=r8+NroDpjR7RVfDwtypiddHt+VaVzhufMLhJvBHQOrcZ3w31EZRlnZI0QHuXoswuLHte2xfc8zb7Z1BZ78JeqpIjhTt1PYRsjBliK0pUN4//VfUeGQ8oHf3Etv1vHT15QFLHEztJGws8bUjmc/x6Y+kTks1PA+5MefLhh9HVafc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKr7Bwoh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 366EDC4CED1;
+	Wed,  5 Feb 2025 18:22:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738779722;
+	bh=SqMKmdlV8li1b5GqGJ7nzzQ4TW5jigeCPr1xbGk1wJA=;
+	h=From:Subject:Date:To:Cc:From;
+	b=AKr7Bwohk7fQ2NjKiLGD4FDOIFn52qFzErjfd4iCCrBiIX2QR5DBLQwuOnPVi8hdd
+	 uUq1kTBY0k+Nm6KxBoUVngwzzzcc6vS625mPd8ZUHYZje51sVBLTYC2QFtPLKqWpt4
+	 kqxCh2RhTAgzySGmSBwUQSM61FXnik9dt7m6o1Ka3hvOuklQ9oQyTjgNrdYGUjsCKD
+	 lSGFiXgqPog17icF6a5f4PEz7TRYHWMwkMxKEWc1QJSHo4Q4YXgnucojc49H3iqqBt
+	 woK4BO3ejsCMkLrivCiesSqYUddLy9b5z794MqM/cHDlwS3q/MVYZxButCV/9/4w4d
+	 fltVqqII4Xkdw==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH net-next 00/13] Introduce flowtable hw offloading in
+ airoha_eth driver
+Date: Wed, 05 Feb 2025 19:21:19 +0100
+Message-Id: <20250205-airoha-en7581-flowtable-offload-v1-0-d362cfa97b01@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Autocrypt: addr=duje.mihanovic@skole.hr;
- keydata=
- mDMEZokhzhYJKwYBBAHaRw8BAQdAWJZ0hsI/ytTqHGFV8x6tzd5sB596cTeeDB4CQsTf+wC0KER
- 1amUgTWloYW5vdmnEhyA8ZHVqZUBkdWplbWloYW5vdmljLnh5ej6ImQQTFgoAQRYhBG3/QdYN8x
- S1t2umMK0xk1JFj60DBQJmiSHOAhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAA
- AoJEK0xk1JFj60D1GABAJVSorZdMOlrp/oQtCSH/G53NE56x/JHA8VX+ZQBd/H3AP4/EcUf6eef
- DUxVMh2bdkmuQKsVZGgOGiXpMksrVntWBrQpRHVqZSBNaWhhbm92acSHIDxkdWplLm1paGFub3Z
- pY0Bza29sZS5ocj6ImQQTFgoAQRYhBG3/QdYN8xS1t2umMK0xk1JFj60DBQJmiSH/AhsDBQkJZg
- GABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAAAoJEK0xk1JFj60Dlw8A/i4lPOL7NaYoYePDq
- l8MaJaR9qoUi+D+HtD3t0Koi7ztAQCdizXbuqP3AVNxy5Gpb1ozgp9Xqh2MRcNmJCHA1YhWAbg4
- BGaJIc4SCisGAQQBl1UBBQEBB0DEc9JeA55OlZfWKgvmRgw6a/EpBQ8mDl6nQTBmnd1XHAMBCAe
- IfgQYFgoAJhYhBG3/QdYN8xS1t2umMK0xk1JFj60DBQJmiSHOAhsMBQkJZgGAAAoJEK0xk1JFj6
- 0DG5MA/iuo4l2GDEZ1Zf+XaS//8FwdXDO9nHkfbV2MHjF4NZXwAQDroMzBdMcqVvc8GABFlTTgG
- j7KrRDz2HwWNyF8ZeprAQ==
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB+so2cC/x2NywqDMBAAf0X27EIehpb+SvGwaTZ1QRJJihaC/
+ 27wNnOZaVC5CFd4DQ0K71Ilpy56HOCzUPoySugORhmnjHJIUvJCyOnhnhrjmo8f+ZUxx84UkC1
+ p7a23EwXola1wlP99eM/neQHYrpJ4cQAAAA==
+X-Change-ID: 20250205-airoha-en7581-flowtable-offload-e3a11b3b34ad
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+ upstream@airoha.com, Christian Marangi <ansuelsmth@gmail.com>
+X-Mailer: b4 0.14.2
 
-On Wednesday 5 February 2025 18:53:59 Central European Standard Time Uwe=20
-Kleine-K=C3=B6nig wrote:
-> Hello,
->=20
-> this series' goal is to soften the special device-tree binding of
-> marvel,pxa-pwm devices. This is the only binding that doesn't pass the
-> line index as first parameter.
->=20
-> Here the #pwm-cells value is bumped from 1 to 3, keeping compatibility
-> with the old binding.
->=20
-> The motivation for this was that Herv=C3=A9 sent a patch introducing pwm
-> nexus nodes which don't work nicely with the marvel,pxa-pwm
-> particularities.
->=20
-> For merging this series (assuming device-tree and pxa maintainers agree)
-> I guess keeping the patches together makes sense because with the 2nd
-> patch applied but without the 3rd there are a few dt-checker warnings.
->=20
-> So I suggest to take it via my pwm tree as I guess drivers/pwm/core.c
-> has more potential for a conflict than arch/arm/boot/dts/intel/pxa.
-> So please send Acks and tell me if you would need an immutable branch
-> for pulling into the PXA tree.
->=20
-> Best regards
-> Uwe
->=20
-> Uwe Kleine-K=C3=B6nig (3):
->   pwm: Add upgrade path to #pwm-cells =3D <3> for users of
->     of_pwm_single_xlate()
->   dt-bindings: pwm: marvell,pxa-pwm: Update to use #pwm-cells =3D <3>
->   ARM: dts: pxa: Use #pwm-cells =3D <3> for marvell,pxa-pwm devices
->=20
->  .../devicetree/bindings/pwm/marvell,pxa-pwm.yaml |  3 +--
->  arch/arm/boot/dts/intel/pxa/pxa25x.dtsi          |  4 ++--
->  arch/arm/boot/dts/intel/pxa/pxa27x.dtsi          |  8 ++++----
->  .../dts/intel/pxa/pxa300-raumfeld-controller.dts |  2 +-
->  arch/arm/boot/dts/intel/pxa/pxa3xx.dtsi          |  8 ++++----
->  drivers/pwm/core.c                               | 16 ++++++++++++++++
->  6 files changed, 28 insertions(+), 13 deletions(-)
->=20
->=20
-> base-commit: c98e66144b7d07ee9a3ca8241123b628a8ac0288
+Introduce netfilter flowtable integration in airoha_eth driver to
+offload 5-tuple flower rules learned by the PPE module if the user
+accelerates them using a nft configuration similar to the one reported
+below:
 
-=46or the whole series:
+table inet filter {
+	flowtable ft {
+		hook ingress priority filter
+		devices = { lan1, lan2, lan3, lan4, eth1 }
+		flags offload;
+	}
+	chain forward {
+		type filter hook forward priority filter; policy accept;
+		meta l4proto { tcp, udp } flow add @ft
+	}
+}
 
-Tested-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
+Packet Processor Engine (PPE) module available on EN7581 SoC populates
+the PPE table with 5-tuples flower rules learned from traffic forwarded
+between the GDM ports connected to the Packet Switch Engine (PSE) module.
+airoha_eth driver configures and collects data from the PPE module via a
+Network Processor Unit (NPU) RISC-V module available on the EN7581 SoC.
+Move airoha_eth driver in a dedicated folder
+(drivers/net/ethernet/airoha).
 
-Regards,
-=2D-=20
-Duje
+---
+Lorenzo Bianconi (13):
+      net: airoha: Move airoha_eth driver in a dedicated folder
+      net: airoha: Move definitions in airoha_eth.h
+      net: airoha: Move reg/write utility routines in airoha_eth.h
+      net: airoha: Move register definitions in airoha_regs.h
+      net: airoha: Move DSA tag in DMA descriptor
+      net: airoha: Enable support for multiple net_devices
+      net: airoha: Move REG_GDM_FWD_CFG() initialization in airoha_dev_init()
+      net: airoha: Rename airoha_set_gdm_port_fwd_cfg() in airoha_set_vip_for_gdm_port()
+      dt-bindings: net: airoha: Add airoha,npu phandle property
+      net: airoha: Introduce PPE initialization via NPU
+      net: airoha: Introduce flowtable offload support
+      net: airoha: Add loopback support for GDM2
+      net: airoha: Introduce PPE debugfs support
 
+ .../devicetree/bindings/net/airoha,en7581-eth.yaml |    8 +
+ drivers/net/ethernet/Kconfig                       |    2 +
+ drivers/net/ethernet/Makefile                      |    1 +
+ drivers/net/ethernet/airoha/Kconfig                |   23 +
+ drivers/net/ethernet/airoha/Makefile               |    9 +
+ .../net/ethernet/{mediatek => airoha}/airoha_eth.c | 1263 +++++---------------
+ drivers/net/ethernet/airoha/airoha_eth.h           |  625 ++++++++++
+ drivers/net/ethernet/airoha/airoha_npu.c           |  500 ++++++++
+ drivers/net/ethernet/airoha/airoha_ppe.c           |  812 +++++++++++++
+ drivers/net/ethernet/airoha/airoha_ppe_debugfs.c   |  175 +++
+ drivers/net/ethernet/airoha/airoha_regs.h          |  793 ++++++++++++
+ drivers/net/ethernet/mediatek/Kconfig              |    8 -
+ drivers/net/ethernet/mediatek/Makefile             |    1 -
+ 13 files changed, 3217 insertions(+), 1003 deletions(-)
+---
+base-commit: 135c3c86a7cef4ba3d368da15b16c275b74582d3
+change-id: 20250205-airoha-en7581-flowtable-offload-e3a11b3b34ad
 
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo@kernel.org>
 
 
