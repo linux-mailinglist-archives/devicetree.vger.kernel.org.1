@@ -1,153 +1,239 @@
-Return-Path: <devicetree+bounces-143294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351FDA29093
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:37:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34079A290E7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 15:42:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6BEA97A27A3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:36:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4498E188ADF2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2025 14:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E820C158218;
-	Wed,  5 Feb 2025 14:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718C21714CF;
+	Wed,  5 Feb 2025 14:40:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=inria.fr header.i=@inria.fr header.b="OthwYV5w"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="cLgXJWLA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2-relais-roc.national.inria.fr (mail2-relais-roc.national.inria.fr [192.134.164.83])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648B0151988;
-	Wed,  5 Feb 2025 14:37:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.134.164.83
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA17F376;
+	Wed,  5 Feb 2025 14:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738766268; cv=none; b=oKdmU/RPs7nuWzoSQIVpyKRVJbaC9ePC+iAhQb/ycSc4Rabu69OAtIfGGNIjP/1eWDQ608Dvq8lewS9kYMKmUFX0rhejpm8SqSN7uALUeK4ihCRyVVPj+sx+3gFAUZoEEBE6eZt4cLaFMdprxIB866H/DCM/JOQ3RmoOt+ypeGU=
+	t=1738766457; cv=none; b=mddVELhGtMGuKrbcAZOt+Ku0lh1NzvfxRwDan5sBSV1bzwjm4xLQuGJ8sKNHQe7OO+XNV6/6jGk8l6t10lsonsQjKPzjtx/SvTbtpNP3cpXpqwC1n9gfH8IGZRNtMfFNYM6XJ6kU9Wz/vT/0wyjoUlp2lv0keENtQytDRaE1J0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738766268; c=relaxed/simple;
-	bh=h8qst0td1zw5Z6H2Ng460RAkS+IiIOF6nYwMXJpMbGE=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=YBN8KPxKdYG/qAJR391DaSG0IIQ/0Q2Qgjhrr2xbPWSMTfMJ0wqGNYpjrJryYvuSyGPLDwC68HdX3ovBZ8pPPt8W8sbME+LXnCTvMfXxlEQlhpOCqWStgx2FvV4tNRFOhGs0XieKSZjAXDqWWMEAoYCCe/5K1dkj1GZctclDWM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=inria.fr; spf=pass smtp.mailfrom=inria.fr; dkim=pass (1024-bit key) header.d=inria.fr header.i=@inria.fr header.b=OthwYV5w; arc=none smtp.client-ip=192.134.164.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=inria.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inria.fr
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=inria.fr; s=dc;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=itgBDC2ytdn3pApg+pHXH0qGhVL8pA2oRw6633a5lAI=;
-  b=OthwYV5wrElKxcU5ZzK55lkxWqcJr2FwvnedSBKAOTKkwRxKFoq92Yt5
-   Q0nt+fykWP9tIpdTWySA2aWO1Hzl/aORwpFmfm7Y3KD/N8taGfDnDqGZH
-   szkQAn+uGcj3L79tlOtjStzc2JuZW2xukWRLcScNTsfyyMRwQw6ilWOGI
-   Q=;
-Authentication-Results: mail2-relais-roc.national.inria.fr; dkim=none (message not signed) header.i=none; spf=SoftFail smtp.mailfrom=julia.lawall@inria.fr; dmarc=fail (p=none dis=none) d=inria.fr
-X-IronPort-AV: E=Sophos;i="6.13,261,1732575600"; 
-   d="scan'208";a="206751283"
-Received: from dt-lawall.paris.inria.fr ([128.93.67.65])
-  by mail2-relais-roc.national.inria.fr with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2025 15:36:36 +0100
-Date: Wed, 5 Feb 2025 15:36:36 +0100 (CET)
-From: Julia Lawall <julia.lawall@inria.fr>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-cc: Julia Lawall <Julia.Lawall@inria.fr>, 
-    Nicolas Palix <nicolas.palix@imag.fr>, Rob Herring <robh@kernel.org>, 
-    Saravana Kannan <saravanak@google.com>, 
-    Wolfram Sang <wsa+renesas@sang-engineering.com>, cocci@inria.fr, 
-    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH/RFC v2] coccinelle: of_table: Do not add commas after
- sentinels
-In-Reply-To: <f4d11c2e43697681678cf3fe0b2781bcd3bf3884.1738765482.git.geert+renesas@glider.be>
-Message-ID: <6abd97ee-b9fe-d2eb-4486-b1c43efc0e5@inria.fr>
-References: <f4d11c2e43697681678cf3fe0b2781bcd3bf3884.1738765482.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1738766457; c=relaxed/simple;
+	bh=PKEwQJtMppnnCrd/A7LT0nMscPJpOdf1mwdXkQb97J8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CHFo7kTa4b89nfW4nhvrFBrADYj4iRPGWF+QycOOmPlOt5cR9fp6Edj3MWh+vVaHyzZ7R3ArJ7UBwG/zMPRtB8g/9vYKYznsf7O9i2f+nZUcZG75kHgETBl478IDPTlCtO1qAXrfSdIKQOc6+HM7FOqhaUbNK7HcbonBmWbPRcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=cLgXJWLA; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2FF991038193F;
+	Wed,  5 Feb 2025 15:40:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1738766451;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=cEiBKmEICWctotPHCUAWGTwbH/Iy+hrCjjP5QKi/9Lo=;
+	b=cLgXJWLAdAMZvNv+TCbu3Fl/9FxjBS8zH7YHTKts/CjAxxH5YGIV4eGxb6BU2yIjt7+yb+
+	8r/EGuxZtRCFA3dYOFw6yk1NU56YSKX6LfoV5/780QCG0fKpirmzFbkP8DbsZe6jBsySVU
+	AJFeXmosGVZHKGIpRNa9CVZp0b4ibN8O6DoL7nV7+BCCs9gBRwXyoi5WLcYQ5JA84kmyJc
+	A+3cCN08MaudaM2OTRcqq2aN1oP4Bqfr2dusv+piah0EYAPetkqzo2L8arhp0CL0a68szQ
+	8DIlW9B5/EY+xjYxFvBYC5IQPGrV6Ap58bCHAgvnnZgt0zXWui0SYxrKdhu1sQ==
+Date: Wed, 5 Feb 2025 15:40:44 +0100
+From: Lukasz Majewski <lukma@denx.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Stefan
+ Wahren <wahrenst@gmx.net>
+Subject: Re: [RESEND PATCH v11 1/3] dt-bindings: display: Add
+ powertip,{st7272|hx8238a} as DT Schema description
+Message-ID: <20250205154044.7b1fd2c5@wsk>
+In-Reply-To: <20250203132108.77f2123c@wsk>
+References: <20250109154149.1212631-1-lukma@denx.de>
+	<20250203132108.77f2123c@wsk>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="Sig_/NX.kk_nUKqVaGcqUC8c2=oO";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
+
+--Sig_/NX.kk_nUKqVaGcqUC8c2=oO
 Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
+Dear Community,
 
+> Dear Community,
+>=20
+> > This patch provides the DT Schema description of:
+> > - powertip,st7272  320 x 240 LCD display
+> > - powertip,hx8238a 320 x 240 LCD display
+> >=20
+> > Used with the different HW revisions of btt3 devices.
+> >  =20
+>=20
+> Gentle ping on this window... I hope that it will make it into
 
-On Wed, 5 Feb 2025, Geert Uytterhoeven wrote:
+Not "ping on this window" :-) but on this patch :-)
 
-> It does not make sense to have a comma after a sentinel, as any new
-> elements must be added before the sentinel.  Hence do not add the comma
-> when adding the sentinel.
->
-> Include the comma after the previous entry, else it will appear after the
-> sentinel.
->
-> Add a comment to clarify the purpose of the empty element.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v2:
->   - Add devicetree people.
->
-> This is a patch I wrote last year.
-> My original intention was to create a Coccinelle script to remove
-> commas after sentinels, and annotate them, to automate the creation of
-> patches like commit 0256b6aeee11d705 ("pinctrl: renesas: Annotate
-> sentinels in tables").  Unfortunately I could not get that work (blame
-> it on this being my first experiment with Coccinelle).  Hence I gave up,
-> and instead settled for adapting the existing script to not add these
-> commas in the first place...
->
-> Known issues:
->
->   1. This generates patches like:
->
-> 	+	{/* sentinel */}
->
->      while I would prefer to see:
->
-> 	+	{ /* sentinel */ }
->
->      Is there a way to do that, or should I just post-process the
->      generated patches?
-
-Try running with --smpl-spacing.
-
-julia
-
->
->   2. If the array contains a "{ NULL }" element, this is still flagged
->      as a missing sentinel:
->
-> 	-	{ NULL }
-> 	+	{ NULL },
-> 	+	{},
->
->      Note that this is a pre-existing issue.
-> ---
->  scripts/coccinelle/misc/of_table.cocci | 7 +++----
->  1 file changed, 3 insertions(+), 4 deletions(-)
->
-> diff --git a/scripts/coccinelle/misc/of_table.cocci b/scripts/coccinelle/misc/of_table.cocci
-> index 4693ea7447534144..7ade9766dee89c70 100644
-> --- a/scripts/coccinelle/misc/of_table.cocci
-> +++ b/scripts/coccinelle/misc/of_table.cocci
-> @@ -37,15 +37,14 @@ struct \(of_device_id \| i2c_device_id \| platform_device_id\) arr[] = {
->  	...,
->  	{
->  	.var = E,
-> --	}
-> -+	},
-> -+	{ }
-> +	},
-> ++	{ /* sentinel */ }
->  };
->  |
->  struct \(of_device_id \| i2c_device_id \| platform_device_id\) arr[] = {
->  	...,
->  	{ ..., E, ... },
-> -+	{ },
-> ++	{ /* sentinel */ }
->  };
->  )
->
+> upstream during this merge window.
+>=20
+> Thanks in advance.
+>=20
+> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > ---
+> >=20
+> > Changes for v9:
+> > - New patch
+> >=20
+> > Changes for v10:
+> > - None
+> >=20
+> > Changes for v11:
+> > - Combine both separate dt-bindings patches for powertip,st7272 and
+> >   powertip,hx8238a into one
+> > - Drop the quotes for in "title" entry of powertip*.yaml files
+> > ---
+> >  .../display/panel/powertip,hx8238a.yaml       | 29
+> > +++++++++++++++++++ .../display/panel/powertip,st7272.yaml        |
+> > 29 +++++++++++++++++++ 2 files changed, 58 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
+> > create mode 100644
+> > Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
+> > b/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
+> > new file mode 100644 index 000000000000..b7d74faeb5d5 --- /dev/null
+> > +++
+> > b/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
+> > @@ -0,0 +1,29 @@ +# SPDX-License-Identifier: GPL-2.0-only OR
+> > BSD-2-Clause +%YAML 1.2
+> > +---
+> > +$id:
+> > http://devicetree.org/schemas/display/panel/powertip,hx8238a.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml# +
+> > +title: Powertip Electronic Technology Co. 320 x 240 LCD panel
+> > +
+> > +maintainers:
+> > +  - Lukasz Majewski <lukma@denx.de>
+> > +
+> > +allOf:
+> > +  - $ref: panel-dpi.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: powertip,hx8238a
+> > +      - {} # panel-dpi, but not listed here to avoid false select
+> > +
+> > +  height-mm: true
+> > +  panel-timing: true
+> > +  port: true
+> > +  power-supply: true
+> > +  width-mm: true
+> > +
+> > +additionalProperties: false
+> > +
+> > +...
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+> > b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+> > new file mode 100644 index 000000000000..f3622800f13f --- /dev/null
+> > +++
+> > b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+> > @@ -0,0 +1,29 @@ +# SPDX-License-Identifier: GPL-2.0-only OR
+> > BSD-2-Clause +%YAML 1.2
+> > +---
+> > +$id:
+> > http://devicetree.org/schemas/display/panel/powertip,st7272.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml# +
+> > +title: Powertip Electronic Technology Co. 320 x 240 LCD panel
+> > +
+> > +maintainers:
+> > +  - Lukasz Majewski <lukma@denx.de>
+> > +
+> > +allOf:
+> > +  - $ref: panel-dpi.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: powertip,st7272
+> > +      - {} # panel-dpi, but not listed here to avoid false select
+> > +
+> > +  height-mm: true
+> > +  panel-timing: true
+> > +  port: true
+> > +  power-supply: true
+> > +  width-mm: true
+> > +
+> > +additionalProperties: false
+> > +
+> > +... =20
+>=20
+>=20
+>=20
+>=20
+> Best regards,
+>=20
+> Lukasz Majewski
+>=20
 > --
-> 2.43.0
->
->
+>=20
+> DENX Software Engineering GmbH,      Managing Director: Erika Unter
+> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+> Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email:
+> lukma@denx.de
+
+
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/NX.kk_nUKqVaGcqUC8c2=oO
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmejeGwACgkQAR8vZIA0
+zr26xggAneqSbPpy5mv8Ai9RLDSjNCc66Zdwn6xEQ1QHl2zwo2neclEt7RRCRXC1
+k8e5eu/5fagPSCCrZLJbMSYLENWkdYfx/RG5WMjaAeypsLKTpbHHfp3R1RWihe+f
+TppC0mjbvF+a3Yu1y80L2myhIaWFPZtgjW0cx50h5CRtSFeopgrpUB7aXNGanyGR
+JrL4/OiQ65yKiyewwjRVPSHsqfvq7RnhKFR9znVSiUgnhgv81QgGRybI8GtrwLST
+NvSbxfelBlFeBQ1G8cqhXbfX3efIo/wy/P1C/ILRU0fVgBiUIz1Y68s3CuySnA52
+3/EsVzfwOo3PpqQQpY0xecKeZtHlhg==
+=Z4og
+-----END PGP SIGNATURE-----
+
+--Sig_/NX.kk_nUKqVaGcqUC8c2=oO--
 
