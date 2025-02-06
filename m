@@ -1,144 +1,156 @@
-Return-Path: <devicetree+bounces-143647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34067A2AA85
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 14:59:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FBC3A2AA90
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 15:02:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31971188943B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:59:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3105A3A5D76
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 14:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A0A91C6FFF;
-	Thu,  6 Feb 2025 13:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 870D31C700A;
+	Thu,  6 Feb 2025 14:02:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OatzRcim"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CcZ03hjB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6CE1624F0
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 13:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CC11C6FFF;
+	Thu,  6 Feb 2025 14:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738850367; cv=none; b=gZ+nEYHwqb8HohLOHaAMjrTtj9DFpspg2P1v0kaXWDqeQ4NS/Q1Svxvp0mmz2tlmWJWeIIo/5Vqz0AdTjYlTeMkCoEbMd35wn1mH4J4O+KrpRz974yedoOL4sdvwH/2rRpEJ9TwzGvhDdz4H5hkymvkQ2gPQtgYenwvk3bSgKVg=
+	t=1738850520; cv=none; b=eKBNruVQe9Ysbn1L3OBfVzqGi/JFcJ23pqKd8RxMlL49wRC9rT7pdPHy8e96S+WwDgoru/hDobAFA2myEuHPO41aczoJF07vpP4iooyzQmeusmiUq1qOSWaF/xo9O37978rrGrCuWf0Ga19moKo87Y6k84qIzaqFW6G4WMtVB28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738850367; c=relaxed/simple;
-	bh=5fteU1gF781gid+8eh5MjlcPKwLt80L36gWbaB+12iI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=utAXuipucARIXlWWU01OE3dOVYMFRYzWUBYEmvPt2EIMwilnpm1KxmV5BY2tGpsGxB0gOClWRIMeO5EU8HMYDvmjRWoSpnZeiTbsKxsgml+TgePmxClazgD5wT0crOAljYqdjFMa3tjnSB+BkmbYD6xVGpRgJjHtXI5SA4LD758=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OatzRcim; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-435f8f29f8aso6606965e9.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 05:59:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738850363; x=1739455163; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yiwqOK4FVjPPZWydFoWK7z8lcOGoGBb2vdMSdzrBdU8=;
-        b=OatzRcimDGdLls//YoBjw+3AT/P3yBXg7j2nABbUhb30Ny3IIz4uvLLrJlAXxgygnY
-         z7Ubvhwe4C7+G9jvIONILzFbZolANH3Y5Q5EVzs8qjngkq0eh5NUrEP2oY3SrBC0QBgd
-         Ew5jqfHp6fHDS/oiXdjVdeYYOh4fnIwInMSrmaSM9PIwMSTYD7XyB3FC+LSnzgVkkD7f
-         HL5SVa2N3UKZNT8cSD/g8RN40OMJK9sJD2B5lLgBGjjWTjyNTvFHUmuZV/6GuEP8/Mip
-         cbVf3v8BZ3ZYOgac8af/oWZytR/seG0REYDeFMGgVe1ICBN8BjcILU40nA9rAUsRXBfM
-         ggug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738850363; x=1739455163;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yiwqOK4FVjPPZWydFoWK7z8lcOGoGBb2vdMSdzrBdU8=;
-        b=HHBmbRneISRwHLHCCMLejGNXXWiUYC1mVLPPjch2kzsLzkgl4orhtXLemVHfl7nwTG
-         eC0eDuZF70/7f5VB16GnwhhJW1uw5FJmf6a/FiKvatvYqcR6b6OP5UA2a2B22A2EA4HZ
-         MTlsysPXhIGnlYDRDIgyERnlOSLEHp5sraRQLbkiqvnBY+84slkMApka0bUPZaCVUUb0
-         XsRfHQNfbD0ckARV7L3Td0d8RQ7xJx1plQB5oZVvMsw9+FdhucKcYdidtNX85IIM23AT
-         rV4bzwq/USewP8lsvexXzYwvp53lAYXPvCYJrm/ZXaYqVSzI5qfe51Y76FHfefCkUPxi
-         wW4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUy9MQrviBrCYDy2xFgYD6BGgEE3SCrPDNu4x4k+0AKMdPj75k/4101uiYYP3Z64rJNqu8madX6M7sB@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMfY295Sz1JaTIl679xjpZkURJ9IaQfJDsClM5W6MXiiA02TSi
-	G1pty2BSD7SJRgy/iPuMAUSqcg0U7UvnIFFAKS88hqv2qDxJZbqqZyWp6ssz6TQ=
-X-Gm-Gg: ASbGncvhTyS+DVXyuy6sLsdpJqDxWguW3A4g/8eOBfHTFYJt/KAuYryWXamMA9el8OO
-	NNrBTEOyeeof2tm+6x72MVvhlXS93FCN1Q+YKkoxzW1a67NUoKnM4Ke3s4PB7w1ab+T+Que3YXl
-	L3hREm2nLQAM0ggXewVQ6BEgVd1MPTJYA2mmh7FSmqV9FdgMiPNCK+DlxMwSPqx5rLUJH3necf6
-	2zbHb6qnikz/wlCQfb8PfVSNWdxB3wmos0HXfiUWn4NW+RqyR3mhH1tL7iw/fr5rwYRDCFlC56h
-	Y5NYu5IyRbjHzQ==
-X-Google-Smtp-Source: AGHT+IEQ/bjSZV+56yIOq5wwNb3seJyTMrV6PD6QY8xe23aPssG7mgZFZVTL2HkADa9VSfJyXBrBsw==
-X-Received: by 2002:a05:600c:4f8e:b0:438:ad4d:cf01 with SMTP id 5b1f17b1804b1-4390d433b21mr58938875e9.7.1738850362808;
-        Thu, 06 Feb 2025 05:59:22 -0800 (PST)
-Received: from linaro.org ([86.123.96.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4391da965a6sm20583685e9.6.2025.02.06.05.59.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Feb 2025 05:59:22 -0800 (PST)
-Date: Thu, 6 Feb 2025 15:59:21 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rajendra Nayak <quic_rjendra@quicinc.com>
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Add the watchdog device
-Message-ID: <Z6TAOPhYpl2M+SZc@linaro.org>
-References: <20250206-x1e80100-add-watchdog-v1-1-77147510c2d7@linaro.org>
- <Z6SSgmoUPFv3vDDY@hovoldconsulting.com>
+	s=arc-20240116; t=1738850520; c=relaxed/simple;
+	bh=4irXlDLhVC3QMn3aym/cMiuL941aNfnp/WLK9ZuODjA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZzqIvUzECyytdrWXkCuPY7NSh/ShqkPvnCHrMQJW6RNzBzIcAchpEdndO6CxF4nEmFvhrPmaqG+Z8s4S8zTohCO6yQZw8wBrNTQX9N67HSQk8mYXCRib83VkDhQEkpA4CgaRN8epBJ7nNzdlXBSGMNXeWJVKik9E3AB/RcmXRYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CcZ03hjB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BD1C5C4CEDD;
+	Thu,  6 Feb 2025 14:01:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738850519;
+	bh=4irXlDLhVC3QMn3aym/cMiuL941aNfnp/WLK9ZuODjA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=CcZ03hjBjak7bZxyVTic+/H/Nisa6/fOiXoCYGVahK7YBrANJAcNCnhddjQGvjVAj
+	 A1HAizaI8kOCUuXFEzkAbopqzxSwCa2hMCmu8P/uqIeO8MnozYzB3VnQ7ESKTh3VOv
+	 i2TnxvwFsnseHfc4QIMMmeyLEIorD5CD9GBgRGFSjBBwwVf0tuubWV4L6m/VdohT+6
+	 bbHRReTr0ugMQcqjGTEaeBuIIef6IrfCTLpKiVsK4qIew1Ed3i+cQr56BtHqX9B9EN
+	 JSwwBFobh6II8stN7KwO1u++46GSFfl2HiHjS0gR4X4swdC+oyiVB64nshc0dPCNMm
+	 OQokEvhmWoaYA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A1202C02194;
+	Thu,  6 Feb 2025 14:01:59 +0000 (UTC)
+From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
+Subject: [PATCH v6 0/5] Driver for pre-DCP apple display controller.
+Date: Thu, 06 Feb 2025 15:01:53 +0100
+Message-Id: <20250206-adpdrm-v6-0-c8ab9348b853@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z6SSgmoUPFv3vDDY@hovoldconsulting.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANHApGcC/2XOTWrDMBCG4asErauiGf3Yk1XvEbqQpVEiqOMgF
+ 5MSfPfKgTrGXX6Dnhc9xMgl8yiOh4coPOUxD9c63NtBhIu/nlnmWLdAhQYAjfTxFksv0abAOsb
+ WNyDq41vhlO/P0Omz7ksev4fy8+xOsFz/JSaQSmogiC07NuQ/zr3PX+9h6MWSmHDL3MqwskDKt
+ FZrFxTtmf5jVlW3Mr0w15gYgJJv0p6ZLXt90lTG1Fl0ymtKsGf2xVDZldnKDBsO1FDXJdyyeZ5
+ /AVnP2It4AQAA
+X-Change-ID: 20241124-adpdrm-25fce3dd8a71
+To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev, 
+ Janne Grunau <j@jannau.net>
+Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Alyssa Ross <hi@alyssa.is>, Sasha Finkelstein <fnkl.kernel@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Nick Chan <towinchenmi@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738850518; l=2696;
+ i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
+ bh=4irXlDLhVC3QMn3aym/cMiuL941aNfnp/WLK9ZuODjA=;
+ b=6fqfcf9ZP7jYCkNGzpNzK2J5tDuJ1uL7S6GfMocw05IQJYmp1vpGqlyKaHUjAcg/6Hgvfqgal
+ vgupf/TWWTrBfYCQmvKRZ0qsBBhIzRzpVkWTju7MReSFyvdLHKLerQs
+X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
+ auth_id=283
+X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reply-To: fnkl.kernel@gmail.com
 
-On 25-02-06 11:44:18, Johan Hovold wrote:
-> On Thu, Feb 06, 2025 at 12:37:13PM +0200, Abel Vesa wrote:
-> > From: Rajendra Nayak <quic_rjendra@quicinc.com>
-> > 
-> > The X Elite implements Server Base System Architecture (SBSA) specification
-> > compliant generic watchdog.
-> > 
-> > Describe it.
-> > 
-> > Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > index 9d38436763432892ceef95daf0335d4cf446357c..007815699e4b9137c3b5cf72263c9dd3a64e6bb3 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > @@ -3708,6 +3708,13 @@ pcie4_phy: phy@1c0e000 {
-> >  			status = "disabled";
-> >  		};
-> >  
-> > +		watchdog@1c840000 {
-> 
-> Please keep the nodes sorted by unit address. Looks like this ones goes
-> much further down.
+Hi.
 
-Oups. Yes, you are right. Will move and respin.
+This patch series adds support for a secondary display controller
+present on Apple M1/M2 chips and used to drive the display of the
+"touchbar" touch panel present on those. 
 
-> 
-> > +			compatible = "arm,sbsa-gwdt";
-> > +			reg = <0 0x1c840000 0 0x1000>,
-> > +			      <0 0x1c850000 0 0x1000>;
-> > +			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
-> > +		};
-> > +
-> >  		tcsr_mutex: hwlock@1f40000 {
-> >  			compatible = "qcom,tcsr-mutex";
-> >  			reg = <0 0x01f40000 0 0x20000>;
-> 
-> Johan
+Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+---
+Changes in v6:
+- Use the drm_connector_helper_get_modes_fixed helper.
+- Split out into a separate MAINTAINERS entry
+- Link to v5: https://lore.kernel.org/r/20250205-adpdrm-v5-0-4e4ec979bbf2@gmail.com
 
-Thanks for reviewing,
+Changes in v5:
+- Moved to using the component framework.
+- Other lifetime fixes
+- Link to v4: https://lore.kernel.org/r/20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com
 
-Abel
+Changes in v4:
+- Fixed dt bindings.
+- Link to v3: https://lore.kernel.org/r/20250112-adpdrm-v3-0-c674dc19fa7f@gmail.com
+
+Changes in v3:
+- Fixed building as module after splitting out mipi block
+- Addressing the review feedback.
+- Link to v2: https://lore.kernel.org/r/20241126-adpdrm-v2-0-c90485336c09@gmail.com
+
+Changes in v2:
+- Addressing the review feedback.
+- Split out the mipi part of the display controller into a separate device
+- Link to v1: https://lore.kernel.org/r/20241124-adpdrm-v1-0-3191d8e6e49a@gmail.com
+
+---
+Sasha Finkelstein (5):
+      dt-bindings: display: Add Apple pre-DCP display controller
+      drm: adp: Add Apple Display Pipe driver
+      drm: panel: Add a panel driver for the Summit display
+      arm64: dts: apple: Add touchbar screen nodes
+      MAINTAINERS: Add entries for touchbar display driver
+
+ .../display/apple,h7-display-pipe-mipi.yaml        |  83 +++
+ .../bindings/display/apple,h7-display-pipe.yaml    |  88 +++
+ .../bindings/display/panel/apple,summit.yaml       |  58 ++
+ MAINTAINERS                                        |  16 +
+ arch/arm64/boot/dts/apple/t8103-j293.dts           |  31 ++
+ arch/arm64/boot/dts/apple/t8103.dtsi               |  61 ++
+ arch/arm64/boot/dts/apple/t8112-j493.dts           |  31 ++
+ arch/arm64/boot/dts/apple/t8112.dtsi               |  61 ++
+ drivers/gpu/drm/Kconfig                            |   2 +
+ drivers/gpu/drm/Makefile                           |   1 +
+ drivers/gpu/drm/adp/Kconfig                        |  17 +
+ drivers/gpu/drm/adp/Makefile                       |   5 +
+ drivers/gpu/drm/adp/adp-mipi.c                     | 276 +++++++++
+ drivers/gpu/drm/adp/adp_drv.c                      | 617 +++++++++++++++++++++
+ drivers/gpu/drm/panel/Kconfig                      |   9 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-summit.c               | 132 +++++
+ 17 files changed, 1489 insertions(+)
+---
+base-commit: b62cef9a5c673f1b8083159f5dc03c1c5daced2f
+change-id: 20241124-adpdrm-25fce3dd8a71
+
+
 
