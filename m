@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-143703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 424F4A2AFDD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 19:09:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD062A2B005
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 19:13:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C659E16298A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 18:09:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16B7A3A2CD8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 18:13:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450A41990C1;
-	Thu,  6 Feb 2025 18:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B2251993B1;
+	Thu,  6 Feb 2025 18:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lPEQ36f9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZuAfXx4Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E66239594;
-	Thu,  6 Feb 2025 18:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E25194A67;
+	Thu,  6 Feb 2025 18:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738865384; cv=none; b=ienyA/Z3hF1cwG2426L15RGYCbAT82WtVfFwMsPzgw9W53sHPI0rvZP8mA8FkSzrW9RLg6x3cLjEJE2nIFFx+hJl82fpOCW9ZR7Ni0EETfgFAKlXks9ParLoocxIiD0z7Q8UyO8sESPPAzLqPvXpBVMqzoM5gxl5dP1a7fN7Kzw=
+	t=1738865632; cv=none; b=RKUQN+xaU/bpSRVI8uDkxQnFLIVhJeFhwsOOkpvaYi6vRyLwoaY+92JpPmF+/diLyEKe4kU9Vn5ORIzuqrSpWrVW/+oXJ1zwuSw3GKI7HIouvyLu9a3ZAb3sPJEgjngCbjA4foiHX6Ik4zoP5AgtQYFeeniUznUs8P8nAQTCRsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738865384; c=relaxed/simple;
-	bh=UmvH7MsbrGXDx3zl8w0lghW82W2hpUei6vNUIirGofk=;
+	s=arc-20240116; t=1738865632; c=relaxed/simple;
+	bh=qpRlHeJcZ8Rg6GiEylH3nJ6t0qFUQU58DAXj2IT1v4s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A/R/htbHKrg/VyRvCYo2AwECbHTEAUl9phD9282Q4mCKL5pwEs1bixilm5icIh8Llm/f3px5swbXq+St9io+tDoFnF4lc7OAEnVqtcIAwHxPzEVRhCJHGEYWZbhoioQgzuH4en9kqn59hae2NZ4FKq67Twl7u9om7cHFmrAiwks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lPEQ36f9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82138C4CEDD;
-	Thu,  6 Feb 2025 18:09:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=G/fup2cl6LSQC55H2Lg/dAAsxEGe8+HxelwJuqioLZ45Yp/BnC+eoOWG4kMyAdzBcq+T/zgOtou4GZOmBkLBwCB64HBy5Bk9zfrwMnPkJD/lagxseR9dwXYtJ/UrEI02ICS3jW/UqaTTcWJtXnAaD4UmOb64r9R0dzghiT0/kts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZuAfXx4Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A66FC4CEDD;
+	Thu,  6 Feb 2025 18:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738865383;
-	bh=UmvH7MsbrGXDx3zl8w0lghW82W2hpUei6vNUIirGofk=;
+	s=k20201202; t=1738865632;
+	bh=qpRlHeJcZ8Rg6GiEylH3nJ6t0qFUQU58DAXj2IT1v4s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lPEQ36f96lT7G0QNq/QiNbljgU/LkrqkqL6E9PElWI5SGosigRKxnvOqaK4ITPWM9
-	 m1vXZsmR7740n5W6v6pp0QmMT1tRyIW+XaUbry11tZKh9QJH6DxrMPJc0gsCmwyT9w
-	 oErgKxoIH/CvEqGrBYrNXQfJjN47M2GYo+f+X0GDu4PoS3O7zaWRgg/dtOFkVHJg0B
-	 Nc42g25snLQaDBArleKy/ietsrtCDtAhjA55sE2eSazw+wv5BQFIqe8N2Z8NqenKUP
-	 rIZncqHQ7kgtMQQmIMoqEuaoPbB7Rku2nQl2mh/c8oYcaho7/7utHBZiMi2BhfvfkE
-	 O3u5FktdulrtA==
-Date: Thu, 6 Feb 2025 18:09:39 +0000
+	b=ZuAfXx4ZNiYZ3TZP7ZCllR1EQpRwKvsaMCxW7EeC61cyMdVUePlhC8egRPP7pOOjT
+	 ybgmbOEqGeixDpRnUWEnwAgC/sjzJ57umRUGkIhKpHHZGKhyuRYjS+uTsar8qHREMP
+	 XCyXzAQNqTISYzEaeJeRc6SqI9YAoExu6ZkjGraoFR7Z02QKUxbckRMAJ6829veUxI
+	 i9irRJ3mbxm3gs5eyp9H3gh7zP3xK8IwYR43SmtPJWjyQG1LgZZ/+ZjHucmGxfo1Rp
+	 AbaD2a6rE3ujFdrrs1d/0wUMRcJjaFlrLCEvw/vRrMGX+lR93t1BsxP64h97TAlntu
+	 XscmKC2irtFNQ==
+Date: Thu, 6 Feb 2025 18:13:47 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, broonie@kernel.org,
-	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, linux-hwmon@vger.kernel.org,
+To: Doug Anderson <dianders@chromium.org>
+Cc: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>,
+	neil.armstrong@linaro.org, quic_jesszhan@quicinc.com,
+	airlied@gmail.com, simona@ffwll.ch,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ir38060: Move & update dt binding
-Message-ID: <20250206-camera-mashed-48cf0cf1715f@spud>
-References: <20250204180306.2755444-1-naresh.solanki@9elements.com>
- <20250204-mulled-evaluate-8a690cdfbd4d@spud>
- <CABqG17jHKfwJEfZxto_YA4opS8=QwqTqfNdkku8kcEv2_iW+XA@mail.gmail.com>
- <20250205-purge-debating-21273d3b0f40@spud>
- <CABqG17j4tKXnMZ5=vcjBvfe6JwCLQ6NbkQmJC9ySK_bmGEv=iQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor: add csot
+Message-ID: <20250206-overlaid-eastward-610a0d6e34cd@spud>
+References: <20250206131300.1295111-1-yelangyan@huaqin.corp-partner.google.com>
+ <20250206131300.1295111-2-yelangyan@huaqin.corp-partner.google.com>
+ <CAD=FV=UfWJoUsKzYMkyU3U4Yn1ufAs=NHMCDL+db887Uec9fww@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,139 +63,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="B2XOfc6sa6ozXXE8"
+	protocol="application/pgp-signature"; boundary="BCdvD9ZIbZN+8WvF"
 Content-Disposition: inline
-In-Reply-To: <CABqG17j4tKXnMZ5=vcjBvfe6JwCLQ6NbkQmJC9ySK_bmGEv=iQ@mail.gmail.com>
+In-Reply-To: <CAD=FV=UfWJoUsKzYMkyU3U4Yn1ufAs=NHMCDL+db887Uec9fww@mail.gmail.com>
 
 
---B2XOfc6sa6ozXXE8
-Content-Type: text/plain; charset=us-ascii
+--BCdvD9ZIbZN+8WvF
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 06, 2025 at 09:23:03PM +0530, Naresh Solanki wrote:
-> On Thu, 6 Feb 2025 at 01:43, Conor Dooley <conor@kernel.org> wrote:
-> > On Wed, Feb 05, 2025 at 03:51:25PM +0530, Naresh Solanki wrote:
-> > > On Wed, 5 Feb 2025 at 00:52, Conor Dooley <conor@kernel.org> wrote:
-> > > > On Tue, Feb 04, 2025 at 11:33:03PM +0530, Naresh Solanki wrote:
-> > > > > Move dt binding under hwmon/pmbus & align accordingly.
-> > > > >
-> > > > > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> > > > > ---
-> > > > >  .../hwmon/pmbus/infineon,ir38060.yaml         | 61 +++++++++++++=
-++++++
-> > > > >  .../bindings/regulator/infineon,ir38060.yaml  | 45 --------------
-> > > > >  2 files changed, 61 insertions(+), 45 deletions(-)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus=
-/infineon,ir38060.yaml
-> > > > >  delete mode 100644 Documentation/devicetree/bindings/regulator/i=
-nfineon,ir38060.yaml
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infine=
-on,ir38060.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir=
-38060.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..e1f683846a54
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38=
-060.yaml
-> > > > > @@ -0,0 +1,61 @@
-> > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,ir38060.=
-yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: Infineon Buck Regulators with PMBUS interfaces
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Not Me.
-> > > >
-> > > > How the hell did this get merged!
-> > > >
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    enum:
-> > > > > +      - infineon,ir38060
-> > > > > +      - infineon,ir38064
-> > > > > +      - infineon,ir38164
-> > > > > +      - infineon,ir38263
-> > > > > +
-> > > > > +  reg:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  regulators:
-> > > > > +    type: object
-> > > > > +    description:
-> > > > > +      list of regulators provided by this controller.
-> > > >
-> > > > Can you explain why this change is justified? Your commit message is
-> > > > explaining what you're doing but not why it's okay to do.
-> >
-> > > This is based on other similar dt-bindings under hwmon/pmbus.
-> >
-> > Okay, but what I am looking for is an explanation of why it is okay to
-> > change the node from
-> >
-> > | regulator@34 {
-> > |   compatible =3D "infineon,ir38060";
-> > |   reg =3D <0x34>;
-> > |
-> > |   regulator-min-microvolt =3D <437500>;
-> > |   regulator-max-microvolt =3D <1387500>;
-> > | };
-> As I have understood the driver, this isn't supported.
-> >
-> > to
-> >
-> > | regulator@34 {
-> > |     compatible =3D "infineon,ir38060";
-> > |     reg =3D <0x34>;
-> > |
-> > |     regulators {
-> > |         vout {
-> > |             regulator-name =3D "p5v_aux";
-> > |             regulator-min-microvolt =3D <437500>;
-> > |             regulator-max-microvolt =3D <1387500>;
-> > |         };
-> > |     };
-> Above is the typical approach in other pmbus dt bindings.
-> Even pmbus driver expects this approach.
-> >
-> > ?
-> >
-> > Will the driver handle both of these identically? Is backwards
-> > compatibility with the old format maintained? Was the original format
-> > wrong and does not work? Why is a list of regulators needed when the
-> > device only provides one?
-> Driver doesn't support both.
-> Based on the pmbus driver original format was wrong.
-> pmbus driver looks for a regulator node to start with.
+On Thu, Feb 06, 2025 at 09:12:45AM -0800, Doug Anderson wrote:
+> Hi,
 >=20
-> Reference:
-> https://github.com/torvalds/linux/blob/master/drivers/hwmon/pmbus/pmbus.h=
-#L515
+> On Thu, Feb 6, 2025 at 5:13=E2=80=AFAM Langyan Ye
+> <yelangyan@huaqin.corp-partner.google.com> wrote:
+> >
+> > Add "csot" to the Devicetree Vendor Prefix Registry.
+> >
+> > Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+> > ---
+> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/D=
+ocumentation/devicetree/bindings/vendor-prefixes.yaml
+> > index 42d14899d584..375f1f7c79ef 100644
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -336,6 +336,8 @@ patternProperties:
+> >      description: Crystalfontz America, Inc.
+> >    "^csky,.*":
+> >      description: Hangzhou C-SKY Microsystems Co., Ltd
+> > +  "^csot,.*":
+> > +    description: Guangzhou China Star Optoelectronics Technology Co., =
+Ltd
+>=20
+> Doing a `git log` on
+> `Documentation/devicetree/bindings/vendor-prefixes.yaml` shows that
+> most patches use the subject prefix `dt-bindings: vendor-prefixes`,
+> not `dt-bindings: vendor`. If device-tree folks care about this
+> difference and they don't want to fix it when applying, they might
+> request you to send a new version.
+>=20
+> In any case, that's fairly minor so I'm OK with:
+>=20
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>=20
+> I would assume this will go through the DT tree, not drm-misc. If this
+> is wrong then someone should shout.
 
-Then all of the in-tree users are all just broken? They're in aspeed
-bmcs, so I would not be surprised at all if that were the case.
-Can you send a new version with a fixes tag and an explanation that what
-was there was wrong?
+idk, probably the whole series should go together via drm-misc.
+%subject can change if there's a resubmission, otherwise
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cheers,
-Conor.
-
---B2XOfc6sa6ozXXE8
+--BCdvD9ZIbZN+8WvF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6T64wAKCRB4tDGHoIJi
-0rJaAP4oeMVCozOU9yWl3mW/v2h3GQ24kGtSPQMQen6WVgYb/QEA03ZxSVF7AL0a
-DkykGutWh2LaVuiffvXFmBZ5610RbQg=
-=wnYb
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6T72wAKCRB4tDGHoIJi
+0j/SAPoC/C0pCB6Rfsu3yKehTDKPZcAfV2TvGOVKD5gwb5RWPgD+PFLgD3XA0PVE
+VHMkn6PRxKBvUAwsB1Vmq2uHw3SItQE=
+=gFPY
 -----END PGP SIGNATURE-----
 
---B2XOfc6sa6ozXXE8--
+--BCdvD9ZIbZN+8WvF--
 
