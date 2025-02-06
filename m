@@ -1,110 +1,128 @@
-Return-Path: <devicetree+bounces-143557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B62CDA2A64F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:51:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A434A2A69C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:01:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C449A188726E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:51:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DD0B1889992
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F4B227560;
-	Thu,  6 Feb 2025 10:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96EDD227596;
+	Thu,  6 Feb 2025 10:57:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KdGg+q3X"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="HlF2JkqG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from out.smtpout.orange.fr (out-16.smtpout.orange.fr [193.252.22.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE79C1F60A;
-	Thu,  6 Feb 2025 10:51:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C364422757F;
+	Thu,  6 Feb 2025 10:57:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.252.22.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738839070; cv=none; b=ne7/GBkaIA7TG7lHsiWBX7y1oUq4mwhRmbnUocm8xygCVNjs4PSWTP92jgkJ9zX/eyCCWEouIqzcaaFHKa1o8rQw3ep1L2aBkCpRUX9Zf2e24YhRgefsROC2hJ5hwxuHBsfuW5W2Og3v6drvQKrpzJZYgTo9zoTIYw+z/i4L5/E=
+	t=1738839424; cv=none; b=o1iqeAK3bgbMIYIUzbadP4a5OZox/5uyiYibUDkTBTCUERriZaC2wDGeYhByKLg5PZGMmAUjhkqJFzg0CMH8kCsEEKGCepP/ETIlvC2Qwx4/uD+NlqgArRHewyJitlveZUckFtLilgCaJWk+8hQFXl30Sh8+fXV1qb0eTFKjpj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738839070; c=relaxed/simple;
-	bh=BAc/DzaeLywP5/G7nSsTgMS/1oP0U4tjnQ8klgx+HLg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U19E+iGfQl0IaTp4EspgeJAAOKUtIAOp/3YBMvojbmwloggZDqBfb7LKOyq8vq0R4soGuSrlVh2ugKaJlMsokfgt/iIM2xkl9QIkoRJNerZUpWoE+Cbix7TuPLG/K3CXU0F10Oi1aP/4UP5w016eOmEmPonh4TYj7H8G6/mFhpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KdGg+q3X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4F4C4CEDD;
-	Thu,  6 Feb 2025 10:51:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738839069;
-	bh=BAc/DzaeLywP5/G7nSsTgMS/1oP0U4tjnQ8klgx+HLg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KdGg+q3XY0ZrBG5LQlQYmL7B3IpBT4V4qnZ7GHv5wEEx3b7Dr57ydkhDbFb5j3mwX
-	 tg6DhXoiHPjM0CDTr4gCjDdh+sIAUu9zc5Nb8aUXhAbZAAWpxn1f4d1qUkv05VWWUn
-	 MneCpfPJ3pH1tjVEASi7nDe6fkdz9Obkl4r9LiIsI7tfP7Z+NQevktY8zUigTG59uK
-	 KZMsb5jop8HVBJLbc90MuAsOc/c7QzCIkoJgEw/kYWfbjiPVyvo8rXLZsoPh16TSnO
-	 uX8D2NeK/SC0qI1AYpMoWVcpAfQgz+V9T1c2h+ONYXCc8e49/Ju7BrjtZHhbNX0Xsv
-	 mObGH9QVWJ9vw==
-Date: Thu, 6 Feb 2025 10:51:01 +0000
-From: Will Deacon <will@kernel.org>
-To: Atish Patra <atishp@rivosinc.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Anup Patel <anup@brainfault.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Namhyung Kim <namhyung@kernel.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
-	Adrian Hunter <adrian.hunter@intel.com>, weilin.wang@intel.com,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
-	kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org
-Subject: Re: [PATCH v4 11/21] RISC-V: perf: Restructure the SBI PMU code
-Message-ID: <20250206105100.GA2971@willie-the-truck>
-References: <20250205-counter_delegation-v4-0-835cfa88e3b1@rivosinc.com>
- <20250205-counter_delegation-v4-11-835cfa88e3b1@rivosinc.com>
+	s=arc-20240116; t=1738839424; c=relaxed/simple;
+	bh=mZF4WJ4wshkC4Qp7P9+LXM8kZ9ppCOLNmAFpDQZp3G4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bL2scXBEcUP8p+9ZIJ6+kQ6W1tEPoD27EXZjqpl4r/T3+otdwfRQVLdKr/o0jUvnXv+R7YVrL08yP9QK9dzlXJasr1C4bqI5rWTHmy30G0Z+erv4Rj/UzAG9aKnwgK0jMYYhLyjxiKzLMb+juWTBrbLkak9NjZ350LFFzlxq6+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=HlF2JkqG; arc=none smtp.client-ip=193.252.22.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [172.16.82.72] ([124.33.176.97])
+	by smtp.orange.fr with ESMTPA
+	id fzYjtDgo1Ft3IfzYutp3tQ; Thu, 06 Feb 2025 11:56:54 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1738839414;
+	bh=wTaI7uWxfJ722CWHtIPOl9T+pRsm8ifKzI8h9O+PI5c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=HlF2JkqG5ukjEpbIBd4tr6yYQuDznjpL7a043gTv4H77qYLXx59j5W8NHZGzXGRyl
+	 GQ7q6N85iRiKLecZFckTpwlOCr2sakj3sZrltqKpvXf0kS02r7GWO+SjCkF6+LSLdM
+	 iq2XQ8/NsB9Gdul/7toFTk/XmIDsQNbIMOwzqohUOka8QI3SMtW+tIirxARB3wL5HN
+	 L3c0aRE+6OxptM+EIdcXj0qCVNGs1vFCqMi6ZeRRhwRS7xEFNmGoru7PhrQ5lf5Ak2
+	 X4lSj1n3zzZZ+MxAeJXyJ1bNsXexiQpE+SaPL17Z98ulsYrqtu08eGiR+aLyB2f48x
+	 KpRr3KtrNgjpQ==
+X-ME-Helo: [172.16.82.72]
+X-ME-Auth: bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI=
+X-ME-Date: Thu, 06 Feb 2025 11:56:54 +0100
+X-ME-IP: 124.33.176.97
+Message-ID: <e0aeefc5-bf01-42ab-91e4-e727d560c983@wanadoo.fr>
+Date: Thu, 6 Feb 2025 19:56:36 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250205-counter_delegation-v4-11-835cfa88e3b1@rivosinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] Documentation: Remove repeated word in docs
+To: Charles Han <hanchunchao@inspur.com>
+Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-xfs@vger.kernel.org,
+ linux-doc@vger.kernel.org, mkl@pengutronix.de,
+ manivannan.sadhasivam@linaro.org, thomas.kopp@microchip.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, cem@kernel.org,
+ djwong@kernel.org, corbet@lwn.net
+References: <20250206091530.4826-1-hanchunchao@inspur.com>
+Content-Language: en-US
+From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+Autocrypt: addr=mailhol.vincent@wanadoo.fr; keydata=
+ xjMEZluomRYJKwYBBAHaRw8BAQdAf+/PnQvy9LCWNSJLbhc+AOUsR2cNVonvxhDk/KcW7FvN
+ LFZpbmNlbnQgTWFpbGhvbCA8bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI+wrIEExYKAFoC
+ GwMFCQp/CJcFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AWIQTtj3AFdOZ/IOV06OKrX+uI
+ bbuZwgUCZx41XhgYaGtwczovL2tleXMub3BlbnBncC5vcmcACgkQq1/riG27mcIYiwEAkgKK
+ BJ+ANKwhTAAvL1XeApQ+2NNNEwFWzipVAGvTRigA+wUeyB3UQwZrwb7jsQuBXxhk3lL45HF5
+ 8+y4bQCUCqYGzjgEZx4y8xIKKwYBBAGXVQEFAQEHQJrbYZzu0JG5w8gxE6EtQe6LmxKMqP6E
+ yR33sA+BR9pLAwEIB8J+BBgWCgAmFiEE7Y9wBXTmfyDldOjiq1/riG27mcIFAmceMvMCGwwF
+ CQPCZwAACgkQq1/riG27mcJU7QEA+LmpFhfQ1aij/L8VzsZwr/S44HCzcz5+jkxnVVQ5LZ4B
+ ANOCpYEY+CYrld5XZvM8h2EntNnzxHHuhjfDOQ3MAkEK
+In-Reply-To: <20250206091530.4826-1-hanchunchao@inspur.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Feb 05, 2025 at 11:23:16PM -0800, Atish Patra wrote:
-> With Ssccfg/Smcdeleg, we no longer need SBI PMU extension to program/
-> access hpmcounter/events. However, we do need it for firmware counters.
-> Rename the driver and its related code to represent generic name
-> that will handle both sbi and ISA mechanism for hpmcounter related
-> operations. Take this opportunity to update the Kconfig names to
-> match the new driver name closely.
+On 06/02/2025 at 18:15, Charles Han wrote:
+> Remove the repeated word "to" docs.
 > 
-> No functional change intended.
-> 
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> Signed-off-by: Charles Han <hanchunchao@inspur.com>
 > ---
->  MAINTAINERS                                       |   4 +-
->  arch/riscv/include/asm/kvm_vcpu_pmu.h             |   4 +-
->  arch/riscv/include/asm/kvm_vcpu_sbi.h             |   2 +-
->  arch/riscv/kvm/Makefile                           |   4 +-
->  arch/riscv/kvm/vcpu_sbi.c                         |   2 +-
->  drivers/perf/Kconfig                              |  16 +-
->  drivers/perf/Makefile                             |   4 +-
->  drivers/perf/{riscv_pmu.c => riscv_pmu_common.c}  |   0
->  drivers/perf/{riscv_pmu_sbi.c => riscv_pmu_dev.c} | 214 +++++++++++++---------
+>  .../devicetree/bindings/net/can/microchip,mcp251xfd.yaml        | 2 +-
+>  Documentation/filesystems/xfs/xfs-online-fsck-design.rst        | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+> index 2a98b26630cb..c155c9c6db39 100644
+> --- a/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+> @@ -40,7 +40,7 @@ properties:
+>  
+>    microchip,rx-int-gpios:
+>      description:
+> -      GPIO phandle of GPIO connected to to INT1 pin of the MCP251XFD, which
+> +      GPIO phandle of GPIO connected to INT1 pin of the MCP251XFD, which
+>        signals a pending RX interrupt.
+>      maxItems: 1
+>  
+> diff --git a/Documentation/filesystems/xfs/xfs-online-fsck-design.rst b/Documentation/filesystems/xfs/xfs-online-fsck-design.rst
+> index 12aa63840830..994f9e5638ee 100644
+> --- a/Documentation/filesystems/xfs/xfs-online-fsck-design.rst
+> +++ b/Documentation/filesystems/xfs/xfs-online-fsck-design.rst
+> @@ -4521,7 +4521,7 @@ Both online and offline repair can use this strategy.
+>  | For this second effort, the ondisk parent pointer format as originally   |
+>  | proposed was ``(parent_inum, parent_gen, dirent_pos) → (dirent_name)``.  |
+>  | The format was changed during development to eliminate the requirement   |
+> -| of repair tools needing to to ensure that the ``dirent_pos`` field       |
+> +| of repair tools needing to ensure that the ``dirent_pos`` field       |
 
-This seems... gratuitous? It feels like renaming the file could be a pain
-for managing backports and renaming the driver might cause some headaches
-in userspace.
+This breaks the indentation of the pipe on the right.
 
-What do you gain from such an invasive change?
+>  | always matched when reconstructing a directory.                          |
+>  |                                                                          |
+>  | There were a few other ways to have solved that problem:                 |
 
-Will
+
+Yours sincerely,
+Vincent Mailhol
+
 
