@@ -1,180 +1,200 @@
-Return-Path: <devicetree+bounces-143525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05859A2A4CE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:41:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 249E6A2A503
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:48:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8ADCF1888039
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:41:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 270661889215
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:48:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6A822653D;
-	Thu,  6 Feb 2025 09:40:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dYIgfyov"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FEC22686B;
+	Thu,  6 Feb 2025 09:47:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953C422652D;
-	Thu,  6 Feb 2025 09:40:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E07E2226540;
+	Thu,  6 Feb 2025 09:47:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738834827; cv=none; b=bGZHXw3ooPx8JFhewDNwriLG8xfHsMtcZtM2ZVegIvZ2fkgx0SiZT+E2SckxlzpjqdM/z0PAlTA2UsIGRpHewae2/+eny9yMC6gPZmnMv0KxE+ybdFM2HoQWHzTmfCrSP2fqhSyGOoY5EjfLwREA1rc6kUfrzLYZmRVfxVojh8U=
+	t=1738835241; cv=none; b=QIjbtw7Ji1NpzaSWi2TAffcwQea6UBkpgTJdPBApWBl+PjN/PIQJAewgsRNATL2IYO5wn2q/HEH/uxOXkmqAlDNrj6ytcHv6sVqjO05JlOg6VGn6++lDD5antNPlCnMuDP5cveVCrkFDnvZMHSOo2k31uJLaw+q00EO85edd5tg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738834827; c=relaxed/simple;
-	bh=5HaMqH6ACPaZZ+jYPKdOVGdO5CJDeUWtDjJRtpOQNSg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TJEIpkKf2BdUMuRJ7MFxcDDYOLG500WGvdKqljJZ9hH2ThiMyurBThXkWMCnRmoIRAOxya6x8xfu4ZEBEnwTBQfV1nMxDkdHO2aIxmu3+/Ltp1/RLRqdWIPoP5yJ4bJZoUdPgaC5RUYZLIAjivEmkiEZQ1Jh/ZOdSHnh2ai0sxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dYIgfyov; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1738835241; c=relaxed/simple;
+	bh=BBQOdDtoMYa/13qRqZxrZ7C9eDfKvQYNPQJfxUoNdwI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NH82sg+gXxaY18tB+ww8hZZVRPF0mGLedJ9zdBX57v8zPLYhqmDnJFHmXcLC8oOMpjS7FJ0d7NgUHQkQoN8MEMqsg4RwBfH8G9ddIPBLjof32hw2mXqPVIsWr3Dnny1G9vUocEnKu+FpMH20YSpAe+8qjgYcy4rMcofL2fFG5zM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-436326dcb1cso4272095e9.0;
-        Thu, 06 Feb 2025 01:40:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738834824; x=1739439624; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=QFKBSoOVGRBtSVzPGty71l+771OyWvjkU/yq+7DfWR4=;
-        b=dYIgfyovCiD/JMawQ/hnenbVlah/uWGR3rwxz8eNepX5rIl7wJVWtXwCXeuctYyjJH
-         43r4e8DZo3PmoOaIF1GGGEor4nOtii01iolE7WCO7b1br7tAzYj1d3kghl4w7D+vbdnB
-         sPChPNfcs8G63GDmg47082o3nAHDEuuafap8m6w+fY3p4rfTBbXNnkCZzMO1Ns8PlKXV
-         iDeVH3GdqQXWbZVoNn2ZSpfY/TOCM78m4cnfT44FJ5ARwA9lyIHWIRK76DvOkKbd7S5R
-         9ukCQw6VknVXTL2fst7iimXhNWxxN6EXlrsDCwmklFFtDAi8Pu4TARTtnZnJH921Z9+p
-         OTBA==
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4ba787db858so128712137.0;
+        Thu, 06 Feb 2025 01:47:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738834824; x=1739439624;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QFKBSoOVGRBtSVzPGty71l+771OyWvjkU/yq+7DfWR4=;
-        b=rq7az9lJ5elFLeUo5xpEbm8rhFlfzZGRhqc96/yKyNUsN6IuvkZBV51/0/WQI3le7n
-         AEOZemE6+jbrkpJLFVp029MFygcBGyDX6cWhEBjcRAcG7yCIJkHe0tieKRS8ZjycyUBz
-         aE6iYJjwY59iswQ9GNp8SStIYzpiwx9Nsezv4WsB1yGqG87W/H6NKZWf1pd7EH5HXnf5
-         e8Luw5i3zA1MjlELFaZwjPZxGxN0M2omYHe1t3kTwPjk2feHHXmxZqoNwynrQgitN2bV
-         /GS+0ruf661kVRFCNJh6hA+SH8xLUy2oJkzQOj8fCUtIowQzD1g2eBU12/FVuLl/EUcU
-         Y2BQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVp3FOIBKn0JbzEN2SQKdsHhMvsoGjiDJfR+CpnJWI6CdynSaScOltqr/oih+nCpuNuw+0m4+3cKpRC@vger.kernel.org, AJvYcCWOnhF/2G5ednQg3mJ6ZOWcRHJp7ZI+XpJWJg3JMPpMvkoiAeMWTgHtk5Eim/SDVsoHkwnJvkLA@vger.kernel.org, AJvYcCX2DfWGrB8DVjnxqIWEzoiNp16FHu8M63QOZr27DEMDFC6cFVlUDAtzuZsVwcObLIqZgK7eqn5H/MSE5oyR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxr6UsqmOPUk3UwAdSG2VG6LGIV+E41giQC10YceA+AI8u1BZWX
-	ScdZQlpyV5huevhwhd2pQctLoBG14TwXYMXziR5Pm3EX9PEORMmw
-X-Gm-Gg: ASbGncvywmdthgXxyQq+OAadBH+0+0KtBaX6/bHbC4fgxBsL9Eiu5alvE4Rdzc7PLYi
-	QsLpOMvF0vbtKFCORt2oiSUiXkX/rZZHwe9KsYNScwxlc4GtX4ghWi1UR/A98kyuhtnhWa4nsmj
-	zcHBXMHMDaHLRVAVQf/j06HJwv3a0E2LNh13siS/Ks0XfM1v5TVD9LXU5MF3nBBzYDyyHz45Szj
-	PsLlgx79YlVRmmBWmI7+/TBPt/psS8pzLGZZOWJaDXVLOhUarhMJtGo2z8emDCcJUXcg8i780/t
-	5LlykE3MA/Nf
-X-Google-Smtp-Source: AGHT+IGyKNrq+Ez6Do5rq2gjjPAYOznaKQ67YtgOLU60pod/oeG3KF49eKfnrIrBCjWw68ieGkh4Og==
-X-Received: by 2002:a05:600c:3112:b0:438:ad4d:cf09 with SMTP id 5b1f17b1804b1-4390d43542fmr47180615e9.9.1738834823682;
-        Thu, 06 Feb 2025 01:40:23 -0800 (PST)
-Received: from debian ([2a00:79c0:61a:4600:45fb:7d1a:5e4d:9727])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4390d964c7csm48555715e9.17.2025.02.06.01.40.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Feb 2025 01:40:22 -0800 (PST)
-Date: Thu, 6 Feb 2025 10:40:20 +0100
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-	dimitri.fedrau@liebherr.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 2/3] net: phy: Add helper for getting tx
- amplitude gain
-Message-ID: <20250206094020.GA4585@debian>
-References: <20250204-dp83822-tx-swing-v3-0-9798e96500d9@liebherr.com>
- <20250204-dp83822-tx-swing-v3-2-9798e96500d9@liebherr.com>
- <Z6JUbW72_CqCY9Zq@shell.armlinux.org.uk>
- <20250205052218.GC3831@debian>
- <b28755b0-9104-4295-8cd3-508818445a4b@lunn.ch>
+        d=1e100.net; s=20230601; t=1738835238; x=1739440038;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z+cuzjwa1eTLmIxJ/QXHLK60oGnWZrd/chn4FYf50v8=;
+        b=bhfLbdYcFY5PcJY8teb4YUFqwNoxjLZhOQEBlezsWFqo5oQ64rBT6QB66djtpx7+J5
+         DD2YgIsYWly7DoowwtL7akXqWk/hgBlkfHOOi1YJFuvfu1WvSGc+qer3ceFkzHYah/tx
+         7+s7en9UkbMKl/nKAO/B8kFjAMtxGnQlS7XIVdAP2zqWzhPaV8Q/hMaavpfVbREhZEJc
+         jebRsAzTTGKypPo6qKjfdBvQT9nfVLMiLS/7ipenYvgYh3hPNiDpnBFc1C+ThxwhgjX/
+         x4Dcc8L/wJ9DfmIHxE4pi515uuXvmKEM6JTrPU6gFM33YZiatxndoJWSUEJJdk+93Fru
+         cfDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUO2P+j7q7Xc+qs9TIJXVnjd5NYr3hOMFbJRJ7Lq6aa6jkC2Sg47ejr7o3qJeg053CpYabw4LhqjzKP@vger.kernel.org, AJvYcCUln8m5XKbnQVfU3sn2fbsQKt1O6riC4qmuS+Ptc6Nz8o9u4IGOnMeSLgWuApnc5nHDMTU++zSAZSl/vCqs1mIQ7XQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0l/nuL2TuhW7T+u9qxbv9BBWHlZ1GahCiv29XSYEbCxP0+rFg
+	dzxuFcuPfNN2J0sUR9for2+mNs38j0ZcDF+whHNn/0j8XJki7XNnd1QGsqkK
+X-Gm-Gg: ASbGncsScojd+hzf1t2dN+1vOja+5hPHuH3JTzv2DMT69EWRSWIDWBv7dRGL2s61+6E
+	HWwTKZjr2BBCHucXWQSlzN5l4CEoFGqoIk3/ctGEUygntisaL+q7g6dbe3hHwLeqkSwq+cKB7Ci
+	NJx0/YNGc42QU1YJdHwfJ+qY0ARG8kXr8vGRq9c1YqmNwW/Ishsz2bf7xRe2tO0ynualX0Yptg8
+	ImQ/5FDUsuLcXvxM51cbpxEX8sSNU/272OMP4VcUQw0vJGg2mFxV8qp5RI5nJcXkpkvhhyCW87k
+	auUpFCUy98ig5WTQ89e3Ef1/EztpuQCh8fWAEsNqVNUaNnh/w7lMng==
+X-Google-Smtp-Source: AGHT+IFJ1Mq7Ncc2rbeI9g0b01ZxjyHC4iKkHRaQpMoeUpSOHkVHtbjd7laaWGZ/yuaHO2czrf8udQ==
+X-Received: by 2002:a05:6102:570b:b0:4b2:ad50:a99c with SMTP id ada2fe7eead31-4ba46dba843mr3895949137.2.1738835237643;
+        Thu, 06 Feb 2025 01:47:17 -0800 (PST)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-866f97d8cb9sm132247241.23.2025.02.06.01.47.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Feb 2025 01:47:17 -0800 (PST)
+Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-866f01c2f2aso191881241.0;
+        Thu, 06 Feb 2025 01:47:17 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVZ+BcDW0I/YTllHrFzZeswK0ZDILM27exx1oyUvDNCGljGkEM5Ji/4c7uYiiJjjgn40IXFbr1M2JI+gDMUSSRr2Rg=@vger.kernel.org, AJvYcCWczelH+VetdI+QJ1uqkUTgfu70ZSN+brfwebyxoN/QDEOHNHFo6qqoLcPMPoJRq8krUDc9grOBsS0j@vger.kernel.org
+X-Received: by 2002:a05:6102:570b:b0:4b2:ad50:a99c with SMTP id
+ ada2fe7eead31-4ba46dba843mr3895928137.2.1738835236703; Thu, 06 Feb 2025
+ 01:47:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b28755b0-9104-4295-8cd3-508818445a4b@lunn.ch>
+References: <20250131112429.119882-1-biju.das.jz@bp.renesas.com> <20250131112429.119882-8-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250131112429.119882-8-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 6 Feb 2025 10:47:03 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUTJ6KjhkASEGU=SxJHNShcRXr_X7DuRNvKG0dVn_gcLw@mail.gmail.com>
+X-Gm-Features: AWEUYZkcKZR3dlxDoz57V_WsdGsB7bJoqFrxxi8E7LGtbS5fr4yCODmiYtUEkSI
+Message-ID: <CAMuHMdUTJ6KjhkASEGU=SxJHNShcRXr_X7DuRNvKG0dVn_gcLw@mail.gmail.com>
+Subject: Re: [PATCH v2 7/8] arm64: dts: renesas: rzg3e-smarc-som: Add support
+ for enable SD on SDHI0
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Am Wed, Feb 05, 2025 at 06:08:47PM +0100 schrieb Andrew Lunn:
-> On Wed, Feb 05, 2025 at 06:22:18AM +0100, Dimitri Fedrau wrote:
-> > Am Tue, Feb 04, 2025 at 05:54:53PM +0000 schrieb Russell King (Oracle):
-> > > On Tue, Feb 04, 2025 at 02:09:16PM +0100, Dimitri Fedrau via B4 Relay wrote:
-> > > >  #if IS_ENABLED(CONFIG_OF_MDIO)
-> > > > -static int phy_get_int_delay_property(struct device *dev, const char *name)
-> > > > +static int phy_get_u32_property(struct device *dev, const char *name)
-> > > >  {
-> > > >  	s32 int_delay;
-> > > >  	int ret;
-> > > > @@ -3108,7 +3108,7 @@ static int phy_get_int_delay_property(struct device *dev, const char *name)
-> > > >  	return int_delay;
-> > > 
-> > > Hmm. You're changing the name of this function from "int" to "u32", yet
-> > > it still returns "int".
-> > >
-> > 
-> > I just wanted to reuse code for retrieving the u32, I found
-> > phy_get_int_delay_property and renamed it. But the renaming from "int"
-> > to "u32" is wrong as you outlined.
-> > 
-> > > What range of values are you expecting to be returned by this function?
-> > > If it's the full range of u32 values, then that overlaps with the error
-> > > range returned by device_property_read_u32().
-> > >
-> > 
-> > Values are in percent, u8 would already be enough, so it wouldn't
-> > overlap with the error range.
-> > 
-> > > I'm wondering whether it would be better to follow the example set by
-> > > these device_* functions, and pass a pointer for the value to them, and
-> > > just have the return value indicating success/failure.
-> > >
-> > 
-> > I would prefer this, but this would mean changes in phy_get_internal_delay
-> > if we don't want to duplicate code, as phy_get_internal_delay relies on
-> > phy_get_int_delay_property and we change function parameters of
-> > phy_get_int_delay_property as you described. I would switch from
-> > static int phy_get_int_delay_property(struct device *dev, const char *name)
-> > to
-> > static int phy_get_u32_property(struct device *dev, const char *name, u32 *val)
-> > 
-> > Do you agree ?
-> 
-> This looks O.K. You should also rename the local variable int_delay.
-> 
-> Humm, that function has other issues.
-> 
-> static int phy_get_int_delay_property(struct device *dev, const char *name)
-> {
-> 	s32 int_delay;
-> 	int ret;
-> 
-> 	ret = device_property_read_u32(dev, name, &int_delay);
-> 	if (ret)
-> 		return ret;
-> 
-> 	return int_delay;
-> }
-> 
-> int_delay should really be a u32. if ret is not an error, there should
-> be a range check to ensure int_long actually fits in an s32, otherwise
-> -EINVAL, or maybe -ERANGE.
-> 
-> For delays, we never expect too much more than 2000ps, so no valid DT
-> blob should trigger issues here.
-> 
-I think you mention this because you want to avoid changes in
-phy_get_internal_delay because this would lead to changes in other
-drivers too. Is it worth fixing this ? Then we didn't have to workaround by
-checking if int_long actually fits in an s32.
+Hi Biju,
 
-Best regards,
-Dimitri Fedrau
+On Fri, 31 Jan 2025 at 12:25, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add support for enabling SD on SDHI0 on RZ/G3E SMARC SoM. It is enabled
+> by setting the macro SW_SD0_DEV_SEL to 1 in board DTS and setting the
+> switch SYS.1 to ON position on the SoM.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> @@ -5,6 +5,15 @@
+>   * Copyright (C) 2024 Renesas Electronics Corp.
+>   */
+>
+> +/*
+> + * Please set the switch position SYS.1 on the SoM and the corresponding macro
+> + * SW_SD0_DEV_SEL on the board DTS:
+> + *
+> + * SW_SD0_DEV_SEL:
+> + *      0 - SD0 is connected to eMMC (default)
+> + *      1 - SD0 is connected to uSD0 card
+> + */
+> +
+>  / {
+>         compatible = "renesas,rzg3e-smarcm", "renesas,r9a09g047e57", "renesas,r9a09g047";
+>
+> @@ -43,6 +52,34 @@ &audio_extal_clk {
+>  };
+>
+>  &pinctrl {
+> +#if (SW_SD0_DEV_SEL)
+
+No need to make this conditional.
+
+> +       sdhi0_pins: sd0 {
+
+sdhi0_usd_pins: sd0-usd {
+
+> +               sd0-cd {
+> +                       pinmux = <RZG3E_PORT_PINMUX(5, 0, 8)>;
+> +               };
+> +
+> +               sd0-ctrl {
+> +                       pins = "SD0CLK", "SD0CMD";
+> +                       renesas,output-impedance = <3>;
+> +               };
+> +
+> +               sd0-data {
+> +                       pins = "SD0DAT0", "SD0DAT1", "SD0DAT2", "SD0DAT3";
+> +                       renesas,output-impedance = <3>;
+> +               };
+> +
+> +               sd0-iovs {
+> +                       pins = "SD0IOVS";
+> +                       renesas,output-impedance = <3>;
+> +               };
+> +
+> +               sd0-pwen {
+> +                       pins = "SD0PWEN";
+> +                       renesas,output-impedance = <3>;
+> +               };
+> +       };
+> +#endif
+> +
+>         sdhi0_emmc_pins: sd0emmc {
+>                 sd0-emmc-ctrl {
+>                         pins = "SD0CLK", "SD0CMD";
+> @@ -96,6 +133,25 @@ &rtxin_clk {
+>         clock-frequency = <32768>;
+>  };
+>
+> +#if (SW_SD0_DEV_SEL)
+> +&sdhi0 {
+> +       pinctrl-0 = <&sdhi0_pins>;
+> +       pinctrl-1 = <&sdhi0_pins>;
+> +       pinctrl-names = "default", "state_uhs";
+> +
+> +       vmmc-supply = <&reg_3p3v>;
+> +       vqmmc-supply = <&vqmmc_sdhi0>;
+> +       bus-width = <4>;
+> +       sd-uhs-sdr50;
+> +       sd-uhs-sdr104;
+> +       status = "okay";
+> +};
+> +
+> +&vqmmc_sdhi0 {
+> +       regulator-name = "SD0_PVDD";
+
+Why override the name?
+
+> +       status = "okay";
+> +};
+> +#else
+>  &sdhi0 {
+>         pinctrl-0 = <&sdhi0_emmc_pins>;
+>         pinctrl-1 = <&sdhi0_emmc_pins>;
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
