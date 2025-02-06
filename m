@@ -1,126 +1,114 @@
-Return-Path: <devicetree+bounces-143662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72AFCA2ACA4
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 16:39:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DBFCA2ACEE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 16:45:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 707EB1886BE6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 15:39:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 444211883D88
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 15:45:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46360226865;
-	Thu,  6 Feb 2025 15:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C672E1A317B;
+	Thu,  6 Feb 2025 15:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ZUqX8jTf";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="B+4cb1uf"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="sNo7iFwF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DAF11624C2;
-	Thu,  6 Feb 2025 15:39:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68064BA33;
+	Thu,  6 Feb 2025 15:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738856366; cv=none; b=P6Md939YIX0J0GBx0risqvTvHS6/f1jbbAvGUgeFlMDpX8EuF6P14spozl5TK9SESHMWdQQk6KMVFLNfFps2YzuSOMZ57mPfvhlK0dOt71QUDksOg0uDV0KDV4Fz3ekdemR8Q/dD223qyazzAzXnGPFAKzGCyD17VqhxdUCrhlU=
+	t=1738856748; cv=none; b=mFN0wbIQgUB603CjHx/amMXmsscCciBHkbliCOhTwmP6+egFUF2wR/pEpvgRpbVKo8HFtZoSu+Od6aHch0v0M8TdQR1jhruMoipkZnKOa6W/O/O2X6lWdYlBbfIWK3kmlg1vdZ9W+rxlcKkhCFiv1SRdvCcyAlHUfSEctBn0lwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738856366; c=relaxed/simple;
-	bh=wlE6Gm+jfmM9GP+m3Xl6AJJ+K3p/jju0qAACYiZR0bA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HYCrKawk364pirnSg6Ifr4D0RIGhgXe7BcrtgfMOj3k7jQ5CMwVkiR+fzi5D1ZmYEsgmqueZJkI15riciiDutJE6IQLCKN729E40+M0f5O9dre5Sj5nAj1fxVmZDjyPfl38oxYHH4JffGuQVaigbTS4aQUUsjcZWWIbMg+FLOpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=ZUqX8jTf; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=B+4cb1uf reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1738856362; x=1770392362;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nu8m4uOlFDA+u0T99iQf2bTuV73l/D8rZBvQ030okiA=;
-  b=ZUqX8jTfh5PAbPsSc5ZOBDx7jsm2k8aUxVxTVLg/dkwGNLx+7S4SoUes
-   /V26COBtFPCmePpUpGnFCNLYFuP+Acbll4rsGlebSUZUENKqwbWP8CTkd
-   uzwuakirw75AZitGpGs8rGY8K9xoMSaj593C9BVdx3endRm8KWnO2E389
-   /nE+WsbPuwpHX9cXUEX7g8l0HvKvtoerP/AQYINTUdFSt3ZQRZ/q5R+s9
-   mCy6lk1XnJm3pLU/ODfjgHwiwyi0rV6VLiD2h+TMfr2cipIlF+SUjv9Yq
-   kfQqsS5LgkZrymi75FTQQYU6dVcKBgdMSZVPLKDsiNu8/KlTG/J4LAXDO
-   g==;
-X-CSE-ConnectionGUID: +s+pPf1WTB6lXyMwIveuSw==
-X-CSE-MsgGUID: wlwIYNZKTfSIr6Idjo+bRA==
-X-IronPort-AV: E=Sophos;i="6.13,264,1732575600"; 
-   d="scan'208";a="41612578"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 06 Feb 2025 16:39:17 +0100
-X-CheckPoint: {67A4D7A5-10-8F72533B-EF5B5974}
-X-MAIL-CPID: B9E342499AF175E572876BEB97C05D8D_1
-X-Control-Analysis: str=0001.0A682F27.67A4D7A6.008D,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 25ABF165ECA;
-	Thu,  6 Feb 2025 16:39:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1738856353;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nu8m4uOlFDA+u0T99iQf2bTuV73l/D8rZBvQ030okiA=;
-	b=B+4cb1uf7v9DiQf+qu4va01yy1IcqvGJ7kvoiQeuCCdGvCOobbBrnwmlfPcNwoYNBvMAEF
-	i79WhgV4baWZYhM2qI4UteTdXDmrC3/CijnG6UbGAoTqcEhEE9ANoar/MTWIz7bCgydFfW
-	Y+myR7pZ/nAcw9uFcm0sOp04ic+v/48Qo9i9B3wLLjVgUNMd8teAwIF/0p3o9dTe/Iu1lx
-	7qB37GZ+rWIc3UtukzA5lZO/y0drb4q8qp65uSjzaasY4KwvqyztfdG/j9beX3xt3QSb0+
-	nd/tGprUefNwllqhtIaYUwgfpvfnBVoZbx8jCOJcVct+4HbEL3GELBth7W+ecA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>, =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Louis Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 4/4] drm: bridge: ti-sn65dsi83: Add error recovery mechanism
-Date: Thu, 06 Feb 2025 16:39:09 +0100
-Message-ID: <8756830.T7Z3S40VBb@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250206162048.1f159ba6@bootlin.com>
-References: <20250203161607.223731-1-herve.codina@bootlin.com> <3605739.aeNJFYEL58@steina-w> <20250206162048.1f159ba6@bootlin.com>
+	s=arc-20240116; t=1738856748; c=relaxed/simple;
+	bh=gRP4MG9risPvnbuNQJsv8sRMJhilt04gH9bgMGNXRPU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=clcL2EZi2aLbQbINruybXGnSBCt2AAoRi+mE+SLgrsdOqZ4VndrVt3GLgJgX2qBUsH8HFuQBpntRHMwyGBk0oGLF+/dP9m3aps81LabbltCuB0f4X6u/7ef9r9WXwN8lUZ/jMWeUFnj6tPUnJraG4PhfIHYcrhJFizpjiXXm4AE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=sNo7iFwF; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id B4F9B1FA0A;
+	Thu,  6 Feb 2025 16:39:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1738856359;
+	bh=kH0+JGJ28AOCheBpS02kDekVXIgobDL51e4ShaB0Zjs=; h=From:To:Subject;
+	b=sNo7iFwFXaS/G6IrumBfAqnjDFIN5KPso8Am/Ghd0RMqQpT+D6DzlP7h4fmvEtmJU
+	 vbUQlhZC6EXau5evJUgdZs0/eRdOD7Et7STwiVL3lOSk5/10vpmdbsjDcoXZj4Qi+J
+	 sUQo5JgqQ9AIOiPuNFUrOgdCh6AA5DoXBskUWlvp5mW2/LbdwEcyYDKzhK1AXpwk0v
+	 TecKe1fU+gGo0bSDIUXeyP1HhkIsaEiEj7fa6GNu348aWtlsZhps4LHuMoes3gvXgE
+	 xz+yo9NAJ5IFyoWxxSGw5FuCs609qX9vJPq5AmTxnM8xoOT6Iha7ONVHRawR21EsJV
+	 eV03cTtxB9Ugw==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: ti: k3-am62p: Enable AUDIO_REFCLKx
+Date: Thu,  6 Feb 2025 16:39:11 +0100
+Message-Id: <20250206153911.414702-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
-Hi Herve,
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Am Donnerstag, 6. Februar 2025, 16:20:48 CET schrieb Herve Codina:
-> Hi Alexander,
->=20
-> On Thu, 06 Feb 2025 15:38:42 +0100
-> Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
->=20
-> ...
-> > With interrupt configured I got the following stack trace upon
-> > reboot/poweroff:
-> >=20
-> > [   91.317264] sn65dsi83 2-002d: reset the pipe
-> > [   91.344093] Unable to handle ke
-> > ** replaying previous printk message **
-> > [   91.344093] Unable to handle kernel NULL pointer dereference at virt=
-ual address 0000000000000000
-> ...
->=20
-> Ouch :(
->=20
-> One question to help me investigating:
-> Do you have the issue at init/probe or when you start to display graphics?
+On AM62P-based SoCs the AUDIO_REFCLKx clocks can be used as an input to
+external peripherals when configured through CTRL_MMR, so add the
+clock nodes.
 
-This is during shutdown/poweroff. I assume that regmap_reg() in
-sn65dsi83_handle_errors() fails and because of that reset_work is scheduled.
+Link: http://downloads.ti.com/tisci/esd/latest/5_soc_doc/am62px/clocks.html
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+index 420c77c8e9e5..4b47b0774330 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+@@ -42,6 +42,26 @@ &inta_main_dmss {
+ 	ti,interrupt-ranges = <5 69 35>;
+ };
+ 
++&main_conf {
++	audio_refclk0: clock-controller@82e0 {
++		compatible = "ti,am62-audio-refclk";
++		reg = <0x82e0 0x4>;
++		clocks = <&k3_clks 157 0>;
++		assigned-clocks = <&k3_clks 157 0>;
++		assigned-clock-parents = <&k3_clks 157 16>;
++		#clock-cells = <0>;
++	};
++
++	audio_refclk1: clock-controller@82e4 {
++		compatible = "ti,am62-audio-refclk";
++		reg = <0x82e4 0x4>;
++		clocks = <&k3_clks 157 18>;
++		assigned-clocks = <&k3_clks 157 18>;
++		assigned-clock-parents = <&k3_clks 157 34>;
++		#clock-cells = <0>;
++	};
++};
++
+ &main_pmx0 {
+ 	pinctrl-single,gpio-range =
+ 		<&main_pmx0_range 0 32 PIN_GPIO_RANGE_IOPAD>,
+-- 
+2.39.5
 
 
