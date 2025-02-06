@@ -1,135 +1,175 @@
-Return-Path: <devicetree+bounces-143719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87148A2B35B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 21:27:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E53DA2B368
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 21:32:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A23016466C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 20:27:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AED213A168F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 20:32:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07FEC1D5CE3;
-	Thu,  6 Feb 2025 20:26:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B01921CD21C;
+	Thu,  6 Feb 2025 20:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="caFWIi5w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nmG54vlz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC94E188CB1;
-	Thu,  6 Feb 2025 20:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84C24A2D;
+	Thu,  6 Feb 2025 20:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738873617; cv=none; b=gYGMSnCbKgg4Vi9cahDXfwO9SgzBdUhZTZ3FD6RhCIZbMOgE3hL0SRUrTmM47yhQ3IyRFhrqmelxvwlqqjOOHlF/vPaKuAI/cUEP0HR6ZnkwtdaR3XAqe+JzpGULERe+gD1E/Lv/BmhMI+uTrrf7rjAVhNt8hjn1mQb7OZcoTU4=
+	t=1738873928; cv=none; b=C00oyjkMtJM/JAlQJoMeZzDYgKOuOMTQTl9UbB4pXrGWX13LMSJjDSOuB7YWCpi1O9nnu+meaRlUliVJxBtVeFNZ0CUdsCwy+m7YOQu/d1O9HAtUBzs6A11t3sPae2DFN6SK6Fr4weDt2oc3ZkO4qCuKlYNm2yOzHUgpKtjJnYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738873617; c=relaxed/simple;
-	bh=sgPKDwRH/rtUBdMxUKBnDrkfhvUevPepAlFNSgD32KU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=slsnGatcCdOWxloVWSl2+09PxbFh+v1thKjgQj9tRwXi993wuBgf4IOhtXdD979ESzD/NkBiocKR2bKVSevekQjjl57eqexL9VGeCTo3L+A9vVKSVAnxCinGBrwwRxa2DKGQ/1FJKEeLqZRSiOVbFlkZcD53cY59zlwX8peG4xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=caFWIi5w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 059F4C4CEDD;
-	Thu,  6 Feb 2025 20:26:55 +0000 (UTC)
+	s=arc-20240116; t=1738873928; c=relaxed/simple;
+	bh=8++XfkeoGTNTrOI9Lv+WUaBkvALFfxwEBpO7jocNRuI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fm18m3FR+LA0agwoNeDhMAI7in+iYXkJtSOk/xH4ZjfhAoDwMO6DCKhDfLU0Ww8yg9DTPO4bdf9sT0/Uz663+aicLtgjvtWYKvjXW9mCsEITxjPdjDVtJvUgF9i1HyWjHPVHdaaAGToOGiiGkGOrzcEjPLjZAw6f3Hgj+aTLs0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nmG54vlz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4A34C4CEDD;
+	Thu,  6 Feb 2025 20:32:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738873616;
-	bh=sgPKDwRH/rtUBdMxUKBnDrkfhvUevPepAlFNSgD32KU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=caFWIi5wTSOWCnxtU6v3RNc9lBJsUgxMeiA3ACtaPT3PSfM8MNQBdxSgGqWhpEIlc
-	 kXVYU8wxd9ZnS1ozYFxA/PUqrN0zQsswGCihLzPP2QvhPA/WyhI9jQGkXTK/or7fbH
-	 sRv1QcY/q/VKmBAFD4oyvN/T24ew0kZtqXOQAcGtGAFeSYBMMFJxTTVIekz1uqHZ+5
-	 nXyJRvCvisRIVcHMF6J8vfFZ30kevX4+a1U1F4qNzsIDTWwSxGPzaut1FrNui0lljW
-	 0kzS7vqUBK8Lyvqs3ZBiG3E/HHkv4AAT8yo35hzVGKkqcwbVlWJSlrQwxVFRGgZCJ3
-	 ljc1x5nFKNKTw==
-Date: Thu, 6 Feb 2025 14:26:54 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
-Cc: Markus Elfring <Markus.Elfring@web.de>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=k20201202; t=1738873928;
+	bh=8++XfkeoGTNTrOI9Lv+WUaBkvALFfxwEBpO7jocNRuI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nmG54vlzC1bt1aRdUOQzfumbyhGlfb21qRuMJhXeYPFF1oMw2+7jCmbrO2wyUHexJ
+	 utnZ3E3MxKRRmhVaMXZqWRGM013iABImXjkuf+ZgJ1P2+rmPRHT7hmG67fCyI2nR9S
+	 x4I3rm1jEseTWanEkQI+exbcLNZ7H9jbrvXB6/CQ6FEs2ZNe+tS6u0Vcdl4KbPfrBJ
+	 zunfJ76KNiJlG6oErceWoE+qXLCYVGMYf0EIFFkWqcdRL4JOlq4BohxDsWWloBJoi1
+	 WBXlvN4EwHH9Yp66eeAjRG9vCs9yGFCxEdAeYzImhvQMsDbAmvmx/3E75RdfVyTAq9
+	 dwVxljhMlkVcA==
+Date: Thu, 6 Feb 2025 21:32:05 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Lorenzo Bianconi <lorenzo.bianconi@redhat.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-	"Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	"Simek, Michal" <michal.simek@amd.com>
-Subject: Re: [PATCH v8 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
-Message-ID: <20250206202654.GA1000968@bhelgaas>
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [PATCH net-next 09/13] dt-bindings: net: airoha: Add airoha,npu
+ phandle property
+Message-ID: <Z6UcRRaLmUSvWS9Y@lore-desk>
+References: <20250205-airoha-en7581-flowtable-offload-v1-0-d362cfa97b01@kernel.org>
+ <20250205-airoha-en7581-flowtable-offload-v1-9-d362cfa97b01@kernel.org>
+ <20250205-cleaver-evaluator-648c8f0b99bb@spud>
+ <Z6O8-dUrLNmvnW1u@lore-desk>
+ <20250205-disagree-motive-517efca2b90c@spud>
+ <20250205-patronage-finisher-bbfbdb5b7dbc@spud>
+ <Z6PQEzvvCdDKQSnl@lore-desk>
+ <20250206-sabbath-carded-2bd52c03440d@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="zvsYUP/vzkaeMiCQ"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <SN7PR12MB7201C9D05D5E4AB4D5D091F88BF62@SN7PR12MB7201.namprd12.prod.outlook.com>
+In-Reply-To: <20250206-sabbath-carded-2bd52c03440d@spud>
 
-On Thu, Feb 06, 2025 at 04:07:23PM +0000, Havalige, Thippeswamy wrote:
-> > -----Original Message-----
-> > From: Markus Elfring <Markus.Elfring@web.de>
-> > Sent: Wednesday, February 5, 2025 8:40 PM
-> > To: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>; linux-
-> > pci@vger.kernel.org; devicetree@vger.kernel.org; Bjorn Helgaas
-> > <bhelgaas@google.com>; Conor Dooley <conor+dt@kernel.org>; Krzysztof
-> > Kozlowski <krzk+dt@kernel.org>; Krzysztof Wilczyński <kw@linux.com>;
-> > Lorenzo Pieralisi <lpieralisi@kernel.org>; Manivannan Sadhasivam
-> > <manivannan.sadhasivam@linaro.org>; Rob Herring <robh@kernel.org>
-> > Cc: LKML <linux-kernel@vger.kernel.org>; Gogada, Bharat Kumar
-> > <bharat.kumar.gogada@amd.com>; Jingoo Han <jingoohan1@gmail.com>;
-> > Simek, Michal <michal.simek@amd.com>
-> > Subject: Re: [PATCH v8 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
-> > 
-> > …
-> > > +++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> > > @@ -0,0 +1,476 @@
-> > …
-> > > +static void amd_mdb_mask_intx_irq(struct irq_data *data)
-> > > +{
-> > …
-> > > +	raw_spin_lock_irqsave(&port->lock, flags);
-> > > +	val = pcie_read(pcie, AMD_MDB_TLP_IR_MASK_MISC);
-> > > +	pcie_write(pcie, (val & (~mask)), AMD_MDB_TLP_IR_ENABLE_MISC);
-> > > +	raw_spin_unlock_irqrestore(&port->lock, flags);
-> > > +}
-> > …
-> > 
-> > Under which circumstances would you become interested to apply a
-> > statement like “guard(raw_spinlock_irqsave)(&port->lock);”?
-> > https://elixir.bootlin.com/linux/v6.13.1/source/include/linux/spinlock.h#L551
->
-> -Thanks for review comments, raw_spin_lock_irqsave is lightweight
-> and performance oriented. 
->
-> Achieves it by not performing few checks related to preemption, lock
-> deprecation that was originally in spin_lock_irqsave.
->
-> If you add guard around guard around the raw_spin_lock_irqsave then
-> it should provide those additional safety checks.
->
-> Its need is based on the environment, if you needs those
-> checks/features.  We need to check the implementation/code to
-> exactly see what are those. So choose to prevent my interrupt
-> handler from being affected by latency pruning
 
-IIUC, using guard() would not add any additional checks; it only helps
-prevent errors like returning from the function without releasing the
-lock.
+--zvsYUP/vzkaeMiCQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-That makes sense in larger functions with multiple exits, but IMO
-there's no real benefit in a case like this where the function is so
-short, there's only one exit, and it's completely obvious that we
-lock, do something, and unlock.
+> On Wed, Feb 05, 2025 at 09:54:43PM +0100, Lorenzo Bianconi wrote:
+> > > On Wed, Feb 05, 2025 at 08:01:26PM +0000, Conor Dooley wrote:
+> > > > On Wed, Feb 05, 2025 at 08:33:13PM +0100, Lorenzo Bianconi wrote:
+> > > > > > On Wed, Feb 05, 2025 at 07:21:28PM +0100, Lorenzo Bianconi wrot=
+e:
+> > > > > > > Introduce the airoha,npu property for the npu syscon node ava=
+ilable on
+> > > > > > > EN7581 SoC. The airoha Network Processor Unit (NPU) is used t=
+o offload
+> > > > > > > network traffic forwarded between Packet Switch Engine (PSE) =
+ports.
+> > > > > > >=20
+> > > > > > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > > > > > > ---
+> > > > > > >  Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml=
+ | 8 ++++++++
+> > > > > > >  1 file changed, 8 insertions(+)
+> > > > > > >=20
+> > > > > > > diff --git a/Documentation/devicetree/bindings/net/airoha,en7=
+581-eth.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
+> > > > > > > index c578637c5826db4bf470a4d01ac6f3133976ae1a..6388afff64e99=
+0a20230b0c4e58534aa61f984da 100644
+> > > > > > > --- a/Documentation/devicetree/bindings/net/airoha,en7581-eth=
+=2Eyaml
+> > > > > > > +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth=
+=2Eyaml
+> > > > > > > @@ -63,6 +63,12 @@ properties:
+> > > > > > >    "#size-cells":
+> > > > > > >      const: 0
+> > > > > > > =20
+> > > > > > > +  airoha,npu:
+> > > > > > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > > > > > +    description:
+> > > > > > > +      Phandle to the syscon node used to configure the NPU m=
+odule
+> > > > > > > +      used for traffic offloading.
+> > > > > >=20
+> > > > > > Why do you need a phandle for this, instead of a lookup by comp=
+atible?
+> > > > > > Do you have multiple instances of this ethernet controller on t=
+he
+> > > > > > device, that each need to look up a different npu?
+> > > > >=20
+> > > > > actually not, but looking up via the compatible string has been n=
+aked by
+> > > > > Krzysztof on a different series [0].
+> > > >=20
+> > > > Hmm, I disagree with adding phandles that are not needed. I don't a=
+gree
+> > > > that there's no reuse, if you can treat the phandle identically on =
+a new
+> > > > device, in all likelihood, that node should have a fallback to the
+> > > > existing one.
+> > >=20
+> > > Also, where is the binding for this npu? It looks like a brand-new
+> > > module that you're adding a driver for in this series and a phandle to
+> > > the node for here but I see no binding for it.
+> >=20
+> > The driver loads the NPU node just as syscon so I have not added the bi=
+nding
+> > for it to the series. I will add it in v2.
+>=20
+> I don't think it is "just as syscon", you've got an entire driver for it
+> that you're loading via the phandle, it's not just some generic syscon th=
+at
+> you're looking up here - at least that's what it seemed like to me after
+> my scan of the driver patches.
 
-I don't *really* like guard() anyway because it's kind of magic in
-that the unlock doesn't actually appear in the code, and it's kind of
-hard to unravel what guard() is and how it works.  But I guess that's
-mostly because it's just a new idiom that takes time to internalize.
+ack, fine. I will add binding for it in v2.
 
-Bjorn
+Regards,
+Lorenzo
+
+--zvsYUP/vzkaeMiCQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ6UcRQAKCRA6cBh0uS2t
+rCzfAQD0HAk5INsFs2L2kyrtH38gO74kQpiDIptn5lb5dfb+IgEAwlmjHSO5IZEc
+WKie0fs9KqDUq4KwzBlYR3b1Ae7nDgw=
+=AbnL
+-----END PGP SIGNATURE-----
+
+--zvsYUP/vzkaeMiCQ--
 
