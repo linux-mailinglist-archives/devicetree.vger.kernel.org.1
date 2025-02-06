@@ -1,166 +1,225 @@
-Return-Path: <devicetree+bounces-143605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C833A2A8AC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:44:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E29A2A8C6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:48:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 639003A192C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:44:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 426993A7F5B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:47:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98F9222DF93;
-	Thu,  6 Feb 2025 12:44:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RlYu1OA8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9375622D4C8;
+	Thu,  6 Feb 2025 12:47:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7E1225A2F;
-	Thu,  6 Feb 2025 12:44:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B0722DF89
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 12:47:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738845859; cv=none; b=W2Y//yIangQBYQRfby74cCqxkRH/ef4JGLlASZwMh/K2/8lkh3UBj8Y+1rQILjs11tB1Ty21TUqwOcJ7SEVgU1j/DRXHB4SfOA9g+4AqGfSCZN9flY2AZexRc36LxTvR782aHINVvoYq7LSWjqBFT+HVhFxe1I/t8MdA665ggm4=
+	t=1738846073; cv=none; b=ddfdSu8uM0ndmw4DUNgPMNv4iqCZ+pogdh57SzVZaJi2GV0Nt+9tpB0GySDvSPGhQxJpPJ2sk+deNQc1bxKYcbJZRUhe5ADDdGZ4vcNp7xc8mviF/IytnHyF0wo/lti/BkIdqOywxMteBpiGbz4eLsCUSOoSad1AbjraI/6ugmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738845859; c=relaxed/simple;
-	bh=W6jZDK8jApWktPMHm3xVv1mSc6QAOfCwzZr+TF7SbOA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LoPhmjiIdWT+zxQItuauyBkqsohzItqA9aTPKaRmEHO4AGIOcsJkSRS4MAQHlffSRabyWBc1XwTB91zaezBdGwa22h+ldsshR5r3eytY6ffqU5r9MS8CAaYlqIkX5DgzQoGSnUb0td6crZg9nzfA02ftyQZdYT60VKMYIN2F0Wc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RlYu1OA8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 516AGVtk015699;
-	Thu, 6 Feb 2025 12:43:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	L+VuwwPUX96t/cvLAig0W9CrSmNSvF+GAw2WUICZpBM=; b=RlYu1OA8BRoZs37J
-	AlZng96pHzMmd5b/WS3mArhheJxQZkg6wK1Uu8SnYgsX7gZ4zD3Nwywdi2TrgQ/C
-	GyfiRQP7RNKoMpqdyOOGScg/0hvqvCllrhy6E0Y7u2sk1pY0wjXE+zTmvDcI1DZn
-	xnDdgS1E83WqXxVI/EZFbrOPZsAOr997ybn+R+beI6/3xzH4GKU4/HzFL9ogcebC
-	k3y7x/vCJsXs3cD0ZwTmJx1BeyIdu3GBrW8H5JuVZMpGT6jrS1itMQOOSlmtiCNR
-	7dQFerqlN+/t/eYGocVaXBAve+8g0Cfsne1qzTX/EHp5UMvpO+I8rLQL4g/Bqa+G
-	gk1Zbw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44mu6f0b3a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 06 Feb 2025 12:43:06 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 516Ch5Z4004850
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 6 Feb 2025 12:43:05 GMT
-Received: from [10.216.49.103] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 6 Feb 2025
- 04:42:52 -0800
-Message-ID: <689302c6-8fba-4fd1-a4b7-557cb2f8fa4d@quicinc.com>
-Date: Thu, 6 Feb 2025 18:12:47 +0530
+	s=arc-20240116; t=1738846073; c=relaxed/simple;
+	bh=XVRhnXvtvTxseMVq6Tt74IEfVFr5ZN9/eDfbJZNGxRM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hjt3yzAvci26iuLNGF+fRUYAJrNo0JMZ5RLhMbgnWyZz1FLDHaBKhPUGGY3WLke3aF09uU+iOaBlStOs9QzUjWhS0SmDcHyC0K0XAyEw3zWpSkbGeiLroQ2qDMm9IHwbHicWWGRiXR6q5oCaL1kqXthaASKeERJV1YI7E5AMbrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tg1I6-0004gN-MG; Thu, 06 Feb 2025 13:47:34 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tg1I6-003oDk-0V;
+	Thu, 06 Feb 2025 13:47:34 +0100
+Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id BF4CC3BB4C9;
+	Thu, 06 Feb 2025 12:47:33 +0000 (UTC)
+Date: Thu, 6 Feb 2025 13:47:33 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, NXP S32 Linux <s32@nxp.com>, imx@lists.linux.dev, 
+	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3
+ SoC support
+Message-ID: <20250206-tough-seagull-of-diversity-1b8ba7-mkl@pengutronix.de>
+References: <20241204074916.880466-1-ciprianmarian.costea@oss.nxp.com>
+ <20241204074916.880466-2-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/9] dt-bindings: pci: Add fsl,mpc83xx-pcie bindings
-To: =?UTF-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        Frank Li
-	<Frank.li@nxp.com>
-CC: <devicetree@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
-        Scott Wood
-	<oss@buserror.net>,
-        Madhavan Srinivasan <maddy@linux.ibm.com>,
-        Michael
- Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Naveen N Rao
-	<naveen@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Damien Le Moal
-	<dlemoal@kernel.org>,
-        Niklas Cassel <cassel@kernel.org>,
-        Herbert Xu
-	<herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Lee
- Jones <lee@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
-	<kw@linux.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        =?UTF-8?Q?J=2E_Neusch=C3=A4fer?=
-	<j.neuschaefer@gmx.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter
- Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
-        Miquel Raynal
-	<miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
-        <linux-ide@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>
-References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
- <20250126-ppcyaml-v1-6-50649f51c3dd@posteo.net>
- <Z5qx3jAFE81Ni2cJ@lizhi-Precision-Tower-5810> <Z6KkBEaGTkSyWiE_@probook>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <Z6KkBEaGTkSyWiE_@probook>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TE8H3f9cFLjJrvrDo3x9nlVxTSkbm7Tn
-X-Proofpoint-ORIG-GUID: TE8H3f9cFLjJrvrDo3x9nlVxTSkbm7Tn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-06_03,2025-02-05_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1011
- priorityscore=1501 phishscore=0 suspectscore=0 bulkscore=0
- lowpriorityscore=0 spamscore=0 mlxlogscore=657 adultscore=0
- impostorscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502060105
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qz65ro3fcu6xw73r"
+Content-Disposition: inline
+In-Reply-To: <20241204074916.880466-2-ciprianmarian.costea@oss.nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
+--qz65ro3fcu6xw73r
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3
+ SoC support
+MIME-Version: 1.0
 
-On 2/5/2025 5:04 AM, J. Neuschäfer wrote:
-> On Wed, Jan 29, 2025 at 05:55:26PM -0500, Frank Li wrote:
->> On Sun, Jan 26, 2025 at 07:59:01PM +0100, J. Neuschäfer wrote:
->>> Supplement Documentation/devicetree/bindings/pci/fsl,pci.txt with a more
->>> formal binding in YAML format.
->>>
-neat: subject: since binding is already mentioned in the prefix of the 
-subject, no need to add bindings word again.
->>> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
->>> ---
->>>   .../devicetree/bindings/pci/fsl,mpc8xxx-pci.yaml   | 83 ++++++++++++++++++++++
->>>   1 file changed, 83 insertions(+)
-> [...]
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +    pci1: pcie@e0009000 {
->>
->> needn't label here
-> 
-> Will change.
-> 
-> 
-> Thanks,
-> J. Neuschäfer
-> 
+Hello Krzysztof,
 
+can you (and you bot) take a look at this patch?
+
+Thanks,
+Marc
+
+On 04.12.2024 09:49:13, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>=20
+> Add S32G2/S32G3 SoCs compatible strings.
+>=20
+> A particularity for these SoCs is the presence of separate interrupts for
+> state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
+>=20
+> Increase maxItems of 'interrupts' to 4 for S32G based SoCs and keep the
+> same restriction for other SoCs.
+>=20
+> Also, as part of this commit, move the 'allOf' after the required
+> properties to make the documentation easier to read.
+>=20
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> ---
+>  .../bindings/net/can/fsl,flexcan.yaml         | 44 +++++++++++++++++--
+>  1 file changed, 40 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b=
+/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> index 97dd1a7c5ed2..73252fe56fe6 100644
+> --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> @@ -10,9 +10,6 @@ title:
+>  maintainers:
+>    - Marc Kleine-Budde <mkl@pengutronix.de>
+> =20
+> -allOf:
+> -  - $ref: can-controller.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -28,6 +25,7 @@ properties:
+>            - fsl,vf610-flexcan
+>            - fsl,ls1021ar2-flexcan
+>            - fsl,lx2160ar1-flexcan
+> +          - nxp,s32g2-flexcan
+>        - items:
+>            - enum:
+>                - fsl,imx53-flexcan
+> @@ -43,12 +41,21 @@ properties:
+>            - enum:
+>                - fsl,ls1028ar1-flexcan
+>            - const: fsl,lx2160ar1-flexcan
+> +      - items:
+> +          - enum:
+> +              - nxp,s32g3-flexcan
+> +          - const: nxp,s32g2-flexcan
+> =20
+>    reg:
+>      maxItems: 1
+> =20
+>    interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 4
+> =20
+>    clocks:
+>      maxItems: 2
+> @@ -136,6 +143,35 @@ required:
+>    - reg
+>    - interrupts
+> =20
+> +allOf:
+> +  - $ref: can-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nxp,s32g2-flexcan
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: Message Buffer interrupt for mailboxes 0-7 an=
+d Enhanced RX FIFO
+> +            - description: Device state change
+> +            - description: Bus Error detection
+> +            - description: Message Buffer interrupt for mailboxes 8-127
+> +        interrupt-names:
+> +          items:
+> +            - const: mb-0
+> +            - const: state
+> +            - const: berr
+> +            - const: mb-1
+> +      required:
+> +        - interrupt-names
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +        interrupt-names: false
+> +
+>  additionalProperties: false
+> =20
+>  examples:
+> --=20
+> 2.45.2
+>=20
+>=20
+>=20
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--qz65ro3fcu6xw73r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmekr2IACgkQDHRl3/mQ
+kZxOdwf8C8MMmL+EnFDiiqoAtTokYJHzXNrc4kVC7YtoWzn7tsrnTq4Tkx7r09My
+LZrMvfryFAOwlFD9zaj7dwGqnaFvaOJ9f0REHEztFUe4BEV03qeK2enFG9eNunek
+A9/FxSArFYMDybn8V0loiX3+Apchf45k/c6k4u4GA2WOTVmPmpLgKOIkpJQmqXT6
+S6nV5w/xbJv2X0ujX40D/QV+LNvyEH1UVrGrNgumwggPXr4eaEWYNthIkoD1nZLL
+yoWMCYdYRh9+elqgCGpdYgfgLr8Cv1+tYa2jKmouc0oj8mQzsa+PJXkB+leO0mXB
+MUduyAUNzZDGDesuKB9QJUeLfW7FkQ==
+=pngP
+-----END PGP SIGNATURE-----
+
+--qz65ro3fcu6xw73r--
 
