@@ -1,103 +1,114 @@
-Return-Path: <devicetree+bounces-143515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E7F7A2A429
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:25:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E506A2A431
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:26:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCD483A378C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:24:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC1523A77EC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB774226162;
-	Thu,  6 Feb 2025 09:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5975D226165;
+	Thu,  6 Feb 2025 09:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S8G1eoLb"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="XixU04o5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56A06225A5C;
-	Thu,  6 Feb 2025 09:24:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738833897; cv=none; b=LGIo0zbJR6MmN79GUJ9m8RLjttsEWmsd45CElUMS2f8wAJK0GIeAaU/L1W6qIcZ1K7xkE5Z500IncbfM7STbY6jEvQi3csjMGDpmKupioFEnNaPEwC43r3+n2qjkieOqzVmIKYkTKvffBFodY+t7iM58rHSMYPAHVYZdAz3+2CI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738833897; c=relaxed/simple;
-	bh=R0Aj8VkeJ1ljtNruUSkipfngsktgaMJyC1xm5s9bvks=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NkAHMhkgxLEBAzCGOGDhvW292yAS7F4ct9A0kYdqtn4tBG+/TBSyLaTO530VUL5OgWTpptg2asAoI35UGw37z4tDHeKwjLQZQfSY32TJTxl5gCDafrfca0gMRoJRSykKEwseWzdcaEKcP4VnxMITQdS0f5gSlVocB96Qq79Uhmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S8G1eoLb; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e549b0f8d57so580089276.3;
-        Thu, 06 Feb 2025 01:24:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738833894; x=1739438694; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=R0Aj8VkeJ1ljtNruUSkipfngsktgaMJyC1xm5s9bvks=;
-        b=S8G1eoLb6Vox20L2Pwk/81mSE3dmLs5pV9/4Ip3Uf5rlAiiEzn52eo43GiBnfju1Ao
-         Oexw5drRuwAEdn0gQ6Soadk2Vh21IKS5LMsvpQOt/YrSvdCs1XgsKoneM+V4oNRm0c9m
-         aPwK8CgYpJaSx6tmfdsmMIMvvc+eN+AAEWZDn/04ZCtgVlDeC9ByGSJZl0i+Ed0ADEvK
-         w54qxFM0Pszsg7YgKq50pIDnLAIIW1R/mattPhifvQMJHJsi+sxqNe1nmHjA7m7xuS7f
-         8MCPW9kKDLuz6cNfXkpGGRPCID34ZtoOjFIyR5TCygqJAbZJeMqTN0L4ASJrE/eMuF2B
-         1fcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738833894; x=1739438694;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R0Aj8VkeJ1ljtNruUSkipfngsktgaMJyC1xm5s9bvks=;
-        b=GSsGdL/u9t3iTI9VJdxeM/4M0y6wV8udyV9jICTgaehjWf6xXggk9Vz3G4x7fNlQsW
-         Aar9iZTF+tZpZ6lI3Tg4L5aBa8dM9XpjvJ20FPN5Zqc3AIOHzfsB34bPp46Byxkb0Hka
-         5KRePpg3TG4s6u8RPj2ZWxLTh/Tv7acUMozNYIm8TWY+gnVXd8z686FqTjPMgNeGSxgB
-         lik52uR/DgOsl8jSQTI2MAdDNqF0ZUOjukBLXpuLCBQfT+2psc1Z/rIKTKVflR0PyMuA
-         7Nli74wV7pclGfxJDEKbFplRhhjUOwLN30j0jEoqTlyXqjdq6OKW01shnXeLopuSi/c7
-         IJgw==
-X-Forwarded-Encrypted: i=1; AJvYcCVnN9mEL87dYk8zCg/8k5KTbFQ4koPMBU9bhL5+ouzJXrO3nlhu8n9ZFBgG3t2oAN0sHaqeQH7QJhJ+@vger.kernel.org, AJvYcCW6OXCFiCoQVWYWm1VPLnmVNvpV5ORsyDEMXPiWrYZaDNV1Gb52UouZZ0cqagYhKLPmof50UEDNtTn8L1Do@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQJ3UCI8Y0Kdn3EJtm2MmNscgkaKdmsbevn8208agr+DYRdOPC
-	L1wXPJaTFRoYi86luzxcGDhi1rzucxZrEbfqEIurG1WNxz9Dvx3GubYNPebgrD/a0qyyX6I+xTt
-	yZrOCc6010b8BD/hB2i8eo1M+64E=
-X-Gm-Gg: ASbGnctpHJtoio3ZqwiB99K1NwivIoJeOweF2B+6ad8qgW3bwOXf1NpOEXhm1ZyhPrY
-	lSKyEx4y4672KXEOveY6uNhZC7v1SqlHrcl3+gLHu7JhpHfnydsvkrGZrjzfxon2LQy347H6EGQ
-	==
-X-Google-Smtp-Source: AGHT+IFbC6DM3fJVG17MrSGBXdIfeROMfW7VK5TSEM0p/SsdBlf6NEx0KbnND2bApOZ90AM+CmqzpnxiCUvcGg1/hdc=
-X-Received: by 2002:a05:6902:2843:b0:e5a:e604:78df with SMTP id
- 3f1490d57ef6-e5b25b95544mr4817982276.17.1738833894216; Thu, 06 Feb 2025
- 01:24:54 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65889215079;
+	Thu,  6 Feb 2025 09:26:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738833977; cv=pass; b=QreDaSTIIyW0heSOShhmbtnHiAVHi9IA6jat3plTQmOoad7gl1OuoqB74EPmEE4z/7mNNxfa9oP2DRVrcodaf634qqfBZTSiOnweUL+TxK/ORbpplpUYHmrVSUmNgNFpSohH3sC45jqZvlinRxZSJvC2lAuVcBjGVMzBwTiwuuo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738833977; c=relaxed/simple;
+	bh=Wzd+dOcVOVn7IKH7PTteO59qiKoj7qRfKTgzHatX4Rc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Slhl60EkjT6in78HKjaxXz0p4jjeAWrwCoeMVrpezHSdRArpbD4gOmkyys2lh5BBIgWH8qbtE5KguzOEjljeyp/7M+oTsNG3CHbDanGjM18ZN9fbpIxJYTxdfzhYHamR5AFJdf3ZklYi8OyCVZLDVHQSZRVRtZPz7ve3e0TbQcE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=XixU04o5; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1738833953; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=i8qmlm7TQ9YdxwhBzd7v5DxSdYVKqHb9rqfhtyynEIWGfb5Px1J1YHVJAB4fGsgA4qcBIUnWS2cbIf3p09NkfgQs7MukwZiBJZwK9F+dURTBHsaNP4wDh1gA5q7rNX6HRu30qHx3uoivLKXpD16GgonbjrUByJUAYqmNh6XLrko=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1738833953; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Wzd+dOcVOVn7IKH7PTteO59qiKoj7qRfKTgzHatX4Rc=; 
+	b=DYoq1DD6SveaaStvmrn6xyWMB+NfNWq5Xb+l0hRCYffV2ILQTQ/5jgajRgUd+q67Sk4AngnuPwud+th1ZI2uFlI6+iOn2t2PPtU+djWrO8jDfdS/QEk6oCuyhX23wt5if6dFf/5ppgSo6lWitSDa9BGyeFP8hG/zlWm48TFZfSg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
+	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1738833953;
+	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=Wzd+dOcVOVn7IKH7PTteO59qiKoj7qRfKTgzHatX4Rc=;
+	b=XixU04o5JpLnZ8PmlweIXQbaj5w/Gx8QBL06y9vY/L0mCcqyiT7GgMARa9sNBrkE
+	vmJVcGdmkL6Ngh9WW1YZfOIpL1zrixFYNxOfLpysrpS9QtkKR1GjeOMKQUthSbJ+n3L
+	p0YdM9Bq9LC8BZnlWMajJ6LZlZMt75KZSrmcarLc=
+Received: by mx.zohomail.com with SMTPS id 1738833949854891.3350291196675;
+	Thu, 6 Feb 2025 01:25:49 -0800 (PST)
+Message-ID: <6f893666c09c39159fa0c273c435cf53509f6fba.camel@collabora.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: arm: mediatek: add mt8370-evk board
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Matthias Brugger
+ <matthias.bgg@gmail.com>, Sean Wang <sean.wang@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	kernel@collabora.com
+Date: Thu, 06 Feb 2025 10:25:46 +0100
+In-Reply-To: <83a354d0-e220-449e-b03a-12012ab0d5b6@collabora.com>
+References: <20250115-dts_mt8370-genio-510-v2-0-fc9b01d08834@collabora.com>
+	 <20250115-dts_mt8370-genio-510-v2-1-fc9b01d08834@collabora.com>
+	 <83a354d0-e220-449e-b03a-12012ab0d5b6@collabora.com>
+Organization: Collabora Ltd
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250205-adpdrm-v5-0-4e4ec979bbf2@gmail.com> <20250205-adpdrm-v5-5-4e4ec979bbf2@gmail.com>
- <20250206-caped-premium-squid-595ecd@houat>
-In-Reply-To: <20250206-caped-premium-squid-595ecd@houat>
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Date: Thu, 6 Feb 2025 10:24:43 +0100
-X-Gm-Features: AWEUYZn9JAn4vxk91DxbpJulbYrsp1RnWuViBY7aesXFIweT5vWahzqXS6ccsNo
-Message-ID: <CAMT+MTQBSuWCz0T13RkhyJLwV7tuk4_BmVH6vACFOYx=msc09Q@mail.gmail.com>
-Subject: Re: [PATCH v5 5/5] MAINTAINERS: Add entries for touchbar display driver
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>
-Content-Type: text/plain; charset="UTF-8"
+X-ZohoMailClient: External
 
-On Thu, 6 Feb 2025 at 10:17, Maxime Ripard <mripard@kernel.org> wrote:
-> Sorry to figure it out that late, but how do you plan on maintaining it?
-> Where will the patches go through, and who will you send PR to?
+On Wed, 2025-02-05 at 15:21 +0100, AngeloGioacchino Del Regno wrote:
+> Il 15/01/25 11:29, Louis-Alexis Eyraud ha scritto:
+> > 1. Add compatible for MT8370.
+> > 2. Add bindings for the MediaTek mt8370-evk board, also known
+> > as the "Genio 510-EVK".
+> >=20
+> > The MT8370, MT8390 and MT8188 belong to the same SoC family.
+> > It is a less powerful variant of MT8390 SoC and their main
+> > differences are:
+> > =C2=A0 - Arm Cortex-A55 cores number (4 vs 6)
+> > =C2=A0 - Arm Cortex-A78 core speed (2.0 GHz vs 2.2 Ghz)
+> > =C2=A0 - Arm Mali-G57 GPU core number (2 vs 3)
+> >=20
+> > Like MT8390, MT8370 hardware register maps are identical to MT8188.
+> >=20
+> > Signed-off-by: Louis-Alexis Eyraud
+> > <louisalexis.eyraud@collabora.com>
+>=20
+> Since you have to resend the series, please remember to add Conor's
+> Ack
+> that was released in v1; in v2, this commit didn't change at all.
+>=20
+> Meanwhile... please also collect my
+>=20
+> Reviewed-by: AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com>
+Hi,
 
-Downstream development is done via the https://github.com/AsahiLinux/linux/
-repo, then send patches to ml. Not sure if i want to send PR personally,
-it will probably go via one of the drm trees or via asahi-soc.
+I'll add the missing code review trailers and fix the commit message in
+the other commits before sending the v3 patch set.
+
+Regards,
+Louis-Alexis
 
