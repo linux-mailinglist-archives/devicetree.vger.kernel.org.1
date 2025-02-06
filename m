@@ -1,176 +1,143 @@
-Return-Path: <devicetree+bounces-143579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B3EA2A763
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:24:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61C26A2A768
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:25:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44AFD16292B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:24:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 163131672F8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:24:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99FEA2288EE;
-	Thu,  6 Feb 2025 11:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1136C22619B;
+	Thu,  6 Feb 2025 11:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="X/v6u74k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G90odWPx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07000224AEE;
-	Thu,  6 Feb 2025 11:23:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB842214203;
+	Thu,  6 Feb 2025 11:24:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738841020; cv=none; b=GVRuhWKXppLnbT6UYcZrocDoHB8Ijn4RFveOWREJqlFB0vNV0rtQYCVkSCL6adhTfG7qx1GfYV6X1QqY3vFb622Rhj3Yz8q2x3jjj311PUN249PqB4Z/KrCJpYfDXL1DyMXeIXo66aOZ/GHSOZUBL3Am5qwSW0kwtnh3h+o703c=
+	t=1738841083; cv=none; b=nUGw5IClF0HpS36BGjEB4uJABAq9DrP1jGmSeE92IcNSqVXRUQHrwZnvJhc8Zhsvi/GHsIQhA7lpDlpPJYWPkBMPvOn0YzrQDzA2mpTEFbW+hPAuCE8HS7Nej+Xlsi15fm2w8yyvcWRSMj1YpGU1J1twkuoh4BhLhPXmA18tdwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738841020; c=relaxed/simple;
-	bh=KByYSN9h6LBUAcDtidME8moJYCIICoPuGhNfzJw+SJc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ClsqKT3tEgCY7r+OGHFMoprRctqLHYznb3qfrrBy1MXT0QyxvWmAlx80PFQsWFuket9g1j65c+YpawSAPM5oGLuX4xuoVfCOnGwgjuB2uWwI61r9xauaqx9PJuIsYnG/+LHK6SNv8HSWkrxbsXrCCtK567WF8u5lUEQ5E7UfN2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=X/v6u74k; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5169mRPa014789;
-	Thu, 6 Feb 2025 11:23:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	odkYWQ7L6wu9+4Nd1/cDXXtaxBIc+VpriZgk761UQ5s=; b=X/v6u74kbTWhIN2/
-	zt19uYpDiw1yNATE1zL+B8BgeugGyTI2wj1BFL7K80LtOGtJ6Ts7vNAKKhocvYI5
-	70/DrGkpFz3iGBPr3TzlcJQV8Za3DWSIAnMk8NgsJ864iN/xsAqvdQV1PndprEfL
-	7ALVEtzr3yqysh88ttos5mC88t+Cnexlz+Ds1UJDoAOX72abvQ7jygbrlPgBW6gi
-	FkHdjCxAI039g9vhQBOcCPYE2BjemIhQH3/17fKGtJ2H8DKgvsYrq6tKY4MkzbFz
-	5jShxifOIWS5Bxb8H3twE6FqBkc1T61TeSEClt8UqK2PK+QhiijPMFR5vVPxVlpX
-	aipLyg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44mtsa07a6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 06 Feb 2025 11:23:17 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 516BNGJU030345
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 6 Feb 2025 11:23:16 GMT
-Received: from hu-mohs-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 6 Feb 2025 03:23:10 -0800
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Bard Liao
-	<yung-chuan.liao@linux.intel.com>,
-        Jaroslav Kysela <perex@perex.cz>, "Takashi
- Iwai" <tiwai@suse.com>
-CC: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-        Sanyog Kale
-	<sanyog.r.kale@intel.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_pkumpatl@quicinc.com>, <kernel@oss.qualcomm.com>,
-        Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Subject: [PATCH v6 4/4] ASoC: qcom: sdw: Add get and set channel maps support from codec to cpu dais
-Date: Thu, 6 Feb 2025 16:52:25 +0530
-Message-ID: <20250206112225.3270400-5-quic_mohs@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250206112225.3270400-1-quic_mohs@quicinc.com>
-References: <20250206112225.3270400-1-quic_mohs@quicinc.com>
+	s=arc-20240116; t=1738841083; c=relaxed/simple;
+	bh=sNzc9rpJrSGgiXFYTxSNOLd9piOIMO0s74xHHWxepHs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ur/aDpQKGcXVXy6tLR0ajQxTv9kRTvZcP8loPEwOkPIQn/zxrTV0tJ4sfjTiaPUheBdEjq4qaxqWmdCzxbrBGHZCNFWm34/ZbULLltQrJBJQk/tNPfuikPyLg4Ba5VHtWGtAocj4BjcSf/K4A3nTLXBxrN8c55zvXh9VzQGSlgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G90odWPx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5272FC4CEDD;
+	Thu,  6 Feb 2025 11:24:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738841082;
+	bh=sNzc9rpJrSGgiXFYTxSNOLd9piOIMO0s74xHHWxepHs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G90odWPxAXNcL5p8b/ZM6942sxWRYqIyydeudZGXD7kDgY9UdK6wJb20MdLg/aSp0
+	 9IDUywrkI2UzLH+JdHjbcyKaq+jnZOSfai2sF8LU+n1oxJKC6fzU8scOHU7e8NC10r
+	 BTTlrg0L4UgJkjQICHlroN4o6IoU8OYMoNxQhBW5+2EHF+ClinNegdSlybx7vazQLW
+	 cgYYu+wxSa/LHSL8crd+mR/i/SpuC1eWFtX/0+FADDTDWQRREH+ptLR34MpyG6upJ5
+	 BgxACN0F58lagv7sBgUSiTBxamJ5sd6D5NBRV0pZLOkoYicvbU7d8sHXHdozPOWaxf
+	 P81Kwk0ihXTdA==
+Date: Thu, 6 Feb 2025 11:24:38 +0000
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Eric Biggers <ebiggers@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Andy Chiu <andybnac@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/6] RISC-V: add vector crypto extension validation
+ checks
+Message-ID: <20250206-overcook-legibly-0350a9af8a2a@spud>
+References: <20250205-cobbler-unpadded-5580c1f5d946@spud>
+ <20250205-quench-entrench-09bed8c8c823@spud>
+ <00dc2fb7-da9b-42c3-9c3b-47d917df7cf6@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PEfJZebkLkf7O7gJ_glAwZmRC2i1uHJl
-X-Proofpoint-ORIG-GUID: PEfJZebkLkf7O7gJ_glAwZmRC2i1uHJl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-06_03,2025-02-05_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- lowpriorityscore=0 spamscore=0 impostorscore=0 priorityscore=1501
- clxscore=1015 mlxscore=0 adultscore=0 bulkscore=0 mlxlogscore=999
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502060094
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1iqbN1jWYKwYUDZR"
+Content-Disposition: inline
+In-Reply-To: <00dc2fb7-da9b-42c3-9c3b-47d917df7cf6@rivosinc.com>
 
-Add get and set channel maps support from codec to cpu dais.
 
-Implemented logic to get the channel map in case of only sdw stream and
-set channel map only for specific cpu dais.
+--1iqbN1jWYKwYUDZR
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
----
- sound/soc/qcom/sdw.c | 34 +++++++++++++++++++++++++++++++---
- 1 file changed, 31 insertions(+), 3 deletions(-)
+On Thu, Feb 06, 2025 at 11:20:35AM +0100, Cl=E9ment L=E9ger wrote:
+> On 05/02/2025 17:05, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > Using Clement's new validation callbacks, support checking that
+> > dependencies have been satisfied for the vector crpyto extensions.
+> > Currently riscv_isa_extension_available(<vector crypto>) will return
+> > true on systems that support the extensions but vector itself has been
+> > disabled by the kernel, adding validation callbacks will prevent such a
+> > scenario from occuring and make the behaviour of the extension detection
+> > functions more consistent with user expectations - it's not expected to
+> > have to check for vector AND the specific crypto extension.
+> >=20
+> > The 1.0.0 Vector crypto spec states:
+> > 	The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly
+> > 	the composite extensions Zvkn and Zvks-- require a Zve64x base,
+> > 	or application ("V") base Vector Extension. All of the other
+> > 	Vector Crypto Extensions can be built on any embedded (Zve*) or
+> > 	application ("V") base Vector Extension.
+> > and this could be used as the basis for checking that the correct base
+> > for individual crypto extensions, but that's not really the kernel's job
+> > in my opinion and it is sufficient to leave that sort of precision to
+> > the dt-bindings. The kernel only needs to make sure that vector, in some
+> > form, is available.
+> >=20
+> > Since vector will now be disabled proactively, there's no need to clear
+> > the bit in elf_hwcap in riscv_fill_hwcap() any longer.
+>=20
+> To which part of the commit does this refer to ?
 
-diff --git a/sound/soc/qcom/sdw.c b/sound/soc/qcom/sdw.c
-index f2eda2ff46c0..1d01b9329e08 100644
---- a/sound/soc/qcom/sdw.c
-+++ b/sound/soc/qcom/sdw.c
-@@ -23,9 +23,11 @@ int qcom_snd_sdw_startup(struct snd_pcm_substream *substream)
+Copy-paste mistake when splitting in two, whoops.
+
+> > @@ -397,8 +414,8 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D=
  {
- 	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
-+	u32 rx_ch[SDW_MAX_PORTS], tx_ch[SDW_MAX_PORTS];
- 	struct sdw_stream_runtime *sruntime;
- 	struct snd_soc_dai *codec_dai;
--	int ret, i;
-+	u32 rx_ch_cnt = 0, tx_ch_cnt = 0;
-+	int ret, i, j;
- 
- 	sruntime = sdw_alloc_stream(cpu_dai->name);
- 	if (!sruntime)
-@@ -35,9 +37,35 @@ int qcom_snd_sdw_startup(struct snd_pcm_substream *substream)
- 		ret = snd_soc_dai_set_stream(codec_dai, sruntime,
- 					     substream->stream);
- 		if (ret < 0 && ret != -ENOTSUPP) {
--			dev_err(rtd->dev, "Failed to set sdw stream on %s\n",
--				codec_dai->name);
-+			dev_err(rtd->dev, "Failed to set sdw stream on %s\n", codec_dai->name);
- 			goto err_set_stream;
-+		} else if (ret == -ENOTSUPP) {
-+			/* Ignore unsupported */
-+			continue;
-+		}
-+
-+		ret = snd_soc_dai_get_channel_map(codec_dai, &tx_ch_cnt, tx_ch,
-+						  &rx_ch_cnt, rx_ch);
-+		if (ret != 0 && ret != -ENOTSUPP) {
-+			dev_err(rtd->dev, "Failed to get codec chan map %s\n", codec_dai->name);
-+			goto err_set_stream;
-+		} else if (ret == -ENOTSUPP) {
-+			/* Ignore unsupported */
-+			continue;
-+		}
-+	}
-+
-+	switch (cpu_dai->id) {
-+	case RX_CODEC_DMA_RX_0:
-+	case TX_CODEC_DMA_TX_3:
-+		if (tx_ch_cnt || rx_ch_cnt) {
-+			for_each_rtd_codec_dais(rtd, j, codec_dai) {
-+				ret = snd_soc_dai_set_channel_map(codec_dai,
-+								  tx_ch_cnt, tx_ch,
-+								  rx_ch_cnt, rx_ch);
-+				if (ret != 0 && ret != -ENOTSUPP)
-+					goto err_set_stream;
-+			}
- 		}
- 	}
- 
--- 
-2.34.1
+> >  	__RISCV_ISA_EXT_DATA(zksed, RISCV_ISA_EXT_ZKSED),
+> >  	__RISCV_ISA_EXT_DATA(zksh, RISCV_ISA_EXT_ZKSH),
+> >  	__RISCV_ISA_EXT_DATA(ztso, RISCV_ISA_EXT_ZTSO),
+> > -	__RISCV_ISA_EXT_SUPERSET(zvbb, RISCV_ISA_EXT_ZVBB, riscv_zvbb_exts),
+> > -	__RISCV_ISA_EXT_DATA(zvbc, RISCV_ISA_EXT_ZVBC),
+> > +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zvbb, RISCV_ISA_EXT_ZVBB, riscv_zvb=
+b_exts, riscv_ext_vector_x_validate),
+> > +	__RISCV_ISA_EXT_DATA_VALIDATE(zvbc, RISCV_ISA_EXT_ZVBC, riscv_ext_vec=
+tor_crypto_validate),
 
+>=20
+> I'm not sure if I already made that comment, so here we go again.
+> Shouldn't Zvbb use riscv_ext_vector_crypto_validate() as well ?  The
+> spec states that Zvbb is a superset of Zvkb and Zvkb uses the
+> riscv_ext_vector_crypto_validate() validation callback. I guess Zvbc
+> should also use it based on your spec excerpt in the commmit log.
+
+Zvbc does use it, no? I'll amend the Zvbb one, there should only be two
+users of the "x" variant.
+
+--1iqbN1jWYKwYUDZR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6Sb9QAKCRB4tDGHoIJi
+0ldwAP983+O6h9quEOj+A8/HT/Ck02DGt4dHGhmvorY2AWRn6AEA45wAgwsU68ns
+s/Feax0psZjLxql/U1SmCwWvWvDHiAc=
+=FI6o
+-----END PGP SIGNATURE-----
+
+--1iqbN1jWYKwYUDZR--
 
