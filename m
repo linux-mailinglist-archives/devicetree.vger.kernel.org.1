@@ -1,143 +1,123 @@
-Return-Path: <devicetree+bounces-143580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61C26A2A768
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:25:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8562CA2A76A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:25:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 163131672F8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:24:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07D151889FB8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:25:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1136C22619B;
-	Thu,  6 Feb 2025 11:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 603C0228C84;
+	Thu,  6 Feb 2025 11:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G90odWPx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QRKYoQ7q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB842214203;
-	Thu,  6 Feb 2025 11:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A3CA22688F;
+	Thu,  6 Feb 2025 11:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738841083; cv=none; b=nUGw5IClF0HpS36BGjEB4uJABAq9DrP1jGmSeE92IcNSqVXRUQHrwZnvJhc8Zhsvi/GHsIQhA7lpDlpPJYWPkBMPvOn0YzrQDzA2mpTEFbW+hPAuCE8HS7Nej+Xlsi15fm2w8yyvcWRSMj1YpGU1J1twkuoh4BhLhPXmA18tdwA=
+	t=1738841113; cv=none; b=HGKV/jnI7SZIg5tARO8k9moEEfnfe6qOPzs7Tul9psndupLLJWrvkk3dBxdDPJCECt/pi3AVeCMTymbPNA0bj9T05eA1ZKF1w/IRYD6T7RajYQryV2p0lxygg7icWD6w5PNJ8h5IGToO+3W1JdkpSK3Fvbqzluufw0RTrqFna4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738841083; c=relaxed/simple;
-	bh=sNzc9rpJrSGgiXFYTxSNOLd9piOIMO0s74xHHWxepHs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ur/aDpQKGcXVXy6tLR0ajQxTv9kRTvZcP8loPEwOkPIQn/zxrTV0tJ4sfjTiaPUheBdEjq4qaxqWmdCzxbrBGHZCNFWm34/ZbULLltQrJBJQk/tNPfuikPyLg4Ba5VHtWGtAocj4BjcSf/K4A3nTLXBxrN8c55zvXh9VzQGSlgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G90odWPx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5272FC4CEDD;
-	Thu,  6 Feb 2025 11:24:40 +0000 (UTC)
+	s=arc-20240116; t=1738841113; c=relaxed/simple;
+	bh=3QenPFoiIxwYoHLxjpQR+89yGAMCqcwZRL9xqsJbz4s=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=T81j2oMYLUkFs/X3XuhoBaH9TmQkWBhtJ1KSucldP3WylLBNEbREtNhrJhG9CXrZWzdbD/Z/3Vz3rvt5aeNzS7l1BmsLqdgdLy215BS4DZt2zlA+sXsztuqIDCjH2JoFrwgzK0Jp1yG43iMu+U9tzvPk3qz8qLx1/AJAu+dbQCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QRKYoQ7q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6843CC4CEDD;
+	Thu,  6 Feb 2025 11:25:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738841082;
-	bh=sNzc9rpJrSGgiXFYTxSNOLd9piOIMO0s74xHHWxepHs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G90odWPxAXNcL5p8b/ZM6942sxWRYqIyydeudZGXD7kDgY9UdK6wJb20MdLg/aSp0
-	 9IDUywrkI2UzLH+JdHjbcyKaq+jnZOSfai2sF8LU+n1oxJKC6fzU8scOHU7e8NC10r
-	 BTTlrg0L4UgJkjQICHlroN4o6IoU8OYMoNxQhBW5+2EHF+ClinNegdSlybx7vazQLW
-	 cgYYu+wxSa/LHSL8crd+mR/i/SpuC1eWFtX/0+FADDTDWQRREH+ptLR34MpyG6upJ5
-	 BgxACN0F58lagv7sBgUSiTBxamJ5sd6D5NBRV0pZLOkoYicvbU7d8sHXHdozPOWaxf
-	 P81Kwk0ihXTdA==
-Date: Thu, 6 Feb 2025 11:24:38 +0000
-From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Eric Biggers <ebiggers@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Andy Chiu <andybnac@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] RISC-V: add vector crypto extension validation
- checks
-Message-ID: <20250206-overcook-legibly-0350a9af8a2a@spud>
-References: <20250205-cobbler-unpadded-5580c1f5d946@spud>
- <20250205-quench-entrench-09bed8c8c823@spud>
- <00dc2fb7-da9b-42c3-9c3b-47d917df7cf6@rivosinc.com>
+	s=k20201202; t=1738841112;
+	bh=3QenPFoiIxwYoHLxjpQR+89yGAMCqcwZRL9xqsJbz4s=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=QRKYoQ7qDIl0na9wnb7PijB/8D4fHcvdZUU4SQ8mwDb+jZ15mRpttChVLKFDhsxna
+	 FiEvmQi2FKMDRXKO18sF0fAkWrohSVBSqEmLPlwKI6E0vv+tuw/yrz26sskPAHCL0x
+	 OtLlVS9wTnIuRdJa4rOiMY/O9BYAz5UMK4WsutiZYTMeL+MzcuXa5RQKtd+aR8K2an
+	 oQxbfQiCF9POYSLrZxyR++BhL6VxUSpmiMB9Y7EHwSp51XAbkmGG228DfUJmw4AmCX
+	 UrXxazfw9WocXcErgNUM8tbSy8XcrMSjaUDmnLazJhZJeJFR35QWvM/g5FqRnAFM91
+	 7r9X67UNyUY/Q==
+Date: Thu, 06 Feb 2025 05:25:11 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="1iqbN1jWYKwYUDZR"
-Content-Disposition: inline
-In-Reply-To: <00dc2fb7-da9b-42c3-9c3b-47d917df7cf6@rivosinc.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, 
+ Gerald Loacker <gerald.loacker@wolfvision.net>, 
+ Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Sebastian Fricke <sebastian.fricke@collabora.com>, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ linux-rockchip@lists.infradead.org, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Paul Kocialkowski <paulk@sys-base.io>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Val Packett <val@packett.cool>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexander Shiyan <eagle.alexander923@gmail.com>, devicetree@vger.kernel.org
+To: Michael Riesch <michael.riesch@wolfvision.net>
+In-Reply-To: <20250206-v6-8-topic-rk3568-vicap-v3-3-69d1f19e5c40@wolfvision.net>
+References: <20250206-v6-8-topic-rk3568-vicap-v3-0-69d1f19e5c40@wolfvision.net>
+ <20250206-v6-8-topic-rk3568-vicap-v3-3-69d1f19e5c40@wolfvision.net>
+Message-Id: <173884111130.679176.4491485161610037414.robh@kernel.org>
+Subject: Re: [PATCH v3 3/7] media: dt-bindings: media: add bindings for
+ rockchip rk3568 vicap
 
 
---1iqbN1jWYKwYUDZR
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 06 Feb 2025 10:57:41 +0100, Michael Riesch wrote:
+> Add documentation for the Rockchip RK3568 Video Capture (VICAP) unit.
+> 
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> ---
+>  .../bindings/media/rockchip,rk3568-vicap.yaml      | 167 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 168 insertions(+)
+> 
 
-On Thu, Feb 06, 2025 at 11:20:35AM +0100, Cl=E9ment L=E9ger wrote:
-> On 05/02/2025 17:05, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > Using Clement's new validation callbacks, support checking that
-> > dependencies have been satisfied for the vector crpyto extensions.
-> > Currently riscv_isa_extension_available(<vector crypto>) will return
-> > true on systems that support the extensions but vector itself has been
-> > disabled by the kernel, adding validation callbacks will prevent such a
-> > scenario from occuring and make the behaviour of the extension detection
-> > functions more consistent with user expectations - it's not expected to
-> > have to check for vector AND the specific crypto extension.
-> >=20
-> > The 1.0.0 Vector crypto spec states:
-> > 	The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly
-> > 	the composite extensions Zvkn and Zvks-- require a Zve64x base,
-> > 	or application ("V") base Vector Extension. All of the other
-> > 	Vector Crypto Extensions can be built on any embedded (Zve*) or
-> > 	application ("V") base Vector Extension.
-> > and this could be used as the basis for checking that the correct base
-> > for individual crypto extensions, but that's not really the kernel's job
-> > in my opinion and it is sufficient to leave that sort of precision to
-> > the dt-bindings. The kernel only needs to make sure that vector, in some
-> > form, is available.
-> >=20
-> > Since vector will now be disabled proactively, there's no need to clear
-> > the bit in elf_hwcap in riscv_fill_hwcap() any longer.
->=20
-> To which part of the commit does this refer to ?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Copy-paste mistake when splitting in two, whoops.
+yamllint warnings/errors:
 
-> > @@ -397,8 +414,8 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D=
- {
-> >  	__RISCV_ISA_EXT_DATA(zksed, RISCV_ISA_EXT_ZKSED),
-> >  	__RISCV_ISA_EXT_DATA(zksh, RISCV_ISA_EXT_ZKSH),
-> >  	__RISCV_ISA_EXT_DATA(ztso, RISCV_ISA_EXT_ZTSO),
-> > -	__RISCV_ISA_EXT_SUPERSET(zvbb, RISCV_ISA_EXT_ZVBB, riscv_zvbb_exts),
-> > -	__RISCV_ISA_EXT_DATA(zvbc, RISCV_ISA_EXT_ZVBC),
-> > +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zvbb, RISCV_ISA_EXT_ZVBB, riscv_zvb=
-b_exts, riscv_ext_vector_x_validate),
-> > +	__RISCV_ISA_EXT_DATA_VALIDATE(zvbc, RISCV_ISA_EXT_ZVBC, riscv_ext_vec=
-tor_crypto_validate),
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.example.dts:73.3-74.1 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1511: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
->=20
-> I'm not sure if I already made that comment, so here we go again.
-> Shouldn't Zvbb use riscv_ext_vector_crypto_validate() as well ?  The
-> spec states that Zvbb is a superset of Zvkb and Zvkb uses the
-> riscv_ext_vector_crypto_validate() validation callback. I guess Zvbc
-> should also use it based on your spec excerpt in the commmit log.
+doc reference errors (make refcheckdocs):
 
-Zvbc does use it, no? I'll amend the Zvbb one, there should only be two
-users of the "x" variant.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250206-v6-8-topic-rk3568-vicap-v3-3-69d1f19e5c40@wolfvision.net
 
---1iqbN1jWYKwYUDZR
-Content-Type: application/pgp-signature; name="signature.asc"
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
------BEGIN PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6Sb9QAKCRB4tDGHoIJi
-0ldwAP983+O6h9quEOj+A8/HT/Ck02DGt4dHGhmvorY2AWRn6AEA45wAgwsU68ns
-s/Feax0psZjLxql/U1SmCwWvWvDHiAc=
-=FI6o
------END PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
---1iqbN1jWYKwYUDZR--
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
