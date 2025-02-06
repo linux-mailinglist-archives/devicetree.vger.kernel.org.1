@@ -1,164 +1,134 @@
-Return-Path: <devicetree+bounces-143553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2332A2A607
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:41:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 973A8A2A5F9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:39:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 526E5169392
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:40:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 719CA3A55CA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE7822757E;
-	Thu,  6 Feb 2025 10:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VcGnhpAa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9D5227575;
+	Thu,  6 Feb 2025 10:39:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC5FB22839C;
-	Thu,  6 Feb 2025 10:40:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D01022688C;
+	Thu,  6 Feb 2025 10:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738838424; cv=none; b=kskbvRyTX5dkGwkKOGFJI6UA0jh7v6eIxVKrQNQ0Pyk2ts7n34rxlST7KWDSCbdD1C1Nx+txGsvYuWS60vupq1+oSG3DKc6eMgkD/DuG6F7O2jw42wnKKbYPobUGYW19U2jAe2cWS698FNJUdXFSYoKOHmVHaKDduDPfqpVfdaA=
+	t=1738838360; cv=none; b=Is/xtaDcLEC9nXAOP/DDGfHEPVpqttxpCwuuvtZLTKysmX/ozROhPoOSVPvV+gDkVgHERTi2WSpJXTD51uP+aD0SxcOvoBGvIRyDthiW+3EB1rhYFA6HDIb7E5u/3iSp3BlVJVgUQUTk5D9LyWtr03j1lr1Nblu0Z/1PteKP5JE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738838424; c=relaxed/simple;
-	bh=LQOUIX6HdQnRnOPoe0uVoofMsF7S9fY7God7Km42TGA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n+aBObaZtkpnxB3gtasPZGBm4rPJTFOxzv+a3/tlJmY+9+EnysXgTcny5NMLAnzcK8GHMm/XnQRGcil1DyL0Rt+HBev4UgxxlE1PpR1kTTSj5Da6AvgXNf0mLCmyHByOx9FGe2R5DmOmBcy1DLRgRC9cLUh9MsZ9dffDqpjSNK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VcGnhpAa; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1738838421;
-	bh=LQOUIX6HdQnRnOPoe0uVoofMsF7S9fY7God7Km42TGA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=VcGnhpAa68iT2xO0x2A0WZpvgXvc6slqrhTXTZ+e1zAxPbupZMkfqan5DCLKBBIoc
-	 +pKUMwqDYUyO//2vT0ZQKjiYC81SSDbTwKs82WnYpPsO6EFd2CsQucy91jK4CpDJNM
-	 do5Uq0kzgqSt6XvSIRjyhuYEe3hzUuD7pKUkV1rqXvvGO9GT2cBIFAt7EZBILdQgWF
-	 TfArJR7iZiqsBrC9EbSqTFrNN4GIq2n3swc2tV9phE7MP226JsUjRA7ZhiBKsocfQW
-	 Q2B9y7qNqhgEn2bXFRMB5tCbD28xD2Na665XwW8LmI+A/Q+6gZbFu1Exw1VxQst0zz
-	 L4pf+4amZ8MCw==
-Received: from yukiji.home (lfbn-tou-1-1147-231.w90-76.abo.wanadoo.fr [90.76.208.231])
+	s=arc-20240116; t=1738838360; c=relaxed/simple;
+	bh=IrkYBAfnihE5+RnlAP1QM/DQ+ewAzLq0FIwKqRdGAQ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ht69bvjxWBnQ9Eu0EKIAh2ukWdVYjg8todLLRMT0qqlUCGcJyxBeNcp2yZO6/JCwpEq1BYAOstyg9qyYiEUan0Ss4XnvYo2Voj7S0V8Ep34k724lDcPYxIM0Tnp4DzDNRkACm2yZ7tYCiAcDrK3KtP+ibrJe5tAsSNsO5EQL7cQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [180.172.76.141])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6A7C517E1411;
-	Thu,  6 Feb 2025 11:40:20 +0100 (CET)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Thu, 06 Feb 2025 11:38:11 +0100
-Subject: [PATCH v3 4/4] arm64: dts: mediatek: add device-tree for Genio 510
- EVK board
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id C3C89342FB5;
+	Thu, 06 Feb 2025 10:39:17 +0000 (UTC)
+Date: Thu, 6 Feb 2025 10:39:13 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Olof Johansson <olof@lixom.net>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1
+ SoC
+Message-ID: <20250206103913-GYB5367@gentoo>
+References: <20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org>
+ <20250121-03-k1-gpio-v4-1-4641c95c0194@gentoo.org>
+ <Z5FPJLzAEVXGWJnE@chonkvm.lixom.net>
+ <20250123113042-GYA38135@gentoo>
+ <Z5LOdh-4UxRtteOy@chonkvm.lixom.net>
+ <20250127181726.GA538260-robh@kernel.org>
+ <20250128031712-GYB47737@gentoo>
+ <CACRpkdYbSOHD9UH5=+qjztxS3Cq_rxaoOT9tFtD8ZWm9zQGnPw@mail.gmail.com>
+ <CACRpkdZa887vx4Lmxk1U_8w5n7AxMnyzGexeYzhsxNGT-DTYcQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250206-dts_mt8370-genio-510-v3-4-5ca5c3257a4c@collabora.com>
-References: <20250206-dts_mt8370-genio-510-v3-0-5ca5c3257a4c@collabora.com>
-In-Reply-To: <20250206-dts_mt8370-genio-510-v3-0-5ca5c3257a4c@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@mediatek.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738838416; l=2960;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=LQOUIX6HdQnRnOPoe0uVoofMsF7S9fY7God7Km42TGA=;
- b=XGjvZzZ1rqutZ3GyoJzTfVxRV97G2M9ogN3/GqkGQl6nhiGaV8iIlsl2TIYz+PFzFgjeG0/yX
- P3nhlOxP9YfCt9n2czh2M0E23vOrMTvncj782kuQbhG23AnTI+r4so/
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdZa887vx4Lmxk1U_8w5n7AxMnyzGexeYzhsxNGT-DTYcQ@mail.gmail.com>
 
-Add a basic device-tree (mt8370-genio-510-evk.dts) in order to be able
-to boot the Genio 510 EVK board, based on MediaTek MT8370 SoC. As being
-very close to the Genio 700 EVK board, the dts includes
-mt8390-genio-common.dtsi file to use common definitions.
+hi Linus
 
-The Genio 510 EVK has following features:
-- MT8370 SoC
-- MT6365 PMIC
-- MT6319 Buck IC
-- 4GB LPDDR4X
-- 64GB eMMC 5.1
-- 12V DC Jack
-- Micro SD card slot
-- Push Button x 4 (Power, Reset, Download and Home Key)
-- LED x 4 (Power, Reset, System on and Charging Status)
-- USB Device Port x 1 (Micro USB Connector)
-- USB Host Port x 1 (Type-C USB Connector)
-- 3.5mm Earphone Jack x 1 (with Microphone Input)
-- 3.5mm Line Out Audio Jack x 1
-- Analog Microphone x 1
-- Digital Microphone x 2
-- Gigabit Ethernet with RJ45 connector
-- HDMI 2.0 TX port with Type A HDMI connector
-- eDP port
-- 3x UART with serial-to-usb converters and micro USB connectors
-- M.2 Slot x 2
-- I2C Capacitive Touch Pad
-- 4-Lane DSI x 2
-- 4-Data Lane CSI x 2
-- I2S Pin header
-- 40-Pin 2.54mm Pin Header x 1
+Thanks for the ping..
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
- arch/arm64/boot/dts/mediatek/Makefile                 |  1 +
- arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dts | 19 +++++++++++++++++++
- 2 files changed, 20 insertions(+)
+On 10:18 Thu 06 Feb     , Linus Walleij wrote:
+> Hi Yixun,
+> 
+> On Tue, Jan 28, 2025 at 5:03 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > On Tue, Jan 28, 2025 at 4:17 AM Yixun Lan <dlan@gentoo.org> wrote:
+> >
+> > > [Rob]
+> > > > If Linux can't handle 1 node for N gpio_chip's, then that's a Linux
+> > > > problem. Maybe it can, IDK.
+> > >
+> > > I haven't seen somthing like this to register 1 node for multi gpio_chips..
+> > > To gpio/pinctrl maintainer (Linus Walleij), do you have suggestion on this?
+> >
+> > For Linux we can call bgpio_init() three times and
+> > devm_gpiochip_add_data() three times on the result and if we use the
+yes, even I've already done this in v4
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index b763b73788a45af0a4ea773d308734fa128272f8..ae1147eca9a915f117487101e2ad4acead97adfe 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -95,6 +95,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r3.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-genio-510-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-genio-700-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-kontron-3-5-sbc-i1200.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dts b/arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..71a8cbed1df6a1d976e7dc8ccafac3c21b04614b
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dts
-@@ -0,0 +1,19 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (c) 2025 Collabora Ltd.
-+ * Author: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-+ */
-+/dts-v1/;
-+
-+#include "mt8370.dtsi"
-+#include "mt8390-genio-common.dtsi"
-+
-+/ {
-+	model = "MediaTek Genio-510 EVK";
-+	compatible = "mediatek,mt8370-evk", "mediatek,mt8370", "mediatek,mt8188";
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0 0x40000000 0x1 0x00000000>;
-+	};
-+};
+> > approach with three cells (where the second is instance 0,1,2 and the
+> > last one the offset 0..31) then it will work all just the same I guess?
+> >
+agree, I just need to connect dots.. parse dts & adjust the driver code
+
+> > foo-gpios <&gpio 2 7 GPIO_ACTIVE_LOW>;
+> >
+> > for offset 7 on block 2 for example.
+> >
+> > We need a custom xlate function I suppose.
+> >
+> > It just has not been done that way before, everybody just did
+> > 2-cell GPIOs.
+> 
+> does this approach work for you? I think it's the most diplomatic.
+> 
+I like the approach which make sense
+
+> I'm sorry about the hopeless back-and-forth with the bindings, also
+> for contributing to the messy debate. I do want developers to feel
+> encouraged to contribute and not get stuck in too long debates.
+> 
+no problem, thanks for the encouragement..
+
+I planed to go for the implementation, and raise any actual problem I
+may find, but it turns out taking more time than I expected (some reason
+to due long chinese new year holiday..)
+
+> Yours,
+> Linus Walleij
 
 -- 
-2.48.1
-
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
