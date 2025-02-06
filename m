@@ -1,284 +1,183 @@
-Return-Path: <devicetree+bounces-143602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02D48A2A884
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:31:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F231BA2A83A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:17:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41B6D3A68AA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:31:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0EFC1887E1D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:18:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E32B227561;
-	Thu,  6 Feb 2025 12:31:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 199BD22B8C4;
+	Thu,  6 Feb 2025 12:17:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="evF1VNiY"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="iaJ/HPQk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D8F1A59;
-	Thu,  6 Feb 2025 12:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3225121CFF4
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 12:17:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738845111; cv=none; b=f5DpxI95ePeUbihLGPa1TjtiesHouw7oaaBXJ64V7/fePFkDUg2fX9I/nnNQB+d0TlHp1cNGID/FRJ5sQKBxJDVC7WK8yIusKM9vdo+nHBl0rNUnqU6rmD5u0d+qeIpizIOeZSsOwC8T8+RIWXDpJf4fRljiAuTV4owFDb42/hw=
+	t=1738844271; cv=none; b=o09bCSYP1oWX1WUWCWjctWBHZlF4KUKInCHgVi8gtPcxUoOHZJlS1yiXmtvlguPmx74zpslvioyG7gcYOeunoUqfnlnIhXa+cEZi3ubRwaRv5S5Sqh1TSiZs2rNSmbQA9kM0VMDye+u5YsxsrE60wri/Q2J5L9QRFh/NZGe2xzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738845111; c=relaxed/simple;
-	bh=RHq4zNhVO6lB6n0CQ02IGujt9TA62akRjENsTArkuG4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S7byE0cVf3wpRUHoDIOA8QEgLfTzyaIjh4pHwdOoC0vbh4TOJhKqjaOy63//gz0TkX/D4yfBLkf11IywCsMKdRoIgiDc3yeaSF8jiG/U/aWiY3bKSRnEuaeuyu1kO4eIuqaUTdwBVbn6+qa5IDmlxeXDSlt5dRVUYEgoRFdD01U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=evF1VNiY; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 3518f184e48411efbd192953cf12861f-20250206
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=xRnnqccViHY7/lghQF8XBSkl+CSYtWIn8P+USXrKzcc=;
-	b=evF1VNiYvi7/7ZTNV9HxDthbEnLebT1Gh6AXoG7yn1eLDRCQ6WJaiyNKnlmflnQVJMnwCB8gzPbur8GnUFX4HwxgAWZsGdfaKzIxZ0OkipBW/c22FA1LtLPhcrjRVEFRSbuSxCL4AOEEOF/IHU2htRYt1QJWJRZ5cYF0DmqHHFQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:95c3a380-be86-4cc3-bb84-fc8c21bcd617,IP:0,U
-	RL:25,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTI
-	ON:release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:b3022b7f-427a-4311-9df4-bfaeeacd8532,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:1|
-	19,IP:nil,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA
-	:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 3518f184e48411efbd192953cf12861f-20250206
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
-	(envelope-from <crystal.guo@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1232163745; Thu, 06 Feb 2025 20:16:34 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Thu, 6 Feb 2025 20:16:33 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Thu, 6 Feb 2025 20:16:33 +0800
-From: Crystal Guo <crystal.guo@mediatek.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Crystal Guo
-	<crystal.guo@mediatek.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [v2,2/2] dt-bindings: memory-controllers: Add MediaTek DRAM controller interface
-Date: Thu, 6 Feb 2025 20:16:09 +0800
-Message-ID: <20250206121629.12186-3-crystal.guo@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250206121629.12186-1-crystal.guo@mediatek.com>
-References: <20250206121629.12186-1-crystal.guo@mediatek.com>
+	s=arc-20240116; t=1738844271; c=relaxed/simple;
+	bh=4cdFR+B95oVkXNiulG1qv9Pup9VHoxewsSMqD4dgVBM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XqQGYPFWAmy/h6K5GQA3L57Aw9if8Lf4YJpgJqMVydq3KQlS/UKVRIfG1rNOpwxmqlunh3LBN2QQoL9iMn5IdSKwvUen62OWS6xDQ8GPdLb3ErGcHpVRLd9aGnNiqX3MHRTjWZdDo/KZMJ/RuP9pCQLCFpgBTtKpTITVRi9H4x8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=iaJ/HPQk; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-3076262bfc6so8021771fa.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 04:17:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1738844267; x=1739449067; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kVaPm6svnrZmjjZXaQ6INFYIHurE1c31ambChU45jvE=;
+        b=iaJ/HPQkyb/z3PjJ/QEpfQx0Xjpwjgah/jbqVvaqQWz0nNbb9eWZp0Y+ucFlEeziCC
+         N7RpO7V0Wkkfi8Qf8vVDQSQXVXokZBrd11qieJEjO5uHuNez7Te7Kooyg67uOh2BWAnv
+         l+R+IZM8Rzjw2+lVfb6F5EyGpFFZ/YKZ1tZhO1DwsF8PyTZb5Si+DKf9S4jXUdcJ2ttm
+         lWcE7bKU24fSwXHgyPXBXUAM+JKnUzDHjUhMhFE85bEB3BQ9Hcwq6CCAN7MN6BFi7E40
+         tzx4FVBokSZ0Ye5OrKnFmb5zlAs4BrXavuc4agTeQH7yF76OO3yeZz6u/vgh0JIIXQGU
+         FIgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738844267; x=1739449067;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kVaPm6svnrZmjjZXaQ6INFYIHurE1c31ambChU45jvE=;
+        b=Fe/YK7iTklTa/C31myehR4tS9iTWWBH/8vNyOp/FMh04L9T51GEK5lZE1WP9jdKu1n
+         elv5xzdx8MpiRNR2+mFYwaq1ADQNIYMsNx4jP2LkMqee1QXxRWUaWInC0R9Qt7DbRfL9
+         V7zCFSk//1ztImzb1+dyl5kUUYISwt0anmJNKFEaVLwEkwlD8fyKS1chpIbuH/qpEIlF
+         O/At9VVlUOVqGwwNq+EwMfvZn67PN9PiOLcve5i6TWsE0l0uZKw5iFdxCJ0f/hoEzObN
+         cqKP9DhE6T3jmyNRyMN0Byp/b/Rcnus8m5dn4KX5TfWxil7+ME/eBYQgK9bKcj3hrEl2
+         lxaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVjbOG0c0OZXtUC2B3rKdlWk6ZWhBgxHXsNazudVY4FB6Vej/J9M4Q3TrwFFvbWeibFqRzNwKcgUKuy@vger.kernel.org
+X-Gm-Message-State: AOJu0YysFYwJGUM0RRnum3TfXX1Vnd5O5RaqPcNcmAv979fIJF9Fd05W
+	kElNAH22/dprzVp7g76QbgzNtlzpMqKSxdyd2qNu8f9HnlqnYf4jCg5H/edFWEx/Jmp3TSPE55g
+	BnD2DJJ0atgp3XlyZ4wODhzFoSHPgKkg2zJIszg==
+X-Gm-Gg: ASbGncvvMJ3wcwp3iI8tgyZMFwDZ9YWHcUTvG1xDQjhcBCot22R+jfdImqIxzlPZDMi
+	iaHrKW3egCNJyxafFp4V57fW1SO2I3KVFCABhrwljCmSmCYFlNfkkFZRMCkLcBQYstjKvxDUnKQ
+	==
+X-Google-Smtp-Source: AGHT+IEdOcygqBJ9zpwt9AnW8YGVVzGNtNdwXSyeVHKPWBPAI82GsWsII++eZWvLHpNnJrehz+aGVI+bK2PH2gmRR6A=
+X-Received: by 2002:a05:651c:b08:b0:2ff:c242:29c8 with SMTP id
+ 38308e7fff4ca-307cf386eaamr25840471fa.35.1738844267233; Thu, 06 Feb 2025
+ 04:17:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+References: <20250203084906.681418-1-apatel@ventanamicro.com>
+ <20250203084906.681418-12-apatel@ventanamicro.com> <871pwfp272.ffs@tglx>
+In-Reply-To: <871pwfp272.ffs@tglx>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Thu, 6 Feb 2025 17:47:34 +0530
+X-Gm-Features: AWEUYZnkWoBjjXJZwQi6NEV8e_1cUvMnkW_wF5FuGhI66P5vlROSq0JSDO_qX_Y
+Message-ID: <CAK9=C2U537LvffPLGad=LsFsN27uW2UB2X=Oxrub9v2U5vneYQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 11/17] irqchip: Add driver for the RISC-V RPMI
+ system MSI service group
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-A MediaTek DRAM controller interface to provide the current DDR data rate.
+Hi Thomas,
 
-Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
----
- .../mediatek,common-dramc.yaml                | 129 ------------------
- .../memory-controllers/mediatek,dramc.yaml    |  44 ++++++
- 2 files changed, 44 insertions(+), 129 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,common-dramc.yaml
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml
+On Mon, Feb 3, 2025 at 7:20=E2=80=AFPM Thomas Gleixner <tglx@linutronix.de>=
+ wrote:
+>
+> On Mon, Feb 03 2025 at 14:19, Anup Patel wrote:
+> > +
+> > +struct rpmi_sysmsi_priv {
+> > +     struct device *dev;
+> > +     struct mbox_client client;
+> > +     struct mbox_chan *chan;
+> > +     u32 nr_irqs;
+> > +     u32 gsi_base;
+> > +};
+>
+> AS requested before please use tabular layout for structs:
+>
+> https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct=
+-declarations-and-initializers
+>
+> > +static int rpmi_sysmsi_set_msi_state(struct rpmi_sysmsi_priv *priv,
+> > +                                  u32 sys_msi_index, u32 sys_msi_state=
+)
+> > +{
+> > +     struct rpmi_sysmsi_set_msi_state_tx tx;
+> > +     struct rpmi_sysmsi_set_msi_state_rx rx;
+> > +     struct rpmi_mbox_message msg;
+> > +     int ret;
+> > +
+> > +     tx.sys_msi_index =3D sys_msi_index;
+> > +     tx.sys_msi_state =3D sys_msi_state;
+> > +     rpmi_mbox_init_send_with_response(&msg, RPMI_SYSMSI_SRV_SET_MSI_S=
+TATE,
+> > +                                       &tx, sizeof(tx), &rx, sizeof(rx=
+));
+> > +     ret =3D rpmi_mbox_send_message(priv->chan, &msg);
+> > +     if (ret)
+> > +             return ret;
+> > +     if (rx.status)
+> > +             return rpmi_to_linux_error(rx.status);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +#define rpmi_sysmsi_mask(__priv, __msi_index)                \
+> > +     rpmi_sysmsi_set_msi_state(__priv, __msi_index, 0)
+> > +#define rpmi_sysmsi_unmask(__priv, __msi_index)              \
+> > +     rpmi_sysmsi_set_msi_state(__priv, __msi_index, RPMI_SYSMSI_MSI_ST=
+ATE_ENABLE)
+>
+> These macros are not really providing any value.
+>
+> > +static void rpmi_sysmsi_irq_mask(struct irq_data *d)
+> > +{
+> > +     struct rpmi_sysmsi_priv *priv =3D irq_data_get_irq_chip_data(d);
+> > +     int ret;
+> > +
+> > +     ret =3D rpmi_sysmsi_mask(priv, d->hwirq);
+> > +     if (ret)
+> > +             dev_warn(priv->dev, "Failed to mask hwirq %d (error %d)\n=
+",
+> > +                      (u32)d->hwirq, ret);
+>
+>         if (ret) {
+>                 ....
+>         }
+>
+> https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#bracke=
+t-rules
+>
+> > +     irq_chip_mask_parent(d);
+> > +}
+>
+> Other than those nits, this looks reasonable.
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,common-dramc.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,common-dramc.yaml
-deleted file mode 100644
-index c9e608c7f183..000000000000
---- a/Documentation/devicetree/bindings/memory-controllers/mediatek,common-dramc.yaml
-+++ /dev/null
-@@ -1,129 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
--# Copyright (c) 2024 MediaTek Inc.
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/memory-controllers/mediatek,common-dramc.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: MediaTek Common DRAMC (DRAM Controller)
--
--maintainers:
--  - Crystal Guo <crystal.guo@mediatek.com>
--
--description: |
--  The DRAM controller of MediaTek SoC provides an interface to
--  get the current data rate of DRAM.
--
--properties:
--  compatible:
--    const: mediatek,common-dramc
--
--  reg:
--    minItems: 9
--    items:
--      - description: DRAMC_AO_CHA_BASE
--      - description: DRAMC_AO_CHB_BASE
--      - description: DRAMC_AO_CHC_BASE
--      - description: DRAMC_AO_CHD_BASE
--      - description: DRAMC_NAO_CHA_BASE
--      - description: DRAMC_NAO_CHB_BASE
--      - description: DRAMC_NAO_CHC_BASE
--      - description: DRAMC_NAO_CHD_BASE
--      - description: DDRPHY_AO_CHA_BASE
--      - description: DDRPHY_AO_CHB_BASE
--      - description: DDRPHY_AO_CHC_BASE
--      - description: DDRPHY_AO_CHD_BASE
--      - description: DDRPHY_NAO_CHA_BASE
--      - description: DDRPHY_NAO_CHB_BASE
--      - description: DDRPHY_NAO_CHC_BASE
--      - description: DDRPHY_NAO_CHD_BASE
--      - description: SLEEP_BASE
--
--  support-ch-cnt:
--    maxItems: 1
--
--  fmeter-version:
--    maxItems: 1
--    description:
--      Fmeter version for calculating dram data rate
--
--  crystal-freq:
--    maxItems: 1
--    description:
--      Reference clock rate in MHz
--
--  shu-of:
--    maxItems: 1
--
--  pll-id: true
--  shu-lv: true
--  sdmpcw: true
--  posdiv: true
--  fbksel: true
--  dqsopen: true
--  async-ca: true
--  dq-ser-mode: true
--
--required:
--  - compatible
--  - reg
--  - support-ch-cnt
--  - fmeter-version
--  - crystal-freq
--  - pll-id
--  - shu-lv
--  - shu-of
--  - sdmpcw
--  - posdiv
--  - fbksel
--  - dqsopen
--  - async-ca
--  - dq-ser-mode
--
--additionalProperties: false
--
--examples:
--  - |
--    soc {
--        #address-cells = <2>;
--        #size-cells = <2>;
--
--        dramc: dramc@10230000 {
--            compatible = "mediatek,common-dramc";
--            reg = <0 0x10230000 0 0x2000>, /* DRAMC_AO_CHA_BASE */
--                <0 0x10240000 0 0x2000>, /* DRAMC_AO_CHB_BASE */
--                <0 0x10250000 0 0x2000>, /* DRAMC_AO_CHC_BASE */
--                <0 0x10260000 0 0x2000>, /* DRAMC_AO_CHD_BASE */
--                <0 0x10234000 0 0x1000>, /* DRAMC_NAO_CHA_BASE */
--                <0 0x10244000 0 0x1000>, /* DRAMC_NAO_CHB_BASE */
--                <0 0x10254000 0 0x1000>, /* DRAMC_NAO_CHC_BASE */
--                <0 0x10264000 0 0x1000>, /* DRAMC_NAO_CHD_BASE */
--                <0 0x10238000 0 0x2000>, /* DDRPHY_AO_CHA_BASE */
--                <0 0x10248000 0 0x2000>, /* DDRPHY_AO_CHB_BASE */
--                <0 0x10258000 0 0x2000>, /* DDRPHY_AO_CHC_BASE */
--                <0 0x10268000 0 0x2000>, /* DDRPHY_AO_CHD_BASE */
--                <0 0x10236000 0 0x2000>, /* DDRPHY_NAO_CHA_BASE */
--                <0 0x10246000 0 0x2000>, /* DDRPHY_NAO_CHB_BASE */
--                <0 0x10256000 0 0x2000>, /* DDRPHY_NAO_CHC_BASE */
--                <0 0x10266000 0 0x2000>, /* DDRPHY_NAO_CHD_BASE */
--                <0 0x10006000 0 0x1000>; /* SLEEP_BASE */
--            support-ch-cnt = <4>;
--            fmeter-version = <1>;
--            crystal-freq = <26>;
--            pll-id = <0x0e98 0x02000000 25>;
--            shu-lv = <0x0e98 0x0000c000 14>;
--            shu-of = <0x700>;
--            sdmpcw = <0x0908 0x0007fff8 3>,
--                <0x0928 0x0007fff8 3>;
--            posdiv = <0x090c 0x00003800 11>,
--                <0x092c 0x00003800 11>;
--            fbksel = <0x0910 0x00000040 6>,
--                <0x0910 0x00000040 6>;
--            dqsopen = <0x0d94 0x04000000 26>,
--                <0x0d94 0x04000000 26>;
--            async-ca = <0x0d08 0x00000001 0>,
--                <0x0d08 0x00000001 0>;
--            dq-ser-mode = <0x0dc4 0x00000018 3>,
--                <0x0dc4 0x00000018 3>;
--        };
--    };
-diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml
-new file mode 100644
-index 000000000000..8bdacfc36cb5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (c) 2025 MediaTek Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/mediatek,dramc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek DRAM Controller (DRAMC)
-+
-+maintainers:
-+  - Crystal Guo <crystal.guo@mediatek.com>
-+
-+description:
-+  A MediaTek DRAM controller interface to provide the current data rate of DRAM.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - mediatek,mt8196-dramc
-+
-+  reg:
-+    items:
-+      - description: anaphy registers
-+      - description: ddrphy registers
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        memory-controller@10236000 {
-+            compatible = "mediatek,mt8196-dramc";
-+            reg = <0 0x10236000 0 0x2000>,
-+                  <0 0x10238000 0 0x2000>;
-+        };
-+    };
--- 
-2.18.0
+I will address all above comments in the next revision.
 
+Thanks,
+Anup
 
