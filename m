@@ -1,164 +1,123 @@
-Return-Path: <devicetree+bounces-143687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58D03A2AEB8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 18:19:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC97A2AEBC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 18:21:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D6803A8A46
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 17:18:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52E4F16A724
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 17:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8EB152196;
-	Thu,  6 Feb 2025 17:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 396F823958D;
+	Thu,  6 Feb 2025 17:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="Xnnm+nO0"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UTryEWIq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFD7E23958E;
-	Thu,  6 Feb 2025 17:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738862341; cv=pass; b=o4DWjrMlIn+NCy9N1+vo5FrWyHMXAmn3/Uss4cXQph6SyNqJu1sXDCd5FD6wmbPV5O6TZg5IAQhh1E4PcP+epnBXJgl9vmbOgzUwEW5HQLBGMRoHMWmd1gjX2cdwuZePEOg2Pl5AuzwGrystc6XdTXSesaklQyIsBHioKzLPjVE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738862341; c=relaxed/simple;
-	bh=13ADaQAM9kvZCUBW6XBL7BIypPLNqmtIXMqDfUJRLjw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HheVcVHG1R+hAvk+0Ert3KAUcFt65FaLEusjJV8mqWejFVfDElpCYLdVkpRCVq3mmien2GdN8GD92JABgct1up4GtwlKsLvqLCOiqjbQ/WWJkLcOBpS7YsFo4kXq326w9SQuMUQxi1h5vripkvExHSc/PQLTUSmRhZPsjhbr0uw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=Xnnm+nO0; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1738862280; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=PPCYLM87aFcVCAfMPQQ0yXcTyrsvnyTkKS+eEJWcy9cBCCuvU9Z/z8+pzbkYFtSX/1MtKPTSysfLFbXWsfEn4byj3fWbAOF50Y5tLH18AvdCZkKxLHaumA6PPi+w7cpbrzAW/zHZKRqAzxiN4l2puMicJGcIhAlDALNZ/b9YfU8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1738862280; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=HVIqXYzlOehlZiy0ALlRjz1XQBncBUDd5NT43WUTgZ8=; 
-	b=lPCdyF7Zdv6I6M84wss5fyglm2/LO3RG4Et3v4lfGLGQtmGbCACYz2VhVdDLcJWcdkQycgDbkuk4ZGGxHhKk3iAeh8IIV+awP5nEJB6tY9fg6a7T5kzzIZdXZPuU8y+dOu74c75bQ/v04kDe4qTY+pxoFi38JCRIwNMDaaZrC74=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1738862280;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=HVIqXYzlOehlZiy0ALlRjz1XQBncBUDd5NT43WUTgZ8=;
-	b=Xnnm+nO0wx4RBQFTK/tSarsm6Bq5OMFkZ+7cIhAlPgfpa8rlnBCfdv+urPIUC2vV
-	cVB821xhg1vXmN291QFqArQSM1Jav3BdpYYLbFovhHAs0as6IBcrW3FP/nqYb12ynyh
-	Wy1JW0YmE72r82iNQ0hiaJt67LjAQrKfsPFHG18w=
-Received: by mx.zohomail.com with SMTPS id 173886227382959.44952550211565;
-	Thu, 6 Feb 2025 09:17:53 -0800 (PST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Alexey Charkov <alchark@gmail.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>, Jianfeng Liu <liujianfeng1994@gmail.com>,
- Niklas Cassel <cassel@kernel.org>, FUKAUMI Naoki <naoki@radxa.com>,
- Kever Yang <kever.yang@rock-chips.com>, Johan Jonker <jbx6244@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Algea Cao <algea.cao@rock-chips.com>, Chen-Yu Tsai <wens@csie.org>,
- Sugar Zhang <sugar.zhang@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org, kernel@collabora.com
-Subject:
- Re: [PATCH v5 2/3] arm64: dts: rockchip: Add HDMI0 audio output for rk3588
- SoC
-Date: Thu, 06 Feb 2025 12:17:51 -0500
-Message-ID: <2781606.mvXUDI8C0e@earth>
-In-Reply-To: <bfe9cb98-12ba-484c-95af-e5842edaab76@cherry.de>
-References:
- <20250203171925.126309-1-detlev.casanova@collabora.com>
- <20250203171925.126309-3-detlev.casanova@collabora.com>
- <bfe9cb98-12ba-484c-95af-e5842edaab76@cherry.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF946239572
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 17:21:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738862472; cv=none; b=P8gZerDbkTupsug7KLgFxeG/iQsL/Hlcg63092meJIRoS7LsfDgAvXY4lSiKb7V5aKinH/cxAG5EMUTGhu68TIRgH3qS/u2Mwl/oaWBN+1k12mVtk+LCP2mUk+yvqtHkAO3p9TwTN+NMdji8d0QvV27xL8g/3ge2CccXYuE+mps=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738862472; c=relaxed/simple;
+	bh=4wSuz5VzrMxF6hFZ+dGcbfUs6KWTJLSlbQyKfhds770=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MU4mtaz7l38fih9+H+bmliN8Ks8IYPCU+VKG3EBm/nFA/CLSBHqkIFHjsR9wqqe1b8GlK6o3xYKFTtPhecNfwCnOJhbQ94Q/BN9xnYIOgmXkSG/gpAcVv85jYpWHV1IjAG8TnRUUv3Lyv2OSGRrKU2eod40Y/Qm1Viexoxa0EaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=UTryEWIq; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-543e47e93a3so1272776e87.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 09:21:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1738862467; x=1739467267; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xmyQQLjc7ihSNeKK+vC8OeDD8oaLS3Nn6NTNSIO758Q=;
+        b=UTryEWIq/b4RwjRdwiq4VmPyYm7oIXv0xqgGKgMzjlXsB4WYA+MqRNZ4FDXe4Xujlo
+         w4Dzb32am2KoiYlpLfX5INJrnsdYRcBU77Qebj93seSaSSrir6NP4lGT44eFIWTMg5hO
+         YjLvq+b8O9/rIxfCITDHgpSTCtIujWMaVwF/I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738862467; x=1739467267;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xmyQQLjc7ihSNeKK+vC8OeDD8oaLS3Nn6NTNSIO758Q=;
+        b=CGHBEE76PH1cDY75PMyprBASzRptU//1yI6O9L+EXsfs2aWS1yL81eJeZwbHNnwfyw
+         mCYB6RGGSozaaoJcwHnecoKlv0RPcs1xyzpsfZnkd0IRT5o2JPP2K0vZDEoAVJFIpLuq
+         MJ/kmTuvIybP21VgMY+vtHPehRAX5gXBOWSeNT+IYa7HLR8gOa3dMiV8YvSJ3n9Svqzr
+         5WFkxlkrnn9IGJ9C2ES2JD+r64jrum/CmzA/htGOEiMbusegcFuVaDKUrfM7yuaz6uE3
+         sYVxAyr2OXngCrcIZYlCUdUTSl3YgZqwTwR++XO/rzvY74XiNrXV+G0TTfLLkSKM3g8c
+         Vr0A==
+X-Forwarded-Encrypted: i=1; AJvYcCVonpx34fw0H9rrWCYVzg1NP++ZWUYpNgjwKalhV1ccnN2+fARHQBAB0TqFs6tXcbKennafR+VPHVBf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5Ws8wq9+f9RK7N7TyRBuR6hGN3P7saUCs7S9dtwmhw9tjZVM/
+	UDYJFl+N8CmTQEeL5BryjQqg8aV5bQemOhCpemghXtTLriu5UV/TC8B7YsmiPpqecjYSqVmZQMV
+	9YIFx
+X-Gm-Gg: ASbGncsTxW4x+hyuZ1OcJEuP5bVemVVucilctSZR/XzRjSa6Eyb0zwtIfb79ihazFch
+	LPo3I99Gva/7PYuVkUqnCQ62LHCcBCeMOMriQ6Uw08RqY1K+S8X1+UrmGZPyOEyP+zTUQ91nsQN
+	TQPLjVp82DYAuW/1DECut4N7vvXXEnH4kLstr9Hj3Dj0cgKKqwhQHtsq1lu3VdljY/mxejKFrjj
+	oZZQrI5nTzegiPDZiPjG8it6MzQwS8trS2kLJjor4t3UwbzvalKWl5oWOs97V0A6j1I2d081ySU
+	b/65FnJQ2oZNLvqQCNMGMYjCtAMY5PVfsFWwN57aVlBW+xApxpWxm6k=
+X-Google-Smtp-Source: AGHT+IHc4JChvj9nAXN6So4oTh0FOMp9JvCJL6K2qD3AQSHqzNFnDsfFY5YC+tWtdHw7DYLhwPNFGQ==
+X-Received: by 2002:a05:651c:50e:b0:300:33b1:f0e0 with SMTP id 38308e7fff4ca-307cf2fd19bmr25872651fa.10.1738862467008;
+        Thu, 06 Feb 2025 09:21:07 -0800 (PST)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307de2b98c0sm1748081fa.69.2025.02.06.09.21.06
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Feb 2025 09:21:06 -0800 (PST)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-543e49a10f5so1303083e87.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 09:21:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXosPnpoMgddPgFt3HZKxGlvYCfRuGnCbqxsFNdLm1HzrMfYXt2UZpWcvliZkA4tl35Zn4nAD2Mzawx@vger.kernel.org
+X-Received: by 2002:a05:6512:220a:b0:542:8da7:242f with SMTP id
+ 2adb3069b0e04-54405a10653mr2730027e87.10.1738862465869; Thu, 06 Feb 2025
+ 09:21:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+References: <20250206131300.1295111-1-yelangyan@huaqin.corp-partner.google.com>
+ <20250206131300.1295111-4-yelangyan@huaqin.corp-partner.google.com>
+In-Reply-To: <20250206131300.1295111-4-yelangyan@huaqin.corp-partner.google.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 6 Feb 2025 09:20:54 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=W8WR4rut47LA=PftG1bdDLkSa97syY8wt=rH4dJa-pLA@mail.gmail.com>
+X-Gm-Features: AWEUYZkQjg27CCS9VZJxZrYKj8mLCb6hWyh_QBl79_c9o4gHiKUmfZwJ_3PvYOU
+Message-ID: <CAD=FV=W8WR4rut47LA=PftG1bdDLkSa97syY8wt=rH4dJa-pLA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] drm/panel: panel-himax-hx83102: support for
+ csot-pna957qt1-1 MIPI-DSI panel
+To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tuesday, 4 February 2025 05:14:37 EST Quentin Schulz wrote:
-> Hi Detlev,
-> 
-> On 2/3/25 6:16 PM, Detlev Casanova wrote:
-> > Use the simple-audio-card driver with the hdmi0 QP node as CODEC and
-> > the i2s5 device as CPU.
-> > 
-> > The simple-audio-card,mclk-fs value is set to 128 as it is done in
-> > the downstream driver.
-> > 
-> > The #sound-dai-cells value is set to 0 in the hdmi0 node so that it can be
-> > used as an audio codec node.
-> > 
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > ---
-> > 
-> >   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 17 +++++++++++++++++
-> >   1 file changed, 17 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi index
-> > 8cfa30837ce72..767bdfc06b7ec 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > @@ -1369,6 +1369,22 @@ i2s9_8ch: i2s@fddfc000 {
-> > 
-> >   		status = "disabled";
-> >   	
-> >   	};
-> > 
-> > +	hdmi0_sound: hdmi0-sound {
-> > +		compatible = "simple-audio-card";
-> > +		simple-audio-card,format = "i2s";
-> > +		simple-audio-card,mclk-fs = <128>;
-> > +		simple-audio-card,name = "hdmi0";
-> > +		status = "disabled";
-> > +
-> > +		simple-audio-card,codec {
-> > +			sound-dai = <&hdmi0>;
-> > +		};
-> > +
-> > +		simple-audio-card,cpu {
-> > +			sound-dai = <&i2s5_8ch>;
-> > +		};
-> > +	};
-> > +
-> 
-> This is an address/bus-less device, so I believe it needs to be put
-> among other address/bus-less devices, which for Rockchip SoCs is at the
-> top of the DT? c.f.
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-style.
-> html
-> 
-> **I** would put it between the firmware and the pmu-a55 nodes.
+Hi,
 
-I wasn't sure about this. It makes sense to move it with address-less devices, 
-but the rk3399 device tree has it above the hdmi node, so I wanted to stay 
-consistent with that.
+On Thu, Feb 6, 2025 at 5:13=E2=80=AFAM Langyan Ye
+<yelangyan@huaqin.corp-partner.google.com> wrote:
+>
+> The csot-pna957qt1-1 is a 10.95" TFT panel. The MIPI controller on this
+> panel is the same as the other panels here, so add this panel to this
+> driver.
+>
+> Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+> ---
+>  drivers/gpu/drm/panel/panel-himax-hx83102.c | 123 ++++++++++++++++++++
+>  1 file changed, 123 insertions(+)
 
-> Tested-by: Quentin Schulz <quentin.schulz@cherry.de> # RK3588 Tiger Haikou
-> 
-> Thanks!
-> Quentin
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-
-
-
+There's no rocket science here, so assuming that the bindings get DT
+acks I probably won't add any real delay before landing...
 
