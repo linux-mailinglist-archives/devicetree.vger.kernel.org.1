@@ -1,224 +1,138 @@
-Return-Path: <devicetree+bounces-143634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16BDDA2A9FB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 14:31:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C94A2A9FF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 14:32:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95389188A05B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:31:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA8287A2337
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F354822F15F;
-	Thu,  6 Feb 2025 13:30:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JHyCveIB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E761EA7EE;
+	Thu,  6 Feb 2025 13:32:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8CF61624F3;
-	Thu,  6 Feb 2025 13:30:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C62F51EA7E2;
+	Thu,  6 Feb 2025 13:32:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738848619; cv=none; b=OhgbIjJJCWa3f7TZzExgVFsTQoxDeyUdeDgfd31TW8Zz+q6oZUdIIU8wyEVWlJo7658sVO7sTtKxtrVF+YKQS/hktBu0ojvGEuS0bSP8pGZDnMb7v9BeB+iSgPXa7dnaZFwtUZXWLCxMt5XfVjIJg8QZI2PJEzs311CvPfgZPEI=
+	t=1738848725; cv=none; b=pMe4BOt8YheXK4o29wZ8uZqJB5RQOEG6jh3dkh0lyBmbnXOM1qbDE3YLyGwhaCoeC/nKZXKUe1hHRbB1Xi95M+w4HSHna0fFEUeFKt0QGAPMJ6CzQugxBPoKFs1rKlydJJ9DZLXL4v6JhjLvJVQZWPeNGP0z6Snu/EpTW6mgvQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738848619; c=relaxed/simple;
-	bh=DEPWTj2lMxZNBMBbVuId7YwohjOTilwE4mRuWlbJrXA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZjJA4jr+XA/UIa6hW8PTz42zv+nfi5nOleCefnUIeL+7OJh7OnZByfFJR8hCgscLbkjUeIaASX4rLWYX3F0eMoGcuE5EJILSeuwrOMTEe8NGnKtQ+IpZgzG5JAWoVFKqheRigex+/0VmUqebbjk9+nyxjoKvW0YJTUYSkhJS3CM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JHyCveIB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBB81C4CEE8;
-	Thu,  6 Feb 2025 13:30:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738848618;
-	bh=DEPWTj2lMxZNBMBbVuId7YwohjOTilwE4mRuWlbJrXA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=JHyCveIB+H+hP369+oAVupUsNOhw1rXCFbz/HMMrekGHYAW5g4PNpWIwrA8MwexgL
-	 4yMDEsor1brMgVYnrKTNOKQMYqerjM3u2rtawVm++rzJDLZojHWhKDBkq33U5MfHSV
-	 NQtV2EFA/lMKTVnsQP2JZSAaMs3oEfA7VLfyV889coTXhhEVxMdqkij+tqxaqUj2Tc
-	 +ihizHttzw+XGMKcXveRsjk85ki9HH1SFWo0iThELJ22q8Xi9jHv9Q91sHpsMVossU
-	 ZgFgJe+G3yxv9QmNthG7QhvnBHAriJsMyUex426XIiM46CWpwr37AZ05MfQc08FbZ1
-	 R1sab0YI6csgw==
-From: Mike Rapoport <rppt@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: Alexander Graf <graf@amazon.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andy Lutomirski <luto@kernel.org>,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Ashish Kalra <ashish.kalra@amd.com>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Eric Biederman <ebiederm@xmission.com>,
-	Ingo Molnar <mingo@redhat.com>,
-	James Gowans <jgowans@amazon.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Mike Rapoport <rppt@kernel.org>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Pasha Tatashin <pasha.tatashin@soleen.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pratyush Yadav <ptyadav@amazon.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	Will Deacon <will@kernel.org>,
-	devicetree@vger.kernel.org,
-	kexec@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org,
-	linux-mm@kvack.org,
-	x86@kernel.org
-Subject: [PATCH v4 14/14] Documentation: KHO: Add memblock bindings
-Date: Thu,  6 Feb 2025 15:27:54 +0200
-Message-ID: <20250206132754.2596694-15-rppt@kernel.org>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250206132754.2596694-1-rppt@kernel.org>
-References: <20250206132754.2596694-1-rppt@kernel.org>
+	s=arc-20240116; t=1738848725; c=relaxed/simple;
+	bh=45yT85WTqRhzxnDZFfHXU5w/YSy+M3a+25Xbs44fDYc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s9WpLUepoqWFQEu9/VdNGLdi6uFOy6VA/ssqRPs3Nap/d3WjPKsKIfsJydH91ksvTlvEr6rzLpMiHit2IrEKONaIKsrHtVPRhotBq4pqsPl3cGNsDCoi/9dx2VauOW0vdCEsyskmG8VnBguapleenNdZLrI8et/0rl1wgZTKHN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [180.172.76.141])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id E15F4342FF5;
+	Thu, 06 Feb 2025 13:32:01 +0000 (UTC)
+Date: Thu, 6 Feb 2025 13:31:56 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Olof Johansson <olof@lixom.net>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1
+ SoC
+Message-ID: <20250206133156-GYA5687@gentoo>
+References: <20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org>
+ <20250121-03-k1-gpio-v4-1-4641c95c0194@gentoo.org>
+ <Z5FPJLzAEVXGWJnE@chonkvm.lixom.net>
+ <20250123113042-GYA38135@gentoo>
+ <Z5LOdh-4UxRtteOy@chonkvm.lixom.net>
+ <20250127181726.GA538260-robh@kernel.org>
+ <20250128031712-GYB47737@gentoo>
+ <CACRpkdYbSOHD9UH5=+qjztxS3Cq_rxaoOT9tFtD8ZWm9zQGnPw@mail.gmail.com>
+ <CACRpkdZa887vx4Lmxk1U_8w5n7AxMnyzGexeYzhsxNGT-DTYcQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdZa887vx4Lmxk1U_8w5n7AxMnyzGexeYzhsxNGT-DTYcQ@mail.gmail.com>
 
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Hi Linus and DT maintainers:
 
-We introduced KHO into Linux: A framework that allows Linux to pass
-metadata and memory across kexec from Linux to Linux. KHO reuses fdt
-as file format and shares a lot of the same properties of firmware-to-
-Linux boot formats: It needs a stable, documented ABI that allows for
-forward and backward compatibility as well as versioning.
+On 10:18 Thu 06 Feb     , Linus Walleij wrote:
+> Hi Yixun,
+> 
+> On Tue, Jan 28, 2025 at 5:03 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > On Tue, Jan 28, 2025 at 4:17 AM Yixun Lan <dlan@gentoo.org> wrote:
+> >
+> > > [Rob]
+> > > > If Linux can't handle 1 node for N gpio_chip's, then that's a Linux
+> > > > problem. Maybe it can, IDK.
+> > >
+> > > I haven't seen somthing like this to register 1 node for multi gpio_chips..
+> > > To gpio/pinctrl maintainer (Linus Walleij), do you have suggestion on this?
+> >
+> > For Linux we can call bgpio_init() three times and
+> > devm_gpiochip_add_data() three times on the result and if we use the
+> > approach with three cells (where the second is instance 0,1,2 and the
+> > last one the offset 0..31) then it will work all just the same I guess?
+> >
+both bgpio_init() and devm_gpiochip_add_data() operate on per "struct gpio_chip" bias,
+which mean they need to request three independent gpio chips..
 
-As first user of KHO, we introduced memblock which can now preserve
-memory ranges reserved with reserve_mem command line options contents
-across kexec, so you can use the post-kexec kernel to read traces from
-the pre-kexec kernel.
+> > foo-gpios <&gpio 2 7 GPIO_ACTIVE_LOW>;
+if we model the dts as above, then "&gpio" will register itself as one sole "struct gpio_chip",
+ which mean one gpio chip combine three banks.. I've looked at the sunxi driver which
+Samuel pointed, imply same example as this.
 
-This patch adds memblock schemas similar to "device" device tree ones to
-a new kho bindings directory. This allows us to force contributors to
-document the data that moves across KHO kexecs and catch breaking change
-during review.
+if taking "one gpio chip support multi banks" direction, then it will be reverted back as patch V1,
+then, even the three gpio-cells model is unnecessary needed, as we can map gpio number
+ to the <bank, offset> array in the underlying gpio driver
 
-Co-developed-by: Alexander Graf <graf@amazon.com>
-Signed-off-by: Alexander Graf <graf@amazon.com>
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
----
- .../kho/bindings/memblock/reserve_mem.yaml    | 41 ++++++++++++++++++
- .../bindings/memblock/reserve_mem_map.yaml    | 42 +++++++++++++++++++
- 2 files changed, 83 insertions(+)
- create mode 100644 Documentation/kho/bindings/memblock/reserve_mem.yaml
- create mode 100644 Documentation/kho/bindings/memblock/reserve_mem_map.yaml
+the v4 patch is very similar to drivers/gpio/gpio-dwapb.c
 
-diff --git a/Documentation/kho/bindings/memblock/reserve_mem.yaml b/Documentation/kho/bindings/memblock/reserve_mem.yaml
-new file mode 100644
-index 000000000000..7b01791b10b3
---- /dev/null
-+++ b/Documentation/kho/bindings/memblock/reserve_mem.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memblock/reserve_mem.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Memblock reserved memory
-+
-+maintainers:
-+  - Mike Rapoport <rppt@kernel.org>
-+
-+description: |
-+  Memblock can serialize its current memory reservations created with
-+  reserve_mem command line option across kexec through KHO.
-+  The post-KHO kernel can then consume these reservations and they are
-+  guaranteed to have the same physical address.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - reserve_mem-v1
-+
-+patternProperties:
-+  "$[0-9a-f_]+^":
-+    $ref: reserve_mem_map.yaml#
-+    description: reserved memory regions
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    reserve_mem {
-+      compatible = "reserve_mem-v1";
-+        r1 {
-+          compatible = "reserve_mem_map-v1";
-+          mem = <0xc07c 0x2000000 0x01 0x00>;
-+        };
-+    };
-diff --git a/Documentation/kho/bindings/memblock/reserve_mem_map.yaml b/Documentation/kho/bindings/memblock/reserve_mem_map.yaml
-new file mode 100644
-index 000000000000..09001c5f2124
---- /dev/null
-+++ b/Documentation/kho/bindings/memblock/reserve_mem_map.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memblock/reserve_mem_map.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Memblock reserved memory regions
-+
-+maintainers:
-+  - Mike Rapoport <rppt@kernel.org>
-+
-+description: |
-+  Memblock can serialize its current memory reservations created with
-+  reserve_mem command line option across kexec through KHO.
-+  This object describes each such region.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - reserve_mem_map-v1
-+
-+  mem:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      Array of { u64 phys_addr, u64 len } elements that describe a list of
-+      memory ranges.
-+
-+required:
-+  - compatible
-+  - mem
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    reserve_mem {
-+      compatible = "reserve_mem-v1";
-+        r1 {
-+          compatible = "reserve_mem_map-v1";
-+          mem = <0xc07c 0x2000000 0x01 0x00>;
-+        };
-+    };
+If had to choose the direction between v1 and v4, I personally would favor the latter,
+ as from hw perspective, each gpio bank is quite indepedent - has its own io/irq registers,
+ merely has interleaved io memory space, one shared IRQ line.. also the patch v4 leverage
+ lots underlying generic gpio APIs, result in much simplified/clean code base..
+
+> >
+> > for offset 7 on block 2 for example.
+> >
+> > We need a custom xlate function I suppose.
+> >
+> > It just has not been done that way before, everybody just did
+> > 2-cell GPIOs.
+> 
+> does this approach work for you? I think it's the most diplomatic.
+> 
+> I'm sorry about the hopeless back-and-forth with the bindings, also
+> for contributing to the messy debate. I do want developers to feel
+> encouraged to contribute and not get stuck in too long debates.
+> 
+> Yours,
+> Linus Walleij
+
 -- 
-2.47.2
-
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
