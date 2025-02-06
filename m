@@ -1,118 +1,114 @@
-Return-Path: <devicetree+bounces-143501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A03D9A2A365
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:40:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6EB7A2A302
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:14:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D86B7A4024
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 08:39:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBB98163824
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 08:13:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021A8225787;
-	Thu,  6 Feb 2025 08:39:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12927225404;
+	Thu,  6 Feb 2025 08:13:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6111822577D;
-	Thu,  6 Feb 2025 08:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3CD1F1537;
+	Thu,  6 Feb 2025 08:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738831177; cv=none; b=MUrhQv6++noeSvbrjsQQaAb6AOnQyn2U1U7ayfx6d76DZ01pcnXt/uvfAJQkwc8XyOOx3IW4CdXrS6IK615eQcwR3pXzLiB2KKdgGtyKHKlVUIVMOhbzsXRN9V3hJj3T3texh0yvJ5EpXFRB0bONqhLavFEk5mpCzurFjiB9jYI=
+	t=1738829579; cv=none; b=CNTOTNohG97t7VJRm3KU9AvPMKi1Kx3Xv7Stzd5zgH9HQ6gAS+i+iLW/9BQeTcBARA9P2hCZBhC4MwR9/GupDDezpXCLK0TLKFhcL6iJ/T3OQa2v+wNDW43CuHIZLjZ/li7IUwFqRIiQ6lzNxtNvVBro7xQy+FgrdS6lg86f5rA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738831177; c=relaxed/simple;
-	bh=NY5KMo4mSbDM2oc+61t64xOvH/Rr8aNKNrVv+vLhO9o=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GwzPCfVJTU0+jri+lc7qd97cOUW5GH+OWtnEoacokhp53gqV1jC3bDQx2B2+GTEH1AFL6PebkU+zjZQAkG0ZAHKJgVvYWkTlbR15iCnUytshS1GwJ8rUr61WR+u4k+W4cDrV8bIYNhP/w7mw4WeTLvWxC6MibLQ0kF+zpAHjK5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from Atcsqr.andestech.com (localhost [127.0.0.2] (may be forged))
-	by Atcsqr.andestech.com with ESMTP id 51689QX5012700;
-	Thu, 6 Feb 2025 16:09:26 +0800 (+08)
-	(envelope-from ben717@andestech.com)
-Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
-	by Atcsqr.andestech.com with ESMTPS id 51688w6s012525
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-	Thu, 6 Feb 2025 16:08:58 +0800 (+08)
-	(envelope-from ben717@andestech.com)
-Received: from atctrx.andestech.com (10.0.15.11) by ATCPCS34.andestech.com
- (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 6 Feb
- 2025 16:08:58 +0800
-Date: Thu, 6 Feb 2025 16:08:58 +0800
-From: Ben Zong-You Xie <ben717@andestech.com>
-To: <krzk@kernel.org>, <linux-pwm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <ukleinek@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-        <ben717@andestech.com>
-Subject: Re: [v3 2/2] pwm: atcpit100: add Andes PWM driver support
-Message-ID: <Z6RuGrszOiPFWHyU@atctrx.andestech.com>
-References: <20250123193534.874256-1-ben717@andestech.com>
- <20250123193534.874256-3-ben717@andestech.com>
- <5514fa03-139e-456e-b522-6a774b52eac1@kernel.org>
+	s=arc-20240116; t=1738829579; c=relaxed/simple;
+	bh=CfaWTqkkpTQ7CFwyARlwr2glNQs639xywaItIEyqTqE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=h1W750sKzUgSaDSLZwZJugLFkeywboflCB26JhsY6oXKgVGhJUeUWsY3uanrwmH92sdgsrzDg/jPF0/4HISiggfksyZQQJ5wIc+o0O+XZ2yavwOiEfLfmnTawryy+3xTH/FhQ/Wo444SyEgi4/B19ox/MLxbA0o+9yhNenVDRL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4ba79f6c678so65717137.3;
+        Thu, 06 Feb 2025 00:12:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738829576; x=1739434376;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vVguAjuj0/bFUrD7Z4228jPVJ56A54T3xXdiHnOCCUY=;
+        b=AsIWSz9Kh7OKpeOkJioUAnYVtjqZJG6M33hC8jgbRLE4ILTxjewgeTyYY2J0ojtVRY
+         NOiiBdgDNNEGwcnzRnMoSZvEvqFVfx4j/GPnLk1t2GVCXOC/PBIK4LTJc6sYFQ7Ub/+O
+         fv7AvdAUxY2t43yZezp1MzG6/FA4RLJPFj90cxUElzJqG8zNyYQkn0hVLoOss/RtMQJi
+         9jD0JNvu3S19T8ivHKcZAoCOthBIk6WH7svpx6bdVW7SpzGuAR9DME9hCGzM0zuxFfG3
+         YyoobUrRAfUCBTXHiR2TErCEfGMgATmijp80qcyT2MMljFShNud8cDfUfDXJ1O4PNdTF
+         TEuw==
+X-Forwarded-Encrypted: i=1; AJvYcCVfuCsF7V1ghY2HuuikuhtNxs0IZqiEEoEhigk18PneHTXvUZPzM5c5MGQmb+uqxG5hYjAm4hJ+Uvu6@vger.kernel.org, AJvYcCXFZvM9cVKuMaTCWoDvQKw1u/5qQQdmaTbNE2SMpomPeTKUr57Ul5BGLvbPUI0TUoi+RoCV8m9wfrwoYW02TJZTTvM=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz82HqYVdSbNKZkWw/R2FGbFwZwPWtGJhqTNs7dApx0cEzE2AYO
+	0jvhwSZK5T69cvJk4VCdg19AIMK+k/Unxn7HZmkl5XOzNMXOGqy924MhBtF5
+X-Gm-Gg: ASbGncsrVMc5vpTRcBwiTgzcCUq3CqClBIwumFrMOgdxrtUAVuOeG7uQp5tqvhnXW4B
+	c4pau0P2GbezJqP9j2FlI4FEkRXeJbRjtuKCOn2OFpoNjEg/GWEs6fGjHn+2vWxYy+bNDRFmF9J
+	Ia/TlKxLo1rhqfZyaYQM3fhdoz7X8BOi52af6wNNT0zdFJQ7S/cE3vS8J4Vii56sx2i0WazPbXD
+	FgfGIbtgSJen7HhniTQJ+TtZ0XTevMyuotgq8eE07+6qcTwCH/af5sQUTQHD3fzsOiut/DVMMqi
+	ruGR27757s33c3NY8e1aQGiy52PIHG5tx2okmFEIkwqXhSjW6IF1bg==
+X-Google-Smtp-Source: AGHT+IEn1uF2e3a5QnkheErjhaIXgN68UhINMyA4xNf2rTXHkPXs7h6hBIZ4L3YCZrsLb+7F4PFZhg==
+X-Received: by 2002:a05:6102:3f55:b0:4b6:d108:cac1 with SMTP id ada2fe7eead31-4ba478aaf3fmr4018614137.9.1738829575782;
+        Thu, 06 Feb 2025 00:12:55 -0800 (PST)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-866f97d8c6asm116141241.21.2025.02.06.00.12.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Feb 2025 00:12:55 -0800 (PST)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4ba79f6c678so65712137.3;
+        Thu, 06 Feb 2025 00:12:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVQ6xuLDc4G8mUDm7khrKH5w/P80DvyAEsCo8pq0xgE3H5lAcEnzZU5owLJjiZThasP35D/o+GrzlDh@vger.kernel.org, AJvYcCXdtgxU9YLhiFogYKA00mdAWIQu955A6ShpqAltskzZrhIxUge/UO3qgBFUfctKvk0vsXJ3vzRA1oADpIYLxnf1I2o=@vger.kernel.org
+X-Received: by 2002:a05:6102:dc6:b0:4b6:d773:afc0 with SMTP id
+ ada2fe7eead31-4ba47913e74mr3621832137.13.1738829575352; Thu, 06 Feb 2025
+ 00:12:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <5514fa03-139e-456e-b522-6a774b52eac1@kernel.org>
-User-Agent: Mutt/2.1.4 (2021-12-11)
-X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
- ATCPCS34.andestech.com (10.0.1.134)
-X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 51689QX5012700
+References: <20250205103311.668768-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20250205103311.668768-1-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 6 Feb 2025 09:12:42 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVd9vwGRrb9tOdyOtewTdbttF3tcRyzrRAURd1ws3tZNw@mail.gmail.com>
+X-Gm-Features: AWEUYZk89fwMqSSG0q_RM-YmwfDYNfgv0K3B5cSP2kjk6T1LZ7207gpD37VRFHg
+Message-ID: <CAMuHMdVd9vwGRrb9tOdyOtewTdbttF3tcRyzrRAURd1ws3tZNw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-csi-dsi: Use names for
+ CSI-2 data line orders
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 24, 2025 at 08:30:48AM +0100, Krzysztof Kozlowski wrote:
-> [EXTERNAL MAIL]
-> 
-> On 23/01/2025 20:35, Ben Zong-You Xie wrote:
-> >
-> > +config PWM_ATCPIT100
-> > +     tristate "Andes ATCPIT100 PWM support"
-> > +     depends on OF && HAS_IOMEM
-> > +     depends on RISCV || COMPILE_TEST
-> > +     select REGMAP_MMIO
-> > +     help
-> > +       Generic PWM framework driver for ATCPIT100 on Andes AE350 platform
-> 
-> 
-> Is AE350 a type of a SoC? Looks like. "depends on RISCV" is wrong -
-> there is nothing RISC-V specific here. You must depend on given
-> SoC/platform.
-> 
+On Wed, 5 Feb 2025 at 11:33, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> The defines names for the line-orders are now available in
+> video-interfaces.h, switch to them instead of using their numerical
+> values.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-Hi Krzysztof,
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.15.
 
-AE350 is not a SoC. It's just a reference platform to verify Andes CPUs
-on FPGA. For further information on AE350, please refer to [1].
+Gr{oetje,eeting}s,
 
-Also, I will remove "depends on RISCV" and fix the coding style problems
-in the next patch. Thanks for your review.
+                        Geert
 
-[1] https://www.andestech.com/en/products-solutions/andeshape-platforms/ae350-axi-based-platform-pre-integrated-with-n25f-nx25f-a25-ax25/
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Best regards,
-Ben
-
-> > +
-> > +       The ATCPIT100 Programmable Interval Timer (PIT) is a set of compact
-> > +       multi-function timers, which can be used as pulse width
-> > +       modulators (PWM) as well as simple timers. ATCPIT100 supports up to 4
-> > +       PIT channels. Each PIT channel can be a simple timer or PWM, or a
-> > +       combination of timer and PWM.
-> > +
-> > +       To compile this driver as a module, choose M here: the module
-> 
-> 
-> ...
-> 
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
