@@ -1,183 +1,229 @@
-Return-Path: <devicetree+bounces-143592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F231BA2A83A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:17:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E470A2A840
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:18:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0EFC1887E1D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:18:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03667162E82
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 199BD22B8C4;
-	Thu,  6 Feb 2025 12:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C3C022DF97;
+	Thu,  6 Feb 2025 12:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="iaJ/HPQk"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aAx3rO+o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3225121CFF4
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 12:17:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95C4822D4E6;
+	Thu,  6 Feb 2025 12:18:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738844271; cv=none; b=o09bCSYP1oWX1WUWCWjctWBHZlF4KUKInCHgVi8gtPcxUoOHZJlS1yiXmtvlguPmx74zpslvioyG7gcYOeunoUqfnlnIhXa+cEZi3ubRwaRv5S5Sqh1TSiZs2rNSmbQA9kM0VMDye+u5YsxsrE60wri/Q2J5L9QRFh/NZGe2xzU=
+	t=1738844320; cv=none; b=abpDNWjL07XGPblsoSZUxh0GSUaW0JC45j24eJ3wsMvbqnzKWF/rroqrji3KwP1pmsqb/ftkwVi1ga41ff3MBUnphaSLwOTbQAzq4cTLjMja+FqDuRPx8joXgx7CtdGBZPfZERzM/uSugVJzIAfzWWafQvbRe17XQX2ONwFyniI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738844271; c=relaxed/simple;
-	bh=4cdFR+B95oVkXNiulG1qv9Pup9VHoxewsSMqD4dgVBM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XqQGYPFWAmy/h6K5GQA3L57Aw9if8Lf4YJpgJqMVydq3KQlS/UKVRIfG1rNOpwxmqlunh3LBN2QQoL9iMn5IdSKwvUen62OWS6xDQ8GPdLb3ErGcHpVRLd9aGnNiqX3MHRTjWZdDo/KZMJ/RuP9pCQLCFpgBTtKpTITVRi9H4x8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=iaJ/HPQk; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-3076262bfc6so8021771fa.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 04:17:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1738844267; x=1739449067; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kVaPm6svnrZmjjZXaQ6INFYIHurE1c31ambChU45jvE=;
-        b=iaJ/HPQkyb/z3PjJ/QEpfQx0Xjpwjgah/jbqVvaqQWz0nNbb9eWZp0Y+ucFlEeziCC
-         N7RpO7V0Wkkfi8Qf8vVDQSQXVXokZBrd11qieJEjO5uHuNez7Te7Kooyg67uOh2BWAnv
-         l+R+IZM8Rzjw2+lVfb6F5EyGpFFZ/YKZ1tZhO1DwsF8PyTZb5Si+DKf9S4jXUdcJ2ttm
-         lWcE7bKU24fSwXHgyPXBXUAM+JKnUzDHjUhMhFE85bEB3BQ9Hcwq6CCAN7MN6BFi7E40
-         tzx4FVBokSZ0Ye5OrKnFmb5zlAs4BrXavuc4agTeQH7yF76OO3yeZz6u/vgh0JIIXQGU
-         FIgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738844267; x=1739449067;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kVaPm6svnrZmjjZXaQ6INFYIHurE1c31ambChU45jvE=;
-        b=Fe/YK7iTklTa/C31myehR4tS9iTWWBH/8vNyOp/FMh04L9T51GEK5lZE1WP9jdKu1n
-         elv5xzdx8MpiRNR2+mFYwaq1ADQNIYMsNx4jP2LkMqee1QXxRWUaWInC0R9Qt7DbRfL9
-         V7zCFSk//1ztImzb1+dyl5kUUYISwt0anmJNKFEaVLwEkwlD8fyKS1chpIbuH/qpEIlF
-         O/At9VVlUOVqGwwNq+EwMfvZn67PN9PiOLcve5i6TWsE0l0uZKw5iFdxCJ0f/hoEzObN
-         cqKP9DhE6T3jmyNRyMN0Byp/b/Rcnus8m5dn4KX5TfWxil7+ME/eBYQgK9bKcj3hrEl2
-         lxaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjbOG0c0OZXtUC2B3rKdlWk6ZWhBgxHXsNazudVY4FB6Vej/J9M4Q3TrwFFvbWeibFqRzNwKcgUKuy@vger.kernel.org
-X-Gm-Message-State: AOJu0YysFYwJGUM0RRnum3TfXX1Vnd5O5RaqPcNcmAv979fIJF9Fd05W
-	kElNAH22/dprzVp7g76QbgzNtlzpMqKSxdyd2qNu8f9HnlqnYf4jCg5H/edFWEx/Jmp3TSPE55g
-	BnD2DJJ0atgp3XlyZ4wODhzFoSHPgKkg2zJIszg==
-X-Gm-Gg: ASbGncvvMJ3wcwp3iI8tgyZMFwDZ9YWHcUTvG1xDQjhcBCot22R+jfdImqIxzlPZDMi
-	iaHrKW3egCNJyxafFp4V57fW1SO2I3KVFCABhrwljCmSmCYFlNfkkFZRMCkLcBQYstjKvxDUnKQ
-	==
-X-Google-Smtp-Source: AGHT+IEdOcygqBJ9zpwt9AnW8YGVVzGNtNdwXSyeVHKPWBPAI82GsWsII++eZWvLHpNnJrehz+aGVI+bK2PH2gmRR6A=
-X-Received: by 2002:a05:651c:b08:b0:2ff:c242:29c8 with SMTP id
- 38308e7fff4ca-307cf386eaamr25840471fa.35.1738844267233; Thu, 06 Feb 2025
- 04:17:47 -0800 (PST)
+	s=arc-20240116; t=1738844320; c=relaxed/simple;
+	bh=tvS3If7Ib3H/LmFTV+FkN6nYpuE/85q2j65kQQi3l64=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WHrqbVAiGa2VceyeJYvo8sL0stJ53a73xIiQM+4YdeCRum5FGc7yM0aQVKP9P1pDg8jzQzzQhHlfRpRA7g+UF7VQdLxAsW4VVnJ2miTAWDHCDK1R1lP/3m3Z5FQtX4xRWVSxRhsSF1MGSqyR/BJcjJniXKcRIWqZJRB/X77HJAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aAx3rO+o; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5169dm7s022511;
+	Thu, 6 Feb 2025 12:18:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=tgNRyrLWiN0Zpyfu2Nxnt+
+	kSjOTDmflGULzTG5ROuNM=; b=aAx3rO+oaRxQXMsWNR/WegW0/nq/nfPfl3jYkb
+	aqUe+MT3YYJXpZ+cAEj8TLSeuVRZGCzEVzD4xeMHI6E2s5fY2u6CTtSMiWl3v2DU
+	PI9XAmw7Es+LdkwoaHCXDauI0eTkcpHnDx/s81xrddt8P91U4M6jcBpsvj/wuoku
+	HdgwGxdTjmpubljBeeL4dSmHojwuBQaWL5rds9D4JONu9oB9AgYoook5fYYlZZ3g
+	CK9M1D9FGDwBKyJUqgIKJw+YFdEJ+5ig9reDxq71pGI5kNiEwTwUiXpJuiA/28FC
+	9y1HKjX5WTQQK3iuNJUPdVvhQsPav9RUduCuXpASGeqiV3OA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44mtn7gc7j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 06 Feb 2025 12:18:21 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 516CIKG2008468
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 6 Feb 2025 12:18:20 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 6 Feb 2025 04:18:14 -0800
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <vkoul@kernel.org>, <kishon@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <p.zabel@pengutronix.de>,
+        <quic_nsekar@quicinc.com>, <dmitry.baryshkov@linaro.org>,
+        <quic_varada@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>
+Subject: [PATCH v10 0/7] Add PCIe support for Qualcomm IPQ5332
+Date: Thu, 6 Feb 2025 17:47:56 +0530
+Message-ID: <20250206121803.1128216-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250203084906.681418-1-apatel@ventanamicro.com>
- <20250203084906.681418-12-apatel@ventanamicro.com> <871pwfp272.ffs@tglx>
-In-Reply-To: <871pwfp272.ffs@tglx>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Thu, 6 Feb 2025 17:47:34 +0530
-X-Gm-Features: AWEUYZnkWoBjjXJZwQi6NEV8e_1cUvMnkW_wF5FuGhI66P5vlROSq0JSDO_qX_Y
-Message-ID: <CAK9=C2U537LvffPLGad=LsFsN27uW2UB2X=Oxrub9v2U5vneYQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 11/17] irqchip: Add driver for the RISC-V RPMI
- system MSI service group
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: G5OumJb0Jq3ItSZQCXq38TmPQeyaK65c
+X-Proofpoint-ORIG-GUID: G5OumJb0Jq3ItSZQCXq38TmPQeyaK65c
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-06_03,2025-02-05_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ malwarescore=0 clxscore=1015 priorityscore=1501 mlxlogscore=999
+ impostorscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0
+ adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502060102
 
-Hi Thomas,
+Patch series adds support for enabling the PCIe controller and
+UNIPHY found on Qualcomm IPQ5332 platform. PCIe0 is Gen3 X1 and
+PCIe1 is Gen3 X2 are added.
 
-On Mon, Feb 3, 2025 at 7:20=E2=80=AFPM Thomas Gleixner <tglx@linutronix.de>=
- wrote:
->
-> On Mon, Feb 03 2025 at 14:19, Anup Patel wrote:
-> > +
-> > +struct rpmi_sysmsi_priv {
-> > +     struct device *dev;
-> > +     struct mbox_client client;
-> > +     struct mbox_chan *chan;
-> > +     u32 nr_irqs;
-> > +     u32 gsi_base;
-> > +};
->
-> AS requested before please use tabular layout for structs:
->
-> https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct=
--declarations-and-initializers
->
-> > +static int rpmi_sysmsi_set_msi_state(struct rpmi_sysmsi_priv *priv,
-> > +                                  u32 sys_msi_index, u32 sys_msi_state=
-)
-> > +{
-> > +     struct rpmi_sysmsi_set_msi_state_tx tx;
-> > +     struct rpmi_sysmsi_set_msi_state_rx rx;
-> > +     struct rpmi_mbox_message msg;
-> > +     int ret;
-> > +
-> > +     tx.sys_msi_index =3D sys_msi_index;
-> > +     tx.sys_msi_state =3D sys_msi_state;
-> > +     rpmi_mbox_init_send_with_response(&msg, RPMI_SYSMSI_SRV_SET_MSI_S=
-TATE,
-> > +                                       &tx, sizeof(tx), &rx, sizeof(rx=
-));
-> > +     ret =3D rpmi_mbox_send_message(priv->chan, &msg);
-> > +     if (ret)
-> > +             return ret;
-> > +     if (rx.status)
-> > +             return rpmi_to_linux_error(rx.status);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +#define rpmi_sysmsi_mask(__priv, __msi_index)                \
-> > +     rpmi_sysmsi_set_msi_state(__priv, __msi_index, 0)
-> > +#define rpmi_sysmsi_unmask(__priv, __msi_index)              \
-> > +     rpmi_sysmsi_set_msi_state(__priv, __msi_index, RPMI_SYSMSI_MSI_ST=
-ATE_ENABLE)
->
-> These macros are not really providing any value.
->
-> > +static void rpmi_sysmsi_irq_mask(struct irq_data *d)
-> > +{
-> > +     struct rpmi_sysmsi_priv *priv =3D irq_data_get_irq_chip_data(d);
-> > +     int ret;
-> > +
-> > +     ret =3D rpmi_sysmsi_mask(priv, d->hwirq);
-> > +     if (ret)
-> > +             dev_warn(priv->dev, "Failed to mask hwirq %d (error %d)\n=
-",
-> > +                      (u32)d->hwirq, ret);
->
->         if (ret) {
->                 ....
->         }
->
-> https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#bracke=
-t-rules
->
-> > +     irq_chip_mask_parent(d);
-> > +}
->
-> Other than those nits, this looks reasonable.
+This series combines [1] and [2]. [1] introduces IPQ5018 PCIe
+support and [2] depends on [1] to introduce IPQ5332 PCIe support.
+Since the community was interested in [2] (please see [3]), tried
+to revive IPQ5332's PCIe support with v2 of this patch series.
 
-I will address all above comments in the next revision.
+v2 of this series pulled in the phy driver from [1] tried to
+address comments/feedback given in both [1] and [2].
 
-Thanks,
-Anup
+1. Enable IPQ5018 PCI support (Nitheesh Sekar) - https://lore.kernel.org/all/20231003120846.28626-1-quic_nsekar@quicinc.com/
+2. Add PCIe support for Qualcomm IPQ5332 (Praveenkumar I) - https://lore.kernel.org/linux-arm-msm/20231214062847.2215542-1-quic_ipkumar@quicinc.com/
+3. Community interest - https://lore.kernel.org/linux-arm-msm/20240310132915.GE3390@thinkpad/
+
+v10: * ipq5332.dtsi: Trim down the list of assigned clocks
+
+     * ipq9574 and ipq5332 DT
+	 * Fix 'simple-bus unit address format error' in ipq9574 and
+	   ipq5332 DTS
+         * Rearrange nodes w.r.t. address sort order
+
+     * Have spoken with 'Manikanta Mylavarapu' [1] for omitting similar
+       changes in qcom,pcie.yaml that are handled in this series.
+
+     * Reformat commit messages to 75 character limit
+
+     * controller bindings:
+       Fix maxItems for interrupts constraint of sdm845
+
+     1 - https://lore.kernel.org/linux-arm-msm/20250125035920.2651972-2-quic_mmanikan@quicinc.com/
+
+v9: Dont have fallback for num-lanes in driver and return error
+    Remove superfluous ipq5332 constraint as the fallback is present
+
+v8: Add reviewed by
+    Remove duplication in bindings due to ipq5424 code getting merged
+
+v7: phy bindings:
+    * Include data type definition to 'num-lanes'
+
+    controller bindings:
+    * Split the ipq9574 and ipq5332 changes into separate patches
+
+    dtsi:
+    * Add root port definitions
+
+v6: phy bindings:
+    * Fix num-lanes definition
+
+    phy driver:
+    * Fix num-lanes handling in probe to use generally followed pattern
+
+    controller bindings:
+    * Give more info in commit log
+
+    dtsi:
+    * Add assigned-clocks & assigned-clock-rates to controller nodes
+    * Add num-lanes to pcie0_phy
+
+v5: phy bindings:
+    * Drop '3x1' & '3x2' from compatible string
+    * Use 'num-lanes' to differentiate instead of '3x1' or '3x2'
+      in compatible string
+    * Describe clocks and resets instead of just maxItems
+
+    phy driver:
+    * Get num-lanes from DTS
+    * Drop compatible specific init data as there is only one
+      compatible string
+
+    controller bindings:
+    * Re-arrange 5332 and 9574 compatibles to handle fallback usage in dts
+
+    dtsi:
+    * Add 'num-lanes' to "pcie1_phy: phy@4b1000"
+    * Make ipq5332 as main and ipq9574 as fallback compatible
+    * Sort controller nodes per address
+
+    misc:
+    Add R-B tag from Konrad to dts and dtsi patches
+
+v4: * phy bindings - Create ipq5332 compatible instead of reusing ipq9574 for bindings
+    * phy bindings - Remove reset-names as the resets are handled with bulk APIs
+    * phy bindings - Fix order in the 'required' section
+    * phy bindings - Remove clock-output-names
+    * dtsi - Add missing reset for pcie1_phy
+    * dtsi - Convert 'reg-names' to a vertical list
+    * dts - Fix nodes sort order
+    * dts - Use property-n followed by property-names
+
+v3: * Update the cover letter with the sources of the patches
+    * Rename the dt-bindings yaml file similar to other phys
+    * Drop ipq5332 specific pcie controllor bindings and reuse
+      ipq9574 pcie controller bindings for ipq5332
+    * Please see patches for specific changes
+    * Set GPL license for phy-qcom-uniphy-pcie-28lp.c
+
+v2: Address review comments from V1
+    Drop the 'required clocks' change that would break ABI (in dt-binding, dts, gcc-ipq5332.c)
+    Include phy driver from the dependent series
+
+v1: https://lore.kernel.org/linux-arm-msm/20231214062847.2215542-1-quic_ipkumar@quicinc.com/
+
+Nitheesh Sekar (2):
+  dt-bindings: phy: qcom,uniphy-pcie: Document PCIe uniphy
+  phy: qcom: Introduce PCIe UNIPHY 28LP driver
+
+Praveenkumar I (2):
+  arm64: dts: qcom: ipq5332: Add PCIe related nodes
+  arm64: dts: qcom: ipq5332-rdp441: Enable PCIe phys and controllers
+
+Varadarajan Narayanan (3):
+  dt-bindings: PCI: qcom: Use sdx55 reg description for ipq9574
+  arm64: dts: qcom: ipq9574: Reorder reg and reg-names
+  dt-bindings: PCI: qcom: Document the IPQ5332 PCIe controller
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  10 +-
+ .../phy/qcom,ipq5332-uniphy-pcie-phy.yaml     |  76 ++
+ arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts   |  76 ++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 252 +++++-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 837 +++++++++---------
+ drivers/phy/qualcomm/Kconfig                  |  12 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ .../phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c  | 287 ++++++
+ 8 files changed, 1135 insertions(+), 416 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5332-uniphy-pcie-phy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
+
+
+base-commit: 40b8e93e17bff4a4e0cc129e04f9fdf5daa5397e
+-- 
+2.34.1
+
 
