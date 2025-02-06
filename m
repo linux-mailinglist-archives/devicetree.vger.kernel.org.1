@@ -1,191 +1,156 @@
-Return-Path: <devicetree+bounces-143573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E3BA2A72D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:17:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B45A2A74D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 12:21:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C68CC3A8ADF
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:17:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A12907A4DD0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:20:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C51822DF85;
-	Thu,  6 Feb 2025 11:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C825C22DF8F;
+	Thu,  6 Feb 2025 11:17:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from freeshell.de (freeshell.de [116.202.128.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0CB22D4E1;
-	Thu,  6 Feb 2025 11:16:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E98231C93;
+	Thu,  6 Feb 2025 11:17:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738840594; cv=none; b=srNOsGlR3MDwba/jxS5Hiyd0C+NsxqXwol2vmjeMJVsSRxopbNnfpwjWgAJ8ex76IqGjnPv0gjUx949lgvayb4AwEgEkEitTP8c+5UrnzHlGMsWme4wXutaMWlFxJaj7l9cU9aJki0E7gsXOIWdYtbzbtb1YTBmkgi9NJjp7IB4=
+	t=1738840657; cv=none; b=s00lfilZwFPe4QD+jxJGfYHRZ4hzfhkGqaMkeG87qswniLr5eK58mNW04XOMq+3DiiZgs09/0k4ZJzG61iuFm4Pt1Jjyn20Kp3YKnWzsnaAkhrcfIpJIuo50RqMDyb7xYBKeMee6OkAG0YbGyvFIQkLqNpXAiUe/CsU7UGM+sPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738840594; c=relaxed/simple;
-	bh=UuLdarRfuoxlFPi1Ph8y04dtaYoWHWGc7aTrO93gla4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QuilRGJc4MMQrxxH9qKBY1aO53Efjn74dGN6Nr8A4/5GQ8YOT9qCI4U6Ejdp77A4nYYZopN9vOJ+D7an33v2uTA0QncqjfkwUz1Wlrjx4Qo89PMnBpKfqu89iU1iRiGLih36KiRh/pnL9K4yXIlP/r8wd6g/DSJ4eSXSQ1HhhbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4ba7ab22192so116853137.3;
-        Thu, 06 Feb 2025 03:16:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738840589; x=1739445389;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=//+PJmIs/7Gi54i7iKXDbeeOP+JccMOw2lnKBTAPwIc=;
-        b=Z/UHMfNiXqjm4hSuM10e/kkKIdp/bcvSihm8GsuluTu5MPMwHfMHqZcLqqfK6IWajX
-         7nB9YBsIAfvErdhRxdVw79GC5I+AnKCIK8sp04hzbmM6t8CjXq3UxXvyc0XDsHkH72X3
-         4vsunjZ/ujjiDfl4fwm/ilH37FSCqPCSHi+jusdA/jVslRokuwygX0hjQvYdjwS3mgCr
-         61oG0bI+c1a7xcfPJFBWYgDwiI/cGINa7JKMEGvSDVsydnDuXgNVbbeIGLyaRacDxrQi
-         jrOK2LWZfrSwSRfTn/X/n+xnRtwmNadhTmdp+bT8/1gcI7PM9sNOETBC6j1LXPWTa7Bk
-         zdaA==
-X-Forwarded-Encrypted: i=1; AJvYcCUmPappiV0YY2bJLHbIhWF8iKbnVZh57j/NkmRDA0clMkLIRm8iV57vM9RIfG8GLEPJqZCRoq7sl6KeuX1Hr+wt26M=@vger.kernel.org, AJvYcCV9tWZIriT4aEvBeeQKkN2j8kbBkIppbRps1Dt4sRldCJ/7JlDLJ7N1iXgZEE7P1hMQKlmC2+MKWmsJ@vger.kernel.org, AJvYcCVDtT8nSsnascwcksx7TjXuoH7ZpZVmLWjZ5+KHaJHNPrv1BIkqgTvY0KVpbuDOu6lM6vqud95t3WBKyW2k@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyqah6kTeE2/sdbDvlIvk5sqPVek9xGcheXw/ANIgoIAwTuBHp9
-	DqWKrIBll3u4WRFVFIx7km5oaP/RwcPhzV+YLS1G0DH4GPRJXBhOpUmTEzxp
-X-Gm-Gg: ASbGncsozqceXjcMyDprLOPt/mdEBGAERIxyYQvIOzYKff8TNEHR3UNIR/cPhvvQOYH
-	Y9gD/UyuqqW9sdfC1ycT72P56X3RwKAbh2g3BQ+3nHyaXy0I8QEQhUbogcJYD7tEj1f2nNwJ2KW
-	zsm6GRpVxxg6m/pV9h0EiM2yx/Z8qrFEGcp3EHSp/KAjsCmNLbsCZFMpesXHKQ5I/dKNVQgoyP9
-	rGvTIFjXNvCKjm9lsNHQWy6sCHyfEMT9EDB9KMbKFpKZbReuNJNO4OGpQXLDcFxEMtf34I9lxl5
-	mmihOjaBE7/t0iQL4Z0IReJfid7Tr03t0+AUD5gtXWgS/G4bwF5tuA==
-X-Google-Smtp-Source: AGHT+IGtJFEpnvpe1ZSxHHRAhFckKnv6hnji8IewNnvyXm9Bzsz6E5o1LxxoLPL6SBecp/TvNa5n4A==
-X-Received: by 2002:a05:6102:1515:b0:4b6:3d72:5c28 with SMTP id ada2fe7eead31-4ba47a8c4e3mr4694876137.18.1738840589258;
-        Thu, 06 Feb 2025 03:16:29 -0800 (PST)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-866f97d7902sm163420241.27.2025.02.06.03.16.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Feb 2025 03:16:28 -0800 (PST)
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-8622c3be2f4so198754241.1;
-        Thu, 06 Feb 2025 03:16:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVnK3t4LTJ0elWnHKMHNDNL9DFXrv5f7uROZcZ6lP2HX3JNEgNaINPWzZl3X8uGnkP9mYKsqi6VaDFuFpQIX0XVi9g=@vger.kernel.org, AJvYcCWjvuCxc9OfTDpDq+DdMruIFgjcqY20/Cz4WK5elIQZqa9AdYR0AYFseCMFAiB4eD3WSaDZquLpWzyy@vger.kernel.org, AJvYcCXRbRGhcOWToqvvJUIliwXv0M9NrhVYhk9bAX06fwHuZlVJ0NBjWlv5/KE/TC66Rvo1aD7uV8B5mvlx939n@vger.kernel.org
-X-Received: by 2002:a05:6102:809e:b0:4b1:16f8:efc4 with SMTP id
- ada2fe7eead31-4ba4791aa90mr4226310137.12.1738840588352; Thu, 06 Feb 2025
- 03:16:28 -0800 (PST)
+	s=arc-20240116; t=1738840657; c=relaxed/simple;
+	bh=ezNjwgmmcFYrjAONuxq78XKF7D11NIr1ZyhppvYoqIA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X+TA5GiqDIft9xS4qLg6EmjIB4qsMa/QjSzl/60+Mb90mvi9djO8RXoX/+8350uIE4aJRhTXsP9Us2ijyLYFHqsNwfqEI3v8HrRTZtf31kOM1x5e/Y47RG0Hpje2/2VmzwIG6UVDnZb2ClEaoWzIsn0uSNbY6jespG5tiufE470=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [192.168.2.35] (unknown [98.97.25.24])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 845CEB4C0145;
+	Thu,  6 Feb 2025 12:17:28 +0100 (CET)
+Message-ID: <cba21857-7eb2-4f10-a1bd-6743ce63dfa6@freeshell.de>
+Date: Thu, 6 Feb 2025 03:17:26 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250131-myir-remi-pi-v3-0-2dda53e79291@collabora.com> <20250131-myir-remi-pi-v3-2-2dda53e79291@collabora.com>
-In-Reply-To: <20250131-myir-remi-pi-v3-2-2dda53e79291@collabora.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 6 Feb 2025 12:16:16 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXAS6pnNcT=A7i9La22tbDXYf7EKqbJzHuK2ze2gf6cgg@mail.gmail.com>
-X-Gm-Features: AWEUYZlTMlTyS7G50P-0xRIKRghcKDvJbTN5YUG58ZUK4AGmfGIcfS-edw6EtK0
-Message-ID: <CAMuHMdXAS6pnNcT=A7i9La22tbDXYf7EKqbJzHuK2ze2gf6cgg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] arm64: renesas: add initial support for MYIR Remi Pi
-To: Julien Massot <julien.massot@collabora.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] riscv: dts: starfive: jh7110-common:
+ bootph-pre-ram hinting needed by boot loader
+To: Hal Feng <hal.feng@linux.starfivetech.com>,
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Emil Renner Berthing <kernel@esmil.dk>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Hal Feng <hal.feng@starfivetech.com>
+References: <20250203013730.269558-1-e@freeshell.de>
+ <20250203013730.269558-6-e@freeshell.de>
+ <25B3D8909DBCC21B+43663a76-4afa-44ae-95e2-3a8792de614c@linux.starfivetech.com>
+ <206a6ada-1ef9-47f3-b1cf-fb1a1540e95c@canonical.com>
+ <62D89163A60680E7+f0f5a4d4-42f1-454d-9dfe-cf53e2aca4ac@linux.starfivetech.com>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <62D89163A60680E7+f0f5a4d4-42f1-454d-9dfe-cf53e2aca4ac@linux.starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Julien,
 
-On Fri, 31 Jan 2025 at 10:58, Julien Massot <julien.massot@collabora.com> wrote:
-> Add basic support for the MYIR Remi Pi (based on r9a07g044l2):
->  - UART
->  - i2c
->  - emmc
->  - USB host
->  - HDMI output
->  - Ethernet
->
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
 
-Thanks for the update!
+On 2/5/25 18:59, Hal Feng wrote:
+> On 2/5/2025 6:01 PM, Heinrich Schuchardt wrote:
+>> On 2/5/25 08:57, Hal Feng wrote:
+>>> On 2/3/2025 9:37 AM, E Shattow wrote:
+>>>> Add bootph-pre-ram hinting to jh7110-common.dtsi:
+>>>>    - i2c5_pins and i2c-pins subnode for connection to eeprom
+>>>>    - eeprom node
+>>>>    - qspi flash configuration subnode
+>>>>    - memory node
+>>>>    - uart0 for serial console
+>>>>
+>>>>    With this the U-Boot SPL secondary program loader may drop such
+>>>>    overrides when using dt-rebasing with JH7110 OF_UPSTREAM board targets.
+>>>>
+>>>> Signed-off-by: E Shattow <e@freeshell.de>
+>>>> ---
+>>>>   arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 6 ++++++
+>>>>   1 file changed, 6 insertions(+)
+>>>>
+>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>> index 30c5f3487c8b..c9e7ae59ee7c 100644
+>>>> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>> @@ -28,6 +28,7 @@ chosen {
+>>>>       memory@40000000 {
+>>>>           device_type = "memory";
+>>>>           reg = <0x0 0x40000000 0x1 0x0>;
+>>>> +        bootph-pre-ram;
+>>>>       };
+>>>>         gpio-restart {
+>>>> @@ -247,6 +248,7 @@ emmc_vdd: aldo4 {
+>>>>       };
+>>>>         eeprom@50 {
+>>>> +        bootph-pre-ram;
+>>>>           compatible = "atmel,24c04";
+>>>>           reg = <0x50>;
+>>>>           pagesize = <16>;
+>>>> @@ -323,6 +325,7 @@ &qspi {
+>>>>       nor_flash: flash@0 {
+>>>>           compatible = "jedec,spi-nor";
+>>>>           reg = <0>;
+>>>> +        bootph-pre-ram;
+>>>>           cdns,read-delay = <2>;
+>>>>           spi-max-frequency = <100000000>;
+>>>>           cdns,tshsl-ns = <1>;
+>>>> @@ -405,6 +408,7 @@ GPOEN_SYS_I2C2_DATA,
+>>>>       };
+>>>>         i2c5_pins: i2c5-0 {
+>>>> +        bootph-pre-ram;
+>>>>           i2c-pins {
+>>>>               pinmux = <GPIOMUX(19, GPOUT_LOW,
+>>>>                             GPOEN_SYS_I2C5_CLK,
+>>>> @@ -413,6 +417,7 @@ GPI_SYS_I2C5_CLK)>,
+>>>>                             GPOEN_SYS_I2C5_DATA,
+>>>>                             GPI_SYS_I2C5_DATA)>;
+>>>>               bias-disable; /* external pull-up */
+>>>> +            bootph-pre-ram;
+>>>>               input-enable;
+>>>>               input-schmitt-enable;
+>>>>           };
+>>>> @@ -641,6 +646,7 @@ GPOEN_DISABLE,
+>>>>   };
+>>>>     &uart0 {
+>>>> +    bootph-pre-ram;
+>>>>       clock-frequency = <24000000>;
+>>>>       pinctrl-names = "default";
+>>>>       pinctrl-0 = <&uart0_pins>;
+>>>
+>>> What about &mmc0, &mmc1, &qspi, &sysgpio, &mmc0_pins, &mmc1_pins, &i2c5?
+>>> Why not add "bootph-pre-ram;" for them?
+>>
+>> Would they be needed before relocation of U-Boot to DRAM?
+> 
+> Yeah, they are needed by SPL and they are set in
+> U-Boot arch/riscv/dts/jh7110-common-u-boot.dtsi.
+> 
+> Best regards,
+> Hal
+> 
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-remi-pi.dts
-> @@ -0,0 +1,351 @@
+When I tested on Star64 there was none of those needed to boot. We can
+add more bootph-pre-ram as needed but I want to know how to test
+(because I did not see any need for these).
 
-> +/ {
-> +       model = "MYIR Tech Limited Remi Pi MYB-YG2LX-REMI";
-> +       compatible = "myir,remi-pi", "renesas,r9a07g044l2", "renesas,r9a07g044";
-> +
-> +       aliases {
-> +               ethernet0 = &eth0;
-> +               ethernet1 = &eth1;
-> +
-> +               i2c0 = &i2c0;
-> +               i2c1 = &i2c1;
-> +               i2c2 = &i2c2;
-> +               i2c3 = &i2c3;
-> +
-> +               mmc0 = &sdhi0;
-> +
-> +               serial0 = &scif0;
-> +               serial3 = &scif3;
+How do you test that these are needed?
 
-Wasn't the plan to drop scif3, so it can be used by an RTOS running
-on the Cortex-A33 core?
-
-> +               serial4 = &scif4;
-> +       };
-> +
-> +       chosen {
-> +               stdout-path = "serial0:115200n8";
-> +       };
-> +
-> +       memory@48000000 {
-> +               device_type = "memory";
-> +               /* first 128MB is reserved for secure area. */
-> +               reg = <0x0 0x48000000 0x0 0x38000000>;
-> +       };
-> +
-> +       reg_5p0v: regulator-5p0v {
-
-> +       reg_3p3v: regulator-3p3v {
-
-> +       reg_1p8v: regulator-1p8v {
-
-> +       reg_1p1v: regulator-vdd-core {
-
-> +       hdmi-out {
-
-More sorting work to do...
-
-> +};
-
-> +       sdhi0_pins: sd0 {
-> +               sd0_data {
-> +                       pins = "SD0_DATA0", "SD0_DATA1", "SD0_DATA2", "SD0_DATA3",
-> +                              "SD0_DATA4", "SD0_DATA5", "SD0_DATA6", "SD0_DATA7";
-> +                       power-source = <1800>;
-> +               };
-> +
-> +               sd0_ctrl {
-
-Here, too. Plus the underscores reported by Krzysztof.
-
-> +                       pins = "SD0_CLK", "SD0_CMD";
-> +                       power-source = <1800>;
-> +               };
-> +
-> +               sd0_rst {
-> +                       pins = "SD0_RST#";
-> +                       power-source = <1800>;
-> +               };
-> +       };
-
-I fixed the style issues locally, so if you can confirm or deny the removal
-of scif3, I can fix that while applying.
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-E
 
