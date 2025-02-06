@@ -1,118 +1,144 @@
-Return-Path: <devicetree+bounces-143522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90024A2A489
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:34:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7AE7A2A4B8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:37:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 255CD165ED2
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:34:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52FA9169084
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888A0226193;
-	Thu,  6 Feb 2025 09:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8923522757E;
+	Thu,  6 Feb 2025 09:35:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7B7B17A586
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 09:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEF1226546;
+	Thu,  6 Feb 2025 09:35:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738834248; cv=none; b=C/lC59aVy+ILZdE1sgELRZL3ZX/+VjLXMFJ29XRaYKNHBqQzMXR31trXmNAREcOJ15wyzco9iA5g73bdw2KxqodsB2V94BztE04OkftfJiTNWi10xFREDc9xFkAzOf+NEIgtqyDECMs62J7gjI5Uw19yGzcso0o8ny9W2i19VKE=
+	t=1738834551; cv=none; b=njtMmTsNmvz7i9DgDSwXf3LcnsCxJyOfMQASnBBZvLDB+7ABiFdd7NWVQi6hXN3AgWty8cnGBRbcLUpdEhGqhZnx89ZO76zYF9ysPlSl0b50roB4jEQps6qQFkQANw6G/Cm5HKS9sdfv/N2eTN8kpr8QFtLd9epv3BFX3fvHgkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738834248; c=relaxed/simple;
-	bh=Y18W78DDacVBLpk7PrrIOqLKZ+MXb+MEFrYJWPkLRho=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dJm31o57mvQk5p+fFTYW2vQf5ABzjHuD0ydNoOj6+qlI8z0zrbCifYZelciSBn0/lRvLVtLsmGow8s5Pr8OYbBrxfMQU4J8Kx5FcDTxFUROxEemJSbhFuuJnPonsoAGH79eA8a2B+aLtdNTnP9BrzuCZAFPhqqTMGmwwzslU1gA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tfyDJ-0005ui-3U; Thu, 06 Feb 2025 10:30:25 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tfyDF-003mWx-2b;
-	Thu, 06 Feb 2025 10:30:21 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 6474B3BB259;
-	Thu, 06 Feb 2025 09:30:21 +0000 (UTC)
-Date: Thu, 6 Feb 2025 10:30:20 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Charles Han <hanchunchao@inspur.com>
-Cc: manivannan.sadhasivam@linaro.org, thomas.kopp@microchip.com, 
-	mailhol.vincent@wanadoo.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	cem@kernel.org, djwong@kernel.org, corbet@lwn.net, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-xfs@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH] Documentation: Remove repeated word in docs
-Message-ID: <20250206-quirky-malachite-mamba-598802-mkl@pengutronix.de>
-References: <20250206091530.4826-1-hanchunchao@inspur.com>
+	s=arc-20240116; t=1738834551; c=relaxed/simple;
+	bh=7sbr5mpVc7+ZBpPtC2uBa0tLEgFgxvnC5+C3UcdMS+c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BOGuWCPjuRiEL3YNYJBcv+VXGX3BM3vh1auINJeGXIh68quG8hfMItewpZ8f3Arix0aVA/kVh+bYdaBJwcajCukhRHQDwAibFoZPVwCg5mavI+ZRHst7bJFuDljWZhM8glnPHXlkzspjaFKAAFH2T7nn75SwEq+Sfo6srQhLNAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5161d5b8650so183255e0c.3;
+        Thu, 06 Feb 2025 01:35:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738834547; x=1739439347;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=23NOCELavLl2Pk+6Vto5vA5OftjS4D9PnflCbYjJqw4=;
+        b=iBIBcpkUnnIQgicXq7psgwPS/AGWyADrwTwcNUjUlECMEIyFPhN8fwfQxsve51cBBO
+         zzv5cBhjTdCPJzg7U42927BIGnn8T/JhhwMThVKfP0EGG2ZaOo5Bwd+5R1rkh4rgKyHZ
+         r4+wSdZWWPU4NErBnvGfFcKjv2qyyoLo2Dv2lm+6QN9LjwOpf91z9N7rlc7WLzGSpjCH
+         lsyWc8WtTam8qPlx1RqtdsmJOV9heW/KF1wAwYmcZqMldv7v2cJWhJHXMC3qzkh0q2E9
+         nz3qu6s3U3uphUr3rZG8kp9oMwfTDFJoJvmdAxuyObR90K8gE6neHQn4D+Z6sRi9Tvqj
+         e7Yw==
+X-Forwarded-Encrypted: i=1; AJvYcCWPgk7TC/Dsqe1ekw/5IMFZNUFHmR99e7RmzsJdgwjNYhnL1aPJ6AtgRJtFgEez6nFEaIaxNDRTTTih0uQQDbrgY2g=@vger.kernel.org, AJvYcCXtdMddeoDD8UP5Day0rp+w0UczMgb/rFXXmm39//IK5lvWVTeJ6Dt4jszS0sxyfCtqYL9ELCxVFgrs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzU5gEnWqQ2Z8k6kYo53usAYIQ44Kpp/MOa+lRsKxBAxdAIHmsq
+	yiGdVRUxAg2sgFafCheZNF7+Xaq9vEOGmt6EAaVtneUKB4o7wt7Bsu0gMLGU
+X-Gm-Gg: ASbGncs+d0RNA2u6TFpdNHEGUaEjFcRdPMoAzGLbO+SAy2ri2t8qH6KvIMH85R0rRC5
+	V67oUDAA+oVWA32NcsYV28csRMGdIFwFt+DrEmn3sTo+8qvdjZqqKwAeEn22tmdFb6/IxyNk6Xn
+	RshLiFLhZXO1p0kGY484MfYhhZ8faqF7N27bDFaA16GxG6Q1htpXZVWVdV1QNDg7uCfY88ZuZal
+	k/3sHHCnIzePG85F09IJ47k0hx8XuRDImruRF8blFrMvvs0id88sVbx332jzctiFMsmGnk8BhGA
+	Jw8snhFC1bt6PjUvzpNb/Ltn9cXY/XEWlep37ytxTnpmbEYvyrtkOg==
+X-Google-Smtp-Source: AGHT+IFjndvTNbWlZPPsH6pL2oIzCK/AKcrQKh7VKkmpiCDaXnems8op/RWIDt0+oXaKP9u2NzchNw==
+X-Received: by 2002:a05:6122:4004:b0:518:8753:34a6 with SMTP id 71dfb90a1353d-51f0c50a8b0mr3579131e0c.10.1738834547237;
+        Thu, 06 Feb 2025 01:35:47 -0800 (PST)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-866f9804f55sm149579241.32.2025.02.06.01.35.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Feb 2025 01:35:46 -0800 (PST)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4b11a11a4f0so192897137.3;
+        Thu, 06 Feb 2025 01:35:46 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUzkKJ5rbec45SM0np9pd5bQZk+VJa54Fm6BZwekjJHFG4+c/+j5dfz7Uy89l2bZJoRfQX4Z+7ZZV4o0HTgXUAx/ms=@vger.kernel.org, AJvYcCXek06tQ6RCKbiDja6zAGtlB6ATkC8RygcuoqmM1FJcEdKP3skBHZZxDk7SYOeJcAgPG5O+GpjUVo5+@vger.kernel.org
+X-Received: by 2002:a05:6102:3f07:b0:4b9:b986:591c with SMTP id
+ ada2fe7eead31-4ba47ae4de7mr4179283137.22.1738834546541; Thu, 06 Feb 2025
+ 01:35:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hm4ctlzjszhq6mov"
-Content-Disposition: inline
-In-Reply-To: <20250206091530.4826-1-hanchunchao@inspur.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20250131112429.119882-1-biju.das.jz@bp.renesas.com> <20250131112429.119882-7-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250131112429.119882-7-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 6 Feb 2025 10:35:35 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXSaewfeRkuOqmBYkWPzLr54QM1X7fw0ODOuj-ooucUkw@mail.gmail.com>
+X-Gm-Features: AWEUYZnul23HpMeJBr12dVxNrDfppXFBX_BXBZTUPtlXsVts5e1ioiHmigXeIjs
+Message-ID: <CAMuHMdXSaewfeRkuOqmBYkWPzLr54QM1X7fw0ODOuj-ooucUkw@mail.gmail.com>
+Subject: Re: [PATCH v2 6/8] arm64: dts: renesas: rzg3e-smarc-som: Enable SDHI{0,2}
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Biju,
 
---hm4ctlzjszhq6mov
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] Documentation: Remove repeated word in docs
-MIME-Version: 1.0
+On Fri, 31 Jan 2025 at 12:25, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Enable eMMC on SDHI0 and SD on SDHI2 on RZ/G3E SMARC SoM.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:
+>  * Added missing header file gpio.h
+>  * Used fixed regulator for eMMC on SD0 and dropped sd0-iovs pins for
+>    eMMC.
+>  * Sorted pinctrl nodes for sd2
+>  * Enabled internal regulator for SD2.
 
-On 06.02.2025 17:15:29, Charles Han wrote:
-> Remove the repeated word "to" docs.
->=20
-> Signed-off-by: Charles Han <hanchunchao@inspur.com>
+Thanks for the update!
 
-Feel free to take the patch.
+> --- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+> @@ -7,6 +7,7 @@
+>
+>  /dts-v1/;
+>
+> +#include <dt-bindings/gpio/gpio.h>
 
-Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+Not needed in this patch.
 
-regards,
-Marc
+>  #include <dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h>
+>  #include "r9a09g047e57.dtsi"
+>  #include "rzg3e-smarc-som.dtsi"
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+> --- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
 
---hm4ctlzjszhq6mov
-Content-Type: application/pgp-signature; name="signature.asc"
+> +&vqmmc_sdhi2 {
+> +       regulator-name = "SD2_PVDD";
 
------BEGIN PGP SIGNATURE-----
+Why override the name?
 
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmekgSoACgkQDHRl3/mQ
-kZxdTAf5AdW1/IcCxxcCFzVXksRmp7Q0bHOPaSlom8ycnTbaN6nNbYeqeXv3mGMg
-5oBVg1sY2aWUW7r3V28h4HzCA9T+G7j2v2Mfv6whc3wTVCUIlTMbVqB+qL6ot0wM
-5p1JnlRrqjzdC5ufv1lgpbtYM7/BzHGq1ae6t5R6Ddye4F582kzTW+FmVQ/pgscg
-TpwH0NX1OTft3WvbXYzd50r/ycrhcG3buoY4/c28q08w1kgs2YDin8Nr/kn2r29G
-hd/lh4XOIG8JSmNojd1trXc+SWE9e271AO//+wFp2PUQXuF3FltKFn9o8Yf83nVE
-kqUDEwktUZjxMRDxtv54braGka5XSg==
-=WoBM
------END PGP SIGNATURE-----
+> +       status = "okay";
+> +};
+> +
+>  &wdt1 {
+>         status = "okay";
+>  };
 
---hm4ctlzjszhq6mov--
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
