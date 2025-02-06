@@ -1,144 +1,118 @@
-Return-Path: <devicetree+bounces-143523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7AE7A2A4B8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:37:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07273A2A4CF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:41:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52FA9169084
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:37:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBA6A3A9757
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8923522757E;
-	Thu,  6 Feb 2025 09:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0659622619B;
+	Thu,  6 Feb 2025 09:39:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="licLhQ5e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEF1226546;
-	Thu,  6 Feb 2025 09:35:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F148226183
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 09:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738834551; cv=none; b=njtMmTsNmvz7i9DgDSwXf3LcnsCxJyOfMQASnBBZvLDB+7ABiFdd7NWVQi6hXN3AgWty8cnGBRbcLUpdEhGqhZnx89ZO76zYF9ysPlSl0b50roB4jEQps6qQFkQANw6G/Cm5HKS9sdfv/N2eTN8kpr8QFtLd9epv3BFX3fvHgkI=
+	t=1738834760; cv=none; b=K9ysnr7pLiSy8SMq940JpxQxKHP7cbqCnVpPamUDcPFZpYCtRbSWuQIKav4t30VLDaxmaOOVO3/kOorwNC7zMeMZJfyKqZHqf4TPBzhULph8cDxh4eJFojxNFEv3NxuwhTJGUTkNF1EJrYsYdj8txJJKvaxmAQnrDfbDEE8UIhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738834551; c=relaxed/simple;
-	bh=7sbr5mpVc7+ZBpPtC2uBa0tLEgFgxvnC5+C3UcdMS+c=;
+	s=arc-20240116; t=1738834760; c=relaxed/simple;
+	bh=QxqCdZ87Rgx4ITls+sBoaB5NXU+rg+6sFyys6kqsgrM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BOGuWCPjuRiEL3YNYJBcv+VXGX3BM3vh1auINJeGXIh68quG8hfMItewpZ8f3Arix0aVA/kVh+bYdaBJwcajCukhRHQDwAibFoZPVwCg5mavI+ZRHst7bJFuDljWZhM8glnPHXlkzspjaFKAAFH2T7nn75SwEq+Sfo6srQhLNAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5161d5b8650so183255e0c.3;
-        Thu, 06 Feb 2025 01:35:49 -0800 (PST)
+	 To:Cc:Content-Type; b=d0+VKr2wOi3enNvtH1e4ucN0nPzRu3u8aqDBKbvKXWWYhhC2Zefj4ZhElXeWE2QvhuYraT1Ea+yZPVnBuk64gGUnG2JeqEOJn5ZwD+mDST5ht2dLdEjYyTwHheqEMjFwkbH671pK2HwUnLi5Mr7pTU1KxJV9QYGi32Y2V86SN5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=licLhQ5e; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53f22fd6832so798745e87.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 01:39:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738834757; x=1739439557; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QxqCdZ87Rgx4ITls+sBoaB5NXU+rg+6sFyys6kqsgrM=;
+        b=licLhQ5eluAjHoFsYIbW48leUXFFrxtQZp+uT7wowm2HOsPHZS0jcfoTUJMckdz5Q3
+         Jfh9DeT40HqnUK7zLqMjbUzW8IFVc9DT7Sk5w19tf+M5zO+J+Fe20wmBeVrjdtdcT0q9
+         GrYRgeOfHC7Hll22udPz93wCAAbfvD8Qy0ck4ZdggdcHHnGnOWchX4fJ+IYU1Zl1QN1z
+         a2WMRH25KGl11EIFVZRTPTytWmkSF03w0a5/of72MmZSLewa/4qLD6cvOg7RvDYHxGF+
+         r2Ii5U59SwZfrL9joMoskb2bze8zTD2EXP3ZSRIIYUiiLj2Z9w+YpYl2C10IU8A/r81w
+         qkiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738834547; x=1739439347;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=23NOCELavLl2Pk+6Vto5vA5OftjS4D9PnflCbYjJqw4=;
-        b=iBIBcpkUnnIQgicXq7psgwPS/AGWyADrwTwcNUjUlECMEIyFPhN8fwfQxsve51cBBO
-         zzv5cBhjTdCPJzg7U42927BIGnn8T/JhhwMThVKfP0EGG2ZaOo5Bwd+5R1rkh4rgKyHZ
-         r4+wSdZWWPU4NErBnvGfFcKjv2qyyoLo2Dv2lm+6QN9LjwOpf91z9N7rlc7WLzGSpjCH
-         lsyWc8WtTam8qPlx1RqtdsmJOV9heW/KF1wAwYmcZqMldv7v2cJWhJHXMC3qzkh0q2E9
-         nz3qu6s3U3uphUr3rZG8kp9oMwfTDFJoJvmdAxuyObR90K8gE6neHQn4D+Z6sRi9Tvqj
-         e7Yw==
-X-Forwarded-Encrypted: i=1; AJvYcCWPgk7TC/Dsqe1ekw/5IMFZNUFHmR99e7RmzsJdgwjNYhnL1aPJ6AtgRJtFgEez6nFEaIaxNDRTTTih0uQQDbrgY2g=@vger.kernel.org, AJvYcCXtdMddeoDD8UP5Day0rp+w0UczMgb/rFXXmm39//IK5lvWVTeJ6Dt4jszS0sxyfCtqYL9ELCxVFgrs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzU5gEnWqQ2Z8k6kYo53usAYIQ44Kpp/MOa+lRsKxBAxdAIHmsq
-	yiGdVRUxAg2sgFafCheZNF7+Xaq9vEOGmt6EAaVtneUKB4o7wt7Bsu0gMLGU
-X-Gm-Gg: ASbGncs+d0RNA2u6TFpdNHEGUaEjFcRdPMoAzGLbO+SAy2ri2t8qH6KvIMH85R0rRC5
-	V67oUDAA+oVWA32NcsYV28csRMGdIFwFt+DrEmn3sTo+8qvdjZqqKwAeEn22tmdFb6/IxyNk6Xn
-	RshLiFLhZXO1p0kGY484MfYhhZ8faqF7N27bDFaA16GxG6Q1htpXZVWVdV1QNDg7uCfY88ZuZal
-	k/3sHHCnIzePG85F09IJ47k0hx8XuRDImruRF8blFrMvvs0id88sVbx332jzctiFMsmGnk8BhGA
-	Jw8snhFC1bt6PjUvzpNb/Ltn9cXY/XEWlep37ytxTnpmbEYvyrtkOg==
-X-Google-Smtp-Source: AGHT+IFjndvTNbWlZPPsH6pL2oIzCK/AKcrQKh7VKkmpiCDaXnems8op/RWIDt0+oXaKP9u2NzchNw==
-X-Received: by 2002:a05:6122:4004:b0:518:8753:34a6 with SMTP id 71dfb90a1353d-51f0c50a8b0mr3579131e0c.10.1738834547237;
-        Thu, 06 Feb 2025 01:35:47 -0800 (PST)
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-866f9804f55sm149579241.32.2025.02.06.01.35.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Feb 2025 01:35:46 -0800 (PST)
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4b11a11a4f0so192897137.3;
-        Thu, 06 Feb 2025 01:35:46 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUzkKJ5rbec45SM0np9pd5bQZk+VJa54Fm6BZwekjJHFG4+c/+j5dfz7Uy89l2bZJoRfQX4Z+7ZZV4o0HTgXUAx/ms=@vger.kernel.org, AJvYcCXek06tQ6RCKbiDja6zAGtlB6ATkC8RygcuoqmM1FJcEdKP3skBHZZxDk7SYOeJcAgPG5O+GpjUVo5+@vger.kernel.org
-X-Received: by 2002:a05:6102:3f07:b0:4b9:b986:591c with SMTP id
- ada2fe7eead31-4ba47ae4de7mr4179283137.22.1738834546541; Thu, 06 Feb 2025
- 01:35:46 -0800 (PST)
+        d=1e100.net; s=20230601; t=1738834757; x=1739439557;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QxqCdZ87Rgx4ITls+sBoaB5NXU+rg+6sFyys6kqsgrM=;
+        b=rZxzkfZnXkJnNVvO9ro21usfqkfAc3wc1DAauNILUIUev9qZLbcBS+pU4hWJK86Moy
+         U9csyPgiGswwzwx13i4p/ZYlkvv+07uFp5Tjsb+NtGPoh4X/zLkAPlxYHsxgo1BPVf1o
+         y1zf+dk4RrjDnd/BV3abeNF/F43wa+W1ADIn9sGA5xyOH4PcaHw9dp5is3TcHcBfyckS
+         c87Ylxkh8vSEwSDMoWtji4bau1b1rcV4emxcgl8CyvvNN0RyDrvVmyXZVzL3Ehh2N9v1
+         z3vK6ICHyionkC9fIqPBEnu/Z29OKd705S1Do994PIt87dfODumxQxR5YFrD0R7JuYHj
+         lQjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVL6XArsQCJWgsa3Mty9kD0mDIEZotkNxOoWWiYq23NhUT6+PxcBy8os21WJUnt98uwq4/wLdRIqBEK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCnUT9myhc+iLh3iBsWqjID2sOuF6tWazz1DN6F4ek1+oBnoxF
+	hQa9jYU+8Oq0pCbDW6/DtxzHYFAh7PhHQ0xSyotVkfhgSMZ8EJKGqFRN9pSMZD7XEHzK+i974BY
+	pXDR79qmDoOAStX6qmMV3/hW0uvAxrRoOWUiQHA==
+X-Gm-Gg: ASbGncuLGjiIM+OvXmpGfbEPNogmyfG6c5NdFPUwyoMVebBNJ+TMTLE2NgJJZkZBe2L
+	ZBm++9eBMSmPlLb2O4S5b0K6KunHih3JFjW15pIGCLaF5V9TPWjSA22ZWyXcaZPOoGfIwFKg=
+X-Google-Smtp-Source: AGHT+IHy2erTOylDXjPHhr46b25AbKpq4hR75UITsDiNv3fd/IuGBDeoE5/TCxFr0JD6443xhniX9GkOIwD7QR0zOhc=
+X-Received: by 2002:a05:6512:1385:b0:543:c3d9:418b with SMTP id
+ 2adb3069b0e04-54405a0c5f6mr1856455e87.16.1738834756940; Thu, 06 Feb 2025
+ 01:39:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250131112429.119882-1-biju.das.jz@bp.renesas.com> <20250131112429.119882-7-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250131112429.119882-7-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 6 Feb 2025 10:35:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXSaewfeRkuOqmBYkWPzLr54QM1X7fw0ODOuj-ooucUkw@mail.gmail.com>
-X-Gm-Features: AWEUYZnul23HpMeJBr12dVxNrDfppXFBX_BXBZTUPtlXsVts5e1ioiHmigXeIjs
-Message-ID: <CAMuHMdXSaewfeRkuOqmBYkWPzLr54QM1X7fw0ODOuj-ooucUkw@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] arm64: dts: renesas: rzg3e-smarc-som: Enable SDHI{0,2}
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+References: <cover.1738328714.git.mazziesaccount@gmail.com>
+ <3d85fe979fca352bed4d9841e3233c055dfaf154.1738328714.git.mazziesaccount@gmail.com>
+ <6867812e-7269-4686-9fc2-55afd9fa91bf@gmail.com>
+In-Reply-To: <6867812e-7269-4686-9fc2-55afd9fa91bf@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 6 Feb 2025 10:39:05 +0100
+X-Gm-Features: AWEUYZlG4xyNl-aquwRcbpurNNF0W3dgBH-PwD4_WNVA671mh_9EE2XioA6hXcg
+Message-ID: <CACRpkdaP6biD8ueeezBDw1P3LP6ARoJw0zfkmxC-QKK0fw79YQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/5] pinctrl: Support ROHM BD79124 pinmux / GPO
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Nuno Sa <nuno.sa@analog.com>, 
+	David Lechner <dlechner@baylibre.com>, Dumitru Ceclan <mitrutzceclan@gmail.com>, 
+	Trevor Gamblin <tgamblin@baylibre.com>, Matteo Martelli <matteomartelli3@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Biju,
-
-On Fri, 31 Jan 2025 at 12:25, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable eMMC on SDHI0 and SD on SDHI2 on RZ/G3E SMARC SoM.
+On Wed, Feb 5, 2025 at 2:40=E2=80=AFPM Matti Vaittinen <mazziesaccount@gmai=
+l.com> wrote:
+> On 31/01/2025 15:38, Matti Vaittinen wrote:
+> > The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The AIN pins can be
+> > used as ADC inputs, or as general purpose outputs.
+> >
+> > Support changing pin function (GPO / ADC) and the gpo output control.
+> >
+> > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > ---
+> >
+> > NOTE: This patch is not properly tested. More thorough testing is to be
+> > done prior v2 if this pinmux approach makes sense.
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:
->  * Added missing header file gpio.h
->  * Used fixed regulator for eMMC on SD0 and dropped sd0-iovs pins for
->    eMMC.
->  * Sorted pinctrl nodes for sd2
->  * Enabled internal regulator for SD2.
+> Just a note to reviewers - I dropped the pinmux from v2. No need to
+> review this any further.
 
-Thanks for the update!
+Why? Gave up on the idea or want to pursue it later?
 
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> @@ -7,6 +7,7 @@
->
->  /dts-v1/;
->
-> +#include <dt-bindings/gpio/gpio.h>
-
-Not needed in this patch.
-
->  #include <dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h>
->  #include "r9a09g047e57.dtsi"
->  #include "rzg3e-smarc-som.dtsi"
-
-> --- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-
-> +&vqmmc_sdhi2 {
-> +       regulator-name = "SD2_PVDD";
-
-Why override the name?
-
-> +       status = "okay";
-> +};
-> +
->  &wdt1 {
->         status = "okay";
->  };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yours,
+Linus Walleij
 
