@@ -1,190 +1,202 @@
-Return-Path: <devicetree+bounces-143734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3776DA2B552
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 23:41:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B78C5A2B55E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 23:43:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4120E7A1C82
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 22:40:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47EAF166D85
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 22:43:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801AD226196;
-	Thu,  6 Feb 2025 22:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A37822FF49;
+	Thu,  6 Feb 2025 22:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="rCg/YwhT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oHW/sIwY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2042.outbound.protection.outlook.com [40.107.223.42])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D562123C380;
-	Thu,  6 Feb 2025 22:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738881673; cv=fail; b=q+7PXmasKbGEDklUCZhQlvGpztAMgLNzSsmrajPf2t37Tt3OAQoO+dew7R0031f7BfB1+/QRx8/maIG+me5o1hnMJUXmm7B+ElI61Ug6oCuB2Z3RymKXc2kOxNcHrntnqE+0Ut5f2E33SMBqU9S1y7Qvj72XA02YGt4Upmt//iM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738881673; c=relaxed/simple;
-	bh=yX7y2V2uukYOBW+jG1H1wzgRx2+YYp3N6CYaomSa2Iw=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ol6smQ0FW6sxaTHSw0/scLZTZOAkOhVv9t+2+bEAsGtpL7bGOtjDS6eCoo4ZDOKvVAzkDa/YgqB4mJ738UQQNp2HNY2zOVo6moC3kONY7FT41pYK9p9lE2p1rIZIaQDQGLauXTQv1SGGupBXiVJD3gRiaR/Sq+gtsPYAWY3hLsI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=rCg/YwhT; arc=fail smtp.client-ip=40.107.223.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sZDFWKrXz3C1/O4UQO1NvBC5bNLSTCSOIeiLhtuRJGPGnID+ey3MgrQ2j5A9nC7PI73lBEYzsIHKQ/RsnRhZ8SJd4xSma58Yg7jN506Ll7Y1lXZIdGVjwArGjSM+X5dqFKyDkuijzHILzS9jkOo/UZDoA0v/vGTncvnjq6i0/CM04iZQD+dFW5Ik06ywXcAoudHtKYBzC7bfjXtiVREOE9iz5kPbfWVzuJf/d4ceTCyPTFQWZsON1Wyh2YHUGHeke+JQoQC6l3//zAiTfhc8rc8qM4VE9h8NyxpRmVwEbEkq5R0iQSRS6kf3e1TEIJfkgf1V+h6dVogwPh2rTk/jtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C1UZTBhTJcYQ/yaszOUWOtN/NL5tW5Jf7Q9g46+SmIc=;
- b=K96Yf2zT53lQj2WieSXRCYJLlOp5NFn19f3sT3w2Az67qgDCobtMTH2uflroW6qBxFpnH89O4iNUWWts7ZOWw+tWeDelAK9kjkj0N4DG+HrIKY6EWFDY03vH3LwUBa6EuEpNpNGmvOwLV8rqsuKYDclx2MFNAArudQRBprcHAMS7u74XSsHAsKCAsbbhiXJ7Sz6NmJ+k5Cv08nL9NHzUE2rJb46xTfN2OHgIyWT4vO6EvNvhkx8Po4LkwFWBtxph12vogEFcxP4qXIjL890NR6tfznD4ekw+7Dw/3vcD1rz+CFSRc8WLMBoJwDZSgnapC7nOFSHibI+gPU1mqWXcPA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C1UZTBhTJcYQ/yaszOUWOtN/NL5tW5Jf7Q9g46+SmIc=;
- b=rCg/YwhTzAwbEwI8W+CNKcjem0Vmqw67qXoMzu8Z5h1ofG/s63ZBE39grOZiWluhVx1QqqtG8Qx9OiIkbkEvY/YX4DlyVeYCIN1XPZr7ISP29iTZYz0ODBDdkt/GoJSj9p4OjEVqxzIUEo8SuMycdV3bRUrho0g7C09luLEOnQzS3/tn9iPv8XlENq9qCk7FkITevu41WGz8yNg+Td2M7WJhUY/4T4bcGrIMuAaCYpzXZn4e68atj3qFlmoAoM6D8yCl5NKdWiK9Nory5WXkM8OrkRtFfzFYO/pDtOc1Yq2aXDyTu6wvbXyesHUtsQG2f7Osu69401vcTyEWeb2hvQ==
-Received: from SJ0PR03CA0031.namprd03.prod.outlook.com (2603:10b6:a03:33e::6)
- by SA1PR12MB6775.namprd12.prod.outlook.com (2603:10b6:806:25a::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.24; Thu, 6 Feb
- 2025 22:41:06 +0000
-Received: from SJ5PEPF000001EE.namprd05.prod.outlook.com
- (2603:10b6:a03:33e:cafe::27) by SJ0PR03CA0031.outlook.office365.com
- (2603:10b6:a03:33e::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8398.27 via Frontend Transport; Thu,
- 6 Feb 2025 22:41:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- SJ5PEPF000001EE.mail.protection.outlook.com (10.167.242.202) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8398.14 via Frontend Transport; Thu, 6 Feb 2025 22:41:06 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 6 Feb 2025
- 14:40:46 -0800
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail205.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Thu, 6 Feb
- 2025 14:40:46 -0800
-Received: from build-yijuh-20230530T223047391.nvidia.com (10.127.8.10) by
- mail.nvidia.com (10.129.68.9) with Microsoft SMTP Server id 15.2.1544.14 via
- Frontend Transport; Thu, 6 Feb 2025 14:40:46 -0800
-From: Ivy Huang <yijuh@nvidia.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding
-	<thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
-	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>, Brad Griffis
-	<bgriffis@nvidia.com>
-CC: Ninad Malwade <nmalwade@nvidia.com>, <stable@vger.kernel.org>, Ivy Huang
-	<yijuh@nvidia.com>
-Subject: [PATCH] arm64: tegra: delete the Orin NX/Nano suspend key
-Date: Thu, 6 Feb 2025 22:40:34 +0000
-Message-ID: <20250206224034.3691397-1-yijuh@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-X-NVConfidentiality: public
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FF7423C380;
+	Thu,  6 Feb 2025 22:43:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738881810; cv=none; b=qJkD9k4E0LCSeBjKOhOYaEttgkMtMhltISHF0RPOjYChVJlwaNvBODxLw5lp4iRZJ4ZbELuMW4FfbMVKCHVC5/X5PLS233unXkGrlTEZLzqAlWyLrYWwtqha+pJEhraWwmGxwBDcRRxrFVeD6m8oP5XFicaN87zNkdWOT6qcDnM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738881810; c=relaxed/simple;
+	bh=RRyeWgDKYUXqPj9AK9HawjmXCxmssH+oPCpVBdzfC7s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KYgYO+Flx8R3+XPiqbGvhL9RsGfIOnO5yqsBO5FE9R+OrR+7OqVdTJl/qEMi+4jrpnolkB/ILtNQ9DlXW44G04p1EVMKdY0KqfWPYfpzPwTG2rAE0R4yhJ8LnppUmNLx5zEXWNUNB7z5Ky5oH7bgZYfnP+YqUcpEB2Ih525vLBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oHW/sIwY; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738881809; x=1770417809;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RRyeWgDKYUXqPj9AK9HawjmXCxmssH+oPCpVBdzfC7s=;
+  b=oHW/sIwYCprRUbWd+acRPAhnKPN1Gda3bpn269k4oUsSW4PMo6PwT7uW
+   1NGnp/GYrLLGR9E0WqESjGPx7HYXMrywIXblKQSbp5jhxNHLqEOXUkZK4
+   WeuXT4pf1nEPb8m3+0ntxI+dtlH5XABaDTvmjh4jpVc7Y/tNiXVXcxFPL
+   K+9i9roEygKoHSexS8U2JZW9z8AZ6tGjwgQzJOpFoA0pxwZ3hWCjFSuV/
+   SDOHm5CP3PMjtcystucew4QUCsvN0FdNQpRixoSnH/JeBoh3CLgHo/8SA
+   vGdmXVL8udH1sgAIJCJ5/R/wODyAYOFWu/OVgdnCJW+o/+yRdg9WaZwGT
+   Q==;
+X-CSE-ConnectionGUID: JEsPmPcGSLiIDbXUDDo5og==
+X-CSE-MsgGUID: NT+8PkpNTSWZb5ioeZALMg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39385323"
+X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; 
+   d="scan'208";a="39385323"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2025 14:43:28 -0800
+X-CSE-ConnectionGUID: jROx22NBQcGGvRMsd4YqeA==
+X-CSE-MsgGUID: tiD9h/EPS9SDj5QwMK+YGw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; 
+   d="scan'208";a="111181311"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 06 Feb 2025 14:43:24 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tgAag-000xTb-17;
+	Thu, 06 Feb 2025 22:43:22 +0000
+Date: Fri, 7 Feb 2025 06:42:58 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] iio: adc: Support ROHM BD79124 ADC
+Message-ID: <202502070654.5T9Nk6dN-lkp@intel.com>
+References: <4781e1b1f074ca6c84ecc084b152885d08e826cc.1738761899.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001EE:EE_|SA1PR12MB6775:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4a10853c-4470-49f2-dca1-08dd46ff57f4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?/yvDZluydYDFkfHcrhAvTuYsKM1GMXjhiZ/B4zqhQy+4w2I4+kcTmxIjkJS+?=
- =?us-ascii?Q?IjnSnHknog5JqJ/lPFxq7cs4bGYxEH4pqpvOLsHYMKKkBlQDd62NxHrTO8V/?=
- =?us-ascii?Q?ZSKaANbUk5UpE7af8KuXKSrMDDnHoynoxErBIA8WLlllykQUDRAF+AzLgvGx?=
- =?us-ascii?Q?m11BnUzYZbabYBgQCiR+9DhFCsAHuoI2FUK7lG7dBM/Frq8PfC1IakV92hiq?=
- =?us-ascii?Q?cegQYremj33ewmoRiDLsc1jVnDGfPbaMi4wmTy5WAuG8VrJ+hoqNcKfdjPPc?=
- =?us-ascii?Q?q2s5q6GsM/IaDlAA9mZdoM7zcNSY3UDP95xx2hYFGSqtfcr2+xPdPm9xbMW7?=
- =?us-ascii?Q?jXEjqhBJzaDLgR+Of1u9Bdqvx7aCmnMIGrfF0XJC/i1srqKMFGhJPwg0MAMA?=
- =?us-ascii?Q?slFMP0JGVS1BnNxaWDKRLi5WyGNypkjqCXNh8/GPEfMEZRwBiOHFCVEuuNJt?=
- =?us-ascii?Q?0A3lkuMmVBKU97iJCztB8FPjF0jz+QTNvIlnExmN59/drg4eRtChni6EOhUT?=
- =?us-ascii?Q?FCVgCs9zr404EwU4NUqOJ5ivrcIWMVTPfTBhKzyo7yCRI7CtJvuD7UzkNwz0?=
- =?us-ascii?Q?ppHKa5ya79dQXzvFJiWq0Pjq46MGqCDBSD+wAfO08yeLaSV778EjHMLzKdm2?=
- =?us-ascii?Q?j0fzmPvWdKkDAY8zcnqE7fwWt3CCS2LUbAkJqwex/l1TqqYbUEDm6R/LJvOR?=
- =?us-ascii?Q?TaVKN2WOWBa1ZnwgDN5PDbDdx1DQzV0xKOTRFKFk1AFsdLrgsAR6D0NCJMKl?=
- =?us-ascii?Q?E94ajQpUbNF6/hgk9I3/ukq7oC676Bfz3QJQ3WuKr514q1vm0fEMcXuoDWpX?=
- =?us-ascii?Q?ckpafGV9xV6Lrnis5EksEVSaWOTiqPHNkmffNk5lwOIdMaMnX2ew2f27PfBi?=
- =?us-ascii?Q?XJZDolHEcZtuDjImpxncKWDm5sFx3UgvvgWmUaXixIDEw/2Y0NShVEyp5j7M?=
- =?us-ascii?Q?NORDxTzTXSa0nuM+AOcWlRzZ19jKu3H1pPZ9q1uVeAIw1ecH9ylVBwBjI+KS?=
- =?us-ascii?Q?CoqR6OQH48qEdolzPT1yTwR8CE5Svhts4jKvyirk2RaRaQlq0bARoIH1NXsM?=
- =?us-ascii?Q?8Ar++NfCX7zA2t8Skp3o1yCnhrYr/L2fC9Vo7bpyT7ORcgsGxfRKvkCY3zW/?=
- =?us-ascii?Q?1BGuwCU9qOSZ8ltjMNKQ19DwsDQv1Q4f72P1y1tqDYOegnPoS1MCDY+P63sw?=
- =?us-ascii?Q?nwSadUBZ7TdTEjcyeB4jmTrr8ss8mG6kmvORICw6p3cqH2YdmeavaTzaXR1S?=
- =?us-ascii?Q?3CVeh+eMP/BIihJV3JodMAAilmx/qP/X0OWysp8GEswOtKk1A866JhMJGdAe?=
- =?us-ascii?Q?hWGgY3wiJYJJHm5KykE9zdPHgi8HNwJLDnqALU3vUED30uXd2B3L7wNyZGtX?=
- =?us-ascii?Q?FWnzhAnvO+PRuF+bn9CckSuCUZ30SLTBm1qqjCd5uwqwxgN4gezaNX0zst9k?=
- =?us-ascii?Q?iV7hgnc93qoZwUQ5fLYLkOK4Zzuwo+163I8lnV4iOl6Jk/M0Y/+8e0s8oSOf?=
- =?us-ascii?Q?njBq1XCELrH0gx8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2025 22:41:06.0717
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a10853c-4470-49f2-dca1-08dd46ff57f4
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001EE.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6775
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4781e1b1f074ca6c84ecc084b152885d08e826cc.1738761899.git.mazziesaccount@gmail.com>
 
-From: Ninad Malwade <nmalwade@nvidia.com>
+Hi Matti,
 
-As per the Orin Nano Dev Kit schematic, GPIO_G.02 is not available
-on this device family. It should not be used at all on Orin NX/Nano.
-Having this unused pin mapped as the suspend key can lead to
-unpredictable behavior for low power modes.
+kernel test robot noticed the following build warnings:
 
-Orin NX/Nano uses GPIO_EE.04 as both a "power" button and a "suspend"
-button.  However, we cannot have two gpio-keys mapped to the same
-GPIO. Therefore delete the "suspend" key.
+[auto build test WARNING on 5bc55a333a2f7316b58edc7573e8e893f7acb532]
 
-Cc: stable@vger.kernel.org
-Fixes: e63472eda5ea ("arm64: tegra: Support Jetson Orin NX reference platform")
-Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
-Signed-off-by: Ivy Huang <yijuh@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi | 7 -------
- 1 file changed, 7 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Matti-Vaittinen/dt-bindings-ROHM-BD79124-ADC-GPO/20250205-214127
+base:   5bc55a333a2f7316b58edc7573e8e893f7acb532
+patch link:    https://lore.kernel.org/r/4781e1b1f074ca6c84ecc084b152885d08e826cc.1738761899.git.mazziesaccount%40gmail.com
+patch subject: [PATCH v2 3/5] iio: adc: Support ROHM BD79124 ADC
+config: i386-randconfig-004-20250207 (https://download.01.org/0day-ci/archive/20250207/202502070654.5T9Nk6dN-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250207/202502070654.5T9Nk6dN-lkp@intel.com/reproduce)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-index 19340d13f789..41821354bbda 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-@@ -227,13 +227,6 @@
- 			wakeup-event-action = <EV_ACT_ASSERTED>;
- 			wakeup-source;
- 		};
--
--		key-suspend {
--			label = "Suspend";
--			gpios = <&gpio TEGRA234_MAIN_GPIO(G, 2) GPIO_ACTIVE_LOW>;
--			linux,input-type = <EV_KEY>;
--			linux,code = <KEY_SLEEP>;
--		};
- 	};
- 
- 	fan: pwm-fan {
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502070654.5T9Nk6dN-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/adc/rohm-bd79124.c:1072:29: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
+    1072 |                 return dev_err_probe(dev, ret, "Failed to get the Vdd\n");
+         |                                           ^~~
+   drivers/iio/adc/rohm-bd79124.c:1057:9: note: initialize the variable 'ret' to silence this warning
+    1057 |         int ret;
+         |                ^
+         |                 = 0
+   1 warning generated.
+
+
+vim +/ret +1072 drivers/iio/adc/rohm-bd79124.c
+
+  1049	
+  1050	static int bd79124_probe(struct i2c_client *i2c)
+  1051	{
+  1052		struct bd79124_data *data;
+  1053		struct iio_dev *iio_dev;
+  1054		const struct iio_chan_spec *template;
+  1055		struct iio_chan_spec *cs;
+  1056		struct device *dev = &i2c->dev;
+  1057		int ret;
+  1058	
+  1059		iio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+  1060		if (!iio_dev)
+  1061			return -ENOMEM;
+  1062	
+  1063		data = iio_priv(iio_dev);
+  1064		data->dev = dev;
+  1065		data->map = devm_regmap_init_i2c(i2c, &bd79124_regmap);
+  1066		if (IS_ERR(data->map))
+  1067			return dev_err_probe(dev, PTR_ERR(data->map),
+  1068					     "Failed to initialize Regmap\n");
+  1069	
+  1070		data->vmax = devm_regulator_get_enable_read_voltage(dev, "vdd");
+  1071		if (data->vmax < 0)
+> 1072			return dev_err_probe(dev, ret, "Failed to get the Vdd\n");
+  1073	
+  1074		ret = devm_regulator_get_enable(dev, "iovdd");
+  1075		if (ret < 0)
+  1076			return dev_err_probe(dev, ret, "Failed to enable I/O voltage\n");
+  1077	
+  1078		ret = devm_delayed_work_autocancel(dev, &data->alm_enable_work,
+  1079						   bd79124_alm_enable_worker);
+  1080		if (ret)
+  1081			return ret;
+  1082	
+  1083		if (i2c->irq) {
+  1084			template = &bd79124_chan_template;
+  1085		} else {
+  1086			template = &bd79124_chan_template_noirq;
+  1087			dev_dbg(dev, "No IRQ found, events disabled\n");
+  1088		}
+  1089		ret = devm_iio_adc_device_alloc_chaninfo(dev, template, &cs);
+  1090		if (ret < 0)
+  1091			return ret;
+  1092	
+  1093		iio_dev->channels = cs;
+  1094		iio_dev->num_channels = ret;
+  1095		iio_dev->info = &bd79124_info;
+  1096		iio_dev->name = "bd79124";
+  1097		iio_dev->modes = INDIO_DIRECT_MODE;
+  1098	
+  1099		data->gc = bd79124gpo_chip;
+  1100		data->gc.parent = dev;
+  1101	
+  1102		mutex_init(&data->mutex);
+  1103	
+  1104		ret = bd79124_hw_init(data);
+  1105		if (ret)
+  1106			return ret;
+  1107	
+  1108		ret = devm_gpiochip_add_data(data->dev, &data->gc, data);
+  1109		if (ret)
+  1110			return dev_err_probe(data->dev, ret, "gpio init Failed\n");
+  1111	
+  1112		if (i2c->irq > 0) {
+  1113			ret = devm_request_threaded_irq(data->dev, i2c->irq,
+  1114						bd79124_irq_handler,
+  1115						&bd79124_event_handler, IRQF_ONESHOT,
+  1116						"adc-thresh-alert", iio_dev);
+  1117			if (ret)
+  1118				return dev_err_probe(data->dev, ret,
+  1119						     "Failed to register IRQ\n");
+  1120		}
+  1121	
+  1122		return devm_iio_device_register(data->dev, iio_dev);
+  1123	}
+  1124	
+
 -- 
-2.17.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
