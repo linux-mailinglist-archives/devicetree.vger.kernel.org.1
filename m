@@ -1,192 +1,139 @@
-Return-Path: <devicetree+bounces-143504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E403CA2A3BF
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:00:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60D3CA2A3C2
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:02:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67D23162B71
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:00:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A37E43A352A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:02:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49E77207E0E;
-	Thu,  6 Feb 2025 09:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F8A2248AC;
+	Thu,  6 Feb 2025 09:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jqjdhtwo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 470D015B10D;
-	Thu,  6 Feb 2025 09:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 635CB2040B5
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 09:02:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738832444; cv=none; b=G1A7Q1q0OEsOkiCFF+wLJYrVz4buEro92zbkej6Kt4cZRaq7LaAMyQ/i0h+OOmWV7t9PXyECgXHErWatwj1PTGZBNoR5h0gBjm75F1dVeA/zxt7oFDK+bQbIgkJNdOHA4xCPOAOV94B+fKHCMiupIkBBZ078TjLBHEvRpa58g30=
+	t=1738832538; cv=none; b=CQjqokvgLdnhK+sn9YyETemlWgQuDUVbgZpSAkVfR/oF/jm++UjlNSYDurp6P/c7s5pQeRx8aE/zTAd7j08ofcJ2wUp0OMgrATUqKNHfZjQCbKi9ra5yrgZhkuzQ90RzKqAOkCbo5lqpI4TYCYpupwumBcJ+25Hz+6mRsha06Rc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738832444; c=relaxed/simple;
-	bh=tNGp6AnmMtIsCmEnYFKaMlbkh9Gdfbixuud1uF6c9WI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TeEyM8GUarBYCmGptv/fX4Z2MgnQwppaOZ7Nod5FIEjFL2tLzmQEGaeWjEC5/h/NH1d/RGxqnX7SJIIg5wE2KA3cUzb/nG156ubelK3EgTYnvJ7rhixMMde8GIPqrXfGHn4uk2MMGzs38xLuhsqLgaAcYbnSuAFQr1hvv9zZJEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-85c436db302so391117241.0;
-        Thu, 06 Feb 2025 01:00:41 -0800 (PST)
+	s=arc-20240116; t=1738832538; c=relaxed/simple;
+	bh=UAXyu6RSQTWRgiR0k2OETrZ560YXgX45bKcxld054/s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kDKyqiwU5Dy15aKb/nOhjle/DJ4HHd0DhqvuyUiTm8g5RaqQ8N4+giv6NQnKkW8xAkRR4Qbn3mPXnmJsN6WbkwWQ+GVOtkTAQiEjMgfUglB40tNTCW0HcSTX38/WYMe4sfN0Vu710Cx0iPSxfknXZXJQcN/Y/GUfFh6uQJlX7p4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jqjdhtwo; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4361b0ec57aso6271945e9.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 01:02:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738832534; x=1739437334; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZPzy1Z8VbxCdd+MyKxJcvToGmvpLxSPc4zUEljsmwWY=;
+        b=jqjdhtwogrIdhNoEmFMU5484Um0Td/Vy5MBmHm+kN7yfLHJAEJY6z1GR8UPZTE8hvw
+         gKjPl/tuAGdH8l9kdFhgxfpWaoMRYxxH5NRZrJBDgWsKlJfP+W2jx2lYpbpiBdbvLDCY
+         CCmrS05HGXTFoCSUp/BVwL4uGSyR8gbIb9jDP+hrbxHNt+8R5inm8C/7sgBsYZ06A7hO
+         MDvp4y7EyjiT421hrX3SAjMLmWsQ74UDbjzismt/7Wos4iLsZpetE12OS6LNUzkd1iTq
+         5+KbHlkZ3KTyKM+iY1rpDHSPQ7/jTio2wWdY+Fe1osEVLMfnzGZrSyIrDUjSrMkVuFn+
+         ddDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738832440; x=1739437240;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y3ehC4vTUdT8yYHtUdAmhQ8vVz5MIbtBfCbdfqQHxzk=;
-        b=ho14n2HNjBWxOgmIByrJdxn35EbII6V+Ngx9LIfAPDYmYiK0fv5tXUq+zMyzzKZwBe
-         DES5Z0RGnwWXg0peP3eHvnG9ujURNLCQFwIYh/SEWNHABR8xxGB0oMcn+uCkHPuMYVbl
-         kITk51MIW+UgAojjJ87I+ZttNJ5DiF1KLNFprtJOAzvj5BL5JDQ/+ZQ/jr95H8MVqq91
-         VhV/7Njg2g9tailVK2mlMhtOV0rUq7jjhn5cQoe9NZgwHD9c1veSDBvfwYFcAgc2Tch8
-         WDWB6zXtdTr+r64B2Ou+BWIaaMt5qGq3Rfkvs0EVY/YPega5xjzui1VjBZD+sK1DPwTD
-         sK1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUNIrIuKI5W7RlXxeWyhdMY12X3TV8PKyD6k8uCPQW7os/GtNYPBiky0VGYTPry5jKwhOp0VN+43xP9@vger.kernel.org, AJvYcCWjlCEuR/kopREo7dS06e3MM50mAIF23w6pspwUWFqVXVxxiDS5WRmU5IvQtEIDydjjoBrORKOotEUTToW2M61efFE=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwklcJs5iYUMDb5BAsei0EzQd2YE/+HJrdd8Sv9WN5KMi8gUebi
-	PKjllOJcd3cvoYgsT9hZZsuxvGaZ1Lv76MCxHiSzcmpyqIDC180zKImcpFCP
-X-Gm-Gg: ASbGncvLjQ2+rI/x/YyCthtapjB3a5eAmIj6UnmrrMdm9sMRyP2LMoGgZUDY8eQtiZw
-	drH27Wq8bO9guFi5uVA8eZk7KEvmhTe3Rts+uMdHr9nESM5dIvbRxAUPPOkUTl/EGMa8Un+JwPR
-	6yBh0JNWAcF/0yI9GdwTZcnlAenJmCRglIXemnRuRZer0/mZT6Ecbj8XfVKcmmQ1J9VOwDuaHR3
-	HyUDbnVZTRoLujbHOq5VrrlQEQeRNnbwH9lNG8ML2ijAKlozx9KJI5LuLLu1HcObLU6lcean+T7
-	TTcXJs4HcstEUMFenoBGRlTYlK3Y3h7VWBE2sfLBA5kPaeX1tZNAbg==
-X-Google-Smtp-Source: AGHT+IGGJiuza2WKqf/DAOCyy6Z3Y5LBgEHtF1/Z60kZDO5dquAtevhDRAGBW9Y3q4zjGatvEjVGvw==
-X-Received: by 2002:a67:f150:0:b0:4b4:5e9b:3c30 with SMTP id ada2fe7eead31-4ba7209077amr1077223137.9.1738832440305;
-        Thu, 06 Feb 2025 01:00:40 -0800 (PST)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4ba76ef5337sm154373137.13.2025.02.06.01.00.39
+        d=1e100.net; s=20230601; t=1738832534; x=1739437334;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZPzy1Z8VbxCdd+MyKxJcvToGmvpLxSPc4zUEljsmwWY=;
+        b=vYEjv1OfRQa9t64vj1RTSTTHTRWDv6dZWmAwDFLSBFonjpl7lGNIpvpNpEiX+j6wCj
+         eVD8I3tL/gP6nxkgfIh0M/EZl8GAxr4j7VmaubZ3eCrY17JTxTJU/jvO6AB09Vpa71UW
+         UNTHbF7s/qzV8sIE9GG5YtHgZGRP1ABG/kct1MfinEx8SWSRRpDZByZT7ECW8+oskSlD
+         w/xwJnlbZka/kPh1/cK4El44+iibRRWEPtiQJ35guxTXPoWRp1pJG728qQsdGgWe9dTx
+         DBFGebjbTBLY/qxGLcoABKK544FAxLIfKn4VM+hx57aXqVWr4iYyhbVHhmEEIxJsYfRQ
+         0+eA==
+X-Forwarded-Encrypted: i=1; AJvYcCVGs+SJDeN98tDIdXSLI5en9JoKs09aUyx0bHFfmGswjQe6+xXtK9THGjAmJpb3bS0HKbA1b12yA4vt@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHdpZRHEvB/ICQP5Yyi0Yr2/KNMSTxLt9s25bE/s+K8CKQkDJD
+	RWBr+1OH1GJK85+Q++ryHpiSTdwU7W3HSfCsnXgyNbI0v6vgmKNdWaXPDODh3Lk=
+X-Gm-Gg: ASbGncv3itcPK9hyIKYNGuy3YNVeaRE3w/ScASYSnsS3WlC8FB8LtJJKd+aOWjWK1QH
+	yIwFVH72OnloYDbmf5LObo3E/h6TZO+OlwPUAK6Mp1wtsnyhu+5NZBCnjfUCTz0n5jkaqua5MgB
+	lgc/HkxezvZTECAv4y3kdgugLxKdRGGoAgZL2cU+qnaFDuTDPCNGwTvdNdmE5FkPP1q+0PoZFJh
+	tdrL2Kja1z9MCGHwX6I1TPJSBgf+t/Wcr+Oiza33J90VOmjbclcgzXN8cSRAhRhbnsxcHwYh/qy
+	+pzXxJ3D2BE0Zb0TJU5X80Mc
+X-Google-Smtp-Source: AGHT+IHb4g4QZ/ozYPa6vvDOHmEuKFym5OBNx5m4o6Nj8tDENoav/RWlv4fqN6xllweSDexUwkeGoQ==
+X-Received: by 2002:a05:6000:1a8b:b0:386:407c:40b9 with SMTP id ffacd0b85a97d-38db48d247amr4779823f8f.28.1738832534542;
+        Thu, 06 Feb 2025 01:02:14 -0800 (PST)
+Received: from [192.168.0.14] ([79.115.63.251])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dbf6e4a4bsm786590f8f.92.2025.02.06.01.02.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Feb 2025 01:00:40 -0800 (PST)
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-85c436db302so391107241.0;
-        Thu, 06 Feb 2025 01:00:39 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU6EwSfDYMn4q6A9cYZYhQvHvIVC/N0Z4lsgRE63JuYB5yI/Bz/3t0TMZWGjJqXmdTlusBAvIFP0o5ymCb3GdvXdD4=@vger.kernel.org, AJvYcCU8UiVX7popESwO1Rbi3XAl2TwZJmlUeV08SDspOHRdRXdoQT25TM/ekeCvY+BpIbZ8yJJmDk3dZfsb@vger.kernel.org
-X-Received: by 2002:a67:fd72:0:b0:4b5:b20d:9613 with SMTP id
- ada2fe7eead31-4ba7209019emr961371137.7.1738832439620; Thu, 06 Feb 2025
- 01:00:39 -0800 (PST)
+        Thu, 06 Feb 2025 01:02:13 -0800 (PST)
+Message-ID: <1fa54c76-d82f-483b-b577-79322908fabc@linaro.org>
+Date: Thu, 6 Feb 2025 09:02:11 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250131112849.120078-1-biju.das.jz@bp.renesas.com> <20250131112849.120078-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250131112849.120078-2-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 6 Feb 2025 10:00:27 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU1PFgdvMBrQrgdwmeNutM6arxZtzdE1rnrwWKtWvPVhg@mail.gmail.com>
-X-Gm-Features: AWEUYZnTgiTlyZq258RomMQ0wekaxyOv0U0s3kHMxKKVEKvnvz3L7o5gLRcV264
-Message-ID: <CAMuHMdU1PFgdvMBrQrgdwmeNutM6arxZtzdE1rnrwWKtWvPVhg@mail.gmail.com>
-Subject: Re: [PATCH v2 5/8] arm64: dts: renesas: r9a09g057: Add support for
- enabling SDHI internal regulator
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/3] firmware: add Exynos ACPM protocol driver
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
+ peter.griffin@linaro.org, daniel.lezcano@linaro.org,
+ vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de
+References: <20250116-gs101-acpm-v6-0-e3a2e1a3007c@linaro.org>
+ <20250116-gs101-acpm-v6-2-e3a2e1a3007c@linaro.org>
+ <f83ccdb0-4d22-441f-9311-d9a2c8cd3493@kernel.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <f83ccdb0-4d22-441f-9311-d9a2c8cd3493@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Biju,
 
-On Fri, 31 Jan 2025 at 12:29, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add support for enabling SDHI internal regulator, by overriding the
-> status on the board DTS, when needed.
->
-> While at it, rename the gpio regulator label vqmmc_sdhi1->vqmmc_sdhi1_gpio
-> to avoid conflicts with internal regulator node names.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Thanks for your patch!
+On 2/5/25 4:52 PM, Krzysztof Kozlowski wrote:
+>> +static const struct acpm_handle *acpm_get_by_phandle(struct device *dev)
+> "by_phandle" takes the name of the property with phandle as an argument,
+> because otherwise you do not have here phandle part at all in the
+> interface (see syscon API).
+> 
 
-> --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> @@ -602,6 +602,13 @@ sdhi0: mmc@15c00000  {
->                         resets = <&cpg 0xa7>;
->                         power-domains = <&cpg>;
->                         status = "disabled";
-> +
-> +                       vqmmc_sdhi0: vqmmc-regulator {
+Indeed.
 
-sdhi0_vqmmc
+> Other option would be by actual phandle - see of_find_node_by_phandle().
+> 
+> I would propose in such case only acpm_get() or maybe better of_acpm_get()?
+> 
+>> +{
 
-> +                               regulator-name = "SDHI0-VQMMC";
-> +                               regulator-min-microvolt = <1800000>;
-> +                               regulator-max-microvolt = <3300000>;
-> +                               status = "disabled";
-> +                       };
->                 };
->
->                 sdhi1: mmc@15c10000 {
-> @@ -615,6 +622,13 @@ sdhi1: mmc@15c10000 {
->                         resets = <&cpg 0xa8>;
->                         power-domains = <&cpg>;
->                         status = "disabled";
-> +
-> +                       vqmmc_sdhi1: vqmmc-regulator {
+cut
 
-sdhi1_vqmmc
+>> +	np = of_parse_phandle(dev->of_node, "exynos,acpm_ipc", 0);
+> You need bindings for this somewhere and fix the underscore->hyphen...
+> and vendor prefix. It really would not be accepted that way so please
+> post consumer bindings anywhere.
 
-> +                               regulator-name = "SDHI1-VQMMC";
-> +                               regulator-min-microvolt = <1800000>;
-> +                               regulator-max-microvolt = <3300000>;
-> +                               status = "disabled";
-> +                       };
->                 };
->
->                 sdhi2: mmc@15c20000 {
-> @@ -628,6 +642,13 @@ sdhi2: mmc@15c20000 {
->                         resets = <&cpg 0xa9>;
->                         power-domains = <&cpg>;
->                         status = "disabled";
-> +
-> +                       vqmmc_sdhi2: vqmmc-regulator {
+There's no consumer upstreamed yet, I don't know where I shall specify
+it. How about keeping the function name and modify the declaration to
 
-sdhi2_vqmmc
++static const struct acpm_handle *acpm_get_by_phandle(struct device_node
+*np,
++						     const char *property)
 
-> +                               regulator-name = "SDHI2-VQMMC";
-> +                               regulator-min-microvolt = <1800000>;
-> +                               regulator-max-microvolt = <3300000>;
-> +                               status = "disabled";
-> +                       };
->                 };
->         };
->
-> diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-> index 0b705c987b6c..1ecea3872e94 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-> @@ -53,7 +53,7 @@ reg_3p3v: regulator1 {
->                 regulator-always-on;
->         };
->
-> -       vqmmc_sdhi1: regulator-vccq-sdhi1 {
-> +       vqmmc_sdhi1_gpio: regulator-vccq-sdhi1 {
->                 compatible = "regulator-gpio";
->                 regulator-name = "SDHI1 VccQ";
->                 gpios = <&pinctrl RZV2H_GPIO(A, 2) GPIO_ACTIVE_HIGH>;
-> @@ -244,7 +244,7 @@ &sdhi1 {
->         pinctrl-1 = <&sdhi1_pins>;
->         pinctrl-names = "default", "state_uhs";
->         vmmc-supply = <&reg_3p3v>;
-> -       vqmmc-supply = <&vqmmc_sdhi1>;
-> +       vqmmc-supply = <&vqmmc_sdhi1_gpio>;
->         bus-width = <4>;
->         sd-uhs-sdr50;
->         sd-uhs-sdr104;
+This shall be in line with the syscon API and doesn't force me to
+introduce bindings for the consumers now.
 
-And then there is (a) no need to change the names here, and (b) no
-build failure in arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks!
+ta
 
