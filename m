@@ -1,159 +1,134 @@
-Return-Path: <devicetree+bounces-143685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8F92A2AEA8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 18:17:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81549A2AEB0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 18:18:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7068E188B41B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 17:17:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 868FF7A1F03
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 17:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5657414A4F0;
-	Thu,  6 Feb 2025 17:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4671023958D;
+	Thu,  6 Feb 2025 17:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bMRNtHrT"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="lGLoDYlW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3324B239588;
-	Thu,  6 Feb 2025 17:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 728AB166F06
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 17:18:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738862241; cv=none; b=uOCmyPWAegaSf72tO7jki4cJQ0x4RNaDIIxiPuLNqwmU170JFRSQKf/cbOHWgAmXcgHgmj8N+gNiICGfvOTkbqz+zXTzUbgBoEAzC8CEoNnFoq6baYmzcHLpXxaXxA9s47EM73awW3V+yAzFoTwX0YLHbWDXijukkdyUd/wSzVg=
+	t=1738862292; cv=none; b=Pixzk5sCQlU+HI9LVIbvzEFSsY1fLrotaEx3s08vGVqc+akh0f7A9Trjk65/64QfYUESeFQfDLSu6vOKwei/RM3OqrJE7FF0W5jeDdUw8RJdY2xOxmEjQl9JNTk29UvbS04sy6v6M5PTr4pI4L1+cZ6YaxpKaTMmMOOTg/2OFmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738862241; c=relaxed/simple;
-	bh=zlo4C9Tvhxf4/57WA1N4h+WA5+QJ2Xjr/e4qgnsfxJ8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=GRUUBpP0bs4ekYXy6XgyC4+3QUf1QQp95brZrSD2wjCvKcumFUMLcocURZV/w428y6VNq1IltAgexjAicXZRBriXF9ua6OZBpF93Ld8w4YnubhQ0QVxlmPdJrz2Mz3PR94TGQYQDe5upDz8AeJ7dasANuIRty/fXAa+JsAoLnjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bMRNtHrT; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EE1984434D;
-	Thu,  6 Feb 2025 17:17:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1738862236;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yPqgb82RV5Eh4di0p99++tt4PTXyauGdKJYgPKVgVkw=;
-	b=bMRNtHrTdtXyip9IgAG/87kFux8hrvKvIyVVkK4rTjddnJCgjV7/VvqodbfSOmbeFgDN7r
-	gOR4J9InWsRbIAibyYjrCTbWpH02z8hR6/0O/7aGeg2C7oBd1vrVVGAMJxKdUj6IuEB9m1
-	kO5ZmvQzDG3y1/yw4Au0LnpvzqYIkPqtn89hLSfh0rmujsPEDHF+vp5ufVvC+11qmUfNvE
-	BIRBcjZb/UyXd2GlBfiajECikuzA58XBzf1kg7jiJm4dqYMBgEtwnIZcbGhjPK8+rOuCOf
-	wn8ZG3a7iRFdJba2ws9HyH6GEE9sRc8e1RJLRLn/TPPQbrlrgZ5vSLlGpQx9ug==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>
-Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  keguang.zhang@gmail.com,  linux-mtd@lists.infradead.org,
-  linux-kernel@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-media@vger.kernel.org
-Subject: Re: [PATCH v12 2/2] mtd: rawnand: Add Loongson-1 NAND Controller
- Driver
-In-Reply-To: <20250121-loongson1-nand-v12-2-53507999de39@gmail.com> (Keguang
-	Zhang via's message of "Tue, 21 Jan 2025 18:27:34 +0800")
-References: <20250121-loongson1-nand-v12-0-53507999de39@gmail.com>
-	<20250121-loongson1-nand-v12-2-53507999de39@gmail.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Thu, 06 Feb 2025 18:17:15 +0100
-Message-ID: <87tt972dt0.fsf@bootlin.com>
+	s=arc-20240116; t=1738862292; c=relaxed/simple;
+	bh=JOwGLgYsPSFwIYyb0GW3l8HYahDCo2F/VehNRyBqSTA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PD1Xm7082muEAjVcfGKX238t2VuMzeTz4uq9WdwJlt8i/NAdC+Vw+qz47Sb7L2ItB7I4Nv9JHEqF9OxwvSuUS14wlExhMb5s05HY+eBjgvlkH66i3/h1Q5+vxIGMX/nlBf+s+hX/MQpK4FzHyEL6Y8VcLciAvSjmMsbu/lC8brg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=lGLoDYlW; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-30761be8fa7so11057571fa.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 09:18:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1738862284; x=1739467084; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ueAPYpXJvcfTr/q+Id1IwP1ydGbx5eYC+BvmtKb8pog=;
+        b=lGLoDYlWLu8AlzVMDBa8qdnRzATYict6Qtl1RDAmJSfWEA2Ev8TZ+nYzmobRmpngOe
+         Ex6Gm0HeXIPR5xIzho2VJXOwrD6EJH3XhuX1am3q0hmrj2loGb6LHK1dQKMF9+TgwOaC
+         HXK+g4BNEkY1xg3u3XNFwq3H0xQeAZzGFyXhg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738862284; x=1739467084;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ueAPYpXJvcfTr/q+Id1IwP1ydGbx5eYC+BvmtKb8pog=;
+        b=oABqz6PVQC1N4YeOJk9MiK/cO5IFLiSHSeHc3Dm9CWTRrkFm84n8cY6kED8iwwG7gF
+         XVvKpPc5zqzMamkgqElPQmyhj3ZNF7Rmdsm3KQLmPMswNP5dFwlnbRDR2CcpEr3M3DHj
+         LPlMNlF4EvhMcHKNxBJhvpE7mwDVndQ/cC/kP+n8bacyI94NMHx4c3ro2HvvSRrRYG2O
+         WiaxJlG9xu4b0Rkv76LZSZwXsg/X8DE//OpNpRa2JQ6NmhSf1gH+eEPEDIXFiD1V8K82
+         i1Sem7tzLdXGnu+tN1p10L2z2cHesDVIbKlGKuHuIFspTyi7cwZdqLwbDBq0EKkCojWc
+         qIEw==
+X-Forwarded-Encrypted: i=1; AJvYcCW0/X5LA2hgT59Wces7uQ9HvtiyNfzp0s3rU3aPTwk1maWq87HjkVtlQf/+fLW7JGqUmMQoHBpXwFYd@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaLPnZgVoKXEdV71iK2zKkMWF2yE8nVm7NrPoJpaMzL8sup3fE
+	R3LcrMvwmHbzEAdozmRSxYq+ddOnO7K2vq8qr2YEj4d96sT0481eOWyjsXVWW0PpBapOwWtwb4H
+	m2A==
+X-Gm-Gg: ASbGnctcKvCN77hzAfg15JBiGFX+ui9Irk0wqUKaxIrTJSrym1oQV+wnERX3hMMbitD
+	/F3mPVpLTuf3e2Y++t6WaPZFEFhVXXL+ZnPgj4cSweeghz5fZZw6oMFc3+WfnI3RsBKG0pUrHh5
+	uQmUv3wJm6QlSF1DcVe6uVjjfA3JzfnhMGOl/kpMPs6+bOE33qx7PadiSXfwVM8Fx2w7097WTM3
+	hm0QgDS4HAXR/yTzzU/tyitla5crBblw00CAN50ZCw9DkDltZT5l46o/rd8kkVr/ESwohmIkWep
+	NLc6VdhwPXQTcW2W9ssU0feSVqEYB9lV4xHGEaepi9uAOOTTKfC8gMo=
+X-Google-Smtp-Source: AGHT+IHUXxhF3yv4AKCK3jUmJ70CW6bCURWYzE/GsP+kKzbmtHNMPNNYK+OXYgM3qd8jFukybVkZ4g==
+X-Received: by 2002:a2e:a554:0:b0:302:3021:9b29 with SMTP id 38308e7fff4ca-307cf30166dmr22737411fa.4.1738862284537;
+        Thu, 06 Feb 2025 09:18:04 -0800 (PST)
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com. [209.85.167.41])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307de2bad67sm1831411fa.77.2025.02.06.09.17.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Feb 2025 09:18:00 -0800 (PST)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5401c52000dso1211545e87.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 09:17:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX9Q4huL0rwWDVKr0d8kwtcZV2lYb2extQBhCWSqxTGlmMrhWN8MFT72WrwgBtS0S0mDqfmYvp/wuCX@vger.kernel.org
+X-Received: by 2002:a05:6512:280e:b0:540:1f75:1b05 with SMTP id
+ 2adb3069b0e04-54405a181d4mr2811882e87.19.1738862275685; Thu, 06 Feb 2025
+ 09:17:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20250206131300.1295111-1-yelangyan@huaqin.corp-partner.google.com>
+ <20250206131300.1295111-3-yelangyan@huaqin.corp-partner.google.com>
+In-Reply-To: <20250206131300.1295111-3-yelangyan@huaqin.corp-partner.google.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 6 Feb 2025 09:17:38 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=W0jvGESB59f_Hnz3tL8y37YdX77nx0hO+e0KK5TngPpQ@mail.gmail.com>
+X-Gm-Features: AWEUYZkNkoAXZHBbfT2iBqqpLsWvoirtpsqxceL-idOINtHwPQs__7CAWjInIok
+Message-ID: <CAD=FV=W0jvGESB59f_Hnz3tL8y37YdX77nx0hO+e0KK5TngPpQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: display: panel: Add compatible for
+ CSOT PNA957QT1-1
+To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvieeliecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefujghffgffkfggtgfgsehtqhertddtreejnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepffeghfejtdefieeguddukedujeektdeihfelleeuieeuveehkedvleduheeivdefnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddupdhrtghpthhtohepuggvvhhnuhhllhdokhgvghhurghnghdriihhrghnghdrghhmrghilhdrtghomheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhitghhrghrugesnhhougdrrghtpdhrtghpthhtohepvhhighhnvghshhhrsehtihdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhto
- heptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkvghguhgrnhhgrdiihhgrnhhgsehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhhinhhugidqmhhtugeslhhishhtshdrihhnfhhrrgguvggrugdrohhrgh
-X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hello,
+Hi,
 
-> +static inline int ls1x_nand_check_op(struct nand_chip *chip, const
->  struct nand_operation *op)
+On Thu, Feb 6, 2025 at 5:13=E2=80=AFAM Langyan Ye
+<yelangyan@huaqin.corp-partner.google.com> wrote:
+>
+> Add a new compatible for the panel CSOT PNA957QT1-1. This panel uses
+> HX83102 IC, so add the compatible to the hx83102 binding files.
+>
+> Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+> ---
+>  .../devicetree/bindings/display/panel/himax,hx83102.yaml        | 2 ++
+>  1 file changed, 2 insertions(+)
 
-No inline function in a c file.
+I haven't personally run this through DT validation, but this looks
+good to me from a visual inspection.
 
-> +{
-> +	struct ls1x_nand_host *host =3D nand_get_controller_data(chip);
-> +	const struct nand_op_instr *instr1 =3D NULL, *instr2 =3D NULL;
-> +	int op_id;
-> +
-> +	for (op_id =3D 0; op_id < op->ninstrs; op_id++) {
-> +		const struct nand_op_instr *instr =3D &op->instrs[op_id];
-> +
-> +		if (instr->type =3D=3D NAND_OP_CMD_INSTR) {
-> +			if (!instr1)
-> +				instr1 =3D instr;
-> +			else if (!instr2)
-> +				instr2 =3D instr;
-> +			else
-> +				break;
-> +		}
-> +	}
-> +
-> +	if (!instr1 || !instr2)
-> +		return 0;
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-Is this expected?
+I would assume this lands through the drm-misc tree and it'll meet up
+with the vendor-prefix patch in mainline. That'll cause a temporary
+schema validation error in drm-misc but I think that's OK, right? I
+also wouldn't personally object to this landing through the DT
+bindings tree. As a simple drm-misc committer I'm not sure I have the
+official authority to ack that, but I've given my blessing for stuff
+like this in the past and haven't been yelled at yet.
 
-> +
-> +	if (instr1->ctx.cmd.opcode =3D=3D NAND_CMD_RNDOUT &&
-> +	    instr2->ctx.cmd.opcode =3D=3D NAND_CMD_RNDOUTSTART)
-> +		return 0;
-> +
-> +	if (instr1->ctx.cmd.opcode =3D=3D NAND_CMD_READ0 &&
-> +	    instr2->ctx.cmd.opcode =3D=3D NAND_CMD_READSTART)
-> +		return 0;
-> +
-> +	if (instr1->ctx.cmd.opcode =3D=3D NAND_CMD_ERASE1 &&
-> +	    instr2->ctx.cmd.opcode =3D=3D NAND_CMD_ERASE2)
-> +		return 0;
-> +
-> +	if (instr1->ctx.cmd.opcode =3D=3D NAND_CMD_SEQIN &&
-> +	    instr2->ctx.cmd.opcode =3D=3D NAND_CMD_PAGEPROG)
-> +		return 0;
-> +
-> +	dev_err(host->dev, "unsupported opcode sequence: %x %x",
-> +		instr1->ctx.cmd.opcode, instr2->ctx.cmd.opcode);
-> +
-> +	return -EOPNOTSUPP;
-> +}
-> +
-> +static int ls1x_nand_exec_op(struct nand_chip *chip,
-> +			     const struct nand_operation *op,
-> +			     bool check_only)
-> +{
-> +	int ret;
-> +
+For now, I'll wait for a DT maintainer to give it a review and guidance.
 
-        if (check_only) ?
-
-> +	ret =3D ls1x_nand_check_op(chip, op);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return nand_op_parser_exec_op(chip, &ls1x_nand_op_parser, op, check_onl=
-y);
-> +}
-> +
-> +static const char * const nand_ecc_algos[] =3D {
-> +	[NAND_ECC_ALGO_UNKNOWN] =3D "none",
-> +	[NAND_ECC_ALGO_HAMMING] =3D "hamming",
-> +	[NAND_ECC_ALGO_BCH] =3D "bch",
-> +};
-
-No way you need this in your driver :-)
-
-Thanks,
-Miqu=C3=A8l
+-Doug
 
