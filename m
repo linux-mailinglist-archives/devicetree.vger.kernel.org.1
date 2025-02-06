@@ -1,123 +1,101 @@
-Return-Path: <devicetree+bounces-143688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC97A2AEBC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 18:21:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14260A2AEDA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 18:30:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52E4F16A724
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 17:21:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C3E27A2954
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 17:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 396F823958D;
-	Thu,  6 Feb 2025 17:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11610175D48;
+	Thu,  6 Feb 2025 17:30:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UTryEWIq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i3w9pT2v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF946239572
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 17:21:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CA113C809;
+	Thu,  6 Feb 2025 17:30:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738862472; cv=none; b=P8gZerDbkTupsug7KLgFxeG/iQsL/Hlcg63092meJIRoS7LsfDgAvXY4lSiKb7V5aKinH/cxAG5EMUTGhu68TIRgH3qS/u2Mwl/oaWBN+1k12mVtk+LCP2mUk+yvqtHkAO3p9TwTN+NMdji8d0QvV27xL8g/3ge2CccXYuE+mps=
+	t=1738863010; cv=none; b=rrt6qT1eNXHrqh13rL7/n+C+WB6OCT6y7AFOwyW4R97oKyowpFgi5EHbkEcsEIGJ8ODGb8TgWuYtJlLU3saPCzSXMvd4ivls1jSSk/kfrKG2jNAWsou42HiRb0ym5eu2w4kXL3jRGeGalHL0Vtj+pVH7JUuOjq4qAGIAmLifXKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738862472; c=relaxed/simple;
-	bh=4wSuz5VzrMxF6hFZ+dGcbfUs6KWTJLSlbQyKfhds770=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MU4mtaz7l38fih9+H+bmliN8Ks8IYPCU+VKG3EBm/nFA/CLSBHqkIFHjsR9wqqe1b8GlK6o3xYKFTtPhecNfwCnOJhbQ94Q/BN9xnYIOgmXkSG/gpAcVv85jYpWHV1IjAG8TnRUUv3Lyv2OSGRrKU2eod40Y/Qm1Viexoxa0EaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=UTryEWIq; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-543e47e93a3so1272776e87.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 09:21:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1738862467; x=1739467267; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xmyQQLjc7ihSNeKK+vC8OeDD8oaLS3Nn6NTNSIO758Q=;
-        b=UTryEWIq/b4RwjRdwiq4VmPyYm7oIXv0xqgGKgMzjlXsB4WYA+MqRNZ4FDXe4Xujlo
-         w4Dzb32am2KoiYlpLfX5INJrnsdYRcBU77Qebj93seSaSSrir6NP4lGT44eFIWTMg5hO
-         YjLvq+b8O9/rIxfCITDHgpSTCtIujWMaVwF/I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738862467; x=1739467267;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xmyQQLjc7ihSNeKK+vC8OeDD8oaLS3Nn6NTNSIO758Q=;
-        b=CGHBEE76PH1cDY75PMyprBASzRptU//1yI6O9L+EXsfs2aWS1yL81eJeZwbHNnwfyw
-         mCYB6RGGSozaaoJcwHnecoKlv0RPcs1xyzpsfZnkd0IRT5o2JPP2K0vZDEoAVJFIpLuq
-         MJ/kmTuvIybP21VgMY+vtHPehRAX5gXBOWSeNT+IYa7HLR8gOa3dMiV8YvSJ3n9Svqzr
-         5WFkxlkrnn9IGJ9C2ES2JD+r64jrum/CmzA/htGOEiMbusegcFuVaDKUrfM7yuaz6uE3
-         sYVxAyr2OXngCrcIZYlCUdUTSl3YgZqwTwR++XO/rzvY74XiNrXV+G0TTfLLkSKM3g8c
-         Vr0A==
-X-Forwarded-Encrypted: i=1; AJvYcCVonpx34fw0H9rrWCYVzg1NP++ZWUYpNgjwKalhV1ccnN2+fARHQBAB0TqFs6tXcbKennafR+VPHVBf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5Ws8wq9+f9RK7N7TyRBuR6hGN3P7saUCs7S9dtwmhw9tjZVM/
-	UDYJFl+N8CmTQEeL5BryjQqg8aV5bQemOhCpemghXtTLriu5UV/TC8B7YsmiPpqecjYSqVmZQMV
-	9YIFx
-X-Gm-Gg: ASbGncsTxW4x+hyuZ1OcJEuP5bVemVVucilctSZR/XzRjSa6Eyb0zwtIfb79ihazFch
-	LPo3I99Gva/7PYuVkUqnCQ62LHCcBCeMOMriQ6Uw08RqY1K+S8X1+UrmGZPyOEyP+zTUQ91nsQN
-	TQPLjVp82DYAuW/1DECut4N7vvXXEnH4kLstr9Hj3Dj0cgKKqwhQHtsq1lu3VdljY/mxejKFrjj
-	oZZQrI5nTzegiPDZiPjG8it6MzQwS8trS2kLJjor4t3UwbzvalKWl5oWOs97V0A6j1I2d081ySU
-	b/65FnJQ2oZNLvqQCNMGMYjCtAMY5PVfsFWwN57aVlBW+xApxpWxm6k=
-X-Google-Smtp-Source: AGHT+IHc4JChvj9nAXN6So4oTh0FOMp9JvCJL6K2qD3AQSHqzNFnDsfFY5YC+tWtdHw7DYLhwPNFGQ==
-X-Received: by 2002:a05:651c:50e:b0:300:33b1:f0e0 with SMTP id 38308e7fff4ca-307cf2fd19bmr25872651fa.10.1738862467008;
-        Thu, 06 Feb 2025 09:21:07 -0800 (PST)
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307de2b98c0sm1748081fa.69.2025.02.06.09.21.06
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Feb 2025 09:21:06 -0800 (PST)
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-543e49a10f5so1303083e87.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 09:21:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXosPnpoMgddPgFt3HZKxGlvYCfRuGnCbqxsFNdLm1HzrMfYXt2UZpWcvliZkA4tl35Zn4nAD2Mzawx@vger.kernel.org
-X-Received: by 2002:a05:6512:220a:b0:542:8da7:242f with SMTP id
- 2adb3069b0e04-54405a10653mr2730027e87.10.1738862465869; Thu, 06 Feb 2025
- 09:21:05 -0800 (PST)
+	s=arc-20240116; t=1738863010; c=relaxed/simple;
+	bh=09KTedSG77AXoeir+b4HyRhzwue2u0WYm3LwzHo7ci8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=QGsvSjOs5ppsMBTYvblfeUB5TdCBCuqe4k4kVCst/RxY3xBIgywTUdUgxAA6lI8I1tbRo/dZK71Ye7sg0gXRJ8a9+2ReuJXDrxmmSjLacY2pARrrmAIb8qRpjA2Lu7z4ivnQYbd0f4Pfx2yueP7LlKCdgDRSqZGNGcUNxVNQ7DI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i3w9pT2v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A309C4CEDD;
+	Thu,  6 Feb 2025 17:30:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738863009;
+	bh=09KTedSG77AXoeir+b4HyRhzwue2u0WYm3LwzHo7ci8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=i3w9pT2vZ2WN2ZQqCvJ21gyp79pu6ADWMlJ7U9AgIiZ54nFrA9zlaSLwyGNCFgREg
+	 ivD32IvE5fcC62tCMypL24Xl0dBcN1mpO7FMY+26DTOpZQszDS7I2Bp6nSTZaqKPrM
+	 mTe1MtnUyqNpBG5+FBCJlcwOXfAMQeq0tJp+wM7w+Yo629LE2a+KC2Q3Hd/cteLtIJ
+	 YBFfzN7siD6ARNGFkXy3hME3T9NjShiU17CkXag6Yh9lSF+W1kgFBA1DnyoRmG4vfA
+	 Dr1p/fHrKOtFX6RvBXYIqlKf5k2PEXQ8QojGJ/GgcZgaMzL1WXJLuu1SE53LHmYK90
+	 O5hi3H/hZaw5A==
+From: Mark Brown <broonie@kernel.org>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev, 
+ alexandre.belloni@bootlin.com, lgirdwood@gmail.com, 
+ Andrei Simion <andrei.simion@microchip.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
+In-Reply-To: <20250203091111.21667-1-andrei.simion@microchip.com>
+References: <20250203091111.21667-1-andrei.simion@microchip.com>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: atmel,at91-ssc: Convert to YAML
+ format
+Message-Id: <173886300585.325569.12869992577309610074.b4-ty@kernel.org>
+Date: Thu, 06 Feb 2025 17:30:05 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250206131300.1295111-1-yelangyan@huaqin.corp-partner.google.com>
- <20250206131300.1295111-4-yelangyan@huaqin.corp-partner.google.com>
-In-Reply-To: <20250206131300.1295111-4-yelangyan@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 6 Feb 2025 09:20:54 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=W8WR4rut47LA=PftG1bdDLkSa97syY8wt=rH4dJa-pLA@mail.gmail.com>
-X-Gm-Features: AWEUYZkQjg27CCS9VZJxZrYKj8mLCb6hWyh_QBl79_c9o4gHiKUmfZwJ_3PvYOU
-Message-ID: <CAD=FV=W8WR4rut47LA=PftG1bdDLkSa97syY8wt=rH4dJa-pLA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] drm/panel: panel-himax-hx83102: support for
- csot-pna957qt1-1 MIPI-DSI panel
-To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-1b0d6
 
-Hi,
+On Mon, 03 Feb 2025 11:11:12 +0200, Andrei Simion wrote:
+> Convert devicetree binding atmel-ssc.txt to YAML format.
+> Update the documentation supported file for MICROCHIP SSC DRIVER.
+> 
+> 
 
-On Thu, Feb 6, 2025 at 5:13=E2=80=AFAM Langyan Ye
-<yelangyan@huaqin.corp-partner.google.com> wrote:
->
-> The csot-pna957qt1-1 is a 10.95" TFT panel. The MIPI controller on this
-> panel is the same as the other panels here, so add this panel to this
-> driver.
->
-> Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-> ---
->  drivers/gpu/drm/panel/panel-himax-hx83102.c | 123 ++++++++++++++++++++
->  1 file changed, 123 insertions(+)
+Applied to
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-There's no rocket science here, so assuming that the bindings get DT
-acks I probably won't add any real delay before landing...
+Thanks!
+
+[1/1] ASoC: dt-bindings: atmel,at91-ssc: Convert to YAML format
+      commit: 6603c5133daadbb3277fbd93be0d0d5b8ec928e8
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
