@@ -1,145 +1,159 @@
-Return-Path: <devicetree+bounces-143469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09180A2A1B0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 08:02:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6757A2A1C7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 08:07:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9031616825A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 07:02:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CD9F7A347D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 07:06:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE381FE461;
-	Thu,  6 Feb 2025 07:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923661FDE20;
+	Thu,  6 Feb 2025 07:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Yp060fIw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KmdDjhgS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61B961FDE08;
-	Thu,  6 Feb 2025 07:02:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7057145B3E;
+	Thu,  6 Feb 2025 07:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738825328; cv=none; b=okfjyiRjOWXr+x2mgB4qYxh9TmAFI0vb7myIsNdqhAWJmRxa++49Dv8M0fGkNHlYYkG1jhWRLpJ10FE9ypNi9Kb4QTgJ+Xg54fUcH3YCoyE7NbYe/28R/qr/kNDejHCiDIRz71KVmA+MdTztAiAQPHmKICQPLRmXkJGHlt+nhSs=
+	t=1738825623; cv=none; b=aR6lgaKw6aK6UfpVFN5JII0R8lo3ESDfXho+cMAwmd5e1X8Qt1sobn02LxGcPapMCZHMRZszvjDMYXfTID+hdBcOSUoJ87du4jkk5zxZvS+yYheybmVdI7PrRyM8RS9bx2Lpyt7FFQbPbOA2tRxrKOLiKLozQgLOCL9T7olouTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738825328; c=relaxed/simple;
-	bh=2GiFkygq3de9GLjZ4hEtVqwNNmejJsX0fXM8BEvQD+4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RPLpLRKuMwGNw4jCBX6WUyHlZaQQAd7ryeF2Kl3xS+NRKFzoWJj4BVKSPKCYXkrSKdJKaXzjIWNMXoYxkR/gKnoE2BplmkIHUNflt9j3QH5rogqwe8SLM5innFJfY+PU2mQagOAOhwc7QHYOnltKVitfcifGMCR55Je3idMeUIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Yp060fIw; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 515J0TJv031638;
-	Thu, 6 Feb 2025 07:01:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZrAPzN3R+g1+r+81eLhRZv0SycNO8ZdkZdwOO3LB4P0=; b=Yp060fIwEXZ2Lmia
-	I6xC/YsvbTDluwBhMfCfrp2hjbbBVCu8BlrYf7D12R1+/z/0KMJGO8jox3N5Xe5e
-	Q1QqKHaOvy2aLbSLhA+Mr6/5AvuMjLuaqRhtnq6IFN0ZcNA/KhH/GXPlm8+sSh5k
-	tPpcayFuwe7TGdxLouIxrWMpnnt5HUkqfElJXDiVySnzqOz9x2N/yrpc3erJsTeW
-	XhF+NltzsWBqcVy5QDRhTLAZ/Ie7nJOu2au2uKuQXzFB1ha+88JBb0vIrgT9dt9u
-	DX8lcAmoFPJ5xO8kZtiKqmTLM2/mNgFNGEFsg+FGFxOO7cYNA1RUvKHxkO2PxfWy
-	6ZXQOg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44mds2hbb4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 06 Feb 2025 07:01:46 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51671i9h019165
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 6 Feb 2025 07:01:44 GMT
-Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Feb 2025
- 23:01:36 -0800
-Message-ID: <1cac47ba-f33d-4d2b-8808-c56012b5bbaf@quicinc.com>
-Date: Thu, 6 Feb 2025 12:31:33 +0530
+	s=arc-20240116; t=1738825623; c=relaxed/simple;
+	bh=4s/rd6ox4/7YQRDgSwO2fPO7qLeAZL+viGcf5t53deQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CJWGwbEWa1sxacgCYMveKiCNz9xbu3kmGz5IF2Du2J75m5/dJewY9cDUB+fV0lCfTRTl5Mjlz0qCuVuWs+Eyy+IopcoAU+Zx9hArdAGNreac3JcPDilRWVDfIsY4UGnyaNgJIiI39kEYrGnTx9Vi/f/HKYT3UzsoCe6x9uvlRYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KmdDjhgS; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738825621; x=1770361621;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4s/rd6ox4/7YQRDgSwO2fPO7qLeAZL+viGcf5t53deQ=;
+  b=KmdDjhgSLdE2AqpmlwKIpYDdGv309Q2UM3CpzcanJTt2YNKC2urcAGpP
+   i4PFN7+KpE9yONaLaC2U56i/3lg87xT4jOfZuQrER8gwZq+HdHHMEjUA+
+   fKrWsKXFJV7o9GgY4zdYZnJyGPJgqM5KSCGTCNqa2R3PRXHhvEc4/Rky/
+   hMJHizYz6tfZR/Tc28chQ9qtOKB4IQG0EmmHChKg2gmT6d6kHAoqU0WVv
+   B+wZAwAxWzZBNfJn9LVVSmzkmpLtp4kwr5m2GB9KneeOc28jHmg8UH/A4
+   BDYT8T5VHOoO5m6Cs7+lrSzH9QBZBRXP55Rb/7n6E0SsLGwFhSVFWg6HF
+   g==;
+X-CSE-ConnectionGUID: HF9xww6BQQmgu0wPNz5s/Q==
+X-CSE-MsgGUID: DdR73e9vR5y/0gYByR15Sg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50840507"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
+   d="scan'208";a="50840507"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2025 23:07:01 -0800
+X-CSE-ConnectionGUID: Ek0RWKdIQEqcK8J84mFO1A==
+X-CSE-MsgGUID: GeKq7cOFTQOPH6MIsu9jTw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; 
+   d="scan'208";a="116160577"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmviesa004.fm.intel.com with ESMTP; 05 Feb 2025 23:06:58 -0800
+Date: Thu, 6 Feb 2025 15:06:05 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: Mahesh Rao <mahesh.rao@intel.com>
+Cc: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Wu Hao <hao.wu@intel.com>, Ho Yin <adrian.ho.yin.ng@altera.com>,
+	Niravkumar L Rabara <nirav.rabara@altera.com>,
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Mahesh Rao <mahesh.rao@altera.com>
+Subject: Re: [PATCH v3 3/3] firmware: stratix10-svc: Add
+ of_platform_default_populate()
+Message-ID: <Z6RfXSzMEVPlZAj6@yilunxu-OptiPlex-7050>
+References: <20250204-socfpga_sip_svc_misc-v3-0-697f7f153cfa@intel.com>
+ <20250204-socfpga_sip_svc_misc-v3-3-697f7f153cfa@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 5/7] clk: qcom: Add NSS clock Controller driver for
- IPQ9574
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konradybcio@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <richardcochran@gmail.com>,
-        <geert+renesas@glider.be>, <angelogioacchino.delregno@collabora.com>,
-        <neil.armstrong@linaro.org>, <arnd@arndb.de>,
-        <nfraprado@collabora.com>, <quic_anusha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20241025035520.1841792-1-quic_mmanikan@quicinc.com>
- <20241025035520.1841792-6-quic_mmanikan@quicinc.com>
- <jhykmuvgltvuqf74evvenbagmftam2gaeoknuq5msxop4mkh65@dya6vvqytfcx>
- <21365836-aa06-4269-885c-591f43e2e5fc@quicinc.com>
- <befd6574-b9f0-4483-a767-684a729cfde0@oss.qualcomm.com>
-Content-Language: en-US
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <befd6574-b9f0-4483-a767-684a729cfde0@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: WdhfDpuHSihYg8CzZyg0zXeFFz5NP4Q0
-X-Proofpoint-GUID: WdhfDpuHSihYg8CzZyg0zXeFFz5NP4Q0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-06_01,2025-02-05_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- spamscore=0 adultscore=0 mlxlogscore=709 bulkscore=0 malwarescore=0
- impostorscore=0 clxscore=1011 suspectscore=0 phishscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502060057
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250204-socfpga_sip_svc_misc-v3-3-697f7f153cfa@intel.com>
 
-
-
-On 12/30/2024 8:18 PM, Konrad Dybcio wrote:
-> On 28.10.2024 7:25 AM, Manikanta Mylavarapu wrote:
->>
->>
->> On 10/25/2024 11:21 AM, Dmitry Baryshkov wrote:
->>> On Fri, Oct 25, 2024 at 09:25:18AM +0530, Manikanta Mylavarapu wrote:
->>>> From: Devi Priya <quic_devipriy@quicinc.com>
->>>>
->>>> Add Networking Sub System Clock Controller(NSSCC) driver for ipq9574 based
->>>> devices.
->>>>
->>>> Reported-by: kernel test robot <lkp@intel.com>
->>>> Closes: https://lore.kernel.org/oe-kbuild-all/202410101431.tjpSRNTY-lkp@intel.com/
->>>
->>> These tags are incorrect. Please read the text of the email that you've
->>> got.
->>
->> Added these tags since the dependent patch [1] was included in v8.
->> Please let me know if this should be removed.
+On Tue, Feb 04, 2025 at 08:58:07PM +0800, Mahesh Rao wrote:
+> Add of_platform_default_populate() to stratix10-svc
+> driver as the firmware/svc node was moved out of soc.
+> This fixes the failed probing of child drivers of
+> svc node.
 > 
-> These tags are useful when you submit a faulty patch, it gets merged
-> quickly, and only then the robot reports it. In that situation, you
-> would be expected to send a fix, including these tags to credit the
-> robot for catching the issue.
+> Fixes: 23c3ebed382a ("arm64: dts: socfpga: agilex: move firmware out of soc node")
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Mahesh Rao <mahesh.rao@intel.com>
+> ---
+>  drivers/firmware/stratix10-svc.c | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
 > 
-> Here, your patches haven't been merged yet, so it's not applicable.
+> diff --git a/drivers/firmware/stratix10-svc.c b/drivers/firmware/stratix10-svc.c
+> index 3c52cb73237a43aac6984e497d75bab389e3eb9d..e3f990d888d71829f0ab22b8a59aa7af0316bea0 100644
+> --- a/drivers/firmware/stratix10-svc.c
+> +++ b/drivers/firmware/stratix10-svc.c
+> @@ -1224,22 +1224,28 @@ static int stratix10_svc_drv_probe(struct platform_device *pdev)
+>  	if (!svc->intel_svc_fcs) {
+>  		dev_err(dev, "failed to allocate %s device\n", INTEL_FCS);
+>  		ret = -ENOMEM;
+> -		goto err_unregister_dev;
+> +		goto err_unregister_rsu_dev;
+>  	}
+>  
+>  	ret = platform_device_add(svc->intel_svc_fcs);
+>  	if (ret) {
+>  		platform_device_put(svc->intel_svc_fcs);
+> -		goto err_unregister_dev;
+> +		goto err_unregister_rsu_dev;
+>  	}
+>  
+> +	ret = of_platform_default_populate(dev_of_node(dev), NULL, dev);
 
-Hi Konrad,
+I checked of_platform_populate/of_platform_bus_create() and see these
+functions will not error out if some sub device registration fails. So
+LGTM.
 
-I apologize for the delay. I will remove the tags and post the next version.
+Reviewed-by: Xu Yilun <yilun.xu@intel.com>
 
-Thanks & Regards,
-Manikanta.
-
+> +	if (ret)
+> +		goto err_unregister_fcs_dev;
+> +
+>  	dev_set_drvdata(dev, svc);
+>  
+>  	pr_info("Intel Service Layer Driver Initialized\n");
+>  
+>  	return 0;
+>  
+> -err_unregister_dev:
+> +err_unregister_fcs_dev:
+> +	platform_device_unregister(svc->intel_svc_fcs);
+> +err_unregister_rsu_dev:
+>  	platform_device_unregister(svc->stratix10_svc_rsu);
+>  err_free_kfifo:
+>  	kfifo_free(&controller->svc_fifo);
+> @@ -1253,6 +1259,8 @@ static void stratix10_svc_drv_remove(struct platform_device *pdev)
+>  	struct stratix10_svc *svc = dev_get_drvdata(&pdev->dev);
+>  	struct stratix10_svc_controller *ctrl = platform_get_drvdata(pdev);
+>  
+> +	of_platform_depopulate(ctrl->dev);
+> +
+>  	platform_device_unregister(svc->intel_svc_fcs);
+>  	platform_device_unregister(svc->stratix10_svc_rsu);
+>  
+> 
+> -- 
+> 2.35.3
+> 
+> 
 
