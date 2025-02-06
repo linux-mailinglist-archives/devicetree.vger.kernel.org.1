@@ -1,140 +1,154 @@
-Return-Path: <devicetree+bounces-143543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05B4DA2A591
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:09:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18B3AA2A5A0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:13:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 872F6162593
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:09:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68E617A1E56
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:12:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A9B226557;
-	Thu,  6 Feb 2025 10:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67B7B226196;
+	Thu,  6 Feb 2025 10:13:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QJqjs/s5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SQgIAvT1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33988213240;
-	Thu,  6 Feb 2025 10:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3784213240;
+	Thu,  6 Feb 2025 10:13:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738836581; cv=none; b=mpZoCe3MFnRctp/ID/6eo9g34SBqIrz48fmjj0eROuK/Eh/W617IvOqurGdnae6F5Qy9k3z1jQ8jaCxva3xg9thvtHj6zVr/mkzN/Tq8yjUnoBLAR/TsYvfjXFvbBO8C+7Fo7P4bV5HkZIy1w6apuaoVGG11FyiN7VhagQHKvwM=
+	t=1738836822; cv=none; b=ny1e7okPSi9fmO0cy+lpHlieFd+u9weeuLoFQTc+80riHKj0/RaxkinubF8booLrtQFVxvjd00idV5IcPZZEq42O4Yc5w5kbYqfxmsCRzYRXyZfMuCNmbzcBKy16O01NHmg2h8y+FjUkmJzyjxLB/9hKD3QysAFDeQjlzAE0BtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738836581; c=relaxed/simple;
-	bh=7eqh7K858NH1AZrNBNH9wQrXQPBI8B/6RmUW1r2TAcQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b9znx17xy551BBhEiEHRJE3J29yVwOQMqud3y77fCJDGB5+72+YaaoZo+1KBdNeo3otslleAehw9hlE73gDibSRyHiUWPmYR+w7F4s4p4PHBbCsmwuZb2NlLUA1DPsAc3lzHDeq/l/9pQbIfqiDVJFtopfyf7sr6jxxB5W/7ESs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QJqjs/s5; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-543d8badc30so894729e87.0;
-        Thu, 06 Feb 2025 02:09:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738836578; x=1739441378; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3J7Bg0TmAUJrOo6sonChdz6dfz6pIJ+CpqIwcnqSIEA=;
-        b=QJqjs/s58/uaYmH3tIvsLFnrI90KUVSGpX2DD0NvD+rT32mYG51O8Q+ivpRx7r4Rq7
-         sRTRo0qF5lDzDljoehxVIdztat4ACUQkzC5MIV6Dv5VwLGWcugsJNgxwKAWcf7uxO821
-         9OqJ4w3YaVWqcnuFWAWnxYmSuU+YRcNnP55SuOaOlveGiVYSKNqOVDyIVZoW5o2vq9Rp
-         hviqZqpp4f4ti4NOemPy3JDddocBSExjtlojvr4Mr+ONdBXkAH+52lROGNMajOFNc3Mp
-         ppIU3YRET8aZSznEWZQsjnvt0vXCkCFndvJIKJDAuDQu/3JEZ9R3NaAjqqEaJnmeoGWJ
-         qSSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738836578; x=1739441378;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3J7Bg0TmAUJrOo6sonChdz6dfz6pIJ+CpqIwcnqSIEA=;
-        b=hx+bQ2OOqL8Q0F6U3Obp2MUs639CXxECxYvvRRSlkoUEp/q048A4wSNVOw0APP1pRi
-         tVqSgWW6Wn16LGiWAy5pSFS6zBcrbxNu78rOavX3PBIAByBGR1ZTh6MMJnF6C9unXLW6
-         MB62KFFKLhxKTqOwxs1k1Lf4uuzcY/OIjUGiUetYttiRnTK3V1z+tpb+6Au1t6pmClk3
-         rWAdsNxr5Tijfk3TBhSh8rd2y5h/ckKnN7ChwdraToIi/nsisyVkQ1chKvTSNlVUpH6y
-         z9xxRqXYRy3JKsGSHuQnnFJsSXzbKzS/M+4iJJhKiX1K7Mj60YtvoO27AX5ZdBnADlIz
-         A4dg==
-X-Forwarded-Encrypted: i=1; AJvYcCUUEciFFBExJsdGEU3HPnE+kwRi9JKcmBbPNGgkpNxIPr/+WxjTNVq8dsOaBCt3qmXYq/2o7E93EAX3J0H+@vger.kernel.org, AJvYcCVCIyRVfFPSu31eiPySpN3hSOTMzUaE124Op4LlexCDMgqYBJ4yXuPQZYcdhrwfvhZjmC56MYxt6y9Atg==@vger.kernel.org, AJvYcCXHFGJz2wIHBA1HzWMvkx0vc+1Uo+if+kgxek9jW6aQKYLCqR5pkiSs8MUqbmLqsLO7mRd73M+GgzcQ@vger.kernel.org, AJvYcCXObyFbbAW84lPoRYWYTH2ax/d8cn6/A5Y/1IqAHSRCo0+hqAQPUkX0TLsMYF8bGnz2/LhIUJsoqObB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxl5BVk+BVCDsIs02wUoFXFLMHxVcVCwa6dqF5zLpDZAqzV7J31
-	bvLya5HKi3Orest9yEBmVQ7rlrW/MJ0h1+5BVBpi4bCIiPNVy+00
-X-Gm-Gg: ASbGncvkDQGwJxJgZdwMn6rlymJ9yh5hAotqnza42TIDClsnLZTpLSQfyE3jhjVJ52S
-	b07clC2WkkzAj62r96WFnrpd14QxdDLA49zGzTXjd9+DRhs0z1W4+LVLc5VavopHWJBEBMgMG66
-	FyLAqxgKm/JVVdNeK7ZwYin++lsIRXHZ61FF4r/Jukdwan28fQpPgEpcYTZVadB472+kVfFkPC6
-	etWLHhyoruiq1NFC4ICdc2jh//QQz2PIBGy0u1hij/CpAfAYchedTOleJQ8hByfxfR5JwmGARA4
-	AzZg5q4QwxVxQeMDIze9gZeFyu6I
-X-Google-Smtp-Source: AGHT+IGpHJYo74+wxQ1D3J2yvrx6IQcEeGEY/UGt8IL44DX+DiZjLtuOLLwZrbFXWEFrFRiTbVt/Rg==
-X-Received: by 2002:a05:6512:2207:b0:542:214c:532 with SMTP id 2adb3069b0e04-54405a19d21mr2153436e87.13.1738836577877;
-        Thu, 06 Feb 2025 02:09:37 -0800 (PST)
-Received: from [172.16.183.207] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5441053ed63sm93621e87.41.2025.02.06.02.09.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Feb 2025 02:09:36 -0800 (PST)
-Message-ID: <a52933a2-8b87-4e49-a346-91266fe3b675@gmail.com>
-Date: Thu, 6 Feb 2025 12:09:33 +0200
+	s=arc-20240116; t=1738836822; c=relaxed/simple;
+	bh=rdTveDpp10yymSkxLT+sNEAxdAaUcA2ukzZiJpTYxZM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=WtgsXh6T0Ae/LtIPg7FmcOPHxtE4hlngysLGFy5DPr3nwyWwjhjL2//nvSMMvESV2QN06Ga2ekb3dN7VGxtGyKF7D3v/Ym9L6MUqM2+rEZxScwQN6Xu7jU0lP8a8eCum/2OPyCC5zFXyMolSHUdLcOuyTffPFD0H/yzMtyYi2iA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SQgIAvT1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5168bSkM014547;
+	Thu, 6 Feb 2025 10:13:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=BqHoH2QYFuCT4MTB5ZuvWx
+	WKUhtIGikKRKLFjBWKpIM=; b=SQgIAvT11drhv6w4r61ctdChCK5fioaUAH/frI
+	A3ERfuQiFv5xljXCkh5Sn6DYr6498WW/dYwMzLQnhLZavg+k07aurFK+azZznNre
+	AosOS0e2FC+ssYsKDqWOFkGEZwqj5HMSLhVecBQXDwNqQLcuuoQGcThbDsqvFuNa
+	bHW8Rwxa7CpH54j98qIs0sUg9VcLUfomiu7DfagM5+ZI/NTPYqYbNGEVar3X2Z71
+	/mp97VsKFukn2HmDu3RV3y+NMMVtBTqOd2XGbBML8YJrCfQtHs9kkseBMa2AXnNS
+	Mf9eU5PoypZcgvsmykY07ivbGO1rvfyImIcr53jPBWWt71sQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44msr108jt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 06 Feb 2025 10:13:36 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 516ADa9Z018784
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 6 Feb 2025 10:13:36 GMT
+Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 6 Feb 2025 02:13:32 -0800
+From: Taniya Das <quic_tdas@quicinc.com>
+Date: Thu, 6 Feb 2025 15:43:21 +0530
+Subject: [PATCH] arm64: dts: qcom: qcm6490-idp: Update protected clocks
+ list
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 4/5] pinctrl: Support ROHM BD79124 pinmux / GPO
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Nuno Sa <nuno.sa@analog.com>,
- David Lechner <dlechner@baylibre.com>,
- Dumitru Ceclan <mitrutzceclan@gmail.com>,
- Trevor Gamblin <tgamblin@baylibre.com>,
- Matteo Martelli <matteomartelli3@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <cover.1738328714.git.mazziesaccount@gmail.com>
- <3d85fe979fca352bed4d9841e3233c055dfaf154.1738328714.git.mazziesaccount@gmail.com>
- <6867812e-7269-4686-9fc2-55afd9fa91bf@gmail.com>
- <CACRpkdaP6biD8ueeezBDw1P3LP6ARoJw0zfkmxC-QKK0fw79YQ@mail.gmail.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <CACRpkdaP6biD8ueeezBDw1P3LP6ARoJw0zfkmxC-QKK0fw79YQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20250206-protected_clock_qcm6490-v1-1-5923e8c47ab5@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAEGLpGcC/x3MTQqEMAxA4atI1hbSogW9ioh00jgT/Km2IgPi3
+ S0uv8V7FySOwgna4oLIpyQJa4YuC6CfW7+sxGeDQVOjQau2GA6mg/1Ac6Bp2GmxVYOqQt2wdVZ
+ 7/ECut8ij/N9z19/3AyqyyZFpAAAA
+X-Change-ID: 20250206-protected_clock_qcm6490-4019e6a61d0b
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Taniya Das <quic_tdas@quicinc.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: uV7Hpzt1gsR6kLY5JgV6x_pPCDS3A3GG
+X-Proofpoint-GUID: uV7Hpzt1gsR6kLY5JgV6x_pPCDS3A3GG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-06_02,2025-02-05_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 adultscore=0
+ lowpriorityscore=0 impostorscore=0 mlxlogscore=685 clxscore=1015
+ mlxscore=0 suspectscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2501170000 definitions=main-2502060084
 
-On 06/02/2025 11:39, Linus Walleij wrote:
-> On Wed, Feb 5, 2025 at 2:40 PM Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->> On 31/01/2025 15:38, Matti Vaittinen wrote:
->>> The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The AIN pins can be
->>> used as ADC inputs, or as general purpose outputs.
->>>
->>> Support changing pin function (GPO / ADC) and the gpo output control.
->>>
->>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>> ---
->>>
->>> NOTE: This patch is not properly tested. More thorough testing is to be
->>> done prior v2 if this pinmux approach makes sense.
->>
->> Just a note to reviewers - I dropped the pinmux from v2. No need to
->> review this any further.
-> 
-> Why? Gave up on the idea or want to pursue it later?
+Certain clocks are not accessible on QCM6490-IDP board,
+thus mark them as protected.
 
-I just realized I should've shared the link to the v2 - which may not 
-include all the recipients (because it no longer touches all the 
-subsystems - and the get_maintainer.pl probably reduced the list of 
-recipients). So, for anyone interested, here's the v2:
+Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+---
+Mark few clocks as protected on IDP of QCM6490.
 
-https://lore.kernel.org/all/cover.1738761899.git.mazziesaccount@gmail.com/
+This patchset is separated out from the series[1] to remove dependency from
+the LPASS reset.
+[1]: https://lore.kernel.org/all/20240816-qcm6490-lpass-reset-v1-0-a11f33cad3c5@quicinc.com/
+---
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-I do still appreciate all the reviews of the v2 even if it does not 
-target subsystem you're specifically watching ;) But reviewing the RFC 
-v1 patches does not make sense because the v2 dropped a few of them.
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+index 9209efcc49b57a853c4dd55ac52cd4dc98d7fe86..346b9a377e611cd3e32cf00d44e87b363bada07a 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+@@ -759,3 +759,24 @@ &wifi {
+ 
+ 	status = "okay";
+ };
++
++&gcc {
++	protected-clocks = <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_AUX_CLK>,
++			   <GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
++			   <GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
++			   <GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
++			   <GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
++			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
++			   <GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
++			   <GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
++			   <GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
++			   <GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
++			   <GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
++			   <GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
++			   <GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
++			   <GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
++			   <GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
++			   <GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
++			   <GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
++			   <GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
++};
 
-Yours,
-	-- Matti
+---
+base-commit: 808eb958781e4ebb6e9c0962af2e856767e20f45
+change-id: 20250206-protected_clock_qcm6490-4019e6a61d0b
+
+Best regards,
+-- 
+Taniya Das <quic_tdas@quicinc.com>
+
 
