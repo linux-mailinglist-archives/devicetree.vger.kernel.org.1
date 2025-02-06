@@ -1,202 +1,303 @@
-Return-Path: <devicetree+bounces-143735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B78C5A2B55E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 23:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E55AA2B617
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 23:59:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47EAF166D85
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 22:43:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 171D7166D45
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 22:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A37822FF49;
-	Thu,  6 Feb 2025 22:43:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B93FD2417E5;
+	Thu,  6 Feb 2025 22:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oHW/sIwY"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="p+RkgaMV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FF7423C380;
-	Thu,  6 Feb 2025 22:43:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBAC32417DF
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 22:59:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738881810; cv=none; b=qJkD9k4E0LCSeBjKOhOYaEttgkMtMhltISHF0RPOjYChVJlwaNvBODxLw5lp4iRZJ4ZbELuMW4FfbMVKCHVC5/X5PLS233unXkGrlTEZLzqAlWyLrYWwtqha+pJEhraWwmGxwBDcRRxrFVeD6m8oP5XFicaN87zNkdWOT6qcDnM=
+	t=1738882754; cv=none; b=c/NV/vYTdxfoOMIyAhu8loYlwIZiFhujmPYBsLtYsb9lnexKlQJzKBDKbvRbjr+7fAoZJUK7oo5oIMQ1rOfO7w2UItEUEkrroSar2FSOmfs5zCMOqkFXz9rK1emOhCfNR6AfFlV6o6s7JCck6yoNmwIKYo+vXt0xCezduF1nuOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738881810; c=relaxed/simple;
-	bh=RRyeWgDKYUXqPj9AK9HawjmXCxmssH+oPCpVBdzfC7s=;
+	s=arc-20240116; t=1738882754; c=relaxed/simple;
+	bh=0ntnTKWhZutag/x3HVhP8VZ4Ui4mFuohPb6mz+tL+nc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KYgYO+Flx8R3+XPiqbGvhL9RsGfIOnO5yqsBO5FE9R+OrR+7OqVdTJl/qEMi+4jrpnolkB/ILtNQ9DlXW44G04p1EVMKdY0KqfWPYfpzPwTG2rAE0R4yhJ8LnppUmNLx5zEXWNUNB7z5Ky5oH7bgZYfnP+YqUcpEB2Ih525vLBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oHW/sIwY; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738881809; x=1770417809;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RRyeWgDKYUXqPj9AK9HawjmXCxmssH+oPCpVBdzfC7s=;
-  b=oHW/sIwYCprRUbWd+acRPAhnKPN1Gda3bpn269k4oUsSW4PMo6PwT7uW
-   1NGnp/GYrLLGR9E0WqESjGPx7HYXMrywIXblKQSbp5jhxNHLqEOXUkZK4
-   WeuXT4pf1nEPb8m3+0ntxI+dtlH5XABaDTvmjh4jpVc7Y/tNiXVXcxFPL
-   K+9i9roEygKoHSexS8U2JZW9z8AZ6tGjwgQzJOpFoA0pxwZ3hWCjFSuV/
-   SDOHm5CP3PMjtcystucew4QUCsvN0FdNQpRixoSnH/JeBoh3CLgHo/8SA
-   vGdmXVL8udH1sgAIJCJ5/R/wODyAYOFWu/OVgdnCJW+o/+yRdg9WaZwGT
-   Q==;
-X-CSE-ConnectionGUID: JEsPmPcGSLiIDbXUDDo5og==
-X-CSE-MsgGUID: NT+8PkpNTSWZb5ioeZALMg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39385323"
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; 
-   d="scan'208";a="39385323"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2025 14:43:28 -0800
-X-CSE-ConnectionGUID: jROx22NBQcGGvRMsd4YqeA==
-X-CSE-MsgGUID: tiD9h/EPS9SDj5QwMK+YGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; 
-   d="scan'208";a="111181311"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 06 Feb 2025 14:43:24 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tgAag-000xTb-17;
-	Thu, 06 Feb 2025 22:43:22 +0000
-Date: Fri, 7 Feb 2025 06:42:58 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
-	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] iio: adc: Support ROHM BD79124 ADC
-Message-ID: <202502070654.5T9Nk6dN-lkp@intel.com>
-References: <4781e1b1f074ca6c84ecc084b152885d08e826cc.1738761899.git.mazziesaccount@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dNXv21cEEcyv8KgrHQC3gXbwheyYmPDHGJWSzP68LXS5sxMDslaDeCHHKEpZAtC0l3GlhiEWVXR8gQQCxsL8FCQ0lvzAMpnuBtjq7VlTO/iyp3tYICcnSn/fba+65NcqfzIP2GoFqCUH5QAzlEfH2jzvzY7H+uQ1z0hbPLXoTmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=p+RkgaMV; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 47628240101
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 23:59:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1738882750; bh=0ntnTKWhZutag/x3HVhP8VZ4Ui4mFuohPb6mz+tL+nc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=p+RkgaMV9VIAIT8MYZFio3VSfTcUJfYA5FEc+zjfP1EnW22lPFrmANL4PS3LwQnNT
+	 602ylrOf2+AntvRiDwn14Jhfy2V1nnrN9wFBJI/kI4PU/+5npRjv6xJ5/AKy/RW6Fv
+	 f2YlHOM7k210lFFssN1JAaYVF1YyIKI+GQ7tKJM9pc/jWJBzOM7DVXjYe2MOUXkiue
+	 adEt/Bw2fk5rtfWCmrCQoBw9fD94uNiGGmSrUf1QNQ80AgJUDYsJdGYQqwmqTTrn2R
+	 oMDGYBC4J4au3YLekaecSKppQGFujoThS8rsOtEJnu5EMXQ+xZWUsk7caf5RSxDEGG
+	 7rekhBdR5x3gA==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4Ypswl20Tqz6txc;
+	Thu,  6 Feb 2025 23:59:02 +0100 (CET)
+Date: Thu,  6 Feb 2025 22:59:01 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Rob Herring <robh@kernel.org>
+Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	Scott Wood <oss@buserror.net>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Subject: Re: [PATCH RFC 9/9] dt-bindings: nand: Convert fsl,elbc bindings to
+ YAML
+Message-ID: <Z6U-tVhmbwwULuzQ@probook>
+References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
+ <20250126-ppcyaml-v1-9-50649f51c3dd@posteo.net>
+ <20250127042321.GA3067818-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <4781e1b1f074ca6c84ecc084b152885d08e826cc.1738761899.git.mazziesaccount@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250127042321.GA3067818-robh@kernel.org>
 
-Hi Matti,
+On Sun, Jan 26, 2025 at 10:23:21PM -0600, Rob Herring wrote:
+> On Sun, Jan 26, 2025 at 07:59:04PM +0100, J. Neuschäfer wrote:
+> > Convert the Freescale localbus controller bindings from text form to
+> > YAML. The list of compatible strings reflects current usage.
+> > 
+> > Changes compared to the txt version:
+> >  - removed the board-control (fsl,mpc8272ads-bcsr) node because it only
+> >    appears in this example and nowhere else
+> >  - added a new example with NAND flash
+> > 
+> > Remaining issues:
+> >  - The localbus is not really a simple-bus: Unit addresses are not simply
+> >    addresses on a memory bus. Instead, they have a format: The first cell
+> >    is a chip select number, the remaining one or two cells are bus
+> >    addresses.
+> 
+> That's every external parallel bus. See bindings/memory-controllers/*
+> 
+> Probably fine to leave 'simple-bus' if that's your question. It's more 
+> that there is configuration for the chipselect timings that make's this 
+> not a simple-bus. But the address translation should work just fine.
 
-kernel test robot noticed the following build warnings:
+My concern mainly stems from the resulting warnings if I allow/use simple-bus:
 
-[auto build test WARNING on 5bc55a333a2f7316b58edc7573e8e893f7acb532]
+Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:77.23-84.15:
+  Warning (simple_bus_reg): /example-1/localbus@e0005000/flash@0,0: simple-bus unit address format error, expected "0"
+Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:86.22-92.15:
+  Warning (simple_bus_reg): /example-1/localbus@e0005000/nand@1,0: simple-bus unit address format error, expected "100000000"
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Matti-Vaittinen/dt-bindings-ROHM-BD79124-ADC-GPO/20250205-214127
-base:   5bc55a333a2f7316b58edc7573e8e893f7acb532
-patch link:    https://lore.kernel.org/r/4781e1b1f074ca6c84ecc084b152885d08e826cc.1738761899.git.mazziesaccount%40gmail.com
-patch subject: [PATCH v2 3/5] iio: adc: Support ROHM BD79124 ADC
-config: i386-randconfig-004-20250207 (https://download.01.org/0day-ci/archive/20250207/202502070654.5T9Nk6dN-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250207/202502070654.5T9Nk6dN-lkp@intel.com/reproduce)
+Existing devicetrees specify the eLBC with compatible = ..., "simple-bus",
+which lead me to include the simple-bus compatible both in the binding
+itself and in the examples, which in turn leads to (correct) warnings
+from DTC about node names such as nand@1,0 (it expects 100000000).
+nand@1,0 was however completely correct for the eLBC bus, because it's
+not one big linear address, but rather a chip select (1) and an address (0).
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502070654.5T9Nk6dN-lkp@intel.com/
+My current idea to resolve this contradiction is to remove simple-bus
+from the binding and change affected devicetrees later.
 
-All warnings (new ones prefixed by >>):
+> 
+> > 
+> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > ---
+> >  .../devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml |  61 +++++++++
+> >  .../bindings/powerpc/fsl/fsl,elbc-gpcm-uio.yaml    |  55 ++++++++
+> >  .../devicetree/bindings/powerpc/fsl/fsl,elbc.yaml  | 150 +++++++++++++++++++++
+> >  .../devicetree/bindings/powerpc/fsl/lbc.txt        |  43 ------
+> >  4 files changed, 266 insertions(+), 43 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml b/Documentation/devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..127f164443972bbaf50fd9daa80c504577ddd7bd
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mtd/fsl,elbc-fcm-nand.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NAND flash attached to Freescale eLBC
+> > +
+> > +maintainers:
+> > +  - J. Neuschäfer <j.ne@posteo.net>
+> > +
+> > +allOf:
+> > +  - $ref: nand-chip.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> 
+> Don't need oneOf.
 
->> drivers/iio/adc/rohm-bd79124.c:1072:29: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
-    1072 |                 return dev_err_probe(dev, ret, "Failed to get the Vdd\n");
-         |                                           ^~~
-   drivers/iio/adc/rohm-bd79124.c:1057:9: note: initialize the variable 'ret' to silence this warning
-    1057 |         int ret;
-         |                ^
-         |                 = 0
-   1 warning generated.
+How would I express "either one of various chip-specific strings
+followed by fsl,elbc-fcm-nand, or fsl,elbc-fcm-nand alone"?
+
+> 
+> > +      - items:
+> > +          - enum:
+> > +              - fsl,mpc8313-fcm-nand
+> > +              - fsl,mpc8315-fcm-nand
+> > +              - fsl,mpc8377-fcm-nand
+> > +              - fsl,mpc8378-fcm-nand
+> > +              - fsl,mpc8379-fcm-nand
+> > +              - fsl,mpc8536-fcm-nand
+> > +              - fsl,mpc8569-fcm-nand
+> > +              - fsl,mpc8572-fcm-nand
+> > +              - fsl,p1020-fcm-nand
+> > +              - fsl,p1021-fcm-nand
+> > +              - fsl,p1025-fcm-nand
+> > +              - fsl,p2020-fcm-nand
+> > +          - const: fsl,elbc-fcm-nand
+> > +      - const: fsl,elbc-fcm-nand
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "#address-cells": true
+> > +
+> > +  "#size-cells": true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> 
+> If you use anything from nand-chip.yaml, then you need 
+> unevaluatedProperties here.
+
+Noted, will fix.
+
+> 
+> > +
+> > +examples:
+> > +  - |
+> > +    localbus {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <1>;
+> > +
+> > +        nand@1,0 {
+> > +            #address-cells = <1>;
+> > +            #size-cells = <1>;
+> > +            compatible = "fsl,mpc8315-fcm-nand",
+> > +                         "fsl,elbc-fcm-nand";
+> > +            reg = <0x1 0x0 0x2000>;
+> > +        };
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/powerpc/fsl/fsl,elbc-gpcm-uio.yaml b/Documentation/devicetree/bindings/powerpc/fsl/fsl,elbc-gpcm-uio.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..60f849b79c11a4060f2fa4ab163f9fa9317df130
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/powerpc/fsl/fsl,elbc-gpcm-uio.yaml
+> > @@ -0,0 +1,55 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/powerpc/fsl/fsl,elbc-gpcm-uio.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Userspace I/O interface for Freescale eLBC devices
+> > +
+> > +maintainers:
+> > +  - J. Neuschäfer <j.ne@posteo.net>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: fsl,elbc-gpcm-uio
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  elbc-gpcm-br:
+> > +    description: Base Register (BR) value to set
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> > +  elbc-gpcm-or:
+> > +    description: Option Register (OR) value to set
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> > +  device_type: true
+> 
+> This should be dropped.
+
+Will do
 
 
-vim +/ret +1072 drivers/iio/adc/rohm-bd79124.c
+> > diff --git a/Documentation/devicetree/bindings/powerpc/fsl/fsl,elbc.yaml b/Documentation/devicetree/bindings/powerpc/fsl/fsl,elbc.yaml
+[...]
+> > +  "#address-cells":
+> > +    enum: [2, 3]
+> > +    description: |
+> 
+> Don't need '|' unless there's some formatting.
 
-  1049	
-  1050	static int bd79124_probe(struct i2c_client *i2c)
-  1051	{
-  1052		struct bd79124_data *data;
-  1053		struct iio_dev *iio_dev;
-  1054		const struct iio_chan_spec *template;
-  1055		struct iio_chan_spec *cs;
-  1056		struct device *dev = &i2c->dev;
-  1057		int ret;
-  1058	
-  1059		iio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-  1060		if (!iio_dev)
-  1061			return -ENOMEM;
-  1062	
-  1063		data = iio_priv(iio_dev);
-  1064		data->dev = dev;
-  1065		data->map = devm_regmap_init_i2c(i2c, &bd79124_regmap);
-  1066		if (IS_ERR(data->map))
-  1067			return dev_err_probe(dev, PTR_ERR(data->map),
-  1068					     "Failed to initialize Regmap\n");
-  1069	
-  1070		data->vmax = devm_regulator_get_enable_read_voltage(dev, "vdd");
-  1071		if (data->vmax < 0)
-> 1072			return dev_err_probe(dev, ret, "Failed to get the Vdd\n");
-  1073	
-  1074		ret = devm_regulator_get_enable(dev, "iovdd");
-  1075		if (ret < 0)
-  1076			return dev_err_probe(dev, ret, "Failed to enable I/O voltage\n");
-  1077	
-  1078		ret = devm_delayed_work_autocancel(dev, &data->alm_enable_work,
-  1079						   bd79124_alm_enable_worker);
-  1080		if (ret)
-  1081			return ret;
-  1082	
-  1083		if (i2c->irq) {
-  1084			template = &bd79124_chan_template;
-  1085		} else {
-  1086			template = &bd79124_chan_template_noirq;
-  1087			dev_dbg(dev, "No IRQ found, events disabled\n");
-  1088		}
-  1089		ret = devm_iio_adc_device_alloc_chaninfo(dev, template, &cs);
-  1090		if (ret < 0)
-  1091			return ret;
-  1092	
-  1093		iio_dev->channels = cs;
-  1094		iio_dev->num_channels = ret;
-  1095		iio_dev->info = &bd79124_info;
-  1096		iio_dev->name = "bd79124";
-  1097		iio_dev->modes = INDIO_DIRECT_MODE;
-  1098	
-  1099		data->gc = bd79124gpo_chip;
-  1100		data->gc.parent = dev;
-  1101	
-  1102		mutex_init(&data->mutex);
-  1103	
-  1104		ret = bd79124_hw_init(data);
-  1105		if (ret)
-  1106			return ret;
-  1107	
-  1108		ret = devm_gpiochip_add_data(data->dev, &data->gc, data);
-  1109		if (ret)
-  1110			return dev_err_probe(data->dev, ret, "gpio init Failed\n");
-  1111	
-  1112		if (i2c->irq > 0) {
-  1113			ret = devm_request_threaded_irq(data->dev, i2c->irq,
-  1114						bd79124_irq_handler,
-  1115						&bd79124_event_handler, IRQF_ONESHOT,
-  1116						"adc-thresh-alert", iio_dev);
-  1117			if (ret)
-  1118				return dev_err_probe(data->dev, ret,
-  1119						     "Failed to register IRQ\n");
-  1120		}
-  1121	
-  1122		return devm_iio_device_register(data->dev, iio_dev);
-  1123	}
-  1124	
+Will remove.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> > +      The first cell is the chipselect number, and the remaining cells are the
+> > +      offset into the chipselect.
+> > +
+> > +  "#size-cells":
+> > +    enum: [1, 2]
+> > +    description: |
+> > +      Either one or two, depending on how large each chipselect can be.
+> > +
+> > +  ranges:
+> > +    description: |
+> > +      Each range corresponds to a single chipselect, and covers the entire
+> > +      access window as configured.
+> > +
+> > +patternProperties:
+> > +  "^.*@.*$":
+> 
+> You should define the unit-address format here: @<chipselect>,<offset>
+
+Will do.
+
+
+
+Thanks,
+J. Neuschäfer
 
