@@ -1,146 +1,118 @@
-Return-Path: <devicetree+bounces-143496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC739A2A2B3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 08:55:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A03D9A2A365
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:40:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE26E7A2055
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 07:54:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D86B7A4024
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 08:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7201D22579C;
-	Thu,  6 Feb 2025 07:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f46bTA+f"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021A8225787;
+	Thu,  6 Feb 2025 08:39:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A95422578F
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 07:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6111822577D;
+	Thu,  6 Feb 2025 08:39:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738828453; cv=none; b=prdu3V5rBAfEB95UnPbzMsqSLQY5rvFH7pmjojBy0oVIR5tID4+pokk/rW+HgNHsfA+6RpugennvZtQWlMJWI9d/t8YqhpiZqdeBea7UEzJCNs6X1LnrQx3Hy9O9eOhj2mkJLDaRYsyQJJMBQdkgbCJPdwu0mBQsk78WMar/AYI=
+	t=1738831177; cv=none; b=MUrhQv6++noeSvbrjsQQaAb6AOnQyn2U1U7ayfx6d76DZ01pcnXt/uvfAJQkwc8XyOOx3IW4CdXrS6IK615eQcwR3pXzLiB2KKdgGtyKHKlVUIVMOhbzsXRN9V3hJj3T3texh0yvJ5EpXFRB0bONqhLavFEk5mpCzurFjiB9jYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738828453; c=relaxed/simple;
-	bh=Y9WC87bLe5NehjYOXZdbt0lMGSd6u5imi7raAGHmnlI=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=bUo8+fQlj4tgaRWjHXLdybQrhgfLvRnjLniiIfIVjRzhrDoxsqUcuYa+kTe0YfccIG1wt3VTRLykJ4v2hjUmtINp06JZJRrBJGz2OvhLtnDnsiq8H5hqRpZm2vvnjZvdAMRcgoYcCTsHsvy+ojlDfSx54PmWziUmG+fqqJKIStQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f46bTA+f; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4363dc916ceso10101485e9.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 23:54:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738828449; x=1739433249; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q+U3GhEYNSJGMFlCgGumTWq6/ff6zdU5LVaoQovoEL0=;
-        b=f46bTA+fgEP+fXkSL+GMzyFtvwYIT2yEc+poTM16ziYwTCale8LeTnOEqptd8WUDyi
-         OyFkAZy3FwkV4OxCw02944vff23zQo1aoxcoREe8QCqRC2lc2DMGXf6j1P1ZgBntKo1l
-         ALRKP+E7THxvvmqrpIBxPGAmzDkfHY3CBm8rq0Ig8MQFRjpeidatuJ7SzEitkKx3k4is
-         KG4wxIviW4v/RSK2+SyenQ8yEWnPvuWg5G3BTjga/Mp3Wb4Icyop+FC4thTqUoHso24x
-         vN6B2tdv5mzgX+HXIENkrUiY94BGfGKe1BhdecaQVblWNNR7TFvq+LfW7GJu/I1XevPy
-         SawQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738828449; x=1739433249;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Q+U3GhEYNSJGMFlCgGumTWq6/ff6zdU5LVaoQovoEL0=;
-        b=Ey29y1wViej5GtAnS0+Ynrt+akSf/Dk9IqGd9hZsqyE2JIGDH0+GJ2TmshMP5+1T/+
-         mqcHckxPJc44FDAJlY41R/6cnATkLkSKGH8XhCvgv2uFiuG+ybClo6MUYwLrRrz8+AR8
-         ZCvHcP2c3QMKOxQFkT0TYA5mQ0KWUI1j5uJdpH5lClvya6oNQ00Rr3XokmVXLnqd9dno
-         nfMw7whabzpMyUO2zv9U5JVKArxtN6Bj207m2dBEhenPa8X+F1XhX+j7C1Z1kSU30U/j
-         5JBiAMGW/l9oKysV4ZVGSicnPITXAHtOPayCcdLZmw2bptbkFSkbG09dSiLylP+gdvg/
-         0Xbw==
-X-Forwarded-Encrypted: i=1; AJvYcCWWghWxsZNSJDiCZ1ZSVyulMknACKEmnsZbHfnFLpeO50MJ7tg4NXdqjfp4eT/Sa3Z0or100ZNb2IIY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKXo8NzkKYlKd2N1iKlsbRjK1QH02Eu/A+xGJznqKbqwmnzxrC
-	n+auu6CGsrL0UVIi9cwwIQTckWQa+jjSgPUpEuP1ToE6guepNlJADJarqf+1prg=
-X-Gm-Gg: ASbGncvC/pkP/gyJ2tIeoZK2Ep6ZhiNLODytSHQC2lTqJImZQ62eXWtZsqaQfBlrLOK
-	HroqnXKh7kbUB64Jh9bCY5Y60NVbtOFVhDXUU55s/j7psKSK67aL2YTHtBfme0a7POXWDmYioeI
-	LsC0jtdtsDAgeD1AVYz6aIrPO1WQ8mZ2/onBlSjmML8a/L4XhhYIEjFFidHRS8buqjv8G9qJSrc
-	2rokFI/qaFOEoYC6Bmsk1fKSioE5jmfxKcccU2N9WpJ2YY1aJsvdO24g74lJsi2UzW4kyZfJolL
-	6VkNmhu7jTh3NffpoOwofNxpA7D1AxrLhbHqeMv9oxVvC8hEk2N3u+6hFnKIJmQ9cQQN
-X-Google-Smtp-Source: AGHT+IGrzW1LdzySmLH3XUvU+ruX4SLesnotJf/9MZ7S4Ul1OkUGYV9PvZdjXAlQoh8a/JyV5GRRkQ==
-X-Received: by 2002:a05:600c:4703:b0:436:185f:dfae with SMTP id 5b1f17b1804b1-43912d1510emr13458025e9.6.1738828448157;
-        Wed, 05 Feb 2025 23:54:08 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4972:46a2:e0cb:c0a6? ([2a01:e0a:982:cbb0:4972:46a2:e0cb:c0a6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dc050d688sm522181f8f.24.2025.02.05.23.54.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Feb 2025 23:54:07 -0800 (PST)
-Message-ID: <9db01455-f3e9-474b-b87a-30f934ff6a02@linaro.org>
-Date: Thu, 6 Feb 2025 08:54:06 +0100
+	s=arc-20240116; t=1738831177; c=relaxed/simple;
+	bh=NY5KMo4mSbDM2oc+61t64xOvH/Rr8aNKNrVv+vLhO9o=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GwzPCfVJTU0+jri+lc7qd97cOUW5GH+OWtnEoacokhp53gqV1jC3bDQx2B2+GTEH1AFL6PebkU+zjZQAkG0ZAHKJgVvYWkTlbR15iCnUytshS1GwJ8rUr61WR+u4k+W4cDrV8bIYNhP/w7mw4WeTLvWxC6MibLQ0kF+zpAHjK5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from Atcsqr.andestech.com (localhost [127.0.0.2] (may be forged))
+	by Atcsqr.andestech.com with ESMTP id 51689QX5012700;
+	Thu, 6 Feb 2025 16:09:26 +0800 (+08)
+	(envelope-from ben717@andestech.com)
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 51688w6s012525
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Thu, 6 Feb 2025 16:08:58 +0800 (+08)
+	(envelope-from ben717@andestech.com)
+Received: from atctrx.andestech.com (10.0.15.11) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 6 Feb
+ 2025 16:08:58 +0800
+Date: Thu, 6 Feb 2025 16:08:58 +0800
+From: Ben Zong-You Xie <ben717@andestech.com>
+To: <krzk@kernel.org>, <linux-pwm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <ukleinek@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <ben717@andestech.com>
+Subject: Re: [v3 2/2] pwm: atcpit100: add Andes PWM driver support
+Message-ID: <Z6RuGrszOiPFWHyU@atctrx.andestech.com>
+References: <20250123193534.874256-1-ben717@andestech.com>
+ <20250123193534.874256-3-ben717@andestech.com>
+ <5514fa03-139e-456e-b522-6a774b52eac1@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v5 0/5] Driver for pre-DCP apple display controller.
-To: fnkl.kernel@gmail.com, Hector Martin <marcan@marcan.st>,
- Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jessica Zhang
- <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Alyssa Ross <hi@alyssa.is>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Janne Grunau <j@jannau.net>, Nick Chan <towinchenmi@gmail.com>
-References: <20250205-adpdrm-v5-0-4e4ec979bbf2@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250205-adpdrm-v5-0-4e4ec979bbf2@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <5514fa03-139e-456e-b522-6a774b52eac1@kernel.org>
+User-Agent: Mutt/2.1.4 (2021-12-11)
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 51689QX5012700
 
-On 05/02/2025 23:10, Sasha Finkelstein via B4 Relay wrote:
-> Hi.
+On Fri, Jan 24, 2025 at 08:30:48AM +0100, Krzysztof Kozlowski wrote:
+> [EXTERNAL MAIL]
 > 
-> This patch series adds support for a secondary display controller
-> present on Apple M1/M2 chips and used to drive the display of the
-> "touchbar" touch panel present on those.
+> On 23/01/2025 20:35, Ben Zong-You Xie wrote:
+> >
+> > +config PWM_ATCPIT100
+> > +     tristate "Andes ATCPIT100 PWM support"
+> > +     depends on OF && HAS_IOMEM
+> > +     depends on RISCV || COMPILE_TEST
+> > +     select REGMAP_MMIO
+> > +     help
+> > +       Generic PWM framework driver for ATCPIT100 on Andes AE350 platform
 > 
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> ---
+> 
+> Is AE350 a type of a SoC? Looks like. "depends on RISCV" is wrong -
+> there is nothing RISC-V specific here. You must depend on given
+> SoC/platform.
+> 
 
-LGTM should patches 1, 2, 3 & 5 go via drm-misc ?
+Hi Krzysztof,
 
-Neil
+AE350 is not a SoC. It's just a reference platform to verify Andes CPUs
+on FPGA. For further information on AE350, please refer to [1].
+
+Also, I will remove "depends on RISCV" and fix the coding style problems
+in the next patch. Thanks for your review.
+
+[1] https://www.andestech.com/en/products-solutions/andeshape-platforms/ae350-axi-based-platform-pre-integrated-with-n25f-nx25f-a25-ax25/
+
+Best regards,
+Ben
+
+> > +
+> > +       The ATCPIT100 Programmable Interval Timer (PIT) is a set of compact
+> > +       multi-function timers, which can be used as pulse width
+> > +       modulators (PWM) as well as simple timers. ATCPIT100 supports up to 4
+> > +       PIT channels. Each PIT channel can be a simple timer or PWM, or a
+> > +       combination of timer and PWM.
+> > +
+> > +       To compile this driver as a module, choose M here: the module
+> 
+> 
+> ...
+> 
+
 
