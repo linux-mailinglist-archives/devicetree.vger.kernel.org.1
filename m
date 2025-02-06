@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-143612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F21F3A2A911
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 14:08:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D3E7A2A919
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 14:08:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01DB71887F2C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:08:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA7913A7A1D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:08:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE9C22E41E;
-	Thu,  6 Feb 2025 13:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9278A22F38E;
+	Thu,  6 Feb 2025 13:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dBGxZTMD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cOS1BBfY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C994B22DFAB
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 13:08:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A831922E3EC
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 13:08:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738847303; cv=none; b=IN8OBriCnHv07upx02C9KTfif+RqiIR18aLkVWoUTDIwqYQFAsd0iwemgnrspcen3E2CZWX5/yAzsU1pRHZ9w5hp8WXH+8bOdgQcMuW7vKFEsSmabi0XuuT5KD+ARe3i42voqWqVssE03TH87JgkwRffV4Jk6gP6sSAEIlJZTAE=
+	t=1738847305; cv=none; b=X6DPWfL6J6/9tZ/x0sdYYnjFcAR9jWuf2TRsThHx2xIRakBeNiBimGKMAoMYFjlHL7xf/Sr+wGA0Wv8arCQJa2wKzqKT6+wp+SuehFsBMUCO7Y5vWm3YnHVb6hmaz3wnz5LvDaSp5GpscN3aPI4G+FsbjFm9ihzlLD0B0FTXHwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738847303; c=relaxed/simple;
-	bh=g6CYlgIlCCDTKUM/OG+ZQtKIr6j1sM2JrhXAeW4MFQI=;
+	s=arc-20240116; t=1738847305; c=relaxed/simple;
+	bh=YTG9xptoyrfZ+iyT/y9FYepYTHdoDzEqJMV6IaGD2nA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JJkLlp0eEhowapwJkwxABGsq/C97gpTTHhALSYWHa8ld1rqXVUtomC78zOz7BS96APAbsdYKPNwVeHNhwXhDXjgJUxikjQSFK/gi8EZhSpKZvwyastVgmvWeU3YSuWQZMNIYa4vbgpy0eg1BXp1V3PXC+rzjulFgZtN5gycHKxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dBGxZTMD; arc=none smtp.client-ip=209.85.208.41
+	 In-Reply-To:To:Cc; b=VhAayDaKIbjNoSxQxBAEhS257sJm3anA08HKkq3DTMB6BARojimVBuG1ulCkO5lrRti+yZ9O0OnvxPl1BamCycmx0/+M1V4SepXUjKbewEfwY9salYB0X+mp/iB4qpsLNw5PAFKo+nNC5JVzb1P297eZrJcYCM4gWIJu1pfHMG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cOS1BBfY; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5dc75f98188so1637717a12.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 05:08:21 -0800 (PST)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ab6fb1851d4so177529466b.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 05:08:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738847300; x=1739452100; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1738847301; x=1739452101; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sDAg+ppQjoLROQ6tgZmSgyH+iG6RB5+F1jMAwfLcm78=;
-        b=dBGxZTMDMDZ5FnAIbPi3/45HoEQGBa54OegsADxddHG+PuhgwsX7Y5YwaLu60L3TVC
-         zVJwVEXrtNHU51Wa8ulDC31IjNQ45ZCTTvVAD3tdtRRxHnBMWAraVH6iBZ5VFxIECqOT
-         LO3oY1JMcoWrC8WVCqx7ks6ODRnR1S+mCE/A/yLtDF2TCfmT0WyPi6wb7qAlY6+3c1we
-         FI63XGb0oAGb/PZ2N8ROmQ1zHPbsGeTjjT9tE998yQIwUeBGdhf3VlX29dhmjKaOgygm
-         u9qadk/mDlkNws+6/hZNI0Z0e2ZcaWZe7GKCUWmfpUS/bmOnCJuhDLNtcrONKPiQbIN1
-         Retg==
+        bh=2REuoysCPKRak0tj4nVzCn8fUcKqMMqOYeUqp9AjQG0=;
+        b=cOS1BBfYN//KiGLWBufrTnguRCX3wZkZRsbaqke/HyD21ibt0gziHYBRPnjuMUSHDC
+         dpbySd3bexiUIGUr69zRuY1tlOGRDVLlYn24C8bsCvBB7R67pZ8VlN+vA8dXFc+Th5h8
+         8LPzwTxZQGG/tSgCWMnCKyzWSd027utxJCvxpRERDa6H4vzHtNniDXZ+Mbwb7Ht319zr
+         AP9EnoNLuzLd3bweuTW9vVMvQdNCVhBOFncbZvb7e3wxmoN4nLspYyeUNfin/tWulhg1
+         BfzAmEGYibBSB7uZHDCwzBoooxIdJ2UJPsKqxi0upN1wTFN2oTF9RGUvYytfYM+vCYC1
+         9QzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738847300; x=1739452100;
+        d=1e100.net; s=20230601; t=1738847301; x=1739452101;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sDAg+ppQjoLROQ6tgZmSgyH+iG6RB5+F1jMAwfLcm78=;
-        b=SAtkBtz72PX6/6lHOhY5LYZi9WkrWErR9uRcQE1ifcsp3tTXcJYME+iGU3vjvBCVOL
-         FI+GVil1zzP3Yxv4qfsZtdm3Dg8lB1pt9TGYyQQmMOOCr8E466S4RBv142EXK3iRtEim
-         jaUn2C8tzXElYNpWhSk1Q32m2QXMIwobpGigUxkfjbP/qwQ+sSBtEUaEV9bcr0+dh/DG
-         Z1oErtLR+xjUtIk4I7yzE3ukLI+h/XG59m/O0NxDbjFPGZL0s/csbPZlupJi3+wKmaJm
-         uNG2tCMoctaTwqzj5Nze6t2xBlJ9gQ191ZEWSBvWzfo0NLz0PPUHXMGRuAb7/YjS0jqm
-         RMxA==
-X-Forwarded-Encrypted: i=1; AJvYcCWlmIKdbugGwpJMs1gz7zWCqvN1rva/HAQy47mH7uLW7IhsAvX68FE0diduV+hryz6Qee3DLKrYbQRP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGQPi+Z+0TPOxy4ZQ1pYgHJ3axRDtnKcbDENLexSeWNK4HjZ+u
-	T03bBPH9kI4ZGUP7yyFXBaZUANUK/oLioVnAQUIU3CUtem+JDXZfqiiuzyaYiCg=
-X-Gm-Gg: ASbGncuqzhJUJKrH1Ku6EyrswrTQkvyAn0zL2czSBRZmXUe/WUn3HsGmcXEWJTH1SEZ
-	HteFLcL+tFmSPUGUgd0Nw+ZdsFyoqcl+Wy42ICFAgrWzk2lKXYvy06EmzvS2+xEP/BcMNOfQJ3A
-	/ad7CI21bM6wLlmLEVhxAE2e1/pGLmsmb5Gpd+wh4J8mEHu+t9s6vF68wOJz2txRxpEXT5KWaN/
-	6FvMhmqa8Iy0HmSRfF0/WXGMbZzTDWQq+E0ihdgyBr5KkDuc++3kURsmj86wdugi/y6fnLEVi8s
-	OmopJBqDOXE4DjnmkMFZ9Lldsnrp6CgZ949g+xwJZr66YgLzHMvH11wLevBpzvulAOq5PBYNr5g
+        bh=2REuoysCPKRak0tj4nVzCn8fUcKqMMqOYeUqp9AjQG0=;
+        b=rd/XInWITl0HncqX/gLiFnHLoTJ0yS182rYe++qzpMdqWUxrlXfLNSOANfS9MMhA3I
+         VCuTm3CanGBI3xSZPlINK4MuY2cATBV4SlnwLe2wf42dma4HvlcLAwsIJHFFII2vgS7M
+         J6GVgoxNa4hTZZk9el6BnlLb0Io2CzsM9winD4ZlyQIiNsrEzMUem+nFwNvQwPl0Rk6p
+         RQ/UTQfM9h37xXv8WmG4Bzqq73W/qfStgf80gU7XykwOqayM8dHWkLg2+Omb3/xFZohX
+         yPx9iLfwy4q7LJz9pxYfl85uUW37AGYjvNUdcTb1TQyhzn+FmD+wA3gxtcsxu9Nkjd/j
+         22hQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUEzPmsMDQhbNh6t3sSSKEtrPHgdVgBt86I4dXRrAZM7BI5+7FsMlNbODzk7Sui8+iHveXJeN/9p7eQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTyiKGegbrG/8aBMMEt4Zd3iMbCJ3szCgvWdYt4rCBYGy2BWeC
+	eoE9YsjAMJhCkhiViPdfZm1sUZltPvJobAmBdywd2lM7jE15Yz9KadPx7w9h9q8=
+X-Gm-Gg: ASbGnctxblUKhFpxcp4eH08jb6KaS0EjWsp2r2P9ZP21zTj2C0dWLVxrd7RMJQxJoE8
+	SaubuzQN61pesu6E5ySPR5Y5WgViTtc2Iisf9qhI9VIdGrebrynZzMuK/hjyUS6wqZTlJN6iDjw
+	zKhdfI9zBZcB3Ja+bbPUAdkEzIpm60lRVFJzLCvnN3mRNEm6XG0TBMnbxVe1KaUWWfUXhaM3XLK
+	6GS+Mhuwh7Oi/d/F3UqxA3MJTVPJ+J+nBszdq3xxELUfH//bQ5FLwnpB8QNyIYQ1hogs35VRNzL
+	ACPziBdKB4LckkGmLYy3c+EUfvfeg9J2F0imbnZcXXsx37+QLPgCl0BKbVPqfxjdrhEr2ukZGe0
 	=
-X-Google-Smtp-Source: AGHT+IFTAdVpqgZ0wqgMByKwDevPfkkbqJL1+kBcqsh/Cv6cjwQ8nQLxo1utspkD+w2738TsWHLVKA==
-X-Received: by 2002:a05:6402:520d:b0:5dc:d34f:a315 with SMTP id 4fb4d7f45d1cf-5dcdb729597mr7450061a12.15.1738847300001;
+X-Google-Smtp-Source: AGHT+IF1BlIvboKtAcfd9MgfY7h0B//QZpwtD6hvZuGWR6NA7xoR+qRJFpfzOckYvT3dhmaj0oJQoA==
+X-Received: by 2002:a17:907:97d3:b0:ab3:47cb:5327 with SMTP id a640c23a62f3a-ab76e84c45cmr374142766b.5.1738847300776;
         Thu, 06 Feb 2025 05:08:20 -0800 (PST)
 Received: from puffmais.c.googlers.com (140.20.91.34.bc.googleusercontent.com. [34.91.20.140])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dcf1b73f8csm830235a12.8.2025.02.06.05.08.19
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dcf1b73f8csm830235a12.8.2025.02.06.05.08.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Feb 2025 05:08:19 -0800 (PST)
+        Thu, 06 Feb 2025 05:08:20 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Thu, 06 Feb 2025 13:08:18 +0000
-Subject: [PATCH 1/3] arm64: dts: exynos: gs101: drop explicit regmap from
- reboot nodes
+Date: Thu, 06 Feb 2025 13:08:19 +0000
+Subject: [PATCH 2/3] arm64: dts: exynos: gs101: align reboot and poweroff
+ writes with downstream
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250206-gs101-renppt-dts-v1-1-cdfe993fb3c5@linaro.org>
+Message-Id: <20250206-gs101-renppt-dts-v1-2-cdfe993fb3c5@linaro.org>
 References: <20250206-gs101-renppt-dts-v1-0-cdfe993fb3c5@linaro.org>
 In-Reply-To: <20250206-gs101-renppt-dts-v1-0-cdfe993fb3c5@linaro.org>
 To: Peter Griffin <peter.griffin@linaro.org>, 
@@ -98,36 +98,42 @@ Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
  =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.13.0
 
-The regmap property for syscon-poweroff and syscon-reboot is unneeded
-here because the poweroff and reboot nodes are children of syscon
-already. It also is deprecated.
+For power off, downstream only clears bit 8 and leaves all other bits
+untouched, whereas this here ends up setting bit 8 and clearing all
+others, due to how sysconf-poweroff parses the DT.
 
-We can just drop it to simplify the DT.
+For reboot, downstream writes 0x00000002 whereas this here ends up
+setting bit 1 only and leaving all others untouched.
+
+I noticed this discrepancy while debugging some reboot related
+differences between up- and downstream and it's useful to align the
+behaviour here.
 
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index 813f96089578..e78dcd506a5c 100644
+index e78dcd506a5c..4f45bfeb33c0 100644
 --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
 +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -1400,14 +1400,12 @@ pmu_system_controller: system-controller@17460000 {
- 
+@@ -1401,13 +1401,13 @@ pmu_system_controller: system-controller@17460000 {
  			poweroff: syscon-poweroff {
  				compatible = "syscon-poweroff";
--				regmap = <&pmu_system_controller>;
  				offset = <0x3e9c>; /* PAD_CTRL_PWR_HOLD */
- 				mask = <0x100>; /* reset value */
+-				mask = <0x100>; /* reset value */
++				mask = <0x00000100>;
++				value = <0x0>;
  			};
  
  			reboot: syscon-reboot {
  				compatible = "syscon-reboot";
--				regmap = <&pmu_system_controller>;
  				offset = <0x3a00>; /* SYSTEM_CONFIGURATION */
- 				mask = <0x2>; /* SWRESET_SYSTEM */
+-				mask = <0x2>; /* SWRESET_SYSTEM */
  				value = <0x2>; /* reset value */
+ 			};
+ 		};
 
 -- 
 2.48.1.362.g079036d154-goog
