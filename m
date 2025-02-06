@@ -1,195 +1,208 @@
-Return-Path: <devicetree+bounces-143641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE02A2AA34
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 14:41:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F22EAA2AA3D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 14:44:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A86B11882A7C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:41:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C94517A29BF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DF611EA7FC;
-	Thu,  6 Feb 2025 13:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 055E31624C4;
+	Thu,  6 Feb 2025 13:43:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DCxmRe/T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B541EA7E6;
-	Thu,  6 Feb 2025 13:41:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C4F91EA7CA;
+	Thu,  6 Feb 2025 13:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738849284; cv=none; b=qXYJsI5ywEkUDvfwKERiUHUr5y5LO+mhZhiV3hvFEYs0Na8tiAahlOsywlHgxyWvzD6MjPVDvlF1JHCNd2hOUfwDl8B3lgEGlauh9FWeM6m3hfAKFJpRtxjxWGMGl954JpcxSUbkuyxCzDsCI9X4KkmjO37rbXNouh2pP0WNEOs=
+	t=1738849432; cv=none; b=QrsxavfMkCZs1yRFiG377atWZwU3dcMg3GFnAPicajd8RHYrPUcU9kCFiB3SY1dOxc10Cbt5ohIqcN8GEJN1CsOl5pjPVgZHIe4S3vW2wPXsN47pfCrWXxyzXUk/ndb2kPxygiK+Rd4dICVsXGkKgScR0MTv0fWlis/DTgU20/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738849284; c=relaxed/simple;
-	bh=3kz+7Vs0zqj/PvRtFzztlBaYM3X6IkOs6QTrXY46dZ0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=M0u1BQOLRcz5QUE62uXUa7dX3iVskKq/GNECxXRdQmYc/3weDxAa6vkvJ60k0YEFyarsYpJyOVQSdVoYq2jnTDJmU4U3A7/cdWby9jCz1yRimJ6vxvVvycWbSuR1IIaLPmfVHmKArvl+NbV4gm99XJpbMe86sPcGUJAeQT4tt6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: EhVsAoveQMOtfsAIDaVbag==
-X-CSE-MsgGUID: 8cfiY52QS/mKy0B8YQ7X9g==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 06 Feb 2025 22:41:22 +0900
-Received: from localhost.localdomain (unknown [10.226.92.229])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 63AAA4019C60;
-	Thu,  6 Feb 2025 22:41:19 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v3 8/8] arm64: dts: renesas: r9a09g047e57-smarc: Enable SDHI1
-Date: Thu,  6 Feb 2025 13:40:32 +0000
-Message-ID: <20250206134047.67866-9-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250206134047.67866-1-biju.das.jz@bp.renesas.com>
-References: <20250206134047.67866-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1738849432; c=relaxed/simple;
+	bh=AbzbRZReYqeMVRgd1IlWVzP+/DIkPBzAbJfm7sh7NkU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=NUJ5QqKfcOqTbeHd29VrqbH3JnK5V1XATCvzsMSsaBlmzNYqlMa2tECrIvmpOJvwwe6leYQaP9ZEa7kM3iNK3L5e8wIoGZU8bVF+kchM0QTBzsfQz4H+ofwVOreP2gFXQ7ezDSXdZ8+OpgFU8w9bdg5xwpU7m7+BG7F9Rd2BNs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DCxmRe/T; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5169eAR0024140;
+	Thu, 6 Feb 2025 13:43:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=1KcEGGcg3oJpmXcrnL/N+U
+	NJLjzhJ2TAZeZEb9W1Sco=; b=DCxmRe/TWeLx5WIWTZGUkTq32Yx04MY8Hf1FyH
+	24Y+mGjgyywL+IgovhLaA2wRFjoHzno3tPTtGllvCAG0fJczIMpqxt8tWvtE4Hkh
+	N4Dey5pqbPR+l22vlrYb2JlPjL7jd+kc2n9o9ytIsDQZ/UZLGCm3/EIMa885lfOO
+	KZNL1FDJimut2qNHvI8MmRnFW4iYSsfylCEPHpmCzfNqa/exNtgCHdx5ugNG4PnJ
+	+nz1yXYYReSobRdvPifpB5F1KzfXJmGRQLCArYK1eEMT6fZaQpMulXisiELQBupq
+	QJky94GwOlHJkqBtAyef/u9rbCK8QQGOQdKbna76iQdxMCtg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44mtn7gjgq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 06 Feb 2025 13:43:46 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 516DhjOO000459
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 6 Feb 2025 13:43:45 GMT
+Received: from hu-pbrahma-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 6 Feb 2025 05:43:43 -0800
+From: Pratyush Brahma <quic_pbrahma@quicinc.com>
+Date: Thu, 6 Feb 2025 19:13:17 +0530
+Subject: [PATCH] arm64: dts: qcom: qcs8300: add the pcie smmu node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20250206-qcs8300-pcie-smmu-v1-1-8eee0e3585bc@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAHS8pGcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIwMz3cLkYgtjAwPdguTMVN3i3NxSXZNkC0Mjw2RzY8tUCyWgvoKi1LT
+ MCrCZ0bG1tQAzc6gxYwAAAA==
+X-Change-ID: 20250206-qcs8300-pcie-smmu-4c8121c739e8
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Pratyush Brahma <quic_pbrahma@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738849422; l=4210;
+ i=quic_pbrahma@quicinc.com; s=20250113; h=from:subject:message-id;
+ bh=AbzbRZReYqeMVRgd1IlWVzP+/DIkPBzAbJfm7sh7NkU=;
+ b=bIKx4h8U97djujOmdraYy+6YtaRIWull3mwn6nh1UaI8sWTek5cpq4mghe3Qp5P3MjAmTY5y4
+ MYUUEkXuJRbBH3E7q1iXh2lfzmyAb0jc5gCdFBt1Fj1pMk50bDrdsuy
+X-Developer-Key: i=quic_pbrahma@quicinc.com; a=ed25519;
+ pk=YvfZKC4rRO1Fot+wlXZqsoQWnAtLqrpMyEzslw3Ji+M=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: QH3O6lGqZuPcwH5PWjkJUftMLrlhzIZG
+X-Proofpoint-ORIG-GUID: QH3O6lGqZuPcwH5PWjkJUftMLrlhzIZG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-06_03,2025-02-05_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ malwarescore=0 clxscore=1015 priorityscore=1501 mlxlogscore=477
+ impostorscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0
+ adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502060110
 
-Enable SDHI1 on the RZ/G3E SMARC EVK platform using gpio regulator for
-voltage switching.
+Add the PCIe SMMU node to enable address translations
+for pcie.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
 ---
-v2->v3:
- * Added header file gpio.h.
-v1->v2:
- * Replaced the regulator usd_vdd_3p3v->reg_3p3v.
- * Renamed the gpio-hog node sd1-pwr-en->sd1-pwr-en-hog.
- * Sorted sd1 pin ctrl nodes.
----
- .../boot/dts/renesas/r9a09g047e57-smarc.dts   | 46 +++++++++++++++++++
- .../boot/dts/renesas/renesas-smarc2.dtsi      | 18 ++++++++
- 2 files changed, 64 insertions(+)
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi | 75 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 152a00aa354b..5d7983812c70 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -9,7 +9,9 @@
+diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+index 4a057f7c0d9fae0ebd1b3cf3468746b382bc886b..fe88244771583de9fed7b7e88c69a14872d4ffc8 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+@@ -3199,6 +3199,81 @@ apps_smmu: iommu@15000000 {
+ 				     <GIC_SPI 895 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
  
- /* Switch selection settings */
- #define SW_SD0_DEV_SEL		0
-+#define SW_SDIO_M2E		0
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h>
- #include "r9a09g047e57.dtsi"
- #include "rzg3e-smarc-som.dtsi"
-@@ -19,6 +21,16 @@ / {
- 	model = "Renesas SMARC EVK version 2 based on r9a09g047e57";
- 	compatible = "renesas,smarc2-evk", "renesas,rzg3e-smarcm",
- 		     "renesas,r9a09g047e57", "renesas,r9a09g047";
++		pcie_smmu: iommu@15200000 {
++			compatible = "qcom,qcs8300-smmu-500", "qcom,smmu-500", "arm,mmu-500";
++			reg = <0x0 0x15200000 0x0 0x80000>;
++			#iommu-cells = <2>;
++			#global-interrupts = <2>;
++			dma-coherent;
 +
-+	vqmmc_sd1_pvdd: regulator-vqmmc-sd1-pvdd {
-+		compatible = "regulator-gpio";
-+		regulator-name = "SD1_PVDD";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpios = <&pinctrl RZG3E_GPIO(1, 5) GPIO_ACTIVE_HIGH>;
-+		gpios-states = <0>;
-+		states = <3300000 0>, <1800000 1>;
-+	};
- };
- 
- &pinctrl {
-@@ -26,9 +38,43 @@ scif_pins: scif {
- 		pins = "SCIF_TXD", "SCIF_RXD";
- 		renesas,output-impedance = <1>;
- 	};
-+
-+	sd1-pwr-en-hog {
-+		gpio-hog;
-+		gpios = <RZG3E_GPIO(1, 6) GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "sd1_pwr_en";
-+	};
-+
-+	sdhi1_pins: sd1 {
-+		sd1-cd {
-+			pinmux = <RZG3E_PORT_PINMUX(1, 4, 8)>; /* SD1CD */
++			interrupts = <GIC_SPI 920 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 921 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 925 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 926 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 927 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 928 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 950 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 951 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 952 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 953 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 954 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 955 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 956 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 957 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 958 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 885 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 886 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 887 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 888 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 820 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 822 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 823 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 842 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 843 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 844 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 845 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 846 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 847 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 848 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 849 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 802 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 803 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 804 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 805 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 806 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 807 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 808 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 809 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 810 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 811 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 812 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 813 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 814 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 837 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 838 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 839 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 854 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 855 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 856 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 790 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 791 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 792 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 793 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 794 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 795 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 796 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 639 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH>;
 +		};
 +
-+		sd1-ctrl {
-+			pinmux = <RZG3E_PORT_PINMUX(G, 0, 1)>, /* SD1CLK */
-+				 <RZG3E_PORT_PINMUX(G, 1, 1)>; /* SD1CMD */
-+		};
-+
-+		sd1-data {
-+			pinmux = <RZG3E_PORT_PINMUX(G, 2, 1)>, /* SD1DAT0 */
-+				 <RZG3E_PORT_PINMUX(G, 3, 1)>, /* SD1DAT1 */
-+				 <RZG3E_PORT_PINMUX(G, 4, 1)>, /* SD1DAT2 */
-+				 <RZG3E_PORT_PINMUX(G, 5, 1)>; /* SD1DAT3 */
-+		};
-+	};
- };
- 
- &scif0 {
- 	pinctrl-0 = <&scif_pins>;
- 	pinctrl-names = "default";
- };
-+
-+&sdhi1 {
-+	pinctrl-0 = <&sdhi1_pins>;
-+	pinctrl-1 = <&sdhi1_pins>;
-+	pinctrl-names = "default", "state_uhs";
-+
-+	vmmc-supply = <&reg_3p3v>;
-+	vqmmc-supply = <&vqmmc_sd1_pvdd>;
-+};
-diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-index e378d55e6e9b..fd82df8adc1e 100644
---- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-+++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-@@ -5,6 +5,15 @@
-  * Copyright (C) 2024 Renesas Electronics Corp.
-  */
- 
-+/*
-+ * Please set the switch position SW_OPT_MUX.1 on the carrier board and the
-+ * corresponding macro SW_SDIO_M2E on the board DTS:
-+ *
-+ * SW_SDIO_M2E:
-+ *     0 - SMARC SDIO signal is connected to uSD1
-+ *     1 - SMARC SDIO signal is connected to M.2 Key E connector
-+ */
-+
- / {
- 	model = "Renesas RZ SMARC Carrier-II Board";
- 	compatible = "renesas,smarc2-evk";
-@@ -16,9 +25,18 @@ chosen {
- 
- 	aliases {
- 		serial3 = &scif0;
-+		mmc1 = &sdhi1;
- 	};
- };
- 
- &scif0 {
- 	status = "okay";
- };
-+
-+&sdhi1 {
-+	bus-width = <4>;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+
-+	status = "okay";
-+};
+ 		intc: interrupt-controller@17a00000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x0 0x17a00000 0x0 0x10000>,
+
+---
+base-commit: a13f6e0f405ed0d3bcfd37c692c7d7fa3c052154
+change-id: 20250206-qcs8300-pcie-smmu-4c8121c739e8
+
+Best regards,
 -- 
-2.43.0
+Pratyush Brahma <quic_pbrahma@quicinc.com>
 
 
