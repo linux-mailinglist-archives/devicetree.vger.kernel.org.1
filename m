@@ -1,339 +1,190 @@
-Return-Path: <devicetree+bounces-143733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08702A2B51C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 23:31:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3776DA2B552
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 23:41:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FA9C7A3649
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 22:30:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4120E7A1C82
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 22:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC56423AE6C;
-	Thu,  6 Feb 2025 22:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801AD226196;
+	Thu,  6 Feb 2025 22:41:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="c5FRc5Z1"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="rCg/YwhT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2042.outbound.protection.outlook.com [40.107.223.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2C3239098
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 22:30:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738881031; cv=none; b=ia7hXdW/K1cqCCEDdaHUxU+PnerhrWAraP/E8Tl2DspiYzYSb+G7ROSNDk3zjwRZ/NGxabaqkrdqdlFd2xd7BDcaDcf8suAcvYv1+P5NHND1UxItQ58N1LrkfQyMYxiSxPvAaDHC0RUz8HmXCMZayAfouESnNZSru00Yg3fPLfY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738881031; c=relaxed/simple;
-	bh=u6G1eD2kmbp6domphDX7910Spwzkgf3Yjk2DeO59O7o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z+AAAphUliu+5CAOz4MG51Cq/3yIIesI9Wn+sUWSz9Gnd2QOeEsrmmdsynnEQJsOCmJ7HMQiykJ6Kz8gPmlvxyzxVqUX3o0vZsPxo/4R/ZRMS7FhfJAef2MaGDA2NhAxJCWc8HF0u4yUDrWQr+EoPtD/LtcP1mLK6Yy8IfBPjKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=c5FRc5Z1; arc=none smtp.client-ip=185.67.36.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 2792E240027
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 23:30:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1738881024; bh=u6G1eD2kmbp6domphDX7910Spwzkgf3Yjk2DeO59O7o=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=c5FRc5Z1mSvp/+GCXMNE/IhAPZJPUhNCYYX+mJ4OZDRmFYvr77ONBwgyfDjabWym8
-	 J3R7Vn6RjOIBg1T+9npW9jo/GTAlTFB6zYiZZXCtkjgjsdD3eX/321vxjixKycER4X
-	 ldhoBl66cDDVV9/S4iQpVUpCAseJDQ12l71btksfBWSO2xCPXULCHoUsmicZ/NkhXS
-	 PDFAKli6NF8+T02xOfQVnS6BPA1dz0fo3UaNgiMl6g3yz/ty5x0sZ/J1L4oQ8gLdaT
-	 IheY4kW8KHreJBW7qy3EjK2YOZ9Q57k9R58tgrFZgyC2gU0oyFUfFDACdvuHB2+5tT
-	 l2Lb9a3j+JjpA==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4YpsHY0mq5z9rxF;
-	Thu,  6 Feb 2025 23:30:16 +0100 (CET)
-Date: Thu,  6 Feb 2025 22:30:15 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH RFC 9/9] dt-bindings: nand: Convert fsl,elbc bindings to
- YAML
-Message-ID: <Z6U39wKiLO2I6vrI@probook>
-References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
- <20250126-ppcyaml-v1-9-50649f51c3dd@posteo.net>
- <20250127-cuddly-dalmatian-of-saturation-5f1ae2@krzk-bin>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D562123C380;
+	Thu,  6 Feb 2025 22:41:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738881673; cv=fail; b=q+7PXmasKbGEDklUCZhQlvGpztAMgLNzSsmrajPf2t37Tt3OAQoO+dew7R0031f7BfB1+/QRx8/maIG+me5o1hnMJUXmm7B+ElI61Ug6oCuB2Z3RymKXc2kOxNcHrntnqE+0Ut5f2E33SMBqU9S1y7Qvj72XA02YGt4Upmt//iM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738881673; c=relaxed/simple;
+	bh=yX7y2V2uukYOBW+jG1H1wzgRx2+YYp3N6CYaomSa2Iw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ol6smQ0FW6sxaTHSw0/scLZTZOAkOhVv9t+2+bEAsGtpL7bGOtjDS6eCoo4ZDOKvVAzkDa/YgqB4mJ738UQQNp2HNY2zOVo6moC3kONY7FT41pYK9p9lE2p1rIZIaQDQGLauXTQv1SGGupBXiVJD3gRiaR/Sq+gtsPYAWY3hLsI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=rCg/YwhT; arc=fail smtp.client-ip=40.107.223.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sZDFWKrXz3C1/O4UQO1NvBC5bNLSTCSOIeiLhtuRJGPGnID+ey3MgrQ2j5A9nC7PI73lBEYzsIHKQ/RsnRhZ8SJd4xSma58Yg7jN506Ll7Y1lXZIdGVjwArGjSM+X5dqFKyDkuijzHILzS9jkOo/UZDoA0v/vGTncvnjq6i0/CM04iZQD+dFW5Ik06ywXcAoudHtKYBzC7bfjXtiVREOE9iz5kPbfWVzuJf/d4ceTCyPTFQWZsON1Wyh2YHUGHeke+JQoQC6l3//zAiTfhc8rc8qM4VE9h8NyxpRmVwEbEkq5R0iQSRS6kf3e1TEIJfkgf1V+h6dVogwPh2rTk/jtA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=C1UZTBhTJcYQ/yaszOUWOtN/NL5tW5Jf7Q9g46+SmIc=;
+ b=K96Yf2zT53lQj2WieSXRCYJLlOp5NFn19f3sT3w2Az67qgDCobtMTH2uflroW6qBxFpnH89O4iNUWWts7ZOWw+tWeDelAK9kjkj0N4DG+HrIKY6EWFDY03vH3LwUBa6EuEpNpNGmvOwLV8rqsuKYDclx2MFNAArudQRBprcHAMS7u74XSsHAsKCAsbbhiXJ7Sz6NmJ+k5Cv08nL9NHzUE2rJb46xTfN2OHgIyWT4vO6EvNvhkx8Po4LkwFWBtxph12vogEFcxP4qXIjL890NR6tfznD4ekw+7Dw/3vcD1rz+CFSRc8WLMBoJwDZSgnapC7nOFSHibI+gPU1mqWXcPA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=C1UZTBhTJcYQ/yaszOUWOtN/NL5tW5Jf7Q9g46+SmIc=;
+ b=rCg/YwhTzAwbEwI8W+CNKcjem0Vmqw67qXoMzu8Z5h1ofG/s63ZBE39grOZiWluhVx1QqqtG8Qx9OiIkbkEvY/YX4DlyVeYCIN1XPZr7ISP29iTZYz0ODBDdkt/GoJSj9p4OjEVqxzIUEo8SuMycdV3bRUrho0g7C09luLEOnQzS3/tn9iPv8XlENq9qCk7FkITevu41WGz8yNg+Td2M7WJhUY/4T4bcGrIMuAaCYpzXZn4e68atj3qFlmoAoM6D8yCl5NKdWiK9Nory5WXkM8OrkRtFfzFYO/pDtOc1Yq2aXDyTu6wvbXyesHUtsQG2f7Osu69401vcTyEWeb2hvQ==
+Received: from SJ0PR03CA0031.namprd03.prod.outlook.com (2603:10b6:a03:33e::6)
+ by SA1PR12MB6775.namprd12.prod.outlook.com (2603:10b6:806:25a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.24; Thu, 6 Feb
+ 2025 22:41:06 +0000
+Received: from SJ5PEPF000001EE.namprd05.prod.outlook.com
+ (2603:10b6:a03:33e:cafe::27) by SJ0PR03CA0031.outlook.office365.com
+ (2603:10b6:a03:33e::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8398.27 via Frontend Transport; Thu,
+ 6 Feb 2025 22:41:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ SJ5PEPF000001EE.mail.protection.outlook.com (10.167.242.202) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8398.14 via Frontend Transport; Thu, 6 Feb 2025 22:41:06 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 6 Feb 2025
+ 14:40:46 -0800
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail205.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Thu, 6 Feb
+ 2025 14:40:46 -0800
+Received: from build-yijuh-20230530T223047391.nvidia.com (10.127.8.10) by
+ mail.nvidia.com (10.129.68.9) with Microsoft SMTP Server id 15.2.1544.14 via
+ Frontend Transport; Thu, 6 Feb 2025 14:40:46 -0800
+From: Ivy Huang <yijuh@nvidia.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+	<thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>, Brad Griffis
+	<bgriffis@nvidia.com>
+CC: Ninad Malwade <nmalwade@nvidia.com>, <stable@vger.kernel.org>, Ivy Huang
+	<yijuh@nvidia.com>
+Subject: [PATCH] arm64: tegra: delete the Orin NX/Nano suspend key
+Date: Thu, 6 Feb 2025 22:40:34 +0000
+Message-ID: <20250206224034.3691397-1-yijuh@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250127-cuddly-dalmatian-of-saturation-5f1ae2@krzk-bin>
+Content-Type: text/plain
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001EE:EE_|SA1PR12MB6775:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a10853c-4470-49f2-dca1-08dd46ff57f4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?/yvDZluydYDFkfHcrhAvTuYsKM1GMXjhiZ/B4zqhQy+4w2I4+kcTmxIjkJS+?=
+ =?us-ascii?Q?IjnSnHknog5JqJ/lPFxq7cs4bGYxEH4pqpvOLsHYMKKkBlQDd62NxHrTO8V/?=
+ =?us-ascii?Q?ZSKaANbUk5UpE7af8KuXKSrMDDnHoynoxErBIA8WLlllykQUDRAF+AzLgvGx?=
+ =?us-ascii?Q?m11BnUzYZbabYBgQCiR+9DhFCsAHuoI2FUK7lG7dBM/Frq8PfC1IakV92hiq?=
+ =?us-ascii?Q?cegQYremj33ewmoRiDLsc1jVnDGfPbaMi4wmTy5WAuG8VrJ+hoqNcKfdjPPc?=
+ =?us-ascii?Q?q2s5q6GsM/IaDlAA9mZdoM7zcNSY3UDP95xx2hYFGSqtfcr2+xPdPm9xbMW7?=
+ =?us-ascii?Q?jXEjqhBJzaDLgR+Of1u9Bdqvx7aCmnMIGrfF0XJC/i1srqKMFGhJPwg0MAMA?=
+ =?us-ascii?Q?slFMP0JGVS1BnNxaWDKRLi5WyGNypkjqCXNh8/GPEfMEZRwBiOHFCVEuuNJt?=
+ =?us-ascii?Q?0A3lkuMmVBKU97iJCztB8FPjF0jz+QTNvIlnExmN59/drg4eRtChni6EOhUT?=
+ =?us-ascii?Q?FCVgCs9zr404EwU4NUqOJ5ivrcIWMVTPfTBhKzyo7yCRI7CtJvuD7UzkNwz0?=
+ =?us-ascii?Q?ppHKa5ya79dQXzvFJiWq0Pjq46MGqCDBSD+wAfO08yeLaSV778EjHMLzKdm2?=
+ =?us-ascii?Q?j0fzmPvWdKkDAY8zcnqE7fwWt3CCS2LUbAkJqwex/l1TqqYbUEDm6R/LJvOR?=
+ =?us-ascii?Q?TaVKN2WOWBa1ZnwgDN5PDbDdx1DQzV0xKOTRFKFk1AFsdLrgsAR6D0NCJMKl?=
+ =?us-ascii?Q?E94ajQpUbNF6/hgk9I3/ukq7oC676Bfz3QJQ3WuKr514q1vm0fEMcXuoDWpX?=
+ =?us-ascii?Q?ckpafGV9xV6Lrnis5EksEVSaWOTiqPHNkmffNk5lwOIdMaMnX2ew2f27PfBi?=
+ =?us-ascii?Q?XJZDolHEcZtuDjImpxncKWDm5sFx3UgvvgWmUaXixIDEw/2Y0NShVEyp5j7M?=
+ =?us-ascii?Q?NORDxTzTXSa0nuM+AOcWlRzZ19jKu3H1pPZ9q1uVeAIw1ecH9ylVBwBjI+KS?=
+ =?us-ascii?Q?CoqR6OQH48qEdolzPT1yTwR8CE5Svhts4jKvyirk2RaRaQlq0bARoIH1NXsM?=
+ =?us-ascii?Q?8Ar++NfCX7zA2t8Skp3o1yCnhrYr/L2fC9Vo7bpyT7ORcgsGxfRKvkCY3zW/?=
+ =?us-ascii?Q?1BGuwCU9qOSZ8ltjMNKQ19DwsDQv1Q4f72P1y1tqDYOegnPoS1MCDY+P63sw?=
+ =?us-ascii?Q?nwSadUBZ7TdTEjcyeB4jmTrr8ss8mG6kmvORICw6p3cqH2YdmeavaTzaXR1S?=
+ =?us-ascii?Q?3CVeh+eMP/BIihJV3JodMAAilmx/qP/X0OWysp8GEswOtKk1A866JhMJGdAe?=
+ =?us-ascii?Q?hWGgY3wiJYJJHm5KykE9zdPHgi8HNwJLDnqALU3vUED30uXd2B3L7wNyZGtX?=
+ =?us-ascii?Q?FWnzhAnvO+PRuF+bn9CckSuCUZ30SLTBm1qqjCd5uwqwxgN4gezaNX0zst9k?=
+ =?us-ascii?Q?iV7hgnc93qoZwUQ5fLYLkOK4Zzuwo+163I8lnV4iOl6Jk/M0Y/+8e0s8oSOf?=
+ =?us-ascii?Q?njBq1XCELrH0gx8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2025 22:41:06.0717
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a10853c-4470-49f2-dca1-08dd46ff57f4
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF000001EE.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6775
 
-On Mon, Jan 27, 2025 at 09:37:32AM +0100, Krzysztof Kozlowski wrote:
-> On Sun, Jan 26, 2025 at 07:59:04PM +0100, J. Neuschäfer wrote:
-> > Convert the Freescale localbus controller bindings from text form to
-> > YAML. The list of compatible strings reflects current usage.
-> 
-> simple-bus and 20 other compatibles you used were not present in the
-> original binding. Does above "list of compatible strings" mean you just
-> added them?
+From: Ninad Malwade <nmalwade@nvidia.com>
 
-Ah, I should make this clearer:
+As per the Orin Nano Dev Kit schematic, GPIO_G.02 is not available
+on this device family. It should not be used at all on Orin NX/Nano.
+Having this unused pin mapped as the suspend key can lead to
+unpredictable behavior for low power modes.
 
- - by "list of compatible strings" I mean the list as it is after
-   applying the patch
- - by "current usage" I mean what is found in arch/*/boot/dts
+Orin NX/Nano uses GPIO_EE.04 as both a "power" button and a "suspend"
+button.  However, we cannot have two gpio-keys mapped to the same
+GPIO. Therefore delete the "suspend" key.
 
-> 
-> > 
-> > Changes compared to the txt version:
-> >  - removed the board-control (fsl,mpc8272ads-bcsr) node because it only
-> >    appears in this example and nowhere else
-> >  - added a new example with NAND flash
-> > 
-> > Remaining issues:
-> >  - The localbus is not really a simple-bus: Unit addresses are not simply
-> >    addresses on a memory bus. Instead, they have a format: The first cell
-> >    is a chip select number, the remaining one or two cells are bus
-> >    addresses.
-> > 
-> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> > ---
-> >  .../devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml |  61 +++++++++
-> >  .../bindings/powerpc/fsl/fsl,elbc-gpcm-uio.yaml    |  55 ++++++++
-> 
-> Please split the conversion from adding new bindings. For example above
-> file and its compatible fsl,elbc-gpcm-uio was not documented in original
-> TXT.
+Cc: stable@vger.kernel.org
+Fixes: e63472eda5ea ("arm64: tegra: Support Jetson Orin NX reference platform")
+Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
+Signed-off-by: Ivy Huang <yijuh@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi | 7 -------
+ 1 file changed, 7 deletions(-)
 
-Fair point, I'll split them.
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
+index 19340d13f789..41821354bbda 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
+@@ -227,13 +227,6 @@
+ 			wakeup-event-action = <EV_ACT_ASSERTED>;
+ 			wakeup-source;
+ 		};
+-
+-		key-suspend {
+-			label = "Suspend";
+-			gpios = <&gpio TEGRA234_MAIN_GPIO(G, 2) GPIO_ACTIVE_LOW>;
+-			linux,input-type = <EV_KEY>;
+-			linux,code = <KEY_SLEEP>;
+-		};
+ 	};
+ 
+ 	fan: pwm-fan {
+-- 
+2.17.1
 
-> 
-> ...
-> 
-> > diff --git a/Documentation/devicetree/bindings/powerpc/fsl/fsl,elbc.yaml b/Documentation/devicetree/bindings/powerpc/fsl/fsl,elbc.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..6bbceb82c77826499abe85879e9189b18d396eea
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/powerpc/fsl/fsl,elbc.yaml
-> > @@ -0,0 +1,150 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/powerpc/fsl/fsl,elbc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale Enhanced Local Bus Controller
-> 
-> What sort of bus is it? Memory bus? Then place it with others, see
-> memory directory.
-
-Yes, a memory bus controller with explicit chip-select lines, for
-various kinds of memory (flash, RAM), and possibly other peripherals.
-I'll move it to bindings/memory-controllers.
-
-> 
-> > +
-> > +maintainers:
-> > +  - J. Neuschäfer <j.ne@posteo.net>
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^localbus@[0-9a-f]+$"
-> > +
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,mpc8313-elbc
-> > +              - fsl,mpc8315-elbc
-> > +              - fsl,mpc8377-elbc
-> > +              - fsl,mpc8378-elbc
-> > +              - fsl,mpc8379-elbc
-> > +              - fsl,mpc8536-elbc
-> > +              - fsl,mpc8569-elbc
-> > +              - fsl,mpc8572-elbc
-> > +              - fsl,p1020-elbc
-> > +              - fsl,p1021-elbc
-> > +              - fsl,p1023-elbc
-> > +              - fsl,p2020-elbc
-> > +              - fsl,p2041-elbc
-> > +              - fsl,p3041-elbc
-> > +              - fsl,p4080-elbc
-> > +              - fsl,p5020-elbc
-> > +              - fsl,p5040-elbc
-> > +          - const: fsl,elbc
-> > +          - const: simple-bus
-> > +
-> > +      - items:
-> > +          - const: fsl,mpc8272-localbus
-> > +          - const: fsl,pq2-localbus
-> > +
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,mpc8247-localbus
-> > +              - fsl,mpc8248-localbus
-> > +              - fsl,mpc8360-localbus
-> > +          - const: fsl,pq2pro-localbus
-> > +          - const: simple-bus
-> > +
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,mpc8540-localbus
-> > +              - fsl,mpc8544-lbc
-> > +              - fsl,mpc8544-localbus
-> > +              - fsl,mpc8548-lbc
-> > +              - fsl,mpc8548-localbus
-> > +              - fsl,mpc8560-localbus
-> > +              - fsl,mpc8568-localbus
-> > +          - const: fsl,pq3-localbus
-> > +          - const: simple-bus
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    enum: [2, 3]
-> > +    description: |
-> > +      The first cell is the chipselect number, and the remaining cells are the
-> > +      offset into the chipselect.
-> > +
-> > +  "#size-cells":
-> > +    enum: [1, 2]
-> > +    description: |
-> > +      Either one or two, depending on how large each chipselect can be.
-> > +
-> > +  ranges:
-> > +    description: |
-> > +      Each range corresponds to a single chipselect, and covers the entire
-> > +      access window as configured.
-> > +
-> > +patternProperties:
-> > +  "^.*@.*$":
-> > +    type: object
-> 
-> And probably you need 
-
-  ?
-
-
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    localbus@f0010100 {
-> > +        compatible = "fsl,mpc8272-localbus",
-> > +                     "fsl,pq2-localbus";
-> > +        #address-cells = <2>;
-> > +        #size-cells = <1>;
-> > +        reg = <0xf0010100 0x40>;
-> 
-> compatible, then reg - see DTS coding style.
-
-I'll clean up the various style issues in the examples.
-(These examples are quite old, either from the old version of this
-binding or from existing dts files.)
-
-
-Best regards,
-J. Neuschäfer
-
-> 
-> > +
-> > +        ranges = <0x0 0x0 0xfe000000 0x02000000
-> > +                  0x1 0x0 0xf4500000 0x00008000
-> > +                  0x2 0x0 0xfd810000 0x00010000>;
-> > +
-> > +        flash@0,0 {
-> > +            compatible = "jedec-flash";
-> > +            reg = <0x0 0x0 0x2000000>;
-> 
-> Well, here it is correct
-> 
-> > +            bank-width = <4>;
-> > +            device-width = <1>;
-> > +        };
-> > +
-> > +        simple-periph@2,0 {
-> > +            compatible = "fsl,elbc-gpcm-uio";
-> > +            reg = <0x2 0x0 0x10000>;
-> > +            elbc-gpcm-br = <0xfd810800>;
-> > +            elbc-gpcm-or = <0xffff09f7>;
-> > +        };
-> > +    };
-> > +
-> > +  - |
-> > +    localbus@e0005000 {
-> 
-> compatible, reg
-> 
-> > +        #address-cells = <2>;
-> > +        #size-cells = <1>;
-> > +        compatible = "fsl,mpc8315-elbc", "fsl,elbc", "simple-bus";
-> > +        reg = <0xe0005000 0x1000>;
-> > +        interrupts = <77 0x8>;
-> > +        interrupt-parent = <&ipic>;
-> > +
-> > +        ranges = <0x0 0x0 0xfe000000 0x00800000
-> > +                  0x1 0x0 0xe0600000 0x00002000
-> > +                  0x2 0x0 0xf0000000 0x00020000
-> > +                  0x3 0x0 0xfa000000 0x00008000>;
-> > +
-> > +        flash@0,0 {
-> 
-> compatible, reg
-> 
-> > +            #address-cells = <1>;
-> > +            #size-cells = <1>;
-> > +            compatible = "cfi-flash";
-> > +            reg = <0x0 0x0 0x800000>;
-> > +            bank-width = <2>;
-> > +            device-width = <1>;
-> > +        };
-> > +
-> > +        nand@1,0 {
-> 
-> compatible, reg
-> 
-> > +            #address-cells = <1>;
-> > +            #size-cells = <1>;
-> > +            compatible = "fsl,mpc8315-fcm-nand",
-> > +                         "fsl,elbc-fcm-nand";
-> > +            reg = <0x1 0x0 0x2000>;
-> > +        };
-> 
-> Best regards,
-> Krzysztof
-> 
 
