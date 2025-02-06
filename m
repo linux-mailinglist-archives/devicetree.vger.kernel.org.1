@@ -1,122 +1,142 @@
-Return-Path: <devicetree+bounces-143449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E9F1A29F5D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 04:26:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5CA0A2A02B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 06:29:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC5553A6609
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 03:26:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A45BC188846D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 05:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 805F21547F3;
-	Thu,  6 Feb 2025 03:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734E6223327;
+	Thu,  6 Feb 2025 05:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QzcUkAx2"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hhwGI1fI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70F2114A627
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 03:26:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11E4376;
+	Thu,  6 Feb 2025 05:29:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738812414; cv=none; b=sqACTGB7mrmRRJonszbB7IHpqw+wthShqOz4V/mUC964NcPJZqLkP9CLyyAlCDtPzWTOiHFPXWbsGd32a3jHMEBVv552Zq+r99gApbpCl1OCqoikW+q55OAU3SYmW/24HMKmBaacMeeOH68YDLExnRiPn6uZt44ggVnVyn30++Y=
+	t=1738819790; cv=none; b=ddZ99fDaCuNSsn2k6qnbNK+pTpqh9fLKJIr7Ubz+H9xski7hmAae0qK2lF46ZKOZD8cuFb1f6O9HJL6DWsuqVyuSE30iGgghGlIO8khmVIo0TMfg4+FEDjOWBd3a9EWbHIip0NeYrJfw58HZBt9im3TFTRDM1TCbiOQJfwE4UyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738812414; c=relaxed/simple;
-	bh=jpu9uDNeDBdC6VtS2p5oWuNJTeUlGlui3vXVeWRSCEc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kEBUT1lLOTqGWsk4e8l4YSyicC5Uhy6Ve5uFX0KFNXN5FH+qCI5IqeXXj0y+5SmiTm9BCqP/b2iWdos1PeigwJYHDcJArsiZV9kuDOkc6q1IYDjZqiQKPe7JoXQAu2gzXG435uXs6F93pJOYbElaexnvl5kcKknZmpDq+BnJuVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QzcUkAx2; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30616d71bb0so4902421fa.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 19:26:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738812410; x=1739417210; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5DdG5Jn1MW15Wn8u30uTGjRTJ9vbOt12LrxRPZobjB0=;
-        b=QzcUkAx2wVwWMhRj0ORTFQvbPiZU0IQ/X8dW8XiG8irpktTCpMIO8ldLh8i9JYZRjJ
-         34WhALQcO5gEyM+HQ4WrtN+wmCvtQ6CdQ6PPrZqrEnshA3PhYLxBPLtQXTRZGC2gznG3
-         mnLt9ovYrE0Ha8v8dYUzl6+p0j3gXF2fbawkKB6vpQGJGRGlNxF48AbykON/J7aW6qzy
-         8Z1L+KUJnQDI+kdKUOExMoXNh55huu5PimlzE6GyRW/Exxv8aFYBojUO5A5pAl8b6cCK
-         XEalE3jnbrXHdwcR/itLmkpZwZDXiW1yY70VQV6yZ5yaIDbWMsBhLQZK/8wUCD9qm4Uz
-         NLoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738812410; x=1739417210;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5DdG5Jn1MW15Wn8u30uTGjRTJ9vbOt12LrxRPZobjB0=;
-        b=vgWGmP8HYg8cYFSUN6b/IFq1Hp7U89x8kTE2VZiDd7lM8dZd7Yu32Yx4HkpnOfwDgg
-         Fveig+0g9Y6dZpO29LGhouutYNhHO05UgY0ipFUsp35xA6+PCNi4Vo2GI6CELGvEfDFE
-         RvcCZeQtyuVk/2AWVCVYRaprCNKB4Wpp548ffy8ITWsa/R+OlvKb6rkAVuwzFOAIs/8S
-         +dmWGuxwDKKXIlKQrL001XNGV0ITW9RRxmhrPMELbjTd9JinD4nNNMUMUeWWk4yRcPd/
-         UYFWFGFV5bNEEk/AKP/Z0IbxEJfkqe4Fkx7uPdBA5aXSdnJ3TlD/74htrRqt5sDviiz5
-         zRlA==
-X-Forwarded-Encrypted: i=1; AJvYcCVOwRaqECAYlRM70MoyqRCYx3K77SNQAFmrzNLm1MRhfJpaixs+u9ZCi/odkXUJ6SYRDgycIY2lv+ZU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsmXU7+RMxUXRcMG8VYXYZEVSqGs8Uca7mgPLw6BQPOnXqrLej
-	7mkuPWUHVg7qg3GMWVbc+aCPnMpUE2fJMl7fVbq8nipXg3Qh4SA7U5vhFDmTuQM=
-X-Gm-Gg: ASbGnctxh83kEzbEAvRF1/ji9jAIMM8H9jgbnsoQEDKknUEkoJp3jnGMJODh3pgX/BZ
-	HrkP33lDV4d00iI7gSnWuNzMKoezbw0tyDSIqe3Ga9uqKYC1DgcnHBAtm/1FGPq/8d+ROFFDyzC
-	5hbq6s7sCUDzA2g8WftfA+uq6pfHnph3A1On5ba7dUlVmGxGw4PQv1rNDSY3vEKzADa4+HJGeoW
-	YEoypjWbKJKMOd9u26Bd+JEB3mJjX6F69ci9jBChXyLf4VOOdSh60aJ8GfZdJVIbulIYBHXbrkG
-	/j6hozU9R7tonKsbvMY9yX17vlQAlaqL5NkUyQ0BL30Lfpw43pFYj52lbF2C7oX06M7ieM8=
-X-Google-Smtp-Source: AGHT+IHW1jb3KW8x6tt/qBgkvjmxR3wnyBKxeKsQxRREB62A0u+WNaONlVtge6tXCMFRwKna1G8X8A==
-X-Received: by 2002:a2e:a54f:0:b0:300:33b1:f0e1 with SMTP id 38308e7fff4ca-307cf23dbd9mr17475791fa.0.1738812410424;
-        Wed, 05 Feb 2025 19:26:50 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307de1c797csm236761fa.63.2025.02.05.19.26.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Feb 2025 19:26:49 -0800 (PST)
-Date: Thu, 6 Feb 2025 05:26:46 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: fnkl.kernel@gmail.com
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>, Janne Grunau <j@jannau.net>
-Subject: Re: [PATCH v5 2/5] drm: adp: Add Apple Display Pipe driver
-Message-ID: <lnsv5o2uln3bvwryxybx7xb4w3j4e3rr2h5inj7t6cat5zord5@lgohn6yrygrt>
-References: <20250205-adpdrm-v5-0-4e4ec979bbf2@gmail.com>
- <20250205-adpdrm-v5-2-4e4ec979bbf2@gmail.com>
+	s=arc-20240116; t=1738819790; c=relaxed/simple;
+	bh=sPkE2H7TRcVJFXCbyejleJMn2GkjiA93cL6WofHY1Oo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ox9Q5My0n/Ymc4Y03HT8sC7ceEi0lvVaEsSbK+bhAuG0XtSIZnfATcDSOBhl17F/zTFAYdRxueaZT+9gO6tSDugSsZCyFrvoPmfmlcMx5U1E2mONdfqRelrst31UpEy9Ifo3AL6Gis3S56UKTytsf5VH1Be/QeK22y2EaL0F1bY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hhwGI1fI; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 515FDYFb030209;
+	Thu, 6 Feb 2025 05:29:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	HqNZCSPe9MF37Q5T+4kjTCzADjtZNkVnwXEV6pjLaXQ=; b=hhwGI1fIoDV2bgcC
+	ZohJGQOsnoLNC7jXo4Kaaj/XrZ5YgALylT+pb1Tlm4HmuC+KWOYESFvxIToXMDMq
+	dZFipDm0n86WpqNTxSzVLzti9V4YHfWu4iSVU5ftS/sXLGQnucaPJYFX14eoxDL6
+	jxjGoFKoVwUo5veSnjGq9rP0WcKobjeDtdT00L2vSo/uCt4wtGRbBqrlBngwPqJU
+	vr2OKXh6YLKlwt1YEvaa5Cqiv81Y00gsJ0yTXuMMsqRQ9XTx6mMcfk0GYm4tnbHX
+	/YMjgIjkllB5y8D7xcOTtHPb76j8h45xS+LegOowdPubsvw7eZRpQyeR9FKqHYpb
+	1pURLQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44maep9qvn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 06 Feb 2025 05:29:12 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5165TC20020014
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 6 Feb 2025 05:29:12 GMT
+Received: from [10.216.41.37] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Feb 2025
+ 21:29:03 -0800
+Message-ID: <ffbd8209-116a-a4ad-1b5a-cd61665758fd@quicinc.com>
+Date: Thu, 6 Feb 2025 10:59:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250205-adpdrm-v5-2-4e4ec979bbf2@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [RESEND v5 3/4] soundwire: qcom: Add set_channel_map api support
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>
+CC: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul
+	<vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        "Jaroslav
+ Kysela" <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Pierre-Louis Bossart
+	<pierre-louis.bossart@linux.dev>,
+        Sanyog Kale <sanyog.r.kale@intel.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_pkumpatl@quicinc.com>,
+        <kernel@quicinc.com>
+References: <20250123042823.2067740-1-quic_mohs@quicinc.com>
+ <20250123042823.2067740-4-quic_mohs@quicinc.com>
+ <a82a33a8-d27c-45c8-a39a-58e6357e0d99@sirena.org.uk>
+From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+In-Reply-To: <a82a33a8-d27c-45c8-a39a-58e6357e0d99@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: k1NjFBqjvvM6nUIMBobsAedehUiWsiQ-
+X-Proofpoint-ORIG-GUID: k1NjFBqjvvM6nUIMBobsAedehUiWsiQ-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-06_01,2025-02-05_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=999 malwarescore=0
+ adultscore=0 priorityscore=1501 impostorscore=0 bulkscore=0 spamscore=0
+ mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502060043
 
-On Wed, Feb 05, 2025 at 11:10:51PM +0100, Sasha Finkelstein via B4 Relay wrote:
-> From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+On 2/3/2025 6:49 PM, Mark Brown wrote:
+> On Thu, Jan 23, 2025 at 09:58:22AM +0530, Mohammad Rafi Shaik wrote:
+>> Added qcom_swrm_set_channel_map api to set the master channel mask for
+>> TX and RX paths based on the provided slots.
 > 
-> This display controller is present on M-series chips and is used
-> to drive the touchbar display.
+> This breaks an allmodconfig build, and arm64 defconfig:
 > 
-> Co-developed-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> ---
->  drivers/gpu/drm/Kconfig        |   2 +
->  drivers/gpu/drm/Makefile       |   1 +
->  drivers/gpu/drm/adp/Kconfig    |  17 ++
->  drivers/gpu/drm/adp/Makefile   |   5 +
->  drivers/gpu/drm/adp/adp-mipi.c | 276 ++++++++++++++++++
->  drivers/gpu/drm/adp/adp_drv.c  | 617 +++++++++++++++++++++++++++++++++++++++++
->  6 files changed, 918 insertions(+)
+> /build/stage/linux/drivers/soundwire/qcom.c: In function ‘qcom_swrm_set_channel_map’:
+> /build/stage/linux/drivers/soundwire/qcom.c:1283:36: warning: unused variable ‘sruntime’ [-Wunused-variable]
+>   1283 |         struct sdw_stream_runtime *sruntime = ctrl->sruntime[dai->id];
+>        |                                    ^~~~~~~~
+> /build/stage/linux/drivers/soundwire/qcom.c: At top level:
+> /build/stage/linux/drivers/soundwire/qcom.c:1335:28: error: initialization of ‘int (*)(struct snd_soc_dai *, unsigned int,  const unsigned int *, unsigned int,  const unsigned int *)’ from incompatible pointer type ‘int (*)(struct snd_soc_dai *, unsigned int,  unsigned int *, unsigned int,  unsigned int *)’ [-Werror=incompatible-pointer-types]
+>   1335 |         .set_channel_map = qcom_swrm_set_channel_map,
+>        |                            ^~~~~~~~~~~~~~~~~~~~~~~~~
+> /build/stage/linux/drivers/soundwire/qcom.c:1335:28: note: (near initialization for ‘qcom_swrm_pdm_dai_ops.set_channel_map’)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+ACK,
 
--- 
-With best wishes
-Dmitry
+Thanks for the review and test.
+
+Somehow above build errors not reproduced in my build setup.
+
+I am Using below commands for build:
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- allmodconfig
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j32
+
+Will check and fix in next version.
+
+Thanks & Regards,
+Rafi
+
 
