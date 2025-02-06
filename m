@@ -1,47 +1,48 @@
-Return-Path: <devicetree+bounces-143672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA409A2ADCC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 17:32:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F410AA2ADD4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 17:32:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0EB5188B2A3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 16:32:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5776C3A8C14
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 16:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ADD6237174;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1060237196;
 	Thu,  6 Feb 2025 16:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="VYSi8w+D"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="DJUGypL8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B645237169;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D391A23716A;
 	Thu,  6 Feb 2025 16:32:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738859529; cv=none; b=s4FKhu6HZwmxNgvMQxR6c+r/UStzIpgDHP2MqhFjktddakXw5HkrnjgNk6R3Op319gTG9/d0Cxol09iDw+wl9AgmMtbzMrhuUWcR2xKcpzP+CvvanmNaFpfXh2R9gp/epybmEnHuUg470PKTnV0KKtyiStBSmABttADcIrJ4wNk=
+	t=1738859530; cv=none; b=GsiRjy+z7Omlzl4hdou8qWafyhXjJTgsl60i+EyCf2N3sxwMhZAdZJz6F/iS6bkN4tcBdkyCtnVI3RQcEHiHcf3Gjo6W8/+ndoZkinrmgMQuksrhBAjuM1CVlUklvJLL5yH2ZD/KV68wpn4G+kM/5HB0q29flzx1xYW6xHzT1Xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738859529; c=relaxed/simple;
-	bh=sxtHAaBDqWZ8CcHk3osK0mI/wnnUfUVbdv5ILgugBbY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KzFKfpztCygUsGFPZItLlkhthXc10YgPIJksN2ewG9EqkzUiiSF/fUm0XUzoiP1Rdke+Q+JXB1sCPgrewJPewINlzp+xrnZgFrttmbur2cIZURL5kUhJ5jjajvtRlP4/a5pQRf2B8GTubF2w4bknqD5MxOmLGuyyqKyzOhNrD9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=VYSi8w+D; arc=none smtp.client-ip=217.194.8.81
+	s=arc-20240116; t=1738859530; c=relaxed/simple;
+	bh=klVc8VEUvBljdOf4y78l6KZlFsamjNo8gFQARK+fEkA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=e99jEIgwVCPL1ciit4b+Z+QOpK8hq+vMIQXpJQi/bn3vR4Pn0s4/xqf4eRGP4n0QInY5PeZK3G/mzOhn3+4LTgTJt3ZNaLPiOvF5xopL81ElE+i427sAp1dLzQ1nH+HBtqG/5410SJLOL7DNtM9LrRXqmUB3cB5XW6vAZPT2wuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=DJUGypL8; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
 Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id E82581F975;
-	Thu,  6 Feb 2025 17:32:04 +0100 (CET)
+	by mail11.truemail.it (Postfix) with ESMTPA id 848561FA0A;
+	Thu,  6 Feb 2025 17:32:05 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
 	s=default; t=1738859525;
-	bh=yaxKGO6yJJKmC+LzUU590r0W2R0lxR7lUxylJw41k1E=; h=From:To:Subject;
-	b=VYSi8w+DrWcBa06LXkYm4JApQLkiNR4tqQNYqwpCCisDzbPbJrQ7lRh2TLMN6JB9k
-	 UWHNQ3GC0ZkJcjPm78BNclE86mxKWXpFAXdMjheOG4TvLKgarS8P5/OsUTd8kHzGcp
-	 VcjJEJtRySplmlknrUh+AC7+RisECMFshuTJnbwNq1oX0+dQK8TJVj0HiTsvwPNRkJ
-	 CM3e6Sw9Gu2C/FkbFoq5JHttdTkdh/aTYrS4Avhq4uP385eHz7Tp6m9PFWqhLE6/CG
-	 rpqV90sDAFBAIbOSPh0YtBvFuJ6ANcuLJqPyinnpIpiGpSmNdaiCOgT/NdOGRLmE2q
-	 t6s9LfQwwXfvg==
+	bh=tcfEFsnmRyRIy3DA6veMUz6QDEx5ba7KNa5BRJ4zmM4=; h=From:To:Subject;
+	b=DJUGypL8ShnBPmdv/03FeFwH8jaYZkqyb99W7UAMNgJEDDf8eoC3sYdX5uNz+AGY2
+	 /OHO2DAYce+6AO+XhaAr0vGp38VN0SJT0oKc8IjQPJiMx3a4Qpwdt3ftJePnxpAqdw
+	 GNokCk8K6ThNc2uN7wecEU7NNrtQ1phpy2l7Hd3f0RJFNtcvPBymhTiCywa6otRn8A
+	 OQOoe490TflfDXFnNllBzn84yzOi42oY4aWQQBUOcX4MeNA6BHO1kJY/XNmCni7MGt
+	 er/p43g4gplUa4oS0J6EDcf5fggj3NylHY0LYCfOnZnHnpGpF23lGpLIGWegJE9aF0
+	 6eNFuruo3vsww==
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Liam Girdwood <lgirdwood@gmail.com>,
 	Mark Brown <broonie@kernel.org>,
@@ -52,14 +53,17 @@ To: Liam Girdwood <lgirdwood@gmail.com>,
 	Jaroslav Kysela <perex@perex.cz>,
 	Takashi Iwai <tiwai@suse.com>,
 	patches@opensource.cirrus.com
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+Cc: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
 	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 0/5] ASoC: wm8904: Add DMIC and DRC support
-Date: Thu,  6 Feb 2025 17:31:47 +0100
-Message-Id: <20250206163152.423199-1-francesco@dolcini.it>
+	linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: [PATCH v1 1/5] of: Add of_property_read_u16_index
+Date: Thu,  6 Feb 2025 17:31:48 +0100
+Message-Id: <20250206163152.423199-2-francesco@dolcini.it>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250206163152.423199-1-francesco@dolcini.it>
+References: <20250206163152.423199-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,50 +72,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 
-This patch series adds DMIC and DRC support to the WM8904 driver, a new
-of_ helper is added to simplify the driver code.
+There is an of_property_read_u32_index and of_property_read_u64_index.
+This patch adds a similar helper for u16.
 
-DRC functionality is added in the same patch series to provide the
-necessary dynamic range control to make DMIC support useful.
+Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+ drivers/of/property.c | 33 +++++++++++++++++++++++++++++++++
+ include/linux/of.h    |  9 +++++++++
+ 2 files changed, 42 insertions(+)
 
-The WM8904 supports digital microphones on two of its inputs:
-IN1L/DMICDAT1 and IN1R/DMICDAT2. These two inputs can either be
-connected to an ADC or to the DMIC system. There is an ADC for each
-line, and only one DMIC block. This DMIC block is either connected to
-DMICDAT1 or to DMICDAT2. One DMIC data line supports two digital
-microphones via time multiplexing.
-
-The pin's functionality is decided during hardware design (IN1L vs
-DMICDAT1 and IN1R vs DMICDAT2). This is reflected in the Device Tree.
-
-If one line is analog and one is DMIC, we need to be able to switch
-between ADC and DMIC at runtime. The DMIC source is known from the
-Device Tree. If both are DMIC inputs, we need to be able to switch the
-DMIC source. There is no need to switch between ADC and DMIC at runtime.
-
-Therefore, kcontrols are dynamically added by the driver depending on
-its Device Tree configuration.
-
-This is a heavy rework of a previous patch series provided by Alifer
-Moraes and Pierluigi Passaro,
-https://lore.kernel.org/lkml/20220307141041.27538-1-alifer.m@variscite.com.
-
-Ernest Van Hoecke (5):
-  of: Add of_property_read_u16_index
-  ASoC: wm8904: Don't touch GPIO configs set to 0xFFFF
-  ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC and EQ support
-  ASoC: wm8904: get platform data from DT
-  ASoC: wm8904: add DMIC support
-
- .../devicetree/bindings/sound/wlf,wm8904.yaml |  88 ++++++
- drivers/of/property.c                         |  33 +++
- include/linux/of.h                            |   9 +
- include/sound/wm8904.h                        |   3 +
- sound/soc/codecs/wm8904.c                     | 274 +++++++++++++++++-
- 5 files changed, 403 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 208d922cc24c..c1feb631e383 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -147,6 +147,39 @@ static void *of_find_property_value_of_size(const struct device_node *np,
+ 	return prop->value;
+ }
+ 
++/**
++ * of_property_read_u16_index - Find and read a u16 from a multi-value property.
++ *
++ * @np:		device node from which the property value is to be read.
++ * @propname:	name of the property to be searched.
++ * @index:	index of the u16 in the list of values
++ * @out_value:	pointer to return value, modified only if no error.
++ *
++ * Search for a property in a device node and read nth 16-bit value from
++ * it.
++ *
++ * Return: 0 on success, -EINVAL if the property does not exist,
++ * -ENODATA if property does not have a value, and -EOVERFLOW if the
++ * property data isn't large enough.
++ *
++ * The out_value is modified only if a valid u16 value can be decoded.
++ */
++int of_property_read_u16_index(const struct device_node *np,
++				       const char *propname,
++				       u32 index, u16 *out_value)
++{
++	const u16 *val = of_find_property_value_of_size(np, propname,
++					((index + 1) * sizeof(*out_value)),
++					0, NULL);
++
++	if (IS_ERR(val))
++		return PTR_ERR(val);
++
++	*out_value = be16_to_cpup(((__be16 *)val) + index);
++	return 0;
++}
++EXPORT_SYMBOL_GPL(of_property_read_u16_index);
++
+ /**
+  * of_property_read_u32_index - Find and read a u32 from a multi-value property.
+  *
+diff --git a/include/linux/of.h b/include/linux/of.h
+index eaf0e2a2b75c..5e52d90f6408 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -314,6 +314,9 @@ extern struct property *of_find_property(const struct device_node *np,
+ extern bool of_property_read_bool(const struct device_node *np, const char *propname);
+ extern int of_property_count_elems_of_size(const struct device_node *np,
+ 				const char *propname, int elem_size);
++extern int of_property_read_u16_index(const struct device_node *np,
++				       const char *propname,
++				       u32 index, u16 *out_value);
+ extern int of_property_read_u32_index(const struct device_node *np,
+ 				       const char *propname,
+ 				       u32 index, u32 *out_value);
+@@ -627,6 +630,12 @@ static inline int of_property_count_elems_of_size(const struct device_node *np,
+ 	return -ENOSYS;
+ }
+ 
++static inline int of_property_read_u16_index(const struct device_node *np,
++			const char *propname, u32 index, u16 *out_value)
++{
++	return -ENOSYS;
++}
++
+ static inline int of_property_read_u32_index(const struct device_node *np,
+ 			const char *propname, u32 index, u32 *out_value)
+ {
 -- 
 2.39.5
 
