@@ -1,63 +1,72 @@
-Return-Path: <devicetree+bounces-143556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AD5A2A645
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:44:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B62CDA2A64F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 11:51:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D6D7166DF7
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:44:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C449A188726E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:51:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1334D227581;
-	Thu,  6 Feb 2025 10:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F4B227560;
+	Thu,  6 Feb 2025 10:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ax+BbU4+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KdGg+q3X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7FC422757C;
-	Thu,  6 Feb 2025 10:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE79C1F60A;
+	Thu,  6 Feb 2025 10:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738838653; cv=none; b=DAjTeYIuc4zAiX7MjpOh4nPxgS5a8CxZheE7o4HJQHAaIPVQxEzCtoD913JNEeNsTAvziXtf/d/nEEy4hmx4Hj3iuhoeN9ce+Pufw9uT7GGqjhUWIqk1b5Vt9VGKEZZpmE2OcdloUFPke/b/X71hr+Ss78gUKzb/wdggNYr1OG8=
+	t=1738839070; cv=none; b=ne7/GBkaIA7TG7lHsiWBX7y1oUq4mwhRmbnUocm8xygCVNjs4PSWTP92jgkJ9zX/eyCCWEouIqzcaaFHKa1o8rQw3ep1L2aBkCpRUX9Zf2e24YhRgefsROC2hJ5hwxuHBsfuW5W2Og3v6drvQKrpzJZYgTo9zoTIYw+z/i4L5/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738838653; c=relaxed/simple;
-	bh=fkAc2VR7diVGb/W/U7bfFYgHh0dLjJKR556XFs2OhdQ=;
+	s=arc-20240116; t=1738839070; c=relaxed/simple;
+	bh=BAc/DzaeLywP5/G7nSsTgMS/1oP0U4tjnQ8klgx+HLg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=knzjRUeHN4HLR3mCOsEo6CzU+ucOAknsQB68iyeifizTvyokAWkGVecN/Jjpk61C9ORqFBCs5mFq+jF4+3lyP5HB2xma6aCvhNEnnIxOuyNCO91y8K0GSWoTNB7r79s33QLOk8uFRDGQBs/nPdNCVcDSW+UJjKIGMajAQwkvciA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ax+BbU4+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B112C4CEDD;
-	Thu,  6 Feb 2025 10:44:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=U19E+iGfQl0IaTp4EspgeJAAOKUtIAOp/3YBMvojbmwloggZDqBfb7LKOyq8vq0R4soGuSrlVh2ugKaJlMsokfgt/iIM2xkl9QIkoRJNerZUpWoE+Cbix7TuPLG/K3CXU0F10Oi1aP/4UP5w016eOmEmPonh4TYj7H8G6/mFhpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KdGg+q3X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4F4C4CEDD;
+	Thu,  6 Feb 2025 10:51:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738838652;
-	bh=fkAc2VR7diVGb/W/U7bfFYgHh0dLjJKR556XFs2OhdQ=;
+	s=k20201202; t=1738839069;
+	bh=BAc/DzaeLywP5/G7nSsTgMS/1oP0U4tjnQ8klgx+HLg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ax+BbU4+159AkAlNdkM3Z7EW3X1Rvq43m49RYfgwLucI7JN7SEDRygCNwgLo9QE5m
-	 X4gR3pTSNzBtUk2AJXAgmORCtcBn5zneL5+2NIrdqBOAnRFMVpCtm2HAyhAgrM/KiC
-	 T6NuYYzw279MjqpjR/zyPDQBy/btAkxggljg+GTO+AmLm6PWclGF31gO8zKqq2+efl
-	 NInKWJyxaphKuwatwTAzDQEnN4tNVmpew8D5EtdQDu7edKvI5VKBPPx/du4FOYacP/
-	 5tGqTYE8zSwvvuv3nh/mJDGGZlVGvYGhM/L+/jhEN9eSfIUISINqGa7iL6T+y+7XzD
-	 /5YXB+WaA2bog==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tfzMo-000000003U2-2QLa;
-	Thu, 06 Feb 2025 11:44:19 +0100
-Date: Thu, 6 Feb 2025 11:44:18 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	b=KdGg+q3XY0ZrBG5LQlQYmL7B3IpBT4V4qnZ7GHv5wEEx3b7Dr57ydkhDbFb5j3mwX
+	 tg6DhXoiHPjM0CDTr4gCjDdh+sIAUu9zc5Nb8aUXhAbZAAWpxn1f4d1qUkv05VWWUn
+	 MneCpfPJ3pH1tjVEASi7nDe6fkdz9Obkl4r9LiIsI7tfP7Z+NQevktY8zUigTG59uK
+	 KZMsb5jop8HVBJLbc90MuAsOc/c7QzCIkoJgEw/kYWfbjiPVyvo8rXLZsoPh16TSnO
+	 uX8D2NeK/SC0qI1AYpMoWVcpAfQgz+V9T1c2h+ONYXCc8e49/Ju7BrjtZHhbNX0Xsv
+	 mObGH9QVWJ9vw==
+Date: Thu, 6 Feb 2025 10:51:01 +0000
+From: Will Deacon <will@kernel.org>
+To: Atish Patra <atishp@rivosinc.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rajendra Nayak <quic_rjendra@quicinc.com>
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Add the watchdog device
-Message-ID: <Z6SSgmoUPFv3vDDY@hovoldconsulting.com>
-References: <20250206-x1e80100-add-watchdog-v1-1-77147510c2d7@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Anup Patel <anup@brainfault.org>,
+	Atish Patra <atishp@atishpatra.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>, weilin.wang@intel.com,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
+	kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org
+Subject: Re: [PATCH v4 11/21] RISC-V: perf: Restructure the SBI PMU code
+Message-ID: <20250206105100.GA2971@willie-the-truck>
+References: <20250205-counter_delegation-v4-0-835cfa88e3b1@rivosinc.com>
+ <20250205-counter_delegation-v4-11-835cfa88e3b1@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,44 +75,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250206-x1e80100-add-watchdog-v1-1-77147510c2d7@linaro.org>
+In-Reply-To: <20250205-counter_delegation-v4-11-835cfa88e3b1@rivosinc.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Thu, Feb 06, 2025 at 12:37:13PM +0200, Abel Vesa wrote:
-> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+On Wed, Feb 05, 2025 at 11:23:16PM -0800, Atish Patra wrote:
+> With Ssccfg/Smcdeleg, we no longer need SBI PMU extension to program/
+> access hpmcounter/events. However, we do need it for firmware counters.
+> Rename the driver and its related code to represent generic name
+> that will handle both sbi and ISA mechanism for hpmcounter related
+> operations. Take this opportunity to update the Kconfig names to
+> match the new driver name closely.
 > 
-> The X Elite implements Server Base System Architecture (SBSA) specification
-> compliant generic watchdog.
+> No functional change intended.
 > 
-> Describe it.
-> 
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Atish Patra <atishp@rivosinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index 9d38436763432892ceef95daf0335d4cf446357c..007815699e4b9137c3b5cf72263c9dd3a64e6bb3 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -3708,6 +3708,13 @@ pcie4_phy: phy@1c0e000 {
->  			status = "disabled";
->  		};
->  
-> +		watchdog@1c840000 {
+>  MAINTAINERS                                       |   4 +-
+>  arch/riscv/include/asm/kvm_vcpu_pmu.h             |   4 +-
+>  arch/riscv/include/asm/kvm_vcpu_sbi.h             |   2 +-
+>  arch/riscv/kvm/Makefile                           |   4 +-
+>  arch/riscv/kvm/vcpu_sbi.c                         |   2 +-
+>  drivers/perf/Kconfig                              |  16 +-
+>  drivers/perf/Makefile                             |   4 +-
+>  drivers/perf/{riscv_pmu.c => riscv_pmu_common.c}  |   0
+>  drivers/perf/{riscv_pmu_sbi.c => riscv_pmu_dev.c} | 214 +++++++++++++---------
 
-Please keep the nodes sorted by unit address. Looks like this ones goes
-much further down.
+This seems... gratuitous? It feels like renaming the file could be a pain
+for managing backports and renaming the driver might cause some headaches
+in userspace.
 
-> +			compatible = "arm,sbsa-gwdt";
-> +			reg = <0 0x1c840000 0 0x1000>,
-> +			      <0 0x1c850000 0 0x1000>;
-> +			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
->  		tcsr_mutex: hwlock@1f40000 {
->  			compatible = "qcom,tcsr-mutex";
->  			reg = <0 0x01f40000 0 0x20000>;
+What do you gain from such an invasive change?
 
-Johan
+Will
 
