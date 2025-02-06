@@ -1,118 +1,180 @@
-Return-Path: <devicetree+bounces-143524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07273A2A4CF
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:41:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05859A2A4CE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:41:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBA6A3A9757
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:39:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8ADCF1888039
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0659622619B;
-	Thu,  6 Feb 2025 09:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6A822653D;
+	Thu,  6 Feb 2025 09:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="licLhQ5e"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dYIgfyov"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F148226183
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 09:39:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953C422652D;
+	Thu,  6 Feb 2025 09:40:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738834760; cv=none; b=K9ysnr7pLiSy8SMq940JpxQxKHP7cbqCnVpPamUDcPFZpYCtRbSWuQIKav4t30VLDaxmaOOVO3/kOorwNC7zMeMZJfyKqZHqf4TPBzhULph8cDxh4eJFojxNFEv3NxuwhTJGUTkNF1EJrYsYdj8txJJKvaxmAQnrDfbDEE8UIhg=
+	t=1738834827; cv=none; b=bGZHXw3ooPx8JFhewDNwriLG8xfHsMtcZtM2ZVegIvZ2fkgx0SiZT+E2SckxlzpjqdM/z0PAlTA2UsIGRpHewae2/+eny9yMC6gPZmnMv0KxE+ybdFM2HoQWHzTmfCrSP2fqhSyGOoY5EjfLwREA1rc6kUfrzLYZmRVfxVojh8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738834760; c=relaxed/simple;
-	bh=QxqCdZ87Rgx4ITls+sBoaB5NXU+rg+6sFyys6kqsgrM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d0+VKr2wOi3enNvtH1e4ucN0nPzRu3u8aqDBKbvKXWWYhhC2Zefj4ZhElXeWE2QvhuYraT1Ea+yZPVnBuk64gGUnG2JeqEOJn5ZwD+mDST5ht2dLdEjYyTwHheqEMjFwkbH671pK2HwUnLi5Mr7pTU1KxJV9QYGi32Y2V86SN5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=licLhQ5e; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53f22fd6832so798745e87.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 01:39:18 -0800 (PST)
+	s=arc-20240116; t=1738834827; c=relaxed/simple;
+	bh=5HaMqH6ACPaZZ+jYPKdOVGdO5CJDeUWtDjJRtpOQNSg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TJEIpkKf2BdUMuRJ7MFxcDDYOLG500WGvdKqljJZ9hH2ThiMyurBThXkWMCnRmoIRAOxya6x8xfu4ZEBEnwTBQfV1nMxDkdHO2aIxmu3+/Ltp1/RLRqdWIPoP5yJ4bJZoUdPgaC5RUYZLIAjivEmkiEZQ1Jh/ZOdSHnh2ai0sxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dYIgfyov; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-436326dcb1cso4272095e9.0;
+        Thu, 06 Feb 2025 01:40:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738834757; x=1739439557; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QxqCdZ87Rgx4ITls+sBoaB5NXU+rg+6sFyys6kqsgrM=;
-        b=licLhQ5eluAjHoFsYIbW48leUXFFrxtQZp+uT7wowm2HOsPHZS0jcfoTUJMckdz5Q3
-         Jfh9DeT40HqnUK7zLqMjbUzW8IFVc9DT7Sk5w19tf+M5zO+J+Fe20wmBeVrjdtdcT0q9
-         GrYRgeOfHC7Hll22udPz93wCAAbfvD8Qy0ck4ZdggdcHHnGnOWchX4fJ+IYU1Zl1QN1z
-         a2WMRH25KGl11EIFVZRTPTytWmkSF03w0a5/of72MmZSLewa/4qLD6cvOg7RvDYHxGF+
-         r2Ii5U59SwZfrL9joMoskb2bze8zTD2EXP3ZSRIIYUiiLj2Z9w+YpYl2C10IU8A/r81w
-         qkiA==
+        d=gmail.com; s=20230601; t=1738834824; x=1739439624; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=QFKBSoOVGRBtSVzPGty71l+771OyWvjkU/yq+7DfWR4=;
+        b=dYIgfyovCiD/JMawQ/hnenbVlah/uWGR3rwxz8eNepX5rIl7wJVWtXwCXeuctYyjJH
+         43r4e8DZo3PmoOaIF1GGGEor4nOtii01iolE7WCO7b1br7tAzYj1d3kghl4w7D+vbdnB
+         sPChPNfcs8G63GDmg47082o3nAHDEuuafap8m6w+fY3p4rfTBbXNnkCZzMO1Ns8PlKXV
+         iDeVH3GdqQXWbZVoNn2ZSpfY/TOCM78m4cnfT44FJ5ARwA9lyIHWIRK76DvOkKbd7S5R
+         9ukCQw6VknVXTL2fst7iimXhNWxxN6EXlrsDCwmklFFtDAi8Pu4TARTtnZnJH921Z9+p
+         OTBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738834757; x=1739439557;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QxqCdZ87Rgx4ITls+sBoaB5NXU+rg+6sFyys6kqsgrM=;
-        b=rZxzkfZnXkJnNVvO9ro21usfqkfAc3wc1DAauNILUIUev9qZLbcBS+pU4hWJK86Moy
-         U9csyPgiGswwzwx13i4p/ZYlkvv+07uFp5Tjsb+NtGPoh4X/zLkAPlxYHsxgo1BPVf1o
-         y1zf+dk4RrjDnd/BV3abeNF/F43wa+W1ADIn9sGA5xyOH4PcaHw9dp5is3TcHcBfyckS
-         c87Ylxkh8vSEwSDMoWtji4bau1b1rcV4emxcgl8CyvvNN0RyDrvVmyXZVzL3Ehh2N9v1
-         z3vK6ICHyionkC9fIqPBEnu/Z29OKd705S1Do994PIt87dfODumxQxR5YFrD0R7JuYHj
-         lQjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVL6XArsQCJWgsa3Mty9kD0mDIEZotkNxOoWWiYq23NhUT6+PxcBy8os21WJUnt98uwq4/wLdRIqBEK@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCnUT9myhc+iLh3iBsWqjID2sOuF6tWazz1DN6F4ek1+oBnoxF
-	hQa9jYU+8Oq0pCbDW6/DtxzHYFAh7PhHQ0xSyotVkfhgSMZ8EJKGqFRN9pSMZD7XEHzK+i974BY
-	pXDR79qmDoOAStX6qmMV3/hW0uvAxrRoOWUiQHA==
-X-Gm-Gg: ASbGncuLGjiIM+OvXmpGfbEPNogmyfG6c5NdFPUwyoMVebBNJ+TMTLE2NgJJZkZBe2L
-	ZBm++9eBMSmPlLb2O4S5b0K6KunHih3JFjW15pIGCLaF5V9TPWjSA22ZWyXcaZPOoGfIwFKg=
-X-Google-Smtp-Source: AGHT+IHy2erTOylDXjPHhr46b25AbKpq4hR75UITsDiNv3fd/IuGBDeoE5/TCxFr0JD6443xhniX9GkOIwD7QR0zOhc=
-X-Received: by 2002:a05:6512:1385:b0:543:c3d9:418b with SMTP id
- 2adb3069b0e04-54405a0c5f6mr1856455e87.16.1738834756940; Thu, 06 Feb 2025
- 01:39:16 -0800 (PST)
+        d=1e100.net; s=20230601; t=1738834824; x=1739439624;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QFKBSoOVGRBtSVzPGty71l+771OyWvjkU/yq+7DfWR4=;
+        b=rq7az9lJ5elFLeUo5xpEbm8rhFlfzZGRhqc96/yKyNUsN6IuvkZBV51/0/WQI3le7n
+         AEOZemE6+jbrkpJLFVp029MFygcBGyDX6cWhEBjcRAcG7yCIJkHe0tieKRS8ZjycyUBz
+         aE6iYJjwY59iswQ9GNp8SStIYzpiwx9Nsezv4WsB1yGqG87W/H6NKZWf1pd7EH5HXnf5
+         e8Luw5i3zA1MjlELFaZwjPZxGxN0M2omYHe1t3kTwPjk2feHHXmxZqoNwynrQgitN2bV
+         /GS+0ruf661kVRFCNJh6hA+SH8xLUy2oJkzQOj8fCUtIowQzD1g2eBU12/FVuLl/EUcU
+         Y2BQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVp3FOIBKn0JbzEN2SQKdsHhMvsoGjiDJfR+CpnJWI6CdynSaScOltqr/oih+nCpuNuw+0m4+3cKpRC@vger.kernel.org, AJvYcCWOnhF/2G5ednQg3mJ6ZOWcRHJp7ZI+XpJWJg3JMPpMvkoiAeMWTgHtk5Eim/SDVsoHkwnJvkLA@vger.kernel.org, AJvYcCX2DfWGrB8DVjnxqIWEzoiNp16FHu8M63QOZr27DEMDFC6cFVlUDAtzuZsVwcObLIqZgK7eqn5H/MSE5oyR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxr6UsqmOPUk3UwAdSG2VG6LGIV+E41giQC10YceA+AI8u1BZWX
+	ScdZQlpyV5huevhwhd2pQctLoBG14TwXYMXziR5Pm3EX9PEORMmw
+X-Gm-Gg: ASbGncvywmdthgXxyQq+OAadBH+0+0KtBaX6/bHbC4fgxBsL9Eiu5alvE4Rdzc7PLYi
+	QsLpOMvF0vbtKFCORt2oiSUiXkX/rZZHwe9KsYNScwxlc4GtX4ghWi1UR/A98kyuhtnhWa4nsmj
+	zcHBXMHMDaHLRVAVQf/j06HJwv3a0E2LNh13siS/Ks0XfM1v5TVD9LXU5MF3nBBzYDyyHz45Szj
+	PsLlgx79YlVRmmBWmI7+/TBPt/psS8pzLGZZOWJaDXVLOhUarhMJtGo2z8emDCcJUXcg8i780/t
+	5LlykE3MA/Nf
+X-Google-Smtp-Source: AGHT+IGyKNrq+Ez6Do5rq2gjjPAYOznaKQ67YtgOLU60pod/oeG3KF49eKfnrIrBCjWw68ieGkh4Og==
+X-Received: by 2002:a05:600c:3112:b0:438:ad4d:cf09 with SMTP id 5b1f17b1804b1-4390d43542fmr47180615e9.9.1738834823682;
+        Thu, 06 Feb 2025 01:40:23 -0800 (PST)
+Received: from debian ([2a00:79c0:61a:4600:45fb:7d1a:5e4d:9727])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4390d964c7csm48555715e9.17.2025.02.06.01.40.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Feb 2025 01:40:22 -0800 (PST)
+Date: Thu, 6 Feb 2025 10:40:20 +0100
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	dimitri.fedrau@liebherr.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 2/3] net: phy: Add helper for getting tx
+ amplitude gain
+Message-ID: <20250206094020.GA4585@debian>
+References: <20250204-dp83822-tx-swing-v3-0-9798e96500d9@liebherr.com>
+ <20250204-dp83822-tx-swing-v3-2-9798e96500d9@liebherr.com>
+ <Z6JUbW72_CqCY9Zq@shell.armlinux.org.uk>
+ <20250205052218.GC3831@debian>
+ <b28755b0-9104-4295-8cd3-508818445a4b@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1738328714.git.mazziesaccount@gmail.com>
- <3d85fe979fca352bed4d9841e3233c055dfaf154.1738328714.git.mazziesaccount@gmail.com>
- <6867812e-7269-4686-9fc2-55afd9fa91bf@gmail.com>
-In-Reply-To: <6867812e-7269-4686-9fc2-55afd9fa91bf@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 6 Feb 2025 10:39:05 +0100
-X-Gm-Features: AWEUYZlG4xyNl-aquwRcbpurNNF0W3dgBH-PwD4_WNVA671mh_9EE2XioA6hXcg
-Message-ID: <CACRpkdaP6biD8ueeezBDw1P3LP6ARoJw0zfkmxC-QKK0fw79YQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 4/5] pinctrl: Support ROHM BD79124 pinmux / GPO
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Nuno Sa <nuno.sa@analog.com>, 
-	David Lechner <dlechner@baylibre.com>, Dumitru Ceclan <mitrutzceclan@gmail.com>, 
-	Trevor Gamblin <tgamblin@baylibre.com>, Matteo Martelli <matteomartelli3@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b28755b0-9104-4295-8cd3-508818445a4b@lunn.ch>
 
-On Wed, Feb 5, 2025 at 2:40=E2=80=AFPM Matti Vaittinen <mazziesaccount@gmai=
-l.com> wrote:
-> On 31/01/2025 15:38, Matti Vaittinen wrote:
-> > The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The AIN pins can be
-> > used as ADC inputs, or as general purpose outputs.
-> >
-> > Support changing pin function (GPO / ADC) and the gpo output control.
-> >
-> > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> > ---
-> >
-> > NOTE: This patch is not properly tested. More thorough testing is to be
-> > done prior v2 if this pinmux approach makes sense.
->
-> Just a note to reviewers - I dropped the pinmux from v2. No need to
-> review this any further.
+Am Wed, Feb 05, 2025 at 06:08:47PM +0100 schrieb Andrew Lunn:
+> On Wed, Feb 05, 2025 at 06:22:18AM +0100, Dimitri Fedrau wrote:
+> > Am Tue, Feb 04, 2025 at 05:54:53PM +0000 schrieb Russell King (Oracle):
+> > > On Tue, Feb 04, 2025 at 02:09:16PM +0100, Dimitri Fedrau via B4 Relay wrote:
+> > > >  #if IS_ENABLED(CONFIG_OF_MDIO)
+> > > > -static int phy_get_int_delay_property(struct device *dev, const char *name)
+> > > > +static int phy_get_u32_property(struct device *dev, const char *name)
+> > > >  {
+> > > >  	s32 int_delay;
+> > > >  	int ret;
+> > > > @@ -3108,7 +3108,7 @@ static int phy_get_int_delay_property(struct device *dev, const char *name)
+> > > >  	return int_delay;
+> > > 
+> > > Hmm. You're changing the name of this function from "int" to "u32", yet
+> > > it still returns "int".
+> > >
+> > 
+> > I just wanted to reuse code for retrieving the u32, I found
+> > phy_get_int_delay_property and renamed it. But the renaming from "int"
+> > to "u32" is wrong as you outlined.
+> > 
+> > > What range of values are you expecting to be returned by this function?
+> > > If it's the full range of u32 values, then that overlaps with the error
+> > > range returned by device_property_read_u32().
+> > >
+> > 
+> > Values are in percent, u8 would already be enough, so it wouldn't
+> > overlap with the error range.
+> > 
+> > > I'm wondering whether it would be better to follow the example set by
+> > > these device_* functions, and pass a pointer for the value to them, and
+> > > just have the return value indicating success/failure.
+> > >
+> > 
+> > I would prefer this, but this would mean changes in phy_get_internal_delay
+> > if we don't want to duplicate code, as phy_get_internal_delay relies on
+> > phy_get_int_delay_property and we change function parameters of
+> > phy_get_int_delay_property as you described. I would switch from
+> > static int phy_get_int_delay_property(struct device *dev, const char *name)
+> > to
+> > static int phy_get_u32_property(struct device *dev, const char *name, u32 *val)
+> > 
+> > Do you agree ?
+> 
+> This looks O.K. You should also rename the local variable int_delay.
+> 
+> Humm, that function has other issues.
+> 
+> static int phy_get_int_delay_property(struct device *dev, const char *name)
+> {
+> 	s32 int_delay;
+> 	int ret;
+> 
+> 	ret = device_property_read_u32(dev, name, &int_delay);
+> 	if (ret)
+> 		return ret;
+> 
+> 	return int_delay;
+> }
+> 
+> int_delay should really be a u32. if ret is not an error, there should
+> be a range check to ensure int_long actually fits in an s32, otherwise
+> -EINVAL, or maybe -ERANGE.
+> 
+> For delays, we never expect too much more than 2000ps, so no valid DT
+> blob should trigger issues here.
+> 
+I think you mention this because you want to avoid changes in
+phy_get_internal_delay because this would lead to changes in other
+drivers too. Is it worth fixing this ? Then we didn't have to workaround by
+checking if int_long actually fits in an s32.
 
-Why? Gave up on the idea or want to pursue it later?
-
-Yours,
-Linus Walleij
+Best regards,
+Dimitri Fedrau
 
