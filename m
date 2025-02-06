@@ -1,143 +1,212 @@
-Return-Path: <devicetree+bounces-143737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8540BA2B627
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 00:00:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B25E3A2B660
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 00:07:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C7D23A335E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 22:59:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32C5F165953
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 23:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C6B12417E7;
-	Thu,  6 Feb 2025 22:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C202417F7;
+	Thu,  6 Feb 2025 23:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="f5fZ5dxc"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cUZh0+q3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96CFC2417CA
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 22:59:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5EAC2417E0;
+	Thu,  6 Feb 2025 23:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738882795; cv=none; b=nY2e59Vxad3qi7BEbAssMafFy4l4vI1RV+Iyn8X/fn653L6BpA7Jxa+I7lt5K4SJyvCv9HuYB2/PO7SIHsexH5+LlizC/RLN+W8dpixi7Kg8ARNmlqb66pDVeU8caHGla7cQOQkFN4K3fdPhmKP9S8OEp0dynQgMyc2yjjrxeTU=
+	t=1738883256; cv=none; b=GCQtSeCgmVnx3gY0GYLUaNOxz1/rQBGIEW50vPS6Afj4rPc1cgn58fowLQlwkGP3cSmSszczF0V65dEFrTD6xEZljQDwodlzKJ9pnz+iWfuAcKx1SShM9wCTPuT1QWDB6FwaXy7P/JA6yrDcQIpe16BAy8ZEu+IBq3KwdSZebss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738882795; c=relaxed/simple;
-	bh=8wEjDCTuOvcktBrfjhLQ0lipXUb5sf39X+VV2LrhSa8=;
+	s=arc-20240116; t=1738883256; c=relaxed/simple;
+	bh=boGdQ7S8b0YyNfxIm4I50jD6mtmzak8c74/jeqYssO4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ivYPr1l7Zd5iBlQi5ljD/gROYIbaBvWb9ySnWPoe7pYqv79xklLbj9gW1IguVpiqRaFWazJ4DP/Z4JPUzZecVVrVjHwBw025Yp4IzQNtdDefDWpl3N50X05v3qvWSZjWCVa/fMWPz+BfoKLlNK7WntjeETDifb6wttiCSPWNbdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=f5fZ5dxc; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 4829E240105
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 23:59:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1738882792; bh=8wEjDCTuOvcktBrfjhLQ0lipXUb5sf39X+VV2LrhSa8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=f5fZ5dxc+yiDR/WQT0Po4+rbJRF/txKc1K68b+9pnLBawItBAJwI2Z+S2x4Y1a6dX
-	 3o9+6n8Ac6zOKWwBStCcVuzT4EfA0PH63bkmdao7A9yMOyDhJLdUvKZn+fvhstXL9L
-	 0eQBvnQV4jdarLr3kJ2yWQtio5/V7D4cf2HNmkQN4XUTDviSnDQU7R+xCWplMukXe9
-	 +/rP6AcoIJq9HCiegXVNIG3oaULtkuSzrOyxk3NmiwBryyj79VZfhfrWtcJpkaWkFz
-	 qbpUtlZoAlUOyOFhP/QKs6fx1h+aRBctKN8niJcY4kyyQox7dY+X47sFoQ99SfrYy8
-	 UeOGQqYnODnjQ==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4Ypsxb3GYrz9rxD;
-	Thu,  6 Feb 2025 23:59:47 +0100 (CET)
-Date: Thu,  6 Feb 2025 22:59:43 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Frank Li <Frank.li@nxp.com>
-Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH RFC 9/9] dt-bindings: nand: Convert fsl,elbc bindings to
- YAML
-Message-ID: <Z6U-38ONJ0F3ILCo@probook>
-References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
- <20250126-ppcyaml-v1-9-50649f51c3dd@posteo.net>
- <Z5qzMH1t7jIr39Ce@lizhi-Precision-Tower-5810>
+	 Content-Type:Content-Disposition:In-Reply-To; b=e6d9CAK2PXTvNUzBqynqe6PFtM1POTx8Ow+SHjbpX5rsIQFdKt24ZGRVtyJNPX6kzDGSWThhAXddqo8KcnvcPGQwqA49gL89O7BcYWz+iWGTIjKz2aLo5CcZq23MJ4fQp67J6IreyXtfb15XgY+YMDmZWON2DxJxvMZ4aerQuSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cUZh0+q3; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738883254; x=1770419254;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=boGdQ7S8b0YyNfxIm4I50jD6mtmzak8c74/jeqYssO4=;
+  b=cUZh0+q3LZecYwv1gA2KcouWYhKMkxw/EY+NyzJQZCQD8roCwQVY5TMh
+   ZTysU5fj+fg6rArHIdm+gIQxKAQgw8sviPfz/WeQvYRXqGyNhW+tB6Qwd
+   rKTroNEZ1yn4mCi2Pkv0cS8s0m91x+XQUUAXJVVO63FPpz5edUb87cRuQ
+   /O5gpNZcd+RmQ44m7hlyeZLp/zWtKmayk2j8zu7yf9heTh6Sw4tOiyT/4
+   x3hHwCLm2Y8pH98taMsya3qQN8Gw1id/O0A6p5GUd2+nVFjMc2iFWt+nM
+   /41FN/sYMcatr9RXti373upCr6uvHdlGg+jSBca560ldFD6ilWNCRjU6A
+   w==;
+X-CSE-ConnectionGUID: aQnjfIthT8uO+B9tvW5pQQ==
+X-CSE-MsgGUID: XxxKqonRQ/m3qZwpnoBBmg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50946249"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
+   d="scan'208";a="50946249"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2025 15:07:32 -0800
+X-CSE-ConnectionGUID: EQwYRrGCRW2DHPzG7W2gkg==
+X-CSE-MsgGUID: q85618KpRbu5Bb86PHmPeQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; 
+   d="scan'208";a="111132680"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 06 Feb 2025 15:07:27 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tgAxw-000xUd-1j;
+	Thu, 06 Feb 2025 23:07:24 +0000
+Date: Fri, 7 Feb 2025 07:06:33 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [PATCH net-next 10/13] net: airoha: Introduce PPE initialization
+ via NPU
+Message-ID: <202502070610.tbfoIwkS-lkp@intel.com>
+References: <20250205-airoha-en7581-flowtable-offload-v1-10-d362cfa97b01@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z5qzMH1t7jIr39Ce@lizhi-Precision-Tower-5810>
+In-Reply-To: <20250205-airoha-en7581-flowtable-offload-v1-10-d362cfa97b01@kernel.org>
 
-On Wed, Jan 29, 2025 at 06:01:04PM -0500, Frank Li wrote:
-> On Sun, Jan 26, 2025 at 07:59:04PM +0100, J. Neuschäfer wrote:
-> > Convert the Freescale localbus controller bindings from text form to
-> > YAML. The list of compatible strings reflects current usage.
-> >
-> > Changes compared to the txt version:
-> >  - removed the board-control (fsl,mpc8272ads-bcsr) node because it only
-> >    appears in this example and nowhere else
-> >  - added a new example with NAND flash
-> >
-> > Remaining issues:
-> >  - The localbus is not really a simple-bus: Unit addresses are not simply
-> >    addresses on a memory bus. Instead, they have a format: The first cell
-> >    is a chip select number, the remaining one or two cells are bus
-> >    addresses.
-> >
-> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> > ---
-> >  .../devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml |  61 +++++++++
-> >  .../bindings/powerpc/fsl/fsl,elbc-gpcm-uio.yaml    |  55 ++++++++
-> >  .../devicetree/bindings/powerpc/fsl/fsl,elbc.yaml  | 150 +++++++++++++++++++++
-> >  .../devicetree/bindings/powerpc/fsl/lbc.txt        |  43 ------
-> >  4 files changed, 266 insertions(+), 43 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml b/Documentation/devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml
-[...]
-> > +  "#address-cells": true
-> 
-> should limit to a number set like
-> 
-> 	- const: 2
+Hi Lorenzo,
 
-Will do
+kernel test robot noticed the following build warnings:
 
-> > +
-> > +  "#size-cells": true
-> 
-> the same as #address-cells.
+[auto build test WARNING on 135c3c86a7cef4ba3d368da15b16c275b74582d3]
 
-Will do
+url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/net-airoha-Move-airoha_eth-driver-in-a-dedicated-folder/20250206-022555
+base:   135c3c86a7cef4ba3d368da15b16c275b74582d3
+patch link:    https://lore.kernel.org/r/20250205-airoha-en7581-flowtable-offload-v1-10-d362cfa97b01%40kernel.org
+patch subject: [PATCH net-next 10/13] net: airoha: Introduce PPE initialization via NPU
+config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20250207/202502070610.tbfoIwkS-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250207/202502070610.tbfoIwkS-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502070610.tbfoIwkS-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from include/linux/devcoredump.h:8,
+                    from drivers/net/ethernet/airoha/airoha_npu.c:7:
+   drivers/net/ethernet/airoha/airoha_npu.c: In function 'airoha_npu_run_firmware':
+>> drivers/net/ethernet/airoha/airoha_npu.c:200:30: warning: format '%ld' expects argument of type 'long int', but argument 4 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
+     200 |                 dev_err(dev, "%s: fw size too overlimit (%ld)\n",
+         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
+     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/net/ethernet/airoha/airoha_npu.c:200:17: note: in expansion of macro 'dev_err'
+     200 |                 dev_err(dev, "%s: fw size too overlimit (%ld)\n",
+         |                 ^~~~~~~
+   drivers/net/ethernet/airoha/airoha_npu.c:200:60: note: format string is defined here
+     200 |                 dev_err(dev, "%s: fw size too overlimit (%ld)\n",
+         |                                                          ~~^
+         |                                                            |
+         |                                                            long int
+         |                                                          %d
+   drivers/net/ethernet/airoha/airoha_npu.c:220:30: warning: format '%ld' expects argument of type 'long int', but argument 4 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
+     220 |                 dev_err(dev, "%s: fw size too overlimit (%ld)\n",
+         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
+     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/net/ethernet/airoha/airoha_npu.c:220:17: note: in expansion of macro 'dev_err'
+     220 |                 dev_err(dev, "%s: fw size too overlimit (%ld)\n",
+         |                 ^~~~~~~
+   drivers/net/ethernet/airoha/airoha_npu.c:220:60: note: format string is defined here
+     220 |                 dev_err(dev, "%s: fw size too overlimit (%ld)\n",
+         |                                                          ~~^
+         |                                                            |
+         |                                                            long int
+         |                                                          %d
 
 
-Thanks,
-J. Neuschäfer
+vim +200 drivers/net/ethernet/airoha/airoha_npu.c
+
+   187	
+   188	static int airoha_npu_run_firmware(struct airoha_npu *npu, struct reserved_mem *rmem)
+   189	{
+   190		struct device *dev = &npu->pdev->dev;
+   191		const struct firmware *fw;
+   192		void __iomem *addr;
+   193		int ret;
+   194	
+   195		ret = request_firmware(&fw, NPU_EN7581_FIRMWARE_RV32, dev);
+   196		if (ret)
+   197			return ret;
+   198	
+   199		if (fw->size > NPU_EN7581_FIRMWARE_RV32_MAX_SIZE) {
+ > 200			dev_err(dev, "%s: fw size too overlimit (%ld)\n",
+   201				NPU_EN7581_FIRMWARE_RV32, fw->size);
+   202			ret = -E2BIG;
+   203			goto out;
+   204		}
+   205	
+   206		addr = devm_ioremap(dev, rmem->base, rmem->size);
+   207		if (!addr) {
+   208			ret = -ENOMEM;
+   209			goto out;
+   210		}
+   211	
+   212		memcpy_toio(addr, fw->data, fw->size);
+   213		release_firmware(fw);
+   214	
+   215		ret = request_firmware(&fw, NPU_EN7581_FIRMWARE_DATA, dev);
+   216		if (ret)
+   217			return ret;
+   218	
+   219		if (fw->size > NPU_EN7581_FIRMWARE_DATA_MAX_SIZE) {
+   220			dev_err(dev, "%s: fw size too overlimit (%ld)\n",
+   221				NPU_EN7581_FIRMWARE_DATA, fw->size);
+   222			ret = -E2BIG;
+   223			goto out;
+   224		}
+   225	
+   226		memcpy_toio(npu->base + REG_NPU_LOCAL_SRAM, fw->data, fw->size);
+   227	out:
+   228		release_firmware(fw);
+   229	
+   230		return ret;
+   231	}
+   232	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
