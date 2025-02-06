@@ -1,142 +1,137 @@
-Return-Path: <devicetree+bounces-143450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CA0A2A02B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 06:29:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82CE0A2A0B6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 07:07:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A45BC188846D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 05:29:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5361A3A84EC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 06:06:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734E6223327;
-	Thu,  6 Feb 2025 05:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27457224895;
+	Thu,  6 Feb 2025 06:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hhwGI1fI"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f6o3wCtQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11E4376;
-	Thu,  6 Feb 2025 05:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50BAB22370D;
+	Thu,  6 Feb 2025 06:05:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738819790; cv=none; b=ddZ99fDaCuNSsn2k6qnbNK+pTpqh9fLKJIr7Ubz+H9xski7hmAae0qK2lF46ZKOZD8cuFb1f6O9HJL6DWsuqVyuSE30iGgghGlIO8khmVIo0TMfg4+FEDjOWBd3a9EWbHIip0NeYrJfw58HZBt9im3TFTRDM1TCbiOQJfwE4UyA=
+	t=1738821947; cv=none; b=k9lzbjKDPxzT6c+1ia5j7MaTAXtHdSVhe2ZdP/IUjrdM9OqhmqVVcM/aJ75fD/Y9gaH1k8wNDVGBbnvmKyu6caZ5oK/QGn9mPCNRDdf7lkAdaifCUcz04NkETKu4HY+6gZohkU7RjOVzZSIf10+R1uFbSrQB01vPJAuXHHZWC/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738819790; c=relaxed/simple;
-	bh=sPkE2H7TRcVJFXCbyejleJMn2GkjiA93cL6WofHY1Oo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ox9Q5My0n/Ymc4Y03HT8sC7ceEi0lvVaEsSbK+bhAuG0XtSIZnfATcDSOBhl17F/zTFAYdRxueaZT+9gO6tSDugSsZCyFrvoPmfmlcMx5U1E2mONdfqRelrst31UpEy9Ifo3AL6Gis3S56UKTytsf5VH1Be/QeK22y2EaL0F1bY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hhwGI1fI; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 515FDYFb030209;
-	Thu, 6 Feb 2025 05:29:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HqNZCSPe9MF37Q5T+4kjTCzADjtZNkVnwXEV6pjLaXQ=; b=hhwGI1fIoDV2bgcC
-	ZohJGQOsnoLNC7jXo4Kaaj/XrZ5YgALylT+pb1Tlm4HmuC+KWOYESFvxIToXMDMq
-	dZFipDm0n86WpqNTxSzVLzti9V4YHfWu4iSVU5ftS/sXLGQnucaPJYFX14eoxDL6
-	jxjGoFKoVwUo5veSnjGq9rP0WcKobjeDtdT00L2vSo/uCt4wtGRbBqrlBngwPqJU
-	vr2OKXh6YLKlwt1YEvaa5Cqiv81Y00gsJ0yTXuMMsqRQ9XTx6mMcfk0GYm4tnbHX
-	/YMjgIjkllB5y8D7xcOTtHPb76j8h45xS+LegOowdPubsvw7eZRpQyeR9FKqHYpb
-	1pURLQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44maep9qvn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 06 Feb 2025 05:29:12 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5165TC20020014
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 6 Feb 2025 05:29:12 GMT
-Received: from [10.216.41.37] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Feb 2025
- 21:29:03 -0800
-Message-ID: <ffbd8209-116a-a4ad-1b5a-cd61665758fd@quicinc.com>
-Date: Thu, 6 Feb 2025 10:59:00 +0530
+	s=arc-20240116; t=1738821947; c=relaxed/simple;
+	bh=ncXxcvgdUa5DjwY3qx7h1Jbj3YQk22S0tZsM/G1hMds=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LS7YrjYEDk6pAeNDYMW7eDxGFhYIYI+aAAEFgY5f8OBdcJ1a+P8AuUJRWo21Ij8wxhBP7aqUGDoBKuwwTxdKT6FWyMETAvrX5/X7m8EmQ7rwbx262z5jBDk2KlwJNy1ufIwzB+jvIKarg1QGPdmEMAVeGwJQRmsFKYTXpKGShO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f6o3wCtQ; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738821946; x=1770357946;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ncXxcvgdUa5DjwY3qx7h1Jbj3YQk22S0tZsM/G1hMds=;
+  b=f6o3wCtQjHOjCwFCSqGhpUYBb/wr6UkHgH0Azy09gPhAs7F1A0zS5ST4
+   hLgjyHLvWX8GTSrDHFqAwNy7hQozBT/TAs69GSKYFj150ZKSsjYUAlBOO
+   izfGIPF0LREey6WMumZysF795SgBh76oSkLv0q6s1cVrMJZsXnPLGbvLf
+   imEGYvKuvQu1vlNkB6WLak9gMWkf+jXObCN7qKTxt4i7KUN3KU65R7QQu
+   /fHZz51/p1P+87RH3gy8Jj4Rn3DI5UW9unpMKnQzh8MeAyOXRaMiBi0og
+   l848HHtXX8BmV/fwIk5zgWuSfcRtI5lkLIcwrY8DVb1YOLa/9kC0WZtsW
+   w==;
+X-CSE-ConnectionGUID: nXzfySC3QG6f+xPxSfa3Ww==
+X-CSE-MsgGUID: LZbNVdcUThSWsRMhlAYvwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39543965"
+X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; 
+   d="scan'208";a="39543965"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2025 22:05:45 -0800
+X-CSE-ConnectionGUID: Cn3VOvX9TAOlWmjEIqCSXg==
+X-CSE-MsgGUID: LPqCElsjTI+VafDokhy3VA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; 
+   d="scan'208";a="111646767"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmviesa010.fm.intel.com with ESMTP; 05 Feb 2025 22:05:42 -0800
+Date: Thu, 6 Feb 2025 14:04:49 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: Marco Pagani <marco.pagani@linux.dev>
+Cc: Nava kishore Manne <nava.kishore.manne@amd.com>, git@amd.com,
+	mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+	trix@redhat.com, robh@kernel.org, saravanak@google.com,
+	linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC v2 1/1] fpga-region: Add generic IOCTL interface for
+ runtime FPGA programming
+Message-ID: <Z6RRAXocxWHsZZLF@yilunxu-OptiPlex-7050>
+References: <20241029091734.3288005-1-nava.kishore.manne@amd.com>
+ <20241029091734.3288005-2-nava.kishore.manne@amd.com>
+ <ZzwQrYeWVF6cRtgA@yilunxu-OptiPlex-7050>
+ <9bfaf1cf-3313-4cb3-9963-2b4bad2d3165@redhat.com>
+ <Z0fIiQPCS69O2d/n@yilunxu-OptiPlex-7050>
+ <00e5c1c1-a98e-4360-b7e5-ffaa384e1036@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [RESEND v5 3/4] soundwire: qcom: Add set_channel_map api support
-Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-CC: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul
-	<vkoul@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        "Jaroslav
- Kysela" <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Pierre-Louis Bossart
-	<pierre-louis.bossart@linux.dev>,
-        Sanyog Kale <sanyog.r.kale@intel.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_pkumpatl@quicinc.com>,
-        <kernel@quicinc.com>
-References: <20250123042823.2067740-1-quic_mohs@quicinc.com>
- <20250123042823.2067740-4-quic_mohs@quicinc.com>
- <a82a33a8-d27c-45c8-a39a-58e6357e0d99@sirena.org.uk>
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-In-Reply-To: <a82a33a8-d27c-45c8-a39a-58e6357e0d99@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: k1NjFBqjvvM6nUIMBobsAedehUiWsiQ-
-X-Proofpoint-ORIG-GUID: k1NjFBqjvvM6nUIMBobsAedehUiWsiQ-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-06_01,2025-02-05_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 suspectscore=0 mlxlogscore=999 malwarescore=0
- adultscore=0 priorityscore=1501 impostorscore=0 bulkscore=0 spamscore=0
- mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502060043
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <00e5c1c1-a98e-4360-b7e5-ffaa384e1036@linux.dev>
 
-On 2/3/2025 6:49 PM, Mark Brown wrote:
-> On Thu, Jan 23, 2025 at 09:58:22AM +0530, Mohammad Rafi Shaik wrote:
->> Added qcom_swrm_set_channel_map api to set the master channel mask for
->> TX and RX paths based on the provided slots.
+> >> I'm currently working on an RFC to propose a rework of the fpga
+> >> subsystem in order to make it more aligned with the device model. One of
+> >> the ideas I'm experimenting with is having a bus (struct bus_type) for
+> >> fpga regions (devices) so that we can have region drivers that could
+> >> handle internal device enumeration/management whenever a new region is
+> >> configured on the fabric. Does this make sense in your opinions?
+> > 
+> > mm.. I didn't fully understand the need to have a region driver, what's
+> > the issue to solve?
+> > 
 > 
-> This breaks an allmodconfig build, and arm64 defconfig:
+> Sorry for the late reply. The general idea is to handle regions in a way
+> that is more aligned with the device model without having to resort to
+> extra ops and additional devices.
 > 
-> /build/stage/linux/drivers/soundwire/qcom.c: In function ‘qcom_swrm_set_channel_map’:
-> /build/stage/linux/drivers/soundwire/qcom.c:1283:36: warning: unused variable ‘sruntime’ [-Wunused-variable]
->   1283 |         struct sdw_stream_runtime *sruntime = ctrl->sruntime[dai->id];
->        |                                    ^~~~~~~~
-> /build/stage/linux/drivers/soundwire/qcom.c: At top level:
-> /build/stage/linux/drivers/soundwire/qcom.c:1335:28: error: initialization of ‘int (*)(struct snd_soc_dai *, unsigned int,  const unsigned int *, unsigned int,  const unsigned int *)’ from incompatible pointer type ‘int (*)(struct snd_soc_dai *, unsigned int,  unsigned int *, unsigned int,  unsigned int *)’ [-Werror=incompatible-pointer-types]
->   1335 |         .set_channel_map = qcom_swrm_set_channel_map,
->        |                            ^~~~~~~~~~~~~~~~~~~~~~~~~
-> /build/stage/linux/drivers/soundwire/qcom.c:1335:28: note: (near initialization for ‘qcom_swrm_pdm_dai_ops.set_channel_map’)
+> Having an fpga bus would allow us to handle enumeration using proper
+> region drivers (in the device model sense of the term, i.e., struct
+> device_driver) instead of derived region devices.
+> 
+> On second thought, I think having a reconfiguration interface at the
+> fpga manager level is sounder than having it at the region level (one
+> for each region).
 
-ACK,
+I don't think so. A firmware image may contain enumeration info, e.g.
+of-fpga-region. And I think the fpga-region should parse these
+enumeration info rather than fpga manager. fpga manager should only deal
+with content writing stuff and not be exposed to user.
 
-Thanks for the review and test.
+> 
+> With that in place, the fpga manager could request a firmware image,
+> parse it, write the content into the fpga configuration memory, and then
+> instantiate the region devices and add them to its fpga bus. Then, if
 
-Somehow above build errors not reproduced in my build setup.
+I think an fpga-region is always there no matter it is cleared, being
+reprogrammed, or working. So I don't think an fpga-region needs to be
+re-instantated. The sub devices inside fpga-region needs
+re-instantating. That's also why I'm hesitating to fpga bus.
 
-I am Using below commands for build:
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- allmodconfig
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j32
+Thanks,
+Yilun
 
-Will check and fix in next version.
-
-Thanks & Regards,
-Rafi
-
+> there is a match, a specific region driver can handle the enumeration
+> within the new region.
+> 
+> What do you think?
+> 
+> Thanks,
+> Marco
+> 
 
