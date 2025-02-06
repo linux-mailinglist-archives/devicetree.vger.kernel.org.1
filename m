@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-143673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E66BA2ADD1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 17:32:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30491A2ADCE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 17:32:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF3713A76DB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 16:32:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D01B188B6D4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 16:32:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D94237184;
-	Thu,  6 Feb 2025 16:32:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45DE01F416F;
+	Thu,  6 Feb 2025 16:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="X1mhyIuL"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="RuaPy32H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6954C237160;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B85B23716F;
 	Thu,  6 Feb 2025 16:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738859530; cv=none; b=nH4V1avQ94gGrlS7E01QPnXeaEmSM0fFw9YRmKDguWNE4ccZCTbQ7LHM+sFzGAYk5WGmAX5rHqE3TTDna1l50xhXPZEbDV7hcOn/8CLm8E02EtsBp8B8CXvAaIwomdxPp3c8+0mIEeqgPKuHKEEDFW4Nu6LEXgS7gD+M0yNv6G0=
+	t=1738859531; cv=none; b=Oc6pg9mgFf2HQeW1e9WZOOyQ7N6D7rOeQNTh/W9EFT3+7f7//yc7ZZWJ/ei5AII1+SojiXBNxiNI5SmbuY1A9LTw/y7weCPvNv5EOljkLkWN2rPZnHKYlZowngJ48espNOyXUzrPdXCSePH/j/8BDA9hJ9oya6crVdiEwVTTyBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738859530; c=relaxed/simple;
-	bh=lhQV2/JMW1AkbLks3umhznWpg1q4gVu6bOLnCLOQKi4=;
+	s=arc-20240116; t=1738859531; c=relaxed/simple;
+	bh=beI8cy6jJGbxuxw1uycUj+eWf0i+RTepbaYtXF2TJoo=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VkyJI1HcnuGoJ9jgEPuwtyAJ8r9Ph59ThXn896XMB0tkZ0Su2Q7Mh77YTiLGda8sPwR0W1QLxrOZhb4iAB49sCWFHoC03B4tKmf0udywj1GAGSHTkrodmb4anDKoNodcDsIySDPPce4yh7R2AP8HebqcU4xeseOGt2EIg8Mf2Gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=X1mhyIuL; arc=none smtp.client-ip=217.194.8.81
+	 MIME-Version; b=FvwxQjkLHKuAZOtB523oZ+mAx9ljiMWr/dXOAtKMeLvkHh8II2vhKI/ZehPU1Xc86O5lFvcml0bPB6VDQBbO6FiEUrQ0/Ty1bjSXwPPM1K5vYsaHg9kNBPAqhaF7LGv7OAphZGn+m1FyFeO6AsIIKrhuyBlMBvHTiwe/BftRbHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=RuaPy32H; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
 Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 259791FA56;
+	by mail11.truemail.it (Postfix) with ESMTPA id AF6871FA60;
 	Thu,  6 Feb 2025 17:32:06 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1738859526;
-	bh=L0b6acJdik/QAxiLmq+G12oEkv9eJnz396x6SD0cU64=; h=From:To:Subject;
-	b=X1mhyIuLnpyn1Iw+GA1N2NebnBa6UFgFOittcnVn/SRCsmssfA89mG23C0INViSmC
-	 GwGqoMDkoQRKu+b/nJi+vlq6dlz0PZSPbIXGfEFitSRB8SEZKz4euoZ9Pvvp6MDyEj
-	 128IRoEcUD9IYYjWoUZWjdshIir0wYXAJLgnWwKHOLWr2BKJA78wbw4DnWjOkh5WMR
-	 yBZkGkHyxRB+9tzEj2Wf7kugrTGXKv60BlPGq1B6E+DqQJ9iNKSmnbxrOIrcr+fFns
-	 SrjqKbPcobgkB5n8mV296U+cl1wI0X6GpmJQkjXRMKQxykoAC5iVR0QzChg3y60pk9
-	 GOxTlvm1xl9nQ==
+	s=default; t=1738859527;
+	bh=yertu9acf80JLgy/YpCZ4V84ThVWKKuLxlpR9aS+HEQ=; h=From:To:Subject;
+	b=RuaPy32HNoOuyygpseFtyPMo3KKaxg5RDmR1k75uihQzdJOr5p9/BPor597bKkb+g
+	 SwaEFm7rgQRCnWNUlelWj1u3s+RpuSDGRGyZpUG7+N7FKSMeCmbQ6xg8ms2tV38S85
+	 ozJLZxSsJP+1p/j6vH2vMn3Uk8hEL80asyCozHu0soUyGlfhnpNg3vWVXor0WfyjSk
+	 cq3N6I3QCxe0ZzpyUWb9GTUp3SFVDvXZqlxlikz8hnKFb+xDjxHnNCqCHXJnC5z89X
+	 e4NF2+2s0ADA+x8NG/7DhqAaCCRkFOWUrllsA1IlnD3e0fee+l2SxYBdLj+7Okfwa0
+	 Lf7ijVOu7fIow==
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Liam Girdwood <lgirdwood@gmail.com>,
 	Mark Brown <broonie@kernel.org>,
@@ -58,9 +58,9 @@ Cc: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v1 2/5] ASoC: wm8904: Don't touch GPIO configs set to 0xFFFF
-Date: Thu,  6 Feb 2025 17:31:49 +0100
-Message-Id: <20250206163152.423199-3-francesco@dolcini.it>
+Subject: [PATCH v1 3/5] ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC and EQ support
+Date: Thu,  6 Feb 2025 17:31:50 +0100
+Message-Id: <20250206163152.423199-4-francesco@dolcini.it>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250206163152.423199-1-francesco@dolcini.it>
 References: <20250206163152.423199-1-francesco@dolcini.it>
@@ -74,44 +74,143 @@ Content-Transfer-Encoding: 8bit
 
 From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 
-When updating the GPIO registers, do nothing for all fields of gpio_cfg
-that are "0xFFFF".
+Add two properties to select the IN1L/DMICDAT1 and IN2R/DMICDAT2
+functionality:
+- wlf,in1l-as-dmicdat1
+- wlf,in1r-as-dmicdat2
 
-This "do nothing" flag used to be 0 to easily check whether the gpio_cfg
-field was actually set inside pdata or left empty (default).
+Add a property to describe the GPIO configuration registers, that can be
+used to set the four multifunction pins:
+- wlf,gpio-cfg
 
-However, 0 is a valid configuration for these registers, while 0xFFFF is
-not.
+Add a property to describe the mic bias control registers:
+- wlf,mic-cfg
 
-With this change, users can explicitly set them to 0. Not setting
-gpio_cfg in the platform data will now lead to setting all GPIO
-registers to 0 instead of leaving them unset.
+Add two properties to describe the Dynamic Range Controller (DRC),
+allowing multiple named configurations where each config sets the 4 DRC
+registers (R40-R43):
+- wlf,drc-cfg-regs
+- wlf,drc-cfg-names
 
-No one is using this platform data with this codec.
-
-The change gets the driver ready to properly set gpio_cfg from the DT.
+Add three properties to describe the equalizer (ReTune Mobile), allowing
+multiple named configurations (associated with a samplerate) that set
+the 24 (R134-R157) EQ registers:
+- wlf,retune-mobile-cfg-regs
+- wlf,retune-mobile-cfg-names
+- wlf,retune-mobile-cfg-rates
 
 Datasheet: https://statics.cirrus.com/pubs/proDatasheet/WM8904_Rev4.1.pdf
 Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- sound/soc/codecs/wm8904.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/sound/wlf,wm8904.yaml | 88 +++++++++++++++++++
+ 1 file changed, 88 insertions(+)
 
-diff --git a/sound/soc/codecs/wm8904.c b/sound/soc/codecs/wm8904.c
-index aef82532f8cf..2082ff12d336 100644
---- a/sound/soc/codecs/wm8904.c
-+++ b/sound/soc/codecs/wm8904.c
-@@ -2270,7 +2270,8 @@ static int wm8904_i2c_probe(struct i2c_client *i2c)
- 	/* Apply configuration from the platform data. */
- 	if (wm8904->pdata) {
- 		for (i = 0; i < WM8904_GPIO_REGS; i++) {
--			if (!wm8904->pdata->gpio_cfg[i])
-+			/* 0xFFFF in this config means "don't touch" */
-+			if (wm8904->pdata->gpio_cfg[i] == 0xffff)
- 				continue;
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8904.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8904.yaml
+index 329260cf0fa0..b89d9db02848 100644
+--- a/Documentation/devicetree/bindings/sound/wlf,wm8904.yaml
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8904.yaml
+@@ -38,6 +38,74 @@ properties:
+   DCVDD-supply: true
+   MICVDD-supply: true
  
- 			regmap_update_bits(wm8904->regmap,
++  wlf,in1l-as-dmicdat1:
++    type: boolean
++    description:
++      Use IN1L/DMICDAT1 as DMICDAT1, enabling the DMIC input path.
++
++  wlf,in1r-as-dmicdat2:
++    type: boolean
++    description:
++      Use IN1R/DMICDAT2 as DMICDAT2, enabling the DMIC input path.
++
++  wlf,gpio-cfg:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 4
++    maxItems: 4
++    description:
++      Default register values for R121/122/123/124 (GPIO Control).
++      If any entry has the value 0xFFFF, the related register won't be set.
++    default: [0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF]
++
++  wlf,mic-cfg:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 2
++    maxItems: 2
++    description:
++      Default register values for R6/R7 (Mic Bias Control).
++    default: [0, 0]
++
++  wlf,drc-cfg-names:
++    $ref: /schemas/types.yaml#/definitions/string-array
++    description:
++      List of strings for the available DRC modes.
++      If absent, DRC is disabled.
++
++  wlf,drc-cfg-regs:
++    $ref: /schemas/types.yaml#/definitions/uint16-array
++    description:
++      Default register values for R40/41/42/43 (DRC).
++      The list must be 4 times the length of wlf,drc-cfg-names.
++      If absent, DRC is disabled.
++
++  wlf,retune-mobile-cfg-names:
++    $ref: /schemas/types.yaml#/definitions/string-array
++    description:
++      List of strings for the available retune modes.
++      If absent, retune is disabled.
++
++  wlf,retune-mobile-cfg-rates:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      List of rates for the available retune modes.
++      The list must be the same length as wlf,retune-mobile-cfg-names.
++      If absent, retune is disabled.
++
++  wlf,retune-mobile-cfg-regs:
++    $ref: /schemas/types.yaml#/definitions/uint16-array
++    description:
++      Default register values for R134/.../157 (EQ).
++      The list must be 24 times the length of wlf,retune-mobile-cfg-names.
++      If absent, retune is disabled.
++
++dependencies:
++  wlf,drc-cfg-names: [ 'wlf,drc-cfg-regs' ]
++  wlf,drc-cfg-regs: [ 'wlf,drc-cfg-names' ]
++
++  wlf,retune-mobile-cfg-names: [ 'wlf,retune-mobile-cfg-rates', 'wlf,retune-mobile-cfg-regs' ]
++  wlf,retune-mobile-cfg-regs: [ 'wlf,retune-mobile-cfg-names', 'wlf,retune-mobile-cfg-rates' ]
++  wlf,retune-mobile-cfg-rates: [ 'wlf,retune-mobile-cfg-names', 'wlf,retune-mobile-cfg-regs' ]
++
+ required:
+   - compatible
+   - reg
+@@ -70,5 +138,25 @@ examples:
+             DBVDD-supply = <&reg_1p8v>;
+             DCVDD-supply = <&reg_1p8v>;
+             MICVDD-supply = <&reg_1p8v>;
++
++            wlf,drc-cfg-names = "default", "peaklimiter", "tradition", "soft", "music";
++            wlf,drc-cfg-regs =
++                /* coded default: KNEE_IP = KNEE_OP = 0, HI_COMP = LO_COMP = 1  */
++                /bits/ 16 <0x01af 0x3248 0x0000 0x0000>,
++                /* coded default: KNEE_IP = -24, KNEE_OP = -6, HI_COMP = 1/4, LO_COMP = 1 */
++                /bits/ 16 <0x04af 0x324b 0x0010 0x0408>,
++                /* coded default: KNEE_IP = -42, KNEE_OP = -3, HI_COMP = 0, LO_COMP = 1 */
++                /bits/ 16 <0x04af 0x324b 0x0028 0x0704>,
++                /* coded default: KNEE_IP = -45, KNEE_OP = -9, HI_COMP = 1/8, LO_COMP = 1 */
++                /bits/ 16 <0x04af 0x324b 0x0018 0x078c>,
++                /* coded default: KNEE_IP = -30, KNEE_OP = -10.5, HI_COMP = 1/4, LO_COMP = 1 */
++                /bits/ 16 <0x04af 0x324b 0x0010 0x050e>;
++
++            wlf,gpio-cfg = <
++                0x0018 /* GPIO1 => DMIC_CLK */
++                0xffff /* GPIO2 => don't touch */
++                0xffff /* GPIO3 => don't touch */
++                0xffff /* GPIO4 => don't touch */
++            >;
+         };
+     };
 -- 
 2.39.5
 
