@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-143609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D67C9A2A8F8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 14:04:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F8E9A2A8FF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 14:05:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A1FE7A394C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:03:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9039E1887A72
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 13:05:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CAD22D4C8;
-	Thu,  6 Feb 2025 13:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E62E22E3F8;
+	Thu,  6 Feb 2025 13:05:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pDZ2ygPJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VNxLhGyH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79E80225A59;
-	Thu,  6 Feb 2025 13:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 626A622DF89;
+	Thu,  6 Feb 2025 13:05:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738847068; cv=none; b=Tnv118zuA9lZ529Mg+Qg7mM5kcBkawOx4U5mVYfy1UjQZeDcBYziN7N5TdPmpl+Fz2qUsupTKRfhhzYxGVKyzEMlLhB6DJmB9xTBKihry7P8WR8kRyFX/wVFrRKyviZCYFoicWSDmOj+FyWOc1SmZr/EPDbHjsTBc2zehRyWZU8=
+	t=1738847107; cv=none; b=IOlZJMeoHzRaryH3ZvHPghQu+r72YoCjFTd5Tlo1Aj+LHCyUsHCvMetuYRzV32Hzch8O/vEql3QYn6ncDTjNEr/hloqKF9meHwwBOud9GaMRGqXXKgkKIucljbpFhiZsk45sQvhmbzGD2IX4Grfw0z1Kcr2HyFa/Kr3Z6VEtsuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738847068; c=relaxed/simple;
-	bh=HcPtGRcTHAOfFGOkTyn/W0r0zfnZmlWtrN18FEpXJh8=;
-	h=Message-ID:Date:From:To:Subject:In-Reply-To:References:Cc; b=KaoIKE64qzB+NmFTKD7vQ7akOHylnHXw1gfPtEtacVVQo6lJ3FdH1TdLItcoxWi7TvCW5h59WZI5hMFP8I8XaF7oPfH2Gg7+XY34SOp6UDG2GLBKV7kYh5LGZ3QsEjMNaPbGA4e6tWi7aqetlkx+LOhZuzHQDLodGWDx5C0g/EY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pDZ2ygPJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 773E5C4CEDD;
-	Thu,  6 Feb 2025 13:04:27 +0000 (UTC)
+	s=arc-20240116; t=1738847107; c=relaxed/simple;
+	bh=W5AM9RZgg67GctX9POakdPYKIrGtt44fCA6cr2QIVSs=;
+	h=Message-ID:Date:From:To:Subject:In-Reply-To:References:Cc; b=HLYPzi0pogA2wKTDRF91dR4XNjb45f+qomjpKeYLz4DtK7sC4vhqXiCPHdO835SGevEpjgluDVXzQsDvaNafVgAfaIBbTqiOAbtDR3KMn0SndymWzbwWqe57VHTNRwxqvKbq5L3721tj7zIQVw2qhL+uK5+29SQ2+mUPPWVxIl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VNxLhGyH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA308C4CEDD;
+	Thu,  6 Feb 2025 13:05:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738847068;
-	bh=HcPtGRcTHAOfFGOkTyn/W0r0zfnZmlWtrN18FEpXJh8=;
+	s=k20201202; t=1738847107;
+	bh=W5AM9RZgg67GctX9POakdPYKIrGtt44fCA6cr2QIVSs=;
 	h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
-	b=pDZ2ygPJsmDFa8WwJ3UD3N5GE6qpleBBL5vG7ZH/EnrMA+YS+Euxx8GgnLzhwSC3e
-	 Mk5a0IwDMiUW13tzHVnwrZqM8PqUTbEt5UeLzUSdxFjSfBjh4f5hsk24BkpzE5m6Yf
-	 pJ8E2hhl4IYgr5mYL854fDdkqVJKP3nz5MsZA842RI+JCzvt65rFQtQL9dL+8Guvmo
-	 N0msJyO/UuXWpzRfEa6Az05uyqbHFlBAQ6l3fgz13Ho0DD4gSALD5xQz9JtQ+0l6/x
-	 i1W39I4VgyzT7A76IR5D+W2/rdNNy5jveHMG9NZmA2OeVjiSc/fTX+Q3byEdInWMXn
-	 IDVqw/q55Aw0A==
-Message-ID: <cc915f4a4aa81e1a26e768c54c26c195@kernel.org>
-Date: Thu, 06 Feb 2025 13:04:25 +0000
+	b=VNxLhGyHzxicglO/D5ivZIdSr/a93Mw7FYISk0ur0L+3tzsAuN/rzAcAXyOOb8ZRo
+	 aObTLjrNmcAou3cDDtxAN1CWE/ZOtshMUERgMTwb2njUdvTUMOq3qO4O1ZHD0EY6Cp
+	 xkVmBmlx6p4kuaXzGeF26Ivx/BUP0PGr/MwXYtJtZm++1wAwBKKKug/lTHWVUXNHKa
+	 3/mMDkGQDaXb1YItsZ9va2pNR5YfpzdKsyS6fP6Y0bpLJCkbK9P5NbaOogE5RZNUV6
+	 vOxXh39z9lzDCoy1a2lZbMdTI0Yt5qX8h4fxvWoYSf7Xqs+5ksyWzolVDE/+s+pfEo
+	 9k6B+CyOAU9zA==
+Message-ID: <5ef3905745ce4cc4ad43135c1e6a666e@kernel.org>
+Date: Thu, 06 Feb 2025 13:05:04 +0000
 From: "Maxime Ripard" <mripard@kernel.org>
 To: "Herve Codina" <herve.codina@bootlin.com>
-Subject: Re: [PATCH v5 3/4] drm/vc4: hdmi: Use
- drm_atomic_helper_reset_crtc()
-In-Reply-To: <20250203161607.223731-4-herve.codina@bootlin.com>
-References: <20250203161607.223731-4-herve.codina@bootlin.com>
+Subject: Re: [PATCH v5 4/4] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+In-Reply-To: <20250203161607.223731-5-herve.codina@bootlin.com>
+References: <20250203161607.223731-5-herve.codina@bootlin.com>
 Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, "Alexander
  Stein" <alexander.stein@ew.tq-group.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>, "Conor
  Dooley" <conor+dt@kernel.org>, "Dave Stevenson" <dave.stevenson@raspberrypi.com>, "David
@@ -67,12 +67,12 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-On Mon, 3 Feb 2025 17:16:05 +0100, Herve Codina wrote:
-> The current code uses a the reset_pipe() local function to reset the
-> CRTC outputs.
+On Mon, 3 Feb 2025 17:16:06 +0100, Herve Codina wrote:
+> In some cases observed during ESD tests, the TI SN65DSI83 cannot recover
+> from errors by itself. A full restart of the bridge is needed in those
+> cases to have the bridge output LVDS signals again.
 > 
-> drm_atomic_helper_reset_crtc() has been introduced recently and it
-> performs exact same operations.
+> Also, during tests, cases were observed where reading the status of the
 > 
 > [ ... ]
 
