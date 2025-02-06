@@ -1,134 +1,206 @@
-Return-Path: <devicetree+bounces-143711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B92A2B12D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 19:34:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D89B1A2B200
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 20:10:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53D7D3A7440
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 18:33:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C7073A9096
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 19:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F31B71B4231;
-	Thu,  6 Feb 2025 18:27:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A48E1A2C0E;
+	Thu,  6 Feb 2025 19:10:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RFGuxbDO"
+	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="EhUia/Qy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B501ACECD;
-	Thu,  6 Feb 2025 18:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678F519B5B1
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 19:10:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738866446; cv=none; b=nXBpCmoSaUX3wk+GAl6c+RgW8LcRuAQ/xcDCsio8r+s9AppbyPxqbAz5oIl5qu9EXteIR2sY+ghQ2a7bPRJ0RUVX6XeNEu5WkPRHyNV5z1chE8yp4O09IyZJSCuR2kX2+Oz94E5VsGsZQn2Yy6f9sIjPAnlijhIbowMTEfng2gQ=
+	t=1738869053; cv=none; b=m56lcP+TBliQx2QLNHnpM7psGlQhXV4aV0bf7tEdNe9R6yAv+TGV9rxcWu6a+ujTIIJGgUq/Ui1NGewmjLj+4qKEnDIWpzLZSgKnRXYPR92LcdEj8MP1rIiv0CxAJ9X0jqKKuDg1XQmz/ZgJOJDRUllXoSvk/9G4hy8+6TG4YRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738866446; c=relaxed/simple;
-	bh=IJL45hof8EZ76ZqW9H/9ssbUlriH90R7kETPe0qwoQc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O5CE2ve93KeKDuYqqGPm2cJ4XFaqCtX+Q05xK+Q6R3vmmLVmbidirQVWffjq2UJLwneEKImSlnQzM46HNCfdI6ktz4qtILB6VHLOZdNq+SE1BmibPpW62alxWcWELrwZGm10GCDXTQ6oALOKGsKuZoHg1UxWNrcVroAWvP/BqZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RFGuxbDO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C45CBC4CEDD;
-	Thu,  6 Feb 2025 18:27:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738866446;
-	bh=IJL45hof8EZ76ZqW9H/9ssbUlriH90R7kETPe0qwoQc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RFGuxbDOBC88PRxt7HKAdOjq3A0i/bQ8+C5XbqjQB39QEv99MNFUclW2JE/Zthi++
-	 RmSkqwcMRCd4EacMzjQ7dY2MfrO7Ug21geRoyBE8dMtA0i4MCNzqkwi1MklY+at55d
-	 Cfue6yNhEVHtPtNFBcPsIgdk/lW5wYL+P9W360ClAPhRpde4/L6hfW1koeu/eYyhvS
-	 pjPAYcrX6ayQMQM6hDqaHbkR1XXbMcz8NyUS62uPQGoB/JTpRL2qQRLm2cdbc48rFr
-	 0+u62LdUEVbGsFdGmIg+pcoZQB/3yzATztpHkdJB3eFaxEIe1zjijZ5PmdZhCSnGgf
-	 cnod05VfazxDA==
-Date: Thu, 6 Feb 2025 18:27:21 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v2] dt-bindings: mmc: mmc-slot: make compatible
- property optional
-Message-ID: <20250206-drainer-vastly-34a3c738e2bf@spud>
-References: <20250205-mmc-slot-v2-1-da3c5f30e2d9@microchip.com>
+	s=arc-20240116; t=1738869053; c=relaxed/simple;
+	bh=Rw38SpIt5uaeLx57DCBwOaHp6ovZGG6NkUErrYKysTI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PkhhexywmAMYODWl9zEX/g/IBcSFLx91n6coVEfcjz/Fzu5YzmR9rfu3Sv4dn/lYhnnF2k+dnsHUIl9FI6rqsadfvFmLnvB96kcE45Yxc33hSqcSo8RUplSUjJ0O6VQf4ZKrt2rmoAkhq7KRYRp8zWukZEDtbEwWpc6hI7sMdeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=EhUia/Qy; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-21f3c119fe6so22436205ad.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2025 11:10:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1738869049; x=1739473849; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bNn7LdmJboFjQmS9MjWVlCya0ZGknTKf2rksBbu/dXw=;
+        b=EhUia/Qyfgkt4DJDmi+rK5mba4Eo68jXozAkS0mGjhG98F37Ejjv8UTQSfXNdzBG2V
+         XgWK+DmQiyr2oVyHaugKS6GiW5sXHYmgA6AT/toNefswg2nyGPkAW5ihSYMBTpWm+HNe
+         42N3Z9IlNMpxOxJkOxLU3bzdgsJYrBDy5Z2P5ZdTxQcY7CjsMPZWufU5XZGdEXkUvv8O
+         nT8nZS8QKVVjuHHoTj+Cq1lOl011AJQecom/NVfbD2uaeuVUxH1xI2I54LxsWyl6AqAn
+         1UDqeAwlWEBiRFV/mosIWDeJHNnkWaeG19Esv7dIjhqr8lBjCdXIAE16J+PcNuaLBL1x
+         OPKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738869049; x=1739473849;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bNn7LdmJboFjQmS9MjWVlCya0ZGknTKf2rksBbu/dXw=;
+        b=FO3qEk80l7SooQ7Je++qw4+fRkUEnJ5Cr9kcntSSHR4KxtJ6bhrbTyZSth12Rtwoz7
+         vpXE6/0YY1/ohRHmAphYzL8G3ZNYE4biXbVowrSk1L9Al7qxws8QTzpmuB1DBvXsDtG5
+         NIMGe0ZTC5XS6pZJubZRFIQAQn4HWZToQ2xtzCkh5wyUb0EHHv4RHAsdZLT3ISDVuWkK
+         heoerXm1U+Ku5dwHTdPP1m4X1B2x4sSAG3z/gr9lVv+MSAWDitVN4PkxAv0Uzc1u675d
+         Gwe8NBOH/HJNPUIzOC7vMnUgBAYHEFhlCqmo3wr3h4e6NAdG/hQJvc6Vcg6KJtGoyQ06
+         OlzA==
+X-Forwarded-Encrypted: i=1; AJvYcCV6jEyX+3+VmERquofa+msnNRxMUj2dbuD9rkbQAYgfphhXZtS337DX8+fpeXMP3ENAwfY4Mf6UG4Q5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzE5AtU4ytOLKPtCBBPHd34rjYVpSW6w/0XEuEgNENUerbstac
+	K40IjXkN2Rr7w2E1M2K7mlnBfC0AtVBN5p1/KGIlinrEVt4aM5hiTQQnAzDu0xGTbf0cXWamD17
+	z/psdNOiuKJz7wQn+9Fi3tVDNe9WAnbTg8He5zg==
+X-Gm-Gg: ASbGncsTcmp1tnzjfqaLCn5oHP1wjYnom/Bapyfog0zlnE1QICJeVdXB/ksaUwpAZ+0
+	vc+/ZS7wn4jPxemw4rYeP1reMeFRcTP6QnVeeTFF4cvKm0ldqASguW4/3h/TC7bahoTp48iNJ
+X-Google-Smtp-Source: AGHT+IHP+CHPnFHvmgqlXfNQqJhyMOHR72ISXkpTk5Ua7uO05H5Z2+wc+Rr40xnBTgiwHLxEycHnPKu+z+SExZwq2iA=
+X-Received: by 2002:a05:6a21:100e:b0:1e1:bdae:e045 with SMTP id
+ adf61e73a8af0-1ee03a9b2d5mr962803637.23.1738869049673; Thu, 06 Feb 2025
+ 11:10:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gSRDlsoD+Bdf79l9"
-Content-Disposition: inline
-In-Reply-To: <20250205-mmc-slot-v2-1-da3c5f30e2d9@microchip.com>
+References: <20250204180306.2755444-1-naresh.solanki@9elements.com>
+ <20250204-mulled-evaluate-8a690cdfbd4d@spud> <CABqG17jHKfwJEfZxto_YA4opS8=QwqTqfNdkku8kcEv2_iW+XA@mail.gmail.com>
+ <20250205-purge-debating-21273d3b0f40@spud> <CABqG17j4tKXnMZ5=vcjBvfe6JwCLQ6NbkQmJC9ySK_bmGEv=iQ@mail.gmail.com>
+ <20250206-camera-mashed-48cf0cf1715f@spud>
+In-Reply-To: <20250206-camera-mashed-48cf0cf1715f@spud>
+From: Naresh Solanki <naresh.solanki@9elements.com>
+Date: Fri, 7 Feb 2025 00:40:38 +0530
+X-Gm-Features: AWEUYZldmdFaTS15rPgQinK4lS3TTxIDBTf4Zx-zGv_Kv2dykSc9igq6QKOYQNk
+Message-ID: <CABqG17iyRXW2_jvTVkFAEhW+TZZ-SAABm+6efqt0ZWHgYbiUMw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ir38060: Move & update dt binding
+To: Conor Dooley <conor@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, broonie@kernel.org, 
+	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Conor,
 
---gSRDlsoD+Bdf79l9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 6 Feb 2025 at 23:39, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Thu, Feb 06, 2025 at 09:23:03PM +0530, Naresh Solanki wrote:
+> > On Thu, 6 Feb 2025 at 01:43, Conor Dooley <conor@kernel.org> wrote:
+> > > On Wed, Feb 05, 2025 at 03:51:25PM +0530, Naresh Solanki wrote:
+> > > > On Wed, 5 Feb 2025 at 00:52, Conor Dooley <conor@kernel.org> wrote:
+> > > > > On Tue, Feb 04, 2025 at 11:33:03PM +0530, Naresh Solanki wrote:
+> > > > > > Move dt binding under hwmon/pmbus & align accordingly.
+> > > > > >
+> > > > > > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> > > > > > ---
+> > > > > >  .../hwmon/pmbus/infineon,ir38060.yaml         | 61 +++++++++++++++++++
+> > > > > >  .../bindings/regulator/infineon,ir38060.yaml  | 45 --------------
+> > > > > >  2 files changed, 61 insertions(+), 45 deletions(-)
+> > > > > >  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
+> > > > > >  delete mode 100644 Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..e1f683846a54
+> > > > > > --- /dev/null
+> > > > > > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
+> > > > > > @@ -0,0 +1,61 @@
+> > > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > > > > +%YAML 1.2
+> > > > > > +---
+> > > > > > +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,ir38060.yaml#
+> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > +
+> > > > > > +title: Infineon Buck Regulators with PMBUS interfaces
+> > > > > > +
+> > > > > > +maintainers:
+> > > > > > +  - Not Me.
+> > > > >
+> > > > > How the hell did this get merged!
+> > > > >
+> > > > > > +
+> > > > > > +properties:
+> > > > > > +  compatible:
+> > > > > > +    enum:
+> > > > > > +      - infineon,ir38060
+> > > > > > +      - infineon,ir38064
+> > > > > > +      - infineon,ir38164
+> > > > > > +      - infineon,ir38263
+> > > > > > +
+> > > > > > +  reg:
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  regulators:
+> > > > > > +    type: object
+> > > > > > +    description:
+> > > > > > +      list of regulators provided by this controller.
+> > > > >
+> > > > > Can you explain why this change is justified? Your commit message is
+> > > > > explaining what you're doing but not why it's okay to do.
+> > >
+> > > > This is based on other similar dt-bindings under hwmon/pmbus.
+> > >
+> > > Okay, but what I am looking for is an explanation of why it is okay to
+> > > change the node from
+> > >
+> > > | regulator@34 {
+> > > |   compatible = "infineon,ir38060";
+> > > |   reg = <0x34>;
+> > > |
+> > > |   regulator-min-microvolt = <437500>;
+> > > |   regulator-max-microvolt = <1387500>;
+> > > | };
+> > As I have understood the driver, this isn't supported.
+> > >
+> > > to
+> > >
+> > > | regulator@34 {
+> > > |     compatible = "infineon,ir38060";
+> > > |     reg = <0x34>;
+> > > |
+> > > |     regulators {
+> > > |         vout {
+> > > |             regulator-name = "p5v_aux";
+> > > |             regulator-min-microvolt = <437500>;
+> > > |             regulator-max-microvolt = <1387500>;
+> > > |         };
+> > > |     };
+> > Above is the typical approach in other pmbus dt bindings.
+> > Even pmbus driver expects this approach.
+> > >
+> > > ?
+> > >
+> > > Will the driver handle both of these identically? Is backwards
+> > > compatibility with the old format maintained? Was the original format
+> > > wrong and does not work? Why is a list of regulators needed when the
+> > > device only provides one?
+> > Driver doesn't support both.
+> > Based on the pmbus driver original format was wrong.
+> > pmbus driver looks for a regulator node to start with.
+> >
+> > Reference:
+> > https://github.com/torvalds/linux/blob/master/drivers/hwmon/pmbus/pmbus.h#L515
+>
+> Then all of the in-tree users are all just broken? They're in aspeed
+> bmcs, so I would not be surprised at all if that were the case.
+> Can you send a new version with a fixes tag and an explanation that what
+> was there was wrong?
+Sure. I will add an explanation in the commit message.
+I'm not sure what you meant by 'fixes tag'
 
-On Wed, Feb 05, 2025 at 09:18:40AM +0530, Dharma Balasubiramani wrote:
-> Remove the compatible property from the list of required properties and
-> mark it as optional.
->=20
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-> ---
-> Changes in v2:
-> - Instead of moving the compatible string to the other binding, just make=
- it
->   optional (remove from required list).
-> - Link to v1: https://lore.kernel.org/r/20241219-mmc-slot-v1-1-dfc747a3d3=
-fb@microchip.com
-
-Why is this RFC? I don't see any complaints from Rob's bot, so I am
-assuming that this actually works and the error you mentioned in the
-previously version has been resolved?
-
-> ---
->  Documentation/devicetree/bindings/mmc/mmc-slot.yaml | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Docume=
-ntation/devicetree/bindings/mmc/mmc-slot.yaml
-> index 1f0667828063..ca3d0114bfc6 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
-> @@ -29,7 +29,6 @@ properties:
->      maxItems: 1
-> =20
->  required:
-> -  - compatible
->    - reg
-> =20
->  unevaluatedProperties: false
->=20
-> ---
-> base-commit: 40b8e93e17bff4a4e0cc129e04f9fdf5daa5397e
-> change-id: 20241219-mmc-slot-0574889daea3
->=20
-> Best regards,
-> --=20
-> Dharma Balasubiramani <dharma.b@microchip.com>
->=20
-
---gSRDlsoD+Bdf79l9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6T/CQAKCRB4tDGHoIJi
-0heMAP9RIv6EPmFdFdH9C4KniHclVT6q7+ipdJy9MNtonSEGeAEAuKgviFIr+311
-YAtp4FSk/X/xf6nVb9pNP7sDITwXVgc=
-=vdJI
------END PGP SIGNATURE-----
-
---gSRDlsoD+Bdf79l9--
+Regards,
+Naresh
+>
+> Cheers,
+> Conor.
 
