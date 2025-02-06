@@ -1,87 +1,91 @@
-Return-Path: <devicetree+bounces-143436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D688A29DEB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 01:37:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B25BA29DEF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 01:37:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0F95166147
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 00:37:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 871201888D53
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 00:37:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4772D2A1BA;
-	Thu,  6 Feb 2025 00:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C7342AA3;
+	Thu,  6 Feb 2025 00:37:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="DXpsq6Mq"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="stmo4099"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6921101F2
-	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 00:37:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA921B59A
+	for <devicetree@vger.kernel.org>; Thu,  6 Feb 2025 00:37:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738802235; cv=none; b=YpUvx37dYfnFIiOpgB/diIplPFCFEgN2WbkljznttIgK1cmZcfcZUNVovR7QQJWorqLkdS+n+9X6+pbOAPE3OTDb4DgEfTtH+zcM9KLajynaSogmfRRPByvgK6wSmnpO1gmq2deAUJXIdfLZe/RRc10086Zc86cfEsE8L5fmLfE=
+	t=1738802236; cv=none; b=ZPie+Yar2f49G/T4QMOYKDnsbxKeI0ZkpyE2DTL9zf1NcArqLWmRuwoBmt4UxYCE7oxCkEc/wP46hNWq5X0P7fYvONtczfmoipD9jdfgDJkZeojmrvDCh/4VIAmbjJRoTUXoALnKQ9zm/LRLimaAk3u8vxl4mCyU26wimjZlqy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738802235; c=relaxed/simple;
-	bh=P0D3iFt86T6gv8bKDwIO7YaaHu/XrhniOHkLnRI8OJk=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=FXPeirwRUCWqmJW4y2bginqW9SQDvTHKznxnChbeVYyCKo8veF+S0wi+/vFO34FDuFXBDNZT0/iRphEZl+EMDfzvpRzmuvOAcNs5OjGfmEEmYrAqv0E3dmUz46zIEZuhC3vOizVM64Q+c0RnI1ZHkGNH41pR0+9gyHz5jSjVgb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=DXpsq6Mq; arc=none smtp.client-ip=209.85.214.181
+	s=arc-20240116; t=1738802236; c=relaxed/simple;
+	bh=nOPgqH4lhiAM4OWu/qIJGrbWH9VXRKT7m22Jc/D4Ss8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=CBcHoi9sNWYJhCmh25/bU31adNAn//Ejp5VdRESzl7r/SbapaIvhwEwK9NDq7pxnBoQnZ2T6cDZXGUeohqgtqspVF87Xwt//oouII6DTFuBd+V5zJe691EFKjP646VyvqD88qOpjKul6MKFp6MnAKlcavNQ1gXKJIDc9MyV6RfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=stmo4099; arc=none smtp.client-ip=209.85.214.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-21f0b5d6c6eso5170495ad.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 16:37:13 -0800 (PST)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-21f0b5d6c6eso5170765ad.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2025 16:37:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738802233; x=1739407033; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Rr0c0Mekj/MPUNG/MPU9ertPQwQ2z0j9RQ9nWUa25XQ=;
-        b=DXpsq6MqZlECFwdNodOlWBlSZ90L6jZSRDrpoDQ4Uk62lt3Esn3ACWnNhp2R/HFrRX
-         JoLHNJo2wzZ0CQ5zqs1pvbvznFDlg+bHuuqCrrvjjCrtHJReCeDMXoDZvxrUMm3X4bBp
-         VH6HdYD4djpCcq92zGgftI5qnjAp0vBE31KlAQVaK5/dcI2xPX40TdCtplswKHn083yw
-         fmswWbp6SasFrULnDzKeFvAoxK2P1rkTvZ71wKy2+mDiFZg3dvZBzjQRf5/lYYNMHGnX
-         KEaV/LIfpF0FFd7bQ5L0UouLa7Q4r3GHbWxVeUWsW23y5xkiw28dbBgcZ2W44lgiV8Ja
-         42qw==
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8zzIHkh0JWr0k+Vy4PcXdrqiu6lb1v5EsnhvqxVQ3do=;
+        b=stmo4099NOPLysGubhkrcLBFWWz5loMEr2psuQsrLJFll/4G6Yw2LVU6Tbq9kZ1glJ
+         OLn0Je9TBN9mPkdDbBkDpbE3G5rFDekXpBlTyseSrysNGnknzRGJOJDAgv/Rd/Lsh5VR
+         1hkr5shDvjeLqQaBN/eTFhK4sHPEqxn3W/ddij7ZQ519fCJuhOnR/Iy0wBeTFV5VFZpv
+         5JTYwQ/hIiuMnENyM3JLRwcotNnKANDmHsKGZoYsSmgG5NyiVV7YEUuEpDRsC2BSkt3U
+         qqrVN1Mt822M51HWAcwzjqeSsfpXiuZwVtVTQB2Uv4DaYy8zeNH/Enpjou3CJxuiOyVB
+         Qo+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738802233; x=1739407033;
+        d=1e100.net; s=20230601; t=1738802234; x=1739407034;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Rr0c0Mekj/MPUNG/MPU9ertPQwQ2z0j9RQ9nWUa25XQ=;
-        b=NAuXsCSm0PotDW2ISbOFe7myGq5+W5WkZUZvlgGQgUWaEsfN3Iwd2Mxq7SP1OYtPQd
-         PVZ5jZskfUqAryTi/rVxbuQKbGdCDzZ1rSrhrbPx59KHUPNAgpAHtrM+vVlepeCWUNbQ
-         iVLVrUd6zURsFRvV5KF8ieNDMZQLoIwM92XwY+p9GefkOHO+sZp9pZ3n0q/RIx3/l3rX
-         G4WxoH3xv2IEDHfykf0xfOGYsW0TgpK0u55qbJSWw3oZKmR4IzxGP6pOIj0iR8rrC4Ci
-         TmL6f8YYmqKc7N6/ARip3MgdXPKZsYavNoAytRvpgcvZAcWou7ujBXZ9lv7ftXmqaJBa
-         3T0w==
-X-Forwarded-Encrypted: i=1; AJvYcCWxCc5SNpWogD4pHbCBrh059iHsJs8eRE2q3Cqfft5TiqmOwtvMyJnEU/OVBRCL6/nn96zRPFIi6ra9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgXFNz4iAHYva7AjbZWs6ZIWdRCwN4Rp4hsvANWqEmA43iSK5Q
-	k2Ocuj0KSBCRQpvUSAGaaVTQW2G+K2zBucqrh6G0C+jKUjjJ3cG5r7ZrHvp/XRw=
-X-Gm-Gg: ASbGncuyNNv0OxkxnhSVlt7vrOjV3gXwjycBJ+sS+DsdbtE0eP9cH7sZGBBOuv8dqAW
-	fJiM4LvyhnFqhYegBv3fhB1QV+xqA/BZd6Qlx3PRecdP4U0k0txyXvM8h42YQKt5ltoK8o6Tqll
-	SUEKY0ozMKxpWxXnIPRnulvyrfv2A+pQVUEcEMza4UNzaVoa3oUkjXsawQsPpvQs6x42sozpUXw
-	3xXSIh7XYsK7+nQqAPIh7YadK9i+X3o1dfgcsIWV+9oouzKwcldgPOv2OZ17FFJNWKXOiMBKrUI
-	KqD14u4VDIt+4Q==
-X-Google-Smtp-Source: AGHT+IE/LzIHKJCWK+klnZk7QiidIC1M7t+1V4Yqlxs0v7unb8+7MKwR4ueUDiyVPVQQrQhsAjtmLg==
-X-Received: by 2002:a17:902:ea06:b0:216:6be9:fd48 with SMTP id d9443c01a7336-21f2f1374b9mr23519265ad.3.1738802232844;
-        Wed, 05 Feb 2025 16:37:12 -0800 (PST)
+        bh=8zzIHkh0JWr0k+Vy4PcXdrqiu6lb1v5EsnhvqxVQ3do=;
+        b=lnjTEMzM25Oxf1AU+tsqvg5MrnOwGlANqSYzUv8UviSFA/NUkUYOWwzFXINRP58TFy
+         gGW+PFnC526/uRMwM5/nzz52VkMAXPPbnqCoWMr6OaLBtzViCTzSaAkEFfwqu7NxMbKL
+         B5me+SOgKO4N/mEiqyU132jzlmSRe69v+qBGmLPGeLuKIFs4fVUSEP2A7t7KOgh5RImC
+         atALcyoAL4V+kQ4OxpCD25YB0Ut7KAV1fmXLdCN0boiWmUpkNFvoZ+7tU4Va9frHYiQB
+         W3CDuORqmhCKpAqJhgPIM3WgKgIMZ2dxR4hQ5/AZj+IwKAFJ81GD40o0giLYseskSCIt
+         7VCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXSq5DZuLVgRsue7yVnNPuVyLvMZgjeKaF0hZSur6wv8jxW84lDwObLAYaGy1a7ulAPUUwr+NA9hSeK@vger.kernel.org
+X-Gm-Message-State: AOJu0YylzrGzGdUcbRaqfVfORIA0C1N++TfwCWdr8pC458xNiCV/fnwL
+	7oKmpgFRNBPX7WwbXm0JRBSmBtpDcaYg3yess/hE/Nk/YTq6mK+lQaPMWMSGWqcyj5bweHQTMrD
+	A
+X-Gm-Gg: ASbGncvhr2Q8BVeeX9mT6PBjAUuk/FuVVCo4ZudZGRB8hSuqB9wtgYtg0hSqjSiOw1v
+	FDOrlS1Kr4xVkTVDW9ww/4f+u95NB1le3D7s7xdQih47dd59G85w+/1a5VkSDg+DGrBzL4rg0Fl
+	gSbCfpY1+N25TRYxNhoXAenAU3tXdtXYrYjbd+fO54c73/y/7l3lfv3dP+aD94Pda8Z4Dx3byy/
+	RRMOcPniPhoX+pSmPNd9yz3gWJozgYgX2QbBHQli2pAU+Xz3tBvXfcXtUG7qwLeOQIn0HpgHqMo
+	iYAtKgXXWy+mGA==
+X-Google-Smtp-Source: AGHT+IHeAALMMN6rEjNsIcgDHE6izQCRHL2t1ia7J5PPMNZzXVn0e++b281jLiI3GTn7lM9t/PY1+w==
+X-Received: by 2002:a17:902:e809:b0:215:b1e3:c051 with SMTP id d9443c01a7336-21f2f173840mr22559485ad.11.1738802233665;
+        Wed, 05 Feb 2025 16:37:13 -0800 (PST)
 Received: from localhost ([97.126.182.119])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f3687c9ccsm41755ad.189.2025.02.05.16.37.12
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f3683d8desm49515ad.155.2025.02.05.16.37.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Feb 2025 16:37:12 -0800 (PST)
+        Wed, 05 Feb 2025 16:37:13 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: tony@atomide.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, rogerq@kernel.org, aaro.koskinen@iki.fi, 
- Andreas Kemnade <andreas@kemnade.info>
-In-Reply-To: <20241230195556.112118-1-andreas@kemnade.info>
-References: <20241230195556.112118-1-andreas@kemnade.info>
-Subject: Re: [PATCH] ARM: dts: ti/omap: omap4-serial: fix interrupts syntax
-Message-Id: <173880223194.2488567.3049966264498351840.b4-ty@baylibre.com>
-Date: Wed, 05 Feb 2025 16:37:11 -0800
+To: linux-kernel@vger.kernel.org, Tom Rini <trini@konsulko.com>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Andreas Kemnade <andreas@kemnade.info>, Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Robert Nelson <robertcnelson@gmail.com>, Roger Quadros <rogerq@kernel.org>, 
+ Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org, 
+ linux-omap@vger.kernel.org
+In-Reply-To: <20250123174901.1182176-1-trini@konsulko.com>
+References: <20250123174901.1182176-1-trini@konsulko.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: omap: Add TI Pandaboard A4 variant
+Message-Id: <173880223301.2488567.10858467099491839208.b4-ty@baylibre.com>
+Date: Wed, 05 Feb 2025 16:37:13 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,21 +97,18 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.3-dev-94c79
 
 
-On Mon, 30 Dec 2024 20:55:56 +0100, Andreas Kemnade wrote:
-> Usually interrupts are overwritten in the board file to specify a
-> mux-dependent dedicated wakeup irq, so there is interrupts and
-> interrupts-extended property which is not allowed. That has generated a
-> lot of noise during dts changes if just a phandle involved has randomly
-> changed.
+On Thu, 23 Jan 2025 11:49:00 -0600, Tom Rini wrote:
+> Document the ti,omap4-panda-a4 compatible string in the appropriate
+> place within the omap family binding file.
 > 
-> Avoid that mess by specifying interrupts-extended in the dtsi file.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] ARM: dts: ti/omap: omap4-serial: fix interrupts syntax
-      commit: 13203d24dd003206f58d570d19e2b515feca71c5
+[1/2] dt-bindings: omap: Add TI Pandaboard A4 variant
+      commit: a4ec13e6101ea750b17dc23f49f21d3f57623099
+[2/2] ARM: dts: omap4-panda-a4: Add missing model and compatible properties
+      commit: ea07a4775df03852c353514b5b7646a17bd425be
 
 Best regards,
 -- 
