@@ -1,120 +1,100 @@
-Return-Path: <devicetree+bounces-143514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40268A2A41F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:22:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 111E3A2A3F7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 10:17:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7634C3A7342
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:22:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 415067A2294
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 09:16:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E751225A5F;
-	Thu,  6 Feb 2025 09:22:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WcuqHpJj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50404225A34;
+	Thu,  6 Feb 2025 09:17:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from unicom146.biz-email.net (unicom146.biz-email.net [210.51.26.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732ED225A48;
-	Thu,  6 Feb 2025 09:22:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7480B12B94;
+	Thu,  6 Feb 2025 09:16:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.51.26.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738833759; cv=none; b=STtr2uNm8/Uc4gCjRqlGmRqU3v1Ze3izUK7U3ueGOPYWB/thCZNmd84nI7pfVcpxmYxMkSY8o1EW9iiYBkATqQLQ6SrkplxSCIP8Q5Hv46EH9CRcZjphx0aGXCN065ordVi2OK6PUuaL48Ta87Lq57QFGSYNnsq8Kyvr9buUTEs=
+	t=1738833423; cv=none; b=bTrkyUSMA3MlufX1gnQLp6DXEEbFqVKHfjmBzu41pm9uKxgRJ/G2ZhCGxD4EQWDBsL6wkdW2rjC4TRcmsYAmoXv8tQGO2NLrDG1TVzfCyrNeptExvRiQbdFT8eP1AhLMWHk2F8LWGFPBB5pgXxU65lexXtmUCdV7G3Jcycalv1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738833759; c=relaxed/simple;
-	bh=rMUdc8rgCvguL1dYjMNJWOARf7jz7NGicxVXPEWwrGo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rraEC2V59IM5zc+dvQZhaAyVl725dEtSgzPOM9xAq2mALaaV0MsLbyfzB7LSuYS2tFiu8N7ccoEXRjCP1dNzGji8tpuhdoBYZMWmi339L5+I3Nz+sH7fp8xRPyyKXOEwI0cngLhEVoPU9otC6InazBe3pVtr7iHM0ztpKOitiE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WcuqHpJj; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5169Ldqs2704578
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 6 Feb 2025 03:21:39 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738833699;
-	bh=n1wz6KRTg5DPLq/LpHJTBKLZg67NKVlvbqSY8YffbdQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=WcuqHpJjFMlGLY/+yNA5lxAKM8eRRrhsgdrlHx7vscwKbLqrpm8ku4iRJw4Ri58z3
-	 NtGM4AAJgchtuGlVOxc7RQjYh0Jx7M4IU9+ligBM/tqLrMnu65G4dubDyi6FwfI1dT
-	 0BPr+yhYMvufrxxVSw9JiRZ6I371TazgT4F+qHGk=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5169LdiM084371
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 6 Feb 2025 03:21:39 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 6
- Feb 2025 03:21:39 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 6 Feb 2025 03:21:39 -0600
-Received: from pratham-Workstation-PC (pratham-workstation-pc.dhcp.ti.com [172.24.227.40])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5169Lb5Y129767;
-	Thu, 6 Feb 2025 03:21:38 -0600
-From: T Pratham <t-pratham@ti.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: T Pratham <t-pratham@ti.com>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        Kamlesh Gurudasani
-	<kamlesh@ti.com>,
-        Manorit Chawdhry <m-chawdhry@ti.com>
-Subject: [PATCH RFC DONOTMERGE 3/3] arm64: defconfig: enable DTHE V2 module
-Date: Thu, 6 Feb 2025 14:44:32 +0530
-Message-ID: <20250206-dthe-v2-aes-v1-3-1e86cf683928@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250206-dthe-v2-aes-v1-0-1e86cf683928@ti.com>
-References: <20250206-dthe-v2-aes-v1-0-1e86cf683928@ti.com>
+	s=arc-20240116; t=1738833423; c=relaxed/simple;
+	bh=J4Jw6hCfAnfFcT8LYUjoO+YszJi+kEUP6N7RQM56PQ0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=J8+9ZIokNpglmlYxla245GvUH4As7F+S6GvFwyy+3f0XJTjw3KoBEoXIu8tNHzkmeXGEFHGXNC02QphYAPql5aFprl6dcH3ePCHP7d2z6g+94XWpdITGPyehW5YO4hfH4EQPqhUe/f7CRX8xlNIcn40bI/ocAqgR1xls+ZwCp3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=inspur.com; spf=pass smtp.mailfrom=inspur.com; arc=none smtp.client-ip=210.51.26.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=inspur.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inspur.com
+Received: from unicom146.biz-email.net
+        by unicom146.biz-email.net ((D)) with ASMTP (SSL) id EDW00134;
+        Thu, 06 Feb 2025 17:15:34 +0800
+Received: from localhost.localdomain (10.94.12.153) by
+ jtjnmail201609.home.langchao.com (10.100.2.9) with Microsoft SMTP Server id
+ 15.1.2507.39; Thu, 6 Feb 2025 17:15:33 +0800
+From: Charles Han <hanchunchao@inspur.com>
+To: <mkl@pengutronix.de>, <manivannan.sadhasivam@linaro.org>,
+	<thomas.kopp@microchip.com>, <mailhol.vincent@wanadoo.fr>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <cem@kernel.org>,
+	<djwong@kernel.org>, <corbet@lwn.net>
+CC: <linux-can@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-xfs@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>, Charles Han <hanchunchao@inspur.com>
+Subject: [PATCH] Documentation: Remove repeated word in docs
+Date: Thu, 6 Feb 2025 17:15:29 +0800
+Message-ID: <20250206091530.4826-1-hanchunchao@inspur.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+tUid: 2025206171534bc23d4d50169965adca0608dc6528377
+X-Abuse-Reports-To: service@corp-email.com
+Abuse-Reports-To: service@corp-email.com
+X-Complaints-To: service@corp-email.com
+X-Report-Abuse-To: service@corp-email.com
 
-Enabling the TI DTHE V2 module to be built for K3 devices.
+Remove the repeated word "to" docs.
 
-Signed-off-by: T Pratham <t-pratham@ti.com>
+Signed-off-by: Charles Han <hanchunchao@inspur.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/net/can/microchip,mcp251xfd.yaml        | 2 +-
+ Documentation/filesystems/xfs/xfs-online-fsck-design.rst        | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c62831e6158633f07c1f3532fba62f09b31e7448..f10b926e1321943f02376f8ff8472e0a01628d27 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1711,6 +1711,7 @@ CONFIG_CRYPTO_DEV_HISI_ZIP=m
- CONFIG_CRYPTO_DEV_HISI_HPRE=m
- CONFIG_CRYPTO_DEV_HISI_TRNG=m
- CONFIG_CRYPTO_DEV_SA2UL=m
-+CONFIG_CRYPTO_DEV_TI_DTHE_V2=m
- CONFIG_DMA_RESTRICTED_POOL=y
- CONFIG_CMA_SIZE_MBYTES=32
- CONFIG_PRINTK_TIME=y
-
+diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+index 2a98b26630cb..c155c9c6db39 100644
+--- a/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
++++ b/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+@@ -40,7 +40,7 @@ properties:
+ 
+   microchip,rx-int-gpios:
+     description:
+-      GPIO phandle of GPIO connected to to INT1 pin of the MCP251XFD, which
++      GPIO phandle of GPIO connected to INT1 pin of the MCP251XFD, which
+       signals a pending RX interrupt.
+     maxItems: 1
+ 
+diff --git a/Documentation/filesystems/xfs/xfs-online-fsck-design.rst b/Documentation/filesystems/xfs/xfs-online-fsck-design.rst
+index 12aa63840830..994f9e5638ee 100644
+--- a/Documentation/filesystems/xfs/xfs-online-fsck-design.rst
++++ b/Documentation/filesystems/xfs/xfs-online-fsck-design.rst
+@@ -4521,7 +4521,7 @@ Both online and offline repair can use this strategy.
+ | For this second effort, the ondisk parent pointer format as originally   |
+ | proposed was ``(parent_inum, parent_gen, dirent_pos) → (dirent_name)``.  |
+ | The format was changed during development to eliminate the requirement   |
+-| of repair tools needing to to ensure that the ``dirent_pos`` field       |
++| of repair tools needing to ensure that the ``dirent_pos`` field       |
+ | always matched when reconstructing a directory.                          |
+ |                                                                          |
+ | There were a few other ways to have solved that problem:                 |
 -- 
-2.34.1
+2.43.0
 
 
