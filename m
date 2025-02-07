@@ -1,111 +1,131 @@
-Return-Path: <devicetree+bounces-143926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66392A2C2E6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 13:41:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA09EA2C2F3
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 13:46:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F1B5188C896
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 12:41:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C7C7167660
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 12:46:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B91D91A9B23;
-	Fri,  7 Feb 2025 12:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B5061DFE04;
+	Fri,  7 Feb 2025 12:46:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Utg5HGGE"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="fCFBhiQk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D5D033EC;
-	Fri,  7 Feb 2025 12:41:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813D32417E1
+	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 12:46:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738932084; cv=none; b=EFpOtvaTVdBR5qISDU7+0Pm8hi3qya/30htfMeJa8tYrs2HB6f1jcj+dXXWXL8txLsgZ/cky5QwdfVFX1ewBWzH1agf0J66By488L6+w6ZzukfDeGVEQxjVqtCuvTpJbm8uamWQljFbobTBOZXXmv2IGrvVsFAJykJiXPOu9ehI=
+	t=1738932374; cv=none; b=mGpaPq0xiRGGQqb+eOWBkSqJRAOonayiAOoDu+T7jAnQP7b/ogOqrFONair3vtZzAiqw2GdM887EkMaOKjxhAo0Q/J9Mu06DbUdgTXpxBCNB4n6gNArL0tFjp6XgtgMMTrYhXHJKeAYXCH4ZxIkNfStkoxUAMcLDme8goM614Tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738932084; c=relaxed/simple;
-	bh=83oi4/LiFKnJ4b4PYfNcNbnSk8G43axrtIKV2z9iTyU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=YrIwku5RG6z8xea7WpFNhO8tRJXcgS3XOPc1xmjr6/f08E/hxzmyYhWbqYZ+HbGRukGAXSpL3QvAn9BWXEXH/sAhNgPBDHM6TAGvhaXlByjb7gOeB0qVoy23MZSIcxuvMLZC1aEEUp/Vj+lNSnQTOr7wyotaw9y5D9pGO9uRURo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Utg5HGGE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB4DCC4CED1;
-	Fri,  7 Feb 2025 12:41:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738932084;
-	bh=83oi4/LiFKnJ4b4PYfNcNbnSk8G43axrtIKV2z9iTyU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Utg5HGGEduun4GLdnqK10VI4vdtOGRLduTUttUqUUI4R8v/XZErkWN0dN/cCUwmdN
-	 26qNOFtf17ckL4mpHUX1WpjWudfk3Wg56Iu67vvTbyV8/FsuCQ5uL4T6Q2ozkJA5fP
-	 voLg0ydK8znhYwNARpFaAh01jGIg1Q3/syV490H3pyMMRum1d1zPOV2xRPeheNtGM/
-	 uXl/x8UCd0vcG+lHpkw0k+WAF7NQycgoYRFOi+sJUcd1JvD3plXJgcYC0HNMz07sFa
-	 ldTyZ4RWM6hBoU0v5d0oi6lynqAeEYK1IaU9JpiespGoR7ibv1bEOTBIkrf9/P2mWQ
-	 ahLXBUVyvRTlg==
-Date: Fri, 07 Feb 2025 06:41:22 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1738932374; c=relaxed/simple;
+	bh=fjwoDgTcd0sBN1WicHu/k9TRQMUS1W81Ig5M2xU9l7o=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Content-Type; b=hNLNOGoH/ea//y7RTsCb786QdwTfugRmhQM4F6ppYsLuLLg7YjPs7SoVL7bheKYPJaXnwk1Lwa7Xta0bN5OOYyDOE0R1RBOTSZcVA2NUNEhcpKtVg2Ifb/y1H24xs8z1RljLOZnMsF6+5p7xN5YUlex4SSEF1ZiwfMvpBAikWAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=fCFBhiQk; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-oa1-f71.google.com (mail-oa1-f71.google.com [209.85.160.71])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 55E993FE69
+	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 12:46:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1738932369;
+	bh=2ZwUPJofjuVtYyvUvViroJ51go9pRIvg6aRbC/noSgE=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Content-Type;
+	b=fCFBhiQk+dHfmA7QV8FRDm0NxYcENWEy8owF+Qx3L97DxHt+ja3t0WLIrNqQAEVlR
+	 9G36wUWbs/COxtP3On5TRLEQ+4UwjKtXWTVnMHc6L44Jyh+WmmSsFMZhy+k+1JXnKE
+	 5YWzJvYv13uDqk6WqAPc+vt65QV7DXk5jl2/H41upg7JIKT+CsuzaL4aF3QNtSgY0f
+	 LINK9TN+ScCIGBXh8egbIMYPBtmgt85V4+q4ty+7LIeOqw1IJTq96UoSaH6vKCpOuv
+	 cQqGPY6JA+J+Rsz+CGhbGUy+/8A7gL4brhwQWjUzfHURe0rViivjauw1dHjpNjHDmv
+	 6850BtUfNGtAg==
+Received: by mail-oa1-f71.google.com with SMTP id 586e51a60fabf-2b7f8307574so1986918fac.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 04:46:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738932368; x=1739537168;
+        h=to:subject:message-id:date:mime-version:references:in-reply-to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2ZwUPJofjuVtYyvUvViroJ51go9pRIvg6aRbC/noSgE=;
+        b=aDjZZa8PWSOgwV+SpVylJ4ld0C39p/1zlq2nCSO10Kk8Z86IzxmzH2pGzf9H7e2qHX
+         crXrt1X1G+2kAQGKgrlChwk6gNPTvW2CtmSQ6VxLNTvAeRHX3JvRA+h3bqhH1TRwtwni
+         DOCBG+yg6WV5UW0kuYOqS4Mcr2ZW3X02OcLsoSrqSzEya1ebdM/8ko8Omi7mEgzB+rIy
+         2Yg/GXYuDdzEkg5CtsW9ToDLLO80OgVRlDfwYyKZoK5zDpZebZ0VSnDfbl+uhFzGQ+Sb
+         fod1mWzl9ssUa6mJ3MCBEldg1heosThGVr32GiY7yGKiXusCEScyiG+4b8s8oJE/TIyR
+         AMCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXXX7jsVejvKnO+eGV/DKjO01S95FrQYyp/4Tgk2SFg7ULIixfrxsUbcqBNm9JVeKsWRpw7CDMO1kw7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxNmGDdeX3x1SI8YAhkbi1CQORTTPXyIHedpVYnB72+9MH2AVb4
+	7AJDu8Hi11TKg6EZh5RhHrAkjM0pg41BV0HG1TmK3Rg/SRuAe9I8K+pFxJGQqSSszB8aHL42mKm
+	6HEU//ZjcQ0sAlcqs13waMgX3k/J33pr8c+JJmm4foFULks2anpu2NwGQUIDzaWHHYAMR/iB+nB
+	IcHsAAH6s/FpO4YCuRHFhF7KuXOhTtaPCuDUVkYaqUPhCduZbDUQ==
+X-Gm-Gg: ASbGnctBlQYCIP/vmbjD9JsAgZEMhIh57Quv0SsOQRP9sAEnihpLQEFRqAufh4nnmzT
+	5803sHZZMsFGBhFQcIoug0MNPnkBKZ0VYWp9wS3gw45eZPfqGtxS0xgDWUysF4Q==
+X-Received: by 2002:a05:6870:c4f:b0:29e:354e:5fdb with SMTP id 586e51a60fabf-2b83ef92ce2mr1639816fac.37.1738932368243;
+        Fri, 07 Feb 2025 04:46:08 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH8717iINw6GQLmXUMzAsQEraXJmnomHeDq/9rOE8N8dSrNmc1FXULqlUBnU6Vyo0eCApuqsrLIMq5Hi2dty7Y=
+X-Received: by 2002:a05:6870:c4f:b0:29e:354e:5fdb with SMTP id
+ 586e51a60fabf-2b83ef92ce2mr1639799fac.37.1738932368012; Fri, 07 Feb 2025
+ 04:46:08 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 7 Feb 2025 04:46:07 -0800
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 7 Feb 2025 04:46:07 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <TYCPR01MB8437F6FCD14E116B6CBBA09098F72@TYCPR01MB8437.jpnprd01.prod.outlook.com>
+References: <TYCPR01MB8437F6FCD14E116B6CBBA09098F72@TYCPR01MB8437.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Simona Vetter <simona@ffwll.ch>, Rob Clark <robdclark@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Maxime Ripard <mripard@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Sean Paul <sean@poorly.run>, 
- Thomas Zimmermann <tzimmermann@suse.de>, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-In-Reply-To: <20250207-topic-sm8x50-mdss-interconnect-bindings-fix-v1-1-852b1d6aee46@linaro.org>
-References: <20250207-topic-sm8x50-mdss-interconnect-bindings-fix-v1-0-852b1d6aee46@linaro.org>
- <20250207-topic-sm8x50-mdss-interconnect-bindings-fix-v1-1-852b1d6aee46@linaro.org>
-Message-Id: <173893208278.4072473.6097194764742914829.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: display: qcom,sm8550-mdss: only
- document the mdp0-mem interconnect path
+Mime-Version: 1.0
+Date: Fri, 7 Feb 2025 04:46:07 -0800
+X-Gm-Features: AWEUYZmHbacGaT6tTq_P7xegNAmTpSpPwRhBA5Opynsjcw0ztqQPHtv9Yj0u9dM
+Message-ID: <CAJM55Z_zuaXSchVFwdiCzJJ3j2fHKg-w6j4GP+sqKB3AgvipxQ@mail.gmail.com>
+Subject: Re: [PATCH v1] riscv: dts: starfive: Unify regulator naming scheme
+To: Shengyu Qu <wiagn233@outlook.com>, conor@kernel.org, kernel@esmil.dk, 
+	robh@kernel.org, krzk+dt@kernel.org, paul.walmsley@sifive.com, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Shengyu Qu wrote:
+> Currently, there are 3 regulators defined in JH7110's common device tree,
+> but regulator names are mixed with "-" and "_". So unify them to "_",
+> which is more often to be seen in other dts files.
+>
+> Signed-off-by: Shengyu Qu <wiagn233@outlook.com>
 
-On Fri, 07 Feb 2025 11:50:37 +0100, Neil Armstrong wrote:
-> The mdp1-mem is not supported on the SM8550 SoCs, so only support a single
-> mdp0-mem interconnect entry.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Thanks!
+
+Acked-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+
 > ---
->  Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.example.dtb: display-subsystem@ae00000: interconnects: [[4294967295, 3, 0, 4294967295, 13, 0], [4294967295, 0, 0, 4294967295, 1, 0]] is too long
-	from schema $id: http://devicetree.org/schemas/display/msm/qcom,sm8550-mdss.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.example.dtb: display-subsystem@ae00000: interconnect-names: ['mdp0-mem', 'mdp1-mem'] is too long
-	from schema $id: http://devicetree.org/schemas/display/msm/qcom,sm8550-mdss.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250207-topic-sm8x50-mdss-interconnect-bindings-fix-v1-1-852b1d6aee46@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> index 48fb5091b8176..dd2eefc295e5c 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> @@ -233,7 +233,7 @@ vdd_cpu: dcdc2 {
+>  				regulator-always-on;
+>  				regulator-min-microvolt = <500000>;
+>  				regulator-max-microvolt = <1540000>;
+> -				regulator-name = "vdd-cpu";
+> +				regulator-name = "vdd_cpu";
+>  			};
+>
+>  			emmc_vdd: aldo4 {
+> --
+> 2.48.1
+>
 
