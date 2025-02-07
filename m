@@ -1,293 +1,151 @@
-Return-Path: <devicetree+bounces-143854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A4CCA2BDEE
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:31:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45A10A2BE16
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:33:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C98B168C6B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:31:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72A623AB02D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:33:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC561A2C25;
-	Fri,  7 Feb 2025 08:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F401A9B3B;
+	Fri,  7 Feb 2025 08:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="x4VMvHw4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35931662EF;
-	Fri,  7 Feb 2025 08:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E1B1662EF;
+	Fri,  7 Feb 2025 08:33:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738917108; cv=none; b=rPVUt8hTFP6sGHL58hAh1FihbxvhpxSFcXQPPeNTHPMACjgOUvZ96e3RmthwQiLZ+lzS+lMN+F93XSvDNFw6I7gLynBRiuHhZTfrGv137zb/5dDqJ+9Hlri9B3g5ciIwVxKyNj7K7z3sga6l8FvExhWF0okEwh3/1S5sHcW/dLw=
+	t=1738917203; cv=none; b=eq7dTK2ind7EOaW8MEdo3ZZ6+HT9Ee2bzlqLzhXTdP3nZr/SujR4om0KBhCdizBNT029SxPFrpIPTlBPJqwxSvYrdiOpWSNBq3HCL1eyquCltDp3pS2C6ppqcAR+BACJEDV0+dLBhAUMGAGnJmlsv83qjCNcNhpqRwNZCMVjY5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738917108; c=relaxed/simple;
-	bh=3T+4D4OZYxnH92h9beC7wrRjiY+wNoBy2B/wrWJ5ihk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XjA59UvIbn8rS8093AGUHKU/r1fjdRqbhJWygC+IqSPxWbS41tPM8RC739UCaRdNnEOhssXXNWJxtXKa6YqbiloKhHwid0ao+a9ybJ41RIVKKkhC6kR8j6jxqWh4STgOPNZBSa69WaIkp1nN7TzpDURLTbFH7GEPwRSOdumrVfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.starfivetech.com; spf=none smtp.mailfrom=linux.starfivetech.com; arc=none smtp.client-ip=54.206.34.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.starfivetech.com
-X-QQ-mid: bizesmtpsz4t1738917093t6p35lw
-X-QQ-Originating-IP: F3vYl0ctFhV2QVNdxoiZ+gl2R3+YyxEuwE/J1iVBRD0=
-Received: from [192.168.60.235] ( [183.27.97.113])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 07 Feb 2025 16:31:30 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 5179800746963532279
-Message-ID: <05B9953079BA21AF+fffef577-a880-4ed6-a71b-14ec82aeea97@linux.starfivetech.com>
-Date: Fri, 7 Feb 2025 16:31:29 +0800
+	s=arc-20240116; t=1738917203; c=relaxed/simple;
+	bh=GtxLgT3tyWGbWCvKml+HO1Ii/ozeWGs3xqKQ3m9rWkg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AgzXIT4PPpQ3+lUetyNuO/anXZSHtu11OuNx0pgsePfeczbpEM3UtqvtxEQp4rAfr1qtvtF1yfjppcTwrSUP3wRHKJd+xKKWCTsvYdYs1P2IZyEgPF3PAcxl76+/4BhNDTykeA/sL0UB323+3nW1ZNtbm2+EHc1+Y033HbdEr04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=x4VMvHw4; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 26D131F9E1;
+	Fri,  7 Feb 2025 09:33:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1738917182;
+	bh=l/t7vCxJWdDph//099EQUA35oIJvQPYCB3Z9DffQy6g=;
+	h=Received:From:To:Subject;
+	b=x4VMvHw4NptAo6x5XBmAV+QyJzCjjYW92WHrhRpEQEeN4AiwlYBrOWnwuYnv3+xdS
+	 CduSirEGbfD2odtgGD8sqFJCJ9+32bW/KFtb9wnnB99Hlaajp0rtKbVovJRKUvjTwS
+	 fmgzuipXjkP5rYLWk5Ax29PDsHC8Xj3MDh9oJ8djV50HYbtY3AGPacKWJAjnE6ep5D
+	 LVunkSKdESz3ahRx38ffZQLEZFJsJ43tp2PVrE7wr4082EtgSqslloEUpzynX0LRwf
+	 xnBmNBPjniMBj60NSNgxR9nqm4JDWFodHRONrpK1BWXQCA/tTG9gHLO6alYXXkyt5X
+	 U3irvwSolkaAA==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id BACC07F926; Fri,  7 Feb 2025 09:33:01 +0100 (CET)
+Date: Fri, 7 Feb 2025 09:33:01 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Nishanth Menon <nm@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62p: Enable AUDIO_REFCLKx
+Message-ID: <Z6XFPYaj069fvW1h@gaggiata.pivistrello.it>
+References: <20250206153911.414702-1-francesco@dolcini.it>
+ <20250207014239.xzm6rfnusckql2uo@litigator>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] riscv: dts: starfive: jh7110-common: replace
- syscrg clock assignments
-To: E Shattow <e@freeshell.de>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, Hal Feng <hal.feng@starfivetech.com>
-References: <20250203013730.269558-1-e@freeshell.de>
- <20250203013730.269558-2-e@freeshell.de>
- <CAJM55Z-M9MsJAtPi-t=_tNV3oG_kdDiS6H=H3koJwTEwB8GJ-Q@mail.gmail.com>
- <981a3f30-c646-423a-a2dd-e19fef5c69e5@freeshell.de>
-Content-Language: en-US
-From: Hal Feng <hal.feng@linux.starfivetech.com>
-In-Reply-To: <981a3f30-c646-423a-a2dd-e19fef5c69e5@freeshell.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpsz:linux.starfivetech.com:qybglogicsvrgz:qybglogicsvrgz5a-1
-X-QQ-XMAILINFO: N7uEtCzC8wDSU5GgdvpIOvHsIwEu6cw1nHKJAHljI71wJqFJ4DB1Nzd1
-	1DgeW5Y0jB3YypTHFBHcwRVXmhLXjoeu69SKmNFwjvfc46Vt2DV0lG2J5ZNSXPm0L6aWaJ1
-	HKVwzb2F8ZNf3W+bYE1yfFGdAGiRoB8W3155WkELds2X1rcPIja1xIAEou8LTHodFDK+XNu
-	vcGqNHfi36mRb9o6QoXu6Q10d+VgNemyT8+xvtpy7TS2zXyHqHhkopgVWuHhT01GxFFhpN8
-	0CRhg4wPKH6PFlxeyyMf1dMWExbtMO3amwko2kCz9OTKlM7D1HdBE1169gjzhWt7F7HZd4S
-	w9kCiK8G+sHEsgUYpnlQmW0dYYPqYTTFRVrOse3B6VRZd3NqjTUSsif/qqDT6dGB7FFKTMV
-	CDkUnvIBMQMu9ECJTgbMogTTz/9gk4BoFOa//c2cQz6KV3oFRytO9Nl4mo0cI87UhyaJS8X
-	pi1vIAp5i8ZBl9CZnCuff/EwJNl9qg2UptfPF8i9b7qdjcn2E7/I1tULt+r76aZC/fkEwro
-	bQygAsm9KK38uzB3GCngRsqG9Wpa52YKF/HQQS2o8T5pFTA3oTmRZugTfwtUjJPgnJQFd0p
-	6sYMWOp6Or9e31le44fndCSKNPrx6sP/MOXTKG2Y8BRczb1f5WJ0p2d+OcwgVxMSm2TxYPS
-	SYWwEalk2vkoUm311gT0/amZa9JOsReFMbCnB8BoiavOQxdG6GWSVXhlJr31M70cBX2T6zv
-	5Ur1XePOctuFByD38ms+W2mmRpULp2xNJ9DgM/9dGclZkoq0luSUbiFDO2aClMHQ5cVgIJb
-	WA9nUbSDxvkHxZcMZYS3MGaXAYjgUtRwIOx2N7R+4mYSA0hf9Qdv8lCsOfH2HVS2fRn03AX
-	tTIdTt3Bxyl8faHqluZxT4HmR3T2r7WS8r59nHXLTNqDtsSOFPXqav4zn77Li4s+FZEiRiD
-	DVj7S34QgWra6TShSpP5s3Rn6m6pnG0sc4CM=
-X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250207014239.xzm6rfnusckql2uo@litigator>
 
-On 2/5/2025 8:52 PM, E Shattow wrote:
-> 
-> 
-> On 2/5/25 02:16, Emil Renner Berthing wrote:
->> E Shattow wrote:
->>> Replace syscrg assignments of clocks, clock parents, and rates with
->>> default settings for compatibility with downstream boot loader SPL
->>> secondary program loader.
->>>
->>> Signed-off-by: E Shattow <e@freeshell.de>
->>> ---
->>>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 11 ++++++++---
->>>  1 file changed, 8 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->>> index 48fb5091b817..a5661b677687 100644
->>> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->>> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->>> @@ -359,9 +359,14 @@ spi_dev0: spi@0 {
->>>  };
->>>
->>>  &syscrg {
->>> -	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>,
->>> -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
->>> -	assigned-clock-rates = <500000000>, <1500000000>;
->>> +	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
->>> +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
->>> +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
->>> +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
->>> +	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
->>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
->>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
->>> +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
->> 
->> I think Conor asked about this too, but you still don't write why it's ok to
->> drop the 500MHz and 1,5GHz assignments to the cpu-core and pll0 clocks
->> respectively. You should add this to the commit message itself.
->> 
->> /Emil
-> 
-> Is this a remedy for a bug in the JH7110 CPU? I'm not clear why tweaking
-> the frequencies and increasing core voltage was ever needed.
-> 
-> This goes back to series "clk: starfive: jh7110-sys: Fix lower rate of
-> CPUfreq by setting PLL0 rate to 1.5GHz" [1].
-> 
-> Since [1] I have had problems with several passively cooled Milk-V Mars
-> CM Lite systems powering off due to thermal limits. My experience then
-> is that the specialized 1.5GHz operation is not appropriate for all
-> JH7110 CPU board layouts and applications.
-> 
-> Hal says I failed to get these assignments in Linux to work in U-Boot
-> because U-Boot doesn't have driver support to increase CPU voltage, and
-> Hal offering to add this to a driver in U-Boot... but that's the wrong
-> way around in my opinion, unless there's some defect in the JH7110 CPU
-> that it won't run reliably with hardware defaults.
-> 
-> 1:
-> https://lore.kernel.org/all/20240603020607.25122-1-xingyu.wu@starfivetech.com/
-> 
-> What is the correct thing to do here?
-> 
-> -E
-> 
-> From mboxrd@z Thu Jan  1 00:00:00 1970
-> Return-Path: <linux-riscv-bounces+linux-riscv=archiver.kernel.org@lists.infradead.org>
-> X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-> 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
-> Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-> 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-> 	(No client certificate requested)
-> 	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9A24C02192
-> 	for <linux-riscv@archiver.kernel.org>; Wed,  5 Feb 2025 13:10:59 +0000 (UTC)
-> DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-> 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-> 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-> 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-> 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-> 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-> 	List-Owner; bh=GY86gaXkDRjEBAUNvogHkHuyO230wjLSabDM8v7zKQQ=; b=Un7uhhDTAT8/9N
-> 	FxyCZTIeuEf9Tz2EWguoSASPTIRzVsA8OD+zansoq7n0Em+ejnESLoVicWRdNflaSCojelA6mxlZr
-> 	79fy10oRgiIKMOAb1fwJcsq+rGF8jSdXwi0a2zKjGYb4u4ZNy/uLBiIynsSH/VCYysTKQK6p7wAiC
-> 	7RYsK3WfvbZKMTBmH2vKxA7ERtfZGfNAJqRjHzBM06+ZfEDf9V2UQ3pGUdGPoTZYkQoS8smFEx47Z
-> 	U3KclAiQD6NRzOmPD/VXwUGXQEpLonSaLk7kbAdo3cWww6Wyou3w4XqxHQpym6FyLsKAWWSk7d4vx
-> 	ZbYQckPNKc65NmLst1TA==;
-> Received: from localhost ([::1] helo=bombadil.infradead.org)
-> 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-> 	id 1tffB9-00000003Lk1-2ly8;
-> 	Wed, 05 Feb 2025 13:10:55 +0000
-> Received: from freeshell.de ([2a01:4f8:231:482b::2])
-> 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-> 	id 1tfetw-00000003I2R-42Et
-> 	for linux-riscv@lists.infradead.org;
-> 	Wed, 05 Feb 2025 12:53:10 +0000
-> Received: from [192.168.2.35] (unknown [98.97.25.24])
-> 	(Authenticated sender: e)
-> 	by freeshell.de (Postfix) with ESMTPSA id 7ADA8B4C01E1;
-> 	Wed,  5 Feb 2025 13:53:01 +0100 (CET)
-> Message-ID: <981a3f30-c646-423a-a2dd-e19fef5c69e5@freeshell.de>
-> Date: Wed, 5 Feb 2025 04:52:59 -0800
-> MIME-Version: 1.0
-> User-Agent: Mozilla Thunderbird
-> Subject: Re: [PATCH v2 1/5] riscv: dts: starfive: jh7110-common: replace
->  syscrg clock assignments
-> To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
->  Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
->  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
->  Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
->  <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-> Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
->  linux-riscv@lists.infradead.org
-> References: <20250203013730.269558-1-e@freeshell.de>
->  <20250203013730.269558-2-e@freeshell.de>
->  <CAJM55Z-M9MsJAtPi-t=_tNV3oG_kdDiS6H=H3koJwTEwB8GJ-Q@mail.gmail.com>
-> Content-Language: en-US
-> From: E Shattow <e@freeshell.de>
-> In-Reply-To: <CAJM55Z-M9MsJAtPi-t=_tNV3oG_kdDiS6H=H3koJwTEwB8GJ-Q@mail.gmail.com>
-> X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-> X-CRM114-CacheID: sfid-20250205_045309_156119_468548BF 
-> X-CRM114-Status: GOOD (  16.14  )
-> X-BeenThere: linux-riscv@lists.infradead.org
-> X-Mailman-Version: 2.1.34
-> Precedence: list
-> List-Id: <linux-riscv.lists.infradead.org>
-> List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-riscv>,
->  <mailto:linux-riscv-request@lists.infradead.org?subject=unsubscribe>
-> List-Archive: <http://lists.infradead.org/pipermail/linux-riscv/>
-> List-Post: <mailto:linux-riscv@lists.infradead.org>
-> List-Help: <mailto:linux-riscv-request@lists.infradead.org?subject=help>
-> List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-riscv>,
->  <mailto:linux-riscv-request@lists.infradead.org?subject=subscribe>
-> Content-Type: text/plain; charset="us-ascii"
-> Content-Transfer-Encoding: 7bit
-> Sender: "linux-riscv" <linux-riscv-bounces@lists.infradead.org>
-> Errors-To: linux-riscv-bounces+linux-riscv=archiver.kernel.org@lists.infradead.org
-> 
-> 
-> 
-> On 2/5/25 02:16, Emil Renner Berthing wrote:
->> E Shattow wrote:
->>> Replace syscrg assignments of clocks, clock parents, and rates with
->>> default settings for compatibility with downstream boot loader SPL
->>> secondary program loader.
->>>
->>> Signed-off-by: E Shattow <e@freeshell.de>
->>> ---
->>>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 11 ++++++++---
->>>  1 file changed, 8 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->>> index 48fb5091b817..a5661b677687 100644
->>> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->>> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->>> @@ -359,9 +359,14 @@ spi_dev0: spi@0 {
->>>  };
->>>
->>>  &syscrg {
->>> -	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>,
->>> -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
->>> -	assigned-clock-rates = <500000000>, <1500000000>;
->>> +	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
->>> +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
->>> +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
->>> +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
->>> +	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
->>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
->>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
->>> +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
->> 
->> I think Conor asked about this too, but you still don't write why it's ok to
->> drop the 500MHz and 1,5GHz assignments to the cpu-core and pll0 clocks
->> respectively. You should add this to the commit message itself.
->> 
->> /Emil
-> 
-> Is this a remedy for a bug in the JH7110 CPU? I'm not clear why tweaking
-> the frequencies and increasing core voltage was ever needed.
-> 
-> This goes back to series "clk: starfive: jh7110-sys: Fix lower rate of
-> CPUfreq by setting PLL0 rate to 1.5GHz" [1].
-> 
-> Since [1] I have had problems with several passively cooled Milk-V Mars
-> CM Lite systems powering off due to thermal limits. My experience then
-> is that the specialized 1.5GHz operation is not appropriate for all
-> JH7110 CPU board layouts and applications.
-> 
-> Hal says I failed to get these assignments in Linux to work in U-Boot
-> because U-Boot doesn't have driver support to increase CPU voltage, and
-> Hal offering to add this to a driver in U-Boot... but that's the wrong
-> way around in my opinion, unless there's some defect in the JH7110 CPU
-> that it won't run reliably with hardware defaults.
-> 
-> 1:
-> https://lore.kernel.org/all/20240603020607.25122-1-xingyu.wu@starfivetech.com/
-> 
-> What is the correct thing to do here?
+Hello Nishanth,
 
-Please see my reply in
-https://lore.kernel.org/all/ZQ2PR01MB130736F5C893337606FD6937E6F1A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn/
+On Thu, Feb 06, 2025 at 07:42:39PM -0600, Nishanth Menon wrote:
+> On 16:39-20250206, Francesco Dolcini wrote:
+> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > 
+> > On AM62P-based SoCs the AUDIO_REFCLKx clocks can be used as an input to
+> > external peripherals when configured through CTRL_MMR, so add the
+> > clock nodes.
+> > 
+> > Link: http://downloads.ti.com/tisci/esd/latest/5_soc_doc/am62px/clocks.html
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 20 ++++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> > index 420c77c8e9e5..4b47b0774330 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> > @@ -42,6 +42,26 @@ &inta_main_dmss {
+> >  	ti,interrupt-ranges = <5 69 35>;
+> >  };
+> >  
+> > +&main_conf {
+> 
+> 	Why not add it to main_conf section it self in the file?
 
-Thanks.
+The reason is that main_conf is defined in k3-am62p-j722s-common-main.dtsi,
+that is shared between am62p and j722s.
 
-Best regards,
-Hal
+On j722s the audio refclk is added in k3-j722s-main.dtsi the same way as I did
+here, so I cannot move this to k3-am62p-j722s-common-main.dtsi without updating
+also k3-j722s-main.dtsi.
 
+I looked into the differences of j722s and am62p, and from my understanding,
+from the audio refclk point of view, they are identical (same IP, same reg, same
+clocks and same IDs), so this should naturally be moved to
+k3-am62p-j722s-common-main.dtsi as you are suggesting.
+
+... however, for some reason I am not aware of, on k3-j722s-main.dtsi a different
+parent clock is used, and I cannot understand the reason. The actual parent clocks
+in this patch are just the same we already have everywhere apart on j722s. I tried
+to look at the history of this and it seems that on the TI downstream kernel branch
+this is defined in the board dts file (!) and this confused me even more.
+
+So, not wanting to break stuff I was not able to understand I came up with this
+proposal.
+
+An alternative could be to override the "unexpected" clocks from
+k3-j722s-main.dtsi to the board dts file, and have the "standard" clocks, as
+proposed in this patch and already used on all the other AM62 variants, in
+k3-am62p-j722s-common-main.dtsi.
+
++Jayesh that is the author of this specific change in k3-j722s-main.dtsi.
+
+Francesco
+
+> > +	audio_refclk0: clock-controller@82e0 {
+> > +		compatible = "ti,am62-audio-refclk";
+> > +		reg = <0x82e0 0x4>;
+> > +		clocks = <&k3_clks 157 0>;
+> > +		assigned-clocks = <&k3_clks 157 0>;
+> > +		assigned-clock-parents = <&k3_clks 157 16>;
+> > +		#clock-cells = <0>;
+> > +	};
+> > +
+> > +	audio_refclk1: clock-controller@82e4 {
+> > +		compatible = "ti,am62-audio-refclk";
+> > +		reg = <0x82e4 0x4>;
+> > +		clocks = <&k3_clks 157 18>;
+> > +		assigned-clocks = <&k3_clks 157 18>;
+> > +		assigned-clock-parents = <&k3_clks 157 34>;
+> > +		#clock-cells = <0>;
+> > +	};
+> > +};
+> > +
 
