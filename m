@@ -1,240 +1,242 @@
-Return-Path: <devicetree+bounces-143878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF386A2BEBD
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 10:06:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA5D9A2BEAB
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 10:05:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C17416A14B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:06:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B92EB1883957
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:05:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C5A235376;
-	Fri,  7 Feb 2025 09:05:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EA501D5AAE;
+	Fri,  7 Feb 2025 09:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="YJ3w2CG9";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="rlBQXGe+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JQGKVuMP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB14623497E;
-	Fri,  7 Feb 2025 09:05:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49ADA1CDA2D;
+	Fri,  7 Feb 2025 09:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738919146; cv=none; b=sUXAGZY2cnPafzqRTje6lrOZsyaNOdLD2y5nWh5jOq8XleDRaXCEQEUxGwqv9F5tAff9YKSuIbjiZ6WPxEDFQloofw2ovJwp7chbPRDFZjAdVibkY43hSY9hZiEiypLMX9PH3PieDirjx87L1/Ec3VZjij6FYaa0F1LBkHHReqw=
+	t=1738919097; cv=none; b=mcxsZE9vjyZTxgXvg7N0uwDGdIajhpWFH/NCjuqxVyXd4G5mIcPcsy7ZrqChkPnmN5y5GtM/h06YTjEU7ocjf2iNNt6GasyUO+opQeGduvcNDv21www+XWcEmjdgsqxPdQDglkw5Fg0SlvBd79/t3QU1bE1Pd45IyEEmbY4KJco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738919146; c=relaxed/simple;
-	bh=3dRjkGHiqCFJ8gaSi26v3o8D8Ct0u2v99KNMcksrZNE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GEO1ybAntrCPreaOYpI8DbVM7j8h2ZZVtb0lL6sI91qZt/dU8dexRcx9hLIXep1vWehYx/M0aU2DZB0tOmATEHCyOL6JkaVPcv93D4kUFTtdJWAGrlg9fR2Wlya96y4KLIqgmc3ebQjXtx4gPnBwypMP6DmHMFPHBy8ratr2nkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=YJ3w2CG9; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=rlBQXGe+ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1738919116; x=1770455116;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=zBX8ExALcmiDF+/qEtJjMkDw2zlW64wywf43Ky2a6Ug=;
-  b=YJ3w2CG9vDxDLA+obhiyRgaELfGS9Tg12qxQm983jJnhIRUX6kwJ1v1Z
-   rPY8pUzwkJijCjh5ClAJN3JaVFU1HaQVozfjh+sogdDOLBJnc9yPjGHWa
-   NoNjzoRbn7Uh2tSxmu6fdX09mqXzA7fNacZFp9WVpdz67IU1oSiFsixOE
-   Eeci6dMY4BYMHSmymCrQMUFWOLaX0RJzUXRrhI/N4UzMzKanVn9xdZlHy
-   0H4mbRVxEku/wxKaw3uTxgbA6yZhr70CC78n9tKHbCA1lyzactW+/bnNM
-   Mdhy4hGxkvl0BStCc2qDrU3YwzNdnemBFlW+Ppoot2jTUnbHRpHvOEDhN
-   w==;
-X-CSE-ConnectionGUID: Xhk74j5JQbWAra0Mv6t0Pw==
-X-CSE-MsgGUID: 3Lct4PK2QXKQuQADTfdvpQ==
-X-IronPort-AV: E=Sophos;i="6.13,266,1732575600"; 
-   d="scan'208";a="41637080"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 Feb 2025 10:03:29 +0100
-X-CheckPoint: {67A5CC61-19-727D2C21-EE1B71AA}
-X-MAIL-CPID: 6157D79B86A1E4CE120E29C0B85C15C2_5
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 587D1166639;
-	Fri,  7 Feb 2025 10:03:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1738919005;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zBX8ExALcmiDF+/qEtJjMkDw2zlW64wywf43Ky2a6Ug=;
-	b=rlBQXGe+M/MvgnHi6cUhxMQ9Q35+XqdAYZ6WPwI+6SH+/1yaI5UzRqvNEufnNtPdreYPIy
-	cYC4s+MO36XQfo5ojoJ19NB53Wqn3A/K9SFJDJBWOC9SNwpkit5PAuL4DYj7RZqMRCnoB9
-	T6tbtpOpiMhLKmsPmD8QZDkHPvn4Ta5THB+5R6RYAFPjt50xX4za4NG7Vx4kZqqJ8HeKzz
-	Ci5R7i91781egwuqpkaGZP7IDRWkgerCmAyEb8FlsMTQBO/nLX/Y2bWWUmR7GAgvcgKSR/
-	Z5fyew18JBVWiLlT6qJ5G7DEI8Ybi5MNEXoTnSIesR2DNmOUo5cNBH0w2y4tdg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 10/10] arm64: dts: imx8mq: Add access-controller references
-Date: Fri, 07 Feb 2025 10:03:23 +0100
-Message-ID: <2568692.iZASKD2KPV@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250207083616.1442887-11-alexander.stein@ew.tq-group.com>
-References: <20250207083616.1442887-1-alexander.stein@ew.tq-group.com> <20250207083616.1442887-11-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1738919097; c=relaxed/simple;
+	bh=nNi2UPVTvRwaPw8CSSu0aUpvGDOmNxn3ET41QxHTQ/o=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rIw00BpQVaEAMDWovPuuEd6M4FQLACYUTcXq/Smg08I3qPFi2fkw4QMEJeMr4srgy1WmKXan15YCQGyUtCM/CaElp2wP/PjYVzjAfpVqv2CTmX/tNUkQe+ZY/FrDIQ6brufasBaG1cPVDhJjsQK5iikUXq/i0+yKcWyi+45nmqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JQGKVuMP; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51770cf1014995;
+	Fri, 7 Feb 2025 09:04:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=WBJrsL73e4aYbCEIe9+/sS
+	AesDiICXM3dX1ODVhbowk=; b=JQGKVuMPWx6Yq4gniRXGtL5CwjOej187fnMkUx
+	kpdLkapxPyznZSQDNsZSfHdzWcFHh1XbH38pIqAcSEC/pdKnEfWxuURLxXQ0ieK/
+	muio9epwjYhIF4QLjgSRKtB7R5hCVklb9XMc2pN2hZ6cjoLARyu+fOKdfgZOXuNN
+	yg7hf9Se2luM5KWeBg/4mxbrikx4UjlGb3GvvjfOFHoUBra2cjikyRiLONYnd9wV
+	Pk/gVHC9s/sPdfbLzVo8cdb+IQ3gnsYUR+Fh0X1IWDegyA6jfTqkd8TTmK7/5j8L
+	8Uf8LyqaRowehRr/ShLBOOWmceKP4rZY7MXlowJoZUG5eeqQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44nddm89q1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 07 Feb 2025 09:04:43 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51794gYh017841
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 7 Feb 2025 09:04:42 GMT
+Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 7 Feb 2025 01:04:36 -0800
+From: Vikram Sharma <quic_vikramsa@quicinc.com>
+To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <akapatra@quicinc.com>, <hariramp@quicinc.com>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <cros-qcom-dts-watchers@chromium.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <quic_vikramsa@quicinc.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v12 0/2] media: qcom: camss: Add sc7280 support
+Date: Fri, 7 Feb 2025 14:34:20 +0530
+Message-ID: <20250207090422.1609260-1-quic_vikramsa@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3uqoPIeEYqVzf8PydFbkR9f9rnoJwnRn
+X-Proofpoint-ORIG-GUID: 3uqoPIeEYqVzf8PydFbkR9f9rnoJwnRn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-07_04,2025-02-07_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 spamscore=0
+ mlxlogscore=999 adultscore=0 priorityscore=1501 suspectscore=0
+ lowpriorityscore=0 malwarescore=0 phishscore=0 mlxscore=0 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502070068
 
-Am Freitag, 7. Februar 2025, 09:36:15 CET schrieb Alexander Stein:
-> Mark ocotp as a access-controller and add references on peripherals
-> which can be disabled (fused).
->=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mq.dtsi
-> index df8ba1d5391ae..95a40cccd46b9 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+SC7280 is a Qualcomm SoC. This series adds support to bring up the CSIPHY,
+CSID, VFE/RDI interfaces in SC7280.
 
-I just noticed, I missed #access-controller-cells =3D <2>; for ocotp node.
-Will add in next version.
+SC7280 provides
+- 3 x VFE, 3 RDI per VFE
+- 2 x VFE Lite, 4 RDI per VFE
+- 3 x CSID
+- 2 x CSID Lite
+- 5 x CSI PHY
 
-Best regards,
-Alexander
+We have tested this on qcs6490-rb3gen2-vision-mezzanine board having IMX577
+sensor.
 
-> @@ -12,6 +12,7 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/thermal/thermal.h>
->  #include <dt-bindings/interconnect/imx8mq.h>
-> +#include "imx8mq-ocotp.h"
->  #include "imx8mq-pinfunc.h"
-> =20
->  / {
-> @@ -1275,6 +1276,7 @@ mipi_dsi: dsi@30a00000 {
->  					 <&src IMX8MQ_RESET_MIPI_DSI_ESC_RESET_N>,
->  					 <&src IMX8MQ_RESET_MIPI_DSI_PCLK_RESET_N>;
->  				reset-names =3D "byte", "dpi", "esc", "pclk";
-> +				access-controllers =3D <&ocotp IMX8MQ_OCOTP_MIPI_DSI_DISABLE>;
->  				status =3D "disabled";
-> =20
->  				ports {
-> @@ -1392,6 +1394,7 @@ mipi_csi1: csi@30a70000 {
->  				fsl,mipi-phy-gpr =3D <&iomuxc_gpr 0x88>;
->  				interconnects =3D <&noc IMX8MQ_ICM_CSI1 &noc IMX8MQ_ICS_DRAM>;
->  				interconnect-names =3D "dram";
-> +				access-controllers =3D <&ocotp IMX8MQ_OCOTP_MIPI_CSI1_DISABLE>;
->  				status =3D "disabled";
-> =20
->  				ports {
-> @@ -1414,6 +1417,7 @@ csi1: csi@30a90000 {
->  				interrupts =3D <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks =3D <&clk IMX8MQ_CLK_CSI1_ROOT>;
->  				clock-names =3D "mclk";
-> +				access-controllers =3D <&ocotp IMX8MQ_OCOTP_MIPI_CSI1_DISABLE>;
->  				status =3D "disabled";
-> =20
->  				port {
-> @@ -1444,6 +1448,7 @@ mipi_csi2: csi@30b60000 {
->  				fsl,mipi-phy-gpr =3D <&iomuxc_gpr 0xa4>;
->  				interconnects =3D <&noc IMX8MQ_ICM_CSI2 &noc IMX8MQ_ICS_DRAM>;
->  				interconnect-names =3D "dram";
-> +				access-controllers =3D <&ocotp IMX8MQ_OCOTP_MIPI_CSI2_DISABLE>;
->  				status =3D "disabled";
-> =20
->  				ports {
-> @@ -1466,6 +1471,7 @@ csi2: csi@30b80000 {
->  				interrupts =3D <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks =3D <&clk IMX8MQ_CLK_CSI2_ROOT>;
->  				clock-names =3D "mclk";
-> +				access-controllers =3D <&ocotp IMX8MQ_OCOTP_MIPI_CSI2_DISABLE>;
->  				status =3D "disabled";
-> =20
->  				port {
-> @@ -1566,6 +1572,7 @@ fec1: ethernet@30be0000 {
->  				nvmem-cells =3D <&fec_mac_address>;
->  				nvmem-cell-names =3D "mac-address";
->  				fsl,stop-mode =3D <&iomuxc_gpr 0x10 3>;
-> +				access-controllers =3D <&ocotp IMX8MQ_OCOTP_ENET_DISABLE>;
->  				status =3D "disabled";
->  			};
->  		};
-> @@ -1705,6 +1712,7 @@ gpu: gpu@38000000 {
->  			                         <&clk IMX8MQ_GPU_PLL>;
->  			assigned-clock-rates =3D <800000000>, <800000000>,
->  			                       <800000000>, <800000000>, <0>;
-> +			access-controllers =3D <&ocotp IMX8MQ_OCOTP_GPU_DISABLE>;
->  			power-domains =3D <&pgc_gpu>;
->  		};
-> =20
-> @@ -1725,6 +1733,7 @@ usb_dwc3_0: usb@38100000 {
->  			phy-names =3D "usb2-phy", "usb3-phy";
->  			power-domains =3D <&pgc_otg1>;
->  			snps,parkmode-disable-ss-quirk;
-> +			access-controllers =3D <&ocotp IMX8MQ_OCOTP_USB_OTG1_DISABLE>;
->  			status =3D "disabled";
->  		};
-> =20
-> @@ -1757,6 +1766,7 @@ usb_dwc3_1: usb@38200000 {
->  			phy-names =3D "usb2-phy", "usb3-phy";
->  			power-domains =3D <&pgc_otg2>;
->  			snps,parkmode-disable-ss-quirk;
-> +			access-controllers =3D <&ocotp IMX8MQ_OCOTP_USB_OTG2_DISABLE>;
->  			status =3D "disabled";
->  		};
-> =20
-> @@ -1778,6 +1788,7 @@ vpu_g1: video-codec@38300000 {
->  			interrupts =3D <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks =3D <&clk IMX8MQ_CLK_VPU_G1_ROOT>;
->  			power-domains =3D <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G1>;
-> +			access-controllers =3D <&ocotp IMX8MQ_OCOTP_VPU_DISABLE>;
->  		};
-> =20
->  		vpu_g2: video-codec@38310000 {
-> @@ -1786,6 +1797,7 @@ vpu_g2: video-codec@38310000 {
->  			interrupts =3D <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks =3D <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
->  			power-domains =3D <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G2>;
-> +			access-controllers =3D <&ocotp IMX8MQ_OCOTP_VPU_DISABLE>;
->  		};
-> =20
->  		vpu_blk_ctrl: blk-ctrl@38320000 {
-> @@ -1839,6 +1851,7 @@ pcie0: pcie@33800000 {
->  			                         <&clk IMX8MQ_SYS1_PLL_80M>;
->  			assigned-clock-rates =3D <250000000>, <100000000>,
->  			                       <10000000>;
-> +			access-controllers =3D <&ocotp IMX8MQ_OCOTP_PCIE1_DISABLE>;
->  			status =3D "disabled";
->  		};
-> =20
-> @@ -1882,6 +1895,7 @@ pcie1: pcie@33c00000 {
->  			                         <&clk IMX8MQ_SYS1_PLL_80M>;
->  			assigned-clock-rates =3D <250000000>, <100000000>,
->  			                       <10000000>;
-> +			access-controllers =3D <&ocotp IMX8MQ_OCOTP_PCIE2_DISABLE>;
->  			status =3D "disabled";
->  		};
-> =20
-> @@ -1916,6 +1930,7 @@ pcie1_ep: pcie-ep@33c00000 {
->  					       <10000000>;
->  			num-ib-windows =3D <4>;
->  			num-ob-windows =3D <4>;
-> +			access-controllers =3D <&ocotp IMX8MQ_OCOTP_PCIE2_DISABLE>;
->  			status =3D "disabled";
->  		};
-> =20
->=20
+Used following tools for the sanity check of these changes.
 
+- make CHECK_DTBS=y W=1 DT_SCHEMA_FILES=media/qcom,sc7280-camss.yaml
+qcom/qcs6490-rb3gen2-vision-mezzanine.dtb
+- make DT_CHECKER_FLAGS=-m W=1
+DT_SCHEMA_FILES=media/qcom,sc7280-camss.yaml dt_binding_check
+- make -j32 W=1
+- ./scripts/checkpatch.pl
+ 
+Changes in V12:
+- droped mclk-pins{} and put the properties directly under the
+  cam2-default-state and cam2-suspend-state node - Konrad.
+- Link to v11:
+  https://lore.kernel.org/linux-arm-msm/20250121125010.1853269-1-quic_vikramsa@quicinc.com/
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Changes in V11:
+- Moved [PATCH v10 1/4] and [PATCH v10 2/4] as a separate series.
+- Marked dependency on
+  https://lore.kernel.org/linux-arm-msm/20250121120901.1841142-1-quic_vikramsa@quicinc.com/
+- Sorted the header files alphabetically in dtso.
+- Removed invalid property for sensor.
+- Removed rst-pin from default and suspend states of pinctrl. We have verified
+  that for imx412 sensor there are no SET_SYSTEM_SLEEP_PM_OPS added.
+  So removing rst-pin does not make any difference in power management. 
+- Link to v10: https://lore.kernel.org/linux-arm-msm/20241217140656.965235-1-quic_vikramsa@quicinc.com/
 
+Changes in V10:
+- Updated cover letter to add link for v8 under changes in v9.
+- No change in the patches w.r.t V9
+- Link to v9: https://lore.kernel.org/linux-arm-msm/20241217133955.946426-1-quic_vikramsa@quicinc.com/
+
+Changes in V9:
+- Removed GCC_CAMERA_AHB_CLK as its always enabled.
+- Added GCC_CAMERA_SF_AXI_CLK.
+- Renamed gcc_cam_hf_axi to gcc_axi_hf.
+- V8 had 5 patches and V9 have 4 patches.
+- First 3 patches of V8 are already promoted to linux-next
+i.e  
+  media: dt-bindings: Add qcom,sc7280-camss
+  media: qcom: camss: Sort camss version enums and compatible strings
+  media: qcom: camss: Add support for camss driver on sc7280
+- 2 new patches are added to handle new comments from Konrad on
+  "Patch v8 4/5 arm64: dts: qcom: sc7280: Add support for camss" 
+  1 of the 2 new patches make changes in yaml and other one is making
+  change in camss driver to handle new comments in dtsi.
+- for "Patch v8 4/5 arm64: dts: qcom: sc7280: Add support for camss" I got
+  comments from Konrad to make changes for clock names so I had to make
+  respective changes in "bindings/media/qcom,sc7280-camss.yaml". As dtsi
+  changes are not merged yet, so there is no issues with backward
+  compatibility and I am assuming this should be acceptable.
+- Link to v8: https://lore.kernel.org/linux-arm-msm/20241206191900.2545069-1-quic_vikramsa@quicinc.com/
+  
+Changes in V8:
+- Changed node name from camss to isp.
+- Added QCOM_ICC_TAG_ACTIVE_ONLY and QCOM_ICC_TAG_ALWAYS tags for
+  interconnects. 
+- Added blank lines when required.
+- Modified power-domain-names from horizontal to vertical list.
+- Sorted pinctrl nodes based on gpio index.
+- Link to v7: https://lore.kernel.org/linux-arm-msm/20241204100003.300123-1-quic_vikramsa@quicinc.com/
+
+Changes in V7:
+- Changed unit address for camss in documention and dts.
+- Added avdd-supply and dvdd-supply for sensor.
+- Changed reg/clocks/interrupts name for vfe_lite and csid_lite.
+- Link to v6: https://lore.kernel.org/linux-arm-msm/20241127100421.3447601-1-quic_vikramsa@quicinc.com/
+
+Changes in V6:
+- Changed order of properties in Documentation [PATCH 1/5].
+- Updated description for ports in Documentaion [PATCH 1/5].
+- Moved regulators from csid to csiphy [PATCH 3/5].
+- Link to v5: https://lore.kernel.org/linux-arm-msm/20241112173032.2740119-1-quic_vikramsa@quicinc.com/ 
+
+Changes in V5:
+- Updated Commit text for [PATCH v5 1/6].
+- Moved reg after compatible string.
+- Renamed csi'x' clocks to vfe'x'_csid
+- Removed [PATCH v4 4/6] and raised a seprate series for this one.
+- Moved gpio states to mezzanine dtso.
+- Added more clock levels to address TPG related issues.
+- Renamed power-domains-names -> power-domain-names. 
+- Link to v4: https://lore.kernel.org/linux-arm-msm/20241030105347.2117034-1-quic_vikramsa@quicinc.com/ 
+
+Changes in V4:
+- V3 had 8 patches and V4 is reduced to 6.
+- Removed [Patch v3 2/8] as binding change is not required for dtso.
+- Removed [Patch v3 3/8] as the fix is already taken care in latest
+  kernel tip. 
+- Updated alignment for dtsi and dt-bindings.
+- Adding qcs6490-rb3gen2-vision-mezzanine as overlay. 
+- Link to v3: https://lore.kernel.org/linux-arm-msm/20241011140932.1744124-1-quic_vikramsa@quicinc.com/
+
+Changes in V3:
+- Added missed subject line for cover letter of V2.
+- Updated Alignment, indentation and properties order.
+- edit commit text for [PATCH 02/10] and [PATCH 03/10].
+- Refactor camss_link_entities.
+- Removed camcc enablement changes as it already done.
+- Link to v2: https://lore.kernel.org/linux-arm-msm/20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-0-b18ddcd7d9df@quicinc.com/
+
+Changes in V2:
+- Improved indentation/formatting.
+- Removed _src clocks and misleading code comments.
+- Added name fields for power domains and csid register offset in DTSI.
+- Dropped minItems field from YAML file.
+- Listed changes in alphabetical order.
+- Updated description and commit text to reflect changes
+- Changed the compatible string from imx412 to imx577.
+- Added board-specific enablement changes in the newly created vision
+  board DTSI file.
+- Fixed bug encountered during testing.
+- Moved logically independent changes to a new/seprate patch.
+- Removed cci0 as no sensor is on this port and MCLK2, which was a
+  copy-paste error from the RB5 board reference.
+- Added power rails, referencing the RB5 board.
+- Discarded Patch 5/6 completely (not required).
+- Removed unused enums.
+- Link to v1: https://lore.kernel.org/linux-arm-msm/20240629-camss_first_post_linux_next-v1-0-bc798edabc3a@quicinc.com/
+
+Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+
+Vikram Sharma (2):
+  arm64: dts: qcom: sc7280: Add support for camss
+  arm64: dts: qcom: qcs6490-rb3gen2-vision-mezzanine: Add vision
+    mezzanine
+
+ arch/arm64/boot/dts/qcom/Makefile             |   4 +
+ .../qcs6490-rb3gen2-vision-mezzanine.dtso     |  89 +++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          | 178 ++++++++++++++++++
+ 3 files changed, 271 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso
+
+-- 
+2.25.1
 
 
