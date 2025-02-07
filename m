@@ -1,114 +1,114 @@
-Return-Path: <devicetree+bounces-143747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E753A2B6C2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 00:52:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0065A2B6E5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 01:03:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F4C316599D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2025 23:52:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F19A83A79F2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 00:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A56CE23908F;
-	Thu,  6 Feb 2025 23:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C2D7E1;
+	Fri,  7 Feb 2025 00:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="txwHdXJ4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GKGCSTsI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AAAB224B12;
-	Thu,  6 Feb 2025 23:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4802C634;
+	Fri,  7 Feb 2025 00:03:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738885930; cv=none; b=hnTM9Cp/lj7giEloPbImf4Bw9cHjS3TUN/+u5POTbco26LObUQntoA8ZCl/tdVwFPhIW3QQbEOCbaiz8eTRRI60pVciUdYUdHjPnNm7iW2adum24BgUO2I19MtYWVdVS2jHv2QK57wGu76E6UyL/OWuh0sW+HBzsb944vl0LH1Q=
+	t=1738886581; cv=none; b=qQ+0RmgFV3qvMdtU6kcR3UvmIN2d0sa0qrmqoFp0EWLPIyk8US1BSxVeWv5ip97h87B+WRtFTNwmM+7+pUibsFvJQrKGypYKoS/DFJYk8HLHNVJvIBhKsJLxmNSHoUVViVefXF+77fmAGzRO1Cul7sQ9ohr5ZkBNcM01/5EWTZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738885930; c=relaxed/simple;
-	bh=GsHIkMOuGCjJxEvY+F789o8gz9LbTW0OyAT6badSL28=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=K1ndzkAKUyhiQSlIK5votSq8GJtpUjdWRQeOYeVg/2iQ7tfEd5Q/jWLZ6fnY8RF7pvvQ02qLb8BdLhSaAIL8jBR7IFadu5ZPRPS6rKUVe1IL6nS20NdCFICa7ASjFvvwuxG5vJHPGp0K5ozhjYmR9Vphl/LDhmx9N29+LwkcVT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=txwHdXJ4; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 516Nq16u3642675
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 6 Feb 2025 17:52:01 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738885921;
-	bh=7qwbmdEpjuUvEJ9zZbBb6m11hhz/AufPH/BP4AJH1mM=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=txwHdXJ44a8ebYQb2t67D2TCQUhvHeHIhJp5K6EbnRMJNbBh+DjQRNPnAH0Uzlx38
-	 dF+BlkQx/ZmRcFyMb8h8VfAj4N9WOtqLhjLmYLVCKKrXrZpgbZFBDCG3Z5uT42Dv7e
-	 4us7Q5o9yvJYAyQwXFuplbZ2VcVcAIfx1eoE2/jI=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 516Nq1ml026291
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 6 Feb 2025 17:52:01 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 6
- Feb 2025 17:52:00 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 6 Feb 2025 17:52:00 -0600
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 516Nq0vK021560;
-	Thu, 6 Feb 2025 17:52:00 -0600
-From: Judith Mendez <jm@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis
-	<afd@ti.com>,
-        Hari Nagalla <hnagalla@ti.com>, Judith Mendez <jm@ti.com>
-Subject: [PATCH v4 9/9] arm64: dts: ti: k3-am62a7-sk: Reserve main_rti4 for C7x DSP
-Date: Thu, 6 Feb 2025 17:51:59 -0600
-Message-ID: <20250206235200.3128163-10-jm@ti.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250206235200.3128163-1-jm@ti.com>
-References: <20250206235200.3128163-1-jm@ti.com>
+	s=arc-20240116; t=1738886581; c=relaxed/simple;
+	bh=jFU7fO5yQm432EwC+/7/qkrCLs+tSpaeUFSBEO2zKYw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OIwQLGcydWW/TI+2WenoEURIIc2k4fcAxNYFA4gNYNcWbecaG15OCVO+UDZ9lVqpdOYq8jbSZQ1wZ0EZyXlzkGnhGe8B0F3oDZLol3INyeZH3F00zL+39FET+AfiMW2Ft2WwcvfLG0Wp8IACxBFlF51YkciZbRLNLtM8PDSwWNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GKGCSTsI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97BD0C4CEDD;
+	Fri,  7 Feb 2025 00:02:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738886580;
+	bh=jFU7fO5yQm432EwC+/7/qkrCLs+tSpaeUFSBEO2zKYw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GKGCSTsIwsjMvT03gam8wglLzm/Bd16TS3xWgPWta+891d35c3vLwNOdmspvw3mEM
+	 lsgBEBDKgwey6xn8NIrt4b2asYF8rrzKtLtzZXXGgFehKI3+Jo/a54bpo7+IQ3NcX8
+	 c+xN718OG5MSzD8liCmbsFhAnB4T/5g3KhNNo1R6VHN57f83gYelUJ9wGnYTNPHFU+
+	 NsVWxFDDMm1caVDwHxpNtY290/8EVT5nwHMuYsNdPgokYjRA9/dCAGqlvDtvzVPwQf
+	 +vZtcSkmb2M4j+kH1zzf3mZPoWXLflfpwuPkWmr/Yr0eIzRROfLJ80IWQ/DCkUaP9+
+	 fwxGeiP3pMRhA==
+Date: Fri, 7 Feb 2025 00:02:56 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Eric Biggers <ebiggers@kernel.org>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Andy Chiu <andybnac@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/6] RISC-V: add vector crypto extension validation
+ checks
+Message-ID: <20250206-prong-sandfish-417a3bf9de29@spud>
+References: <20250205-cobbler-unpadded-5580c1f5d946@spud>
+ <20250205-quench-entrench-09bed8c8c823@spud>
+ <20250206203249.GC1237@sol.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="IZJucm0+VF10qkQ0"
+Content-Disposition: inline
+In-Reply-To: <20250206203249.GC1237@sol.localdomain>
 
-From: Hari Nagalla <hnagalla@ti.com>
 
-The main rti4 watchdog timer is used by the C7x DSP, so reserve the
-timer in the linux device tree.
+--IZJucm0+VF10qkQ0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-Signed-off-by: Judith Mendez <jm@ti.com>
----
-Changes since v3:
-- No change
----
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+On Thu, Feb 06, 2025 at 12:32:49PM -0800, Eric Biggers wrote:
+> On Wed, Feb 05, 2025 at 04:05:08PM +0000, Conor Dooley wrote:
+> > The 1.0.0 Vector crypto spec states:
+> > 	The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly
+> > 	the composite extensions Zvkn and Zvks-- require a Zve64x base,
+> > 	or application ("V") base Vector Extension. All of the other
+> > 	Vector Crypto Extensions can be built on any embedded (Zve*) or
+> > 	application ("V") base Vector Extension.
+>=20
+> As previously discussed, the above paragraph incorrectly lists the set of=
+ crypto
+> extensions that require support for 64-bit elements.  I have fixed this i=
+n the
+> latest RISC-V ISA manual.  It looks like this patch would still do the sa=
+me
+> thing either way, since it actually just checks that vector is available =
+in some
+> form.  But this is not the best version of the manual to quote from.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index f03b06b7de51d..ffa437873f6d1 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -820,3 +820,8 @@ &c7x_0 {
- 			<&c7x_0_memory_region>;
- 	status = "okay";
- };
-+
-+/* main_rti4 is used by C7x DSP */
-+&main_rti4 {
-+	status = "reserved";
-+};
--- 
-2.48.0
+/sigh, I updated the binding commit message but not the code one. That
+one should probably change too, given that's now merged.
+That's a stupid oversight, thanks.
 
+--IZJucm0+VF10qkQ0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6VNsAAKCRB4tDGHoIJi
+0hAuAQDNV4s4Ij8PSTwiHujFDprhlcxQkhi3bLa7A2lFvdIJKgD/cAFZR2Jwg3RN
+bDVM7Pp/OSKNt+5qMoFzqfkTMPr17Q4=
+=/epo
+-----END PGP SIGNATURE-----
+
+--IZJucm0+VF10qkQ0--
 
