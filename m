@@ -1,112 +1,119 @@
-Return-Path: <devicetree+bounces-143937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1312AA2C417
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:50:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 714F0A2C424
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:54:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C567E188C2C7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 13:50:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D6597A48F6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 13:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BA5F1F4169;
-	Fri,  7 Feb 2025 13:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3487A1F4E21;
+	Fri,  7 Feb 2025 13:54:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B+vOcqO+"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="McjOa39a";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="cexhNhoe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CEF13BAE4;
-	Fri,  7 Feb 2025 13:50:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 268451F4169;
+	Fri,  7 Feb 2025 13:54:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738936208; cv=none; b=JhUpmnHmFqH6WDKpu/z+pqZg4mWdBQo9yX/qokGggHER4yZe0K8mPvgW4S1gKz0bJHMJDz9LBEt9fyGVpqQDMg0dxjL1ShNJ9gAAA6aOaAflEHdN63vuR/o5ZBQyfEjsKU5lQO95fMtXcDvs4MXO/J5Q1luTxpda/II4Vi2CysA=
+	t=1738936472; cv=none; b=bTseosiTaFguagEhDBBxXLro9djrLqdtXnSZwb+g63C2rkOvuMYk/iUsgMge1i9sekcyT0EYMaUzQKSw/5YyBMMPLll0KyGFahW0lw9GU4M5tkpOQScsqweEoQ9Wu92EKkEha33ujNIt3eysbeGw/QChiqVdKD1jZpjPLUagoqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738936208; c=relaxed/simple;
-	bh=wTtl5yJ8SjYiIxrTRTttS85uraz4y2R/n0v+mo941ls=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=VNGTsLlga1p8RuKYnyXTAlw3tFkKcTDBpgN4OHXDzi66qBFYP58X2IAYLjACuaLFuiRjxUxr4g/XjU+5RGiOkXU20w80KYYrddbEz+bZhrkgk/w1QQaztqZYVLQg4XfMrPhdYTbOB8/2+OGcL9r1xQv6A34iOHfK3pGCfHkCiFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B+vOcqO+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53E9FC4CED1;
-	Fri,  7 Feb 2025 13:50:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738936208;
-	bh=wTtl5yJ8SjYiIxrTRTttS85uraz4y2R/n0v+mo941ls=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=B+vOcqO+5ZsH5kpNEe1fCWSSclq4+rOI7n4L+pVZWLuBRvAQkNBcHDjngccsWITGB
-	 xSHq/0zB7wOHAdKBGeMZm1j3wDBplMqYddIEG+j9R2JSJ6OXz4bVhlJFODvozVy2vW
-	 2iTJUXi+i4j6c4hp0UUqrHirYRllKEmdZsc4F+FtHxZx89HuFMtLDu1NMzCDcL3B0R
-	 rHw8qtyKC5bXPyFArICs3JfCVa8vXY3RueTYapxhLhJy3U39nAuS00C1+Dc3HaiZeX
-	 TywTaaeA4p8ah+t60i+QguHPmOxZ80BV3bRh6D/YZwqi8TGtc1n6Dm08oAJ9jpJ//e
-	 idS7DXhsYAbTQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 70E57380AAF2;
-	Fri,  7 Feb 2025 13:50:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1738936472; c=relaxed/simple;
+	bh=Hpf80LgbTQN2vdnXpc+7IlbSWs0fEJnOvnGxfOERoYA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=swTTLqdWxxleIdifULLFwiTQCp25nscGlpLzKdMuBzgRA+SCz0LJjWPm/6JqES/NMpJx5Ww62N05JqCUiYHT9p3chuIszS24b5SFi6aaJ3rmKqasp0FJh0drJObnaYvoTLE0+1SIhGPzQgO3+hAaL/vtu0hPjRfE75pDJWLorW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=McjOa39a; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=cexhNhoe reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1738936468; x=1770472468;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=nTIUisbXh4QjJS+LI8f+3ax5wyozSgfahYNeRHOmjd8=;
+  b=McjOa39aQadaQ7JHLisnurl9xlRky8rK31PuIYU1dNe+bkJBuOoQEKiC
+   dW6n0aGPT2gW/a9a7of0X5zY/O3r/W1d+IqiHXc4s+39IUg+4ivbojW2N
+   hZOH3HVQhHLt5BNMJMDanKQfcQ8SDqXOEum4GqP3RSJn11P76gXF5aZrg
+   Z9a9SYc3HR6uxHvj7AmRmyUDxDyu0rI7a2lcGLfDWu3gYhLO2PTHB0wYB
+   Tb4mLV0GjNjAFa0cxC6mPpYFFPg/k7uyDZKifuHZKSHEwrlTkg8c/WEBF
+   25p1/NZrQ+Ow2b1gAxQd8DvbNA9JRiPX0C0NDZzmg+fLuH5HA6R7T4fXD
+   w==;
+X-CSE-ConnectionGUID: SkqYzeS5Rt+3j4CFbpj6KA==
+X-CSE-MsgGUID: MgMByEkoQciFcPo1UoKVkg==
+X-IronPort-AV: E=Sophos;i="6.13,267,1732575600"; 
+   d="scan'208";a="41645049"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 07 Feb 2025 14:54:03 +0100
+X-CheckPoint: {67A6107B-3-8F72533B-EF5B5974}
+X-MAIL-CPID: 3037226F90E1CD7D000B19975831E324_1
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E727E166061;
+	Fri,  7 Feb 2025 14:53:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1738936438;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nTIUisbXh4QjJS+LI8f+3ax5wyozSgfahYNeRHOmjd8=;
+	b=cexhNhoejlZHe3odS8rdMig4FKDNX8jkHE+AAJeDbCmBDLy8YuQUlbzP6fWBZiP1rC0QLT
+	yWXEmulgysfbhX1aRVaZBJ6BwTCj6qIjGrR9UudolHbudaVgdUeNc0Io0215+DKf9tfVGG
+	vNwvY/VrGhBJkn1DLwIbnRJZcWZCQGC6a60dPEeMRnMy66gwEKJnLEUUThGGgKvNzdw3+f
+	I6OS76LGXJaMrOq83RL6pGv+iA0fJE6DcjitJujqnj6saXLOuA59dtnBIiXUCdn85yCMrn
+	DPRFLnpKm7FBwq2E3x0fg47691IDkpNncOOJKTr6cUiG/r+63vrBrTRZcSQhsg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+Cc: linux@ew.tq-group.com, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] TQMa93xx fixes
+Date: Fri, 07 Feb 2025 14:53:56 +0100
+Message-ID: <3882355.iIbC2pHGDl@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250107141117.984652-1-alexander.stein@ew.tq-group.com>
+References: <20250107141117.984652-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v2 0/7] Add of_get_available_child_by_name()
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <173893623629.2244005.12944730869712078303.git-patchwork-notify@kernel.org>
-Date: Fri, 07 Feb 2025 13:50:36 +0000
-References: <20250205124235.53285-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250205124235.53285-1-biju.das.jz@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: robh@kernel.org, saravanak@google.com, matthias.bgg@gmail.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- andrew@lunn.ch, angelogioacchino.delregno@collabora.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- netdev@vger.kernel.org, geert+renesas@glider.be,
- prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.au@gmail.com,
- linux-renesas-soc@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hello:
+Hello,
 
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+Am Dienstag, 7. Januar 2025, 15:11:14 CET schrieb Alexander Stein:
+> Hi,
+>=20
+> this series includes small fixes to TQMa93xx DT:
+> * Sorting DT nodes alphabetically
+> * Invert default for Powerdown/Disables on Mini-PCIe slot
+> * Swap order of ethernet devices
+>=20
+> Alexander Stein (3):
+>   arm64: dts: freescale: imx93-tqma9352-mba93xxca: sort pinctrl nodes
+>   arm64: dts: mba93xxca: Do not assert power-down pins
+>   arm64: dts: tqma9352-mba93xx[cl]a: swap ethernet aliases
+>=20
+>  .../freescale/imx93-tqma9352-mba93xxca.dts    | 54 +++++++++----------
+>  .../freescale/imx93-tqma9352-mba93xxla.dts    |  6 +--
+>  2 files changed, 30 insertions(+), 30 deletions(-)
 
-On Wed,  5 Feb 2025 12:42:20 +0000 you wrote:
-> There are lot of net drivers using of_get_child_by_name() followed by
-> of_device_is_available() to find the available child node by name for a
-> given parent. Provide a helper for these users to simplify the code.
-> 
-> v1->v2:
->  * Make it as a series as per [1] to cover the dependency.
->  * Added Rb tag from Rob for patch#1 and this patch can be merged through
->    net as it is the main user.
->  * Updated all the patches with patch suffix net-next
->  * Dropped _free() usage.
-> 
-> [...]
+Any comment on this series? Thanks
 
-Here is the summary with links:
-  - [net-next,v2,1/7] of: base: Add of_get_available_child_by_name()
-    https://git.kernel.org/netdev/net-next/c/8d3bbe4355ad
-  - [net-next,v2,2/7] net: dsa: rzn1_a5psw: Use of_get_available_child_by_name()
-    https://git.kernel.org/netdev/net-next/c/46df19a8dfdf
-  - [net-next,v2,3/7] net: dsa: sja1105: Use of_get_available_child_by_name()
-    https://git.kernel.org/netdev/net-next/c/a76568865c15
-  - [net-next,v2,4/7] net: ethernet: mtk-star-emac: Use of_get_available_child_by_name()
-    https://git.kernel.org/netdev/net-next/c/876e52b2d3f4
-  - [net-next,v2,5/7] net: ethernet: mtk_eth_soc: Use of_get_available_child_by_name()
-    https://git.kernel.org/netdev/net-next/c/1364004b5b91
-  - [net-next,v2,6/7] net: ethernet: actions: Use of_get_available_child_by_name()
-    https://git.kernel.org/netdev/net-next/c/76c82eb04332
-  - [net-next,v2,7/7] net: ibm: emac: Use of_get_available_child_by_name()
-    https://git.kernel.org/netdev/net-next/c/0584a917a209
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
 
