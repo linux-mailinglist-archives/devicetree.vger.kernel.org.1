@@ -1,152 +1,165 @@
-Return-Path: <devicetree+bounces-144119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99B4A2CF00
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 22:27:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 404FBA2CF09
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 22:30:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 164593A8884
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 21:26:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D6B83A83F0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 21:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E94CA1B4F15;
-	Fri,  7 Feb 2025 21:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DD68195962;
+	Fri,  7 Feb 2025 21:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="2Zi69OuW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cfve54Sx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520C31AF0D6
-	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 21:26:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C53323C8C3;
+	Fri,  7 Feb 2025 21:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738963616; cv=none; b=VIYhUua8tRR+XSB0R12qEgmVvQThpJcn94Xj6AX3aeqnOmM/Pg3Q9VsZM+DCgVOzIvaQTzSWhgWMWSSYYaIygtEWlXpWN97dKatb+ltyeTruhKQ5/43OSXyx2KmpkCd5CPyF5WBUtHdPJhOkHhW3TbXek1Lu/QkdAskpj0Pk4AU=
+	t=1738963835; cv=none; b=Mjr7r8lQgCIYdsV0xkLiLNItAXN9K7LU9vY+HrMpTAl0OZJZ4tnCrxBEP4mWZKHuTipLIkicY9b2+zRgvsLn5/zWvQIsgD7YBsIpZbbPhEpl7hlkVDNScTmphvBnIGaVD3huCMJ7UFNhIXfPzE/2zlCAa2mWwI0++rkiigaHZkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738963616; c=relaxed/simple;
-	bh=HVmE+Tt35mu4vWqHOKjrmfxx5g5d6DsZZLA0kmOgFzY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l5rvMYerzYYPl5DB3wV4eFEliZz/IAHVpQx08UYfiHRoJcxcOYMu7+UbF9dT0TCjB5SuYt15lSyW3GYSN/YAq+h9f/J0Ppoc4W7mSyiEY382S4ibWov9RWdlgr2T0ONO9UH9z6fjjHz2TQRBezKW94OS8xsuBUt+pMfLYswQlm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=2Zi69OuW; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-21f49bd087cso28320255ad.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 13:26:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1738963614; x=1739568414; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HVmE+Tt35mu4vWqHOKjrmfxx5g5d6DsZZLA0kmOgFzY=;
-        b=2Zi69OuWZX0UEjdLx5h7V2aS2lqQrckk3FDmNx05GHs46itAomz4crC74qdpyA1/aO
-         EDpv/V+hCufPH6md+AJjX8dBvJpvI2nXq5QRAdC0FEAplwx4oA/mAL53314IdTNMLaiz
-         Z3oEJ0QfQfYoKs4jRCcSc5rMyUaI6eIiATejMY+99z83i77qvglKsPeZwRBla726fYop
-         PSTgQ5SiRqNy7P0s2LbWOPPnWkA7jU0SOOkIBgWbTQv/vWC8OPJTplulgmJsq2zsIs0u
-         AQ+Zavzfd70CDCuvreBZ9eZ/w0CgBpcS/rskGViakv1aBnSUYnfnrZjwsuraqKhv0PFf
-         3wTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738963614; x=1739568414;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HVmE+Tt35mu4vWqHOKjrmfxx5g5d6DsZZLA0kmOgFzY=;
-        b=EPbpTOV7+nZB9aMfjy4OkDq3m5FJdPTwmktaH5O4WzJCQwOyum2J+RqZ5rqpFGgbfG
-         07w9Bj+PbCt8z2vwMtcDu6PaVV4LNL3b+VtMNQE04u6TmpEXLvP6nxp7Rpco/PRXKrlI
-         y9L4fcak+SQZu7fCpsRn1e97PJn9fTqbZLFqzAVbOYzKr0RjIwrcjmw3oMTsvj0Ki8IW
-         /tNq3v3rZXZqfJ/oSwgA7vj5Ept9+UPpTRcAkadm/LtbnUS4h0A0mYoNcJ2D5tyF00u4
-         HQ0tkOPH/ae+IlEnibrqV8aDnCNbjKb+2uRkOpkVkvPFjYwT/dO/pIdefp1EuAEw+RZ6
-         Oa4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXw3VdthXTI6Epe7jzYqUoQ5gRCSzVz5Ur9O5HxxF/Exaoi7ocI08Rodmtk5HrH9idy5EdY96nLnnjJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7krwA9wmYUqnPcNdBCZEX3Tme3CZpkzi73jfVMqua3QJfBZyW
-	RIaEjmN4a7xt4/OIE7yv46V4xZ/7jspFXzA8uIeoVas1jqKQLIQ6eJGWmeFKwyc=
-X-Gm-Gg: ASbGncteWxkUMbLcIn13UCeGevVvyDybYFdQx7EZJNr0b9sh/gkx+9KwS5W7Nv/mHPw
-	psv438vjvvlhkO7g0+y02GmlRJ6xLKK3JIKiFm8Q7ofNtTbCPV5DklMTBBD0Dyu5IPwlF7SpFOT
-	OD9iYI48+Q/KVWDkh1jyuzPTEe/jsPs8lFwPtnxbvzoMG0e8sVFWYdNqf54CYTAgsPXNaoZ1EKv
-	tM4i+KB88RuwgZdtXZ4l5CxgNvFX9yfYC994nyxiREk0+v/rk1X3oV2yMQ5GoNnSiUlmoGt7xeu
-	V4SI6TBqW17eOi4GzXsA3kXxQw==
-X-Google-Smtp-Source: AGHT+IE9Oev0Y7C5Xmqtwl/B+JiwmKuI48iGekPbKSdtVdA99oMBiZeUkT8jvrSGxyy3gXBYBBsXzA==
-X-Received: by 2002:a17:902:d4cc:b0:21f:6a36:7bf3 with SMTP id d9443c01a7336-21f6a369009mr6855425ad.12.1738963614537;
-        Fri, 07 Feb 2025 13:26:54 -0800 (PST)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f3683d551sm35131205ad.110.2025.02.07.13.26.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Feb 2025 13:26:54 -0800 (PST)
-Date: Fri, 7 Feb 2025 13:26:50 -0800
-From: Deepak Gupta <debug@rivosinc.com>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
-	rick.p.edgecombe@intel.com
-Subject: Re: [PATCH v9 14/26] riscv/traps: Introduce software check exception
-Message-ID: <Z6Z6mhiQ3DmsNZe9@debug.ba.rivosinc.com>
-References: <20250204-v5_user_cfi_series-v9-0-b37a49c5205c@rivosinc.com>
- <20250204-v5_user_cfi_series-v9-14-b37a49c5205c@rivosinc.com>
- <fec3b7be-4259-4eef-87f9-b2cee5718cae@rivosinc.com>
+	s=arc-20240116; t=1738963835; c=relaxed/simple;
+	bh=94ujvz3tk5ekjf2MZlbHHWzbwwWLaHAsa3ywPEveVtA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YkvhxOXaAU6j8g+5jLZPey9XhwD9OXuydAfiM70GFOQqxNpc5ahGvxlLi4KPS5m5b5W1lBCoejvHpjibSPPYc+XhikEaED6ZFJ36Tv3eIvKH1i5mxgM2iSBY+7cU2SFIxZpZMB0ma+eboT+ty+z2GPzwb66Hb0CytfkJLe3jsnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cfve54Sx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0CBADC4CED1;
+	Fri,  7 Feb 2025 21:30:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738963835;
+	bh=94ujvz3tk5ekjf2MZlbHHWzbwwWLaHAsa3ywPEveVtA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=cfve54Sxfr9QBL7efbkka4gqbqtmLqDIX7fxuTzqbSgJRFcfeed3+Xr+9fKlcgoO0
+	 7SkednyYe2a+mlwJXN/glHoULVuuNp1baglH2iIOGjL+wNZ+jRBjylOQx6u0p5+ZBl
+	 dMyKW521/HplkdQ4imXzl6l6fSsYfVhNa5B42O6un/jk4TqpNh8LMY+JP6I5TeqJtI
+	 D+hMbghbT5SMbxIjdMfsO1nwhUBYR53hrYmqyIhj7ciuV4+FQgVOboC0ytQwYr68hX
+	 G4Sie13QcWfrJYErG7fN0GLjtfB3Vq/d//lMLHG1rsxBb8gSVPyyrXdt0fxq4WzU4A
+	 L30mdjjFq+xFQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DE5C6C02194;
+	Fri,  7 Feb 2025 21:30:34 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH v2 00/12] YAML conversion of several Freescale/PowerPC DT
+ bindings
+Date: Fri, 07 Feb 2025 22:30:17 +0100
+Message-Id: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <fec3b7be-4259-4eef-87f9-b2cee5718cae@rivosinc.com>
+X-B4-Tracking: v=1; b=H4sIAGp7pmcC/2XMQQ7CIBCF4as0sxYDVEh11XuYLuowWBItBAixa
+ bi72K3L/+Xl2yFRdJTg1u0Qqbjk/NpCnjrAZV6fxJxpDZJLxYXULATc5veL6YEjmuHRW5TQ3iG
+ SdZ9Duk+tF5eyj9sBF/Fb/40iGGeK68vVKoG9MWPwKZM/r5RhqrV+AeTPTISfAAAA
+X-Change-ID: 20250126-ppcyaml-680ccd8b3fc2
+To: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: imx@lists.linux.dev, Scott Wood <oss@buserror.net>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Damien Le Moal <dlemoal@kernel.org>, 
+ Niklas Cassel <cassel@kernel.org>, Herbert Xu <herbert@gondor.apana.org.au>, 
+ "David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>, 
+ Vinod Koul <vkoul@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org, 
+ linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org, 
+ linux-pci@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738963832; l=3147;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=94ujvz3tk5ekjf2MZlbHHWzbwwWLaHAsa3ywPEveVtA=;
+ b=9ApSQvdR7H4b5oYJC3cFy1ErDfu4w+UKbTU0bUdy14D+XfqSBEdTRk2y9o2+fy4Ll7XwAb/Ap
+ 0ovzTOSCrwXC+++bUZmGcEPJeGRovxiY/IKS/grKdK9HL/fa7Yy7Bo+
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-Hi Clement,
+This is a spin-off of the series titled
+"powerpc: MPC83xx cleanup and LANCOM NWAPP2 board".
 
-Thanks for looking at it. Inline
-On Thu, Feb 06, 2025 at 02:49:09PM +0100, ClÈment LÈger wrote:
->
->
->On 05/02/2025 02:22, Deepak Gupta wrote:
->> zicfiss / zicfilp introduces a new exception to priv isa `software check
->> exception` with cause code = 18. This patch implements software check
->> exception.
->
->Hey Deepak,
->
->While not directly related to this patch, is the exception 18 delegation
->documented in the SBI doc ? I mean, should we specify that it is always
->delegated when implementing FWFT LANDING_PAD/SHADOW_STACK ?
+During the development of that series, it became clear that many
+devicetree bindings for Freescale MPC8xxx platforms are still in the old
+plain-text format, or don't exist at all, and in any case don't mention
+all valid compatible strings.
 
-I don't think it's document in SBI spec anywhere. Should it be ?
+Signed-off-by: J. Neusch√§fer <j.ne@posteo.net>
+---
+Changes in v2:
+- rebased on v6.14-rc1
+- various style cleanups, both in YAML and in DTS examples
+- minor improvements to the commit messages
+- Link to v1: https://lore.kernel.org/r/20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net
+
+---
+J. Neusch√§fer (12):
+      dt-bindings: powerpc: Add Freescale/NXP MPC83xx SoCs
+      dt-bindings: ata: Convert fsl,pq-sata to YAML
+      dt-bindings: crypto: Convert fsl,sec-2.0 to YAML
+      dt-bindings: mfd: Convert fsl,mcu-mpc8349emitx to YAML
+      dt-bindings: dma: Convert fsl,elo*-dma to YAML
+      dt-bindings: pci: Convert fsl,mpc83xx-pcie to YAML
+      dt-bindings: watchdog: Convert mpc8xxx-wdt to YAML
+      dt-bindings: spi: Convert Freescale SPI bindings to YAML
+      dt-bindings: memory-controllers: Convert fsl,elbc to YAML
+      dt-bindings: memory-controllers: Add fsl,elbc-gpcm-uio
+      dt-bindings: nand: Add fsl,elbc-fcm-nand
+      dt-bindings: mtd: raw-nand-chip: Relax node name pattern
+
+ .../devicetree/bindings/ata/fsl,pq-sata.yaml       |  59 ++++++
+ Documentation/devicetree/bindings/ata/fsl-sata.txt |  28 ---
+ .../devicetree/bindings/crypto/fsl,sec2.0.yaml     | 142 ++++++++++++++
+ .../devicetree/bindings/crypto/fsl-sec2.txt        |  65 -------
+ .../devicetree/bindings/dma/fsl,elo-dma.yaml       | 140 ++++++++++++++
+ .../devicetree/bindings/dma/fsl,elo3-dma.yaml      | 123 +++++++++++++
+ .../devicetree/bindings/dma/fsl,eloplus-dma.yaml   | 134 ++++++++++++++
+ .../memory-controllers/fsl,elbc-gpcm-uio.yaml      |  59 ++++++
+ .../bindings/memory-controllers/fsl,elbc.yaml      | 146 +++++++++++++++
+ .../bindings/mfd/fsl,mcu-mpc8349emitx.yaml         |  53 ++++++
+ .../devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml |  68 +++++++
+ .../devicetree/bindings/mtd/raw-nand-chip.yaml     |   2 +-
+ .../devicetree/bindings/pci/fsl,mpc8xxx-pci.yaml   | 115 ++++++++++++
+ Documentation/devicetree/bindings/pci/fsl,pci.txt  |  27 ---
+ .../devicetree/bindings/powerpc/fsl/dma.txt        | 204 ---------------------
+ .../bindings/powerpc/fsl/fsl,mpc83xx.yaml          |  67 +++++++
+ .../devicetree/bindings/powerpc/fsl/lbc.txt        |  43 -----
+ .../bindings/powerpc/fsl/mcu-mpc8349emitx.txt      |  17 --
+ .../devicetree/bindings/spi/fsl,espi.yaml          |  64 +++++++
+ Documentation/devicetree/bindings/spi/fsl,spi.yaml |  73 ++++++++
+ Documentation/devicetree/bindings/spi/fsl-spi.txt  |  62 -------
+ .../devicetree/bindings/watchdog/mpc8xxx-wdt.txt   |  25 ---
+ .../devicetree/bindings/watchdog/mpc8xxx-wdt.yaml  |  64 +++++++
+ 23 files changed, 1308 insertions(+), 472 deletions(-)
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250126-ppcyaml-680ccd8b3fc2
+
+Best regards,
+-- 
+J. Neusch√§fer <j.ne@posteo.net>
 
 
-In code, opensbi delegates the exception (SW_CHECK)
-https://github.com/riscv-software-src/opensbi/commit/110524441a827e026db3547ed03c5723b9c9e211
-
->
->Thanks,
->
->ClÈment
->
->>
 
