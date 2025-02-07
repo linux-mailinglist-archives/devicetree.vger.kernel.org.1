@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-143981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6426EA2C6E2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:23:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F28BAA2C6DE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:23:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 822013A3419
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:22:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1C7316CB76
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30FA323FC40;
-	Fri,  7 Feb 2025 15:21:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5CD523F282;
+	Fri,  7 Feb 2025 15:21:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z0deVuJR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DdXRZnhi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06C5923F296;
-	Fri,  7 Feb 2025 15:21:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D6123F281;
+	Fri,  7 Feb 2025 15:21:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738941696; cv=none; b=fZaFwRAcvp0EQJ5/pJKEIXLkVz+EJ0No+AjW+u0fL54MY/nxX4q3i/qEhlYW0UghFGZbPf4WWjSnCz1C7z8OyatAz6FhXuO+MPwCS84DZMllfTCAPe56BU5+GzxglXW6HBOw09ziGp/1B51t8VXhWBhGt6WtplhYgVLUVNzQKF4=
+	t=1738941697; cv=none; b=E3+CqkwLkTo2ilPZG1fYEtYakV2CKU84SrhKlqZT+LhmVvK+wcxCxfXV3uuph7xTxZiv2Rk1I/MBB9xNM4I4Y4WsoUVOt4u0J2Vl3mIFI1E26nN2yLDM9OenIyVrqc3VfUtnUOoJpd8dPHFu9RDGmTzNuA2E7AfqdHcBfNmFWV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738941696; c=relaxed/simple;
-	bh=EkW+pm0yGNLA/SI9agjihBUdPSsVY6nJsC8yARN0ltI=;
+	s=arc-20240116; t=1738941697; c=relaxed/simple;
+	bh=hoOzUk8yEUXbW5Jl+9Yy9IINt/g5MuAe1JuDjRocquQ=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=HDFKSuqbOTQ+BIckCyX3+9VwD4hyELLvN9/hPStyZFUC+XZJS0oP6pD078i/owUBHaqCLSbkpsXGQCkmH2F4/jq+grE2/BJUlt1HgV06k9R39iwjpZp0y+GNCAZEKo1edcPe01Q3y6mYJX3Zu9+crLrKjVkbrk/L4rjvovTvsro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z0deVuJR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FA95C4CEDF;
-	Fri,  7 Feb 2025 15:21:35 +0000 (UTC)
+	 Message-Id:Subject; b=R+RzPxHwniYI0MkwzlH01awmRa/lDh2+2pQZEtuz1Lvlxp4bAM8wX34VRMmeuq3BkuZjslmdesdJCAFUwhm72o5o9AKvhiHxwKWbmCQ6udPV9svpFCmM2Va9NIsvklvqN2ghCaCIDq4R+s6p4zyinWdpvF7R+Phme/GR9D5xyuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DdXRZnhi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA20FC4CEE5;
+	Fri,  7 Feb 2025 15:21:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738941695;
-	bh=EkW+pm0yGNLA/SI9agjihBUdPSsVY6nJsC8yARN0ltI=;
+	s=k20201202; t=1738941697;
+	bh=hoOzUk8yEUXbW5Jl+9Yy9IINt/g5MuAe1JuDjRocquQ=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Z0deVuJRxZUm706INmy8eEh3v7EkNd2suaI6hUy7/aXTkHUpT1akjkughAFDytr8Y
-	 ZYo4tXxUIFJOXoqmBHuCvMVXu732RmhM4He7igTyiZ9VfxqgYkNxztOKs9MnoTDgxa
-	 f/qdfShYoLqTEwybR289x5mCTrm51H6P+pMLuD8BNbaHvtunR5Mb7KrKOxb6Vdfd7k
-	 F8Q8N+RIQBSDRVthmClR1KM2dFrj/97xaCxb/28aU1hrNRsuUvJNQzP4w8ZlGxkYZr
-	 V8Bo9a+Hr5YuH3kfjaa8Dxnph4SYrzgg1sHjT45cfl0TC2vcuSZq/TajELlTj0PM06
-	 CURtMOaZ1k1KA==
-Date: Fri, 07 Feb 2025 09:21:34 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	b=DdXRZnhiDkG/wSkRgh/Maz5WH4bIpoJGgncnk6JG5XV7Ye5bfF4tZ1SyPyJeHWGMV
+	 kAKWG5zuHIwuowdZ26JtxV+R+PAKyXeJa5jRPIj76GoClxv7+vtKstgQuq9dZq0kLY
+	 1/M+8uNIZaBKgqbbRPSLIQqukYWsZ9DzzgBVj8tqUfFXsJ/X0PtS65lx4yNwt+htvC
+	 NML5U7rEAqkQl/qr9qc6aHgx/V+CecC5RBrGss37lYsiBtfyteKrbbeqJt+PUrxoGS
+	 0nrWYzDCUqqaHdG4eX23xA4pw6ud0Cwedh5852lT9fsHfERu7ivJhEVL/cXrkJ7iy+
+	 fyanB9TYFw7ew==
+Date: Fri, 07 Feb 2025 09:21:35 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,33 +51,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Haotien Hsu <haotienh@nvidia.com>, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, linux-tegra@vger.kernel.org, 
- Henry Lin <henryl@nvidia.com>, Wayne Chang <waynec@nvidia.com>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, 
+Cc: Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Brad Griffis <bgriffis@nvidia.com>
-To: Ivy Huang <yijuh@nvidia.com>
-In-Reply-To: <20250206222731.3691073-1-yijuh@nvidia.com>
-References: <20250206222731.3691073-1-yijuh@nvidia.com>
-Message-Id: <173894150768.331065.3745668687012224338.robh@kernel.org>
-Subject: Re: [PATCH] arm64: tegra: Enable Tegra234 USB remote wakeup
+ Vignesh Raghavendra <vigneshr@ti.com>, Hari Nagalla <hnagalla@ti.com>, 
+ Andrew Davis <afd@ti.com>, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+To: Judith Mendez <jm@ti.com>
+In-Reply-To: <20250206235200.3128163-1-jm@ti.com>
+References: <20250206235200.3128163-1-jm@ti.com>
+Message-Id: <173894150832.331169.2724539558758994273.robh@kernel.org>
+Subject: Re: [PATCH v4 0/9] Add R5F and C7xv device nodes
 
 
-On Thu, 06 Feb 2025 22:27:31 +0000, Ivy Huang wrote:
-> From: Haotien Hsu <haotienh@nvidia.com>
+On Thu, 06 Feb 2025 17:51:50 -0600, Judith Mendez wrote:
+> For am62x and am62ax devices, this patch series adds device nodes
+> for the R5F subsystem and C7xv DSP subsystem found in their
+> respective voltage domain, based on the device TRMs [0][1].
 > 
-> Populate the USB wake-up interrupts for Tegra234 to enable
-> the USB device to wake the system up from low power modes.
+> This patch series also includes patches for enabling IPC for am62x,
+> am62ax, and am62px by reserving memory and binding the mailbox
+> assignments for each remote core.
 > 
-> Signed-off-by: Henry Lin <henryl@nvidia.com>
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> Signed-off-by: Haotien Hsu <haotienh@nvidia.com>
-> Signed-off-by: Ivy Huang <yijuh@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 18 ++++++++++++++++--
->  1 file changed, 16 insertions(+), 2 deletions(-)
+> Also reserve main_rti4 and main_timer2 for the C7x DSP as per
+> firmware requirements.
+> 
+> Changes since v3:
+> - Add SRAM child node for am62p MCU R5 core 0
+> 
+> Links
+> v3: https://lore.kernel.org/linux-devicetree/20250204011641.1523561-1-jm@ti.com/
+> v2: https://lore.kernel.org/linux-devicetree/20250131214611.3288742-1-jm@ti.com/
+> v1: https://lore.kernel.org/linux-devicetree/20250127221631.3974583-1-jm@ti.com/
+> 
+> [0] https://www.ti.com/lit/pdf/spruj16
+> [1] https://www.ti.com/lit/pdf/spruiv7
+> 
+> Devarsh Thakkar (3):
+>   arm64: dts: ti: k3-am62a-wakeup: Add R5F device node
+>   arm64: dts: ti: k3-am62a7-sk: Enable IPC with remote processors
+>   arm64: dts: ti: k3-am62p5-sk: Enable IPC with remote processors
+> 
+> Hari Nagalla (5):
+>   arm64: dts: ti: k3-am62-wakeup: Add wakeup R5F node
+>   arm64: dts: ti: k3-am62a-mcu: Add R5F remote proc node
+>   arm64: dts: ti: k3-am62x-sk-common: Enable IPC with remote processors
+>   arm64: dts: ti: k3-am62a7-sk: Reserve main_timer2 for C7x DSP
+>   arm64: dts: ti: k3-am62a7-sk: Reserve main_rti4 for C7x DSP
+> 
+> Jai Luthra (1):
+>   arm64: dts: ti: k3-am62a-main: Add C7xv device node
+> 
+>  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi    |  25 +++++
+>  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     |  12 +++
+>  arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi      |  38 +++++++
+>  arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   |  25 +++++
+>  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 100 ++++++++++++++++--
+>  .../dts/ti/k3-am62p-j722s-common-mcu.dtsi     |  13 +++
+>  arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  50 +++++++--
+>  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  32 +++++-
+>  8 files changed, 278 insertions(+), 17 deletions(-)
+> 
+> 
+> base-commit: 5532b8a9ce0e80514e37a1e082824934663580a3
+> --
+> 2.48.0
+> 
+> 
 > 
 
 
@@ -95,30 +134,14 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/nvidia/' for 20250206222731.3691073-1-yijuh@nvidia.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/ti/' for 20250206235200.3128163-1-jm@ti.com:
 
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [242, 76, 4], [242, 77, 4], [242, 78, 4], [242, 79, 4], [242, 80, 4], [242, 81, 4], [242, 82, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [256, 76, 4], [256, 77, 4], [256, 78, 4], [256, 79, 4], [256, 80, 4], [256, 81, 4], [256, 82, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: usb@3610000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [251, 76, 4], [251, 77, 4], [251, 78, 4], [251, 79, 4], [251, 80, 4], [251, 81, 4], [251, 82, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: usb@3610000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [251, 76, 4], [251, 77, 4], [251, 78, 4], [251, 79, 4], [251, 80, 4], [251, 81, 4], [251, 82, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: usb@3610000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [256, 76, 4], [256, 77, 4], [256, 78, 4], [256, 79, 4], [256, 80, 4], [256, 81, 4], [256, 82, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: usb@3610000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [252, 76, 4], [252, 77, 4], [252, 78, 4], [252, 79, 4], [252, 80, 4], [252, 81, 4], [252, 82, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: usb@3610000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/ti/k3-am62p5-sk.dtb: sram@79100000: 'mcu_sram1@0' does not match any of the regexes: '^([a-z0-9]*-)?sram(-section)?@[a-f0-9]+$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
+arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: sram@79100000: 'mcu_sram1@0' does not match any of the regexes: '^([a-z0-9]*-)?sram(-section)?@[a-f0-9]+$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
+arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dtb: sram@79100000: 'mcu_sram1@0' does not match any of the regexes: '^([a-z0-9]*-)?sram(-section)?@[a-f0-9]+$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
 
 
 
