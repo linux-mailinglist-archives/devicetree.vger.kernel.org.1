@@ -1,475 +1,221 @@
-Return-Path: <devicetree+bounces-143779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99E4A2B8CF
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 03:20:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C85A2B962
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 04:02:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA7EB167424
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 02:20:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88E757A04E7
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 03:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 114D0154433;
-	Fri,  7 Feb 2025 02:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315061624FF;
+	Fri,  7 Feb 2025 03:01:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2090.outbound.protection.partner.outlook.cn [139.219.17.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D38751494DD;
-	Fri,  7 Feb 2025 02:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738894791; cv=none; b=L+pkGTCb8z5lYqeY4ZAiScy8U5g6Y6Jv9X4lvK2bUHt1NsDh72Hiye2DugFAcVcNn4VGJHymB5IRITzAXOFHWPlXRVNpDfGgFCBp+NAHrhZkM5r05CeYkt81qaXE3GSKFEQiZwP17XTLMkMX3QeaHfBB/O1RYZZ3sFj8iTQmvkY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738894791; c=relaxed/simple;
-	bh=eR4anf1bgG7Yg1uOAlmbrvrh5k4eQlcgOwBRH9j+I+8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J3xhRmP3QNw0K0ZjF6lNxLUHrYyk3FeCL5nI1XMgqzqaeRzYpVfbaldGbSh+bO91kCz6jrLg/3V7/kn2Plgeyq0TA1axjkU81NWDhViFlRAD2vn0+TeashW2syYX3NNI9QPGr5m4pU5lVVMp3A22FAgmZP573qf2nMhE33W/sLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
-	by Atcsqr.andestech.com with ESMTPS id 5172JV4Q093088
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 7 Feb 2025 10:19:31 +0800 (+08)
-	(envelope-from ben717@andestech.com)
-Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS31.andestech.com
- (10.0.1.89) with Microsoft SMTP Server id 14.3.498.0; Fri, 7 Feb 2025
- 10:19:31 +0800
-From: Ben Zong-You Xie <ben717@andestech.com>
-To: <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <andi.shyti@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, Ben Zong-You Xie <ben717@andestech.com>
-Subject: [PATCH 2/2] i2c: atciic100: add Andes I2C driver support
-Date: Fri, 7 Feb 2025 10:19:23 +0800
-Message-ID: <20250207021923.2912373-3-ben717@andestech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250207021923.2912373-1-ben717@andestech.com>
-References: <20250207021923.2912373-1-ben717@andestech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB36B2030A;
+	Fri,  7 Feb 2025 03:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.90
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738897289; cv=fail; b=uk4pAGQ6tYDbqnNXtM+f+lNb7B/hDBv1ZuWTwsMGkR6Ma1LoI/dbpcYvM+wnBtdgLdzkj88fBOVYPgbl4+xIvTG1oiQOChlyiWoUZDCWM9gOVWG6L6ouzjI53pr/yyn0eFt4OTkRmkJ8jZKLtCsh75TIchaVurWmtKW8Gbsmu64=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738897289; c=relaxed/simple;
+	bh=oW80PWPNsUNd4mu/R/c/0yRSnsguOqDYPJHfxYSzBRM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=DqdFg5AuB7GQ2CWEr0KRl39CQzZr/nwSs9Q5qTu3qeW9ZeadCkS/d43kRNT1z8jr7vdJfxf2DNaCn5OG9KmbrC55fsvoVn7VPYaGSLHY8O0lRuHULcuwPDRYETCL5PFN+9Rtj9YzremrW/yoNiztQlYzrWEh0mdFmRqSHEudRxE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L2Nb5C+eHShkmMfnqLPnWPdeFbcim5ICoWIdhWdmyek/gdMvZA0UVMNFYTEIFmbxEYsFH+ZSlsQcQbRxRi56Dtgs1/Wn7FG9OgvYhVCaHfbvxhmeDjtBZ0JMGPuOsUg2Q24MNCf4fTgevnNH3gUzJTlMEu0fBqW/kiziGQIbWZ/sQR4iVawQUVJ/s0z3yUPtgIvFsJHR2gG/q2+koHkes1FkThCYhgdOnsU59Ea/4y7RZCijR2bdqC3Aqy6H58SCmPKBWuJtY6RJkBSit5pPfyIeXZ46GzsYNEVWH70m3dViS9Es2X6TusXjtL1rnn2Iono/Y7SJ94RK5/DN2y2RPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oW80PWPNsUNd4mu/R/c/0yRSnsguOqDYPJHfxYSzBRM=;
+ b=WRAOJpxwZc3P9ASYT7au0E9OE7mchXeqML0aitXJdR+e+Nq2ITsoWXxPqu80CJ+gkJI+v7ThK4fVBOsn8ga0rjCt3cM5BquJg1xjYs15GLmxZY0C4lUlj2e1sO5424wewsWJAoiovA5i1OEDGnn7m//RHxqfKi+xlzWvVvd0ve9BVU10WU8fgtgnkZRlLx6LYuowvfV3Mtu7TBgoBmeNrn0IG8uPR/lgEU1bY21FI5PWRpmsbchweQjTJNIZ8RN7ULPshgp0UFOp7exPUM1m6+64ws5hFb9KNaCDJn+uwI/u5t2PPNuKepzOuNi+n5ZMUcD42u/UMYAeRQS5EPIgGw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14) by ZQ2PR01MB1146.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:11::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.14; Fri, 7 Feb
+ 2025 03:01:14 +0000
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::2595:ef4d:fae:37d7%3]) with mapi id 15.20.8398.013; Fri, 7 Feb 2025
+ 03:01:13 +0000
+From: Hal Feng <hal.feng@starfivetech.com>
+To: E Shattow <e@freeshell.de>, Hal Feng <hal.feng@linux.starfivetech.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, Emil
+ Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: RE: [PATCH v2 5/5] riscv: dts: starfive: jh7110-common:
+ bootph-pre-ram hinting needed by boot loader
+Thread-Topic: [PATCH v2 5/5] riscv: dts: starfive: jh7110-common:
+ bootph-pre-ram hinting needed by boot loader
+Thread-Index: AQHbeEMnbyeQsjyaYki9HE0eCHXWhLM6IOAAgAD+3BA=
+Date: Fri, 7 Feb 2025 03:01:13 +0000
+Message-ID:
+ <ZQ2PR01MB1307ECDF175D20547AC69287E6F1A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+References: <20250203013730.269558-1-e@freeshell.de>
+ <20250203013730.269558-6-e@freeshell.de>
+ <25B3D8909DBCC21B+43663a76-4afa-44ae-95e2-3a8792de614c@linux.starfivetech.com>
+ <206a6ada-1ef9-47f3-b1cf-fb1a1540e95c@canonical.com>
+ <62D89163A60680E7+f0f5a4d4-42f1-454d-9dfe-cf53e2aca4ac@linux.starfivetech.com>
+ <cba21857-7eb2-4f10-a1bd-6743ce63dfa6@freeshell.de>
+In-Reply-To: <cba21857-7eb2-4f10-a1bd-6743ce63dfa6@freeshell.de>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1146:EE_
+x-ms-office365-filtering-correlation-id: 3aef0727-3724-450f-9f88-08dd4723aecd
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|41320700013|366016|7416014|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ i1f+H47Ov0kwralNFtbczrOGyZZfr4G4YyDgb3aIL9/m3jiaI1VSUnHD/RSwYA0B5PRswTwKx5dfg0Jm02PVlAtedF+JuT4P/Y2NfsTNKH5wRlZLtjpRMr85CrNLEtqHjA7NLhBFZIUZuz02o0pGt4RXM6yaTmulil2TMuM68cr0a8xqpBVlw8pAz/nxr+T6zjGBvL2Xo/BB4p3xpZ+EoqeXt1Yxki5r3pfUqKWt8ritunqX94VV6+3M4HQOFkDbbnsNf7u6UAexhVQnnH5kgM048z/nD5+2DkreojHGxcvZPGf7NsrR83CEJ610pz9ZchOvxZ/avobVaBec481wq1olJ7bjgPr16tuP66iN6DkIKWnZrKA9RikmkDPAZF+kekYeN3RafofR9G51MwuFyhWwM4mSK+VWKegqrR3fHGC8r8xEY8xe8j23MUFVXijUGY7EmBxbNUfX20T9cW+TDSqTBKk6umTrZZWsE4A5TK7lTl5CYchQRwF3BQKnRsVoXhoHp7De8UIrb+5TxiBKeejLIpX4t1JnY7TW3b7lCJ1ZeTfVzQ+cmQPwEpVn5EDoxFlqxt+2EmJdzxM051sHcEyymdEqqkIZAEiYGdu/CyE=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(41320700013)(366016)(7416014)(1800799024)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?ZXZtUnQzaWhjTkYyQ0dOME5HKzR2Y3lFWWxJeTlGMSt1dExGTGJjbHdSbEE3?=
+ =?utf-8?B?dGhDRE9KK2dub3U4cmg3aDI1QUhQRi9rQjdtL2kvMDJXZE03cmR6WTI2WHF1?=
+ =?utf-8?B?eUZ2MmlEVGlTcEJIcjZtM0duZmV3MUhmcEdwUjFRNWpkYWVDcXY0c1hML3Rq?=
+ =?utf-8?B?OU1xVWJReUlIWXdzdGl4T2JncnpXVFRYL1VhVzFmM0ljUEY0NWdKVDA0S3d2?=
+ =?utf-8?B?OUoyd2wyRWFrZnh4UFdqYW9helY4Q29jM2FpZjZ6cHBYZXlGdnRzdGkrSFVL?=
+ =?utf-8?B?eUIzWkJDQmdKS3FxTWdJblRBQUtreXMva3BXdFJYZW8xV0RQSHZoSnJ4Ym1o?=
+ =?utf-8?B?L1VQWktJU2htUU42ejNFR0gxeS8wb2VjM3czOVlaRkNPTjlkV1FZK21wb09B?=
+ =?utf-8?B?NkZibTd3MTgvcXJvYWxLcERoMlJad2tOZWd4dmZwSno3cHg0M2k5dDhnODFM?=
+ =?utf-8?B?VGhPRnlhVTQvZTV1K3J6TXRBUzFvUFFDZlBIV0QzdEE5LzBGVnFrTmxVK0dU?=
+ =?utf-8?B?OG9RZEVBcmpWRXMrYy94SVNpQUkzOVBIMU9RdGdUSFM3OTFLSzJCN3NzN1kv?=
+ =?utf-8?B?MkxQeThRdE9tbEZvWUZFaG5NcU5Ddk9MOWsyMzRMK0F5UlgrT3lNUUZZZzhw?=
+ =?utf-8?B?T2lLUmdNT1Z0emFhdG5WL09RK2hFd3VkcEp3QjFYZmlIYWFBZHVNTHAwMHUw?=
+ =?utf-8?B?eHRxRHptS1lZYVFuVGo0UC9yRFB6TWlWNGd3K29aZndmdmliQmhsTm9RME5Q?=
+ =?utf-8?B?UnpwVjgvRzd0NEUvQThWWUw5L0JSUm10cGFLM3BPYVJhRllLc3ZJL3pTU0hP?=
+ =?utf-8?B?WlljZEI3ampQTkxpcFh2M25aZ0ovVnUrVW4vbW9xS0xHelcvMDB6M2hhNjBa?=
+ =?utf-8?B?VUJwcGt2TElPZXJycnVVR09yQ0wwaWMrUGZUK001Q01kb3NUUW1xb3pwR3Rh?=
+ =?utf-8?B?VjJhV3hHL1NwY2g2bXJQRGdlaHQwUkpUQmlCaEtxbUxnTjBmS0l6WjIrRmRU?=
+ =?utf-8?B?K2lRMTJ5ZjdLTmNkVjB3bjhEY2g4MHdEUHZsT1dyempKUUxSOUJHV2ltTEQ4?=
+ =?utf-8?B?Q1Z5aENhQzcxTlUwN1JGY28vVVpOK0JOSVJIbit2dlZHc3VtcUNsSUFZRXF6?=
+ =?utf-8?B?NVB1ZkRNNFdtZDBYcUEvRndQV1VoSmRmZnpGczdVbzBwSmQ1d0FIbit4Z2Rv?=
+ =?utf-8?B?Qm04V3Z0QnhreXFlMXRzeStNd05SYnlLRE5ZdmxROEo4dk9uU0hXVlF1bzJY?=
+ =?utf-8?B?NkF4emNyZ2ZaNjhLLytEM3VILzVITGpnVUJqWWpsVjM3c2lsWlh5VnFRN3cv?=
+ =?utf-8?B?UllpZktBajNSUnlmak1KL2hzNVRjV2tDd0hOVFF2Y3ZEWklmeWF0Si93OEdO?=
+ =?utf-8?B?NDIycGJMUnFva0dvb2dkMVBLeDQzNk5VejM1UUhabTJSQ0l0RWw2NEE2MHIz?=
+ =?utf-8?B?cENnZ2JJR3FJbXpiR3c2dENkV29QdGxsbjNndHFlWnpIOU1DSm1LWG1wWUJE?=
+ =?utf-8?B?NjBtSlVmVFY2WFBUQk5FeTVTWEVFRUlqVWhlNGtlTzZnbkZxc2EvYlE1aVpz?=
+ =?utf-8?B?VFJla2tZekpCYUNKb2hHNVFjM0RLZTBHeWNUOHpvMkc1ZGlUMXdkVkczRS9j?=
+ =?utf-8?B?M3RyVkFnVTdrMmYxTmZ1czI1RVBjR1VxbVRBWlFlWDhja2daWjAyN3BYOGds?=
+ =?utf-8?B?aHM1VTh6QS9vdlcxdWU0K3d5cEpDOHFjZmkyclBnRm9xQmlFWEZ5UEJOSitG?=
+ =?utf-8?B?eWJhQXUxK1NndDlWUGNpc3ZuNVVJczZMQVJvT1VpYk52YzQ5M0lOa2pzdklh?=
+ =?utf-8?B?T05HazdIZ0ZnbWltbTRUVXc1SndVL0xJRXo2RjdNK3k1LzZWT3I4aDJPdTF2?=
+ =?utf-8?B?TlVtNzVLeDYvOFU1SlphYUllYk9BSTMySUVqNklkeTJsSWhaOHVOdGpFTlo4?=
+ =?utf-8?B?cDNobG43MDAzcEZiT0thZzFhclBsZmwvek9MZnVKWTVIQzVaN25uWkdIUmQv?=
+ =?utf-8?B?bGN0dDRSZ2NqWUQxbEdJYmJFcVczWi83VUo4NDBtNlA1OE52RlZvbEtPOUdq?=
+ =?utf-8?B?RjNaRCs5RzdEVjRER2VtaWs1KzdpS1pPbGhKSUJ1bW1BUHlEbW5XeDRMWWl2?=
+ =?utf-8?Q?G5uhfXKL5RnQpw+ab+WDbCZTI?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 5172JV4Q093088
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3aef0727-3724-450f-9f88-08dd4723aecd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Feb 2025 03:01:13.8342
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Y0MCjlU/Zfp0DHjpDjQg8rdTAEFlDl2brfUh06r98OXRlDkiwdUnXYyxQAgbSvZZ66u6VtMNsgMxg3uNKFkAB5Az9nvPK7FND/t6vUEEb0I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1146
 
-Add support for Andes I2C driver.
-
-Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
----
- MAINTAINERS                        |   1 +
- drivers/i2c/busses/Kconfig         |  10 +
- drivers/i2c/busses/Makefile        |   1 +
- drivers/i2c/busses/i2c-atciic100.c | 346 +++++++++++++++++++++++++++++
- 4 files changed, 358 insertions(+)
- create mode 100644 drivers/i2c/busses/i2c-atciic100.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 544251a03c7d..939ff77eed19 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1639,6 +1639,7 @@ ANDES TECHNOLOGY I2C DRIVER
- M:	Ben Zong-You Xie <ben717@andestech.com>
- S:	Supported
- F:	Documentation/devicetree/bindings/i2c/andestech,atciic100.yaml
-+F:	drivers/i2c/busses/i2c-atciic100.c
- 
- ANDROID DRIVERS
- M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
-index fc438f445771..93edb62c7d3f 100644
---- a/drivers/i2c/busses/Kconfig
-+++ b/drivers/i2c/busses/Kconfig
-@@ -1422,6 +1422,16 @@ config I2C_ACORN
- 
- 	  If you don't know, say Y.
- 
-+config I2C_ATCIIC100
-+	tristate "Andes I2C Controller"
-+	depends on OF && HAS_IOMEM
-+	help
-+	  If you say yes to this option, support will be included for the
-+	  Andes I2C controller.
-+
-+	  This support is also available as a module.  If so, the module
-+	  will be called i2c-atciic100.
-+
- config I2C_ELEKTOR
- 	tristate "Elektor ISA card"
- 	depends on ISA && HAS_IOPORT_MAP && BROKEN_ON_SMP
-diff --git a/drivers/i2c/busses/Makefile b/drivers/i2c/busses/Makefile
-index 1c2a4510abe4..58756a80c11f 100644
---- a/drivers/i2c/busses/Makefile
-+++ b/drivers/i2c/busses/Makefile
-@@ -143,6 +143,7 @@ obj-$(CONFIG_I2C_VIPERBOARD)	+= i2c-viperboard.o
- 
- # Other I2C/SMBus bus drivers
- obj-$(CONFIG_I2C_ACORN)		+= i2c-acorn.o
-+obj-$(CONFIG_I2C_ATCIIC100)	+= i2c-atciic100.o
- obj-$(CONFIG_I2C_BCM_KONA)	+= i2c-bcm-kona.o
- obj-$(CONFIG_I2C_BRCMSTB)	+= i2c-brcmstb.o
- obj-$(CONFIG_I2C_CROS_EC_TUNNEL)	+= i2c-cros-ec-tunnel.o
-diff --git a/drivers/i2c/busses/i2c-atciic100.c b/drivers/i2c/busses/i2c-atciic100.c
-new file mode 100644
-index 000000000000..cfb18b3b506e
---- /dev/null
-+++ b/drivers/i2c/busses/i2c-atciic100.c
-@@ -0,0 +1,346 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * I2C Support for Andes ATCIIC100 two-wire interface (TWI)
-+ *
-+ * Copyright (C) 2025 Andes Technology Corporation.
-+ */
-+
-+#include <linux/completion.h>
-+#include <linux/device.h>
-+#include <linux/init.h>
-+#include <linux/interrupt.h>
-+#include <linux/iopoll.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/spinlock.h>
-+
-+#define	ATCIIC100_CFG_REG		0x10
-+#define ATCIIC100_CFG_FIFOSIZE		GENMASK(1, 0)
-+
-+#define	ATCIIC100_INTEN_REG		0x14
-+#define	ATCIIC100_INTEN_FIFO_EMPTY	BIT(0)
-+#define	ATCIIC100_INTEN_FIFO_FULL	BIT(1)
-+#define	ATCIIC100_INTEN_CMPL		BIT(9)
-+
-+#define	ATCIIC100_STATUS_REG		0x18
-+#define ATCIIC100_STATUS_FIFO_EMPTY	BIT(0)
-+#define ATCIIC100_STATUS_FIFO_FULL	BIT(1)
-+#define ATCIIC100_STATUS_ADDR_HIT	BIT(3)
-+#define ATCIIC100_STATUS_CMPL		BIT(9)
-+#define ATCIIC100_STATUS_W1C		GENMASK(9, 3)
-+
-+#define	ATCIIC100_ADDR_REG		0x1C
-+
-+#define	ATCIIC100_DATA_REG		0x20
-+
-+#define	ATCIIC100_CTRL_REG		0x24
-+#define ATCIIC100_CTRL_DATA_CNT		GENMASK(7, 0)
-+#define ATCIIC100_CTRL_DIR		BIT(8)
-+#define ATCIIC100_CTRL_PHASE		GENMASK(12, 9)
-+
-+#define	ATCIIC100_CMD_REG		0x28
-+#define ATCIIC100_CMD_ACTION		GENMASK(2, 0)
-+#define ATCIIC100_CMD_ACTION_TRANS	BIT(0)
-+
-+#define	ATCIIC100_SETUP_REG		0x2C
-+#define ATCIIC100_SETUP_IICEN		BIT(0)
-+#define ATCIIC100_SETUP_REQ		BIT(2)
-+
-+#define ATCIIC100_TIMEOUT_US		400000
-+#define ATCIIC100_TIMEOUT		usecs_to_jiffies(ATCIIC100_TIMEOUT_US)
-+
-+#define ATCIIC100_MAX_DATA_LEN		256
-+
-+struct atciic100 {
-+	struct i2c_adapter	adap;
-+	struct completion	complete;
-+	spinlock_t		lock;
-+	void __iomem		*base;
-+	u8			*buf;
-+	int			irq;
-+	u16			buf_len;
-+	u8			fifo_size;
-+	bool			addr_hit;
-+	bool			xfer_done;
-+};
-+
-+static void atciic100_xfer_common(struct atciic100 *i2c, u32 status)
-+{
-+	unsigned long flags;
-+	u32 val;
-+	u8 fsize = i2c->fifo_size;
-+
-+	spin_lock_irqsave(&i2c->lock, flags);
-+
-+	if (status & ATCIIC100_STATUS_FIFO_EMPTY) { /* Data transmit */
-+		/* The last write to FIFO */
-+		if (i2c->buf_len <= fsize) {
-+			fsize = i2c->buf_len;
-+			val = readl(i2c->base + ATCIIC100_INTEN_REG) &
-+			      ~ATCIIC100_INTEN_FIFO_EMPTY;
-+			writel(val, i2c->base + ATCIIC100_INTEN_REG);
-+		}
-+
-+		while (fsize--) {
-+			writel(*i2c->buf++, i2c->base + ATCIIC100_DATA_REG);
-+			i2c->buf_len--;
-+		}
-+	} else if (status & ATCIIC100_STATUS_FIFO_FULL) { /* Data receive */
-+		while (fsize--) {
-+			*i2c->buf++ = readl(i2c->base + ATCIIC100_DATA_REG);
-+			i2c->buf_len--;
-+		}
-+	}
-+
-+	if (status & ATCIIC100_STATUS_CMPL) {
-+		/* Write 1 to clear all status */
-+		writel(ATCIIC100_STATUS_W1C, i2c->base + ATCIIC100_STATUS_REG);
-+
-+		i2c->xfer_done = true;
-+		if (status & ATCIIC100_STATUS_ADDR_HIT)
-+			i2c->addr_hit = true;
-+
-+		/* For the last read, retrieve all remaining data in FIFO. */
-+		while (i2c->buf_len--)
-+			*i2c->buf++ = readl(i2c->base + ATCIIC100_DATA_REG);
-+
-+	}
-+
-+	spin_unlock_irqrestore(&i2c->lock, flags);
-+}
-+
-+static irqreturn_t atciic100_irq_handler(int irq, void *data)
-+{
-+	struct atciic100 *i2c = data;
-+	u32 status = readl(i2c->base + ATCIIC100_STATUS_REG);
-+
-+	atciic100_xfer_common(i2c, status);
-+	if (i2c->xfer_done) {
-+		/* Disable all interrupts */
-+		writel(0, i2c->base + ATCIIC100_INTEN_REG);
-+		if (i2c->addr_hit)
-+			complete(&i2c->complete);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int atciic100_xfer_wait(struct atciic100 *i2c, struct i2c_msg *msg)
-+{
-+	u32 val;
-+
-+	/*
-+	 * Set the data count.
-+	 * If there are 256 bytes to be transmitted/received, write 0 to the
-+	 * data count field.
-+	 */
-+	val = readl(i2c->base + ATCIIC100_CTRL_REG) |
-+	      (i2c->buf_len & ATCIIC100_CTRL_DATA_CNT);
-+
-+	/* Set the transaction direction */
-+	if (msg->flags & I2C_M_RD)
-+		val |= ATCIIC100_CTRL_DIR;
-+	else
-+		val &= ~ATCIIC100_CTRL_DIR;
-+
-+	/* Enable all phases choices */
-+	val |= ATCIIC100_CTRL_PHASE;
-+	writel(val, i2c->base + ATCIIC100_CTRL_REG);
-+
-+	/* Write the address of the target device to the address register */
-+	writel(msg->addr, i2c->base + ATCIIC100_ADDR_REG);
-+
-+	/* Enable the completion and FIFO empty/full interrupts */
-+	if (i2c->irq > 0) {
-+		val = readl(i2c->base + ATCIIC100_INTEN_REG);
-+		val |= (msg->flags & I2C_M_RD) ? ATCIIC100_INTEN_FIFO_FULL
-+					       : ATCIIC100_INTEN_FIFO_EMPTY;
-+		val |= ATCIIC100_INTEN_CMPL;
-+		writel(val, i2c->base + ATCIIC100_INTEN_REG);
-+	}
-+
-+	/* Issue the transaction */
-+	writel(ATCIIC100_CMD_ACTION_TRANS, i2c->base + ATCIIC100_CMD_REG);
-+
-+	if (i2c->irq > 0) {
-+		unsigned long time_left;
-+
-+		time_left = wait_for_completion_timeout(&i2c->complete,
-+							ATCIIC100_TIMEOUT);
-+		if (!time_left)
-+			return -ETIMEDOUT;
-+
-+		reinit_completion(&i2c->complete);
-+	} else {
-+		u32 cond = ATCIIC100_STATUS_CMPL;
-+		unsigned long timeout;
-+
-+		cond |= (msg->flags & I2C_M_RD) ? ATCIIC100_STATUS_FIFO_FULL
-+						: ATCIIC100_STATUS_FIFO_EMPTY;
-+		while (!i2c->xfer_done) {
-+			timeout = readl_poll_timeout_atomic(
-+					i2c->base + ATCIIC100_STATUS_REG,
-+					val, val & cond,
-+					10, ATCIIC100_TIMEOUT_US);
-+
-+			if (timeout)
-+				return -ETIMEDOUT;
-+
-+			atciic100_xfer_common(i2c, val);
-+		}
-+
-+		if (!i2c->addr_hit)
-+			return -ENXIO;
-+	}
-+
-+	/* Check if all data is successfully transmitted. */
-+	if (readl(i2c->base + ATCIIC100_CTRL_REG) & ATCIIC100_CTRL_DATA_CNT)
-+		return -EIO;
-+
-+	return 0;
-+}
-+
-+static int atciic100_xfer(struct i2c_adapter *adap, struct i2c_msg *msg,
-+			  int num)
-+{
-+	int i, ret;
-+	struct atciic100 *i2c = i2c_get_adapdata(adap);
-+
-+	for (i = 0; i < num; i++) {
-+		struct i2c_msg *m = &msg[i];
-+
-+		i2c->addr_hit = false;
-+		i2c->buf = m->buf;
-+		i2c->buf_len = m->len;
-+		i2c->xfer_done = false;
-+		ret = atciic100_xfer_wait(i2c, m);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return num;
-+}
-+
-+static u32 atciic100_func(struct i2c_adapter *adap)
-+{
-+	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
-+}
-+
-+static struct i2c_algorithm atciic100_algo = {
-+	.xfer = atciic100_xfer,
-+	.functionality = atciic100_func,
-+};
-+
-+static const struct i2c_adapter_quirks atciic100_quirks = {
-+	.flags = I2C_AQ_NO_ZERO_LEN,
-+	.max_write_len = ATCIIC100_MAX_DATA_LEN,
-+	.max_read_len = ATCIIC100_MAX_DATA_LEN,
-+};
-+
-+static int atciic100_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+	u32 val;
-+	struct atciic100 *i2c;
-+	struct i2c_adapter *adap;
-+	struct device *dev = &pdev->dev;
-+
-+	i2c = devm_kzalloc(dev, sizeof(*i2c), GFP_KERNEL);
-+	if (!i2c)
-+		return -ENOMEM;
-+
-+	i2c->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(i2c->base))
-+		return PTR_ERR(i2c->base);
-+
-+	i2c->irq = platform_get_irq(pdev, 0);
-+	if (i2c->irq > 0) {
-+		ret = devm_request_irq(dev, i2c->irq, atciic100_irq_handler, 0,
-+				       dev_name(dev), i2c);
-+		if (ret < 0) {
-+			return dev_err_probe(dev, ret,
-+					     "unable to request irq %d\n",
-+					     i2c->irq);
-+		}
-+	} else {
-+		dev_warn(dev, "no irq resource, falling back to poll mode\n");
-+	}
-+
-+	spin_lock_init(&i2c->lock);
-+	init_completion(&i2c->complete);
-+
-+	adap = &i2c->adap;
-+	strscpy(adap->name, pdev->name, sizeof(adap->name));
-+	adap->algo = &atciic100_algo;
-+	adap->class = I2C_CLASS_HWMON;
-+	adap->dev.parent = dev;
-+	adap->dev.of_node = dev->of_node;
-+	adap->owner = THIS_MODULE;
-+	adap->quirks = &atciic100_quirks;
-+	adap->retries = 1;
-+	adap->timeout = ATCIIC100_TIMEOUT;
-+
-+	i2c_set_adapdata(adap, i2c);
-+	platform_set_drvdata(pdev, i2c);
-+	ret = devm_i2c_add_adapter(dev, adap);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "i2c add adapter failed\n");
-+
-+	/* Get FIFO size */
-+	i2c->fifo_size = 2 << (readl(i2c->base + ATCIIC100_CFG_REG) &
-+			       ATCIIC100_CFG_FIFOSIZE);
-+
-+	/* Configure ATCIIC100 as a controller and enable ATCIIC100 */
-+	val = readl(i2c->base + ATCIIC100_SETUP_REG) | ATCIIC100_SETUP_IICEN
-+						     | ATCIIC100_SETUP_REQ;
-+	writel(val, i2c->base + ATCIIC100_SETUP_REG);
-+	return 0;
-+}
-+
-+static void atciic100_remove(struct platform_device *pdev)
-+{
-+	u32 val;
-+	struct atciic100 *i2c = platform_get_drvdata(pdev);
-+
-+	/* Disable ATCIIC100 */
-+	val = readl(i2c->base + ATCIIC100_SETUP_REG) & ~ATCIIC100_SETUP_IICEN;
-+	writel(val, i2c->base + ATCIIC100_SETUP_REG);
-+
-+	i2c_del_adapter(&i2c->adap);
-+}
-+
-+static const struct of_device_id atciic100_dt[] = {
-+	{ .compatible = "andestech,atciic100" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, atciic100_dt);
-+
-+static struct platform_driver atciic100_platform_driver = {
-+	.driver		= {
-+		.name	= "atciic100",
-+		.of_match_table	= of_match_ptr(atciic100_dt),
-+	},
-+	.probe		= atciic100_probe,
-+	.remove		= atciic100_remove,
-+};
-+
-+/* I2C may be needed to bring up other drivers */
-+static int __init atciic100_init_driver(void)
-+{
-+	return platform_driver_register(&atciic100_platform_driver);
-+}
-+subsys_initcall(atciic100_init_driver);
-+
-+static void __exit atciic100_exit_driver(void)
-+{
-+	platform_driver_unregister(&atciic100_platform_driver);
-+}
-+module_exit(atciic100_exit_driver);
-+
-+MODULE_AUTHOR("Ben Zong-You Xie <ben717@andestech.com>");
-+MODULE_DESCRIPTION("Andes ATCIIC100 I2C bus adapter");
-+MODULE_LICENSE("GPL");
-+
--- 
-2.34.1
-
+PiBPbiAwNi4wMi4yNSAxOToxNywgRSBTaGF0dG93IHdyb3RlOg0KPiBPbiAyLzUvMjUgMTg6NTks
+IEhhbCBGZW5nIHdyb3RlOg0KPiA+IE9uIDIvNS8yMDI1IDY6MDEgUE0sIEhlaW5yaWNoIFNjaHVj
+aGFyZHQgd3JvdGU6DQo+ID4+IE9uIDIvNS8yNSAwODo1NywgSGFsIEZlbmcgd3JvdGU6DQo+ID4+
+PiBPbiAyLzMvMjAyNSA5OjM3IEFNLCBFIFNoYXR0b3cgd3JvdGU6DQo+ID4+Pj4gQWRkIGJvb3Rw
+aC1wcmUtcmFtIGhpbnRpbmcgdG8gamg3MTEwLWNvbW1vbi5kdHNpOg0KPiA+Pj4+IMKgwqAgLSBp
+MmM1X3BpbnMgYW5kIGkyYy1waW5zIHN1Ym5vZGUgZm9yIGNvbm5lY3Rpb24gdG8gZWVwcm9tDQo+
+ID4+Pj4gwqDCoCAtIGVlcHJvbSBub2RlDQo+ID4+Pj4gwqDCoCAtIHFzcGkgZmxhc2ggY29uZmln
+dXJhdGlvbiBzdWJub2RlDQo+ID4+Pj4gwqDCoCAtIG1lbW9yeSBub2RlDQo+ID4+Pj4gwqDCoCAt
+IHVhcnQwIGZvciBzZXJpYWwgY29uc29sZQ0KPiA+Pj4+DQo+ID4+Pj4gwqDCoCBXaXRoIHRoaXMg
+dGhlIFUtQm9vdCBTUEwgc2Vjb25kYXJ5IHByb2dyYW0gbG9hZGVyIG1heSBkcm9wIHN1Y2gNCj4g
+Pj4+PiDCoMKgIG92ZXJyaWRlcyB3aGVuIHVzaW5nIGR0LXJlYmFzaW5nIHdpdGggSkg3MTEwIE9G
+X1VQU1RSRUFNIGJvYXJkDQo+IHRhcmdldHMuDQo+ID4+Pj4NCj4gPj4+PiBTaWduZWQtb2ZmLWJ5
+OiBFIFNoYXR0b3cgPGVAZnJlZXNoZWxsLmRlPg0KPiA+Pj4+IC0tLQ0KPiA+Pj4+IMKgIGFyY2gv
+cmlzY3YvYm9vdC9kdHMvc3RhcmZpdmUvamg3MTEwLWNvbW1vbi5kdHNpIHwgNiArKysrKysNCj4g
+Pj4+PiDCoCAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspDQo+ID4+Pj4NCj4gPj4+PiBk
+aWZmIC0tZ2l0IGEvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9qaDcxMTAtY29tbW9uLmR0
+c2kNCj4gPj4+PiBiL2FyY2gvcmlzY3YvYm9vdC9kdHMvc3RhcmZpdmUvamg3MTEwLWNvbW1vbi5k
+dHNpDQo+ID4+Pj4gaW5kZXggMzBjNWYzNDg3YzhiLi5jOWU3YWU1OWVlN2MgMTAwNjQ0DQo+ID4+
+Pj4gLS0tIGEvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9qaDcxMTAtY29tbW9uLmR0c2kN
+Cj4gPj4+PiArKysgYi9hcmNoL3Jpc2N2L2Jvb3QvZHRzL3N0YXJmaXZlL2poNzExMC1jb21tb24u
+ZHRzaQ0KPiA+Pj4+IEBAIC0yOCw2ICsyOCw3IEBAIGNob3NlbiB7DQo+ID4+Pj4gwqDCoMKgwqDC
+oCBtZW1vcnlANDAwMDAwMDAgew0KPiA+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBkZXZpY2VfdHlw
+ZSA9ICJtZW1vcnkiOw0KPiA+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgwIDB4NDAw
+MDAwMDAgMHgxIDB4MD47DQo+ID4+Pj4gK8KgwqDCoMKgwqDCoMKgIGJvb3RwaC1wcmUtcmFtOw0K
+PiA+Pj4+IMKgwqDCoMKgwqAgfTsNCj4gPj4+PiDCoCDCoMKgwqDCoMKgIGdwaW8tcmVzdGFydCB7
+DQo+ID4+Pj4gQEAgLTI0Nyw2ICsyNDgsNyBAQCBlbW1jX3ZkZDogYWxkbzQgew0KPiA+Pj4+IMKg
+wqDCoMKgwqAgfTsNCj4gPj4+PiDCoCDCoMKgwqDCoMKgIGVlcHJvbUA1MCB7DQo+ID4+Pj4gK8Kg
+wqDCoMKgwqDCoMKgIGJvb3RwaC1wcmUtcmFtOw0KPiA+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBj
+b21wYXRpYmxlID0gImF0bWVsLDI0YzA0IjsNCj4gPj4+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmVn
+ID0gPDB4NTA+Ow0KPiA+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBwYWdlc2l6ZSA9IDwxNj47DQo+
+ID4+Pj4gQEAgLTMyMyw2ICszMjUsNyBAQCAmcXNwaSB7DQo+ID4+Pj4gwqDCoMKgwqDCoCBub3Jf
+Zmxhc2g6IGZsYXNoQDAgew0KPiA+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0g
+ImplZGVjLHNwaS1ub3IiOw0KPiA+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MD47DQo+
+ID4+Pj4gK8KgwqDCoMKgwqDCoMKgIGJvb3RwaC1wcmUtcmFtOw0KPiA+Pj4+IMKgwqDCoMKgwqDC
+oMKgwqDCoCBjZG5zLHJlYWQtZGVsYXkgPSA8Mj47DQo+ID4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKg
+IHNwaS1tYXgtZnJlcXVlbmN5ID0gPDEwMDAwMDAwMD47DQo+ID4+Pj4gwqDCoMKgwqDCoMKgwqDC
+oMKgIGNkbnMsdHNoc2wtbnMgPSA8MT47DQo+ID4+Pj4gQEAgLTQwNSw2ICs0MDgsNyBAQCBHUE9F
+Tl9TWVNfSTJDMl9EQVRBLA0KPiA+Pj4+IMKgwqDCoMKgwqAgfTsNCj4gPj4+PiDCoCDCoMKgwqDC
+oMKgIGkyYzVfcGluczogaTJjNS0wIHsNCj4gPj4+PiArwqDCoMKgwqDCoMKgwqAgYm9vdHBoLXBy
+ZS1yYW07DQo+ID4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIGkyYy1waW5zIHsNCj4gPj4+PiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwaW5tdXggPSA8R1BJT01VWCgxOSwgR1BPVVRfTE9XLA0K
+PiA+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBHUE9FTl9TWVNfSTJDNV9DTEssIEBAIC00MTMsNiArNDE3LDcgQEANCj4gPj4+PiBHUElf
+U1lTX0kyQzVfQ0xLKT4sDQo+ID4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIEdQT0VOX1NZU19JMkM1X0RBVEEsDQo+ID4+Pj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEdQSV9TWVNf
+STJDNV9EQVRBKT47DQo+ID4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYmlhcy1kaXNh
+YmxlOyAvKiBleHRlcm5hbCBwdWxsLXVwICovDQo+ID4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgYm9vdHBoLXByZS1yYW07DQo+ID4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaW5w
+dXQtZW5hYmxlOw0KPiA+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlucHV0LXNjaG1p
+dHQtZW5hYmxlOw0KPiA+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoCB9Ow0KPiA+Pj4+IEBAIC02NDEs
+NiArNjQ2LDcgQEAgR1BPRU5fRElTQUJMRSwNCj4gPj4+PiDCoCB9Ow0KPiA+Pj4+IMKgIMKgICZ1
+YXJ0MCB7DQo+ID4+Pj4gK8KgwqDCoCBib290cGgtcHJlLXJhbTsNCj4gPj4+PiDCoMKgwqDCoMKg
+IGNsb2NrLWZyZXF1ZW5jeSA9IDwyNDAwMDAwMD47DQo+ID4+Pj4gwqDCoMKgwqDCoCBwaW5jdHJs
+LW5hbWVzID0gImRlZmF1bHQiOw0KPiA+Pj4+IMKgwqDCoMKgwqAgcGluY3RybC0wID0gPCZ1YXJ0
+MF9waW5zPjsNCj4gPj4+DQo+ID4+PiBXaGF0IGFib3V0ICZtbWMwLCAmbW1jMSwgJnFzcGksICZz
+eXNncGlvLCAmbW1jMF9waW5zLA0KPiAmbW1jMV9waW5zLCAmaTJjNT8NCj4gPj4+IFdoeSBub3Qg
+YWRkICJib290cGgtcHJlLXJhbTsiIGZvciB0aGVtPw0KPiA+Pg0KPiA+PiBXb3VsZCB0aGV5IGJl
+IG5lZWRlZCBiZWZvcmUgcmVsb2NhdGlvbiBvZiBVLUJvb3QgdG8gRFJBTT8NCj4gPg0KPiA+IFll
+YWgsIHRoZXkgYXJlIG5lZWRlZCBieSBTUEwgYW5kIHRoZXkgYXJlIHNldCBpbiBVLUJvb3QNCj4g
+PiBhcmNoL3Jpc2N2L2R0cy9qaDcxMTAtY29tbW9uLXUtYm9vdC5kdHNpLg0KPiA+DQo+ID4gQmVz
+dCByZWdhcmRzLA0KPiA+IEhhbA0KPiA+DQo+IA0KPiBXaGVuIEkgdGVzdGVkIG9uIFN0YXI2NCB0
+aGVyZSB3YXMgbm9uZSBvZiB0aG9zZSBuZWVkZWQgdG8gYm9vdC4gV2UgY2FuIGFkZA0KPiBtb3Jl
+IGJvb3RwaC1wcmUtcmFtIGFzIG5lZWRlZCBidXQgSSB3YW50IHRvIGtub3cgaG93IHRvIHRlc3Qg
+KGJlY2F1c2UgSQ0KPiBkaWQgbm90IHNlZSBhbnkgbmVlZCBmb3IgdGhlc2UpLg0KPiANCj4gSG93
+IGRvIHlvdSB0ZXN0IHRoYXQgdGhlc2UgYXJlIG5lZWRlZD8NCg0KSW4gbXkgb3BpbmlvbiwgU1BM
+IG5lZWQgdG8gcmVhZCBVLUJvb3QgZnJvbSBFTU1DIChtbWMwKSBvciBTRGNhcmQgKG1tYzEpIG9y
+DQpRU1BJIGZsYXNoIChxc3BpKS4gQWxzbyBpdCBuZWVkIHRvIGNob29zZSB0aGUgY29ycmVjdCBE
+VEIgYnkgcmVhZGluZyBFRVBST00NCm1vdW50ZWQgb24gaTJjNS4gVG8gcnVuIG1tYyAvIGkyYyBk
+cml2ZXJzLCB0aGUgcGluIGNvbmZpZ3VyYXRpb25zIChzeXNncGlvLCBtbWMwLzFfcGlucykNCmFy
+ZSBhbHNvIG5lZWRlZC4NCg0KQmVzdCByZWdhcmRzLA0KSGFsDQo=
 
