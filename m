@@ -1,173 +1,165 @@
-Return-Path: <devicetree+bounces-143890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657D7A2BFE4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 10:50:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61BB3A2C00D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 10:59:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D2B73A758C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:49:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8067169303
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 862C31DE3AA;
-	Fri,  7 Feb 2025 09:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D9F1DE3AA;
+	Fri,  7 Feb 2025 09:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="R0QQ6qqk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TMFEZIZg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A9B1B042C
-	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 09:49:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8793192D77
+	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 09:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738921798; cv=none; b=okvq9W4/DUX8ZkoaQH/JyBl6WkSq7QjRBEr4N3jaUyg2BTK8Yvni2V4H6CzonFwxBaawLFt0QrX2HAvIBFMWUFh05Vv7RMkSQAQWzJAb0sgHckIIpjxy/CFzsH5yVNeWv618lT4hG9Tq4CB7wxHxumSc2FvqNr7k/79Lxq6zQVQ=
+	t=1738922356; cv=none; b=nqjPMUyrnLzxZ432F4g/ccKQ6mJZedbOCpxDzmBLPYmTFb6QjonmOs85EpkMejqjh37GNzKzFDFMdcXvAmK/ZMI1gsouR6JqQEbThKuBWiN/cy7GY/25rP9sSe5UoMReaDOCkEf2Cj+3bMsFaKdVnpCYST193C6OCUqHPDrb8tQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738921798; c=relaxed/simple;
-	bh=S4p6LLSLOPSpJE9g1forZYx4llbSsosHafGdaXkcLks=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XCKyH8MRi0fzgt19S9RZRfQfU+dK4wBGwE8l0LJEk1lS/DcvfizCkKp4rOhToFp9K1kSES2zOkpno29STnJF1gYANKsd+ullegAFarFdYVXbrz1nuGon7rtBNLppYeL7F/T3Ls5K753r00xulgMTguS8xVRmKcIdOYJ0WJdEHQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=R0QQ6qqk; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5dc82e38c10so4135361a12.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 01:49:55 -0800 (PST)
+	s=arc-20240116; t=1738922356; c=relaxed/simple;
+	bh=qSQOwDfvyyXkiyXC1rQhrd0jAPw0n+sW4OfWHKIBOEs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NHNzbLVczXAx0mIBXyniDX4SbAbfo73seAOTsa9ovqEry0DWNAb35llpk8dMoNOlNi2pPv65NEW8lJYVgX2EuwIFntb+Ozo0mkl3Y/9EZHcAQuVyVTkLHp2BxhZG6xfe9VXQH3BO/vHYetE6B0LWhI8eIB2PrwoNfp/YQ1T5Ri8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TMFEZIZg; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e587cca1e47so1701179276.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 01:59:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1738921794; x=1739526594; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hHxN1cJYA/N06QjEqFReiwPXLdQZSTCuNsi3b9gHzjE=;
-        b=R0QQ6qqkuCHyh/Lspg5x220NQrmp3N6wdbNGoWH7PyXNdhvxz4Jbe7NchDCCV30XOR
-         4UrnQQ0BAftdo0xjDtYM/BhzjoxDNhCnK34Yghwjgj4YH3Z24bCg8BkDMUE3cBgRNqoW
-         IN/BOoMUZKikliYvQvrQhGKp5soXPZt7bLmqMnjeOaoYU/2tpjpLxYXKJbjHw7zOiTqT
-         Jb0g9NZP4p3/v2EQoEOMoMl4ILwB4ZGwXP6h8dqQJOw5YWwV47WyQt2MnRb6xO1swpGW
-         M+TB33esmktLN3zuHbZ6n5BvKOB6V9Gwuspyo58dC6FTQjuOuV/zfe3lbKR/zWYucP9I
-         CxeQ==
+        d=linaro.org; s=google; t=1738922353; x=1739527153; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gf0LrvYcosKWDvDGgr597DQ1T7Qoy8G5hPn243hyGLY=;
+        b=TMFEZIZgNDiri9RhEHMzodCW6BN0IrnQK4uovPk2Kx9/Ggw3+j/XGVW3qTh4dmae+h
+         WvQ4Nz3w5knOV6q/UyGuJlHY6vrwYBHs3YOZoW6FNMbU7U0iS8brUqxQtoe38cyPcrsz
+         Kb+zftcZFoUFBeibC5k/X54zI2vQULWEWIt+DQZyRuJZYd3NugeAqx4DmljMX3kVPjWW
+         Ueq8fblQ3QKQDHZgKic5m8SFm75n53oeaXPIbXj6FNHX/LWpdh39MhOQQtcO2R9ZuoQm
+         5+tjlUGJksDLr/W8l/8jdi2KLsE7LBAbVicPPKCADVAunbRtc2py7nb6KB29tX+J5gPP
+         tgqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738921794; x=1739526594;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hHxN1cJYA/N06QjEqFReiwPXLdQZSTCuNsi3b9gHzjE=;
-        b=rKckzpGfl41conpR2z2hn0uJ7A0jjm5Cke3KqdrCugx4DSFPYK5A8fl/TMxhmQ8y6g
-         PP0ylTXhW9roOaHNXjqiLV2u7MOlnrMhA9Sul2d0snroLRRSbwjhvh61INgwaE0RH2NA
-         zdbnV0mXm1Y/kW9dim2mrXDYHp5VdvAW8e4++e4gyYmIFelc4ICZbHxWyglc17Tshkp3
-         1XvMJDJp7y9HsWQB9ON7dQMjUHY2AWfS2oRI0RTtz92mRRmKRzgulyNbai+Vr7TmenIw
-         kUaf5iWuxlSMCABJrKHSknEWIwro/E0RX0VA4Ffu87hrokMDLNjXJBTVK0C8Ce3rwYuR
-         LFmg==
-X-Forwarded-Encrypted: i=1; AJvYcCVlo8EwDYZ8ShsdDLVloKd4AL+DqGPtEZL6X9bWpzt91ra6dP6amWjx6MdXN/c8D/mDgayiU47AOi4N@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCgGuYf/nCPyQF7LLmPCyohT538o5svi+vyVhCX6nKM4C92lcQ
-	xkcOSPmCy5hu5+RaUoe1k6Cn4PHYGaJNf+1Jv/xSGbBHVBTIAVa4AwsLUGWFJxk=
-X-Gm-Gg: ASbGnctg9J/sq86z0Zu+FpSDUnxu/bSM41ewVnDQkmRjfxa6VJXrXArYV7yXWsuKx+G
-	49aKxhaET3zRjZy75t3cfbeN9WI7TlQXCccldY2weHvuevAw4526RXGDoWzWbmBeWmlsagSS1bU
-	gta95rPGrU9eYrWdkzpeX+9eDNHF0sOj5mIpumEWI/EdPFy8rZaTrK3pLtm2XX3OIFtjM0AZcf3
-	IitFZ6c3zwn7gBKXJPoTylyEI1TfcaCD1BZeme+ERX8BfGpxr/kTdUH1tmKzIv3LWevGY0Ldyow
-	Zc6sVYZRhmOWzM3UHn072eOx47UvNBUIDybqa9xhSVf5L6em1Hf6XTR//gE=
-X-Google-Smtp-Source: AGHT+IHCzEFvSIhfMGLJjDLN8sAOhYITMeHBywqkNc2QJXqBWAThFj4V/KSvjovgix5IZ8ADaCm//w==
-X-Received: by 2002:a17:907:1b27:b0:ab2:f8e9:723c with SMTP id a640c23a62f3a-ab789a9ed0amr257773366b.5.1738921793776;
-        Fri, 07 Feb 2025 01:49:53 -0800 (PST)
-Received: from localhost (host-79-41-239-37.retail.telecomitalia.it. [79.41.239.37])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab772fd6ba1sm235401366b.79.2025.02.07.01.49.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Feb 2025 01:49:53 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Fri, 7 Feb 2025 10:50:52 +0100
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v6 05/10] clk: rp1: Add support for clocks provided by RP1
-Message-ID: <Z6XXfL1-ER2dLmZI@apocalypse>
-References: <b12caa1c8c674a56afa7b2de780d9ae5423159a3.1736776658.git.andrea.porta@suse.com>
- <20250203234443.GA810409@bhelgaas>
+        d=1e100.net; s=20230601; t=1738922353; x=1739527153;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Gf0LrvYcosKWDvDGgr597DQ1T7Qoy8G5hPn243hyGLY=;
+        b=O+1ZDBFrGr0UhC51fCE2TJOGHYkKjrNAh62Ue5sBo8AjnnMY84RF1EiCZS+rA4xZNT
+         tTJn9KnV7Plk02IuI6rJtcTlO0pECK00p0VSqDFZFUq5iAFE47knXF0CPbHu/sCdQlOd
+         tmmAN8SaXOXb91VEsib7iBp6hB20f5aHvvBLyImalHLy5pps5k1Xv6LCtr6yUDQdEcgl
+         4DvDwPS9hbGJkLDotr7as5zXJI86e5RTQrb3yD90lxRoezQ9KB7RXHu1y4bvLLjjSpCZ
+         b8Q4h8k7aeTcbUytrr20weY/vA0TxMdgcTng/ifQHNWy4CRHQ3u32qXIvC9Gd3qrArto
+         hy8A==
+X-Forwarded-Encrypted: i=1; AJvYcCWl1HQgY7NcwN+oOgGAwpnGG/5Ot49/qEDPSVDbrn66C+SMsUw88Be/FtSyuWGahgo35wbwWM3wzwjV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXnO8mUSahwS9V2sdWokJ0Oh1nEfiiCCYu+eFFSJohA7+Owf46
+	8pUXDmO+/BO2FgvebWmYuiMqOJ5K+cyTgnn5tefqHinoHUyOfEXlJLgOgD/I6+JclDykBTc69Gq
+	/5oHC453MBtMQzaJPebWCAIIXHFJvh9zp7YAOLQ==
+X-Gm-Gg: ASbGncvhOU/6j6ebL/pT9Sm+2babGDDd8M8thBasOexVPq0V9QlaWS7wa1jDGEVogvG
+	KcH2ybo3zXMimsMYI4iU4LQQFItCZE0iJKpDz99ZubvEczEoUcjh8yetVN36kJJ5IbiAP5WYuCw
+	==
+X-Google-Smtp-Source: AGHT+IH5KSvolicRfu4qOrJsdB4fniYks3xqRvcTzEfp0JhqQeemLBX3Vf8Ymk/fgFqeo0ozvHmgtS8YxYLWOpq57BU=
+X-Received: by 2002:a05:6902:2843:b0:e57:442a:befd with SMTP id
+ 3f1490d57ef6-e5b4626d7b2mr1976472276.32.1738922353648; Fri, 07 Feb 2025
+ 01:59:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250203234443.GA810409@bhelgaas>
+References: <1738736156-119203-1-git-send-email-shawn.lin@rock-chips.com> <1738736156-119203-5-git-send-email-shawn.lin@rock-chips.com>
+In-Reply-To: <1738736156-119203-5-git-send-email-shawn.lin@rock-chips.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Fri, 7 Feb 2025 10:58:37 +0100
+X-Gm-Features: AWEUYZl9lFG-fTMV-hDb24r-jQPgTOeukyKtawA9RdKYwhSFpnLRSC7wetD3j4A
+Message-ID: <CAPDyKFrHtB=986QicwCLbRYRmwZg9fT+cYxCYgwRN37w=D4nPw@mail.gmail.com>
+Subject: Re: [PATCH v7 4/7] pmdomain: rockchip: Add smc call to inform firmware
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>, 
+	"Martin K . Petersen" <martin.petersen@oracle.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
+	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Bjorn,
+On Wed, 5 Feb 2025 at 07:18, Shawn Lin <shawn.lin@rock-chips.com> wrote:
+>
+> Inform firmware to keep the power domain on or off.
+>
+> Suggested-by: Ulf Hansson <ulf.hansson@linaro.org>
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
 
-On 17:44 Mon 03 Feb     , Bjorn Helgaas wrote:
-> On Mon, Jan 13, 2025 at 03:58:04PM +0100, Andrea della Porta wrote:
-> > RaspberryPi RP1 is an MFD providing, among other peripherals, several
-> > clock generators and PLLs that drives the sub-peripherals.
-> > Add the driver to support the clock providers.
-> 
-> > +#define PLL_PRIM_DIV1_SHIFT		16
-> > +#define PLL_PRIM_DIV1_WIDTH		3
-> > +#define PLL_PRIM_DIV1_MASK		GENMASK(PLL_PRIM_DIV1_SHIFT + \
-> > +						PLL_PRIM_DIV1_WIDTH - 1, \
-> > +						PLL_PRIM_DIV1_SHIFT)
-> > +
-> > +#define PLL_PRIM_DIV2_SHIFT          12
-> > +#define PLL_PRIM_DIV2_WIDTH          3
-> > +#define PLL_PRIM_DIV2_MASK           GENMASK(PLL_PRIM_DIV2_SHIFT + \
-> > +                                             PLL_PRIM_DIV2_WIDTH - 1, \
-> > +                                             PLL_PRIM_DIV2_SHIFT)
-> 
-> Maybe this is standard drivers/clk style, but this seems like overkill
-> to me.  I think this would be sufficient and easier to read:
-> 
->   #define PLL_PRIM_DIV1_MASK   GENMASK(18, 16)
->   #define PLL_PRIM_DIV2_MASK   GENMASK(14, 12)
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-Ack.
+Kind regards
+Uffe
 
-> 
-> > +static unsigned long rp1_pll_recalc_rate(struct clk_hw *hw,
-> > +					 unsigned long parent_rate)
-> > +{
-> > +	struct rp1_clk_desc *pll = container_of(hw, struct rp1_clk_desc, hw);
-> > +	struct rp1_clockman *clockman = pll->clockman;
-> > +	const struct rp1_pll_data *data = pll->data;
-> > +	u32 prim, prim_div1, prim_div2;
-> > +
-> > +	prim = clockman_read(clockman, data->ctrl_reg);
-> > +	prim_div1 = (prim & PLL_PRIM_DIV1_MASK) >> PLL_PRIM_DIV1_SHIFT;
-> > +	prim_div2 = (prim & PLL_PRIM_DIV2_MASK) >> PLL_PRIM_DIV2_SHIFT;
-> 
-> And then here, I think you can just use FIELD_GET():
-> 
->   prim_div1 = FIELD_GET(PLL_PRIM_DIV1_MASK, prim);
->   prim_div2 = FIELD_GET(PLL_PRIM_DIV2_MASK, prim);
-> 
-> It looks like the same could be done for PLL_SEC_DIV_MASK,
-> PLL_CS_REFDIV_SHIFT, PLL_PH_PHASE_SHIFT, CLK_CTRL_AUXSRC_MASK, etc.
-
-Ack.
-
-Regards,
-Andrea
+> ---
+>
+> Changes in v7: None
+> Changes in v6: None
+> Changes in v5:
+> - fix a compile warning
+>
+> Changes in v4: None
+> Changes in v3: None
+> Changes in v2: None
+>
+>  drivers/pmdomain/rockchip/pm-domains.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
+> index cb0f938..49842f1 100644
+> --- a/drivers/pmdomain/rockchip/pm-domains.c
+> +++ b/drivers/pmdomain/rockchip/pm-domains.c
+> @@ -5,6 +5,7 @@
+>   * Copyright (c) 2015 ROCKCHIP, Co. Ltd.
+>   */
+>
+> +#include <linux/arm-smccc.h>
+>  #include <linux/io.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/err.h>
+> @@ -20,6 +21,7 @@
+>  #include <linux/regmap.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <soc/rockchip/pm_domains.h>
+> +#include <soc/rockchip/rockchip_sip.h>
+>  #include <dt-bindings/power/px30-power.h>
+>  #include <dt-bindings/power/rockchip,rv1126-power.h>
+>  #include <dt-bindings/power/rk3036-power.h>
+> @@ -540,6 +542,7 @@ static void rockchip_do_pmu_set_power_domain(struct rockchip_pm_domain *pd,
+>         struct generic_pm_domain *genpd = &pd->genpd;
+>         u32 pd_pwr_offset = pd->info->pwr_offset;
+>         bool is_on, is_mem_on = false;
+> +       struct arm_smccc_res res;
+>
+>         if (pd->info->pwr_mask == 0)
+>                 return;
+> @@ -567,6 +570,11 @@ static void rockchip_do_pmu_set_power_domain(struct rockchip_pm_domain *pd,
+>                         genpd->name, is_on);
+>                 return;
+>         }
+> +
+> +       /* Inform firmware to keep this pd on or off */
+> +       arm_smccc_smc(ROCKCHIP_SIP_SUSPEND_MODE, ROCKCHIP_SLEEP_PD_CONFIG,
+> +                       pmu->info->pwr_offset + pd_pwr_offset,
+> +                       pd->info->pwr_mask, on, 0, 0, 0, &res);
+>  }
+>
+>  static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool power_on)
+> --
+> 2.7.4
+>
 
