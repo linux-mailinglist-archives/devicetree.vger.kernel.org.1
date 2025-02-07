@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-143755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0065A2B6E5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 01:03:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83E9FA2B6E9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 01:06:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F19A83A79F2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 00:02:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAC8D3A7A7F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 00:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C2D7E1;
-	Fri,  7 Feb 2025 00:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC2E634;
+	Fri,  7 Feb 2025 00:06:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GKGCSTsI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OS5vtUP8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4802C634;
-	Fri,  7 Feb 2025 00:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2ED6184;
+	Fri,  7 Feb 2025 00:06:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738886581; cv=none; b=qQ+0RmgFV3qvMdtU6kcR3UvmIN2d0sa0qrmqoFp0EWLPIyk8US1BSxVeWv5ip97h87B+WRtFTNwmM+7+pUibsFvJQrKGypYKoS/DFJYk8HLHNVJvIBhKsJLxmNSHoUVViVefXF+77fmAGzRO1Cul7sQ9ohr5ZkBNcM01/5EWTZk=
+	t=1738886761; cv=none; b=tQK1/3auGOpIU6+KefIXBte1hDkCKER7OpqRZAWbTJImGHARCqyWpZBqGeiFdqtJ+lK4X46gjliwB5MCrZroaoM3moN3dx/ygWCLUN05v1eoDJuJSr3JAu16oOEmxiD85tl3IEQ9tq8QScFkYH35/kngUGIfbZgta/lg/vbE010=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738886581; c=relaxed/simple;
-	bh=jFU7fO5yQm432EwC+/7/qkrCLs+tSpaeUFSBEO2zKYw=;
+	s=arc-20240116; t=1738886761; c=relaxed/simple;
+	bh=unumerF3wuEW+t29ZNgfkgqepZFAeZrfvRLZS/aN1T8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OIwQLGcydWW/TI+2WenoEURIIc2k4fcAxNYFA4gNYNcWbecaG15OCVO+UDZ9lVqpdOYq8jbSZQ1wZ0EZyXlzkGnhGe8B0F3oDZLol3INyeZH3F00zL+39FET+AfiMW2Ft2WwcvfLG0Wp8IACxBFlF51YkciZbRLNLtM8PDSwWNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GKGCSTsI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97BD0C4CEDD;
-	Fri,  7 Feb 2025 00:02:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OiegL9gl83bFzhqX7Xej9yaW5few/TT+ViCBZm7JMNg6GONRKVEox1juRsPz2ay15a2b4sLbx+DP+Fv3UA8i4lZvrxByDcSCdKF4xgHiOhqYt2Ct5CoE8quCZ53yt/KGycNKU3GCOdiHz509By700gvPzZeh8aA053y3CWzh938=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OS5vtUP8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99FE7C4CEDF;
+	Fri,  7 Feb 2025 00:05:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738886580;
-	bh=jFU7fO5yQm432EwC+/7/qkrCLs+tSpaeUFSBEO2zKYw=;
+	s=k20201202; t=1738886760;
+	bh=unumerF3wuEW+t29ZNgfkgqepZFAeZrfvRLZS/aN1T8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GKGCSTsIwsjMvT03gam8wglLzm/Bd16TS3xWgPWta+891d35c3vLwNOdmspvw3mEM
-	 lsgBEBDKgwey6xn8NIrt4b2asYF8rrzKtLtzZXXGgFehKI3+Jo/a54bpo7+IQ3NcX8
-	 c+xN718OG5MSzD8liCmbsFhAnB4T/5g3KhNNo1R6VHN57f83gYelUJ9wGnYTNPHFU+
-	 NsVWxFDDMm1caVDwHxpNtY290/8EVT5nwHMuYsNdPgokYjRA9/dCAGqlvDtvzVPwQf
-	 +vZtcSkmb2M4j+kH1zzf3mZPoWXLflfpwuPkWmr/Yr0eIzRROfLJ80IWQ/DCkUaP9+
-	 fwxGeiP3pMRhA==
-Date: Fri, 7 Feb 2025 00:02:56 +0000
+	b=OS5vtUP8W1dICJdEc8OCIyy+bmkBKsmWi6lPUGicw+bhnrscCYrEuo3lMoTRnAUWp
+	 rm7euvzjm88aoIV3nInhMbLl1iMcPvTit/5Hriau0Ng9G6uA3Arue5deUzFrfhSKKa
+	 hEz9afZiCcl2Eq7K8oWyffGE0VEUP8f8jiZoy3EBw/tSrhKRtdsiRoFqGMe7DQdmqX
+	 huUQTeV+qCZJSwm+pazFeA3C4t/d2kC/+ISI/BVhtbFgtqKQCnzm8ts87L0As/5W1e
+	 /KA6Eey9KYxsHpyGiGOOGTxPAym1MTyDYt99f4v79U8bBkQ2cCDJaPIkEUVYkeexIS
+	 Mu/mEKdrXqGvA==
+Date: Fri, 7 Feb 2025 00:05:56 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Eric Biggers <ebiggers@kernel.org>
-Cc: linux-riscv@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
+To: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, broonie@kernel.org,
+	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Andy Chiu <andybnac@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] RISC-V: add vector crypto extension validation
- checks
-Message-ID: <20250206-prong-sandfish-417a3bf9de29@spud>
-References: <20250205-cobbler-unpadded-5580c1f5d946@spud>
- <20250205-quench-entrench-09bed8c8c823@spud>
- <20250206203249.GC1237@sol.localdomain>
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ir38060: Move & update dt binding
+Message-ID: <20250207-semifinal-fondue-bbc3ad179ce5@spud>
+References: <20250204180306.2755444-1-naresh.solanki@9elements.com>
+ <20250204-mulled-evaluate-8a690cdfbd4d@spud>
+ <CABqG17jHKfwJEfZxto_YA4opS8=QwqTqfNdkku8kcEv2_iW+XA@mail.gmail.com>
+ <20250205-purge-debating-21273d3b0f40@spud>
+ <CABqG17j4tKXnMZ5=vcjBvfe6JwCLQ6NbkQmJC9ySK_bmGEv=iQ@mail.gmail.com>
+ <20250206-camera-mashed-48cf0cf1715f@spud>
+ <CABqG17iyRXW2_jvTVkFAEhW+TZZ-SAABm+6efqt0ZWHgYbiUMw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,49 +66,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IZJucm0+VF10qkQ0"
+	protocol="application/pgp-signature"; boundary="ZAHNkK8r2FFtRP4y"
 Content-Disposition: inline
-In-Reply-To: <20250206203249.GC1237@sol.localdomain>
+In-Reply-To: <CABqG17iyRXW2_jvTVkFAEhW+TZZ-SAABm+6efqt0ZWHgYbiUMw@mail.gmail.com>
 
 
---IZJucm0+VF10qkQ0
+--ZAHNkK8r2FFtRP4y
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 06, 2025 at 12:32:49PM -0800, Eric Biggers wrote:
-> On Wed, Feb 05, 2025 at 04:05:08PM +0000, Conor Dooley wrote:
-> > The 1.0.0 Vector crypto spec states:
-> > 	The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly
-> > 	the composite extensions Zvkn and Zvks-- require a Zve64x base,
-> > 	or application ("V") base Vector Extension. All of the other
-> > 	Vector Crypto Extensions can be built on any embedded (Zve*) or
-> > 	application ("V") base Vector Extension.
->=20
-> As previously discussed, the above paragraph incorrectly lists the set of=
- crypto
-> extensions that require support for 64-bit elements.  I have fixed this i=
-n the
-> latest RISC-V ISA manual.  It looks like this patch would still do the sa=
-me
-> thing either way, since it actually just checks that vector is available =
-in some
-> form.  But this is not the best version of the manual to quote from.
+On Fri, Feb 07, 2025 at 12:40:38AM +0530, Naresh Solanki wrote:
+> I'm not sure what you meant by 'fixes tag'
 
-/sigh, I updated the binding commit message but not the code one. That
-one should probably change too, given that's now merged.
-That's a stupid oversight, thanks.
+I am surprised you don't know what a fixes tag is, feel like you've been
+around long enough to encounter one! They look like Fixes: <hash> ("<shortlog>")
+and there should be documentation on them at https://docs.kernel.org/process/submitting-patches.html#describe-changes
 
---IZJucm0+VF10qkQ0
+--ZAHNkK8r2FFtRP4y
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6VNsAAKCRB4tDGHoIJi
-0hAuAQDNV4s4Ij8PSTwiHujFDprhlcxQkhi3bLa7A2lFvdIJKgD/cAFZR2Jwg3RN
-bDVM7Pp/OSKNt+5qMoFzqfkTMPr17Q4=
-=/epo
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6VOZAAKCRB4tDGHoIJi
+0pKrAQC2mtE4yFa+MUhJ5WJQKEoJpd+IfARvyS9kAeYiyjEoywD/fzGCCma3iHW+
+tDcrp6+1b01Z4Jk932CdnFtcgJnuKgw=
+=g4l/
 -----END PGP SIGNATURE-----
 
---IZJucm0+VF10qkQ0--
+--ZAHNkK8r2FFtRP4y--
 
