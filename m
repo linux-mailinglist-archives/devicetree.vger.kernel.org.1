@@ -1,96 +1,87 @@
-Return-Path: <devicetree+bounces-143883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AAD0A2BF3D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 10:27:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CE21A2BF46
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 10:28:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 555707A23DB
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:26:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F9CF3AA025
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:28:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E6571D88AC;
-	Fri,  7 Feb 2025 09:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839A61DC9AD;
+	Fri,  7 Feb 2025 09:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="XQ7pGDBZ";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="+Z9gfUNp";
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="XQ7pGDBZ";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="+Z9gfUNp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ntYJUBZB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D8AE74059;
-	Fri,  7 Feb 2025 09:27:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA59C1DC197
+	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 09:28:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738920457; cv=none; b=CBDqfu8JbrEWZMXAr4KQFgM9ixdKZIG837lXOUQtBG8iyspGk7SBQXHgOq1VF1v/fRaohqMRsk/jhmAUkb33IOjGnmACqe8OrdzfcaLkwE13mgRgshCUAsFTEkvAevZw5+TksgwLN/KkZixIMIDnKqgcLcYXtzWG5tUEWfgC888=
+	t=1738920531; cv=none; b=jf2ouAmmje/CRx7lxqQfET8qlFHTymRmodJjGwHOb2zH1CEew7M3w64hFVrQYBg5a+wIMGKATjby0jXt1rDDZe7jLDujjiaTGaB1C2j3p5ZoaP/oxOLkbWVmZIvdgbtzTrO0TfxPfJ9HGtfdzKRjYYlcM71onDoHNzAOa72xcCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738920457; c=relaxed/simple;
-	bh=Cjg41zt3tu6A6sampuq3xFWQGGE2PJODjl/kVEM+1xU=;
+	s=arc-20240116; t=1738920531; c=relaxed/simple;
+	bh=eIHTE8qRxDWKcq6Qy29TlpDPdetAC+KeKbRIcSkyUKQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oCJ6gjK/vd2VgwABS5a+FVj/Dk6u8PFLNxn7uYQF44RzFDyu2qksEgZWFsBeXyD+yXcKpkm4E3jiR4uwrKdsIS38hYfaGJev3KS//raro8rSJ8Un8I3/b2EQJOOA+m+297cMaXX6F8ZywSKl3NGfT9iWh1JOerToCusm4G9Wolk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=suse.cz; spf=pass smtp.mailfrom=suse.cz; dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b=XQ7pGDBZ; dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b=+Z9gfUNp; dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b=XQ7pGDBZ; dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b=+Z9gfUNp; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=suse.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.cz
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 775AB1F38D;
-	Fri,  7 Feb 2025 09:27:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-	t=1738920431; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=/vhtL15V8lzJWJ74SEaJOEukiJU5OxDONdQQRQdk17w=;
-	b=XQ7pGDBZptTA4/T7Wm2s45W21O6H15JOt+nMgp5cYjyoHfcXgONFsGj6C2snk2bpEUfvzd
-	T0His087wisIom2qwMp/oOS1DcYmS3iAQD/govYJCHdE/WnHWwVjtYJqvGUzBeh5tmXeuW
-	s6MDvJmwkNZavqUBjGHNZQVVMWOVNdE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-	s=susede2_ed25519; t=1738920431;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=/vhtL15V8lzJWJ74SEaJOEukiJU5OxDONdQQRQdk17w=;
-	b=+Z9gfUNpXGMvjzI1r4rplxWv//CjB6KF5Y4+mE85bC/bRF91WRf/CLRxZXUOQ4idrfZsLM
-	BieK7g1ti1cCJBAw==
-Authentication-Results: smtp-out2.suse.de;
-	dkim=pass header.d=suse.cz header.s=susede2_rsa header.b=XQ7pGDBZ;
-	dkim=pass header.d=suse.cz header.s=susede2_ed25519 header.b=+Z9gfUNp
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-	t=1738920431; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=/vhtL15V8lzJWJ74SEaJOEukiJU5OxDONdQQRQdk17w=;
-	b=XQ7pGDBZptTA4/T7Wm2s45W21O6H15JOt+nMgp5cYjyoHfcXgONFsGj6C2snk2bpEUfvzd
-	T0His087wisIom2qwMp/oOS1DcYmS3iAQD/govYJCHdE/WnHWwVjtYJqvGUzBeh5tmXeuW
-	s6MDvJmwkNZavqUBjGHNZQVVMWOVNdE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-	s=susede2_ed25519; t=1738920431;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=/vhtL15V8lzJWJ74SEaJOEukiJU5OxDONdQQRQdk17w=;
-	b=+Z9gfUNpXGMvjzI1r4rplxWv//CjB6KF5Y4+mE85bC/bRF91WRf/CLRxZXUOQ4idrfZsLM
-	BieK7g1ti1cCJBAw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 1992513694;
-	Fri,  7 Feb 2025 09:27:11 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id TGjfA+/RpWeQXQAAD6G6ig
-	(envelope-from <vbabka@suse.cz>); Fri, 07 Feb 2025 09:27:11 +0000
-Message-ID: <6543c6b6-da86-4c10-9b8c-e5fe6f6f7da9@suse.cz>
-Date: Fri, 7 Feb 2025 10:27:10 +0100
+	 In-Reply-To:Content-Type; b=OeROS1Ci2vzqY74/DipYAaiALqHMetXcls74EZHhcU9pZ26ddZdcLv2zDVkcwbEmlK16am2qu63s2XW5GU6hxzd0WbE9eVjTdqhwD/6bsTUCmyH3ZqqQWwYD3bKjQPmmYZeBqkCi3iKErpM4Ys709LPh9yS5K85kIdgYZ/Unt5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ntYJUBZB; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51770kvo018139
+	for <devicetree@vger.kernel.org>; Fri, 7 Feb 2025 09:28:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8NqxrxK3xet8+h8NdpIJWE0d4FKW87vOgxxpkOISpEs=; b=ntYJUBZBAEroMqow
+	mnj8ab2Di391eqecP8vTQu5LJSa060xRl0VQGhxs+O6xRd8uaUSJcUl29fpAz5s8
+	2Y7lmBlyW5/iTaKCBmCtVO0hdf70ViVbw6VLCz8b7EuYNLNDCC4d+n0VVdyY+dLK
+	+ri611+AnFNBPJEOMvwwdmAZKgNr5umdwvs1JsTDbR4KQhHMuqDBTmXb8FjJ5yuo
+	1DXxrMMZHK4fRBqVT2QeJAAv3QE3tu8s/0sTJ4A9ocWa1Or58+SYk06IetzoZ8BR
+	7yo3+PU8POBIFbMzo13M1wkehrdCbZgd3uScAKcZRrdF+wAStF/uzYK2m0c3sR7i
+	M9dsAQ==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44nddkrc3b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 09:28:48 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-21f1919a7beso39639025ad.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 01:28:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738920528; x=1739525328;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8NqxrxK3xet8+h8NdpIJWE0d4FKW87vOgxxpkOISpEs=;
+        b=ZVGQfrnS9DwNPlD9L6CdJ89Xuh2KSxwvVaqphFLfWEuSNq+OYZwwECg7Cz+jje/UB7
+         hTFVYf0Q2WJGdKXxpAPwNyk2PK7bTh+nfpOpPIHC2w0m+Jg2A+qBhj91HLHRA71yacRs
+         S6QVtfDP8JMV8aiFJDh20ZPpyCZ9JCE3+a1prj57vckT9YUeuvj+EuafuFk7SVNx/TIX
+         QhPLCbm/NghyFyEiKbzaZrNskXXdAyW89eurJbqdVIfWuynpz7RcGxlnqwjdULYQ6G7j
+         a/8O022EAYSr8VdYk6bQfnBEgVHOgGE87TdBgKgt2l7k+G+wgYGi34+wK4ZZLxGT7wUK
+         DzEg==
+X-Forwarded-Encrypted: i=1; AJvYcCWdLUBEp1nxPuzkQkjt9UJFZlCxYUQ5xjwmjIlpUmvSusH474fMLIypXMT5A+zDSnrhdOElP9sGgUWs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8dlkAnz/03uef2ktU4rCMFFt2+4/FBwWA+BKk2HHwBq53QXwf
+	0nlnWbi54k7s86eKhpT6H4lu0ODzRmO9KDoGTdebqZpuUM0fQ5/NX9YaAvcS3aKd2813BinamyQ
+	d6Y2bFdeTejWnK/E1QLCEXK7l7iW3mPkXcSklztNNnoj+yv9eqhGnu8LRyL55
+X-Gm-Gg: ASbGnct5pxGyMWZQ7oZGwPc+sGaQl09W1rCTjhPJNAwbOE1n0tVSyMNMo55I4oZouFl
+	72ktXxJE17tQqN2BBvhk1yGrDoTWipHy/rBA+Ie7ZMPJaJ7aMQu3iTykMwD+LqqxsSjIOdIwAYF
+	K7w0frgcNoqPiyawNw8Uy29BJHxn4MRT3XgEwbspckitpTBmfe68nWNy917vwnG22QwTMf6F3w1
+	rdWFijL9eTtVM49tTTWW9FGq667exJGhn3OHkloULUm/kUNFzeoUgrCsI1lbs3QYqkI/VtnXdve
+	FzVik2sDYZ28zK3WUcEm6/W/RO0jv+ga5BNwmhOmU7GNFuFngP2dRuz146w/jCQ=
+X-Received: by 2002:a17:902:fc4f:b0:21a:8769:302e with SMTP id d9443c01a7336-21f4e6ad349mr47724485ad.14.1738920527826;
+        Fri, 07 Feb 2025 01:28:47 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHdITSY3Xbsq3qeExulM7OKAMdr3dJ0xmAXSbW0AXp7CYFXVCNY98Q+WzzN9OaitkXgQXgptQ==
+X-Received: by 2002:a17:902:fc4f:b0:21a:8769:302e with SMTP id d9443c01a7336-21f4e6ad349mr47724115ad.14.1738920527391;
+        Fri, 07 Feb 2025 01:28:47 -0800 (PST)
+Received: from [10.133.33.7] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f36896b86sm26147275ad.212.2025.02.07.01.28.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Feb 2025 01:28:46 -0800 (PST)
+Message-ID: <61045cc3-d030-4c63-8a1b-103ff8c374f3@oss.qualcomm.com>
+Date: Fri, 7 Feb 2025 17:28:34 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,209 +89,179 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 01/26] mm: helper `is_shadow_stack_vma` to check shadow
- stack vma
+Subject: Re: [PATCH v12 2/2] arm64: dts: qcom:
+ qcs6490-rb3gen2-vision-mezzanine: Add vision mezzanine
+To: Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
+        todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        akapatra@quicinc.com, hariramp@quicinc.com, andersson@kernel.org,
+        konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
+        cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com,
+        will@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20250207090422.1609260-1-quic_vikramsa@quicinc.com>
+ <20250207090422.1609260-3-quic_vikramsa@quicinc.com>
 Content-Language: en-US
-To: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Christian Brauner <brauner@kernel.org>, Peter Zijlstra
- <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
- Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
- atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
- alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
- rick.p.edgecombe@intel.com
-References: <20250204-v5_user_cfi_series-v9-0-b37a49c5205c@rivosinc.com>
- <20250204-v5_user_cfi_series-v9-1-b37a49c5205c@rivosinc.com>
-From: Vlastimil Babka <vbabka@suse.cz>
-Autocrypt: addr=vbabka@suse.cz; keydata=
- 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
- EP+ylKVEKb0Q2A==
-In-Reply-To: <20250204-v5_user_cfi_series-v9-1-b37a49c5205c@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <20250207090422.1609260-3-quic_vikramsa@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 775AB1F38D
-X-Spam-Level: 
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	RCPT_COUNT_TWELVE(0.00)[47];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kvack.org,lists.infradead.org,wdc.com,linaro.org,sifive.com,gmail.com,rivosinc.com,google.com,kernel.org,intel.com];
-	DKIM_TRACE(0.00)[suse.cz:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	TO_MATCH_ENVRCPT_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_RATELIMIT(0.00)[to_ip_from(RLisu716frudqkg98kczdd9eac)];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -3.01
-X-Spam-Flag: NO
+X-Proofpoint-ORIG-GUID: 1xcGIq6u6AhqJBmfL3moRhW7QGMIPw7Z
+X-Proofpoint-GUID: 1xcGIq6u6AhqJBmfL3moRhW7QGMIPw7Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-07_04,2025-02-07_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ mlxlogscore=999 suspectscore=0 priorityscore=1501 bulkscore=0
+ malwarescore=0 phishscore=0 spamscore=0 mlxscore=0 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502070072
 
-On 2/5/25 02:21, Deepak Gupta wrote:
-> VM_SHADOW_STACK (alias to VM_HIGH_ARCH_5) is used to encode shadow stack
 
-I see that arm GCS uses VM_HIGH_ARCH_6.
 
-> VMA on three architectures (x86 shadow stack, arm GCS and RISC-V shadow
-
-And RISC-V doesn't define it at all, not even in this patchset, or did I
-miss it somewhere?
-
-> stack). In case architecture doesn't implement shadow stack, it's VM_NONE
-> Introducing a helper `is_shadow_stack_vma` to determine shadow stack vma
-> or not.
-
-This looks like an unfinished sentence. As if it was to continue with "...
-will allow us to ..." what?
-
-I'm not against a helper but this changelog is rather confusing and also
-code in arch/x86 and arch/arm64 isn't converted to the helper but testing
-VM_SHADOW_STACK still.
-
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> Reviewed-by: Mark Brown <broonie@kernel.org>
+On 2/7/2025 5:04 PM, Vikram Sharma wrote:
+> The Vision Mezzanine for the RB3 ships with an imx577 camera sensor.
+> Enable the IMX577 on the vision mezzanine.
+> 
+> An example media-ctl pipeline for the imx577 is:
+> 
+> media-ctl --reset
+> media-ctl -v -V '"imx577 '17-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
+> media-ctl -V '"msm_csiphy3":0[fmt:SRGGB10/4056x3040]'
+> media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
+> media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
+> media-ctl -l '"msm_csiphy3":1->"msm_csid0":0[1]'
+> media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+> 
+> yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
+> 
+> Signed-off-by: Hariram Purushothaman <quic_hariramp@quicinc.com>
+> Signed-off-by: Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
 > ---
->  mm/gup.c  |  2 +-
->  mm/mmap.c |  2 +-
->  mm/vma.h  | 10 +++++++---
->  3 files changed, 9 insertions(+), 5 deletions(-)
+>   arch/arm64/boot/dts/qcom/Makefile             |  4 +
+>   .../qcs6490-rb3gen2-vision-mezzanine.dtso     | 89 +++++++++++++++++++
+>   2 files changed, 93 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso
 > 
-> diff --git a/mm/gup.c b/mm/gup.c
-> index 3883b307780e..8c64f3ff34ab 100644
-> --- a/mm/gup.c
-> +++ b/mm/gup.c
-> @@ -1291,7 +1291,7 @@ static int check_vma_flags(struct vm_area_struct *vma, unsigned long gup_flags)
->  		    !writable_file_mapping_allowed(vma, gup_flags))
->  			return -EFAULT;
->  
-> -		if (!(vm_flags & VM_WRITE) || (vm_flags & VM_SHADOW_STACK)) {
-> +		if (!(vm_flags & VM_WRITE) || is_shadow_stack_vma(vm_flags)) {
->  			if (!(gup_flags & FOLL_FORCE))
->  				return -EFAULT;
->  			/*
-> diff --git a/mm/mmap.c b/mm/mmap.c
-> index cda01071c7b1..7b6be4eec35d 100644
-> --- a/mm/mmap.c
-> +++ b/mm/mmap.c
-> @@ -648,7 +648,7 @@ SYSCALL_DEFINE1(old_mmap, struct mmap_arg_struct __user *, arg)
->   */
->  static inline unsigned long stack_guard_placement(vm_flags_t vm_flags)
->  {
-> -	if (vm_flags & VM_SHADOW_STACK)
-> +	if (is_shadow_stack_vma(vm_flags))
->  		return PAGE_SIZE;
->  
->  	return 0;
-> diff --git a/mm/vma.h b/mm/vma.h
-> index a2e8710b8c47..47482a25f5c3 100644
-> --- a/mm/vma.h
-> +++ b/mm/vma.h
-> @@ -278,7 +278,7 @@ static inline struct vm_area_struct *vma_prev_limit(struct vma_iterator *vmi,
->  }
->  
->  /*
-> - * These three helpers classifies VMAs for virtual memory accounting.
-> + * These four helpers classifies VMAs for virtual memory accounting.
->   */
->  
->  /*
-> @@ -289,6 +289,11 @@ static inline bool is_exec_mapping(vm_flags_t flags)
->  	return (flags & (VM_EXEC | VM_WRITE | VM_STACK)) == VM_EXEC;
->  }
->  
-> +static inline bool is_shadow_stack_vma(vm_flags_t vm_flags)
-> +{
-> +	return !!(vm_flags & VM_SHADOW_STACK);
-> +}
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 140b0b2abfb5..213d941b1b79 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -116,6 +116,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
 > +
->  /*
->   * Stack area (including shadow stacks)
->   *
-> @@ -297,7 +302,7 @@ static inline bool is_exec_mapping(vm_flags_t flags)
->   */
->  static inline bool is_stack_mapping(vm_flags_t flags)
->  {
-> -	return ((flags & VM_STACK) == VM_STACK) || (flags & VM_SHADOW_STACK);
-> +	return ((flags & VM_STACK) == VM_STACK) || is_shadow_stack_vma(flags);
->  }
->  
->  /*
-> @@ -308,7 +313,6 @@ static inline bool is_data_mapping(vm_flags_t flags)
->  	return (flags & (VM_WRITE | VM_SHARED | VM_STACK)) == VM_WRITE;
->  }
->  
-> -
->  static inline void vma_iter_config(struct vma_iterator *vmi,
->  		unsigned long index, unsigned long last)
->  {
-> 
+> +qcs6490-rb3gen2-vision-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2-vision-mezzanine.dtbo
+> +
+> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso
+> new file mode 100644
+> index 000000000000..2a59d2f22eb8
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso
+> @@ -0,0 +1,89 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+It's 2025 now, it should be 2024-2025.
+
+Thanks,
+Jie
+
+> + */
+> +
+> +/*
+> + * Camera Sensor overlay on top of rb3gen2 core kit.
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/clock/qcom,camcc-sc7280.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +&camss {
+> +	vdda-phy-supply = <&vreg_l10c_0p88>;
+> +	vdda-pll-supply = <&vreg_l6b_1p2>;
+> +
+> +	status = "okay";
+> +
+> +	ports {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		/* The port index denotes CSIPHY id i.e. csiphy3 */
+> +		port@3 {
+> +			reg = <3>;
+> +
+> +			csiphy3_ep: endpoint {
+> +				clock-lanes = <7>;
+> +				data-lanes = <0 1 2 3>;
+> +				remote-endpoint = <&imx577_ep>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&cci1 {
+> +	status = "okay";
+> +};
+> +
+> +&cci1_i2c1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	camera@1a {
+> +		compatible = "sony,imx577";
+> +
+> +		reg = <0x1a>;
+> +
+> +		reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
+> +		pinctrl-names = "default", "suspend";
+> +		pinctrl-0 = <&cam2_default>;
+> +		pinctrl-1 = <&cam2_suspend>;
+> +
+> +		clocks = <&camcc CAM_CC_MCLK3_CLK>;
+> +		assigned-clocks = <&camcc CAM_CC_MCLK3_CLK>;
+> +		assigned-clock-rates = <24000000>;
+> +
+> +		dovdd-supply = <&vreg_l18b_1p8>;
+> +		avdd-supply = <&vph_pwr>;
+> +		dvdd-supply = <&vph_pwr>;
+> +
+> +		port {
+> +			imx577_ep: endpoint {
+> +				link-frequencies = /bits/ 64 <600000000>;
+> +				data-lanes = <1 2 3 4>;
+> +				remote-endpoint = <&csiphy3_ep>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&tlmm {
+> +	cam2_default: cam2-default-state {
+> +		pins = "gpio67";
+> +		function = "cam_mclk";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	cam2_suspend: cam2-suspend-state {
+> +		pins = "gpio67";
+> +		function = "cam_mclk";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +};
 
 
