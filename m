@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-143849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20B04A2BD7F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE4AA2BDA6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:14:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F6C0188BE50
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:08:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16467188C335
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:14:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D02FB1A2630;
-	Fri,  7 Feb 2025 08:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E711A7264;
+	Fri,  7 Feb 2025 08:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="SxlRlTHK"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="Bq6YVLY5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D505E18CBFC
-	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 08:08:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0977B1A08CA
+	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 08:13:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738915692; cv=none; b=IxB0TiPiHh7adK77OG1ydGgxMbjb/MoTMvyqKiFG79N0rc3zbDu4YuEgrymUQwCE94ZnzDInAcM11e1glvkmFL/8+d5ETgOPq/vMzA2CtHwRsqu6/b2s+NTPpEct0kDH7XwvByvJo0s1xLHEQg6xp7Nj3E2rUjUBlFdJiGt0+7M=
+	t=1738916041; cv=none; b=U2LBLLB89aFzvuvsC1MlahIQ0RiUR30AUJSpHAvagW11fK+VN3vtghsH65IcJ95wndX+neBEKJEiJ9NJE7NyMTPXjGj4MGTZDGm1kQTHz1eBfNpguz1p0tz0UiSsP2Z5nrFlS2v8aEaq9DAbtGk9qTbuepNh+IuCfLHTPusocfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738915692; c=relaxed/simple;
-	bh=mGnLpccjRRFhssRkLpnaUDhik6CTmCZ9AVgqJcR8GI4=;
+	s=arc-20240116; t=1738916041; c=relaxed/simple;
+	bh=DzRl7T8sIjvlyYTMPc+CcYOkIjrhZ4zBf6aWJ7k8aKQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YGAwoRqOXmYz+vNjWBcVVZfd6/K2QWvJEgYSMJmjaz0E0qZZXKa6/ejr9enW+JvcwyeJSQO2izQf6kBFxXq6veFMsbU94WwGoj0RlPlfIzKNcKQUL2Ndqma6FbqBQH1u7NsFlUUCDrUYuzh6vRRKESsC3gW1o6Vlv3On8AIcXVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=SxlRlTHK; arc=none smtp.client-ip=209.85.128.52
+	 In-Reply-To:Content-Type; b=ejLJ8zzLXB8slxn8wqM/dQipMSiOpwlRyqHvFJCMMIYpOXFmJh/+1IvCB96fIVCoQRIP1EleRwn8FpTBBJ94n1T3iZhh10ULGPTNzG1iJNam4mY7BhJ31yZSsla3NAnHhbHyY+ubGBjiNsG47KVyZe53dq5eYMKWW9sQcFvW+40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=Bq6YVLY5; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4361815b96cso11667375e9.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 00:08:10 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4361e89b6daso11379285e9.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 00:13:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1738915689; x=1739520489; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1738916038; x=1739520838; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=N7+57nAAv8QP4u/IKjzXqebMrcWsPnCBFtc7wCFJPUQ=;
-        b=SxlRlTHK5KEuGx22XbO1QgpCu9KBjqonBUDaMKQNMoeJJ6uhMgwwnuUnJrm/KHL8Nv
-         K/A0AyYSu4O7rdH3A3qA7RzUV7D8anZQKQKY764GI08FGxsemgZ5s4z3oXoAdYhxxpiO
-         oqClhT/TdJc4GvJK/lWy1U7ZySknNDSLQviKcgT+2qkXTxvpQwONmzFvcCBxmZ4Gap3N
-         APJMHeaBgtW6DdgQNT0OMFafuhvHu7SB1tfLjfYtlIqwUCfZN25DQ59r+Fqpxh/kRc/q
-         WrC+GtsBcNT9eY+SNJxDsH+hHn95SIR5I/CxY9VPcSdFfQ2dQ163BriAOGriQQ7wJNpL
-         MHUQ==
+        bh=ffr0OMCgv5rw2MLpHSX7E1qg3OY60t4awxWCHQtHUac=;
+        b=Bq6YVLY5jlP5t/oj0RASV7dDXvJI2VBVua8urckQG+4Wlf0Tt/V5efn95XhxZGexDE
+         WZFL5H38mPJqGQvc+ntjj5eXih/0rQJc3aK8gKHRnLRvrlc+tiB+kKEd7+0C7M1NDeul
+         /iKtRz2V1okrSOpp48WFWHGORBxA2izRX4e0G81JSPxs1IBc++v8Ylr69bqxEK8zy4tn
+         O44grSmOc61ZgTf1+aUL+qrnUYV4BmrOFNjXmOmGWR8AM5O8RzEVgmTnnwRGPL/4GG7k
+         IR1o0uh2ggftfP7+l9G38PEMtvKbQW6coufUU1XCJv2MtvkVhDY9EyAbyBChW+FTqUIS
+         i2HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738915689; x=1739520489;
+        d=1e100.net; s=20230601; t=1738916038; x=1739520838;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N7+57nAAv8QP4u/IKjzXqebMrcWsPnCBFtc7wCFJPUQ=;
-        b=Zfz61m9YMDVSESSouk76Ug9SyoLz+xU+w/ayfZm+3XT+cqgyhHaOtehi/RUmk3yyd6
-         2xt4oblaRBaj+7/rgBkEo4CSxbLRgP2Dl6CBYLoolmk5pZHwrVSDGsEzlLj8Ojhquke0
-         xASKzBL22DsBeOH5Cz0OjWQapHNNxqt1deMEn2W2vo3kSusIx6QR0i1Novo+IWAH2iUi
-         F0iQOZQik48mVXgdKYr4Oxc0NsPDcEuqTT/OJfwVYfxgMQUaULFzUGNn86jdVHeSa0Eq
-         Xu70XPsyFAHGfP1FJqay3a68eQoYYulMUD3nKf7a+eiZ331J8ju2n8TkoIQ956n2gZgv
-         mOXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW15GJywDSL8Jldd7HvU++rDikJ+Qo4v/b4Ylu2dL/CTeKPrqK4OTQN5C2HEK4w6PV9ner6WOqyfkiM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCXIMlFWxgQxtHDsQODs8ue/7DmAoNcd4ar4wTsuSa71xMXliO
-	N/GGsC/O0sF2+BsWciQh27zmuz/30JV66ltppZ1k7VV7bStAK1q0L94SjXISGYo=
-X-Gm-Gg: ASbGncusFFpjAyfuIwpYnGEoTY8oq355cADgEPu6XkG5yk/BDOYLSXYNqpQaoBtEUR3
-	IdLZ3cQoVY1flAjj/kQBlnNsQQsVWZfRk0vzTcR0M4U1v2ghBePhSPoDb1BHPu+4uqQFA1X/oqH
-	74MNiDO5f6m1+iRJkfL2u8aIcb13WCBYHWHKr4jkfthecM2De+5qj6GDkEXiQoM5YvklsKqAQqg
-	Tdm/soOJzPBYZV9Orygvo2AKIuSgy9YqefYyHYUblnMQyr2243D8B+iNUAK9HyQO8/OZ7a5V5At
-	p6HfCLrSG69pP23qARvRg1adN0gnZbdHRmrPmC+uyfnTuOZx6oFrfmVJD8oW
-X-Google-Smtp-Source: AGHT+IEpCAnzMJ9gzxKx250V5bllvFofCg+NZdnX2FF6QiB0L9kNIhtil4j6rsAH/g8Ai7a/4f4w3g==
-X-Received: by 2002:a05:600c:6c52:b0:434:f335:83b with SMTP id 5b1f17b1804b1-43924a27b10mr19870375e9.5.1738915689136;
-        Fri, 07 Feb 2025 00:08:09 -0800 (PST)
+        bh=ffr0OMCgv5rw2MLpHSX7E1qg3OY60t4awxWCHQtHUac=;
+        b=XTsmrrKIAu3m9ipqsKBGY5+3cp4GiArEWArujh6wMg6goQxiHBfp9GD8ghP2GjI6FR
+         a++lwvoXkHpLO6SvetzMA7ts5Ok4SroNBJaLA1GolH45kNSAkSfi6ZzqmYY8x9K32z+7
+         arUzCU84qMcEiQKx9wOeIke7H/OWaf2sADuk25P8hRD2W6fMB950A9Ctmqpqvpj2tNC1
+         nqin9Kz2xdkFAVTa5u6bsV0go+H3DdNaAKek/jlovrDGiRbQ6qpiTDk3CVK6oRUE/1jL
+         6OhHs0U3ik3xTZdSQd8q01miEUGjqvT0qIltD51tfd+J7Ir+BhuHtpUK47/Yw4enP86/
+         h34g==
+X-Forwarded-Encrypted: i=1; AJvYcCXnz4wIHMkaSiU8KWD/f/seY9ujtomOPHd7uRAOiI9ENPt+uc3krRji3TyeMyPH0ht6C+AAWyhIyKYv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyn+XgI4NytmUFLzj3dtQ6CDCjq9t7HWCMvX9MzzfKcEqQhTfue
+	UjVHeaoFT8iMM5O+RmUddTTq35vRVYB2Qgtmi9onrBh5MTEeqtEWMxN/ccKJH4M=
+X-Gm-Gg: ASbGncuE7Mr6LadS49hUBn/+nWNcqx2xDY9RgwEmVgBeMEDGcztojlM0YBsGh7guF1B
+	C6faoipjqHcZR26JnwX1S/nnOzNBXSXiCKUTF6lAGMFjm7gemo0gBGKb7v5DCrmPcL7fGmno17d
+	8lk77Nazm9FvRJcMqkAM10kIlEZXQTe9Ks41RpcTUhEaeo+LulmBCe6WESEO4Qy1RK4euB3/SGl
+	giRRr12jl3R22R8boaoNY1Bq9M6/AUxBoULj8FoFY28ZUcR8s9sbTisPkj3wP41c47MVJiAncIt
+	trlnqQLHwlVDzSnwRp0cAKdhZXJOcQT2Omx1PuLlFI2L1vICZNOgoyIf8FAZ
+X-Google-Smtp-Source: AGHT+IEGr/YRTYNXaAzVLspq4nx30yqY6bs6EtU6OBmGn64/zPMRjPnpKtSGL4mxDnpbYdH0c6ehyw==
+X-Received: by 2002:a05:600c:35c5:b0:438:e231:d35e with SMTP id 5b1f17b1804b1-439248b6ebamr20948965e9.0.1738916038069;
+        Fri, 07 Feb 2025 00:13:58 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:e17:9700:16d2:7456:6634:9626? ([2a01:e0a:e17:9700:16d2:7456:6634:9626])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4391dca004esm45229805e9.13.2025.02.07.00.08.07
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dc09fc2d9sm3167994f8f.6.2025.02.07.00.13.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Feb 2025 00:08:08 -0800 (PST)
-Message-ID: <d5138234-b0c3-4f78-af9e-33e0d5039ea3@rivosinc.com>
-Date: Fri, 7 Feb 2025 09:08:07 +0100
+        Fri, 07 Feb 2025 00:13:57 -0800 (PST)
+Message-ID: <d03581a9-495d-47df-99f2-96065b06ee8f@rivosinc.com>
+Date: Fri, 7 Feb 2025 09:13:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -113,17 +113,6 @@ On 06/02/2025 08:23, Atish Patra wrote:
 > Ssccfg (‘Ss’ for Privileged architecture and Supervisor-level
 > extension, ‘ccfg’ for Counter Configuration) provides access to
 > delegated counters and new supervisor-level state.
-
-Hi Atish,
-
-The spec seems to primarly use Smcdeleg rather than Ssccfg. This commits
-adds both but only mention Ssccfg in the commit title/description. Maybe
-it could be nice to mention both as well.
-
-Thanks,
-
-Clément
-
 > 
 > This patch just enables the definitions and enable parsing.
 > 
@@ -155,6 +144,26 @@ Clément
 >  	__RISCV_ISA_EXT_DATA(zvkt, RISCV_ISA_EXT_ZVKT),
 >  	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
 > +	__RISCV_ISA_EXT_DATA(smcdeleg, RISCV_ISA_EXT_SMCDELEG),
+
+Hi Atish,
+
+based on your dt-binding commit, if smcdeleg depends on Sscsrind, Zihpm,
+Zicntr, then you could add a validation callback here:
+
+static int riscv_smcdeleg_validate(const struct riscv_isa_ext_data
+*data, const unsigned long *isa_bitmap)
+{
+	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_SSCSRIND) &&
+	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZIHPM) &&
+	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZICNTR))
+		return 0;
+
+	return -EPROBE_DEFER;
+}
+
+__RISCV_ISA_EXT_DATA_VALIDATE(smcdeleg, RISCV_ISA_EXT_SMCDELEG,
+riscv_smcdeleg_validate),
+
 >  	__RISCV_ISA_EXT_DATA(smcntrpmf, RISCV_ISA_EXT_SMCNTRPMF),
 >  	__RISCV_ISA_EXT_DATA(smcsrind, RISCV_ISA_EXT_SMCSRIND),
 >  	__RISCV_ISA_EXT_DATA(smmpm, RISCV_ISA_EXT_SMMPM),
@@ -162,6 +171,14 @@ Clément
 >  	__RISCV_ISA_EXT_DATA(smstateen, RISCV_ISA_EXT_SMSTATEEN),
 >  	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
 > +	__RISCV_ISA_EXT_DATA(ssccfg, RISCV_ISA_EXT_SSCCFG),
+
+Ditto for this one with Smcdeleg, Sscsrind, Zihpm, Zicntr, Sscofpmf,
+Smcntrpmf.
+
+Thanks,
+
+Clément
+
 >  	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
 >  	__RISCV_ISA_EXT_DATA(sscsrind, RISCV_ISA_EXT_SSCSRIND),
 >  	__RISCV_ISA_EXT_SUPERSET(ssnpm, RISCV_ISA_EXT_SSNPM, riscv_xlinuxenvcfg_exts),
