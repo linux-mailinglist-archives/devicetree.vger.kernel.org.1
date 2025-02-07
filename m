@@ -1,234 +1,125 @@
-Return-Path: <devicetree+bounces-143866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A791EA2BE38
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:39:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11127A2BE4C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:45:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32FC7163A75
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:39:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 260991888348
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:45:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 030E9234964;
-	Fri,  7 Feb 2025 08:37:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="BRNuIcN+";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="O11DvWf2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AE451A9B3B;
+	Fri,  7 Feb 2025 08:45:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D476238737;
-	Fri,  7 Feb 2025 08:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175561A23BC;
+	Fri,  7 Feb 2025 08:45:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738917468; cv=none; b=Pr4a+k0cq5s/heIMp9Ov3iJSc7DaMu9tAuVnKbGPsIlWxlBxnEptMokNRRSRqOnHXLonyNHAgcCqZ9UmtUayvfIwSS+g3Cey9fR5vEOyC45h+CF9MBHXEygsmHQ5EB3790ee08ZIdfhH16eO6dcJKG3FQIipYNruBO4NJqbVcgY=
+	t=1738917920; cv=none; b=Yg7VhVq/J85EdPpEIMGEFeMxkmGA/JZMeX/dtMetSp1mc4IFYZF3VDU00LFeM/ZgGrPM+DVSabHhkuBqbz39MNKJZHwQME5t/C6RJr3Nk21hy2pRYwEXbDbBhRwXHyx9zBsBJgBSxeS6HGXYUTsPuCpfz4NHTJqty2GlBff9Dws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738917468; c=relaxed/simple;
-	bh=Nhl4VVbJfi1F7gkIOJezg6QazG/o80QdLHCO2TvJE/c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kF5qrpIyMkOKSezNwrC5eRLGgcQVbeN1Ed+G4XSXAc/EoOMOti2jfxqzJMjN0mnVMVNShvODQ2Rtr2xZQ4jJTIRyjWYV3jCQakgiTT9ehol0PbK6kPc+K2ele3k84zIwEhz83hg9zGBuJ2L+Va8Q/L0LDPn+ioAPBul2BUvGAnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=BRNuIcN+; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=O11DvWf2 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1738917468; x=1770453468;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=A08jsF72BGICjeJ6QNvNK9Z2aGqeVKtwYaxDuZyAP74=;
-  b=BRNuIcN+mY5NMC4q5NbEcZZ7FBQPwTTKG2ALvvE0mzGfZWiUmJb/luwr
-   x7p2C0VZuM4ZsTStVSAyKbb7y8Hf19pZwEobzthZ6NgkBxJCKRpmkOgNs
-   2JIjLONjIwmh26HJ+wnSN3pV7OnYdMa06cxIA9T5gzAUOIfIUrR6JEiu0
-   8t3HhWvZlvFN9L5lsPdVA53iiE38cx5VS9iEw2gH2c1iYRY8yOtFd2aUr
-   jSr85wLUW+VZCJYwhb2WFVpJUx+9UuafCqa1R+I4eGxV+jOXSh9WAFrpZ
-   rcwEgQgqcA8CV1mdn4EH73bPczp+eGcYXlZx/IXRS9atbqO6XeBQz+o3p
-   Q==;
-X-CSE-ConnectionGUID: 9vat4LaKTv6vzbCnQ8mh5g==
-X-CSE-MsgGUID: Frr9MB+pR22UVmGL6AAP6w==
-X-IronPort-AV: E=Sophos;i="6.13,266,1732575600"; 
-   d="scan'208";a="41636123"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 Feb 2025 09:37:24 +0100
-X-CheckPoint: {67A5C62C-2D-FED1349E-E4B4C63E}
-X-MAIL-CPID: 0201588C6754BC6FD3182DDEA350AF5B_2
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6485B168349;
-	Fri,  7 Feb 2025 09:37:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1738917438;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=A08jsF72BGICjeJ6QNvNK9Z2aGqeVKtwYaxDuZyAP74=;
-	b=O11DvWf2oPJqU3DCSHCFXOj6wXXKf7uCq85BIFsLjzqHRYBkzA72nECuCwqOiMqqJ6T9Fd
-	kWHpeYQSGRmrsz3yuw0VfnoOqTK3ehNJyZ9xxdLArJAV3QYdj2RhlTHULFPJXUeTFi2T2v
-	1m/Q8xaz/e/CUK5zywBnoWGzxq7siLU3iggsvWnJTgTTIRyYyYJ9qKL/2qzq2rs+r2DbZ9
-	T3gSxkhjewIpMbMFZsVgbGaqgwBwmjmEun7Lth5qvBT1nPJm/2YsojOFwqxq7STMfinwTw
-	fNF31R3yJjFIddnq0vbv9/60iPnxkqgR6pJHyx01aVp+GhrqGm+xMSJ73VX6ng==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 10/10] arm64: dts: imx8mq: Add access-controller references
-Date: Fri,  7 Feb 2025 09:36:15 +0100
-Message-Id: <20250207083616.1442887-11-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250207083616.1442887-1-alexander.stein@ew.tq-group.com>
-References: <20250207083616.1442887-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1738917920; c=relaxed/simple;
+	bh=u5uf4Tir0xtyLJKs+PEP57pDaPKUCR5Tk4tC6W+Pwrc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=alAUzNizwhXFfPJQf+corWFAMQHXGlEQhrISOzr6NeelD38DGsn7wCDkMQF+DHAGlhyvWH3AA7ZO+iiOSFvZr10FoMNKh5fhKX4WflB6EBaqNTMd9XAZxb/mm8VhTnQEhixdwxFtHK6f/JcCXcC/+CDPLpNBEs4OJwiObFU4NAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-866fbf798baso366979241.2;
+        Fri, 07 Feb 2025 00:45:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738917915; x=1739522715;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EBXViw2B5++lx3lKvCWR8ZB0A4ECbVpnUmvGe59jHB4=;
+        b=LXekXXfTj0Z+jhDtTQCyxXnRuHaYIU8gLAXcJXinj9kWyW3rR6Tc5H3mAP2VFwbezE
+         o22NYUT84p/L0+Nt3wdoWucSJV1bDLdE/9Bz6jZcp4y3jP9f8RQuaBBGhL7eQk0phYyO
+         r65q4hm2EGfpiAqunfLQSLrW5W25Arrg71Xj0+RxQh9+4i97UqqaeY50+VLezlJj2x6M
+         ERzsr4ZOFQdQMXGEBNt1b7lpLawAKbqKk3leSu+gmMwLil/k70aG75GjQvlLATYIH/yJ
+         OaEOk7BM8d8uzP1y2EQ8FsFwrc6q5GXZbPD4fyaQp5WdVXKsgFehUPPrRt06af78RUEf
+         9ZaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV/I3P5q8aURyA1sFRR45B/z/AXNyGe+z0d9Gz7SMZmDIXG7I3fctAau5lgbaWVp5DzO19gxaBEwVKv@vger.kernel.org, AJvYcCW33S/JDRTFmkcD/Tc4vBX0pFPmOkOfIBX54ikZWgoWXoCfksb6R1vDhysfeQcfO/6H4ytXDgcAbboJuJKy+rgbe1Y=@vger.kernel.org, AJvYcCXrn+YJwB/zUl9VUTSM1v+peTrvPNps72bnPwM7ZEkJjLIxkl+HO8OwStk+UqahGh2vJJN7OFiUX44cK+/i@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkXQmau9PlsJyYGyZR3H7t/L63ZFF1+/HQBbDPZKFbbl+8zxxg
+	CWlLgOkSuCYJQyvSWzFhQTlDyxaSJjX+rEmKQQz347UW6HcyQYfj7xpQa+gn
+X-Gm-Gg: ASbGncvsUaWrWo/BrIdfpd0BG+CGuJrvMJbhGUs/ktzJRA8+zT1HR0bBKOsLpb/oShK
+	vb+LqdJhDCbAIQmvyeNgjopO0/9t/MnKjQOoraqSN4TehHARe/PPOqYax4pijP/czHRVnGvbuip
+	lYpaDw/ksvFbifiVwCgN4VEx6qASAnwV3LCWMFsu3bjBRM+LKNNOknk6Ugf/J6Bt484x+Yq7wP+
+	rZpnLfJAubO3bbHo4U7PasbPOuqRX4rFdWDo79xuvODGk3gxnfqJGerDVaSL1v7NzpEbc0WvEt1
+	M6cLR6l2xcC0YJ/L6BseE7Z2KWmI2Kzb/JgnkF2NJWS/DtA2/+aQ4Q==
+X-Google-Smtp-Source: AGHT+IFnQrVzR9eRppe56mDFwd3I+xj3xG59VzrBWgMBhhoNMgKb8yVkQOAbZPDqOowSoAPJ3kTx7Q==
+X-Received: by 2002:a05:6102:578d:b0:4b1:340a:ce63 with SMTP id ada2fe7eead31-4ba85e3dae8mr1279456137.11.1738917915216;
+        Fri, 07 Feb 2025 00:45:15 -0800 (PST)
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4ba773045f8sm560930137.26.2025.02.07.00.45.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Feb 2025 00:45:14 -0800 (PST)
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-864e4f5b253so517213241.1;
+        Fri, 07 Feb 2025 00:45:14 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV65zjgcQQACjbK/qJd2Aj2I1d3wkGWC39AycXTsG0fACPIfBaQqN43bg9yg9mYd7mKoIDszHYrjfIR@vger.kernel.org, AJvYcCX37+8vENechgh3LQRrgXn0OhKb78H4ZkOlbzXu7FEjO+8Tj5UhsOpgq2Qx2YWCtF5nnPzGcb4pfHs99Xao@vger.kernel.org, AJvYcCXuMJf+Etf9d5kHH9v4BPYJHJwk/NnMFJ/7b8M84+nw5U0G3g0Bv+ZzRLzWiodJqPgYrRrw6oe7FWclASI3zReU6cs=@vger.kernel.org
+X-Received: by 2002:a05:6102:4b13:b0:4b2:c391:7d16 with SMTP id
+ ada2fe7eead31-4ba85df078fmr1195440137.7.1738917914082; Fri, 07 Feb 2025
+ 00:45:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20250131-myir-remi-pi-v3-0-2dda53e79291@collabora.com>
+ <20250131-myir-remi-pi-v3-2-2dda53e79291@collabora.com> <CAMuHMdXAS6pnNcT=A7i9La22tbDXYf7EKqbJzHuK2ze2gf6cgg@mail.gmail.com>
+ <950770a2406dd9ac3163e677c6d887d06df5b8c6.camel@collabora.com>
+In-Reply-To: <950770a2406dd9ac3163e677c6d887d06df5b8c6.camel@collabora.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 7 Feb 2025 09:45:01 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW5yn-ups7+uJqmEXcZjZ=LqxmxRPfFM=zLh+EvWsC-XQ@mail.gmail.com>
+X-Gm-Features: AWEUYZmxZYxOa7pFoJM9l8ZXRqq9cw7oUCIl5Wo35rPZxgOoflR7oSAg2hN9nGg
+Message-ID: <CAMuHMdW5yn-ups7+uJqmEXcZjZ=LqxmxRPfFM=zLh+EvWsC-XQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: renesas: add initial support for MYIR Remi Pi
+To: Julien Massot <julien.massot@collabora.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Mark ocotp as a access-controller and add references on peripherals
-which can be disabled (fused).
+Hi Julien,
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+On Fri, 7 Feb 2025 at 08:16, Julien Massot <julien.massot@collabora.com> wrote:
+> > On Fri, 31 Jan 2025 at 10:58, Julien Massot <julien.massot@collabora.com> wrote:
+> > > Add basic support for the MYIR Remi Pi (based on r9a07g044l2):
+> > >  - UART
+> > >  - i2c
+> > >  - emmc
+> > >  - USB host
+> > >  - HDMI output
+> > >  - Ethernet
+> > >
+> > > Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> >
+> > Thanks for the update!
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index df8ba1d5391ae..95a40cccd46b9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -12,6 +12,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/thermal/thermal.h>
- #include <dt-bindings/interconnect/imx8mq.h>
-+#include "imx8mq-ocotp.h"
- #include "imx8mq-pinfunc.h"
- 
- / {
-@@ -1275,6 +1276,7 @@ mipi_dsi: dsi@30a00000 {
- 					 <&src IMX8MQ_RESET_MIPI_DSI_ESC_RESET_N>,
- 					 <&src IMX8MQ_RESET_MIPI_DSI_PCLK_RESET_N>;
- 				reset-names = "byte", "dpi", "esc", "pclk";
-+				access-controllers = <&ocotp IMX8MQ_OCOTP_MIPI_DSI_DISABLE>;
- 				status = "disabled";
- 
- 				ports {
-@@ -1392,6 +1394,7 @@ mipi_csi1: csi@30a70000 {
- 				fsl,mipi-phy-gpr = <&iomuxc_gpr 0x88>;
- 				interconnects = <&noc IMX8MQ_ICM_CSI1 &noc IMX8MQ_ICS_DRAM>;
- 				interconnect-names = "dram";
-+				access-controllers = <&ocotp IMX8MQ_OCOTP_MIPI_CSI1_DISABLE>;
- 				status = "disabled";
- 
- 				ports {
-@@ -1414,6 +1417,7 @@ csi1: csi@30a90000 {
- 				interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX8MQ_CLK_CSI1_ROOT>;
- 				clock-names = "mclk";
-+				access-controllers = <&ocotp IMX8MQ_OCOTP_MIPI_CSI1_DISABLE>;
- 				status = "disabled";
- 
- 				port {
-@@ -1444,6 +1448,7 @@ mipi_csi2: csi@30b60000 {
- 				fsl,mipi-phy-gpr = <&iomuxc_gpr 0xa4>;
- 				interconnects = <&noc IMX8MQ_ICM_CSI2 &noc IMX8MQ_ICS_DRAM>;
- 				interconnect-names = "dram";
-+				access-controllers = <&ocotp IMX8MQ_OCOTP_MIPI_CSI2_DISABLE>;
- 				status = "disabled";
- 
- 				ports {
-@@ -1466,6 +1471,7 @@ csi2: csi@30b80000 {
- 				interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX8MQ_CLK_CSI2_ROOT>;
- 				clock-names = "mclk";
-+				access-controllers = <&ocotp IMX8MQ_OCOTP_MIPI_CSI2_DISABLE>;
- 				status = "disabled";
- 
- 				port {
-@@ -1566,6 +1572,7 @@ fec1: ethernet@30be0000 {
- 				nvmem-cells = <&fec_mac_address>;
- 				nvmem-cell-names = "mac-address";
- 				fsl,stop-mode = <&iomuxc_gpr 0x10 3>;
-+				access-controllers = <&ocotp IMX8MQ_OCOTP_ENET_DISABLE>;
- 				status = "disabled";
- 			};
- 		};
-@@ -1705,6 +1712,7 @@ gpu: gpu@38000000 {
- 			                         <&clk IMX8MQ_GPU_PLL>;
- 			assigned-clock-rates = <800000000>, <800000000>,
- 			                       <800000000>, <800000000>, <0>;
-+			access-controllers = <&ocotp IMX8MQ_OCOTP_GPU_DISABLE>;
- 			power-domains = <&pgc_gpu>;
- 		};
- 
-@@ -1725,6 +1733,7 @@ usb_dwc3_0: usb@38100000 {
- 			phy-names = "usb2-phy", "usb3-phy";
- 			power-domains = <&pgc_otg1>;
- 			snps,parkmode-disable-ss-quirk;
-+			access-controllers = <&ocotp IMX8MQ_OCOTP_USB_OTG1_DISABLE>;
- 			status = "disabled";
- 		};
- 
-@@ -1757,6 +1766,7 @@ usb_dwc3_1: usb@38200000 {
- 			phy-names = "usb2-phy", "usb3-phy";
- 			power-domains = <&pgc_otg2>;
- 			snps,parkmode-disable-ss-quirk;
-+			access-controllers = <&ocotp IMX8MQ_OCOTP_USB_OTG2_DISABLE>;
- 			status = "disabled";
- 		};
- 
-@@ -1778,6 +1788,7 @@ vpu_g1: video-codec@38300000 {
- 			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>;
- 			power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G1>;
-+			access-controllers = <&ocotp IMX8MQ_OCOTP_VPU_DISABLE>;
- 		};
- 
- 		vpu_g2: video-codec@38310000 {
-@@ -1786,6 +1797,7 @@ vpu_g2: video-codec@38310000 {
- 			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
- 			power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G2>;
-+			access-controllers = <&ocotp IMX8MQ_OCOTP_VPU_DISABLE>;
- 		};
- 
- 		vpu_blk_ctrl: blk-ctrl@38320000 {
-@@ -1839,6 +1851,7 @@ pcie0: pcie@33800000 {
- 			                         <&clk IMX8MQ_SYS1_PLL_80M>;
- 			assigned-clock-rates = <250000000>, <100000000>,
- 			                       <10000000>;
-+			access-controllers = <&ocotp IMX8MQ_OCOTP_PCIE1_DISABLE>;
- 			status = "disabled";
- 		};
- 
-@@ -1882,6 +1895,7 @@ pcie1: pcie@33c00000 {
- 			                         <&clk IMX8MQ_SYS1_PLL_80M>;
- 			assigned-clock-rates = <250000000>, <100000000>,
- 			                       <10000000>;
-+			access-controllers = <&ocotp IMX8MQ_OCOTP_PCIE2_DISABLE>;
- 			status = "disabled";
- 		};
- 
-@@ -1916,6 +1930,7 @@ pcie1_ep: pcie-ep@33c00000 {
- 					       <10000000>;
- 			num-ib-windows = <4>;
- 			num-ob-windows = <4>;
-+			access-controllers = <&ocotp IMX8MQ_OCOTP_PCIE2_DISABLE>;
- 			status = "disabled";
- 		};
- 
+> > I fixed the style issues locally, so if you can confirm or deny the removal
+> > of scif3, I can fix that while applying.
+>
+> Confirmed, we should not enable scif3.
+
+Thanks,
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.15 with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.34.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
