@@ -1,129 +1,125 @@
-Return-Path: <devicetree+bounces-144084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4BB3A2CD82
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 21:05:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 026ACA2CD89
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 21:07:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EED7F16D9AD
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 20:04:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93CCE163E4C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 20:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72F919CD13;
-	Fri,  7 Feb 2025 20:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD0D19DF81;
+	Fri,  7 Feb 2025 20:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Eau21S+4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LYE9jc1E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC0618C930;
-	Fri,  7 Feb 2025 20:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E5114D43D;
+	Fri,  7 Feb 2025 20:07:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738958647; cv=none; b=mhCTi41tgntN2Dke+OGUJ7yTxD0HmL/feDgsm6IuhESxQ71bOxna55BzqtP8oyMlFcKMUUVShOBhEkjYy17BY/846sDB17TfDsbgjN8RrwYFZYCVTCBLy0o+1Vu1eLNJ1BJ06cTbljLFA7pojlEOV1ih8ttJ4X/4vLP49EnVOt0=
+	t=1738958831; cv=none; b=PfM0SWUnPsXhb1okdQ2GjhmWmNhnCh2WAt7t900t8YkhUd98N3dmNaEKnadN9MRwREObFSC8BKrGB+ua2dN/2QXO/WNab6GX5hyuTyIQsPP16WZVOfvWORfAUPFifAPNh2H5Yr6SVMFfCuVP+P85ipHasaErHCq+8eyzJWVCNPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738958647; c=relaxed/simple;
-	bh=WjlNe0sVb6+Z/v6gi86kjLnaUhKqTTz0OLGVmjtl99c=;
+	s=arc-20240116; t=1738958831; c=relaxed/simple;
+	bh=hilhNBJhm7gyU2xWT0l3rVwkEdmqyKYqu1PEl6FCbO4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=camblUosJowf8umnegIFzuqXMzLukOOBeFxVQ8PYzV2REjItqYF4IjQxW3K0GbxDFHk8PGGQTTmrxqrhmc3Dj+Y2ftvgZAdhJygOOA+4WJWVGofmFHch0S8OWFhbOO9ASuGdirithDMzaLfjIckigxHr9cG5GqyLXSI2knDbAbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Eau21S+4; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738958646; x=1770494646;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WjlNe0sVb6+Z/v6gi86kjLnaUhKqTTz0OLGVmjtl99c=;
-  b=Eau21S+4c+dw0OSXMwj10ecfnAvst9IHk+LbjsUoi+msW/phcVuZPlQu
-   eMX4+IjGjnut6RvCp4oy9jH8nIUhoXrQrjsnUNGO96e3Z2kyagKiLEV4M
-   TxZSmkibVUER98owrujQuek0W2H8PscGyGxO/dLuhqL8eoBhez2umWXe8
-   1eRaXh2sCEXC08Vvuf5vho9imP7MRhSL7uoijCpQXPmmcFqMVqrfTZ9UL
-   WLElO0k8aPWuy6qRTX/dILijgNUC3/ZjJrgpvVtKY+HHNxIpLQw1V9QQz
-   ssDI6To+GiDCd4X6Btd4k4BRnfzmeB6FFNX2u9op22tfVWpZB8D8XEBgp
-   Q==;
-X-CSE-ConnectionGUID: eplit/F5SLq1r3c6KdkiMg==
-X-CSE-MsgGUID: WadJuXbeQE+3tZP0ZddzOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="39303883"
-X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; 
-   d="scan'208";a="39303883"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2025 12:04:06 -0800
-X-CSE-ConnectionGUID: 0v98F1P2TGqq5H5QmNuAcA==
-X-CSE-MsgGUID: fWFbOHFTS7iFzYy6Pn10Ow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="116824606"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 07 Feb 2025 12:04:02 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tgUZz-000yyR-23;
-	Fri, 07 Feb 2025 20:03:59 +0000
-Date: Sat, 8 Feb 2025 04:03:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Nikola Jelic <nikola.jelic83@gmail.com>, lgirdwood@gmail.com,
-	broonie@kernel.org, perex@perex.cz, tiwai@suse.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, rwalton@cmlmicro.com
-Subject: Re: [PATCH v3 2/2] ASoC: codecs: cmx655: Add CML's CMX655D codec
-Message-ID: <202502080303.D7LqDToV-lkp@intel.com>
-References: <20250207161412.6281-2-nikola.jelic83@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yjn/qHOFMX35E5G6VPxum9bmODJuVdmCGndBDCNA4Uldm/zaEId+6JF0w2sJ+IYc4xHpJljVwvbzgpqfvZNHkq5C6xuhOtKKufUj7WpohTq6nNln/7jNTWdrtPSYx9jpvZMsBN0ak2Loh+wTMphUi+HDLlGMFYOtpYHT7goNzPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LYE9jc1E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 035DDC4CED1;
+	Fri,  7 Feb 2025 20:07:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738958830;
+	bh=hilhNBJhm7gyU2xWT0l3rVwkEdmqyKYqu1PEl6FCbO4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LYE9jc1EsEHG8d3Is5YHp0nx/UhYWYRFgkfUk39bIcEpCx5ZBQ9+xWQ4BirLtIuAv
+	 8yZudPKcjgjJqOY0q3DgF68NLWd2vr84/vtOziN+Rr6/qcE9RFRqft8e3K/Kt5ETDv
+	 ZQs3gVpLsq4xZICVk7Pa6tFH79Mk/f/eLo6B8Du2YyxXN2hkbOD2womNlBKm5fqyz+
+	 DecDnRHIa4bOkiWCZxXnLzD24hXO3BUXY40Ev04J0n6Pg38N3kGnRa0Z369RIW/uux
+	 L7v83uJabvw4b4S5BG2sxMdQLeT7UdvoXlEGml0u0lseOPAYLna4mKfHcsTp4tdN/T
+	 muTG0T0MffppQ==
+Date: Fri, 7 Feb 2025 20:06:59 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Vlastimil Babka <vbabka@suse.cz>
+Cc: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
+	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, rick.p.edgecombe@intel.com
+Subject: Re: [PATCH v9 01/26] mm: helper `is_shadow_stack_vma` to check
+ shadow stack vma
+Message-ID: <5708c19d-240a-466a-b17a-d51b26ab95e6@sirena.org.uk>
+References: <20250204-v5_user_cfi_series-v9-0-b37a49c5205c@rivosinc.com>
+ <20250204-v5_user_cfi_series-v9-1-b37a49c5205c@rivosinc.com>
+ <6543c6b6-da86-4c10-9b8c-e5fe6f6f7da9@suse.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dNozXZgwSNh15IF2"
+Content-Disposition: inline
+In-Reply-To: <6543c6b6-da86-4c10-9b8c-e5fe6f6f7da9@suse.cz>
+X-Cookie: MMM-MM!!  So THIS is BIO-NEBULATION!
+
+
+--dNozXZgwSNh15IF2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250207161412.6281-2-nikola.jelic83@gmail.com>
 
-Hi Nikola,
+On Fri, Feb 07, 2025 at 10:27:10AM +0100, Vlastimil Babka wrote:
+> On 2/5/25 02:21, Deepak Gupta wrote:
+> > VM_SHADOW_STACK (alias to VM_HIGH_ARCH_5) is used to encode shadow stack
 
-kernel test robot noticed the following build warnings:
+> I see that arm GCS uses VM_HIGH_ARCH_6.
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on robh/for-next tiwai-sound/for-next tiwai-sound/for-linus linus/master v6.14-rc1 next-20250207]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+That'll be bitrot in the changelog, it was originally VM_HIGH_ARCH_5 on
+arm64 as well but we had to renumber due to the addition of
+VM_MTE_ALLOWED while the GCS series was on the list.  The changelog just
+shouldn't mention VM_HIGH_ARCH_x, it's not particularly relevant here.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nikola-Jelic/ASoC-codecs-cmx655-Add-CML-s-CMX655D-codec/20250208-001527
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20250207161412.6281-2-nikola.jelic83%40gmail.com
-patch subject: [PATCH v3 2/2] ASoC: codecs: cmx655: Add CML's CMX655D codec
-reproduce: (https://download.01.org/0day-ci/archive/20250208/202502080303.D7LqDToV-lkp@intel.com/reproduce)
+--dNozXZgwSNh15IF2
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502080303.D7LqDToV-lkp@intel.com/
+-----BEGIN PGP SIGNATURE-----
 
-versioncheck warnings: (new ones prefixed by >>)
-   INFO PATH=/opt/cross/rustc-1.78.0-bindgen-0.65.1/cargo/bin:/opt/cross/clang-19/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-   /usr/bin/timeout -k 100 3h /usr/bin/make KCFLAGS= -Wtautological-compare -Wno-error=return-type -Wreturn-type -Wcast-function-type -funsigned-char -Wundef -fstrict-flex-arrays=3 -Wformat-overflow -Wformat-truncation -Wenum-conversion W=1 --keep-going LLVM=1 -j32 ARCH=x86_64 versioncheck
-   find ./* \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS -o -name .pc -o -name .hg -o -name .git \) -prune -o \
-   	-name '*.[hcS]' -type f -print | sort \
-   	| xargs perl -w ./scripts/checkversion.pl
-   ./samples/bpf/spintest.bpf.c: 8 linux/version.h not needed.
->> ./sound/soc/codecs/cmx655-i2c.c: 3 linux/version.h not needed.
->> ./sound/soc/codecs/cmx655-spi.c: 3 linux/version.h not needed.
->> ./sound/soc/codecs/cmx655.c: 3 linux/version.h not needed.
-   ./tools/lib/bpf/bpf_helpers.h: 424: need linux/version.h
-   ./tools/testing/selftests/bpf/progs/dev_cgroup.c: 9 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/netcnt_prog.c: 3 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_map_lock.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_send_signal_kern.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_spin_lock.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_tcp_estats.c: 37 linux/version.h not needed.
-   ./tools/testing/selftests/wireguard/qemu/init.c: 27 linux/version.h not needed.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmemZ+IACgkQJNaLcl1U
+h9DVuAf/dyasNesjmRVNnX4CSTWgbPesYoxwpqTQgKso+9joOZPYPyLvIggnLsC1
+o+R1+QnbfVTDXvm+EDZnKplHkrzc7OMlSyqoO0Jhcvho9xR9wHpNaqRTQEMg4vCm
+Zg5azVK9vR2hn74CXPkTi/0R39CY3f02oIwZqD8xp7OZ4hjW7cis7E1aXqnos5Xf
+ojdS0hRnNNwrxRfdgK6u2APvcBJajWPE2C2I1ogm4eZO6n3ZI2RTSez88i8bShDg
+9WGWK5ghGkwKB5tkeXRra2Vvbfs3Wu8RyAY8/X1LKU/8wE2Mrbbk5Cu8E9jbuqD6
+Wx+CXrnjrV+x09CkTFzkFq+DBsO2Gg==
+=DOc/
+-----END PGP SIGNATURE-----
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--dNozXZgwSNh15IF2--
 
