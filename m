@@ -1,93 +1,112 @@
-Return-Path: <devicetree+bounces-143970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A1E1A2C61D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:50:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBBACA2C669
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:01:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FB5E188DE4A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:50:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 853AE3A3FC5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B95F238D46;
-	Fri,  7 Feb 2025 14:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C5941EB1B7;
+	Fri,  7 Feb 2025 15:01:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bMxpm791"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ppTUSEKX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09FFF238D3F;
-	Fri,  7 Feb 2025 14:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C601EB19F;
+	Fri,  7 Feb 2025 15:01:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738939639; cv=none; b=tZWZv8oLX053FMKfa26vWw4x4Bd9Q6lYLeaTRY1o/pwGS5J/iy8Jj6R4mCNnozcbBnjkbxcrpLlX+Lxd5CGCDw+NWmnou1bBXnSruvO9tVDE6tMiiQXYObs6+zp47CyD98X9GXLrURcyWaFpJ1JZ8knxPvx8JTZlxVmtY1QDqus=
+	t=1738940474; cv=none; b=kVjc/DEWdPbBQ+FQmNyQ1eO5qJRhp01lpLje29IeihkqWNNkMsg4mO0aii96dQ1e10LXR7onHX/zSx8P04FaIbnuLqF2Ee7sspG+l+sDmVF+Hh1HHN2qSkPR5LfbrKPGiJ7d1TclNIHMqeOnN/m5ekThQQj+oQIl5Gu2X6GF0TY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738939639; c=relaxed/simple;
-	bh=X1gPX6GM/Qmucx7cwDOtgdok+4v2hVhbtfmI16ZcyNs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=WbA13iHSwuMc1oFDzxfcEvs4V6JiciCvuN9G3vBdsUXuVqS94EZh0qyHsEPfyCQeM4Ah+L8KaERvi5QJGCrlaYYgBgnE+x48yjbzPdLpILD6fNaw0Yx4ixSQ+5PbeqEiu3TI9RtgtB2tG5TcqNkXFgTxohXyC+Rns1onaM6gGsw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bMxpm791; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 12868204A9;
-	Fri,  7 Feb 2025 14:47:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1738939629;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WpI2edtbUAkl7Pk3+d3AA5YEgCOsQaOIF4NmC7POzv8=;
-	b=bMxpm79108QBRUdxCCdN5krj6MIdBumPFmBPh1gWXDPYYu0yVb8lZs4VYWUd3wkrW6r8Cf
-	bJWsszmSt0FkvB/KZKu+msKcUDFlx4zcm/rpFRNNPlRAitkBX6PRsGeLarfaXU8Z7cVsvs
-	4+RJUB3mLfGDvZpRMmuTfOMKhGe+pCrPTllnpZDITeY/MZ6RLs4A9ZnGdZuPZROOovMYjJ
-	H0kn+ai+XGSBV1JIJN0z98u4nY/fGG1/5WvUkz3+sjrzHu/BATX46NRQk2stkO+cwDhjMz
-	LNvlCs9dKNqvpMsCJQwJz/UUVd8aKQ/rIhj301OvEPcQw3KHXF4npcBv6Cy/pA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Michal Simek <michal.simek@amd.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250203213042.12657-1-robh@kernel.org>
-References: <20250203213042.12657-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mtd: arasan,nand-controller: Ensure all
- properties are defined
-Message-Id: <173893962795.2918632.15480410452310039878.b4-ty@bootlin.com>
-Date: Fri, 07 Feb 2025 15:47:07 +0100
+	s=arc-20240116; t=1738940474; c=relaxed/simple;
+	bh=F8Aa5aceIm++TIRugP6fG69olAAFmZnooDdSl11N3Es=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=QwlTo8CHDKB3y5aWqv6VscpfpX21eCcHtgtOnDCQ70/3s2eXAjutFPwMBh4xNdqBcRecnoM/D1KR/BFDE6RjRruy3SKXIwJlY/p68sw2WRpcT0krs8UY5c7c1vEj43YDZlodW1aWVE3uYusHtE658udx3VJ01UUOP3pl3YxNvDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ppTUSEKX; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvleehiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvegjfhfukfffgggtgffosehtkeertdertdejnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepheeifffhueelgfdtleetgfelvefggfehudelvdehuddulefgheelgfehieevvdegnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopegludelvddrudeikedrgedvrdegiegnpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepledprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehvihhgnhgvshhhrhesthhirdgtohhmpdhrtghpthhtohepmhhitghhrghlrdhsihhmvghksegrmhgurdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhitghhrghrugesnhhou
- gdrrghtpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqmhhtugeslhhishhtshdrihhnfhhrrgguvggrugdrohhrgh
-X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1738940465;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MdSSRS0zzr9cmqiYQNz4jFGUuLv5U2TbTEH1JId0mac=;
+	b=ppTUSEKX3LFAhWXfNk5cTq9naAAmq9H2bVF8nkbmNHXync3pnwkkaahMU2MdwxSBVoWVx7
+	x+xtYB6tlHlhrsl0Xx1AxkpI69AN554BVqZ74zzB9x9Vq90G/hfYDI9uUDhuFaSuzZ0MAc
+	5QFeVCzpDuudDqP5kPv2+xQL8hY+f0cjYZRnNvThfYLstaGKLWMO2OT49tgV040RwkrAFT
+	zj0E9wxOM+kXqEaMznZgJPj+BIXezfy7lpRjyF6m4/Fj8djCGBDGR7ayj0FIkipg8kDm+r
+	3ycofI0/ZtA4oWwRYwIkkoHlEff5CqhLIgc7erzVsbE8go9n7PrzmAUSP2gm2w==
+Date: Fri, 07 Feb 2025 16:01:04 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Diederik de Haas <didi.debian@cknow.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Maximilian Weigand <mweigand@mweigand.net>, Marek Kraus <gamiee@pine64.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: rockchip: add 'chassis-type' property on
+ PineNote
+In-Reply-To: <20250207111157.297276-1-didi.debian@cknow.org>
+References: <20250207111157.297276-1-didi.debian@cknow.org>
+Message-ID: <502523554b482a2e10d85d37761932a0@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Mon, 03 Feb 2025 15:30:41 -0600, Rob Herring (Arm) wrote:
-> Device specific schemas should not allow undefined properties which is
-> what 'unevaluatedProperties: true' allows. Fix this constraint.
+Hello Diederik,
+
+On 2025-02-07 12:11, Diederik de Haas wrote:
+> Add the recommended chassis-type root node property so userspace can
+> request the form factor and adjust their behavior accordingly.
 > 
+> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+> Link: 
+> https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#root-node
+
+Maybe the Link tag should be converted into a "[1]" reference?
+To me, this is more like a reference for this DT addition.
+
+In general, references can also be placed closer to the contents
+they back up, which isn't possible with Link tags, but of course
+that doesn't matter much in this case.
+
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+> b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+> index 2d3ae1544822..3613661417b2 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+> @@ -9,6 +9,8 @@
+>  #include "rk3566.dtsi"
+> 
+>  / {
+> +	chassis-type = "tablet";
+> +
+>  	aliases {
+>  		mmc0 = &sdhci;
+>  	};
 
-Applied to nand/next, thanks!
+The patch is obviously fine.  Thanks for the patch, and please feel
+free to include, regardless of the note above, my:
 
-[1/1] dt-bindings: mtd: arasan,nand-controller: Ensure all properties are defined
-      commit: 499a4b16a4869a901a9bc601bc1e0b8f60151e93
-
-Patche(s) should be available on mtd/linux.git and will be
-part of the next PR (provided that no robot complains by then).
-
-Kind regards,
-Miquèl
-
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 
