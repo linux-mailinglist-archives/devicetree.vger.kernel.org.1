@@ -1,149 +1,293 @@
-Return-Path: <devicetree+bounces-143853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3645AA2BDC9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:24:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A4CCA2BDEE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:31:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 350837A4119
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:24:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C98B168C6B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C45541ACEAF;
-	Fri,  7 Feb 2025 08:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC561A2C25;
+	Fri,  7 Feb 2025 08:31:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0097C1A83EE
-	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 08:24:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35931662EF;
+	Fri,  7 Feb 2025 08:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738916688; cv=none; b=f/YpLSt+o0TuJCTY4bSBT/eP1zo4pSscDO0524yEESI+DJvcdB21R2+UrVpglZF8fM8R/DEfk+hNToj4IbuKB2nM68aiLqH50f1smKiX/GuBv6o8ybIaqgcxRl2iZ+m8ndPJNfrBSttm3T62gdmsrUwt/bzqTkzYtij+fEYH9bY=
+	t=1738917108; cv=none; b=rPVUt8hTFP6sGHL58hAh1FihbxvhpxSFcXQPPeNTHPMACjgOUvZ96e3RmthwQiLZ+lzS+lMN+F93XSvDNFw6I7gLynBRiuHhZTfrGv137zb/5dDqJ+9Hlri9B3g5ciIwVxKyNj7K7z3sga6l8FvExhWF0okEwh3/1S5sHcW/dLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738916688; c=relaxed/simple;
-	bh=kI4Fyn7CvsZ6t9HvUQsul7UYVpT9ozBs0hE2VBctCOQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oxMSMLn3r8kFx/rlSGT2WnLs0NFvTt/Rv4DJ+7t0cm97mqUQuNXx9M88kXk3CDtu7WG2EsWwEjYZlN9BL0EhPVBVUq7rwK08hJ4zx0RAB5hIlNjvT6IVLFslxB/htBGjG72Hv/q1z42+1qnIRrpvZ9IHz9rWzmcwaJM68ugor9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tgJep-0000UF-AY; Fri, 07 Feb 2025 09:24:15 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tgJek-003whN-2j;
-	Fri, 07 Feb 2025 09:24:10 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tgJek-001cd8-2G;
-	Fri, 07 Feb 2025 09:24:10 +0100
-Date: Fri, 7 Feb 2025 09:24:10 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Zhang Zekun <zhangzekun11@huawei.com>
-Cc: robh@kernel.org, saravanak@google.com, justin.chen@broadcom.com,
-	florian.fainelli@broadcom.com, andrew+netdev@lunn.ch,
-	kuba@kernel.org, kory.maincent@bootlin.com,
-	jacopo+renesas@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
-	laurent.pinchart+renesas@ideasonboard.com, maddy@linux.ibm.com,
-	mpe@ellerman.id.au, npiggin@gmail.com, olteanv@gmail.com,
-	davem@davemloft.net, taras.chornyi@plvision.eu, edumazet@google.com,
-	pabeni@redhat.com, sudeep.holla@arm.com, cristian.marussi@arm.com,
-	arm-scmi@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-media@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, chenjun102@huawei.com
-Subject: Re: [PATCH 1/9] of: Add warpper function
- of_find_node_by_name_balanced()
-Message-ID: <Z6XDKi_V0BZSdCeL@pengutronix.de>
-References: <20250207013117.104205-1-zhangzekun11@huawei.com>
- <20250207013117.104205-2-zhangzekun11@huawei.com>
+	s=arc-20240116; t=1738917108; c=relaxed/simple;
+	bh=3T+4D4OZYxnH92h9beC7wrRjiY+wNoBy2B/wrWJ5ihk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XjA59UvIbn8rS8093AGUHKU/r1fjdRqbhJWygC+IqSPxWbS41tPM8RC739UCaRdNnEOhssXXNWJxtXKa6YqbiloKhHwid0ao+a9ybJ41RIVKKkhC6kR8j6jxqWh4STgOPNZBSa69WaIkp1nN7TzpDURLTbFH7GEPwRSOdumrVfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.starfivetech.com; spf=none smtp.mailfrom=linux.starfivetech.com; arc=none smtp.client-ip=54.206.34.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.starfivetech.com
+X-QQ-mid: bizesmtpsz4t1738917093t6p35lw
+X-QQ-Originating-IP: F3vYl0ctFhV2QVNdxoiZ+gl2R3+YyxEuwE/J1iVBRD0=
+Received: from [192.168.60.235] ( [183.27.97.113])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 07 Feb 2025 16:31:30 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 5179800746963532279
+Message-ID: <05B9953079BA21AF+fffef577-a880-4ed6-a71b-14ec82aeea97@linux.starfivetech.com>
+Date: Fri, 7 Feb 2025 16:31:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250207013117.104205-2-zhangzekun11@huawei.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] riscv: dts: starfive: jh7110-common: replace
+ syscrg clock assignments
+To: E Shattow <e@freeshell.de>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Hal Feng <hal.feng@starfivetech.com>
+References: <20250203013730.269558-1-e@freeshell.de>
+ <20250203013730.269558-2-e@freeshell.de>
+ <CAJM55Z-M9MsJAtPi-t=_tNV3oG_kdDiS6H=H3koJwTEwB8GJ-Q@mail.gmail.com>
+ <981a3f30-c646-423a-a2dd-e19fef5c69e5@freeshell.de>
+Content-Language: en-US
+From: Hal Feng <hal.feng@linux.starfivetech.com>
+In-Reply-To: <981a3f30-c646-423a-a2dd-e19fef5c69e5@freeshell.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpsz:linux.starfivetech.com:qybglogicsvrgz:qybglogicsvrgz5a-1
+X-QQ-XMAILINFO: N7uEtCzC8wDSU5GgdvpIOvHsIwEu6cw1nHKJAHljI71wJqFJ4DB1Nzd1
+	1DgeW5Y0jB3YypTHFBHcwRVXmhLXjoeu69SKmNFwjvfc46Vt2DV0lG2J5ZNSXPm0L6aWaJ1
+	HKVwzb2F8ZNf3W+bYE1yfFGdAGiRoB8W3155WkELds2X1rcPIja1xIAEou8LTHodFDK+XNu
+	vcGqNHfi36mRb9o6QoXu6Q10d+VgNemyT8+xvtpy7TS2zXyHqHhkopgVWuHhT01GxFFhpN8
+	0CRhg4wPKH6PFlxeyyMf1dMWExbtMO3amwko2kCz9OTKlM7D1HdBE1169gjzhWt7F7HZd4S
+	w9kCiK8G+sHEsgUYpnlQmW0dYYPqYTTFRVrOse3B6VRZd3NqjTUSsif/qqDT6dGB7FFKTMV
+	CDkUnvIBMQMu9ECJTgbMogTTz/9gk4BoFOa//c2cQz6KV3oFRytO9Nl4mo0cI87UhyaJS8X
+	pi1vIAp5i8ZBl9CZnCuff/EwJNl9qg2UptfPF8i9b7qdjcn2E7/I1tULt+r76aZC/fkEwro
+	bQygAsm9KK38uzB3GCngRsqG9Wpa52YKF/HQQS2o8T5pFTA3oTmRZugTfwtUjJPgnJQFd0p
+	6sYMWOp6Or9e31le44fndCSKNPrx6sP/MOXTKG2Y8BRczb1f5WJ0p2d+OcwgVxMSm2TxYPS
+	SYWwEalk2vkoUm311gT0/amZa9JOsReFMbCnB8BoiavOQxdG6GWSVXhlJr31M70cBX2T6zv
+	5Ur1XePOctuFByD38ms+W2mmRpULp2xNJ9DgM/9dGclZkoq0luSUbiFDO2aClMHQ5cVgIJb
+	WA9nUbSDxvkHxZcMZYS3MGaXAYjgUtRwIOx2N7R+4mYSA0hf9Qdv8lCsOfH2HVS2fRn03AX
+	tTIdTt3Bxyl8faHqluZxT4HmR3T2r7WS8r59nHXLTNqDtsSOFPXqav4zn77Li4s+FZEiRiD
+	DVj7S34QgWra6TShSpP5s3Rn6m6pnG0sc4CM=
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
+X-QQ-RECHKSPAM: 0
 
-On Fri, Feb 07, 2025 at 09:31:09AM +0800, Zhang Zekun wrote:
-> There are many drivers use of_find_node_by_name() with a not-NULL
-> device_node pointer, and a number of callers would require a call to
-> of_node_get() before using it. There are also some drivers who forget
-> to call of_node_get() which would cause a ref count leak[1]. So, Add a
-> wraper function for of_find_node_by_name(), drivers may use this function
-> to call of_find_node_by_name() with the refcount already balanced.
+On 2/5/2025 8:52 PM, E Shattow wrote:
 > 
-> [1] https://lore.kernel.org/all/20241024015909.58654-1-zhangzekun11@huawei.com/
+> 
+> On 2/5/25 02:16, Emil Renner Berthing wrote:
+>> E Shattow wrote:
+>>> Replace syscrg assignments of clocks, clock parents, and rates with
+>>> default settings for compatibility with downstream boot loader SPL
+>>> secondary program loader.
+>>>
+>>> Signed-off-by: E Shattow <e@freeshell.de>
+>>> ---
+>>>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 11 ++++++++---
+>>>  1 file changed, 8 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>> index 48fb5091b817..a5661b677687 100644
+>>> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>> @@ -359,9 +359,14 @@ spi_dev0: spi@0 {
+>>>  };
+>>>
+>>>  &syscrg {
+>>> -	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>,
+>>> -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
+>>> -	assigned-clock-rates = <500000000>, <1500000000>;
+>>> +	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
+>>> +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
+>>> +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
+>>> +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
+>>> +	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
+>>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+>>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+>>> +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
+>> 
+>> I think Conor asked about this too, but you still don't write why it's ok to
+>> drop the 500MHz and 1,5GHz assignments to the cpu-core and pll0 clocks
+>> respectively. You should add this to the commit message itself.
+>> 
+>> /Emil
+> 
+> Is this a remedy for a bug in the JH7110 CPU? I'm not clear why tweaking
+> the frequencies and increasing core voltage was ever needed.
+> 
+> This goes back to series "clk: starfive: jh7110-sys: Fix lower rate of
+> CPUfreq by setting PLL0 rate to 1.5GHz" [1].
+> 
+> Since [1] I have had problems with several passively cooled Milk-V Mars
+> CM Lite systems powering off due to thermal limits. My experience then
+> is that the specialized 1.5GHz operation is not appropriate for all
+> JH7110 CPU board layouts and applications.
+> 
+> Hal says I failed to get these assignments in Linux to work in U-Boot
+> because U-Boot doesn't have driver support to increase CPU voltage, and
+> Hal offering to add this to a driver in U-Boot... but that's the wrong
+> way around in my opinion, unless there's some defect in the JH7110 CPU
+> that it won't run reliably with hardware defaults.
+> 
+> 1:
+> https://lore.kernel.org/all/20240603020607.25122-1-xingyu.wu@starfivetech.com/
+> 
+> What is the correct thing to do here?
+> 
+> -E
+> 
+> From mboxrd@z Thu Jan  1 00:00:00 1970
+> Return-Path: <linux-riscv-bounces+linux-riscv=archiver.kernel.org@lists.infradead.org>
+> X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+> 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
+> Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+> 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+> 	(No client certificate requested)
+> 	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9A24C02192
+> 	for <linux-riscv@archiver.kernel.org>; Wed,  5 Feb 2025 13:10:59 +0000 (UTC)
+> DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+> 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+> 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+> 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+> 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+> 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+> 	List-Owner; bh=GY86gaXkDRjEBAUNvogHkHuyO230wjLSabDM8v7zKQQ=; b=Un7uhhDTAT8/9N
+> 	FxyCZTIeuEf9Tz2EWguoSASPTIRzVsA8OD+zansoq7n0Em+ejnESLoVicWRdNflaSCojelA6mxlZr
+> 	79fy10oRgiIKMOAb1fwJcsq+rGF8jSdXwi0a2zKjGYb4u4ZNy/uLBiIynsSH/VCYysTKQK6p7wAiC
+> 	7RYsK3WfvbZKMTBmH2vKxA7ERtfZGfNAJqRjHzBM06+ZfEDf9V2UQ3pGUdGPoTZYkQoS8smFEx47Z
+> 	U3KclAiQD6NRzOmPD/VXwUGXQEpLonSaLk7kbAdo3cWww6Wyou3w4XqxHQpym6FyLsKAWWSk7d4vx
+> 	ZbYQckPNKc65NmLst1TA==;
+> Received: from localhost ([::1] helo=bombadil.infradead.org)
+> 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
+> 	id 1tffB9-00000003Lk1-2ly8;
+> 	Wed, 05 Feb 2025 13:10:55 +0000
+> Received: from freeshell.de ([2a01:4f8:231:482b::2])
+> 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+> 	id 1tfetw-00000003I2R-42Et
+> 	for linux-riscv@lists.infradead.org;
+> 	Wed, 05 Feb 2025 12:53:10 +0000
+> Received: from [192.168.2.35] (unknown [98.97.25.24])
+> 	(Authenticated sender: e)
+> 	by freeshell.de (Postfix) with ESMTPSA id 7ADA8B4C01E1;
+> 	Wed,  5 Feb 2025 13:53:01 +0100 (CET)
+> Message-ID: <981a3f30-c646-423a-a2dd-e19fef5c69e5@freeshell.de>
+> Date: Wed, 5 Feb 2025 04:52:59 -0800
+> MIME-Version: 1.0
+> User-Agent: Mozilla Thunderbird
+> Subject: Re: [PATCH v2 1/5] riscv: dts: starfive: jh7110-common: replace
+>  syscrg clock assignments
+> To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+>  Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+>  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+>  Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+>  <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+> Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+>  linux-riscv@lists.infradead.org
+> References: <20250203013730.269558-1-e@freeshell.de>
+>  <20250203013730.269558-2-e@freeshell.de>
+>  <CAJM55Z-M9MsJAtPi-t=_tNV3oG_kdDiS6H=H3koJwTEwB8GJ-Q@mail.gmail.com>
+> Content-Language: en-US
+> From: E Shattow <e@freeshell.de>
+> In-Reply-To: <CAJM55Z-M9MsJAtPi-t=_tNV3oG_kdDiS6H=H3koJwTEwB8GJ-Q@mail.gmail.com>
+> X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+> X-CRM114-CacheID: sfid-20250205_045309_156119_468548BF 
+> X-CRM114-Status: GOOD (  16.14  )
+> X-BeenThere: linux-riscv@lists.infradead.org
+> X-Mailman-Version: 2.1.34
+> Precedence: list
+> List-Id: <linux-riscv.lists.infradead.org>
+> List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-riscv>,
+>  <mailto:linux-riscv-request@lists.infradead.org?subject=unsubscribe>
+> List-Archive: <http://lists.infradead.org/pipermail/linux-riscv/>
+> List-Post: <mailto:linux-riscv@lists.infradead.org>
+> List-Help: <mailto:linux-riscv-request@lists.infradead.org?subject=help>
+> List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-riscv>,
+>  <mailto:linux-riscv-request@lists.infradead.org?subject=subscribe>
+> Content-Type: text/plain; charset="us-ascii"
+> Content-Transfer-Encoding: 7bit
+> Sender: "linux-riscv" <linux-riscv-bounces@lists.infradead.org>
+> Errors-To: linux-riscv-bounces+linux-riscv=archiver.kernel.org@lists.infradead.org
+> 
+> 
+> 
+> On 2/5/25 02:16, Emil Renner Berthing wrote:
+>> E Shattow wrote:
+>>> Replace syscrg assignments of clocks, clock parents, and rates with
+>>> default settings for compatibility with downstream boot loader SPL
+>>> secondary program loader.
+>>>
+>>> Signed-off-by: E Shattow <e@freeshell.de>
+>>> ---
+>>>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 11 ++++++++---
+>>>  1 file changed, 8 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>> index 48fb5091b817..a5661b677687 100644
+>>> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>> @@ -359,9 +359,14 @@ spi_dev0: spi@0 {
+>>>  };
+>>>
+>>>  &syscrg {
+>>> -	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>,
+>>> -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
+>>> -	assigned-clock-rates = <500000000>, <1500000000>;
+>>> +	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
+>>> +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
+>>> +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
+>>> +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
+>>> +	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
+>>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+>>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+>>> +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
+>> 
+>> I think Conor asked about this too, but you still don't write why it's ok to
+>> drop the 500MHz and 1,5GHz assignments to the cpu-core and pll0 clocks
+>> respectively. You should add this to the commit message itself.
+>> 
+>> /Emil
+> 
+> Is this a remedy for a bug in the JH7110 CPU? I'm not clear why tweaking
+> the frequencies and increasing core voltage was ever needed.
+> 
+> This goes back to series "clk: starfive: jh7110-sys: Fix lower rate of
+> CPUfreq by setting PLL0 rate to 1.5GHz" [1].
+> 
+> Since [1] I have had problems with several passively cooled Milk-V Mars
+> CM Lite systems powering off due to thermal limits. My experience then
+> is that the specialized 1.5GHz operation is not appropriate for all
+> JH7110 CPU board layouts and applications.
+> 
+> Hal says I failed to get these assignments in Linux to work in U-Boot
+> because U-Boot doesn't have driver support to increase CPU voltage, and
+> Hal offering to add this to a driver in U-Boot... but that's the wrong
+> way around in my opinion, unless there's some defect in the JH7110 CPU
+> that it won't run reliably with hardware defaults.
+> 
+> 1:
+> https://lore.kernel.org/all/20240603020607.25122-1-xingyu.wu@starfivetech.com/
+> 
+> What is the correct thing to do here?
 
-Hi Zhang Zekun,
+Please see my reply in
+https://lore.kernel.org/all/ZQ2PR01MB130736F5C893337606FD6937E6F1A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn/
 
-thank you for working on this issue!
+Thanks.
 
-First of all, let's take a step back and analyze the initial problem.
-Everything following is only my opinion...
+Best regards,
+Hal
 
-The main issue I see is that the current API - of_find_node_by_name -
-modifies the refcount of its input by calling of_node_put(from) as part
-of its search. Typically, a "find" function is expected to treat its
-input as read-only. That is, when you pass an object into such a
-function, you expect its reference count to remain unchanged unless
-ownership is explicitly transferred. In this case, lowering the refcount
-on the input node is counterintuitive and already lead to unexpected
-behavior and subtle bugs.
-
-To address this, the workaround introduces a wrapper function,
-of_find_node_by_name_balanced, which first increments the input’s
-refcount (via of_node_get()) before calling the original function. While
-this "balances" the refcount change, the naming remains problematic from
-my perspective. The "_balanced" suffix isn’t part of our common naming
-conventions (traditions? :)). Most drivers expect that a function
-starting with "find" will not alter the reference count of its input.
-The term "balanced" doesn’t clearly convey that the input's refcount is
-being explicitly managed - it instead obscures the underlying behavior,
-leaving many developers confused about what guarantees the API provides.
-
-In my view, a more natural solution would be to redesign the API so that
-it doesn’t modify the input object’s refcount at all. Instead, it should
-solely increase the refcount of the returned node (if found) for safe
-asynchronous usage. This approach would align with established
-conventions where "find" implies no side effects on inputs or output,
-and a "get" indicates that the output comes with an extra reference. For
-example, a function named of_get_node_by_name would clearly signal that
-only the returned node is subject to a refcount increase while leaving
-the input intact.
-
-Thus, while the current workaround "balances" the reference count, it
-doesn't address the underlying design flaw. The naming still suggests a
-"find" function that should leave the input untouched, which isn’t the
-case here. A redesign of the API - with both the behavior and naming
-aligned to common expectations - would be a clearer and more robust
-solution.
-
-Nevertheless, it is only my POV, and the final decision rests with the
-OpenFirmware framework maintainers.
-
-Best Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
