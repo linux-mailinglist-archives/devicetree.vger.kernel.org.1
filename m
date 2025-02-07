@@ -1,290 +1,127 @@
-Return-Path: <devicetree+bounces-143980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 641CAA2C6D5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:22:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6426EA2C6E2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:23:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63B993AC3A5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:21:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 822013A3419
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:22:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D98423F29E;
-	Fri,  7 Feb 2025 15:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30FA323FC40;
+	Fri,  7 Feb 2025 15:21:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z0deVuJR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-42a9.mail.infomaniak.ch (smtp-42a9.mail.infomaniak.ch [84.16.66.169])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B917723F283
-	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 15:20:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.66.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06C5923F296;
+	Fri,  7 Feb 2025 15:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738941626; cv=none; b=RufPC/mD7mkRj893czlyqul16YDBHVW936Rd3oRuZgWiJe9CNDZXq5aPEg/pha9pr8H/dVuWc6Dle6pcWFruzZ7lN8S86yq8NgDrK0wTQCx+s/XROMBfOCf8Ycqb3+s3u1cslatlfWB0dBKSYPdZKE9S8bSeMVRarsR1XECGqrg=
+	t=1738941696; cv=none; b=fZaFwRAcvp0EQJ5/pJKEIXLkVz+EJ0No+AjW+u0fL54MY/nxX4q3i/qEhlYW0UghFGZbPf4WWjSnCz1C7z8OyatAz6FhXuO+MPwCS84DZMllfTCAPe56BU5+GzxglXW6HBOw09ziGp/1B51t8VXhWBhGt6WtplhYgVLUVNzQKF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738941626; c=relaxed/simple;
-	bh=slTTbPGs4bNFRNPJdG1gszDBGrVOBLLVAlGbsbg6IKo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=K60Bc8epu7pE/NFXNbLURYzLoZwOdaRaWJQhf/AmdqUZFSnu2VyGIMnRRytLR1qz419i4uQHSEUihDmLh6JWB2PXWGmXQYy35rMjhisKpN2ClXpej6FXKZ1Nm7lIcgaCxKMiFB10mmGTQuHWBMuIg3ZeD0F5BFtF44Xb1nmfU9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=84.16.66.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-4-0000.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10:40ca:feff:fe05:0])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YqHhw0vrKzNhJ;
-	Fri,  7 Feb 2025 16:20:16 +0100 (CET)
-Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YqHht5cbszpRk;
-	Fri,  7 Feb 2025 16:20:14 +0100 (CET)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Fri, 07 Feb 2025 16:20:01 +0100
-Subject: [PATCH v5 4/4] arm64: dts: rockchip: minimal support for Pre-ICT
- tester adapter for RK3588 Jaguar
+	s=arc-20240116; t=1738941696; c=relaxed/simple;
+	bh=EkW+pm0yGNLA/SI9agjihBUdPSsVY6nJsC8yARN0ltI=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=HDFKSuqbOTQ+BIckCyX3+9VwD4hyELLvN9/hPStyZFUC+XZJS0oP6pD078i/owUBHaqCLSbkpsXGQCkmH2F4/jq+grE2/BJUlt1HgV06k9R39iwjpZp0y+GNCAZEKo1edcPe01Q3y6mYJX3Zu9+crLrKjVkbrk/L4rjvovTvsro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z0deVuJR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FA95C4CEDF;
+	Fri,  7 Feb 2025 15:21:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738941695;
+	bh=EkW+pm0yGNLA/SI9agjihBUdPSsVY6nJsC8yARN0ltI=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Z0deVuJRxZUm706INmy8eEh3v7EkNd2suaI6hUy7/aXTkHUpT1akjkughAFDytr8Y
+	 ZYo4tXxUIFJOXoqmBHuCvMVXu732RmhM4He7igTyiZ9VfxqgYkNxztOKs9MnoTDgxa
+	 f/qdfShYoLqTEwybR289x5mCTrm51H6P+pMLuD8BNbaHvtunR5Mb7KrKOxb6Vdfd7k
+	 F8Q8N+RIQBSDRVthmClR1KM2dFrj/97xaCxb/28aU1hrNRsuUvJNQzP4w8ZlGxkYZr
+	 V8Bo9a+Hr5YuH3kfjaa8Dxnph4SYrzgg1sHjT45cfl0TC2vcuSZq/TajELlTj0PM06
+	 CURtMOaZ1k1KA==
+Date: Fri, 07 Feb 2025 09:21:34 -0600
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250207-pre-ict-jaguar-v5-4-a70819ea0692@cherry.de>
-References: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
-In-Reply-To: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>, 
- Michael Riesch <michael.riesch@wolfvision.net>
-Cc: Jonas Karlman <jonas@kwiboo.se>, Dragan Simic <dsimic@manjaro.org>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Infomaniak-Routing: alpha
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Haotien Hsu <haotienh@nvidia.com>, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, linux-tegra@vger.kernel.org, 
+ Henry Lin <henryl@nvidia.com>, Wayne Chang <waynec@nvidia.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Brad Griffis <bgriffis@nvidia.com>
+To: Ivy Huang <yijuh@nvidia.com>
+In-Reply-To: <20250206222731.3691073-1-yijuh@nvidia.com>
+References: <20250206222731.3691073-1-yijuh@nvidia.com>
+Message-Id: <173894150768.331065.3745668687012224338.robh@kernel.org>
+Subject: Re: [PATCH] arm64: tegra: Enable Tegra234 USB remote wakeup
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
 
-The Pre-ICT tester adapter connects to RK3588 Jaguar SBC through its
-proprietary Mezzanine connector.
+On Thu, 06 Feb 2025 22:27:31 +0000, Ivy Huang wrote:
+> From: Haotien Hsu <haotienh@nvidia.com>
+> 
+> Populate the USB wake-up interrupts for Tegra234 to enable
+> the USB device to wake the system up from low power modes.
+> 
+> Signed-off-by: Henry Lin <henryl@nvidia.com>
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Signed-off-by: Haotien Hsu <haotienh@nvidia.com>
+> Signed-off-by: Ivy Huang <yijuh@nvidia.com>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
+> 
 
-It exposes a PCIe Gen2 1x M.2 connector and two proprietary camera
-connectors. Support for the latter will come once the rest of the camera
-stack is supported.
 
-Additionally, the adapter loops some GPIOs together as well as route
-some GPIOs to power rails.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-This adapter is used for manufacturing RK3588 Jaguar to be able to test
-the Mezzanine connector is properly soldered.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
- arch/arm64/boot/dts/rockchip/Makefile              |   5 +
- .../dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso | 171 +++++++++++++++++++++
- 2 files changed, 176 insertions(+)
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 8f93e0c4d6032d0ca2d93f44384c027e53aa5efb..58664453e019496420dfec7b781cc313fab04185 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -145,6 +145,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-firefly-itx-3588j.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-friendlyelec-cm3588-nas.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-h96-max-v58.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6-lts.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-ok3588-c.dtb
-@@ -197,6 +198,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
- rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
- 	rk3588-edgeble-neu6a-wifi.dtbo
- 
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtb
-+rk3588-jaguar-pre-ict-tester-dtbs := rk3588-jaguar.dtb \
-+	rk3588-jaguar-pre-ict-tester.dtbo
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtb
- rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb \
- 	rk3588-rock-5b-pcie-ep.dtbo
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso b/arch/arm64/boot/dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso
-new file mode 100644
-index 0000000000000000000000000000000000000000..9d44dfe2f30d793accb994a230c58038f0c3daad
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso
-@@ -0,0 +1,171 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2024 Cherry Embedded Solutions GmbH
-+ *
-+ * Device Tree Overlay for the Pre-ICT tester adapter for the Mezzanine
-+ * connector on RK3588 Jaguar.
-+ *
-+ * This adapter has a PCIe Gen2 x1 M.2 M-Key connector and two proprietary
-+ * camera connectors (each their own I2C bus, clock, reset and PWM lines as well
-+ * as 2-lane CSI).
-+ *
-+ * This adapter routes some GPIOs to power rails and loops together some other
-+ * GPIOs.
-+ *
-+ * This adapter is used during manufacturing for validating proper soldering of
-+ * the mezzanine connector.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+
-+&{/} {
-+	pre_ict_tester_vcc_1v2: regulator-pre-ict-tester-vcc-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pre_ict_tester_vcc_1v2";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+
-+	pre_ict_tester_vcc_2v8: regulator-pre-ict-tester-vcc-2v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pre_ict_tester_vcc_2v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+};
-+
-+&combphy0_ps {
-+	status = "okay";
-+};
-+
-+&gpio3 {
-+	pinctrl-0 = <&pre_ict_pwr2gpio>;
-+	pinctrl-names = "default";
-+};
-+
-+&pcie2x1l2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2x1l2_perstn_m0>;
-+	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>; /* PCIE20X1_2_PERSTN_M0 */
-+	vpcie3v3-supply = <&vcc_3v3_s3>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	pcie2x1l2 {
-+		pcie2x1l2_perstn_m0: pcie2x1l2-perstn-m0 {
-+			rockchip,pins = <3 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pre-ict-tester {
-+		pre_ict_pwr2gpio: pre-ict-pwr2gpio-pins {
-+			rockchip,pins =
-+			/*
-+			 * GPIO3_A3 requires two power rails to be properly
-+			 * routed to the mezzanine connector to report a proper
-+			 * value: VCC_1V8_S0_1 and VCC_IN_2. It may report an
-+			 * incorrect value if VCC_1V8_S0_1 isn't properly routed,
-+			 * but GPIO3_C6 would catch this HW soldering issue.
-+			 * If VCC_IN_2 is properly routed, GPIO3_A3 should be
-+			 * LOW. The signal shall not read HIGH in the event
-+			 * GPIO3_A3 isn't properly routed due to soldering
-+			 * issue. Therefore, let's enforce a pull-up (which is
-+			 * the SoC default for this pin).
-+			 */
-+				<3 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>,
-+			/*
-+			 * GPIO3_A4 is directly routed to VCC_1V8_S0_2 power
-+			 * rail. It should be HIGH if all is properly soldered.
-+			 * To guarantee that, a pull-down is enforced (which is
-+			 * the SoC default for this pin) so that LOW is read if
-+			 * the loop doesn't exist on HW (soldering issue on
-+			 * either signals).
-+			 */
-+				<3 RK_PA4 RK_FUNC_GPIO &pcfg_pull_down>,
-+			/*
-+			 * GPIO3_B2 requires two power rails to be properly
-+			 * routed to the mezzanine connector to report a proper
-+			 * value: VCC_1V8_S0_1 and VCC_IN_1. It may report an
-+			 * incorrect value if VCC_1V8_S0_1 isn't properly routed,
-+			 * but GPIO3_C6 would catch this HW soldering issue.
-+			 * If VCC_IN_1 is properly routed, GPIO3_B2 should be
-+			 * LOW. This is an issue if GPIO3_B2 isn't properly
-+			 * routed due to soldering issue, because GPIO3_B2
-+			 * default bias is pull-down therefore being LOW. So
-+			 * the worst case scenario and the pass scenario expect
-+			 * the same value. Make GPIO3_B2 a pull-up so that a
-+			 * soldering issue on GPIO3_B2 reports HIGH but proper
-+			 * soldering reports LOW.
-+			 */
-+				<3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>,
-+			/*
-+			 * GPIO3_C6 is directly routed to VCC_1V8_S0_1 power
-+			 * rail. It should be HIGH if all is properly soldered.
-+			 * This is an issue if GPIO3_C6 or VCC_1V8_S0_1 isn't
-+			 * properly routed due to soldering issue, because
-+			 * GPIO3_C6 default bias is pull-up therefore being HIGH
-+			 * in all cases:
-+			 *  - GPIO3_C6 is floating (so HIGH) if GPIO3_C6 is not
-+			 *    routed properly,
-+			 *  - GPIO3_C6 is floating (so HIGH) if VCC_1V8_S0_1 is
-+			 *    not routed properly,
-+			 *  - GPIO3_C6 is HIGH if everything is proper,
-+			 * Make GPIO3_C6 a pull-down so that a soldering issue
-+			 * on GPIO3_C6 or VCC_1V8_S0_1 reports LOW but proper
-+			 * soldering reports HIGH.
-+			 */
-+				<3 RK_PC6 RK_FUNC_GPIO &pcfg_pull_down>,
-+			/*
-+			 * GPIO3_D2 is routed to VCC_5V0_1 power rail through a
-+			 * voltage divider on the adapter.
-+			 * It should be HIGH if all is properly soldered.
-+			 * To guarantee that, a pull-down is enforced (which is
-+			 * the SoC default for this pin) so that LOW is read if
-+			 * the loop doesn't exist on HW (soldering issue on
-+			 * either signals).
-+			 */
-+				<3 RK_PD2 RK_FUNC_GPIO &pcfg_pull_down>,
-+			/*
-+			 * GPIO3_D3 is routed to VCC_5V0_2 power rail through a
-+			 * voltage divider on the adapter.
-+			 * It should be HIGH if all is properly soldered.
-+			 * To guarantee that, a pull-down is enforced (which is
-+			 * the SoC default for this pin) so that LOW is read if
-+			 * the loop doesn't exist on HW (soldering issue on
-+			 * either signals).
-+			 */
-+				<3 RK_PD3 RK_FUNC_GPIO &pcfg_pull_down>,
-+			/*
-+			 * GPIO3_D4 is routed to VCC_3V3_S3_1 power rail through
-+			 * a voltage divider on the adapter.
-+			 * It should be HIGH if all is properly soldered.
-+			 * To guarantee that, a pull-down is enforced (which is
-+			 * the SoC default for this pin) so that LOW is read if
-+			 * the loop doesn't exist on HW (soldering issue on
-+			 * either signals).
-+			 */
-+				<3 RK_PD4 RK_FUNC_GPIO &pcfg_pull_down>,
-+			/*
-+			 * GPIO3_D5 is routed to VCC_3V3_S3_2 power rail through
-+			 * a voltage divider on the adapter.
-+			 * It should be HIGH if all is properly soldered.
-+			 * To guarantee that, a pull-down is enforced (which is
-+			 * the SoC default for this pin) so that LOW is read if
-+			 * the loop doesn't exist on HW (soldering issue on
-+			 * either signals).
-+			 */
-+				<3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+};
+  pip3 install dtschema --upgrade
 
--- 
-2.48.1
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/nvidia/' for 20250206222731.3691073-1-yijuh@nvidia.com:
+
+arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [242, 76, 4], [242, 77, 4], [242, 78, 4], [242, 79, 4], [242, 80, 4], [242, 81, 4], [242, 82, 4]] is too long
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [256, 76, 4], [256, 77, 4], [256, 78, 4], [256, 79, 4], [256, 80, 4], [256, 81, 4], [256, 82, 4]] is too long
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: usb@3610000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended' were unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [251, 76, 4], [251, 77, 4], [251, 78, 4], [251, 79, 4], [251, 80, 4], [251, 81, 4], [251, 82, 4]] is too long
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: usb@3610000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended' were unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [251, 76, 4], [251, 77, 4], [251, 78, 4], [251, 79, 4], [251, 80, 4], [251, 81, 4], [251, 82, 4]] is too long
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: usb@3610000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended' were unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [256, 76, 4], [256, 77, 4], [256, 78, 4], [256, 79, 4], [256, 80, 4], [256, 81, 4], [256, 82, 4]] is too long
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: usb@3610000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended' were unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: usb@3610000: interrupts-extended: [[1, 0, 163, 4], [1, 0, 164, 4], [252, 76, 4], [252, 77, 4], [252, 78, 4], [252, 79, 4], [252, 80, 4], [252, 81, 4], [252, 82, 4]] is too long
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: usb@3610000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended' were unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
+
+
+
+
 
 
