@@ -1,119 +1,918 @@
-Return-Path: <devicetree+bounces-143938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714F0A2C424
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:54:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D39DA2C4A8
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:10:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D6597A48F6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 13:53:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C4E33AD942
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3487A1F4E21;
-	Fri,  7 Feb 2025 13:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 058FC225799;
+	Fri,  7 Feb 2025 14:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="McjOa39a";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="cexhNhoe"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="ghrDFjIX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 268451F4169;
-	Fri,  7 Feb 2025 13:54:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E30B7226198;
+	Fri,  7 Feb 2025 14:03:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738936472; cv=none; b=bTseosiTaFguagEhDBBxXLro9djrLqdtXnSZwb+g63C2rkOvuMYk/iUsgMge1i9sekcyT0EYMaUzQKSw/5YyBMMPLll0KyGFahW0lw9GU4M5tkpOQScsqweEoQ9Wu92EKkEha33ujNIt3eysbeGw/QChiqVdKD1jZpjPLUagoqw=
+	t=1738936985; cv=none; b=p9gQT4n2JHom+Vh2hN4zxxA/hOGpo9hOX94bUxZDnCD2FNPb3gS6v0lc59dmhDjhGD/Zz6hbaeq0mgh9HJBAYna0039Y5gOhbZ1FwjtLPeLVThZ0N7aWJvtQ9BRaPrWbMF73Csb5sIok/J/+42ZdWfo3PvNBtn+CF34+EpGlSd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738936472; c=relaxed/simple;
-	bh=Hpf80LgbTQN2vdnXpc+7IlbSWs0fEJnOvnGxfOERoYA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=swTTLqdWxxleIdifULLFwiTQCp25nscGlpLzKdMuBzgRA+SCz0LJjWPm/6JqES/NMpJx5Ww62N05JqCUiYHT9p3chuIszS24b5SFi6aaJ3rmKqasp0FJh0drJObnaYvoTLE0+1SIhGPzQgO3+hAaL/vtu0hPjRfE75pDJWLorW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=McjOa39a; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=cexhNhoe reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1738936468; x=1770472468;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nTIUisbXh4QjJS+LI8f+3ax5wyozSgfahYNeRHOmjd8=;
-  b=McjOa39aQadaQ7JHLisnurl9xlRky8rK31PuIYU1dNe+bkJBuOoQEKiC
-   dW6n0aGPT2gW/a9a7of0X5zY/O3r/W1d+IqiHXc4s+39IUg+4ivbojW2N
-   hZOH3HVQhHLt5BNMJMDanKQfcQ8SDqXOEum4GqP3RSJn11P76gXF5aZrg
-   Z9a9SYc3HR6uxHvj7AmRmyUDxDyu0rI7a2lcGLfDWu3gYhLO2PTHB0wYB
-   Tb4mLV0GjNjAFa0cxC6mPpYFFPg/k7uyDZKifuHZKSHEwrlTkg8c/WEBF
-   25p1/NZrQ+Ow2b1gAxQd8DvbNA9JRiPX0C0NDZzmg+fLuH5HA6R7T4fXD
-   w==;
-X-CSE-ConnectionGUID: SkqYzeS5Rt+3j4CFbpj6KA==
-X-CSE-MsgGUID: MgMByEkoQciFcPo1UoKVkg==
-X-IronPort-AV: E=Sophos;i="6.13,267,1732575600"; 
-   d="scan'208";a="41645049"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 Feb 2025 14:54:03 +0100
-X-CheckPoint: {67A6107B-3-8F72533B-EF5B5974}
-X-MAIL-CPID: 3037226F90E1CD7D000B19975831E324_1
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E727E166061;
-	Fri,  7 Feb 2025 14:53:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1738936438;
+	s=arc-20240116; t=1738936985; c=relaxed/simple;
+	bh=QSpzMBCIiH7HGQWLT2zzCYyRKsWpv7LsStbHuNI9Few=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FJuKTS1xsG4dkPlIrDWQD/rZk8dyg0oTwK54kMfeNR3EXSA7cQd0EyTO8fXbdyYztKa6KTFDkGZA9A6/O2Zzk17HlvZC3JGtZLo7E17HDjFtAo2Gb9n6hhaf9jmHV20IVpKDwl27SLqxsf0wqiMbOfoO6VCFDXB+w3lRAdcEOJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=ghrDFjIX; arc=none smtp.client-ip=134.0.28.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+	by mxout4.routing.net (Postfix) with ESMTP id F0F5F100901;
+	Fri,  7 Feb 2025 13:55:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1738936516;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nTIUisbXh4QjJS+LI8f+3ax5wyozSgfahYNeRHOmjd8=;
-	b=cexhNhoejlZHe3odS8rdMig4FKDNX8jkHE+AAJeDbCmBDLy8YuQUlbzP6fWBZiP1rC0QLT
-	yWXEmulgysfbhX1aRVaZBJ6BwTCj6qIjGrR9UudolHbudaVgdUeNc0Io0215+DKf9tfVGG
-	vNwvY/VrGhBJkn1DLwIbnRJZcWZCQGC6a60dPEeMRnMy66gwEKJnLEUUThGGgKvNzdw3+f
-	I6OS76LGXJaMrOq83RL6pGv+iA0fJE6DcjitJujqnj6saXLOuA59dtnBIiXUCdn85yCMrn
-	DPRFLnpKm7FBwq2E3x0fg47691IDkpNncOOJKTr6cUiG/r+63vrBrTRZcSQhsg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-Cc: linux@ew.tq-group.com, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] TQMa93xx fixes
-Date: Fri, 07 Feb 2025 14:53:56 +0100
-Message-ID: <3882355.iIbC2pHGDl@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250107141117.984652-1-alexander.stein@ew.tq-group.com>
-References: <20250107141117.984652-1-alexander.stein@ew.tq-group.com>
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=wCTfjr+f1FafIc1yYmGfv3Kx0C4OjTm44rD+bxKZn5Q=;
+	b=ghrDFjIX48psAkBcd6Y88E++Na1OEarqQ/AzlreK1r8oK7UWtxLys6BMoiQjeoExuiQZ5s
+	tn+lY+GtEQowoZ3/WDJkYPE1nfkjsOKvF9gqc4002smsB//vmPW+fbizLlcpWIxiBUKw6F
+	cBnVmVdYxNLLKWAZ2mw4Aj1hfDGBubs=
+Received: from frank-u24.. (fttx-pool-217.61.148.125.bambit.de [217.61.148.125])
+	by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 2EE5810010F;
+	Fri,  7 Feb 2025 13:55:15 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH] arm64: dts: mediatek: mt7988a-bpi-r4: allow hw variants of bpi-r4
+Date: Fri,  7 Feb 2025 14:54:59 +0100
+Message-ID: <20250207135501.30741-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 50e4dac5-3d8a-4e0c-87d8-2e55e4fd535c
 
-Hello,
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Am Dienstag, 7. Januar 2025, 15:11:14 CET schrieb Alexander Stein:
-> Hi,
->=20
-> this series includes small fixes to TQMa93xx DT:
-> * Sorting DT nodes alphabetically
-> * Invert default for Powerdown/Disables on Mini-PCIe slot
-> * Swap order of ethernet devices
->=20
-> Alexander Stein (3):
->   arm64: dts: freescale: imx93-tqma9352-mba93xxca: sort pinctrl nodes
->   arm64: dts: mba93xxca: Do not assert power-down pins
->   arm64: dts: tqma9352-mba93xx[cl]a: swap ethernet aliases
->=20
->  .../freescale/imx93-tqma9352-mba93xxca.dts    | 54 +++++++++----------
->  .../freescale/imx93-tqma9352-mba93xxla.dts    |  6 +--
->  2 files changed, 30 insertions(+), 30 deletions(-)
+Sinovoip has released other variants of Bananapi-R4 board.
+The known changes affecting only the LAN SFP+ slot which is replaced
+by a 2.5G phy with optional PoE.
 
-Any comment on this series? Thanks
+As the SFP-Ports are not upstreamed yet this patch simply renames the
+current board dts to dtsi, creating new dts for the board including
+the new dtsi and move i2c-mux channel for sfp lan to board dts.
 
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+ .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts  | 404 +-----------------
+ .../dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi | 403 +++++++++++++++++
+ 2 files changed, 407 insertions(+), 400 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
 
+diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
+index 6623112c24c7..431bf066fffb 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
+@@ -2,408 +2,12 @@
+ 
+ /dts-v1/;
+ 
+-#include <dt-bindings/gpio/gpio.h>
+-#include <dt-bindings/regulator/richtek,rt5190a-regulator.h>
++#include "mt7988a-bananapi-bpi-r4.dtsi"
+ 
+-#include "mt7988a.dtsi"
+-
+-/ {
+-	compatible = "bananapi,bpi-r4", "mediatek,mt7988a";
+-	model = "Banana Pi BPI-R4";
+-	chassis-type = "embedded";
+-
+-	chosen {
+-		stdout-path = "serial0:115200n8";
+-	};
+-
+-	reg_1p8v: regulator-1p8v {
+-		compatible = "regulator-fixed";
+-		regulator-name = "fixed-1.8V";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <1800000>;
+-		regulator-boot-on;
+-		regulator-always-on;
+-	};
+-
+-	reg_3p3v: regulator-3p3v {
+-		compatible = "regulator-fixed";
+-		regulator-name = "fixed-3.3V";
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-		regulator-boot-on;
+-		regulator-always-on;
+-	};
+-};
+-
+-&cpu0 {
+-	proc-supply = <&rt5190_buck3>;
+-};
+-
+-&cpu1 {
+-	proc-supply = <&rt5190_buck3>;
+-};
+-
+-&cpu2 {
+-	proc-supply = <&rt5190_buck3>;
+-};
+-
+-&cpu3 {
+-	proc-supply = <&rt5190_buck3>;
+-};
+-
+-&cpu_thermal {
+-	trips {
+-		cpu_trip_hot: hot {
+-			temperature = <120000>;
+-			hysteresis = <2000>;
+-			type = "hot";
+-		};
+-
+-		cpu_trip_active_high: active-high {
+-			temperature = <115000>;
+-			hysteresis = <2000>;
+-			type = "active";
+-		};
+-
+-		cpu_trip_active_med: active-med {
+-			temperature = <85000>;
+-			hysteresis = <2000>;
+-			type = "active";
+-		};
+-
+-		cpu_trip_active_low: active-low {
+-			temperature = <40000>;
+-			hysteresis = <2000>;
+-			type = "active";
+-		};
+-	};
+-};
+-
+-&i2c0 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&i2c0_pins>;
+-	status = "okay";
+-
+-	rt5190a_64: rt5190a@64 {
+-		compatible = "richtek,rt5190a";
+-		reg = <0x64>;
+-		vin2-supply = <&rt5190_buck1>;
+-		vin3-supply = <&rt5190_buck1>;
+-		vin4-supply = <&rt5190_buck1>;
+-
+-		regulators {
+-			rt5190_buck1: buck1 {
+-				regulator-name = "rt5190a-buck1";
+-				regulator-min-microvolt = <5090000>;
+-				regulator-max-microvolt = <5090000>;
+-				regulator-allowed-modes =
+-				<RT5190A_OPMODE_AUTO>, <RT5190A_OPMODE_FPWM>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-			buck2 {
+-				regulator-name = "vcore";
+-				regulator-min-microvolt = <600000>;
+-				regulator-max-microvolt = <1400000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-			rt5190_buck3: buck3 {
+-				regulator-name = "vproc";
+-				regulator-min-microvolt = <600000>;
+-				regulator-max-microvolt = <1400000>;
+-				regulator-boot-on;
+-			};
+-			buck4 {
+-				regulator-name = "rt5190a-buck4";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-allowed-modes =
+-				<RT5190A_OPMODE_AUTO>, <RT5190A_OPMODE_FPWM>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-			ldo {
+-				regulator-name = "rt5190a-ldo";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-		};
+-	};
+-};
+-
+-&i2c2 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&i2c2_1_pins>;
+-	status = "okay";
+-
+-	pca9545: i2c-mux@70 {
+-		compatible = "nxp,pca9545";
+-		reg = <0x70>;
+-		reset-gpios = <&pio 5 GPIO_ACTIVE_LOW>;
++&pca9545 {
++	i2c_sfp2: i2c@2 {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-
+-		i2c@0 {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-			reg = <0>;
+-
+-			pcf8563: rtc@51 {
+-				compatible = "nxp,pcf8563";
+-				reg = <0x51>;
+-				#clock-cells = <0>;
+-			};
+-
+-			eeprom@57 {
+-				compatible = "atmel,24c02";
+-				reg = <0x57>;
+-				size = <256>;
+-			};
+-
+-		};
+-
+-		i2c_sfp1: i2c@1 {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-			reg = <1>;
+-		};
+-
+-		i2c_sfp2: i2c@2 {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-			reg = <2>;
+-		};
++		reg = <2>;
+ 	};
+ };
+-
+-/* mPCIe SIM2 */
+-&pcie0 {
+-	status = "okay";
+-};
+-
+-/* mPCIe SIM3 */
+-&pcie1 {
+-	status = "okay";
+-};
+-
+-/* M.2 key-B SIM1 */
+-&pcie2 {
+-	status = "okay";
+-};
+-
+-/* M.2 key-M SSD */
+-&pcie3 {
+-	status = "okay";
+-};
+-
+-&pio {
+-	mdio0_pins: mdio0-pins {
+-		mux {
+-			function = "eth";
+-			groups = "mdc_mdio0";
+-		};
+-
+-		conf {
+-			pins = "SMI_0_MDC", "SMI_0_MDIO";
+-			drive-strength = <8>;
+-		};
+-	};
+-
+-	i2c0_pins: i2c0-g0-pins {
+-		mux {
+-			function = "i2c";
+-			groups = "i2c0_1";
+-		};
+-	};
+-
+-	i2c1_pins: i2c1-g0-pins {
+-		mux {
+-			function = "i2c";
+-			groups = "i2c1_0";
+-		};
+-	};
+-
+-	i2c1_sfp_pins: i2c1-sfp-g0-pins {
+-		mux {
+-			function = "i2c";
+-			groups = "i2c1_sfp";
+-		};
+-	};
+-
+-	i2c2_0_pins: i2c2-g0-pins {
+-		mux {
+-			function = "i2c";
+-			groups = "i2c2_0";
+-		};
+-	};
+-
+-	i2c2_1_pins: i2c2-g1-pins {
+-		mux {
+-			function = "i2c";
+-			groups = "i2c2_1";
+-		};
+-	};
+-
+-	gbe0_led0_pins: gbe0-led0-pins {
+-		mux {
+-			function = "led";
+-			groups = "gbe0_led0";
+-		};
+-	};
+-
+-	gbe1_led0_pins: gbe1-led0-pins {
+-		mux {
+-			function = "led";
+-			groups = "gbe1_led0";
+-		};
+-	};
+-
+-	gbe2_led0_pins: gbe2-led0-pins {
+-		mux {
+-			function = "led";
+-			groups = "gbe2_led0";
+-		};
+-	};
+-
+-	gbe3_led0_pins: gbe3-led0-pins {
+-		mux {
+-			function = "led";
+-			groups = "gbe3_led0";
+-		};
+-	};
+-
+-	gbe0_led1_pins: gbe0-led1-pins {
+-		mux {
+-			function = "led";
+-			groups = "gbe0_led1";
+-		};
+-	};
+-
+-	gbe1_led1_pins: gbe1-led1-pins {
+-		mux {
+-			function = "led";
+-			groups = "gbe1_led1";
+-		};
+-	};
+-
+-	gbe2_led1_pins: gbe2-led1-pins {
+-		mux {
+-			function = "led";
+-			groups = "gbe2_led1";
+-		};
+-	};
+-
+-	gbe3_led1_pins: gbe3-led1-pins {
+-		mux {
+-			function = "led";
+-			groups = "gbe3_led1";
+-		};
+-	};
+-
+-	i2p5gbe_led0_pins: 2p5gbe-led0-pins {
+-		mux {
+-			function = "led";
+-			groups = "2p5gbe_led0";
+-		};
+-	};
+-
+-	i2p5gbe_led1_pins: 2p5gbe-led1-pins {
+-		mux {
+-			function = "led";
+-			groups = "2p5gbe_led1";
+-		};
+-	};
+-
+-	mmc0_pins_emmc_45: mmc0-emmc-45-pins {
+-		mux {
+-			function = "flash";
+-			groups = "emmc_45";
+-		};
+-	};
+-
+-	mmc0_pins_emmc_51: mmc0-emmc-51-pins {
+-		mux {
+-			function = "flash";
+-			groups = "emmc_51";
+-		};
+-	};
+-
+-	mmc0_pins_sdcard: mmc0-sdcard-pins {
+-		mux {
+-			function = "flash";
+-			groups = "sdcard";
+-		};
+-	};
+-
+-	uart0_pins: uart0-pins {
+-		mux {
+-			function = "uart";
+-			groups =  "uart0";
+-		};
+-	};
+-
+-	snfi_pins: snfi-pins {
+-		mux {
+-			function = "flash";
+-			groups = "snfi";
+-		};
+-	};
+-
+-	spi0_pins: spi0-pins {
+-		mux {
+-			function = "spi";
+-			groups = "spi0";
+-		};
+-	};
+-
+-	spi0_flash_pins: spi0-flash-pins {
+-		mux {
+-			function = "spi";
+-			groups = "spi0", "spi0_wp_hold";
+-		};
+-	};
+-
+-	spi1_pins: spi1-pins {
+-		mux {
+-			function = "spi";
+-			groups = "spi1";
+-		};
+-	};
+-
+-	spi2_pins: spi2-pins {
+-		mux {
+-			function = "spi";
+-			groups = "spi2";
+-		};
+-	};
+-
+-	spi2_flash_pins: spi2-flash-pins {
+-		mux {
+-			function = "spi";
+-			groups = "spi2", "spi2_wp_hold";
+-		};
+-	};
+-};
+-
+-&pwm {
+-	status = "okay";
+-};
+-
+-&serial0 {
+-	status = "okay";
+-};
+-
+-&ssusb1 {
+-	status = "okay";
+-};
+-
+-&tphy {
+-	status = "okay";
+-};
+-
+-&watchdog {
+-	status = "okay";
+-};
+diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
+new file mode 100644
+index 000000000000..1ab09ed2f151
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
+@@ -0,0 +1,403 @@
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++
++/dts-v1/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/regulator/richtek,rt5190a-regulator.h>
++
++#include "mt7988a.dtsi"
++
++/ {
++	compatible = "bananapi,bpi-r4", "mediatek,mt7988a";
++	model = "Banana Pi BPI-R4";
++	chassis-type = "embedded";
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	reg_1p8v: regulator-1p8v {
++		compatible = "regulator-fixed";
++		regulator-name = "fixed-1.8V";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	reg_3p3v: regulator-3p3v {
++		compatible = "regulator-fixed";
++		regulator-name = "fixed-3.3V";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++};
++
++&cpu0 {
++	proc-supply = <&rt5190_buck3>;
++};
++
++&cpu1 {
++	proc-supply = <&rt5190_buck3>;
++};
++
++&cpu2 {
++	proc-supply = <&rt5190_buck3>;
++};
++
++&cpu3 {
++	proc-supply = <&rt5190_buck3>;
++};
++
++&cpu_thermal {
++	trips {
++		cpu_trip_hot: hot {
++			temperature = <120000>;
++			hysteresis = <2000>;
++			type = "hot";
++		};
++
++		cpu_trip_active_high: active-high {
++			temperature = <115000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++
++		cpu_trip_active_med: active-med {
++			temperature = <85000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++
++		cpu_trip_active_low: active-low {
++			temperature = <40000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++	};
++};
++
++&i2c0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c0_pins>;
++	status = "okay";
++
++	rt5190a_64: rt5190a@64 {
++		compatible = "richtek,rt5190a";
++		reg = <0x64>;
++		vin2-supply = <&rt5190_buck1>;
++		vin3-supply = <&rt5190_buck1>;
++		vin4-supply = <&rt5190_buck1>;
++
++		regulators {
++			rt5190_buck1: buck1 {
++				regulator-name = "rt5190a-buck1";
++				regulator-min-microvolt = <5090000>;
++				regulator-max-microvolt = <5090000>;
++				regulator-allowed-modes =
++				<RT5190A_OPMODE_AUTO>, <RT5190A_OPMODE_FPWM>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++			buck2 {
++				regulator-name = "vcore";
++				regulator-min-microvolt = <600000>;
++				regulator-max-microvolt = <1400000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++			rt5190_buck3: buck3 {
++				regulator-name = "vproc";
++				regulator-min-microvolt = <600000>;
++				regulator-max-microvolt = <1400000>;
++				regulator-boot-on;
++			};
++			buck4 {
++				regulator-name = "rt5190a-buck4";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-allowed-modes =
++				<RT5190A_OPMODE_AUTO>, <RT5190A_OPMODE_FPWM>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++			ldo {
++				regulator-name = "rt5190a-ldo";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++		};
++	};
++};
++
++&i2c2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c2_1_pins>;
++	status = "okay";
++
++	pca9545: i2c-mux@70 {
++		compatible = "nxp,pca9545";
++		reg = <0x70>;
++		reset-gpios = <&pio 5 GPIO_ACTIVE_LOW>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		i2c@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++
++			pcf8563: rtc@51 {
++				compatible = "nxp,pcf8563";
++				reg = <0x51>;
++				#clock-cells = <0>;
++			};
++
++			eeprom@57 {
++				compatible = "atmel,24c02";
++				reg = <0x57>;
++				size = <256>;
++			};
++
++		};
++
++		i2c_sfp1: i2c@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++		};
++	};
++};
++
++/* mPCIe SIM2 */
++&pcie0 {
++	status = "okay";
++};
++
++/* mPCIe SIM3 */
++&pcie1 {
++	status = "okay";
++};
++
++/* M.2 key-B SIM1 */
++&pcie2 {
++	status = "okay";
++};
++
++/* M.2 key-M SSD */
++&pcie3 {
++	status = "okay";
++};
++
++&pio {
++	mdio0_pins: mdio0-pins {
++		mux {
++			function = "eth";
++			groups = "mdc_mdio0";
++		};
++
++		conf {
++			pins = "SMI_0_MDC", "SMI_0_MDIO";
++			drive-strength = <8>;
++		};
++	};
++
++	i2c0_pins: i2c0-g0-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c0_1";
++		};
++	};
++
++	i2c1_pins: i2c1-g0-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c1_0";
++		};
++	};
++
++	i2c1_sfp_pins: i2c1-sfp-g0-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c1_sfp";
++		};
++	};
++
++	i2c2_0_pins: i2c2-g0-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c2_0";
++		};
++	};
++
++	i2c2_1_pins: i2c2-g1-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c2_1";
++		};
++	};
++
++	gbe0_led0_pins: gbe0-led0-pins {
++		mux {
++			function = "led";
++			groups = "gbe0_led0";
++		};
++	};
++
++	gbe1_led0_pins: gbe1-led0-pins {
++		mux {
++			function = "led";
++			groups = "gbe1_led0";
++		};
++	};
++
++	gbe2_led0_pins: gbe2-led0-pins {
++		mux {
++			function = "led";
++			groups = "gbe2_led0";
++		};
++	};
++
++	gbe3_led0_pins: gbe3-led0-pins {
++		mux {
++			function = "led";
++			groups = "gbe3_led0";
++		};
++	};
++
++	gbe0_led1_pins: gbe0-led1-pins {
++		mux {
++			function = "led";
++			groups = "gbe0_led1";
++		};
++	};
++
++	gbe1_led1_pins: gbe1-led1-pins {
++		mux {
++			function = "led";
++			groups = "gbe1_led1";
++		};
++	};
++
++	gbe2_led1_pins: gbe2-led1-pins {
++		mux {
++			function = "led";
++			groups = "gbe2_led1";
++		};
++	};
++
++	gbe3_led1_pins: gbe3-led1-pins {
++		mux {
++			function = "led";
++			groups = "gbe3_led1";
++		};
++	};
++
++	i2p5gbe_led0_pins: 2p5gbe-led0-pins {
++		mux {
++			function = "led";
++			groups = "2p5gbe_led0";
++		};
++	};
++
++	i2p5gbe_led1_pins: 2p5gbe-led1-pins {
++		mux {
++			function = "led";
++			groups = "2p5gbe_led1";
++		};
++	};
++
++	mmc0_pins_emmc_45: mmc0-emmc-45-pins {
++		mux {
++			function = "flash";
++			groups = "emmc_45";
++		};
++	};
++
++	mmc0_pins_emmc_51: mmc0-emmc-51-pins {
++		mux {
++			function = "flash";
++			groups = "emmc_51";
++		};
++	};
++
++	mmc0_pins_sdcard: mmc0-sdcard-pins {
++		mux {
++			function = "flash";
++			groups = "sdcard";
++		};
++	};
++
++	uart0_pins: uart0-pins {
++		mux {
++			function = "uart";
++			groups =  "uart0";
++		};
++	};
++
++	snfi_pins: snfi-pins {
++		mux {
++			function = "flash";
++			groups = "snfi";
++		};
++	};
++
++	spi0_pins: spi0-pins {
++		mux {
++			function = "spi";
++			groups = "spi0";
++		};
++	};
++
++	spi0_flash_pins: spi0-flash-pins {
++		mux {
++			function = "spi";
++			groups = "spi0", "spi0_wp_hold";
++		};
++	};
++
++	spi1_pins: spi1-pins {
++		mux {
++			function = "spi";
++			groups = "spi1";
++		};
++	};
++
++	spi2_pins: spi2-pins {
++		mux {
++			function = "spi";
++			groups = "spi2";
++		};
++	};
++
++	spi2_flash_pins: spi2-flash-pins {
++		mux {
++			function = "spi";
++			groups = "spi2", "spi2_wp_hold";
++		};
++	};
++};
++
++&pwm {
++	status = "okay";
++};
++
++&serial0 {
++	status = "okay";
++};
++
++&ssusb1 {
++	status = "okay";
++};
++
++&tphy {
++	status = "okay";
++};
++
++&watchdog {
++	status = "okay";
++};
+-- 
+2.43.0
 
 
