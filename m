@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-143990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B06FA2C706
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:28:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67A64A2C6D0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:21:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 628581882091
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:28:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B26983AD5F5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:21:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33071EB1BA;
-	Fri,  7 Feb 2025 15:27:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1C323F296;
+	Fri,  7 Feb 2025 15:20:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-8fad.mail.infomaniak.ch (smtp-8fad.mail.infomaniak.ch [83.166.143.173])
+Received: from smtp-bc0b.mail.infomaniak.ch (smtp-bc0b.mail.infomaniak.ch [45.157.188.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3641EB1A4
-	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 15:27:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.166.143.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C3F23ED56
+	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 15:20:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.157.188.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738942075; cv=none; b=KlzdPSx510gKryKnP8MnitqCVOi2yueaDh2CRf3h7gQm0x3ESWTGuFg0KzWTa1pcEkLa0iPnrXHHcLU9e+YjWvHFY0Dne2hwfD0zOs25q1C7vV9ElhdBZ5GusKv2zflY9SkOf3QqWIjlN0f0jI+WcnYS09NwJq6IB/LwgFA8NQM=
+	t=1738941623; cv=none; b=dcN/OYMivIvCza5KXTNrr8KidyNTAku2kFOwZE3jKScJKQ8EjA1p1n0+FZQQH/QUUHjuAWd2Pzrcx3e0mQbBBmjBozplqNXFTWIEboVKOQ7vggZe7rUf1xWG2vyIqZW4IJE2r5x437CXAPS/4s7pIe2t6q1ETY5fyF5861pnh38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738942075; c=relaxed/simple;
-	bh=zAZuKwTh7Hd1DNqMOrNdXVLZ548pZVmlGc86X8VWI9E=;
+	s=arc-20240116; t=1738941623; c=relaxed/simple;
+	bh=rOESWyD68kUJPNj2fQceKfFis03D4mZsSrL/E+cIG4o=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lLJDdFSBkoaEd0XOKfVnJez5B3wNw3LD+IFOPVZ4qLiXB8PFqIxXcHuPGO6cQyifyAxbTJLfeBd3us1hrMMLD0xr1L9P8d9fGvtIAjSQX39s6S52LVYwruoEIyZP7pnWbhRWOjRUWsnRTkXMW4d+st9bZV+gETLoUG0fHAxX4jY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=83.166.143.173
+	 In-Reply-To:To:Cc; b=FzPDT+ruVrPL+BSqMlWO+r0DGG6QF4GEU771YUcp9aSmuao7jYPhuLsA1lAVPUstgJsYLxtb9NotQ7rwT8cdev8RTD5G8CWduGmwvyWLEwxAA+46JfI6aTq+uWKmddMtXxi+UhGLYzrULDX21dtzxptgRQMcIyj2rAHm6Oyk4D0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=45.157.188.11
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
 Received: from smtp-4-0000.mail.infomaniak.ch (smtp-4-0000.mail.infomaniak.ch [10.7.10.107])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YqHhs2yJGzPtl;
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YqHht46zjzR6d;
+	Fri,  7 Feb 2025 16:20:14 +0100 (CET)
+Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YqHhs3J5xzr2l;
 	Fri,  7 Feb 2025 16:20:13 +0100 (CET)
-Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YqHhr27xPznW7;
-	Fri,  7 Feb 2025 16:20:12 +0100 (CET)
 From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Fri, 07 Feb 2025 16:19:59 +0100
-Subject: [PATCH v5 2/4] arm64: dts: rockchip: add overlay test for Edgeble
- NCM6A
+Date: Fri, 07 Feb 2025 16:20:00 +0100
+Subject: [PATCH v5 3/4] arm64: dts: rockchip: add overlay tests for Rock 5B
+ PCIe overlays
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,7 +46,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250207-pre-ict-jaguar-v5-2-a70819ea0692@cherry.de>
+Message-Id: <20250207-pre-ict-jaguar-v5-3-a70819ea0692@cherry.de>
 References: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
 In-Reply-To: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -63,32 +63,40 @@ X-Infomaniak-Routing: alpha
 
 From: Quentin Schulz <quentin.schulz@cherry.de>
 
-The Edgeble NCM6A can have WiFi modules connected and this is handled
-via an overlay (commit 951d6aaa37fe ("arm64: dts: rockchip: Add Edgeble
-NCM6A WiFi6 Overlay")).
+According to commit 40658534756f ("arm64: dts: rockchip: Add rock5b
+overlays for PCIe endpoint mode"), Rock 5B can operate in PCIe endpoint
+mode. For that to work, the rk3588-rock-5b-pcie-ep.dtbo overlay needs to
+be applied on Rock 5B base Device Tree. If that Rock 5B is connected to
+another Rock 5B, the latter needs to apply the
+rk3588-rock-5b-pcie-srns.dtbo overlay.
 
-In order to make sure the overlay is still valid in the future, let's
-add a validation test by applying the overlay on top of the main base
+In order to make sure the overlays are still valid in the future, let's
+add a validation test by applying the overlays on top of the main base
 at build time.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Niklas Cassel <cassel@kernel.org>
 Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 ---
- arch/arm64/boot/dts/rockchip/Makefile | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/rockchip/Makefile | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 534e70a649eeada7f9b6f12596b83f5c47b184b4..02f98abe1df10f44f2ac27ea5f6c6e6c6334724e 100644
+index 02f98abe1df10f44f2ac27ea5f6c6e6c6334724e..8f93e0c4d6032d0ca2d93f44384c027e53aa5efb 100644
 --- a/arch/arm64/boot/dts/rockchip/Makefile
 +++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -192,3 +192,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-vz-2-uhd.dtb
- rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
- 	rk3568-wolfvision-pf5-display-vz.dtbo \
- 	rk3568-wolfvision-pf5-io-expander.dtbo
+@@ -196,3 +196,11 @@ rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
+ rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
+ 	rk3588-edgeble-neu6a-wifi.dtbo
 +
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
-+rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
-+	rk3588-edgeble-neu6a-wifi.dtbo
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtb
++rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb \
++	rk3588-rock-5b-pcie-ep.dtbo
++
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtb
++rk3588-rock-5b-pcie-srns-dtbs := rk3588-rock-5b.dtb \
++	rk3588-rock-5b-pcie-srns.dtbo
 
 -- 
 2.48.1
