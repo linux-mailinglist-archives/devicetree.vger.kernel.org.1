@@ -1,113 +1,92 @@
-Return-Path: <devicetree+bounces-143889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B203A2BFCD
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 10:46:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE49FA2BFCC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 10:46:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2AA73A1A02
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:46:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDAD43A54B6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01AED1DE8A0;
-	Fri,  7 Feb 2025 09:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A131DE4FA;
+	Fri,  7 Feb 2025 09:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="I+eU5nPo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uh+gqnGw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [217.72.192.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4C041D7E21;
-	Fri,  7 Feb 2025 09:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 790EA1DE4DE;
+	Fri,  7 Feb 2025 09:45:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738921546; cv=none; b=GRIUe/KJuPcpqgsennmhnv+fVHJ6q4nj1QNt0XWXjgVZO4wfD32aKbbc1baQfkIYL2OqTHRyBJWyqzEGBFLwolzetrWd+y/fgDvsI1Zl19bCDrdKauhhOl5Z1NUMILs7A9vNzqE132NqCwKGu079ZRmHe6n0hZ8i/JMyJU+m7ws=
+	t=1738921538; cv=none; b=Bf8jy8j5/BouG/ccNhi0CnIIrUJHQHzN4shFLW/8rsXjFMzkXVG0MYBHCyMqLedhZCHhY3osil3/4HTZf7toocRkt9L0XtkfaWJNZegqsntasLhc5yOH0rIIYZe2KkkP8UGxdDHG8IQewNEBHIiRM6M4ssNYHXd11ZATtKIaIzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738921546; c=relaxed/simple;
-	bh=EtiEn7NHh3nbo00IjjxVgadUdQcYzfcZj0lYUhwK4iE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iOto9cjWfpnEZotqhejpuITkYJphxSKG+YRqRCEQqzBVDfKFrCozlj7v38GfGSa15Cr8ktm4SYu3t7PGIa/okQV7jycYl7Ca9Elafy/I8dYekgEXKv85nbLxVOEhOMkr4aSABZ2L2sdxjJgWX1F3JjM8jpaJ9OXdEZzLwqPhv8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=I+eU5nPo; arc=none smtp.client-ip=217.72.192.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1738921518; x=1739526318; i=markus.elfring@web.de;
-	bh=EtiEn7NHh3nbo00IjjxVgadUdQcYzfcZj0lYUhwK4iE=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=I+eU5nPocV2Z+aRnkdr0njmJa4XhMrwZxi+Abw2vkZRwx8UKMYp7GEv+42jk7+ZO
-	 bkL1IPwMz3gHfLx5xHtq+hyfblq8mln5iiSOhWsx7Eu71rC+ldlGvlZxZAklBDLEI
-	 2fe7eEiesAMWShxO0tPS3AWlvzUvb3Vrh/xyxhjrFo130yGlbSjFbTmMd2K233ZSF
-	 bnSMEF0yvZATeUfytCdGWYPfNBgn1HI0jiJLb8y9E/3dAey6YNJq3fYw6v5EQEg0M
-	 tv5vxr5GgTq9FHafLK4K83pMFpl9bIFRl53CjVGmfpaqHcjc7OtfQpcdMHpy42+Zq
-	 F8PpMtFD8qgqr3SP5g==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.93.29]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1Mo6Jl-1t56M10XoR-00eaQC; Fri, 07
- Feb 2025 10:45:18 +0100
-Message-ID: <2f8cec76-c882-4f48-8345-d03fb09404c1@web.de>
-Date: Fri, 7 Feb 2025 10:45:14 +0100
+	s=arc-20240116; t=1738921538; c=relaxed/simple;
+	bh=2yXTnTL/bXuF3D6pEtpjFcCuUAarvcwiHZw/29DwNFE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SIEkpEAbgM9mIutvLBPzXQ+MFYOFiw3/dehQTabAlClegwedBHLRdMdZ0yJszJ/NYqzu7JPj2M2GqBuUzZPb/jRT1KJI08EVCIu91oX1yE8BzmE9WOlju0fZJ0HYnAYM+emx/Kj6uOULWU2w0MUDWfLmkuG6uyjJU2pR2NHE6ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uh+gqnGw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C756FC4CED1;
+	Fri,  7 Feb 2025 09:45:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738921537;
+	bh=2yXTnTL/bXuF3D6pEtpjFcCuUAarvcwiHZw/29DwNFE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uh+gqnGwX7Rgd+VqSkE35en8UrA3LvK1XzrjQxjPslAabA5HotNmerHww2bu/UPU2
+	 OvZM1FqQmymvotTpLlMeA/e6VQs87buE24cKVjRNe12GdM6SHXIm9VD9Rkncrj6Ts4
+	 CKvUSMd9uo6aIuW9wO8yJRn/fhe31o7+qDIUnX9smGC0Qsam69KZS1VPziwHJFXvfr
+	 CewuPK6l2hep2ZPIxcN8y23T8QBAjXyUjKpo4LuQ85mo4nBWhXWcN+MYr1LHXmf1aw
+	 /UABii0jTrdnLXqybg1RB1tr45YnZPvf1U2Mr72etOouikRRUnqmYySdgEK+7z2snO
+	 lGyojyt0c1FIQ==
+Date: Fri, 7 Feb 2025 09:45:32 +0000
+From: Simon Horman <horms@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/7] of: base: Add
+ of_get_available_child_by_name()
+Message-ID: <20250207094532.GC554665@kernel.org>
+References: <20250205124235.53285-1-biju.das.jz@bp.renesas.com>
+ <20250205124235.53285-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v8 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
- Bjorn Helgaas <helgaas@kernel.org>, linux-pci@vger.kernel.org
-Cc: kernel-janitors@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- devicetree@vger.kernel.org, Bharat Kumar Gogada
- <bharat.kumar.gogada@amd.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Conor Dooley <conor+dt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84s?=
- =?UTF-8?Q?ki?= <kw@linux.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Michal Simek <michal.simek@amd.com>, Peter Zijlstra <peterz@infradead.org>,
- Rob Herring <robh@kernel.org>
-References: <20250207065925.6u7bemyn2aireiii@thinkpad>
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20250207065925.6u7bemyn2aireiii@thinkpad>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:XpeVuxEZzZPZKVrplBoSdaZIWts8OscNE8mi4ye49l0yNVNMzPK
- ikYoI468e5S8HbI3eQER1Eqk551Ex5/u/4A1taKF8qg8ICTxQH3kEeOc5ubnLmHXLkPVUnB
- PPVF0f6FYQrCQnWg2QCrVgUDtYgqorENvBSUUasSsSq7XU3Rd/r4Baa/3dlxBDvI8YJdeN+
- ICJ3p8tRXTMxAqK5uhJDg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:R2NmjkEBWHE=;yBCi1rHnyYuPNimhd8q9wyKO89+
- zHnO8ztuQvNXvxvRhyMgZpRg1jY9SDkGA8M60DlSNdlhfgBbpSe9n7jSyaEFkEYX43S0bIbUg
- AoB7+/JVrMINBx0W69rWNKT7F38CbseiNJ0R5ZScOE0GEeqfGO0a30T8eFpVQs9y73c68evaP
- 3lF261L46kjEIrb0qETdKb0EBxFMaGq5ov7pq1ulR7rGp787pUzvl/TMhcatOGTqfL2VONxQj
- rCRIsUc2Q3mZ0e/47m/vlONdGX1TFw2tS6rX2uT/EuhLASHU9pvxytTM2mxbPxEUa9tftzqq1
- qOCPGeAEsTo389vJrf99yP0u8TerISgmr/NwthJ3fsC9lEb3EwehXMVjxWiLBLjF6tcqUo/2j
- s0JFbI2KeHkEEJItElrCDMCYC60cGYcoo1AIRRdIHM/+wyi+FTJFdVR+/IxZbTLcLG8/paZdI
- GsttAKZUAi7zTm4PxTfKwUE4nMAJHgUxACtgLOzh3okZMqO51cxG0NcnNiKGGfBHNXWmw26HE
- HldaKvbregZfxU/7Y7txCeyyT/4NIwEVP1m8siy50W+KwSzBtr0jIyaGcBzpFeKgpHvepAwCp
- xNsGo1oFiKZSLWJM0IFiyQthTRSYAR6c4roNEDokUBldzhZtkYOJBUIfdkW2mRvFLuwj2y4//
- UmDI8xJP0EZDkMT6gZHCTG7JO90mSt3/2F9zdlLq48i4URDxVL0NJeb3kUveizE+gATRB9Eoa
- 1dYAJwS+ZBmQpM3nyAnQ5mAYqB/3MWW+nR53WYsH31gv1ibfepNpJ8dYqvj44cl89HGLNTeQb
- cq2SPovzNlUoCSYH+Ys9xb27lJHM9P+gpQ31BxUoplX4fku8BGGiWfx2/iBDmuo8fkdQ4fdwm
- SOSvlCnryKZKRt4zJdTQkb++Zra4ud+9S1Qm1RUsbc6rB0cR4lnI6k9usCl4qn1VW7WrKc9Yz
- X2+JG4S6AHEQQN5KL3KiseoyG2mqQ6mFWXrPAnWsHbh8qlc+fkLvgmQDjn5YQ/3YUL7hjVVWT
- 5AEomn6nkRxtSm1gXSIdpO9P/+kN6D0kcKA0Lkc4AsIdDWQR+ovJYwouh5uGyz4zq4Fy9AmUE
- wGk9FBI6yHN+AX59yg9YwfvnxWfYETOVoK9PfEDK2qiCzpb3e3IXZvjDPI6nSCfhierDhDHqh
- wLhQIawEl1J9DeLsZojY7vbnRmsRL3h7DK0lvlhc89m9J6bcdx3RV+kAmDM2ZWq8EGVEeBtmU
- B2O3cBY9j61hWcp7XPA05l1fT0r15mM/2mU0DQow04NiIxXY2PCPKoUYAPYE7KIK0ri98D/1K
- CKpEFN0Y0rt4485/drYglAcED2qHKOe0LbaKjHVJN+bR+ksASsRYYeEy+SiLwV1EAysRiyiZd
- gddSf1bPJSUi39UwVE5VsYuy2bknMx6xpADmLAnmDo+zD+XdVrWs6KBfzFa804jQFhspAJuXe
- W1kuO3/C44JVL8ry8dIJIWZBQmVU=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250205124235.53285-2-biju.das.jz@bp.renesas.com>
 
-> Please ignore the comments from Markus.
-I hope that patch review and software development discussions can become more constructive again
-also for related topics.
+On Wed, Feb 05, 2025 at 12:42:21PM +0000, Biju Das wrote:
+> There are lot of drivers using of_get_child_by_name() followed by
+> of_device_is_available() to find the available child node by name for a
+> given parent. Provide a helper for these users to simplify the code.
+> 
+> Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> previous v2->v2
+>  * Added Rb tag from Rob.
+> v1->previous v2:
+>  * Updated commit description.
+>  * Updated kerneldoc comment block
+>  * Avoided code duplication by using of_get_child_by_name().
 
-Regards,
-Markus
+Reviewed-by: Simon Horman <horms@kernel.org>
+
 
