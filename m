@@ -1,119 +1,132 @@
-Return-Path: <devicetree+bounces-143946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5AF0A2C49E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:09:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30FBAA2C4D6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:14:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79716164931
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:07:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97F477A6A67
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:12:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA5322371F;
-	Fri,  7 Feb 2025 14:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC831F76A8;
+	Fri,  7 Feb 2025 14:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rMmbXUov"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="HenR3/iJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA9F2147E9;
-	Fri,  7 Feb 2025 14:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9780C1CDFD4;
+	Fri,  7 Feb 2025 14:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738936971; cv=none; b=bNvX90Fs4BoCHkDSbw613N7Qunf5MzMdCT3RsQ+DoSTWgxwirC6B4XxC4Xx1cE2Aa3JkLT3euFqAWUigBCQFIB8zRaq8fTTpCYag4agu0FAs4lmxm00qAL+vz17eAg4SQ8VfY28vK7idJnHDWYs0kcsac8OG4c2sNltUVckKpec=
+	t=1738937403; cv=none; b=FrhIfGwi77grUpo55DPAyoaxORQ2ayXYZ5IjCWLBszo6Ihp/c7JPT4x4dfhdzcBAkc+QIr4KC/gcEg3BKfvc25UfXVzJTh9CkbmUCp1T6YAbqqqEISbjiGlpX71wrTaGxnr9t6IxuECZICMSMG3QMoNpzwBREvQ2qhdz804feSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738936971; c=relaxed/simple;
-	bh=b1E1QDevKte5bnRZA+kxvqV3LiCkQOnxX2e86toI8t0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=SEMhCrbnbBiaLzXLc6D/5CyH5HLHg4orD3iG+dUkpnTZv+VQZ9ONyyf7H/eRAyzgJbC9a9m17dNtkB64f+8gub917QjdeAGO4FaJrJpSHzv02IkiNanb6EmkI8zWK/P7YtQSPupX4BiZjVX8s7p6HnzggQmaoEMIOxoRyZHVFR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rMmbXUov; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C35BC4CED1;
-	Fri,  7 Feb 2025 14:02:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738936970;
-	bh=b1E1QDevKte5bnRZA+kxvqV3LiCkQOnxX2e86toI8t0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=rMmbXUovvLaB/Ge9hWUgrF7ZGpFufMOyLHxD6EUxPDsVz3y+7jlnxjNDKJ7uJqlgZ
-	 dyDKN9NoihNLHo7KJ1FcTZNl7GYLu6rkA1jdsC4FCv03/jzHXKCRNJkGsLzvrUye1X
-	 KECkwvUmY55MsQ34q8FKfjDkkdIxyoS5TFFEQR+TEaKrKjOggvKaumcsqyYE0IZ9fi
-	 /Qu37xnhYknnpZ1mPB0GeZJOkWTVYD02LVpbKmfgtIrdYzKsNqHRLVEXynpvC5P0yq
-	 Ef0k1IP/cKrNGNXeGmgHirJy5iba1cBoaosjGZiJ5fbLqYabpZrX7aR1Ou/NDQ8jAn
-	 sMtbXmdoi8Z0A==
-From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Bard Liao <yung-chuan.liao@linux.intel.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
- Sanyog Kale <sanyog.r.kale@intel.com>, linux-arm-msm@vger.kernel.org, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, quic_pkumpatl@quicinc.com, 
- kernel@oss.qualcomm.com
-In-Reply-To: <20250206112225.3270400-1-quic_mohs@quicinc.com>
-References: <20250206112225.3270400-1-quic_mohs@quicinc.com>
-Subject: Re: [PATCH v6 0/4] Add static channel mapping between soundwire
- master and slave
-Message-Id: <173893696676.35212.7325321784175657368.b4-ty@kernel.org>
-Date: Fri, 07 Feb 2025 14:02:46 +0000
+	s=arc-20240116; t=1738937403; c=relaxed/simple;
+	bh=jk2ZpfckXcdeztgQDTCpDymGrolrpdR3IzlHWUSE9G8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MDLzn9oRqS1IKtmoFXsh45JAyDlSfqBfoOS4gzcwmKC2hhxuEDrzrVhqQZ4sQKcb1Jhi2S9o0mFIguux0Ico9De0pwslHzPKS13YwyJfXDZMW5RHRxZbbtAh9Uemp8YLa8Qj26LrRgPJtDn2qzFbr87pe9a2GskBMpywI6tyW68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=HenR3/iJ; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 517DZoF1012100;
+	Fri, 7 Feb 2025 09:09:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=TMWcwJErA0llBRLLZwi6BDVhozG
+	WRibFaQkCpeRDfOA=; b=HenR3/iJtW3UxlHIFw1VJ2MshbMY1h7y5y0qYBCIr21
+	tEgC/PhC6RmUsvyQCETsoQKtp1/L7m3LpRgQt0CRvwLP0vOsboNywFOXCZ5accJX
+	9AsNyZNGMgrTTol2EbIVfdQLGJPk3qpZ10A1gflZY36Se2VPhnkA66qwGjW1IKhJ
+	VBlqlv1vYvx7shYTCb6H2k2mBRpgbENI3pmqqeqTIhAeJm6heTTHQI0ukAv8s1LA
+	KPNJPtr7ggTVT9HaVngeTY5f4NdeE9Dq4nvAUcAHpn5U5Vy9w+8h1uC1KLgw9T+X
+	kC+QvBynropNiN2aAXjNwzFUOHpx3FUjsozwow3tZuQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 44nk6v846v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 07 Feb 2025 09:09:46 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 517E9iYv008512
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 7 Feb 2025 09:09:44 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 7 Feb 2025 09:09:44 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 7 Feb 2025 09:09:44 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 7 Feb 2025 09:09:44 -0500
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.147])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 517E9a4m015095;
+	Fri, 7 Feb 2025 09:09:38 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v12 0/9] Add support for AD485x DAS Family
+Date: Fri, 7 Feb 2025 16:09:09 +0200
+Message-ID: <20250207140918.7814-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-1b0d6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: rRCUEsBpgS7mxMhr2jS7tD8APf2cROk5
+X-Authority-Analysis: v=2.4 cv=fZNXy1QF c=1 sm=1 tr=0 ts=67a6142a cx=c_pps a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17 a=T2h4t0Lz3GQA:10 a=H4ADBwE-jcidW2BkoBwA:9
+X-Proofpoint-ORIG-GUID: rRCUEsBpgS7mxMhr2jS7tD8APf2cROk5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-07_06,2025-02-07_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
+ phishscore=0 clxscore=1015 lowpriorityscore=0 mlxlogscore=974 mlxscore=0
+ adultscore=0 suspectscore=0 spamscore=0 impostorscore=0 priorityscore=1501
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502070108
 
-On Thu, 06 Feb 2025 16:52:21 +0530, Mohammad Rafi Shaik wrote:
-> Add static channel map support between soundwire master and slave.
-> 
-> Currently, the channel value for each soundwire port is hardcoded in the
-> wcd937x-sdw driver and the same channel  value is configured in the
-> soundwire master.
-> 
-> The Qualcomm board like the QCM6490-IDP require static channel map
-> settings for the soundwire master and slave ports.
-> 
-> [...]
+Add support for AD485X fully buffered, 8-channel simultaneous sampling,
+16/20-bit, 1 MSPS data acquisition system (DAS) with differential, wide
+common-mode range inputs.
 
-Applied to
+Most of the review comments which make sense in v9 were addressed. Some of them
+might have been ommitted, especially those that are a matter of preference.
+Since we reached v10, I tried to cover everything that was pointed out until now.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Antoniu Miclaus (9):
+  iio: backend: add API for interface get
+  iio: backend: add support for data size set
+  iio: backend: add API for oversampling
+  iio: adc: adi-axi-adc: add interface type
+  dt-bindings: iio: adc: add ad485x axi variant
+  iio: adc: adi-axi-adc: set data format
+  iio: adc: adi-axi-adc: add oversampling
+  dt-bindings: iio: adc: add ad4851
+  iio: adc: ad4851: add ad485x driver
 
-Thanks!
+ .../bindings/iio/adc/adi,ad4851.yaml          |  153 ++
+ .../bindings/iio/adc/adi,axi-adc.yaml         |    2 +
+ drivers/iio/adc/Kconfig                       |   14 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/ad4851.c                      | 1316 +++++++++++++++++
+ drivers/iio/adc/adi-axi-adc.c                 |  146 +-
+ drivers/iio/industrialio-backend.c            |   60 +
+ include/linux/iio/backend.h                   |   19 +
+ 8 files changed, 1702 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4851.yaml
+ create mode 100644 drivers/iio/adc/ad4851.c
 
-[1/4] ASoC: dt-bindings: wcd937x-sdw: Add static channel mapping support
-      commit: 72826381215e2f9d2bd2f32f63f76a80942b7fdf
-[2/4] ASoC: codecs: wcd937x: Add static channel mapping support in wcd937x-sdw
-      commit: c06c4f7cbea1d8dc71485bfddef2849a1b721e67
-[3/4] soundwire: qcom: Add set_channel_map api support
-      commit: 7796c97df6b1b2206681a07f3c80f6023a6593d5
-[4/4] ASoC: qcom: sdw: Add get and set channel maps support from codec to cpu dais
-      commit: 0e9a970d7b2cb98d741bc0e32ad8c8f30c009c63
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.48.1
 
 
