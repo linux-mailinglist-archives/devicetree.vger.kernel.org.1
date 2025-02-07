@@ -1,122 +1,141 @@
-Return-Path: <devicetree+bounces-143960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67768A2C519
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:21:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8261CA2C548
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:30:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0976316308D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:21:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E36816766C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:30:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B2A215047;
-	Fri,  7 Feb 2025 14:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AED1EC01C;
+	Fri,  7 Feb 2025 14:30:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="HB07sA/a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OZKaS7n8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4451F4E56
-	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 14:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9F27FD;
+	Fri,  7 Feb 2025 14:30:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738938094; cv=none; b=SmXCM3vz8zispc26xc6s49oWQzRSYKkZZUo3SkB1+Z6EHJut4ljYsQplWqG+Vcdrr5gujYn6E7qOereHJy70NNOzS3rE4B0CA506xryQWuh3faAsVJJfjQqZt5OqLw1GXzoTW6vjb5xnI5Cce6ERm1CtpqoFMMCmnqPjzPiotKY=
+	t=1738938619; cv=none; b=LLUpj13N1TZLj/MLZm5xRsUZaDr3EU5QE6TkLPyENYFhwxKiEpqS4ekb1ucCiHsQdw+umPfdZPDDslk4a5w3DbMTfBGGBYxzK9rR6H+TxVmucUktKf9vZjBnRned/sMBYBKP+17IKx1o5VpwfnnXVG3w0Pmqox8YivjuRSP6XqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738938094; c=relaxed/simple;
-	bh=xO7WRefc/IdunpdbpYWaJx6QkiMBM6UHcj5PnDgRQOc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kyvR1ifNiLv/UcOgFhQhvcYG7D3Wvlz3DiSVEkKdz04+eh9WunpGucamr9lvkJsDeJKYEzka7jvHmRn1ANnulCLxx2BS5NF4hBuzoHv385HLmB8XxzaZzvxz8sPjGPQZ3tF15xZrde6fjxPOsPfd0UTjUWw9pdwHTg4J7vAC5bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=HB07sA/a; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-436a03197b2so14455765e9.2
-        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 06:21:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738938090; x=1739542890; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NAwcnkM+PzRe51c/ss1O+62EsfQXolXBWlx8ljeQQPE=;
-        b=HB07sA/ayWodicb9fwCqzQGYh3O9dyHYj2HYFHbgZTxIfDHyyg5qUnpzIt5fVLymT0
-         AaEMPdx3qK0UiEWr1bkdIlIAC767BltHhhrNcB/6Irh43yq/MagL+HHaSOA527t2o8Oh
-         uL/HkBNupYmkyatz6hVpKAxZR5+QW72MXuq5oyiQI8chAw93O02xwloaXbT9qx3C553t
-         krMuWx0ckRBmDdTcWyF6Xo2Dc3DN5T1igH+4cSvVo+kuRRf4KaKWxt2AliyIyEGEaL7N
-         9HYkxYccwV8hTBrkmy9O/EJ1rnvb6jQws3bq8nQu1zH8utWKq6BHRpLSTuOlgfRFGiWS
-         LavQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738938090; x=1739542890;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NAwcnkM+PzRe51c/ss1O+62EsfQXolXBWlx8ljeQQPE=;
-        b=qrLdcft4YyGq72Nrp2mjn0UYcdU5BNZf1i0ZPk0YshODdl+NHM8FRnjA1X0yTyC6C1
-         FKCJhp7kV6RNsXUQpYz01zLhmBFo3a7kiecM/qHswGegHvjG63XMf9ltKm0I/ll9PtzH
-         H5auOBUjmxIh50KM4v7nyfqzj2L/MlYj4M7rSMz+OdBvp/go9l4rdNkUtluA6ORhZiMS
-         CgtC9epfzEj1uODE9RSp1Xt3bHEzMWI03tg0YpOlIsWdL/DloeqAoKQhakIlV9UGoO+Z
-         3lebsuH9NQfUapCGA9ryxnmSb0T0V53hUCLhEQmZdt2rXRT422eJPMKFdScS/rAwu3AR
-         wgUA==
-X-Forwarded-Encrypted: i=1; AJvYcCUg+YjE0bl6H37UhTy8iN47/FI4R26pwefqqK3xpzKxTxX1R1zho7elQM0hityS0ncfY80F74+957ge@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKGDimHuOpawCQZShHpN3bbE7U6bDfqFCHYtkUh+69egEGJvra
-	yiBq0sS8C1tXQRTvybOQujkUnHzl6O62rG+GAFr3XKRzoOs3dVFB/7PhWUHudLE=
-X-Gm-Gg: ASbGncvIro+qXw2yst2i/5ZJfksvf10Lmxjx9weEbiQdKoIyP2/LjG49xDO9WF5Kmlc
-	nC9RjZfhzhbb9pSGXZOGxmiqn8+XOA0Q9xKhVAvfZmgxM9vusVFmVgegJvPd7rSFj/H9RSpOLo6
-	57nAGSOdlfkEE8J73+6OwqlnqNqLNJL6gLDS12oUqZdWNlTT6jswkVUPi8OLfhz5PnlLmIKiz+6
-	aVdhGTJ47XJjPhKNIAoSkTzxnrVNEjHujv1YcTCQXDvK47aDjNYJYcvX5CSPaEVl47ohLqz8Ms7
-	UMJ1asG8Ep3p+D3ENEtNXPr6pRXaKQN4ZXXnVhaM4yN4Mj3n7R/ba+MwUj4oW2M=
-X-Google-Smtp-Source: AGHT+IHsAn/5NuVWMfrT0WHyD1iRvhJHcQ1HOD5ajIz8v5VPfyCTgBqaPudj3dtejQe1G4pbiVMvEw==
-X-Received: by 2002:a05:600c:1c8c:b0:434:a468:4a57 with SMTP id 5b1f17b1804b1-439249ca925mr25071915e9.26.1738938090624;
-        Fri, 07 Feb 2025 06:21:30 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:5ee:79d0:a437:fa6a:2619:f5d8? ([2a01:e0a:5ee:79d0:a437:fa6a:2619:f5d8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4391d5283b2sm58939355e9.0.2025.02.07.06.21.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Feb 2025 06:21:29 -0800 (PST)
-Message-ID: <f2e04ad9-c846-40e0-80c4-1b0e443dd14e@baylibre.com>
-Date: Fri, 7 Feb 2025 15:21:28 +0100
+	s=arc-20240116; t=1738938619; c=relaxed/simple;
+	bh=M7J3Wn5yGM6nJZTo99fvgpwjBivapFjDhCds22gPMd4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RreMyo1mCCyju9mfcKJyFdrKJkOivlQdJOziX7ymjNSIaJO/gver8QdOx8DMUiGn1aI6gDgdz+V8lzzF6KCkKlV9/5zcq4T+VH2P13/nODno1cohna5xTHgQqSiuj/fW4NWFHchAr0r7Gvj3pkejU8QWngVvvllhVYeAEP3DvZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OZKaS7n8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED409C4CED1;
+	Fri,  7 Feb 2025 14:30:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738938619;
+	bh=M7J3Wn5yGM6nJZTo99fvgpwjBivapFjDhCds22gPMd4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OZKaS7n8d6KrLvwnHFTArNDNh1QmX+z4KEpp98yD4uRL0EKAuFgdpGAW66fA24Sdv
+	 igYKaYCTqPh+XySTyc5CGBEp4UWzwGfyfXqKMUn6I/0RUMizlEn51HgHKMOr6xdVla
+	 EQkGF5YGqfJAUp4aA8W7z1SfWmwtLn4KC75lMdnzp3l7PQ1Qv5znw8woH4coIDWIDe
+	 N2gqiDDT/XVFRjN0/c+kmHGncQgIpH7CbLDDDgb8Ba1mHfM+CgfdpP6WhVZIrGX0it
+	 6dTa2wDnErroE5fsxUtFfqfU7sldz1dRjgYDwATtC0KXSVk2do+knEZ1e2EO0Q4kiY
+	 upu35g2m8fEsA==
+Date: Fri, 7 Feb 2025 08:30:17 -0600
+From: Rob Herring <robh@kernel.org>
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Cc: netdev@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Dinh Nguyen <dinguyen@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org,
+	Andrew Lunn <andrew+netdev@lunn.ch>
+Subject: Re: [PATCH v4 2/6] dt-bindings: net: dwmac: Convert socfpga dwmac to
+ DT schema
+Message-ID: <20250207143017.GA38694-robh@kernel.org>
+References: <20250205-v6-12-topic-socfpga-agilex5-v4-0-ebf070e2075f@pengutronix.de>
+ <20250205-v6-12-topic-socfpga-agilex5-v4-2-ebf070e2075f@pengutronix.de>
+ <173877418502.1694868.7734639778320336620.robh@kernel.org>
+ <87ikpn43dm.fsf@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 11/34] drm/mediatek: mtk_hdmi: Convert to
- module_platform_driver macro
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- chunkuang.hu@kernel.org
-Cc: p.zabel@pengutronix.de, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com,
- jie.qiu@mediatek.com, junzhi.zhao@mediatek.com,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
- dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com,
- ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com,
- jason-jh.lin@mediatek.com
-References: <20250113145232.227674-1-angelogioacchino.delregno@collabora.com>
- <20250113145232.227674-12-angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20250113145232.227674-12-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87ikpn43dm.fsf@pengutronix.de>
 
-
-
-On 13/01/2025 15:52, AngeloGioacchino Del Regno wrote:
-> Now that all of the mtk_hdmi subdrivers are a platform driver on
-> their own it is possible to remove the custom init/exit functions
-> in this driver and just use the module_platform_driver() macro.
+On Thu, Feb 06, 2025 at 02:19:33PM +0100, Steffen Trumtrar wrote:
 > 
-> While at it, also compress struct of_device_id entries and remove
-> stray commas in mtk_hdmi_driver assignments.
+> Hi,
+> 
+> On 2025-02-05 at 10:49 -06, "Rob Herring (Arm)" <robh@kernel.org> wrote:
+> 
+> > On Wed, 05 Feb 2025 16:32:23 +0100, Steffen Trumtrar wrote:
+> > > Changes to the binding while converting:
+> > > - add "snps,dwmac-3.7{0,2,4}a". They are used, but undocumented.
+> > > - altr,f2h_ptp_ref_clk is not a required property but optional.
+> > >
+> > > Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> > > ---
+> > >  .../bindings/net/pcs/altr,gmii-to-sgmii.yaml       |  47 ++++++++++
+> > >  .../devicetree/bindings/net/socfpga-dwmac.txt      |  57 ------------
+> > >  .../devicetree/bindings/net/socfpga-dwmac.yaml     | 102 +++++++++++++++++++++
+> > >  3 files changed, 149 insertions(+), 57 deletions(-)
+> > >
+> > 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/pcs/altr,gmii-to-sgmii.example.dtb:
+> > phy@100000240: reg: [[1, 576], [8, 1], [512, 64]] is too short
+> > 	from schema $id: http://devicetree.org/schemas/pcs/altr,gmii-to-sgmii.yaml#
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/pcs/altr,gmii-to-sgmii.example.dtb:
+> > phy@100000240: 'clock-names', 'clocks' do not match any of the regexes:
+> > 'pinctrl-[0-9]+'
+> > 	from schema $id: http://devicetree.org/schemas/pcs/altr,gmii-to-sgmii.yaml#
+> > 
+> > doc reference errors (make refcheckdocs):
+> > 
+> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250205-v6-12-topic-socfpga-agilex5-v4-2-ebf070e2075f@pengutronix.de
+> > 
+> > The base for the series is generally the latest rc1. A different dependency
+> > should be noted in *this* patch.
+> > 
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> > 
+> > pip3 install dtschema --upgrade
+> > 
+> > Please check and re-submit after running the above command yourself. Note
+> > that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> > your schema. However, it must be unset to test all examples with your schema.
+> 
+> 'pipx upgrade dtschema' says I have version 2025.2, but I still don't get theses errors.
+> 
+>    make O=build dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/pcs/altr,gmii-to-sgmii.yaml
+>    make[1]: Entering directory '(...)'
+>      CHKDT   (...)/Documentation/devicetree/bindings
+>      LINT    (...)/Documentation/devicetree/bindings
+>      DTC [C] Documentation/devicetree/bindings/net/pcs/altr,gmii-to-sgmii.example.dtb
+> 
+> Anything I'm missing or doing wrong?
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+Try:
+make O=build dt_binding_check DT_SCHEMA_FILES=net/pcs/altr,gmii-to-sgmii.yaml
 
--- 
-Regards,
-Alexandre
+The full path should work, but seems there is some issue. But really, 
+DT_SCHEMA_FILES is just a sub-string to match with schema $id.
+
+'reg' should be the number of logical entries (and what they are), not 
+the number of cells.
+
+Rob
 
