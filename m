@@ -1,218 +1,228 @@
-Return-Path: <devicetree+bounces-144159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AAE1A2D0CA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 23:40:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 233E8A2D0DF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 23:44:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12BA01889862
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 22:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADB9516D09C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 22:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CBDB225395;
-	Fri,  7 Feb 2025 22:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB52E1D90C5;
+	Fri,  7 Feb 2025 22:44:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BNGDRvXh"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="jHhTxFEx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D3C51EA7D7;
-	Fri,  7 Feb 2025 22:37:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 687E719F422
+	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 22:44:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738967824; cv=none; b=N7IYCVbpd/f5PDjqQ/HzMW+4YqtyxY/DyJgUJKR9BVwdn+DsLhWQNaJ4oMlhaY+y6dVDOXyWDI/FLOdsv4wjXF8wxdN3Wng2uY4vk348Zgfk11Vm6vXc3wSOGfIh+Tt0dBBIgNGuiZkPuvhVvAGQXaiQsPDI/pbwUDxZXWUSb1I=
+	t=1738968258; cv=none; b=QkkbYYA0pjOVhkSclXIgLAnd0FyI4KeFIBRJWAahTJaBm3Bzglv6jY+7A+xILgAF97vyvKjjF7PyCTJHpW9A2y/JjMZDBxkiNkTkgb20/nH5BObNPuojgp0p+0p81nyfe7NltWcocXtUGh8EIL/2dP3xehPORhOLA5Inox4OKzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738967824; c=relaxed/simple;
-	bh=R7fHZ2/aol9wndAGd2tI1d1cUD+QFaTH8izRSPGvO44=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MLYSq0x95w7D8VbBrrvcDQ1gCP9Z5emF3Fut8QhwSFTGzMoqzdWmHJh/yf5NzkRVIVoI5OKXgzo3KCVCcITpI+p6WStioHiJQTgGVGylzn5HtzjuNJgnTEq0HG/AT13deePbpNwjeztIbrXvy5UGNinvKn/zQAbOwE5QlFVUtBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BNGDRvXh; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6F614204D7;
-	Fri,  7 Feb 2025 22:36:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1738967821;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jtBEdDFyHM7TrJGYplmIDsTu3tggBHU0A+jgdykLjok=;
-	b=BNGDRvXhLX8GjXA70jATJ7Rw147bsli5TRUf62YEWJqL4zUjmi3M4tTJc1ijh0ldWZWMn3
-	iP1EGJEsE8YzM0q6CYKeMMhPTFN5M0L06NoAnfJWq7W0fz/Rvu5rEJH4q//AQ+scJHFf55
-	ArM8k9BGpOAE1P2F9bBbhW+nJgEIM+szkogMoeUm7jBMSq3FMKk/iUn3qiUgUttE3H++fx
-	tDBbUJtGzWytYZYBznc4iPLOtvAMRu3Cz7+SXyJrJZbC3bdka9XsX1N+RPZE+aNxQ5M0cJ
-	Ysodirva09ORQJVZgUwoQDgvZQHEGc3kxIBxsgzL9XN/uzCgX7vK/VBh/puXlg==
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: davem@davemloft.net
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1738968258; c=relaxed/simple;
+	bh=BKd51xQGZZ4Gqq3HzT1bsS3JNQF+dVtvOyP2185nGbg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XTb7FFr7T/mlAH7ctH/ZODnTg2jeXFuidymr/0SQanqXXoSEft3zfmgL8ubDunSqhisc1zwCMsIA5/tr6B2h6bDfIY3F6sEv0XLkf4z98/DwXQXWCVLRUDlopE4+Rok2CNCn25hvacKuKTwTOZH0baZLuMyOtbrWxeVo5aXv3Ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=jHhTxFEx; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2fa3e20952fso1007881a91.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 14:44:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1738968255; x=1739573055; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=o2ipDsFh+4Wi6+DfKBkgvbX5MRHqphXmotwjlbhmRh4=;
+        b=jHhTxFExduXYPEeCSR1AkECffBNHSVsANRuMsv3hdU8pw1TP4r7tdhVLWaJ7kFx0tw
+         fbuBeLTrIIhHIAfVXwnMmFfy2+Bw653qkelq8YHFzcHxRkz7A05mm96ugf+84flI0HfL
+         7njB9tFx3VEq0OLqeNiaCcp6tgKrZejvz9i6KVlLc566FO6u6C9E5OAoyaFUCnTxU3n0
+         +SbDnf62y3EzGZ34x5RckTxXbWo+lZE9caW0awgOkFYtquNHT5Zfp8jHYhv9+22phEHr
+         46cP5acHZAsBdNTPhyuIulMiHfFgkZJ5bUUilQCpW9ESxZX+ccUTGE3XCFnSO0mLhaPn
+         s0Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738968255; x=1739573055;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o2ipDsFh+4Wi6+DfKBkgvbX5MRHqphXmotwjlbhmRh4=;
+        b=P7UxThsIg2VI3V8mAbKGaf3KaRmqwFtnXg6Hz+DpmogxowvrOaq222VUEXICHjpkuy
+         u2jyAX9Rr+ewawTWWUGeYo3jpI0DW/Q2NNvvHBEYnznhq0SV/Cl+3Lj1l4LB+b4hwGHP
+         XU+kO1GImUD3e9MDFE/iLTGlC8uYqsV2fP03va+ZByJNd8TwqDTVW10UtJjfI6NCchpU
+         P7u5BaIn4Ea3rn/QFqijI2rYkkcfc6421fWt4i+3gYDqtQEwrrjzYwvtc6ng4MjTuOwV
+         w/VXH5DYHB2rFOgi6ZJQwhxab7tRZeIqxC9FZiDZuDEGfzH+LjucS99/QVDkxnSWFj9d
+         LNcw==
+X-Forwarded-Encrypted: i=1; AJvYcCWYWwgiAvxyCmsDXMOjWGu2mtU73kYXE1uOJjpW6REZDFyX54te2uakBu+nlkSiB+LPa0iujT/MQZbR@vger.kernel.org
+X-Gm-Message-State: AOJu0YylMEyh5+D+z7z1Mp1O06wBNbxcWP7fgLPQKt3XGiQnI0ZDxYqr
+	41ly4y+LwB49VWNGl+yjD7lbSoQq9jkeFsxl8UsCF490BApLTzrCQYQmJibktg0=
+X-Gm-Gg: ASbGncsyT2+HACPS4eoxCtzWkcfq9FS1VHC1veUyFuF6N4GkUJ9XV4vBRgYTFbd477g
+	IvFXwCM82DaV0j5cdRaQEzUPRWzlukJUbnwPG0qR41A9CT42xBMSznpldiLCQp9Jot8ZrYNiiKl
+	8uSvTCRilANDzFk0bc1OLdw8KW9+SyYtq7s6N5uFvWu75XysiZuFbo87MyGTEp5IDKglQYHBDJJ
+	3nL01xjBUwlcM3JHxXh4WM5FJVne3ttgOEy0tpib8MI6Npi5VSikeUTrVNHH56VnZeWmrF88rwz
+	B4ubMvKmSbr0SfO9tqcDYbschg==
+X-Google-Smtp-Source: AGHT+IH0ObGSX9Z5Li4uWD9lYbrpJL6WiQ/fR0RPEu4WFLYzu4KaceG7QOyaNMgDiAsQ/fdeHHOGVA==
+X-Received: by 2002:a17:90b:19d8:b0:2ee:6d04:9dac with SMTP id 98e67ed59e1d1-2fa243f02dcmr6699334a91.32.1738968254644;
+        Fri, 07 Feb 2025 14:44:14 -0800 (PST)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f9bf6f268fsm5069384a91.0.2025.02.07.14.44.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Feb 2025 14:44:14 -0800 (PST)
+Date: Fri, 7 Feb 2025 14:44:10 -0800
+From: Deepak Gupta <debug@rivosinc.com>
+To: Vlastimil Babka <vbabka@suse.cz>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>
-Subject: [PATCH net-next 13/13] dt-bindings: net: Introduce the phy-port description
-Date: Fri,  7 Feb 2025 23:36:32 +0100
-Message-ID: <20250207223634.600218-14-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250207223634.600218-1-maxime.chevallier@bootlin.com>
-References: <20250207223634.600218-1-maxime.chevallier@bootlin.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com
+Subject: Re: [PATCH v9 01/26] mm: helper `is_shadow_stack_vma` to check
+ shadow stack vma
+Message-ID: <Z6aMuuXMQAu7Tcvm@debug.ba.rivosinc.com>
+References: <20250204-v5_user_cfi_series-v9-0-b37a49c5205c@rivosinc.com>
+ <20250204-v5_user_cfi_series-v9-1-b37a49c5205c@rivosinc.com>
+ <6543c6b6-da86-4c10-9b8c-e5fe6f6f7da9@suse.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftdehtdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeulefgvddthfekkedugeeikeeuudekhfekgfehgfelkeekkeekhfejkefgvefhieenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppedvrgdtudemtggsudelmeekugegtgemlehftddtmegttgeftgemgeelfhegmeefieehheemsgehjeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkegugegtmeelfhdttdemtggtfegtmeeglehfgeemfeeiheehmegsheejgedphhgvlhhopehfvgguohhrrgdquddrhhhomhgvpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdelpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnr
- dgtohhmpdhrtghpthhtohepnhgvthguvghvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqmhhsmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <6543c6b6-da86-4c10-9b8c-e5fe6f6f7da9@suse.cz>
 
-The ability to describe the physical ports of Ethernet devices is useful
-to describe multi-port devices, as well as to remove any ambiguity with
-regard to the nature of the port.
+On Fri, Feb 07, 2025 at 10:27:10AM +0100, Vlastimil Babka wrote:
+>On 2/5/25 02:21, Deepak Gupta wrote:
+>> VM_SHADOW_STACK (alias to VM_HIGH_ARCH_5) is used to encode shadow stack
+>
+>I see that arm GCS uses VM_HIGH_ARCH_6.
 
-Moreover, describing ports allows for a better description of features
-that are tied to connectors, such as PoE through the PSE-PD devices.
+Stale commit message. I thought I had fixed it.
+Sorry about that, will fix it.
 
-Introduce a binding to allow describing the ports, for now with 2
-attributes :
+>
+>> VMA on three architectures (x86 shadow stack, arm GCS and RISC-V shadow
+>
+>And RISC-V doesn't define it at all, not even in this patchset, or did I
+>miss it somewhere?
+>
+>> stack). In case architecture doesn't implement shadow stack, it's VM_NONE
+>> Introducing a helper `is_shadow_stack_vma` to determine shadow stack vma
+>> or not.
+>
+>This looks like an unfinished sentence. As if it was to continue with "...
+>will allow us to ..." what?
+>
+>I'm not against a helper but this changelog is rather confusing and also
+>code in arch/x86 and arch/arm64 isn't converted to the helper but testing
+>VM_SHADOW_STACK still.
 
- - The number of lanes, which is a quite generic property that allows
-   differentating between multiple similar technologies such as BaseT1
-   and "regular" BaseT (which usually means BaseT4).
-
- - The media that can be used on that port, such as BaseT for Twisted
-   Copper, BaseC for coax copper, BaseS/L for Fiber, BaseK for backplane
-   ethernet, etc. This allows defining the nature of the port, and
-   therefore avoids the need for vendor-specific properties such as
-   "micrel,fiber-mode" or "ti,fiber-mode".
-
-The port description lives in its own file, as it is intended in the
-future to allow describing the ports for phy-less devices.
-
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
- .../devicetree/bindings/net/ethernet-phy.yaml | 18 +++++++
- .../bindings/net/ethernet-port.yaml           | 47 +++++++++++++++++++
- 2 files changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/ethernet-port.yaml
-
-diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-index 2c71454ae8e3..950fdacfd27d 100644
---- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-@@ -261,6 +261,17 @@ properties:
- 
-     additionalProperties: false
- 
-+  mdi:
-+    type: object
-+
-+    patternProperties:
-+      '^port-[a-f0-9]+$':
-+        $ref: /schemas/net/ethernet-port.yaml#
-+
-+        unevaluatedProperties: false
-+
-+    additionalProperties: false
-+
- required:
-   - reg
- 
-@@ -297,5 +308,12 @@ examples:
-                     default-state = "keep";
-                 };
-             };
-+
-+            mdi {
-+              port-0 {
-+                lanes = <2>;
-+                media = "BaseT";
-+              };
-+            };
-         };
-     };
-diff --git a/Documentation/devicetree/bindings/net/ethernet-port.yaml b/Documentation/devicetree/bindings/net/ethernet-port.yaml
-new file mode 100644
-index 000000000000..bf0f64f1b0aa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/ethernet-port.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/ethernet-port.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic Ethernet Port
-+
-+maintainers:
-+  - Maxime Chevallier <maxime.chevallier@bootlin.com>
-+
-+description:
-+  An Ethernet port represents an output, such as a connector, of a network
-+  component such as a PHY, an Ethernet controller with no PHY, or an SFP module.
-+
-+properties:
-+
-+  lanes:
-+    description:
-+      Defines the number of lanes on the port, that is the number of physical
-+      channels used to convey the data with the link partner.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  media:
-+    description:
-+      The mediums, as defined in 802.3, that can be used on the port.
-+    items:
-+      enum:
-+        - BaseT
-+        - BaseK
-+        - BaseS
-+        - BaseC
-+        - BaseL
-+        - BaseD
-+        - BaseE
-+        - BaseF
-+        - BaseV
-+        - BaseMLD
-+        - BaseX
-+
-+required:
-+  - lanes
-+  - media
-+
-+additionalProperties: true
-+
-+...
--- 
-2.48.1
-
+Yes I didn't pay attention during rebase, will update the commit message.
+>
+>> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+>> Reviewed-by: Mark Brown <broonie@kernel.org>
+>> ---
+>>  mm/gup.c  |  2 +-
+>>  mm/mmap.c |  2 +-
+>>  mm/vma.h  | 10 +++++++---
+>>  3 files changed, 9 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/mm/gup.c b/mm/gup.c
+>> index 3883b307780e..8c64f3ff34ab 100644
+>> --- a/mm/gup.c
+>> +++ b/mm/gup.c
+>> @@ -1291,7 +1291,7 @@ static int check_vma_flags(struct vm_area_struct *vma, unsigned long gup_flags)
+>>  		    !writable_file_mapping_allowed(vma, gup_flags))
+>>  			return -EFAULT;
+>>
+>> -		if (!(vm_flags & VM_WRITE) || (vm_flags & VM_SHADOW_STACK)) {
+>> +		if (!(vm_flags & VM_WRITE) || is_shadow_stack_vma(vm_flags)) {
+>>  			if (!(gup_flags & FOLL_FORCE))
+>>  				return -EFAULT;
+>>  			/*
+>> diff --git a/mm/mmap.c b/mm/mmap.c
+>> index cda01071c7b1..7b6be4eec35d 100644
+>> --- a/mm/mmap.c
+>> +++ b/mm/mmap.c
+>> @@ -648,7 +648,7 @@ SYSCALL_DEFINE1(old_mmap, struct mmap_arg_struct __user *, arg)
+>>   */
+>>  static inline unsigned long stack_guard_placement(vm_flags_t vm_flags)
+>>  {
+>> -	if (vm_flags & VM_SHADOW_STACK)
+>> +	if (is_shadow_stack_vma(vm_flags))
+>>  		return PAGE_SIZE;
+>>
+>>  	return 0;
+>> diff --git a/mm/vma.h b/mm/vma.h
+>> index a2e8710b8c47..47482a25f5c3 100644
+>> --- a/mm/vma.h
+>> +++ b/mm/vma.h
+>> @@ -278,7 +278,7 @@ static inline struct vm_area_struct *vma_prev_limit(struct vma_iterator *vmi,
+>>  }
+>>
+>>  /*
+>> - * These three helpers classifies VMAs for virtual memory accounting.
+>> + * These four helpers classifies VMAs for virtual memory accounting.
+>>   */
+>>
+>>  /*
+>> @@ -289,6 +289,11 @@ static inline bool is_exec_mapping(vm_flags_t flags)
+>>  	return (flags & (VM_EXEC | VM_WRITE | VM_STACK)) == VM_EXEC;
+>>  }
+>>
+>> +static inline bool is_shadow_stack_vma(vm_flags_t vm_flags)
+>> +{
+>> +	return !!(vm_flags & VM_SHADOW_STACK);
+>> +}
+>> +
+>>  /*
+>>   * Stack area (including shadow stacks)
+>>   *
+>> @@ -297,7 +302,7 @@ static inline bool is_exec_mapping(vm_flags_t flags)
+>>   */
+>>  static inline bool is_stack_mapping(vm_flags_t flags)
+>>  {
+>> -	return ((flags & VM_STACK) == VM_STACK) || (flags & VM_SHADOW_STACK);
+>> +	return ((flags & VM_STACK) == VM_STACK) || is_shadow_stack_vma(flags);
+>>  }
+>>
+>>  /*
+>> @@ -308,7 +313,6 @@ static inline bool is_data_mapping(vm_flags_t flags)
+>>  	return (flags & (VM_WRITE | VM_SHARED | VM_STACK)) == VM_WRITE;
+>>  }
+>>
+>> -
+>>  static inline void vma_iter_config(struct vma_iterator *vmi,
+>>  		unsigned long index, unsigned long last)
+>>  {
+>>
+>
 
