@@ -1,165 +1,144 @@
-Return-Path: <devicetree+bounces-143929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA4AEA2C322
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 13:58:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D27A2C33D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:06:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5A72188A553
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 12:58:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE25A16AE2F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 13:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EAA71E6DC5;
-	Fri,  7 Feb 2025 12:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB521E32D5;
+	Fri,  7 Feb 2025 13:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zBBCHajZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BGahV5tW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A0FF7FD
-	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 12:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E8E1E1A23;
+	Fri,  7 Feb 2025 13:06:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738933123; cv=none; b=E44uKOAMxaGOTNYVtOZkVQ4mRezlW9Pr/iQAXdP7xHhjoSX4bvnkaKryROsPUUT+A6tRUPhnmYEflCQ1x6E24hdDi9o1dj2tJiSqK19Aq3fnxt0e9Aa8Npz/rIr+kARaD1R65bknsc5dqe2hItqWmv+XLbhWvXhWGRq8vPbOPqI=
+	t=1738933592; cv=none; b=SPmWQvhKwNnyAKjxDv4FDiQN8Qc3XWdhx5po1dBywzmcy4tk5xDKCKicjOqXlz8qt7/8j73aiJrRQPz6Cp9eMutWq97DEM1GaYU1MOGGkrEnJKTRKAYlW8njFAnMfOImoHG3DaRS7xlHn2N/lUwy2YNU7iMgKxxgouKlblm0lsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738933123; c=relaxed/simple;
-	bh=7ZXg2XB06xWpBNMZ0dTbbkcl16qEqV9xLoGtYjIsNRs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oWHyrEy0EEPtjJxY7Snt1/pGAIoEhCIapZ327mKRHHl5k/hX+6y2q/GXEo669nxBLVSMJTagZyUfQh3+LLrIaJiZWThd10m4sdzyaBg8eGWDyC9mR/+mqvV29QaxTS5MWOM3HlAxThRaeMjkii/aYEPJZQ5hctr8X21GeWpJums=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zBBCHajZ; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-38dc6d55ebaso577925f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 04:58:40 -0800 (PST)
+	s=arc-20240116; t=1738933592; c=relaxed/simple;
+	bh=8Cn8wOqQXwSgklUp81RhPexa4WAAOJL7R116zLm9fOo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JlfpEMl7K+4RTUENmD6nA6dwQiCy9njosXke9zye67hqIVW8O2xh5gdH4PsThD6cY1Uh04MHf/zJWqVuOuSCzWcS+S4H3HpxK+lJC/PdgSdQTPPZy1oMSpJp+EyexOlh9+o6prNG2EcUwQ162N7iA9EnoaslnMYTqp3KEuOXcC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BGahV5tW; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ab7740ca85eso308550966b.3;
+        Fri, 07 Feb 2025 05:06:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738933119; x=1739537919; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=i8cC7hZ6uzXANNqymrxNxizKVo2FCcoOnerezExOsqY=;
-        b=zBBCHajZgFDC7ZrTZK0Ehnwm2o4NsqC6kIWs7ME2UcAGqyt3+3zZm7xt0o4oPrMJaf
-         DfPYqZqePlJ3BxDEQD27h9C3HnxReyEg5Fh90gyrKYA9jjjM6/El8d7Ufq3Ys9hIgtoR
-         IuVvNQtT+0W9bCuWL3d887yJtnM0AKw/XHyLCDcv8fW0TKnWcla4+A6MwE271OG1zLuj
-         Heuervf5ZkZL7afOj/uwRYg7IXhtY8keZf/5O6ONBGZaVPmM/b69pldEIhjPZWtCcRrt
-         S6X0wmCDyhYfcSM+8bF4HvXeDdPYBtHpL72opjsVyDaBOXnxcljUaVM97OgX6YJmIAdp
-         c84Q==
+        d=gmail.com; s=20230601; t=1738933589; x=1739538389; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UAIDUvMqJF3HsOg5RQnZHEKgK80JM34bXGrZoZu2NKg=;
+        b=BGahV5tWCsLSiIjhdGBwBjBU/+bfOM6pxKjxAD2jWvsSUw7asWlTXQOZbZD3bRo9Vl
+         /LmORVtHmsZhrOkuQAvYuPRts21Crg8QnnTx39y5lNSlb7KDzezUV4LC0321nx7ZAD+P
+         g8Gtd/duJYWLzX33c1LFhnZvmyHSbcHJvIOxgKfY1DcBUCfrlLPhYnfQJPQ8aKGLYEDd
+         k+ICK5v+p3nSbGBsVOePJt62D5bAIOBPkeGmn+IDoEoBwfxINt1pabAY+7QRwzlwZ9BZ
+         +Cua72xAHE4zV4+8QZCDXFTVW0Jw39zx9fypWat52qzyZNAvYQ3wD7cl8CCmlx/iMrPL
+         e6cA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738933119; x=1739537919;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i8cC7hZ6uzXANNqymrxNxizKVo2FCcoOnerezExOsqY=;
-        b=roZsCGuRyVM7IHlEx0gJydLx3RNk0TrcGAJEHSiR5DXVLReovyYShAdC15Mdn1a545
-         DJs7lhMc50UM1DHZErZgHy8gZUAnB9p2bJ/P0cEVYXOVHUA/2bk3U/2LxZxw6/xOKT5k
-         iTq0pDV1vkwcRbZj6MD1KkOd93Nz/VIC5BgXo08E5PTMvVM/JhLkph7tcFBnxIiwTE5q
-         L2DqAz1qzMA/zecUGERvJ/Jw1SWdkhkqqw85HgDlA+mALNXR8eU0u4im0WZaKPJ65r9+
-         vWSn59ni0JPiKNfcDmV3GMzWWk44BhNf67WntfvSBcYm/x+qSl+4c4O8xJfoZQerqcUo
-         2oUA==
-X-Forwarded-Encrypted: i=1; AJvYcCVLUsOFI6wcMMprnYNDP5eovtVic69Y9oISj5YRV026lmXC3H2vR2T+HwKjJJ2R/ZdTK4URfv7k20oC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyenBUU/hH9Z4RL0M7kkq3wrlaW2Quw0HutJZ8weCdtDCaxL1Tr
-	kNgNr+nCkkc6/Z63WAtMfR8WkHW22x3UXFqWXOSYY7qlb2T99TJq/f7059u+jT4=
-X-Gm-Gg: ASbGncsr9rx5rS2JtyBo/3S5Ko93Fbla73jFI507IXfUNlTVAPX3P2vnjnmbw2XaUjw
-	zHoxdaPx5nmLoGdbAEGTHBE7MJLJPaXNheMgXSDBuyh9EElGhHT4he+gOtuQfj1iz1ZFK8wpk3F
-	mP0/ub73RXVSX3fA3HKuKyI3RU6jVY8RBLb2CE+G15skIKUo92actX47HQsuAyu5oJNYZ/XvDc/
-	FDyQLKdnGxqttqbgtSaFgKn6lCKttzoBrTyzL2/bQmkSlwM9qcFF6nNwZ0g/Mvf0dYu4aXjClOU
-	694HxUUJ9HA=
-X-Google-Smtp-Source: AGHT+IFpU8AdoWbYYXJlvM/MfFLSme8UqHGmJ/5bUzZ7c50zlMkStKZjdwZcUymCsIcM48r7kspDFg==
-X-Received: by 2002:a05:6000:1ace:b0:38a:87cd:6d67 with SMTP id ffacd0b85a97d-38dbb11f0ccmr5697324f8f.0.1738933118601;
-        Fri, 07 Feb 2025 04:58:38 -0800 (PST)
-Received: from localhost ([2001:4090:a245:80cb:3b5a:db2d:b2b7:c8b4])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43907f1b570sm85882655e9.1.2025.02.07.04.58.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Feb 2025 04:58:37 -0800 (PST)
-Date: Fri, 7 Feb 2025 13:58:35 +0100
-From: Markus Schneider-Pargmann <msp@baylibre.com>
-To: Nishanth Menon <nm@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Vishal Mahaveer <vishalm@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
-	Sebin Francis <sebin.francis@ti.com>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62x-sk-common: Add serial
- aliases
-Message-ID: <voapiqjxe7vbavy463pjz3kjboc7pjciesqts3wbc2zueckpav@fuela22hbuwq>
-References: <20250203-topic-am62-serial-aliases-v6-14-v1-0-f26d4124a9f1@baylibre.com>
- <20250203-topic-am62-serial-aliases-v6-14-v1-1-f26d4124a9f1@baylibre.com>
- <20250204035329.jzss2ar3t5arpgwt@reoccur>
+        d=1e100.net; s=20230601; t=1738933589; x=1739538389;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UAIDUvMqJF3HsOg5RQnZHEKgK80JM34bXGrZoZu2NKg=;
+        b=bPwQgYzcdh3kjf5x7C68qR+rrhEMsFPcwsnd6GVubm1ZhSjH+CYsG2iGLNKZ0pyjcM
+         gzZw3m4DJbbFGsqbMhpL+8Vl5vLUYLBBChGZx8SLrtsGoJlzGMxMQXHabJVjYRO8TTCu
+         5dRccFSX3HM1ygJ7xSWHfdZj1PgYZUhB5Bq6hD9onmNW4j06QTZIxLzEk6cDaxlMLfmT
+         Eccpw7yJ1X+k7zDk5YlNoebip1mHE78O5YOmacHGCRqiWFcuJ/zg4fLrUSntKReqXS5P
+         HHtw5p+zrlTiw2GGLeh77L+a2X1TUEm4asewizB+bDQVsPYmPpfRxo0sTN6GTJj6D472
+         gYYg==
+X-Forwarded-Encrypted: i=1; AJvYcCUoKfGMW/Qgi/rHTKriVfEDFch2flPt3szoCkyr0SPp9njhf772sCal3gjONe+ZUz8c3VKQyXKk3YwOPcmI@vger.kernel.org, AJvYcCX/bF0ebp0QKGyC8CEi+YOm6xLefH+naDvFiSxUcgpbJVjBm8u1pNCWyvCVRQDLeeSSLN25EmOpooPH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsLpzvvrgodwdM48kkyjxBbUo9HqKQUvGVwcWJf3saWUveB3UY
+	TEMlVW1cSl5ASp4FABSojLL20Oev0k0nVBNTeZst5gIZtBdtYfv/
+X-Gm-Gg: ASbGncv9/5RbRIR6S6sVPNKomqOrOP1knubz8/+M1rzq4DO31sfhebDbDLlov6z3QY8
+	EKb5djkwjhEEr6/bpQqKYAenlVhmXWUKzMqGZXWyoBtGvWcAyDuzitN1/ZeAOMu2ly67sx1zOcv
+	cM/9ruMqJBvv0RvNz0GzOoFvlor2yg1oWj8N/DnFZbg70KrX200iKKV1iyNwQBnJvKdVQKDbPMb
+	pQAKwohISrmYNCEaAlzxI4C2gVT3clodT8+K/x/f6WPCEtEKB4hFJKLEtYoUIsVs03Ex9+SXrp5
+	r0GnY6bSpNIHh6yOEl4UsOo6Cy669i1jHkytazlCQ41WfDGGd1lUD8/2IDyN
+X-Google-Smtp-Source: AGHT+IF23i+bLVu6xQLagQY0iQsPCDtzqSfKx065HMgxZ1ucv21ADcRH7FJoEMrvnNJprAQJAMH5TA==
+X-Received: by 2002:a17:907:6d23:b0:ab7:5fcd:d4de with SMTP id a640c23a62f3a-ab789c50af4mr308195866b.50.1738933588917;
+        Fri, 07 Feb 2025 05:06:28 -0800 (PST)
+Received: from [192.168.50.244] (83.8.206.8.ipv4.supernova.orange.pl. [83.8.206.8])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab772f893e9sm267815066b.65.2025.02.07.05.06.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Feb 2025 05:06:28 -0800 (PST)
+Message-ID: <bc9df0fe-ff2b-439b-a434-b6b88ee8e25c@gmail.com>
+Date: Fri, 7 Feb 2025 14:06:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zb4o5bgchnlxnt4t"
-Content-Disposition: inline
-In-Reply-To: <20250204035329.jzss2ar3t5arpgwt@reoccur>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/7] mfd: bcm590xx: Add compatible for BCM59054
+To: Lee Jones <lee@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20250131-bcm59054-v3-0-bbac52a84787@gmail.com>
+ <20250131-bcm59054-v3-4-bbac52a84787@gmail.com>
+ <20250207084852.GC7593@google.com>
+From: Artur Weber <aweber.kernel@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20250207084852.GC7593@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 7.02.2025 09:48, Lee Jones wrote:
+> On Fri, 31 Jan 2025, Artur Weber wrote:
+> 
+>> The BCM59056 supported by the bcm590xx driver is similar to the
+>> BCM59054 MFD. Add a compatible for it in the driver, in preparation
+>> for extending support of this chip in the bcm590xx regulator driver.
+>>
+>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+>> ---
+>> Changes in v3:
+>> - Fix compilation warning about device_type pointer cast type
+>> - Name the device types enum and use it as the type in the MFD struct
+>> ---
+>>   drivers/mfd/bcm590xx.c       | 6 +++++-
+>>   include/linux/mfd/bcm590xx.h | 7 +++++++
+>>   2 files changed, 12 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/mfd/bcm590xx.c b/drivers/mfd/bcm590xx.c
+>> index 8b56786d85d0182acf91da203b5f943556c08422..23036157480e0116301bfa93932c92f5a80010ea 100644
+>> --- a/drivers/mfd/bcm590xx.c
+>> +++ b/drivers/mfd/bcm590xx.c
+>> @@ -50,6 +50,9 @@ static int bcm590xx_i2c_probe(struct i2c_client *i2c_pri)
+>>   	bcm590xx->dev = &i2c_pri->dev;
+>>   	bcm590xx->i2c_pri = i2c_pri;
+>>   
+>> +	bcm590xx->device_type = \
+>> +			  (uintptr_t) of_device_get_match_data(bcm590xx->dev);
+> 
+> Why are you dividing pointers with each other?
 
---zb4o5bgchnlxnt4t
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62x-sk-common: Add serial
- aliases
-MIME-Version: 1.0
+That's not division, it's a line continuation (note the space before
+"\") - had to insert it for the line to fit in 80 characters. Though
+admittedly, there's probably a better way to do this than to force it
+with "\"...
 
-On Mon, Feb 03, 2025 at 09:53:29PM -0600, Nishanth Menon wrote:
-> On 10:34-20250203, Markus Schneider-Pargmann wrote:
-> > Add aliases for mcu_uart0 and wkup_uart0.
-> >=20
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm6=
-4/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > index 2f129e8cd5b9f127b1d1baab17be868938fae013..d52cb2a5a589a8e5eb325fd=
-90324d57ec1e3783b 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > @@ -12,6 +12,8 @@
-> > =20
-> >  / {
-> >  	aliases {
-> > +		serial0 =3D &wkup_uart0;
-> > +		serial1 =3D &mcu_uart0;
-> >  		serial2 =3D &main_uart0;
-> >  		mmc0 =3D &sdhci0;
-> >  		mmc1 =3D &sdhci1;
-> >=20
-> > --=20
-> > 2.47.2
-> >=20
-> Are'nt these reserved nodes for DM/TIFS and MCU? What purpose does it
-> serve for us to have an alias in Linux?
+I will clean this up in the next version.
 
-For IO+DDR mcu_uart0 can be a wakeup-source and pinctrl needs to be
-described for that at some point. So I thought it would be helpful to
-have these aliases added already.
-
-Best
-Markus
-
-> --=20
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DD=
-B5 849D 1736 249D
-
---zb4o5bgchnlxnt4t
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTd8KHufh7XoFiu4kEkjLTi1BWuPwUCZ6YDdwAKCRAkjLTi1BWu
-P0UAAQDUgpQnZ/6RTBTDAwSqmUrzspde+nHHN5BMHTYX301IsAEAjwlTmV2ouLgL
-yJ3xNNhONU5ZnXKeC/iTWYpwZ6CmaAU=
-=+yFw
------END PGP SIGNATURE-----
-
---zb4o5bgchnlxnt4t--
+Best regards
+Artur
 
