@@ -1,158 +1,127 @@
-Return-Path: <devicetree+bounces-143881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CE7A2BF1A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 10:21:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE9FA2BF35
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 10:25:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75006188C945
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:21:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6163F1889F1C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:25:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAE31D9A48;
-	Fri,  7 Feb 2025 09:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 916781DD894;
+	Fri,  7 Feb 2025 09:25:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="qvkOU91T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FoDA4+SM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0AF11D6182
-	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 09:21:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6478A1DC992;
+	Fri,  7 Feb 2025 09:25:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738920085; cv=none; b=ES98x5uxhXL6Bpbd+fe9YPSEs3fdj/NuZgZ4hR9gQ5NONJhTfbs+dvZkRFwbvsTRQm+pIBTUCp3w9GDJyVrfPqgbzgEuiCCjSM+9OxCT4W8u/TfKKGt4jSaQWpVSHD/zA1OuHgkR25Pm9/U7M+GHsLT4QpBB6tNNwVTEFEHwdqE=
+	t=1738920327; cv=none; b=ZN82sksFD6yqgo0bIMs9eB9P4ZRdNcYgjU2RVhkbLamni3MPKy5eKwhBAPXj7pDVR+UdkVwpn1TRnwkFOMhHscq1gUlzI3w0xInaQLyapmoD1ErAcyqaXNgbLgiujRbgVTJxpDvJ96Pa9MjbmR+RdgUSnuZDnYQwbvFSZkA3ZF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738920085; c=relaxed/simple;
-	bh=I+m5NFphToaBU7KuM1MYybzmSrg3x16TgEyyHHWiTQY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XZlifrOetZIxBEPgNNh+bOb14OwNh0o/O34fDR5VJ9LkpthCS8u/tJrCltK4Xh+mHCT2bgJcbF2nGsOjYGrjYYWFVPmqPU6Xmq+RqVQ6iPpWbe4kBU/QP8mAm/FkhBpRe1LEtVVtW/MAkRCPzITSC4vKYHswxGw3de8fVlXXBUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=qvkOU91T; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-436a39e4891so12244885e9.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2025 01:21:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1738920082; x=1739524882; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9tiH9b+H/9t/xpf0NWHkN82z4SsEthrDvr6Ide4MKv0=;
-        b=qvkOU91TKwXhl3wwXeHbSANaUwtiNtlRtC+UiUeWYkITOEGsdrleTAPtqmKkTqD7EG
-         8OKunAgQ/SgTNK1MY6uJR2OE20OgZYo15aCnb7UH8o9+eQIIpVUwIIyrEJ/Wz129x7sV
-         BVKbugM0+qYln6USEdUnyuosGvUTKp2kDhrYlw7VGFnnF8h7XX0nmPa/XYxIGb4e6Bn/
-         gE4EvuSIHLs+zv1B//il1qSjWwTjZKPhfpdDjsMmXwjcLWtC+gY8MNPio3f/VFAvPnt8
-         OAjIu5rHmJ/2up3i97w7OPMjf1Fgo7Yw1u8/JX1BmSzqmUUE8/9J1JSZys+EiUs6RLcy
-         8g6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738920082; x=1739524882;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9tiH9b+H/9t/xpf0NWHkN82z4SsEthrDvr6Ide4MKv0=;
-        b=PINo30JShp9zhBF7gCkaGnTWcaWJDHAHU1PZ0V1GGEt9jXxOFBNNhdYVGZzCPPb4OR
-         1Ai7FYnX2sXlJWk67puqbq+R9uKtlrFRL8EfVLyBcQ7Tki6ozYaRfAonyMnBFv81ponj
-         mA8JIOpVZGwlEOfPWtkHw7kucs0LrsJ4i3scFQ0KaVLni+qTQ2Oest/bInJJG+tTMR5J
-         WsUOmUpMbLne5zINBMucIFNVFi8uQ3T7wQzRDPgnRZjPT72pJncE7WrgvdS14DR6fWFA
-         C3XayLRGSY85qJf1ZWtHlnDwSPOJF5NUCRA62n3voztsIqLXyiwODU6HIPP0/62i90p1
-         IQxw==
-X-Forwarded-Encrypted: i=1; AJvYcCWBQrKjVFmE2Kpe+SKSH5P/i3L1avSuwugyGlXgi0Pt65eHOB/rQRRM6iP2J7eNArrLeDrl2SD6jT3F@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiY28UrzKW2TKTLIhTzW4l5Ww8eSMD1988Phj6y2sMOKFO4aL2
-	HKavzkyVJZQLfDQB8c6zCf1VxNQoyHsTEcLegBnqX3hQLkKR6m4UgYshGu4jDic=
-X-Gm-Gg: ASbGncu6s6M2VdrGnzaSYP4/K9FpUoSIWVWe3aq2kd464PX2vM7JKydjK1SWbJfQJAJ
-	4kZTNrWSXjYGVzGMuicSvVI5T7QCiZQG0Hi0qkAK1GlgYjBo7+OPcH9cjGThccaSXgE2WmOqJ88
-	CxzXjp9E7uUi2RgW0MS7qVX5kQaGyeAl3NOeYpDLQn8e0fgKJm8yydU9ojfzt/+DwTEVm2OxLjW
-	vwrx7nT88nQkaco/H0ixuT+0B2QAaQ6IzBefdX8Y7+ZMtf2uuHnlW5zSIzaqRYkHPuGwaxyZshX
-	wR4PPSbmVIoCBUmDE68kQOnh9Kxf5O+KZ4yQUI5EwTDAlgttTXGdF4+Z25By
-X-Google-Smtp-Source: AGHT+IECWFH7U0mArd280iuB70Vnw8HZQHKBAtWHAu5Pk2zNKD95w0WIBx5nMCf9e60ecld/9uOCGw==
-X-Received: by 2002:a05:600c:3c9b:b0:436:5fc9:30ba with SMTP id 5b1f17b1804b1-439249c385cmr21219595e9.29.1738920082212;
-        Fri, 07 Feb 2025 01:21:22 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:e17:9700:16d2:7456:6634:9626? ([2a01:e0a:e17:9700:16d2:7456:6634:9626])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439069290c7sm87180725e9.0.2025.02.07.01.21.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Feb 2025 01:21:21 -0800 (PST)
-Message-ID: <7aace8a9-0e62-4156-9c50-f7b399c4eba2@rivosinc.com>
-Date: Fri, 7 Feb 2025 10:21:20 +0100
+	s=arc-20240116; t=1738920327; c=relaxed/simple;
+	bh=kF7bqOfEPUr/1NjhgrCLEjkTuw9hFLco2ae4W2t7H38=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=hDmekiPxPiBRAHSx+GHoIoAY4MSUA665L72M35LVh1DZOQObmtstZyoHc3lWV+RuTfk3tcJGb1BDWZ8KYis/dGqDANWOQ0MS3yEzzDYq3cLAp64gFnKh9NH5KZrH0WMwxO8ObAsD7duxMftvXN1SrjPnc2O2EpsPZH+OkxkYRjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FoDA4+SM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFF92C4CED1;
+	Fri,  7 Feb 2025 09:25:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738920327;
+	bh=kF7bqOfEPUr/1NjhgrCLEjkTuw9hFLco2ae4W2t7H38=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=FoDA4+SMwU8LqI5xPUcyA5YFPx2OWZI08q3Zegddu0PgzHiWdxO7CWWhvxNWYlxfO
+	 dxkAoFvD3RWtPpsGuE01QUligb3BkydtmaoZ9r1m5GRHlXSAJnM1aGUM14/0YtftKv
+	 YJFXuGPrXlqL1jF+R4A2SGhThekSSY8+H3DM6AGpVU1h45nmQBol/xtwKLYmpy3MMa
+	 2rkC6jrFEvTH+QIqLb0TYStvohRDuUiYMwg+IrXXdCfeK5ehqdwQvzUndv4t1wpGwO
+	 ocRFK/Zdt2lU4sEVLCsY7bAd8mMJc7XDY973225MKpI4xz01Cpu/vxcuqwWCuwqdCp
+	 jl/ifOtnDArsQ==
+Date: Fri, 07 Feb 2025 03:25:25 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/21] RISC-V: Add Smcntrpmf extension parsing
-To: Atish Patra <atishp@rivosinc.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Anup Patel <anup@brainfault.org>,
- Atish Patra <atishp@atishpatra.org>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
- Adrian Hunter <adrian.hunter@intel.com>, weilin.wang@intel.com
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
- kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org
-References: <20250205-counter_delegation-v4-0-835cfa88e3b1@rivosinc.com>
- <20250205-counter_delegation-v4-6-835cfa88e3b1@rivosinc.com>
-Content-Language: en-US
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <20250205-counter_delegation-v4-6-835cfa88e3b1@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-media@vger.kernel.org, conor+dt@kernel.org, 
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, eajames@linux.ibm.com, 
+ mchehab@kernel.org, andrew@aj.id.au, openbmc@lists.ozlabs.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, joel@jms.id.au, 
+ linux-arm-kernel@lists.infradead.org
+To: Jammy Huang <jammy_huang@aspeedtech.com>
+In-Reply-To: <20250207082351.1298990-1-jammy_huang@aspeedtech.com>
+References: <20250207082351.1298990-1-jammy_huang@aspeedtech.com>
+Message-Id: <173892032595.3714424.13095199531321692299.robh@kernel.org>
+Subject: Re: [PATCH v3] media: dt-bindings: aspeed,video-engine: Convert to
+ json schema
 
 
-
-On 06/02/2025 08:23, Atish Patra wrote:
-> Smcntrpmf extension allows M-mode to enable privilege mode filtering
-> for cycle/instret counters. However, the cyclecfg/instretcfg CSRs are
-> only available only in Ssccfg only Smcntrpmf is present.
+On Fri, 07 Feb 2025 16:23:51 +0800, Jammy Huang wrote:
+> Convert aspeed-video.txt to yaml format.
+> Update aspeed-video.txt to aspeed,video-engine.yaml in MAINTAINER file.
 > 
-> That's why, kernel needs to detect presence of Smcntrpmf extension and
-> enable privilege mode filtering for cycle/instret counters.
+> Additional changes:
+> - Two phandle properties, 'aspeed,scu' and 'aspeed,gfx', are added for
+>   video engine to capture video from sources other than VGA.
+> - Update examples and include appropriate file directives to resolve
+>   errors identified by `dt_binding_check` and `dtbs_check`.
 > 
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
 > ---
->  arch/riscv/include/asm/hwcap.h | 1 +
->  arch/riscv/kernel/cpufeature.c | 1 +
->  2 files changed, 2 insertions(+)
+>  v3:
+>   - Add Additional changes into comments.
+>   - Remove | after phandle description
 > 
-> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-> index 3d6e706fc5b2..b4eddcb57842 100644
-> --- a/arch/riscv/include/asm/hwcap.h
-> +++ b/arch/riscv/include/asm/hwcap.h
-> @@ -102,6 +102,7 @@
->  #define RISCV_ISA_EXT_SVADU		93
->  #define RISCV_ISA_EXT_SSCSRIND		94
->  #define RISCV_ISA_EXT_SMCSRIND		95
-> +#define RISCV_ISA_EXT_SMCNTRPMF         96
->  
->  #define RISCV_ISA_EXT_XLINUXENVCFG	127
->  
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index c6da81aa48aa..8f225c9c3055 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -390,6 +390,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->  	__RISCV_ISA_EXT_BUNDLE(zvksg, riscv_zvksg_bundled_exts),
->  	__RISCV_ISA_EXT_DATA(zvkt, RISCV_ISA_EXT_ZVKT),
->  	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
-> +	__RISCV_ISA_EXT_DATA(smcntrpmf, RISCV_ISA_EXT_SMCNTRPMF),
->  	__RISCV_ISA_EXT_DATA(smcsrind, RISCV_ISA_EXT_SMCSRIND),
->  	__RISCV_ISA_EXT_DATA(smmpm, RISCV_ISA_EXT_SMMPM),
->  	__RISCV_ISA_EXT_SUPERSET(smnpm, RISCV_ISA_EXT_SMNPM, riscv_xlinuxenvcfg_exts),
+>  v2:
+>   - Update patch subject
+>   - Add NOTE for false positive warning
+> ---
+>  .../bindings/media/aspeed,video-engine.yaml   | 84 +++++++++++++++++++
+>  .../bindings/media/aspeed-video.txt           | 33 --------
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 85 insertions(+), 34 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/aspeed,video-engine.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/media/aspeed-video.txt
 > 
 
-Looks good to me.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Reviewed-by: Clément Léger <cleger@rivosinc.com>
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/media/aspeed,video-engine.yaml:44:55: [error] syntax error: mapping values are not allowed here (syntax)
 
-Thanks,
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/aspeed,video-engine.yaml: ignoring, error parsing file
+./Documentation/devicetree/bindings/media/aspeed,video-engine.yaml:44:55: mapping values are not allowed in this context
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/media/aspeed,video-engine.example.dts'
+Documentation/devicetree/bindings/media/aspeed,video-engine.yaml:44:55: mapping values are not allowed in this context
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/media/aspeed,video-engine.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1511: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-Clément
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250207082351.1298990-1-jammy_huang@aspeedtech.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
