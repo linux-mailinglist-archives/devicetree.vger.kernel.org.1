@@ -1,98 +1,140 @@
-Return-Path: <devicetree+bounces-143772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E2B8A2B82A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 02:42:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77327A2B838
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 02:43:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17E4D7A3630
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 01:41:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B38A7A3AD7
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 01:42:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B881922C6;
-	Fri,  7 Feb 2025 01:40:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FC67149C4A;
+	Fri,  7 Feb 2025 01:42:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yGkUlGwi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 174F01917D0;
-	Fri,  7 Feb 2025 01:39:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.187
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF306133987;
+	Fri,  7 Feb 2025 01:42:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738892400; cv=none; b=hVWpcpBu4x+HrXinUPiPuhdXZsasIxZzadtlgVCdCydN/o9Rfd24o4wrVnc5vvNMEUf296S4wbIP2FlDdehIfp5TeelqbWhv9EKt1ol057axSuwhSi1m1LR/7MBOOxAJgCu6frW+7kSxAfbOHJ1g1CCK/2PT0+d481epQLxU4vU=
+	t=1738892579; cv=none; b=BH4u1psOaB6+PssYcY3tqevu2UCCr+mFi9hvB4TEtejRyE2UaM8CxjtnMXzdzt6LEq+2y5pJhYHXVjH1P2QSoQ3c8P4miDw7eju10gtQRqiukhLn8wIsPjUkGMlpOg7RMnDOgjH0qT/PEUGxzsLJ6VFMT1dtK9PfII7E1Zgnp5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738892400; c=relaxed/simple;
-	bh=txYL5vHk4cRuMflmnp/SyGG+L6ZQPYHZeWaTctmwH0k=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rKsc6/xjvBnG8dhjws9ZekLgfo6i8lBJY/2eo/vFUOpzYsSCjSeJ1L7harNqL64MQQV9B1zJPHvM6WSN18rr4tLjJl8M7BxzIOvrTqcOVtjsOOr2ASYChjLmbc4Fpsew5olnHDRwQiWUVZ7NdgI2vyVL58WMLcivh+z+ab/j7s0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.187
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.19.163.48])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4YpxPN4fb4z11Pg3;
-	Fri,  7 Feb 2025 09:35:36 +0800 (CST)
-Received: from kwepemf500003.china.huawei.com (unknown [7.202.181.241])
-	by mail.maildlp.com (Postfix) with ESMTPS id F249D180064;
-	Fri,  7 Feb 2025 09:39:56 +0800 (CST)
-Received: from huawei.com (10.175.112.208) by kwepemf500003.china.huawei.com
- (7.202.181.241) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Fri, 7 Feb
- 2025 09:39:54 +0800
-From: Zhang Zekun <zhangzekun11@huawei.com>
-To: <robh@kernel.org>, <saravanak@google.com>, <justin.chen@broadcom.com>,
-	<florian.fainelli@broadcom.com>, <andrew+netdev@lunn.ch>, <kuba@kernel.org>,
-	<o.rempel@pengutronix.de>, <kory.maincent@bootlin.com>,
-	<jacopo+renesas@jmondi.org>, <kieran.bingham+renesas@ideasonboard.com>,
-	<laurent.pinchart+renesas@ideasonboard.com>, <maddy@linux.ibm.com>,
-	<mpe@ellerman.id.au>, <npiggin@gmail.com>, <olteanv@gmail.com>,
-	<davem@davemloft.net>, <taras.chornyi@plvision.eu>, <edumazet@google.com>,
-	<pabeni@redhat.com>, <sudeep.holla@arm.com>, <cristian.marussi@arm.com>
-CC: <arm-scmi@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
-	<linux-media@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <chenjun102@huawei.com>,
-	<zhangzekun11@huawei.com>
-Subject: [PATCH 9/9] regulator: scmi: Use of_find_node_by_name_balanced() to find device_node
-Date: Fri, 7 Feb 2025 09:31:17 +0800
-Message-ID: <20250207013117.104205-10-zhangzekun11@huawei.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20250207013117.104205-1-zhangzekun11@huawei.com>
-References: <20250207013117.104205-1-zhangzekun11@huawei.com>
+	s=arc-20240116; t=1738892579; c=relaxed/simple;
+	bh=bV+VETLIvHm0HeOjf+9+/XgiUHfPISVbDALV+wvdT7A=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P63ghVk5Y1ok45OU6cX2GPLfs20yvKcpsSA2PaRjxTL0ejj13+UowO1VQ+ebDl1p9+dcq5r+VCz3ES1OXwZ0t4IgSOfrNSifmaIORmdERDVz6hTGk/pzMq1XhHm9Hoj6ZyJqgF7wHaehIXEzgjJ6JEW7onMKuJ7RIk62PEgMmZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yGkUlGwi; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5171geKL3735092
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 6 Feb 2025 19:42:40 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1738892560;
+	bh=2qbcY8LfMeC70utkdYzDbp4vKmOxEokKzG/s6jdwbe0=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=yGkUlGwiltG3sTc6kk+urLbxITx9zlEzty9BG3fnNt4HQn5xEnsVxQfhouh82mehx
+	 nrQF80lsPHGLKCGeoh+N5gGY5p47ISkZXYfCuoaFeV3l3i+wanYmlgDjmD9DOvRRuM
+	 ena8MsMlB3wsVjiCyqyvpLkWcG1aQR5ADiQvSLK0=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5171geCa006289
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 6 Feb 2025 19:42:40 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 6
+ Feb 2025 19:42:39 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 6 Feb 2025 19:42:39 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5171gdQR001088;
+	Thu, 6 Feb 2025 19:42:39 -0600
+Date: Thu, 6 Feb 2025 19:42:39 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Francesco Dolcini <francesco@dolcini.it>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Francesco Dolcini
+	<francesco.dolcini@toradex.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62p: Enable AUDIO_REFCLKx
+Message-ID: <20250207014239.xzm6rfnusckql2uo@litigator>
+References: <20250206153911.414702-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- kwepemf500003.china.huawei.com (7.202.181.241)
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250206153911.414702-1-francesco@dolcini.it>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Instead of directly using of_node_get() before of_find_node_by_name()
-to balance the refcount of the device_node, using wraper function
-of_find_node_by_name_balanced() to make code logic a bit simplier.
+On 16:39-20250206, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> 
+> On AM62P-based SoCs the AUDIO_REFCLKx clocks can be used as an input to
+> external peripherals when configured through CTRL_MMR, so add the
+> clock nodes.
+> 
+> Link: http://downloads.ti.com/tisci/esd/latest/5_soc_doc/am62px/clocks.html
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> index 420c77c8e9e5..4b47b0774330 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> @@ -42,6 +42,26 @@ &inta_main_dmss {
+>  	ti,interrupt-ranges = <5 69 35>;
+>  };
+>  
+> +&main_conf {
 
-Signed-off-by: Zhang Zekun <zhangzekun11@huawei.com>
----
- drivers/regulator/scmi-regulator.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+	Why not add it to main_conf section it self in the file?
 
-diff --git a/drivers/regulator/scmi-regulator.c b/drivers/regulator/scmi-regulator.c
-index 9df726f10ad1..11f75c13bdf0 100644
---- a/drivers/regulator/scmi-regulator.c
-+++ b/drivers/regulator/scmi-regulator.c
-@@ -339,8 +339,7 @@ static int scmi_regulator_probe(struct scmi_device *sdev)
- 	 * plausible SCMI Voltage Domain number, all belonging to this SCMI
- 	 * platform instance node (handle->dev->of_node).
- 	 */
--	of_node_get(handle->dev->of_node);
--	np = of_find_node_by_name(handle->dev->of_node, "regulators");
-+	np = of_find_node_by_name_balanced(handle->dev->of_node, "regulators");
- 	for_each_child_of_node_scoped(np, child) {
- 		ret = process_scmi_regulator_of_node(sdev, ph, child, rinfo);
- 		/* abort on any mem issue */
+> +	audio_refclk0: clock-controller@82e0 {
+> +		compatible = "ti,am62-audio-refclk";
+> +		reg = <0x82e0 0x4>;
+> +		clocks = <&k3_clks 157 0>;
+> +		assigned-clocks = <&k3_clks 157 0>;
+> +		assigned-clock-parents = <&k3_clks 157 16>;
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	audio_refclk1: clock-controller@82e4 {
+> +		compatible = "ti,am62-audio-refclk";
+> +		reg = <0x82e4 0x4>;
+> +		clocks = <&k3_clks 157 18>;
+> +		assigned-clocks = <&k3_clks 157 18>;
+> +		assigned-clock-parents = <&k3_clks 157 34>;
+> +		#clock-cells = <0>;
+> +	};
+> +};
+> +
+>  &main_pmx0 {
+>  	pinctrl-single,gpio-range =
+>  		<&main_pmx0_range 0 32 PIN_GPIO_RANGE_IOPAD>,
+> -- 
+> 2.39.5
+> 
+
 -- 
-2.22.0
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
