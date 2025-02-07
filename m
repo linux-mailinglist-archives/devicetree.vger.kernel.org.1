@@ -1,97 +1,97 @@
-Return-Path: <devicetree+bounces-143756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E9FA2B6E9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 01:06:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6316A2B722
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 01:29:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAC8D3A7A7F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 00:05:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F34E73A796B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 00:29:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC2E634;
-	Fri,  7 Feb 2025 00:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21DBD2114;
+	Fri,  7 Feb 2025 00:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OS5vtUP8"
+	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="cH6Wfmxn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2ED6184;
-	Fri,  7 Feb 2025 00:06:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF1371F95A;
+	Fri,  7 Feb 2025 00:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738886761; cv=none; b=tQK1/3auGOpIU6+KefIXBte1hDkCKER7OpqRZAWbTJImGHARCqyWpZBqGeiFdqtJ+lK4X46gjliwB5MCrZroaoM3moN3dx/ygWCLUN05v1eoDJuJSr3JAu16oOEmxiD85tl3IEQ9tq8QScFkYH35/kngUGIfbZgta/lg/vbE010=
+	t=1738888183; cv=none; b=G5dcMp+NXvLOHbNY7bv86XrUeg9oIlMdp3SxMe8efXM7uxXNT5GrdU7cgTV0p9pNiK4Jo/wjLfPpTKsSl7DsdtebibNDmjZJV8Wt4cxWc09/X61+vwGmVR146SLJhbOxo/NEb5yauvJ0DppxcgKkaRTZcpCK7A45aGa+kJCMTyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738886761; c=relaxed/simple;
-	bh=unumerF3wuEW+t29ZNgfkgqepZFAeZrfvRLZS/aN1T8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OiegL9gl83bFzhqX7Xej9yaW5few/TT+ViCBZm7JMNg6GONRKVEox1juRsPz2ay15a2b4sLbx+DP+Fv3UA8i4lZvrxByDcSCdKF4xgHiOhqYt2Ct5CoE8quCZ53yt/KGycNKU3GCOdiHz509By700gvPzZeh8aA053y3CWzh938=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OS5vtUP8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99FE7C4CEDF;
-	Fri,  7 Feb 2025 00:05:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738886760;
-	bh=unumerF3wuEW+t29ZNgfkgqepZFAeZrfvRLZS/aN1T8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OS5vtUP8W1dICJdEc8OCIyy+bmkBKsmWi6lPUGicw+bhnrscCYrEuo3lMoTRnAUWp
-	 rm7euvzjm88aoIV3nInhMbLl1iMcPvTit/5Hriau0Ng9G6uA3Arue5deUzFrfhSKKa
-	 hEz9afZiCcl2Eq7K8oWyffGE0VEUP8f8jiZoy3EBw/tSrhKRtdsiRoFqGMe7DQdmqX
-	 huUQTeV+qCZJSwm+pazFeA3C4t/d2kC/+ISI/BVhtbFgtqKQCnzm8ts87L0As/5W1e
-	 /KA6Eey9KYxsHpyGiGOOGTxPAym1MTyDYt99f4v79U8bBkQ2cCDJaPIkEUVYkeexIS
-	 Mu/mEKdrXqGvA==
-Date: Fri, 7 Feb 2025 00:05:56 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, broonie@kernel.org,
-	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ir38060: Move & update dt binding
-Message-ID: <20250207-semifinal-fondue-bbc3ad179ce5@spud>
-References: <20250204180306.2755444-1-naresh.solanki@9elements.com>
- <20250204-mulled-evaluate-8a690cdfbd4d@spud>
- <CABqG17jHKfwJEfZxto_YA4opS8=QwqTqfNdkku8kcEv2_iW+XA@mail.gmail.com>
- <20250205-purge-debating-21273d3b0f40@spud>
- <CABqG17j4tKXnMZ5=vcjBvfe6JwCLQ6NbkQmJC9ySK_bmGEv=iQ@mail.gmail.com>
- <20250206-camera-mashed-48cf0cf1715f@spud>
- <CABqG17iyRXW2_jvTVkFAEhW+TZZ-SAABm+6efqt0ZWHgYbiUMw@mail.gmail.com>
+	s=arc-20240116; t=1738888183; c=relaxed/simple;
+	bh=394j8Z0b6091bH8cpo4/leUwPDluUyEIe29eznp9v/Y=;
+	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
+	 Mime-Version:Content-Type; b=GXw3/nHaFmSjaNazoM9ZNu5cHSV29aOls8/JwUW7//7XLdmnCr0bQ7KsN6RvFQqai8Z/xGzvEnTPaCGiCdm8vSRRzktF/H3UTRvKl5hfHZfJlLE5rBoyTjJS+G7IzRNL12UJfyUM1atPz8RjbD5cd3RJ332nRooHJU/MsPHq8sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b=cH6Wfmxn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09692C4CEDF;
+	Fri,  7 Feb 2025 00:29:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+	s=korg; t=1738888181;
+	bh=394j8Z0b6091bH8cpo4/leUwPDluUyEIe29eznp9v/Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cH6WfmxnF52p9Zequ1wu7UNwiFQG9Q9DFgHs3+QDdI63nHyM6sfGRF6ORytziBHBG
+	 1svUtzspmlPno7QIYJtnR9zgKZPtG9f9VRRcOxc9zMOT1pNOcS0MkqJE4BtWRzysLo
+	 MVYoEEfJiWjb8IfK5tW9plqHYJnc6c1PwQKhrUMc=
+Date: Thu, 6 Feb 2025 16:29:39 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Mike Rapoport <rppt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>, Andy
+ Lutomirski <luto@kernel.org>, Anthony Yznaga <anthony.yznaga@oracle.com>,
+ Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>, Borislav Petkov
+ <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Dave Hansen
+ <dave.hansen@linux.intel.com>, David Woodhouse <dwmw2@infradead.org>, Eric
+ Biederman <ebiederm@xmission.com>, Ingo Molnar <mingo@redhat.com>, James
+ Gowans <jgowans@amazon.com>, Jonathan Corbet <corbet@lwn.net>, Krzysztof
+ Kozlowski <krzk@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Paolo
+ Bonzini <pbonzini@redhat.com>, Pasha Tatashin <pasha.tatashin@soleen.com>,
+ "H. Peter Anvin" <hpa@zytor.com>, Peter Zijlstra <peterz@infradead.org>,
+ Pratyush Yadav <ptyadav@amazon.de>, Rob Herring <robh+dt@kernel.org>, Rob
+ Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, Steven Rostedt
+ <rostedt@goodmis.org>, Thomas Gleixner <tglx@linutronix.de>, Tom Lendacky
+ <thomas.lendacky@amd.com>, Usama Arif <usama.arif@bytedance.com>, Will
+ Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+ kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v4 00/14] kexec: introduce Kexec HandOver (KHO)
+Message-Id: <20250206162939.a1f86fb835f1eeb7ed73ff1c@linux-foundation.org>
+In-Reply-To: <20250206132754.2596694-1-rppt@kernel.org>
+References: <20250206132754.2596694-1-rppt@kernel.org>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZAHNkK8r2FFtRP4y"
-Content-Disposition: inline
-In-Reply-To: <CABqG17iyRXW2_jvTVkFAEhW+TZZ-SAABm+6efqt0ZWHgYbiUMw@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Thu,  6 Feb 2025 15:27:40 +0200 Mike Rapoport <rppt@kernel.org> wrote:
 
---ZAHNkK8r2FFtRP4y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> This a next version of Alex's "kexec: Allow preservation of ftrace buffers"
+> series (https://lore.kernel.org/all/20240117144704.602-1-graf@amazon.com),
+> just to make things simpler instead of ftrace we decided to preserve
+> "reserve_mem" regions.
+> 
+> The patches are also available in git:
+> https://git.kernel.org/rppt/h/kho/v4
+> 
+> 
+> Kexec today considers itself purely a boot loader: When we enter the new
+> kernel, any state the previous kernel left behind is irrelevant and the
+> new kernel reinitializes the system.
 
-On Fri, Feb 07, 2025 at 12:40:38AM +0530, Naresh Solanki wrote:
-> I'm not sure what you meant by 'fixes tag'
+I tossed this into mm.git for some testing and exposure.
 
-I am surprised you don't know what a fixes tag is, feel like you've been
-around long enough to encounter one! They look like Fixes: <hash> ("<shortlog>")
-and there should be documentation on them at https://docs.kernel.org/process/submitting-patches.html#describe-changes
+What merge path are you anticipating?
 
---ZAHNkK8r2FFtRP4y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6VOZAAKCRB4tDGHoIJi
-0pKrAQC2mtE4yFa+MUhJ5WJQKEoJpd+IfARvyS9kAeYiyjEoywD/fzGCCma3iHW+
-tDcrp6+1b01Z4Jk932CdnFtcgJnuKgw=
-=g4l/
------END PGP SIGNATURE-----
-
---ZAHNkK8r2FFtRP4y--
+Review activity seems pretty thin thus far?
 
