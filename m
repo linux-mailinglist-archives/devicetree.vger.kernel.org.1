@@ -1,127 +1,153 @@
-Return-Path: <devicetree+bounces-143872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43CF5A2BE89
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:56:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04530A2BE92
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:57:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5400169F5B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:56:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0049B188C77D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78361B041C;
-	Fri,  7 Feb 2025 08:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C50C11C3F1C;
+	Fri,  7 Feb 2025 08:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Xcbe8mZq"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="RRGFwKpI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2401F1A4E70;
-	Fri,  7 Feb 2025 08:56:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5D11B4239;
+	Fri,  7 Feb 2025 08:57:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738918609; cv=none; b=S7SV/d56AeBSwQkSOLbcZ3me73BWIDN0X5DW0OSllOd1xD4jksFO4Tr8I5ceiHaGJMrWPirnwwYxB+wF+GT5U5/FyrkZYdD6Az9/dPm87S4i1NqwEQXxu9OdWBmtNUe6z3H3s5dNX6t0ynK3bOMiOZ5bkb6Lx2dwq29y2WBbTiE=
+	t=1738918661; cv=none; b=Oi3403cgmUguwTjBmE5i7vaHEeligJmCjViNDHiNf1ckF1tjxuGfQ9RzDekidqN9Th44DKjxevW6Ljo6+BhZQCuuKOPERgOF7VaE/PFzbGge2qc0HO1vpV26DexBotaVRzU+jCAoYgTBF7H2vbSfDwkjPA7RLjBEh+pgYUnvA7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738918609; c=relaxed/simple;
-	bh=Yl6ldaHkVl3Q/jLZovzlP+xEbDH9XAk23aBnRxgMxVU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=RH7ptMZFqNHilLWMzRPnn5N47m8lU+0E4mnCZBbBTOQtlteD/SPhj+wMmpUUPmObLGCP5pb/XNLGWoMqwvC5jiVptRsvJeE40YPS0h0TbkH1U5Xq+T2o2po+k8zCRsmdYsSHqbRbByF/eetw2u4JAe+VFKGT8AipUP6n5sVMxGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Xcbe8mZq; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5175787c024662;
-	Fri, 7 Feb 2025 08:56:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mPR0ceyB/SJj6hD908j/YJazELTEVbh/kd+3G/RomqE=; b=Xcbe8mZq3Xehtt9A
-	CM7qRoBpjZYt/dWetyU+OlY9XKwbNO9+A4kNnRlPtqT/4RRFZUBUIjbKN66ZujQO
-	pToAUkD8+1lA0q/zauCRSpDLC1t0hifBD5HCkpTkeQE0EjtZ0psl8WEvcqW9yvh8
-	34lIdL61owf/HqRpu2/zTHIq/k+q4xr19pFDsME+jOHyvaYfabHAnakczR1LJwv+
-	DJ/uh3SCik5u1YvD/YX8M+JQewVFzgbgaAX/SjheLoUt7luSNUK1kLahbKQWwvgm
-	4AtQdaZxXyn3giUQkQeV1VkSlveoFdvzJOP+TUv9PgChSyg2h99+pgUcrLObVdcI
-	uyHXFg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44nbr40h1t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 07 Feb 2025 08:56:42 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5178ufHS002527
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 7 Feb 2025 08:56:41 GMT
-Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 7 Feb 2025
- 00:56:38 -0800
-Message-ID: <de8fc55c-2d68-490b-9a12-cb368e27d266@quicinc.com>
-Date: Fri, 7 Feb 2025 16:56:35 +0800
+	s=arc-20240116; t=1738918661; c=relaxed/simple;
+	bh=+NyYaGlH/oxOkgdXONu9qIcLVQUJc5wclZd/vJNT5yE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aJkjb5fs9YQU0RaDAtElrXoftX1h9X2emjcYeZZ9mj+8EE9enfJ9RQqrWYZjkzhGxvPGngjjBSvGUSTQxLbWH62XWARrjWYtdshUsa4vnmqsP8M4SZuWVEpphHlC9ICp8hrAm0vhyd8jl+nb9tsmWQIk2L6Ilhw967gmLQtF1ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=RRGFwKpI; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E4D49520;
+	Fri,  7 Feb 2025 09:56:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1738918583;
+	bh=+NyYaGlH/oxOkgdXONu9qIcLVQUJc5wclZd/vJNT5yE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RRGFwKpIrzR0Q9jTkGFBT30qEgym7M/AQ9c2FHp2wHk9HxiuqfudrqPPujD3Q5uyo
+	 qO80NHWAG6pJjsJXDReutvrpGHKNHa2sBSVImL0s/FXhPojeliRKTZcOwpgqRh4J9r
+	 Q7awltRFXbTRHS1cRUc+bSQ25T1/vJucUWCB7Oy4=
+Date: Fri, 7 Feb 2025 10:57:30 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Zhang Zekun <zhangzekun11@huawei.com>, robh@kernel.org,
+	saravanak@google.com, justin.chen@broadcom.com,
+	florian.fainelli@broadcom.com, andrew+netdev@lunn.ch,
+	kuba@kernel.org, kory.maincent@bootlin.com,
+	jacopo+renesas@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
+	maddy@linux.ibm.com, mpe@ellerman.id.au, npiggin@gmail.com,
+	olteanv@gmail.com, davem@davemloft.net, taras.chornyi@plvision.eu,
+	edumazet@google.com, pabeni@redhat.com, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, arm-scmi@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-media@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	chenjun102@huawei.com
+Subject: Re: [PATCH 1/9] of: Add warpper function
+ of_find_node_by_name_balanced()
+Message-ID: <20250207085730.GD24886@pendragon.ideasonboard.com>
+References: <20250207013117.104205-1-zhangzekun11@huawei.com>
+ <20250207013117.104205-2-zhangzekun11@huawei.com>
+ <Z6XDKi_V0BZSdCeL@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/1] Fix USB vdd info for IPQ9574
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250207073545.1768990-1-quic_varada@quicinc.com>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <20250207073545.1768990-1-quic_varada@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: u3eytLjIE8t-yvxVLl4YU4ty3mbhIZlW
-X-Proofpoint-ORIG-GUID: u3eytLjIE8t-yvxVLl4YU4ty3mbhIZlW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-07_04,2025-02-07_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 malwarescore=0 bulkscore=0 suspectscore=0 mlxscore=0
- adultscore=0 mlxlogscore=794 spamscore=0 lowpriorityscore=0 clxscore=1011
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502070067
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z6XDKi_V0BZSdCeL@pengutronix.de>
 
+Hi Oleksij,
 
+On Fri, Feb 07, 2025 at 09:24:10AM +0100, Oleksij Rempel wrote:
+> On Fri, Feb 07, 2025 at 09:31:09AM +0800, Zhang Zekun wrote:
+> > There are many drivers use of_find_node_by_name() with a not-NULL
+> > device_node pointer, and a number of callers would require a call to
+> > of_node_get() before using it. There are also some drivers who forget
+> > to call of_node_get() which would cause a ref count leak[1]. So, Add a
+> > wraper function for of_find_node_by_name(), drivers may use this function
+> > to call of_find_node_by_name() with the refcount already balanced.
+> > 
+> > [1] https://lore.kernel.org/all/20241024015909.58654-1-zhangzekun11@huawei.com/
+> 
+> Hi Zhang Zekun,
+> 
+> thank you for working on this issue!
+> 
+> First of all, let's take a step back and analyze the initial problem.
+> Everything following is only my opinion...
+> 
+> The main issue I see is that the current API - of_find_node_by_name -
+> modifies the refcount of its input by calling of_node_put(from) as part
+> of its search. Typically, a "find" function is expected to treat its
+> input as read-only. That is, when you pass an object into such a
+> function, you expect its reference count to remain unchanged unless
+> ownership is explicitly transferred. In this case, lowering the refcount
+> on the input node is counterintuitive and already lead to unexpected
+> behavior and subtle bugs.
+> 
+> To address this, the workaround introduces a wrapper function,
+> of_find_node_by_name_balanced, which first increments the input’s
+> refcount (via of_node_get()) before calling the original function. While
+> this "balances" the refcount change, the naming remains problematic from
+> my perspective. The "_balanced" suffix isn’t part of our common naming
+> conventions (traditions? :)). Most drivers expect that a function
+> starting with "find" will not alter the reference count of its input.
+> The term "balanced" doesn’t clearly convey that the input's refcount is
+> being explicitly managed - it instead obscures the underlying behavior,
+> leaving many developers confused about what guarantees the API provides.
+> 
+> In my view, a more natural solution would be to redesign the API so that
+> it doesn’t modify the input object’s refcount at all. Instead, it should
+> solely increase the refcount of the returned node (if found) for safe
+> asynchronous usage. This approach would align with established
+> conventions where "find" implies no side effects on inputs or output,
+> and a "get" indicates that the output comes with an extra reference. For
+> example, a function named of_get_node_by_name would clearly signal that
+> only the returned node is subject to a refcount increase while leaving
+> the input intact.
+> 
+> Thus, while the current workaround "balances" the reference count, it
+> doesn't address the underlying design flaw. The naming still suggests a
+> "find" function that should leave the input untouched, which isn’t the
+> case here. A redesign of the API - with both the behavior and naming
+> aligned to common expectations - would be a clearer and more robust
+> solution.
+> 
+> Nevertheless, it is only my POV, and the final decision rests with the
+> OpenFirmware framework maintainers.
 
-On 2/7/2025 3:35 PM, Varadarajan Narayanan wrote:
-> Use correct regulator for USB phy.
-> 
-> v2: * Skip the first patch as it has been pulled in
->      * Reword and fix commit message formatting for the remaining patch
-> 
-You dont need the cover letter patch if you only have one patch.
+I agree overall that the naming is not optimal. Looking at the other
+patches in the series, I think at least some of them misuse
+of_find_node_by_name(). For instance, drivers/media/i2c/max9286.c calls
+the function to find a *child* node of the device's of_node named
+"i2c-mux", while of_find_node_by_name() looks at children first but will
+then walk the *whole* DT to find a named node. I haven't checked all
+patches, but other ones seem to suffer from the same misuse.
 
-B4 can handle it automatically.
+Assuming that the named node those drivers are looking for is a direct
+child of the node passed as argument to of_find_node_by_name(), the
+right fix would tbe to use of_get_child_by_name(). If it's not a direct
+child, a recursive version of of_get_child_by_name() could be useful.
 
-Thanks,
-Jie
+-- 
+Regards,
 
-> v1: For some reason, the dt-bindings [1] patch posted and Acked long
->      time back seems to have slipped through the cracks and hasn't been
->      merged. Including it along with this patch as both are related.
->      dt_binding_check & dtbs_check passed.
-> 
->      1 - https://lore.kernel.org/linux-arm-msm/170266996013.286103.17303148912355511017.robh@kernel.org/
-> 
-> Varadarajan Narayanan (1):
->    arm64: dts: qcom: ipq9574: Fix USB vdd info
-> 
->   arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi | 11 +++++++++--
->   1 file changed, 9 insertions(+), 2 deletions(-)
-> 
-> 
-> base-commit: 40b8e93e17bff4a4e0cc129e04f9fdf5daa5397e
-> prerequisite-patch-id: d3da55704446c2222b5c624d9bb3a738357cb2fc
-
+Laurent Pinchart
 
