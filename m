@@ -1,178 +1,287 @@
-Return-Path: <devicetree+bounces-144034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E945A2C8F6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 17:35:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BC77A2C900
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 17:38:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D700216AE29
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:35:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E5EA188DBB8
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893E5189BB0;
-	Fri,  7 Feb 2025 16:35:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21F8018DB01;
+	Fri,  7 Feb 2025 16:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HA/VfIY5"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="ShK1O9eA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2046.outbound.protection.outlook.com [40.107.105.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB98023C8DE;
-	Fri,  7 Feb 2025 16:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738946155; cv=none; b=EfjW8BQJ0UZbey/IlPr/gmn63UhN9Yvjf8Jjl+dnOg+WRouYB2vNxYuE8/G1J4uNsG3CVVLddsnC1AatD2jMz+kH7jlIpsxW+pc1wWYMyBCEyIoV+HZJodMrSgrP/YJ5Igv+EPGzNNNNgSehVSWeu35Zj9qY7ESBlPGI8kJm7cc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738946155; c=relaxed/simple;
-	bh=//nZQwkdU1+y2l4cBsQ5JgSv8QnejMAqZKzsgUynbRQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j7azXut5Ky7HKxcpI89SLnhfg53ILvAY5e9m7p2A+tU9Hw7Os8QX6fsv6V2X32/+pCNZvKCLnHxWaUYjSyUUHviN7ovbmv73sFkXpYray0baSGn7L9+ky3nQK0A2sfoS0ui8X+b0y6BHRIGspW+T6EULu+E1M4PtttQgp8GKlTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HA/VfIY5; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-38dc73cc5acso765277f8f.0;
-        Fri, 07 Feb 2025 08:35:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738946152; x=1739550952; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wrw0i7lsnio0oCK+ZvPDr+K1av57Z8LyXPGKLV3ic1g=;
-        b=HA/VfIY59oRHjT/8Ww6o4tjOXtPV2JeBmgIsQaX8XUBqhO/Rj4HzMsLwO3swD/Edju
-         kRnJtTRagzlb42EnQ24VSA6LukNHQaIIX/5gfHmlwWR4mVk3dViFoV+UTmtZLIOcWrDc
-         qAl/UwjDJjRGfDQl+qjcC4nn1nrt8dkJHD1a0YTw3EuayibM/JvDpvKWdgLbkpfEL0v9
-         ATk5Vig90qCJNFoYbfK8WtvFUc/yQSX8IS8pKtqzvWhzRmxi2Yhd7W2xOjHQdZTtyhpA
-         gbAxk6UU9ibGWi7p4RYLaHEt0v3jn5g5LNj+FCGMefVwruteqK71qgUAKyy0naxMvCWB
-         FTxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738946152; x=1739550952;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wrw0i7lsnio0oCK+ZvPDr+K1av57Z8LyXPGKLV3ic1g=;
-        b=bdfmW5m/9Tc8TRQjjfxObHvtLdtkFuTIt8BfyZPyyKTGtz9aVYvj60R0x+RAKv9hij
-         ZTfY6PUMsnKdFVEYngwCJ6hhaB/QaP5lNsykq4ozR2+F4tod65iARMkISVhjzlIg0XmL
-         n6sykYCdowAbLehj23yxgGM2x5EjM/v9RtkwB1wVrTgUVl2cYxTpqQot0NdiM+/DrRhg
-         4kGH6+0BpN1jqBPOnYefaqkT+rpJUpANaSt6CItTjec4aT38qHWTIOkuy3X670GEUlKs
-         3pLUSUsV883i8Bn0P49BZ5KwIxkfrwtYW20anL5UDJmtSheMWHsIHhP+5Te0lauDfC7h
-         beiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWCC0Ld6Y1q+YfIIaO/S0sguLK2YlJutxvtXSZUHcMpdZV5+BDa2+5CmSYFVLwgRVcfJaX3QaMLDW1d@vger.kernel.org, AJvYcCWm6BgndxBbhPtBGf4TlFZZ2fF9S2if4zI7kwaVHzajz1/H2CA5cw5INnFNPSeZboxFFef1V/f+dqeAVuI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCU3fVKBsWkGbSot9CwjDGIZQBmjL3MZy1ruVHfYCFJPcPdkaO
-	I5DYUOgVshNv0bOIGfjpGqDC6+BgDt5AZwjj+UJKqQT6kDMbUnHkH8wGYg==
-X-Gm-Gg: ASbGncuNNOuco3u2k0mC4RjUmDj82OMMDby9/G3uLzN8OpXPWvKxcSTPvE9VncFK7ru
-	VKIDQVDreYVZ0187Eh7uK/3Rn8Qs4ohMfSbX490aX28SSgHln9yty7ZeRK9bZTZLLwwR7IbGF0m
-	/rhltOomNrDYXuiExUCtRSztcNnTMcDN+rP6zexSzFLFvsxi+biQ4Ay3l4gL6h2ALGQltvcgzGE
-	PRslEyF0Z6tj+UcnGIQ0ezAIvdLVd3DTjTrwtbCjt522bvpM4bLEpTM7D2ZsT8MT/P/5yq3h+y0
-	4oZy562FQSqvFk3DnmbMUbwzbgPiER+vV3QYD11y9PwVI0w6WFdtcuHqzn2Ph4BKtp0IC0KmQAV
-	wyg==
-X-Google-Smtp-Source: AGHT+IFyn011teCsSvE3ZGbf0kF2dTpezCFR7S6ix7/knAhDMX/+ZIivlUKg3quzahiuC0GBURlFng==
-X-Received: by 2002:a05:6000:1889:b0:38b:f4e6:21aa with SMTP id ffacd0b85a97d-38dc99095a5mr2662438f8f.5.1738946151634;
-        Fri, 07 Feb 2025 08:35:51 -0800 (PST)
-Received: from orome (p200300e41f281900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dc5e6f027sm3237597f8f.4.2025.02.07.08.35.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Feb 2025 08:35:49 -0800 (PST)
-Date: Fri, 7 Feb 2025 17:35:47 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Ivy Huang <yijuh@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	Brad Griffis <bgriffis@nvidia.com>, Haotien Hsu <haotienh@nvidia.com>, Henry Lin <henryl@nvidia.com>, 
-	Wayne Chang <waynec@nvidia.com>
-Subject: Re: [PATCH] arm64: tegra: Enable Tegra234 USB remote wakeup
-Message-ID: <rg4lej6k2gs37htskpormtfozswladcqnb6wgo5ft3ttdib6xz@fl7n37fte7fm>
-References: <20250206222731.3691073-1-yijuh@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3D9E23C8DE;
+	Fri,  7 Feb 2025 16:38:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738946301; cv=fail; b=MI6QtX6b3Hj6D3Jph+xe8PCboH95+igKjttEHjPGzluA/9s98YUS6rWcpAYRk6pPttRT+FxMtz4LLDieF0RojPrmoCIXxfdrRIQM+geCiALShEwZlcPyPaOSG+td44eetbCM76N/MwlHr8F3d6Ets/yPZvrZPMyiJnNld77rjHs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738946301; c=relaxed/simple;
+	bh=wS4K/S0fUFdHelsmO7qEUuMBmV70NJ0qJxImYpH2pjE=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=EswIfyT+8/DLPcXO2vHhHj+hiQuKpt31RpgCkuSIRpMsB4I7Z4RsyQ+GzGD4PIbs8djGgNddvj0hmrvP7WxeZBXIyLIsL6QApHNKezC7LiOsaId0O3sYj3PVgejgBDaCYVLEr1GnisMNTF+g7GlH3fdqArDDWltker/jJy1NNNA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=ShK1O9eA; arc=fail smtp.client-ip=40.107.105.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DWAAQZGfLdzSDcAkf9PrCc3b48bjQufkQSd0pLWK3vJwmw4u2NvcLXL18smwnCGQTlIx8b5seq2cViELn4W+FPIEGPFZCQlzUDFg/Fhmrov96tGQ/jhvMtsQsWJCvfmDuua3uSd/OIxYWwS3KtyJ0LMjtT+iGR7ptjJ6rUkwhcpH1f7ulNAjz5iDJA8lsAG+CKX/dYDJkZonodNaql5wl+oiwkEhyvXoSMjw6GDrxdHnUYJh2qAsmnGNn6Gg/AH5d0loed1jsWoxO2laaUbsY8DO4RAOfBUg86v3CsHiJ1qsG6wq5WCvtvFrKKm/Q7HIzl19TzTEfysOeYO0y5zJHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kqVXnWGF1TWgmywzXYv9Ek6t7rHKazexFVa/d8U0OdY=;
+ b=Q3gucbJqzxZSl89hT3c83C04Xd3w325WVIXXgZ/PgCmA9h7OsN4I+SiLhr1EdOg52gqX3KtM9NS/JqV/oBBFhQG9/+oonulQRH050zvqaYkPGQRKuKTDLuN4PGx05siogGS5UQbXjWomBHNAzC6hriPVXDbdOU3hw5XGScTMIPs+W7pJwNfgmWb5Tcn92ottzvIIBt8LpUbvAPduXWL1TUCVyN4OHhZrKl1eCd9ZytUTqqsOuCdzCGJ0xhyqw8kVSUFZPf2dl6dbBiaSw8VTQTLWbGAGm/jWpwzqPrSnFbkYKtJm4Ei7ZYDFZghmpbdkrqEY+ycQ7LipHAKFZr4WFw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kqVXnWGF1TWgmywzXYv9Ek6t7rHKazexFVa/d8U0OdY=;
+ b=ShK1O9eAajFjJ5AmraUUgI7j0F8Ynw+eP8nQxKSj+M95eeXEBTrq0ifdJZMl18m5Abgs9fZfWMaPu4mcBdK9KPMVXDrf1uyzTj6qHk6Bo8KpIjdGlai+tCeKOP84xJ2TeB0HoWxtkq6kQjvKf39/lbi4g1/PsiPo9hnlY9MMAID2gDihw6NQrfm+40DI/UzXtAZnvOYGZKDsDqtI5F3vbUDC4CxsniLv1MfQbTPxGMbsECsWp5SL89KvezByIkUnk++TSKHD2Lzceb6s8iXSvBI3N1/P1t/KSja33AJ36n4EAUW5EfUP9W8k5zjPD+Qeg9Ql/m7X3HSVjsubcm2o9g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com (2603:10a6:10:352::15)
+ by DU4PR04MB10840.eurprd04.prod.outlook.com (2603:10a6:10:58a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.12; Fri, 7 Feb
+ 2025 16:38:15 +0000
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd]) by DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd%5]) with mapi id 15.20.8398.021; Fri, 7 Feb 2025
+ 16:38:15 +0000
+From: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Cc: linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux <s32@nxp.com>,
+	imx@lists.linux.dev,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Subject: [PATCH v7 0/4] add NXP RTC driver support for S32G2/S32G3 SoCs
+Date: Fri,  7 Feb 2025 18:38:04 +0200
+Message-ID: <20250207163808.1208552-1-ciprianmarian.costea@oss.nxp.com>
+X-Mailer: git-send-email 2.45.2
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AM0PR03CA0085.eurprd03.prod.outlook.com
+ (2603:10a6:208:69::26) To DU0PR04MB9251.eurprd04.prod.outlook.com
+ (2603:10a6:10:352::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qnz6ckqqz6xykkz2"
-Content-Disposition: inline
-In-Reply-To: <20250206222731.3691073-1-yijuh@nvidia.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9251:EE_|DU4PR04MB10840:EE_
+X-MS-Office365-Filtering-Correlation-Id: 10c41b6b-a068-40df-4d4e-08dd4795d1a5
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?dnRGcHN3YU1UZVpsVjMrL21Bc1VLRnBmVlU5YXB5Q29nazZKM05Yc0NleXY1?=
+ =?utf-8?B?dW1rNTlXZ2k4T3JDS3RGRU5pZHZ3NnBWSG9vYllTc3pueU51RytVdnFaOEZs?=
+ =?utf-8?B?b3BNeXN6cE91UElsRm8rSlZ2YnpGTVV4NW5EVC9obkMwL2JzN3BRdWRCa3RI?=
+ =?utf-8?B?TDF3b1ltU1JjcUFxMGNncC9ZUlY1WE00cVZHWmR1dWZEYUsrVUJZYXBIQjBn?=
+ =?utf-8?B?Vmh4UW9IVmJhT0Y4ck1NQm5vTmExajUzN1BUc2ZQaC8zSXh5NHJDQWFkOTdI?=
+ =?utf-8?B?YlFZSVhrZkhVeE05elVNZzlMRVh3a1J4Nk9CK0lmSGF3RjVVNERiZjhycDN1?=
+ =?utf-8?B?UWNDS0prYjN2Z1cwUWRVenBOSjdBczFPS0VqN0ZPWHpmS1lpTWVzbzZZTGh6?=
+ =?utf-8?B?dGo2Mlh0bGtpZUZycEdBTVIwaTlZOW1WaER6cDY4amFwb0JmRW5Obit5eWNk?=
+ =?utf-8?B?SnpST01RZFprMDR6c05ZU2lxZHB4d3c4WmQrT0xVaGZhaWU5ci9pVU9LMkF0?=
+ =?utf-8?B?UG53V1gwd1Nncmx3SGJVRnc4d1RtbGMxVXRkdllFQzk3UG5sMHgreGJxNFdh?=
+ =?utf-8?B?TWg4bmRnWHAxZFdab1NtcHpITTdVUjFacG0rRkU1YWRlVWpmUGhkbHVuM0xV?=
+ =?utf-8?B?OUFIeUtZc3FNcjIybVc5b2I1VHl3SDc2WVc4SmNUN0grdzJQQkI5RmlMYTdr?=
+ =?utf-8?B?cW1HVUZpeXRWeFdxTDYzSllnRXdQdHZDNXBCUG9VZW9qdi9FVGFrM3E2cFZh?=
+ =?utf-8?B?eTFRQXNrdFNhQStaSG9EbUhpeElXU3R4amF1UGJnUFhsT1RsdXNYRGRrVnhx?=
+ =?utf-8?B?eHd5SHAwTXgreW9lUzR1UzNwZkNsZ1o4akRiTWtLU0Z5TUx6TVdOLzRybUZs?=
+ =?utf-8?B?OC9Lc0pwZUhOWXdpMzNCbXhmQ0NJOGZlOHR2elJEVE1WSU0zSGVZTzAzSmlI?=
+ =?utf-8?B?VFdPWTUxYTdNck0rYU1NbmxZZ2JzL3JQbmRuZnJocXRVSlhDdEZPZzhlRnl5?=
+ =?utf-8?B?em1CQ3lSVjl0L1BQMXluUmg5YnB6akJBM1JkRmZjOGhZTktDQWFjSnY5eC9V?=
+ =?utf-8?B?aEhUb2oxY2dscndPdDZ0STF3aEw2TGQzRmRQS1J4RXI2L0pLM3JmeU41bmhv?=
+ =?utf-8?B?eEhCaWV6TWM4MFNLMW9weGI2eWgwbXNkUzlGT2pnYkU3TnlFNUwxSFBBNEp6?=
+ =?utf-8?B?SUQxN3dsWUd2bldpZk5EMXkyOG1WMXRKU0NVSVdDckllQm8rZlYyQ0ZnSGpu?=
+ =?utf-8?B?TnRwRGdZVXVmMTBVTmpIRUpkS2pSaU1KOFhxVHAvOVYzZUNkdVh0QkpUWjJi?=
+ =?utf-8?B?eFRGbExNRlFnWnNEcXRxaGU1WldvSW1KTFc0VTdabDFHUTkwMk1Edm5xN2p2?=
+ =?utf-8?B?a0dVV09OTWxSaGRoSHhqSGNzUmpKbXB3RlFPKzRiVm9UNzhibHhBTktpRHJP?=
+ =?utf-8?B?dnBMeWIwcnFGRnZYaW9pUnI5QkV4RXV1SFN4YmQxMEJCckhPMzBOZzY1YXIx?=
+ =?utf-8?B?VjFCZ1haSURUTFBuRVVkTUpaSndlNTdHY3VNNXN5U0M2azlmV3FYY2Q5VlY2?=
+ =?utf-8?B?SmhKTUlvekIrbGJxRDN0eTZmMFNDN1FLVWV4b3hCL1FOZEUyUm1oQVNHdmpY?=
+ =?utf-8?B?cDlSYVlYT3h6TkZXZ0Q4bnNzeFB3S3ZoNzlLYkk5Lzc5ektvSitVZ0Z4MkZ3?=
+ =?utf-8?B?VmZWQjF5bkN6d3NmcUd2cXBZanA2OWM0MTI5NGlHdldneEt2dWNjQ3RLWGZj?=
+ =?utf-8?B?cEttajBGOW1UWUdtSElSRFdTWWo2em12ODdkWlhkeU1ScUNmaEQ3RTlZTXNJ?=
+ =?utf-8?B?UkdHQXJFYUl3QmJYMHFqdFZZaVZIbnhFZzMvSWV2ODExV1VqaUl6ZHk4aXpn?=
+ =?utf-8?Q?hzeJzB8M3/+6m?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9251.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VXN0S05MdHM0enNhZ2UxWVZKSUxnMmpsazJraGNqbGVFZ2FZVDdoWGM5T3NJ?=
+ =?utf-8?B?cXVLdUJ1OUpWWG0zKytjTkJxOStTYnRMWCs1TUsyam9qL2NtcktPZ0Ezb3Va?=
+ =?utf-8?B?SkNiMDIvNG5CTDhuTkZWZnNOWGNVZWhjUWlyY2dIWDNxZklVMVVCa21STGp5?=
+ =?utf-8?B?Q2tkN1BaaDVhV2RnU01XcEdPRjNTNEkzd2luRGpaeXVLL3RmUWY4eXMwSU13?=
+ =?utf-8?B?Nk9wTGhHaTBaOGgvNUhtOXBkb0t2V0xSSzdKTEZONEE2S01VRGpOVTNqRmli?=
+ =?utf-8?B?SU4rQjR3endWYWJUUFlteHkxMS9RUjFXT3ZwdUt5bm5QbWVIdDJWY2Y5Y3FZ?=
+ =?utf-8?B?YklzOVNpT3l5UVVSdmZoUndaZE1zdVJFWVpJR2lraW5EWnE4enFiSE40NjlO?=
+ =?utf-8?B?Rll3RC9WOUJJcW1BR1FSRkNEQTZIeTQvYmlMenlUMFZYMkFjZWtwNjRtbW51?=
+ =?utf-8?B?bU5NeHdrY0crbmZSQ1NZYlF3NHJVSXZjTjZGVS9jcnUxTHpOZkZCd1ZNQlhz?=
+ =?utf-8?B?aUUvb280UUk3SkF6V2JjVThsR0dTT3Ntb2ZLY2pvM1pRZ3hlWW4rWkJkSDdU?=
+ =?utf-8?B?T2VyY0FWL25GektGSXU5TnNOeVBXSlVTNW4yWll6aXlRVTR5YTF2QmZXS25s?=
+ =?utf-8?B?Tit5a0pxcHpKQjhqbU5PM0RYVVBCQlhUdUtNRnZHVG83bThQUnI3WUtsYkdi?=
+ =?utf-8?B?UXVzK2IwQW1ndHlRSDlHbnh0Mm8rbjZwTnZ5cEwzTE1YUmdwNWxJSUdRMzVJ?=
+ =?utf-8?B?VHp1VnhvZUdoVjlnOWRmd3hFaWliN2NsS0tDUEgxWHVhK08rOEttZ1hwS1ov?=
+ =?utf-8?B?V0hJdVZZWFN1aENqd0IyNWtnNGI2MzhZV0NEM0szbGRjNDZVZFpIMlQxMkhF?=
+ =?utf-8?B?NkJNVTJHenVzQ1Y1TFp1cWlyTHRnWGFGQm9HVm1EYVRoOFlTbURBUkM3d3A1?=
+ =?utf-8?B?VUhmYWlJUXVFUHJSME9iRGxCZW9qSWFOOEpHV1BOd1U0RnM3QlA5VDlodE94?=
+ =?utf-8?B?aGhaNXF1QTJQSGtMWU9ZVTE1N0VHQnVNR3NMamZIWEdQZWJvcDBSMWpUdkJK?=
+ =?utf-8?B?cVNiRWNpRDRMMEp4MzM5OTRTdVM3ZjI4TG1kUllUckxmUnA2Ti8xcVJSUE03?=
+ =?utf-8?B?THQ2Q09ZdVU2b0JSMy9sWlY4Q2djbjZ4c01yMWNXeE1Ub3BIOTRMK1ZIalZV?=
+ =?utf-8?B?SVl4NG8wNlFnY3A3bTAvMmU4UXgraXMzaHR0T25STUxSR2xjemdHRlU0dEIw?=
+ =?utf-8?B?RWxJUmZ5QUp2WFdSWEhNQjNvTG9hQ0RHOWpuYTNkUDl4UkxkeHZua29LaitH?=
+ =?utf-8?B?SkQ2bUc1Z3FOckp4WVRCNzU0MTFLQ3N0RzBseVU3RWlxSVJQZ1EzTzJRNS9S?=
+ =?utf-8?B?S2M5SEpPdkJWenFROVhmelZyRVJyZFJKelZVV0lWcm9Ickd5UDVJWW1qdG1G?=
+ =?utf-8?B?Tnd5ZVJqZjNnNkxldVYzR2NjUWNKb3VqTlI5dXJId044NGRjSU94SUlZMGVP?=
+ =?utf-8?B?cnBMODIwRmNDTkJWSlIzVjhtOFMxb1NldlU5Q1hCc0tPanVtQmpwaFFmMTBG?=
+ =?utf-8?B?d1R4OUlhaDl4NDRCWktNQVgxSk5MNXppVnRTUUNOWFFoa1ZGY2VnMTJHZHIw?=
+ =?utf-8?B?ZU5FL3Joa2N6c2JYOHUzeTd0WVAwUW1qRG1NV0FWRXBYUm5nVE5FRlMrcDg5?=
+ =?utf-8?B?d21yd3BoMk1XWks1MDZpbWU3VVdOSmtwWGZUb1lvSlhiT3FSaUp2Y2dDaHhW?=
+ =?utf-8?B?eWFmOXA2OWczbHVyaWR0aitlcWV2Y1BHNWhqVTlvc29iYXNTaDREeHREeGJ5?=
+ =?utf-8?B?MHJzTERxU3E5V25KNVljWjBieStIUnZ5M1JRWG5SamMvSm02VENMNkZMR2dT?=
+ =?utf-8?B?UW1mTExOMDhsNkR2b1VNMkVJS25qWDZSUnk3QnNUdVVwQXhLYVZEL2YvbnE1?=
+ =?utf-8?B?di9VdXZQMExuNXdBazhUSFZudlFmMG54aVY2UUJ4SnJBNzNPemtjeEQ0ekF4?=
+ =?utf-8?B?UXpHanNzeUZNVlAzSFk4aGVGUGsvUlNwNmsvZStPRHR0UGRwRUI1ZHZQZXc1?=
+ =?utf-8?B?Q2paTmgxR1FOK3pjMWEyTStwV0NjQllUL3ZKcTV5cGRXUkpXNjZWbnNPQ0Fn?=
+ =?utf-8?B?MFMrdGpoUWpla0xqVXcyR3NjY3dLSGRnUkxiUm4yWE9VakR4dmd2ZjlybnNq?=
+ =?utf-8?B?VFE9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10c41b6b-a068-40df-4d4e-08dd4795d1a5
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9251.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2025 16:38:15.1573
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PNtqwtrcy4+XJMkpqNqH5tbJQ+oKK3t8Rk5YDLd378Dgm8xkTeHUHYUPK2YDmpp1iyf/mcdjUROQCi6bXYwk+tXjzT5fOz7KrIAmIAQJyYQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10840
 
+From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
---qnz6ckqqz6xykkz2
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] arm64: tegra: Enable Tegra234 USB remote wakeup
-MIME-Version: 1.0
+This patch series add support for the NXP RTC hardware module present on
+S32G2/S32G3 SoCs.
 
-On Thu, Feb 06, 2025 at 10:27:31PM +0000, Ivy Huang wrote:
-> From: Haotien Hsu <haotienh@nvidia.com>
->=20
-> Populate the USB wake-up interrupts for Tegra234 to enable
-> the USB device to wake the system up from low power modes.
->=20
-> Signed-off-by: Henry Lin <henryl@nvidia.com>
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> Signed-off-by: Haotien Hsu <haotienh@nvidia.com>
-> Signed-off-by: Ivy Huang <yijuh@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 18 ++++++++++++++++--
->  1 file changed, 16 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/d=
-ts/nvidia/tegra234.dtsi
-> index 2601b43b2d8c..bbd5f7c2bf03 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> @@ -3254,8 +3254,22 @@
->  			      <0x0 0x03650000 0x0 0x10000>;
->  			reg-names =3D "hcd", "fpci", "bar2";
-> =20
-> -			interrupts =3D <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupts-extended =3D <&gic GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&gic GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pmc 76 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pmc 77 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pmc 78 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pmc 79 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pmc 80 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pmc 81 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pmc 82 IRQ_TYPE_LEVEL_HIGH>;
-> +			/*
-> +			 * wake0, wake1, wake2 are for USB3.0 ports
-> +			 * wake3, wake4, wake5, wake6 are for USB2.0 ports
-> +			 */
-> +			interrupt-names =3D "xhci", "mbox",
-> +				  "wake0", "wake1", "wake2", "wake3",
-> +				  "wake4", "wake5", "wake6";
+RTC tracks clock time during system suspend. It is used as a time-based
+wakeup source for the S32G2/S32G3 SoCs.
 
-This needs a bindings update because both of these properties aren't
-currently allowed. Also, do we need additional handling in the driver to
-make the wake events work, or does this work automatically?
+RTC is not battery-powered and it is not kept alive during system reset.
 
-At the very least I think we would also need a patch to add the
-corresponding wake events to the PMC driver, otherwise these are
-probably not going to do anything.
+Following is an example of Suspend to RAM trigger on S32G2/S32G3 SoCs,
+using userspace tools such as rtcwake:
+# rtcwake -s 120 -m mem
+# rtcwake: assuming RTC uses UTC ...
+# rtcwake: wakeup from "mem" using /dev/rtc0 at Wed Feb  6 06:28:36 2036
+#
 
-Thierry
+Changes in V7:
+- Changed 'ioread32/iowrite32' calls to more common 'readl/writel'.
+- Removed calculations performed in 'suspend' and 'resume' routines by
+  using RTC API ('APIVAL') functionality instead of relying on setting
+  'RTCVAL'.
+- Simplified 'set_alarm' and 'read_time/read_alarm' by usage of
+  RTC APIVAL functionality and relying on kernel system time.
+- Added comment about the available RTC hardware frequency divisors in the
+  RTC driver.
+- Used both available frequency divisors to increase the RTC rollover
+  time.
+- Removed a redundant error check on 'priv->irq'.
 
---qnz6ckqqz6xykkz2
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in V6:
+- Fixed a coding style issue regarding kernel doc reported by kernel test robot
+- Refactored small sections from the S32G RTC driver without impacting
+  functionality
+- Fixed an error probe path issue on S32G RTC driver.
+- Added 'rtc' schema in S32G-RTC bindings
 
------BEGIN PGP SIGNATURE-----
+Changes in V5:
+- Removed rollover support.
+- Removed clock switching support between Runtime and Suspend. A clock source
+  which is always available has been used instead.
+- Enabled 512 value RTC hardware frequency divisor to achieve higher rollover
+  time
+- Removed unneeded 'remove' callback.
+- Decreased driver print verbosity on error paths.
+- Provided 'clock-names' actual names in bindings documentation
+- Remove __maybe_unused notations. Used the DEFINE_SIMPLE_DEV_PM_OPS() and
+  pm_sleep_ptr() macros to handle the .suspend/.resume callbacks.
+- Fixed some alignment issues.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmemNmAACgkQ3SOs138+
-s6FLSQ/+IOvhTOrfOmFHTUnK8+wgOO2J4qq8fTm1zPVe12gEdodz1NGLxrQ9W9ru
-p4eb05rQ8yDitNnyf7/A4B8PNxO5y0Qim3rVi2qd4zb1CK1O0ObTP94fgzpekVp+
-86EMqHgLspXcxfgaGXTuf1aCIcnxYgXkNLDoHMhc/woAWBwzuVlAa3w+/9nZpBji
-Y6TgvFNX4eRhn5pTdCVJ3gPHUQ6mZnWyUSt9S5WJef/gu0L1fhnSinsBN+h+AaZu
-tPpM8LXp27a1GRtYw51T/Smx6bDEwKNkq1tB8LYhL5CrY7bUIjpguGayicaXJjK7
-/kG6Hp21iA7EjR3Ik+A6EyKF/U+YeqHWIWhvAOgMTVI5Yl86wScJw7kEa+WxUO/e
-qNkhcsKbPBkCGtyQ926wzWa78Ugvp0aammyukBnVIrXpEY+Z1rueOASuv8+74YeJ
-CRnhiy3Tjr7pZ9gVkc8koTeYTBRUq7kAje2pXmKZDTwSz51ZRlc4DiPoyo3PN4np
-2rD2fuV9ZRnux3MluhNld4FJCn4/pIS9D+kNLhdf4DSkzTR2VxLlMM887iUQXPlx
-Tv8G93MvlKdQvjRZbt75Btsb7cHVVbOkaM57Vpu19+md89Ul4Zvc++UdMYYLqr4i
-nEtXMfvTZAq/JhVh/rtE4bVrZ7KP3KjMtbM6ALKaDcSXcPmc2T0=
-=O1WI
------END PGP SIGNATURE-----
+Changes in V4:
+- Dropped 'assigned-*' clock management approach. Simplified RTC Runtime
+  and Suspend/Standby clock configuration.
+- Simplified error paths on probe function
+- Removed node label from bindings example
+- Several cosmetic coding style fixes
 
---qnz6ckqqz6xykkz2--
+Changes in V3:
+- Removed 'nxp,s32g3-rtc' compatible string
+- Change to 'remove' callback from 'remove_new'
+- Used 'dev.parent' from 'struct rtc_device' instead of defining a
+  specific 'struct device' in driver data
+- Fixed several errors reported by kernel test robot
+- Removed 'assigned-clocks', 'assigned-clock-parents' and
+  'assigned-clock-rates' from required properties in the binding
+  documentation.
+- Refactored S32G RTC driver such that a default clock source and
+  divisors configuration will be applied in case 'assigned-clocks' and
+  'assigned-clock-parents' properties are missing.
+
+Changes in V2:
+- Removed 'clksel' support from dts bindings. Used clock parents support
+  from CCF to better illustrate the RTC hardware IP from S32G2/S32G3.
+- Removed frequency dividers support from dts bindings. Used assigned
+  clock frequencies support from CCF instead.
+- Reduced the interval while RTC is voluntarily disabled to a simple
+  register write in order to avoid any race condition between a possbile
+  rollover and 'suspend' callback execution flow.
+- Updated bindings documentation with respect to clocking support.
+- Fixed a potential unused variable warning reported by kernel test robot.
+- Updated to usage of 'devm_rtc_allocate_device' and 'devm_rtc_register_device'
+  instead of deprecated 'devm_rtc_device_register'.
+
+Ciprian Marian Costea (4):
+  dt-bindings: rtc: add schema for NXP S32G2/S32G3 SoCs
+  rtc: s32g: add NXP S32G2/S32G3 SoC support
+  arm64: defconfig: add S32G RTC module support
+  MAINTAINERS: add NXP S32G RTC driver
+
+ .../devicetree/bindings/rtc/nxp,s32g-rtc.yaml |  72 ++++
+ MAINTAINERS                                   |   2 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/rtc/Kconfig                           |  11 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-s32g.c                        | 383 ++++++++++++++++++
+ 6 files changed, 470 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-s32g.c
+
+-- 
+2.45.2
+
 
