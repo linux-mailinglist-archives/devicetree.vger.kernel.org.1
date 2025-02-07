@@ -1,144 +1,294 @@
-Return-Path: <devicetree+bounces-144040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EF03A2C915
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 17:40:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48BFEA2C91D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 17:42:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C900D1882633
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:40:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 409BA1881F8E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 16:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D22518DB0A;
-	Fri,  7 Feb 2025 16:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3914C18DB26;
+	Fri,  7 Feb 2025 16:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="LqUyBY1G"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JsF37aok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D57218C00B
-	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 16:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D8918DB00;
+	Fri,  7 Feb 2025 16:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738946382; cv=none; b=HHj8IQ6pziH2pmb/n2Ii+6mwjQlRreF8XGtAchX3OcQ85HfX1SY+E080jXAgKUzfsrvpt27cJ90QRx6iZby7gpbL3+5uBvHfxLTr32MVXgZgivvaa6bemFfFGZYU7sR8sfEDkXClea0TQHA4YUVCVQASGK3NF57WBiCaNe4jZy8=
+	t=1738946554; cv=none; b=W71nm+12VTM+AMPFiR2JmyKt9+s48fq/q8oEuj0iPcxFev16pf7X8VCuTYaDohf4pfrw+5+Fd4+smi1k08tWV9DW5OtKyshQuXaxDLTXZ4SG5tRTJVH3Tzk+dbMg0VoWZ2RIDBUQEqBhXv/qiR7jAJUu7woJNj3n9MTylzlF+X0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738946382; c=relaxed/simple;
-	bh=jI4pO4b0XLAg1RZk0RsjsLHeusgbiZ97ogCgxPQ6DNc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=uEeXpbEiDerIMgMq2IeJvWe97I43b7N2y9SWMyDT8m74xs1GXW3Jz4O/5/XLYQaTnbdalDKJbbXXEDkGzXPtW5SpmYgxPMc31N8gk0y1jlAaaRHjDr7/Kt7rr8uD7gpAjEXB5QbHE9LrX4VKh/UlJnqJ0FEo3ghZKzuE+m+qbv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=LqUyBY1G; arc=none smtp.client-ip=91.218.175.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1738946554; c=relaxed/simple;
+	bh=wivoohQzKrQd6Be3GRYjXHheHFpcjocBVpQVFCpY0Ec=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=r1f97BXGvOKutX6uwnLJDDu4cLAZc5HZdhD08/Vul2gXxnzwYjulgI0vWPSWqrSAQlCcZVKBKA8cG2BRFzapGMz8wnbCdFxMMcCM4iU9PptcecY6aK+v5BIrMhdg+gFKTxAIWi39yH/OAK7q5/I+zAo6HmyejZ83aXjPYdRtlsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JsF37aok; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1738946549;
+	bh=wivoohQzKrQd6Be3GRYjXHheHFpcjocBVpQVFCpY0Ec=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=JsF37aokdx/VKD2OChBl+6YAwAPlldoBXBYUSA+zWCQUQO0TULDAbYdKuTpLievR9
+	 p8u2i6k5JBa1CVdhWrfvbUKD2SQQPB6zsS/chtMlexq5qFP9VxTZXWC3oIQ0kHEsUn
+	 vRji0Xzyws/+zfMIObwdpqszyufOsXlcDGvd9w50r0nsUxD/QsrDlR9H0UfECpuqXV
+	 86OM57DXsbGKb4j1DP1e7PvgsxDd3usY08tnC0CQyu8cb01J9EWh3qby1nKPYzkxk1
+	 MaLYTausCuz+KTyFflyFsEorb+02AxZvCBvdx39TadnHX4wWdHQemz25pW6xM/Hy/F
+	 I/U065c1qnlQw==
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bbrezillon)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 97EBD17E0858;
+	Fri,  7 Feb 2025 17:42:28 +0100 (CET)
+Date: Fri, 7 Feb 2025 17:42:21 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Nicolas Dufresne <nicolas@ndufresne.ca>
+Cc: Maxime Ripard <mripard@kernel.org>, Florent Tomasin	
+ <florent.tomasin@arm.com>, Vinod Koul <vkoul@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Steven Price <steven.price@arm.com>, Liviu Dudau	
+ <liviu.dudau@arm.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>, Benjamin
+ Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey
+ <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, "T . J .
+ Mercier"	 <tjmercier@google.com>, Christian =?UTF-8?B?S8O2bmln?=	
+ <christian.koenig@amd.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Yong
+ Wu <yong.wu@mediatek.com>, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, nd@arm.com, Akash Goel
+ <akash.goel@arm.com>
+Subject: Re: [RFC PATCH 0/5] drm/panthor: Protected mode support for Mali
+ CSF GPUs
+Message-ID: <20250207174221.2decc154@collabora.com>
+In-Reply-To: <2cef75795cf3eb1c224f3562134d2ed887dbff60.camel@ndufresne.ca>
+References: <cover.1738228114.git.florent.tomasin@arm.com>
+	<3ykaewmjjwkp3y2f3gf5jvqketicd4p2xqyajqtfnsxci36qlm@twidtyj2kgbw>
+	<1a73c3acee34a86010ecd25d76958bca4f16d164.camel@ndufresne.ca>
+	<ppznh3xnfuqrozhrc7juyi3enxc4v3meu4wadkwwzecj7oxex7@moln2fiibbxo>
+	<9d0e381758c0e83882b57102fb09c5d3a36fbf57.camel@ndufresne.ca>
+	<1f436caa-1c27-4bbd-9b43-a94dad0d89d0@arm.com>
+	<20250205-amorphous-nano-agouti-b5baba@houat>
+	<2085fb785095dc5abdac2352adfb3e1e1c8ae549.camel@ndufresne.ca>
+	<20250207160253.42551fb1@collabora.com>
+	<2cef75795cf3eb1c224f3562134d2ed887dbff60.camel@ndufresne.ca>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1738946363;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=X6ih/LrCB0TBhJJrYgx7AsyysXqX50UygCQ/toakb9A=;
-	b=LqUyBY1GbZn/An3WfS8y3xh5Eed+fv7L07ZKBn4XkHJSfqZbNbAEiDkMit04JGQEoIKN7+
-	HcOakv5YAULbtLNbwq1mt6BS7w/F4AQ3X1RwJZUls+7zraWc9wujHV+0SJ4Xo/HfJTdY3r
-	4D+xUs2OAjY5egJXL8IaakoOzVpSb/W2OncgFQB4A1/KFJ5UiUDzPupeaFO1l7vq/8aCHY
-	B7cQV431jJJZdRmkRzE+o79AdCyZ9mshz4yVlcXN5HjwtHztbysPQU89F17/RHPvmnyyKT
-	RjXi5cvLKjIHZNlz9CAr/07NGKZCRXqddwxnoqi/gObEdS2lDBh1gwPNler/lg==
-Content-Type: multipart/signed;
- boundary=7028502f771c4dd1e1fb2bb3c0027617c3fbe8bf2f682fab29e1f35f7093;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Fri, 07 Feb 2025 17:39:10 +0100
-Message-Id: <D7MD194WS7UL.FT324IUB9BIA@cknow.org>
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko
- Stuebner" <heiko@sntech.de>, "Maximilian Weigand" <mweigand@mweigand.net>,
- "Marek Kraus" <gamiee@pine64.org>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- "Diederik de Haas" <didi.debian@cknow.org>
-Subject: Re: [PATCH v1] arm64: dts: rockchip: add 'chassis-type' property on
- PineNote
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Dragan Simic" <dsimic@manjaro.org>
-References: <20250207111157.297276-1-didi.debian@cknow.org>
- <502523554b482a2e10d85d37761932a0@manjaro.org>
-In-Reply-To: <502523554b482a2e10d85d37761932a0@manjaro.org>
-X-Migadu-Flow: FLOW_OUT
-
---7028502f771c4dd1e1fb2bb3c0027617c3fbe8bf2f682fab29e1f35f7093
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Dragan,
+On Fri, 07 Feb 2025 11:32:18 -0500
+Nicolas Dufresne <nicolas@ndufresne.ca> wrote:
 
-On Fri Feb 7, 2025 at 4:01 PM CET, Dragan Simic wrote:
-> On 2025-02-07 12:11, Diederik de Haas wrote:
->> Add the recommended chassis-type root node property so userspace can
->> request the form factor and adjust their behavior accordingly.
->>=20
->> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
->> Link:=20
->> https://github.com/devicetree-org/devicetree-specification/blob/main/sou=
-rce/chapter3-devicenodes.rst#root-node
->
-> Maybe the Link tag should be converted into a "[1]" reference?
-> To me, this is more like a reference for this DT addition.
->
-> In general, references can also be placed closer to the contents
-> they back up, which isn't possible with Link tags, but of course
-> that doesn't matter much in this case.
+> Le vendredi 07 f=C3=A9vrier 2025 =C3=A0 16:02 +0100, Boris Brezillon a =
+=C3=A9crit=C2=A0:
+> > Sorry for joining the party late, a couple of comments to back Akash
+> > and Nicolas' concerns.
+> >=20
+> > On Wed, 05 Feb 2025 13:14:14 -0500
+> > Nicolas Dufresne <nicolas@ndufresne.ca> wrote:
+> >  =20
+> > > Le mercredi 05 f=C3=A9vrier 2025 =C3=A0 15:52 +0100, Maxime Ripard a =
+=C3=A9crit=C2=A0: =20
+> > > > On Mon, Feb 03, 2025 at 04:43:23PM +0000, Florent Tomasin wrote:   =
+=20
+> > > > > Hi Maxime, Nicolas
+> > > > >=20
+> > > > > On 30/01/2025 17:47, Nicolas Dufresne wrote:   =20
+> > > > > > Le jeudi 30 janvier 2025 =C3=A0 17:38 +0100, Maxime Ripard a =
+=C3=A9crit=C2=A0:   =20
+> > > > > > > Hi Nicolas,
+> > > > > > >=20
+> > > > > > > On Thu, Jan 30, 2025 at 10:59:56AM -0500, Nicolas Dufresne wr=
+ote:   =20
+> > > > > > > > Le jeudi 30 janvier 2025 =C3=A0 14:46 +0100, Maxime Ripard =
+a =C3=A9crit=C2=A0:   =20
+> > > > > > > > > Hi,
+> > > > > > > > >=20
+> > > > > > > > > I started to review it, but it's probably best to discuss=
+ it here.
+> > > > > > > > >=20
+> > > > > > > > > On Thu, Jan 30, 2025 at 01:08:56PM +0000, Florent Tomasin=
+ wrote:   =20
+> > > > > > > > > > Hi,
+> > > > > > > > > >=20
+> > > > > > > > > > This is a patch series covering the support for protect=
+ed mode execution in
+> > > > > > > > > > Mali Panthor CSF kernel driver.
+> > > > > > > > > >=20
+> > > > > > > > > > The Mali CSF GPUs come with the support for protected m=
+ode execution at the
+> > > > > > > > > > HW level. This feature requires two main changes in the=
+ kernel driver:
+> > > > > > > > > >=20
+> > > > > > > > > > 1) Configure the GPU with a protected buffer. The syste=
+m must provide a DMA
+> > > > > > > > > >    heap from which the driver can allocate a protected =
+buffer.
+> > > > > > > > > >    It can be a carved-out memory or dynamically allocat=
+ed protected memory region.
+> > > > > > > > > >    Some system includes a trusted FW which is in charge=
+ of the protected memory.
+> > > > > > > > > >    Since this problem is integration specific, the Mali=
+ Panthor CSF kernel
+> > > > > > > > > >    driver must import the protected memory from a devic=
+e specific exporter.   =20
+> > > > > > > > >=20
+> > > > > > > > > Why do you need a heap for it in the first place? My unde=
+rstanding of
+> > > > > > > > > your series is that you have a carved out memory region s=
+omewhere, and
+> > > > > > > > > you want to allocate from that carved out memory region y=
+our buffers.
+> > > > > > > > >=20
+> > > > > > > > > How is that any different from using a reserved-memory re=
+gion, adding
+> > > > > > > > > the reserved-memory property to the GPU device and doing =
+all your
+> > > > > > > > > allocation through the usual dma_alloc_* API?   =20
+> > > > > > > >=20
+> > > > > > > > How do you then multiplex this region so it can be shared b=
+etween
+> > > > > > > > GPU/Camera/Display/Codec drivers and also userspace ?   =20
+> > > > > > >=20
+> > > > > > > You could point all the devices to the same reserved memory r=
+egion, and
+> > > > > > > they would all allocate from there, including for their users=
+pace-facing
+> > > > > > > allocations.   =20
+> > > > > >=20
+> > > > > > I get that using memory region is somewhat more of an HW descri=
+ption, and
+> > > > > > aligned with what a DT is supposed to describe. One of the chal=
+lenge is that
+> > > > > > Mediatek heap proposal endup calling into their TEE, meaning kn=
+owing the region
+> > > > > > is not that useful. You actually need the TEE APP guid and its =
+IPC protocol. If
+> > > > > > we can dell drivers to use a head instead, we can abstract that=
+ SoC specific
+> > > > > > complexity. I believe each allocated addressed has to be mapped=
+ to a zone, and
+> > > > > > that can only be done in the secure application. I can imagine =
+similar needs
+> > > > > > when the protection is done using some sort of a VM / hyperviso=
+r.
+> > > > > >=20
+> > > > > > Nicolas
+> > > > > >    =20
+> > > > >=20
+> > > > > The idea in this design is to abstract the heap management from t=
+he
+> > > > > Panthor kernel driver (which consumes a DMA buffer from it).
+> > > > >=20
+> > > > > In a system, an integrator would have implemented a secure heap d=
+river,
+> > > > > and could be based on TEE or a carved-out memory with restricted =
+access,
+> > > > > or else. This heap driver would be responsible of implementing the
+> > > > > logic to: allocate, free, refcount, etc.
+> > > > >=20
+> > > > > The heap would be retrieved by the Panthor kernel driver in order=
+ to
+> > > > > allocate protected memory to load the FW and allow the GPU to ent=
+er/exit
+> > > > > protected mode. This memory would not belong to a user space proc=
+ess.
+> > > > > The driver allocates it at the time of loading the FW and initial=
+ization
+> > > > > of the GPU HW. This is a device globally owned protected memory. =
+  =20
+> > > >=20
+> > > > The thing is, it's really not clear why you absolutely need to have=
+ the
+> > > > Panthor driver involved there. It won't be transparent to userspace,
+> > > > since you'd need an extra flag at allocation time, and the buffers
+> > > > behave differently. If userspace has to be aware of it, what's the
+> > > > advantage to your approach compared to just exposing a heap for tho=
+se
+> > > > secure buffers, and letting userspace allocate its buffers from the=
+re?   =20
+> > >=20
+> > > Unless I'm mistaken, the Panthor driver loads its own firmware. Since=
+ loading
+> > > the firmware requires placing the data in a protected memory region, =
+and that
+> > > this aspect has no exposure to userspace, how can Panthor not be impl=
+icated ? =20
+> >=20
+> > Right, the very reason we need protected memory early is because some
+> > FW sections need to be allocated from the protected pool, otherwise the
+> > TEE will fault as soon at the FW enters the so-called 'protected mode'.
+> >=20
+> > Now, it's not impossible to work around this limitation. For instance,
+> > we could load the FW without this protected section by default (what we
+> > do right now), and then provide a DRM_PANTHOR_ENABLE_FW_PROT_MODE
+> > ioctl that would take a GEM object imported from a dmabuf allocated
+> > from the protected dma-heap by userspace. We can then reset the FW and
+> > allow it to operate in protected mode after that point. This approach
+> > has two downsides though:
+> >=20
+> > 1. We have no way of checking that the memory we're passed is actually
+> > suitable for FW execution in a protected context. If we're passed
+> > random memory, this will likely hang the platform as soon as we enter
+> > protected mode.
+> >=20
+> > 2. If the driver already boot the FW and exposed a DRI node, we might
+> > have GPU workloads running, and doing a FW reset might incur a slight
+> > delay in GPU jobs execution.
+> >=20
+> > I think #1 is a more general issue that applies to suspend buffers
+> > allocated for GPU contexts too. If we expose ioctls where we take
+> > protected memory buffers that can possibly lead to crashes if they are
+> > not real protected memory regions, and we have no way to ensure the
+> > memory is protected, we probably want to restrict these ioctls/modes to
+> > some high-privilege CAP_SYS_.
+> >=20
+> > For #2, that's probably something we can live with, since it's a
+> > one-shot thing. If it becomes an issue, we can even make sure we enable
+> > the FW protected-mode before the GPU starts being used for real.
+> >=20
+> > This being said, I think the problem applies outside Panthor, and it
+> > might be that the video codec can't reset the FW/HW block to switch to
+> > protected mode as easily as Panthor. =20
+>=20
+> Overall the reset and reboot method is pretty ugly in my opinion.
 
-I generally use the "[1]" format when linking to specific claims, which
-I could've done wrt the "recommended". But I considered this a general
-background link and then I prefer to do it via a Link tag.
+Yeah, I'm not entirely sold on this approach either, but I thought it
+was good to mention it for completeness.
 
-If requested by a maintainer I'll change it ofc, but otherwise I prefer
-to keep it as is.
+> But to stick
+> with the pure rationale, rebooting the SCP on MTK is much harder, since i=
+ts not
+> specific to a single HW/driver.
+>=20
+> Other codecs like Samsung MFC, Venus/Iris, Chips&Media, etc. that approac=
+h seams
+> plausible, but we still can't trust the buffer, which to me is not accept=
+able.
 
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi | 2 ++
->>  1 file changed, 2 insertions(+)
->>=20
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
->> b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
->> index 2d3ae1544822..3613661417b2 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
->> @@ -9,6 +9,8 @@
->>  #include "rk3566.dtsi"
->>=20
->>  / {
->> +	chassis-type =3D "tablet";
->> +
->>  	aliases {
->>  		mmc0 =3D &sdhci;
->>  	};
->
-> The patch is obviously fine.  Thanks for the patch, and please feel
-> free to include, regardless of the note above, my:
->
-> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-
-Thanks :)
-
-Cheers,
-  Diederik
-
---7028502f771c4dd1e1fb2bb3c0027617c3fbe8bf2f682fab29e1f35f7093
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ6Y3MwAKCRDXblvOeH7b
-bm7CAQDbpmFpX5ubvZP1t+qtuzyTR6mFwL+PSL0Ss0jlhqiaOwEAmNLs1E37i0+M
-8dsgxHWQRk9FxOK7KW6Wd0HRz+Ij1gQ=
-=yaBF
------END PGP SIGNATURE-----
-
---7028502f771c4dd1e1fb2bb3c0027617c3fbe8bf2f682fab29e1f35f7093--
+Unfortunately, there's so many ways this can go wrong, because we're
+not just talking about FW exec sections, but also data buffers that
+have to be dynamically allocated by userspace (suspend buffers for GPU
+contexts, textures/framebuffers, decode frames, ...). If there's no
+central component kernel-side we can refer to to check correctness, the
+only safe guard is privilege-based restriction...
 
