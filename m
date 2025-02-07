@@ -1,128 +1,167 @@
-Return-Path: <devicetree+bounces-144145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFC54A2CFDC
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 22:40:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93458A2D093
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 23:36:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E61B188EDF1
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 21:40:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E1B4188B275
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 22:36:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA491AA7BF;
-	Fri,  7 Feb 2025 21:38:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95B3C1C5F1D;
+	Fri,  7 Feb 2025 22:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lfyiv5cu"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Oj5IOMmD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09471195962;
-	Fri,  7 Feb 2025 21:38:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 212251AF0AF;
+	Fri,  7 Feb 2025 22:36:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738964297; cv=none; b=EzcHQtlf4FP1y5ufGEFEHUU3bYLmJv/N69UmuaxS/BDbdAHI10yhfXqUh5eqFX5O6hhXKFaGMDqNeUXSrF8uO9KpuXCgT8JI3aZLwhSiSE4mQk/FrnylxJ4hw0ABk/YDJBNt6AZ8nvi5cPE0UmAWDESTzequICRAb31YIdephoY=
+	t=1738967804; cv=none; b=HbFAbsriWoxisoT1TRlh2oKrPJGIYPcXeugkzNYv4URmfP4Sqz1Ax7RmE8rmQNM8U8q3QwPWCvJYnhVBFleayBSxXm66y817PxT1WOwFkbXPQnPU0ChMVqVMnpduqH3EEm+HFi9AkO5WenAvJ3fnSmZ7nq4dLXanFu+zVbG7ULM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738964297; c=relaxed/simple;
-	bh=7xVwhwDjoai8YSxFqqwGSBjxwD2KZy4EIiDqNHKYu+k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gwQVzc2zClN2p2sv64Y9f00fcSYjMfBshaaQgUaW99OruACNVJrehh4VQICo3uTUPDYlyqFRkNgyifIMW4sxqWcQS69y0A6UhGbv7PVXsmjhOvYurV+2XSR8cUlo2vI9FO3GYF5wEqoeY1ds3lIcy3UctmDv0Qsp2lySXrkxjIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lfyiv5cu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1DF4C4CED1;
-	Fri,  7 Feb 2025 21:38:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738964295;
-	bh=7xVwhwDjoai8YSxFqqwGSBjxwD2KZy4EIiDqNHKYu+k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lfyiv5cuS/GU2byBNx1/HS6vFu4XgUVKiwxJxFKa4f3ofnDnF5InCMn2/xpuWS58N
-	 4QtqPZCaUgmr79HJ9xmM78pXb89BQLwgxXvc33Lh+3EQeafVlBrVppNrK8XOQUw5H8
-	 UJR9X0noZ/1FbX4W1ZBZAMhUYy9BgxOGEd9MwMZFlu4BmJKNV6MQRgPREDIoJFchfh
-	 vkIpTE9C01BimsoJ3MqyEWHAtinnUWxUS8B374bKNWOXDU9Asd0dSh8FiOORDf92iW
-	 aQPWNpap/IIavA7B9QLaDyt/3GM8gUFwZBNJqf8kGVt3NewUlFLL83a8JTzoH0ByF2
-	 gYO4ujWIo0Hvw==
-Date: Fri, 7 Feb 2025 21:38:05 +0000
-From: Mark Brown <broonie@kernel.org>
-To: j.ne@posteo.net
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	Krzysztof Kozlowski <krzk@kernel.org>, imx@lists.linux.dev,
-	Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
+	s=arc-20240116; t=1738967804; c=relaxed/simple;
+	bh=JcPOtbgbKeDaS4DvcJp6F3ci6cvBPUftD+2nYWb9K1E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NdGyAU3fKs0GJblTyzvhVgOR89oHT1axQ23ps4/KRXHEz4B1apZ0Oq2JTy5gK8YhDtrUZOJMwDGPEH2DACz2iirF+cYtdV/wPF4i4njgtNJaQn8qEWILSJHYsz+VhRwM462kPkdKeasIPZaoMIZidQ6Fwniri+W0FBuyiNHae94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Oj5IOMmD; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id AE0081F764;
+	Fri,  7 Feb 2025 22:36:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1738967799;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=aeS9ms0L/tpy0n1PyXfynu+TBzCT9lzEY+i6oauUQKM=;
+	b=Oj5IOMmDX3kJNTk6si1ypIGg5ODDeMPmZ7Smh8p/n0bbkkI1rsvFHU6vY5tSXTAuOn/fAj
+	DnU6cvpm08V1lqYu+Wuf9Auc/M0Ab1jZMg0z+C2AjqkyCdBcxz3PY/tk6fKSwGCcDrGKkD
+	5N+GZXPMhAs3dQtfbik07mSFeiEOrmeVtDBx6axecHiLIecZ5vWqxLZeSfTydgFn8jNFc4
+	0OvhN1D/S7KdtwEKORRiSdXoiXGFrailNB8vsbo/ximndRZH7TBLDD4uOimdnNI+fatlwd
+	3d3FoDTcXM5rLwE2QAZsBNkX3wOfPkeBy/y8UL4rhe4yycCo/ahctvdYCO0fJw==
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: davem@davemloft.net
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
 	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>,
+	devicetree@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	=?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2 00/12] YAML conversion of several Freescale/PowerPC DT
- bindings
-Message-ID: <611e47da-ba87-4c21-a6b7-cf051dc88158@sirena.org.uk>
-References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH net-next 00/13] Introduce an ethernet port representation
+Date: Fri,  7 Feb 2025 23:36:19 +0100
+Message-ID: <20250207223634.600218-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Yv3YhmJAoxj+QMAv"
-Content-Disposition: inline
-In-Reply-To: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
-X-Cookie: MMM-MM!!  So THIS is BIO-NEBULATION!
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftdehtdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeejhfelieehgfffiefftdffiedvheefteehkedukefgteffteevffeuueejiedtveenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemtggsudelmeekugegtgemlehftddtmegttgeftgemgeelfhegmeefieehheemsgehjeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkegugegtmeelfhdttdemtggtfegtmeeglehfgeemfeeiheehmegsheejgedphhgvlhhopehfvgguohhrrgdquddrhhhomhgvpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdelpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhrt
+ ghpthhtohepnhgvthguvghvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqmhhsmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
+Hello everyone,
 
---Yv3YhmJAoxj+QMAv
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series follows the 2 RFC that were sent a few weeks ago :
+RFC V2: https://lore.kernel.org/netdev/20250122174252.82730-1-maxime.chevallier@bootlin.com/
+RFC V1: https://lore.kernel.org/netdev/20241220201506.2791940-1-maxime.chevallier@bootlin.com/
 
-On Fri, Feb 07, 2025 at 10:30:17PM +0100, J. Neusch=E4fer via B4 Relay wrot=
-e:
+The goal of this series is to introduce an internal way of representing
+the "outputs" of ethernet devices, for now only focusing on PHYs.
 
-> This is a spin-off of the series titled
-> "powerpc: MPC83xx cleanup and LANCOM NWAPP2 board".
+This allows laying the groundwork for multi-port devices support (both 1
+PHY 2 ports, or more exotic setups with 2 PHYs in parallel, or MII
+multiplexers).
 
-> During the development of that series, it became clear that many
-> devicetree bindings for Freescale MPC8xxx platforms are still in the old
-> plain-text format, or don't exist at all, and in any case don't mention
-> all valid compatible strings.
+Compared to the RFCs, this series tries to properly support SFP,
+especially PHY-driven SFPs through special phy_ports named "serdes"
+ports. They have the particularity of outputing a generic interface,
+that feeds into another component (usually, an SFP cage and therefore an
+SFP module).
 
-What's the story with dependencies here - why is all this stuff in one
-series?  Normally I'd expect bindings conversions to be standalone.
+This allows getting a fairly generic PHY-driven SFP support (MAC-driven
+SFP is handled by phylink).
 
---Yv3YhmJAoxj+QMAv
-Content-Type: application/pgp-signature; name="signature.asc"
+This series doesn't address PHY-less interfaces (bare MAC devices, MACs
+with embedded PHYs not driven by phylink, or MAC connected to optical
+SFPs) to stay within the 15 patches limit, nor does it include the uAPI
+part that exposes these ports to userspace.
 
------BEGIN PGP SIGNATURE-----
+I've kept the cover short, much more details can be found in the RFC
+covers.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmemfT0ACgkQJNaLcl1U
-h9Dq1Af/eChCpyVx52hhPj2Ppke4XqgRYwHfMx1ZD4zg9Fv5cLy+pNBr/CAHHckC
-zFU84oMRCqn0Y8VcKQo6h/qnhsFnmdYxFgRmYg1kXZIm+jfrFUtTHfRH4I/8b95Z
-G2JrWA/AN9rNXn2n7I0gL2mBLfXBlTl2GlESRinIHR9eESMM/hJAQmkkw2xpgeCM
-lc0xNSEPmuS3M0+rYNtypbnc1bbGXU6zVOEz+5Ennz6bHPi6q6Amjz6HBLyoln3X
-3F9zfSERvGPIA442jE6Qm6cFH4S7Vv/L4urjeIvSe7le626ajH99YJZl1BSFaPLR
-qcOQY87d6Kjx7kPP+wMJG/Lfhrmprg==
-=9fhs
------END PGP SIGNATURE-----
+Thanks everyone,
 
---Yv3YhmJAoxj+QMAv--
+Maxime
+
+Maxime Chevallier (13):
+  net: ethtool: Introduce ETHTOOL_LINK_MEDIUM_* values
+  net: ethtool: Export the link_mode_params definitions
+  net: phy: Introduce PHY ports representation
+  net: phy: dp83822: Add support for phy_port representation
+  net: phy: Create a phy_port for PHY-driven SFPs
+  net: phy: Intrduce generic SFP handling for PHY drivers
+  net: phy: marvell-88x2222: Support SFP through phy_port interface
+  net: phy: marvell: Support SFP through phy_port interface
+  net: phy: marvell10g: Support SFP through phy_port
+  net: phy: at803x: Support SFP through phy_port interface
+  net: phy: Only rely on phy_port for PHY-driven SFP
+  net: phy: dp83822: Add SFP support through the phy_port interface
+  dt-bindings: net: Introduce the phy-port description
+
+ .../devicetree/bindings/net/ethernet-phy.yaml |  18 +
+ .../bindings/net/ethernet-port.yaml           |  47 +++
+ drivers/net/phy/Makefile                      |   2 +-
+ drivers/net/phy/dp83822.c                     |  71 ++--
+ drivers/net/phy/marvell-88x2222.c             |  96 +++---
+ drivers/net/phy/marvell.c                     | 100 +++---
+ drivers/net/phy/marvell10g.c                  |  37 +--
+ drivers/net/phy/phy_device.c                  | 307 +++++++++++++++++-
+ drivers/net/phy/phy_port.c                    | 176 ++++++++++
+ drivers/net/phy/phylink.c                     |  32 ++
+ drivers/net/phy/qcom/at803x.c                 |  64 +---
+ include/linux/ethtool.h                       |  73 +++++
+ include/linux/phy.h                           |  39 ++-
+ include/linux/phy_port.h                      |  92 ++++++
+ include/linux/phylink.h                       |   2 +
+ net/ethtool/common.c                          | 231 ++++++-------
+ net/ethtool/common.h                          |   7 -
+ 17 files changed, 1048 insertions(+), 346 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ethernet-port.yaml
+ create mode 100644 drivers/net/phy/phy_port.c
+ create mode 100644 include/linux/phy_port.h
+
+-- 
+2.48.1
+
 
