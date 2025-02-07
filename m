@@ -1,191 +1,106 @@
-Return-Path: <devicetree+bounces-143934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91BA9A2C38E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:29:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D59A3A2C3D1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:38:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B47F73AAA78
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 13:29:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE9EB188BB90
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 13:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28831EEA30;
-	Fri,  7 Feb 2025 13:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A36D1F7069;
+	Fri,  7 Feb 2025 13:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="c1tr/tnr"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="WGLsSyhy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7EC4EB51;
-	Fri,  7 Feb 2025 13:29:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6611FC10F
+	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 13:37:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738934992; cv=none; b=t74nLydfutTaUkYm98DGMxSCf65O3HzN+VYpBPfTEcywOUnULOmNSeazdxP5S+1PNpt0OnWIce6VlBS8CwpUzzceFNjE488TkZ3cVg3dc6aRAzI5w6YhIyoeeadZTvDGBkhfrZJFKwHwmq0b6ngt/6ZNtE/Ui6Z/qqk0gdg1yfQ=
+	t=1738935441; cv=none; b=KC2gN0/MXzmcQbziX+dq1uBGpjOWSQEjgrfqAPU1rnIbt5uIl9DGC+JwWAaTNQDJxSoBF3+llbiIGeEjbawr9ph5I5sJ3u3Fgclg4NUn56gm0r4QIfzl/unQCedZNZxbd5kaq7InU2PYz7+2wzqfKQzC06qA3PJPblHoWeSVzM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738934992; c=relaxed/simple;
-	bh=Jw0xiNjIZwfQFr7Xplb6iq9bWHtOcy+7+dwBPdFDyj8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mYyIUlftb81uQl3K/EuT+e8pj76T2kA5dfZyl+9Y0qiTUS03G/ws1VqFyXjyAbE6AGYmP2TTyZcS4OpgdjYAAyhZl8tJ9QIddS19nJA5nO+vt9z1RRN9Yl36k9/XNY93i5u/ukCjfS772GzFIUVEZSkgrONTDacv+Q0hb9Tz8iA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=c1tr/tnr; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vR4zx2oagS+efqUKCMvK1ATS53EuOoZopH8YM7RNxZc=; b=c1tr/tnr9J63Np3nDQff6K5sYk
-	lDzbECFZwUg9b2y0xew+9b3UrLzYEOO6oXoearPTxuMmY1OP7l8As5gHXUojvp9a6rhPXqBVGR7pX
-	ItkLub/6K8cCaeF9t4nwbXN6vTk9HGT0yptexL9sgYCsTnO4HV9sxocFmXogbZ3wWX1nblcEi9rZ/
-	u5LwAPny7Dza9oe5m4VYVvQlU+asCdfF/wP91b+PYazWHb7sVL52a3XG9LpuEZKCz5LRWSplBUaK3
-	cBN/P0ffld06H6AQwE0MAMJl9U7rOLG8XbrF/LGIJ+QMFTBC04qalsHbhaVctUr/VlFlmvLXGsv2n
-	685ABR7Q==;
-Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tgOQE-0005vs-AZ; Fri, 07 Feb 2025 14:29:30 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Dragan Simic <dsimic@manjaro.org>,
- Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject:
- Re: [PATCH v4 3/4] arm64: dts: rockchip: add overlay tests for Rock 5B PCIe
- overlays
-Date: Fri, 07 Feb 2025 14:29:29 +0100
-Message-ID: <4044639.44csPzL39Z@diego>
-In-Reply-To: <110a35c5-9450-47fb-9d5f-0ba73e290bf5@cherry.de>
-References:
- <20250131-pre-ict-jaguar-v4-0-c971e2852e8d@cherry.de>
- <cb8f370474df88d1194d9ee92d3ca4e0@manjaro.org>
- <110a35c5-9450-47fb-9d5f-0ba73e290bf5@cherry.de>
+	s=arc-20240116; t=1738935441; c=relaxed/simple;
+	bh=IdbOi6N0+bHgyQ08uTaIC9JomsdE+10WelxdSZmGp0A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uMIwnTwgDfbZXkEFzxdK60HNquetIEF6LmrWbG43bDu3G1bWe3K4FqKvDF+dBOlyXFy8aplKQUzWM72W8nTAKfq2mtxXwp85UX1O9JWvmR2v0ZSJNcvgFD7cd67AoiKI1STFmqz8KDLQktHf75p7dPtzKqca84lE9s8xL1LIi+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=WGLsSyhy; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id BBC8D240027
+	for <devicetree@vger.kernel.org>; Fri,  7 Feb 2025 14:37:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1738935431; bh=IdbOi6N0+bHgyQ08uTaIC9JomsdE+10WelxdSZmGp0A=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=WGLsSyhyR1M+holYpFY2DE/LqX/M15jThbkxjOYqB/FmQAFFwC+GWz5a9IBwAww3F
+	 mXlFcNxwX5ET/KIyhDzrzYAJY2KaepXF/mKP4+zXFWdqXcK2Rpm93qt97oV3bsN4U3
+	 6OYk4IO4oNfu/VfOtLRiUArkbEZMHnUtEJuShNd8ptsnidw4lztDocLchG9SWz9COQ
+	 GA8CeOLRgAiXRcPtFw1cPUr7OZALJdnNxBcwTv1PQp4jHg7fJVSTPfXh9ptk+RHx08
+	 mrnvnVzNvI/Gm1FUwiVaDkEn8atEz/5JPR20I63GGSttcZALk/3j01UOWYKbg5sLQG
+	 8/F+eljWn4kpQ==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YqFPs4w9Pz9rxF;
+	Fri,  7 Feb 2025 14:37:05 +0100 (CET)
+Date: Fri,  7 Feb 2025 13:37:04 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	Frank Li <Frank.li@nxp.com>, devicetree@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, Scott Wood <oss@buserror.net>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Subject: Re: [PATCH 6/9] dt-bindings: pci: Add fsl,mpc83xx-pcie bindings
+Message-ID: <Z6YMgETdCZGMJI4i@probook>
+References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
+ <20250126-ppcyaml-v1-6-50649f51c3dd@posteo.net>
+ <Z5qx3jAFE81Ni2cJ@lizhi-Precision-Tower-5810>
+ <Z6KkBEaGTkSyWiE_@probook>
+ <689302c6-8fba-4fd1-a4b7-557cb2f8fa4d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <689302c6-8fba-4fd1-a4b7-557cb2f8fa4d@quicinc.com>
 
-Am Donnerstag, 6. Februar 2025, 12:07:21 MEZ schrieb Quentin Schulz:
-> Hi Dragan,
->=20
-> On 2/4/25 2:35 PM, Dragan Simic wrote:
-> > Hello Quentin,
-> >=20
-> > On 2025-02-04 13:20, Quentin Schulz wrote:
-> >> On 2/4/25 12:22 PM, Dragan Simic wrote:
-> >>> > On 2025-01-31 11:40, Quentin Schulz wrote:
->=20
-> Not discussing CONFIG_OF_ALL_DTBS relevancy wrt hiding overlay tests=20
-> behind, unrelated to this series I believe :)
->=20
-> [...]
->=20
-> >>> With the above-proposed changes in place, and with CONFIG_OF_ALL_DTBS
-> >>> selected, the relevant part of the "make dtbs" output looks like this:
-> >>>
-> >>>    DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb
-> >>>    DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtbo
-> >>>    DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtbo
-> >>>    OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtb
-> >>>    OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtb
-> >>>
-> >>> No more "phony targets" in the produced output. :)
-> >>
-> >> Funnily enough, I would prefer to see OVL for overlays rather than
-> >> DTC, but I guess it's just one more occurrence of developers
-> >> disagreeing on how to name things :)
-> >=20
-> > I actually agree with that, just like I prefer to see .dtbo files
-> > as additions to dtb-$(CONFIG_ARCH_XYZ).  It's all about the overlays,
-> > so they should be both specified and echoed back.
-> >=20
-> > Moreover, we currently also have additional .dtb files with applied
-> > overlays left after the build and installed afterwards, which doesn't
-> > make much sense to me.  To me, those additional .dtb files should be
-> > deleted as build artefacts and not installed.
-> >=20
->=20
-> I **think** it could be useful for systems without overlay support. Then=
-=20
-> you have a dtb which is the result of an overlay applied on top of the=20
-> base dtb and you can replace your previous dtb with that one, and voil=C3=
-=A0.
->=20
-> What I don't like is that it's difficult to differentiate them from the=20
-> "normal" base DTB or even from the DTBO (simple base DTB + overlay test=20
-> is usually named after the overlay, and in the case of the Rock 5B test:=
-=20
-> rk3588-rock-5b-pcie-srns.dtbo and=20
-> arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtb), easy to pick=
-=20
-> the wrong one. Though that is on **me** as I could pick another name for=
-=20
-> the overlay test and e.g. prepend "test-ovl_" to the filename for example.
->=20
-> [...]
->=20
-> >> I won't be too difficult to convince here, just want some "authority"
-> >> or a piece of history about CONFIG_OF_ALL_DTBS that would go your
-> >> direction, before doing the change. I believe automated build tests
-> >> without needing to enable a symbol, and that taking DTB and DTBO from
-> >> the build output and apply DTBO on top of DTB works without having to
-> >> go through some length to get the symbols, are good reasons to keep it
-> >> the way it is in this patch series.
-> >=20
-> > I'd like the most to perform the above-proposed "divorcing" of the DT
-> > overlay tests from CONFIG_OF_ALL_DTBS, so we don't have to enable any
-> > additional options to have the overlay tests run automatically, but
-> > to keep .dtbo filenames in dtb-$(CONFIG_ARCH_XYZ).  I think that would
-> > bring the best of both worlds, so to speak.
-> >=20
->=20
-> So, just to recap:
->=20
-> dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-wolfvision-pf5.dtb
-> dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-wolfvision-pf5-display-vz.dtbo
-> dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-wolfvision-pf5-io-expander.dtbo
->=20
-> stays and I add:
->=20
-> dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-wolfvision-pf5-vz-2-uhd.dtb
-> rk3568-wolfvision-pf5-vz-2-uhd-dtbs :=3D rk3568-wolfvision-pf5.dtb \
-> 	rk3568-wolfvision-pf5-display-vz.dtbo \
-> 	rk3568-wolfvision-pf5-io-expander.dtbo
->=20
-> at the bottom of the Makefile. I specifically do NOT want to make this=20
-> depend on CONFIG_OF_ALL_DTBS (by using dtb- like in ti/), so that the=20
-> base DTB will always have the symbols in, regardless of CONFIG_OF_ALL_DTB=
-S.
->=20
-> I think the redundancy is unnecessary but I guess it's worth getting=20
-> away from implicit rules.
->=20
-> I can compromise on that :)
->=20
-> @Heiko does this work for you?
+On Thu, Feb 06, 2025 at 06:12:47PM +0530, Mukesh Kumar Savaliya wrote:
+> neat: subject: since binding is already mentioned in the prefix of the
+> subject, no need to add bindings word again.
 
-Yes, I do like the variant of _not_ limiting these builds to
-CONFIG_OF_ALL_DTBS. From reading up on it, it's supposed to build all
-dtbs - even from non-selected architectures?
-
-So on a rockchip-only-build I'd still want to build the dtb+dtbo
-combination nevertheless.
-
-zynq, renesas, qcom and more are doing this like Quentin proposed, where
-only ti is not.
-
-
+Sounds reasonable, thanks
+J. Neuschäfer
 
