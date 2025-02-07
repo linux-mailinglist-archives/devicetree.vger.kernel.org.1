@@ -1,151 +1,153 @@
-Return-Path: <devicetree+bounces-143855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45A10A2BE16
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:33:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15F37A2BE21
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 09:37:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72A623AB02D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:33:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C03F188C8E1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F401A9B3B;
-	Fri,  7 Feb 2025 08:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 714E81AA1D2;
+	Fri,  7 Feb 2025 08:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="x4VMvHw4"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ZkOgHRGf";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Sq5bQilY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E1B1662EF;
-	Fri,  7 Feb 2025 08:33:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9861A9B3B;
+	Fri,  7 Feb 2025 08:36:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738917203; cv=none; b=eq7dTK2ind7EOaW8MEdo3ZZ6+HT9Ee2bzlqLzhXTdP3nZr/SujR4om0KBhCdizBNT029SxPFrpIPTlBPJqwxSvYrdiOpWSNBq3HCL1eyquCltDp3pS2C6ppqcAR+BACJEDV0+dLBhAUMGAGnJmlsv83qjCNcNhpqRwNZCMVjY5U=
+	t=1738917416; cv=none; b=QgYzyBy7Xm9Di9S6g3No3eS8vtGq0sXivi/ukvnjOMM1m//JA5gyU8oZaomqDSpnYeldrtoxHJ56g2/I1VnjHn9/upiv7PtZw1g/KrfG/VMKRYYwVhKTHcyAPkIuwdSRe/E2J3rDuJ+fxkoDZsh0dzzaWGhDq2U1znTOrtkSeuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738917203; c=relaxed/simple;
-	bh=GtxLgT3tyWGbWCvKml+HO1Ii/ozeWGs3xqKQ3m9rWkg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AgzXIT4PPpQ3+lUetyNuO/anXZSHtu11OuNx0pgsePfeczbpEM3UtqvtxEQp4rAfr1qtvtF1yfjppcTwrSUP3wRHKJd+xKKWCTsvYdYs1P2IZyEgPF3PAcxl76+/4BhNDTykeA/sL0UB323+3nW1ZNtbm2+EHc1+Y033HbdEr04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=x4VMvHw4; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 26D131F9E1;
-	Fri,  7 Feb 2025 09:33:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1738917182;
-	bh=l/t7vCxJWdDph//099EQUA35oIJvQPYCB3Z9DffQy6g=;
-	h=Received:From:To:Subject;
-	b=x4VMvHw4NptAo6x5XBmAV+QyJzCjjYW92WHrhRpEQEeN4AiwlYBrOWnwuYnv3+xdS
-	 CduSirEGbfD2odtgGD8sqFJCJ9+32bW/KFtb9wnnB99Hlaajp0rtKbVovJRKUvjTwS
-	 fmgzuipXjkP5rYLWk5Ax29PDsHC8Xj3MDh9oJ8djV50HYbtY3AGPacKWJAjnE6ep5D
-	 LVunkSKdESz3ahRx38ffZQLEZFJsJ43tp2PVrE7wr4082EtgSqslloEUpzynX0LRwf
-	 xnBmNBPjniMBj60NSNgxR9nqm4JDWFodHRONrpK1BWXQCA/tTG9gHLO6alYXXkyt5X
-	 U3irvwSolkaAA==
-Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
-	id BACC07F926; Fri,  7 Feb 2025 09:33:01 +0100 (CET)
-Date: Fri, 7 Feb 2025 09:33:01 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Nishanth Menon <nm@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1738917416; c=relaxed/simple;
+	bh=0o0RPv871OXoWz4JnC8P/GeEkhkdSN/tpKIFokIwh9o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EgQ7wkpqa05Qh0xbQtjaReWbnL2gkE/7B8yTDDQG0B1A7s7Pu5/nBhjJeEQ/ud1cJt3ZcT07gcEUUMAXU4VRfWCJE6vn3x3sfqWVMqbJTZ5+cIMARnlJQeYpPN43RL/aUo0G2W7Q10jYb7FJ1WHEjt1bd0GdYwCNrjegMRd114M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=ZkOgHRGf; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Sq5bQilY reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1738917413; x=1770453413;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=e2+AE/2LJAYye9HkKHifG+tBEn1kiEbNgM5Be/SBU0Y=;
+  b=ZkOgHRGfDWoY002Iziaz9Xb73YBVk8CO8GmRYCblTmsih/YkV3OUTkzP
+   xzmXiKs1/4ldC15Yx1YYzz3+M/DLog4nXEICYq/J9gHmbwkQBl0BVSikK
+   SwZaEjKEyxtLYsZzM3uvEMUaBGMDypl4fjcREzxzRY4ICnM9rF2YwQf/A
+   ltyfqNpCycz/UKIprM+vzcQpAHpAlGdSgK6go8k1J/u7n2swmixMOEknS
+   7XPlfx2TLJgPNSCnMxdhscW+Oox0+lG+REv70h6amgMq/gpMPxZJacktx
+   aIgWdTMXq4iyTXcu+JwSWiQZ9M00hQ7Q1RUqTfzguT1Fj2zW73KpiLQje
+   Q==;
+X-CSE-ConnectionGUID: av5eSYpcTbOPWv03T6b2pQ==
+X-CSE-MsgGUID: 3BW5DVBDRlKWS9YBHJwkog==
+X-IronPort-AV: E=Sophos;i="6.13,266,1732575600"; 
+   d="scan'208";a="41636068"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 07 Feb 2025 09:36:25 +0100
+X-CheckPoint: {67A5C608-2E-2D67083E-CAF60585}
+X-MAIL-CPID: 986F74BA90AE23D311AA173614DDDFF0_0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 11841167AAD;
+	Fri,  7 Feb 2025 09:36:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1738917380;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=e2+AE/2LJAYye9HkKHifG+tBEn1kiEbNgM5Be/SBU0Y=;
+	b=Sq5bQilYhtLsl41kYmMh+fxhdDs43vuoSiecvSFOK6itUhRXpRpxAyac9Gm2cdrt4ZhcSf
+	ynrbwFbxxgJje0dyPiRtbGdsk4LQTiEqXBqtbSp6Wn3/dajwQ3/MVTb3uzVySAxNiR8C3w
+	KKTpxw+7m0ZIAty2oXy0gOJFPh+pY4DIKYbC4UkOPBEsHFFWcPJglqQghkPJcT+7ehBKy6
+	QlP7pplYMPNKypCF3oSslFKjN9RXiZ5weE2QOVo87ICRfU1HkQju8s3s1jzcTy57l7gery
+	kctGmaSw2DegfQaLcXQJlHv+EuOtSs/EUcAPgA46rLk6DBvv0PoXunPMTSJ1Nw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62p: Enable AUDIO_REFCLKx
-Message-ID: <Z6XFPYaj069fvW1h@gaggiata.pivistrello.it>
-References: <20250206153911.414702-1-francesco@dolcini.it>
- <20250207014239.xzm6rfnusckql2uo@litigator>
+Subject: [PATCH v2 00/10] Make i.MX8M OCOTP work as accessing controller
+Date: Fri,  7 Feb 2025 09:36:05 +0100
+Message-Id: <20250207083616.1442887-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250207014239.xzm6rfnusckql2uo@litigator>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hello Nishanth,
+Hi,
 
-On Thu, Feb 06, 2025 at 07:42:39PM -0600, Nishanth Menon wrote:
-> On 16:39-20250206, Francesco Dolcini wrote:
-> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > 
-> > On AM62P-based SoCs the AUDIO_REFCLKx clocks can be used as an input to
-> > external peripherals when configured through CTRL_MMR, so add the
-> > clock nodes.
-> > 
-> > Link: http://downloads.ti.com/tisci/esd/latest/5_soc_doc/am62px/clocks.html
-> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 20 ++++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> > index 420c77c8e9e5..4b47b0774330 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> > @@ -42,6 +42,26 @@ &inta_main_dmss {
-> >  	ti,interrupt-ranges = <5 69 35>;
-> >  };
-> >  
-> > +&main_conf {
-> 
-> 	Why not add it to main_conf section it self in the file?
+inspired by [1] this adds the accessing controller feature to i.MX8M.
+The OCOTP eFuse has bits which can disable particular peripherals, such as
+GPU, MIPI-DSI oder USB.
 
-The reason is that main_conf is defined in k3-am62p-j722s-common-main.dtsi,
-that is shared between am62p and j722s.
+In OCOTP driver, the nodes under "/" will be iterated, and checked
+if property "#access-controllers" exsits. If not allow access, detach
+the node.
 
-On j722s the audio refclk is added in k3-j722s-main.dtsi the same way as I did
-here, so I cannot move this to k3-am62p-j722s-common-main.dtsi without updating
-also k3-j722s-main.dtsi.
+I successfully used this on a i.MX8M Nano DualLite which has GPU disabled.
+Without this patchset the default DT completly freezes the SoC if GPU
+is accessed.
+Using this patchset the GPU is disabled without any DT modification from
+bootloader:
+> imx_ocotp 30350000.efuse: /soc@0/gpu@38000000: disabled by fuse, device driver will not be probed
 
-I looked into the differences of j722s and am62p, and from my understanding,
-from the audio refclk point of view, they are identical (same IP, same reg, same
-clocks and same IDs), so this should naturally be moved to
-k3-am62p-j722s-common-main.dtsi as you are suggesting.
+Changes in v2:
+* Encode all addresses and bit offsets into DT directly
+  This eliminates the need for platform specific code in imx-ocotp
+* Added support for imx8mm, imx8mp and imx8mq as well
 
-... however, for some reason I am not aware of, on k3-j722s-main.dtsi a different
-parent clock is used, and I cannot understand the reason. The actual parent clocks
-in this patch are just the same we already have everywhere apart on j722s. I tried
-to look at the history of this and it seems that on the TI downstream kernel branch
-this is defined in the board dts file (!) and this confused me even more.
+Best regards,
+Alexander
 
-So, not wanting to break stuff I was not able to understand I came up with this
-proposal.
+[1] https://lore.kernel.org/all/20250204-imx-ocotp-v8-0-01be4a4bb045@nxp.com/
 
-An alternative could be to override the "unexpected" clocks from
-k3-j722s-main.dtsi to the board dts file, and have the "standard" clocks, as
-proposed in this patch and already used on all the other AM62 variants, in
-k3-am62p-j722s-common-main.dtsi.
+Alexander Stein (10):
+  nvmem: imx-ocotp: Sort header alphabetically
+  nvmem: imx-ocotp: Support accessing controller for i.MX8M
+  arm64: dts: imx8mn: Add i.MX8M Nano OCOTP disable fuse definitions
+  arm64: dts: imx8mn: Add access-controller references
+  arm64: dts: imx8mp: Add i.MX8M Plus OCOTP disable fuse definitions
+  arm64: dts: imx8mp: Add access-controller references
+  arm64: dts: imx8mm: Add i.MX8M Mini OCOTP disable fuse definitions
+  arm64: dts: imx8mm: Add access-controller references
+  arm64: dts: imx8mq: Add i.MX8M OCOTP disable fuse definitions
+  arm64: dts: imx8mq: Add access-controller references
 
-+Jayesh that is the author of this specific change in k3-j722s-main.dtsi.
+ arch/arm64/boot/dts/freescale/imx8mm-ocotp.h | 31 ++++++++
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi    | 13 ++++
+ arch/arm64/boot/dts/freescale/imx8mn-ocotp.h | 26 +++++++
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi    |  8 +++
+ arch/arm64/boot/dts/freescale/imx8mp-ocotp.h | 42 +++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi    | 26 +++++++
+ arch/arm64/boot/dts/freescale/imx8mq-ocotp.h | 37 ++++++++++
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi    | 15 ++++
+ drivers/nvmem/Kconfig                        |  3 +
+ drivers/nvmem/imx-ocotp.c                    | 76 +++++++++++++++++++-
+ 10 files changed, 275 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-ocotp.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-ocotp.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-ocotp.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-ocotp.h
 
-Francesco
+-- 
+2.34.1
 
-> > +	audio_refclk0: clock-controller@82e0 {
-> > +		compatible = "ti,am62-audio-refclk";
-> > +		reg = <0x82e0 0x4>;
-> > +		clocks = <&k3_clks 157 0>;
-> > +		assigned-clocks = <&k3_clks 157 0>;
-> > +		assigned-clock-parents = <&k3_clks 157 16>;
-> > +		#clock-cells = <0>;
-> > +	};
-> > +
-> > +	audio_refclk1: clock-controller@82e4 {
-> > +		compatible = "ti,am62-audio-refclk";
-> > +		reg = <0x82e4 0x4>;
-> > +		clocks = <&k3_clks 157 18>;
-> > +		assigned-clocks = <&k3_clks 157 18>;
-> > +		assigned-clock-parents = <&k3_clks 157 34>;
-> > +		#clock-cells = <0>;
-> > +	};
-> > +};
-> > +
 
