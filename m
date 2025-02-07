@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-143941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0A9CA2C48D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:08:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F86A2C49C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 15:09:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15F5116C530
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:06:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CCD23AD476
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 14:06:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3E601F8AC5;
-	Fri,  7 Feb 2025 14:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E4D0221D82;
+	Fri,  7 Feb 2025 14:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AVwJtefr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YTO3fmSk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9001F8904;
-	Fri,  7 Feb 2025 14:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E41842206BC;
+	Fri,  7 Feb 2025 14:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738936952; cv=none; b=nPFTW0i41J+ybXwtYVdU5/NuQqvghHzgrlCzhz5u6NeC5qrAkPzT6wBBpUHM4t43RSAJGVC/Nr3b8Ae/5Jv40R5BqU1kB/m3A5VF2dvY0ogOOhqB0QoKAfV8V9EvTPwsoo/f9ujYgTyY68sNAF6VUEqvLPNz/qv5k0PuynUUB5o=
+	t=1738936958; cv=none; b=EsQ/70TRU99As7OWunSxCSM/V4GpadzDQaddNW9YrZ2UB9aRfKm6hL6e0IvNMfiPplHRzx51i7pRqZPxmORnz5vqT5PnSrEdECswzToQY9BbdMinG3NQoJjbzeYBtEbPGiTxegAyfIkPU9L5RZxJ8yUCF4Tmbnk1yYTtJofWTJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738936952; c=relaxed/simple;
-	bh=9c7ll7ByFsejq5s0nUA0I8Zo037AKWmHwCfUg+90rmU=;
+	s=arc-20240116; t=1738936958; c=relaxed/simple;
+	bh=pmfXU9Wsj09/R+t75sQ7ZBh1nlvJb+h+a5nQHQlBvH4=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=WWrp7H06TXxXrsM6iU5V/HASoZquDSUIl6d95HgnO/ivPmCo0NoFyImntHigxmfMd1EKR8OnwXfPM6ydiJxV3lF5Rn4Po+Ob3ZQl8sf7T/ObeZy/smT9TiaQJvSIbI8G2dRhIPWB04LyHrEdon9+qpRa4y7+DaKArFNoMf3hUcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AVwJtefr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4F70C4CED1;
-	Fri,  7 Feb 2025 14:02:28 +0000 (UTC)
+	 MIME-Version:Content-Type; b=pa7N1+VwoQ5JWPYDcBZpDPDe2nfd3W0RwmhPBIVQtnFPye4BiRbKFUOJ2B+xPLL11Fhqb1Xg7/BD4JeCiJDdeXTaDz1vOxztlkJFX1/2ptysGODvf7xuOgd25nSROfjdCt/Hi67pNv8EYngCafNJFnYhluebXUeZvJAVxW8+2+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YTO3fmSk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A44BCC4CEE5;
+	Fri,  7 Feb 2025 14:02:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738936952;
-	bh=9c7ll7ByFsejq5s0nUA0I8Zo037AKWmHwCfUg+90rmU=;
+	s=k20201202; t=1738936957;
+	bh=pmfXU9Wsj09/R+t75sQ7ZBh1nlvJb+h+a5nQHQlBvH4=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=AVwJtefrBLaM4rw63mLgUYmzPcyI0iQop4gu6PqVy2v2g9uq2DFu8Apvg8mNarXuk
-	 0ZZZfH+8Y7+fLozNZYkgmAw5PFgs3irC4rp6CqSo1qnDgyrl46kDs/Cybo7Nvq61cO
-	 ri1iw+W60e7oTPJ7eczxIzubVkERcljjZ8YvvYoHmwSX+B7/3d8nUfY0c1aadHJmtV
-	 Cj377ckudkn1j3j/WdxTTrDh7Nc5hOkeFDf5Xkj14AF8JXTx59LleMzcMJAVgqXsYS
-	 w2f1/Ock9fh6mHldRg4oDszqdgzULXGpGdBei5zg02M/Zb/3a5n08J8i/n2Uwg9pdW
-	 TT5tqrvIRVSVA==
+	b=YTO3fmSkx5+FiwGCNcLVn1Sq99nOd9KIgtRZSbaC0UwBYEFga40XetPxhTmrnSRxw
+	 ZUalM7nCPGq8sWhRYNNQHG2xNRYsLtGqppjUqxLsei0y7pUXm6NKM1bDSRjNDM0yYf
+	 bIAmJ4aDi3a2sbQWBc/KPrW50GmHHTc7oCPdQXBgLgXbneFka2wMnnb16RLfnNA3aw
+	 j9eEyinVRmU/CTil1wEuYfWGMWx+mwpUfVzIE7thOhNoSZjncSmENeW818Vpr5D90t
+	 CoXEehMKtCMS4dWW1sCfrzmiXmnaVgT+o+0cO43DHCgytSFdPBi+vEGRJrORZ/Hf7s
+	 Rhd7d39wJffFQ==
 From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Bard Liao <yung-chuan.liao@linux.intel.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
- Sanyog Kale <sanyog.r.kale@intel.com>, linux-arm-msm@vger.kernel.org, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, quic_pkumpatl@quicinc.com, kernel@quicinc.com
-In-Reply-To: <20250123042823.2067740-1-quic_mohs@quicinc.com>
-References: <20250123042823.2067740-1-quic_mohs@quicinc.com>
-Subject: Re: [RESEND v5 0/4] Add static channel mapping between soundwire
- master and slave
-Message-Id: <173893694834.35212.14357376286762551331.b4-ty@kernel.org>
-Date: Fri, 07 Feb 2025 14:02:28 +0000
+ Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-omap@vger.kernel.org, linux-sound@vger.kernel.org
+In-Reply-To: <20250122164129.807247-1-ivo.g.dimitrov.75@gmail.com>
+References: <20250122164129.807247-1-ivo.g.dimitrov.75@gmail.com>
+Subject: Re: (subset) [PATCH v2 0/5] ASoC: cpcap: Implement jack headset
+ detection
+Message-Id: <173893695439.35212.2551382819515781818.b4-ty@kernel.org>
+Date: Fri, 07 Feb 2025 14:02:34 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,15 +67,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-1b0d6
 
-On Thu, 23 Jan 2025 09:58:19 +0530, Mohammad Rafi Shaik wrote:
-> Add static channel map support between soundwire master and slave.
+On Wed, 22 Jan 2025 18:41:24 +0200, Ivaylo Dimitrov wrote:
+> cpcap audio codec found on cpcap PMIC supports headset detection
+> and PTT button through its 3.5 mm jack. This series implements
+> support for those capabilities.
 > 
-> Currently, the channel value for each soundwire port is hardcoded in the
-> wcd937x-sdw driver and the same channel  value is configured in the
-> soundwire master.
-> 
-> The Qualcomm board like the QCM6490-IDP require static channel map
-> settings for the soundwire master and slave ports.
+> Changelog:
+> v2:
+> - cpcap.c: fix a typo
+> - dt-bindings: fix interrupts description and alignment
+> - motorola-cpcap-mapphone.dtsi: fix interrupts alignment
 > 
 > [...]
 
@@ -87,14 +86,12 @@ Applied to
 
 Thanks!
 
-[1/4] ASoC: dt-bindings: wcd937x-sdw: Add static channel mapping support
-      commit: 72826381215e2f9d2bd2f32f63f76a80942b7fdf
-[2/4] ASoC: codecs: wcd937x: Add static channel mapping support in wcd937x-sdw
-      commit: c06c4f7cbea1d8dc71485bfddef2849a1b721e67
-[3/4] soundwire: qcom: Add set_channel_map api support
-      commit: 7796c97df6b1b2206681a07f3c80f6023a6593d5
-[4/4] ASoC: qcom: sdw: Add get and set channel maps support from codec to cpu dais
-      commit: 0e9a970d7b2cb98d741bc0e32ad8c8f30c009c63
+[2/5] ASoC: cpcap: Implement .set_bias_level
+      commit: 5b4288792ff246cf2bda0c81cebcc02d1f631ca3
+[3/5] dt-bindings: mfd: motorola-cpcap: Document audio-codec interrupts
+      commit: 02d4a97ce30c0494ce6a614cd54d583caa0f8016
+[5/5] ASoC: cpcap: Implement jack detection
+      commit: 7ed1b265021dd13ce5619501b388e489ddc8e204
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
