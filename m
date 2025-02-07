@@ -1,197 +1,163 @@
-Return-Path: <devicetree+bounces-143759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 180ABA2B7CA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 02:22:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B26C5A2B7CF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 02:25:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D1911887EF7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 01:22:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A66771888E6A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 01:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF9D8172A;
-	Fri,  7 Feb 2025 01:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CCAF130A7D;
+	Fri,  7 Feb 2025 01:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BrVaz5iU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZSD/M9rB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46DA1EAE7;
-	Fri,  7 Feb 2025 01:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9964EAE7;
+	Fri,  7 Feb 2025 01:25:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738891366; cv=none; b=Zy6pjdcpBexGbl6ud6/RQnxX/YYwEg+S7ngkz3tNCXz0tkQuxs5tPiWBmNjI62qwKcsN+WOzOw90d8qKjr/zeVFffwxdcP9TVXmEnrhsY3S4zVp89cy8heOxlaQ83CPU+cQc+XEWKcZTVs3rrGmkDp+vCI3GpJcdYSEnnx3TVeE=
+	t=1738891543; cv=none; b=t3KOvUt1qAr9oZO3m8cMNgdySrOV8ooE5EsDFSnTjSC2YGLkbBIsUbEVyL+9AOhHvtgnQ9rg6ZTT5gsX84PU7W0lZK/dYl6Ua8huP5zMss4FAY4FqchAP/xV0WhueF1PK8bylFc5LYtw0RdefR9gOGacZ+wQsgwOS7RtVKYxnvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738891366; c=relaxed/simple;
-	bh=5ut+Ydpor1ahOdNF19/psEAjOTq+kvpzRyrgKmmrAj0=;
+	s=arc-20240116; t=1738891543; c=relaxed/simple;
+	bh=sFJcElIs9inuvVBkKm0vaV/Uz374UoJ0oUKxpMgoMe4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IiLL/228wxluRSJiXPtGuxUKuVUSWganAd7uFLFHUFRSbocW/H4VbZXwthKRWOeanRtMs57HLPdTCNWqOi9JVm2B66SEhW370LUv1tU+u5Lh90qXIhkYZus50ZAmUbqiwrXZPSbfTVdMaecvoxhERKJoFbWa069H9Fd8BAaBZe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BrVaz5iU; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738891365; x=1770427365;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5ut+Ydpor1ahOdNF19/psEAjOTq+kvpzRyrgKmmrAj0=;
-  b=BrVaz5iUlC7yYoUYPWs35bzOm5/0IbeNK2pmEF/2lF2NdYroSlBIVUkT
-   ovpAl68h/2VpAKE/qtAWLPLMQIZW226RLHdLPWJ2tIkr9ODmcxeH0q+/z
-   rV7r+emhAlMPstqC6o3d6i49KyRYNm0SaQ2YdyBi8Y9evg+VM4Z/Abh1f
-   YeOCMZFJ7jwxLdjxXFzd/CwIW2w4d8MpmdKdDFlQplnfqfaikLX38PLW1
-   0VWr+yL+ZQwwhngA1bgJOz0CCv3/1eG7LYDF+Ro/dgwVHvFTIp2RBooNZ
-   BZCXcrdx2gu8P5T/VUiPYUZssHNcGp8Eu4U6z9O0vyqAWiiHRCTchPYrj
-   Q==;
-X-CSE-ConnectionGUID: zCW/W4QrRo6OjbssNUy5YA==
-X-CSE-MsgGUID: TFPt8IZpRfKslbAz51se2Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="50163523"
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; 
-   d="scan'208";a="50163523"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2025 17:22:44 -0800
-X-CSE-ConnectionGUID: 3BgyQzXhS+O8cXOSB2i9Dg==
-X-CSE-MsgGUID: TVAGk+wRSrKWwYeco9ojng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; 
-   d="scan'208";a="112002202"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 06 Feb 2025 17:22:40 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tgD4n-000xbb-2Y;
-	Fri, 07 Feb 2025 01:22:37 +0000
-Date: Fri, 7 Feb 2025 09:21:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH net-next 10/13] net: airoha: Introduce PPE initialization
- via NPU
-Message-ID: <202502070935.LuHfHz3M-lkp@intel.com>
-References: <20250205-airoha-en7581-flowtable-offload-v1-10-d362cfa97b01@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=a0DnxfPoVU/g1TJgLVGoTI/ABXbjRps8UFN/KRVdSt6Pmi48lSq2COritwG7rShuSMkxwcZXtds9wNphoZdinatEJNsT+N4idHNGRDVUIRzIYRsxnavV7O1CU7BSY449XrA1B391BTyxwyb7RhQt0k6YNahfxor2ahYJuAD1KsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZSD/M9rB; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2166360285dso28777745ad.1;
+        Thu, 06 Feb 2025 17:25:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738891540; x=1739496340; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rJ521xbCbtnZrJbMQOX6yAoYlSkPj9bzoEtZpED1B3Q=;
+        b=ZSD/M9rBP8puTWSoZrAj4eArlfYZJNydivEkfQ2ph12kHNuN5sDLRbDnO2/DAfDyrI
+         XbWRq+Q+b3X5PAPkWAkoe6vo9I8r0maopQRr86Homy5ZohMcF1NW+JpTO6iP7oJTEHec
+         D+7XF82wQYbSizmgKxklHrOEJvDWPJdyptqx9/jPTV1nH6cO2alz5SFUH3+eGCsPUqj3
+         1MhQzJL4ilPV2zUtgbqB7CibIf0G+CxONP35CF00D9dYlMstow2UqEMACAbjHhC26+WX
+         2sxZ29LHJ5HiqXPMwMxsaWAK6ODHHwujAwu6u45TX7D5UdErKZ3lcPhNwXfLkHZ3+Ny4
+         u/xA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738891540; x=1739496340;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rJ521xbCbtnZrJbMQOX6yAoYlSkPj9bzoEtZpED1B3Q=;
+        b=i1AE3pDuNNftgP8b2NiFvm0x+GDKwWlnYh3CQA1n0miOvj+P5TlhW/npQINs3nv3Q+
+         kXtbXelfWKlj8O/vH9Id7gO+sUNtUMrb5RRnd35Ys4bhbxn4C4LLERSuph7rG4HlQinM
+         iHh75+rZQUNXzdygnbNcpb0ZlcLKxJrb/S3Klp5gYCGC3lXLBBu7vspWNyDpZvu23uMU
+         l9+SRjeiGfxA3FOqDBPkq4iB63K0g9DjnP8GbUcNjf1Cm57ajHSAeq/hfZnJPNtMd4t/
+         eyFQiDkmHztzfVVk8YP1ep4PVfTqIawZ0DsbejpVP+RR5xF0Q0gfYrqltPQKzvyn1LNh
+         z44A==
+X-Forwarded-Encrypted: i=1; AJvYcCURBogDms/4E+IlGpAMB5KLjIzMVZuwpKI6ghiGVhqzpXIOrahcVAvPQrDeEa5wE0vDCSceFK9Zw0v4@vger.kernel.org, AJvYcCUsHKoYuPuWcVlS3gLWZRs5qn6nwED/ZdDu8ZqXXn2tdlpvF+MAD7JtJN5XScWUKrc5vxofQ3PUePZL@vger.kernel.org, AJvYcCW1woKJPk5Jhsx6FFjNK8ycYnINAXC1YJfyNjzpbuEDHnpz7ky2V3t08HGVmEnigglS8nQsa/csLCDheWt0@vger.kernel.org, AJvYcCWn9o637KObxFuo4Wq23IJKGNoZ1dtd3gvz6owWZS7hnrQvV8NxjrkvveQY/+FJHqiJEJVS+KWopCVQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTSWYy4mJmaWXhqfcER77/wsMXyCWXxTm7BTmMFARFm+N0R8+H
+	90PIBY3I+0fbczjNX7Id4+LDq2wTamx1tk8xe7WassGiFIo1xn7b
+X-Gm-Gg: ASbGncvfEW84OCs7K2vmGuOgjpvslluQnUVdvMHF1Y7GRVVbKLh5/FV5Ofzeb7bUCK0
+	MLeiEL4EB4raVY+bLfW8DovTznJYSao8LaXfWEzUKd/dEO87QioOe75nGp8Pr58gua3o3UWgySX
+	IKpYQ3k1jv886cYJN5WMHGfYUQXVwW2sJjflbp5Qiqmn/+iQNUWETxw9IvgeuoKGoowuvzcZj7W
+	M6Ln/in7op5uRN8n6mUdAUyJoyZDlM3BSL04Bf/PkIineN02f4Xe6Nu6gFuV5kEPzfsH72jHyvQ
+	MkO3W2y2KagjZsI=
+X-Google-Smtp-Source: AGHT+IGsg0qMRGMWWheXbon4Tyz5EgiQDLM6u29ig/fWJvk4CdczbH12ShfpJJRABLMGdKUOcyhVIQ==
+X-Received: by 2002:a17:902:e848:b0:21f:4c8b:c513 with SMTP id d9443c01a7336-21f4e759fb8mr18094565ad.36.1738891539816;
+        Thu, 06 Feb 2025 17:25:39 -0800 (PST)
+Received: from archie.me ([103.124.138.155])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f3653af58sm19346165ad.70.2025.02.06.17.25.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Feb 2025 17:25:38 -0800 (PST)
+Received: by archie.me (Postfix, from userid 1000)
+	id C90814208FB2; Fri, 07 Feb 2025 08:25:35 +0700 (WIB)
+Date: Fri, 7 Feb 2025 08:25:35 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Charles Han <hanchunchao@inspur.com>
+Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-xfs@vger.kernel.org,
+	linux-doc@vger.kernel.org, mkl@pengutronix.de,
+	manivannan.sadhasivam@linaro.org, thomas.kopp@microchip.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	cem@kernel.org, djwong@kernel.org, corbet@lwn.net
+Subject: Re: [PATCH] Documentation: Remove repeated word in docs
+Message-ID: <Z6VhD9_0qt4yRV6N@archie.me>
+References: <20250206091530.4826-1-hanchunchao@inspur.com>
+ <e0aeefc5-bf01-42ab-91e4-e727d560c983@wanadoo.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="SM1wTfYmCciv77Zi"
 Content-Disposition: inline
-In-Reply-To: <20250205-airoha-en7581-flowtable-offload-v1-10-d362cfa97b01@kernel.org>
-
-Hi Lorenzo,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on 135c3c86a7cef4ba3d368da15b16c275b74582d3]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/net-airoha-Move-airoha_eth-driver-in-a-dedicated-folder/20250206-022555
-base:   135c3c86a7cef4ba3d368da15b16c275b74582d3
-patch link:    https://lore.kernel.org/r/20250205-airoha-en7581-flowtable-offload-v1-10-d362cfa97b01%40kernel.org
-patch subject: [PATCH net-next 10/13] net: airoha: Introduce PPE initialization via NPU
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20250207/202502070935.LuHfHz3M-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250207/202502070935.LuHfHz3M-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502070935.LuHfHz3M-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/net/ethernet/airoha/airoha_npu.c:201:30: warning: format specifies type 'long' but the argument has type 'size_t' (aka 'unsigned int') [-Wformat]
-     200 |                 dev_err(dev, "%s: fw size too overlimit (%ld)\n",
-         |                                                          ~~~
-         |                                                          %zu
-     201 |                         NPU_EN7581_FIRMWARE_RV32, fw->size);
-         |                                                   ^~~~~~~~
-   include/linux/dev_printk.h:154:65: note: expanded from macro 'dev_err'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                                ~~~     ^~~~~~~~~~~
-   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ~~~    ^~~~~~~~~~~
-   drivers/net/ethernet/airoha/airoha_npu.c:221:30: warning: format specifies type 'long' but the argument has type 'size_t' (aka 'unsigned int') [-Wformat]
-     220 |                 dev_err(dev, "%s: fw size too overlimit (%ld)\n",
-         |                                                          ~~~
-         |                                                          %zu
-     221 |                         NPU_EN7581_FIRMWARE_DATA, fw->size);
-         |                                                   ^~~~~~~~
-   include/linux/dev_printk.h:154:65: note: expanded from macro 'dev_err'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                                ~~~     ^~~~~~~~~~~
-   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ~~~    ^~~~~~~~~~~
-   2 warnings generated.
+In-Reply-To: <e0aeefc5-bf01-42ab-91e4-e727d560c983@wanadoo.fr>
 
 
-vim +201 drivers/net/ethernet/airoha/airoha_npu.c
+--SM1wTfYmCciv77Zi
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   187	
-   188	static int airoha_npu_run_firmware(struct airoha_npu *npu, struct reserved_mem *rmem)
-   189	{
-   190		struct device *dev = &npu->pdev->dev;
-   191		const struct firmware *fw;
-   192		void __iomem *addr;
-   193		int ret;
-   194	
-   195		ret = request_firmware(&fw, NPU_EN7581_FIRMWARE_RV32, dev);
-   196		if (ret)
-   197			return ret;
-   198	
-   199		if (fw->size > NPU_EN7581_FIRMWARE_RV32_MAX_SIZE) {
-   200			dev_err(dev, "%s: fw size too overlimit (%ld)\n",
- > 201				NPU_EN7581_FIRMWARE_RV32, fw->size);
-   202			ret = -E2BIG;
-   203			goto out;
-   204		}
-   205	
-   206		addr = devm_ioremap(dev, rmem->base, rmem->size);
-   207		if (!addr) {
-   208			ret = -ENOMEM;
-   209			goto out;
-   210		}
-   211	
-   212		memcpy_toio(addr, fw->data, fw->size);
-   213		release_firmware(fw);
-   214	
-   215		ret = request_firmware(&fw, NPU_EN7581_FIRMWARE_DATA, dev);
-   216		if (ret)
-   217			return ret;
-   218	
-   219		if (fw->size > NPU_EN7581_FIRMWARE_DATA_MAX_SIZE) {
-   220			dev_err(dev, "%s: fw size too overlimit (%ld)\n",
-   221				NPU_EN7581_FIRMWARE_DATA, fw->size);
-   222			ret = -E2BIG;
-   223			goto out;
-   224		}
-   225	
-   226		memcpy_toio(npu->base + REG_NPU_LOCAL_SRAM, fw->data, fw->size);
-   227	out:
-   228		release_firmware(fw);
-   229	
-   230		return ret;
-   231	}
-   232	
+On Thu, Feb 06, 2025 at 07:56:36PM +0900, Vincent Mailhol wrote:
+> On 06/02/2025 at 18:15, Charles Han wrote:
+> > diff --git a/Documentation/filesystems/xfs/xfs-online-fsck-design.rst b=
+/Documentation/filesystems/xfs/xfs-online-fsck-design.rst
+> > index 12aa63840830..994f9e5638ee 100644
+> > --- a/Documentation/filesystems/xfs/xfs-online-fsck-design.rst
+> > +++ b/Documentation/filesystems/xfs/xfs-online-fsck-design.rst
+> > @@ -4521,7 +4521,7 @@ Both online and offline repair can use this strat=
+egy.
+> >  | For this second effort, the ondisk parent pointer format as original=
+ly   |
+> >  | proposed was ``(parent_inum, parent_gen, dirent_pos) =E2=86=92 (dire=
+nt_name)``.  |
+> >  | The format was changed during development to eliminate the requireme=
+nt   |
+> > -| of repair tools needing to to ensure that the ``dirent_pos`` field  =
+     |
+> > +| of repair tools needing to ensure that the ``dirent_pos`` field     =
+  |
+>=20
+> This breaks the indentation of the pipe on the right.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Indeed because Sphinx spills out malformed table error:
+
+Documentation/filesystems/xfs/xfs-online-fsck-design.rst:4479: ERROR: Malfo=
+rmed table.
+> <snipped>...
+| For this second effort, the ondisk parent pointer format as originally   |
+| proposed was ``(parent_inum, parent_gen, dirent_pos) =E2=86=92 (dirent_na=
+me)``.  |
+| The format was changed during development to eliminate the requirement   |
+| of repair tools needing to ensure that the ``dirent_pos`` field       |
+| always matched when reconstructing a directory.                          |
+|                                                                          |
+| There were a few other ways to have solved that problem:                 |
+> <snipped>...=20
+
+Hence I didn't see that historical sidebar in htmldocs output.
+
+Thanks.
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--SM1wTfYmCciv77Zi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZ6VhBgAKCRD2uYlJVVFO
+o5kNAQCBHUuURzR/MDz0ENSahsvyaLDpGyuMG5CX95roWUGnAgEA4hI91+pBBPN5
+UPQJozF1W1xzqTyIYxAAAjWDqvzeOAE=
+=+OVQ
+-----END PGP SIGNATURE-----
+
+--SM1wTfYmCciv77Zi--
 
