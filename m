@@ -1,459 +1,939 @@
-Return-Path: <devicetree+bounces-143816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-143819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DEA6A2BC93
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:44:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8D04A2BCFF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 08:56:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B21123A0564
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 07:43:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C05C1634A5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 07:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADCF1A3A94;
-	Fri,  7 Feb 2025 07:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64711235BEA;
+	Fri,  7 Feb 2025 07:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WyytjkMx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LVOrghqO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013006.outbound.protection.outlook.com [40.107.159.6])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93F7F187332;
-	Fri,  7 Feb 2025 07:43:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.6
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738914235; cv=fail; b=T3c3Bz7kXS/KhRJasAh1HJElMorWQrp0A2BdK5sRZ9GL3w4mhG7fcueZUgwNhF2Su1615CiBEhERiPtAR6fqi0spl6YBFjC4qfwIp0T67OrloAQhYJS8weCt1+8OnDM8LV8zBP/VZiGBfznDw45tieeV2oS5i0gMAFL8/fqnjHE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738914235; c=relaxed/simple;
-	bh=o9808LCEjzDC62NTGF1vjLU1Cra9PDWsL9IJWAyvgIk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=VuLXvdSvqmCBeAIADXqjnjqb0m9wGCRa93AJ4259QonXxcAkCd5TtgWwlY8Kk5Kb770MCyjR5hBQ8ZtVlQ0Bayq5KMEnI29Ei6TVWE2DXUhzcPmDKMHbk92feNaBjdk1HiZ9zylK22EZV46FUNPThgJtMLV3m8fMTDyyLEy5IOU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WyytjkMx; arc=fail smtp.client-ip=40.107.159.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vrhpGmaMg5AjhSD1+ZgmGYkmvz07bLD45tih2BB/cwXCnAz6egLiRgUpKoLprEXiUvnrwK/93bzhTN/WOMzmMb2SaJ9Voa2t/9DiaRIDiPdspPhLrXSHlO4mHbMOr/trUg7AJbAYieUn1g9pA9o+Q35chgutk4DHL401mGWxlVMResjti+XK3i2yQ+ymhKWHO6JVdZnmw7nkjzc6FzjQzOPawYFUvJt3ktKj+o+YIWEzwvRrkn59O7K6mteCjSmCYY0PVt/m6mrJbYHq4SuLUrICf/TvcMIqCCn+ofVbBpUAb9xD9wqKeMlKO1jim8o9OKTb7bmk4zSmyJDIHVM9Ww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L8VYEpUHvPsdqRGF7bsy9JEv2vHQzJZyDHn87EpywJ8=;
- b=ktfOfrZ4kSvyaajbXaMAyTR6YMkhL7imhx8ECy9BMT1LSIynLouFcJ4fQgpy6ERgYMjKc3qewDVxdceykQZJCJ+CNQ2W8jC4ui0XMx5iHOR9uQ9saB6sHxCvElHuyO8ITK9o1eFM+vIonEFzcORGfht+yBMnCrst/yqe0bvIL6FFEz8J6ZpFjBvAcEq+GsD9bwKbQjJrZlPLxY7rpVokSbK1/g9mAwEKovFJTsf7twNCRkWBce5UZxg7vzTi9s44plC4DryFY48rkCCIw1SlGEGbQDegLSJcETzTlls9Bc/Nkyabm0N5fOjXscbj1CSjkwjIbJLwHIEzuGwQ2fhrRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L8VYEpUHvPsdqRGF7bsy9JEv2vHQzJZyDHn87EpywJ8=;
- b=WyytjkMxpI3P7mdBOSkrSMy6ceT04qYt5VYX2cAj1bAsnClVyDPS2n5gHkj+piwv9EMy8rKJWAK4WSXe+WWW0EA3FkZsKdJwUo6f3bRgQv/3wrPRlC7ROYfrAQvcUvPSaPpPtNWXwHdH2GS5Iuc0dhSsWRxdzVvfGM2hYG7+9sB9qMAuVjzVPsFEyaNhpw4gQ7cTetVcQLxfA4HBJ7ddY9R+ngv4ywRxJxGIkJZuOFWKzwMicXVluLgEVg0QfEUjV2GShGLmi4R7lp94jDKIIIi2f+uSkzseSDUB3EGXpvKmv8OD9VVfB68/ccoDZ1UyzcXHe+3B4eImHBytOiGdbQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by DB8PR04MB7161.eurprd04.prod.outlook.com (2603:10a6:10:124::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.14; Fri, 7 Feb
- 2025 07:43:48 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90%3]) with mapi id 15.20.8422.010; Fri, 7 Feb 2025
- 07:43:48 +0000
-Message-ID: <544243dc-9511-45b0-9fe5-8633621269e7@nxp.com>
-Date: Fri, 7 Feb 2025 15:44:44 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/7] Add ITE IT6263 LVDS to HDMI converter support
-To: Maxime Ripard <mripard@kernel.org>
-Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
- abelvesa@kernel.org, peng.fan@nxp.com, mturquette@baylibre.com,
- sboyd@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- quic_bjorande@quicinc.com, geert+renesas@glider.be,
- dmitry.baryshkov@linaro.org, arnd@arndb.de, nfraprado@collabora.com,
- marex@denx.de
-References: <20241114065759.3341908-1-victor.liu@nxp.com>
- <20241217-uppish-sapphire-dinosaur-4c40a2@houat>
- <aba80c42-1b48-426f-b29d-88bf18473602@nxp.com>
- <64eaq2n3pfcxxxcw5n3cqpx3ie3vyqo6v6akc5g72anoazendf@5vrlafr3q676>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <64eaq2n3pfcxxxcw5n3cqpx3ie3vyqo6v6akc5g72anoazendf@5vrlafr3q676>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR06CA0018.apcprd06.prod.outlook.com
- (2603:1096:4:186::8) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A7AE235BE2;
+	Fri,  7 Feb 2025 07:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738914938; cv=none; b=Qjn95KjUK+eNJVanhNrQD2U6N3KjBcN+MnoWFoZV9vqBH/F3xV7YjWyALmyGcT+0R8hbalrXLzHFyVkPRwn1ClRoWxQ4/OWZ1CCnThgWZZQfMR9yeCdK7C5SsR8cmTkq96D6NR6YmRmz5xBSx0vEeEyC9/W2yh5CrlCUNcwSyr4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738914938; c=relaxed/simple;
+	bh=fWY7WMNS4bh0nT81zi+PC/2JzZ4P5s2QN5aKxg1+YvI=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=aVlyNgJ2Mh5uM6cCpt5mX1HIN1NRjSzyRa9Lm0uXB2EaqQ4/Nf/tbLwGYLwDmjDQql6BGchi+sx+mb2WOCaB/wEAxAZ6EaeblLrF1O8y0Kp0t3ZBcgCKO2wtWyD0aY6aEhFCh0YLeAVTIZvBvUb/gErUy0GiINQsMdXCp8THpxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LVOrghqO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5172RZcj016899;
+	Fri, 7 Feb 2025 07:55:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=K7xL1PqNqQxDtGgAbL+z1c
+	EZeLkCv2HoIFoZZR2htR8=; b=LVOrghqOWLvjpKQwufkqL2pKTFx1RkG0FWyUAs
+	ZZJywrblJHJx3+IfDncT+KD5m6b503qWLWa6zqwDm9IsV1PhggZuwAcNkduE3HYa
+	kl5aQwVwGqbtTYNgnfFMixcgM+c0VPtOs93lRyHYOvYPGiDe8bHrx2jMTPVlXxWC
+	/9CeD0sO/Jc8igO6xCMLca9Grs2f86nsp38yIBP6O2a/qsupKdc3irho30xlc+KO
+	b0CzQGF7URUt5Z6mVXRKunJ9gNB/xJt1q3VCnUNzs0/H4hNGZEiVvVClxh88hwt6
+	rWAqcO0OkJNFd94GIsWChxhhr81pWOMqVRA5+5YIBUFRGv+w==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44n9dkgq72-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 07 Feb 2025 07:55:17 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5177t0br025742
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 7 Feb 2025 07:55:00 GMT
+Received: from hu-dikshita-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 6 Feb 2025 23:54:53 -0800
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Subject: [PATCH v10 00/28] Qualcomm iris video decoder driver
+Date: Fri, 7 Feb 2025 13:24:40 +0530
+Message-ID: <20250207-qcom-video-iris-v10-0-ab66eeffbd20@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|DB8PR04MB7161:EE_
-X-MS-Office365-Filtering-Correlation-Id: de7f9adc-13c8-4e8c-4816-08dd474b27f9
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?V3E0NERPVk4yMUxvNEFQeEhTNzhGV2oyNCs3VXpCKzdTSWJJQWRKR2IxOGNQ?=
- =?utf-8?B?RWE2UXFJM1pDSURVRmFHaWNCZWxnekx2QWNXT05zRHFGRFJNbC85NjQ2ZGsx?=
- =?utf-8?B?RlFrWmR5OE4xWG9aUWd1Y2VGSWt3OHpmZjkwRFI2STFMSUE4VTB5QkE1emQ0?=
- =?utf-8?B?SXI5YWR6bjUrWU1mdGNZdTdxeXZoNFpiQTE2akU1NEdHNlZ6MlZ5K0h3Yi9r?=
- =?utf-8?B?Nkp0anRaYTVBdlBkTmdaNlB5V2x0NjZ2TFAwWm0wTiszZ0tjTlFvdTE0bCtt?=
- =?utf-8?B?OUtGYnFheXJUVnJaR09sdlZicTNhT0xUYzJqendkdEtNTmtKQ0xIWnBLdE14?=
- =?utf-8?B?SWhxdFhXOHBCR2E2VXk5ODZuRm5QMjMrQUxwOGNETS9lV2xqNTYrTmxJRUVL?=
- =?utf-8?B?WVhmNnJ2a2VFaEJ3bE5WaHlvbjBiZFhzR1ZvQXFjaEhwdHNPOEY0MzgwTzRa?=
- =?utf-8?B?aE1SZm1XS294R2UwQ2hpN1B5RlFuc21yWjMyeXEyNlFpNUpSMTBnakNMYUk2?=
- =?utf-8?B?MFQ0My9CT0w1bXNLK2RqY1dlck1GdUg2Wk5PN2NXaGJVVmFqU1grRy9FeGF4?=
- =?utf-8?B?bjJndkNzbUxQVmVMWEVURnBHcTZTbHEzbkh6OU9ZL1IxM3p3dFNPNXJqOU9W?=
- =?utf-8?B?TTlFejVjN01uT2I0a1ZXeGd6MGc0TmI3QU4rRkZha3c2dktNdE55TDQ2a2RE?=
- =?utf-8?B?NWtBeFYwbE9QWUx2VkRHY05Qd256c1RKcVM4aHAxaVJGMm1tOGhyTXlqSUhK?=
- =?utf-8?B?Z1gxRlpsMk9iVDhSdWhSR2lEN01UNFdLZDJwbVBVU0htL2tzdlk5eVFRTGJh?=
- =?utf-8?B?WncrdUIyR2E1WnUySzlRN0U1RWtPU2FQR3VGeFVTWEkwMmhNYkpNcTlXUXBJ?=
- =?utf-8?B?TjZwOC9OTTQweVp2RTNKVzRNcStMdWFXeWtjRi8vSVoxN1U2WStrdFN6NjhX?=
- =?utf-8?B?UWtxdVkzZ2Q3UmFqRFhHNVJjYm5wNnJXSjdLOENoSzNQYjEzZW1iTkczdkpi?=
- =?utf-8?B?UnUvUkZmTTRrNkJlOUQ3Yk5RdmdJQjBINGhlSmJDWFFBeUhZWGJJeXRGTXUr?=
- =?utf-8?B?U2NUc05MQjlFMGl6WHI0SUx0TE94Nm5zajRGWmN5OXBZZTloYkViQ3JGbXhI?=
- =?utf-8?B?eklKU1lBTW4ySUJYa0dRL05ISE9ObjFlWHBUVE9WcDBoYWVsQ25ZemJWQXUr?=
- =?utf-8?B?em9UUlJGSVFPL3FJSit5dmtDbjNJek9QUDNmYlFFM2JjQ0FCZEs1amZ5NUFv?=
- =?utf-8?B?cDdiQ3dBSmJ3UlJ3Q0lnV1REc21RcFdNMjVaMFFpWFA5SjAveG93dElHSVR0?=
- =?utf-8?B?WkdYTnBISXNMS0dmSDMzbDZ4dDkwcnlvaGxvaWxjTEtaSVhPWEdXdklIY2ZM?=
- =?utf-8?B?cUlYV216cGRVWUxVSDNnalN3RVd6d08rQ0h3ZVJyakw3aFpWUkIrWk1GNEda?=
- =?utf-8?B?WDhVV0JLdEFRSzA1TnM5K0t0VmdSZmFXMUlvK2xkYTJ6bXl6Z3ZIbGU5dlNG?=
- =?utf-8?B?QTBXNXI2cnJ0MEh0bXNDMWtjVnl4TDN1cUFYUXpmdVE4SW01Q1krYy95ejNQ?=
- =?utf-8?B?eWxTOElwTlJsakdvUFhETEE2MmRKaGFzekxWekpoQ3JiMFNTNnRxTUtzdmpG?=
- =?utf-8?B?Zk5mekhKU2hTeFFpSTZLeGlNc0REaWlCVnRUZUlWcmdybU5IbUNqWUhVYS9l?=
- =?utf-8?B?dFRHYldsWHhHOTViRkg3aUUvbzd3T0Y3Um1qeGR0cE9ISVB2eGVyRFAwK0dT?=
- =?utf-8?B?a0lVazFDV3FhRXRzUWJLSW1FRWJ2ZGx3UWRLTmIreGVsaDd4dWR5emJIQ2Ur?=
- =?utf-8?B?OHJCQkc1Qy9PZjE4VTE2UT09?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?NWV2dnNNSFJiSXFOa1MvSDE4aEh1NHVnTUU2VUoxdWJzTERybE5odmx2QXdm?=
- =?utf-8?B?cGJXUlhUeTNRYUpzZ3hpMnNsMjBpMzA1bERPUno2Vk15bXJJRk5LNWROQnEy?=
- =?utf-8?B?TVJ5akcxQlBDU1FNcDNDR0dETkp0aFdtZXNxWWxkSWRpTEhmcng5MVNwVElB?=
- =?utf-8?B?eVYrQUVzLzkvSEg5czF5ZjQxNUtBeW1NZFNIc2tIazdGWHcyemp2N2d4Zm4w?=
- =?utf-8?B?eFU3LytROHlBeUh2TXQvQkVSdHlMZjNjeDFscWtWY3Z2L0pKY1YzRzVsVkRX?=
- =?utf-8?B?T2ZpblNkaFZuN3dJK0JITDNrNHFkenFvR25TZFFlUm1Ba2xNaFNGcndaa3V5?=
- =?utf-8?B?SGlvamIvenVOL3JkRlBhYm5sTlg1VHVzVEZ4aFM3RXovdVk3VHVvanB0bk1R?=
- =?utf-8?B?OGpnRDMzeWpYZDdDM0RCWmVNM2d6emJpLzBySWMyUEtZTVZ1c2xPSHE3MmRo?=
- =?utf-8?B?UnV5YnhYZzgrVVZ6b0R5VlNBUGozS0hBdTdGbUJLWUp5YzZiZzJ6OFZMcjVQ?=
- =?utf-8?B?NCtuTHRLQzNTRkxXTWM1d2N5RXJOM0htNTBnelI0OHpQU0RKSzBJNStGeWt6?=
- =?utf-8?B?ZTRLemdQMkJjUmpYQWRJL3VzTHlhUDlUYUhvRnVxRlk1UCtQbnpzaG11SWN6?=
- =?utf-8?B?TUlkVE5zK1VUNFpSVjMxR0xXL1huRDZlb1FyY1kwdUZsclpqbnBBZXh3V2R0?=
- =?utf-8?B?eHFmQ2Q4bnpzV3MxK2JDU0lkSjZKMnlxVXo4UW1PdlZub0Y2WG1JOG5tUTRL?=
- =?utf-8?B?WTRGangyazA5VVN6cFdIMXp3MDRWNmNmYzdsazBleHhFbDF6b3pXQXZVSVpR?=
- =?utf-8?B?WHB4ZXFnTzY0enQ2VWY2QjZDaXhaSGdUUzVrcGhIZW5nN05jMlhrUkVDWEI3?=
- =?utf-8?B?Wk9IRzVLSXhQb0tEZ1hLSTJFQWFqU2hVbnEvOENxanJjakJtZTMybHRRb0xV?=
- =?utf-8?B?VHdNSDRWdTJTeVpUenpkLy9XUng2TjlVc25RTUw3MFdxYjN2ZzVOVGs5S3My?=
- =?utf-8?B?SExuT3Irc1Q2QXNkQWZSck9IV2N4UzlXY0hsVmZqbjRjMlY1TW9hU1RBdG9l?=
- =?utf-8?B?dEJ5c2VBd0xhZmpJaFJkOWtNUFFJZHJyeThncWszcW9KZXp2dE43ME1ZWXg1?=
- =?utf-8?B?ZWFhYy9lM29WR0J3MVBuL2JQMVkvUzhQeFl0ZmtDWUhyVWdiUmpqRkdTelBD?=
- =?utf-8?B?NDVCTzE3VmxRVHdLY1N1QXBScjVyaEZVUWxpWmlXT0x5R1N2Wmk3VjlKMS9s?=
- =?utf-8?B?K2dqY0tqZDc2RzhhaFMyd3hhWStuSjJPcEZFY2NtTHdJSHZoQThZNFhRb2U4?=
- =?utf-8?B?OGFsSTB0OTh0QUhmdzBIS3VmdFZHZHd0YkZxeSsrUUlERjhySzJlOE1WS001?=
- =?utf-8?B?NnkyVWdYbm14eHNUSGhkQUNwenJZNGZESFRIT0htQnk0anZzOVIyVUFTbzF4?=
- =?utf-8?B?amQyM29ndWltazExbkxTa2xxQng2bTlwTTlDL1U4aEFLc2tBU1MyVThPSGJD?=
- =?utf-8?B?ZWkraEc0cml1SElqbDVxa01FajB2NUpBd21HOElNQkhRN2NGVnNwQ0NBR0lF?=
- =?utf-8?B?MG1UN2RDbXd6T1pGT3AwR21yL25YK1drcW45RENoMGJ5TVFrVkFLSDhCMW1E?=
- =?utf-8?B?ZjhDRVR6T2hIbnlTZGM5TEZWbUd0SFpiRHpNOXo3Y09TUzhzVkMzU0piYVl4?=
- =?utf-8?B?akhEOEhXZWdKRnZ0SXZuNWdacC9GSlIzZklMZE9JSHg1RVA1ZlVteVV5d1E1?=
- =?utf-8?B?dHBoamoxVVdJN0hrVngvT2plQlhpNVJTZS9vME1nMkpBN1M5UmxsR2VheHZQ?=
- =?utf-8?B?VnpnYmhJQ0tkWGh1TzMwWjJJWlZ0MTM1R3ZkRnBLZU5HYXEvVjRGckJac0ww?=
- =?utf-8?B?R0hYbWkvR0djQ3ZpZHZmMEQ3SS84UnYyZTl4THFHMCtkYmMvV2kxNWxOdlZ3?=
- =?utf-8?B?eGR1bmNRcklJUVMzRmFIZitSNm5mRGhpVHNFZTVUOVI4dUowTzhiZ1l4UXcw?=
- =?utf-8?B?Q0ZOeHR2V1ZXbG9CQzlrWFZMNTViWkU2aDlVSExZM1QzYVZuekplb0tDN3Y5?=
- =?utf-8?B?RW5YK1QzRDBjYTJDN3Z5QVFhNFptTXZxSlNyMDZoaTBXVGVSdk9hc2lvdUVz?=
- =?utf-8?Q?QbsrOlFWRD+WwvbliCgfKqXCY?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: de7f9adc-13c8-4e8c-4816-08dd474b27f9
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2025 07:43:47.9811
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zYo/8LUBF2pFhMasKMGlLBAc9ERW0iDj5MvGsOAMzEL6+OzmihPc5i605WdSD5rFufWQJLa2b4ycKze+x64BjA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7161
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAEG8pWcC/23OwVLEIAwG4FfZ4SxOyEIBT76H44FC6uZg64IyO
+ jt9d2k9WAeP+Sf58t9EocxUxMPpJjJVLrzMbVBwdxLxEuYXkpxaIBBQK0Anr3F5lZUTLZIzF+l
+ 1MkEhDcmTaFdvmSb+3Mmn5zZfuLwv+Wv/UM2W/lgKTGdVI0EG58hGRJise7x+cOQ53rdFsWl1O
+ AgIvTDsQpwGC5q8x16wvwKC7wXbBDBxGBOFpO3YC+4gqH86uCZojEbDOY4qnHvBHwXsBd8EchG
+ 3Fhq0+ius6/oNodswf7kBAAA=
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC: Hans Verkuil <hverkuil@xs4all.nl>,
+        Sebastian Fricke
+	<sebastian.fricke@collabora.com>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Nicolas Dufresne
+	<nicolas@ndufresne.ca>,
+        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@baylibre.com>,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        "Stefan
+ Schmidt" <stefan.schmidt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>, "Johan
+ Hovold" <johan@kernel.org>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vedang Nagar
+	<quic_vnagar@quicinc.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738914892; l=31367;
+ i=quic_dikshita@quicinc.com; s=20240917; h=from:subject:message-id;
+ bh=fWY7WMNS4bh0nT81zi+PC/2JzZ4P5s2QN5aKxg1+YvI=;
+ b=VLsAoAoPESSkv+Gotp+qBcBG0hwqf5a5N6QqA93nk6COd/P9f7lWELIXPclflYnDD424JskUF
+ 9K+2yGuLc50BZQh04vi+VGpYlYpsjBuPrNiIgMmwDU2B2m+F123qF03
+X-Developer-Key: i=quic_dikshita@quicinc.com; a=ed25519;
+ pk=EEvKY6Ar1OI5SWf44FJ1Ebo1KuQEVbbf5UNPO+UHVhM=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: gP5P9YOzlODKsLVh15Y191CvIq1ZlV7u
+X-Proofpoint-ORIG-GUID: gP5P9YOzlODKsLVh15Y191CvIq1ZlV7u
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-07_03,2025-02-07_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ phishscore=0 clxscore=1015 priorityscore=1501 mlxlogscore=999 spamscore=0
+ bulkscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502070060
 
-On 01/28/2025, Maxime Ripard wrote:
-> On Wed, Dec 18, 2024 at 02:02:18PM +0800, Liu Ying wrote:
->> On 12/17/2024, Maxime Ripard wrote:
->>> On Thu, Nov 14, 2024 at 02:57:52PM +0800, Liu Ying wrote:
->>>> This patch series aims to add ITE IT6263 LVDS to HDMI converter on
->>>> i.MX8MP EVK.
->>>>
->>>> Since IT6263 DT binding and driver were picked up from v5 and landed
->>>> in drm-misc, this patch series contains patches almost all i.MX8MP
->>>> SoC/platform specific.
->>>>
->>>> Patch 1 is a preparation patch to allow display mode of an existing
->>>> panel to pass the added mode validation logic in patch 3.
->>>>
->>>> Patch 2 is a preparation patch to drop CLK_SET_RATE_PARENT flag for
->>>> media_disp{1,2}_pix clocks.  Patch 5 depends on patch 2.
->>>>
->>>> Patch 3 allows i.MX8MP LVDS Display Bridge(LDB) bridge driver to find
->>>> the next non-panel bridge, that is the IT6263 in this case.
->>>>
->>>> Patch 4 adds mode validation logic to i.MX8MP LDB bridge driver against
->>>> "ldb" clock so that it can filter out unsupported display modes read
->>>> from EDID.
->>>>
->>>> Patch 5 adds mode validation logic to i.MX8MP LDB bridge driver against
->>>> "pix" clock so that it can filter out display modes which are not
->>>> supported by pixel clock tree.
->>>>
->>>> Patch 6 adds DT overlays to support NXP adapter cards[1][2] with IT6263
->>>> populated.
->>>>
->>>> Patch 7 enables the IT6263 bridge driver in defconfig.
->>>>
->>>> Note that patch 3 and 4 depend on patch[3] in shawnguo/imx/fixes.
->>>>
->>>> Since this patch series is related to another one[4] authored by Marek,
->>>> Maxime asked for a proper description[5] about the exact problem.
->>>>
->>>> Admittedly, it's a bit complicated.  Here, I'm trying to do so and explain
->>>> a bit more.
->>>>
->>>> [ Description ]
->>>> It's a clock problem about shared i.MX8MP video PLL between MIPI DSI and
->>>> LVDS display pipelines.  The pipelines are driven by separate DRM driver
->>>> instances, hence there is no way to negotiate a dynamically changeable
->>>> PLL rate to satisfy both of them.  The only solution is to assign a
->>>> sensible/unchangeable clock rate for the PLL in DT.
->>>>
->>>> Admittedly, sys_pll3_out can be another clock source to derive pixel clock
->>>> for i.MX8MP MIPI DSI display pipeline if a particalur i.MX8MP platform
->>>> doesn't use audio(sys_pll3_out is supposed to derive audio AXI clock running
->>>> at nominal 600MHz).  However, for i.MX8MP platforms with audio features,
->>>> the shared video PLL case has to be handled and it determines that the above
->>>> solution(unchangeable PLL rate assigned in DT) has to be used no matter
->>>> sys_pll3_out is for display or audio, because the separate DRM driver
->>>> instances really don't know if they are sharing the video PLL or not.
->>>>
->>>> [[ i.MX8MP Display Hardware ]]
->>>> i.MX8MP SoC supports three display pipelines:
->>>>
->>>>  -----------------------------           ------------------------
->>>> | imx8mp_media_disp_pix_sels  |         | imx8mp_media_ldb_sels  |
->>>>  -----------------------------           ------------------------
->>>> |  osc_24m (fixed 24MHz)      |         |  osc_24m (fixed 24MHz) |
->>>> |*-video_pll1_out (video)     |         |  sys_pll2_333m (sys)   |
->>>> |  audio_pll2_out (audio)     |         |  sys_pll2_100m (sys)   |
->>>> |  audio_pll1_out (audio)     |         | -sys_pll1_800m (sys)   |
->>>> | -sys_pll1_800m (sys)        |         | -sys_pll2_1000m (sys)  |
->>>> | -sys_pll2_1000m (sys)       |         |  clk_ext2 (external)   |
->>>> |  sys_pll3_out (audio ?)     |         |  audio_pll2_out (audio)|
->>>> |  clk_ext4 (external)        |         |*-video_pll1_out (video)|
->>>>  -----------------------------           ------------------------
->>>>              ||                                     |
->>>>  -----------------------------           ------------------------
->>>> |   media_disp{1,2}_pix       |         |        media_ldb       |
->>>>  ----------------------------- mux+div   ------------------------ mux+div
->>>>              ||                                     |
->>>>  -----------------------------           ------------------------
->>>> | media_disp{1,2}_pix_root_clk|         |   media_ldb_root_clk   |
->>>>  ----------------------------- gate      ------------------------ gate
->>>>              ||                                     | (LVDS serial clock)
->>>>              ||                                     V
->>>> 	     || (Disp2 Pclk)  --------      ------------------
->>>> 	     | ------------> | LCDIF2 | -> |       LDB        | -> panel/bridge
->>>> 	     |                --------      ------------------
->>>> 	     |  (Disp1 Pclk)  --------      ------------------
->>>> 	      -------------> | LCDIF1 | -> | Samsung MIPI DSI | -> panel/bridge
->>>> 	                      --------      ------------------
->>>>                               --------      ------------------      ----------
->>>>                              | LCDIF3 | -> | Synopsys HDMI TX | -> | HDMI PHY |
->>>>                               --------      ------------------     |     +    |
->>>>                                  ^                                 |    PLL   |
->>>>                                  |                                  ----------
->>>>                                  | (Disp3 pclk)                         | |
->>>>                                   --------------------------------------  |
->>>>                                                                           V
->>>>                                                                     panel/bridge
->>>>
->>>> * video_pll1_out is supposed to be used by video outputs.
->>>>
->>>> - LCDIF2 + LDB can only use the *same* video_pll1_out, sys_pll1_800m or
->>>>   sys_pll2_1000m.
->>>>
->>>> [[ i.MX8MP Display Drivers ]]
->>>> LCDIF: drivers/gpu/drm/mxsfb/lcdif_*.c
->>>> Three LCDIFv3 display controllers are driven by three imx-lcdif DRM instances
->>>> separately.
->>>>
->>>> LDB: drivers/gpu/drm/bridge/fsl-ldb.c
->>>>
->>>> Samsung MIPI DSI: drivers/gpu/drm/bridge/samsung-dsim.c
->>>>
->>>> Synopsys HDMI TX: drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
->>>>
->>>> [[ Problem - Shared Video PLL Between Samsung MIPI DSI and LDB ]]
->>>> osc_24m, audio_pll*, sys_pll* and clk_ext* are not for video outputs,
->>>> because:
->>>> a. Aparently, osc_24m runs at fixed 24MHz which is too low for most displays.
->>>> b. Audio subsystem may consume all audio_pll*.
->>>> c. sys_pll* are system clocks which are supposed to run at fixed typical
->>>>    rates, e.g., sys_pll2_1000m runs at 1000MHz.
->>>> d. sys_pll3_out is supposed to derive audio AXI clock running at nominal
->>>>    600MHz(i.MX8MP data sheet specifies the rate), see NXP downstream kernel:
->>>>    https://github.com/nxp-imx/linux-imx/blob/lf-6.6.y/arch/arm64/boot/dts/freescale/imx8mp-evk-ndm.dts#L19
->>>>    https://github.com/nxp-imx/linux-imx/blob/lf-6.6.y/arch/arm64/boot/dts/freescale/imx8mp-ddr4-evk.dts#L25
->>>
->>> Is there any downside to using any of these clocks, aside from the fact
->>> that their rate must not change?
->>
->> osc_24m and sys_pll* don't support spread spectrum while audio_pll* and
->> video_pll1_out support it. Other than that, I don't see any downside to
->> use any of these clocks, if their clock rates happen to meet the clock
->> rate requirements of the MIPI DSI and LDB display pipelines.
->>
->>>
->>> Also, if they can't change their rate, why do they have
->>> CLK_SET_RATE_PARENT (sys_pll* in particular) ?
->>
->> If media_disp{1,2}_pix and media_ldb clocks have no CLK_SET_RATE_PARENT,
->> it doesn't mattter whether their parent clocks(these clocks) have it or not.
->> Note that patch 2 drops CLK_SET_RATE_PARENT for media_disp{1,2}_pix clocks.
->>
->> Anyway, why have sys_pll* clocks got CLK_SET_RATE_PARENT? The reason I can
->> think of is that it makes some potential i.MX8MP platforms possible to set
->> the sys_pll* rates with the parent clock rates(sys_pll1/2/3) updated
->> accordingly, e.g., if sys_pll2_1000m is the only active child of sys_pll2_out,
->> sys_pll2_1000m's rate can be assigned to 800MHz(not typical 1000MHz) in DT.
->> Or, maybe, the sys_pll* rates can be assigned to some particular values to
->> support nominal/overdrive modes of various i.MX8MP clock roots(some are
->> derived from the sys_pll* clocks).
->>
->>>
->>>> e. clk_ext* are external clocks without known capabilities.
->>>>
->>>> So, the only eligible video_pll1_out is supposed to be shared between LDB
->>>> and Samsung MIPI DSI in the two separate display pipelines if sys_pll3_out
->>>> is already used to derive the audio AXI clock.
->>>>
->>>> With the shared video_pll1_out, drivers for the two display pipelines cannot
->>>> change the PLL clock rate in runtime, since the pipelines are driven by two
->>>> DRM driver instances.
->>>
->>> What is the typicall frequency on those pipelines? Could setting the PLL
->>
->> For MIPI DSI to HDMI(ADV7535) and LVDS to HDMI(IT6263), the typical pixel
->> rates are 148.5MHz(1080p60Hz) and 74.25MHz(720p60Hz) and the typical LDB
->> clock rate is 519.75MHz.
->>
->> For MIPI DSI panel and LVDS panel, there no typical pixel rates. It depends
->> on individual panels. However, it's possible to override panel's pixel clock
->> rate in DT to use a fixed PLL clock rate if the pixel clock rate deviation
->> is still acceptable by the panel.
->>
->>> high enough that any frequency required by any of these pipelines can be
->>> accomodated through a divider work?
->>
->> Yes, that's why media_blk_ctrl node in imx8mp.dtsi assigns video_pll1 clock
->> rate to 1.0395GHz. That rate supports the typical 148.5MHz and 74.25MHz
->> pixel clock rates. With this patch series applied, i.MX8MP EVK would use
->> this fixed 1.0395GHz video_pll1 clock to drive both MIPI DSI to HDMI and
->> LVDS to HDMI simultaneously.
->>
->>>
->>> Something like you run the PLL at 594MHz, and then most HDMI frequencies
->>> can be reached by a 1, 2 or 4 divider.
->>
->> PLL running at 594MHz does support the typical pixel clock rates for MIPI
->> DSI to HDMI, but not for LVDS to HDMI due to the 7x(single-LVDS link) or
->> 3.5x(dual-LVDS link) folder between LDB clock rate and pixel clock rate.
->> PLL running at 1.0395GHz is the one chosen to support both MIPI DSI to
->> HDMI and LVDS to HDMI, e.g., with dual-LVDS link, 148.5MHz pixel clock rate
->> = 1.0395GHz / 7 and 519.75MHz LDB clock rate(148.5MHz * 3.5) = 1.0395GHz / 2.
->>
->>>
->>>> [[ Solution ]]
->>>> Assign the PLL clock source(s) and the PLL clock rate(s) in DT.  Disallow
->>>> display drivers to change the PLL clock source(s) or rate(s) in runtime
->>>> including LCDIF driver and bridge drivers.  With sensible PLL clock rate(s),
->>>> typical display modes like 1920x1080@60 can be supported if external HDMI
->>>> bridges are connected, and panel display modes can be too.  Also the unneeded
->>>> CLK_SET_RATE_PARENT flag can be dropped for media_disp{1,2}_pix clocks.
->>>> If needed, bridge drivers just call clk_round_rate() to validate clocks so
->>>> that unsupported display modes can be filtered out.  Although the
->>>> unchangeable PLL clock rate disallows more potential display modes, the
->>>> solution works for single/dual/triple display pipelines(OFC, hardware designers
->>>> should pick panel/bridge display devices carefully first by considering clock
->>>> resources).
->>>
->>> I think it's a reasonable idea, if not for the hardcode-it it DT stuff.
->>> If we can manage to have a fixed setup work ok for all display use
->>> cases, why would it be in DT? The clock driver seems like a much better
->>> choice to me.
->>
->> Different i.MX8MP platforms may have different display devices(panel(s)
->> and/or bridge(s)). It's flexible to allow each platform to assign the PLL
->> rate(s) in DT. It doesn't look doable with clock driver, does it?
-> 
-> Why not? Plenty of platforms are doing it. If anything, it's more
+Introduce support for Qualcomm new video acceleration hardware i.e. 
+iris, used for video stream decoding.
 
-Keep CLK_SET_RATE_PARENT flag for IMX8MP_CLK_MEDIA_DISP{1,2}_PIX clocks, check
-compatible machines and call clk_set_rate_exclusive() in imx8mp_clocks_probe()
-like the below snippet ?  This is the only way I can think of to fix the
-video_pll1 clock rate in the clock driver.
+Iris is a multi pipe based hardware that offloads video stream decoding 
+from the application processor (AP). It supports H.264 decoding. The AP 
+communicates with hardware through a well defined protocol, called as 
+host firmware interface (HFI), which provides fine-grained and  
+asynchronous control over individual hardware features.
 
--8<-
-if (of_machine_is_compatible("fsl,imx8mp-evk")) {
-	err = clk_set_rate_exclusive(hws[IMX8MP_VIDEO_PLL1]->clk, 1039500000);
-	if (err < 0) {
-		dev_err(dev, "failed to set exclusive rate for video_pll1: %d\n", err);
-			return err;
- 	}
-}
--8<-
+The exisiting venus driver supports only hfi gen1 to communicate with 
+the firmware while this iris driver supports both hfi gen1 and hfi gen2.
+The support of hfi gen1 is added to the iris driver with the intention 
+that it can support old gen1 interface based firmware, while enabling 
+gen2 based future SOCs.
+With this, the plan is to migrate older SOCs from venus to iris.
+As of now, since the iris driver supports only entry level features and 
+doesn't have feature parity with the venus driver,  it is enabled for 
+SM8250 only when venus driver is disabled.
+When the feature parity is achieved, the plan is to enable the iris  
+driver unconditionally for SM8250, and then gradually start removing 
+platforms from venus driver.
+Hardware supported by only venus - 8916, 8996, SDM660, SDM845, SC7180, SC7280
+Hardware supported by only iris - SM8550
+Hardware supported by both venus and iris - SM8250
 
-However, it's not as flexible as assigning the video_pll1 clock rate in DT,
-because the i.MX8MP EVK board exposes it's MIPI DSI and LVDS connectors through
-MINI-SAS connectors(find MINI-SAS connectors in the board image at
-https://www.nxp.com/design/design-center/development-boards-and-designs/8MPLUSLPD4-EVK)
-and people may connect various sensible MIPI DSI/LVDS panels or bridges with
-MIPI DSI/LVDS input interfaces as they want(not necessarily the panels and
-bridges provided by NXP).  Hardcoding the PLL clock rate in the
-clk_set_rate_exclusive() function call is really not flexible.  Instead, people
-may flexibly assign a sensible PLL clock rate according to the actual connected
-display devices.
+This driver comes with below capabilities:
+- V4L2 complaint video driver with M2M and STREAMING capability.
+- Supports H264 decoder.
 
-> flexible to deal with it in the clock driver, because then you don't
-> have to filter out modes that aren't compatible with the frequency that
-> got assigned in the DT.
+This driver comes with below features:
+- Centralized resource management.
+- Centralized management of core and instance states.
+- Defines platform specific capabilities and features. As a results, it 
+  provides a single point of control to enable/disable a given feature 
+  depending on specific platform capabilities.
+- Handles various video recommended sequences, like DRC, Drain, Seek, 
+  EOS.
+- Implements asynchronous communication with hardware to achieve better 
+  experience in low latency usecases.
+- Output and capture planes are controlled independently. Thereby
+  providing a way to reconfigure individual plane.
+- Native hardware support of LAST flag which is mandatory to align with 
+  port reconfiguration and DRAIN sequence as per V4L guidelines.
 
-I still need to filter out unsupported modes(due to clock constraints) in DRM
-driver even if I use the above snippet in imx8mp_clocks_probe(), e.g., the below
-two modes with 27MHz pixel clock rate need to be filtered out for IT6263 LVDS to
-HDMI bridge with dual LVDS links because the 1.0395GHz PLL rate cannot satisfy
-the 27MHZ pixel clock rate.
+Changes since v9:
+- Update the value of dma mask from GENMASK(31, 29) - 1 to 0xe0000000-1 to
+  make it easier to understand and keep it consistent (Mauro, Hans)
+- Fix memory leak while freeing queue memory (Joel)
+- Enable iris driver for SM8250 conditionally (Hans).
+- Link to v9: https://lore.kernel.org/r/20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com
 
-#7 720x576 50.00 720 732 796 864 576 581 586 625 27000 flags: nhsync, nvsync; type: driver
-#8 720x480 59.94 720 736 798 858 480 489 495 525 27000 flags: nhsync, nvsync; type: driver
+Changes since v8:
+- re-order supported profile for h264 (Stefan)
+- move mapping of DEBLOCK cap to patch#14 (Stefan, Dmitry)
+- add a way to read the firmware path from dtsi and fallback to resource 
+  data if not available (dikshita) 
+- Link to v8: https://lore.kernel.org/r/20241210-qcom-video-iris-v8-0-42c5403cb1a3@quicinc.com
+ 
+Changes since v7:
+- Added HFI_ERROR_STREAM_UNSUPPORTED define to inform about session 
+  error (Stefan)
+- Fixed kernel doc issues
+- Link to v7: https://lore.kernel.org/r/20241209-qcom-video-iris-v7-0-05c6bdead47b@quicinc.com
 
-> 
-> Also, it's more robust since that frequency isn't guaranteed to be
-> constant across the system life.
+Changes since v6:
+- Added vb2_is_busy check in s_fmt (Hans)
+- Removed q->streaming checks in s_fmt (Hans)
+- Removed usage of inst->subscriptions (Hans)
+- Added call to v4l2_m2m_ioctl_decoder_cmd() from iris_dec_cmd() API (Hans)
+- Fixed issues related to kernel docs.
+- Addressed all other review comments.
+- Link to v6: https://lore.kernel.org/r/20241120-qcom-video-iris-v6-0-a8cf6704e992@quicinc.com
+ 
+Changes since v5:
+- Fixed the memory leak in firmware load (Bryan)
+- Updated all headers s/_LIKE_SO_/__LIKE_SO__ (Bryan)
+- Updated value of IFACEQ_MAX_BUF_COUNT to 64 (Bryan)
+- Removed actual_count from iris buffer structure and cleaned up 
+  vb2_queue_setup (Hans)
+- Used VIDEO_MAX_FRAME to set actual buffer to firmware (Hans)
+- Fixed the typo in commit log and subject of patch#12 (Hans)
+- Updated card field to Iris Decoder (Hans)
+- Removed redundant setting of byteused (Hans)
+- s/iris_driver/is_iris_driver (Jianhua)
+- Addressed all other review comments.
+- Link to v5: https://lore.kernel.org/r/20241105-qcom-video-iris-v5-0-a88e7c220f78@quicinc.com
 
-If we drop CLK_SET_RATE_PARENT flag for IMX8MP_CLK_MEDIA_DISP{1,2}_PIX clocks
-and assign the PLL rate(s) in DT, I don't think the PLL rate(s) would change
-across the system life.
+Changes since v4:
+- Fixed commit message length for all patches (Krzysztof)
+- Migrated back to remove from remove_new (Uwe Kleine-König)
+- Removed support for g_volatle_ctrl (Hans)
+- Added changes to update minimum buffer count whenever the hardware 
+  requirement changes (Hans)
+- Removed state checks from try/g/s_fmt ioctls (Hans)
+- Removed wait_prepare() and wait_finish callbacks (Hans)
+- Added support for remove_bufs (Hans)
+- Added module param based configurability to select between venus and 
+  iris drivers for platforms supported by both drivers (Jianhua, Dmitry)   
+- Addressed misc other review comments from Hans.
+- Fixed issues reported by kernel bot.
+- Link to v4: https://lore.kernel.org/r/20241014-qcom-video-iris-v4-v4-0-c5eaa4e9ab9e@quicinc.com
 
-> 
-> Maxime
+Changes since v3:
+- Fixed the style issues with dt binding (Krzysztof)
+- Pushed  the patch to add maintainers to end of the series (Krzysztof, 
+  Dmitry)
+- Moved the resource initialization next to probe in iris_probe.c and 
+  squashed the patch of probe and resource initialization (Krzysztof)
+- Removed error prints from probe function (Krzysztof)
+- Defined bit fields used for register read/write with macros for better 
+  context (Bryan)
+- Converted if/else to switch/case wherever applicable (Bryan)
+- Removed defensive NULL checks wherever not required (Bryan, Krzysztof)
+- Removed core->state checks except for below scenarios (Bryan)
+  - When reverse thread (firmware) can move the state of the core to 
+    error state.
+  - When client can force close the driver and there are still pending 
+    firmware responses to be read from shared queues (msg and dbg)
+  - For PM operations, since its a delayed autosuspend work and sys 
+    error handler from the reverse thread can move the state to core 
+    deinit state anytime.
+- Acquiring core->lock only for below scenarios (Bryan)
+  - Writing to registers.
+- Reading/Writing from/to shared queues.
+  - Traversing the instance list of core.
+  - To protect the core->state when it can changed by reverse thread.
+- Acquiring inst->lock only for below scenario which is needed (Bryan)
+  - Serializing the forward and reverse thread
+  - To protect the inst structure where the values can be modified by
+    firmware.
+- Removed usage of core->power_enabled (Krzysztof, Bryan)
+- Removed usage of mutex_is_locked  (Krzysztof, Bryan)
+- Use C structure for instance caps (Dmitry)
+- Split the ctrl ops patch by keeping only the defines, struct and caps 
+  needed to intialize the ctrl handler and to implement s/g_ctrl
+  (Dmitry)
+- Removed the instance state checks to allow v4l2-ctl, relying on
+  standard vb2 checks instead. (Hans)
+- Converted APIs to void wherever applicable except for below (Bryan)
+  - iris_hfi_gen2_handle_session_error and
+    iris_hfi_gen2_handle_session_property cannot be converted to void
+    even though they always return 0.
+    Because these are two of the handlers invoked from
+    iris_hfi_gen2_handle_session_response and are of
+    iris_hfi_gen2_inst_hfi_range struct type, where same prototype is
+    followed for all handlers and return type of all handers should be
+    'int'.
+    And we cannot have a switch case/if else to handle these
+    responses from firmware because we need to parse the responses in a
+    particular sequence.
+    That's why we opted for this handler based design instead of
+    introducing multiple for loop with code duplication.
+- Fixed issues reported by kernel bot.
+- Fixed v4l2 compliance issue reported with "-s" options based on the 
+  inputs from Hans.
+- Addressed all other review comments and made some code improvements.
 
+Changes since v2:
+- introduced support for HFI gen1.
+- deprecated Encoder and HEVC, VP9 codecs.
+- removed custom vb2 mem ops and used standard framework instead.
+- added support for mmap streaming mode.
+- migrated all the buffer APIs to mem2mem helper functions.
+- registered iris buffer with vb2 framework.
+- migrated to clk_bulk, reset_bulk and icc_bulk APIs.
+- used pm_domain_attach/detach_list APIs.
+- migrated to read/writel and other available helpers for register
+  access instead of custom wrappers.
+- added documentation for various structures.
+- addressed many other review comments from v2.
+
+Note: A onetime log message "Lucid PLL latch failed. Output may be 
+unstable!" is seen during bootup. It doesn't impact any video usecase  
+and is not observed with clock driver change[1].
+
+[1]: https://lore.kernel.org/linux-arm-msm/20250113-support-pll-reconfigure-v1-0-1fae6bc1062d@quicinc.com
+
+Static tools like checkpatch, smatch, dt_binding_check, sparse and
+Coccinelle run successfully with this driver.
+
+This driver is tested with v4l2-ctl[2] and Gstreamer[3].
+
+[2]: v4l2-ctl --verbose --set-fmt-video-out=pixelformat=H264
+--set-fmt-video=pixelformat=NV12 --stream-mmap --stream-out-mmap
+--stream-from /media/FVDO_Freeway_720p.264 --stream-to out.NV12
+
+[3]: gst-launch-1.0 filesrc location=/media/media/4k_decode_clip.264 !
+h264parse ! v4l2h264dec capture-io-mode=dmabuf ! kmssink
+
+The driver is tested with v4l2-compliance.
+
+Result on SM8550:
+
+v4l2-compliance --stream-from /media/FVDO_Freeway_720p.264 -s250
+
+v4l2-compliance 1.29.0-5273, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 0ed98432fe68 2024-11-13 12:54:45
+
+Compliance test for iris_driver device /dev/video0:
+
+Driver Info:
+        Driver name      : iris_driver
+        Card type        : iris_decoder
+        Bus info         : platform:aa00000.video-codec
+        Driver version   : 6.12.0
+        Capabilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+        Detected Stateful Decoder
+
+Required ioctls:
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 5 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK
+        test Composing: OK
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK (Not Supported)
+        test blocking wait: OK
+
+Test input 0:
+
+Streaming ioctls:
+        test read/write: OK (Not Supported)
+        test MMAP (select, REQBUFS): OK
+        test MMAP (epoll, REQBUFS): OK
+        test MMAP (select, CREATE_BUFS): OK
+        test MMAP (epoll, CREATE_BUFS): OK
+        test USERPTR (select): OK (Not Supported)
+        test DMABUF: Cannot test, specify --expbuf-device
+
+Total for iris_driver device /dev/video0: 54, Succeeded: 54, Failed: 0, 
+Warnings: 0
+
+Result on SM8250:
+
+v4l2-compliance --stream-from /media/FVDO_Freeway_720p.264 -s250
+
+v4l2-compliance 1.29.0-5273, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 0ed98432fe68 2024-11-13 12:54:45
+
+Compliance test for iris_driver device /dev/video0:
+
+Driver Info:
+        Driver name      : iris_driver
+        Card type        : iris_decoder
+        Bus info         : platform:aa00000.video-codec
+        Driver version   : 6.12.0
+        Capabilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+        Detected Stateful Decoder
+
+Required ioctls:
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 5 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK
+        test Composing: OK
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK (Not Supported)
+        test blocking wait: OK
+
+Test input 0:
+
+Streaming ioctls:
+	test read/write: OK (Not Supported)
+        test MMAP (select, REQBUFS): OK
+        test MMAP (epoll, REQBUFS): OK
+        test MMAP (select, CREATE_BUFS): OK
+        test MMAP (epoll, CREATE_BUFS): OK
+        test USERPTR (select): OK (Not Supported)
+        test DMABUF: Cannot test, specify --expbuf-device
+
+Total for iris_driver device /dev/video0: 54, Succeeded: 54, Failed: 0, 
+Warnings: 0
+
+The result of fluster test on SM8550:
+
+77/135 while testing JVT-AVC_V1 with
+GStreamer-H.264-V4L2-Gst1.0.JVT-AVC_V1.
+The failing tests are:
+- 52 test vectors failed due to interlaced clips: Interlaced decoding is
+  not supported in iris driver.
+  Test Vectors:
+        cabac_mot_fld0_full
+        cabac_mot_mbaff0_full
+        cabac_mot_picaff0_full
+        CABREF3_Sand_D
+        CAFI1_SVA_C
+        CAMA1_Sony_C
+        CAMA1_TOSHIBA_B
+        cama1_vtc_c
+        cama2_vtc_b
+        CAMA3_Sand_E
+        cama3_vtc_b
+        CAMACI3_Sony_C
+        CAMANL1_TOSHIBA_B
+        CAMANL2_TOSHIBA_B
+        CAMANL3_Sand_E
+        CAMASL3_Sony_B
+        CAMP_MOT_MBAFF_L30
+        CAMP_MOT_MBAFF_L31
+        CANLMA2_Sony_C
+        CANLMA3_Sony_C
+        CAPA1_TOSHIBA_B
+        CAPAMA3_Sand_F
+        cavlc_mot_fld0_full_B
+        cavlc_mot_mbaff0_full_B
+        cavlc_mot_picaff0_full_B
+        CVCANLMA2_Sony_C
+        CVFI1_Sony_D
+        CVFI1_SVA_C
+        CVFI2_Sony_H
+        CVFI2_SVA_C
+        CVMA1_Sony_D
+        CVMA1_TOSHIBA_B
+        CVMANL1_TOSHIBA_B
+        CVMANL2_TOSHIBA_B
+        CVMAPAQP3_Sony_E
+        CVMAQP2_Sony_G
+        CVMAQP3_Sony_D
+        CVMP_MOT_FLD_L30_B
+        CVNLFI1_Sony_C
+        CVNLFI2_Sony_H
+        CVPA1_TOSHIBA_B
+        FI1_Sony_E
+        MR6_BT_B
+        MR7_BT_B
+        MR8_BT_B
+        MR9_BT_B
+        Sharp_MP_Field_1_B
+        Sharp_MP_Field_2_B
+        Sharp_MP_Field_3_B
+        Sharp_MP_PAFF_1r2
+        Sharp_MP_PAFF_2r
+        CVMP_MOT_FRM_L31_B
+- 3 test vectors failed due to unsupported bitstream.
+  num_slice_group_minus1 greater than zero is not supported by the
+  hardware.
+  Test Vectors:
+        FM1_BT_B
+        FM1_FT_E
+        FM2_SVA_C
+- 2 test vectors failed because SP_SLICE type is not supported by the
+  hardware.
+  Test Vectors:
+        SP1_BT_A
+        sp2_bt_b
+- 1 test vector failed due to unsupported profile:
+  V4L2_MPEG_VIDEO_H264_PROFILE_EXTENDED is being deprecated from sm8550
+  onwards due to hardware issues.
+  Test Vectors:
+        BA3_SVA_C
+
+23/69 while testing JVT-FR-EXT with 
+GStreamer-H.264-V4L2-Gst1.0.JVT-AVC_V1.
+The failing tests are:
+- 21 test vectors failed due to interlaced clips: Interlaced decoding is
+  not supported in iris driver.
+  Test Vectors:
+        brcm_freh4
+        brcm_freh5
+        brcm_freh6
+        brcm_freh10
+        brcm_freh11
+        freh7_b
+        FREXT01_JVC_D
+        FREXT02_JVC_C
+        FRExt2_Panasonic_C
+        FRExt4_Panasonic_B
+        HCAFF1_HHI_B
+        HCAMFF1_HHI_B
+        HCHP3_HHI_A
+        HPCAFL_BRCM_C
+        HPCAFLNL_BRCM_C
+        HVLCFI0_Sony_B
+        HVLCMFF0_Sony_B
+        HVLCPFF0_Sony_B
+        HPCAMAPALQ_BRCM_B
+        HPCVFL_BRCM_A
+        HPCVFLNL_BRCM_A
+- 2 test vectors failed due to 10bit bitstream: 10bit decoding is not
+  supported in iris driver
+  Test Vectors:
+        FREH10-1
+        FREH10-2
+- 21 test vectors failed due to unsupported profile:
+  V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_422 is not supported by the
+  hardware.
+  Test Vectors:
+        FREXT1_TANDBERG_A
+        FREXT2_TANDBERG_A
+        FREXT3_TANDBERG_A
+        Hi422FR1_SONY_A
+        Hi422FR2_SONY_A
+        Hi422FR3_SONY_A
+        Hi422FR4_SONY_A
+        Hi422FR6_SONY_A
+        Hi422FR7_SONY_A
+        Hi422FR8_SONY_A
+        Hi422FR9_SONY_A
+        Hi422FR10_SONY_A
+        Hi422FR11_SONY_A
+        Hi422FR12_SONY_A
+        Hi422FR13_SONY_A
+        Hi422FR14_SONY_A
+        Hi422FR15_SONY_A
+        Hi422FREXT16_SONY_A
+        Hi422FREXT17_SONY_A
+        Hi422FREXT18_SONY_A
+        Hi422FREXT19_SONY_A
+- 2 test vectors failed due to unsupported bitstream.
+  chroma_fmt_idc is equal to 0(monochrome) in the bitstream which is not
+  supported by the hardware.
+  Test Vectors:
+        HPCAMOLQ_BRCM_B
+        HPCVMOLQ_BRCM_B
+
+The result of fluster test on SM8250:
+
+78/135 while testing JVT-AVC_V1 with
+GStreamer-H.264-V4L2-Gst1.0.JVT-AVC_V1.
+The failing tests are:
+- 52 test vectors failed due to interlaced clips: Interlaced decoding is
+  not supported in iris driver.
+  Test Vectors:
+        cabac_mot_fld0_full
+        cabac_mot_mbaff0_full
+        cabac_mot_picaff0_full
+        CABREF3_Sand_D
+        CAFI1_SVA_C
+        CAMA1_Sony_C
+        CAMA1_TOSHIBA_B
+        cama1_vtc_c
+        cama2_vtc_b
+        CAMA3_Sand_E
+        cama3_vtc_b
+        CAMACI3_Sony_C
+        CAMANL1_TOSHIBA_B
+        CAMANL2_TOSHIBA_B
+        CAMANL3_Sand_E
+        CAMASL3_Sony_B
+        CAMP_MOT_MBAFF_L30
+        CAMP_MOT_MBAFF_L31
+        CANLMA2_Sony_C
+        CANLMA3_Sony_C
+        CAPA1_TOSHIBA_B
+        CAPAMA3_Sand_F
+        cavlc_mot_fld0_full_B
+        cavlc_mot_mbaff0_full_B
+        cavlc_mot_picaff0_full_B
+        CVCANLMA2_Sony_C
+        CVFI1_Sony_D
+        CVFI1_SVA_C
+        CVFI2_Sony_H
+        CVFI2_SVA_C
+        CVMA1_Sony_D
+        CVMA1_TOSHIBA_B
+        CVMANL1_TOSHIBA_B
+        CVMANL2_TOSHIBA_B
+        CVMAPAQP3_Sony_E
+        CVMAQP2_Sony_G
+        CVMAQP3_Sony_D
+        CVMP_MOT_FLD_L30_B
+        CVNLFI1_Sony_C
+        CVNLFI2_Sony_H
+        CVPA1_TOSHIBA_B
+        FI1_Sony_E
+        MR6_BT_B
+        MR7_BT_B
+        MR8_BT_B
+        MR9_BT_B
+        Sharp_MP_Field_1_B
+        Sharp_MP_Field_2_B
+        Sharp_MP_Field_3_B
+        Sharp_MP_PAFF_1r2
+        Sharp_MP_PAFF_2r
+        CVMP_MOT_FRM_L31_B
+- 3 test vectors failed due to unsupported bitstream.
+  num_slice_group_minus1 greater than zero is not supported by the
+  hardware.
+  Test Vectors:
+        FM1_BT_B
+        FM1_FT_E
+        FM2_SVA_C
+- 2 test vectors failed because SP_SLICE type is not supported by the
+  hardware.
+  Test Vectors:
+        SP1_BT_A
+        sp2_bt_b
+
+23/69 while testing JVT-FR-EXT with
+GStreamer-H.264-V4L2-Gst1.0.JVT-AVC_V1.
+The failing tests are:
+- 21 test vectors failed due to interlaced clips: Interlaced decoding is
+  not supported in iris driver.
+  Test Vectors:
+        brcm_freh4
+        brcm_freh5
+        brcm_freh6
+        brcm_freh10
+        brcm_freh11
+        freh7_b
+        FREXT01_JVC_D
+        FREXT02_JVC_C
+        FRExt2_Panasonic_C
+        FRExt4_Panasonic_B
+        HCAFF1_HHI_B
+        HCAMFF1_HHI_B
+        HCHP3_HHI_A
+        HPCAFL_BRCM_C
+        HPCAFLNL_BRCM_C
+        HVLCFI0_Sony_B
+        HVLCMFF0_Sony_B
+        HVLCPFF0_Sony_B
+        HPCAMAPALQ_BRCM_B
+        HPCVFL_BRCM_A
+        HPCVFLNL_BRCM_A
+- 2 test vectors failed due to 10bit bitstream: 10bit decoding is not
+  supported in iris driver
+  Test Vectors:
+        FREH10-1
+        FREH10-2
+- 21 test vectors failed due to unsupported profile:
+  V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_422 is not supported by the
+  hardware.
+  Test Vectors:
+        FREXT1_TANDBERG_A
+        FREXT2_TANDBERG_A
+        FREXT3_TANDBERG_A
+        Hi422FR1_SONY_A
+        Hi422FR2_SONY_A
+        Hi422FR3_SONY_A
+        Hi422FR4_SONY_A
+        Hi422FR6_SONY_A
+        Hi422FR7_SONY_A
+        Hi422FR8_SONY_A
+        Hi422FR9_SONY_A
+        Hi422FR10_SONY_A
+        Hi422FR11_SONY_A
+        Hi422FR12_SONY_A
+        Hi422FR13_SONY_A
+        Hi422FR14_SONY_A
+        Hi422FR15_SONY_A
+        Hi422FREXT16_SONY_A
+        Hi422FREXT17_SONY_A
+        Hi422FREXT18_SONY_A
+        Hi422FREXT19_SONY_A
+- 2 test vectors failed due to unsupported bitstream.
+  chroma_fmt_idc is equal to 0(monochrome) in the bitstream which is not
+  supported by the hardware.
+  Test Vectors:
+        HPCAMOLQ_BRCM_B
+        HPCVMOLQ_BRCM_B
+
+To: Vikash Garodia <quic_vgarodia@quicinc.com>
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Hans Verkuil <hverkuil@xs4all.nl>
+Cc: Sebastian Fricke <sebastian.fricke@collabora.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Nicolas Dufresne <nicolas@ndufresne.ca>
+Cc: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+Cc: Jianhua Lu <lujianhua000@gmail.com>
+Cc: Stefan Schmidt <stefan.schmidt@linaro.org>
+Cc: Joel Stanley <joel@jms.id.au>
+Cc: Johan Hovold <johan@kernel.org>
+Cc: linux-media@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+---
+Dikshita Agarwal (18):
+      dt-bindings: media: Add video support for QCOM SM8550 SoC
+      media: iris: add platform driver for iris video device
+      media: iris: implement iris v4l2 file ops
+      media: iris: introduce iris core state management with shared queues
+      media: iris: implement video firmware load/unload
+      media: iris: implement the boot sequence of the firmware
+      media: iris: introduce host firmware interface with necessary hooks
+      media: iris: implement power management
+      media: iris: implement reqbuf ioctl with vb2_queue_setup
+      media: iris: implement iris v4l2_ctrl_ops
+      media: iris: implement vb2 streaming ops
+      media: iris: allocate, initialize and queue internal buffers
+      media: iris: implement vb2 ops for buf_queue and firmware response
+      media: iris: add support for dynamic resolution change
+      media: iris: handle streamoff/on from client in dynamic resolution change
+      media: iris: add support for drain sequence
+      media: iris: enable video driver probe of SM8250 SoC
+      media: MAINTAINERS: add Qualcomm iris video accelerator driver
+
+Vedang Nagar (10):
+      media: iris: implement s_fmt, g_fmt and try_fmt ioctls
+      media: iris: implement g_selection ioctl
+      media: iris: implement enum_fmt and enum_framesizes ioctls
+      media: iris: implement subscribe_event and unsubscribe_event ioctls
+      media: iris: implement query_cap ioctl
+      media: iris: implement set properties to firmware during streamon
+      media: iris: subscribe parameters and properties to firmware for hfi_gen2
+      media: iris: add check whether the video session is supported or not
+      media: iris: implement power scaling for vpu2 and vpu3
+      media: iris: add check to allow sub states transitions
+
+ .../bindings/media/qcom,sm8550-iris.yaml           | 158 ++++
+ MAINTAINERS                                        |  10 +
+ drivers/media/platform/qcom/Kconfig                |   1 +
+ drivers/media/platform/qcom/Makefile               |   1 +
+ drivers/media/platform/qcom/iris/Kconfig           |  13 +
+ drivers/media/platform/qcom/iris/Makefile          |  30 +
+ drivers/media/platform/qcom/iris/iris_buffer.c     | 623 ++++++++++++++
+ drivers/media/platform/qcom/iris/iris_buffer.h     | 117 +++
+ drivers/media/platform/qcom/iris/iris_core.c       |  96 +++
+ drivers/media/platform/qcom/iris/iris_core.h       | 111 +++
+ drivers/media/platform/qcom/iris/iris_ctrls.c      | 259 ++++++
+ drivers/media/platform/qcom/iris/iris_ctrls.h      |  22 +
+ drivers/media/platform/qcom/iris/iris_firmware.c   | 116 +++
+ drivers/media/platform/qcom/iris/iris_firmware.h   |  15 +
+ drivers/media/platform/qcom/iris/iris_hfi_common.c | 176 ++++
+ drivers/media/platform/qcom/iris/iris_hfi_common.h | 155 ++++
+ drivers/media/platform/qcom/iris/iris_hfi_gen1.h   |  16 +
+ .../platform/qcom/iris/iris_hfi_gen1_command.c     | 826 ++++++++++++++++++
+ .../platform/qcom/iris/iris_hfi_gen1_defines.h     | 448 ++++++++++
+ .../platform/qcom/iris/iris_hfi_gen1_response.c    | 666 ++++++++++++++
+ drivers/media/platform/qcom/iris/iris_hfi_gen2.h   |  41 +
+ .../platform/qcom/iris/iris_hfi_gen2_command.c     | 957 +++++++++++++++++++++
+ .../platform/qcom/iris/iris_hfi_gen2_defines.h     | 161 ++++
+ .../platform/qcom/iris/iris_hfi_gen2_packet.c      | 292 +++++++
+ .../platform/qcom/iris/iris_hfi_gen2_packet.h      | 125 +++
+ .../platform/qcom/iris/iris_hfi_gen2_response.c    | 934 ++++++++++++++++++++
+ drivers/media/platform/qcom/iris/iris_hfi_queue.c  | 318 +++++++
+ drivers/media/platform/qcom/iris/iris_hfi_queue.h  | 182 ++++
+ drivers/media/platform/qcom/iris/iris_instance.h   |  77 ++
+ .../platform/qcom/iris/iris_platform_common.h      | 186 ++++
+ .../platform/qcom/iris/iris_platform_sm8250.c      | 149 ++++
+ .../platform/qcom/iris/iris_platform_sm8550.c      | 266 ++++++
+ drivers/media/platform/qcom/iris/iris_power.c      | 140 +++
+ drivers/media/platform/qcom/iris/iris_power.h      |  13 +
+ drivers/media/platform/qcom/iris/iris_probe.c      | 349 ++++++++
+ drivers/media/platform/qcom/iris/iris_resources.c  | 131 +++
+ drivers/media/platform/qcom/iris/iris_resources.h  |  18 +
+ drivers/media/platform/qcom/iris/iris_state.c      | 276 ++++++
+ drivers/media/platform/qcom/iris/iris_state.h      | 144 ++++
+ drivers/media/platform/qcom/iris/iris_utils.c      |  90 ++
+ drivers/media/platform/qcom/iris/iris_utils.h      |  53 ++
+ drivers/media/platform/qcom/iris/iris_vb2.c        | 335 ++++++++
+ drivers/media/platform/qcom/iris/iris_vb2.h        |  19 +
+ drivers/media/platform/qcom/iris/iris_vdec.c       | 659 ++++++++++++++
+ drivers/media/platform/qcom/iris/iris_vdec.h       |  25 +
+ drivers/media/platform/qcom/iris/iris_vidc.c       | 453 ++++++++++
+ drivers/media/platform/qcom/iris/iris_vidc.h       |  15 +
+ drivers/media/platform/qcom/iris/iris_vpu2.c       |  38 +
+ drivers/media/platform/qcom/iris/iris_vpu3.c       | 122 +++
+ drivers/media/platform/qcom/iris/iris_vpu_buffer.c | 270 ++++++
+ drivers/media/platform/qcom/iris/iris_vpu_buffer.h |  91 ++
+ drivers/media/platform/qcom/iris/iris_vpu_common.c | 369 ++++++++
+ drivers/media/platform/qcom/iris/iris_vpu_common.h |  28 +
+ .../platform/qcom/iris/iris_vpu_register_defines.h |  17 +
+ 54 files changed, 11202 insertions(+)
+---
+base-commit: 698b6e3163bafd61e1b7d13572e2c42974ac85ec
+change-id: 20241028-qcom-video-iris-94d5a12e6d9e
+
+Best regards,
 -- 
-Regards,
-Liu Ying
+Dikshita Agarwal <quic_dikshita@quicinc.com>
+
 
