@@ -1,441 +1,129 @@
-Return-Path: <devicetree+bounces-144083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 248B8A2CD79
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 21:04:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4BB3A2CD82
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 21:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E79C6188CC54
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 20:04:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EED7F16D9AD
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2025 20:04:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838A41B4246;
-	Fri,  7 Feb 2025 20:03:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72F919CD13;
+	Fri,  7 Feb 2025 20:04:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lIajXiA8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Eau21S+4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898F81B040E;
-	Fri,  7 Feb 2025 20:03:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC0618C930;
+	Fri,  7 Feb 2025 20:04:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738958582; cv=none; b=h+bYUxZOxH8judLChy8FpP2GlZdXa4CgMcirGcFVSVsfliM90p6ra7H5wmlidpQe9v1rs8N8bYwBDN6lz4zIcZ0/lREByaP6KiX4vA9y55WR3XesWKo8WE80b0g2db72oBiI/A+Co5c4gJnuEeFDnyBZJ5qLaP3LWMDQ2r2pnfA=
+	t=1738958647; cv=none; b=mhCTi41tgntN2Dke+OGUJ7yTxD0HmL/feDgsm6IuhESxQ71bOxna55BzqtP8oyMlFcKMUUVShOBhEkjYy17BY/846sDB17TfDsbgjN8RrwYFZYCVTCBLy0o+1Vu1eLNJ1BJ06cTbljLFA7pojlEOV1ih8ttJ4X/4vLP49EnVOt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738958582; c=relaxed/simple;
-	bh=PoeeTQAJjZ5RdKFBcSwIbKAekpRiUcC0+f84D/Pj5vE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bSe7uPH2xTfLxG7WesxUItagMp+3zDUVYxiUy+5PBJmaiN0g9+I4b3LCUAkOfdanCSZzZdNiX2mlzF+P70SCsRGlweuqPmuzI9gT0yrUYuBC9mIi93h8Yc1Ewch0ELGEQsg8s1V3+YcMFC2FBoAclOOzocXkez83kuy7cVU7BDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lIajXiA8; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5dcd8d6f130so4892191a12.1;
-        Fri, 07 Feb 2025 12:03:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738958579; x=1739563379; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1pvaaqiA/SmRoJNAwsNTHeXGNX/6oeYrcqiqLNPnA9o=;
-        b=lIajXiA855pRqbKqsSzaLCvI8E+dzeE0PCEyWEB55J9XYL+FjUA7r3NfHFaBLMBE1I
-         KINigj4McX8LbV8551OD90JPjiST1lOth1fY8K8gnXuYP+LIjgBvGVSl/yBNVvAip+gz
-         kH0rx3U+BhVkbyiSKlKRjjXeyRn+YZbKXM5HMfzzIPYAIUUOhq825Uj5Ymr9c3rqMRqe
-         NpiZoZvQTGUlDJ8UN9J60dj+h4ItWR8x+nLrklNR324RgQkXgqRMI3HeWWxZS4xUju4M
-         7vBK2Cqfpem9tkgygG2pDfj+BT9XEzYun8NhsnIZdzQ8azGhMPw3zpR2y9yFX5aw1eLV
-         Y70A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738958579; x=1739563379;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1pvaaqiA/SmRoJNAwsNTHeXGNX/6oeYrcqiqLNPnA9o=;
-        b=kEiqrfZqw2HQdqSVxq5JeFRE/8PPkToAroMh/v897D58+nc+YvYyO8K4GQOOUvJ9at
-         L9meCoot18WozlUgPepjFxwqtSd++oDBsaCakmQfB6FCvVo7MlWedKyIXfKxqIMRd/w3
-         VbsOF2uyJyaxFZqTcIW6r6kdkuM5XrWAu60rpQPuQ0NM4pz9y3CLxzP3BAbkC6UXFQW+
-         9GLxaHjpO9GlxtLGRTzga/YrSdYPxS8mSjrdfIgpU2alE3O6gIbufYK78NrFGunMhbJg
-         a3WvsAdZ/tVE4nBj+4XMlBqkVS5Tle/DZsW/03XQg+dNU65Wi09RlVahbkGOvyz/BRT4
-         +VAg==
-X-Forwarded-Encrypted: i=1; AJvYcCVmm0B/OCLOK3NbtzPlkc6t9z0wfZat6MzGc1fD0lnvpcFPID3WhUNMcdQ/pTa3pS0n5HxktxDdAfE5@vger.kernel.org, AJvYcCXRMDKeM8v0Qqk3coa28E6961r/DvjnECKUjxAelNxn7HP6qoNBBA7PdWc6IQGWIXhJO8wOjHRBSDPkgIco@vger.kernel.org
-X-Gm-Message-State: AOJu0YyN1S3398RoTDFPQmGIR/tbcaQrMNOB7tbJlTOE9sFHKOt7GIUo
-	Cm9DeTfc8MsJg+2gB/8wqLPxX2DEUnKJMbTLa59vIY4rhm6lM7ZEh7ugMA==
-X-Gm-Gg: ASbGncti18OLz4n7WrusxiqDee1vfAyzetxqMGfRxIj4b/dAnC802PrRELFlHyVIekN
-	hr2reqyX10f7VYCyldbjlj9LZCxuO6zBFDTYHOgTBuOiZpW5CzoOkwPRbVCFWfddnjn55xnQgSY
-	tcyfdnjl6/hGRquYHvZn5EWr8xTori7YpRTMzrYDUxVG9bBkFAmhjcMEucq7g+IFvxdr3RQH9y5
-	w1U7CiPDqSejUlQX8eAn01G+lF+0eUHW6uZF7zk/4aYrM/RzKKjmhKaNc4wQ0VMn3/UOLfnOkxM
-	TfJ4DZg6CNfISYfa90/GCS29ceB+e5VZ+D7U7+MSBvYaD+WqK9RfK6yV
-X-Google-Smtp-Source: AGHT+IE4QF7IVhoaNhrO3jS9kTfFrHnXGutu8tKTKQs8oJYJmgx7PdCZKkvctu+cUBQJ84rNlQSPwQ==
-X-Received: by 2002:a05:6402:5202:b0:5dc:74fd:abf0 with SMTP id 4fb4d7f45d1cf-5de45070621mr6028965a12.15.1738958578486;
-        Fri, 07 Feb 2025 12:02:58 -0800 (PST)
-Received: from hex.my.domain (83.8.206.8.ipv4.supernova.orange.pl. [83.8.206.8])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5de59f893ebsm256797a12.45.2025.02.07.12.02.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Feb 2025 12:02:58 -0800 (PST)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Fri, 07 Feb 2025 21:02:46 +0100
-Subject: [PATCH 7/7] ARM: dts: bcm2166x: Add bcm2166x-pinctrl DTSI
+	s=arc-20240116; t=1738958647; c=relaxed/simple;
+	bh=WjlNe0sVb6+Z/v6gi86kjLnaUhKqTTz0OLGVmjtl99c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=camblUosJowf8umnegIFzuqXMzLukOOBeFxVQ8PYzV2REjItqYF4IjQxW3K0GbxDFHk8PGGQTTmrxqrhmc3Dj+Y2ftvgZAdhJygOOA+4WJWVGofmFHch0S8OWFhbOO9ASuGdirithDMzaLfjIckigxHr9cG5GqyLXSI2knDbAbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Eau21S+4; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738958646; x=1770494646;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WjlNe0sVb6+Z/v6gi86kjLnaUhKqTTz0OLGVmjtl99c=;
+  b=Eau21S+4c+dw0OSXMwj10ecfnAvst9IHk+LbjsUoi+msW/phcVuZPlQu
+   eMX4+IjGjnut6RvCp4oy9jH8nIUhoXrQrjsnUNGO96e3Z2kyagKiLEV4M
+   TxZSmkibVUER98owrujQuek0W2H8PscGyGxO/dLuhqL8eoBhez2umWXe8
+   1eRaXh2sCEXC08Vvuf5vho9imP7MRhSL7uoijCpQXPmmcFqMVqrfTZ9UL
+   WLElO0k8aPWuy6qRTX/dILijgNUC3/ZjJrgpvVtKY+HHNxIpLQw1V9QQz
+   ssDI6To+GiDCd4X6Btd4k4BRnfzmeB6FFNX2u9op22tfVWpZB8D8XEBgp
+   Q==;
+X-CSE-ConnectionGUID: eplit/F5SLq1r3c6KdkiMg==
+X-CSE-MsgGUID: WadJuXbeQE+3tZP0ZddzOQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="39303883"
+X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; 
+   d="scan'208";a="39303883"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2025 12:04:06 -0800
+X-CSE-ConnectionGUID: 0v98F1P2TGqq5H5QmNuAcA==
+X-CSE-MsgGUID: fWFbOHFTS7iFzYy6Pn10Ow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="116824606"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 07 Feb 2025 12:04:02 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tgUZz-000yyR-23;
+	Fri, 07 Feb 2025 20:03:59 +0000
+Date: Sat, 8 Feb 2025 04:03:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nikola Jelic <nikola.jelic83@gmail.com>, lgirdwood@gmail.com,
+	broonie@kernel.org, perex@perex.cz, tiwai@suse.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, rwalton@cmlmicro.com
+Subject: Re: [PATCH v3 2/2] ASoC: codecs: cmx655: Add CML's CMX655D codec
+Message-ID: <202502080303.D7LqDToV-lkp@intel.com>
+References: <20250207161412.6281-2-nikola.jelic83@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250207-bcm21664-pinctrl-v1-7-e7cfac9b2d3b@gmail.com>
-References: <20250207-bcm21664-pinctrl-v1-0-e7cfac9b2d3b@gmail.com>
-In-Reply-To: <20250207-bcm21664-pinctrl-v1-0-e7cfac9b2d3b@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Christian Daudt <bcm@fixthebug.org>, Sherman Yin <syin@broadcom.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Stanislav Jakubek <stano.jakubek@gmail.com>, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738958562; l=7006;
- i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
- bh=PoeeTQAJjZ5RdKFBcSwIbKAekpRiUcC0+f84D/Pj5vE=;
- b=3SwA1y2LTND27CT78fpcsbZg+FtSHEAc3BBHVRg7suIc10IJeHBu/J6a3bYG73aCy+5q8lI0j
- iqru4LSW8KUC3c4ZmUd1dEGY39q+Apw1eYtlE1kglnfu3ADK+nTj1OQ
-X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
- pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250207161412.6281-2-nikola.jelic83@gmail.com>
 
-Add common DTSI with common pin control configs for BCM21664/BCM23550
-and include it in bcm2166x-common.dtsi. The configs are kept in a
-separate DTSI to keep things cleaner (pin config definitions take up
-quite a lot of space).
+Hi Nikola,
 
-Currently contains pins for BSC buses and SD/MMC; more pins can be
-added in the future.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
- arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi  |   2 +
- arch/arm/boot/dts/broadcom/bcm2166x-pinctrl.dtsi | 297 +++++++++++++++++++++++
- 2 files changed, 299 insertions(+)
+[auto build test WARNING on broonie-sound/for-next]
+[also build test WARNING on robh/for-next tiwai-sound/for-next tiwai-sound/for-linus linus/master v6.14-rc1 next-20250207]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi b/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
-index d4b412ac8b0343bd3773f50c59a20fa00a3923f8..f535212cb52fec0668abfc06e7268bead70d958a 100644
---- a/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
-@@ -337,3 +337,5 @@ master_ccu: master_ccu@3f001000 {
- 		};
- 	};
- };
-+
-+#include "bcm2166x-pinctrl.dtsi"
-diff --git a/arch/arm/boot/dts/broadcom/bcm2166x-pinctrl.dtsi b/arch/arm/boot/dts/broadcom/bcm2166x-pinctrl.dtsi
-new file mode 100644
-index 0000000000000000000000000000000000000000..51b8730c8feea501f2c5ca6a7bad8233ed708c82
---- /dev/null
-+++ b/arch/arm/boot/dts/broadcom/bcm2166x-pinctrl.dtsi
-@@ -0,0 +1,297 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Common pinmux configrations for BCM2166x (BCM21664/BCM23550).
-+ *
-+ * Copyright (C) 2025 Artur Weber <aweber.kernel@gmail.com>
-+ */
-+
-+&pinctrl {
-+	/* BSC1 */
-+	bsc1_pins: bsc1-pins {
-+		bsc1clk-grp0 {
-+			pins = "bsc1clk";
-+			function = "alt1"; /* BSC1CLK */
-+		};
-+
-+		bsc1dat-grp0 {
-+			pins = "bsc1dat";
-+			function = "alt1"; /* BSC1DAT */
-+		};
-+	};
-+
-+	/* BSC2 */
-+	bsc2_pins: bsc2-pins {
-+		bsc2clk-grp0 {
-+			pins = "gpio16";
-+			function = "alt2"; /* BSC2CLK */
-+		};
-+
-+		bsc2dat-grp0 {
-+			pins = "gpio17";
-+			function = "alt2"; /* BSC2DAT */
-+		};
-+	};
-+
-+	/* BSC3 */
-+	bsc3_pins: bsc3-pins {
-+		bsc3clk-grp0 {
-+			pins = "lcdscl";
-+			function = "alt1"; /* BSC3_CLK */
-+		};
-+
-+		bsc3dat-grp0 {
-+			pins = "lcdsda";
-+			function = "alt1"; /* BSC3_SDA */
-+		};
-+	};
-+
-+	/* BSC4 */
-+	bsc4_pins: bsc4-pins {
-+		bsc4clk-grp0 {
-+			pins = "lcdres";
-+			function = "alt1"; /* BSC4_CLK */
-+		};
-+
-+		bsc4dat-grp0 {
-+			pins = "lcdte";
-+			function = "alt1"; /* BSC4_SDA */
-+		};
-+	};
-+
-+	/* PMBSC */
-+	pmbsc_pins: pmbsc-pins {
-+		pmbscclk-grp0 {
-+			pins = "pmbscclk";
-+			function = "alt1"; /* PMBSCCLK */
-+		};
-+
-+		pmbscdat-grp0 {
-+			pins = "pmbscdat";
-+			function = "alt1"; /* PMBSCDAT */
-+		};
-+	};
-+
-+	/* SD */
-+	sd_width1_pins: sd-width1-pins {
-+		sdck-grp0 {
-+			pins = "sdck";
-+			function = "alt1"; /* SDCK */
-+			bias-disable;
-+		};
-+
-+		sdcmd-grp0 {
-+			pins = "sdcmd";
-+			function = "alt1"; /* SDCMD */
-+			bias-pull-up;
-+		};
-+
-+		sddat-grp0 {
-+			pins = "sddat0";
-+			function = "alt1"; /* SDDATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	sd_width4_pins: sd-width4-pins {
-+		sdck-grp0 {
-+			pins = "sdck";
-+			function = "alt1"; /* SDCK */
-+			bias-disable;
-+		};
-+
-+		sdcmd-grp0 {
-+			pins = "sdcmd";
-+			function = "alt1"; /* SDCMD */
-+			bias-pull-up;
-+		};
-+
-+		sddat-grp0 {
-+			pins = "sddat0", "sddat1", "sddat2", "sddat3";
-+			function = "alt1"; /* SDDATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	/* SD1 */
-+	sd1_width1_pins: sd1-width1-pins {
-+		sd1ck-grp0 {
-+			pins = "mmc1dat7";
-+			function = "alt6"; /* SD1CK */
-+			bias-disable;
-+		};
-+
-+		sd1cmd-grp0 {
-+			pins = "spi0txd";
-+			function = "alt2"; /* SD1CMD */
-+			bias-pull-up;
-+		};
-+
-+		sd1dat0-grp0 {
-+			pins = "mmc1dat5";
-+			function = "alt6"; /* SD1DAT0 */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	sd1_width4_pins: sd1-width4-pins {
-+		sd1ck-grp0 {
-+			pins = "mmc1dat7";
-+			function = "alt6"; /* SD1CK */
-+			bias-disable;
-+		};
-+
-+		sd1cmd-grp0 {
-+			pins = "spi0txd";
-+			function = "alt2"; /* SD1CMD */
-+			bias-pull-up;
-+		};
-+
-+		sd1dat0-grp0 {
-+			pins = "mmc1dat5";
-+			function = "alt6"; /* SD1DAT0 */
-+			bias-pull-up;
-+		};
-+
-+		sd1dat1-grp0 {
-+			pins = "gpio93";
-+			function = "alt1"; /* SD1DAT1 */
-+			bias-pull-up;
-+		};
-+
-+		sd1dat2-grp0 {
-+			pins = "gpio94";
-+			function = "alt1"; /* SD1DAT2 */
-+			bias-pull-up;
-+		};
-+
-+		sd1dat3-grp0 {
-+			pins = "mmc1dat3";
-+			function = "alt6"; /* SD1DAT3 */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	/* MMC0 */
-+	mmc0_width1_pins: mmc0-width1-pins {
-+		mmc0ck-grp0 {
-+			pins = "mmc0ck";
-+			function = "alt1"; /* MMC0CK */
-+			bias-disable;
-+		};
-+
-+		mmc0cmd-grp0 {
-+			pins = "mmc0cmd";
-+			function = "alt1"; /* MMC0CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc0dat-grp0 {
-+			pins = "mmc0dat0";
-+			function = "alt1"; /* MMC0DATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	mmc0_width4_pins: mmc0-width4-pins {
-+		mmc0ck-grp0 {
-+			pins = "mmc0ck";
-+			function = "alt1"; /* MMC0CK */
-+			bias-disable;
-+		};
-+
-+		mmc0cmd-grp0 {
-+			pins = "mmc0cmd";
-+			function = "alt1"; /* MMC0CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc0dat-grp0 {
-+			pins = "mmc0dat0", "mmc0dat1", "mmc0dat2", "mmc0dat3";
-+			function = "alt1"; /* MMC0DATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	mmc0_width8_pins: mmc0-width8-pins {
-+		mmc0ck-grp0 {
-+			pins = "mmc0ck";
-+			function = "alt1"; /* MMC0CK */
-+			bias-disable;
-+		};
-+
-+		mmc0cmd-grp0 {
-+			pins = "mmc0cmd";
-+			function = "alt1"; /* MMC0CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc0dat-grp0 {
-+			pins = "mmc0dat0", "mmc0dat1", "mmc0dat2", "mmc0dat3",
-+			       "mmc0dat4", "mmc0dat5", "mmc0dat6", "mmc0dat7";
-+			function = "alt1"; /* MMC0DATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	/* MMC1 */
-+	mmc1_width1_pins: mmc1-width1-pins {
-+		mmc1ck-grp0 {
-+			pins = "mmc1ck";
-+			function = "alt1"; /* MMC1CK */
-+			bias-disable;
-+		};
-+
-+		mmc1cmd-grp0 {
-+			pins = "mmc1cmd";
-+			function = "alt1"; /* MMC1CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc1dat-grp0 {
-+			pins = "mmc1dat0";
-+			function = "alt1"; /* MMC1DATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	mmc1_width4_pins: mmc1-width4-pins {
-+		mmc1ck-grp0 {
-+			pins = "mmc1ck";
-+			function = "alt1"; /* MMC1CK */
-+			bias-disable;
-+		};
-+
-+		mmc1cmd-grp0 {
-+			pins = "mmc1cmd";
-+			function = "alt1"; /* MMC1CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc1dat-grp0 {
-+			pins = "mmc1dat0", "mmc1dat1", "mmc1dat2", "mmc1dat3";
-+			function = "alt1"; /* MMC1DATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	mmc1_width8_pins: mmc1-width8-pins {
-+		mmc1ck-grp0 {
-+			pins = "mmc1ck";
-+			function = "alt1"; /* MMC1CK */
-+			bias-disable;
-+		};
-+
-+		mmc1cmd-grp0 {
-+			pins = "mmc1cmd";
-+			function = "alt1"; /* MMC1CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc1dat-grp0 {
-+			pins = "mmc1dat0", "mmc1dat1", "mmc1dat2", "mmc1dat3",
-+			       "mmc1dat4", "mmc1dat5", "mmc1dat6", "mmc1dat7";
-+			function = "alt1"; /* MMC1DATx */
-+			bias-pull-up;
-+		};
-+	};
-+};
+url:    https://github.com/intel-lab-lkp/linux/commits/Nikola-Jelic/ASoC-codecs-cmx655-Add-CML-s-CMX655D-codec/20250208-001527
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/20250207161412.6281-2-nikola.jelic83%40gmail.com
+patch subject: [PATCH v3 2/2] ASoC: codecs: cmx655: Add CML's CMX655D codec
+reproduce: (https://download.01.org/0day-ci/archive/20250208/202502080303.D7LqDToV-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502080303.D7LqDToV-lkp@intel.com/
+
+versioncheck warnings: (new ones prefixed by >>)
+   INFO PATH=/opt/cross/rustc-1.78.0-bindgen-0.65.1/cargo/bin:/opt/cross/clang-19/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+   /usr/bin/timeout -k 100 3h /usr/bin/make KCFLAGS= -Wtautological-compare -Wno-error=return-type -Wreturn-type -Wcast-function-type -funsigned-char -Wundef -fstrict-flex-arrays=3 -Wformat-overflow -Wformat-truncation -Wenum-conversion W=1 --keep-going LLVM=1 -j32 ARCH=x86_64 versioncheck
+   find ./* \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS -o -name .pc -o -name .hg -o -name .git \) -prune -o \
+   	-name '*.[hcS]' -type f -print | sort \
+   	| xargs perl -w ./scripts/checkversion.pl
+   ./samples/bpf/spintest.bpf.c: 8 linux/version.h not needed.
+>> ./sound/soc/codecs/cmx655-i2c.c: 3 linux/version.h not needed.
+>> ./sound/soc/codecs/cmx655-spi.c: 3 linux/version.h not needed.
+>> ./sound/soc/codecs/cmx655.c: 3 linux/version.h not needed.
+   ./tools/lib/bpf/bpf_helpers.h: 424: need linux/version.h
+   ./tools/testing/selftests/bpf/progs/dev_cgroup.c: 9 linux/version.h not needed.
+   ./tools/testing/selftests/bpf/progs/netcnt_prog.c: 3 linux/version.h not needed.
+   ./tools/testing/selftests/bpf/progs/test_map_lock.c: 4 linux/version.h not needed.
+   ./tools/testing/selftests/bpf/progs/test_send_signal_kern.c: 4 linux/version.h not needed.
+   ./tools/testing/selftests/bpf/progs/test_spin_lock.c: 4 linux/version.h not needed.
+   ./tools/testing/selftests/bpf/progs/test_tcp_estats.c: 37 linux/version.h not needed.
+   ./tools/testing/selftests/wireguard/qemu/init.c: 27 linux/version.h not needed.
 
 -- 
-2.48.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
