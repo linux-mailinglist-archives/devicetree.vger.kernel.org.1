@@ -1,184 +1,115 @@
-Return-Path: <devicetree+bounces-144207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1B94A2D5BE
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 12:13:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D440A2D607
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 13:17:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F31F7188A342
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 11:13:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7794A3A959C
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 12:17:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6B51AF0C0;
-	Sat,  8 Feb 2025 11:13:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109E2246323;
+	Sat,  8 Feb 2025 12:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Hu4m2dPt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vz4WbChs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5237217ADE8
-	for <devicetree@vger.kernel.org>; Sat,  8 Feb 2025 11:13:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375961A5B97
+	for <devicetree@vger.kernel.org>; Sat,  8 Feb 2025 12:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739013226; cv=none; b=p9f/RScGslnfbjBcoP7rXsH6toAvhEdreKSLc52SSkC8/M74EHF68uAgaWyr69pcwpHbLYGvU0KnYjSMXRn5ECFSRIj4Cd0uL399u35bVa0SL9JwFQMoLloYQ31VVxQANnKcxhCTDqv6NpxsPzoEZ/46s5l0IOvdrc5hqaZdXYM=
+	t=1739017039; cv=none; b=dOhXRqqn6hKYw/+RfKTSJ2cNp2g8doQv54tIigyt3tb8oT35AvAyWGBElaQJxItfXFK/iwFRvv2b6XbJ/1xRaUnvyKV5YQ9PrmILTOkfyiEebLlqg2cHAnT4JqJvVE69rf0vjDFyhqVeig43FoXzdl7sXlsjRgI3zo+4cW+Ger4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739013226; c=relaxed/simple;
-	bh=zNTqRPImJ92nz+c0YeK4LqJ1stJKDQ9br/TFYbHj1Lo=;
+	s=arc-20240116; t=1739017039; c=relaxed/simple;
+	bh=T4eIb3bqRCOm/qgXKt5JXRdNtc/g3t2rmHuZgsY86yc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qHu2RS4+tt/0Hl2pigrYN7gLjpZO8C9apaa7cDJCUmUeYXZu9bT43/7PT1XE+upWXTWRyTId84W1/0+G8rJzkBcTct/dUKm05h1wmRjeVPkHdoMzBy/UZCl0DEd5NEEM3r1XjuUnAdb2OqSNCSKBP084Ka+wW2LrTyBaczGgBXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Hu4m2dPt; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1739013223;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Yd9C+xXA2LYK4yay23tEJLHcwK0FQNJYR+yHMEQ6ia4=;
-	b=Hu4m2dPtMCbBRfym64yR9r+b0JCPqiGKWwf9vjD5q/ZrsXy4exXbiMNA/w2u9WdKd35EmY
-	Njsl0zbLSzIvqYfOwPv6RIzEvHwlinTL2nWFvzQrJg7LhLhwKaffGOQd4gM1A3kuaAAquR
-	bShlOfav6skkojkwRFx4zY9aKA/khxY=
-Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-548-9tRamBlGP6-FTEK_1JuOMQ-1; Sat,
- 08 Feb 2025 06:13:40 -0500
-X-MC-Unique: 9tRamBlGP6-FTEK_1JuOMQ-1
-X-Mimecast-MFC-AGG-ID: 9tRamBlGP6-FTEK_1JuOMQ
-Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id EAF631955DD0;
-	Sat,  8 Feb 2025 11:13:34 +0000 (UTC)
-Received: from localhost (unknown [10.72.112.25])
-	by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id A2B1619560A3;
-	Sat,  8 Feb 2025 11:13:29 +0000 (UTC)
-Date: Sat, 8 Feb 2025 19:13:25 +0800
-From: Baoquan He <bhe@redhat.com>
-To: Mike Rapoport <rppt@kernel.org>
-Cc: Pasha Tatashin <pasha.tatashin@soleen.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>,
-	Andy Lutomirski <luto@kernel.org>,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Eric Biederman <ebiederm@xmission.com>,
-	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pratyush Yadav <ptyadav@amazon.de>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
-	changyuanl@google.com
-Subject: Re: [PATCH v4 00/14] kexec: introduce Kexec HandOver (KHO)
-Message-ID: <Z6c8VeXqV1s+aPXY@fedora>
-References: <20250206132754.2596694-1-rppt@kernel.org>
- <20250206162939.a1f86fb835f1eeb7ed73ff1c@linux-foundation.org>
- <CA+CK2bD6204AKWGOgzLMiMsnVZ=tk+DGc+VWgi3RVt2byaLJJA@mail.gmail.com>
- <Z6a1kxR2GlQoepgI@MiWiFi-R3L-srv>
- <Z6cYt8QryoUfI0wc@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=UvhPNMq5IxWuHFWxfNnOhxPUgoh1Hiapa00thfiknrO+59yx1Wn4vjdJniQPKbj604Ws5YoSFyIw/g2KS5xo+WpD6NIksL3MAuOdWM3hWmGy1n3DjrUa+Bk+fjUIzRaoEfpVN4d5BweTJEClW8703oHuJ6T4RGmqeFh2vklvng8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vz4WbChs; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53f757134cdso3048566e87.2
+        for <devicetree@vger.kernel.org>; Sat, 08 Feb 2025 04:17:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739017035; x=1739621835; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=86n5+Q0ZSLD5Q/iLrsvS8vsVVb/euNtkQzazsN+zt/4=;
+        b=vz4WbChsrYzHJeJBLC/mlxlljZujRZ0PfRVGAH7rcTDuEDV7gxQWUZkvPhGv8jrfdV
+         svOkbRMHQeQmR20yjY2DYYC1dlNPLF7DvoIYQbumt2OAbD43o304uC5av1GxI/eaTICd
+         c8ZBOgFnLWkFT83MdOhCKra+e9+fs9cXscdRxUbP62QaklwRIDBLN8qF/QLvx4l7cK7d
+         xY7u4E+D3KHCfCDt6nWwTWCWemCsNek4th61UkEBPjInpfsKP0/bF4J6CX3+Az9rh+oh
+         4fjFDKIRdqu1e+zW2XLNQUReMcG4S+beFnqXxsFZ44eEubVg3n5ncCD2SSrUCHfRWhQO
+         Ikfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739017035; x=1739621835;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=86n5+Q0ZSLD5Q/iLrsvS8vsVVb/euNtkQzazsN+zt/4=;
+        b=TS+GGXLYuk80zOsGJw2y9g9elIP2bWaBqOnJHf3I++a+n5YEvLg6ZlOy73TSGPV399
+         oyptdgBcFKymg6mvGnwND+cwj/WIal6vNx+MippVb/yTbYX08bMa7cYQDk98VoscR4xE
+         LqupaftKY+KphHrX/MAXVN745puHGLj5+ADSAY4xo3ReAcdJeFRbonNi8yNVw4olKuq4
+         CmcoXdvbgbVGK0/W4eLJPcihI50yX4aA8gO3gLIQ18tWuYW+2fMu1uxrVTJNCbVPvvgL
+         Oz+8NLukZc/3KmyGGZKiYd/8DH/ehPxn3EDAUCbkWRAlX2QKjnFjl1dBUW720JtsCh1x
+         Q5qg==
+X-Forwarded-Encrypted: i=1; AJvYcCV41N1D8RwFn+tdXH7Tr64YSunMqyNZtcVufJzldvS4F66iZtwAITTcqaVrv6Pt/0HpjkzCQ8vmW5uG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzmy7vcI5EHLqYhOQrniBbLxu9FSYAOOLugyb60r89xKj8Iohmr
+	PAy3Vx1/2h5aV4/Ynk97ivne+dwQEkxd6A5GUunlMxqUb05oyIjzjaFDl68tOJImZD242Rngi8I
+	amYw=
+X-Gm-Gg: ASbGncs7JNpadZ180TkKZSdMeM+wno3sC5UulGvOFZfeivvM86dvQoOTx6oeqEyJ1UQ
+	vL62xvAbGILmG9zxdanOrH6CcLuFZ1Z4FJWeAcynUvEDRaPXC+S327RFrkKK+YMZmejJ2MiCiK8
+	82ygpNQy0ic1zuG2vuD+V2XmpqDi2M9hTIoqotuyBzHyViQDUkLT5mlHgka0jeCxKoBdzQ7+5Uf
+	MZeH01HOE3+XVTXVSOKRFDB34u9TdlJBRiHPXRPk1CWhpIWHPEqo6C02cRA3kHVz0s+S9tVLNwL
+	QI3cMvWZZJxiwdslca3f2IhcBt6uAOdeTr5slBur8/n1/Z1kDkH9LOxX1Hfd1n1DsxUz+zI=
+X-Google-Smtp-Source: AGHT+IFwIWTeNKS4wN4R624q3kbyJQojVN74fOV9zot7wxyHPiII72LWtpH9IvPMBK8s7MHZJcW8Bg==
+X-Received: by 2002:ac2:4ed0:0:b0:542:9883:26f with SMTP id 2adb3069b0e04-54414aee2c3mr1807642e87.50.1739017035188;
+        Sat, 08 Feb 2025 04:17:15 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54504062523sm191475e87.79.2025.02.08.04.17.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Feb 2025 04:17:13 -0800 (PST)
+Date: Sat, 8 Feb 2025 14:17:12 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	konradybcio@kernel.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/5] arm64: dts: qcom: ipq6018: move mp5496 regulator
+ out of soc dtsi
+Message-ID: <x353yhiu4zsdyu5dpgfe6li53bq6b25rd3rhsquab7g4cbzehl@klbvqidc2sac>
+References: <z6vspyykbj7e55uequibwacdx7uuwubtuabnsxagcudmqrfwn3@4gfna5rqiimc>
+ <20250208080015.553458-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z6cYt8QryoUfI0wc@kernel.org>
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
+In-Reply-To: <20250208080015.553458-1-amadeus@jmu.edu.cn>
 
-On 02/08/25 at 10:41am, Mike Rapoport wrote:
-> Hi Baoquan,
+On Sat, Feb 08, 2025 at 04:00:15PM +0800, Chukun Pan wrote:
+> Hi,
+> > Wouldn't it be better to move it to the board file without having
+> > intermediate include files?
 > 
-> On Sat, Feb 08, 2025 at 09:38:27AM +0800, Baoquan He wrote:
-> > On 02/06/25 at 08:28pm, Pasha Tatashin wrote:
-> > > On Thu, Feb 6, 2025 at 7:29 PM Andrew Morton <akpm@linux-foundation.org> wrote:
-> > > >
-> > > > On Thu,  6 Feb 2025 15:27:40 +0200 Mike Rapoport <rppt@kernel.org> wrote:
-> > > >
-> > > > > This a next version of Alex's "kexec: Allow preservation of ftrace buffers"
-> > > > > series (https://lore.kernel.org/all/20240117144704.602-1-graf@amazon.com),
-> > > > > just to make things simpler instead of ftrace we decided to preserve
-> > > > > "reserve_mem" regions.
-> > > > >
-> > > > > The patches are also available in git:
-> > > > > https://git.kernel.org/rppt/h/kho/v4
-> > > > >
-> > > > >
-> > > > > Kexec today considers itself purely a boot loader: When we enter the new
-> > > > > kernel, any state the previous kernel left behind is irrelevant and the
-> > > > > new kernel reinitializes the system.
-> > > >
-> > > > I tossed this into mm.git for some testing and exposure.
-> > > >
-> > > > What merge path are you anticipating?
-> > > >
-> > > > Review activity seems pretty thin thus far?
-> > > 
-> > > KHO is going to be discussed at the upcoming lsfmm, we are also
-> > > planning to send v5 of this patch series (discussed with Mike
-> > > Rapoport) in a couple of weeks. It will include enhancements needed
-> > > for the hypervisor live update scenario:
-> > 
-> > So is this V4 still a RFC if v5 will be sent by plan? Should we hold the
-> > reviewing until v5? Or this series is a infrustructure building, v5 will
-> > add more details as you listed as below. I am a little confused.
+> The intermediate include files were suggested by you:
+> https://lore.kernel.org/lkml/xmvtbib3q72tnfpcaic3vbgwilpo7yjnqimr5uk2myjgtslbgm@mlp2kqvljayc/
 > 
-> v4 adds the very basic support for kexec handover in the simplest form we
-> could think of. There were discussions on Linux MM Alignment and Hypervisor
-> live update meetings and there people agreed about MVP for KHO that v4
-> essentially implements.
-> 
-> v5 will add more details on top of v4 and I'm not sure there's a consensus
-> about some of them among the people involved in KHO.
+> Unlike mobile phones or development boards, the pmic (voltage) setting
+> on routers is relatively fixed. (Because QCA will not provide relevant
+> documents). On IPQ60xx SoCs, s2 supplies to cpu, l2 supplies to emmc.
+> The downstream vendor kernel puts it in soc.dtsi (no device override),
+> so I think the include files is more appropriate.
 
-Thanks for the information.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Then I will apply v4 and learn the infrastructure and mechanism firstly.
-
-While what sounds more meaningful to me is v4 can be reviewed, then updated
-and merged. Then another patchset can be posted to add details, if you have
-reached the consensus on the infrastructure part. With that, posting and
-reviewing will be much easier. Unless you guys are still discussing the
-infrastructure part.
-
->  
-> > > 1. Allow nodes to be added to the KHO tree at any time
-> > > 2. Remove "activate" (I will also send a live update framework that
-> > > provides the activate functionality).
-> > > 3. Allow serialization during shutdown.
-> > > 4. Decouple KHO from kexec_file_load(), as kexec_file_load() should
-> > > not be used during live update blackout time.
-> > > 5. Enable multithreaded serialization by using hash-table as an
-> > > intermediate step before conversion to FDT.
-> > 
-> 
-> -- 
-> Sincerely yours,
-> Mike.
-> 
-
+-- 
+With best wishes
+Dmitry
 
