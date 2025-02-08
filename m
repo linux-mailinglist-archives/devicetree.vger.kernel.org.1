@@ -1,220 +1,104 @@
-Return-Path: <devicetree+bounces-144252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 114D4A2D923
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 23:04:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D36CA2D919
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 22:59:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C0A73A5BE3
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 22:04:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C671188717B
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 21:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20CA524113F;
-	Sat,  8 Feb 2025 22:04:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B618D23C8DA;
+	Sat,  8 Feb 2025 21:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=truemaisha.co.tz header.i=@truemaisha.co.tz header.b="drDz8THd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [5.144.164.165])
+Received: from server-598995.kolorio.com (server-598995.kolorio.com [162.241.152.247])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C70244EA8
-	for <devicetree@vger.kernel.org>; Sat,  8 Feb 2025 22:04:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C2B1F3BB1
+	for <devicetree@vger.kernel.org>; Sat,  8 Feb 2025 21:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.241.152.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739052250; cv=none; b=qt/qcMNHkryvvQIVFBLoy+6/3lqZXewOZrjq58+UwpDVc/I2j5H5PZhX4rkt+kglwxisu27IRvU1R6adO4CzntuP/jHAO1WOfNyOaHjlsLl1Sg1/nS2exAtfe/jfEz0oiVJV2R4cpL2NRucofjf7tCZ4/bENyu9yPfjC/Ca4kfY=
+	t=1739051950; cv=none; b=KDabpw5mPdCEBFTXbOzHDDe1aQbQBvzy68KZJPhtaeAVXvo5A2lIx3si2A0iZXYMu1zIuQo/+UNdoCvlfwhjcuQS820m6FSK57CuRAdY2YAOIfS1718g1yRwnbYDnisjyWrwFM8pqISn4IaMZDeJAkhifdExYT5gEFh4tlQakcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739052250; c=relaxed/simple;
-	bh=Is+Qs8gxBkUnO9SHFdZ152vDugn7Py1h5ACe9lKwTz8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QvLs67fer2EnrHjv10HnCpscYE3WXoGa3VhKZUl+9FdpMGsfj9XTJp5WK3p7LOy8Tvoj1k+3DL3Wo82CHPzwOLontc2UW3hjQJm6R8zIa7HNhX4aRuhNZ2Srpqz2KbUSdB/NCOm8V9w3s2Q1+HOXVS3hxiTvLPM7QfFe56zfx94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 0E7742027E;
-	Sat,  8 Feb 2025 22:48:26 +0100 (CET)
-Date: Sat, 8 Feb 2025 22:48:24 +0100
-From: Marijn Suijten <marijn.suijten@somainline.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable
- display
-Message-ID: <vm4wglq5xedieqwo4vy5eeszbx3a625jromi3ts3jkrhw3zccv@7eaol7dckbh7>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>, 
-	Luca Weiss <luca.weiss@fairphone.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250202-fp5-display-v1-0-f52bf546e38f@fairphone.com>
- <20250202-fp5-display-v1-1-f52bf546e38f@fairphone.com>
+	s=arc-20240116; t=1739051950; c=relaxed/simple;
+	bh=gl4+7vNxgV9+JzZtw7EthQ6aGDgi0WVn3wQV/lnKiyo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=L1Mfhm5L3j/tVciZeOSpICV0fj0+2UtmiR7kK+lJuBB3d0tGt8CUSFJNys1nRE7t6I0Q2xxteRDZP/yXG8BrRXlVO20b07J161xEytILQ3WXgTgFggnYok/bN4ia5A2Lm3ZmpyNJbJDHHMkEwnscjmOSy/IeWWMSxHeomreZN7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=truemaisha.co.tz; spf=pass smtp.mailfrom=truemaisha.co.tz; dkim=pass (2048-bit key) header.d=truemaisha.co.tz header.i=@truemaisha.co.tz header.b=drDz8THd; arc=none smtp.client-ip=162.241.152.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=truemaisha.co.tz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=truemaisha.co.tz
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=truemaisha.co.tz; s=default; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=gl4+7vNxgV9+JzZtw7EthQ6aGDgi0WVn3wQV/lnKiyo=; b=drDz8THdPH8cFv0of8q0pTBh4Z
+	bWLYknNwrJ/8wGEwHt+XAiAK7wplB0sR7TRR3xgW0u52/j8svWSNYefxGWgNP/vyGrFuFBmXNhIfk
+	Jqa7NMs8tvOow2RXovEajoXVnNVqo6c96egTJINFOJd5D4e4AoGFLGkI+H55wXKvzXdWePpvSz1mK
+	NYozyADsa3n1IJXtMCFax9L9gOqc9QgJGvXUwV6zwHMBOIhis+0PXa4LnN2IGkJK0hBvRSdaDSDWl
+	nVTkFw95K5OtJHkmArdewtA4hkpK5YLNqJoAqIIXRIQK7EN9TwJKrPk8QAvFZfSZ33B2e2lozowlQ
+	3z4cuECw==;
+Received: from [74.208.124.33] (port=59345 helo=truemaisha.co.tz)
+	by server-598995.kolorio.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <chrispinerick@truemaisha.co.tz>)
+	id 1tgsqv-0005r3-2H
+	for devicetree@vger.kernel.org;
+	Sat, 08 Feb 2025 15:59:07 -0600
+Reply-To: dsong@aa4financialservice.com
+From: David Song <chrispinerick@truemaisha.co.tz>
+To: devicetree@vger.kernel.org
+Subject: Re: The business loan- 
+Date: 08 Feb 2025 21:59:08 +0000
+Message-ID: <20250208210541.A977E70DBFA35D0A@truemaisha.co.tz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250202-fp5-display-v1-1-f52bf546e38f@fairphone.com>
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server-598995.kolorio.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - truemaisha.co.tz
+X-Get-Message-Sender-Via: server-598995.kolorio.com: authenticated_id: chrispinerick@truemaisha.co.tz
+X-Authenticated-Sender: server-598995.kolorio.com: chrispinerick@truemaisha.co.tz
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On 2025-02-02 23:45:51, Luca Weiss wrote:
-> Configure the MDSS nodes for the phone and add the panel node.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+Hello,
 
-Glad to hear (and see in real life) that you're able to use the 1:1:1 topology
-patches.
+My name is David Song, at AA4 FS, we are a consultancy and
+brokerage Firm specializing in Growth Financial Loan and joint
+partnership venture. We specialize in investments in all Private
+and public sectors in a broad range of areas within our Financial
+Investment Services.
 
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+ We are experts in financial and operational management, due
+diligence and capital planning in all markets and industries. Our
+Investors wish to invest in any viable Project presented by your
+Management after reviews on your Business Project Presentation
+Plan.
 
-Thanks!
+ We look forward to your Swift response. We also offer commission
+to consultants and brokers for any partnership referrals.
 
-> ---
->  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 94 ++++++++++++++++++++--
->  1 file changed, 89 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> index 389eca9b9e68187980e92ac921a77a3c3b54f6a5..965e32473a58ae4748e4cb748980fad1d2b06ab6 100644
-> --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> @@ -138,6 +138,34 @@ vreg_ois_dvdd_1p1: regulator-ois-dvdd-1p1 {
->  		vin-supply = <&vreg_s8b>;
->  	};
->  
-> +	vreg_oled_dvdd: regulator-oled-dvdd {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "oled_dvdd";
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +
-> +		gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		vin-supply = <&vreg_s1b>;
-> +
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vreg_oled_vci: regulator-oled-vci {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "oled_vci";
-> +		regulator-min-microvolt = <3000000>;
-> +		regulator-max-microvolt = <3000000>;
-> +
-> +		gpio = <&pm8350c_gpios 7 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		vin-supply = <&vreg_l13c>;
-> +
-> +		regulator-boot-on;
-> +	};
-> +
->  	reserved-memory {
->  		cont_splash_mem: cont-splash@e1000000 {
->  			reg = <0x0 0xe1000000 0x0 0x2300000>;
-> @@ -597,11 +625,6 @@ eeprom@51 {
->  	};
->  };
->  
-> -&dispcc {
-> -	/* Disable for now so simple-framebuffer continues working */
-> -	status = "disabled";
-> -};
-> -
->  &gcc {
->  	protected-clocks = <GCC_CFG_NOC_LPASS_CLK>,
->  			   <GCC_EDP_CLKREF_EN>,
-> @@ -733,6 +756,46 @@ &ipa {
->  	status = "okay";
->  };
->  
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi {
-> +	vdda-supply = <&vreg_l6b>;
-> +	status = "okay";
-> +
-> +	panel@0 {
-> +		compatible = "fairphone,fp5-rm692e5-boe", "raydium,rm692e5";
-> +		reg = <0>;
-> +
-> +		reset-gpios = <&tlmm 44 GPIO_ACTIVE_LOW>;
-> +
-> +		vci-supply = <&vreg_oled_vci>;
-> +		vddio-supply = <&vreg_l12c>;
-> +		dvdd-supply = <&vreg_oled_dvdd>;
-> +
-> +		pinctrl-0 = <&disp_reset_n_active>, <&mdp_vsync>;
-> +		pinctrl-1 = <&disp_reset_n_suspend>, <&mdp_vsync>;
-> +		pinctrl-names = "default", "sleep";
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&mdss_dsi0_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss_dsi0_out {
-> +	data-lanes = <0 1 2 3>;
-> +	remote-endpoint = <&panel_in>;
-> +};
-> +
-> +&mdss_dsi_phy {
-> +	vdds-supply = <&vreg_l10c>;
-> +	status = "okay";
-> +};
-> +
->  &pm7250b_adc {
->  	pinctrl-0 = <&pm7250b_adc_default>;
->  	pinctrl-names = "default";
-> @@ -1026,6 +1089,20 @@ bluetooth_enable_default: bluetooth-enable-default-state {
->  		bias-disable;
->  	};
->  
-> +	disp_reset_n_active: disp-reset-n-active-state {
-> +		pins = "gpio44";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-disable;
-> +	};
-> +
-> +	disp_reset_n_suspend: disp-reset-n-suspend-state {
-> +		pins = "gpio44";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
->  	hall_sensor_default: hall-sensor-default-state {
->  		pins = "gpio155";
->  		function = "gpio";
-> @@ -1033,6 +1110,13 @@ hall_sensor_default: hall-sensor-default-state {
->  		bias-pull-up;
->  	};
->  
-> +	mdp_vsync: mdp-vsync-state {
-> +		pins = "gpio80";
-> +		function = "mdp_vsync";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
->  	pm8008_int_default: pm8008-int-default-state {
->  		pins = "gpio25";
->  		function = "gpio";
-> 
-> -- 
-> 2.48.1
-> 
+ Regards,
+David Song
+Senior Broker
+
+AA4 Financial Services
+13 Wonersh Way, Cheam,
+Sutton, Surrey, SM2 7LX
+Email: dsong@aa4financialservice.com
+
 
