@@ -1,87 +1,152 @@
-Return-Path: <devicetree+bounces-144199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83731A2D4BC
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 09:05:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADF0CA2D4E2
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 09:41:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B73C6188D0BB
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 08:05:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50CD5167F31
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 08:41:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4952D199E94;
-	Sat,  8 Feb 2025 08:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039AA19CC17;
+	Sat,  8 Feb 2025 08:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kREtqi2f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFCC926ACB;
-	Sat,  8 Feb 2025 08:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C451A192D80;
+	Sat,  8 Feb 2025 08:41:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739001935; cv=none; b=mOMLNnQleA7wHnK8gf/AOiAcTghDTCvJuipuTRmEsZiJLtCCwusVqZL6OGGTmDRNeg6Z8DDdTtEDjuVCxKezGKk/yr17CZO3yNYm81ff1neQXWslBTY6exdiU7D887Mj/LgYDv7PGthDCjpz+r2Na+h+Mwkh2kBPfZbJXprcI4I=
+	t=1739004108; cv=none; b=ijUsJ5t9j41HGmcyJbGN/A3v5YdCu+gsPLdXONAG8drkF4a3yBmKpuiUGBFkzZkaL3QE79svucyi1zIIXeJhzMW92Q4ox9Gr3D8oZJRAOxwG66+BTV+G7IoYT+2cB0cvN8Jr/NKKr9eTPmQdPCWmPE9PMyWUhuyB9xhGSMoBydI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739001935; c=relaxed/simple;
-	bh=wbPPDEMyvr3jFmtgy8HcllCGQwqur23bpd3k6/B2Cek=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ejFZ7Y/dxBPd8eEpav+IQV8d3PaeqV4rZxrQijBjwkyt5coWouvriqt0AheRRbHz3zcL5bMkW10UJVcbY6RC4jEf4zEMgnKaRF7nYqQclP7ITbOfQShY7HGP9+bTJS/PW4RL/faXdGYpJh5qy8kwaQTgzwEtOLpH75uX0dpvKcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c01:6750::1])
-	by smtp.qiye.163.com (Hmail) with ESMTP id a7bb8f72;
-	Sat, 8 Feb 2025 16:00:17 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: dmitry.baryshkov@linaro.org
-Cc: amadeus@jmu.edu.cn,
-	andersson@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/5] arm64: dts: qcom: ipq6018: move mp5496 regulator out of soc dtsi
-Date: Sat,  8 Feb 2025 16:00:15 +0800
-Message-Id: <20250208080015.553458-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <z6vspyykbj7e55uequibwacdx7uuwubtuabnsxagcudmqrfwn3@4gfna5rqiimc>
-References: <z6vspyykbj7e55uequibwacdx7uuwubtuabnsxagcudmqrfwn3@4gfna5rqiimc>
+	s=arc-20240116; t=1739004108; c=relaxed/simple;
+	bh=E5gL8dRYvMRUB4RhOkfU03fhf9gt76TJAgi4Xl3jmPc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DdtBZMJQNLmGNzivulNG1Gc2NGFbV2OIMObI9YM8HDxjJhD88xmyXkZZBJL7imZHp9K4fzd2Txc/6apelzwbhKBrLvl0uyXIO/7LSYR6lewP8R3Uyt1SgyT4AttcJAjIaTbhv9mdkVHhz/YsvyIaBlUjqmzcj+WsXC0Rz0zCjxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kREtqi2f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98F32C4CED6;
+	Sat,  8 Feb 2025 08:41:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739004108;
+	bh=E5gL8dRYvMRUB4RhOkfU03fhf9gt76TJAgi4Xl3jmPc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kREtqi2fggdaHb5LdxuUlbR8DBCUpVZQneZJk5djPdcuD+zlfrwy3Afe7zNEJkUwF
+	 ye9iA/JXQY7uM39/BkEOyuNNl7kCmFofLB6/wn6/edGIcq1WdQ288cMsymsQxm7kb+
+	 93CgoBcP7Hc2cGSaJm0AtBwEdpM0WeYSJrDhd/f7fz3J8WZJHeUn08YMbyOCVrTbSH
+	 LcisQvIvzKkLvkq+PrRq1rJdfYPnyfJ20e74GmlHoSlat/YjuOlllltnOzHb/Dyjlk
+	 fm3BQpq17SSse+gB8/aFVhCbARUcCRdCOequOBW1EwRZ8L2VCtatJigrLrZnp23Ks+
+	 NNu8GFJ88NvUw==
+Date: Sat, 8 Feb 2025 10:41:27 +0200
+From: Mike Rapoport <rppt@kernel.org>
+To: Baoquan He <bhe@redhat.com>
+Cc: Pasha Tatashin <pasha.tatashin@soleen.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>,
+	Andy Lutomirski <luto@kernel.org>,
+	Anthony Yznaga <anthony.yznaga@oracle.com>,
+	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	Borislav Petkov <bp@alien8.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Eric Biederman <ebiederm@xmission.com>,
+	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Paolo Bonzini <pbonzini@redhat.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Pratyush Yadav <ptyadav@amazon.de>,
+	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Tom Lendacky <thomas.lendacky@amd.com>,
+	Usama Arif <usama.arif@bytedance.com>,
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
+	changyuanl@google.com
+Subject: Re: [PATCH v4 00/14] kexec: introduce Kexec HandOver (KHO)
+Message-ID: <Z6cYt8QryoUfI0wc@kernel.org>
+References: <20250206132754.2596694-1-rppt@kernel.org>
+ <20250206162939.a1f86fb835f1eeb7ed73ff1c@linux-foundation.org>
+ <CA+CK2bD6204AKWGOgzLMiMsnVZ=tk+DGc+VWgi3RVt2byaLJJA@mail.gmail.com>
+ <Z6a1kxR2GlQoepgI@MiWiFi-R3L-srv>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZQkIaVkoZQx9OH05ITR0ZTFYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtKQU1MTktBQUpZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
-	5VSktLVUpCS0tZBg++
-X-HM-Tid: 0a94e492dde703a2kunma7bb8f72
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Kyo6MTo*KzIcFgIuLx9LAzU8
-	NxVPFCtVSlVKTEhCS0tKTUpDTExCVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0pBTUxOS0FBSllXWQgBWUFNSEg3Bg++
+In-Reply-To: <Z6a1kxR2GlQoepgI@MiWiFi-R3L-srv>
 
-Hi,
-> Wouldn't it be better to move it to the board file without having
-> intermediate include files?
+Hi Baoquan,
 
-The intermediate include files were suggested by you:
-https://lore.kernel.org/lkml/xmvtbib3q72tnfpcaic3vbgwilpo7yjnqimr5uk2myjgtslbgm@mlp2kqvljayc/
+On Sat, Feb 08, 2025 at 09:38:27AM +0800, Baoquan He wrote:
+> On 02/06/25 at 08:28pm, Pasha Tatashin wrote:
+> > On Thu, Feb 6, 2025 at 7:29 PM Andrew Morton <akpm@linux-foundation.org> wrote:
+> > >
+> > > On Thu,  6 Feb 2025 15:27:40 +0200 Mike Rapoport <rppt@kernel.org> wrote:
+> > >
+> > > > This a next version of Alex's "kexec: Allow preservation of ftrace buffers"
+> > > > series (https://lore.kernel.org/all/20240117144704.602-1-graf@amazon.com),
+> > > > just to make things simpler instead of ftrace we decided to preserve
+> > > > "reserve_mem" regions.
+> > > >
+> > > > The patches are also available in git:
+> > > > https://git.kernel.org/rppt/h/kho/v4
+> > > >
+> > > >
+> > > > Kexec today considers itself purely a boot loader: When we enter the new
+> > > > kernel, any state the previous kernel left behind is irrelevant and the
+> > > > new kernel reinitializes the system.
+> > >
+> > > I tossed this into mm.git for some testing and exposure.
+> > >
+> > > What merge path are you anticipating?
+> > >
+> > > Review activity seems pretty thin thus far?
+> > 
+> > KHO is going to be discussed at the upcoming lsfmm, we are also
+> > planning to send v5 of this patch series (discussed with Mike
+> > Rapoport) in a couple of weeks. It will include enhancements needed
+> > for the hypervisor live update scenario:
+> 
+> So is this V4 still a RFC if v5 will be sent by plan? Should we hold the
+> reviewing until v5? Or this series is a infrustructure building, v5 will
+> add more details as you listed as below. I am a little confused.
 
-Unlike mobile phones or development boards, the pmic (voltage) setting
-on routers is relatively fixed. (Because QCA will not provide relevant
-documents). On IPQ60xx SoCs, s2 supplies to cpu, l2 supplies to emmc.
-The downstream vendor kernel puts it in soc.dtsi (no device override),
-so I think the include files is more appropriate.
+v4 adds the very basic support for kexec handover in the simplest form we
+could think of. There were discussions on Linux MM Alignment and Hypervisor
+live update meetings and there people agreed about MVP for KHO that v4
+essentially implements.
 
-Thanks,
-Chukun
+v5 will add more details on top of v4 and I'm not sure there's a consensus
+about some of them among the people involved in KHO.
+ 
+> > 1. Allow nodes to be added to the KHO tree at any time
+> > 2. Remove "activate" (I will also send a live update framework that
+> > provides the activate functionality).
+> > 3. Allow serialization during shutdown.
+> > 4. Decouple KHO from kexec_file_load(), as kexec_file_load() should
+> > not be used during live update blackout time.
+> > 5. Enable multithreaded serialization by using hash-table as an
+> > intermediate step before conversion to FDT.
+> 
 
 -- 
-2.25.1
-
+Sincerely yours,
+Mike.
 
