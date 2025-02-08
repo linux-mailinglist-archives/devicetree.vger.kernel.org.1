@@ -1,138 +1,153 @@
-Return-Path: <devicetree+bounces-144177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D658AA2D298
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 02:26:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFD1A2D2B4
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 02:38:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B24D188CDD3
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 01:27:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D42716D9E8
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 01:38:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2562F80BEC;
-	Sat,  8 Feb 2025 01:26:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95EB313AA2A;
+	Sat,  8 Feb 2025 01:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Kv8AWxYy"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="E6gWZsu+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EA485674E;
-	Sat,  8 Feb 2025 01:26:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE51D125D6
+	for <devicetree@vger.kernel.org>; Sat,  8 Feb 2025 01:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738978012; cv=none; b=Bou05sY7yY3iS0msBVKSwXuQiPDjpvXhmT+x/A5LXaF9mz+iHkcH5DUw+SD0cltxGhX7dRAAaX/2L+ARNI69iWqNBZY65WB03PiPjUEj71WtTcy7ozbxV3hCYMEXqktlggXyZQ5gCOO0GXgtT4fffWVy0cdkz4SBHJuZqQTmD9g=
+	t=1738978728; cv=none; b=EjB782iusRdi1TN1DDLgiWyxAXdPr7EgWpCywZ5ed12f0152l9HCytdZ+nP82M8DIOyqnM6HkOqNQyDy8SsPPB7oNBitRXwpVJJY4ATm4qjAHQgZwj2BXUmOTpwhcAMH0KWKonjQ6OC90ftdyqYZ2Um0TPh9frhcfmOqYybpoYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738978012; c=relaxed/simple;
-	bh=Vf+orbI0MIxZ+NdnmW8ZrODzdSpawbZ5ZYwzT7WkFHs=;
+	s=arc-20240116; t=1738978728; c=relaxed/simple;
+	bh=ju47K4YUcq5vbKrnu/73+Xzl14uDRzIGxdhBiGOEKwM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jbQHAPgUL5IL6J1NiE7rsTwx54dfmsTNCJp2yaDjCQ3eR/zLG/ZdytGsTVpEs/z8M3mnNC3CmriJi2vqTwUjYjO7eHF2VC4LpR3+f8i3/ocBOXY3ti+7FnZGAGhwY/Mk3rDfhvv8kSw+e0gBkatXQpNEwNZ2wzT6bL72l4XmXLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Kv8AWxYy; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738978008; x=1770514008;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=Vf+orbI0MIxZ+NdnmW8ZrODzdSpawbZ5ZYwzT7WkFHs=;
-  b=Kv8AWxYyZg+r4zhQRCIye+sQI73IRZebZApdl3398S2rE2ri4fHyVj7x
-   8VDRL05amBD4ga/31Pfox1kvhGhmv4yG0HAclQ6+X14k8bcgFZje/8Oql
-   MlMdAymvSUj3sqU7X8twqawD2cjd/9hfNR5rTPwHEGnb+I0rprTqq5XCQ
-   4t7weH+rvjdf/jXXOKEI5RoFYOTFZQL9xMT6o5Pu0GogJwcK4ZKIeAfez
-   o6sQYCC63k3vsMk4ZccN653/fajMRs1zIZXVJYsU6FZTk/Z/cF+vpmuga
-   0vBNcAogolHhscMzZ5HB8y4TZi14j5BrKNzAA8lwWm1TWoYZjAjVQaX9g
-   Q==;
-X-CSE-ConnectionGUID: cDgnysi0RLWGqEVAS9U/Hg==
-X-CSE-MsgGUID: ozhffzLQQOWqbGP+mvYBwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="50613572"
-X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; 
-   d="scan'208";a="50613572"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2025 17:26:47 -0800
-X-CSE-ConnectionGUID: 3S9sGSljQLuj0EiY8i0xug==
-X-CSE-MsgGUID: NQdROjzMTsa5FP6NHBmBrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; 
-   d="scan'208";a="116720032"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 07 Feb 2025 17:26:40 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tgZcD-000zM7-1v;
-	Sat, 08 Feb 2025 01:26:37 +0000
-Date: Sat, 8 Feb 2025 09:26:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= via B4 Relay <devnull+j.ne.posteo.net@kernel.org>,
-	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, imx@lists.linux.dev,
-	Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Lee Jones <lee@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <helgaas@kernel.org>,
-	=?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org
-Subject: Re: [PATCH v2 06/12] dt-bindings: pci: Convert fsl,mpc83xx-pcie to
- YAML
-Message-ID: <202502080922.nK85none-lkp@intel.com>
-References: <20250207-ppcyaml-v2-6-8137b0c42526@posteo.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=th7wdYh+VWvdrVQZhGGaZZB90wkz0oyadeD1QqTpqNTsUrF9ZZNpKLR5SrrcNOyv1aUr4CocSxJTonMv1V4cLzOLM6RF+j+EDldOalaJ7ODP+wXqlHwANPvxRfUMgKxZtk5yQBPJzeHPtuISzHd0ghEzfTn3VIq/h6XJ6azw2FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=E6gWZsu+; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1738978725;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4OGpJKlqYKJlS0pLuHn983Uuh5n9DtUrxuwcndbRF+g=;
+	b=E6gWZsu+36TGo6CxBCuxK/KU0QOuFzlIS8NCLaALobr/rETVpkZjPAV0tfK6tgDpsaTkNx
+	1KluWd57+r8+QoFfiIIkBW5jWgN7jfWPLL3oBvs5P3qNV32R4SgMFfW+P4mnN/zgyjI5iG
+	AYAJKYUn25NcQ43fl4TAi0ND3ekQExk=
+Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-692-CGeBAf_OMfe2Z_xYLc2IJA-1; Fri,
+ 07 Feb 2025 20:38:42 -0500
+X-MC-Unique: CGeBAf_OMfe2Z_xYLc2IJA-1
+X-Mimecast-MFC-AGG-ID: CGeBAf_OMfe2Z_xYLc2IJA
+Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 4EE0C1956094;
+	Sat,  8 Feb 2025 01:38:36 +0000 (UTC)
+Received: from localhost (unknown [10.72.112.20])
+	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id CBBC7180087A;
+	Sat,  8 Feb 2025 01:38:32 +0000 (UTC)
+Date: Sat, 8 Feb 2025 09:38:27 +0800
+From: Baoquan He <bhe@redhat.com>
+To: Pasha Tatashin <pasha.tatashin@soleen.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+	Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org,
+	Alexander Graf <graf@amazon.com>, Andy Lutomirski <luto@kernel.org>,
+	Anthony Yznaga <anthony.yznaga@oracle.com>,
+	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	Borislav Petkov <bp@alien8.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Eric Biederman <ebiederm@xmission.com>,
+	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Paolo Bonzini <pbonzini@redhat.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Pratyush Yadav <ptyadav@amazon.de>,
+	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Tom Lendacky <thomas.lendacky@amd.com>,
+	Usama Arif <usama.arif@bytedance.com>,
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
+	changyuanl@google.com
+Subject: Re: [PATCH v4 00/14] kexec: introduce Kexec HandOver (KHO)
+Message-ID: <Z6a1kxR2GlQoepgI@MiWiFi-R3L-srv>
+References: <20250206132754.2596694-1-rppt@kernel.org>
+ <20250206162939.a1f86fb835f1eeb7ed73ff1c@linux-foundation.org>
+ <CA+CK2bD6204AKWGOgzLMiMsnVZ=tk+DGc+VWgi3RVt2byaLJJA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250207-ppcyaml-v2-6-8137b0c42526@posteo.net>
+In-Reply-To: <CA+CK2bD6204AKWGOgzLMiMsnVZ=tk+DGc+VWgi3RVt2byaLJJA@mail.gmail.com>
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
 
-Hi Neuschäfer,
+On 02/06/25 at 08:28pm, Pasha Tatashin wrote:
+> On Thu, Feb 6, 2025 at 7:29â€¯PM Andrew Morton <akpm@linux-foundation.org> wrote:
+> >
+> > On Thu,  6 Feb 2025 15:27:40 +0200 Mike Rapoport <rppt@kernel.org> wrote:
+> >
+> > > This a next version of Alex's "kexec: Allow preservation of ftrace buffers"
+> > > series (https://lore.kernel.org/all/20240117144704.602-1-graf@amazon.com),
+> > > just to make things simpler instead of ftrace we decided to preserve
+> > > "reserve_mem" regions.
+> > >
+> > > The patches are also available in git:
+> > > https://git.kernel.org/rppt/h/kho/v4
+> > >
+> > >
+> > > Kexec today considers itself purely a boot loader: When we enter the new
+> > > kernel, any state the previous kernel left behind is irrelevant and the
+> > > new kernel reinitializes the system.
+> >
+> > I tossed this into mm.git for some testing and exposure.
+> >
+> > What merge path are you anticipating?
+> >
+> > Review activity seems pretty thin thus far?
+> 
+> KHO is going to be discussed at the upcoming lsfmm, we are also
+> planning to send v5 of this patch series (discussed with Mike
+> Rapoport) in a couple of weeks. It will include enhancements needed
+> for the hypervisor live update scenario:
 
-kernel test robot noticed the following build warnings:
+So is this V4 still a RFC if v5 will be sent by plan? Should we hold the
+reviewing until v5? Or this series is a infrustructure building, v5 will
+add more details as you listed as below. I am a little confused.
 
-[auto build test WARNING on 2014c95afecee3e76ca4a56956a936e23283f05b]
+> 
+> 1. Allow nodes to be added to the KHO tree at any time
+> 2. Remove "activate" (I will also send a live update framework that
+> provides the activate functionality).
+> 3. Allow serialization during shutdown.
+> 4. Decouple KHO from kexec_file_load(), as kexec_file_load() should
+> not be used during live update blackout time.
+> 5. Enable multithreaded serialization by using hash-table as an
+> intermediate step before conversion to FDT.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/J-Neusch-fer-via-B4-Relay/dt-bindings-powerpc-Add-Freescale-NXP-MPC83xx-SoCs/20250208-053519
-base:   2014c95afecee3e76ca4a56956a936e23283f05b
-patch link:    https://lore.kernel.org/r/20250207-ppcyaml-v2-6-8137b0c42526%40posteo.net
-patch subject: [PATCH v2 06/12] dt-bindings: pci: Convert fsl,mpc83xx-pcie to YAML
-reproduce: (https://download.01.org/0day-ci/archive/20250208/202502080922.nK85none-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502080922.nK85none-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   Warning: Documentation/arch/powerpc/cxl.rst references a file that doesn't exist: Documentation/ABI/testing/sysfs-class-cxl
->> Warning: Documentation/devicetree/bindings/pci/fsl,mpc8xxx-pci.yaml references a file that doesn't exist: Documentation/devicetree/bindings/pci/fsl,pci.txt
-   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-   Warning: Documentation/hwmon/g762.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/g762.txt
-   Warning: Documentation/translations/ja_JP/SubmittingPatches references a file that doesn't exist: linux-2.6.12-vanilla/Documentation/dontdiff
-   Warning: Documentation/translations/zh_CN/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
-   Warning: Documentation/translations/zh_CN/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
