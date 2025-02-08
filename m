@@ -1,153 +1,131 @@
-Return-Path: <devicetree+bounces-144193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 105CAA2D42B
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 06:48:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18AEDA2D459
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 08:07:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27D613AB731
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 05:48:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6354D3A992F
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 07:06:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E9F1922E6;
-	Sat,  8 Feb 2025 05:48:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B8C01AC43A;
+	Sat,  8 Feb 2025 07:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ako5oNk4"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="BGp24uGd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9633F155A52;
-	Sat,  8 Feb 2025 05:48:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF2014F9E2;
+	Sat,  8 Feb 2025 07:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738993696; cv=none; b=S8EY4xhr5HGG7fss16MBbkatDEMJPz1fx3/yKK0C8v93R7EFa+2N0cGpaJEkbtv1AIJBVKdkyG1VhmYb7cTf8P5uGwGmbKjLxLLJJzriP0RRRu3O5sgWu5BvL8TgcfstScU9OEdiqR/mk8FzhTAtMdYtIVYWwpbvYT8F7gXzKug=
+	t=1738998406; cv=none; b=LbdFODL+vM46rlXOFx6PgYQ2jA2Sv2lC4/EV4DsMD4/67zIEOb/HungfEQV2u73RbHzZbOE/3qbGXQ4IEu7r5w4OvNz+Q68nLCAQlqXYIBT56/3kOCOdTfEM5HV+Xrp3ljzjLS0ExrineZDS74rXiONIa7dmpYXLTDGVD1wn1vU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738993696; c=relaxed/simple;
-	bh=wA0BmDz21/8I4MOZeMPRdJ8DIn6Tlt/iSbPznwlMASM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hs7IxCNHrR75U8NHgoZYArKmHqbNkAs8j+LfztFfWGmMHvKkDxtmCsq8zwTugoHjSlILy26l4kMC/BAhHRg5r5SmyofQTELskb/nA5tlFYK/CozlRT6Sk3qTL2KBC+lEkfyWlJOdPHv+BGgVpGowtzlJonctu0k0SsHvZ9L/AaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ako5oNk4; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738993694; x=1770529694;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wA0BmDz21/8I4MOZeMPRdJ8DIn6Tlt/iSbPznwlMASM=;
-  b=Ako5oNk40zOGNe2HMDzZEauvdM9SwvsbpfEDiWOldrqk8zGMfULvoCxi
-   c21VL3uZV/MZfctv8g2Wk+ZhK3MVcSW37yT7L5cg6MbjPgSbBsYt4SW0J
-   qKTPvCX5gi+NySTaxsYmyk5lHphKcexMxpo2vaKs9G5a1g461YWrotKJo
-   H+z6CDxjY+TqYK32CLLKPmUWZVaPgQ6tVR6mEOTMD54ca2GfHRHaWNuZK
-   QcB0l+ujUqGpZxuUWZwzhVoC/t9Zi3nJ2ZrZKAv7fd9I6Jsc2IXfIpDAN
-   2MBl75JjeYhp18VyfqKaJ3iDTkZ1o91rMXjlSwI5vH9gSET1JCgw0KtRF
-   A==;
-X-CSE-ConnectionGUID: jvYPt10wTeSTtI+7y0SgCQ==
-X-CSE-MsgGUID: ijn0HWvtT+exMGNUecqwdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="51028442"
-X-IronPort-AV: E=Sophos;i="6.13,269,1732608000"; 
-   d="scan'208";a="51028442"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2025 21:48:13 -0800
-X-CSE-ConnectionGUID: HWU+sQIMQp6QzNwU1gmo2w==
-X-CSE-MsgGUID: IxhBp/1ZRTuYG0obpJ0Qcg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="134955066"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 07 Feb 2025 21:48:07 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tgdhF-000zbT-0b;
-	Sat, 08 Feb 2025 05:48:05 +0000
-Date: Sat, 8 Feb 2025 13:48:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jie Gan <quic_jiegan@quicinc.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@linaro.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Tingwei Zhang <quic_tingweiz@quicinc.com>,
-	Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v10 4/7] Coresight: Introduce a new struct coresight_path
-Message-ID: <202502081313.JqJlff9y-lkp@intel.com>
-References: <20250207064213.2314482-5-quic_jiegan@quicinc.com>
+	s=arc-20240116; t=1738998406; c=relaxed/simple;
+	bh=8oKx3ZisAmsV5U7yAeHvNNtKTx6gKpCOuBCE2WJwUOc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pJKV7cfujwXaw7B/uyVaGr1QgSpC/fh14QdzTQbkkjk6GuzNUoc0QptbwPcsQAPQW3PJLxAO9kKcn/ZUDUS9meTx7CU8/PZtEgQ13bRaANvHAnBwS7U4uuuLyIQ6PPNGMbwSm4L5seCbwBowthKMo/M1JmsBLBbp6VDMkJDo8gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=BGp24uGd; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 3ccaa450e5eb11efbd192953cf12861f-20250208
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Vrn/T+bP6v+jye0RhHmeyFpoaCMmJ+ry5M5tfkDObHg=;
+	b=BGp24uGdVc1w2v2DcUEEfheMSfFx7KLndw/kzoPK2ZyE1vim+M/D+84X1R8Eio5ohn13572dVu8QUQwywJYtfakopXhO0s1phA074EA0OXP0nkuYMiw3rn/vpYFSlmp6zAQtc8g3CfxV5ubNN2yDuJ/5sUQnwT8HswQFlz3Dcyw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:4dec5517-8494-4630-8627-c7b05c7d9d57,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:60aa074,CLOUDID:fbf056ff-c190-4cfe-938d-595d7f10e0dc,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 3ccaa450e5eb11efbd192953cf12861f-20250208
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw02.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 458027228; Sat, 08 Feb 2025 15:06:37 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Sat, 8 Feb 2025 15:06:35 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Sat, 8 Feb 2025 15:06:34 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>
+CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, Yunfei
+ Dong <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v7 0/3] media: mediatek: vcodec: support h264 extend vsi
+Date: Sat, 8 Feb 2025 15:06:22 +0800
+Message-ID: <20250208070633.30862-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250207064213.2314482-5-quic_jiegan@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-Hi Jie,
+The working buffer address start and end are calculated in kernel
+side currently, the address end can't be calculated if the driver
+only getting the address file handle, not the real physical address.
+Need to send the extended vsi to firmware to calculate the address
+end.
 
-kernel test robot noticed the following build warnings:
+Re-construct some interface and add configuration to support extend
+and non extend driver at the same time. Needn't to parse nal info for
+extended architecture.
+---
+compared with v6:
+- fix the coding style for patch 2
+- rewrite commit message for patch 2/3
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on atorgue-stm32/stm32-next linus/master v6.14-rc1 next-20250207]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+compared with v5:
+- add some parameters comment for patch 2
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jie-Gan/Coresight-Add-support-for-new-APB-clock-name/20250207-144657
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250207064213.2314482-5-quic_jiegan%40quicinc.com
-patch subject: [PATCH v10 4/7] Coresight: Introduce a new struct coresight_path
-config: arm-randconfig-002-20250208 (https://download.01.org/0day-ci/archive/20250208/202502081313.JqJlff9y-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250208/202502081313.JqJlff9y-lkp@intel.com/reproduce)
+compared with v4:
+- rebase this patch series with latest vcodec driver
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502081313.JqJlff9y-lkp@intel.com/
+compared with v3:
+- change code logic with callback to decode for patch 2
 
-All warnings (new ones prefixed by >>):
+compared with v2:
+- squash patch 2/3/4 together
+- re-write commit message for patch 1
 
->> drivers/hwtracing/coresight/coresight-core.c:659: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Links or sources will read their existing or alloc a trace ID, if their ID
-   drivers/hwtracing/coresight/coresight-core.c:676: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Call this after creating the path and before enabling it. This leaves
+compared with v1:
+- combine some pathes together for patch 2
+- re-write patch 4
+---
+Yunfei Dong (3):
+  media: mediatek: vcodec: remove vsi operation in common interface
+  media: mediatek: vcodec: support extended h264 decode
+  media: mediatek: vcodec: add description for vsi struct
 
-
-vim +659 drivers/hwtracing/coresight/coresight-core.c
-
-   657	
-   658	/**
- > 659	 * Links or sources will read their existing or alloc a trace ID, if their ID
-   660	 * callback is set.
-   661	 */
-   662	static int coresight_get_trace_id(struct coresight_device *csdev,
-   663					  enum cs_mode mode,
-   664					  struct coresight_device *sink)
-   665	{
-   666		if (csdev->type == CORESIGHT_DEV_TYPE_LINK && link_ops(csdev)->trace_id)
-   667			return link_ops(csdev)->trace_id(csdev, mode, sink);
-   668	
-   669		if (csdev->type == CORESIGHT_DEV_TYPE_SOURCE && source_ops(csdev)->trace_id)
-   670			return source_ops(csdev)->trace_id(csdev, mode, sink);
-   671	
-   672		return 0;
-   673	}
-   674	
+ .../vcodec/decoder/mtk_vcodec_dec_drv.h       |   2 +
+ .../decoder/vdec/vdec_h264_req_multi_if.c     | 648 +++++++++++++++---
+ 2 files changed, 558 insertions(+), 92 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.46.0
+
 
