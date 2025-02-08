@@ -1,115 +1,204 @@
-Return-Path: <devicetree+bounces-144208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D440A2D607
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 13:17:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4052A2D626
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 14:01:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7794A3A959C
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 12:17:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4881E167A00
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 13:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109E2246323;
-	Sat,  8 Feb 2025 12:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D71B1B0F14;
+	Sat,  8 Feb 2025 13:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vz4WbChs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c7aN/YpT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375961A5B97
-	for <devicetree@vger.kernel.org>; Sat,  8 Feb 2025 12:17:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4251A3157;
+	Sat,  8 Feb 2025 13:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739017039; cv=none; b=dOhXRqqn6hKYw/+RfKTSJ2cNp2g8doQv54tIigyt3tb8oT35AvAyWGBElaQJxItfXFK/iwFRvv2b6XbJ/1xRaUnvyKV5YQ9PrmILTOkfyiEebLlqg2cHAnT4JqJvVE69rf0vjDFyhqVeig43FoXzdl7sXlsjRgI3zo+4cW+Ger4=
+	t=1739019716; cv=none; b=WXFMLQiLjMicejfbXjSoDWLlI4NSsVTV4jk3HVwAGIICHpIacUnDG1A796Jhp2oEW8d/sdcuX7AWsNAmRim4We5CGOZCvj5P5tmC81+F28HMMhL0A15hs/tSCTfDagl+nV87DNg6qg025/N++zNTIuyAFMcBZXijScwEWUl2g6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739017039; c=relaxed/simple;
-	bh=T4eIb3bqRCOm/qgXKt5JXRdNtc/g3t2rmHuZgsY86yc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UvhPNMq5IxWuHFWxfNnOhxPUgoh1Hiapa00thfiknrO+59yx1Wn4vjdJniQPKbj604Ws5YoSFyIw/g2KS5xo+WpD6NIksL3MAuOdWM3hWmGy1n3DjrUa+Bk+fjUIzRaoEfpVN4d5BweTJEClW8703oHuJ6T4RGmqeFh2vklvng8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vz4WbChs; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53f757134cdso3048566e87.2
-        for <devicetree@vger.kernel.org>; Sat, 08 Feb 2025 04:17:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739017035; x=1739621835; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=86n5+Q0ZSLD5Q/iLrsvS8vsVVb/euNtkQzazsN+zt/4=;
-        b=vz4WbChsrYzHJeJBLC/mlxlljZujRZ0PfRVGAH7rcTDuEDV7gxQWUZkvPhGv8jrfdV
-         svOkbRMHQeQmR20yjY2DYYC1dlNPLF7DvoIYQbumt2OAbD43o304uC5av1GxI/eaTICd
-         c8ZBOgFnLWkFT83MdOhCKra+e9+fs9cXscdRxUbP62QaklwRIDBLN8qF/QLvx4l7cK7d
-         xY7u4E+D3KHCfCDt6nWwTWCWemCsNek4th61UkEBPjInpfsKP0/bF4J6CX3+Az9rh+oh
-         4fjFDKIRdqu1e+zW2XLNQUReMcG4S+beFnqXxsFZ44eEubVg3n5ncCD2SSrUCHfRWhQO
-         Ikfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739017035; x=1739621835;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=86n5+Q0ZSLD5Q/iLrsvS8vsVVb/euNtkQzazsN+zt/4=;
-        b=TS+GGXLYuk80zOsGJw2y9g9elIP2bWaBqOnJHf3I++a+n5YEvLg6ZlOy73TSGPV399
-         oyptdgBcFKymg6mvGnwND+cwj/WIal6vNx+MippVb/yTbYX08bMa7cYQDk98VoscR4xE
-         LqupaftKY+KphHrX/MAXVN745puHGLj5+ADSAY4xo3ReAcdJeFRbonNi8yNVw4olKuq4
-         CmcoXdvbgbVGK0/W4eLJPcihI50yX4aA8gO3gLIQ18tWuYW+2fMu1uxrVTJNCbVPvvgL
-         Oz+8NLukZc/3KmyGGZKiYd/8DH/ehPxn3EDAUCbkWRAlX2QKjnFjl1dBUW720JtsCh1x
-         Q5qg==
-X-Forwarded-Encrypted: i=1; AJvYcCV41N1D8RwFn+tdXH7Tr64YSunMqyNZtcVufJzldvS4F66iZtwAITTcqaVrv6Pt/0HpjkzCQ8vmW5uG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzmy7vcI5EHLqYhOQrniBbLxu9FSYAOOLugyb60r89xKj8Iohmr
-	PAy3Vx1/2h5aV4/Ynk97ivne+dwQEkxd6A5GUunlMxqUb05oyIjzjaFDl68tOJImZD242Rngi8I
-	amYw=
-X-Gm-Gg: ASbGncs7JNpadZ180TkKZSdMeM+wno3sC5UulGvOFZfeivvM86dvQoOTx6oeqEyJ1UQ
-	vL62xvAbGILmG9zxdanOrH6CcLuFZ1Z4FJWeAcynUvEDRaPXC+S327RFrkKK+YMZmejJ2MiCiK8
-	82ygpNQy0ic1zuG2vuD+V2XmpqDi2M9hTIoqotuyBzHyViQDUkLT5mlHgka0jeCxKoBdzQ7+5Uf
-	MZeH01HOE3+XVTXVSOKRFDB34u9TdlJBRiHPXRPk1CWhpIWHPEqo6C02cRA3kHVz0s+S9tVLNwL
-	QI3cMvWZZJxiwdslca3f2IhcBt6uAOdeTr5slBur8/n1/Z1kDkH9LOxX1Hfd1n1DsxUz+zI=
-X-Google-Smtp-Source: AGHT+IFwIWTeNKS4wN4R624q3kbyJQojVN74fOV9zot7wxyHPiII72LWtpH9IvPMBK8s7MHZJcW8Bg==
-X-Received: by 2002:ac2:4ed0:0:b0:542:9883:26f with SMTP id 2adb3069b0e04-54414aee2c3mr1807642e87.50.1739017035188;
-        Sat, 08 Feb 2025 04:17:15 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54504062523sm191475e87.79.2025.02.08.04.17.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Feb 2025 04:17:13 -0800 (PST)
-Date: Sat, 8 Feb 2025 14:17:12 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	konradybcio@kernel.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/5] arm64: dts: qcom: ipq6018: move mp5496 regulator
- out of soc dtsi
-Message-ID: <x353yhiu4zsdyu5dpgfe6li53bq6b25rd3rhsquab7g4cbzehl@klbvqidc2sac>
-References: <z6vspyykbj7e55uequibwacdx7uuwubtuabnsxagcudmqrfwn3@4gfna5rqiimc>
- <20250208080015.553458-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1739019716; c=relaxed/simple;
+	bh=V5vec8PpiED22t7ygC/hZpyml2vl0CPM6zxX4o5lAo4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LwW5YmwGpeQVWGN+HAK4LA0urqihZJ+GxRyAyKQT/OZxL7QjczYV3ccijBWvD7Onu3RpFbFlOxZmOCAkl1q7oUfpGjNcurvyopS2cKwekVJXd59NRsmjDy4cfnRp6plgZEyYJY4J3ESiiIAhvfDgKSuJ0Z7cqGpmMdVOUduCPiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c7aN/YpT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAA33C4CED6;
+	Sat,  8 Feb 2025 13:01:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739019715;
+	bh=V5vec8PpiED22t7ygC/hZpyml2vl0CPM6zxX4o5lAo4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=c7aN/YpTGmUqOuiAL7IEqm6XILmeXLuLqIEv+29lD52lckTMVMLxkfaF8yyuSX/AR
+	 c4I4/J/5qLXirmvBFIjonruZCoJKIbIfIBjIQ78cWDxNu3T7oINSo5epVZKkt+pHsS
+	 t8whEmZbxJOPg/QpwBVnX1y+QvCgaKY/xVOWvCnXkdUjAa70f2VM9eKr9cidm4dzCW
+	 Nr6qIfu9VX6BQGNVHcdftRQmKAoIlhJrvdzgUHMpakbzg2Zdz0kmBfzTTc/533A2UK
+	 0KYQuuiuNNMdUQzWp5yS0jhKZZYYszUMokcQ8XAExSo25Nz4Ug0NcXFaUpuufxQFKJ
+	 s9EWens109G7Q==
+Date: Sat, 8 Feb 2025 13:01:43 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Linus
+ Walleij <linus.walleij@linaro.org>, Nuno Sa <nuno.sa@analog.com>, David
+ Lechner <dlechner@baylibre.com>, Dumitru Ceclan <mitrutzceclan@gmail.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>, Matteo Martelli
+ <matteomartelli3@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Subject: Re: [RFC PATCH 3/5] iio: adc: Support ROHM BD79124 ADC
+Message-ID: <20250208130143.121058d6@jic23-huawei>
+In-Reply-To: <8353a96d-fe39-45c2-b6da-e8083a6bdcd8@gmail.com>
+References: <cover.1738328714.git.mazziesaccount@gmail.com>
+	<e44851669ce7e91d1295ab7352535c93b89d35bf.1738328714.git.mazziesaccount@gmail.com>
+	<20250131174118.0000209a@huawei.com>
+	<8353a96d-fe39-45c2-b6da-e8083a6bdcd8@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250208080015.553458-1-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Feb 08, 2025 at 04:00:15PM +0800, Chukun Pan wrote:
-> Hi,
-> > Wouldn't it be better to move it to the board file without having
-> > intermediate include files?
-> 
-> The intermediate include files were suggested by you:
-> https://lore.kernel.org/lkml/xmvtbib3q72tnfpcaic3vbgwilpo7yjnqimr5uk2myjgtslbgm@mlp2kqvljayc/
-> 
-> Unlike mobile phones or development boards, the pmic (voltage) setting
-> on routers is relatively fixed. (Because QCA will not provide relevant
-> documents). On IPQ60xx SoCs, s2 supplies to cpu, l2 supplies to emmc.
-> The downstream vendor kernel puts it in soc.dtsi (no device override),
-> so I think the include files is more appropriate.
+On Wed, 5 Feb 2025 15:58:18 +0200
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> On 31/01/2025 19:41, Jonathan Cameron wrote:
+> > On Fri, 31 Jan 2025 15:37:48 +0200
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >  =20
+> >> The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The ADC supports
+> >> an automatic measurement mode, with an alarm interrupt for out-of-wind=
+ow
+> >> measurements. The window is configurable for each channel.
+> >> =20
+>=20
+> Hi Jonathan,
+>=20
+> I just sent the v2, where I (think I) addressed all comments except ones=
+=20
+> below. Just wanted to point out what was not changed and why :)
+>=20
+> ...
+>=20
+> >  =20
+> >> +struct bd79124_raw {
+> >> +	u8 bit0_3; /* Is set in high bits of the byte */
+> >> +	u8 bit4_11;
+> >> +};
+> >> +#define BD79124_RAW_TO_INT(r) ((r.bit4_11 << 4) | (r.bit0_3 >> 4)) =20
+> > You could do this as an endian conversion and a single shift I think.
+> > Might be slightly simpler. =20
+>=20
+> I kept this struct with bytes matching the register spec. Doing the=20
+> endian conversion and then shifting would probably have worked, but my=20
+> head hurts when I try thinking how the bits settle there. Especially if=20
+> this is done on a big-endian machine. I can rework this for v3 if you=20
+> feel very strongly about this.
 
--- 
-With best wishes
-Dmitry
+The key is that an endian conversion is always the same as OR + SHIFT
+because that is being done in the system endiannes.
+
+Doesn't matter that much, but we may see follow up patches switching
+this over to the endian handlers.
+
+=46rom datasheet point of view it tends to depend on whether they show
+an illustration of a bulk read or not to whether it's described
+as a multi byte value, or as bits in smaller registers.
+
+>=20
+> ...
+>=20
+> >  =20
+> >> +static irqreturn_t bd79124_event_handler(int irq, void *priv)
+> >> +{
+> >> +	int ret, i_hi, i_lo, i;
+> >> +	struct iio_dev *idev =3D priv;
+> >> +	struct bd79124_data *d =3D iio_priv(idev);
+> >> +
+> >> +	/*
+> >> +	 * Return IRQ_NONE if bailing-out without acking. This allows the IRQ
+> >> +	 * subsystem to disable the offending IRQ line if we get a hardware
+> >> +	 * problem. This behaviour has saved my poor bottom a few times in t=
+he
+> >> +	 * past as, instead of getting unusably unresponsive, the system has
+> >> +	 * spilled out the magic words "...nobody cared". =20
+> > *laughs*.  Maybe the comment isn't strictly necessary but it cheered
+> > up my Friday. =20
+> >> +	 */
+> >> +	ret =3D regmap_read(d->map, BD79124_REG_EVENT_FLAG_HI, &i_hi);
+> >> +	if (ret)
+> >> +		return IRQ_NONE;
+> >> +
+> >> +	ret =3D regmap_read(d->map, BD79124_REG_EVENT_FLAG_LO, &i_lo);
+> >> +	if (ret)
+> >> +		return IRQ_NONE;
+> >> +
+> >> +	if (!i_lo && !i_hi)
+> >> +		return IRQ_NONE;
+> >> +
+> >> +	for (i =3D 0; i < BD79124_MAX_NUM_CHANNELS; i++) {
+> >> +		u64 ecode;
+> >> +
+> >> +		if (BIT(i) & i_hi) { =20
+> > Maybe cleaner as a pair of
+> >=20
+> > for_each_set_bit() loops.
+> >  =20
+>=20
+> I kept the original for 2 reasons.
+>=20
+> 1. the main reason is that the for_each_set_bit() would want the value=20
+> read from a register to be in long. Regmap wants to use int. Solving=20
+> this produced (in my 'humblish' opinion) less readable code.
+>=20
+> 2. The current implementation has only one loop, which should perhaps be=
+=20
+> a tiny bit more efficient.
+
+OK.
+>=20
+> >> +			ecode =3D IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, i,
+> >> +					IIO_EV_TYPE_THRESH, IIO_EV_DIR_RISING);
+> >> +
+> >> +			iio_push_event(idev, ecode, d->timestamp);
+> >> +			/*
+> >> +			 * The BD79124 keeps the IRQ asserted for as long as
+> >> +			 * the voltage exceeds the threshold. It may not serve
+> >> +			 * the purpose to keep the IRQ firing and events
+> >> +			 * generated in a loop because it may yield the
+> >> +			 * userspace to have some problems when event handling
+> >> +			 * there is slow.
+> >> +			 *
+> >> +			 * Thus, we disable the event for the channel. Userspace
+> >> +			 * needs to re-enable the event. =20
+> >=20
+> > That's not pretty. So I'd prefer a timeout and autoreenable if we can. =
+=20
+>=20
+> And I did this, but with constant 1 sec 'grace time' instead of=20
+> modifiable time-out. I believe this suffices and keeps it simpler.
+
+We might want to present that value to userspace anyway at somepoint, but
+a fixed value is fine.
+
+Jonathan
+
+>=20
+>=20
+> Yours,
+> 	-- Matti
+
 
