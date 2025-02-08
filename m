@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-144183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C350A2D2DD
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 03:03:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 813B8A2D2D9
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 03:03:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FD643A264A
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 02:03:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2D08188DF21
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 02:03:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F32154C12;
-	Sat,  8 Feb 2025 02:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E1EA14900F;
+	Sat,  8 Feb 2025 02:03:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="HxJU5kXP"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="XBoyJNpf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49224.qiye.163.com (mail-m49224.qiye.163.com [45.254.49.224])
+Received: from mail-m49230.qiye.163.com (mail-m49230.qiye.163.com [45.254.49.230])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81DED7404E;
-	Sat,  8 Feb 2025 02:03:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.224
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87BAF51C5A;
+	Sat,  8 Feb 2025 02:03:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.230
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738980204; cv=none; b=SrL9ioBGnnktxq27vY1Zqv+GE90PEtqMNYqDj/PaO35VGpOl9ok1XhO4asOPIg5kVTjZNN4j/rjLgKyRl8xJrB2PbKAo/cqhCJPKtnlT45+19vmGfj8sszK6SuS7RkxeanAJDUFTaKoeubSjDzY6acEzhNKRf6odzyt8zR4e/DY=
+	t=1738980199; cv=none; b=bSVtys0nyQ2rzsGl+6aLmQQKlahXQMnWlWrkp1RiGxxEaup6U6TLDAjowGe2t20+Ymdu4ODQEldET8yUpw96/W6gKozmw4QgUMiZe9hRryygpModxp8VkY00DRLQW9Wap3pMIV6DVad1p79/CHlkIjfL/CKKLe9gstNsHzVVwWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738980204; c=relaxed/simple;
-	bh=s8l3HefDQMaZ/E1dda9TO2+Txx+Xu+RnIBc0/hiweVY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=rJ0cOt+ilHwKeZVj/COpvgP+Ew0gKPwVwHRxy9twPGJsJeP9IJ66tj6mh+M+10GE8hazLagPwRueXaBVucZ8l4kTCA20vPy4/DAl8SCaIEffWtv4iQnkP8tdruUgoe7PZbG6oD/jHyglMNCmrRYrgIZZ7nhMKjVxBNe7+JTpkU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=HxJU5kXP; arc=none smtp.client-ip=45.254.49.224
+	s=arc-20240116; t=1738980199; c=relaxed/simple;
+	bh=8GF6YKI9AWbpPELpurdoUFOUVSq0wrthPYGfFTBMiHc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=ZbOqqh4ctnl6aYriR17OsKvzLo3NfFN7BT8n69uO6qqKX9v6/N/FKBom9wvss5XDJvzTaW9V4amCTq2Fp5oYyr0CasAogunAzTSjyq4dcBbABGRRGdFkTZvD7cCHc2JuS9R0SwWY6FvySHufn9SnwoSeBVUkAEquBSoLpwYCVgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=XBoyJNpf; arc=none smtp.client-ip=45.254.49.230
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id a75a6bd3;
-	Sat, 8 Feb 2025 09:58:03 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id a75a6bde;
+	Sat, 8 Feb 2025 09:58:05 +0800 (GMT+08:00)
 From: Elaine Zhang <zhangqing@rock-chips.com>
 To: jonas@kwiboo.se,
 	kever.yang@rock-chips.com,
@@ -46,24 +46,24 @@ Cc: linux-rockchip@lists.infradead.org,
 	huangtao@rock-chips.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 1/2] ARM: dts: rockchip: assigned-clock-parents to SCLK_HDMI_PHY for DCLK_VOP
-Date: Sat,  8 Feb 2025 09:57:56 +0800
-Message-Id: <20250208015757.27594-2-zhangqing@rock-chips.com>
+Subject: [PATCH v3 2/2] arm64: dts: rockchip: Increase VOP clk rate on RK3328
+Date: Sat,  8 Feb 2025 09:57:57 +0800
+Message-Id: <20250208015757.27594-3-zhangqing@rock-chips.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20250208015757.27594-1-zhangqing@rock-chips.com>
 References: <20250208015757.27594-1-zhangqing@rock-chips.com>
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhkeHlZNGBhPSx4YQkMYTk1WFRQJFh
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkxNHVZDQ05DGRkaHRlPHx9WFRQJFh
 	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
 	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a94e3473a5a03a3kunma75a6bd3
+X-HM-Tid: 0a94e347403c03a3kunma75a6bde
 X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NT46FTo*MDIKOAMzLRc1GTod
-	SzAwCh5VSlVKTEhDQkxCQ0NOS0tCVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpLTUk3Bg++
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PCI6Qgw5KjIQQwNOFxUSGS06
+	ODVPCklVSlVKTEhDQkxCQ0NNSUxOVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpOT0o3Bg++
 DKIM-Signature:a=rsa-sha256;
-	b=HxJU5kXPCmv20Zdv+c8H/IC0fdfKgi92QMqlC2TdyZAlFH9g3d7PgHqURZfRkhf66olBJJLN8xVdT4qWNQKSzpjKGPPfg+Gf/J5fSvIb9p6Z9zZMhECQlCfRQk6Cftp2P1qma1vDjRy3cTdHgcqc3l6gu1y+x5GqseDTRVzrwWE=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=AhpGst6hKXGQbjeWSW8bS9c9yfKTvuFhr/lnJ3XcFNU=;
+	b=XBoyJNpfysrNkHeYlKIJtZfd3lX2RtFrsvjTR6b+hw5/uS9bB9Jwi8i3bedCDBc4vKJcGq5FcYV/MEiY/YZhz+x/2Em3VwmzDgwCGJFIgwiXUj59qOvZiR6JoKbSa3zzhWacFBGCokE6cH/l96f1pXaZtTSgUIuapdkDBXLC564=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=2CAH1dcXEz2+VFXon/oNdlFEefOj5kJXA/0Z8pEycdA=;
 	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -71,29 +71,52 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-If dclk_vop use CLK_SET_RATE_PARENT and CLK_SET_RATE_NO_REPARENT
-we should assign clk parent in DT to make it extra clear
-that hdmiphy should be used as dclk_vop parent.
+The VOP on RK3328 needs to run at a higher rate in order to produce
+a proper 3840x2160 signal.
+Change to use 300MHz for VIO clk and 400MHz for VOP clk.
 
-Fixes: 1d34b9757523 ("clk: rockchip: Set parent rate for DCLK_VOP clock on RK3228")
+Fixes: 0f2ddb128fa2 ("arm64: dts: rockchip: Increase VOP clk rate on RK3328")
+
 Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
 ---
- arch/arm/boot/dts/rockchip/rk322x.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/rockchip/rk322x.dtsi b/arch/arm/boot/dts/rockchip/rk322x.dtsi
-index 96421355c274..2eb3c6611e59 100644
---- a/arch/arm/boot/dts/rockchip/rk322x.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk322x.dtsi
-@@ -667,6 +667,8 @@
- 		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru ACLK_VOP>, <&cru DCLK_VOP>, <&cru HCLK_VOP>;
- 		clock-names = "aclk_vop", "dclk_vop", "hclk_vop";
-+		assigned-clocks = <&cru DCLK_VOP>;
-+		assigned-clock-parents = <&cru SCLK_HDMI_PHY>;
- 		resets = <&cru SRST_VOP_A>, <&cru SRST_VOP_H>, <&cru SRST_VOP_D>;
- 		reset-names = "axi", "ahb", "dclk";
- 		iommus = <&vop_mmu>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 7d992c3c01ce..0c905f411e92 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -842,7 +842,8 @@
+ 			<&cru ACLK_BUS_PRE>, <&cru HCLK_BUS_PRE>,
+ 			<&cru PCLK_BUS_PRE>, <&cru ACLK_PERI_PRE>,
+ 			<&cru HCLK_PERI>, <&cru PCLK_PERI>,
+-			<&cru SCLK_RTC32K>;
++			<&cru SCLK_RTC32K>, <&cru ACLK_VIO_PRE>,
++			<&cru ACLK_VOP_PRE>;
+ 		assigned-clock-parents =
+ 			<&cru HDMIPHY>, <&cru PLL_APLL>,
+ 			<&cru PLL_GPLL>, <&xin24m>,
+@@ -852,8 +853,8 @@
+ 			<0>, <24000000>,
+ 			<24000000>, <24000000>,
+ 			<15000000>, <15000000>,
+-			<300000000>, <100000000>,
+-			<400000000>, <100000000>,
++			<100000000>, <100000000>,
++			<100000000>, <100000000>,
+ 			<50000000>, <100000000>,
+ 			<100000000>, <100000000>,
+ 			<50000000>, <50000000>,
+@@ -863,7 +864,8 @@
+ 			<150000000>, <75000000>,
+ 			<75000000>, <150000000>,
+ 			<75000000>, <75000000>,
+-			<32768>;
++			<32768>, <300000000>,
++			<400000000>;
+ 	};
+ 
+ 	usb2phy_grf: syscon@ff450000 {
 -- 
 2.17.1
 
