@@ -1,205 +1,222 @@
-Return-Path: <devicetree+bounces-144222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E02A2D6ED
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 16:39:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1F22A2D721
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 17:05:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD0121629AA
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 15:38:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADFB73A5F05
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2025 16:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D882500A0;
-	Sat,  8 Feb 2025 15:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD904248197;
+	Sat,  8 Feb 2025 16:05:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KlIe/8c4"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i7Iw6IwP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED2213EFE3;
-	Sat,  8 Feb 2025 15:38:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC56B153BD7;
+	Sat,  8 Feb 2025 16:05:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739029135; cv=none; b=LPhYhh5KF/As8xgAlglyKZzQV58oCikH96pOA/4Z1sUcmr+atTlewN5OAuK2eXTYrUgwNyjOMnvKyqKBmPJMlWcVd1maUCa7OitfT8lB788cNqqtq/uP35Dkz7uGc/4L7HCDyg8uOFC0YcCtscNE5SOwMRn44EcljNixKJWcCGE=
+	t=1739030727; cv=none; b=UzpxRKqqjCBpb7AeXUSVyS5z5pbXVYTCBL/XNM5pbwdEVQbVxiMG4Uk/7PY0MgPRXzF2my/qb7nskXwP3DGNJ9QgXJ2DLTCSpUL8L8Kgh118VHq6IMJQLR2BEp8J2pubgEKWOce/GpAzmmrnAA9kifOwIYPySDeEk+kNXufzdOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739029135; c=relaxed/simple;
-	bh=XNM/6f1VoE8anSwil56NQFr75jRiQ8aJ2WPeJxzFQdI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AJcTGcFJR/+2KO+h3B5gTnDJ9iryMlWGvM9s2peqB33Y8o7+Ggl2v9WGcjc7AVsND3VutS5fYowSSS4k8BwlOquLKrmqbV/eSYJFKaZAF1fxaswXSEK8Dkv0aCrcOsZHw+Ze05iZIspaJ1be2ExtC+cs00pPcWAsKlV8sJmrgX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KlIe/8c4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10DA2C4CED6;
-	Sat,  8 Feb 2025 15:38:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739029135;
-	bh=XNM/6f1VoE8anSwil56NQFr75jRiQ8aJ2WPeJxzFQdI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KlIe/8c4mq6aMpjIVAOTmKedtplOY/9X9GSlmYuu8nQ++AtOVSndQsBVwOWE5d/6T
-	 vKk5rvmiPkpijNhNKt+YsO6K4RWOpo0Qf2nDCSNyrGn0AA2hBW6X2KYU6D3oi7Hl42
-	 v75lBOCz4zfRffB4Xg7ATMBRgs9k2D/q+Vhk8aXwO2PFrt3PYmkw7rSToPiu8Gres1
-	 tVq+HUkjBGzvWq2jINFGx3BMcFkwFev7A9lnH+3HJ/2EYK9i3aifLTQwhI+UQvSxip
-	 y5LKBe5q2VxcyoRuJ4dnxmgENjAd3QqH2By+DKEBfeN+5xP94okIZV+ZPEgik5vYzy
-	 t1YUgUzA9VyzQ==
-Date: Sat, 8 Feb 2025 15:38:43 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>, Robert Budai
- <robert.budai@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Alexandru Ardelean
- <alexandru.ardelean@analog.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Nuno Sa
- <nuno.sa@analog.com>, Ramona Gradinariu <ramona.gradinariu@analog.com>,
- Trevor Gamblin <tgamblin@baylibre.com>, Marcelo Schmitt
- <marcelo.schmitt@analog.com>, Paul Cercueil <paul@crapouillou.net>, David
- Lechner <dlechner@baylibre.com>, Antoniu Miclaus
- <antoniu.miclaus@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v6 4/6] dt-bindings: iio: Add adis16550 bindings
-Message-ID: <20250208153843.0353baa9@jic23-huawei>
-In-Reply-To: <20250205-styling-chirpy-79eae9437b3b@spud>
-References: <20250204143612.85939-1-robert.budai@analog.com>
-	<20250204143612.85939-5-robert.budai@analog.com>
-	<20250204-helium-marbled-a0863a0a18a8@spud>
-	<15065d0cd19f39d92ce860cd03802c368df74b34.camel@gmail.com>
-	<20250205-styling-chirpy-79eae9437b3b@spud>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1739030727; c=relaxed/simple;
+	bh=+Up3R3tTo0WF2tM25OhGWnezyR3uKz7Ir9pL8p4zHP4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hCk0LJ6WpTgpE6TFoZai5Um0Ccds/8px+H1DxK69EhJthWOzkoyXSGTVxitjk9uh+JbXWV/JJE8BiSgUopozS826MRO+x2fhDNigPB1WBVKP+ys1J3kQh14mzr3Tee9isPD3HWVRjeMm85qTPLxFGgkNftKAm7PKVha6nAxyzwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=i7Iw6IwP; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739030726; x=1770566726;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+Up3R3tTo0WF2tM25OhGWnezyR3uKz7Ir9pL8p4zHP4=;
+  b=i7Iw6IwPygp8bU4zQf7fuge6Km8nEIHmIv3onIMos+Ub57FtMyJd6o/C
+   C/j6XjFIxBuGDU8P3Az/pjIyRDmJ5Hm4XBsSwd7bvJfAT0W7QObWZdYJX
+   nDiA2EqvQ47uAm4WqtB2XXAIRVljUerlVcxKMGM7R3vYkBHJsE86yku38
+   lasX2I5R8Ym4u6wcrZhTCOmPKc+Wk27Gz+38JJRPt6Gc1P2CdrdDGaztM
+   YoSur3NyUivQkmdoOB6yaFh1RW31kNe9RihUMv1tAd1wzoSJuzd7j29mn
+   nbeoZ+IpY55ByUTHVS2En8Vbv2HorlGulNg50D0Q1r5OoaOC1gm4E7wZk
+   w==;
+X-CSE-ConnectionGUID: Cwl5FRFWSiSJtuDGIvW7NQ==
+X-CSE-MsgGUID: X3rAnDkgTqSE1DkvpoAWCg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11339"; a="27265508"
+X-IronPort-AV: E=Sophos;i="6.13,270,1732608000"; 
+   d="scan'208";a="27265508"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2025 08:05:25 -0800
+X-CSE-ConnectionGUID: xxm7HiRqT8OWewmMmaOfAg==
+X-CSE-MsgGUID: p65siFknQdO+3gJ8w+uhUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="142672695"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 08 Feb 2025 08:05:18 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tgnKW-0010Gh-0j;
+	Sat, 08 Feb 2025 16:05:16 +0000
+Date: Sun, 9 Feb 2025 00:04:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>, davem@davemloft.net
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>
+Subject: Re: [PATCH net-next 11/13] net: phy: Only rely on phy_port for
+ PHY-driven SFP
+Message-ID: <202502082347.tFufJ529-lkp@intel.com>
+References: <20250207223634.600218-12-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250207223634.600218-12-maxime.chevallier@bootlin.com>
 
-On Wed, 5 Feb 2025 19:52:37 +0000
-Conor Dooley <conor@kernel.org> wrote:
+Hi Maxime,
 
-> On Wed, Feb 05, 2025 at 04:11:51PM +0000, Nuno S=C3=A1 wrote:
-> > On Tue, 2025-02-04 at 19:25 +0000, Conor Dooley wrote: =20
-> > > On Tue, Feb 04, 2025 at 04:36:08PM +0200, Robert Budai wrote: =20
-> > > > Document the ADIS16550 device devicetree bindings.
-> > > >=20
-> > > > Co-developed-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > > > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > > > Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
-> > > > Signed-off-by: Robert Budai <robert.budai@analog.com>
-> > > > ---
-> > > >=20
-> > > > v6:
-> > > > - applied blank line suggestions
-> > > > - added clock-frequency dependency change suggestions
-> > > > - yamllint corrections
-> > > >=20
-> > > > =C2=A0.../bindings/iio/imu/adi,adis16550.yaml=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 83 +++++++++++++++++++
-> > > > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 9 ++
-> > > > =C2=A02 files changed, 92 insertions(+)
-> > > > =C2=A0create mode 100644
-> > > > Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis1655=
-0.yaml
-> > > > b/Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..8750bb937979
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
-> > > > @@ -0,0 +1,83 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/iio/imu/adi,adis16550.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Analog Devices ADIS16550 and similar IMUs
-> > > > +
-> > > > +maintainers:
-> > > > +=C2=A0 - Nuno Sa <nuno.sa@analog.com>
-> > > > +=C2=A0 - Ramona Gradinariu <ramona.gradinariu@analog.com>
-> > > > +=C2=A0 - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > > > +
-> > > > +properties:
-> > > > +=C2=A0 compatible:
-> > > > +=C2=A0=C2=A0=C2=A0 enum:
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,adis16550
-> > > > +
-> > > > +=C2=A0 reg:
-> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > > +
-> > > > +=C2=A0 spi-cpha: true
-> > > > +=C2=A0 spi-cpol: true
-> > > > +
-> > > > +=C2=A0 spi-max-frequency:
-> > > > +=C2=A0=C2=A0=C2=A0 maximum: 15000000
-> > > > +
-> > > > +=C2=A0 vdd-supply: true
-> > > > +
-> > > > +=C2=A0 interrupts:
-> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > > +
-> > > > +=C2=A0 reset-gpios:
-> > > > +=C2=A0=C2=A0=C2=A0 description:
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Must be the device tree identifier =
-of the RESET pin. If specified,
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 it will be asserted during driver p=
-robe. As the line is active low,
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 it should be marked GPIO_ACTIVE_LOW.
-> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > > +
-> > > > +=C2=A0 clocks:
-> > > > +=C2=A0=C2=A0=C2=A0 description: If not provided, then the internal=
- clock is used.
-> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > > +
-> > > > +=C2=A0 clock-frequency:
-> > > > +=C2=A0=C2=A0=C2=A0 description: Clock frequency in Hz when an exte=
-rnal clock is used.
-> > > > +=C2=A0=C2=A0=C2=A0 oneOf:
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - minimum: 1
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maximum: 128
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - minimum: 3000
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maximum: 4500 =20
-> > >=20
-> > > I don't get why this is a property, to be honest. When you've got an
-> > > external clock, why isn't the frequency obtained from the clock provi=
-der
-> > > node?
-> > >  =20
-> >=20
-> > The main purpose of this property is actually to show/document the cons=
-trains of
-> > the external clock. We can very well just error out in the driver (and =
-we do
-> > that) and not have this property. I mentioned this property to Robert s=
-ome
-> > revisions ago and I also pointed out that I wasn't really sure if it sh=
-ould be
-> > used or not=C2=A0(I guess this is more for fixed clock providers...). I=
-IRC, I did
-> > asked for some advice/comments but we got none so I assume Robert just =
-decided
-> > to use it and see what you guys had to say about it. =20
->=20
-> NGL, this is one of the kinda of things where if you're relying on
-> dt-bindings to avoid cocking up your board design, things have already
-> gotten pretty badly wrong! That said, "clock-frequency" is a
-> property for cpus, fixed-frequency clock providers and i2c buses, you'd
-> need a vendor prefix and a unit suffix here IMO. Also, I don't really
-> think that it actually does anything at all, given it does not constrain =
-the
-> clock you're linking to with the clocks property. This may as well just be
-> a comment in the description of the clocks property, for all that it does.
+kernel test robot noticed the following build errors:
 
-I'd just drop it.=20
+[auto build test ERROR on net-next/main]
 
-Jonathan
+url:    https://github.com/intel-lab-lkp/linux/commits/Maxime-Chevallier/net-ethtool-Introduce-ETHTOOL_LINK_MEDIUM_-values/20250208-064223
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20250207223634.600218-12-maxime.chevallier%40bootlin.com
+patch subject: [PATCH net-next 11/13] net: phy: Only rely on phy_port for PHY-driven SFP
+config: i386-buildonly-randconfig-005-20250208 (https://download.01.org/0day-ci/archive/20250208/202502082347.tFufJ529-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250208/202502082347.tFufJ529-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502082347.tFufJ529-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/net/phy/qcom/qca807x.c:698:12: error: use of undeclared identifier 'phy_sfp_attach'; did you mean 'phy_attach'?
+     698 |         .attach = phy_sfp_attach,
+         |                   ^~~~~~~~~~~~~~
+         |                   phy_attach
+   include/linux/phy.h:1912:20: note: 'phy_attach' declared here
+    1912 | struct phy_device *phy_attach(struct net_device *dev, const char *bus_id,
+         |                    ^
+>> drivers/net/phy/qcom/qca807x.c:699:12: error: use of undeclared identifier 'phy_sfp_detach'; did you mean 'phy_detach'?
+     699 |         .detach = phy_sfp_detach,
+         |                   ^~~~~~~~~~~~~~
+         |                   phy_detach
+   include/linux/phy.h:1924:6: note: 'phy_detach' declared here
+    1924 | void phy_detach(struct phy_device *phydev);
+         |      ^
+>> drivers/net/phy/qcom/qca807x.c:702:17: error: use of undeclared identifier 'phy_sfp_connect_phy'
+     702 |         .connect_phy = phy_sfp_connect_phy,
+         |                        ^
+>> drivers/net/phy/qcom/qca807x.c:703:20: error: use of undeclared identifier 'phy_sfp_disconnect_phy'
+     703 |         .disconnect_phy = phy_sfp_disconnect_phy,
+         |                           ^
+>> drivers/net/phy/qcom/qca807x.c:748:9: error: call to undeclared function 'phy_sfp_probe'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     748 |                 ret = phy_sfp_probe(phydev, &qca807x_sfp_ops);
+         |                       ^
+   5 errors generated.
 
 
+vim +698 drivers/net/phy/qcom/qca807x.c
+
+d1cb613efbd3cd Robert Marko      2024-02-06  696  
+d1cb613efbd3cd Robert Marko      2024-02-06  697  static const struct sfp_upstream_ops qca807x_sfp_ops = {
+d1cb613efbd3cd Robert Marko      2024-02-06 @698  	.attach = phy_sfp_attach,
+d1cb613efbd3cd Robert Marko      2024-02-06 @699  	.detach = phy_sfp_detach,
+d1cb613efbd3cd Robert Marko      2024-02-06  700  	.module_insert = qca807x_sfp_insert,
+d1cb613efbd3cd Robert Marko      2024-02-06  701  	.module_remove = qca807x_sfp_remove,
+b2db6f4ace72e7 Maxime Chevallier 2024-08-21 @702  	.connect_phy = phy_sfp_connect_phy,
+b2db6f4ace72e7 Maxime Chevallier 2024-08-21 @703  	.disconnect_phy = phy_sfp_disconnect_phy,
+d1cb613efbd3cd Robert Marko      2024-02-06  704  };
+d1cb613efbd3cd Robert Marko      2024-02-06  705  
+d1cb613efbd3cd Robert Marko      2024-02-06  706  static int qca807x_probe(struct phy_device *phydev)
+d1cb613efbd3cd Robert Marko      2024-02-06  707  {
+d1cb613efbd3cd Robert Marko      2024-02-06  708  	struct device_node *node = phydev->mdio.dev.of_node;
+d1cb613efbd3cd Robert Marko      2024-02-06  709  	struct qca807x_shared_priv *shared_priv;
+d1cb613efbd3cd Robert Marko      2024-02-06  710  	struct device *dev = &phydev->mdio.dev;
+d1cb613efbd3cd Robert Marko      2024-02-06  711  	struct phy_package_shared *shared;
+d1cb613efbd3cd Robert Marko      2024-02-06  712  	struct qca807x_priv *priv;
+d1cb613efbd3cd Robert Marko      2024-02-06  713  	int ret;
+d1cb613efbd3cd Robert Marko      2024-02-06  714  
+d1cb613efbd3cd Robert Marko      2024-02-06  715  	ret = devm_of_phy_package_join(dev, phydev, sizeof(*shared_priv));
+d1cb613efbd3cd Robert Marko      2024-02-06  716  	if (ret)
+d1cb613efbd3cd Robert Marko      2024-02-06  717  		return ret;
+d1cb613efbd3cd Robert Marko      2024-02-06  718  
+d1cb613efbd3cd Robert Marko      2024-02-06  719  	if (phy_package_probe_once(phydev)) {
+d1cb613efbd3cd Robert Marko      2024-02-06  720  		ret = qca807x_phy_package_probe_once(phydev);
+d1cb613efbd3cd Robert Marko      2024-02-06  721  		if (ret)
+d1cb613efbd3cd Robert Marko      2024-02-06  722  			return ret;
+d1cb613efbd3cd Robert Marko      2024-02-06  723  	}
+d1cb613efbd3cd Robert Marko      2024-02-06  724  
+d1cb613efbd3cd Robert Marko      2024-02-06  725  	shared = phydev->shared;
+d1cb613efbd3cd Robert Marko      2024-02-06  726  	shared_priv = shared->priv;
+d1cb613efbd3cd Robert Marko      2024-02-06  727  
+d1cb613efbd3cd Robert Marko      2024-02-06  728  	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+d1cb613efbd3cd Robert Marko      2024-02-06  729  	if (!priv)
+d1cb613efbd3cd Robert Marko      2024-02-06  730  		return -ENOMEM;
+d1cb613efbd3cd Robert Marko      2024-02-06  731  
+d1cb613efbd3cd Robert Marko      2024-02-06  732  	priv->dac_full_amplitude = of_property_read_bool(node, "qcom,dac-full-amplitude");
+d1cb613efbd3cd Robert Marko      2024-02-06  733  	priv->dac_full_bias_current = of_property_read_bool(node, "qcom,dac-full-bias-current");
+d1cb613efbd3cd Robert Marko      2024-02-06  734  	priv->dac_disable_bias_current_tweak = of_property_read_bool(node,
+d1cb613efbd3cd Robert Marko      2024-02-06  735  								     "qcom,dac-disable-bias-current-tweak");
+d1cb613efbd3cd Robert Marko      2024-02-06  736  
+1677293ed89166 Robert Marko      2024-03-05  737  #if IS_ENABLED(CONFIG_GPIOLIB)
+d1cb613efbd3cd Robert Marko      2024-02-06  738  	/* Do not register a GPIO controller unless flagged for it */
+d1cb613efbd3cd Robert Marko      2024-02-06  739  	if (of_property_read_bool(node, "gpio-controller")) {
+d1cb613efbd3cd Robert Marko      2024-02-06  740  		ret = qca807x_gpio(phydev);
+d1cb613efbd3cd Robert Marko      2024-02-06  741  		if (ret)
+d1cb613efbd3cd Robert Marko      2024-02-06  742  			return ret;
+d1cb613efbd3cd Robert Marko      2024-02-06  743  	}
+1677293ed89166 Robert Marko      2024-03-05  744  #endif
+d1cb613efbd3cd Robert Marko      2024-02-06  745  
+d1cb613efbd3cd Robert Marko      2024-02-06  746  	/* Attach SFP bus on combo port*/
+d1cb613efbd3cd Robert Marko      2024-02-06  747  	if (phy_read(phydev, QCA807X_CHIP_CONFIGURATION)) {
+d1cb613efbd3cd Robert Marko      2024-02-06 @748  		ret = phy_sfp_probe(phydev, &qca807x_sfp_ops);
+d1cb613efbd3cd Robert Marko      2024-02-06  749  		if (ret)
+d1cb613efbd3cd Robert Marko      2024-02-06  750  			return ret;
+d1cb613efbd3cd Robert Marko      2024-02-06  751  		linkmode_set_bit(ETHTOOL_LINK_MODE_FIBRE_BIT, phydev->supported);
+d1cb613efbd3cd Robert Marko      2024-02-06  752  		linkmode_set_bit(ETHTOOL_LINK_MODE_FIBRE_BIT, phydev->advertising);
+d1cb613efbd3cd Robert Marko      2024-02-06  753  	}
+d1cb613efbd3cd Robert Marko      2024-02-06  754  
+d1cb613efbd3cd Robert Marko      2024-02-06  755  	phydev->priv = priv;
+d1cb613efbd3cd Robert Marko      2024-02-06  756  
+d1cb613efbd3cd Robert Marko      2024-02-06  757  	return 0;
+d1cb613efbd3cd Robert Marko      2024-02-06  758  }
+d1cb613efbd3cd Robert Marko      2024-02-06  759  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
