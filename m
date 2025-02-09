@@ -1,137 +1,178 @@
-Return-Path: <devicetree+bounces-144317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB388A2DD12
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 12:21:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1597EA2DD19
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 12:22:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 836013A2215
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:20:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A70E01651CC
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:22:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA880185B62;
-	Sun,  9 Feb 2025 11:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HLEanUoa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A866C19D8A9;
+	Sun,  9 Feb 2025 11:22:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5E6B14A85;
-	Sun,  9 Feb 2025 11:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB9E315CD52;
+	Sun,  9 Feb 2025 11:22:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739100055; cv=none; b=sYEvj2N32VbkX/bjfu6PxWrioB+wk6vC683q6s+/TFmwzLahIpo71UMTrkRPPn7rJkUbncEVr3UWwvtR4qQ1GRi0hQUOSPX2CT9pxoPOAKAwmfVRBwVJ4FEHncEp1+4fkRG8tHbhQ/b4RVBzn9giCx71y2HwFuyQXnUeDvuEXVY=
+	t=1739100169; cv=none; b=oEIqix8vgM3/wgWva9LsBduA7BCym5X5BXFD3VrZ1gv1NJpNbinYT0zXlGR6Is9fAfa4PgvgLJAZiflKX5121mhkjDPn8v+smW+jws8hwTkigiR75u7X6Go8hBrqe2HwDSav3odGBOeHUilIW5y3w2n7IKDS9Za+kutGr4qNtfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739100055; c=relaxed/simple;
-	bh=V5yIaYuH9slaFKfsdeMixCJCQEucKWnYLvD3h5z+1jg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AkGbCXSgLo3SlEEs+z4YQll2UTb4Q6JFp+7PP0Ulngay6yLuYPAVBp/t7+xPdZHfj29miVgZIVosPOQq0OPglv09242y/MDP1s8S2F1rjpYqFADsdSSgefaxDI5Nbd/TobOfkRMnQ9RjHUO/6TBSN43Y2WIK7AR1Kku60B46ack=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HLEanUoa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 075E7C4CEDD;
-	Sun,  9 Feb 2025 11:20:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739100055;
-	bh=V5yIaYuH9slaFKfsdeMixCJCQEucKWnYLvD3h5z+1jg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HLEanUoaVa7wOeEZtSTeB1+x7ZjxqQIAIV+dH9bbxHKHWTkBZBVujavrCfXlYOWi1
-	 cBPAunDVH+77/OUkHRhpIi3Fn5dpevrkfCl0p9Y2rM9HgWQLxTFuDdLNfE+dlTersm
-	 lWoNhKalhUd29jMmT7MkicKMESy32PfgHZLP1D6W2p6CEggRUisQBQlp8aXc/l5FWZ
-	 Fg4qlxA2Wkl7CUUib7/vxO6HcNCMMJ86Pq4whPd8gQ21bUjSDLLs/0QFbA7udXwNOx
-	 jL3MazAV1rrksDflr5sPKsosU5oK+iseuNA8iRYHpmYSfr+C6J/6gGLDUcKPUS1Drm
-	 ug/RciZreI6hw==
-Message-ID: <7b282f8e-57a1-418a-9a24-66c103e72018@kernel.org>
-Date: Sun, 9 Feb 2025 12:20:47 +0100
+	s=arc-20240116; t=1739100169; c=relaxed/simple;
+	bh=fSpAlkuvzafpBDecQQKDZzLy+MX6Hjz7TRvpdMGaUmQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=csWELi4k7kAtjVDQOTPy8L0f0141O3GcFS3ffKT9ozTyKrhOUqWTUk5h1zLn04DQz5RwuKuhxx89yWMUKoPU5CGUIAuNVveUGpnBfmCafke7ikk3BLTw9+5QdpJk3MDE39DJ6B/saJfkudW80AZf04xKEXlXB4SCw060Q1dxye4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ab7863f9be4so346404366b.0;
+        Sun, 09 Feb 2025 03:22:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739100165; x=1739704965;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=czsr8ut4E1IjeGJZsPHODj7dteAs5/QBRXMGMfAcAZA=;
+        b=I2SXLqbOzyC5aMhr6I7rBYcKaNyxcubopTza3dXAq8Rsm+GHGjlIZ5lGI81mc7ygxQ
+         AGUCIUeEoc1gOr5hRGKx3R2YTT0hnb3oj7J8vc4QwF6yWkZmHCgUuJRbxr+bt8OIGHhI
+         VTWzWgsc9fuX4uI7ja6/A6HQk4ZN/gjhI6/7JiwGPttAzcTCG38ouo3tRPX6QH9mPsFY
+         9BQXMOVLPVpLEtvN+0tlYo7/pW5e8bimTjNHxMAosfUF6Ix9zID0kp6uxPOEz8j+eDH6
+         qE2BtK0PSwJqh+qKED15SlYJ34DVVvZiNVphrX60Q+WXQXihYLGtXzMS93/O7K0YuX8u
+         MMpw==
+X-Forwarded-Encrypted: i=1; AJvYcCVcrKont0uPw9Coet6QdtkvlXXeBRVfcWSEoLHYacRRpoC2G+IuS7bdcr0XmXTv0xeKsMxYTb8oXO9/cQ==@vger.kernel.org, AJvYcCVvXBrstJyLktRjZ27jQEHR9/kS3XuNPx1rYt4uNCHJPIiri8Wcz05a3zIngUbtZAJieRnGByyIV3jZ/bA=@vger.kernel.org, AJvYcCWf/5f8A5Ok5vdDxcttnjj3fuSYEISu1N60QXGKKSVrc+3nR8dvQT98gOPvpUvmCCRl/bBZb4iEiBl+@vger.kernel.org, AJvYcCXsspjJ5/5pPstiH7dnorAky/mmT8zhAYnr5EjU1s9cIzSX5qaKYIz7LBwrmxyrRt64H43wEpao8z9jJTp6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKRp8s7KYq05bsieZtkfkMOLs8Nbkeg0muOaAs/1MtZHb7g51r
+	WUXn3o+yOwi0iwFS+xSdX3k34L8Jg2Y4JzaTzoPsPKHIlGrrZS00pyXJ0CVA4cw=
+X-Gm-Gg: ASbGncs+ElrwNITOaL/npWaV0lINiw73uGUrxFATJO7Z43yFQ9tTUZNmKCdsT/5skcj
+	bLbkLyMDbzvvOCXSUKK7Q59G7FsU6/fOQv7aIJn6G6JkGpdo/34WIggWzfG2QX790SgpFdirdqU
+	Krm38Qwtb3cBujpDcGzJuBbedLmLWfIY5MK6Nqvhbw4gwqOb80e1mcQ7a9OHDmA+zlxHju2UY9+
+	lB2tOq6OMKLBPgeLSUmkwzdGCz2gEWVyYXeiPZKlzeaKqSZLmZXcnrEN0WkJFh3/Ex06LtkIxmx
+	/DTcLE1dfcDK89MGB00AxLLdrsRBs8RHYQuBMPF6f/VsrQ==
+X-Google-Smtp-Source: AGHT+IEdB9R3spqx2SEWAobW9gJu4+fmb8vmoxtEhl6cFp/SdUHzvuAKiRTyBIEas4/dGdeZr2DQSQ==
+X-Received: by 2002:a17:907:c285:b0:ab6:32d2:16d4 with SMTP id a640c23a62f3a-ab789c35448mr1039216266b.56.1739100165260;
+        Sun, 09 Feb 2025 03:22:45 -0800 (PST)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com. [209.85.208.44])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7bf5b8e6asm17110166b.16.2025.02.09.03.22.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Feb 2025 03:22:44 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5dcea56d6e2so6297700a12.1;
+        Sun, 09 Feb 2025 03:22:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU+BLfvHk74Jrx3i9CQ98+QUiZqPwnFgA/Dnzd+q41L/CxIRWoF+9pvqD8H/2kyWmN5wdFBZjHmRg2b9oHb@vger.kernel.org, AJvYcCUluvYc+q7qkuRndVXSZhJftfRh6lsurrjda7VVTVeki7WoI38riilHoIUn6fqiBkCfT+aDsUaTzbJWjA==@vger.kernel.org, AJvYcCXS42RSVTeYbFdwFyiAxrRNtqKjKdUgF+S6r3YC9mqDiYBhLADKO3SW6Fr+JCdy7UZapRgLGGiOkf2iF70=@vger.kernel.org, AJvYcCXeFiIqhWXMAQf8dLvVIVQKEo7cDfbnCgyd0ik0+LaFckzC1xgcBDlVSBH5ewHVUyiQuBO20TQkcNmF@vger.kernel.org
+X-Received: by 2002:a05:6402:5252:b0:5db:f423:19b9 with SMTP id
+ 4fb4d7f45d1cf-5de450236admr7763979a12.16.1739100164505; Sun, 09 Feb 2025
+ 03:22:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] firmware: add Exynos ACPM protocol driver
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Jassi Brar <jassisinghbrar@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
- peter.griffin@linaro.org, daniel.lezcano@linaro.org,
- vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de
-References: <20250116-gs101-acpm-v6-0-e3a2e1a3007c@linaro.org>
- <20250116-gs101-acpm-v6-2-e3a2e1a3007c@linaro.org>
- <f83ccdb0-4d22-441f-9311-d9a2c8cd3493@kernel.org>
- <1fa54c76-d82f-483b-b577-79322908fabc@linaro.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <1fa54c76-d82f-483b-b577-79322908fabc@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250203115156.28174-1-towinchenmi@gmail.com>
+In-Reply-To: <20250203115156.28174-1-towinchenmi@gmail.com>
+From: Neal Gompa <neal@gompa.dev>
+Date: Sun, 9 Feb 2025 06:22:08 -0500
+X-Gmail-Original-Message-ID: <CAEg-Je8cB==_+fNi0hc-mPqkEd-w82tWay_2Wu76hV10LV4X2g@mail.gmail.com>
+X-Gm-Features: AWEUYZks2Pe6z_gT4XPe5iRvZlGve_lJKCtY1woYJMW8gNu9Xz8tZDlJPRfovXQ
+Message-ID: <CAEg-Je8cB==_+fNi0hc-mPqkEd-w82tWay_2Wu76hV10LV4X2g@mail.gmail.com>
+Subject: Re: [PATCH v5 RESEND 0/3] Apple DWI backlight driver
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Lee Jones <lee@kernel.org>, 
+	Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Helge Deller <deller@gmx.de>, asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-fbdev@vger.kernel.org, Janne Grunau <j@jannau.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/02/2025 10:02, Tudor Ambarus wrote:
-> 
->>> +	np = of_parse_phandle(dev->of_node, "exynos,acpm_ipc", 0);
->> You need bindings for this somewhere and fix the underscore->hyphen...
->> and vendor prefix. It really would not be accepted that way so please
->> post consumer bindings anywhere.
-> 
-> There's no consumer upstreamed yet, I don't know where I shall specify
-> it. How about keeping the function name and modify the declaration to
-> 
-> +static const struct acpm_handle *acpm_get_by_phandle(struct device_node
-> *np,
-> +						     const char *property)
-> 
-> This shall be in line with the syscon API and doesn't force me to
-> introduce bindings for the consumers now.
-> 
-Good for me.
+On Mon, Feb 3, 2025 at 6:52=E2=80=AFAM Nick Chan <towinchenmi@gmail.com> wr=
+ote:
+>
+> Apple SoCs come with a 2-wire interface named DWI. On some iPhones, iPads
+> and iPod touches the backlight controller is connected via this interface=
+.
+> This series adds a backlight driver for backlight controllers connected
+> this way.
+>
+> Changes since v4:
+> - Change type to BACKLIGHT_PLATFORM since the driver does not directly
+> interface with the backlight controller. The actual backlight controller
+> can be directly controlled via i2c and is not the same on all hardware
+> that supports the dwi interface.
+> - Rename file to apple_dwi_bl.c to better match config option.
+> - Rename driver to apple-dwi-bl to better match config option
+> - Indicate that the backlight scales linearly
+>
+> v4: https://lore.kernel.org/asahi/20241211113512.19009-1-towinchenmi@gmai=
+l.com/T
+>
+> Changes since v3:
+> - $ref to common.yaml in bindings
+> - (and then additionalProperties is changed to unevaluatedProperties)
+> - Use hex everywhere in bindings example
+> - Use sizeof(*dwi_bl) instead of the type of the struct when doing
+> devm_kzalloc()
+> - Use devm_platform_get_and_ioremap_resource() in driver
+> - Fix sorting in drivers/video/backlight/Makefile
+> - In drivers/video/backlight/Kconfig, move config to right after
+> BACKLIGHT_APPLE
+> - Explain this driver being completely different from apple_bl
+>
+> v3: https://lore.kernel.org/asahi/20241209075908.140014-1-towinchenmi@gma=
+il.com/T
+>
+> Changes since v2:
+> - Add missing includes in driver
+> - Fix file path in MAINTAINERS
+>
+> v2: https://lore.kernel.org/asahi/20241207130433.30351-1-towinchenmi@gmai=
+l.com/T
+>
+> Changes since v1:
+> - Fixed dt-bindings $id.
+> - Make power-domains an optional property in dt-bindings.
+> - Added missing error checking after devm_ioremap_resource() in
+> dwi_bl_probe().
+>
+> v1: https://lore.kernel.org/asahi/20241206172735.4310-1-towinchenmi@gmail=
+.com/T
+>
+> Nick Chan
+>
+> ---
+> Nick Chan (3):
+>   dt-bindings: leds: backlight: apple,dwi-bl: Add Apple DWI backlight
+>   backlight: apple_dwi_bl: Add Apple DWI backlight driver
+>   MAINTAINERS: Add entries for Apple DWI backlight controller
+>
+>  .../bindings/leds/backlight/apple,dwi-bl.yaml |  57 ++++++++
+>  MAINTAINERS                                   |   2 +
+>  drivers/video/backlight/Kconfig               |  12 ++
+>  drivers/video/backlight/Makefile              |   1 +
+>  drivers/video/backlight/apple_dwi_bl.c        | 123 ++++++++++++++++++
+>  5 files changed, 195 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/backlight/appl=
+e,dwi-bl.yaml
+>  create mode 100644 drivers/video/backlight/apple_dwi_bl.c
+>
+>
+> base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+> --
+> 2.48.1
+>
+>
 
-Best regards,
-Krzysztof
+This series looks good to me.
+
+Reviewed-by: Neal Gompa <neal@gompa.dev>
+
+
+--=20
+=E7=9C=9F=E5=AE=9F=E3=81=AF=E3=81=84=E3=81=A4=E3=82=82=E4=B8=80=E3=81=A4=EF=
+=BC=81/ Always, there's only one truth!
 
