@@ -1,229 +1,280 @@
-Return-Path: <devicetree+bounces-144347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF9FDA2DD86
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 13:12:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD71A2DD9D
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 13:21:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91118165C4E
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 12:12:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 856F816377F
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 12:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 645311DFD86;
-	Sun,  9 Feb 2025 12:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CCD61D7992;
+	Sun,  9 Feb 2025 12:21:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="r+Ge3xMN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NBtLQtY+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02olkn2042.outbound.protection.outlook.com [40.92.50.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88F811DFD83;
-	Sun,  9 Feb 2025 12:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.50.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739103079; cv=fail; b=SRJb8lV+i+C8H7DMF6zKrLmxeM/1ndV/66InrTGzXoRgP5cDM43bEf9C99RF3L1XaVTSxf0U4E8fmOzW44ydlqX40C/8HZv6qcfDMZoBNg0CC6dgErCqQVkYO3CAzFDphDAAjHENfQcMYqvPwAY27/3eJF+PfR+VarWnDd+vR10=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739103079; c=relaxed/simple;
-	bh=tXqntz/6K2UMtxzDVSYtakgs69lANGqWbxQ6CFb7jbk=;
-	h=Message-ID:Date:From:Subject:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=qFJAKimQkyxxtPTZ+gaD3nE/2xgZ2NQMJHSqTBCAK+o25hz9ddMqxIS6slxBFfaoRuyh7nZeIwQnzLzx2Yb+tiZIdvV9hs/lrgn/AcVseDid8tzixP3ALX91DJmhnpzES2AjENZ58iIl8mQsHc53uIuGyVryDvHubnXLsDCRID0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=r+Ge3xMN; arc=fail smtp.client-ip=40.92.50.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O9Z9xeDmi5H2Ed18RmUKcHvATZslDAUn2CQIfvmXiZWXzQSuKZ/OghBBPsXAwYl4Vma05z7iXvAxvHa3QQ2gidug1BwbchVO6QOC49mm2c1q7camfOoTMV+oFC+hUk0Je/LFaK28W5mEHc4uV3Y0ewisGZqnddXQbtGOa49wl++a93c4P6rSUgq1+GpSrDSWqtgrq5rSmxyTOd3CrJEC5WNCv2Kk0XX46RCgxm6MVwbvLNwjldUHGvj3x3Z1G6Kahjtjwn1NBzfsTfliks3ynnyz1CHI1wAa80QzAoOiOhooWV0FHZyYQERL3PWpzaF0Xgvg24U5ogEwOo9BfTwbdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Caa3bEyIMPqm1cyP6wUgJ9AYkiz3USg5T6V01spzVFM=;
- b=FxGgLF0AcBTYilkHFVqUT2R+OzRUSRcmTNKHNOMsENuOl4DwHV+RHrahNmebhfQG1BOJ80O9H4u3ci4Qvj+Uib8hhUn3H1cMBmAhEbDF47M5OG23xvAjo7Fi/nI+GDqVGYybVqi3iW/ATwvwzb1/vlcJpdve4ye+hi2UsvuRgsY1rsqbfihfpZcZtqjPbaLWsX7NoIE2/bc69QG2xCGK/JQaLxwdNnMSJkmcCusccnn32lxK3ZwoF0KdJb+eMQhJYilvSzBF8YapD0ORtZD7IyA1rQ2CM28J0n3qobDiYhuQPRGbzm9rjjgMoaCTYjgyp5Dur+VVYI96fkPhbuwqvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Caa3bEyIMPqm1cyP6wUgJ9AYkiz3USg5T6V01spzVFM=;
- b=r+Ge3xMN47p9LaWbATpp/vzXstDk4ZVnJqTd7P+7zL1mXty6i9pSv9BOqr4XapvCoSTdmNn563gvBIU2aTACBcDtsfgtAHvb+Z6JewNwRWVOV4gGR9OIEypWcN0wOSfWVVMeg51dNAUTfnd468Be3mvOUqcFRuSjk9c/smUQD0BwIamHCLuE7MFWZPiLgB+WfTb/S91RDeAO5OcuUQQRH5tsqJnPEXlLiaLFxCG/yjXj01q71TAko+RatWuWdMK93Ec9m8RSann727oxWLEU3+hQ4jd/Edkc9MPi+YhPot1MksPr9tvd3MziIGD3O70pPeUzGaxPKc+PH/sjXMMRkw==
-Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:175::17)
- by AM0P189MB0820.EURP189.PROD.OUTLOOK.COM (2603:10a6:208:19d::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.17; Sun, 9 Feb
- 2025 12:11:13 +0000
-Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
- ([fe80::e9f1:a878:e797:ee1a]) by AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
- ([fe80::e9f1:a878:e797:ee1a%7]) with mapi id 15.20.8422.015; Sun, 9 Feb 2025
- 12:11:13 +0000
-Message-ID:
- <AM7P189MB100992851E58C8CE0AD8EC38E3F32@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
-Date: Sun, 9 Feb 2025 13:11:12 +0100
-User-Agent: Mozilla Thunderbird
-From: Maud Spierings <maud_spierings@hotmail.com>
-Subject: Re: [PATCH] riscv: dts: starfive: fml13v01: enable pcie1
-To: Sandie Cao <sandie.cao@deepcomputing.io>, Conor Dooley
- <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250207093618.126636-1-sandie.cao@deepcomputing.io>
-Content-Language: en-US
-In-Reply-To: <20250207093618.126636-1-sandie.cao@deepcomputing.io>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM0PR04CA0066.eurprd04.prod.outlook.com
- (2603:10a6:208:1::43) To AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:20b:175::17)
-X-Microsoft-Original-Message-ID:
- <c307034e-6d39-4792-9be3-70ca80e19f2f@hotmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044F81BD9D0
+	for <devicetree@vger.kernel.org>; Sun,  9 Feb 2025 12:21:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739103694; cv=none; b=iTMVlxSxqLYPzrc9vEwgFkCtYTPoOJiiAqMkBgIiFXB7ZNca0OSM2f3RsdaHMY2vLCgHYqj0i/btwWjS83B2Cn7q63UAH0IyUIe9O2USbEZyJZtbg6RlWHWj2fyG92YEFafbwyYinwyJvUdZ3TGzHLluUy1oIxBoaS/z2I0TzPo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739103694; c=relaxed/simple;
+	bh=ph522qAR9+PUsOaPfzHWCTEdwHBrtqLkGYkPw9T6Uks=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=c7iX0+ewIss9f0Uxz+K7cB33FIs+EyE2WRGBD1bAV/FhXJjHXE0ywwN2woBD7PKgclywpPQAm47u5WmjV0Hs6mVxBf7GNs0GCCcNV96j4Ho/v+pWpjPAFtMOhhFG0ahrvrJG/kBqvwL74m8oBWHxWor0UpY7S3nIrORo182CJ/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NBtLQtY+; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-38c5ba0be37so158710f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 09 Feb 2025 04:21:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739103690; x=1739708490; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=VDaiKVIvoDREmF5dBkk40+XBWsu5AZxMK34kj8iTAes=;
+        b=NBtLQtY+28M+pc1U48erm0+RC0qKSBp+gKgD+IswzekxfNERq1wPBv60QtKBDwuD0T
+         52Wyd2nNZqy++pMWUdaPw8/l3phyK3ZbWAno0BCBSOCJNP/2JVasELWJ2/ssg15RwDrA
+         xEw279fIE7do9aRCzjhSYDvL2QO7rzazIPzpsFKLv3c98xlBlW6wBTSmGNHMBuVI25VN
+         rEJa87YC03DskyrB3H/CUCTdFKWpWQ0GuxpxuIE5I7KF/9GscJr53mDJjkhrR5nM6nJL
+         qMzrWlWMrFucYO+QXVGtwFRwGxEwBNZX6/Vkq9CV/BmsYRjb/80e5FdHj/6frweL5sAb
+         Ynlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739103690; x=1739708490;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VDaiKVIvoDREmF5dBkk40+XBWsu5AZxMK34kj8iTAes=;
+        b=vfFvFOxVlVbowHw/Vd7YwSI3ns/aV4wVzCe6l1fBB/ylfKRFtcQkHvd9QRPR9xtnrE
+         vHppNQ+++mEIRQI0QuepIy9IDJW8C+XXqmtslOqD63ZEozsF4VZTXy0fNGmfxEQT3DfQ
+         i6guBFVFT4fUMWCKUktWVP+5bM05qfQHo9MzPo46HyowXzywnos79U70Is4CrP9iRbUA
+         so+vxb9s6Px623UJPuhwRSy3C7lpWXlTEcU3fnuNVaY4mVv5SO4uQyBnqcRgMZLtjj4w
+         5Sw/0eOCjMEa4E3yc8Mpl9TILQjfrgdX0MKYFb+3WwSjX1XV2K8P9oGFo6ZM3EU7QLKt
+         KMLA==
+X-Forwarded-Encrypted: i=1; AJvYcCW772Y3bLpxEVmm3pT1v7l3CTgeKBnYCgOcM9VvTmzw/ObKoBfyhxWuJki4FfwjhH2B00lQhFNRFL3J@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvcvtQUTw4Ek+gPxrv/ENrsNsfUbjxhPOy8DqrJZmrY6Wx2ckT
+	1VwcUeRpsxQC3L88icxc6rhxgrfYUZlehM4nd5j1oMGcEwk69AHZ8yBmCWkQS20=
+X-Gm-Gg: ASbGncvR6K825tdr+ABkQFc7uJHDcqdL2Rrb720LDqTxICoeddVXlrLgvY6IGqdZaUw
+	1EQ1z8sejdesdarmNpWQn3SLwg6vonXrNMvJZuz+WXCUQnRMAyQ4KB1VRdkpTDCJhbJI+8+jT0L
+	Pel3PSG91tywno65l+7HDtPg2dyp7aGqO+A3wz8/lSB/V3uyMbxJtD7as7qgZw93EnczDwU9HXu
+	Xml4WuTrIjCfmi2DlvSOY+NcIMe9/hRO2q02cXZWa03Ut2JQm+1QDtEGZqQAYITFrByojo54XMN
+	q/wjB3pcMib7AyZy/CSrbFdo/ZQr4sMZdhU=
+X-Google-Smtp-Source: AGHT+IFuXsp9sstavdPA9gOZO+V3HNaUNGICg6DdYxO+seNxQN7zlceF78JaHywilg98L3EI8R1dTA==
+X-Received: by 2002:a05:6000:1f84:b0:38b:f3a4:4e15 with SMTP id ffacd0b85a97d-38dc8dc7e9emr2649978f8f.4.1739103690201;
+        Sun, 09 Feb 2025 04:21:30 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.144])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dc5e6f027sm7763436f8f.4.2025.02.09.04.21.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Feb 2025 04:21:29 -0800 (PST)
+Message-ID: <f9a2247e-e0eb-4e22-8626-80e87afa9386@linaro.org>
+Date: Sun, 9 Feb 2025 13:21:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7P189MB1009:EE_|AM0P189MB0820:EE_
-X-MS-Office365-Filtering-Correlation-Id: 23cc10af-7218-4fd4-ecfb-08dd4902d89d
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199028|15080799006|5072599009|19110799003|8060799006|6090799003|440099028|3412199025;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cHBRU0dHUnpQOFdQZTBpb0hMa0lFWHljQ1NXQXVaS2YwSmhOTElLODJseC9x?=
- =?utf-8?B?OVVjK0x0Z1k5ZTl3bXM2WkVNSUJmRjk0N2VXQzVhOHV2MFgyRFFVZUFhVzZW?=
- =?utf-8?B?UEc4QWVVOWgyZVdWY04wR2V0azIxVUdWa29FMjRERTNySU8rNU5rZjc1UG9Y?=
- =?utf-8?B?RzdwNTRaR3NpWW1oT29RcnlOV3BRcW5TUWxrTlZyaVpNNjREaUVvZnMzOU9I?=
- =?utf-8?B?WjJiZGJPdTF1UlAyWXc0YU00TWxtUjQ1MGxma3NwZkZHSU9TZ1JDZXVMYi9T?=
- =?utf-8?B?WGRCdGxXOUFlcTFJdUQ2OHIwZytMSS9TeXpCNVBsRXBwdzl6SXpsZVpybkNE?=
- =?utf-8?B?MFo5ZjAxSG5OcWhyV2Q3Q2g2dDRKSXpRbXVLcElVTUNJWTJkUEt2TE41eFQ3?=
- =?utf-8?B?dGU0VmtTVVFsU3NHdUZhcnBUMEhJVUwxUG5ua2VKdGVUcFFGUU1YcEljNXJ5?=
- =?utf-8?B?azg3T1JrSkJxYUZWNUt6SmZEUWhCNUhyMk12NXNFQStCeU44eExySDRQNmF1?=
- =?utf-8?B?NEpDaHRVeE9VQk0weTRIbVhacXlValNmYkV3MmhSZDlBRHprK0l5RWM0UXZU?=
- =?utf-8?B?dm1aaHQ1alZTNGxRZ3NZMXBkUDZRU2NhOWtzRi9tRVZKREdwQUVzckxaQk1F?=
- =?utf-8?B?cGx0QzNvcGFPQ2tvL29Ja2srVGNnTVdORjlwMmRvY0tKM2RnUlZLVnNFRVRB?=
- =?utf-8?B?d0RyeG05RlI4NkE5b21Sc1QrRXNpdW1ROW9nVG5nTDh5c01zSklXenRrVXhG?=
- =?utf-8?B?MVMwbmZlUHdKKzF1cm5TQmxWb3FuMFVOalhJcWZ4QzRWNmNqSUgxZEpsSHBK?=
- =?utf-8?B?TUVQVW5FdHM1eTFobFk4TkxEQjVmN3FzL3ZHMjFvOXMyb1ZJaXNnbkdPQWs5?=
- =?utf-8?B?K2haUTNyRVM2c1V6TCtmVzBoSHh0TFUzV1h0bmtGam1PWmt3UDI4RzJrOXJN?=
- =?utf-8?B?MnJ2Vkk3bW1FeC9FNWtQZFVpU0ZiSmxMR1FDUkVMRnRJOVBlQVAvSG8yV0Z5?=
- =?utf-8?B?cWxjNFBlNjJpbXd4Qy9BYWNUZFAzWm53VDZIbDh2ZGdub2xvbzNCSDVRcFlO?=
- =?utf-8?B?UTdBNU5OcGMzZUFscnRNa1FHSVE3ZzB2ekdqMTFLSXhnK2c0S0NpSVl2b3Za?=
- =?utf-8?B?bE41MUNYaGErYk9jRTF0UnNEa3VRM1F1ZUJHM3hwcmxza2tlVXFxeWJLNm15?=
- =?utf-8?B?MVRHblZpbTUvVXFTMmQ0ZzBjb3FDek9ZUHdtajY2UDZ1RkdtdG51cVpnVXB4?=
- =?utf-8?B?YnlMNTlxYm9GMkViN3dRQXBsdllSTGlFTXNudzUyMEtHYTdVd2JTZy9kbzZD?=
- =?utf-8?B?Q3poK2ptMjYyQUF4NU1GZk0rUExRODdEeGc0VEc3dFhTUE5tbTlRZmRlVHMx?=
- =?utf-8?B?QnJaTFd0bEpIN2lYV2xrRGRnRlFKZ2dyN25wQkNIdTRDZ29QRThvRW9WbUM1?=
- =?utf-8?B?L3ErSGV5QlNTMGFZNjk5bUE3TFFQZ2loaFpVclVBPT0=?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TWFzUEc5SHIwSnVIT1NVZ0thd1phNWVsa2J1WGc2UFhuL1A0cVFYWFpCdk44?=
- =?utf-8?B?ZG5yb1VlYTBFeUpFRnRodkIyTC9hVStNakl1OUViWHArK28rZXpCM25UYzYv?=
- =?utf-8?B?MkYxTXVpTWgrSDRQdW1PZHpGMFBDU3p5d1VDQWF2RUJINDlHVEYycXBMYmY3?=
- =?utf-8?B?eVV5ckc1QTlVQXlPTmx6TTVYQmpaZU51YkhGZllIbHZBeXBRQzh0c0ZUYTNI?=
- =?utf-8?B?SjJJTG1XZlFlR2xBdm5LcmtDa0hraFphSHBya24yelcrcUowRGpmQkdxRHFG?=
- =?utf-8?B?dG9SaE5UUENnaTA5eTk3N3VBSjZBZ1JLNVRua3ZCQXpHaE9JUUtPbVdNRExw?=
- =?utf-8?B?YThYbW56SEFZQi9SKzBTa1cxamlYVjVUb1JEZjVORGxWc1oyejRYSFMvR0hh?=
- =?utf-8?B?ZDBNeG8yTU1FS2srN0VUVk9oR29VS0NzK21neTBjZmVua3JjUEhXUGh6ZXda?=
- =?utf-8?B?TGg4Sk9zQ2IxSWExdEtHNU5XWVlzYVlqU2FoNlJFb2NaenYxUlhEOUpKQ2Ux?=
- =?utf-8?B?TDNkbFRTSlJkWTZWV29oVmFaT2JzcUprWHNFQ2xLVDdqSkt4SUpJUGpuQVZx?=
- =?utf-8?B?M3JkNGt6VGRxL3I5ZWJMUEZUNnViRFRuTHk3b0hnZTlCUXREQUZBK3lkMzV1?=
- =?utf-8?B?c3dPQmVtN3VOYUpjc3BGV1ZNSWJLeTVmWjFKV2kyWkxxcmVlb1dvS2t2TnEr?=
- =?utf-8?B?VEtTL2ZxcGErWDZ2SjhHdVNNL00raDZQcUxNRGlOZzZVRTYrVnM4OEFHRytF?=
- =?utf-8?B?Uk8wN0pMcjBTaXZmRDlGWjlzTEp5eFJJS2xQdkV2aFdSQlpKWDNUWlNvSU41?=
- =?utf-8?B?TXp0d0hQaUtGT2FYV1h1Q0dST3RpbGhUamtzT0tlM3hlRERFNWF5OG13NCs2?=
- =?utf-8?B?eEUvdUxmOW43UHc3Q2VwSWVyOTM2Y1FhSlFCeGt6SUdLUXREUWFoRnEwQUdq?=
- =?utf-8?B?YjY2WHF6MitreEpqVEJRSE1ZYmViNDVJZ3N3MmtyeUk2THhnV285VTdIWjNR?=
- =?utf-8?B?aHBVMDdCR2RKZVBQa2ZEc09mSGdqSnc2cXlISGZ2aFN0OE55YkR5ejM5NE5l?=
- =?utf-8?B?Sk45MWMxVTd0RUJoL24yWitwSnVHQlZzbmpTVG50VTZJbk03WEYwLzJveVZH?=
- =?utf-8?B?L1o5UWs1U2E3akRXVVlXVFo2UmRWWkhQSkcxZ1EwaS96TFJYSDc1QXo4K3g4?=
- =?utf-8?B?bStaQ1htQmFHK1VoTmdOVGNmWFpzY1BsMHNHdkkxZ1JrUWd4cS9ucndrQ0pP?=
- =?utf-8?B?SU8zZzBaY0E0cW1QN1JvN3NmNnNQQUtpbEYyTW1wSDkxZWprZGk2VWV0c3NG?=
- =?utf-8?B?UzkyMExXS3I5VC81SmRPcWVkSTdPSUZBaGx1RStjTjlDbStqVWVFMjErdHZp?=
- =?utf-8?B?aWRvS3FMc2ovUjhPa1NYbEttNWZoODc4MVlTME9jMVA5UmN2OEJiWTFjdWg5?=
- =?utf-8?B?S1ZFN1dadWFSMnBWZWkybFFXV28rQ0xXNnVaVS8xZmpCc2lveG9JQkQybk0x?=
- =?utf-8?B?RTF2NnRtMUJ3WUhiUTFXT3Z6dGxWd3pUK2VvN1RFekF4Y2x1ZHBVbGVvTnFo?=
- =?utf-8?B?MHRmMThqSmkrREx0cjBvZ3l0NEtHT0IycFpBa1lrRFB5dHI3STN5YjdmT2M4?=
- =?utf-8?B?cjMvSnBnU2tLVkg3L0ZRODkwNTJQMm01aHJqV0Q3OTZDOFpEVFY1bEFwNUQ5?=
- =?utf-8?B?V2lDNGR2ZU9HUjlJMUxaM3ZqSU1nWXlsVm5KT1Y2SmtVd0RPY2l1L1VPK2dH?=
- =?utf-8?Q?lRE0MQwXEXJQPgZizLF8gfteFklj8qmA/Rlrkyt?=
-X-OriginatorOrg: sct-15-20-7719-19-msonline-outlook-3b3e0.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23cc10af-7218-4fd4-ecfb-08dd4902d89d
-X-MS-Exchange-CrossTenant-AuthSource: AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2025 12:11:13.2934
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0P189MB0820
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] dt-bindings: mfd: syscon: Add ti,am62-ddr-pmctrl
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Andrew Davis <afd@ti.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Siddharth Vadapalli
+ <s-vadapalli@ti.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250122-topic-am62-dt-syscon-v6-13-v1-0-515d56edc35e@baylibre.com>
+ <20250122-topic-am62-dt-syscon-v6-13-v1-2-515d56edc35e@baylibre.com>
+ <20250124-heavy-jaybird-of-vitality-4cbe24@krzk-bin>
+ <20250124-able-beagle-of-prowess-f5eb7a@krzk-bin>
+ <mocfnpebc67xegcis6tx3ekhsjcsqnvhwtipufycrtq2be4nbh@pmxhir5gmkos>
+ <639b4e3a-3f68-4fba-aa33-c46dcb6fc88f@linaro.org>
+ <d6252b73-0bcc-4724-8144-d6a98c8980f8@ti.com>
+ <74ee6d9b-fd78-4d8a-a94f-b2c4dc794b60@linaro.org>
+ <ebsbaaxyatrcikoem75t2blkhhceuidq3wnj3r2hbezfcmtc3u@ptffexrigbff>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ebsbaaxyatrcikoem75t2blkhhceuidq3wnj3r2hbezfcmtc3u@ptffexrigbff>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 2/7/25 10:36 AM, Sandie Cao wrote:
-> Starfive Soc common defines GPIO28 as pcie1 reset, GPIO21 as pcie1 wakeup;
-> But the FML13V01 board uses GPIO21 as pcie1 reset, GPIO28 as pcie1 wakeup;
-> redefine pcie1 gpio and enable pcie1 for pcie based Wi-Fi.
->
-> Signed-off-by: Sandie Cao<sandie.cao@deepcomputing.io>
-> ---
->   .../jh7110-deepcomputing-fml13v01.dts         | 34 +++++++++++++++++++
->   1 file changed, 34 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-> index 30b0715196b6..8d9ce8b69a71 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-> @@ -11,6 +11,40 @@ / {
->   	compatible = "deepcomputing,fml13v01", "starfive,jh7110";
->   };
->   
-> +&pcie1 {
-> +	perst-gpios = <&sysgpio 21 GPIO_ACTIVE_LOW>;
-> +	phys = <&pciephy1>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie1_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&sysgpio {
-> +	pcie1_pins: pcie1-0 {
-> +		clkreq-pins {
-> +			pinmux = <GPIOMUX(29, GPOUT_LOW,
-> +					      GPOEN_DISABLE,
-> +					      GPI_NONE)>;
-> +			bias-pull-down;
-> +			drive-strength = <2>;
-> +			input-enable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		wake-pins {
-> +			pinmux = <GPIOMUX(28, GPOUT_HIGH,
-> +					      GPOEN_DISABLE,
-> +					      GPI_NONE)>;
-> +			bias-pull-up;
-> +			drive-strength = <2>;
-> +			input-enable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +};
-> +
->   &usb0 {
->   	dr_mode = "host";
->   	status = "okay";
->
-> base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+On 07/02/2025 15:40, Markus Schneider-Pargmann wrote:
+> Hi Krzysztof,
+> 
+> On Mon, Jan 27, 2025 at 01:09:49PM +0100, Krzysztof Kozlowski wrote:
+>> On 24/01/2025 23:35, Andrew Davis wrote:
+>>> On 1/24/25 10:48 AM, Krzysztof Kozlowski wrote:
+>>>> On 24/01/2025 17:05, Markus Schneider-Pargmann wrote:
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> On Fri, Jan 24, 2025 at 09:22:54AM +0100, Krzysztof Kozlowski wrote:
+>>>>>> On Fri, Jan 24, 2025 at 09:19:49AM +0100, Krzysztof Kozlowski wrote:
+>>>>>>> On Wed, Jan 22, 2025 at 11:24:33AM +0100, Markus Schneider-Pargmann wrote:
+>>>>>>>> Add compatible for ti,am62-ddr-pmctrl to the list. There is a DDR pmctrl
+>>>>>>>> register in the wkup-conf register space of am62a and am62p. This
+>>>>>>>> register controls DDR power management.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+>>>>>>>> ---
+>>>>>>>>   Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+>>>>>>>>   1 file changed, 2 insertions(+)
+>>>>>>>
+>>>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>>
+>>>>>> Un-acked, I missed the point that you really speak in commit msg about
+>>>>>> register and you really treat one register is a device. I assumed you
+>>>>>> only need that register from this device, but no. That obviously is not
+>>>>>> what this device is. Device is not a single register among 10000 others.
+>>>>>> IOW, You do not have 10000 devices there.
+>>>>>
+>>>>> Do I understand you correctly that the whole register range of the
+>>>>> wkup_conf node as seen in arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+>>>>> should be considered a single syscon device?
+>>>>
+>>>> I don't have the datasheets (and not my task to actually check this),
+>>>> but you should probably follow datasheet. I assume it describes what is
+>>>> the device, more or less.
+>>>>
+>>>> I assume entire wkup_conf is considered a device.
+>>>>
+>>>>>
+>>>>> Unfortunately wkup_conf is modeled as a simple-bus with currently 5
+>>>>> subnodes defined of which 4 of them consist of a single register. Most
+>>>>> of them are syscon as well. So I think I can't change the simple-bus
+>>>>> back to syscon.
+>>>>
+>>>> Huh... Maybe TI folks will help us understand why such design was chosen.
+>>>>
+>>>
+>>> Many of the devices inside the wkup_conf are already modeled as such.
+>>> Clocks and muxes for instance already have drivers and bindings, this
+>>> is nothing new to TI.
+>>>
+>>> If we just use a blank "syscon" over the entire region we would end up
+>>> with drivers that use phandles to the top level wkup_conf node and
+>>> poke directly the registers they need from that space.
+>>>
+>>> Would you rather have
+>>>
+>>> some-device {
+>>> 	ti,epwm_tbclk = <&wkup_conf>;
+>>> }
+>>>
+>>> or
+>>>
+>>> some-device {
+>>> 	clocks = <&epwm_tbclk 0>;
+>>> }
+>>
+>> How is this comparable? These are clocks. You would have clocks property
+>> in both cases.
+>>
+>>
+>>>
+>>> with that epwm_tbclk being a proper clock node inside wkup_conf?
+>>> I would much prefer the second, even though the clock node
+>>> only uses a single register. And in the first case, we would need
+>>> to have the offset into the wkup_conf space hard-coded in the
+>>> driver for each new SoC. Eventually all that data would need to be
+>>> put in tables and we end up back to machine board files..
+>>>
+>>> I'm not saying every magic number in all drivers should
+>>> be offloaded into DT, but there is a line somewhere between
+>>> that and having the DT simply contain the SoC's name compatible
+>>
+>> That's not the question here.
+>>
+>>> and all other data going into the kernel. That line might be a
+>>> personal preference, so my question back is: what is wrong
+>>> if we do want "1000 new syscons per each register" for our
+>>> SoCs DT?
+>>
+>> Because it is false representation of hardware. You do not have 1000
+>> devices. You have only one device.
+>>
+>>
+>>>
+>>> (and the number is not 1000, scanning the kernel I can see
+>>> the largest wkup_conf region node we have today has a grand
+>>> total number sub-nodes of 6)
+>>
+>> But what is being added here is device per each register, not per feature.
+> 
+> The register layout is like this:
+
+The register layout of what? How is the device called? Is datasheet
+available anywhere?
+
+> 
+> 0x8010 - 0x803c contains 4 clockselect registers
+> 0x80d0 is the DDR16SS_PMCTRL regsiter
+> 0x8190 - 0x8600 contains another 7 clockselect registers
+> 
+> I see the feature here in the block being clockselect registers. But the
+> ddr-pmctrl register doesn't fit into this so I opted to describe this
+> single register as one node as it looked to me like one feature. Of
+> course I would have preferred this to be different but it is not. Would
+> you prefer the clockselect registers and the pmctrl register to be
+> described as one syscon?
+No, because all the time you speak register=device and all the time I
+was explaining that this is not correct. Device is the collection of
+registers. I already said it - entire block is the syscon, not one
+register in the middle, not 2 registers in the middle, not even 4+7
+registers in the middle.
 
 
-Tried this on my device and it works as expected
-
-Tested-by: Maud Spierings <maud_spierings@hotmail.com>
-
-
-Kind regards,
-Maud
-
+Best regards,
+Krzysztof
 
