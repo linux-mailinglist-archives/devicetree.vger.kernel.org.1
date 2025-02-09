@@ -1,338 +1,229 @@
-Return-Path: <devicetree+bounces-144346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6901DA2DD76
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 13:11:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF9FDA2DD86
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 13:12:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92DAA7A2C38
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 12:10:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91118165C4E
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 12:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D275C1DF998;
-	Sun,  9 Feb 2025 12:10:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 645311DFD86;
+	Sun,  9 Feb 2025 12:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ty4j3WsK"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="r+Ge3xMN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02olkn2042.outbound.protection.outlook.com [40.92.50.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA78E1D90DD;
-	Sun,  9 Feb 2025 12:10:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739103003; cv=none; b=JNqK39yRLvg5oureEpoW8ax32TS+Fh2wUjzkaV2h0aK+gdQlwMEJWFb+iQpmRwZLStL7Pr01ucOx/O4cy57lya3M07Chaz5JUaf/mfEn1+mC9zojPLeFZUBSwVB6CAWhuvaVU+wfLF4AwP+RBjEbiyvLljDRu+E+HwSXVvDVQOY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739103003; c=relaxed/simple;
-	bh=ngXRZfVWVwuG7YbjmQCidGQr9ig7Pr/JmkK3jziShDI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PjbDRn2PQ5ESPuJMc5EMyk3I1lV5x9frchGfSulLzVBJkT5wC3NYD62N06xvohoEV/VXnzAI4nGyL3CBCw2MBfGYkupxkDcJcLfnOTeJRBf75vKaoIxCDk1TCaE0hdRr0QAz4UVTSSCLjfvSuPRagHjrj3hAmvO0zmn85VDSNww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ty4j3WsK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33213C4CEE2;
-	Sun,  9 Feb 2025 12:10:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739103003;
-	bh=ngXRZfVWVwuG7YbjmQCidGQr9ig7Pr/JmkK3jziShDI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Ty4j3WsK3FIJVclnZVkhoHvI6UxL6vEbcP06MZ1uFmbv+QJwcTvopbJqCEKIGZoO3
-	 3L1YzBHZBFUPIRIIvjLGec00/gTcOLXhylg56zpSF84M+jNkL0t7rAH1IfWqBzBjWW
-	 SlWJj+FvvdIuMmUzZ/UZ0aNmUA9wgSCJhApgitVIKyi6anamEYzGCWMJoHqsytysQS
-	 HKU6ErqX/ke580Rm5AvK2Jj0K0cM9EgSa4+IgeC34MabwjqweoowwnEPIkcsyHquXq
-	 +7hect2MSOSp7PlH2rzaX3vABzv7lbGMhFHRVx7cez6CfNmTD63HSl9VNyezyBqDGA
-	 x6MW+4OK3kciA==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Sun, 09 Feb 2025 13:09:09 +0100
-Subject: [PATCH net-next v3 16/16] net: airoha: Introduce PPE debugfs
- support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88F811DFD83;
+	Sun,  9 Feb 2025 12:11:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.50.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739103079; cv=fail; b=SRJb8lV+i+C8H7DMF6zKrLmxeM/1ndV/66InrTGzXoRgP5cDM43bEf9C99RF3L1XaVTSxf0U4E8fmOzW44ydlqX40C/8HZv6qcfDMZoBNg0CC6dgErCqQVkYO3CAzFDphDAAjHENfQcMYqvPwAY27/3eJF+PfR+VarWnDd+vR10=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739103079; c=relaxed/simple;
+	bh=tXqntz/6K2UMtxzDVSYtakgs69lANGqWbxQ6CFb7jbk=;
+	h=Message-ID:Date:From:Subject:To:Cc:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=qFJAKimQkyxxtPTZ+gaD3nE/2xgZ2NQMJHSqTBCAK+o25hz9ddMqxIS6slxBFfaoRuyh7nZeIwQnzLzx2Yb+tiZIdvV9hs/lrgn/AcVseDid8tzixP3ALX91DJmhnpzES2AjENZ58iIl8mQsHc53uIuGyVryDvHubnXLsDCRID0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=r+Ge3xMN; arc=fail smtp.client-ip=40.92.50.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=O9Z9xeDmi5H2Ed18RmUKcHvATZslDAUn2CQIfvmXiZWXzQSuKZ/OghBBPsXAwYl4Vma05z7iXvAxvHa3QQ2gidug1BwbchVO6QOC49mm2c1q7camfOoTMV+oFC+hUk0Je/LFaK28W5mEHc4uV3Y0ewisGZqnddXQbtGOa49wl++a93c4P6rSUgq1+GpSrDSWqtgrq5rSmxyTOd3CrJEC5WNCv2Kk0XX46RCgxm6MVwbvLNwjldUHGvj3x3Z1G6Kahjtjwn1NBzfsTfliks3ynnyz1CHI1wAa80QzAoOiOhooWV0FHZyYQERL3PWpzaF0Xgvg24U5ogEwOo9BfTwbdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Caa3bEyIMPqm1cyP6wUgJ9AYkiz3USg5T6V01spzVFM=;
+ b=FxGgLF0AcBTYilkHFVqUT2R+OzRUSRcmTNKHNOMsENuOl4DwHV+RHrahNmebhfQG1BOJ80O9H4u3ci4Qvj+Uib8hhUn3H1cMBmAhEbDF47M5OG23xvAjo7Fi/nI+GDqVGYybVqi3iW/ATwvwzb1/vlcJpdve4ye+hi2UsvuRgsY1rsqbfihfpZcZtqjPbaLWsX7NoIE2/bc69QG2xCGK/JQaLxwdNnMSJkmcCusccnn32lxK3ZwoF0KdJb+eMQhJYilvSzBF8YapD0ORtZD7IyA1rQ2CM28J0n3qobDiYhuQPRGbzm9rjjgMoaCTYjgyp5Dur+VVYI96fkPhbuwqvQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Caa3bEyIMPqm1cyP6wUgJ9AYkiz3USg5T6V01spzVFM=;
+ b=r+Ge3xMN47p9LaWbATpp/vzXstDk4ZVnJqTd7P+7zL1mXty6i9pSv9BOqr4XapvCoSTdmNn563gvBIU2aTACBcDtsfgtAHvb+Z6JewNwRWVOV4gGR9OIEypWcN0wOSfWVVMeg51dNAUTfnd468Be3mvOUqcFRuSjk9c/smUQD0BwIamHCLuE7MFWZPiLgB+WfTb/S91RDeAO5OcuUQQRH5tsqJnPEXlLiaLFxCG/yjXj01q71TAko+RatWuWdMK93Ec9m8RSann727oxWLEU3+hQ4jd/Edkc9MPi+YhPot1MksPr9tvd3MziIGD3O70pPeUzGaxPKc+PH/sjXMMRkw==
+Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:175::17)
+ by AM0P189MB0820.EURP189.PROD.OUTLOOK.COM (2603:10a6:208:19d::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.17; Sun, 9 Feb
+ 2025 12:11:13 +0000
+Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+ ([fe80::e9f1:a878:e797:ee1a]) by AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+ ([fe80::e9f1:a878:e797:ee1a%7]) with mapi id 15.20.8422.015; Sun, 9 Feb 2025
+ 12:11:13 +0000
+Message-ID:
+ <AM7P189MB100992851E58C8CE0AD8EC38E3F32@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+Date: Sun, 9 Feb 2025 13:11:12 +0100
+User-Agent: Mozilla Thunderbird
+From: Maud Spierings <maud_spierings@hotmail.com>
+Subject: Re: [PATCH] riscv: dts: starfive: fml13v01: enable pcie1
+To: Sandie Cao <sandie.cao@deepcomputing.io>, Conor Dooley
+ <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250207093618.126636-1-sandie.cao@deepcomputing.io>
+Content-Language: en-US
+In-Reply-To: <20250207093618.126636-1-sandie.cao@deepcomputing.io>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM0PR04CA0066.eurprd04.prod.outlook.com
+ (2603:10a6:208:1::43) To AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:175::17)
+X-Microsoft-Original-Message-ID:
+ <c307034e-6d39-4792-9be3-70ca80e19f2f@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250209-airoha-en7581-flowtable-offload-v3-16-dba60e755563@kernel.org>
-References: <20250209-airoha-en7581-flowtable-offload-v3-0-dba60e755563@kernel.org>
-In-Reply-To: <20250209-airoha-en7581-flowtable-offload-v3-0-dba60e755563@kernel.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>, 
- "Chester A. Unal" <chester.a.unal@arinc9.com>, 
- Daniel Golle <daniel@makrotopia.org>, DENG Qingfang <dqfext@gmail.com>, 
- Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>
-Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- upstream@airoha.com
-X-Mailer: b4 0.14.2
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7P189MB1009:EE_|AM0P189MB0820:EE_
+X-MS-Office365-Filtering-Correlation-Id: 23cc10af-7218-4fd4-ecfb-08dd4902d89d
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199028|15080799006|5072599009|19110799003|8060799006|6090799003|440099028|3412199025;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cHBRU0dHUnpQOFdQZTBpb0hMa0lFWHljQ1NXQXVaS2YwSmhOTElLODJseC9x?=
+ =?utf-8?B?OVVjK0x0Z1k5ZTl3bXM2WkVNSUJmRjk0N2VXQzVhOHV2MFgyRFFVZUFhVzZW?=
+ =?utf-8?B?UEc4QWVVOWgyZVdWY04wR2V0azIxVUdWa29FMjRERTNySU8rNU5rZjc1UG9Y?=
+ =?utf-8?B?RzdwNTRaR3NpWW1oT29RcnlOV3BRcW5TUWxrTlZyaVpNNjREaUVvZnMzOU9I?=
+ =?utf-8?B?WjJiZGJPdTF1UlAyWXc0YU00TWxtUjQ1MGxma3NwZkZHSU9TZ1JDZXVMYi9T?=
+ =?utf-8?B?WGRCdGxXOUFlcTFJdUQ2OHIwZytMSS9TeXpCNVBsRXBwdzl6SXpsZVpybkNE?=
+ =?utf-8?B?MFo5ZjAxSG5OcWhyV2Q3Q2g2dDRKSXpRbXVLcElVTUNJWTJkUEt2TE41eFQ3?=
+ =?utf-8?B?dGU0VmtTVVFsU3NHdUZhcnBUMEhJVUwxUG5ua2VKdGVUcFFGUU1YcEljNXJ5?=
+ =?utf-8?B?azg3T1JrSkJxYUZWNUt6SmZEUWhCNUhyMk12NXNFQStCeU44eExySDRQNmF1?=
+ =?utf-8?B?NEpDaHRVeE9VQk0weTRIbVhacXlValNmYkV3MmhSZDlBRHprK0l5RWM0UXZU?=
+ =?utf-8?B?dm1aaHQ1alZTNGxRZ3NZMXBkUDZRU2NhOWtzRi9tRVZKREdwQUVzckxaQk1F?=
+ =?utf-8?B?cGx0QzNvcGFPQ2tvL29Ja2srVGNnTVdORjlwMmRvY0tKM2RnUlZLVnNFRVRB?=
+ =?utf-8?B?d0RyeG05RlI4NkE5b21Sc1QrRXNpdW1ROW9nVG5nTDh5c01zSklXenRrVXhG?=
+ =?utf-8?B?MVMwbmZlUHdKKzF1cm5TQmxWb3FuMFVOalhJcWZ4QzRWNmNqSUgxZEpsSHBK?=
+ =?utf-8?B?TUVQVW5FdHM1eTFobFk4TkxEQjVmN3FzL3ZHMjFvOXMyb1ZJaXNnbkdPQWs5?=
+ =?utf-8?B?K2haUTNyRVM2c1V6TCtmVzBoSHh0TFUzV1h0bmtGam1PWmt3UDI4RzJrOXJN?=
+ =?utf-8?B?MnJ2Vkk3bW1FeC9FNWtQZFVpU0ZiSmxMR1FDUkVMRnRJOVBlQVAvSG8yV0Z5?=
+ =?utf-8?B?cWxjNFBlNjJpbXd4Qy9BYWNUZFAzWm53VDZIbDh2ZGdub2xvbzNCSDVRcFlO?=
+ =?utf-8?B?UTdBNU5OcGMzZUFscnRNa1FHSVE3ZzB2ekdqMTFLSXhnK2c0S0NpSVl2b3Za?=
+ =?utf-8?B?bE41MUNYaGErYk9jRTF0UnNEa3VRM1F1ZUJHM3hwcmxza2tlVXFxeWJLNm15?=
+ =?utf-8?B?MVRHblZpbTUvVXFTMmQ0ZzBjb3FDek9ZUHdtajY2UDZ1RkdtdG51cVpnVXB4?=
+ =?utf-8?B?YnlMNTlxYm9GMkViN3dRQXBsdllSTGlFTXNudzUyMEtHYTdVd2JTZy9kbzZD?=
+ =?utf-8?B?Q3poK2ptMjYyQUF4NU1GZk0rUExRODdEeGc0VEc3dFhTUE5tbTlRZmRlVHMx?=
+ =?utf-8?B?QnJaTFd0bEpIN2lYV2xrRGRnRlFKZ2dyN25wQkNIdTRDZ29QRThvRW9WbUM1?=
+ =?utf-8?B?L3ErSGV5QlNTMGFZNjk5bUE3TFFQZ2loaFpVclVBPT0=?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TWFzUEc5SHIwSnVIT1NVZ0thd1phNWVsa2J1WGc2UFhuL1A0cVFYWFpCdk44?=
+ =?utf-8?B?ZG5yb1VlYTBFeUpFRnRodkIyTC9hVStNakl1OUViWHArK28rZXpCM25UYzYv?=
+ =?utf-8?B?MkYxTXVpTWgrSDRQdW1PZHpGMFBDU3p5d1VDQWF2RUJINDlHVEYycXBMYmY3?=
+ =?utf-8?B?eVV5ckc1QTlVQXlPTmx6TTVYQmpaZU51YkhGZllIbHZBeXBRQzh0c0ZUYTNI?=
+ =?utf-8?B?SjJJTG1XZlFlR2xBdm5LcmtDa0hraFphSHBya24yelcrcUowRGpmQkdxRHFG?=
+ =?utf-8?B?dG9SaE5UUENnaTA5eTk3N3VBSjZBZ1JLNVRua3ZCQXpHaE9JUUtPbVdNRExw?=
+ =?utf-8?B?YThYbW56SEFZQi9SKzBTa1cxamlYVjVUb1JEZjVORGxWc1oyejRYSFMvR0hh?=
+ =?utf-8?B?ZDBNeG8yTU1FS2srN0VUVk9oR29VS0NzK21neTBjZmVua3JjUEhXUGh6ZXda?=
+ =?utf-8?B?TGg4Sk9zQ2IxSWExdEtHNU5XWVlzYVlqU2FoNlJFb2NaenYxUlhEOUpKQ2Ux?=
+ =?utf-8?B?TDNkbFRTSlJkWTZWV29oVmFaT2JzcUprWHNFQ2xLVDdqSkt4SUpJUGpuQVZx?=
+ =?utf-8?B?M3JkNGt6VGRxL3I5ZWJMUEZUNnViRFRuTHk3b0hnZTlCUXREQUZBK3lkMzV1?=
+ =?utf-8?B?c3dPQmVtN3VOYUpjc3BGV1ZNSWJLeTVmWjFKV2kyWkxxcmVlb1dvS2t2TnEr?=
+ =?utf-8?B?VEtTL2ZxcGErWDZ2SjhHdVNNL00raDZQcUxNRGlOZzZVRTYrVnM4OEFHRytF?=
+ =?utf-8?B?Uk8wN0pMcjBTaXZmRDlGWjlzTEp5eFJJS2xQdkV2aFdSQlpKWDNUWlNvSU41?=
+ =?utf-8?B?TXp0d0hQaUtGT2FYV1h1Q0dST3RpbGhUamtzT0tlM3hlRERFNWF5OG13NCs2?=
+ =?utf-8?B?eEUvdUxmOW43UHc3Q2VwSWVyOTM2Y1FhSlFCeGt6SUdLUXREUWFoRnEwQUdq?=
+ =?utf-8?B?YjY2WHF6MitreEpqVEJRSE1ZYmViNDVJZ3N3MmtyeUk2THhnV285VTdIWjNR?=
+ =?utf-8?B?aHBVMDdCR2RKZVBQa2ZEc09mSGdqSnc2cXlISGZ2aFN0OE55YkR5ejM5NE5l?=
+ =?utf-8?B?Sk45MWMxVTd0RUJoL24yWitwSnVHQlZzbmpTVG50VTZJbk03WEYwLzJveVZH?=
+ =?utf-8?B?L1o5UWs1U2E3akRXVVlXVFo2UmRWWkhQSkcxZ1EwaS96TFJYSDc1QXo4K3g4?=
+ =?utf-8?B?bStaQ1htQmFHK1VoTmdOVGNmWFpzY1BsMHNHdkkxZ1JrUWd4cS9ucndrQ0pP?=
+ =?utf-8?B?SU8zZzBaY0E0cW1QN1JvN3NmNnNQQUtpbEYyTW1wSDkxZWprZGk2VWV0c3NG?=
+ =?utf-8?B?UzkyMExXS3I5VC81SmRPcWVkSTdPSUZBaGx1RStjTjlDbStqVWVFMjErdHZp?=
+ =?utf-8?B?aWRvS3FMc2ovUjhPa1NYbEttNWZoODc4MVlTME9jMVA5UmN2OEJiWTFjdWg5?=
+ =?utf-8?B?S1ZFN1dadWFSMnBWZWkybFFXV28rQ0xXNnVaVS8xZmpCc2lveG9JQkQybk0x?=
+ =?utf-8?B?RTF2NnRtMUJ3WUhiUTFXT3Z6dGxWd3pUK2VvN1RFekF4Y2x1ZHBVbGVvTnFo?=
+ =?utf-8?B?MHRmMThqSmkrREx0cjBvZ3l0NEtHT0IycFpBa1lrRFB5dHI3STN5YjdmT2M4?=
+ =?utf-8?B?cjMvSnBnU2tLVkg3L0ZRODkwNTJQMm01aHJqV0Q3OTZDOFpEVFY1bEFwNUQ5?=
+ =?utf-8?B?V2lDNGR2ZU9HUjlJMUxaM3ZqSU1nWXlsVm5KT1Y2SmtVd0RPY2l1L1VPK2dH?=
+ =?utf-8?Q?lRE0MQwXEXJQPgZizLF8gfteFklj8qmA/Rlrkyt?=
+X-OriginatorOrg: sct-15-20-7719-19-msonline-outlook-3b3e0.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23cc10af-7218-4fd4-ecfb-08dd4902d89d
+X-MS-Exchange-CrossTenant-AuthSource: AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2025 12:11:13.2934
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0P189MB0820
 
-Similar to PPE support for Mediatek devices, introduce PPE debugfs
-in order to dump binded and unbinded flows.
+On 2/7/25 10:36 AM, Sandie Cao wrote:
+> Starfive Soc common defines GPIO28 as pcie1 reset, GPIO21 as pcie1 wakeup;
+> But the FML13V01 board uses GPIO21 as pcie1 reset, GPIO28 as pcie1 wakeup;
+> redefine pcie1 gpio and enable pcie1 for pcie based Wi-Fi.
+>
+> Signed-off-by: Sandie Cao<sandie.cao@deepcomputing.io>
+> ---
+>   .../jh7110-deepcomputing-fml13v01.dts         | 34 +++++++++++++++++++
+>   1 file changed, 34 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> index 30b0715196b6..8d9ce8b69a71 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> @@ -11,6 +11,40 @@ / {
+>   	compatible = "deepcomputing,fml13v01", "starfive,jh7110";
+>   };
+>   
+> +&pcie1 {
+> +	perst-gpios = <&sysgpio 21 GPIO_ACTIVE_LOW>;
+> +	phys = <&pciephy1>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie1_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&sysgpio {
+> +	pcie1_pins: pcie1-0 {
+> +		clkreq-pins {
+> +			pinmux = <GPIOMUX(29, GPOUT_LOW,
+> +					      GPOEN_DISABLE,
+> +					      GPI_NONE)>;
+> +			bias-pull-down;
+> +			drive-strength = <2>;
+> +			input-enable;
+> +			input-schmitt-disable;
+> +			slew-rate = <0>;
+> +		};
+> +
+> +		wake-pins {
+> +			pinmux = <GPIOMUX(28, GPOUT_HIGH,
+> +					      GPOEN_DISABLE,
+> +					      GPI_NONE)>;
+> +			bias-pull-up;
+> +			drive-strength = <2>;
+> +			input-enable;
+> +			input-schmitt-disable;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +};
+> +
+>   &usb0 {
+>   	dr_mode = "host";
+>   	status = "okay";
+>
+> base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/net/ethernet/airoha/Makefile             |   1 +
- drivers/net/ethernet/airoha/airoha_eth.h         |  12 ++
- drivers/net/ethernet/airoha/airoha_ppe.c         |   5 +
- drivers/net/ethernet/airoha/airoha_ppe_debugfs.c | 175 +++++++++++++++++++++++
- 4 files changed, 193 insertions(+)
 
-diff --git a/drivers/net/ethernet/airoha/Makefile b/drivers/net/ethernet/airoha/Makefile
-index 50028cfc3e3e04efbdd353b1bd65f46b488637d8..e5321effdbeaeaf7c4ad3c6df9d0261fe12fdd12 100644
---- a/drivers/net/ethernet/airoha/Makefile
-+++ b/drivers/net/ethernet/airoha/Makefile
-@@ -5,4 +5,5 @@
- 
- obj-$(CONFIG_NET_AIROHA) += airoha-eth.o
- airoha-eth-y := airoha_eth.o airoha_ppe.o
-+airoha-eth-$(CONFIG_DEBUG_FS) += airoha_ppe_debugfs.o
- airoha-eth-$(CONFIG_NET_AIROHA_NPU) += airoha_npu.o
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
-index 464d92ad5371a137681b4128cc49a7c1a91ddd19..87d2a2a928eaa6680ce3a256eea973c6ce324f13 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.h
-+++ b/drivers/net/ethernet/airoha/airoha_eth.h
-@@ -7,6 +7,7 @@
- #ifndef AIROHA_ETH_H
- #define AIROHA_ETH_H
- 
-+#include <linux/debugfs.h>
- #include <linux/etherdevice.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-@@ -502,6 +503,8 @@ struct airoha_ppe {
- 
- 	struct hlist_head *foe_flow;
- 	u16 foe_check_time[PPE_NUM_ENTRIES];
-+
-+	struct dentry *debugfs_dir;
- };
- 
- struct airoha_eth {
-@@ -611,4 +614,13 @@ static inline int airoha_npu_foe_commit_entry(struct airoha_ppe *ppe,
- }
- #endif /* CONFIG_NET_AIROHA_NPU */
- 
-+#if CONFIG_DEBUG_FS
-+int airoha_ppe_debugfs_init(struct airoha_ppe *ppe);
-+#else
-+static inline int airoha_ppe_debugfs_init(struct airoha_ppe *ppe)
-+{
-+	return 0;
-+}
-+#endif
-+
- #endif /* AIROHA_ETH_H */
-diff --git a/drivers/net/ethernet/airoha/airoha_ppe.c b/drivers/net/ethernet/airoha/airoha_ppe.c
-index 52c8a40c353bd8b812ac44cc936eb6721447a67f..135906a52f72be54e4ecb32febad2c4670d118b8 100644
---- a/drivers/net/ethernet/airoha/airoha_ppe.c
-+++ b/drivers/net/ethernet/airoha/airoha_ppe.c
-@@ -809,6 +809,10 @@ int airoha_ppe_init(struct airoha_eth *eth)
- 	if (err)
- 		goto error_npu_deinit;
- 
-+	err = airoha_ppe_debugfs_init(ppe);
-+	if (err)
-+		goto error_npu_deinit;
-+
- 	return 0;
- 
- error_npu_deinit:
-@@ -826,4 +830,5 @@ void airoha_ppe_deinit(struct airoha_eth *eth)
- 		airoha_npu_deinit(eth->npu);
- 	}
- 	rhashtable_destroy(&eth->flow_table);
-+	debugfs_remove(eth->ppe->debugfs_dir);
- }
-diff --git a/drivers/net/ethernet/airoha/airoha_ppe_debugfs.c b/drivers/net/ethernet/airoha/airoha_ppe_debugfs.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..f79788458903c93ca73d774edaca97f1e08f92a7
---- /dev/null
-+++ b/drivers/net/ethernet/airoha/airoha_ppe_debugfs.c
-@@ -0,0 +1,175 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2025 AIROHA Inc
-+ * Author: Lorenzo Bianconi <lorenzo@kernel.org>
-+ */
-+
-+#include "airoha_eth.h"
-+
-+static void airoha_debugfs_ppe_print_tuple(struct seq_file *m,
-+					   void *src_addr, void *dest_addr,
-+					   u16 *src_port, u16 *dest_port,
-+					   bool ipv6)
-+{
-+	__be32 n_addr[IPV6_ADDR_WORDS];
-+
-+	if (ipv6) {
-+		ipv6_addr_cpu_to_be32(n_addr, src_addr);
-+		seq_printf(m, "%pI6", n_addr);
-+	} else {
-+		seq_printf(m, "%pI4h", src_addr);
-+	}
-+	if (src_port)
-+		seq_printf(m, ":%d", *src_port);
-+
-+	seq_puts(m, "->");
-+
-+	if (ipv6) {
-+		ipv6_addr_cpu_to_be32(n_addr, dest_addr);
-+		seq_printf(m, "%pI6", n_addr);
-+	} else {
-+		seq_printf(m, "%pI4h", dest_addr);
-+	}
-+	if (dest_port)
-+		seq_printf(m, ":%d", *dest_port);
-+}
-+
-+static int airoha_ppe_debugfs_foe_show(struct seq_file *m, void *private,
-+				       bool bind)
-+{
-+	static const char *const ppe_type_str[] = {
-+		[PPE_PKT_TYPE_IPV4_HNAPT] = "IPv4 5T",
-+		[PPE_PKT_TYPE_IPV4_ROUTE] = "IPv4 3T",
-+		[PPE_PKT_TYPE_BRIDGE] = "L2B",
-+		[PPE_PKT_TYPE_IPV4_DSLITE] = "DS-LITE",
-+		[PPE_PKT_TYPE_IPV6_ROUTE_3T] = "IPv6 3T",
-+		[PPE_PKT_TYPE_IPV6_ROUTE_5T] = "IPv6 5T",
-+		[PPE_PKT_TYPE_IPV6_6RD] = "6RD",
-+	};
-+	static const char *const ppe_state_str[] = {
-+		[AIROHA_FOE_STATE_INVALID] = "INV",
-+		[AIROHA_FOE_STATE_UNBIND] = "UNB",
-+		[AIROHA_FOE_STATE_BIND] = "BND",
-+		[AIROHA_FOE_STATE_FIN] = "FIN",
-+	};
-+	struct airoha_ppe *ppe = m->private;
-+	int i;
-+
-+	for (i = 0; i < PPE_NUM_ENTRIES; i++) {
-+		const char *state_str, *type_str = "UNKNOWN";
-+		u16 *src_port = NULL, *dest_port = NULL;
-+		struct airoha_foe_mac_info_common *l2;
-+		unsigned char h_source[ETH_ALEN] = {};
-+		unsigned char h_dest[ETH_ALEN];
-+		struct airoha_foe_entry *hwe;
-+		u32 type, state, ib2, data;
-+		void *src_addr, *dest_addr;
-+		bool ipv6 = false;
-+
-+		hwe = airoha_ppe_foe_get_entry(ppe, i);
-+		if (!hwe)
-+			continue;
-+
-+		state = FIELD_GET(AIROHA_FOE_IB1_STATE, hwe->ib1);
-+		if (!state)
-+			continue;
-+
-+		if (bind && state != AIROHA_FOE_STATE_BIND)
-+			continue;
-+
-+		state_str = ppe_state_str[state % ARRAY_SIZE(ppe_state_str)];
-+		type = FIELD_GET(AIROHA_FOE_IB1_PACKET_TYPE, hwe->ib1);
-+		if (type < ARRAY_SIZE(ppe_type_str) && ppe_type_str[type])
-+			type_str = ppe_type_str[type];
-+
-+		seq_printf(m, "%05x %s %7s", i, state_str, type_str);
-+
-+		switch (type) {
-+		case PPE_PKT_TYPE_IPV4_HNAPT:
-+		case PPE_PKT_TYPE_IPV4_DSLITE:
-+			src_port = &hwe->ipv4.orig_tuple.src_port;
-+			dest_port = &hwe->ipv4.orig_tuple.dest_port;
-+			fallthrough;
-+		case PPE_PKT_TYPE_IPV4_ROUTE:
-+			src_addr = &hwe->ipv4.orig_tuple.src_ip;
-+			dest_addr = &hwe->ipv4.orig_tuple.dest_ip;
-+			break;
-+		case PPE_PKT_TYPE_IPV6_ROUTE_5T:
-+			src_port = &hwe->ipv6.src_port;
-+			dest_port = &hwe->ipv6.dest_port;
-+			fallthrough;
-+		case PPE_PKT_TYPE_IPV6_ROUTE_3T:
-+		case PPE_PKT_TYPE_IPV6_6RD:
-+			src_addr = &hwe->ipv6.src_ip;
-+			dest_addr = &hwe->ipv6.dest_ip;
-+			ipv6 = true;
-+			break;
-+		}
-+
-+		seq_puts(m, " orig=");
-+		airoha_debugfs_ppe_print_tuple(m, src_addr, dest_addr,
-+					       src_port, dest_port, ipv6);
-+
-+		switch (type) {
-+		case PPE_PKT_TYPE_IPV4_HNAPT:
-+		case PPE_PKT_TYPE_IPV4_DSLITE:
-+			src_port = &hwe->ipv4.new_tuple.src_port;
-+			dest_port = &hwe->ipv4.new_tuple.dest_port;
-+			fallthrough;
-+		case PPE_PKT_TYPE_IPV4_ROUTE:
-+			src_addr = &hwe->ipv4.new_tuple.src_ip;
-+			dest_addr = &hwe->ipv4.new_tuple.dest_ip;
-+			seq_puts(m, " new=");
-+			airoha_debugfs_ppe_print_tuple(m, src_addr, dest_addr,
-+						       src_port, dest_port,
-+						       ipv6);
-+			break;
-+		}
-+
-+		if (type >= PPE_PKT_TYPE_IPV6_ROUTE_3T) {
-+			data = hwe->ipv6.data;
-+			ib2 = hwe->ipv6.ib2;
-+			l2 = &hwe->ipv6.l2;
-+		} else {
-+			data = hwe->ipv4.data;
-+			ib2 = hwe->ipv4.ib2;
-+			l2 = &hwe->ipv4.l2.common;
-+			*((__be16 *)&h_source[4]) =
-+				cpu_to_be16(hwe->ipv4.l2.src_mac_lo);
-+		}
-+
-+		*((__be32 *)h_dest) = cpu_to_be32(l2->dest_mac_hi);
-+		*((__be16 *)&h_dest[4]) = cpu_to_be16(l2->dest_mac_lo);
-+		*((__be32 *)h_source) = cpu_to_be32(l2->src_mac_hi);
-+
-+		seq_printf(m, " eth=%pM->%pM etype=%04x data=%08x"
-+			      " vlan=%d,%d ib1=%08x ib2=%08x\n",
-+			   h_source, h_dest, l2->etype, data,
-+			   l2->vlan1, l2->vlan2, hwe->ib1, ib2);
-+	}
-+
-+	return 0;
-+}
-+
-+static int airoha_ppe_debugfs_foe_all_show(struct seq_file *m, void *private)
-+{
-+	return airoha_ppe_debugfs_foe_show(m, private, false);
-+}
-+DEFINE_SHOW_ATTRIBUTE(airoha_ppe_debugfs_foe_all);
-+
-+static int airoha_ppe_debugfs_foe_bind_show(struct seq_file *m, void *private)
-+{
-+	return airoha_ppe_debugfs_foe_show(m, private, true);
-+}
-+DEFINE_SHOW_ATTRIBUTE(airoha_ppe_debugfs_foe_bind);
-+
-+int airoha_ppe_debugfs_init(struct airoha_ppe *ppe)
-+{
-+	ppe->debugfs_dir = debugfs_create_dir("ppe", NULL);
-+	debugfs_create_file("entries", 0444, ppe->debugfs_dir, ppe,
-+			    &airoha_ppe_debugfs_foe_all_fops);
-+	debugfs_create_file("bind", 0444, ppe->debugfs_dir, ppe,
-+			    &airoha_ppe_debugfs_foe_bind_fops);
-+
-+	return 0;
-+}
+Tried this on my device and it works as expected
 
--- 
-2.48.1
+Tested-by: Maud Spierings <maud_spierings@hotmail.com>
+
+
+Kind regards,
+Maud
 
 
