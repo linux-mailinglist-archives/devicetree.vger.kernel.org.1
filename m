@@ -1,150 +1,201 @@
-Return-Path: <devicetree+bounces-144414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD2DA2E054
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 20:57:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49AE2A2E05B
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 21:13:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECCB83A5EA6
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 19:57:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 904311881B3E
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 20:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21BAF1E25F2;
-	Sun,  9 Feb 2025 19:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B91821E283C;
+	Sun,  9 Feb 2025 20:13:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="IdqbLMqX"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="TU8uQTRz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A4CB1922D4;
-	Sun,  9 Feb 2025 19:57:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C8B4C79;
+	Sun,  9 Feb 2025 20:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739131044; cv=none; b=TX4euA5R3jZGOWOLrQ8agMwbWTyKy+VnnoOhN3Pws1cAok7+CdgH4m+0YZ1NzNemR+beJs3ugQ9uzwk3p/8ez5M3rx9jHWB9RobyubCWbT1zhuh6BzwI6exTsTMcZx6wjxtrCCWwWPlIAOZtTETx99zu7pfuIJYefOSXqSZJiUA=
+	t=1739132013; cv=none; b=oiNW/IPDE2Ypk4OFcRrKRamfWcme8Od0Hmc1k38NvX+7HW/MtAzyewDieDl7Y4xuCrYT6SDm4Q/Rwmk/aQqNSZYJJdPQ9hyGKfQcCNpkBWtQ+FxE13aMddSYGA9hzgsgDCk/91Njz4N3Wqcg7niO0M7pYt5jN4u3+UaNZOfHwp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739131044; c=relaxed/simple;
-	bh=7T644jRLvWkERpn3Ga7YAdWY5Xvk+JGdwM8qBhXx6Yg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T64zb9p6FEwI2PHTh9yduvbirMOAMh+NOc1IMHtGIXyzixZ5/YKX1xEWe05NenlnVniahv1dIV1Bc3DRtlyfTnBZ17oH8ah+kvpmHU8JgEfSV9Qvqu782ZKky4Gl513rsVSFlgncGlcq4/COPm6IDnS4a1xnnqpQk21cM6vSf5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=IdqbLMqX; arc=none smtp.client-ip=89.177.23.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 538811665EF;
-	Sun,  9 Feb 2025 20:57:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1739131040;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=n1wZCagye5h3kJ2wyjhN/cA6M8igqHHxiNXpizL4J7I=;
-	b=IdqbLMqX+LbuIILcou3VuXb64skIlTbhuWGJnIS5YPGabaZEkbRrdkwDoeh5wijmUof9Xr
-	09s79zonf+loCFf/pOApnBbqSUwrtQIhzrcNGnYx0j+LXkIeWA9n1wvI0ZxVrhHbRc5F/8
-	biOquMbHW2sAPiD3htOGKjDH+5l0H28=
-Message-ID: <986151e9-ffce-4c47-a4de-01a2cfd57b36@ixit.cz>
-Date: Sun, 9 Feb 2025 20:57:20 +0100
+	s=arc-20240116; t=1739132013; c=relaxed/simple;
+	bh=mxKJJ9z0kfIFgP0ZaVWskkVDmXNCZ4NZHLOhggPQ2U4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=L9Y6Yjss9O37Ac8OmVDoOaZco6J7k4eN0KSj9LvTFqMG6PAhDE5qOpfWghSPmOMOPjmGRi3ODLjq9WZ2bBwP8EY5+lJCJzjef4Vd615Kk651cWXrmRw2aUEu9wCDLRqpwzLUd59BlzV7LewPNlMP8fo2xacziepfSqsNFGN8HOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=TU8uQTRz; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=+TJoRP+50bwcv+IqsrAa6iNek+2v+7TMWBQgaAIIUIw=; b=TU8uQTRzaIDYXOdzkbqFz1dT4v
+	ehFyakRsQhbSJo0zUO2n5dFS0TBqARQARqUjjalx0YxFaZ3od9n4jYeKl2gjmvODFn8ZQYu64rtar
+	21W31c7bLmwesc7d0OzS7NkUvUE/1x/ZbS6xTm/gyrzWlVcIgTwUiq46p2ul5hWx3ZJxuwMwmJFNL
+	Lo/1LaZaclt/DQ/RyDMkBTBw7M9qIRIaBK4EObOPZ2aluOUhRVOcCntgN/xOo8kawr6Uc8C77YC69
+	u4N0ANK/58PWaF7+RnbnUf+vydM1I0xkqU4jzCejKHSBMmmZEYxLToawy+/OmTO8MWVjz98qyO9K7
+	VcofyvJg==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1thDg3-0001Vx-UW; Sun, 09 Feb 2025 21:13:15 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: vkoul@kernel.org, Andy Yan <andyshrk@163.com>
+Cc: cristian.ciocaltea@collabora.com, kishon@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v3] dt-bindings: phy: Add rk3576 hdptx phy
+Date: Sun, 09 Feb 2025 21:13:15 +0100
+Message-ID: <8470934.EvYhyI6sBW@diego>
+In-Reply-To: <20241231092721.252405-1-andyshrk@163.com>
+References: <20241231092721.252405-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH] media: dt-bindings: media: i2c: align IMX219 filename
- format with others
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250209180718.126462-1-david@ixit.cz>
- <5973f4b7-568a-4ff4-9893-29a150efdd54@kernel.org>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <5973f4b7-568a-4ff4-9893-29a150efdd54@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-Sent
+Vinod,
 
-'media: dt-bindings: media: i2c: align filenames format with standard'
-
-for whole Documentation/devicetree/bindings/media/i2c which contains 
-also this change.
-
-Thanks!
-
-On 09/02/2025 20:09, Krzysztof Kozlowski wrote:
-> On 09/02/2025 19:07, David Heidelberg wrote:
->> Append missing vendor and align with other sony definitions.
->>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>   .../bindings/media/i2c/{imx219.yaml => sony,imx219.yaml}        | 2 +-
+Am Dienstag, 31. Dezember 2024, 10:27:11 MEZ schrieb Andy Yan:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
+> Add compatible for the HDPTX PHY on rk3576, which is compatible with
+> rk3588, but without rst_phy/rst_ropll/rst_lcpll.
 > 
-> Something like this was already sent some time ago. Do it for entire
-> subsystem - so all cameras there, not file by file.
+> In fact, these three reset lines are also optional on the rk3588,
+> they just used for debug, then they were removed on the rk3576 IC
+> design.
 > 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 
--- 
-David Heidelberg
+With the binding more in the driver-realm, I guess this should go through
+the phy tree?
+
+Thanks a lot
+Heiko
+
+
+> ---
+> 
+> Changes in v3:
+> - Split from:
+>   https://lore.kernel.org/linux-rockchip/3330586.aeNJFYEL58@diego/T/#m02151cd8591d7fe92cf30ab69701ed57c1944c06
+> 
+> Changes in v2:
+> - Wrap commit message according to Linux coding style
+> - Make "rockchip,rk3588-hdptx-phy" const for "rockchip,rk3576-hdptx-phy"
+> - Make declare phy/ropll/lcpll reset line are not exit on rk3576
+> 
+>  .../phy/rockchip,rk3588-hdptx-phy.yaml        | 62 +++++++++++++------
+>  1 file changed, 44 insertions(+), 18 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3588-hdptx-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3588-hdptx-phy.yaml
+> index 84fe59dbcf48..7a307f45cdec 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip,rk3588-hdptx-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3588-hdptx-phy.yaml
+> @@ -11,8 +11,13 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - rockchip,rk3588-hdptx-phy
+> +    oneOf:
+> +      - enum:
+> +          - rockchip,rk3588-hdptx-phy
+> +      - items:
+> +          - enum:
+> +              - rockchip,rk3576-hdptx-phy
+> +          - const: rockchip,rk3588-hdptx-phy
+>  
+>    reg:
+>      maxItems: 1
+> @@ -34,24 +39,12 @@ properties:
+>      const: 0
+>  
+>    resets:
+> -    items:
+> -      - description: PHY reset line
+> -      - description: APB reset line
+> -      - description: INIT reset line
+> -      - description: CMN reset line
+> -      - description: LANE reset line
+> -      - description: ROPLL reset line
+> -      - description: LCPLL reset line
+> +    minItems: 4
+> +    maxItems: 7
+>  
+>    reset-names:
+> -    items:
+> -      - const: phy
+> -      - const: apb
+> -      - const: init
+> -      - const: cmn
+> -      - const: lane
+> -      - const: ropll
+> -      - const: lcpll
+> +    minItems: 4
+> +    maxItems: 7
+>  
+>    rockchip,grf:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+> @@ -67,6 +60,39 @@ required:
+>    - reset-names
+>    - rockchip,grf
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,rk3576-hdptx-phy
+> +    then:
+> +      properties:
+> +        resets:
+> +          minItems: 4
+> +          maxItems: 4
+> +        reset-names:
+> +          items:
+> +            - const: apb
+> +            - const: init
+> +            - const: cmn
+> +            - const: lane
+> +    else:
+> +      properties:
+> +        resets:
+> +          minItems: 7
+> +          maxItems: 7
+> +        reset-names:
+> +          items:
+> +            - const: phy
+> +            - const: apb
+> +            - const: init
+> +            - const: cmn
+> +            - const: lane
+> +            - const: ropll
+> +            - const: lcpll
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> 
+
+
+
 
 
