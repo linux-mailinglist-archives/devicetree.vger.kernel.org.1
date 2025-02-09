@@ -1,141 +1,145 @@
-Return-Path: <devicetree+bounces-144294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99530A2DB33
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 06:10:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C47B6A2DB3A
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 06:37:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9A6E3A7249
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 05:10:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFA843A6B00
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 05:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F5681B4F1F;
-	Sun,  9 Feb 2025 05:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D5133987;
+	Sun,  9 Feb 2025 05:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aPzqkLMW"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lragoFyn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78421B4158
-	for <devicetree@vger.kernel.org>; Sun,  9 Feb 2025 05:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78AF24339E;
+	Sun,  9 Feb 2025 05:37:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739077647; cv=none; b=F5mb/cAzD7/eJ3cR0jWU90bSW/rJg/eJd6TVTseLGNP/E1f2TSG7tQq7HEtEZsMR74CkT3Yss3pYUsDWWkohPkRGgSUZWLIFicYYmH04EB80aBVNY5jj34yIK0dBgT0lCvmbO2NftpreGFi+86eZpnkKztkRMOERWawSrnAwdqM=
+	t=1739079427; cv=none; b=bKMsEwT1TqSr6zJe51jhlIWKCYjP7iWv41APFThSDid01cYgy/GYj1RJzSoLEdEH1B2BwicaCsVK62ibihuVNVYR14I1MLirrp0C4tU6bjqctldKMVjqgU4M1w6YVExxpQxwD+5svdPX09yOhn9rqanKZbyQ/oZxsc8P4zZBL8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739077647; c=relaxed/simple;
-	bh=rBkvGR/qHrfxPlnsg0QzXfiNTIC9RTO2ROzJ5dKz7zg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=E4h9NxYkfL9Zxqvnn2lZOnji/Me8HvQ7gJRgNVkLKgMru4ZCy7MJGC/yLeKpGR83ai9tth22l0sPOvLVZT2V/NrPXim4pBUmE/qvJXbFekhi/T0urQ3JZdeEbFPkAWBsJsyt3CSncYwMPGbtPv4F98QjMl9FeeP8vNtNoCR3OAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aPzqkLMW; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5450622b325so739136e87.1
-        for <devicetree@vger.kernel.org>; Sat, 08 Feb 2025 21:07:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739077644; x=1739682444; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EfNMfzUAvdO5axXrtOPa21BH0I19Ed6M3V+EZ2kcNQY=;
-        b=aPzqkLMWbFX+7NFvOmEk2laOqFOFfeDjqCedQUpe2La/Ysrc9V08RAhrJ8NY22NYbV
-         lgUrp8qss3uZjh2Pqgk+Oni9M7/s6l52Yji1bRmkgP/vTYUtbUJrNl/oPaL+nKlv1Iut
-         1S92mWsas8hjc2FZpstSHE+iBzKXQiD1WrySs5pavDGsnH0ThULdY76s34TNG9bJzPNd
-         pU1rs0KhY2CTNTVnQMi4kfOcVKk3cY3/niA8QB0s8lRXxoT/5Ug+NXJ08QzWDgDnRJFU
-         zsTUeJqjIic7OxzKq5KdvHwE+7vye+DU4K02KbGZsKopWZuituIy/8fK/fdei9NNR1PO
-         Tuhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739077644; x=1739682444;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EfNMfzUAvdO5axXrtOPa21BH0I19Ed6M3V+EZ2kcNQY=;
-        b=rOQRb0paE/Zdzyv2M/V55uf7ZGt5LmmeDdAYOpo1ZKmWYY45vYsskFwv/fDkLldDdh
-         N4cpsQPkQyOp4qkbCypbeXpsPoLHkr3iM5aPnOYzOhRKprGN0kbIWWbuOkfcy4rttO6G
-         cPPDnPR7OKfE/RebR/Q5S0QPN9IoWu+iICMg4MFOb/Q4XpK2Pla8qVydTZM7JzQrvezZ
-         L/dqpJDtp6G1gk6SvkiibSmiBmAp01HDoNC+wu7c1phRMfWBmEmiqwqRulJPjOgRwwmY
-         PnTgLxtode98WBSSwxifwkqD9rPz180ZlFI6guNF2OO4ebB5Z96wMwD4GlNXVVMhnd7z
-         fB1w==
-X-Forwarded-Encrypted: i=1; AJvYcCXTidEqdFLBvPF1ta+p3sF78cw+0iy+Nq2HkjcLwJXdOns5L2KlfzVDDpv2PG6iIVs3WDEfEClJMcXX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkwWhc6q3ClgFa3tGvI1xIAzqlzUaGAFJAG4RIoJ9hzjX1Jmx5
-	jsoIIOzA/EPH5LWeQ13GphGiExIQqJdj7f84nXyN3JCpb5wW/NKbuLODp2VwgLc=
-X-Gm-Gg: ASbGncuxlTC7Y2bUh1L//IpAMAYOM2rCMJd04MaLDc0VJeE/3qaEbC69DSVW5JjtLyA
-	pjZWjT+fzzo04AWTxwTXobrxSUFlVn/80BlJ92vjtMB33G0ixYj5WCfMLvrCpZYUA7qqgopknwi
-	vy6j85QzQ/zqeawETEbKzm7MAMp+Nvxw4/87YhqhosCbzSgegSfeDjQQuqPt7WgS6h4LTqoh+TQ
-	y+IT6556PgcLVtsCYE4xkM73Re7b6SUk6F3HBc61ZOB+5O81vjpNaACWUASmae4moI1yOthfbBN
-	Ur8WSjC7kW8tRHxf4j+3Ohc=
-X-Google-Smtp-Source: AGHT+IEAJIpGx/KtWJ3FoMRxqCJZCMQixEialyC+rYX1C/PQUXahOHBcURaFNniiUGHQYiTxLHEVSg==
-X-Received: by 2002:ac2:568e:0:b0:543:e4a3:7c3d with SMTP id 2adb3069b0e04-54414aa8782mr2874988e87.29.1739077643911;
-        Sat, 08 Feb 2025 21:07:23 -0800 (PST)
-Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54506ef1733sm245576e87.1.2025.02.08.21.07.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Feb 2025 21:07:22 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sun, 09 Feb 2025 07:05:00 +0200
-Subject: [PATCH v4 16/16] ARM: dts: qcom: apq8064-ifc6410: drop HDMI HPD
- GPIO
+	s=arc-20240116; t=1739079427; c=relaxed/simple;
+	bh=LQYHpToHZqvrvUEO8vPOG+RisUsfNychAkbijb2JVT4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fUAMjsNyo12iC6EEZJib0p6K+WPp1v8CgfdqqSqa7NY3pNhyB/69wEn1vlSyrDMA6IyXKD5b48QOPmWMU/4obLE3vwi0IJDT6p+FByelCvbY+rW5pZ4lYlJXMftkvJoPn1YbhfwHOzrnqZ4Ns4TRQkEaprkgtiHgw3bsU4BapdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lragoFyn; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739079425; x=1770615425;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LQYHpToHZqvrvUEO8vPOG+RisUsfNychAkbijb2JVT4=;
+  b=lragoFynu7/SQydzU1Bxa63vNkAjlGt9m1LvmhtcqfRe8f8eXgsB44FW
+   4GmbOlshi6iVkCOQ+l8fv2TB0cuTpFaqSsR00BKzNPa9ENiORna2NwACv
+   9GUnfgX7QeTrd/SDM4DO6TYqVRL91U4D+h/X2Ns/OUI4wnAOXRlfaXZzX
+   NMXh5fBsY+gMVhB6zf+BqB5xAAaKLYg2PArMd5mtfHfD8wEArO33GGkjy
+   T3CFxgSMajeQsdYPngzLY6OoVYyFqCLzRf1mlVjOW9iuuvOaamsqs+G8G
+   MPC2r0PYLsrvmblAwEQcQV/6xMyRKUwLF30wjXqKLsEmc88fpdMrk1S/X
+   w==;
+X-CSE-ConnectionGUID: pljfILQ/RVOm2f7uj6cvWw==
+X-CSE-MsgGUID: SYHp7DnKQLCtOWBtkCQT/Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11339"; a="62157868"
+X-IronPort-AV: E=Sophos;i="6.13,271,1732608000"; 
+   d="scan'208";a="62157868"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2025 21:37:04 -0800
+X-CSE-ConnectionGUID: uJznlC4YT/+W9s625x6DMA==
+X-CSE-MsgGUID: /jWVE8OJTeyAq4L1lGPEag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="116486851"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 08 Feb 2025 21:37:00 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1th001-00117X-3A;
+	Sun, 09 Feb 2025 05:36:57 +0000
+Date: Sun, 9 Feb 2025 13:36:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Artur Weber <aweber.kernel@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Christian Daudt <bcm@fixthebug.org>,
+	Sherman Yin <syin@broadcom.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Stanislav Jakubek <stano.jakubek@gmail.com>,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Artur Weber <aweber.kernel@gmail.com>
+Subject: Re: [PATCH 4/7] pinctrl: bcm281xx: Provide pinctrl device info as OF
+ platform data
+Message-ID: <202502091354.vwFJOxGn-lkp@intel.com>
+References: <20250207-bcm21664-pinctrl-v1-4-e7cfac9b2d3b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250209-fd-hdmi-hpd-v4-16-6224568ed87f@linaro.org>
-References: <20250209-fd-hdmi-hpd-v4-0-6224568ed87f@linaro.org>
-In-Reply-To: <20250209-fd-hdmi-hpd-v4-0-6224568ed87f@linaro.org>
-To: Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Simona Vetter <simona.vetter@ffwll.ch>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=806;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=rBkvGR/qHrfxPlnsg0QzXfiNTIC9RTO2ROzJ5dKz7zg=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnqDfkPKZGcgzKdMYQrmr8xg29SeVv5ZTbQNhMP
- Xm71FFkyTSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ6g35AAKCRCLPIo+Aiko
- 1UN1B/9p99p14mAy2cJWH8bo5AHu/xitIDMYADBNYVdsUQXslx1MuCaXPHSz/9EQQ9j45ItPAmv
- EzCEf17MZ//D1/qHLqCjloL9Ltx37KTjBGPz1FUsmmbU8crIut7dokT0vvrXN6tGLdefXI/Hxuc
- awkE7CsVIlujLKcvm1MIvFQt1sbsJ9STP7ppIKasGV7yZiTxpCfT5SglZtHAbrupQBqNjuOhnWd
- 3K8IniuWpKDQQBT71UqooHwEvF5Y9+OSbX8IlfDHj0Wp18urN40IFGX3Er+qj4JGg0EX+RWVWF7
- 5mfvkADq0u6kX/boHk9kXmppgY4vT3pNzviaOXQ+R8XuVeKu
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250207-bcm21664-pinctrl-v1-4-e7cfac9b2d3b@gmail.com>
 
-There is no need to specify separate HPD gpio for the HDMI block. Use
-built-in HPD in order to detect if the monitor is plugged or not.
+Hi Artur,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts | 1 -
- 1 file changed, 1 deletion(-)
+kernel test robot noticed the following build errors:
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
-index b3ff8010b14985c55c580e0083a5c8ea23c03962..717bfd74edb75b278eaf5ab37954fcede1f7ffb0 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
-@@ -138,7 +138,6 @@ &gsbi7_serial {
- 
- &hdmi {
- 	core-vdda-supply = <&pm8921_hdmi_switch>;
--	hpd-gpios = <&tlmm_pinmux 72 GPIO_ACTIVE_HIGH>;
- 	status = "okay";
- };
- 
+[auto build test ERROR on ffd294d346d185b70e28b1a28abe367bbfe53c04]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Artur-Weber/dt-bindings-pinctrl-Add-bindings-for-BCM21664-pin-controller/20250208-040646
+base:   ffd294d346d185b70e28b1a28abe367bbfe53c04
+patch link:    https://lore.kernel.org/r/20250207-bcm21664-pinctrl-v1-4-e7cfac9b2d3b%40gmail.com
+patch subject: [PATCH 4/7] pinctrl: bcm281xx: Provide pinctrl device info as OF platform data
+config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20250209/202502091354.vwFJOxGn-lkp@intel.com/config)
+compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250209/202502091354.vwFJOxGn-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502091354.vwFJOxGn-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/pinctrl/bcm/pinctrl-bcm281xx.c:971:19: error: initializer element is not a compile-time constant
+           .regmap_config = bcm281xx_pinctrl_regmap_config,
+                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/bcm/pinctrl-bcm281xx.c:1424:6: warning: unused variable 'rc' [-Wunused-variable]
+           int rc;
+               ^
+   1 warning and 1 error generated.
+
+
+vim +971 drivers/pinctrl/bcm/pinctrl-bcm281xx.c
+
+   962	
+   963	static const struct bcm281xx_pinctrl_info bcm281xx_pinctrl = {
+   964		.device_type = BCM281XX_PINCTRL_TYPE,
+   965	
+   966		.pins = bcm281xx_pinctrl_pins,
+   967		.npins = ARRAY_SIZE(bcm281xx_pinctrl_pins),
+   968		.functions = bcm281xx_functions,
+   969		.nfunctions = ARRAY_SIZE(bcm281xx_functions),
+   970	
+ > 971		.regmap_config = bcm281xx_pinctrl_regmap_config,
+   972	};
+   973	
 
 -- 
-2.39.5
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
