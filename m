@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-144308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99917A2DCA1
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:50:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEDACA2DCA6
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:51:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D4203A4E21
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 10:50:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26E9A18861AE
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 10:51:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0234F14A629;
-	Sun,  9 Feb 2025 10:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E02E17C225;
+	Sun,  9 Feb 2025 10:51:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EOmkmJFE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cljLsJTM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD09613DBA0;
-	Sun,  9 Feb 2025 10:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75C8175D53;
+	Sun,  9 Feb 2025 10:51:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739098218; cv=none; b=LXPTKjUe3nWE2Ga9Tsj/ozo4NUGkzGxKgQkr35VrwtNxoDK5SR0QMfpe8Z8EoW03+mx+FKau0wq78HeGZ6PlaosFRpd6P45xiTqZYuUIpWf14pOhXw5bklc7JMtDmRwUTCbkNwue2XKCs5y6rwMsH/HlJwkQvso3sEKOm+sDWCo=
+	t=1739098295; cv=none; b=Q7fR9qcdWaz9RXE3ulfDCNz8jOu/DA0C/tLmrMJB1PORN/fxgJmbdQ5AwD2+D0bv/m0ex7y4n9uWQkDo0fSx7fnckgI6Ev4e4422IADOioYCen41aXQ7tD0D2ehrJOAt1Lq8brkzbRmgxJ8xgoFPtfJgP/DrmTNppNdcTey6P54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739098218; c=relaxed/simple;
-	bh=W3bQLpvNqVz6lXaL/MfC5KsGcVMYBUOMdocc+DMoGO8=;
+	s=arc-20240116; t=1739098295; c=relaxed/simple;
+	bh=gymlXchE1X2Mi5HturvFxODMkGlE+6Fknw2D00ypeLw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZQ1I0qPWR/8wcfZRhPiieiYXC36LuBVZwa55HlpvL/HaWtqLlBSbr5CzCn3iqSdMBxExJ7wav/NFrzRO/gcXPjUUugPPG+s52My56qtqnfE4ZGYT3i47wBx+C1rr3PImogjMYV3WRy3vWG1P6YL44RQmNfYs7d1DXrEYe0Pk0sE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EOmkmJFE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 919E6C4CEE6;
-	Sun,  9 Feb 2025 10:50:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=g9QJCwRfW0KiVajRrma2MmtofIucmwlNX+oGfPZxGVAnDJ3QRwb5DbQ6jyGoQTsZGCHXlBUVwQwpc+sfwRRGrMVyCfDzPSPDjfcbhaTzI4DdfIm/E+CqFAGr46U+Nbe5gQjuj832dQci0ZtS++oId35MEKvAbVRZAQpdqt7VpFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cljLsJTM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FB5EC4CEDD;
+	Sun,  9 Feb 2025 10:51:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739098218;
-	bh=W3bQLpvNqVz6lXaL/MfC5KsGcVMYBUOMdocc+DMoGO8=;
+	s=k20201202; t=1739098293;
+	bh=gymlXchE1X2Mi5HturvFxODMkGlE+6Fknw2D00ypeLw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EOmkmJFEqo/eraNmgNsDtZB6gXNrBo0bHCtNZ2MBl4pMgQKCaIFj67If8dtTZQZtN
-	 WPvxDWtBh6uZTTTXtS2ceWkJjsW54UP7yRHPBDh4RQtB5YmHJt/MCrDuGa3Bq4BjQC
-	 Yam+te0i61d3eAosRREz+FZMlj+j/ad69ibiEowFQeMmN4tVqEnvGxOrowGOd6scDE
-	 8o+DZvJwd7fwZjYY1o48ODPOGrXwGFbCi1PYwB2gvmmd1B36n7gZJuk4vgrEDsH/NR
-	 iRLhXiEZaY++f6aI95bc7mhV98rKgwHbe/WhYc2EJuKUrekWT2fw2fuAKnQWwSlEV/
-	 ycxOrkJxMB60w==
-Message-ID: <eac3c588-0c9a-4bd6-8ef2-e05eec6c377a@kernel.org>
-Date: Sun, 9 Feb 2025 11:50:12 +0100
+	b=cljLsJTMFJ70nnAYdWOlI2nx0RjdQ3pzCPH+wuHrs3WRAVMaGAUasVRUloiaTyhIb
+	 BXxsQKARNs5eTvvnDxXD6bLDQt202LyauVWHOnXjhxoaXO89cH5PECKgcarAT7fYX+
+	 wcOE2AwauN0t4E9sWZVRiL39vIKCI7vwLOLyTJvM8YtiADS4k/jVtkZz2pYnF73dp5
+	 RLzK032K01GR6oAPsk42TOw/rHs4l6PhmWXWVFGlFkzefWkfgy+qfvuUbqRxsv7afU
+	 mnPBCMzXHpdq+MAQxkXTyzp4rWn4Qsu14ItFtdbTRdQAQSHTbd7p8+l37gp+ZRzG6C
+	 G79QpJg/VZjvw==
+Message-ID: <2942fbc2-55c5-4789-89d4-e4bf3158a34b@kernel.org>
+Date: Sun, 9 Feb 2025 11:51:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [v2,1/2] memory/mediatek: Add an interface to get current DDR
- data rate
+Subject: Re: [v2,2/2] dt-bindings: memory-controllers: Add MediaTek DRAM
+ controller interface
 To: Crystal Guo <crystal.guo@mediatek.com>, Rob Herring <robh@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
  <matthias.bgg@gmail.com>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- kernel test robot <lkp@intel.com>
+ Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20250207014437.17920-1-crystal.guo@mediatek.com>
- <20250207014437.17920-2-crystal.guo@mediatek.com>
+ <20250207014437.17920-3-crystal.guo@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,37 +106,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250207014437.17920-2-crystal.guo@mediatek.com>
+In-Reply-To: <20250207014437.17920-3-crystal.guo@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 07/02/2025 02:42, Crystal Guo wrote:
-> Add MediaTek DRAMC driver to provide an interface that can
-> obtain current DDR data rate.
+> A MediaTek DRAM controller interface to provide the current DDR data rate.
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
+Duplicated patch.
 
-Kbuild did not report here anything.
+You also ignored several comments so that's a NAK.
 
-> Closes: https://lore.kernel.org/oe-kbuild-all/202412210955.FvO0Pee3-lkp@intel.
-> com/
-> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
-> ---
->  drivers/memory/Kconfig              |   1 +
->  drivers/memory/Makefile             |   1 +
->  drivers/memory/mediatek/Kconfig     |  21 +++
->  drivers/memory/mediatek/Makefile    |   2 +
->  drivers/memory/mediatek/mtk-dramc.c | 196 ++++++++++++++++++++++++++++
->  5 files changed, 221 insertions(+)
->  create mode 100644 drivers/memory/mediatek/Kconfig
->  create mode 100644 drivers/memory/mediatek/Makefile
->  create mode 100644 drivers/memory/mediatek/mtk-dramc.c
+<form letter>
+This is a friendly reminder during the review process.
 
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
 
-You sent same patchsets multiple times.
-
-Before next posting, please really carefully go through the guides and
-process.
+Thank you.
+</form letter>
 
 Best regards,
 Krzysztof
