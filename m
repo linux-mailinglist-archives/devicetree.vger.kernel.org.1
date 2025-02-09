@@ -1,139 +1,116 @@
-Return-Path: <devicetree+bounces-144403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53112A2DF32
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 17:55:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40377A2DF5D
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 18:28:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F31C61650AB
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 16:55:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F7B23A625A
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 17:28:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567FA1BC9E2;
-	Sun,  9 Feb 2025 16:55:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 518A01E0DFE;
+	Sun,  9 Feb 2025 17:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XlhaW5VF"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="DEFQtUiK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF8221348;
-	Sun,  9 Feb 2025 16:55:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34688EAC6
+	for <devicetree@vger.kernel.org>; Sun,  9 Feb 2025 17:28:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739120135; cv=none; b=aMikvrucdynbSBBeDrmpNt3K2bbmGz/KSu9czDpX88RKjCuML68mT/de5cTS9jhzjcRtppCkRztTbFJsGoeFiG9slRV5xItvA4MneB5xyWg/gMW2I6sIrX4LlF99vov+oVs+Fl74ua999NMmKsqWcA0V5KSsRUvVj5VZK1q7gTM=
+	t=1739122105; cv=none; b=tZMPe+HcLwY+OSimHWOfMzyojYLScWJyA5oUhjJ6pPCVvBMGCfHcfIs7iOFHxWdhvZ7WJzLNzaBjjE/gazhwDw+MKCCP5Ab4m9llsJtvx3USQxfwl+g0z47BW+LB3OOTDMurPsEiBQp8bUEbzAfJ9Mrdc9aMRdsarrL0Wr5m7+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739120135; c=relaxed/simple;
-	bh=eCOLbrEQl6Q8PofZ6oAAOmyrOHt5RHJBqFDV24Mwud4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gKrogM1eBaBuu+6Xbwi2RjVut0NnILmpAFHFgWf9/x4UAmVCe0oS873dOHdlN5Ip7whOg7dNDOXoQvhYpmjypW9KSPKgAcr8yiHWfNMiaZwzaCgTJHS40qQKctS8rYdchl+ExTOJGlDv8Xtr+PWVl66r8O66eU7NK1Ybgycg5Wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XlhaW5VF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A4BDEC4CEDD;
-	Sun,  9 Feb 2025 16:55:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739120134;
-	bh=eCOLbrEQl6Q8PofZ6oAAOmyrOHt5RHJBqFDV24Mwud4=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=XlhaW5VF2PwlDSvZJ6i+sR2DyJNLUZmqnuRy+1uj+6ySalY7gy7Oh8fLXv4n6Fhe/
-	 MNrQwkhRpgHN1Zq1py9SCtr84RTKIHr1J0orNQGwSmEODWY32kRWq5L/EBQ2A3uq1V
-	 0pVo9DgyBCoEIV4rSfTGkVlpk2CiGJG1zfI6Md/kur4OZBNQTjq9AxwT+hL/oBD+cM
-	 MpQ7Xtsk9yUzmKp5OYGrt1TIiOdnyg0HMJQGrwxf4NKIjSFbGmZGwL8TFV5PXo78ot
-	 FGmbF9QvGoO/ErNMdgLeO+7FKZssWhNb8BSo7fd8Xhj7m442mVaVc24Q3p3VAiYgk6
-	 Ys2SYIxhFRzgQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 85D86C0219B;
-	Sun,  9 Feb 2025 16:55:34 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Sun, 09 Feb 2025 17:55:28 +0100
-Subject: [PATCH RESEND] scripts/make_fit: Print DT name before libfdt
- errors
+	s=arc-20240116; t=1739122105; c=relaxed/simple;
+	bh=3qpw2bQ12DB6YGamFBnTxyKWuhTs/kDLk94p3S330Xg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ebv0CXzUjrLf0ngiGn2m154YKJ0npNZBbN8ARopMmVqsxAehEakp5CCelZ4qAFUhoP8z1uLM2VQrIz+B/259I61TNVCsLh7QDSWkHE1mHhzs/Ap2+EF+sSD+1CrznQrqpKqYpSbyuXI4XWRq82VN7nlLy+utnbRslYAdsKYHVzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=DEFQtUiK; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 7ACD3240101
+	for <devicetree@vger.kernel.org>; Sun,  9 Feb 2025 18:28:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1739122100; bh=3qpw2bQ12DB6YGamFBnTxyKWuhTs/kDLk94p3S330Xg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=DEFQtUiKJm5vlOa1GTPCXPF27DnFWHBlk7j6BJxmhPr+BHctH1I+zcCB7eBQiWVu6
+	 87lwMuWwycUq4ixaM34aO1Ucm5K4K1+ziP7f0pISDsbiRVUy0gC/xdaJOOE2o9Q0Yb
+	 X595KTyRc/yE5sIh61qT6RvDUOyUTvbUHUE3y32N5/ZW9UYjCThSgRoyzDYVVkmU78
+	 d9esqsr3mDlHVgaE0tGNS43EdnpnxkCNC3RfqI1ZG45V/S2Kvb76R7ftTK4QQWc+O6
+	 rJdICsqhEXcMaPKbt2gO0tnHVNVTAMILCcI2iozqeUxqIHG/Sp/3NKGjbwuz1vqG3I
+	 9qjpjuKymt1VQ==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YrZRd3h87z9rxG;
+	Sun,  9 Feb 2025 18:28:13 +0100 (CET)
+Date: Sun,  9 Feb 2025 17:28:13 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	Mark Brown <broonie@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-ide@vger.kernel.org,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-crypto@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+	dmaengine@vger.kernel.org, Herbert Xu <herbert@gondor.apana.org.au>,
+	linuxppc-dev@lists.ozlabs.org, linux-spi@vger.kernel.org,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Naveen N Rao <naveen@kernel.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>, imx@lists.linux.dev,
+	Niklas Cassel <cassel@kernel.org>, Scott Wood <oss@buserror.net>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Richard Weinberger <richard@nod.at>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Lee Jones <lee@kernel.org>, linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-mtd@lists.infradead.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	linux-kernel@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH v2 09/12] dt-bindings: memory-controllers: Convert
+ fsl,elbc to YAML
+Message-ID: <Z6jlrU7EPeATjK8s@probook>
+References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
+ <20250207-ppcyaml-v2-9-8137b0c42526@posteo.net>
+ <173897189669.2630636.11579554304003668196.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250209-makefit-v1-1-bfe6151e8f0a@posteo.net>
-To: Simon Glass <sjg@chromium.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739120133; l=2504;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=qNYHUnAZnyBHAWNkYsjAlxvZcMVlVw3UbvcsQUL+fy8=;
- b=wes9wYfXwUGeWcaAUCu5kNs9CIRC4rXfWm7xTK2sserLOYrdIsz035w6eRJCAu9HPXjuGFcPu
- XXRyQ0UxUh3B2Gh1qwiZRLDA2mTnDEc830lGFG9jdndtFQphIiX7FgJ
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+In-Reply-To: <173897189669.2630636.11579554304003668196.robh@kernel.org>
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+On Fri, Feb 07, 2025 at 05:44:59PM -0600, Rob Herring (Arm) wrote:
+> On Fri, 07 Feb 2025 22:30:26 +0100, J. Neuschäfer wrote:
+[...]
+> >  .../bindings/memory-controllers/fsl,elbc.yaml      | 146 +++++++++++++++++++++
+> >  .../devicetree/bindings/powerpc/fsl/lbc.txt        |  43 ------
+> >  2 files changed, 146 insertions(+), 43 deletions(-)
+[...]
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dtb: /example-0/localbus@f0010100/simple-periph@2,0: failed to match any schema with compatible: ['fsl,elbc-gpcm-uio']
+> Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dtb: /example-1/localbus@e0005000/nand@1,0: failed to match any schema with compatible: ['fsl,mpc8315-fcm-nand', 'fsl,elbc-fcm-nand']
+> Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dtb: /example-1/localbus@e0005000/nand@1,0: failed to match any schema with compatible: ['fsl,mpc8315-fcm-nand', 'fsl,elbc-fcm-nand']
 
-This makes it easier to pinpoint where the error happened. For example:
-
-  FIT     arch/powerpc/boot/image.fit
-Error processing arch/powerpc/boot/dts/microwatt.dtb:
-Traceback (most recent call last):
-  File "/home/jn/dev/linux/linux-git/build-mpc83xx/../scripts/make_fit.py", line 335, in <module>
-    sys.exit(run_make_fit())
-             ^^^^^^^^^^^^^^
-  File "/home/jn/dev/linux/linux-git/build-mpc83xx/../scripts/make_fit.py", line 309, in run_make_fit
-    out_data, count, size = build_fit(args)
-                            ^^^^^^^^^^^^^^^
-  File "/home/jn/dev/linux/linux-git/build-mpc83xx/../scripts/make_fit.py", line 286, in build_fit
-    raise e
-  File "/home/jn/dev/linux/linux-git/build-mpc83xx/../scripts/make_fit.py", line 283, in build_fit
-    (model, compat, files) = process_dtb(fname, args)
-                             ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/jn/dev/linux/linux-git/build-mpc83xx/../scripts/make_fit.py", line 231, in process_dtb
-    model = fdt.getprop(0, 'model').as_str()
-            ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/libfdt.py", line 448, in getprop
-    pdata = check_err_null(fdt_getprop(self._fdt, nodeoffset, prop_name),
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/libfdt.py", line 153, in check_err_null
-    raise FdtException(val)
-libfdt.FdtException: pylibfdt error -1: FDT_ERR_NOTFOUND
-
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
-The example is from a different series which I will release soon, which
-enables FIT on powerpc.
----
- scripts/make_fit.py | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/scripts/make_fit.py b/scripts/make_fit.py
-index 4a1bb2f55861adfce07959528e175260bc503593..1683e5ec6e6754dff3383dfec89df78b9c2fa896 100755
---- a/scripts/make_fit.py
-+++ b/scripts/make_fit.py
-@@ -279,7 +279,11 @@ def build_fit(args):
-         if os.path.splitext(fname)[1] != '.dtb':
-             continue
- 
--        (model, compat, files) = process_dtb(fname, args)
-+        try:
-+            (model, compat, files) = process_dtb(fname, args)
-+        except Exception as e:
-+            sys.stderr.write(f"Error processing {fname}:\n")
-+            raise e
- 
-         for fn in files:
-             if fn not in fdts:
-
----
-base-commit: 4bbf9020becbfd8fc2c3da790855b7042fad455b
-change-id: 20241224-makefit-31f789b9ee4f
-
-Best regards,
--- 
-J. Neuschäfer <j.ne@posteo.net>
-
-
+I think this is due to how the patches are ordered in the series.
+This patch uses fsl,elbc-gpcm-uio and fsl,elbc-fcm-nand in examples, but
+comes before the patches that define the corresponding bindings.
 
