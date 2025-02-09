@@ -1,177 +1,134 @@
-Return-Path: <devicetree+bounces-144313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C20AA2DCBA
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 12:02:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B573FA2DD0B
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 12:17:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30B813A4504
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:02:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACAF23A8802
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:15:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7EA156230;
-	Sun,  9 Feb 2025 11:02:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40838192D8E;
+	Sun,  9 Feb 2025 11:14:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UYkTCqtI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A2B155CBA;
-	Sun,  9 Feb 2025 11:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 129E7190692;
+	Sun,  9 Feb 2025 11:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739098953; cv=none; b=mYMtgslABEh9Y7EG5PnXAfwOxZ0JVavn+JO/zO4vKFsZMQ6SOaEWRA9kFNOmejsWjeHWCX8xfWGNMhZoVf3vQ4RoQruG21+CHAEhhvrEM4L288ApP1LnJllNdIjT+Pa+MwY5HQilTD/HExTj5VlgnnJN0p7SYc8+YMPW4NLwoP8=
+	t=1739099676; cv=none; b=mSlLNf/OoXMDA3O0WPmzE+gA12uJ+3VNO3VQ4GpXtg2yDYhGSy3DIqrsErnbU4JYT23y48p9v9UJiNRMHVFOWqIhlWhH8JKKkUzmoqIfjblZ/Jssyyv7zjUPzhoESmJeoi7BG9D7Lj/snu45+9Czs64q+n0SDUi0safZ+xWz0xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739098953; c=relaxed/simple;
-	bh=g6Z5E/J7Lu/e4cN4IuJx4avEmz/Rrp3PpRqkyElWLnY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Jp9GUyTSszMWBTYoqjKFtLg87G6yBMnwmqdaiMXn7beZFbqz9rVqivEE/ooEPPIHXhhxgCdZQWjyjto8jNcuXDIu8VhdeuH9St0vbKcRTC+3Wb1uJ9mpKwIYJlUFCVbrSdaypDVVATrNbo1nu949kVo66Y9yniJyDk+uOQUPpAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5de64873d18so1306543a12.2;
-        Sun, 09 Feb 2025 03:02:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739098950; x=1739703750;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EZtSlMlkn5zHaXo0WZfyndZctK7R7et8V22vFKv8IdM=;
-        b=pFQjBzgz4E+K1Q+VI4xd0uDGQbtwMxfrSI7Ep6mnyrfL9PsLMZpZh05e2ywyoBGyVD
-         N072Ulv7MOdkjmtGZ4a6f0M2cFim4qTZKDoQLcm2BWUjLVCogCrG1R5MuKBIC0x4LoL9
-         kSURBHi6zh7djUe2yscvyZFEbyA8hp6sAtsyPuyF9kVFRRTSNPUlo3bBudif2uXwZbMQ
-         7KEl/NbVPBgXMDMMgTomPzR8DwMn73A6vrQPSllcF8AKggyEi0nPx1na+1QMLI0dTvHl
-         sOoDBE1IFUzLUmPUmRguk1UV85IuSd/xyEK7JyVxhPr0DWizROzvrfnEC3L479tLJONA
-         4mZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUrboYmrkiHZSRtMxY8ziLGOMVrTHG4oyiLRoo9j5ApqZf28gWRM//Wp0HKAxtfM78XLC/8aKyoqCkG@vger.kernel.org, AJvYcCX3AxPgAev+Ay5u17HuaTyPY7W7ecJp0fasZByY6AZvwe2F9TM/6iasaGZ4I/cG3ItxiIuHksPOK5QK4vJE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7tjwCQ48d8A5JOAZTSFx8eT2HqHUY3S7AT2Sl4DOxY73tV1OJ
-	QfWmHkSSzepb5gjB0pRBOtJDleLPNyR9EIL/Rn1vfP0rT9XSmL5CggzO2b07SU0=
-X-Gm-Gg: ASbGncuJi71NIqtCPD81OKzbFJ/PKiSncQRtrhWqG42KsDMlcMuyBN47EGSq4LDblqk
-	4X+6Sdjr35Nf3d9aGvQ64W8scsEKMgGVOd7JNMFoYgPeG5FujYGpxVpnipg/+z7BE+OoU1VVj4G
-	Q82eLPKyWKvJNaaTtdBmLKzB0vfiZRET2pJOjj7zWQOCWU6Od544nWqBN6XG28nHZ0wLmD3dbUB
-	dlJ8X1bGFXIqJvHrmjftF5eMLRP+t83R2vXEZxHtQQv/KzwOpFlDPJGbeozQpstKcpbPVse8sKn
-	wgFF39XWSx1L9e6wemuyhXcUaEv+XCkx4geGQKUVmUvlKQ==
-X-Google-Smtp-Source: AGHT+IHx7X6QffY885+fV0Pgp447iqlsoEpnTA/rhWByHh3eVmLnU0qmdL+NcamcN/voNrh43zxvnQ==
-X-Received: by 2002:a05:6402:35cb:b0:5dc:7b59:445b with SMTP id 4fb4d7f45d1cf-5de4509abfbmr11679792a12.28.1739098949799;
-        Sun, 09 Feb 2025 03:02:29 -0800 (PST)
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com. [209.85.208.54])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5de3f04ae59sm4912101a12.1.2025.02.09.03.02.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Feb 2025 03:02:28 -0800 (PST)
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5de3c29e9b3so4600384a12.3;
-        Sun, 09 Feb 2025 03:02:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUAUaaMGzR1zJyPwnL76NhjDx7R0hGQkPwLH3IdSQpbqwwMW0zQ87VsP4DoWtD7mTT0qwK72xXGktYR3fML@vger.kernel.org, AJvYcCVPSROxnPMebdM2h6cp0CDZ+05TIZPqYxJbSJrCMwJh0r/1y0OJVguHUKsyq/Cgv4y1EOY315nxVq8K@vger.kernel.org
-X-Received: by 2002:a05:6402:4608:b0:5de:42f5:817b with SMTP id
- 4fb4d7f45d1cf-5de450b1c5dmr9937857a12.31.1739098947851; Sun, 09 Feb 2025
- 03:02:27 -0800 (PST)
+	s=arc-20240116; t=1739099676; c=relaxed/simple;
+	bh=ocv0UjbmcfD9SuKMb0cD8T7cTc8xs0ptkGTn6SyS3eM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DEe0xxXVeH5aIRv43LBweB/HXBdjwv9334lbQISkXD34zoip9REa6DMDLIZ/JcJCdCegCTigsHy16zFWxbtH2l52fcyezGUHaUX5hB+gRDw1CuDIDTXFhDClP0T+xI6cBOv9foQb8RfjUXv40Sdj4qVEWMyGQtwKUDYBqApUc7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UYkTCqtI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21817C4CEDD;
+	Sun,  9 Feb 2025 11:14:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739099675;
+	bh=ocv0UjbmcfD9SuKMb0cD8T7cTc8xs0ptkGTn6SyS3eM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UYkTCqtI4zAMdmBBDCGI10ZaJXtmFgy2Vbfnl439v8k8LlndsIjvO+M+c/PBCIf6i
+	 p2s1WH1nKKBeKqqSIua5vLA+UeSRLvCUjKm3kKXd2CRIbEe0aCrZdSx5KMBSU6fuEf
+	 2ajgpEYtDP2souDD3ijIt1kbhfiIftNTLAWzt923UdHot84WCC6IneiReIpzh9WDlU
+	 TTdIpQpW/CBf1amDP23+V4l7ZFs3Tm+fzwnR+4GmHE9oxtIDAe0ESmrHUoi6BL0Ok3
+	 B+o6q98Gt7LjkuXVvLxtBICU0X4mgEn0B0dLLuOgSUNatGsuyhTP01X5yKQPG729aA
+	 WrZeXJuW4fY8A==
+Message-ID: <9142e874-cefb-404b-8932-3e712b2d8bf0@kernel.org>
+Date: Sun, 9 Feb 2025 12:14:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250206-adpdrm-v6-0-c8ab9348b853@gmail.com>
-In-Reply-To: <20250206-adpdrm-v6-0-c8ab9348b853@gmail.com>
-From: Neal Gompa <neal@gompa.dev>
-Date: Sun, 9 Feb 2025 06:01:51 -0500
-X-Gmail-Original-Message-ID: <CAEg-Je_1Qe_q0Vt1ReX0HG83gNP3Ph37E+d_prDiMXSWtum5vQ@mail.gmail.com>
-X-Gm-Features: AWEUYZlNJz2VbuDrDkNmceAgZ0ETGFMAFQeCJbSKwBdyoI2QQNmlLF0UVoGPB5w
-Message-ID: <CAEg-Je_1Qe_q0Vt1ReX0HG83gNP3Ph37E+d_prDiMXSWtum5vQ@mail.gmail.com>
-Subject: Re: [PATCH v6 0/5] Driver for pre-DCP apple display controller.
-To: fnkl.kernel@gmail.com
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	asahi@lists.linux.dev, Janne Grunau <j@jannau.net>, linux-arm-kernel@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Nick Chan <towinchenmi@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: timer: exynos4210-mct: Add
+ samsung,exynos990-mct compatible
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+References: <20250104-cmu-nodes-v1-0-ae8af253bc25@mentallysanemainliners.org>
+ <20250104-cmu-nodes-v1-1-ae8af253bc25@mentallysanemainliners.org>
+ <076daca7-55e0-40d4-8ea5-93254ecd19b8@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <076daca7-55e0-40d4-8ea5-93254ecd19b8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 6, 2025 at 9:02=E2=80=AFAM Sasha Finkelstein via B4 Relay
-<devnull+fnkl.kernel.gmail.com@kernel.org> wrote:
->
-> Hi.
->
-> This patch series adds support for a secondary display controller
-> present on Apple M1/M2 chips and used to drive the display of the
-> "touchbar" touch panel present on those.
->
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> ---
-> Changes in v6:
-> - Use the drm_connector_helper_get_modes_fixed helper.
-> - Split out into a separate MAINTAINERS entry
-> - Link to v5: https://lore.kernel.org/r/20250205-adpdrm-v5-0-4e4ec979bbf2=
-@gmail.com
->
-> Changes in v5:
-> - Moved to using the component framework.
-> - Other lifetime fixes
-> - Link to v4: https://lore.kernel.org/r/20250114-adpdrm-v4-0-e9b5260a39f1=
-@gmail.com
->
-> Changes in v4:
-> - Fixed dt bindings.
-> - Link to v3: https://lore.kernel.org/r/20250112-adpdrm-v3-0-c674dc19fa7f=
-@gmail.com
->
-> Changes in v3:
-> - Fixed building as module after splitting out mipi block
-> - Addressing the review feedback.
-> - Link to v2: https://lore.kernel.org/r/20241126-adpdrm-v2-0-c90485336c09=
-@gmail.com
->
-> Changes in v2:
-> - Addressing the review feedback.
-> - Split out the mipi part of the display controller into a separate devic=
-e
-> - Link to v1: https://lore.kernel.org/r/20241124-adpdrm-v1-0-3191d8e6e49a=
-@gmail.com
->
-> ---
-> Sasha Finkelstein (5):
->       dt-bindings: display: Add Apple pre-DCP display controller
->       drm: adp: Add Apple Display Pipe driver
->       drm: panel: Add a panel driver for the Summit display
->       arm64: dts: apple: Add touchbar screen nodes
->       MAINTAINERS: Add entries for touchbar display driver
->
->  .../display/apple,h7-display-pipe-mipi.yaml        |  83 +++
->  .../bindings/display/apple,h7-display-pipe.yaml    |  88 +++
->  .../bindings/display/panel/apple,summit.yaml       |  58 ++
->  MAINTAINERS                                        |  16 +
->  arch/arm64/boot/dts/apple/t8103-j293.dts           |  31 ++
->  arch/arm64/boot/dts/apple/t8103.dtsi               |  61 ++
->  arch/arm64/boot/dts/apple/t8112-j493.dts           |  31 ++
->  arch/arm64/boot/dts/apple/t8112.dtsi               |  61 ++
->  drivers/gpu/drm/Kconfig                            |   2 +
->  drivers/gpu/drm/Makefile                           |   1 +
->  drivers/gpu/drm/adp/Kconfig                        |  17 +
->  drivers/gpu/drm/adp/Makefile                       |   5 +
->  drivers/gpu/drm/adp/adp-mipi.c                     | 276 +++++++++
->  drivers/gpu/drm/adp/adp_drv.c                      | 617 +++++++++++++++=
-++++++
->  drivers/gpu/drm/panel/Kconfig                      |   9 +
->  drivers/gpu/drm/panel/Makefile                     |   1 +
->  drivers/gpu/drm/panel/panel-summit.c               | 132 +++++
->  17 files changed, 1489 insertions(+)
-> ---
-> base-commit: b62cef9a5c673f1b8083159f5dc03c1c5daced2f
-> change-id: 20241124-adpdrm-25fce3dd8a71
->
+On 08/01/2025 17:40, Daniel Lezcano wrote:
+> On 04/01/2025 21:54, Igor Belwon wrote:
+>> Add a dedicated compatible for the MCT of the Exynos 990 SoC.
+>> The design for the timer is reused from previous SoCs.
+>>
+>> Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+>> ---
+> 
+> Applied patch 1/2
+> 
 
-Series LGTM.
+Hi Daniel,
 
-Reviewed-by: Neal Gompa <neal@gompa.dev>
+Did this really happen? You replied month ago, but linux-next still does
+not have this patch and now we got new warnings on next:
 
+https://lore.kernel.org/all/202502070055.P29PYKEE-lkp@intel.com/
 
---=20
-=E7=9C=9F=E5=AE=9F=E3=81=AF=E3=81=84=E3=81=A4=E3=82=82=E4=B8=80=E3=81=A4=EF=
-=BC=81/ Always, there's only one truth!
+Best regards,
+Krzysztof
 
