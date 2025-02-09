@@ -1,142 +1,119 @@
-Return-Path: <devicetree+bounces-144441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B22EA2E11A
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 23:07:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86E65A2E11F
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 23:07:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF4163A597D
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 22:07:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A1197A2797
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 22:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC16241130;
-	Sun,  9 Feb 2025 22:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2EB3220693;
+	Sun,  9 Feb 2025 22:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cBUn2WTW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RvvR7aE2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C12D1EDA1B;
-	Sun,  9 Feb 2025 22:07:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8546F1EC00B;
+	Sun,  9 Feb 2025 22:07:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739138835; cv=none; b=EcyXJwzJd+KwntD5VAU25nXTG7O294MnP6bvpwhlH023bROxx8Madw4k7zXOWBmDBtgMmFac0V8KDvaze83Sp9V7+EnaLMCQjkkj1A8rRksL+3Fsu+xmzNspq8G4Qzl70q29hy+4F6li2qKvT6wftdTFwEKrBR/XD76f17sGPSM=
+	t=1739138839; cv=none; b=NMfILx1einYrXSGu5h+4dqb5hWLOz4NtXAMUopaWP4vJbxzT5Hovy9AwIBTdMYqXqhpvFAbU6hrhfd1SFlgfOh/ps7FjLAqXYyXZIBVyKLTt2CkH7rvoDHkc/aMl6W6+BBEBCWKeCoXwAjt5qih/EC+3+FqPg0l63kyPXsBnFj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739138835; c=relaxed/simple;
-	bh=t+MEcyEDzmxjBv9SK0gxt9t3iAQ72gz4bhKsUugOYTs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ne0iCz2kORvxrNlw01KX4xxnBHlZ1enofFnXOojuKMFkdzqKChf5tHt1IDEix6WoEzv1tGVxMly14IktF8mp4P97Rd1hKIqya9h1Q+bPbzUy5n9Hvkm1oZOULK8sFNG3PyxscYl8IP/N6vXfL5jeHLaHcigZrBYL8uwfDZSpVzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cBUn2WTW; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-38dd14c99d3so1416766f8f.3;
-        Sun, 09 Feb 2025 14:07:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739138832; x=1739743632; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cKk1eBFoHmDcld3Lfx7t6YPL0jmbrCaQqUFUOUwjSIk=;
-        b=cBUn2WTWAQOf9C6R2mRLEGUa9mk+yc0yBCYye8tOHmTySXAdWXpddAbH8lPqCOXPos
-         SBJbualdF1A+2IJoH5sF3lMyKTnhgFNo2eYYk5OQqSXdEhVBsRNR91+WIEyessJAZbei
-         zBg9y6jKHFUUXOhR/NrHqQQFyeyJQ2rIs50k29Ip1tcISjE3xfswb22p5+aO9rA6Y+/S
-         NXSTIAsLejfM2B7RO/mviEwSvUmRmLsbYlOceDSWMiCmVdsS+9nJasw1lKR9Y/83xK06
-         CZfnG6uvMJHrZUCf5iVTWnflDduwEpQQl51RlhLViScTRYROIVczzPHXzgidSpyJDpw6
-         9tWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739138832; x=1739743632;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cKk1eBFoHmDcld3Lfx7t6YPL0jmbrCaQqUFUOUwjSIk=;
-        b=ZbbHXlm65+ty32XsuDf8tciaK5LCTJwLOFynv6rkfolX9NAGGOiY+GpirYUVEcUAin
-         4BECVxSu+OpOJZQK5WbdDggMnX82ptJGlRHSDBDKJLKAU8HICcauBorUgaMxlu3ta8HC
-         lcnc4qBpSLdoR3B+HVnYEO4POnZgBGPrQE1x+q7N6mXw0ELNLz/u/cm3HkkIaDR7VDF1
-         ZGLaozpiadTF0CKJoO5pCianhstZXX7djeJxwxS95Pg8Rid+6jJQQWQfJuNq4HohOR4L
-         obTrYhsJDmZBV4Cax+0FWrpAUdYwezCeWj5CrbvSdfuIlftcJ2iPCM8lMfNItNOL4++D
-         KuCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhDvnDAG28wZsBDPRdrW4+g20dLjNquG3aKl0VRrniLX/E4JhkoG2xCEIhmrdeKDCyFY9vxfEQ+KAc@vger.kernel.org, AJvYcCXyr5LPslmIdLAEc7WK7cWfz1lhQwRzhBL8vSwWi/iLG0c1ZKoVsUkyteY++ZMYprgjgZNZDvYEw3o=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5GvPPgvpzs7ZQUvBRIHcg/huG7yuKZuAe/wiMATyolx4Yv6YX
-	x216S/pj9+a0lsCpuiGLqdvLhZ2B+zFx5okLanTSQIRvTjgbI8dt
-X-Gm-Gg: ASbGncsLbF0zIryQPDj/lEVOPSvo/ZitE8VTf0iNJZKJXuEwIqJw6/HhqpHy5HkLKFl
-	v8WtoHJBvL4Sm3E2qadf91HJ/4GZkMzdzgpuuxmUkm7AtsSBhet5/bZqS1mtR79+6/0gNnlW8bG
-	aO7+y0p+/ibduuuUHdBYyXTzZ6B24Qq3uyEA1Lx7xsFWWF+jFunUfDS7K/GWVQbRj69xBE2IWlt
-	MigeQ2ruahPjZk2fsDe8JSLqln8hqy35XxZfpjd3HNkMApF6o404xeus68UZjuv8UwxfuQE6Fv7
-	1OANB2xzSEAkprVtsKYn1MpxDLc4
-X-Google-Smtp-Source: AGHT+IF2Bns6I6YCSe2LhsETO1BYlvvXG98BlhUd8nZAEcFJtGt/bc67HK+7TnAd5oXHt9YnANZ3Nw==
-X-Received: by 2002:adf:f70b:0:b0:385:d7f9:f157 with SMTP id ffacd0b85a97d-38dc9135d53mr7026781f8f.36.1739138832176;
-        Sun, 09 Feb 2025 14:07:12 -0800 (PST)
-Received: from giga-mm.. ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dbf2ed900sm10386544f8f.53.2025.02.09.14.07.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Feb 2025 14:07:11 -0800 (PST)
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: soc@lists.linux.dev
-Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	linux-pm@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Haylen Chu <heylenay@outlook.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Sebastian Reichel <sre@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>
-Subject: [PATCH 08/10] riscv/arm64: dts: cv18xx: Add sysctl and reset nodes
-Date: Sun,  9 Feb 2025 23:06:33 +0100
-Message-ID: <20250209220646.1090868-9-alexander.sverdlin@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
-References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
+	s=arc-20240116; t=1739138839; c=relaxed/simple;
+	bh=7bTmvynIcYiz/go7F/gd0OjRidGHVoLNQtWkgB0LMfk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=J0QQRGD300P4KQx4CCSmpLM70s/ta1+VKQLdXcKkmXsejDZbFoH+KfENP+I8zFJuhGv8MsLPr0SyfDAIYakLl/o1v9aeb0jW23lnZ+X0+ZY8CgD8pvSFYNPkvBHcEtjTfsKQ/WawGNbTqWCcsTouxLwvZppKoWUFi4q6b4IAH0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RvvR7aE2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F3890C4CEDD;
+	Sun,  9 Feb 2025 22:07:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739138839;
+	bh=7bTmvynIcYiz/go7F/gd0OjRidGHVoLNQtWkgB0LMfk=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=RvvR7aE2IduKCZO2+HgeRAcZko10QKhYvzUG51AYBSkkQUarXIkf/5l1JRIm3/gN9
+	 adorX8b+BVs+PEeVBKLbmkbM6YEOE4McByeoy/qBrECe5Xs6rD3UDH1HlTWKtdNHC/
+	 zFhM3DX8D9Tisj2RyS71s1hSdBxi35sO2TbL3OS39nbyaPDMFpkoz2xu4HBMxdkxz2
+	 DNliCZsFauUn5S4ITuzcLMfY/hZcPry3JYSgHUyQyZSHJ5CX+tLqqCyv7jWUnYUjPd
+	 TYJIEfYFP//PSGLQOj2daTYB6Wup663MUDMdQxPUThmI8HYojSsruhVVQZziXSZP5R
+	 X7+4Q+HScVTcA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DFBD7C021A1;
+	Sun,  9 Feb 2025 22:07:18 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Date: Sun, 09 Feb 2025 23:06:50 +0100
+Subject: [PATCH] dt-bindings: leds: Allow differently named multicolor leds
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Message-Id: <20250209-multi-led-v1-1-5aebccbd2db7@posteo.net>
+X-B4-Tracking: v=1; b=H4sIAPkmqWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIwNL3dzSnJJM3ZzUFF1LS0vDVCMD06TUtBQloPqCotS0zAqwWdGxtbU
+ AW+6O3FsAAAA=
+X-Change-ID: 20250209-multi-led-9991e205befd
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739138838; l=1273;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=9DQV3fzmb755ljBlke0ZoorMkJDPL/aQrPGsmH2YR6s=;
+ b=RP039EUEyquTEMyQNTLm+9+PhfrD1leUx+R6Jn1isuufyR91nebysUfOTuthgqMwqq5uI7H0b
+ 0oa6ntbmI4rBwKJKOU4QT1/MC4amAnO2bV3G77+zHucHk4VoTeiJNTp
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-Add reset controller node and required sysctl nodes.
+From: "J. Neuschäfer" <j.ne@posteo.net>
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+In some cases, a board may have multiple multi-leds, which can't be
+distinguished by unit address. In such cases it should be possible to
+name them differently, for example multi-led-a and multi-led-b.
+This patch adds another node name pattern to leds-class-multicolor.yaml
+to allow such names.
+
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 ---
- arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
-index 53834b0658b2..d793b6db4ed1 100644
---- a/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
-@@ -309,5 +309,21 @@ dmac: dma-controller@4330000 {
- 			snps,data-width = <4>;
- 			status = "disabled";
- 		};
-+
-+		rtcsys_ctrl: syscon@5025000 {
-+			compatible = "sophgo,cv1800-rtcsys-ctrl", "syscon";
-+			reg = <0x05025000 0x1000>;
-+		};
-+
-+		rtcsys_core: syscon@5026000 {
-+			compatible = "sophgo,cv1800-rtcsys-core", "syscon";
-+			reg = <0x05026000 0x1000>;
-+		};
-+
-+		soc-reset {
-+			compatible = "sophgo,cv1800-reset";
-+			sophgo,rtcsys-ctrl = <&rtcsys_ctrl>;
-+			sophgo,rtcsys-core = <&rtcsys_core>;
-+		};
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+index bb40bb9e036ee00e06d21e2321ecd5a7d471c408..c22af25b6430be71300c0e37f696cd61112ea190 100644
+--- a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+@@ -21,7 +21,9 @@ description: |
+ 
+ properties:
+   $nodename:
+-    pattern: "^multi-led(@[0-9a-f])?$"
++    oneOf:
++      - pattern: "^multi-led(@[0-9a-f])?$"
++      - pattern: "^multi-led-.*$"
+ 
+   color:
+     description: |
+
+---
+base-commit: 645b5c24cf8590eea322a4fd79c811817046a2e6
+change-id: 20250209-multi-led-9991e205befd
+
+Best regards,
 -- 
-2.48.1
+J. Neuschäfer <j.ne@posteo.net>
+
 
 
