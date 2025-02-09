@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-144322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD2B8A2DD26
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 12:46:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D23A2DD2F
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 12:56:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B3F3188551F
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:46:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE4D7161F04
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:56:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C7FB1BD4E5;
-	Sun,  9 Feb 2025 11:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731E81CCEDB;
+	Sun,  9 Feb 2025 11:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FQr2pfXO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FDUUplSm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2256F06A;
-	Sun,  9 Feb 2025 11:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FFF3243399;
+	Sun,  9 Feb 2025 11:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739101606; cv=none; b=SNE3qRm5VTNGeZVs55g4q622ty/F39S66Z2POUvj/7cuUILRVloExW0lzJYf3yz66yPuJrhZGNPj17v4Lz3MvkOnBWxj36T8sW6pjlfjwugnMIl0/uxwt0ozryaDSC1uQ9kyDBNt/Ky9WhjTo431Do23yMzmzIRe7xdfLNbWMto=
+	t=1739102191; cv=none; b=h8Z6uh5MxlDJi7oMW+csYV/ltxs42xYza2TsNksirwiuhVR713DCjeavT7UUFb1NaTLW5pfYmD1zleptZYlAw2ZpUibdbOukU2MjjqMg9C+BiCmR4a8wsGyuICE7jTA/PQ/PXQz0Wb8/5bIHZWH25BOeSZoGEIDjwd0sZadXl0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739101606; c=relaxed/simple;
-	bh=hr6YvJwPrLbR0mqEALiFbD/EzVOiUk+m7gr/K9W39qY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=OSNKdJQDat2rBBdE8dmQK1UvyoiuvuoFRNUyqFMVUT84/gk9iaqutmqcA1uNC3WKd4kwogKi0Rna1NLccEx8umciR0mQCRus/zKweq2NVF4uW331dgvAlGI3/WCt23bKqU6DTHNPW2xT+4zMAGmjFxkUqUVsf1VPe5UTn7Qu6M4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FQr2pfXO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8826C4CEDD;
-	Sun,  9 Feb 2025 11:46:42 +0000 (UTC)
+	s=arc-20240116; t=1739102191; c=relaxed/simple;
+	bh=Lz2w10qZ/7qf0GBvDV0ucsndxbEDejIrSm5OdLohrlc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D/RQc84DWNA6Eo9Q5k0p/g9cupXwNMVDzfbqijwvQ9nnZrkqiB7syLPZI6Bp5/sr5jm8sYJRFEEqaVypNTM8Av6zcBSktnI22TKq2Z5ng7O4MUmnpdUD5Wt8mp+ENF/qF/woHiChJt4h4IL3NbmtgjOzDibMwJdL0fareND0ZdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FDUUplSm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BBB8C4CEDD;
+	Sun,  9 Feb 2025 11:56:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739101605;
-	bh=hr6YvJwPrLbR0mqEALiFbD/EzVOiUk+m7gr/K9W39qY=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=FQr2pfXONN4Br77vkvPO5jDiWNi4I7kpB1UWzsbWXQJNhrPlr0uIEle/N+6Gfqc3A
-	 Jbg3Xit7ntSHjzBXjRp21QafQpwwY1vu7yV2FHBGoWGuF/+RVjhri5PJwUXeQ/LXYi
-	 rVnt/CQuQnzLz1wn8/p7ZBU6nJ98rJTXk46k8+He0HV5wls2laJMnuA+8K8f5VKhOv
-	 hkc2Sw4lNhA2RXN7svmaEGwo3LZ+7yrf5T5ultqclfFCWTraAklPgqfYSUuU1tYHG+
-	 Ry3ppboYiDPKIywjIGwnF7oDxCR9EiqUcB2l1IrkVZWnv/V+ZYoX5yL7iOP3SFOB+3
-	 ARXz54ZxWrVFQ==
-Message-ID: <c7cc1453-d54f-46f7-86da-275636eaed84@kernel.org>
-Date: Sun, 9 Feb 2025 12:46:40 +0100
+	s=k20201202; t=1739102191;
+	bh=Lz2w10qZ/7qf0GBvDV0ucsndxbEDejIrSm5OdLohrlc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FDUUplSm71iSeiNoCP8kgKWfH/FV7hnL/Pb6Ql0ehJB7KzeA4JJiYvqfe+AbgZyRO
+	 p1NSbOUnNhOyiI81Qel+HotJUgFLt99w4fXpRJv+Fr4PO1AKn5ZdwfXVGWg5IIh/eS
+	 jVUXvVzqiQdO1T/qSpllafTpUzMny3do/xNGzlFwlBsDOthdimAXo6YI8f48wODIdL
+	 UgGufOquMx/cMto6ke6VChFxg1TQhJXUsdGPoW+iyxblOcl3HoGZkw2Cao6YYpE5/A
+	 0oppnFn6xYT4HbhZ3HVjkmb1wqK3zBtlAzcbSBrxVVb8DHKghT7nXEaBVm/5kC829x
+	 fVAfOPTKwQVgw==
+Message-ID: <922691a1-10d0-4ff1-a174-a456235e6487@kernel.org>
+Date: Sun, 9 Feb 2025 12:56:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: i3c: Add Qualcomm I3C master
- controller bindings
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
- alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
- linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250205143109.2955321-1-quic_msavaliy@quicinc.com>
- <20250205143109.2955321-2-quic_msavaliy@quicinc.com>
- <248000f5-63db-492c-884d-ac72db337493@kernel.org>
- <0ae3f754-edcb-4b22-9d49-b20ef264554b@quicinc.com>
- <f643c57e-de01-4372-a1b1-7ebde319d0a4@quicinc.com>
+Subject: Re: [RFC PATCH 3/5] dt-bindings: gpu: Add protected heap name to Mali
+ Valhall CSF binding
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Florent Tomasin <florent.tomasin@arm.com>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>,
+ "T . J . Mercier" <tjmercier@google.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Yong Wu <yong.wu@mediatek.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ nd@arm.com, Akash Goel <akash.goel@arm.com>
+References: <cover.1738228114.git.florent.tomasin@arm.com>
+ <36b57dcf20860398ba83985e1c5b6f6958d08ba7.1738228114.git.florent.tomasin@arm.com>
+ <7234f25c-a2aa-4834-931b-aeeb7a49dfa7@kernel.org>
+ <4b9deab1-e330-4c93-8260-75276c2bc9ff@arm.com>
+ <c0aad911-ecc4-4b04-a453-6da226f76ed2@kernel.org>
+ <5e0e2fbb22c2ffb0c5281727cd95d70f5f5ba696.camel@ndufresne.ca>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,36 +125,97 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <f643c57e-de01-4372-a1b1-7ebde319d0a4@quicinc.com>
+In-Reply-To: <5e0e2fbb22c2ffb0c5281727cd95d70f5f5ba696.camel@ndufresne.ca>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/02/2025 13:03, Mukesh Kumar Savaliya wrote:
->> I will remove minItems and MaxItems, will list Items with description.
+On 06/02/2025 22:21, Nicolas Dufresne wrote:
+> Le mercredi 05 février 2025 à 10:13 +0100, Krzysztof Kozlowski a écrit :
+>> On 03/02/2025 16:31, Florent Tomasin wrote:
+>>> Hi Krzysztof
 >>>
-> Wanted to check if below way is fine ? Because some of the ask to drop 
-> constraints are already present in other i3c yaml files.
+>>> On 30/01/2025 13:25, Krzysztof Kozlowski wrote:
+>>>> On 30/01/2025 14:08, Florent Tomasin wrote:
+>>>>> Allow mali-valhall-csf driver to retrieve a protected
+>>>>> heap at probe time by passing the name of the heap
+>>>>> as attribute to the device tree GPU node.
+>>>>
+>>>> Please wrap commit message according to Linux coding style / submission
+>>>> process (neither too early nor over the limit):
+>>>> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+>>> Apologies, I think I made quite few other mistakes in the style of the
+>>> patches I sent. I will work on improving this aspect, appreciated
+>>>
+>>>> Why this cannot be passed by phandle, just like all reserved regions?
+>>>>
+>>>> From where do you take these protected heaps? Firmware? This would
+>>>> explain why no relation is here (no probe ordering, no device links,
+>>>> nothing connecting separate devices).
+>>>
+>>> The protected heap is generaly obtained from a firmware (TEE) and could
+>>> sometimes be a carved-out memory with restricted access.
+>>
+>> Which is a reserved memory, isn't it?
+>>
+>>>
+>>> The Panthor CSF kernel driver does not own or manage the protected heap
+>>> and is instead a consumer of it (assuming the heap is made available by
+>>> the system integrator).
+>>>
+>>> I initially used a phandle, but then I realised it would introduce a new
+>>> API to share the heap across kernel driver. In addition I found this
+>>> patch series:
+>>> -
+>>> https://lore.kernel.org/lkml/20230911023038.30649-1-yong.wu@mediatek.com/#t
+>>>
+>>> which introduces a DMA Heap API to the rest of the kernel to find a
+>>> heap by name:
+>>> - dma_heap_find()
+>>>
+>>> I then decided to follow that approach to help isolate the heap
+>>> management from the GPU driver code. In the Panthor driver, if the
+>>> heap is not found at probe time, the driver will defer the probe until
+>>> the exporter made it available.
+>>
+>>
+>> I don't talk here really about the driver but even above mediatek
+>> patchset uses reserved memory bindings.
+>>
+>> You explained some things about driver yet you did not answer the
+>> question. This looks like reserved memory. If it does not, bring
+>> arguments why this binding cannot be a reserved memory, why hardware is
+>> not a carve out memory.
 > 
-> if not, could you please help share example removing constraints and 
-> listing item ?
-> 
-> == Sample ==
-> properties:
->    compatible:
->      enum:
->        - qcom,i3c-controller
-> 
->    reg:
->      type: array
->      minItems: 1
->      maxItems: 1
->      items:
->        type: integer
->      description: Base address and size of the I3C controller registers.
+> I think the point is that from the Mali GPU view, the memory does not need to be
+> within the range the Linux Kernel actually see, even though current integration
 
 
-I really do not understand this sample. That's not a DT schema code.
-Please open existing Qcom bindings and look how it is done.
+Do I get it right:
+Memory can be outside of kernel address range but you put it to the
+bindings as reserved memory? If yes, then I still do not understand why
+DT should keep that information. Basically, you can choose whatever
+memory is there, because it anyway won't interfere with Linux, right?
+Linux does not have any reasonable way to access it.
+
+It might interfere with firmware or other processors, but then it's the
+job of firmware which has discoverable interfaces for this.
+
+The binding says it is about protected heap name, but it explains
+nothing what is that protected heap. You pass it to some firmware as
+string? Does not look like, rather looks like Linux thingy, but this
+again is neither explained in commit msg nor actually correct: Linux
+thingies do not belong to DT.
+
+> have that. From Mali GPU driver stand point (or codec drivers and what's not),
+> the memory range is not useful to allocate protected/restricted memory. On top
+> of which, its not reserved specifically for the Mali GPU.
+> 
+> What's your practical suggestion here ? Introduce dma_heap_find_by_region() ?
+
+I did not comment about driver and I do not judge how you access
+whatever you need to access. This is discussion purely about binding
+thus about hardware.
+
 
 Best regards,
 Krzysztof
