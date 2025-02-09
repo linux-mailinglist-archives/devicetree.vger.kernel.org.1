@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-144388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDD9AA2DE9A
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 15:44:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84B1DA2DE9E
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 15:45:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F6C0164501
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 14:44:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2325A164631
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 14:45:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3701DF253;
-	Sun,  9 Feb 2025 14:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FCCE7DA82;
+	Sun,  9 Feb 2025 14:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aTC35yCm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ay5dXKxW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CEF5243368
-	for <devicetree@vger.kernel.org>; Sun,  9 Feb 2025 14:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B81B41E517
+	for <devicetree@vger.kernel.org>; Sun,  9 Feb 2025 14:45:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739112295; cv=none; b=pwcIrovMJAIkHVFCdhAA/ZoCqdZrRQEIQXmFn3HGHJnD+sWolFDqIRFD7FIB2lkdumuhqG9OutU7WLjWQfWPSRayEYOHDKB9jOkZa+CJwUpyO4HHIxvJxVeIYDyGpufPFjIpGns2E5sjT4w+quk3tfWVVYfwIA5wsH3L23w6KPU=
+	t=1739112323; cv=none; b=muR6c5Boj2pxYjie3nYRNHrEUw9CUQ6Ujz36waRK3EHtRkC3GGpAaMB/aN9CH/exwAmegPuVDc1Kolo6TJaVvuGLS+FNEb96zt62LsRxjpplAQ89NHDBfR1iWp/IQgCBUPLAUnWnZflp2xqL/eOJci5sAFQaSOS428CUjnFO9PI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739112295; c=relaxed/simple;
-	bh=zy7inQn8IlL22OlQ3SOSyDR4h8QdypuUqFZ0yVIeMHo=;
+	s=arc-20240116; t=1739112323; c=relaxed/simple;
+	bh=TlMBsmWKp3CA7Dc+pUVw95TeXzxNX4SBFC5UdngQvsk=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=V4xDFVdG30DMZ8PJoVZowUm61cyEwWFBPFsLF0rSVfs3ijADfryU5I8BALRVU857QlHhob5TNA1ahr7hGHtrOgi3oYaZAj7k98lLSgjE5K4Iirugm19E/W4nP0u9kUIffgLXzIZVAYeU13i5O4mqIYreBsLTUjQRpdn/gXW2un4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aTC35yCm; arc=none smtp.client-ip=209.85.160.178
+	 In-Reply-To:Content-Type; b=I7t+zGTtMO08hEmoiEs7VyLmj/A2jOoeN2mqIa2ldAgvZfca9NMyakiXOIm1az7Kd0XQZs08qDdg57g118UNI5lxj5yCAs6PFaElMd3GqbZwbpba5sNRuunvLBBmRD0mhsx+n+qdTLCw3xRqAgoETzaLZfQoduqePq+THa537gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ay5dXKxW; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-46c7855df10so69398561cf.3
-        for <devicetree@vger.kernel.org>; Sun, 09 Feb 2025 06:44:53 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43944181e68so835025e9.0
+        for <devicetree@vger.kernel.org>; Sun, 09 Feb 2025 06:45:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739112293; x=1739717093; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1739112319; x=1739717119; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=w5QvikTKCFNL7WLcBiL2Nw7xhGaRFi+kZbVL6GI4dUg=;
-        b=aTC35yCmfXuMRKr5srPrqM3aiYRh4Ofn7dODvHKotZyfNJgTFlHjTDjMOIVSWc40kw
-         ++sXDjFaaJczlMeZpCTwN6Ku139sXTjdqITJUemb7FN+m7feWo7N2b/LR7oblshrqWDK
-         u8YLBKB48aHHjqWUGKc7KKDAbwhlptL9A+cgAfG8UL+20rndsFHg3aHXny7kQavQJFsd
-         EjjP7jmXBafO912RIjRz18jDR2wYk+CxC1MwIu9oRAMn2yKkNgUdQ3OXstVl67yP8p7L
-         UWdPFpFsSosI5FW/CZOvdd9F8jv5GzMVN7QhhhscZWVydZSlE2kSsrsx4mUI93/15jUV
-         iTOA==
+        bh=PMo+ekaUYRL/t6kJlaYa2hsVpBTTet/QHkQUAI2CvGI=;
+        b=Ay5dXKxWV26AI6q7WodGBFNyEHbAG5Bsqt/2lOpJxOw0KLSNpgtSZe+BrFcYtfTCBZ
+         5V0gExwFrDXVp9T10VVvMFEBtbhIkibiDAlc85LHoiqkHDCzf798tB9uUF3+9y2SVoun
+         FDQ7ONvKLbw0WvBqqyjoWLP8t9ZuY/zk9mj0QzxyWy/p6T2Sp46a4tsSdmgfX4rRAgnf
+         VcominbUROdaJoXCUVu8WB71/AZVlfW8Ghhkf0vdB5OcEknzp7k+fYyjACIqJ8KFN7RB
+         UHuEPkJhd97m7+m56Ejk5g5UKJeFdQE/o+dyS4GGCxubcbx8sOKHrE0bMxnW3ACCsiXI
+         6pVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739112293; x=1739717093;
+        d=1e100.net; s=20230601; t=1739112319; x=1739717119;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=w5QvikTKCFNL7WLcBiL2Nw7xhGaRFi+kZbVL6GI4dUg=;
-        b=nrNubVtljdstp5lyxq7XMnHkb6GvR9JH6upWttsBWA4MY+SP4p1x/aY2zegAozCASa
-         LNQowm9F+io4k1A/pThg+YQXBpr8cyzYfjb8uKTgdxrcv3xMqKEfrTPSukz/U/sI7U3Q
-         7huv72DVqBvrynAARWz5HwW5jl7l2Idkq6H0VjsVGYBGuLZBGNMZ/cn7s+mTUFQgX+jC
-         SRcC+kKiCu9O2gxYYBYguQuPtz7JVk8HJvkeiV6Pi+m4DYQjIYR662sLKRxjXE8/tAog
-         IppT6GOrSGSBp8r9OS5KEpOHH6i5SDR4TCQuK1zCjxNuoAwSEYNkZa3r9Ob2mvevVGBI
-         bMkg==
-X-Forwarded-Encrypted: i=1; AJvYcCXytNGzKnwAQEwVcf1MKBF/swVI54JCzVbQKWprFIG0FvMHfCmhF8MpvSzs9PmYzUQEz+C0ce6BtpOU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjBWsoYkDhxo1S4/M+mN6dwHDuIFD8Y+Qq5qyZTgMFN52+F3jU
-	FtF3YT1rCqEG5Lwj3ojon6ltNiwOtQFmc2lRVHMWlRS8we+XuPf7dIP10ubdyCg=
-X-Gm-Gg: ASbGncsMaTmd5OXoYENJ4iQN9V2shyPb+MP/v922YCbfRtSLuadteuoVbHuYfOXYWHM
-	2faLNp8nBVHTLeY5xeC7YeslLTvF8wXuKPRVZUKOk+xxjhZXbztKdQtU/wCSbzvg5kCwahx4ia1
-	Byhout5yIqVSvAc2IfuJtjTm8dmCMvzdF7iBRgHWA1OcSBBpWyPD5/z0pTstBlJ98YDz6QEc36r
-	FjhyRfwk2+ekquhWJ2d7ZjzX8q6ML9CnF+JHTS/CYjoSYcu1GxJkRozQZY+qp13i5ko/jaNzc+x
-	o0nwHzMwABa16UMzkPNYrXYTJANH1N4yJUzYVC9bsYc1Ir+H0illGP/FxX83OMNC+Bcq
-X-Google-Smtp-Source: AGHT+IHSNH3EcOtRNo838aV35hz3kX1wpHeFZVgLNa9gNU5K5QGpwy99/u8FN8FkHYN4asPsNSwJKg==
-X-Received: by 2002:a05:6214:1c09:b0:6d8:9be9:7d57 with SMTP id 6a1803df08f44-6e44570afe8mr189702836d6.37.1739112292975;
-        Sun, 09 Feb 2025 06:44:52 -0800 (PST)
+        bh=PMo+ekaUYRL/t6kJlaYa2hsVpBTTet/QHkQUAI2CvGI=;
+        b=FAEQadhaa/goVY9sHAEb2KJWawL+m8RPb1zuQ09SjS3/L/rMxM/wsYwvOXRjuFNzgg
+         VEtLKfVh0UGRSfuyN9tF2SG0L/qfjmp+vg1KrtgaH2GgGlZPkGx04AsJc/HUk3IhXR9p
+         C5/Zqi0mIQDypuioCgjKbOcTYMyP1UtELt3S+aQnyo/2rLbrXJr8Z+xHdnXHLII8+FY1
+         /js8/H+RRGmMZk7MnoHTTx1R4gp7hxyRR3c0y0TNPWAHK2fKmGs6rwpvmYOdF3xqQrwE
+         /EquEINvmhf3l05Iozea3gTwmMr+340Q4biD+qi6SjbCDjWTI0tC2y0ynXOpblld4Vnr
+         SQRg==
+X-Forwarded-Encrypted: i=1; AJvYcCVynsfwAtbkj84Mot8cbw69fb57xRKoUwRx5OE/yA4Vnlr8mduJqAGTBUORSdBKJTcppodR1qBIfQbx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHDWCCTD48YElFTB6xeJ7rZBdlhXh0LBf31Dw9soIqHGv23rfE
+	21V6FBWTSY0SWe3ucb4Sc6eHKldAz3fqf7SP2kLogsM2QHhaNYG/11H2+bL0oMY=
+X-Gm-Gg: ASbGnctyPSikYed7zNJByOnt2w9NHu4cl0QToy9WCc0sVrs9Ocoi8XazkGcNbZ+zh6t
+	LGUkNi78+/hEhwtBta6p21U+eoJwA1oYXVnp9VOCw+pqpiTjaq3pZN0JfRPNn86gnZSmT2IJ532
+	x4viTetxsulfDJK0M7SIZCweM9LGmrRK1It+5+enNtyth4Hv1ezdXoJqVMr0O5onj+qdNgSPFgP
+	zN9lYhXjU4StRXhyAzRXTb2pZCdNRr2Kw7cNldq6D9phNvRxaCLAhVx9x7S+7X42imFvvZt7vJq
+	Lu6Y07A/etxOAzgnIhhj9qUm5nUgpcdbqJ2E7oBfHLn2o/eiNLUlcxWrA6qYHSux1hs1
+X-Google-Smtp-Source: AGHT+IFdun0ojlsz+5J9K8TGW6y2AxCq9J4M7GqPbPSFPwqb9BzClbMpMM3fNK7gSRtGNfU4esw4Ew==
+X-Received: by 2002:a05:600c:458e:b0:430:57e8:3c7e with SMTP id 5b1f17b1804b1-439249bd34fmr82014475e9.28.1739112318925;
+        Sun, 09 Feb 2025 06:45:18 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:6e2e:988e:3133:72bd? ([2a01:e0a:982:cbb0:6e2e:988e:3133:72bd])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e44d545327sm21696666d6.33.2025.02.09.06.44.48
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4391dca0041sm115434175e9.14.2025.02.09.06.45.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Feb 2025 06:44:51 -0800 (PST)
-Message-ID: <6aa71142-3b1d-476f-9c78-1207fbbed3f5@linaro.org>
-Date: Sun, 9 Feb 2025 15:44:47 +0100
+        Sun, 09 Feb 2025 06:45:18 -0800 (PST)
+Message-ID: <57c82928-5275-4f6c-b6d0-935dd5080f9b@linaro.org>
+Date: Sun, 9 Feb 2025 15:45:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,8 +85,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650: add PPI interrupt
- partitions for the ARM PMUs
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8650: switch to interrupt-cells 4
+ to add PPI partitions
 To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
  Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -94,8 +94,8 @@ To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20250207-topic-sm8650-pmu-ppi-partition-v1-0-dd3ba17b3eea@linaro.org>
- <20250207-topic-sm8650-pmu-ppi-partition-v1-2-dd3ba17b3eea@linaro.org>
- <ba546075-cfc0-4b17-9129-f99054e2e1ae@oss.qualcomm.com>
+ <20250207-topic-sm8650-pmu-ppi-partition-v1-1-dd3ba17b3eea@linaro.org>
+ <efcc2cee-1d8b-45d1-aa9a-4e7afc19d857@oss.qualcomm.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -122,43 +122,23 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <ba546075-cfc0-4b17-9129-f99054e2e1ae@oss.qualcomm.com>
+In-Reply-To: <efcc2cee-1d8b-45d1-aa9a-4e7afc19d857@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 07/02/2025 21:30, Konrad Dybcio wrote:
+On 07/02/2025 21:23, Konrad Dybcio wrote:
 > On 7.02.2025 11:31 AM, Neil Armstrong wrote:
->> The PMUs shares the same per-cpu (PPI) interrupt, so declare the proper
->> interrupt partition maps and use the 4th interrupt cell to pass the
->> partition phandle for each ARM PMU node.
+>> The ARM PMUs shares the same per-cpu (PPI) interrupt, so we need to switch
+>> to interrupt-cells = <4> in the GIC node to allow adding an interrupt
+>> partition map phandle as the 4th cell value for GIC_PPI interrupts.
 >>
 >> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 >> ---
 > 
->> @@ -5309,6 +5309,20 @@ intc: interrupt-controller@17100000 {
->>   			#size-cells = <2>;
->>   			ranges;
->>   
->> +			ppi-partitions {
->> +				ppi_cluster0: interrupt-partition-0 {
->> +					affinity = <&cpu0 &cpu1>;
->> +				};
->> +
->> +				ppi_cluster1: interrupt-partition-1 {
->> +					affinity = <&cpu2 &cpu3 &cpu4 &cpu5 &cpu6>;
->> +				};
->> +
->> +				ppi_cluster2: interrupt-partition-2 {
->> +					affinity = <&cpu7>;
->> +				};
-> 
-> I'm not sure this is accurate.
-> 
-> I *think* it's cores 0-1 and 2-7, but I can't find a concrete answer
+> If I'm reading the core right, we can leave the fourth cell
+> uninitialized where it makes no sense
 
-Core 7 is a Cortex-X4, and has a dedicated PMU node, look at the cpu compatibles.
-
-Neil
+It's not what dtbs_check thinks !
 
 > 
 > Konrad
