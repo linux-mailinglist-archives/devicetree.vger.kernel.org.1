@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-144303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C40A2DC7B
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:28:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A825AA2DC81
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:30:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D7211668FA
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 10:27:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91E5F3A48A9
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 10:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E677516132F;
-	Sun,  9 Feb 2025 10:27:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E0D15CD52;
+	Sun,  9 Feb 2025 10:29:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QGwT9PdG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LpvC5t3i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12CAC156230;
-	Sun,  9 Feb 2025 10:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E35154BE0;
+	Sun,  9 Feb 2025 10:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739096866; cv=none; b=t4Jo6aEYy5kKTtWNPAtNeZhEv+03TzgE6n1/IqZvj3pzuYztkfT+MNx2kIJGMCPAdUDiA0kPxnHptFqcqW9kQ4BjNsCRvWiT68Jkn+1WRCQ1c9kcUPGV1YDz2YEhMVUHwnlA6nO9tjzpGlCUha0beIde6QzJzT49gNmy2Mc9uxQ=
+	t=1739096998; cv=none; b=ukM6//zsrtgbCpEb1uQOmhEb06tefsomlMKDvbW9altxmCzo+paPIMSmrTg6RVwpIVMTYTVSszOzU4JYSCrYXNExF6Q6lLtVByxM83k/pUCsOjNnZSSC+NX+2lT1uSDCi/CfAuQg7eeECXzotHW+RR1WidG968apl7NwBjR9UKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739096866; c=relaxed/simple;
-	bh=nJSKx4VUJSQ/beBPK3QdoHeLOgZN0ytShH9LlNuDYCQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IpxWvjozNGbsAOtuaL1aRP/q3Ix5imoLGjkuXlHGxr6XqMy5HKSATT1cWgE0kjYNcXckUcIlWnPchmOSrMklCNvAr2SAOlSTLHA3N+HktZHXFnXBbBIN4Z1xAvTOoBjlDj+V5z1mfCKsi88EzaesFkRyMnXOlXvlp+Bs7H2iF/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QGwT9PdG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5197d2xa030518;
-	Sun, 9 Feb 2025 10:27:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KxnH3oRgrkZjuWxgMgOQfvxxLoaMFH4iCwEh3sP8QI4=; b=QGwT9PdGn25v9Czb
-	+rtG6MjsciViqo1F+VeMgasj8bgNneGNw0AoH53oS7YD8j788dXmZpiUW0HcFBn3
-	VenSO+1u7ZTk0+sFgyNbbC1U0Xd/F8KvJKQirfgrdote59EPF+/QDWamCrauLuBL
-	QBBNxyOKdqp/O2gXnqV16yWm+6057CLkUmLE9nWF0ohLiaMPuu7qXETQeMJVZ8vQ
-	0WjXo01aJnW1b19LLtbNdV8kTa2db9bNR+NPV1XkTw9faLpDB6smnSJDWzW7Htpy
-	HQkMq/g3zgl3HoxYBpt/idcqqLDxSd+fzLUHqMfoxgcdd4GFLiDTheLFd0YAT2et
-	WaeGwA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44p0gusty9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 09 Feb 2025 10:27:38 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 519ARabR002303
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 9 Feb 2025 10:27:36 GMT
-Received: from [10.216.10.172] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 9 Feb 2025
- 02:27:29 -0800
-Message-ID: <cc91e20e-f79e-49d8-86bb-08f4ff15dc38@quicinc.com>
-Date: Sun, 9 Feb 2025 15:57:25 +0530
+	s=arc-20240116; t=1739096998; c=relaxed/simple;
+	bh=1yGof8I2F4W/Hb7MDQYpGdg/n+Iik8KRR7siiST/D/M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Hd3J1fQNZi/928zsNSjitVLoj5i0GtH0oV7NH2W6/bZJhb9dWGRriParl9lpvgqevqeZ6ad46PEbGvPQbGtrb56AyUThHlueEB9YZyb6MUiCQ3FNQnbSGHkCLCmGJXqxKwWHmKG0vAOfefGJ3ZrjirLXimPMjwiTd3JrO4KbY7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LpvC5t3i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B78CC4CEDD;
+	Sun,  9 Feb 2025 10:29:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739096997;
+	bh=1yGof8I2F4W/Hb7MDQYpGdg/n+Iik8KRR7siiST/D/M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LpvC5t3ixJoW+PP5Jv/FmpJg8Q6CAVTFRhrNdn6pVZ0EhXvBM/ioCCjlLbloGnjhN
+	 PpD303J0nJvsqx+T7rwN7jjpk7wnt5RwC62I/3rwIn4roLtGNbjHeBi3dD0+uMmN5+
+	 /OUC+xTizMdJJ2qH0/6TmYrdtw+VmiSiovJPoSAZ4A/ihlz/4o6ka1H/1Kj1W8LAI+
+	 yLbqiLFQU7gztzyYktPF60/l5TwTXCmM8KEVEu9phPoPiMChXmVc5V0aLVw0DxLXL1
+	 gAp/MbVaiXU4OE469AlK1COKHGB84s9P69AB25WbaFW/x1YRawGZusYTn8cAnDSM1s
+	 iFqqmTmqlvv3A==
+Message-ID: <45df0d7a-622a-4268-9683-c5c6067483c3@kernel.org>
+Date: Sun, 9 Feb 2025 11:29:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,112 +50,208 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] dt-bindings: serial: Add support for selecting
- data transfer mode
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: <andi.shyti@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <gregkh@linuxfoundation.org>,
-        <jirislaby@kernel.org>, <broonie@kernel.or>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <johan+linaro@kernel.org>,
-        <dianders@chromium.org>, <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
-References: <20250124105309.295769-1-quic_vdadhani@quicinc.com>
- <20250124105309.295769-5-quic_vdadhani@quicinc.com>
- <10060d39-87a4-4565-a2a6-80c93ac2266a@kernel.org>
- <dudqd2y42wy6iq2k73aphd5ol4mtq7z4c54zhd27rl745rrw5x@p3oummf2jke7>
- <374e16d6-46aa-4bdf-85e9-bc2e33c38057@kernel.org>
+Subject: Re: [PATCH v4 14/14] Documentation: KHO: Add memblock bindings
+To: Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org
+Cc: Alexander Graf <graf@amazon.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Andy Lutomirski
+ <luto@kernel.org>, Anthony Yznaga <anthony.yznaga@oracle.com>,
+ Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ David Woodhouse <dwmw2@infradead.org>, Eric Biederman
+ <ebiederm@xmission.com>, Ingo Molnar <mingo@redhat.com>,
+ James Gowans <jgowans@amazon.com>, Jonathan Corbet <corbet@lwn.net>,
+ Mark Rutland <mark.rutland@arm.com>, Paolo Bonzini <pbonzini@redhat.com>,
+ Pasha Tatashin <pasha.tatashin@soleen.com>, "H. Peter Anvin"
+ <hpa@zytor.com>, Peter Zijlstra <peterz@infradead.org>,
+ Pratyush Yadav <ptyadav@amazon.de>, Rob Herring <robh+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Tom Lendacky <thomas.lendacky@amd.com>, Usama Arif
+ <usama.arif@bytedance.com>, Will Deacon <will@kernel.org>,
+ devicetree@vger.kernel.org, kexec@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+ linux-mm@kvack.org, x86@kernel.org
+References: <20250206132754.2596694-1-rppt@kernel.org>
+ <20250206132754.2596694-15-rppt@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-In-Reply-To: <374e16d6-46aa-4bdf-85e9-bc2e33c38057@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250206132754.2596694-15-rppt@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: zihFguJNNDqxCDos6Hpg6ELwWN6e6_kD
-X-Proofpoint-GUID: zihFguJNNDqxCDos6Hpg6ELwWN6e6_kD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-09_04,2025-02-07_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0
- clxscore=1015 adultscore=0 bulkscore=0 mlxscore=0 spamscore=0
- mlxlogscore=999 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2501170000 definitions=main-2502090092
 
-
-
-On 1/27/2025 9:54 PM, Krzysztof Kozlowski wrote:
-> On 27/01/2025 15:27, Dmitry Baryshkov wrote:
->> On Mon, Jan 27, 2025 at 08:02:12AM +0100, Krzysztof Kozlowski wrote:
->>> On 24/01/2025 11:53, Viken Dadhaniya wrote:
->>>> Data transfer mode is fixed by TrustZone (TZ), which currently restricts
->>>> developers from modifying the transfer mode from the APPS side.
->>>>
->>>> Document the 'qcom,xfer-mode' properties to select the data transfer mode,
->>>> either GPI DMA (Generic Packet Interface) or non-GPI mode (PIO/CPU DMA).
->>>>
->>>> UART controller can operate in one of two modes based on the
->>>> 'qcom,xfer-mode' property, and the firmware is loaded accordingly.
->>>>
->>>> Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->>>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->>>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
->>>> ---
->>>>
->>>> v1 -> v2:
->>>>
->>>> - Drop 'qcom,load-firmware' property and add 'firmware-name' property in
->>>>    qup common driver.
->>>> - Update commit log.
->>>>
->>>> v1 Link: https://lore.kernel.org/linux-kernel/20241204150326.1470749-4-quic_vdadhani@quicinc.com/
->>>> ---
->>>> ---
->>>>   .../devicetree/bindings/serial/qcom,serial-geni-qcom.yaml | 8 ++++++++
->>>>   1 file changed, 8 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
->>>> index dd33794b3534..383773b32e47 100644
->>>> --- a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
->>>> +++ b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
->>>> @@ -56,6 +56,13 @@ properties:
->>>>     reg:
->>>>       maxItems: 1
->>>>   
->>>> +  qcom,xfer-mode:
->>>> +    description: Set the value to 1 for non-GPI (FIFO/CPU DMA) mode and 3 for GPI DMA mode.
->>>> +      The default mode is FIFO.
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    enum: [1, 3]
->>>> +
->>>> +
->>>
->>> Just one blank line, but anyway, this property should not be in three
->>> places. Do you really expect that each of serial engines within one
->>> GeniQUP will be configured differently by TZ?
->>
->> Yes, each SE is configured separately and it's quite frequent when
->> different SEs have different DMA configuration.
+On 06/02/2025 14:27, Mike Rapoport wrote:
+> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
 > 
-> Well, I checked at sm8550 and sm8650 and each pair of SE - which shares
-> resources - has the same DMAs, so I would not call it frequent. Care to
-> bring an example where same serial engines have different DMAs and
-> different TZ? We do not talk about single QUP.
-> 
-> Anyway, if you need property per node, this has to be shared schema.
+> We introduced KHO into Linux: A framework that allows Linux to pass
+> metadata and memory across kexec from Linux to Linux. KHO reuses fdt
+> as file format and shares a lot of the same properties of firmware-to-
+> Linux boot formats: It needs a stable, documented ABI that allows for
+> forward and backward compatibility as well as versioning.
 
-Yes, this property is required for each SE node.
-Can we use qcom,geni-se.yaml as a common YAML for the shared schema? 
-Please suggest.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
 
 > 
-> Best regards,
-> Krzysztof
+> As first user of KHO, we introduced memblock which can now preserve
+> memory ranges reserved with reserve_mem command line options contents
+> across kexec, so you can use the post-kexec kernel to read traces from
+> the pre-kexec kernel.
+> 
+> This patch adds memblock schemas similar to "device" device tree ones to
+> a new kho bindings directory. This allows us to force contributors to
+> document the data that moves across KHO kexecs and catch breaking change
+> during review.
+> 
+> Co-developed-by: Alexander Graf <graf@amazon.com>
+> Signed-off-by: Alexander Graf <graf@amazon.com>
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> ---
+>  .../kho/bindings/memblock/reserve_mem.yaml    | 41 ++++++++++++++++++
+>  .../bindings/memblock/reserve_mem_map.yaml    | 42 +++++++++++++++++++
+>  2 files changed, 83 insertions(+)
+>  create mode 100644 Documentation/kho/bindings/memblock/reserve_mem.yaml
+>  create mode 100644 Documentation/kho/bindings/memblock/reserve_mem_map.yaml
+> 
+> diff --git a/Documentation/kho/bindings/memblock/reserve_mem.yaml b/Documentation/kho/bindings/memblock/reserve_mem.yaml
+> new file mode 100644
+> index 000000000000..7b01791b10b3
+> --- /dev/null
+> +++ b/Documentation/kho/bindings/memblock/reserve_mem.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memblock/reserve_mem.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Memblock reserved memory
+> +
+> +maintainers:
+> +  - Mike Rapoport <rppt@kernel.org>
+> +
+> +description: |
+> +  Memblock can serialize its current memory reservations created with
+> +  reserve_mem command line option across kexec through KHO.
+> +  The post-KHO kernel can then consume these reservations and they are
+> +  guaranteed to have the same physical address.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - reserve_mem-v1
+
+NAK, underscores are not allowed. Please follow carefully DTS coding style.
+
+> +
+> +patternProperties:
+> +  "$[0-9a-f_]+^":
+
+No underscores.
+
+> +    $ref: reserve_mem_map.yaml#
+> +    description: reserved memory regions
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    reserve_mem {
+
+Again, do not introduce own coding style.
+
+I don't understand why do you need this in the first place. There is
+already reserved-memory block.
+
+
+> +      compatible = "reserve_mem-v1";
+> +        r1 {
+> +          compatible = "reserve_mem_map-v1";
+> +          mem = <0xc07c 0x2000000 0x01 0x00>;
+> +        };
+> +    };
+> diff --git a/Documentation/kho/bindings/memblock/reserve_mem_map.yaml b/Documentation/kho/bindings/memblock/reserve_mem_map.yaml
+> new file mode 100644
+> index 000000000000..09001c5f2124
+> --- /dev/null
+> +++ b/Documentation/kho/bindings/memblock/reserve_mem_map.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memblock/reserve_mem_map.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Memblock reserved memory regions
+> +
+> +maintainers:
+> +  - Mike Rapoport <rppt@kernel.org>
+> +
+> +description: |
+> +  Memblock can serialize its current memory reservations created with
+> +  reserve_mem command line option across kexec through KHO.
+> +  This object describes each such region.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - reserve_mem_map-v1
+
+Explain why you cannot use existing reserved memory bindings.
+
+
+Best regards,
+Krzysztof
 
