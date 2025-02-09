@@ -1,172 +1,194 @@
-Return-Path: <devicetree+bounces-144301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70E6FA2DC20
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:21:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E7C9A2DC60
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:25:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A2CD1887418
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 10:21:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFF65165C52
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 10:25:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A3A186E2E;
-	Sun,  9 Feb 2025 10:19:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE8618BB8E;
+	Sun,  9 Feb 2025 10:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TX8kVoaF"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="qOfGhcn0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB9F18871F;
-	Sun,  9 Feb 2025 10:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847C118A959;
+	Sun,  9 Feb 2025 10:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739096375; cv=none; b=MQweVYmw5vnkzCaAFQmlEHqrlPzXZA1TXALnNDeeO1XwMmXbx2H7lyPULz9btmbDKd+DRv5w+UtAjsiJSbAN2CqsVmbqhv+T5ptFh1Tch8TVi7ugtucOa0DUznHnOyvYPPNKcLf93ASi/jXhqwF5wqWcW5hjpZrc6IMPqTOKpZI=
+	t=1739096515; cv=none; b=o+rML6kvNpcWEX7fEBXOpAKDXHaCTHPAeLg4MPypJieDs8JYSh5oR8JTWyJIZ/y6DFKVOlk9rA9PrzTzymfU4D0j6tbPAQ1AAja1TbAKQs9xlXbX/mxhxrWnOkzo+AzgF49lFqy1CCcVmbfN4K31dAabs4gTCKhqtiMEDzHJ2lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739096375; c=relaxed/simple;
-	bh=UohZtJxXrZjyWBOMewDHu9Mq6/KbWKNEaqqmMlqIJr0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=So09p5ioTqi+nyi5AZeT02EoO8iCEAsk3557WKj9NyvVAVwXsO1/DHDKMgMbd3Fi73EMGhS77ZJ2UsmUl9/2WxLgw+BRCsGylzbdmrljTJkOWFh4kAUG1HRdG9c+hOzaFazn/i511k5gDq8YOANJEJuLNtlD0djHDAzuBc1/raM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TX8kVoaF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD542C4CEE6;
-	Sun,  9 Feb 2025 10:19:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739096375;
-	bh=UohZtJxXrZjyWBOMewDHu9Mq6/KbWKNEaqqmMlqIJr0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TX8kVoaF98bM1P9Fs9X1NnMeCgEqgQrXrQbWMXeUrkgn0OJHcL0wczEf4qpeXNy45
-	 Fqp3xa8doAr3bna8kLs2du9EBvAvAIUgt7cJ/xMhj5MB4fHPlltk6V1WTCePCXmrIg
-	 r7GCtVTbTNXkQIoqpjtUG4YJrrP+i5SUvEcg0TRHsOt9PPUt0NTDeR778zGLmy46Pz
-	 HN2KjFhWFqBqKnZVNVW6XJseIkvadYbqJTu/S8jd5E9rWl2InTRUUwDPKHz7GjqGS/
-	 WqOi7MHS/WsSAqWitngANZoEqiJdODGagwmVP3uWnq1Ou8JJkXIYQu44Xgh95wYInp
-	 yYy/5pYHY9pyA==
-Message-ID: <0efa70c3-dee4-4d0d-b106-d7083b5e68c3@kernel.org>
-Date: Sun, 9 Feb 2025 11:19:22 +0100
+	s=arc-20240116; t=1739096515; c=relaxed/simple;
+	bh=HFODCAK5J3CmMA8T4m3nmSUMLuYP2U76HwsFYdoujtY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kx0zXIevL8dfrKI6Hx2+UG87GFXEa5ScufyzCt5XGjqJl7rDpW60Ml438Si9Q2USD+AdDUwQ2EKg5kWnGimZRHfwMT9MWPel2/6UJCjO4uhuPSBVMKoaku/ILCN74atkeBowDrf4h5HEpNrsMxGiLi1wXmqq5ufm92/GqnlTxVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=qOfGhcn0; arc=none smtp.client-ip=144.6.53.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
+	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=KJuTJH/ACV/uO7e4LopHlJMSumdRQXrjCU1mNibRGz0=; b=qOfGhcn0jnZ1fbhZ776AGCNQqu
+	X9pR0LPZi9wVXCfV7wsCHZuDpgZSC/BaM1ssor2Ifpbf0L/LBQo1b3yLhp6TrK+o5amYvBHcPkmSw
+	9XTcuOaVip+qLhVXEDCZZudYwe2MbbqqlKRUiBWR56IuAiVBCA3ZoLh99IZ0GAyIMhlzoqEbWzurp
+	bDVRQaUqUFq5urs9uwf/N9RAVQJ2zxE/vcU01DYXURufwdH6FSI0qU4yW1L+z4wulrkKAprnHkIJn
+	M274ZUvy3+NML78AZ2UOG63ov38coP38xeyee7GUhKljkhDP5p2vy6BIp9joffgAGY/uVh7gXpMxO
+	NHVr0S6g==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
+	id 1th4EU-00GIje-1C;
+	Sun, 09 Feb 2025 18:21:32 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sun, 09 Feb 2025 18:21:31 +0800
+Date: Sun, 9 Feb 2025 18:21:31 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev, upstream@airoha.com
+Subject: Re: [PATCH v11 0/3] crypto: Add EIP-93 crypto engine support
+Message-ID: <Z6iBq9kwMIie2AbL@gondor.apana.org.au>
+References: <20250114123935.18346-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] dt-bindings: serial: Add support for selecting
- data transfer mode
-To: Viken Dadhaniya <quic_vdadhani@quicinc.com>, neil.armstrong@linaro.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
- broonie@kernel.or, andersson@kernel.org, konradybcio@kernel.org,
- johan+linaro@kernel.org, dianders@chromium.org, agross@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
- quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com
-References: <20250124105309.295769-1-quic_vdadhani@quicinc.com>
- <20250124105309.295769-5-quic_vdadhani@quicinc.com>
- <10060d39-87a4-4565-a2a6-80c93ac2266a@kernel.org>
- <dudqd2y42wy6iq2k73aphd5ol4mtq7z4c54zhd27rl745rrw5x@p3oummf2jke7>
- <374e16d6-46aa-4bdf-85e9-bc2e33c38057@kernel.org>
- <v5n7wn3saiymi2ncgi35drzdjfeaa4ng2ftia6ggex6oh74ocg@7vuskxosh726>
- <5f710113-08b0-468e-940a-2c65e8b42486@linaro.org>
- <01362821-ac7f-41d7-a4c1-b1f675e9f644@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <01362821-ac7f-41d7-a4c1-b1f675e9f644@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250114123935.18346-1-ansuelsmth@gmail.com>
 
-On 09/02/2025 11:11, Viken Dadhaniya wrote:
->>>>>>
->>>>>> Just one blank line, but anyway, this property should not be in three
->>>>>> places. Do you really expect that each of serial engines within one
->>>>>> GeniQUP will be configured differently by TZ?
->>>>>
->>>>> Yes, each SE is configured separately and it's quite frequent when
->>>>> different SEs have different DMA configuration.
->>>>
->>>> Well, I checked at sm8550 and sm8650 and each pair of SE - which shares
->>>> resources - has the same DMAs, so I would not call it frequent. Care to
->>>> bring an example where same serial engines have different DMAs and
->>>> different TZ? We do not talk about single QUP.
->>>
->>> Well, I don't have access to the latest sm8550 / sm8650 devcfg sources.
->>> I checked the RB5 ones. As far as I understand out of 14 enabled SEs
->>> only two are configured for the GSI DMA, others should use FIFO / SE
->>> DMA. Same applies to the SM8250 MTP devices. Checking the RB1 / RB2
->>> setup also shows 3 out of 6 SEs being set for GSI.
->>
->> I think selecting GSI DMA is only for devices needs high speed streaming 
->> to the
->> device, like the touch screen, using GSI DMA for random small access is 
->> a non-sense.
->>
->> But the thing is, in the TZ world the configuration was static so we had 
->> no choice
->> of using GSI DMA when configured, but now we have the choice so we could 
->> totally
->> reconfigure the SE with the transfer type (FIFO, SE DMA or GSI DMA) as 
->> runtime and
->> drop this attribute.
->>
->> So instead of hardcoding this, add a way to dynamically select either of 
->> the 3
->> transfer types when firmware can be loaded from HLOS.
->>
->> Neil
->>
+On Tue, Jan 14, 2025 at 01:36:33PM +0100, Christian Marangi wrote:
+> This small series add support for the Inside Secure EIP-93.
+> This is a predecessor of the current supported EIP197. It doesn't
+> require a firmware but instead it's embedded in the SoC.
 > 
-> Yes, GSI DMA mode is required for specific use cases only.
+> First patch extend guard for spinlock_bh.
 > 
-> Dynamically switching from GSI mode to non-GSI mode is neither possible 
-> nor useful. For each SE, the use case is fixed, and based on the use 
-> case, the developer can choose the mode via the device tree property.
+> The other actually implement Documentation and Driver.
+> 
+> The Driver pass all the normal selft test for the supported
+> algo and also pass the EXTRA test with fuzz_iterations set to 10000.
+> 
+> Changes v11:
+> - Drop any mtk variable reference and use eip93 instead
+> - Mute smatch warning for context unbalance by using scoped_guard instead
+>   of guard cleanup API
+> Changes v10:
+> - Use CRYPTO_ALG_ASYNC for eip93_hmac_setkey
+> Changes v9:
+> - Rework hash code to alloc DMA only when needed
+> - Rework hash code to only alloc needed blocks and use
+>   local struct in req for everything else
+> - Rework hash code to use GFP_ATOMIC
+> - Simplify hash update function
+> - Generalize hmac key set function
+> Changes v8:
+> - Rework export and update to not sleep on exporting state
+>   (consume pending packet in update and return -EINPROGRESS)
+> Changes v7:
+> - Fix copypaste error in __eip93_hash_init
+> - Rework import/export to actually export the partial hash
+>   (we actually unmap DMA on export)
+> - Rename no_finalize variable to better partial_hash
+> - Rename 3rd commit title and drop Mediatek from title.
+> - Add Cover Letter
+> - Add Reviewed-by to DT commit
+> (cumulative changes from old series that had changelog in each patch)
+> Changes v6:
+> - Add SoC specific compatible
+> - Add now supported entry for compatible with no user
+> Changes v5:
+> - Add Ack tag to guard patch
+> - Comment out compatible with no current user
+> - Fix smatch warning (reported by Dan Carpenter)
+> Changes v4:
+> - Out of RFC
+> - Add missing bitfield.h
+> - Drop useless header
+> Changes v3:
+> - Mute warning from Clang about C23
+> - Fix not inizialized err
+> - Drop unused variable
+> - Add SoC compatible with generic one
+> Changes v2:
+> - Rename all variables from mtk to eip93
+> - Move to inside-secure directory
+> - Check DMA map errors
+> - Use guard API for spinlock
+> - Minor improvements to code
+> - Add guard patch
+> - Change to better compatible
+> - Add description for EIP93 models
+> 
+> Christian Marangi (3):
+>   spinlock: extend guard with spinlock_bh variants
+>   dt-bindings: crypto: Add Inside Secure SafeXcel EIP-93 crypto engine
+>   crypto: Add Inside Secure SafeXcel EIP-93 crypto engine support
+> 
+>  .../crypto/inside-secure,safexcel-eip93.yaml  |  67 ++
+>  MAINTAINERS                                   |   7 +
+>  drivers/crypto/Kconfig                        |   1 +
+>  drivers/crypto/Makefile                       |   1 +
+>  drivers/crypto/inside-secure/eip93/Kconfig    |  20 +
+>  drivers/crypto/inside-secure/eip93/Makefile   |   5 +
+>  .../crypto/inside-secure/eip93/eip93-aead.c   | 711 ++++++++++++++
+>  .../crypto/inside-secure/eip93/eip93-aead.h   |  38 +
+>  .../crypto/inside-secure/eip93/eip93-aes.h    |  16 +
+>  .../crypto/inside-secure/eip93/eip93-cipher.c | 413 +++++++++
+>  .../crypto/inside-secure/eip93/eip93-cipher.h |  60 ++
+>  .../crypto/inside-secure/eip93/eip93-common.c | 809 ++++++++++++++++
+>  .../crypto/inside-secure/eip93/eip93-common.h |  24 +
+>  .../crypto/inside-secure/eip93/eip93-des.h    |  16 +
+>  .../crypto/inside-secure/eip93/eip93-hash.c   | 866 ++++++++++++++++++
+>  .../crypto/inside-secure/eip93/eip93-hash.h   |  82 ++
+>  .../crypto/inside-secure/eip93/eip93-main.c   | 501 ++++++++++
+>  .../crypto/inside-secure/eip93/eip93-main.h   | 151 +++
+>  .../crypto/inside-secure/eip93/eip93-regs.h   | 335 +++++++
+>  include/linux/spinlock.h                      |  13 +
+>  20 files changed, 4136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+>  create mode 100644 drivers/crypto/inside-secure/eip93/Kconfig
+>  create mode 100644 drivers/crypto/inside-secure/eip93/Makefile
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-aead.c
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-aead.h
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-aes.h
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-cipher.c
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-cipher.h
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-common.c
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-common.h
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-des.h
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-hash.c
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-hash.h
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-main.c
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-main.h
+>  create mode 100644 drivers/crypto/inside-secure/eip93/eip93-regs.h
+> 
+> -- 
+> 2.45.2
 
-No, it cannot. Do not describe downstream as something set in stone.
-
-Best regards,
-Krzysztof
+All applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
