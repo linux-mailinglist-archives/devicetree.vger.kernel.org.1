@@ -1,108 +1,84 @@
-Return-Path: <devicetree+bounces-144297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F200FA2DB97
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 09:18:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA277A2DBB5
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 09:56:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E8F81883DF5
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 08:18:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B78A43A5DD9
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 08:56:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5C514A614;
-	Sun,  9 Feb 2025 08:18:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eA4RvMBf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C1D11474CC;
+	Sun,  9 Feb 2025 08:56:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F8833987;
-	Sun,  9 Feb 2025 08:18:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59838143888;
+	Sun,  9 Feb 2025 08:56:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739089082; cv=none; b=sVMS3BGZ6uS5C4D6u8tSnthq6XsBDSCjt1JAIVIYVjwrSEbDeV3rDh4vsO+OFDb0hIx2AqvI/rEIhoHsjgozF9FJPi/n2SukyUFtMcPRyCLap/beuesT0ut0SK/QBXsT7DaeESYY4sfBJIK3z49dGOI6HWKCEGLR2HR6ej6dB08=
+	t=1739091405; cv=none; b=pa4CohgBSU9siCS+jRiUPlYDi06VWnkvMeKttu/G4ccQVxEXUWIsLQlAQhg+4cWPMZXeUqXyjVaROIK1FX1CyGI6iFkHW0B3Wv+pW2nf8EuJLyFjxFpkqsk2UD7F3zuBb/pOQqMnM2Maa7evoCPNeFt8IfC6AiUo466+sPIMsdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739089082; c=relaxed/simple;
-	bh=zDii9JnOY6drzP/ik5ujsV1h46bP+EmqqJW0uf2LR4o=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=E0zpfrt0lOTdOYlpDE3a0BLIPNpXmZB1grHH7ADtU+vbWQve7T3/vTuW79WPjduJfdAJoJ3iHZamDCK3ZypvWufKL49GqampvRHkxMpj9eNSyZlATJpq77Z2qOt5DJJHdUx5J3Yv4lgz13wJTY6LU75aOsm2iKyu/WBmhdEenOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eA4RvMBf; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5198Hoon3211703
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sun, 9 Feb 2025 02:17:50 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1739089070;
-	bh=YTpHK6EocecJt+2gPnCi/fOd1SBr1RBHfu2IhB1fT5Y=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=eA4RvMBf3RxTEYGo8DtdMdPkb2rSI6mHnlz1CS6Zv+ZIb122emzRQXgyZ9Z0xuzPb
-	 nBGr1oaFGfktzBN9uVS5jK53ZfEfuqa6rAWvu/e3C7zJhlhwsAisQ2TMS6O1XdpxbP
-	 5boEx8ZFBDs29CQCJx2alIIHJ/Oh+fazYV8vl8ks=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5198HoL8045818
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 9 Feb 2025 02:17:50 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 9
- Feb 2025 02:17:49 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 9 Feb 2025 02:17:49 -0600
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.104])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5198HciU083866;
-	Sun, 9 Feb 2025 02:17:46 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721e-sk: Add boot phase tag to SERDES3
-Date: Sun, 9 Feb 2025 13:47:33 +0530
-Message-ID: <20250209081738.1874749-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250209081738.1874749-1-s-vadapalli@ti.com>
-References: <20250209081738.1874749-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1739091405; c=relaxed/simple;
+	bh=Mcbw4GACrCNeZyEQI00FG9OCTIjRjWk8cFGCChsxv4o=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=RGorZAitQroMLfPvOcXrpbAUqwx90gGvRBIkFEPPvm1nGUUDeVvIvVWl+BXwp8iQC6hnUzHBPjDeyg4p7r7WEmkYXT2E1vGFwmeg99Xewt8yaKPo9qdSDXhCn7B2NYXbileRGDvTlRUxARqR6buf2Cfo4QraPJlFTr1sovzzAo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A4F0C4CEDD;
+	Sun,  9 Feb 2025 08:56:44 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 792525FAC0;
+	Sun,  9 Feb 2025 16:56:41 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
+ Lukas Schmid <lukas.schmid@netcube.li>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+In-Reply-To: <20250205164716.2509650-1-lukas.schmid@netcube.li>
+References: <20250205164716.2509650-1-lukas.schmid@netcube.li>
+Subject: Re: [PATCH v9 0/4] Add support for NetCube Systems Kumquat
+Message-Id: <173909140135.1184685.5784910677727356231.b4-ty@csie.org>
+Date: Sun, 09 Feb 2025 16:56:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-The USB0 instance of USB on J721E SoC can be used for USB DFU boot.
-Since the USB Type-C interface on the J721E-SK is connected to USB0 via
-SERDES3, supporting USB DFU boot requires SERDES3 link associated with
-USB0 to be functional at all stages of the USB DFU boot process. Thus,
-add the "bootph-all" boot phase tag to "serdes3_usb_link" device-tree node.
+On Wed, 05 Feb 2025 17:47:09 +0100, Lukas Schmid wrote:
+> This series adds dt-bindings and dt's for the NetCube Systems Kumquat board
+> 
+> Changes in v2:
+>   - Fix the devicetrees according to the "dt-schema" and
+>     "make dtbs_check W=1"
+>   - Fix the License of the devicetree as requested
+>   - Create a cover letter for the patch series
+> 
+> [...]
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 1 +
- 1 file changed, 1 insertion(+)
+Applied to dt-for-6.15 in git@github.com:linux-sunxi/linux-sunxi.git, thanks!
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index 69b3d1ed8a21..440ef57be294 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -1040,6 +1040,7 @@ serdes3_usb_link: phy@0 {
- 		#phy-cells = <0>;
- 		cdns,phy-type = <PHY_TYPE_USB3>;
- 		resets = <&serdes_wiz3 1>, <&serdes_wiz3 2>;
-+		bootph-all;
- 	};
- };
- 
+[1/4] dt-bindings: vendor-prefixes: Add NetCube Systems Austria name
+      commit: 9a8463c68e0d1144e6af492a920796fcc373fef8
+[2/4] dt-bindings: arm: sunxi: Add NetCube Systems Kumquat board
+      commit: 2a120293fb8fc84017cfab3994ad4fe338148288
+[3/4] ARM: dts: sunxi: add uart1_pe pinctrl for sun8i-v3s
+      commit: 3199ed9b375870079c1bb857a10c55a95f90fdbd
+[4/4] ARM: dts: sunxi: add support for NetCube Systems Kumquat
+      commit: 6e085e64a2907bb9467360b7607d1257874c2626
+
+Best regards,
 -- 
-2.43.0
+Chen-Yu Tsai <wens@csie.org>
 
 
