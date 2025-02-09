@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-144310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58517A2DCA8
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:52:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11DA6A2DCAC
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 11:52:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95BD518861C9
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 10:52:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFF5F164292
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 10:52:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9BB16A956;
-	Sun,  9 Feb 2025 10:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0348815B115;
+	Sun,  9 Feb 2025 10:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XBvdd+qQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iw9lUXV+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0154714F115;
-	Sun,  9 Feb 2025 10:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDCAE14F115;
+	Sun,  9 Feb 2025 10:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739098327; cv=none; b=RRxWdkVwWW5lkDSCY3SkQ8eSFv1wYYi8b8485H0zMaDlrSiska9yisUNr2DccuWEEU4+IGRbBrwZchJ8UzJrNex1G3VYwm95SBztn0W2LK70ifmqRZ6LmmYDvPUbIMObozHOE9pF5ocF9habxppOv+wReGXsC/UaKxfLKuS0XUg=
+	t=1739098374; cv=none; b=cnh0bXPILoRoJ/TG/FZ6qsE398ucmkSsJVcJgKi2VcBdE9FcCspCe3ploRjVPfHxWuC2xtXBItZbQ7Ce/LWs/XV+5sjSBZwHcWioKyskbEljCByWYrykOc7YNPOhbkfVxVmBJuzuJMHHk+fiblFoCH2+XSBAaZKKaKMklNvxJUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739098327; c=relaxed/simple;
-	bh=Bum5g239Xhor2LHlA16e9wEojA4q1pFCVhiTPMAEbMI=;
+	s=arc-20240116; t=1739098374; c=relaxed/simple;
+	bh=ILHWETeyWM7/hxom7yN/cpvTSTLfT9vD68lpoyg1LuM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XPCJfQazx7MBmG3+gNDIKxhuV4SxYvKYu10+khZGZAApWuKMzbajR3it5EnNtbvODSo54FJ2vK9V1C4v4LA/prpIMibuizsVabltflrkE5XYrBl9DBPbgoCXjUFT34sJn1wiMz7KuYt1AFrOcjDLrfh9GQ0o10Z+/hgujCX78rA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XBvdd+qQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DED42C4CEDD;
-	Sun,  9 Feb 2025 10:52:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Gy5feaXgChcdPGCLNFqUqbSyjy2EBkzY0L3ZpFr2oIjV0zcO7o8BNpewmbPoD8vJfgQdJQP2kxsUacTh9AUgjBlmD24eDnUSTamtUD9v0Qshpyj1ZfcvuOCIOFUxH6kiEcyablcMug4gdS+XMCcCENf3Z4nb+3gi7MRKKZZMLjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iw9lUXV+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B124C4CEDD;
+	Sun,  9 Feb 2025 10:52:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739098326;
-	bh=Bum5g239Xhor2LHlA16e9wEojA4q1pFCVhiTPMAEbMI=;
+	s=k20201202; t=1739098372;
+	bh=ILHWETeyWM7/hxom7yN/cpvTSTLfT9vD68lpoyg1LuM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XBvdd+qQyO5c7GiTnIzUcULCy3jccXb/5HLpRixk4+qOmAyfO3Juz+OBFzbDsRSlc
-	 oOX28JfDaRlXucZCA18CZl4OaPxironqER5kNIY93HD35ur1Mm/XRz2mpa5AFP6V6H
-	 80Dq6+ZDm+EQkkZwjeqUOZb4k57uvP1xTPvkZ04+FNVULhqlZpngHYe1Er3PgAsAJc
-	 /8Nwvkk3k/65tORTqY7PbbKTPeHv6chFN/IsYvZxkhrHDBap1XHXHPwAvkUxXI6cF9
-	 jm0Ub+84zLZCfs2YrN4aua6Ff22uaI8TKKsa3JyEUICYQUnuP/oIbnPZH8QSJoBRFi
-	 LN4Md+PeGCoXw==
-Message-ID: <d2bced2f-a791-471e-89b6-d78017c9d306@kernel.org>
-Date: Sun, 9 Feb 2025 11:51:58 +0100
+	b=Iw9lUXV+kA+3kE6ZR24CbCmNtyvJQoE6quYA2txGV0ZZ/NGQy0FK6EDSUWG8taI33
+	 OtjhZEYo58cIIgdPTePoS3VeBGK2v/0pU11Ptyeqd1JEbIMukvUgQlWcNT3UfnyMst
+	 UHkgfl26vmTrtUf4bKhjP9Fg3GvLitPd6vopUYTMOtqtJHh3fLHsw55HD1l6GkRedm
+	 rKZtYVsajIpRGoaBmzeBvOzTXgL0ltaDPZgNdHhAjD8tKzinGJj5ict5O18r7+W4Qu
+	 z2dH6H/3OkXxiEchPaIDrOdiuEU+RIsb57zvfYmMmPQMgIXr2PxF0IPejmD9rM1raF
+	 13SPhVzfYWjyg==
+Message-ID: <9302b338-9905-4720-ae41-c1e2713528f2@kernel.org>
+Date: Sun, 9 Feb 2025 11:52:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [v2,1/2] memory/mediatek: Add an interface to get current DDR
- data rate
-To: Crystal Guo <crystal.guo@mediatek.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
+Subject: Re: [PATCH 2/2] dt-bindings: memory-controllers: Add mediatek
+ common-dramc dt-bindings
+To: =?UTF-8?B?Q3J5c3RhbCBHdW8gKOmDreaZtik=?= <Crystal.Guo@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- kernel test robot <lkp@intel.com>
-References: <20250206121629.12186-1-crystal.guo@mediatek.com>
- <20250206121629.12186-2-crystal.guo@mediatek.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20241212090029.13692-1-crystal.guo@mediatek.com>
+ <20241212090029.13692-3-crystal.guo@mediatek.com>
+ <c978937a-e589-4e9a-ba37-265dbfc1b252@kernel.org>
+ <82cf93733dd14abfbcd17b100d1b3c40c6aed916.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,29 +113,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250206121629.12186-2-crystal.guo@mediatek.com>
+In-Reply-To: <82cf93733dd14abfbcd17b100d1b3c40c6aed916.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 06/02/2025 13:16, Crystal Guo wrote:
-> Add MediaTek DRAMC driver to provide an interface that can
-> obtain current DDR data rate.
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202412210955.FvO0Pee3-lkp@intel.
-> com/
-> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
+On 08/02/2025 05:40, Crystal Guo (郭晶) wrote:
+> On Thu, 2024-12-12 at 11:58 +0100, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>
+>>
+>> On 12/12/2024 09:59, Crystal Guo wrote:
+>>> Add devicetree binding for mediatek common-dramc driver.
+>>>
+>>> The DRAM controller of MediaTek SoC provides an interface to
+>>> get the current data rate of DRAM.
+>>
+>> Bindings are before users.
 
-<form letter>
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-</form letter>
+Do not ignore comments but implement them or keep discussing.
 
 Best regards,
 Krzysztof
