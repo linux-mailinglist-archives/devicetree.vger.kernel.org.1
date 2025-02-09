@@ -1,70 +1,74 @@
-Return-Path: <devicetree+bounces-144298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FF8CA2DB99
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 09:18:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49DF0A2DB94
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 09:18:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A0CA3A5811
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 08:18:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84310188386C
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 08:18:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D48014F9D9;
-	Sun,  9 Feb 2025 08:18:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0491013AA31;
+	Sun,  9 Feb 2025 08:18:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="c5abNXa+"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WnWqrAqr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF67014A619;
-	Sun,  9 Feb 2025 08:18:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3DA13AD05;
+	Sun,  9 Feb 2025 08:17:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739089084; cv=none; b=t0Q9Oh3JaZLBYykwce85EqOBG5ecY3Y/StBa0Lbwa0OAW9s55q5cvYVR4Zv/WTfAdC9hvAcishHWMGO35tTH5VKlAzd+ljjF2pvaqYRDreLR4wr/bFkiijQARRTvIoZKM1u1Ab9z8qwOWakFMa5GLH7BJhB3tJfr9CeU8hAjGaE=
+	t=1739089080; cv=none; b=h+WykPhZpmmZ2cwyUeY1sofLKF4e3VBDz5gpOLunZAwFG+oD4QHi/phzFPQBrqh5jBEK03MGaxBjM9xapxrlvfTlTcn6AyXku5BRdpyuoGEPPjKdwZ2l/Iq52aLqxjJN3tPVbTYSxHPiHoucsi69fraApkTBhL6Si47/tSO6luo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739089084; c=relaxed/simple;
-	bh=N3TFFDFbADKZu/t1HqSTqCLWssF/H+GkA+8u5L/Dflc=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZIP6uRwJk0g48x09ZzIL4DSHc7apTUiEfqz5Oq7cqbU7lDtSUrrK8zzmIatwLg7vkbaQwJg8BicOhgRUmpUjmfDWpuHcGTLUb3Yk4GHYLP3DMkTnHVzJKE+J13dCvJCwb4VUP/5aWdTvjbSKZ3QXoZNEkOEfYB5WnzkeZMhbn7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=c5abNXa+; arc=none smtp.client-ip=198.47.19.245
+	s=arc-20240116; t=1739089080; c=relaxed/simple;
+	bh=W/Jp0eVvXA6vF19uRVLVMz4J0BGcbUz3285Kgg8Tcr8=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ncbs/uZlIjsxXczjkUmAHXb/1WgW8Fm0lhKC9t8IdrDcqxPcyQNiYYsDZG3UMuaALPnQ0oNZ8uFDOKQ9jVpsi++iL672OW3Xng+Pt2fpQGZUhgFXmXPrJgjo4F+jR0fQuuDYi56jnMCOv7s2+EG/dU7OP0JqjcrwDMMfvkeA88A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WnWqrAqr; arc=none smtp.client-ip=198.47.19.246
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5198HhnG4037189
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Sun, 9 Feb 2025 02:17:43 -0600
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5198Hk3K3211691
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sun, 9 Feb 2025 02:17:46 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1739089063;
-	bh=w3OEA1Sc6R/H8eB7vrTHC8OLJDDsJGPdc9uDzBbAVuM=;
-	h=From:To:CC:Subject:Date;
-	b=c5abNXa+9eJQVVHcIfxSCt3t0DCvR43Q+rff6FuIoYWzRrq2EUDKPENG0cjTfBCh0
-	 yrxsqurlcI7j2TDFp91yxRd5GLCxwLxJeakOwoVIOkme0nRdaaYQNDYeleEYU6AOgX
-	 XF0/iq9/9f0AHVzSSg38wYCikXdsEvzo3eZo5cyk=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5198HhnK085891;
-	Sun, 9 Feb 2025 02:17:43 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1739089066;
+	bh=euXuTkju0OPAsAr+EKUqdoMAYnLddo63qQiyM5gI5Go=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=WnWqrAqrow1oXRUd6ILiAKBjWOCkqzLOPtqdFY5nv8Gu3qIF2hYa7w43bDQZWmCBo
+	 wDKLanSOFERFJrlgdsAniSaj+USH/PI6ztqp4pRfc4pn46vBsdaplNoC3qdWpC1zko
+	 MAkQpoUCwCCGg4ejf1NRrse5pOOWMwVosY5nV47A=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5198HkU8024725
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 9 Feb 2025 02:17:46 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 9
- Feb 2025 02:17:42 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2025 02:17:46 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 9 Feb 2025 02:17:42 -0600
+ Frontend Transport; Sun, 9 Feb 2025 02:17:46 -0600
 Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.104])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5198HciS083866;
-	Sun, 9 Feb 2025 02:17:39 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5198HciT083866;
+	Sun, 9 Feb 2025 02:17:43 -0600
 From: Siddharth Vadapalli <s-vadapalli@ti.com>
 To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
         <krzk+dt@kernel.org>, <conor+dt@kernel.org>
 CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
         <s-vadapalli@ti.com>
-Subject: [PATCH 0/2] Add bootph-all to SERDES3 for USB DFU Boot on J721E
-Date: Sun, 9 Feb 2025 13:47:31 +0530
-Message-ID: <20250209081738.1874749-1-s-vadapalli@ti.com>
+Subject: [PATCH 1/2] arm64: dts: ti: k3-j721e-common-proc-board: Add boot phase tag to SERDES3
+Date: Sun, 9 Feb 2025 13:47:32 +0530
+Message-ID: <20250209081738.1874749-2-s-vadapalli@ti.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250209081738.1874749-1-s-vadapalli@ti.com>
+References: <20250209081738.1874749-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,30 +79,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello,
+The USB0 instance of USB on J721E SoC can be used for USB DFU boot.
+Since the USB Type-C interface on the J721E-EVM is connected to USB0 via
+SERDES3, supporting USB DFU boot requires SERDES3 link associated with
+USB0 to be functional at all stages of the USB DFU boot process. Thus,
+add the "bootph-all" boot phase tag to "serdes3_usb_link" device-tree node.
 
-This series is based on linux-next tagged next-20250207.
-
-J721E SoC supports USB DFU Boot via USB0 instance of USB. On both
-J721E-EVM - (J721E SoM + J7 Common Processor Board) and
-J721E-SK, the USB Type-C interface which is connected to USB0 via
-SERDES3 is used for USB DFU boot.
-
-Series adds "bootph-all" tag to the "serdes3_usb_link" device-tree node
-which is the USB3 PHY for USB0, thereby enabling USB DFU boot.
-
-Regards,
-Siddharth.
-
-Siddharth Vadapalli (2):
-  arm64: dts: ti: k3-j721e-common-proc-board: Add boot phase tag to
-    SERDES3
-  arm64: dts: ti: k3-j721e-sk: Add boot phase tag to SERDES3
-
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
  arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 1 +
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts                | 1 +
- 2 files changed, 2 insertions(+)
+ 1 file changed, 1 insertion(+)
 
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+index 4c1e02a4e7a2..4421852161dd 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+@@ -540,6 +540,7 @@ serdes3_usb_link: phy@0 {
+ 		#phy-cells = <0>;
+ 		cdns,phy-type = <PHY_TYPE_USB3>;
+ 		resets = <&serdes_wiz3 1>, <&serdes_wiz3 2>;
++		bootph-all;
+ 	};
+ };
+ 
 -- 
 2.43.0
 
