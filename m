@@ -1,172 +1,290 @@
-Return-Path: <devicetree+bounces-144266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61675A2D9F4
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 01:24:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E91A2D9FD
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 01:36:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E7C11885DC0
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 00:24:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19F063A62E8
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 00:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E0D31FAA;
-	Sun,  9 Feb 2025 00:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD05E243364;
+	Sun,  9 Feb 2025 00:36:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=soleen-com.20230601.gappssmtp.com header.i=@soleen-com.20230601.gappssmtp.com header.b="Xgb7XH/7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Y9iRyYg7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50A6136A
-	for <devicetree@vger.kernel.org>; Sun,  9 Feb 2025 00:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44FB20EB;
+	Sun,  9 Feb 2025 00:36:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739060645; cv=none; b=ELgqHdOEiFoi2Zvu8MYB/ouChUS1JMb8AmjoQIHC9OdoCkpCydw/T3OKU6vy2eor8vlnY2rCulutFHQOWgMGpE1b1YB9nYkfP0HxP3vyCAuacwlODsvhv4EPntazx3O/YAPU1ksQXAHN36KnIXxU6szmQIzHf4xoOzmcpkFrgKQ=
+	t=1739061392; cv=none; b=kzSDe416TCStcvibwrGW5uyjpn+6yItePGagpTxMmU9jgjHpr0obebVOchl+m8DNjD/RXqiWLSnxpL3MRK715EKNVAeFCJfDqm/l+fInhC0IPyE5UPa9Y50uV1c6vzUpfh6CnmlJ9k3k/J6F26FFtMzdhwm/5rF8SNltIItaF/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739060645; c=relaxed/simple;
-	bh=8rgYzZv3rSSdAvQylMlRpXn+zz10aBE5mdUoPt384Xs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tF0TmU9OSZIWtHL/Rpl0fdeS5nQ/fm6FbplGtTMTxrvjhlnCNGNMRKoPUOR2VhmzeDA8GJgDJS5Hct+jcvwLKoVneXOpGsKJqyAIULmAv9IbMnDUX4h7pNrNH+HKsWVXyheTFIEzJIAMKSV2hnPd8ziakn/Yy1ba9be/f8EAB4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=soleen.com; spf=pass smtp.mailfrom=soleen.com; dkim=pass (2048-bit key) header.d=soleen-com.20230601.gappssmtp.com header.i=@soleen-com.20230601.gappssmtp.com header.b=Xgb7XH/7; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=soleen.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=soleen.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-467918c360aso41460131cf.0
-        for <devicetree@vger.kernel.org>; Sat, 08 Feb 2025 16:24:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=soleen-com.20230601.gappssmtp.com; s=20230601; t=1739060643; x=1739665443; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4gjXaQBLaw4NUMDsntEFs7TEopqGWrY+9/yjxC8/Zts=;
-        b=Xgb7XH/7tYqM+PvmRQHe0Fpuxjvt115x9N0pjfi4kdZVhGng4SDnD7m4Y8lhWGUI4Y
-         duWWozNFbruqsRMVmGf71NDi3YQNB88KeYjxBXr6HETwlE1A195xVd9tMMNxK0ReC94z
-         dQJnXrXXuvSFjToyKdzcOP0AXFMZbq7FxghqowR0a5+rvRfUsVosqCndmvOvoDZAz81C
-         PyNcQcG41zzMdiVFAkb2mgLTnbgYABWYK7vvWfCFdsuFA66b/R/102Z7jPkgZ39DGIwN
-         9F0ffcLugeF6c9nP7lDfvggRbXb8ZRmoWDZSjisGBuY0yi2KN11kHv77BUYwJ16+tdro
-         uqtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739060643; x=1739665443;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4gjXaQBLaw4NUMDsntEFs7TEopqGWrY+9/yjxC8/Zts=;
-        b=B2ZIghCIXLYtJCCYi1+jXIgbUROGRPC4IuIirte1vGuzB9l9xamDTXCNm1RHL3WRdQ
-         QW5mBsfLbaoSWFO5ncli+jNcDVm4c5ezvZZ7nReVUFYO6j2Yo4zyE4bUwbv+rx7uTrXy
-         eG9PFuCXo8tiNHzISjcx7vzdHXwq+yU3Tk7yeDw7XOAx5EhvYvkQA8wgAEB6a668RqeB
-         Ka/YdVr3k8+K+hXLiN7ojUF5/azXfO/xVDa7/OFqp7QUR4hwcyITCjzjYlzT6hTsAylW
-         NeVfSU/M015QUiUFrCfqYDcxLpxo2VFwc4gX6t1iHCdT5wS2Mombpth36Lzlwq9PaqLJ
-         KuXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWDBLZ0qunps5Ezqw9klgkjz1k7RwqOhbo1A1+p1YepTqlMNq/+AUkHpFoTEkI10mfpmMOPCusiJ2Y6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIpSbbPp1m2VCwgwUxORKwSCTAnGq8gTeOI9FALkvXkPB6l1Bo
-	ao6cLbUkJmyuWsSk7rh0RNgZBMUv5jnJagP2lZYUuPRZeFgy7cX2QsmRTbvjkOwn2ouoXooSBNU
-	VYP/fbAGOZCCCU1wPrH4gCiwWvfeSHTBMdbzfGg==
-X-Gm-Gg: ASbGnctm4GZp3hhQSJDcozZKFa2rLSmaBECbC2FEpeDTXW46ECvf2hJ+VbJ6X25/vm9
-	qQnvK4qXUE98WZ+ufNG9mwbETnKNdJPgIgjSj/BXaZgokWzjCBrsOcB7igUxJsqD4snbqZw==
-X-Google-Smtp-Source: AGHT+IEWLXbbE35/NH7CqFs9Aene/KOrNSHj6kBiOSxP6T7AhYHyVwGrjMz5VAE9dQe0u6W8V5wpkpW0r78/dGV9jWk=
-X-Received: by 2002:a05:622a:1195:b0:460:8e3b:6790 with SMTP id
- d75a77b69052e-47167c10096mr111860501cf.48.1739060642643; Sat, 08 Feb 2025
- 16:24:02 -0800 (PST)
+	s=arc-20240116; t=1739061392; c=relaxed/simple;
+	bh=rEtCQ6sQY7H/v4UhdvsasZkTatiK7Wt02KxyfIunSyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M1JgE71z8wYB9/VEaFpbXknN7Je+bF/7OlnojG+V7vfT3rso9WJXDKQEWrbMB8FThVGPpw78eYDE59udWRWy4QUlnu/k2VpeZZlyYadJ0ullYpcP2kjtRm5/juSGENqVt7Y7P3JSrJJixvO771TLJDm1qWpRXLTvTXNgjw8W7s4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Y9iRyYg7; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739061390; x=1770597390;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=rEtCQ6sQY7H/v4UhdvsasZkTatiK7Wt02KxyfIunSyc=;
+  b=Y9iRyYg72sgVexVP0KRvB/N4BU+IlA7gmILs/0C80WhKUv+Tc/J5H1zA
+   1c+gdLhs9mqg9kp5qw559K/DsWFyA9I+tJYEM4/4v6k8AqrumalrDzrQf
+   DW00OKkkDsyDvn/DS7YAoWhwoIeHb7HPUNaNUdWI/VrkOWVWHTJLvEznw
+   Ra5Tl6D0Ziy6BWnXQF+G0Mf5SPqHqL6oBXNQXPw8wX7vC/eFFqJcobcGG
+   cLx+CXaff6D0WayWPMYp6Nmx+IAE0eW2o9qKTh4g3T/u6TfRmfxAVSHvw
+   svYTnOOCIbYFWTKjj/j+hhvokWIiwK4Inqtml5Hxw4N/4F+u8tn2ySwUs
+   A==;
+X-CSE-ConnectionGUID: 4/wpDFTKQba43ntTugRAvw==
+X-CSE-MsgGUID: 3yZMNC/kQk+f9AQ7mQZeHg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11339"; a="27279749"
+X-IronPort-AV: E=Sophos;i="6.13,271,1732608000"; 
+   d="scan'208";a="27279749"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2025 16:36:29 -0800
+X-CSE-ConnectionGUID: A8k2NdweS/OPlYJW66xNFQ==
+X-CSE-MsgGUID: 0lDncctsTymkVlQt18zbKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="116455894"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 08 Feb 2025 16:36:25 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tgvJ9-0010pH-27;
+	Sun, 09 Feb 2025 00:36:23 +0000
+Date: Sun, 9 Feb 2025 08:35:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nikola Jelic <nikola.jelic83@gmail.com>, lgirdwood@gmail.com,
+	broonie@kernel.org, perex@perex.cz, tiwai@suse.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	rwalton@cmlmicro.com
+Subject: Re: [PATCH v3 2/2] ASoC: codecs: cmx655: Add CML's CMX655D codec
+Message-ID: <202502090855.eWNvBLsV-lkp@intel.com>
+References: <20250207161412.6281-2-nikola.jelic83@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250206132754.2596694-1-rppt@kernel.org> <20250206162939.a1f86fb835f1eeb7ed73ff1c@linux-foundation.org>
- <CA+CK2bD6204AKWGOgzLMiMsnVZ=tk+DGc+VWgi3RVt2byaLJJA@mail.gmail.com> <Z6a1kxR2GlQoepgI@MiWiFi-R3L-srv>
-In-Reply-To: <Z6a1kxR2GlQoepgI@MiWiFi-R3L-srv>
-From: Pasha Tatashin <pasha.tatashin@soleen.com>
-Date: Sat, 8 Feb 2025 19:23:25 -0500
-X-Gm-Features: AWEUYZm4sw7r0YqYCsAlTqJTyIoFI_gwgSC8Xqrde5SyZs_ybRNGci9xB-WlypE
-Message-ID: <CA+CK2bDgP2DfsfVAhQhFhBiNJFUS1n17oX9KgC1JFXAk76j01Q@mail.gmail.com>
-Subject: Re: [PATCH v4 00/14] kexec: introduce Kexec HandOver (KHO)
-To: Baoquan He <bhe@redhat.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>, 
-	linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>, 
-	Andy Lutomirski <luto@kernel.org>, Anthony Yznaga <anthony.yznaga@oracle.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>, 
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>, Borislav Petkov <bp@alien8.de>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Dave Hansen <dave.hansen@linux.intel.com>, 
-	David Woodhouse <dwmw2@infradead.org>, Eric Biederman <ebiederm@xmission.com>, 
-	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Paolo Bonzini <pbonzini@redhat.com>, "H. Peter Anvin" <hpa@zytor.com>, 
-	Peter Zijlstra <peterz@infradead.org>, Pratyush Yadav <ptyadav@amazon.de>, 
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, 
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, Steven Rostedt <rostedt@goodmis.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, Tom Lendacky <thomas.lendacky@amd.com>, 
-	Usama Arif <usama.arif@bytedance.com>, Will Deacon <will@kernel.org>, devicetree@vger.kernel.org, 
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org, 
-	changyuanl@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250207161412.6281-2-nikola.jelic83@gmail.com>
 
-On Fri, Feb 7, 2025 at 8:38=E2=80=AFPM Baoquan He <bhe@redhat.com> wrote:
->
-> On 02/06/25 at 08:28pm, Pasha Tatashin wrote:
-> > On Thu, Feb 6, 2025 at 7:29=E2=80=AFPM Andrew Morton <akpm@linux-founda=
-tion.org> wrote:
-> > >
-> > > On Thu,  6 Feb 2025 15:27:40 +0200 Mike Rapoport <rppt@kernel.org> wr=
-ote:
-> > >
-> > > > This a next version of Alex's "kexec: Allow preservation of ftrace =
-buffers"
-> > > > series (https://lore.kernel.org/all/20240117144704.602-1-graf@amazo=
-n.com),
-> > > > just to make things simpler instead of ftrace we decided to preserv=
-e
-> > > > "reserve_mem" regions.
-> > > >
-> > > > The patches are also available in git:
-> > > > https://git.kernel.org/rppt/h/kho/v4
-> > > >
-> > > >
-> > > > Kexec today considers itself purely a boot loader: When we enter th=
-e new
-> > > > kernel, any state the previous kernel left behind is irrelevant and=
- the
-> > > > new kernel reinitializes the system.
-> > >
-> > > I tossed this into mm.git for some testing and exposure.
-> > >
-> > > What merge path are you anticipating?
-> > >
-> > > Review activity seems pretty thin thus far?
-> >
-> > KHO is going to be discussed at the upcoming lsfmm, we are also
-> > planning to send v5 of this patch series (discussed with Mike
-> > Rapoport) in a couple of weeks. It will include enhancements needed
-> > for the hypervisor live update scenario:
->
-> So is this V4 still a RFC if v5 will be sent by plan? Should we hold the
-> reviewing until v5? Or this series is a infrustructure building, v5 will
-> add more details as you listed as below. I am a little confused.
+Hi Nikola,
 
-We will modify the existing patches and send as v5 because some
-interfaces are going to be changed*.
+kernel test robot noticed the following build warnings:
 
-Otherwise, v5 will make KHO a lot more flexible as it will allow to
-use the tree all the time while the system is running instead of only
-once during the activation phase.
+[auto build test WARNING on broonie-sound/for-next]
+[also build test WARNING on robh/for-next tiwai-sound/for-next tiwai-sound/for-linus linus/master v6.14-rc1 next-20250207]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-* Changing interfaces  is optional, but decision whether to change
-will be discussed at Hypervisor Live Update on Feb 10th:
-https://lore.kernel.org/all/26a4b7ca-93a6-30e2-923b-f551ced03d62@google.com=
-/
+url:    https://github.com/intel-lab-lkp/linux/commits/Nikola-Jelic/ASoC-codecs-cmx655-Add-CML-s-CMX655D-codec/20250208-001527
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/20250207161412.6281-2-nikola.jelic83%40gmail.com
+patch subject: [PATCH v3 2/2] ASoC: codecs: cmx655: Add CML's CMX655D codec
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20250209/202502090855.eWNvBLsV-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250209/202502090855.eWNvBLsV-lkp@intel.com/reproduce)
 
->
-> >
-> > 1. Allow nodes to be added to the KHO tree at any time
-> > 2. Remove "activate" (I will also send a live update framework that
-> > provides the activate functionality).
-> > 3. Allow serialization during shutdown.
-> > 4. Decouple KHO from kexec_file_load(), as kexec_file_load() should
-> > not be used during live update blackout time.
-> > 5. Enable multithreaded serialization by using hash-table as an
-> > intermediate step before conversion to FDT.
->
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502090855.eWNvBLsV-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from sound/soc/codecs/cmx655.c:10:
+   In file included from include/sound/soc.h:26:
+   In file included from include/sound/ac97_codec.h:17:
+   In file included from include/sound/pcm.h:15:
+   In file included from include/linux/mm.h:2224:
+   include/linux/vmstat.h:504:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     504 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     505 |                            item];
+         |                            ~~~~
+   include/linux/vmstat.h:511:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     511 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     512 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:524:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     524 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     525 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+>> sound/soc/codecs/cmx655.c:194:50: warning: use of logical '||' with constant operand [-Wconstant-logical-operand]
+     194 |                         *pll_ctrl = (0 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                                                       ^
+     195 |                             (3 << CMX655_PLLCTRL_CPI_SHIFT);
+         |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   sound/soc/codecs/cmx655.c:194:50: note: use '|' for a bitwise operation
+     194 |                         *pll_ctrl = (0 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                                                       ^~
+         |                                                                       |
+>> sound/soc/codecs/cmx655.c:194:19: warning: converting the result of '<<' to a boolean always evaluates to false [-Wtautological-constant-compare]
+     194 |                         *pll_ctrl = (0 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                        ^
+>> sound/soc/codecs/cmx655.c:195:11: warning: converting the result of '<<' to a boolean; did you mean '(3 << (0)) != 0'? [-Wint-in-bool-context]
+     195 |                             (3 << CMX655_PLLCTRL_CPI_SHIFT);
+         |                                ^
+   sound/soc/codecs/cmx655.c:199:50: warning: use of logical '||' with constant operand [-Wconstant-logical-operand]
+     199 |                         *pll_ctrl = (0 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                                                       ^
+     200 |                             (3 << CMX655_PLLCTRL_CPI_SHIFT);
+         |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   sound/soc/codecs/cmx655.c:199:50: note: use '|' for a bitwise operation
+     199 |                         *pll_ctrl = (0 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                                                       ^~
+         |                                                                       |
+   sound/soc/codecs/cmx655.c:199:19: warning: converting the result of '<<' to a boolean always evaluates to false [-Wtautological-constant-compare]
+     199 |                         *pll_ctrl = (0 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                        ^
+   sound/soc/codecs/cmx655.c:200:11: warning: converting the result of '<<' to a boolean; did you mean '(3 << (0)) != 0'? [-Wint-in-bool-context]
+     200 |                             (3 << CMX655_PLLCTRL_CPI_SHIFT);
+         |                                ^
+   sound/soc/codecs/cmx655.c:204:51: warning: use of logical '||' with constant operand [-Wconstant-logical-operand]
+     204 |                         *pll_ctrl = (12 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                                                        ^
+     205 |                             (3 << CMX655_PLLCTRL_CPI_SHIFT);
+         |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   sound/soc/codecs/cmx655.c:204:51: note: use '|' for a bitwise operation
+     204 |                         *pll_ctrl = (12 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                                                        ^~
+         |                                                                        |
+   sound/soc/codecs/cmx655.c:204:20: warning: converting the result of '<<' to a boolean; did you mean '(12 << (4)) != 0'? [-Wint-in-bool-context]
+     204 |                         *pll_ctrl = (12 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                         ^
+   sound/soc/codecs/cmx655.c:205:11: warning: converting the result of '<<' to a boolean; did you mean '(3 << (0)) != 0'? [-Wint-in-bool-context]
+     205 |                             (3 << CMX655_PLLCTRL_CPI_SHIFT);
+         |                                ^
+   sound/soc/codecs/cmx655.c:209:51: warning: use of logical '||' with constant operand [-Wconstant-logical-operand]
+     209 |                         *pll_ctrl = (12 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                                                        ^
+     210 |                             (3 << CMX655_PLLCTRL_CPI_SHIFT);
+         |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   sound/soc/codecs/cmx655.c:209:51: note: use '|' for a bitwise operation
+     209 |                         *pll_ctrl = (12 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                                                        ^~
+         |                                                                        |
+   sound/soc/codecs/cmx655.c:209:20: warning: converting the result of '<<' to a boolean; did you mean '(12 << (4)) != 0'? [-Wint-in-bool-context]
+     209 |                         *pll_ctrl = (12 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+         |                                         ^
+   sound/soc/codecs/cmx655.c:210:11: warning: converting the result of '<<' to a boolean; did you mean '(3 << (0)) != 0'? [-Wint-in-bool-context]
+     210 |                             (3 << CMX655_PLLCTRL_CPI_SHIFT);
+         |                                ^
+   sound/soc/codecs/cmx655.c:859:16: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
+     859 |                 if ((reg_val && CMX655_VF_DCBLOCK) > 0) {
+         |                              ^  ~~~~~~~~~~~~~~~~~
+   sound/soc/codecs/cmx655.c:859:16: note: use '&' for a bitwise operation
+     859 |                 if ((reg_val && CMX655_VF_DCBLOCK) > 0) {
+         |                              ^~
+         |                              &
+   sound/soc/codecs/cmx655.c:859:16: note: remove constant to silence this warning
+     859 |                 if ((reg_val && CMX655_VF_DCBLOCK) > 0) {
+         |                              ^~~~~~~~~~~~~~~~~~~~
+   sound/soc/codecs/cmx655.c:859:19: warning: converting the result of '<<' to a boolean; did you mean '(1 << (2)) != 0'? [-Wint-in-bool-context]
+     859 |                 if ((reg_val && CMX655_VF_DCBLOCK) > 0) {
+         |                                 ^
+   sound/soc/codecs/cmx655.h:70:46: note: expanded from macro 'CMX655_VF_DCBLOCK'
+      70 | #define     CMX655_VF_DCBLOCK           (0x1 << CMX655_VF_DCBLOCK_SHIFT)
+         |                                              ^
+   17 warnings generated.
+
+
+vim +194 sound/soc/codecs/cmx655.c
+
+   149	
+   150	/**
+   151	 * cmx655_get_sys_clk_config(): Get the clock configuration.
+   152	 * @clk_id: Clock source setting as defined in cmx655.h
+   153	 * @primary_mode: Non-zero if the CMX655 is the DAI primary
+   154	 * @sr_setting: Setting for sample rate 0 to 3
+   155	 * @clk_src: pointer for storing clock source (PLLREF, PLLSEL and
+   156	 *           CLKSEL bits)
+   157	 * @rdiv: pointer for storing PLL's RDIV value (13 bits)
+   158	 * @ndiv: pointer for storing PLL's NDIV value (13 bits)
+   159	 * @pll_ctrl: pointer for storing PLLCTRL register value (8 bits)
+   160	 *
+   161	 * Get the clock setup for the system clock based on clock Id, DAI primary mode
+   162	 * and sample rate.
+   163	 *
+   164	 * Return: 0 for success, negative value otherwise
+   165	 */
+   166	static int cmx655_get_sys_clk_config(int clk_id,
+   167					     int primary_mode,
+   168					     int sr_setting,
+   169					     int *clk_src,
+   170					     int *rdiv, int *ndiv, int *pll_ctrl)
+   171	{
+   172		if (clk_id == CMX655_SYSCLK_AUTO) {
+   173			if (primary_mode != 0)
+   174				clk_id = CMX655_SYSCLK_RCLK;
+   175			else
+   176				clk_id = CMX655_SYSCLK_LRCLK;
+   177		}
+   178		*rdiv = 0;
+   179		*ndiv = 0;
+   180		*pll_ctrl = 0;
+   181		switch (clk_id) {
+   182		case CMX655_SYSCLK_RCLK:
+   183			*clk_src = CMX655_CLKCTRL_CLRSRC_RCLK;
+   184			break;
+   185		case CMX655_SYSCLK_LPO:
+   186			*clk_src = CMX655_CLKCTRL_CLRSRC_LPO;
+   187			break;
+   188		case CMX655_SYSCLK_LRCLK:
+   189			*clk_src = CMX655_CLKCTRL_CLRSRC_LRCLK;
+   190			*rdiv = 1;
+   191			switch (sr_setting) {
+   192			case CMX655_CLKCTRL_SR_8K:
+   193				*ndiv = 3072;
+ > 194				*pll_ctrl = (0 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+ > 195				    (3 << CMX655_PLLCTRL_CPI_SHIFT);
+   196				break;
+   197			case CMX655_CLKCTRL_SR_16K:
+   198				*ndiv = 1536;
+   199				*pll_ctrl = (0 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+   200				    (3 << CMX655_PLLCTRL_CPI_SHIFT);
+   201				break;
+   202			case CMX655_CLKCTRL_SR_32K:
+   203				*ndiv = 768;
+   204				*pll_ctrl = (12 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+   205				    (3 << CMX655_PLLCTRL_CPI_SHIFT);
+   206				break;
+   207			case CMX655_CLKCTRL_SR_48K:
+   208				*ndiv = 512;
+   209				*pll_ctrl = (12 << CMX655_PLLCTRL_LFILT_SHIFT) ||
+   210				    (3 << CMX655_PLLCTRL_CPI_SHIFT);
+   211				break;
+   212			default:
+   213				return -EINVAL;
+   214			}
+   215			break;
+   216		default:
+   217			return -EINVAL;
+   218		}
+   219		return 0;
+   220	};
+   221	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
