@@ -1,188 +1,153 @@
-Return-Path: <devicetree+bounces-144419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52553A2E076
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 21:39:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2376A2E07B
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 21:42:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E94E3A5F2F
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 20:39:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F8A61885D0B
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2025 20:42:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F0A31DF255;
-	Sun,  9 Feb 2025 20:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FBFA1DF753;
+	Sun,  9 Feb 2025 20:42:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="khVHM7kV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mvb6ZNQq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B431324337A;
-	Sun,  9 Feb 2025 20:39:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E227424337A;
+	Sun,  9 Feb 2025 20:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739133588; cv=none; b=NYpMvJAD9lAq+/+6bi28WKbaGbge8dvKYOEciQcCTlqkzyRlf4RYzCV31G8ULay/rJHbjshEReVzP9Ke8vTuP9qXrN5V7a3avDRCTSoLXuJdzzHkPD7kCX9CjiP2GDyZ04uxPvWMHu0eOo1XsEuXiKLgfWEEOHF9lAJoItFN/P8=
+	t=1739133725; cv=none; b=aMnsXNpVqckJKBrdNO+AGjM/RRuRv/LzgElHuA+5kI/LmsMfvL2S6yH+n4dno0EtRbL3j6DfZIE+l/RneaBWAm9GuVmYfXZY/n5AA0E3mE5/Q0vpG/Kqt0t8TfndsHLUoiyofAwpHN9x8q4U7wQ9yc4u5yZX2k5Z0ZrcxClMqRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739133588; c=relaxed/simple;
-	bh=tq1e8PopaNEjjgXy0Qh15OLxlcBfu2RTELXL/38ygrQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oF8Uo3lEq3aqD3BLuWxIeEI0qBWOFqby520UAv8JgpCTO/35FwVgF+cjPXlCBoZ4R/vMmGQCQslONfuriIvlGEQi8j1WUlV34EQdSEGU5rjdvkmz+1x9pXJgR8JycUQ29S3n5bnJwZ6W2Pn22gtU+bT5QyHKHLeVjC294MzBJTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=khVHM7kV; arc=none smtp.client-ip=89.177.23.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from newone.lan (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id A1C7D160ADE;
-	Sun,  9 Feb 2025 21:39:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1739133582;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=DR0bRoLbBuWtCS0pGfeShO32SsYDtmwyxrzyYbVJIK0=;
-	b=khVHM7kV/c60bMBDuMCzflpt54W/n6H9/JgGmjg5hJnbVMgI4elPO5G/TzyAFk7rqy9kUE
-	7ZLrsKBWWOewcbsk05M6RReNJYOXue/CZL5VKSVdlXLcqTdCQFxV+ak4eet4aysqE94WDi
-	VSwv4pE8XTAVK+7TjO9j0vB+P1j/Za4=
-From: David Heidelberg <david@ixit.cz>
-To: Pavel Machek <pavel@ucw.cz>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Heidelberg <david@ixit.cz>
-Cc: linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] media: dt-bindings: Convert Analog Devices ad5820 to DT schema
-Date: Sun,  9 Feb 2025 21:39:25 +0100
-Message-ID: <20250209203940.159088-1-david@ixit.cz>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1739133725; c=relaxed/simple;
+	bh=I5K6zxbY/URQKv0ExjhoGFG70Vc1gvwB7vWXZFIu2Cc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lg73IWXpd0guRluw9Usf1g6B7RWUvxy3m6bNUnjElPbgTmaJnKMjHP83G2sywnhL7zkRn4mLurpuyE/1gHALeCwP6DkC2sLMUfgsMHFgerby9sGcJ147vLj/hom/wFmpejn71p+7T8zPg5HsXBelOIEnpOWn5VYrVWxjwiC4mbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mvb6ZNQq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB0C8C4CEDD;
+	Sun,  9 Feb 2025 20:41:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739133724;
+	bh=I5K6zxbY/URQKv0ExjhoGFG70Vc1gvwB7vWXZFIu2Cc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Mvb6ZNQqXlj09hq+unmSZoCfmod0TI+N53mH8hNPSmhVyaECG7qL/VeLfhSozBwyK
+	 bKp+3joGTS/8s3clIpcXU+Kf3coxgVOphSyzF4hIIfi6JPcitd2fnaTr4OYmTK+2eo
+	 HlHqV/qAg7XSOsMq2x0B+/PJIDWofzpZ5yMR8hNDTGhHx/Y9oX1jWuLDZoWAREW4+R
+	 DJBNXzGWKtGcx9XY6KOHAp5SdQBSySW6jRv0MlYbzTruhoFWCjOEJhK0IaUSIjok8i
+	 Gx7waD6FniX2f5APSdEPIG+AUN5MSH7PclqCC2YAZNH9a44UXgOHUXHV2I40nrNzbv
+	 P8DS5GHanX+6A==
+Date: Sun, 9 Feb 2025 22:41:46 +0200
+From: Mike Rapoport <rppt@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Andy Lutomirski <luto@kernel.org>,
+	Anthony Yznaga <anthony.yznaga@oracle.com>,
+	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	Borislav Petkov <bp@alien8.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Eric Biederman <ebiederm@xmission.com>,
+	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Paolo Bonzini <pbonzini@redhat.com>,
+	Pasha Tatashin <pasha.tatashin@soleen.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Pratyush Yadav <ptyadav@amazon.de>,
+	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Tom Lendacky <thomas.lendacky@amd.com>,
+	Usama Arif <usama.arif@bytedance.com>,
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v4 14/14] Documentation: KHO: Add memblock bindings
+Message-ID: <Z6kTCvex3DGhB-3C@kernel.org>
+References: <20250206132754.2596694-1-rppt@kernel.org>
+ <20250206132754.2596694-15-rppt@kernel.org>
+ <45df0d7a-622a-4268-9683-c5c6067483c3@kernel.org>
+ <Z6jFZII5b-j7hzkj@kernel.org>
+ <a3cca0ed-64ca-4921-bb4c-27c0e06b78c6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a3cca0ed-64ca-4921-bb4c-27c0e06b78c6@kernel.org>
 
-Convert the Analog Devices ad5820 to DT schema format.
+On Sun, Feb 09, 2025 at 04:23:09PM +0100, Krzysztof Kozlowski wrote:
+> On 09/02/2025 16:10, Mike Rapoport wrote:
+> > On Sun, Feb 09, 2025 at 11:29:41AM +0100, Krzysztof Kozlowski wrote:
+> >> On 06/02/2025 14:27, Mike Rapoport wrote:
+> >>> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+> >>>
+> >>> We introduced KHO into Linux: A framework that allows Linux to pass
+> >>> metadata and memory across kexec from Linux to Linux. KHO reuses fdt
+> >>> as file format and shares a lot of the same properties of firmware-to-
+> >>> Linux boot formats: It needs a stable, documented ABI that allows for
+> >>> forward and backward compatibility as well as versioning.
+> >>
+> >> Please use subject prefixes matching the subsystem. You can get them for
+> >> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> >> your patch is touching. For bindings, the preferred subjects are
+> >> explained here:
+> >> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+> >  
+> > These are not devicetree binding for communicating data from firmware to
+> > the kernel. These bindings are specific to KHO which is perfectly
+> > reflected by the subject.
+> 
+> No, it is not. None of the bindings use above subject prefix.
+> 
+> > 
+> > Just a brief reminder from v2 discussion:
+> > (https://lore.kernel.org/linux-mm/20231222193607.15474-1-graf@amazon.com/)
+> > 
+> > "For quick reference: KHO is a new mechanism this patch set introduces 
+> > which allows Linux to pass arbitrary memory and metadata between kernels 
+> > on kexec. I'm reusing FDTs to implement the hand over protocol, as 
+> > Linux-to-Linux boot communication holds very similar properties to 
+> > firmware-to-Linux boot communication. So this binding is not about 
+> > hardware; it's about preserving Linux subsystem state across kexec.
+> 
+> does not matter. You added file to ABI documentation so you must follow
+> that ABI documentation rules. One rule is proper subject prefix.
+ 
+No, it does not. It's a different ABI.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
-Needs: media: dt-bindings: media: i2c: align filenames format with standard
+FDT is a _data structure_ that provides cross platform unified, versioned,
+introspectable data format.
 
- .../bindings/media/i2c/adi,ad5820.txt         | 28 ---------
- .../bindings/media/i2c/adi,ad5820.yaml        | 62 +++++++++++++++++++
- 2 files changed, 62 insertions(+), 28 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/i2c/adi,ad5820.txt
- create mode 100644 Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml
+Documentation/devicetree/bindings standardizes it's use for describing
+hardware, but KHO uses FDT _data structure_ to describe state of the kernel
+components that will be reused by the kexec'ed kernel.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/adi,ad5820.txt b/Documentation/devicetree/bindings/media/i2c/adi,ad5820.txt
-deleted file mode 100644
-index 5764cbedf9b73..0000000000000
---- a/Documentation/devicetree/bindings/media/i2c/adi,ad5820.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--* Analog Devices AD5820 autofocus coil
--
--Required Properties:
--
--  - compatible: Must contain one of:
--		- "adi,ad5820"
--		- "adi,ad5821"
--		- "adi,ad5823"
--
--  - reg: I2C slave address
--
--  - VANA-supply: supply of voltage for VANA pin
--
--Optional properties:
--
--   - enable-gpios : GPIO spec for the XSHUTDOWN pin. The XSHUTDOWN signal is
--active low, a high level on the pin enables the device.
--
--Example:
--
--       ad5820: coil@c {
--               compatible = "adi,ad5820";
--               reg = <0x0c>;
--
--               VANA-supply = <&vaux4>;
--               enable-gpios = <&msmgpio 26 GPIO_ACTIVE_HIGH>;
--       };
--
-diff --git a/Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml b/Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml
-new file mode 100644
-index 0000000000000..5a403cbc07317
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/adi,ad5820.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/adi,ad5820.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD5820 autofocus coil
-+
-+maintainers:
-+  - Pavel Machek <pavel@ucw.cz>
-+
-+description:
-+  The AD5820 is a current sink driver designed for precise control of
-+  voice coil motors (VCMs) in camera autofocus systems.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad5820
-+      - adi,ad5821
-+      - adi,ad5823
-+
-+  reg:
-+    maxItems: 1
-+
-+  enable-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO spec for the XSHUTDOWN pin. The XSHUTDOWN signal is active low,
-+      a high level on the pin enables the device.
-+
-+  VANA-supply:
-+    description: supply of voltage for VANA pin
-+
-+  "#io-channel-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - VANA-supply
-+  - '#io-channel-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            coil@c {
-+                    compatible = "adi,ad5820";
-+                    reg = <0x0c>;
-+
-+                    enable-gpios = <&msmgpio 26 GPIO_ACTIVE_HIGH>;
-+                    VANA-supply = <&vaux4>;
-+
-+                    #io-channel-cells = <0>;
-+           };
-+    };
+KHO is a different namespace from Open Firmware Device Tree, with different
+requirements and different stakeholders. Putting descriptions of KHO data
+formats in Documentation/kho rather than in
+Documentation/devicetree/bindings was not done to evade review of Open
+Firmware Device Tree maintainers, but rather to emphasize that KHO FDT _is
+not_ Open Firmware Device Tree.
+
+> Best regards,
+> Krzysztof
+
 -- 
-2.47.2
-
+Sincerely yours,
+Mike.
 
