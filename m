@@ -1,165 +1,161 @@
-Return-Path: <devicetree+bounces-144532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A14A2E6C5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:46:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4107EA2E6C8
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:47:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7677B164D25
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 08:46:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 953F31881623
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 08:47:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C47901B85D6;
-	Mon, 10 Feb 2025 08:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D92631B87EF;
+	Mon, 10 Feb 2025 08:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="FT191uYw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KqLnAMmE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9D101E4A9;
-	Mon, 10 Feb 2025 08:46:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05CF1E4A9;
+	Mon, 10 Feb 2025 08:47:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739177210; cv=none; b=gygXXzwTuelM8RWuuRhdHAYlAT61wm95qDnm/aFa4MZObaHL9m0v9hX6yU1Im+Nd/vCV92aIXHGckvZgXmLOrKC1nwsiGyQJ7yQTNiNS+dT7TziXL3POrsz8VohsTmhMps7L/bDRm9o8YVxyFgkgfv1W+geGF1Pj8roOXV7FzM0=
+	t=1739177269; cv=none; b=eyB5kyAcCVx7EC7U34VIgDHOE/BNMaoRukbH9DzzJjpu3x0S5FXl5GGYjAPyiu4+FhvZZc7QzIwtcrH8/hQFQFCpFXXhTdFOlKyAc5d1m4dNeZ2vVT5dD+ZNzcLyoafFVCmpzKQAZt93nOTTSZoiGbs7rjxEu0hS7xgSWfNBHHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739177210; c=relaxed/simple;
-	bh=/4kXHEmarSCX8A4NDBDloe4JNvYwH+zdYaV0aMf986U=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=G3FiEUgEZdiSZa+M32GLt5LVQHdcHTFJ2Br/JVerDcW3DE751zMu2Q5Y8ci+ozZ60M7j46Rtlw/fuSdFWYlTQYxFMPQj/G+saNFXJhpyI8dHVQ25Baw2Ha6iX85WSUnATEAmILY+ar7e4VkAv2XbE3poAdQJHaBXVSBRksMhZ4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=FT191uYw; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1739177269; c=relaxed/simple;
+	bh=ZBZbHxRNMFgiveHG6Wn0QOXKe+t8dMzFAG+F2iXy3H0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eeup54+k5gN3aSm81P5egjEY4sAxZ1h/ylKR8YDePEJbNWULzwrmJhgZT1br+A15JNJKz+1wtYOJC9rmB7s61h+RdTIb0d/lq1P51ZpGp+mGZ43Cvf+DAe1catpPVqcBSc7/B8BDOLY5bAoSyJNL0/RDLYVQGxSe4G95ag12MDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KqLnAMmE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD4B7C4CEE6;
+	Mon, 10 Feb 2025 08:47:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739177269;
+	bh=ZBZbHxRNMFgiveHG6Wn0QOXKe+t8dMzFAG+F2iXy3H0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KqLnAMmERvOXl2wDd7PeHnHKlwitor9Gtz31+wfCN2pEzy68V72TsxVnXiBk13V/u
+	 JNKizEiyDsAEGAfwOJSbzRXNuRWg6b6qhAq8/751AZW0rAV6gBysUOQ9zVkCbK9a4e
+	 JR2wC7EcZsq41YFgPJYuLybN2fUyDs+H2LuExtbeQaxqBBHFWyyv46VnlFGAhbNXwN
+	 vSun3RLv8zfFKychWWRLcV+5qYkbHgPxs/RMhyU8z4+Te2n7tepLhRV2aqD1xWmdpR
+	 DThpUYtDHpATo7yvDJiZSqwyAHZEhOyW9GDNoDh6A802A/DelsJyPx1mQU+S1j3EV2
+	 LHzYW4XCImmAQ==
+Message-ID: <2a996249-5a53-4483-956c-a5880c880a19@kernel.org>
+Date: Mon, 10 Feb 2025 09:47:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1739177206;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EbyDrglM88cnERsnPEsC1uH+yICet62b/Os+Sq28aDU=;
-	b=FT191uYwP/KCBqbxtSSCbsvFflWDIl/xKGmFRAFMLP6eu/VzM1JmnOQ12dNaONnmdu1i6C
-	Nqeqz6ASOXJzGJM+UHPA7GbsC7PUZwC5glC+28iIV1fdmpYH5rAqklBDM9l7dbPya125oD
-	Te+G1MfM7Fpsuv7AJco/Ow/jSwnsCMyHFOWeXeUVLh7JUa0dQqqfwBXqmsFhDiRXDSeI4M
-	LnRtQGV+R876whudS0qA37NElNcG3QeMgnhqr719kysGvj85XGRKc2Vvnot0cjhMTTjtuf
-	dG4ahi7DroA2teM7OGL/4275B4d390K0fJwls/6BmtY+VzeufXJ9aH97c8SvOQ==
-Date: Mon, 10 Feb 2025 09:46:46 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Quentin Schulz <foss+kernel@0leil.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jagan
- Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>, Michael Riesch
- <michael.riesch@wolfvision.net>, Jonas Karlman <jonas@kwiboo.se>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Quentin
- Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH v5 1/4] arm64: dts: rockchip: add overlay test for
- WolfVision PF5
-In-Reply-To: <20250207-pre-ict-jaguar-v5-1-a70819ea0692@cherry.de>
-References: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
- <20250207-pre-ict-jaguar-v5-1-a70819ea0692@cherry.de>
-Message-ID: <ef9133d217bc35f611ef390da8042510@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/10] arm64: dts: sophgo: Add Duo Module 01
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, soc@lists.linux.dev
+Cc: Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto <inochiama@outlook.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, Haylen Chu <heylenay@outlook.com>,
+ linux-arm-kernel@lists.infradead.org, Arnd Bergmann <arnd@arndb.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
+ <20250209220646.1090868-5-alexander.sverdlin@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250209220646.1090868-5-alexander.sverdlin@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Quentin,
-
-Please see a few comments below.
-
-On 2025-02-07 16:19, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
+On 09/02/2025 23:06, Alexander Sverdlin wrote:
+> The Duo Module 01 is a compact module with integrated SG2000,
+> WI-FI6/BTDM5.4, and eMMC.
+> Add only support for UART and SDHCI.
 > 
-> The WolfVision PF5 can have a PF5 Visualizer display and PF5 IO 
-> Expander
-> board connected to it. Therefore, let's generate an overlay test so the
-> application of the two overlays are validated against the base DTB.
-> 
-> Suggested-by: Michael Riesch <michael.riesch@wolfvision.net>
-> Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
-> 
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 > ---
->  arch/arm64/boot/dts/rockchip/Makefile | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+>  .../sophgo/sg2000_milkv_duo_module_01.dtsi    | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01.dtsi
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile
-> b/arch/arm64/boot/dts/rockchip/Makefile
-> index
-> def1222c1907eb16b23cff6d540174a4e897abc9..534e70a649eeada7f9b6f12596b83f5c47b184b4
-> 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -170,3 +170,25 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += 
-> rk3588s-orangepi-5.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
+> diff --git a/arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01.dtsi b/arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01.dtsi
+> new file mode 100644
+> index 000000000000..7edcc4d03cc4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01.dtsi
+
+Underscores are almost never used in DTS file names. Don't grow this
+pattern.
+
+> @@ -0,0 +1,84 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 > +
-> +# Overlay application tests
-> +#
-> +# A .dtbo must have its own
-> +#
-> +#  dtb-$(CONFIG_ARCH_ROCKCHIP) += <overlay>.dtbo
-> +#
-> +# entry, and at least one overlay application test - ideally 
-> reflecting how it
-> +# will be used in real life -:
-
-Hmm, what's "-:" actually doing in the line right above?  I mean,
-it's a minor nitpick, so might be worth addressing only if there
-will be the v6...  Also, "test - ideally" might be replaced by
-"test, ideally", because splicing sentences together using em/en
-dashes is generally frowned upon. :)
-
-> +#
-> +#  dtb-$(CONFIG_ARCH_ROCKCHIP) += <name of overlay application 
-> test>.dtb
-> +#  <name of overlay application test>-dtbs := <base>.dtb
-> <overlay-1>.dtbo [<overlay-2>.dtbo ...]
-
-As another minor nitpick, I'd suggest that
-
-     "<name of overlay application test>.dtb"
-
-is replaced with
-
-     "<name-of-overlay-application-test>.dtb"
-
-for the sake of consistency and, obviously, for clear indication of
-the space characters not being applicable.  Regarding using "-" or "_"
-characters there, perhaps we should follow what Git uses in its man
-pages, which is the "-" character (see e.g. git-switch(1)).
-
-> +#
-> +# This will make the <base>.dtb have symbols (like when DTC_FLAGS has
-> -@ passed)
-> +# and generate a new DTB (<name of overlay application test>.dtb) 
-> which is the
-> +# result of the application of <overlay-1>.dtbo and other listed
-> overlays on top
-> +# of <base>.dtb.
+> +#include <dt-bindings/pinctrl/pinctrl-sg2000.h>
+> +#include "sg2000.dtsi"
 > +
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-vz-2-uhd.dtb
-> +rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
-> +	rk3568-wolfvision-pf5-display-vz.dtbo \
-> +	rk3568-wolfvision-pf5-io-expander.dtbo
+> +/ {
+> +	model = "Milk-V Duo Module 01";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +	};
+> +};
+> +
+> +&osc {
+> +	clock-frequency = <25000000>;
+> +};
+> +
+> +&emmc {
 
-Otherwise, it's looking good to me, thanks for the patch!  It was
-already discussed and commented in detail in the v4 of this series, [*]
-so please feel free to include:
+Keep ordering according to DTS coding style.
 
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 
-[*] 
-https://lore.kernel.org/linux-rockchip/a3b98e3d3a2571ee75e59418bb3b6960@manjaro.org/T/#u
+Best regards,
+Krzysztof
 
