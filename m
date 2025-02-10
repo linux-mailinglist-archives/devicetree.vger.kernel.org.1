@@ -1,158 +1,142 @@
-Return-Path: <devicetree+bounces-144660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2949CA2EC71
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:29:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9B51A2EC9F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:35:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A817E164582
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:29:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 121DC169111
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:34:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921BB221DB7;
-	Mon, 10 Feb 2025 12:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F3A223334;
+	Mon, 10 Feb 2025 12:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WEjovmCi"
+	dkim=pass (2048-bit key) header.d=beims.me header.i=@beims.me header.b="yJxl5Qlv";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="a2g21fzl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-b7-smtp.messagingengine.com (fout-b7-smtp.messagingengine.com [202.12.124.150])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0020F20CCE6;
-	Mon, 10 Feb 2025 12:29:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC4C1F91E3;
+	Mon, 10 Feb 2025 12:32:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739190580; cv=none; b=n2vSJgivaRB85hf5VX4rn/JlI8YIn+yO9NP6CE7QuWVtQtqa/HtU8d1SMZl23wzxEspmoMB589AvzkKzgLGfKYeI2iM6JLr4jfLrV/7kAe5j4zGn8yo0zXBwPZNbnmUUh5TP4gvBNaElAhN1BSQsXQ2snar+x60WNgRiiP7vXUM=
+	t=1739190731; cv=none; b=BaLc73Ow68nBwErfpCf6qo5ZQkV1yt8OdTZVn+kv7kbsvSl4gZ9OcKMsC7kufwfgQ/SL9fQPwjG0VyuES5Hxit9pgnFGViCBH2h8eYJ2KSwWFZyevWJCjAyj5BIFiNohZKsrAND6cJqVMA7eNximZX/4cIzOH6LWbSZxuBBdJ24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739190580; c=relaxed/simple;
-	bh=IuFvjydOw4L18BbCARPfPkycdVqb1Ih2e3bRySBUmBc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V93BKWG/l2ym7NuAA5qQBAhyB31XqUFcTAvHR7onhwcEWQF9Nkfgf8P6qD6Uc7RRO0fZmfNc5H9Bto8K8qe1hYYjW25ZfMou1D5bqUY5rOabPk3JrQKRxHdAmLBaPBRRu8sMYcAGnle5k08zL+QXHNSr4Paza3E1laAklndd28s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WEjovmCi; arc=none smtp.client-ip=209.85.222.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7c0566511aaso211372085a.3;
-        Mon, 10 Feb 2025 04:29:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739190578; x=1739795378; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zY41R75BtToe8Yp09lMS5d4lVXKY/PmgZc/Js0T22zQ=;
-        b=WEjovmCiwD6Zvcbb9k/o/qouVVH4u0TTIvb+qFLzNPfiKGj9UjSsZZuv5XzC13p/ng
-         C2yt81kz0Y5H8myCSIIDRe14u/whOTUypbHn9JRFy08OSn9i24wf5n6rGKUrPi7WDLJf
-         k/9aHybT5hIdkVcWlQQYuhah3FqMgQCu3WOu6n1XAlwdc5TR+mjvuwY2Hk7mVouCiXpM
-         S28dwljEq7QBijo9OjQ4h4SAFUPGgAd81nSbDvwUQKXTegj8UKezSBp0y1voeKtk4ceA
-         svcrgAb04K0Y4bj0+50wuTHcIFgo/14VUgN1NOUGb0L+2QJ9Zd/a10UJJ0aYgaluxMUL
-         oKHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739190578; x=1739795378;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zY41R75BtToe8Yp09lMS5d4lVXKY/PmgZc/Js0T22zQ=;
-        b=pGwSeenB59vShWR0kcABkB78ZOeLvfnS9/fwH+TKIKni63DmEen9utKZlUhkVqhLAA
-         yVnsTbSL3RWv8c/dt45eWu1XwrebNPawyVDHP1SPcCuRjs59P8HnqVzEW6h3kpqf5yZD
-         w7xsjO+JMqEKoGBt2GV3o8rPIfy9KtL5+uYGDRlACmzXfkRauru1TL+XlzeY8J8MK2D0
-         iaRNE+UhRw828/s0Cn7r2DSrFBOXvW4hxOdZQYmkM2n16bmHBow0hntqEHeqNA4olkvf
-         00eqUdbQXlZAngkdYt3Z/NINlyM+fObuPaXczFQRFvU8co73tYEqWv7W2vmWTiVTEH8J
-         l+WA==
-X-Forwarded-Encrypted: i=1; AJvYcCVN6Ip0jSQefMhDqbzjG8i53uNQla99XKtN2/lv/g8VN+0k6omq621inockvFs6pPqPeTGQMaLENDce@vger.kernel.org, AJvYcCWo2GgD2byf+OFiInxVB0Os38kgVewuchViCqsKNAxM9mhVnHqE1E5q5lBZOYi/BOhCQAISgaM4CpM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtruxO1FqjBREDYJTepvVEujAyKldgoQKOIznn8UjxJ6KVy/Ph
-	rQssv58oysv0LAIeF/R8HKqCIhbkJ5i8MUcH4NEdmFxTdjMM1c6TyEgH9g==
-X-Gm-Gg: ASbGncvIgLVSVs5ul9heR4FvuekDegsvcFOMW/9GEgkoS2uUyPqaCq4hNXgj0O6+9T6
-	A3JGgQI/WS4aYd/Kih4xSfUcxYCKSv0nc4P3Q1zYIYZ8Cp6a1q4IFIV/8noLCv/+FSrFHWjjt6e
-	SsCf6TUHT5kMwvgbg4eUvmghpzbfW9kAg4xcW5mt+ONSuJhzXQHkvSKTq4iDh3SsdH8JKLi0KDF
-	LcGWrQVCMPhql3fPRVfAcTZPWK8IKJ3MZoXBaPyXLjdIIX/4NSdgitSd2+ilAq+Nn4=
-X-Google-Smtp-Source: AGHT+IHxp1/RlBBU1ek47PdaAYXfy4dhK7yLqQmOezqp2bSrFyZup9k7QBohFKb20v0D2hY4RciUgA==
-X-Received: by 2002:a05:620a:319d:b0:7a9:c129:5da7 with SMTP id af79cd13be357-7c047c355c8mr1853489885a.29.1739190577686;
-        Mon, 10 Feb 2025 04:29:37 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c05dffd3bbsm137289185a.45.2025.02.10.04.29.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 04:29:37 -0800 (PST)
-Date: Mon, 10 Feb 2025 20:29:31 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, soc@lists.linux.dev
-Cc: Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@outlook.com>, linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, Haylen Chu <heylenay@outlook.com>, 
-	linux-arm-kernel@lists.infradead.org, Sebastian Reichel <sre@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH 08/10] riscv/arm64: dts: cv18xx: Add sysctl and reset
- nodes
-Message-ID: <mcixunylnco2obzrvqn4emaq3vey2zvkdggybymrm276bcgrsi@ck3nta7w576s>
-References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
- <20250209220646.1090868-9-alexander.sverdlin@gmail.com>
- <h73zitljaig7nrccd3f23i655imswv54tf667dhq3dord7rxsr@unqncqlorvc6>
- <e17ef70f7536bd1bf0b4d0f7258f91cffac76a20.camel@gmail.com>
+	s=arc-20240116; t=1739190731; c=relaxed/simple;
+	bh=IEsbCFgROILrbDSaADKH0YKTsviSwI21TCaR17hgP54=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ayrTCqPqB9mV+eaRMi8dwY45wNWtBOXb8aMVWu7OIA1ePYvQWLBraYAg8whupbENIC2OkpTE8BUhP1ZUIeMOgu/UB7JL3ziEAJboZpcHvBsnS4Rz4cUhE8tTd1LOXwsrLbgqlMd7KMMrQnw9rl3+4KfIhfG7+d3TKHxHF933jAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=beims.me; spf=pass smtp.mailfrom=beims.me; dkim=pass (2048-bit key) header.d=beims.me header.i=@beims.me header.b=yJxl5Qlv; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=a2g21fzl; arc=none smtp.client-ip=202.12.124.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=beims.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=beims.me
+Received: from phl-compute-01.internal (phl-compute-01.phl.internal [10.202.2.41])
+	by mailfout.stl.internal (Postfix) with ESMTP id 24567114010D;
+	Mon, 10 Feb 2025 07:32:07 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-01.internal (MEProxy); Mon, 10 Feb 2025 07:32:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=beims.me; h=cc
+	:cc:content-transfer-encoding:content-type:date:date:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=fm3; t=1739190726; x=1739277126; bh=BCAhY1yiejemwSW6GsSgy
+	gTIkhjWjlTqnboSBf1Neag=; b=yJxl5Qlv7HVphjeZ+GqVFIoL0RViBODDwai0u
+	cHXDx8uVPbM9c/l18RaKpgRaxfVcVX3dwpL3xWCg1syue8UGPWbWSwXDGCzuOvPM
+	MqCMm1I+oFvxO72qx95G9V5xEO9ngphuHWG7HVKoWNSwHMA1ZL+2sJc3KIIxkUMK
+	Dw6aRvNAUowRiHS8uYT3S+RA9gGnF19uBXyHTca3CrTCt1fdM6N05tBhiXj8G/cW
+	8Orf++ASv9HjZOQbIz6cn4ge4x2+D2qLldH5Q5bTIrscw1sLTf1fMH3KWNPxlAkx
+	G3FZTg3yL7AqarKYuDbWiLW6PFP0uLf/Gn+SPTOxTOwBUXfuw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1739190726; x=1739277126; bh=BCAhY1yiejemwSW6GsSgygTIkhjWjlTqnbo
+	SBf1Neag=; b=a2g21fzlFUhBoaJdFfkgcPF4yg/+rUn1Ubkqvr7FFSngvwhjoPg
+	0/rIwP3R65uWJpSbNSEybBxyM0e+GHnPw6CJqUi9oJd4YcXFjMa2qwtMFxZHznDe
+	3V9SRbXkHoMAPy6MWeV4oAO+OaGgK76wXw6gNV/lFFZT07h4tNSHJePIXYsDDgfo
+	EgoCQU+grKGV8SL2IpABZbMr3vKGyeLDUcvpDXgbxh1ccMY7EgT8WLnPUxBk1mC2
+	HWSLY5SlFfWZo32DWWQAJ6fdIOPZtFANzUa6j++w/2hLpECovjiPV/7/JQvl6ThT
+	s7JnpYVL0VB9pnEqTAZOWT4Xju30TWIFIcA==
+X-ME-Sender: <xms:xvGpZ2BFyywVJDj9F1-E573XV-lMQLFtM3r5mJ9s8pbuyDlH6FL3LQ>
+    <xme:xvGpZwjmVi-SQ6XgFHuCM8srfRHay6GO7oWXoDQkiyO4mXNZ3ygXwWGwMBp43wR5v
+    mS3AqSuh9CpQ7inIa0>
+X-ME-Received: <xmr:xvGpZ5l5azEMmjml4gCSUklyi655F6GzHbJdtACeu2gEBq8ZIbERkJ2jk9QfHVPiRTG2aIhtGOE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefkedtjecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffoggfgsedtkeertdertddtnecu
+    hfhrohhmpehrrghfrggvlhessggvihhmshdrmhgvnecuggftrfgrthhtvghrnhepfeekke
+    fgvdehhfefgfeltefhudduueffjeevvdekhffghfeljeegleekhedttdeinecuvehluhhs
+    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhgrfhgrvghlsegsvg
+    himhhsrdhmvgdpnhgspghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprhgt
+    phhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodguth
+    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdr
+    ohhrghdprhgtphhtthhopehshhgrfihnghhuoheskhgvrhhnvghlrdhorhhgpdhrtghpth
+    htohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhgv
+    rhhnvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopehfvghsthgvvhgrmh
+    esghhmrghilhdrtghomhdprhgtphhtthhopehrrghfrggvlhdrsggvihhmshesthhorhgr
+    uggvgidrtghomhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnh
+    gvlhdrohhrgh
+X-ME-Proxy: <xmx:xvGpZ0yo8aUNVviiyyyb89vc0k4kZds1RsMbSG4mIxJVcPX4FHlFCw>
+    <xmx:xvGpZ7S0bA8HTG3FgvR125kUE4EyVGyTMD3gFjY0YVLbxBDrEgiGzA>
+    <xmx:xvGpZ_ZEeWoXoHSHf_unSxF-XC1D5rNHXaKHea5dRaBro0O6tHSs2g>
+    <xmx:xvGpZ0Ty_KKur6FQR4v1upwT1iID9H8lhxlqH_bfUZe_JLE1wOkssg>
+    <xmx:xvGpZ5D7w1zgVZcKanuoJnD3FQaymBW7fMiLO7dnrmb-C-IPK8OIlRoV>
+Feedback-ID: idc214666:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 10 Feb 2025 07:32:03 -0500 (EST)
+From: rafael@beims.me
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Rafael Beims <rafael.beims@toradex.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	rafael@beims.me
+Subject: [PATCH] arm64: dts: colibri-imx8x: Add missing gpio-line-names
+Date: Mon, 10 Feb 2025 09:30:50 -0300
+Message-ID: <20250210123134.1659719-1-rafael@beims.me>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <e17ef70f7536bd1bf0b4d0f7258f91cffac76a20.camel@gmail.com>
 
-On Mon, Feb 10, 2025 at 12:47:59PM +0100, Alexander Sverdlin wrote:
-> Thanks for quick feedback Inochi!
-> 
-> On Mon, 2025-02-10 at 13:13 +0800, Inochi Amaoto wrote:
-> > On Sun, Feb 09, 2025 at 11:06:33PM +0100, Alexander Sverdlin wrote:
-> > > Add reset controller node and required sysctl nodes.
-> > > 
-> > > Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> > > ---
-> > >   arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi | 16 ++++++++++++++++
-> > >   1 file changed, 16 insertions(+)
-> > > 
-> > > diff --git a/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
-> > > index 53834b0658b2..d793b6db4ed1 100644
-> > > --- a/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
-> > > +++ b/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
-> > > @@ -309,5 +309,21 @@ dmac: dma-controller@4330000 {
-> > >   			snps,data-width = <4>;
-> > >   			status = "disabled";
-> > >   		};
-> > > +
-> > 
-> > > +		rtcsys_ctrl: syscon@5025000 {
-> > > +			compatible = "sophgo,cv1800-rtcsys-ctrl", "syscon";
-> > > +			reg = <0x05025000 0x1000>;
-> > > +		};
-> > > +
-> > > +		rtcsys_core: syscon@5026000 {
-> > > +			compatible = "sophgo,cv1800-rtcsys-core", "syscon";
-> > > +			reg = <0x05026000 0x1000>;
-> > > +		};
-> > > +
-> > > +		soc-reset {
-> > > +			compatible = "sophgo,cv1800-reset";
-> > > +			sophgo,rtcsys-ctrl = <&rtcsys_ctrl>;
-> > > +			sophgo,rtcsys-core = <&rtcsys_core>;
-> > > +		};
-> > 
-> > I think these node is not suitable for riscv. It should use SBI SRST
-> > extension to restart.
-> 
-> Independent from the particular form, or its correctness, this is still HW
-> description, right? It would be a "policy" for the kernel configuration, if
-> the particular build would rely on the FW or a kernel driver to reboot.
-> 
-> In other words, the HW block remains in place, no matter if it's controlled
-> by a kernel module or a FW. What the point in hiding it from the RiscV part
-> of DT, keeping on ARM64 side only?
-> 
+From: Rafael Beims <rafael.beims@toradex.com>
 
-Yeah, I have make a mistake, the device is needed. SBI need these
-device definition to handle some power event.
+Add missing gpio-line-names for SODIMM_79 and SODIMM_97
 
-Regards,
-Inochi
+Signed-off-by: Rafael Beims <rafael.beims@toradex.com>
+---
+ arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+index d5abfdb8ede2..ecb35c6b67f5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+@@ -295,8 +295,8 @@ &lsio_gpio0 {
+ 			  "",
+ 			  "SODIMM_61",
+ 			  "SODIMM_103",
+-			  "",
+-			  "",
++			  "SODIMM_79",
++			  "SODIMM_97",
+ 			  "",
+ 			  "SODIMM_25",
+ 			  "SODIMM_27",
+-- 
+2.47.2
+
 
