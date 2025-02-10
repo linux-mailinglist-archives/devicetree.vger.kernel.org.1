@@ -1,119 +1,276 @@
-Return-Path: <devicetree+bounces-144530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E008A2E6BA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:45:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8F67A2E676
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:30:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 712F33A5592
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 08:45:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2DE3E7A493D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 08:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB2A1B87EF;
-	Mon, 10 Feb 2025 08:45:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2706C1C1F27;
+	Mon, 10 Feb 2025 08:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZY02NguF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bVBA3wW+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D688D1E4A9;
-	Mon, 10 Feb 2025 08:45:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81DC1C1F21;
+	Mon, 10 Feb 2025 08:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739177133; cv=none; b=WOSzAmx+FdNbRKt8aJs0afrTV92+8PpLO0p8fdnsZX9fKbG1yDqRpwGTzxVop1+tkfd05oCXi97GhBZ2PlrAm6rB0RNFJv/eWAU0Dz1ZT0nue0wJVYSCID8+U20mr7skaFUcpNpuCAut5gqzamqJ+qBHtYOBmMNOqD7qa5WhUX4=
+	t=1739176172; cv=none; b=lFiIIKcxrwhNp7XEGj6n0frJC82BxdGMebw4qmRFjnjN4STiT4p63XQcODO9vnAcF8c/PgbhrBbt24mQOP5lc+TxuYIueOqcmSbRFNLXVXx5zoDW9TzNhTmCWY1vDC0tQahG7ZpctlIPobDb1PQqiwQOYzrFbKiaQswiVoRhq7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739177133; c=relaxed/simple;
-	bh=8e9TvzMvnN655dD9mW3ziQ4pedVgVTCtFygXZeQGWbI=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=KyxgRLA/Ci3epCkfPiSGZZ3uXWW52YyNBuEfnc4EqMpXVobiGuEXG9r+99AVQV8RfEiCWqv9SkE3filo8TaDep31yyI9TBqHIWkb3ryNdvPDQlotWHJ0ordISoiYT1hX5hWztS3Mc41vKOmV+k1Hbj6AwKx5sBEshAjEgB2Ac5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZY02NguF; arc=none smtp.client-ip=217.70.178.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-	by mslow3.mail.gandi.net (Postfix) with ESMTP id 55A93582BA6;
-	Mon, 10 Feb 2025 08:27:35 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6E7EC441F0;
-	Mon, 10 Feb 2025 08:27:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739176047;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8e9TvzMvnN655dD9mW3ziQ4pedVgVTCtFygXZeQGWbI=;
-	b=ZY02NguFvp2D4ou3No/QCzpfSTJ/vEq/6qT+XJ/nvm4ksYAK39lFMb0mQgDBqM0QIBRl1F
-	8lQkkIF/mc8rfl0l4flqx4G6JMtztvl8iq4f4mpGpYsw9F+0rmgop6/sp/OOfQsixdP9Hn
-	F5EBu6cuuY9MfhzpBOyfm3OiCFVmX2cf9gRlizM56NuNZNK60icbcTT+3/d+T/Unba6ad9
-	nIAJD/b54HfwpeWm89ATdYeoXB7ZO5w+IHsHy0eoz3L543OybW2v5YkqjOB1Y1pInLZonw
-	gvl82hS9MNgYZaE0ZItYKARh4AqYqBh+HH0IcpFf14eU4/gDM4YqjQJ7ekjhow==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: J. =?utf-8?Q?Neusch=C3=A4fer?= via B4 Relay
- <devnull+j.ne.posteo.net@kernel.org>
-Cc: devicetree@vger.kernel.org,  linuxppc-dev@lists.ozlabs.org,  Krzysztof
- Kozlowski <krzk@kernel.org>,  j.ne@posteo.net,  imx@lists.linux.dev,
-  Scott Wood <oss@buserror.net>,  Madhavan Srinivasan
- <maddy@linux.ibm.com>,  Michael Ellerman <mpe@ellerman.id.au>,  Nicholas
- Piggin <npiggin@gmail.com>,  Christophe Leroy
- <christophe.leroy@csgroup.eu>,  Naveen N Rao <naveen@kernel.org>,  Rob
- Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>,  Damien Le Moal <dlemoal@kernel.org>,
-  Niklas Cassel <cassel@kernel.org>,  Herbert Xu
- <herbert@gondor.apana.org.au>,  "David S. Miller" <davem@davemloft.net>,
-  Lee Jones <lee@kernel.org>,  Vinod Koul <vkoul@kernel.org>,  Lorenzo
- Pieralisi <lpieralisi@kernel.org>,  Krzysztof =?utf-8?Q?Wilczy=C5=84ski?=
- <kw@linux.com>,
-  Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,  Bjorn Helgaas
- <bhelgaas@google.com>,  J. =?utf-8?Q?Neusch=C3=A4fer?=
- <j.neuschaefer@gmx.net>,  Wim Van
- Sebroeck <wim@linux-watchdog.org>,  Guenter Roeck <linux@roeck-us.net>,
-  Mark Brown <broonie@kernel.org>,  Richard Weinberger <richard@nod.at>,
-  Vignesh Raghavendra <vigneshr@ti.com>,  linux-kernel@vger.kernel.org,
-  linux-ide@vger.kernel.org,  linux-crypto@vger.kernel.org,
-  dmaengine@vger.kernel.org,  linux-pci@vger.kernel.org,
-  linux-watchdog@vger.kernel.org,  linux-spi@vger.kernel.org,
-  linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2 12/12] dt-bindings: mtd: raw-nand-chip: Relax node
- name pattern
-In-Reply-To: <20250207-ppcyaml-v2-12-8137b0c42526@posteo.net> ("J.
- =?utf-8?Q?Neusch=C3=A4fer?=
-	via B4 Relay"'s message of "Fri, 07 Feb 2025 22:30:29 +0100")
-References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
-	<20250207-ppcyaml-v2-12-8137b0c42526@posteo.net>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Mon, 10 Feb 2025 09:27:22 +0100
-Message-ID: <87o6zaurv9.fsf@bootlin.com>
+	s=arc-20240116; t=1739176172; c=relaxed/simple;
+	bh=/Fp+B0JWQF2ROKHaiimvWG3bYLsZclFhzmKfyv5OYkw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P0DSajsIgWakqb51VjxDlFrpbxVjuKsTfn9jWVoKWiKefJuQpfjpL61AOEzCUG7DYB+82WpfnmQt/X8cCiKvVjSXmGWKJuB7qu2GxCkWUb0TLVmjF9JISwLw/xZjSiCQk0rWyoMn+w6kQRXcUtiBd4nRwXZreuXZ//wQHiSn7d4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bVBA3wW+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D81DBC4CEE6;
+	Mon, 10 Feb 2025 08:29:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739176171;
+	bh=/Fp+B0JWQF2ROKHaiimvWG3bYLsZclFhzmKfyv5OYkw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bVBA3wW++dNGMP58Z9cllv1LGzIMObFRMWyxLw1axpn1j/g0uTxIFfszhARWqtzv1
+	 7who+w45hCHXtnChuBY3H9W8/VOoUIoPEaTPVnau/7gaunbfArjk98RmCkqzyw6/d3
+	 jH8zZKL9ryzDrXaDNnhLkK8kQf6zWY5qbY3k0M3UwSa9Yk9xizk7bGC/cvqnItBXQZ
+	 rvaxJiE484VrMw4LVDI4kmckMQA7EnJ2z7e1Db8RS+m5sAgl0yyobHF1BA0tMNgO1q
+	 deb9Bj1zMmLP+El5rJE+a5lKgPfCFVk1IIPbG72jT2ZEczCy4/PjBuzAD0TJ+JszNc
+	 Pl1K+9YbQdXXg==
+Message-ID: <c2ff273a-bac5-4fa3-8339-ab722c9e63bf@kernel.org>
+Date: Mon, 10 Feb 2025 09:29:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefjeehkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefujghffgffkfggtgfgsehtqhertddtreejnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepffeghfejtdefieeguddukedujeektdeihfelleeuieeuveehkedvleduheeivdefnecukfhppeelvddrudekgedrleekrdekgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeelvddrudekgedrleekrdekgedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfeelpdhrtghpthhtohepuggvvhhnuhhllhdojhdrnhgvrdhpohhsthgvohdrnhgvtheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugihpphgtqdguvghvsehlihhsthhsrdhoiihlrggsshdrohhrghdprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhdrnhgvsehpohhst
- hgvohdrnhgvthdprhgtphhtthhopehimhigsehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtohepohhsshessghushgvrhhrohhrrdhnvghtpdhrtghpthhtohepmhgrugguhieslhhinhhugidrihgsmhdrtghomh
-X-GND-Sasl: miquel.raynal@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] media: dt-bindings: i2c: add DW9719/DW9718S VCM
+ binding
+To: Val Packett <val@packett.cool>
+Cc: Daniel Scally <djrscally@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250210082035.8670-1-val@packett.cool>
+ <20250210082035.8670-2-val@packett.cool>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250210082035.8670-2-val@packett.cool>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello,
+On 10/02/2025 09:19, Val Packett wrote:
+> Add DT bindings for the dw9719 voice coil motor driver, which is getting
+> devicetree compatibles added along with DW9718S support.
+> 
+> Also mention the binding file in the corresponding MAINTAINERS entry.
+> 
+> Signed-off-by: Val Packett <val@packett.cool>
+> ---
+>  .../bindings/media/i2c/dongwoon,dw9719.yaml   | 110 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 111 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml
+> new file mode 100644
+> index 000000000000..88161038223f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9719.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Dongwoon Anatech DW9719 Voice Coil Motor (VCM) DAC
+> +
+> +maintainers:
+> +  - Daniel Scally <djrscally@gmail.com>
+> +
+> +description: |-
+> +  The Dongwoon DW9719/DW9718S is a single 10-bit digital-to-analog converter
+> +  with 100 mA output current sink capability, designed for linear control of
+> +  voice coil motors (VCM) in camera lenses. This chip provides a Smart Actuator
+> +  Control (SAC) mode intended for driving voice coil lenses in camera modules.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - dongwoon,dw9719
+> +      - dongwoon,dw9718s
 
-On 07/02/2025 at 22:30:29 +01, J. Neusch=C3=A4fer via B4 Relay <devnull+j.n=
-e.posteo.net@kernel.org> wrote:
+Keep alphabetical order.
 
-> From: "J. Neusch=C3=A4fer" <j.ne@posteo.net>
->
-> In some scenarios, such as under the Freescale eLBC bus, there are raw
-> NAND chips with a unit address that has a comma in it (cs,offset).
-> Relax the $nodename pattern in raw-nand-chip.yaml to allow such unit
-> addresses.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: VDD power supply
+> +
+> +  dongwoon,sac-mode:
+> +    description: |
+> +      Slew Rate Control mode to use: direct, LSC (Linear Slope Control) or
+> +      SAC1-SAC6 (Smart Actuator Control).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +      - 0    # Direct mode
+> +      - 1    # LSC mode
+> +      - 2    # SAC1 mode (operation time# 0.32 x Tvib)
+> +      - 3    # SAC2 mode (operation time# 0.48 x Tvib)
+> +      - 4    # SAC3 mode (operation time# 0.72 x Tvib)
+> +      - 5    # SAC4 mode (operation time# 1.20 x Tvib)
+> +      - 6    # SAC5 mode (operation time# 1.64 x Tvib)
+> +      - 7    # SAC6 mode (operation time# 1.88 x Tvib)
+> +    default: 4
+> +
+> +  dongwoon,vcm-freq:
+> +    description:
+> +      The switching frequency for the voice coil motor.
 
-This is super specific to this controller, I'd rather avoid that in the
-main (shared) files. I believe you can force another node name in the
-controller's binding instead?
+Frequency is in Hertz, so use proper property unit suffix. BTW, you
+cannot add incorrect properties post-factum based on already accepted
+ACPI driver. This would be nice bypass of review, right?
 
-Thanks,
-Miqu=C3=A8l
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Drop.
+
+minimum/maximum constraints
+
+> +
+
+No reset/powerdown gpios in the hardware?
+
+Missing required block.
+
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: dongwoon,dw9718s
+> +    then:
+> +      properties:
+> +        dongwoon,vcm-freq:
+> +          default: 0
+> +          enum:
+> +            - 0    # 5.00 MHz
+> +            - 1    # 3.33 MHz
+> +            - 2    # 2.50 MHz
+> +            - 3    # 2.00 MHz
+> +            - 4    # 1.67 MHz
+> +            - 5    # 1.43 MHz
+> +            - 6    # 1.25 MHz
+> +            - 7    # 1.11 MHz
+> +            - 8    # 1.00 MHz
+> +            - 9    # 0.91 MHz
+> +            - 10   # 0.83 MHz
+> +            - 11   # 0.77 MHz
+> +            - 12   # 0.71 MHz
+> +            - 13   # 0.67 MHz
+> +            - 14   # 0.63 MHz
+> +            - 15   # 0.59 MHz
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: dongwoon,dw9719
+> +    then:
+> +      properties:
+> +        dongwoon,vcm-freq:
+> +          default: 0x60
+
+Why no constraints? Why suddenly hex?
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+
+required always follows properties.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+
+Drop stray blank line
+
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        vcm_rear: camera-lens@c {
+> +            compatible = "dongwoon,dw9718s";
+> +            reg = <0x0c>;
+> +
+> +            vdd-supply = <&pm8937_l17>;
+
+Missing properties, make the example complete.
+
+> +        };
+> +    };
+> +
+> +...
+
+
+
+Best regards,
+Krzysztof
 
