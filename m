@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-144688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD33CA2EDB5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:27:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8600A2EDAE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:27:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE907163E56
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:26:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 027D71881991
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0CDC22DFAB;
-	Mon, 10 Feb 2025 13:26:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B2D22F172;
+	Mon, 10 Feb 2025 13:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DgviesNE"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Et9Uc8iG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1796226556;
-	Mon, 10 Feb 2025 13:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F02222DF93;
+	Mon, 10 Feb 2025 13:26:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739193995; cv=none; b=KYAVCg67esKBHjv/pfyBAOBe1U8gtBc/xyXQbtfV13iXT7pDXoltDzwCfTZSnSgO2PfbUkqb4lra9Jz23H159aCrdPAbzdtBpkp+1wxhQk1Vy/zOFcyJQfj2IFM8UPOuq4PbiTuLBdS+foRHNDmsvZZpWEO05OxJRclh2cZo9kY=
+	t=1739193997; cv=none; b=puHCL/5uSfnef3KJgJyopcpYFKb1XSeVDsEVFVN9VAPoTdYMzV92z/wGKwCLBJWgDAOUCICOnf1kEJmP8pahJiP0/a9uDyqCwWYNwraxstmd/w1dQFHKyuFx/d5z0CfNSoSQlTZE6Wol/ssbLi2OBM3M4i1lRIAKpSHaj7fJrgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739193995; c=relaxed/simple;
-	bh=uvzTU0gCUZGvLGoxe/pbkbCa6ndjF8cGqyZD5XTc8Co=;
+	s=arc-20240116; t=1739193997; c=relaxed/simple;
+	bh=PZGrgvCC4DjVoAsvBZ8Szd3Qfbyww5a16YU6RLlat0o=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=vAJBt1uV+muQJ96Gag7uHkUoHhTyOc8NPyq3G9e63Kgnxthm/0tYmwwmnBVYyx1UqwRQOnAQcrZZ0pMRTU8JwP0udddk69O2doKQ5K+51wnF3jQVFpmJZXttxMuzVxeBBcUagPJYnM/sfaoLBSQ52CRXI06ThD/WxaHCAcQdBO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DgviesNE; arc=none smtp.client-ip=217.70.183.195
+	 MIME-Version; b=hBFiUmM/hI9af8H9oD4YQ+/Q5JFmPb15GCa6hQXhVG8IPo66o9sF2uXmzPF3iRX+ShiiadAd/WiO/MII1KaZt27uxSsPNE7bdTGCZJj1uVrAAJdCwXch+At9JLDFjyKfHVDTlJFkvg52Fy2bil4sfuUrqk8et/miT+mtNMc5RD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Et9Uc8iG; arc=none smtp.client-ip=217.70.183.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 3EA70204A9;
-	Mon, 10 Feb 2025 13:26:25 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPA id BE9601F764;
+	Mon, 10 Feb 2025 13:26:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739193986;
+	t=1739193988;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=EmOjEFqZNFgj7Tz43VxOvoOEGlpRi04WUvLHYwakdf8=;
-	b=DgviesNEGv630QmgEen04tZ0DDiAOYjBIt+DGI9ff2BcROweUTk9HaYJLkht5yDVcVLEgR
-	b6Kd0d5fDH9ZubGAHgzr0s1lZ/G22PVloeAXdh/g6XduCuXRNkorsRIoeHMa97fGy3aIp2
-	xaKBodgFhGyADDvzMOgNBXPmoauUHoNNM4NNJ5fW1KYnJ49UO3yDo2WOfnysTvDCKe6xjZ
-	Q1znpxBofTd3GHm/YSEUwryj23oWI6Bl+xDQyJ7rwDxNaHjv1JpSYGT7WXgqNSRnAC6z3R
-	jlFLWf3r6obn7Bc6MkQB1JRSyNpo7YVuqq2aBsTIY9RQYY9w8lgHFW1IKk9IbA==
+	bh=33LQhdC4EtUzHstXwYyecFzMe0YnKNYXRGd/yoLLDLc=;
+	b=Et9Uc8iGuYnjDbERVWUIMesDgpMzxmvcmt7Hz1vpFTGDvkKM5cP7Uhk1hwUjSMrZmUth/D
+	O6w5MYQuSem9OC672tHNpzh3P6VkjJEKHdbpa3b4i03qntvYLpcq1IzAbqvswDQ/qKaMjN
+	TOcR6hJhgJ69Lrci521b4NPjJwnRFvgvsANcqoFC723h9NC8Y4zT6R05OSVh9U3MM2Mu3k
+	nXzCWeamtqFXQR8oiqZFYeEHxjpTuX53uKNl+eujnMrKouDf6+oiTZvazp7J/wXKQ3iYHY
+	Ohg9NqYJV2ckJe48bn3AV63DtEB+ASjrXBM8AEIO5Czak7rc5Int3N+U0XKWXA==
 From: Herve Codina <herve.codina@bootlin.com>
 To: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Andrzej Hajda <andrzej.hajda@intel.com>,
@@ -72,11 +72,10 @@ Cc: dri-devel@lists.freedesktop.org,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v6 1/4] dt-bindings: display: bridge: sn65dsi83: Add interrupt
-Date: Mon, 10 Feb 2025 14:26:16 +0100
-Message-ID: <20250210132620.42263-2-herve.codina@bootlin.com>
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v6 2/4] drm/atomic-helper: Introduce drm_atomic_helper_reset_crtc()
+Date: Mon, 10 Feb 2025 14:26:17 +0100
+Message-ID: <20250210132620.42263-3-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250210132620.42263-1-herve.codina@bootlin.com>
 References: <20250210132620.42263-1-herve.codina@bootlin.com>
@@ -89,38 +88,88 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-GND-State: clean
 X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefkedukecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehffeigfejueelueeuffelueefgfelhfejhfehieegudekteeiledttdfhffekffenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdrlhhotggrlhguohhmrghinhdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdekpdhrtghpthhtoheprghlvgigrghnuggvrhdrshhtvghinhesvgifrdhtqhdqghhrohhuphdrtghomhdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehrfhhoshhssehkvghrnhgvlhdrohhrghdprhgtphhtthhopefnrghurhgvnhhtr
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefkedukecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehffeigfejueelueeuffelueefgfelhfejhfehieegudekteeiledttdfhffekffenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdrlhhotggrlhguohhmrghinhdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdejpdhrtghpthhtoheprghlvgigrghnuggvrhdrshhtvghinhesvgifrdhtqhdqghhrohhuphdrtghomhdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehrfhhoshhssehkvghrnhgvlhdrohhrghdprhgtphhtthhopefnrghurhgvnhhtr
  dhpihhntghhrghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtohepjhhonhgrsheskhifihgsohhordhsvgdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtgesghhmrghilhdrtghomhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhm
 X-GND-Sasl: herve.codina@bootlin.com
 
-Both the TI SN65DSI83 and SN65DSI84 bridges have an IRQ pin to signal
-errors using interrupt.
+drm_atomic_helper_reset_crtc() allows to reset the CRTC active outputs.
 
-This interrupt is not documented in the binding.
-
-Add the missing interrupts property.
+This resets all active components available between the CRTC and
+connectors.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Maxime Ripard <mripard@kernel.org>
 ---
- .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml       | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/drm_atomic_helper.c | 41 +++++++++++++++++++++++++++++
+ include/drm/drm_atomic_helper.h     |  2 ++
+ 2 files changed, 43 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-index bad6f5c81b06..9b5f3f3eab19 100644
---- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-@@ -35,6 +35,9 @@ properties:
-   vcc-supply:
-     description: A 1.8V power supply (see regulator/regulator.yaml).
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index 5186d2114a50..0a636c398578 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -3362,6 +3362,47 @@ int drm_atomic_helper_disable_all(struct drm_device *dev,
+ }
+ EXPORT_SYMBOL(drm_atomic_helper_disable_all);
  
-+  interrupts:
-+    maxItems: 1
++/**
++ * drm_atomic_helper_reset_crtc - reset the active outputs of a CRTC
++ * @crtc: DRM CRTC
++ * @ctx: lock acquisition context
++ *
++ * Reset the active outputs by indicating that connectors have changed.
++ * This implies a reset of all active components available between the CRTC and
++ * connectors.
++ *
++ * Returns:
++ * 0 on success or a negative error code on failure.
++ */
++int drm_atomic_helper_reset_crtc(struct drm_crtc *crtc,
++				 struct drm_modeset_acquire_ctx *ctx)
++{
++	struct drm_atomic_state *state;
++	struct drm_crtc_state *crtc_state;
++	int ret;
 +
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
++	state = drm_atomic_state_alloc(crtc->dev);
++	if (!state)
++		return -ENOMEM;
++
++	state->acquire_ctx = ctx;
++
++	crtc_state = drm_atomic_get_crtc_state(state, crtc);
++	if (IS_ERR(crtc_state)) {
++		ret = PTR_ERR(crtc_state);
++		goto out;
++	}
++
++	crtc_state->connectors_changed = true;
++
++	ret = drm_atomic_commit(state);
++out:
++	drm_atomic_state_put(state);
++
++	return ret;
++}
++EXPORT_SYMBOL(drm_atomic_helper_reset_crtc);
++
+ /**
+  * drm_atomic_helper_shutdown - shutdown all CRTC
+  * @dev: DRM device
+diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
+index 9aa0a05aa072..53382fe93537 100644
+--- a/include/drm/drm_atomic_helper.h
++++ b/include/drm/drm_atomic_helper.h
+@@ -139,6 +139,8 @@ int drm_atomic_helper_set_config(struct drm_mode_set *set,
  
+ int drm_atomic_helper_disable_all(struct drm_device *dev,
+ 				  struct drm_modeset_acquire_ctx *ctx);
++int drm_atomic_helper_reset_crtc(struct drm_crtc *crtc,
++				 struct drm_modeset_acquire_ctx *ctx);
+ void drm_atomic_helper_shutdown(struct drm_device *dev);
+ struct drm_atomic_state *
+ drm_atomic_helper_duplicate_state(struct drm_device *dev,
 -- 
 2.48.1
 
