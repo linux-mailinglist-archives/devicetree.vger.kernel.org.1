@@ -1,160 +1,113 @@
-Return-Path: <devicetree+bounces-144511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DFD7A2E5A9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 08:43:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E772A2E5BB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 08:49:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 625BA188B7D0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 07:43:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AF1D3A36BA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 07:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C315D1B86E9;
-	Mon, 10 Feb 2025 07:42:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 343D01ADC93;
+	Mon, 10 Feb 2025 07:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="hEHhEnub"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XvubvXAC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955011A3159
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 07:42:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7609D2F22;
+	Mon, 10 Feb 2025 07:49:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739173364; cv=none; b=h++eC3Nx0K1LGH2cbL61X1+NjGhKisw0C1cJs1thQrHTnP5+RHlDcZLWUJS39JtnyhlESXvSfqvBxE4x+HdjJU0cxD2e8B976FwSHg1+RuAe5v8Mqf0hLblmZENTXdz16sUUTJQfwM2shk2kiL3CWSvjFAia9U6poFijEk9lAOM=
+	t=1739173782; cv=none; b=kz2ZFpW2TSkQCU+4QxQYo1hIH88s2L5/LGE723PZkQt8UFKLYpmjBadWTsH2LPmqmvY+Fy1ombhHnm7roqM5DcoGGKhMzr9NdhCc1oYQ51F+mEaiQy5Xgtl1nOk+E2OJ9twz6+2i4AaJeNtB0MCpMzYfJUAArqVvWwIUl9jSMNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739173364; c=relaxed/simple;
-	bh=uELykYu2UfnPFrcbXaL5ytU50E2XF8fxhOESv8wBqLc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qV76+Wz+tot/0uV8ME6haAO9KpzAHOvdmczCKqX45+JNQWZMteF3yt6Pvjnh7+DObk0rcJmEPAzMp0VlQub2bKd/eb0OZSWq4e5EXX0Oo2ICqgaPlrm1UW0pIkGhpNE+trxzNABLAH8q6oBoI/Rt7PUlba+IsVWbBAKbrAuz6fI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=hEHhEnub; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43937cf2131so7483355e9.2
-        for <devicetree@vger.kernel.org>; Sun, 09 Feb 2025 23:42:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1739173360; x=1739778160; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Jki0b2am8yzlz3QyhCDEFnMh6r+K6Xff5FC3zmcGxIQ=;
-        b=hEHhEnub9vJ60lxT2vbKKBzRLmTMTfzEohjaxyIuLzLiow2SvvpkSatF4AZQxAJjnt
-         GldSg7omHp61iZ44O1NoCTj6O106Fa44wXsTEgwrO3V6PzE0XKFkh6b/1ZhCnDiUMPLD
-         iwdjtrUpH14ypIzDoUIvMM99VMZk3yMbhrAuLsSxv/dZnbni6dapXkUUVW/cIaTFVxpU
-         G5YOpqgvdH6tvuTG1XbLoQT9/+QjN8WaQ3SBagZb0OxHRyre8cxLMu7PshbV34ULqsvb
-         gv/zLIyYV/g09f6i49Cxt3Z9AKBh7vYEdtAS2ASA6AqW2u06PJmqX7yjLhHIybimdYpn
-         yLVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739173360; x=1739778160;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jki0b2am8yzlz3QyhCDEFnMh6r+K6Xff5FC3zmcGxIQ=;
-        b=Fk2qZMC+KS0OnFMlHmzYcdPJOGNAPp9l/t8YTwtexmhB0CHZC3h485H4X4Epwdroft
-         BSQPIQ6b+3luFsx4Lf6ZD9hXCQoxQRW8OM7OU6CCOGpi+HzJsuTJhm+p474buvekHIsx
-         1NXb+PwfgzZJJGfz9PMl5YrEx/WWvvbvUCYRtSD09UQyBgPmxzluXoTFx/3VHEM6zYus
-         oIGsUISAjU3PHtbVChG294PxQlnfOdwwqfLV1EsAqe7LLea/t5+Evh7S4FMRlBtc0pCN
-         x5j4SLOTs/PmbdZjJpMPDEO2O23dlMvpkDNupZhIzQ159CTylhQkuXuh33dszhGh9JIh
-         /ZXw==
-X-Forwarded-Encrypted: i=1; AJvYcCUh0j0rNrak3Hr90Q1ra6d2ORfD+wOzTj1/K7PZJt69azETm6B45/1Ws3E6gN/nltjU45Ahhk2fjJeq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2jNcuycL/JerZ1GnDxziV3B6WkRxZ9/E9oBWW9zuTswVhGDN7
-	972F1kkMu/jQBlSo6kV4MMxsZG4gf4eq5wJ9iWmRHX6f6RiFT8htfYGe4/FSgts=
-X-Gm-Gg: ASbGncvZl1wtJOaY/w89knKNCKehlP+133y+m/EtMIg+KkXzCuFYFVqRQHztV2ndkBM
-	3+KwWfEpIyOBv3XxxIDiTNPRQ1IX4W0NgVOy/A+FMyohX3aSwIXiSOc3aKtdf1oSXFrbi09HXbp
-	tn/XJ/159J3KJ1FJms5+RVae9qgf7TlEkgxJ6wrkvHTNQfgMPkkleEu3gS03sB1xMKc1n8JrOTU
-	vp7Jrh1/wWvlW158fp5x98+77Z34M1HraUHL2Wc0Uzns8kOXsiZdnTl8eaz2n5j9GGAueHRIp7f
-	+G+2s5HsDfX9N/Yiqe5lcV7SRaoc98+2oXOul+OjhFQVrsMVzHH3GvSaNTt4
-X-Google-Smtp-Source: AGHT+IF39BdEkA9ZgcBIHbLRArZRwyqYfhbYwkkcPtQvR89C0KQhk8Xnq25iZkfcHIflDsp+ppJQFw==
-X-Received: by 2002:a5d:47ad:0:b0:38b:d7c3:3768 with SMTP id ffacd0b85a97d-38dc90fdb89mr7501603f8f.12.1739173359748;
-        Sun, 09 Feb 2025 23:42:39 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:e17:9700:16d2:7456:6634:9626? ([2a01:e0a:e17:9700:16d2:7456:6634:9626])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4390d896d70sm171375435e9.0.2025.02.09.23.42.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Feb 2025 23:42:38 -0800 (PST)
-Message-ID: <4320b0be-acce-43b2-b148-1577c6a56dff@rivosinc.com>
-Date: Mon, 10 Feb 2025 08:42:34 +0100
+	s=arc-20240116; t=1739173782; c=relaxed/simple;
+	bh=bR+cIBlnjc3BMNGr3u5TM2hkR+zDRZ2kOmzgjuPSgIk=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=NPlLqMBtMtwvLU09gxt9Q+gsdZKONmX0/pTmvbQGxllQ+54+hMD6efmibDuR5ALi8HRzyGR+zGSbYIbuL8x8EUnCMsUqF4K5DW3AkNIJYLxoOCpIUB8nL5ZSpPz/Ea+Jw7FbVQ3s4GDpd6vg/FCnmpgLN+SUfOhKfnD0VSWsS3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XvubvXAC; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739173780; x=1770709780;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=bR+cIBlnjc3BMNGr3u5TM2hkR+zDRZ2kOmzgjuPSgIk=;
+  b=XvubvXACs+j5E7f8cqaFSVd9xt/0gKiC/pS0l1A4lpEdzV/i/xE1v9A9
+   XOJBKTHb0eoML5Ka7lrdb83gs0TDhvr41qE4YRTUewy3BZNiqqV4PxAC3
+   XTRRKxiIo/3XNyiLGqu1eiEZP9+UagVnm1S9UnX/jBx2rhDBhs6STVETG
+   ysfhfmk7mrDBSAU/zehM79m5jgA6AXUg8CrEKOf+6B0UORxpGpeXbPyol
+   7KWCaiQMpgm4c+oRffSxSVD9tL1QnVmKTa9EPn7uDlKQudfS8eWJHcMCT
+   eExz4K8xi+iCNKR28FinJRmStQBFxNwCd0YMQVvB9Xr03a/vZtIr3MR9V
+   Q==;
+X-CSE-ConnectionGUID: zZ/XnVvCRm24Z4QVueMdGw==
+X-CSE-MsgGUID: qX7zvdgtSn6cgJsSh+TRUQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11340"; a="39426932"
+X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; 
+   d="scan'208";a="39426932"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2025 23:49:40 -0800
+X-CSE-ConnectionGUID: tD6SGgjTTC6to9n9Xb+Elw==
+X-CSE-MsgGUID: 5htcCLiBRAaW0PX01gCTHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="142994859"
+Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
+  by fmviesa001.fm.intel.com with ESMTP; 09 Feb 2025 23:49:38 -0800
+From: niravkumar.l.rabara@intel.com
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	niravkumar.l.rabara@intel.com,
+	nirav.rabara@altera.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] arm64: dts: socfpga: agilex5: add NAND daughter board
+Date: Mon, 10 Feb 2025 15:46:02 +0800
+Message-Id: <20250210074604.2410783-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 14/26] riscv/traps: Introduce software check exception
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Christian Brauner <brauner@kernel.org>, Peter Zijlstra
- <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
- Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
- linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
- atishp@rivosinc.com, evan@rivosinc.com, alexghiti@rivosinc.com,
- samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com
-References: <20250204-v5_user_cfi_series-v9-0-b37a49c5205c@rivosinc.com>
- <20250204-v5_user_cfi_series-v9-14-b37a49c5205c@rivosinc.com>
- <fec3b7be-4259-4eef-87f9-b2cee5718cae@rivosinc.com>
- <Z6Z6mhiQ3DmsNZe9@debug.ba.rivosinc.com>
-Content-Language: en-US
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <Z6Z6mhiQ3DmsNZe9@debug.ba.rivosinc.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
+Agilex5 SoCFPGA devkit supports a separate NAND daughter board.
+Document NAND daughter board compatible string and add board file.
 
-On 07/02/2025 22:26, Deepak Gupta wrote:
-> Hi Clement,
-> 
-> Thanks for looking at it. Inline
-> On Thu, Feb 06, 2025 at 02:49:09PM +0100, Clément Léger wrote:
->>
->>
->> On 05/02/2025 02:22, Deepak Gupta wrote:
->>> zicfiss / zicfilp introduces a new exception to priv isa `software check
->>> exception` with cause code = 18. This patch implements software check
->>> exception.
->>
->> Hey Deepak,
->>
->> While not directly related to this patch, is the exception 18 delegation
->> documented in the SBI doc ? I mean, should we specify that it is always
->> delegated when implementing FWFT LANDING_PAD/SHADOW_STACK ?
-> 
-> I don't think it's document in SBI spec anywhere. Should it be ?
+Changes in v3:
+  * Document Agilex5 NAND daughter board and use that compatible
+    in the device tree.
 
-That's a good question ! I don't know the process to document that part
-of the SBI but that would probably be nice to document it anyway I
-guess. Atish may know what to do with that.
+link to v2:
+ - https://lore.kernel.org/all/20250205101318.1778757-1-niravkumar.l.rabara@intel.com/
 
-Clément
+Changes in v2:
+ * Use nand flash node name according to dt bindings to fix dt build warnings.
+ * Arrange node in sequence.
 
-> 
-> 
-> In code, opensbi delegates the exception (SW_CHECK)
-> https://github.com/riscv-software-src/opensbi/
-> commit/110524441a827e026db3547ed03c5723b9c9e211
-> 
->>
->> Thanks,
->>
->> Clément
->>
->>>
+link to v1:
+ - https://lore.kernel.org/all/20250107084831.2750035-1-niravkumar.l.rabara@intel.com/
+
+Niravkumar L Rabara (2):
+  dt-bindings: intel: document Agilex5 NAND daughter board
+  arm64: dts: socfpga: agilex5: add NAND daughter board
+
+ .../bindings/arm/intel,socfpga.yaml           |  1 +
+ arch/arm64/boot/dts/intel/Makefile            |  1 +
+ .../dts/intel/socfpga_agilex5_socdk_nand.dts  | 89 +++++++++++++++++++
+ 3 files changed, 91 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
+
+-- 
+2.25.1
 
 
