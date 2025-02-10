@@ -1,129 +1,150 @@
-Return-Path: <devicetree+bounces-144912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94E0A2FABD
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 21:37:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D541EA2FAD0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 21:40:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5464E168F33
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 20:37:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80AF41624EB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 20:40:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D006124CED6;
-	Mon, 10 Feb 2025 20:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D50B26460B;
+	Mon, 10 Feb 2025 20:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XvMPuAJR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e9tUmVtx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12A118DF93;
-	Mon, 10 Feb 2025 20:33:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4840264603;
+	Mon, 10 Feb 2025 20:40:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739219621; cv=none; b=MSiiQXoQymmSzgcqFKoerG17UjxLJL3xGaW+9EeVchKQ15UYfb9Pg5xAE/gMNfjl3Yb0HiRu3cPRykXfsOk2czhAdEUTo6CwCg/t0ubZyAce2YYHika+WvKiLFdh9riDx/OADE0r1pyohsLr4w22JDGJAN7afziz9bCfADsN9k0=
+	t=1739220043; cv=none; b=RzPtXDWAQUzpfwg66MepLVPgj2KoafCpaNnZW6UH/gbyVTptdJWG+NDmxw67U/tgrSTAs94BQkLnfMrNXfCSzqKZK0r4jvIo+zrKwfUTLKpOLb1rpK+RYXO+di48mr+35rXIC4uUL60XQdTPx474lMzWZiaE6z3+Uoria0O0/R4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739219621; c=relaxed/simple;
-	bh=lgT0G7o5Dt8OzuR1jekDmhj+5iivZuCrjqm/oRIIbYc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bo//Ixhp9hBSh49sJoAFSvPGx1Ka4pI7DD1uglDHgqu75OfQ7d+oDgziwEAYxh5MdlFpAPbj1gamGfjcQpBuhh75OBwKVOY8b+amlkFMhV9Wz4maTmFjsArP25mI2v0CRdl6dD9XmxROK26dCUHnY6P+jh7g0Hk1o1BJYgHHNPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XvMPuAJR; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739219619; x=1770755619;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lgT0G7o5Dt8OzuR1jekDmhj+5iivZuCrjqm/oRIIbYc=;
-  b=XvMPuAJRhdZSTQta7z8qPBHj8zPAH3sQ2Kauppo4nD1ERNhgFTtf4jMI
-   KScnLzpb0GyFFkjwaOj4EWZZBCCtLrUiCC7kETIftpclMILmjQVr9EmqC
-   ogIoLcDbb71Wyr9y1a5qC2Q1S9z+BZ5mQ8f1KXJ/KROFxny9OPFrINyaP
-   A11kQ3APQUMN5w3O50gShucDKgR5iafNN6BX25bWHX12B26KMWXiQe0Z+
-   3mxIsl4BWYfLyYLHE40Ob4YnncCZ1xxtw0k5LYCfd43jCvh3fGGIHGx2M
-   5ajvWW39a/aU2BkIAdP/Z/1KtzWyyVtH9Qrbl/va6h6Ug7VrJB89cYMb1
-   Q==;
-X-CSE-ConnectionGUID: p2ploiLsSU25+OiwJ2xr4A==
-X-CSE-MsgGUID: CuU+qaHyRca32t8Z8FbOEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="65173738"
-X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; 
-   d="scan'208";a="65173738"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 12:33:38 -0800
-X-CSE-ConnectionGUID: 4sOAM5SWT0KvjV0QNcbn1w==
-X-CSE-MsgGUID: VrWnTj2TRIuOYBuIO+z2ew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; 
-   d="scan'208";a="143158691"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 12:33:35 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1thaTD-0000000AIFH-21Z4;
-	Mon, 10 Feb 2025 22:33:31 +0200
-Date: Mon, 10 Feb 2025 22:33:31 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v8 01/17] spi: add basic support for SPI offloading
-Message-ID: <Z6pim_nLct33LzfN@smile.fi.intel.com>
-References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
- <20250207-dlech-mainline-spi-engine-offload-2-v8-1-e48a489be48c@baylibre.com>
- <Z6otFlsmEikIbI__@black.fi.intel.com>
- <27d2a88c-b44a-4712-b066-b999e41774f0@baylibre.com>
- <b1dcbb19-190a-45e7-8e94-cb5ef65f1f1b@sirena.org.uk>
+	s=arc-20240116; t=1739220043; c=relaxed/simple;
+	bh=EOrJyLpi9o+aX1l7UhQTaefPqHhchUVGMwHkMkiXSo0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=HBGrbgjCkavlWao13qnysPLBQ3557dw6oLlNFxUksyBBCDWSBdeAyruFYvCQlFqVE2jHWH641LPfZOM3V4p88Ii8afDMg+YseCriuTpcTV/Pre6pykffuup7WqNSxyJE+7Hnockbt483sNAEOGmjoiNgfdm9EkMoc/U4gy2BlrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e9tUmVtx; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4394a0c65fcso10524685e9.1;
+        Mon, 10 Feb 2025 12:40:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739220040; x=1739824840; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=EOrJyLpi9o+aX1l7UhQTaefPqHhchUVGMwHkMkiXSo0=;
+        b=e9tUmVtxwSDk3ZUC8j3JvxvRwwVv9/HlSVFRe74/Zr/HZNbP52+HHcegZNfkihyPb3
+         3feTsE6BWZqRsC4cKPTqZpO597WUDPY9cYkZP4bDOGBWD82FoUnBwmxkHvYB8SL7Obh7
+         iVaqELUZ2XNds7uwtGq1zQ+xUiNXOKUytOY4OTIST154Izz5+VUhmGPEnYcmHLwH9JKq
+         uklRDzpYenGaGSdFpwSCc7iffDJX1qeXG9vExDZAOVc6pLgiU4EOM5qEUGIVTlirUFCe
+         v3HnERWYgIV8GzPjIPvmczH0RZzgMm7YjcKcy3GqbgdV392ZobidumqHRQ36r1/wWd7E
+         +qNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739220040; x=1739824840;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EOrJyLpi9o+aX1l7UhQTaefPqHhchUVGMwHkMkiXSo0=;
+        b=CWjROOaPHNpJOisczIqCFnBWt1FUcMLIsb5IdbcVbLu02/MHYCoqlyL0KvrqUVgGAN
+         tNvRxmW+4K76jxQzKAQmkODf/f76ptjDCA/3bpq03TvBdWW8i5sCLu/9xwXfV/9TpsD7
+         9rnN7gwGYls8UGsAVGnNAm/hr6g0H8TaxN/Na7zfXkB0gZOxr/wBit+1+nk/IE3ph8lJ
+         s8lwXjh3JCTB/JdqJ0deCE3TDfPyfY1m6P00ZYi+WYmNM4hMN6Ua5EDIpgRjEon9dvLs
+         hyhbdL5dLLJJZEjPhdtwiSp5//MsDSuqSrD668u55h/UcWKP98mPrI+tUgx1KEFBSdg4
+         FQ4w==
+X-Forwarded-Encrypted: i=1; AJvYcCU3eMBHY3IZRp5iwl1beBrdfUxsSH3l8/+bLdWIcvuvkyKC2art4f/LcmK8X/Ap1Rd+SiBbulM29gY=@vger.kernel.org, AJvYcCUXanFs6vh+fsAYYnwxpifA7cwCqxHCxTdHGo8Hr2Z50GT+Qz1fUPCIlyexu2AdaFWycMtyW0R3czC+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeQFKFvILzR0Pxw71Za1bgc9C0dGlYP9pB6+Nd8lGhvSFtozKB
+	8JmjOrZ+k0Y0B9jThGSVboA3ifsNpnF+PvdwppiW7L0HdZEI3Xm9
+X-Gm-Gg: ASbGncv+yp5DF+HPnVbsRo+hpTIf6BT+Xand3xdJqzdAtVrH+ZS9qYowpvb5+WeLaA0
+	eSC3WzK4ubTi/VEGWuF4WCYd+Gt/fQgDTa5pjDvNZ7gahmoHMIRuTuNEHvotuZTu7BC/IIz+pt9
+	TWZNoTpJORQ39bJ+UdQtJtvS78NFCS8vvIzg1vK/Q882wxngZII3vO14uhRDP0cHjMp4SB1qWpZ
+	tWb0644JSH+cc7qQbj9krDpfadEgHF5Xg5QC1mpL2iUFO7VHuJbCAVrgQeFuyNb2HWvEEsuihxP
+	rNnJypfqB8HR9VFMyXdLQm93qahbVe8O
+X-Google-Smtp-Source: AGHT+IGANzhAWt5IwkQhTvn7xGsdCRHvYJ4peTBZKCls6+W0CRyuS6ldpr+5UQbejq+0t4DSbFyanQ==
+X-Received: by 2002:a05:600c:b9b:b0:439:4637:9df with SMTP id 5b1f17b1804b1-43946370d05mr42704375e9.3.1739220039819;
+        Mon, 10 Feb 2025 12:40:39 -0800 (PST)
+Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4390daf44f3sm194823195e9.29.2025.02.10.12.40.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Feb 2025 12:40:39 -0800 (PST)
+Message-ID: <b51ca7db3e2a7fab372ed950e3a18cbcd6c56ba9.camel@gmail.com>
+Subject: Re: [PATCH 06/10] dt-bindings: mfd: syscon: Add Cvitek CV18xx
+ rtcsys core and ctrl compatible
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, soc@lists.linux.dev
+Cc: Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
+ <inochiama@outlook.com>, 	linux-pm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, 	devicetree@vger.kernel.org, Haylen Chu
+ <heylenay@outlook.com>, 	linux-arm-kernel@lists.infradead.org, Sebastian
+ Reichel <sre@kernel.org>,  Arnd Bergmann	 <arnd@arndb.de>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Rob Herring	 <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Lee
+ Jones <lee@kernel.org>
+Date: Mon, 10 Feb 2025 21:40:36 +0100
+In-Reply-To: <e76da2aff03e9c788bc322d84d83b0e6c28f44b0.camel@gmail.com>
+References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
+		 <20250209220646.1090868-7-alexander.sverdlin@gmail.com>
+		 <fe1fb66d-285d-41b6-af71-89f6f93d1cf0@kernel.org>
+	 <e76da2aff03e9c788bc322d84d83b0e6c28f44b0.camel@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b1dcbb19-190a-45e7-8e94-cb5ef65f1f1b@sirena.org.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Mon, Feb 10, 2025 at 05:48:00PM +0000, Mark Brown wrote:
-> On Mon, Feb 10, 2025 at 11:11:23AM -0600, David Lechner wrote:
-> > On 2/10/25 10:45 AM, Andy Shevchenko wrote:
-> > > On Fri, Feb 07, 2025 at 02:08:58PM -0600, David Lechner wrote:
-> 
-> > >> +MODULE_IMPORT_NS("SPI_OFFLOAD");
-> 
-> > > This diminishes the point of the namespaces. Anybody who includes a (dangling)
-> > > header gets namespace imported, which is not good. Same for other globally
-> > > visible headers.
-> 
-> > In this case, we specifically split up the headers so that the only time you
-> > would ever include this header is if you need to call functions in this
-> > namespace (i.e. struct definitions are in linux/spi/offload/types.h which
-> > doesn't import the namespace). So this doesn't actually seem like a problem
-> > to me.
-> 
-> Indeed - I can't see any case where a user would need the header without
-> needing the namespace.
+On Mon, 2025-02-10 at 21:30 +0100, Alexander Sverdlin wrote:
+> On Mon, 2025-02-10 at 09:48 +0100, Krzysztof Kozlowski wrote:
+> > On 09/02/2025 23:06, Alexander Sverdlin wrote:
+> > > These syscon blocks will be used for CV18xx reset driver.
+> >=20
+> >=20
+> > No, implement proper reset block instead of abusing syscon.
+>=20
+> I don't think it's an abuse... You need to look into the corresponding TR=
+M [1].
+>=20
+> 4 bits I need to tweak (and one magic number into unlock register) are ra=
+ndomly
+> placed at random memory adresses and otherwise adjacent bits have random
+> unrelated functions from random unrelated subsystems.
+> If it's not syscon, I don't know what it is.
+>=20
+> It has a reset HW block, as you and Inochi have correctly pointed out, fo=
+r other
+> purposes, for resetting the SoC IP blocks. The overall SoC reset is compl=
+ete
+> mamba jamba.
+>=20
+> I was thinking now about a syscon driver, which will register_restart_han=
+dler()...
 
-You are looking from the other end. What I'm telling is that anyone who adds
-a header, automatically gets a namespace. What's the point to have namespace
-if it won't easily prevent from (ab)using it in the code. I consider putting
-MODULE_IMPORT_NS() in the headers a bit weird.
+Sorry, I meant "MFD" driver...
 
--- 
-With Best Regards,
-Andy Shevchenko
+> Inochi, do you have more insights into it? You've mentioned RTC and 8051.=
+..
+> Looking into TRM I don't get it, why a thing blessed to do all the housek=
+eeping
+> (and called "System Controller" in imx8, for instance) happen to have RTC=
+_ prefix...
+> Would RTC subsystem maintainer be happy with a monster driver which has t=
+ies
+> to all other subsystems?
+>=20
+> [1] https://github.com/sophgo/sophgo-doc/releases/download/sg2000-trm-v1.=
+01/sg2000_trm_en.pdf
+> ("rtc_ctrl_unlockkey", "rtc_ctrl0", "RTC_EN_WARM_RST_REQ", "RTC_EN_PWR_CY=
+C_REQ").
 
+--=20
+Alexander Sverdlin.
 
 
