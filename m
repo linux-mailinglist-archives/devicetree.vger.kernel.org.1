@@ -1,100 +1,140 @@
-Return-Path: <devicetree+bounces-144657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BFF7A2EC48
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:07:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15199A2EC55
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:10:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47C0D16681F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:07:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 500531889BAD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:10:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127272206BE;
-	Mon, 10 Feb 2025 12:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2BC21C9E0;
+	Mon, 10 Feb 2025 12:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="s+Nok+jk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dzw9r0CW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE6A31E1A20;
-	Mon, 10 Feb 2025 12:06:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FFC1F3D41;
+	Mon, 10 Feb 2025 12:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739189208; cv=none; b=DCnOmoyFrThc23nKvgPCzo70hIJig3tFp4Md6dPDaL8z+uNU/0NodHIKbY6KhEG+xge7KZnwYDFBmfRS2OT+l6XrfzL0uAKr6uD6t6MbdFw6PUY+cZmi7nnprP0y3I6RpaKXnAprMwCDXs2tKaqbF9km9qdPEGfEgcZsa4J/f/s=
+	t=1739189436; cv=none; b=nubXStXXBYoq8pWo7A9e2btdJEhIQQLMGBPfC5majhepDKtDLdjsZAGVTeyv9WfEyFCR+W2OwbHQ0fC8h7myhgly56ZwLvhWTWArLMorklzyWapz8tESsNxf9IUtg2l3wriG+oRnmK31PyuPMIeDOi88WcwW0A/+zIbpnrPQa7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739189208; c=relaxed/simple;
-	bh=HuBxKJ4Rxe9SCxOs5nQLEVz0BLQk8VkiesS5pXJ1q9w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=B6KJSbzq+M4p7Y1WnVeDWKnm+2kWsuGvloAir2aGDQS8nPjL2Dlca9jPiy+Kws9O+LJE0PD/obE8obU1HAlJYV0Gvq4qpWwVAkqtUaq6+F2Xq51LCAC10Gxbjo6/Opo829JOUhHc5qel2bNxh/F/39zcj94YjZJNfuR7epOu+bA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=s+Nok+jk; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=8Kcu6XE1Pl2R37OZwgbkQSGdnaUlnMNddlRe2ugSH6Q=; b=s+Nok+jkiSksrF0Bg8qUzmTpKu
-	xHzZe3Tay4sGEcE78uh5thldvZIPOOLd56Rf0IB8HIN8lwYbeMXvkDJqkkcibBnP6731vJffpPPU4
-	Glmm4XjmZhBcaxLZBtm6CU0al0HDQ1DSlfWivGsUf0wqRX8zBkdUn+lfJQupDdGPisqD3/KKitJ+Z
-	prM9X2NVoNJscwzMUO1srUEPptaktuLkdnSyDciNZuxrgi5PxBIIQca9S9A1yA5YoruhNCAjkpuY3
-	6bQcMMIyEENL/8Rm3ZqytQoigwr0tPbFygC7YW96js1te25raJPaNpwA2m/QH8IJnx0UsnMHUUYbJ
-	nvKBJ/OA==;
-Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1thSYJ-00025C-EW; Mon, 10 Feb 2025 13:06:15 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Diederik de Haas <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dragan Simic <dsimic@manjaro.org>,
- Maximilian Weigand <mweigand@mweigand.net>, Marek Kraus <gamiee@pine64.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v1] arm64: dts: rockchip: add 'chassis-type' property on PineNote
-Date: Mon, 10 Feb 2025 13:06:14 +0100
-Message-ID: <2663295.taCxCBeP46@diego>
-In-Reply-To: <87a29b78-5fab-48eb-9a86-f12c41369dfa@kernel.org>
-References:
- <20250207111157.297276-1-didi.debian@cknow.org>
- <87a29b78-5fab-48eb-9a86-f12c41369dfa@kernel.org>
+	s=arc-20240116; t=1739189436; c=relaxed/simple;
+	bh=iVV5fItADhSdmSptdzySm7drerIykRqZzWFXa7Bk090=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=MJCU1FXqWG2m1HteRu69TSrC/cP0X2gjr5GxSf828AJhAoEBjooWMQtZyJHP4S4fBbO/ejQg/ELTaORWprzMNdJ+Jg2oFD9sKDlWFvZ1RgvRYDyANXCkI6PjHQIij+xfQkFDoLmk/P7vLtIC/0D8xHJq00drpxgukQiPbih9N1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dzw9r0CW; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ab7ca64da5dso102126366b.0;
+        Mon, 10 Feb 2025 04:10:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739189433; x=1739794233; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=iVV5fItADhSdmSptdzySm7drerIykRqZzWFXa7Bk090=;
+        b=Dzw9r0CWwINAE0w8WWJZwcTIbk9xT1RhOVTDyKAVpH6iCQvZ8CsoG4/dEveJismE+V
+         6DD11n3ZxwkMPhcjyO9BjNee/EncME9zAoHGx5NwpxBSv2alLUzEyqVu23OUp4aueoX1
+         vvmL3USJdVFxQE2cI/C5Q6sJQ6HiWROp6tKsalgxz5nmbwUwmsi3b+qcETIIL38nqTak
+         4hBH+pOw1WMWipTdMad9EldOYDaMleHRgacYI1h55QkLlicf0gkbJWRpCkcLEnYQnpEb
+         116OOc2w5Mk0H2+M2u9o3Xk6rmTVIMpHPodhjyce9wV3kfO1igtmp+hAFokq9IGjeLmz
+         u1UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739189433; x=1739794233;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iVV5fItADhSdmSptdzySm7drerIykRqZzWFXa7Bk090=;
+        b=Y8wk38d48UzlZDpJIjnpk8DJMCO1kUDA5eDd7pegiPqAcW01bgYRL/HICH487r6etK
+         zmkqU0AEKiCX8A0TRraSrReY/WbnpJAx1whBudvSRg36R/bzxVRngfk6KsrCB5OovSbf
+         rXBZfJzS729wKrXAmJBMXpyJsVvtl5FRV9fFhEeSaa3rxPSVkBHz2sE72F2FVpN2NLxu
+         NZK8Hvq5htJt0iHkXWqTq3N7riLx9deCn8P20vKVpnBnLyATvfrdmS4xEKWKakuexNbt
+         a8SNc0aalY31J23x0yl+kcCpd/tnE2ScfbNy++bwi6IBfGNZWpxPTS5Z0QarAIu7X+na
+         tBtw==
+X-Forwarded-Encrypted: i=1; AJvYcCVUCL+J5XSl/LZml/TqotwWTNnZ99QI2lJFv3tIRwUFrdkRl0bW4aBhkownVBefmHkyjQYTSlfQjwAG@vger.kernel.org, AJvYcCWMAffUG5KrDOt7Iz8boHxTg7N2aTPGZnBfHELasyhqVON4gFFNzr4WEA8hYjErRvMQWk3TaKc41/Y=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6qOU6YsWDHdyjse0MhFUuPjiQyFGZ0APgej14CwHtsmT3OMg0
+	3dJcg6Iv9f6uJVzA95AumOphQbjm+Zkg93CzXz0ZO+gnBE65oprT
+X-Gm-Gg: ASbGncuMW2q5EdUKhJA8K91/J1BECIyNHYqPGykWQ3+oxcIQX4DoCdulYBU3+TY81xz
+	wr19ahC1CLgAZJ2cVNPxTONHG7sWw1Vk1yosXx1dIu6TSWAowEWZ5WxiVNa7Nb4p0uSe9G/ohvv
+	bqVis8FFP9CDJB2XEiTjJrKMfCf8X6tEYlfxjlBeJBznn23K2vfeNZzEj24pgYulOrwxTdQWWtg
+	IQ5A4S1M0pQZ9AILaLBGlfooVxJNOw6X8/H8cpeKUEkgq+ZnEqfovWfLWoH/NbJW0Zi3bY8ZwEm
+	AfDJsbygd1wWglQZOaW2CNUUOAx4+kKF
+X-Google-Smtp-Source: AGHT+IG0r7IUI08jzz62jmBNjDxyMCWdSH4iEcWJL4NhmxdTXJTTGmJz9BnjUWRrDIT9Op9nqTWxqw==
+X-Received: by 2002:a17:907:740e:b0:ab7:c41b:a25a with SMTP id a640c23a62f3a-ab7c41ba2e1mr201449966b.6.1739189432773;
+        Mon, 10 Feb 2025 04:10:32 -0800 (PST)
+Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7b12d5f49sm364727266b.73.2025.02.10.04.10.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Feb 2025 04:10:32 -0800 (PST)
+Message-ID: <783a005a5e81796d572558ec083ff08b5adb34df.camel@gmail.com>
+Subject: Re: [PATCH 00/10] arm64 support for Milk-V Duo Module 01 EVB
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Inochi Amaoto <inochiama@gmail.com>, Yixun Lan <dlan@gentoo.org>
+Cc: soc@lists.linux.dev, Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
+	 <inochiama@outlook.com>, Lee Jones <lee@kernel.org>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel	 <p.zabel@pengutronix.de>, Catalin
+ Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Arnd
+ Bergmann <arnd@arndb.de>, Paul Walmsley <paul.walmsley@sifive.com>,  Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Sebastian
+ Reichel <sre@kernel.org>, 	devicetree@vger.kernel.org, Haylen Chu
+ <heylenay@outlook.com>, 	linux-arm-kernel@lists.infradead.org,
+ linux-riscv@lists.infradead.org, 	linux-pm@vger.kernel.org
+Date: Mon, 10 Feb 2025 13:10:30 +0100
+In-Reply-To: <eoeyutuu4mrpsu7snkk5ll6kmm4344qsgbnncss6gerlcvvea7@usuf5v7w5ffp>
+References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
+	 <eoeyutuu4mrpsu7snkk5ll6kmm4344qsgbnncss6gerlcvvea7@usuf5v7w5ffp>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
 
-Am Montag, 10. Februar 2025, 12:06:15 MEZ schrieb Krzysztof Kozlowski:
-> On 07/02/2025 12:11, Diederik de Haas wrote:
-> > Add the recommended chassis-type root node property so userspace can
-> > request the form factor and adjust their behavior accordingly.
-> > 
-> > Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
-> > Link: https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#root-node
-> 
-> Drop link, no need to point to source of every property. You don't do it
-> for aliases, compatible, model etc, right?
-> 
-> With link dropped:
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks for quick feedback Inochi!
 
-I've amended the patch [0] by dropping the Link and adding Krzysztof's
-Reviewed-by.
+On Mon, 2025-02-10 at 13:33 +0800, Inochi Amaoto wrote:
+> > It would probably make sense that the whole series would go into SOC tr=
+ee,
+> > even though technically nothing prevents the reboot/reset driver to com=
+e
+> > in PM/reset tree. If everything would come together, `reboot` command w=
+ould
+> > work out of the box.
+> >=20
+> > [1] https://milkv.io/docs/duo/getting-started/duo-module-01
+> > [2] https://github.com/milkv-duo/duo-buildroot-sdk-v2/releases/
+> > [3] https://github.com/sophgo/sophgo-doc/releases/download/sg2000-trm-v=
+1.01/sg2000_trm_en.pdf
+> >=20
+>=20
+> This reboot implentment across the RTC and 8051 domain, which is
+> still a big problem to be upstreamed. This should be designed=20
 
+Could you please elaborate on the "big problem"?
+Does the binary-distributed ATF perform some other type of reset in WARM ca=
+se?
+(COLD is just mirorred based on TRM).
 
-Heiko
+> carefully and needs further discussion. Adding these two syscon
+> compatiable may be not a good idea and cause some problem. I invite
+> Yixun to this talk and he may give some useful suggestions.
+>=20
+> At last, I prefer this goes to an separate patch series, and
+> implement with rtc device.
 
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=for-next&id=aba881f30e0294a58c0cb076918d366e39801185
+Sure, I can split the reboot story from the series...
 
+--=20
+Alexander Sverdlin.
 
 
