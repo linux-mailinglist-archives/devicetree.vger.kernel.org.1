@@ -1,129 +1,155 @@
-Return-Path: <devicetree+bounces-144951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0934DA2FBD4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 22:17:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA4EAA2FBDE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 22:18:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 699891888A18
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 21:17:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06D957A2364
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 21:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88F4E25A2A8;
-	Mon, 10 Feb 2025 21:14:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B1124E4C8;
+	Mon, 10 Feb 2025 21:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="dDwEnlh/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E6cC+Zv1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0A5256C6B;
-	Mon, 10 Feb 2025 21:14:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 079CC24CED6;
+	Mon, 10 Feb 2025 21:18:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739222063; cv=none; b=eIXtepFhgDukadQ+xM6ohNcJA8ymlDZqPXNvNSldIDVBMLtcRg0pMnqeZkPQPeTgDHaK6UYht6IaXbJXayTPZA8k7AU09FeXW1OWGEFakp31AQFtg5OjEspuef79gxZg5RgbURXJ9Ko0DTw/qOo2qvw7pZAQXyhRwRd30xe19+0=
+	t=1739222302; cv=none; b=UppwxxZBEJIvCmaL7dZLbJONudThiFtPltpzGwxaY6esJzrXsSaK5pZqF0ENtnChOpa/OOga338ji1q7JvFX3LRqLp8gGTEGOnDDI60GYJPMpoAgkXD/9U5eWE71Kp6489i6l2Kfg+pcOBSwFh39o1rQbL+VJosm0SYdDupUf00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739222063; c=relaxed/simple;
-	bh=unETEqL21PPGjcJ+5ThZ5Xx9TlKma2kepF5jLOEMdPY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OJfWwL6xPeo/mHrkSnEdZqD5WbYnfWx5OPXdN+Z0rpgfzDeNkLKHROn/eAAHvyHNsZBTjbTgEoNe7SPgUzZZQ/4hcmxZaBFPeiYIT8OdjcGcGlz31lszBO7lS51xOyMAO/B3I3IYU/N/aiiU/JPNBRt+3zf7kFEHYBQKc0A/TMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=dDwEnlh/; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+	s=arc-20240116; t=1739222302; c=relaxed/simple;
+	bh=Itk/H9cRgURUCZBx/2HgnA0hYhWGUxXd3mFNtaT01wY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T3Z9NHK1uksrs6nN7RXtK9xjLgN4VWnuxnp3c/RIHQd8y7Q8GtaqyAbGL5fjbI+y4IPuJSs7o+jN87N/Fz8Ec0Q0yanD0QnfeVtVyeyUGkjH0KeBUFmxcKQ2zyfcr6aL5wHlEloZ21Ht+NFLQoQ5YMAlJjXFM7tTEbrSSVEirgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E6cC+Zv1; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1739222061; x=1770758061;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=unETEqL21PPGjcJ+5ThZ5Xx9TlKma2kepF5jLOEMdPY=;
-  b=dDwEnlh//fm9WkQOm9Th9vpn88QnBCfcrvol9jw9fsbMrbCqnd0tjMwJ
-   Jm6WT03DbahE4haHRNbLeezHg1wrEDBc8PJugDKOTKiiROS5nX+5U6sZu
-   fiy07Eza1ZIthNRpHIFU+yJ59xKuEn0+LQOoG58AeIU+0qVdE0cXrtnd3
-   n300gu5mVDkzttFblyJ7UXdpLo8tx43CQRSiVNbQ8VjcdvFP4y951fN+9
-   IghVvNLknX++Ay42d0Nr5rp5SMOsC1X8zXABt6IJlzdQkxK4Km+WaX/H6
-   OdJFPSFsCCT9p0i2hUaQaeLsxMxwynmfjWpIkdKcVTrBg/cQH5UKqUtZB
-   w==;
-X-CSE-ConnectionGUID: AYqW9AG9RbOJ2Xf8Pt97Yw==
-X-CSE-MsgGUID: 0agEuR3bS46pa3Vj3mw/1g==
-X-IronPort-AV: E=Sophos;i="6.13,275,1732604400"; 
-   d="scan'208";a="205027996"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Feb 2025 14:14:07 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 10 Feb 2025 14:13:47 -0700
-Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 10 Feb 2025 14:13:47 -0700
-From: <Ryan.Wanner@microchip.com>
-To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <claudiu.beznea@tuxon.dev>, <sre@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<p.zabel@pengutronix.de>
-CC: <linux@armlinux.org.uk>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-rtc@vger.kernel.org>, "Ryan
- Wanner" <Ryan.Wanner@microchip.com>
-Subject: [PATCH v2 15/15] ARM: dts: microchip: add shutdown controller and rtt timer
-Date: Mon, 10 Feb 2025 14:13:15 -0700
-Message-ID: <709f5268da63c123cc4eee9e47875324df81c454.1739221064.git.Ryan.Wanner@microchip.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1739221064.git.Ryan.Wanner@microchip.com>
-References: <cover.1739221064.git.Ryan.Wanner@microchip.com>
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739222301; x=1770758301;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Itk/H9cRgURUCZBx/2HgnA0hYhWGUxXd3mFNtaT01wY=;
+  b=E6cC+Zv1PZ0QpCg4F7pfBG+kJ7jeBIuUE4ieH3iV5BjNnDGcP0cm4Dth
+   lsB3Oyaid7sDmgYuYpWDWEc2Ll3EakkwTL7v/98thHaHSCEndcP8wVAC1
+   28lwMT3NPgXMJ2817NHdFZnf+5EK7Wt07e46jX7f2+vDR9ghT+tCZqR2e
+   5kozYKLtjifXdJgYvHYW2WYLCUpZ98IEsLKXmMGFj6zuW6BnMRS5uO4ZC
+   ZXCpZwe9FKLeWCDdElPaBbyoM7W1+59r7r10aEQ+eJCkrXilGsEKfkBq8
+   nuDVZWbfiZm+kIEyVSmL3YRfRX18MVGB+YjbgWdJ4QFfm34Tg58wYATgg
+   A==;
+X-CSE-ConnectionGUID: DeYUty0VT96sNtMus+PZgA==
+X-CSE-MsgGUID: olztcMucRjGrOl/a28Rbuw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51254253"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
+   d="scan'208";a="51254253"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 13:18:20 -0800
+X-CSE-ConnectionGUID: qojBdk7+RnO/FKtEAmvP4g==
+X-CSE-MsgGUID: CyMZCbBRTvWduVPvCUCWlw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; 
+   d="scan'208";a="117331685"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 10 Feb 2025 13:18:17 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1thbAU-0013Od-2K;
+	Mon, 10 Feb 2025 21:18:14 +0000
+Date: Tue, 11 Feb 2025 05:18:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Apitzsch via B4 Relay <devnull+git.apitzsch.eu@kernel.org>,
+	Daniel Scally <djrscally@gmail.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-media@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+Subject: Re: [PATCH v3 2/2] media: i2c: dw9719: Add of_match table
+Message-ID: <202502110539.EO1iB2au-lkp@intel.com>
+References: <20250209-dw9761dts-v3-2-14d3f00f0585@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <20250209-dw9761dts-v3-2-14d3f00f0585@apitzsch.eu>
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
+Hi André,
 
-Add shutdown controller and rtt timer to support shutdown and wake up.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
----
- .../boot/dts/microchip/at91-sama7d65_curiosity.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+[auto build test WARNING on 8f6629c004b193d23612641c3607e785819e97ab]
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-index 0f86360fb733a..d1d0b06fbfc43 100644
---- a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-@@ -77,6 +77,11 @@ pinctrl_uart6_default: uart6-default {
- 	};
- };
- 
-+&rtt {
-+	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-+	status = "disabled";
-+};
-+
- &sdmmc1 {
- 	bus-width = <4>;
- 	pinctrl-names = "default";
-@@ -84,6 +89,15 @@ &sdmmc1 {
- 	status = "okay";
- };
- 
-+&shdwc {
-+	debounce-delay-us = <976>;
-+	status = "okay";
-+
-+	input@0 {
-+		reg = <0>;
-+	};
-+};
-+
- &slow_xtal {
- 	clock-frequency = <32768>;
- };
+url:    https://github.com/intel-lab-lkp/linux/commits/Andr-Apitzsch-via-B4-Relay/dt-bindings-media-i2c-Add-DW9719-and-DW9761-VCM/20250210-055506
+base:   8f6629c004b193d23612641c3607e785819e97ab
+patch link:    https://lore.kernel.org/r/20250209-dw9761dts-v3-2-14d3f00f0585%40apitzsch.eu
+patch subject: [PATCH v3 2/2] media: i2c: dw9719: Add of_match table
+config: x86_64-randconfig-001-20250211 (https://download.01.org/0day-ci/archive/20250211/202502110539.EO1iB2au-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250211/202502110539.EO1iB2au-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502110539.EO1iB2au-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/media/i2c/dw9719.c:12:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:21:
+   In file included from include/linux/mm.h:2224:
+   include/linux/vmstat.h:504:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     504 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     505 |                            item];
+         |                            ~~~~
+   include/linux/vmstat.h:511:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     511 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     512 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:524:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     524 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     525 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/media/i2c/dw9719.c:363:34: warning: unused variable 'dw9719_of_table' [-Wunused-const-variable]
+     363 | static const struct of_device_id dw9719_of_table[] = {
+         |                                  ^~~~~~~~~~~~~~~
+   4 warnings generated.
+
+
+vim +/dw9719_of_table +363 drivers/media/i2c/dw9719.c
+
+   362	
+ > 363	static const struct of_device_id dw9719_of_table[] = {
+   364		{ .compatible = "dongwoon,dw9719" },
+   365		{ .compatible = "dongwoon,dw9761" },
+   366		{ }
+   367	};
+   368	MODULE_DEVICE_TABLE(of, dw9719_of_table);
+   369	
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
