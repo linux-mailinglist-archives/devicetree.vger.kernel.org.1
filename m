@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-144566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A231BA2E7B5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:32:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9199A2E7BB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:32:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0C0A3A847E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:31:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73297166260
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF84E1C5D79;
-	Mon, 10 Feb 2025 09:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F7581C1F3B;
+	Mon, 10 Feb 2025 09:32:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X1SMO389"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CYya6BjD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0831D1C5D57
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 09:31:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B382815B543
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 09:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739179888; cv=none; b=EbGEtAobCn95Gi4BJ+vIP16MLQNWysxYUScOW5Vz8tR5n1v3o3SBXjw7Ekh9RTVjeo7NkhVB354s5UJJfqoDndWPxSN8Vhs38FPy72WfNakHQqF8KD6HvThAsSeN3qT9Ha307kR9rNWXMlzd8jGDNlGWjLUTbuQwMJW9adEu7xU=
+	t=1739179970; cv=none; b=iAwDFqlSIFh7GP+F9AAYwkO46QNmE8CfTW3iy5gdEq5/p20HEeHg4WyUoD2PFdOy6kLAGhPUsiI7/UuQ6gQEM0C8UQouv0fO3JpKIdby5vAIDl8/KLJsuqsAmMQRxqt6aUSf8xtZ+XzLMgqqmtCmGZTfUwjJ4AXI3BV1qYhtl6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739179888; c=relaxed/simple;
-	bh=hIAoZiq9l99J+1+RdYlSegHtO/xvyX/yoDYrDKGZXSQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BScfM7PM46S1Bx0RP810YVAVPD5LSiq2OlwmEIM9gqN42y7eMReJoPu1HeuEhx0EgF9vdfjQ9Q64TbttjqO0JNk6r10JNNGNMGjjHHmmc4rXRva7UpGVeh3BEqN9IaDAKRksuN30Y+S41YoKRHrvbaMkK2lfsy4wka9iY6BBGiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X1SMO389; arc=none smtp.client-ip=209.85.208.175
+	s=arc-20240116; t=1739179970; c=relaxed/simple;
+	bh=V0pnai3sG2FUHiUUgHCPEL9XqGih2gi3fiou37xJXjA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NUYZXfJqSn7q5gIDYqjv6nGyc/uGuK84n2NgqwjYVsGnqRJRV7emuN7FIBPMbjhGMU4T5aFSGJOHGfMTLxAyRy8fI5PUz9ktFYyINEg/gFlTxsWeIryhRx8P9j0UO3gkHKSeiNpOVGo6Lq/otSYMBtPN+0ocZISSXsnhgPOVXNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CYya6BjD; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-30227c56b11so44492101fa.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 01:31:26 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-436345cc17bso27692215e9.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 01:32:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739179885; x=1739784685; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ucIIiCS0ueGRQyU8ONCC0RQdQE11PYRCusiobKkbAOI=;
-        b=X1SMO389qAyDDBbk206JSguIdSN73RLqroEoILI7T9hJ8lqIvvsVKjnDQLi48zNr9U
-         a26QhN9v+G3z1pIv0174ugM47hVekui5epGJjIu0MFtGnqMZkIPunnNT8D7+H/JhtCuH
-         KPlFWhkHz8H1ZjGL/9usWNt0z9jLHc7AUKC4ws0HflGgdBOm2bP9fZoTzB2SM25t89Js
-         86m4S6uLPP4PYiEnC96o+n4BMXlgHCiIsR/kk92qadL1XLw1zrU4culUQe8DepK0tG14
-         n7GYo1YdS49XkCTJMeXLt9yb4LXE0azXATbrXqa/ql/uHz8MoXFHnMLuoQxZhNlPFkU8
-         c61w==
+        d=linaro.org; s=google; t=1739179967; x=1739784767; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VzZ4qnyDjt3/FJ2e8uCPnYFFvXSGSVm1CHMdsRPG1Pg=;
+        b=CYya6BjDrMNVXAC9qlwTxasiRAhx0POBDfYLtv6CQmH4oPnKAcX7P7RFbyII1pbBZR
+         PN4U/CjfIXIc5c9OXKKi9/bjecgEU8QqBPzIj7LqQF0moUJd+tKsJ9Zvcnk6PUvxCoVy
+         c5P/EOfPKhY+ovMIsfhP4Mm97B1VLOVHW2WYSCtae5av24zy8Wvo4lQ29io0seq70nM5
+         kGxlaiijxJkGADApwBCELEbnQGDf6gahuTXFQGH7Brk8MUEaw9yonEwfs0nQfAlP9F7g
+         ovn52rxGB8VC3xhJWfwhf8nn+apKtqk2FAVrYGWJAAIHW7fSPJsCLfYccamzB4Rs9bZM
+         I7rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739179885; x=1739784685;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ucIIiCS0ueGRQyU8ONCC0RQdQE11PYRCusiobKkbAOI=;
-        b=dPr4RW/uTFQHQ975q94HaKc/z+sjwqqZR/9caQpitNIM4Tn3tDR4SljOV1Q7tnhgGB
-         syR6me0646WnBURtLZ4GaxaSVgQwfz4MLA2Kyiekcb/gGM2+ZdQZcAULpO4cHSMD8MoX
-         LDz5Ahs2F9+AAJSc0oXePhkXbcuoA5+P5qMv7ISoUC66nzbqid3BDv44xrHRJ90ar5m+
-         bid05CTfkndEKIUVQztjKkkV0BIya5bc8nFYEgPsA2+2xytW4EkBM+/xerMlulwGXFwK
-         GOG6qjSo4azfXYmh4dyi7rIrXw5QhZWT3E1ru0j2u1QnRdUXC10LNew9EM5PLgT44QCu
-         LDkg==
-X-Forwarded-Encrypted: i=1; AJvYcCVQQfmShIXPcWQOBg7nvP2WkWdxL2eNA5hVQpo56+P0jYhinjABgZThHWyxhNUM3KhQBIJAcfKsM5Jq@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgsxBMrLk9/y8CpvifoNK6VTTN/cKh7KNMhJfkIu7ckUFLNNHz
-	9+bVbIGg8bDgeuOB5cbb9Z2rAjmIR70rJ9drNEWOggBFpdVAftkrwOH7uE4kCxs=
-X-Gm-Gg: ASbGncv4o1fs5enNkpZs8JnmTJkA1BNJRsfvAKjlURpAhjKRmL/Hh905Iqx+3EsvQ+R
-	bM10ALxK++Y3ZrBHjfRd3ioyqp5ZjfpKaEMwaAky+RWTqZxaCP2AuGYZpLidQyeE6mcmsbObgVj
-	E7VZFTOzU/bi1q+Vt9jmdnjGXmoZ5B/11fF38al5qrh9aNP8F2VOWKmPXCIXx1fGSCO5Z62WmBL
-	rvWg5FLKT+WEvrCk/0lbYiZ+pyL90cJXzazgE2s15/+4uT8FTEjIIELKhTALJaTg3L1qBZ7vW7+
-	ee3hsRjS2BL/5SU1bJefDaUAdA==
-X-Google-Smtp-Source: AGHT+IFtvwueQ7c+e3PaLKf98HVOX1kUVt+8R0wzkEbCYyYeWULHWatmu5uSjWQeTxr/KOcvLpBuRA==
-X-Received: by 2002:a2e:be89:0:b0:302:3356:7c55 with SMTP id 38308e7fff4ca-307e58002e2mr35606591fa.10.1739179885076;
-        Mon, 10 Feb 2025 01:31:25 -0800 (PST)
-Received: from [192.168.1.140] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307e09a1df7sm11645321fa.23.2025.02.10.01.31.22
+        d=1e100.net; s=20230601; t=1739179967; x=1739784767;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VzZ4qnyDjt3/FJ2e8uCPnYFFvXSGSVm1CHMdsRPG1Pg=;
+        b=KTFCT3CAAlXNc8Q7Y6KJBLQl1aqYwrEmeWmay+e7sj60gTvqITSOwk0RJ9pnozV3tz
+         EoTSfVnP/HPR4cvMUaMBAXBonV0CY6i3irKYRu2ziX8JfYVMz7sBKpUVy070nKOMgsFC
+         +FE5X869NnKynAzb5hz+jby7Yf1biWNcPhRqOk+LvoouhSYH19v2u9VxwbQvwR77gSiV
+         JgZ9XVVsej469JbajPf49kgf957TAPyDRnDzKIg0OZlsWGIbdKalxnBG+DfirNcu++VY
+         8WBT8p9jnMLVKZkejjX9BLmbgW/6xDx+Dw7aDH50+XgHVDngSr1oZOOMCIefsMdKlP4z
+         +aZg==
+X-Forwarded-Encrypted: i=1; AJvYcCVHPJYkvIotiRUVeV1yMDC/4VbmCK9OBxwNxJNx69tOaWpF1Zokh73lur5xY0D1QbyV2eyIGq0DxYEA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxv63I+nmzPp5ZmQn+OGaLAsh/wEH5JsW6ELF3qt4IhqvZxYwuT
+	Rd1zwf8uBSh02yTEc2Bf1Ktow49bzIMBSTTRb8pWMPTF43yTPS76FM2sfLqWTvo=
+X-Gm-Gg: ASbGnctYLbMpz0TWjLB+ibtNWlFse3wFKhW8jh9kvP4JAfLr4D/e3/H0RoJleyySx8U
+	gG9RndmlTI7506AN8NO453tC17xsl3WTu8rY1AgupcZhtEKve65gIrruXUf/GdPD3/ODURcCNOM
+	TS9xg191c/ZvF+lUvZu4Xm9o8WaZf2Q3KgyyckmqwjCu4hOmBWJNEcfpRWJuewr25DkMtLIXbIw
+	7U5hdAPnkCwHwxYb4hI9lnBQAAn8v35VWAreg9yURqFiJ4iEFEsE/nIY2h/7na+2mrwtBShhg0B
+	6OA/DR/9ErvCrfEfwIYHAKPc4jUx5JLHldZC
+X-Google-Smtp-Source: AGHT+IGNDPBJFJRV2pnpEXOymShd+51OHk+y0ckKkGyIoLDZ3cbt+pXP/FQMMjjsEzIh0bn9twywjQ==
+X-Received: by 2002:a05:600c:4f47:b0:434:a367:2bd9 with SMTP id 5b1f17b1804b1-4392499090cmr104561845e9.14.1739179967075;
+        Mon, 10 Feb 2025 01:32:47 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4391da964e2sm141340895e9.4.2025.02.10.01.32.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 01:31:24 -0800 (PST)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 10 Feb 2025 10:31:17 +0100
-Subject: [PATCH 3/3] ARM: dts: ixp4xx: Add Netgear WG302 v1 GPIOs
+        Mon, 10 Feb 2025 01:32:46 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/4] dt-bindings: display: qcom,sm8[56]50-mdss: properly
+ document the interconnect paths
+Date: Mon, 10 Feb 2025 10:32:38 +0100
+Message-Id: <20250210-topic-sm8x50-mdss-interconnect-bindings-fix-v3-0-54c96a9d2b7f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,74 +83,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250210-ixp4xx-dts-v1-3-6b752d745e04@linaro.org>
-References: <20250210-ixp4xx-dts-v1-0-6b752d745e04@linaro.org>
-In-Reply-To: <20250210-ixp4xx-dts-v1-0-6b752d745e04@linaro.org>
-To: Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, 
+X-B4-Tracking: v=1; b=H4sIALbHqWcC/6WNQQ6CMBBFr0K6dkwZLKAr72FcAJ3CJNKStiEYw
+ t0t7Nzq8v3kv7eKQJ4piFu2Ck8zB3Y2QXHKRDc0tidgnVigRCVRVhDdxB2EsV6UhFGHAGwj+c5
+ ZS12Elq1m2wcwvIDW10oZxEJLJZJx8pTmo/Z4Jh44ROffR3zO9/W3zpyDhFphm+uyIbqU9xfbx
+ ruz873YQzP+IcckN1WOba1Nme5f8m3bPpm/5dFEAQAA
+X-Change-ID: 20250207-topic-sm8x50-mdss-interconnect-bindings-fix-dd975f223d05
+To: Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1982;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=V0pnai3sG2FUHiUUgHCPEL9XqGih2gi3fiou37xJXjA=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnqce7qdjWC+8P/KsuKPrL8cabCUEntHyRqm8B1enU
+ NRMB9pCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ6nHuwAKCRB33NvayMhJ0fGGEA
+ C0r9MZn5sVQ28nvrKPf5shEIsxNoLOdCxbfktrO0LwKE2O/uoA9mrOfbpaJCkho3ey4zrlR6XFNepd
+ 3uQFLaLMDOdbm7UBGJnoar2pIWXhAwPCEwxF5PG4kyZ8la7OVzUQ8aX7OQOQgRfPZieGV3s/ZLrKQU
+ RIo4a8UcTjgMrSMShHWmOCHua61d7o/i5Qokg5xMAIrHGMC0VKsVh5lG6tB4n9zxghrjoipVbFfzfz
+ LntwRNOdj5u0jodvvpVX2LMnwFnLCIazTJ8wpbr5bMYmAyxcd/hy/63VD6t1LYquYox38LSmql9L2w
+ 4tt8Cg2A4kdDPXxNR/BDutUHqSD8GWwD5s0TWJACxaJPqlZde3/+rLcoqsBkiNNCLr/wvgnkrtjLTi
+ uOXiiknsfJQ5lREtRagYonl//UAGRT7gftmKKtxWuTeNsp6ufUP/6bnwHeaoeZTi2K8xaKc3YCyMRJ
+ 4QJwynbAlGDAcK4MJSrvmDFCY668ep2bx/z0scGvsHaV7xxbZIcNDeogQnj27SeLQp66dpbHo5u2zN
+ tJbCY+tdjU9wsR7l8MpInQHS/mEAPlMKUiNnB8IxG5dGRSK/lfgiN8Eq/pIr/oBfbL7w0o4fHbuc1O
+ 0Bv4X1yzetydPzeVALJNNzwAxH/9Kud6NbVvzew4Eqwh87+YLox5h9UKiZYQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-This adds GPIO LED indicators, the reset GPIO RESET
-button on the Netgear WG302 v1 to the device tree.
+The mdp1-mem is not supported on the SM8550 & SM8650 SoCs, so properly document
+the mdp0-mem and cpu-cfg interconnect entries.
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+This fixes the following errors:
+display-subsystem@ae00000: interconnects: [[200, 3, 7, 32, 1, 7]] is too short
+        from schema $id: http://devicetree.org/schemas/display/msm/qcom,sm8650-mdss.yaml#
+display-subsystem@ae00000: interconnect-names: ['mdp0-mem'] is too short
+        from schema $id: http://devicetree.org/schemas/display/msm/qcom,sm8650-mdss.yaml#
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../dts/intel/ixp/intel-ixp42x-netgear-wg302v1.dts | 30 ++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Changes in v3:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v2: https://lore.kernel.org/r/20250207-topic-sm8x50-mdss-interconnect-bindings-fix-v2-0-f712b8df6020@linaro.org
 
-diff --git a/arch/arm/boot/dts/intel/ixp/intel-ixp42x-netgear-wg302v1.dts b/arch/arm/boot/dts/intel/ixp/intel-ixp42x-netgear-wg302v1.dts
-index af7b6a976d3dd61f3c6846c73b8788437dea20e3..a351a97d257ead984a3ee05a8a0e50714ad7fb43 100644
---- a/arch/arm/boot/dts/intel/ixp/intel-ixp42x-netgear-wg302v1.dts
-+++ b/arch/arm/boot/dts/intel/ixp/intel-ixp42x-netgear-wg302v1.dts
-@@ -8,6 +8,7 @@
- 
- #include "intel-ixp42x.dtsi"
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
- 
- / {
- 	model = "Netgear WG302 v1";
-@@ -32,6 +33,35 @@ aliases {
- 		serial0 = &uart1;
- 	};
- 
-+	leds {
-+		compatible = "gpio-leds";
-+		test_led: led-test {
-+			color = <LED_COLOR_ID_AMBER>;
-+			function = "test";
-+			gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		wlan_led: led-wlan {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_WLAN;
-+			gpios = <&gpio0 5 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+			linux,default-trigger = "phy0tx";
-+		};
-+	};
-+
-+	gpio_keys {
-+		/* RESET is on GPIO13 which can't fire interrupts */
-+		compatible = "gpio-keys-polled";
-+		poll-interval = <100>;
-+
-+		button-reset {
-+			linux,code = <KEY_RESTART>;
-+			label = "reset";
-+			gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
- 	soc {
- 		bus@c4000000 {
- 			flash@0,0 {
+Changes in v2:
+- fixed example in qcom,sm8550-mdss.yaml
+- Link to v1: https://lore.kernel.org/r/20250207-topic-sm8x50-mdss-interconnect-bindings-fix-v1-0-852b1d6aee46@linaro.org
 
+---
+Neil Armstrong (4):
+      dt-bindings: display: qcom,sm8550-mdss: explicitly document mdp0-mem and cpu-cfg interconnect paths
+      dt-bindings: display: qcom,sm8650-mdss: explicitly document mdp0-mem and cpu-cfg interconnect paths
+      arm64: dts: qcom: sm8550: add missing cpu-cfg interconnect path in the mdss node
+      arm64: dts: qcom: sm8650: add missing cpu-cfg interconnect path in the mdss node
+
+ .../devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml  | 14 +++++++++-----
+ .../devicetree/bindings/display/msm/qcom,sm8650-mdss.yaml  | 13 +++++++++++--
+ arch/arm64/boot/dts/qcom/sm8550.dtsi                       |  5 +++--
+ arch/arm64/boot/dts/qcom/sm8650.dtsi                       |  7 +++++--
+ 4 files changed, 28 insertions(+), 11 deletions(-)
+---
+base-commit: 808eb958781e4ebb6e9c0962af2e856767e20f45
+change-id: 20250207-topic-sm8x50-mdss-interconnect-bindings-fix-dd975f223d05
+
+Best regards,
 -- 
-2.48.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
