@@ -1,154 +1,331 @@
-Return-Path: <devicetree+bounces-144543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1152AA2E6F8
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:52:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BB86A2E70A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:55:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66ACA1678AF
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 08:51:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D769D3A05E5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 08:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F1F21C2309;
-	Mon, 10 Feb 2025 08:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B031C07EC;
+	Mon, 10 Feb 2025 08:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kF+MQ0Qu"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="v0J0YdnD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E101BEF76;
-	Mon, 10 Feb 2025 08:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 928581C07C6;
+	Mon, 10 Feb 2025 08:55:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739177473; cv=none; b=p+mkRibd1VnOK2r59PB0zuQRlgwzx6SjeKAoB3S9l00TAyYUMQOyE1TFD7q6SmPDjZL8D3FuLHcIbemCToicCRDIe6+T3UaqMjZWRCuvBImNEnFlJlVhxVUqI9HNmtLigRKAWb9/+CCYa3k2uUc0SxqvI0vSNVGcrUOBDy5ns30=
+	t=1739177706; cv=none; b=po7fdFGi/jT2dyhj3mF6GMBMiUYwMTqmBCyEZICUETY6pjhd942aR82oJGgqosP+xYcTD8QcCee7vNcZhqdtH8b9+OWUvFy4mVJ2wpXp+4OecMXp3+cQ2uTcB0K+yGuMMmwuZc4iXzfvJ2hoHrXGIpwpflOWNFHW2T4U6cAOqrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739177473; c=relaxed/simple;
-	bh=O60bjoiJsJiOy1AEAQI646rU7aZ0CgR6c2Eym7Kfz54=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aQ4SpaEw+yGuSGUFGSZJd+7ddCdwAr+YqneWBL0cX+f1kJtURB77RNEF7zZyPlwLDbVmpEQJdOi565KQ5TneA+q2zfFvzQQUADk/2paBEUgrmymxd1vvtKJqtrmsRdW5zv+y0HSxWTcVzNjI4yjQGDJbM97SWKZs6O5bUkja/lU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kF+MQ0Qu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2025CC4CED1;
-	Mon, 10 Feb 2025 08:51:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739177472;
-	bh=O60bjoiJsJiOy1AEAQI646rU7aZ0CgR6c2Eym7Kfz54=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kF+MQ0QuHvwJHIjCSTIps8qvlNV/2fcVH2xlnwFyYPkvNgrTxWxckDTpn5Mj5/cOW
-	 ErRfT2O6501fIO1Mnew5juFnTgRYcoRqrkJtH5meWYfAVoVozP0vhg9uUMCvfUaWYr
-	 jqCK9NxSjWKNnFKY8dhb/3J8xt5QQHAdXrJub76JiVdB2tC3s9MMf0MVkYXvVah+DY
-	 sOFP8K1t7TdBvSKwpnM6Hj2BhzM6/QB7BImpRyjuJKOoS9TCOYzAfNVnFPUqFD3J/M
-	 aYgUIRzGlZvvqkIXUV/g9bVtZ8rcFNQZXkWnaPb4iTFYK95i4Jx1K8q6IVqdeCN59l
-	 xIZz7pBpGSK4g==
-Message-ID: <f1d00c9b-5501-4b96-a6e2-bc1181589f7a@kernel.org>
-Date: Mon, 10 Feb 2025 09:51:04 +0100
+	s=arc-20240116; t=1739177706; c=relaxed/simple;
+	bh=1wEXGJKcurF+XfisQ5qSR9bzpi4fUcawaiSk2FPYeVc=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=snLt3K3zh/9eMRXG/nPMoWFuHqtBOF3/Zfj57faDuyPU0JER5bZy7R/zg5g3EZ/qI8B9QIKT59IS7Ar8TsEG0rZCTTjt9BqkLOCu4DXwkNPWYOn4tKzxHUDYbk5Ks7DdXpeF5wLd9QI2FpdBgKzl0eFTVxQKVjxBlswSe05dLnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=v0J0YdnD; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/10] riscv/arm64: dts: cv18xx: Add sysctl and reset
- nodes
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, soc@lists.linux.dev
-Cc: Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@outlook.com>, linux-pm@vger.kernel.org,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- Haylen Chu <heylenay@outlook.com>, linux-arm-kernel@lists.infradead.org,
- Sebastian Reichel <sre@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
-References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
- <20250209220646.1090868-9-alexander.sverdlin@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250209220646.1090868-9-alexander.sverdlin@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1739177702;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LJDsXEUj7b3zFzIa56IlFMlf0KA++lbCdlBM2nqsilY=;
+	b=v0J0YdnDhV2JdIPnHjExKgY7f+g62uivJWpRaaDng8nXi8FVRlv/E4cVWE6BdMbojTJv9H
+	LcIIphbc1mib1Pa7dFu5slwoLl6s99GENLAGqEknDpxL1R7Yt9in2+KYvm+wxiJY0jG4GU
+	yDPYzG9lou4DhNIHVpe1Db6ugDR8feK1wRyHmm0w8seXgwK5aPuWAPmB5Vu0s2bA0Zyrqy
+	80ZmOfa7vSbS8aGY/At+mDKaPCOp7IbnyJCT/zFb4vRdVc3mB67m6mR6rRp9db/oQBM4gM
+	BZg55pmuEN4f0LICXuwvoT4k+4Lo0gb5PykDZ/yRNbkNKV8RH5JYjBxUt5Wpyw==
+Date: Mon, 10 Feb 2025 09:55:02 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <foss+kernel@0leil.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jagan
+ Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>, Michael Riesch
+ <michael.riesch@wolfvision.net>, Jonas Karlman <jonas@kwiboo.se>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Quentin
+ Schulz <quentin.schulz@cherry.de>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 4/4] arm64: dts: rockchip: minimal support for Pre-ICT
+ tester adapter for RK3588 Jaguar
+In-Reply-To: <20250207-pre-ict-jaguar-v5-4-a70819ea0692@cherry.de>
+References: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
+ <20250207-pre-ict-jaguar-v5-4-a70819ea0692@cherry.de>
+Message-ID: <eca58eff9c22a96ea03507b7a8a015dc@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 09/02/2025 23:06, Alexander Sverdlin wrote:
-> Add reset controller node and required sysctl nodes.
+On 2025-02-07 16:20, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
 > 
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> The Pre-ICT tester adapter connects to RK3588 Jaguar SBC through its
+> proprietary Mezzanine connector.
+> 
+> It exposes a PCIe Gen2 1x M.2 connector and two proprietary camera
+> connectors. Support for the latter will come once the rest of the 
+> camera
+> stack is supported.
+> 
+> Additionally, the adapter loops some GPIOs together as well as route
+> some GPIOs to power rails.
+> 
+> This adapter is used for manufacturing RK3588 Jaguar to be able to test
+> the Mezzanine connector is properly soldered.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 > ---
->  arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  arch/arm64/boot/dts/rockchip/Makefile              |   5 +
+>  .../dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso | 171 
+> +++++++++++++++++++++
+>  2 files changed, 176 insertions(+)
 > 
-> diff --git a/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
-> index 53834b0658b2..d793b6db4ed1 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
-> @@ -309,5 +309,21 @@ dmac: dma-controller@4330000 {
->  			snps,data-width = <4>;
->  			status = "disabled";
->  		};
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile
+> b/arch/arm64/boot/dts/rockchip/Makefile
+> index
+> 8f93e0c4d6032d0ca2d93f44384c027e53aa5efb..58664453e019496420dfec7b781cc313fab04185
+> 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -145,6 +145,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += 
+> rk3588-firefly-itx-3588j.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-friendlyelec-cm3588-nas.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-h96-max-v58.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtbo
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6-lts.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-ok3588-c.dtb
+> @@ -197,6 +198,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=
+> rk3588-edgeble-neu6a-wifi.dtb
+>  rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
+>  	rk3588-edgeble-neu6a-wifi.dtbo
+> 
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtb
+> +rk3588-jaguar-pre-ict-tester-dtbs := rk3588-jaguar.dtb \
+> +	rk3588-jaguar-pre-ict-tester.dtbo
 > +
-> +		rtcsys_ctrl: syscon@5025000 {
-> +			compatible = "sophgo,cv1800-rtcsys-ctrl", "syscon";
-> +			reg = <0x05025000 0x1000>;
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtb
+>  rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb \
+>  	rk3588-rock-5b-pcie-ep.dtbo
+
+Looking good to me, thanks for the patch!  The employed approach
+was already discussed and commented in detail in the v4 of this
+series, [*] so please feel free to include:
+
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+
+Please note that my tag applies to the changes introduced to the
+Makefile only, because I have no clue about the actual hardware
+design and don't have access to the schematic of the ICT tester
+described in the new .dtso file below.
+
+[*] 
+https://lore.kernel.org/linux-rockchip/a3b98e3d3a2571ee75e59418bb3b6960@manjaro.org/T/#u
+
+
+> diff --git
+> a/arch/arm64/boot/dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso
+> b/arch/arm64/boot/dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso
+> new file mode 100644
+> index
+> 0000000000000000000000000000000000000000..9d44dfe2f30d793accb994a230c58038f0c3daad
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso
+> @@ -0,0 +1,171 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+> +/*
+> + * Copyright (c) 2024 Cherry Embedded Solutions GmbH
+> + *
+> + * Device Tree Overlay for the Pre-ICT tester adapter for the 
+> Mezzanine
+> + * connector on RK3588 Jaguar.
+> + *
+> + * This adapter has a PCIe Gen2 x1 M.2 M-Key connector and two 
+> proprietary
+> + * camera connectors (each their own I2C bus, clock, reset and PWM
+> lines as well
+> + * as 2-lane CSI).
+> + *
+> + * This adapter routes some GPIOs to power rails and loops together 
+> some other
+> + * GPIOs.
+> + *
+> + * This adapter is used during manufacturing for validating proper 
+> soldering of
+> + * the mezzanine connector.
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +
+> +&{/} {
+> +	pre_ict_tester_vcc_1v2: regulator-pre-ict-tester-vcc-1v2 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pre_ict_tester_vcc_1v2";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <1200000>;
+> +		regulator-max-microvolt = <1200000>;
+> +		vin-supply = <&vcc_3v3_s3>;
+> +	};
+> +
+> +	pre_ict_tester_vcc_2v8: regulator-pre-ict-tester-vcc-2v8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pre_ict_tester_vcc_2v8";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <2800000>;
+> +		regulator-max-microvolt = <2800000>;
+> +		vin-supply = <&vcc_3v3_s3>;
+> +	};
+> +};
+> +
+> +&combphy0_ps {
+> +	status = "okay";
+> +};
+> +
+> +&gpio3 {
+> +	pinctrl-0 = <&pre_ict_pwr2gpio>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&pcie2x1l2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie2x1l2_perstn_m0>;
+> +	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>; /* 
+> PCIE20X1_2_PERSTN_M0 */
+> +	vpcie3v3-supply = <&vcc_3v3_s3>;
+> +	status = "okay";
+> +};
+> +
+> +&pinctrl {
+> +	pcie2x1l2 {
+> +		pcie2x1l2_perstn_m0: pcie2x1l2-perstn-m0 {
+> +			rockchip,pins = <3 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
 > +		};
+> +	};
 > +
-> +		rtcsys_core: syscon@5026000 {
-> +			compatible = "sophgo,cv1800-rtcsys-core", "syscon";
-> +			reg = <0x05026000 0x1000>;
+> +	pre-ict-tester {
+> +		pre_ict_pwr2gpio: pre-ict-pwr2gpio-pins {
+> +			rockchip,pins =
+> +			/*
+> +			 * GPIO3_A3 requires two power rails to be properly
+> +			 * routed to the mezzanine connector to report a proper
+> +			 * value: VCC_1V8_S0_1 and VCC_IN_2. It may report an
+> +			 * incorrect value if VCC_1V8_S0_1 isn't properly routed,
+> +			 * but GPIO3_C6 would catch this HW soldering issue.
+> +			 * If VCC_IN_2 is properly routed, GPIO3_A3 should be
+> +			 * LOW. The signal shall not read HIGH in the event
+> +			 * GPIO3_A3 isn't properly routed due to soldering
+> +			 * issue. Therefore, let's enforce a pull-up (which is
+> +			 * the SoC default for this pin).
+> +			 */
+> +				<3 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>,
+> +			/*
+> +			 * GPIO3_A4 is directly routed to VCC_1V8_S0_2 power
+> +			 * rail. It should be HIGH if all is properly soldered.
+> +			 * To guarantee that, a pull-down is enforced (which is
+> +			 * the SoC default for this pin) so that LOW is read if
+> +			 * the loop doesn't exist on HW (soldering issue on
+> +			 * either signals).
+> +			 */
+> +				<3 RK_PA4 RK_FUNC_GPIO &pcfg_pull_down>,
+> +			/*
+> +			 * GPIO3_B2 requires two power rails to be properly
+> +			 * routed to the mezzanine connector to report a proper
+> +			 * value: VCC_1V8_S0_1 and VCC_IN_1. It may report an
+> +			 * incorrect value if VCC_1V8_S0_1 isn't properly routed,
+> +			 * but GPIO3_C6 would catch this HW soldering issue.
+> +			 * If VCC_IN_1 is properly routed, GPIO3_B2 should be
+> +			 * LOW. This is an issue if GPIO3_B2 isn't properly
+> +			 * routed due to soldering issue, because GPIO3_B2
+> +			 * default bias is pull-down therefore being LOW. So
+> +			 * the worst case scenario and the pass scenario expect
+> +			 * the same value. Make GPIO3_B2 a pull-up so that a
+> +			 * soldering issue on GPIO3_B2 reports HIGH but proper
+> +			 * soldering reports LOW.
+> +			 */
+> +				<3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>,
+> +			/*
+> +			 * GPIO3_C6 is directly routed to VCC_1V8_S0_1 power
+> +			 * rail. It should be HIGH if all is properly soldered.
+> +			 * This is an issue if GPIO3_C6 or VCC_1V8_S0_1 isn't
+> +			 * properly routed due to soldering issue, because
+> +			 * GPIO3_C6 default bias is pull-up therefore being HIGH
+> +			 * in all cases:
+> +			 *  - GPIO3_C6 is floating (so HIGH) if GPIO3_C6 is not
+> +			 *    routed properly,
+> +			 *  - GPIO3_C6 is floating (so HIGH) if VCC_1V8_S0_1 is
+> +			 *    not routed properly,
+> +			 *  - GPIO3_C6 is HIGH if everything is proper,
+> +			 * Make GPIO3_C6 a pull-down so that a soldering issue
+> +			 * on GPIO3_C6 or VCC_1V8_S0_1 reports LOW but proper
+> +			 * soldering reports HIGH.
+> +			 */
+> +				<3 RK_PC6 RK_FUNC_GPIO &pcfg_pull_down>,
+> +			/*
+> +			 * GPIO3_D2 is routed to VCC_5V0_1 power rail through a
+> +			 * voltage divider on the adapter.
+> +			 * It should be HIGH if all is properly soldered.
+> +			 * To guarantee that, a pull-down is enforced (which is
+> +			 * the SoC default for this pin) so that LOW is read if
+> +			 * the loop doesn't exist on HW (soldering issue on
+> +			 * either signals).
+> +			 */
+> +				<3 RK_PD2 RK_FUNC_GPIO &pcfg_pull_down>,
+> +			/*
+> +			 * GPIO3_D3 is routed to VCC_5V0_2 power rail through a
+> +			 * voltage divider on the adapter.
+> +			 * It should be HIGH if all is properly soldered.
+> +			 * To guarantee that, a pull-down is enforced (which is
+> +			 * the SoC default for this pin) so that LOW is read if
+> +			 * the loop doesn't exist on HW (soldering issue on
+> +			 * either signals).
+> +			 */
+> +				<3 RK_PD3 RK_FUNC_GPIO &pcfg_pull_down>,
+> +			/*
+> +			 * GPIO3_D4 is routed to VCC_3V3_S3_1 power rail through
+> +			 * a voltage divider on the adapter.
+> +			 * It should be HIGH if all is properly soldered.
+> +			 * To guarantee that, a pull-down is enforced (which is
+> +			 * the SoC default for this pin) so that LOW is read if
+> +			 * the loop doesn't exist on HW (soldering issue on
+> +			 * either signals).
+> +			 */
+> +				<3 RK_PD4 RK_FUNC_GPIO &pcfg_pull_down>,
+> +			/*
+> +			 * GPIO3_D5 is routed to VCC_3V3_S3_2 power rail through
+> +			 * a voltage divider on the adapter.
+> +			 * It should be HIGH if all is properly soldered.
+> +			 * To guarantee that, a pull-down is enforced (which is
+> +			 * the SoC default for this pin) so that LOW is read if
+> +			 * the loop doesn't exist on HW (soldering issue on
+> +			 * either signals).
+> +			 */
+> +				<3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_down>;
 > +		};
-> +
-> +		soc-reset {
-> +			compatible = "sophgo,cv1800-reset";
-
-Nope. You cannot have non-MMIO nodes in SoC which proves this is not a
-real SoC device. Neither compatible, nor its placement is correct.
-
-Depending on the hardware design, this most likely is just part of your
-5025000 block.
-
-
-Best regards,
-Krzysztof
+> +	};
+> +};
 
