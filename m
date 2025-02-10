@@ -1,118 +1,84 @@
-Return-Path: <devicetree+bounces-144822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48079A2F5C0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:48:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D45AA2F5FC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:55:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B33E17A2449
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:47:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B17A18834F8
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:55:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F11A243945;
-	Mon, 10 Feb 2025 17:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077DE25B67F;
+	Mon, 10 Feb 2025 17:55:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gEFH8HRW"
+	dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b="I9JvbYmA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1026E25B691;
-	Mon, 10 Feb 2025 17:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A4CA25B66B;
+	Mon, 10 Feb 2025 17:55:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.79.88.28
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739209687; cv=none; b=LhyvP5bt3W+vzk6jnlHqUB8KsU8OwGFE40sBL7or7Wx2dUeOTRHAp7nvMlFXMyLQAwRueLAfX910Rw9athTbO6m7WAFj/Tu7jNWyzI+49RqLX4a/NiTyPP0OpAqBSJoLXaD+CnxNeyNQgHzpXWRVEUMq9wBLKZpAFVD8wvA4L9A=
+	t=1739210110; cv=none; b=VnBl/d0yGD4pj4YSmJNKvrW2GN3qjjPaa7TelC8tNVpz0xYtEACN6xXL+25WBh/xQgwECjrQHkqTscOa3elgsQxe+hbsz7k/1NBk7lN6NgdmiykMZ083QyAD9eQ6rleJrwCZyTaJBPpSyfYyAU7/VENtGLpfmVd3RigpJa3mdKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739209687; c=relaxed/simple;
-	bh=UqTuJyZrX1F27jfw6wIG3TWPnFiVOeJcCadbDkztkqs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LzmcVnTTZty27/2ZkcDda5P1Zp71Pt6KxnVTdnRSz/sKfXYH+KtHb+pPNO7FAxosxsyMMlXiWQ3e3KiL+8xRTR9OZ9RIlMDdGVDZtbXac3JrMfFHJj2QgtwUX5h41mobs89ypBJ68uwrFpmOHrRlM4evOqVJQB+ggYbWZGNAcdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gEFH8HRW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6738C4CED1;
-	Mon, 10 Feb 2025 17:48:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739209686;
-	bh=UqTuJyZrX1F27jfw6wIG3TWPnFiVOeJcCadbDkztkqs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gEFH8HRWaOEYHoBVAWOHHJ6u9TMwuMIzTDUXYq0Xxeo/5aZPDA5M9ffddnIeZbfPk
-	 RAGOx6ZIe13llS5edd/uuqvKPU9uo+EhJqsPt1PIeqA38NxMgb011FVkQPkHpM+mzP
-	 ZNeCk+0om5TIA7fZ1XeFT4LOSB8BjETCf9hvtEFtIt3C6Wv0n9FCve9kU1ngtpPNBq
-	 pVdUBVCB+epDTKqVgA6PGP1VHxmVeVGzuC47HK3F5I5xn0hoHfu5yitDj15rPEiyXY
-	 NooqULqyNt3EnfFYpklWrQgRldAdAbSCHGpyad/fjECxJDwLRtGVRLwyvJRZXqiIZY
-	 JPbEynPw5jgBQ==
-Date: Mon, 10 Feb 2025 17:48:00 +0000
-From: Mark Brown <broonie@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v8 01/17] spi: add basic support for SPI offloading
-Message-ID: <b1dcbb19-190a-45e7-8e94-cb5ef65f1f1b@sirena.org.uk>
-References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
- <20250207-dlech-mainline-spi-engine-offload-2-v8-1-e48a489be48c@baylibre.com>
- <Z6otFlsmEikIbI__@black.fi.intel.com>
- <27d2a88c-b44a-4712-b066-b999e41774f0@baylibre.com>
+	s=arc-20240116; t=1739210110; c=relaxed/simple;
+	bh=Ft93EquVMB68txAY9N3rvoy093S40GPOtRTZQhi5Is0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ZusQtmAL+E2mGd5cUvlZW+5zljgiBKWQcfprGJ5nRw4SIXHCbbe5yavgy1/mSwjHzCWYJQeCQJH6RklwsHW0z6NTVeiFeAEWkJH1g+sB6NgeGvRwwJi6UaNkT6+DmTgVDlpSaoK0S6betcZhKZpX2WCHaLZ4LQULvh07MVd5BTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lwn.net; spf=pass smtp.mailfrom=lwn.net; dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b=I9JvbYmA; arc=none smtp.client-ip=45.79.88.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lwn.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lwn.net
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 11B9F411A1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+	t=1739210108; bh=5pQFFPXR2QDI9TXSDTjpQCYuhX/4f8q0mdRA4cKArH8=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=I9JvbYmAyoZIU8FpW3JD20coUV425VNwnTQI3yxjc7xYVOBhhB74iCPmBJPG064Wv
+	 5ruoi2xygOuPjL0lDhmcdp4H3Bx4/AotzmKjZdaSNE9RWqo92wYqhZY4prAkPmnjSA
+	 9Km7tml2wtCW6JRbQUut3bFNl3AABKcc6d7fOPDCZad6hUsakF2Wk4YZWEt01SqWNs
+	 P9DSKwSwMzJdfWlEcpXqzJd50zbLvBqaedbL+R6LkyQcX3sdgVaQ8G9wztylsUYKR/
+	 4uV7SQ7PJ/LNpjPrxd7emAsw2oamsV5QRX47TM75d80aFYt7p4oH00EIMd53oaB5FD
+	 hrJEPnMdG0vQw==
+Received: from localhost (unknown [IPv6:2601:280:5e00:625::1fe])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ms.lwn.net (Postfix) with ESMTPSA id 11B9F411A1;
+	Mon, 10 Feb 2025 17:55:08 +0000 (UTC)
+From: Jonathan Corbet <corbet@lwn.net>
+To: Charles Han <hanchunchao@inspur.com>, mkl@pengutronix.de,
+ manivannan.sadhasivam@linaro.org, thomas.kopp@microchip.com,
+ mailhol.vincent@wanadoo.fr, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, cem@kernel.org, djwong@kernel.org
+Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-xfs@vger.kernel.org,
+ linux-doc@vger.kernel.org, Charles Han <hanchunchao@inspur.com>
+Subject: Re: [v2] Documentation: Remove repeated word in docs
+In-Reply-To: <20250207073433.23604-1-hanchunchao@inspur.com>
+References: <20250207073433.23604-1-hanchunchao@inspur.com>
+Date: Mon, 10 Feb 2025 10:55:07 -0700
+Message-ID: <877c5x1y84.fsf@trenco.lwn.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QDYpO5gEOaeXSXfw"
-Content-Disposition: inline
-In-Reply-To: <27d2a88c-b44a-4712-b066-b999e41774f0@baylibre.com>
-X-Cookie: A beer delayed is a beer denied.
+Content-Type: text/plain
 
+Charles Han <hanchunchao@inspur.com> writes:
 
---QDYpO5gEOaeXSXfw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> Remove the repeated word "to" docs.
+>
+> Signed-off-by: Charles Han <hanchunchao@inspur.com>
+> ---
+>  .../devicetree/bindings/net/can/microchip,mcp251xfd.yaml      | 2 +-
+>  Documentation/filesystems/xfs/xfs-online-fsck-design.rst      | 4 ++--
+>  2 files changed, 3 insertions(+), 3 deletions(-)
 
-On Mon, Feb 10, 2025 at 11:11:23AM -0600, David Lechner wrote:
-> On 2/10/25 10:45 AM, Andy Shevchenko wrote:
-> > On Fri, Feb 07, 2025 at 02:08:58PM -0600, David Lechner wrote:
+Applied, thanks.
 
-> >> +MODULE_IMPORT_NS("SPI_OFFLOAD");
-
-> > This diminishes the point of the namespaces. Anybody who includes a (dangling)
-> > header gets namespace imported, which is not good. Same for other globally
-> > visible headers.
-
-> In this case, we specifically split up the headers so that the only time you
-> would ever include this header is if you need to call functions in this
-> namespace (i.e. struct definitions are in linux/spi/offload/types.h which
-> doesn't import the namespace). So this doesn't actually seem like a problem
-> to me.
-
-Indeed - I can't see any case where a user would need the header without
-needing the namespace.
-
---QDYpO5gEOaeXSXfw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeqO88ACgkQJNaLcl1U
-h9BHTAf+NsZ6fGYgEqb608Rc2IgVu1nXW39rdEMmwEX0ziE1qwwaxMOuWkergqau
-0U3s6JGC4tTbBadpt7+FbUuTZzJmEwMtj3noj+j8dRxoobvyvEZugZl1yN1Ltb09
-2ZgYnXy5SS0gQmC4KpXAWZFLtlK+09GYv+IsYbz6+zo+tKVUkadR2KD5a/DCxYwK
-53YXiepisQH0E/Eegrr7bIRrQ14Qs1EPniCN92YdS1P9ZKWFv1PU7RgNwSDQh3g9
-RBKF4K+y8cj86Dqv7KQGO4H8VgHy1MuagYoeQgDrzPNALW+sSVpVPvBqGsKPMVA7
-yVbZk8py4U0OlZs4fIeNwexwhQQHvQ==
-=3ETZ
------END PGP SIGNATURE-----
-
---QDYpO5gEOaeXSXfw--
+jon
 
