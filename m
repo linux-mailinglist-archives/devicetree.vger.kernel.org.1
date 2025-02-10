@@ -1,154 +1,281 @@
-Return-Path: <devicetree+bounces-144628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E9AAA2EAF7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:23:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0992A2EB17
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:31:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B33E7A1708
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:22:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63A121888036
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F19D71DE2A4;
-	Mon, 10 Feb 2025 11:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DFAC1E0E00;
+	Mon, 10 Feb 2025 11:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="eQ4nxJES"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="JpmWN1g6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D691C5D7C;
-	Mon, 10 Feb 2025 11:23:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698441DF992
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 11:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739186589; cv=none; b=Xv/ZWkLB6had8c0aCtnxmQVbJUPmO87VHtpnEhqBUVGcnFn2I1ECkHqsMhXkC9WDf//pnDv8p56gtH4V13qhRR86QW8OB9xTJLun4nzvCzqZDB4fEiX3TbbZxYOf7r4WJaWJbLpHbQU9eaYz+VOIpY3Bx7G2tktoOV51JohzrSo=
+	t=1739187095; cv=none; b=MtaCFHXmEcU074E5+CqA7NFba2P/cL9CjT00CU7PCMTIE/X30Y/8I1v69Jqhb4o6vTQ63lFqM9YvoE/vAz/4RUpS4Pfl3+1rFnm6DYy6VQs7xGUlPXCbMerCKlUW6lIilhSzp8sixDemhrh3znAUCJAx3FCEtjP4tX7zgjBskuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739186589; c=relaxed/simple;
-	bh=2TfBb8YkHBjUcd2qbTj06jtJqA74ipyI1dLzWmzyRp4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CMBQVT+2GteCogxiM2tUQRZVt40T1WVPTeO67Vt9s99WRWxe+UWulBWC0SNR+ClbPiAMVK1mXBUjpOtggU+/BjL5eAYcFGbeh613Th6co0ci5mNcS3z6Eu01wnhbWK6YTcSj7ZRRCCu43Z5qVJr8KzAOo+VqC0DG7UhrKRWpD78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eQ4nxJES; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739186586;
-	bh=2TfBb8YkHBjUcd2qbTj06jtJqA74ipyI1dLzWmzyRp4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eQ4nxJESKZB4J0JFkg5Nk8KYNqeTOzP+Sf8VljtKSgz/vbFYNKynyDTvsGRDBIe/K
-	 NH0EcNQ8rHXCiiHdMgXvClbJABoqnKs+kaTOg2raVeJI/NbsXC7V/OHMk4LMWpTjdr
-	 /IqGJgFtoXI5JyzztBVldciULs31BkopnpoJR0vT6klju0S1HxyasgIYuLIAusPwvm
-	 tBIfg0GkaJQwf453X/lQxlHqGu2gqV4Y+ohZ6Ec23Vig626spJpLuLFLG6QyRrTnI6
-	 o5BQJCZr/Jky0L5WT8E1vc5U0aRGGIPVGpZT9ZOhGQTLUiIP4IFUNOQ0C+CcwbOn1d
-	 ZNfkne9lGJwnQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BF3F417E09F6;
-	Mon, 10 Feb 2025 12:23:04 +0100 (CET)
-Message-ID: <2fd97b1e-6546-4f43-bc60-15a812e66467@collabora.com>
-Date: Mon, 10 Feb 2025 12:23:04 +0100
+	s=arc-20240116; t=1739187095; c=relaxed/simple;
+	bh=JF/n15lnAm7NZMFbEUTi4J8f8m2TQ7lxj7+v1eHdIuY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rWvdNOJQTfb/qms6DRYkvy87j6+hn3ceCexrTmhpfJQIbRd/8Cl+6sk+4aqZeqGl9tU65VAC7xZOWqcoWMzjcH3yeFlMCHroTdaf+Gk9Amy3f7/2I9o9eKz+q8cgeZMv1tAD+v7tdRwAKvZxjudfo2cpgoh3ppormj4qIrWE2ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=JpmWN1g6; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 0FAB1240104
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 12:31:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1739187085; bh=JF/n15lnAm7NZMFbEUTi4J8f8m2TQ7lxj7+v1eHdIuY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=JpmWN1g6e9WQyrXQ7YqKa6Kz7YaEDYolPFawuJollCAzXyAykqbJGoZ+zalrhTLl8
+	 0f20eLO/gb+kGMQG2fH5TKmJEFrqGaN6UwBOAyyTSCiSuA57Gfh1FfJR75F2BTuW7Y
+	 /y2wCp2bUoNfwe8q67lwJI2tleg3YW+PS4g+S57IUQyxrG6AeC8sx71dc9aXf0Q5rE
+	 ikLvW6yzzw4cRkk6JOrSz2ttcOw/XLuzsx6rsHe0z0p6E3OCWI5L8kDFa14iqPeDcP
+	 /xijkoq/1z1YJJwTE3M4e6n7DlQEG+y3BB99cR2HqY4pCUnD30XDSw+fWIzzAOuBpH
+	 CY8rACCyyxnAw==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4Ys2TK4ysMz6tw3;
+	Mon, 10 Feb 2025 12:31:17 +0100 (CET)
+Date: Mon, 10 Feb 2025 11:31:01 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Crystal Wood <oss@buserror.net>
+Cc: j.ne@posteo.net, devicetree@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	Krzysztof Kozlowski <krzk@kernel.org>, imx@lists.linux.dev,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-mtd@lists.infradead.org, Li Yang <leoyang.li@nxp.com>,
+	John Ogness <john.ogness@linutronix.de>
+Subject: Re: [PATCH v2 09/12] dt-bindings: memory-controllers: Convert
+ fsl,elbc to YAML
+Message-ID: <Z6njdeo8kHw6RtYH@probook>
+References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
+ <20250207-ppcyaml-v2-9-8137b0c42526@posteo.net>
+ <Z6kQpuQf5m-bXTyt@buserror.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 27/34] drm/mediatek: mtk_hdmi: Cleanup function
- mtk_hdmi_resume()
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "jie.qiu@mediatek.com" <jie.qiu@mediatek.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
- <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
- <jitao.shi@mediatek.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kernel@collabora.com" <kernel@collabora.com>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- =?UTF-8?B?TGV3aXMgTGlhbyAo5buW5p+P6YieKQ==?= <Lewis.Liao@mediatek.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- =?UTF-8?B?VG9tbXlZTCBDaGVuICjpmbPlvaXoia8p?= <TommyYL.Chen@mediatek.com>,
- =?UTF-8?B?SXZlcyBDaGVuamggKOmZs+S/iuW8mCk=?= <Ives.Chenjh@mediatek.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
- "junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
-References: <20250113145232.227674-1-angelogioacchino.delregno@collabora.com>
- <20250113145232.227674-28-angelogioacchino.delregno@collabora.com>
- <f25eaced46e18a54896f20ae1c42ed6894da5e18.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <f25eaced46e18a54896f20ae1c42ed6894da5e18.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z6kQpuQf5m-bXTyt@buserror.net>
 
-Il 07/02/25 07:04, CK Hu (胡俊光) ha scritto:
-> Hi, Angelo:
+On Sun, Feb 09, 2025 at 02:31:34PM -0600, Crystal Wood wrote:
+> On Fri, Feb 07, 2025 at 10:30:26PM +0100, J. Neuschäfer via B4 Relay wrote:
+> > From: "J. Neuschäfer" <j.ne@posteo.net>
+> > 
+> > Convert the Freescale localbus controller bindings from text form to
+> > YAML. The updated list of compatible strings reflects current usage
+> > in arch/powerpc/boot/dts/, except that many existing device trees
+> > erroneously specify "simple-bus" in addition to fsl,*elbc.
+> > 
+> > Changes compared to the txt version:
+> >  - removed the board-control (fsl,mpc8272ads-bcsr) node because it only
+> >    appears in this example and nowhere else
+> >  - added a new example with NAND flash
+> >  - updated list of compatible strings
+> > 
+> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > ---
+> > 
+> > V2:
+> > - fix order of properties in examples, according to dts coding style
+> > - move to Documentation/devicetree/bindings/memory-controllers
+> > - clarify the commit message a tiny bit
+> > - remove unnecessary multiline markers (|)
+> > - define address format in patternProperties
+> > - trim subject line (remove "binding")
+> > - remove use of "simple-bus", because it's technically incorrect
 > 
-> On Mon, 2025-01-13 at 15:52 +0100, AngeloGioacchino Del Regno wrote:
->> External email : Please do not click links or open attachments until you have verified the sender or the content.
->>
->>
->> Remove the error print in case of mtk_hdmi_clk_enable_audio()
->> failures: since the APIs will already print on their own, having
->> one in there is redundant.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/gpu/drm/mediatek/mtk_hdmi.c | 9 +--------
->>   1 file changed, 1 insertion(+), 8 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
->> index 40eea5c125d2..c5431f160fe4 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
->> @@ -1703,15 +1703,8 @@ static __maybe_unused int mtk_hdmi_suspend(struct device *dev)
->>   static __maybe_unused int mtk_hdmi_resume(struct device *dev)
->>   {
->>          struct mtk_hdmi *hdmi = dev_get_drvdata(dev);
->> -       int ret = 0;
->>
->> -       ret = mtk_hdmi_clk_enable_audio(hdmi);
-> 
-> I do not find where to print the error message, could you provide where would print the error message?
-> 
+> While I admit I haven't been following recent developments in this area,
+> as someone who was involved when "simple-bus" was created (and was on the
+> ePAPR committee that standardized it) I'm surprised to hear simple-bus
+> being called "erroneous" or "technically incorrect" here.
 
-It's handled in drivers/base/power/main.c - upon failure, a pm_dev_err() will be
-executed, printing an error message stating that this (or any other) driver has
-failed resuming.
+It is quite possible that my understanding of it is incomplete or wrong.
 
-Cheers,
-Angelo
-
-> Regards,
-> CK
 > 
->> -       if (ret) {
->> -               dev_err(dev, "hdmi resume failed!\n");
->> -               return ret;
->> -       }
->> -
->> -       return 0;
->> +       return mtk_hdmi_clk_enable_audio(hdmi);
->>   }
->>
->>   static SIMPLE_DEV_PM_OPS(mtk_hdmi_pm_ops, mtk_hdmi_suspend, mtk_hdmi_resume);
->> --
->> 2.47.0
->>
+> For non-NAND devices this bus generally meets the definition of "an
+> internal I/O bus that cannot be probed for devices" where "devices on the
+> bus can be accessed directly without additional configuration
+> required".  NAND flash is an exception, but those devices have
+> compatibles that are specific to the bus controller.
 > 
+> The fact that the address encoding is non-linear is irrelevant; the
+> addresses can still be translated using the standard "ranges" mechanism. 
+> This seems to be a disconnect between the schema verification and the way
+> the compatible has previously been defined and used.
 
+This is what led me to my assumptions: The simple-bus validation logic
+in dtc complains about unit addresses such as nand@1,0 which are quite
+appropriate for the eLBC.
+
+> 
+> And as a practical matter, unless I'm missing something (which I might be
+> since I haven't been in devicetree-land for nearly a decade), Linux is
+> relying on simple-bus to probe these devices.  There is a driver that
+> binds to the bus itself but that is just for error interrupts and NAND.
+
+As of now, yes, that's correct. Without simple-bus, a current Linux
+kernel doesn't find the device nodes inside such a localbus.
+
+> 
+> You'd probably need something like commit 3e25f800afb82bd9e5f8 ("memory:
+> fsl_ifc: populate child devices without relying on simple-bus") and the 
+> subsequent fix in dd8adc713b1656 ("memory: fsl_ifc: populate child
+> nodes of buses and mfd devices")...
+
+I have prepared such a patch, based on the same assumptions:
+
+  [PATCH] powerpc/fsl_lbc: Explicitly populate bus
+  https://lore.kernel.org/lkml/20250209-localbus-v1-1-efcd780153a0@posteo.net/
+
+> 
+> I'm curious what the reasoning was for removing simple-bus from IFC.  It
+> seems that the schema verification also played a role in that:
+> https://www.spinics.net/lists/devicetree/msg220418.html
+
+Yes, that's the same as my reasoning.
+
+> 
+> ...but there's also the comment in 985ede63a045eabf3f9d ("dt-bindings:
+> memory: fsl: convert ifc binding to yaml schema") that "this will help to
+> enforce the correct probe order between parent device and child devices",
+> but was that really not already guaranteed by the parent/child
+> relationship (and again, it should only really matter for NAND except for
+> the possibility of missing error reports during early boot)?
+
+I'm inclined to agree with you, but it's somewhat beyond my skill level.
+
+I'll let Li Yang or Rob Herring comment on that.
+
+> 
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - fsl,mpc8313-elbc
+> > +              - fsl,mpc8315-elbc
+> > +              - fsl,mpc8377-elbc
+> > +              - fsl,mpc8378-elbc
+> > +              - fsl,mpc8379-elbc
+> > +              - fsl,mpc8536-elbc
+> > +              - fsl,mpc8569-elbc
+> > +              - fsl,mpc8572-elbc
+> > +              - fsl,p1020-elbc
+> > +              - fsl,p1021-elbc
+> > +              - fsl,p1023-elbc
+> > +              - fsl,p2020-elbc
+> > +              - fsl,p2041-elbc
+> > +              - fsl,p3041-elbc
+> > +              - fsl,p4080-elbc
+> > +              - fsl,p5020-elbc
+> > +              - fsl,p5040-elbc
+> > +          - const: fsl,elbc
+> 
+> Is it really necessary to list every single chip?
+> 
+> And then it would need to be updated when new ones came out?  I know this
+> particular line of chips is not going to see any new members at this
+> point, but as far as the general approach goes...
+
+As far as I'm aware, this reflects common practice today.
+
+> 
+> Does the schema validation complain if it sees an extra compatible it
+> doesn't recognize?  If so that's obnoxious.
+
+Yes.
+
+> 
+> > +examples:
+> > +  - |
+> > +    localbus@f0010100 {
+> > +        compatible = "fsl,mpc8272-localbus",
+> > +                     "fsl,pq2-localbus";
+> > +        reg = <0xf0010100 0x40>;
+> > +        ranges = <0x0 0x0 0xfe000000 0x02000000
+> > +                  0x1 0x0 0xf4500000 0x00008000
+> > +                  0x2 0x0 0xfd810000 0x00010000>;
+> > +        #address-cells = <2>;
+> > +        #size-cells = <1>;
+> > +
+> > +        flash@0,0 {
+> > +            compatible = "jedec-flash";
+> > +            reg = <0x0 0x0 0x2000000>;
+> > +            bank-width = <4>;
+> > +            device-width = <1>;
+> > +        };
+> > +
+> > +        simple-periph@2,0 {
+> > +            compatible = "fsl,elbc-gpcm-uio";
+> > +            reg = <0x2 0x0 0x10000>;
+> > +            elbc-gpcm-br = <0xfd810800>;
+> > +            elbc-gpcm-or = <0xffff09f7>;
+> > +        };
+> 
+> I know this isn't new, but... since we're using this as an example,
+> where is the documentation for this fsl,elbc-gpcm-uio and
+> elbc-gpcm-br/or?  What exactly is a simple-periph?
+
+fsl,elbc-gpcm-uio is handled in the following patch
+(dt-bindings: memory-controllers: Add fsl,elbc-gpcm-uio).
+
+simple-periph is something I haven't thought about, because this whole
+example comes from the old txt-format binding. The whole purpose of
+fsl,elbc-gpcm-uio is to allow userspace drivers to interact with
+localbus devices, so that doesn't make the intention any clearer, either.
+
+> 
+> There are no in-tree device trees that use this either.  The bcsr
+> node was actually a much more normal example, despite that particular
+> platform having been removed.  There are other bcsr nodes that still
+> exist that could be used instead.
+
+Ah, fsl,mpc8568mds-bcsr for example, good point. I'll add it back.
+
+> 
+> -Crystal
+
+Thank you for reaching out!
+
+Best regards,
+J. Neuschäfer
 
