@@ -1,48 +1,81 @@
-Return-Path: <devicetree+bounces-144738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 676CEA2F1C5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:32:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BED14A2F1CD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:33:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8570B16495D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 15:31:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9AE1165C52
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 15:33:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C684A23AE8E;
-	Mon, 10 Feb 2025 15:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11C923FC56;
+	Mon, 10 Feb 2025 15:33:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z7SoGIuh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T6RoTPH2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE522397A0;
-	Mon, 10 Feb 2025 15:31:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B171E23ED7F
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 15:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739201509; cv=none; b=gvWj3Rx4QGY3JLOyIidy0cTwaKSRiElk46BZAAoJoF+oVyVrDP+yt8OKUbRL0H3ZfOVcYLU6avXRfYLOOytk9rr/zx6MhLrBSRoaxIhhtGcCYX4relVa+RACzc1/oLDlpRDyoOqlAeqpEycHcNCKL/E2bO1NeCHm7v9q4B+jRIc=
+	t=1739201612; cv=none; b=TwY/xpK9LR9q1v7Lj2FIP6CK75OjzFnQU+qbSqUsUjOt1yecDzLkGWsJm/3yGDwq/llHwxB4cuHMQkvBY1c5VIMcFwMJ3gjw0I3eZIhh/wZMXO+FvECtgRt9heTm9UcRPbrkX8rVK6Mv6dyouOhmWHkQpyIj2QkXeZj7GZaoGT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739201509; c=relaxed/simple;
-	bh=ZwDJ0wYVxWq9z5KRz0NCZ9cLEb8iWGgDrmAEcJ43FGc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lREew3wQJU/CBrlYAkHAwBdOGW15Ux9TN0IvFp2IYlgDw9PaCWwbNgPU9y0Ilz0ZJO9VWwI4+XnJ0iH5F0nyfwF3b5LCGIe3ytshFA6Z6c31D8C6NqZ39+HELZ6oXD71Y+7s6xWLKXcnm3sIYEQxFM7obBjGL5KIsYYAPLhcACY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z7SoGIuh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 288EBC4CED1;
-	Mon, 10 Feb 2025 15:31:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739201509;
-	bh=ZwDJ0wYVxWq9z5KRz0NCZ9cLEb8iWGgDrmAEcJ43FGc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Z7SoGIuhzGUt9ZodMmXD9pD9erQLR42hWX6ks7ABD3b3o0Rhg1Iv9V68JuZFD/fAM
-	 FYwCjruKIfiaH4Ljp0i6kTCfMYHdDheX65u52lP3Q+31BwOkv++RZTKCh7FiIStUW6
-	 +b0JrjjnN0rzWKmewCnXD2sTzNIJ++dPQcykY9Rjoyp/c8KqF0EjByv0TQhaCy2eTv
-	 cRCi0RZQ6iQwtla9OgRUDPCZIjOnofcoJTCQwWSbroVrFT4XZbSrLnpAcR1XqzgHV7
-	 DSULcDB9oh50bEHlNS+AabE29In+4N71fSjfQijgeD4uCuvi34iAdqb69sZGSQcnac
-	 tp2Q/qFiz242A==
-Message-ID: <d3ba0ea5-0491-42d5-a18e-64cf21df696c@kernel.org>
-Date: Mon, 10 Feb 2025 16:31:45 +0100
+	s=arc-20240116; t=1739201612; c=relaxed/simple;
+	bh=02Lo1tE6iEG1kGJeBrFmTBWmHN3fFLj5oqGySsCSyIs=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=BT0woEZyrvRoQ2NwBIJE4Yz16o/Zmj924y+WfCSFjjaYWd1+7sPytK1aLtngueCdJSjnflfBoLVC7N0XozZbXkhdw5Qq2rb7hguANYn0xfFHv9K6Xpt87oqYz7bxucoaG1wVfw2TrgvmqkFpa1sfH2QDttU9zpcuV0//C4os3xA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T6RoTPH2; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-38dc9eba8a1so2702592f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 07:33:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739201608; x=1739806408; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TVrkz1XR/5L7o4lXRR2CcNoJwEZ5Op4zpWZ8bBSgElM=;
+        b=T6RoTPH2ubWz+9E0R2HMCkV5lBDY94qIVJtJdoYruy3Yl2Ppk5z1dwMVGm38LLb5Ox
+         wUywkZcwQJgUvdwU/RaxqgwuB4JUbVoqAIZfyBWOR316yWDY3pfrnoWkUg/sH+99x+yT
+         D38nUSaZY9UTlXnKVeCx4RDdTUyPp+0lhx/ZkTJ5btAYRgf/zaxLTKNAM3i61v5sU/ey
+         ViasJZ4J4UsAXEKfCw8mFxkNcoU87szrq/TZHpK6XXR6PkK6gRpAEpI3gNUlm7Q7N1VV
+         s/Lf7MTaPsrH3wQML72O/Fl0Qm7ugZEVv8JRY2t0i1lFGaulmmfCBdwbPTbmJE8S88j5
+         rwvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739201608; x=1739806408;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=TVrkz1XR/5L7o4lXRR2CcNoJwEZ5Op4zpWZ8bBSgElM=;
+        b=UQ9CSXv0h5LQmmd1uPHwhR1hgU2/do6ywe/zSsEiJxHIpUuT15/N0H3podnIJT41n8
+         DlzhZoQ73UVdiu7NPX463U7U7KN4kMoyvPXcU9bFQ9LJEogJSQMWynfWNE+RsWW5ENEN
+         7YJHni6UFNfYa9GEelz2OK9wmFhMAjDqyw9LT6+lGpEAYnltWGFdmNG78c7X+G7Gppmz
+         uB3vscZt9tUYqYYfNO/IFPtsbc9nWVxNL4xr3Fa1a2+A613vsimf6O2KtSPdfOONbWGR
+         ka82BBOPm5GmgoJUCSQUqfvy2V672b20X27S04+08VmLK3Um709y6EYOCdYrWRjI23lP
+         RmaA==
+X-Forwarded-Encrypted: i=1; AJvYcCVWbRavJDT414rx5Y84YtcI+9jSca9Hi4yvqj0oz2fNrRJboWrajMHBXsbgkl0EMpPyYV1YIouKlVdd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1ZEPeNVvKFDcOcl7b7w0RXeC429SjaCXsOyP7W4eL2EvHbwkT
+	EhchmpfKhHZ/YTsfnfMoCsu0o1yUHTecMw3eTsbIrDJxyKXPuP2r+i5ASllQe/k=
+X-Gm-Gg: ASbGncvFQI/2OngnDUHnW/dHLf+qjBhmByZUYjitOE7NCHHXIrOjOCLrSEowP3bYrXY
+	F3GUOxcbKTYVBLKzH1jySa8G7pjH9zTaBBbDIYBU6V84NVSmow/E24KKwYCcxdYuImUL3VqUoPw
+	hJQaBSvF4QmOjlhblkAudwScaEF9/qVdRX+c1YiKxtz06KT2rVg4aUOwVnDRvPnEpA73Pp65QHv
+	sdsNp6hmOqsT4darKMel81c+wdT4N8lLOQYNNAGPt4h32VOQk+auR9MLDO4vIbecidCye76I+9i
+	tPCoH6xavmbr8ql7+MTn18//LGHwqquvtBu40O2yZX5iCe4dId6kh/hvb45R/tj46Znx
+X-Google-Smtp-Source: AGHT+IHgsDDIzZ/362b0PgA4OgoceC2gDSnSj2avMSkRco2nZxuQFo3QskAu+sfcxQLy2Ge5sZ83CA==
+X-Received: by 2002:a05:6000:1fab:b0:38d:df05:4f5 with SMTP id ffacd0b85a97d-38ddf05078fmr3599039f8f.42.1739201607906;
+        Mon, 10 Feb 2025 07:33:27 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8235:1ea0:1a75:c4d5? ([2a01:e0a:982:cbb0:8235:1ea0:1a75:c4d5])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4390db110dfsm188164975e9.36.2025.02.10.07.33.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Feb 2025 07:33:27 -0800 (PST)
+Message-ID: <2d1ab1fe-6d98-4b54-910c-f371f708039d@linaro.org>
+Date: Mon, 10 Feb 2025 16:33:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,125 +83,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/10] riscv: dts: sophgo: cv18xx: Split into CPU core and
- peripheral parts
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, soc@lists.linux.dev
-Cc: Inochi Amaoto <inochiama@outlook.com>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
- <20250209220646.1090868-3-alexander.sverdlin@gmail.com>
- <dda5297c-fdf3-494f-854f-71a5000729e5@kernel.org>
- <4d171a4fdf7ce9bfbe6352b36d6b6791584f86c4.camel@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <4d171a4fdf7ce9bfbe6352b36d6b6791584f86c4.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 0/5] Add UFS support for SM8750
+To: Nitin Rawat <quic_nitirawa@quicinc.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
+ Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+ Manish Pandey <quic_mapa@quicinc.com>
+References: <20250113-sm8750_ufs_master-v1-0-b3774120eb8c@quicinc.com>
+ <c6352263-8329-4409-b769-a22f98978ac8@oss.qualcomm.com>
+ <20250209152140.cyry6g7ltccxcmyj@thinkpad>
+ <ae9ba351-53c8-4389-b13b-7b23926a8390@linaro.org>
+ <92e77d82-7c76-4cc4-8e7d-7b72b57ab416@quicinc.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <92e77d82-7c76-4cc4-8e7d-7b72b57ab416@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 10/02/2025 15:26, Alexander Sverdlin wrote:
-> Hi Krzysztof!
+Hi,
+
+On 10/02/2025 12:15, Nitin Rawat wrote:
 > 
-> On Mon, 2025-02-10 at 09:43 +0100, Krzysztof Kozlowski wrote:
->>> diff --git a/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
->>> new file mode 100644
->>> index 000000000000..53834b0658b2
->>> --- /dev/null
->>> +++ b/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
->>> @@ -0,0 +1,313 @@
->>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->>> +/*
->>> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
->>> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
->>> + */
->>> +
->>> +#include <dt-bindings/clock/sophgo,cv1800.h>
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +/ {
->>> +	osc: oscillator {
->>> +		compatible = "fixed-clock";
->>
->> I really doubt that external oscillator is a peripheral. This is either
->> part of board or the SoC.
->>
->>
->>> +		clock-output-names = "osc_25m";
->>> +		#clock-cells = <0>;
->>> +	};
->>> +
->>> +	soc {
->>> +		compatible = "simple-bus";
->>> +		#address-cells = <1>;
->>> +		#size-cells = <1>;
->>
->> No, override by phandle/label instead of duplicating SoC.
 > 
-> Is this one critical? Otherwise I struggle in v2 to both keep
+> On 2/10/2025 3:09 PM, neil.armstrong@linaro.org wrote:
+>> On 09/02/2025 16:21, Manivannan Sadhasivam wrote:
+>>> On Fri, Feb 07, 2025 at 11:47:12PM +0100, Konrad Dybcio wrote:
+>>>> On 13.01.2025 10:46 PM, Melody Olvera wrote:
+>>>>> Add UFS support for SM8750 SoCs.
+>>>>>
+>>>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>>>>> ---
+>>>>> Nitin Rawat (5):
+>>>>>        dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy: Document the SM8750 QMP UFS PHY
+>>>>>        phy: qcom-qmp-ufs: Add PHY Configuration support for SM8750
+>>>>>        dt-bindings: ufs: qcom: Document the SM8750 UFS Controller
+>>>>>        arm64: dts: qcom: sm8750: Add UFS nodes for SM8750 SoC
+>>>>>        arm64: dts: qcom: sm8750: Add UFS nodes for SM8750 QRD and MTP boards
+>>>>
+>>>> You still need the same workaround 8550/8650 have in the UFS driver
+>>>> (UFSHCD_QUIRK_BROKEN_LSDBS_CAP) for it to work reliably, or at least
+>>>> that was the case for me on a 8750 QRD.
+>>>>
+>>>> Please check whether we can make that quirk apply based on ctrl
+>>>> version or so, so that we don't have to keep growing the compatible
+>>>> list in the driver.
+>>>>
+>>>
+>>> That would be a bizarre. When I added the quirk, I was told that it would affect
+>>> only SM8550 and SM8650 (this one I learned later). I'm not against applying the
+>>> quirk based on UFSHC version if the bug is carried forward, but that would be an
+>>> indication of bad design.
+>>
+>> Isn't 8750 capable of using MCQ now ? because this is the whole issue behind
+>> this UFSHCD_QUIRK_BROKEN_LSDBS_CAP, it's supposed to use MCQ by default... but
+>> we don't.
+>>
+>> Is there any news about that ? It's a clear regression against downstream, not
+>> having MCQ makes the UFS driver struggle to reach high bandwidth when the system
+>> is busy because we can't spread the load over all CPUs and we have only single
+>> queue to submit requests.
+> 
+> Hi Neil,
+> 
+> There is no relation b/w LSDBS_CAP Register and MCQ support.
+> That registers just indicate when MCQ support is present on any SOC,
+> whether Single queue mode is supported or not on that SOC.
+> 
+> In SM8650 and SM86550, just the pored value of that register was incorrect which was fixed by WA but actually functionality was present and working fine.
+> 
+> Pored value of that register has been fixed from SM8750 onwards.
 
-Yes, because duplicated definition is both pain and confusing. It is IMO
-semantically not correct - there is only one soc, not two SoCs. If you
-have two, then you miss proper unit address.
+Thanks for the explanation, but this doesn't answer about the state of MCQ
+for SM8550, SM8650 and SM8750. I would've expected to have MCQ for SM8750
+in the first patchset.
 
-> SOC_PERIPHERAL_IRQ() in [a new] cv18xx-cpu.dtsi and reference &soc
+Neil
 
-SOC_PERIPHERAL_IRQ() does not belong here, but to the base DTSI for your
-arch. I would rather recommend not to create fake DTSI structure
-reflecting some arbitrary choice. cv18xx-cpu.dtsi is not better - for
-example type of interrupts are rather arch or GIC specific, not the CPU.
-Unless you meant something else by CPU, but then it is getting more
-confusing.
-
-Look how others, e.g. Renesas, defines it - no problem overriding soc,
-no problem with SOC_PERIPHERAL_IRQ().
-
-> from cv18xx-cpu.dtsi. It's kind of circular-dependency.
+> 
+> Regards,
+> Nitin
+> 
+>>
+>> Neil
+>>
+>>>
+>>> - Mani
+>>>
+>>
 > 
 
-
-Best regards,
-Krzysztof
 
