@@ -1,201 +1,154 @@
-Return-Path: <devicetree+bounces-144691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61FDFA2EE7C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:39:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79148A2EE9E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:46:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ED7518815C1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:40:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A2633A02DF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F4040230987;
-	Mon, 10 Feb 2025 13:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7ED41DF744;
+	Mon, 10 Feb 2025 13:45:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hz79wdjc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2335222FF37;
-	Mon, 10 Feb 2025 13:39:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D6581C245C
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 13:45:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739194791; cv=none; b=Y78EbI54KsTnriSpSdoIgR5nHk7fMrnKJdIybrqsCL4+hdGqRUlsydo5Dq7L4Vaj+tN+6Yg4/0/ioRC6gBItVvIkhY5kYzLYfvfP4hQoTbF0hwe563Nk04pRe4ZioKLVVY6WyyZSjCJxkqwi+efbRpoIygyYNzAnAfsBVNF57Xk=
+	t=1739195157; cv=none; b=pOmMRmn9py2YQEk1b8gDSdW+hEcKXtwxqQiDsySJzuLNt8rqIoxFoOGf2cGNfwfJLHiwLKRGqLnQPVeaTqhj9zHHEmGkUuI4fpi5k8etzk5CKHqC892BH2WmClymL2eZrTNQAQkaIqPUt7CEkjCjsP/z36VTy3LFPB2M4MM671c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739194791; c=relaxed/simple;
-	bh=bvgKcF/zsPsZW1pYAnIB1W+ArRQZobLALphZkahUOcE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Qyw9FtFKv23lr/0r+7tJW7MoNLNXZUB0Rh/Z1YVJMZX1sY6LBmx5dC03BLqFopXbTG+Y53LbDwCyjREiRpHpMYQr5OqgWONU+YMSNWsYzfZ5F1ZB9GpQD47jJbOgjRSXpSFjPEPROlHjwHuSy/4IDnSEZ7+4ccgaLkGh6wsd4AU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1739195157; c=relaxed/simple;
+	bh=QbPTsi4OAjSIrBQnM76xMZPd9/WffLeZlO9a1bLVPwg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=DaNEJr4TGAk7WPjKXwA0OGJpMWzlyYyg0jUwiz2cdcHv5fhjAoDFXHK6FK9/0IGft/vLsTsLjLEJwe309KBg3KkikTUxgYYDeDRy71vDHipMegrU9OIIiS/8i5s3VIdWiCE0yG36iSQTmGwrHtiNOaxHlZQlpnzbVz122LAicB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hz79wdjc; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-51eb1a714bfso2726674e0c.3;
-        Mon, 10 Feb 2025 05:39:49 -0800 (PST)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-38dcc6bfbccso1638153f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 05:45:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739195154; x=1739799954; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=B0QSMz5PoYwxWIMQ1TQSMM0I1UZCTAzfF9T8ctLhX2A=;
+        b=Hz79wdjcLl3Nxgt6Iwb1UD93SRuQnpUstxgOcbUMAZE3BAeCRl8HlBUGebtYs6utMv
+         oJJHi8zWDjd3PBqRZlC82EWD4nXEYEiowZhePfW5ELhAK/g7yAsOctkmC4pEshyT3GoV
+         9oiMgb5aJWeWdkmYakZPzaWqPLiA7MXsuEhoh/VGtofS/Vqw5C6pp/86FGOt609UWfKi
+         zLhk+iN6esQf6dQfbsFadIUapW/55Kcuq/BEsAT7teAndclBsV/dBHj1CmTFIDU/ZGjY
+         zm8xRn5ZaUP5AFR2jsndJUe+H4V442+TinsA7v6p7UDrSHO+scD1WNIbJPNXoNnepl2o
+         XimQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739194788; x=1739799588;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6cMEUxxIiVjhSag/1DMe0EfQjJIVo434JzDuK6UAnU8=;
-        b=g+BlbQM7nsHAZdfAaTnt95ZHytLvUcPBkcVp86t7YKEL8TonkEEJuP3YB2T0zrK63E
-         vXSRYy9snd4u6xxAucD8tTAaEdwqk0J+fLGledEx8mQkzK9SfYFoJZX+aT9ydxXlIFvv
-         WyU6ZgXyLhNuNYFzGTWCfZaXHggTjtaiS8EFLSuq6UYyvY6/2c0VqTNyqZHAw0dWcNbA
-         HZkXLPaI6WVXrLWEozfNIFdWUslesf4jNlHpjW1QiYA8L11VsYMdhdNfAIOZC8qynwxA
-         oXO+TD1BFW4lwFCKzXP9fLMvM8y9hMfZ7V8RKxDExMuTqZXc5aYqzHc4WMVLorIQvXJE
-         svFw==
-X-Forwarded-Encrypted: i=1; AJvYcCU0Lglj7zU7LMjpgEtfbacFVO1AWZdgmlLvjKeEQpgLzss5lWxnhxyPZeq1hJBd3HkzpzNTCkpGbWHyoSZAfnXiGOQ=@vger.kernel.org, AJvYcCUBy3VEVztXHOdedBaRP/CHAUmWAWLN58q40o+ud/VT4g8fMW4AZnqr/5yE3oluzIbsS9ByFibVbmgk@vger.kernel.org, AJvYcCUJwWG/qhek9OnGQQHunAOHYn/y3mtfBKb99vgqXN+JtKi0cF3yi8uocANtXEP/4smo3d/+Ug1DOwiZ@vger.kernel.org, AJvYcCVBJPifwm50rhqLbbIQfpQSIOLI2lKK52iUYdYQoXdGwFKPecRFcW6NSTL3BHwCTPm8UtfpA2o4hLAQxmcs@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCuEEqsPnziX5NxZGVg899mO6DMl0B7eAh6lYIeGK0jTmIIbJF
-	bGru5nKfsQ9q9AcGyZEcs18FS9OsYyQE8KaLl2FPVCdkZB7v7tKzjbOD6CPD
-X-Gm-Gg: ASbGncspaL+A0MD1wzq2WAcHsRkvDHn+xY5E3ap1p0SOatGJM8Qze+JYiV9tnFxma/W
-	pMmY+XZpw4N3f9f9vk+wYSiONoZoFBPnAkaevJksny0dJFM9rAYYf8ZmoPBp9EXOFB7qF+P8kL8
-	ybt0n9JN1e0bVnZEZfKh5QvCQAs97MR1luV44rOHsJmDgMoyrRJpfBXX1izIhr8axcEpC0x6zi7
-	k9cnqQSzN0BdYXLOzDlhe9w3bzbBffh/YDBe3kr+2skhCmQEZlv4IK0thwBoMZgRyq1ohLnM6gV
-	OkIxb/aHGzlgweug16xO8w8AV7//sDuL5t9TCGBWe+PIoDBH4wQJsw==
-X-Google-Smtp-Source: AGHT+IGPtN83FakRFO5HUE7kQGUQ+JmavU4Q5MDms4m3T7gkh1q7lJuK+nlzEpznNZPZ2jfp8PUvOw==
-X-Received: by 2002:a05:6122:c9d:b0:51e:9efb:a23a with SMTP id 71dfb90a1353d-51f2e105cbfmr8950592e0c.5.1739194787361;
-        Mon, 10 Feb 2025 05:39:47 -0800 (PST)
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52050a2c061sm81485e0c.32.2025.02.10.05.39.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Feb 2025 05:39:46 -0800 (PST)
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4bbd3cff198so453576137.2;
-        Mon, 10 Feb 2025 05:39:46 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV5PAe8RouCNGEeY99ygw5C8pJ6BVmdUG/j3yHWaKZJrZ0EyK6PvOgy3FW7XaT0bc7gJJH3yF+zdftl3+hq@vger.kernel.org, AJvYcCWhEcy4rZQ++0zU0MpqIoXzpiQqx24IowxLYNe75/TmLeRt9gm16Aa/gwvZpBfx82BXvSt8fGx2kSdyvt+Vew6Paog=@vger.kernel.org, AJvYcCWhddMV/BI9Z8Z02o//vJWbPiR/X62Qz9Sro7oRo2npBN2IzYdjJX3u/T5rSMgzX84tBgFAGlbLoG6T@vger.kernel.org, AJvYcCWxZE7RAdq5rohSZqPnPr/vt7hY+7WZKk+t+FQqqXVitg0L35w6+fnMCV5AkazOaTpQ+/rZVQjFHxKR@vger.kernel.org
-X-Received: by 2002:a05:6102:b14:b0:4af:f8b9:bea3 with SMTP id
- ada2fe7eead31-4ba85e5e938mr9199396137.15.1739194786481; Mon, 10 Feb 2025
- 05:39:46 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739195154; x=1739799954;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B0QSMz5PoYwxWIMQ1TQSMM0I1UZCTAzfF9T8ctLhX2A=;
+        b=qLxzQ23n6qFRpV3UfHesCUzBZ0FPNw2rWNws9PuOUEsIGb1XP380VyMrRs4W8+uvxp
+         tf5r6XfT34SW6EbJiUZx4c4CQ4nXrKZc/76iM3YJuGZgydMVBkVLCKOducwSVGURoUfw
+         jkLRBpJTyQYe6Ap8Dn1WgdTfr4OleLMiPKT4Z+RtmzRQCsFDOaMqnfowgoqCuYDoND3k
+         gyGwlhF9B4gbmJKy7MpSIhxnK6ZuFtI1sLvdOMf5DBZHN7xjRpf6AWVC8VgvQpx20YSu
+         Vl08mDMZktbXEK/69QtLSVWV71QNFXBdot88HKDNx8hbN7K5pSQ0zZAziYG1YCEJ1O9X
+         x2TA==
+X-Forwarded-Encrypted: i=1; AJvYcCUYHF2LAR6sU663o7cFoguV/2QGADoEmJAUIz/0TzybnX4YHSj7CveIuEiaAgSGSv7zHuGaiDxZQgJx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdtlzsiY4Z+FxkT1s6SqOy3qNvfjvxYzJujb1fMPkxEV1EWGz0
+	c9CjcfVyLHRFprBHt9uUyok6b2jd8XeWdUkFDGE2Pt8mSufZkWOy
+X-Gm-Gg: ASbGncsXf/KK60ZZMi3aOKWn8wQiZBWjoR/odpBqZqNK6kx5l9nO1uYY9+nO7QWHqeg
+	rfLtnWi9iP4JpT+DuJBJ/4JW8XMlehn30AEa7o4k0rmCktvQBHWgGUoN7hvw/drXjJzVyoVV98G
+	Ku3ieV1+Og6yDt6hOyXwiSvV39LQ/4EgoXglfoHR2X1DudImKCMySMU3QMXK0RNdFktK6kUTmnb
+	yt+vpYLe9f+ToBa3baCYkYGXim6Z8l3+m7EBblqWcJf+B8VVbjCqf4yHYp6F1GXNmeTFx7ORrfv
+	TwEhRDVBK+yPW9Jx7drYNaaoLbcxaVSH
+X-Google-Smtp-Source: AGHT+IH9uHWSiEXMVmzjpVAxMhboYo6LDwjJ5Xy7khI/V14PrgJYtGxDMf03BQTGcuTX+S72JWXzFg==
+X-Received: by 2002:a05:6000:156e:b0:38d:c2d4:2399 with SMTP id ffacd0b85a97d-38dc9347ff2mr11108966f8f.41.1739195153957;
+        Mon, 10 Feb 2025 05:45:53 -0800 (PST)
+Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dcd21fe18sm9233159f8f.91.2025.02.10.05.45.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Feb 2025 05:45:53 -0800 (PST)
+Message-ID: <7fa3501bd59697e65ab1387e25cb815180c3378c.camel@gmail.com>
+Subject: Re: [PATCH 02/10] riscv: dts: sophgo: cv18xx: Split into CPU core
+ and peripheral parts
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, soc@lists.linux.dev
+Cc: Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
+ <inochiama@outlook.com>, 	linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, Haylen Chu	 <heylenay@outlook.com>,
+ linux-arm-kernel@lists.infradead.org, Paul Walmsley	
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou	
+ <aou@eecs.berkeley.edu>, Arnd Bergmann <arnd@arndb.de>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>
+Date: Mon, 10 Feb 2025 14:45:51 +0100
+In-Reply-To: <dda5297c-fdf3-494f-854f-71a5000729e5@kernel.org>
+References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
+	 <20250209220646.1090868-3-alexander.sverdlin@gmail.com>
+	 <dda5297c-fdf3-494f-854f-71a5000729e5@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250129165122.2980-1-thierry.bultel.yh@bp.renesas.com> <20250129165122.2980-5-thierry.bultel.yh@bp.renesas.com>
-In-Reply-To: <20250129165122.2980-5-thierry.bultel.yh@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 10 Feb 2025 14:39:34 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU782OZcug9DJnnm6Yz3gTJfjaz3_wbRVUDg334dkVrJA@mail.gmail.com>
-X-Gm-Features: AWEUYZmn9YNCQWAsUIaaP9A_bpMkZmF0h5OLfC9QOl_Iy3p8mjd3hchwtHUxn-o
-Message-ID: <CAMuHMdU782OZcug9DJnnm6Yz3gTJfjaz3_wbRVUDg334dkVrJA@mail.gmail.com>
-Subject: Re: [PATCH 04/14] dt-bindings: clock: Document cpg bindings for the
- Renesas RZ/T2H SoC
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 
-Hi Thierry,
+Thanks for quick review Krzysztof!
 
-On Wed, 29 Jan 2025 at 17:52, Thierry Bultel
-<thierry.bultel.yh@bp.renesas.com> wrote:
-> Document RZ/T2H (a.k.a r9a09g077) CPG (Clock Pulse Generator) binding.
-> Add the header file for the resets and clocks definitions.
->
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+On Mon, 2025-02-10 at 09:43 +0100, Krzysztof Kozlowski wrote:
+> On 09/02/2025 23:06, Alexander Sverdlin wrote:
+> > Make the peripheral device tree re-usable on ARM64 platform by splittin=
+g it
+> > into CPU-core specific and peripheral parts.
+> >=20
+> > Add SOC_PERIPHERAL_IRQ() macro which explicitly maps peripheral nuberin=
+g
+> > into "plic" interrupt-controller numbering.
+> >=20
+> > Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> > ---
+> > =C2=A0 arch/riscv/boot/dts/sophgo/cv181x.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> > =C2=A0 arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi | 313 ++++++++++++=
+++++++
+> > =C2=A0 arch/riscv/boot/dts/sophgo/cv18xx.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 305 +----------------
+                                 ^^^^^^^^^^^
+[1]
 
-Thanks for your patch!
+> > --- /dev/null
+> > +++ b/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
+> > @@ -0,0 +1,313 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> > + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
+> > + */
+> > +
+> > +#include <dt-bindings/clock/sophgo,cv1800.h>
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +/ {
+> > +	osc: oscillator {
+> > +		compatible =3D "fixed-clock";
+>=20
+> I really doubt that external oscillator is a peripheral. This is either
+> part of board or the SoC.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/renesas,rzt2h-cpg.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/renesas,rzt2h-cpg.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/T2H(P) Clock Pulse Generator (CPG)
-> +
-> +maintainers:
-> +  - Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-> +
-> +description:
-> +  On Renesas RZ/T2H SoCs, the CPG (Clock Pulse Generator) handles generation
-> +  and control of clock signals for the IP modules, generation and control of resets,
-> +  and control over booting, low power consumption and power supply domains.
-> +
-> +properties:
-> +  compatible:
-> +    const: renesas,r9a09g077-cpg
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: EXTAL clock input
-> +      - description: LOCO clock input
-> +
-> +  clock-names:
-> +    items:
-> +      - const: extal
-> +      - const: loco
-> +
-> +  '#clock-cells':
-> +    description: |
-> +      - For CPG core clocks, the two clock specifier cells must be "CPG_CORE"
-> +        and a core clock reference, as defined in
-> +        <dt-bindings/clock/renesas,r9a09g077-cpg.h>,
-> +      - For module clocks, the two clock specifier cells must be "CPG_MOD" and
-> +        a module number, also defined <dt-bindings/clock/r9a09g077-cpg.h>,
+This is actually a problem of the original cv18xx.dtsi [1]. Do you think
+I need to fix it as part of my series? This would touch all the pure
+RiscV boards (using CV18xx SoCs, not SG200x SoCs), which I could avoid
+otherwise.
 
-As there is a set of 32-bit Module Stop Control Registers (albeit
-inconveniently named A, B, C, and so on (including some gaps)),
-the hardware documentation does provide you with a number space like
-on R-Car.  Hence I think you're better off without defining module numbers
-in the DT bindings header file.
+--=20
+Alexander Sverdlin.
 
-> +    const: 2
-> +
-> +  '#power-domain-cells':
-> +    const: 0
-> +
-> +  '#reset-cells':
-> +    description:
-> +      The single reset specifier cell must be the reset number, as defined in
-> +      <dt-bindings/clock/r9a09g077-cpg.h>.
-
-Likewise for the Module Reset Control Registers and the reset numbers.
-
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +  - '#power-domain-cells'
-> +  - '#reset-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-controller@10420000 {
-
-That address can't be right ;-)
-
-> +        compatible = "renesas,r9a09g077-cpg";
-> +        reg = <0x10420000 0x10000>;
-> +        clocks = <&extal>, <&loco>;
-> +        clock-names = "extal", "loco";
-> +        #clock-cells = <2>;
-> +        #power-domain-cells = <0>;
-> +        #reset-cells = <1>;
-> +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
