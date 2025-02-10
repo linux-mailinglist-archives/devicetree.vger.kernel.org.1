@@ -1,188 +1,132 @@
-Return-Path: <devicetree+bounces-144584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63F49A2E89B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:05:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B12A2E8AE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:07:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F325A162870
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:05:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 964FA3A2A45
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B5E1C9DCB;
-	Mon, 10 Feb 2025 10:05:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4531C5D7A;
+	Mon, 10 Feb 2025 10:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="djT9CY5J"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kcs5z9wH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0994C1C6FF0;
-	Mon, 10 Feb 2025 10:05:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E1C21C54AF;
+	Mon, 10 Feb 2025 10:06:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739181903; cv=none; b=G5ujmqKIbo0Mz5Ubz2Q5i03QppcSsNDURxRNp1N2BYAhRmdpY4f0Zr9qGHyFnkxbuiC1PAfTFuWtgWLjIxkZgfPax97ekV1D15UGmwbSLhjTnhdMqbqe0OtpRUIGJrbbjsI9n3WIrBQZ36Zg/POp18IHfrARQwsQCYqLqba+CJk=
+	t=1739182021; cv=none; b=hNcLXTCep0qNZUlliWPQSZLys+v/E/EO7Zl2zPGOnT3IQx6nXkDBEctJAoW5pq89e4xsT5K4cnkt3S686WM2YOlAuMoCg2TY/D0bZdXmLYMU4Bq+OFdAy6Wo2B/DwBpnTuLXuB5fvttmOYeDpSVximpqodaHJpxXxDOo/KLh1Yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739181903; c=relaxed/simple;
-	bh=MsStyGB/s8toCJdgsIBul5jFwlgpyY05XQEDDYZX7IU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jbRSU3uUd1TfO3FM5EYwgsWvJhbrnmhnW14oc+Qr7EKwRq3kp0oY6ElH31gD7P2E/c86YkvXb7KN23BpWVuIfPYWgeSKLS6DpcfjUJW6QLziQXbkTpXuRPlNyIuG7h/QBxo0crLjhWMwGhZii/K46X/ouArM49EjfeQTxy+9WpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=djT9CY5J; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 81F17442A5;
-	Mon, 10 Feb 2025 10:04:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739181892;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=AJb8bkauCDhTBOcu8X/HjYqi4iRH5JJNhU2FKZwS+C4=;
-	b=djT9CY5JnUvFf4Rd2gWUzxSrpbB9MCYbNvoDPDv3FKOuTwvv6X4g3AhUpMHjJGjPo+jlpT
-	AFI4rCoyH7VDsFmSSLDgWxOvgrTa2MXWWNcxzHtFjeExYlOp6L2k+rBjgelQmnk/g0zQtD
-	y0ICAmmzdAoNV28D6kuxTkA25Xcy9ZH/UsaVbVUDFwQO9cIgrcxLYnogyAsCzKhoJEXSLU
-	vQZB2QqhFD/u3H3VrVOvEFisMee4/6do/wEPOBW8Tgc1aWrDkzNSBMedbrFWSSSLvzM9Sc
-	5cKP5ReoDV39Zvz/uAhIBDkwUs8i3D7b9cslvpUazE6Cq1A+/fEweUAhsoDVJw==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@outlook.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Jisheng Zhang <jszhang@kernel.org>,
- "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>,
- =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
- Simon Horman <horms@kernel.org>, Furong Xu <0x1207@gmail.com>,
- Serge Semin <fancer.lancer@gmail.com>, Lothar Rubusch <l.rubusch@gmail.com>,
- Suraj Jaiswal <quic_jsuraj@quicinc.com>,
- Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Inochi Amaoto <inochiama@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org,
- Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
-Subject:
- Re: [PATCH net-next v4 2/3] net: stmmac: platform: Add snps,dwmac-5.30a IP
- compatible string
-Date: Mon, 10 Feb 2025 11:04:40 +0100
-Message-ID: <5868742.DvuYhMxLoT@fw-rgant>
-In-Reply-To: <20250209013054.816580-3-inochiama@gmail.com>
-References:
- <20250209013054.816580-1-inochiama@gmail.com>
- <20250209013054.816580-3-inochiama@gmail.com>
+	s=arc-20240116; t=1739182021; c=relaxed/simple;
+	bh=5uoVeSj0QN4EeZcCrlskyNvROXSluRl4IF+26szp08I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NtVEttD/OsX2Af/yh5fOHPfEyoR2y0DF4dH4gtY+Z4nyXbs7/HQPVcsV55lXCSQxSYdoj/8IEq+FvoP1MsFeqYIX6+Kw+GeaDZB04nNoaAQODGtsiIGh2aLdXWbkEviP4JDi1BT6IIh5nkl59uE30sPhYaSmM0Q4l3WycDS24ps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kcs5z9wH; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739182020; x=1770718020;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=5uoVeSj0QN4EeZcCrlskyNvROXSluRl4IF+26szp08I=;
+  b=kcs5z9wHLHeh+oVGEtJrqvRYRRLDCb4vbj/upCCm8jyNEL8njo1TlLIP
+   rAZ2NumUDroMEQu9f9gYHYsmYcD+vy9/HIT4TdLQC7X7Kvtj9W/audGBH
+   rsds0lK5Fs7Sqj4NGsOG0uoSIIFRYrKT4gvVZzqzfJiorxBVoLEY37PQL
+   VKWysPLdCOmk50jk41IxZoECd/zfIULTuuOAgaKJTi63kkN80wkqyCB9T
+   d+yTLAe4F10Ng2oshXGza+QwNWy7uXep2Gmm+zy064+314vglGFLGGYF6
+   T+bI/NkndkbBWULNp2Qzf67yHIzxJh1HxNEUBhddDLuafrDsJUXSakWmn
+   Q==;
+X-CSE-ConnectionGUID: gTZZ8kYRRByoLnHb4lfNKg==
+X-CSE-MsgGUID: k3aytTCqT0ymGwYD4edwtA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11340"; a="39441232"
+X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; 
+   d="scan'208";a="39441232"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 02:06:59 -0800
+X-CSE-ConnectionGUID: 7wCeTMN+S+WsBMFPG+3Jsg==
+X-CSE-MsgGUID: Ag8YuZa0Q8K+IdhuN1X07A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="116214442"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 10 Feb 2025 02:06:55 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1thQgn-0012Yd-1S;
+	Mon, 10 Feb 2025 10:06:53 +0000
+Date: Mon, 10 Feb 2025 18:06:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Apitzsch via B4 Relay <devnull+git.apitzsch.eu@kernel.org>,
+	Daniel Scally <djrscally@gmail.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+Subject: Re: [PATCH v3 2/2] media: i2c: dw9719: Add of_match table
+Message-ID: <202502101730.OtKFel6n-lkp@intel.com>
+References: <20250209-dw9761dts-v3-2-14d3f00f0585@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart6136790.lOV4Wx5bFT";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefjeejjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepieekkeffvdeugfekjeegfefhvdetuefhtdelieduheeileduledvteelgefgffffnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefkedprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheprhhos
- ghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250209-dw9761dts-v3-2-14d3f00f0585@apitzsch.eu>
 
---nextPart6136790.lOV4Wx5bFT
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Mon, 10 Feb 2025 11:04:40 +0100
-Message-ID: <5868742.DvuYhMxLoT@fw-rgant>
-In-Reply-To: <20250209013054.816580-3-inochiama@gmail.com>
-MIME-Version: 1.0
+Hi André,
 
-On dimanche 9 f=C3=A9vrier 2025 02:30:51 heure normale d=E2=80=99Europe cen=
-trale Inochi=20
-Amaoto wrote:
-> Add "snps,dwmac-5.30a" compatible string for 5.30a version that can avoid
-> to define some platform data in the glue layer.
->=20
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> ---
->  .../ethernet/stmicro/stmmac/stmmac_platform.c   | 17 ++++++++++++-----
->  1 file changed, 12 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c index
-> d0e61aa1a495..8dc3bd6946c6 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> @@ -405,6 +405,17 @@ static int stmmac_of_get_mac_mode(struct device_node
-> *np) return -ENODEV;
->  }
->=20
-> +/* Compatible string array for all gmac4 devices */
-> +static const char * const stmmac_gmac4_compats[] =3D {
-> +	"snps,dwmac-4.00",
-> +	"snps,dwmac-4.10a",
-> +	"snps,dwmac-4.20a",
-> +	"snps,dwmac-5.10a",
-> +	"snps,dwmac-5.20",
-> +	"snps,dwmac-5.30a",
-> +	NULL
-> +};
-> +
->  /**
->   * stmmac_probe_config_dt - parse device-tree driver parameters
->   * @pdev: platform_device structure
-> @@ -538,11 +549,7 @@ stmmac_probe_config_dt(struct platform_device *pdev,=
- u8
-> *mac) plat->pmt =3D 1;
->  	}
->=20
-> -	if (of_device_is_compatible(np, "snps,dwmac-4.00") ||
-> -	    of_device_is_compatible(np, "snps,dwmac-4.10a") ||
-> -	    of_device_is_compatible(np, "snps,dwmac-4.20a") ||
-> -	    of_device_is_compatible(np, "snps,dwmac-5.10a") ||
-> -	    of_device_is_compatible(np, "snps,dwmac-5.20")) {
-> +	if (of_device_compatible_match(np, stmmac_gmac4_compats)) {
->  		plat->has_gmac4 =3D 1;
->  		plat->has_gmac =3D 0;
->  		plat->pmt =3D 1;
+kernel test robot noticed the following build warnings:
 
-LGTM
+[auto build test WARNING on 8f6629c004b193d23612641c3607e785819e97ab]
 
-Reviewed-by: Romain Gantois <romain.gantois@bootlin.com>
+url:    https://github.com/intel-lab-lkp/linux/commits/Andr-Apitzsch-via-B4-Relay/dt-bindings-media-i2c-Add-DW9719-and-DW9761-VCM/20250210-055506
+base:   8f6629c004b193d23612641c3607e785819e97ab
+patch link:    https://lore.kernel.org/r/20250209-dw9761dts-v3-2-14d3f00f0585%40apitzsch.eu
+patch subject: [PATCH v3 2/2] media: i2c: dw9719: Add of_match table
+config: x86_64-randconfig-161-20250210 (https://download.01.org/0day-ci/archive/20250210/202502101730.OtKFel6n-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250210/202502101730.OtKFel6n-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502101730.OtKFel6n-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/media/i2c/dw9719.c:363:34: warning: 'dw9719_of_table' defined but not used [-Wunused-const-variable=]
+     363 | static const struct of_device_id dw9719_of_table[] = {
+         |                                  ^~~~~~~~~~~~~~~
 
 
+vim +/dw9719_of_table +363 drivers/media/i2c/dw9719.c
 
---nextPart6136790.lOV4Wx5bFT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+   362	
+ > 363	static const struct of_device_id dw9719_of_table[] = {
+   364		{ .compatible = "dongwoon,dw9719" },
+   365		{ .compatible = "dongwoon,dw9761" },
+   366		{ }
+   367	};
+   368	MODULE_DEVICE_TABLE(of, dw9719_of_table);
+   369	
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEYFZBShRwOvLlRRy+3R9U/FLj284FAmepzzgACgkQ3R9U/FLj
-286J5g//fmDyVJafzX14tHwfj8aI+uwgNu7ZJxduC9DnxnYWy+EN+dby2S6/rlPN
-T4ypshgRrmYqPoji5FJKurYu3LHwUE/V8N2z06jexZaWXA8/VW+aNUkHoIbyHHko
-fYFD4Op0fKrWBGBHR+Hj8qJv2QbWFBc8vo4Swzk3PjbzLTx36g3gFWb/CUkP569I
-12TrG1wPA0ZBtugewKlLSdXOFVtDqsh0mTfCpQ8dsRjTc4TrVrcFDaxIW1aENksw
-0SIncY9LUMPnCW+IHHB7E8Ln6y84/ipUGsySMvtUOg/cnobji2ehcScRVh+QpuZQ
-L/P1dWf83kE5M1Kll9HPhs0R1qtrK2bWAaBamcDl79AW6c+4MPdBPxk9gaQmMuov
-/tiHVI0LagpoFV+Y/hXy7mMMRmqLAhlwwkmNiJuzYPnBJOReYcJ5kJ4QvCr+n0I9
-YQ+zLGBWxvi0aQk8p+qh8a6VZ+8I1aGmjGDluy9M+7f1wl1Rj3RMOOL8G86M4ZxD
-BnbNszU+FrI1fZObie8NsvvQwunu/bJcR1Mhn9RcyVcc/b6bIpAekcjcctz07P7B
-KWTz8PjEv0dHTX7k40Lr9GhZjKIQeVR3YMCNjzqvANzcCeEcSnnIY/r+U/hpK5jp
-ShGT0E6pno6LqL/YVkx+G1N/T736ljcC/BCLeQvGusrPc6Md3Aw=
-=KCpu
------END PGP SIGNATURE-----
-
---nextPart6136790.lOV4Wx5bFT--
-
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
