@@ -1,136 +1,263 @@
-Return-Path: <devicetree+bounces-144863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB58A2F83A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 20:10:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AC6A2F85A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 20:15:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEAFD7A215E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:09:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11911168F7D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C64B257437;
-	Mon, 10 Feb 2025 19:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F3E125742A;
+	Mon, 10 Feb 2025 19:15:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iuum56RK"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dHgDoDyI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786451F4637
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 19:10:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61B2D23956A;
+	Mon, 10 Feb 2025 19:15:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739214606; cv=none; b=cthOHzyzpu64Ng3etnIIHSiiC+wwruUIQV7HIpIg/yCMO7K4lfQ1OowePREJTFwSfcCQpHqR+vkN+s7H97NYaLitsMTDgFREOQSindG2mNM73nCBxFqlvbS4zEQAv/6Rzhf8nZfLOxdGVqAOgjFIBTzjEd5SdErArmQaYJhvNSs=
+	t=1739214908; cv=none; b=XtdoHdUK+AfZrgRKJW4AZ5o3IEmL7ZKLVdIiZZ2/NNCnZ8C3j1OojCA2A4twyceJIQlZSItcjG5jJwueRm/cayA7kQmhB8yNN0UReDmVfootVrRo8C4gd8tBmda3jzYQ2rd2RHFwVEWhiIoMNT3M4U48y4zpHWsX7q4bRLKCZws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739214606; c=relaxed/simple;
-	bh=CYo3UFbDzM8ZMZrElug1khaiQNjus0j78zyH9dROJUw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Za3d+Qf2wFCdg/PzTDO6zRNQGFydQhfRxJIJ1sZEUpDJzmtr0yv/om/TfL+FtzGCNbZhCWpT9tUnJ8UgZlDF6S/r/3crpulJH9FoDyLHUpEIXUMspPHzI2ZTkI+0RmR/IlraGVRGH/KzEl4yET6vFnk4g68M5AgD951W7ZmwO9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iuum56RK; arc=none smtp.client-ip=209.85.160.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-2addd5053c0so2771304fac.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 11:10:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739214602; x=1739819402; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9vsAtouGNhuNZjNhxNxCI7WHMHLo2qB21REbxiQgCzo=;
-        b=iuum56RK6V7l3nyAAZ/YZBbyPArS5UaCDXYrqlKcJULBMh80IxG9mD6QHvZSUnzLCc
-         AYbCFf73DttoMvhiOxGp1zNPodJ/Rurop7+J0A7wGg1TqjDTl/nlTJ2vwelbdrBc4vk5
-         UAIA6MxcBRQGm9nOkyOvL9elvIU7v9L6/z3DkBX3oSzA/KT8pil4WWeoVFRKvcr6BHbt
-         mLSvnoqYFnxMHVHOBrMuK0XR4IQxS/ISvlkzk232MPYDYOLRrodfmTLDFpbaR1anai/J
-         K/LX7OlTi2gbuEHgR+jbmJsRb8t6+GvTnP6Hftw563w2f6XUJLyvZ8A3WHvbMCYbxupW
-         M1Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739214602; x=1739819402;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9vsAtouGNhuNZjNhxNxCI7WHMHLo2qB21REbxiQgCzo=;
-        b=pyMRR1/gCeZhqRZwaqSHhnG2GjPt51/Droubp9uSO0TzkRptchHvndWvfrqLtbJIrh
-         NhInKumy8QTKCvxn5hG9HTjF+KHjb/ic27e1QR3vL+6oOP4w87DcCwUDEWQaJU0XqzT8
-         DNggERqe8dHLlPgActvM3p9eQW9YAW04WBJu3a4k7wrICN3QJrr+QGjylQ667LCGChQn
-         BtxVIJlsx7ugK2nRAUKXLuYwcrjAEGQlW5his4zqxubhA5hpe9xvc3IHRe4OkLylKnsp
-         vGZJXmE4GmWZjzdZL5t3DLQXbpEzQuTuTXk1IzhLr//W/QFlMd7nSy3favDWoLL1wRee
-         3AfA==
-X-Forwarded-Encrypted: i=1; AJvYcCVcZt/5cvDdOh/Y48dGGzk6gvNMJ4W33yL1MagrBUYvZZvLMAUqAtatv9J9m9CWB1UPiH4fodxSADAV@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyfrZooV8C2iC0Nq000xshJrCJrWtET8g5kaEVd0WPsJmt/lPi
-	aDSppcUvKBeDAw3JSQR/KJYpW5NW/N4cuh0z/QRXCKHXDCIVM+TqQ8Ump8T3k0c=
-X-Gm-Gg: ASbGncsbOb9kw35RV7ZkH2K66mWgzEtvAeIR/tx3+GNsDKbr3QXF8fgJME9VAQKEoNb
-	wJ8wlu+6sPTKKZh/eAW+AwsNhwjbtqjym8HOs/kYjaTG9MbZ2VzZ+IXCvgeJzBCb9Kf4iqlJfF1
-	cilM/y3QbNpH4TN71yr33ej4mMxWaYYLs8FpNrbvpZJiZR5qCpQN/TGgyJ/ckLGu44yB66l0nr3
-	yB8CTzaT8Ij/Gp7tqOxLa47QrpM4j9GD3sdBgq2OkxGzvnf9Xh2f/QtlOodC+ax5UPq16MTmmDs
-	IUWw3tWxV5q4zJbAq2sNxDHXBiCukGqm7ISARdEV4kFuNYilHeYN
-X-Google-Smtp-Source: AGHT+IHER7vdDXVtlvelU+DDmdTY5CqQ89uA26Q9f+nFEBSkTZX9vzApNRcfKwxK+awhn+jiq0oREw==
-X-Received: by 2002:a05:6870:b250:b0:295:eb96:9fd4 with SMTP id 586e51a60fabf-2b8b57813camr542383fac.11.1739214602443;
-        Mon, 10 Feb 2025 11:10:02 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2b8262be143sm2669307fac.48.2025.02.10.11.09.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Feb 2025 11:10:01 -0800 (PST)
-Message-ID: <f989c3d7-0fc0-40f0-8548-4d5dd1a336ac@baylibre.com>
-Date: Mon, 10 Feb 2025 13:09:59 -0600
+	s=arc-20240116; t=1739214908; c=relaxed/simple;
+	bh=/aMMsS9mJ8sJR4IqQLucrnmGeKfxLXDoIGkeGo8HO5E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d/Q2kJWh+qdpDf67Pzr8UUdoY/s88mcmRqip7jYpjgJJ9UJqiPTVnh43BKWEM4kaQgftRMzepIJrrse+YEcAd27FrJV2ZfcwK/qo2/y5S/LsSbeFhQ9khbWQv2/iQ8FvdGudEKvVDwPZWbNXnExNxP87tuJHj8QpiZyCRIRoi6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dHgDoDyI; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739214906; x=1770750906;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/aMMsS9mJ8sJR4IqQLucrnmGeKfxLXDoIGkeGo8HO5E=;
+  b=dHgDoDyIlbKZ2zFPuQWCZwxkNVsBbV6LNBlFfilvuInO+vzrM5AAlGYG
+   MmJkHUJ5LVCid8oOu9XtkT/yXgYYJh6aIJjljxtBgtjJdOv7pxxB77xQ0
+   ABCFB3+6zbTHtZ2WdVDvY8r+QUZdFeTk2E+ikF3yDvL14S0CMtOEaJU8H
+   2H4QfiJryW2oikoPjURRpo/1vk9e1JAUuHl94kpizkmrxrdBEGRr9WpwB
+   Ao6SETfE9T6hn+7zx25gk/JcLtrEO/NK3+hRdQMuV2WViIbWWNv+zSEGx
+   UlrzB21LmqdEnkMSRLzGhf43W+JxPdpuCri1e8fqmSC4t+COpl1eNV+6w
+   Q==;
+X-CSE-ConnectionGUID: gY9LaD+GTFuMbyg/dNE9AQ==
+X-CSE-MsgGUID: s2XdwkKwQ2G1bZIoBnnxsg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="39051380"
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; 
+   d="scan'208";a="39051380"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 11:15:06 -0800
+X-CSE-ConnectionGUID: QXIBf4T4QqOgt3GBCEBhiA==
+X-CSE-MsgGUID: fFXPYPHnR1uOubYv+b2Ejw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; 
+   d="scan'208";a="117359660"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 10 Feb 2025 11:15:03 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1thZFE-0013F9-25;
+	Mon, 10 Feb 2025 19:15:00 +0000
+Date: Tue, 11 Feb 2025 03:14:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Celine Joy A. Capua" <celinejoy.capua@analog.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	"Celine Joy A. Capua" <celinejoy.capua@analog.com>
+Subject: Re: [PATCH 1/2] regulator: ltc7871: Add driver for LTC7871
+Message-ID: <202502110205.DShIOHH0-lkp@intel.com>
+References: <20250210-staging-ltc7871-v1-1-c593ad86aab2@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 11/17] iio: adc: ad7944: add support for SPI offload
-To: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
- <20250207-dlech-mainline-spi-engine-offload-2-v8-11-e48a489be48c@baylibre.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250207-dlech-mainline-spi-engine-offload-2-v8-11-e48a489be48c@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250210-staging-ltc7871-v1-1-c593ad86aab2@analog.com>
 
-On 2/7/25 2:09 PM, David Lechner wrote:
-> Add support for SPI offload to the ad7944 driver. This allows reading
-> data at the max sample rate of 2.5 MSPS.
-> 
+Hi Celine,
 
-...
+kernel test robot noticed the following build warnings:
 
-> ---
->  drivers/iio/adc/Kconfig  |   1 +
->  drivers/iio/adc/ad7944.c | 291 ++++++++++++++++++++++++++++++++++++++++++++---
->  2 files changed, 276 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index a3e8ac569ce4c6b6b30b48acb265d530aa98e89c..995b9cacbaa964d26424346120c139858f93cdcd 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -360,6 +360,7 @@ config AD7923
->  config AD7944
->  	tristate "Analog Devices AD7944 and similar ADCs driver"
->  	depends on SPI
-> +	select SPI_OFFLOAD
->  	select IIO_BUFFER
+[auto build test WARNING on fff64b15e3d1e9bd9246db1f5e0b84e7e561b79f]
 
-I missed adding
+url:    https://github.com/intel-lab-lkp/linux/commits/Celine-Joy-A-Capua/regulator-ltc7871-Add-driver-for-LTC7871/20250210-103432
+base:   fff64b15e3d1e9bd9246db1f5e0b84e7e561b79f
+patch link:    https://lore.kernel.org/r/20250210-staging-ltc7871-v1-1-c593ad86aab2%40analog.com
+patch subject: [PATCH 1/2] regulator: ltc7871: Add driver for LTC7871
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250211/202502110205.DShIOHH0-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250211/202502110205.DShIOHH0-lkp@intel.com/reproduce)
 
-	select IIO_BUFFER_DMAENGINE
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502110205.DShIOHH0-lkp@intel.com/
 
-Closes: https://lore.kernel.org/oe-kbuild-all/202502082251.NuHT15R7-lkp@intel.com/
+All warnings (new ones prefixed by >>):
 
->  	select IIO_TRIGGERED_BUFFER
->  	help
+   In file included from drivers/regulator/ltc7871-regulator.c:11:
+   In file included from include/linux/module.h:19:
+   In file included from include/linux/elf.h:6:
+   In file included from arch/s390/include/asm/elf.h:181:
+   In file included from arch/s390/include/asm/mmu_context.h:11:
+   In file included from arch/s390/include/asm/pgalloc.h:18:
+   In file included from include/linux/mm.h:2224:
+   include/linux/vmstat.h:504:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     504 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     505 |                            item];
+         |                            ~~~~
+   include/linux/vmstat.h:511:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     511 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     512 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:524:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     524 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     525 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/regulator/ltc7871-regulator.c:318:6: warning: variable 'val2' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+     318 |         if (!ret) {
+         |             ^~~~
+   drivers/regulator/ltc7871-regulator.c:328:63: note: uninitialized use occurs here
+     328 |         return ltc7871_reg_write(chip->spi, LTC7871_REG_SSFM, val1 | val2);
+         |                                                                      ^~~~
+   drivers/regulator/ltc7871-regulator.c:318:2: note: remove the 'if' if its condition is always true
+     318 |         if (!ret) {
+         |         ^~~~~~~~~
+   drivers/regulator/ltc7871-regulator.c:225:16: note: initialize the variable 'val2' to silence this warning
+     225 |         int val1, val2;
+         |                       ^
+         |                        = 0
+   4 warnings generated.
 
 
+vim +318 drivers/regulator/ltc7871-regulator.c
+
+   221	
+   222	static int ltc7871_parse_fw(struct ltc7871 *chip)
+   223	{
+   224		int reg, ret;
+   225		int val1, val2;
+   226	
+   227		/* Setting default values based on datasheet and DC2886A Schematic */
+   228		chip->idac_setcur_uA = 0;
+   229		chip->freq_spread_percentage = "+-12%";
+   230		chip->switching_freq_divider = 512;
+   231		chip->enable_chip_ctrl_wp = 0;
+   232		chip->ra_ext = 10000;
+   233		chip->rb_ext = 107000;
+   234		chip->rc_ext = 12700;
+   235		chip->rd_ext = 499000;
+   236	
+   237		ret = device_property_read_u32(&chip->spi->dev, "adi,ra-external-ohms",
+   238					 &chip->ra_ext);
+   239		if (!ret) {
+   240			if (!chip->ra_ext)
+   241				return -EINVAL;
+   242		}
+   243	
+   244		ret = device_property_read_u32(&chip->spi->dev, "adi,rb-external-ohms",
+   245					 &chip->rb_ext);
+   246		if (!ret) {
+   247			if (!chip->rb_ext)
+   248				return -EINVAL;
+   249		}
+   250	
+   251		ret = device_property_read_u32(&chip->spi->dev, "adi,rc-external-ohms",
+   252					 &chip->rc_ext);
+   253		if (!ret) {
+   254			if (!chip->rc_ext)
+   255				return -EINVAL;
+   256		}
+   257	
+   258		ret = device_property_read_u32(&chip->spi->dev, "adi,rd-external-ohms",
+   259					 &chip->rd_ext);
+   260		if (!ret) {
+   261			if (!chip->rd_ext)
+   262				return -EINVAL;
+   263		}
+   264	
+   265		ret = ltc7871_reg_read(chip->spi, LTC7871_REG_CONFIG2, &reg);
+   266		if (ret < 0)
+   267			return ret;
+   268	
+   269		chip->regulator_mode = FIELD_GET(LTC7871_MASK_CONFIG2_BUCK_BOOST, reg);
+   270	
+   271		if (chip->regulator_mode) {
+   272			chip->r1 = chip->ra_ext;
+   273			chip->r2 = chip->rb_ext;
+   274		} else {
+   275			chip->r1 = chip->rc_ext;
+   276			chip->r2 = chip->rd_ext;
+   277		}
+   278		chip->min_vol = _ltc7871_dac_to_uV(chip, LTC7871_IDAC_MAX);
+   279		chip->max_vol = _ltc7871_dac_to_uV(chip, LTC7871_IDAC_MIN);
+   280	
+   281		ret = ltc7871_reg_read(chip->spi, LTC7871_REG_CHIP_CTRL, &reg);
+   282		if (ret < 0)
+   283			return ret;
+   284	
+   285		chip->enable_chip_ctrl_wp = device_property_read_bool(&chip->spi->dev,
+   286							"adi,enable-chip-ctrl-wp");
+   287		val1 = FIELD_PREP(LTC7871_MASK_CHIP_CTRL_WP, chip->enable_chip_ctrl_wp) | reg;
+   288		ret = ltc7871_reg_write(chip->spi, LTC7871_REG_CHIP_CTRL, val1);
+   289		if (ret)
+   290			return ret;
+   291	
+   292		ret = device_property_read_u32(&chip->spi->dev, "adi,idac-setcur-microamp",
+   293					 &chip->idac_setcur_uA);
+   294		if (!ret) {
+   295			if (chip->idac_setcur_uA < LTC7871_IDAC_MIN ||
+   296			    chip->idac_setcur_uA > LTC7871_IDAC_MAX) {
+   297				return -EINVAL;
+   298			}
+   299	
+   300			ret = ltc7871_reg_write(chip->spi, LTC7871_REG_SETCUR,
+   301						chip->idac_setcur_uA);
+   302			if (ret)
+   303				return ret;
+   304		}
+   305		ret = device_property_match_property_string(&chip->spi->dev,
+   306				"adi,freq-spread-percentage",
+   307				ltc7871_freq_spread_percentage,
+   308				ARRAY_SIZE(ltc7871_freq_spread_percentage));
+   309	
+   310		if (ret >= 0)
+   311			val1 = FIELD_PREP(LTC7871_MASK_SSFM_FREQ_SPREAD, ret);
+   312		else
+   313			val1 = 0;
+   314	
+   315		ret = device_property_read_u32(&chip->spi->dev,
+   316					       "adi,switching-freq-divider",
+   317					       &chip->switching_freq_divider);
+ > 318		if (!ret) {
+   319			ret = ltc7871_get_prop_index(ltc7871_switching_freq_divider,
+   320						     ARRAY_SIZE(ltc7871_switching_freq_divider),
+   321						     chip->switching_freq_divider);
+   322			if (ret < 0)
+   323				return ret;
+   324	
+   325			val2 = FIELD_PREP(LTC7871_MASK_SSFM_MOD_SIG_FREQ, ret);
+   326		}
+   327	
+   328		return ltc7871_reg_write(chip->spi, LTC7871_REG_SSFM, val1 | val2);
+   329	}
+   330	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
