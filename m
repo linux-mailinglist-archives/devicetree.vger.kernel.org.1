@@ -1,87 +1,79 @@
-Return-Path: <devicetree+bounces-144810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FFEFA2F4BC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:10:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5035AA2F4C4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:11:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96ADA7A243D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:09:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17B243A3786
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:11:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2863D1F4629;
-	Mon, 10 Feb 2025 17:10:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F995243945;
+	Mon, 10 Feb 2025 17:11:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="osvIq9nj"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LrQG0WeQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73CE3256C7A
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 17:10:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E87256C7A
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 17:11:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739207419; cv=none; b=sRORhxRrnIOLa4GFg8RF0NwfyVjLU6OZ0F97tEGbkv3Eq5/gloKHQrFIVUVzQLqLC9xBe41G+976ICvU1S2ZfiFXsPUqXU/VR8L+Yc9bP1LFcv8yLKvOelNEQDLjYR1GPnlEfoNY+UWiS5kvmD3odPeQn6Ug3lBdf4dqjZ9lE5c=
+	t=1739207489; cv=none; b=Vn3/J2ajqI3kw/0vcRodFEJv8H2Nqpl8ew6yMZHxNpvzylfnHaW6a4cRYuP2KUcz1RLU+U0EqeXkKRoujUShS/X1acIyHAodyV+P/bH8pqWNUwlPJTcHpKOn8aDIbhLzh96wUCMGl/ey6TkP26Td5YXwULD0Vn+TLfgJHguyLTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739207419; c=relaxed/simple;
-	bh=cOZOrHut/wzorJQ9KsefR6Cf3mXXyYtzPfNrne/k21w=;
+	s=arc-20240116; t=1739207489; c=relaxed/simple;
+	bh=l6ixI9ocsg5QZ16cvn2QkpaT8QZyQoyW5ibERsaeAMM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GtDYQe0RQWpEv3hVDAqdnMdDMyRK7V0HhnhAY0v1FIwBsbd28idSQGYC2vS73BqUUZHhKa2S8IUJC/Ywc6SazSBuRP5j4tqNbw/UHroo8JPYVj+9A6YSwfIBeDQo7TyGX9Pm+6YKN+0sKKVox9nQnpcTIvRL6o+Pf1lLh1YpOaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=osvIq9nj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51A9LMee024818
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 17:10:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	E5npZqgjaYKWVPP6BTCK7WRGiQx27IIoDxlSefcsZPc=; b=osvIq9njvLAa6Vul
-	isJzR6bJ/p3pCBSJU8Q0eB1G5ucn3eQy9pnes1xnVdqUgpgomlC62C7W89REH/g9
-	I3kAqUb08X008J0I6G0FWwQ+kgffnQ9L+x8bZ85m9r1wALOv40MSEPXNLtAz1ByV
-	D7PIykkMIjP4DRhTO16jFsTtqG57BN5nu+ELunUNcNIzkO+6ZlVY8rPQTSylSnOQ
-	4iEMw2WKlLJGdgANOCutpeVV2DoMFfxFSdrrjxl8q6vOT8MWyxjUm4QZsEcTaa3U
-	xom7inBcFTA0tv22snV8GTGKuYsSXDgZl2SHVK8j40S6wabFyOvo5HIFfJMW+8Ql
-	pynxnw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44p0esd443-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 17:10:16 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e440e2ddfbso11292696d6.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 09:10:16 -0800 (PST)
+	 In-Reply-To:Content-Type; b=ZkobXV0PbkigM6QW5jhqPDi4nwPcyk7ovd3/0w4FDAiJXerxSy2rh6nN5VGQiLb/0lu9V5ACt4OxqgLN5Swe5T8LO5h86mzyN/9j3kg+NJ7kMaQ0jh96nr/V0wq1bsYx9a8xIGD70q+ImFQog4HJjmkWRZicTHkw0SBAX2wf9fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=LrQG0WeQ; arc=none smtp.client-ip=209.85.161.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5fc01d3faefso1467550eaf.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 09:11:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739207486; x=1739812286; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y62wEuUB23NjmeSDjcZkJZH4kkElpdd1L2B2fifJwGY=;
+        b=LrQG0WeQbLzRgqLVKAkVeAz4SHc4lcfp6bMBkIsb+jVM0E4FE7akiPx+EYM8VSC8/6
+         /hi/wJ0PgriVCqlPCNjJZFUrtwqqUVGgIi4GXI9a0102U1BIFzBKwpwIMXHry92rPydn
+         pfc4rAP11sr8VP2+t/+0EJT+rXtM7n+9pBGCaLcjEgrxGm9IVe6VfBH6F5R6FqPZvQg8
+         d2h2SpkL5260d3eMxyVDkYTHuzSzdeAej6e3e2WHBwcCMoqqyGrMJVqPvmb8I8rqv6ED
+         Y/buAZrg21luPF79Wne8GJY1Z8XSN0U0K7RFEsAUrOSca+YXCJeLsE+J5DggIitggNcS
+         v7WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739207415; x=1739812215;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1739207486; x=1739812286;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E5npZqgjaYKWVPP6BTCK7WRGiQx27IIoDxlSefcsZPc=;
-        b=xObHnYeNqKBGRcCjGF4dtApEexykGOBqigXeK477ar+A+Lel7Mft8mdRO3Z6Du7/gs
-         r1BpDZkmW0coWw4bzrbnBNaoLF300vKXSBblSjmvFnIuLHEX5z007Kgy2xU5qWUkYE+V
-         GAFUa5Xyuc5JBaYf/juyGEZJKdN0Yi2kKN7Es/2t3trMULHjOQDdCVTC+RoNdE2bPvrG
-         2xbVli42dIMBbRYTV3WLZIkcRFhG6sgiRu0d+eQwco0+71j5LRad9psNKfbI87lruJAC
-         TcEZ8qYU+U0jCYCu0Zno+NlVyXB2hAWWiDQBTx3J8ZB0OlOVGYJKWSF+cNUg08AAv37u
-         /wGg==
-X-Forwarded-Encrypted: i=1; AJvYcCXV5rl7eoUZv8/bc01cTcwQizvAI7y4o0WTJmUPQT+jRoSb7P/Nupl3oFKphXgYsRDzmWyEcR1KJ991@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzqjiFfcl6YOUiFJ//T95nBc8R4XyJR3MvroIuTHbX+4Q9LUWv
-	0BJyBEoI0OtBWq29sayKVLAecobQYluBUEpPhum5/BolvXnOGgrnE70CYCXrWs19WW2IAdXumEz
-	/+hlhQqcDbeIy7GAE0Mzbo/R4dDdEzIua2asq4s1yrXc6uscknf8KjGSMSoml
-X-Gm-Gg: ASbGncve052Fi4Uu8jMNW3clbDkls46NA70qU3547BR/8Ncwt/Jl3jgU8whgAapBEoK
-	fj+bXtN8pxlQ2ztshORhW9vw5UQ5u+6MW8/fjtyD7r/oLd1ov4o5VR1KdsZeuBZROu9kh2YTRjj
-	SLVzWBdkpxvBVqBnt4fvmtmYbtPUPikUPimmrdd3h+dHZUHMzyy8ylyDQCyztOK+cD0hUPEfVT5
-	gBy+cKmqCQytr1b7QGjvT9OGRGjpvMT5vrDgKsQ63n8pjavn1LsYJxUAmMlMP/gQcPQYIFyveKb
-	5AeVZ5NSsxeTWFl/Zl5BKBpL4tKLUHKV/dVS6DeL2bDdZ9paSNjVg0QAwB4=
-X-Received: by 2002:a05:622a:134a:b0:471:99c5:7fe3 with SMTP id d75a77b69052e-47199c584f5mr11944271cf.13.1739207415369;
-        Mon, 10 Feb 2025 09:10:15 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEWCVn+56GmgcEp+f7iKQYBi/AP1TMSZ84eTKF1sfusy7qyasfzqQxSq++Q7ti18cPyRITfPA==
-X-Received: by 2002:a05:622a:134a:b0:471:99c5:7fe3 with SMTP id d75a77b69052e-47199c584f5mr11944091cf.13.1739207414895;
-        Mon, 10 Feb 2025 09:10:14 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5de60497c99sm4926026a12.4.2025.02.10.09.10.11
+        bh=y62wEuUB23NjmeSDjcZkJZH4kkElpdd1L2B2fifJwGY=;
+        b=NeUWNWOvIyKEGluzahPm91Z2DrRA7lGezEB4OeqJ6y9+oSNWy803VKz/9a1fbOZFvG
+         AS25cEHUTKdV3XlXcAVcicI7a8XfacBU4DHdpZccjkf2g2vUgpf2yIHiLdydIggY1y73
+         sWvBPbMYciOVmmnPnaf5SVZamVbaeKofGGnUZHgaSpFg343rpd0YeUaJgRUd78byIeDf
+         Nq2WIzz9aH7R8jkSDcFww/nFpFEvIKlLGUjyO6FJPflYHq9XbM9XObQWC63Cqvzf4siN
+         sZTHID51T9RQlkc7aBsKu8S/9+71mpZ2B5bj3VPLvD1wsOTGQ18iwu4zxtk9FeUVeKgF
+         BErg==
+X-Forwarded-Encrypted: i=1; AJvYcCVvFuESL7h6mZNseujmrbbb4hq7RbU+t5JLw3bjQ8MimURhUTTrh+aoRwhVlaWd7RuDDKMTkiU3WI9l@vger.kernel.org
+X-Gm-Message-State: AOJu0YxK5rRfzm/05xCNoXQ6jRBwJCuvf9ST6jCMLI+rUHqh/dgXlqqm
+	ir2gXROHz4ZyUBbDnTAFnDPy+g1facbKlNfMw0XEJrrAnZYS8FtmhCSmQdUFI7A=
+X-Gm-Gg: ASbGncv4WYni2NK9toeEFgystwiGLA3SK1nBKrTN+wz+6ole/y9CSi+1Z14g3fLnGNa
+	/EBzbdWrXqAD0KsT5psTPdhharXUuy6T5ohPa9+HXZiyDHw0KMUO75Yegx7q+6eNXCfhZ/uv7MM
+	9a9vP22eRBHB+cRozhbDr6hIGO3YVEl9B4/dFaKo0J4uiua08YvcaOjMwQEUB52s74ouGcdG/kO
+	ZkeL4+xLMUct2i7bmTPPTj//DtB0mxXHotzHiemmxrzzyWbjC1fcyINHqp5C++VxihtZSxbald+
+	l7RN01F4gnieOCZfCHK2+610Own/HL8nJdP/TpqL7g6hToWLQiCZ
+X-Google-Smtp-Source: AGHT+IEo4eH2CuOA2OmnMHMRwgQDew3LfoTfoARBZw+mgbte0DXZ4AUD2tzn6839+X+KetyoPMS0Gw==
+X-Received: by 2002:a05:6871:6aa:b0:29d:ca24:c044 with SMTP id 586e51a60fabf-2b83eb4d220mr8661498fac.8.1739207486107;
+        Mon, 10 Feb 2025 09:11:26 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2b8a8c46e7dsm251881fac.35.2025.02.10.09.11.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Feb 2025 09:10:14 -0800 (PST)
-Message-ID: <bcba3d38-525e-43d8-936f-2ddc95d0cceb@oss.qualcomm.com>
-Date: Mon, 10 Feb 2025 18:10:10 +0100
+        Mon, 10 Feb 2025 09:11:25 -0800 (PST)
+Message-ID: <27d2a88c-b44a-4712-b066-b999e41774f0@baylibre.com>
+Date: Mon, 10 Feb 2025 11:11:23 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,104 +81,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] drm/msm/dsi: Allow all bpc values
-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Danila Tikhonov <danila@jiaxyga.com>
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
-        sean@poorly.run, jonathan@marek.ca, jun.nie@linaro.org,
-        fekz115@gmail.com, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        linux@mainlining.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20250203181436.87785-1-danila@jiaxyga.com>
- <20250203181436.87785-4-danila@jiaxyga.com>
- <rnuv4dieiy6s6c5s33hff7ntr6hkneemsq5qzk3u4ug2abwisd@6ahmijlayhhr>
+Subject: Re: [PATCH v8 01/17] spi: add basic support for SPI offloading
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
+ <20250207-dlech-mainline-spi-engine-offload-2-v8-1-e48a489be48c@baylibre.com>
+ <Z6otFlsmEikIbI__@black.fi.intel.com>
+From: David Lechner <dlechner@baylibre.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <rnuv4dieiy6s6c5s33hff7ntr6hkneemsq5qzk3u4ug2abwisd@6ahmijlayhhr>
+In-Reply-To: <Z6otFlsmEikIbI__@black.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: eR5tMfjeoc329ayRrdZgJNfnyXN7nXeI
-X-Proofpoint-ORIG-GUID: eR5tMfjeoc329ayRrdZgJNfnyXN7nXeI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-10_09,2025-02-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- suspectscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- priorityscore=1501 mlxscore=0 adultscore=0 spamscore=0 mlxlogscore=999
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502100140
+Content-Transfer-Encoding: 7bit
 
-On 8.02.2025 11:09 PM, Marijn Suijten wrote:
-> On 2025-02-03 21:14:26, Danila Tikhonov wrote:
->> From: Eugene Lepshy <fekz115@gmail.com>
+On 2/10/25 10:45 AM, Andy Shevchenko wrote:
+> On Fri, Feb 07, 2025 at 02:08:58PM -0600, David Lechner wrote:
+>> Add the basic infrastructure to support SPI offload providers and
+>> consumers.
 >>
->> DRM DSC helper has parameters for various bpc values ​​other than 8:
-> 
-> Weird zero-width \u200b spaces here between "values" and "other", please delete
-> those.
-> 
->> (8/10/12/14/16).
+>> SPI offloading is a feature that allows the SPI controller to perform
+>> transfers without any CPU intervention. This is useful, e.g. for
+>> high-speed data acquisition.
 >>
->> Remove this guard.
+>> SPI controllers with offload support need to implement the get_offload
+>> and put_offload callbacks and can use the devm_spi_offload_alloc() to
+>> allocate offload instances.
 >>
->> Signed-off-by: Eugene Lepshy <fekz115@gmail.com>
->> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-> 
-> Should this patch elaborate that those "DRM DSC helper" don't have any
-> additional guarding for the values you mention either, i.e. passing 9 or 11 or
->> 16 don't seem to be checked anywhere else either?
-> 
-> And your title might have space to spell out "Bits Per Component" entirely.
-> 
->> ---
->>  drivers/gpu/drm/msm/dsi/dsi_host.c | 7 +------
->>  1 file changed, 1 insertion(+), 6 deletions(-)
+>> SPI peripheral drivers will call devm_spi_offload_get() to get a
+>> reference to the matching offload instance. This offload instance can
+>> then be attached to a SPI message to request offloading that message.
 >>
->> diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
->> index 007311c21fda..d182af7bbb81 100644
->> --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
->> +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
->> @@ -1767,11 +1767,6 @@ static int dsi_populate_dsc_params(struct msm_dsi_host *msm_host, struct drm_dsc
->>  		return -EINVAL;
->>  	}
->>  
->> -	if (dsc->bits_per_component != 8) {
->> -		DRM_DEV_ERROR(&msm_host->pdev->dev, "DSI does not support bits_per_component != 8 yet\n");
->> -		return -EOPNOTSUPP;
->> -	}
->> -
->>  	dsc->simple_422 = 0;
->>  	dsc->convert_rgb = 1;
->>  	dsc->vbr_enable = 0;
+>> It is expected that SPI controllers with offload support will check for
+>> the offload instance in the SPI message in the ctlr->optimize_message()
+>> callback and handle it accordingly.
+>>
+>> CONFIG_SPI_OFFLOAD is intended to be a select-only option. Both
+>> consumer and provider drivers should `select SPI_OFFLOAD` in their
+>> Kconfig to ensure that the SPI core is built with offload support.
 > 
-> This seems supicous on the dpu1 side, in the original DSC 1.1 (not 1.2) block in
-> dpu_hw_dsc_config(), which has:
+> (I know that this is now in SPI tree, but still we have time to address something)
 > 
-> 	data |= (dsc->line_buf_depth << 3);
-> 	data |= (dsc->simple_422 << 2);
-> 	data |= (dsc->convert_rgb << 1);
-> 	data |= dsc->bits_per_component;
+>> +++ b/include/linux/spi/offload/consumer.h
 > 
-> The original value of `8` would overlap with the lowest bit of line_buf_depth
-> (4th bit in `data`).  Now, the 2nd bit which will take the value from
-> convert_rgb, which is already set to 1 above, will overlap with the 2nd bit in
-> your new bpc value of 10.
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright (C) 2024 Analog Devices Inc.
+>> + * Copyright (C) 2024 BayLibre, SAS
+>> + */
+>> +
+>> +#ifndef __LINUX_SPI_OFFLOAD_CONSUMER_H
+>> +#define __LINUX_SPI_OFFLOAD_CONSUMER_H
+>> +
+>> +#include <linux/module.h>
+>> +#include <linux/spi/offload/types.h>
+>> +#include <linux/types.h>
 > 
-> Can you double-check that this code in DPU1 is actually valid?  I assume you
-> have tested this panel at least and it is working (worthy mention in the cover
-> letter?), this just seems like yet another mistake in the original bindings
-> (though the register always had a matching value with downstream on 8 BPC panels
-> for me).
+>> +MODULE_IMPORT_NS("SPI_OFFLOAD");
+> 
+> This diminishes the point of the namespaces. Anybody who includes a (dangling)
+> header gets namespace imported, which is not good. Same for other globally
+> visible headers.
+> 
+> (This is the main concern of this patch).
 
-It seems like the lowest bit should be set iff the input is 10bpc, the
-current situation where our '8' bleeds into the following (correctly named
-fields) is bad.
+In this case, we specifically split up the headers so that the only time you
+would ever include this header is if you need to call functions in this
+namespace (i.e. struct definitions are in linux/spi/offload/types.h which
+doesn't import the namespace). So this doesn't actually seem like a problem
+to me.
 
-Konrad
 
