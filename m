@@ -1,139 +1,113 @@
-Return-Path: <devicetree+bounces-145003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FC05A2FDB4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 23:46:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF9D7A2FDC1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 23:50:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30F81167211
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 22:46:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AE9A16832F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 22:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE93C25A343;
-	Mon, 10 Feb 2025 22:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 829492586D6;
+	Mon, 10 Feb 2025 22:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Cr23s9de"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Fn1WTRYx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFCC8257ADA;
-	Mon, 10 Feb 2025 22:45:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C43A02586E4
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 22:50:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739227531; cv=none; b=Vskrtmv8nAH3ZnDTGqXfY64O3hmZIGGoA9g+QRC0Ix//LMFJ6G+w6dhASQlAlNqVXf1zn6y9dnx21/vSfC2zX41golhtEACNvHXKt1zdPuxBGFZhrxvp1WbV8pgxe4SfzuosIeB+gcIjNkECPzmxeFe1dIkr/fo25qXlx9Rxsag=
+	t=1739227840; cv=none; b=P9JJhSRa4eu8m/KuecR/7BDarNM9p/ZhvoroSyIbQK5UDiyBjTLzucdYzPJ9SyncJzwVrtKAKkQhxoR0GBWnqun4k6GJpZDiJ/xIYN2iLjfchc7dTYV5qJYYPq42Ramu3/BRUbuS14KhvTKoHIqQWALI++kbX2m1DPqjZ3D0MFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739227531; c=relaxed/simple;
-	bh=w95MJfxzfRGWFOpMQJPgSmIkbW+uGttHTGyC1aMnmdA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=i41zTs1k3mVs+8Y8UK+21TA5FhEUwICDbyYZdikuhvCu+m9DSp6Kp6iRItOXeNVqJIYC57uF+o+cYM0CYYpQtnD+yFlev9oTr8vXuwJfi3ddVLea9t1MqCqUphHm0bN1qxCF0qaGSTz4aSwZPtxD4R6J1nohZp8Gc7EVbRzS6S0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Cr23s9de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=q4Sl4j7z0914oZOToKd009OuMMVWZTH/qa7XeAPVimQ=; b=Cr23s9depxi0kBcC4raALGKcHz
-	sq9N1ty8NzSvYSLJQrG5nxm7l1Pv9TDBaP3vs/zegJ56U4C4uRdTvlJjEQIXJgXTltEt53S2tkXJY
-	uo/Qc8vjNao2vJcT3Ba2lCR1r55gvrlXESqXQHXR1KbjfgPRYgYE2c+vSzRuCQv8jXz4LntSqmwfL
-	mgYrEBCkEpBQe3CTkjEN4lE+JiP+CIXX0dmdOw3xUMMjvDwNhgPxsm6LxXgLMsUbZJL3xx7iDzOWu
-	qkkJUSvTPQfQrxlvsAqsng9r2o9AKyUrfTnCxjWhXTCfvQefIRsE7+zDW9HtERNfTIvBBPrzOUI9I
-	KLMd6x5w==;
-Received: from i53875bc0.versanet.de ([83.135.91.192] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1thcWr-0008Re-CF; Mon, 10 Feb 2025 23:45:25 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: srinivas.kandagatla@linaro.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	detlev.casanova@collabora.com,
-	sebastian.reichel@collabora.com
-Subject: [PATCH RESEND v2 6/6] arm64: dts: rockchip: add rk3576 otp node
-Date: Mon, 10 Feb 2025 23:45:10 +0100
-Message-ID: <20250210224510.1194963-7-heiko@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250210224510.1194963-1-heiko@sntech.de>
-References: <20250210224510.1194963-1-heiko@sntech.de>
+	s=arc-20240116; t=1739227840; c=relaxed/simple;
+	bh=5zbZ0mjlc5mJspBqAdHsl+XIcsIzXXEkeeddcLU17Ww=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XdjbpvnKGLpMe//7okCLkaXO1qT+fy8Nhp4Kxa4MmX2TW+n8WksdBJRzOJVf+COXV3YpIDk79jGx+e/VKndlvpg44+vxFAnKMwwYXl8b546TJt9QM1BjXVgk8RMXG8FT5bRynlURBX8Hm66r/k9yAfKNzPisRO4+7HKHc9kmgHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Fn1WTRYx; arc=none smtp.client-ip=209.85.219.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6dcd4f1aaccso77538606d6.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 14:50:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1739227837; x=1739832637; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5zbZ0mjlc5mJspBqAdHsl+XIcsIzXXEkeeddcLU17Ww=;
+        b=Fn1WTRYxcY/IF+pLgssEdlj4HJBpjPUtmFK36ZDZGyP0aHwRFj22JO9P/0V4RjcdUb
+         nIlz+Z7/f892FtYCN26Fl4MB91dA/W6Gy5EtCxH1Wu2HepQ3jf5Tq9oo/RG2nz6qKQFL
+         eBbEcXJ8LqbRwhIU0xYjPIqCUekQ4MytyxNtw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739227837; x=1739832637;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5zbZ0mjlc5mJspBqAdHsl+XIcsIzXXEkeeddcLU17Ww=;
+        b=U2mSQiKDT4rZv45+zux/jk4AJdAt/jTKMrsqCtcPVbRDYJq2P8B3ApZKK+va13UOaP
+         s5h8txy+u6wrSCjqvRD1YMGzSwPWb4EKw+4KPbUZrZ3CXef54NeTRGpYZykN8vYCWavI
+         8FrLDmrQYJnsAO5ciD7iWOcEils+awquX6fvOSsZ+fZM88RcnqiDlhsE4+aXsMod/Iiz
+         WFRJET7WaiDlPPhmEqv7S15QaGPqzTSJusk4G/jYUmorfaylSKksdWfURQpr7Rg2tU8C
+         hJzlfbohGlnQ53u3Cj2kAsDM4uA7PZvj2q2sYuWGonLJP6cLqFGW7Ft+ag/f2BNO8Q6q
+         xOoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWCOEyFafQAZCr9nAWt4o9vxJC99ii82dIi3Z3x+BRTwc2daQ19LJ0rd/NeL8I6tSb3UBliw1kT7a06@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkO0ORVitjHcVsK4cDRsmX6gfaX9dI8W0cwGsA7ckEbt5Vzt8l
+	Mpg9FXLtsrFBiyx38GOOIDDAHwzC+e4QHeS5IhNdYVH1MyCSDaQdOzyLTtIGZfVliN5EhdaydGG
+	R2kgdbgzRCXSj8mFrEeSzGKTCMojrXWS473PG
+X-Gm-Gg: ASbGncuQkTYQzjY2y9JGgif5DCADK0kveKOgyTmDEpToyhLqAPdmcjiGHvQoXPBRINu
+	JA0kOZ4igmwC2Eyg962P6AglnWvSJI/GPCk9ewpvRja9aQatnR9aH8571OtygyEKkCGZ8mdUUTf
+	fEVuHuKPRNI033XHUNK0RggNH0
+X-Google-Smtp-Source: AGHT+IGL4SmQgIAC10xipCYbVaexIQbpQQDDIqhx2hGeOo7wq1KUJ/UwijMW6vgDIGzhCGOUFwEwrakNbbsm+km09q4=
+X-Received: by 2002:a05:6214:240f:b0:6df:99f7:a616 with SMTP id
+ 6a1803df08f44-6e4455d2fdemr247845286d6.2.1739227837669; Mon, 10 Feb 2025
+ 14:50:37 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 10 Feb 2025 16:50:37 -0600
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 10 Feb 2025 16:50:37 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <87895166-659e-475f-99bf-5791a6e1ac3b@oss.qualcomm.com>
+References: <20250205233016.1600517-1-swboyd@chromium.org> <20250205233016.1600517-2-swboyd@chromium.org>
+ <74527323-31ff-4ed0-b19f-e535f26abf2b@oss.qualcomm.com> <CAE-0n50DXcAXQMaLtsamvxHjUrkJVBz42G6gtgKgW9Rh=qd31Q@mail.gmail.com>
+ <87895166-659e-475f-99bf-5791a6e1ac3b@oss.qualcomm.com>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+Date: Mon, 10 Feb 2025 16:50:37 -0600
+X-Gm-Features: AWEUYZmtYYT334_kTXnpfDawnzC3OarpU1PJNDWzV_jXYgahC0sPCiJwqwU3_-I
+Message-ID: <CAE-0n51zc65GSm5J9TbHe_g4reos2h_iv-ozMU6CCrAuOt3Kww@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: chrome: Add binding for ChromeOS Pogo
+ pin connector
+To: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	patches@lists.linux.dev, cros-qcom-dts-watchers@chromium.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, devicetree@vger.kernel.org, 
+	chrome-platform@lists.linux.dev, Pin-yen Lin <treapking@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 
-This adds the otp node to the rk3576 soc devicetree including the
-individual fields we know about.
+Quoting Konrad Dybcio (2025-02-10 11:09:57)
+> On 6.02.2025 9:43 PM, Stephen Boyd wrote:
+> >
+> > Do you have a device that could use such a generic binding? I can't
+> > really design something in the abstract without two or more concrete use
+> > cases. Coming up with something generic looks like a quagmire, because
+> > as you say the signals going through the pins could be anything: i2c,
+> > 1-wire, etc.
+>
+> Right, we can't be overly generic either. FWIW I'm not standing in the way
+> of this patch getting merged.
+>
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 39 ++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 4dde954043ef..29b47799849a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1260,6 +1260,45 @@ sdhci: mmc@2a330000 {
- 			status = "disabled";
- 		};
- 
-+		otp: otp@2a580000 {
-+			compatible = "rockchip,rk3576-otp";
-+			reg = <0x0 0x2a580000 0x0 0x400>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			clocks = <&cru CLK_OTPC_NS>, <&cru PCLK_OTPC_NS>,
-+				 <&cru CLK_OTP_PHY_G>;
-+			clock-names = "otp", "apb_pclk", "phy";
-+			resets = <&cru SRST_OTPC_NS>, <&cru SRST_P_OTPC_NS>;
-+			reset-names = "otp", "apb";
-+
-+			/* Data cells */
-+			cpu_code: cpu-code@2 {
-+				reg = <0x02 0x2>;
-+			};
-+			otp_cpu_version: cpu-version@5 {
-+				reg = <0x05 0x1>;
-+				bits = <3 3>;
-+			};
-+			otp_id: id@a {
-+				reg = <0x0a 0x10>;
-+			};
-+			cpub_leakage: cpub-leakage@1e {
-+				reg = <0x1e 0x1>;
-+			};
-+			cpul_leakage: cpul-leakage@1f {
-+				reg = <0x1f 0x1>;
-+			};
-+			npu_leakage: npu-leakage@20 {
-+				reg = <0x20 0x1>;
-+			};
-+			gpu_leakage: gpu-leakage@21 {
-+				reg = <0x21 0x1>;
-+			};
-+			log_leakage: log-leakage@22 {
-+				reg = <0x22 0x1>;
-+			};
-+		};
-+
- 		gic: interrupt-controller@2a701000 {
- 			compatible = "arm,gic-400";
- 			reg = <0x0 0x2a701000 0 0x10000>,
--- 
-2.47.2
-
+Ok, got it. I've renamed this to google,usb-pogo-keyboard and made it
+keyboard specific. I'll send v3 shortly.
 
