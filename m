@@ -1,269 +1,206 @@
-Return-Path: <devicetree+bounces-144751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F7DA2F268
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:02:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88877A2F275
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:04:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FC0F165D83
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:02:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 299D9161726
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:04:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB8B244180;
-	Mon, 10 Feb 2025 16:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE1162475D9;
+	Mon, 10 Feb 2025 16:04:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="by1l6cjA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IMZF+ghu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F6024BCF7
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 16:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F66124BCED;
+	Mon, 10 Feb 2025 16:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739203324; cv=none; b=DtQPLy+H8z8pchD0YfzbL6mpuVUm8wGfAWhU/oOD/ah3j8hpRB+UItrxgJLVgeSX31ZIZIQZJjSoDi/U3Ib8NVaO7zZcmTeOUPOV4ZuUrepkFG+BbjhRJ3MI2LP92yndEWSZawbXsjHYXZQzEg95pgdq8+cXNDuImeAmgAcTxSA=
+	t=1739203451; cv=none; b=ZAhUgA0Iykwzk85/noug94Im+6YMQpmUPWbVrDQrJIS0DIEmpVgfBKUgTUWXk4BCascRzg7jNpMT08MiCOIRO1APfolnT2KPKY30oJI6txYf9J0KVJ9tFwoQqDRV4nRLeQQ4zu2G0AJlsAUA1Br1ltavvEcx37ll/SmqvOYCeTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739203324; c=relaxed/simple;
-	bh=u0VAYcq/akyEWKSTt6GgPq/wArBPZN2RGKupkPBoI9U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Stt+F3kpgWk56rBTrK0rHm5WzyFLcRxZ9K/fii4DBHs7poYadl5osORxyCfpkMPr3tDnoo+pdaSehq8EFeU8tbWdvJTAgELmPKf4C/N+mwVje3iSa/Ha6zU9DuOFa4Qa7KkWBeaNBLmlVyGVOvSZrbqwbibJz+zGhzZJbfIc3D0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=by1l6cjA; arc=none smtp.client-ip=209.85.210.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-71e3005916aso1513994a34.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 08:02:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739203321; x=1739808121; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V9hNY1B3hiFWbuQVz7IVTYjJtWHZaIF3fkXcrf0/HLc=;
-        b=by1l6cjAYc0fhrKXUYScnFBk65YXDFVSsHpa/Pux4dscqAJzIlo7ToU3Qx0mQRw8If
-         mALiPurZ9eMt5jGUnugbqiUYTTp2yyei/rIE3nIPJ+REpuEezQe/PsuiPls+RG4gzXLX
-         mIs/8cdPbeU7Y5bugrP9Ssxkz7XFrnAc9Qq8Raw+/LudAV11AHSxJypFKSsFCw3nh9f6
-         0uNwMWTkGbITbt2r8fuJf+JbvcseWDSQgEOqFtEycCjrXcoD6C8/UDOzNpTmf/15sLWQ
-         D1r9ltQndNdsqQUbiACkEz8nmUCOi2DR/atV6pZ5X4QsueYXa6uWqWAgt8wXuCtWNQV0
-         1uqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739203321; x=1739808121;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V9hNY1B3hiFWbuQVz7IVTYjJtWHZaIF3fkXcrf0/HLc=;
-        b=dvijJYxQTSddFlfq+3vS0tPBxZBTexd/yUBM2EiFLROG75iSRH3cWoY2fUjxSMbFT4
-         cqWoIthfFqdgk8UxA2/3oLAyrjo6FDXIm2XQpteofAQacU8K+ltTdDzwJTJmAoJTlxR4
-         E2AeXbgCReWkFB/hU9bxE1zyqLQJm0PnGF//oY3932HXpBZrVVwZU81SbNameyIVBdJb
-         QKvb0OGXd0F6bGkPDbWyg4Qhg7fZH8njTIe7NubJ74juFLTZ44IufZYfEcf/61uv5Wyp
-         tg+AtRhcAuNHXJQ9AIWa+FaYFKe3sTcK5Ub5Xhl0JW81F/O09BCb08vknQE/YVcRKFcE
-         wz0w==
-X-Forwarded-Encrypted: i=1; AJvYcCW72gS2kEHrv4xakO5/44FY9/tw/IIKJMjC4hHS8Oo91MNVqPWMjp2kN0XGDtAkTDzsNj7xsfp0Uif4@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywf4zKM7wS4hvK5B1+ayZOlLNGB7Tfzv3meLas74qMC1cxcywXE
-	8RV+DuLtJXb0dWoavKgxHA666RuybmwSn/qF7z7rp2R+QMwMpw+JI7dnXaBeT1s=
-X-Gm-Gg: ASbGncvNwTHTbWehIxaCbG6EvI6/RN2gk3CuqHocU3kXHzRuKiegk0AbrqGWcaNcP6y
-	wyTXzj+1q0Ghztj3SW+04bwfn+fyB9NGkvYpeRtKJSmYJLn022F/3uIB2kJrjg/haGWaEpmCTIK
-	ARkNTT0cw6dIub71do7B4uujo0a+t/fBDA7Q808c0A+B8ShzGki+xxWH1XVkEAE5RsqxtLbFYyb
-	DzZcn8e9uw1MAv/s78UNWIoxtdARWVs9qGKR7Z8OI8KY1GRNjoXP1r5lcRgAEgRmKk8o7heyJrf
-	VgUMRLV8icmib7b2YUCw83Ads9mjLvF9CCj5k+Qtrs5sXgbTipY0
-X-Google-Smtp-Source: AGHT+IEmz/z79n57foTM2IiZV1RAkBRrvXZ8JCigqm1/04tEth3DdNZfHmVNCMaJppLzGcpSIjFH7A==
-X-Received: by 2002:a05:6830:6010:b0:71f:bbbd:ab60 with SMTP id 46e09a7af769-726b88cbe92mr9464407a34.26.1739203321488;
-        Mon, 10 Feb 2025 08:02:01 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2b854f77c92sm1842798fac.30.2025.02.10.08.01.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Feb 2025 08:01:59 -0800 (PST)
-Message-ID: <8a8432e7-86b9-43dd-9aa0-75875747eedb@baylibre.com>
-Date: Mon, 10 Feb 2025 10:01:57 -0600
+	s=arc-20240116; t=1739203451; c=relaxed/simple;
+	bh=MmLzTVOIrpo7J0HmbhxBdjKvlFVJINa0c786cp4K2is=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=afs83McR9DtLcH2r/Uy0mqSGNVankAuPKWxoIdfoS10DOPwulrL18CN4xsY7xycaUnjgKjxYokO9SJ6fD7QtX19GY2fsrJN8y07vydXWCKb8DTiq2appz8LlgVSh1DFrLbEVboxiuV7N2vZESa4QDdz+h7SIz2krBVBLR0vI5xo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IMZF+ghu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EDA8C4CEE8;
+	Mon, 10 Feb 2025 16:04:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739203451;
+	bh=MmLzTVOIrpo7J0HmbhxBdjKvlFVJINa0c786cp4K2is=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=IMZF+ghuSiCCJz57Q5USpgV4CW3vxkE+nfMG1knu6gzbU8ZVVARB0CrktiwrIk67E
+	 Hp+1zFYkDBupPWkLP2fek6SjxBtdd8uZX3bsyrNGaGd3VDsFNAQzMV0B8Bw7PLqno7
+	 J8yGHYrFy3lE1q9NnvTqoTJ6L6/fNTihHlNov7BXlXsi3mInlQtMMtxsIsIU8E/YP2
+	 6fuhEdcGiIM2KpifkoHYPYf7AyXzUlFejV237V6OD7muNrezl//ORBJCZM9V0Z2cGP
+	 fe78vxqe0+Y6PyqE84mgPUSfNDFYrpSDzRGZFIFOrU6co1irCDDPsKdgFbxPQ6BLzB
+	 vldIL+nl53Ugw==
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5de861dcb04so1260045a12.1;
+        Mon, 10 Feb 2025 08:04:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXSrwid6885/fwO0fPPtRZZ4NBRB3IxrrxYCXtlEsZl/O/2LriK1sXHq+ktDMZ14++W4HhfTXNhncUy@vger.kernel.org, AJvYcCXnZysc0zmCT+vUCYO7VVCB7PyNLq5S720GRgNFUpxTbmsaRfvOrjDfQV8xsf5yT6TxCKc2gXt5LDAO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7AvPTYZLPahaSvvU4OXaheTxEUfKKSfDEKlmbCy9MtQ5/q/QW
+	9aZ4KrW4VURdZ0PqN5VpXtvmj+WiCPMX0wqTEu+QixkW8k1rf7iYmhqL4bJESxtMMmyHFk5iEbj
+	ZMo2oJ4leDlaCwbz5vQGTauaPyA==
+X-Google-Smtp-Source: AGHT+IFRZNJEmIDWeGq7jBDTWhH6Y05jOZW3+7OggCVpp9D3eKLI+N0SQhYn4TTzkQ07b3SjWfpk0D6PnrkmWhtaNlQ=
+X-Received: by 2002:a05:6402:4308:b0:5de:5cea:869e with SMTP id
+ 4fb4d7f45d1cf-5de5cea8b38mr8326232a12.32.1739203449824; Mon, 10 Feb 2025
+ 08:04:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 14/17] iio: adc: ad4695: Add support for SPI offload
-To: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
- <20250207-dlech-mainline-spi-engine-offload-2-v8-14-e48a489be48c@baylibre.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250207-dlech-mainline-spi-engine-offload-2-v8-14-e48a489be48c@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250206132754.2596694-1-rppt@kernel.org> <20250206132754.2596694-14-rppt@kernel.org>
+In-Reply-To: <20250206132754.2596694-14-rppt@kernel.org>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 10 Feb 2025 10:03:58 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLBf1Vv6K5mK6x9JRqegvScSNFpAEE2iJOkJ4JuBTLsCw@mail.gmail.com>
+X-Gm-Features: AWEUYZkqxkn1PB0pgkw5chjo9LRqD9SA0TtsGYB7u__vI-ErDb4_rUvPql-Dcx4
+Message-ID: <CAL_JsqLBf1Vv6K5mK6x9JRqegvScSNFpAEE2iJOkJ4JuBTLsCw@mail.gmail.com>
+Subject: Re: [PATCH v4 13/14] memblock: Add KHO support for reserve_mem
+To: Mike Rapoport <rppt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Andy Lutomirski <luto@kernel.org>, 
+	Anthony Yznaga <anthony.yznaga@oracle.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Ashish Kalra <ashish.kalra@amd.com>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
+	Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, David Woodhouse <dwmw2@infradead.org>, 
+	Eric Biederman <ebiederm@xmission.com>, Ingo Molnar <mingo@redhat.com>, 
+	James Gowans <jgowans@amazon.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Paolo Bonzini <pbonzini@redhat.com>, Pasha Tatashin <pasha.tatashin@soleen.com>, 
+	"H. Peter Anvin" <hpa@zytor.com>, Peter Zijlstra <peterz@infradead.org>, Pratyush Yadav <ptyadav@amazon.de>, 
+	Saravana Kannan <saravanak@google.com>, 
+	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, Steven Rostedt <rostedt@goodmis.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, Tom Lendacky <thomas.lendacky@amd.com>, 
+	Usama Arif <usama.arif@bytedance.com>, Will Deacon <will@kernel.org>, devicetree@vger.kernel.org, 
+	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/7/25 2:09 PM, David Lechner wrote:
-> Add support for SPI offload to the ad4695 driver. SPI offload allows
-> sampling data at the max sample rate (500kSPS or 1MSPS).
-> 
-> This is developed and tested against the ADI example FPGA design for
-> this family of ADCs [1].
-> 
-> [1]: http://analogdevicesinc.github.io/hdl/projects/ad469x_fmc/index.html
-> 
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+On Thu, Feb 6, 2025 at 7:30=E2=80=AFAM Mike Rapoport <rppt@kernel.org> wrot=
+e:
+>
+> From: Alexander Graf <graf@amazon.com>
+>
+> Linux has recently gained support for "reserve_mem": A mechanism to
+> allocate a region of memory early enough in boot that we can cross our
+> fingers and hope it stays at the same location during most boots, so we
+> can store for example ftrace buffers into it.
+>
+> Thanks to KASLR, we can never be really sure that "reserve_mem"
+> allocations are static across kexec. Let's teach it KHO awareness so
+> that it serializes its reservations on kexec exit and deserializes them
+> again on boot, preserving the exact same mapping across kexec.
+>
+> This is an example user for KHO in the KHO patch set to ensure we have
+> at least one (not very controversial) user in the tree before extending
+> KHO's use to more subsystems.
+>
+> Signed-off-by: Alexander Graf <graf@amazon.com>
+> Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 > ---
-> 
-
-...
-
-> ---
->  drivers/iio/adc/Kconfig  |   1 +
->  drivers/iio/adc/ad4695.c | 445 +++++++++++++++++++++++++++++++++++++++++++++--
->  2 files changed, 429 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index 995b9cacbaa964d26424346120c139858f93cdcd..ec60b64c46e187e2be18ab1f8ca9e6f4f03299f9 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -52,6 +52,7 @@ config AD4695
->  	tristate "Analog Device AD4695 ADC Driver"
->  	depends on SPI
->  	select IIO_BUFFER
-> +	select IIO_BUFFER_DMAENGINE
->  	select IIO_TRIGGERED_BUFFER
->  	select REGMAP
-
-I missed adding
-
-	select SPI_OFFLOAD
-
-Closes: https://lore.kernel.org/oe-kbuild-all/202502090910.ganYXEeF-lkp@intel.com/
-
->  	help
-
-...
-
-
-> +static int ad4695_offload_buffer_postenable(struct iio_dev *indio_dev)
+>  mm/memblock.c | 131 ++++++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 131 insertions(+)
+>
+> diff --git a/mm/memblock.c b/mm/memblock.c
+> index 84df96efca62..fdb08b60efc1 100644
+> --- a/mm/memblock.c
+> +++ b/mm/memblock.c
+> @@ -16,6 +16,9 @@
+>  #include <linux/kmemleak.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/memblock.h>
+> +#include <linux/kexec_handover.h>
+> +#include <linux/kexec.h>
+> +#include <linux/libfdt.h>
+>
+>  #include <asm/sections.h>
+>  #include <linux/io.h>
+> @@ -2423,6 +2426,70 @@ int reserve_mem_find_by_name(const char *name, phy=
+s_addr_t *start, phys_addr_t *
+>  }
+>  EXPORT_SYMBOL_GPL(reserve_mem_find_by_name);
+>
+> +static bool __init reserve_mem_kho_revive(const char *name, phys_addr_t =
+size,
+> +                                         phys_addr_t align)
 > +{
-> +	struct ad4695_state *st = iio_priv(indio_dev);
-> +	struct spi_offload_trigger_config config = {
-> +		.type = SPI_OFFLOAD_TRIGGER_DATA_READY,
-> +	};
-> +	struct spi_transfer *xfer = &st->buf_read_xfer[0];
-> +	struct pwm_state state;
-> +	u8 temp_chan_bit = st->chip_info->num_voltage_inputs;
-> +	u8 num_slots = 0;
-> +	u8 temp_en = 0;
-> +	unsigned int bit;
-> +	int ret;
+> +       const void *fdt =3D kho_get_fdt();
+> +       const char *path =3D "/reserve_mem";
+> +       int node, child, err;
 > +
-> +	iio_for_each_active_channel(indio_dev, bit) {
-> +		if (bit == temp_chan_bit) {
-> +			temp_en = 1;
-> +			continue;
-> +		}
+> +       if (!IS_ENABLED(CONFIG_KEXEC_HANDOVER))
+> +               return false;
 > +
-> +		ret = regmap_write(st->regmap, AD4695_REG_AS_SLOT(num_slots),
-> +				   FIELD_PREP(AD4695_REG_AS_SLOT_INX, bit));
-> +		if (ret)
-> +			return ret;
+> +       if (!fdt)
+> +               return false;
 > +
-> +		num_slots++;
-> +	}
+> +       node =3D fdt_path_offset(fdt, "/reserve_mem");
+> +       if (node < 0)
+> +               return false;
 > +
-> +	/*
-> +	 * For non-offload, we could discard data to work around this
-> +	 * restriction, but with offload, that is not possible.
-> +	 */
-> +	if (num_slots < 2) {
-> +		dev_err(&st->spi->dev,
-> +			"At least two voltage channels must be enabled.\n");
-> +		return -EINVAL;
-> +	}
+> +       err =3D fdt_node_check_compatible(fdt, node, "reserve_mem-v1");
+> +       if (err) {
+> +               pr_warn("Node '%s' has unknown compatible", path);
+> +               return false;
+> +       }
 > +
-> +	ret = regmap_update_bits(st->regmap, AD4695_REG_TEMP_CTRL,
-> +				 AD4695_REG_TEMP_CTRL_TEMP_EN,
-> +				 FIELD_PREP(AD4695_REG_TEMP_CTRL_TEMP_EN,
-> +					    temp_en));
-> +	if (ret)
-> +		return ret;
+> +       fdt_for_each_subnode(child, fdt, node) {
+> +               const struct kho_mem *mem;
+> +               const char *child_name;
+> +               int len;
 > +
-> +	/* Each BUSY event means just one sample for one channel is ready. */
-> +	memset(xfer, 0, sizeof(*xfer));
-> +	xfer->offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-> +	/* Using 19 bits per word to allow for possible oversampling */
-> +	xfer->bits_per_word = 19;
-> +	xfer->len = 4;
+> +               /* Search for old kernel's reserved_mem with the same nam=
+e */
+> +               child_name =3D fdt_get_name(fdt, child, NULL);
+> +               if (strcmp(name, child_name))
+> +                       continue;
 > +
-> +	spi_message_init_with_transfers(&st->buf_read_msg, xfer, 1);
-> +	st->buf_read_msg.offload = st->offload;
-> +
-> +	ret = spi_optimize_message(st->spi, &st->buf_read_msg);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * NB: technically, this is part the SPI offload trigger enable, but it
-> +	 * doesn't work to call it from the offload trigger enable callback
-> +	 * because it requires accessing the SPI bus. Calling it from the
-> +	 * trigger enable callback could cause a deadlock.
-> +	 */
-> +	ret = regmap_set_bits(st->regmap, AD4695_REG_GP_MODE,
-> +			      AD4695_REG_GP_MODE_BUSY_GP_EN);
-> +	if (ret)
-> +		goto err_unoptimize_message;
-> +
-> +	ret = spi_offload_trigger_enable(st->offload, st->offload_trigger,
-> +					 &config);
-> +	if (ret)
-> +		goto err_disable_busy_output;
-> +
-> +	ret = ad4695_enter_advanced_sequencer_mode(st, num_slots);
-> +	if (ret)
-> +		goto err_offload_trigger_disable;
-> +
-> +	guard(mutex)(&st->cnv_pwm_lock);
+> +               err =3D fdt_node_check_compatible(fdt, child, "reserve_me=
+m_map-v1");
 
-Apparently clang doesn't like this guard() after goto, so I'll have to figure
-out what to do about that. Probably need to add a helper function to avoid
-goto below from jumping out of scoped_guard().
+It really seems you all are trying to have things both ways. It's not
+Devicetree, just the FDT file format, but then here you use
+"compatible" which *is* Devicetree. At best, it's all just confusing
+for folks. At worst, you're just picking and choosing what you want to
+use.
 
-https://lore.kernel.org/oe-kbuild-all/202502090806.KxEvxCZC-lkp@intel.com/
+I'm not saying don't use "compatible" just for the sake of looking
+less like DT, but perhaps your versioning should be done differently.
+You are reading the 'mem' property straight into a struct. Maybe the
+struct should have a version. Or the size of the struct is the version
+much like the userspace ABI is handled for structs.
 
-> +	pwm_get_state(st->cnv_pwm, &state);
-> +	/*
-> +	 * PWM subsystem generally rounds down, so requesting 2x minimum high
-> +	 * time ensures that we meet the minimum high time in any case.
-> +	 */
-> +	state.duty_cycle = AD4695_T_CNVH_NS * 2;
-> +	ret = pwm_apply_might_sleep(st->cnv_pwm, &state);
-> +	if (ret)
-> +		goto err_offload_exit_conversion_mode;
+> +               if (err) {
+> +                       pr_warn("Node '%s/%s' has unknown compatible", pa=
+th, name);
+> +                       continue;
+> +               }
 > +
-> +	return 0;
+> +               mem =3D fdt_getprop(fdt, child, "mem", &len);
+> +               if (!mem || len !=3D sizeof(*mem))
+> +                       continue;
 > +
-> +err_offload_exit_conversion_mode:
-> +	/*
-> +	 * We have to unwind in a different order to avoid triggering offload.
-> +	 * ad4695_exit_conversion_mode() triggers a conversion, so it has to be
-> +	 * done after spi_offload_trigger_disable().
-> +	 */
-> +	spi_offload_trigger_disable(st->offload, st->offload_trigger);
-> +	ad4695_exit_conversion_mode(st);
-> +	goto err_disable_busy_output;
-> +
-> +err_offload_trigger_disable:
-> +	spi_offload_trigger_disable(st->offload, st->offload_trigger);
-> +
-> +err_disable_busy_output:
-> +	regmap_clear_bits(st->regmap, AD4695_REG_GP_MODE,
-> +			  AD4695_REG_GP_MODE_BUSY_GP_EN);
-> +
-> +err_unoptimize_message:
-> +	spi_unoptimize_message(&st->buf_read_msg);
-> +
-> +	return ret;
-> +}
+> +               if (mem->addr & (align - 1)) {
+
+It's stated somewhere in this that the FDT data is LE, but here you
+are assuming the FDT is the same endianness as the CPU not that it's
+LE. Arm64 can do BE. PowerPC does both. I'm not sure if kexec from one
+endianness to another is possible. I would guess in theory it is and
+in practice it's broken already (because kexec is always an
+afterthought). Either you need to guarantee that native endianness
+will never be an issue for any arch or you need to make the endianness
+fixed.
+
+Rob
 
