@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-144774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B8DA2F33E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:23:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B372A2F343
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:23:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A493188592B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:23:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 050C8163E9B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:23:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B8DB1F8BAF;
-	Mon, 10 Feb 2025 16:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F20624BD1C;
+	Mon, 10 Feb 2025 16:22:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LcB4rPQJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q7kOpbmS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 718381F4639;
-	Mon, 10 Feb 2025 16:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 431212580C8;
+	Mon, 10 Feb 2025 16:22:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739204564; cv=none; b=Ep3Svq65cf+gAQQjVqUXmRMP2YXGmNpkzFZQJhtauPme3+OttCD8t6HFvl3raG0hYEoOP0rMBZmxVOhWwKFMNxPrEwLMSB0R+hNLXGpU9d0K/c08mPgUI0J9i8omTcQpsVRKfN0kM56SKx8+xeFM/xBvRgjERjdcWYdsDkorQmE=
+	t=1739204566; cv=none; b=S4Oi/Ivx3S2rhNE1Lh7VQ0mXo5mDv/nHSn9Qyctt0qaR534V5VWh/Oa55LVR0AcacUXZfx8s6SVgklHIMinY3+ngWxb3rFDfDtfTIJZwz6J02PTkFBvRPaaYiuSgy+7Ygv3rcki754uBhw68VGuWZoufziS1GfACG5ZhBEvcjRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739204564; c=relaxed/simple;
-	bh=pXGdmhYk7WaHCM2tK0X0wGnl92yW8776DxyCrGx/Ztk=;
+	s=arc-20240116; t=1739204566; c=relaxed/simple;
+	bh=5pue0C/bvY7Bi4z8DCyV8fK5Y7JUy3U4ZkaQjuaNTCw=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=rojCAit+rq0LyamGh1NIj3EMO9nIrNxNlsNORhp1SC5M0fBlA9X6e3fLqxtUgSfugN0btob+8rY+C4CnZ4WQDwkUOW6hnub/QW7I6vLpdxaJ+zdIcMCLhXH5Ju/zFJn/l7n0GViREDp3dmrfX+pYODPRbBsrxktSOx/Qh0dT7gQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LcB4rPQJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A3F2C4CEDF;
-	Mon, 10 Feb 2025 16:22:44 +0000 (UTC)
+	 Message-Id:Subject; b=TMAtOLaKc/x7lzq1Ettk+5EHDQAiSIsGCXUR9vTumW580vfF1rmWZqCTW621GZrnCgV9iRAm4qaXW6yZxD2dWIHOofNXcffHjWJh9hjB5gfy+8m0CgVRjgg44nAwVMVgPk2/M0cmSn2llQfXYwtqziGHAbZXXwtgkmIfLrbU89s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q7kOpbmS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84FC0C4CEE6;
+	Mon, 10 Feb 2025 16:22:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739204564;
-	bh=pXGdmhYk7WaHCM2tK0X0wGnl92yW8776DxyCrGx/Ztk=;
+	s=k20201202; t=1739204565;
+	bh=5pue0C/bvY7Bi4z8DCyV8fK5Y7JUy3U4ZkaQjuaNTCw=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=LcB4rPQJf8t+Qmpl1lCSu8mqCgZpgs6dO7NKfHbQzi1KODyDXNode0Tcy025YxPdK
-	 sdH/PvfF69QciIoR2FRa+gl+e+ul28zv7EXb3HhTRVByJPvawsJNwYDlL7MMArKypA
-	 pI6k9vcBTO2fV5mgRhj7ZaeHF+3UHjj4dmonsSPYVtPUXEa32dvcjsQJ/oL/3l9W7t
-	 b4vXux3x0dhTOnwDh5m+7oGNluH56tgr79G1DNCNJ+jsmJMMWkkZoGuZOytJZE7yFT
-	 msWVfoVTpTAKO873s6YLygCwEGg7++/tuTtSn5GWhfH+qAJt15tf8et8Ie+HWOpiuD
-	 PCgkg7/qMHwug==
-Date: Mon, 10 Feb 2025 10:22:43 -0600
+	b=Q7kOpbmSvyikwdl0vxdtsvwh3aPlVJKtOKvBumplA6jZU96aNqOf/2VNQRZsxcpFi
+	 ivVRzLV+1fHR4GZ6yjJTQ9kSmhPHXHVPO7pEtbVEHdRPfwKNARwrG6CSzsdYEIipY5
+	 Z/Usfk1EIFx408e+8pO5fTi91IkqEvYYgHCDLz77yy4G6Ut0EW5i3F0gM6CRbHbxby
+	 Wtk8O7BufKk1n7g2d4WH37bPsPndpQtwmJU+Zpq9WIIFVIILD45ePkIrLB90FQrFQH
+	 qas1Frr4pWnbkvcyyzMEQ53fNsEJjoCo0tQaluzkHzxGOw2xym+NxbGUl0YIXkaWFO
+	 t1AdRCYX4NpsQ==
+Date: Mon, 10 Feb 2025 10:22:44 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,25 +51,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
- konradybcio@kernel.org, devicetree@vger.kernel.org
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-In-Reply-To: <20250209153940.3489-1-manivannan.sadhasivam@linaro.org>
-References: <20250209153940.3489-1-manivannan.sadhasivam@linaro.org>
-Message-Id: <173920411963.477096.6458317590653327676.robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: Add 'global' IRQ for PCIe
- controllers
+Cc: Chen Wang <unicorn_wang@outlook.com>, 
+ linux-arm-kernel@lists.infradead.org, Sebastian Reichel <sre@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Haylen Chu <heylenay@outlook.com>, linux-pm@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, soc@lists.linux.dev, 
+ Arnd Bergmann <arnd@arndb.de>, Will Deacon <will@kernel.org>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Inochi Amaoto <inochiama@outlook.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Lee Jones <lee@kernel.org>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+In-Reply-To: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
+References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
+Message-Id: <173920412075.477254.10964125366963859194.robh@kernel.org>
+Subject: Re: [PATCH 00/10] arm64 support for Milk-V Duo Module 01 EVB
 
 
-On Sun, 09 Feb 2025 21:09:40 +0530, Manivannan Sadhasivam wrote:
-> 'global' IRQ is used to receive vendor specific events from the PCIe
-> controller.
+On Sun, 09 Feb 2025 23:06:25 +0100, Alexander Sverdlin wrote:
+> This series adds very basic support for Milk-V Duo Module 01 EVB [1] in
+> arm64 mode. The SoC (SG2000) is dual-arch, RiscV and ARM64, the latter has
+> been chosen because the upstream toolchain can be utilized.
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
+> Sophgo SG2000 seems to be a continuation of the Cvitek CV18xx series, same
+> peripherals with an addition of ARM64 core. Therefore it would be
+> beneficial not to copy-paste the peripherals' device-tree, but rather split
+> the most suitable riscv DT into ARCH-specific and peripherals parts and
+> just include the latter on the arm64 side.
+> 
+> This series adds the device-tree for Milk-V Duo Module 01 EVB, which
+> in turn contains Milk-V Duo Module 01 (separate .dtsi) on it, which has
+> SG2000 SoC inside (separate .dtsi).
+> 
+> This series has been tested with Sophgo-provided U-Boot binary [2]: it
+> boots from SD card, pinctrl, serial, GPIO drivers are functional (same
+> as for RiscV-based CV18xx SoCs).
+> New reset driver is provided as an alternative to the ATF PSCI handler,
+> which Sophgo only provides in binary form.
+> 
+> Partial SoC documentation is available [3].
+> 
+> This series lacks the support of:
+> - USB
+> - Audio
+> - Ethernet
+> - WiFi
+> - Bluetooth
+> - eMMC
+> - Video
+> 
+> It would probably make sense that the whole series would go into SOC tree,
+> even though technically nothing prevents the reboot/reset driver to come
+> in PM/reset tree. If everything would come together, `reboot` command would
+> work out of the box.
+> 
+> [1] https://milkv.io/docs/duo/getting-started/duo-module-01
+> [2] https://github.com/milkv-duo/duo-buildroot-sdk-v2/releases/
+> [3] https://github.com/sophgo/sophgo-doc/releases/download/sg2000-trm-v1.01/sg2000_trm_en.pdf
+> 
+> Alexander Sverdlin (10):
+>   arm64: Add SOPHGO SOC family Kconfig support
+>   riscv: dts: sophgo: cv18xx: Split into CPU core and peripheral parts
+>   arm64: dts: sophgo: Add initial SG2000 SoC device tree
+>   arm64: dts: sophgo: Add Duo Module 01
+>   arm64: dts: sophgo: Add Duo Module 01 Evaluation Board
+>   dt-bindings: mfd: syscon: Add Cvitek CV18xx rtcsys core and ctrl
+>     compatible
+>   dt-bindings: reset: sophgo: Add CV18xx reset controller
+>   riscv/arm64: dts: cv18xx: Add sysctl and reset nodes
+>   power: reset: cv18xx: New driver
+>   arm64: defconfig: Enable rudimentary Sophgo SG2000 support
+> 
+>  .../devicetree/bindings/mfd/syscon.yaml       |   4 +
+>  .../bindings/reset/sophgo,cv1800-reset.yaml   |  38 ++
+>  MAINTAINERS                                   |   1 +
+>  arch/arm64/Kconfig.platforms                  |  12 +
+>  arch/arm64/boot/dts/Makefile                  |   1 +
+>  arch/arm64/boot/dts/sophgo/Makefile           |   2 +
+>  arch/arm64/boot/dts/sophgo/sg2000.dtsi        |  79 +++++
+>  .../sophgo/sg2000_milkv_duo_module_01.dtsi    |  84 +++++
+>  .../sophgo/sg2000_milkv_duo_module_01_evb.dts |  30 ++
+>  arch/arm64/configs/defconfig                  |   3 +
+>  arch/riscv/boot/dts/sophgo/cv181x.dtsi        |   2 +-
+>  arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi | 329 ++++++++++++++++++
+>  arch/riscv/boot/dts/sophgo/cv18xx.dtsi        | 305 +---------------
+>  drivers/power/reset/Kconfig                   |  12 +
+>  drivers/power/reset/Makefile                  |   1 +
+>  drivers/power/reset/cv18xx-reset.c            |  89 +++++
+>  16 files changed, 689 insertions(+), 303 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/reset/sophgo,cv1800-reset.yaml
+>  create mode 100644 arch/arm64/boot/dts/sophgo/Makefile
+>  create mode 100644 arch/arm64/boot/dts/sophgo/sg2000.dtsi
+>  create mode 100644 arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01.dtsi
+>  create mode 100644 arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01_evb.dts
+>  create mode 100644 arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
+>  create mode 100644 drivers/power/reset/cv18xx-reset.c
+> 
+> --
+> 2.48.1
+> 
+> 
 > 
 
 
@@ -87,40 +169,17 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250209153940.3489-1-manivannan.sadhasivam@linaro.org:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/sophgo/' for 20250209220646.1090868-1-alexander.sverdlin@gmail.com:
 
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: pcie@1c00000: interrupts: [[0, 307, 4], [0, 308, 4], [0, 309, 4], [0, 312, 4], [0, 313, 4], [0, 314, 4], [0, 374, 4], [0, 375, 4], [0, 306, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: pcie@1c00000: interrupt-names: ['msi0', 'msi1', 'msi2', 'msi3', 'msi4', 'msi5', 'msi6', 'msi7', 'global'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: pcie@1c10000: interrupts: [[0, 519, 4], [0, 140, 4], [0, 141, 4], [0, 142, 4], [0, 143, 4], [0, 144, 4], [0, 145, 4], [0, 146, 4], [0, 518, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: pcie@1c10000: interrupt-names: ['msi0', 'msi1', 'msi2', 'msi3', 'msi4', 'msi5', 'msi6', 'msi7', 'global'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: pcie@1c00000: interrupts: [[0, 307, 4], [0, 308, 4], [0, 309, 4], [0, 312, 4], [0, 313, 4], [0, 314, 4], [0, 374, 4], [0, 375, 4], [0, 306, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: pcie@1c00000: interrupt-names: ['msi0', 'msi1', 'msi2', 'msi3', 'msi4', 'msi5', 'msi6', 'msi7', 'global'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: pcie@1c10000: interrupts: [[0, 519, 4], [0, 140, 4], [0, 141, 4], [0, 142, 4], [0, 143, 4], [0, 144, 4], [0, 145, 4], [0, 146, 4], [0, 518, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: pcie@1c10000: interrupt-names: ['msi0', 'msi1', 'msi2', 'msi3', 'msi4', 'msi5', 'msi6', 'msi7', 'global'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: pcie@1c00000: interrupts: [[0, 307, 4], [0, 308, 4], [0, 309, 4], [0, 312, 4], [0, 313, 4], [0, 314, 4], [0, 374, 4], [0, 375, 4], [0, 306, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: pcie@1c00000: interrupt-names: ['msi0', 'msi1', 'msi2', 'msi3', 'msi4', 'msi5', 'msi6', 'msi7', 'global'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: pcie@1c10000: interrupts: [[0, 519, 4], [0, 140, 4], [0, 141, 4], [0, 142, 4], [0, 143, 4], [0, 144, 4], [0, 145, 4], [0, 146, 4], [0, 518, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: pcie@1c10000: interrupt-names: ['msi0', 'msi1', 'msi2', 'msi3', 'msi4', 'msi5', 'msi6', 'msi7', 'global'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/sa8775p-ride-r3.dtb: pcie@1c00000: interrupts: [[0, 307, 4], [0, 308, 4], [0, 309, 4], [0, 312, 4], [0, 313, 4], [0, 314, 4], [0, 374, 4], [0, 375, 4], [0, 306, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/sa8775p-ride-r3.dtb: pcie@1c00000: interrupt-names: ['msi0', 'msi1', 'msi2', 'msi3', 'msi4', 'msi5', 'msi6', 'msi7', 'global'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/sa8775p-ride-r3.dtb: pcie@1c10000: interrupts: [[0, 519, 4], [0, 140, 4], [0, 141, 4], [0, 142, 4], [0, 143, 4], [0, 144, 4], [0, 145, 4], [0, 146, 4], [0, 518, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-arch/arm64/boot/dts/qcom/sa8775p-ride-r3.dtb: pcie@1c10000: interrupt-names: ['msi0', 'msi1', 'msi2', 'msi3', 'msi4', 'msi5', 'msi6', 'msi7', 'global'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
+arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01_evb.dtb: /: failed to match any schema with compatible: ['sophgo,sg2000']
+arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01_evb.dtb: soc: soc-reset: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01_evb.dtb: l2-cache: 'cache-unified' is a dependency of 'cache-size'
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01_evb.dtb: l2-cache: 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/sophgo/sg2000_milkv_duo_module_01_evb.dtb: l2-cache: Unevaluated properties are not allowed ('cache-level', 'cache-size' were unexpected)
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
 
 
 
