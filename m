@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-144621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55AA3A2EA82
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:05:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D11A2EA7F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:05:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E9C9188332B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:05:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24BFF1882367
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:05:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C13E1E3DEF;
-	Mon, 10 Feb 2025 11:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635E71E376C;
+	Mon, 10 Feb 2025 11:02:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="v+yItCGH"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Mw3VgIuE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955381E379B;
-	Mon, 10 Feb 2025 11:02:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE77F1DDC14;
+	Mon, 10 Feb 2025 11:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739185362; cv=none; b=qz1OaL4zC51Tx0E6oKmMaAJqaud8jFF4LdJDBVHOSNqpprerBYCXvwQT+E5SJpm90E0P8cEmEnt4n1YnNa0O61OgTPbFBoV3zQSrsfRuK9ohyyPswMV1q1+vnxYuhuGCI/EraridAl4flzlR3PA4pE23/rL/HNz3uaI8IXi5mDI=
+	t=1739185360; cv=none; b=hZ2pgIwUA/e8fk1kUHeVJUaG9AloOa3xzCrmxNLVAHWj4bSeLd4chG6iZ0SDdddh3rVIRd7tZm1e6DeptcS8iMKbl5jvTvBJaOEqCIX9Ke9FN/uuoF5B9ZZG1wtYYGGc2iE8JTB2XPGDqrWnYkhhaP93LW8boSKggq5QqnJtzNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739185362; c=relaxed/simple;
-	bh=hqav1osnV57BsSWfpy44l5dQRNg/prN+l7ofLWugbs0=;
+	s=arc-20240116; t=1739185360; c=relaxed/simple;
+	bh=FpSi2ATJbEDX8RqHOEft6rzjmMktVXtGigKUzZHWI/w=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Wk+JM5HKM0ZIZM8naUMqkTERgk7Iv5MvTrGeIuKhpJ7AbSNZiFFvyAXZX468Z/yrADrsSB8FxVW0VfuD9bWKi8yoVcip3I8AZm1fju1pmb9j8Z/uOZFCVdI/iK+yaewx4A9pHfkHFBNV75fhLVQH+uX9VtrS/Wg5L1MxxoZlBas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=v+yItCGH; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=mKIUI2AZwhVsBEPIVMPijRdBwvnsBa/a3zlQLJ92ov1eFUy+bQ/5pnvEEZZXSBnAncm5C3J6sPUoQpd66h8alHhYnFbjhEGrS65BuPY9JcA78IPMKEGQa7DQHFhaFswtLCyUH/TaR8DbCK0BaCvudvDLCMFpRh+qlYnmJq1mN8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Mw3VgIuE; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,35 +37,36 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=XKDMM/Pr9XluX6rCXkrT2esbqxQEIXip+ExZYq7Gt+U=; b=v+yItCGHtv3UAc6RaelpyeySwY
-	w02qeZSnxi5h9HmPlD2t94tDXOLHY+UBNtGNZ7OkW01po7JK+Fddmvign19MmSIKdNkk2fE5cKqND
-	Cc0wI4zhmaiTR+I7QloDkBS65AQhpnpZoe65L2GITEanaTTV1r8S34cKFPWJkroWiwVdkCj4I+GpI
-	unGzFZg6hIV+wXc6rLyiRV+Gr56ry/z7L65dSp7r6BFmG3eqZMzPqgyBRv0nFqL97caeadP9X6vdK
-	Y7z4Zpv1vjjusFx+jjaVxqFy1BvaYq07vz1AQ5lbcJ9MAwsYvgEXPMBxG36YO4XfQOYf+JuEdeGnf
-	jabO4Ahw==;
+	bh=NrDBOPbcZ+135BBVenarKoAQjyTOjCUsDzFGx/AdVUo=; b=Mw3VgIuELoF2iFJh7R0UwDQ8/v
+	Zwa1Qs/zIjMlPjacRyseLQaAc5ToAuDS2We5wQwb8gkTXoFvpLbtj4QhqRgwd7OxMYMSKdYVfouea
+	49wyiBtSXfK/8bBkFCuSA5ltn66s5JnMLTlIcu9TJxMlJRnm6Kphn2Qslc3sjWp/KEgV91BhgRQFj
+	7QfuhZ/1XhZqCFhx1K6P7SGnkTxO/7as+CHBcZI+F2EAXn/O6FRTuFx4eLMU7TJu30B8/TzsS5ghv
+	6wZlSDE3f17eR6p8PiTvhYmK/sY3nYFMy3NxGJJWCPqkFBddM23FhAyWP2QzUgld04hVJz6KZULo5
+	I4cSKvig==;
 Received: from i53875bc0.versanet.de ([83.135.91.192] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1thRYc-00016K-JC; Mon, 10 Feb 2025 12:02:30 +0100
+	id 1thRYd-00016K-4U; Mon, 10 Feb 2025 12:02:31 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Kever Yang <kever.yang@rock-chips.com>
+To: Val Packett <val@packett.cool>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Update rockchip company name
-Date: Mon, 10 Feb 2025 12:02:19 +0100
-Message-ID: <173918533251.1059791.7850315164866493973.b4-ty@sntech.de>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: rk3188-common: add PCLK_CIF0/PCLK_CIF1
+Date: Mon, 10 Feb 2025 12:02:20 +0100
+Message-ID: <173918533250.1059791.14073641145045801256.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20241205082258.857018-1-kever.yang@rock-chips.com>
-References: <20241205082258.857018-1-kever.yang@rock-chips.com>
+In-Reply-To: <20241205182954.5346-1-val@packett.cool>
+References: <20241205182954.5346-1-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,16 +77,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 05 Dec 2024 16:22:58 +0800, Kever Yang wrote:
-> Rockchip company name has update to below name since 2021:
-> Rockchip Electronics Co., Ltd.
+On Thu, 05 Dec 2024 15:29:35 -0300, Val Packett wrote:
+> Add missing clock IDs for the CIF (Camera InterFace) blocks
+> on the RK3188/RK3066.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] dt-bindings: vendor-prefixes: Update rockchip company name
-      commit: 73af358e1d4b14928a66300a09f887bfbad0c989
+[1/2] dt-bindings: clock: rk3188-common: add PCLK_CIF0/PCLK_CIF1
+      commit: 7c9804031626c51d4ddbc8c6e82bbd8496cf6e56
+[2/2] clk: rockchip: use PCLK_CIF0/1 clock IDs on RK3066
+      commit: 4a918309d53f800dd07b94c4a4b1fcdb6289eca5
 
 Best regards,
 -- 
