@@ -1,167 +1,165 @@
-Return-Path: <devicetree+bounces-144840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 508B8A2F6E1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:23:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6EACA2F6FA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:26:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44B5C1884442
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:24:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B399F7A25B4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:25:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C21F257437;
-	Mon, 10 Feb 2025 18:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2242566D2;
+	Mon, 10 Feb 2025 18:26:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="KzB7fxZt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fyGdi/SU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756D9257422;
-	Mon, 10 Feb 2025 18:23:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 611C424FC1E;
+	Mon, 10 Feb 2025 18:26:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739211812; cv=none; b=mDetlEsxNJ63msyej3cXro66kIfchc4abYcGqHENuaV2Qf0HKk/UMaSBytSfNXXVks1wg4CdrdnZGDkw0fOwdFbKkmtNsiwFdUSuWlHn3tKF8w1lmn2bjroOZuF0pnzfWL2CVqlNgI5oYS0CkvPUsP9S2IerLZGkHLzKRSEWOSU=
+	t=1739211982; cv=none; b=d/3fNONHklfLOUP6hT0IcoebRW3dU64YaZmY97tWj3kUVo8LiP1qeOQodJbjY+tlmfd9GT8SqDmsY0bjCbmscJ0n072y6/J1BpJPMpBAm9eyz8z6DV6c3CUP5TQnwghhLQRLtCSWdtOOMZnkL5fF3edVwlSSWrTLp6dH8C09b2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739211812; c=relaxed/simple;
-	bh=acd9COQLFDN5gRd5/GOJ2Ge9i2RRPpwPQsPAyv1SxtY=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=c9gW9/dEsp6T1fUzBFzN/l70fRKpoqd9M3LVzbbhw8/I3NQMUt0LDgmWLcJbu9baSFlvcGOCtOoF4coBl+2UwR5qMiXGIKHrFvmi2ScoanH/JgXARj4hb2ff9QSLK/bUdscwDMS76cLhMdM+605NH6TPEXmlJHPzmXdyaPBP8mI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=KzB7fxZt; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1739211982; c=relaxed/simple;
+	bh=KYA157cXuPg/uZsD/Ib5SyS/u9UnH0ICnODpj1K3Gig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BDyO73XUu+/CKFYTY+DCXKo8vTvaTRKfQS31wAMbboVSBl0q0V8H55OlyLhvzoMjAY63hO6r9o+kZsj5ZiDum+aqYsEemaCeIgZt+8S/LT9YC4Sl2pUs/7vFipeyvlkA7r8J7dCiUa1tKSQvbrd8vvUkL8Diour1FaUDkQaMcuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fyGdi/SU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76503C4CED1;
+	Mon, 10 Feb 2025 18:26:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739211981;
+	bh=KYA157cXuPg/uZsD/Ib5SyS/u9UnH0ICnODpj1K3Gig=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fyGdi/SUdTXUEHLznoDzl2JFJWlQzVvFWLI6MgKYHNZsvIy3tQO4lV66WABpnzQ6q
+	 PAvFX0xzvmkEVL7uIuTUNJ6Y9VFIvrLdgR/wmaCHe7g9Yj/aCOIy8AJSxUuHlUgS8i
+	 LByB6vWVth1ee6J8OzBkUBQejnFVFukvoTOu/vGC46GUAzTMxJvRmt1LysGobg/ohC
+	 LVSTjhJZ5Cvcncmy+1flicb0OGt5RRSeIbNNvAc+97HmMQTN8NL1XBgiGFX5G6QD0L
+	 QnOSNs+y/5KifZdQ7yKyGErlqHzQZvHcmzDLWbDo+tW+DT5cUIsGklCacl0B8Pz9p7
+	 vVA4T2gxEgouQ==
+Date: Mon, 10 Feb 2025 19:26:19 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Subject: Re: [PATCH v8 2/2] pwm: Add Loongson PWM controller support
+Message-ID: <obegtfup7f6w6erh4arubk2fkk2wrcum5frs5kbqa4uniexmr5@6uti3d3hv7np>
+References: <cover.1733823417.git.zhoubinbin@loongson.cn>
+ <be76165d1ab09ec41cdfd4e5fbdae1b415f516b9.1733823417.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1739211802;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cdqhCB4hXabwkdtEITMDy97ItQnEBoqzYanBuxH4qII=;
-	b=KzB7fxZt+phnih+KMdT/jFC0YLXuIQhPmG8vJjua9rAgZ1NtFI3C6JlbR0BRirFJqzAsT4
-	rtG60hlkMhJ8vZm8pKh8/jDC/mpnoXRWHhwljYZiMl2hfXqLSTeFp4mA7GKsdaqbbCMaSG
-	Uoj9iwRa4i1mpLsUOVCEOYiWG72c636UWOx8q2wn3V8bgu3YXH5MgAX/3Ikd3vaayFBKlI
-	vHKGEZFkcohZ0P7gxQpOvSFxrAanDqYd/obwH1nFeVNfhlIU7pJLXXKKc0k5NtibPaCO70
-	Qyww5e6cL+5dU6zAw40kcCmvZyxeXAS8nCMCibjlabJcaQsS4tMswhYMX47KXg==
-Date: Mon, 10 Feb 2025 19:23:22 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jagan Teki
- <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>, Michael Riesch
- <michael.riesch@wolfvision.net>, Jonas Karlman <jonas@kwiboo.se>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] arm64: dts: rockchip: add overlay test for
- WolfVision PF5
-In-Reply-To: <9615521e-8a2a-44d7-99ea-5571f5de1e57@cherry.de>
-References: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
- <20250207-pre-ict-jaguar-v5-1-a70819ea0692@cherry.de>
- <ef9133d217bc35f611ef390da8042510@manjaro.org>
- <9615521e-8a2a-44d7-99ea-5571f5de1e57@cherry.de>
-Message-ID: <3cadb698a9bf7a898c91c0d851233ac1@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="y3cmthzzyib5n4wh"
+Content-Disposition: inline
+In-Reply-To: <be76165d1ab09ec41cdfd4e5fbdae1b415f516b9.1733823417.git.zhoubinbin@loongson.cn>
 
-Hello Quentin,
 
-On 2025-02-10 18:56, Quentin Schulz wrote:
-> On 2/10/25 9:46 AM, Dragan Simic wrote:
->> On 2025-02-07 16:19, Quentin Schulz wrote:
->>> From: Quentin Schulz <quentin.schulz@cherry.de>
->>> 
->>> The WolfVision PF5 can have a PF5 Visualizer display and PF5 IO 
->>> Expander
->>> board connected to it. Therefore, let's generate an overlay test so 
->>> the
->>> application of the two overlays are validated against the base DTB.
->>> 
->>> Suggested-by: Michael Riesch <michael.riesch@wolfvision.net>
->>> Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
->>> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
->>> 
->>> ---
->>>  arch/arm64/boot/dts/rockchip/Makefile | 22 ++++++++++++++++++++++
->>>  1 file changed, 22 insertions(+)
->>> 
->>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile
->>> b/arch/arm64/boot/dts/rockchip/Makefile
->>> index
->>> def1222c1907eb16b23cff6d540174a4e897abc9..534e70a649eeada7f9b6f12596b83f5c47b184b4
->>> 100644
->>> --- a/arch/arm64/boot/dts/rockchip/Makefile
->>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->>> @@ -170,3 +170,25 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s- 
->>> orangepi-5.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
->>> +
->>> +# Overlay application tests
->>> +#
->>> +# A .dtbo must have its own
->>> +#
->>> +#  dtb-$(CONFIG_ARCH_ROCKCHIP) += <overlay>.dtbo
->>> +#
->>> +# entry, and at least one overlay application test - ideally 
->>> reflecting how it
->>> +# will be used in real life -:
->> 
->> Hmm, what's "-:" actually doing in the line right above?  I mean,
->> it's a minor nitpick, so might be worth addressing only if there
->> will be the v6...  Also, "test - ideally" might be replaced by
->> "test, ideally", because splicing sentences together using em/en
->> dashes is generally frowned upon. :)
-> 
-> That was supposed to be an em-dash yes.
+--y3cmthzzyib5n4wh
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v8 2/2] pwm: Add Loongson PWM controller support
+MIME-Version: 1.0
 
-I see.  To explain it a bit further, here's how hyphens, en and em
-dashes should look like when an unproportional font is used:
+Hello Binbin,
 
-- When it comes to hyphens, it's a somewhat-limited option.
-- Using en dashes -- as visible here -- is a bit more involved.
-- If you use em dashes---like here---it gets borderline ugly.
+On Tue, Dec 10, 2024 at 08:37:06PM +0800, Binbin Zhou wrote:
+> +static int pwm_loongson_probe(struct platform_device *pdev)
+> +{
+> +	int ret;
+> +	struct pwm_chip *chip;
+> +	struct pwm_loongson_ddata *ddata;
+> +	struct device *dev = &pdev->dev;
+> +
+> +	chip = devm_pwmchip_alloc(dev, 1, sizeof(*ddata));
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +	ddata = to_pwm_loongson_ddata(chip);
+> +
+> +	ddata->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(ddata->base))
+> +		return PTR_ERR(ddata->base);
+> +
+> +	ddata->clk = devm_clk_get_optional_enabled(dev, NULL);
+> +	if (IS_ERR(ddata->clk))
+> +		return dev_err_probe(dev, PTR_ERR(ddata->clk),
+> +				     "failed to get pwm clock\n");
+> +	if (ddata->clk) {
+> +		ret = devm_clk_rate_exclusive_get(dev, ddata->clk);
+> +		if (ret)
+> +			return ret;
 
-> , and at least one overlay application test (ideally reflecting how it
-> will be used in real life):
-> 
-> Would that work? I don't like the : following "ideally reflecting how
-> it will be used in real life" as it applies to "overlay application
-> test" and not the end of the sentence.
+Error message please. Also please make all errors start with a capital
+letter.
 
-It works, although I'd suggest that a comma is added after "ideally".
-Technically, it would be better not to use parentheses here, but it's
-still fine.  Though, here's another option for the wording:
+> +		ddata->clk_rate = clk_get_rate(ddata->clk);
+> +	} else {
+> +		ddata->clk_rate = LOONGSON_PWM_FREQ_DEFAULT;
+> +	}
+> +
+> +	/* Explicitly initialize the CTRL register */
+> +	pwm_loongson_writel(ddata, 0, LOONGSON_PWM_REG_CTRL);
 
-   , and at least one overlay application test that represents
-   the overlay's intended real-life use:
+This disables all outputs, right? Ideally the driver takes over running
+channels. Consider the bootloader initialized a display with a splash
+screen. Disabling the PWM might disable the backlight of the display
+which hurts the visual experience.
 
->>> +#
->>> +#  dtb-$(CONFIG_ARCH_ROCKCHIP) += <name of overlay application 
->>> test>.dtb
->>> +#  <name of overlay application test>-dtbs := <base>.dtb
->>> <overlay-1>.dtbo [<overlay-2>.dtbo ...]
->> 
->> As another minor nitpick, I'd suggest that
->> 
->>      "<name of overlay application test>.dtb"
->> 
->> is replaced with
->> 
->>      "<name-of-overlay-application-test>.dtb"
-> 
-> OK.
+> +	chip->ops = &pwm_loongson_ops;
+> +	chip->atomic = true;
+> +	dev_set_drvdata(dev, chip);
+> +
+> +	ret = devm_pwmchip_add(dev, chip);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int pwm_loongson_suspend(struct device *dev)
+> +{
+> +	struct pwm_chip *chip = dev_get_drvdata(dev);
+> +	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
+> +
+> +	ddata->lss.ctrl = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
+> +	ddata->lss.duty = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_DUTY);
+> +	ddata->lss.period = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_PERIOD);
+> +
+> +	clk_disable_unprepare(ddata->clk);
+> +
+> +	return 0;
 
-Thanks.
+Is this needed assuming that before suspend the consumer stopped the
+PWM?
+
+Best regards
+Uwe
+
+
+--y3cmthzzyib5n4wh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmeqRMgACgkQj4D7WH0S
+/k5x6wf+OuES4/l5RbIfHcNQ684TqDXxIdsHM+HZKcA4pf7ti4aRWHLgtm4fSo8s
+hfbiJO07oXAJ4ZzObO6NW99tK9ixfPTfGSTTsWNfm4eogI04gHSwvj9muvcKFFqH
+QlrM324KhBuXTY0WnTTEUBxfEtYY+uN1csy8kFb5OjLbfE8l70Ow/6B7BvemWphp
+HN0mn3tCD4PEIZtOAW8ic54WDk9x0CxQicZ8YdYFO/VlcxwEM+ohTMLWdoITjkZX
+Pf92e5Q+cNhKGJ8zUErMEgl78Ul+HKQWv/qqCiX7j2k8OGavMed0ww1ExHm87V5o
+qEr5uvKwqsDZ75UjpdRaCSbnE0OJQg==
+=7aZk
+-----END PGP SIGNATURE-----
+
+--y3cmthzzyib5n4wh--
 
