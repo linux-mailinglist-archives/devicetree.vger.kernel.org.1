@@ -1,143 +1,115 @@
-Return-Path: <devicetree+bounces-144704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AEC7A2EFB9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 15:27:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7426A2EFBF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 15:28:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DF4E161895
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:27:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D50F1887659
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E77622528F9;
-	Mon, 10 Feb 2025 14:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B65D2528F6;
+	Mon, 10 Feb 2025 14:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GCD/39I9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gxhUTaXT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292652528F2
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 14:26:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4408F2528E0;
+	Mon, 10 Feb 2025 14:28:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739197617; cv=none; b=fX9UDenIu7ObM8t5lzagg2bNZU9tJ5a4NTjDYTyob5U3r4tjmqwtRY01o5l+vykC0nmW3wBn+K3E40zRwXz3KdEK/7Xlw2WK6gvXOkSSxLUOc3biPNiFHkNzD8OKhd2DjgltUvF701zC5oXzvQ6wk1+prgNnUoiFj31lTzqxWEM=
+	t=1739197692; cv=none; b=Fecuy3fjVT2ivrn9EkeXSDdEWvU2pniVPQOAYFfg7C0TC+APunWFEbld9w6Tbz6V7tGZb5zK6u2tZ1YzxNZU8ywBTkXIEc8RBgObeFYcyBph+9tqH2zkTeuHorcFwMPdJ3Ct6C2E4b+aQtWHL8LoZp7seFe0tzqm03kwVawPN50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739197617; c=relaxed/simple;
-	bh=oASEPjHAaowh4iL42KmWLyDV/ZIihkVhkEpMzaq1FYw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gPSOppelTAZ85CbHJLN3PbFj+SY6ILwSbFATpDF/IgUfHCKuAxzvJeXffb7ED7oLAMOf3oyefqaz+meYAhQKQVzWauDjbl6Dq2/s2Jw2naXy9lSOlxDFpPUfDgpwomdaQeq/NrcuKJPs7Sd4Dir/sBIzfZ0ZxFya0/JkFDYlg8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GCD/39I9; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-439350f1a0bso10979565e9.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 06:26:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739197614; x=1739802414; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=VgraRHso95F81B4DXSSaBLV0feh+tpXbSVAWbEyzHv4=;
-        b=GCD/39I9m0umYzmGWR1IwFzRUt27zuH/5jFktzo9buNRLOaBjfmupxWCMeQgMc1PkD
-         CJEJH+MIpb+cGlBbAC8ZvV+k3lL+gMdAzaEJfEpZzMKpBjq0b1rrPdQEYQB9rArNKfto
-         PFtcXfrEfPRW5GpwIkGdjc3vHiIEBeK49JLnu2vkAUKdjcp7r5zM1O1iJei9NGW/hoIY
-         KQFOVnvFMUJVeVs0onzXeKdZeJZaxjMi+9+7vMv+zVzZjQy1PFLQE/6gcvbowVjBU7yZ
-         ieWnm8Svicag2r9T1vXJrCGe1KLkKGJynJXLrKhNMUWnG5QsEmOkCbeRKUQJB+Y3funu
-         1cCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739197614; x=1739802414;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VgraRHso95F81B4DXSSaBLV0feh+tpXbSVAWbEyzHv4=;
-        b=t/hSVaD7L5hqGHy0uhrrqhftqdJkm1QkR+6vgjtZGZqoGrfbmnWI/3+wqYk6hf48tk
-         4CqsgSLgwsjpHeuCKFGcE8ehGWxlFPBZfj9Wcss/8XpuIZ1sUKjdJ4A7eH7YdsKwHt7q
-         DLnBg9YtvvBa13biN5M7YlB3OdH5AWdDERaGKxq5SVixdUbtP2LDjbRGZFcG/Yir2j+u
-         1pSsWmlLv2ZDge542DZJ3uVzItsfXIHW5W+M/NDApB0PID2z6Z+KhQ1PXRSZ0su/RwNN
-         xYFfZWGE/g797pwdIBriRgnV7/f9UEtBvkOt1R86aN1tpUhhD9+D8T97qq4G4/4VLwJA
-         pTGw==
-X-Forwarded-Encrypted: i=1; AJvYcCU2F5Cdt0fzRy6OIHhvvSO1Y35j5ISEf7yHtJje3/IGORppS+wteywa9wFl2HqzWj9guWHgLyalDU4k@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNMJYtQq/Llbd2W38Wcdtb6oK6nmoLpKB7FgxBNSGB7jNWGQwo
-	7XsSRpjlPU1v92rdVKT1Q/LwxBSTDccPycUu7RU8O4YycAWtKYfPse43FYQI
-X-Gm-Gg: ASbGncvsyaH8tVxE8f6jKltaRipEyJxRrodZrcz1oBj1A/4miKmIjoj6bSsrJULhaET
-	5misEbLVgNW2HuylvuI8fVjvwYF226rZo5JbPjOtsSA2tQhJdi3ttHMPzBvGcOFE6EHVnTC+syr
-	vrtwFJKy3GtBf5Ey1R27wTJlREOVfn2x3It/lqSCtzqJtJyBblgs4NSL0FPyJkfE+ACwZGg5Puh
-	WKipaurB7h38MAGH5jFAWFy5xTNrUqnkXKFK7KmjGprW/rYq0TywuTj+Y/OJU8zHVhwu2x7/LwF
-	+3IUsz76EZEfDH66ZgmQgtzpxHe4jJoh
-X-Google-Smtp-Source: AGHT+IEYNgbdZHkRJU1UDHCBy9QezY1XmzJ1vuM2419I++2sRPB2lMGddbBAfie6JehAjN/mVPK+vg==
-X-Received: by 2002:a05:600c:5351:b0:439:3159:c33d with SMTP id 5b1f17b1804b1-4393159c5abmr70934525e9.13.1739197614251;
-        Mon, 10 Feb 2025 06:26:54 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4393f202721sm49032005e9.21.2025.02.10.06.26.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 06:26:53 -0800 (PST)
-Message-ID: <4d171a4fdf7ce9bfbe6352b36d6b6791584f86c4.camel@gmail.com>
-Subject: Re: [PATCH 02/10] riscv: dts: sophgo: cv18xx: Split into CPU core
- and peripheral parts
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, soc@lists.linux.dev
-Cc: Inochi Amaoto <inochiama@outlook.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date: Mon, 10 Feb 2025 15:26:52 +0100
-In-Reply-To: <dda5297c-fdf3-494f-854f-71a5000729e5@kernel.org>
-References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
-	 <20250209220646.1090868-3-alexander.sverdlin@gmail.com>
-	 <dda5297c-fdf3-494f-854f-71a5000729e5@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+	s=arc-20240116; t=1739197692; c=relaxed/simple;
+	bh=EzTEtZ2myVnXIZ24uN49qpBxcFhB3crO0seUCyVpGfg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IXyihdBCXUqFtu56vo7eX3xz4QKGquiYI2sQQ9K9eo6RGhZn0W4uuvTPDMpUtAQjSudHelOOe0Eir4sjdpn+R1XSW6sub8bMACa1bb79h0mxjF/4m3QLmK0cGyBiOIopZW200I9qmsNvo9RTDpsT9Rp6t8xOjEQ0+hIAUmpFHgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxhUTaXT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC10C4CED1;
+	Mon, 10 Feb 2025 14:28:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739197692;
+	bh=EzTEtZ2myVnXIZ24uN49qpBxcFhB3crO0seUCyVpGfg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gxhUTaXTUTI0ugvO7xoYJDKeCLEmCREUQUP3GJlmw5KdTweB6j//oBqZ6cHQ9rIAw
+	 9UfOC3wxNTGAM0k2lEW1pooVxXV9xZn8W6Y7dxLMBlQaykFOgpErO/3UCKZKpgjrJ2
+	 VNElSthIfeY8dlps7TTYEVs6Gc+Xoh0K7ppTy1e+Nn3gYY0QLFhx3tg6CGxtA5qA4w
+	 v39MplyLaqteTE4/HZ6ey8QxgOGe2RSZZzPnVYNArnh9vTtBlA59DefOJplt/2FZC7
+	 J2NkyN9EJYxl6Pm9qw34agxIXtL7EMzk58DD6QGuTbQhH+MTuLabA+uyWNhUbwXPfq
+	 +LPEYEwxynUlg==
+Date: Mon, 10 Feb 2025 14:28:06 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexey Charkov <alchark@gmail.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: ASoC: rockchip: Add compatible for
+ RK3588 SPDIF
+Message-ID: <8cf5071c-0f3e-4a5c-8866-571aff717974@sirena.org.uk>
+References: <20250120-rk3588-spdif-v1-0-1415f5871dc7@gmail.com>
+ <4315116.iIbC2pHGDl@diego>
+ <56d128d7-c4bd-48de-b823-0b88147220e1@sirena.org.uk>
+ <870305083.0ifERbkFSE@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="npqY4rgAKF91WSV9"
+Content-Disposition: inline
+In-Reply-To: <870305083.0ifERbkFSE@diego>
+X-Cookie: A beer delayed is a beer denied.
 
-Hi Krzysztof!
 
-On Mon, 2025-02-10 at 09:43 +0100, Krzysztof Kozlowski wrote:
-> > diff --git a/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi b/arch/riscv=
-/boot/dts/sophgo/cv18xx-periph.dtsi
-> > new file mode 100644
-> > index 000000000000..53834b0658b2
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/sophgo/cv18xx-periph.dtsi
-> > @@ -0,0 +1,313 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> > + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
-> > + */
-> > +
-> > +#include <dt-bindings/clock/sophgo,cv1800.h>
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +/ {
-> > +	osc: oscillator {
-> > +		compatible =3D "fixed-clock";
->=20
-> I really doubt that external oscillator is a peripheral. This is either
-> part of board or the SoC.
->=20
->=20
-> > +		clock-output-names =3D "osc_25m";
-> > +		#clock-cells =3D <0>;
-> > +	};
-> > +
-> > +	soc {
-> > +		compatible =3D "simple-bus";
-> > +		#address-cells =3D <1>;
-> > +		#size-cells =3D <1>;
->=20
-> No, override by phandle/label instead of duplicating SoC.
+--npqY4rgAKF91WSV9
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Is this one critical? Otherwise I struggle in v2 to both keep
-SOC_PERIPHERAL_IRQ() in [a new] cv18xx-cpu.dtsi and reference &soc
-from cv18xx-cpu.dtsi. It's kind of circular-dependency.
+On Mon, Feb 10, 2025 at 03:04:22PM +0100, Heiko St=FCbner wrote:
+> Am Montag, 10. Februar 2025, 14:20:58 MEZ schrieb Mark Brown:
 
---=20
-Alexander Sverdlin.
+> > directly if something has gone wrong you'll have to resend the patches
+> > anyway, so sending again is generally a better approach though there are
+> > some other maintainers who like them - if in doubt look at how patches
+> > for the subsystem are normally handled.
 
+> With it being 3 weeks since the patch was originally posted, I thought
+> it might be the time to ask if the binding-patch was still around.
+
+> I vaguely do remember you saying in the past that if a patch hasn't
+> been applied/handled after X time-units, it wouldn't be in your inbox
+> anymore, but am not sure anymore ;-) .
+
+A big part of what that form letter is saying is that it's better to
+chase by resending since that ensures that if things have been lost the
+actual thing that you're looking for action on is right here.  If you
+just send a ping either it'll get buried along with the original patch
+or there won't be information to hand.
+
+--npqY4rgAKF91WSV9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeqDPYACgkQJNaLcl1U
+h9DVogf7BPOYta+bQCVLrNNjoe5Z+7pVxkJCieo659XYOA1nbkym8aIQTdh6RVn4
+QalKJ98JYC34XWtZ6bM3+0En7DmjQ3lBRfW5VGl96k/DEvcLiPnMw1X1X3hD/txP
+qimrvrIY+V0TxuZD/EBMt6PyqJLu4nJLi4hKkk9NQUK5ElDEnt0gwsx9h0nZpVdC
+4iTXpm95j8QJ8eQq039hpMfyYUqsBUSaSAmePzHtecpWk3u5Md3nNRdNVUSGyGU9
+uSLO/rY4MbagswLBqq7LDdVF78VSPFuRH0IoEioVXvFuKFLhnn3KfO/LwXL1cYzh
+pNCEp+G/XfFXmu6jahMCuiTOjKIOKA==
+=0+At
+-----END PGP SIGNATURE-----
+
+--npqY4rgAKF91WSV9--
 
