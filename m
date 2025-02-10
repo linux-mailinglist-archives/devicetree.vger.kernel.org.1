@@ -1,155 +1,273 @@
-Return-Path: <devicetree+bounces-144855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3795A2F7EC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:51:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FEBDA2F7F7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:54:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CCDC167457
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:51:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2178A166830
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C0025A2C5;
-	Mon, 10 Feb 2025 18:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6A625E456;
+	Mon, 10 Feb 2025 18:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eHpMYp8l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sp/P4iNI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292E125A2A7;
-	Mon, 10 Feb 2025 18:49:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0870D25E454;
+	Mon, 10 Feb 2025 18:54:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739213382; cv=none; b=gO/17Qa5QOuvlVfabQnpAC2gFBMk3IrnYXh8dPtXOk23eHEYCbJYcyZzQRGwY5YM41l1QTgewOM9+ssqZn0tXk1kArLIvFCpVm55P/FM5v2y7ENodZVCT/Xj3vSV9XHe2sCKKAMllTmF2MAusOxBABSPpB9JyIftx8JRW/hTStw=
+	t=1739213673; cv=none; b=mu2pZEvY10e8qDuHH2BkACj+R/LNdHueNgmvk1CgIpt11hIF1GWJ42yvkOe+NVRl9yLHUK/Q6wU5X751sdLfpv2GfzxQMOKlXiPRrcTz4r/39rFHom/r+UfKi9Y6pMXUEX+BSqB/oLEsALdo2Wqf+bzrnU4r9AsSW1tZQff+sdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739213382; c=relaxed/simple;
-	bh=k38V+jXxgn0GoVBcVBbF5ntBNRE28teJ9MO2dFSdiXk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hxmb+CaF3WQz63Nbckc84d5KMPqovWemnjSbJmZld7tnmKpIXRsKUu8KLFcZD6vRRKuEt1M11r8pRjC6G7x/Veouxa9PTKT90w+H2ucLIFgDSne4Chxka0EfBaHjOYC0JivzshcKjAUKCf3VcZm1sHSlNeTSGqPAeNDpUBxKMHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eHpMYp8l; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-439307d83f0so14543035e9.3;
-        Mon, 10 Feb 2025 10:49:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739213379; x=1739818179; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y8b7IQZlv8qmqmi8EZCZagpGi+bugYSxp9YD0b1kLR4=;
-        b=eHpMYp8lwst1lqRWSc2TAOIQJX+Imj+8SC251YpChPB32eTsGqnkOFrEhcXa4wSpHz
-         9/bcVRQo5dHGAYEs10JfNtnbVoDw5BHpPBK1BPHbLZTnEgKBKqCnGN3l1V6pOI3NSrmk
-         FLd2XyoTwHh+DtZnRsfO6gda/6PQlOF897IbAbqSfOjXkiaV+s7PM3MeBWiCn6GqfEJs
-         sLuAsMMCJiKmltd8fZcakp4aEOw4JKS8WSAjGQAAp7CLCtS40bG9rB1iDk38c146043u
-         Nvpa6s4uJTfs7CDqdLzh9kLHZhvrQ8VOuR+zxYYUE3kt41X1tpE9b+bhNt1zzwCY+aIG
-         jZLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739213379; x=1739818179;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=y8b7IQZlv8qmqmi8EZCZagpGi+bugYSxp9YD0b1kLR4=;
-        b=f425lAwLNNF0wEOTt3A4ekFWPB44yD9/15I8VrlzRC/FL8KLQStDmD4rbOhiTzuQgz
-         BjNeToUSXoyKbo43N2Ic4lO/NZCcRQZWNM3NJZRXbjN3Pw7FelOJ8YhKBHGrp1fnz9h0
-         eujWCQyMWfMRy/Mc7odPqYb+EqTO1eC9mveiB0oMxpLMSkvEOqJsQUGgGtGx8QQDAXD8
-         F7+SpSpnf0e40rrJvVFAS9kWEXyQXj8HFJoaxliJzRs4hesTQniLgdbg72EntkUg+vvy
-         1W7dLnfIqFvMe+SquhhVRn4LW654237AFFUSNC+sSlTk+p1Til7yN1+79xOd0UwhcPIq
-         6X+w==
-X-Forwarded-Encrypted: i=1; AJvYcCVjusg8serfRphBIiJh2mNWf5Bdl/UMfCwnbgAKEntq6RxtturCky8fWQdsgo8Bs5YeyBAFfgQ7syLES/kE@vger.kernel.org, AJvYcCVxqqc77cZu2NuweWccTaBnki1qLdRHeNkIJyZs84MWxnVWDddqln2A3HhfLRVaAqn4LFdJOpeXDRKh@vger.kernel.org, AJvYcCWMeYRWy/IaYJZaEkqBwEWUn4ocLbgxy9oSlhuxxBdsW/BTAV8tTJGJk6z8RaDqesM0aUAyQGth6CqanDvigqo=@vger.kernel.org, AJvYcCWpEFwfUWWlynpnR08WAZf7RHCa/Vo5xwjw/e2L9hJ49w09RRV7HMvbQdTLgzEGDhGVC0mXwtkl5t7f@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7nGfnquKMW38qfSIGoyKoMH8pGvCvBihNd0JFZMiUgt8LdAYd
-	Zlp1vlOA6yXicwUlFxmusvJZNSCpvHZBAYwMTssyPcJ2A+5EbOr3
-X-Gm-Gg: ASbGncsewDpZQmPxS6dsQlt8t8GEecE6fjWeoKPUrtr7Jvkl3fWOXVNI7l/qZzftpOX
-	Non0lSoWh0/fhFE2uaNF60/SZAnOK4GKhUp1G2NfGJ++3++oL3AXJaxW3YQaNC9CLCsiNXyQdIH
-	m+c9KZ1SyqPFq8Zh1C21lo28QPMKcptupVv/iUTduiSav3WhKFYIYknBq8uldmhFIa4NRWabR79
-	WjuQvRHCx6umE+AJjykloUaWEc2jd24P2dmKjO6PrD8S2c/qLl1evZmMioLsZSmVpDjKt3+t2La
-	b81iiNfm3jV4HrMYLxxHxB7rcZ3rxMwi9G0XRBRQYVOk
-X-Google-Smtp-Source: AGHT+IE/mOnkpqBaeuLtkMcUXOGjBJGy3u2cASTxZFKh+PKUDu39uiZqrLZqJgNMIiNIjZjghKLfgQ==
-X-Received: by 2002:a05:600c:4f90:b0:434:a7e7:a1ca with SMTP id 5b1f17b1804b1-439249b04f8mr114951105e9.20.1739213379301;
-        Mon, 10 Feb 2025 10:49:39 -0800 (PST)
-Received: from prasmi.Home ([2a06:5906:61b:2d00:b833:1deb:a929:b461])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439452533ecsm22911525e9.0.2025.02.10.10.49.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 10:49:38 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v4 9/9] arm64: dts: renesas: r9a09g047: Add `renesas,syscon-cpg-error-rst` property to WDT node
-Date: Mon, 10 Feb 2025 18:49:10 +0000
-Message-ID: <20250210184910.161780-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250210184910.161780-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250210184910.161780-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1739213673; c=relaxed/simple;
+	bh=jmk5FbAXpRJJs+zhZ1kUBUtl6Iq0ro+zbpNJ6Mnrfi0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=B6j3Nls9JBJt0ksC98OwPU1o5WXxc8WtZlDQ2JbnjNwwF9lAhOjDukHhTSTJoQYzJ472mRBRXVhdkt4ixeE7MkY58kPoeFfcAJxIQqhy8+rpsPZ/r3Z/fyqdO4jpYqq/8mIG+6LmV5KqgYFAXIuvh5YjBDE6x38yAjAnSnyVfhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sp/P4iNI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07935C4CED1;
+	Mon, 10 Feb 2025 18:54:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739213672;
+	bh=jmk5FbAXpRJJs+zhZ1kUBUtl6Iq0ro+zbpNJ6Mnrfi0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Sp/P4iNIWJV4FvGznJghtSsryXgA4WOjiI5dCtQdaK416ONwSjfhr7SKh0dckeFUO
+	 p8hCvDagkulR3WuGeTOciM4qGk7EQR1v8T8BaK7Y8M0Ev7F18T09CaCcAkCAurfT+7
+	 tPiRibBE1xGIPouE7gv1KF9kGUvYrOasrGuQlBivvg/GPPQhdzWDKxMEFUBywjy3Ab
+	 Byxm3T4EFyuV0CErHtA59G44F2F64M9oNDDrbRxfHdTTlrEymjZPtqSJz76LSgscPk
+	 iqi2MhU9GdtwfLbDZIYPcvnT15CjwQsItTJQdzl2TYDiCX5b1MBZGSvLxwqEqkihOq
+	 QPqD28ygr4/2A==
+Date: Mon, 10 Feb 2025 18:54:21 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
+ Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v8 14/17] iio: adc: ad4695: Add support for SPI offload
+Message-ID: <20250210185421.67d06a57@jic23-huawei>
+In-Reply-To: <8a8432e7-86b9-43dd-9aa0-75875747eedb@baylibre.com>
+References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
+	<20250207-dlech-mainline-spi-engine-offload-2-v8-14-e48a489be48c@baylibre.com>
+	<8a8432e7-86b9-43dd-9aa0-75875747eedb@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, 10 Feb 2025 10:01:57 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-Add `renesas,syscon-cpg-error-rst` property to WDT node, to determine
-whether the current boot resulted from a `Power-on Reset` or a
-`Watchdog Reset`.
+> On 2/7/25 2:09 PM, David Lechner wrote:
+> > Add support for SPI offload to the ad4695 driver. SPI offload allows
+> > sampling data at the max sample rate (500kSPS or 1MSPS).
+> > 
+> > This is developed and tested against the ADI example FPGA design for
+> > this family of ADCs [1].
+> > 
+> > [1]: http://analogdevicesinc.github.io/hdl/projects/ad469x_fmc/index.html
+> > 
+> > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+> > Signed-off-by: David Lechner <dlechner@baylibre.com>
+> > ---
+> >   
+> 
+> ...
+> 
+> > ---
+> >  drivers/iio/adc/Kconfig  |   1 +
+> >  drivers/iio/adc/ad4695.c | 445 +++++++++++++++++++++++++++++++++++++++++++++--
+> >  2 files changed, 429 insertions(+), 17 deletions(-)
+> > 
+> > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> > index 995b9cacbaa964d26424346120c139858f93cdcd..ec60b64c46e187e2be18ab1f8ca9e6f4f03299f9 100644
+> > --- a/drivers/iio/adc/Kconfig
+> > +++ b/drivers/iio/adc/Kconfig
+> > @@ -52,6 +52,7 @@ config AD4695
+> >  	tristate "Analog Device AD4695 ADC Driver"
+> >  	depends on SPI
+> >  	select IIO_BUFFER
+> > +	select IIO_BUFFER_DMAENGINE
+> >  	select IIO_TRIGGERED_BUFFER
+> >  	select REGMAP  
+> 
+> I missed adding
+> 
+> 	select SPI_OFFLOAD
+> 
+> Closes: https://lore.kernel.org/oe-kbuild-all/202502090910.ganYXEeF-lkp@intel.com/
+> 
+> >  	help  
+> 
+Thanks. Fixed up whilst applying.
+> ...
+> 
+> 
+> > +static int ad4695_offload_buffer_postenable(struct iio_dev *indio_dev)
+> > +{
+> > +	struct ad4695_state *st = iio_priv(indio_dev);
+> > +	struct spi_offload_trigger_config config = {
+> > +		.type = SPI_OFFLOAD_TRIGGER_DATA_READY,
+> > +	};
+> > +	struct spi_transfer *xfer = &st->buf_read_xfer[0];
+> > +	struct pwm_state state;
+> > +	u8 temp_chan_bit = st->chip_info->num_voltage_inputs;
+> > +	u8 num_slots = 0;
+> > +	u8 temp_en = 0;
+> > +	unsigned int bit;
+> > +	int ret;
+> > +
+> > +	iio_for_each_active_channel(indio_dev, bit) {
+> > +		if (bit == temp_chan_bit) {
+> > +			temp_en = 1;
+> > +			continue;
+> > +		}
+> > +
+> > +		ret = regmap_write(st->regmap, AD4695_REG_AS_SLOT(num_slots),
+> > +				   FIELD_PREP(AD4695_REG_AS_SLOT_INX, bit));
+> > +		if (ret)
+> > +			return ret;
+> > +
+> > +		num_slots++;
+> > +	}
+> > +
+> > +	/*
+> > +	 * For non-offload, we could discard data to work around this
+> > +	 * restriction, but with offload, that is not possible.
+> > +	 */
+> > +	if (num_slots < 2) {
+> > +		dev_err(&st->spi->dev,
+> > +			"At least two voltage channels must be enabled.\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	ret = regmap_update_bits(st->regmap, AD4695_REG_TEMP_CTRL,
+> > +				 AD4695_REG_TEMP_CTRL_TEMP_EN,
+> > +				 FIELD_PREP(AD4695_REG_TEMP_CTRL_TEMP_EN,
+> > +					    temp_en));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Each BUSY event means just one sample for one channel is ready. */
+> > +	memset(xfer, 0, sizeof(*xfer));
+> > +	xfer->offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
+> > +	/* Using 19 bits per word to allow for possible oversampling */
+> > +	xfer->bits_per_word = 19;
+> > +	xfer->len = 4;
+> > +
+> > +	spi_message_init_with_transfers(&st->buf_read_msg, xfer, 1);
+> > +	st->buf_read_msg.offload = st->offload;
+> > +
+> > +	ret = spi_optimize_message(st->spi, &st->buf_read_msg);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/*
+> > +	 * NB: technically, this is part the SPI offload trigger enable, but it
+> > +	 * doesn't work to call it from the offload trigger enable callback
+> > +	 * because it requires accessing the SPI bus. Calling it from the
+> > +	 * trigger enable callback could cause a deadlock.
+> > +	 */
+> > +	ret = regmap_set_bits(st->regmap, AD4695_REG_GP_MODE,
+> > +			      AD4695_REG_GP_MODE_BUSY_GP_EN);
+> > +	if (ret)
+> > +		goto err_unoptimize_message;
+> > +
+> > +	ret = spi_offload_trigger_enable(st->offload, st->offload_trigger,
+> > +					 &config);
+> > +	if (ret)
+> > +		goto err_disable_busy_output;
+> > +
+> > +	ret = ad4695_enter_advanced_sequencer_mode(st, num_slots);
+> > +	if (ret)
+> > +		goto err_offload_trigger_disable;
+> > +
+> > +	guard(mutex)(&st->cnv_pwm_lock);  
+> 
+> Apparently clang doesn't like this guard() after goto, so I'll have to figure
+> out what to do about that. Probably need to add a helper function to avoid
+> goto below from jumping out of scoped_guard().
+> 
+> https://lore.kernel.org/oe-kbuild-all/202502090806.KxEvxCZC-lkp@intel.com/
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v3->v4
-- New patch
----
- arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+Easiest option don't use guard(). Sometimes they are not the right choice!
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-index c366bd2667ff..d5d7b390fac9 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-@@ -189,6 +189,7 @@ wdt1: watchdog@14400000 {
- 			clock-names = "pclk", "oscclk";
- 			resets = <&cpg 0x76>;
- 			power-domains = <&cpg>;
-+			renesas,syscon-cpg-error-rst = <&cpg 0xb40 1>;
- 			status = "disabled";
- 		};
+diff --git a/drivers/iio/adc/ad4695.c b/drivers/iio/adc/ad4695.c
+index d73d2ff77625..d1e7634001b3 100644
+--- a/drivers/iio/adc/ad4695.c
++++ b/drivers/iio/adc/ad4695.c
+@@ -800,7 +800,7 @@ static int ad4695_offload_buffer_postenable(struct iio_dev *indio_dev)
+        if (ret)
+                goto err_offload_trigger_disable;
  
-@@ -199,6 +200,7 @@ wdt2: watchdog@13000000 {
- 			clock-names = "pclk", "oscclk";
- 			resets = <&cpg 0x77>;
- 			power-domains = <&cpg>;
-+			renesas,syscon-cpg-error-rst = <&cpg 0xb40 2>;
- 			status = "disabled";
- 		};
- 
-@@ -209,6 +211,7 @@ wdt3: watchdog@13000400 {
- 			clock-names = "pclk", "oscclk";
- 			resets = <&cpg 0x78>;
- 			power-domains = <&cpg>;
-+			renesas,syscon-cpg-error-rst = <&cpg 0xb40 3>;
- 			status = "disabled";
- 		};
- 
--- 
-2.43.0
+-       guard(mutex)(&st->cnv_pwm_lock);
++       mutex_lock(&st->cnv_pwm_lock);
+        pwm_get_state(st->cnv_pwm, &state);
+        /*
+         * PWM subsystem generally rounds down, so requesting 2x minimum high
+@@ -808,6 +808,7 @@ static int ad4695_offload_buffer_postenable(struct iio_dev *indio_dev)
+         */
+        state.duty_cycle = AD4695_T_CNVH_NS * 2;
+        ret = pwm_apply_might_sleep(st->cnv_pwm, &state);
++       mutex_unlock(st->cnv_pwm_lock);
+        if (ret)
+                goto err_offload_exit_conversion_mode;
+
+
+For now I've applied this as I want to get some build testing on this series,  but
+feel free to send a patch to tweak this to a different solution.
+
+Jonathan
+
+> 
+> > +	pwm_get_state(st->cnv_pwm, &state);
+> > +	/*
+> > +	 * PWM subsystem generally rounds down, so requesting 2x minimum high
+> > +	 * time ensures that we meet the minimum high time in any case.
+> > +	 */
+> > +	state.duty_cycle = AD4695_T_CNVH_NS * 2;
+> > +	ret = pwm_apply_might_sleep(st->cnv_pwm, &state);
+> > +	if (ret)
+> > +		goto err_offload_exit_conversion_mode;
+> > +
+> > +	return 0;
+> > +
+> > +err_offload_exit_conversion_mode:
+> > +	/*
+> > +	 * We have to unwind in a different order to avoid triggering offload.
+> > +	 * ad4695_exit_conversion_mode() triggers a conversion, so it has to be
+> > +	 * done after spi_offload_trigger_disable().
+> > +	 */
+> > +	spi_offload_trigger_disable(st->offload, st->offload_trigger);
+> > +	ad4695_exit_conversion_mode(st);
+> > +	goto err_disable_busy_output;
+> > +
+> > +err_offload_trigger_disable:
+> > +	spi_offload_trigger_disable(st->offload, st->offload_trigger);
+> > +
+> > +err_disable_busy_output:
+> > +	regmap_clear_bits(st->regmap, AD4695_REG_GP_MODE,
+> > +			  AD4695_REG_GP_MODE_BUSY_GP_EN);
+> > +
+> > +err_unoptimize_message:
+> > +	spi_unoptimize_message(&st->buf_read_msg);
+> > +
+> > +	return ret;
+> > +}  
 
 
