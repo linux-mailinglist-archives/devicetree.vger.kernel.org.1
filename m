@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-144558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 944DCA2E77E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:20:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82DD1A2E787
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:22:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8648D1886A2D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:20:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57F9B3A65DE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C005F1BEF83;
-	Mon, 10 Feb 2025 09:20:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50191BDA95;
+	Mon, 10 Feb 2025 09:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EEfkQZoL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="biqwqdkC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 096EB1A8F9E
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 09:20:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2009F14A639
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 09:22:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739179219; cv=none; b=cwMLTz9dJ9RnjrCwMH+ZmAC/9d5LTvlWH5hLhl6/J1J9o58DJzFfDZa2FpcFcLQWsmmrzgWMkAW1FW8ElpP2CSjKLA4mPcStRGs1v6UZTnn4vozxlCPcU/Bw7PoJKm5QyezPuFBglGNeSOomPK46W86mA3hlaEAo66jRbquu/Cg=
+	t=1739179368; cv=none; b=N1xFPRI5CY8p1ZkeTKXr4MB/TnmlBeEUcYfTIx7TU+ddQLJUzUBh3qem4JYcP2qr7Kle+gzNsspNK0jh1U/MN7Hi5rKN3gyYrrUlqCg4S4+YQ188eNGXIllZ2afgDyNSXNIbk/fM+7a3cQurWb43k0l6qBzh2yrspRtmqsBfrQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739179219; c=relaxed/simple;
-	bh=2Hd0+L6N5jG7D5+yOI5Eh0udHf8fZgIAry9GwgHy85o=;
+	s=arc-20240116; t=1739179368; c=relaxed/simple;
+	bh=4tRycz5VKwEgrws21mbq8l4wDIz8sBCr+bxjUjkUgmE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N09q7+4jZVydlwjImpL7kirOTSEUnOxFRX101w2bbY3+ucrEesfH43LyqBuDB66nESiADVOV6U463LSIevKTfR7lXbZFbt8N24kQcOD6Ke3G32E2R5krTeU/Q+bFw1ZGtTNqQd+ACgZXo/Wkoxdv9l3RFTkGTWeR0Vt2mTWPRFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EEfkQZoL; arc=none smtp.client-ip=209.85.214.182
+	 Content-Type:Content-Disposition:In-Reply-To; b=aGXEMyowyfd/SudDs0RY5Ok1qI5cygXegY+TsBP/RWO7zck+iJHodjWV4CGJpxywSpawyvYBujsVi1j55UdeIRn1FnoJd1vS0RhLwF3Y753WTcv50oRBcN5lsDYl3WWP8D0q8P1EoIxajBUHFkvUcyTjqXirp7Mpn/KklUIszKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=biqwqdkC; arc=none smtp.client-ip=209.85.216.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-21f0444b478so57856275ad.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 01:20:17 -0800 (PST)
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2fa3fe04dd2so2761132a91.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 01:22:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739179217; x=1739784017; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1739179366; x=1739784166; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=6Qe2qcRZ88BSLH/SzbhXpYMzUQ4getoZho+X5vsY0Kg=;
-        b=EEfkQZoLcYoxLMrWxUFJn+djj/jND5RgZBv6016e1HTdLhaSF/xqfJcphBiLzvZoJd
-         EOpVFlEuGu4fRFBW9AH1cDh7V+R75qffuP4Wv1jgaRIcQc2vE9g3rQOWRaWzotZ3dsbO
-         T3sOj4oti0dPdQHLa8M45xM+AkQe/6NYCk27jwemP8GngnVA+lytLpXPGrY1Oe9hY34M
-         9M70z6sm4yMn6ocxMj/3LJdwNmJbMPnp9Y0Bho6oeOU3Dz8AgPPgypzl+JU2UxH5YEmd
-         eemoecEbNSI/SxLgchQUsUtnGJhXad0Bf+z0Lg93zBjXEnF0H7SFP4NYDURLBwolr9JL
-         9z/g==
+        bh=+yAsubzuE3VYIy85zaI0aVGOu0CSnQBbpeAwKx7wr0Y=;
+        b=biqwqdkC1AYPjsrmed3efiJ2temGargXj+bEfFM9HAhE29/7S5Zj4xc7ACiGu8oYYG
+         qPozrT24a/8v/8HNPg4sLqpL+hZh+vfuYo0IVt90jENl2edG+v7H9qMHZ5pnVXrbyUJD
+         wxmM63GGzI11G+vaUHQj+ZdqaVuU9zHyrZ2/m0jh2wADCiR6mIy/4QO4a4NmY/lN59FH
+         aNBwk3i1HZ0svR7J6kbic3E/9bqMbrhoW43w/sQvZVeycbRwXeVL2WYUb9S5+mCOzioX
+         kLeX1/9bs2ni3GNiolsN6Zyo1mTN6YWMLbsGOvOtSxTNO4F58hkWIbFJtnv5fYoSJPY7
+         Y/vQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739179217; x=1739784017;
+        d=1e100.net; s=20230601; t=1739179366; x=1739784166;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Qe2qcRZ88BSLH/SzbhXpYMzUQ4getoZho+X5vsY0Kg=;
-        b=ptJaT7sknjvd910KySoZGJkdNGJUDqV8WxlYqOw2VZ1DhCDCx+PC7IoAdXKiTUFyLT
-         Mvn46/cfGq946+3UaaEYrZ7ahh9hsji8PI9qMw5wPXVloAUgozL1Laq+vsr0hISaLmWV
-         ps1ry+m7nOcZ5EB7oDjd/IP37OQGgcdm76qPRAvOhnNSEUALxp8NTA5LNRKnb+mu+eMf
-         Medg5LLIXcjbvFQVNIInF+bYJ5/J+KHXmxvFvGxQdZ4Vavl+J7Cqrz2ACxEbPACdHlBz
-         fWXm5R18zEoPOOjgyT0YOOK13ytMFKrK7rCVqsTaXyZ0ojOQr0Oea4wyEL74bOb1cLuD
-         p3Lw==
-X-Forwarded-Encrypted: i=1; AJvYcCUpj+WHRFmhqzL2TxtEDiYe3STX1j2tvXRuFwuNAwhqRdkw4kSngof0LZSnL2q9vymr4Dw3R7QO7Zex@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3roMrtji36kQUg8JaTCZIpevst+t00tc25A5hxHHiPY6vQDl4
-	oTnqyCu6+qCphmd6joZE6sBh3AopXO+J0qY+WkhAGSqN+Nxr9JCpvlqssnXBhA==
-X-Gm-Gg: ASbGncv6Fk4ucZxEB45vgZ8eBTbr+ItCjoZhTc4RX4YH8A2NGIfrZtvUQc4ed1Xvwyl
-	Ce8F/C9QOzVt1dbVcULZUdRS0aZjp0Gzwzfy1ODmg1115QT0Z6UOkhnJs0kPCYGP4TKsqPyNR+S
-	FpYeZ72+pYyVhaq+uRU4W/epH1UUhg7qIWJiZv2HS7Bo2U7eLAxpEHMjRwfKynHCAhJ5G2uQ+1p
-	OXCwQfKth7Y6gRUHhi6y9Zt1eP7cfL5gs16sCBnlYkZpj5QxQCP0Iqxlw/9HVTKsxksvpmpgx1P
-	K/gXwZonttGfjKNTh9y9Krn7ltqF
-X-Google-Smtp-Source: AGHT+IFGxn0rXuvYtc581KEtsKuAorkqiaER6So77Bh1zTJq6DAV0+/8Q0ZfTy+t7Puq9tJIaUHHPw==
-X-Received: by 2002:a05:6a00:71c7:b0:730:7499:4036 with SMTP id d2e1a72fcca58-73074994503mr10207025b3a.22.1739179217138;
-        Mon, 10 Feb 2025 01:20:17 -0800 (PST)
+        bh=+yAsubzuE3VYIy85zaI0aVGOu0CSnQBbpeAwKx7wr0Y=;
+        b=X2DHOBVbQjDPajYx16u1vruni7PrH3mE2VEzsw+f1VBiTwWr39GpfTZNNIcCRiBCb6
+         L510pN5P5I3W1cj/NbMVTImBHAg3WBJawuV5BR0ISNHt/UAZsJ2F6kaco9mzlSjORyXq
+         U4LVMYPx46dhqLho7YtD5EWLO/HLENapZ2D90nAfO9z397zkAJzZzH3NTB/8AoxCvaS+
+         gVG3MNU5j0oNhEJO5sHd16GIzTt8q4ijn66igOEOY4MPVvrCmyFGjpumdKlVp3dB/o1E
+         Y+CvgVyiG24OKKN2JT5ulJw835mb/TAUNHCnuiDhUvU7grAMVdoapTliA4towThVRDlq
+         fzrA==
+X-Forwarded-Encrypted: i=1; AJvYcCXRVdHCVnXLY9s2dHXbalZEo/fa34IlHCSEyp65Fe9eq1NI1ocUnP2/kRw/+rtdrnt31CxmmKoIa7c6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIWYb5WEtrTHiJrmciSCPBKfh06sV5D0005Fq0mNg8yfyusHq4
+	GoFxBMLxYgaIsy7uWtwIw1AXvr8U8tYp/d5oy4+ilCULVaX7D8eDyCr32nF+RA==
+X-Gm-Gg: ASbGncva42gM18G3Ch+lqmmPC7eSU45DoInBkF3yxJAC9rybjW1XO6kxLDDkks3uxIm
+	N+WwOw1TY9vJ/jANMN/OIkev+jVjb/VM1tSY3CTE7Puoq312qGKp4aLHpfU07RzTfKtal+f4d2q
+	MMzkNbOOV9x2C0VIUBasNTKgHcOgiUVhrAw/CJp6EOvDN1CAz0802WhTwhZJFplulWNIGTIQJoa
+	pP6r6VcWbUMJMo4hDZgAxfwagCw12NUE/w8AbQ0m1NnmmdZjCAOPwa+NpBjN6MhGth3b3TsfqE5
+	312paj+5BXG+8RNg1YbFfbHhwbp1
+X-Google-Smtp-Source: AGHT+IE0BAw+9nj+tSLVi2QqR6KlNRrGPiPZEdgft+nGLlrAGIA4ZVkBtDsEo29BVS87ByUimOq8NQ==
+X-Received: by 2002:a17:90b:2b48:b0:2f2:3efd:96da with SMTP id 98e67ed59e1d1-2fa242e5ca3mr19561370a91.24.1739179366410;
+        Mon, 10 Feb 2025 01:22:46 -0800 (PST)
 Received: from thinkpad ([220.158.156.173])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7307a29ecdesm3490924b3a.173.2025.02.10.01.20.12
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f368d2dc7sm74032885ad.251.2025.02.10.01.22.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 01:20:16 -0800 (PST)
-Date: Mon, 10 Feb 2025 14:50:10 +0530
+        Mon, 10 Feb 2025 01:22:46 -0800 (PST)
+Date: Mon, 10 Feb 2025 14:52:40 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 Cc: cros-qcom-dts-watchers@chromium.org,
@@ -89,11 +89,10 @@ Cc: cros-qcom-dts-watchers@chromium.org,
 	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
 	quic_mrana@quicinc.com, quic_vpernami@quicinc.com,
 	mmareddy@quicinc.com
-Subject: Re: [PATCH v4 3/4] PCI: dwc: Reduce DT reads by allocating host
- bridge via DWC glue driver
-Message-ID: <20250210092010.nyt3n3tflipcrpt2@thinkpad>
+Subject: Re: [PATCH v4 4/4] PCI: qcom: Enable ECAM feature
+Message-ID: <20250210092240.5b67fsdervb2tvxp@thinkpad>
 References: <20250207-ecam_v4-v4-0-94b5d5ec5017@oss.qualcomm.com>
- <20250207-ecam_v4-v4-3-94b5d5ec5017@oss.qualcomm.com>
+ <20250207-ecam_v4-v4-4-94b5d5ec5017@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,77 +102,161 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250207-ecam_v4-v4-3-94b5d5ec5017@oss.qualcomm.com>
+In-Reply-To: <20250207-ecam_v4-v4-4-94b5d5ec5017@oss.qualcomm.com>
 
-On Fri, Feb 07, 2025 at 04:58:58AM +0530, Krishna Chaitanya Chundru wrote:
-> dw_pcie_ecam_supported() needs to read bus-range to find the maximum
-> bus range value. The devm_pci_alloc_host_bridge() is already reading
-> bus range and storing it in host bridge.If devm_pci_alloc_host_bridge()
-
-What do you mean by 'storig in host bridge' here? Mention the exact structure
-name if that's what you are referring to.
-
-> moved to start of the controller probe, the dt reading can be avoided
-> and use values stored in the host bridge.
-
-Same here.
-
+On Fri, Feb 07, 2025 at 04:58:59AM +0530, Krishna Chaitanya Chundru wrote:
+> The ELBI registers falls after the DBI space, PARF_SLV_DBI_ELBI register
+> gives us the offset from which ELBI starts. so use this offset and cfg
+> win to map these regions instead of doing the ioremap again.
 > 
-> Allow DWC glue drivers to allocate the host bridge, avoiding redundant
-> device tree reads primarily in dw_pcie_ecam_supported().
+> On root bus, we have only the root port. Any access other than that
+> should not go out of the link and should return all F's. Since the iATU
+> is configured for the buses which starts after root bus, block the
+> transactions starting from function 1 of the root bus to the end of
+> the root bus (i.e from dbi_base + 4kb to dbi_base + 1MB) from going
+> outside the link through ECAM blocker through PARF registers.
 > 
-
-This makes little sense to me. By this change, you essentially want DWC glue
-drivers to call devm_pci_alloc_host_bridge() just to get rid of one range
-parsing.
-
-I'd suggest to move dw_pcie_ecam_supported() inside dw_pcie_host_init() and call
-after devm_pci_alloc_host_bridge(). This way, the glue drivers can rely on DWC
-core to detect ECAM like other resources. And the API could be renamed as
-dw_pcie_ecam_detect() to match other resource detection like iATU, eDMA.
-
-More in patch 4.
-
-- Mani
-
-> Suggested-by: Bjorn Helgaas <bhelgaas@google.com>
 > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 > ---
->  drivers/pci/controller/dwc/pcie-designware-host.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
+>  drivers/pci/controller/dwc/pcie-qcom.c | 77 ++++++++++++++++++++++++++++++++--
+>  1 file changed, 73 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 826ff9338646..a18cb1e411e4 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -484,8 +484,8 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  	struct device *dev = pci->dev;
->  	struct device_node *np = dev->of_node;
->  	struct platform_device *pdev = to_platform_device(dev);
-> +	struct pci_host_bridge *bridge = pp->bridge;
->  	struct resource_entry *win;
-> -	struct pci_host_bridge *bridge;
->  	struct resource *res;
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index e4d3366ead1f..84297b308e7e 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -52,6 +52,7 @@
+>  #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
+>  #define PARF_Q2A_FLUSH				0x1ac
+>  #define PARF_LTSSM				0x1b0
+> +#define PARF_SLV_DBI_ELBI			0x1b4
+>  #define PARF_INT_ALL_STATUS			0x224
+>  #define PARF_INT_ALL_CLEAR			0x228
+>  #define PARF_INT_ALL_MASK			0x22c
+> @@ -61,6 +62,17 @@
+>  #define PARF_DBI_BASE_ADDR_V2_HI		0x354
+>  #define PARF_SLV_ADDR_SPACE_SIZE_V2		0x358
+>  #define PARF_SLV_ADDR_SPACE_SIZE_V2_HI		0x35c
+> +#define PARF_BLOCK_SLV_AXI_WR_BASE		0x360
+> +#define PARF_BLOCK_SLV_AXI_WR_BASE_HI		0x364
+> +#define PARF_BLOCK_SLV_AXI_WR_LIMIT		0x368
+> +#define PARF_BLOCK_SLV_AXI_WR_LIMIT_HI		0x36c
+> +#define PARF_BLOCK_SLV_AXI_RD_BASE		0x370
+> +#define PARF_BLOCK_SLV_AXI_RD_BASE_HI		0x374
+> +#define PARF_BLOCK_SLV_AXI_RD_LIMIT		0x378
+> +#define PARF_BLOCK_SLV_AXI_RD_LIMIT_HI		0x37c
+> +#define PARF_ECAM_BASE				0x380
+> +#define PARF_ECAM_BASE_HI			0x384
+> +
+>  #define PARF_NO_SNOOP_OVERIDE			0x3d4
+>  #define PARF_ATU_BASE_ADDR			0x634
+>  #define PARF_ATU_BASE_ADDR_HI			0x638
+> @@ -84,6 +96,7 @@
+>  
+>  /* PARF_SYS_CTRL register fields */
+>  #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
+> +#define PCIE_ECAM_BLOCKER_EN			BIT(26)
+>  #define MST_WAKEUP_EN				BIT(13)
+>  #define SLV_WAKEUP_EN				BIT(12)
+>  #define MSTR_ACLK_CGC_DIS			BIT(10)
+> @@ -294,6 +307,44 @@ static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
+>  	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
+>  }
+>  
+> +static void qcom_pci_config_ecam(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> +	u64 addr, addr_end;
+> +	u32 val;
+> +
+> +	/* Set the ECAM base */
+> +	writel_relaxed(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
+> +	writel_relaxed(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
+> +
+> +	/*
+> +	 * The only device on root bus is the Root Port. Any access other than that
+> +	 * should not go out of the link and should return all F's. Since the iATU
+> +	 * is configured for the buses which starts after root bus, block the transactions
+> +	 * starting from function 1 of the root bus to the end of the root bus (i.e from
+> +	 * dbi_base + 4kb to dbi_base + 1MB) from going outside the link.
+> +	 */
+> +	addr = pci->dbi_phys_addr + SZ_4K;
+> +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE);
+> +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE_HI);
+> +
+> +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE);
+> +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE_HI);
+> +
+> +	addr_end = pci->dbi_phys_addr + SZ_1M - 1;
+> +
+> +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT);
+> +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT_HI);
+> +
+> +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT);
+> +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT_HI);
+> +
+> +	val = readl_relaxed(pcie->parf + PARF_SYS_CTRL);
+> +	val |= PCIE_ECAM_BLOCKER_EN;
+> +	writel_relaxed(val, pcie->parf + PARF_SYS_CTRL);
+> +}
+> +
+>  static int qcom_pcie_start_link(struct dw_pcie *pci)
+>  {
+>  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> @@ -303,6 +354,9 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
+>  		qcom_pcie_common_set_16gt_lane_margining(pci);
+>  	}
+>  
+> +	if (pci->pp.ecam_mode)
+> +		qcom_pci_config_ecam(&pci->pp);
+> +
+>  	/* Enable Link Training state machine */
+>  	if (pcie->cfg->ops->ltssm_enable)
+>  		pcie->cfg->ops->ltssm_enable(pcie);
+> @@ -1233,6 +1287,7 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> +	u16 offset;
 >  	int ret;
 >  
-> @@ -527,7 +527,12 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  	if (!bridge)
->  		return -ENOMEM;
+>  	qcom_ep_reset_assert(pcie);
+> @@ -1241,6 +1296,11 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>  	if (ret)
+>  		return ret;
 >  
-> -	pp->bridge = bridge;
-> +	if (!pp->bridge) {
-> +		bridge = devm_pci_alloc_host_bridge(dev, 0);
-> +		if (!bridge)
-> +			return -ENOMEM;
-> +		pp->bridge = bridge;
+> +	if (pp->ecam_mode) {
+> +		offset = readl(pcie->parf + PARF_SLV_DBI_ELBI);
+> +		pcie->elbi = pci->dbi_base + offset;
 > +	}
+
+If you use the existing 'elbi' register offset defined in DT, you can just rely
+on the DWC core to call dw_pcie_ecam_supported() as I mentioned in my comment in
+patch 3.
+
+> +
+>  	ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
+>  	if (ret)
+>  		goto err_deinit;
+> @@ -1615,6 +1675,13 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  	pci->ops = &dw_pcie_ops;
+>  	pp = &pci->pp;
 >  
->  	/* Get the I/O range from DT */
->  	win = resource_list_first_type(&bridge->windows, IORESOURCE_IO);
-> 
-> -- 
-> 2.34.1
-> 
+> +	pp->bridge = devm_pci_alloc_host_bridge(dev, 0);
+> +	if (!pp->bridge) {
+> +		ret = -ENOMEM;
+> +		goto err_pm_runtime_put;
+> +	}
+> +
+
+This will also go away.
+
+> +	pci->pp.ecam_mode = dw_pcie_ecam_supported(pp);
+
+This too.
+
+- Mani
 
 -- 
 மணிவண்ணன் சதாசிவம்
