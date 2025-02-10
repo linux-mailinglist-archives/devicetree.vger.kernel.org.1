@@ -1,145 +1,154 @@
-Return-Path: <devicetree+bounces-144627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4179BA2EAED
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:18:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E9AAA2EAF7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:23:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3E461649B5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:18:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B33E7A1708
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:22:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694661CAA88;
-	Mon, 10 Feb 2025 11:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F19D71DE2A4;
+	Mon, 10 Feb 2025 11:23:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="XguuVXkS"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="eQ4nxJES"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B924419CC33;
-	Mon, 10 Feb 2025 11:18:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D691C5D7C;
+	Mon, 10 Feb 2025 11:23:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739186311; cv=none; b=JOi7R/wOPQ4hfsgBpz3UsTibzP0XNQ36YgB4BZFhvEjUvWohLdcWOJY7UCMGgp5AjQY6mMJK5+LpuZBUdbHdgseG80rFOGN01amHNi8xtfPohpOdRz6e8IS5py0az8Q04ImS+sh2PrfTjjLQoVJ98A33yuNaD5laQZbDYD0m3K0=
+	t=1739186589; cv=none; b=Xv/ZWkLB6had8c0aCtnxmQVbJUPmO87VHtpnEhqBUVGcnFn2I1ECkHqsMhXkC9WDf//pnDv8p56gtH4V13qhRR86QW8OB9xTJLun4nzvCzqZDB4fEiX3TbbZxYOf7r4WJaWJbLpHbQU9eaYz+VOIpY3Bx7G2tktoOV51JohzrSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739186311; c=relaxed/simple;
-	bh=2HcDy5BNfv+9o3ehWem9KjVCh3qqQnf3GauidfHjWKM=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=gcq/5rRmZnxB3j3Ti4V2VlelydPrjxZoNuK6o15kqgZaHzjq2SQBL4s0+URYaqYC6pFyvCSfCM4eBeypL48+HJi9G7/PTV4hYQ4aKOyE2B1ZXpIS8i/UzLdEbpL6QGPcc6BdFRjI0LG5Wlf6oPq53KZv+tUbb/VKhSVVEgTc5qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=XguuVXkS; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1739186306; x=1739791106; i=frank-w@public-files.de;
-	bh=MRrN1tWDeaJ7i6/rFG0b6OeSwpoxIWxTneKR/1obUmU=;
-	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
-	 References:Message-ID:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=XguuVXkSas9wYqgCyI9iMyWsQzxDgGPrTbKwjzcin1hupG+abFu6t544hil5/CP6
-	 nRESHFK1bzQyZ3RMhLOQltk24EgsMhzx+7rFpWPsfZMdHpymg9cUpKL/FkkgRw6p4
-	 SH7IqxGRMVCPo/VshyKuhMVnzBnrQv9+EeKYx1+ksyM7mxSrYYK3g397SjOuESdnk
-	 6DjwWdEr2rcb4oLtSlYKRrzyTm2wMdbb5ZD6spLS6MHPs0NDkJGiBjRIouTM9DyNc
-	 idb7/sMzoUVHCXawVD7VVuS7cafFIvPJ+Q+Ii50tK0BZ6whlZxaoHPzIZv5q4bYV7
-	 gLag3KFkhdLV007frQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [IPv6:::1] ([80.187.69.174]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MPGRp-1u22AO2nNN-00UEAg; Mon, 10
- Feb 2025 12:18:25 +0100
-Date: Mon, 10 Feb 2025 12:18:23 +0100
-From: Frank Wunderlich <frank-w@public-files.de>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>
-CC: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH=5D_arm64=3A_dts=3A_mediatek=3A_mt79?=
- =?US-ASCII?Q?88a-bpi-r4=3A_allow_hw_variants_of_bpi-r4?=
-User-Agent: K-9 Mail for Android
-Reply-to: frank-w@public-files.de
-In-Reply-To: <b56a7597-fa39-4e02-b601-db05bfa48472@collabora.com>
-References: <20250207135501.30741-1-linux@fw-web.de> <b56a7597-fa39-4e02-b601-db05bfa48472@collabora.com>
-Message-ID: <EADAC3BA-3D8C-4E04-B8E3-629CAFF0194F@public-files.de>
+	s=arc-20240116; t=1739186589; c=relaxed/simple;
+	bh=2TfBb8YkHBjUcd2qbTj06jtJqA74ipyI1dLzWmzyRp4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CMBQVT+2GteCogxiM2tUQRZVt40T1WVPTeO67Vt9s99WRWxe+UWulBWC0SNR+ClbPiAMVK1mXBUjpOtggU+/BjL5eAYcFGbeh613Th6co0ci5mNcS3z6Eu01wnhbWK6YTcSj7ZRRCCu43Z5qVJr8KzAOo+VqC0DG7UhrKRWpD78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eQ4nxJES; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1739186586;
+	bh=2TfBb8YkHBjUcd2qbTj06jtJqA74ipyI1dLzWmzyRp4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eQ4nxJESKZB4J0JFkg5Nk8KYNqeTOzP+Sf8VljtKSgz/vbFYNKynyDTvsGRDBIe/K
+	 NH0EcNQ8rHXCiiHdMgXvClbJABoqnKs+kaTOg2raVeJI/NbsXC7V/OHMk4LMWpTjdr
+	 /IqGJgFtoXI5JyzztBVldciULs31BkopnpoJR0vT6klju0S1HxyasgIYuLIAusPwvm
+	 tBIfg0GkaJQwf453X/lQxlHqGu2gqV4Y+ohZ6Ec23Vig626spJpLuLFLG6QyRrTnI6
+	 o5BQJCZr/Jky0L5WT8E1vc5U0aRGGIPVGpZT9ZOhGQTLUiIP4IFUNOQ0C+CcwbOn1d
+	 ZNfkne9lGJwnQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BF3F417E09F6;
+	Mon, 10 Feb 2025 12:23:04 +0100 (CET)
+Message-ID: <2fd97b1e-6546-4f43-bc60-15a812e66467@collabora.com>
+Date: Mon, 10 Feb 2025 12:23:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Fh0DnkQD1cSAk3kEV8uLTJFU4fKtgHsxg3UVKYznYNF6N6PLYNL
- ac+bVkUvkC2h9HHY5Ldd2XwBYdG0GLXfx3Uy4g0Gj9nFK69AnbPL1GoLCidiHyPuOqNoEt0
- sJtGHaZRhXC9oKcT7KkdWqP9sLc+xlzrKi7422l6pbzRb3qbdnSSPyM0BV00dOjiUWxy8O3
- uxLdxrlkLgFtC1ZPe0nkQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:P+2RQecfEzY=;FwCZ6grwvk3/b9RmcG92LoQkEY/
- HiymK7VJhujTVnV8u3zUjqBwQmNUW3iahixTDK0CfgrJareC8poJqLPWqRRKodcythmv8RaRx
- GjsXQW6d/5wJxUSnFh1MDjXG/P0Q3Miv6kyvogGHZCifeG9cmK1pCWoe1GA6sqMCbqur60HyB
- HoPbc9QZAUlbPpt3v9UQfDWX34XwJSJ3zNYsLhxtKQifhxUrgXif7IYvOG3cfMXsrdb9O1+qW
- p7GpJ02s33QXQiF+pQm0NNSe/SBqcCr0HVSRimyzgS8vSqm6366U/ECR+iU9iZ6aNiLqZEKj/
- jOpZIu0z5XIuxOhgIlEDdwwyse3iakIitnUk/KZAwtSxvUkFQTwE+xQG115ZI2lo/HMjHycYy
- ed9vf3cmlHtaO/kIE4ioxlTFJlNL6GQqAw8+uXTk/F3pw8h8/A96BsM3m6ExjtfDBuxB28kLY
- 9svePqMVJ/MSSvBSyGAlT/HqbotRd5Ldc+idEE0/yoB1jTfAdyPeN+HT+fSsM5BZkMVRvXxar
- 0og1jcjFIJtEEQNjAMMZnWK4KyL2FR5L6mE6kB/EMpl8LGMZguVM4S3DQwstWN6dLm1WS0wZe
- yNTFVwh7giK7uYC3ZoRfiDmQREHpAR8I7L+30QRsDEY5fg6WO5w1i6YnTlJDMV6ih1xfGfHYI
- ysxLrEFAKRc44140jQwP+/IlJmODfMiiPab+6PG7CkkIRssIO1mK04StcSKbMangctkfVjL9O
- iGjK8dQ0PZIAizaKgWJBsFJ+B8MbanKiZ/Fge5fevoAak866mwiXXQj+Yrvh9jmrVnZFUjsGn
- CbOXSP8fiUgNHDNn/fk7nDwZF2W0ZvlR0zDGc/e0SclS0qxK2l2OM4kYuP1kevqTCWvzXR5JP
- w3ieCU/AKXfd1zBb9AYb8CFbDCe4uMh0p1hP+13fjgTiontYWJpdomRySKPxehFFm5JgCrW9c
- U65VaTcxIxm7xrIgyRc7Mr/pw0FQUSHYLzA9uFxIifMtrD6CFDBaCtIvMWQ7WTMNjJ8OxPqFr
- e/RygEEYssYugYHzVbM/EDWGPxjdPCXtcMvK8qD003k4PZz/eRWcFfz3wiu9oxt3ilXbYhlh+
- zWOsNlW5N46ePOmioLvP9kp0tszKtZuf48vjSwyTf2Tl3hXO6+0oBU8a9AwrYAdBS2OPMnn6p
- 0Tc+o2nmOZPzx4mDqKzZSei3DeoAmEeP6orfd6guK6llZuyfnNTil+4SfxKCCR9sb6ARvH6J7
- OLmcq2ngkSuhAObRT0AtAqhWFUhotzaocOrqE12W6TTgKh5yHomoEgiH8MpuYFffOap9H2pA3
- nqFw+DeCbVEdExwHyHHZv2YZsGE3aCf7nthH60n3damF05cP4OcW0ZuQOv5b5lIjUcpMiR2TY
- x83Ks6KSA4ga5Dl7ylxfsFE2l5PSUjCgMrTRI=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 27/34] drm/mediatek: mtk_hdmi: Cleanup function
+ mtk_hdmi_resume()
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "jie.qiu@mediatek.com" <jie.qiu@mediatek.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
+ <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
+ <jitao.shi@mediatek.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "kernel@collabora.com" <kernel@collabora.com>,
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ =?UTF-8?B?TGV3aXMgTGlhbyAo5buW5p+P6YieKQ==?= <Lewis.Liao@mediatek.com>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ =?UTF-8?B?VG9tbXlZTCBDaGVuICjpmbPlvaXoia8p?= <TommyYL.Chen@mediatek.com>,
+ =?UTF-8?B?SXZlcyBDaGVuamggKOmZs+S/iuW8mCk=?= <Ives.Chenjh@mediatek.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+ "junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
+References: <20250113145232.227674-1-angelogioacchino.delregno@collabora.com>
+ <20250113145232.227674-28-angelogioacchino.delregno@collabora.com>
+ <f25eaced46e18a54896f20ae1c42ed6894da5e18.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <f25eaced46e18a54896f20ae1c42ed6894da5e18.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Am 10=2E Februar 2025 11:56:40 MEZ schrieb AngeloGioacchino Del Regno <ange=
-logioacchino=2Edelregno@collabora=2Ecom>:
->Il 07/02/25 14:54, Frank Wunderlich ha scritto:
->> From: Frank Wunderlich <frank-w@public-files=2Ede>
->>=20
->> Sinovoip has released other variants of Bananapi-R4 board=2E
->> The known changes affecting only the LAN SFP+ slot which is replaced
->> by a 2=2E5G phy with optional PoE=2E
->>=20
->> As the SFP-Ports are not upstreamed yet this patch simply renames the
->> current board dts to dtsi, creating new dts for the board including
->> the new dtsi and move i2c-mux channel for sfp lan to board dts=2E
->>=20
->> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
->
->I understand what's going on, and I agree, but this change alone doesn't =
-make a lot
->of sense, does it?
->
->If I were to see a commit that moves everything in a dtsi, and justifies =
-that by
->adding two dts for the two variants, though, things would be different=2E=
-=2E=2E=2E :-)
->
->Cheers,
->Angelo
->
+Il 07/02/25 07:04, CK Hu (胡俊光) ha scritto:
+> Hi, Angelo:
+> 
+> On Mon, 2025-01-13 at 15:52 +0100, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>
+>>
+>> Remove the error print in case of mtk_hdmi_clk_enable_audio()
+>> failures: since the APIs will already print on their own, having
+>> one in there is redundant.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 >> ---
->>   =2E=2E=2E/dts/mediatek/mt7988a-bananapi-bpi-r4=2Edts  | 404 +--------=
----------
->>   =2E=2E=2E/dts/mediatek/mt7988a-bananapi-bpi-r4=2Edtsi | 403 +++++++++=
-++++++++
->>   2 files changed, 407 insertions(+), 400 deletions(-)
->>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-=
-r4=2Edtsi
->>=20
+>>   drivers/gpu/drm/mediatek/mtk_hdmi.c | 9 +--------
+>>   1 file changed, 1 insertion(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+>> index 40eea5c125d2..c5431f160fe4 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+>> @@ -1703,15 +1703,8 @@ static __maybe_unused int mtk_hdmi_suspend(struct device *dev)
+>>   static __maybe_unused int mtk_hdmi_resume(struct device *dev)
+>>   {
+>>          struct mtk_hdmi *hdmi = dev_get_drvdata(dev);
+>> -       int ret = 0;
+>>
+>> -       ret = mtk_hdmi_clk_enable_audio(hdmi);
+> 
+> I do not find where to print the error message, could you provide where would print the error message?
+> 
 
-It is preparation for adding additional nodes like sfp cages=2E I only hav=
-e the dual-sfp board so i can only add these based on schematic=2E The one =
-(wan-sfp) would go into dtsi and lan-sfp go into dts because other variants=
- using a phy here as described=2E
-regards Frank
+It's handled in drivers/base/power/main.c - upon failure, a pm_dev_err() will be
+executed, printing an error message stating that this (or any other) driver has
+failed resuming.
+
+Cheers,
+Angelo
+
+> Regards,
+> CK
+> 
+>> -       if (ret) {
+>> -               dev_err(dev, "hdmi resume failed!\n");
+>> -               return ret;
+>> -       }
+>> -
+>> -       return 0;
+>> +       return mtk_hdmi_clk_enable_audio(hdmi);
+>>   }
+>>
+>>   static SIMPLE_DEV_PM_OPS(mtk_hdmi_pm_ops, mtk_hdmi_suspend, mtk_hdmi_resume);
+>> --
+>> 2.47.0
+>>
+> 
+
 
