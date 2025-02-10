@@ -1,142 +1,192 @@
-Return-Path: <devicetree+bounces-144719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC067A2F0C1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:04:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46955A2F0C5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:04:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 293AA167D77
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 15:03:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 619671685E7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 15:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D59235BFE;
-	Mon, 10 Feb 2025 15:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E68B22DFA8;
+	Mon, 10 Feb 2025 15:01:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="0Q7wIU3D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X8WmxZ7u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-ztdg10012101.me.com (pv50p00im-ztdg10012101.me.com [17.58.6.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C31A11F8BAC
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 15:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7104D252908
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 15:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739199667; cv=none; b=aSTBa9Te5AEaNuNVxQBNEa4HAlE3WsOXyN7tKG+ut3nzVBtD14gMt7eI6Aj6OhNV+S3GfLG68L2NtHz2Rx2f1io7TXBKUR0/SN+ISapZKqGv9wMnaqo/nmzolCjDyOt9GkJjTrkUV9+Lk2GSCyPmDEovE758kkQyJRNUk1+DnBA=
+	t=1739199679; cv=none; b=N0Ft2LjMA1VZgRiwViem4/y01/noQaEYTXS16lS9DjeFhWwiTm+yEbhZQkE7LgDL5dY5fbJRUL+WUoTfHKojIvSI85ni3yfwIY+ddVzWNSaCanRLH5YvjbUC8wCCTMcnJTj0rEjthAKeyPgAHMrxLqUGyzk9j5fM9pdtKjMiwBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739199667; c=relaxed/simple;
-	bh=fVQe7FtP+OpE2IuHgthL6tJfR3NJCdI4MJHX2aafst8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=es1fnhiI2ekO0i7mp52bM8DtU3HA+HHyDUp4mYVjALBuzopG5xCeasR/tBCt1f7aN49G2bIH5QwjKV4jJtCUZYhIbN79Tn8+M9ztgJE7xm5JQY3GvyL8hikZnNl4vgMJimfIR/04aX0aLmrlmRiWOS9NMTsPLAjdcPK4C4NJ5iA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=0Q7wIU3D; arc=none smtp.client-ip=17.58.6.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; bh=11DGxb4a1Y8n3ecmd9h71gvxW+k4Ylr1+01HbNn1NSU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:x-icloud-hme;
-	b=0Q7wIU3DeeVZRHYEVGUD9jXpN/Wsf1vL+mDSInUgDbA/xsw3VSmGLjt7HPkbpFZ9N
-	 hUom93oDKKsccv1uDOcSzGlriFD6P3HlvtgH8Hc6bAvF4PphO/rV2+KhfIptkWAYSu
-	 HLm7XqktBApg6gOKFXGCF4TbveckTfTZmNfVxJuLVLD6dWd5i/bvm8onXx4hsYYOPj
-	 Yv/UcfZraALmMTnmuQmtbgu2gaDFvcpjQkUOQO/Z2WMbBDYILmWO09DIDfWGYcFgMa
-	 2RYm/gEg+EHzNi8R/yrM7GbUxDNYpPVvzMLkSyIZUxQMeX7I+/0tUYnoj+O64l98ky
-	 zskagxtp9BQTA==
-Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-ztdg10012101.me.com (Postfix) with ESMTPSA id 1F6337402CB;
-	Mon, 10 Feb 2025 15:00:54 +0000 (UTC)
-From: Zijun Hu <zijun_hu@icloud.com>
-Date: Mon, 10 Feb 2025 23:00:32 +0800
-Subject: [PATCH v3] of: property: Increase NR_FWNODE_REFERENCE_ARGS
+	s=arc-20240116; t=1739199679; c=relaxed/simple;
+	bh=visb9O0lxlMa5DUWC3Bk2Q1mSoeQvsC0v7T9kKbj3yw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=CRq8ZihevhEAtNtkSYbjUmeyRu3HXHTdBcMbOXpf0pgKYDYvKM8TtTknSQ6laYiDWq3r2tEkStdF7OkZaSu9NBjbC6kDs51Z+J8jF5UySzLV3Q4q7eswmJdODg3nrcz9Ma5XJ1bQA0u1b5UL53gosrEQqP0H7HAJ3kPxO2wE0xU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X8WmxZ7u; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab7ca64da5dso135755266b.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 07:01:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739199675; x=1739804475; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=3M5idA8N7HpwZKk/3+pcrUsB6D7VU4LeXOhWq3Jgugs=;
+        b=X8WmxZ7uUbRTGVMVGMmy4V3O/SVnDz5K+05koocfBVa0ZsQ1MsmZAca+LoIrc0180p
+         8k4ZfZ1aj+TK/eVHdfzwu5rKP3OasLWqNdh8YQwDC4TkJLeYZFmkVsyhf17bt+f3AwH8
+         l85YS+06Z9e1z9Wx73D2IhgZc3zqa8J5tPdRUNW8bwob2fXFEoKdz0O7zhsVGSpfuam8
+         5x9bU2CYIOPho7mkjtdahn2zOQlrNOKhWUD6Q7Ix3dhLENVd51TPapNl9O1NHz8Kefbj
+         64s4A76M6gGiHAzGGcpmm6y016fUBluVqtFHzatDEPPLhDkk7AqpQVD2Ts2QiSGlhrH+
+         rtdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739199675; x=1739804475;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3M5idA8N7HpwZKk/3+pcrUsB6D7VU4LeXOhWq3Jgugs=;
+        b=IhOYhoccIQWK8yj8BCL6gXzmcT3XV8TlGM+aF5ujjOpqHQZlx4DO4TqqkMx1TxE1nE
+         5dOynHRYcdeh5Cei45SCHFlBJeWrI6Q4WKSK1cu/573aB7Pbjd4LJIIH08q1ZFMK7gV3
+         4SC929UrMRhHQNrLduT4fVuQDit6VX0oVGP/ZFWDc6/Xih16F6OTHveUKMOPSEACkDRr
+         cH0nbr/RsAKmwMvg+eud/c7oc/uSk7vH+GjIeMkrqb1Oul2jZsixb1+ADyWVmo/8F8aZ
+         96uBJW1LPkBp46r7TKg94XtscD919UrZyP+xdt76vEXqTCBlaR2N25mCd6SPMImvFMEz
+         P7AQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX09tYDUDEOhGIyOoQLNgMd/QFKAIrCcV0IVHxWhP88RsXKc1XiEGkQvwUf2umKqy7aPlEAlAUpaKmz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaQzJPa1ZPGzfRdwaishJk0a4YUV1hFOP6jF0KzojTu8k2jmGn
+	jXz099Om7bkFZngW/VjBZ859doZBdJZnLfnEH+IPIZi7cZ3TMcLCtMUIta0T
+X-Gm-Gg: ASbGncvDBdox/+C0la2CYG5+efpyFE8HJEAJNYLPyzkLLdEwMunwXWch0YgcBbl6U2y
+	q2JNPFWr8/UMR+8CG6L80JYl89oAHFb51RsKvXcyBMazeodbVumh3Bxpred432Jfyxp3jvHcmcw
+	tDvIm84gTy+6dBZWeaYsgf/lXqfGhfLFfzIIfjo/FBXNl6CzUfuMR1MDeLz5t/kSDKEtvmPlGy+
+	cOhuZ8cSIbtgDi1ZanYs4Di3ByT0TbJnp0l4n0T6gu1MNbsJrKBXoR6glewER9MaLv4C0syvYEO
+	STYHVX/sd1tZPpZb4j2X2mkTrUEpDCVl
+X-Google-Smtp-Source: AGHT+IHDvJX3+ekZa4vY1LIl/WMEIul6AD+KtHvHZm/OrLAAq1fRlkjI0uEBHS/oueveFzGr668vsg==
+X-Received: by 2002:a17:906:6a29:b0:ab6:d4ce:5674 with SMTP id a640c23a62f3a-ab76e9dc14amr1858509166b.26.1739199672976;
+        Mon, 10 Feb 2025 07:01:12 -0800 (PST)
+Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7cd7ffaa8sm122042766b.132.2025.02.10.07.01.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Feb 2025 07:01:12 -0800 (PST)
+Message-ID: <03ff407fe68e46df4844e5dd244e7c609331af71.camel@gmail.com>
+Subject: Re: [PATCH 03/10] arm64: dts: sophgo: Add initial SG2000 SoC device
+ tree
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, soc@lists.linux.dev
+Cc: Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
+ <inochiama@outlook.com>, 	linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, Haylen Chu	 <heylenay@outlook.com>,
+ linux-arm-kernel@lists.infradead.org, Arnd Bergmann	 <arnd@arndb.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>
+Date: Mon, 10 Feb 2025 16:01:10 +0100
+In-Reply-To: <0d5484d1-be83-4f38-befd-94d458b3aaa8@kernel.org>
+References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
+	 <20250209220646.1090868-4-alexander.sverdlin@gmail.com>
+	 <0d5484d1-be83-4f38-befd-94d458b3aaa8@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250210-fix_arg_count-v3-1-a084a5013008@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAI8UqmcC/2WOQQ6CMBREr2K69htaqIAr72EMKeUX/kKqLTQaw
- t0tyELjcibzXmZiHh2hZ6fdxBwG8mT7GNL9julO9S0CNTEzkQiZcJ6BoWelXFtpO/YD5KlBhWV
- itK5ZZO4O42D1Xa4xd+QH616rPvCl3UxJCdZEicMqAhAyyKGpC5WLjMu60OfHSJp6fdD2xhZTE
- F/0348ggAMalUrEo8xF/cvPn2sOY+tp2P7N8xsYcxcJ/wAAAA==
-X-Change-ID: 20250114-fix_arg_count-73feae90fccb
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- "Rob Herring (Arm)" <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, Len Brown <lenb@kernel.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Daniel Scally <djrscally@gmail.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Zijun Hu <zijun_hu@icloud.com>, linux-acpi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Zijun Hu <quic_zijuhu@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Proofpoint-GUID: Xwm3tEk53_pJi1cncIFOCcVY0X0gfQeT
-X-Proofpoint-ORIG-GUID: Xwm3tEk53_pJi1cncIFOCcVY0X0gfQeT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-10_08,2025-02-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 spamscore=0 bulkscore=0
- mlxlogscore=999 phishscore=0 suspectscore=0 malwarescore=0 clxscore=1015
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2502100125
-X-Apple-Remote-Links: v=1;h=KCk=;charset=UTF-8
 
-From: Zijun Hu <quic_zijuhu@quicinc.com>
+Hi Krzysztof!
 
-Currently, the following two macros have different values:
+On Mon, 2025-02-10 at 09:45 +0100, Krzysztof Kozlowski wrote:
+> On 09/02/2025 23:06, Alexander Sverdlin wrote:
+> > Add initial device tree for the SG2000 SoC by SOPHGO (from ARM64 PoV).
+> >=20
+> > Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> > ---
+> > =C2=A0 arch/arm64/boot/dts/sophgo/sg2000.dtsi | 79 ++++++++++++++++++++=
+++++++
+> > =C2=A0 1 file changed, 79 insertions(+)
+> > =C2=A0 create mode 100644 arch/arm64/boot/dts/sophgo/sg2000.dtsi
+> >=20
+> > diff --git a/arch/arm64/boot/dts/sophgo/sg2000.dtsi b/arch/arm64/boot/d=
+ts/sophgo/sg2000.dtsi
+> > new file mode 100644
+> > index 000000000000..4e520486cbe5
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/sophgo/sg2000.dtsi
+> > @@ -0,0 +1,79 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +
+> > +#define SOC_PERIPHERAL_IRQ(nr)		GIC_SPI (nr)
+> > +
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +#include <riscv/sophgo/cv18xx-periph.dtsi>
+> > +#include <riscv/sophgo/cv181x.dtsi>
+> > +
+> > +/ {
 
-// The maximal argument count for firmware node reference
- #define NR_FWNODE_REFERENCE_ARGS	8
-// The maximal argument count for DT node reference
- #define MAX_PHANDLE_ARGS 16
+[...]
 
-It may cause firmware node reference's argument count out of range if
-directly assign DT node reference's argument count to firmware's.
+> > +	gic: interrupt-controller@1f01000 {
+>=20
+> MMIO nodes are always in the soc.
 
-drivers/of/property.c:of_fwnode_get_reference_args() is doing the direct
-assignment, so may cause firmware's argument count @args->nargs got out
-of range, namely, in [9, 16].
+I think I've looked a wrong example (or a counter-example)...
+$ grep -R -P '^\t\tcompatible =3D "arm,cortex-a15-gic";' *
+arm/boot/dts/intel/axm/axm55xx.dtsi:		compatible =3D "arm,cortex-a15-gic";
+arm/boot/dts/ti/omap/dra7.dtsi:		compatible =3D "arm,cortex-a15-gic";
+arm/boot/dts/ti/omap/omap5.dtsi:		compatible =3D "arm,cortex-a15-gic";
+arm/boot/dts/nvidia/tegra124.dtsi:		compatible =3D "arm,cortex-a15-gic";
+arm/boot/dts/nvidia/tegra114.dtsi:		compatible =3D "arm,cortex-a15-gic";
+arm64/boot/dts/nvidia/tegra132.dtsi:		compatible =3D "arm,cortex-a15-gic";
+arm64/boot/dts/freescale/s32v234.dtsi:		compatible =3D "arm,cortex-a15-gic"=
+;
+arm64/boot/dts/apm/apm-storm.dtsi:		compatible =3D "arm,cortex-a15-gic";
+arm64/boot/dts/apm/apm-shadowcat.dtsi:		compatible =3D "arm,cortex-a15-gic"=
+;
 
-Fix by increasing NR_FWNODE_REFERENCE_ARGS to 16 to meet DT requirement.
+But thanks for clarification!
 
-Fixes: 3e3119d3088f ("device property: Introduce fwnode_property_get_reference_args")
-Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
----
-May remove MAX_PHANDLE_ARGS and use NR_FWNODE_REFERENCE_ARGS instead later.
----
-Changes in v3:
-- Remove RFC, correct title and commit message.
-- Link to v2: https://lore.kernel.org/r/20250114-fix_arg_count-v2-1-efa35ee6572b@quicinc.com
+> > +		compatible =3D "arm,cortex-a15-gic";
+> > +		interrupt-controller;
+> > +		#interrupt-cells =3D <3>;
+> > +		reg =3D <0x01f01000 0x1000>,
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x01f02000 0x2000>;
+> > +	};
+> > +
+> > +	soc {
+>=20
+> Override by phandle/label instead of duplicating.
+>=20
+> > +		ranges;
+> > +
+> > +		pinctrl: pinctrl@3001000 {
+> > +			compatible =3D "sophgo,sg2000-pinctrl";
+> > +			reg =3D <0x03001000 0x1000>,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x05027000 0x1000>;
+> > +			reg-names =3D "sys", "rtc";
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +
+> > +&clk {
+> > +	compatible =3D "sophgo,sg2000-clk";
+>=20
+>=20
+> That's discouraged practice. If you need to define compatible, it means
+> the block is not shared between designs and must not be in common DTSI.
 
-Changes in v2:
-- Increase macro @NR_FWNODE_REFERENCE_ARGS to align with @MAX_PHANDLE_ARGS.
-- Correct fix tag and send as RFC patch.
-- Link to v1: https://lore.kernel.org/r/20250109-of_core_fix-v4-7-db8a72415b8c@quicinc.com
----
- include/linux/fwnode.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+That doesn't come from my series, that's how original cv18xx.dtsi has been
+designed. Same question as before: do I need to rework it if I will not be =
+able to
+test the changes (I don't even posess the relevant HW). But if not, I have
+to adapt the same pattern into the new sg2000.dtsi.
 
-diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-index 0731994b9d7c832cae8a30063f3a64194e4f19aa..6fa0a268d53827a376d7f258c6194a2a088e4325 100644
---- a/include/linux/fwnode.h
-+++ b/include/linux/fwnode.h
-@@ -91,7 +91,7 @@ struct fwnode_endpoint {
- #define SWNODE_GRAPH_PORT_NAME_FMT		"port@%u"
- #define SWNODE_GRAPH_ENDPOINT_NAME_FMT		"endpoint@%u"
- 
--#define NR_FWNODE_REFERENCE_ARGS	8
-+#define NR_FWNODE_REFERENCE_ARGS	16
- 
- /**
-  * struct fwnode_reference_args - Fwnode reference with additional arguments
-
----
-base-commit: 40fc0083a9dbcf2e81b1506274cb541f84d022ed
-change-id: 20250114-fix_arg_count-73feae90fccb
-
-Best regards,
--- 
-Zijun Hu <quic_zijuhu@quicinc.com>
+--=20
+Alexander Sverdlin.
 
 
