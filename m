@@ -1,140 +1,103 @@
-Return-Path: <devicetree+bounces-144658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15199A2EC55
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:10:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ACC0A2EC58
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:11:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 500531889BAD
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:10:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 964331605D2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2BC21C9E0;
-	Mon, 10 Feb 2025 12:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B73221D88;
+	Mon, 10 Feb 2025 12:11:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dzw9r0CW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PTvJT8Za"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FFC1F3D41;
-	Mon, 10 Feb 2025 12:10:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AECBA1F76B3;
+	Mon, 10 Feb 2025 12:11:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739189436; cv=none; b=nubXStXXBYoq8pWo7A9e2btdJEhIQQLMGBPfC5majhepDKtDLdjsZAGVTeyv9WfEyFCR+W2OwbHQ0fC8h7myhgly56ZwLvhWTWArLMorklzyWapz8tESsNxf9IUtg2l3wriG+oRnmK31PyuPMIeDOi88WcwW0A/+zIbpnrPQa7Y=
+	t=1739189462; cv=none; b=NNE2AqKo9OWLBb7wKfkM9Wm6Eu6Y8sO/StInXAYg5MY6v+QOxlPt8I0o9PjWH91wR0G90VGdg6/f5EvqQUT1HmHxaDSn/8qHJwPEd/NnHv3wUk3kNLtvjHIBQXm81PC/CEoxs8OKWKxE5mMJzgEhYsE1b4YBJps8vUSS8hoo5Ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739189436; c=relaxed/simple;
-	bh=iVV5fItADhSdmSptdzySm7drerIykRqZzWFXa7Bk090=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=MJCU1FXqWG2m1HteRu69TSrC/cP0X2gjr5GxSf828AJhAoEBjooWMQtZyJHP4S4fBbO/ejQg/ELTaORWprzMNdJ+Jg2oFD9sKDlWFvZ1RgvRYDyANXCkI6PjHQIij+xfQkFDoLmk/P7vLtIC/0D8xHJq00drpxgukQiPbih9N1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dzw9r0CW; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1739189462; c=relaxed/simple;
+	bh=jA/6LnCbfbgDAQHR9dJ/IqXAKKbltQxe2EtN6Sfpp+Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fQs1XgYDGzI6jdY3ccMaTjRe2IszfBtZt5gOdi/0JWWTYoQMFdZyeP2dpq2RUidMNND+ZrN99yvTrdhbslsPxV/oma9wLGWd+eZJuErooHkCQJcJy7dK3aRifHvE+DB/ql6WpQA2/499aHqws0XqI4h9m3N512HykM5FnTwNUSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PTvJT8Za; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ab7ca64da5dso102126366b.0;
-        Mon, 10 Feb 2025 04:10:34 -0800 (PST)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-21f7f1e1194so33043165ad.2;
+        Mon, 10 Feb 2025 04:11:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739189433; x=1739794233; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=iVV5fItADhSdmSptdzySm7drerIykRqZzWFXa7Bk090=;
-        b=Dzw9r0CWwINAE0w8WWJZwcTIbk9xT1RhOVTDyKAVpH6iCQvZ8CsoG4/dEveJismE+V
-         6DD11n3ZxwkMPhcjyO9BjNee/EncME9zAoHGx5NwpxBSv2alLUzEyqVu23OUp4aueoX1
-         vvmL3USJdVFxQE2cI/C5Q6sJQ6HiWROp6tKsalgxz5nmbwUwmsi3b+qcETIIL38nqTak
-         4hBH+pOw1WMWipTdMad9EldOYDaMleHRgacYI1h55QkLlicf0gkbJWRpCkcLEnYQnpEb
-         116OOc2w5Mk0H2+M2u9o3Xk6rmTVIMpHPodhjyce9wV3kfO1igtmp+hAFokq9IGjeLmz
-         u1UQ==
+        d=gmail.com; s=20230601; t=1739189460; x=1739794260; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jA/6LnCbfbgDAQHR9dJ/IqXAKKbltQxe2EtN6Sfpp+Q=;
+        b=PTvJT8Za/E2TgTfZ1pesKwM9TN4lLqTIJrdfv93e9MzBxc/RqOzEG3SRlB9Th8UYO5
+         Kcr+drWrFWJdCkmoSOkO+M0mlWInwhZaDn/k7xAE0oNzGxdJ/3ezNgk/DlV7KBZwr99P
+         DylAw8UWtuLneMuzEJAfuESn+M33KOY9vFvMto0DdkoDlj/WyOEiDSHX3CMaXmh3iKM9
+         SeBagSUqlBpb9o83rcDUdXgvOBsdA912+Hb7sVbJwT3VzOBXnu3kgQx3R7Ve1cX+8paW
+         j5JhFDsd0pB3x2EWTFppwQVjr2XfyoMZ8LMHogGFFbZRzl5n3nh9YJivv/cS7w54HS5D
+         fTEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739189433; x=1739794233;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iVV5fItADhSdmSptdzySm7drerIykRqZzWFXa7Bk090=;
-        b=Y8wk38d48UzlZDpJIjnpk8DJMCO1kUDA5eDd7pegiPqAcW01bgYRL/HICH487r6etK
-         zmkqU0AEKiCX8A0TRraSrReY/WbnpJAx1whBudvSRg36R/bzxVRngfk6KsrCB5OovSbf
-         rXBZfJzS729wKrXAmJBMXpyJsVvtl5FRV9fFhEeSaa3rxPSVkBHz2sE72F2FVpN2NLxu
-         NZK8Hvq5htJt0iHkXWqTq3N7riLx9deCn8P20vKVpnBnLyATvfrdmS4xEKWKakuexNbt
-         a8SNc0aalY31J23x0yl+kcCpd/tnE2ScfbNy++bwi6IBfGNZWpxPTS5Z0QarAIu7X+na
-         tBtw==
-X-Forwarded-Encrypted: i=1; AJvYcCVUCL+J5XSl/LZml/TqotwWTNnZ99QI2lJFv3tIRwUFrdkRl0bW4aBhkownVBefmHkyjQYTSlfQjwAG@vger.kernel.org, AJvYcCWMAffUG5KrDOt7Iz8boHxTg7N2aTPGZnBfHELasyhqVON4gFFNzr4WEA8hYjErRvMQWk3TaKc41/Y=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6qOU6YsWDHdyjse0MhFUuPjiQyFGZ0APgej14CwHtsmT3OMg0
-	3dJcg6Iv9f6uJVzA95AumOphQbjm+Zkg93CzXz0ZO+gnBE65oprT
-X-Gm-Gg: ASbGncuMW2q5EdUKhJA8K91/J1BECIyNHYqPGykWQ3+oxcIQX4DoCdulYBU3+TY81xz
-	wr19ahC1CLgAZJ2cVNPxTONHG7sWw1Vk1yosXx1dIu6TSWAowEWZ5WxiVNa7Nb4p0uSe9G/ohvv
-	bqVis8FFP9CDJB2XEiTjJrKMfCf8X6tEYlfxjlBeJBznn23K2vfeNZzEj24pgYulOrwxTdQWWtg
-	IQ5A4S1M0pQZ9AILaLBGlfooVxJNOw6X8/H8cpeKUEkgq+ZnEqfovWfLWoH/NbJW0Zi3bY8ZwEm
-	AfDJsbygd1wWglQZOaW2CNUUOAx4+kKF
-X-Google-Smtp-Source: AGHT+IG0r7IUI08jzz62jmBNjDxyMCWdSH4iEcWJL4NhmxdTXJTTGmJz9BnjUWRrDIT9Op9nqTWxqw==
-X-Received: by 2002:a17:907:740e:b0:ab7:c41b:a25a with SMTP id a640c23a62f3a-ab7c41ba2e1mr201449966b.6.1739189432773;
-        Mon, 10 Feb 2025 04:10:32 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7b12d5f49sm364727266b.73.2025.02.10.04.10.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 04:10:32 -0800 (PST)
-Message-ID: <783a005a5e81796d572558ec083ff08b5adb34df.camel@gmail.com>
-Subject: Re: [PATCH 00/10] arm64 support for Milk-V Duo Module 01 EVB
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Inochi Amaoto <inochiama@gmail.com>, Yixun Lan <dlan@gentoo.org>
-Cc: soc@lists.linux.dev, Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
-	 <inochiama@outlook.com>, Lee Jones <lee@kernel.org>, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel	 <p.zabel@pengutronix.de>, Catalin
- Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Arnd
- Bergmann <arnd@arndb.de>, Paul Walmsley <paul.walmsley@sifive.com>,  Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Sebastian
- Reichel <sre@kernel.org>, 	devicetree@vger.kernel.org, Haylen Chu
- <heylenay@outlook.com>, 	linux-arm-kernel@lists.infradead.org,
- linux-riscv@lists.infradead.org, 	linux-pm@vger.kernel.org
-Date: Mon, 10 Feb 2025 13:10:30 +0100
-In-Reply-To: <eoeyutuu4mrpsu7snkk5ll6kmm4344qsgbnncss6gerlcvvea7@usuf5v7w5ffp>
-References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
-	 <eoeyutuu4mrpsu7snkk5ll6kmm4344qsgbnncss6gerlcvvea7@usuf5v7w5ffp>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+        d=1e100.net; s=20230601; t=1739189460; x=1739794260;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jA/6LnCbfbgDAQHR9dJ/IqXAKKbltQxe2EtN6Sfpp+Q=;
+        b=Trmzs7lyWwouN+fuhrrlYjSvrpveJPvZ6bDMfcQyBda4OI2L2MQwNZsyr678e6zWLD
+         Bn0MXzrd7K9artzRgNcX2RWv5o1SoDZS62qgH6EUiX17sB9OMa/85bIO20AJh/fufHEX
+         KW56hq/odS+WfXjYAp1QqqkCc1iwVGyjgIAt4qsaGoRvbxvRsqgq5v2YHQm/ksV+77CW
+         hNWiBXys3WHK05hdtLTuPOwCK/NNQlHrod1A5XupQylhtOOvQ0Gqi1dKANRQU3F4DyDf
+         7gUs8bdAMHwht9y8MCxBhdm15TVCCBlz/p1ioe/1ZPrp0XlJDANT33hb00cmWb8kikvd
+         6Riw==
+X-Forwarded-Encrypted: i=1; AJvYcCVyKzmKl/Bc/Waap4oQrn3QDpc0ztWsSOif6BCxbHJsMqCh371ApAlVAHPRcJE9aEPDeDg3aKOmIHiPV41x@vger.kernel.org, AJvYcCWzU7UfV+9bvWFOw4PwK+Ef9rpXGNHaCZpbk7dNUqJd9c+oUJdo6WRJ5Dg/oERf72pfoEqqpaKzW44X8do=@vger.kernel.org, AJvYcCXacBQY8wXujo0I+j/AFA2ouIYcE+KD+O5TKIzki1SWssrCOqmqZXL94Zr2dMLH9Rh3cLWx4J7/+gj6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDDsDp0b5iL9W5etlVNJ76eX4gvmpgKbQjaqbha7+p4YgAbjcS
+	3GpXuxPbjTk5/PYy35+JBH+KhmlDjCZno4nqkaLmWOpcKrcCh5LhbbHuHEcmyeuO0ASi/4pMeod
+	UMLzdx1FfawD08QXn4SU0cVajqGifHTFa
+X-Gm-Gg: ASbGncsbdqznYtBoNPBW8ZJ0ZnQ8u4YOquwRI/o2Zq66ZtL51HcUStUFVXN5t6g7QnI
+	gBvNK4l1cdm1W9JW3LOWzVQhBw+tUZh+YNrgB96llSq5zP+wLwrebbXeZToKUebtmsXkbaw==
+X-Google-Smtp-Source: AGHT+IEvjrhWFzJvBsLl6xi1YtqyygIWFxtRxN32tq1kDXYWrDyozinWosbhDBBFPu5SMhjmFqi7Ptu6XscwFJGg5gk=
+X-Received: by 2002:a17:903:987:b0:216:3d72:1712 with SMTP id
+ d9443c01a7336-21f4e763ac0mr245249885ad.48.1739189459935; Mon, 10 Feb 2025
+ 04:10:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250207163029.3365-1-laurentiumihalcea111@gmail.com>
+In-Reply-To: <20250207163029.3365-1-laurentiumihalcea111@gmail.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Mon, 10 Feb 2025 14:12:28 +0200
+X-Gm-Features: AWEUYZlwnIdi4-pK3IZB8j0QQqGx7k7sKf_zSbv5i7OpxcseTByf4rVDLfbpjE0
+Message-ID: <CAEnQRZDStmdQ+3YfmX7jNemiLmcWA+2Ms_wnXbn9FJNWym0=8A@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: wlf,wm8960: add 'port' property
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, patches@opensource.cirrus.com, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for quick feedback Inochi!
+On Fri, Feb 7, 2025 at 6:31=E2=80=AFPM Laurentiu Mihalcea
+<laurentiumihalcea111@gmail.com> wrote:
+>
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>
+> The wm8960 codec may be used with audio graph card and thus may require a=
+n
+> additional property: 'port'. Add it.
+>
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-On Mon, 2025-02-10 at 13:33 +0800, Inochi Amaoto wrote:
-> > It would probably make sense that the whole series would go into SOC tr=
-ee,
-> > even though technically nothing prevents the reboot/reset driver to com=
-e
-> > in PM/reset tree. If everything would come together, `reboot` command w=
-ould
-> > work out of the box.
-> >=20
-> > [1] https://milkv.io/docs/duo/getting-started/duo-module-01
-> > [2] https://github.com/milkv-duo/duo-buildroot-sdk-v2/releases/
-> > [3] https://github.com/sophgo/sophgo-doc/releases/download/sg2000-trm-v=
-1.01/sg2000_trm_en.pdf
-> >=20
->=20
-> This reboot implentment across the RTC and 8051 domain, which is
-> still a big problem to be upstreamed. This should be designed=20
-
-Could you please elaborate on the "big problem"?
-Does the binary-distributed ATF perform some other type of reset in WARM ca=
-se?
-(COLD is just mirorred based on TRM).
-
-> carefully and needs further discussion. Adding these two syscon
-> compatiable may be not a good idea and cause some problem. I invite
-> Yixun to this talk and he may give some useful suggestions.
->=20
-> At last, I prefer this goes to an separate patch series, and
-> implement with rtc device.
-
-Sure, I can split the reboot story from the series...
-
---=20
-Alexander Sverdlin.
-
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
