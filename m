@@ -1,91 +1,186 @@
-Return-Path: <devicetree+bounces-144784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E162FA2F3E1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:44:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B278BA2F3EB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:45:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B0717A107A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:43:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54D02164C0A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:45:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA75F1F4630;
-	Mon, 10 Feb 2025 16:44:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 714E218C345;
+	Mon, 10 Feb 2025 16:45:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sap1xWyb"
+	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="QDFswwxh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9890D2580D8;
-	Mon, 10 Feb 2025 16:44:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA84F2580CF;
+	Mon, 10 Feb 2025 16:45:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739205855; cv=none; b=pcqKzFI6JxRQa9PRWPhOz6udfHRAzBmW1RVQ6H71Ju6+R2WOpMj1Ufx+g6NTwvppz3QkUKtbyLksH2a0JmoytLn85fUyVXnrS965wcOkeLiSX4P1LnfZqhH0nWbEfcymJcO+OzfhfGuuqc9E8NgXwjznh0YtKjj/eXbfNTXgZF8=
+	t=1739205926; cv=none; b=i7J05KKKGnU/tXpTn6rs9peF4eKhLb6KrwRGDlb+8CxfcOqV7o6TDu4sLYXtlb0pIzgQTVhfbddCHbtDOVn3wphin6b9V3rFkdv33kyMeQKYpKfhtkNqmhpSSxYMDlRihEoY1AkmRNfyrf3IeX44JVcvwR3KUnEGnKLSwMjuWHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739205855; c=relaxed/simple;
-	bh=pJIYPWJ+5c+OJAajVySyzvOkJYxLdGI/XLkulyWGlJA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=jhPgAQyFl7yJ+cswhFEIBQcIcqmWH9A6VCydAlwIQJB6BE8yfVvPsJMkXC2Z9U0Io3SiwAlJPw9yrySa1iBdohzbraVqHCI2NzCIimjUcl5zTymnfRYj8gzUOMZZcM6zAraSdJMPTDAWvrM0Yiomm8gokHvKRdU7D0R6jnIO/A4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sap1xWyb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F6BDC4CED1;
-	Mon, 10 Feb 2025 16:44:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739205855;
-	bh=pJIYPWJ+5c+OJAajVySyzvOkJYxLdGI/XLkulyWGlJA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Sap1xWyb/Xua4wOkYzVszhdi1qatQ6+kI68L3yl8aizC4TP6ZfceuQNPR4xa3UP4a
-	 GcGTPc4GzCih4oxnvKRM/JRcfJuxnwVJIPoBOP1pO4+IDJnyNmdLDruSE2QX9xhwvX
-	 EhUrumg/0Jp5TOiR5H4oAa8Nh6yapeQllKnvCKasdsEqs/3JdNOjgUxdnbJMtu2bKj
-	 uu5e23d5Ub57GKgZKwkPFpklHe4zyCPoxx37+rrOX/YBbmpHvx75c8jQAkjW+Mm5Ih
-	 f6h4+4B0fGSmfE1IbxIjpBOqxH9dXNOp9s5TIWkHXgqzUov/To0QI/h/YJy73ztR71
-	 aOcRpvV+6+PbA==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, ukleinek@kernel.org, alexandre.torgue@foss.st.com, 
- Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- wbg@kernel.org, jic23@kernel.org, catalin.marinas@arm.com, will@kernel.org, 
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, 
- olivier.moysan@foss.st.com
-In-Reply-To: <20250110091922.980627-1-fabrice.gasnier@foss.st.com>
-References: <20250110091922.980627-1-fabrice.gasnier@foss.st.com>
-Subject: Re: (subset) [PATCH v3 0/8] Add STM32MP25 timers support: MFD,
- PWM, IIO and counter drivers
-Message-Id: <173920585199.1896384.5521926980550161552.b4-ty@kernel.org>
-Date: Mon, 10 Feb 2025 16:44:11 +0000
+	s=arc-20240116; t=1739205926; c=relaxed/simple;
+	bh=7vmbpwcC7SzCJRr1X7tfbhNjspmj83V3O3MfyXlaVGs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=uPxxeXiXKTYpenJTlbrzHzCq1N3SL9ZR+Z5D0qxKWnn6wiF5jUw08Ht47+U+86mVCoPjCNdEiCFVd37jgGrTXh+t7foO1s5cwaLXz3r69gGNeXQowHLj7U6BdXeR6llNxtKJj4wwJwEEeA3MzFqdEXP2RYjBGTb8xbT12rPuWBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=QDFswwxh; arc=none smtp.client-ip=217.92.40.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4FBEB148026A;
+	Mon, 10 Feb 2025 17:45:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1739205914;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=6DNkDzYRsREfj0sp5nnwVNuG1cgUjook0PsY/o2nTvA=;
+	b=QDFswwxh5yq/Q2nfGYfaK501Bz0ERwVgeUuuFwMvuAaafD/kufwnfQS1M1waMGWLfEsY7A
+	sFJaOQbB+axlAp2u/9cA3KB6Vq7nhqk+f6VibzjS7T2pFh0dhS3MUmg8Bdm8fvDE6eKgfs
+	xEBaL2rd9jha90gVWGof01FEMJtA/EtEvx/nxLnLjRyVLqpeVJb6EO2c5EPCnLwX143msc
+	BroLSCG1RjjUAJ3WQxENrIn8Vu77RN8B53afl/PMkzjwl+MNWfbeVS2ooQp8UqRhsc1PIp
+	lFJJDSK/StYMm25dNmqcQ2AO3vvOPtgUM53rbVbZECl4LwrsuGZ5uo5IGXp0Bg==
+From: Alexander Dahl <ada@thorsis.com>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Ryan Wanner <ryan.wanner@microchip.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 00/16] Microchip OTPC driver on SAM9X60 exposing UIDxR as additional nvmem device
+Date: Mon, 10 Feb 2025 17:44:50 +0100
+Message-Id: <20250210164506.495747-1-ada@thorsis.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, 10 Jan 2025 10:19:14 +0100, Fabrice Gasnier wrote:
-> This series adds STM32MP25 support on MFD PWM, IIO, counter timer drivers.
-> This new timer variant is managed by using a new DT compatible string.
-> It comes with a slightly updated register set, some new features and new
-> interconnect signals inside the SoC. There is also a new instance (TIM20).
-> Same feature list as on STM32MP1x is supported currently, except for PWM
-> capture (not enabled, by DT).
-> The device tree files add all instances in stm32mp251 dtsi. PWM, counter
-> and trigger examples are provided for stm32mp257f-ev1 board.
-> 
-> [...]
+Hei hei,
 
-Applied, thanks!
+on a custom sam9x60 based board we want to access a unique ID of the
+SoC.  Microchip sam-ba has a command 'readuniqueid' which returns the
+content of the OTPC Product UID x Register in that case.
 
-[1/8] dt-bindings: mfd: stm32-timers: add support for stm32mp25
-      commit: 4c1d04d013e3e5073a7e78e57cba82c3cd81d586
-[2/8] mfd: stm32-timers: add support for stm32mp25
-      commit: 3c81d423568ad28540a7dab4ca8ea66ded9b352f
+(On different boards with a SAMA5D2 sam-ba and we use the Serial Number
+x Register for that purpose.  In the linux kernel those are exposed
+through the atmel soc driver.  Those registers are not present in the
+SAM9X60 series, but only for SAMA5D2/SAMA5D4 AFAIK.)
 
---
-Lee Jones [李琼斯]
+There is a driver for the OTPC of the SAMA7G5 and after comparing
+register layouts it seems that one is almost identical to the one used
+by SAM9X60.  Currently that driver has no support for the UIDx
+registers, but I suppose it would be the right place to implement it,
+because the registers are within the OTPC register address offsets.
+
+When developing and testing it became clear the OTPC needs explicit
+enabling of certain clocks in the otpc driver.  So the patch series
+starts with some rework of clock bindings and clock drivers, along with
+referencing that in SoC dtsi files.
+
+After two patches with some unrelated fixups for the otpc driver, there
+are more patches dealing with sam9x60 support for the driver and the
+necessary clock enablement.
+
+The last patch adds an additional nvmem device for the UIDx registers,
+fullfilling the initial goal of mine.
+
+I tested the series only on SAM9X60, not on SAMA7G5 or the other SoCs
+affected, because I only have sam9x60 hardware for testing.  If someone
+could test on SAM9X7, SAMA7G5, and SAMA7D65, that would be highly
+appreciated.
+
+Last question: Should the UID be added to the device entropy pool with
+add_device_randomness() as done in the SAMA5D2 sfr driver?
+
+For detailed patch changelog see each patch, general changelog below.
+
+Greets
+Alex
+
+(series based on v6.14-rc2)
+
+v2:
+- Removed patch adding bad OPTC conditions warnings on probe
+- Removed patch adding more register definitions (the one register
+  definition required was moved to the last patch adding the nvmem for
+  UID registers)
+- Added multiple new patches handling the dt-bindings issues
+- Extend the possibility to enable the main rc oscillator to all at91
+  SoCs with an OTPC
+- Added patches to reference and enable the OTPC peripheral clock on all
+  capable SoCs
+- Reordered patches
+- Reworded commit messages
+- Squashed patches with dts changes for sam9x60
+- Fixed bot warnings
+
+v1:
+- Link: https://lore.kernel.org/all/20240821105943.230281-1-ada@thorsis.com/T/#u
+
+(I sent an RFC patch on this topic earlier this year, you'll find the
+link below as a reference to the discussion.  The patch itself was
+trivial and not meant for applying as is anyways, so I decided to not
+write a full changelog from RFC to v1.)
+
+RFC:
+- Link: https://lore.kernel.org/all/20240412140802.1571935-1-ada@thorsis.com/T/#u
+
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+
+Alexander Dahl (16):
+  dt-bindings: clock: at91: Split up per SoC partially
+  ARM: dts: microchip: Use new PMC bindings
+  clk: at91: Use new PMC bindings
+  dt-bindings: clock: at91: Allow referencing main rc oscillator in DT
+  clk: at91: Allow enabling main_rc_osc through DT
+  clk: at91: Add peripheral id for OTPC
+  dt-bindings: nvmem: microchip-otpc: Add compatible for SAM9X60
+  dt-bindings: nvmem: microchip-otpc: Add required clocks
+  nvmem: microchip-otpc: Avoid reading a write-only register
+  nvmem: microchip-otpc: Fix swapped 'sleep' and 'timeout' parameters
+  nvmem: microchip-otpc: Add SAM9X60 support
+  ARM: dts: microchip: sama7g5: Add OTPC clocks
+  ARM: dts: microchip: sam9x60: Add OTPC node
+  ARM: dts: microchip: sam9x60_curiosity: Enable OTP Controller
+  nvmem: microchip-otpc: Enable necessary clocks
+  nvmem: microchip-otpc: Expose UID registers as 2nd nvmem device
+
+ .../nvmem/microchip,sama7g5-otpc.yaml         | 32 ++++++++++-
+ .../dts/microchip/at91-sam9x60_curiosity.dts  |  4 ++
+ arch/arm/boot/dts/microchip/sam9x60.dtsi      | 25 ++++++---
+ arch/arm/boot/dts/microchip/sam9x7.dtsi       | 11 ++--
+ arch/arm/boot/dts/microchip/sama7d65.dtsi     |  5 +-
+ arch/arm/boot/dts/microchip/sama7g5.dtsi      | 25 +++++----
+ drivers/clk/at91/sam9x60.c                    | 16 +++---
+ drivers/clk/at91/sam9x7.c                     | 24 +++++----
+ drivers/clk/at91/sama7d65.c                   | 44 +++++++--------
+ drivers/clk/at91/sama7g5.c                    | 30 ++++++-----
+ drivers/nvmem/microchip-otpc.c                | 54 ++++++++++++++++---
+ .../dt-bindings/clock/microchip,sam9x60-pmc.h | 22 ++++++++
+ .../dt-bindings/clock/microchip,sam9x7-pmc.h  | 28 ++++++++++
+ .../clock/microchip,sama7d65-pmc.h            | 35 ++++++++++++
+ .../dt-bindings/clock/microchip,sama7g5-pmc.h | 27 ++++++++++
+ 15 files changed, 296 insertions(+), 86 deletions(-)
+ create mode 100644 include/dt-bindings/clock/microchip,sam9x60-pmc.h
+ create mode 100644 include/dt-bindings/clock/microchip,sam9x7-pmc.h
+ create mode 100644 include/dt-bindings/clock/microchip,sama7d65-pmc.h
+ create mode 100644 include/dt-bindings/clock/microchip,sama7g5-pmc.h
+
+
+base-commit: a64dcfb451e254085a7daee5fe51bf22959d52d3
+-- 
+2.39.5
 
 
