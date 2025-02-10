@@ -1,105 +1,110 @@
-Return-Path: <devicetree+bounces-144662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89124A2ECCE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:47:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 558DEA2ECD6
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:51:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 324C41624E3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:47:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACC70188403D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:51:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BC41EF0A5;
-	Mon, 10 Feb 2025 12:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4226081741;
+	Mon, 10 Feb 2025 12:51:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="ESbKkdxq"
+	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="cs7gRFf2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FDEC2FD
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 12:47:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB8E928E7
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 12:51:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739191653; cv=none; b=r2IC4f7fUOwum8z5s1TnsKa1VsWe+CgDeu6lToD0RGn1lHedNDlaqfzLG2ra+U7As3nHby/6KWi0jLShTPzUHMz8hfatgrj3Giu2tYj0c+MIMvjSuqaK7O1V1PVQdqcWwGx4qeFVHBIxH3+U6nj7Og6NeKiLrEzP1NuiP7SRiXk=
+	t=1739191883; cv=none; b=IXwO6ohbtJumeUP2SM48q984UhQHahqSklTFYw16V10bxVZo5XgnwNphC3HVkfg2+mKTQm8vfOZPkPOrWyJeugxkmBM1VEsaSj0SDKIQt8lsX7J7Wyk6pJXvNnza/TusUVGIHQbw1vNgjiH1u9uY6gsit3a9BMFIi5lpzfvS3jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739191653; c=relaxed/simple;
-	bh=Gvy3LdBaVQs9nT0eHoaJMZQlQOwafTHU73apoUuKIsI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=spJFKX1POwu8ssxvoi6koRnwQWJaOO/z0dcxg7Ucdt3w0dHVgtTnx0XP/ODM4eoUAalBR+VyTIdRpQ/2h74zZZcCdSwwQr2hy6vxpCgiMUeSWdXDF4/b2sysspTctT0ZJV7eMdaviVeHxn4MUsrZ8aYH7yNJsAWvYB4y8KXixKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=ESbKkdxq; arc=none smtp.client-ip=95.215.58.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1739191883; c=relaxed/simple;
+	bh=+Yb0AWSvzWper++L7lRsz3UWuqSaAyKs/rjQB9+IZrI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gTCYGQBDcQ/ybjyMcT+0oyUbpsNWFOmysIWLD+Z9mwm3HozTu6eTLpQ67AP8sqcaXeXALyYCeXZ82L0l9pv7WWftaaBqzdDwt3VoIcTvkGTk6vixaiK/tRm02nWZZjfnNHaCEqNxfTU2nMUvGn3gw+DNxHb4RW99FMhMp7REzzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai; spf=none smtp.mailfrom=edgeble.ai; dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b=cs7gRFf2; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=edgeble.ai
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2f9d627b5fbso8149935a91.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 04:51:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1739191881; x=1739796681; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Yb0AWSvzWper++L7lRsz3UWuqSaAyKs/rjQB9+IZrI=;
+        b=cs7gRFf2uL5yc2KxduSkQzXuNvizWLKmwqdiUmqGEheZNFkhzjD6B6Clo3TFG1qO4X
+         /mHCrZ586rnEQPZBocUfd5aFqOc3SYDWJCxnLonUN4++biqHHJyxsTyI0VWvRD9gPbM3
+         a+wiL8NtAbhYn6V+YnGdGZWWYiVxFpMYu1OiRGMeD7uwJo4L92/cmjZDqu4k4c3z46Yk
+         oIquIqFXJ/Z7w21Qk915L2fbonVQK/OJKjiOdYB1QPUXm39YxBJn0qvgBPQDLrl0/jah
+         vaLr7/1rFw9eH9SgNPpym8bsN+XutS+KSdBvjiTcmdkadS/Jo7ZqB3AXtBQCnbJkWo/l
+         BF1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739191881; x=1739796681;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+Yb0AWSvzWper++L7lRsz3UWuqSaAyKs/rjQB9+IZrI=;
+        b=B5dXMTQrzsA3XNRhgKgYPp9iRkXvZRvjs+YWOTPN+UswTHFFmrL4LdICdy3F8t/7wd
+         l1zkKkGpmwAo1Zqug4zXhNq4XjbJKBJTPEwXVXvGOAg9dQnY0PS+sW/3X2ZuY8howHyU
+         o9/HCdV3/bk1gUa/b/xkxC9QXaY/lovDnGWkrI0xhX+UoUkr+FsoMOhWTZfYlRNcsFGm
+         BDzr2SuuDIttLxfzw/rSSocvi4H5iwgRtrdfnBCcucgNV3bWnck6Mk8I0uYjof+a8DHI
+         SLAUcIv2h/D2gmH/vHzxIzgTKMAZrINRuzKMHwMkBASSj1vwqp5cGZev4/KSx8p1jaNM
+         Z1CA==
+X-Forwarded-Encrypted: i=1; AJvYcCUyuQueifqEnmlrwrU4LRFh9cR7ygaQAEKC0KBQ/6Nq3ENtkIUZAp3qimb0P2oxGgouXhqR0zWjaMOQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEwdOyml3uQruEUGzJr++9ypdeXGhuCoWqd2MTdSOZUlFtnywm
+	cMWW21BA4+Jj0o6J4lzOLWQhlFkoeILeifSVURba0J0QhvtYJdYsmVXKvu3AQiivDFFnDoiOp7n
+	AZ2LL+nLq57uLsZz9paY5161u6tFJK9KzZSuxkQ==
+X-Gm-Gg: ASbGncvLBL0J/qmoe5Tv7f/g8+P+ClTszeOuSpwD0hJUQe5Kg3mTCdAAGLjHn2hpIRc
+	pTOnXtVE6rgYE7jvZMJZjcVyHsSEBrbcykTdrPv7XsoBAaERlh3BijoodqW8pVLMXVHR3Ujk=
+X-Google-Smtp-Source: AGHT+IH/HUfs/WQDH9q7eIfT/iv1s0BqbEiijgGJB+xtMIiqfoSqIhTiQ5xQmT4IYeIt4YgSchZ2PjkqSmXBwPFV2cU=
+X-Received: by 2002:a17:90b:19d8:b0:2f9:9e64:37b1 with SMTP id
+ 98e67ed59e1d1-2fa243e9f80mr20290354a91.28.1739191880824; Mon, 10 Feb 2025
+ 04:51:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1739191639;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GM2uG63mtzY/UCzuoJUN2JH4a7GbgULHzqMzKpHmkFA=;
-	b=ESbKkdxqz4qk8K/csAw9UPdZJegeZNw5n9IhkjYGhZRnGZZk5YOwmafSD0Rsz3LVQ+JSIn
-	UYaGH4TnNr6niTvC5xvFSsXylxE5/LRkLAMz6yLn0TmYI+iGQSoGXbDTddwWcgkLCpVhJS
-	z6ELn8kRIkefXSFlxLXQ2po+LeFrxMIqr/5oU9Fy8OVp1EC5EhGwqs/5yvhfc9HEZxQNfu
-	inEk11D+cJplnPvgdyhFzmNJqNy2P7BaAV2VpcrNxm6dus8VhmFN4FSGtVXy6ycElgWHDj
-	3zh1n6PzgxPVVnUX+DHiEOMfpEGWdplyDvIqn15xW6HinaNxpAEgy7vV1IwIzw==
-Content-Type: multipart/signed;
- boundary=b54669e19e5db2e77cc4be97ec813a213b32a02ad4831e170911a19bfd32;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Mon, 10 Feb 2025 13:47:08 +0100
-Message-Id: <D7ORZ8AGCPNE.1JTATRGD0MWLQ@cknow.org>
-Cc: "Dragan Simic" <dsimic@manjaro.org>, "Maximilian Weigand"
- <mweigand@mweigand.net>, "Marek Kraus" <gamiee@pine64.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1] arm64: dts: rockchip: add 'chassis-type' property on
- PineNote
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
-References: <20250207111157.297276-1-didi.debian@cknow.org>
- <87a29b78-5fab-48eb-9a86-f12c41369dfa@kernel.org>
-In-Reply-To: <87a29b78-5fab-48eb-9a86-f12c41369dfa@kernel.org>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+References: <20241227132936.168100-1-jagan@edgeble.ai>
+In-Reply-To: <20241227132936.168100-1-jagan@edgeble.ai>
+From: Jagan Teki <jagan@edgeble.ai>
+Date: Mon, 10 Feb 2025 18:21:07 +0530
+X-Gm-Features: AWEUYZnHRH8l6chZJLn_I2J6MTRIWUy3X4w0l00WsZj1is2NYfhDUvOTFAqvwXA
+Message-ID: <CA+VMnFwHEXWP=d_X0T0E9fHFDCkXHxpvgML6jAHNfh9ikXTZWw@mail.gmail.com>
+Subject: Re: [PATCH V2] arm64: dts: rockchip: Enable HDMI1 out for
+ Edgeble-6TOPS Modules
+To: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 
---b54669e19e5db2e77cc4be97ec813a213b32a02ad4831e170911a19bfd32
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+Hi Heiko,
 
-On Mon Feb 10, 2025 at 12:06 PM CET, Krzysztof Kozlowski wrote:
-> On 07/02/2025 12:11, Diederik de Haas wrote:
->> Add the recommended chassis-type root node property so userspace can
->> request the form factor and adjust their behavior accordingly.
->>=20
->> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
->> Link: https://github.com/devicetree-org/devicetree-specification/blob/ma=
-in/source/chapter3-devicenodes.rst#root-node
+On Fri, 27 Dec 2024 at 18:59, Jagan Teki <jagan@edgeble.ai> wrote:
 >
-> Drop link, no need to point to source of every property. You don't do it
-> for aliases, compatible, model etc, right?
+> Edgeble-6TOPS modules configure HDMI1 for HDMI Out from RK3588.
+>
+> Enable it on Edgeble-6TOPS IO Board dtsi.
+>
+> Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> ---
+> Changes for v2:
+> - Rebase on top of Cristian's series
+> https://patchwork.kernel.org/project/linux-rockchip/cover/20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com/
+> - Update hdptxphy1
 
-Thanks for that hint, I'll keep that in mind for next time :-)
+Cristian's seems merged, please queue this as well.
 
-Cheers,
-  Diederik
-
---b54669e19e5db2e77cc4be97ec813a213b32a02ad4831e170911a19bfd32
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ6n1TwAKCRDXblvOeH7b
-bs2AAQDX/PMiD8ZS28oCmS3Xv1dgFP3IfMHvGFu7LHmEpzKiKwEA+8BWW5g6zQbw
-lQVv4CZU5jr1q6/TEA7nZm2n0EmYjAg=
-=w7P3
------END PGP SIGNATURE-----
-
---b54669e19e5db2e77cc4be97ec813a213b32a02ad4831e170911a19bfd32--
+Thanks,
+Jagan.
 
