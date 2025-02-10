@@ -1,191 +1,138 @@
-Return-Path: <devicetree+bounces-144785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06951A2F3E7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:45:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED639A2F40E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:48:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E6871886999
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:45:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE291164A73
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:48:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53CAF15D5B6;
-	Mon, 10 Feb 2025 16:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBB1F2586F3;
+	Mon, 10 Feb 2025 16:46:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PeBETZeE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JWbBk9pb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A9A156C6A;
-	Mon, 10 Feb 2025 16:45:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D2A62586C4
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 16:46:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739205918; cv=none; b=LtZughdLW1fkY+VJ+0g2HY7bMjtcyizjmGu3LJUX7btg5CrvrbVjLmXbzju/6rRa7rPj/No76rUbj++Zlk4RdkFXKp0nA7Fk7+QHGUt6hJobWcwUPnuT0dsYCJV9y+Cw379S6qcsWXBzMMcdL8dDbPU4eYNEkTicUEFpN/0fUjE=
+	t=1739205996; cv=none; b=oW9qIA3Co+2gYJKnhYCghAUtml+sFw7G69LXXBqzaJ8bHvFJmInlPT2ah/OoWjkSDmzCUQi6xq2pcMmoMWdiVDdUaMHPTic85HBidv5WewMQrwYbSdXqk4R8JYSwtzBvKK4zTbvRy2KX8byb+6rzfFzocDVmzjOvpSZBbGwRNjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739205918; c=relaxed/simple;
-	bh=uWyvUsNMkIe7l8IREjf+iJ3w3iqoYDrAc20cPTNGVnQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AT/hInj5wVWYblrgE+zek0BcsLiGFvjBR5EXAdYfsLEK65mJziI8klNzQYMlINRy5s7c+Idjg8bLqr7N0EFAx6f8gHWNjr8LNavkYXxKjAsy6qzS34Z9LLN2XqG7aSfkNCvucId1KRUj8BNAAGSSHi9XfCJZ1/chndA1hihaCCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PeBETZeE; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739205917; x=1770741917;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uWyvUsNMkIe7l8IREjf+iJ3w3iqoYDrAc20cPTNGVnQ=;
-  b=PeBETZeESoHelGvy+cX5Bt9hnrhCgMX1b3H/osflfY62rTtg5GmALOIT
-   R4Uzov6olRQkMkIKH+yx12YFr/pJQ4XdBjKTIchlbyTZd7xPowFT4TP5J
-   /cyZovlUn1xMg4KHPlhglraSWjuJOpAW9xAK6ud+U9qYr7Ai7kFYZOTpq
-   qptsPoDYKnJRlXG3IFxwmrMUMlD03S0cJG63fWXH5+00QCBrazhNgnrdQ
-   pVw7b/M3of7kGdYaCp/8AdDbiFgishy5iipZhxkAhrDPHFc0WaArkSvYs
-   N4u+WsfiABR9CXBiUa8HN1pWl8teSLhR1SjhPoP9zv5mWvkngCjn1Lf5H
-   Q==;
-X-CSE-ConnectionGUID: GNn+zzo+SO6E5RR7yGvs0A==
-X-CSE-MsgGUID: uFSNj7NLQ++zpRQm1P9nmQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="43557632"
-X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; 
-   d="scan'208";a="43557632"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 08:45:16 -0800
-X-CSE-ConnectionGUID: cKWTUrckQNaRtUM1fN4juQ==
-X-CSE-MsgGUID: KVe2obcwSierHj2UNINipQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="112088897"
-Received: from black.fi.intel.com ([10.237.72.28])
-  by orviesa010.jf.intel.com with ESMTP; 10 Feb 2025 08:45:12 -0800
-Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id 9563F2F2; Mon, 10 Feb 2025 18:45:10 +0200 (EET)
-Date: Mon, 10 Feb 2025 18:45:10 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v8 01/17] spi: add basic support for SPI offloading
-Message-ID: <Z6otFlsmEikIbI__@black.fi.intel.com>
-References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
- <20250207-dlech-mainline-spi-engine-offload-2-v8-1-e48a489be48c@baylibre.com>
+	s=arc-20240116; t=1739205996; c=relaxed/simple;
+	bh=rKZw9/AKjfdQiq23x4NLYpX5kYPR93R2a5K51O1yLjg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ld3BzXpusQvTCeKrshZR4PyGDcPR1IcKK2MpnzYQcv9R8krviX8vkipJKHsa34xL7UpXWERUpDzhikgZxT1liYtbYlqH++YGGLBF34h1VvlMawydx5NDVl5rV+XAc/QivTOIuOrJD8NE7EpaPt79Sqhc+EOJJyP4rUfVBpTRfcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JWbBk9pb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51AAEKsT014440
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 16:46:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Y02jPbtLlP48pca9Ds9PgtZCslYqg667QI/2JrWgP0M=; b=JWbBk9pbvszFDg0U
+	UJ82sgOtdmTdFLPJpoAyCry5hPN3ORtxq0IagFpOuZCxPiwKKrN/9IopwiZGPQ48
+	oxY85SmdYEbtlNq1ajb7ZoGq1Z9kRq2RYghxPXny/dyGITibFm3tyPsk4uGG5vbA
+	yzLP540xJCB4vXBvrzM2t6BktakjG+Reo6dhOufBDvTr4ZCpFVvh54Z7Qj6rKDR4
+	ymdNMxnc5523e+uLQio8ssmAizTJzBPbUFTYK/0SEPtkVaSErURwym9IfbcOmIRW
+	vKHf8mYDwrUgjEDCKy33HMFsn/WmA1x9oanKXSUlJoe1qdKMgz9D110owJ20Uo6X
+	Hua5oA==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44p0guvxq9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 16:46:33 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-47195dd8af0so2382421cf.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 08:46:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739205993; x=1739810793;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y02jPbtLlP48pca9Ds9PgtZCslYqg667QI/2JrWgP0M=;
+        b=eKzT5GYSE7jgxumq+gDqmkTmXnvUhLRIqsM7ywcAsIGdHxcOTV1D+oVBXnLOoVmkIE
+         AhmVs/SnzDhnWHFpAzBh8uffVP0of8lZo2MP4Tn4KugaVmeFtKu/ZGhwohrhDx8yOHfP
+         cP/+fRrg5mzTObrOvfUiPDJlXt2/hxwaw9D61FsafcsKg/i5RRqu+6p3VKoSCa/3ewFP
+         rl38PWoyH4LHNlrENWsK1Pvx2wBpYuhmBHXx9Z+KTsjbF//6QW2Pqp/kNmSgPbpRdGb3
+         v9FB6nDQUyscgferFLS/jKEU/BbCAyAuF/aUnDMJTMziLw8iaFaiAzh4NDE8xj3tdBkn
+         7Awg==
+X-Forwarded-Encrypted: i=1; AJvYcCXR7htW83x2EcFfJR7KD6l/+t0VoT/Lt1nvjU6by7iVlTqx1PrEU9Nw3AcfLQXThZIIvUVeXxTC9H9p@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/cQDUAfDXlS6WOuUdqhQkN3ZMlsq8ADugfMNMc0D3sky87Nyk
+	OFZ8HoZI9NaFKQT+9rh1dHr2XSoN8TF1uF30j0tImjubC9XKXVHsZau4/cVGP46JCCeHtZ53+Q4
+	L21SjZtjqk5kA4S3/nJeYbQ2g0a5KPU/0uNU1Wrh1RckCtOmvHpk7L8UTeGIy
+X-Gm-Gg: ASbGncvma17BaMpMSk4IUfewSYDSniSka20fkfltia+8LFmsHIX9+CXcLC8HZuNG7R6
+	zly3ykmGFbdSpeWRBfYcrceDB4dLfmp2GZ62lcElMcyyn3nlWDS09VU4YkfPp7GjxXaxSDQl9Vg
+	npoJCkWYrJjJcEb8o5ZO+tOBSrJ7nk30DxQgKG6HUJjvK6Jo3f7EwPh2ajjREeec9Y/FEdeU4PE
+	sQzVV2Cg5A9eKf2mqLykeAfdzjjFOeR/12aWYE/U3sR798vPUFMGopl0yZxSwgLkhA99K+siMoO
+	TXHk1dNutksOgg5pQ2Nv2ixJl5yRz5Cu+7Up/ak0dPXEcGCJ0uT/9gnbO9M=
+X-Received: by 2002:a05:622a:60d:b0:471:98d7:6f47 with SMTP id d75a77b69052e-47198d77128mr15699791cf.13.1739205993245;
+        Mon, 10 Feb 2025 08:46:33 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGQv3ndFWNiqtnFsxi5Czn9IPWmkOJNsq8JxW9IbnF/jsyhP6VDiNCnxRnuxRJAlSvYtv5woQ==
+X-Received: by 2002:a05:622a:60d:b0:471:98d7:6f47 with SMTP id d75a77b69052e-47198d77128mr15699571cf.13.1739205992922;
+        Mon, 10 Feb 2025 08:46:32 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7809a2ec4sm829406966b.116.2025.02.10.08.46.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Feb 2025 08:46:32 -0800 (PST)
+Message-ID: <45a83048-24cd-4895-93b7-7f8b22841ccc@oss.qualcomm.com>
+Date: Mon, 10 Feb 2025 17:46:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250207-dlech-mainline-spi-engine-offload-2-v8-1-e48a489be48c@baylibre.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/4] arm64: dts: qcom: x1e80100: Add PCIe lane
+ equalization preset properties
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        quic_mrana@quicinc.com, quic_vbadigan@quicinc.com
+References: <20250210-preset_v6-v6-0-cbd837d0028d@oss.qualcomm.com>
+ <20250210-preset_v6-v6-1-cbd837d0028d@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250210-preset_v6-v6-1-cbd837d0028d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 3_Z1oAHvGe9Q2ZQeYbbVa0ADPfmALuX4
+X-Proofpoint-GUID: 3_Z1oAHvGe9Q2ZQeYbbVa0ADPfmALuX4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-10_09,2025-02-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0
+ clxscore=1015 adultscore=0 bulkscore=0 mlxscore=0 spamscore=0
+ mlxlogscore=719 priorityscore=1501 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2501170000 definitions=main-2502100138
 
-On Fri, Feb 07, 2025 at 02:08:58PM -0600, David Lechner wrote:
-> Add the basic infrastructure to support SPI offload providers and
-> consumers.
+On 10.02.2025 8:30 AM, Krishna Chaitanya Chundru wrote:
+> Add PCIe lane equalization preset properties for 8 GT/s and 16 GT/s data
+> rates used in lane equalization procedure.
 > 
-> SPI offloading is a feature that allows the SPI controller to perform
-> transfers without any CPU intervention. This is useful, e.g. for
-> high-speed data acquisition.
-> 
-> SPI controllers with offload support need to implement the get_offload
-> and put_offload callbacks and can use the devm_spi_offload_alloc() to
-> allocate offload instances.
-> 
-> SPI peripheral drivers will call devm_spi_offload_get() to get a
-> reference to the matching offload instance. This offload instance can
-> then be attached to a SPI message to request offloading that message.
-> 
-> It is expected that SPI controllers with offload support will check for
-> the offload instance in the SPI message in the ctlr->optimize_message()
-> callback and handle it accordingly.
-> 
-> CONFIG_SPI_OFFLOAD is intended to be a select-only option. Both
-> consumer and provider drivers should `select SPI_OFFLOAD` in their
-> Kconfig to ensure that the SPI core is built with offload support.
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+> This patch depends on the this dt binding pull request which got recently
+> merged: https://github.com/devicetree-org/dt-schema/pull/146
+> ---
 
-(I know that this is now in SPI tree, but still we have time to address something)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> +++ b/include/linux/spi/offload/consumer.h
-
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (C) 2024 Analog Devices Inc.
-> + * Copyright (C) 2024 BayLibre, SAS
-> + */
-> +
-> +#ifndef __LINUX_SPI_OFFLOAD_CONSUMER_H
-> +#define __LINUX_SPI_OFFLOAD_CONSUMER_H
-> +
-> +#include <linux/module.h>
-> +#include <linux/spi/offload/types.h>
-> +#include <linux/types.h>
-
-> +MODULE_IMPORT_NS("SPI_OFFLOAD");
-
-This diminishes the point of the namespaces. Anybody who includes a (dangling)
-header gets namespace imported, which is not good. Same for other globally
-visible headers.
-
-(This is the main concern of this patch).
-
-...
-
-> +#ifndef __LINUX_SPI_OFFLOAD_TYPES_H
-> +#define __LINUX_SPI_OFFLOAD_TYPES_H
-
-
-+ linux/bits.h
-
-> +#include <linux/types.h>
-> +
-> +struct device;
-> +
-> +/* Offload can be triggered by external hardware event. */
-> +#define SPI_OFFLOAD_CAP_TRIGGER			BIT(0)
-> +/* Offload can record and then play back TX data when triggered. */
-> +#define SPI_OFFLOAD_CAP_TX_STATIC_DATA		BIT(1)
-> +/* Offload can get TX data from an external stream source. */
-> +#define SPI_OFFLOAD_CAP_TX_STREAM_DMA		BIT(2)
-> +/* Offload can send RX data to an external stream sink. */
-> +#define SPI_OFFLOAD_CAP_RX_STREAM_DMA		BIT(3)
-
-> +/**
-> + * struct spi_offload_config - offload configuration
-> + *
-> + * This is used to request an offload with specific configuration.
-> + */
-> +struct spi_offload_config {
-> +	/** @capability_flags: required capabilities. See %SPI_OFFLOAD_CAP_* */
-> +	u32 capability_flags;
-> +};
-> +
-> +/**
-> + * struct spi_offload - offload instance
-> + */
-> +struct spi_offload {
-> +	/** @provider_dev: for get/put reference counting */
-> +	struct device *provider_dev;
-> +	/** @priv: provider driver private data */
-> +	void *priv;
-> +};
-> +
-> +#endif /* __LINUX_SPI_OFFLOAD_TYPES_H */
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Konrad
 
