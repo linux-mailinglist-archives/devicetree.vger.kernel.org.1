@@ -1,90 +1,90 @@
-Return-Path: <devicetree+bounces-144617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92529A2EA3B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:57:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D17FA2EA53
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:01:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC042188BF39
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:57:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A3301655CE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6076D1DE8AC;
-	Mon, 10 Feb 2025 10:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F1F1DED57;
+	Mon, 10 Feb 2025 11:01:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ezuv+mLV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YGqm8akA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8B81CAA88
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 10:57:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072821CAA86
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 11:01:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739185028; cv=none; b=OgK9cRSset3FrbdikgX718NWfSGPCBOqSs57NxEPZdJefE9uRTPPQU9STMUrqaEyK6/QI2Hdexa+nfLx31EuVHP1IHSXlUSFJvIGH7jSlaqsMfD9Q9aVWJKhmgWaxAwfdk/uTnapr/UwrPkvXhGvczMkCdy6dzsRuidBEpChVhw=
+	t=1739185293; cv=none; b=E4s3bWMRYFhH7L6Fo0wnlTMEWfUWSCZU+V2ZogwmSDLfC2XYsC1lthGV4I/nLHvXou5tBth9+LEHGz6K+9a7Vx+DumWJSa5eN5wDmD7GPBow3WrNO0mfPSfycCLbz1XZE0ctckcvFF6Jq7PcJ/58AqyflRBWTw83T4e5lobmXO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739185028; c=relaxed/simple;
-	bh=iyDDi1r4riFULUgod5wCm2MoIyCOnVwU3km7vkRgHgg=;
+	s=arc-20240116; t=1739185293; c=relaxed/simple;
+	bh=WgW6ZEWyu81z7BrqyHmBRuGMtk2zuQXDhJEjREDVx6c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S+A85zDnTAwdaot/x9RTgaGfVVGQX1YKXd59OJQ30vWOBJ0eEYgGFpK2MLKRgdjZNb8gM1RbKX+92zi2BJ3GJZgr85E57YePpw46gPr8GAonVR5hEbfSG8nMSVa4TcN9qHcyfTXYVJlbJdAOqM+9VQT51GsqlL3HBgLNi6KHwuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ezuv+mLV; arc=none smtp.client-ip=209.85.167.48
+	 Content-Type:Content-Disposition:In-Reply-To; b=eA+hyo+7k7PadJo5oy0iGNUE5zfytQc1XHJFKpVMuCCTm19Q//14q8wQmAxSUFnPjp19bwqG43Mo0xajfK9Cig/HLfqeqvBVC5M7EbcLAh24sFsEttbubgi11nweo8xA3aBz9nHG9EBGcdBkTmBmn4gpQeI8jggXkY6ELdjo17E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YGqm8akA; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5439e331cceso4789538e87.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 02:57:04 -0800 (PST)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-30738a717ffso38276751fa.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 03:01:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739185023; x=1739789823; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1739185289; x=1739790089; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6xd+vxcqG1mZGT915T0HX9ILQH/E7rjAK2oLVDx9yII=;
-        b=ezuv+mLVh82zeTpiJ3bNiqw5ygj2NriYPftMzParFxgKTi3AdObY3aU7pPKca9vKP3
-         KTpH8V/XYhxoLzAgMWjFNZHN6uBfm3mgtkqWay8cebPOzfqcSfE6BHu20G1qDNDThOKM
-         Uw1Ao4zOxXT22c22WJm7d9/p3cDVIFSdbc3l8d15KsD8pEBeZxBE0gCuN34Okzs5Ndem
-         BGv6hqTkt8cv6lGo2Uro8EjUYuE6fqPHX05UcnlUVvy9aw+pcozq1BQMMzXg2uybBnA8
-         fLV3AKjIJYGnTtao8ulr9OvKtdm3hpyB+Hfk8BkcTDnDZiuc3/tiX6A3NZg/friy9wLz
-         QBaA==
+        bh=GtTBVwp4J9apExhc56rvDYwcShHHaMo1N7lDCxauzzY=;
+        b=YGqm8akAE8gSZd1S7vpanZvGYy1GVJ+v6hmPJkO+E2m72RZYbt7eZZwHva2orJ5w58
+         4EovFDkM1tJwKmTA95tLhs5Ua+hVJUv3jazgqT9mecFlUI7TEhhcIBTd6YzIqQyTdIXf
+         t5H9wZFSIMi0l8wN98n3/F4ZNU8TtXMEG2pAjzhL0QK1oxiY+cegCvEdRrHOhSOEAL0H
+         yQTGXF6WUPtszeZFs9wqbJzoZSXqXav/im/Y9U83Hcrmn3af0p/j9Zz0nPDBbzVKGnhB
+         07zG+9YyVNtm8t5AVYm3+XqsfWjTPhAdyzrsJXgQYREiG4W6MVzmqHgZZrIOO53zcCqh
+         7jvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739185023; x=1739789823;
+        d=1e100.net; s=20230601; t=1739185289; x=1739790089;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6xd+vxcqG1mZGT915T0HX9ILQH/E7rjAK2oLVDx9yII=;
-        b=ekgVLxrLTwn37LCKz4MdQjLjr7wEKGBP5kJaCLTpL7C95HSqulU48QgTP2XjRLwahL
-         JuxczfjrMVagDicc4rOnWjnHwBI4xI9HBSFPYN4NP1xi9ORDxRnu+0vyKMFxiKyc72l+
-         SsFBRfXCYEUsDzdQwYgR9h7BPtw6sUD9ehI1vabixByO0p+xvIOyu0oz67er6I9F3AHq
-         35pTxu+HD+b6wCu1hDGOAzDKiWzPd+KFdvh9RB+eZ9SbeYH486n6ylhqC3CCj6cDgAi0
-         e3s31hoBBfyoP/6xL8nPQGXmlPOY392ifKvg9bPkaEhrcyXgh7KwlPfCyqpWjfiyrvmG
-         9VNw==
-X-Forwarded-Encrypted: i=1; AJvYcCVaAjyXtrExnaJwk9mlzwjow6kPM+ew/utI917bhn5N69VWLX9qg3tmk3+9Giv4WqkMScUCIVEuqiHS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyloefvH3xVw3L0VTQ1g4eUmTWtqhEZHiMvWl5FpWQ7E2hm2fx5
-	XM8YzeZl9pMhUlCwUpT3bT/9QmpztvyPavHbolTM0ZmC4Fnki2qzbKBsomLbdis=
-X-Gm-Gg: ASbGncvesw/RhYe5dWYn6PwlbRLtjriVnx9xbM5VEa4aA3i71mIadQVMoI/jvbJCw1C
-	usKUN9+rV22Ibwx4dq37uF/0jvsR+WOoa37fgH2OkvIMKj5BIhRc8Pbht4pCUiAboZwNix5x5Ue
-	K//kTjPg7c78h5TWuFDXb3zHq5VpPf3cKSy/5dHOPB+Jf3YcjChGzWCeZTpsDXUtiMG1YqBtRHl
-	VZAhrQ61bJid8VEtSJZL+3/b38PE/edNZc8IOPTkRG2pOQtIlDPupE8dbwd4YIYZYseGNZOfA4j
-	/UvOH2IsyFcnBKLo3FhsEeMNpQKDAC+QIh5TfifEBQiTFYgxhLdwmvRIMffTKq3fMm5mU6I=
-X-Google-Smtp-Source: AGHT+IHwDEpaVSkoV9uzP8u1aUI2Q7JyUrXFsxYabhPcKGbqKSc1h4oh6oLKcGACEjWOIjuumC9uOA==
-X-Received: by 2002:a05:6512:e89:b0:545:ea9:1a17 with SMTP id 2adb3069b0e04-5450ea91b4amr641356e87.13.1739185022967;
-        Mon, 10 Feb 2025 02:57:02 -0800 (PST)
+        bh=GtTBVwp4J9apExhc56rvDYwcShHHaMo1N7lDCxauzzY=;
+        b=Jy6L7Tv71kBbhF9dD4uhWdzD0Cxgm/ejeo+qPPDHXxSJTJCea5QcBrOoUMj6O2ZofU
+         7ctvYlvo8SCYVTsJX6tSEpvm+GAeY4DtEQm+p657X/B72NUlhjIH98q/3cbyHCnA3dYK
+         v2yp6Us4/Lbt8zMLqi7sdCg0gpo7H2lVCcyKfzT3yXBoCQtkjoLU+l8HJwZtUVJMa0mA
+         JbSPjZRLA1noxFEb+rRoe+YJB+of/wZLAg2SSKC84GFVr49rEujy2BNrL5GX8+PC9GEv
+         r0F2Zy8wmtLCJZHJpbw9LxinOIcnkRE2vnjbzT9m4UARkcg5B+Mf1Irm+T5dcKKb3SPF
+         a+4A==
+X-Forwarded-Encrypted: i=1; AJvYcCWRY99YVPbpqV3BRC6w717bTZzJXvjrf4SUGkX7ooVzLnfV7fFiBf5wMuYuKWynYC7S/7mmnOKhF8a+@vger.kernel.org
+X-Gm-Message-State: AOJu0YytSxF69wPdcBG0uLs/Uutn9J3h/v5r3hRKe93/bMvwhIuYqbx0
+	T7jIL2l/cJoLa028AnecEhhpF10+/d/NIA66rs5XUVeaiygeK6aLfDXRk4rhIJU=
+X-Gm-Gg: ASbGncuqGN9+L+QXQ89+wJiOvkdSsMU5CgsXpOqolbnZ2EubqOEu1l6YZD3BxdaV+LY
+	ob6HMJE3pK80zl0cdcfdG5RA+T5rFBhsZvQ4ZrvsxyQgiN5G2iR1gq5j5sCjFCKX+jviOC31jNI
+	SfFbr0bXI4JcXZadI72hQ+1ND0NL9A7ufsgjKwOwypxulr1OQ+u0ZIzPtmXCO6ybUKhuiqocKko
+	+M27vXNCnboueGl0y/2eap0vYFunqirDhTj3BQL8+GMizcS5cDSVtROR7UJeGYtvJcmHmM4+r8m
+	il9b8P5m8yMUGd8WbBbWWbA1fHfHa0i94MA0DB6OyxXX+X6xvSJWOUwSrcKFx8aAJnqXPsY=
+X-Google-Smtp-Source: AGHT+IESGWlTJg2cuv8Kgo6v/dDQZjg10SE7StQf8S4vcvj1tAiGKln4CJ/xT6Y54Ae/tQTmSnk31g==
+X-Received: by 2002:a05:6512:4022:b0:545:ae6:d740 with SMTP id 2adb3069b0e04-5450ae6d79amr1090753e87.41.1739185289056;
+        Mon, 10 Feb 2025 03:01:29 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5450d27e43csm228979e87.214.2025.02.10.02.57.01
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5450c0823acsm321386e87.118.2025.02.10.03.01.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 02:57:01 -0800 (PST)
-Date: Mon, 10 Feb 2025 12:57:00 +0200
+        Mon, 10 Feb 2025 03:01:28 -0800 (PST)
+Date: Mon, 10 Feb 2025 13:01:27 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Pratyush Brahma <quic_pbrahma@quicinc.com>
+Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Odelu Kukatla <quic_okukatla@quicinc.com>, Mike Tipton <quic_mdtipton@quicinc.com>, 
-	Jeff Johnson <quic_jjohnson@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>, 
-	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V8 3/7] interconnect: qcom: Add multidev EPSS L3 support
-Message-ID: <fclfywuw3p43pcj42gi2w5kutvnto3rcrdng2zl2pzgpvz7dis@cjx2e6v4skfm>
-References: <20250205182743.915-1-quic_rlaggysh@quicinc.com>
- <20250205182743.915-4-quic_rlaggysh@quicinc.com>
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: qcs8300: Add device node for
+ gfx_smmu
+Message-ID: <464vbzwgv44fn4iw5vj5yzpstzhcsb7rzuedf4fwl23hmdhews@d4q33ro6hxq3>
+References: <20250203-b4-branch-gfx-smmu-v4-0-eaa7aa762f48@quicinc.com>
+ <20250203-b4-branch-gfx-smmu-v4-2-eaa7aa762f48@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,165 +93,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250205182743.915-4-quic_rlaggysh@quicinc.com>
+In-Reply-To: <20250203-b4-branch-gfx-smmu-v4-2-eaa7aa762f48@quicinc.com>
 
-On Wed, Feb 05, 2025 at 06:27:39PM +0000, Raviteja Laggyshetty wrote:
-> EPSS on SA8775P has two instances, necessitating the creation of two
-> device nodes with different compatibles due to the unique ICC node ID
-> and name limitations in the interconnect framework. Add multidevice
-> support for the OSM-L3 provider to dynamically obtain unique node IDs
-> and register with the framework.
+On Mon, Feb 03, 2025 at 11:17:02AM +0530, Pratyush Brahma wrote:
+> Add the device node for gfx smmu that is required for gpu
+> specific address translations.
 > 
-> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
 > ---
->  drivers/interconnect/qcom/osm-l3.c | 46 +++++++++++++++++-------------
->  1 file changed, 26 insertions(+), 20 deletions(-)
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 39 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
 > 
-> diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
-> index 6a656ed44d49..da2d82700b5a 100644
-> --- a/drivers/interconnect/qcom/osm-l3.c
-> +++ b/drivers/interconnect/qcom/osm-l3.c
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /*
->   * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> index 4a057f7c0d9fae0ebd1b3cf3468746b382bc886b..7a8211bec139375b5aab939f123d88fca7aceff2 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> @@ -2674,6 +2674,45 @@ gpucc: clock-controller@3d90000 {
+>  			#power-domain-cells = <1>;
+>  		};
 >  
->  #include <linux/args.h>
-> @@ -33,6 +34,7 @@
->  #define EPSS_REG_PERF_STATE		0x320
->  
->  #define OSM_L3_MAX_LINKS		1
-> +#define ALLOC_DYN_ID			-1
-
-This should be defined by ICC framework.
-
->  
->  #define to_osm_l3_provider(_provider) \
->  	container_of(_provider, struct qcom_osm_l3_icc_provider, provider)
-> @@ -55,46 +57,40 @@ struct qcom_osm_l3_icc_provider {
->   */
->  struct qcom_osm_l3_node {
->  	const char *name;
-> -	u16 links[OSM_L3_MAX_LINKS];
-> -	u16 id;
-> +	struct qcom_osm_l3_node *links[OSM_L3_MAX_LINKS];
-> +	int id;
->  	u16 num_links;
->  	u16 buswidth;
->  };
->  
->  struct qcom_osm_l3_desc {
-> -	const struct qcom_osm_l3_node * const *nodes;
-> +	struct qcom_osm_l3_node * const *nodes;
->  	size_t num_nodes;
->  	unsigned int lut_row_size;
->  	unsigned int reg_freq_lut;
->  	unsigned int reg_perf_state;
->  };
->  
-> -enum {
-> -	OSM_L3_MASTER_NODE = 10000,
-> -	OSM_L3_SLAVE_NODE,
-> -};
-> -
-> -#define DEFINE_QNODE(_name, _id, _buswidth, ...)			\
-> -	static const struct qcom_osm_l3_node _name = {			\
-> +#define DEFINE_QNODE(_name, _buswidth, ...)			\
-> +	static struct qcom_osm_l3_node _name = {			\
->  		.name = #_name,						\
-> -		.id = _id,						\
->  		.buswidth = _buswidth,					\
->  		.num_links = COUNT_ARGS(__VA_ARGS__),			\
->  		.links = { __VA_ARGS__ },				\
->  	}
->  
-> -DEFINE_QNODE(osm_l3_master, OSM_L3_MASTER_NODE, 16, OSM_L3_SLAVE_NODE);
-> -DEFINE_QNODE(osm_l3_slave, OSM_L3_SLAVE_NODE, 16);
-> +DEFINE_QNODE(osm_l3_slave, 16);
-> +DEFINE_QNODE(osm_l3_master, 16, &osm_l3_slave);
->  
-> -static const struct qcom_osm_l3_node * const osm_l3_nodes[] = {
-> +static struct qcom_osm_l3_node * const osm_l3_nodes[] = {
->  	[MASTER_OSM_L3_APPS] = &osm_l3_master,
->  	[SLAVE_OSM_L3] = &osm_l3_slave,
->  };
->  
-> -DEFINE_QNODE(epss_l3_master, OSM_L3_MASTER_NODE, 32, OSM_L3_SLAVE_NODE);
-> -DEFINE_QNODE(epss_l3_slave, OSM_L3_SLAVE_NODE, 32);
-> +DEFINE_QNODE(epss_l3_slave, 32);
-> +DEFINE_QNODE(epss_l3_master, 32, &epss_l3_slave);
->  
-> -static const struct qcom_osm_l3_node * const epss_l3_nodes[] = {
-> +static struct qcom_osm_l3_node * const epss_l3_nodes[] = {
->  	[MASTER_EPSS_L3_APPS] = &epss_l3_master,
->  	[SLAVE_EPSS_L3_SHARED] = &epss_l3_slave,
->  };
-> @@ -164,7 +160,7 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
->  	const struct qcom_osm_l3_desc *desc;
->  	struct icc_onecell_data *data;
->  	struct icc_provider *provider;
-> -	const struct qcom_osm_l3_node * const *qnodes;
-> +	struct qcom_osm_l3_node * const *qnodes;
->  	struct icc_node *node;
->  	size_t num_nodes;
->  	struct clk *clk;
-> @@ -242,6 +238,10 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
->  
->  	icc_provider_init(provider);
->  
-> +	/*Initialize IDs to ALLOC_DYN_ID to indicate dynamic id allocation*/
-> +	for (i = 0; i < num_nodes; i++)
-> +		qnodes[i]->id = ALLOC_DYN_ID;
-
-This can be initialized statically.
-
+> +		adreno_smmu: iommu@3da0000 {
+> +			compatible = "qcom,qcs8300-smmu-500", "qcom,adreno-smmu",
+> +				     "qcom,smmu-500", "arm,mmu-500";
+> +			reg = <0x0 0x3da0000 0x0 0x20000>;
+> +			#iommu-cells = <2>;
+> +			#global-interrupts = <2>;
 > +
->  	for (i = 0; i < num_nodes; i++) {
->  		size_t j;
->  
-> @@ -250,14 +250,19 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
->  			ret = PTR_ERR(node);
->  			goto err;
->  		}
-> +		qnodes[i]->id = node->id;
-
-Should not be necessary.
-
->  
->  		node->name = qnodes[i]->name;
->  		/* Cast away const and add it back in qcom_osm_l3_set() */
->  		node->data = (void *)qnodes[i];
->  		icc_node_add(node, provider);
->  
-> -		for (j = 0; j < qnodes[i]->num_links; j++)
-> -			icc_link_create(node, qnodes[i]->links[j]);
-> +		for (j = 0; j < qnodes[i]->num_links; j++) {
-> +			struct qcom_osm_l3_node *link_node = qnodes[i]->links[j];
+> +			interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
 > +
-> +			icc_link_create(node, link_node->id);
+> +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
+> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
+> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
+> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+> +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
+> +				 <&gpucc GPU_CC_AHB_CLK>,
+> +				 <&gpucc GPU_CC_HUB_AON_CLK>;
+> +
+> +			 clock-names = "gcc_gpu_memnoc_gfx_clk",
 
-Please add icc_link_nodes() (or something like that), taking two struct
-icc_node instances. Then you can use it here, instead of reading back
-the ID. Ideally the 'ID' should become an internal detail which is of no
-concern for the ICC drivers.
+Stray whitespace after the Tab symbol
 
-> +			link_node->id = (node->links[node->num_links - 1])->id;
-> +		}
->  
->  		data->nodes[i] = node;
->  	}
-> @@ -278,6 +283,7 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
->  static const struct of_device_id osm_l3_of_match[] = {
->  	{ .compatible = "qcom,epss-l3", .data = &epss_l3_l3_vote },
->  	{ .compatible = "qcom,osm-l3", .data = &osm_l3 },
-> +	{ .compatible = "qcom,sa8775p-epss-l3", .data = &epss_l3_perf_state },
->  	{ .compatible = "qcom,sc7180-osm-l3", .data = &osm_l3 },
->  	{ .compatible = "qcom,sc7280-epss-l3", .data = &epss_l3_perf_state },
->  	{ .compatible = "qcom,sdm845-osm-l3", .data = &osm_l3 },
+> +				       "gcc_gpu_snoc_dvm_gfx_clk",
+> +				       "gpu_cc_ahb_clk",
+> +				       "gpu_cc_hlos1_vote_gpu_smmu_clk",
+> +				       "gpu_cc_cx_gmu_clk",
+> +				       "gpu_cc_hub_cx_int_clk",
+> +				       "gpu_cc_hub_aon_clk";
+
+clocks and clock-names do not match.
+
+> +			power-domains = <&gpucc GPU_CC_CX_GDSC>;
+> +			dma-coherent;
+> +		};
+> +
+>  		pmu@9091000 {
+>  			compatible = "qcom,qcs8300-llcc-bwmon", "qcom,sc7280-llcc-bwmon";
+>  			reg = <0x0 0x9091000 0x0 0x1000>;
+> 
 > -- 
-> 2.39.2
+> 2.34.1
 > 
 
 -- 
