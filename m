@@ -1,165 +1,130 @@
-Return-Path: <devicetree+bounces-144842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6EACA2F6FA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:26:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE06EA2F707
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:29:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B399F7A25B4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:25:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 273E31882C6D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:29:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2242566D2;
-	Mon, 10 Feb 2025 18:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD46255E24;
+	Mon, 10 Feb 2025 18:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fyGdi/SU"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="MdGCyzVV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 611C424FC1E;
-	Mon, 10 Feb 2025 18:26:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE7025B668;
+	Mon, 10 Feb 2025 18:29:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739211982; cv=none; b=d/3fNONHklfLOUP6hT0IcoebRW3dU64YaZmY97tWj3kUVo8LiP1qeOQodJbjY+tlmfd9GT8SqDmsY0bjCbmscJ0n072y6/J1BpJPMpBAm9eyz8z6DV6c3CUP5TQnwghhLQRLtCSWdtOOMZnkL5fF3edVwlSSWrTLp6dH8C09b2U=
+	t=1739212152; cv=none; b=kD/1dQYorE5kAy18nyJqEvBzenh79HPcrVMDyECeewHTB3vapyjNySC+Co9kgXuTgjaM4qJkQeg/uwF/1mLTGMqiJ4TFWSETU6I4bIvzwbtobbPADTxpi/nBua+6iDxocrxBFn8mlhCrngMXDQF/nypodEoLXu4+Spfy+haJljE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739211982; c=relaxed/simple;
-	bh=KYA157cXuPg/uZsD/Ib5SyS/u9UnH0ICnODpj1K3Gig=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BDyO73XUu+/CKFYTY+DCXKo8vTvaTRKfQS31wAMbboVSBl0q0V8H55OlyLhvzoMjAY63hO6r9o+kZsj5ZiDum+aqYsEemaCeIgZt+8S/LT9YC4Sl2pUs/7vFipeyvlkA7r8J7dCiUa1tKSQvbrd8vvUkL8Diour1FaUDkQaMcuw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fyGdi/SU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76503C4CED1;
-	Mon, 10 Feb 2025 18:26:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739211981;
-	bh=KYA157cXuPg/uZsD/Ib5SyS/u9UnH0ICnODpj1K3Gig=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fyGdi/SUdTXUEHLznoDzl2JFJWlQzVvFWLI6MgKYHNZsvIy3tQO4lV66WABpnzQ6q
-	 PAvFX0xzvmkEVL7uIuTUNJ6Y9VFIvrLdgR/wmaCHe7g9Yj/aCOIy8AJSxUuHlUgS8i
-	 LByB6vWVth1ee6J8OzBkUBQejnFVFukvoTOu/vGC46GUAzTMxJvRmt1LysGobg/ohC
-	 LVSTjhJZ5Cvcncmy+1flicb0OGt5RRSeIbNNvAc+97HmMQTN8NL1XBgiGFX5G6QD0L
-	 QnOSNs+y/5KifZdQ7yKyGErlqHzQZvHcmzDLWbDo+tW+DT5cUIsGklCacl0B8Pz9p7
-	 vVA4T2gxEgouQ==
-Date: Mon, 10 Feb 2025 19:26:19 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Subject: Re: [PATCH v8 2/2] pwm: Add Loongson PWM controller support
-Message-ID: <obegtfup7f6w6erh4arubk2fkk2wrcum5frs5kbqa4uniexmr5@6uti3d3hv7np>
-References: <cover.1733823417.git.zhoubinbin@loongson.cn>
- <be76165d1ab09ec41cdfd4e5fbdae1b415f516b9.1733823417.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1739212152; c=relaxed/simple;
+	bh=5mHB24oEdCfBBXdByUs8RgqmQJDpZsDF3PXPRGL3wvE=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=aGa6UjjlI54EnWgBr+igbWUPh9xoMzLkSSHUkNo3nbHOXo0mwNgNOgBpV7MOEMWR2HsXTB/obDZA4wXvn2EGIFsBt7YVeNSMoE/dnhKcdAlUgp514K/oA+vFbc5hXW7hf0R/bjSvEGfSIMjziErywc/meqoPI6Xi4Qvc3TB+SCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=MdGCyzVV; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="y3cmthzzyib5n4wh"
-Content-Disposition: inline
-In-Reply-To: <be76165d1ab09ec41cdfd4e5fbdae1b415f516b9.1733823417.git.zhoubinbin@loongson.cn>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1739212148;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pZIlzS49+97WDRopE/OBk8wbb4y6vIw1ZgxVtbK+yPY=;
+	b=MdGCyzVVkdoAtfzK7IZ1Jqs7BBb+NEEl1H0qCXu3b5Sz8B3GifBWiBkWL4qjpYM0vGXfLJ
+	VCDP+N48xH27cwL8TdS8+jKzuhhZODUKrUMr7mKODkjHpgdhC9GFkVyLKAMikVNAe2utis
+	H40/K4qlQiyZs6VFiOzWhN6/Jt68b5ji2Hc17ojp1KX78ajb3GAtY5QApDlSYX4OQBBrmE
+	KFQ5HHkmM6j+xJwmXzt0GqVwy8nybMb+4kCVjMO8HhCoh4+w/+rsx3pRsjdYAZqSqHbyZy
+	5eWFoBQYVXCCm5GEgIwvqoivsVuFhZa3sTSy4yXPMA3+RpD4ttMbmX3lvZQQQQ==
+Date: Mon, 10 Feb 2025 19:29:07 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Jagan Teki <jagan@edgeble.ai>, Quentin Schulz <foss+kernel@0leil.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Niklas
+ Cassel <cassel@kernel.org>, Michael Riesch <michael.riesch@wolfvision.net>,
+ Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 2/4] arm64: dts: rockchip: add overlay test for Edgeble
+ NCM6A
+In-Reply-To: <8d830c2c-6268-4c70-ae8a-47183b8cbace@cherry.de>
+References: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
+ <20250207-pre-ict-jaguar-v5-2-a70819ea0692@cherry.de>
+ <CA+VMnFyom=2BmJ_nt-At6hTQP0v+Auaw-DkCVbT9mjndMmLKtQ@mail.gmail.com>
+ <8d830c2c-6268-4c70-ae8a-47183b8cbace@cherry.de>
+Message-ID: <74502f5556584ee7378c63d4971f2a66@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Hello Quentin and Jagan,
 
---y3cmthzzyib5n4wh
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v8 2/2] pwm: Add Loongson PWM controller support
-MIME-Version: 1.0
+On 2025-02-10 18:57, Quentin Schulz wrote:
+> On 2/10/25 3:11 PM, Jagan Teki wrote:
+>> On Fri, 7 Feb 2025 at 20:50, Quentin Schulz <foss+kernel@0leil.net> 
+>> wrote:
+>>> 
+>>> From: Quentin Schulz <quentin.schulz@cherry.de>
+>>> 
+>>> The Edgeble NCM6A can have WiFi modules connected and this is handled
+>>> via an overlay (commit 951d6aaa37fe ("arm64: dts: rockchip: Add 
+>>> Edgeble
+>>> NCM6A WiFi6 Overlay")).
+>>> 
+>>> In order to make sure the overlay is still valid in the future, let's
+>>> add a validation test by applying the overlay on top of the main base
+>>> at build time.
+>>> 
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+>>> ---
+>>>   arch/arm64/boot/dts/rockchip/Makefile | 4 ++++
+>>>   1 file changed, 4 insertions(+)
+>>> 
+>>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile 
+>>> b/arch/arm64/boot/dts/rockchip/Makefile
+>>> index 
+>>> 534e70a649eeada7f9b6f12596b83f5c47b184b4..02f98abe1df10f44f2ac27ea5f6c6e6c6334724e 
+>>> 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>>> @@ -192,3 +192,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += 
+>>> rk3568-wolfvision-pf5-vz-2-uhd.dtb
+>>>   rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
+>>>          rk3568-wolfvision-pf5-display-vz.dtbo \
+>>>          rk3568-wolfvision-pf5-io-expander.dtbo
+>>> +
+>>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
+>>> +rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
+>>> +       rk3588-edgeble-neu6a-wifi.dtbo
+>> 
+>> Please add neu6b-io as well, wifi dtbo is similar for it as well.
+> 
+> Similar or identical :)?
+> 
+> Should the overlay be renamed if it applies to neu6b AND neu6a instead
+> of implying it's only for neu6a based on the name of the overlay?
 
-Hello Binbin,
-
-On Tue, Dec 10, 2024 at 08:37:06PM +0800, Binbin Zhou wrote:
-> +static int pwm_loongson_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	struct pwm_chip *chip;
-> +	struct pwm_loongson_ddata *ddata;
-> +	struct device *dev = &pdev->dev;
-> +
-> +	chip = devm_pwmchip_alloc(dev, 1, sizeof(*ddata));
-> +	if (IS_ERR(chip))
-> +		return PTR_ERR(chip);
-> +	ddata = to_pwm_loongson_ddata(chip);
-> +
-> +	ddata->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(ddata->base))
-> +		return PTR_ERR(ddata->base);
-> +
-> +	ddata->clk = devm_clk_get_optional_enabled(dev, NULL);
-> +	if (IS_ERR(ddata->clk))
-> +		return dev_err_probe(dev, PTR_ERR(ddata->clk),
-> +				     "failed to get pwm clock\n");
-> +	if (ddata->clk) {
-> +		ret = devm_clk_rate_exclusive_get(dev, ddata->clk);
-> +		if (ret)
-> +			return ret;
-
-Error message please. Also please make all errors start with a capital
-letter.
-
-> +		ddata->clk_rate = clk_get_rate(ddata->clk);
-> +	} else {
-> +		ddata->clk_rate = LOONGSON_PWM_FREQ_DEFAULT;
-> +	}
-> +
-> +	/* Explicitly initialize the CTRL register */
-> +	pwm_loongson_writel(ddata, 0, LOONGSON_PWM_REG_CTRL);
-
-This disables all outputs, right? Ideally the driver takes over running
-channels. Consider the bootloader initialized a display with a splash
-screen. Disabling the PWM might disable the backlight of the display
-which hurts the visual experience.
-
-> +	chip->ops = &pwm_loongson_ops;
-> +	chip->atomic = true;
-> +	dev_set_drvdata(dev, chip);
-> +
-> +	ret = devm_pwmchip_add(dev, chip);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int pwm_loongson_suspend(struct device *dev)
-> +{
-> +	struct pwm_chip *chip = dev_get_drvdata(dev);
-> +	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-> +
-> +	ddata->lss.ctrl = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-> +	ddata->lss.duty = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_DUTY);
-> +	ddata->lss.period = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_PERIOD);
-> +
-> +	clk_disable_unprepare(ddata->clk);
-> +
-> +	return 0;
-
-Is this needed assuming that before suspend the consumer stopped the
-PWM?
-
-Best regards
-Uwe
-
-
---y3cmthzzyib5n4wh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmeqRMgACgkQj4D7WH0S
-/k5x6wf+OuES4/l5RbIfHcNQ684TqDXxIdsHM+HZKcA4pf7ti4aRWHLgtm4fSo8s
-hfbiJO07oXAJ4ZzObO6NW99tK9ixfPTfGSTTsWNfm4eogI04gHSwvj9muvcKFFqH
-QlrM324KhBuXTY0WnTTEUBxfEtYY+uN1csy8kFb5OjLbfE8l70Ow/6B7BvemWphp
-HN0mn3tCD4PEIZtOAW8ic54WDk9x0CxQicZ8YdYFO/VlcxwEM+ohTMLWdoITjkZX
-Pf92e5Q+cNhKGJ8zUErMEgl78Ul+HKQWv/qqCiX7j2k8OGavMed0ww1ExHm87V5o
-qEr5uvKwqsDZ75UjpdRaCSbnE0OJQg==
-=7aZk
------END PGP SIGNATURE-----
-
---y3cmthzzyib5n4wh--
+I'm afraid it's a bit too late for renaming the .dtso file. :/
+Though, the DT overlay tests could also serve as some kind of
+documentation about what overlay can get applied to what base
+.dtb, making this situation a bit better.
 
