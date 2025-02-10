@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-144759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E58D7A2F2B0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:12:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E74FA2F2B6
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:13:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86C7B166380
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:12:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE37A1884BF9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23E6524F5A4;
-	Mon, 10 Feb 2025 16:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FEDA24F588;
+	Mon, 10 Feb 2025 16:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zTXxdqoV"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BfCR18ZN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A21D24F593
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 16:12:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAC724F5A1
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 16:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739203969; cv=none; b=ot8s8A6QMiZ896/3jZBYRokZRXOh/94qqTyItjx0NJJMoeEYVAyZAl6Mqw0SKY67nR6PHWobL2FIya5j6wvFlqjqyQbMyah5tuR6J5FMLBGiI3p1S/qNO7dPYDtpE+EdVqs88inEtybSJoNveBlMv+N6t3LkOBd+Cl91btJB4m0=
+	t=1739203972; cv=none; b=HQzSu8PA/4CmCtYzR7VKD9LSJzPZVn7iME6MRWVUCpOhx0TrYaSwbVtN6uqifan73gWI9mLGvf7SMlLabdZPB0Cow1IrcOsXn0o8ey+vAyKS3RRM3hQIgK2FVsUz9xwdroE9oXYc4ZpoCnaft+eJLry3b+ON3KejcrAwUPxrJGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739203969; c=relaxed/simple;
-	bh=uF8K59uhfTnsnHYF0QgQ3k7irpxn8tRe22ZZGYaVdYA=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uKUivkryBsCyXV4HqVubbfcc+37CB0YSuU5Kw5HytRIWgVEbLMl9Ilh87eD2wy672sq3TujwpkRLgEQMUrGbdhOK3ZKb7oRRJ7XIxnCNaj0CfzGUB8TnxIMts+p0EQELuK8+UF7fyBujIg9S5/WsT8T3BMBU45fogLBOsUhdp8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zTXxdqoV; arc=none smtp.client-ip=209.85.221.51
+	s=arc-20240116; t=1739203972; c=relaxed/simple;
+	bh=kwXNLzhFPFgyK/MlGtAAE9ABab95SL1ZniFztnA4y0g=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=MAUg8yAesF6y+XbhQvN/2SQ3sRSzF3s4t7NzYllN5l25VyzloElg9fj3H1rI54j/fkEt6wMYZcu6p0o3d+5t9IjtYNNB/G83nBypBwslgGkZjdCTOp/YnFLRm6g8Mfj7F6+uNEtJu9EcAGJ/SdgzKCcARqDrdbYfYzxnMQWjE0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BfCR18ZN; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-38dd93a6f0aso1243024f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 08:12:45 -0800 (PST)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43618283dedso45414885e9.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 08:12:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739203964; x=1739808764; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bui6a+u8nCr5hYL5RmyZzGBCPswahyVTcFp15Z0jabc=;
-        b=zTXxdqoVVOAp3MQhd5hS0lOThnAbaUsykLQlH4H1dszqE3qmMQrkPQrxvEk/428PsN
-         By7nfhnOMnwHcuv/RgMPgyqQTwVFtUvvFj8nEBEBqOUGKkWWdAK7mwqAm9Et2t/JYizU
-         tczZzp3NVhoDGW8NxztOHhHZq4C5JryFeJTrMe0aP/trXkAOXjcr9Tdj6vsPVPJh/YNA
-         o+/NfwI1SO07on/DUfxwaQYNY+hiKQ5Qw6AOExv3Jq9bh+5PpX/9NhvypGQYHoiRr68M
-         jt0saPN51/GygNobxld9S1M6Ek5EKYfiK5/AQo5WYBpO+DqnxZEhF1PjVcsZejl6KUJ1
-         U2zA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739203964; x=1739808764;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739203967; x=1739808767; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Bui6a+u8nCr5hYL5RmyZzGBCPswahyVTcFp15Z0jabc=;
-        b=pT7vuJ2MbE/SCHL61sT9J3DoNYVH++tq97IOhfJNGzRZGYmTHzUMUs6uZpplrZgvTu
-         fyXmHFCSnNvJHPEJec3rUJor6mbZWznjCg0yQgxcT8F/okEl1iB1a00WzrjoGqcT+cRg
-         dGN2QqNgU/up8qtyNMFzFZUR1gDmU+fJKvmRW+gJMAxD9JyDxGKbdxW86LqfB6Qlmy7c
-         vgA8tG1uOefyZvZiexyaUpU0CYKVYvIaCmOL0zNiUNKi3/CvLNP3ysxB2+NCBwGHaigu
-         T5b5huG9+4VDFW+o+IcV6S/vmum/fnfHAKFIz9JvBD89gHw+VaV8Rzyuo5Pb2OGcvjXG
-         tA/w==
-X-Forwarded-Encrypted: i=1; AJvYcCWJWUzROR2kN5S2SqEAXr6tO6KmyA4PVFjijA/Q0sg2UMsS3IPmy8KvLbzTKxKsdT5sHxacg4ukSW2R@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywhs6FEf8z6kDE86zOK1uesAhkdZuO8uXM0X19UbgVIQ/2ft5fC
-	ljgFa1ezrBuMoVTkP5oZ3gdzFmFeyLgwARZ7YYp8ZfyLMgqAmyS/94Vd8lofnYc=
-X-Gm-Gg: ASbGncuH6Mu4/OLYeH5EGZUzdWMkX5ArXTHDAsAYZf4DRoQo2Xvu0XpZ6vmLa0fJHvU
-	w5UD7/wrO4R8fmKXGwLKyAYcW+H8mdouhhVIPcJdOF1jrea2td2pWfFdaAimj3sdCBUfpz/JFJC
-	3Npuyf+MSMxPW+9lAjmafVjwKLy4KsID8Ldp7biOowiJnLgbWqtb55iMNs5O6PV9HZeJp6/uNQi
-	w5CCXogO3DOUXdU3VZxw2Oj54UM2FDcvFbTFOi4dXbUmw/faMTvHsZEUefb0+axn/mN8YEyci/w
-	sHgeizT+r5nekZCHQnD/fWRERkDHoYMXEUjdxpLa1FXAE1K2rTwh7tPfLUKNLCA=
-X-Google-Smtp-Source: AGHT+IHUCCXzWViw53v2z70NsQLCy9biU20BiEN5hSZXLoMpP9jMFah5HdHZWC2wYRaW+ixAC4KYsQ==
-X-Received: by 2002:a05:6000:1a8f:b0:38d:e39e:ed14 with SMTP id ffacd0b85a97d-38de39ef19amr1133646f8f.25.1739203964485;
-        Mon, 10 Feb 2025 08:12:44 -0800 (PST)
+        bh=ZV+Yf08/wUq3PiOCJhJtefxQLfQ45hPPGLK7YrRpA/4=;
+        b=BfCR18ZN+/VahWFxZEkkPQ7vTz3nomWVCEmKo5x839hXSXPVGXug3glceg3q85fjp1
+         AdoaG+PjVHD0T64PnowERzm5+962Hq2Wb2LMrwN+/dol3K7sa8GVrIv8JihPiwnl+3Gb
+         S8MJ5N5j0OqP8X9N/y0/vHjpNtU6lXbKJwpWGe04RX4eTpP66ZSzUhL1FbB35Dv0gMJK
+         iLuTMDS0fKTdnX31i0vUcn5kcSel2EHaL/rDAcBTIp1ff2f8NMmOFUh5l1McNCXhuVol
+         Ib1EVxZn/OkdZQvJRcqE9eSdxa+6vrPVARagPU/n93KY0Rgomf4+Y60/YO3GY/Pypuh+
+         2qhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739203967; x=1739808767;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZV+Yf08/wUq3PiOCJhJtefxQLfQ45hPPGLK7YrRpA/4=;
+        b=sTPJGTGe58otESy9EDeMmMc4vvVsdwVtXH1H/QSKP3Iv+lY5EgKqkF0nI0N8/QuItx
+         Y/WzqssctDFkTtHQCUOYJ+i6oI653VItEStMNYmUv9kj/gjQiWDRU/Cmzkeb2yGHSqC8
+         B75zhe1kYA/XvC7MHdOnGstj64hwRKMo2vz1RcfD2zfalyKW/PgI+Lq4CjTJh6+BLMjS
+         2Rgv4xba7INYT9J8mM3r4RyHW2vA0GzqcHbWUbHDEMPyY0g2rEM0wv5fk1ARyOKEL+cV
+         2JZiBaDDJaaV8m72psdBs8ySRXJjEO3bCT7eshZFnP9zzagL4EqghIY1/HJzzxKxOcLy
+         BToQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWUFPIYpkN7IQYfZg212sJbfuXjgxXYsyYqUX2qOs0jsYTArySPmu43ii+pCIysyBXXy2eeA/NfwE0j@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhaW2Xr0s1rcuz6deRqjti1kLpvHlgP2iKxHrlJIMOak9HAeYU
+	9KTIi4dDALsSAYnn2MVdW5NN6VBjjoZ9Xx2W4KaEmbgNA4Jmjd7qB+pd0XWbtZc=
+X-Gm-Gg: ASbGncsrGXUmiPC2daxRcA2rOtSJwXNLJB3ugAzomBu7bUbKYxu4IvQEkPPasg7EYJf
+	ch/aYKZ8IVAqg5sIeDJJBMiF/JNTnKLXu2xZVDq1IieZWypAwk1msydUbGYplKXXNhM/ZTpjoRU
+	WGHN69qRQUlGujPGqPBQZTabf8to+BTBOzJz3cMZK+U83MNtwhgQsgiovuyIe1+qLyIHR9tg54h
+	WTXLbAZNPN9BftH4uV/9iezuVDnUO6FXPMb2CoHXLWIAcM9uTsSJrGsSHJJRmBtjojCENoQPJty
+	c6B098ycaBClLLrnMMYohQkc7x2Mds+Wxd11BpZEL/xGyB/wPQxn8zUkSMQxePM=
+X-Google-Smtp-Source: AGHT+IGgyxX44rjF1KJGAip5mLP3aLFiEOhklfEJtIQ41ZzowIfjzJkIh5pN6a37Asl7/w2ldYJ5SA==
+X-Received: by 2002:a05:600c:1e25:b0:436:17e4:ad4c with SMTP id 5b1f17b1804b1-43924972ce9mr111412145e9.6.1739203967218;
+        Mon, 10 Feb 2025 08:12:47 -0800 (PST)
 Received: from [127.0.1.1] (host-87-8-15-130.retail.telecomitalia.it. [87.8.15.130])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4391dc9ffcdsm146637945e9.15.2025.02.10.08.12.43
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4391dc9ffcdsm146637945e9.15.2025.02.10.08.12.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 08:12:44 -0800 (PST)
+        Mon, 10 Feb 2025 08:12:46 -0800 (PST)
 From: Angelo Dureghello <adureghello@baylibre.com>
 X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Subject: [PATCH v4 0/9] add support for Software mode on AD7606's iio
- backend driver
-Date: Mon, 10 Feb 2025 17:10:50 +0100
-Message-Id: <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-0-160df18b1da7@baylibre.com>
+Date: Mon, 10 Feb 2025 17:10:51 +0100
+Subject: [PATCH v4 1/9] dt-bindings: iio: dac: adi-axi-adc: add ad7606
+ variant
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,10 +85,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAolqmcC/5WNQQ7CIBAAv9JwFoNgIXryH6YhC2ztxrY0YFqbp
- n8X/YHHmcPMxjImwsyu1cYSzpQpjgXOh4r5DsYHcgqFmRSyFid54QtN3PUcgtFCWwjBOvBPHIP
- Nix1iQB6ClFALrVWrWOlMCVt6/x73pnBH+RXT+lvO6mv/qc+KC+4VoDfGC3Dm5mDtySU8+jiwZ
- t/3D7gZvSzVAAAA
+Message-Id: <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-1-160df18b1da7@baylibre.com>
+References: <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-0-160df18b1da7@baylibre.com>
+In-Reply-To: <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-0-160df18b1da7@baylibre.com>
 To: Michael Hennerich <michael.hennerich@analog.com>, 
  Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -101,73 +101,133 @@ Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
  Angelo Dureghello <adureghello@baylibre.com>
 X-Mailer: b4 0.14.1
 
-The previous series added iio_backend mode, but the configuration for this
-mode was only possible through GPIOs (Hardware mode). Here, we add support
-for configuring the chip using its registers (Software mode).
+From: Guillaume Stols <gstols@baylibre.com>
 
-The bus access is based on Angelo's ad3552 implementation, that is we have
-a particular compatible for the backend (here axi-adc) version supporting
-the ad7606's register writing, and the ad7606 is defined as a child node
-of the backend in the devicetree. Small changes are added to make the code
-a bit more straightforward to understand, and more compact.
+A new compatible is added to reflect the specialized version of the HDL.
+We use the parallel interface to write the ADC's registers, and
+accessing this interface requires to use ADI_AXI_REG_CONFIG_RD,
+ADI_AXI_REG_CONFIG_WR and ADI_AXI_REG_CONFIG_CTRL in a custom fashion.
 
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Guillaume Stols <gstols@baylibre.com>
 Co-developed-by: Angelo Dureghello <adureghello@baylibre.com>
 Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 ---
-Changes in v4:
-- some spaces / tabs fixes,
-- fix child nodes creation as done for dac,
-- change usleep_range into flseep,
-- use just a u32 as a value in bus access functions,
-- protect bus access from concurrent access,
-- Link to v3: https://lore.kernel.org/r/20250129-wip-bl-ad7606_add_backend_sw_mode-v3-0-c3aec77c0ab7@baylibre.com
+ .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   | 70 +++++++++++++++++++++-
+ 1 file changed, 69 insertions(+), 1 deletion(-)
 
-Changes in v3:
-- add some fixes found while testing,
-- general commit meessages fixes,
-- codying style fixes,
-- dt-bindings: add some properties as requirted,
-- use iio_device_claim_direct_mode (and release),
-- rename bus read/write functions with "bus" as done for ad3552r.
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+index e1f450b80db2..4fa82dcf6fc9 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+@@ -17,13 +17,23 @@ description: |
+   interface for the actual ADC, while this IP core will interface
+   to the data-lines of the ADC and handle the streaming of data into
+   memory via DMA.
++  In some cases, the AXI ADC interface is used to perform specialized
++  operation to a particular ADC, e.g access the physical bus through
++  specific registers to write ADC registers.
++  In this case, we use a different compatible which indicates the target
++  IP core's name.
++  The following IP is currently supported:
++    - AXI AD7606x: specialized version of the IP core for all the chips from
++      the ad7606 family.
+ 
+   https://wiki.analog.com/resources/fpga/docs/axi_adc_ip
++  http://analogdevicesinc.github.io/hdl/library/axi_ad7606x/index.html
+ 
+ properties:
+   compatible:
+     enum:
+       - adi,axi-adc-10.0.a
++      - adi,axi-ad7606x
+ 
+   reg:
+     maxItems: 1
+@@ -47,17 +57,48 @@ properties:
+   '#io-backend-cells':
+     const: 0
+ 
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++patternProperties:
++  "^adc@[0-9a-f]+$":
++    type: object
++    properties:
++      reg:
++        maxItems: 1
++    additionalProperties: true
++    required:
++      - compatible
++      - reg
++
+ required:
+   - compatible
+   - dmas
+   - reg
+   - clocks
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              const: adi,axi-ad7606x
++    then:
++      properties:
++        '#address-cells': false
++        '#size-cells': false
++      patternProperties:
++        "^adc@[0-9a-f]+$": false
++
+ additionalProperties: false
+ 
+ examples:
+   - |
+-    axi-adc@44a00000 {
++    adc@44a00000 {
+         compatible = "adi,axi-adc-10.0.a";
+         reg = <0x44a00000 0x10000>;
+         dmas = <&rx_dma 0>;
+@@ -65,4 +106,31 @@ examples:
+         clocks = <&axi_clk>;
+         #io-backend-cells = <0>;
+     };
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    parallel_bus_controller@44a00000 {
++        compatible = "adi,axi-ad7606x";
++        reg = <0x44a00000 0x10000>;
++        dmas = <&rx_dma 0>;
++        dma-names = "rx";
++        clocks = <&ext_clk>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@0 {
++            compatible = "adi,ad7606b";
++            reg = <0>;
++            pwms = <&axi_pwm_gen 0 0>;
++            pwm-names = "convst1";
++            avcc-supply = <&adc_vref>;
++            vdrive-supply = <&vdd_supply>;
++            reset-gpios = <&gpio0 91 GPIO_ACTIVE_HIGH>;
++            standby-gpios = <&gpio0 90 GPIO_ACTIVE_LOW>;
++            adi,range-gpios = <&gpio0 89 GPIO_ACTIVE_HIGH>;
++            adi,oversampling-ratio-gpios = <&gpio0 88 GPIO_ACTIVE_HIGH
++                            &gpio0 87 GPIO_ACTIVE_HIGH
++                            &gpio0 86 GPIO_ACTIVE_HIGH>;
++            io-backends = <&parallel_bus_controller>;
++        };
++    };
+ ...
 
-Changes in v2:
-- Improved descriptions.
-- dt-bindings: improved descriptions, added exemple and additional
-  property for the custom IP.
-- Reworked some macro commits to avoid changing order and associated
-  diff artifacts.
-- Various cleanups and formatting fixes.
-- Link to v1: https://lore.kernel.org/r/20241121-ad7606_add_iio_backend_software_mode-v1-0-8a693a5e3fa9@baylibre.com
-
----
-Angelo Dureghello (3):
-      iio: adc: adi-axi-adc: add struct axi_adc_info
-      iio: adc: adi-axi-adc: add platform children support
-      iio: adc: ad7606: protect register access
-
-Guillaume Stols (6):
-      dt-bindings: iio: dac: adi-axi-adc: add ad7606 variant
-      iio: adc: ad7606: move the software mode configuration
-      iio: adc: ad7606: move software functions into common file
-      iio: adc: adi-axi-adc: add support for AD7606 register writing
-      iio: adc: ad7606: change channel macros parameters
-      iio: adc: ad7606: add support for writing registers when using backend
-
- .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |  70 +++++++-
- drivers/iio/adc/ad7606.c                           | 159 +++++++++++++++++--
- drivers/iio/adc/ad7606.h                           | 103 ++++++++----
- drivers/iio/adc/ad7606_bus_iface.h                 |  16 ++
- drivers/iio/adc/ad7606_par.c                       |  52 +++++-
- drivers/iio/adc/ad7606_spi.c                       | 137 +---------------
- drivers/iio/adc/adi-axi-adc.c                      | 176 +++++++++++++++++++--
- 7 files changed, 516 insertions(+), 197 deletions(-)
----
-base-commit: 4692f10bec7459a0baa95bdfa66a4ea740ec9e0a
-change-id: 20250129-wip-bl-ad7606_add_backend_sw_mode-dd22a50663f3
-
-Best regards,
 -- 
-Angelo Dureghello <adureghello@baylibre.com>
+2.47.0
 
 
