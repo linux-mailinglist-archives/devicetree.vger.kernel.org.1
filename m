@@ -1,199 +1,143 @@
-Return-Path: <devicetree+bounces-144935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E190FA2FB7A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 22:10:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B075DA2FB8D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 22:14:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83D1B165601
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 21:10:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 573AB162E1F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 21:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C18424BCFD;
-	Mon, 10 Feb 2025 21:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5AF824C667;
+	Mon, 10 Feb 2025 21:14:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="uLZwKAqL"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ZCmQHn16"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A4D8158874;
-	Mon, 10 Feb 2025 21:10:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41BDF264634;
+	Mon, 10 Feb 2025 21:14:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739221834; cv=none; b=PzTmqu+NxQ+nrCB49/4Z1DN0BreJ1aD4bt2OqexxcrmF1QI2DqRYn7pgPFr5STryGXxR0GGeVrdzeFdMxJHqHWQNbwOxpbUKdEemOVT/G63WqBPJUjEx589Z12zi/l/GsLAYdh1eB6E9hhbqZ/gYBT358juMbkPu3RVnpDLEs6U=
+	t=1739222051; cv=none; b=ZYqmni5xE64Ak46QzhBjtqV97nKyykBbuOSMBCzvWLvV20V1Msdj2bA/6udMx2zkiwkZXff2h/WAnNHKhE4aTIbP79yqTREavt7tLvqzL8Dy0gbDQMiox2nkQcA+XB+8Af1TkVbTjcu840o2KmOL30IzVBenXf+iKQCHt6I1Jcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739221834; c=relaxed/simple;
-	bh=Xw/n/fhvGJtKoKxwkCvpi9wRhgHCNTm2ytQqwLDJyPk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nN0KjxmYH9Tj9/iEs+IwcIx3J5wlsfo5xUZsQklPyo9mju8zmoA8sLuOz+AbikZBMuEe83NH9c4CCih2NGifJ0l5K/lYwDzg6EsiGsv9pJ7aLsSlgKnAeM58RQOm5uby69qzw0972cPq2LtsVd9LjDjZqt6dc0zYZYT6sT71Shc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=uLZwKAqL; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 708D38D4;
-	Mon, 10 Feb 2025 22:09:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1739221747;
-	bh=Xw/n/fhvGJtKoKxwkCvpi9wRhgHCNTm2ytQqwLDJyPk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uLZwKAqLznzE4O+j5HJaOCx4n7eS6kxE1QMhPgmpU044zFRG372VM+A9TrfMW41DL
-	 Nt+83SQrHjdFKUWhNOV40ps3d9zB0H3UuSEHdwFPI6/SxYNRR5M1lzLewd4YLrRYoK
-	 b0dbvz9QlVA5qN0wz0QPw+ocKLcdzHMgxMkomjs8=
-Date: Mon, 10 Feb 2025 23:10:13 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, "Guoniu.zhou" <guoniu.zhou@nxp.com>,
-	Robby Cai <robby.cai@nxp.com>,
-	Robert Chiras <robert.chiras@nxp.com>
-Subject: Re: [PATCH v2 01/14] dt-bindings: phy: Add MIPI CSI PHY for i.MX8Q
-Message-ID: <20250210211013.GC8531@pendragon.ideasonboard.com>
-References: <20250205-8qxp_camera-v2-0-731a3edf2744@nxp.com>
- <20250205-8qxp_camera-v2-1-731a3edf2744@nxp.com>
- <20250206211808.GA24886@pendragon.ideasonboard.com>
- <Z6UuR9mHhQUdnBEc@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1739222051; c=relaxed/simple;
+	bh=41SDJqeOvWQc658it1sXNAN/P9R8aH989E9RDDpERWg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=T1LcTcSuh6goaA8x579E50AGBYEEA8fYAnC7jUnYQu1P8kpIdNgTFZ3WNxtInfgYx620EzI+j8GnnwAZf8pZd/V4hRI5BLwxtaOh250f8ZkqAHMGnnTnWOMQqOKZmBuxcMYkTXFlvqr4rLe/8FzmkGd1LKSvVXkOZVnKBC9AsNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ZCmQHn16; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1739222050; x=1770758050;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=41SDJqeOvWQc658it1sXNAN/P9R8aH989E9RDDpERWg=;
+  b=ZCmQHn16m31iF71sVc6PQZAecx16XZUnV/CDxsZygYvk7X1TNb+LYobl
+   /4xX4leDmaNW8YI0qMeHAVu7HZSfRIK8r6k4jWe4Rd9NGdccnl02fNzIc
+   fyeTpWJd+SfFgtvsrgvLLkuHr6+T/qDOj5TSJOz/fkdCFXrCUMHwdPInX
+   Q6xxrNMsW2+CBqsra5I2DxXG4k3hRe/HMl4w2t/Th/s+IS7QQon6/nd+f
+   xd/3/HFzZ/A9522yZORgTeGNqbcc3fIRNZzI2tOfurIDlfx+TCvNlZjLB
+   yeX+1jlF8cX/5ZKcHZyEpnJUmfGkh97cH7SFkNEveTFK2PS3WykdK4C1Z
+   A==;
+X-CSE-ConnectionGUID: AYqW9AG9RbOJ2Xf8Pt97Yw==
+X-CSE-MsgGUID: 0K7I9XjESoy6ucluOHAdrA==
+X-IronPort-AV: E=Sophos;i="6.13,275,1732604400"; 
+   d="scan'208";a="205027961"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Feb 2025 14:14:03 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 10 Feb 2025 14:13:45 -0700
+Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Mon, 10 Feb 2025 14:13:45 -0700
+From: <Ryan.Wanner@microchip.com>
+To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <claudiu.beznea@tuxon.dev>, <sre@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<p.zabel@pengutronix.de>
+CC: <linux@armlinux.org.uk>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-rtc@vger.kernel.org>, "Ryan
+ Wanner" <Ryan.Wanner@microchip.com>
+Subject: [PATCH v2 00/15] Enable Power Modes Support for SAMA7D65 SoC
+Date: Mon, 10 Feb 2025 14:13:00 -0700
+Message-ID: <cover.1739221064.git.Ryan.Wanner@microchip.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Z6UuR9mHhQUdnBEc@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu, Feb 06, 2025 at 04:48:55PM -0500, Frank Li wrote:
-> On Thu, Feb 06, 2025 at 11:18:08PM +0200, Laurent Pinchart wrote:
-> > On Wed, Feb 05, 2025 at 12:18:10PM -0500, Frank Li wrote:
-> > > Add MIPI CSI phy binding doc for i.MX8QXP, i.MX8QM and i.MX8ULP.
-> >
-> > s/CSI/CSI-2/ in the subject line, here and below.
-> > s/phy/PHY/
-> >
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > > change from v1 to v2
-> > > - Add missed fsl,imx8qm-mipi-cphy, which failback to fsl,imx8qxp-mipi-cphy
-> > > - Move reg to required. Previous 8ulp use fsl,offset in downstream version.
-> > > which should be reg. So move it to required
-> > > ---
-> > >  .../bindings/phy/fsl,imx8qxp-mipi-cphy.yaml        | 57 ++++++++++++++++++++++
-> > >  1 file changed, 57 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8qxp-mipi-cphy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8qxp-mipi-cphy.yaml
-> > > new file mode 100644
-> > > index 0000000000000..7335b9262d0e7
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/phy/fsl,imx8qxp-mipi-cphy.yaml
-> > > @@ -0,0 +1,57 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/phy/fsl,imx8qxp-mipi-cphy.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Freescale i.MX8 SoC MIPI CSI PHY
-> > > +
-> > > +maintainers:
-> > > +  - Frank Li <Frank.Li@nxp.com>
-> > > +
-> > > +properties:
-> > > +  "#phy-cells":
-> > > +    const: 0
-> > > +
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - enum:
-> > > +          - fsl,imx8qxp-mipi-cphy
-> > > +          - fsl,imx8ulp-mipi-cphy
-> > > +      - items:
-> > > +          - const: fsl,imx8qm-mipi-cphy
-> > > +          - const: fsl,imx8qxp-mipi-cphy
-> >
-> > Why are those called cphy when, as far as I can tell from the
-> > documentation, they are D-PHYs ? Does that stand for *C*SI PHY ?
-> 
-> There are already have D-PHYS for MIPI display phy binding. cphy just means
-> for camera PHY.
+From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-Ah OK. I would probably have gone for *-mipi-dphy-rx then, but I'm OK
-with the proposed "cphy". Explaining this in the description would be
-useful.
+This patch set adds support for low power modes for the SAMA7D65 SoC and
+the required components and changes for low power modes.
 
-> > I find
-> > it slightly confusing, but not so much that I'd ask for a change. It's
-> > just a name at the end of the day.
-> >
-> > Apart from that the binding looks fairly OK. Except maybe from the fact
-> > that this device is not a PHY :-( It has two PHY control registers, but
-> > the rest seems related to the glue logic at the output of the CSI-2
-> > receiver. I wonder if we should go the syscon route.
-> 
-> Do you means use phandle to syscon node in csi-2 driver? Actually this
-> ways is not perferred by device tree team because it should be exported
-> as what actual function, such as PHY or RESET by use standard interface.
-> 
-> We met similar case at other substream.
+The series includes changes in the asm code to account for the addtional
+clocks that are in this SoC.
 
-I don't like syscon much either, but in this specific case I'm not sure
-what else we could do. This device really aggregates some control over
-the PHY and over the glue logic at the output of the CSI-2 controller.
-Modelling it as "just a PHY" will cause problem as soon as you'll want
-to configure the other parameters.
+The Device tree additions are to enable all the components needed to
+keep the SoC in low power mode.
 
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - "#phy-cells"
-> > > +  - compatible
-> > > +  - reg
-> > > +
-> > > +allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - fsl,imx8qxp-mipi-cphy
-> > > +    then:
-> > > +      required:
-> > > +        - power-domains
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    phy@58221000 {
-> > > +            compatible = "fsl,imx8qxp-mipi-cphy";
-> > > +            reg = <0x58221000 0x10000>;
-> > > +            #phy-cells = <0>;
-> > > +            power-domains = <&pd 0>;
-> > > +    };
-> > > +
+There are some DTB check warnings but that is due to the dt-binding not
+in the correct .yaml file format.
+
+Changes v1 -> v2:
+- Add missing compatible for ddr3phy, it is now in both syscon sets.
+- Fix alphabetical ordering for sama7d65.
+- Remove the incorrect reorganizing patch.
+- Remove sama7g5-rtt as a compatible for sama7d65-rtt and add
+  sama7d65-rtt as a compatible wake up source in the pm driver.
+
+Li Bin (1):
+  ARM: at91: pm: fix at91_suspend_finish for ZQ calibration
+
+Ryan Wanner (14):
+  dt-bindings: mfd: syscon: add microchip,sama7d65-ddr3phy
+  dt-bindings: mfd: syscon: add microchip,sama7d65-sfrbu
+  dt-bindings: sram: Add microchip,sama7d65-sram
+  dt-bindings: power: reset: atmel,sama5d2-shdwc: Add
+    microchip,sama7d65-shdwc
+  dt-bindings: reset: atmel,at91sam9260-reset: add
+    microchip,sama7d65-rstc
+  dt-bindings: rtc: at91rm9200: add microchip,sama7d65-rtc
+  dt-bindings: at91rm9260-rtt: add microchip,sama7d65-rtt
+  ARM: at91: Add PM support to sama7d65
+  ARM: at91: pm: add DT compatible support for sama7d65
+  ARM: at91: PM: Add Backup mode for SAMA7D65
+  ARM: at91: pm: Enable ULP0 for SAMA7D65
+  power: reset: at91-sama5d2_shdwc: Add sama7d65 PMC
+  ARM: dts: microchip: sama7d65: Add Reset and Shutdown and PM support
+  ARM: dts: microchip: add shutdown controller and rtt timer
+
+ .../devicetree/bindings/mfd/syscon.yaml       |  3 +
+ .../power/reset/atmel,sama5d2-shdwc.yaml      |  5 +
+ .../reset/atmel,at91sam9260-reset.yaml        |  5 +
+ .../bindings/rtc/atmel,at91rm9200-rtc.yaml    |  3 +
+ .../bindings/rtc/atmel,at91sam9260-rtt.yaml   |  3 +
+ .../devicetree/bindings/sram/sram.yaml        |  1 +
+ .../dts/microchip/at91-sama7d65_curiosity.dts | 14 +++
+ arch/arm/boot/dts/microchip/sama7d65.dtsi     | 77 +++++++++++++++
+ arch/arm/mach-at91/Kconfig                    |  1 +
+ arch/arm/mach-at91/pm.c                       | 54 ++++++++---
+ arch/arm/mach-at91/pm.h                       |  1 +
+ arch/arm/mach-at91/pm_data-offsets.c          |  2 +
+ arch/arm/mach-at91/pm_suspend.S               | 97 +++++++++++++++++--
+ drivers/power/reset/at91-sama5d2_shdwc.c      |  1 +
+ 14 files changed, 245 insertions(+), 22 deletions(-)
 
 -- 
-Regards,
+2.43.0
 
-Laurent Pinchart
 
