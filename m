@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-144968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBE8FA2FCC4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 23:16:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCAC3A2FCC9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 23:16:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AEC51888479
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 22:16:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEE4F16549C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 22:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E10250BF6;
-	Mon, 10 Feb 2025 22:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E3C72512CC;
+	Mon, 10 Feb 2025 22:15:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="H0vsUmI5"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Ygen3BBU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C15224C69B;
-	Mon, 10 Feb 2025 22:15:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCB4250BE8;
+	Mon, 10 Feb 2025 22:15:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739225749; cv=none; b=HXcwEH8WBf8jsj/nRM5QecjejmFjmhzMcksnIV89UVFrJBibcqCLUPbJnf3+Rx5UrFpDWJAdUsQNi6uw+5oU/BE9D9NIJaPooYKD4lj04XheWz3FbJ8/GRRKSuNlqkV62CzkN9KDcRUgBb7HJXfgKSGmj2HfJlXkqFdD3EE3Jd0=
+	t=1739225750; cv=none; b=mcZ8jtDfih1nVLwIDP7E4qGYDWiXGhaSn1v80eVtfTZn+myfN7BncmQ0nfP3CZ388VNq5Kqv+5HFItkOv+CVGcJ4OmQ1pyxEZM5+fafa9zKbG1TxMn2k+wkSJ8fm5tTd/UG5tPSV07xs9W9MZAkD3XNfjRXIkGrAprGqIvbNfKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739225749; c=relaxed/simple;
-	bh=SONxsFHnYol7ZepqIMQzXX01r40dnoncMaCAoMvMTck=;
+	s=arc-20240116; t=1739225750; c=relaxed/simple;
+	bh=Ta9r01ygHu0VhF+GktkmCTovIWBE4YWLVxYhbtVA1IU=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oz+nqdD+ML/Mi8htuaF4HtP9GipekzHr3FemPNg/u+hpZd/zkAvwcG2ePa9alrqIk1yq3AGq5FDxVdnBc6WjpJpgrbopJVkKQGtp4uxzw1g/SEPkKUCnnGqSZTA65uBNguCCrYXdsQCTCo+R09+OMbF2VF8JcqPQDpHxplZBqoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=H0vsUmI5; arc=none smtp.client-ip=198.47.23.235
+	 MIME-Version:Content-Type; b=sAPWUVTENiqawrJqUI/UtFKlVoc5aNt6TQyMA3CR+1MPyMuy1oiEWoSAWSv1QPHKrIPRYSTQ4hH3jEHuPhMf29gpOCG/3nCFoAkoqRHA4erQoUmI0SHPhErL5nHhce33YhsQnSXi56IVYXPcqbTGgus9d9qVYeLB6ID+LcsrhaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Ygen3BBU; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51AMFV5a3578012
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51AMFVCJ206216
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
 	Mon, 10 Feb 2025 16:15:31 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1739225731;
-	bh=BUy+m/I58FdO7SiIWD027cNZ4taaL5OBCuE+wDjYhzw=;
+	bh=lPm9IUD69eZu1j7NgjSqFSM4EnJWFUoj35jLv4pCV1E=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=H0vsUmI5X4omgvrCetRVeXJcjUzBOhC28nBBQZQJO2AeW5JvU66QEGPW5jTpCFwYs
-	 Jei9uAdoTmqn/boF3PbcdS6rxIjiRO3oO06bkQwaYPJ7KoBkqYOnhFhC4f8yXpSVUd
-	 dNY3VqS6/Efls2vryYSBC1L1gPhAF/QtR0VOzb8k=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51AMFV0e113609
+	b=Ygen3BBUwaYiuiFJybBOY+DZrXf495ms0BWFtuIdUxUW9e1BDH+dB+li+EYp55Da9
+	 YTcPAgzTODiVlhJ9eqMIKgqr/Rn7Rtn/jLHAh0k9vg5d+axQv1H6g54JeUac5ivozK
+	 3ayNjD09rjuNEv9znHa7BE0rzyjV8dzQAg2U9yKg=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51AMFV9o016606
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Mon, 10 Feb 2025 16:15:31 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 10
  Feb 2025 16:15:30 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Mon, 10 Feb 2025 16:15:30 -0600
 Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51AMFUZ7112628;
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51AMFUZ8112628;
 	Mon, 10 Feb 2025 16:15:30 -0600
 From: Judith Mendez <jm@ti.com>
 To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
@@ -65,9 +65,9 @@ CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
         <linux-kernel@vger.kernel.org>, Andrew Davis
 	<afd@ti.com>,
         Hari Nagalla <hnagalla@ti.com>, Judith Mendez <jm@ti.com>
-Subject: [PATCH v5 05/10] arm64: dts: ti: k3-am62a7-sk: Enable IPC with remote processors
-Date: Mon, 10 Feb 2025 16:15:25 -0600
-Message-ID: <20250210221530.1234009-6-jm@ti.com>
+Subject: [PATCH v5 06/10] arm64: dts: ti: k3-am62p5-sk: Enable IPC with remote processors
+Date: Mon, 10 Feb 2025 16:15:26 -0600
+Message-ID: <20250210221530.1234009-7-jm@ti.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250210221530.1234009-1-jm@ti.com>
 References: <20250210221530.1234009-1-jm@ti.com>
@@ -94,40 +94,26 @@ Signed-off-by: Hari Nagalla <hnagalla@ti.com>
 Signed-off-by: Judith Mendez <jm@ti.com>
 ---
 Changes since v4:
-- Add "status = okay" for mailbox nodes at the board level, disabling of
-  mailbox nodes in voltage domain .dtsi files will come in a separate
-  series
+- Drop SRAM node for am62px MCU R5fSS0 core0
 ---
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 96 +++++++++++++++++++++++--
- 1 file changed, 90 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 50 ++++++++++++++++++++++---
+ 1 file changed, 44 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index a6f0d87a50d8a..ac67c51caa211 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -49,6 +49,42 @@ linux,cma {
- 			linux,cma-default;
- 		};
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+index ad71d2f27f538..9609727d042d3 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+@@ -48,6 +48,30 @@ reserved-memory {
+ 		#size-cells = <2>;
+ 		ranges;
  
-+		c7x_0_dma_memory_region: c7x-dma-memory@99800000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x99800000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c7x_0_memory_region: c7x-memory@99900000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x99900000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@9b800000 {
++		mcu_r5fss0_core0_dma_memory_region: mcu-r5fss-dma-memory-region@9b800000 {
 +			compatible = "shared-dma-pool";
 +			reg = <0x00 0x9b800000 0x00 0x100000>;
 +			no-map;
 +		};
 +
-+		mcu_r5fss0_core0_memory_region: r5f-dma-memory@9b900000 {
++		mcu_r5fss0_core0_memory_region: mcu-r5fss-memory-region@9b900000 {
 +			compatible = "shared-dma-pool";
 +			reg = <0x00 0x9b900000 0x00 0xf00000>;
 +			no-map;
@@ -139,7 +125,7 @@ index a6f0d87a50d8a..ac67c51caa211 100644
 +			no-map;
 +		};
 +
-+		wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
++		wkup_r5fss0_core0_memory_region: r5f-memory@9c900000 {
 +			compatible = "shared-dma-pool";
 +			reg = <0x00 0x9c900000 0x00 0x1e00000>;
 +			no-map;
@@ -147,9 +133,9 @@ index a6f0d87a50d8a..ac67c51caa211 100644
 +
  		secure_tfa_ddr: tfa@9e780000 {
  			reg = <0x00 0x9e780000 0x00 0x80000>;
- 			alignment = <0x1000>;
-@@ -60,12 +96,6 @@ secure_ddr: optee@9e800000 {
- 			alignment = <0x1000>;
+ 			no-map;
+@@ -57,12 +81,6 @@ secure_ddr: optee@9e800000 {
+ 			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
  			no-map;
  		};
 -
@@ -160,45 +146,17 @@ index a6f0d87a50d8a..ac67c51caa211 100644
 -		};
  	};
  
- 	opp-table {
-@@ -737,3 +767,57 @@ dpi1_out: endpoint {
- 		};
+ 	vmain_pd: regulator-0 {
+@@ -638,6 +656,26 @@ mbox_mcu_r5_0: mbox-mcu-r5-0 {
  	};
  };
-+
-+&mailbox0_cluster0 {
-+	status = "okay";
-+
-+	mbox_r5_0: mbox-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster1 {
-+	status = "okay";
-+
-+	mbox_c7x_0: mbox-c7x-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster2 {
-+	status = "okay";
-+
-+	mbox_mcu_r5_0: mbox-mcu-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
+ 
 +&wkup_r5fss0 {
 +	status = "okay";
 +};
 +
 +&wkup_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster0>, <&mbox_r5_0>;
++	mboxes = <&mailbox0_cluster0 &mbox_r5_0>;
 +	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
 +			<&wkup_r5fss0_core0_memory_region>;
 +};
@@ -208,17 +166,14 @@ index a6f0d87a50d8a..ac67c51caa211 100644
 +};
 +
 +&mcu_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster2>, <&mbox_mcu_r5_0>;
++	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5_0>;
 +	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
 +			<&mcu_r5fss0_core0_memory_region>;
 +};
 +
-+&c7x_0 {
-+	mboxes = <&mailbox0_cluster1>, <&mbox_c7x_0>;
-+	memory-region = <&c7x_0_dma_memory_region>,
-+			<&c7x_0_memory_region>;
-+	status = "okay";
-+};
+ &main_uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_uart0_pins_default>;
 -- 
 2.48.0
 
