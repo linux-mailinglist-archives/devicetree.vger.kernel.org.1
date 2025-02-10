@@ -1,99 +1,97 @@
-Return-Path: <devicetree+bounces-144593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 539AEA2E8DE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:17:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C728CA2E92D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:24:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A95E418839DB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:17:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75BE7162594
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EA2E1C5F10;
-	Mon, 10 Feb 2025 10:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 905C51D6DB5;
+	Mon, 10 Feb 2025 10:19:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="l0+gQw4w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M52Tf+wi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336C91C5F14;
-	Mon, 10 Feb 2025 10:17:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 647531D47C7;
+	Mon, 10 Feb 2025 10:19:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739182638; cv=none; b=pMq1XFX9ntyYFuMwxGu661zXgz5Aj5s+vGwNBJVZqMaOn7tfDihE2YjZiv2wxqGAwnp4tM+BD6U948EvFidTkiQYSRQDEl100BXpNKGgg5XMrcwtG32+4+f/qw6GvrUTYidS1+LwxXEhbw/XoXmY1sA3D/paY75qgoaWB8+Kx/w=
+	t=1739182755; cv=none; b=R13NL53+PBDfrmau3tLOCBZEY/OKmf8Z9DgnGzfBgDPgGooXLw5EaWUasi0vCcd+5/NxM7LIvZsx6p8REayBfqq4DC9oKcsPEb00i4QQP2TNM0rmX2iyliCwyvkPnI4BXJtQb8a3FqsdetWU8R1BHJNQ549QbjD5DuwPEXfhhE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739182638; c=relaxed/simple;
-	bh=yYZIyaS7DPr4T8bwU/okKPeXrYUxyBvElDgekCrprnA=;
+	s=arc-20240116; t=1739182755; c=relaxed/simple;
+	bh=Xhm1EhuWSeR0HnKbycECrEOCwoXKQXTmtIjJmXXW/G8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AZIIG7ubufr1O7pgsQTbB3nS/F+x7ue6sNlcDbh/5aXujAeiwyt/gvIc+6C/SogI4r1Fm9pW/kcmRvaLGeWCNil3lMsoyVo4B/ajNalRWeEyM+rFqqiJdJLkKmNDiAzymLzyhXO4OJuRje3/KBNDzl957ozihPH67yXUAqMfKhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=l0+gQw4w; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739182636; x=1770718636;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=yYZIyaS7DPr4T8bwU/okKPeXrYUxyBvElDgekCrprnA=;
-  b=l0+gQw4wZbmIHrCsVaXEVRsPyrkcumfSGAzJ0tLkDOmg8RwVPkQ2jByH
-   1jCKdl0e7y1Vy4HQ2r2L+U19eMmK0HXnL8igh8CG1ZqkUBdh3jpFFnOao
-   dGJiSeSBlo/Mb5iGHHREILeJ60MVH8zmhxARAkSlYAIKUDnbcsx9Xn2cn
-   iP6ZWHAQpVhcxzqzUZ2RifYAO671oejgn7jzNavca6Flmumi7Xeq1ayRz
-   aySeuhEJ/CYo9XhLAUn8OCg12ERbW/sWEshQ6gZlzu3sT1pbN2XZVc+i8
-   MdpMRcDvYzgNAHZ5IvQ1YX+HL80V2zN1UWGkuVK9COZQ0fvpbEoLIpAal
-   Q==;
-X-CSE-ConnectionGUID: ht98XkGBQY6EqYn9YDW8sw==
-X-CSE-MsgGUID: Kn0dNVqpQ0iVgNBOPGT9kw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11340"; a="50384654"
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; 
-   d="scan'208";a="50384654"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 02:17:15 -0800
-X-CSE-ConnectionGUID: K9LMqsj4Q7mbmGXT/NRsbw==
-X-CSE-MsgGUID: W3GjvN1HRHaRNsSnv5DsXg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; 
-   d="scan'208";a="112782860"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 02:17:12 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id 1CBDD120433;
-	Mon, 10 Feb 2025 12:17:10 +0200 (EET)
-Date: Mon, 10 Feb 2025 10:17:10 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: git@apitzsch.eu
-Cc: Daniel Scally <djrscally@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] media: i2c: dw9719: Add of_match table
-Message-ID: <Z6nSJstFmoykYhmn@kekkonen.localdomain>
-References: <20250209-dw9761dts-v3-0-14d3f00f0585@apitzsch.eu>
- <20250209-dw9761dts-v3-2-14d3f00f0585@apitzsch.eu>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VQUTfEmpzRX0pOPVNK2ZJxsjDs4Lss1Lo9j3XuGRNY7KGl0sF9sagz6a5uoI9R6FLto3g6jQ/ANC5hvLRvBZrhkn9jHf1fx4vzg4CrkE+AkQ68OUS/4tjuMeSz6WVJDWR0gZkMrY7JHwmTGKxlwLlezpogg8/2alhMenhy/Kl2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M52Tf+wi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48CABC4CED1;
+	Mon, 10 Feb 2025 10:19:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739182755;
+	bh=Xhm1EhuWSeR0HnKbycECrEOCwoXKQXTmtIjJmXXW/G8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M52Tf+wiSyn/N0JgepdvasifZj0RiK/ofryUtmeYDrx5xGiCDD7Z4IHdLUvxvEPnH
+	 ZE2GaG73x3m+U53r3h00/BRLb4gTA5KCFt0rMLfdAUupPGef4mdXlJjMJaWJ17XFK1
+	 bA1RiPRgVnCQhVUrvpOVqwSZAmvwqto48rmkkwHZTWXvTRIGG2FM7qy8ONy+ewLAX6
+	 R0C9vdXqSqwRk19lpGUV3Xec1C5HqgMMYZeXAmfM8m3I3BsSJDku2eSsnB9Fzd9v+J
+	 EW3dZdjYiyUTLm/FIws9sDSHPoWSnLMPENuVHnnnmQ6j9+yz4eM/P47jbcXR1Yn7wD
+	 Mu+eS6qmCI+DA==
+Date: Mon, 10 Feb 2025 11:19:11 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dinh Nguyen <dinguyen@kernel.org>, kernel@pengutronix.de, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/6] dt-bindings: socfpga-dwmac: fix typo
+Message-ID: <20250210-calm-oriole-of-experiment-17a66c@krzk-bin>
+References: <20250205-v6-12-topic-socfpga-agilex5-v4-0-ebf070e2075f@pengutronix.de>
+ <20250205-v6-12-topic-socfpga-agilex5-v4-1-ebf070e2075f@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250209-dw9761dts-v3-2-14d3f00f0585@apitzsch.eu>
+In-Reply-To: <20250205-v6-12-topic-socfpga-agilex5-v4-1-ebf070e2075f@pengutronix.de>
 
-Hi André,
+On Wed, Feb 05, 2025 at 04:32:22PM +0100, Steffen Trumtrar wrote:
+> The phandle to the SGMII converter must be called
+> "altr,gmii-to-sgmii-converter".
+> 
+> This is how the phandle is called in the example and the driver. As
+> there are no upstream users of this binding anyway, this shouldn't
+> break anything.
+> 
+> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/net/socfpga-dwmac.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt b/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+> index 612a8e8abc88774619f4fd4e9205a3dd32226a9b..67784463f6f5a3ba7d2e10810810ab2d51715842 100644
+> --- a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+> +++ b/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+> @@ -24,7 +24,7 @@ Optional properties:
+>  altr,emac-splitter: Should be the phandle to the emac splitter soft IP node if
+>  		DWMAC controller is connected emac splitter.
+>  phy-mode: The phy mode the ethernet operates in
+> -altr,sgmii-to-sgmii-converter: phandle to the TSE SGMII converter
+> +altr,gmii-to-sgmii-converter: phandle to the TSE SGMII converter
 
-On Sun, Feb 09, 2025 at 10:51:58PM +0100, André Apitzsch via B4 Relay wrote:
-> +		.of_match_table = of_match_ptr(dw9719_of_table),
+You remove it in the next patch, so just squash it and mention any
+changes done during conversion. This is noop otherwise.
 
-Please drop of_match_ptr(), that fixes the problem.
+Best regards,
+Krzysztof
 
--- 
-Sakari Ailus
 
