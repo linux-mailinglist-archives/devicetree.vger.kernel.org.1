@@ -1,129 +1,163 @@
-Return-Path: <devicetree+bounces-144673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E16CA2ED51
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:15:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAD91A2ED84
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:21:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F324C1887D59
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:15:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AE33188623D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E5952236EC;
-	Mon, 10 Feb 2025 13:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17C2225778;
+	Mon, 10 Feb 2025 13:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="iKpA9097"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A938C1F76A8;
-	Mon, 10 Feb 2025 13:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C59224899;
+	Mon, 10 Feb 2025 13:21:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739193298; cv=none; b=pFhjszf2Z3cuWMPP5MVuoRSXMmDIp5a1/J9bzRPvzBQAlriTygMWoVu4PgJgmg0UlfrtS9th7nbQbn9YUrE5oo39rRT7lHzUEL+9BT36eVPh2yf9lRqL0J+slPwwH2AMR1X911CaosyUagRUfzwQtMb+Eyimk8a3r244XMiQlIk=
+	t=1739193681; cv=none; b=i+UeRfWn4RHKdnmtxMhR+QwKsDCa+vwgXHhxfCA/y4NJiG1k3iP05AM9lh5TfPt06Sp49AkAJBS+R/eRF3Egi5iRrDXsNhLX57GL0r/ylWN6kWQoor1JFu3dKxJX61JHgshdswzY7RlF9lGV3ua1gxGienhEBgZuVz6yM//xvGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739193298; c=relaxed/simple;
-	bh=oe9YqlWHMEuQqzNAsLC/ymWcVw5v450bMingEO5+o/8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PsHV54UAX3Vo1GzBFg6AiS6tu0fsa+WKuCD0Snk2RXo8Lr5yKR2VAUz2F10yUhbOvtH8rrl/RQLKgXZPwIsy2ccS9/ve3uaTJDMfq9cz6/3AMUmrqaBVwQREAnWkCRJ/1e/zpeIqcjZd8v8gTzSX+bqx4zEJPRNFf7/LAQCHUqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-4ba830cd6b8so1100373137.3;
-        Mon, 10 Feb 2025 05:14:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739193295; x=1739798095;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CGW9ojU7zn9GGWFOqqtTTDOtvjIst3sLIBkQ7z5/xo0=;
-        b=L3lT3Q1aPKt5pL51Abw2Ejusb7GyG8s++qnUyf7eFLD2YUiZS1k793/huq+OUX5g05
-         eCkSB1ALeE8dv0evar+G+fnC3Mod1BsA2VIXOXaBBgwFYiVi6S5YojTdXArbpLgVRRdm
-         Z+gwzvrXE25PgwcUUoa/OJJyD4/Zj5ciTsO7orIMjEaqj74MH/OEWynr9OyBRqKBAZ8M
-         zrCUBr+ZXUwT98Y7KJjWlixI2+w8rVXMlvPDCBXXLA2OLH0C0BozYhJfKfhXHdQ8Za+M
-         40XmW9Y2ye7jWPvsJ5NeIyYhraogRMncyXKnT1LdRPvRYulsXZXaTw9rmIxX1PQk7Ry4
-         WjNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU+yCwvHXyUTirm5WczBTwJ5niAs2501rak/+P88ZdN5uK9iV21Z2L4MeRZg+nIpzV1nOuYPXSNXA1hng1x@vger.kernel.org, AJvYcCWctV/b8QPg4xPR0/vAK1Fp+2RoNJpv8EZ3tiT23cj4Z5Ihrx1f7yJTDeKsy7FM40va6qhfGAlUiqyIUbs8@vger.kernel.org, AJvYcCXMA/wJTX4hm4lAxoDBh0OKN2ItXKvMGxvsvP9uw3U9sOICUBq4iTVQuzs2Q/n1paYmlRojwgr/m69LMcNmLFi1u6Y=@vger.kernel.org, AJvYcCXYnvimHneZB3bp1AGx/ycjaAMLciyLG8K3TdM2gRoAEde4NjI7KFM70wycLjHbg0Pr57fG4XIgmMDK@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCfQvEbLAKLmBK/CXS3w5/CNgT4hWxATSpu+ugNsWf5rMfmPPd
-	y8ieXJB8qQikWYS9RJGKpa7ij40120QQ7tj+OI+TG1er+SBNQKHiJzFtpWMr
-X-Gm-Gg: ASbGncseS4T6AZ3QVnYwFAzFF0NW+KSRETjr0HIp+o4W50G5AJXsO+gxqDr2ydXrxFF
-	oBrItrYZvRzVwMaK9z7IF6bEH3+oD+q0plNEf/ajBJ/jYezyQY+sfQUEcuGwYFawtluSARYDR6T
-	z/mb2paH77KyPIo0hkCH6fur7CGFe+IBn5qatAJFKRJwutTsZmZPD4TzwSR0zme/Z2yJrfeSEoP
-	KHjPavTDhbRlVQl20s01jwr1Ukzs1cuHLgUDmHT1yjKUh+vFFCBirr9NJEOf7m3tPDsvzsbjj6i
-	ZdDP9IOytgh8uynG10YeW0kBFbJ65x+dFYWVjP3GnNsCv5LiEUK86g==
-X-Google-Smtp-Source: AGHT+IE/MTI003KZAzFEzT5D6R9YpB5TnCmJjKtw6Jr9BOv+i9SG00BX1RDpdIcUNUOA5wxu6Ei3Xw==
-X-Received: by 2002:a05:6102:31b3:b0:4ba:9689:8705 with SMTP id ada2fe7eead31-4ba968988famr4772692137.10.1739193294706;
-        Mon, 10 Feb 2025 05:14:54 -0800 (PST)
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-866f96361d0sm1614988241.1.2025.02.10.05.14.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Feb 2025 05:14:54 -0800 (PST)
-Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4bbbaef28a5so402848137.0;
-        Mon, 10 Feb 2025 05:14:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVIIzFIqh+sbsX678kayUVzbCvZAGwALDQRqhqxkXcIIM0vSFe4iqHdBSM62hBCDgf0CTrbQq/r04dIE3orCB+r7Nk=@vger.kernel.org, AJvYcCVooTA2QKM2j4TV1xRxZg1sM2oiz4wcLFxtX6yXK3OcY3cFm6CVotTNzOsEN0W4VGZn7SD7FU+k0B0PkJnR@vger.kernel.org, AJvYcCWzqMf1xaLdpVuSvkGw6JVcgbCItkFTWjF90CSnk7hysJOXr070TReUKStkbx6gU2YzmrGirR9t9Fbs@vger.kernel.org, AJvYcCX0sRJ2n6DeRhDD+E/e9bf8ocA1wbCzHBADcQfArFshFvc8pC85/ha6aNEKMlAk2VWL6bEtZGQpeZ2kI/JB@vger.kernel.org
-X-Received: by 2002:a05:6102:f0f:b0:4af:c58f:4550 with SMTP id
- ada2fe7eead31-4ba85de9d5fmr7943296137.7.1739193294128; Mon, 10 Feb 2025
- 05:14:54 -0800 (PST)
+	s=arc-20240116; t=1739193681; c=relaxed/simple;
+	bh=ohN9mnqgyFy+8zghXbtRoiTBs07oTPMtAske+nrnrlk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PYJsyxDnoI3CG8wpJ2mp38nN/DkMXtMJhwgf4kNCysX8T/pmjHtn7bpfMy9yIwnND1KHtQP0l6geriGEqif5Vzr7yitFFXMA5YegMXhlH2dzBtyu0/qfT7ud5wQoYdQ0UOFy/PQILTbegz+MlgZhRAXb9hNXw5WAvBpF5jRdBkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=iKpA9097; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51ACoxU2015234;
+	Mon, 10 Feb 2025 14:20:52 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=+xeBEnkoP/+TuTHHZLeAJE
+	oTX94SaEPrUOWoK3bZLW0=; b=iKpA90971GDP/8qLSl1xzvWQGqb+qVeQJecFT4
+	vNlL2FkVb5VPQe62QgbWLnxSxLlL5fGAuPqQS4I19diqsn8az+gZXkLcAfJna+0/
+	a8y/RRqH2h1ucDEvbx6vnz5HcxqdCBjTLEKqzKkWcyzYp8usCVo2zpU0WFbF0fM2
+	mOBbhY/j7v/q810jTr/eyPRU0g1WHOmtdiMRVojlEagc3p8wZTSswbRpFjmqdNp7
+	tvo/uUlKfwHFVWANSeANXwiX3bh728Ka0/Rq498QJuWgloxMYtiPLblwpHhM7U4o
+	mIPSrhqlroo56NuzU8vELHx2+yllKDUB3CsgFP4iV3prScvg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44p0qrxh3t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Feb 2025 14:20:52 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 578BA4002D;
+	Mon, 10 Feb 2025 14:19:31 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2DE4125B239;
+	Mon, 10 Feb 2025 14:18:32 +0100 (CET)
+Received: from localhost (10.48.87.62) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 10 Feb
+ 2025 14:18:31 +0100
+From: <patrice.chotard@foss.st.com>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <christophe.kerello@foss.st.com>, <patrice.chotard@foss.st.com>
+Subject: [PATCH v3 0/8] Add STM32MP25 SPI NOR support
+Date: Mon, 10 Feb 2025 14:18:18 +0100
+Message-ID: <20250210131826.220318-1-patrice.chotard@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250129165122.2980-1-thierry.bultel.yh@bp.renesas.com> <20250129165122.2980-3-thierry.bultel.yh@bp.renesas.com>
-In-Reply-To: <20250129165122.2980-3-thierry.bultel.yh@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 10 Feb 2025 14:14:41 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVB2W6R+xYeTUKSv_dMGruECSft-P19m6nZD61=ROngXw@mail.gmail.com>
-X-Gm-Features: AWEUYZmV5A_tAWdzmeYWijF-JgTDqcElC5Rp8P-Tj2Jva5zv0N3bQ2AGf8RZsUA
-Message-ID: <CAMuHMdVB2W6R+xYeTUKSv_dMGruECSft-P19m6nZD61=ROngXw@mail.gmail.com>
-Subject: Re: [PATCH 02/14] dt-bindings: serial: Document sci bindings for the
- Renesas RZ/T2H (a.k.a r9a09g077) SoC
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-10_07,2025-02-10_01,2024-11-22_01
 
-Hi Thierry,
+From: Patrice Chotard <patrice.chotard@foss.st.com>
 
-On Wed, 29 Jan 2025 at 17:52, Thierry Bultel
-<thierry.bultel.yh@bp.renesas.com> wrote:
-> Document RZ/T2H (a.k.a r9a09g077) in SCI binding.
->
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+This series adds SPI NOR support for STM32MP25 SoCs from STMicroelectronics,
+for that it adds support for:
+  - Octo Memory Manager driver.
+  - Octo SPI driver.
+  - yaml schema for Octo Memory Manager and Octo SPI drivers.
 
-Thanks for your patch!
+The device tree files adds Octo Memory Manager and associated Octo SPI instances
+in stm32mp251.dtsi and adds SPI NOR support in stm32mp257f-ev1 board.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/renesas,rzsci.yaml
-> @@ -0,0 +1,100 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serial/renesas,rzsci.yaml#
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
 
-"rzsci" is IMHO a bad name, as SCI on RZ/T2 differs from the
-similar-named "SCI" (sometimes called "RSCI" or "SCIg") on RZ/A1H,
-RZ/A2M, RZ/G2L, RZ/V2L, and RZ/G3S (and most old SuperH SoCs).
+Changes in v3:
+  - Squash defconfig patches 8 and 9.
+  - Update STM32 Octo Memory Manager controller bindings.
+  - Rename st,stm32-omm.yaml to st,stm32mp25-omm.yaml.
+  - Update STM32 OSPI controller bindings.
+  - Reorder DT properties in .dtsi and .dts files.
+  - Replace devm_reset_control_get_optional() by devm_reset_control_get_optional_exclusive() in stm32_omm.c.
+  - Reintroduce region-memory-names management in stm32_omm.c.
+  - Rename stm32_ospi_tx_poll() to stm32_ospi_poll() in spi-stm32-ospi.c.
+  - Set SPI_CONTROLLER_HALF_DUPLEX in controller flags in spi-stm32-ospi.c.
 
-BTW, I believe the variant on RZ/T2 is also used on RZ/N2, RZ/V2H,
-and RZ/G3E?
+Changes in v2:
+  - Move STM32 Octo Memory Manager controller driver and bindings from
+    misc to memory-controllers.
+  - Update STM32 OSPI controller bindings.
+  - Update STM32 Octo Memory Manager controller bindings.
+  - Update STM32 Octo Memory Manager driver to match bindings update.
+  - Update DT to match bindings update.
 
-However, binding-wise, they all seem to be very similar.
-So perhaps you can just add this to the existing
-Documentation/devicetree/bindings/serial/renesas,sci.yaml?
 
-Gr{oetje,eeting}s,
 
-                        Geert
+Patrice Chotard (8):
+  dt-bindings: spi: Add STM32 OSPI controller
+  spi: stm32: Add OSPI driver
+  dt-bindings: memory-controllers: Add STM32 Octo Memory Manager
+    controller
+  memory: Add STM32 Octo Memory Manager driver
+  arm64: dts: st: Add OMM node on stm32mp251
+  arm64: dts: st: Add ospi port1 pinctrl entries in
+    stm32mp25-pinctrl.dtsi
+  arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board
+  arm64: defconfig: Enable STM32 Octo Memory Manager and OcstoSPI driver
+
+ .../memory-controllers/st,stm32mp25-omm.yaml  |  201 ++++
+ .../bindings/spi/st,stm32mp25-ospi.yaml       |  105 ++
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |   51 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |   48 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |   32 +
+ arch/arm64/configs/defconfig                  |    2 +
+ drivers/memory/Kconfig                        |   17 +
+ drivers/memory/Makefile                       |    1 +
+ drivers/memory/stm32_omm.c                    |  520 ++++++++
+ drivers/spi/Kconfig                           |   10 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-stm32-ospi.c                  | 1065 +++++++++++++++++
+ 12 files changed, 2053 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/st,stm32mp25-omm.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.yaml
+ create mode 100644 drivers/memory/stm32_omm.c
+ create mode 100644 drivers/spi/spi-stm32-ospi.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.25.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
