@@ -1,342 +1,214 @@
-Return-Path: <devicetree+bounces-144467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D80AA2E264
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 03:56:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D172CA2E285
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 04:10:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A9F03A5A38
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 02:56:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 055D61884788
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 03:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA152BAF8;
-	Mon, 10 Feb 2025 02:56:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D06D153363;
+	Mon, 10 Feb 2025 03:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="lvRbNj8Z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XINvUSvz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazolkn19011026.outbound.protection.outlook.com [52.103.67.26])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3B01C28E;
-	Mon, 10 Feb 2025 02:56:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.26
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739156207; cv=fail; b=MlZOREcrfJh+2TYc9trxbFEUiUnbnU5bnARj1D0DcdfTi3S2g0D5Gx9kTG8uXWvQqTL9WdCftaWPSftt4/rETdqEYyhEM4UhdKMh6GtQy6Bf8IzA2crzyvBl3C6b1IaltbtXdzGaVYce5bvQpC9M6hk2ZBfv4BMJvYQrKvwa5R4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739156207; c=relaxed/simple;
-	bh=UqZq4OXwLoEI+BKUJi9ffYqpiBWIAV0SR/O4nenmgkc=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=HylOS3k/31tnRGJegzZlWAqDVsvN2Pk9Row0JX2D2junmFgNkrN1ksuUxqwk9inKi/VuTBs2Az52HrEZMrBER589mILuiASyobvouB+vBFqEC1SYAuI16SJ01fiyNpX+fw5WLQ8tCwTpyUC5f9SVlo5xym3D/BL7XDw27T7fCtc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=lvRbNj8Z; arc=fail smtp.client-ip=52.103.67.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c/ewq5GYFt+5XK4oR4Ygv2OuD+vBAarSGvz3PI2t5pks37JjHqDFd0qlh2RYkT3g4lXamEQrHhz88HoOQ+uMn+KFkVTBSJRsgex2aAWBXp5qnEa7kLI/TUfokhCV0/9IfU+ryHRmbReewSaJeIwQF9KROidFU44AAxWJjsW6jlvfKN9BbZsyAZKQRBLxyvt6o9/rhU7ndgQftIiAazM2xQUt6tCYrxbDdkn1WPlB8swgT5JHHoQ7D7rtqMSe12cfmege6WdCNWHpyP1/JJc0EFlneDOIaNHqkSlBpzlQV/DXsyCdxAU97DStsNYOrgoF0a2V0xSRYec4Yhr6oklimw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/tCu8uOc6h8wWfp8FvTTV6HHimo2HXIyfFI80OfLD9Q=;
- b=YqZ45uoB+SblhTaGaNjMqO8Ml1W1UtUMJiFq+CRgAG6kK4TqiVhWVgHsJhCEZELqOj/3TBKIcQ8SDcnoXXZmMBmdYju+30WRSbDsNtjyigQ0qWbiutL6ZEsh7lP20OzEpBfcmB1RgdupcfFgZheQ3B2RToJ4lrcp/nz0IIWL5OWvu/JcLUpUOfZ+PQDDBuOg9bMz2h/kFpDzeZLxqcIPDQ/viqCHxxgJZQd4nlhw7wmedujZSlsPLXjHpZGo7dOv1SErHgiOguqfwe4afPQRjD85LhAf/Q2odQvfXRcr3FqfClPgGiY6TU5Ij/LEZBsEm/y/fzBh66UIv6kz2fLsVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/tCu8uOc6h8wWfp8FvTTV6HHimo2HXIyfFI80OfLD9Q=;
- b=lvRbNj8ZwPZmo4/7BQG+fta5MBqTKnbFmQltrCbwyfkijfzCoSgKe6IaDXfyPk9AbfD8zzsxf6PnQue/IfxVg2FSKuSavyV15V6g8uFLs5nBbwZ1GheOvPATFd1vhy6xDi7RCsPFdg3XhaMjTZXiFdSLH+Rzd30JpeMG/AxdKv35Y/hDQcdHiCePdcL3M7ISNmzcozTPIGItB7eLv7yhrh2jHHhR8j2oTClFiHOLoQ/azhuruhx+W+H5mDTL08J1DZoG0Y9kPPjca9TmQd43LTh6bLd2JIDfLOdjmp9OX0zM++l29fXfYdGvH5PpEYJv29gRuk2LL6oQYJv45WiLwA==
-Received: from BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:3a::19)
- by MAYPR01MB10650.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:158::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.18; Mon, 10 Feb
- 2025 02:56:37 +0000
-Received: from BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::2148:4778:79a3:ba71]) by BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::2148:4778:79a3:ba71%7]) with mapi id 15.20.8422.012; Mon, 10 Feb 2025
- 02:56:37 +0000
-Message-ID:
- <BMXPR01MB2440FA4006BA4E3EDC0CD11AFEF22@BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM>
-Date: Mon, 10 Feb 2025 10:56:30 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] riscv: dts: sophgo: add reset generator for Sophgo
- CV1800 series SoC
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Inochi Amaoto <inochiama@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
- Jisheng Zhang <jszhang@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Longbin Li <looong.bin@gmail.com>
-References: <20250209122936.2338821-1-inochiama@gmail.com>
- <20250209122936.2338821-4-inochiama@gmail.com>
- <BMXPR01MB24406BB0EA039CEBDEEBBDC8FEF22@BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM>
- <20250210012045-GYA12775@gentoo>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20250210012045-GYA12775@gentoo>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2P153CA0001.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::7)
- To BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:3a::19)
-X-Microsoft-Original-Message-ID:
- <e26f1b31-abbe-46f2-9295-72b1d5f93ee8@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E6A146B8;
+	Mon, 10 Feb 2025 03:09:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739156999; cv=none; b=njLpNt/pR18IhnPA57lPD9me9mwN17lN4LiTmihUngpwt+hrOVHvgK1egAIzl84X+taHa4jt+RbqIyl1ruV7rrS4sjDBQ9Km+nobjC9F3DqPrG3XdwLtj5bNYuuqfPoOrIniNOWyVwiqL6SK2kPRbN4myox7111g2Bo2s14tsSg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739156999; c=relaxed/simple;
+	bh=vvVdz5hbQ96exbeAjzH3VgoKZdEKBHSULsJvPrZH1PE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=kgJnChLe1yAO5+Oo/XhjBBdg0E0tU+nW/xwK/h+NE9EBNjs7pB1xarsDZQz4nGWp6uoqNeGPAGnjGPUI/BsHG78sCSJ00/CGAM/qfEGpSb6ogalXGIGRiRbA4KNhYqFMhvyxb7bo8BnuU6j6t7gCT/YNRBeSFZ8GPQd0L/djGiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XINvUSvz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 519KIPgQ009545;
+	Mon, 10 Feb 2025 03:09:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pyxopfq01qIFG3pHou1VqDKtq+2Cvr5wueyIRGqt7Nw=; b=XINvUSvzgJINdMlV
+	8MUc1ugbYkxE+OkqobWw7X0IY806Ad3nvtCe0i8+bPU3s3HnX2x0pMmftUZRRE87
+	oEQJQAsIBJzJzwyirzGeXa2hVQe0Lf3hSmv+tTVjFLzFbaI8qRKRYJN9A2ghyNdC
+	rtpGHS1oLm+Y1UVahpR9DRxf9ysdYxDrN0/uLhlUt8TKQxPPGQmnuWdJByZz9e4B
+	8I1iBD+u1RkMxFOOrbxD9jhqsU8kp4jMsjUm4E6WVH56U8ptCywcWhUh+53zS9LT
+	MctaJhefa3fNWzcr2O3d4MIvWQgwX5PSxumJ4SH8TuXm8N3RihtxBjQGkQyeq8zq
+	+ajfww==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44p0f72x6f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Feb 2025 03:09:34 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51A39XJv013735
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Feb 2025 03:09:33 GMT
+Received: from [10.253.11.86] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 9 Feb 2025
+ 19:09:23 -0800
+Message-ID: <46423f11-9642-4239-af5d-3eb3b548b98c@quicinc.com>
+Date: Mon, 10 Feb 2025 11:09:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BMXPR01MB2440:EE_|MAYPR01MB10650:EE_
-X-MS-Office365-Filtering-Correlation-Id: d1cd7250-3f0d-4c4d-0ba2-08dd497e88e7
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|19110799003|5072599009|6090799003|8060799006|461199028|7092599003|15080799006|4302099013|3412199025|10035399004|440099028|41001999003|21061999003|12091999003|12071999003|1602099012;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TWpYY1lEL1lGbDIyVTNaK1I5SjFOck92cm1lNTNxMEtHaXRqS0lucWNpZHJK?=
- =?utf-8?B?dG9vbExhU3VUNGJUODJ4UXJWUENTZDQwUXZ3aTJWNXBqOWthNHZaaTV4VVVR?=
- =?utf-8?B?TDJncVpnSTZrS1BKcHAzUlg2R0EzRktoNjM4N2RUSW5sT0tyb0diNDU1ZEVN?=
- =?utf-8?B?NUNZanRkc1ZEMit2a3hGOXBBKytzOTAvS0FvVnQwTWZBQnppb3NNaGcxMGxj?=
- =?utf-8?B?b3hJU1pCQ1BjN3BrT3N1TVBkc2UrQkZYbk5GVzc4QVYydlNRbWNBcDdqK1gw?=
- =?utf-8?B?cGZ0eGh4bUZGKzRtZ3kveVdLS1VBazNuNDZzTktDWFhlUkdKUDlkNmVvSURG?=
- =?utf-8?B?VEsrMUhyaDVOL0d2T1U2ZVd0T3hpSHIzY21NZjdubktFRUR6L3lid1JvUCtO?=
- =?utf-8?B?aDJUcE5RN2Jua3lKaGs1Z0kzc1BUT2FRNFNNaHdZYlRDYm54ZjVjb0NhOUJU?=
- =?utf-8?B?SUdURTg4czF1ZVU1MHJJbXZ2VFZIVmRRUWFncE9YOVpZNTl4c2ora3VmU2Jt?=
- =?utf-8?B?S29oYS9aK2xEUkZFNzFza3Y2N0U2TXJyVWMzWHh2Z0l2MklrQUZSOTRVWWk0?=
- =?utf-8?B?RTUxbDNLLzBtSUZNcmx1TTBiMG9hZi8rb1dTd29zZ3puS0QreGtreUdXTHpG?=
- =?utf-8?B?MU02Rkp4U2NiVW16bkoyWlpzQ1lJTnljSVdDdFcvWk5oaDREUEhlZkxPRktL?=
- =?utf-8?B?NUdha20vWVJxVTd4SHQwa0ZHMFRJMTBUOEFIOVdjZmlFVmlLSytUZDBpdlRM?=
- =?utf-8?B?c0syN2kzZkNnWjBpOTlNRmxpUEl6RVJuWlNKdnBGb1FyT2JLc3RFSHJFK1NS?=
- =?utf-8?B?emhiSTI2VTUzcEIveDJyNERvM0NsOHN2VGRVczdwYklTMWQxcDBiNnFuRVlB?=
- =?utf-8?B?YWxHR3lTRW81TlVZeEpJSG1KK2VuR1lnV1dnSlV6TkZkQWJxcXRLdEFDV0pq?=
- =?utf-8?B?UGtzbTRLRnZQb3VTSlpmTmFpbG1zZjhFNVJSemxvUzVlaXY3QkxzSTZrTDYv?=
- =?utf-8?B?cTdWMmQvUlZyNWY5ZjJXMVBnL1JzQjArMDVzR0VOSm5PNnZuQXc2Qk5YdWFM?=
- =?utf-8?B?QTlkUWZyTnNPM2lERkt3dDIzS09oWkY1TWk3MEpMSkRzV0xlOTJSaC8xMDMy?=
- =?utf-8?B?WHZFelZJdlJ6aHdHa1hXbTlUVmljOW5EWXF5aW9EVGt0QXM1dHFtTVp1VlFl?=
- =?utf-8?B?WXZXaUlGeWpWTnlPSHd4cWN0MHNTWTQ0M3FOTWFhOUc1OU9tV1BBMEV3dEtH?=
- =?utf-8?B?Ny9zUkV3TEdiS1p1dFZaYitUNVRzaXltRE11MExjbzQyV0dMRkFObktMRW5X?=
- =?utf-8?B?dmtZSjg0RVJHYlowLzd6ZnoyVnRNZUZDSmVBN2tLRWVWVnZzblhkYUdxNVdp?=
- =?utf-8?B?ME4wYitzbkdMbHhOcmJpVi9OSDVsdVo4QllzcUlGbDFyK0VyVWJvNjgwZ3RG?=
- =?utf-8?B?MG84TGdwMkhOeUhJeEJtYm15M1dCbWsrejBibW1CK0dpMmdTNW02NWZ6b25U?=
- =?utf-8?B?TzQ5a0NydlJGUnlTdENXdVBmTHJWWHVZTnBvRkM2eHNiTkpnZE1QMk1DOC9y?=
- =?utf-8?B?TlJjWkdRdUgvcWRHbXQzZGVpdHVqR3VoZGZaTTNqWExaRm1OR1dubHRkaGI0?=
- =?utf-8?B?UW9FaUZLMWt3ZWd3a3o4L2dEME8zMlF5Ukh1TzlEYjUvdjNiNXVKRzJsb25M?=
- =?utf-8?B?b0Z4R3Qwb2cxSk5nSDFxenBhZnFScHNxcytKSWthWjNUcFluelZ0MG1TaEth?=
- =?utf-8?B?a0hSeWtaWVN0WkVUbXlZWFVnR1d6TGxPb1hzdVoxZm4wK0lZQk8zaVpLcmxy?=
- =?utf-8?B?RjZBMU1NSXhqZlluYWFpb09JSUdxdmVBb3hWdWFqT2VGaW5sTExST1lRZkJy?=
- =?utf-8?B?d2V1cXNGV20vd2hmaFhvaDNWLzdQbzV0MjU4OS91SW1yVUE9PQ==?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?emNCMFNwM3NoWDk1cUdNMEtKZSs2djIvU0VJcW43SjAzOVN4U05MODNLWjZw?=
- =?utf-8?B?THJLWHNOV0JxT0o3Und0U2JYUk5mNEFFWk5FVGJLTDVyWlNEanhENWZhNlox?=
- =?utf-8?B?TTRibGd3UVBkSFF6YXFmclprMDloaHZhR1FMbEo0RHFLTTlyWEFhbDNhNDlm?=
- =?utf-8?B?UDU4RFFGODhldHZ0QWRXV2ZFOTJ1OWRBdTNWbDlEeW8wci9DTmJNbHRHaXlS?=
- =?utf-8?B?YVdKUjVHZE96NmdkbE1SZnJSbThCRWF1eGVkZmgwdmxFTUtCUWp4bGpjajFG?=
- =?utf-8?B?MUlKVTdUNzFuNVdBK3RTUmVXazE1UHJRSFdEV2t0RWY5YVpKR2VmZ2tXU2VN?=
- =?utf-8?B?QWdYZE4rcXRhZFRwR09ZL0tGelhFdElkd0tpcWxEbXF4bUlnaTNXNzZWTUx5?=
- =?utf-8?B?cnFKdUhVak1KSWx6bDRzV1FIU3JlYjdlSSt3ZGlidVN1NXU2Um5tRmk1aWZX?=
- =?utf-8?B?UGhTS3g1NnkwVzlkaUZaNEtqNG1GbzBrM3pHL1JuSk90UGYzb0trZXU5anRN?=
- =?utf-8?B?VnROOE91WGJqWHNWK3NiT0lPNG9scEphOW5wZFVVaitCbGY4S2lkckVISDJV?=
- =?utf-8?B?SkxoU3E3cmpuNlh2RUo0NHZJQWFmY0xYOE9IM3lPci94VFBuNDBHR3U0WFBh?=
- =?utf-8?B?dStBOXJuUVJvWGZSY1o4R3ZSK3hGODZHSWZjRC9iR1ZQZUFCSWZPL3ZwdEJB?=
- =?utf-8?B?MXBtazZpdWVuUWJKY3dycDF1Mm1LNlFxUExRam9GZ2x1ZnlQYTdsYUExTXJt?=
- =?utf-8?B?WkxWR3doUnB3SGswK21VckkvNGY0QjJkY2c5Z3VKZDhQSVpjWUNNT2lBYjRv?=
- =?utf-8?B?Y2tmdzRoYVB0aWpIZUMxRWhwV24wazIzWXBZSFMzR1ZqSXdlc1puOTVPNllj?=
- =?utf-8?B?TnZQZlhGZkdNRXlLWGRkaXk0cko2QTZ4VDhYWFNlOG5xVWlJdUNjSEpVelFX?=
- =?utf-8?B?MVV0QnE0ZzQyTFhEY2pjK1RqMDlldjNBTjhCQTVkMzA5ZWVGbXpGUVhQc3Vr?=
- =?utf-8?B?UkpxdWR0RGZ6K1BJa3NtOTEwMnNLN2FxSm9zSjJ4OXV6aWxVY1dvSzBsSnln?=
- =?utf-8?B?R2tpQndySnI3RUU4ZEpDNEs4Tk1lKzlDaHBES3ZlLzZZZW5MUFA0aDVOaStq?=
- =?utf-8?B?dHdkaWFLMS82T0ZqcWJCT1dadHZnS0ZrQUFnVENhTVMxUUJGeEJEcCtsOTBT?=
- =?utf-8?B?RXU5VXJ1aDF4enJ3Q0ZSVm1VWmxOU2h4eE1RbXZHTlhWMWNxR2Z1aEhNOWtY?=
- =?utf-8?B?WHdab1RjckE1MmZKa0FWZ3JXZ0J5UTNQektld0NDb0h4a013WFROOFpzQmtM?=
- =?utf-8?B?RUVjZXkwYSs0cGo4WHZVd1V6aFEzazBLUzZ6T3lVbUxLZklTKzlJMG80UTNt?=
- =?utf-8?B?QlJxeW1YdGZnWno3d1FQbEJKbURYalB6T0RYMzVmQXZZOFBYU0lnZUxmMjBN?=
- =?utf-8?B?dDVhTXlSWlkxbEhCVkZxUk1IN2ZDeHB3UXZsbTVJWDJzOCtBdUoxUDRXdDZ1?=
- =?utf-8?B?bzFWa1AwcXRQWit0Z2dmUjJjUVQ5dHpoYlIxc1hWWlczNVF5TGFKamk0NVdI?=
- =?utf-8?B?a2xWM1luN0FWVDFVejJMYmdUdWUzM2puWXJZTmRmeWlMVlhyWjF2QnRKUTQv?=
- =?utf-8?B?K2dVZXAwaWxLKzhUbnk3d05yblcrZWZDT25YbDJPYWVkMzBWbVVYdkNwZ3pi?=
- =?utf-8?B?VytRcXBOdEVLNFVKemY4ZmxvTFFWSmJzLysvbWRkNTZKc0ZldHJkZ0JFcUVO?=
- =?utf-8?Q?nKr0gZIO8+DGIwPq24JuqEZBpoogBoJKJwlS3D4?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1cd7250-3f0d-4c4d-0ba2-08dd497e88e7
-X-MS-Exchange-CrossTenant-AuthSource: BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2025 02:56:37.0811
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAYPR01MB10650
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] net: stmmac: dwmac-qcom-ethqos: Mask PHY mode if
+ configured with rgmii-id
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250121-dts_qcs615-v3-0-fa4496950d8a@quicinc.com>
+ <20250121-dts_qcs615-v3-2-fa4496950d8a@quicinc.com>
+ <30450f09-83d4-4ff0-96b2-9f251f0c0896@kernel.org>
+ <48ce7924-bbb7-4a0f-9f56-681c8b2a21bd@quicinc.com>
+ <2bd19e9e-775d-41b0-99d4-accb9ae8262d@kernel.org>
+ <71da0edf-9b2a-464e-8979-8e09f7828120@oss.qualcomm.com>
+Content-Language: en-US
+From: Yijie Yang <quic_yijiyang@quicinc.com>
+In-Reply-To: <71da0edf-9b2a-464e-8979-8e09f7828120@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9UFZc4nDbCM3vzlrXRaDfvajb5-5fsgx
+X-Proofpoint-ORIG-GUID: 9UFZc4nDbCM3vzlrXRaDfvajb5-5fsgx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-10_02,2025-02-07_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ suspectscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0
+ impostorscore=0 mlxlogscore=999 clxscore=1015 bulkscore=0 adultscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502100023
 
 
-On 2025/2/10 9:20, Yixun Lan wrote:
-> Hi Chen:
->
-> On 08:55 Mon 10 Feb     , Chen Wang wrote:
->> On 2025/2/9 20:29, Inochi Amaoto wrote:
->>> Add reset generator node for all CV18XX series SoC.
+
+On 2025-01-27 18:49, Konrad Dybcio wrote:
+> On 22.01.2025 10:48 AM, Krzysztof Kozlowski wrote:
+>> On 22/01/2025 09:56, Yijie Yang wrote:
 >>>
->>> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
->>> ---
->>>    arch/riscv/boot/dts/sophgo/cv18xx-reset.h | 98 +++++++++++++++++++++++
->> Why it's not include/dt-bindings/reset/sophgo,cv18xx-reset.h?
->>
-> then first need to answer if it's really a binding, there are some disucssions
-> I personally favor Inochi's way here
->
-> https://lore.kernel.org/linux-devicetree/c7e243e3-3f61-4d63-8727-3837838bdfcc@linaro.org
-> https://lore.kernel.org/linux-devicetree/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
-
-Well, it's fine if you don't want to define it as binding just because 
-the ids are not continuous. In fact, for simple-reset, I think there is 
-no big problem to define it as bindings.
-
-Actually, in the first link upon, I see Krzysztof also said 
-"simple-reset is an exception."
-
-I recall we ever discussed this when Jisheng submitted the first version 
-of reset driver for cv18xx. FYI. See 
-https://lore.kernel.org/linux-riscv/42ad3f60-2755-4d3b-a766-8e4404f76a7c@linaro.org/.
-
->> Regards,
->>
->> Chen
->>
->>>    arch/riscv/boot/dts/sophgo/cv18xx.dtsi    |  7 ++
->>>    2 files changed, 105 insertions(+)
->>>    create mode 100644 arch/riscv/boot/dts/sophgo/cv18xx-reset.h
 >>>
->>> diff --git a/arch/riscv/boot/dts/sophgo/cv18xx-reset.h b/arch/riscv/boot/dts/sophgo/cv18xx-reset.h
->>> new file mode 100644
->>> index 000000000000..3d9aa9ec7e90
->>> --- /dev/null
->>> +++ b/arch/riscv/boot/dts/sophgo/cv18xx-reset.h
->>> @@ -0,0 +1,98 @@
->>> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
->>> +/*
->>> + * Copyright (C) 2025 Inochi Amaoto <inochiama@outlook.com>
->>> + */
->>> +
->>> +#ifndef _SOPHGO_CV18XX_RESET
->>> +#define _SOPHGO_CV18XX_RESET
->>> +
->>> +#define RST_DDR				2
->>> +#define RST_H264C			3
->>> +#define RST_JPEG			4
->>> +#define RST_H265C			5
->>> +#define RST_VIPSYS			6
->>> +#define RST_TDMA			7
->>> +#define RST_TPU				8
->>> +#define RST_TPUSYS			9
->>> +#define RST_USB				11
->>> +#define RST_ETH0			12
->>> +#define RST_ETH1			13
->>> +#define RST_NAND			14
->>> +#define RST_EMMC			15
->>> +#define RST_SD0				16
->>> +#define RST_SDMA			18
->>> +#define RST_I2S0			19
->>> +#define RST_I2S1			20
->>> +#define RST_I2S2			21
->>> +#define RST_I2S3			22
->>> +#define RST_UART0			23
->>> +#define RST_UART1			24
->>> +#define RST_UART2			25
->>> +#define RST_UART3			26
->>> +#define RST_I2C0			27
->>> +#define RST_I2C1			28
->>> +#define RST_I2C2			29
->>> +#define RST_I2C3			30
->>> +#define RST_I2C4			31
->>> +#define RST_PWM0			32
->>> +#define RST_PWM1			33
->>> +#define RST_PWM2			34
->>> +#define RST_PWM3			35
->>> +#define RST_SPI0			40
->>> +#define RST_SPI1			41
->>> +#define RST_SPI2			42
->>> +#define RST_SPI3			43
->>> +#define RST_GPIO0			44
->>> +#define RST_GPIO1			45
->>> +#define RST_GPIO2			46
->>> +#define RST_EFUSE			47
->>> +#define RST_WDT				48
->>> +#define RST_AHB_ROM			49
->>> +#define RST_SPIC			50
->>> +#define RST_TEMPSEN			51
->>> +#define RST_SARADC			52
->>> +#define RST_COMBO_PHY0			58
->>> +#define RST_SPI_NAND			61
->>> +#define RST_SE				62
->>> +#define RST_UART4			74
->>> +#define RST_GPIO3			75
->>> +#define RST_SYSTEM			76
->>> +#define RST_TIMER			77
->>> +#define RST_TIMER0			78
->>> +#define RST_TIMER1			79
->>> +#define RST_TIMER2			80
->>> +#define RST_TIMER3			81
->>> +#define RST_TIMER4			82
->>> +#define RST_TIMER5			83
->>> +#define RST_TIMER6			84
->>> +#define RST_TIMER7			85
->>> +#define RST_WGN0			86
->>> +#define RST_WGN1			87
->>> +#define RST_WGN2			88
->>> +#define RST_KEYSCAN			89
->>> +#define RST_AUDDAC			91
->>> +#define RST_AUDDAC_APB			92
->>> +#define RST_AUDADC			93
->>> +#define RST_VCSYS			95
->>> +#define RST_ETHPHY			96
->>> +#define RST_ETHPHY_APB			97
->>> +#define RST_AUDSRC			98
->>> +#define RST_VIP_CAM0			99
->>> +#define RST_WDT1			100
->>> +#define RST_WDT2			101
->>> +#define RST_AUTOCLEAR_CPUCORE0		128
->>> +#define RST_AUTOCLEAR_CPUCORE1		129
->>> +#define RST_AUTOCLEAR_CPUCORE2		130
->>> +#define RST_AUTOCLEAR_CPUCORE3		131
->>> +#define RST_AUTOCLEAR_CPUSYS0		132
->>> +#define RST_AUTOCLEAR_CPUSYS1		133
->>> +#define RST_AUTOCLEAR_CPUSYS2		134
->>> +#define RST_CPUCORE0			160
->>> +#define RST_CPUCORE1			161
->>> +#define RST_CPUCORE2			162
->>> +#define RST_CPUCORE3			163
->>> +#define RST_CPUSYS0			164
->>> +#define RST_CPUSYS1			165
->>> +#define RST_CPUSYS2			166
->>> +
->>> +#endif /* _SOPHGO_CV18XX_RESET */
->>> diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
->>> index c18822ec849f..9aa28ade73a4 100644
->>> --- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
->>> +++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
->>> @@ -7,6 +7,7 @@
->>>    #include <dt-bindings/clock/sophgo,cv1800.h>
->>>    #include <dt-bindings/gpio/gpio.h>
->>>    #include <dt-bindings/interrupt-controller/irq.h>
->>> +#include "cv18xx-reset.h"
->>>    
->>>    / {
->>>    	#address-cells = <1>;
->>> @@ -61,6 +62,12 @@ clk: clock-controller@3002000 {
->>>    			#clock-cells = <1>;
->>>    		};
->>>    
->>> +		rst: reset-controller@3003000 {
->>> +			compatible = "sophgo,cv1800b-reset";
->>> +			reg = <0x3003000 0x1000>;
->>> +			#reset-cells = <1>;
->>> +		};
->>> +
->>>    		gpio0: gpio@3020000 {
->>>    			compatible = "snps,dw-apb-gpio";
->>>    			reg = <0x3020000 0x1000>;
+>>> On 2025-01-21 20:47, Krzysztof Kozlowski wrote:
+>>>> On 21/01/2025 08:54, Yijie Yang wrote:
+>>>>> The Qualcomm board always chooses the MAC to provide the delay instead of
+>>>>> the PHY, which is completely opposite to the suggestion of the Linux
+>>>>> kernel.
+>>>>
+>>>>
+>>>> How does the Linux kernel suggest it?
+>>>>
+>>>>> The usage of phy-mode in legacy DTS was also incorrect. Change the
+>>>>> phy_mode passed from the DTS to the driver from PHY_INTERFACE_MODE_RGMII_ID
+>>>>> to PHY_INTERFACE_MODE_RGMII to ensure correct operation and adherence to
+>>>>> the definition.
+>>>>> To address the ABI compatibility issue between the kernel and DTS caused by
+>>>>> this change, handle the compatible string 'qcom,qcs404-evb-4000' in the
+>>>>> code, as it is the only legacy board that mistakenly uses the 'rgmii'
+>>>>> phy-mode.
+>>>>>
+>>>>> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+>>>>> ---
+>>>>>    .../net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c    | 18 +++++++++++++-----
+>>>>>    1 file changed, 13 insertions(+), 5 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+>>>>> index 2a5b38723635b5ef9233ca4709e99dd5ddf06b77..e228a62723e221d58d8c4f104109e0dcf682d06d 100644
+>>>>> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+>>>>> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+>>>>> @@ -401,14 +401,11 @@ static int ethqos_dll_configure(struct qcom_ethqos *ethqos)
+>>>>>    static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
+>>>>>    {
+>>>>>    	struct device *dev = &ethqos->pdev->dev;
+>>>>> -	int phase_shift;
+>>>>> +	int phase_shift = 0;
+>>>>>    	int loopback;
+>>>>>    
+>>>>>    	/* Determine if the PHY adds a 2 ns TX delay or the MAC handles it */
+>>>>> -	if (ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_ID ||
+>>>>> -	    ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_TXID)
+>>>>> -		phase_shift = 0;
+>>>>> -	else
+>>>>> +	if (ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_ID)
+>>>>>    		phase_shift = RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN;
+>>>>>    
+>>>>>    	/* Disable loopback mode */
+>>>>> @@ -810,6 +807,17 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+>>>>>    	ret = of_get_phy_mode(np, &ethqos->phy_mode);
+>>>>>    	if (ret)
+>>>>>    		return dev_err_probe(dev, ret, "Failed to get phy mode\n");
+>>>>> +
+>>>>> +	root = of_find_node_by_path("/");
+>>>>> +	if (root && of_device_is_compatible(root, "qcom,qcs404-evb-4000"))
+>>>>
+>>>>
+>>>> First, just check if machine is compatible, don't open code it.
+>>>>
+>>>> Second, drivers should really, really not rely on the machine. I don't
+>>>> think how this resolves ABI break for other users at all.
+>>>
+>>> As detailed in the commit description, some boards mistakenly use the
+>>> 'rgmii' phy-mode, and the MAC driver has also incorrectly parsed and
+>>
+>> That's a kind of an ABI now, assuming it worked fine.
+> 
+> I'm inclined to think it's better to drop compatibility given we're talking
+> about rather obscure boards here.
+> 
+> $ rg 'mode.*=.*"rgmii"' arch/arm64/boot/dts/qcom -l
+> 
+> arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts
+> 
+> QCS404 seems to have zero interest from anyone (and has been considered
+> for removal upstream..).
+> 
+> The ADP doesn't see much traction either, last time around someone found
+> a boot breaking issue months after it was committed.
+
+But what about the out-of-tree boards that Andrew mentioned? We need to 
+ensure we don't break them, right?
+
+> 
+> Konrad
+
+-- 
+Best Regards,
+Yijie
+
 
