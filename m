@@ -1,161 +1,95 @@
-Return-Path: <devicetree+bounces-144599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6211A2E99D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:37:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B53A2E9B1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:39:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 450401649CD
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:37:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EEAE3A172B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C4CE1C7002;
-	Mon, 10 Feb 2025 10:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A121C68A6;
+	Mon, 10 Feb 2025 10:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XGR00zEK"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="tTegOwHY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501D01C5D7A;
-	Mon, 10 Feb 2025 10:36:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FDB517591;
+	Mon, 10 Feb 2025 10:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739183811; cv=none; b=mocxqjThRTWeXNFyGUzxV55BVOMJ4fDMoLDh5fCVL6dQPgdZ4977jnRISfYUns1mMmxARxnQdir26QfqQJ+XWIHbknwvDQeM3KVywkhpFklpy/CHT4TveE96r2qHPyzPxgtS8P18XfQlE562Z85Bi0NhfP9EOnT5j26cD/epfuA=
+	t=1739183992; cv=none; b=pu83AEqNyAh9d8OYEiB7GjFKtzUd+Z5ohf2fp/0/ipzpTBMz+1KXii6TvcmjkE0lLDezeLdbMiOqe6jn12kVcMxps2tkz27qwZGe+37jI6mA3+Z8bOmLR79pOjPpqbiiO/QizK0vyN/muvE5W8C1+oBK18/k1ftTT3hxAwLaUlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739183811; c=relaxed/simple;
-	bh=3ZxFbYVwhWKY4oRGzC/bFeJgAsBMSSNDEedS0duoSi4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UO/hZXPjzCo3AGDDxOkVfppzoAl1/EwTzznRr54Cg5E6Gn/2Lr+ovPuK6A/9jFDP6UOtcLi7sKv3xsufG2qLZJu7eHpi+zaiAFzOf6NCxh70YwN3ACdVXiUZki2a5yOAYgWq2DrXpDVhW4IOGiNcjdQjfuiupa8CQv41634wE18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XGR00zEK; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739183809; x=1770719809;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3ZxFbYVwhWKY4oRGzC/bFeJgAsBMSSNDEedS0duoSi4=;
-  b=XGR00zEKkCO3H+mKwPsgQlh5bDhJt2inCK98TnFMTy30KhOo/agKESLS
-   jLgcrYVENj7T4Hec+1BmzEE4TmV0QKbQ9fkMytHkoBBcqhjBfQQ7DYFAN
-   xMcMvtuSj+WNrAPW90w+PhOTUZIkpfBljRnrlMCJUQwE3n3gpCRMStwfx
-   BMarux++QpRFAFTc8/1MER0vDW832S0iKGIjFuAHvv5Sz1XjhQjP/hpFU
-   +xBch1gu/EGKkM7SQm87FA9vvWYJRMkCFFxwQwSo6IXA6I7g0Uq3HyYlQ
-   OYphSHo9NGQIXcCf029B2N5eq9hFMLo8ZDhVmut+mj7bdZwxwKQWfpFDo
-   Q==;
-X-CSE-ConnectionGUID: jknd9ziJT7qERCKcEEcUjw==
-X-CSE-MsgGUID: fhGJ4nxLRy+6e7nWbbqeTw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11340"; a="40027310"
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; 
-   d="scan'208";a="40027310"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 02:36:28 -0800
-X-CSE-ConnectionGUID: YOigyrWBT4CkDdWeIBkvHw==
-X-CSE-MsgGUID: Tx7nrAnxR0CbrSj7XY8Qnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; 
-   d="scan'208";a="112090994"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2025 02:36:26 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 6E481120433;
-	Mon, 10 Feb 2025 12:36:23 +0200 (EET)
-Date: Mon, 10 Feb 2025 10:36:23 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Val Packett <val@packett.cool>, Daniel Scally <djrscally@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1739183992; c=relaxed/simple;
+	bh=b2Fajp+6Xat5MCKPgG11H9pUqAI05T/Rn54v1xgrDww=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cMoMcNAK/pSeizkWiNeuAEp1imReVjlVqC/zg4LGt3Xa00uLyP+2z7mczptVJfrFtnsOwIvgGcel1XY5VCNLwSu7CvWnyA7MmGiqgXHq0xY+MRtT8lBWPCz8vWhtgj3MUJYcHp+D3KxkigmmuLtELzLkB+FfvmTiYgRH53M8IqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=tTegOwHY; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=yZb6mUuL2RIdfpHlRYetMESCRDxt1EtIQQVhl92SvAQ=; b=tTegOwHYE0U+gQ5X64JfI1SeVf
+	iBg44ZiMpobXICvY+OLRBRnyFlJy956Fg80QK7snXjT8+mffp2S5z8t3UaAiTgFb+zdGh2cFaPtPY
+	idP9Vsaf+OASKlSrsvH3+b3HaHO+l7wfxJWrmu0oyGYtogFxzEv117S/K9+I+ZySOALw2ctNTTccI
+	5YOoy2zHOtaamD9TwpzhyfQfub268yJxLQxRtJMqy4ofmPtxl3Z5Jol+qCHhuWRkLtIif7scV/HCx
+	GYGaHXJxyuJuJtx3V39SZeYvDiNQjYOdZ6ppz6at0gY0Zia1R4wwuhuuWGf4E9a8i7BijZ4j6kFG0
+	mrekDPUA==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1thRCb-0000xs-CV; Mon, 10 Feb 2025 11:39:45 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] media: dt-bindings: i2c: add DW9719/DW9718S VCM
- binding
-Message-ID: <Z6nWp3bpoiqpvpS-@kekkonen.localdomain>
-References: <20250210082035.8670-1-val@packett.cool>
- <20250210082035.8670-2-val@packett.cool>
- <c2ff273a-bac5-4fa3-8339-ab722c9e63bf@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexey Charkov <alchark@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: switch Rock 5C to PMIC-based TSHUT reset
+Date: Mon, 10 Feb 2025 11:39:32 +0100
+Message-ID: <173918381709.1055685.13812643367447361492.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250204-rock-5c-tshut-v1-1-33301e4eef64@gmail.com>
+References: <20250204-rock-5c-tshut-v1-1-33301e4eef64@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c2ff273a-bac5-4fa3-8339-ab722c9e63bf@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
 
-On Mon, Feb 10, 2025 at 09:29:25AM +0100, Krzysztof Kozlowski wrote:
-> > +  dongwoon,vcm-freq:
-> > +    description:
-> > +      The switching frequency for the voice coil motor.
+On Tue, 04 Feb 2025 13:02:28 +0400, Alexey Charkov wrote:
+> Radxa Rock 5C supports both CRU-based (default) and PMIC-based reset
+> upon thermal runaway conditions. The former resets the SoC by internally
+> poking the CRU from TSADC, while the latter power-cycles the whole board
+> by pulling the PMIC reset line low in case of uncontrolled overheating.
 > 
-> Frequency is in Hertz, so use proper property unit suffix. BTW, you
-> cannot add incorrect properties post-factum based on already accepted
-> ACPI driver. This would be nice bypass of review, right?
+> Switch to a PMIC-based reset, as the more 'thorough' of the two.
+> 
+> [...]
 
-What's actually configured here is the divisor (10 MHz clock, divisor seems
-to be value + 2). It's similar to existing
-Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.yaml . I prefer
-this as it's much easier to use that in a driver (think of having values
-like 1428571 in DT, too).
+Applied, thanks!
 
-> 
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> Drop.
-> 
-> minimum/maximum constraints
-> 
-> > +
-> 
-> No reset/powerdown gpios in the hardware?
-> 
-> Missing required block.
-> 
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: dongwoon,dw9718s
-> > +    then:
-> > +      properties:
-> > +        dongwoon,vcm-freq:
-> > +          default: 0
-> > +          enum:
-> > +            - 0    # 5.00 MHz
-> > +            - 1    # 3.33 MHz
-> > +            - 2    # 2.50 MHz
-> > +            - 3    # 2.00 MHz
-> > +            - 4    # 1.67 MHz
-> > +            - 5    # 1.43 MHz
-> > +            - 6    # 1.25 MHz
-> > +            - 7    # 1.11 MHz
-> > +            - 8    # 1.00 MHz
-> > +            - 9    # 0.91 MHz
-> > +            - 10   # 0.83 MHz
-> > +            - 11   # 0.77 MHz
-> > +            - 12   # 0.71 MHz
-> > +            - 13   # 0.67 MHz
-> > +            - 14   # 0.63 MHz
-> > +            - 15   # 0.59 MHz
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: dongwoon,dw9719
-> > +    then:
-> > +      properties:
-> > +        dongwoon,vcm-freq:
-> > +          default: 0x60
+[1/1] arm64: dts: rockchip: switch Rock 5C to PMIC-based TSHUT reset
+      commit: b2e537749524f09ae34e9e11a5f020eccc8aff22
 
+Best regards,
 -- 
-Regards,
-
-Sakari Ailus
+Heiko Stuebner <heiko@sntech.de>
 
