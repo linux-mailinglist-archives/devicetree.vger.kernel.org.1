@@ -1,87 +1,72 @@
-Return-Path: <devicetree+bounces-144835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E6D4A2F699
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:15:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27590A2F6EC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:24:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64A9E1886D65
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:16:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AA9E18862A0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B32C255E4C;
-	Mon, 10 Feb 2025 18:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4999257422;
+	Mon, 10 Feb 2025 18:24:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k98TtJxG"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="l8tUsGxU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929CD24FC17
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 18:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B57624418C
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 18:24:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739211355; cv=none; b=sfpxHXc5CSiLlRGFAXIiejsruLm2KFgeSr/onJww+aNzLo5jIGi7/MAMFZGEK8V1C2wCMJYH4AYJZXOcgN6gRnxjNJcuLl9S9WbpWruroCBla05jywHGjqfpjzVShr+Yfa8FwqZ20bRAIC7TFHv2Z0pDnTQ5KTZcBPsCNDLsoUQ=
+	t=1739211862; cv=none; b=uERecs2OLseySjQsy4wCdK5Jvmjf16cSpJvq6ezLMXFl4jJFZ3xJXlUF4DMiilN1oIi9F5FvRsXIG3lafSPVMCuOwhs6mDluRut6Lr6XyKWGQ/y6SaF1SOCwDWl1cL0j592wtFH8FHeAf97VnkM8gC0/8WIiKQwNQzUI7sijIUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739211355; c=relaxed/simple;
-	bh=DEygm5HWW7X1xdGiLNElosyRq33AJuWmRSE4tqMOcIY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s944jwJ4RnU6G2CTthxUkXotooyzHUWICo2LnSiBbAg7VnFWICPTZW0APW0uJnHVYdAZQqvMtLOXn5DqgPoi8oejTaLwS5ZsHQZEyXpkCdSzwtnRXQPqo2oOQXngzDK9vQfk7IQ8UpawcmtfP7KOt4IIp1xun2z+wbwMX7HT7B0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k98TtJxG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51ABgEeu031923
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 18:15:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zCHZNtni/CSZJ0FFRkrYJ71iWbDqICIFGe1C4Jypxx0=; b=k98TtJxG9YSJjlkz
-	AZn4RsntfJ37bbMCwWkkY6LGBUw+WXm0i23q95qFfFBG9wSOxFzQ7aQaN1vLHXTc
-	t16eCKLZcEd9Ng3RlWoINgr4B+0iu3EmsBXovO5HGRPRM76udX/swr8InhRYzYM3
-	qYnKXvuvldCKB8tuL6lCSgs8yqklbLHdBFPdtyKW5TZ/JrfZ6Cvx6b/hZLoZWaqj
-	ICqGUL4Edn/+pVeq0nvdeyfFlAsFa/bqwea3trGlIlbuFTFh7zu29JDM3BpyONdB
-	XWT0mlS5euFx8RvxLJY01O72MUSsjzb8cnXLoduwp9bOvuTzJ/SmaPj1SOjKnXuj
-	EXff7Q==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qgtk11x4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 18:15:52 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e444e99f26so4664176d6.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 10:15:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739211351; x=1739816151;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zCHZNtni/CSZJ0FFRkrYJ71iWbDqICIFGe1C4Jypxx0=;
-        b=hs135HGVEHGkoyOoUNyV/3pttq6rNBshEv+zkjQ+7zfEQWDBiKKHXtVsvbxZSpHOba
-         rlGp591b3GPuEi5WTw8mDI4KCcderOw4qD0uc7RiZjhlYfOCBPtPuX6g5p3Raoqb2Hz0
-         T4ohG4BN3qQ7lrzj1XG5RGOEDd96LNZ7GkBmpeppai1sB4PYhthDcy2PD+QaMDDoda32
-         4pPKJxSSphGZKjyGuntYPLFOkvJW5yKcsXzVyVsnRdntUMHlGxe+rk+gcEXKmfWqIHfj
-         bnNKomzqI9jMwQeeuKoaj3rst0eagGdtVDYpWp1f36snMPXaMKOnY7CPcSViGy542BOl
-         l7cg==
-X-Forwarded-Encrypted: i=1; AJvYcCWRGF5I7ZfyJ+6fCuvH/sQ0PjPJoGbPfKrEY9BgVBJInRgR7JwHxY5htnlsTzfp/7aUcLdCQzg7p/X4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIPWb1VYMGhvj05Jz6W48qnrvTgzCI1RLyDFqMSI6pftnOTVzM
-	ocTYSdy1QeLROjQFCti1ywOhi8rrf6RzDpLDO0nDvLcvnxhmfHwQdgddtVae7c34o0LjnUGDvUF
-	WjVKqSlf2FsmUuFELogLBIgU4AmUI3tsBUtHp1ViHq6/cVCupFwCRbSqMLmuG
-X-Gm-Gg: ASbGncsuEZfyNr2vJtXemkblyHgoNSceyT/KSRF6Fxv1jz57VWvIBF/lt+cF01ndoWa
-	Ta/iuWrjot4SK5rwsinoqs/NZnqP78YD6sFOE0BDKym+42oCT3GJQJXAjhV3q/U6qQspLey1qhU
-	dwYKB7yktAB2LAajDCOU/evB4DvUEAELu2jTgSodw48Gew7MEBSS8FaRlZSV/E8OjMkGMalekAx
-	Ies+gT2/KIYeDL+ePfBo41yHz8bBRH0CU7ZXOczKPtdO0kYlu/1xu3iGgeXRw0cUwrQjba6EjW6
-	/NDoCqntPsVGM1891sIiW0i48oaOqoAMGbmPD4hi9EZVPJvp/Jp2FBXk0AE=
-X-Received: by 2002:ac8:5fcc:0:b0:467:672a:abac with SMTP id d75a77b69052e-471679dc26amr71995211cf.4.1739211351344;
-        Mon, 10 Feb 2025 10:15:51 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF+wRXNnWRPbq293evDdIvEhGqEHzq1kYbvdr3w/KyUUAyfZrYq8rC1dDpVfln5xyQdRsb5ew==
-X-Received: by 2002:ac8:5fcc:0:b0:467:672a:abac with SMTP id d75a77b69052e-471679dc26amr71994941cf.4.1739211350986;
-        Mon, 10 Feb 2025 10:15:50 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dcf9f6c77esm8235727a12.69.2025.02.10.10.15.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Feb 2025 10:15:50 -0800 (PST)
-Message-ID: <0a1735a3-b57e-4a98-a3c8-46e92b5cdf0f@oss.qualcomm.com>
-Date: Mon, 10 Feb 2025 19:15:46 +0100
+	s=arc-20240116; t=1739211862; c=relaxed/simple;
+	bh=GiX3AnNJ5preT0LgG4Nm7iJ9elZnPlpcYyH+a8gAtpk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=qEKelbX3x1gGIP6RqdYwsvBovmjx+9OiewkLXunU1OOd69S7KT2Ph3K+bHnc52MrZ8akfw3mA11pBLwUjzCoIWRaZBcFPCN+Z0jKeeiQCEHtFAFzcDOEBN/qmNqDOWrSa5WYSlHSiBsVImCz+VPNS6LoTvZ46ugVTpJWwvb1Omw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=l8tUsGxU; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250210181724euoutp01831534c734ff18f989b1df49dbc720d1~i65gjojvw0790307903euoutp01l
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 18:17:24 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250210181724euoutp01831534c734ff18f989b1df49dbc720d1~i65gjojvw0790307903euoutp01l
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1739211444;
+	bh=eoM94/u449x42q6cf/40YSz4wflR55B4E76Sjb/7dTY=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=l8tUsGxUu/Vn0/u6PzTR+tqT6Ivupe5fgdztvNdy0J/c3tqf215jyFsEzXt60lBgj
+	 s2u0XXQ1yHh1AmpIqPOkWP9cnCWSuFNX3F4JkyeOdFnQjE80XaI18wrcoBClBz0kyQ
+	 uuEEXA0EcoMT3vEK5k/KWOoE2681CXXob1mzCRso=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250210181723eucas1p25abb824449c578f42deb26c45f4dd664~i65fdA6XO3048030480eucas1p2I;
+	Mon, 10 Feb 2025 18:17:23 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id 6F.65.20397.3B24AA76; Mon, 10
+	Feb 2025 18:17:23 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250210181722eucas1p2b15d633fa8c141efec2d6e4b2ca80a42~i65eg_ZQP2654726547eucas1p2V;
+	Mon, 10 Feb 2025 18:17:22 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250210181722eusmtrp277a1cc907790040346300d53d97ae68b~i65egAD9x0172601726eusmtrp2G;
+	Mon, 10 Feb 2025 18:17:22 +0000 (GMT)
+X-AuditID: cbfec7f5-e59c770000004fad-cd-67aa42b3b35f
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 44.84.19654.2B24AA76; Mon, 10
+	Feb 2025 18:17:22 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250210181721eusmtip2f628aba259a8f1d60f68c1d4648cbde6~i65dO1fME1001410014eusmtip2S;
+	Mon, 10 Feb 2025 18:17:21 +0000 (GMT)
+Message-ID: <7d8a3f8d-f369-47dd-8c5f-dcff8d692ea8@samsung.com>
+Date: Mon, 10 Feb 2025 19:17:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,51 +74,244 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/6] clk: qcom: Add NSS clock Controller driver for
- IPQ9574
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        richardcochran@gmail.com, geert+renesas@glider.be,
-        dmitry.baryshkov@linaro.org, arnd@arndb.de, nfraprado@collabora.com,
-        biju.das.jz@bp.renesas.com, quic_tdas@quicinc.com, ebiggers@google.com,
-        ardb@kernel.org, ross.burton@arm.com, quic_anusha@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
-References: <20250207073926.2735129-1-quic_mmanikan@quicinc.com>
- <20250207073926.2735129-5-quic_mmanikan@quicinc.com>
+Subject: Re: [PATCH v4 09/18] reset: thead: Add TH1520 reset controller
+ driver
+To: Philipp Zabel <p.zabel@pengutronix.de>, Matt Coster
+	<Matt.Coster@imgtec.com>, "mturquette@baylibre.com"
+	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"drew@pdp7.com" <drew@pdp7.com>, "guoren@kernel.org" <guoren@kernel.org>,
+	"wefu@redhat.com" <wefu@redhat.com>, "jassisinghbrar@gmail.com"
+	<jassisinghbrar@gmail.com>, "paul.walmsley@sifive.com"
+	<paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, Frank Binns
+	<Frank.Binns@imgtec.com>, "maarten.lankhorst@linux.intel.com"
+	<maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
+	<mripard@kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+	"airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
+	<simona@ffwll.ch>, "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+	"jszhang@kernel.org" <jszhang@kernel.org>, "m.szyprowski@samsung.com"
+	<m.szyprowski@samsung.com>
+Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250207073926.2735129-5-quic_mmanikan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <48261cdfab6e0bc16e5327664b06728e1894422a.camel@pengutronix.de>
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: YTSm84F5QN8czQXGP50cu4EL9Ls0Dz_t
-X-Proofpoint-ORIG-GUID: YTSm84F5QN8czQXGP50cu4EL9Ls0Dz_t
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-10_10,2025-02-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 suspectscore=0 phishscore=0 impostorscore=0
- adultscore=0 clxscore=1015 mlxscore=0 malwarescore=0 bulkscore=0
- lowpriorityscore=0 mlxlogscore=684 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2501170000 definitions=main-2502100149
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf1RTZRjHe+/u7t12zvAyUF5whu0EJ+uIQmbvMeEoheea/ZCTnZ38p3bk
+	nqGOH22MyIyh8mPahCHzVMMYIsGcgKGMBoIUEgO0wVwi8WNgZ54ARaAhESUGu1r893me5/s8
+	3+d5z8vjiJqJEN7+5DRGmSxTSAgBXt/+V/f6y7EW+Uab+1nUcbsMQ9a/jSSqanZgyNTm4CL3
+	zToM/fJwkkA1d3tINNp8BEe95m9IdKz9IoHGjG4CTevcXORqPEMg78k2gOq92QSqbhsi0dlp
+	K47KbY0A5R6v4CJnVxwacnfgaMyl46Bc4wr0uMlGooXeWhwVP2ghUd39Qi6yV0tRdosB37aG
+	nuzLIen7Y2M4fU07Q9LNs6U43WAcImldww1AX7IcJ+jB3iaCLumMp4e/sGP05XINnV3djtEF
+	jzbSk1dvEXR+nQXQN4/dJneL9gq2JjCK/emMckPMR4LEI9VHuakdmzNappRZwPnSCcDnQWoT
+	vHXBRp4AAp6IMgOYN+PB2GAGwPy5qxw28AJYU2vAn7YY9CVctlAJoOPna4ANJgD8razEpxJS
+	MdDx4z9giXEqDJboigGb94edX3t8mpVUKBzu/4pc4gBqN3TNlfrsAqkqHhw/Pe8rcKgsDtTq
+	M1kOgv0eE7bEBBUFRypN3CXmU2/B/HtuwGpC4fcTZ3yDIOUUwI5zVg679xvQOfEnwXIAHLfX
+	kSyL4eMGdiikUuCI9Y8n+sOwQWd/wq/BQcf8Yi9v0WAdvNi4gU1vh1PmcXwpDSk/2Dfhz67g
+	B0/Vf8lh00KozRWx6nB4WnfyP1OHuR7TA4lx2asYlx1pXHaM8X/fUoBbQBCjViXJGdXLycwn
+	ESpZkkqdLI/Yl5J0CSz+8OsL9oc2YB6fjmgFGA+0AsjjSAKFm86a5SJhguzTQ4wy5UOlWsGo
+	WsFqHi4JEpa15MhFlFyWxhxkmFRG+bSK8fghWVhMfEHAZz8dZICM32Rt/mGq4k7w+4cOR+V4
+	396TXvlt1JrQiYW1A7HvFFZs1/rN9eXims1hbxYWXVC8UqY20ecHwgcCX9AV9ThGDOK4BOng
+	6gdH089N2wu8W6yvzhrC6yJTn3m+2yh2u/o/X9+69gBeUJQzI8l/z7IqLCajc9WuPZopzwFT
+	D3El71GUX3Hix+JgfVdX9BV8W1qsRtw78N2o/we79moaaaqI2Rl6I9ZPshI8FyLdMhp3PTPa
+	bJRW6flV3c7id9Wvl8/vaBxWKmrSa5Ars29Wu69mOMsRPRK5AoQMr/PclXZyvXfu7cxoqh2K
+	z/tVv7Xy9/PUqTYip0ETLMFVibLIFzlKlexfy8v93FAEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0xbdRTH/fXe3luIze4Kk18QAqm6RZd1tCv1xwREo+ZGDHNzTqOZWOFS
+	Kn3MtizbNFK2jjiKDCIiFNZSxZV1YzjsGI92nYg85qzjVRYYnVFIbIF1lUEyx1C6xsh/3/P4
+	fM/JyeFgPA87niNX6RiNSqrgE9H4z6sDvm3tL9plKV/0JaDBia9Z6OJ9E4nOuTwsZOnzsJFv
+	xMFCY0tBAp2fvU6iP12lOPK2nCLRsf42AvlNPgKFKnxsNNrdSKDFz/sA6lg0EKi1b5pE1tBF
+	HDV3dgNUduI0Gw1ffRlN+wZx5B+twFCZaQP6x9lJolXvBRw13HaTyDFfzUYDrW8hg7sGz0qk
+	gzeOk/S834/TP352l6Rdy0043WWaJumKrmuAbrefIOibXidBm4d207eMAyz6++YS2tDaz6JP
+	Pkihg5fHCbrSYQf0yLEJ8nXeO4J0jbpYxyQXqrW6DP67QiQSCNOQQCROEwh3PLt/pyiVvz0z
+	PZ9RyA8ymu2Z7wsKS1uPsg8MSg6572j0YHhrOYjiQEoMa6rM7HIQzeFR3wK4fG8FRAoJ0Gv0
+	4xEdA1e85USkaQ5Al/soK1zgUpnQ80MEwKmnoLmiAUTyG+FQ/cxDeBOVBG9N1pHlgMOJoXKg
+	2Z4S9oml2jlwpdRAhgOM0mPQ3nADCwM8aokFzZ6MsMaoODg5Y3k4jKBE8DebhR3WUdRrsHLO
+	B8KmGLUFtpl5kfYkeGmhEasCPNO6NUzrnEz/E6Z1RBPA7SCWKdYqZUqtSKCVKrXFKpkgT61s
+	B2uP1dF/z9EJzgRCgl7A4oBeADkYP5YrtrbIeNx86eEjjEadqylWMNpekLp2imosflOeeu0z
+	VbpcoSQlVSiWpKWkpkl28OO4xNivBTxKJtUxRQxzgNH8x7E4UfF6Vtuw/j32ndDC1FZe3AuG
+	J/4SNnW45YNn76cnBDact3zU8JUt85Kv0J4Nl99YeLLl49PObQprrLVIdy7q+vgV2ytf7l0N
+	GG9mzHMP/6H4ZnSswFn3SeeeyiFjDZ5bf9X13YTd2OgJis2f5vccFFo6omvLzpbkvJp1qsaq
+	WYze5XjTG5i9+3Ze7Z7fJb8o5bf3kxd26wOOqdEjj+YUnKGDoTrcrnQ2DSbPbUnKLkkc3/cY
+	aKzOgrj8sltdcs1o/rCXzI6ZZJuzEw/19CR31ecsK6Yole25lgfd4o0jM1Xk43t3cvfVGD8o
+	Oj5i23WlV/7SzE9Ls1P2wPNPSx4Z+ru2eXPcZj6uLZQKn8E0Wum/gIMQU+EDAAA=
+X-CMS-MailID: 20250210181722eucas1p2b15d633fa8c141efec2d6e4b2ca80a42
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250128194836eucas1p151c4fc83a17173fd1b79bfc959976301
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250128194836eucas1p151c4fc83a17173fd1b79bfc959976301
+References: <20250128194816.2185326-1-m.wilczynski@samsung.com>
+	<CGME20250128194836eucas1p151c4fc83a17173fd1b79bfc959976301@eucas1p1.samsung.com>
+	<20250128194816.2185326-10-m.wilczynski@samsung.com>
+	<816db99d-7088-4c1a-af03-b9a825ac09dc@imgtec.com>
+	<e83ea320-23f0-41ed-934c-2f1687b55ec1@samsung.com>
+	<48261cdfab6e0bc16e5327664b06728e1894422a.camel@pengutronix.de>
 
-On 7.02.2025 8:39 AM, Manikanta Mylavarapu wrote:
-> From: Devi Priya <quic_devipriy@quicinc.com>
+
+
+On 2/4/25 18:18, Philipp Zabel wrote:
+> On Mo, 2025-02-03 at 19:15 +0100, Michal Wilczynski wrote:
+>>
+>> On 1/31/25 16:39, Matt Coster wrote:
+>>> On 28/01/2025 19:48, Michal Wilczynski wrote:
+>>>> Add reset controller driver for the T-HEAD TH1520 SoC that manages
+>>>> hardware reset lines for various subsystems. The driver currently
+>>>> implements support for GPU reset control, with infrastructure in place
+>>>> to extend support for NPU and Watchdog Timer resets in future updates.
+>>>>
+>>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>>>> ---
+>>>>  MAINTAINERS                  |   1 +
+>>>>  drivers/reset/Kconfig        |  10 ++
+>>>>  drivers/reset/Makefile       |   1 +
+>>>>  drivers/reset/reset-th1520.c | 178 +++++++++++++++++++++++++++++++++++
+>>>>  4 files changed, 190 insertions(+)
+>>>>  create mode 100644 drivers/reset/reset-th1520.c
+>>>>
+> [...]
+>>>> diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
+>>>> new file mode 100644
+>>>> index 000000000000..48afbc9f1cdd
+>>>> --- /dev/null
+>>>> +++ b/drivers/reset/reset-th1520.c
+>>>> @@ -0,0 +1,178 @@
+> [...]
+>>>> +static void th1520_rst_gpu_enable(struct regmap *reg,
+>>>> +				  struct mutex *gpu_seq_lock)
+>>>> +{
+>>>> +	int val;
+>>>> +
+>>>> +	mutex_lock(gpu_seq_lock);
+>>>> +
+>>>> +	/* if the GPU is not in a reset state it, put it into one */
+>>>> +	regmap_read(reg, TH1520_GPU_RST_CFG, &val);
+>>>> +	if (val)
+>>>> +		regmap_update_bits(reg, TH1520_GPU_RST_CFG,
+>>>> +				   TH1520_GPU_RST_CFG_MASK, 0x0);
 > 
-> Add Networking Sub System Clock Controller (NSSCC) driver for ipq9574 based
-> devices.
+> BIT(2) is not documented, but cleared here.
+
+Yeah shouldn't be cleared, thanks !
+
 > 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> ---
+>>>> +
+>>>> +	/* rst gpu clkgen */
+>>>> +	regmap_set_bits(reg, TH1520_GPU_RST_CFG, TH1520_GPU_SW_CLKGEN_RST);
+>>>
+>>> Do you know what this resets? From our side, the GPU only has a single
+>>> reset line (which I assume to be GPU_RESET).
+>>
+>> This is clock generator reset, as described in the manual 5.4.2.6.1
+>> GPU_RST_CFG. It does reside in the same register as the GPU reset line.
+>>
+>> I think this is required because the MEM clock gate is somehow broken
+>> and marked as 'reserved' in manual, so instead as a workaround, since we
+>> can't reliably enable the 'mem' clock it's a good idea to reset the
+>> whole CLKGEN of the GPU.
+> 
+> If this is a workaround for broken gating of the "mem" clock, would it
+> be possible (and reasonable) to make this a separate reset control that
+> is handled by the clock driver? ...
 
-Thanks for getting this buttoned up all the way
+Thank you for the detailed feedback, Philipp.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+After further consideration, I believe keeping the current reset driver
+implementation would be preferable to moving the CLKGEN reset handling
+to the clock driver. While it's technically possible to implement this
+in the clock driver, I have concerns about the added complexity:
 
-Konrad
+1. We'd need to expose the CLKGEN reset separately in the reset driver
+2. The clock driver's dt-bindings would need modification to add an
+   optional resets property
+3. We'd need custom clk_ops for all three clock gates (including a dummy
+   'mem' gate)
+4. Each clock gate's .enable operation would need to handle CLKGEN reset
+   deassertion
+
+While the clock framework could theoretically handle this, there's no
+clean way to express the requirement that the CLKGEN reset should only
+be deasserted after all clocks in the group are enabled. We could
+implement this explicitly, but it would make the code more complex and
+harder to understand.
+
+The current solution in the reset driver is simpler and clearer - it
+treats this as what it really is: a TH1520-specific reset sequence.
+Looking at other similar SoCs like the BPI-F3, we can see this is truly
+THEAD-specific - the BPI-F3 has just a single reset line with no CLKGEN
+bit to manage. When you assert/deassert the GPU reset line on the
+TH1520, it handles everything needed for a clean reset on this specific
+SoC. This keeps the implementation contained and straightforward.
+
+Regarding the delay between clock enable and reset deassert - for SoCs
+like BPI-F3 with a single reset line, implementing this in the GPU
+consumer driver makes perfect sense. However, for the T-HEAD SoC, moving
+the delay there would actually complicate things since we need to manage
+both the CLKGEN and GPU reset lines in a specific sequence. Having this
+handled entirely within the reset driver keeps the implementation
+cleaner.
+
+Does this reasoning align with your thoughts? I'm happy to explore the
+clock driver approach further if you still see significant advantages to
+that solution.
+
+> 
+>>>> +
+>>>> +	/*
+>>>> +	 * According to the hardware manual, a delay of at least 32 clock
+>>>> +	 * cycles is required between de-asserting the clkgen reset and
+>>>> +	 * de-asserting the GPU reset. Assuming a worst-case scenario with
+>>>> +	 * a very high GPU clock frequency, a delay of 1 microsecond is
+>>>> +	 * sufficient to ensure this requirement is met across all
+>>>> +	 * feasible GPU clock speeds.
+>>>> +	 */
+>>>> +	udelay(1);
+>>>
+>>> I don't love that this procedure appears in the platform reset driver.
+>>> I appreciate it may not be clear from the SoC TRM, but this is the
+>>> standard reset procedure for all IMG Rogue GPUs. The currently
+>>> supported TI SoC handles this in silicon, when power up/down requests
+>>> are sent so we never needed to encode it in the driver before.
+>>>
+>>> Strictly speaking, the 32 cycle delay is required between power and
+>>> clocks being enabled and the reset line being deasserted. If nothing
+>>> here touches power or clocks (which I don't think it should), the delay
+>>> could potentially be lifted to the GPU driver.
+> 
+> ... This could be expressed as a delay between clk_prepare_enable() and
+> reset_control_deassert() in the GPU driver then.
+> 
+>> Yeah you're making excellent points here, I think it would be a good    
+>> idea to place the delay in the GPU driver, since this is specific to the
+>> whole family of the GPU's not the SoC itself.
+>>
+>>> Is it expected that if a device exposes a reset in devicetree that it
+>>> can be cleanly reset without interaction with the device driver itself?
+>>> I.E. in this case, is it required that the reset driver alone can cleanly
+>>> reset the GPU?
+> 
+> No, the "resets" property should just describe the physical
+> connection(s) between reset controller and the device.
+> 
+> It is fine for the device driver to manually assert the reset, enable
+> clocks and power, delay, and then deassert the reset, if that is the
+> device specific reset procedure.
+> 
+>> I'm not sure what the community as a whole thinks about that, so maybe
+>> someone else can answer this, but I would code SoC specific stuff in the
+>> reset driver for the SoC, and the GPU specific stuff (like the delay) in
+>> the GPU driver code. I wasn't sure whether the delay was specific to the
+>> SoC or the GPU so I've put it here.
+> 
+> I agree.
+> 
+> regards
+> Philipp
+> 
 
