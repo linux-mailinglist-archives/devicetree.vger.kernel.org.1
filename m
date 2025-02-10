@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-144622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA9DA2EA87
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:06:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02F1DA2EA92
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 12:07:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E47691885FA6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:06:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B266169337
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:06:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E369F1DF985;
-	Mon, 10 Feb 2025 11:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42331DE881;
+	Mon, 10 Feb 2025 11:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ssX2PE9x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KC5+zsf5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46871CEE8D;
-	Mon, 10 Feb 2025 11:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB2F61B6CE1;
+	Mon, 10 Feb 2025 11:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739185492; cv=none; b=GiOc+anqWtE/jVgj6+q0f0h6Ar73ThUTwLFdbGzRYyaVkE6/lbI0/h7QFUlJ195rKvfee5UV7APPi1vY/pdxaehtQPSv0etNzYhpuBkms5RxiTROIAoI606GgcrEonpf2KSD35yHQy5ovPyZqiTKPahSt51ViyJo4BWVSNMsNNY=
+	t=1739185583; cv=none; b=hQ15xMyE2sfs7uw249QiljUWsxnxpKhlsnf30N0uHRd28NKWev80O0MpG0oH3HWktgvpM0uJtx/d9P0iqO/4jB7L2bOV1HO3oSCU4IHm+VOW/erNOovROIyefD26rBMcOGLLXQsiKL1KOTev2XuV6hBwd4372R+k0Yb3kFLaMag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739185492; c=relaxed/simple;
-	bh=tqbI6QBfy3q1ea7YeVKdrraGM2oN3u8eQPI2advrBks=;
+	s=arc-20240116; t=1739185583; c=relaxed/simple;
+	bh=+U52iscgj0DgfzCXP6At0Z/PJ6gY7Nd2JM797fk8XqE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EFBX7I7pznhg8zKmdOqewmZVTMdoS7eCklFLKe44+9RvrmrWu/pITKRF5Ykggj9SfM3DwKkSgZacQyHGwpmAc1pXktWHm4nzCCOztPnd7vtVu21K6qwGXM2rEa6ndDrUBrZHz7+XGIaLq5WxK/Wt2hxRsLbDCXn0R4sMhUHI6hw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ssX2PE9x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 175D3C4CEEB;
-	Mon, 10 Feb 2025 11:04:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gGqUULLK/HNvVTiXYZL3YcKh0s18YhyXg/mTI8S2Kn+M+MR4KcpUA9EDoOHUzd0LHZsBvIrSYWghIoInv42Ty10k/ObkMzr6sti2ftmUqNqjfLQxVL02Wo2AkxUxqh5CMPn3Z6WsRWxyhsQJymHC1CJJsNzRZNC2bwPEmHax1wk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KC5+zsf5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 136DFC4CEE7;
+	Mon, 10 Feb 2025 11:06:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739185492;
-	bh=tqbI6QBfy3q1ea7YeVKdrraGM2oN3u8eQPI2advrBks=;
+	s=k20201202; t=1739185583;
+	bh=+U52iscgj0DgfzCXP6At0Z/PJ6gY7Nd2JM797fk8XqE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ssX2PE9xxAD2aGyFQ55LNLGCthjiFKomYAax8JThtHGtgHQuN3CLv5W03BZkek4Az
-	 fFAnbssmG12RdQ4612QFfzsDEdxhN/jMeY8yaKkea9Iu1aCFE60wlkjS6RAITTMJZA
-	 I3KflS3wjQTltN/MMy55EColbgeK9QfBLP55fTsPBaT0KdX2U9zOd6eLFtl+JCGq8s
-	 ZSXuQj7DWVaFt3H7YOJE73AChQqHfCY7A6imZWNewgBaITfFoOCEwsXZmDZd+25s0c
-	 IIiWZZGx65O+3n8XasEXd/vvV0xrHFpy0GjB6rMqWYWStR1fVGebK59dAVK3mp4dk+
-	 HMObLSpZltAxw==
-Message-ID: <e6daacbf-2cfe-4489-942d-037b542143d4@kernel.org>
-Date: Mon, 10 Feb 2025 12:04:43 +0100
+	b=KC5+zsf5S9LYOM/XI92k9lAcjRCHdtuPBsCRJoZZOdTzoJkaxttuWIiUBYI8eWp6q
+	 /q9MHp1i+XD3QvsNVgJZsStc/uSuL9l8imLnvOWeRJW5nKaWnMaxt1mWOhBvLK3gn9
+	 ubLYkFPC6PQ8SIzCkX6Nb6ir/+5TqzjS/Mbut5syIdvyPWe7p+JOkEX7GsxtXcxd1H
+	 f2xp7HJ3ouN1GmC8OXNJort61MSN27dS9gvXCZtFNtDpfyMiojf/Ym6QENPcGg2qxp
+	 Iu/oK53ecA2eFeojeHTpIQuMRnST+Gyy9VShb9J7Zs8x2tWt8SZeUi5vVJeZpOpcEy
+	 wrsJD1oQV7TMg==
+Message-ID: <87a29b78-5fab-48eb-9a86-f12c41369dfa@kernel.org>
+Date: Mon, 10 Feb 2025 12:06:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] media: dt-bindings: i2c: add DW9719/DW9718S VCM
- binding
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Val Packett <val@packett.cool>, Daniel Scally <djrscally@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v1] arm64: dts: rockchip: add 'chassis-type' property on
+ PineNote
+To: Diederik de Haas <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250210082035.8670-1-val@packett.cool>
- <20250210082035.8670-2-val@packett.cool>
- <c2ff273a-bac5-4fa3-8339-ab722c9e63bf@kernel.org>
- <Z6nWp3bpoiqpvpS-@kekkonen.localdomain>
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Dragan Simic <dsimic@manjaro.org>,
+ Maximilian Weigand <mweigand@mweigand.net>, Marek Kraus <gamiee@pine64.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250207111157.297276-1-didi.debian@cknow.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,39 +105,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z6nWp3bpoiqpvpS-@kekkonen.localdomain>
+In-Reply-To: <20250207111157.297276-1-didi.debian@cknow.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/02/2025 11:36, Sakari Ailus wrote:
-> Hi Krzysztof,
+On 07/02/2025 12:11, Diederik de Haas wrote:
+> Add the recommended chassis-type root node property so userspace can
+> request the form factor and adjust their behavior accordingly.
 > 
-> On Mon, Feb 10, 2025 at 09:29:25AM +0100, Krzysztof Kozlowski wrote:
->>> +  dongwoon,vcm-freq:
->>> +    description:
->>> +      The switching frequency for the voice coil motor.
->>
->> Frequency is in Hertz, so use proper property unit suffix. BTW, you
->> cannot add incorrect properties post-factum based on already accepted
->> ACPI driver. This would be nice bypass of review, right?
-> 
-> What's actually configured here is the divisor (10 MHz clock, divisor seems
-> to be value + 2). It's similar to existing
-> Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.yaml . I prefer
-> this as it's much easier to use that in a driver (think of having values
-> like 1428571 in DT, too).
+> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+> Link: https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#root-node
 
+Drop link, no need to point to source of every property. You don't do it
+for aliases, compatible, model etc, right?
 
-Sure, but then this should be renamed to match purpose and description
-rephrased.
+With link dropped:
 
-> 
->>
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-
-And this would stay + constraints.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
