@@ -1,237 +1,569 @@
-Return-Path: <devicetree+bounces-144465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88E43A2E249
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 03:37:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20A05A2E259
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 03:48:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66CD93A4E3D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 02:36:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 391D91887394
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 02:48:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E69B3596A;
-	Mon, 10 Feb 2025 02:36:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C00B46447;
+	Mon, 10 Feb 2025 02:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="A4NFpcef"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OTYgjV/6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2066.outbound.protection.outlook.com [40.107.22.66])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D759219BBC;
-	Mon, 10 Feb 2025 02:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.66
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739155014; cv=fail; b=ALrSSRpZiVmUHAUuJuD1IKVgiAliYpcUd10VA1kHZWR/YqVIaSxh6Kg/uQyOoEkGszCc7xQ+Umh88/3ykTD/xtUv+gH5dMKpJ1CfdlaA8uydldfbjShUTxgUjEJsqvbpaOUa7QBUGEtvWq1wUbL7rk5hAizj7Gb6tKMd8cR2Ax8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739155014; c=relaxed/simple;
-	bh=QNInxdIjkkRNPW05LYIXZ1QO7A2WCM8w44zl211AXLU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=fPMa81EoCly/RbgIH3brHuVXV88rABq7vTMbqXU+jCTcuXl5guvdSIWNaMxpAf90zQThYzpoW5xAms1Xy2gvkBuytZPR6PgJ09ZX7KZfzt0WHterh2Q4dTOtMcS5MuWEH+QfkikrcSr4I+gUl/EUN6nigP08GNCEpQ54xIk8wNo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=A4NFpcef; arc=fail smtp.client-ip=40.107.22.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sxvXWXNZmIFNtpvJiVLnaq8WbYf44EZk9ci2QQX0o+I5IYvOWkUGaf1fCk2ETG6/JZ/XPjdMMCFd3Fn8AgqDzag4QZ0eU5GotWNSADUBNOworkUfLjmaphE+Asf3xUrNoO6in3bJkHsD+B0I2ri9CzbSGXIDnBjwhfORt3lRoV/GDD4NSodzC9vzhYZuv9trHCRWXXzqUWKrURR1YlNkcU45U74J4mXWoT+cRcMA3+t1HhbkxL4fWsJcYcXyLY2tJMl5odPB6/xggSAh/LNqfkL+tqPuecnM2GTgIHN3uzUfb7ykgsbJ95aoc90Ut0rFKCTAEHy9EIhx0b++W52j8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mscInv4M5PCxbQkmwPflaBACtxpA4G81v/YLb2vUYCw=;
- b=dfiR0ZeMo1HBIfvlbPk7Qhr2PwmdSuej8MOzUzd0B3B2j3vhOCdlFl7Tn7UC44YjfzqLDS1gJV2dFI4WlpOCP9jmp1fqSTmj3+XaVdrjZDRjU1O5ZFhSwexGMfAO25MifIst+mETW6iVUQ3WEO3eBAoJWSyyd+XT3xzO16r2XA6TM1CyMsYrYTqSeEx6QhG5FJA0ANWug34BWqZfEgEUjZVqCgb3cXF5vRWc9VlXpdkavQrDva67Q3e42oV5X9R2OhUfU5+LB+e0sl6xOXX0QvTnOWzsJGeDgDU+Ccy5uqMqidlUe0X0UKV9yPwmwsWSJCMOMlmazovtLzKiBr1ddw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mscInv4M5PCxbQkmwPflaBACtxpA4G81v/YLb2vUYCw=;
- b=A4NFpcefYFrKQzkf2kurSei2IQwiOCIgQFBIORKCy2CnxnvaCzM6kEqw8FjUcldB4EPHk/CuIGI8sUSXnVw5wB2hMGD15FnzD1LpE4hA9JR/uW0WkCQl8Kfc56QXdKXpbIhALbGvFPHw+7LCvnoIdyPEDCu603SmsyVXMB1/IWSLCMXaLfeNJ0Ah0vkamMV74xLDjsgg4qxk2T/OCBUbPzeAYZK8jpvvfhETrYWxZU5IKBnEbqKCvuweSnyT2YPQoZsli1i23ZtcYsSVdkP/LW0m3CtMVhnd5M8bnGk5FIl++LX/eAGGYQpF2ZIkpp5OhUTOqnLg9aqg0IkbSUfgVA==
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by VE1PR04MB7216.eurprd04.prod.outlook.com (2603:10a6:800:1b0::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.18; Mon, 10 Feb
- 2025 02:36:48 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%3]) with mapi id 15.20.8422.015; Mon, 10 Feb 2025
- 02:36:48 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>, "Peng Fan (OSS)"
-	<peng.fan@oss.nxp.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Srinivas
- Kandagatla <srinivas.kandagatla@linaro.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 04/10] arm64: dts: imx8mn: Add access-controller
- references
-Thread-Topic: [PATCH v2 04/10] arm64: dts: imx8mn: Add access-controller
- references
-Thread-Index: AQHbeTucaaMq+IrsykGrfuo2Bh1yRLM7vceAgAAJ2ICABA68EA==
-Date: Mon, 10 Feb 2025 02:36:48 +0000
-Message-ID:
- <PAXPR04MB845912F48DC37B6BC599313888F22@PAXPR04MB8459.eurprd04.prod.outlook.com>
-References: <20250207083616.1442887-1-alexander.stein@ew.tq-group.com>
- <20250207083616.1442887-5-alexander.stein@ew.tq-group.com>
- <20250207120213.GD14860@localhost.localdomain> <8037692.EvYhyI6sBW@steina-w>
-In-Reply-To: <8037692.EvYhyI6sBW@steina-w>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|VE1PR04MB7216:EE_
-x-ms-office365-filtering-correlation-id: cf25e2ce-bc09-4318-b60b-08dd497bc497
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?wafQdc+zZ6rQLH6Y33BwfWpv9GVSUzpNicgVW/tY7McnHDV4G51N84Fr1v?=
- =?iso-8859-1?Q?zLNMBElir/hPSEJuqXnNBeJGYI7FgnnXn+jpdgC9SGQ81CZ1wfhUrjXMmF?=
- =?iso-8859-1?Q?LuwFz9eg/SFuZyFRlBT8wRfjwQt2DDeye+6ynDcjgSJ7u8Ey4kX6/wjMyM?=
- =?iso-8859-1?Q?9603f7m2CBtdG0v7q8som/S/C+g4825pVXCdBk+6uGH7BlVgKjuAknjr4R?=
- =?iso-8859-1?Q?FeQKEMX6VzVSwgGpwBu3rXFZS6cUpccVcyR/5UHzHWe5/7BfFzgVm1PEES?=
- =?iso-8859-1?Q?2najPwuLUYJW73/HyrKTFActT6NU81e2dwInDw8W2phsUOmfcwyU9EblHp?=
- =?iso-8859-1?Q?02kkphZErzrr2RYuQ2gmN4+BG5ru6rGqBh4cQfSyGmJWBEOCHOIrmgn+uF?=
- =?iso-8859-1?Q?bShCxipdrcu5p4u1SXMA1N5O+RczOzfYQjETdFmMtiTzZBCWEC5/JwaURQ?=
- =?iso-8859-1?Q?Vh+KafSxquqWGpD6MRxY+p7oFNK99GBZo3tdckPlFUb8qBICDAmPVLputP?=
- =?iso-8859-1?Q?T4Pgp4wkmefIiIpQ4ZJ5sW1QrOrCoSs0Syl/+RgcyyGtLtKtmbe92etsFy?=
- =?iso-8859-1?Q?0kHVgmr9LOjxoqkIfz+BHhlK6lwBIG7E/EqyDJ313/vxn2CiD8YGtToK1n?=
- =?iso-8859-1?Q?4q97vKduGJZzIqkWJdt5CWYK4EZZoJwi9xoFMsVh+FY8Pp+CnsPKYQMB/o?=
- =?iso-8859-1?Q?H4H5y9RN+P4xpUEKrTzhZ4WKrqfOYKo17/vhEhBz6ZXeBCu0w7i7TI3MFI?=
- =?iso-8859-1?Q?D4P3om25kNe1obi6oQchsiVnmWV6sKNsBbadq+qGzVvmqkIgqdhgb+jj3E?=
- =?iso-8859-1?Q?r5N6s7p2+qSVT2KAyBn6EXVQTkDqeuIqjCs2h+1jtcAWPjqVJvwfVPGVk/?=
- =?iso-8859-1?Q?rPwI8qGHLSxPzbNo4kmgwpQDFWf7fhYHpCp2BQ1gY9tA2OESLi60UwHimp?=
- =?iso-8859-1?Q?IFJty6rV/UABGOIsBrBvuTiUfxaDBAb2Eems8JPtgD8ywvro8SRfgSxks4?=
- =?iso-8859-1?Q?YAs9bauwQoWyDFNYgxSYz0KIaTtSkkvw0c41txZAMjOwqMCtbzkYoAny6a?=
- =?iso-8859-1?Q?OV00sf1+rCfBCeJELL8cpVkRDGHPfo2VN32lO7bfFbNLpVK2SJyQ3xOYgz?=
- =?iso-8859-1?Q?SWJyxnYpD9Gi/DfRt3yrDDEN7N3wLB9g2P4afIHMouJoKcefi0DaDdouYe?=
- =?iso-8859-1?Q?FCPzyqEroPMAHHuMMJQ7JeLYzctvhjVRMj4vMo8VssVDBGjqPR/zczyjQy?=
- =?iso-8859-1?Q?bbQqvJYdqs/z4gPNGdkdgabwt3zi8k8TLgt/19KpAERuPT+AdUCBv5QQCu?=
- =?iso-8859-1?Q?lzwYI6VdM545uAC8hen9WoSECs0+cQ/CwFtnk46lTGzkzeeKbIEEEiz3Jt?=
- =?iso-8859-1?Q?TdtNlFjQM9sDZnd1ODDu9X9F7mT1ledMgbjuFsdAtjHtoD/bWvO5PcFnP3?=
- =?iso-8859-1?Q?/dLbXIjrFvZLiNR9?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?+Frv8oWNdQ3bynUUlPOMm8hmVcTb29LJgUkMcdNpYkPCKlRaYGW6/vDjFG?=
- =?iso-8859-1?Q?ad3ekRNL4Aoq/0EKYB0ET1w/hD85RlaSLoLsfi0prXBm5u/5i0XF2bLuth?=
- =?iso-8859-1?Q?CMXuuMFMTMBST7jqMs1+g6Mqblj3qWDAZxfJFdiuC9jqRmY/Ib2X0W20Qc?=
- =?iso-8859-1?Q?lo16r4JnoovlWRgZGCvS3XOhKsk7Jzyy2t+Nyy7QS8OXrOSnCn4M0LLCb7?=
- =?iso-8859-1?Q?II+68sy9fCEKKeOpM8U9p5/DSBH8e46imBkXcBIhb3Wq36orjDv1wLTCEC?=
- =?iso-8859-1?Q?b5337401vnujsBBulAyQ0BnOw19ggRteFW5ACy8ze/Tjq/nET5Aj7i4/2X?=
- =?iso-8859-1?Q?VRre3DgkM817wTOjcyXElyadDwiD+CtL6UxEfiDIa6znvqyVIbgo4hnrI+?=
- =?iso-8859-1?Q?sGJ5+qn2TawuxhkoN7UCMtg2eXdN0anySm59z+oKzKRHy17ovyY/BfUX4O?=
- =?iso-8859-1?Q?ywUw7J7CW+plKB9SQ2F9YAfbK8EpTu52DI/GkY/uBp37qfqYvJ4gdEbQ7T?=
- =?iso-8859-1?Q?5iDef2pw/QDOsZe0Fj4T929wocxk773GqNwYseAR81zphtha8/CEgJjY2e?=
- =?iso-8859-1?Q?mJvX3147eFjh8FizCZWtzaymqj601VuAfhMvfazb/dFLVD+iMBt+YpPyUM?=
- =?iso-8859-1?Q?dyRdHCpfVOZqYQVXk79+Q4CrrmopRxuN3ph9k0lJOyM0Q7V8tb6514xNHm?=
- =?iso-8859-1?Q?ewA/TCq9A1qTqdn0pGvQmKEEunsSKeDw/480HX2L7fDF6djp5WIJ+Q3vWG?=
- =?iso-8859-1?Q?DENyz6QnoOVYClwcpI9CEmjQLdHZiBfa1WDl9G+8F/ACSSmyP4mzhasIPO?=
- =?iso-8859-1?Q?akPte4DgzcQLhopCtCvtEzVcdLQcIIQYvI0oABzQB/YOuHFV+OxU9FoYYz?=
- =?iso-8859-1?Q?9ZCpHrK77MY7byxcXVrne5tR+BYqTmaV8fD6m3nzJzickp7Ik93yWXj3Zw?=
- =?iso-8859-1?Q?tHDYTRPz/oupFCNMEP7q4c3qwGJBzTenQeC6RITdBcYbq54Z+YS9MBTH07?=
- =?iso-8859-1?Q?xfdTssDg1OCRFK2vwuJ7mqON3cJwJKVHyuBieaXe9R2Vq1qVnqdrCK0Zm8?=
- =?iso-8859-1?Q?lmvRjN6aAdmOq5Xdt15mx1RtmeK0wvqMRZFQJsHGnsom516pzbPYKEjyYj?=
- =?iso-8859-1?Q?BLaMc9PNceVle2eVj4PY0DXLprWUxNg/LeHnJQcezJnZxwYvfu2MSaL7Dx?=
- =?iso-8859-1?Q?BY5h7W8aS//ZRPn2CyN/CgRIRMOTCnHuiiLkeG72hefEsotAm3lYUCtlTf?=
- =?iso-8859-1?Q?yo33kEFAZblyUJEmMRdVLkfL1H5fEVNeTSc8K+iui+cos6p50YbcllekIV?=
- =?iso-8859-1?Q?Qv7HIHHjUqTW3LH5j5FSc1sGYxWdeh0dtbrJLTNjv+C+AP+f11ls988Qfg?=
- =?iso-8859-1?Q?F+qjKcXh/v21DSOyXfvgBzKH+AXamBihYclqbpGFGOsPH2ippZhfYuMfBA?=
- =?iso-8859-1?Q?46ypg7aWaBnwoLHa6RQwkl6XJuJ/s3rtPeJOruP+sruyroUwe7ZrCAuDxy?=
- =?iso-8859-1?Q?XciIjMTWOom5w0E7GvefiAxGiL1KplInhjDQtYerzf2Ry99Lb1o7lLqIhV?=
- =?iso-8859-1?Q?oIzIDuT9jVahBU4b7mG2KAB2ngchFczG1KQ56EInhQ3nR0h1WyiBi1thia?=
- =?iso-8859-1?Q?Xfbw52Ronh/mU=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9745B1C2BD
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 02:48:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739155693; cv=none; b=tYZ1sIksWjloZC5zBOfVoYYQINwe7eDfzObhYrDkaHT4dYs8ZTu7ZeZ2RCL4BjnET99t/oGo+HAL055HeQ5KxnSa5odVXlm51rAl22tDTrdT04GVhepY6ZXFiH3By6JFqMntA/U9tF2Kh6vGPBEX+MIVxyR36Qp0FdhshHcIn4g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739155693; c=relaxed/simple;
+	bh=QpajHgX3Drm0wz4qxg76dLloUu4uYleNAGLY/gKYQWY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fFx/0gZ/KBQalJ/5SDTFwK29GW9Un8ESLkxSUKlwvD8MYpE30VTbv0u8p19eDl5mALhcPZh244HyqvcFQPAPZO83BFzymKvyvnwX7BQePlMIXIELoaUZkfSWN2ZTDffrX+gktf6Et4zykgKe58D52/bB//bv3NnRdwacCVTkprs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OTYgjV/6; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 519Ni0Je002259
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 02:48:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TvAj2LadsVPoilCdX1n1BrOSMKvUfEQ91Z4My6HVH0I=; b=OTYgjV/6zIJoKg5j
+	SFN029qT/RZcYG11SV1CaV7aASTitdKHfrmjt7ft/Q9jZE9dk+1u8XvOtd246PRF
+	E/429QbIsMVIHAjIUCAZUDWQ//ZMt1LQsXZcpMwFkL7+kWCgFyDwukDFbXzQs796
+	277W6YwjB+am3PzhBrf6DncWyhbQNSXTmfr20oEiYNn5xLeHxa60AxVk4MjipWpK
+	NUy6BhunvWcmJe98l1s8w0CDGiluO2owUeE878DYHGItCaCV/6DjR1BXjHTJ18lw
+	pfMgJflHyb+Wk66Y+xcXJx47Jw06Wsoai3vI3TQKTYM2Qq4f7eJYo+fPXlT+zy/z
+	SL81Sw==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44p0dyjtyc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 02:48:09 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-2fa562cc2a6so2465627a91.2
+        for <devicetree@vger.kernel.org>; Sun, 09 Feb 2025 18:48:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739155689; x=1739760489;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TvAj2LadsVPoilCdX1n1BrOSMKvUfEQ91Z4My6HVH0I=;
+        b=m/HiUSkYD8JYaBVp9dEcKrpt9Rmvp36PknlsNctkvpCEw1MG8VFSTtYzeBh1GJ+J/i
+         GLEaeZSL/X4rPFrtUY7vu82G7KdaXO11kAy1SU5aiGc9s77RHmwaYpaIvIOKDbs4P/KD
+         XcYq1DZYXL7aZoVHv8TxH3e7AtjX+T6kiTZsNKe7gEvOJ9NNg4/7T+Kb8QR3UysHbeoH
+         Ph3jEsWHOymO1e08KOAGufn0Vw/pWO3iBQthOJ2py9yG/E/Bn/+RAWETvAco3KspEtj1
+         xj+R7xx8q3RCV6zPqRt/IroRTL4L+GCRbRnVgVzonMP/FWg34upMeYvVJUeI6tQUfbT+
+         DPPA==
+X-Forwarded-Encrypted: i=1; AJvYcCWMVZj/Y6HwoRwTjwTY4C2ufkLtvh3AhKJbzMUqooRmnGwxkzd9Q144vMalkOpBIobQlxbnRyMsuYrm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYuNvNZZ9/aq3Fyp/Qdg4In7MmfqmhcBG4C8F+awltpBUjDr0J
+	PYHSuZXTQlFYSurRKBRFmvJbA8VF4+bIFAsHAiH7DZExoFZOv9LgaLMlEXEShNqBqqtBXGVqQqT
+	9KmbJnpMi3qDF+us22E5QW2dYMQOJZXT/l4xWsLI3YPxCsJJ3/Tx44ODfGQoS
+X-Gm-Gg: ASbGncuOTkR/Aortwry4gUVb7DfKhxy3kwMbT1ggz8qmYago5rjCnoJbKaTYAKMIpPK
+	MQRhRVZu6K53OMrZ+OFeiNOUs8lmRhxo8jk2st1CePLkxKJqoVrdK9BckztCNptso2y2FLeWhKE
+	NnRmNNNejTxnoQLdYqce/ewLzqcLbpyp3xk17gsYZViP508Xb1HNJe9kHQVHVZORLFk7ICZxIx8
+	yFK+PBmgFFTgZQub6kg0XlnFMKUcPcPqXpL9epyPPUmsVMrBEmZtbASiMRG9IubPHHGGYTVMk/Z
+	KuG6dxzWS+ZHqQUhWUDByJHxveF7aBjcG0USCCSQzImAJT5URTWPUtLOsuqNULI=
+X-Received: by 2002:a17:90b:2309:b0:2ee:ead6:6213 with SMTP id 98e67ed59e1d1-2fa242766b0mr16642690a91.19.1739155688655;
+        Sun, 09 Feb 2025 18:48:08 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE1gOkEG5TO/EuKCqWcjwa94DVMY+rPKs8cM6aFLr0UABclV3X3OkJwg+1xxiCB5alZLClAMA==
+X-Received: by 2002:a17:90b:2309:b0:2ee:ead6:6213 with SMTP id 98e67ed59e1d1-2fa242766b0mr16642640a91.19.1739155688120;
+        Sun, 09 Feb 2025 18:48:08 -0800 (PST)
+Received: from [10.133.33.8] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fa09a753dbsm7516184a91.29.2025.02.09.18.48.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Feb 2025 18:48:07 -0800 (PST)
+Message-ID: <383599d8-d124-4c5a-8253-43502702e748@oss.qualcomm.com>
+Date: Mon, 10 Feb 2025 10:47:58 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf25e2ce-bc09-4318-b60b-08dd497bc497
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2025 02:36:48.3953
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7CJJ/vzzq2YRPzkmfF3oxxWL/gTfm1lzZzfpyFE+s8naO3h8AA3fqucKtPQkgU5nzHtfMXN8ZR8R3uuLR05RcQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7216
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 01/14] dt-bindings: net: Add PPE for Qualcomm
+ IPQ9574 SoC
+To: Luo Jie <quic_luoj@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
+        Suruchi Agarwal <quic_suruchia@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
+        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
+        srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
+        john@phrozen.org
+References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
+ <20250209-qcom_ipq_ppe-v3-1-453ea18d3271@quicinc.com>
+Content-Language: en-US
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <20250209-qcom_ipq_ppe-v3-1-453ea18d3271@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: e7Bq2ulDBE6AKxxWimW42cNxSB1YYHq-
+X-Proofpoint-GUID: e7Bq2ulDBE6AKxxWimW42cNxSB1YYHq-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-10_01,2025-02-07_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ clxscore=1015 lowpriorityscore=0 impostorscore=0 mlxlogscore=999
+ mlxscore=0 priorityscore=1501 spamscore=0 adultscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502100021
 
-> Subject: Re: [PATCH v2 04/10] arm64: dts: imx8mn: Add access-
-> controller references
->=20
-> Hi Peng,
->=20
-> Am Freitag, 7. Februar 2025, 13:02:13 CET schrieb Peng Fan:
-> > On Fri, Feb 07, 2025 at 09:36:09AM +0100, Alexander Stein wrote:
-> > >Mark ocotp as a access-controller and add references on peripherals
-> > >which can be disabled (fused).
-> >
-> > I am not sure whether gpcv2 changes should be included in this
-> > patchset or not. Just add access-controller for fused IP will not work.
->=20
-> Well, I was able to successfully boot a i.MX8M Nano DualLite.
->=20
-> > i.MX8M BLK-CTRL/GPC will hang if the related power domain is still
-> > touched by kernel. The pgc can't power up/down because clock is
-> gated.
->=20
-> Well, with GPU node disabled, no one should enable the power domain.
-> But to be on the safe side I would also add access-controllers to the
-> corresponding power domains as well.
->=20
-> > This comment also apply to i.MX8MM/P.
->=20
-> Sure. Do you have any information what is actually disabled by those
-> fused?
-> It seems it's the IP and their power domains. Anything else?
 
-In NXP downstream there is a patch for  drivers/pmdomain/imx/imx8m-blk-ctrl=
-.c
 
-soc: imx8m-blk-ctrl: Support fused modules
-   =20
-    For fused module, its pgc can't power up/down and clock is gated.
-    Because imx8m-blk-ctrl driver will pm_runtime_get_sync/pm_runtime_put
-    all power domains during suspend/resume. So we have to remove the
-    pgc and clock of fused module from blk-ctrl DTS node.
-    Update the driver to support such case.
+On 2/9/2025 10:29 PM, Luo Jie wrote:
+> The PPE (packet process engine) hardware block is available in Qualcomm
+> IPQ chipsets that support PPE architecture, such as IPQ9574. The PPE in
+> the IPQ9574 SoC includes six ethernet ports (6 GMAC and 6 XGMAC), which
+> are used to connect with external PHY devices by PCS. It includes an L2
+> switch function for bridging packets among the 6 ethernet ports and the
+> CPU port. The CPU port enables packet transfer between the ethernet
+> ports and the ARM cores in the SoC, using the ethernet DMA.
+> 
+> The PPE also includes packet processing offload capabilities for various
+> networking functions such as route and bridge flows, VLANs, different
+> tunnel protocols and VPN.
+> 
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
+>   .../devicetree/bindings/net/qcom,ipq9574-ppe.yaml  | 406 +++++++++++++++++++++
+>   1 file changed, 406 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq9574-ppe.yaml b/Documentation/devicetree/bindings/net/qcom,ipq9574-ppe.yaml
+> new file mode 100644
+> index 000000000000..be6f9311eebb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/qcom,ipq9574-ppe.yaml
+> @@ -0,0 +1,406 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/qcom,ipq9574-ppe.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm IPQ packet process engine (PPE)
+> +
+> +maintainers:
+> +  - Luo Jie <quic_luoj@quicinc.com>
+> +  - Lei Wei <quic_leiwei@quicinc.com>
+> +  - Suruchi Agarwal <quic_suruchia@quicinc.com>
+> +  - Pavithra R <quic_pavir@quicinc.com>>
+> +
+> +description:
+You have multiple paragrahs here.
+description: -> description: |
 
-But this patch also needs U-Boot to update device tree nodes,
-I recalled that U-Boot will remove gpc nodes, but not update blk-ctrl nodes=
-.
+Thanks,
+Jie
 
-Regards,
-Peng.
->=20
-> Best regards,
-> Alexander
-> --
-> TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld,
-> Germany Amtsgericht M=FCnchen, HRB 105018
-> Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2F
-> www.tq-
-> group.com%2F&data=3D05%7C02%7Cpeng.fan%40nxp.com%7Ca7392a7
-> a9a7d480f69c108dd477447bc%7C686ea1d3bc2b4c6fa92cd99c5c301
-> 635%7C0%7C0%7C638745286928288330%7CUnknown%7CTWFpbGZ
-> sb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW
-> 4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3DF
-> R%2BeuYsheLUO8UY6sB%2FGFpTo2911r9tQDl%2BZFqnDqcY%3D&res
-> erved=3D0
->=20
->=20
+> +  The Ethernet functionality in the PPE (Packet Process Engine) is comprised
+> +  of three components, the switch core, port wrapper and Ethernet DMA.
+> +
+> +  The Switch core in the IPQ9574 PPE has maximum of 6 front panel ports and
+> +  two FIFO interfaces. One of the two FIFO interfaces is used for Ethernet
+> +  port to host CPU communication using Ethernet DMA. The other is used
+> +  communicating to the EIP engine which is used for IPsec offload. On the
+> +  IPQ9574, the PPE includes 6 GMAC/XGMACs that can be connected with external
+> +  Ethernet PHY. Switch core also includes BM (Buffer Management), QM (Queue
+> +  Management) and SCH (Scheduler) modules for supporting the packet processing.
+> +
+> +  The port wrapper provides connections from the 6 GMAC/XGMACS to UNIPHY (PCS)
+> +  supporting various modes such as SGMII/QSGMII/PSGMII/USXGMII/10G-BASER. There
+> +  are 3 UNIPHY (PCS) instances supported on the IPQ9574.
+> +
+> +  Ethernet DMA is used to transmit and receive packets between the six Ethernet
+> +  ports and ARM host CPU.
+> +
+> +  The follow diagram shows the PPE hardware block along with its connectivity
+> +  to the external hardware blocks such clock hardware blocks (CMNPLL, GCC,
+> +  NSS clock controller) and ethernet PCS/PHY blocks. For depicting the PHY
+> +  connectivity, one 4x1 Gbps PHY (QCA8075) and two 10 GBps PHYs are used as an
+> +  example.
+> +  - |
+> +         +---------+
+> +         |  48 MHZ |
+> +         +----+----+
+> +              |(clock)
+> +              v
+> +         +----+----+
+> +  +------| CMN PLL |
+> +  |      +----+----+
+> +  |           |(clock)
+> +  |           v
+> +  |      +----+----+           +----+----+  (clock) +----+----+
+> +  |  +---|  NSSCC  |           |   GCC   |--------->|   MDIO  |
+> +  |  |   +----+----+           +----+----+          +----+----+
+> +  |  |        |(clock & reset)      |(clock)
+> +  |  |        v                     v
+> +  |  |   +-----------------------------+----------+----------+---------+
+> +  |  |   |       +-----+               |EDMA FIFO |          | EIP FIFO|
+> +  |  |   |       | SCH |               +----------+          +---------+
+> +  |  |   |       +-----+                        |              |       |
+> +  |  |   |  +------+   +------+               +-------------------+    |
+> +  |  |   |  |  BM  |   |  QM  |  IPQ9574-PPE  |    L2/L3 Process  |    |
+> +  |  |   |  +------+   +------+               +-------------------+    |
+> +  |  |   |                                             |               |
+> +  |  |   | +-------+ +-------+ +-------+ +-------+ +-------+ +-------+ |
+> +  |  |   | |  MAC0 | |  MAC1 | |  MAC2 | |  MAC3 | | XGMAC4| |XGMAC5 | |
+> +  |  |   | +---+---+ +---+---+ +---+---+ +---+---+ +---+---+ +---+---+ |
+> +  |  |   |     |         |         |         |         |         |     |
+> +  |  |   +-----+---------+---------+---------+---------+---------+-----+
+> +  |  |         |         |         |         |         |         |
+> +  |  |     +---+---------+---------+---------+---+ +---+---+ +---+---+
+> +  +--+---->|                PCS0                 | |  PCS1 | | PCS2  |
+> +  |(clock) +---+---------+---------+---------+---+ +---+---+ +---+---+
+> +  |            |         |         |         |         |         |
+> +  |        +---+---------+---------+---------+---+ +---+---+ +---+---+
+> +  +------->|             QCA8075 PHY             | | PHY4  | | PHY5  |
+> +   (clock) +-------------------------------------+ +-------+ +-------+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,ipq9574-ppe
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: PPE core clock from NSS clock controller
+> +      - description: PPE APB (Advanced Peripheral Bus) clock from NSS clock controller
+> +      - description: PPE ingress process engine clock from NSS clock controller
+> +      - description: PPE BM, QM and scheduler clock from NSS clock controller
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ppe
+> +      - const: apb
+> +      - const: ipe
+> +      - const: btq
+> +
+> +  resets:
+> +    maxItems: 1
+> +    description: PPE reset, which is necessary before configuring PPE hardware
+> +
+> +  interconnects:
+> +    items:
+> +      - description: Clock path leading to PPE switch core function
+> +      - description: Clock path leading to PPE register access
+> +      - description: Clock path leading to QoS generation
+> +      - description: Clock path leading to timeout reference
+> +      - description: Clock path leading to NSS NOC from memory NOC
+> +      - description: Clock path leading to memory NOC from NSS NOC
+> +      - description: Clock path leading to enhanced memory NOC from NSS NOC
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: ppe
+> +      - const: ppe_cfg
+> +      - const: qos_gen
+> +      - const: timeout_ref
+> +      - const: nssnoc_memnoc
+> +      - const: memnoc_nssnoc
+> +      - const: memnoc_nssnoc_1
+> +
+> +  ethernet-dma:
+> +    type: object
+> +    additionalProperties: false
+> +    description:
+> +      EDMA (Ethernet DMA) is used to transmit packets between PPE and ARM
+> +      host CPU. There are 32 TX descriptor rings, 32 TX completion rings,
+> +      24 RX descriptor rings and 8 RX fill rings supported.
+> +
+> +    properties:
+> +      clocks:
+> +        items:
+> +          - description: EDMA system clock from NSS Clock Controller
+> +          - description: EDMA APB (Advanced Peripheral Bus) clock from
+> +              NSS Clock Controller
+> +
+> +      clock-names:
+> +        items:
+> +          - const: sys
+> +          - const: apb
+> +
+> +      resets:
+> +        maxItems: 1
+> +        description: EDMA reset from NSS clock controller
+> +
+> +      interrupts:
+> +        minItems: 29
+> +        maxItems: 57
+> +
+> +      interrupt-names:
+> +        minItems: 29
+> +        maxItems: 57
+> +        items:
+> +          pattern: '^(txcmpl_([0-9]|[1-2][0-9]|3[0-1])|rxdesc_([0-9]|1[0-9]|2[0-3])|misc)$'
+> +        description:
+> +          Interrupts "txcmpl_[0-31]" are the Ethernet DMA Tx completion ring interrupts.
+> +          Interrupts "rxdesc_[0-23]" are the Ethernet DMA Rx Descriptor ring interrupts.
+> +          Interrupt "misc" is the Ethernet DMA miscellaneous error interrupt.
+> +
+> +    required:
+> +      - clocks
+> +      - clock-names
+> +      - resets
+> +      - interrupts
+> +      - interrupt-names
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - interconnects
+> +  - interconnect-names
+> +  - ethernet-dma
+> +
+> +allOf:
+> +  - $ref: ethernet-switch.yaml
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
+> +    #include <dt-bindings/interconnect/qcom,ipq9574.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    ethernet-switch@3a000000 {
+> +        compatible = "qcom,ipq9574-ppe";
+> +        reg = <0x3a000000 0xbef800>;
+> +        clocks = <&nsscc 80>,
+> +                 <&nsscc 79>,
+> +                 <&nsscc 81>,
+> +                 <&nsscc 78>;
+> +        clock-names = "ppe",
+> +                      "apb",
+> +                      "ipe",
+> +                      "btq";
+> +        resets = <&nsscc 108>;
+> +        interconnects = <&nsscc MASTER_NSSNOC_PPE &nsscc SLAVE_NSSNOC_PPE>,
+> +                        <&nsscc MASTER_NSSNOC_PPE_CFG &nsscc SLAVE_NSSNOC_PPE_CFG>,
+> +                        <&gcc MASTER_NSSNOC_QOSGEN_REF &gcc SLAVE_NSSNOC_QOSGEN_REF>,
+> +                        <&gcc MASTER_NSSNOC_TIMEOUT_REF &gcc SLAVE_NSSNOC_TIMEOUT_REF>,
+> +                        <&gcc MASTER_MEM_NOC_NSSNOC &gcc SLAVE_MEM_NOC_NSSNOC>,
+> +                        <&gcc MASTER_NSSNOC_MEMNOC &gcc SLAVE_NSSNOC_MEMNOC>,
+> +                        <&gcc MASTER_NSSNOC_MEM_NOC_1 &gcc SLAVE_NSSNOC_MEM_NOC_1>;
+> +        interconnect-names = "ppe",
+> +                             "ppe_cfg",
+> +                             "qos_gen",
+> +                             "timeout_ref",
+> +                             "nssnoc_memnoc",
+> +                             "memnoc_nssnoc",
+> +                             "memnoc_nssnoc_1";
+> +
+> +        ethernet-dma {
+> +            clocks = <&nsscc 77>,
+> +                     <&nsscc 76>;
+> +            clock-names = "sys",
+> +                          "apb";
+> +            resets = <&nsscc 0>;
+> +            interrupts = <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 376 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 380 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 382 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 505 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 504 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 503 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 502 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 501 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 500 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 351 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 499 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "txcmpl_8",
+> +                              "txcmpl_9",
+> +                              "txcmpl_10",
+> +                              "txcmpl_11",
+> +                              "txcmpl_12",
+> +                              "txcmpl_13",
+> +                              "txcmpl_14",
+> +                              "txcmpl_15",
+> +                              "txcmpl_16",
+> +                              "txcmpl_17",
+> +                              "txcmpl_18",
+> +                              "txcmpl_19",
+> +                              "txcmpl_20",
+> +                              "txcmpl_21",
+> +                              "txcmpl_22",
+> +                              "txcmpl_23",
+> +                              "txcmpl_24",
+> +                              "txcmpl_25",
+> +                              "txcmpl_26",
+> +                              "txcmpl_27",
+> +                              "txcmpl_28",
+> +                              "txcmpl_29",
+> +                              "txcmpl_30",
+> +                              "txcmpl_31",
+> +                              "rxdesc_20",
+> +                              "rxdesc_21",
+> +                              "rxdesc_22",
+> +                              "rxdesc_23",
+> +                              "misc";
+> +        };
+> +
+> +        ethernet-ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +                phy-mode = "qsgmii";
+> +                managed = "in-band-status";
+> +                phy-handle = <&phy0>;
+> +                pcs-handle = <&pcs0_mii0>;
+> +                clocks = <&nsscc 33>,
+> +                         <&nsscc 34>,
+> +                         <&nsscc 37>;
+> +                clock-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +                resets = <&nsscc 29>,
+> +                         <&nsscc 96>,
+> +                         <&nsscc 97>;
+> +                reset-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +            };
+> +
+> +            port@2 {
+> +                reg = <2>;
+> +                phy-mode = "qsgmii";
+> +                managed = "in-band-status";
+> +                phy-handle = <&phy1>;
+> +                pcs-handle = <&pcs0_mii1>;
+> +                clocks = <&nsscc 40>,
+> +                         <&nsscc 41>,
+> +                         <&nsscc 44>;
+> +                clock-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +                resets = <&nsscc 30>,
+> +                         <&nsscc 98>,
+> +                         <&nsscc 99>;
+> +                reset-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +            };
+> +
+> +            port@3 {
+> +                reg = <3>;
+> +                phy-mode = "qsgmii";
+> +                managed = "in-band-status";
+> +                phy-handle = <&phy2>;
+> +                pcs-handle = <&pcs0_mii2>;
+> +                clocks = <&nsscc 47>,
+> +                         <&nsscc 48>,
+> +                         <&nsscc 51>;
+> +                clock-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +                resets = <&nsscc 31>,
+> +                         <&nsscc 100>,
+> +                         <&nsscc 101>;
+> +                reset-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +            };
+> +
+> +            port@4 {
+> +                reg = <4>;
+> +                phy-mode = "qsgmii";
+> +                managed = "in-band-status";
+> +                phy-handle = <&phy3>;
+> +                pcs-handle = <&pcs0_mii3>;
+> +                clocks = <&nsscc 54>,
+> +                         <&nsscc 55>,
+> +                         <&nsscc 58>;
+> +                clock-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +                resets = <&nsscc 32>,
+> +                         <&nsscc 102>,
+> +                         <&nsscc 103>;
+> +                reset-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +            };
+> +
+> +            port@5 {
+> +                reg = <5>;
+> +                phy-mode = "usxgmii";
+> +                managed = "in-band-status";
+> +                phy-handle = <&phy4>;
+> +                pcs-handle = <&pcs1_mii0>;
+> +                clocks = <&nsscc 61>,
+> +                         <&nsscc 62>,
+> +                         <&nsscc 65>;
+> +                clock-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +                resets = <&nsscc 33>,
+> +                         <&nsscc 104>,
+> +                         <&nsscc 105>;
+> +                reset-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +            };
+> +
+> +            port@6 {
+> +                reg = <6>;
+> +                phy-mode = "usxgmii";
+> +                managed = "in-band-status";
+> +                phy-handle = <&phy5>;
+> +                pcs-handle = <&pcs2_mii0>;
+> +                clocks = <&nsscc 68>,
+> +                         <&nsscc 69>,
+> +                         <&nsscc 72>;
+> +                clock-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +                resets = <&nsscc 34>,
+> +                         <&nsscc 106>,
+> +                         <&nsscc 107>;
+> +                reset-names = "mac",
+> +                              "rx",
+> +                              "tx";
+> +            };
+> +        };
+> +    };
+> 
 
 
