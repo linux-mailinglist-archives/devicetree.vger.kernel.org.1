@@ -1,120 +1,111 @@
-Return-Path: <devicetree+bounces-144797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F059A2F41D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:50:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFD9A2F427
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:51:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 548293A1142
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:50:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 633CE1886C2B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94D82586CD;
-	Mon, 10 Feb 2025 16:50:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889612586ED;
+	Mon, 10 Feb 2025 16:51:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tCi+UeAo"
+	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="WeufU5F0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 999832586C2;
-	Mon, 10 Feb 2025 16:50:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87822586DD;
+	Mon, 10 Feb 2025 16:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739206213; cv=none; b=oMBGDtPT+uWgcwa/cJjCO8uxu2rOteQTCHFpKmYOc0Fr0uIiBjBNzoavDUuqiXYKC5JBOXrAajs385/FOcAwRQNsK7H/r19vf0QD5DAaVMGVmvgrmCyWlBADxLptCuGUSxdTYCD6jwBDJ7hRT4FHzG1xyMtqFJWQmfHg03T0/zE=
+	t=1739206261; cv=none; b=LriWE5objBs5lYQyzTT+vNlEfIiApNp9h9uulrWoZ6/xAJqOdvbY7ZRJgZ7s78hPIrAhBEtWFGBfebfA1rVgItROPKkR5PZYpKH/cy4zQ9QjIm0fhoGlwEyUxL6lRwinFDGlyoC6hxTfhbSHQcZ6Jt+P3iu+BapHj1MWbD9a2EY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739206213; c=relaxed/simple;
-	bh=RoQqBYbP9aHYBtW9G+kY1z2Gcw7QCa9D5m8qCyEWhgg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=URFFBCfYRadB4n0YdwHsB69GCMC5owl3rG8GJHG/TxCH3xFCSTOinlgdL8O29FvdvYe7S9Vz5mRBrCTSSLBjlr39fH5/NqdhE4Zvpc6ECSkq7w3/xwQz1klpLgU20kSNLLGW6LMT7zkd5Gyi+5ECyZAvxTKaajvJuc/L49FDG7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tCi+UeAo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86225C4CED1;
-	Mon, 10 Feb 2025 16:50:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739206213;
-	bh=RoQqBYbP9aHYBtW9G+kY1z2Gcw7QCa9D5m8qCyEWhgg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tCi+UeAoP//GzfkCV1Sm1qDrMrgDldX0pf1R5NIar3SiKfRurctKExQiugQquMZVn
-	 KFIauFPrDvSjX4NN1Y7aq1kWZEXqaqRpcDJ78/u3U5sMte4/OLJ0mYAdlzfbd0gTW/
-	 Nwqj1t/xX/SfnrQ17BtYg3CMFE+75MgUmhZ9vHTRBdips1NzvFrTsK3Mj3wbR0rZEY
-	 fdSJaz5yru8jFc4Ngt0Cl8/3l4bqI6LKfKUh5PMDr/xh0YmAPxCpPPl1kv73zJIoPL
-	 VC7FMEPDDPeiIOyUkqKds+cfyihJwAcdRd++c5QAnZPPZJwRLduKnYDulK9AlG/21i
-	 y6ztCLYQv+xQA==
-Date: Mon, 10 Feb 2025 16:50:06 +0000
-From: Lee Jones <lee@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dzmitry Sankouski <dsankouski@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Chanwoo Choi <cw00.choi@samsung.com>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>, Hans de Goede <hdegoede@redhat.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: Patchset status - 'Add support for Maxim Integrated MAX77705
- PMIC'
-Message-ID: <20250210165006.GB1868108@google.com>
-References: <CABTCjFBx-QpCKFWs5MPCgLAjJWT6ygrvS_A0nJk2BBxmWAxF+Q@mail.gmail.com>
- <e67c0375-1024-483b-aabf-6a11339ab9af@linaro.org>
- <CABTCjFBvYkEG0WYhCt6tP_cO8Ct82t0=UhwBefZEJrUiFc7vAw@mail.gmail.com>
- <3e69dc53-cf05-479b-9707-eabc2eae9291@kernel.org>
+	s=arc-20240116; t=1739206261; c=relaxed/simple;
+	bh=oNYp33jxngaML7ct2N4mOAELHAXsHNrKBnIHuGSuNlQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=sf6EGzdIhPEJeNFzYEQxIiN5zyMDX6Sr2UhoHy5CeyOTxQgjKsaW/h4EWTW2L7sqQUfFq/vjHdiSduoOvdxdqE585SH7Ip3maRxDeS9ZL14bFMDR5N6mHhFxjzOR8UU5RWAdff1dUauBN/qPCIzMpmvmQ9WvxyQkT0HsAtLBrMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=WeufU5F0; arc=none smtp.client-ip=217.92.40.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A2CC71480320;
+	Mon, 10 Feb 2025 17:50:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1739206257;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Dx2AyCMYhFFbWrbn642fofkzdPw2vsH5Sq2hYcPNPjo=;
+	b=WeufU5F04oIdoa+jIjBiljm+kcpuXaacU7TtFk2amz8xodrGnWESGchS1CTSG5Gu678GPz
+	p+x8WZu1frRJNtPrCDfoULtLl5W4uz5e7yr+1l8rqHdTdD2WU+alJv7UgS8j5nkS6YniLc
+	y/AKnxJiAz24d7dBsfxsoDjNdoAFxcaoGroNUlOwkPy2lRxMuG2tcK1hqUEg1SfuNuAfNF
+	/H3cruIVrUfKYa6pvFsc8kU6udnA9/5rer4TZOVgq3lqNFAonQCYWw7hKgWqqSRkGVndHJ
+	k5RzWCgc8M8rFEl29o9yvFppLhkYLwUqQKx+XP8pv7zYEsfnYvJMZG9kix+U0A==
+From: Alexander Dahl <ada@thorsis.com>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Ryan Wanner <ryan.wanner@microchip.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: [PATCH v2 09/16] nvmem: microchip-otpc: Avoid reading a write-only register
+Date: Mon, 10 Feb 2025 17:50:47 +0100
+Message-Id: <20250210165050.496486-1-ada@thorsis.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250210164506.495747-1-ada@thorsis.com>
+References: <20250210164506.495747-1-ada@thorsis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3e69dc53-cf05-479b-9707-eabc2eae9291@kernel.org>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, 10 Feb 2025, Krzysztof Kozlowski wrote:
+The OTPC Control Register (OTPC_CR) has just write-only members.
+Reading from that register leads to a warning in OTPC Write Protection
+Status Register (OTPC_WPSR) in field Software Error Type (SWETYP) of
+type READ_WO (A write-only register has been read (warning).)
 
-> On 10/02/2025 08:11, Dzmitry Sankouski wrote:
-> > вс, 9 февр. 2025 г. в 22:38, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org>:
-> >>
-> >> On 09/02/2025 15:13, Dzmitry Sankouski wrote:
-> >>> For the patchset I sent 2 weeks ago, [patchwork][1] shows status
-> >>> 'Handled Elsewhere, archived'. Is anything blocking it?
-> >>>
-> >>> [1]: https://patchwork.kernel.org/project/linux-pm/list/?series=927848&archive=both&state=*
-> >>
-> >> That's PM patchwork, not necessarily power supply. But anyway, what does
-> >> the cover letter say? Who do you expect to merge it? Above link does not
-> >> provide cover letter, unfortunately.
-> >>
-> > 
-> > I didn't found anything related to power supply in the list of mail lists at
-> > https://subspace.kernel.org/vger.kernel.org.html.
-> > 
-> > However I found my series in linux-input with New status.
-> > 
-> > Here is my cover letter:
-> > https://lore.kernel.org/all/20250123-starqltechn_integration_upstream-v17-0-8b06685b6612@gmail.com/
-> 
-> Nothing in cover letter gives any expectations or directions of merging,
-> so maybe that was a factor here?
-> 
-> > I guess I would expect a person from the MAINTAINERS list to merge it?  In that
-> > case it would be Chanwoo Choi <cw00.choi@samsung.com> and
-> > Krzysztof Kozlowski <krzk@kernel.org> from
-> > MAXIM PMIC AND MUIC DRIVERS FOR EXYNOS BASED BOARDS entry.
-> 
-> Haha, nice! :) There is no such subsystem. This cannot be taken by these
-> maintainers because there is nowhere they could put it and no one would
-> take it from them even if they did find the place.
+Just create the register write content from scratch is sufficient here.
 
-It's likely that I would take the set.
+Signed-off-by: Alexander Dahl <ada@thorsis.com>
+Fixes: 98830350d3fc ("nvmem: microchip-otpc: add support")
+---
 
+Notes:
+    v2:
+    - Add Fixes tag
+    - Remove temporary variable usage
+    - Reword misleading subject (s/writing/reading/)
+
+ drivers/nvmem/microchip-otpc.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/nvmem/microchip-otpc.c b/drivers/nvmem/microchip-otpc.c
+index df979e8549fdb..e2851c63cc0b4 100644
+--- a/drivers/nvmem/microchip-otpc.c
++++ b/drivers/nvmem/microchip-otpc.c
+@@ -82,9 +82,7 @@ static int mchp_otpc_prepare_read(struct mchp_otpc *otpc,
+ 	writel_relaxed(tmp, otpc->base + MCHP_OTPC_MR);
+ 
+ 	/* Set read. */
+-	tmp = readl_relaxed(otpc->base + MCHP_OTPC_CR);
+-	tmp |= MCHP_OTPC_CR_READ;
+-	writel_relaxed(tmp, otpc->base + MCHP_OTPC_CR);
++	writel_relaxed(MCHP_OTPC_CR_READ, otpc->base + MCHP_OTPC_CR);
+ 
+ 	/* Wait for packet to be transferred into temporary buffers. */
+ 	return read_poll_timeout(readl_relaxed, tmp, !(tmp & MCHP_OTPC_SR_READ),
 -- 
-Lee Jones [李琼斯]
+2.39.5
+
 
