@@ -1,120 +1,105 @@
-Return-Path: <devicetree+bounces-144982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F0A7A2FD08
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 23:29:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0ED0A2FD19
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 23:33:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E440A1884810
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 22:29:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F28E116642A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 22:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9886250BE9;
-	Mon, 10 Feb 2025 22:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21DBA253F24;
+	Mon, 10 Feb 2025 22:32:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C0giG28U"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="XrtwWuMN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E66224C69B;
-	Mon, 10 Feb 2025 22:29:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDBB253348;
+	Mon, 10 Feb 2025 22:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739226577; cv=none; b=IegEDrLN92WbCoWUgTwSaiQ9iu2ph7du4zPwV1Bg93faKae5dAMlItJhk2q0TGuGs+Rj+egjH51P1Vl8wBMcvqE2q4YcCz5o6lmneNoPXnCuf/wWDvru6TBJs0LlCU1aboPxTdguFukvX1c84hZ5RGHzepFhGyFKckG/HvyrvP4=
+	t=1739226770; cv=none; b=LxTr4sFOnDu31I9ChQFOFy/c3UFDSEjLVNksdoY72PBXfrQNJCpM6WClPZwMsYqrhMKTc3dOOpT5h7bqkTeRFqgR6NRc1lXbgy2JDbsi7x770E9lTrkyBp4iJfz2FrJsWMEhKiTSxgR1Zb8xOBSzbvkWWrixah/S6H7zMg+mylE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739226577; c=relaxed/simple;
-	bh=XBkjdB8FxhsInK3grQzoPMA65gXIywTvHXEKPbD9bxU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EEBTJiKVFpjlb1VHlBVygZWRDcXdnlmZknp9UOHJ/9BzzQLnB9H/4BDzCP75mQpgXCdhEG0rWL9DmM5Mk0xQ/mBQSWJHDXp4nI4eYudZhQbJ0Uul/FuBCpSVVpQRbZnsq/ffwqeARpRQijuigZDSaSrbtWCNN3YBL0AfvNL9sRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C0giG28U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71F91C4CED1;
-	Mon, 10 Feb 2025 22:29:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739226577;
-	bh=XBkjdB8FxhsInK3grQzoPMA65gXIywTvHXEKPbD9bxU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C0giG28UAiz7YJCo1MQV3Ghf7mW+T2muZakV8fN3NbtkTCJQRcpc0BDgBs4tG1YHW
-	 Kv0vitwdixfPRVEPFL2gAAuwF+dqDOVq9r0LUYeAWcW0/5YL72gVkW42s6L8LiQCKv
-	 GwNy3C53s6N2mNRZnJvAgD4jA1+EAiDPmohUbbENZAiMXOrKfU3uPEJ7BfqHE3mtHL
-	 FkLnRsrtwPm2xcASMJsFrEdGSH82IazZLKetHLa5vaSv11zDXM9L86O3maVDR8xfjD
-	 RSKjVFqI6DHPuPb5gDIWMuXKEhfnKJUUJJghkMtwQzNblfGePOiF8J8PfsOLo18coo
-	 LFNiaB5bYTdBg==
-Message-ID: <45276881-11de-47c9-aa9c-488df537a596@kernel.org>
-Date: Mon, 10 Feb 2025 16:29:34 -0600
+	s=arc-20240116; t=1739226770; c=relaxed/simple;
+	bh=Be/S9wejoLNlaFFJb1yzC+zkuobb1yX3lX/voglLalI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RiKiNqHMncpQDsoQGMn1QYbHwILXXLE/ae7lcL6KuxBIWb/pFmLBL+7utlZMqDG8fxYMhVV5G4ULIfPOww9aKy7ItgnHuWipE5c8ntIu9+tZUlAQXg8aOC/eBd9avnjJMMEiB5mA6TacdDV4MgzALWiA7fNenJwg6xp4Dp0VxL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=XrtwWuMN; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=C8lPyp1bEijzK7iT320e9XZGAhLFEPTQgrUvk5jBPAI=; b=XrtwWuMN8Z4GIiO8gWleFph/yS
+	X0hzAGiFktxhcaEJt+715qRAKJgVlmjTxczfJhIkNBNCc+bBkkE23r2zvgQAKItF8Ux/O81KFa6bS
+	t3hATFSJqaRmD7vb9ysVTT4mzlBCkk+x8qYyA0a8ezxf1h4BXryu3JF3CwcoqHWHlos1PUOPL7G//
+	Ycu4ysmvKpEBwWw1CNWHEBAwv2vgiBHaopa+BNSF7Oy9qUzh0l3Rimkek+Vuh3LAY1u6UAhkD4l+v
+	xDLvp0Y/aTarSqipIT8wjo4We1WZ7sYwNz+icQgV73J9S/pHknDdfE4yoyBCUQgCMmxRcIP5SMirG
+	AV77aziQ==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1thcKX-0008Cw-Op; Mon, 10 Feb 2025 23:32:41 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: srinivas.kandagatla@linaro.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	detlev.casanova@collabora.com,
+	sebastian.reichel@collabora.com
+Subject: [PATCH v2 0/6] RK3576 OTP support
+Date: Mon, 10 Feb 2025 23:32:06 +0100
+Message-ID: <20250210223219.1193346-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: socfpga: remove syscon compatible string for
- sysmgr node
-To: niravkumar.l.rabara@intel.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: kernel test robot <lkp@intel.com>
-References: <20250117154244.4079614-1-niravkumar.l.rabara@intel.com>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20250117154244.4079614-1-niravkumar.l.rabara@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 1/17/25 09:42, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> 
-> The SoCFPGA System Manager(sysmgr) dt bindings do not use the syscon
-> compitible, nor does the Linux system manager driver rely on it.
-> Remove "syscon" for Arria5, Arria10 and Cyclon5 sysmgr node and fixed
-> dtbs_check warnings like:
-> 
-> socfpga_arria5_socdk.dtb: sysmgr@ffd08000: compatible: 'oneOf' conditional failed, one must be fixed:
->     ['altr,sys-mgr', 'syscon'] is too long
->     'altr,sys-mgr-s10' was expected
->     'altr,sys-mgr' was expected
->     from schema $id: http://devicetree.org/schemas/soc/altera/altr,sys-mgr.yaml#
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202501102323.Xnte2yhi-lkp@intel.com/
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> ---
->   arch/arm/boot/dts/intel/socfpga/socfpga.dtsi         | 2 +-
->   arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
-> index 35be14150f41..f124fb72e260 100644
-> --- a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
-> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
-> @@ -853,7 +853,7 @@ spi1: spi@fff01000 {
->   		};
->   
->   		sysmgr: sysmgr@ffd08000 {
-> -			compatible = "altr,sys-mgr", "syscon";
-> +			compatible = "altr,sys-mgr";
->   			reg = <0xffd08000 0x4000>;
->   		};
->   
-> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-> index 6b6e77596ffa..015120fb4b02 100644
-> --- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-> @@ -792,7 +792,7 @@ scu: snoop-control-unit@ffffc000 {
->   		};
->   
->   		sysmgr: sysmgr@ffd06000 {
-> -			compatible = "altr,sys-mgr", "syscon";
-> +			compatible = "altr,sys-mgr";
->   			reg = <0xffd06000 0x300>;
->   			cpu1-start-addr = <0xffd06230>;
->   		};
+This enables OTP support in the nvmem driver for rk3576.
 
-Did you test this patch on actual hardware? Unless something has changed 
-in the system manager driver, this will probably cause the system hang.
+I expect to pick the clock patch (patch1) and the arm64-dts patch (patch6)
+myself, after the nvmem-driver and -binding patches have been applied
+(patches 2-5).
 
-Dinh
+But kept them together for people wanting to try this series.
+
+changes in v2:
+- fix register constant in clock definition (Diederik)
+- add patch to set limits on variant-specific clock-names
+- use correct limits for clocks + resets on rk3576 binding
+
+Heiko Stuebner (6):
+  clk: rockchip: rk3576: define clk_otp_phy_g
+  nvmem: rockchip-otp: Move read-offset into variant-data
+  dt-bindings: nvmem: rockchip,otp: add missing limits for clock-names
+  dt-bindings: nvmem: rockchip,otp: Add compatible for RK3576
+  nvmem: rockchip-otp: add rk3576 variant data
+  arm64: dts: rockchip: add rk3576 otp node
+
+ .../bindings/nvmem/rockchip,otp.yaml          | 25 ++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 39 +++++++++++++++++++
+ drivers/clk/rockchip/clk-rk3576.c             |  2 +
+ drivers/nvmem/rockchip-otp.c                  | 17 +++++++-
+ 4 files changed, 81 insertions(+), 2 deletions(-)
+
+-- 
+2.47.2
+
 
