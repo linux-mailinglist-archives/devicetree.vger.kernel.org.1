@@ -1,87 +1,63 @@
-Return-Path: <devicetree+bounces-144869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30A32A2F872
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 20:20:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4013A2F882
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 20:22:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5C1D1681D6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:20:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4720B3A599E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 19:21:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28AA92566C0;
-	Mon, 10 Feb 2025 19:20:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 834922566F9;
+	Mon, 10 Feb 2025 19:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d3onEnb7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fK/bOSqd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92F191F4635
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 19:20:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5432566C4;
+	Mon, 10 Feb 2025 19:21:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739215236; cv=none; b=J6Fwx0rCyrdvIfaB/WH6cgMoPfeo1G7A16od13W70mmqtL7IyLfYJ3pCb+jofMA0X8BGbyt/VtSCzhIMfS38YWlEsEhucn9wqM43c9olx9EEZihdRpmaJeg4/DyYt6yGXWcVQY61J47UqIz2PMBYQCLXqcv1wrJz9/ZdZ6j//r8=
+	t=1739215285; cv=none; b=JT5c6ziFwTgFNIKVtfVructzOo4xY5AV+r6C6Lzire7+ZOiZCrW6BGk9l1exGiLjL+FLrojTPIBYzHx0S/O28vU/7aoq4LPxH1mAI7oMRKMxmuWrddpHc3wXrfOYA1YHgITZLTQC/hl5FhJDiuKIeXEB79+FrWX0Xgv+7d5yCk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739215236; c=relaxed/simple;
-	bh=2S8sds+FiM0QeleBbqPHslxZ1ylft5S/XBauMQ/noPc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QaW01I49qy5OD299SN/GTbRGRcGpw0a/9MdN9BK1GAtAL/dvqAoII32dX+5MWg5fz7F2yGgIj4QMOZX90KXuWbW7jq8gpRC+3tyfehJOcX6JD2HLWqJXp9MG8XZkH9PNKbZrHaoPZUb222yOCA4bRnFSzOQAT172Hkkwyk2l9rA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d3onEnb7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51A9prIM023543
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 19:20:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UHTGfvXpoiSary/QibcMXc8tUfGDgzwkgTomq3eCaA8=; b=d3onEnb7b6F2REdr
-	agGZdVd0ylJuhAB5T1LsBZYP9jou9ZsTxCYsQ7jiqELxet6WR4g7AWTJSYia/CEK
-	/RMJhKmHHDDQXVrrva4Y8rOHaecVIcZKY6AMRMw5Ah09H5aqsDNqA3PeRpxg87eV
-	4JqHqbTpmwKCj9akV+m7yeBff2yF9YghM2gpAdwCATRTavOSp88Qq+ITX8a1MGCA
-	3mp2HlSMglmFR2as9gZhW3cgU/NXxNfUrx6aOXT4mWlVXeLr4ZTIB+OxYCz97BxP
-	xQ/VTcJD3DFrDVhrVeFWRyU2E8cvijdrO1AShoCrG5Yp+fGbHfZsqJBGgkk2iV3+
-	oWOxsA==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44p0guwcpx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 19:20:33 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e249d117b7so5290456d6.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 11:20:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739215232; x=1739820032;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UHTGfvXpoiSary/QibcMXc8tUfGDgzwkgTomq3eCaA8=;
-        b=u9bj1yD9wT6/iSu4WnPZwFxacqecYEoAcBs7dtVJcYlEEukQLO1MEdrCm2f9ZqGEHR
-         ikWvX9htiSbJZ/n06UjGiUhVqt1z1DjyIBD6aEEBTNHydG97wWehX3upSnCltnrEGCUD
-         Mf6pgyI0XhV/D7tk9gzoljyv6ApgYpuiAzekDxLxGjDdeY95XTLdkjtW8/ncrGCdsxNv
-         a1qq4IXFMLTXkS1+oFkmzuLbLhumbJE6nYwgOp2kl/+x7yQrEHkwJyTtHaTbuHkYfxeC
-         dj1YwLYFodogi341F/hgHxMJd83hcFY9vGWhUe/9gMpkFj7LDT+C3RukZ4jL9GwJntad
-         6V3w==
-X-Forwarded-Encrypted: i=1; AJvYcCVwcTOjtLWgpXimnwz8DUtlHiUEW/NBMEgh0vsvuNufuHTfVk6xIAqrB6tK19dAwf6hQsaq+Cp0FcSn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6w4k8CPU34TDkCPx/RMrMs0oVCGebbYvHwWD0/ktxKrYgbh2p
-	xGzoFaKPDHcrpUvun2S+GrEW72weiqGW2NooSxY3urouNincLYyRcQt1YMcSi9qWEOax+LWhkug
-	0J+bpT/rfEMbD0SzxX4MqMFiJpk+n10znaSHA+hlZu/LINZd+XUHGRh0o5HK4
-X-Gm-Gg: ASbGncvlAeN51C7bP83Ks7SmOQpttjPrQSrCLQdWCVxpFWc3mbz5zCNA7iPhpQ8+fGd
-	Jw6Q/yIZyFJxihdp0V+ALrPw6JAAIrOp/DTqEKHOQMepbvW4fl0KpMBeQG7ACzyJTts3L2t6xPP
-	gD6Iliw7FarwVclMi374G3tBF4XOT+s6j1TgnD71BcHGEv6uTpkr+zC32JOy7zTeeQajdFfX0p0
-	3nbvrcPzLed3Dk7MII+VIc6N+QK/p7aDMHtwR/pV2pATth8dFGQr/MLIrVLh5n37nLGXO9fbwZi
-	iolra14Oz32qZOdlzTvAL2vGs2HBcm7LiUVlN20k767O0n/a7XZuUfEBl0A=
-X-Received: by 2002:a05:622a:1c15:b0:471:8a2a:d9b3 with SMTP id d75a77b69052e-4718a2adb82mr41530371cf.3.1739215232117;
-        Mon, 10 Feb 2025 11:20:32 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGhPZhlsQZyrDwqBCWlfYeWNtHXkddUkvcf5DV4cGq6f1WRrWGhD5y1vSBMq6awgol6oyxogA==
-X-Received: by 2002:a05:622a:1c15:b0:471:8a2a:d9b3 with SMTP id d75a77b69052e-4718a2adb82mr41530101cf.3.1739215231617;
-        Mon, 10 Feb 2025 11:20:31 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7a58abd76sm549411266b.26.2025.02.10.11.20.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Feb 2025 11:20:31 -0800 (PST)
-Message-ID: <354f8710-a5ec-47b5-bcfa-bff75ac3ca71@oss.qualcomm.com>
-Date: Mon, 10 Feb 2025 20:20:27 +0100
+	s=arc-20240116; t=1739215285; c=relaxed/simple;
+	bh=XlZruBqUrmgSxgeV+vtI7VB7cCVfhr01w8nJOxj4esI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=pYrkLJgYo330WXY3WzLWGLgwG9GZVl7SGL+KjtozjtlBGe6pb5HLo1kGJ05+bsLGSZsjNs3aL6eHomysCeU28jzQOfmo7TqZsK0o7P2apRrq7nZ8YSj7jaC03Elo35g6xG39gOnUrHg3ywwYtY+A3B8vhjLEvP7ST1bcdV1hAmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fK/bOSqd; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51AJLHLM3555492
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Mon, 10 Feb 2025 13:21:17 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1739215277;
+	bh=BjxGcZGgbTw2rXhcQe0xTXiOGkjk4V+jo19rYFPocYg=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=fK/bOSqdgtbZ3xpHBZ7QtmC4Hozhkq35qg2Ge8lNqu8OcCdOVEIiB6JRHWyNrlp6c
+	 XJ9fxLsNC064KGyobSOJX9gzZ3x0qdB8EPXSrOOdABQzptWNmzlocVmHWom26jRpT5
+	 P33d1fkR4CCOp2hYFCNZLD8GIMbC5MjSnrjd/yHM=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51AJLHVk024020;
+	Mon, 10 Feb 2025 13:21:17 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 10
+ Feb 2025 13:21:16 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 10 Feb 2025 13:21:16 -0600
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51AJLGCu057473;
+	Mon, 10 Feb 2025 13:21:17 -0600
+Message-ID: <205926b9-6698-4e57-bf96-a7c75e474652@ti.com>
+Date: Mon, 10 Feb 2025 13:21:16 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,116 +65,179 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: sm8750: Add UFS nodes for SM8750
- SoC
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Nitin Rawat <quic_nitirawa@quicinc.com>
-Cc: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
-        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
-        Manish Pandey <quic_mapa@quicinc.com>
-References: <20250113-sm8750_ufs_master-v1-0-b3774120eb8c@quicinc.com>
- <20250113-sm8750_ufs_master-v1-4-b3774120eb8c@quicinc.com>
- <vifyx2lcaq3lhani5ovmxxqsknhkx24ggbu7sxnulrxv4gxzsk@bvmk3znm2ivl>
- <be8a4f65-3b36-4740-a4f7-312126cfd547@quicinc.com>
- <ferdaevlfrpf2ewzcct7mqyxltvmt6aaar4fujxfehrmizm3qw@aaroprnpwlxq>
+Subject: Re: [PATCH v4 6/9] arm64: dts: ti: k3-am62p5-sk: Enable IPC with
+ remote processors
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hari Nagalla
+	<hnagalla@ti.com>
+References: <20250206235200.3128163-1-jm@ti.com>
+ <20250206235200.3128163-7-jm@ti.com>
+ <32358aa1-0c02-4f4d-9782-2d8376c0d9fc@ti.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <ferdaevlfrpf2ewzcct7mqyxltvmt6aaar4fujxfehrmizm3qw@aaroprnpwlxq>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: QGs0j0eTs4VnoJsVlLeDj-dV0gV0Qfiz
-X-Proofpoint-GUID: QGs0j0eTs4VnoJsVlLeDj-dV0gV0Qfiz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-10_10,2025-02-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0
- clxscore=1015 adultscore=0 bulkscore=0 mlxscore=0 spamscore=0
- mlxlogscore=999 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2501170000 definitions=main-2502100156
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <32358aa1-0c02-4f4d-9782-2d8376c0d9fc@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 8.02.2025 11:06 PM, Dmitry Baryshkov wrote:
-> On Sun, Feb 09, 2025 at 12:47:56AM +0530, Nitin Rawat wrote:
+Hi Andrew,
+
+On 2/7/25 10:58 AM, Andrew Davis wrote:
+> On 2/6/25 5:51 PM, Judith Mendez wrote:
+>> From: Devarsh Thakkar <devarsht@ti.com>
 >>
+>> For each remote proc, reserve memory for IPC and bind the mailbox
+>> assignments. Two memory regions are reserved for each remote processor.
+>> The first region of 1MB of memory is used for Vring shared buffers
+>> and the second region is used as external memory to the remote processor
+>> for the resource table and for tracebuffer allocations.
 >>
->> On 1/14/2025 4:22 PM, Dmitry Baryshkov wrote:
->>> On Mon, Jan 13, 2025 at 01:46:27PM -0800, Melody Olvera wrote:
->>>> From: Nitin Rawat <quic_nitirawa@quicinc.com>
->>>>
->>>> Add UFS host controller and PHY nodes for SM8750 SoC.
->>>>
->>>> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
->>>> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
->>>> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>>> ---
-
-[...]
-
->>> Use OPP table instead
+>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>> Changes since v3:
+>> - Add SRAM child node for am62p MCU R5 core 0
+>> ---
+>>   .../dts/ti/k3-am62p-j722s-common-mcu.dtsi     | 13 +++++
+>>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       | 50 ++++++++++++++++---
+>>   2 files changed, 57 insertions(+), 6 deletions(-)
 >>
->> Currently, OPP is not enabled in the device tree for any previous targets. I
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+>> index b33aff0d65c9d..0be3463bc21c5 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+>> @@ -6,6 +6,18 @@
+>>    */
+>>   &cbass_mcu {
+>> +    mcu_ram: sram@79100000 {
+>> +        compatible = "mmio-sram";
+>> +        reg = <0x00 0x79100000 0x00 0x80000>;
+>> +        ranges = <0x00 0x00 0x79100000 0x80000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +
+>> +        mcu_sram1@0 {
 > 
-> Excuse me? ufs_opp_table is present on SM8250, SM8550 and SDM845 (and
-> QCS615). So this is not correct
+> What does this node do for us? Seems you reserve the whole SRAM
+> area from the start, but shouldn't the phandle in mcu_r5fss0_core0
+> point to this node? Or better it would use the normal SRAM API
+> to request an allocation from this region.
 > 
->> plan to enable OPP in a separate patch at a later stage. This is because
->> there is an ongoing patch in the upstream that aims to enable multiple-level
->> clock scaling using OPP, which may introduce changes to the device tree
->> entries. To avoid extra efforts, I intend to enable OPP once that patch is
->> merged.
+> Since this is still not resolved, and you don't mention it in
+> the commit message, might be good to drop this SRAM part of this
+> patch and deal with this in a later series.
+
+
+Ok, since we do not have a better way to do this for now, will drop the
+SRAM node.
+
+Will respin the series one more time. Anyways I forgot to include
+another patch so will add that for v5.
+
+Thanks,
+Judith
+
+
+
 > 
-> Whatever changes are introduced, old DT must still continue to work.
-> There is no reason to use legacy freq-table-hz if you can use OPP table.
+> Andrew
 > 
->> Please let me know if you have any concerns.
+>> +            reg = <0x0 0x80000>;
+>> +        };
+>> +    };
+>> +
+>>       mcu_pmx0: pinctrl@4084000 {
+>>           compatible = "pinctrl-single";
+>>           reg = <0x00 0x04084000 0x00 0x88>;
+>> @@ -213,6 +225,7 @@ mcu_r5fss0_core0: r5f@79000000 {
+>>               ti,atcm-enable = <0>;
+>>               ti,btcm-enable = <1>;
+>>               ti,loczrama = <0>;
+>> +            sram = <&mcu_ram>;
+>>           };
+>>       };
+>>   };
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts 
+>> b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+>> index ad71d2f27f538..9609727d042d3 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+>> @@ -48,6 +48,30 @@ reserved-memory {
+>>           #size-cells = <2>;
+>>           ranges;
+>> +        mcu_r5fss0_core0_dma_memory_region: 
+>> mcu-r5fss-dma-memory-region@9b800000 {
+>> +            compatible = "shared-dma-pool";
+>> +            reg = <0x00 0x9b800000 0x00 0x100000>;
+>> +            no-map;
+>> +        };
+>> +
+>> +        mcu_r5fss0_core0_memory_region: 
+>> mcu-r5fss-memory-region@9b900000 {
+>> +            compatible = "shared-dma-pool";
+>> +            reg = <0x00 0x9b900000 0x00 0xf00000>;
+>> +            no-map;
+>> +        };
+>> +
+>> +        wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
+>> +            compatible = "shared-dma-pool";
+>> +            reg = <0x00 0x9c800000 0x00 0x100000>;
+>> +            no-map;
+>> +        };
+>> +
+>> +        wkup_r5fss0_core0_memory_region: r5f-memory@9c900000 {
+>> +            compatible = "shared-dma-pool";
+>> +            reg = <0x00 0x9c900000 0x00 0x1e00000>;
+>> +            no-map;
+>> +        };
+>> +
+>>           secure_tfa_ddr: tfa@9e780000 {
+>>               reg = <0x00 0x9e780000 0x00 0x80000>;
+>>               no-map;
+>> @@ -57,12 +81,6 @@ secure_ddr: optee@9e800000 {
+>>               reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
+>>               no-map;
+>>           };
+>> -
+>> -        wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
+>> -            compatible = "shared-dma-pool";
+>> -            reg = <0x00 0x9c900000 0x00 0x01e00000>;
+>> -            no-map;
+>> -        };
+>>       };
+>>       vmain_pd: regulator-0 {
+>> @@ -638,6 +656,26 @@ mbox_mcu_r5_0: mbox-mcu-r5-0 {
+>>       };
+>>   };
+>> +&wkup_r5fss0 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&wkup_r5fss0_core0 {
+>> +    mboxes = <&mailbox0_cluster0 &mbox_r5_0>;
+>> +    memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
+>> +            <&wkup_r5fss0_core0_memory_region>;
+>> +};
+>> +
+>> +&mcu_r5fss0 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&mcu_r5fss0_core0 {
+>> +    mboxes = <&mailbox0_cluster1 &mbox_mcu_r5_0>;
+>> +    memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
+>> +            <&mcu_r5fss0_core0_memory_region>;
+>> +};
+>> +
+>>   &main_uart0 {
+>>       pinctrl-names = "default";
+>>       pinctrl-0 = <&main_uart0_pins_default>;
 
-Go ahead with the OPP table. freq-table-hz is ancient and doesn't describe
-e.g. the required RPMh levels for core clock frequencies.
-
-You should then drop required-opps from the UFS node.
-
->>>> +
->>>> +			resets = <&gcc GCC_UFS_PHY_BCR>;
->>>> +			reset-names = "rst";
->>>> +
->>>> +
->>>> +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
->>>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->>>> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
->>>> +					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
->>>
->>> Shouldn't cpu-ufs be ACTIVE_ONLY?
->>
->> As per ufs driver implementation, Icc voting from ufs driver is removed as
->> part of low power mode (suspend or clock gating) and voted again in
->> resume/ungating path. Hence TAG_ALWAYS will have no power concern.
->> All previous targets have the same configuration.
-> 
-> arch/arm64/boot/dts/qcom/qcs615.dtsi:                                    &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-> 
-> It might be a mistake for that target though. Your explanation sounds
-> fine to me.
-
-Let's use QCOM_ICC_TAG_ACTIVE_ONLY for the CPU path to clear up confusion.
-
-Toggling it from the driver makes sense for UFS-idling-while-CPUs-are-online
-cases and accidentally also does what RPMh does internally in the other case.
-
-Konrad
 
