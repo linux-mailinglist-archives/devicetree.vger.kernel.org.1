@@ -1,130 +1,128 @@
-Return-Path: <devicetree+bounces-144746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E7A7A2F237
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:55:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEFC1A2F23E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:56:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A72327A21D7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 15:54:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51CC81881941
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 15:56:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDA7243962;
-	Mon, 10 Feb 2025 15:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A845243956;
+	Mon, 10 Feb 2025 15:56:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cigTyyx2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DD44243945;
-	Mon, 10 Feb 2025 15:54:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E34B241CA6;
+	Mon, 10 Feb 2025 15:56:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739202899; cv=none; b=qb8BCkpjXWZOT/KKxYYxPXyHwncFgUY/UoQcCQul2kRhM0+zY9N0CBn72PHmcMgxmBftmsiqbLOsqZGTa9qR3fA8xOcob/WEr54qwcIQZ5NZ+EPtiBnBcP7bumWy171/YC8B91wjfUFwVYoyy08ZzTRC7zDwL8A2ioq75nxPqAw=
+	t=1739203000; cv=none; b=Mt4vZrlNKeQRI//jIaJI8+swBfbdDs3zhKsoEPAMbSbNcI9APxMBgOaUVMHiwfivignnIYWdTSqGACb5HwEEQX1yY8j/TETmhJPDlj/DUI9vN/Arevvt70JTfLHiTQNSYymJ946jiQ/PlMvIyuyTPMivYJsgrVOe9XylOCbOzeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739202899; c=relaxed/simple;
-	bh=hhsFU8gPjECmItok2kUI2lFVPDCYOcaW+TghAH+ay9Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Et65XmO9qRGp6mDkTV80xqjn9gOVtJ6MCGJt7Dpjrk91MfrH6RnXDSgIvo4hnSfopW6BbgB4B7/UW+YCg7mBlh9r0y0Br4BS2w9l4gfcbwM6rm9i5Lt8n9Gio96KXGhMZlKFizk1982rWFhbrTRdK6zDaYgIDoqpBAuH5//MOME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-51eb18130f9so1242096e0c.3;
-        Mon, 10 Feb 2025 07:54:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739202896; x=1739807696;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JK/1qq/3I2HSkSoByzgJPyKcW6MuWYkz0tPFTzqda8s=;
-        b=rTyZPkD1MLp6VwSfiLU0fC72VQM8oef4yqaeWowwYKTwmNDJ1cx90WQwb3gLKOrfSY
-         /s3yS6w+89algXwZRbSeLLUmfCPIZ+PqughcusdCJxYOQQT8jrbQSU2I5uckgE7yTqgC
-         qJ5FIiwZn7cNaVNecH1yeMsMtLawQm8FRT8Rwxlclb5OJTdOnTvyEVyPJaS1kB0HlaWF
-         Zo/QNURZB5S34MEjl75nYWpGTfAozCYxKXOUXbz2r2OUR5MfTTfUmshXhTO5ak5YashN
-         ytdSzdRuN34qVVklhxSIDcicZOka6Pz4LjEYBo0ytoyQr1uDmI++s1RsgOI+Hw7hQvB5
-         E9nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUfcGWoKAExrEP5Bg44+dMw4gW748dWzwux4sbukfuurLCqZDt7f5kwwYFyBpoyb/Y62m3YdvAwCECeJXGa@vger.kernel.org, AJvYcCWLdLJh+XE3Sx2a/R9ilZNp2Rdb6vod+m2FMQGoAkeHPBq1WOcEH+Qzl3VkvVan/lFp5g2dWcu8brqIQxqGITwVk7g=@vger.kernel.org, AJvYcCXxcsQA8vzmqr/2SQgO5+qCRavwMuePjq7hgYDoSWpaOPtm5kVGx1Zzvx7SdKvo3dIECLW45OxTUvud@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6mxnK4ZHsE9Z3UA4s5pffMsbDEV6MvurcxN9ieJ+qhcdxGPHB
-	0JtSdUPmIYISLneVjLdJFXcxXjpzSdpRKef2PEDLtno+yyF7jlTX+yMnb3IT
-X-Gm-Gg: ASbGncuH0P1JVNH9pJu0aWbRxYUaIsDGc6sqhBVXXawR1GZyXxl3vokfXazloMAnA9q
-	iH2tkYUzI3hGilhT7vyUMJs8oA8a9tcojagtXRcS8DG3wp6ZdeG0R8zIsRun0EksEU9vL06yAhA
-	8Qay/VhhVnikq6chTvV9jad60gGaf2iRAvpCXSG4JiL6sC9Xp2nV7mW2gLudH7srdbn46kiYU8q
-	Cnaind1JvGzupe9/jjiyZJjmYOgchLlH4an7wtMjWnov4+wxOiVXNEe5JG2C+I98Zil6gYtm+Yz
-	1c7I9rP7kKMQIyxaOPMkI0IQvJcJTzet5YtwU9iPLqyWDRK+QzOStA==
-X-Google-Smtp-Source: AGHT+IFFOZGN/ym2gJpCceGs0duNhKS+4twLIIwgt/iw2QH/MfpEqMwEM3Q/94yKWMdDaJast6gXyg==
-X-Received: by 2002:a05:6122:a26:b0:520:3e1c:500f with SMTP id 71dfb90a1353d-5205721d689mr267577e0c.8.1739202896568;
-        Mon, 10 Feb 2025 07:54:56 -0800 (PST)
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com. [209.85.222.52])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-51fde67e00asm727716e0c.18.2025.02.10.07.54.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Feb 2025 07:54:56 -0800 (PST)
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-86718c2c3b9so397451241.2;
-        Mon, 10 Feb 2025 07:54:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU6qnSRgxmn6YjJ8biPz9Xwniu1Rmv0RZmL9IhENvQCacnle+w1pnnaU1kRO8UQaFnpWMcBM2vfPb31EUQ63V0V/c0=@vger.kernel.org, AJvYcCX4UqmbQRIwBjqd3+iyUo4EzgEknrO+TJu6WhkvCLZLAdQWDH0PdYDMdrKZU4WOaAKa0nPf8LiZtQpu@vger.kernel.org, AJvYcCXM67e/TIn4yhzHiAiNeLVCPhIj/rKCj9ay+dQnPoyU1LxRp3onI1IJMtxKmDEDnXoV6aK6XL6NlBjaWIsk@vger.kernel.org
-X-Received: by 2002:a05:6102:2d05:b0:4bb:c490:7d77 with SMTP id
- ada2fe7eead31-4bbe054ee9amr241383137.23.1739202896216; Mon, 10 Feb 2025
- 07:54:56 -0800 (PST)
+	s=arc-20240116; t=1739203000; c=relaxed/simple;
+	bh=rDedKxEefXsackABt6YFb3UahVifC+H9tWsS17tmshE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=peot3ezsYf5KM9KpJckFcWKfdaz0FQLcnT976RCloMBmHK+8e14j8ollJsBFlxTrTd4dePuivk9tEsaV8NEQ5wgb34oOGvKOyOsr3zai8pzm9/HB/lg1RKZMZfo2vJa0sEoTH4HzOmmnoFBV0l0iZUY59066yE29Qx31V2bpxeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cigTyyx2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51A9HoDP001462;
+	Mon, 10 Feb 2025 15:56:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Wa0cJZMSZapOEwhgl8wBba
+	D2/qRsUY1uAW8tNNERCZ4=; b=cigTyyx2orDbmVFdHth0Y8Rib+2svLsWU6l/0q
+	ubLo9aF8vFpIbAH60i7U4UiL4DqAZdIU14XBMr+fuq9VOnMiEjLYrUDnZcVpnRQR
+	Lfza7jj6Y0lwIOHvu4gG6zkC0QLXZRXQEs9swBiPsbbz3rI2iVu2ntcVz5FS4gw0
+	JresF/gge1wkl5ilI1tg7KgvGvk5MhBo3zOPeU+pDosKvQkbGPMMaBkzgyLQIlFv
+	e+pa6GnIB6pK0gct2J8DM+RcnaXeJxq1b6b/b1ZJ6AElxE4l45sLZifLY4SBfugG
+	tSWNngV4FNyksXs/1BEr2XqwfGm/njV2K2RCehjLTx7DM7dw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qepxh0wf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Feb 2025 15:56:27 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51AFuPRD021331
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Feb 2025 15:56:25 GMT
+Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 10 Feb 2025 07:56:20 -0800
+From: Vikram Sharma <quic_vikramsa@quicinc.com>
+To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <hverkuil-cisco@xs4all.nl>,
+        <cros-qcom-dts-watchers@chromium.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <quic_vikramsa@quicinc.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/2] arm64: dts: qcom: sa8775p: Add sa8775p camss support
+Date: Mon, 10 Feb 2025 21:26:03 +0530
+Message-ID: <20250210155605.575367-1-quic_vikramsa@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250129165122.2980-1-thierry.bultel.yh@bp.renesas.com> <20250129165122.2980-14-thierry.bultel.yh@bp.renesas.com>
-In-Reply-To: <20250129165122.2980-14-thierry.bultel.yh@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 10 Feb 2025 16:54:43 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWtX-MK4HNvq2VvBxYdX6WtH5Re2aMz1w_CpCv=+1515A@mail.gmail.com>
-X-Gm-Features: AWEUYZlhXz_pMLLXmRFGDXOST8wsuL6L1WEG7yOjaQ_Bnufz2H8DKm6AyuygLEY
-Message-ID: <CAMuHMdWtX-MK4HNvq2VvBxYdX6WtH5Re2aMz1w_CpCv=+1515A@mail.gmail.com>
-Subject: Re: [PATCH 13/14] arm64: dts: renesas: Add initial support for
- renesas RZ/T2H eval board
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _t0PWLJZIDep5kaAbqjtJanOuosYooqK
+X-Proofpoint-ORIG-GUID: _t0PWLJZIDep5kaAbqjtJanOuosYooqK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-10_09,2025-02-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ phishscore=0 priorityscore=1501 mlxscore=0 suspectscore=0 impostorscore=0
+ mlxlogscore=613 clxscore=1015 lowpriorityscore=0 malwarescore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502100132
 
-Hi Thierry,
+SA8775P is a Qualcomm SoC. This series adds bindings and devicetree to bring
+up CSIPHY, TPG, CSID, VFE/RDI interfaces in SA8775P.
 
-On Wed, 29 Jan 2025 at 17:53, Thierry Bultel
-<thierry.bultel.yh@bp.renesas.com> wrote:
-> Add the initial device tree for the RZ/T2H evaluation board.
->
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+SA8775P provides
+- 2 x VFE, 3 RDI per VFE
+- 5 x VFE Lite, 6 RDI per VFE
+- 2 x CSID
+- 5 x CSID Lite
+- 3 x TPG
+- 4 x CSIPHY
 
-Thanks for your patch!
+Used following tools for the sanity check of these changes.
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-> @@ -0,0 +1,37 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Device Tree Source for the RZ/T2H Development EVK board
-> + *
-> + * Copyright (C) 2025 Renesas Electronics Corp.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "r9a09g077m44.dtsi"
-> +
-> +/ {
-> +       model = "Renesas Development EVK based on r9a09g077m44";
-> +       compatible = "renesas,r9a9g077m44-rzt2h-evk", "renesas,r9a9g077";
+- make CHECK_DTBS=y W=1 DT_SCHEMA_FILES=media/qcom,sc7280-camss.yaml
+qcom/qcs6490-rb3gen2-vision-mezzanine.dtb
+- make DT_CHECKER_FLAGS=-m W=1
+DT_SCHEMA_FILES=media/qcom,sc7280-camss.yaml dt_binding_check
+- make -j32 W=1
+- ./scripts/checkpatch.pl
 
-"renesas,r9a9g077m44-rzt2h-evk" is undocumented.
-Missing "renesas,r9a9g077m44" in between.
+Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
 
-Gr{oetje,eeting}s,
+Vikram Sharma (2):
+  media: dt-bindings: Add qcom,sa8775p-camss
+  arm64: dts: qcom: sa8775p: Add support for camss
 
-                        Geert
+ .../bindings/media/qcom,sa8775p-camss.yaml    | 351 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 187 ++++++++++
+ 2 files changed, 538 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.25.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
