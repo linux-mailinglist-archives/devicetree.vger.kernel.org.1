@@ -1,58 +1,63 @@
-Return-Path: <devicetree+bounces-144815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1CB1A2F50F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:21:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33408A2F511
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:21:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B2D7168851
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:21:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E77A188A314
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31317255E43;
-	Mon, 10 Feb 2025 17:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D1522566E5;
+	Mon, 10 Feb 2025 17:21:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jRIZikI1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hatvvd7Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AAB324FC04;
-	Mon, 10 Feb 2025 17:21:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C6224FC17;
+	Mon, 10 Feb 2025 17:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739208072; cv=none; b=LZilwnB1xy98Fnb8FPNEnnlVxPTTrOLIsCFPOc/o+tQsUOEHrzOekf8UopXqgNW5daoXYA6S3xxFkHx1S0r7wA+SLp5vsGfqSZwIDdJmctAlRUKo1HFJIu6eei1kpT0pgLsMESDYBxrgtXkOo7DyTf8gar43wnm8QwXgGmDzCF0=
+	t=1739208076; cv=none; b=CBSbTST9nZmCBgAZa00f5vnllC//cC0NDoJn836DA4+28GXc0BUOW+K9blLx/XuQxViHHiP+KLIySyI3CYQY87Ls9A0RYn9aZUOkmRVqilGatij1yv8AxLLJjzNaHniUPh4o/zSDgJ8nPHzBPXOdW+pEvQtWZ3E8W9na3oVO4hE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739208072; c=relaxed/simple;
-	bh=Te1ASZCrXYWhGODjGnTL88h0vOAiRncqdlFEVsLJEls=;
+	s=arc-20240116; t=1739208076; c=relaxed/simple;
+	bh=nZQV1M8VioPGk0QM/byl7cQeGIZPLm10q9X0KPkc0mM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=fVMAbzDSnYqjV2YLwbSdTkCi7J/QtdPgkSpQ6VBnlOCeyTXv3TRopSKY80FqxcodUHHPRQPTQ+6w+/4JV7YAZ8nOMBKZmNY1U1yfkqrOdHves+e0l87nmpGoUDk/CY/gBCQxq2K5R26CVT5GsRGRXdLD5i8+n/teX9vTqCYyktI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jRIZikI1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E37B0C4CEE5;
-	Mon, 10 Feb 2025 17:21:06 +0000 (UTC)
+	 MIME-Version:Content-Type; b=GqO3baF3pYLVC7mDaa6D9O3v8MSWcpuldJnuJPTJKdNtxjaGm8SCOPkL+hfURikTC1lkEmwxbopNFn7dWmrNSokgi48cttWtiOItCc6d7RC5j7mDBDaxx4fcmAtWRrFhKrQDKEsgciobyRUWL4qty6wQ555eoxAf8a/p6J3d1MM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hatvvd7Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E1E7C4CED1;
+	Mon, 10 Feb 2025 17:21:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739208070;
-	bh=Te1ASZCrXYWhGODjGnTL88h0vOAiRncqdlFEVsLJEls=;
+	s=k20201202; t=1739208075;
+	bh=nZQV1M8VioPGk0QM/byl7cQeGIZPLm10q9X0KPkc0mM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=jRIZikI1TNUJfOg9Se1X7UpyDvEX9kKyqQmdoxi1Tz4lLlWI2RRcF/1/KW9dmfXzr
-	 xcyFAbYPTVhAEt32mlwaPFEBjFnxE7xaENgHHMVV+cX1IC8oanKdslqtJ3cZNfnxYV
-	 SCF5HHDBfy2MPPnsLTKJwBriZh41J6JvnGRl9XoC1oSQpilXmXEZcQAOaH3zpXuoga
-	 r+jcNZM1BxVyFSyBsIvhPNhENIg7mo9zLLEpMOp8cchGRmf86crlDBuYkCN9ap7PoS
-	 GqzDGdv6b0eqPt1yIBASoORvCQhxzBhJiAWokxtTmOrwXKmmXmOfam8Tsd3+AaqS98
-	 ERb2RX07Y35tw==
+	b=hatvvd7ZA2jhfAgyNWC5wYRlzenwFWVjyxBvHTFy1KqH8IKfKYI7eP+nEQM/l4aSW
+	 0hAnr7YRdK739JQLX3pDLQ606IwOP20vzJu3+zg6rxMC08IubpXlFIpGIzDPg/OKoo
+	 5WLrDSLBECYEPMrxn7hHGQJA9tC7bOBvLJid/NuMWC6j/wogokqTXXyukxBjgwbhNq
+	 sxAhnDKvO5WArkXO3qF6ENLOquTMBG/5UGVATs4ne/Pcg/Mzugp0Ei6cl1g6pdDOUl
+	 A726z1LofPT5jZuxR1J57FNm3MDTkI+yfwSJ3lrZoieLToD/thk4POXpKbUhZ9Knf9
+	 QK98S8z0NA59g==
 From: Vinod Koul <vkoul@kernel.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: cristian.ciocaltea@collabora.com, heiko@sntech.de, kishon@kernel.org, 
- krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <20241231092721.252405-1-andyshrk@163.com>
-References: <20241231092721.252405-1-andyshrk@163.com>
-Subject: Re: (subset) [PATCH v3] dt-bindings: phy: Add rk3576 hdptx phy
-Message-Id: <173920806650.103786.12015599140060722097.b4-ty@kernel.org>
-Date: Mon, 10 Feb 2025 22:51:06 +0530
+To: Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <20250203-topic-x1p4_dts-v2-0-72cd4cdc767b@oss.qualcomm.com>
+References: <20250203-topic-x1p4_dts-v2-0-72cd4cdc767b@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v2 0/6] X1P42100 DT and PCIe PHY bits
+Message-Id: <173920807069.103786.582122226183842202.b4-ty@kernel.org>
+Date: Mon, 10 Feb 2025 22:51:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +69,25 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Tue, 31 Dec 2024 17:27:11 +0800, Andy Yan wrote:
-> Add compatible for the HDPTX PHY on rk3576, which is compatible with
-> rk3588, but without rst_phy/rst_ropll/rst_lcpll.
+On Mon, 03 Feb 2025 15:43:19 +0100, Konrad Dybcio wrote:
+> X1P42100 is a(n indirect) derivative of X1E80100 - the silicon is
+> actually different and it's not a fused down part.
 > 
-> In fact, these three reset lines are also optional on the rk3588,
-> they just used for debug, then they were removed on the rk3576 IC
-> design.
+> Introduce the DTS bits required to support it by mostly reusing the
+> X1E SoC and CRD DTSIs. The most notable differences from our software
+> PoV are a different GPU (support for which will be added later), 4
+> less CPUs and some nuances in the PCIe hardware.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: phy: Add rk3576 hdptx phy
-      commit: ad205ffc0dd0fc3f4841e6ae900037f029aa0fa8
+[1/6] dt-bindings: phy: qcom,qmp-pcie: Add X1P42100 PCIe Gen4x4 PHY
+      commit: 2e1ffd4c180591e6a46c7f94a6bb187a0661141e
+[2/6] dt-bindings: phy: qcom,qmp-pcie: Drop reset number constraints
+      commit: f67f8c61b7fd3f72cf716b3845211e69265d13bd
+[3/6] phy: qcom: qmp-pcie: Add X1P42100 Gen4x4 PHY
+      commit: 0d8db251dd15d2e284f5a6a53bc2b869f3eca711
 
 Best regards,
 -- 
