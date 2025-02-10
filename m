@@ -1,163 +1,102 @@
-Return-Path: <devicetree+bounces-144612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B775A2EA06
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E20CA2EA3E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 11:57:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 497677A2E1F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:49:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 282517A6101
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 10:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD561CBA18;
-	Mon, 10 Feb 2025 10:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23DD31DE885;
+	Mon, 10 Feb 2025 10:52:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pHqPS8R+"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BPoRnHoq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB6D61CAA82
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 10:50:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA30D1D47C7;
+	Mon, 10 Feb 2025 10:52:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739184644; cv=none; b=mgeTx99Gd68g4QYuGl7d2CHLmysZH0EaWCnICGjBiNVxpfXDQf4u5jqxcE7pXLc4+xfYnE/PwOKIHE4Y3OFBeaOvlDmebJdsiI1YsvcNxrW7P1eAIwre2w/GIKIpiVgztQqhil1whriyvay6/vzzEJZ1MRD1Jmenbq5cREIiO4M=
+	t=1739184762; cv=none; b=cJ41Jg9Ku1SoZdTYFFzYlEYV2RSVAyNt3hCRU9qHhFj48/26fB0KU9CKRoB1QOrivgbPmamsYLIXVPuajS6AieEobWeFRFoVCe8+cP5DiRm5QYWZeD6ZeIvBkes+XTHfaLhtnFA3mjxeZ9uwXfH/nLJjxXcB+tJolx3AT55tduI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739184644; c=relaxed/simple;
-	bh=ICUmdBt8XRJXVFbrpD7aAUnbaAPGI4U1gNjK3X4TlX8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jkbQ1EA4FxBaVlH8pAhgZLvrAjaY5daZuBgEO4L5V+J4WZvGLJYet7uRXAVNWp2QBdPTbBEkPLJDhxBl+mR4xBqXVuUUBcOgC7jBksoz8MgvKLtkMPxyHZ5vzt22oJTmkRKblt6jKBnt8VpT9gIU0aAkWSXeQfhdF8TrFkSfkho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pHqPS8R+; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-308dc0878dfso20892781fa.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 02:50:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739184641; x=1739789441; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hvFzwRKL6EFJPM/4hbqGptZn0OaUv9Jm6JVL6aPi71Y=;
-        b=pHqPS8R+DmsEH1+IaoRj/9tOVl45iy5Dmm2A8gU5UJojGzGElHkLQi1q37RV1TcIvu
-         qaVXCuNMLOQkM85+Z6Hs+jUrup20kJbppdwCMvreBNQGdhYiz3t3se5FgM1wOCrgvpz1
-         G4+GwK+AHHHzt5FM+4/aPMxCBEyygVDi7eaCVw+lLraVn6c+qbFATLaW1DWO4NqGJ8pu
-         2d48amIhphVWmbCXKqRPoZEeuDvqW7/bOisSgZy7WY+XX/CGB9EryjH5H2hDqnAuuE/M
-         /REvbyY1ecr2SDfqeJ2NIvkOZQ9D8D3pxuoxD85K+nHL9JWkSzg1xer7F5hg16bIXoaM
-         ObLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739184641; x=1739789441;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hvFzwRKL6EFJPM/4hbqGptZn0OaUv9Jm6JVL6aPi71Y=;
-        b=P/1pdo4DXmiZbpQh6MEU8QcE466mZiAWHYlLEVuIG9pPoY+Pq2OEG6Ld6rRvDlmqRA
-         1Ot4v3uueKxyikeneqJVYThjJxojd+FMBxGyfwLfAKMcWG6LyPFv3AV9tZbrToqbhsjX
-         HBjgAlZGugw7OLmyXEwmiFeUEjY+CzRKwPgvCjcYjCxxRXl/kBDk1ZS9VCWXUK/gge5L
-         CQtaJccV+BtY0QboLic5U1l9tpXgIkJn2X4qeruew9Q1CaDpzD3YYHSKPpArk/CpKVaZ
-         Uukdok0eK92KLbJRAGRIePBRkELkZ+ocNYvh0ARVSaLbzjZgO817+xQfOu2OMEG8Q5wd
-         Or6w==
-X-Forwarded-Encrypted: i=1; AJvYcCWfvoDURgDij78UN4mn+YsBqMhpQWoWmdylKi3wV2Yx2hrWYcscrGAKB2sgDwjxQ8KtdvOKUI/Tprh/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3UKXPJcm7Ngbg6P2afmz25uLIVWi1o9j0lCxg1eW/fQ0sjdq/
-	5H9oMtYDZm5oBv5BzVO8b9B3fNZfVksueM3FpvRQWEIxACRTy8ioKjXwevo3g1I=
-X-Gm-Gg: ASbGncscs2FescSLtLZaJz0JjVZ1l+hZ6rPNmVMOr+fwVR9mngY3bTzKG/J4ey2Thuc
-	x+uE7UUYZSe3iioN4IEemKjs0NjjjSrvKi5KERs5KGGR121RUlX15NN/KXnzdAlwSmaLsohSS/i
-	rKgENsGG9fAy4yWDBW9AquYX2KfB9jtingYeg01Mdu0ZqbgHZ444iG66Bb9PuhC7QJCvMiDWj9w
-	kb2D5WDhw6GwFbD9Z+NwARsGhs3vRINnXI1cfykJ0MhxUkG55aF3hqD8MWebbXHbBLgxRJysD/b
-	BqDYCMlthRKBd3Y4NqfaZva+ZD8HRRqZjEJdRPBJ/SLHQEGbz97x0qHt8JChz7P+uOlf/iQ=
-X-Google-Smtp-Source: AGHT+IE0t33F67YCixyaHQxIxAgdVJ1K3UHAFFUTrLatNRBrJe1hONkFkblGv5KgnVrurTiuJQHrfQ==
-X-Received: by 2002:a2e:ab08:0:b0:301:12:1ef3 with SMTP id 38308e7fff4ca-307e57bc4b0mr44406991fa.4.1739184640660;
-        Mon, 10 Feb 2025 02:50:40 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-307de2bb126sm12560731fa.72.2025.02.10.02.50.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 02:50:39 -0800 (PST)
-Date: Mon, 10 Feb 2025 12:50:37 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Odelu Kukatla <quic_okukatla@quicinc.com>, Mike Tipton <quic_mdtipton@quicinc.com>, 
-	Jeff Johnson <quic_jjohnson@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>, 
-	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V8 2/7] interconnect: core: Add dynamic id allocation
- support
-Message-ID: <bwiuhfgv4jw7tlwjqffgrxvskxbpf4forz46nn5g3vihz3z5od@w25y7hdprykf>
-References: <20250205182743.915-1-quic_rlaggysh@quicinc.com>
- <20250205182743.915-3-quic_rlaggysh@quicinc.com>
+	s=arc-20240116; t=1739184762; c=relaxed/simple;
+	bh=+ERl9kEBufIqPZbxt5b8EpdlICT5V6kGi6RjzSJytjM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=noMjYkCl9EnOEXnNYi7o29I2cOGJqliKPortcmb8zXbzmJ3PN44+qkEaMOLdmu7WyE3MLrNp6WxuxLTsZdXn4njAket1AyvneCwaK2ZSSgy5ePm9u1+i241dzdL5w7TP0ybaF+RXtd6M3+jym6BOuJHXrUpNiMKW1e6JplxQWCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BPoRnHoq; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1739184752;
+	bh=+ERl9kEBufIqPZbxt5b8EpdlICT5V6kGi6RjzSJytjM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BPoRnHoqhxjCaf9kNNWoiz5gLry2Y+uXoaNX6kMI0uYEe6bkaBubpcjlZueMgkfEP
+	 dRP/gXRa0smDDUBpyJjD06d7IT5w7LRBu0LiqGlO3hk2OHhZ8rI4RHsS4yodBdMVrE
+	 ks48gmZmh2QADXrXQZ3O/99poFv0qS1Atg69vQJxN/JyXXB6AsGAe0Emxmg9fiKv++
+	 nS/hS4KdEQnhixYpkJKyIsgEjlDC5LHCrC7QbUP13A2RXdkAD20CNQdosFxjpJzQa6
+	 VBq/JxpRSddJ8FGPfO+xkM5NZHnkyDhhZeOd8A1lRSE2Ss8C+KqzWX0D0wcjwhFe2D
+	 fFsu2gZV2gPmg==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A7E7A17E0EA4;
+	Mon, 10 Feb 2025 11:52:31 +0100 (CET)
+Message-ID: <30580863-0110-4375-8e99-3265a608d4d1@collabora.com>
+Date: Mon, 10 Feb 2025 11:52:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250205182743.915-3-quic_rlaggysh@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] arm64: dts: mediatek: mt8370: Enable gpu support
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20250207-mt8370-enable-gpu-v3-0-75e9b902f9c1@collabora.com>
+ <20250207-mt8370-enable-gpu-v3-3-75e9b902f9c1@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250207-mt8370-enable-gpu-v3-3-75e9b902f9c1@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Feb 05, 2025 at 06:27:38PM +0000, Raviteja Laggyshetty wrote:
-> The current interconnect framework relies on static IDs for node
-> creation and registration, which limits topologies with multiple
-> instances of the same interconnect provider. To address this, update
-> the interconnect framework APIs icc_node_create() and icc_link_create()
-> APIs to dynamically allocate IDs for interconnect nodes during creation.
-> This change removes the dependency on static IDs, allowing multiple
-> instances of the same hardware, such as EPSS L3.
+Il 07/02/25 16:18, Louis-Alexis Eyraud ha scritto:
+> Add a new gpu node in mt8370.dtsi to enable support for the
+> ARM Mali G57 MC2 GPU (Valhall-JM) found on the MT8370 SoC, using the
+> Panfrost driver.
 > 
-> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-> ---
->  drivers/interconnect/core.c | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
+> On a Mediatek Genio 510 EVK board, the panfrost driver probed with the
+> following message:
+> ```
+> panfrost 13000000.gpu: clock rate = 390000000
+> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
+> panfrost 13000000.gpu: features: 00000000,000019f7, issues: 00000003,
+>     80000400
+> panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
+>     Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
+> panfrost 13000000.gpu: shader_present=0x5 l2_present=0x1
+> [drm] Initialized panfrost 1.3.0 for 13000000.gpu on minor 0
+> ```
 > 
-> diff --git a/drivers/interconnect/core.c b/drivers/interconnect/core.c
-> index 9d5404a07e8a..40700246f1b6 100644
-> --- a/drivers/interconnect/core.c
-> +++ b/drivers/interconnect/core.c
-> @@ -20,6 +20,8 @@
->  
->  #include "internal.h"
->  
-> +#define ICC_DYN_ID_START 10000
-> +
->  #define CREATE_TRACE_POINTS
->  #include "trace.h"
->  
-> @@ -826,7 +828,12 @@ static struct icc_node *icc_node_create_nolock(int id)
->  	if (!node)
->  		return ERR_PTR(-ENOMEM);
->  
-> -	id = idr_alloc(&icc_idr, node, id, id + 1, GFP_KERNEL);
-> +	/* negative id indicates dynamic id allocation */
-> +	if (id < 0)
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-Nit: I think it might be better to add an explicit define for that and
-to decline all other negatdive values. Please leave us some room for
-future expansion.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> +		id = idr_alloc(&icc_idr, node, ICC_DYN_ID_START, 0, GFP_KERNEL);
-> +	else
-> +		id = idr_alloc(&icc_idr, node, id, id + 1, GFP_KERNEL);
-> +
->  	if (id < 0) {
->  		WARN(1, "%s: couldn't get idr\n", __func__);
->  		kfree(node);
-> @@ -962,6 +969,10 @@ void icc_node_add(struct icc_node *node, struct icc_provider *provider)
->  	node->avg_bw = node->init_avg;
->  	node->peak_bw = node->init_peak;
->  
-> +	if (node->id >= ICC_DYN_ID_START)
-> +		node->name = devm_kasprintf(provider->dev, GFP_KERNEL, "%s@%s",
-> +					    node->name, dev_name(provider->dev));
-> +
->  	if (node->avg_bw || node->peak_bw) {
->  		if (provider->pre_aggregate)
->  			provider->pre_aggregate(node);
-> -- 
-> 2.39.2
-> 
-
--- 
-With best wishes
-Dmitry
 
