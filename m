@@ -1,115 +1,87 @@
-Return-Path: <devicetree+bounces-144814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 443C6A2F4FB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:19:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1CB1A2F50F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 18:21:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FE9C1882087
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:19:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B2D7168851
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 410BF24BD0C;
-	Mon, 10 Feb 2025 17:19:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31317255E43;
+	Mon, 10 Feb 2025 17:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UazmHJL+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jRIZikI1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7E11F4629;
-	Mon, 10 Feb 2025 17:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AAB324FC04;
+	Mon, 10 Feb 2025 17:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739207947; cv=none; b=F9VuIR8lVmjRaoq7B+puDPZXYipveCjcseu5CnEx7Samu17UDzEe2uWpavFrw3qqcUwMKpVD90IzhNVyg4A9RJ795JVj5UZvlhlZ/B87pHUMeJRdaHzJud1nQnClHsPvvOH3G9IC9WuKMfThuvgLFeqSiE93RnPKokLsBaM0Pds=
+	t=1739208072; cv=none; b=LZilwnB1xy98Fnb8FPNEnnlVxPTTrOLIsCFPOc/o+tQsUOEHrzOekf8UopXqgNW5daoXYA6S3xxFkHx1S0r7wA+SLp5vsGfqSZwIDdJmctAlRUKo1HFJIu6eei1kpT0pgLsMESDYBxrgtXkOo7DyTf8gar43wnm8QwXgGmDzCF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739207947; c=relaxed/simple;
-	bh=86mtpW/G4xNuSFW1y68vusyqOuEtCXCn2mBA60c/wGc=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=lPlovNxrnUn7JT8GRdc6zADvZ/ETktVM4m5DAMF2T40hd8IpEgM19NpIPDl7lYEyhw4jBnJMtumq97F9aGBrluS8AdIZ5jvWR6O0ebC+GzdRYBN7Kz1C6rQJO5NXcH/UUyxxovVZE8OguHoysD5I66o+ikaWg9G5CK+1+H8C2Qk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UazmHJL+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 339F4C4CED1;
-	Mon, 10 Feb 2025 17:19:06 +0000 (UTC)
+	s=arc-20240116; t=1739208072; c=relaxed/simple;
+	bh=Te1ASZCrXYWhGODjGnTL88h0vOAiRncqdlFEVsLJEls=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=fVMAbzDSnYqjV2YLwbSdTkCi7J/QtdPgkSpQ6VBnlOCeyTXv3TRopSKY80FqxcodUHHPRQPTQ+6w+/4JV7YAZ8nOMBKZmNY1U1yfkqrOdHves+e0l87nmpGoUDk/CY/gBCQxq2K5R26CVT5GsRGRXdLD5i8+n/teX9vTqCYyktI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jRIZikI1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E37B0C4CEE5;
+	Mon, 10 Feb 2025 17:21:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739207946;
-	bh=86mtpW/G4xNuSFW1y68vusyqOuEtCXCn2mBA60c/wGc=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=UazmHJL+MscqwjOk5sKkRDhpPLij3+E6FOx2nSgjcqDNNidrgaGxFQj+1fDKbOMmV
-	 JEOvMacBN3/xGrd6qE57rY3QMVJjOeX6NdS7hjPib72eL9pVv88upSeF2ZadBWuAzo
-	 fXyWyEdtLE5E4e9XmsuPP0S5Wp9aCL14HXVXuGNzbFGt2lTeNMfz6/zxBV8PtmjrKV
-	 Fn+9ryQrJk2+VWNMyceUbsRrqNx2nGIGxDtcL/G8nl0psslL1/k2p3OsQqCgmxD1j/
-	 7xFN0s/enGAiadBQx7sg1KYTK1qlr5GR/tCg4G3qr3pOZ1ftbPqS1Qx8cvYz/FMNvc
-	 cTlaz/TiwT49w==
-Date: Mon, 10 Feb 2025 11:19:05 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1739208070;
+	bh=Te1ASZCrXYWhGODjGnTL88h0vOAiRncqdlFEVsLJEls=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=jRIZikI1TNUJfOg9Se1X7UpyDvEX9kKyqQmdoxi1Tz4lLlWI2RRcF/1/KW9dmfXzr
+	 xcyFAbYPTVhAEt32mlwaPFEBjFnxE7xaENgHHMVV+cX1IC8oanKdslqtJ3cZNfnxYV
+	 SCF5HHDBfy2MPPnsLTKJwBriZh41J6JvnGRl9XoC1oSQpilXmXEZcQAOaH3zpXuoga
+	 r+jcNZM1BxVyFSyBsIvhPNhENIg7mo9zLLEpMOp8cchGRmf86crlDBuYkCN9ap7PoS
+	 GqzDGdv6b0eqPt1yIBASoORvCQhxzBhJiAWokxtTmOrwXKmmXmOfam8Tsd3+AaqS98
+	 ERb2RX07Y35tw==
+From: Vinod Koul <vkoul@kernel.org>
+To: Andy Yan <andyshrk@163.com>
+Cc: cristian.ciocaltea@collabora.com, heiko@sntech.de, kishon@kernel.org, 
+ krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20241231092721.252405-1-andyshrk@163.com>
+References: <20241231092721.252405-1-andyshrk@163.com>
+Subject: Re: (subset) [PATCH v3] dt-bindings: phy: Add rk3576 hdptx phy
+Message-Id: <173920806650.103786.12015599140060722097.b4-ty@kernel.org>
+Date: Mon, 10 Feb 2025 22:51:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org, 
- Guillaume Stols <gstols@baylibre.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, 
- Alexandru Ardelean <aardelean@baylibre.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-To: Angelo Dureghello <adureghello@baylibre.com>
-In-Reply-To: <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-1-160df18b1da7@baylibre.com>
-References: <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-0-160df18b1da7@baylibre.com>
- <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-1-160df18b1da7@baylibre.com>
-Message-Id: <173920794511.669517.12561205201983200892.robh@kernel.org>
-Subject: Re: [PATCH v4 1/9] dt-bindings: iio: dac: adi-axi-adc: add ad7606
- variant
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
 
-On Mon, 10 Feb 2025 17:10:51 +0100, Angelo Dureghello wrote:
-> From: Guillaume Stols <gstols@baylibre.com>
+On Tue, 31 Dec 2024 17:27:11 +0800, Andy Yan wrote:
+> Add compatible for the HDPTX PHY on rk3576, which is compatible with
+> rk3588, but without rst_phy/rst_ropll/rst_lcpll.
 > 
-> A new compatible is added to reflect the specialized version of the HDL.
-> We use the parallel interface to write the ADC's registers, and
-> accessing this interface requires to use ADI_AXI_REG_CONFIG_RD,
-> ADI_AXI_REG_CONFIG_WR and ADI_AXI_REG_CONFIG_CTRL in a custom fashion.
+> In fact, these three reset lines are also optional on the rk3588,
+> they just used for debug, then they were removed on the rk3576 IC
+> design.
 > 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-> Co-developed-by: Angelo Dureghello <adureghello@baylibre.com>
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> ---
->  .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   | 70 +++++++++++++++++++++-
->  1 file changed, 69 insertions(+), 1 deletion(-)
-> 
+> [...]
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Applied, thanks!
 
-yamllint warnings/errors:
+[1/1] dt-bindings: phy: Add rk3576 hdptx phy
+      commit: ad205ffc0dd0fc3f4841e6ae900037f029aa0fa8
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.example.dtb: adc@0: pwm-names: ['convst1'] is too short
-	from schema $id: http://devicetree.org/schemas/iio/adc/adi,ad7606.yaml#
+Best regards,
+-- 
+~Vinod
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250210-wip-bl-ad7606_add_backend_sw_mode-v4-1-160df18b1da7@baylibre.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
