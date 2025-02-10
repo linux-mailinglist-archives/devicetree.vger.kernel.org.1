@@ -1,107 +1,129 @@
-Return-Path: <devicetree+bounces-144672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16CC1A2ED45
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:12:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E16CA2ED51
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:15:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2CCB3A4C46
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:12:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F324C1887D59
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6D4522258D;
-	Mon, 10 Feb 2025 13:12:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="RAV9hxnj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E5952236EC;
+	Mon, 10 Feb 2025 13:14:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE66A1B0F00
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 13:12:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A938C1F76A8;
+	Mon, 10 Feb 2025 13:14:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739193172; cv=none; b=TjT9XpkUuAUD7+G7aqR3mGGdKs+ZYIpwAUG1uNi+DGA2/XnDcc5RN9Vwc1N+6UQWokuw0HGpzEaybeGKz1dYkgDmXZjhav5UgWD4Xm5SEQuaPLhIGf8vEKyMCphbk1E96NvGHZal7eHajx1OnLXIrM0P7bGYrEXrljdLR3NQsb8=
+	t=1739193298; cv=none; b=pFhjszf2Z3cuWMPP5MVuoRSXMmDIp5a1/J9bzRPvzBQAlriTygMWoVu4PgJgmg0UlfrtS9th7nbQbn9YUrE5oo39rRT7lHzUEL+9BT36eVPh2yf9lRqL0J+slPwwH2AMR1X911CaosyUagRUfzwQtMb+Eyimk8a3r244XMiQlIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739193172; c=relaxed/simple;
-	bh=Z/Su0wfCeLsevkoE/23XLyZPKdT/pG01xuTTvz1PImA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mdR6sXGyTDNUB9S5JLgOkxJDpl0+nVkoZPA6V6mxE+wTOaG/Pc3ksY9fJStsZ3c0EX0tlgDFXsWp6GklGlsWOcId8jvAddgI0WbwzmlA+Esm688GTS8l4nhJKWpIAhajdxKOlZTlRO1zBZnh4et/ZCFXqooqW8seqTkK4WJgIU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=RAV9hxnj; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ciWRVZkQ9j2tyd4uX+oemeWAvXhKk4+4yp01dpYdRZA=; b=RAV9hxnjvFFmJpnvDXAaLc7cvc
-	D1+sixqRRZYRhNw6BXb4RXQz1s00EyeV0zz+wgQsvReL39hoRcoRK9IsZ7z9TJ3jR76vIN5YM+C0p
-	wDjt0GHSHoVsdrOBC3J4dH/zqJE5kMJHZbJ0+Uow2M5m5yU4x64/772J5uNZI3xxH95hkIPlvIQ3E
-	VK0oW1JlR6Hz7AZ2zZRFJhlHz5Q+YGlQhKCIdGvLwiDlpgBt/Tv5CtjbNR5NpeCi+uFDuavZGWP+D
-	vnzjZAZpbDm0DrWinjUL6llQcUVAtDHawKtVpFCZdw55bbbmC+rzs1thcgtcEG5BYAutYK/GcvVSu
-	/3PdCOgw==;
-Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1thTah-0002q6-Oy; Mon, 10 Feb 2025 14:12:47 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org, Jagan Teki <jagan@edgeble.ai>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Subject:
- Re: [PATCH V2] arm64: dts: rockchip: Enable HDMI1 out for Edgeble-6TOPS
- Modules
-Date: Mon, 10 Feb 2025 14:12:47 +0100
-Message-ID: <2928143.Icojqenx9y@diego>
-In-Reply-To:
- <CA+VMnFwHEXWP=d_X0T0E9fHFDCkXHxpvgML6jAHNfh9ikXTZWw@mail.gmail.com>
-References:
- <20241227132936.168100-1-jagan@edgeble.ai>
- <CA+VMnFwHEXWP=d_X0T0E9fHFDCkXHxpvgML6jAHNfh9ikXTZWw@mail.gmail.com>
+	s=arc-20240116; t=1739193298; c=relaxed/simple;
+	bh=oe9YqlWHMEuQqzNAsLC/ymWcVw5v450bMingEO5+o/8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PsHV54UAX3Vo1GzBFg6AiS6tu0fsa+WKuCD0Snk2RXo8Lr5yKR2VAUz2F10yUhbOvtH8rrl/RQLKgXZPwIsy2ccS9/ve3uaTJDMfq9cz6/3AMUmrqaBVwQREAnWkCRJ/1e/zpeIqcjZd8v8gTzSX+bqx4zEJPRNFf7/LAQCHUqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-4ba830cd6b8so1100373137.3;
+        Mon, 10 Feb 2025 05:14:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739193295; x=1739798095;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CGW9ojU7zn9GGWFOqqtTTDOtvjIst3sLIBkQ7z5/xo0=;
+        b=L3lT3Q1aPKt5pL51Abw2Ejusb7GyG8s++qnUyf7eFLD2YUiZS1k793/huq+OUX5g05
+         eCkSB1ALeE8dv0evar+G+fnC3Mod1BsA2VIXOXaBBgwFYiVi6S5YojTdXArbpLgVRRdm
+         Z+gwzvrXE25PgwcUUoa/OJJyD4/Zj5ciTsO7orIMjEaqj74MH/OEWynr9OyBRqKBAZ8M
+         zrCUBr+ZXUwT98Y7KJjWlixI2+w8rVXMlvPDCBXXLA2OLH0C0BozYhJfKfhXHdQ8Za+M
+         40XmW9Y2ye7jWPvsJ5NeIyYhraogRMncyXKnT1LdRPvRYulsXZXaTw9rmIxX1PQk7Ry4
+         WjNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU+yCwvHXyUTirm5WczBTwJ5niAs2501rak/+P88ZdN5uK9iV21Z2L4MeRZg+nIpzV1nOuYPXSNXA1hng1x@vger.kernel.org, AJvYcCWctV/b8QPg4xPR0/vAK1Fp+2RoNJpv8EZ3tiT23cj4Z5Ihrx1f7yJTDeKsy7FM40va6qhfGAlUiqyIUbs8@vger.kernel.org, AJvYcCXMA/wJTX4hm4lAxoDBh0OKN2ItXKvMGxvsvP9uw3U9sOICUBq4iTVQuzs2Q/n1paYmlRojwgr/m69LMcNmLFi1u6Y=@vger.kernel.org, AJvYcCXYnvimHneZB3bp1AGx/ycjaAMLciyLG8K3TdM2gRoAEde4NjI7KFM70wycLjHbg0Pr57fG4XIgmMDK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCfQvEbLAKLmBK/CXS3w5/CNgT4hWxATSpu+ugNsWf5rMfmPPd
+	y8ieXJB8qQikWYS9RJGKpa7ij40120QQ7tj+OI+TG1er+SBNQKHiJzFtpWMr
+X-Gm-Gg: ASbGncseS4T6AZ3QVnYwFAzFF0NW+KSRETjr0HIp+o4W50G5AJXsO+gxqDr2ydXrxFF
+	oBrItrYZvRzVwMaK9z7IF6bEH3+oD+q0plNEf/ajBJ/jYezyQY+sfQUEcuGwYFawtluSARYDR6T
+	z/mb2paH77KyPIo0hkCH6fur7CGFe+IBn5qatAJFKRJwutTsZmZPD4TzwSR0zme/Z2yJrfeSEoP
+	KHjPavTDhbRlVQl20s01jwr1Ukzs1cuHLgUDmHT1yjKUh+vFFCBirr9NJEOf7m3tPDsvzsbjj6i
+	ZdDP9IOytgh8uynG10YeW0kBFbJ65x+dFYWVjP3GnNsCv5LiEUK86g==
+X-Google-Smtp-Source: AGHT+IE/MTI003KZAzFEzT5D6R9YpB5TnCmJjKtw6Jr9BOv+i9SG00BX1RDpdIcUNUOA5wxu6Ei3Xw==
+X-Received: by 2002:a05:6102:31b3:b0:4ba:9689:8705 with SMTP id ada2fe7eead31-4ba968988famr4772692137.10.1739193294706;
+        Mon, 10 Feb 2025 05:14:54 -0800 (PST)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-866f96361d0sm1614988241.1.2025.02.10.05.14.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Feb 2025 05:14:54 -0800 (PST)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4bbbaef28a5so402848137.0;
+        Mon, 10 Feb 2025 05:14:54 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVIIzFIqh+sbsX678kayUVzbCvZAGwALDQRqhqxkXcIIM0vSFe4iqHdBSM62hBCDgf0CTrbQq/r04dIE3orCB+r7Nk=@vger.kernel.org, AJvYcCVooTA2QKM2j4TV1xRxZg1sM2oiz4wcLFxtX6yXK3OcY3cFm6CVotTNzOsEN0W4VGZn7SD7FU+k0B0PkJnR@vger.kernel.org, AJvYcCWzqMf1xaLdpVuSvkGw6JVcgbCItkFTWjF90CSnk7hysJOXr070TReUKStkbx6gU2YzmrGirR9t9Fbs@vger.kernel.org, AJvYcCX0sRJ2n6DeRhDD+E/e9bf8ocA1wbCzHBADcQfArFshFvc8pC85/ha6aNEKMlAk2VWL6bEtZGQpeZ2kI/JB@vger.kernel.org
+X-Received: by 2002:a05:6102:f0f:b0:4af:c58f:4550 with SMTP id
+ ada2fe7eead31-4ba85de9d5fmr7943296137.7.1739193294128; Mon, 10 Feb 2025
+ 05:14:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+References: <20250129165122.2980-1-thierry.bultel.yh@bp.renesas.com> <20250129165122.2980-3-thierry.bultel.yh@bp.renesas.com>
+In-Reply-To: <20250129165122.2980-3-thierry.bultel.yh@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 10 Feb 2025 14:14:41 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVB2W6R+xYeTUKSv_dMGruECSft-P19m6nZD61=ROngXw@mail.gmail.com>
+X-Gm-Features: AWEUYZmV5A_tAWdzmeYWijF-JgTDqcElC5Rp8P-Tj2Jva5zv0N3bQ2AGf8RZsUA
+Message-ID: <CAMuHMdVB2W6R+xYeTUKSv_dMGruECSft-P19m6nZD61=ROngXw@mail.gmail.com>
+Subject: Re: [PATCH 02/14] dt-bindings: serial: Document sci bindings for the
+ Renesas RZ/T2H (a.k.a r9a09g077) SoC
+To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Jagan,
+Hi Thierry,
 
-Am Montag, 10. Februar 2025, 13:51:07 MEZ schrieb Jagan Teki:
-> On Fri, 27 Dec 2024 at 18:59, Jagan Teki <jagan@edgeble.ai> wrote:
-> >
-> > Edgeble-6TOPS modules configure HDMI1 for HDMI Out from RK3588.
-> >
-> > Enable it on Edgeble-6TOPS IO Board dtsi.
-> >
-> > Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> > ---
-> > Changes for v2:
-> > - Rebase on top of Cristian's series
-> > https://patchwork.kernel.org/project/linux-rockchip/cover/20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com/
-> > - Update hdptxphy1
-> 
-> Cristian's seems merged, please queue this as well.
+On Wed, 29 Jan 2025 at 17:52, Thierry Bultel
+<thierry.bultel.yh@bp.renesas.com> wrote:
+> Document RZ/T2H (a.k.a r9a09g077) in SCI binding.
+>
+> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
 
-only partially, i.e. I merged patch 1 of 4, because actually enabling the
-hdmi1 controller needs the alias-removal from the phy driver, see
-Cristian's link "[1]" in his cover letter.
+Thanks for your patch!
 
-And phy maintainers seem to still be otherwise occupied [2].
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/renesas,rzsci.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/renesas,rzsci.yaml#
 
-Heiko
+"rzsci" is IMHO a bad name, as SCI on RZ/T2 differs from the
+similar-named "SCI" (sometimes called "RSCI" or "SCIg") on RZ/A1H,
+RZ/A2M, RZ/G2L, RZ/V2L, and RZ/G3S (and most old SuperH SoCs).
 
-[1] https://lore.kernel.org/lkml/20241206103401.1780416-3-heiko@sntech.de/
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy.git/log/?h=next
+BTW, I believe the variant on RZ/T2 is also used on RZ/N2, RZ/V2H,
+and RZ/G3E?
 
+However, binding-wise, they all seem to be very similar.
+So perhaps you can just add this to the existing
+Documentation/devicetree/bindings/serial/renesas,sci.yaml?
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
