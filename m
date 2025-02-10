@@ -1,332 +1,166 @@
-Return-Path: <devicetree+bounces-144686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3965BA2EDB1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:27:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1317AA2EE87
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 14:41:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0EB8188064A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:26:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A27A01609C5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 13:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6491C22CBF0;
-	Mon, 10 Feb 2025 13:26:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3408523027A;
+	Mon, 10 Feb 2025 13:41:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OSAbcreo"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nO5FdiJ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1EBE22ACCF;
-	Mon, 10 Feb 2025 13:26:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9E7922FF46;
+	Mon, 10 Feb 2025 13:41:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739193995; cv=none; b=GtWV5Te8BsmsdwkKYtlobk8oxBg5307y/7cP3Ob+k91BSVxnkWKFJ830c5Tae0YcyVFD4JNObDty4FAO9pUx5TJ6aS6bxUpCmjB8vJFpa+Uf6s/nLFDTVjAO+tTTJQOp/bPGLp1p5jBcEUfaDiM4LSvXnURFonc3mU8SSVZ0yAQ=
+	t=1739194869; cv=none; b=a07kPEHxylAFwW0SN/6FDY6nG35+ezaoXbCHPVYwzsUEfIapDDIv1KXMA6VkFsNEUmKP6WHro+T4/FwxvPWgwHPmwBOOA42vRt1CfAYh7GRGQYzSresF/KjxOlkxPmWF/nYFx7vqYOmh+CUyZYUcNZXFzZKJJMF0ixDYfz3rJo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739193995; c=relaxed/simple;
-	bh=SaTXI34pXWAOMjKr4HKpi9+HzGKgDgK1wHuWancoVuc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=h5YL++oow/um+s1v64IFaOFpTwLf1KnCE5o399wKdWp6RojUu5ovYOfkrmjYbTzN5gaGTmlPF+uPtV38d7buyZ/JRxOBfF3KzNPgiak0G3A+i0x406Potpbyfc71A/vCYcRAuWUH2Rme/KCkOtcLP90QuKRF3+fpSkTSgcr5GVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OSAbcreo; arc=none smtp.client-ip=217.70.183.195
+	s=arc-20240116; t=1739194869; c=relaxed/simple;
+	bh=AFjHQoTaIvtANhU1liah60ozR1dUibI/E3nIVdzWrGs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XN3YMoy9qs/cyX6P8xGRkUK+fYpZmcapInSocuela+a4/ffiSUYp8W3lFFnlLzmi7pao/C+XKdNbLWcAE96uK3hR/JCxrzhFI4/RpKsFWh2lQCs2m6mXFX2FxznLkHpjsZAYyzCrh3imMTl/CbArV8+66xIsaWvz45a7dU5KhGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nO5FdiJ+; arc=none smtp.client-ip=217.70.178.249
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 9D109204D6;
-	Mon, 10 Feb 2025 13:26:29 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+	by mslow3.mail.gandi.net (Postfix) with ESMTP id DD2635827C9;
+	Mon, 10 Feb 2025 13:29:55 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9215F4444B;
+	Mon, 10 Feb 2025 13:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739193991;
+	t=1739194188;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=kevF5dhmp9BQ8IIqzTLjaroxpWezPeWozU3oN8pgdFY=;
-	b=OSAbcreocJ1djBoLUlXnaIKwN91jQ4CltfS8NvED88YmtQC2LD//oSJXNgFM9M8yKJBYHy
-	I3Iqmb5DvEolfCI6fStOg8sP5hcNDbCW0yz6hqtaZILIFjF1zpvPRWBEf+bbCh0P7/+1GE
-	veHjLlbGgH4fkA+Zg80N8XDJ9Hi15N/WF9opuJWl6Lw9yaJRHXaIlaf1aVIXssJpOAT2pe
-	8dTNKu3Zt7TQf18e7lNEo4vl6mZ/M2anbPc9a95vnrRZNwg2qUrx3l9wvj+mGuOJBpkWpZ
-	IexhRtq+Fm29OBua7VW3dqG46KZPRXCYoXnyA8wha2qUXi738zSnztcpGERkrw==
+	bh=1GF2t3R1YAxOaP/I6N9EoSBBP5RdZCf7+8UhwSbU9Uo=;
+	b=nO5FdiJ+j7KQHbJp1aky5COAJFt7gP2C+Qedw+ueIULuhDoIYq1CA8FNaLOmzbZyEVZW7y
+	oAYmY/yHyZ0BHimFRhSlqfDK2NCS/0lxEVQaZqNI5Y7k/FwiqTsVUOxuKs77lW1WCgBT/a
+	WFW2vqbZdEag8zfI6t1dstqschrKBVSyMgTtG1phsGEGsNsiIVRpf6kc7Y6LUv6aleDXqh
+	ZbaYfOU0lHjQiEnDQcKs6H4hX41J0bzgKEvWJjZIOQqOWFZCJYA3czVdkvML95Ozz6Wa8x
+	1B7hR1msLRWYufscJicTWBbPOrK5ixCZN5Ezt6aa/FGli1bnOcnFl7Eh3MKGMw==
+Date: Mon, 10 Feb 2025 14:29:43 +0100
 From: Herve Codina <herve.codina@bootlin.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	=?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
-	Marek Vasut <marex@denx.de>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Louis Chauvet <louis.chauvet@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v6 4/4] drm: bridge: ti-sn65dsi83: Add error recovery mechanism
-Date: Mon, 10 Feb 2025 14:26:19 +0100
-Message-ID: <20250210132620.42263-5-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250210132620.42263-1-herve.codina@bootlin.com>
-References: <20250210132620.42263-1-herve.codina@bootlin.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?UTF-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, Raspberry Pi Kernel
+ Maintenance <kernel-list@raspberrypi.com>, Marek Vasut <marex@denx.de>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Louis Chauvet <louis.chauvet@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 4/4] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+Message-ID: <20250210142943.478c3066@bootlin.com>
+In-Reply-To: <6136272.lOV4Wx5bFT@steina-w>
+References: <20250203161607.223731-1-herve.codina@bootlin.com>
+	<8756830.T7Z3S40VBb@steina-w>
+	<20250207190816.2002d313@bootlin.com>
+	<6136272.lOV4Wx5bFT@steina-w>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-GND-State: clean
 X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefkedukecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehffeigfejueelueeuffelueefgfelhfejhfehieegudekteeiledttdfhffekffenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdrlhhotggrlhguohhmrghinhdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdeipdhrtghpthhtoheprghlvgigrghnuggvrhdrshhtvghinhesvgifrdhtqhdqghhrohhuphdrtghomhdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehrfhhoshhssehkvghrnhgvlhdrohhrghdprhgtphhtthhopefnrghurhgvnhhtr
- dhpihhntghhrghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtohepjhhonhgrsheskhifihgsohhordhsvgdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtgesghhmrghilhdrtghomhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhm
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefkedukecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedvhfeljedtfedtjeevffegtddutdeghfettdduhfeuhfdttdffieeuiefgvdfhvdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvhedprhgtphhtthhopegrlhgvgigrnhguvghrrdhsthgvihhnsegvfidrthhqqdhgrhhouhhprdgtohhmpdhrtghpthhtoheprghnughriigvjhdrhhgrjhgurgesihhnthgvlhdrtghomhdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhgpdhrtghpthhtoheprhhfohhssheskhgvrhhnvghlrdhorhhgpdhrtghpthhto
+ hepnfgruhhrvghnthdrphhinhgthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehjohhnrghssehkfihisghoohdrshgvpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgrihhlrdgtohhmpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomh
 X-GND-Sasl: herve.codina@bootlin.com
 
-In some cases observed during ESD tests, the TI SN65DSI83 cannot recover
-from errors by itself. A full restart of the bridge is needed in those
-cases to have the bridge output LVDS signals again.
+Hi Alexander,
 
-Also, during tests, cases were observed where reading the status of the
-bridge was not even possible. Indeed, in those cases, the bridge stops
-to acknowledge I2C transactions. Only a full reset of the bridge (power
-off/on) brings back the bridge to a functional state.
+On Mon, 10 Feb 2025 11:42:09 +0100
+Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
 
-The TI SN65DSI83 has some error detection capabilities. Introduce an
-error recovery mechanism based on this detection.
+> Hi Herve,
+> 
+> Am Freitag, 7. Februar 2025, 19:08:16 CET schrieb Herve Codina:
+> > Hi Alexander,
+> > 
+> > On Thu, 06 Feb 2025 16:39:09 +0100
+> > Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
+> >   
+> > > Hi Herve,
+> > > 
+> > > Am Donnerstag, 6. Februar 2025, 16:20:48 CET schrieb Herve Codina:  
+> > > > Hi Alexander,
+> > > > 
+> > > > On Thu, 06 Feb 2025 15:38:42 +0100
+> > > > Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
+> > > > 
+> > > > ...    
+> > > > > With interrupt configured I got the following stack trace upon
+> > > > > reboot/poweroff:
+> > > > > 
+> > > > > [   91.317264] sn65dsi83 2-002d: reset the pipe
+> > > > > [   91.344093] Unable to handle ke
+> > > > > ** replaying previous printk message **
+> > > > > [   91.344093] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000    
+> > > > ...
+> > > > 
+> > > > Ouch :(
+> > > > 
+> > > > One question to help me investigating:
+> > > > Do you have the issue at init/probe or when you start to display graphics?    
+> > > 
+> > > This is during shutdown/poweroff. I assume that regmap_reg() in
+> > > sn65dsi83_handle_errors() fails and because of that reset_work is scheduled.
+> > >   
+> > 
+> > Found the issue.
+> > 
+> > Can you give me following information so that I can validate what I
+> > understood:
+> >   - Is your interrupt line connected directly to the SoC?  
+> 
+> No, unfortunately not. It's connected to a GPIO expander, which in turn
+> delivers an IRQ to the SoC. In between the bridge and the expander is a
+> buffer for voltage switch (1V8 -> 3V3).
+> 
+> >   - Is there any pullup/pulldown on your interrupt line?  
+> 
+> As far a I can tell, there is no pullup/pulldown on the IRQ line to
+> the buffer.
+> 
+> >   - In your devicetree what is the configuration used for this interrupt in
+> >     terms of level or edge.  
+> 
+> As this line is connected to an expander (pca9555) only edge triggered
+> interrupts are supported.
+> 
+> > Anyway, I will send a fix in the next iteration.  
+> 
 
-The errors detected are signaled through an interrupt. On system where
-this interrupt is not available, the driver uses a polling monitoring
-fallback to check for errors. When an error is present or when reading
-the bridge status leads to an I2C failure, the recovery process is
-launched.
+Thanks for all those details.
 
-Restarting the bridge needs to redo the initialization sequence. This
-initialization sequence has to be done with the DSI data lanes driven in
-LP11 state. In order to do that, the recovery process resets the whole
-output path (i.e the path from the encoder to the connector) where the
-bridge is located.
+I've just sent a new iteration:
+  https://lore.kernel.org/all/20250210132620.42263-1-herve.codina@bootlin.com/
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
----
- drivers/gpu/drm/bridge/ti-sn65dsi83.c | 142 ++++++++++++++++++++++++++
- 1 file changed, 142 insertions(+)
+Can you test it on your side?
 
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-index 336380114eea..d84a03c79773 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-@@ -35,9 +35,12 @@
- #include <linux/of_graph.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/timer.h>
-+#include <linux/workqueue.h>
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
-+#include <drm/drm_drv.h> /* DRM_MODESET_LOCK_ALL_BEGIN() needs drm_drv_uses_atomic_modeset() */
- #include <drm/drm_mipi_dsi.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-@@ -159,6 +162,9 @@ struct sn65dsi83 {
- 	bool				lvds_dual_link_even_odd_swap;
- 	int				lvds_vod_swing_conf[2];
- 	int				lvds_term_conf[2];
-+	int				irq;
-+	struct delayed_work		monitor_work;
-+	struct work_struct		reset_work;
- };
- 
- static const struct regmap_range sn65dsi83_readable_ranges[] = {
-@@ -363,6 +369,106 @@ static u8 sn65dsi83_get_dsi_div(struct sn65dsi83 *ctx)
- 	return dsi_div - 1;
- }
- 
-+static int sn65dsi83_reset_pipe(struct sn65dsi83 *sn65dsi83)
-+{
-+	struct drm_device *dev = sn65dsi83->bridge.dev;
-+	struct drm_modeset_acquire_ctx ctx;
-+	int err;
-+
-+	/*
-+	 * Reset active outputs of the related CRTC.
-+	 *
-+	 * This way, drm core will reconfigure each components in the CRTC
-+	 * outputs path. In our case, this will force the previous component to
-+	 * go back in LP11 mode and so allow the reconfiguration of SN65DSI83
-+	 * bridge.
-+	 *
-+	 * Keep the lock during the whole operation to be atomic.
-+	 */
-+
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
-+
-+	if (!sn65dsi83->bridge.encoder->crtc) {
-+		/*
-+		 * No CRTC attached -> No CRTC active outputs to reset
-+		 * This can happen when the SN65DSI83 is reset. Simply do
-+		 * nothing without returning any errors.
-+		 */
-+		err = 0;
-+		goto end;
-+	}
-+
-+	dev_warn(sn65dsi83->dev, "reset the pipe\n");
-+
-+	err = drm_atomic_helper_reset_crtc(sn65dsi83->bridge.encoder->crtc, &ctx);
-+
-+end:
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, err);
-+
-+	return err;
-+}
-+
-+static void sn65dsi83_reset_work(struct work_struct *ws)
-+{
-+	struct sn65dsi83 *ctx = container_of(ws, struct sn65dsi83, reset_work);
-+	int ret;
-+
-+	/* Reset the pipe */
-+	ret = sn65dsi83_reset_pipe(ctx);
-+	if (ret) {
-+		dev_err(ctx->dev, "reset pipe failed %pe\n", ERR_PTR(ret));
-+		return;
-+	}
-+	if (ctx->irq)
-+		enable_irq(ctx->irq);
-+}
-+
-+static void sn65dsi83_handle_errors(struct sn65dsi83 *ctx)
-+{
-+	unsigned int irq_stat;
-+	int ret;
-+
-+	/*
-+	 * Schedule a reset in case of:
-+	 *  - the bridge doesn't answer
-+	 *  - the bridge signals an error
-+	 */
-+
-+	ret = regmap_read(ctx->regmap, REG_IRQ_STAT, &irq_stat);
-+	if (ret || irq_stat) {
-+		/*
-+		 * IRQ acknowledged is not always possible (the bridge can be in
-+		 * a state where it doesn't answer anymore). To prevent an
-+		 * interrupt storm, disable interrupt. The interrupt will be
-+		 * after the reset.
-+		 */
-+		if (ctx->irq)
-+			disable_irq_nosync(ctx->irq);
-+
-+		schedule_work(&ctx->reset_work);
-+	}
-+}
-+
-+static void sn65dsi83_monitor_work(struct work_struct *work)
-+{
-+	struct sn65dsi83 *ctx = container_of(to_delayed_work(work),
-+					     struct sn65dsi83, monitor_work);
-+
-+	sn65dsi83_handle_errors(ctx);
-+
-+	schedule_delayed_work(&ctx->monitor_work, msecs_to_jiffies(1000));
-+}
-+
-+static void sn65dsi83_monitor_start(struct sn65dsi83 *ctx)
-+{
-+	schedule_delayed_work(&ctx->monitor_work, msecs_to_jiffies(1000));
-+}
-+
-+static void sn65dsi83_monitor_stop(struct sn65dsi83 *ctx)
-+{
-+	cancel_delayed_work_sync(&ctx->monitor_work);
-+}
-+
- static void sn65dsi83_atomic_pre_enable(struct drm_bridge *bridge,
- 					struct drm_bridge_state *old_bridge_state)
- {
-@@ -549,6 +655,15 @@ static void sn65dsi83_atomic_enable(struct drm_bridge *bridge,
- 	regmap_read(ctx->regmap, REG_IRQ_STAT, &pval);
- 	if (pval)
- 		dev_err(ctx->dev, "Unexpected link status 0x%02x\n", pval);
-+
-+	if (ctx->irq) {
-+		/* Enable irq to detect errors */
-+		regmap_write(ctx->regmap, REG_IRQ_GLOBAL, REG_IRQ_GLOBAL_IRQ_EN);
-+		regmap_write(ctx->regmap, REG_IRQ_EN, 0xff);
-+	} else {
-+		/* Use the polling task */
-+		sn65dsi83_monitor_start(ctx);
-+	}
- }
- 
- static void sn65dsi83_atomic_disable(struct drm_bridge *bridge,
-@@ -557,6 +672,15 @@ static void sn65dsi83_atomic_disable(struct drm_bridge *bridge,
- 	struct sn65dsi83 *ctx = bridge_to_sn65dsi83(bridge);
- 	int ret;
- 
-+	if (ctx->irq) {
-+		/* Disable irq */
-+		regmap_write(ctx->regmap, REG_IRQ_EN, 0x0);
-+		regmap_write(ctx->regmap, REG_IRQ_GLOBAL, 0x0);
-+	} else {
-+		/* Stop the polling task */
-+		sn65dsi83_monitor_stop(ctx);
-+	}
-+
- 	/* Put the chip in reset, pull EN line low, and assure 10ms reset low timing. */
- 	gpiod_set_value_cansleep(ctx->enable_gpio, 0);
- 	usleep_range(10000, 11000);
-@@ -806,6 +930,14 @@ static int sn65dsi83_host_attach(struct sn65dsi83 *ctx)
- 	return 0;
- }
- 
-+static irqreturn_t sn65dsi83_irq(int irq, void *data)
-+{
-+	struct sn65dsi83 *ctx = data;
-+
-+	sn65dsi83_handle_errors(ctx);
-+	return IRQ_HANDLED;
-+}
-+
- static int sn65dsi83_probe(struct i2c_client *client)
- {
- 	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-@@ -819,6 +951,8 @@ static int sn65dsi83_probe(struct i2c_client *client)
- 		return -ENOMEM;
- 
- 	ctx->dev = dev;
-+	INIT_WORK(&ctx->reset_work, sn65dsi83_reset_work);
-+	INIT_DELAYED_WORK(&ctx->monitor_work, sn65dsi83_monitor_work);
- 
- 	if (dev->of_node) {
- 		model = (enum sn65dsi83_model)(uintptr_t)
-@@ -843,6 +977,14 @@ static int sn65dsi83_probe(struct i2c_client *client)
- 	if (IS_ERR(ctx->regmap))
- 		return dev_err_probe(dev, PTR_ERR(ctx->regmap), "failed to get regmap\n");
- 
-+	if (client->irq) {
-+		ctx->irq = client->irq;
-+		ret = devm_request_threaded_irq(ctx->dev, ctx->irq, NULL, sn65dsi83_irq,
-+						IRQF_ONESHOT, dev_name(ctx->dev), ctx);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "failed to request irq\n");
-+	}
-+
- 	dev_set_drvdata(dev, ctx);
- 	i2c_set_clientdata(client, ctx);
- 
--- 
-2.48.1
-
+Best regards,
+Hervé
 
