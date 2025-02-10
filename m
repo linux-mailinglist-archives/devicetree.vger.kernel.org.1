@@ -1,163 +1,199 @@
-Return-Path: <devicetree+bounces-144517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06663A2E618
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:12:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C1BEA2E62A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 09:18:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DB861888154
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 08:12:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA9BC188972C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 08:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B6C1BD4F7;
-	Mon, 10 Feb 2025 08:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156131BD4F7;
+	Mon, 10 Feb 2025 08:17:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fx287jsE"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ZfEhN2IR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2978D1BD00C;
-	Mon, 10 Feb 2025 08:12:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7F7012CD8B;
+	Mon, 10 Feb 2025 08:17:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739175130; cv=none; b=S66b4QUMuqVVZ+/2kR5/mjV0sUJ60HtTSQtpBscDr67G65cEFFWMrJ93H+z9OvEoaeSKfSa1nDW6S6lL2G5o8/iOjRd5kfvNAdqCFLvwXPYs3sVhm8LZ1IgEoQM+HbQ009Y6hO1ycGIEkWBdORCvi2zHBO5f/OyJrxVz9JgIqLg=
+	t=1739175474; cv=none; b=a1lmprtnyXmGVXJ33EipE0/xjaMQyX7L+EZWo60zu/0LBhS4Wera6CLSxhI7b/myzcKtPIpA2BHNcHTOUB+NuyTBTFbtafqpTPJ2rfs6MufxXzCIJPVyn8YXFgvQBujkeVBZHvLaqB578p2C/5gLQC43YaOeZS7TuUkKq+OexK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739175130; c=relaxed/simple;
-	bh=s/wEQHp9D4HLcuK43KrByU9JTfmtEf3h3muu17wBL+c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oX2MkmyWCXWtBQc1ird/4SJouVgVkOwp/BpZhIU86BIUjZv1HcirBLc8bxGGOEju+KTWHlYuvMO34BQBxEuA0Hu40mWWIZG9eANmOiliyFXT2SOvq7zXwU7gLR6ul8HunD54ZZVRFTg+m4XZ6T0OX86XiYh+Qpkd+P2BEvShTWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fx287jsE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30DA8C4CED1;
-	Mon, 10 Feb 2025 08:12:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739175129;
-	bh=s/wEQHp9D4HLcuK43KrByU9JTfmtEf3h3muu17wBL+c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fx287jsEyQasQIyD4qa+rI97L+iVffHU9GlRG9zDZciMWXk2FiKEweFtBbFb7RrUe
-	 O5o4Zz9RPrKVFIRmtbkk3QXvTy9HkhKX8x20IfQRfw0xBoCuGg/BVSSRMa0aGzhk0m
-	 DGc1paLZ4xUh4N1ZSQayQ6wxWIHN+dW0RFgub6xPLl9V2rnxCuyUTHGoZnO1ShW4mE
-	 SqMHjT3oFwULCgZAHnQyOEv3aArnEqhaxv5C4C7ZS5pBmTuSoO/2P6cAJonjMh/OgD
-	 hpTMto5BG3SKKCIj/prGxIcSiH8COi8hohTcTWvVwBqBS7ihFMuQa1xB8gZLpsulI3
-	 NVqzN6Xn+B0Xg==
-Message-ID: <3e69dc53-cf05-479b-9707-eabc2eae9291@kernel.org>
-Date: Mon, 10 Feb 2025 09:12:01 +0100
+	s=arc-20240116; t=1739175474; c=relaxed/simple;
+	bh=uqEuTJZmjX0Ja98hOQj/42kl8sGSMErfMulPFhSUoTk=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=aeQtstVMRrBPYj+EnP2GMdprfW233n5o2UPHh/zIaA1g6aSI33pWvRo0EZwdUDYeI5kVVjYJTCiyq8gWX1DYDxfdD3aiCABJAREnc6bpf0b40KsdA3weyfjJ0kJb/4Eoh6QQU/Grcffb40N4PeY0YiBFNQyuhojw8N4FUjFpvUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ZfEhN2IR; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Patchset status - 'Add support for Maxim Integrated MAX77705
- PMIC'
-To: Dzmitry Sankouski <dsankouski@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Hans de Goede <hdegoede@redhat.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
- Purism Kernel Team <kernel@puri.sm>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, linux-pm@vger.kernel.org,
- open list <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, linux-input@vger.kernel.org,
- linux-leds@vger.kernel.org
-References: <CABTCjFBx-QpCKFWs5MPCgLAjJWT6ygrvS_A0nJk2BBxmWAxF+Q@mail.gmail.com>
- <e67c0375-1024-483b-aabf-6a11339ab9af@linaro.org>
- <CABTCjFBvYkEG0WYhCt6tP_cO8Ct82t0=UhwBefZEJrUiFc7vAw@mail.gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CABTCjFBvYkEG0WYhCt6tP_cO8Ct82t0=UhwBefZEJrUiFc7vAw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1739175469;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xfCRHzFveZzAGV8Z+uWeA7HD1dufJpo8G/47iGVAsSU=;
+	b=ZfEhN2IR8SlgFMvj5IFyT3DSmRK5f1l+1Sj2KDuvqxkjLmRBRILn5pvnC58aUw83sk5hn4
+	3+5xQVFhqt59IE8hfV/sGmxsJU8v3iWWNUtUB3QsorNKEHu7wnvavVbAD1R5/w15VAneTZ
+	kogexvBfzqe1PfQwRIeR7mdD84Z+KSLVlNfpDUR2wNB3dOpM6o2QrIUM96+Uo5EZj0jMA5
+	AVS2xm9KJOUB8o6AHFOLFwgEZQm7p+W+rdYaTWxr4LorSm7tDHAtmHDvILLaL6qJp1EMYd
+	rNWZeIGsp0gq3TCmxSqUW3lGZJA119Ko2bpO3o2di17WOxaFryayR4iLi9krFA==
+Date: Mon, 10 Feb 2025 09:17:48 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jagan Teki
+ <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>, Michael Riesch
+ <michael.riesch@wolfvision.net>, Jonas Karlman <jonas@kwiboo.se>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 3/4] arm64: dts: rockchip: add overlay tests for Rock
+ 5B PCIe overlays
+In-Reply-To: <110a35c5-9450-47fb-9d5f-0ba73e290bf5@cherry.de>
+References: <20250131-pre-ict-jaguar-v4-0-c971e2852e8d@cherry.de>
+ <20250131-pre-ict-jaguar-v4-3-c971e2852e8d@cherry.de>
+ <77b5d0efa6e56bb391575aeeb4d1be80@manjaro.org>
+ <3de1cc52-5579-41b1-a333-0c4e81f96fbd@cherry.de>
+ <cb8f370474df88d1194d9ee92d3ca4e0@manjaro.org>
+ <110a35c5-9450-47fb-9d5f-0ba73e290bf5@cherry.de>
+Message-ID: <a3b98e3d3a2571ee75e59418bb3b6960@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 10/02/2025 08:11, Dzmitry Sankouski wrote:
-> вс, 9 февр. 2025 г. в 22:38, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org>:
->>
->> On 09/02/2025 15:13, Dzmitry Sankouski wrote:
->>> For the patchset I sent 2 weeks ago, [patchwork][1] shows status
->>> 'Handled Elsewhere, archived'. Is anything blocking it?
->>>
->>> [1]: https://patchwork.kernel.org/project/linux-pm/list/?series=927848&archive=both&state=*
->>
->> That's PM patchwork, not necessarily power supply. But anyway, what does
->> the cover letter say? Who do you expect to merge it? Above link does not
->> provide cover letter, unfortunately.
->>
+Hello Quentin,
+
+On 2025-02-06 12:07, Quentin Schulz wrote:
+> On 2/4/25 2:35 PM, Dragan Simic wrote:
+>> On 2025-02-04 13:20, Quentin Schulz wrote:
+>>> On 2/4/25 12:22 PM, Dragan Simic wrote:
+>>>> > On 2025-01-31 11:40, Quentin Schulz wrote:
 > 
-> I didn't found anything related to power supply in the list of mail lists at
-> https://subspace.kernel.org/vger.kernel.org.html.
+> Not discussing CONFIG_OF_ALL_DTBS relevancy wrt hiding overlay tests
+> behind, unrelated to this series I believe :)
 > 
-> However I found my series in linux-input with New status.
+> [...]
+
+Oh, indeed.  I'll get back to it below.
+
+>>>> With the above-proposed changes in place, and with 
+>>>> CONFIG_OF_ALL_DTBS
+>>>> selected, the relevant part of the "make dtbs" output looks like 
+>>>> this:
+>>>> 
+>>>>    DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb
+>>>>    DTC     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtbo
+>>>>    DTC     
+>>>> arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtbo
+>>>>    OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtb
+>>>>    OVL     arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtb
+>>>> 
+>>>> No more "phony targets" in the produced output. :)
+>>> 
+>>> Funnily enough, I would prefer to see OVL for overlays rather than
+>>> DTC, but I guess it's just one more occurrence of developers
+>>> disagreeing on how to name things :)
+>> 
+>> I actually agree with that, just like I prefer to see .dtbo files
+>> as additions to dtb-$(CONFIG_ARCH_XYZ).  It's all about the overlays,
+>> so they should be both specified and echoed back.
+>> 
+>> Moreover, we currently also have additional .dtb files with applied
+>> overlays left after the build and installed afterwards, which doesn't
+>> make much sense to me.  To me, those additional .dtb files should be
+>> deleted as build artefacts and not installed.
 > 
-> Here is my cover letter:
-> https://lore.kernel.org/all/20250123-starqltechn_integration_upstream-v17-0-8b06685b6612@gmail.com/
-
-
-Nothing in cover letter gives any expectations or directions of merging,
-so maybe that was a factor here?
-
-
+> I **think** it could be useful for systems without overlay support.
+> Then you have a dtb which is the result of an overlay applied on top
+> of the base dtb and you can replace your previous dtb with that one,
+> and voilà.
 > 
-> I guess I would expect a person from the MAINTAINERS list to merge it?  In that
-> case it would be Chanwoo Choi <cw00.choi@samsung.com> and
-> Krzysztof Kozlowski <krzk@kernel.org> from
-> MAXIM PMIC AND MUIC DRIVERS FOR EXYNOS BASED BOARDS entry.
+> What I don't like is that it's difficult to differentiate them from
+> the "normal" base DTB or even from the DTBO (simple base DTB + overlay
+> test is usually named after the overlay, and in the case of the Rock
+> 5B test: rk3588-rock-5b-pcie-srns.dtbo and
+> arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtb), easy to
+> pick the wrong one. Though that is on **me** as I could pick another
+> name for the overlay test and e.g. prepend "test-ovl_" to the filename
+> for example.
 
-Haha, nice! :) There is no such subsystem. This cannot be taken by these
-maintainers because there is nowhere they could put it and no one would
-take it from them even if they did find the place.
+On second thought, I'd agree that having the additional "extended"
+.dtb files, i.e. the versions with the DT overlays already applied,
+could be quite useful.  It's just that having them built and installed
+as well possibly makes everything a bit more convoluted, maybe even
+a bit confusing, but that's pretty much inevitable.  However, the
+benefits should outweigh those slight downsides.
 
+Regarding the naming, I don't think that prepending a self-descriptive
+prefix would actually work as expected, because of the way "magic"
+in scripts/Makefile.dtbs works.  Actually, I just tested that, and
+it didn't seem to work as expected.
 
-Best regards,
-Krzysztof
+> [...]
+> 
+>>> I won't be too difficult to convince here, just want some "authority"
+>>> or a piece of history about CONFIG_OF_ALL_DTBS that would go your
+>>> direction, before doing the change. I believe automated build tests
+>>> without needing to enable a symbol, and that taking DTB and DTBO from
+>>> the build output and apply DTBO on top of DTB works without having to
+>>> go through some length to get the symbols, are good reasons to keep 
+>>> it
+>>> the way it is in this patch series.
+>> 
+>> I'd like the most to perform the above-proposed "divorcing" of the DT
+>> overlay tests from CONFIG_OF_ALL_DTBS, so we don't have to enable any
+>> additional options to have the overlay tests run automatically, but
+>> to keep .dtbo filenames in dtb-$(CONFIG_ARCH_XYZ).  I think that would
+>> bring the best of both worlds, so to speak.
+> 
+> So, just to recap:
+> 
+> dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5.dtb
+> dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
+> dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
+> 
+> stays and I add:
+> 
+> dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-vz-2-uhd.dtb
+> rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
+> 	rk3568-wolfvision-pf5-display-vz.dtbo \
+> 	rk3568-wolfvision-pf5-io-expander.dtbo
+> 
+> at the bottom of the Makefile. I specifically do NOT want to make this
+> depend on CONFIG_OF_ALL_DTBS (by using dtb- like in ti/), so that the
+> base DTB will always have the symbols in, regardless of
+> CONFIG_OF_ALL_DTBS.
+> 
+> I think the redundancy is unnecessary but I guess it's worth getting
+> away from implicit rules.
+
+I fully agree with getting away from the tests depending on the
+CONFIG_OF_ALL_DTBS configuration option, which I wasn't happy with
+from the very beginning of this discussion.  It just felt and still
+feels wrong, especially because CONFIG_OF_ALL_DTBS depends on other
+configuration option(s) that pretty much don't go together with a
+non-development kernel build.
+
+The above-provided example is perfectly fine with me, and it follows
+the way "magic" in scripts/Makefile.dtbs works.  I just tested it,
+to make sure it works as expected, which it does.  As a note, I like
+that the already present .dtbo lines remain unmoved, because that
+keeps the DT overlay tests separate from the "meat" of the Makefile,
+which should make it more readable and less error-prone.
 
