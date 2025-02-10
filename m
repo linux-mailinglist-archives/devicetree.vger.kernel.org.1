@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-144763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-144764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C722A2F2C6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:13:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DDCCA2F2C8
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 17:13:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D48821888513
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:13:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19A9818857DA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2025 16:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 981DA24FBE3;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6CA324FC07;
 	Mon, 10 Feb 2025 16:12:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="j0JhJKw3"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2rJneaiX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3107259499
-	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 16:12:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6437A1F4613
+	for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 16:12:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739203977; cv=none; b=N3zRtvVCSrPyhsEdf6f4LNJQO73cnVClAHldONEP2VgwRnDr1FRXhoWKTxSY1dYyLju7QTyrHdFoR/Dog5tnzrL2kcIOI8azQx5LlxQagdamcx1gy3Z0lukdGUTWa0pVvx1V+2IBh2XilEpa5IJTXSVQyqjAan8vmgbEvHWNSUo=
+	t=1739203977; cv=none; b=L57NYMceZpGa+eeaOdnFKAG/oieQdh5kbiZZuOoei+M1nBzL9fp6t1/KNURuB/6E5UiBx2y6Of+lFQd/ukuyQefDwj84FQ9XqrQYnf+u0jygy8PRJfzX9smOJVs7YSh3ZgsotFvlUZb1YNReAzVrOqgZm6kVBA17942VIlcby0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1739203977; c=relaxed/simple;
-	bh=B5IY8sIP4gGC//Ma1JKc6dnncjGjGxHJYxsumbltiUQ=;
+	bh=y7IjFtUIINl7cRYxyBtc6keo4179kmfVu625qHuoAp8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=O2buxV8qLYoa1r759woPVyQUaWHo77ss/8OQMT+d/9lwg0+vYmQiRuigfr3opWRHWDcPgjWgiTq8lQRLGuiHQAKjA0ZNh5n+kxr0vDrt6EyiO6MK6T+sI2THWSS5RkOouzFZAmmciva0SYjg3iIgq5ST3bOfnUoTdqIEx0daLrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=j0JhJKw3; arc=none smtp.client-ip=209.85.128.42
+	 In-Reply-To:To:Cc; b=VmwDKdRSoZUdeafSvGOMeONgj6F9osJuXRnWWkxBoKPfuFKeySnvNz2027/HgCTyy4eng07y3eaPBaZlgK/IPvS2c+iUw4i5e79A6CTX99Dy4t5UdAbXoFZJjAHOZ/RXm1R4L8cQG2vu7FM8sF4q2OawIeV2vxrWb85CQWt8G0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2rJneaiX; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4361815b96cso30640775e9.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 08:12:53 -0800 (PST)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-436281c8a38so30225255e9.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2025 08:12:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739203972; x=1739808772; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739203974; x=1739808774; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=4Hn2hao0NOkqkUCBDvG2L0twm52DR6qAULRA/ZirsiU=;
-        b=j0JhJKw3rHKQAYaUPOhF6c8VCvo1BGkIlKzayN51CZwL3jjhu30VV/JTaiFI7z5Z/E
-         3deJWkLLfsDS20i3SKN9ARONKLXivNQZLFPKiJAzWRZ+jZG0AQpTUmGQM6II6L6fZvFV
-         iJSRvYuHOLdGH1oLoEYVbNj63hY2XwONdtrk6eUYmESGQo+C+k5IjJqS4iZRJRnModAm
-         rnSb5bNXIjNByGbCfdWly9TLmc+aPYoPVvdJHzcvsKB/S2bcy9o0/CVpsOSGQ2I0xJ5c
-         edRiIkCG+Rtwh9bf9BhdTCamec/6tflorYkOYifmtGpnDwlNUk/x1cFuYAtFzbmGLh1E
-         9xjA==
+        bh=SVE2q3k6JdjZ4UFWVjIakaD9BHRuhH1Hcjnsp1m4Lmk=;
+        b=2rJneaiXYkNjglL16S9xgk7vlN4F8+gkSOPikaxLqhmHsIOUneKK5tL27aW6KnCefH
+         B7wo6RL4vt7yLkr84BP7h7iWDgcj2H1yUkWNTKYrOt0X23rtrGTSBOU1J4G46/rWTzCG
+         HVQFS4qc/4+O30n3itfx0yX5saqOWeP11DH6sunTVGe8C+kg2Hrnz0XPF++NH/Q23zHk
+         bwxBcfKtcjqCeJlBVxo7rcofUwPFLAqn87ivd0umJ/emQrEbB0qfOYfdt558OIAGD0kV
+         xFNo3RvoJ8si/FJ3rirOFhKTJjSg0JUcid/Fr7HpVzJrz2gUlfZjQ95UnpEps1C2Inpf
+         OVXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739203972; x=1739808772;
+        d=1e100.net; s=20230601; t=1739203974; x=1739808774;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4Hn2hao0NOkqkUCBDvG2L0twm52DR6qAULRA/ZirsiU=;
-        b=GoNJJtRBRZWhDvckTo5mGFfdOBjhf2bIAcYutMFjz3uf4wTa8YZe+AL4ZCgz7ja6jM
-         A9l77IzAjciq6zb7QepJIlu0o06Ck5VzeyJKaVDMn/4PVP2LDo/RzZN2imrI91tEacyQ
-         28qTc9XBdgDOq94+zA0CiAAMOhZcfSnC/OnjtU2tRdCnVQdjYJIeLJ4hnndYZ4shsL9V
-         mduoVp2qTaaPt37lTYLUAtwnxWHUTEEVALiBNS1jyMeF+rV/+6YBknBmRn9pAmHtraSi
-         ddFG4h95VqAGpdffmz6DBXc3axaQRuo+uKRgjN2n6Fvz1buyqmKpYioTng2wZ4Gmyy79
-         sCVg==
-X-Forwarded-Encrypted: i=1; AJvYcCVC0rYbxOPftDe8meZ4utW1j2r+pjhFK0ecIWyQIa2X8/BRxt3anhHNhU+xzTusRhN6L+iow17DZZrJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzghcJiJ6njcLaQtEFS7U6B1pGpgM7wGB9TbWD3Y35vaFtMHskl
-	MIj1prIA+A2ZvdmhL8Vo+EOjVpXauV1Hx1Ea3EI/bM9IlWlCrwyqOpJwlBpViHM=
-X-Gm-Gg: ASbGncuysaNMY17fWgO//xSgBYf9Xc2u15KKmN2pypdzzxSogxo1+ca7d+CX10DcfRB
-	NmKQAm1WtUd6VoHiVltGFISfzbhi73OknEzpyGkd1+XGYjtfIi1r3QBlO0HCfw/Kv3ZnMcyvQMA
-	OMIDbPh6eh9mb2jQWAxeuovmdwhAKdc0p5o4ijkIFEvfBjsss+8eTDOFgjPeL2KB45RZzbXc9do
-	djqDNNVNmE5aWjbsgDbSOo05htvQ30YSWou/N6viXfejKd+2tMZzDyMacgiuL8NhUomadpdVH3/
-	PVxSnvacM1knT46Ewg2BqAAJxg96SJO416Rh6Kz4E/s5Xy8//yDZgRMstJb+3kY=
-X-Google-Smtp-Source: AGHT+IG+Ta5SefNzrXZQv8f47DmZIQzG6z/VRvRAiXpN5x26tdYC8T+sHD2dKTEKhoPsudvtdFOnHA==
-X-Received: by 2002:a05:600c:3b1a:b0:439:44eb:2d84 with SMTP id 5b1f17b1804b1-43944eb3121mr33206385e9.9.1739203972062;
-        Mon, 10 Feb 2025 08:12:52 -0800 (PST)
+        bh=SVE2q3k6JdjZ4UFWVjIakaD9BHRuhH1Hcjnsp1m4Lmk=;
+        b=NhXBFXilD4ByaUSyu9aNULKI2iI9tgGDkfx8y9DW2HaAmFEyYpbtInTKL9hHjboA2j
+         k7kLDkVzx/ySG1ak28m4AVmT+FaOuG19jyjzg0SAWG0QHMPjkV5FRDY44Zn3kh4OmBnc
+         lhBbrVWu3y1xY1wH/6r5cRC0558Bs23O80jenUimfY+RCKMV2R0waL1x3c8bLY6q0ZvL
+         DhYt8LRi2WcS6YuDvUUS/XPeq2p6K0EjNPVJIl2JFn0oRdGpv7BDVKOlGJp2t9FCfM5a
+         d24xEJJwN5xzEA1vbmdL7tN+Bvc8SNgftoLQqndI8Tx8lBYzUtnKlIUEb+DulGr0aBwi
+         Xj8A==
+X-Forwarded-Encrypted: i=1; AJvYcCWzvUyEd3CSaMkOOizClCQ76UjbcuyJd6t8y7tDDqDcP5EBuq7jYE7AmyqLBVV8wJ6n64d1F3IfVSOn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaV0nGnNsJtEYOqwVv5WVugqF25cglZb1Q/WdGm1wOcth+QHN5
+	T9HyqgFeUAmjByTCZ5NaVJDtRIx0FSWDyd0zAdcdNh2LvybRAfJFP7gnllKuC08=
+X-Gm-Gg: ASbGncuCFRHrMHlmhy8HRIWQRMVU99MJC/mWHbWsxs+uUNNyqMjzNXdAgwR9U7bO2ei
+	/BR2gdX2JFLj2ByQxoPdN3RleUmlXVhY+GLDuHPQ2690D7bWwefd0LxFsyJZ5qKApkk+SA4Qmpw
+	WmrEdoHxGlf2dznBnirRteGLEPztOKdy3bXuAqgoMfw8Fv1eDVUADZtmtPF/yTXleQkGFHrYfx/
+	AZPiU+bLDgUJ9dDie4cOzDwFD0ALa+0GjEyuGJL457Ozlj0i/vKQ+jot5FagIYcx9GY+0IiQIV3
+	e/bqrMSRNBtHgo662WBd+LaDY5r3u+OS9VBlNBa/prJNFQ+sZW8f6QQ4dkzpUac=
+X-Google-Smtp-Source: AGHT+IGzddC47+pjDSvR9mwpmYyJVcplPKxTatIFBpfXmDpOUncoCIJE66zoIcUqHQlugsyEqtyVjA==
+X-Received: by 2002:a05:600c:4650:b0:439:403a:6b77 with SMTP id 5b1f17b1804b1-439403a6d76mr56761835e9.10.1739203973800;
+        Mon, 10 Feb 2025 08:12:53 -0800 (PST)
 Received: from [127.0.1.1] (host-87-8-15-130.retail.telecomitalia.it. [87.8.15.130])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4391dc9ffcdsm146637945e9.15.2025.02.10.08.12.50
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4391dc9ffcdsm146637945e9.15.2025.02.10.08.12.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 08:12:51 -0800 (PST)
+        Mon, 10 Feb 2025 08:12:53 -0800 (PST)
 From: Angelo Dureghello <adureghello@baylibre.com>
 X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Date: Mon, 10 Feb 2025 17:10:54 +0100
-Subject: [PATCH v4 4/9] iio: adc: adi-axi-adc: add struct axi_adc_info
+Date: Mon, 10 Feb 2025 17:10:55 +0100
+Subject: [PATCH v4 5/9] iio: adc: adi-axi-adc: add platform children
+ support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-4-160df18b1da7@baylibre.com>
+Message-Id: <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-5-160df18b1da7@baylibre.com>
 References: <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-0-160df18b1da7@baylibre.com>
 In-Reply-To: <20250210-wip-bl-ad7606_add_backend_sw_mode-v4-0-160df18b1da7@baylibre.com>
 To: Michael Hennerich <michael.hennerich@analog.com>, 
@@ -102,89 +103,132 @@ X-Mailer: b4 0.14.1
 
 From: Angelo Dureghello <adureghello@baylibre.com>
 
-Add struct axi_adc_info to allow different axi-adc compatibles that can
-be added to this generic implementation.
+This is a preparation for the next commit adding support for register
+read and write functions on AD7606.
+Since sometimes a bus will be used, it has been agreed during ad3552's
+driver implementation that the device's driver bus is the backend, whose
+device node will be a child node.
+To provide the special callbacks for setting the register, axi-adc needs
+to pass them to the child device's driver through platform data.
 
 Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 ---
- drivers/iio/adc/adi-axi-adc.c | 30 +++++++++++++++++++++---------
- 1 file changed, 21 insertions(+), 9 deletions(-)
+ drivers/iio/adc/ad7606_bus_iface.h | 16 ++++++++++
+ drivers/iio/adc/adi-axi-adc.c      | 65 ++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 81 insertions(+)
 
-diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
-index c7357601f0f8..b38e8a27af94 100644
---- a/drivers/iio/adc/adi-axi-adc.c
-+++ b/drivers/iio/adc/adi-axi-adc.c
-@@ -80,7 +80,16 @@
- 	 ADI_AXI_REG_CHAN_CTRL_FMT_EN |		\
- 	 ADI_AXI_REG_CHAN_CTRL_ENABLE)
- 
-+struct axi_adc_info {
-+	unsigned int version;
-+	const struct iio_backend_info *backend_info;
-+	bool has_child_nodes;
-+	const void *pdata;
-+	unsigned int pdata_sz;
+diff --git a/drivers/iio/adc/ad7606_bus_iface.h b/drivers/iio/adc/ad7606_bus_iface.h
+new file mode 100644
+index 000000000000..f2c979a9b7f3
+--- /dev/null
++++ b/drivers/iio/adc/ad7606_bus_iface.h
+@@ -0,0 +1,16 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++/*
++ * Copyright (c) 2010-2024 Analog Devices Inc.
++ * Copyright (c) 2025 Baylibre, SAS
++ */
++#ifndef __LINUX_PLATFORM_DATA_AD7606_H__
++#define __LINUX_PLATFORM_DATA_AD7606_H__
++
++struct iio_backend;
++
++struct ad7606_platform_data {
++	int (*bus_reg_read)(struct iio_backend *back, u32 reg, u32 *val);
++	int (*bus_reg_write)(struct iio_backend *back, u32 reg, u32 val);
 +};
 +
- struct adi_axi_adc_state {
-+	const struct axi_adc_info *info;
- 	struct regmap *regmap;
- 	struct device *dev;
- 	/* lock to protect multiple accesses to the device registers */
-@@ -348,7 +357,6 @@ static const struct iio_backend_info adi_axi_adc_generic = {
++#endif /* __LINUX_PLATFORM_DATA_AD7606_H__ */
+diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
+index b38e8a27af94..3e1a997ace76 100644
+--- a/drivers/iio/adc/adi-axi-adc.c
++++ b/drivers/iio/adc/adi-axi-adc.c
+@@ -334,6 +334,36 @@ static const struct regmap_config axi_adc_regmap_config = {
+ 	.reg_stride = 4,
+ };
  
- static int adi_axi_adc_probe(struct platform_device *pdev)
- {
--	const unsigned int *expected_ver;
- 	struct adi_axi_adc_state *st;
- 	void __iomem *base;
- 	unsigned int ver;
-@@ -370,8 +378,8 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, PTR_ERR(st->regmap),
- 				     "failed to init register map\n");
++static void axi_adc_child_remove(void *data)
++{
++	platform_device_unregister(data);
++}
++
++static int axi_adc_create_platform_device(struct adi_axi_adc_state *st,
++					  struct fwnode_handle *child)
++{
++	struct platform_device_info pi = {
++	    .parent = st->dev,
++	    .name = fwnode_get_name(child),
++	    .id = PLATFORM_DEVID_AUTO,
++	    .fwnode = child,
++	    .data = st->info->pdata,
++	    .size_data = st->info->pdata_sz,
++	};
++	struct platform_device *pdev;
++	int ret;
++
++	pdev = platform_device_register_full(&pi);
++	if (IS_ERR(pdev))
++		return PTR_ERR(pdev);
++
++	ret = devm_add_action_or_reset(st->dev, axi_adc_child_remove, pdev);
++	if (ret)
++		return ret;
++
++	return 0;
++}
++
+ static const struct iio_backend_ops adi_axi_adc_ops = {
+ 	.enable = axi_adc_enable,
+ 	.disable = axi_adc_disable,
+@@ -417,6 +447,28 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
+ 		return dev_err_probe(&pdev->dev, ret,
+ 				     "failed to register iio backend\n");
  
--	expected_ver = device_get_match_data(&pdev->dev);
--	if (!expected_ver)
-+	st->info = device_get_match_data(&pdev->dev);
-+	if (!st->info)
- 		return -ENODEV;
++	device_for_each_child_node_scoped(&pdev->dev, child) {
++		int val;
++
++		if (!st->info->has_child_nodes)
++			return dev_err_probe(&pdev->dev, -EINVAL,
++					     "invalid fdt axi-dac compatible.");
++
++		/* Processing only reg 0 node */
++		ret = fwnode_property_read_u32(child, "reg", &val);
++		if (ret)
++			return dev_err_probe(&pdev->dev, ret,
++					     "invalid reg property.");
++		if (val != 0)
++			return dev_err_probe(&pdev->dev, -EINVAL,
++					     "invalid node address.");
++
++		ret = axi_adc_create_platform_device(st, child);
++		if (ret)
++			return dev_err_probe(&pdev->dev, -EINVAL,
++					     "cannot create device.");
++	}
++
+ 	dev_info(&pdev->dev, "AXI ADC IP core (%d.%.2d.%c) probed\n",
+ 		 ADI_AXI_PCORE_VER_MAJOR(ver),
+ 		 ADI_AXI_PCORE_VER_MINOR(ver),
+@@ -430,6 +482,19 @@ static const struct axi_adc_info adc_generic = {
+ 	.backend_info = &adi_axi_adc_generic,
+ };
  
- 	clk = devm_clk_get_enabled(&pdev->dev, NULL);
-@@ -391,12 +399,13 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	if (ADI_AXI_PCORE_VER_MAJOR(ver) != ADI_AXI_PCORE_VER_MAJOR(*expected_ver)) {
-+	if (ADI_AXI_PCORE_VER_MAJOR(ver) !=
-+	    ADI_AXI_PCORE_VER_MAJOR(st->info->version)) {
- 		dev_err(&pdev->dev,
- 			"Major version mismatch. Expected %d.%.2d.%c, Reported %d.%.2d.%c\n",
--			ADI_AXI_PCORE_VER_MAJOR(*expected_ver),
--			ADI_AXI_PCORE_VER_MINOR(*expected_ver),
--			ADI_AXI_PCORE_VER_PATCH(*expected_ver),
-+			ADI_AXI_PCORE_VER_MAJOR(st->info->version),
-+			ADI_AXI_PCORE_VER_MINOR(st->info->version),
-+			ADI_AXI_PCORE_VER_PATCH(st->info->version),
- 			ADI_AXI_PCORE_VER_MAJOR(ver),
- 			ADI_AXI_PCORE_VER_MINOR(ver),
- 			ADI_AXI_PCORE_VER_PATCH(ver));
-@@ -416,11 +425,14 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
- 	return 0;
- }
- 
--static unsigned int adi_axi_adc_10_0_a_info = ADI_AXI_PCORE_VER(10, 0, 'a');
-+static const struct axi_adc_info adc_generic = {
++static const struct ad7606_platform_data ad7606_pdata = {
++	.bus_reg_read = ad7606_bus_reg_read,
++	.bus_reg_write = ad7606_bus_reg_write,
++};
++
++static const struct axi_adc_info adc_ad7606 = {
 +	.version = ADI_AXI_PCORE_VER(10, 0, 'a'),
 +	.backend_info = &adi_axi_adc_generic,
++	.pdata = &ad7606_pdata,
++	.pdata_sz = sizeof(ad7606_pdata),
++	.has_child_nodes = true,
 +};
- 
++
  /* Match table for of_platform binding */
  static const struct of_device_id adi_axi_adc_of_match[] = {
--	{ .compatible = "adi,axi-adc-10.0.a", .data = &adi_axi_adc_10_0_a_info },
-+	{ .compatible = "adi,axi-adc-10.0.a", .data = &adc_generic },
- 	{ /* end of list */ }
- };
- MODULE_DEVICE_TABLE(of, adi_axi_adc_of_match);
+ 	{ .compatible = "adi,axi-adc-10.0.a", .data = &adc_generic },
 
 -- 
 2.47.0
