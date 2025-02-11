@@ -1,148 +1,133 @@
-Return-Path: <devicetree+bounces-145138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85B23A306BB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 10:17:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D01A9A306D4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 10:22:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4E09188868F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:17:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C564160A50
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D80BD1F0E4D;
-	Tue, 11 Feb 2025 09:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FA721F1307;
+	Tue, 11 Feb 2025 09:22:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="T7xACDYR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lLm+hmkC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6D941EF0A9;
-	Tue, 11 Feb 2025 09:17:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C961F1305
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 09:22:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739265464; cv=none; b=ERo9iRbeu3kW2UNmTDD8omUFHfkB9ZRHieZzoLz1y7anFYqu7kS/zMvn5dWNrs0S3n2sjitw1aZrfrkP5+4jXDnvI2Nt1CX3do78NAtHsWUbfIubVDmPxjzJqh7LawX1JB1gb0eYZ7+CMnPLS+dLTtVicN6DJx3JICy3A4IbVHA=
+	t=1739265740; cv=none; b=Vdw6/KvEvMT19i0LdDvm71YggW8vNymYqpMsAbGzeukUWs06aTnm61CRKytjnNDno8BAjbOYuiBbgi6qsj82Vr3dp0fWBfzYajmVqFYh3MH4kHfqtVIgxU/Dc6NE+4+l3tRH3CrSufE3O31Gnel86sU3fCZV1pfQlvS/7Zt9a1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739265464; c=relaxed/simple;
-	bh=q1ph39zTYKj5k8jovBlZb0OmW0D/Cl5sBfBfHNGZ+Fs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sj2SKqN90VXUsvBQDvoqT6M/yy2K4pK+ydhrrB//S6ljnfhZ2FrEeBq8rlga0mHVhs+MlvxxsDBeU/Ks8hpEnTTtTp8qD8Gp1jGz51a9b312jEUtZLmHlD1MB+1XVRhXwBYERTl4G6xgwxkFLn65vDhdYXV+bgZNErWAiXgzmpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=T7xACDYR; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 27539433D9;
-	Tue, 11 Feb 2025 09:17:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739265459;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=T128NbBeShVjgHAQHFQBVXrcbz3LydX8l7wGrFI7ueM=;
-	b=T7xACDYRo4ZKNUXI1/0DERPK7oBUD4COOhQeQ03s6RH8EOyByC+6pjBEZ6OzrOskPxeFuS
-	bj1x1oMaVubfmt3p26TgQVuUpl2zcK0XoiUC456N7+IGvvckqpqJgCItd7YswXw26TdEOJ
-	M91jZud9cbdMfRKvKG0rkxCGpLdYdpRNO1gh9mW3iT33Ge4lrkju+oPKRM6FENGcYAigOS
-	AMmT/wHxfjhD2hbhK6CFJZvEZDF1S2DQtqSVDuLGIfB4sw7wuuj4cIXdgh7E5LPVHPgIIh
-	G5b8e1G431JQKCpx/CGPenErBzIhdyOHy2eojCn4jjfcomZSr06/ZsDQrE6S7g==
-Date: Tue, 11 Feb 2025 10:17:35 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: kernel test robot <lkp@intel.com>
-Cc: davem@davemloft.net, llvm@lists.linux.dev,
- oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski
- <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
- linux-arm-kernel@lists.infradead.org, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>, Marek
- =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
- <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
- mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Romain Gantois
- <romain.gantois@bootlin.com>, Robert Marko <robert.marko@sartura.hr>
-Subject: Re: [PATCH net-next 11/13] net: phy: Only rely on phy_port for
- PHY-driven SFP
-Message-ID: <20250211101735.0af025c4@fedora-1.home>
-In-Reply-To: <202502082347.tFufJ529-lkp@intel.com>
-References: <20250207223634.600218-12-maxime.chevallier@bootlin.com>
-	<202502082347.tFufJ529-lkp@intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1739265740; c=relaxed/simple;
+	bh=Y5en7ULaxh0ueBzxiG7JRZbLMPLncLvcjivpdbNNNvY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=boVLrz0oD83nGFZkuB/30dOjbzM4JyJZGczFToncbv+dKfH4ZNvXiGGHKDKR5lRrn5HQas6gHMTn+DkxwyvhvLMvy+XKCENt8w4YHA7fhvLYRhcBG5Gmgw93qmk4v1aAF3NsXssoy4GrPP4+aXKaz64lDxirfntI/IHEvPZD58Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lLm+hmkC; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-38dd006a4e1so2696523f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 01:22:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739265736; x=1739870536; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hxKXnlOOBqsBwwrNI1x2D/yzjPQCMqMA1f8yAIfnnZg=;
+        b=lLm+hmkCvR+6NV9iFukY9lIwRuXvg3e4RZ5Wdcc0Hs6pH1WUTMGo9IbUzs9cYL0sgT
+         LYv904tnEX/zyzaJEUq/U8xEJdGfVObelufTPH79T91GYi2gbhbpMtBWkHldB29tIP/T
+         ni405GOB3Aae5gw94ApzJPo1mSt+eMQyGdCd9UZ5RHzakbV++S7mHVzrBG9OiEc5gw2e
+         VCaNdRQ7gfh/2ZUd3IFLinQMj/yC/MoaqI1U/FThSF1rbkSpNoYXKnro3zMfUwUelWOW
+         6dCHGUStt1x+uE6LauN4N60OzfvNd12yZHGDJd38r8ffgan1z9umJpM6GozZEE5xau90
+         mJ8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739265736; x=1739870536;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hxKXnlOOBqsBwwrNI1x2D/yzjPQCMqMA1f8yAIfnnZg=;
+        b=sxIMmt2lwKiFwO+Xh+ylQyiyw23kQxs8Bfig4FFGqVVFxylcr4rB17hKmJdNOdyCFf
+         2g2sQxU0OlYBJl3siaD8wWV6bsXAtoTH8DzFobSWCU2rgyXtr0QgD4v4uZC14+3hZwAf
+         xo1u63d6EpmHRa+wAxkX3I4nBdaWHOhMJEAWEUGMW6aGDPjtBp1SNluET/0GGX9XetZA
+         G9pHt48mSZFOcVzx6bjcBDfPK/4GDMd8A0M1wJNtr5dY+bRnkR61rRvygHvT6wg1Gptb
+         523lgostDyv4cNAInh9SaHrLVDUmurT02+c/NLapDU6nGCA09prZBfTZ91IszrQymzPe
+         fdIA==
+X-Forwarded-Encrypted: i=1; AJvYcCWyhAqNVnrY8UhAJGC1rYEPeB4gHOM1x9b46aa15VVQ7m2tkMzMA2fLe3ZBYz6/AU9PNHK4X2HLrf6K@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdgCTBd4wCipnI41iOBi+Z+S5sVkiKilE53NnqeIsbPAR+560h
+	6zVlnv9VofFljw2vm9fRFnp90lRKkIZMU23H7Cr1LWU/1z5s/AWB
+X-Gm-Gg: ASbGncu048+Nnjc0HmFYsgXmxiboeDfNq7NPWiW5BvaWhoGnJ1OnuBAXt2Dl550Wt1T
+	AqD+cktGI80Nqzci7auxLabtQkEGlA9lZTwnlL2nmFEWrTzMveS00cij1Fx6ZqTtMEaihc8r81T
+	IWC9CQY1ZZAqm34rgRf1S1KyZj0h4ldWHv4B7uxNLNohhVqbO2xCRBCqooBz0npQxUCaSu8HmdX
+	Z2Qq8GYAWwmyX9Ah3A7RTQqexS3obKIkSfm7Ox1tlVeutnlsd03SMaHL8bR45MaNIMwDSmkPJMO
+	LWCopfE6s9eXJlJtNeUbjUv332CJk8ir
+X-Google-Smtp-Source: AGHT+IFinbmenD29Rw/0Uw611+rQ/E82ABxvNPKgQBCneBqnOXKQlDtW2JU9WvLJiNHkyHeRBhYRgA==
+X-Received: by 2002:a5d:5f54:0:b0:38d:dffc:c144 with SMTP id ffacd0b85a97d-38ddffcc651mr5300952f8f.55.1739265736486;
+        Tue, 11 Feb 2025 01:22:16 -0800 (PST)
+Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4394f3b8846sm8075945e9.1.2025.02.11.01.22.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Feb 2025 01:22:16 -0800 (PST)
+Message-ID: <6b3cbd15b62a45b44cae2013fec11eb2c5504fa3.camel@gmail.com>
+Subject: Re: [PATCH 03/10] arm64: dts: sophgo: Add initial SG2000 SoC device
+ tree
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, soc@lists.linux.dev
+Cc: Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
+ <inochiama@outlook.com>, 	linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, Haylen Chu	 <heylenay@outlook.com>,
+ linux-arm-kernel@lists.infradead.org, Arnd Bergmann	 <arnd@arndb.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>
+Date: Tue, 11 Feb 2025 10:22:13 +0100
+In-Reply-To: <bf8f3ea1-6fb5-40d1-a823-b3bc272a2257@kernel.org>
+References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
+	 <20250209220646.1090868-4-alexander.sverdlin@gmail.com>
+	 <0d5484d1-be83-4f38-befd-94d458b3aaa8@kernel.org>
+	 <03ff407fe68e46df4844e5dd244e7c609331af71.camel@gmail.com>
+	 <bf8f3ea1-6fb5-40d1-a823-b3bc272a2257@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegtdeivdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthejredtredtvdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeifeejgeevhffhhfefvdfhgefgudefkeefgeeivdeuveejueeljeekgfffieeihfenucffohhmrghinhepghhithhhuhgsrdgtohhmpdhkvghrnhgvlhdrohhrghdptddurdhorhhgnecukfhppedvrgdtudemtggsudelmeekugegtgemlehftddtmegstgdvudemkeekleelmeehgedttgemvgehlegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkegugegtmeelfhdttdemsggtvddumeekkeelleemheegtdgtmegvheelvgdphhgvlhhopehfvgguohhrrgdquddrhhhomhgvpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfedvpdhrtghpthhtoheplhhkphesihhnthgvlhdrtghomhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtr
- dhnvghtpdhrtghpthhtoheplhhlvhhmsehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtohepohgvqdhksghuihhlugdqrghllheslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhm
-X-GND-Sasl: maxime.chevallier@bootlin.com
 
-Hi,
+Hi Krzysztof!
 
-On Sun, 9 Feb 2025 00:04:55 +0800
-kernel test robot <lkp@intel.com> wrote:
+On Tue, 2025-02-11 at 09:07 +0100, Krzysztof Kozlowski wrote:
+> > > > +&clk {
+> > > > +	compatible =3D "sophgo,sg2000-clk";
+> > >=20
+> > >=20
+> > > That's discouraged practice. If you need to define compatible, it mea=
+ns
+> > > the block is not shared between designs and must not be in common DTS=
+I.
+> >=20
+> > That doesn't come from my series, that's how original cv18xx.dtsi has b=
+een
+>=20
+> You can change the other file to match real hardware. But if original
+> cv18xx.dtsi has incorrect or imprecise compatible, I wonder how does it
+> work....
 
-> Hi Maxime,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on net-next/main]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Maxime-Chevallier/net-ethtool-Introduce-ETHTOOL_LINK_MEDIUM_-values/20250208-064223
-> base:   net-next/main
-> patch link:    https://lore.kernel.org/r/20250207223634.600218-12-maxime.chevallier%40bootlin.com
-> patch subject: [PATCH net-next 11/13] net: phy: Only rely on phy_port for PHY-driven SFP
-> config: i386-buildonly-randconfig-005-20250208 (https://download.01.org/0day-ci/archive/20250208/202502082347.tFufJ529-lkp@intel.com/config)
-> compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250208/202502082347.tFufJ529-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202502082347.tFufJ529-lkp@intel.com/
-> 
-> All errors (new ones prefixed by >>):
-> 
-> >> drivers/net/phy/qcom/qca807x.c:698:12: error: use of undeclared identifier 'phy_sfp_attach'; did you mean 'phy_attach'?  
->      698 |         .attach = phy_sfp_attach,
->          |                   ^~~~~~~~~~~~~~
->          |                   phy_attach
->    include/linux/phy.h:1912:20: note: 'phy_attach' declared here
->     1912 | struct phy_device *phy_attach(struct net_device *dev, const char *bus_id,
->          |                    ^
-> >> drivers/net/phy/qcom/qca807x.c:699:12: error: use of undeclared identifier 'phy_sfp_detach'; did you mean 'phy_detach'?  
->      699 |         .detach = phy_sfp_detach,
->          |                   ^~~~~~~~~~~~~~
->          |                   phy_detach
->    include/linux/phy.h:1924:6: note: 'phy_detach' declared here
->     1924 | void phy_detach(struct phy_device *phydev);
->          |      ^
-> >> drivers/net/phy/qcom/qca807x.c:702:17: error: use of undeclared identifier 'phy_sfp_connect_phy'  
->      702 |         .connect_phy = phy_sfp_connect_phy,
->          |                        ^
-> >> drivers/net/phy/qcom/qca807x.c:703:20: error: use of undeclared identifier 'phy_sfp_disconnect_phy'  
->      703 |         .disconnect_phy = phy_sfp_disconnect_phy,
->          |                           ^
-> >> drivers/net/phy/qcom/qca807x.c:748:9: error: call to undeclared function 'phy_sfp_probe'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]  
->      748 |                 ret = phy_sfp_probe(phydev, &qca807x_sfp_ops);
->          |                       ^
->    5 errors generated.
+cv18xx.dtsi doesn't have any "compatible". They define it for every SoC ind=
+ividually.
+So it's same MMIO window, different compatible. Looking into the driver I c=
+an tell
+that even the register map is the same, but they expose (and pre-enable) di=
+fferent
+subsets on different SoCs.
 
-Ah damned, I missed that qca807x now also supports SFP. I'll include a
-conversion fr that driver too in V2 (and add Robert in CC:)
+--=20
+Alexander Sverdlin.
 
-Thanks,
-
-Maxime
 
