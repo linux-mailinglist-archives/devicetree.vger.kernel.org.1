@@ -1,147 +1,98 @@
-Return-Path: <devicetree+bounces-145398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BF8A3137E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:51:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50F66A31393
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:55:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45C2D166F6B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:51:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09E033A7961
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E38D31E22E6;
-	Tue, 11 Feb 2025 17:51:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34FF51E231F;
+	Tue, 11 Feb 2025 17:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="oIvF4uh7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s/2T/84z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C3B1E04BD
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 17:51:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07243261564;
+	Tue, 11 Feb 2025 17:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739296277; cv=none; b=VJgJOUiiJ87BJHBUSodfOrxzVeV/Rvfw631LrIMKK8v/c7SoxLMAmLuYTHvSyA+PoHws9ofBTA6n/Mhf25+7DbkodQlhJ23pFbQvREUqUg1Tn4Od0zicfKrCYXhWgSj3Gx9tCN4ZUv+zri3mmVwyCyLUmiV7yFxEQ4XYHqCWa/U=
+	t=1739296530; cv=none; b=SPaFQHYx21cYb5qMzxqccJ3vTDEShm37AjKBQAfCtQiaF3b8TRk4G86/ihre99+boczNyvyVhI16svLThvTMEHUIQcnVsXt8zGUjenNdaHmnXKseQ9If/vJNgyewvCBvhCjYofsLba6q2haSvJLeTRAasuDFkZpWy4ImD/QmdH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739296277; c=relaxed/simple;
-	bh=fR0zgTi+/ud4V0inKPnP2XF/d+aFxcaqhBAv1SrgoSk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hQieyFkr2gxfRcI9plIzvYccz51i9TvjdhFQ66L7pox+aoGsDwh8ieuuGnSytaeEn66AK+YugdGJ/3p+OlQaWHjv/tvdp51BzFwdwUYULkOXYjRS+fCxn42UaBKjg7I2gyrZ8IaLscCOUUB7fFDQhBKzRRah5Gt24/l34K3UTHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=oIvF4uh7; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-543cc81ddebso6536095e87.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 09:51:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1739296274; x=1739901074; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UTSaH7qKhx86rkiYP1YP/HrBPskf3k4Y0bn254nyOfM=;
-        b=oIvF4uh7ahZVS8MjPXvL6KGnk7rWI8Slh5ELZzJiOOcDV0BAUoGxbhaUVxBXH+r9Sn
-         MP4gkG1t0XN7ppzPSE9k401R9MYG7X+bGCWz7UtI5BQqPIUJ4DMcPO4LwiFjxIjdx42W
-         zS5rkN1itYKz/jiXyl/VRl9yFqSmzOmLwnYNF3Cxlp4jHLbYFwRyhomo1XjWR2kBayjj
-         3uhLnJlz8V7HGzNlapUaNZu4d/pAntb0Uyn4eDWID7wDB5tyu8Eqbk4ZZ4frAnYJ8aKN
-         iDbLrpMr08amnPp+ox2F8MQ11AzviS5DFQPqNvoidaeTl5H2xKe2mmkH37H3Gqa8PtR/
-         Q8hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739296274; x=1739901074;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UTSaH7qKhx86rkiYP1YP/HrBPskf3k4Y0bn254nyOfM=;
-        b=M2yuwZbnmmvvMfUsXYnOrpUqijv3lkaBsttZK+HQdIeb/Uyl+KDuuQBTVRFfljlUaJ
-         WjRJCu0V9yS9udjVcXVSRBg4X40Q6G3DbIKDAGwbuibA453213mt+6EWgz/J5zSonOia
-         p2/RY0zBo7CFl9u30wgXVAxpiiLMeDyysV5qSKUhqfDyemfNh19Yl7Qg/ekpA6rJydfB
-         oILoLTSu41X6YHvaUCQaIgizfcCrHYb5LWYetBSKNqY5Lv+EGXvgM8VTDuPcNbn9JRkB
-         c5iQMkCHGYfYhymWSewiE4tFvGvHK8RBZkyykeK78NOMvoFApSN15GSWJYC2bZ8H6O0W
-         uarQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXKqYnlUJS0Nqk+ppWpxHCRrpv2g8mGdpnHdu5089nQ85M6dJBcq55RF3bvWZfqrcWWhvG557cYNMjk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoIFuWAVto/epYVYl/MrKUYNrn/zftRzMO/zL+NbCx0+QjKijD
-	127v+LQwWjaVcdZsLn5bWcH043dag2L+swvyU/D9XLg+aJH6PJU9HT+Zc8Tvr/wmiuFw8L2WRQk
-	MLJ466tdfIzrTPW+gABll+6rLin4zZfZVWbviVQ==
-X-Gm-Gg: ASbGnctokDj27+35xWZBytW/JqqT6Prs/JCm00NICBblaTsqj+G/Boheq56t3faAT1o
-	Q+1ZKh9K33Mw9Th26o+7WjmB4WIbYgXqtgZemYbq7B9Jon9SSci3SdFO54cX0ni3Wd6QzlHF2jh
-	dDGd64ClqtsQjwvy8JkE86Ml9pZlk=
-X-Google-Smtp-Source: AGHT+IHM10prpSU2tEYh3WXNcE4h+ufYvzwXjCvUf1TyTFGoPwbaxIAAya9aVjOyVTzIcIXr9fV5w15MZabbxVNEptw=
-X-Received: by 2002:ac2:5687:0:b0:545:8c8:30e7 with SMTP id
- 2adb3069b0e04-54508c833f0mr3052476e87.21.1739296273868; Tue, 11 Feb 2025
- 09:51:13 -0800 (PST)
+	s=arc-20240116; t=1739296530; c=relaxed/simple;
+	bh=daaP9ivLRlaVJRR0FdV2E485+B1tFasfnuTeDeoCx64=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ijyxJ2TV0DXvO6vSh4FEfh3GiqsykCtzHGswoiPABiL2FzWIG3BB+aLf3/ACDz0GIXKes8EI18Cr9AX4saTaC5crA77yjyJv6YUT9E/Os0RLwwx09M/X81Gt+w7VCutOB47jZ6boAN37XC9kmN28Dfay+HJxyibnv1RjY1UyxU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s/2T/84z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 326A4C4CEDD;
+	Tue, 11 Feb 2025 17:55:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739296529;
+	bh=daaP9ivLRlaVJRR0FdV2E485+B1tFasfnuTeDeoCx64=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s/2T/84zni+MLaiIA8zuppiehPyj+/6syQyqqYQt6yDIaWcIY2EUj5XeZHHWCN2Ut
+	 RNYQRqPtLpTI/48KzD7a4cb0Q0fLC/E4zHn1lQBmbwqFLzaP72OTCSYivyFipbO4qx
+	 pQ+zVc+OPZWgrOQFaE9NLkyk7RfgFVBXzWotAuGPegOeAgSkK8EP4cjH61VkxxAjr4
+	 L2TqQ/LgvuWKaIAQm8p7laE70v+teKaO019cnd8otCZ82HFuIFsfzUtbzGvy8zJkOF
+	 KNuyQpp9/IOCfZSO8Zg1jjrFQS4yD/diEBCh+dvIa45s2JlNfkLQYAjgn/n0vNBO+r
+	 0xWH7GD0T92nQ==
+Date: Tue, 11 Feb 2025 17:55:25 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: srinivas.kandagatla@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, detlev.casanova@collabora.com,
+	sebastian.reichel@collabora.com
+Subject: Re: [PATCH RESEND v2 4/6] dt-bindings: nvmem: rockchip,otp: Add
+ compatible for RK3576
+Message-ID: <20250211-anthology-probation-e63c66321590@spud>
+References: <20250210224510.1194963-1-heiko@sntech.de>
+ <20250210224510.1194963-5-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250211-x1e80100-pwrseq-qcp-v2-1-c4349ca974ab@linaro.org> <Z6txevdftVNww0wD@hovoldconsulting.com>
-In-Reply-To: <Z6txevdftVNww0wD@hovoldconsulting.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 11 Feb 2025 18:51:02 +0100
-X-Gm-Features: AWEUYZn_IQJJyFSf_EuE1HkQzGtRktRzq6jGfk2KkE1OYhjsgpGCzUlpPOVGM9A
-Message-ID: <CAMRc=McApxN7TKKKAL2OmfkosKYA9gCYZXQZXFAE_A9a5qykmw@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100-qcp: Add WiFi/BT pwrseq
-To: Johan Hovold <johan@kernel.org>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="uIhrL8S7RmlAJj9x"
+Content-Disposition: inline
+In-Reply-To: <20250210224510.1194963-5-heiko@sntech.de>
+
+
+--uIhrL8S7RmlAJj9x
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 11, 2025 at 4:49=E2=80=AFPM Johan Hovold <johan@kernel.org> wro=
-te:
->
-> On Tue, Feb 11, 2025 at 04:01:56PM +0100, Stephan Gerhold wrote:
-> > Add the WiFi/BT nodes for QCP and describe the regulators for the WCN78=
-50
-> > combo chip using the new power sequencing bindings. All voltages are
-> > derived from chained fixed regulators controlled using a single GPIO.
-> >
-> > The same setup also works for CRD (and likely most of the other X1E8010=
-0
-> > laptops). However, unlike the QCP they use soldered or removable M.2 ca=
-rds
-> > supplied by a single 3.3V fixed regulator. The other necessary voltages=
- are
-> > then derived inside the M.2 card. Describing this properly requires
-> > new bindings, so this commit only adds QCP for now.
-> >
-> > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> > ---
-> > Changes in v2:
-> > - Rebase on qcom for-next, patch 1-2 were applied already
-> > - Mention dummy regulator warning
-> > - Link to v1: https://lore.kernel.org/r/20241007-x1e80100-pwrseq-qcp-v1=
--0-f7166510ab17@linaro.org
-> > ---
-> > The Linux driver currently warns about a missing regulator supply:
-> >
-> >   pwrseq-qcom_wcn wcn7850-pmu: supply vddio1p2 not found, using dummy r=
-egulator
-> >
-> > This supply exists on the WCN7850 chip, but nothing is connected there =
-on
-> > the QCP. Discussion is still open how to hide this warning in the drive=
-r,
-> > but since the DT is correct and the same setup is already used on SM855=
-0
-> > upstream, this shouldn't block this patch.
->
-> I thought Bartosz was gonna fix his driver...
->
+On Mon, Feb 10, 2025 at 11:45:08PM +0100, Heiko Stuebner wrote:
+> Document the OTP memory found on Rockchip RK3576 SoC.
+>=20
+> The RK3576 uses the same set of clocks as the px30/rk3308
+> but has one reset more, so adapt the binding to handle this
+> variant as well.
+>=20
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 
-This is not the same issue. The one you're thinking about[1] was fixed
-by commit ad783b9f8e78 ("PCI/pwrctl: Abandon QCom WCN probe on
-pre-pwrseq device-trees").
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-This warning comes from the PMU driver, not the PCI pwrctrl one for
-the WLAN module. One solution would be to make this supply optional in
-bindings and use regulator_get_optional for the ones we know may be
-unconnected. Does it sound correct?
+--uIhrL8S7RmlAJj9x
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Bartosz
+-----BEGIN PGP SIGNATURE-----
 
-[1] https://lore.kernel.org/all/Zv565olMDDGHyYVt@hovoldconsulting.com/
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6uPDQAKCRB4tDGHoIJi
+0qBsAPwNq2KSXu5wBkYu8Q2FSXgq9YAlDU7EwwkvEplZu7B+bwD+LItI+FTgqJU5
+O0CQoda+tF+w4nCK2f5B6zkcQ/rx1gE=
+=5yrV
+-----END PGP SIGNATURE-----
+
+--uIhrL8S7RmlAJj9x--
 
