@@ -1,113 +1,137 @@
-Return-Path: <devicetree+bounces-145507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B39A4A3189D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 23:31:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1783A318BF
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 23:38:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70DF8168963
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:31:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67F59164CF2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:38:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB4D268FC2;
-	Tue, 11 Feb 2025 22:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 395E926A0B0;
+	Tue, 11 Feb 2025 22:38:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YY0DPekn"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="HMRhqZW2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A061DDC14;
-	Tue, 11 Feb 2025 22:31:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B212641CE;
+	Tue, 11 Feb 2025 22:38:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739313082; cv=none; b=eFAEzqQdFapviHaqnpW5AAtgyuLJwZSMAP4W0L5SxxkKsPcoXD35Ig8H2P9nrTpRk2GjOGDHWG87Wln9DBbmjiw21KdGq8x3jrDKZi6u2OQlxrEQnF+xnGYle+0yWs3YY4ktAcH86fThUgB7B1WUzRwPV1nypXy+197jekIlBXc=
+	t=1739313498; cv=none; b=nTLmdbcDAucWWXCEBJwfPLfPcp8n4uY88NEYS5E4dxdKOUu/zN5CaDiFX48vSxhtcB/4MeUjd2l7lG6qfE4/V66vBeohErz3Qq6V7vPIU8t/ixFkDk6Uger1hPvozvAz75jCt5u4s1gwU6dPbVukETfXWeiT365M0PZ7p7VK4fU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739313082; c=relaxed/simple;
-	bh=oKiytre//4VdWD8ww4w5uW85mMA9TzV2kpcRlAyNNLQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GC/W+kMvH75QDt2fXUtn7WTdi7PvGYtAObP/dpTtvEWeVJoL0OKt/ayqnRl8HrNEvaKjfVaf6gIu+iHXrknA63U1LPUaBhrXZpYQdxUsBrllEC2fYP146XVaeTs8zoNlsI4fQqnicUaev74twzESlDzzimRtd/YqP9ohy2zk8BQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YY0DPekn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEFB1C4CEDD;
-	Tue, 11 Feb 2025 22:31:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739313081;
-	bh=oKiytre//4VdWD8ww4w5uW85mMA9TzV2kpcRlAyNNLQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YY0DPeknXpkCAAXSI/htfS+mSF4sQokI5EXqV26pE0Iiz3gWGhUcsu/Sl0AoqKAba
-	 o2eMhE0iKTOth9xArDpXJaNhj3z6uPjHgwxl05oTMjZ5Cf3gxbtCo3/FMmG+kI8jwJ
-	 ltLNGMdGV7/JWngxIjQSB8qzLlYlGfWqjtzYNHlgKVMHg2SmGIw/kCMeVgTvvhwUsN
-	 BCC7YBZP1oV/RpxEieng1tfx44s7eUjwVJzZaQk7mBNByXnn/bJqcorcaH0gMsuhiV
-	 eecy8beIZkmC68h62ApUK0Ldk46fbbDAXuN2Q8y+NsNmbHN9yD6T82EC6I/YLJNj1c
-	 rldcDOK2FCMYA==
-Date: Tue, 11 Feb 2025 22:31:15 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	patches@opensource.cirrus.com,
-	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1 3/5] ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC
- and EQ support
-Message-ID: <d42f6600-4233-4438-9636-d2892f3d11c1@sirena.org.uk>
-References: <20250206163152.423199-1-francesco@dolcini.it>
- <20250206163152.423199-4-francesco@dolcini.it>
- <20250211221904.GA1270109-robh@kernel.org>
+	s=arc-20240116; t=1739313498; c=relaxed/simple;
+	bh=5/bBkjGSiUyr0eyYTgTn6gVjdqK5S7jACaykAWc9lMg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NhqYyCwZbirgKqplA91kq28EeO8ImJJY2+2oBbQjj8Upj5ata+avbWbPd1SHNOe2YcxFWc09yPoNTjovTA3CVMreZq/F6p7Q8q62ZM1VDSkdCSjuUnkjA7Cq2oDP0gue8hZuEMQdWmH1gDqVl0Bseol2zP4vrG1suiQ4FWAqCcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=HMRhqZW2; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from [192.168.244.162] (254C21CD.nat.pool.telekom.hu [37.76.33.205])
+	by mail.mainlining.org (Postfix) with ESMTPSA id E83CEE4533;
+	Tue, 11 Feb 2025 22:38:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1739313486;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=iRA0rHhLejRTEHRY4py3J1wkqXCHBw6TYqdVvKcsqOc=;
+	b=HMRhqZW2bFbB3Q+a+V7tlkp1a8wbScExvcJGnyHov6/S0HdY6D63TUne51JjmrO5xBPZLi
+	VOGNEZ0f1Kjqbh1HPo2N+SVkt9IRVCNdMx9S7+NbxamVitYTRqV4dJFgyrronZsxowuaI4
+	WKShPEIBmKZiiTYxag2CmZ6KtJ0kzJ58o3N9hP08+ZbWtoZ6c1trHWCLmWk02wvZQhb5HR
+	ZGLMi1tY1bIgD6ssTid+XIqppegzmOlcU1YTNhtdFdE7Pq4sA+rrauDuTS+QAked6USmkD
+	RITJtymkN+HNIU4Q+zzMF4AP7dkCaJUxyuJJn31hkrcSLSFrG+2vkQKRJ3llTg==
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH 00/10] Initial support of MSM8937 and Xiaomi Redmi 3S
+Date: Tue, 11 Feb 2025 23:37:44 +0100
+Message-Id: <20250211-msm8937-v1-0-7d27ed67f708@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="AS7+IzE+cm9e530p"
-Content-Disposition: inline
-In-Reply-To: <20250211221904.GA1270109-robh@kernel.org>
-X-Cookie: Printed on recycled paper.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIADnRq2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDI0MD3dziXAtLY3NdIyOL1DSDlGTj1GRLJaDqgqLUtMwKsEnRsbW1ABk
+ AALlZAAAA
+X-Change-ID: 20250210-msm8937-228ef0dc3ec9
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, 
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+ Linus Walleij <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, iommu@lists.linux.dev, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
+ Daniil Titov <daniilt971@gmail.com>, Dang Huynh <danct12@riseup.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739313484; l=2210;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=5/bBkjGSiUyr0eyYTgTn6gVjdqK5S7jACaykAWc9lMg=;
+ b=mWTVmtj6I7bjnCl5io/j6l8G4RjSRRckn3ZyBcZbZoaR/xKWQU56znHHgQPNTJdKVM8aYV3Ve
+ o4dp4lyKed6Btxv5UAMSn2GmHfsYbmmWEBG5+TxOR6T+0bKWIYSYDMe
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
+This patch series add initial support for MSM8937 SoC
+and Xiaomi Redmi 3S (land).
 
---AS7+IzE+cm9e530p
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The series is extending the MSM8917 gcc and pinctrl drivers
+because they are sibling SoCs.
+MSM8937 have 4 more A53 cores and have one more dsi port then
+MSM8917.
+It implements little-big architecture and uses Adreno 505.
 
-On Tue, Feb 11, 2025 at 04:19:04PM -0600, Rob Herring wrote:
-> On Thu, Feb 06, 2025 at 05:31:50PM +0100, Francesco Dolcini wrote:
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Barnabás Czémán (5):
+      dt-bindings: mfd: qcom,tcsr: Add compatible for MSM8937
+      dt-bindings: nvmem: Add compatible for MS8937
+      dt-bindings: iommu: qcom,iommu: Add MSM8937 IOMMU to SMMUv1 compatibles
+      dt-bindings: arm: qcom: Add Xiaomi Redmi 3S
+      arm64: dts: qcom: Add Xiaomi Redmi 3S
 
-> > +  wlf,retune-mobile-cfg-names:
-> > +    $ref: /schemas/types.yaml#/definitions/string-array
-> > +    description:
-> > +      List of strings for the available retune modes.
-> > +      If absent, retune is disabled.
+Dang Huynh (2):
+      pinctrl: qcom: msm8917: Add MSM8937 wsa_reset pin
+      arm64: dts: qcom: Add initial support for MSM8937
 
-> Is there no defined set of names?
+Daniil Titov (3):
+      dt-bindings: clock: gcc-msm8917: Split to separate schema
+      dt-bindings: clock: Add MSM8937 Global Clock controller compatible
+      clk: qcom: gcc: Add support for Global Clock controller found on MSM8937
 
-No, this set of names is for system integrator specified tunings so they
-can make up whatever is appropriate for their system and use cases (or
-otherwise amuses them).  The names will end up getting exposed directly
-to userspace as options that can be selected at runtime.
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    7 +
+ .../bindings/clock/qcom,gcc-msm8909.yaml           |   10 +-
+ .../bindings/clock/qcom,gcc-msm8917.yaml           |   74 +
+ .../devicetree/bindings/iommu/qcom,iommu.yaml      |    1 +
+ .../devicetree/bindings/mfd/qcom,tcsr.yaml         |    1 +
+ .../devicetree/bindings/nvmem/qcom,qfprom.yaml     |    1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts   |  402 ++++
+ arch/arm64/boot/dts/qcom/msm8937.dtsi              | 2145 ++++++++++++++++++++
+ drivers/clk/qcom/Kconfig                           |    6 +-
+ drivers/clk/qcom/gcc-msm8917.c                     |  617 +++++-
+ drivers/pinctrl/qcom/Kconfig.msm                   |    4 +-
+ drivers/pinctrl/qcom/pinctrl-msm8917.c             |    8 +-
+ include/dt-bindings/clock/qcom,gcc-msm8917.h       |   17 +
+ 14 files changed, 3277 insertions(+), 17 deletions(-)
+---
+base-commit: df5d6180169ae06a2eac57e33b077ad6f6252440
+change-id: 20250210-msm8937-228ef0dc3ec9
 
---AS7+IzE+cm9e530p
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+-- 
+Barnabás Czémán <barnabas.czeman@mainlining.org>
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmerz7IACgkQJNaLcl1U
-h9CJ/Qf/e19uP4duTkk/90jausJYsKrWocRj+OfkBnGKJcpqBYoYbYAL93oFPaq1
-ldCKokt7jBx3WlAFR9SmxZkRUi4V0HgwyiD4mVdkpyWQyxP/E4XCT+vM5Su98K6l
-71gTIc5LUO3E3FABIulpIKiVzAHO0T3B+d8pTN9ebAjP80tSRrFJjDOsCJwSNSSh
-KAInIVy9XhAaHVNtVJGEuM0j/AgLR3Ny1vm/0tzpKR2tvPGQz1y4WXYB4ikuIqIV
-m2a49nrOUSw4Zje3er7HsbKDBnjVulrjMXVSF1Mc+dZJmJCw2GDtDPLDh/GzH4bG
-o5Le8tlk3/qzTcci/yUk6zNUtpba1g==
-=kP6n
------END PGP SIGNATURE-----
-
---AS7+IzE+cm9e530p--
 
