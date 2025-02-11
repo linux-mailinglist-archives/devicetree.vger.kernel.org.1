@@ -1,56 +1,78 @@
-Return-Path: <devicetree+bounces-145306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32313A30DF0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:14:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A094FA30DDF
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:13:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96AAC16550C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:14:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86E8C18872BE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98FA52505D5;
-	Tue, 11 Feb 2025 14:14:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 934DF24CEE5;
+	Tue, 11 Feb 2025 14:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="laCkDPdT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UWXtA3oT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B549924F5A1;
-	Tue, 11 Feb 2025 14:14:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF7D1F1908;
+	Tue, 11 Feb 2025 14:13:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739283269; cv=none; b=aTgSaVFP8qdbugsKhj2QWHyRVr5dqaLeKY8F0bp0ls5MtVvN9MsojYosARbLZZ1x6xToADHzX0fh0/rpnb0TuOvsY4JNV+DoaNdzRFG5p5b+itre6jbyGof2hDjmx9z37rtHRJ8eHBkfLwcy/yUqQQGXLuuHdmeuELF/OcIdVfM=
+	t=1739283216; cv=none; b=L+SbSjk/DcRbrRnKXCD1/5cDHTL8olBWE4OHJDwIUZ2cxLYpRb6+HCy/S26aSzDFDf1i6QiI6ogmAuJ6tIY1nhfZLYbu58YvXkg3ls0KmvGx4W40hINd9B/TopyUg/P969YMg9+LS8draQtB8qoc7ULA9vNVIo3av0aNKd2ZdMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739283269; c=relaxed/simple;
-	bh=r8GSQt4Fmtk2nUUtsyC/9rHcXIOOOzg63rG69cNIuyg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=o/v2IEv+qR+pPWB0UMKIS2MEHB2gGW2xmTx/EmNEIb3h+q8mbL5H2zOPtEZLReDEWv9J1YFEKBJh/FPuWF6z7/ruZIRM3pRWMc+rblApYVUaf3K6wKlMYnsVnWNTlMDv8GwKdyRZfL/owBevZkyLG5LfgfH0yLI7TMCAUseEVxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=laCkDPdT; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739283266;
-	bh=r8GSQt4Fmtk2nUUtsyC/9rHcXIOOOzg63rG69cNIuyg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=laCkDPdTknse85VhAVNJGiJax/fYG8P+5oXXFk/i2BLlJUdp/VjazgWQlXPg4gX58
-	 KnvtkuiXZaLTbMa4T9+YGkrvIi2YQ5FuLFRX7MIJsgg4FFiTh9mejtBJYXo97QPUdE
-	 YqDPYTb6IIaz09HuftSoc5Q+gaIJscJI+kmLDGbiK5ayzTn1f3mljYFT4SnQYwu0UQ
-	 7VIwC0FdZZB8hIviV1SeETqUdvhvVG43PiyMtbVHznMlLqpgmLQxr1slFzcKLhn7yg
-	 DytAyLij5vj0ILhHQXmYl5XIQgFbldJ8Zzt1aQYBRC71WJXhgkCE/afpKq4JocZp7r
-	 x8qTMi8figsQA==
-Received: from yukiji.home (lfbn-tou-1-1147-231.w90-76.abo.wanadoo.fr [90.76.208.231])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0A64117E14D5;
-	Tue, 11 Feb 2025 15:14:24 +0100 (CET)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Tue, 11 Feb 2025 15:13:10 +0100
-Subject: [PATCH v4 3/3] arm64: dts: mediatek: mt8370: Enable gpu support
+	s=arc-20240116; t=1739283216; c=relaxed/simple;
+	bh=vDix81U6Ld3DReX03VSDWokaA9gTIex+ysGARHYBa4w=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=D31u2YMr3d/y1PDuWE/uNDCKa+RookZYgEH19eVLbla8/c4WZgE5EiVaahtZsyjBTv3ARGc2iWoGp4dWgV/yzjkWMk0zcsnb8vkMtv4e4vM9d4KmR2f8dQvaJypMKxO/8U0Y2qeANJXRp3YRVOVGP4BHc+QuG1kGy5DbYUCZe6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UWXtA3oT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71FA2C4CEDD;
+	Tue, 11 Feb 2025 14:13:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739283215;
+	bh=vDix81U6Ld3DReX03VSDWokaA9gTIex+ysGARHYBa4w=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=UWXtA3oTS+v0q5G+sC9wAGrQZjODEQAnaR0oVQTshDp+I9TwaC8dSIgVEox+pVhiv
+	 WWcvOT3MmyWJ75dZACpkY8Ja3QESry9PBuQV9mlp1VMqI/238hvWLqFYRuZ9Jqm0oN
+	 cwTz0p2oIVVzONSb4lDc9caK6gmpqGWLqfw/lwN56VuXEYaARH68C1tUya+W8JUVg9
+	 3U5dEFvvQsZXw3u7N+8B3j4rIFzCmvZVl7xl2QxnqTdoxo6WV51ZbZRiK96/YKQpV9
+	 1kOSZLQ8BBJBrMsbguCncwtdh8zf2Crfw5Wgh4QQqqYCFFWPSquZBXcWueQ4cHPvb6
+	 srLbfkvAlWIXA==
+From: Lee Jones <lee@kernel.org>
+To: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Cc: Scott Wood <oss@buserror.net>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Damien Le Moal <dlemoal@kernel.org>, 
+ Niklas Cassel <cassel@kernel.org>, Herbert Xu <herbert@gondor.apana.org.au>, 
+ "David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>, 
+ Vinod Koul <vkoul@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org, 
+ linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org, 
+ linux-pci@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org
+In-Reply-To: <20250126-ppcyaml-v1-4-50649f51c3dd@posteo.net>
+References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
+ <20250126-ppcyaml-v1-4-50649f51c3dd@posteo.net>
+Subject: Re: (subset) [PATCH 4/9] dt-bindings: mfd: Convert
+ fsl,mcu-mpc8349emitx binding to YAML
+Message-Id: <173928320921.2188572.3955959141357602902.b4-ty@kernel.org>
+Date: Tue, 11 Feb 2025 14:13:29 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,84 +80,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250211-mt8370-enable-gpu-v4-3-77deb7a75c23@collabora.com>
-References: <20250211-mt8370-enable-gpu-v4-0-77deb7a75c23@collabora.com>
-In-Reply-To: <20250211-mt8370-enable-gpu-v4-0-77deb7a75c23@collabora.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Boris Brezillon <boris.brezillon@collabora.com>, 
- Steven Price <steven.price@arm.com>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739283261; l=1948;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=r8GSQt4Fmtk2nUUtsyC/9rHcXIOOOzg63rG69cNIuyg=;
- b=RVgfl0lBwwqykOnm/tB7a5QYLPJ6sXQ+7vvt2INaxPYJU0jW5tuJvYC24r5c3i3nKE+Ek1rWl
- bwgif4T/yvxDR5oWO/zeRR/Irr8/RIx77r+XCzRueqnHD/qvOk79nbZ
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
-Add a new gpu node in mt8370.dtsi to enable support for the
-ARM Mali G57 MC2 GPU (Valhall-JM) found on the MT8370 SoC, using the
-Panfrost driver.
+On Sun, 26 Jan 2025 19:58:59 +0100, J. Neuschäfer wrote:
+> Convert mcu-mpc8349emitx.txt to YAML and list the compatible strings
+> currently in use.
+> 
+> 
 
-On a Mediatek Genio 510 EVK board, the panfrost driver probed with the
-following message:
-```
-panfrost 13000000.gpu: clock rate = 390000000
-panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
-panfrost 13000000.gpu: features: 00000000,000019f7, issues: 00000003,
-   80000400
-panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
-   Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
-panfrost 13000000.gpu: shader_present=0x5 l2_present=0x1
-[drm] Initialized panfrost 1.3.0 for 13000000.gpu on minor 0
-```
+Applied, thanks!
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8370.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+[4/9] dt-bindings: mfd: Convert fsl,mcu-mpc8349emitx binding to YAML
+      commit: 252c95ec3802a5f447df58253575b52aa741c1a1
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8370.dtsi b/arch/arm64/boot/dts/mediatek/mt8370.dtsi
-index cf1a3759451ff899ce9e63e5a00f192fb483f6e5..7ac8b8d0349455922a73f35db607b2b27cad23d7 100644
---- a/arch/arm64/boot/dts/mediatek/mt8370.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8370.dtsi
-@@ -59,6 +59,22 @@ &cpu_little3_cooling_map0 {
- 				<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
- };
- 
-+/*
-+ * Please note that overriding compatibles is a discouraged practice and is a
-+ * clear indication of nodes not being, well, compatible!
-+ *
-+ * This is a special case, where the GPU is the same as MT8188, but with one
-+ * of the cores fused out in this lower-binned SoC.
-+ */
-+&gpu {
-+	compatible = "mediatek,mt8370-mali", "arm,mali-valhall-jm";
-+
-+	power-domains = <&spm MT8188_POWER_DOMAIN_MFG2>,
-+			<&spm MT8188_POWER_DOMAIN_MFG3>;
-+
-+	power-domain-names = "core0", "core1";
-+};
-+
- &ppi_cluster0 {
- 	affinity = <&cpu0 &cpu1 &cpu2 &cpu3>;
- };
-
--- 
-2.48.1
+--
+Lee Jones [李琼斯]
 
 
