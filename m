@@ -1,191 +1,133 @@
-Return-Path: <devicetree+bounces-145015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F923A2FEB9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 01:02:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E91FA2FECC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 01:07:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 429CB1634E3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 00:02:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CF501888C1B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 00:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 563F817E0;
-	Tue, 11 Feb 2025 00:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D5DEAD39;
+	Tue, 11 Feb 2025 00:06:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q1j87QGs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HLW3Rxup"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA932CA8;
-	Tue, 11 Feb 2025 00:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66B28C07;
+	Tue, 11 Feb 2025 00:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739232119; cv=none; b=orpFdI33HLmsABVyv6jrgt3/YwVn5flWOq3fJWFpL5RRJGnLl+TQ8E6gPsiGGgZ/2G8+ypw4gQPe8rwVUKKTqrykFqCkLSykJKDHnFWu5BCvufLLgaIgcwRrsF7nFE1dsvPJDKJ1mC9vJvLTKJSqdhOIznBK0ZyGyWdvgH9TR4s=
+	t=1739232408; cv=none; b=PRGuaAAbYI07IzqMxX9L7eoOXdcDRUsKcN+nZqm6A5HGRMTqkk4a8831MLSR7vCI8bspErLjHxsYRpXrLMszuWEVdUkjTDxbe0BroDzflkJKmH3cCZcxdH8s/Sn6iAR9X/EEmQprK5oy5f7PAmAq0R0M4zk0jYzN0YUTxxKn1Kg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739232119; c=relaxed/simple;
-	bh=rAzkLZM09qQrVfb6++qtL1NVW6ye9kBKxmsecVL8AX0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=phFMG2lITeO1sBiL+tcqCk0YYkqm300xsFdDUTlBNXXmTtVx7kSlclcHARSB33E1tkr315T1J3OVjOWqTkv+tADy74Jl61o83S+/0SbuKzt4Xd07mom6QSY79N0nAhb/jWhrd3q/+sbcVeuEHT0xFVW+lGeczAdrU16k1YssuLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q1j87QGs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C868C4CEDF;
-	Tue, 11 Feb 2025 00:01:58 +0000 (UTC)
+	s=arc-20240116; t=1739232408; c=relaxed/simple;
+	bh=i9FyaKCyK1Y6L4jpWSozg/Okkt5fet0MuhxuuYXFpVQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=kDZYsTWnbf+2iuFPMne5lyKSjuKcVZZnJ1fFaBjjn3Ai+ws1jwtMSo1EeNP/26Q8gKDC2xNFBEyEtp2TURtH6hITeuMTACaGgsW6kdTJGy70/h/a/KFMpifX0ySE0/UPawoxUPZetHzsT3+f6N6nEyCMuToHITcdRPoBo7IhSMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HLW3Rxup; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C125EC4CED1;
+	Tue, 11 Feb 2025 00:06:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739232118;
-	bh=rAzkLZM09qQrVfb6++qtL1NVW6ye9kBKxmsecVL8AX0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q1j87QGsjnUkqkcVlg2v4gnZWuuz2UEGFoQfFx8S5hm6OD3/mp8QI0dCwQT4YmTEr
-	 IB2Hu3/xsA738TjmL9hvDacqP3Cn1fn1l38WTUXKf4SHgxcaaqcmtfDjrQUDk9eoqE
-	 gB6wCJ5myKFPgBwelHmsgcxfai/gZhPdUPy8zVu8z/cx9kuD9+RM3Bb/ajecRTWHax
-	 fVRq4VYORDNdvHY/BD15McfYj6CkfxzLNVClI1u8/Pfa9FJn4JqDpQ7Nyn/Fr2156J
-	 CGUj1Kbf4bjxLul7s2ASKdEhbPJl+pwIxxn70nR5a5VyWkDiXJ4SybO3o/a5i5XUEL
-	 d5paRyJt5qYuQ==
-Date: Mon, 10 Feb 2025 18:01:57 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	Krzysztof Kozlowski <krzk@kernel.org>, imx@lists.linux.dev,
-	Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	=?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2 11/12] dt-bindings: nand: Add fsl,elbc-fcm-nand
-Message-ID: <20250211000157.GA240011-robh@kernel.org>
-References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
- <20250207-ppcyaml-v2-11-8137b0c42526@posteo.net>
+	s=k20201202; t=1739232408;
+	bh=i9FyaKCyK1Y6L4jpWSozg/Okkt5fet0MuhxuuYXFpVQ=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=HLW3Rxupqma0kVS7XBKx6k2sJz64Fe6Ei56GrsiBzBT+Kuk3giKRZr09y0wGb1NEF
+	 98f76ZncefOH9wjTSjD3Ad9pwshlwJoLFfuCnl1NgsDYSabkPjMtp3I0sRA5KLZFlr
+	 f8PJuFnTc6A+bd14pIo/rLt65vytmZrQZNN+5uvcmyk2P6ly2e5CA1wsOaLu7aIgjM
+	 txuFl1c+fbxJb8dOQERnJ+m7eiv5zJE+KJcHut8fkDt0yIsFNWuooNZjHj9CU/Oh+h
+	 icOQbQqv9B6Mz8AlKf4wS3/YP+Ac0dIb0/mBX8orFzog9l+ar6jJAm52IUZ8Jdej3r
+	 EnVjRFay+KSAA==
+Message-ID: <d78ae428-6139-426b-bde9-e3ce5a4008ac@kernel.org>
+Date: Mon, 10 Feb 2025 18:06:46 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: socfpga: remove syscon compatible string for
+ sysmgr node
+From: Dinh Nguyen <dinguyen@kernel.org>
+To: niravkumar.l.rabara@intel.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: kernel test robot <lkp@intel.com>
+References: <20250117154244.4079614-1-niravkumar.l.rabara@intel.com>
+ <45276881-11de-47c9-aa9c-488df537a596@kernel.org>
+Content-Language: en-US
+In-Reply-To: <45276881-11de-47c9-aa9c-488df537a596@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250207-ppcyaml-v2-11-8137b0c42526@posteo.net>
 
-On Fri, Feb 07, 2025 at 10:30:28PM +0100, J. Neusch�fer wrote:
-> Formalize the binding already supported by the fsl_elbc_nand.c driver
-> and used in several device trees in arch/powerpc/boot/dts/.
+On 2/10/25 16:29, Dinh Nguyen wrote:
+> On 1/17/25 09:42, niravkumar.l.rabara@intel.com wrote:
+>> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>>
+>> The SoCFPGA System Manager(sysmgr) dt bindings do not use the syscon
+>> compitible, nor does the Linux system manager driver rely on it.
+>> Remove "syscon" for Arria5, Arria10 and Cyclon5 sysmgr node and fixed
+>> dtbs_check warnings like:
+>>
+>> socfpga_arria5_socdk.dtb: sysmgr@ffd08000: compatible: 'oneOf' 
+>> conditional failed, one must be fixed:
+>>     ['altr,sys-mgr', 'syscon'] is too long
+>>     'altr,sys-mgr-s10' was expected
+>>     'altr,sys-mgr' was expected
+>>     from schema $id: 
+>> http://devicetree.org/schemas/soc/altera/altr,sys-mgr.yaml#
+>>
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> Closes: 
+>> https://lore.kernel.org/oe-kbuild-all/202501102323.Xnte2yhi-lkp@intel.com/
+>> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>> ---
+>>   arch/arm/boot/dts/intel/socfpga/socfpga.dtsi         | 2 +-
+>>   arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi | 2 +-
+>>   2 files changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi 
+>> b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
+>> index 35be14150f41..f124fb72e260 100644
+>> --- a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
+>> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
+>> @@ -853,7 +853,7 @@ spi1: spi@fff01000 {
+>>           };
+>>           sysmgr: sysmgr@ffd08000 {
+>> -            compatible = "altr,sys-mgr", "syscon";
+>> +            compatible = "altr,sys-mgr";
+>>               reg = <0xffd08000 0x4000>;
+>>           };
+>> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi 
+>> b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
+>> index 6b6e77596ffa..015120fb4b02 100644
+>> --- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
+>> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
+>> @@ -792,7 +792,7 @@ scu: snoop-control-unit@ffffc000 {
+>>           };
+>>           sysmgr: sysmgr@ffd06000 {
+>> -            compatible = "altr,sys-mgr", "syscon";
+>> +            compatible = "altr,sys-mgr";
+>>               reg = <0xffd06000 0x300>;
+>>               cpu1-start-addr = <0xffd06230>;
+>>           };
 > 
-> Signed-off-by: J. Neusch�fer <j.ne@posteo.net>
-> ---
-> 
-> V2:
-> - split out from fsl,elbc binding patch
-> - constrain #address-cells and #size-cells
-> - add a general description
-> - use unevaluatedProperties=false instead of additionalProperties=false
-> - fix property order to comply with dts coding style
-> - include raw-nand-chip.yaml instead of nand-chip.yaml
+> Did you test this patch on actual hardware? Unless something has changed 
+> in the system manager driver, this will probably cause the system hang.
+>
 
-Why? Doesn't look like you use anything from it. I think the correct 
-thing to use here is just mtd.yaml to pick up partitions.
+Actually, it will not fail to boot, but you will see SD/MMC fail if the 
+bootloader did not set the clk-phase correctly, or you booted from 
+another source not SD/MMC. The SD/MMC driver uses syscon to get access 
+to the system manager to set it's clk-phase.
 
-> ---
->  .../devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml | 68 ++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml b/Documentation/devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..1de97bb24fa4a83e2ea5d94ab822dd0e37baa102
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/fsl,elbc-fcm-nand.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NAND flash attached to Freescale eLBC
-> +
-> +description:
-> +  The Freescale Enhanced Local Bus controller (eLBC) contains logic to
-> +  interface with NAND flash, called the NAND Flash Control Machine (FCM).
-> +  This binding describes flash attached to an eLBC using the FCM.
-> +
-> +maintainers:
-> +  - J. Neusch�fer <j.ne@posteo.net>
-> +
-> +allOf:
-> +  - $ref: raw-nand-chip.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fsl,mpc8313-fcm-nand
-> +              - fsl,mpc8315-fcm-nand
-> +              - fsl,mpc8377-fcm-nand
-> +              - fsl,mpc8378-fcm-nand
-> +              - fsl,mpc8379-fcm-nand
-> +              - fsl,mpc8536-fcm-nand
-> +              - fsl,mpc8569-fcm-nand
-> +              - fsl,mpc8572-fcm-nand
-> +              - fsl,p1020-fcm-nand
-> +              - fsl,p1021-fcm-nand
-> +              - fsl,p1025-fcm-nand
-> +              - fsl,p2020-fcm-nand
-> +          - const: fsl,elbc-fcm-nand
-> +      - const: fsl,elbc-fcm-nand
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    localbus {
-> +        #address-cells = <2>;
-> +        #size-cells = <1>;
-> +
-> +        nand@1,0 {
-> +            compatible = "fsl,mpc8315-fcm-nand",
-> +                         "fsl,elbc-fcm-nand";
-> +            reg = <0x1 0x0 0x2000>;
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +        };
-> +    };
-> 
-> -- 
-> 2.48.0.rc1.219.gb6b6757d772
-> 
+Dinh
+
+Dinh
+
 
