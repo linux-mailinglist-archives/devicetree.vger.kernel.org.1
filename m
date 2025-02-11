@@ -1,180 +1,90 @@
-Return-Path: <devicetree+bounces-145269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 200CFA30C94
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:12:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC77A30CA1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:15:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7FA3166994
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:12:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A7E7161C2B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A702221DAB;
-	Tue, 11 Feb 2025 13:12:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463292206B8;
+	Tue, 11 Feb 2025 13:15:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pPigow7S"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ecphhuHC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F27202206B8;
-	Tue, 11 Feb 2025 13:12:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF9821D00B;
+	Tue, 11 Feb 2025 13:15:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739279560; cv=none; b=OZFSTy1L2gUTuYrvWlKw3rKLdCAMhR2uiYpWDskcgpNoYotpZa+RflKvYdhF5/SwUte4sFSRFd4CiIH5ZHQXUR3wX0D8ZW4fDnczBaAk3x8BFBYiemjEWNTN/0541JLZczYmVlxCART5ibB9TTn+6iNTufRbjoVVq7f3gc1ivY0=
+	t=1739279705; cv=none; b=ovYDr7OerlvBqSImepisoR1CAGJFXnBJbrLvT+rtakRxEncEWSXMX0RAVMqvFMgiGtia6XEzCiitnzBAgq2e6qynVkkWMVKCXhQL2A+pjpQhgNckWIdTD2PTLnEae8DFjq7ibVV0TWD3EtGF2lYTA91mGtGRUhvkOJCQaLt5/nY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739279560; c=relaxed/simple;
-	bh=yOn72q3rBX1Ok8bHjabDtYxA7XST1d2PNnze5+FAUu8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LOn8ebxaLoXRm+fEeIvOfKEX+IyHTTELGdwzKf7Otoqq3dbewvxa/l7HUq2Hy6fm0l8OiHHPY3L629RO5ziCgeGKd4z2vLuuxIw59DkTTX5Lbgf7o7F/y+n1cvt+nLJkdjWgTo/VQzAXlSJyEgepizC2qe9JAybr7s1jDo8jYpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pPigow7S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6DE66C4CEE9;
-	Tue, 11 Feb 2025 13:12:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739279559;
-	bh=yOn72q3rBX1Ok8bHjabDtYxA7XST1d2PNnze5+FAUu8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=pPigow7SJv6KuyXeoIO/XG015RMepx8C4Z2kYwGKydj0YW1eWTUbo4aM1PX17auvk
-	 pbgXpZK6hS79lFAbneXY2N+dfsmPnDQSdutX5AysI4sSoyu3+Z6zBs0A1TpnplVxdE
-	 pHH4iCUSz9Lrfd2/Gz/68uYUZVCmJOCUSglBOrR31hVq26FkAx00N7rEumVWlyYafS
-	 +6AzFVBUl8f3kdQicUF0EcxK3M9kfzFGc7jkbfOIfgDqQVxlr/NcOGoET2l/bwf9Vr
-	 4s3f/BOygJDfBwQqrw6ucoAS3CwTtyXlJocpsevizM+m6JdXz5jIUqtECeTxeJmrSO
-	 4CfUKgLRpuKuQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CF52C0219B;
-	Tue, 11 Feb 2025 13:12:39 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Tue, 11 Feb 2025 14:12:34 +0100
-Subject: [PATCH 2/2] can: flexcan: add transceiver capabilities
+	s=arc-20240116; t=1739279705; c=relaxed/simple;
+	bh=9A59qM/qw0l02R/clbPT49PZoQ0cDLl+GY/1uFLeQ9c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qeoS792d8dT2LzrV+w2jLfan5druBBKTCSsIf71pxNgwmYoH57SrWLhsiJvIqszjUnd4vl7an/pO4x7NZw77XNbLkZmpopoNhGGuQoKl9KsRZun+d5+cfp9jc4CfoQyLB3CSMaksdPgjqDr5lphqFhVMiQSQ/13l0dl5vegt8T4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ecphhuHC; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=r9ceLtlRJhS6F2F2NWLhZNuEBw0qSXHcZnna8TM1i58=; b=ecphhuHCYVnh2jgdAqTnarz0qn
+	MoiZ/LfXKYKy6M8WNWpqpRelLktMDLTRsbErd+YIGi/32nZlOZe/37nMm+G7FiH4JRUbnW19WRANV
+	V+VRYeRvehrtc50M3XTGUf91C4wzS0bVfqxtcC2WQHZBC1HlX8JixDHCSTJIeR8ioZPo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1thq6J-00D41o-CR; Tue, 11 Feb 2025 14:14:55 +0100
+Date: Tue, 11 Feb 2025 14:14:55 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lei Wei <quic_leiwei@quicinc.com>,
+	Suruchi Agarwal <quic_suruchia@quicinc.com>,
+	Pavithra R <quic_pavir@quicinc.com>,
+	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+	Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
+	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
+	srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
+	john@phrozen.org
+Subject: Re: [PATCH net-next v3 04/14] net: ethernet: qualcomm: Initialize
+ PPE buffer management for IPQ9574
+Message-ID: <17d9f02c-3eb3-4bae-8a2c-0504747de6f2@lunn.ch>
+References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
+ <20250209-qcom_ipq_ppe-v3-4-453ea18d3271@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250211-flexcan-add-transceiver-caps-v1-2-c6abb7817b0f@liebherr.com>
-References: <20250211-flexcan-add-transceiver-caps-v1-0-c6abb7817b0f@liebherr.com>
-In-Reply-To: <20250211-flexcan-add-transceiver-caps-v1-0-c6abb7817b0f@liebherr.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>, 
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-can@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739279554; l=3254;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=MkScmJzMrjljm6Z+2YxSN5mrAzjdFqPq9BBLNkTJm7A=;
- b=EVN92FjdbZyxvcxPsWF5CnLlaCFU1m14KMU9FIwvcmpGUQi6Bqr+CYG7egBuEi4MJyO4pSYNf
- c/ypVbTExMsBj5wY22xvGuY63W9B9bIVim+pryJVx+w7A2JSKfAIO2D
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250209-qcom_ipq_ppe-v3-4-453ea18d3271@quicinc.com>
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> +/* Assign the share buffer number 1550 to group 0 by default. */
+> +static const int ipq9574_ppe_bm_group_config = 1550;
 
-Currently the flexcan driver does not support adding PHYs. Add the
-capability to ensure that the PHY is in operational state when the link
-is set to an "up" state.
+To a large extent, the comment is useless. What should be in the
+comment is why, not what.
 
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/net/can/flexcan/flexcan-core.c | 25 +++++++++++++++++++------
- drivers/net/can/flexcan/flexcan.h      |  1 +
- 2 files changed, 20 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/flexcan/flexcan-core.c
-index ac1a860986df69a1dd64c25ff879490d5b21073b..a03dc8e3c80546a0e2fa9a85f0e0cc8159afa4f0 100644
---- a/drivers/net/can/flexcan/flexcan-core.c
-+++ b/drivers/net/can/flexcan/flexcan-core.c
-@@ -30,6 +30,7 @@
- #include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/phy/phy.h>
- 
- #include "flexcan.h"
- 
-@@ -634,18 +635,22 @@ static void flexcan_clks_disable(const struct flexcan_priv *priv)
- 
- static inline int flexcan_transceiver_enable(const struct flexcan_priv *priv)
- {
--	if (!priv->reg_xceiver)
--		return 0;
-+	if (priv->reg_xceiver)
-+		return regulator_enable(priv->reg_xceiver);
-+	else if (priv->xceiver)
-+		return phy_power_on(priv->xceiver);
- 
--	return regulator_enable(priv->reg_xceiver);
-+	return 0;
- }
- 
- static inline int flexcan_transceiver_disable(const struct flexcan_priv *priv)
- {
--	if (!priv->reg_xceiver)
--		return 0;
-+	if (priv->reg_xceiver)
-+		return regulator_disable(priv->reg_xceiver);
-+	else if (priv->xceiver)
-+		return phy_power_off(priv->xceiver);
- 
--	return regulator_disable(priv->reg_xceiver);
-+	return 0;
- }
- 
- static int flexcan_chip_enable(struct flexcan_priv *priv)
-@@ -2061,6 +2066,7 @@ static int flexcan_probe(struct platform_device *pdev)
- 	struct net_device *dev;
- 	struct flexcan_priv *priv;
- 	struct regulator *reg_xceiver;
-+	struct phy *xceiver;
- 	struct clk *clk_ipg = NULL, *clk_per = NULL;
- 	struct flexcan_regs __iomem *regs;
- 	struct flexcan_platform_data *pdata;
-@@ -2076,6 +2082,12 @@ static int flexcan_probe(struct platform_device *pdev)
- 	else if (IS_ERR(reg_xceiver))
- 		return PTR_ERR(reg_xceiver);
- 
-+	xceiver = devm_phy_optional_get(&pdev->dev, NULL);
-+	if (IS_ERR(xceiver)) {
-+		dev_err(&pdev->dev, "failed to get phy\n");
-+		return PTR_ERR(xceiver);
-+	}
-+
- 	if (pdev->dev.of_node) {
- 		of_property_read_u32(pdev->dev.of_node,
- 				     "clock-frequency", &clock_freq);
-@@ -2173,6 +2185,7 @@ static int flexcan_probe(struct platform_device *pdev)
- 	priv->clk_per = clk_per;
- 	priv->clk_src = clk_src;
- 	priv->reg_xceiver = reg_xceiver;
-+	priv->xceiver = xceiver;
- 
- 	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3) {
- 		priv->irq_boff = platform_get_irq(pdev, 1);
-diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/flexcan.h
-index 4933d8c7439e62b5d6fcc445d88c2b5ccbfa13bb..56be40875eee24aee9297c4bc7c2fc4380e682ff 100644
---- a/drivers/net/can/flexcan/flexcan.h
-+++ b/drivers/net/can/flexcan/flexcan.h
-@@ -103,6 +103,7 @@ struct flexcan_priv {
- 	struct clk *clk_per;
- 	struct flexcan_devtype_data devtype_data;
- 	struct regulator *reg_xceiver;
-+	struct phy *xceiver;
- 	struct flexcan_stop_mode stm;
- 
- 	int irq_boff;
-
--- 
-2.39.5
-
-
+	Andrew
 
