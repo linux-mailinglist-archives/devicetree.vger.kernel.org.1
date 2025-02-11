@@ -1,64 +1,59 @@
-Return-Path: <devicetree+bounces-145121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80E53A3063B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:48:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E199A3064B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:50:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EDA43A42A8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:47:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 329441637C4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2DB1F130F;
-	Tue, 11 Feb 2025 08:47:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6351EF0B6;
+	Tue, 11 Feb 2025 08:50:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hxbS8OPr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j27Fbnaa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22AB11EF081;
-	Tue, 11 Feb 2025 08:47:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4921EF08E;
+	Tue, 11 Feb 2025 08:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739263648; cv=none; b=CG7031uHLfg+3yMm7AYW8Tu1O7vWQyxo3RnNPc4Ud2ybXtvdA59Bnlp4l5MMy0uc1wB/mJKQ/7cIsffyRKujzuydfAialjvgumUFXQgn7LGO9wwtNUZyDkRQrlpJOZm+m2D/y1i84RIwGclpS450hD3nn3O9hDnz/w5YOpPzV/w=
+	t=1739263812; cv=none; b=PKczLbnQ3F8sLQ96frbCg08+jwhl55iHlAYrdGA9j1uL45Ua1+uavBiW2XSA8tbOLHLvrV/Xugf5jaFGM9NvQWhbYoAJxlZgJgmlrl3FiWhdHpteRNFekMq1XTMUZdRG21F9yim8pZ1zd7T/d9/2pyJt7C9meafriP5VTyHgZP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739263648; c=relaxed/simple;
-	bh=k21+EIxAbZ2RNWIs6sTtq5HkT0oP1NdfuQqJ3Cg0Xns=;
+	s=arc-20240116; t=1739263812; c=relaxed/simple;
+	bh=DCc45PUaxWDZZX/VarYIQH3gCDAkGlEG8N33POusJ/A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AoWNOU4hFQ0TYVb0c8ipLHEZyyDINvoxWl6PpWXeSODNcvEYwdzTLbey7NcxX0QNQL2gbMtDt5kA8Ln6YMODFze18JZV92G9d8ZdJBcqJvzGJ3KtSr6sQWIDa3NLWbvtXNqvEI3fYgfewA1tTLtUvXmUn10EBxe/OJV9gpACvto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hxbS8OPr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0A91C4CEE4;
-	Tue, 11 Feb 2025 08:47:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EWDTERUULEVm/PBMJYqj0cu5XqO/DlLJYEKMIEV/Pn8iECYiHwHV2VG99IuTxWUtNv+uXM4OVEDVWkyDsnXjvhwp9E3qfnQPJAZO22P0LOAVBsncjzt3VtkyT673jProhVsdJ0IcotKR4wOyVbR7axYw5fNw7y6ZX20etXK2cI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j27Fbnaa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 237A7C4CEDD;
+	Tue, 11 Feb 2025 08:50:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739263647;
-	bh=k21+EIxAbZ2RNWIs6sTtq5HkT0oP1NdfuQqJ3Cg0Xns=;
+	s=k20201202; t=1739263812;
+	bh=DCc45PUaxWDZZX/VarYIQH3gCDAkGlEG8N33POusJ/A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hxbS8OPr0wU/c6E85F335oSSbrLRCaeujvXRA/pMYWGZJfoXEbIJdZBcnJWK0L3Uj
-	 9g1oOOPo3F/iK9m+/pCESvVcC2ygY+Z+4K+6vWgREaNUoPOox7gvJvLCyR4lH7pzBs
-	 kDZlUtdKVIa1h7cXUo0xolCxaGzYoSq53xtDrybMSGYzKC1i3TIHOX3SeJdqMCIKBK
-	 D/Lv3AS6he/Q363o079npAvyOhBtCXTg4A/fZZp3RxXaHPLPFg0SU24Pb111btNqrY
-	 HtgBzYCsg1HQIUcvilN8c9+Dzhc4efaErZsasZj4LHMV9Z8fz1qokGa5BJZHIyeH7o
-	 hWsPzX+uPwscQ==
-Date: Tue, 11 Feb 2025 09:47:24 +0100
+	b=j27Fbnaa+cRJrOdQsIJe/AQUd0tja/pvuoXvhD7KxBpDaYoxdsS9FuwdR6WhdZLNG
+	 BISY6twJIsHuVOvbxEDWYEP4oVokHgbdxxMtTnPE/pit1RLj906Q+RSCq96HghaFgS
+	 FhiNd276J47D9ANsrDtTus+rkd//SD5l0NTznlGh2G8qYk5M4LR1km+X+3+nGtNImA
+	 P3AAqwbrX+lI4Nki4l0boIPEY1e8I+t+q/3uHo/+W71pYAbdfrSEM/bBf7n9jyIUtK
+	 hSbilN3hq4VvC2/7z61/HnLvMzl1P4F1emiZaEvlSUQXZ3dp6IzdZIuJ+jY6TL5XR0
+	 2mPGz0qUIltog==
+Date: Tue, 11 Feb 2025 09:50:08 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Felix Fietkau <nbd@nbd.name>, 
-	Sean Wang <sean.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+To: =?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>
+Cc: Daniel Scally <djrscally@gmail.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "Chester A. Unal" <chester.a.unal@arinc9.com>, 
-	Daniel Golle <daniel@makrotopia.org>, DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, upstream@airoha.com
-Subject: Re: [PATCH net-next v3 13/16] net: airoha: Introduce PPE
- initialization via NPU
-Message-ID: <20250211-fanatic-smoky-wren-f0dcc9@krzk-bin>
-References: <20250209-airoha-en7581-flowtable-offload-v3-0-dba60e755563@kernel.org>
- <20250209-airoha-en7581-flowtable-offload-v3-13-dba60e755563@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: media: i2c: Add DW9719 and DW9761 VCM
+Message-ID: <20250211-zippy-pygmy-firefly-88a3c7@krzk-bin>
+References: <20250209-dw9761dts-v3-0-14d3f00f0585@apitzsch.eu>
+ <20250209-dw9761dts-v3-1-14d3f00f0585@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,162 +62,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250209-airoha-en7581-flowtable-offload-v3-13-dba60e755563@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250209-dw9761dts-v3-1-14d3f00f0585@apitzsch.eu>
 
-On Sun, Feb 09, 2025 at 01:09:06PM +0100, Lorenzo Bianconi wrote:
-> +static irqreturn_t airoha_npu_wdt_handler(int irq, void *core_instance)
-> +{
-> +	struct airoha_npu_core *core = core_instance;
-> +	struct airoha_npu *npu = core->npu;
-> +	int c = core - &npu->cores[0];
-> +	u32 val;
+On Sun, Feb 09, 2025 at 10:51:57PM +0100, Andr=C3=A9 Apitzsch wrote:
+> Document Dongwoon DW9719 and DW9761 VCM devicetree bindings.
+>=20
+> Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
+> ---
+>  .../bindings/media/i2c/dongwoon,dw9719.yaml        | 45 ++++++++++++++++=
+++++++
+>  1 file changed, 45 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.=
+yaml b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..b38d22bf09713a7999e1f9ce6=
+553de7587dbe5d2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9719.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	airoha_npu_rmw(npu, REG_WDT_TIMER_CTRL(c), 0, WDT_INTR_MASK);
-> +	val = airoha_npu_rr(npu, REG_WDT_TIMER_CTRL(c));
-> +	if (FIELD_GET(WDT_EN_MASK, val))
-> +		schedule_work(&core->wdt_work);
+> +title: Dongwoon Anatech DW9719 Voice Coil Motor (VCM) Controller
 > +
-> +	return IRQ_HANDLED;
-> +}
+> +maintainers:
+> +  - devicetree@vger.kernel.org
 > +
-> +struct airoha_npu *airoha_npu_init(struct airoha_eth *eth)
-> +{
-> +	struct reserved_mem *rmem;
-> +	int i, irq, err = -ENODEV;
-> +	struct airoha_npu *npu;
-> +	struct device_node *np;
+> +description:
+> +  The Dongwoon DW9719 is a 10-bit digital-to-analog (DAC) converter. The=
+ DAC
+> +  is controlled via a 2-wire (I2C-compatible) serial interface.
 > +
-> +	npu = devm_kzalloc(eth->dev, sizeof(*npu), GFP_KERNEL);
-> +	if (!npu)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	npu->np = of_parse_phandle(eth->dev->of_node, "airoha,npu", 0);
-> +	if (!npu->np)
-> +		return ERR_PTR(-ENODEV);
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - dongwoon,dw9719
 
-Why? The property is not required, so how can missing property fail the
-probe?
+Yesterday there was a patch for this.
 
-This is also still unnecessary ABI break without explanation/reasoning.
-
-> +
-> +	npu->pdev = of_find_device_by_node(npu->np);
-> +	if (!npu->pdev)
-> +		goto error_of_node_put;
-
-You should also add device link and probably try_module_get. See
-qcom,ice (patch for missing try_module_get is on the lists).
-
-> +
-> +	get_device(&npu->pdev->dev);
-
-Why? of_find_device_by_node() does it.
-
-> +
-> +	npu->base = devm_platform_ioremap_resource(npu->pdev, 0);
-> +	if (IS_ERR(npu->base))
-> +		goto error_put_dev;
-> +
-> +	np = of_parse_phandle(npu->np, "memory-region", 0);
-> +	if (!np)
-> +		goto error_put_dev;
-> +
-> +	rmem = of_reserved_mem_lookup(np);
-> +	of_node_put(np);
-> +
-> +	if (!rmem)
-> +		goto error_put_dev;
-> +
-> +	irq = platform_get_irq(npu->pdev, 0);
-> +	if (irq < 0) {
-> +		err = irq;
-> +		goto error_put_dev;
-> +	}
-> +
-> +	err = devm_request_irq(&npu->pdev->dev, irq, airoha_npu_mbox_handler,
-> +			       IRQF_SHARED, "airoha-npu-mbox", npu);
-> +	if (err)
-> +		goto error_put_dev;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(npu->cores); i++) {
-> +		struct airoha_npu_core *core = &npu->cores[i];
-> +
-> +		spin_lock_init(&core->lock);
-> +		core->npu = npu;
-> +
-> +		irq = platform_get_irq(npu->pdev, i + 1);
-> +		if (irq < 0) {
-> +			err = irq;
-> +			goto error_put_dev;
-> +		}
-
-This is all confusing. Why are you requesting IRQs for other - the npu -
-device? That device driver is responsible for its interrupts, not you
-here. This breaks encapsulation. And what do you do if the other device
-starts handling interrupts on its own? This is really unexpected to see
-here.
-
-> +
-> +		err = devm_request_irq(&npu->pdev->dev, irq,
-> +				       airoha_npu_wdt_handler, IRQF_SHARED,
-> +				       "airoha-npu-wdt", core);
-> +		if (err)
-> +			goto error_put_dev;
-> +
-> +		INIT_WORK(&core->wdt_work, airoha_npu_wdt_work);
-> +	}
-> +
-> +	if (dma_set_coherent_mask(&npu->pdev->dev, 0xbfffffff))
-> +		dev_err(&npu->pdev->dev,
-> +			"failed coherent DMA configuration\n");
-> +
-> +	err = airoha_npu_run_firmware(npu, rmem);
-> +	if (err)
-> +		goto error_put_dev;
-> +
-> +	airoha_npu_wr(npu, REG_CR_NPU_MIB(10),
-> +		      rmem->base + NPU_EN7581_FIRMWARE_RV32_MAX_SIZE);
-> +	airoha_npu_wr(npu, REG_CR_NPU_MIB(11), 0x40000); /* SRAM 256K */
-> +	airoha_npu_wr(npu, REG_CR_NPU_MIB(12), 0);
-> +	airoha_npu_wr(npu, REG_CR_NPU_MIB(21), 1);
-> +	msleep(100);
-> +
-> +	/* setting booting address */
-> +	for (i = 0; i < AIROHA_NPU_NUM_CORES; i++)
-> +		airoha_npu_wr(npu, REG_CR_BOOT_BASE(i), rmem->base);
-> +	usleep_range(1000, 2000);
-> +
-> +	/* enable NPU cores */
-> +	/* do not start core3 since it is used for WiFi offloading */
-> +	airoha_npu_wr(npu, REG_CR_BOOT_CONFIG, 0xf7);
-> +	airoha_npu_wr(npu, REG_CR_BOOT_TRIGGER, 0x1);
-> +	msleep(100);
-> +
-> +	return npu;
-> +
-> +error_put_dev:
-> +	put_device(&npu->pdev->dev);
-
-Missing platform_device_put()
-
-> +error_of_node_put:
-> +	of_node_put(npu->np);
-> +
-> +	return ERR_PTR(err);
-> +}
-> +
-> +void airoha_npu_deinit(struct airoha_npu *npu)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(npu->cores); i++)
-> +		cancel_work_sync(&npu->cores[i].wdt_work);
-> +
-
-Leaking device put.
-
-> +	put_device(&npu->pdev->dev);
-> +	of_node_put(npu->np);
+Please align and come with only one thing for this. Also please
+implement any feedback from the other submission.
 
 Best regards,
 Krzysztof
