@@ -1,111 +1,133 @@
-Return-Path: <devicetree+bounces-145108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4356BA305CB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:32:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEEA7A305D0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:34:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 608E23A2BC2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:31:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32CE018878A4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:34:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016321EF0BD;
-	Tue, 11 Feb 2025 08:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F3A1EF0AB;
+	Tue, 11 Feb 2025 08:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uW3bFcrk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uOgTNHdG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2B4192B86;
-	Tue, 11 Feb 2025 08:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58D35192B86;
+	Tue, 11 Feb 2025 08:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739262704; cv=none; b=R+ynlhOjLo+4cixsHJqJ/D02DSRH3lrB9G6ftbmtxyyZLn+hnPF4948jDki5MPfKp05Fy5tAm5Nf1S5Bk96FxSKS/Zft1MHx7rj8/e5klh+83YAQtIB7DOujzecR++qQsziZKaMYKKBttFVnsvivFenoIQgjTimZwTKuLMDPbOo=
+	t=1739262835; cv=none; b=MOxloxCOsr5O/iu7mka84h9ykml5BcRNVfUBtcFCzGXuGh3YmmRXLtmB07HWlNKkPNeBQuFQw0UdUqrRhVwIhaGrpNck3AceACYxgLXwMcd7ILxBN41ylnExfqDApkNsDqPLO834DWVqZlViK0aR/GCcT6BCQ/vTZQDSjpxolT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739262704; c=relaxed/simple;
-	bh=dl4uLU/iQ9rF6gTfpw7fZJVHUwDfPTBp/2QbqtbcdMU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KspHVZwpGEoOpKotwQ8eSwSajQlH2llLSAD3T7pro9Eiopg5m6FsCI6xHahCzV+AMk+vu6tY5FbQU734xVjiCwvKgEdCnGyYZ+sSTwsO9tPQ5BsTX7OioJ0vgeTASaP5bKkBKM1QJkqn0Xxaw0Hg750AfiHb85oidHPyUj/2n4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uW3bFcrk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9A9EC4CEE4;
-	Tue, 11 Feb 2025 08:31:43 +0000 (UTC)
+	s=arc-20240116; t=1739262835; c=relaxed/simple;
+	bh=NX6m3Adayc0vNqxUwfaOwMkKFBcSZx8C8KPimyfNAR8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=O30V6R5Zl/1/DBhcMS96BOs61nsksmD9WqaFh5leHPrX+ZK7nG2YDoeZHEHJ1z+Uh4nTn1jM22VOPvauyOccbC+gaxc7u+gQdJAL4djvMG0GwYM4j8bOQo3AQ7a60nXkR335RuJtzq8b6JykXITacY1+/F17Wtvm2K0DOdWP1vk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uOgTNHdG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C379CC4CEE4;
+	Tue, 11 Feb 2025 08:33:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739262704;
-	bh=dl4uLU/iQ9rF6gTfpw7fZJVHUwDfPTBp/2QbqtbcdMU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uW3bFcrkqwYvblTFtITmlt7YgN6TQjfuDtO7NcfQLqANFXCSeoow4sAmntrkPX7iy
-	 Kqzx2sAfCnjHst5aKcYZCH29j82/TGmS8xCwf6VIsY5pDdbq8rq5Z/kd/RC1MFVYqh
-	 3GrkNQpVhidgSRHGM3JolbQXqbQ/ETWnnZD97MrnQAyimp5UoLE4J6yl+RqeYo/Tet
-	 bZf4vDyqkRSaLS4kfDjUMqk8fjgwSBEybDGo5Ax6PiY5ssufmGoKmUtwFicoV0VQvF
-	 yjbqmU0Vd6S3Iif/zW6nFW0tlSJpjUxETSKuwmbX84fhas40cyonZArnEJLF/DfhC6
-	 0N7iwWY7Cy4CA==
-Date: Tue, 11 Feb 2025 09:31:40 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Boris Brezillon <boris.brezillon@collabora.com>, 
-	Steven Price <steven.price@arm.com>, kernel@collabora.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: mediatek: mt8370: Enable gpu support
-Message-ID: <20250211-nice-boar-of-abracadabra-f696ec@krzk-bin>
-References: <20250207-mt8370-enable-gpu-v3-0-75e9b902f9c1@collabora.com>
- <20250207-mt8370-enable-gpu-v3-3-75e9b902f9c1@collabora.com>
+	s=k20201202; t=1739262834;
+	bh=NX6m3Adayc0vNqxUwfaOwMkKFBcSZx8C8KPimyfNAR8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=uOgTNHdG/tKy3sLMKLt+RJlI8dtuz4uFQG6+TDzUJj24vYaXR5Y7AkW2kAhYX/UbZ
+	 elkbdHSsnSjCVxazsby8e/BYhxEOSXZOepy4a5d99Lm7URCtV/OUS0yvuiAu/n06r+
+	 b+4YcQqdM6QjRyapPY5dYvb/7UtsgA6GQlSuqVL8BNqufUp7MgV8oUpJ0dAtuB5VOr
+	 KuWM04krhLK0pvL0PwoFCWAfBI4I2ENqOPFvHyF0BIPtbO1CoDBmRQ9bphmHROnWSz
+	 9tHUyRD9HzLj8b4DPBR5m7r/oV/gPxdZ+wJ+D2TeiSPF+W4+KWuNHoge/KLq1hVGD7
+	 J7y3j6Y5g3JjQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E757C0219D;
+	Tue, 11 Feb 2025 08:33:54 +0000 (UTC)
+From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
+Subject: [PATCH net-next v4 0/3] net: phy: dp83822: Add support for
+ changing the transmit amplitude voltage
+Date: Tue, 11 Feb 2025 09:33:46 +0100
+Message-Id: <20250211-dp83822-tx-swing-v4-0-1e8ebd71ad54@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250207-mt8370-enable-gpu-v3-3-75e9b902f9c1@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGoLq2cC/23NQQ6CMBQE0KuYrq35/aVAXXkP4wLaLzTRQlqCG
+ MLdbbrRGJaTybxZWaTgKLLzYWWBZhfd4FMojgdm+sZ3xJ1NmSFgIVBIbsda1oh8Wnh8Od9x1Ta
+ lEaRbKBVLszHQ3S2ZvDJPE/e0TOyWmt7FaQjv/DWL3CdWgdhjZ8GBV2RVo20NIODycNT2FMLJD
+ M/szfhjIOwYmAyojNbWFFhitWPIr4FQ7BgyGbrSNelSAVj9Z2zb9gH4b5SzRQEAAA==
+X-Change-ID: 20241213-dp83822-tx-swing-5ba6c1e9b065
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ Florian Fainelli <f.fainelli@gmail.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
+ Dimitri Fedrau <dima.fedrau@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739262831; l=1880;
+ i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
+ bh=NX6m3Adayc0vNqxUwfaOwMkKFBcSZx8C8KPimyfNAR8=;
+ b=YhgSfLb+zmjwX3GngGcIPF4m91Jxb0cBPhjrgeoaKlLWSN6oMMnbo/y0v7T3CE8Z2dHVNdrmk
+ u2jJx+DyLU3BsN9ZKWoayIgUABWGJUo2070thrqmcYcaYiNdMpAMEAg
+X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
+ pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
+X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
+ with auth_id=290
+X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Reply-To: dimitri.fedrau@liebherr.com
 
-On Fri, Feb 07, 2025 at 04:18:32PM +0100, Louis-Alexis Eyraud wrote:
-> Add a new gpu node in mt8370.dtsi to enable support for the
-> ARM Mali G57 MC2 GPU (Valhall-JM) found on the MT8370 SoC, using the
-> Panfrost driver.
-> 
-> On a Mediatek Genio 510 EVK board, the panfrost driver probed with the
-> following message:
-> ```
-> panfrost 13000000.gpu: clock rate = 390000000
-> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
-> panfrost 13000000.gpu: features: 00000000,000019f7, issues: 00000003,
->    80000400
-> panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
->    Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
-> panfrost 13000000.gpu: shader_present=0x5 l2_present=0x1
-> [drm] Initialized panfrost 1.3.0 for 13000000.gpu on minor 0
-> ```
-> 
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8370.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8370.dtsi b/arch/arm64/boot/dts/mediatek/mt8370.dtsi
-> index cf1a3759451ff899ce9e63e5a00f192fb483f6e5..2f27f7e7ab813b97f869297ae360f69854e966e1 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8370.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8370.dtsi
-> @@ -59,6 +59,15 @@ &cpu_little3_cooling_map0 {
->  				<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->  };
->  
-> +&gpu {
-> +	compatible = "mediatek,mt8370-mali", "arm,mali-valhall-jm";
+Add support for changing the transmit amplitude voltage in 100BASE-TX mode.
+Add support for configuration via DT.
 
-It's up to platform maintainers, but IMHO this is discouraged practice.
-If you ever need to override compatible, this means the node is not
-really shared between this and base SoC (base DTSI).
+Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+---
+Changes in v4:
+- Remove type $ref from binding
+- Remove '|' from description in binding
+- Change helper function from:
+    static int phy_get_int_delay_property(struct device *dev, const char *name)
+  to:
+    static int phy_get_u32_property(struct device *dev, const char *name, u32 *val)
+- Apply helper function to phy_get_internal_delay
+- Link to v3: https://lore.kernel.org/r/20250204-dp83822-tx-swing-v3-0-9798e96500d9@liebherr.com
+
+Changes in v3:
+- Switch to tx-amplitude-100base-tx-percent in bindings
+- Link to v2: https://lore.kernel.org/r/20250120-dp83822-tx-swing-v2-0-07c99dc42627@liebherr.com
+
+Changes in v2:
+- Remove binding ti,tx-amplitude-100base-tx-millivolt from ti,dp83822.yaml
+- Add binding tx-amplitude-100base-tx-gain-milli to ethernet-phy.yaml
+- Add helper to get tx amplitude gain from DT
+- Link to v1: https://lore.kernel.org/r/20250113-dp83822-tx-swing-v1-0-7ed5a9d80010@liebherr.com
+
+---
+Dimitri Fedrau (3):
+      dt-bindings: net: ethernet-phy: add property tx-amplitude-100base-tx-percent
+      net: phy: Add helper for getting tx amplitude gain
+      net: phy: dp83822: Add support for changing the transmit amplitude voltage
+
+ .../devicetree/bindings/net/ethernet-phy.yaml      |  6 +++
+ drivers/net/phy/dp83822.c                          | 38 +++++++++++++++++++
+ drivers/net/phy/phy_device.c                       | 44 +++++++++++++---------
+ include/linux/phy.h                                |  4 ++
+ 4 files changed, 74 insertions(+), 18 deletions(-)
+---
+base-commit: c2933b2befe25309f4c5cfbea0ca80909735fd76
+change-id: 20241213-dp83822-tx-swing-5ba6c1e9b065
 
 Best regards,
-Krzysztof
+-- 
+Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+
 
 
