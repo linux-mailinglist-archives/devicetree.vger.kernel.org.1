@@ -1,143 +1,333 @@
-Return-Path: <devicetree+bounces-145295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE396A30D68
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:56:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEDF5A30D82
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:58:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C50477A2195
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:55:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 356F7188602F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2315124BD0D;
-	Tue, 11 Feb 2025 13:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0366624C66D;
+	Tue, 11 Feb 2025 13:58:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="NM7NzNok"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j2l1xfFn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF790244E96;
-	Tue, 11 Feb 2025 13:55:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F78230D0E;
+	Tue, 11 Feb 2025 13:58:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739282159; cv=none; b=jPUeFN1fnzeRXzGT8+P5NBd/T+t6XgRJH0E9BUwd38XihWxb6WKu0tqg79IYsQAsLdCqjP93NBFh+u1OTEnpdNIV/DwsnsdpX4mqT4wR7yhOxIhCUed5vYoVSiRpF5EcMVpcWkBrPfFYw2sJK3MbMZ4QZEdh5RoinaaUwa0t3pM=
+	t=1739282328; cv=none; b=M1qkOy46OWP8/x0I5+kW6dN2XYBQ1xMjFMcNx4L3f2XxFj1SkoXGbM5xYcM2YhRT4P1lZUXR90qXIhUFODkAJE0KKp11ASn6358y74eLmcIVYZ8/eiAiq2VmgnZwSDVE33PTgpXZJfx/NlUP/lVVM/TUMb4pTs1c5qV2GfC8Wg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739282159; c=relaxed/simple;
-	bh=f9IOn1H+Qz7jYxe1KmRcYdzwSDqyhB302hT92PUKc2E=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=AWv5hpfDRxcPDMmilE2XHvsQJWitPefSKKxaA3oRySicNZKA/y+1/i8+OkBTeKJlLNGaNidv0zfqXa2ySAnn5yFOe8C5f0rtc7D95wfOLg8mhAJcyPYRgg6mTENQhgbljM/Vudyl77oY2sBjKJbFv/FRx7kACuR03AMWxLVVyFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=NM7NzNok; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1739282328; c=relaxed/simple;
+	bh=hXDWyrUxxlVluBLQjzPISIGXWjZtzAeLnpTxqyO6AO4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=dFurUk/EpOBTNmabq6EltvMrP5ocLXCq24sMYfqrLdMxgVe4ODdVt19U4iIanZHr/+XYxh+81h0rM22V0dGOSO63uhZCunWCkT0clidn9s5H7+OkR4kZ8QwmwqB74jzxieSCHdMmhVviS7p6eUJGJJhROFIrqvwmEaXzg1ewIN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j2l1xfFn; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51BAvFbN031911;
+	Tue, 11 Feb 2025 13:58:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hbU0vHYLWBxsiGVp8WiSzxVW5SL6glLxDc8K82144pg=; b=j2l1xfFnn+9XE98c
+	VIsIcl9MU0c7+rRsnY9aLG86QTUia30/sA6dQ9YrRkrrtYGfvdNDmpzFSFPbPub3
+	onp4s8zzLN2JtOSrwWkqx6vSpRUxZn5CXarHsd4oqgajbissVJ/OVU26x4LpYSHz
+	0lcA7s/aZ3dyIprsZgjNnJSQJHq/NG50a0IKwqg3WabAVSzsEkdnn+FodNuJoHE6
+	DnXEv0jYEzAeenf6uAdLFB/sgd2+3RzSE8ahkFESCLX4hTe2DIRPiGAjcyIBWIOJ
+	6IP4wHdva2XUwVoTQLnH0Luv1/EYo+ySV2lxU0PLSAniWCOORJGy0az8zRujhpkt
+	OvmZzw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qgtk3v6j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Feb 2025 13:58:28 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51BDwRDd020186
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Feb 2025 13:58:28 GMT
+Received: from [10.253.10.118] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 11 Feb
+ 2025 05:58:22 -0800
+Message-ID: <63f1d25c-087a-46dd-9053-60334a0095d5@quicinc.com>
+Date: Tue, 11 Feb 2025 21:58:19 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1739282154;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mifodZnx+GAT8j3y7LTSrIDDb3fyeuMJi7Lz1TWQoWg=;
-	b=NM7NzNok5uOfeVIliUUYXIjdfRtVgvDGaH9gru/W/Z2DSizT9jGyeohS7f/+9/x41Hh+UO
-	AasxnZ7X27daRD2cLPsFWyH4C5MfdLr8955ZuZ32LOOHz+IybYOnKka8tHUOM4TSGUSqox
-	U2Ypmvd8oWnSgL1tSLduD7ltV9sqTxa4xPID6osBCAwssPuMKt9QuFvJjtvRDkZj5rxb5J
-	XTTqUZjNlZylDn+t9EcfUVemavXzxOS1BWBM/NTKgJpYSZIFuUvaAkQn4Ydxw9BzRv2Tlj
-	tVlJ0mhoiALwBGSmZXcVVfsWwXNaDVsaImIoxOLJwBqjxCnFqlapMEjkR+mZ+g==
-Date: Tue, 11 Feb 2025 14:55:53 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Jagan Teki <jagan@edgeble.ai>, Quentin Schulz <foss+kernel@0leil.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Niklas
- Cassel <cassel@kernel.org>, Michael Riesch <michael.riesch@wolfvision.net>,
- Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 2/4] arm64: dts: rockchip: add overlay test for Edgeble
- NCM6A
-In-Reply-To: <06f1f9f4-8a79-4505-98b8-992accf1fb87@cherry.de>
-References: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
- <20250207-pre-ict-jaguar-v5-2-a70819ea0692@cherry.de>
- <CA+VMnFyom=2BmJ_nt-At6hTQP0v+Auaw-DkCVbT9mjndMmLKtQ@mail.gmail.com>
- <8d830c2c-6268-4c70-ae8a-47183b8cbace@cherry.de>
- <74502f5556584ee7378c63d4971f2a66@manjaro.org>
- <06f1f9f4-8a79-4505-98b8-992accf1fb87@cherry.de>
-Message-ID: <a9a023233f9a096cc215203bb6ef41d7@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 03/14] net: ethernet: qualcomm: Add PPE driver
+ for IPQ9574 SoC
+To: Jie Gan <jie.gan@oss.qualcomm.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Lei Wei <quic_leiwei@quicinc.com>,
+        "Suruchi
+ Agarwal" <quic_suruchia@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Kees Cook
+	<kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        "Philipp
+ Zabel" <p.zabel@pengutronix.de>
+CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
+        <john@phrozen.org>
+References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
+ <20250209-qcom_ipq_ppe-v3-3-453ea18d3271@quicinc.com>
+ <58e05149-abc2-4cf4-a6e8-35380823d94a@oss.qualcomm.com>
+Content-Language: en-US
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <58e05149-abc2-4cf4-a6e8-35380823d94a@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _lFZo8511gjvZFjnbbPkXbLJ9LdnYphr
+X-Proofpoint-ORIG-GUID: _lFZo8511gjvZFjnbbPkXbLJ9LdnYphr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-11_06,2025-02-11_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 suspectscore=0 phishscore=0 impostorscore=0
+ adultscore=0 clxscore=1015 mlxscore=0 malwarescore=0 bulkscore=0
+ lowpriorityscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2501170000 definitions=main-2502110093
 
-Hello Quentin,
 
-On 2025-02-11 13:59, Quentin Schulz wrote:
-> On 2/10/25 7:29 PM, Dragan Simic wrote:
->> On 2025-02-10 18:57, Quentin Schulz wrote:
->>> On 2/10/25 3:11 PM, Jagan Teki wrote:
->>>> On Fri, 7 Feb 2025 at 20:50, Quentin Schulz <foss+kernel@0leil.net> 
->>>> wrote:
->>>>> 
->>>>> From: Quentin Schulz <quentin.schulz@cherry.de>
->>>>> 
->>>>> The Edgeble NCM6A can have WiFi modules connected and this is 
->>>>> handled
->>>>> via an overlay (commit 951d6aaa37fe ("arm64: dts: rockchip: Add 
->>>>> Edgeble
->>>>> NCM6A WiFi6 Overlay")).
->>>>> 
->>>>> In order to make sure the overlay is still valid in the future, 
->>>>> let's
->>>>> add a validation test by applying the overlay on top of the main 
->>>>> base
->>>>> at build time.
->>>>> 
->>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
->>>>> ---
->>>>>   arch/arm64/boot/dts/rockchip/Makefile | 4 ++++
->>>>>   1 file changed, 4 insertions(+)
->>>>> 
->>>>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/ 
->>>>> boot/dts/rockchip/Makefile
->>>>> index 
->>>>> 534e70a649eeada7f9b6f12596b83f5c47b184b4..02f98abe1df10f44f2ac27ea5f6c6e6c6334724e 
->>>>> 100644
->>>>> --- a/arch/arm64/boot/dts/rockchip/Makefile
->>>>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->>>>> @@ -192,3 +192,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568- 
->>>>> wolfvision-pf5-vz-2-uhd.dtb
->>>>>   rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb 
->>>>> \
->>>>>          rk3568-wolfvision-pf5-display-vz.dtbo \
->>>>>          rk3568-wolfvision-pf5-io-expander.dtbo
->>>>> +
->>>>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
->>>>> +rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
->>>>> +       rk3588-edgeble-neu6a-wifi.dtbo
->>>> 
->>>> Please add neu6b-io as well, wifi dtbo is similar for it as well.
->>> 
->>> Similar or identical :)?
->>> 
->>> Should the overlay be renamed if it applies to neu6b AND neu6a 
->>> instead
->>> of implying it's only for neu6a based on the name of the overlay?
->> 
->> I'm afraid it's a bit too late for renaming the .dtso file. :/
+
+On 2/10/2025 10:12 AM, Jie Gan wrote:
+>> +static int ppe_clock_init_and_reset(struct ppe_device *ppe_dev)
+>> +{
+>> +    unsigned long ppe_rate = ppe_dev->clk_rate;
+>> +    struct device *dev = ppe_dev->dev;
+>> +    struct reset_control *rstc;
+>> +    struct clk_bulk_data *clks;
+>> +    struct clk *clk;
+>> +    int ret, i;
+>> +
+>> +    for (i = 0; i < ppe_dev->num_icc_paths; i++) {
+>> +        ppe_dev->icc_paths[i].name = ppe_icc_data[i].name;
+>> +        ppe_dev->icc_paths[i].avg_bw = ppe_icc_data[i].avg_bw ? :
+>> +                           Bps_to_icc(ppe_rate);
+> it's ppe_dev->icc_paths[i].avg_bw = ppe_icc_data[i].avg_bw ? 
+> ppe_icc_data[i].avg_bw : Bps_to_icc(ppe_rate);  ?
+
+I feel the above used notation is also fine for readability, and is
+shorter and simpler.
+
 > 
-> How is it too late? Is there some rule somewhere about renaming I 
-> missed?
+> 
+>> +        ppe_dev->icc_paths[i].peak_bw = ppe_icc_data[i].peak_bw ? :
+>> +                        Bps_to_icc(ppe_rate);
+> Same with previous one?
 
-The way I see it, names of the .dts and .dtso files become part of
-the "extended ABI", so to speak, once they've been accepted upstream
-for a while, because renaming them may break boot configurations.
+Same response as for the previous comment is applicable here as well.
+
+> 
+>> +    }
+>> +
+>> +    ret = devm_of_icc_bulk_get(dev, ppe_dev->num_icc_paths,
+>> +                   ppe_dev->icc_paths);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    ret = icc_bulk_set_bw(ppe_dev->num_icc_paths, ppe_dev->icc_paths);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    /* The PPE clocks have a common parent clock. Setting the clock
+> Should be:
+> /*
+>   * The PPE clocks have a common parent clock. Setting the clock
+>   * rate of "ppe" ensures the clock rate of all PPE clocks is
+>   * configured to the same rate.
+>   */
+> 
+
+I think for drivers/net, the above format follows the recommended
+commenting style. Pls see: https://www.kernel.org/doc/html/v6.10/
+process/coding-style.html
+
+For files in net/ and drivers/net/ the preferred style for long
+(multi-line) comments is a little different.
+
+> BTW, it's better wrapped with ~75 characters per line.
+
+Yes, the comments should be wrapped to ~75 characters.
+
+> 
+>> +     * rate of "ppe" ensures the clock rate of all PPE clocks is
+>> +     * configured to the same rate.
+>> +     */
+>> +    clk = devm_clk_get(dev, "ppe");
+>> +    if (IS_ERR(clk))
+>> +        return PTR_ERR(clk);
+>> +
+>> +    ret = clk_set_rate(clk, ppe_rate);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    ret = devm_clk_bulk_get_all_enabled(dev, &clks);
+>> +    if (ret < 0)
+>> +        return ret;
+>> +
+>> +    /* Reset the PPE. */
+>> +    rstc = devm_reset_control_get_exclusive(dev, NULL);
+>> +    if (IS_ERR(rstc))
+>> +        return PTR_ERR(rstc);
+>> +
+>> +    ret = reset_control_assert(rstc);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    /* The delay 10 ms of assert is necessary for resetting PPE. */
+>> +    usleep_range(10000, 11000);
+>> +
+>> +    return reset_control_deassert(rstc);
+>> +}
+>> +
+>> +static int qcom_ppe_probe(struct platform_device *pdev)
+>> +{
+>> +    struct device *dev = &pdev->dev;
+>> +    struct ppe_device *ppe_dev;
+>> +    void __iomem *base;
+>> +    int ret, num_icc;
+> I think it's better with:
+>      int num_icc = ARRAY_SIZE(ppe_icc_data);
+
+This will impact the “reverse xmas tree” rule for local variable
+definitions. Also, the num_icc will vary as per the different SoC,
+so we will need to initialize the num_icc in a separate statement.
+
+(Note: This driver will be extended to support different SoC in
+the future.)
+
+> 
+>> +
+>> +    num_icc = ARRAY_SIZE(ppe_icc_data);
+>> +    ppe_dev = devm_kzalloc(dev, struct_size(ppe_dev, icc_paths, 
+>> num_icc),
+>> +                   GFP_KERNEL);
+>> +    if (!ppe_dev)
+>> +        return -ENOMEM;
+>> +
+>> +    base = devm_platform_ioremap_resource(pdev, 0);
+>> +    if (IS_ERR(base))
+>> +        return dev_err_probe(dev, PTR_ERR(base), "PPE ioremap 
+>> failed\n");
+>> +
+>> +    ppe_dev->regmap = devm_regmap_init_mmio(dev, base, 
+>> &regmap_config_ipq9574);
+>> +    if (IS_ERR(ppe_dev->regmap))
+>> +        return dev_err_probe(dev, PTR_ERR(ppe_dev->regmap),
+>> +                     "PPE initialize regmap failed\n");
+>> +    ppe_dev->dev = dev;
+>> +    ppe_dev->clk_rate = PPE_CLK_RATE;
+>> +    ppe_dev->num_ports = PPE_PORT_MAX;
+>> +    ppe_dev->num_icc_paths = num_icc;
+>> +
+>> +    ret = ppe_clock_init_and_reset(ppe_dev);
+>> +    if (ret)
+>> +        return dev_err_probe(dev, ret, "PPE clock config failed\n");
+>> +
+>> +    platform_set_drvdata(pdev, ppe_dev);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static const struct of_device_id qcom_ppe_of_match[] = {
+>> +    { .compatible = "qcom,ipq9574-ppe" },
+>> +    {}
+>> +};
+>> +MODULE_DEVICE_TABLE(of, qcom_ppe_of_match);
+>> +
+>> +static struct platform_driver qcom_ppe_driver = {
+>> +    .driver = {
+>> +        .name = "qcom_ppe",
+>> +        .of_match_table = qcom_ppe_of_match,
+>> +    },
+>> +    .probe    = qcom_ppe_probe,
+>> +};
+>> +module_platform_driver(qcom_ppe_driver);
+>> +
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_DESCRIPTION("Qualcomm Technologies, Inc. IPQ PPE driver");
+>> diff --git a/drivers/net/ethernet/qualcomm/ppe/ppe.h b/drivers/net/ 
+>> ethernet/qualcomm/ppe/ppe.h
+>> new file mode 100644
+>> index 000000000000..cc6767b7c2b8
+>> --- /dev/null
+>> +++ b/drivers/net/ethernet/qualcomm/ppe/ppe.h
+>> @@ -0,0 +1,36 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only
+>> + *
+>> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights 
+>> reserved.
+>> + */
+>> +
+>> +#ifndef __PPE_H__
+>> +#define __PPE_H__
+>> +
+>> +#include <linux/compiler.h>
+>> +#include <linux/interconnect.h>
+>> +
+>> +struct device;
+> #include <linux/device.h> ?
+> 
+>> +struct regmap;
+> Same with previous one, include it's header file?
+
+The driver only need to reference these structures but don't
+need their full definitions. So it should be fine to declare
+the existence of these structures here.
+
+> 
+>> +
+>> +/**
+>> + * struct ppe_device - PPE device private data.
+>> + * @dev: PPE device structure.
+>> + * @regmap: PPE register map.
+>> + * @clk_rate: PPE clock rate.
+>> + * @num_ports: Number of PPE ports.
+>> + * @num_icc_paths: Number of interconnect paths.
+>> + * @icc_paths: Interconnect path array.
+>> + *
+>> + * PPE device is the instance of PPE hardware, which is used to
+>> + * configure PPE packet process modules such as BM (buffer management),
+>> + * QM (queue management), and scheduler.
+>> + */
+>> +struct ppe_device {
+>> +    struct device *dev;
+>> +    struct regmap *regmap;
+>> +    unsigned long clk_rate;
+>> +    unsigned int num_ports;
+>> +    unsigned int num_icc_paths;
+>> +    struct icc_bulk_data icc_paths[] __counted_by(num_icc_paths);
+>> +};
+>> +#endif
+>>
+> 
+> Thanks,
+> Jie
+
 
