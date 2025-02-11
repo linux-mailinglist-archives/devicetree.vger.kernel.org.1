@@ -1,131 +1,87 @@
-Return-Path: <devicetree+bounces-145095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58F14A30577
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:15:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC58A30582
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:16:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 459CD161242
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:15:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62BCA1614AB
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:16:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DEF71EF0BC;
-	Tue, 11 Feb 2025 08:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377C11EE002;
+	Tue, 11 Feb 2025 08:16:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EG8Iv4k9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TinWPZjg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84181EF0B4;
-	Tue, 11 Feb 2025 08:14:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1BC1B6CE5;
+	Tue, 11 Feb 2025 08:16:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739261689; cv=none; b=QWa3cnuXOm3l8YZ4clpBZNyOh4T4iC1Mw8z7Zz7pKc6xdM9fDXYCnrd9SzlhpCOv+ErZSMM6wfISzW3BNDARpGwwNUKncOneNd0ReCJSU7mcWRZ9u16g2CWBlN9i48Uqumzfrd2l+J/AcLhEIypbQmS0W2ppdSWsVZ9E+dlEL7U=
+	t=1739261795; cv=none; b=WkOmjy9cC79wdV6yWTWBqWQ3AggLqEkzt6YXO6mMuDliDhUXJb24Yto1yN5fiBQBnkbZQbByu9iKFKI/iX3nf4eGDJ3HwKFw56sEVG7ir5QIAypZI8ofiypaVBlAC4HCWvw4+vqfeO6WAVf4NYwgz6q/reKtjWOwzL/G9K9qPTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739261689; c=relaxed/simple;
-	bh=qk0fLR4Il2BJiKJ4HgBh5BYwjFWVFeUDKtskwx3GxnY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D6f1BLb1MEtlhMSpqnX7pF3SSxlmDBYv0LFfspVvQbZno8jM2C9f49W1Mmvn3W/RRhEYEYLja7IZw3sACyL9YQi1u05Ua3zFsD8mUAYyg7M2dVxuA41y2f71GTzquOJ9mfZbDoB7BBMshzIyC9DIhHq5v1kXveBD0YHnLd64+2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EG8Iv4k9; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51ANcAf7031923;
-	Tue, 11 Feb 2025 08:14:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4IQzsZfZkYg2hQh12RkaSkNGvDsR9dJKDmQi215tL7w=; b=EG8Iv4k96eGf2i4m
-	6zBTwY7z9CydSz1cb+F3S70NIkk4yAtjPByHu0ALmIyIh6qjhTfQZMUhJtZeUHu9
-	rwMuVOs/fKWptM+y6geQZQA1d6aE1rrYdPFSkby7OPvrr5yu9/EnxUK+0plW4Xco
-	i2zL+1uL9a00xpiLffFju2G2TycfJ022hNa37PBPg7mxJl5ceKv1I44NZ+qrvAJL
-	xhryUaBW/UfaY10oKHbpR87/45r99g8EhIOgA9bmX2jtNd6D4YhGgW1rehAELN4i
-	yPtATAJSJvlqPmhsxO4It1IsibV9gy42ABJfvp/2Ttg5UVYQLgxWws4mrS/QWn6X
-	6yuk+A==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qgtk2ujy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Feb 2025 08:14:45 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51B8Eivm014863
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Feb 2025 08:14:44 GMT
-Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 11 Feb 2025 00:14:38 -0800
-From: Ling Xu <quic_lxu5@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <quic_kuiw@quicinc.com>, <quic_ekangupt@quicinc.com>,
-        <quic_kartsana@quicinc.com>, <kernel@quicinc.com>,
-        <quic_lxu5@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <stable@kernel.org>
-Subject: [PATCH v3 2/2] arm64: dts: qcom: sa8775p: Remove cdsp compute-cb@10
-Date: Tue, 11 Feb 2025 13:44:15 +0530
-Message-ID: <4c9de858fda7848b77ea8c528c9b9d53600ad21a.1739260973.git.quic_lxu5@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1739260973.git.quic_lxu5@quicinc.com>
-References: <cover.1739260973.git.quic_lxu5@quicinc.com>
+	s=arc-20240116; t=1739261795; c=relaxed/simple;
+	bh=+u+5GUAVu2gY43K/hasdrUu8RXdP+Ha6+AiaUUtPgl0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RTHeDCSk9HL08zGr/2Q28ieTPs9x2AetrsXS5+45bcF9spaJCVDCJlvboaqBxoVHew2ZPxQCmxlUf9QQyWTzce8q5llKZv9e/5drrDjh8YjWclAmUDUslIUfx0AJFq2TENRfKYC4CMrlkc/LDjlpvQ4S6/rjoC0uF7gyeqy/6IE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TinWPZjg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE823C4CEDD;
+	Tue, 11 Feb 2025 08:16:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739261794;
+	bh=+u+5GUAVu2gY43K/hasdrUu8RXdP+Ha6+AiaUUtPgl0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TinWPZjgpSeo38CN9Be9w4b0lLOtgzlBPWr47JtzIpP4gvZ16FxD96VxkGp0krQFh
+	 4bMeOpIaaUdPaVFTAVkNRTMLLYmQbIb5pMxTObMWrBcRe2bkU8eH/9SX0bOfOJ6S0P
+	 ejFiT9S9zg0tf/M7UELbCGqT+F6Szf+MrE0Y8P33zgMB/fKfgcS3xRBvDX605FyFGx
+	 ZvquVVzXXGf110FQPuabOC9JryVhUc1sYMI3kQuaWINwMFLts15mLabaogNdB1GOQW
+	 tQiuNs7fl19NUHDS9273aNxNRxtodIRNlK3CbhFrXcJF7w+1fret4n+4GqyzYrtiO8
+	 1znYlrYbPN99Q==
+Date: Tue, 11 Feb 2025 09:16:31 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, robh@kernel.org, 
+	conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v12 5/9] dt-bindings: iio: adc: add ad485x axi variant
+Message-ID: <20250211-industrious-rugged-gecko-9b5c02@krzk-bin>
+References: <20250207140918.7814-1-antoniu.miclaus@analog.com>
+ <20250207140918.7814-6-antoniu.miclaus@analog.com>
+ <20250208162058.3b50ae20@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QfYm0jTZ30ysn1SYmfl82Cg_L_lNAeBH
-X-Proofpoint-ORIG-GUID: QfYm0jTZ30ysn1SYmfl82Cg_L_lNAeBH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-11_03,2025-02-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 suspectscore=0 phishscore=0 impostorscore=0
- adultscore=0 clxscore=1015 mlxscore=0 malwarescore=0 bulkscore=0
- lowpriorityscore=0 mlxlogscore=653 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2501170000 definitions=main-2502110049
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250208162058.3b50ae20@jic23-huawei>
 
-From: Karthik Sanagavarapu <quic_kartsana@quicinc.com>
+On Sat, Feb 08, 2025 at 04:20:58PM +0000, Jonathan Cameron wrote:
+> On Fri, 7 Feb 2025 16:09:14 +0200
+> Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+> 
+> > Add a new compatible and related bindings for the fpga-based
+> > AD485x AXI IP core, a variant of the generic AXI ADC IP.
+> > 
+> > The AXI AD485x IP is a very similar HDL (fpga) variant of the
+> > generic AXI ADC IP, intended to control ad485x familiy.
+> 
+> Hmm. Should we name this after a specific part? Very unlikely
+> the wildcard will go wrong here because of how specific this
+> binding is anyway but we should perhaps stick to normal rules
+> of no wild cards.
 
-Remove the context bank compute-cb@10 because these SMMU ids are S2-only
-which is not used for S1 transaction.
+I am pretty sure we had this discussion about this or other block
+already and we reached some sort of concensus... which is undocumented
+in commit msg, so we are doomed to repeat the discussion.
 
-Fixes: f7b01bfb4b47 ("arm64: qcom: sa8775p: Add ADSP and CDSP0 fastrpc nodes")
-Cc: stable@kernel.org
-Signed-off-by: Karthik Sanagavarapu <quic_kartsana@quicinc.com>
-Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 8 --------
- 1 file changed, 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 0aa27db21f3d..81b2fba94841 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -4585,14 +4585,6 @@ compute-cb@9 {
- 						dma-coherent;
- 					};
- 
--					compute-cb@10 {
--						compatible = "qcom,fastrpc-compute-cb";
--						reg = <10>;
--						iommus = <&apps_smmu 0x214a 0x04a0>,
--							 <&apps_smmu 0x218a 0x0400>;
--						dma-coherent;
--					};
--
- 					compute-cb@11 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <11>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
