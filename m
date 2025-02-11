@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-145381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C58FA311C8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:39:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F19EFA311E4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:43:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FD8E3A7843
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:39:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 102021887A62
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:39:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42602255E38;
-	Tue, 11 Feb 2025 16:38:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EC7257AC8;
+	Tue, 11 Feb 2025 16:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j4Y5yIHA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HRKoVjAo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1165924E4C3;
-	Tue, 11 Feb 2025 16:38:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 695CF257AC4;
+	Tue, 11 Feb 2025 16:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739291933; cv=none; b=YwzB6/7lXGVFYGWRIxyO4k2Kzxx19u6BTukawVWLR5RnHTX5lsCEOIbF5irp1jRYW+jldKC6UL9Nrguns21H5cM7t7W+aVNnUfL69/iyEl+Zs2x/iAykC4r7TchtnGr66U93zQD8VcdGXPZgY5yuPcJN3fjHIm+tAJnGfiLMRw4=
+	t=1739291986; cv=none; b=JgaqaNQTFbGFEbYARJux37V2JX2JkIAlOTsePOOCqYWP4YwqQ7rmEZbrOTi1T5e0oWg/80EcowLyvhPlSCvenmwf3omlVWlSsUCeYKWvrXjav8rR4gZkXCBYeZgm+m4Sy1F7bY59kLjOOKxXJDQRCGaW86kkzaa+ucam2pKfAdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739291933; c=relaxed/simple;
-	bh=khNbYEj7D+meq38dfaVMuGZU0JsnF5ZjDcTMSNnp4bE=;
+	s=arc-20240116; t=1739291986; c=relaxed/simple;
+	bh=n1tpYT/FEf64u/FY9tw6DOskntyo3y2tuWRaFzOfXeo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OHFZzNObteHzg0uYees8JqWgGZBaMXl+putJWp3DypH07pjGB5rFqH2BXTl++7QmenzAIsSRBnT+a1B0Zcq7/7Oi/PqslXnZDLZEOHwzALqgFbp6KzyFuaN/uOmjJB2+4RcYdtpaxqkQYESftVsOApMi3uJOjsrXAZ9rQvtS83c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j4Y5yIHA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB45BC4CEDD;
-	Tue, 11 Feb 2025 16:38:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ERawZ3Bl9OcD3aY/tgOiUQf9BcnycdTjpvEJVAV6qZS04P8CnYMpLwNao4yot/++lgsHFB3OMXZVObpzBQSSCyY/UW09qa9VE0KqjGJRXjABbXrTxm+AUHsS9FUDPqa5rU4irt5IaHctn1LgosD4XmOn3P8ULXYHPmBV0/pGy5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HRKoVjAo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53221C4CEDD;
+	Tue, 11 Feb 2025 16:39:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739291932;
-	bh=khNbYEj7D+meq38dfaVMuGZU0JsnF5ZjDcTMSNnp4bE=;
+	s=k20201202; t=1739291986;
+	bh=n1tpYT/FEf64u/FY9tw6DOskntyo3y2tuWRaFzOfXeo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j4Y5yIHAwlBfzEQ8PzbFlx5Biby5DSgJJphl+C2/mGotvbEIOimAYlmEaxeJyUOzJ
-	 r0vnIpZCyUq/9vD7I7XiFR36e28c7atBw1lISQD5zQeAHLKJ7EGnV+71xPLHuUAzyK
-	 JYIB50xG5vkpZ9FnOnMgHBrojgKy5PfEFpltHbMiyjsG5oovEfhVo0dd3McIe4v6LD
-	 VOuD73EwVdt5O2LCA3nRzz8NfvImrmPH736N7TVjYTfaFXC6v5KKROcJCHvtUIQOTK
-	 ZHZGdSfcMj24p6wt5jy3xovhdF+6ypkCz7nX7pDR2tji3qon4OCuDTJ4Dafa3S6aMz
-	 6z3HRgkN9/+mg==
-Date: Tue, 11 Feb 2025 16:38:48 +0000
+	b=HRKoVjAoNV23MiZEh232xe9tnhznnaeFXbMrp4QefhLnMVVU9pCCI/PKRaWA+pDw6
+	 oeXVK+i0FVh0BIKa3csOFNLoCRTEsq/8gR1Ikp7EfiM7XVkrUFoY1I6F69zFojJ75K
+	 ioqz9u6EQw9LUZBM5My2PCz6+xG7I619YP7m4lOzVrroJEFhFnFGH5XMVmI97ekAtU
+	 /7hNSOSUi+LNrbMDoyGsA505m7IxOIZlWXtdUhfOn43o9dZg/onQO4fusBQU+XsYdm
+	 TH3JKhxWtJ7rAQL2BgiMjYMs0IyTpHUF1tOL470mQLwwfPzZ/5F3EIUbhI4uF7+OMb
+	 /gzQhctary9NQ==
+Date: Tue, 11 Feb 2025 16:39:41 +0000
 From: Conor Dooley <conor@kernel.org>
-To: dimitri.fedrau@liebherr.com
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Dimitri Fedrau <dima.fedrau@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: can: fsl,flexcan: add transceiver
- capabilities
-Message-ID: <20250211-epidermis-crib-b50da209d954@spud>
-References: <20250211-flexcan-add-transceiver-caps-v1-0-c6abb7817b0f@liebherr.com>
- <20250211-flexcan-add-transceiver-caps-v1-1-c6abb7817b0f@liebherr.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, airlied@gmail.com,
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@collabora.com,
+	pablo.sun@mediatek.com
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: panel: Add Himax
+ HX8279/HX8279-D
+Message-ID: <20250211-manly-backlight-a3904a9e79a7@spud>
+References: <20250211114429.1519148-1-angelogioacchino.delregno@collabora.com>
+ <20250211114429.1519148-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,64 +63,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0M1rxEtOyDljmutQ"
+	protocol="application/pgp-signature"; boundary="K61yT/4xlRiEL2k9"
 Content-Disposition: inline
-In-Reply-To: <20250211-flexcan-add-transceiver-caps-v1-1-c6abb7817b0f@liebherr.com>
+In-Reply-To: <20250211114429.1519148-2-angelogioacchino.delregno@collabora.com>
 
 
---0M1rxEtOyDljmutQ
+--K61yT/4xlRiEL2k9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 11, 2025 at 02:12:33PM +0100, Dimitri Fedrau via B4 Relay wrote:
-> From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+On Tue, Feb 11, 2025 at 12:44:28PM +0100, AngeloGioacchino Del Regno wrote:
+> Himax HX8279 is a Display DriverIC suitable for driving LCD
+> MIPI-DSI panels.
 >=20
-> Currently the flexcan driver does not support adding PHYs. Add the
-> capability to ensure that the PHY is in operational state when the link
-> is set to an "up" state.
+> Describe this DriverIC and the Startek KD070FHFID078 panel found
+> on newer revisions of the MediaTek Genio 510/700/1200 Evaluation
+> Kits (EVK).
 >=20
-> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> ---
->  Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b=
-/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> index 97dd1a7c5ed26bb7f1b2f78c326d91e2c299938a..397957569588a61111a313cf9=
-107e29dacc9e667 100644
-> --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> @@ -70,6 +70,9 @@ properties:
->    xceiver-supply:
->      description: Regulator that powers the CAN transceiver.
-> =20
-> +  phys:
-> +    maxItems: 1
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
 
-Can all devices in this binding support external phy? Are all devices
-limited to a single external phy?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +
->    big-endian:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description: |
->=20
-> --=20
-> 2.39.5
->=20
->=20
-
---0M1rxEtOyDljmutQ
+--K61yT/4xlRiEL2k9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6t9GAAKCRB4tDGHoIJi
-0h+cAQCpb6VaOWlxOnR0WI9RvSnk8Rf0BtVOJZ+Y0f+FxVzUFgD/SECtzHai0eyN
-ILxdtE4ExqVMeRAT3FugEv8foAjEMAo=
-=vw34
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6t9TQAKCRB4tDGHoIJi
+0ud/AQCyEFDNhfi2DVH9b/xngpiFAhVpDl6JRDylVWH/AZlctAEAlkIBgrYHlqU2
++EYBA87Nu6Xj4HxqvNkVjhqzQZWqugw=
+=aCqm
 -----END PGP SIGNATURE-----
 
---0M1rxEtOyDljmutQ--
+--K61yT/4xlRiEL2k9--
 
