@@ -1,130 +1,142 @@
-Return-Path: <devicetree+bounces-145339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D680A30F6E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:16:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B22A9A30F7F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:21:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F088F163D0E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:16:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0E78164ACB
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0258F1FBE8F;
-	Tue, 11 Feb 2025 15:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10AFF253B40;
+	Tue, 11 Feb 2025 15:21:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QwTlTUoD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DFN7UHBE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B2779CD;
-	Tue, 11 Feb 2025 15:16:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EFA22528FD;
+	Tue, 11 Feb 2025 15:21:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739287014; cv=none; b=k/cwenZchjfmCsRp35amq1CGLM+c5JFQTvDm9aJoRFcLlD2d0raJmTsS8GTVyWmK5XLZUm5mekC+nOSF2K04GKLcUHVR7vLe9XMl5io/hZeBBY/t7RZqvyzX+iavY3qKhdaMcxZjOhYYDIgt0ic0zctwbVpfOKS2XM/7mocz3Vs=
+	t=1739287282; cv=none; b=TUiNCy2WiMvl4xfCPVwWiEsZPp5Tg/hiD83oRmFXbIr+jrVJGLb/AsYrBBZZTILQl+EpFi0EwogRdbmC6C3LEhXM432q3c1mxWzLUpxT+gurmvM9JVRLVxFb4i4hj1OF+NkEp7i0EcfsBig/NA86+WTMVQMCb4azLpwkdPxay9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739287014; c=relaxed/simple;
-	bh=RTGxW5AvzVSz8elarxvdv1y9lwLwzv8O6K/rF3m8CcQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=pLkiatQYAa7akK7ZM8cBBi22X3YcR0tYjllSNCioSMOmdO9cjPXDkwK1gP+i4CjhGYNpaWD3eiS+zmMRM6gS/zNCwfnsryEjiSqmVFohowWJl1xx8GR+A05TcNeFpr1uYhsHXbdP7S118KjG71zNugjidn383xKA4Iw4Cm7oyg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QwTlTUoD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFB6DC4CEDD;
-	Tue, 11 Feb 2025 15:16:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739287013;
-	bh=RTGxW5AvzVSz8elarxvdv1y9lwLwzv8O6K/rF3m8CcQ=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=QwTlTUoDPVBAmL6PatKWXdCQ+QVMTTRPm9XC2f6TrGQxaLAbtHdiLmSBWDFMJ0CtQ
-	 3sVWMc4uTCL+nvZ2LJrHadWa7vifrkgIwtCdO+rJ7urAFUC8dmGftSFWNaXZHWZ1Sa
-	 GgDS6umkL954588wZifcJ9c53s/bP10Brj0CEntMYkTRZW/cfChvlkV1QXTZWffVJD
-	 zqK793f2gVtSADLw2hf7ZQC0/1LbNW5aM+uq5w1cWQVdg65bmLMyBrbA2yoheQkOPC
-	 CWn3Iwlk/8xZbAR5vnVawqCecy5YFFSkDmiFwrNW+ySzf9dIsSSOfeHa3dbziu7Nop
-	 Fh/hvm7qilg2g==
-Message-ID: <f2dc2e86-efa3-488f-bb0a-33bc681525c5@kernel.org>
-Date: Tue, 11 Feb 2025 16:16:47 +0100
+	s=arc-20240116; t=1739287282; c=relaxed/simple;
+	bh=CGSwf25guNoWZMHrRvspLqfl9GXU5HCfs6tZNoQhsKY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kIduVT96/qIyf/rzcYnlUIf9iIqRX9Wj5VYjJWo+JD4m9CR99CpHIKXkYyEyKlgvi7OkuSHuvMIkz+aeThikTJXcvbNedDgv1xQm8L8FXk56k/2w1gj11MAiQyfhFxiBF+eAzNZC/JjT4a1YUtJYnLWgxW2XZkoubxVG+VxrEhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DFN7UHBE; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739287280; x=1770823280;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=CGSwf25guNoWZMHrRvspLqfl9GXU5HCfs6tZNoQhsKY=;
+  b=DFN7UHBEm+m8XTQD0f8nqV7SxOmCxupKUmG1epr/pQS7GSDfl5YsEaEw
+   gfz6nrcYzPqBmjb4FX0hFudDneOrwyysUFVVBv/CcngX5tEonu1qBo9en
+   7HZPhD2OIa5rCdby9oKLxTMVbqlnyJFBhfA9t72ii52F22hpm71HcD4KP
+   UUm/o/3w1HF9fF/2qLiXsBo+3El8fUZ4UK+d/64k3uXH6Gpfe2dcjAICS
+   /TCQzSn9+E7SJbpWmDKaa/dM6QIBIkFXMNt+ckJXhUBX11XYfLjJbuQJP
+   RlYK9/eph4ch97psCxxXMKe8CP0OkJX1SewjRcTA56Qw3Y9ryLthekJJm
+   Q==;
+X-CSE-ConnectionGUID: aju0c5aSSh+b2tQ588Y5Cg==
+X-CSE-MsgGUID: Boig6RSMROGONBdz8WzOyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="50548274"
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; 
+   d="scan'208";a="50548274"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 07:21:20 -0800
+X-CSE-ConnectionGUID: y7x9n1ezTUijlkVCFAhA1g==
+X-CSE-MsgGUID: PPxH6mulSayoFZuoPkqtNQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="112392589"
+Received: from test2-linux-lab.an.altera.com ([10.244.157.115])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 07:21:18 -0800
+From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+To: lpieralisi@kernel.org,
+	kw@linux.com,
+	manivannan.sadhasivam@linaro.org,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dinguyen@kernel.org,
+	joyce.ooi@intel.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: matthew.gerlach@altera.com,
+	peter.colberg@altera.com,
+	Matthew Gerlach <matthew.gerlach@linux.intel.com>
+Subject: [PATCH v6 0/7] Add PCIe Root Port support for Agilex family of chips
+Date: Tue, 11 Feb 2025 09:17:18 -0600
+Message-Id: <20250211151725.4133582-1-matthew.gerlach@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: qcs8300: Add device node for
- gfx_smmu
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Pratyush Brahma <quic_pbrahma@quicinc.com>
-Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- iommu@lists.linux.dev, joro@8bytes.org, konradybcio@kernel.org,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- robh@kernel.org, robin.murphy@arm.com, will@kernel.org
-References: <20250203-b4-branch-gfx-smmu-v4-2-eaa7aa762f48@quicinc.com>
- <ed3cc71a-426e-4044-86dd-945751e282d5@quicinc.com>
- <990bb621-5056-4460-82db-9805699d8a8d@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <990bb621-5056-4460-82db-9805699d8a8d@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/02/2025 12:41, Krzysztof Kozlowski wrote:
-> On 10/02/2025 05:58, Pratyush Brahma wrote:
->> Hi
->>
->> Can someone kindly review this patch?
->>
-> 
-> After 7 days? Community is not working for you to make such demands.
-> Observe standard waiting time. Or better: Please relax, and help out by
-> reviewing other patches on the mailing lists in order to relieve the
-> burden of maintainers and move your patches higher up the list.
+This patch set adds PCIe Root Port support for the Agilex family of FPGA chips.
+Version 6 refactors duplicate dts snippets into dtsi's for correctness and
+maintainability.
 
-Before you start pinging us, test your patches. That's one of the
-easiest steps to get your patches reviewed or applied fast.
+Patch 1:
+  Add new compatible strings for the three variants of the Agilex PCIe controller IP.
 
-Best regards,
-Krzysztof
+Patch 2:
+  Fix fixed-clock schema warnings in socfpga_agilex.dtsi before adding to it.
+
+Patch 3:
+  Move bus@80000000 dt node to socfpga_agilex.dtsi.
+
+Patch 4:
+  Refactor duplicate dts into dtsi.
+
+Patch 5:
+  Add base dtsi for PCIe Root Port support of the Agilex family of chips.
+
+Patch 6:
+  Add dts enabling PCIe Root Port support on an Agilex F-series Development Kit.
+
+Patch 7:
+  Update Altera PCIe controller driver to support the Agilex family of chips.
+
+D M, Sharath Kumar (1):
+  PCI: altera: Add Agilex support
+
+Matthew Gerlach (6):
+  dt-bindings: PCI: altera: Add binding for Agilex
+  arm64: dts: agilex: Fix fixed-clock schema warnings
+  arm64: dts: agilex: move bus@80000000 to socfpga_agilex.dtsi
+  arm64: dts: agilex: refactor shared dts into dtsi
+  arm64: dts: agilex: add dtsi for PCIe Root Port
+  arm64: dts: agilex: add dts enabling PCIe Root Port
+
+ .../bindings/pci/altr,pcie-root-port.yaml     |  10 +
+ arch/arm64/boot/dts/intel/Makefile            |   1 +
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |  14 +
+ .../socfpga_agilex7f_socdk_pcie_root_port.dts |  87 ++++++
+ .../boot/dts/intel/socfpga_agilex_n6000.dts   |  28 +-
+ .../intel/socfpga_agilex_pcie_root_port.dtsi  |  48 ++++
+ .../boot/dts/intel/socfpga_agilex_socdk.dts   |  62 +----
+ .../boot/dts/intel/socfpga_agilex_socdk.dtsi  |  65 +++++
+ .../dts/intel/socfpga_agilex_socdk_nand.dts   |  62 +----
+ drivers/pci/controller/pcie-altera.c          | 253 +++++++++++++++++-
+ 10 files changed, 481 insertions(+), 149 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtsi
+
+-- 
+2.34.1
+
 
