@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-145251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A194AA30C1D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:56:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C34AEA30C24
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:56:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4A1D188AD6D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:56:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD9203A705B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:56:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07BA3214A92;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBBA6216E1D;
 	Tue, 11 Feb 2025 12:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wdkwSYSg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wrqtQpaw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16F2E211472
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 12:56:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC8392144AE
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 12:56:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739278605; cv=none; b=R8tnn8CgPpaaxjkJ5sUYom+n2zFfBDURgAJCCNIgLg1LObYhQ6zCp9vVfSM2xi2/CM9zRfqlo02KfWhDp0Ptbt9DQmTbpuJq2glUka5IXSHvxqh0UNLkC4cqzHO4EKbXDPoexr6j94tupXRTLTkGXNZtm1WWQMZdHNEBNLqCX0s=
+	t=1739278606; cv=none; b=KFOTCVJQNRbVsFeku6rfnkZzCctgqFwdtgk5cgIfsQYaJaAFW8yitRhkSdafIO4gKzNWYx7K1ygkmCj2x1m7YxV5qR2UeOghFhkJ8BtYcwhm/Oq94OhQPH7PTNcezJ5fyA7pW314q7zVBlhZ5hNaS/CYDs6rJtUfeCAjQH6SMFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739278605; c=relaxed/simple;
-	bh=w4m+sspvQMnK1s4SMX9UzeZ5mQsYG19kF8famTA53As=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kVOlMzkxnL93jT0pS1e+xqzSTL9RH9a0HFieohGGM+2BtT0Noode6MBL/YFqXst5YgGzEJVeRCvrGfclmQGOjYL1OP+zc3PN38NipejrNaqFfRlhMhxq+cm7DuigjJHtllkOFHPV5gNmIafOI8/e9EvAT3H6azNrrettFyMrtR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wdkwSYSg; arc=none smtp.client-ip=209.85.221.50
+	s=arc-20240116; t=1739278606; c=relaxed/simple;
+	bh=l534KaQHeipF5HnCgvu/4eiMXBXhIzMa6xV85UpDLN8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=U52l1Mx2/9dJFODJY92SUYgtpIPIK/gK9vUYDREhHOw4a5n7QkW071QGXhpTOZHz8HKXdikYQeNKlsFLzbJxPxbiSLrlaKltBE7stvwQ7Hl7lQTXWdyUgxa0HHQe+eaHqU6FKld7yXeX5NU6EBySeBoOnhKV3+W35DLNDP+S78E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wrqtQpaw; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-388cae9eb9fso2879778f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 04:56:43 -0800 (PST)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-38de1a5f039so1582215f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 04:56:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739278602; x=1739883402; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yrpH7jKG5dNn7UfZK23E+5eCOO6ZpGDKZ1LcXH2HpqM=;
-        b=wdkwSYSg8tNv2WL8F5UFh6OujUdoUzk8vZcZnRgXKfCubFCLILrUNN5oZw2rN95i0u
-         yku2hZFeMstcsa1ZVWXtAYZJhB+eDsAktJHPKRUCbKNQeOo2XFTlgVBysvVuqoogOsr0
-         LXJpqsC+mFRdg11mklIwNGKe8VozvvsjzJrRxCkcO4b1S13Y7yR06y+gWBjtc36aLtFQ
-         p+9yXmOEBa8aRFsu0dmH5Z/5JBqEEMU6u7y2HGkRigsZMZCj3Ekg2WFIxF/Trb54NmXK
-         6AoXaqLz0ff0pjA/4YyFXRCozhaAuLfqlavruqu2h2aSuibDuZADbQumMufHEwRHfqzl
-         LNJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739278602; x=1739883402;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1739278603; x=1739883403; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yrpH7jKG5dNn7UfZK23E+5eCOO6ZpGDKZ1LcXH2HpqM=;
-        b=Oj47Iwnk5XS9oDO1cFGV3HxrQ+damFBeTSgwMKIi9WMGw/xs0eC92f7B6hfciX+aD9
-         YX/kIWHMAn4ZDePdTkZn8LJg6udDvr1gkNDYhTpMvlFLxECgh/eNhYjL3I7h4EUg0O8U
-         lR2gqHDaE/+l+SCUeqeSCZbqFuSkpif0WVr5UhlvooE+9J9nGhlnzEdV9hcdWJqMu6VD
-         JmSgfh2vFo6We8FZZRMAlV6waGCOU8PVdzrh7cQoBCu4EWXqsv9xw4WPljw0Izov5VRU
-         vGdlOUe5MScqsgI95pVUki/PYHPnZEapYkyV3s7lfhKBsGmmkOlBtGJIF7Kt9JUCCieI
-         5Wow==
-X-Forwarded-Encrypted: i=1; AJvYcCX/PAAgp07QYIQk0AknM6P4FFqiML/OnklOlzWasmTNs5J2isiMtz9GhuSEENBuwVt1gtMWr0FB2pr5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9/GHLvY2igFY4vwA6ykep58OmPKkcqk5EPXLs7UX4tFzhxQt/
-	dYu2zsubCj7GIw5ED/nNC5XiE4tqHZXEbqnpfeLh8SiObnB7tbcIBzX36iu639E=
-X-Gm-Gg: ASbGncvSuc7/mPSzIjccB4ay/LPOdLUKtjp9QY5Ym/NepcCFtH8aeJj0LymfWZhPSyg
-	cHNRS1inTQrzSOO0DLMYqoH0vspUj18EjpPc/A/z8oUBssVq42qqNQEd1invq05jMFmfqYY3a2i
-	krmzhiYC7QvemU5Wvz4LRp8JyCC0wBDvOzR9JAyaLRwshDs+1xF6xbv0fkyILg7tEdxl1m868j2
-	DFB5NiWxi4Phefapg1TYF0GSOB0zIbsrchhfq0qwmtP2ccp9G+wtZmquFQK5assiojfW71zgoaF
-	3MJCM7NSlXc8jeKDCAutqRhT65ae/MKPlmrR
-X-Google-Smtp-Source: AGHT+IFvtQW7v73wdUZ4gpcrGgNHxAGBbARqJ5zOyoFkp3ahW2ie5O+dTE3TMMDx8WYL3KAaRGW8bg==
-X-Received: by 2002:adf:e849:0:b0:38d:afc8:9535 with SMTP id ffacd0b85a97d-38dc90eeb80mr9598664f8f.30.1739278602334;
-        Tue, 11 Feb 2025 04:56:42 -0800 (PST)
+        bh=m2QbcPrM7Nmj9mrvDTmLOeka9cuKDtzuzeQZCl6bz48=;
+        b=wrqtQpaw9W+5V+yic2UWNcITME9hd7f9FtHXPXNb4h1QmniNsf0dbpGb4FfXDPiiwy
+         /6ONFZ3kIr8L1EP7QtUc4YqV5lHTIWNatgwM5Sj6qnrJjdAqZg5tDR784whB3Cffiooa
+         zn0x4f7mCrvqMORikWiCBfKL2Mn4g3pGZhHzoFtpzXz0PsnRnPJh1YOIwKmVSPSPNfP3
+         2xh0WZa/nF4u4/rEo1rke1CnVPUjFdkpVMxgQWQWC0nO1fA03Tv2V1Amx2+4xwpDUq5h
+         vYbH3UmtTmHYne7kgsm/C9M4f8SAhCg7xTyfVx8OfzL4sNGXOu2TZlzM6nnuJ6Uonp/Y
+         H/Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739278603; x=1739883403;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=m2QbcPrM7Nmj9mrvDTmLOeka9cuKDtzuzeQZCl6bz48=;
+        b=whBh/PVdZprPNfQISpJ2e5DShswgLaVX4mwiLtKKs1rVQJHoeGUXrkiXOwo0aI8JXD
+         WJE2pVJdifoN6q8xxoShzIVuyfZbj5FqS3Pj1nOMIdHBXWIj2LmZg2wj/KGKZErCqXqz
+         aOik392Wj5HhRA3vEv8GlzgGjoCe4myLftbsdkMkmeDo3Tb04xA8JJgZQNAKeURmizxS
+         /2Wr7B5SBM28GCoxEEWTJcvSx+liC3jlHI5EBqX9QfHMAosxE5m1s2+BLYrPIobOEutW
+         kSByy5m1acsXBXHk5cc7MG4ToVSYG/p18yuT1R5mX4TjOkrK+afUrpZergM5nzVJo5xp
+         xXSg==
+X-Forwarded-Encrypted: i=1; AJvYcCWgaY2/AVpC/TJ2kvrfPBkNWasoWIpYEU0e51qdEoQGXQ06/rxRAXvNiYbeWMoZ5SOtN2LBpVHkKchE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwSSd1Uh7MsNT8Vs4TaU09Buft3rruwIP7QHJWymBu/kLwDW9T
+	BmhfyKPrPfAi0CXRRqHeVWm6CizOUtCY/VziOUxk8YEf2BLUsC6Lt0Gd+0N+R9E=
+X-Gm-Gg: ASbGncvsN1fNGg1Tdi8QpGDqZYlA2Mq2cTbaxfpZqx6tKCR/dEj0SBpwZJWLWTBK5eg
+	Vs958zmXNAYJej9y08QufY2K2Ae3UxV5Ens1qJraq0+JSMYnrW3gnPfaifgVxsLgJgKjESto1Vo
+	C+UNrL54HLeG4znNv5AaxFLKsN5h6J/hU4F6iUdPYR8HtCykq9vrYo78ne1aZr3FOxbvYC09iZz
+	p99CBiW7+pNUqSnYCBJlPM0LhVvSHELbTmh8fHEIy5eRw4d/IgkyRLO+x7Vfuo5OMhPtwYgwvWP
+	px8kKBLBT/6/RsU/k6baCPXY9E+NTcJk5mEk
+X-Google-Smtp-Source: AGHT+IHD1QJbAHIFOi1zXgE+3bom7jzBt6ncrstR3I02jDJ8eFFbcBVdMba2lvkCnyM01hKAEwJf9A==
+X-Received: by 2002:a5d:6d0d:0:b0:38d:c087:98d5 with SMTP id ffacd0b85a97d-38dc8da6713mr16029317f8f.8.1739278603311;
+        Tue, 11 Feb 2025 04:56:43 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dc73c2e00sm12863078f8f.57.2025.02.11.04.56.41
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dc73c2e00sm12863078f8f.57.2025.02.11.04.56.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Feb 2025 04:56:41 -0800 (PST)
+        Tue, 11 Feb 2025 04:56:42 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v2 0/3] arm64: qcom: sm8650: add DDR, LLCC & L3 CPU
- bandwidth scaling
-Date: Tue, 11 Feb 2025 13:56:36 +0100
-Message-Id: <20250211-topic-sm8650-ddr-bw-scaling-v2-0-a0c950540e68@linaro.org>
+Date: Tue, 11 Feb 2025 13:56:37 +0100
+Subject: [PATCH v2 1/3] arm64: dts: qcom: sm8650: add OSM L3 node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,11 +83,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAARJq2cC/42NQQ6CMBAAv0L27JptgaZ68h+GA7QFNlFKtgQ1h
- L9beYHHmcPMBikIhwTXYgMJKyeOUwZ9KsCN7TQEZJ8ZNOmalCJc4swO09OamtB7we6FybUPngb
- slTVl312Urgzkwiyh5/dRvzeZR05LlM8xW9XP/tddFRJSpbwtTUe2cresW4nnKAM0+75/AShl4
- AbHAAAA
-X-Change-ID: 20250110-topic-sm8650-ddr-bw-scaling-f1863fb91246
+Message-Id: <20250211-topic-sm8650-ddr-bw-scaling-v2-1-a0c950540e68@linaro.org>
+References: <20250211-topic-sm8650-ddr-bw-scaling-v2-0-a0c950540e68@linaro.org>
+In-Reply-To: <20250211-topic-sm8650-ddr-bw-scaling-v2-0-a0c950540e68@linaro.org>
 To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
@@ -97,48 +95,53 @@ Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=978;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=963;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=w4m+sspvQMnK1s4SMX9UzeZ5mQsYG19kF8famTA53As=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnq0kHlvh5KlEfORO+AZjaIdSQC0RUM0C0ngK/iDF9
- 88BX/dGJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ6tJBwAKCRB33NvayMhJ0SofD/
- 9ZURBwwRN9lvE7Nvl1yNdumDTcW2kS6cyA+BRuGz7ztjEnagdZrvkXI0krqmJOSXY/cUdIPv0euw0G
- w8kia0CogRLv/oNfhI44pJ5GoEpqwjNPxTSbJ17D0zzIiGYcz0ZRRtAcukDk0rY5qw+EhqpU7Ow7tV
- H4DUb0JXaarqBqJuyF5drHeA1KImgVX8eedY4kP9sfvxfCOzFzv7gLYwkPXwY1qgmsCoK8izf2+/SB
- intSPq+ASWQQkhLPfUgmgqj1T3MYPW4U2cxN/I2Xas2AiwpQe4OTTM6mHNmdGZR9kg9dvaBK3QXEhI
- /CbNdfyrZzXLr4kNnIBP3c+RJMCGAmffVE20mxh9f0c8VQ5Egoyjl9Cuwty8LUP+n1tAyAjuejR6xF
- 6z5TnhqtoJaZSdWFbXDBpIUCZ7dS/z5sQ2g6xDoYDh7oWlmgQMo4EDcN0VgAkAqx5edGJOqN/8NPM9
- AF63ic7rhZxGn3n/uvPwQXZ/Qktyor5ldaJIHrTz+NLIl4Ocqj6TzPLOTNuIJ5A104GX4bV9AvAWh5
- Nuz+/v+HnqNeJi4b1o7/GGp7Pn/DQdntW18vS3nGf3Ax2JqpqlkbzYBXGrG2ULxcY6xifiFRYAZbJz
- uLkj5/EGmv3vfDvF6K5npXMydDp+yAZ1n49dO5BLHzuwQEgcg4KrOXtJfQ+g==
+ bh=l534KaQHeipF5HnCgvu/4eiMXBXhIzMa6xV85UpDLN8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnq0kINvkPdj5dtWSiZ70NKDNYYOSYlXOvsSqM0zXd
+ l7PHiO2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ6tJCAAKCRB33NvayMhJ0dS3D/
+ 9gts9JzFlQEOcgzU2aiWupKifV0nV85/hjzqNcgJZSBEPYKZ8SBa9pw8YiquPCflilhrRJOawsvxiw
+ ZRzVvrzdeW/fwcDPkL3r081BfLSlgxpfBOznA0gjXvZHMe1vAeuyU/3mxp6PPCKtV3OxoKwRdQ3AWn
+ JxvT9AMvh+KUNZY27qvtHEmYQvNnl9rWlEa8RDzrtA2qc3TNf2zTZVjwsVPg+Z0MvmUKeAUzjSFlYW
+ rQr9eXx9kubCE1gq9tdOXAVDqRLo2ONiVbz9Ou0u6Mmu4mr9heCsJEo9HaT6huF4O87dKGVkVX+kc0
+ Nzqp7gfIfQv/qS/Sjv0RvANP+y/SnV0Bc1TF1AXpDnRZK0FDDehYBD4GDqEIc1cAISYFNeUICc+Vya
+ I9swqEimSh5wyyFjsjo+vn++LpE8TPND6VAOME2DKYOkqgMMI42UGMiPKAhqqx0Z5Of4NiTOIUifi8
+ Kg7SjlPfz4Hnsp+nTotz2vtgKjUqVPVE7BbZKeM88TG6yPp0Y/yFnVCElAosatq1yQFacwUOukiZyP
+ 20XqpXWnrCFU3MsaVCwFWGKZeDeyi2beqAn60kL4xww3bdjrQPf64Ux1IzlcXpP5TFvrSvreICxc6c
+ /KizIOVheS1oEEYrMW+83iX9nivKlHmsldm43sdt9ljb5d+TNIZdCOblAHbw==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Add the OSM L3 controller node then add the necessary interconnect
-properties with the appropriate OPP table for each CPU cluster to
-allow the DDR, LLCC & L3 CPU bandwidth to scale along the CPU
-cluster operating point.
+Add the OSC L3 Cache controller node.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Changes in v2:
-- Drop already applied bindings patch
-- Link to v1: https://lore.kernel.org/r/20250110-topic-sm8650-ddr-bw-scaling-v1-0-041d836b084c@linaro.org
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
----
-Neil Armstrong (3):
-      arm64: dts: qcom: sm8650: add OSM L3 node
-      arm64: dts: qcom: sm8650: add cpu interconnect nodes
-      arm64: dts: qcom: sm8650: add cpu OPP table with DDR, LLCC & L3 bandwidths
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index 86684cb9a9325618ddb74458621cf4bbdc1cc0d1..bc09e879c1440873a52daf3fc7a38f451f1f972c 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -5506,6 +5506,16 @@ rpmhpd_opp_turbo_l1: opp-416 {
+ 			};
+ 		};
+ 
++		epss_l3: interconnect@17d90000 {
++			compatible = "qcom,sm8650-epss-l3", "qcom,epss-l3";
++			reg = <0 0x17d90000 0 0x1000>;
++
++			clocks = <&bi_tcxo_div2>, <&gcc GCC_GPLL0>;
++			clock-names = "xo", "alternate";
++
++			#interconnect-cells = <1>;
++		};
++
+ 		cpufreq_hw: cpufreq@17d91000 {
+ 			compatible = "qcom,sm8650-cpufreq-epss", "qcom,cpufreq-epss";
+ 			reg = <0 0x17d91000 0 0x1000>,
 
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 943 +++++++++++++++++++++++++++++++++++
- 1 file changed, 943 insertions(+)
----
-base-commit: 808eb958781e4ebb6e9c0962af2e856767e20f45
-change-id: 20250110-topic-sm8650-ddr-bw-scaling-f1863fb91246
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
 
