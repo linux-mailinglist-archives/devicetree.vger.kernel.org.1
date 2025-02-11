@@ -1,184 +1,174 @@
-Return-Path: <devicetree+bounces-145321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E2EDA30E65
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:35:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB04A30E74
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:35:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 238A2167CE5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:35:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E25EA188A26F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:35:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC8D2500C0;
-	Tue, 11 Feb 2025 14:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBFA624E4B6;
+	Tue, 11 Feb 2025 14:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="L79Cszs9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YpE1hIUx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9393724E4B6
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 14:35:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 187E924C694;
+	Tue, 11 Feb 2025 14:35:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739284514; cv=none; b=sAAcKqTq3ESxe4889SwR2AnlJL8RdkwVERsUxEy2lmbM391ZaxU5MgBw87/B0Pd3DLPAmJj/Q+gQ+pkLcD0j01KZm3DjncYBj5inQjo970QqrFCRJCpG7lEq2zSLyYsfJIGtStvIvg2obTLn6ocjQX8iIRpG/yCXcqa0Ue5xxR8=
+	t=1739284543; cv=none; b=D55pr56u9b6oYN48uWqR8TKldUIUnVh0rNwmufRCyY4iW8/+RF2nflfmKuPPVQPSLnjckIwuKH2GMtvn+a4cB3AI0SX6wBYwPAYo5E6v1q0ANx437PNU9OLXhENlb7SNepo3Wz0ea0Rgww92qnAaTR4ShI+WGfk65sGiWvJJgx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739284514; c=relaxed/simple;
-	bh=BpbyeeCOI146IKCmCu8zod5nA08hBtcuDaJlkhep7EU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oMVUDKe/aRtH1CKjD61k3dSQSPeU1aV9P2VmILDj8oBHABEW4j5NmTVLGwizh+4m3z2JkN5kxfwxuN189S9w5fSnty5m1GvjluN042oTPc6SPcBaxUJCQyY2LkbT2kYXy/Pf2H7IK9lo4TLmJcaejqZ+oe60yGHMioQNQdnK66s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=L79Cszs9; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51BCa40Y008925
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 14:35:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zzeSpEzhPhKIc5ciktFW0BzNDzlKE+8N49H7bDEi994=; b=L79Cszs9aBk0ZQfK
-	feucqrjZ0KTdz4LF+VQaUO7LQmuHauo9Zfch4jeglaNB8tSmbcuWOr6mFLscP7e6
-	UVHu/tENKjDhFzZ76HBw+FB8Swx6g5vfeC/6GCEH5u9lCTGcvJR61B3iIvS7eeQ+
-	zQ8mQOGiDzauYEnDKGHLMW+tlIb8KRgCJiMdRntcnW04jRWJMROTSpTxI9YNpDkC
-	r9N5l3CrBBFtWnjJana7VnJosroLKKVuTskvOrXzQhdSc+hsIM1CBubGIYlHVlg0
-	iAWfiIXJnKJLkXifaJMN+wi7gci7gtui7ahLsLIM7ZJO/XK9YmzGLvctEcTUxz6F
-	hsbQsg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qy4d9ngr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 14:35:11 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-467bb3eea80so1602351cf.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 06:34:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739284495; x=1739889295;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zzeSpEzhPhKIc5ciktFW0BzNDzlKE+8N49H7bDEi994=;
-        b=tRwT4eKeA+OVcif0Kp7UQlPtBNxPQE2AeZM7JFIQkRIXxNkeYn1GnQDKC1LT1yMbyQ
-         jtljDDVWRaac3vBHijeTM1cpw4Sdwtx5ahegnX1iFtCcyDlB2iFlsTcEJE7sDI2pKR3k
-         PU/2Y/EXcLAaCAHB08sa/i8IBiVqstECTP2KA12v2Wjccbe/gBiY7uhlQ0ICrTujKond
-         QKVuU19rSrTbsnygCwX62LHbtrj1tHwuOFYg8NWlhiz0klCkNxt4zQhb7h9AqSFs0WQv
-         i55zVKdlMJFoKS3WaTGgCuHJq5hL1PRy6GxRwbsFOwrchkImg07ES3hzndURIIkKemZG
-         nc1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUkqa5UsIXPSBZBVNw91cLT+i+3gyGSh+6vil5VpxrKS6LgyU96KTEprk98weYg53o+/PNG+xn+ri0z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxstWj07+db/pIeZBK+RBboyVdC7Yrq3X6Lrev8rf4fE/JX72Sl
-	v1a33flwAg14iHgwJm4XNCfaNXVzNv5D7S2sjKPrCiwGYGj7EJQNhTQG5xvHoABTx/n2xCyrUzA
-	wUDm3pVBr/OsCYWp/KcvoQBs+eqgIg1WA+cuKA7VIv+IYGxOdjVwDgQyaH6LW
-X-Gm-Gg: ASbGncvu+Dc4RaO3EOJpEoaiLzkWULmNRiPEYfR9IbbkJLEpDkYWjm3ax/WF0s1a1xG
-	VFuDugB1IoxeZrcUo3OQ+AZqWDllLjBDQJXBiSwzU3+v1ZU3r843Kupr5SujGYWxy8zJTiTqtaf
-	sTsOO4/j/9mGrMsAFLmZrvel9YBS10/Dpu7pjeFxmL5UGfU8tIcT/KVf/64F1d0qfv/GkiAFJ9M
-	fg1qZqQsfxEfW5/2hXad/Hex6lGoIobBEIOfEychEyZtC5Qt0QnUjIo3GPTKPdPX2JNWHRUMYVx
-	b8Ut+up+lU5pNc1Jar3F9dla9PX/oSn7+DQMnVY3z5y/tyBgpr6sCZ2r91E=
-X-Received: by 2002:a05:622a:11d0:b0:467:5b1f:4060 with SMTP id d75a77b69052e-471a3da4856mr14126201cf.7.1739284494792;
-        Tue, 11 Feb 2025 06:34:54 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFQZ8D/6WgOcGT5XAfBFb3oB+8tfbLU3rY2SggZAfxtxRNTdse/H5E4+THqxC/HIDc/rhN41w==
-X-Received: by 2002:a05:622a:11d0:b0:467:5b1f:4060 with SMTP id d75a77b69052e-471a3da4856mr14126041cf.7.1739284494356;
-        Tue, 11 Feb 2025 06:34:54 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7cae13326sm324860466b.115.2025.02.11.06.34.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Feb 2025 06:34:53 -0800 (PST)
-Message-ID: <b74f0591-242d-45eb-8c5b-bfc7edb0441a@oss.qualcomm.com>
-Date: Tue, 11 Feb 2025 15:34:51 +0100
+	s=arc-20240116; t=1739284543; c=relaxed/simple;
+	bh=be5IPlcg0yWtYg4BxPhA+ASzqCK0AMCZ+Lgk+HS3Ib8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dgteu+IlhHKw8RHv5O7Wv3XiUz19SNOpq07M4Ai35CP+6pJOzQr3a2cY2jkyfZAViB044EYvUKL/7VJs+yDg8O2r4EJCLZ/WuD8mwdKs16pAtB6WN8172pogKsy9QOc4IJYD5PJaWIy2QR5ceAUmeB/Ay1ou/DcSa2kWNl9GUJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YpE1hIUx; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739284542; x=1770820542;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=be5IPlcg0yWtYg4BxPhA+ASzqCK0AMCZ+Lgk+HS3Ib8=;
+  b=YpE1hIUxoHVqBabrVMJBCjDt+Qe9GNM3fD9LACYI0YfXgD3jPFO64EDf
+   RH4JPk+k7i2OD5Nl4OT4N1fLUJiUloRFlzfb7cQFKFXj+LpgMPMeiCgiA
+   MIBTT35H9ywYZvWChf8W2i4Evs0di17HQsFWVAeYfAL4Rek9csrLLgCoh
+   737J0Q0jp1Pf1ev8pa/5GXIXLk+pGU8Sjss/rrcu6GZdjTOppNQ3pwo7r
+   HA7l4vlCexzN1CWjcT3IXtTASuMK+UwBUG1UHVCIBqeijFs94wTR9trHC
+   ul1fXQpgOibGCUfMV+88xzVJYIrmXLxj0/D6nML5SPe7Gkd/cyth++shr
+   Q==;
+X-CSE-ConnectionGUID: 6z3d6f5KRJ62lqdqhIGl7Q==
+X-CSE-MsgGUID: lsFTbF4XRDONnEns0VGWrw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="65260307"
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; 
+   d="scan'208";a="65260307"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 06:35:41 -0800
+X-CSE-ConnectionGUID: sldVeuXkQfGDCtT2EtCQig==
+X-CSE-MsgGUID: GSE/MADUQhK9nwiEDeAZNw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="113012472"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 06:35:38 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1thrMM-0000000AWv7-1eJ9;
+	Tue, 11 Feb 2025 16:35:34 +0200
+Date: Tue, 11 Feb 2025 16:35:34 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	David Jander <david@protonic.nl>,
+	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v8 01/17] spi: add basic support for SPI offloading
+Message-ID: <Z6tgNjH6Qq5pe9Gt@smile.fi.intel.com>
+References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
+ <20250207-dlech-mainline-spi-engine-offload-2-v8-1-e48a489be48c@baylibre.com>
+ <Z6otFlsmEikIbI__@black.fi.intel.com>
+ <27d2a88c-b44a-4712-b066-b999e41774f0@baylibre.com>
+ <b1dcbb19-190a-45e7-8e94-cb5ef65f1f1b@sirena.org.uk>
+ <Z6pim_nLct33LzfN@smile.fi.intel.com>
+ <b000d3fd-754a-43e8-ab10-82677eeee1d2@sirena.org.uk>
+ <Z6tcwg7QgQwytoSb@smile.fi.intel.com>
+ <Z6tezVXVxVCwXuds@smile.fi.intel.com>
+ <Z6tfUfHilO2KLmxv@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: qcs8300-ride: enable BT on
- qcs8300-ride
-To: Cheng Jiang <quic_chejiang@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_jiaymao@quicinc.com,
-        quic_shuaz@quicinc.com, quic_zijuhu@quicinc.com,
-        quic_mohamull@quicinc.com
-References: <20250211104421.1172892-1-quic_chejiang@quicinc.com>
- <20250211104421.1172892-2-quic_chejiang@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250211104421.1172892-2-quic_chejiang@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: VjJ70xO58gor3uVCYa4Xfa_y-ZZjnSUY
-X-Proofpoint-GUID: VjJ70xO58gor3uVCYa4Xfa_y-ZZjnSUY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-11_06,2025-02-11_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 mlxlogscore=999 bulkscore=0 phishscore=0 spamscore=0
- suspectscore=0 adultscore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502110097
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z6tfUfHilO2KLmxv@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 11.02.2025 11:44 AM, Cheng Jiang wrote:
-> Enable BT on qcs8300-ride by adding a node for the BT module. Since the
-> platform uses the QCA6698 Bluetooth chip. While the QCA6698 shares th
-> same IP core as the WCN6855, it has different RF components and RAM sizes,
-> requiring new firmware files. Use the firmware-name property to specify
-> the NVM and rampatch firmware to load.
+On Tue, Feb 11, 2025 at 04:31:45PM +0200, Andy Shevchenko wrote:
+> On Tue, Feb 11, 2025 at 04:29:33PM +0200, Andy Shevchenko wrote:
+> > On Tue, Feb 11, 2025 at 04:20:50PM +0200, Andy Shevchenko wrote:
+> > > On Tue, Feb 11, 2025 at 01:00:08PM +0000, Mark Brown wrote:
+> > > > On Mon, Feb 10, 2025 at 10:33:31PM +0200, Andy Shevchenko wrote:
+> > > > > On Mon, Feb 10, 2025 at 05:48:00PM +0000, Mark Brown wrote:
+> > > > > > On Mon, Feb 10, 2025 at 11:11:23AM -0600, David Lechner wrote:
+> > > > 
+> > > > > > > In this case, we specifically split up the headers so that the only time you
+> > > > > > > would ever include this header is if you need to call functions in this
+> > > > > > > namespace (i.e. struct definitions are in linux/spi/offload/types.h which
+> > > > > > > doesn't import the namespace). So this doesn't actually seem like a problem
+> > > > > > > to me.
+> > > > 
+> > > > > > Indeed - I can't see any case where a user would need the header without
+> > > > > > needing the namespace.
+> > > > 
+> > > > > You are looking from the other end. What I'm telling is that anyone who adds
+> > > > > a header, automatically gets a namespace. What's the point to have namespace
+> > > > > if it won't easily prevent from (ab)using it in the code. I consider putting
+> > > > > MODULE_IMPORT_NS() in the headers a bit weird.
+> > > > 
+> > > > Sure, but there's no case where anyone should ever be adding the header
+> > > > without adding the namespace which does rather sound like the sort of
+> > > > thing where you should just move the namespace addition to the header.
+> > > 
+> > > $ git grep -lw MODULE_IMPORT_NS | wc -l
+> > > 651
+> > > 
+> > > $ git grep -lw MODULE_IMPORT_NS | grep '\.h$'
+> > > 
+> > > drivers/base/firmware_loader/sysfs.h
+> > > drivers/iio/adc/ltc2497.h
+> > > drivers/pwm/pwm-dwc.h
+> > > ^^^ These ones are probably fine as they are not in include/
+> > > 
+> > > include/kunit/visibility.h
+> > > include/linux/module.h
+> > > include/linux/pwm.h
+> > > 
+> > > I believe these three are misuses of MODULE_IMPORT_NS(). Because one may add
+> > 
+> > _Two_, of course, module.h provides the macro :-)
 > 
-> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 24 +++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> index a6991e8e2df6..93458773b72d 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> @@ -17,6 +17,7 @@ / {
->  
->  	aliases {
->  		serial0 = &uart7;
-> +		serial1 = &uart2;
->  	};
->  
->  	chosen {
-> @@ -451,6 +452,13 @@ &serdes0 {
->  };
->  
->  &tlmm {
-> +	bt_en_state: bt-en-state {
-> +		pins = "gpio55";
-> +		function = "normal";
-> +		output-low;
-> +		bias-pull-down;
-> +	};
-> +
->  	ethernet0_default: ethernet0-default-state {
->  		ethernet0_mdc: ethernet0-mdc-pins {
->  			pins = "gpio5";
-> @@ -544,6 +552,22 @@ wlan_en_state: wlan-en-state {
->  	};
->  };
->  
-> +&uart2 {
-> +	status = "okay";
-> +	bluetooth: bluetooth {
+> And after looking into include/kunit/visibility.h it becomes only a single one.
+> So, PWM is abuser of MODULE_IMPORT_NS() and this series added one more.
 
-Please add a newline between the last property and subnodes
+> > > a header just as a "proxy" one (copy'n'paste, for example) and we know that is
+> > > real as we saw a lot of code that has semi-random header inclusion blocks.
 
-> +		compatible = "qcom,wcn6855-bt";
-> +		firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bt_en_state>;
+And thinking of more realistic example when we want header and do *not* want a
+namespace is the simple use of the macro / or data type from it without
+actually relying on the APIs.
 
-You should use qcom,wcn6855-pmu (see e.g. sc8280xp-crd.dts)
+So, in case of the header structure like
 
-> +		enable-gpios = <&tlmm 55 GPIO_ACTIVE_HIGH>; /* BT_EN */
-> +
-> +		vddio-supply       = <&vreg_conn_pa>;         /* bt-vdd-ctrl1-supply */
-> +		vddbtcxmx-supply   = <&vreg_conn_1p8>;        /* bt-vdd-ctrl2-supply */
+foo_constants.h
+foo_types.h
+foo_api.h
+foo_uplevel_something.h
 
-Drop these comments
+The MODULE_IMPORT_NS() would make sense only to foo_api.h. And I still would
+question that. As I explained that header may simply become a stale one or
+being used by a mistake.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
