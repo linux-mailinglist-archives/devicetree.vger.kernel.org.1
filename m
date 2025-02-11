@@ -1,187 +1,116 @@
-Return-Path: <devicetree+bounces-145224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC9D2A30AF0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:00:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E170A30B16
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:04:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BCA01884E98
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:00:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A0B13A1525
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E061FCD06;
-	Tue, 11 Feb 2025 12:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 429251FCF45;
+	Tue, 11 Feb 2025 12:02:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mpFkwPJ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A099F1FCF45
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 12:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73EF31F417C
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 12:02:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739275219; cv=none; b=fxNMK0+VBhYUOpNRGsjQrdxfAMo4VfocdRInov3kZda+29TWLZgwwiUNXW2DWW9VupDR+Toxyh9mPL5WX68+2gyAThxeNQ16Ox4fktlENsTYNq0sL/fLTzwzpFCWepn5jfWTLuQVMSnPUzLQ6i8aibaDopl37QpkLGadZ69ajek=
+	t=1739275334; cv=none; b=R8zJ0pIJUTwgfUmldoEXimKeRfJq69+17I2AzQpI9vMI+zVR54xL9biQDZuye2kFACjUiINGXaXlv8R7kDIMf8UF0PTAgrjO2qu76U1DgIj6O/NdLeUnjEUZcDqw7TqsutsUAORFDnEsOpMZ7JmYzlctUYjYSsVvgem2bIkRXE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739275219; c=relaxed/simple;
-	bh=3SbQezCP+ISh10ulY9GEv5MsF0c84+68s6utxCeC34s=;
+	s=arc-20240116; t=1739275334; c=relaxed/simple;
+	bh=7d1Icmn2h5Xxh5nmwHTuvBMLWdYe0yLTSL1YV7Y8f1c=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=f7b50oPuwjr/VyPcdwUgXTO6lKQr5Vf3ZccuD8HhbnmrUFAn2s+4kVa1079/8KJJRCpSR2GObGPgtJ/hGWNQLLguWZxde4nOAYre8FCkvY+YDvMjh+DUcvGwZFpleJ5RA5XLPaLUsa6JS1DAvw2iHVKd9+Zer7ZJRuhkIEDRLJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1thovX-0000Xi-9K; Tue, 11 Feb 2025 12:59:43 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1thovT-000PPU-3A;
-	Tue, 11 Feb 2025 12:59:39 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1thovT-0005DW-2n;
-	Tue, 11 Feb 2025 12:59:39 +0100
-Message-ID: <945fb7e913a9c3dcb40697328b7e9842b75fea5c.camel@pengutronix.de>
-Subject: Re: [PATCH v4 09/18] reset: thead: Add TH1520 reset controller
- driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Michal Wilczynski <m.wilczynski@samsung.com>, Matt Coster
- <Matt.Coster@imgtec.com>, "mturquette@baylibre.com"
- <mturquette@baylibre.com>,  "sboyd@kernel.org" <sboyd@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
- "drew@pdp7.com" <drew@pdp7.com>, "guoren@kernel.org" <guoren@kernel.org>,
- "wefu@redhat.com" <wefu@redhat.com>, "jassisinghbrar@gmail.com"
- <jassisinghbrar@gmail.com>,  "paul.walmsley@sifive.com"
- <paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>, 
- "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, Frank Binns
- <Frank.Binns@imgtec.com>,  "maarten.lankhorst@linux.intel.com"
- <maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
- <mripard@kernel.org>,  "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "airlied@gmail.com" <airlied@gmail.com>,  "simona@ffwll.ch"
- <simona@ffwll.ch>, "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>, 
- "jszhang@kernel.org" <jszhang@kernel.org>, "m.szyprowski@samsung.com"
- <m.szyprowski@samsung.com>
-Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
-	"devicetree@vger.kernel.org"
-	 <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	 <linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	 <linux-riscv@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
-	 <dri-devel@lists.freedesktop.org>, "linux-pm@vger.kernel.org"
-	 <linux-pm@vger.kernel.org>
-Date: Tue, 11 Feb 2025 12:59:39 +0100
-In-Reply-To: <7d8a3f8d-f369-47dd-8c5f-dcff8d692ea8@samsung.com>
-References: <20250128194816.2185326-1-m.wilczynski@samsung.com>
-	 <CGME20250128194836eucas1p151c4fc83a17173fd1b79bfc959976301@eucas1p1.samsung.com>
-	 <20250128194816.2185326-10-m.wilczynski@samsung.com>
-	 <816db99d-7088-4c1a-af03-b9a825ac09dc@imgtec.com>
-	 <e83ea320-23f0-41ed-934c-2f1687b55ec1@samsung.com>
-	 <48261cdfab6e0bc16e5327664b06728e1894422a.camel@pengutronix.de>
-	 <7d8a3f8d-f369-47dd-8c5f-dcff8d692ea8@samsung.com>
+	 Content-Type:MIME-Version; b=QDYmFCVX4qD/ODV9Oaugj1uWiw5nlGG4Q6niJTmr8/PlFJDHo+8O1aO6ZaWgp8IytG5HdblUg7bxgCFPl6HAFP0gdLhhVizpxj+xc5vIZYgxVrngfDG4MPX97j8ok1boVJlqO8D4Vxv7TouHBVSXP8MZs0fdC/jYoUHUd/Ec1+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mpFkwPJ7; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4394829ef0fso10528915e9.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 04:02:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739275331; x=1739880131; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=7d1Icmn2h5Xxh5nmwHTuvBMLWdYe0yLTSL1YV7Y8f1c=;
+        b=mpFkwPJ7y20a6lPApLn6SzITArBSsaH5pBArRBOEefk8y0P5Wv9W7mmGjJ06nyXYA8
+         J1Y1plBk1jexaaMiexzfKrUsVEUbKCRPMPtlWS3wsn6hoieZQ57VR5TccuEzL9AT/kH0
+         BGjG4CfnzPyS/FV9l0ZZ4e8RBvHYqS1UwnXu+IC8ufmR2LIe614KLHNeJqYjTK8PGs79
+         Rvx29Rg/Tmm3SA6D8QAt1Yiq5O04BpiSz57DPxghJv396rdzdq+V1l2hoxJT2H8pvA2n
+         /ntCbxtHyBw5MuU6OZDgrBLQubYUUMLPQZ24gs+v796uKYvduWwDtjZSB98lR6vfBHeX
+         gT6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739275331; x=1739880131;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7d1Icmn2h5Xxh5nmwHTuvBMLWdYe0yLTSL1YV7Y8f1c=;
+        b=R82L2mu0umcrm7ZJgqM3Y4M3/aqzGBQlmTn5W7XNb6yRcIeXHK5JKdR3fPjHywL1Yg
+         Ds3xWbUaY35Of2DfLRYXM7zy6CLKIOT6+YR+okxBMSVLtaMKYX0CgfZNy7a4TaaHZn8D
+         bQYhcMyVtkXVyi9VQvAHzXUN5ytCMg8sOKyGaCUvMGD6wBcqlr7Ojl6e7ZrUBeDyyfGN
+         3yrgPfw9NjMGnJ4syGT7Y+EL9q47PcDLZnKWU85HoU4bmu6UobKcwUE6JbyXll7LFQ4b
+         bnBcH8IXQ3jdKkBGMVPZpGuqeAm22j0fXABB7/5JsHwLW6FOA19X+21vmud75bds7PBS
+         mOBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVXVpbkbOR8SExelDbjWepF3hLW0ml9z+CZBYJ6mINdCAhkACj4DDBijo80ltqSLWAwuFloEd03yaWj@vger.kernel.org
+X-Gm-Message-State: AOJu0YypV5KPPkq1iqa1wJiEeKeA2tcF1WoG5sajjR0DNRguhQhGsaH/
+	PKdWi1VgQckKnfCBRhwUiXZLvtkMTEHF2qwXv4MvvjED8HE/1IXHHvFqD7kp9CU=
+X-Gm-Gg: ASbGnctcnRTx+hiBVIxmJk1Woc9Z+ZXZx4QxctuQpp6tlDpljifY/+maUo7oLpiDrI6
+	2Ej97kC45alI5ISRUhoLOpYmAR8zYsA8a4mA5072GRlTDrAWlD5Y1lHrpi90NUoek00HMIlnAQN
+	idwvhpe1eKLsatzbf6WXGRrgA7C+pOvJ3el8oI/I4GLHSgxkDoK3sibpRnI+QMiVq2/pghjkOo2
+	2PU31cVlQLADL/RB7eUZ2iByW3fqLdf1J9GGiE8HghRjxqI5ASsUuDi73Df8q8vnT6TzzAgYC2j
+	z3m0yyd2LIZTdrybEb0=
+X-Google-Smtp-Source: AGHT+IEpNALrmIL66un9ZFpaSjUj/Foh/XSYreR+C2qRnL/fyZnSvShvXFiOPXFezhCRGB+4CDDdQA==
+X-Received: by 2002:a7b:c7d8:0:b0:437:c453:ff19 with SMTP id 5b1f17b1804b1-4394cf0825fmr25778995e9.14.1739275330727;
+        Tue, 11 Feb 2025 04:02:10 -0800 (PST)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dcf35b15bsm11149599f8f.64.2025.02.11.04.02.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Feb 2025 04:02:10 -0800 (PST)
+Message-ID: <a740a0211c82aaaa55940e2f07e1d1b53c23ddd8.camel@linaro.org>
+Subject: Re: [PATCH v8 1/3] dt-bindings: firmware: add google,gs101-acpm-ipc
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Diederik de Haas
+ <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Jassi
+ Brar <jassisinghbrar@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ kernel-team@android.com, willmcvicker@google.com, peter.griffin@linaro.org,
+  daniel.lezcano@linaro.org, vincent.guittot@linaro.org,
+ ulf.hansson@linaro.org,  arnd@arndb.de, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Date: Tue, 11 Feb 2025 12:02:08 +0000
+In-Reply-To: <bad87f30-0483-48c1-b263-02cc752c77e6@linaro.org>
+References: <20250211-gs101-acpm-v8-0-01d01f522da6@linaro.org>
+	 <20250211-gs101-acpm-v8-1-01d01f522da6@linaro.org>
+	 <D7PJTD3PSP78.27N2S94J2CNZG@cknow.org>
+	 <bad87f30-0483-48c1-b263-02cc752c77e6@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+User-Agent: Evolution 3.52.2-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mo, 2025-02-10 at 19:17 +0100, Michal Wilczynski wrote:
-> On 2/4/25 18:18, Philipp Zabel wrote:
-> > On Mo, 2025-02-03 at 19:15 +0100, Michal Wilczynski wrote:
-[...]
-> > > I think this is required because the MEM clock gate is somehow broken
-> > > and marked as 'reserved' in manual, so instead as a workaround, since=
- we
-> > > can't reliably enable the 'mem' clock it's a good idea to reset the
-> > > whole CLKGEN of the GPU.
-> >=20
-> > If this is a workaround for broken gating of the "mem" clock, would it
-> > be possible (and reasonable) to make this a separate reset control that
-> > is handled by the clock driver? ...
->=20
-> Thank you for the detailed feedback, Philipp.
->=20
-> After further consideration, I believe keeping the current reset driver
-> implementation would be preferable to moving the CLKGEN reset handling
-> to the clock driver. While it's technically possible to implement this
-> in the clock driver, I have concerns about the added complexity:
->=20
-> 1. We'd need to expose the CLKGEN reset separately in the reset driver
+Hi Tudor,
 
-I'd expect this to simplify the reset driver.
+On Tue, 2025-02-11 at 11:57 +0000, Tudor Ambarus wrote:
+> And then I shall s/MODULE_LICENSE("GPL");/MODULE_LICENSE("GPL v2");/
+> everywhere as "GPL" indicates [GNU Public License v2 or later].
 
-> 2. The clock driver's dt-bindings would need modification to add an
->    optional resets property
+No, please don't, see Documentation/process/license-rules.rst.
 
-If it describes the hardware correctly, that should be fine.
+Cheers,
+Andre'
 
-> 3. We'd need custom clk_ops for all three clock gates (including a dummy
->    'mem' gate)
-> 4. Each clock gate's .enable operation would need to handle CLKGEN reset
->    deassertion
-
-I accept these arguments, as I have no good feeling for how much
-complexity this would actually add.
-
-In my mind it shouldn't be much: the GPU clocks could all share the
-same refcounted implementation. The first clock to get enabled would
-ungate both GPU_CORE and GPU_CFG_ACLK gates and deassert
-GPU_SW_CLKGEN_RST, all in one place. The remaining enable(s) would be
-no-ops. Would that work?
-
-Whether a separate "dummy" MEM clock for the DT bindings is added or
-not would not make a difference.
-
-> While the clock framework could theoretically handle this, there's no
-> clean way to express the requirement that the CLKGEN reset should only
-> be deasserted after all clocks in the group are enabled. We could
-> implement this explicitly, but it would make the code more complex and
-> harder to understand.
-
-Doing this in the clock driver would have the advantage of clk_enabled
-GPU clocks actually staying physically enabled, without the reset
-driver disabling them via GPU_SW_CLKGEN_RST from the outside.
-
-> The current solution in the reset driver is simpler and clearer - it
-> treats this as what it really is: a TH1520-specific reset sequence.
-
-Yes. What this also is: a workaround for a SoC specific defect in the
-clock tree. I think it belongs in the clock driver because of this.
-
-
-[...]
-> Regarding the delay between clock enable and reset deassert - for SoCs
-> like BPI-F3 with a single reset line, implementing this in the GPU
-> consumer driver makes perfect sense. However, for the T-HEAD SoC, moving
-> the delay there would actually complicate things since we need to manage
-> both the CLKGEN and GPU reset lines in a specific sequence. Having this
-> handled entirely within the reset driver keeps the implementation
-> cleaner.
-
-You could delay in both places, it's just a microsecond after all.
-Whether the workaround is implemented in the reset driver or in the
-clock driver,=C2=A0I wouldn't want the GPU driver to have to carry a specia=
-l
-case for TH1520.
-
-> Does this reasoning align with your thoughts? I'm happy to explore the
-> clock driver approach further if you still see significant advantages to
-> that solution.
-
-I won't object to carry this in the reset driver if the clock
-implementation turns out to be unreasonably complex, but I currently
-don't expect that to be the case. Please give it a shot.
-
-regards
-Philipp
 
