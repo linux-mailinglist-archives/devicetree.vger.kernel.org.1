@@ -1,84 +1,133 @@
-Return-Path: <devicetree+bounces-145423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14540A31469
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:52:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86C11A31472
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:53:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD88316558F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:52:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D39A8163A34
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE5B262D0C;
-	Tue, 11 Feb 2025 18:51:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 807C326216A;
+	Tue, 11 Feb 2025 18:53:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RrvOPc2G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qZYKwDpG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D138D25A34A;
-	Tue, 11 Feb 2025 18:51:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FFDF25A2DB;
+	Tue, 11 Feb 2025 18:53:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739299876; cv=none; b=fxlRf4MZ5yqP7pPlayLKTKWmQa3ZNC5v3KcpxXjx3TQU9CaZ9fIHHuA805HGekt1frwx43vQjh+yaLgi+apUDtBe6Ros0PNb+zxTmMxltQt7/10nnMcCkHTv93s3BT5XvQpvtQcIPeEuSeb7vY/IFAp+IfrwlhIdl8QtuyHKLR0=
+	t=1739300004; cv=none; b=S/8vqU37CslYo3Ec6jcrgJjUHdcND1B0amdgExeoXvUeMaZvz/QPzEkM31cRLo+IE+VjztjUbqntq2s43tKGjIUpaBm+uHv+rpqeLFtknHNDITQ1Sy/0fvyD07hwFPrdfJCJDjDEEeMXeC6xX6btTiMoXiMeZPq0kujLJX/uui0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739299876; c=relaxed/simple;
-	bh=Ohe9V0q672zCdoryIimZs3HHDJAtmxB5pXzVohyN7R8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=cr4MoVTe+d6f7YHdBt53ZW0U01f5hHkOzQQcWpL4GHRfDB7jQ/s1nttYZEolICVGuoQxHVnSOXWlD6AGPuV4vhnGBy23T0DIq+UrOELU4Y0lbJSQdOR9s9YBQahO9lyYfFLlQ5aKjoH/HBBei2UsOs8ANvaWtprfBpIaMxxkDgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RrvOPc2G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28F36C4CEDD;
-	Tue, 11 Feb 2025 18:51:16 +0000 (UTC)
+	s=arc-20240116; t=1739300004; c=relaxed/simple;
+	bh=zx+mq+gVP1WF5okPzWakDErC34wKoMoME9IDfsfi93Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nwCEeYY0kUoNV0L7zxxm+MAhOJOSxIddOJ7p6Wl9NRBd94bCuJF/SssgrPpSww7hdcdrxyPB+lBRkYf07AzBp0T2x/OYeyLEceQkILVgaOlgFR+JiGt/78p6+9P6uuwzLVT96nrv8TDojVDgR0lXKkDQ3k6S/wk3ENHmVT4u3pU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qZYKwDpG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34661C4CEDD;
+	Tue, 11 Feb 2025 18:53:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739299876;
-	bh=Ohe9V0q672zCdoryIimZs3HHDJAtmxB5pXzVohyN7R8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=RrvOPc2GRQp/LPOxVDx8qCjQ54V6om1qedpDU9/ZXP4AYThY3YoyxvK0d1wgFqINn
-	 aghFyq5VATD5XzHqlJfC/j991uDsxsnBfOrtp5R1RoZPrKxm2elowhb0VsH50qBJwX
-	 4B8DIYZMRSSTQHj25Ty1xRMs/jQrmXQOKPP8jfJ1m5U9jav988nKvXP24VcMS5d5fl
-	 /IurUqwbLNs4yF2TR86WG2sV4acwW8AaGc5o17sP64jfM2lBsUouRgrWIQz1mOKgst
-	 LIM77vQPstPfmAXqS9SdDiBC8K8HyxHj5uoVpnsLKSPcEa45ZFqMKTx+3QZJog9fXv
-	 4NrAVxxd8s7HA==
-Date: Tue, 11 Feb 2025 12:51:14 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	s=k20201202; t=1739300003;
+	bh=zx+mq+gVP1WF5okPzWakDErC34wKoMoME9IDfsfi93Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qZYKwDpGHCa6m2Qod0KOc6E8lLYCFHvspX9+CuIgvCF8ILv1Mqg9jqR+Ib7D9nwwX
+	 YsQ1oarEWWd8RloAJg9ezbrtu66Xb3tOq1s67O1Mx19qqOA8OYtDvJhOZp2Apyz4zi
+	 7elTz8QzkUxneevUqRBSa/vdyxS5SrMhAPNNY6MK0jUZw0kwp9Pkz7u+R/iLlhk58R
+	 BP8RhRJYDqsUnZjtECldbgQSWBL4RcWom4DovKv4guZJlbZveWap2tyfKMOotXr8Kf
+	 jaXzDWR9RIfKL0iBgLLJYERtMMwdWq3Sn1UJfg5crWf7qQHgbw0vaHsMCzkOvSmD/u
+	 oRKlw7jQgSXPQ==
+Date: Tue, 11 Feb 2025 18:53:17 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	David Jander <david@protonic.nl>,
+	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	michal.simek@amd.com, bharat.kumar.gogada@amd.com
-Subject: Re: [PATCH 2/2] PCI: xilinx-cpm: Add support for Versal Net CPM5NC
- Root Port controller
-Message-ID: <20250211185114.GA51552@bhelgaas>
+	linux-iio@vger.kernel.org,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v8 01/17] spi: add basic support for SPI offloading
+Message-ID: <094f00bc-1001-425f-87ca-84646b68bd70@sirena.org.uk>
+References: <Z6otFlsmEikIbI__@black.fi.intel.com>
+ <27d2a88c-b44a-4712-b066-b999e41774f0@baylibre.com>
+ <b1dcbb19-190a-45e7-8e94-cb5ef65f1f1b@sirena.org.uk>
+ <Z6pim_nLct33LzfN@smile.fi.intel.com>
+ <b000d3fd-754a-43e8-ab10-82677eeee1d2@sirena.org.uk>
+ <Z6tcwg7QgQwytoSb@smile.fi.intel.com>
+ <Z6tezVXVxVCwXuds@smile.fi.intel.com>
+ <Z6tfUfHilO2KLmxv@smile.fi.intel.com>
+ <Z6tgNjH6Qq5pe9Gt@smile.fi.intel.com>
+ <tnjsrq3trijh4agmbhrfnqeq4iojhwybtg45bwt5n7mg7qqgcx@s7gw7idjuxgd>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="UVnWZBsUYOnPBs3q"
 Content-Disposition: inline
-In-Reply-To: <20250211081724.320279-3-thippeswamy.havalige@amd.com>
+In-Reply-To: <tnjsrq3trijh4agmbhrfnqeq4iojhwybtg45bwt5n7mg7qqgcx@s7gw7idjuxgd>
+X-Cookie: Printed on recycled paper.
 
-On Tue, Feb 11, 2025 at 01:47:24PM +0530, Thippeswamy Havalige wrote:
-> The Versal Net ACAP (Adaptive Compute Acceleration Platform) devices
-> incorporate the Coherency and PCIe Gen5 Module, specifically the
-> Next-Generation Compact Module (CPM5NC).
-> 
-> The integrated CPM5NC block, along with the built-in bridge, can function
-> as a PCIe Root Port & supports the PCIe Gen5 protocol with data transfer
-> rates of up to 32 GT/s, capable of supporting up to a x16 lane-width
-> configuration.
-> 
-> Bridge errors are managed using a specific interrupt line designed for
-> CPM5N. Legacy interrupt support is not available.
 
-I guess this means INTx support is not available?
+--UVnWZBsUYOnPBs3q
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If so, I'd like to say "INTx" instead of "legacy" to be more specific.
-Someday "MSI" may also be considered "legacy".
+On Tue, Feb 11, 2025 at 07:45:30PM +0100, Uwe Kleine-K=F6nig wrote:
 
-Bjorn
+> There was a similar discussion some time ago about the lpss pwm driver
+> (https://lore.kernel.org/linux-pwm/Z09YJGifvpENYNPy@smile.fi.intel.com/).
+> The arguments that you didn't accept back then already are similar to
+> the ones that were brought forward here.
+> The TL;DR; is: Adding MODULE_IMPORT_NS() to a header makes it easier for
+> code to use the exported symbols. Yes, that includes abusers of the
+> code.
+
+> But if you mostly care about the regular users of an API/ABI, making
+> things easy for those is the thing that matters. Agreed, if you think
+> that module namespaces are primarily a line of defence against abusers,
+> adding the import to the header weakens that defence (a bit). However a
+> typical header includes function prototypes and macros. Those also make
+> it easier for abusers. With your argumentation we better don't create
+> headers at all?
+
+> There are other benefits of module namespaces like reducing the set of
+> globally available symbols which speeds up module loading or the
+> ability to see in the module meta data that a namespace is used.
+
+FWIW I fully endorse what Uwe is saying here, forcing every user of the
+API to separately import the symbols seems more likely to create
+busywork than to avoid problems.
+
+--UVnWZBsUYOnPBs3q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmernJwACgkQJNaLcl1U
+h9ByhAf/fckjqFNct4SZp/CU5FQltdeSJfJEoKDht7PifSmQ7Toy768CqAlb8t/m
+OWP8BQ0Y2N3EM2M/Myoat+PjbGSFQNgR8jiwSv5sQR3e2YlIoKw84jOgjbVdtDrP
+GBo4Z9D+s1+qzphUu+qijAjy5ZKb1FT6bdexXJQFIHG9Y2Wjn00T5LiaTORW1q7z
+Nbk0HgaBV07H/qkL/KV9IegbwI+NQ8aVxioFH5ciAa3Dvb+tjlZuh8eLrnnYNLAm
+yQdE4OJ/60QR5cQNWn7fdoodbCxOm5m1OXbgPyUuykV5e38FIvb9l2JwxC/4IuVe
+ctROaAu0kN4p09y2O6wHf1FsRcBVKQ==
+=dReo
+-----END PGP SIGNATURE-----
+
+--UVnWZBsUYOnPBs3q--
 
