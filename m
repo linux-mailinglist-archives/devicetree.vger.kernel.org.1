@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-145483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60A5DA316C5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 21:36:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1822FA316C8
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 21:36:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 156DA167743
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 20:36:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAC611677C7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 20:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C07264F95;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1B5E26462B;
 	Tue, 11 Feb 2025 20:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="IaVrAjGa"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Q5Eg2Pjs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2242A264626
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 20:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4B6264F88
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 20:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739306156; cv=none; b=gZCFViEw7TVBnr9Ub9DFbDxfmcB9MbIygLWBD9OJUAzdXPA4wP94l2IDFYWb5Er93Ra500XhNC/ENr5j+yRKHOaYLw6AlgFyQ7UYBP1qTI7BAER2XnsdKsJ2HVhnsThQFV8upuaAE5l52LdrxrX0c6I+JWeuUCsHQz6Oy2XUdnY=
+	t=1739306156; cv=none; b=Su/vN31R46Ka4PbsFN7HGSGYm5xV46bBQNRwg3AVkPpdbcn2C1njY7CFCxm73/D+cyvyt2SmhyvfNIvRChmJqb81K9sZ2asyvbpOXVBHAlD621prI2n13Y398VVRbv5/ujJzOvu6MEzNv+/hmH4XKH+9UTfdE/Lsx74XCPbXL2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1739306156; c=relaxed/simple;
-	bh=AnzWCVDuwWjG48Q6L/y3KdCmwZ20tPwsoetsjU42jqs=;
+	bh=WSHBL8zldbBu/uD4Nii/UoNk334dEX7o6anT0QKiDzE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dSxvoCg+5OiEaTaydo3L2LOUlHI6CKP067HqWYf8LlZyqhvVrDicmsfO8FjL4i35z0xHEphBs9625oQeX0A+gkIDNoa8S9Stqt9NGspDti26LB3qRctUNXBnnVLNarrwG75LXGPuDwwiRpLhKMg+rs1Pu7JIOJSAxffvdheaQ80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=IaVrAjGa; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=sTJPe3xMRdn7f+Vc+V4HrN/dOs2ei9if2BdR2HgqWrtlWHYB1/gGUa5JApTBF1OQSWUKAFqjL+zumi61eJ/lx0tw64RfSrgajQ2B1Ewskyg4h0pmXBB+T1U847tu9eyAyfiu0wWmIrSnwXtBFFL8kBEbLv2xaga0CCxN22cPwzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Q5Eg2Pjs; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,33 +37,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=nzpzQg7exvrKsqBLdbyzVvbOq8XvFl+0SBT4HKJsj2k=; b=IaVrAjGaDOUlG0LBU+woojiRem
-	73JINbkdn3LZVV4VkRy8RXjrT2k3BDnlCLpOwSUeQi5mEqsDCtqxjkUJWJtnUDoo8GjtmMs3Xohl4
-	Qcm+Psf67mhoQeVoPw5ZYFs7UVuH9tRxsooMk6rADKTwChooqmX5tdNOIRwI6sR42j03OiK1W7n6g
-	pc18Mrl42L7a7mWw3zE9iF+TXpKn7w9uWcU5XCSValxEf1puWEpfiVbjlOuywYwVCw7MkZH7xuiBz
-	jz0Lij/dAr9s0BevDU0JB41QCGYRe0ltvENBqA8+KHM3SP1ryPc8nFtynJGT9ONSyl2/z4rBCWIbj
-	9iJNaaNQ==;
+	bh=bnsQBWqEuRRtpC1o8f5ipeZHrP7bQA6G/kVoZZiFqMM=; b=Q5Eg2Pjs/DTW2jdvYcurVmy6Fn
+	CFBxdt8iHp3NcSP5Qg79D1DjTMW15CBi4fMiokU85KIDbLeEG2x3wScqazNE3pA0guVOquui0daTW
+	9wgWKrZCCo8x9gAsIVunJGq+tpfbiCsPIGAGl959RPa/43XepCLgrbKjQFCgeWSvUPofJCVikXBAA
+	UdhmDULuP/agL6A5bhDbMM8iBNpd5ko0YPIo4q84ljFUXXqI0HSFcQhFTVpzqmQTpGYdQjk7SuZ84
+	xpmehYI29gKr22g/d1jBdjH+SaQ3uZDARlHgr4pqkAoHLRk2naytcVnerYaiKZjb3P4rtMKK446Su
+	3cT0O4Uw==;
 Received: from i53875bc0.versanet.de ([83.135.91.192] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1thwz1-0003OL-6m; Tue, 11 Feb 2025 21:35:51 +0100
+	id 1thwz1-0003OL-KE; Tue, 11 Feb 2025 21:35:51 +0100
 From: Heiko Stuebner <heiko@sntech.de>
 To: linux-rockchip@lists.infradead.org,
-	Chris Morgan <macroalpha82@gmail.com>
+	Patrick Wildt <patrick@blueri.se>
 Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: remove rk3588 optee node
-Date: Tue, 11 Feb 2025 21:35:38 +0100
-Message-ID: <173930613282.1358259.17638255312158240919.b4-ty@sntech.de>
+	Kever Yang <kever.yang@rock-chips.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: adjust SMMU interrupt type
+Date: Tue, 11 Feb 2025 21:35:39 +0100
+Message-ID: <173930613281.1358259.10855559235361885923.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250130181005.6319-1-macroalpha82@gmail.com>
-References: <20250130181005.6319-1-macroalpha82@gmail.com>
+In-Reply-To: <Z6pxme2Chmf3d3uK@windev.fritz.box>
+References: <Z6pxme2Chmf3d3uK@windev.fritz.box>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,20 +74,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 30 Jan 2025 12:10:04 -0600, Chris Morgan wrote:
-> Remove Optee node from rk3588 devicetree. When Optee is present and
-> used the node will be added automatically by U-Boot when
-> CONFIG_OPTEE_LIB=y and CONFIG_SPL_ATF_NO_PLATFORM_PARAM is not set.
-> When Optee is not present or used, the node will trigger a probe
-> that generates a (harmless) message on the kernel log.
+On Mon, 10 Feb 2025 22:37:29 +0100, Patrick Wildt wrote:
+> The SMMU architecture requires wired interrupts to be edge triggered,
+> which does not align with the DT description for the RK3588.  This leads
+> to interrupt storms, as the SMMU continues to hold the pin high and only
+> pulls it down for a short amount when issuing an IRQ.  Update the DT
+> description to be in line with the spec and perceived reality.
 > 
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: remove rk3588 optee node
-      commit: b3dc2a9315c4046b330a784c0527c671fd236414
+[1/1] arm64: dts: rockchip: adjust SMMU interrupt type
+      commit: 8546cfd08aa4b982acd2357403a1f15495d622ec
 
 Best regards,
 -- 
