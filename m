@@ -1,115 +1,153 @@
-Return-Path: <devicetree+bounces-145357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E392BA3109E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:04:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05387A310AE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:08:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CC053A37A3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:04:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF6A93A2BB2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1AB253B7D;
-	Tue, 11 Feb 2025 16:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E68FC253B7E;
+	Tue, 11 Feb 2025 16:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dLmxfzZN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e50Sf/CM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CD2C253B69
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 16:04:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D293250C0F;
+	Tue, 11 Feb 2025 16:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739289879; cv=none; b=aX+m+gpvK3MaqIz3X2d/p7FbFt2Vlnzt/dahiEVoQbN4AbRe379nWcEvOf2xd3cyZjxFCQk9PLzn5UNmHicdMgCOEPLA/ZCS1Tt9JSeFo5J6HyidQ0m2tgY9a9ewsuhKnr40U5v1sEI4uYLZijT+khK3Z1JreQ0LkNfOOYXf7zA=
+	t=1739290093; cv=none; b=BzGi74MDwvIYt9LWwP3X0umH0C5ZBj2nE4qOqqGfANHjhnb689Lq5jo32vRwlhVwj6kV+Yrsbiint1d+XPGlr0cbv1Fw+mNYpY/c+feMHYXrUjyGUnPwPiCkTN/Z0zuNVH2neFSuLOvhZ7QNKS+fu7NuJ1c7JpUXohqqMC/7/VE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739289879; c=relaxed/simple;
-	bh=JH7ijZNDjNdhRFML1H7hwn6Ylh+jwwnUVby5SKkbOZg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RkqXLJ/asvBse+xTEodNSzARcQGgeyZuS9t8BK4B3TNzzL32oLz2qJHOwVVWgGxUEJsp048Bbbw7G03gcQj/DdCFMLfQpe4peO4CuYFHRbeUPy2+yZ/+mC4k5UhIidE9wQCTF9I/8e88p4l9TAJ7aIji2taO7ZmV7rRBTRzDc+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dLmxfzZN; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43937cf2131so21047665e9.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 08:04:36 -0800 (PST)
+	s=arc-20240116; t=1739290093; c=relaxed/simple;
+	bh=LhWKPpTipmLEivaGN54U0rIDOOw1aCiRMd+yRoDvpMg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=I4KmLIj0oD0JCl5b7I9zcoEL4ooz9BbW9mLedHO1tYYHQkBO6ekZCLv1V+J69Ior3JaUvaT6uvPuLyEPgeV4kJYS0S0k7Ovvhkn9A0aZgQjOYfqUB7KKVFfqS5LWAZbowiLKEUWhKgFLMtnOYZ9TFr6+Rctd+IumvoPA/A7EvnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e50Sf/CM; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2fa2c1ab145so7766275a91.3;
+        Tue, 11 Feb 2025 08:08:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739289875; x=1739894675; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jPRSZh3i6FtRdc7ODsguuXOWwzfovZBUq+Z1/sPEyX0=;
-        b=dLmxfzZNmUXQZ9Bx69tBjdTbdvcDNY21PN8K1dLjLEWGu9Jv4YMQMCxDU8q9r7U3RX
-         MY9viEfz/+hJAvaDBpQzcYJqP3X4c7CgMm3svXyv+cJPtfwW+zZvtZ8JCISlz+Y73nr3
-         REI4kkeTc+iXgq9sREILI5BPq0E+0TgUW7uYBeER+zY2A2OoURsIKBBuD/MKBx/MuVy8
-         h2/eqaVJk+xNBFEgqcLtWCJb7QRiThBuCylk4pDGNTIiufOO/HeXPHcpgs+VzsXRRTVV
-         dufIOtnxwOMJ3O1tI+X/wG0VuW42L+Y6VjaxvZpwdkEUioBqSSd+r4NBFCOAHDEQYIV3
-         96CQ==
+        d=gmail.com; s=20230601; t=1739290092; x=1739894892; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Ixc1THfJdnAMw/BKiEzGtjmAxEFef8cRNT447pbK/8=;
+        b=e50Sf/CMFuXpeUqCFmoEjAROcxE3FkkjGtNlglBzfX8dJ5yaKoCcoDaD9RfzUNfeIY
+         /px8yvvj6Z+XUh4EE7pNCnxJit7gmYRpF2mSFuPKDkBXLY5Prn6p2XyfM2UQZwIEXJ3S
+         +yTNz1O1oZFeEDVI7yVsCyCxEHiFU/MSH/uymgFcbD1zHxb6qrng7Lrm9vVYZmMty6lY
+         zD/3freEzr/wpEzE6cAVQJzi7YCwUm5ZugiHkPzn44dPeeKs+cji4SdxlqsSktSunkZn
+         MB1UHR/CWz0LAc5vu4MsXYIYnAdVtnY9e74Ig7ywzjPeEv/ayGQFRRtg+fzREjcGqeFl
+         ivmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739289875; x=1739894675;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jPRSZh3i6FtRdc7ODsguuXOWwzfovZBUq+Z1/sPEyX0=;
-        b=hhK17mCX0YJYLpVDgM0bcX4lPdJJtMdXHkfZjoiFwqR8vLAmrZImah7uI3PNTfQH43
-         3/T0WPZAKsRiuvF0qzvqb7uZDSSNbFkMUB6k8VqsQWGmSYNG+2bNybbNX26hF2h5vPVp
-         I4SJI6SPJf1Y7mnM2UeukqW9/CAXwoYoTljHXqBne7IlBiLCWufL7NPRWnB9eOu6azEy
-         E46YBmRko6pcdV6OIs62BoS4yFDJqcoUBoPdNlf5YlCrOz9mNFPiBCe4+p8oFN5DXyAG
-         rEhAIvdYs52gLx69avWXR0cLsY/LAFfoNnMLJbFqGa0t4hfj/QjXGn0du28usernP5YQ
-         cx2w==
-X-Forwarded-Encrypted: i=1; AJvYcCX7SbTonnYwzK9+8Vlnn80M4H6Nnl9h9T6NWmM9DveHcc54cz/aQ63v6NFpUmaOhRQoeRiSNxMAAUEJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHCTZkIU5See9U87YMs/CJPE4uli/TqDG94p55nEA7WZkL3UVF
-	I80du9aQIzlwZTlyX0UxF1qgLMg8m0EZtW9pTpvA8FJlyZjfoacjStLg/bNBcc0=
-X-Gm-Gg: ASbGnct33yoEzFHg3e56/X9wDEhKjXfFppHlHwivnbfVLgisUECLLu49r0UCHS+kLJo
-	I6rlvofKH2KGWqZM1hKlr2NZswEkCHgR5szzqsE+xTYfzkoJNMk2Nv5YMSTjy46YYXhqg/Bnxje
-	V6YVsIm3XOW3WBecn0BXM+FFQNLA4cjTgXdSlobAWNTvJIZFP9e/Xxee9vOx4m8i9lfpP+d78SZ
-	hnxll6WG9rK0z/fR268+/d46tGakIYQELftWInw5REIm//FzxvgzcVIkkjb+pLbDC21Pg3HcUe0
-	xYy4Vyt5HLKiG8mINTV6GgjCSP4NMwefKgFyvpNXCK/b8Oickdsu3www1w==
-X-Google-Smtp-Source: AGHT+IGZ6rqRtEwePiKwnX4xQSPq4bLPiyPcMlt146MZTNkCKpzb/PK7/r6TdTiPg3VS3vFEj4i9OQ==
-X-Received: by 2002:a5d:6daf:0:b0:38d:e149:f863 with SMTP id ffacd0b85a97d-38de419408cmr3758370f8f.24.1739289875146;
-        Tue, 11 Feb 2025 08:04:35 -0800 (PST)
-Received: from [192.168.0.156] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dd6080926sm9084581f8f.83.2025.02.11.08.04.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Feb 2025 08:04:34 -0800 (PST)
-Message-ID: <a02289bc-fac3-4ea3-b5e1-8557c2b95550@linaro.org>
-Date: Tue, 11 Feb 2025 16:04:32 +0000
+        d=1e100.net; s=20230601; t=1739290092; x=1739894892;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2Ixc1THfJdnAMw/BKiEzGtjmAxEFef8cRNT447pbK/8=;
+        b=QjQH5t+M/uL367/JBAmv2g+vpDufQoiQ2TqZ4AeUOEJOKw+q7nqX/XBJ1r7f0eo6wj
+         TzTb6ujw6GmUG05OXSREWucCwgzLUkmyYq2EYtux2L5nXFgfBV+X/LVg7kKpF1aYfQNM
+         tM8at9c8DNOPtwJQzxjYT2cFLdGz2O8oFQ2CPzjkGEM5oNR4YWkZ5CS8a24h01+IPIGz
+         l9FbFGFNgonkq7qogo9fQrLvXlFUWr1Tt6NGd1Bv7JOKHCb3usy2kqzBH/AdAK4rwWQY
+         uTOmoWoQ7MI7SxmndY7o84Hq2avG536MtHeSZNMEAKNOz8QP0mToW++UrJ2rXoQGrjk4
+         7VGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW4aC4dQLwZsgYkqUSjXPJa19BoT9KAewfv+6zhZHCOAG4R+l+C7QDkdtqfv1RWXHabtCk2N0iAgKJ975C3@vger.kernel.org, AJvYcCWxzmcA4MeyMjVjMQ9uwXdssZXaYJhq4tQYyocHDI9u3LAmG0sViGaeILidMik9xNSCQwDEFPJ6AII4@vger.kernel.org, AJvYcCXikp9v4g+pWs7ja2SvhCu2g75WsHr/cdAyTvRs+GdPPmo5+FAcLUzdJu7K1vKLi59dW9PrJ0X09Y6C64SAxnsEtg==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCZKmJi98JAQJVFHnI6M2cLbY1q7e6cb59Mwkj4x+YBnZFO9SU
+	WkmuKZ+CgYosXQTyPuVMojmGHXcwuqFS1mSuWC9YP139NRaOaTK6
+X-Gm-Gg: ASbGncuPd5KZAERJHsx9BLa1/f6dRd1E2H8bdoR7clHAttIAQx4Y7MQ0osvnYT9QgDj
+	sIrtD4bP2FeEQPaD4If10RXcapZr/i08wndI3bfFICyoJ6CxIm0TY8SIE0xcNeE0iEkaTT/KCY1
+	eWX7wq2d5LNhO8EtjNVzMtgYq6JKWN44VsiwbqBt2WKflwXblRFHyrp9FVZhlP4s2GroZ+wZW3I
+	taAcDffZncRg9cMk8G/BRWLT5+pGDE/6AuNkjh1WJ5cJ9EGcNTh89XA5XYCy15aleDYq5XulPxa
+	FCn+dvvPPQpQee4LYQ==
+X-Google-Smtp-Source: AGHT+IGUgRw95Xr5p5dnLjRuf5lW7GFqBihDMP62NQd8lMGS3/Oqusjqad+1bvDfuQDFoX5VFLQOqw==
+X-Received: by 2002:a17:90b:4f87:b0:2ee:d63f:d71 with SMTP id 98e67ed59e1d1-2fb63d16655mr547999a91.14.1739290091498;
+        Tue, 11 Feb 2025 08:08:11 -0800 (PST)
+Received: from [127.0.1.1] ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-2fa618e5e18sm6040478a91.41.2025.02.11.08.08.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Feb 2025 08:08:11 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH 00/10] drivers/perf: apple_m1: Add Apple A7-A11, T2 SoC
+ support
+Date: Wed, 12 Feb 2025 00:07:21 +0800
+Message-Id: <20250212-apple-cpmu-v1-0-f8c7f2ac1743@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 0/3] Add SDM670 camera subsystem
-To: Richard Acayan <mailingradian@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-References: <20250205035013.206890-5-mailingradian@gmail.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250205035013.206890-5-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALl1q2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDI0ND3cSCgpxU3eSC3FJd00TTROOURGNLEwtjJaCGgqLUtMwKsGHRsbW
+ 1APVHuVJcAAAA
+X-Change-ID: 20250211-apple-cpmu-5a5a3da39483
+To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Nick Chan <towinchenmi@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1608; i=towinchenmi@gmail.com;
+ h=from:subject:message-id; bh=LhWKPpTipmLEivaGN54U0rIDOOw1aCiRMd+yRoDvpMg=;
+ b=owEBbQKS/ZANAwAIAQHKCLemxQgkAcsmYgBnq3Xhx5X5ZyZ9c0S7S8AqLAss0fNOYSurIR8iI
+ 1MgMsTYRqiJAjMEAAEIAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCZ6t14QAKCRABygi3psUI
+ JKa9D/0ZvnMJNLT9eidZ6vnHegswqc6/yypIZuzVV8rtSBXxbRzjGJ2KkBj/IQj+mPZZxNMjee3
+ K6y3uflppl6Qk0nqnxz3f33yIT2zHfqbaAoupm9PZNcL2dKtKSgxv39VlhPOhXK7jzEtI9Hojro
+ iFBcgFdET7U18wHHHaQsOZLO/t73mlZ9i3rCY+vOnSj2KH3rA/r47XNRvLhWy1YUuqPsYAwXFHU
+ domqHN9pWbmcGQ/LEmW5vGmUUNXGT7YWhw7Sqy0/QK+i9LkI98ZeGFuQq0ux7JdXgtnFjzWcxJ5
+ J58yhkWb6iKAztnK4Ize+k7BvofuhKI9r+8FjGtWz3VMkGESsOyDGA/RHLoBYQUj39dzm0aRU0m
+ 0dYlnRE68z7spsqs6d1kNelPcwraWYZY89hSEsN3KSHtAlVzJ+DTWrjzHBNvTbflHW+69I0qE8U
+ FANVs+jYI7ZHnYrQdoEElMUCGWDDMWPymyYkeoD5YMauWBY7jc9I1jlJwIf8LeAabu+g3fgynFE
+ soGVzcH9PLSSs/lMTJ6pY0enYGl1MabEouv0/Y4yX802RgdNm3laJTYQQclq2YHgx+r65IgGj3R
+ +uzd+B2sylPAb5mKouwjhM8X0UXGxCRjiZArrhYKU8rz6lPdWhJmt7NUjTrlJUKiPGOPLvrSK7r
+ fnhYnkPHdiYs23g==
+X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
+ fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
 
-On 05/02/2025 03:50, Richard Acayan wrote:
-> This adds support for the camera subsystem on the Snapdragon 670.
-> 
-> Changes since v9 (20241218231729.270137-7-mailingradian@gmail.com):
-> - add Reviewed-by from Bryan (2/3)
-> - drop applied camcc patches (previously 1/5, 5/5)
-> - rebase on media.git branch next and sdm670 dts patches
-There's a minor merge splat which I fixed on this tree.
+This series adds support for the CPU PMU in the older Apple A7-A11, T2
+SoCs. These PMUs may have a different event layout, less counters, or
+deliver their interrupts via IRQ instead of a FIQ. Since some of those
+older SoCs support 32-bit EL0, counting for 32-bit EL0 also need to
+be enabled by the driver where applicable.
 
-https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-media-qcom-camss/master?ref_type=heads
+Patch 1 adds the DT bindings.
+Patch 2-5 prepares the driver to allow adding support for those 
+older SoCs.
+Patch 6-10 adds support for the older SoCs.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+---
+Nick Chan (10):
+      dt-bindings: arm: pmu: Add Apple A7-A11 SoC CPU PMU compatibles
+      drivers/perf: apple_m1: Support per-implementation event tables
+      drivers/perf: apple_m1: Support a per-implementation number of counters
+      drivers/perf: apple_m1: Support configuring counters for 32-bit EL0
+      drivers/perf: apple_m1: Support per-implementation PMU start
+      drivers/perf: apple_m1: Add Apple A7 support
+      drivers/perf: apple_m1: Add Apple A8/A8X support
+      drivers/perf: apple_m1: Add A9/A9X support
+      drivers/perf: apple_m1: Add Apple A10/A10X/T2 Support
+      drivers/perf: apple_m1: Add Apple A11 Support
+
+ Documentation/devicetree/bindings/arm/pmu.yaml |   6 +
+ arch/arm64/include/asm/apple_m1_pmu.h          |   2 +
+ drivers/perf/apple_m1_cpu_pmu.c                | 776 ++++++++++++++++++++++++-
+ 3 files changed, 752 insertions(+), 32 deletions(-)
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250211-apple-cpmu-5a5a3da39483
+
+Best regards,
+-- 
+Nick Chan <towinchenmi@gmail.com>
+
 
