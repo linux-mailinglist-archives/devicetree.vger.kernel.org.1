@@ -1,58 +1,63 @@
-Return-Path: <devicetree+bounces-145497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B237AA317B6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:29:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F87A317EC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:42:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07ABF18882C6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 21:29:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C27B1889A6D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 21:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD0A26659B;
-	Tue, 11 Feb 2025 21:29:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1175A267AEA;
+	Tue, 11 Feb 2025 21:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k5o8gSPf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aP4BATfY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94463266598;
-	Tue, 11 Feb 2025 21:29:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D30CC2673B8;
+	Tue, 11 Feb 2025 21:39:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739309370; cv=none; b=q7tnp+UENJE+u2NoLuAhyMh+XFlDP5yqoMVhG91FQaZy9vwkvrP8BDZjEPC/h6iDEb3SHbock7bmhdnCCcU+4Uu38u0H8SP0M/S6IOnqWOLYrAO7J1Qw4qLPpjrU7U3IYkKFUaIwzlBKG6f14lBKRlEML78trW0CxeA1aPlzMgQ=
+	t=1739309967; cv=none; b=HAYVAWoQY/9IbyYxxQSPLWhrPVq7ccEGEjVK7hz4gYmiwvtTb0YiU4+L2oJ1w2nPiAw/EklYIVCgiyUh34oIZ5xG7ViURz2cNpmWLQSnIv5CpZ0Oh8fq6ybJN6tCGMwY0WNRN6SlwoHqk7DzYQmdr71sb7Gas5ccHniFkUWwjGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739309370; c=relaxed/simple;
-	bh=NaUS/xid8E3zDqwf+U421yyey7c36cXUSga07rj7yNc=;
+	s=arc-20240116; t=1739309967; c=relaxed/simple;
+	bh=FJycInZp7xLnccM2iFP10pmSMU2kK51uCue1d6X+XO8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=phAAejf5kI/wlQ3uqrGIF9Vyq2/iSwPuGrcJdIdxHbjQtqv1tL8vR4T0pTiU1TQSWmp2xJJrwyRO6xMcMfm8ZgA9ud02B1OtMdCSK4Ek75y2gesgZbdao8V28PGelr/pjfaa7/s0xMONjS9cJO+1SyZG/ZCpvNf3gWRbNDsh4Xc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k5o8gSPf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA14BC4CEDD;
-	Tue, 11 Feb 2025 21:29:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UvNH1P17+OAKTZkVTdFCfYPfvHMbEHQWbIQmxzWoYAop6XKWJvxu5s7ioU5m2Svcf/b4NKAnAIqfPrHnqGVnoBtUQEdKYT1PP5cWwj11C678dHKcDOP1qqn0JVehebcJuYQiUwlOxPC1P9ZmyeacVlk5pDoZI4VkhefEjMWCbN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aP4BATfY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED68FC4CEDD;
+	Tue, 11 Feb 2025 21:39:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739309370;
-	bh=NaUS/xid8E3zDqwf+U421yyey7c36cXUSga07rj7yNc=;
+	s=k20201202; t=1739309966;
+	bh=FJycInZp7xLnccM2iFP10pmSMU2kK51uCue1d6X+XO8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k5o8gSPfQq4IgyVNNnH17NgMRkO8e4gyfCOrL/4gYWEoThBhBYQyKJ5EyvYgel9BD
-	 eZziKOsCNPSFb5c6YPFys+0z1OyUjJzXIlJDNDgzLCViFLQX+qJCO4hhOLEJbdiEAl
-	 svknN0H4vkcntQ+K3SdJAqFt+4kK7tdAa/06eexV98C1mLaqfvEcjQTZKLYCZct0Sk
-	 fy8sFJK71nx5PS4aKFrVhxWIvVTPQE6FeMMioDRtIT0jAoDHJ2JG+snexxBQkVDU+o
-	 AiowVHT7aemYqByHqTwCPBozswKNo0Wpjf2rAWfO4RobedKU/ihnaCr9GUYWlne8V7
-	 w2S/dWjbgKOIg==
-Date: Tue, 11 Feb 2025 15:29:28 -0600
+	b=aP4BATfYQC25wggrvRK+B62zM9TQ+bR0hCVhUWH4cji6/wep0juNbEW2L9FxK1Eat
+	 sGvPeE8MrAnft7dpLlkUy5yUm8/hxi5ikl8+3Mc28c4tZEiRMJMy/fDd8D1xy0eQya
+	 pnhNKAswSjU3cbZei39Nm2iAeOSM7Wrq6uNn51EPfCn3dPPkEfYE5W5n6uIupuoWnM
+	 5FK5pxfOj5XCaSthnTiXPtAlyWeoDON2+i3O1N+vWtTrG03/cZZ6WqFWRbQ1aPPdoE
+	 DsYpKoDfrL2iHJSKnGKvtmG1XYAY7ERQF+XfoQz/XnQE9ubmFZboS3LEAw6bIpqFDG
+	 vZ0e7USejBvnQ==
+Date: Tue, 11 Feb 2025 15:39:24 -0600
 From: Rob Herring <robh@kernel.org>
-To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, alexandre.belloni@bootlin.com,
 	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, git@amd.com, amitrkcian2002@gmail.com
-Subject: Re: [PATCH v12 1/3] dt-bindings: mtd: Describe MTD partitions
- concatenation
-Message-ID: <20250211212928.GA1188800-robh@kernel.org>
-References: <20250205133730.273985-1-amit.kumar-mahapatra@amd.com>
- <20250205133730.273985-2-amit.kumar-mahapatra@amd.com>
+	jarkko.nikula@linux.intel.com, linux-i3c@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: i3c: Add Qualcomm I3C master
+ controller bindings
+Message-ID: <20250211213924.GA1215572-robh@kernel.org>
+References: <20250205143109.2955321-1-quic_msavaliy@quicinc.com>
+ <20250205143109.2955321-2-quic_msavaliy@quicinc.com>
+ <248000f5-63db-492c-884d-ac72db337493@kernel.org>
+ <0ae3f754-edcb-4b22-9d49-b20ef264554b@quicinc.com>
+ <7c518972-75df-4c8a-8920-06d5aa2849ae@kernel.org>
+ <b7f2c973-e161-4b83-9b3a-415e84510bd2@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,75 +66,109 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250205133730.273985-2-amit.kumar-mahapatra@amd.com>
+In-Reply-To: <b7f2c973-e161-4b83-9b3a-415e84510bd2@quicinc.com>
 
-On Wed, Feb 05, 2025 at 07:07:28PM +0530, Amit Kumar Mahapatra wrote:
-> The AMD QSPI controller supports an advanced connection modes called
-> Stacked mode which allow the controller to treat two different flashes
-> as one storage.
+On Mon, Feb 10, 2025 at 09:42:03PM +0530, Mukesh Kumar Savaliya wrote:
+> Thanks Krzysztof !
 > 
-> In Stacked connection mode flashes share the same SPI bus, but different CS
-> line, controller driver asserts the CS of the flash to which it needs to
-> communicate. Stacked mode is a software abstraction rather than a
-> controller feature or capability. At any given time, the controller
-> communicates with one of the two connected flash devices, as determined by
-> the requested address and data length. If an operation starts on one flash
-> and ends on the other, the mtd layer needs to split it into two separate
-> operations and adjust the data length accordingly. For more information on
-> the modes please feel free to go through the controller flash interface
-> below [1].
+> On 2/9/2025 5:15 PM, Krzysztof Kozlowski wrote:
+> > On 06/02/2025 14:43, Mukesh Kumar Savaliya wrote:
+> > > Hi Krzysztof,  Thanks !
+> > > 
+> > > On 2/5/2025 8:12 PM, Krzysztof Kozlowski wrote:
+> > > > On 05/02/2025 15:31, Mukesh Kumar Savaliya wrote:
+> > > > > Add device tree bindings for the Qualcomm I3C master controller. This
+> > > > > includes the necessary documentation and properties required to describe
+> > > > > the hardware in the device tree.
+> > > > 
+> > > > A nit, subject: drop second/last, redundant "bindings". The
+> > > > "dt-bindings" prefix is already stating that these are bindings.
+> > > Sure
+> > > > See also:
+> > > > https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> > > > 
+> > > > Use modern terminology, which means:
+> > > > s/master/whatever else or even nothing/
+> > > > See other recent bindings and discussions.
+> > > > 
+> > > Sure
+> > > > 
+> > > > > 
+> > > > > Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> > > > > ---
+> > > > >    .../bindings/i3c/qcom,i3c-master.yaml         | 57 +++++++++++++++++++
+> > > > >    1 file changed, 57 insertions(+)
+> > > > >    create mode 100644 Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml
+> > > > > 
+> > > > > diff --git a/Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..ad63ea779fd6
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml
+> > > > 
+> > > > Filename matching compatible.
+> > > > 
+> > > Changed compatible to "qcom,i3c-master"
+> > > > > @@ -0,0 +1,57 @@
+> > > > > +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/i3c/qcom,i3c-master.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Qualcomm I3C master controller
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> > > > > +
+> > > > > +allOf:
+> > > > > +  - $ref: i3c.yaml#
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    const: qcom,geni-i3c
+> > > > 
+> > > > No SoC? So to be sure: you claim all future SoCs will be using exactly
+> > > > the same interface. No new compatibles, no new properties will be added.
+> > > > 
+> > > I think i should remove const. kept it for now as no other compatible to
+> > > be added as of now.
+> > > 
+> > > let me remove const.
+> > 
+> > No, it does not matter. Keep const.
+> > 
+> Sure. I reviewed other files and seems i should write as below. Please help
+> confirm.
 > 
-> Introduce new DT property to specify which partitions are concatenated to
-> each other.
-> 
->     flash@0 {
->             reg = <0>;
->             partitions {
->                     compatible = "fixed-partitions";
->                     part-concat = <&flash0_part1>, <&flash1_part0>;
-> 
->                     flash0_part0: part0@0 {
->                             label = "part0_0";
->                             reg = <0x0 0x800000>;
->                     };
-> 
->                     flash0_part1: part1@800000 {
->                             label = "part0_1";
->                             reg = <0x800000 0x800000>;
->                     };
->             };
->     };
-> 
->     flash@1 {
->             reg = <1>;
->             partitions {
->                     compatible = "fixed-partitions";
-> 
->                     flash1_part0: part1@0 {
->                             label = "part1_0";
->                             reg = <0x0 0x800000>;
->                     };
-> 
->                     flash1_part1: part1@800000 {
->                             label = "part1_1";
->                             reg = <0x800000 0x800000>;
->                     };
->             };
->     };
-> 
-> The partitions that gets created are
-> part0_0
-> part1_1
-> part0_1-part1_0-concat
+>   compatible:
+>     items:
+>       - enum:
+>           - qcom,sm8550-i3c-master
+>       - const: qcom,i3c-master
 
-'part-concat' doesn't work if you have multiple sets of partitions you 
-want to concatenate.
+No, that's even worse. I doubt there is some universal, never changing 
+QCom I3C master.
 
-I think you need something like 'prev-partition' or 'next-partition' in 
-the partition nodes to create a linked list of partitions. Hopefully, 
-you don't need both properties, but you do have to scan everything to 
-figure out which ones are concatenated or not. For example, no property 
-can mean not concatenated or last partition if you use 'next-partition'. 
+> > > 
+> > > SoC name is not required, as this compatible is generic to all the SOCs.
+> > 
+> > That's the statement you make. I accept it. I will bookmark this thread
+> > and use it whenever you try to add any future property here (to be
+> > clear: you agree you will not add new properties to fulfill *FUTURE* SoC
+> > differences).
+> > 
+> Sorry, i am not saying there won't be any other compatible but i was saying
+> base driver will use "qcom,i3c-master".
+> After checking other files i realized there can be const compatible but
+> other SOC specific can be added as enum.  Hope above given way is fine.
+
+AIUI, "geni" is some firmware based multi-protocol serial i/o controller 
+and we already have other "geni" bindings. So really, it's probably more 
+coupled to firmware versions than SoC versions. If we haven't had 
+problems with per SoC quirks with the other geni bindings, then I think 
+using the same "geni" here is fine. But we won't be happy if we start 
+seeing per SoC quirk properties.
 
 Rob
 
