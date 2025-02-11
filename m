@@ -1,271 +1,221 @@
-Return-Path: <devicetree+bounces-145018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF0CFA2FFAF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 01:52:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B09C0A30003
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 02:21:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88031169EC7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 00:50:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1BBC7A2BB1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 01:20:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB121CAA75;
-	Tue, 11 Feb 2025 00:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E360175D50;
+	Tue, 11 Feb 2025 01:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kGzt43q+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NC6uAbMK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F44041C7F;
-	Tue, 11 Feb 2025 00:47:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 918C0158538;
+	Tue, 11 Feb 2025 01:21:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739234833; cv=none; b=dfLvzGZHafDnZzeAjuIF+zYUi9t1dg+mAFqqLrls9sN34XxeDhFk0ghZmxG6V1RLbJayY1zlC8b4EeLuz6JjbMrp+wZZuwKhabKxxJc2egbDnqnerHHwXTt4eHB1sfO0LbwfWR2GjDc4Ql4KcmRTaNWm9MoQsY2cv3HtFjDTU8c=
+	t=1739236875; cv=none; b=qkYjHFraI8ZZoQC02H/1+puSVDCeQXL67VLVC4wBsvQsVBx3G9X9eE7p2TRzbqc/8AcMWdopZnH+mpaexGL3dTdTPge22KCBtGWeqH8xYPj+roYVcVjGd8bfbbSf2b3wiYgHj8m71Fk/b56w59YJUWKCbFnqI8E3K3SXurqi7R0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739234833; c=relaxed/simple;
-	bh=9VES0IWV7eXdCEVwV5017MoNTx0dvRf0I+xHBK0PfeM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DOG99UqRFR+7lOcLyO5IU9EbHyrWbWjrStrsAjH70npj4XjUctPxZOUN9sACj45nWJdV1IRSKdJ3R1PNEapurX10BpAnSKBd0B+3/iNDwiWmQ3yTW19kgT4vE5NZW/m/1Vs7f+ySfaP+dj3zJsjX3y+qZdAddyTc6d2oJfECmMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kGzt43q+; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-471899f228cso16488741cf.3;
-        Mon, 10 Feb 2025 16:47:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739234829; x=1739839629; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=jTIEVTb8WG6g/xYwFCZRA14WxKqhOtoX7+ICXbI2OMk=;
-        b=kGzt43q+om5i3lEdi/lF4fEnFyF9FgZSb4V7Uh+1VfgLM8xKaf9bUSQwiRPbeE/j68
-         UL4LbE2zAur0oeWl0Oipuf4MPJQtH7DBO9B5/XMqmCrTD4T2/eeNTfBvQ2rOQC1JBGIm
-         0sdqO8NUJ8vX3zeWZ9FKh27i6dBzijckuSB9d2v3erYhAfP9U+3KYv/ytjTIzmjR3Ny0
-         vHQ79JTjCAjJELejFK/JZ6MsvoOGN3i79jNVJU8K2Dx9+IY4gIjMsBbZeg7g70uqKgkL
-         iSKAD5g1k6IvBzD0ZVssBd61WonhJKe8E1rHRA6TG5i+Uepr4HlQEvxw2DX17dLl+3hD
-         VXnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739234829; x=1739839629;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jTIEVTb8WG6g/xYwFCZRA14WxKqhOtoX7+ICXbI2OMk=;
-        b=OjJi71MPa5nT1/Xrv2hABQgMQfYqfmyHvKzs7F0zZOaJNwr72B9g6qhfkBGIq39c3/
-         9enzNkp4uhh6oLqkMwi2gIfp5NmQIOAezdNi1lT8S2d0N07W+quysKQDslT4+2ORD/vW
-         H12v/To3WP4jlmTg4gyPQxih+1uY8+ac+vaIudXW8Uhr7RMmOZrcJ5ltz4nQqM9bOiwk
-         G7mq3QH7x7bCeppS+Ui8NnSjm8fYm2NGCpF8lpz0jYxpvv/CzgznKFMtV4WnR13q8qeZ
-         2CN8U/xtk4YB+fWj6zbP7CiGn1YPWHblKrcn4lt7xe+8Q0fNXKzpvdSYvlH+xR6udlSl
-         L4UQ==
-X-Forwarded-Encrypted: i=1; AJvYcCURftNWhgu86FMF20TaRy0JUhdFyzYzLOFIwZ8qyZk01xMhYFLvewu2EsFYZ4hVv6u941mXHXcSpBXd@vger.kernel.org, AJvYcCXR2oKGGyiBfjgMjEEWr6A/9PB1aRtCbkdUW69yGiOixJshUKUIYxoOWrMZgoqLdv0tjHrtcLLpqD1l9K7L@vger.kernel.org
-X-Gm-Message-State: AOJu0YynqrVuZ5I9tfX4GfGu5GMRTc16sH32VROABD9zEGw4FRc8Gglt
-	dWxL9BLkundLbKR+EkMCkFzml4zwMhKCCFGEBNa5Bofc7v6VtsNh
-X-Gm-Gg: ASbGncsutU+Xr9gcJuvyiItSVbavSTaNjkbUkb6ieUsLbN7UShmoJpAoBDKn/CChhQA
-	oMXtlxtafXbJKZDbdyy9p4ms9Ku4xZk2ucgoto1VbogKl2gEBcHLvANF8/aKbVA79+bu55SWGnz
-	/4SVA7uC5eSSkPSzVM7jiywWkFSYVYAs65R/Tkoj1LWJpp2EGSwHeX39L0St80ONGSb0i4lzZzl
-	dupKKRQa4rgihD7v3Y2QbiwqoOVP1tR9rB2LmEVl3A03nc15vXGO7uOwfAnd89MANo=
-X-Google-Smtp-Source: AGHT+IHdTWiwpRzbdPuvlFEYzABE9ESxasKSuFHVRX5pGBvoEIPULEvUws7kobHnz0ZNoja0v14wbA==
-X-Received: by 2002:a05:6214:dc7:b0:6d4:1e43:f3a5 with SMTP id 6a1803df08f44-6e4455f4e38mr268033066d6.13.1739234829280;
-        Mon, 10 Feb 2025 16:47:09 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e459711533sm26289906d6.18.2025.02.10.16.47.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 16:47:08 -0800 (PST)
-Date: Tue, 11 Feb 2025 08:47:02 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Romain Gantois <romain.gantois@bootlin.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Jisheng Zhang <jszhang@kernel.org>, 
-	"Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>, =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Simon Horman <horms@kernel.org>, Furong Xu <0x1207@gmail.com>, 
-	Serge Semin <fancer.lancer@gmail.com>, Lothar Rubusch <l.rubusch@gmail.com>, 
-	Suraj Jaiswal <quic_jsuraj@quicinc.com>, Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Inochi Amaoto <inochiama@gmail.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, 
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next v4 3/3] net: stmmac: Add glue layer for Sophgo
- SG2044 SoC
-Message-ID: <uhup3bm6ez6kg7efvimy6rcthmqfcdkg2vmcwafqz33vouplfl@i25wn6q6c4h6>
-References: <20250209013054.816580-1-inochiama@gmail.com>
- <20250209013054.816580-4-inochiama@gmail.com>
- <2379380.ElGaqSPkdT@fw-rgant>
+	s=arc-20240116; t=1739236875; c=relaxed/simple;
+	bh=iURoQpV90d9Rs//Ogmq+bSJCz4CRlpfHqq0YxSnxuec=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=hWEwAP9qZWLbvZemsEp31QK9z6i9QMvN4bhIgPHqOCUsel5Ok6AgnEB0bsoYf1iEth445knH8bglo7nr8mU6+/LZll9dpFcC5fMH8gTSbpUPMUStjstFTx/W0j7BYa93gw7I7HR2eb0zG5m5wxe/J3Z03BEkknLrFUv2ogKzD5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NC6uAbMK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51AKuNiO031300;
+	Tue, 11 Feb 2025 01:20:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Lgxx79rg+zY8ZhEl6UOYRyZEbwvUp3kyXUYU+30FnDM=; b=NC6uAbMK2VkWajXR
+	578zpcNbOhxTXpIOOQ/5c9+i54PQ3KlmV8F1EVNixJdcfzn0kDkPJGMqzYU+hwpP
+	7q+V0vSXWqEETvQqkI93bNb7pkC7ANgorZ6FF6tis8nqy/4H8JksO+n3JdPbAVu8
+	rtr59FceO3umtR+JW7GVATGyFuy0MyJ4i1hBoTg6B4d1fVKhAHqbcJSZsf1HdG57
+	wQPT4JLakhExqrBYZKlo+LvE0HjlwnjB57fZN8ShVBTTPlRa4apPGf43hJbkd/zh
+	R4BMbKnHe10PWMZLrXJIt1s1eGWwr9Gms1vAPXJiAjXeEN/RRaTNDfLRvz1niPkm
+	JdIkgg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44p0ese5cf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Feb 2025 01:20:30 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51B1KTEG030819
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Feb 2025 01:20:29 GMT
+Received: from [10.253.11.86] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 10 Feb
+ 2025 17:20:23 -0800
+Message-ID: <80762356-f827-4a78-9ccf-dbe644248667@quicinc.com>
+Date: Tue, 11 Feb 2025 09:20:18 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] net: stmmac: dwmac-qcom-ethqos: Mask PHY mode if
+ configured with rgmii-id
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250121-dts_qcs615-v3-0-fa4496950d8a@quicinc.com>
+ <20250121-dts_qcs615-v3-2-fa4496950d8a@quicinc.com>
+ <30450f09-83d4-4ff0-96b2-9f251f0c0896@kernel.org>
+ <48ce7924-bbb7-4a0f-9f56-681c8b2a21bd@quicinc.com>
+ <2bd19e9e-775d-41b0-99d4-accb9ae8262d@kernel.org>
+ <71da0edf-9b2a-464e-8979-8e09f7828120@oss.qualcomm.com>
+ <46423f11-9642-4239-af5d-3eb3b548b98c@quicinc.com>
+ <60fecdb9-d039-4f76-a368-084664477160@oss.qualcomm.com>
+Content-Language: en-US
+From: Yijie Yang <quic_yijiyang@quicinc.com>
+In-Reply-To: <60fecdb9-d039-4f76-a368-084664477160@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2379380.ElGaqSPkdT@fw-rgant>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: JmCXu3hZE9gZMZDOFI493sN8LmLBXd38
+X-Proofpoint-ORIG-GUID: JmCXu3hZE9gZMZDOFI493sN8LmLBXd38
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-11_01,2025-02-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
+ suspectscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
+ priorityscore=1501 mlxscore=0 adultscore=0 spamscore=0 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502110005
 
-On Mon, Feb 10, 2025 at 12:01:56PM +0100, Romain Gantois wrote:
-> Hello Inochi,
-> 
-> On dimanche 9 février 2025 02:30:52 heure normale d’Europe centrale Inochi 
-> Amaoto wrote:
-> > Adds Sophgo dwmac driver support on the Sophgo SG2044 SoC.
-> ...
-> > --- /dev/null
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-> > @@ -0,0 +1,105 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Sophgo DWMAC platform driver
-> > + *
-> > + * Copyright (C) 2024 Inochi Amaoto <inochiama@gmail.com>
-> > + */
-> > +
-> > +#include <linux/bits.h>
-> 
-> It doesn't look like this include is used, could you please remove it?
-> 
 
-Thanks, I will. And I will add the miss header 
-linux/clk.h and linux/module.h.
 
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/phy.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#include "stmmac_platform.h"
-> > +
-> > +struct sophgo_dwmac {
-> > +	struct device *dev;
-> > +	struct clk *clk_tx;
-> > +};
-> > +
-> > +static void sophgo_dwmac_fix_mac_speed(void *priv, unsigned int speed,
-> > unsigned int mode) +{
-> > +	struct sophgo_dwmac *dwmac = priv;
-> > +	long rate;
-> > +	int ret;
-> > +
-> > +	rate = rgmii_clock(speed);
-> > +	if (rate < 0) {
-> > +		dev_err(dwmac->dev, "invalid speed %u\n", speed);
-> > +		return;
-> > +	}
-> > +
-> > +	ret = clk_set_rate(dwmac->clk_tx, rate);
-> > +	if (ret)
-> > +		dev_err(dwmac->dev, "failed to set tx rate %lu: %pe\n",
+On 2025-02-11 02:01, Konrad Dybcio wrote:
+> On 10.02.2025 4:09 AM, Yijie Yang wrote:
+>>
+>>
+>> On 2025-01-27 18:49, Konrad Dybcio wrote:
+>>> On 22.01.2025 10:48 AM, Krzysztof Kozlowski wrote:
+>>>> On 22/01/2025 09:56, Yijie Yang wrote:
+>>>>>
+>>>>>
+>>>>> On 2025-01-21 20:47, Krzysztof Kozlowski wrote:
+>>>>>> On 21/01/2025 08:54, Yijie Yang wrote:
+>>>>>>> The Qualcomm board always chooses the MAC to provide the delay instead of
+>>>>>>> the PHY, which is completely opposite to the suggestion of the Linux
+>>>>>>> kernel.
+>>>>>>
+>>>>>>
+>>>>>> How does the Linux kernel suggest it?
+>>>>>>
+>>>>>>> The usage of phy-mode in legacy DTS was also incorrect. Change the
+>>>>>>> phy_mode passed from the DTS to the driver from PHY_INTERFACE_MODE_RGMII_ID
+>>>>>>> to PHY_INTERFACE_MODE_RGMII to ensure correct operation and adherence to
+>>>>>>> the definition.
+>>>>>>> To address the ABI compatibility issue between the kernel and DTS caused by
+>>>>>>> this change, handle the compatible string 'qcom,qcs404-evb-4000' in the
+>>>>>>> code, as it is the only legacy board that mistakenly uses the 'rgmii'
+>>>>>>> phy-mode.
+>>>>>>>
+>>>>>>> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+>>>>>>> ---
+>>>>>>>     .../net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c    | 18 +++++++++++++-----
+>>>>>>>     1 file changed, 13 insertions(+), 5 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+>>>>>>> index 2a5b38723635b5ef9233ca4709e99dd5ddf06b77..e228a62723e221d58d8c4f104109e0dcf682d06d 100644
+>>>>>>> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+>>>>>>> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+>>>>>>> @@ -401,14 +401,11 @@ static int ethqos_dll_configure(struct qcom_ethqos *ethqos)
+>>>>>>>     static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
+>>>>>>>     {
+>>>>>>>         struct device *dev = &ethqos->pdev->dev;
+>>>>>>> -    int phase_shift;
+>>>>>>> +    int phase_shift = 0;
+>>>>>>>         int loopback;
+>>>>>>>            /* Determine if the PHY adds a 2 ns TX delay or the MAC handles it */
+>>>>>>> -    if (ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_ID ||
+>>>>>>> -        ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_TXID)
+>>>>>>> -        phase_shift = 0;
+>>>>>>> -    else
+>>>>>>> +    if (ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_ID)
+>>>>>>>             phase_shift = RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN;
+>>>>>>>            /* Disable loopback mode */
+>>>>>>> @@ -810,6 +807,17 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+>>>>>>>         ret = of_get_phy_mode(np, &ethqos->phy_mode);
+>>>>>>>         if (ret)
+>>>>>>>             return dev_err_probe(dev, ret, "Failed to get phy mode\n");
+>>>>>>> +
+>>>>>>> +    root = of_find_node_by_path("/");
+>>>>>>> +    if (root && of_device_is_compatible(root, "qcom,qcs404-evb-4000"))
+>>>>>>
+>>>>>>
+>>>>>> First, just check if machine is compatible, don't open code it.
+>>>>>>
+>>>>>> Second, drivers should really, really not rely on the machine. I don't
+>>>>>> think how this resolves ABI break for other users at all.
+>>>>>
+>>>>> As detailed in the commit description, some boards mistakenly use the
+>>>>> 'rgmii' phy-mode, and the MAC driver has also incorrectly parsed and
+>>>>
+>>>> That's a kind of an ABI now, assuming it worked fine.
+>>>
+>>> I'm inclined to think it's better to drop compatibility given we're talking
+>>> about rather obscure boards here.
+>>>
+>>> $ rg 'mode.*=.*"rgmii"' arch/arm64/boot/dts/qcom -l
+>>>
+>>> arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+>>> arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts
+>>>
+>>> QCS404 seems to have zero interest from anyone (and has been considered
+>>> for removal upstream..).
+>>>
+>>> The ADP doesn't see much traction either, last time around someone found
+>>> a boot breaking issue months after it was committed.
+>>
+>> But what about the out-of-tree boards that Andrew mentioned? We need to ensure we don't break them, right?
 > 
-> nit: shouldn't this be "%ld"?
-> 
+> No. What's not on the list, doesn't exist
 
-Yeah, it is my mistake, I will fix it.
+Okay, I understand.
 
-> > +			rate, ERR_PTR(ret));
-> > +}
-> > +
-> > +static int sophgo_sg2044_dwmac_init(struct platform_device *pdev,
-> > +				    struct plat_stmmacenet_data *plat_dat,
-> > +				    struct stmmac_resources *stmmac_res)
-> > +{
-> > +	struct sophgo_dwmac *dwmac;
-> > +
-> > +	dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
-> > +	if (!dwmac)
-> > +		return -ENOMEM;
-> > +
-> > +	dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
-> > +	if (IS_ERR(dwmac->clk_tx))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
-> > +				     "failed to get tx clock\n");
-> > +
-> > +	dwmac->dev = &pdev->dev;
-> > +	plat_dat->bsp_priv = dwmac;
-> > +	plat_dat->flags |= STMMAC_FLAG_SPH_DISABLE;
-> > +	plat_dat->fix_mac_speed = sophgo_dwmac_fix_mac_speed;
-> > +	plat_dat->multicast_filter_bins = 0;
-> > +	plat_dat->unicast_filter_entries = 1;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int sophgo_dwmac_probe(struct platform_device *pdev)
-> > +{
-> > +	struct plat_stmmacenet_data *plat_dat;
-> > +	struct stmmac_resources stmmac_res;
 > 
-> nit: I think adding "struct device *dev = &pdev->dev;" here would
-> be better than repeating "&pdev->dev" later on.
-> 
+> Konrad
 
-Thanks, I will change that.
-
-> > +	int ret;
-> > +
-> > +	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-> > +	if (ret)
-> > +		return dev_err_probe(&pdev->dev, ret,
-> > +				     "failed to get resources\n");
-> 
-> This error message is a bit too vague, maybe replace it with "failed to get 
-> platform resources"?
-> 
-
-OK.
-
-> > +
-> > +	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> > +	if (IS_ERR(plat_dat))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat),
-> > +				     "dt configuration failed\n");
-> 
-> This error message is a bit misleading IMO, I would replace it with
-> something like "failed to parse device-tree parameters".
-> 
-
-OK.
-
-> > +
-> > +	ret = sophgo_sg2044_dwmac_init(pdev, plat_dat, &stmmac_res);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
-> > +}
-> > +
-> > +static const struct of_device_id sophgo_dwmac_match[] = {
-> > +	{ .compatible = "sophgo,sg2044-dwmac" },
-> > +	{ /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, sophgo_dwmac_match);
-> > +
-> > +static struct platform_driver sophgo_dwmac_driver = {
-> > +	.probe  = sophgo_dwmac_probe,
-> > +	.remove = stmmac_pltfr_remove,
-> > +	.driver = {
-> > +		.name = "sophgo-dwmac",
-> > +		.pm = &stmmac_pltfr_pm_ops,
-> > +		.of_match_table = sophgo_dwmac_match,
-> > +	},
-> > +};
-> > +module_platform_driver(sophgo_dwmac_driver);
-> > +
-> > +MODULE_AUTHOR("Inochi Amaoto <inochiama@gmail.com>");
-> > +MODULE_DESCRIPTION("Sophgo DWMAC platform driver");
-> > +MODULE_LICENSE("GPL");
-> 
-> Thanks,
-> 
-> -- 
-> Romain Gantois, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-
+-- 
+Best Regards,
+Yijie
 
 
