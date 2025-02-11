@@ -1,114 +1,120 @@
-Return-Path: <devicetree+bounces-145372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 507E5A31110
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:18:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A504A3111C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:20:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A0BC3A9A4B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:17:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0058A3A05D3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FAC91D63D2;
-	Tue, 11 Feb 2025 16:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF551D63F9;
+	Tue, 11 Feb 2025 16:20:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c1pXt6cd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mUaxMBZs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370C01EF01;
-	Tue, 11 Feb 2025 16:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520D826BDAB;
+	Tue, 11 Feb 2025 16:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739290578; cv=none; b=be0MC2sBSOJTC2nOU2Z8Og50ch/d5uy4dqXVFCy4xhVOgSjBxqyqt4sbgFG0jwpBB6ksj76jTbOeJ7GEoFc/Vuj/8b8wd31Q7PQGU1y7gVm17o1WUHRRIDnTAJDzsGy7QNP1Po8z5+/RbElVwlKx99g1J4/1lOXOetQKvgePc1U=
+	t=1739290846; cv=none; b=c4j19y1oJjZMuiScFe545HJTTJs+ETAWRy2DZ41JTCBs2GC0w65J61kqeps81FV4r1EC/ohgYGAaEgPGj8R7ws9uM5YKn8Opyf+fW7SBe404U6Z+njJUu2nVZ1Xq+hCcWxz0KEQ2F6Ck7/7w8FlOqgJRldHbkBDRylS5lHMJq/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739290578; c=relaxed/simple;
-	bh=1apOfVZ6LTpZYFLpFXmf153RBYS1MxNBPKu94D2rOWY=;
+	s=arc-20240116; t=1739290846; c=relaxed/simple;
+	bh=P1WfyrU9DP00tpwK1PSMyOyXYZZW0lJXA7LiW4icLKA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SOBxprtrnoqBfgR8rNfQ8vLFwFw+dfFJ1xb8p1+6DrLnjmbJqx8GXNHQUxR9Pd5xV/s7WPyP1uzZ+LlPEHdGvHQlIr/vNfohvtySOV26X+mobkMySZ4XhRYx9mfI6/+b+0tCkdscmojyRkhkUoiq9cRG+a9XLtnbSLBskgwONDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c1pXt6cd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65F5FC4CEE5;
-	Tue, 11 Feb 2025 16:16:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HN3e3B5VVVoQq1S+Snlh/BYKh9xJtF2OeYPYMc8beunmgstYzH2CdHtY6rGBvsSAOtGGSHVBgFsLsTMQzqy2i90KJG18+CsOpXKmZOZU2xujYVvr4WwBkye/ARmNOtki+j+jaUj7Zk6WzG0c3oqUGpv2RPovG8TZ44f6SI45vc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mUaxMBZs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB71CC4CEE5;
+	Tue, 11 Feb 2025 16:20:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739290576;
-	bh=1apOfVZ6LTpZYFLpFXmf153RBYS1MxNBPKu94D2rOWY=;
+	s=k20201202; t=1739290845;
+	bh=P1WfyrU9DP00tpwK1PSMyOyXYZZW0lJXA7LiW4icLKA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c1pXt6cd9/NtBdoxZPnnvpY/oFOXH3Jxv9rSmmrs21uhFjOpUfDWg8rbeAtZfbL+4
-	 BVxN/UZCqGGAHACVhmGiYwSrAUlQrbq6DXvlEXKCqp5q4ZRzlyJWWNp+QvXax+hq7W
-	 InRZ2k9VpICPC3EROPXxFhw5WqRpn8PAMM6h6wMUJChBz92QTpgtPF+KzTiCGqD7XN
-	 YPme+lhIb7d98mXJ6+2IT+md14M2EuXfXQLbXcJv8Q1EnCpoTvBmTGt9ta7kb/4pbL
-	 2cQGd37A46GtHtST1WcmxAfsB1eagOqEVwWkrf6xrmqsJ45LsaLED04DZ15pnkvfQl
-	 PUfSlEtM/RtMw==
-Date: Tue, 11 Feb 2025 10:16:15 -0600
-From: Rob Herring <robh@kernel.org>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Daniel Mack <daniel@zonque.org>,
-	Haojian Zhuang <haojian.zhuang@gmail.com>,
-	Robert Jarzmik <robert.jarzmik@free.fr>,
+	b=mUaxMBZsNBcg/yDHNo8fFMEwU8DVFkeQMNKh1CKQuMfvWJ+GCyo+0JJeWEI5x70in
+	 C+uA8mkVLfNl5gq0mm9e4S5Vo1zPntWZYbSluEJWpc8OWwBqiS2Lje7QB61N+jlQeb
+	 RBj3Jw3q+OjV0Hp56MAmkIm0Yi6Bvye0tv6dO8wrfWtuiw1WQd1FU6p46ds/m+mYqc
+	 OIxgJq62qXO+KOJEtLYN6DOe7WmDROyTDkEaJ576PIH7GnUA9IjNWKUq5vjvWR8w5Z
+	 UNBDGCOkjg68j0F4B5tMQc3h3slcuKH/UvwR8FxINtohnAPOxOoOYidFHW/0xhlr9n
+	 LQ7FscY7Ktntw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tht0H-000000004p6-2C4y;
+	Tue, 11 Feb 2025 17:20:53 +0100
+Date: Tue, 11 Feb 2025 17:20:53 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Jie Gan <quic_jiegan@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	=?iso-8859-1?Q?Herv=E9?= Codina <herve.codina@bootlin.com>,
-	linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: pwm: marvell,pxa-pwm: Update to use
- #pwm-cells = <3>
-Message-ID: <20250211161615.GB354180-robh@kernel.org>
-References: <cover.1738842938.git.u.kleine-koenig@baylibre.com>
- <cb799d8a5bb284cd861785a691b8d5e329300d99.1738842938.git.u.kleine-koenig@baylibre.com>
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Yushan Li <quic_yushli@quicinc.com>
+Subject: Re: [PATCH RESEND v5] arm64: dts: qcom: Add coresight nodes for
+ x1e80100
+Message-ID: <Z6t45aOGDkotqM4Z@hovoldconsulting.com>
+References: <20241205054904.535465-1-quic_jiegan@quicinc.com>
+ <Z6oDdq-qAJPf9-ef@hovoldconsulting.com>
+ <fe6c7c26-91d6-402f-80b6-018ee40e9ed7@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cb799d8a5bb284cd861785a691b8d5e329300d99.1738842938.git.u.kleine-koenig@baylibre.com>
+In-Reply-To: <fe6c7c26-91d6-402f-80b6-018ee40e9ed7@quicinc.com>
 
-On Thu, Feb 06, 2025 at 01:06:26PM +0100, Uwe Kleine-König wrote:
-> The PXA PWM binding is the only one that doesn't pass the PWM line index
-> as first parameter of the parameter cells. However this can be upgraded
-> to the mandatory binding for all new PWM drivers without breaking
-> compatibility for old device trees using #pwm-cells = <1>.
+On Tue, Feb 11, 2025 at 09:37:43AM +0800, Jie Gan wrote:
+> On 2/10/2025 9:47 PM, Johan Hovold wrote:
+
+> > This patch is now in 6.14-rc1 and results in the logs being spammed with
+> > 200+ messages about cyclic dependencies. I'd expect something like this
+> > to at least be mentioned in the commit message:
+> > 
+> > [    0.250732] /soc@0/stm@10002000: Fixed dependency cycle(s) with /soc@0/funnel@10041000
+> > [    0.250854] /soc@0/tpda@10004000: Fixed dependency cycle(s) with /soc@0/funnel@10041000
+
+> > ...
+
+> > [    0.301582] /soc@0/funnel@10d13000: Fixed dependency cycle(s) with /soc@0/funnel@10d04000
+> > [    0.301639] /soc@0/funnel@10d13000: Fixed dependency cycle(s) with /soc@0/tpda@10d12000
+> > 
+> > [    0.317624] Callback from call_rcu_tasks() invoked.
+> > 
+> > Has anyone looked into what is causing this and if anything can be done
+> > about it?
+
+> These lines have been printed by following API, 
+> fw_devlink_create_devlink, it's pr_info:
 > 
-> So bump #pwm-cells to 3 with the (undocumented) promise to keep the old
-> behaviour for #pwm-cells = <1>.
+> ...
+> 	device_links_write_lock();
+> 	if (__fw_devlink_relax_cycles(link->consumer, sup_handle)) {
+> 		__fwnode_link_cycle(link);
+> 		pr_debug("----- cycle: end -----\n");
+> 		pr_info("%pfwf: Fixed dependency cycle(s) with %pfwf\n",
+> 			link->consumer, sup_handle);
+> 	}
+> ...
 
-Why make that undocumented?
+Right, and we had a few of these already, but not several hundreds. I
+meant to ask if anyone has looked into whether this indicates a problem
+with the patch or binding (or devlink code) or if these notifications
+are simply expected.
 
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Tested-by: Duje Mihanović <duje.mihanovic@skole.hr>
-> Reviewed-by: Daniel Mack <daniel@zonque.org>
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
-> index 9ee1946dc2e1..74f2d5964742 100644
-> --- a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
-> @@ -25,8 +25,7 @@ properties:
->      maxItems: 1
->  
->    "#pwm-cells":
-> -    # Used for specifying the period length in nanoseconds
-> -    const: 1
-> +    const: 3
+> I am not sure we can change it to pr_debug to decrease annoying messages.
 
-Note that if we apply this and not the dts change, we'll add warnings.
+That may be an option, but I assume the current printk level is used so
+that people get a chance to spot potential issues. Otherwise, we should
+definitely silence it.
 
-You could instead do:
-
-oneOf:
-  - const: 1
-    deprecated: true
-  - const: 3
-
+Johan
 
