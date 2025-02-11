@@ -1,135 +1,185 @@
-Return-Path: <devicetree+bounces-145215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A0E3A30A87
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:43:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C9C7A30AA0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:46:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF0EA188A49D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 11:43:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC304163342
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 11:46:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54069260A38;
-	Tue, 11 Feb 2025 11:35:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A167424E4AE;
+	Tue, 11 Feb 2025 11:43:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RJZCmoVL"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="J07MyjBm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59DBE1FECA7;
-	Tue, 11 Feb 2025 11:35:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A711624C69D;
+	Tue, 11 Feb 2025 11:43:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739273726; cv=none; b=pNINqyOkx7OlkD/02eKMLuczZBxKcFkzC2JKGO3rDu6UJC0NSIZrcwy39mM7ABSpXT0iJ31G2MMbkLtHNoIIXY/lJvNeVnv6v+EXP/GybX8cY6Sd14rNeYaXpgJMV42A7VlhOPT8Y7PqLChaJp0BaAV6ssXktuyLATJQ55zfPmc=
+	t=1739274201; cv=none; b=jXAuwBZv6hhssErJ1T3wAfQmUue8toBiIfzKPLHH5LcHBXuCiQF3TLXC3zbDyDjjwLVcpC33uQz/BUvq9gwCESAiHVJ1lSNG0ExLvFgUJ5GEF//8+qTG9MRfeHq4+tE8KmGGceXwEWCorX+fC+8I30tiyzSjzt/PKDEkXpeloB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739273726; c=relaxed/simple;
-	bh=xBlxWG96j/ussT7IHnmYGqG0ZUkOUgPdCbXo3xCR/uo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TdlW/ku4aEQEqNVexoy1di93n1xA/oOekoFdpzfI4oRbRrBXe/CZmct2bp/NWtxMKyodA0CoSyHdvDRPg9RhqXGdmhaAccteIQ8vzlihUNC0Vm5UhZ1TxIPuXI2jtY/5ZDcRBoIyf7l/VyBk5AA1AQv9NeZLSvhgRLphIDGdRIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RJZCmoVL; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739273722;
-	bh=xBlxWG96j/ussT7IHnmYGqG0ZUkOUgPdCbXo3xCR/uo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RJZCmoVLQfR2/hA/oMkM7wl4MTMPU4kOIJfY516xQFI9uyPvWUulOTZP5BRqpI/7s
-	 9j8s/iwDYPb9ZVhmhJLRjQ9upmzpp0ZFxbLGoqmDE8d5kHEXoxCPNos4GGxkak6ov3
-	 O2XbmNfvh2BN4ztvTWzNFrll314L2OlJ6xiCOcb4NQJGMXSRgY2UTnpynfjcvuJ5LB
-	 6eisX59lln6iJhtiEoBeAYLgzS2KE+gute2bW/xHqOOOfHyPilBXULulH7NsNo0KGv
-	 LGxlaEFAX1m5p6P1qHsXYDjqf3aC+p2X7DMxCV9hPt43jI0/ijHzGsuf80BkEBJ4+p
-	 diUhaXyP9kXFA==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5DD0317E154C;
-	Tue, 11 Feb 2025 12:35:21 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: chunkuang.hu@kernel.org
-Cc: p.zabel@pengutronix.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	ck.hu@mediatek.com,
-	jitao.shi@mediatek.com,
-	jie.qiu@mediatek.com,
-	junzhi.zhao@mediatek.com,
-	dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com,
-	dmitry.baryshkov@linaro.org,
-	lewis.liao@mediatek.com,
-	ives.chenjh@mediatek.com,
-	tommyyl.chen@mediatek.com,
-	jason-jh.lin@mediatek.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 42/42] drm/mediatek/hdmi: Use syscon_regmap_lookup_by_phandle_args
-Date: Tue, 11 Feb 2025 12:34:09 +0100
-Message-ID: <20250211113409.1517534-43-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250211113409.1517534-1-angelogioacchino.delregno@collabora.com>
-References: <20250211113409.1517534-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1739274201; c=relaxed/simple;
+	bh=12MzYizbbPSbp4udes42xYP8cXF305cfWeIimY26ew4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sdBJyKZhHqMa3NZBX+3fv+c3OVO3skCa9qgwfu7sOqjjmlPFniDCuELzG6/OFefo1ARMcqz6ZIfP2R1WkOY+Jt1fkxRmjQW9HaPJTaoCYl3gtFdGMLas6luqSNvOJL6pNYC0tDlPcYOuv7WtJnVYMfVkRfXPp6DFOCMppQlVgEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=J07MyjBm; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B1B012B3;
+	Tue, 11 Feb 2025 12:41:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1739274119;
+	bh=12MzYizbbPSbp4udes42xYP8cXF305cfWeIimY26ew4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=J07MyjBmzRaoN4BB2HKRXu7o23wKFsqKr9k+Bdn1fG9n3ii9IddAKwQEL3fXlM5cl
+	 ZT0nKcyROe7aaz53SQaneoY8e04z+JE2jzEZIsTlpxaq2ABkmUYb8WELnQ99WQRhk/
+	 aPtzy/pVz3wxa2fo2yrYMlqFfKtp/b6c1mxRUrKk=
+Date: Tue, 11 Feb 2025 13:43:07 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: "zhangzekun (A)" <zhangzekun11@huawei.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, robh@kernel.org,
+	saravanak@google.com, justin.chen@broadcom.com,
+	florian.fainelli@broadcom.com, andrew+netdev@lunn.ch,
+	kuba@kernel.org, kory.maincent@bootlin.com,
+	jacopo+renesas@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
+	maddy@linux.ibm.com, mpe@ellerman.id.au, npiggin@gmail.com,
+	olteanv@gmail.com, davem@davemloft.net, taras.chornyi@plvision.eu,
+	edumazet@google.com, pabeni@redhat.com, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, arm-scmi@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-media@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	chenjun102@huawei.com
+Subject: Re: [PATCH 1/9] of: Add warpper function
+ of_find_node_by_name_balanced()
+Message-ID: <20250211114307.GB5888@pendragon.ideasonboard.com>
+References: <20250207013117.104205-1-zhangzekun11@huawei.com>
+ <20250207013117.104205-2-zhangzekun11@huawei.com>
+ <Z6XDKi_V0BZSdCeL@pengutronix.de>
+ <80b1c21c-096b-4a11-b9d7-069c972b146a@huawei.com>
+ <20250207153722.GA24886@pendragon.ideasonboard.com>
+ <c48952c7-716c-4302-949c-2c66ea102a3e@huawei.com>
+ <20250210100307.GA2966@pendragon.ideasonboard.com>
+ <664185f4-b87a-4635-9ee9-2f0e7494195a@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <664185f4-b87a-4635-9ee9-2f0e7494195a@huawei.com>
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Tue, Feb 11, 2025 at 07:26:18PM +0800, zhangzekun (A) wrote:
+> 在 2025/2/10 18:03, Laurent Pinchart 写道:
+> > On Mon, Feb 10, 2025 at 02:47:28PM +0800, zhangzekun (A) wrote:
+> >>> I think we all agree that of_find_node_by_name() is miused, and that it
+> >>> shows the API isn't optimal. What we have different opinions on is how
+> >>> to make the API less error-prone. I think adding a new
+> >>> of_find_node_by_name_balanced() function works around the issue and
+> >>> doesn't improve the situation much, I would argue it makes things even
+> >>> more confusing.
+> >>>
+> >>> We have only 20 calls to of_find_node_by_name() with a non-NULL first
+> >>> argument in v6.14-rc1:
+> >>>
+> >>> arch/powerpc/platforms/chrp/pci.c:      rtas = of_find_node_by_name (root, "rtas");
+> >>>
+> >>> The 'root' variable here is the result of a call to
+> >>> 'of_find_node_by_path("/")', so I think we could pass a null pointer
+> >>> instead to simplify things.
+> >>>
+> >>> arch/powerpc/platforms/powermac/pic.c:          slave = of_find_node_by_name(master, "mac-io");
+> >>>
+> >>> Here I believe of_find_node_by_name() is called to find a *child* node
+> >>> of 'master'. of_find_node_by_name() is the wrong function for that.
+> >>>
+> >>> arch/sparc/kernel/leon_kernel.c:        np = of_find_node_by_name(rootnp, "GAISLER_IRQMP");
+> >>> arch/sparc/kernel/leon_kernel.c:                np = of_find_node_by_name(rootnp, "01_00d");
+> >>> arch/sparc/kernel/leon_kernel.c:        np = of_find_node_by_name(nnp, "GAISLER_GPTIMER");
+> >>> arch/sparc/kernel/leon_kernel.c:                np = of_find_node_by_name(nnp, "01_011");
+> >>>
+> >>> Here too the code seems to be looking for child nodes only (but I
+> >>> couldn't find a DT example or binding in-tree, so I'm not entirely
+> >>> sure).
+> >>>
+> >>> drivers/clk/ti/clk.c:   return of_find_node_by_name(from, tmp);
+> >>>
+> >>> Usage here seems correct, the reference-count decrement is intended.
+> >>>
+> >>> drivers/media/i2c/max9286.c:    i2c_mux = of_find_node_by_name(dev->of_node, "i2c-mux");
+> >>> drivers/media/platform/qcom/venus/core.c:       enp = of_find_node_by_name(dev->of_node, node_name);
+> >>> drivers/net/dsa/bcm_sf2.c:      ports = of_find_node_by_name(dn, "ports");
+> >>> drivers/net/dsa/hirschmann/hellcreek_ptp.c:     leds = of_find_node_by_name(hellcreek->dev->of_node, "leds");
+> >>> drivers/net/ethernet/broadcom/asp2/bcmasp.c:    ports_node = of_find_node_by_name(dev->of_node, "ethernet-ports");
+> >>> drivers/net/ethernet/marvell/prestera/prestera_main.c:  ports = of_find_node_by_name(sw->np, "ports");
+> >>> drivers/net/pse-pd/tps23881.c:  channels_node = of_find_node_by_name(priv->np, "channels");
+> >>> drivers/regulator/scmi-regulator.c:     np = of_find_node_by_name(handle->dev->of_node, "regulators");
+> >>> drivers/regulator/tps6594-regulator.c:          np = of_find_node_by_name(tps->dev->of_node, multi_regs[multi].supply_name);
+> >>>
+> >>> Incorrect usage, as far as I understand all those drivers are looking
+> >>> for child nodes only.
+> >>>
+> >>> drivers/of/unittest.c:          found = of_find_node_by_name(nd->overlay, "test-unittest16");
+> >>> drivers/of/unittest.c:          found = of_find_node_by_name(nd->overlay, "test-unittest17");
+> >>> drivers/of/unittest.c:          found = of_find_node_by_name(nd->overlay, "test-unittest18");
+> >>> drivers/of/unittest.c:          found = of_find_node_by_name(nd->overlay, "test-unittest19");
+> >>>
+> >>> Here too I think only child nodes are meant to be considered.
+> >>>
+> >>> of_find_node_by_name() is very much misused as most callers want to find
+> >>> child nodes, while of_find_node_by_name() will walk the whole DT from a
+> >>> given starting point.
+> >>>
+> >>> I think the right fix here is to
+> >>>
+> >>> - Replace of_find_node_by_name(root, ...) with
+> >>>     of_find_node_by_name(NULL, ...) in arch/powerpc/platforms/chrp/pci.c
+> >>>     (if my understanding of the code is correct).
+> >>
+> >> For arch/powerpc/platforms/chrp/pci.c, noticing that there is a comment
+> >> in setup_peg2():
+> >>    /* keep the reference to the root node */
+> >>
+> >> It might can not be convert to of_find_node_by_name(NULL, ...), and the
+> >> origin use of of_find_node_by_name() put the ref count which want to be
+> >> kept.
+> > 
+> > But the reference is dropped by of_find_node_by_name(). Unless I'm
+> > missing something, dropping the lien
+> > 
+> > 	struct device_node *root = of_find_node_by_path("/");
+> > 
+> > and changing
+> > 
+> > 	rtas = of_find_node_by_name (root, "rtas");
+> > 
+> > to
+> > 
+> > 	rtas = of_find_node_by_name (NULL, "rtas");
+> > 
+> > will not change the behaviour of the code.
+> 
+> Hi, Laurent,
+> 
+> I think that the original code try to keep the refcount get by 
+> of_find_node_by_path(), but leak it accidently by 
+> of_find_node_by_name(). I am not sure that what driver really wants to 
+> do and if it has a bug here.
 
-Use syscon_regmap_lookup_by_phandle_args() which is a wrapper over
-syscon_regmap_lookup_by_phandle() combined with getting the syscon
-argument.  Except simpler code this annotates within one line that given
-phandle has arguments, so grepping for code would be easier.
+Looking at the git history, I don't think the code needs or tries to
+keep a reference to the root node.
 
-There is also no real benefit in printing errors on missing syscon
-argument, because this is done just too late: runtime check on
-static/build-time data.  Dtschema and Devicetree bindings offer the
-static/build-time check for this already.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-[Angelo: Rebased over HDMIv2/DDCv2 series cleanups]
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-index 750bcb45c33d..c9bf7085328c 100644
---- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-+++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-@@ -269,12 +269,9 @@ static int mtk_hdmi_get_cec_dev(struct mtk_hdmi *hdmi, struct device *dev, struc
- 	 * MMSYS_CONFIG device and the register offset of the HDMI_SYS_CFG
- 	 * registers it contains.
- 	 */
--	hdmi->sys_regmap = syscon_regmap_lookup_by_phandle(np, "mediatek,syscon-hdmi");
-+	hdmi->sys_regmap = syscon_regmap_lookup_by_phandle_args(np, "mediatek,syscon-hdmi",
-+								1, &hdmi->sys_offset);
- 	if (IS_ERR(hdmi->sys_regmap))
--		return PTR_ERR(hdmi->sys_regmap);
--
--	ret = of_property_read_u32_index(np, "mediatek,syscon-hdmi", 1, &hdmi->sys_offset);
--	if (ret)
- 		return dev_err_probe(dev, ret,
- 				     "Failed to get system configuration registers\n");
- 
 -- 
-2.48.1
+Regards,
 
+Laurent Pinchart
 
