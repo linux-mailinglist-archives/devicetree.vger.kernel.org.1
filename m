@@ -1,219 +1,115 @@
-Return-Path: <devicetree+bounces-145523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44C0CA31927
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 23:59:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFAA2A3194B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 00:07:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F6D63A22A1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:59:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 658AD166272
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 23:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7D826A0BA;
-	Tue, 11 Feb 2025 22:58:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA599267B02;
+	Tue, 11 Feb 2025 23:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nAHF4yZl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mcW1HqYk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0379426A0B3;
-	Tue, 11 Feb 2025 22:58:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D69B27293C;
+	Tue, 11 Feb 2025 23:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739314735; cv=none; b=PZt9v+CX4Mp1Ov5OUU9iYRW4jrD4nKH7Jk0oLk/ckhwYc6dU5pmvn4uGU9oql7958PwUgs+w9wV4iEmt0KM0pRR4aX6LUTjlwyUH0jBAjqoCKippKHpnSqfx3RejyXpNZ6X5YyVwOOpsweNvFfFoZUjZv0JnJaPg4R2HDmH13z4=
+	t=1739315236; cv=none; b=VLYYpjbPYRIp/KGNT5u0Ux0aghi2sVMvWS7crTUcX74rWW+HkONuX3bhk6J0+So4J+2H3/H2z/LAiD3qwaUfb7jjifGLc2dK67AT3Xd2ot0PXWL6JjvJsHmHClLP+2oopJ37OwTxK8jZbcajwegyBm8v/lC8VIK281Xwy7G+PEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739314735; c=relaxed/simple;
-	bh=ZYKjylCz6U/0L/L3Gbbqd3HrsBe1+tDd+PVvTCCII9o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZttOUJDHx1voV33lFWRVMNXNIHtJx38ekzN5hs0XJhI2CvSvqXuFWVQVJIpRnCUSiMXyTxARx5zChyvKOJSjWealnI8WpDS3dvlsrIJQ6FwoBuVv+TWssacyATmr9453MbJbg20/USm6vJ1D9wrAwr+/ziY8QN/8yQRBmnlMbDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nAHF4yZl; arc=none smtp.client-ip=209.85.208.44
+	s=arc-20240116; t=1739315236; c=relaxed/simple;
+	bh=1KmHuJvJglTZaEI1I7tdb97fgzeM4K4tUbmOUv77ww4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Kn806+tSscnN+Ew1STqJkNHZ22yLepmeKQKeeaK82upAnaXrqNFl4fITKY1Kl7SVrWQjrkt5SpjLsLr/wMso8YYRj59HgNItQNZXxVWTLCAvWvjY8yNfHBhRBCvWNDMvdGZtmspuCp9eE6ZJoWj6ezTyyhhuUatk5k4vMBSzQoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mcW1HqYk; arc=none smtp.client-ip=209.85.128.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5deb1b8e1bcso21040a12.0;
-        Tue, 11 Feb 2025 14:58:52 -0800 (PST)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6efe4e3d698so57055357b3.0;
+        Tue, 11 Feb 2025 15:07:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739314731; x=1739919531; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1739315234; x=1739920034; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6qEcHnFbnJv5rEQMaO2HHhljugT3IlHPIHIMW9SmVWI=;
-        b=nAHF4yZlVZyWiXIDfDyEw11QeWrCeeVD8r1TkETI8Zk+vAWNbJufmLTwQrc4lQ0hDg
-         EUWZQC/MPW3KqB0+brGaUDQfh6XSY8PbyHRmFZ5PIhqFnhHjmNspmZE5lXLBnIJTxnqG
-         Q1UohFsZpUgXd1wkC6X4AyY+7k9DOGuIl0vC/Un4gOXYXWcoCsHVLHkD745Kw3v8mzGx
-         bgOjCkRti0FbPBJPsOB/cvERO1CfVHrPaTy7R3ch6QwLuhC+qD9UcKmeDlMpn0cuaz0p
-         5jGtQSOZgnglnXCyts6D6b53Y360a32HQCaZ95o8hVof/XmmEpHeEoxMWGNvyJv03BQQ
-         Z6DA==
+        bh=CjUlPt7fQIbCG9HRI9aLi8iTstRFShKsOWhK8luHgiY=;
+        b=mcW1HqYkbuoOh0G32GaWA49dsH3rSp9SVRQlxmUBhejQbIT0gzy2S2F/ju/qOSZxQu
+         hMN5P1RbSF2aB7h2cbjCMUmN9pZLHMKQ2SY2qNBMHW8XJzzQ3vhW3rOIuY4TynoG+4KD
+         yQzwA5GwNcLdOoGYDOMpdIkXhFLwL5eCH42wR3o70QHLDC/ZjZX9DkYHpSA83wmryO3U
+         G45G9/V4RLOi5zkckOwGkXwnnZThOdiv7V0GXfyPc/4MJj/UXM/fKud/h42E6QTymacy
+         F6GoYj7ty8HT27KW+51Nm8T9H0Cp1dZ2YfdXXWzCqfIMb1B6MfLHKpEJ+8zXVztOeY6+
+         yKWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739314731; x=1739919531;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1739315234; x=1739920034;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6qEcHnFbnJv5rEQMaO2HHhljugT3IlHPIHIMW9SmVWI=;
-        b=htqlRRZRkGJhGNpIh9IInf9l8LBWbi7kdpZMZA5rz4O554S76p7OGGcqJIXUfAMUev
-         hfCU2YqgjhREUKcDBf5LiggdJjKoUlaiA6DmJD1Trpzp5cnKspcvo0uGT1sytasG2HrX
-         ziTcoSAlhpAsICyjM+PnoKaYdcza2VK/L6VkdXjbX1omwwJkR5N0W7l3lH9Tn2NUTaJj
-         gGOF2g7MpkpcEKbe7QL8Os2seFUKPiFaWE4j2g1eGkd2npWiQzUq6WDtR8U2nNTY9t22
-         VMJbV/AMgiYIni1tgKfwU42IjAfG76m8n/upe/hF04AJ/GtQkcKC5h6T3pPsZjxqILFp
-         J3Pw==
-X-Forwarded-Encrypted: i=1; AJvYcCU5No6uu0EOFHhNHDXPe717Kc5J37BPSGST4jDy59f4z3OHKrHCWF1qxNTwvVgZd8f18b57D3RMWwAJ1oQH@vger.kernel.org, AJvYcCVJu75jANncz1LXczEGJT+7vy4+dXGNqkcCGFoetBf/l0z/HOn/bnifCBiawRmmjaPDHJKIFS4OQeK/@vger.kernel.org, AJvYcCWozy3TPQTrBAuy8dG20A38gGMEldRR3xX8v/NMkLZ5ywJSaAjfYCEdwoO7jcJPQV4wK27GTnymXzmqQj0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyviAQWJgfh0+BnsjNXUc2aO/Oqc0kdAZJyoFG9IlBQ9dhw1An5
-	KuL+ISNaJ8Mvmt9GyUgJhdszNLKHwCcaz9fEw7L04CcsIXhc/Sfp
-X-Gm-Gg: ASbGncufTF7x/FDtP0vTLW/uN5jCLakEK76LK8WzzCbTVTp1mbvAEBLP/UTuf9R9FUQ
-	dQdKa0xoOQgLD2/MCC5RDwFBBynwUqLJScxDVpl9QLWIio0R3znIZ1vIm1IgQmvFfI+O1RzzcIp
-	ETtNn9cQw0rwP25VsLrnoKq+HHVLyCqANE5MNF7NO+pynSeon0Ve4ereYfOsHkHNE1YxSmJWvpw
-	iqcnmYoaoRvGArSBhj2yS8SdDKdzM0h0hzEMdDbB+Rpz5rPR+Pd5O7dcWWWrzONFKQeCUTe/Hzx
-	Z9hjLmEZfn5y4w1iFCYhmQABnfpy5rnPLu1+wLdcjZGH0vEttVZvcw==
-X-Google-Smtp-Source: AGHT+IHyuiaJRoN+GdUxbeu3lRwZ7O6QbyCCZjzjPJTrp3NnmoIIq3WEcO3F8K15XX7Gr6EziTEjNw==
-X-Received: by 2002:a17:907:3f21:b0:ab7:e47c:b54a with SMTP id a640c23a62f3a-ab7f347c15dmr55101866b.37.1739314731047;
-        Tue, 11 Feb 2025 14:58:51 -0800 (PST)
-Received: from playground.localdomain ([82.79.237.175])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7e9fcd99csm131525166b.89.2025.02.11.14.58.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Feb 2025 14:58:50 -0800 (PST)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 3/3] arm64: dts: imx: add imx95 dts for sof
-Date: Tue, 11 Feb 2025 17:58:08 -0500
-Message-Id: <20250211225808.3050-4-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
-References: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
+        bh=CjUlPt7fQIbCG9HRI9aLi8iTstRFShKsOWhK8luHgiY=;
+        b=e0WjFmlcCk2y/1+MLpHFIcrtEorq4uQ81JSe7yZFm/03vUg6JpC8ccdXOp+DB8jEfo
+         bAJGizDMdgto/Oq7c0j2TZSMP4OFBkBaNz7s1t9A0kp+wzUA3B13w2/5CuHx0a53DD4s
+         2vyNDNKZpJaDNU1wQdx6oQpArNxloCIFgmRBaN74RNYAK3mM+Bc/Yvat/vF0cHBbT3K1
+         PjFZ9/uOleG82n51FdfeBb72F3vg0PVXQCK6nOc9FFvkgHTucI7ByyLDZeNXnpXvJV5h
+         f7fOxlUojnlRzgPfpvLIW9tqcI0aRf4GHQGMQYp+NZgu0ZXflTSdkK3aR3bTau6P39cx
+         QRLg==
+X-Forwarded-Encrypted: i=1; AJvYcCV3lYbsxYwmqhKyPmDnJSJlYZvEs+ZqK9nYGRm88C4CNfquZwcJQHkrycI9M8hTwOskQcjotKBn5Ksj@vger.kernel.org, AJvYcCXp65yDgQNMvdsrFtUKqFWqwwdtoEhEJORbb7zmjxRix0ZCi7nyd/C7iSq/9NdENwJHVCpmWrdyjFX9hPw9@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYV//1JxEOyp7P3bedUXwT21dRFBO1/5p3ocdo/FjFxa3CVnbi
+	UP1Q7esTrcHO8PCHtsY0JXj8nx0AIV62QTIW+V0/EiMdRvfy41pfgEL4gCg6yjKvz1MLmfnbK4j
+	HmWQazBG8fPkIpu0Dfy+8azcd5aQ=
+X-Gm-Gg: ASbGncsk71L/+iSHTFPJ4z66+4k3I/bXAf8MOy63yrq6olyhicgdZAuJdgvzX/eXgzF
+	+jNe0DcBB3bktpp9wHnq08H9Ge1/sEXr40+Fw7zsgRtH/VlTNQiHzVReqeSbuQiXm6AIvRnKkRg
+	==
+X-Google-Smtp-Source: AGHT+IGXt31L2dPfJdVvqFBxiTcALOlz9ju4ydo5Tk9yYDo/4DuIc6WAoXrf+LCnTVdr88ds23cuOt9d7uq2eXMLJ/c=
+X-Received: by 2002:a05:690c:6911:b0:6f9:ad48:a3c7 with SMTP id
+ 00721157ae682-6fb1f1e5e09mr12938727b3.21.1739315234067; Tue, 11 Feb 2025
+ 15:07:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250211181839.1575497-1-robertcnelson@gmail.com> <20250211181839.1575497-2-robertcnelson@gmail.com>
+In-Reply-To: <20250211181839.1575497-2-robertcnelson@gmail.com>
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Tue, 11 Feb 2025 17:06:47 -0600
+X-Gm-Features: AWEUYZnnrz1uhSEz7DwUdf6zeY2QTmIpy4WAgTlvlUWiFBO6xPeRHOiXv3ja3Iw
+Message-ID: <CAOCHtYhpvt1_jBqJGRsX3BO_jnn_cqemY+jgVTObUg2pKQ3Sdw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
+To: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>, 
+	Andrew Davis <afd@ti.com>, Roger Quadros <rogerq@kernel.org>, Siddharth Vadapalli <s-vadapalli@ti.com>, 
+	Judith Mendez <jm@ti.com>, Andrei Aldea <a-aldea@ti.com>, Jason Kridner <jkridner@beagleboard.org>, 
+	Deepak Khatri <lorforlinux@beagleboard.org>, Ayush Singh <ayush@beagleboard.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On Tue, Feb 11, 2025 at 12:18=E2=80=AFPM Robert Nelson <robertcnelson@gmail=
+.com> wrote:
+>
+> BeagleBoard.org PocketBeagle 2 is an upgraded version of the popular
+> PocketBeagle.  It is based on Texas Instruments AM6232 SoC. Its dual
+> A53 cores can provide higher performance than classic PocketBeagle.
+> The new design comes with pre-soldered headers, a 3-pin JST-SH 1.00mm
+> UART debug port, a USB-C port, Texas Instruments MSPM0L1105 Cortex-M0+
+> MCU for ADC, 512MB RAM, and a LiPo Battery charger.
+>
+> https://www.beagleboard.org/boards/pocketbeagle-2
+> https://openbeagle.org/pocketbeagle/pocketbeagle-
 
-Add imx95 DTS for SOF usage.
+Broken copy/paste by me, this is:
+https://openbeagle.org/pocketbeagle/pocketbeagle-2
 
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |  1 +
- .../dts/freescale/imx95-19x19-evk-sof.dts     | 85 +++++++++++++++++++
- 2 files changed, 86 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
+Regards,
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 839432153cc7..27f64e333e4b 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -282,6 +282,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
- 
- imx8mm-kontron-dl-dtbs			:= imx8mm-kontron-bl.dtb imx8mm-kontron-dl.dtbo
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
-new file mode 100644
-index 000000000000..ce7b2384e459
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
-@@ -0,0 +1,85 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2025 NXP
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx95-19x19-evk.dts"
-+
-+/ {
-+	sof_cpu: cm7-cpu@80000000 {
-+		compatible = "fsl,imx95-cm7-sof";
-+		reg = <0x0 0x80000000 0x0 0x6100000>;
-+		reg-names = "sram";
-+		memory-region = <&adma_res>;
-+		memory-region-names = "dma";
-+		mboxes = <&mu7 2 0>, <&mu7 2 1>, <&mu7 3 0>, <&mu7 3 1>;
-+		mbox-names = "txdb0", "txdb1", "rxdb0", "rxdb1";
-+
-+		cpu: port {
-+			cpu_ep: endpoint {
-+				remote-endpoint = <&codec_ep>;
-+			};
-+		};
-+	};
-+
-+	reserved-memory {
-+		adma_res: memory@86100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x86100000 0x0 0x100000>;
-+			no-map;
-+		};
-+	};
-+
-+	sof-sound-wm8962 {
-+		compatible = "audio-graph-card2";
-+		links = <&cpu>;
-+		label = "wm8962-audio";
-+		hp-det-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_hp>;
-+		widgets =
-+			"Headphone", "Headphones",
-+			"Microphone", "Headset Mic";
-+		routing =
-+			"Headphones", "HPOUTL",
-+			"Headphones", "HPOUTR",
-+			"Headset Mic", "MICBIAS",
-+			"IN3R", "Headset Mic",
-+			"IN1R", "Headset Mic";
-+	};
-+
-+	sound-wm8962 {
-+		status = "disabled";
-+	};
-+
-+};
-+
-+&edma2 {
-+	dma-channel-mask = <0xc0000000>, <0x0>;
-+};
-+
-+&sai3 {
-+	status = "disabled";
-+};
-+
-+&wm8962 {
-+	assigned-clocks = <&scmi_clk IMX95_CLK_AUDIOPLL1_VCO>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL2_VCO>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL1>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL2>,
-+			  <&scmi_clk IMX95_CLK_SAI3>;
-+	assigned-clock-parents = <0>, <0>, <0>, <0>, <&scmi_clk IMX95_CLK_AUDIOPLL1>;
-+	assigned-clock-rates = <3932160000>, <3612672000>,
-+			       <393216000>, <361267200>,
-+			       <12288000>;
-+
-+	port {
-+		codec_ep: endpoint {
-+			bitclock-master;
-+			frame-master;
-+			remote-endpoint = <&cpu_ep>;
-+		};
-+	};
-+};
--- 
-2.34.1
-
+--=20
+Robert Nelson
+https://rcn-ee.com/
 
