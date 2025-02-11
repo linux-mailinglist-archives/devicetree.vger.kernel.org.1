@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-145305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCDAFA30DED
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:14:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8CD8A30DEF
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:14:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2CE47A18DD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:13:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C622188456B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:14:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADA024E4D7;
-	Tue, 11 Feb 2025 14:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F9712505DC;
+	Tue, 11 Feb 2025 14:14:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="C5REkrEZ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="pCc4SUw/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E1F424CEDA;
-	Tue, 11 Feb 2025 14:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53F624E4A0;
+	Tue, 11 Feb 2025 14:14:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739283267; cv=none; b=Vx8eYJ2h3nvbuh9MxtV6Je2gE9tDaO0gySTQWMmN/cZRpJK/8MksvyMG+JRoJdMFZKs89UUdMf8LWk97ZFg/I1FW4x6XMIH87KiwD8xvGfn+K0yELJYqot33o132yRlLlrAdZj7mQSVBWUoEhlSY6ZJZluOVesRHy1IVbgCaH5M=
+	t=1739283269; cv=none; b=aszJ5DREru+O0nD4T0FofyZF0wiaGatqrQNwjo4lsbMJ5H/GIRi/nfQ2fpAUvnK6WeUCDSHWjkujNjDz3wLS7v2ic3fXhNO7bQJduWFkWa0vTgreL0JIpXfSm3uSPjSQmjB6GJcQKhJavNfHgHbg6fB0NSK1OSDEKrzdjMeJwDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739283267; c=relaxed/simple;
-	bh=fHNL+i5IN49689K3usVegBesx2Ci11QI7egIM6OnVk8=;
+	s=arc-20240116; t=1739283269; c=relaxed/simple;
+	bh=SRlaHOYyJkMSzTpbixqpKGHDSFkBJLV3ojeT27kdJus=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Nut7jfWO2W8fK+56hirWDsgrs94Rf7HWfM3bo8XbbOkT0tx0UEMwEO9PbCfDTyCgqxaODsyC9yibRG53AA/BhNzg8f1nr3PoPBNL8iuh85m3YID/X9MjjGzTHX3UPCZ3MNvHeYyGoSXGTvyAYCC3bbbS+LCM4SKIcv5Yk67jMgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=C5REkrEZ; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=VDRAsNHNRObFb8GBoUTBxHX8PlzyPkrFrKUcNuBcl+meq1sr0s2RHbYb4QWQirpbyx/63iUvYtPgwGAiQhyQy8tmXO3ZtmSLuvEChdkW88/MJrvXtx2lnOPTxaq8oBT6PD/s9tSGP1ndETruuXHmT/cl8W0+JXrDmbEpPSFrA5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=pCc4SUw/; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739283263;
-	bh=fHNL+i5IN49689K3usVegBesx2Ci11QI7egIM6OnVk8=;
+	s=mail; t=1739283264;
+	bh=SRlaHOYyJkMSzTpbixqpKGHDSFkBJLV3ojeT27kdJus=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=C5REkrEZaeE/KtzzJi9v3a9UoIoDZCfT8+b9xZ3zqvADiUYXhSuec/KoqC+IA2u3m
-	 fUq9Mhf/SCz6RQJhxBfI+H7Ow5aJWEuuDbbXkI9AkyQ8/dXdM7kyPa0xXx1BuqB9fu
-	 VBKWZvheY/woGdRvBkICPwOXDEL1zTzTMrKzNlsShhWQvR6BQYTg9oYiiNCUAUgz3B
-	 2BHn9qRAe5WLiPi5FiSghpSX/rcAvZH1RIVG09HBJScV8Ry/IQcaYajjDTMg11CYwV
-	 I3inRn/FxgKMlbQ9xpOJz0crkloCfEGvBMWZGP3lp2RzynP9qwvhL32UTp88A/bzWq
-	 V6FN3MhgIx/xw==
+	b=pCc4SUw/Ubu6yJksuXeS2qH18Y2cxh6fWvR0tXevbQtqHbrzgUZZRIe6/56l30Mui
+	 gqZzzp5EYZriNBjXZHXvtwzOlSx1wQT4XtfUtaRS0xBYMVrK530G1Yj0YE+to2ji9U
+	 Y6G9FU3b3j3uO938jLkFyeBwRWFh77gcwpzg6kCikcjc+3R6NA2me6ddnohjdJAh43
+	 QvCTiCrcfBEWTRz7jFgNMY5uA2PKIf470tIFOR+KVQ4Er74VZYiah3TdRNt4OvzXtp
+	 Yj9/IPiciyHOaYL9GXjMPA1mi/Q3+1Q1YSPVgda1u7VXrvw4WDoqj5qObF3VsdOcep
+	 IuzInnMZCxjVA==
 Received: from yukiji.home (lfbn-tou-1-1147-231.w90-76.abo.wanadoo.fr [90.76.208.231])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id AFAC717E10B5;
-	Tue, 11 Feb 2025 15:14:22 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D2DD217E1249;
+	Tue, 11 Feb 2025 15:14:23 +0100 (CET)
 From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Tue, 11 Feb 2025 15:13:08 +0100
-Subject: [PATCH v4 1/3] dt-bindings: gpu: mali-bifrost: Add compatible for
- MT8370 SoC
+Date: Tue, 11 Feb 2025 15:13:09 +0100
+Subject: [PATCH v4 2/3] drm/panfrost: Add support for Mali on the MT8370
+ SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,7 +60,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250211-mt8370-enable-gpu-v4-1-77deb7a75c23@collabora.com>
+Message-Id: <20250211-mt8370-enable-gpu-v4-2-77deb7a75c23@collabora.com>
 References: <20250211-mt8370-enable-gpu-v4-0-77deb7a75c23@collabora.com>
 In-Reply-To: <20250211-mt8370-enable-gpu-v4-0-77deb7a75c23@collabora.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -75,51 +75,46 @@ To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739283261; l=1546;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739283261; l=1520;
  i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=fHNL+i5IN49689K3usVegBesx2Ci11QI7egIM6OnVk8=;
- b=Y5aeVFIo0/yC8zzUr7gx+tl3oSd4oJTOFIz6oj/dw7plgBuwQzrIMr/ZguTeio/M3RN1hg/lV
- v3ZLBWGYG7wAYXFpEfjwFn0JoXf/W742Eg4mbrOTo1oGrYHcvQqIs+8
+ bh=SRlaHOYyJkMSzTpbixqpKGHDSFkBJLV3ojeT27kdJus=;
+ b=t2jBv0Ox2nQXf4CZADMRuWiWUJA5JF75wfksRsCTyUeretvmJbzYufNJV+n62u4Df3Qh9Ck7a
+ JL+X+MmYIzSAuvmzH9CpjOqYyIqmdgBC5NK/yBhLdJW4JMYDzTAhxDi
 X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
  pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
 Add a compatible for the MediaTek MT8370 SoC, with an
-integrated ARM Mali G57 MC2 GPU (Valhall-JM, dual core).
-None of the already existing SoC specific compatibles is usable as
-fallback, as those either do not match the number of cores (and number
-of power domains), or are for a different GPU architecture.
+integrated ARM Mali G57 MC2 GPU (Valhall-JM, dual core),
+with the same platform data as MT8186 (one regulator, two power
+domains).
+Despite their different GPU architecture (making them not being
+compatible), the MT8186 platform data can still be used for MT8370
+because it only describes supplies, pm_domains and enablement of power
+management features in the panfrost driver.
 
+Reviewed-by: Steven Price <steven.price@arm.com>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 ---
- Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/panfrost/panfrost_drv.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-index 735c7f06c24e632ab738d062f15378f754c8adaf..6f6211950bb495fa6bfcdfe8d1e27e5ce7aeeae0 100644
---- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-@@ -37,6 +37,7 @@ properties:
-           - enum:
-               - mediatek,mt8188-mali
-               - mediatek,mt8192-mali
-+              - mediatek,mt8370-mali
-           - const: arm,mali-valhall-jm # Mali Valhall GPU model/revision is fully discoverable
- 
-   reg:
-@@ -217,7 +218,9 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: mediatek,mt8186-mali
-+            enum:
-+              - mediatek,mt8186-mali
-+              - mediatek,mt8370-mali
-     then:
-       properties:
-         power-domains:
+diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
+index 0f3935556ac761adcd80197d87e8e478df436fd5..7b7e9f6f620659a7fdcb5d907ebc4f01eca876e0 100644
+--- a/drivers/gpu/drm/panfrost/panfrost_drv.c
++++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
+@@ -859,6 +859,7 @@ static const struct of_device_id dt_match[] = {
+ 	{ .compatible = "mediatek,mt8186-mali", .data = &mediatek_mt8186_data },
+ 	{ .compatible = "mediatek,mt8188-mali", .data = &mediatek_mt8188_data },
+ 	{ .compatible = "mediatek,mt8192-mali", .data = &mediatek_mt8192_data },
++	{ .compatible = "mediatek,mt8370-mali", .data = &mediatek_mt8186_data },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, dt_match);
 
 -- 
 2.48.1
