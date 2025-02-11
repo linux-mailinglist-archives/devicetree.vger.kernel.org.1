@@ -1,85 +1,114 @@
-Return-Path: <devicetree+bounces-145358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 662A8A310AD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:08:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5094A310E0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:13:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F352188423C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:07:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0891B169050
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADA66253B76;
-	Tue, 11 Feb 2025 16:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C9A3254AE7;
+	Tue, 11 Feb 2025 16:12:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mE1hqjdh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h61IAedW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C0C253B47;
-	Tue, 11 Feb 2025 16:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04951253B7D;
+	Tue, 11 Feb 2025 16:12:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739290062; cv=none; b=UzlXZB33I4azUO7Dv33Vx6eAMQcApppcr4bMIqh95IjhlmXY9vZN8Bk2168Q2vt72aq+x7VrNWUXAw4wP4DGoSa5KXjWJ7Yrda3kjlWI1NsjNYBKnZkuGZkioEyX+fQhDmquOUpFbByYdLI3NnyN9taRJCU/SuWRkwVxR5ocsD8=
+	t=1739290332; cv=none; b=qOC+7eNpvl6pA4rV+uUaGYO5TkJvvdCTd9/eW4p/+/YAmCAU+PgvoETddI49HP4O9MZqOmanvY9zfL4a4aB1gzhoxmBuu/76/KvRGV79rZFGk4kE8YJuS4a62PVBebz9YfYqStK60YqM18AZzf6xyl530twEb2uFdm3bgx2cvFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739290062; c=relaxed/simple;
-	bh=hmIgcJwcpukX+VwNpK4jLYcrMogwI4n2BOulAhzBeGc=;
+	s=arc-20240116; t=1739290332; c=relaxed/simple;
+	bh=XAmJT4YLfE1GmV8k7jA8oiQS+4DF9naVy5ayUlr3gfs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HEfux3ABD/GSW3RuSj/WmDgL3z/ZD22x602v3XPd6tuHQlP/f6AY3ieRW9u0YcqXJ8D04Q+uRW06uShKyabVx55Q7ktdIv/JMGnvVvsC687dLgCQz3uCiASis7hxPw2hjCiwe+ug5CH1wxNC94G7IVoR4yXLFcXjB4EIEnZ+Tmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mE1hqjdh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C712BC4CEDD;
-	Tue, 11 Feb 2025 16:07:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dVAMC4ih0RPQ1zcU53aTJz5w3QRiH0hyS3EBHTrT5RdJqRHr8pW0Cc8941YtF6H4ykh/7UpvfNNAzzygFoHupIpuNwYQtDvIL411x1+0N1bjM89acnk7MqJOCYPkxdNSzUDjvqyJOhO5wjoTIpW8EIO6fvcMPJeIua8TEUo6NkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h61IAedW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D1A0C4CEDD;
+	Tue, 11 Feb 2025 16:12:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739290062;
-	bh=hmIgcJwcpukX+VwNpK4jLYcrMogwI4n2BOulAhzBeGc=;
+	s=k20201202; t=1739290331;
+	bh=XAmJT4YLfE1GmV8k7jA8oiQS+4DF9naVy5ayUlr3gfs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mE1hqjdhNQCEbju7Xb3AS5F0bbrJ/CGYyxo+qNF4CarzfZ7FBJLp5EPpyF57UmtkG
-	 3xvbYQ9U8J0659+BB+P9SaEno8bSrAr2FGyGKwX8/gCQGX8vPX0SSJNncnfzmvSDLo
-	 uKhBpJrwg17hsTTvHBKuKtoLLyBQqe9l9H/+Npho3AphOhKek9TCyxINp4q+qggSnT
-	 ZpearuiH1hhvOiKoPM1QJbXFNFHJhOdDiOP1crwCxykV2MXGu07yhmOw48rsW99P35
-	 OC47BbRjhVTqUTOr692sjH3DZ1dTgvmSfdhVvq7jMmRZZNaX0kb0XEyhvWmn44G/1X
-	 XyBcZgeFm8F7g==
-Date: Tue, 11 Feb 2025 10:07:40 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
+	b=h61IAedW0WZ/MSnh4rTUDSXKIomWuw+PhQyFn1Bo0Iay1e6eMzUc4VjG/3DvBRGBj
+	 Fnzb5J/AWtwRtlXkswp1kCPR4BtcdB4chZUT9ocyJsLswckVSPr5lRK5KQ5wcafPUj
+	 hl7++gfGrt7P+j+/LQ/8xb0Y2OsI3JWNWeOPH2mTtYiGfdXDS79wWqpLF5lE4gwx4d
+	 6t0Y7HunqUgzh+y2o2p9IktjURicCZd/P/zU6Uiu/4fcer/JRx69rkUeG7/XPE8Mqm
+	 NLqE29AUFG5QA93bO4Rd6PU7s08akOLpf9hKoqx/FFhqIzlYpram+bv1gbrZx8Ttnl
+	 sYEXHipJ/xoRQ==
+Date: Tue, 11 Feb 2025 10:12:10 -0600
+From: Rob Herring <robh@kernel.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Daniel Mack <daniel@zonque.org>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,
+	Robert Jarzmik <robert.jarzmik@free.fr>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH] dt-bindings: imx: fsl,aips-bus: Ensure all properties
- are defined
-Message-ID: <173929005644.349085.18272720642516386145.robh@kernel.org>
-References: <20250203213027.8284-1-robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	=?iso-8859-1?Q?Herv=E9?= Codina <herve.codina@bootlin.com>,
+	linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] pwm: pxa: Use #pwm-cells = <3>
+Message-ID: <20250211161210.GA354180-robh@kernel.org>
+References: <cover.1738842938.git.u.kleine-koenig@baylibre.com>
+ <lzlzq4fh3762kyezzr7eqnbkgsu6nbvzgi7yqzwy5tbsrb4tg2@gdpjz3cqrqq6>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250203213027.8284-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <lzlzq4fh3762kyezzr7eqnbkgsu6nbvzgi7yqzwy5tbsrb4tg2@gdpjz3cqrqq6>
 
-
-On Mon, 03 Feb 2025 15:30:26 -0600, Rob Herring (Arm) wrote:
-> Device specific schemas should not allow undefined properties which is
-> what 'additionalProperties: true' allows. Add a reference to
-> simple-bus.yaml which has the additional properties used, and fix this
-> constraint.
+On Mon, Feb 10, 2025 at 07:31:08PM +0100, Uwe Kleine-König wrote:
+> On Thu, Feb 06, 2025 at 01:06:24PM +0100, Uwe Kleine-König wrote:
+> > Hello,
+> > 
+> > this series' goal is to soften the special device-tree binding of
+> > marvel,pxa-pwm devices. This is the only binding that doesn't pass the
+> > line index as first parameter.
+> > 
+> > Here the #pwm-cells value is bumped from 1 to 3, keeping compatibility
+> > with the old binding.
+> > 
+> > The motivation for this was that Hervé sent a patch introducing pwm
+> > nexus nodes which don't work nicely with the marvel,pxa-pwm
+> > particularities.
+> > 
+> > Changes since (implicit) v1, available at
+> > https://lore.kernel.org/linux-pwm/cover.1738777221.git.u.kleine-koenig@baylibre.com:
+> > 
+> >  - Use #pwm-cells = <3> also in the binding example (*sigh*), pointed
+> >    out by Rob
+> >  - Add review, ack and test tags by Hervé Codina, Conor Dooley, Duje
+> >    Mihanović and Daniel Mack. Thanks!
+> > 
+> > I intend to take the first patch via my pwm tree. Assuming the pxa and
+> > device tree maintainers and bots are happy now: Dear pxa maintainers,
+> > please tell if I should take the whole series via pwm, or if you want to
+> > take patches #2 and #3. If the latter: Do you want to delay application
+> > or should I provide an immutable branch for patch #1?
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/soc/imx/fsl,aips-bus.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> I applied patch #1 to
+> https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-next
+> now.
 > 
+> I don't know yet what should happen to the two other patches, but maybe
+> it's a good idea to wait a bit anyhow to have 3 cells working for the
+> pxa driver for a kernel release or two before we switch it.
 
-Applied, thanks!
+The dts change will never work with a kernel without patch 1. You can 
+somewhat mitigate that by backporting patch 1 to stable. If users aren't 
+doing stable updates, they might not be doing dtb updates either...
+
+Rob
 
 
