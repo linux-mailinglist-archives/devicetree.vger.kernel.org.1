@@ -1,142 +1,213 @@
-Return-Path: <devicetree+bounces-145429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7821A314CF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 20:15:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5CCAA314D7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 20:17:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EADD188505D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:15:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 969453A75B4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:17:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC6E1E7640;
-	Tue, 11 Feb 2025 19:15:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FBE4263888;
+	Tue, 11 Feb 2025 19:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SJRC6hcS"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="SBzCIS7C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-70.smtpout.orange.fr [80.12.242.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C917726156C;
-	Tue, 11 Feb 2025 19:15:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA0972505DF;
+	Tue, 11 Feb 2025 19:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739301330; cv=none; b=fNd5PhEa6Y5sumYVVHrGdrZOV+GLQseTrTpU8eaVja+EfwrYwOzYUkjUoPvyY0D8YmcjXixpfSE4uD4DfuA4CwJpokeQqBFJQOQMtZaV8OODOj0kqJBjNC2z9yRp3BXSuOzEraVOuixRQkF37N2cibOWw/vhr9HrDCydXewBO/g=
+	t=1739301456; cv=none; b=CY3N9uG3W6fU1ViRvkA9bV3CXTjJNmDE2sx65GsMRrHrF4GYUcNDm1f6qE6tj8WS5cdckJKFDONCLbpXoGuAVz5Eg0Nx11hZXYjiMQUBmIiVJbgY3o9OJAMPoyDORU2tHBJVD4ZMxv6JZCckheOnAdYelgp7KF3nzcRNq4INmJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739301330; c=relaxed/simple;
-	bh=Oblq2TnFLcoxe/Hl4UEtbkwhXKUUSr5A7sarI5RJwQ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FEWJzM0/DvZpvpqPRk/QIVKSZbo0edkcJiKaO+9sYAr+KYOmF9Wu9DCDMoXejw3wn+ekCzSHDAkAnnnBf4Sdu3vW9Jai7bZ5LdzPCb1bHlh3MSNOXr414jBqbcSOKZaTum50lnppVYAd2qDDFEG7zhKRo87h5Nc2NexERT7d7kY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SJRC6hcS; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739301329; x=1770837329;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=Oblq2TnFLcoxe/Hl4UEtbkwhXKUUSr5A7sarI5RJwQ0=;
-  b=SJRC6hcSo083p55N9HCxMqMlaBwXn4VAYeoNX6xVp/s6IaDTTShLeTyq
-   mCUZyGQrVAt6KiIEMn2VUp5FC9/nwDXuQqsPMR1xb5d6F+YhMVPjkGiAk
-   XfG9rcRmbFswFnzSnnuihYOdULJeeLpmbTioa00FhtfdeebinwFtwaakd
-   N96fPJZLHEY/d2VfikUyQgH6L2qiTdtFziLJyQ+LViDi1FperlKN7jh5w
-   rDxNfAqMh1/ZvdqGh4llmABdmCNIUcoIOBkhg5ker4t86IaB3EJmG86kY
-   GZMD7TC9jSNpkVPJu5UsV326uLD37L0S1NrHowjBJwFrPYzATV+jVIHFs
-   A==;
-X-CSE-ConnectionGUID: HpJ8cMYMQlyGs++jEjLDXQ==
-X-CSE-MsgGUID: WSBIULAoTW2Otj2Usp5sKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="57348293"
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; 
-   d="scan'208";a="57348293"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 11:15:29 -0800
-X-CSE-ConnectionGUID: Zw9aQiFwQJG5xVAEMo4CuQ==
-X-CSE-MsgGUID: /1rrT6vjR+qIurzT7752og==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; 
-   d="scan'208";a="112563124"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 11:15:24 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1thvj6-0000000AbYy-3k29;
-	Tue, 11 Feb 2025 21:15:20 +0200
-Date: Tue, 11 Feb 2025 21:15:20 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v8 01/17] spi: add basic support for SPI offloading
-Message-ID: <Z6uhyNPbk_93lsci@smile.fi.intel.com>
-References: <27d2a88c-b44a-4712-b066-b999e41774f0@baylibre.com>
- <b1dcbb19-190a-45e7-8e94-cb5ef65f1f1b@sirena.org.uk>
- <Z6pim_nLct33LzfN@smile.fi.intel.com>
- <b000d3fd-754a-43e8-ab10-82677eeee1d2@sirena.org.uk>
- <Z6tcwg7QgQwytoSb@smile.fi.intel.com>
- <Z6tezVXVxVCwXuds@smile.fi.intel.com>
- <Z6tfUfHilO2KLmxv@smile.fi.intel.com>
- <Z6tgNjH6Qq5pe9Gt@smile.fi.intel.com>
- <tnjsrq3trijh4agmbhrfnqeq4iojhwybtg45bwt5n7mg7qqgcx@s7gw7idjuxgd>
- <094f00bc-1001-425f-87ca-84646b68bd70@sirena.org.uk>
+	s=arc-20240116; t=1739301456; c=relaxed/simple;
+	bh=ASaC2e+tDeLUOisSnGSZy787GJMFs7GnJk4X0T9KNxw=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=LrDSYvcJ6K/J7TzWT7+u5+d3SUcHgqBiBCu4MtyFPaqoKqnSlVOXpNyINCC8c/7pHAhXz13feIAPrVdMwW8xo4C1gpnoP+mpTP5LWNqFlInFbt8c0xcspdiuB6C/qWJbQevwycHhfVlb7YN2qPBKAwAEe7U/R+2TKsaJk91hAZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=SBzCIS7C; arc=none smtp.client-ip=80.12.242.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id hvjztIygzQ2A9hvk3tEnUB; Tue, 11 Feb 2025 20:16:22 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1739301382;
+	bh=cH43ckbxkmqeH4mk5wN+BIlfdEqOZW8FE1jnkTs7Pj8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=SBzCIS7Cos8YlytVW/viykz62E5IEiqEIQHah3CFWrLE7vfN7KIPkmdyH8iGKEq+S
+	 jKaPNTIndh7Egp0zTnKuhTlqSIPFBvBEwqvnSX5l86uGtVS2/2o4J9JMgeX77eFVUH
+	 8NYAdyjfUr6tpxyYg8+5FrMNGeSPPWxyGIK0YZ5w1g2gjjHcac5+RIcRLEOglF7Faw
+	 aBVRjhTxWVTNRCSKEVVVJOkGXwfku/PK4My3DSuzz2STZTth4F3007Ii4RfVpKgSE2
+	 Co1xWlvL3kHGkY9Y5+iINwhlwl84yPJrZ7/zUE760uusLcphPCdE8mSzXlnduWMETA
+	 t0dY3YxJkl8PQ==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Tue, 11 Feb 2025 20:16:22 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <a72cb224-2cae-44a6-90d5-87d9f4f80044@wanadoo.fr>
+Date: Tue, 11 Feb 2025 20:16:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] drm: panel: Add driver for Himax HX8279 and
+ Startek KD070FHFID078
+References: <20250211114429.1519148-1-angelogioacchino.delregno@collabora.com>
+ <20250211114429.1519148-3-angelogioacchino.delregno@collabora.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: airlied@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, kernel@collabora.com, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, neil.armstrong@linaro.org, pablo.sun@mediatek.com,
+ quic_jesszhan@quicinc.com, robh@kernel.org, simona@ffwll.ch,
+ tzimmermann@suse.de
+In-Reply-To: <20250211114429.1519148-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <094f00bc-1001-425f-87ca-84646b68bd70@sirena.org.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Tue, Feb 11, 2025 at 06:53:17PM +0000, Mark Brown wrote:
-> On Tue, Feb 11, 2025 at 07:45:30PM +0100, Uwe Kleine-K�nig wrote:
-> 
-> > There was a similar discussion some time ago about the lpss pwm driver
-> > (https://lore.kernel.org/linux-pwm/Z09YJGifvpENYNPy@smile.fi.intel.com/).
-> > The arguments that you didn't accept back then already are similar to
-> > the ones that were brought forward here.
-> > The TL;DR; is: Adding MODULE_IMPORT_NS() to a header makes it easier for
-> > code to use the exported symbols. Yes, that includes abusers of the
-> > code.
-> 
-> > But if you mostly care about the regular users of an API/ABI, making
-> > things easy for those is the thing that matters. Agreed, if you think
-> > that module namespaces are primarily a line of defence against abusers,
-> > adding the import to the header weakens that defence (a bit). However a
-> > typical header includes function prototypes and macros. Those also make
-> > it easier for abusers. With your argumentation we better don't create
-> > headers at all?
-> 
-> > There are other benefits of module namespaces like reducing the set of
-> > globally available symbols which speeds up module loading or the
-> > ability to see in the module meta data that a namespace is used.
-> 
-> FWIW I fully endorse what Uwe is saying here, forcing every user of the
-> API to separately import the symbols seems more likely to create
-> busywork than to avoid problems.
+Le 11/02/2025 à 12:44, AngeloGioacchino Del Regno a écrit :
+> Add a driver for the Himax HX8279-D MIPI-DSI DriverIC with support
+> for the Startek KX070FHFID078 7.0" 1200x1920 IPS panel, found on
+> various MediaTek Genio Evaluation Kit boards.
 
-I see. Another problem that comes to my mind just now is the module.h to be
-included by every header that wants to use MODULE_*() macro. Maybe someone
-wants to split mod_namespace.h to decrease an added chaos?
+...
 
--- 
-With Best Regards,
-Andy Shevchenko
+> +	if (!hx->skip_goa_config) {
+> +		if ((desc->goa_stv_lead_time_ck > HX8279_P3_GOA_STV_LEAD) ||
+> +		    (desc->goa_ckv_lead_time_ck > HX8279_P3_GOA_CKV_LEAD) ||
+> +		    (desc->goa_ckv_dummy_vblank_num > HX8279_P3_GOA_CKV_DUMMY))
+> +			return dev_err_probe(dev, -EINVAL,
+> +					     "Invalid lead timings in GOA config\n");
+> +		/*
+> +		 * Don't perform zero check for polarity and start position, as
+> +		 * both pol=0 and start=0 are valid configuration values.
+> +		 */
+> +		num_clr = 0;
+> +		for (i = 0; i < ARRAY_SIZE(desc->goa_clr_start_pos); i++) {
+> +			if (desc->goa_clr_start_pos[i] < 0)
+> +				continue;
+> +			else if (desc->goa_clr_start_pos[i] > HX8279_P3_GOA_CLR_CFG_STARTPOS)
+> +				return dev_err_probe(dev, -EINVAL,
+> +						     "Invalid start position for CLR%d\n", i + 1);
+> +			else
+> +				num_clr++;
+> +		}
+> +		if (!num_clr)
+> +			return -EINVAL;
+> +
+> +		for (i = 0; i < ARRAY_SIZE(desc->goa_clr_polarity); i++) {
+> +			if (num_clr < 0)
+> +				return -EINVAL;
+> +
+> +			if (desc->goa_clr_polarity[i] < 0)
+> +				continue;
+> +			else if (desc->goa_clr_polarity[i] > 1)
+> +				return dev_err_probe(dev, -EINVAL,
+> +						     "Invalid polarity for CLR%d\n", i + 1);
+> +			else if (desc->goa_clr_polarity[i] >= 0)
 
+The if () looks superfluous.
 
+> +				num_clr--;
+> +		}
+> +	}
+> +
+> +	/* MIPI Configuration validation */
+> +	if (!desc->bta_tlpx && !desc->lhs_settle_time_by_osc25 &&
+> +	    !desc->ths_settle_time && !desc->timing_unk_b8 &&
+> +	    !desc->timing_unk_bc && !desc->timing_unk_d6)
+> +		hx->skip_mipi_timing = true;
+> +
+> +	/* Gamma Configuration validation */
+> +	if (desc->gamma_ctl > (HX8279_P6_GAMMA_POCGM_CTL | HX8279_P6_GAMMA_POGCMD_CTL))
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int hx8279_probe(struct mipi_dsi_device *dsi)
+> +{
+
+...
+
+> +	/* If the panel is connected on two DSIs then DSI0 left, DSI1 right */
+> +	if (hx->desc->is_dual_dsi) {
+> +		const struct mipi_dsi_device_info *info = &hx->desc->dsi_info;
+> +		struct mipi_dsi_host *dsi_r_host;
+> +		struct device_node *dsi_r;
+> +
+> +		dsi_r = of_graph_get_remote_node(dsi->dev.of_node, 1, -1);
+> +		if (!dsi_r)
+> +			return dev_err_probe(dev, -ENODEV, "Cannot get secondary DSI node.\n");
+> +
+> +		dsi_r_host = of_find_mipi_dsi_host_by_node(dsi_r);
+> +		of_node_put(dsi_r);
+> +		if (!dsi_r_host)
+> +			return dev_err_probe(dev, -EPROBE_DEFER,
+> +					     "Cannot get secondary DSI host\n");
+> +
+> +		hx->dsi[1] = devm_mipi_dsi_device_register_full(dev, dsi_r_host, info);
+> +		if (IS_ERR(hx->dsi[1]))
+> +			return dev_err_probe(dev, PTR_ERR(hx->dsi[1]),
+> +					     "Cannot get secondary DSI node\n");
+> +		num_dsis++;
+> +		mipi_dsi_set_drvdata(hx->dsi[1], hx);
+> +	}
+> +
+> +	hx->dsi[0] = dsi;
+> +	mipi_dsi_set_drvdata(dsi, hx);
+> +
+> +	drm_panel_init(&hx->panel, dev, &hx8279_panel_funcs, DRM_MODE_CONNECTOR_DSI);
+> +
+> +	ret = drm_panel_of_backlight(&hx->panel);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get backlight\n");
+> +
+> +	drm_panel_add(&hx->panel);
+> +
+> +	for (i = 0; i < num_dsis; i++) {
+> +		hx->dsi[i]->lanes = hx->desc->num_lanes;
+> +		hx->dsi[i]->format = MIPI_DSI_FMT_RGB888;
+> +
+> +		hx->dsi[i]->mode_flags = MIPI_DSI_CLOCK_NON_CONTINUOUS |
+> +					 MIPI_DSI_MODE_LPM;
+> +
+> +		if (hx->desc->mode_data[0].is_video_mode)
+> +			hx->dsi[i]->mode_flags |= MIPI_DSI_MODE_VIDEO |
+> +						  MIPI_DSI_MODE_VIDEO_SYNC_PULSE;
+> +
+> +		ret = devm_mipi_dsi_attach(dev, hx->dsi[i]);
+> +		if (ret < 0) {
+> +			/* If we fail to attach to either host, we're done */
+> +			if (num_dsis == 2)
+> +				mipi_dsi_device_unregister(hx->dsi[1]);
+
+Is it needed?
+(devm_mipi_dsi_device_register_full() was used)
+
+> +
+> +			return dev_err_probe(dev, ret,
+> +					     "Cannot attach to DSI%d host.\n", i);
+> +		}
+> +	}
+> +
+> +	/* Make sure we start in a known state: panel off */
+> +	gpiod_set_value_cansleep(hx->reset_gpio, 0);
+> +	gpiod_set_value_cansleep(hx->enable_gpio, 0);
+> +
+> +	return 0;
+> +}
+
+...
+
+CJ
 
