@@ -1,101 +1,112 @@
-Return-Path: <devicetree+bounces-145324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B69A30E90
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:40:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA4E2A30E9D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64A361889DA9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:40:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91F06166D87
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9428C250C0B;
-	Tue, 11 Feb 2025 14:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0B472505C8;
+	Tue, 11 Feb 2025 14:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oYCFRrO/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YLmmjNJG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9488E250BFC;
-	Tue, 11 Feb 2025 14:39:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966C9243396;
+	Tue, 11 Feb 2025 14:43:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739284771; cv=none; b=XbKGhufuvVjWNeyngduHkK2E73Snm3Ujaem+gRyHPLwbMxrW6/jXCF0DT7+X5PA8rb8BrXjzDjaro0002m1PoRkUez8tlaKB9666uujl3GGnbdfJcbDhn+aDhHh+58ubfdtmdSWBOKdrRVmdIMXkVNN2T2J0WuODXl8S7EHPahY=
+	t=1739284985; cv=none; b=NP0vAMz6nppe5+lnqDwR4BrsZEYRVnrHCl18dSAXPzJxWCXPxOE91z/fpecHv4eG4Z0QoEfk0qGBB5H5VgNpiSfgPiV9rpT0RzEErEjHEWLYXrq7ZzY9c8ri466QEIBCFCBBiezZ1YYYcFsva+U1YOYaERm3xhpGL84gmHHON/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739284771; c=relaxed/simple;
-	bh=vwvT0IV6zmeOtXSkiICUs3PNA74HF+q9L26ymYs58uA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=k8TEMONjcOUNcoRJZrijNpqYdEO63KZ2FzG9Ai/pBPkQ0MRvclOkFhLXVJOko5yYJEhv4R58Yh2FglnVppTIEQZKklxsUElyH0/cBezFDr2TeNXeQZ/wAFIXtZeWMBSwhJjqor91evK4LOL+UmT2i2AiHdbm4xCFYVmB8Pb9L00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oYCFRrO/; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739284767;
-	bh=vwvT0IV6zmeOtXSkiICUs3PNA74HF+q9L26ymYs58uA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=oYCFRrO//YgoqO/DWnNYn5svT2uWsQbcG7xfLxGH9/DEx7GNbhgGg4usxoyJiqtf7
-	 3IBJ3XJzcazrb0L9+X4KcAfI+pPP92dC6eLh5NysTbNVvDaxTx8nPstlPbZmIzG355
-	 DnsdIarIGT1u1nnNSeWAM7/45gHY8rnQtNC1ONJ/AFPLNrJnIIqIGa10He6a0qTaea
-	 nRZwFiaOu9JUEll0dntr+cCDdMsfOyzYwhaYoJyDWXbwgHD5b40k5YNFFaiEIxbuu/
-	 5685xsz1PNX/BluoLan8nLMbmrp5gQnv+qNRMbOAJZm5Fkj9UU+wVmS4jN7VIUtNSV
-	 DfHvwv8ZmGGzg==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C588B17E0CA2;
-	Tue, 11 Feb 2025 15:39:26 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Fei Shao <fshao@chromium.org>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Cc: kernel@collabora.com, linux-sound@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- =?utf-8?q?Trevor_Wu_=28=E5=90=B3=E6=96=87=E8=89=AF=29?= <Trevor.Wu@mediatek.com>, 
- Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org, 
- stable@vger.kernel.org
-In-Reply-To: <20250207-mt8188-afe-fix-hang-disabled-apll1-clk-v2-1-a636d844c272@collabora.com>
-References: <20250207-mt8188-afe-fix-hang-disabled-apll1-clk-v2-1-a636d844c272@collabora.com>
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8188: Assign apll1 clock as
- parent to avoid hang
-Message-Id: <173928476672.1551988.2336306121447017501.b4-ty@collabora.com>
-Date: Tue, 11 Feb 2025 15:39:26 +0100
+	s=arc-20240116; t=1739284985; c=relaxed/simple;
+	bh=voK0gPzw+wXISlMnQBaqyxmaIdyN+OgNztg0FBND6l4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A+HKQF5TFPYSaWKJppMRMKR5055P+jeov33TeZHCeXFgMrmSOJFTDdkn52OdHtxbnI460jTV+aRWFmGZhXc2x04J5buzvUvuslo+UBBsetNYKDADKn/kAQay51nN4nlGVUQF4PYfaFQwxRnfY0p3O3eXN6YJWQ7Z8OgSAc5g7vo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YLmmjNJG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BF4AC4CEDD;
+	Tue, 11 Feb 2025 14:43:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739284985;
+	bh=voK0gPzw+wXISlMnQBaqyxmaIdyN+OgNztg0FBND6l4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YLmmjNJGAcSLPAyZ0KQ6kprjDncYe39q8wtFEVHf5HpI4k5G4yrWG6ykaTZTsKcUK
+	 5T3S3Yax/EU4cdOuRrEG+py0EmMZErVfexXKIj8iXZmHWFiaA8A3lQAt24x/to+G7N
+	 JsZCFwCeOiqHDxFnBfFNugi0OBE6naFN7SfywFJhrcegbFjp959EpNxkvNHj27NOVU
+	 4APfnAFqN3QEswb9Yl/NM62+ofWsTAk2bRuIi6VabseNwvSrtPd1LKoSbSQJ6BsAJ0
+	 Iymr8Gkxu1bCzXpOugO9pgl/yck58qlkFdlkG+utg5wWFMg5WSk3l7Wh8Yg4cRLayv
+	 yYHo3mQN4tAIg==
+Date: Tue, 11 Feb 2025 14:43:00 +0000
+From: Lee Jones <lee@kernel.org>
+To: j.ne@posteo.net
+Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: leds: Allow differently named multicolor
+ leds
+Message-ID: <20250211144300.GW1868108@google.com>
+References: <20250209-multi-led-v1-1-5aebccbd2db7@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.2
+In-Reply-To: <20250209-multi-led-v1-1-5aebccbd2db7@posteo.net>
 
-On Fri, 07 Feb 2025 14:41:24 -0300, Nícolas F. R. A. Prado wrote:
-> Certain registers in the AFE IO space require the apll1 clock to be
-> enabled in order to be read, otherwise the machine hangs (registers like
-> 0x280, 0x410 (AFE_GAIN1_CON0) and 0x830 (AFE_CONN0_5)). During AFE
-> driver probe, when initializing the regmap for the AFE IO space those
-> registers are read, resulting in a hang during boot.
+On Sun, 09 Feb 2025, J. Neuschäfer via B4 Relay wrote:
+
+> From: "J. Neuschäfer" <j.ne@posteo.net>
 > 
-> This has been observed on the Genio 700 EVK, Genio 510 EVK and
-> MT8188-Geralt-Ciri Chromebook, all of which are based on the MT8188 SoC.
+> In some cases, a board may have multiple multi-leds, which can't be
+> distinguished by unit address. In such cases it should be possible to
+> name them differently, for example multi-led-a and multi-led-b.
+> This patch adds another node name pattern to leds-class-multicolor.yaml
+> to allow such names.
+
+Which H/W needs this?  Is it upstream?  Where is the doc / usage?
+
+> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> ---
+>  Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> [...]
+> diff --git a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+> index bb40bb9e036ee00e06d21e2321ecd5a7d471c408..c22af25b6430be71300c0e37f696cd61112ea190 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+> @@ -21,7 +21,9 @@ description: |
+>  
+>  properties:
+>    $nodename:
+> -    pattern: "^multi-led(@[0-9a-f])?$"
+> +    oneOf:
+> +      - pattern: "^multi-led(@[0-9a-f])?$"
+> +      - pattern: "^multi-led-.*$"
+>  
+>    color:
+>      description: |
+> 
+> ---
+> base-commit: 645b5c24cf8590eea322a4fd79c811817046a2e6
+> change-id: 20250209-multi-led-9991e205befd
+> 
+> Best regards,
+> -- 
+> J. Neuschäfer <j.ne@posteo.net>
+> 
+> 
 
-Applied to v6.14-next/dts64, thanks!
-
-[1/1] arm64: dts: mediatek: mt8188: Assign apll1 clock as parent to avoid hang
-      commit: 301d44afbdcfd523a8c126c52b9d597ec27c473a
-
-Cheers,
-Angelo
-
-
+-- 
+Lee Jones [李琼斯]
 
