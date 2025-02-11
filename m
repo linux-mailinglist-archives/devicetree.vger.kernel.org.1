@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-145354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E007A31059
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:55:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE6C9A31062
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:57:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30F7A163382
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:55:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5E6B188AC8B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34552253B4C;
-	Tue, 11 Feb 2025 15:55:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A39A4253B4C;
+	Tue, 11 Feb 2025 15:57:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T7Egnyot"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hE6O552n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E86243965;
-	Tue, 11 Feb 2025 15:55:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7921D230D0E;
+	Tue, 11 Feb 2025 15:57:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739289320; cv=none; b=bqM5DWId+rmrdXHB+bIXbmYUIfBiOzmecneVHYDHXnwInEOlFQQMdOKG6iXJXgUnzAiBhE6yL1pG7aJXEEJyd6YjUo8p2tsNwD9iecDxzZsPQrxq3ch1ysu3mIGNisSEQXgq3pdTnFgJaVEm5H3enadrSryTdfju8iHtHRt1nNU=
+	t=1739289442; cv=none; b=Q0SZH8sGzc6YpMV+lmr/59J/j1oaRMJ6yfK5IZ4v4u73tReT5peO1eS4z0ZMrpv0Ngyfa+iya4PLgq1C1U4GSp0MbTvyLbW8o5JHRYnzw9KaPQrBh8TwHUShU/OYDh92wp/hPew3AcwyAIqQ/jJRCd/ik+Tn8ERpif+2DINnu40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739289320; c=relaxed/simple;
-	bh=M1/OJ7oCvUKvR27rDX+k2QZ5R/MtI/RabABd+WlSS2M=;
+	s=arc-20240116; t=1739289442; c=relaxed/simple;
+	bh=WL4yb8TzQokrIcbPfo32apG+WVVXgfXqLitLpkHD+zY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N1Z9a82x4aN/qrHcYpXpJhldQJfsm7sUD2Z2+cSb439C+3WSYlgvI5uzTAzCVY831MdxhPhzOr0Ad3lWW/5ewFRoUqU3YfEQF6+sAEQ80G0jnwam7usVIhm+Oxk/zDC+LmQoL7SE74iFEh38UEHJlZPgbn4XEMU4Zmu9x3NO9/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T7Egnyot; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC65C4CEDD;
-	Tue, 11 Feb 2025 15:55:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=a+3PAjjDYbj1yIRF1QPx0rSaw7ZpYNriWlJnHvx2r6qV4rWL5WNZ1ZUDwRbTKhZfw8KS6UCc4fnLru61VBqIC85fjoCLLWSbywnPOR/WInRd4l/qxm4gUKewwrDvH81WsbUn1jcTeuc0n5OG3DeyJSOjIjb4jAFV75JB5SgBxXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hE6O552n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11679C4CEDD;
+	Tue, 11 Feb 2025 15:57:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739289319;
-	bh=M1/OJ7oCvUKvR27rDX+k2QZ5R/MtI/RabABd+WlSS2M=;
+	s=k20201202; t=1739289442;
+	bh=WL4yb8TzQokrIcbPfo32apG+WVVXgfXqLitLpkHD+zY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T7Egnyot+P43in3laKiCZaR1gSsKw5uM9r0lOuRYvosobgpNBigDHP8Am8gCLpE8a
-	 GO2Dcq3UCKC8kGoGwvtlh5J0KPmsyezcuvqgaX3PaxMUGPi7May6tXN8pKQ8FAVy/k
-	 /6qsMjMpF1fg/f+nhFjOCd1A6hPVVgXGse9TPzz81ozWZCVGR5+T0A6BNrh46h3h7H
-	 MsXwnNzaIzgHglo5kQZkUytlVbIADfU8pfYR1ka/Y4hxSd5YybRalnKdpxaI1+n4EQ
-	 L3mYy/I5G4pIGv5ohZYMGlOuj5hA9QSvPR+9HM86+mRrlLjRW2MxxD7NYwkMi+1PWS
-	 n/alb/+eEEkQA==
-Message-ID: <d81c46ca-45de-4c69-a786-9c74bd06333c@kernel.org>
-Date: Tue, 11 Feb 2025 16:55:13 +0100
+	b=hE6O552nrqJ+8koCW8qM/uiosx4tFiuFmnwFgiJFKW50fQWrn2OZubJgQO4iFnl/Y
+	 PuvvbHDyF4Z1uuu79KnbsHbdVRxjaPLc4lts930dvS7qW2iPcKrj83j4N8LX8Xco5f
+	 MfsYLBn9QrGwBh90js/Vz3NiDFqpzksUh1ASGlFAve5BQpT3D/BwoY/VPEVgGtd8Mi
+	 be5/GmOdqKd1HSSSxR6FmVY1dOnR9Ol3CCM5T9OWTOchRUQDSFs24XD4wII2vPoZDU
+	 5jaUTc3ZTfqxb9yxPe4vLFlvgY4fxNUXfiAgsr4bz055+SsBYATteA5E7UCRD1TeO3
+	 7+60ILTj1WB3g==
+Message-ID: <57c789ba-1f61-4966-96ea-7a374094173a@kernel.org>
+Date: Tue, 11 Feb 2025 16:57:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,9 @@ Cc: "linux-arm-kernel@lists.infradead.org"
 References: <20241212090029.13692-1-crystal.guo@mediatek.com>
  <20241212090029.13692-3-crystal.guo@mediatek.com>
  <c978937a-e589-4e9a-ba37-265dbfc1b252@kernel.org>
- <8746bc17ef28da632e9ca765d2c3ce6bdc56c6f4.camel@mediatek.com>
+ <82cf93733dd14abfbcd17b100d1b3c40c6aed916.camel@mediatek.com>
+ <9302b338-9905-4720-ae41-c1e2713528f2@kernel.org>
+ <d54b010491c1c77a5be92920f8da4ba98722b180.camel@mediatek.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,93 +115,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <8746bc17ef28da632e9ca765d2c3ce6bdc56c6f4.camel@mediatek.com>
+In-Reply-To: <d54b010491c1c77a5be92920f8da4ba98722b180.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 11/02/2025 13:56, Crystal Guo (郭晶) wrote:
->>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
->>> ---
->>>  .../mediatek,common-dramc.yaml                | 129
->>> ++++++++++++++++++
->>>  1 file changed, 129 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,common-dramc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,common-dramc.yaml
->>> b/Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,common-dramc.yaml
->>> new file mode 100644
->>> index 000000000000..c9e608c7f183
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,common-dramc.yaml
->>> @@ -0,0 +1,129 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +# Copyright (c) 2024 MediaTek Inc.
->>> +%YAML 1.2
->>> +---
->>> +$id: 
->>> https://urldefense.com/v3/__http://devicetree.org/schemas/memory-controllers/mediatek,common-dramc.yaml*__;Iw!!CTRNKA9wMg0ARbw!mztYfN3n6_IAx78S44PFOetQS51-h6obm2HHrjEVRI-HJYyzJ2VWbbik2rn3pybssUBOT4gp5GD5-Mgk$
->>> +$schema: 
->>> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!mztYfN3n6_IAx78S44PFOetQS51-h6obm2HHrjEVRI-HJYyzJ2VWbbik2rn3pybssUBOT4gp5AGE5Eci$
->>> +
->>> +title: MediaTek Common DRAMC (DRAM Controller)
+On 11/02/2025 13:59, Crystal Guo (郭晶) wrote:
+> On Sun, 2025-02-09 at 11:52 +0100, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
 >>
->> Common? Is this a real thing? Please describe the hardware.
 >>
+>> On 08/02/2025 05:40, Crystal Guo (郭晶) wrote:
+>>> On Thu, 2024-12-12 at 11:58 +0100, Krzysztof Kozlowski wrote:
+>>>> External email : Please do not click links or open attachments
+>>>> until
+>>>> you have verified the sender or the content.
+>>>>
+>>>>
+>>>> On 12/12/2024 09:59, Crystal Guo wrote:
+>>>>> Add devicetree binding for mediatek common-dramc driver.
+>>>>>
+>>>>> The DRAM controller of MediaTek SoC provides an interface to
+>>>>> get the current data rate of DRAM.
+>>>>
+>>>> Bindings are before users.
+>>
+>> Do not ignore comments but implement them or keep discussing.
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Sorry, my original description was not accurate. It has been changed
-> to:
-> 
-> Title: MediaTek DRAM Controller (DRAMC)
-> 
->>> +
->>> +maintainers:
->>> +  - Crystal Guo <crystal.guo@mediatek.com>
->>> +
->>> +description: |
->>
->> Do not need '|' unless you need to preserve formatting.
->>
-> 
-> Okay, remove it in v2.
-> 
->>> +  The DRAM controller of MediaTek SoC provides an interface to
->>> +  get the current data rate of DRAM.
->>
->> So not common here?
-> 
-> Sorry, my original title description was not accurate.
-> 
->>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: mediatek,common-dramc
->>
->> This has to be SoC.
->>
-> 
-> Change to "mediatek,mt8196-dramc"
-> 
->>> +
->>> +  reg:
->>> +    minItems: 9
->>
->> Why this is flexible?
->>
-> The original implementation was incorrect and has been corrected in v2
+> Got it, I have replied to the previous comments. Thanks for the
+> reminder.
 
 
-You replied to two months old review. I don't have the context and I do
-not have these emails in my inbox, therefore if you have any questions I
-cannot answer.
+Ah, so these replies were because of this. Thanks, that makes sense,
+although still two months after initial review, so I am out of the context.
 
-Please implement entire feedback or discuss within reasonable amount of
-time. If something is unresolved, please mention it in the changelog of
-future versions.
+I assume above also means you implement the feedback :)
 
 Best regards,
 Krzysztof
