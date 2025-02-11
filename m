@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-145079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4760A3049A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:36:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A0DDA304AD
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:40:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 674FA165282
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 07:36:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7332B188AAF2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 07:40:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 141E31EE005;
-	Tue, 11 Feb 2025 07:36:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B17A1EDA0A;
+	Tue, 11 Feb 2025 07:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="sf8OOezD"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="sKWuHyJ8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7B61EB186;
-	Tue, 11 Feb 2025 07:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93561EDA11
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 07:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739259375; cv=none; b=TNKNx1/rgbtxo6RppiZwbQI+P0HpYLAev4QiAVA0sQ8Awkq4C9w8iBuQ49Izul7Ywsw3+OtUyaQSCOVjT66nZc266Nq9D7UpGeo2t7yeMJ3dsL1NrYbqXZu3t8vw5Ms9eZ+WCuXEsckyBmZeAyL1G6PLSyk6zqNiYPKdnyHMw1I=
+	t=1739259630; cv=none; b=tkt3fIYkvQ/Zesh8IH0E1m387UJstj8geAAO4XwpyZ1LaureEFp40k+g5qDLLJge7jOTWxg+Id5bHeLOD9qY5MLkF5ylKSYsfpp472/SGrq22cfAcsPRbIn/kUQWGru9O7JFMikJ4gkavDoZF9hgAXtXMVOfc/RhGpKhNQYj0YQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739259375; c=relaxed/simple;
-	bh=FHABviBCLTQZchnRqmI9Jrk7UuzPN8EYjJLUJQ5Wtys=;
+	s=arc-20240116; t=1739259630; c=relaxed/simple;
+	bh=pMKZzyLqyvyVwdTTyqskih+fyo3UOxvs1YXcoWoOCZQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mcB03jJubqyFe1IaWgoq7vs8htkZ7kn91ZSuIS6WMM38zYtvWQr5hu+2joqabUi/urHZk0BZ+kVVxCsGBDw1PJq9UmT2OGuhRPBbjT0RWnl7R2jIKwc7ElxD+ZxCKBfbUSFpek2qtgkJi3ZDNUSATek9i+mPxgpFbs84nW9jSyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=sf8OOezD; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=pLcQy+9EK2VVrGa/tHK3SW6TyaRjrqQiEDutgvMJoBYtESIIFO3Yj4MkLmE8WDGIEDE2ZQFialmeGpkc77vTr9RSJt7V8pfi9/irkIA2vMQIYC8N2sQI2Iq6Dla7oxlNzpF9AFU/i9EfOkobuRI9aziX68Mot6PTQ1zW57kQ4bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=sKWuHyJ8; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,39 +37,29 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=OYk0p+JMseG7FVlttgOde/7MHMJ97BiQKK6RiBx2sNQ=; b=sf8OOezD7oVeV666W8vv/CGJxC
-	qjpRpwEMd/yyYNm5Uj4tDClgnclKv2bC+kbxrWj/NN30KF8uy1pPScMuhnel1PZdHo0OZZOqnZKJz
-	Bom1SPQSOUhYpRpmb47LUTUOT9g+kvVTKF4kFl8BcgT3jvzl8ZcvhjwTnITYeI8kCMeFnfgaJDZqx
-	RGIhiaMT+cVHb16KykoJ8foZAzgJuiViuzspYy2UnMjbKX615w4s1mqvWYNPxrCiJGscWJW40Kdc8
-	qNtx3577HJWYg9ci/DSsv2Dg9uI2tJHx+W3MyD+2vnvx3xEhpfEB7EwDwH7ENhC4Mi12nZ87+4VhI
-	83tWFyig==;
+	bh=rn0RBFJfAEAIgoAzu1BVM5JXCwZahw0WpRnDyoZDBpI=; b=sKWuHyJ89/93wgixZY/dwdkmQP
+	C5fovYVoa3m9R9Y2jPo0IXzqqoIqECpXNbX2CxDICc6Crn3qA/mYjooJA9w0Q2evqMLqFad/FEjCO
+	Hd60hrjyTX+kMaxEeTzO/zsrPPSRw51+c4b/hdl8K+DpI0Ec25K4FKMEjbyc92OtDmzuEymBX7+VD
+	OHKGHEKRD41bdWaFWyANI44k2mAFcqHwdhyxfVTxy9gcEwtIWF4uZ+FBsVqKf8MZpD473Q/3SFhhQ
+	N1vb6xQVNfpSpjsNpcZrtPXubBiZshKji3AcoWYxBlddRjLfCnA21MMhKbN/6eSjvoXE5oqu1tLa1
+	QFneMPQQ==;
 Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1thkoJ-0004nq-Qy; Tue, 11 Feb 2025 08:35:59 +0100
+	id 1thksc-0004qb-2X; Tue, 11 Feb 2025 08:40:26 +0100
 From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Rob Herring <robh+dt@kernel.org>,
- "James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K . Petersen" <martin.petersen@oracle.com>,
+To: linux-rockchip@lists.infradead.org, Patrick Wildt <patrick@blueri.se>,
+ Niklas Cassel <cassel@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ Kever Yang <kever.yang@rock-chips.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, YiFeng Zhao <zyf@rock-chips.com>,
- Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org, Shawn Lin <shawn.lin@rock-chips.com>
-Subject:
- Re: [PATCH v7 4/7] pmdomain: rockchip: Add smc call to inform firmware
-Date: Tue, 11 Feb 2025 08:35:58 +0100
-Message-ID: <14847271.RDIVbhacDa@diego>
-In-Reply-To: <1738736156-119203-5-git-send-email-shawn.lin@rock-chips.com>
-References:
- <1738736156-119203-1-git-send-email-shawn.lin@rock-chips.com>
- <1738736156-119203-5-git-send-email-shawn.lin@rock-chips.com>
+ robin.murphy@arm.com
+Subject: Re: [PATCH] arm64: dts: rockchip: adjust SMMU interrupt type
+Date: Tue, 11 Feb 2025 08:40:25 +0100
+Message-ID: <25203566.ouqheUzb2q@diego>
+In-Reply-To: <Z6pxme2Chmf3d3uK@windev.fritz.box>
+References: <Z6pxme2Chmf3d3uK@windev.fritz.box>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,69 +69,59 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
 
-Am Mittwoch, 5. Februar 2025, 07:15:53 MEZ schrieb Shawn Lin:
-> Inform firmware to keep the power domain on or off.
+Am Montag, 10. Februar 2025, 22:37:29 MEZ schrieb Patrick Wildt:
+> The SMMU architecture requires wired interrupts to be edge triggered,
+> which does not align with the DT description for the RK3588.  This leads
+> to interrupt storms, as the SMMU continues to hold the pin high and only
+> pulls it down for a short amount when issuing an IRQ.  Update the DT
+> description to be in line with the spec and perceived reality.
 > 
-> Suggested-by: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
 
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Cc'ed Niklas
 
+This should probably also get a
 
+Fixes: cd81d3a0695c ("arm64: dts: rockchip: add rk3588 pcie and php IOMMUs")
+
+> Signed-off-by: Patrick Wildt <patrick@blueri.se>
 > ---
+>  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
 > 
-> Changes in v7: None
-> Changes in v6: None
-> Changes in v5:
-> - fix a compile warning
-> 
-> Changes in v4: None
-> Changes in v3: None
-> Changes in v2: None
-> 
->  drivers/pmdomain/rockchip/pm-domains.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
-> index cb0f938..49842f1 100644
-> --- a/drivers/pmdomain/rockchip/pm-domains.c
-> +++ b/drivers/pmdomain/rockchip/pm-domains.c
-> @@ -5,6 +5,7 @@
->   * Copyright (c) 2015 ROCKCHIP, Co. Ltd.
->   */
->  
-> +#include <linux/arm-smccc.h>
->  #include <linux/io.h>
->  #include <linux/iopoll.h>
->  #include <linux/err.h>
-> @@ -20,6 +21,7 @@
->  #include <linux/regmap.h>
->  #include <linux/mfd/syscon.h>
->  #include <soc/rockchip/pm_domains.h>
-> +#include <soc/rockchip/rockchip_sip.h>
->  #include <dt-bindings/power/px30-power.h>
->  #include <dt-bindings/power/rockchip,rv1126-power.h>
->  #include <dt-bindings/power/rk3036-power.h>
-> @@ -540,6 +542,7 @@ static void rockchip_do_pmu_set_power_domain(struct rockchip_pm_domain *pd,
->  	struct generic_pm_domain *genpd = &pd->genpd;
->  	u32 pd_pwr_offset = pd->info->pwr_offset;
->  	bool is_on, is_mem_on = false;
-> +	struct arm_smccc_res res;
->  
->  	if (pd->info->pwr_mask == 0)
->  		return;
-> @@ -567,6 +570,11 @@ static void rockchip_do_pmu_set_power_domain(struct rockchip_pm_domain *pd,
->  			genpd->name, is_on);
->  		return;
->  	}
-> +
-> +	/* Inform firmware to keep this pd on or off */
-> +	arm_smccc_smc(ROCKCHIP_SIP_SUSPEND_MODE, ROCKCHIP_SLEEP_PD_CONFIG,
-> +			pmu->info->pwr_offset + pd_pwr_offset,
-> +			pd->info->pwr_mask, on, 0, 0, 0, &res);
->  }
->  
->  static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool power_on)
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+> index 8cfa30837ce7..520d0814a4de 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+> @@ -549,10 +549,10 @@ usb_host2_xhci: usb@fcd00000 {
+>  	mmu600_pcie: iommu@fc900000 {
+>  		compatible = "arm,smmu-v3";
+>  		reg = <0x0 0xfc900000 0x0 0x200000>;
+> -		interrupts = <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH 0>,
+> -			     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH 0>,
+> -			     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH 0>,
+> -			     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		interrupts = <GIC_SPI 369 IRQ_TYPE_EDGE_RISING 0>,
+> +			     <GIC_SPI 371 IRQ_TYPE_EDGE_RISING 0>,
+> +			     <GIC_SPI 374 IRQ_TYPE_EDGE_RISING 0>,
+> +			     <GIC_SPI 367 IRQ_TYPE_EDGE_RISING 0>;
+>  		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
+>  		#iommu-cells = <1>;
+>  	};
+> @@ -560,10 +560,10 @@ mmu600_pcie: iommu@fc900000 {
+>  	mmu600_php: iommu@fcb00000 {
+>  		compatible = "arm,smmu-v3";
+>  		reg = <0x0 0xfcb00000 0x0 0x200000>;
+> -		interrupts = <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH 0>,
+> -			     <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH 0>,
+> -			     <GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH 0>,
+> -			     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		interrupts = <GIC_SPI 381 IRQ_TYPE_EDGE_RISING 0>,
+> +			     <GIC_SPI 383 IRQ_TYPE_EDGE_RISING 0>,
+> +			     <GIC_SPI 386 IRQ_TYPE_EDGE_RISING 0>,
+> +			     <GIC_SPI 379 IRQ_TYPE_EDGE_RISING 0>;
+>  		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
+>  		#iommu-cells = <1>;
+>  		status = "disabled";
 > 
 
 
