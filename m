@@ -1,284 +1,108 @@
-Return-Path: <devicetree+bounces-145374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83196A31167
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:31:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4C00A31173
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:32:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CF867A2031
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:30:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E23FC3A4B5A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1A824E4C3;
-	Tue, 11 Feb 2025 16:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB7F5253B6D;
+	Tue, 11 Feb 2025 16:31:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NG70fRgb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eu+SaWGt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000052AE6A;
-	Tue, 11 Feb 2025 16:31:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF9CF487A5;
+	Tue, 11 Feb 2025 16:31:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739291470; cv=none; b=uopkr64Utzxfqn12z8+5s0ZmKJcugiH7YvicEkkaaEjyj8J9hQLsUGNqWeN0PLgP1ZNCdh6IeGhOytq8XMyc/RGWlj5rEGHT9ryGOAM4DFqttIZKqJ5QZ3aS7dzTaWVTfZSq6rt09nfcLB6RHzQ7Ti1F4dUkNo5esXBNmDQgE3U=
+	t=1739291506; cv=none; b=lkwQB2CxgyCxLbnMdTPwDIFjx+33Sre20mXXSTy1QYCC8jcxCubpfY+l4ttlSx0jyy5XWcFADVtCAG5R6cUH+JqWzk5f2boOubpG91k5p2OtvpnZoqUDs7jEpKr7+cqpwmf9OyTmnq7jQgVuX1MFSc6Rzj0ZrYMxcvnbj/hkq70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739291470; c=relaxed/simple;
-	bh=oNhS/OBG05YZ+KCQ5QX2hfKKhn/P9r6dBgmu5lyTEck=;
+	s=arc-20240116; t=1739291506; c=relaxed/simple;
+	bh=WHbx8D8WKN6+hpRNEmiKZwqpTFCaWvjmIP7bdWyOoLk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sWapyF6r/N4MSr9rlUO/38mOl9zXcF4pWC4LiRLZHJ+wBnrrfWy4x9IFy0UZf84GrO4tuasKSCi3TtNBlxCcK/F5anyuoScUkKmD5lwDPloIIC2KCPzeMT6kqtYFNA3N2sGsdj0iBGO00ueuTFhRhpf/sIbJbadnRLFxnIbKyZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NG70fRgb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45D06C4CEDD;
-	Tue, 11 Feb 2025 16:31:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LqdclYBWXqQO+sEtcAG38UnPUEwqQjdEJfQFyxykrSFJJexgm4z6EpgfzULyTlWYRa/qOcBtgQvhnNPSixEl1RK58DWwfbomcfLVsZeVYns3KNuZHiD/HWm+CCpUHr8tslrAojfx4rs6bSPQsSXMYyiOmC2DpUh8EXbU2pQYDFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eu+SaWGt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8C19C4CEE6;
+	Tue, 11 Feb 2025 16:31:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739291469;
-	bh=oNhS/OBG05YZ+KCQ5QX2hfKKhn/P9r6dBgmu5lyTEck=;
+	s=k20201202; t=1739291506;
+	bh=WHbx8D8WKN6+hpRNEmiKZwqpTFCaWvjmIP7bdWyOoLk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NG70fRgbr/NArbeLI4XwktHJ14RVRgAUMRyVVKt+VVJiehyoI0RrETiIRDzicTvhl
-	 7HjgRml0wM+6lKDGa6BXOM7L8qIWhOAqfaVspzZ38BqQ1Qw0xb2ZpLtNFIK+am5ueC
-	 6c2Wcuh35njecJWyK7aQ/EurXnODJK/rnDQqhNxZCHIHpv8/MV8FdigUeT8rWM/wnX
-	 lQ2Jv2RtNT51wUtYvb/iCO8JcoVQt16Axa1JF4j8SP+N8uLsH/prWoBASkF5K976Ec
-	 q5jF8l5dZbCoT9/kBQNjt3QyQ0zWviXDPHbN15b5cWVKkL78nVe6K1s2UgWufupyDP
-	 ntm5IEEZzgMng==
-Date: Tue, 11 Feb 2025 17:31:06 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
+	b=eu+SaWGtRx2DxB5TRikQIrRVEXZdtbv2SAdm+F7jzHTlPPFUw6eIa6qAab/DcbVh0
+	 5y4R/ZqyyauUi5Yn6dlugqGJIFIIqfeAIOVylT0UUL9y9cBO/dxOPe5KW7bd2CJDiB
+	 s+F6ti0cYo+quULaBGjEHbPRcN2vbH20R2retDttaaZb3B2S4XnXzmPq5ztWmkpiqi
+	 kfKu9c9WlICgSEABeRo8IxZDS9Jq7WmKV2MBVDM53eMeMuvXyTyPNd03ZgfmynHHun
+	 Of6jP+D8O2nWAkHK99qYzsIFxP+I9HsMmmji/XshKPXdCBoHw7aC6J0Z/UsxQffB9X
+	 jJVTGBlbvFWqQ==
+Date: Tue, 11 Feb 2025 16:31:40 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH net-next v3 13/16] net: airoha: Introduce PPE
- initialization via NPU
-Message-ID: <Z6t7SuFurbGwJjt_@lore-desk>
-References: <20250209-airoha-en7581-flowtable-offload-v3-0-dba60e755563@kernel.org>
- <20250209-airoha-en7581-flowtable-offload-v3-13-dba60e755563@kernel.org>
- <20250211-fanatic-smoky-wren-f0dcc9@krzk-bin>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Steven Price <steven.price@arm.com>, kernel@collabora.com,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: gpu: mali-bifrost: Add compatible
+ for MT8370 SoC
+Message-ID: <20250211-sculpture-kindly-f609a5bfdbd9@spud>
+References: <20250211-mt8370-enable-gpu-v4-0-77deb7a75c23@collabora.com>
+ <20250211-mt8370-enable-gpu-v4-1-77deb7a75c23@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="g2jqDdovRQTl6Nrb"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="NPhV4nCHfXvnVdVx"
 Content-Disposition: inline
-In-Reply-To: <20250211-fanatic-smoky-wren-f0dcc9@krzk-bin>
+In-Reply-To: <20250211-mt8370-enable-gpu-v4-1-77deb7a75c23@collabora.com>
 
 
---g2jqDdovRQTl6Nrb
+--NPhV4nCHfXvnVdVx
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-> On Sun, Feb 09, 2025 at 01:09:06PM +0100, Lorenzo Bianconi wrote:
-> > +static irqreturn_t airoha_npu_wdt_handler(int irq, void *core_instance)
-> > +{
-> > +	struct airoha_npu_core *core =3D core_instance;
-> > +	struct airoha_npu *npu =3D core->npu;
-> > +	int c =3D core - &npu->cores[0];
-> > +	u32 val;
-> > +
-> > +	airoha_npu_rmw(npu, REG_WDT_TIMER_CTRL(c), 0, WDT_INTR_MASK);
-> > +	val =3D airoha_npu_rr(npu, REG_WDT_TIMER_CTRL(c));
-> > +	if (FIELD_GET(WDT_EN_MASK, val))
-> > +		schedule_work(&core->wdt_work);
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
-> > +
-> > +struct airoha_npu *airoha_npu_init(struct airoha_eth *eth)
-> > +{
-> > +	struct reserved_mem *rmem;
-> > +	int i, irq, err =3D -ENODEV;
-> > +	struct airoha_npu *npu;
-> > +	struct device_node *np;
-> > +
-> > +	npu =3D devm_kzalloc(eth->dev, sizeof(*npu), GFP_KERNEL);
-> > +	if (!npu)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	npu->np =3D of_parse_phandle(eth->dev->of_node, "airoha,npu", 0);
-> > +	if (!npu->np)
-> > +		return ERR_PTR(-ENODEV);
+On Tue, Feb 11, 2025 at 03:13:08PM +0100, Louis-Alexis Eyraud wrote:
+> Add a compatible for the MediaTek MT8370 SoC, with an
+> integrated ARM Mali G57 MC2 GPU (Valhall-JM, dual core).
+> None of the already existing SoC specific compatibles is usable as
+> fallback, as those either do not match the number of cores (and number
+> of power domains), or are for a different GPU architecture.
 >=20
-> Why? The property is not required, so how can missing property fail the
-> probe?
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-similar to mtk_wed device, airoha_npu is not modeled as a standalone driver,
-but it is part of the airoha_eth driver. If you think it is better, I can
-rework it implementing a dedicated driver for it. What do you think?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->=20
-> This is also still unnecessary ABI break without explanation/reasoning.
-
-At the moment if airoha_npu_init() fails (e.g. if the npu node is not prese=
-nt),
-it will not cause any failure in airoha_hw_init() (so in the core ethernet
-driver probing).
-
->=20
-> > +
-> > +	npu->pdev =3D of_find_device_by_node(npu->np);
-> > +	if (!npu->pdev)
-> > +		goto error_of_node_put;
->=20
-> You should also add device link and probably try_module_get. See
-> qcom,ice (patch for missing try_module_get is on the lists).
-
-thx for the pointer, I will take a look to it.
-
->=20
-> > +
-> > +	get_device(&npu->pdev->dev);
->=20
-> Why? of_find_device_by_node() does it.
-
-ack, I will fix it.
-
->=20
-> > +
-> > +	npu->base =3D devm_platform_ioremap_resource(npu->pdev, 0);
-> > +	if (IS_ERR(npu->base))
-> > +		goto error_put_dev;
-> > +
-> > +	np =3D of_parse_phandle(npu->np, "memory-region", 0);
-> > +	if (!np)
-> > +		goto error_put_dev;
-> > +
-> > +	rmem =3D of_reserved_mem_lookup(np);
-> > +	of_node_put(np);
-> > +
-> > +	if (!rmem)
-> > +		goto error_put_dev;
-> > +
-> > +	irq =3D platform_get_irq(npu->pdev, 0);
-> > +	if (irq < 0) {
-> > +		err =3D irq;
-> > +		goto error_put_dev;
-> > +	}
-> > +
-> > +	err =3D devm_request_irq(&npu->pdev->dev, irq, airoha_npu_mbox_handle=
-r,
-> > +			       IRQF_SHARED, "airoha-npu-mbox", npu);
-> > +	if (err)
-> > +		goto error_put_dev;
-> > +
-> > +	for (i =3D 0; i < ARRAY_SIZE(npu->cores); i++) {
-> > +		struct airoha_npu_core *core =3D &npu->cores[i];
-> > +
-> > +		spin_lock_init(&core->lock);
-> > +		core->npu =3D npu;
-> > +
-> > +		irq =3D platform_get_irq(npu->pdev, i + 1);
-> > +		if (irq < 0) {
-> > +			err =3D irq;
-> > +			goto error_put_dev;
-> > +		}
->=20
-> This is all confusing. Why are you requesting IRQs for other - the npu -
-> device? That device driver is responsible for its interrupts, not you
-> here. This breaks encapsulation. And what do you do if the other device
-> starts handling interrupts on its own? This is really unexpected to see
-> here.
-
-As pointed out above, there is no other driver for airoha_npu at the moment,
-but I am fine to implement it.
-
-Regards,
-Lorenzo
-
->=20
-> > +
-> > +		err =3D devm_request_irq(&npu->pdev->dev, irq,
-> > +				       airoha_npu_wdt_handler, IRQF_SHARED,
-> > +				       "airoha-npu-wdt", core);
-> > +		if (err)
-> > +			goto error_put_dev;
-> > +
-> > +		INIT_WORK(&core->wdt_work, airoha_npu_wdt_work);
-> > +	}
-> > +
-> > +	if (dma_set_coherent_mask(&npu->pdev->dev, 0xbfffffff))
-> > +		dev_err(&npu->pdev->dev,
-> > +			"failed coherent DMA configuration\n");
-> > +
-> > +	err =3D airoha_npu_run_firmware(npu, rmem);
-> > +	if (err)
-> > +		goto error_put_dev;
-> > +
-> > +	airoha_npu_wr(npu, REG_CR_NPU_MIB(10),
-> > +		      rmem->base + NPU_EN7581_FIRMWARE_RV32_MAX_SIZE);
-> > +	airoha_npu_wr(npu, REG_CR_NPU_MIB(11), 0x40000); /* SRAM 256K */
-> > +	airoha_npu_wr(npu, REG_CR_NPU_MIB(12), 0);
-> > +	airoha_npu_wr(npu, REG_CR_NPU_MIB(21), 1);
-> > +	msleep(100);
-> > +
-> > +	/* setting booting address */
-> > +	for (i =3D 0; i < AIROHA_NPU_NUM_CORES; i++)
-> > +		airoha_npu_wr(npu, REG_CR_BOOT_BASE(i), rmem->base);
-> > +	usleep_range(1000, 2000);
-> > +
-> > +	/* enable NPU cores */
-> > +	/* do not start core3 since it is used for WiFi offloading */
-> > +	airoha_npu_wr(npu, REG_CR_BOOT_CONFIG, 0xf7);
-> > +	airoha_npu_wr(npu, REG_CR_BOOT_TRIGGER, 0x1);
-> > +	msleep(100);
-> > +
-> > +	return npu;
-> > +
-> > +error_put_dev:
-> > +	put_device(&npu->pdev->dev);
->=20
-> Missing platform_device_put()
->=20
-> > +error_of_node_put:
-> > +	of_node_put(npu->np);
-> > +
-> > +	return ERR_PTR(err);
-> > +}
-> > +
-> > +void airoha_npu_deinit(struct airoha_npu *npu)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i =3D 0; i < ARRAY_SIZE(npu->cores); i++)
-> > +		cancel_work_sync(&npu->cores[i].wdt_work);
-> > +
->=20
-> Leaking device put.
->=20
-> > +	put_device(&npu->pdev->dev);
-> > +	of_node_put(npu->np);
->=20
-> Best regards,
-> Krzysztof
->=20
-
---g2jqDdovRQTl6Nrb
+--NPhV4nCHfXvnVdVx
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ6t7SgAKCRA6cBh0uS2t
-rGOSAP9ajQ5bBXTGIXJFOaDlhfq5P0lEKUu7Bq7as0Wrb/CiHwD+MjobPeqtgWPG
-gTwY8bZNqtz2FbpzlvqWNUyz/50ToAo=
-=svVA
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6t7bAAKCRB4tDGHoIJi
+0i+cAQDYKv1HrAj7IGdLB1J2AnBE7+u3Pb19+VvVkXzP4xD9MQD9ECsECRTHxV1D
+II/TJXxFDRi2ikkrxmF2acujkXxITgg=
+=KP0z
 -----END PGP SIGNATURE-----
 
---g2jqDdovRQTl6Nrb--
+--NPhV4nCHfXvnVdVx--
 
