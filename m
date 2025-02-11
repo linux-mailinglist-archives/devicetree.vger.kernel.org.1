@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-145088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 493F5A30529
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:03:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B12D1A3053E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:07:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 082903A3214
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:03:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1B761885D57
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:07:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFE6A1EE01A;
-	Tue, 11 Feb 2025 08:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7E9F1EDA2B;
+	Tue, 11 Feb 2025 08:07:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tsFMZLR8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l+0qzL21"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C184A1EBFE6;
-	Tue, 11 Feb 2025 08:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDB8E1EBFE6;
+	Tue, 11 Feb 2025 08:07:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739261008; cv=none; b=We6Bknl2jdw+JHXZdXIfHEbVO4AOdQV/ERkGJ+Wppi/kZ8N3j/+oBSbXp1vP2XrLEfNOaS1LbKZQwaEplt/4BZZEQDYyX3acwCdGsw5FJEh2RgLPPCgl+EjTqq7a2TRRnHcRjCnbPf/ccqWOaMzU+6P4eva0/+1PYtMhFax+rlY=
+	t=1739261227; cv=none; b=jWPbeN6svvzxIkWtz+P2TDptotRNZQrdzW54Y27IzSmMBDH+IMURvC5EiT7Q0iApUbJMgh0u01dQNF3Yy5P+gip15mSjTdWOUJ5jKDzqSU7uohU0buUpfE9lILbYvs86E19LUm5RGEwXhMWO6PQW6osnUfIbncRjtZw3NEi+Cps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739261008; c=relaxed/simple;
-	bh=fcMnfF/02PwcgIb5knjQyysxW5tjvDb1ZQDm57WEIcg=;
+	s=arc-20240116; t=1739261227; c=relaxed/simple;
+	bh=EKdk/i/PYM3yiBMGtdjRxRYsmQllHsBKgApCUH0Smd0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Uus6zlqfrIVP1yk52+boZtOUOUZ6hMhUwcZSe95JLVtjSPc63b1sNwuTlTzp6Ppu/VJ5I1j2x8jtdkDYYeuPDY6uaZ1WGdZDwBHTfh5b9UJu3Ajy7Evy0njXDIyLVuyPCzyiqW8FFfzGCu30wli6BDAlRD/hndi5+4lWa2Xlc8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tsFMZLR8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67A03C4CEDD;
-	Tue, 11 Feb 2025 08:03:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PtLKeUYvU9TJzJqaoRA2glcgxDgxXKWHN4F3a4yb0RBifPziXF62GhMBqU3TXhSIwTvfnHA/aTfmqODCUI7gdKG58u6io5LmyVR9g+ZBF9b+hiy4bQ/N3YHSw1wAtWOX5r5eKV+lTToA33b1/9d7KedC9N63PXMpZLtPGAwD5gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l+0qzL21; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 127E7C4CEDD;
+	Tue, 11 Feb 2025 08:07:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739261008;
-	bh=fcMnfF/02PwcgIb5knjQyysxW5tjvDb1ZQDm57WEIcg=;
+	s=k20201202; t=1739261227;
+	bh=EKdk/i/PYM3yiBMGtdjRxRYsmQllHsBKgApCUH0Smd0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tsFMZLR8qsPO+zv9eVl6FbzRTs8M8hQz09kMMyaS8RjZ3zBm4n6xDol93yXXRicYQ
-	 8mAvdhNHGkFMO6S5b+Y6ceXIP1Cp4L9kuiPX244ZLwefhssfnBwZsG2mjDbtAtqtAS
-	 noaCrdhkhiQQMr0peRWbfWoWf/8pzxW09npugDlLlVXcQ6SVVg9S2J8Nn1B4jUREIO
-	 rEhVzEwP0fQBnPObim/sDQm46Fd/XoAY3MDX+Ak2WWnKLAyqAByXk9gQMtGd0T7Djl
-	 A1lu7r6qyBw/qeQKsr3PekZIia/cc2UGO6AvMtF2IdUzi07IxmKL1oap19qglc8sCJ
-	 iNn8F40djQ84w==
-Message-ID: <19e5129b-8423-4660-8e4f-8b898214d275@kernel.org>
-Date: Tue, 11 Feb 2025 09:03:20 +0100
+	b=l+0qzL21BjGqGYnXkrT7a4kpupAYugKqawqCcjoPR0JzONwH69+uV7qKtyBZcoFNm
+	 0KgFfE3Q4zOJ2BN/Xz7jr1QbD1agG+qwTBMRifLzqzGPQnPK6vfTPDQlGLn+Cq49Os
+	 Phsyd8U9pEDGr3agyh1c2X5nMjzUnmLjcJNeXveEzBSFCF/AnFTrrb3GB5NWu/75TG
+	 RyUPT9WpeFbZMZryoJSnGI+dk+JdV2fVninZUie5wUcuQltbd0vqG020ThXLOa5Hpb
+	 x512kLXqc93tE7ZIEY5CJgiXBkxKfcN510E0VuLqibwVuYfAlpuPoEQBmKBaKRsKA3
+	 ObW//Bo9W3muA==
+Message-ID: <bf8f3ea1-6fb5-40d1-a823-b3bc272a2257@kernel.org>
+Date: Tue, 11 Feb 2025 09:07:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add spacemit,k1-syscon
-To: Haylen Chu <heylenay@4d2.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
- Yixun Lan <dlan@gentoo.org>, linux-riscv@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
- Chen Wang <unicornxdotw@foxmail.com>, Jisheng Zhang <jszhang@kernel.org>,
- Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
-References: <20250103215636.19967-2-heylenay@4d2.org>
- <20250103215636.19967-4-heylenay@4d2.org>
- <aw2vqnz5vcccqqvrrhz5tgawj7fnzzg3tds7nnepuorit37a7r@jcj3wrs7d73h>
- <Z6rdBhQ7s2ReOgBL@ketchup>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 03/10] arm64: dts: sophgo: Add initial SG2000 SoC device
+ tree
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, soc@lists.linux.dev
+Cc: Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto <inochiama@outlook.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, Haylen Chu <heylenay@outlook.com>,
+ linux-arm-kernel@lists.infradead.org, Arnd Bergmann <arnd@arndb.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
+ <20250209220646.1090868-4-alexander.sverdlin@gmail.com>
+ <0d5484d1-be83-4f38-befd-94d458b3aaa8@kernel.org>
+ <03ff407fe68e46df4844e5dd244e7c609331af71.camel@gmail.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -110,93 +108,109 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z6rdBhQ7s2ReOgBL@ketchup>
+In-Reply-To: <03ff407fe68e46df4844e5dd244e7c609331af71.camel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/02/2025 06:15, Haylen Chu wrote:
-> On Sat, Jan 04, 2025 at 11:07:58AM +0100, Krzysztof Kozlowski wrote:
->> On Fri, Jan 03, 2025 at 09:56:35PM +0000, Haylen Chu wrote:
->>> Add documentation to describe Spacemit K1 system controller registers.
+On 10/02/2025 16:01, Alexander Sverdlin wrote:
+> Hi Krzysztof!
+> 
+> On Mon, 2025-02-10 at 09:45 +0100, Krzysztof Kozlowski wrote:
+>> On 09/02/2025 23:06, Alexander Sverdlin wrote:
+>>> Add initial device tree for the SG2000 SoC by SOPHGO (from ARM64 PoV).
 >>>
->>> Signed-off-by: Haylen Chu <heylenay@4d2.org>
+>>> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 >>> ---
->>>  .../soc/spacemit/spacemit,k1-syscon.yaml      | 52 +++++++++++++++++++
->>>  1 file changed, 52 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+>>>   arch/arm64/boot/dts/sophgo/sg2000.dtsi | 79 ++++++++++++++++++++++++++
+>>>   1 file changed, 79 insertions(+)
+>>>   create mode 100644 arch/arm64/boot/dts/sophgo/sg2000.dtsi
 >>>
->>> diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+>>> diff --git a/arch/arm64/boot/dts/sophgo/sg2000.dtsi b/arch/arm64/boot/dts/sophgo/sg2000.dtsi
 >>> new file mode 100644
->>> index 000000000000..79c4a74ff30e
+>>> index 000000000000..4e520486cbe5
 >>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
->>> @@ -0,0 +1,52 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/soc/spacemit/spacemit,k1-syscon.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +++ b/arch/arm64/boot/dts/sophgo/sg2000.dtsi
+>>> @@ -0,0 +1,79 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 >>> +
->>> +title: Spacemit K1 SoC System Controller
+>>> +#define SOC_PERIPHERAL_IRQ(nr)		GIC_SPI (nr)
 >>> +
->>> +maintainers:
->>> +  - Haylen Chu <heylenay@4d2.org>
+>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +#include <riscv/sophgo/cv18xx-periph.dtsi>
+>>> +#include <riscv/sophgo/cv181x.dtsi>
 >>> +
->>> +description:
->>> +  The Spacemit K1 SoC system controller provides access to shared register files
->>> +  for related SoC modules, such as clock controller and reset controller.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - spacemit,k1-apbc-syscon
->>> +          - spacemit,k1-apbs-syscon
->>> +          - spacemit,k1-apmu-syscon
->>> +          - spacemit,k1-mpmu-syscon
->>> +      - const: syscon
->>> +      - const: simple-mfd
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clock-controller:
->>> +    $ref: /schemas/clock/spacemit,k1-ccu.yaml#
->>> +    type: object
->>
->> So now we see the full picture and it leads to questions.
->>
->> 1. Why spacemit,k1-apbc-syscon with spacemit,k1-ccu-apmu child is a
->> correct combination?
->>
->> 2. Why having this split in the first place? Please confirm that clock
->> controller is really, really a separate device and its child in
->> datasheet. IOW, fake child for your Linux is a no-go. Fake child while
->> devices are independent is another no-go.
+>>> +/ {
 > 
-> These syscons are introduced because the clock controllers share
-> registers with reset controllers. Folding them into the parents results
+> [...]
+> 
+>>> +	gic: interrupt-controller@1f01000 {
+>>
+>> MMIO nodes are always in the soc.
+> 
+> I think I've looked a wrong example (or a counter-example)...
+> $ grep -R -P '^\t\tcompatible = "arm,cortex-a15-gic";' *
+> arm/boot/dts/intel/axm/axm55xx.dtsi:		compatible = "arm,cortex-a15-gic";
+> arm/boot/dts/ti/omap/dra7.dtsi:		compatible = "arm,cortex-a15-gic";
+> arm/boot/dts/ti/omap/omap5.dtsi:		compatible = "arm,cortex-a15-gic";
+> arm/boot/dts/nvidia/tegra124.dtsi:		compatible = "arm,cortex-a15-gic";
+> arm/boot/dts/nvidia/tegra114.dtsi:		compatible = "arm,cortex-a15-gic";
 
-So a fake split...
+These are all old.
 
-> in devicetree nodes act as both reset and clock controllers, like what
+> arm64/boot/dts/nvidia/tegra132.dtsi:		compatible = "arm,cortex-a15-gic";
+> arm64/boot/dts/freescale/s32v234.dtsi:		compatible = "arm,cortex-a15-gic";
 
-Which is correct hardware representation, isn't it?
+Well, it happens.
 
-> has been done for Rockchip SoCs. Such folding isn't practical for the
-> MPMU region either, since watchdog and other misc bits (e.g. PLL lock
-> status) locates in it.
+> arm64/boot/dts/apm/apm-storm.dtsi:		compatible = "arm,cortex-a15-gic";
+> arm64/boot/dts/apm/apm-shadowcat.dtsi:		compatible = "arm,cortex-a15-gic";
 
-Hm? Why? You have a device which is reset and clock controller, so why
-one device node is not practical? Other vendors do not have problem with
-this.
+These are strong anti-patterns. Unmaintained.
 
 > 
-> If you're more comfortable with reset and clock controllers folded
-> together and eliminating most of these syscons, I'm willing to make the
-> change.
+> But thanks for clarification!
+> 
+>>> +		compatible = "arm,cortex-a15-gic";
+>>> +		interrupt-controller;
+>>> +		#interrupt-cells = <3>;
+>>> +		reg = <0x01f01000 0x1000>,
+>>> +		      <0x01f02000 0x2000>;
+>>> +	};
+>>> +
+>>> +	soc {
+>>
+>> Override by phandle/label instead of duplicating.
+>>
+>>> +		ranges;
+>>> +
+>>> +		pinctrl: pinctrl@3001000 {
+>>> +			compatible = "sophgo,sg2000-pinctrl";
+>>> +			reg = <0x03001000 0x1000>,
+>>> +			      <0x05027000 0x1000>;
+>>> +			reg-names = "sys", "rtc";
+>>> +		};
+>>> +	};
+>>> +};
+>>> +
+>>> +
+>>> +&clk {
+>>> +	compatible = "sophgo,sg2000-clk";
+>>
+>>
+>> That's discouraged practice. If you need to define compatible, it means
+>> the block is not shared between designs and must not be in common DTSI.
+> 
+> That doesn't come from my series, that's how original cv18xx.dtsi has been
 
-This is expected.
+You can change the other file to match real hardware. But if original
+cv18xx.dtsi has incorrect or imprecise compatible, I wonder how does it
+work....
+
+> designed. Same question as before: do I need to rework it if I will not be able to
+> test the changes (I don't even posess the relevant HW). But if not, I have
+> to adapt the same pattern into the new sg2000.dtsi.
+
+
 
 
 
