@@ -1,111 +1,101 @@
-Return-Path: <devicetree+bounces-145249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD541A30C0C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:50:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4BDDA30C19
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:55:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24FBA1889035
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:50:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CB92188AAC4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:55:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E971FE453;
-	Tue, 11 Feb 2025 12:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F38C213240;
+	Tue, 11 Feb 2025 12:55:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="txeP3OBx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B87A5320F;
-	Tue, 11 Feb 2025 12:50:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB8E21128F;
+	Tue, 11 Feb 2025 12:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739278243; cv=none; b=APa4F2a9mmA3MFoyjTcy7npGodumQCXPbWMq1p7q8nVf43c67iBistucmFzc01Xv6GXmUbt3F5cmKhv4i6uAkmxzLgJF4MmSsNZBNm5PT+UHCpEWpGvzpIjufaFVqe4pJwNwj6VtnmAh+G3uGZdfp7MQFscJyrHtxV1FQEXWU4s=
+	t=1739278527; cv=none; b=C6hg5bXV+BT0sWgZal8aOobj9mFtN/cOavLn7OuToeR+X1wtRqXCJjJxsmymufVBOvyV3qv6OVqhMPzaqqwi9lUJj/ew2wRqV3XBnlcls4DKLMSDTS7Yxn2Qn/38JYtMbAJ0NcOsE4JZkErpXT2XfDkYK68R3AiqnTOt6lCqidQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739278243; c=relaxed/simple;
-	bh=yunBSt/nigkQXI6Mi6FpAg9HAYUB6txNT6LN3lAjozQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BCcT5qaEJXk/VsCYpnx2IkAFTHWT9u5p5ZzRnVKhLE1uxOr9iU57aYps3p43ZIWUelMAZETpPwtjx7tHivN0Q/9uzie2soQ3PHp3U9IxhOy/CyAWaCDo82JsnKxJlxJ3+rNhH7SU9MupivkFdxvqg7/w5OB7dhpDOTLb8NQ1R5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-866fe7d07d0so1320500241.0;
-        Tue, 11 Feb 2025 04:50:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739278240; x=1739883040;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H3J5ARP+69nEEkzNAUY9ILaAxe/rz6jrbIqbWrp9o6k=;
-        b=XrhVm7+77h+JznZSbdF4sKIAnY3alsNM7Z/A1BpWx1mHA9qXDX78zqWcem1XFbgw3n
-         vZ686a+qVKkE24o/a8oJEzOONeNTonVQOyzwCizIPVmTM/MEEXIjoyizB7JArDIOMZkj
-         ukFMGk7kr/gRAF+vIjdbu8N2PgfngnDfDwYzlcJIlyreAyumCyX7V3XcR6fF7qi3cu2l
-         P0+InLDcDIdwBnjLeBDDdRBKwydLHcQn1V9nxV19hz/kahEokFrQ2svvHTeMMZ2cPg0O
-         d2wjPGHHHUs3pTYFZKUqFOAnSUjBBBihOyrmJcrhuzthuFhWUEnhLYj7lSt48mdRvPW/
-         nwpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUd4gzRI0gamDySUeTn+mfxJW3sPgDe+xAMtAVM2lRhvrU4h/dBmMTutfKm8mARQuvF3uSdXGyJjnVA@vger.kernel.org, AJvYcCUhH4dkgX/hkQ3H9JVhpCDKpr9MpjVyxP91+pmHHy0M19rL3xGK1wA3gRJykJWVa5QvBcOB+DyGS1GOQxFe1I4cKwE=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWDXuVIOCSaUxq+v72uZ0IhRv+3DKl1SIj0nkgOuzRgBIG2NEM
-	b9Gpi6io7CzRqYohaIjAn0juBR9ZJpRJyfIppUOJjZwF6ab0WwuF0EBocDk/aaI=
-X-Gm-Gg: ASbGncv0yNUoM5OvQeARWNY8iuXfqzq/ak91zWvO4R+JZ2SecNYow7qPU0BwjN4fFcy
-	QVmlFGGHcWbj2AprscvJmasAXUrwMRWQquhiUG8c95FPEI9pvRljQdyT+3Qc3NxPJjuAkiUZIrL
-	0VuD7VlskOw5JrQk/77OjspSPJNmTynP+HsPYVoqWbku8uLU7zidiYPGFN8Rw0Nf3HyDifKCKhi
-	XKLK9r/QHgdxVLr+l/ZO7WBCiphruz/RASfO3qg0ldvlSrpDRaA7oppznHRBwolkeHgv1VqHLRB
-	sZk5TQlNzTWaDDAW8AzRQXs7X23JeSgBqrv5eEoFhUlpefY067SN/Q==
-X-Google-Smtp-Source: AGHT+IFKq2WjezhUFGEKyC/fiXRSZZGVXb2ZOZo1TSk5/ehjKCzS2ScXWVjNEP7C6m5Frk0hLBbaew==
-X-Received: by 2002:a05:6102:a4c:b0:4bb:d962:62b with SMTP id ada2fe7eead31-4bbd9620b82mr3344493137.24.1739278240150;
-        Tue, 11 Feb 2025 04:50:40 -0800 (PST)
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4ba772d7239sm1975359137.19.2025.02.11.04.50.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Feb 2025 04:50:39 -0800 (PST)
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-4bbe5bfb68fso133344137.3;
-        Tue, 11 Feb 2025 04:50:39 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCULt5zII4gKK2d/sswY+/jumhgVErLtY4qs705M5nUkZBJnTc5SOSI6CJhmKXvI9+aGayTYqI2ci9xN@vger.kernel.org, AJvYcCVD20Usp4KoyHbG7BU9mLcpo+87nrfbeezsrbgkZw1LC7pBd/uUc3O/w7zi5x+aIL16QJNMwua+477zLqGaMhAPaeo=@vger.kernel.org
-X-Received: by 2002:a05:6102:2c8a:b0:4bb:e8c5:b173 with SMTP id
- ada2fe7eead31-4bbe8c5bb8amr478499137.21.1739278239354; Tue, 11 Feb 2025
- 04:50:39 -0800 (PST)
+	s=arc-20240116; t=1739278527; c=relaxed/simple;
+	bh=2GSp+olEHX5d9q1fUBuTtLdbywDe+H6vZe9ucwKdeqM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=j539ZE/O5mIfU+QwFlGHXXdEDzqSoMcBKOlIjfvTamJIaG8vuNcvuucatVX3DB7Yavyx0FBofjoDL+jsz1uLsniMIYcjWGCE8pComqpOT7nTAmTIiU/uUHRvXuBOF43GZgbStjyQug9juFx5O7S7ZMWXDJPQgS2hew4Yqm00G8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=txeP3OBx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B855CC4CEDD;
+	Tue, 11 Feb 2025 12:55:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739278526;
+	bh=2GSp+olEHX5d9q1fUBuTtLdbywDe+H6vZe9ucwKdeqM=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=txeP3OBxl+tQb4dVRqq1bEDmqFfxTn0p3b3LWKQAuYGaToEHQMnCHBO5AQiRZFb4w
+	 6YQYQKiPq0wTc8sJ2mrETPyjQLr0NZcAqXXrbWZZKK6VOOs8YEl4suFyyZCwuX//oS
+	 5wtX69uq+daJnLpT+pR+i8JSaWfD9CT0Zrno3BlhrtDELVMADpzqlD2RoEHOM5LcDG
+	 khNdolhepZWG5HDt7pGmhRVzf54tqW9nocjzRhqtMU2rNUCp2ooxGlNKwzF70cM7bf
+	 PC3K1ZFOuspHlXwJrCxL7pTC69eAf7wrzj7eGOIUDz/dk68UhZGTmSIa/jEG7JBhkI
+	 c3nFqRB/jRXPQ==
+Message-ID: <d3712a1b-48da-4d94-82a9-e7f627dead3f@kernel.org>
+Date: Tue, 11 Feb 2025 06:55:24 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250206134047.67866-1-biju.das.jz@bp.renesas.com> <20250206134047.67866-9-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250206134047.67866-9-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 11 Feb 2025 13:50:27 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWSy0bvu42p=+kxkaoOzVAZo0h4MEyJ=4AuNgqDJs_t=A@mail.gmail.com>
-X-Gm-Features: AWEUYZkN0dSadnXTeJFp3NuyjN1BxIbMo-Ubk2ta5c__ODTGqtiDWlGywBC1BoU
-Message-ID: <CAMuHMdWSy0bvu42p=+kxkaoOzVAZo0h4MEyJ=4AuNgqDJs_t=A@mail.gmail.com>
-Subject: Re: [PATCH v3 8/8] arm64: dts: renesas: r9a09g047e57-smarc: Enable SDHI1
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/2] arm64: dts: socfpga: agilex5: add NAND daughter
+ board
+To: niravkumar.l.rabara@intel.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, nirav.rabara@altera.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250210074604.2410783-1-niravkumar.l.rabara@intel.com>
+Content-Language: en-US
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20250210074604.2410783-1-niravkumar.l.rabara@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 6 Feb 2025 at 14:41, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable SDHI1 on the RZ/G3E SMARC EVK platform using gpio regulator for
-> voltage switching.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v2->v3:
->  * Added header file gpio.h.
+On 2/10/25 01:46, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> 
+> Agilex5 SoCFPGA devkit supports a separate NAND daughter board.
+> Document NAND daughter board compatible string and add board file.
+> 
+> Changes in v3:
+>    * Document Agilex5 NAND daughter board and use that compatible
+>      in the device tree.
+> 
+> link to v2:
+>   - https://lore.kernel.org/all/20250205101318.1778757-1-niravkumar.l.rabara@intel.com/
+> 
+> Changes in v2:
+>   * Use nand flash node name according to dt bindings to fix dt build warnings.
+>   * Arrange node in sequence.
+> 
+> link to v1:
+>   - https://lore.kernel.org/all/20250107084831.2750035-1-niravkumar.l.rabara@intel.com/
+> 
+> Niravkumar L Rabara (2):
+>    dt-bindings: intel: document Agilex5 NAND daughter board
+>    arm64: dts: socfpga: agilex5: add NAND daughter board
+> 
+>   .../bindings/arm/intel,socfpga.yaml           |  1 +
+>   arch/arm64/boot/dts/intel/Makefile            |  1 +
+>   .../dts/intel/socfpga_agilex5_socdk_nand.dts  | 89 +++++++++++++++++++
+>   3 files changed, 91 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Queueing in renesas-devel is postponed, pending acceptance of the DT
-bindings by the MMC maintainer.
+Applied!
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Dinh
 
