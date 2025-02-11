@@ -1,217 +1,271 @@
-Return-Path: <devicetree+bounces-145017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D1BA2FFA7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 01:51:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF0CFA2FFAF
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 01:52:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EF211882977
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 00:49:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88031169EC7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 00:50:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CBB31DB15C;
-	Tue, 11 Feb 2025 00:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB121CAA75;
+	Tue, 11 Feb 2025 00:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VUoTlxOh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kGzt43q+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96EB91B4259;
-	Tue, 11 Feb 2025 00:42:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F44041C7F;
+	Tue, 11 Feb 2025 00:47:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739234569; cv=none; b=PnH5kJYYS5hnKKkmtjbmh6bAAKYjCZTatwgHxr4w6XBX9YA0xwzHqVt+lFA3QWfBmWsyMengnsWpvZBLLE0lRd/sJAEg5cxWo0c7njzWZprKppsvtf0vZPT25H6G34zne70m54XhN0zFUSMsvmEo4Jjl4xaDs6GZWuqILPsQvTg=
+	t=1739234833; cv=none; b=dfLvzGZHafDnZzeAjuIF+zYUi9t1dg+mAFqqLrls9sN34XxeDhFk0ghZmxG6V1RLbJayY1zlC8b4EeLuz6JjbMrp+wZZuwKhabKxxJc2egbDnqnerHHwXTt4eHB1sfO0LbwfWR2GjDc4Ql4KcmRTaNWm9MoQsY2cv3HtFjDTU8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739234569; c=relaxed/simple;
-	bh=gOl7sypTcjVDSzWEpj5+cpGk9s8h5WVawV/ZWHfCoYE=;
+	s=arc-20240116; t=1739234833; c=relaxed/simple;
+	bh=9VES0IWV7eXdCEVwV5017MoNTx0dvRf0I+xHBK0PfeM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eFB0W+IWZDReFat/A33EKLFdwVvEpah7X5vtX3YaesG0oiwfCnpQo5uEjrZf+hPF29owRbrOvEKHAdxXBM91qutubwKZvlbkv3BT44ibwer71INxIUPRxV0J5wNl187N0rev3YLeOieFKPbFGVW/xMpVATyxulzDdWsIYhwBLh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VUoTlxOh; arc=none smtp.client-ip=209.85.222.169
+	 Content-Type:Content-Disposition:In-Reply-To; b=DOG99UqRFR+7lOcLyO5IU9EbHyrWbWjrStrsAjH70npj4XjUctPxZOUN9sACj45nWJdV1IRSKdJ3R1PNEapurX10BpAnSKBd0B+3/iNDwiWmQ3yTW19kgT4vE5NZW/m/1Vs7f+ySfaP+dj3zJsjX3y+qZdAddyTc6d2oJfECmMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kGzt43q+; arc=none smtp.client-ip=209.85.160.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7c050c6e201so235235985a.0;
-        Mon, 10 Feb 2025 16:42:47 -0800 (PST)
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-471899f228cso16488741cf.3;
+        Mon, 10 Feb 2025 16:47:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739234566; x=1739839366; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1739234829; x=1739839629; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=ves2PKf6HPc01SFv90D7qof8tDzgHtK1O0RPrNmLMrU=;
-        b=VUoTlxOhOClx3+0lerNU34S5pHFGbF5h7xXJlYIJu/hC1URQvGCR1PRc6e7QjgGRDt
-         olxJzRfLjUi+ct38HufBXPW/CDvyZMG0aznGhy5f3y71UEkLs31BVDCXGVBzHyjJDi8g
-         WVpEiRbXsU6GsWL5sr4iFxBiHf/xWXWy1CFcWX16YoDkdanMvwaDLS2p268eOtTusCha
-         fkF9gmzWaH90s17/4wBSMAgEUbg9g4Rmsi2TdZaOo1spaa0lOBlDxqnbHVCttYzh0zOa
-         zsOVXQrMwX6sj6hSoxIxlnK/mg9K6mH14ukCR4YmJfHsBex6k5QhMgAwYc4ivPgWctCI
-         0GGQ==
+        bh=jTIEVTb8WG6g/xYwFCZRA14WxKqhOtoX7+ICXbI2OMk=;
+        b=kGzt43q+om5i3lEdi/lF4fEnFyF9FgZSb4V7Uh+1VfgLM8xKaf9bUSQwiRPbeE/j68
+         UL4LbE2zAur0oeWl0Oipuf4MPJQtH7DBO9B5/XMqmCrTD4T2/eeNTfBvQ2rOQC1JBGIm
+         0sdqO8NUJ8vX3zeWZ9FKh27i6dBzijckuSB9d2v3erYhAfP9U+3KYv/ytjTIzmjR3Ny0
+         vHQ79JTjCAjJELejFK/JZ6MsvoOGN3i79jNVJU8K2Dx9+IY4gIjMsBbZeg7g70uqKgkL
+         iSKAD5g1k6IvBzD0ZVssBd61WonhJKe8E1rHRA6TG5i+Uepr4HlQEvxw2DX17dLl+3hD
+         VXnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739234566; x=1739839366;
+        d=1e100.net; s=20230601; t=1739234829; x=1739839629;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ves2PKf6HPc01SFv90D7qof8tDzgHtK1O0RPrNmLMrU=;
-        b=tamaLmJ2fenBRkeaqgDgQxPUx8Qohk5Pc+RzuL1dSg+Y9EOJDTOQwqyd8mwwCOQc+i
-         F+nt1ggVGOzEoX+p31RvWkytd6MFhx7Bs/Nq0o1tbHzxcgNXJDPYo2L405P85RJSP0nU
-         ZCzTkZ64U25ilGaXujtJf+CP9Z8qeSaHubfZutVLu0U4Fv+SvfJ65wUtx9+3hJYWPQth
-         r5RrRQj3vvnlb+FyaB9vfK75sK1yaQ0LjM9Jg5FHeQjyiq44/7rxvYB5JtlZC3QFdbRX
-         0ixzUo+sMUY0TdtpWrQMmHqLX5J48DJgBbu3An8OTF5ydDL3JQLcrIvod39K5ZNole0i
-         m/Rg==
-X-Forwarded-Encrypted: i=1; AJvYcCV9Hm1jEL1E6kW0YN4CK5EzYx2zl4uceW1mfx5AF1UspzfeBa4xy+AxtlKobemV8jWFEybtEZ+CRHbvyyff@vger.kernel.org, AJvYcCVnNLoE6kfM7eWv3WoYjMGSeFnJHaO0Oc1c1H42yVop8hRk8BjY+hQm20W4bZArCh5ikDFscctc+gPc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwXTkSIhDPNuc//Zw0MptXHxjJ0ET88o+r+OEeszLvEafdfMNr
-	LCMonCFTi7WI0x9NHcWhRZpJP3q8X0SoLrAWPbARR8VQqlEb3xic
-X-Gm-Gg: ASbGncvfinpOVtODgUSczPzqaZIZ75uCTyO3RzBdNNS4ZExdjcKPq6J+SIkH+9XTHcl
-	Cu2hD5SIMrxO/g2UfBquHX7g1iRyOkbYJKr12hRNVD8yQbZ6iLcLhvL49x1AinAWp/w1QfI4eoN
-	w/Ht2TI0V9Q7XJowxVaXcSADug2INEToaKqB+3o5fSLvYKyfpYQfAr+j1H2Qt3/V4CXbdIYygf1
-	1Cn3IYEjHWVK2BZ7Yc8nNFkUYS41D15L03WQtdaUFmXEIEAFvAylVN5D5xRCqqz0qw=
-X-Google-Smtp-Source: AGHT+IEF3uTLUH2iOgpwnxLI7jl+sTJ/Lafd2yRzSkI96FyLXuh78dVjps2rwiQRrWVM1p/rSY8GKA==
-X-Received: by 2002:a05:620a:6a83:b0:7c0:51b1:49b4 with SMTP id af79cd13be357-7c051b14a5fmr986106485a.38.1739234566457;
-        Mon, 10 Feb 2025 16:42:46 -0800 (PST)
+        bh=jTIEVTb8WG6g/xYwFCZRA14WxKqhOtoX7+ICXbI2OMk=;
+        b=OjJi71MPa5nT1/Xrv2hABQgMQfYqfmyHvKzs7F0zZOaJNwr72B9g6qhfkBGIq39c3/
+         9enzNkp4uhh6oLqkMwi2gIfp5NmQIOAezdNi1lT8S2d0N07W+quysKQDslT4+2ORD/vW
+         H12v/To3WP4jlmTg4gyPQxih+1uY8+ac+vaIudXW8Uhr7RMmOZrcJ5ltz4nQqM9bOiwk
+         G7mq3QH7x7bCeppS+Ui8NnSjm8fYm2NGCpF8lpz0jYxpvv/CzgznKFMtV4WnR13q8qeZ
+         2CN8U/xtk4YB+fWj6zbP7CiGn1YPWHblKrcn4lt7xe+8Q0fNXKzpvdSYvlH+xR6udlSl
+         L4UQ==
+X-Forwarded-Encrypted: i=1; AJvYcCURftNWhgu86FMF20TaRy0JUhdFyzYzLOFIwZ8qyZk01xMhYFLvewu2EsFYZ4hVv6u941mXHXcSpBXd@vger.kernel.org, AJvYcCXR2oKGGyiBfjgMjEEWr6A/9PB1aRtCbkdUW69yGiOixJshUKUIYxoOWrMZgoqLdv0tjHrtcLLpqD1l9K7L@vger.kernel.org
+X-Gm-Message-State: AOJu0YynqrVuZ5I9tfX4GfGu5GMRTc16sH32VROABD9zEGw4FRc8Gglt
+	dWxL9BLkundLbKR+EkMCkFzml4zwMhKCCFGEBNa5Bofc7v6VtsNh
+X-Gm-Gg: ASbGncsutU+Xr9gcJuvyiItSVbavSTaNjkbUkb6ieUsLbN7UShmoJpAoBDKn/CChhQA
+	oMXtlxtafXbJKZDbdyy9p4ms9Ku4xZk2ucgoto1VbogKl2gEBcHLvANF8/aKbVA79+bu55SWGnz
+	/4SVA7uC5eSSkPSzVM7jiywWkFSYVYAs65R/Tkoj1LWJpp2EGSwHeX39L0St80ONGSb0i4lzZzl
+	dupKKRQa4rgihD7v3Y2QbiwqoOVP1tR9rB2LmEVl3A03nc15vXGO7uOwfAnd89MANo=
+X-Google-Smtp-Source: AGHT+IHdTWiwpRzbdPuvlFEYzABE9ESxasKSuFHVRX5pGBvoEIPULEvUws7kobHnz0ZNoja0v14wbA==
+X-Received: by 2002:a05:6214:dc7:b0:6d4:1e43:f3a5 with SMTP id 6a1803df08f44-6e4455f4e38mr268033066d6.13.1739234829280;
+        Mon, 10 Feb 2025 16:47:09 -0800 (PST)
 Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c041d6628bsm598304585a.0.2025.02.10.16.42.44
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e459711533sm26289906d6.18.2025.02.10.16.47.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2025 16:42:45 -0800 (PST)
-Date: Tue, 11 Feb 2025 08:42:39 +0800
+        Mon, 10 Feb 2025 16:47:08 -0800 (PST)
+Date: Tue, 11 Feb 2025 08:47:02 +0800
 From: Inochi Amaoto <inochiama@gmail.com>
-To: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-Cc: linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, 
-	Longbin Li <looong.bin@gmail.com>, Jesse Taube <jesse@rivosinc.com>, 
-	Yong-Xuan Wang <yongxuan.wang@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Evan Green <evan@rivosinc.com>, 
-	Andrew Jones <ajones@ventanamicro.com>, Alexandre Ghiti <alexghiti@rivosinc.com>, 
-	Andy Chiu <andybnac@gmail.com>, Charlie Jenkins <charlie@rivosinc.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@gmail.com>
-Subject: Re: [PATCH v3 2/3] riscv: add ISA extension parsing for bfloat16 ISA
- extension
-Message-ID: <7qkfqzhytjq2qwo2wg3xtkoqu6id6wduckeeudbn2yt5p5p7xv@2gl5bcny26rk>
-References: <20241206055829.1059293-1-inochiama@gmail.com>
- <20241206055829.1059293-3-inochiama@gmail.com>
- <374d3b07-e16c-4468-828a-a2a542cd88ac@rivosinc.com>
+To: Romain Gantois <romain.gantois@bootlin.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Jisheng Zhang <jszhang@kernel.org>, 
+	"Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>, =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Simon Horman <horms@kernel.org>, Furong Xu <0x1207@gmail.com>, 
+	Serge Semin <fancer.lancer@gmail.com>, Lothar Rubusch <l.rubusch@gmail.com>, 
+	Suraj Jaiswal <quic_jsuraj@quicinc.com>, Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Inochi Amaoto <inochiama@gmail.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, 
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next v4 3/3] net: stmmac: Add glue layer for Sophgo
+ SG2044 SoC
+Message-ID: <uhup3bm6ez6kg7efvimy6rcthmqfcdkg2vmcwafqz33vouplfl@i25wn6q6c4h6>
+References: <20250209013054.816580-1-inochiama@gmail.com>
+ <20250209013054.816580-4-inochiama@gmail.com>
+ <2379380.ElGaqSPkdT@fw-rgant>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <374d3b07-e16c-4468-828a-a2a542cd88ac@rivosinc.com>
+In-Reply-To: <2379380.ElGaqSPkdT@fw-rgant>
 
-On Mon, Feb 10, 2025 at 03:38:58PM +0100, Clément Léger wrote:
+On Mon, Feb 10, 2025 at 12:01:56PM +0100, Romain Gantois wrote:
+> Hello Inochi,
 > 
+> On dimanche 9 fÃ©vrier 2025 02:30:52 heure normale dâ€™Europe centrale Inochi 
+> Amaoto wrote:
+> > Adds Sophgo dwmac driver support on the Sophgo SG2044 SoC.
+> ...
+> > --- /dev/null
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
+> > @@ -0,0 +1,105 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * Sophgo DWMAC platform driver
+> > + *
+> > + * Copyright (C) 2024 Inochi Amaoto <inochiama@gmail.com>
+> > + */
+> > +
+> > +#include <linux/bits.h>
 > 
-> On 06/12/2024 06:58, Inochi Amaoto wrote:
-> > Add parsing for Zfbmin, Zvfbfmin, Zvfbfwma ISA extension which
-> > were ratified in 4dc23d62 ("Added Chapter title to BF16") of
-> > the riscv-isa-manual.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >  arch/riscv/include/asm/hwcap.h | 3 +++
-> >  arch/riscv/kernel/cpufeature.c | 3 +++
-> >  2 files changed, 6 insertions(+)
-> > 
-> > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-> > index 869da082252a..14cc29f2a723 100644
-> > --- a/arch/riscv/include/asm/hwcap.h
-> > +++ b/arch/riscv/include/asm/hwcap.h
-> > @@ -100,6 +100,9 @@
-> >  #define RISCV_ISA_EXT_ZICCRSE		91
-> >  #define RISCV_ISA_EXT_SVADE		92
-> >  #define RISCV_ISA_EXT_SVADU		93
-> > +#define RISCV_ISA_EXT_ZFBFMIN		94
-> > +#define RISCV_ISA_EXT_ZVFBFMIN		95
-> > +#define RISCV_ISA_EXT_ZVFBFWMA		96
-> >  
-> >  #define RISCV_ISA_EXT_XLINUXENVCFG	127
-> >  
-> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> > index c0916ed318c2..5cfcab139568 100644
-> > --- a/arch/riscv/kernel/cpufeature.c
-> > +++ b/arch/riscv/kernel/cpufeature.c
-> > @@ -341,6 +341,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
-> >  	__RISCV_ISA_EXT_DATA(zacas, RISCV_ISA_EXT_ZACAS),
-> >  	__RISCV_ISA_EXT_DATA(zawrs, RISCV_ISA_EXT_ZAWRS),
-> >  	__RISCV_ISA_EXT_DATA(zfa, RISCV_ISA_EXT_ZFA),
-> > +	__RISCV_ISA_EXT_DATA(zfbfmin, RISCV_ISA_EXT_ZFBFMIN),
+> It doesn't look like this include is used, could you please remove it?
 > 
-> Hi Inochi,
-> 
-> You could add a validation callback to that extension:
-> 
-> static int riscv_ext_f_depends(const struct riscv_isa_ext_data *data,
-> 			       const unsigned long *isa_bitmap)
-> {
-> 	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_f))
-> 		return 0;
-> 
-> 	return -EPROBE_DEFER;
-> }
-> 
->   ...
->   __RISCV_ISA_EXT_DATA_VALIDATE(zfbfmin, RISCV_ISA_EXT_ZFBFMIN,
-> riscv_ext_f_depends),
-> 
-> 
-> But I'm ok with the current state of that patch since I have the same
-> thing coming for other extensions as well. 
 
+Thanks, I will. And I will add the miss header 
+linux/clk.h and linux/module.h.
 
-I think it is good for me to add the check, and I wonder it is possible
-to add the extra check for zvfbfmin and zvfbfwma like this:
-
-static int riscv_ext_zvfbfmin_validate(const struct riscv_isa_ext_data *data,
-				       const unsigned long *isa_bitmap)
-{
-	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_v))
-		return 0;
-
-	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZVE32F))
-		return 0;
-
-	return -EPROBE_DEFER;
-}
-
-static int riscv_ext_zvfbfwma_validate(const struct riscv_isa_ext_data *data,
-				       const unsigned long *isa_bitmap)
-{
-	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZFBFMIN) &&
-	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZVFBFMIN))
-		return 0;
-
-	return -EPROBE_DEFER;
-}
-
-> So with or without my previous comment fixed:
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/phy.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +#include "stmmac_platform.h"
+> > +
+> > +struct sophgo_dwmac {
+> > +	struct device *dev;
+> > +	struct clk *clk_tx;
+> > +};
+> > +
+> > +static void sophgo_dwmac_fix_mac_speed(void *priv, unsigned int speed,
+> > unsigned int mode) +{
+> > +	struct sophgo_dwmac *dwmac = priv;
+> > +	long rate;
+> > +	int ret;
+> > +
+> > +	rate = rgmii_clock(speed);
+> > +	if (rate < 0) {
+> > +		dev_err(dwmac->dev, "invalid speed %u\n", speed);
+> > +		return;
+> > +	}
+> > +
+> > +	ret = clk_set_rate(dwmac->clk_tx, rate);
+> > +	if (ret)
+> > +		dev_err(dwmac->dev, "failed to set tx rate %lu: %pe\n",
 > 
-> Reviewed-by: Clément Léger <cleger@rivosinc.com>
+> nit: shouldn't this be "%ld"?
+> 
+
+Yeah, it is my mistake, I will fix it.
+
+> > +			rate, ERR_PTR(ret));
+> > +}
+> > +
+> > +static int sophgo_sg2044_dwmac_init(struct platform_device *pdev,
+> > +				    struct plat_stmmacenet_data *plat_dat,
+> > +				    struct stmmac_resources *stmmac_res)
+> > +{
+> > +	struct sophgo_dwmac *dwmac;
+> > +
+> > +	dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
+> > +	if (!dwmac)
+> > +		return -ENOMEM;
+> > +
+> > +	dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
+> > +	if (IS_ERR(dwmac->clk_tx))
+> > +		return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
+> > +				     "failed to get tx clock\n");
+> > +
+> > +	dwmac->dev = &pdev->dev;
+> > +	plat_dat->bsp_priv = dwmac;
+> > +	plat_dat->flags |= STMMAC_FLAG_SPH_DISABLE;
+> > +	plat_dat->fix_mac_speed = sophgo_dwmac_fix_mac_speed;
+> > +	plat_dat->multicast_filter_bins = 0;
+> > +	plat_dat->unicast_filter_entries = 1;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int sophgo_dwmac_probe(struct platform_device *pdev)
+> > +{
+> > +	struct plat_stmmacenet_data *plat_dat;
+> > +	struct stmmac_resources stmmac_res;
+> 
+> nit: I think adding "struct device *dev = &pdev->dev;" here would
+> be better than repeating "&pdev->dev" later on.
+> 
+
+Thanks, I will change that.
+
+> > +	int ret;
+> > +
+> > +	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
+> > +	if (ret)
+> > +		return dev_err_probe(&pdev->dev, ret,
+> > +				     "failed to get resources\n");
+> 
+> This error message is a bit too vague, maybe replace it with "failed to get 
+> platform resources"?
+> 
+
+OK.
+
+> > +
+> > +	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
+> > +	if (IS_ERR(plat_dat))
+> > +		return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat),
+> > +				     "dt configuration failed\n");
+> 
+> This error message is a bit misleading IMO, I would replace it with
+> something like "failed to parse device-tree parameters".
+> 
+
+OK.
+
+> > +
+> > +	ret = sophgo_sg2044_dwmac_init(pdev, plat_dat, &stmmac_res);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+> > +}
+> > +
+> > +static const struct of_device_id sophgo_dwmac_match[] = {
+> > +	{ .compatible = "sophgo,sg2044-dwmac" },
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, sophgo_dwmac_match);
+> > +
+> > +static struct platform_driver sophgo_dwmac_driver = {
+> > +	.probe  = sophgo_dwmac_probe,
+> > +	.remove = stmmac_pltfr_remove,
+> > +	.driver = {
+> > +		.name = "sophgo-dwmac",
+> > +		.pm = &stmmac_pltfr_pm_ops,
+> > +		.of_match_table = sophgo_dwmac_match,
+> > +	},
+> > +};
+> > +module_platform_driver(sophgo_dwmac_driver);
+> > +
+> > +MODULE_AUTHOR("Inochi Amaoto <inochiama@gmail.com>");
+> > +MODULE_DESCRIPTION("Sophgo DWMAC platform driver");
+> > +MODULE_LICENSE("GPL");
 > 
 > Thanks,
 > 
-> Clément
-> 
+> -- 
+> Romain Gantois, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
-Thanks,
 
-Regards,
-Inochi
-
-> >  	__RISCV_ISA_EXT_DATA(zfh, RISCV_ISA_EXT_ZFH),
-> >  	__RISCV_ISA_EXT_DATA(zfhmin, RISCV_ISA_EXT_ZFHMIN),
-> >  	__RISCV_ISA_EXT_DATA(zca, RISCV_ISA_EXT_ZCA),
-> > @@ -373,6 +374,8 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
-> >  	__RISCV_ISA_EXT_SUPERSET(zve64d, RISCV_ISA_EXT_ZVE64D, riscv_zve64d_exts),
-> >  	__RISCV_ISA_EXT_SUPERSET(zve64f, RISCV_ISA_EXT_ZVE64F, riscv_zve64f_exts),
-> >  	__RISCV_ISA_EXT_SUPERSET(zve64x, RISCV_ISA_EXT_ZVE64X, riscv_zve64x_exts),
-> > +	__RISCV_ISA_EXT_DATA(zvfbfmin, RISCV_ISA_EXT_ZVFBFMIN),
-> > +	__RISCV_ISA_EXT_DATA(zvfbfwma, RISCV_ISA_EXT_ZVFBFWMA),
-> >  	__RISCV_ISA_EXT_DATA(zvfh, RISCV_ISA_EXT_ZVFH),
-> >  	__RISCV_ISA_EXT_DATA(zvfhmin, RISCV_ISA_EXT_ZVFHMIN),
-> >  	__RISCV_ISA_EXT_DATA(zvkb, RISCV_ISA_EXT_ZVKB),
-> 
 
