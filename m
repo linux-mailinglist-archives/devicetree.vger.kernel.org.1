@@ -1,107 +1,141 @@
-Return-Path: <devicetree+bounces-145115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DDE4A305FE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:41:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A27BA30607
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:42:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9236718882A5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:41:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99E9B7A316A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D11A1F03F3;
-	Tue, 11 Feb 2025 08:40:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AA901F03DC;
+	Tue, 11 Feb 2025 08:41:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LVdIrvsA"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ppjjdNdP";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="ot8Ty0pa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 202851F03C7;
-	Tue, 11 Feb 2025 08:40:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF8C1F03C7;
+	Tue, 11 Feb 2025 08:41:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739263248; cv=none; b=U17RxelSXKTmpJjAYEDH0fuLjyf/HV6qqjleordR+PhKXWRraIQm0LXHrqWozLJU34ZCFiOuAeBXcI/9PYmTmRkIKhs3UB/qAQ5izWJvyV7T+q6Ys0zcspn+KOUyFGL/vcV0N9ThHlCl8dS8zbvN2xPwUcVaSqxPQ+UgMekBNeM=
+	t=1739263309; cv=none; b=VE/Kbd5eT42OmMEoc75KVQdkCfd7TyXpK+kAV1aO72pej6LSn33leo7bVdrz3PsavHYa8ZBQn3eGGuulosjrGSDeNZPe5vbLphdWfESof5xpdJt0D7/dxMWsHjzxUMtgcIF6O4J79JQxezKTDApMcRLrRiYLs9fFEvxAGytp0kw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739263248; c=relaxed/simple;
-	bh=yfxUOCmD0cUqeG9HoTFs80RQBFgDMIs07GaFv6eezd4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nKg1osSm+HR9cR8T53E1cWJQBXsB4QsbpFHwfFdpzyTsiXOKimcY3NR+UlC78IbxCrmzHTSdv/Trf/v/XqFJQbGF/2Q2EvrC8S8XwQQEq5l6ljDBvIo/6JFsMjfMqQ0ZyTcKiUXVeU+cgenfNG6a3iT+UferjNpeqCvmsexkxJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LVdIrvsA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4D22C4CEDD;
-	Tue, 11 Feb 2025 08:40:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739263247;
-	bh=yfxUOCmD0cUqeG9HoTFs80RQBFgDMIs07GaFv6eezd4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LVdIrvsA3Ht1DgAfLA+b9wt7TVUMk00P//UZrubEEcFld6Uu3p36AS3GGw3PAn9d2
-	 GxW2sE+52XrKmk0bkzeYTqAWAcJxcVLo8lVhMgErfYJsMFNn9aT2aZ04Y8ihOporMv
-	 pdRCPmNUoOIpSjgsFUJTjVEVbpnXisDLwKjN5hP5hVWsXwhDNLAuCkc3PGEgwpoy9w
-	 +e4g8LhB+VnpQ9iWHDwq93J+rKf63T1Ir6mMwTs2fq4J1hT9AxRpqaYdJfYw4Jejhi
-	 OPM70gsFKgKLHOh+yAozEUPNV3g0QHdph2IyrxRfQMQudr0Y+6KGUNun4HU/ErFrxL
-	 Ysn/NLU3MXudA==
-Date: Tue, 11 Feb 2025 09:40:44 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Felix Fietkau <nbd@nbd.name>, 
-	Sean Wang <sean.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "Chester A. Unal" <chester.a.unal@arinc9.com>, 
-	Daniel Golle <daniel@makrotopia.org>, DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, upstream@airoha.com
-Subject: Re: [PATCH net-next v3 12/16] dt-bindings: net: airoha: Add
- airoha,npu phandle property
-Message-ID: <20250211-chinchilla-of-luxurious-focus-950fc7@krzk-bin>
-References: <20250209-airoha-en7581-flowtable-offload-v3-0-dba60e755563@kernel.org>
- <20250209-airoha-en7581-flowtable-offload-v3-12-dba60e755563@kernel.org>
+	s=arc-20240116; t=1739263309; c=relaxed/simple;
+	bh=6gPS1YPsWcIMNduBKi+ViZQ5KfZ9CPDoSfRGzV5cUhc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RCvu23PhH6Q/w7Xhw25+K/A9XC0pHvdGa6VxwjJ8ioaaI01RiLaqJ4RdhLh5PU3Z3R9VXaJy/u9cVBLwPS/zlaqq/dqoG8EqoKQtOEdQgaHhwyjp5VvWWPu5qADUumMUBfv1M3HZH4xZ4ootS2n8/fEstwVRQVx4wtDi4eDHlyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=ppjjdNdP; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=ot8Ty0pa reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1739263306; x=1770799306;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=4RFb9A4U5YyWgy4kzIOhyisia7n5ROq1RTJWpcRxL5s=;
+  b=ppjjdNdP3TX3KgdVQ6MKG5JBgMF7cQOuKN7B+QeKAlJmkH+InPp0+ZEv
+   mZz+eny1WPLbHQ4psKRje13a1eJ+4yaPMP14Y5hNYjerdrWfU8iuXzmQu
+   yfIlOU8btMZ5jXwf0mxhrWwfb93mSolSBV794oUxzX5jdaLN0J7jlfqfx
+   IuwGzrAcf/kAkUWvvjl0e3x7Woo7AAcRhTGi5LoZAGlVPadwfTvBB5Iif
+   AttGGvQrRUeCCVrf02GbeV0feKulIadPo5nshGIFmfL9O+UJs+Zw/GbHK
+   vuvK1shFia08iZ7k/fhMSlSlS2yM2EdtLJ6AjOFOY7lWLdif5sz6E9x9U
+   A==;
+X-CSE-ConnectionGUID: j0tyI7jSQeGshznAOusVTA==
+X-CSE-MsgGUID: emYshl8GQ1aoyScGBzvbtQ==
+X-IronPort-AV: E=Sophos;i="6.13,277,1732575600"; 
+   d="scan'208";a="41744827"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 11 Feb 2025 09:41:43 +0100
+X-CheckPoint: {67AB0D46-30-28232521-C0C2250B}
+X-MAIL-CPID: 63B22B090640647039E5A23306925933_4
+X-Control-Analysis: str=0001.0A006378.67AB0D47.008B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B7738169B35;
+	Tue, 11 Feb 2025 09:41:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1739263298;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=4RFb9A4U5YyWgy4kzIOhyisia7n5ROq1RTJWpcRxL5s=;
+	b=ot8Ty0paEoLYoZcqnTi134PC18byiWn8/CX977l0j/Ul36QedKf2kiEDwDMSjk1wi6eHek
+	zWicf2skVWKrnZ2mH6Ebt/oF9XK/W/lyJ88XQ1x45QDUFGSu1AuyMYnAeFygYGjpm83v6g
+	X/KZcf280IJajG7t77cPMiSTKUHWKjvc5DeHNo2TW+iHJ1lzOIu1jfuaUcZEgtfhGZZf+x
+	BGJJLdR52obnjKWl6Ee2RUiMjaj55EQ5VpKsYwU044Zbu6Sa0A3g1V7Dn8Qu0m4Ys6Xlvx
+	Vi+F5JKWtaJFnXJ+IsL63iR2gC6NZcZtgkhhg0fMfcPYYGOWTcM6m5xci9rtJg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] i.MX91/93 parallel display bridge
+Date: Tue, 11 Feb 2025 09:41:17 +0100
+Message-Id: <20250211084119.849324-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250209-airoha-en7581-flowtable-offload-v3-12-dba60e755563@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Sun, Feb 09, 2025 at 01:09:05PM +0100, Lorenzo Bianconi wrote:
-> Introduce the airoha,npu property for the NPU node available on
-> EN7581 SoC. The airoha Network Processor Unit (NPU) is used to
-> offload network traffic forwarded between Packet Switch Engine
-> (PSE) ports.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> index c578637c5826db4bf470a4d01ac6f3133976ae1a..0fdd1126541774acacc783d98e4c089b2d2b85e2 100644
-> --- a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> @@ -63,6 +63,14 @@ properties:
->    "#size-cells":
->      const: 0
->  
-> +  airoha,npu:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the node used to configure the NPU module.
-> +      The Airoha Network Processor Unit (NPU) provides a configuration
-> +      interface to implement hardware flow offloading programming Packet
-> +      Processor Engine (PPE) flow table.
+Hi,
 
-I see Conor had here objections, but it looks fine to me. So unless
-Conor naks it:
+i.MX91/93 support a parallel display interface. There is a single register
+for configuring the output format. There is not much documentation, but
+apparently this does some internal conversion.
+Add a bridge driver (similar to fsl-ldb.c) for connecting a bridge/panel
+to lcdif.
+I'm a bit unsure about the name. There is no dedicated IP, according to
+reference manual, just that single register. I would also agree
+to imx9-dpi or imx93-dpi.
+Note: It's only applicable to i.MX91/93, but not i.MX95!
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Tested on TQMa9352 on MBa91xxCA
 
 Best regards,
-Krzysztof
+Alexander
+
+Alexander Stein (2):
+  dt-bindings: display: bridge: ldb: Implement simple Freescale
+    i.MX91/93 DPI bridge
+  drm: bridge: imx9-parallel-disp-fmt: add i.MX91/93 parallel display
+    bridge
+
+ .../bridge/fsl,imx9-parallel-disp-fmt.yaml    |  78 +++++++
+ drivers/gpu/drm/bridge/Kconfig                |  10 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ .../gpu/drm/bridge/imx9-parallel-disp-fmt.c   | 213 ++++++++++++++++++
+ 4 files changed, 302 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx9-parallel-disp-fmt.yaml
+ create mode 100644 drivers/gpu/drm/bridge/imx9-parallel-disp-fmt.c
+
+-- 
+2.34.1
 
 
