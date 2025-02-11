@@ -1,156 +1,142 @@
-Return-Path: <devicetree+bounces-145402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 437FCA313DE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:18:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11DBCA313E8
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:19:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AED5518888FA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:18:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D4EE7A3E23
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30A7B1E5710;
-	Tue, 11 Feb 2025 18:18:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B641E5B6D;
+	Tue, 11 Feb 2025 18:18:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FO7tv1K6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 280F81E2845
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 18:18:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 887D01E282D;
+	Tue, 11 Feb 2025 18:18:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739297884; cv=none; b=i7VqEBxk/vheS+xF+VUU3wCqu5zx3p8GJQ7yhk53l3TWq8vFctIQ8K8A2mlnX1PAYECp2xgFVX9yde1kywfKlaYA7fl9Wcyy80OaJ2kHDndmBVEVvK+O+6ZdV7VUgys2upQBIfUF3KLJcdpqaznrOr9+mjHCBa1TcYYRNJcSRy8=
+	t=1739297909; cv=none; b=bWSBsBvZSENQ+5IZYYSvUVdDYN04S4UTLzQwAFYYmpRl38DKny3ZtE+FNvRGquVf3qXbDbE0E0le3HqE+atDVfQ1I7YI63ASTY5E54NP4wGg4m+DkeTlWnYk7Cq2REf0Mq+4Oa7B0DCXnmfFkWItBmWTKA3f1zfw4Y206zdNLHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739297884; c=relaxed/simple;
-	bh=jc2YH5MZroDxlGvxa5/biVTdhZyRXOOimMglkOuvhZE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cuRW+J8JElOzkxVaptSM7T97gt4SIm9KBsgUsmVDufDCJtgEPYbYEJUuoyA7Tz0jt8yrBb89e2dD/grPygqA40YYFguIesueX8RncodpRJrMcG9On2QwKhVy7zcUiLZJ8+/tkuC4pMWE5t0xv0J84DmS05YQLzraG1FxZuKzg/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 87C9C13D5;
-	Tue, 11 Feb 2025 10:18:22 -0800 (PST)
-Received: from [10.57.35.63] (unknown [10.57.35.63])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4906B3F58B;
-	Tue, 11 Feb 2025 10:17:59 -0800 (PST)
-Message-ID: <4005a054-0bb7-4e1b-9c52-fa18aa2b0959@arm.com>
-Date: Tue, 11 Feb 2025 18:17:56 +0000
+	s=arc-20240116; t=1739297909; c=relaxed/simple;
+	bh=cE4jcsAX2FB7uvZhLWO9AMcWcOaQ1ZV8xgeqqsLhxAo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PeegjYS5KBfUtUnD9+BCY8LNNau5h1iRzefGo42GAToWWEFjC+C+E5KZNkQrzpShy5bEN7ueXmcXos+gI5scdNXh1XxkyOzLzuBjIWSQ2hHiG4Lbc9r+W9pMZRpnPawofIo/g2ZcTpmCp00fv99Xc8cmYbGlYWufEmE+IHXdCi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FO7tv1K6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2DA8C4CEDD;
+	Tue, 11 Feb 2025 18:18:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739297909;
+	bh=cE4jcsAX2FB7uvZhLWO9AMcWcOaQ1ZV8xgeqqsLhxAo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FO7tv1K6drxWVq7uoFgvOKH9m4xyJAD00rlHVuiIu/apLLCjiLCU2t0Z2ggEOEPCu
+	 rM2PBdCJsX7wTz/49XKW4//7sk6YXeF8JEwDlbxd5FK0O1tGGvxgY+DVa5IRRGlHnJ
+	 NKzJwKgcw1Hx2lyhPdbclbmVPpWcY7aNWDIJ8BaNlcPKPnXN7lRQ4EETZgevJWCCpG
+	 fABcr+pxuuSY9JyiaRnwivJ5x3MVGihPBLldfdLIzZKvL9hypU5VLNPnAbhIhGX6ZB
+	 KXh0m/92ptmm8D6NwXPnWEVt+p0WxBnF80K3Mad6OUVg3CCsANQJMBsQyhk3ztFSoL
+	 M29vTBxJN7ySA==
+Date: Tue, 11 Feb 2025 18:18:23 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: soc@lists.linux.dev, Jisheng Zhang <jszhang@kernel.org>,
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>, linux-pm@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	Haylen Chu <heylenay@outlook.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Sebastian Reichel <sre@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 2/7] dt-bindings: soc: sophgo: Move SoCs/boards from
+ riscv into soc, add SG2000
+Message-ID: <20250211-squishy-blip-8ac4cf64d462@spud>
+References: <20250210220951.1248533-1-alexander.sverdlin@gmail.com>
+ <20250210220951.1248533-3-alexander.sverdlin@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: adjust SMMU interrupt type
-To: Niklas Cassel <cassel@kernel.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org, Patrick Wildt <patrick@blueri.se>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- Kever Yang <kever.yang@rock-chips.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <Z6pxme2Chmf3d3uK@windev.fritz.box> <25203566.ouqheUzb2q@diego>
- <Z6tBElUDaPNgkaIf@ryzen>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <Z6tBElUDaPNgkaIf@ryzen>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="3/BNf11h93vTDDr6"
+Content-Disposition: inline
+In-Reply-To: <20250210220951.1248533-3-alexander.sverdlin@gmail.com>
 
-On 2025-02-11 12:22 pm, Niklas Cassel wrote:
-> On Tue, Feb 11, 2025 at 08:40:25AM +0100, Heiko Stübner wrote:
->> Am Montag, 10. Februar 2025, 22:37:29 MEZ schrieb Patrick Wildt:
->>> The SMMU architecture requires wired interrupts to be edge triggered,
->>> which does not align with the DT description for the RK3588.  This leads
->>> to interrupt storms, as the SMMU continues to hold the pin high and only
->>> pulls it down for a short amount when issuing an IRQ.  Update the DT
->>> description to be in line with the spec and perceived reality.
->>>
->>
->> Cc'ed Niklas
->>
->> This should probably also get a
->>
->> Fixes: cd81d3a0695c ("arm64: dts: rockchip: add rk3588 pcie and php IOMMUs")
-> 
-> Agreed.
-> 
-> 
->>
->>> Signed-off-by: Patrick Wildt <patrick@blueri.se>
->>> ---
->>>   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 16 ++++++++--------
->>>   1 file changed, 8 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
->>> index 8cfa30837ce7..520d0814a4de 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
->>> @@ -549,10 +549,10 @@ usb_host2_xhci: usb@fcd00000 {
->>>   	mmu600_pcie: iommu@fc900000 {
->>>   		compatible = "arm,smmu-v3";
->>>   		reg = <0x0 0xfc900000 0x0 0x200000>;
->>> -		interrupts = <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH 0>,
->>> -			     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH 0>,
->>> -			     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH 0>,
->>> -			     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH 0>;
->>> +		interrupts = <GIC_SPI 369 IRQ_TYPE_EDGE_RISING 0>,
->>> +			     <GIC_SPI 371 IRQ_TYPE_EDGE_RISING 0>,
->>> +			     <GIC_SPI 374 IRQ_TYPE_EDGE_RISING 0>,
->>> +			     <GIC_SPI 367 IRQ_TYPE_EDGE_RISING 0>;
->>>   		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
->>>   		#iommu-cells = <1>;
->>>   	};
->>> @@ -560,10 +560,10 @@ mmu600_pcie: iommu@fc900000 {
->>>   	mmu600_php: iommu@fcb00000 {
->>>   		compatible = "arm,smmu-v3";
->>>   		reg = <0x0 0xfcb00000 0x0 0x200000>;
->>> -		interrupts = <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH 0>,
->>> -			     <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH 0>,
->>> -			     <GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH 0>,
->>> -			     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH 0>;
->>> +		interrupts = <GIC_SPI 381 IRQ_TYPE_EDGE_RISING 0>,
->>> +			     <GIC_SPI 383 IRQ_TYPE_EDGE_RISING 0>,
->>> +			     <GIC_SPI 386 IRQ_TYPE_EDGE_RISING 0>,
->>> +			     <GIC_SPI 379 IRQ_TYPE_EDGE_RISING 0>;
->>>   		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
->>>   		#iommu-cells = <1>;
->>>   		status = "disabled";
->>>
-> 
-> Patrick, thank you for the patch!
-> 
-> FWIW, they have the same bug in downstream:
-> https://github.com/radxa/kernel/blob/linux-6.1-stan-rkr4.1/arch/arm64/boot/dts/rockchip/rk3588s.dtsi#L2761-L2783
-> 
-> However, the Rockchip PCIe Virtualization Developer Guide correctly define
-> the IRQs as edge triggered:
-> https://dl.radxa.com/users/dev/Rockchip_PCIe_Virtualization_Developer_Guide_CN.pdf
-> 
-> Looking at the ARM SMMUv3 architecture specification:
-> "An implementation must support one of, or optionally both of, wired
-> interrupts and MSIs. Whether an implementation supports MSIs is discoverable
-> from SMMU_IDR0.MSI and SMMU_S_IDR0.MSI. An implementation might support wired
-> interrupt outputs that are edge-triggered. The discovery of support for wired
-> interrupts is IMPLEMENTATION DEFINED."
 
-Yup, rising edge is certainly what MMU-600 spits out.
+--3/BNf11h93vTDDr6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Robin.
+On Mon, Feb 10, 2025 at 11:09:42PM +0100, Alexander Sverdlin wrote:
+> Move sophgo.yaml from riscv into soc/sophgo so that it can be shared for
+> all SoCs containing ARM cores as well. This already applies to SG2002.
+>=20
+> Add SG2000 SoC, Milk-V Duo Module 01 and Milk-V Module 01 EVB.
+>=20
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 
-> 
-> Thus:
-> Reviewed-by: Niklas Cassel <cassel@kernel.org>
-> 
-> 
-> Heiko, this patch should go to 6.14.
-> 
-> Side note: We also have another SMMU patch that should go to 6.14:
-> https://lore.kernel.org/linux-rockchip/20250207143900.2047949-2-cassel@kernel.org/
-> 
-> 
-> Kind regards,
-> Niklas
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+> ---
+>  .../devicetree/bindings/{riscv =3D> soc/sophgo}/sophgo.yaml  | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>  rename Documentation/devicetree/bindings/{riscv =3D> soc/sophgo}/sophgo.=
+yaml (80%)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Docume=
+ntation/devicetree/bindings/soc/sophgo/sophgo.yaml
+> similarity index 80%
+> rename from Documentation/devicetree/bindings/riscv/sophgo.yaml
+> rename to Documentation/devicetree/bindings/soc/sophgo/sophgo.yaml
+> index a14cb10ff3f0..5d73d0ccc547 100644
+> --- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/riscv/sophgo.yaml#
+> +$id: http://devicetree.org/schemas/soc/sophgo/sophgo.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> =20
+>  title: Sophgo SoC-based boards
+> @@ -26,6 +26,11 @@ properties:
+>            - enum:
+>                - sophgo,huashan-pi
+>            - const: sophgo,cv1812h
+> +      - items:
+> +          - enum:
+> +              - milkv,duo-module-01-evb
+> +          - const: milkv,duo-module-01
+> +          - const: sophgo,sg2000
+>        - items:
+>            - enum:
+>                - sipeed,licheerv-nano-b
+> --=20
+> 2.48.1
+>=20
+
+--3/BNf11h93vTDDr6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6uUbwAKCRB4tDGHoIJi
+0iP8AP9Mc/wlam2GgeEuieW+XaQ1w6dG0Bj4kXG2xUCIG5ayXgD/UBsEkKFcu+7I
+ozzxFKHl9x4z4ZZ2vx1qTuKO/mt7JA4=
+=SHXJ
+-----END PGP SIGNATURE-----
+
+--3/BNf11h93vTDDr6--
 
