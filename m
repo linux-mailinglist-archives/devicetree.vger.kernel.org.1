@@ -1,293 +1,193 @@
-Return-Path: <devicetree+bounces-145527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9DA6A31976
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 00:24:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD164A31987
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 00:27:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 573233A4D89
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 23:23:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DA273A0492
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 23:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD33F268FD6;
-	Tue, 11 Feb 2025 23:24:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690D6268FD2;
+	Tue, 11 Feb 2025 23:26:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="a81JVSSH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VjOthoFE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2059.outbound.protection.outlook.com [40.107.103.59])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0C8267AF5;
-	Tue, 11 Feb 2025 23:24:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739316243; cv=fail; b=lPsS/ILF+gSletwAnwDBXILGPp/6m5/ESp0iZdR2vXQYuqc7a366XARQkBWOS4PQiCgAkjNpvl0cj3DaYOKr8NsTtZg8WS1J6NjFWgUjQRV5lhDFKaVL1/AtDmEIUSUE4VoQmmP1NisfyWlruc4NOXQ7dSrlXnezPpwD4q2hbQ8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739316243; c=relaxed/simple;
-	bh=2ZS3NYgBmdpFgDhCGfMQGasJGGN26VSNrRA23t/SO2E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=fWuPm0Rq9AW58lAW1F0Ph9SVLT0yFyKpAa2yw+4DbnzfU0raGpSdFFw+qNL0ln2pwbX3HbjEvQIf4hVdehj/e6Epa1VwDzfSgcXuJf0KEsrVUJIxli9XvCH82KhdhMEI2YHUVees144Prgw4q+VglwnW8YqhmBDIPcRaq5AxNmo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=a81JVSSH; arc=fail smtp.client-ip=40.107.103.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KVzQtSgBMqYXI3KBMPHlP9vZSa8UvVfSGaVOj+YkM78p8eXMtMs80Hn8Koyx4+UUFDaicVZk4eKGP5d3SY6nvien6WTcKCM5APrOpt5Y21BnEd0iDuYRHrWAwC2gW9VYs+NZZU/+Y537wQRZcaAPESjVULBYk3N5QBzktVGQ5Xhs2q3n0RWJCxAsSG1VSxxXEMx6PuVrtVIkaMcGcjIb9RJ0uJzFCApu1zMZhIg+2CAukUiDZzhvHHSi0VTcWUTZlM8FtnERFpcqmX+jjMOWYU2z5dymwx+xGrD2r/NAiqMqPKUojC1Grh+k+Y56MjTgPd8THlE4dQHXfQN+VVBoaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g6bbsh/S9dSTNp0T2vBCSNa9UyjVcXkD4p+5u4l0wtE=;
- b=SXZ0JuIh/Of1B4H1cdDSpAnRcBCnYGQobZQ6RM2YQKdCkCoVb+a8kgHitntv1YfHhyaEWmqnXzAB/KawR0WnzAYWzenfq4m0iqthb2jNBUb0Q6onWE6V1cKsDzl76rWLU6ftZUGvmIRvZjbshaHA45lN1/1c1CqbqutMio93lSZPtZsjf0Ok4dSpO0J1fYOwK7nIhaFw2mXNnXSf+lg94Kda4SW3W1kSchNE7OMVaNNFvHedRylBJC3yl/BEMsPC5fbW3QBuHEFHbW3IzMiBk9cwaTgXDkFhuJA2hwHd03hYuB8RxjbTBF//SFrUAGssAuL2pVsHA5UyKBR59iTgBg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g6bbsh/S9dSTNp0T2vBCSNa9UyjVcXkD4p+5u4l0wtE=;
- b=a81JVSSHAoxDMM/FQ2LXB7JvNYgl1BGDtzv57aZCS8MjlHCOhOL4n0eZ7oNvXU2+yVrRzkbkdb+mUyOYPZzhZfPJi3eww/ci4W22kL3O3DhOlstjnXeaVuXPAG94BeWLXSxWXCR3bNUd9jKrhFORwfFsvbDNdjOPSl0otAwsS9pFC6PTZsb+tRewXkz0R6+cwIhxx9IumOVgi18llhuzxI0SfQ+HBq8KFjXOQ/OTkvG1sygHZc82O0Nbms4Vsrs+7N3TCbR2WhzrVOm0PdJwqnuPB1301WR4R3Gp5QFtJcB6mbFacr+ZD/SSQpfbU8q+iIUtyMCvjv9PQB7hJ74Hzw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GV1PR04MB9104.eurprd04.prod.outlook.com (2603:10a6:150:23::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.11; Tue, 11 Feb
- 2025 23:23:57 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8422.012; Tue, 11 Feb 2025
- 23:23:57 +0000
-Date: Tue, 11 Feb 2025 18:23:50 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 3/3] arm64: dts: imx: add imx95 dts for sof
-Message-ID: <Z6vcBvs4xGQ+pGCJ@lizhi-Precision-Tower-5810>
-References: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
- <20250211225808.3050-4-laurentiumihalcea111@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250211225808.3050-4-laurentiumihalcea111@gmail.com>
-X-ClientProxiedBy: BY3PR10CA0024.namprd10.prod.outlook.com
- (2603:10b6:a03:255::29) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B02A6267AFD;
+	Tue, 11 Feb 2025 23:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739316413; cv=none; b=cHy7cAJtAFUTYZpGtfV8epOYV4oKFCOV212L27S6yJNnu8PNnW/JnwU4TVfTUkQ/z3sGJCKUdVGJ9rGUtj5b9s9bp0PTLhM0xW8k2RA844vbHYIXru4aSPBw2T0tFnSMhaV0gf7SUD1hgPBsxFptAFgCrk+LG5+Ad79u/T7zLSA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739316413; c=relaxed/simple;
+	bh=am3HHZgqhhrukseYR/5fGOsbDNnRYelnnNaURmCA4f4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uqU80/JS+3/AROy9vfhUhlMGMRYHMvKhlGcKWEcGSPD/+uGBqhPQI+AskEfxbeSB9Xbkg/VnM/jm3dUWC1DAHTSiv4x5hij0ISjbbyo2RUvTZ1P7mLZ15fY7cxjnQzXyb7M7cTlKGzeKnWXbdRzLfV/JoWMBpdD5gLuzqW9vuus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VjOthoFE; arc=none smtp.client-ip=209.85.160.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-46c8474d8daso49053651cf.3;
+        Tue, 11 Feb 2025 15:26:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739316410; x=1739921210; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LHbTjBhQMHeo18vkdg+R70RaCpRDyN0SUOpcR7vgLAk=;
+        b=VjOthoFErlyW1EUfHtqApZ2qA/SC09+uFS/HAphOS3yrPurk7IxKSokVO0pfdtey7n
+         FooyD+hPZMFIYu8CQ60rh/L9ZsBZgA3I8MUJktq63ozLGXQ0Z6vhVE73TH3mlWrF6rXe
+         tZE0rh13tU5UBGtSSlQF+imtRsHa6KqcUOoJVfgL97E+oqqjRfQNoDAzhy0o9y5HtHcQ
+         7ZG6J5DPhxKYMS1nThNL+260anZDgj41KDLeym03zsZIouQ9rzm0uRU3uTnTQqWVEDx7
+         Z+Ydw/CtXlB2kXXVyPWO/0sCOwyEcmWhCsIjWR6q284Ppa3qnXG2Jry1J60+jSsqHm/v
+         hVcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739316410; x=1739921210;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LHbTjBhQMHeo18vkdg+R70RaCpRDyN0SUOpcR7vgLAk=;
+        b=A2Wf6VbUCefnnPrmxG9Vmw4TybdH2b5zHyYR9dXEf2Mjma0uEI+qnesh5lIY+piC5c
+         vyFmz+aDca7SUXIjY4NC2DFlauiRhBIcPZhr7Hw14mRb5l7CRXGuBeIg5NBrG+07+H6I
+         Y7tA/P9nmgK3n1UHjw//UBvQqH42GyKwMKFzknRz9W0DCfROIVoE2h7R5HbgEe0xiHyQ
+         FXBPbO+8Rm3I3Qi2vF0DVZ2QF4o3ynaTn3sjWvuvkmzw58ZLdqj/6IAc3ePdqpcweq2Z
+         GUK0KH0zcr22OPe07Tgi7yOr0rJ3sji3EIss49srJKzIR+0iakR6vVoBdreLLgwqOEqa
+         ve4w==
+X-Forwarded-Encrypted: i=1; AJvYcCUZdqZh2RSJQCJw4J2PSWqO7ws++5CNL0xfE6Ye/SUA70gMsk/eNTDkyjGG0AX67Niy72hzGVLc2kCR@vger.kernel.org, AJvYcCV4llET+1zmB0CHD8X6nWTYBT5U6h81VdBYajd/vyMXtTyLmtBzoJN+WiSn46ZQCb1ni72uuUsTbGzIx7ca@vger.kernel.org, AJvYcCWt6GuO2palf1a1txTN9uR9i2anqPRK8jNvBVbslj01MoYVJHO72CBgpX3ft6jFwJ7/NUOPD33FEv5Q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx456qDpvCURUkdPzI3sqP1at5WHi5JvcpJliiezM5XokRAaH7N
+	u6THalRZw/yPhk2HVKA8QneUmB/DPKMzWrTBUuYK/y0AzO8NYBU1
+X-Gm-Gg: ASbGncvrqJWoS15twjD9bb3Id9VSBmgnvzqGKjT2HGA1zc1MRDanqtGTtxc0HFLcS1Q
+	ckJXnMOXSxlY0jYn9mY7Z5DqkE//7FBFhgxe+g0WUM3VmraKUTmLPDEAeTjgI3OahP9IVKd1KDM
+	rOM/GmZNl8NNb8ce2K2ksBsjt+s3st792Pz7wMtWkKRNuc+6FFECz86GzfYPa261DPYPE956ub/
+	4uQCL4Z5QwNDm7bGLG/qqZNKnW3MFAqDYP2TO+Hn9yyHUBBeVjLSlRO1eZFdynLqBQ=
+X-Google-Smtp-Source: AGHT+IGdYvrbgZUnhsysZ3YIfofS/ssklt7oluXB0IbrtQlBkVELl0TihfQbvfT0rCsNxXdeOI4zuw==
+X-Received: by 2002:ac8:7d8a:0:b0:471:91a8:d7f4 with SMTP id d75a77b69052e-471afe4c818mr14894221cf.24.1739316410424;
+        Tue, 11 Feb 2025 15:26:50 -0800 (PST)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-47198ee3fd8sm25855121cf.55.2025.02.11.15.26.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Feb 2025 15:26:49 -0800 (PST)
+Date: Wed, 12 Feb 2025 07:26:42 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
+	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, 
+	Jesse Taube <jesse@rivosinc.com>, Yong-Xuan Wang <yongxuan.wang@sifive.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Evan Green <evan@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>, 
+	Alexandre Ghiti <alexghiti@rivosinc.com>, Andy Chiu <andybnac@gmail.com>, 
+	Charlie Jenkins <charlie@rivosinc.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Chen Wang <unicorn_wang@outlook.com>
+Subject: Re: [PATCH v3 2/3] riscv: add ISA extension parsing for bfloat16 ISA
+ extension
+Message-ID: <rjnohunxmhyz4sonz5atmirpprpfwihsv7uazgb74josjxghjm@ju255opl6m6e>
+References: <20241206055829.1059293-1-inochiama@gmail.com>
+ <20241206055829.1059293-3-inochiama@gmail.com>
+ <374d3b07-e16c-4468-828a-a2a542cd88ac@rivosinc.com>
+ <7qkfqzhytjq2qwo2wg3xtkoqu6id6wduckeeudbn2yt5p5p7xv@2gl5bcny26rk>
+ <20250211-dizziness-eclair-2ef49cc5ad0e@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB9104:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1480771-c296-4410-e9bb-08dd4af328bf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|376014|7416014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?SPckUijSzuiyRRlDBXzR7qp6tfFXbeRTsFpUEicVHgFjJFNrDQRoN3qSBGWv?=
- =?us-ascii?Q?tQaSVt46yRi6+hLHwOQXFJiqbxUvq7SkbKVKBK585Sk8153AkR4ovW9uDyOM?=
- =?us-ascii?Q?2q1U5PfenZPpfueuMGWhtzNvfKbmvGh+AhdAOGp33Jr8IKbbM+Rl7ZAmlRc7?=
- =?us-ascii?Q?VGctzfYrbITrH9l0PANeXCUMXCtAMRnJB5hzYMctDcXnRkWzh262fj+FWNRv?=
- =?us-ascii?Q?qRpzVkj7K9/hFmTH6FgT8dLrezQkBuxY409lHWnB3+6CoqzB4kFiHn7wt9pl?=
- =?us-ascii?Q?uiLxfM8wAm2dZDt1AJcwDqvY/4Bg/FZ54bGxmynoMfRdrMpO6Gf94Ih2DGYM?=
- =?us-ascii?Q?W3Rl+2swI6Jyy9qoGzaHJn7534Crcie9BDZFqv71a7h/sabMg/7hbxVNC77b?=
- =?us-ascii?Q?gnKiETyXEhdhCK8wvkw+1qSF9J6CHmewRxO5Bk4KjkwPZ3iehACz1rwdTq3N?=
- =?us-ascii?Q?uRJJPeYYDH5OY9MYrRJ7T/K/ZxNCxC8Qi47KFTdUH4eMxjcvfVpQLftEJaTr?=
- =?us-ascii?Q?EKl+uAM+r/xFNKswMv41InNQ4H56Pzh2DfMe9Qj3D650yT28f5d51J8G8EXy?=
- =?us-ascii?Q?QDx1Lasp79LI1v9OXwlJnZY47XmYtQyq/FeCvwXE14gcLT6zgBt+/Z0BdHbW?=
- =?us-ascii?Q?a8yA9D3gzcjOxsSWF6Yrxm8erE9WqcKSyO8+TE7CzXRtl+20x4W4UD7W4NsG?=
- =?us-ascii?Q?LVgNbFmqqCACbsfV7W0Ev+NMSSmZnY4Oq9mFdWkZBnba6GfEEdxxOBCHLA95?=
- =?us-ascii?Q?/C/TJjPft5wDAz252qYM2dNst/rD9rW08s8EFucoIUIr9kHtyoTsSVjsQgxa?=
- =?us-ascii?Q?i7vkdxRU6qauLmxXMM86B5uIMZfiAjaE3s9abA1A4iqBsl2+ovYv26Cn7t2c?=
- =?us-ascii?Q?o+NvPwDK0KqS88/jq6GOzgF4HWW3bjrIDyG6k1m+47RNnYephvT3Ul0gfHgZ?=
- =?us-ascii?Q?GF44ftM9IAB9O0stKgqNPP17qoQoyiPEqiK1kaJPBtT0Gb96QGTiEAH2+E2e?=
- =?us-ascii?Q?UQWSaxDqoVK5mXWbmd6pQXmQxIkAV9nELcMSigMmx3dimgLdev4UDbQjWC/r?=
- =?us-ascii?Q?IM8ybYxPmwK+dFosM2JlnvoZxnQ90Rf3tnSUV8Q9GtpybLnxXwKAvCODMyvY?=
- =?us-ascii?Q?mj290OsLdsaPpDWj0MFDKtBr0RLWfs6EJnSSKhjsFkuGcn3XjLLqMH3CQwcL?=
- =?us-ascii?Q?UpBZUX7EcbCO9Uj0ZKaSDMwaEA1RFcLbQrdVT309/o3Dt07/Ect/IWTE1oBF?=
- =?us-ascii?Q?58d559G85yn4jRs6TmtvhUYNib9z2SBkR8Kc/l+H/FaYzYAFWY0+HIGb5rEL?=
- =?us-ascii?Q?SG5Xz6IUaGcjnk7zWmNqHWiXNYsI35PiAVQWFA4iSuwK4UAt7gPCvxb1z38x?=
- =?us-ascii?Q?zjcqprZb/h8MnH2YGqbMAQLwUToQ/6LwN0/2XU/Wc7IcQuSRcKTO2Tpm7quH?=
- =?us-ascii?Q?7FAOjOnpkvGWycX3u/sU0dmLymGDGOsI?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(376014)(7416014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?1R5Ul0y2ZoTHwa56iiCT24tFTYMLzTOpg3RnbUd6ZtSXgeou7sDgrXdS3o8J?=
- =?us-ascii?Q?hWH7ETxPtLDiDGr7l0DWrUt6Sq0KnHlwW0zfQLkb9oL4TmyYBWBMW/uyqxfL?=
- =?us-ascii?Q?RjxLxQuR6NZpH8k/KBtdPMnGRg0jNCwglbDfF9ESy1Rj5JfLEu0NQucoxucH?=
- =?us-ascii?Q?0igFr5Vz/QAa6On+c2vH7t1D9YpKHIBLeUZC7zybmYma1YFmG3nJBK9JH2g0?=
- =?us-ascii?Q?lRMJ+A92tDNLQfZJwDx4oSL2qKhPlEP2E12UJaCVY9oDEAvg0TtsD4oSLyd3?=
- =?us-ascii?Q?HOv9MMlEeP4UtP4amjdMbq7zchg91jCvrkQcFtk6qaA0HH3gvIQu5GQuRgfZ?=
- =?us-ascii?Q?B46WRKyhyexciuuwxMICWpTMruh4spXzklO2ModxQkRgslrbI/r6tgtxRytL?=
- =?us-ascii?Q?T7weyk6ehmVThElaML+Yqleivedc0LmpvOknad8LvSivbpVV4DntwveoJJIK?=
- =?us-ascii?Q?C5alSx1C6Or6O55nHwkHhbOJGRUMk5vIP2tLjap6XZd7Gx3SnICNmp/K28mE?=
- =?us-ascii?Q?cdegBDkpT3wVnZogH38X/zz71dj9IGvVx1u0Y9OYAqfChCslFuc9GTtGYbcg?=
- =?us-ascii?Q?iZm/zwjtmuDwXxFL/moAT3/kFoR25BcgtAa1yVRBjnjd6yFharbJxWIsV1iZ?=
- =?us-ascii?Q?TTBYYV7ygTz2T0OYhG1q8R4CdPgykyCCNNkn/E+eVc5O5tcY/Xef6Vfg4fTN?=
- =?us-ascii?Q?NGQIgaqSoFFCxNspewXiTAG6YpRKLqRDSO5WWx3Goxy5X89Nw5bMmi7GTd81?=
- =?us-ascii?Q?8hT+kYcFT5DA0dv5Hd29Nw3Ql5165UhHthlzYRdx3uIuJMoLQtA5n5UcmCsl?=
- =?us-ascii?Q?VHB+mf0mv6DczmzN583a0iCkWIYd7fF85ZU3f8DzG7hq3fQgqJ/ySVRrblXi?=
- =?us-ascii?Q?csDdaK1wHO+IspyK4huZHcXTMOkitrlvP1X6IklXJB6iRBivRIuJj4lWh7+Z?=
- =?us-ascii?Q?TLwlI/A1AYXtxTSsfD5nWJ/nImEZCm46jXybwM2xk26edjfRBHw9Zn3PHtkY?=
- =?us-ascii?Q?12v989jv7IpgaZRtoK+Zfnwjr3jiJYZBRpOGkIyPyUBapvCxmJeYTOsi7Wp/?=
- =?us-ascii?Q?gkuetdniErhEKl98io0wqyUcMSyXT3w4GUT1Ou1YhQBUNvT2Bwfu5p+9CJvg?=
- =?us-ascii?Q?w+6UevTbqt5Ny6wEY3EqZVadQibLmUKlPqSxQ2n1xA+ESGobi8/CdMoXXR9j?=
- =?us-ascii?Q?AvrrpabQiGzlu4Y7STBjJG0iwH9DDP+gVg3hqOhh9XnjGMesM2b4obR5BXwW?=
- =?us-ascii?Q?71a3cFMYAiWxuNW1M+YQ4nj8Kwr4dFZi0Z7ZSwVphIG3d66o9X44AEjmDhXQ?=
- =?us-ascii?Q?U8/+79h93fQdn6lqTRtm1wNSYlccFvWdUpko+uF/fY+JqurgirqlaiRcQT5f?=
- =?us-ascii?Q?2aci9OYL1RaXI9ehEItVwdI71ZJ8l3TDymzmimd+srllxnZj88OPPx3QzgNH?=
- =?us-ascii?Q?iZOeJzg6JIEY9gitXxPi2GRJ/VRS47zlVQHRTOxD2kHQEospFLbaSenTlFzc?=
- =?us-ascii?Q?qqqcbXifYpgmqQfssaOmGKdgXYgph5MiEu9/ZyX7eyVApEVIYFJ6jK9XtQje?=
- =?us-ascii?Q?YxUS6ktngMjw06WzP0QQ5t5E4QG7+XOt4WQl+Wn0?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1480771-c296-4410-e9bb-08dd4af328bf
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2025 23:23:57.8682
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1djSHDanqOvNQoQPcA5wK7Arw8OkWZPRj5OiQvmtx+XzA0IjOF8iS1GAnvaRUb/EN/1Pw3oMoRt5lqPn1YBfEA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9104
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250211-dizziness-eclair-2ef49cc5ad0e@spud>
 
-On Tue, Feb 11, 2025 at 05:58:08PM -0500, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->
-> Add imx95 DTS for SOF usage.
->
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |  1 +
->  .../dts/freescale/imx95-19x19-evk-sof.dts     | 85 +++++++++++++++++++
->  2 files changed, 86 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
->
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 839432153cc7..27f64e333e4b 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -282,6 +282,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-var-som-symphony.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
+On Tue, Feb 11, 2025 at 01:45:06PM +0000, Conor Dooley wrote:
+> On Tue, Feb 11, 2025 at 08:42:39AM +0800, Inochi Amaoto wrote:
+> > On Mon, Feb 10, 2025 at 03:38:58PM +0100, Clément Léger wrote:
+> > > 
+> > > 
+> > > On 06/12/2024 06:58, Inochi Amaoto wrote:
+> > > > Add parsing for Zfbmin, Zvfbfmin, Zvfbfwma ISA extension which
+> > > > were ratified in 4dc23d62 ("Added Chapter title to BF16") of
+> > > > the riscv-isa-manual.
+> > > > 
+> > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > > > ---
+> > > >  arch/riscv/include/asm/hwcap.h | 3 +++
+> > > >  arch/riscv/kernel/cpufeature.c | 3 +++
+> > > >  2 files changed, 6 insertions(+)
+> > > > 
+> > > > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> > > > index 869da082252a..14cc29f2a723 100644
+> > > > --- a/arch/riscv/include/asm/hwcap.h
+> > > > +++ b/arch/riscv/include/asm/hwcap.h
+> > > > @@ -100,6 +100,9 @@
+> > > >  #define RISCV_ISA_EXT_ZICCRSE		91
+> > > >  #define RISCV_ISA_EXT_SVADE		92
+> > > >  #define RISCV_ISA_EXT_SVADU		93
+> > > > +#define RISCV_ISA_EXT_ZFBFMIN		94
+> > > > +#define RISCV_ISA_EXT_ZVFBFMIN		95
+> > > > +#define RISCV_ISA_EXT_ZVFBFWMA		96
+> > > >  
+> > > >  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+> > > >  
+> > > > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> > > > index c0916ed318c2..5cfcab139568 100644
+> > > > --- a/arch/riscv/kernel/cpufeature.c
+> > > > +++ b/arch/riscv/kernel/cpufeature.c
+> > > > @@ -341,6 +341,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+> > > >  	__RISCV_ISA_EXT_DATA(zacas, RISCV_ISA_EXT_ZACAS),
+> > > >  	__RISCV_ISA_EXT_DATA(zawrs, RISCV_ISA_EXT_ZAWRS),
+> > > >  	__RISCV_ISA_EXT_DATA(zfa, RISCV_ISA_EXT_ZFA),
+> > > > +	__RISCV_ISA_EXT_DATA(zfbfmin, RISCV_ISA_EXT_ZFBFMIN),
+> > > 
+> > > Hi Inochi,
+> > > 
+> > > You could add a validation callback to that extension:
+> > > 
+> > > static int riscv_ext_f_depends(const struct riscv_isa_ext_data *data,
+> > > 			       const unsigned long *isa_bitmap)
+> > > {
+> > > 	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_f))
+> > > 		return 0;
+> > > 
+> > > 	return -EPROBE_DEFER;
+> > > }
+> > > 
+> > >   ...
+> > >   __RISCV_ISA_EXT_DATA_VALIDATE(zfbfmin, RISCV_ISA_EXT_ZFBFMIN,
+> > > riscv_ext_f_depends),
+> > > 
+> > > 
+> > > But I'm ok with the current state of that patch since I have the same
+> > > thing coming for other extensions as well. 
+> > 
+> > 
+> > I think it is good for me to add the check, and I wonder it is possible
+> > to add the extra check for zvfbfmin and zvfbfwma like this:
+> > 
+> > static int riscv_ext_zvfbfmin_validate(const struct riscv_isa_ext_data *data,
+> > 				       const unsigned long *isa_bitmap)
+> > {
+> > 	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_v))
+> > 		return 0;
+> 
+> This is not needed I think, V "turns on" Zve32f. If anything, you should
+> be checking for CONFIG_RISCV_ISA_V here ^^
+> 
 
-look like should use dt overlay ?
+Thanks for pointing it. I will change the check.
 
->
->  imx8mm-kontron-dl-dtbs			:= imx8mm-kontron-bl.dtb imx8mm-kontron-dl.dtbo
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
-> new file mode 100644
-> index 000000000000..ce7b2384e459
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
-> @@ -0,0 +1,85 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2025 NXP
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx95-19x19-evk.dts"
-> +
-> +/ {
-> +	sof_cpu: cm7-cpu@80000000 {
-> +		compatible = "fsl,imx95-cm7-sof";
-> +		reg = <0x0 0x80000000 0x0 0x6100000>;
-> +		reg-names = "sram";
-> +		memory-region = <&adma_res>;
-> +		memory-region-names = "dma";
-> +		mboxes = <&mu7 2 0>, <&mu7 2 1>, <&mu7 3 0>, <&mu7 3 1>;
-> +		mbox-names = "txdb0", "txdb1", "rxdb0", "rxdb1";
-> +
-> +		cpu: port {
-> +			cpu_ep: endpoint {
-> +				remote-endpoint = <&codec_ep>;
-> +			};
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		adma_res: memory@86100000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x0 0x86100000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	sof-sound-wm8962 {
-> +		compatible = "audio-graph-card2";
-> +		links = <&cpu>;
-> +		label = "wm8962-audio";
-> +		hp-det-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_hp>;
-> +		widgets =
-> +			"Headphone", "Headphones",
-> +			"Microphone", "Headset Mic";
+> You /could/ call the resulting riscv_vector_f_validate(), since this is
+> nothing specific to Zvfvfmin, and could be used for another extension
+> that requires a Zve32f or Zve64 minimum base.
+> 
 
-Generally, align to  =
-	widgets = "Headphone", "Headphones",
-		  "Microphone", "Headset Mic";
+It is OK for me, I will change its name.
 
-> +		routing =
-> +			"Headphones", "HPOUTL",
-> +			"Headphones", "HPOUTR",
-> +			"Headset Mic", "MICBIAS",
-> +			"IN3R", "Headset Mic",
-> +			"IN1R", "Headset Mic";
-> +	};
-> +
-> +	sound-wm8962 {
-> +		status = "disabled";
-> +	};
-> +
-> +};
-> +
-> +&edma2 {
-> +	dma-channel-mask = <0xc0000000>, <0x0>;
-> +};
-
-Not sure why need mask edma2's some channel, can you add comments for it
-
-Frank
-> +
-> +&sai3 {
-> +	status = "disabled";
-> +};
-> +
-> +&wm8962 {
-> +	assigned-clocks = <&scmi_clk IMX95_CLK_AUDIOPLL1_VCO>,
-> +			  <&scmi_clk IMX95_CLK_AUDIOPLL2_VCO>,
-> +			  <&scmi_clk IMX95_CLK_AUDIOPLL1>,
-> +			  <&scmi_clk IMX95_CLK_AUDIOPLL2>,
-> +			  <&scmi_clk IMX95_CLK_SAI3>;
-> +	assigned-clock-parents = <0>, <0>, <0>, <0>, <&scmi_clk IMX95_CLK_AUDIOPLL1>;
-> +	assigned-clock-rates = <3932160000>, <3612672000>,
-> +			       <393216000>, <361267200>,
-> +			       <12288000>;
-> +
-> +	port {
-> +		codec_ep: endpoint {
-> +			bitclock-master;
-> +			frame-master;
-> +			remote-endpoint = <&cpu_ep>;
-> +		};
-> +	};
-> +};
-> --
-> 2.34.1
->
+Regards,
+Inochi
 
