@@ -1,200 +1,82 @@
-Return-Path: <devicetree+bounces-145285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C69DFA30D2B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:42:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0346A30D2F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:43:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DF9B3A82E1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:42:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12AE41884F3A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:43:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB22B22371C;
-	Tue, 11 Feb 2025 13:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7C4524C67A;
+	Tue, 11 Feb 2025 13:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ECCqwy/D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bEvbIbAf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 138CB1E98FF;
-	Tue, 11 Feb 2025 13:42:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C41F24C676;
+	Tue, 11 Feb 2025 13:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739281370; cv=none; b=U1E9iMeY7r4WXiGO2qtb1WLUPJgKjgG2R0ABACoAKBhnCk+A0/YHhymSQwatRiXiSwEy/vAmXUFIEUSsyESyLUh9zxo7MDMNdeelgHotsQTCLDrqmcOf/0ZQFUUc/37tevSB1Dezu21P+n9izXUQzogOmoxc/fCcy/nSjPIHV/c=
+	t=1739281373; cv=none; b=dxIy9eeExwtkENFNNffrRRKVcgo6kCjSfZMh/vclWOna2U9+KqF36AfYSQ8xjigjZIgLWY8A5JcAPzxdwEBwAmaGQmzjRpsZawmHfGLi+P4G/ikfFxsAry0GQRA5KWkA7A9uG90BFwdFJLoOSmm6UPRH7hl9FD+xsaO6N6REeZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739281370; c=relaxed/simple;
-	bh=oHuDO3N4q9UjuMcLC43ArFeLt76GZz0x5DN1qES+05g=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZSGv53TD8Q7ZVmV0GNIEi3fN4o4vf3xTTZ1sCl3RBoMeJI3jDsNZKmIY5Xuf53LlDQ5xo7Sqm2ZtGoUC7A63DPmJF/Tr49pu27ZZZ/Oh2ZwzWlUsZXLwwF7M3jolb9aTFzmPMLzrZF5V/huAp6rZV3NBtRVjeqU+Ppptl78gjz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ECCqwy/D; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 822C24440A;
-	Tue, 11 Feb 2025 13:42:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739281366;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hrHnzHJAMdU5BZfDvmzt4qs+iwkv60fAwvb2ZrcJS+c=;
-	b=ECCqwy/DNUw3wcnf/Ivjx9007nU9yaQ0WJZuo/r4u9qXasAmhpDTVk8FWK4ekbY3ZFeko8
-	1F0I+za35DHHF6XKtEypOL++WIhG6inzSPILNeBZE9JI07WNd22zMQkj/Uw2IGfApKBUxa
-	OPgBV1bA6ArIdtkVLjOxI0segWvn+UzdsMvH2XN0CgnLjogzbFNsj33K63CeqU5C9K0chv
-	3Y1uVBZrCg//xsO43mjMcuG5cfEx2bgB3bIMYISm2fZwrBb+qUrEDeNZ5QKzGzkquDzeX9
-	Hgp+DbzFCsjlKcRT1uIe5Q7FhF+cZfNLIxLSDQhvfcl1Jp1WPI7aCUJszsYOrQ==
-Date: Tue, 11 Feb 2025 14:42:43 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski
- <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
- linux-arm-kernel@lists.infradead.org, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, Marek
- =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
- <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
- mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Romain
- Gantois <romain.gantois@bootlin.com>
-Subject: Re: [PATCH net-next 03/13] net: phy: Introduce PHY ports
- representation
-Message-ID: <20250211144243.6190005a@fedora.home>
-In-Reply-To: <20250211143209.74f84a10@kmaincent-XPS-13-7390>
-References: <20250207223634.600218-1-maxime.chevallier@bootlin.com>
-	<20250207223634.600218-4-maxime.chevallier@bootlin.com>
-	<20250211143209.74f84a10@kmaincent-XPS-13-7390>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1739281373; c=relaxed/simple;
+	bh=C32LleHf5ZcsvCnzLE6ZB1YIQT48U7FTJGBmUOnQxR4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ovjeWgorEarFQqUM8C41cQoj5yjv9HzdzuegTUtJRQ2RBrZV9BNLAGXoxQx5gf0ZH/6Y5HZ21zlmJSatEQvOI5RIhqrkHtWs7YQzA61bSHbDXq5XcNuJHhalT0dYvsWV8DRgYtM66wCcJ6F/hSrVFtJzfEd9AMt8O2OjNhmkBgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bEvbIbAf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7262FC4CEE5;
+	Tue, 11 Feb 2025 13:42:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739281372;
+	bh=C32LleHf5ZcsvCnzLE6ZB1YIQT48U7FTJGBmUOnQxR4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=bEvbIbAfySxlIzXGv56uAQtOmZ/k2DoU2VZoVvx6x2hg85wRr8KM1joSjQsg7sxAs
+	 iORyaF9iTEhpxC3BcPW9gFMvFT2TTYahZoxk9iG7RiNO7qAj0nmO1P6mwCIv+TybmH
+	 RFMttvs3BCvI1QBtp41mNkbI3e9/MM2yEv57IqEy7/YmwFx1Bc5ySflPDuirM9/rt4
+	 kEQMKgCYwOrdClIUueqHG8u3LyNm6LO/Do1qkSdrCLt3+TA1AmI7hQJJLqOVP3NsTA
+	 YqI5qqAlpSTd4kj2u2cQPMSnT17MEoULFFK0d2tpJ8PHqJy2HWktpu2xnHdUJq2yoZ
+	 a0/PhNJtZ/Pxg==
+From: Lee Jones <lee@kernel.org>
+To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org, lee@kernel.org, 
+ samuel@sholland.org, jernej.skrabec@gmail.com, wens@csie.org, 
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, sre@kernel.org, 
+ Chris Morgan <macromorgan@hotmail.com>
+In-Reply-To: <20250204155835.161973-3-macroalpha82@gmail.com>
+References: <20250204155835.161973-1-macroalpha82@gmail.com>
+ <20250204155835.161973-3-macroalpha82@gmail.com>
+Subject: Re: (subset) [PATCH V2 2/4] mfd: axp20x: AXP717: Add
+ AXP717_TS_PIN_CFG to writeable regs
+Message-Id: <173928137017.2164349.13619464947851022064.b4-ty@kernel.org>
+Date: Tue, 11 Feb 2025 13:42:50 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegudduhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeuhfefgffgtdfhgffhvdfhhffhteeutdektefghfetveehheejjefgudeiudehudenucfkphepvdgrtddumegtsgduleemkegugegtmeelfhdttdemsggtvddumeekkeelleemheegtdgtmegvheelvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegtgemlehftddtmegstgdvudemkeekleelmeehgedttgemvgehlegvpdhhvghlohepfhgvughorhgrrdhhohhmvgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvkedprhgtphhtthhopehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrn
- hgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
-Hi K=C3=B6ry,
+On Tue, 04 Feb 2025 09:58:32 -0600, Chris Morgan wrote:
+> Add AXP717_TS_PIN_CFG (register 0x50) to the table of writeable
+> registers so that the temperature sensor can be configured by the
+> battery driver.
+> 
+> 
 
-On Tue, 11 Feb 2025 14:32:09 +0100
-Kory Maincent <kory.maincent@bootlin.com> wrote:
+Applied, thanks!
 
-> On Fri,  7 Feb 2025 23:36:22 +0100
-> Maxime Chevallier <maxime.chevallier@bootlin.com> wrote:
->=20
-> > Ethernet provides a wide variety of layer 1 protocols and standards for
-> > data transmission. The front-facing ports of an interface have their own
-> > complexity and configurability.
-> >=20
-> > Introduce a representation of these front-facing ports. The current code
-> > is minimalistic and only support ports controlled by PHY devices, but
-> > the plan is to extend that to SFP as well as raw Ethernet MACs that
-> > don't use PHY devices.
-> >=20
-> > This minimal port representation allows describing the media and number
-> > of lanes of a port. From that information, we can derive the linkmodes
-> > usable on the port, which can be used to limit the capabilities of an
-> > interface.
-> >=20
-> > For now, the port lanes and medium is derived from devicetree, defined
-> > by the PHY driver, or populated with default values (as we assume that
-> > all PHYs expose at least one port).
-> >=20
-> > The typical example is 100M ethernet. 100BaseT can work using only 2
-> > lanes on a Cat 5 cables. However, in the situation where a 10/100/1000
-> > capable PHY is wired to its RJ45 port through 2 lanes only, we have no
-> > way of detecting that. The "max-speed" DT property can be used, but a
-> > more accurate representation can be used :
-> >=20
-> > mdi {
-> > 	port@0 {
-> > 		media =3D "BaseT";
-> > 		lanes =3D <2>;
-> > 	};
-> > };
-> >=20
-> > From that information, we can derive the max speed reachable on the
-> > port.
-> >=20
-> > Another benefit of having that is to avoid vendor-specific DT properties
-> > (micrel,fiber-mode or ti,fiber-mode).
-> >=20
-> > This basic representation is meant to be expanded, by the introduction
-> > of port ops, userspace listing of ports, and support for multi-port
-> > devices. =20
->=20
-> This patch is tackling the support of ports only for the PHY API. Keeping=
- in
-> mind that this port abstraction support will also be of interest to the N=
-ICs.
-> Isn't it preferable to handle port in a standalone API?
+[2/4] mfd: axp20x: AXP717: Add AXP717_TS_PIN_CFG to writeable regs
+      commit: ab797d7faf4c28328d2e45b09991f47a9b8e08aa
 
-The way I see it, nothing prevents from using the port definition in
-ethernet-port.yml in DSA/raw nics.
+--
+Lee Jones [李琼斯]
 
-> With net drivers having PHY managed by the firmware or DSA, there is no l=
-inux
-> description of their PHYs. On that case, if we want to use port abstracti=
-on,
-> what is the best? Register a virtual phy_device to use the abstraction po=
-rt or
-> use the port abstraction API directly which meant that it is not related =
-to any
-> PHY?
-
-I think the next steps will be to have net_device have a list of ports
-(maintained in the phy_link_topology) that aggregates ports from all
-its PHYs/SFPs/raw interfaces. in that case net_device will be the
-direct parent. I haven't worked on the bindings for that though,
-especially for DSA :'(
-
-I don't think the virtual phydev is going to be helpful. I'm hitting
-the 15 patches limit, but a possible extension is to make so that
-phylink also creates a port when it finds an SFP (hence, when upstream
-is a MAC).
-
-This is why phy_port has these fields :
-
-
-enum phy_port_parent {
-	PHY_PORT_PHY,
-};
-
-struct phy_port {
-	...
-	enum phy_port_parent parent_type;
-	union {
-		struct phy_device *phy;
-	};
-
-};
-
-The parent type may (will) be extended with PORT_PHY_MAC, and that's
-also why the parent pointer is in a union :)
-
-I'm trying hard to make so that phy_port doesn't depend on phylib
-(altough, phylib depends on phy_port). There's a dependency on some
-core stuff (converting from medium =3D> linkmodes) and phylink
-(converting the interfaces list to linkmodes), but we can extract these
-fairly easily.
-
-You're correct in that for now, the integration is with phylib only
-though, but let's make sure this will also work for phy-less devices.
-
-Thanks a lot for your input,
-
-Maxime
 
