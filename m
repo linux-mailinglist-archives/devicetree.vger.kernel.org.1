@@ -1,126 +1,187 @@
-Return-Path: <devicetree+bounces-145223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B4D5A30AE1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:57:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC9D2A30AF0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:00:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82E59188AB44
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 11:57:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BCA01884E98
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:00:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0311F942D;
-	Tue, 11 Feb 2025 11:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AIyPVGkJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E061FCD06;
+	Tue, 11 Feb 2025 12:00:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D07851F8AF8
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 11:57:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A099F1FCF45
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 12:00:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739275033; cv=none; b=GYJatv+Q4FOzIYEuQ/90rONXe7wFUNQZUvJ02ROgoIdxi/dzQTEMo2K97MTGKvrQZBRPVYG7oJfTtFUMnAuhj4+HdkJhn1sOOmOot7siDBS9d6JsA1LuS3VSBOopLIAhG29qMxGXbanyH8nbFHT2Dq+yrW2eRa/vU54KYtOh1tk=
+	t=1739275219; cv=none; b=fxNMK0+VBhYUOpNRGsjQrdxfAMo4VfocdRInov3kZda+29TWLZgwwiUNXW2DWW9VupDR+Toxyh9mPL5WX68+2gyAThxeNQ16Ox4fktlENsTYNq0sL/fLTzwzpFCWepn5jfWTLuQVMSnPUzLQ6i8aibaDopl37QpkLGadZ69ajek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739275033; c=relaxed/simple;
-	bh=vpI+yV0dwbmZFIhRaRGyW8a5HVtO/K90AaYY0HmkYxE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N0njscVrczYzzeAO9xXFlhG1OroGxQEbcJiu+VP5uj+yeQITPWNG61sEfCpr2lIUv1pUZuUfkCxfw8ahdBEQoeNsOJotoxHCz6aF23PjIfmxbYqkpa9OcH8smS24NWOKK6fmOmOkKqH/j9GmZSn1h/HqmZWfPK9oxv0wqVbgxTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AIyPVGkJ; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-38dc33931d3so2402225f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 03:57:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739275030; x=1739879830; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x+/rKU8hND2RosjvAKGWInz1qgNkLNHLXSblj/1XFjg=;
-        b=AIyPVGkJlgcML6BtskWNgRrGfUuf9CBdc6cgkcsCoa3i+KMlwVsOueaISXXdmgZcDZ
-         0sTXWYKKIBPGT4hPQFRacfzfSE25L0sysAGAYvi395QM7JVcmuZYRDRhckGII+KrZP7R
-         2uF//yw2DEXlSY5SmpOpJUdBEKTvAp6/ZmfWE3S6wF8HtOC1BeJrN3P42cHtK+UoAYFK
-         hJQ5boYIUIUz8mIr/Mcb0NNHccZ3Skd6fJlAahADpL4HANcN+rId25PuFwEBTntX+/iM
-         dcJCf88NGq80TBAMoqJehV/iBPum2qpifWIpfW63refMjwOHU8RxNrk4bIVaAzU/mFL2
-         Wnmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739275030; x=1739879830;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x+/rKU8hND2RosjvAKGWInz1qgNkLNHLXSblj/1XFjg=;
-        b=o1ER9I+V8mit3+Jqtbqyd5OaPAoLKlN/UBfuDB6dn0AV9vVzla4UWR25TNsWFSm0IT
-         BYUqmLeMbsRPp+3Mn5seZuh1vyFpapS3eZ1S5ydw+wkvy29TC2rzOJyQ2DK7azYlM9ss
-         +yrH7Y/oIcffZ7wQx9pzw1twrxKQAkFaBswICqg4UvqCkagNSLFyegAxLWjAgtYBWm5N
-         4s9O+HldfA+BeLxQfknPdP4ja7HrPnC5MgXS9j25JoZ323CD9WYcbtC3fsPD5ZmtoUQz
-         JdZJOeCZgvASVdxcEjmK+vwZmCw6V+RYI1Xdr9J73EUxsrlmiu9QiD/3q8CeB7sr1n0X
-         XgQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWuLLb2mSQZxhORW+QhQr5SA/1f4kCTx0gOoa+Y3Ar/y0xfpGA/nQPBitnCXAd2xPO97ZOulA9mcsht@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMhe7ZvqeSJIXMogNZdZLJAHOy/WReVgPHVCx9FoRc0Yk+KMzE
-	V1DIiChrigcS7GEL0Q9wQ03mfGuszQ6PSHEjgMDdErEFJK07uVGRofakSKjO4qM=
-X-Gm-Gg: ASbGnctYE31PnHJwFNTqjd2Z9R9ER3Jleibd336rvqJ3qXAXD0zYxGd9c0zYrlfnVqd
-	nc4zV8l1dWW6H8ZDWp6gkArgnOTCpghZWJZtM2wwMp84ZPPKPOwP7voxZwF6KfA56UbYroPcAZ1
-	GU/CQg1b1MfWE91kkqe5+eP7yuSP7B8xQ2Ybtl76Hoa9KjRxxc/CDPz10XQcfdhQEVTUZSjXaUh
-	IOIRC72PtEFyYIxtvpGqsKdVHDaOCgcsm7AcrpllAJTja23bJN32mY8L8zgjukOdlptWA6ZaR8r
-	nK6k4HNbNK9jLEENJxlb+SLL
-X-Google-Smtp-Source: AGHT+IGEDbZ4F+KtHnkoF3QqtYj/Mv0BkaXQoyniQIaUjtGof6BuGlXWqpwnecn1thdzCU0aThGJqw==
-X-Received: by 2002:a5d:64af:0:b0:38d:d0ca:fbd5 with SMTP id ffacd0b85a97d-38dd0cb6a75mr11977488f8f.22.1739275030079;
-        Tue, 11 Feb 2025 03:57:10 -0800 (PST)
-Received: from [192.168.0.14] ([79.115.63.124])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dc0c5a894sm14314088f8f.95.2025.02.11.03.57.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Feb 2025 03:57:09 -0800 (PST)
-Message-ID: <bad87f30-0483-48c1-b263-02cc752c77e6@linaro.org>
-Date: Tue, 11 Feb 2025 11:57:07 +0000
+	s=arc-20240116; t=1739275219; c=relaxed/simple;
+	bh=3SbQezCP+ISh10ulY9GEv5MsF0c84+68s6utxCeC34s=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=f7b50oPuwjr/VyPcdwUgXTO6lKQr5Vf3ZccuD8HhbnmrUFAn2s+4kVa1079/8KJJRCpSR2GObGPgtJ/hGWNQLLguWZxde4nOAYre8FCkvY+YDvMjh+DUcvGwZFpleJ5RA5XLPaLUsa6JS1DAvw2iHVKd9+Zer7ZJRuhkIEDRLJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1thovX-0000Xi-9K; Tue, 11 Feb 2025 12:59:43 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1thovT-000PPU-3A;
+	Tue, 11 Feb 2025 12:59:39 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1thovT-0005DW-2n;
+	Tue, 11 Feb 2025 12:59:39 +0100
+Message-ID: <945fb7e913a9c3dcb40697328b7e9842b75fea5c.camel@pengutronix.de>
+Subject: Re: [PATCH v4 09/18] reset: thead: Add TH1520 reset controller
+ driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Michal Wilczynski <m.wilczynski@samsung.com>, Matt Coster
+ <Matt.Coster@imgtec.com>, "mturquette@baylibre.com"
+ <mturquette@baylibre.com>,  "sboyd@kernel.org" <sboyd@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+ "drew@pdp7.com" <drew@pdp7.com>, "guoren@kernel.org" <guoren@kernel.org>,
+ "wefu@redhat.com" <wefu@redhat.com>, "jassisinghbrar@gmail.com"
+ <jassisinghbrar@gmail.com>,  "paul.walmsley@sifive.com"
+ <paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>, 
+ "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, Frank Binns
+ <Frank.Binns@imgtec.com>,  "maarten.lankhorst@linux.intel.com"
+ <maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
+ <mripard@kernel.org>,  "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "airlied@gmail.com" <airlied@gmail.com>,  "simona@ffwll.ch"
+ <simona@ffwll.ch>, "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>, 
+ "jszhang@kernel.org" <jszhang@kernel.org>, "m.szyprowski@samsung.com"
+ <m.szyprowski@samsung.com>
+Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
+	"devicetree@vger.kernel.org"
+	 <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	 <linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	 <linux-riscv@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
+	 <dri-devel@lists.freedesktop.org>, "linux-pm@vger.kernel.org"
+	 <linux-pm@vger.kernel.org>
+Date: Tue, 11 Feb 2025 12:59:39 +0100
+In-Reply-To: <7d8a3f8d-f369-47dd-8c5f-dcff8d692ea8@samsung.com>
+References: <20250128194816.2185326-1-m.wilczynski@samsung.com>
+	 <CGME20250128194836eucas1p151c4fc83a17173fd1b79bfc959976301@eucas1p1.samsung.com>
+	 <20250128194816.2185326-10-m.wilczynski@samsung.com>
+	 <816db99d-7088-4c1a-af03-b9a825ac09dc@imgtec.com>
+	 <e83ea320-23f0-41ed-934c-2f1687b55ec1@samsung.com>
+	 <48261cdfab6e0bc16e5327664b06728e1894422a.camel@pengutronix.de>
+	 <7d8a3f8d-f369-47dd-8c5f-dcff8d692ea8@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/3] dt-bindings: firmware: add google,gs101-acpm-ipc
-To: Diederik de Haas <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Jassi Brar <jassisinghbrar@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
- peter.griffin@linaro.org, daniel.lezcano@linaro.org,
- vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250211-gs101-acpm-v8-0-01d01f522da6@linaro.org>
- <20250211-gs101-acpm-v8-1-01d01f522da6@linaro.org>
- <D7PJTD3PSP78.27N2S94J2CNZG@cknow.org>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <D7PJTD3PSP78.27N2S94J2CNZG@cknow.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+
+On Mo, 2025-02-10 at 19:17 +0100, Michal Wilczynski wrote:
+> On 2/4/25 18:18, Philipp Zabel wrote:
+> > On Mo, 2025-02-03 at 19:15 +0100, Michal Wilczynski wrote:
+[...]
+> > > I think this is required because the MEM clock gate is somehow broken
+> > > and marked as 'reserved' in manual, so instead as a workaround, since=
+ we
+> > > can't reliably enable the 'mem' clock it's a good idea to reset the
+> > > whole CLKGEN of the GPU.
+> >=20
+> > If this is a workaround for broken gating of the "mem" clock, would it
+> > be possible (and reasonable) to make this a separate reset control that
+> > is handled by the clock driver? ...
+>=20
+> Thank you for the detailed feedback, Philipp.
+>=20
+> After further consideration, I believe keeping the current reset driver
+> implementation would be preferable to moving the CLKGEN reset handling
+> to the clock driver. While it's technically possible to implement this
+> in the clock driver, I have concerns about the added complexity:
+>=20
+> 1. We'd need to expose the CLKGEN reset separately in the reset driver
+
+I'd expect this to simplify the reset driver.
+
+> 2. The clock driver's dt-bindings would need modification to add an
+>    optional resets property
+
+If it describes the hardware correctly, that should be fine.
+
+> 3. We'd need custom clk_ops for all three clock gates (including a dummy
+>    'mem' gate)
+> 4. Each clock gate's .enable operation would need to handle CLKGEN reset
+>    deassertion
+
+I accept these arguments, as I have no good feeling for how much
+complexity this would actually add.
+
+In my mind it shouldn't be much: the GPU clocks could all share the
+same refcounted implementation. The first clock to get enabled would
+ungate both GPU_CORE and GPU_CFG_ACLK gates and deassert
+GPU_SW_CLKGEN_RST, all in one place. The remaining enable(s) would be
+no-ops. Would that work?
+
+Whether a separate "dummy" MEM clock for the DT bindings is added or
+not would not make a difference.
+
+> While the clock framework could theoretically handle this, there's no
+> clean way to express the requirement that the CLKGEN reset should only
+> be deasserted after all clocks in the group are enabled. We could
+> implement this explicitly, but it would make the code more complex and
+> harder to understand.
+
+Doing this in the clock driver would have the advantage of clk_enabled
+GPU clocks actually staying physically enabled, without the reset
+driver disabling them via GPU_SW_CLKGEN_RST from the outside.
+
+> The current solution in the reset driver is simpler and clearer - it
+> treats this as what it really is: a TH1520-specific reset sequence.
+
+Yes. What this also is: a workaround for a SoC specific defect in the
+clock tree. I think it belongs in the clock driver because of this.
 
 
+[...]
+> Regarding the delay between clock enable and reset deassert - for SoCs
+> like BPI-F3 with a single reset line, implementing this in the GPU
+> consumer driver makes perfect sense. However, for the T-HEAD SoC, moving
+> the delay there would actually complicate things since we need to manage
+> both the CLKGEN and GPU reset lines in a specific sequence. Having this
+> handled entirely within the reset driver keeps the implementation
+> cleaner.
 
-On 2/11/25 10:36 AM, Diederik de Haas wrote:
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> Shouldn't this be ``(GPL-2.0-only OR BSD-2-Clause)`` ?
-> 
-> AFAIK it's the recommended form since SPDX 3.0:
-> https://spdx.dev/license-list-3-0-released/
+You could delay in both places, it's just a microsecond after all.
+Whether the workaround is implemented in the reset driver or in the
+clock driver,=C2=A0I wouldn't want the GPU driver to have to carry a specia=
+l
+case for TH1520.
 
-It should, it's a copy-paste error.
+> Does this reasoning align with your thoughts? I'm happy to explore the
+> clock driver approach further if you still see significant advantages to
+> that solution.
 
-Looking in the driver patch, I shall update
-include/linux/firmware/samsung/exynos-acpm-protocol.h to GPL-2.0-only as
-well.
+I won't object to carry this in the reset driver if the clock
+implementation turns out to be unreasonably complex, but I currently
+don't expect that to be the case. Please give it a shot.
 
-And then I shall s/MODULE_LICENSE("GPL");/MODULE_LICENSE("GPL v2");/
-everywhere as "GPL" indicates [GNU Public License v2 or later].
-
-I'm going to respin everything to fix the License mismatch in the set.
-
-Thanks!
-ta
+regards
+Philipp
 
