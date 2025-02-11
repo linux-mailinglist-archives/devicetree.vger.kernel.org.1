@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-145414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E100A31407
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:25:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C839DA31418
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:30:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15FAC1887AC7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:25:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BEF3167C9E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1163222582;
-	Tue, 11 Feb 2025 18:25:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB5B2512C7;
+	Tue, 11 Feb 2025 18:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gcZ6MW66"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LCyHpRRE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1DD1E3DFD;
-	Tue, 11 Feb 2025 18:25:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1968A24FC1F;
+	Tue, 11 Feb 2025 18:30:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739298335; cv=none; b=RmuLLWYLhVJm7ksC5qYWhqel6hwpmorDrDLIDbYUoOOxPI+GA3AjKavSnVdr80ETF9Bt2jZ2SQUk8x1q2l7F1VnEH1wS4gId+TehD+6jgOdxbOV0RfwZknC5pIPFep8xbKi2m9BKyVvjD5RohwRPctMXlp3ULoY2LhwA7E1CiX4=
+	t=1739298633; cv=none; b=OiczAETMbh3Hjiow/TCntUAWg4DncSDDMJQlb4U3qF04ZxrKDeUSP+Fa2HE/tsl5UtGCEW/9mJMe507mnvkGe2TaRwXiI63vjMdr9x+8YaO9co6NSCntjoSIUqqdgHhq4sKmURRSWgCZUuXADdiPUsjJwcQMYpbu3se1Xh0tpN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739298335; c=relaxed/simple;
-	bh=m2wqFcz+v1UAQgc1YqCV1MB5c8CjM8VI4vZEBEicwuA=;
+	s=arc-20240116; t=1739298633; c=relaxed/simple;
+	bh=MXkpdxUrKwlNGyhfGqjpT3gM++JqSC+ekFB+wz6S6C4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jG1yywoG2F8rgm2I5c6tkg/4D6PldxpJseGBNqVqynhTnYRRcJ5N8w3mug0RYMlZmGEkejTxJzWui5hD0ZsqkhKfHiMohPEudxxUeV9hJWNDNyM+Ffi78FrpWbPKJypRAam3GPk4JvcgMnFQ0yro2AMFl09fzVLvODXIAuF1iTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gcZ6MW66; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A4FDC4CEDD;
-	Tue, 11 Feb 2025 18:25:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OhuEypG5rfa1V9d9+QXKuHngUdMQoS2kq3lE9MoiVNJfQGx53QrU/Er81f8aKJQDVlfk7zDkuGDczcUL6Sz9OAyNjHb+w9C0A5m8i+6UEaBrSwDzt9hNcFmklHFfYg10nh5CvD/DWBAucrWMKd1EuGP+EI6rSUxfNjsc48OQ/wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LCyHpRRE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44F90C4CEDD;
+	Tue, 11 Feb 2025 18:30:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739298334;
-	bh=m2wqFcz+v1UAQgc1YqCV1MB5c8CjM8VI4vZEBEicwuA=;
+	s=k20201202; t=1739298632;
+	bh=MXkpdxUrKwlNGyhfGqjpT3gM++JqSC+ekFB+wz6S6C4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gcZ6MW66T4mSGkn1IwJAlhhTn3L0yjP+6Z7DRxfw3s4YqIlseachoNLve9XqrtKST
-	 O7kakKZ94Sd2Yu78QMBC3Dr/WdRoJ2so2S1L41JELSj/ACMf/mxOI+bHnylY1jVKcc
-	 dMsuMXlnGRzwoWfJoZi1/TrpfhzmANqViCcdJIzbF6JggwgSSxJK+oEL00vmrdL5KS
-	 RSieRcUqvmt7CZ1wVrCkKeRR63k36qyRQ1krBypUtiXLRZXTfTWGxHfDHARbLFjQgS
-	 9heWZK/oLn9k+37SuiRtcCnmN6i6/DQvs1xS+yOr2Wvwj9Nc0R2FUl627260njtMvP
-	 UzFpNQsC+PHyw==
-Date: Tue, 11 Feb 2025 18:25:28 +0000
+	b=LCyHpRREJtOY2Tvjhmv03vG4+reEXqTnt+Z16GX1SfqS0MjxOwCo1EkI7LsyZe667
+	 yI9on/ejRJGqty+zjK9W38REK0RkwwpIRuQCIMMu6VGuc7I6Sxdor9CL8VJA9sQSfP
+	 hfqIGAk+U6UY8++83IseOi+KOi6orwI9zC5TEWJ4IV/KxoyZtizGTzuofkrl2/UHl+
+	 9EzKiewIdemBesCWREr8SU6FJWyoQgcHnhUIsC3VfdrS9uL/ckmRjak7S4HIkz0wIN
+	 kToARy9Bzz1GXAlbUO7Ubvq1yuhDW3JxiOMRQ5HoRrVzJomx/qY8WCJS2yFDlKE22U
+	 L8GFUoMbB1QzA==
+Date: Tue, 11 Feb 2025 18:30:28 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Alain Volmat <alain.volmat@foss.st.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: media: st,stmipid02: correct
- lane-polarities maxItems
-Message-ID: <20250211-labrador-spotter-27df2d2bbe02@spud>
-References: <20250210-6-14-stm32-media-fixes-v1-0-c64ebe9af8bb@foss.st.com>
- <20250210-6-14-stm32-media-fixes-v1-2-c64ebe9af8bb@foss.st.com>
+To: Chunfeng Yun =?utf-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>
+Cc: "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"vkoul@kernel.org" <vkoul@kernel.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: phy: mediatek,xsphy: add
+ property to set disconnect threshold
+Message-ID: <20250211-destiny-crablike-ab17a2814b7a@spud>
+References: <20250111141542.5007-1-chunfeng.yun@mediatek.com>
+ <20250113-aerobics-tall-e570d8bbcf2c@spud>
+ <e61b61574bd58c1bbc0648257fb4ab23ed582de0.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,62 +68,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hFoqtL9VL6EAg4Q/"
+	protocol="application/pgp-signature"; boundary="EJv8ebh2m2tBBLDa"
 Content-Disposition: inline
-In-Reply-To: <20250210-6-14-stm32-media-fixes-v1-2-c64ebe9af8bb@foss.st.com>
+In-Reply-To: <e61b61574bd58c1bbc0648257fb4ab23ed582de0.camel@mediatek.com>
 
 
---hFoqtL9VL6EAg4Q/
-Content-Type: text/plain; charset=us-ascii
+--EJv8ebh2m2tBBLDa
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 10, 2025 at 11:04:31AM +0100, Alain Volmat wrote:
-> The MIPID02 can use up to 2 data lanes which leads to having a maximum
-> item number of 3 for the lane-polarities since this also contains the
-> clock lane.
->=20
-> CC: stable@vger.kernel.org
-> Fixes: c2741cbe7f8a ("dt-bindings: media: st,stmipid02: Convert the text =
-bindings to YAML")
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+On Sun, Feb 09, 2025 at 03:34:12AM +0000, Chunfeng Yun (=E4=BA=91=E6=98=A5=
+=E5=B3=B0) wrote:
+> On Mon, 2025-01-13 at 18:30 +0000, Conor Dooley wrote:
+> > On Sat, Jan 11, 2025 at 10:15:41PM +0800, Chunfeng Yun wrote:
+> > > Add a property to tune usb2 phy's disconnect threshold.
+> > > And add a compatible for mt8196.
+> > >=20
+> > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > > ---
+> > > based on kernel 6.13-rc1
+> > >=20
+> > > this property is porting from t-phy driver, due to the u2 phy are
+> > > similar.
+> > > ---
+> > >  Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml | 8
+> > > ++++++++
+> > >  1 file changed, 8 insertions(+)
+> > >=20
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+> > > b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+> > > index a9e3139fd421..2e012d5e1da1 100644
+> > > --- a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+> > > +++ b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+> > > @@ -49,6 +49,7 @@ properties:
+> > >        - enum:
+> > >            - mediatek,mt3611-xsphy
+> > >            - mediatek,mt3612-xsphy
+> > > +          - mediatek,mt8196-xsphy
+> > >        - const: mediatek,xsphy
+> > > =20
+> > >    reg:
+> > > @@ -129,6 +130,13 @@ patternProperties:
+> > >          minimum: 1
+> > >          maximum: 7
+> > > =20
+> > > +      mediatek,discth:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Just make it "disconnect-threshold" please.
 
-> ---
->  Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.ya=
-ml b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
-> index b68141264c0e9fe0e530ce3b06fa3434fa712b38..4d40e75b4e1efff673647dff7=
-bf984c89abca4cf 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
-> @@ -71,7 +71,7 @@ properties:
->                  description:
->                    Any lane can be inverted or not.
->                  minItems: 1
-> -                maxItems: 2
-> +                maxItems: 3
-> =20
->              required:
->                - data-lanes
->=20
-> --=20
-> 2.34.1
->=20
+> > > +        description:
+> > > +          The selection of disconnect threshold (U2 phy)
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +        minimum: 1
+> > > +        maximum: 15
+> >=20
+> > What unit is this? Unitless? How are the values determined?
+> No unit, it's a level, may be treat it as an index to select different
+> threshold.
 
---hFoqtL9VL6EAg4Q/
+So this is a register value of some sort? What is the actual threshold
+measured in?
+
+--EJv8ebh2m2tBBLDa
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6uWGAAKCRB4tDGHoIJi
-0vx+AP42lFkGgFbVvjv8uVhpy2pgbgrr0qVFB5kRBVK83SQAOQEA+V9bGwFArr3m
-dzI4HLmfDst/Jxk9UYibYgg4vtsczA0=
-=Rwgi
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6uXRAAKCRB4tDGHoIJi
+0tleAQCvurEiAzM1BdOVDJ9+251emEMUXx+UXepVHn6w3KdPIgD+I1IyvZElSdMC
+2wI8UZTiXnHTsxxuyayinbiJi5M2LwM=
+=2LgZ
 -----END PGP SIGNATURE-----
 
---hFoqtL9VL6EAg4Q/--
+--EJv8ebh2m2tBBLDa--
 
