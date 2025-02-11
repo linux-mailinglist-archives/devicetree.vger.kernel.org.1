@@ -1,118 +1,84 @@
-Return-Path: <devicetree+bounces-145422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F5FEA31462
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:50:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14540A31469
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:52:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9187162422
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:50:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD88316558F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:52:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59147262163;
-	Tue, 11 Feb 2025 18:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE5B262D0C;
+	Tue, 11 Feb 2025 18:51:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="hf0Vx52f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RrvOPc2G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB8625A2DB
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 18:50:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D138D25A34A;
+	Tue, 11 Feb 2025 18:51:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739299852; cv=none; b=tdvOypEAMt/5lTPNGJbfzfC2f3f6bTXnD0kVglhjQ9aoa4rZm15u+UQ0+4eHM7dEZIzc6Co4tBEWukk4/abz6scWWrmM9UHdfcyQX3IBzcy3Fy+5FmXxwoxCZElh8/ANb5NmaD8Zmwcy2LuxsoJXZ/5RijDsFxfyiSlpvc+i9iQ=
+	t=1739299876; cv=none; b=fxlRf4MZ5yqP7pPlayLKTKWmQa3ZNC5v3KcpxXjx3TQU9CaZ9fIHHuA805HGekt1frwx43vQjh+yaLgi+apUDtBe6Ros0PNb+zxTmMxltQt7/10nnMcCkHTv93s3BT5XvQpvtQcIPeEuSeb7vY/IFAp+IfrwlhIdl8QtuyHKLR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739299852; c=relaxed/simple;
-	bh=s6PODYxY5RnytTNIj8KV6t9ZdRS0oHqDjSdikX4DsVE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W7pfoW9kZRwQ8QqkAs3cVlpstBQcJAXydZCFlGZAhlQt3VfE+YyJza3djVMOtXe9hSaTv9TmtyUaia/+EjD/26uaSsdCbeo2jNLUvT9SOifXzI3622ZQmaruFnyAZdF/Ihty93bNCK2Noawmm7gt5fudpXy3+BsOJ3oVPxOUpOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=hf0Vx52f; arc=none smtp.client-ip=185.67.36.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 3CAAC240027
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 19:50:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1739299842; bh=s6PODYxY5RnytTNIj8KV6t9ZdRS0oHqDjSdikX4DsVE=;
+	s=arc-20240116; t=1739299876; c=relaxed/simple;
+	bh=Ohe9V0q672zCdoryIimZs3HHDJAtmxB5pXzVohyN7R8=;
 	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=hf0Vx52fcE7YaqqbQSU4Mp5F/I4ZdPxN3R9A5+189cZo/xwOLmN0Dg1xdbjFmozNS
-	 KT5umMwRgCy+wSbfD2E1OoDg9wOGmKYBxjd+bX4N4pEZrTlXBcN8boUA+ab5nWt0jw
-	 QueuYsjS45e/lYXf7GL+T0uVp9ZWxMRMeZLhHEjlPXbDF1sJbLxviztdOwcX4Kgmsm
-	 XyqGLO9M4LWruf1XkpqPZDSEVq8y2heSwfEO5OBqj3dwVJic4OVF1y7I+yxJk2+GFO
-	 i2cj/Neo3QqX8Rpf6eOzYpRscIi7phTxHFMxeo0IsfywxL9YpcEzQ0evIOrgd/Dvaj
-	 8JSBnPxDcEOig==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4Ysr9s0WCpz9rxD;
-	Tue, 11 Feb 2025 19:50:41 +0100 (CET)
-Date: Tue, 11 Feb 2025 18:50:40 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Lee Jones <lee@kernel.org>
-Cc: j.ne@posteo.net, Pavel Machek <pavel@ucw.cz>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: leds: Allow differently named multicolor
- leds
-Message-ID: <Z6ucAFNauWkhfYZr@probook>
-References: <20250209-multi-led-v1-1-5aebccbd2db7@posteo.net>
- <20250211144300.GW1868108@google.com>
+	 Content-Disposition:In-Reply-To; b=cr4MoVTe+d6f7YHdBt53ZW0U01f5hHkOzQQcWpL4GHRfDB7jQ/s1nttYZEolICVGuoQxHVnSOXWlD6AGPuV4vhnGBy23T0DIq+UrOELU4Y0lbJSQdOR9s9YBQahO9lyYfFLlQ5aKjoH/HBBei2UsOs8ANvaWtprfBpIaMxxkDgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RrvOPc2G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28F36C4CEDD;
+	Tue, 11 Feb 2025 18:51:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739299876;
+	bh=Ohe9V0q672zCdoryIimZs3HHDJAtmxB5pXzVohyN7R8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=RrvOPc2GRQp/LPOxVDx8qCjQ54V6om1qedpDU9/ZXP4AYThY3YoyxvK0d1wgFqINn
+	 aghFyq5VATD5XzHqlJfC/j991uDsxsnBfOrtp5R1RoZPrKxm2elowhb0VsH50qBJwX
+	 4B8DIYZMRSSTQHj25Ty1xRMs/jQrmXQOKPP8jfJ1m5U9jav988nKvXP24VcMS5d5fl
+	 /IurUqwbLNs4yF2TR86WG2sV4acwW8AaGc5o17sP64jfM2lBsUouRgrWIQz1mOKgst
+	 LIM77vQPstPfmAXqS9SdDiBC8K8HyxHj5uoVpnsLKSPcEa45ZFqMKTx+3QZJog9fXv
+	 4NrAVxxd8s7HA==
+Date: Tue, 11 Feb 2025 12:51:14 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	michal.simek@amd.com, bharat.kumar.gogada@amd.com
+Subject: Re: [PATCH 2/2] PCI: xilinx-cpm: Add support for Versal Net CPM5NC
+ Root Port controller
+Message-ID: <20250211185114.GA51552@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250211144300.GW1868108@google.com>
+In-Reply-To: <20250211081724.320279-3-thippeswamy.havalige@amd.com>
 
-On Tue, Feb 11, 2025 at 02:43:00PM +0000, Lee Jones wrote:
-> On Sun, 09 Feb 2025, J. Neuschäfer via B4 Relay wrote:
+On Tue, Feb 11, 2025 at 01:47:24PM +0530, Thippeswamy Havalige wrote:
+> The Versal Net ACAP (Adaptive Compute Acceleration Platform) devices
+> incorporate the Coherency and PCIe Gen5 Module, specifically the
+> Next-Generation Compact Module (CPM5NC).
 > 
-> > From: "J. Neuschäfer" <j.ne@posteo.net>
-> > 
-> > In some cases, a board may have multiple multi-leds, which can't be
-> > distinguished by unit address. In such cases it should be possible to
-> > name them differently, for example multi-led-a and multi-led-b.
-> > This patch adds another node name pattern to leds-class-multicolor.yaml
-> > to allow such names.
+> The integrated CPM5NC block, along with the built-in bridge, can function
+> as a PCIe Root Port & supports the PCIe Gen5 protocol with data transfer
+> rates of up to 32 GT/s, capable of supporting up to a x16 lane-width
+> configuration.
 > 
-> Which H/W needs this?  Is it upstream?  Where is the doc / usage?
+> Bridge errors are managed using a specific interrupt line designed for
+> CPM5N. Legacy interrupt support is not available.
 
-I encountered this situation while upstreaming the LANCOM NWAPP2 board,
-which has multiple LED-group-based multicolor LEDs:
+I guess this means INTx support is not available?
 
-  https://lore.kernel.org/lkml/20250102-mpc83xx-v1-16-86f78ba2a7af@posteo.net/
+If so, I'd like to say "INTx" instead of "legacy" to be more specific.
+Someday "MSI" may also be considered "legacy".
 
-Since they are based on leds-group-multicolor, they don't have a unit
-address, but there is more than one on the same level (as direct
-sub-nodes of the DT root node).
-
-I can add a comment about node names, if that's desired, e.g.:
-
-  If multiple multi-color LEDs exist on the same level, they can be
-  differentiated by unit-address (e.g. multi-led@abc0) or name
-  (e.g. multi-led-power).
-
-Such as a comment doesn't exist currently either; the existing
-"^multi-led(@[0-9a-f])?$" pattern is not documented in prose.
-
-
-Best regards,
-J. Neuschäfer
-
-
-> 
-> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> > ---
-> >  Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml | 4 +++-
-[...]
-> > +      - pattern: "^multi-led(@[0-9a-f])?$"
-> > +      - pattern: "^multi-led-.*$"
+Bjorn
 
