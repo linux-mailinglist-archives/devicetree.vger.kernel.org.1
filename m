@@ -1,147 +1,135 @@
-Return-Path: <devicetree+bounces-145496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11583A31783
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:20:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B237AA317B6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:29:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99784169053
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 21:20:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07ABF18882C6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 21:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F55266F1E;
-	Tue, 11 Feb 2025 21:19:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD0A26659B;
+	Tue, 11 Feb 2025 21:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SuTXjTZ1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k5o8gSPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20474266F09
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 21:19:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94463266598;
+	Tue, 11 Feb 2025 21:29:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739308792; cv=none; b=CNyDvjJ3K3vp3EASsWQIiN/K29BKvnlgZVbbZxKfFPXMbWCFLs7Tt15Pn+WhZ1OfN9hWizUQxB+zOVAZ7djS3J9aj0xLUK1phnSnHdjXTs3cmGdo87MSxc9uhcFPp/awM27aA/hqHAetPTD2QyyCMMEId2tuQqCCrwRJjeX1tYQ=
+	t=1739309370; cv=none; b=q7tnp+UENJE+u2NoLuAhyMh+XFlDP5yqoMVhG91FQaZy9vwkvrP8BDZjEPC/h6iDEb3SHbock7bmhdnCCcU+4Uu38u0H8SP0M/S6IOnqWOLYrAO7J1Qw4qLPpjrU7U3IYkKFUaIwzlBKG6f14lBKRlEML78trW0CxeA1aPlzMgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739308792; c=relaxed/simple;
-	bh=v+NotQmkypHRHE+nHTFJOTzrbxnNJ6Og8Bo7qTcrXqM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Q+DCQmBNlbM6IHCbNa2ktO+ZryxnkhOGjFcZnHu7okGXkswUQkaX/rr2fGp/kYjig+mhd2OcURTEyGzu4ai093ucT35ssg6Q0l2SbDO5Y+K+ITZPK0pIGuef0WWhTkFDY0pvq8j9wpxkP+Z03wPH28cvdq0Lq7pMaajRwUSyFAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SuTXjTZ1; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6f754678c29so55167187b3.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:19:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739308789; x=1739913589; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8vMpnOzz24XlelaJjtEfRnOqqAth0NeggjrcIGJFxfY=;
-        b=SuTXjTZ19A00FUPjfW5OIYpo1Pj7eXvnzezX2PSBJxCZFMy3+xCG+hWTjB2jaEIDpp
-         r1yomxBrNYd9IoPPc573d51xwZSGdEHbMvAHDMCw7RfK13I/BObzcJIoy2n75sXqpNaM
-         rq1gakYpbMsWWRVB0K3XKyMbl18OZDuNSZgiGThJsLH63GB7eyz+7nF9ynT1GX+x96d4
-         e5Qihpk/If7a0cWz2lTQy7yHbFLmS7phf/SbiTVUlrWVReoVlWTBxmutO3hhnPVBF+6F
-         TqqFHR2art6vHV1f6BHNGY0t4rm2RVQReGSXdSkfsgB6IaXy1Z0Yd5pN0r7KmEswCkkD
-         3HKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739308789; x=1739913589;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8vMpnOzz24XlelaJjtEfRnOqqAth0NeggjrcIGJFxfY=;
-        b=RjBgDcVQnzeH/kVHDpoY8GZLNjl3wmnTRp5ABccnA/xQfKkFVPqvPXRp6LLfoSlSo3
-         FcmJzoSWlRcgn2y+8MHmPU8IOjFuSwSm4FxYVbIYlrabm4QOoWkL/Arv1Hj1Sb4YTkYF
-         Yk9nI8fW8bznLYcjIZsNEYMd+cwk2m80GZqJwCsEX+xP+j4mwSO3rda2+4lNHs2F0I9w
-         UORupGdKutLMIUjTFmL2pXA4XteA6pnW5Fsu1P/X9ccEAWvp8Tbu/sCTTUUFsiRbaU3Y
-         yBSfb9lvUSN/JrEmQ+jCKCXNLYDDHtuV8Qvl4HNjvhfAVGtAQYg7hXWUwMSenP4nbwXT
-         ChlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUUqhyDg72T+wVpvD2o8EKNWOT0RdxxWmmkqXwbZ+fqRjxQ4UCCSS3lyI970z9VIo7WFdgc+kjxW4Mg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwV36kvHojAoC3a9RDK1IcNoRZExUSi0UZa1h/Dj0YbaKAfRvvB
-	VxSIw0pOJfzI7Xyw9QJ+vQio+h0gG1U5o2kmPt3pZaclo3ebuGgijNUqgJeDsTVNttuYT1l9dx+
-	7pZNNK2Xdb/gGjjJnL1zKC5Z13LvPKgErcn6R+w==
-X-Gm-Gg: ASbGnctcQTIon1Xgtye4OdPE6V7zst8EmOIjNdwfKAiXWXwtfJ8rh9CHnfk395EjeoE
-	OmHnXhcroFqvQIiWlpaIw3emqT/hNw6EBa6SNrq8mscwn1e2cYOZFG5BGZreniK9q1fuV0y5Wpj
-	HPqeheJhxcPsPV8fu/Cnv2MEEScFoQ
-X-Google-Smtp-Source: AGHT+IH9PQWCcTuU3a/WUrp8QtPQgxzfoa0eG9D03GuXuge0++Qcj4dBm/Lk+WFXHD1fsOGrWKTo04Qt3z/nEYlknZk=
-X-Received: by 2002:a05:690c:638a:b0:6f9:88ba:aa5d with SMTP id
- 00721157ae682-6fb1f194f3dmr12585947b3.9.1739308789048; Tue, 11 Feb 2025
- 13:19:49 -0800 (PST)
+	s=arc-20240116; t=1739309370; c=relaxed/simple;
+	bh=NaUS/xid8E3zDqwf+U421yyey7c36cXUSga07rj7yNc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=phAAejf5kI/wlQ3uqrGIF9Vyq2/iSwPuGrcJdIdxHbjQtqv1tL8vR4T0pTiU1TQSWmp2xJJrwyRO6xMcMfm8ZgA9ud02B1OtMdCSK4Ek75y2gesgZbdao8V28PGelr/pjfaa7/s0xMONjS9cJO+1SyZG/ZCpvNf3gWRbNDsh4Xc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k5o8gSPf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA14BC4CEDD;
+	Tue, 11 Feb 2025 21:29:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739309370;
+	bh=NaUS/xid8E3zDqwf+U421yyey7c36cXUSga07rj7yNc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k5o8gSPfQq4IgyVNNnH17NgMRkO8e4gyfCOrL/4gYWEoThBhBYQyKJ5EyvYgel9BD
+	 eZziKOsCNPSFb5c6YPFys+0z1OyUjJzXIlJDNDgzLCViFLQX+qJCO4hhOLEJbdiEAl
+	 svknN0H4vkcntQ+K3SdJAqFt+4kK7tdAa/06eexV98C1mLaqfvEcjQTZKLYCZct0Sk
+	 fy8sFJK71nx5PS4aKFrVhxWIvVTPQE6FeMMioDRtIT0jAoDHJ2JG+snexxBQkVDU+o
+	 AiowVHT7aemYqByHqTwCPBozswKNo0Wpjf2rAWfO4RobedKU/ihnaCr9GUYWlne8V7
+	 w2S/dWjbgKOIg==
+Date: Tue, 11 Feb 2025 15:29:28 -0600
+From: Rob Herring <robh@kernel.org>
+To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, git@amd.com, amitrkcian2002@gmail.com
+Subject: Re: [PATCH v12 1/3] dt-bindings: mtd: Describe MTD partitions
+ concatenation
+Message-ID: <20250211212928.GA1188800-robh@kernel.org>
+References: <20250205133730.273985-1-amit.kumar-mahapatra@amd.com>
+ <20250205133730.273985-2-amit.kumar-mahapatra@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250207-rb1-bt-v4-0-d810fc8c94a9@linaro.org> <20250207-rb1-bt-v4-6-d810fc8c94a9@linaro.org>
- <6e5bb2f7-a23b-4fab-914b-e67911eaf408@oss.qualcomm.com>
-In-Reply-To: <6e5bb2f7-a23b-4fab-914b-e67911eaf408@oss.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 11 Feb 2025 23:19:37 +0200
-X-Gm-Features: AWEUYZlP4_dHB7Swwx_XD496R58hsBttKN3cXZEWV8-yu1YbBT4qWLOogarYxpE
-Message-ID: <CAA8EJpq504V48qqSX0mzxCffUkq_xpu_UE+qubB46A7zon=0iw@mail.gmail.com>
-Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: qrb2210-rb1: add Bluetooth support
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250205133730.273985-2-amit.kumar-mahapatra@amd.com>
 
-On Tue, 11 Feb 2025 at 16:52, Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 7.02.2025 9:41 PM, Dmitry Baryshkov wrote:
-> > Add support for the onboard WCN3950 BT/WiFi chip. Corresponding firmware
-> > has been merged to linux-firmware and should be available in the next
-> > release.
-> >
-> > Bluetooth: hci0: setting up wcn399x
-> > Bluetooth: hci0: QCA Product ID   :0x0000000f
-> > Bluetooth: hci0: QCA SOC Version  :0x40070120
-> > Bluetooth: hci0: QCA ROM Version  :0x00000102
-> > Bluetooth: hci0: QCA Patch Version:0x00000001
-> > Bluetooth: hci0: QCA controller version 0x01200102
-> > Bluetooth: hci0: QCA Downloading qca/cmbtfw12.tlv
-> > Bluetooth: hci0: QCA Downloading qca/cmnv12.bin
-> > Bluetooth: hci0: QCA setup on UART is completed
-> >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
->
-> [...]
->
-> > +&uart3 {
-> > +     /delete-property/ interrupts;
-> > +     interrupts-extended = <&intc GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
-> > +                           <&tlmm 11 IRQ_TYPE_LEVEL_HIGH>;
-> > +     pinctrl-0 = <&uart3_default>;
-> > +     pinctrl-1 = <&uart3_sleep>;
-> > +     pinctrl-names = "default", "sleep";
-> > +
-> > +     status = "okay";
-> > +
-> > +     bluetooth {
-> > +             compatible = "qcom,wcn3950-bt";
-> > +
-> > +             vddio-supply = <&pm4125_l15>;
-> > +             vddxo-supply = <&pm4125_l13>;
-> > +             vddrf-supply = <&pm4125_l10>;
-> > +             vddch0-supply = <&pm4125_l22>;
-> > +             enable-gpios = <&tlmm 87 GPIO_ACTIVE_HIGH>;
-> > +             max-speed = <3200000>;
->
-> I suppose we don't need a power sequencer for this smaller,
-> tightly-integrated-via-snoc chip?
+On Wed, Feb 05, 2025 at 07:07:28PM +0530, Amit Kumar Mahapatra wrote:
+> The AMD QSPI controller supports an advanced connection modes called
+> Stacked mode which allow the controller to treat two different flashes
+> as one storage.
+> 
+> In Stacked connection mode flashes share the same SPI bus, but different CS
+> line, controller driver asserts the CS of the flash to which it needs to
+> communicate. Stacked mode is a software abstraction rather than a
+> controller feature or capability. At any given time, the controller
+> communicates with one of the two connected flash devices, as determined by
+> the requested address and data length. If an operation starts on one flash
+> and ends on the other, the mtd layer needs to split it into two separate
+> operations and adjust the data length accordingly. For more information on
+> the modes please feel free to go through the controller flash interface
+> below [1].
+> 
+> Introduce new DT property to specify which partitions are concatenated to
+> each other.
+> 
+>     flash@0 {
+>             reg = <0>;
+>             partitions {
+>                     compatible = "fixed-partitions";
+>                     part-concat = <&flash0_part1>, <&flash1_part0>;
+> 
+>                     flash0_part0: part0@0 {
+>                             label = "part0_0";
+>                             reg = <0x0 0x800000>;
+>                     };
+> 
+>                     flash0_part1: part1@800000 {
+>                             label = "part0_1";
+>                             reg = <0x800000 0x800000>;
+>                     };
+>             };
+>     };
+> 
+>     flash@1 {
+>             reg = <1>;
+>             partitions {
+>                     compatible = "fixed-partitions";
+> 
+>                     flash1_part0: part1@0 {
+>                             label = "part1_0";
+>                             reg = <0x0 0x800000>;
+>                     };
+> 
+>                     flash1_part1: part1@800000 {
+>                             label = "part1_1";
+>                             reg = <0x800000 0x800000>;
+>                     };
+>             };
+>     };
+> 
+> The partitions that gets created are
+> part0_0
+> part1_1
+> part0_1-part1_0-concat
 
-We can (and should) have it in a longer term. Currently none of
-wcm39xx chips have a powerseq implementation.
+'part-concat' doesn't work if you have multiple sets of partitions you 
+want to concatenate.
 
--- 
-With best wishes
-Dmitry
+I think you need something like 'prev-partition' or 'next-partition' in 
+the partition nodes to create a linked list of partitions. Hopefully, 
+you don't need both properties, but you do have to scan everything to 
+figure out which ones are concatenated or not. For example, no property 
+can mean not concatenated or last partition if you use 'next-partition'. 
+
+Rob
 
