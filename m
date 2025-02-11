@@ -1,80 +1,87 @@
-Return-Path: <devicetree+bounces-145282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FAAA30D02
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:33:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63DAEA30D14
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:35:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA66A188BC17
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:33:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 163E53A4470
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D9A2206B8;
-	Tue, 11 Feb 2025 13:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAEB0220693;
+	Tue, 11 Feb 2025 13:34:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="iTeYHwbr"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CXNDTq8S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0945921CA11
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:33:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A0F1F03E2
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:34:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739280788; cv=none; b=SSNgA6eUln+C+Zk+tS3QBp11F2i/tqSVdixm07HACsSxxuGzosGwvAmJhVfgnymVZMap3U+cVxgqrMKll8k/TUxqv2ao7aq581W+smx+R5rFdcS9MfJedTcyQskhzwhI+RWagj4YubXLf4lGwi4xGImJQzLQCVVo/f65KapqzPM=
+	t=1739280899; cv=none; b=o+l/e4d27DwJMybg7lyR6uPi9mFJO64U7mlMfiDw+cz/r8gg9SG8okwMnNQOEfOCy5eD/i1DSuoJq27SPyPp/xkXuRLtmLIPopV38YVugT+xDzGz7QHE+TW1j4/i+Om50JGGs+crX4GChBCJKBiTn/7hKD9ffaEulezgHbeUyZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739280788; c=relaxed/simple;
-	bh=F/uVM4urhQmPU67aNljV30BzNnXlmck7yA4IpjXNK8Y=;
+	s=arc-20240116; t=1739280899; c=relaxed/simple;
+	bh=jDmOTyojiikoo0IfvxOxgpPziU5nD3zAgqiOBfyXwxg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BJpRvgmpEbG491R6aS9N+OQZd8PGkR+L96H4cmYq+PAb1sBVLRLNANlf8HYNHWuAtC9ZL71/pjd3fZj3fuFGvyAhhzGef/mxZEB3CVCw74nozIq9iKoC3X3HVl8s9GSBpmrivDg8h7XhJXsLAGC74ipggrNVTrqEFxp6DC+ET5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=iTeYHwbr; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-439350f1a0bso18254915e9.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 05:33:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1739280784; x=1739885584; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0wrmDUq/HHsKw+sefoEbxInuEgbCMl1q15xZjalPz7Q=;
-        b=iTeYHwbrE3I/skGQErBc6mKDGWpUjWEGaITlke9puMzAKpoABdBckyxkW9yav3Em6n
-         k6Vh2tWMU0veNz03SKWBQWUCjSN5nJzGgzx+yjk0LwEDN5ndW3kdv46mQoaGMkkiGZ1k
-         EUls8eBiUBfadhnSbrr6mLkmGuiAozBtJKVoEly+pUSEA81i4tZVJhFfxov/cF78dc/c
-         X87eqQeQdL7kRIA0dbl3gXEGbgDI2gx757INHJAJwN+cSX/rp2ywP4CVf7e8ZMvKITDw
-         Z+j9RUmgLhV9LqVLKiTf/UA4DtmnpFqhQo0F9VUcyLxNqlyDJ0f/NxMJR74fgoFKuQJ5
-         x+0Q==
+	 In-Reply-To:Content-Type; b=AFC36KstnlhGoSiE4/c917od2IE2T4hw11mabbdnY9Y6vCYtgrkxolJHUp41nGqgv2NkmagMGNvqoQorSTJjFgVC75zCwqovuiz36mCIrFi5GsY5x4zHn9qq7PWZPUaG9nMpl3YPf5lltkEjeDjYTKB0E2ZJzTCGtqPVEvKxXQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CXNDTq8S; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51B4WqIt010521
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:34:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gdqMkX2dIK2G48mSPcv21J8TMTmaplncAXlkvHMiqFc=; b=CXNDTq8S4z/ICNkV
+	9BhjoeNMBsN4hKDX4h7bjR92q3iXRA8J6SJ7MsjBgw2nG1/MR56x1GnEz8T3FUUu
+	81ildL0d6sLAzdTqlsSSWHwMd+RzVMBwweqMc9hHzHxvaPqKMauJKtRDzN/pIawL
+	jrj30mYUYlZeNFVh2UvQB7JELLL1V5F+pI63DqqQ/miv2za64mblpgRklYid8GRP
+	I+HPWX+FfQ7BH4/Ydzsyzd8yvmOxSKG2qIuW9arnLWb+nktX4MVthDAjs293YETi
+	vZhfjs6lPDGBnMXmjrPDQJuY6gzzneeFtF3V5PaDwRUQn/OaFm9ip/UPejZd8YcX
+	guBTcw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qcs5ckb3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:34:56 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4719ed0f8easo2443361cf.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 05:34:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739280784; x=1739885584;
+        d=1e100.net; s=20230601; t=1739280896; x=1739885696;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0wrmDUq/HHsKw+sefoEbxInuEgbCMl1q15xZjalPz7Q=;
-        b=TwS/hn/ckZ4n+jw59x9oRzP3+LzHzeGAPnNY4KIgLgOciPfGPDsQS19+bhrrLuGoTI
-         RBwIeQ2toZPNckoSv2SVtM31rteRvLGWoBALk1IJYj17qm6aFuryDJ/kuOlF/fwSoVHi
-         d2OKxLBpuulkrROOzRPBiFOOgtXhAUWJIpUQ/xVkYHlzna8VRhjwDVvSrEmIMCOuIh89
-         zdG25Yezsfo4OBk1RdG4K9B0iHqqKNsu+6npwb0PpqBKEHaNZtxtykGAkzWXZM/hCMJx
-         nXMVrxvXgEpj9DPzPHxm4VNjP55f+9FFUDhkB3CndBH27ehfa73pLR1REQcOwRaPZinZ
-         8Oow==
-X-Forwarded-Encrypted: i=1; AJvYcCW8Mkk+pZkmkyS1syz4+rjcmw1aMpS1esDpx3WDKXpT28PQh4IafdI33R+afStmQTOj77eBYGHaqFml@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBcJlVJVGaLWWWaamZrvrNP7ufgRv8mFk8UyHhZvVOemLY/mgz
-	71SiC9txSJA6zjNubssK+BDQjL9rP6GcmLeZmUPSerNbu2ayVcIV70ziZDXi7fjdoRACCsFGb/7
-	n2G4=
-X-Gm-Gg: ASbGncvvQ/WO6TCGOtnID0GT8qDt2OnqRXPVyeyK3IVpVtarjvZ7rrQDG301mmraCDe
-	S3CObowjd35frwnCClk17UOb7Fdoq29JNWJZHIzIUzG1NC65a9E6VkaXqhbDklZ7p9xxTV1oP1G
-	nb63gxpAc6VTfUdaHu3j6Mw7Uabpd8JH3QyUFZ53wWj5uph1/rzeyfYbqTx0ZKqMV2zQzWIYGk5
-	cLxLDS4Vk2HfvhigfLxRElbqT1qNbcdSNFAlcFZREpAPofqxJ5Xkk6S5WEs3UoVKzBZAlEGhKLU
-	igKmrH9IqPkkZAOve4cbwhjH7PSKOPknL93NfIppwKhZACbEuCF1vUIGZ3aT
-X-Google-Smtp-Source: AGHT+IEqlc/lpTpwK9yYW79C3YmHjyqoHdYU9IFEmIVHONYafZyXfrM25WF2Citl+iuABPW8/Dn2HA==
-X-Received: by 2002:a05:600c:1987:b0:434:fe3c:c662 with SMTP id 5b1f17b1804b1-4394ced8c52mr27059525e9.12.1739280784044;
-        Tue, 11 Feb 2025 05:33:04 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:e17:9700:16d2:7456:6634:9626? ([2a01:e0a:e17:9700:16d2:7456:6634:9626])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43935d4bd5csm104208905e9.6.2025.02.11.05.33.02
+        bh=gdqMkX2dIK2G48mSPcv21J8TMTmaplncAXlkvHMiqFc=;
+        b=ujAalE44s/93hWAkKv92FiV7Bpol3FB8QsQhZaQU2wuHz+JLShuXOM8r/ZQYH4vNWL
+         fmO3H7EzIH5lO4ee4YCq1dKyAvAbXI7eg5tL/2yqxCur4bQdq2ZWwXE+chriQ3zfSagh
+         OFAqelp8WfHevqRza1Epch5weaBw10S+cMQPPbgJdXRaEmHGjZ6LM3N5IMnTZSsRIDZt
+         XfrKjpM/nSNmmw2UgEj/gSz2wHpnCiuG1tlesyacVzemFRRermUaUSB6omVg2bLOaYkT
+         SNgxKvKBct6HF4rzYlXnFa3B9WxlUaUEPsG7eH/g52bBP0qrgA+aZPUDdP2to6rdB8MR
+         gjDw==
+X-Forwarded-Encrypted: i=1; AJvYcCUgQDUQkqrxu7T4lnvBfn9OLHPyj9P5nMUcyvFIl4pcUXb/hS1NHXQHVnTPuoWCP/rGz9OcaVjsMLJk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRIX0vHnch+abEwnOsR1Rhf/vz99sOfgfUKd9mM5BjpOqN/XbA
+	J0e+lTGHS/xDFxVLHfWcm+DHfESeTiUHSXZiL8C+SHZEehmcVeiAuc9mt78CfZbozKWfVGv03yY
+	koImyMbNhDITjXqxA5UvDeDoyPpjpEMunPXTuIGj9fdxhYgjuPCtC27bckbIU
+X-Gm-Gg: ASbGncuzvkfIedIT/hbAIduMH5iPPW/BSUx4nnV1IJWWAWbDXYiF2yRy4/CWGAcaC5U
+	RVuVQNXvD8Ecxt9vhJ3PCkJag+chuXd9FWUnPdTcc0MDULVxohue9FXhppYB5ikuKmOKFcDfS66
+	JsYsPQfJi9rEn59AeOt4SA0CJNCmrZ+rKQvp1Sq8N/yGJcP7e54hOGC2FqL7e9lQDIgIPVNxmB6
+	+7Lip70Q2Vp8oump0ovELLmOjX/UddxBBsWDdeCWq2vKQdVSbuJOCRqkTi4chPZKL02QsbkWu4Q
+	kyn316W2U45q4ap7wkbfnSBDZ2bNazIDCF9JWoHT2Lt+lnMguDKOTd2KrJM=
+X-Received: by 2002:a05:622a:1cc4:b0:471:9813:11da with SMTP id d75a77b69052e-47198131362mr34622081cf.2.1739280896125;
+        Tue, 11 Feb 2025 05:34:56 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF4p3W/WqcNZ9kEltf2wq42jRqj2H0gTl/tRoIEU90x/Lb7PwVN+UzDtYa9Y78eR/nsuib4Bg==
+X-Received: by 2002:a05:622a:1cc4:b0:471:9813:11da with SMTP id d75a77b69052e-47198131362mr34621961cf.2.1739280895804;
+        Tue, 11 Feb 2025 05:34:55 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7bca07294sm457847466b.68.2025.02.11.05.34.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Feb 2025 05:33:03 -0800 (PST)
-Message-ID: <e0225e44-b86f-4935-b524-86a28131fe7d@rivosinc.com>
-Date: Tue, 11 Feb 2025 14:33:02 +0100
+        Tue, 11 Feb 2025 05:34:55 -0800 (PST)
+Message-ID: <88e76385-c914-44a2-847b-09013cf4e752@oss.qualcomm.com>
+Date: Tue, 11 Feb 2025 14:34:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,102 +89,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/6] RISC-V: add vector crypto extension validation
- checks
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-riscv@lists.infradead.org, Conor Dooley
- <conor.dooley@microchip.com>, Eric Biggers <ebiggers@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Andy Chiu <andybnac@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250205-cobbler-unpadded-5580c1f5d946@spud>
- <20250205-quench-entrench-09bed8c8c823@spud>
- <f1ce7aa9-63e3-41bd-9bb0-a54ebc714dff@rivosinc.com>
- <20250211-implode-mute-8ff31f44bdf9@spud>
+Subject: Re: [PATCH v4 3/4] arm64: dts: qcom: sm8650: harmonize all
+ unregulated thermal trip points
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250203-topic-sm8650-thermal-cpu-idle-v4-0-65e35f307301@linaro.org>
+ <20250203-topic-sm8650-thermal-cpu-idle-v4-3-65e35f307301@linaro.org>
 Content-Language: en-US
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <20250211-implode-mute-8ff31f44bdf9@spud>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250203-topic-sm8650-thermal-cpu-idle-v4-3-65e35f307301@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: u3PgukyCMZTpYIcsWui2k7TLDq2SZhw5
+X-Proofpoint-GUID: u3PgukyCMZTpYIcsWui2k7TLDq2SZhw5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-11_06,2025-02-11_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ mlxlogscore=999 phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
+ adultscore=0 clxscore=1015 mlxscore=0 priorityscore=1501 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502110089
 
-
-
-On 11/02/2025 13:34, Conor Dooley wrote:
-> On Tue, Feb 11, 2025 at 09:45:44AM +0100, Clément Léger wrote:
->>
->>
->> On 05/02/2025 17:05, Conor Dooley wrote:
->>> From: Conor Dooley <conor.dooley@microchip.com>
->>>
->>> Using Clement's new validation callbacks, support checking that
->>> dependencies have been satisfied for the vector crpyto extensions.
->>> Currently riscv_isa_extension_available(<vector crypto>) will return
->>> true on systems that support the extensions but vector itself has been
->>> disabled by the kernel, adding validation callbacks will prevent such a
->>> scenario from occuring and make the behaviour of the extension detection
->>> functions more consistent with user expectations - it's not expected to
->>> have to check for vector AND the specific crypto extension.
->>>
->>> The 1.0.0 Vector crypto spec states:
->>> 	The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly
->>> 	the composite extensions Zvkn and Zvks-- require a Zve64x base,
->>> 	or application ("V") base Vector Extension. All of the other
->>> 	Vector Crypto Extensions can be built on any embedded (Zve*) or
->>> 	application ("V") base Vector Extension.
->>> and this could be used as the basis for checking that the correct base
->>> for individual crypto extensions, but that's not really the kernel's job
->>> in my opinion and it is sufficient to leave that sort of precision to
->>> the dt-bindings. The kernel only needs to make sure that vector, in some
->>> form, is available.
->>>
->>> Since vector will now be disabled proactively, there's no need to clear
->>> the bit in elf_hwcap in riscv_fill_hwcap() any longer.
->>>
->>> Link: https://github.com/riscv/riscv-crypto/releases/tag/v1.0.0
->>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->>> ---
->>>  arch/riscv/kernel/cpufeature.c | 49 +++++++++++++++++++++++-----------
->>>  1 file changed, 33 insertions(+), 16 deletions(-)
->>>
->>> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
->>> index 40a24b08d905..1c148ecea612 100644
->>> --- a/arch/riscv/kernel/cpufeature.c
->>> +++ b/arch/riscv/kernel/cpufeature.c
->>> @@ -138,6 +138,23 @@ static int riscv_ext_vector_float_validate(const struct riscv_isa_ext_data *data
->>>  	return 0;
->>>  }
->>>  
->>> +static int riscv_ext_vector_crypto_validate(const struct riscv_isa_ext_data *data,
->>> +					    const unsigned long *isa_bitmap)
->>> +{
->>> +	if (!IS_ENABLED(CONFIG_RISCV_ISA_V))
->>> +		return -EINVAL;
->>> +
->>> +	/*
->>> +	 * It isn't the kernel's job to check that the binding is correct, so
->>> +	 * it should be enough to check that any of the vector extensions are
->>> +	 * enabled, which in-turn means that vector is usable in this kernel
->>> +	 */
->>> +	if (!__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZVE32X))
->>> +		return -EINVAL;
->>
->> After a second thought, I think it should be this:
->>
->> if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZVE32X))
->> 	return 0;
->>
->> return -EPROBEDEFER;
->>
->> Extensions can be enabled later (but can not be "reverted") so check for
->> the extension to be present (in which case it's ok), or wait for it to
->> be (potentially) enabled.
+On 3.02.2025 2:23 PM, Neil Armstrong wrote:
+> While the CPUs thermal is handled by the LMH, and GPU has a passive
+> cooldowm via the HLOS DCVS, all the other thermal blocks only have
+> hot and critical and no passive/active trip points.
 > 
-> Ah, of course it is operating on the /resolved/ isa, not the source one.
-> Makes me thing the parameter of all the validate callbacks should be
-> "resolved_isa_bitmap" instead of "isa_bitmap" to make things clearer?
+> Passive or active thermal management for those blocks should
+> be either defined if somehow we can express those in DT or
+> in the board definition if there's an active cooling device
+> available.
+> 
+> The tsens MAX_THRESHOLD is set to 120C on those platforms, so set
+> the hot to 110C to leave a chance to HLOS to react and critical to
+> 115C to avoid the monitor thermal shutdown.
+> 
+> In the case a passive or active cooling device would be
+> available, the downstream reference implementation uses
+> the 95C "tj" trip point, as we already use for the
+> gpuss thermal blocks.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-Yeah that would be helpful I guess.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Clément
+Konrad
 
