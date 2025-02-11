@@ -1,111 +1,169 @@
-Return-Path: <devicetree+bounces-145448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD27A31576
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 20:33:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF518A3157B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 20:35:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB0361670F2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:33:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5960D3A2D92
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6476726E63C;
-	Tue, 11 Feb 2025 19:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B586026E630;
+	Tue, 11 Feb 2025 19:35:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rnsVHo1X"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="wVwgWhD+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3098926E630;
-	Tue, 11 Feb 2025 19:32:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E34AA26E627
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 19:35:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739302374; cv=none; b=lh150Tlwmo2xu9HpcZ2Qs+qyP4U+jA/x/6LI5CNhiOQdNpjZVoCm/9OOy89bRKz3CU0wDtpU6pK5qqteYbUHC2/eo+m3ey39ZG3OCSsAH6/gfqy8VWOr9iPn+9F28lNC48qsKgUP+KzVSi36S/8Q5tWNGAiqnMtvtkOWGCwIjqY=
+	t=1739302504; cv=none; b=EhHr0NWLrkuhXSHTFaUUp+mrgrmKmdxT/Zd9j1ouSrWNdV/xZx2x9QwjzTeu+FEYfsnKF/pj5+GrTXZjbY5ybTJJ0eiqzfnIQCbvvEUMYF/Rw5/V4MVvf9C9E06ddJO8I4tHoyKNjDxYu4M73IdXb8V7rBccGsqDgQ364IT7BBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739302374; c=relaxed/simple;
-	bh=nrF/BY5g0Fese/y5+1M+6ye+pt+/UVs0YfYfjIbl/kw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RmGLGqXR5Hgbs3jSwL0Y8f2aj2Z5HkHVoHtGDMDjVB1+dSaEumdHDB5M+uAplY9JNU7yLyb7uebeRkGtK58Mgv6GEGYE6lW87lh0lNFkMtyPQLEV5sREIQ5jJsGbtVEZQk4+E3C4yoNTiFs3r8DerNSxoYXB2DG4IQSj4GUb+zA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rnsVHo1X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FDD0C4CEDD;
-	Tue, 11 Feb 2025 19:32:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739302373;
-	bh=nrF/BY5g0Fese/y5+1M+6ye+pt+/UVs0YfYfjIbl/kw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=rnsVHo1XDIw8OUvt711dV4Z4LzQhKN4mnKBWikxohCNxlxoizdFwcx4QMUgvbFc6g
-	 hz4BbIsOiykxXb2Nxt0Q48Ciw9Sg1rxo8Lz8rjgTc1vhfDMu5kYoCq0o93dXBlryl+
-	 cZ3IInQnhjeWwDxxJSip3cIr+5Srxwa8Z3OYXhBIsdBR3tDJmizr38cU83YISg6ZOf
-	 QcZbTlPVZFqJV0GGnLzlD0/CC9vhA4j6oSsocvpuJnL8128XSY0gjbeqidHNhYKct6
-	 zmEXjFkaaLFwjCmvTEHO3kmuSHP9XOONjSo90VFxvCGHmQn/g1QaP4J3blP0q9EWIq
-	 o+sky5Ojg235A==
-Date: Tue, 11 Feb 2025 19:32:42 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Uwe
- =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
- Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v8 11/17] iio: adc: ad7944: add support for SPI offload
-Message-ID: <20250211193242.6c9a6740@jic23-huawei>
-In-Reply-To: <f989c3d7-0fc0-40f0-8548-4d5dd1a336ac@baylibre.com>
-References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
-	<20250207-dlech-mainline-spi-engine-offload-2-v8-11-e48a489be48c@baylibre.com>
-	<f989c3d7-0fc0-40f0-8548-4d5dd1a336ac@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1739302504; c=relaxed/simple;
+	bh=Lzk3JO4szt3sEB/N/pUn3BzbN+74+DtV5pLcgvSbqxo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=D1hHeNK75CwFRsHCu7rrYtgy/83U3JdIeH8CMK5nBp6tl0ycgfMoxr27FiSk3ltpOs/kmu1Ok0SP0pV/syi/ps05/a99IWlSBlRydQYzt9A/dFJbrkneeQgAogwVp4rphcqvsX9YMQ4TEFMQsU/hMXdkGYcFndjYZSU0LsHMEtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=wVwgWhD+; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5439e331cceso6752933e87.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 11:35:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1739302501; x=1739907301; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=drPWUvNTbl2xqE92lHeNDNa9DZ5Dy2MPgdDShKYcM30=;
+        b=wVwgWhD+oSOPPdvPybTqYbKdSsBDgQmlZnQpUftZemELyaXIRezJtYeqmV35ZnDkr8
+         d5O7caO7XAyw4XwujK2U9grrM+2/1LYVE8IAkGXBwqpTe4hDo4JnWueqqW8g/YhdWlH6
+         zFI8PD9caN3bfYc2XX2onSU+qho5WVLxgXe3FLRnuSa/jouhHhk3sMIxyfhwZTn67Nhy
+         0yBqgOSUlY/4SFkOusG5cLGixCwb5paAJnnziZxncL6+lqpDDwUGo6u7xzyoJ46wONvo
+         JyvbogUWSVDUX4dOsqedQizr64F2TsQFthx/YWpfYkYRIox233qOHPMFEeibf5/ZA3PJ
+         o5Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739302501; x=1739907301;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=drPWUvNTbl2xqE92lHeNDNa9DZ5Dy2MPgdDShKYcM30=;
+        b=NVYbXhSQpZhos7sSTFIWuTmyomsk6kK2rfm8wUXWZF4VvjTz6UfAfSTZTN2wJRJ50q
+         OgklLP+ZwLiJBQGWjlPBJZF67Z4J+ZJduOt+t84BEhs0kKo/H6MAuD1U+hC5qR6btclu
+         YhmKwANhN+VS6t3DliOJq5yG5C1FC6mZIV9Og80pz7m5E57AYVdAyo/0/cUDVvkQC5fb
+         M9y0coa58sq54YQg+EqddlPcDKWWhpWkaXWoKlo6yl0PAToUcobXz95T/tiqTxeh9d49
+         tBdeQ4Czbokn37r03Fney4LF67evAp/uXbiA8GL9F7AoQkkbAqWZaVl4NY9jdMjsEBtU
+         FHUg==
+X-Forwarded-Encrypted: i=1; AJvYcCWUHsOrj0D2TVVea5jfoiD6UIxHlb72/6LIqEXNjIOTqErpgIeZkU+PEXa3oGepVVMYEJ55R3LO/8N/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwJRdKw0gWbqOokdixkYKppEQUbA1UyktuKDoPWv5FO2qRGmdP
+	Pvyoe3rdlVj/CDC9qwJfysV9u2JSPm/D2FlpobIwHg6+Kgcr5/zDh7J3I8I4T4FLA5DajP4MScn
+	uvvrXmgr5AsBqfKHMrLO9PcBI+QNJY1HtW6/lFg==
+X-Gm-Gg: ASbGncvLExWCPogTvR5dzOficZdsBHZ7xcmmLd7m+aq9nlarSkXPT3gtCDkkXa8HlhE
+	Qhs459cBSpnGe77ECuaQbR8K+ertZ9qIrJc2ZM8XVueerJpksgpMB+9AkzKAV//z0ysX0pQP55p
+	z6f/o9DqNYxkuriOcWg8WRznpKmsA=
+X-Google-Smtp-Source: AGHT+IENh7+nnwerkUXKfjNHvIrZjJbgA4nVwo8pSn2O2KjLAKEx5uBtJDNQahXwubnc3itr5UpqLKEB/aF0axoJR14=
+X-Received: by 2002:a05:6512:e98:b0:544:1156:a9d with SMTP id
+ 2adb3069b0e04-5451810d0a2mr50314e87.22.1739302500660; Tue, 11 Feb 2025
+ 11:35:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20250211-x1e80100-pwrseq-qcp-v2-1-c4349ca974ab@linaro.org>
+ <Z6txevdftVNww0wD@hovoldconsulting.com> <CAMRc=McApxN7TKKKAL2OmfkosKYA9gCYZXQZXFAE_A9a5qykmw@mail.gmail.com>
+ <Z6uVJeQd1DXFFHG1@linaro.org>
+In-Reply-To: <Z6uVJeQd1DXFFHG1@linaro.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Tue, 11 Feb 2025 20:34:49 +0100
+X-Gm-Features: AWEUYZmxYAztARbq_llYUY0lB0u5EhPSVbakcUSWbCMuoLnLogvwKAVly3UHO-o
+Message-ID: <CAMRc=Mcf8gSr8JGixZ2MQ=d0KbZjDQ3tYNU6RNuSRDQSHpNiwQ@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100-qcp: Add WiFi/BT pwrseq
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Johan Hovold <johan@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 10 Feb 2025 13:09:59 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+On Tue, Feb 11, 2025 at 7:21=E2=80=AFPM Stephan Gerhold
+<stephan.gerhold@linaro.org> wrote:
+>
+> On Tue, Feb 11, 2025 at 06:51:02PM +0100, Bartosz Golaszewski wrote:
+> > On Tue, Feb 11, 2025 at 4:49=E2=80=AFPM Johan Hovold <johan@kernel.org>=
+ wrote:
+> > >
+> > > On Tue, Feb 11, 2025 at 04:01:56PM +0100, Stephan Gerhold wrote:
+> > > > Add the WiFi/BT nodes for QCP and describe the regulators for the W=
+CN7850
+> > > > combo chip using the new power sequencing bindings. All voltages ar=
+e
+> > > > derived from chained fixed regulators controlled using a single GPI=
+O.
+> > > >
+> > > > The same setup also works for CRD (and likely most of the other X1E=
+80100
+> > > > laptops). However, unlike the QCP they use soldered or removable M.=
+2 cards
+> > > > supplied by a single 3.3V fixed regulator. The other necessary volt=
+ages are
+> > > > then derived inside the M.2 card. Describing this properly requires
+> > > > new bindings, so this commit only adds QCP for now.
+> > > >
+> > > > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+> > > > ---
+> > > > Changes in v2:
+> > > > - Rebase on qcom for-next, patch 1-2 were applied already
+> > > > - Mention dummy regulator warning
+> > > > - Link to v1: https://lore.kernel.org/r/20241007-x1e80100-pwrseq-qc=
+p-v1-0-f7166510ab17@linaro.org
+> > > > ---
+> > > > The Linux driver currently warns about a missing regulator supply:
+> > > >
+> > > >   pwrseq-qcom_wcn wcn7850-pmu: supply vddio1p2 not found, using dum=
+my regulator
+> > > >
+> > > > This supply exists on the WCN7850 chip, but nothing is connected th=
+ere on
+> > > > the QCP. Discussion is still open how to hide this warning in the d=
+river,
+> > > > but since the DT is correct and the same setup is already used on S=
+M8550
+> > > > upstream, this shouldn't block this patch.
+> > >
+> > > I thought Bartosz was gonna fix his driver...
+> > >
+> >
+> > This is not the same issue. The one you're thinking about[1] was fixed
+> > by commit ad783b9f8e78 ("PCI/pwrctl: Abandon QCom WCN probe on
+> > pre-pwrseq device-trees").
+> >
+> > This warning comes from the PMU driver, not the PCI pwrctrl one for
+> > the WLAN module. One solution would be to make this supply optional in
+> > bindings and use regulator_get_optional for the ones we know may be
+> > unconnected. Does it sound correct?
+> >
+>
+> The supply is optional already in the bindings. It's not optional in the
+> driver though, because that one uses the bulk regulator API and that
+> currently provides no way to mark an individual regulator as optional.
+>
+> We did discuss this on v1 of this patch. I think you did not get back to
+> Mark's last message yet [2]. :-)
+>
+> Thanks,
+> Stephan
+>
+> [2]: https://lore.kernel.org/linux-arm-msm/f125c7d5-5f85-4ff6-999b-2098ff=
+3103f9@sirena.org.uk/
 
-> On 2/7/25 2:09 PM, David Lechner wrote:
-> > Add support for SPI offload to the ad7944 driver. This allows reading
-> > data at the max sample rate of 2.5 MSPS.
-> >   
-> 
-> ...
-> 
-> > ---
-> >  drivers/iio/adc/Kconfig  |   1 +
-> >  drivers/iio/adc/ad7944.c | 291 ++++++++++++++++++++++++++++++++++++++++++++---
-> >  2 files changed, 276 insertions(+), 16 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> > index a3e8ac569ce4c6b6b30b48acb265d530aa98e89c..995b9cacbaa964d26424346120c139858f93cdcd 100644
-> > --- a/drivers/iio/adc/Kconfig
-> > +++ b/drivers/iio/adc/Kconfig
-> > @@ -360,6 +360,7 @@ config AD7923
-> >  config AD7944
-> >  	tristate "Analog Devices AD7944 and similar ADCs driver"
-> >  	depends on SPI
-> > +	select SPI_OFFLOAD
-> >  	select IIO_BUFFER  
-> 
-> I missed adding
-> 
-> 	select IIO_BUFFER_DMAENGINE
-> 
-Tweaked and pushed out.
+Indeed, thanks for reminding me. I'll respond tomorrow.
 
-> Closes: https://lore.kernel.org/oe-kbuild-all/202502082251.NuHT15R7-lkp@intel.com/
-> 
-> >  	select IIO_TRIGGERED_BUFFER
-> >  	help  
-> 
-> 
-
+Bartosz
 
