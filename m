@@ -1,228 +1,230 @@
-Return-Path: <devicetree+bounces-145119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1787DA30632
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:46:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80E53A3063B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:48:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 835053A3B13
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:45:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EDA43A42A8
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:47:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D541F0E34;
-	Tue, 11 Feb 2025 08:45:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2DB1F130F;
+	Tue, 11 Feb 2025 08:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="sZ0beSTR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hxbS8OPr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED871F03F0
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 08:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22AB11EF081;
+	Tue, 11 Feb 2025 08:47:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739263551; cv=none; b=I2qcL99ZuThzwHOMfMz5M7Pfze7Lt7+wEmLZS4Fx5iVdjiOQfHT3K8XZsY7/1/Y3Ox559KXF/PaxILOzDIBSpKtGd1BWxP55B4jV0kIMj1v+28Vy2E97wIaXFoZHCVAzYodw/0q2UthUuy9Xl8OxxqUFTlxrdfKbOxFum1/1N2E=
+	t=1739263648; cv=none; b=CG7031uHLfg+3yMm7AYW8Tu1O7vWQyxo3RnNPc4Ud2ybXtvdA59Bnlp4l5MMy0uc1wB/mJKQ/7cIsffyRKujzuydfAialjvgumUFXQgn7LGO9wwtNUZyDkRQrlpJOZm+m2D/y1i84RIwGclpS450hD3nn3O9hDnz/w5YOpPzV/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739263551; c=relaxed/simple;
-	bh=8t4cGCz3NnbpxYs66KaHyja9JlE3mJSfzjdIyhtAp5c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=do53ZtrW5z/YeDytwHo/zOTimVco+HWhC5GiRtVFjGdk06LHrHqENzzh4cP83gwVRO9H/r+2mQl0Xmvcyr/yFw6zGpaC2kmr0XBycsP3R80Vc0ergQfMUwvKOClT29+RnqreNBpvkG/qRN6kBMl1+EwkQLU61uQtiMmI4QsB6Sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=sZ0beSTR; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4393f6a2c1bso12359175e9.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 00:45:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1739263546; x=1739868346; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CjaMyifJmxRVCZcsee8t2l5V7O9x/XFbm7eqaPh0L0A=;
-        b=sZ0beSTRW+zLsqi42L6tmfhZZ2wpD9edTCmAwwOCA1ySVtcx7zVCAfuV3kFNGNmlyE
-         ofqCeRP4qN5eCHdm9owMYvr2l0/PZsARNheQxdCnA7LMU27mnOCAvoRv1fH8Zvs5SYP5
-         p3vbDRSVmIy0qBADYHeWx0zlC2ITfkLJcb7Jpr+5Tp15MmtvswZKS7UIlpUq6I9pE8Di
-         JBj1UfH+4ELM7I82c79uOwOjo8PmduTU+NA8iqXFyXnMwjRQMXIreVRI1/+CBds8P+oV
-         j6Y/gV/7M4+2gr586r9nSEixo+Csehpb0H5xN49ySOCUh2Tgd3dQ2BSDYHlscvVDlMre
-         vxxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739263546; x=1739868346;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CjaMyifJmxRVCZcsee8t2l5V7O9x/XFbm7eqaPh0L0A=;
-        b=PaEyh0vc3SHWbnNe9SYDTFCH8Q9F+qP5sklKML4zH3EnQuo1r70/y8uTZ12L31INdI
-         z86zNjNjWbFB4EQ/pXHdca76axTcSgDnG7naMb5jYP+6dHzvhHWnIQUQJvzfwRiyZY8H
-         BUHEMEeAZktFO7pjc911rmXhD8U/CUz9Nz3xt56CDyzzsCJDiMGHZNvVC6d3I22UlYr2
-         6mvb/rVgtZWekhjTisKh2f0qMxywEpD1cuuhFTCmRy3tiB6mGLmozJq8vDJ9E08h+C4t
-         O6vFdt3yymci+94l/SBdLGaMntUsDdgcDQRxZKNWwkshP0yRgZEP5Ry/w+zmwQmilcOY
-         dw8g==
-X-Forwarded-Encrypted: i=1; AJvYcCWgQZax8tvd3WLevx7mAq1a+uEKIsb9ejkkoKIOOfyY/RYpDdIsDBQMeGHN9mCWJeysfOSB/dm79utr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZAeKHialjPilMdhDgTdz5M675H/GHuPnUFfdr171YCbb16OUV
-	2XCBGyvK7J7GAqPIF63MWkt8ECT66Y5oD2fNN7upMwJ8WeLaQgwUv5Fv/dvchQ4=
-X-Gm-Gg: ASbGncuj3HwuBLyvb8d32VzV4aOt6dctLyFiYeGNNf79RY771vYNfnLtuwilwF4g34Y
-	7TDALPQvXyofsgsSvW2YNztSzdhwWLkbgHwyN79Kz+vURFULn0MIija7ymFIzKAjJUarNddmje0
-	UntIioqapZPVlwi830Uv+87bf0Hl7L1wd8ZyRzZt0Kzs7Jxrvp7GLTFZjPOYihj7ztXk6Ae7ilN
-	dPfMb7tCzv1EXvXPaUwoqm6M4JUs6lLS01lhXGTmWtH0uGyP6tsD52IxDNtZMgq3tdEpUsQ0IaR
-	NNM4MubfePGNPYqG7Ny4NnrkUwCl9UzIKk5WqTDTbt5l0nr4MM+r0YGjUhf+
-X-Google-Smtp-Source: AGHT+IG+SmfGJVYOShNgqHCPCd07PbXxZneGcwo88AcQulZIQpXxaJaOeME1U8Vd0E5f2m5egCZc7A==
-X-Received: by 2002:a05:6000:1f85:b0:38d:d8c0:1f7f with SMTP id ffacd0b85a97d-38de439d6aamr1776720f8f.9.1739263546052;
-        Tue, 11 Feb 2025 00:45:46 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:e17:9700:16d2:7456:6634:9626? ([2a01:e0a:e17:9700:16d2:7456:6634:9626])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dc565d62dsm13024751f8f.93.2025.02.11.00.45.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Feb 2025 00:45:45 -0800 (PST)
-Message-ID: <f1ce7aa9-63e3-41bd-9bb0-a54ebc714dff@rivosinc.com>
-Date: Tue, 11 Feb 2025 09:45:44 +0100
+	s=arc-20240116; t=1739263648; c=relaxed/simple;
+	bh=k21+EIxAbZ2RNWIs6sTtq5HkT0oP1NdfuQqJ3Cg0Xns=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AoWNOU4hFQ0TYVb0c8ipLHEZyyDINvoxWl6PpWXeSODNcvEYwdzTLbey7NcxX0QNQL2gbMtDt5kA8Ln6YMODFze18JZV92G9d8ZdJBcqJvzGJ3KtSr6sQWIDa3NLWbvtXNqvEI3fYgfewA1tTLtUvXmUn10EBxe/OJV9gpACvto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hxbS8OPr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0A91C4CEE4;
+	Tue, 11 Feb 2025 08:47:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739263647;
+	bh=k21+EIxAbZ2RNWIs6sTtq5HkT0oP1NdfuQqJ3Cg0Xns=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hxbS8OPr0wU/c6E85F335oSSbrLRCaeujvXRA/pMYWGZJfoXEbIJdZBcnJWK0L3Uj
+	 9g1oOOPo3F/iK9m+/pCESvVcC2ygY+Z+4K+6vWgREaNUoPOox7gvJvLCyR4lH7pzBs
+	 kDZlUtdKVIa1h7cXUo0xolCxaGzYoSq53xtDrybMSGYzKC1i3TIHOX3SeJdqMCIKBK
+	 D/Lv3AS6he/Q363o079npAvyOhBtCXTg4A/fZZp3RxXaHPLPFg0SU24Pb111btNqrY
+	 HtgBzYCsg1HQIUcvilN8c9+Dzhc4efaErZsasZj4LHMV9Z8fz1qokGa5BJZHIyeH7o
+	 hWsPzX+uPwscQ==
+Date: Tue, 11 Feb 2025 09:47:24 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Felix Fietkau <nbd@nbd.name>, 
+	Sean Wang <sean.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, "Chester A. Unal" <chester.a.unal@arinc9.com>, 
+	Daniel Golle <daniel@makrotopia.org>, DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, upstream@airoha.com
+Subject: Re: [PATCH net-next v3 13/16] net: airoha: Introduce PPE
+ initialization via NPU
+Message-ID: <20250211-fanatic-smoky-wren-f0dcc9@krzk-bin>
+References: <20250209-airoha-en7581-flowtable-offload-v3-0-dba60e755563@kernel.org>
+ <20250209-airoha-en7581-flowtable-offload-v3-13-dba60e755563@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/6] RISC-V: add vector crypto extension validation
- checks
-To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Eric Biggers <ebiggers@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Andy Chiu <andybnac@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250205-cobbler-unpadded-5580c1f5d946@spud>
- <20250205-quench-entrench-09bed8c8c823@spud>
-Content-Language: en-US
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <20250205-quench-entrench-09bed8c8c823@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250209-airoha-en7581-flowtable-offload-v3-13-dba60e755563@kernel.org>
 
-
-
-On 05/02/2025 17:05, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Using Clement's new validation callbacks, support checking that
-> dependencies have been satisfied for the vector crpyto extensions.
-> Currently riscv_isa_extension_available(<vector crypto>) will return
-> true on systems that support the extensions but vector itself has been
-> disabled by the kernel, adding validation callbacks will prevent such a
-> scenario from occuring and make the behaviour of the extension detection
-> functions more consistent with user expectations - it's not expected to
-> have to check for vector AND the specific crypto extension.
-> 
-> The 1.0.0 Vector crypto spec states:
-> 	The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly
-> 	the composite extensions Zvkn and Zvks-- require a Zve64x base,
-> 	or application ("V") base Vector Extension. All of the other
-> 	Vector Crypto Extensions can be built on any embedded (Zve*) or
-> 	application ("V") base Vector Extension.
-> and this could be used as the basis for checking that the correct base
-> for individual crypto extensions, but that's not really the kernel's job
-> in my opinion and it is sufficient to leave that sort of precision to
-> the dt-bindings. The kernel only needs to make sure that vector, in some
-> form, is available.
-> 
-> Since vector will now be disabled proactively, there's no need to clear
-> the bit in elf_hwcap in riscv_fill_hwcap() any longer.
-> 
-> Link: https://github.com/riscv/riscv-crypto/releases/tag/v1.0.0
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  arch/riscv/kernel/cpufeature.c | 49 +++++++++++++++++++++++-----------
->  1 file changed, 33 insertions(+), 16 deletions(-)
-> 
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index 40a24b08d905..1c148ecea612 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -138,6 +138,23 @@ static int riscv_ext_vector_float_validate(const struct riscv_isa_ext_data *data
->  	return 0;
->  }
->  
-> +static int riscv_ext_vector_crypto_validate(const struct riscv_isa_ext_data *data,
-> +					    const unsigned long *isa_bitmap)
+On Sun, Feb 09, 2025 at 01:09:06PM +0100, Lorenzo Bianconi wrote:
+> +static irqreturn_t airoha_npu_wdt_handler(int irq, void *core_instance)
 > +{
-> +	if (!IS_ENABLED(CONFIG_RISCV_ISA_V))
-> +		return -EINVAL;
+> +	struct airoha_npu_core *core = core_instance;
+> +	struct airoha_npu *npu = core->npu;
+> +	int c = core - &npu->cores[0];
+> +	u32 val;
 > +
-> +	/*
-> +	 * It isn't the kernel's job to check that the binding is correct, so
-> +	 * it should be enough to check that any of the vector extensions are
-> +	 * enabled, which in-turn means that vector is usable in this kernel
-> +	 */
-> +	if (!__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZVE32X))
-> +		return -EINVAL;
-
-After a second thought, I think it should be this:
-
-if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZVE32X))
-	return 0;
-
-return -EPROBEDEFER;
-
-Extensions can be enabled later (but can not be "reverted") so check for
-the extension to be present (in which case it's ok), or wait for it to
-be (potentially) enabled.
-
-Thanks,
-
-Clément
-
+> +	airoha_npu_rmw(npu, REG_WDT_TIMER_CTRL(c), 0, WDT_INTR_MASK);
+> +	val = airoha_npu_rr(npu, REG_WDT_TIMER_CTRL(c));
+> +	if (FIELD_GET(WDT_EN_MASK, val))
+> +		schedule_work(&core->wdt_work);
 > +
-> +	return 0;
+> +	return IRQ_HANDLED;
 > +}
+> +
+> +struct airoha_npu *airoha_npu_init(struct airoha_eth *eth)
+> +{
+> +	struct reserved_mem *rmem;
+> +	int i, irq, err = -ENODEV;
+> +	struct airoha_npu *npu;
+> +	struct device_node *np;
+> +
+> +	npu = devm_kzalloc(eth->dev, sizeof(*npu), GFP_KERNEL);
+> +	if (!npu)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	npu->np = of_parse_phandle(eth->dev->of_node, "airoha,npu", 0);
+> +	if (!npu->np)
+> +		return ERR_PTR(-ENODEV);
+
+Why? The property is not required, so how can missing property fail the
+probe?
+
+This is also still unnecessary ABI break without explanation/reasoning.
 
 > +
->  static int riscv_ext_zca_depends(const struct riscv_isa_ext_data *data,
->  				 const unsigned long *isa_bitmap)
->  {
-> @@ -397,8 +414,8 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->  	__RISCV_ISA_EXT_DATA(zksed, RISCV_ISA_EXT_ZKSED),
->  	__RISCV_ISA_EXT_DATA(zksh, RISCV_ISA_EXT_ZKSH),
->  	__RISCV_ISA_EXT_DATA(ztso, RISCV_ISA_EXT_ZTSO),
-> -	__RISCV_ISA_EXT_SUPERSET(zvbb, RISCV_ISA_EXT_ZVBB, riscv_zvbb_exts),
-> -	__RISCV_ISA_EXT_DATA(zvbc, RISCV_ISA_EXT_ZVBC),
-> +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zvbb, RISCV_ISA_EXT_ZVBB, riscv_zvbb_exts, riscv_ext_vector_x_validate),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(zvbc, RISCV_ISA_EXT_ZVBC, riscv_ext_vector_crypto_validate),
->  	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zve32f, RISCV_ISA_EXT_ZVE32F, riscv_zve32f_exts, riscv_ext_vector_float_validate),
->  	__RISCV_ISA_EXT_DATA_VALIDATE(zve32x, RISCV_ISA_EXT_ZVE32X, riscv_ext_vector_x_validate),
->  	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zve64d, RISCV_ISA_EXT_ZVE64D, riscv_zve64d_exts, riscv_ext_vector_float_validate),
-> @@ -406,20 +423,20 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->  	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zve64x, RISCV_ISA_EXT_ZVE64X, riscv_zve64x_exts, riscv_ext_vector_x_validate),
->  	__RISCV_ISA_EXT_DATA(zvfh, RISCV_ISA_EXT_ZVFH),
->  	__RISCV_ISA_EXT_DATA(zvfhmin, RISCV_ISA_EXT_ZVFHMIN),
-> -	__RISCV_ISA_EXT_DATA(zvkb, RISCV_ISA_EXT_ZVKB),
-> -	__RISCV_ISA_EXT_DATA(zvkg, RISCV_ISA_EXT_ZVKG),
-> -	__RISCV_ISA_EXT_BUNDLE(zvkn, riscv_zvkn_bundled_exts),
-> -	__RISCV_ISA_EXT_BUNDLE(zvknc, riscv_zvknc_bundled_exts),
-> -	__RISCV_ISA_EXT_DATA(zvkned, RISCV_ISA_EXT_ZVKNED),
-> -	__RISCV_ISA_EXT_BUNDLE(zvkng, riscv_zvkng_bundled_exts),
-> -	__RISCV_ISA_EXT_DATA(zvknha, RISCV_ISA_EXT_ZVKNHA),
-> -	__RISCV_ISA_EXT_DATA(zvknhb, RISCV_ISA_EXT_ZVKNHB),
-> -	__RISCV_ISA_EXT_BUNDLE(zvks, riscv_zvks_bundled_exts),
-> -	__RISCV_ISA_EXT_BUNDLE(zvksc, riscv_zvksc_bundled_exts),
-> -	__RISCV_ISA_EXT_DATA(zvksed, RISCV_ISA_EXT_ZVKSED),
-> -	__RISCV_ISA_EXT_DATA(zvksh, RISCV_ISA_EXT_ZVKSH),
-> -	__RISCV_ISA_EXT_BUNDLE(zvksg, riscv_zvksg_bundled_exts),
-> -	__RISCV_ISA_EXT_DATA(zvkt, RISCV_ISA_EXT_ZVKT),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(zvkb, RISCV_ISA_EXT_ZVKB, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(zvkg, RISCV_ISA_EXT_ZVKG, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zvkn, riscv_zvkn_bundled_exts, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zvknc, riscv_zvknc_bundled_exts, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(zvkned, RISCV_ISA_EXT_ZVKNED, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zvkng, riscv_zvkng_bundled_exts, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(zvknha, RISCV_ISA_EXT_ZVKNHA, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(zvknhb, RISCV_ISA_EXT_ZVKNHB, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zvks, riscv_zvks_bundled_exts, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zvksc, riscv_zvksc_bundled_exts, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(zvksed, RISCV_ISA_EXT_ZVKSED, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(zvksh, RISCV_ISA_EXT_ZVKSH, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zvksg, riscv_zvksg_bundled_exts, riscv_ext_vector_crypto_validate),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(zvkt, RISCV_ISA_EXT_ZVKT, riscv_ext_vector_crypto_validate),
->  	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
->  	__RISCV_ISA_EXT_DATA(smmpm, RISCV_ISA_EXT_SMMPM),
->  	__RISCV_ISA_EXT_SUPERSET(smnpm, RISCV_ISA_EXT_SMNPM, riscv_xlinuxenvcfg_exts),
+> +	npu->pdev = of_find_device_by_node(npu->np);
+> +	if (!npu->pdev)
+> +		goto error_of_node_put;
+
+You should also add device link and probably try_module_get. See
+qcom,ice (patch for missing try_module_get is on the lists).
+
+> +
+> +	get_device(&npu->pdev->dev);
+
+Why? of_find_device_by_node() does it.
+
+> +
+> +	npu->base = devm_platform_ioremap_resource(npu->pdev, 0);
+> +	if (IS_ERR(npu->base))
+> +		goto error_put_dev;
+> +
+> +	np = of_parse_phandle(npu->np, "memory-region", 0);
+> +	if (!np)
+> +		goto error_put_dev;
+> +
+> +	rmem = of_reserved_mem_lookup(np);
+> +	of_node_put(np);
+> +
+> +	if (!rmem)
+> +		goto error_put_dev;
+> +
+> +	irq = platform_get_irq(npu->pdev, 0);
+> +	if (irq < 0) {
+> +		err = irq;
+> +		goto error_put_dev;
+> +	}
+> +
+> +	err = devm_request_irq(&npu->pdev->dev, irq, airoha_npu_mbox_handler,
+> +			       IRQF_SHARED, "airoha-npu-mbox", npu);
+> +	if (err)
+> +		goto error_put_dev;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(npu->cores); i++) {
+> +		struct airoha_npu_core *core = &npu->cores[i];
+> +
+> +		spin_lock_init(&core->lock);
+> +		core->npu = npu;
+> +
+> +		irq = platform_get_irq(npu->pdev, i + 1);
+> +		if (irq < 0) {
+> +			err = irq;
+> +			goto error_put_dev;
+> +		}
+
+This is all confusing. Why are you requesting IRQs for other - the npu -
+device? That device driver is responsible for its interrupts, not you
+here. This breaks encapsulation. And what do you do if the other device
+starts handling interrupts on its own? This is really unexpected to see
+here.
+
+> +
+> +		err = devm_request_irq(&npu->pdev->dev, irq,
+> +				       airoha_npu_wdt_handler, IRQF_SHARED,
+> +				       "airoha-npu-wdt", core);
+> +		if (err)
+> +			goto error_put_dev;
+> +
+> +		INIT_WORK(&core->wdt_work, airoha_npu_wdt_work);
+> +	}
+> +
+> +	if (dma_set_coherent_mask(&npu->pdev->dev, 0xbfffffff))
+> +		dev_err(&npu->pdev->dev,
+> +			"failed coherent DMA configuration\n");
+> +
+> +	err = airoha_npu_run_firmware(npu, rmem);
+> +	if (err)
+> +		goto error_put_dev;
+> +
+> +	airoha_npu_wr(npu, REG_CR_NPU_MIB(10),
+> +		      rmem->base + NPU_EN7581_FIRMWARE_RV32_MAX_SIZE);
+> +	airoha_npu_wr(npu, REG_CR_NPU_MIB(11), 0x40000); /* SRAM 256K */
+> +	airoha_npu_wr(npu, REG_CR_NPU_MIB(12), 0);
+> +	airoha_npu_wr(npu, REG_CR_NPU_MIB(21), 1);
+> +	msleep(100);
+> +
+> +	/* setting booting address */
+> +	for (i = 0; i < AIROHA_NPU_NUM_CORES; i++)
+> +		airoha_npu_wr(npu, REG_CR_BOOT_BASE(i), rmem->base);
+> +	usleep_range(1000, 2000);
+> +
+> +	/* enable NPU cores */
+> +	/* do not start core3 since it is used for WiFi offloading */
+> +	airoha_npu_wr(npu, REG_CR_BOOT_CONFIG, 0xf7);
+> +	airoha_npu_wr(npu, REG_CR_BOOT_TRIGGER, 0x1);
+> +	msleep(100);
+> +
+> +	return npu;
+> +
+> +error_put_dev:
+> +	put_device(&npu->pdev->dev);
+
+Missing platform_device_put()
+
+> +error_of_node_put:
+> +	of_node_put(npu->np);
+> +
+> +	return ERR_PTR(err);
+> +}
+> +
+> +void airoha_npu_deinit(struct airoha_npu *npu)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(npu->cores); i++)
+> +		cancel_work_sync(&npu->cores[i].wdt_work);
+> +
+
+Leaking device put.
+
+> +	put_device(&npu->pdev->dev);
+> +	of_node_put(npu->np);
+
+Best regards,
+Krzysztof
 
 
