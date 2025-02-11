@@ -1,140 +1,148 @@
-Return-Path: <devicetree+bounces-145137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8140A306B0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 10:14:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85B23A306BB
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 10:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94D1A1608EA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:14:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4E09188868F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:17:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2250E1F0E42;
-	Tue, 11 Feb 2025 09:14:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D80BD1F0E4D;
+	Tue, 11 Feb 2025 09:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KgXL+KhN"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="T7xACDYR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABFC1F03F9
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 09:14:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6D941EF0A9;
+	Tue, 11 Feb 2025 09:17:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739265259; cv=none; b=gfIKBHM+tzRoj07JykbOlfeVAqbMiRbjZf+Q3s44eNUSCO4KPksighEJe1Bl6iN8snAZI8sp37NQ9g3moBweUtWy8uT9ZunO3iQaboMjbf8BBB/A5lrF8L4JWEoAq//iNelGkV+nosOabUBBpz7NtvRJkuSDilSAB7Eh7Nq+zdg=
+	t=1739265464; cv=none; b=ERo9iRbeu3kW2UNmTDD8omUFHfkB9ZRHieZzoLz1y7anFYqu7kS/zMvn5dWNrs0S3n2sjitw1aZrfrkP5+4jXDnvI2Nt1CX3do78NAtHsWUbfIubVDmPxjzJqh7LawX1JB1gb0eYZ7+CMnPLS+dLTtVicN6DJx3JICy3A4IbVHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739265259; c=relaxed/simple;
-	bh=BgBeE2dHFG/fUDGg59ZBKfcaHQAIhsnOWY9IR+/ZJ5w=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=n0J9XgIPZbEZ2Zbe9lKQsY7dsc0swumb3/tZrbAYHbC19OoE6aMa0s82thNJmCe35HETYxnJyQeDTlCF5V2v3dFacWyCly7w4mDLUrGDbKBv5j5uupjFwdYNXXuKWn0unIM9QJSgK/r6gyygwtN8P5EdvriZOt2r5oV+qHAYQnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KgXL+KhN; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-388cae9eb9fso2732314f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 01:14:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739265256; x=1739870056; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=e0gUrFkOMyKNFnFh3bFOpTeSy2QBMxAkVbnFWdeqIiU=;
-        b=KgXL+KhNqxaD5gqX/oeozzizrStEH0KY5oM0bbVfo/hmvuL5tE6sKUtKaPZ7I7ViNR
-         60rmzvplawq+yT7sBdtp31iHUXgAh/dDqIYZfWvBSTvbJDruwHTWBz5l+YUxtp92rQ6e
-         LNAO1uL+2Aj9InvbJydrlcs9eMiaYtQDHSTbUf2MlvbnNeJTTlRsIfXREqpfAvMFmAcA
-         DBBFuZFtRiYLhpivQd7P9/HrCFvfHA1KI+kPCmyIDXCVIOUOGAcsObYbRtbIDLqheGqS
-         bIxIffsWEB6fzodSJ19+G4VvT+HQ+pPev41XN06HY/OfU0P8d3+s9fWyIAhh7FSPn2ok
-         ZHIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739265256; x=1739870056;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=e0gUrFkOMyKNFnFh3bFOpTeSy2QBMxAkVbnFWdeqIiU=;
-        b=lyccsAfY3lSF/vH6IjlV6z+xmLDViAQnwZPYBzuMhwnFoEbL8bRYs4YUks7eV3GcjW
-         /22yrHbAdDdRVQJG2JKR6EbTPUL7r1qpGwLCsjo7CcDeSXhdCn/gVv/y3x41/VKjk/Fr
-         KJN9EOymWazcjrYMdMRmGwel2X6vayYfsXnAHNmPeOUS0Sri79UeZTVPyHDEDw+wSUWh
-         r5YmJraM1lnjONyvYbmO/zAEIdqH9k2dTMLMtmmA/NdGPhoGdz7fTaZSpyH3/+qX6Dc5
-         tqI/daG1DNzoXEXwU/JmR/9MlTm86bd/t98YESnYtPHzeVHeKQthEe35lVhACMVTXgRS
-         EHEw==
-X-Forwarded-Encrypted: i=1; AJvYcCXvGzJiM2CP0LkbI5XkgO1S5iO2UtFobJGoF7Us3oZKjZam90dTxrNkkly72hheOokZYpHQwIaALEvU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7INaXfCjKld62fNgPS5XVXIsVtmKoRRFhqkKAIGCsp1UHqyRP
-	nH5P1VZ+rM7G2tFzlSajb8XMkEJRY0E2NwVuScpbEnGEWZppnzOx
-X-Gm-Gg: ASbGncshe+cXpYD6/Pt/uaPYjFn1r2J9Xs2MLCMsWy8vKyzXZcO5VGDIqiakibLIzDH
-	IX3YePPfvkaRJAeazdNxSKDhUMcqRj0aqO8KwwbtcwDjcNbq3kEOX/6evlPB/LwA5mMomrSoiwR
-	265fA3LOqDNtdggWouFBDlJNu20Sbj5JjzT0npioA96K+A26VSuiZ9ySNXtrvGFPFEEqzCJSDMT
-	aCNr9sqgmZdfazwH7IALnfx+6vEwQwHDcPUYENNh3g3vXfoGpSEGkC4xDhvY+foGPMw5jvO9BGz
-	Ltxc7cO7yIxqzzHIbgwxytbf7RGPflNZ
-X-Google-Smtp-Source: AGHT+IGkTdyt5H6COEXxIblCp8Mkz8zw3aq7BTC3oTMMt/aizs2mFlO0xMqbkPV5ncYfNxXdId9zEA==
-X-Received: by 2002:a05:6000:1ac9:b0:38d:da79:c27 with SMTP id ffacd0b85a97d-38dda790d9fmr7107010f8f.2.1739265255326;
-        Tue, 11 Feb 2025 01:14:15 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dbdd1af07sm14477397f8f.15.2025.02.11.01.14.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Feb 2025 01:14:14 -0800 (PST)
-Message-ID: <bfe6a1cecdbeb6606cc69e851135033fb42ddd8d.camel@gmail.com>
-Subject: Re: [PATCH 02/10] riscv: dts: sophgo: cv18xx: Split into CPU core
- and peripheral parts
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, soc@lists.linux.dev
-Cc: Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
- <inochiama@outlook.com>, 	linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, Haylen Chu	 <heylenay@outlook.com>,
- linux-arm-kernel@lists.infradead.org, Paul Walmsley	
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou	
- <aou@eecs.berkeley.edu>, Arnd Bergmann <arnd@arndb.de>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>
-Date: Tue, 11 Feb 2025 10:14:11 +0100
-In-Reply-To: <3f548621-6f66-41ee-a23f-ae4a8345061a@kernel.org>
-References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
-	 <20250209220646.1090868-3-alexander.sverdlin@gmail.com>
-	 <dda5297c-fdf3-494f-854f-71a5000729e5@kernel.org>
-	 <7fa3501bd59697e65ab1387e25cb815180c3378c.camel@gmail.com>
-	 <3f548621-6f66-41ee-a23f-ae4a8345061a@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+	s=arc-20240116; t=1739265464; c=relaxed/simple;
+	bh=q1ph39zTYKj5k8jovBlZb0OmW0D/Cl5sBfBfHNGZ+Fs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sj2SKqN90VXUsvBQDvoqT6M/yy2K4pK+ydhrrB//S6ljnfhZ2FrEeBq8rlga0mHVhs+MlvxxsDBeU/Ks8hpEnTTtTp8qD8Gp1jGz51a9b312jEUtZLmHlD1MB+1XVRhXwBYERTl4G6xgwxkFLn65vDhdYXV+bgZNErWAiXgzmpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=T7xACDYR; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 27539433D9;
+	Tue, 11 Feb 2025 09:17:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739265459;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=T128NbBeShVjgHAQHFQBVXrcbz3LydX8l7wGrFI7ueM=;
+	b=T7xACDYRo4ZKNUXI1/0DERPK7oBUD4COOhQeQ03s6RH8EOyByC+6pjBEZ6OzrOskPxeFuS
+	bj1x1oMaVubfmt3p26TgQVuUpl2zcK0XoiUC456N7+IGvvckqpqJgCItd7YswXw26TdEOJ
+	M91jZud9cbdMfRKvKG0rkxCGpLdYdpRNO1gh9mW3iT33Ge4lrkju+oPKRM6FENGcYAigOS
+	AMmT/wHxfjhD2hbhK6CFJZvEZDF1S2DQtqSVDuLGIfB4sw7wuuj4cIXdgh7E5LPVHPgIIh
+	G5b8e1G431JQKCpx/CGPenErBzIhdyOHy2eojCn4jjfcomZSr06/ZsDQrE6S7g==
+Date: Tue, 11 Feb 2025 10:17:35 +0100
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: kernel test robot <lkp@intel.com>
+Cc: davem@davemloft.net, llvm@lists.linux.dev,
+ oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski
+ <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
+ linux-arm-kernel@lists.infradead.org, Christophe Leroy
+ <christophe.leroy@csgroup.eu>, Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>, Marek
+ =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
+ <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
+ mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Romain Gantois
+ <romain.gantois@bootlin.com>, Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH net-next 11/13] net: phy: Only rely on phy_port for
+ PHY-driven SFP
+Message-ID: <20250211101735.0af025c4@fedora-1.home>
+In-Reply-To: <202502082347.tFufJ529-lkp@intel.com>
+References: <20250207223634.600218-12-maxime.chevallier@bootlin.com>
+	<202502082347.tFufJ529-lkp@intel.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegtdeivdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthejredtredtvdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeifeejgeevhffhhfefvdfhgefgudefkeefgeeivdeuveejueeljeekgfffieeihfenucffohhmrghinhepghhithhhuhgsrdgtohhmpdhkvghrnhgvlhdrohhrghdptddurdhorhhgnecukfhppedvrgdtudemtggsudelmeekugegtgemlehftddtmegstgdvudemkeekleelmeehgedttgemvgehlegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkegugegtmeelfhdttdemsggtvddumeekkeelleemheegtdgtmegvheelvgdphhgvlhhopehfvgguohhrrgdquddrhhhomhgvpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfedvpdhrtghpthhtoheplhhkphesihhnthgvlhdrtghomhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtr
+ dhnvghtpdhrtghpthhtoheplhhlvhhmsehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtohepohgvqdhksghuihhlugdqrghllheslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhm
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-Hi Krzysztof!
+Hi,
 
-On Tue, 2025-02-11 at 09:08 +0100, Krzysztof Kozlowski wrote:
-> > > > +/ {
-> > > > +	osc: oscillator {
-> > > > +		compatible =3D "fixed-clock";
-> > >=20
-> > > I really doubt that external oscillator is a peripheral. This is eith=
-er
-> > > part of board or the SoC.
-> >=20
-> > This is actually a problem of the original cv18xx.dtsi [1]. Do you thin=
-k
-> > I need to fix it as part of my series? This would touch all the pure
-> > RiscV boards (using CV18xx SoCs, not SG200x SoCs), which I could avoid
-> > otherwise.
->=20
-> You are moving the node out of cv18xx.dtsi, so you can move it to final
-> place for example. But I do not insist, because I also do not know the
-> final (truly correct) place - don't know the hardware here.
+On Sun, 9 Feb 2025 00:04:55 +0800
+kernel test robot <lkp@intel.com> wrote:
 
-Fortunately, problem disappeared by itself in v2 [1], now I don't touch it =
-any longer
-and only move CPU and int controller into corresponding SoCs, so the oscill=
-ator
-falls into "could be coded as a fixed-clock in the SoC DTSI" cathegory of t=
-he
-coding style.
+> Hi Maxime,
+> 
+> kernel test robot noticed the following build errors:
+> 
+> [auto build test ERROR on net-next/main]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Maxime-Chevallier/net-ethtool-Introduce-ETHTOOL_LINK_MEDIUM_-values/20250208-064223
+> base:   net-next/main
+> patch link:    https://lore.kernel.org/r/20250207223634.600218-12-maxime.chevallier%40bootlin.com
+> patch subject: [PATCH net-next 11/13] net: phy: Only rely on phy_port for PHY-driven SFP
+> config: i386-buildonly-randconfig-005-20250208 (https://download.01.org/0day-ci/archive/20250208/202502082347.tFufJ529-lkp@intel.com/config)
+> compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250208/202502082347.tFufJ529-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202502082347.tFufJ529-lkp@intel.com/
+> 
+> All errors (new ones prefixed by >>):
+> 
+> >> drivers/net/phy/qcom/qca807x.c:698:12: error: use of undeclared identifier 'phy_sfp_attach'; did you mean 'phy_attach'?  
+>      698 |         .attach = phy_sfp_attach,
+>          |                   ^~~~~~~~~~~~~~
+>          |                   phy_attach
+>    include/linux/phy.h:1912:20: note: 'phy_attach' declared here
+>     1912 | struct phy_device *phy_attach(struct net_device *dev, const char *bus_id,
+>          |                    ^
+> >> drivers/net/phy/qcom/qca807x.c:699:12: error: use of undeclared identifier 'phy_sfp_detach'; did you mean 'phy_detach'?  
+>      699 |         .detach = phy_sfp_detach,
+>          |                   ^~~~~~~~~~~~~~
+>          |                   phy_detach
+>    include/linux/phy.h:1924:6: note: 'phy_detach' declared here
+>     1924 | void phy_detach(struct phy_device *phydev);
+>          |      ^
+> >> drivers/net/phy/qcom/qca807x.c:702:17: error: use of undeclared identifier 'phy_sfp_connect_phy'  
+>      702 |         .connect_phy = phy_sfp_connect_phy,
+>          |                        ^
+> >> drivers/net/phy/qcom/qca807x.c:703:20: error: use of undeclared identifier 'phy_sfp_disconnect_phy'  
+>      703 |         .disconnect_phy = phy_sfp_disconnect_phy,
+>          |                           ^
+> >> drivers/net/phy/qcom/qca807x.c:748:9: error: call to undeclared function 'phy_sfp_probe'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]  
+>      748 |                 ret = phy_sfp_probe(phydev, &qca807x_sfp_ops);
+>          |                       ^
+>    5 errors generated.
 
-Link: https://lore.kernel.org/soc/20250210220951.1248533-2-alexander.sverdl=
-in@gmail.com/
+Ah damned, I missed that qca807x now also supports SFP. I'll include a
+conversion fr that driver too in V2 (and add Robert in CC:)
 
---=20
-Alexander Sverdlin.
+Thanks,
 
+Maxime
 
