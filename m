@@ -1,63 +1,57 @@
-Return-Path: <devicetree+bounces-145500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1EA0A317FD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:43:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24AE0A3184A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:54:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E5C716559D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 21:43:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21F187A126C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 21:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 808A326771C;
-	Tue, 11 Feb 2025 21:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D6872676E7;
+	Tue, 11 Feb 2025 21:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aNGjIrdY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IivS/s9U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A51267718;
-	Tue, 11 Feb 2025 21:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E1B267715;
+	Tue, 11 Feb 2025 21:53:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739310090; cv=none; b=iI/kC09MG9B2cCqQdJ3xG89BOkT9sP5pc1rLfmp//JK8EGp9Vd6/BwQqpin4v4EaHijsuHNVrVmhSxTXyfHWLHBIJg6gTtmHxJUdVpVYHsafK+ymsHRA4EPTgfaqrwLbCa2gSjxOmtXNDNoY14emeKaLiQI4jSU88FNlRDZR8lA=
+	t=1739310837; cv=none; b=rt1NA6aE1ASt8E4DqMbxNpCVe9M3GhdH75o2PJ8VPt2+Atyypw3w6WVbT1Hu3Iu0n8grTob1H5DBoWjgwt05hQksuKWhfjYQtuCGmzneEhqOZ/daQZEOdzOOm9KNaZC1+YoamYHauRFP1dcBgzapEDZkTd9nmapINKMZeGWeIYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739310090; c=relaxed/simple;
-	bh=hNpmTU9yt5SbnmDTLYLToBPf6tZDwvIKIuOvahPOfGQ=;
+	s=arc-20240116; t=1739310837; c=relaxed/simple;
+	bh=ZOTDV0C3q2CDB3rQM196vlVvGcBuD+GPHBG7B+1efHw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MZtNIoOk7/PEypXE/uHUGvBssBfOVm88c4+z79et+DcHbRb7g+Zr3+DEAcXTnfrMSM+zu4G8CTNex8BTUf9m9A7MJ3Lyng2/xLYt6FTzxBjDMHwTKzMgrJdvAqaPhxff9SaoAFv+oIGOk5UafJOtNevVu5ygCDC6Qtr5Lfecs6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aNGjIrdY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CB8BC4CEDD;
-	Tue, 11 Feb 2025 21:41:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OIjs6oEAtcV5Wi1q2rxayjtZYgvAJwP1MolB3CIQfL+9sIsNGVAlmrMp+pAPB3Tt4rHJrpBzUWsEJvhDBi/feHdx148ceF0pdTxwkKi7FWdM1kum5pjGlVm9OIj2xJUJJ9807iRsVIRLDiYgha9yqjJuxS3sJ3CZq6PeUeP+vbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IivS/s9U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31B36C4CEDD;
+	Tue, 11 Feb 2025 21:53:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739310089;
-	bh=hNpmTU9yt5SbnmDTLYLToBPf6tZDwvIKIuOvahPOfGQ=;
+	s=k20201202; t=1739310835;
+	bh=ZOTDV0C3q2CDB3rQM196vlVvGcBuD+GPHBG7B+1efHw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aNGjIrdYDYdkZM7pguK7sMO7gXfRjF2mqrhZ4ExycwjVhX7dsQq6TCBX89Z4MBUIp
-	 ED45UhLiOfB9ppFAB9uT28dv/GKrdLWZf9fREVYNi1zF1KDYJWXfhjMa/OrbgqI1Qw
-	 nDyoARyL1KFsNAkI3RjvkKw5JePaNbAz2s67xrFBvXkg1S8BA3vR9BNO8VKwWcToN4
-	 616J1qqqzdG7juScjVjeA/Fwe1ThPbg8rTSKs8Wv89DeR68ws92at/x0yE/234DnF/
-	 ust+u29wdmUFioRZ6VWzzFCSOf4B3Je+1x4d0Kw8An03S5tcgvQGqinKwKihTlF7SG
-	 pKs7gHGuKaWLA==
-Date: Tue, 11 Feb 2025 15:41:28 -0600
+	b=IivS/s9ULuONCMV6OfzkHOa/ur5svrKqO2MIkv0VAqg31CKNhm3tun4ISAd8k2Umc
+	 XVy7223Zs/zbBsqCd4Nm0sJ2mKy/h7hU/asbJCnHfAOSl3WHbOAh+5HesEm4An639Z
+	 aW/VF3DRmBJZNOF5IAewC9R+TZpV0XcddukUC66t49R0wqVkTzzLnHhOjHDtiJB+1l
+	 eQskcocha5U+xl6QGdXW3ERb2XCuHVQZiX+nd1O5KVqDnAEoMTj48dO+fNi+dGw/fB
+	 qZ6jR8Y5CmmOeG+PodM2Ijda05H+ShMp2G0SKGWFkvPPCkUo0GZpy4LEIu62PQkK6r
+	 4DSgBrgdEQ49A==
+Date: Tue, 11 Feb 2025 15:53:54 -0600
 From: Rob Herring <robh@kernel.org>
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, alexandre.belloni@bootlin.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	jarkko.nikula@linux.intel.com, linux-i3c@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] i3c: master: Add Qualcomm I3C master controller
- driver
-Message-ID: <20250211214128.GB1215572-robh@kernel.org>
-References: <20250205143109.2955321-1-quic_msavaliy@quicinc.com>
- <20250205143109.2955321-3-quic_msavaliy@quicinc.com>
- <fec85cd8-4c56-4b48-a15f-e7ae08352cc2@kernel.org>
- <e5cad9d0-e602-442f-b216-2f655a9526e3@quicinc.com>
- <1e3a103d-d468-40c6-b03c-723427d7bb41@kernel.org>
- <e5dcc2f0-df6d-46ed-b341-46de513c0728@quicinc.com>
+To: Ronak Jain <ronak.jain@amd.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, michal.simek@amd.com,
+	nava.kishore.manne@amd.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditional
+ pinctrl schema
+Message-ID: <20250211215354.GA1244436-robh@kernel.org>
+References: <20250206142244.2553237-1-ronak.jain@amd.com>
+ <20250206142244.2553237-3-ronak.jain@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,38 +60,93 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e5dcc2f0-df6d-46ed-b341-46de513c0728@quicinc.com>
+In-Reply-To: <20250206142244.2553237-3-ronak.jain@amd.com>
 
-On Mon, Feb 10, 2025 at 09:41:28PM +0530, Mukesh Kumar Savaliya wrote:
-> Thanks Krzysztof !
+On Thu, Feb 06, 2025 at 06:22:43AM -0800, Ronak Jain wrote:
+> Updates the Device Tree bindings for Xilinx firmware by introducing
+> conditional schema references for the pinctrl node.
 > 
-> On 2/9/2025 5:10 PM, Krzysztof Kozlowski wrote:
-> > On 07/02/2025 13:03, Mukesh Kumar Savaliya wrote:
-> > > > > +	gi3c->se.clk = devm_clk_get(&pdev->dev, "se-clk");
-> > > > > +	if (IS_ERR(gi3c->se.clk)) {
-> > > > > +		ret = PTR_ERR(gi3c->se.clk);
-> > > > > +		dev_err(&pdev->dev, "Error getting SE Core clk %d\n", ret);
-> > > > > +		return ret;
-> > > > > +	}
-> > > > > +
-> > > > > +	ret = device_property_read_u32(&pdev->dev, "se-clock-frequency", &gi3c->clk_src_freq);
-> > > > 
-> > > > You never tested your DTS or this code... Drop
-> > > > 
-> > > I have tested on SM8550 MTP only. Below entry in my internal/local DTSI.
-> > 
-> > 
-> > And how is it supposed to work? Are you going to send us your local
-> > internal DTSI? Is it going to pass any checks?
-> was saying about code was testing with MTP. DTS was tested using dt-bindings
-> check.
+> Previously, the pinctrl node directly referenced
+> xlnx,zynqmp-pinctrl.yaml. However, this patch modifies the schema to
+> conditionally apply the correct pinctrl schema based on the compatible
+> property. Specifically:
+> - If compatible contains "xlnx,zynqmp-pinctrl", reference
+>   xlnx,zynqmp-pinctrl.yaml.
+> - If compatible contains "xlnx,versal-pinctrl", reference
+>   xlnx,versal-pinctrl.yaml.
+> 
+> Additionally, an example entry for "xlnx,versal-pinctrl" has been
+> added under the examples section.
+> 
+> Signed-off-by: Ronak Jain <ronak.jain@amd.com>
+> ---
+>  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 20 ++++++++++++++++++-
+>  1 file changed, 19 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> index 2b72fb9d3c22..d50438b0fca8 100644
+> --- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> @@ -76,7 +76,6 @@ properties:
+>      type: object
+>  
+>    pinctrl:
+> -    $ref: /schemas/pinctrl/xlnx,zynqmp-pinctrl.yaml#
+>      description: The pinctrl node provides access to pinconfig and pincontrol
+>        functionality available in firmware.
+>      type: object
+> @@ -106,6 +105,21 @@ properties:
+>      type: object
+>      deprecated: true
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: xlnx,zynqmp-firmware
+> +    then:
+> +      properties:
+> +        pinctrl:
+> +          $ref: /schemas/pinctrl/xlnx,zynqmp-pinctrl.yaml#
+> +    else:
+> +      properties:
+> +        pinctrl:
+> +          $ref: /schemas/pinctrl/xlnx,versal-pinctrl.yaml#
 
-make dtbs_check is how you test.
+The somewhat preferred way to do this would be to do this in the top 
+level:
 
-> I should add "se-clock-frequency" and "dfs-index"
+pinctrl:
+  type: object
+  additionalProperties: true
+  properties:
+    compatible:
+      contains:
+        enum:
+          - xlnx,zynqmp-pinctrl
+          - xlnx,versal-pinctrl
+  required:
+    - compatible
 
-No. We already have standard clock properties and we don't put indexes 
-into DT. 
-
-Rob
+Otherwise, the pinctrl schema ends up being applied twice.
+ 
+> +
+>  required:
+>    - compatible
+>  
+> @@ -164,6 +178,10 @@ examples:
+>          compatible = "xlnx,versal-fpga";
+>        };
+>  
+> +      pinctrl {
+> +        compatible = "xlnx,versal-pinctrl";
+> +      };
+> +
+>        xlnx_aes: zynqmp-aes {
+>          compatible = "xlnx,zynqmp-aes";
+>        };
+> -- 
+> 2.34.1
+> 
 
