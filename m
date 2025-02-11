@@ -1,137 +1,152 @@
-Return-Path: <devicetree+bounces-145312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026F0A30E22
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:23:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DEA8A30E34
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:29:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D2E71887549
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:23:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AA391889AC9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:29:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23DA724E4CF;
-	Tue, 11 Feb 2025 14:23:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95A5424E4D3;
+	Tue, 11 Feb 2025 14:29:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oABa6pkf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WLLsAQSA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9ADD24E4AB;
-	Tue, 11 Feb 2025 14:23:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF6AE26BD8C;
+	Tue, 11 Feb 2025 14:29:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739283784; cv=none; b=NVl/EBm988UZ/nleCOJpAgWueMU2mT2CIRo+qj3esPxTOdUrf9Fajd7aMI6UA+QQAVL3W+QNtzcPedM+YYUxShYxCPLCIXkqFns8LjvrQfapSXR9acM0aGTUex9KAIrYjXqpjJnkyU/F0PNz0XVWyH9hqRrUzxoyEAg/FK9kGD8=
+	t=1739284182; cv=none; b=pO0Ad/OH4B4Ma8nOYLyRb1DYzDwlThMM+kEShepq+pRHGmSJ2vR+NIQWJyhq1FgNKGz6n0A/qPWd/kdR5Kx3sDQoWIshs2ekljK3z3Q7tSfobQZS1Ot83x4115m+jYAupTGXeh/Lp2hpVeSBylHMVHvMJBIbVsaXlOt9udAaarw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739283784; c=relaxed/simple;
-	bh=tEFiFKnKGtvJHhnZ+Z9MAfG3eTneciF2Rj7ELcFgcAU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LFCvBVSfC2Wv/Ccn0dZE4yLCnBe3DSAalyYxwctS3kjEuIy9Kpx9/DqQE82QRgRn6OdNw3RD8HmArR0p6cm3Sut/t3VqSiKCOD+CbKhKNZrKH0deVpns1GylxAEhb8okMMOi5K5lcnTFZJAGhiM6RKuxZLWMKvLy7rH5bDnKCfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oABa6pkf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 661ABC4CEE8;
-	Tue, 11 Feb 2025 14:23:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739283783;
-	bh=tEFiFKnKGtvJHhnZ+Z9MAfG3eTneciF2Rj7ELcFgcAU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=oABa6pkf8LLDQZ16qEUrttJD/f7oGW1lk2vKYrlkszlcqe/BOna0BRlBf+5ppsKPw
-	 xxciR9GYzR/0TRktPT3/ru6w1MWZP80BEciur0JWmfsadtHXiEb+yjxu8gl9+HPwc8
-	 0njgRcoxl1YqDl+GpfBn598syxHoyPPenfJCEMOrJ9W9PpXEL4yaRSKgJXrM2QH6PC
-	 64hHeSPeWe1CBKOSRcNsBZqArKLAZvsaptCFHUJqzxFORri2+PkAeOHl9AbWd+GjH5
-	 i1bBSUjzRl/yzrRk7Q8e9RT3lvNHhySPzSuaZIir0WQXo13SMU5jIkAX9G6WTQLh6T
-	 G4WvXbgblqtzQ==
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5de7531434fso4433632a12.0;
-        Tue, 11 Feb 2025 06:23:03 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUrshAwZ1F3xz7Q4CmC1OGg9hw7AdMER6EkGQM82XqBTO12/WuoO/j4SxLomptT2LqejKPsFBflrybn@vger.kernel.org, AJvYcCW6LESS2UZA5VobTJCPGPqSyOluea1QwwRDp9H2KWOU4joN6tJ6/9aK5xGq2Ks6PFSQk7qS9tkfE5Ee98QK@vger.kernel.org, AJvYcCWUMXF91Tml0j9R16A4SU4dUm9XvgoME9OE9gYkzWY34uK/DM0SX0XceUjEQtpczSH8p8Mb3T1JIYPS7g==@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmRL5QSBlb0wP4KerBLNwEMQei+TC8tLatLXczRcr+ySbNFSLr
-	200P8ZfdWlXtxlc+gyKrtSkP6JQ2wkewkRgXdiLLlJCmho6T2jsUsAgmyXbc2Vk2nABU1fq/lFU
-	uYNHCMioKin2gQ/yZ9zTCiz5CyQ==
-X-Google-Smtp-Source: AGHT+IEWjrN1dE5d5DShQ1yB2Zb6ZZNItUV8btIUpQeAAg4iby05aXF7qHbY0NoPrSJgrbi/2Q3svphGQx22vrPLJf0=
-X-Received: by 2002:a05:6402:90f:b0:5cf:43c1:6ba7 with SMTP id
- 4fb4d7f45d1cf-5de458cd983mr19678331a12.30.1739283781948; Tue, 11 Feb 2025
- 06:23:01 -0800 (PST)
+	s=arc-20240116; t=1739284182; c=relaxed/simple;
+	bh=GX7isxsCQ32DZ3Dm0bollke6lgD0HSw/I+es+Fu11v8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lZKWXV2gJPR4Fp7fywWWyQ9Re/C22TGscf0swH6sEXxm4N9GQLvSXNOCcMjK1qwYKfG3JZbKUyw8L/Vly5bkzocJ224zumNrbWcmt1bgwT5dKDcZhPoDlEu+nE/Wv3bgExEWPwoZEhZqLKcb7gAGrG5Iyb+qevp+gMvFzFSq8SA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WLLsAQSA; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739284181; x=1770820181;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GX7isxsCQ32DZ3Dm0bollke6lgD0HSw/I+es+Fu11v8=;
+  b=WLLsAQSAvBzm8453wNuPww5ijHcSL6a3mgs7ad9SCEsXRh70LURcUe0H
+   LNL9iYeY7zRTSjErYc8CA63BDYKJ/m3tuPJjPRGOvU9oEmVUTEMUASQ3g
+   /IsT8xRzO7ZZVPkLgP23FvvdHW8A/obKYy6bKaohx6VIS5dqb1sxJI5S3
+   memkh7StOxW/BVRxjoqQsK+ILUVeuMnMU4tKZqv+Jgo6B1H0np1mXaqUo
+   kotN/3jMmv7HXuf8wUK30GtXGZNQgSadodZ8VBiPewb6uaZy/mtFV0qla
+   PtIRHCFrflPLgZWWqpSdXUlSjIJR/Qh+Qt2KNGGGjQxra8wDbW1MuRLMR
+   g==;
+X-CSE-ConnectionGUID: cVgKBAl8SimDr+vhASWzmQ==
+X-CSE-MsgGUID: +eH0ReMmTeqq8k8E+bcxjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="43664759"
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; 
+   d="scan'208";a="43664759"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 06:29:40 -0800
+X-CSE-ConnectionGUID: CALkFnfJSeuryWovraXCwA==
+X-CSE-MsgGUID: Syg4yTHdSlGZNXNyFW53NQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="135775513"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 06:29:36 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1thrGX-0000000AWot-1o2Z;
+	Tue, 11 Feb 2025 16:29:33 +0200
+Date: Tue, 11 Feb 2025 16:29:33 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	David Jander <david@protonic.nl>,
+	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v8 01/17] spi: add basic support for SPI offloading
+Message-ID: <Z6tezVXVxVCwXuds@smile.fi.intel.com>
+References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
+ <20250207-dlech-mainline-spi-engine-offload-2-v8-1-e48a489be48c@baylibre.com>
+ <Z6otFlsmEikIbI__@black.fi.intel.com>
+ <27d2a88c-b44a-4712-b066-b999e41774f0@baylibre.com>
+ <b1dcbb19-190a-45e7-8e94-cb5ef65f1f1b@sirena.org.uk>
+ <Z6pim_nLct33LzfN@smile.fi.intel.com>
+ <b000d3fd-754a-43e8-ab10-82677eeee1d2@sirena.org.uk>
+ <Z6tcwg7QgQwytoSb@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250210-fix_arg_count-v3-1-a084a5013008@quicinc.com>
- <Z6oclML_DC1Vnf6z@smile.fi.intel.com> <73eb84f3-8b9d-41f4-9b59-d059111a3d03@icloud.com>
- <Z6tBlfmTFu9916LA@smile.fi.intel.com> <a682824a-1b65-4b05-9e42-3edc167600a8@icloud.com>
-In-Reply-To: <a682824a-1b65-4b05-9e42-3edc167600a8@icloud.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 11 Feb 2025 08:22:48 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ6wg3Q9FxKOzrnRo_s1ZznLurfsDuWJ+XVQzA5YS6Rsw@mail.gmail.com>
-X-Gm-Features: AWEUYZkm5aMd5__6uxxCRufUsNgJ0BUSAa1JYPsM0qydqkvJGXC5VeHibCcGjkA
-Message-ID: <CAL_JsqJ6wg3Q9FxKOzrnRo_s1ZznLurfsDuWJ+XVQzA5YS6Rsw@mail.gmail.com>
-Subject: Re: [PATCH v3] of: property: Increase NR_FWNODE_REFERENCE_ARGS
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Len Brown <lenb@kernel.org>, 
-	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-acpi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Zijun Hu <quic_zijuhu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z6tcwg7QgQwytoSb@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Tue, Feb 11, 2025 at 7:40=E2=80=AFAM Zijun Hu <zijun_hu@icloud.com> wrot=
-e:
->
-> On 2025/2/11 20:24, Andy Shevchenko wrote:
-> >>>> -#define NR_FWNODE_REFERENCE_ARGS  8
-> >>>> +#define NR_FWNODE_REFERENCE_ARGS  16
-> >>> Thinking of the case, perhaps you also want
-> >>>
-> >>> static_assert(NR_FWNODE_REFERENCE_ARGS =3D=3D MAX_PHANDLE_ARGS);
-> >>>
-> >>> to be put somewhere, but I don't think we can do it in this header fi=
-le.
-> >> thank you Andy for code review.
-> >>
-> >> yes. it seems there are good location to place the static_assert().
-> >>
-> >> is it okay to associate two macros by
-> >> #define MAX_PHANDLE_ARGS NR_FWNODE_REFERENCE_ARGS
-> > I was thinking about this and I don't see how it can be done without
-> > introducing more chaos (dependency hell) into the headers. So, I won't
-> > take this path or even consider it deeper.
-> >
->
-> i have confirmed that:
->
-> of.h includes fwnode.h indirectly
-> fwnode.h does not include of.h directly or indirectly
+On Tue, Feb 11, 2025 at 04:20:50PM +0200, Andy Shevchenko wrote:
+> On Tue, Feb 11, 2025 at 01:00:08PM +0000, Mark Brown wrote:
+> > On Mon, Feb 10, 2025 at 10:33:31PM +0200, Andy Shevchenko wrote:
+> > > On Mon, Feb 10, 2025 at 05:48:00PM +0000, Mark Brown wrote:
+> > > > On Mon, Feb 10, 2025 at 11:11:23AM -0600, David Lechner wrote:
+> > 
+> > > > > In this case, we specifically split up the headers so that the only time you
+> > > > > would ever include this header is if you need to call functions in this
+> > > > > namespace (i.e. struct definitions are in linux/spi/offload/types.h which
+> > > > > doesn't import the namespace). So this doesn't actually seem like a problem
+> > > > > to me.
+> > 
+> > > > Indeed - I can't see any case where a user would need the header without
+> > > > needing the namespace.
+> > 
+> > > You are looking from the other end. What I'm telling is that anyone who adds
+> > > a header, automatically gets a namespace. What's the point to have namespace
+> > > if it won't easily prevent from (ab)using it in the code. I consider putting
+> > > MODULE_IMPORT_NS() in the headers a bit weird.
+> > 
+> > Sure, but there's no case where anyone should ever be adding the header
+> > without adding the namespace which does rather sound like the sort of
+> > thing where you should just move the namespace addition to the header.
+> 
+> $ git grep -lw MODULE_IMPORT_NS | wc -l
+> 651
+> 
+> $ git grep -lw MODULE_IMPORT_NS | grep '\.h$'
+> 
+> drivers/base/firmware_loader/sysfs.h
+> drivers/iio/adc/ltc2497.h
+> drivers/pwm/pwm-dwc.h
+> ^^^ These ones are probably fine as they are not in include/
+> 
+> include/kunit/visibility.h
+> include/linux/module.h
+> include/linux/pwm.h
+> 
+> I believe these three are misuses of MODULE_IMPORT_NS(). Because one may add
 
-Only for struct fwnode_handle. I don't think we want to add to that.
-For the most part, fwnode is a layer above DT and the DT code should
-know nothing about fwnode.
+_Ttwo_, of course, module.h provides the macro :-)
 
-> in theory, dependency between both headers should also be like this.
->
-> So, it is simple to use below define in of.h
-> #define MAX_PHANDLE_ARGS NR_FWNODE_REFERENCE_ARGS
->
-> >> OR
-> >> replace all MAX_PHANDLE_ARGS instances with NR_FWNODE_REFERENCE_ARGS
-> >> ?
-> > This sounds plausible to me, but you need a blessing from OF people as
-> > the naming may be a bit confusing (for them) as "phandle" is well estab=
-lished
-> > term in OF realm.
->
-> phandle is a type of DT firmware node reference. so this solution
-> seems suitable as well.
->
-> struct software_node_ref_args also uses NR_FWNODE_REFERENCE_ARGS directly=
-.
->
-> let us wait for more comments.
+> a header just as a "proxy" one (copy'n'paste, for example) and we know that is
+> real as we saw a lot of code that has semi-random header inclusion blocks.
 
-I prefer what you have here with the static_assert() added.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Rob
+
 
