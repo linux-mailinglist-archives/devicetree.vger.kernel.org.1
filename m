@@ -1,102 +1,154 @@
-Return-Path: <devicetree+bounces-145301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C3A6A30DB4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:05:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F65A30DEB
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:14:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CC903A3BB7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:05:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EA041885063
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130F624F5A4;
-	Tue, 11 Feb 2025 14:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A818C24CEE5;
+	Tue, 11 Feb 2025 14:14:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QNZeXL/p"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dRRGBCsf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36BBC215799;
-	Tue, 11 Feb 2025 14:04:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB1D1F1908;
+	Tue, 11 Feb 2025 14:14:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739282690; cv=none; b=P+WG4Cc3mnl2GsN7C3Cis7PLyfTUbkMPvHOk2CaS7Er57ZkWwbFN/2WIPtvJ0khbyBAd0COhzsZakXKybi4kUOSLr+csVIacyskH4/4IuoOAK6AJ/g9gS2Eb7BfKchkT1Kwwx6SPlW7FBFOhvBi4yirxpflOMFn46MQJFrzAL/k=
+	t=1739283266; cv=none; b=FjhiuzTpVOnrtORDYBATBQ+lSn4X92a5Xy1erGAu/zEc8zCshJSMbtD9/LIG78H7Q2NVXyqqbV3WBPPXQus8GB0BONiQSidysKbhl814Wowcr9RNqnC/J5epgKqUV8UkNybnnr/DGx+Mt1YyV3QF+pcgHATDzS1nmbAdv1JauUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739282690; c=relaxed/simple;
-	bh=5Dq8VZkw9xNox4d9nXP+NDsofsDFpbC12ldyftrP/PY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DnxOTS6oOwmAUD4licrOHU2N5kInx92KN1gaQHG0Quc2L5eDeRzu5L0bxpA3XejNZxrmVyHyk44Ru4g9TmRSr6F4G1MI1mMr5EL6rHl4Yg+R1VQoTNbAixccqtr5pFOCvzmAbI1ZbIqUsWmtTWAr/mMT7DStmIbgyZAZRYuOZvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QNZeXL/p; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=VSeuhfOw8yfHQ+TWsCEpeuHvxKiIbFJlwEB/VaRLJIo=; b=QNZeXL/pfPJhHnQAz1R1qzLi/w
-	OXuJqpxpgy+GIdKnoz+ivHnrTcVOJCAocPLD/vCv7xQKdndoeO0D2qz5w+wltF5y9aOof+SxqAzKM
-	KSWnELbT/2kglIv9CgYbcoMgLbTf7acKQyJ29q2shPGklCJADXPgB5JOHE4ek1FKiLtk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1thqsF-00D4ti-T7; Tue, 11 Feb 2025 15:04:27 +0100
-Date: Tue, 11 Feb 2025 15:04:27 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, davem@davemloft.net,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>
-Subject: Re: [PATCH net-next 03/13] net: phy: Introduce PHY ports
- representation
-Message-ID: <0ae41811-e16b-4e64-9fc4-9cb4ea1da697@lunn.ch>
-References: <20250207223634.600218-1-maxime.chevallier@bootlin.com>
- <20250207223634.600218-4-maxime.chevallier@bootlin.com>
- <20250211143209.74f84a10@kmaincent-XPS-13-7390>
+	s=arc-20240116; t=1739283266; c=relaxed/simple;
+	bh=1/ws8Ki6NG7C14KSm+ch5kNrGgb87tdV3KuV8rop8R4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=laB8kvjfdD8mTQUoNXKabGqNMfpBRCwSVg6kb3pZdu01pBFmCSYrZplBkURxXz8wHjABDLs2GqdJYAxtfkZyzK+5tW9Rb0CBB6gGSpGxh5H2Yygi/L6p1Z8J8Eww3Ij2puh/oAExJysZfv7vcrxIpy5XXbeuMTETUtXbUYTxi3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dRRGBCsf; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1739283262;
+	bh=1/ws8Ki6NG7C14KSm+ch5kNrGgb87tdV3KuV8rop8R4=;
+	h=From:Subject:Date:To:Cc:From;
+	b=dRRGBCsfCfungegBbvb/QdKKTbpVYpHAf1LLbUuN1+w4janWZxOa1n8O//jP2zOzH
+	 6ppaQ+Gl81LAqTtvhY93YVTFXOriBezIBP9Zbzz894DfjePJyDqxoRqy3h2bwoimWv
+	 2bgniwdsQ8GJ75ZmQ/gt7SO4AXV7Oi+5Fw2GLssmoP+Vsd3GIRLr/Ie5sJGNphDNx2
+	 hpkRrL9wtUeJNgQx5nBrEWz+b17xRQLWi2+WOcAEKj7nI7DZxBiqdh959XbuTrL1tk
+	 PHxGFy4cBjgXmeHXCEyAr33JGMazC0BT8/mgxyCxQIXuSu2jKzaXdOTJ6pQo8GeBky
+	 NhiW3EfX3fGkw==
+Received: from yukiji.home (lfbn-tou-1-1147-231.w90-76.abo.wanadoo.fr [90.76.208.231])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7CA3D17E0EB8;
+	Tue, 11 Feb 2025 15:14:21 +0100 (CET)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Subject: [PATCH v4 0/3] Add Mali GPU support for Mediatek MT8370 SoC
+Date: Tue, 11 Feb 2025 15:13:07 +0100
+Message-Id: <20250211-mt8370-enable-gpu-v4-0-77deb7a75c23@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250211143209.74f84a10@kmaincent-XPS-13-7390>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPNaq2cC/23Oy2rDMBAF0F8xWldFD48eWfU/Shd6jBKBbaWyY
+ 1qC/72qU2gp3s0dmDP3TmasGWdy6u6k4prnXKYW+qeOhIubzkhzbJkIJoBxDnRcjNSM4uT8gPR
+ 8vVHpVQILySkZSbu7Vkz5Yzdf3x654vut0ctjSbybkYYyjnk5dRjBRM4kqug4uL4XKRkNShtrt
+ DIxSKdUG8m3dcnzUurnXnflO/bTTB00WzlllDnltUErIJiXUIbB+VLdc3u/i6v4o0h2pIimBA5
+ 9ZIZD9HCkyF9FMH2kyKZoQOstE8kG/l/Ztu0LeLh9Ao4BAAA=
+X-Change-ID: 20250115-mt8370-enable-gpu-3b6f595fa63d
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Steven Price <steven.price@arm.com>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739283261; l=2673;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=1/ws8Ki6NG7C14KSm+ch5kNrGgb87tdV3KuV8rop8R4=;
+ b=l1gLMSzjHXCVSRBr92COcRy+kiCGv7Kl0gIzGok5LHsCKjfHRZngn+hJp6eC0Y2Go+86iLx4L
+ 5oocFMwDJ0kCQXELbaTcT3SodmZNUjl/o7MHsMGpqEuoZRzf8Z3WKow
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-> With net drivers having PHY managed by the firmware or DSA, there is no linux
-> description of their PHYs.
+This patchset adds the support of the ARM Mali G57 MC2 GPU (Valhall-JM,
+dual core), integrated in the Mediatek MT8370 SoC, to the panfrost driver
+and to the mt8370.dtsi include file.
 
-DSA should not be special, Linux is driving the PHY so it has to exist
-as a linux device.
+I've tested this patchset on a Mediatek Genio 510 EVK board,
+with a kernel based on linux-next (tag: next-20250207) plus [1] patch
+(not needed for building, only for testing to avoid boot issues on this
+board).
 
-Firmware is a different case. If the firmware has decided to hide the
-PHY, the MAC driver is using a higher level API, generally just
-ksetting_set etc. It would be up to the MAC driver to export its PHY
-topology and provide whatever other firmware calls are needed. We
-should keep this in mind when designing the kAPI, but don't need to
-actually implement it. The kAPI should not directly reference a
-phydev/phylink instance, but an abstract object which represents a
-PHY.
+The panfrost driver probed with the following messages:
+```
+panfrost 13000000.gpu: clock rate = 390000000
+panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
+panfrost 13000000.gpu: features: 00000000,000019f7, issues: 00000003,
+  80000400
+panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
+  Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
+panfrost 13000000.gpu: shader_present=0x5 l2_present=0x1
+[drm] Initialized panfrost 1.3.0 for 13000000.gpu on minor 0
+```
 
-	Andrew
+[1] https://lore.kernel.org/all/20250124191644.2309790-1-robh@kernel.org/
+
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+Changes in v4:
+- Add warning comment in mt8370.dtsi about GPU node override
+- Reword "dt-bindings: gpu: mali-bifrost: Add compatible for MT8370 
+  SoC" commit message
+- Add code-review trailers
+- Link to v3: https://lore.kernel.org/r/20250207-mt8370-enable-gpu-v3-0-75e9b902f9c1@collabora.com
+
+Changes in v3:
+- Rebased on linux-next (tag: next-20250207)
+- Remove prerequisite change/patch ids
+- Reword commit messages to better explicit compatible needs 
+- Link to v2: https://lore.kernel.org/r/20250130-mt8370-enable-gpu-v2-0-c154d0815db5@collabora.com
+
+Changes in v2:
+- Rework "drm/panfrost: Add support for Mali on the MT8370 SoC" to avoid
+  data structure duplication, as requested by Krzysztof Kozlowski
+- Reword commit messages to use imperative mood and make new compatible
+  need more explicit
+- Link to v1: https://lore.kernel.org/r/20250116-mt8370-enable-gpu-v1-0-0a6b78e925c8@collabora.com
+
+---
+Louis-Alexis Eyraud (3):
+      dt-bindings: gpu: mali-bifrost: Add compatible for MT8370 SoC
+      drm/panfrost: Add support for Mali on the MT8370 SoC
+      arm64: dts: mediatek: mt8370: Enable gpu support
+
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml        |  5 ++++-
+ arch/arm64/boot/dts/mediatek/mt8370.dtsi                 | 16 ++++++++++++++++
+ drivers/gpu/drm/panfrost/panfrost_drv.c                  |  1 +
+ 3 files changed, 21 insertions(+), 1 deletion(-)
+---
+base-commit: ed58d103e6da15a442ff87567898768dc3a66987
+change-id: 20250115-mt8370-enable-gpu-3b6f595fa63d
+
+Best regards,
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
 
