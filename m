@@ -1,156 +1,513 @@
-Return-Path: <devicetree+bounces-145234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14DF9A30BA8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:22:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2148A30BAC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:24:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5FFD16311D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:22:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC64C3AB24B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:24:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB901FCD06;
-	Tue, 11 Feb 2025 12:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E326A1FCF74;
+	Tue, 11 Feb 2025 12:24:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mQPvXg1K"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="A2tm53U6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB791FBEAB
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 12:22:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACE631F3FCB;
+	Tue, 11 Feb 2025 12:24:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739276568; cv=none; b=QtALIWKcCjDOsVtXD3FgCgZENIDi08YJcxgtpKNInI1e7+2F9qP9Ti0yiNoq8Zjr+1JEdVhNoUOaZdG4mbI8muxqn04EIQjwj46UNOX9izTapJNDACPkJytSyPqOoY6a4UPxSY8KLCyRbr4wJD+azWW1x9KglbI7Q0qMa1oKKYo=
+	t=1739276678; cv=none; b=G+6iLnyY3a91ENUFaEim8mt+WLCEAX0+WhTuOPMoudZ9BJ/qC0HP6qvrMjquMm+s55tJxJWHFpj6x/mP7ogNV0tdoCDEg+Tbt25+LFNxmugRxaTBVgupYD6WrLScaGCvxucrHMkGg11+UxOz5tsncnpb1yC0o9xXKDz+WgHVfUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739276568; c=relaxed/simple;
-	bh=4K8z8+aPyeTQjXPiAwW/jC9wdrJjdLUvKNE1gq5BkA8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hdC26JPPkmcs+XlBVMo294W8FyuwRBcAJgJ3O7G+S8oDhtGHnxIdvkhgfXFl/K5XAAnC/SXP6CkMjloUz0fgzqCO+VBU2SRGetHhXA3T5nOFoF8R9HzfBOcmLqGmPxDtIqDiyA9ceaEdjhbJSoiwKpst5dWGFOXY/mpSdJxUaew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mQPvXg1K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EE2CC4CEDD;
-	Tue, 11 Feb 2025 12:22:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739276567;
-	bh=4K8z8+aPyeTQjXPiAwW/jC9wdrJjdLUvKNE1gq5BkA8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mQPvXg1KkJtQWn8OkwbQBFy4BC94aSKTUgHnrO12Ryg/0uJHHEzFeSZJq0ZIyYojX
-	 vXmjhyNYsTC18XK+FTrxKfsCwD6k9nkDihstrcUbVec8YMM1PPyBQNI/fGTuDDq22m
-	 554LY6+UBma+SrHeljagbISwqvOCy1xb3ZMSN4BmN2+y+tHiDiLdyXo66qFIBMzt3A
-	 B+vlvUfGHlWfCtT8TGJ3VKLlvnDmRS4trFQRKv0pcNYZjoWR9Q1vXcnc2kbfwoiWhT
-	 WERq9sapIx+PRz57TA7CMRRE7pk/jcijNb2SfikO8OtfqK+tIgsItctxlFzGcJq2JS
-	 3efbYz6E7b5cQ==
-Date: Tue, 11 Feb 2025 13:22:42 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org, Patrick Wildt <patrick@blueri.se>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, robin.murphy@arm.com
-Subject: Re: [PATCH] arm64: dts: rockchip: adjust SMMU interrupt type
-Message-ID: <Z6tBElUDaPNgkaIf@ryzen>
-References: <Z6pxme2Chmf3d3uK@windev.fritz.box>
- <25203566.ouqheUzb2q@diego>
+	s=arc-20240116; t=1739276678; c=relaxed/simple;
+	bh=aGGqaZpPT+rSRVg/YC1WMx6qAqamenr0rL8vhcsCp9Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uG0dEjX1TEvzoPVjq1KZ6/61v8b++KdqVRq5ZF0zdX7Kklm8akR7G1wlHAsRgAbKdScyDzu2DNiEzgn7RWL2/Y8jeVv/ftGZNIA0BKH05pYiyIhzKDHRctrYRAUNFKrZzA7ii0hXhrkvRhtUCihUmIArn3X5rzXqpeDCMiA37Xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=A2tm53U6; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 427246DF;
+	Tue, 11 Feb 2025 13:23:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1739276597;
+	bh=aGGqaZpPT+rSRVg/YC1WMx6qAqamenr0rL8vhcsCp9Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=A2tm53U6uEztHjfcUA4HiRR4P2uUPvC4T2Zko9Msc4gE7wb2dcXiRraf8D5STe6jd
+	 qYiznSDMAGB5j2o85dWdGdMFHlTWTccFOGL3NLBIzSRM/p5vl5NmvbnMUaePKpH+dy
+	 vyISVN12AktnT6N9Z2RittVg0RJqUHkE5yWk24WE=
+Message-ID: <16db8f3d-04a2-408a-964f-4cf9478229b4@ideasonboard.com>
+Date: Tue, 11 Feb 2025 14:24:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <25203566.ouqheUzb2q@diego>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] dt-bindings: display: ti: Add schema for AM625
+ OLDI Transmitter
+To: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+ Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+ Jayesh Choudhary <j-choudhary@ti.com>,
+ Francesco Dolcini <francesco@dolcini.it>,
+ DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>
+References: <20250209160925.380348-1-aradhya.bhatia@linux.dev>
+ <20250209160925.380348-3-aradhya.bhatia@linux.dev>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20250209160925.380348-3-aradhya.bhatia@linux.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Feb 11, 2025 at 08:40:25AM +0100, Heiko Stübner wrote:
-> Am Montag, 10. Februar 2025, 22:37:29 MEZ schrieb Patrick Wildt:
-> > The SMMU architecture requires wired interrupts to be edge triggered,
-> > which does not align with the DT description for the RK3588.  This leads
-> > to interrupt storms, as the SMMU continues to hold the pin high and only
-> > pulls it down for a short amount when issuing an IRQ.  Update the DT
-> > description to be in line with the spec and perceived reality.
-> > 
+Hi,
+
+On 09/02/2025 18:09, Aradhya Bhatia wrote:
+> From: Aradhya Bhatia <a-bhatia1@ti.com>
 > 
-> Cc'ed Niklas
+> The OLDI transmitters (TXes) do not have registers of their own, and are
+> dependent on the source video-ports (VPs) from the DSS to provide
+> configuration data. This hardware doesn't directly sit on the internal
+> bus of the SoC, but does so via the DSS. Hence, the OLDI TXes are
+> supposed to be child nodes under the DSS, and not independent devices.
 > 
-> This should probably also get a
+> Two of the OLDI TXes can function in tandem to output dual-link OLDI
+> output, or cloned single-link outputs. In these cases, one OLDI will be
+> the primary OLDI, and the other one, a companion. The following diagram
+> represents such a configuration.
 > 
-> Fixes: cd81d3a0695c ("arm64: dts: rockchip: add rk3588 pcie and php IOMMUs")
-
-Agreed.
-
-
+> +-----+-----+         +-------+
+> |     |     |         |       |
+> |     | VP1 +----+--->+ OLDI0 |  (Primary - may need companion)
+> |     |     |    |    |       |
+> | DSS +-----+    |    +-------+
+> |     |     |    |
+> |     | VP2 |    |    +-------+
+> |     |     |    |    |       |
+> +-----+-----+    +--->+ OLDI1 |  (Companion OLDI)
+>                        |       |
+>                        +-------+
 > 
-> > Signed-off-by: Patrick Wildt <patrick@blueri.se>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 16 ++++++++--------
-> >  1 file changed, 8 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > index 8cfa30837ce7..520d0814a4de 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > @@ -549,10 +549,10 @@ usb_host2_xhci: usb@fcd00000 {
-> >  	mmu600_pcie: iommu@fc900000 {
-> >  		compatible = "arm,smmu-v3";
-> >  		reg = <0x0 0xfc900000 0x0 0x200000>;
-> > -		interrupts = <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH 0>,
-> > -			     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH 0>,
-> > -			     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH 0>,
-> > -			     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +		interrupts = <GIC_SPI 369 IRQ_TYPE_EDGE_RISING 0>,
-> > +			     <GIC_SPI 371 IRQ_TYPE_EDGE_RISING 0>,
-> > +			     <GIC_SPI 374 IRQ_TYPE_EDGE_RISING 0>,
-> > +			     <GIC_SPI 367 IRQ_TYPE_EDGE_RISING 0>;
-> >  		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
-> >  		#iommu-cells = <1>;
-> >  	};
-> > @@ -560,10 +560,10 @@ mmu600_pcie: iommu@fc900000 {
-> >  	mmu600_php: iommu@fcb00000 {
-> >  		compatible = "arm,smmu-v3";
-> >  		reg = <0x0 0xfcb00000 0x0 0x200000>;
-> > -		interrupts = <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH 0>,
-> > -			     <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH 0>,
-> > -			     <GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH 0>,
-> > -			     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +		interrupts = <GIC_SPI 381 IRQ_TYPE_EDGE_RISING 0>,
-> > +			     <GIC_SPI 383 IRQ_TYPE_EDGE_RISING 0>,
-> > +			     <GIC_SPI 386 IRQ_TYPE_EDGE_RISING 0>,
-> > +			     <GIC_SPI 379 IRQ_TYPE_EDGE_RISING 0>;
-> >  		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
-> >  		#iommu-cells = <1>;
-> >  		status = "disabled";
-> > 
+> The DSS in AM625 SoC has a configuration like the one above. The AM625
+> DSS VP1 (port@0) can connect and control 2 OLDI TXes, to use them in
+> dual-link or cloned single-link OLDI modes. It is only the VP1 that can
+> connect to either OLDI TXes for the AM625 DSS, and not the VP2.
+> 
+> Alternatively, on some future TI SoCs, along with the above
+> configuration, the OLDI TX can _also_ connect to separate video sources,
+> making them work entirely independent of each other. In this case,
+> neither of the OLDIs are "companion" or "secondary" OLDIs, and nor do
+> they require one. They both are independent and primary OLDIs. The
+> following diagram represents such a configuration.
+> 
+> +-----+-----+               +-------+
+> |     |     |               |       |
+> |     | VP1 +--+----------->+ OLDI0 |  (Primary - may need companion)
+> |     |     |  |            |       |
+> |     +-----+  |            +-------+
+> |     |     |  |
+> |     | VP2 |  |
+> |     |     |  |
+> | DSS +-----+  |   +---+    +-------+
+> |     |     |  +-->+ M |    |       |
+> |     | VP3 +----->+ U +--->+ OLDI1 |  (Companion or Primary)
+> |     |     |      | X |    |       |
+> |     +-----+      +---+    +-------+
+> |     |     |
+> |     | VP4 |
+> |     |     |
+> +-----+-----+
+> 
+> Note that depending on the mux configuration, the OLDIs can either be
+> working together in tandem - sourced by VP1, OR, they could be working
+> independently sourced by VP1 and VP3 respectively.
+> The idea is to support all the configurations with this OLDI TX schema.
+> 
+> The OLDI functionality is further supported by a system-control module,
+> which contains a few registers to control OLDI IO power and other
+> electrical characteristics of the IO lanes.
+> 
+> Add devicetree binding schema for the OLDI TXes to support various
+> configurations, and extend their support to the AM625 DSS.
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> Signed-off-by: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+> ---
+>   .../bindings/display/ti/ti,am625-oldi.yaml    |  88 ++++++++++
+>   .../bindings/display/ti/ti,am65x-dss.yaml     | 154 ++++++++++++++++++
+>   MAINTAINERS                                   |   1 +
+>   3 files changed, 243 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml b/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+> new file mode 100644
+> index 000000000000..42a80a512660
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/ti/ti,am625-oldi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments AM625 OLDI Transmitter
+> +
+> +maintainers:
+> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> +  - Aradhya Bhatia <aradhya.bhatia@linux.dev>
+> +
+> +description:
+> +  The AM625 TI Keystone OpenLDI transmitter (OLDI TX) supports serialized RGB
+> +  pixel data transmission between host and flat panel display over LVDS (Low
+> +  Voltage Differential Sampling) interface. The OLDI TX consists of 7-to-1 data
+> +  serializers, and 4-data and 1-clock LVDS outputs. It supports the LVDS output
+> +  formats "jeida-18", "jeida-24" and "vesa-18", and can accept 24-bit RGB or
+> +  padded and un-padded 18-bit RGB bus formats as input.
+> +
+> +properties:
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: serial clock input for the OLDI transmitters
+> +
+> +  clock-names:
+> +    const: serial
+> +
+> +  ti,companion-oldi:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle to companion OLDI transmitter. This property is mandatory for the
+> +      primarty OLDI TX if the OLDI TXes are expected to work either in dual-lvds
+> +      mode or in clone mode. This property should point to the secondary OLDI
+> +      TX.
+> +
+> +  ti,secondary-oldi:
+> +    type: boolean
+> +    description:
+> +      Boolean property to mark the OLDI transmitter as the secondary one, when the
+> +      OLDI hardware is expected to run as a companion HW, in cases of dual-lvds
+> +      mode or clone mode. The primary OLDI hardware is responsible for all the
+> +      hardware configuration.
 
-Patrick, thank you for the patch!
+I think these work, but I'm wondering if we would ever need to check 
+something from the main oldi from the secondary oldi. In that case 
+"crossed phandles" would be better, i.e. something like:
 
-FWIW, they have the same bug in downstream:
-https://github.com/radxa/kernel/blob/linux-6.1-stan-rkr4.1/arch/arm64/boot/dts/rockchip/rk3588s.dtsi#L2761-L2783
+(in the first oldi:)
+ti,slave-oldi = <phandle-to-second-oldi>
 
-However, the Rockchip PCIe Virtualization Developer Guide correctly define
-the IRQs as edge triggered:
-https://dl.radxa.com/users/dev/Rockchip_PCIe_Virtualization_Developer_Guide_CN.pdf
+(in the second oldi:)
+ti,master-oldi = <phandle-to-first-oldi>
 
-Looking at the ARM SMMUv3 architecture specification:
-"An implementation must support one of, or optionally both of, wired
-interrupts and MSIs. Whether an implementation supports MSIs is discoverable
-from SMMU_IDR0.MSI and SMMU_S_IDR0.MSI. An implementation might support wired
-interrupt outputs that are edge-triggered. The discovery of support for wired
-interrupts is IMPLEMENTATION DEFINED."
+Then again, if we ever need that, even with these bindings the driver 
+could find the first oldi, but needs to go via the dss's node.
 
-Thus:
-Reviewed-by: Niklas Cassel <cassel@kernel.org>
+So, just a thought.
 
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-Heiko, this patch should go to 6.14.
+  Tomi
 
-Side note: We also have another SMMU patch that should go to 6.14:
-https://lore.kernel.org/linux-rockchip/20250207143900.2047949-2-cassel@kernel.org/
+> +  ti,oldi-io-ctrl:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle to syscon device node mapping OLDI IO_CTRL registers found in the
+> +      control MMR region. These registers are required to toggle the I/O lane
+> +      power, and control its electrical characteristics.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Parallel RGB input port
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: LVDS output port
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +allOf:
+> +  - if:
+> +      required:
+> +        - ti,secondary-oldi
+> +    then:
+> +      properties:
+> +        ti,companion-oldi: false
+> +
+> +required:
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - ti,oldi-io-ctrl
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> index 399d68986326..a82c525631ea 100644
+> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> @@ -91,6 +91,24 @@ properties:
+>             For AM625 DSS, the internal DPI output port node from video
+>             port 1.
+>             For AM62A7 DSS, the port is tied off inside the SoC.
+> +        properties:
+> +          endpoint@0:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description:
+> +              For AM625 DSS, VP Connection to OLDI0.
+> +              For AM65X DSS, OLDI output from the SoC.
+> +
+> +          endpoint@1:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description:
+> +              For AM625 DSS, VP Connection to OLDI1.
+> +
+> +        anyOf:
+> +          - required:
+> +              - endpoint
+> +          - required:
+> +              - endpoint@0
+> +              - endpoint@1
+>   
+>         port@1:
+>           $ref: /schemas/graph.yaml#/properties/port
+> @@ -112,6 +130,25 @@ properties:
+>         Input memory (from main memory to dispc) bandwidth limit in
+>         bytes per second
+>   
+> +  oldi-transmitters:
+> +    description:
+> +      Child node under the DSS, to describe all the OLDI transmitters connected
+> +      to the DSS videoports.
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      '^oldi@[0-1]$':
+> +        $ref: ti,am625-oldi.yaml#
+> +        description: OLDI transmitters connected to the DSS VPs
+> +
+>   allOf:
+>     - if:
+>         properties:
+> @@ -120,10 +157,25 @@ allOf:
+>               const: ti,am62a7-dss
+>       then:
+>         properties:
+> +        oldi-transmitters: false
+>           ports:
+>             properties:
+>               port@0: false
+>   
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,am65x-dss
+> +    then:
+> +      properties:
+> +        oldi-transmitters: false
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              properties:
+> +                endpoint@1: false
+> +
+>   required:
+>     - compatible
+>     - reg
+> @@ -171,3 +223,105 @@ examples:
+>               };
+>           };
+>       };
+> +
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+> +
+> +    bus {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        dss1: dss@30200000 {
+> +            compatible = "ti,am625-dss";
+> +            reg = <0x00 0x30200000 0x00 0x1000>, /* common */
+> +                  <0x00 0x30202000 0x00 0x1000>, /* vidl1 */
+> +                  <0x00 0x30206000 0x00 0x1000>, /* vid */
+> +                  <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
+> +                  <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
+> +                  <0x00 0x3020a000 0x00 0x1000>, /* vp1 */
+> +                  <0x00 0x3020b000 0x00 0x1000>, /* vp2 */
+> +                  <0x00 0x30201000 0x00 0x1000>; /* common1 */
+> +            reg-names = "common", "vidl1", "vid",
+> +                        "ovr1", "ovr2", "vp1", "vp2", "common1";
+> +            power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
+> +            clocks =        <&k3_clks 186 6>,
+> +                            <&vp1_clock>,
+> +                            <&k3_clks 186 2>;
+> +            clock-names = "fck", "vp1", "vp2";
+> +            interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
+> +            oldi-transmitters {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                oldi0: oldi@0 {
+> +                    reg = <0>;
+> +                    clocks = <&k3_clks 186 0>;
+> +                    clock-names = "serial";
+> +                    ti,companion-oldi = <&oldi1>;
+> +                    ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+> +                    ports {
+> +                        #address-cells = <1>;
+> +                        #size-cells = <0>;
+> +                        port@0 {
+> +                            reg = <0>;
+> +                            oldi0_in: endpoint {
+> +                                remote-endpoint = <&dpi0_out0>;
+> +                            };
+> +                        };
+> +                        port@1 {
+> +                            reg = <1>;
+> +                            oldi0_out: endpoint {
+> +                                remote-endpoint = <&panel_in0>;
+> +                            };
+> +                        };
+> +                    };
+> +                };
+> +                oldi1: oldi@1 {
+> +                    reg = <1>;
+> +                    clocks = <&k3_clks 186 0>;
+> +                    clock-names = "serial";
+> +                    ti,secondary-oldi;
+> +                    ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+> +                    ports {
+> +                        #address-cells = <1>;
+> +                        #size-cells = <0>;
+> +                        port@0 {
+> +                            reg = <0>;
+> +                            oldi1_in: endpoint {
+> +                                remote-endpoint = <&dpi0_out1>;
+> +                            };
+> +                        };
+> +                        port@1 {
+> +                            reg = <1>;
+> +                            oldi1_out: endpoint {
+> +                                remote-endpoint = <&panel_in1>;
+> +                            };
+> +                        };
+> +                    };
+> +                };
+> +            };
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                port@0 {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +                    reg = <0>;
+> +                    dpi0_out0: endpoint@0 {
+> +                        reg = <0>;
+> +                        remote-endpoint = <&oldi0_in>;
+> +                    };
+> +                    dpi0_out1: endpoint@1 {
+> +                        reg = <1>;
+> +                        remote-endpoint = <&oldi1_in>;
+> +                    };
+> +                };
+> +                port@1 {
+> +                    reg = <1>;
+> +                    dpi1_out: endpoint {
+> +                        remote-endpoint = <&hdmi_bridge>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0fa7c5728f1e..88fa2d9435b8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -7816,6 +7816,7 @@ M:	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>   L:	dri-devel@lists.freedesktop.org
+>   S:	Maintained
+>   T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
+> +F:	Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+>   F:	Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>   F:	Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+>   F:	Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
 
-
-Kind regards,
-Niklas
 
