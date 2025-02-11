@@ -1,154 +1,143 @@
-Return-Path: <devicetree+bounces-145294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05AA2A30D5E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:55:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE396A30D68
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:56:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD153165EDB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:55:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C50477A2195
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:55:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9CF244E8F;
-	Tue, 11 Feb 2025 13:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2315124BD0D;
+	Tue, 11 Feb 2025 13:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="0dqaU3dH"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="NM7NzNok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79DDE24BCFD;
-	Tue, 11 Feb 2025 13:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF790244E96;
+	Tue, 11 Feb 2025 13:55:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739282127; cv=none; b=G4R3fX31Io4B6iR1GTXE0zHPpWnR7nDfTVE7IgoOX40a89ng4PpuFY4+KgpdHfMLYTw/BxSkIBFL4BwZiL/VnUeP13OsRCSuWeaUjUSffLWVRXr/H+4CHSSv1oZosHjih1rEmUZJHbHeg3K5FGocrexG0oZ4u5CArhG3rrXUL08=
+	t=1739282159; cv=none; b=jPUeFN1fnzeRXzGT8+P5NBd/T+t6XgRJH0E9BUwd38XihWxb6WKu0tqg79IYsQAsLdCqjP93NBFh+u1OTEnpdNIV/DwsnsdpX4mqT4wR7yhOxIhCUed5vYoVSiRpF5EcMVpcWkBrPfFYw2sJK3MbMZ4QZEdh5RoinaaUwa0t3pM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739282127; c=relaxed/simple;
-	bh=LPJIW9CtLWEsBpR7hKRNe4DFO7x2P5md0lGDfeCVAx8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M6y2CSa/ucSn2iP8E8U3VqhBLyqU1IITWOyNG752XCn4Z39+LO+uPGqLhih/YV99y+6ugtMup+m34OlXlUa1vu/AhgzgLZ8liuxV+4n249OM8RA9KH1brvTjcr6ZkUQ9NhT7FJJU/vaL0xlR5buiCtl8WMGkEPkA3obcYRkcZdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=0dqaU3dH; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=JMokV+6fg2Xdrbbos7AcaNWCczEBKC1U9U+IkW3qWZ8=; b=0dqaU3dHW0dUK2VSIVWYfzO/z/
-	fgSoO8k7bxswv4vk3Xjd1yaSqnJf+OGhDknkqpJyhJdRbv37Ukd2zRPGwikasLE4viaqihVYfIHry
-	tgkfrkKUYeI3WDQoneGWGsNuI2pwHSQYvGWZOUQUgRE9OsmOQzKE9On2Ma55ctJJctHM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1thqjM-00D4jP-Q4; Tue, 11 Feb 2025 14:55:16 +0100
-Date: Tue, 11 Feb 2025 14:55:16 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lei Wei <quic_leiwei@quicinc.com>,
-	Suruchi Agarwal <quic_suruchia@quicinc.com>,
-	Pavithra R <quic_pavir@quicinc.com>,
-	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
-	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-	srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
-	john@phrozen.org
-Subject: Re: [PATCH net-next v3 13/14] net: ethernet: qualcomm: Add PPE
- debugfs support for PPE counters
-Message-ID: <5a53333b-e94c-4fb7-b23d-e1d38d2dad8e@lunn.ch>
-References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
- <20250209-qcom_ipq_ppe-v3-13-453ea18d3271@quicinc.com>
+	s=arc-20240116; t=1739282159; c=relaxed/simple;
+	bh=f9IOn1H+Qz7jYxe1KmRcYdzwSDqyhB302hT92PUKc2E=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=AWv5hpfDRxcPDMmilE2XHvsQJWitPefSKKxaA3oRySicNZKA/y+1/i8+OkBTeKJlLNGaNidv0zfqXa2ySAnn5yFOe8C5f0rtc7D95wfOLg8mhAJcyPYRgg6mTENQhgbljM/Vudyl77oY2sBjKJbFv/FRx7kACuR03AMWxLVVyFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=NM7NzNok; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250209-qcom_ipq_ppe-v3-13-453ea18d3271@quicinc.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1739282154;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=mifodZnx+GAT8j3y7LTSrIDDb3fyeuMJi7Lz1TWQoWg=;
+	b=NM7NzNok5uOfeVIliUUYXIjdfRtVgvDGaH9gru/W/Z2DSizT9jGyeohS7f/+9/x41Hh+UO
+	AasxnZ7X27daRD2cLPsFWyH4C5MfdLr8955ZuZ32LOOHz+IybYOnKka8tHUOM4TSGUSqox
+	U2Ypmvd8oWnSgL1tSLduD7ltV9sqTxa4xPID6osBCAwssPuMKt9QuFvJjtvRDkZj5rxb5J
+	XTTqUZjNlZylDn+t9EcfUVemavXzxOS1BWBM/NTKgJpYSZIFuUvaAkQn4Ydxw9BzRv2Tlj
+	tVlJ0mhoiALwBGSmZXcVVfsWwXNaDVsaImIoxOLJwBqjxCnFqlapMEjkR+mZ+g==
+Date: Tue, 11 Feb 2025 14:55:53 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Jagan Teki <jagan@edgeble.ai>, Quentin Schulz <foss+kernel@0leil.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Niklas
+ Cassel <cassel@kernel.org>, Michael Riesch <michael.riesch@wolfvision.net>,
+ Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 2/4] arm64: dts: rockchip: add overlay test for Edgeble
+ NCM6A
+In-Reply-To: <06f1f9f4-8a79-4505-98b8-992accf1fb87@cherry.de>
+References: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
+ <20250207-pre-ict-jaguar-v5-2-a70819ea0692@cherry.de>
+ <CA+VMnFyom=2BmJ_nt-At6hTQP0v+Auaw-DkCVbT9mjndMmLKtQ@mail.gmail.com>
+ <8d830c2c-6268-4c70-ae8a-47183b8cbace@cherry.de>
+ <74502f5556584ee7378c63d4971f2a66@manjaro.org>
+ <06f1f9f4-8a79-4505-98b8-992accf1fb87@cherry.de>
+Message-ID: <a9a023233f9a096cc215203bb6ef41d7@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-> +#define PRINT_COUNTER_PREFIX(desc, cnt_type)		\
-> +	seq_printf(seq, "%-16s %16s", desc, cnt_type)
-> +
-> +#define PRINT_CPU_CODE_COUNTER(cnt, code)		\
-> +	seq_printf(seq, "%10u(cpucode:%d)", cnt, code)
-> +
-> +#define PRINT_DROP_CODE_COUNTER(cnt, port, code)	\
-> +	seq_printf(seq, "%10u(port=%d),dropcode:%d", cnt, port, code)
-> +
-> +#define PRINT_SINGLE_COUNTER(tag, cnt, str, index)			\
-> +do {									\
-> +	if (!((tag) % 4))							\
-> +		seq_printf(seq, "\n%-16s %16s", "", "");		\
-> +	seq_printf(seq, "%10u(%s=%04d)", cnt, str, index);		\
-> +} while (0)
-> +
-> +#define PRINT_TWO_COUNTERS(tag, cnt0, cnt1, str, index)			\
-> +do {									\
-> +	if (!((tag) % 4))							\
-> +		seq_printf(seq, "\n%-16s %16s", "", "");		\
-> +	seq_printf(seq, "%10u/%u(%s=%04d)", cnt0, cnt1, str, index);	\
-> +} while (0)
+Hello Quentin,
 
-I don't think these make the code any more readable. Just inline it.
+On 2025-02-11 13:59, Quentin Schulz wrote:
+> On 2/10/25 7:29 PM, Dragan Simic wrote:
+>> On 2025-02-10 18:57, Quentin Schulz wrote:
+>>> On 2/10/25 3:11 PM, Jagan Teki wrote:
+>>>> On Fri, 7 Feb 2025 at 20:50, Quentin Schulz <foss+kernel@0leil.net> 
+>>>> wrote:
+>>>>> 
+>>>>> From: Quentin Schulz <quentin.schulz@cherry.de>
+>>>>> 
+>>>>> The Edgeble NCM6A can have WiFi modules connected and this is 
+>>>>> handled
+>>>>> via an overlay (commit 951d6aaa37fe ("arm64: dts: rockchip: Add 
+>>>>> Edgeble
+>>>>> NCM6A WiFi6 Overlay")).
+>>>>> 
+>>>>> In order to make sure the overlay is still valid in the future, 
+>>>>> let's
+>>>>> add a validation test by applying the overlay on top of the main 
+>>>>> base
+>>>>> at build time.
+>>>>> 
+>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+>>>>> ---
+>>>>>   arch/arm64/boot/dts/rockchip/Makefile | 4 ++++
+>>>>>   1 file changed, 4 insertions(+)
+>>>>> 
+>>>>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/ 
+>>>>> boot/dts/rockchip/Makefile
+>>>>> index 
+>>>>> 534e70a649eeada7f9b6f12596b83f5c47b184b4..02f98abe1df10f44f2ac27ea5f6c6e6c6334724e 
+>>>>> 100644
+>>>>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>>>>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>>>>> @@ -192,3 +192,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568- 
+>>>>> wolfvision-pf5-vz-2-uhd.dtb
+>>>>>   rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb 
+>>>>> \
+>>>>>          rk3568-wolfvision-pf5-display-vz.dtbo \
+>>>>>          rk3568-wolfvision-pf5-io-expander.dtbo
+>>>>> +
+>>>>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
+>>>>> +rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
+>>>>> +       rk3588-edgeble-neu6a-wifi.dtbo
+>>>> 
+>>>> Please add neu6b-io as well, wifi dtbo is similar for it as well.
+>>> 
+>>> Similar or identical :)?
+>>> 
+>>> Should the overlay be renamed if it applies to neu6b AND neu6a 
+>>> instead
+>>> of implying it's only for neu6a based on the name of the overlay?
+>> 
+>> I'm afraid it's a bit too late for renaming the .dtso file. :/
+> 
+> How is it too late? Is there some rule somewhere about renaming I 
+> missed?
 
-> +/* The number of packets dropped because of no buffer available, no PPE
-> + * buffer assigned to these packets.
-> + */
-> +static void ppe_port_rx_drop_counter_get(struct ppe_device *ppe_dev,
-> +					 struct seq_file *seq)
-> +{
-> +	u32 reg, drop_cnt = 0;
-> +	int ret, i, tag = 0;
-> +
-> +	PRINT_COUNTER_PREFIX("PRX_DROP_CNT", "SILENT_DROP:");
-> +	for (i = 0; i < PPE_DROP_CNT_TBL_ENTRIES; i++) {
-> +		reg = PPE_DROP_CNT_TBL_ADDR + i * PPE_DROP_CNT_TBL_INC;
-> +		ret = ppe_pkt_cnt_get(ppe_dev, reg, PPE_PKT_CNT_SIZE_1WORD,
-> +				      &drop_cnt, NULL);
-> +		if (ret) {
-> +			seq_printf(seq, "ERROR %d\n", ret);
-> +			return;
-> +		}
-
-This is an error getting the value from the hardware? You should not
-put that into the debugfs itself, you want the read() call to return
-it.
-
-> +/* Display the various packet counters of PPE. */
-> +static int ppe_packet_counter_show(struct seq_file *seq, void *v)
-> +{
-> +	struct ppe_device *ppe_dev = seq->private;
-> +
-> +	ppe_port_rx_drop_counter_get(ppe_dev, seq);
-> +	ppe_port_rx_bm_drop_counter_get(ppe_dev, seq);
-> +	ppe_port_rx_bm_port_counter_get(ppe_dev, seq);
-> +	ppe_parse_pkt_counter_get(ppe_dev, seq);
-> +	ppe_port_rx_counter_get(ppe_dev, seq);
-> +	ppe_vp_rx_counter_get(ppe_dev, seq);
-> +	ppe_pre_l2_counter_get(ppe_dev, seq);
-> +	ppe_vlan_counter_get(ppe_dev, seq);
-> +	ppe_cpu_code_counter_get(ppe_dev, seq);
-> +	ppe_eg_vsi_counter_get(ppe_dev, seq);
-> +	ppe_vp_tx_counter_get(ppe_dev, seq);
-> +	ppe_port_tx_counter_get(ppe_dev, seq);
-> +	ppe_queue_tx_counter_get(ppe_dev, seq);
-
-It would be more normal to have one debugfs file per group of
-counters.
-
-	Andrew
+The way I see it, names of the .dts and .dtso files become part of
+the "extended ABI", so to speak, once they've been accepted upstream
+for a while, because renaming them may break boot configurations.
 
