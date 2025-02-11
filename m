@@ -1,156 +1,110 @@
-Return-Path: <devicetree+bounces-145410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A559DA313F6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:21:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 689A4A313FA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:22:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED8C31882B89
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:21:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E06E167DC2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:22:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6832B1E7C2B;
-	Tue, 11 Feb 2025 18:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB09260A5B;
+	Tue, 11 Feb 2025 18:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tIcVLdU7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="inkb7GJ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0611E32DB
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 18:21:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85C1E254B17;
+	Tue, 11 Feb 2025 18:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739298097; cv=none; b=Y2Gi56Mtaoy6gAjGKclVbdiWMPJzXn4WqWk2MQtwTTXrRLfmGwlF1CFQf8tpCjlTDRlCBs5LwrOjqlRczxzopYJSxT04NCYObfofzbOwzy6oBPiK30X9xzF85mDsKehal9rgIi243NNlzZ6hLeqNf/lV2xnKjeS9WtWJwNgzu4Q=
+	t=1739298107; cv=none; b=n+DjSdA5/W5T/8YuXwfhfyzs0ro8cmApwv+gQqh/RITBSo93TARKf2bKcw73/l9AqviIO8s063L05+Qm5RMXcBMWWwaeKgQAcKapFPplEpUPS2SVQeVforL2vOANxDNr5ns0msIGqUxvWOKxYCKCNeSgZhwN9ShZN81Dp9Qdll8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739298097; c=relaxed/simple;
-	bh=yHzpB75qrt6L9V798dzn3nFGVe17ID9Yz9uDWiN5boM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qQDsl5xRDkwGocjBkyqq/UXc7L2cBX7bLXx2vFVQNzz7DDyJtDu7uwvm1iWSiklL2OEiVGcaPl/9IIoBq2L6aF1zPfABhFY/k4wrOWP/X/uRE46e+uNZs5IZlWvXbOAo22t73s4HB4UngqhBbLrxqcIeV6bRJM5KKKSeDiFMxtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tIcVLdU7; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-38dd0dc2226so3326008f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 10:21:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739298094; x=1739902894; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ltM+a2uxSbqNoll57t/hl+Ny/dwW4fSjhIoNqgR74iw=;
-        b=tIcVLdU7FyNx7JJwMtMB2sVdwIH3hPTSeIrA2vXoux4AEZx4LJ9jDMRPMHIax2dWhB
-         D120pHi71LGWs9iMtCAWuseBi7iE8s7FaFaoxiwxlXXr5cNgCJs8HIJ+ThDHDHnH+up5
-         bLbthEwW+FMcXbFA+7y5RCpnm604YPsLRN8Hcsbs9yT36Y8g2jtNe2YqcOdrASo6ql6T
-         RBjYmGR5GmDjfNtsWUxN4vjQeApM0WCJkDZbOqJByp7Jpp1xuMd0EMX+Yh/jpL6poNWz
-         evTwbKc0x15XEtNq4WgZ1ZRa2kHMOsfxvLIuX4JmFKyd5Dfx1gNnGZzcIUPNr0+ZP/tx
-         g1cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739298094; x=1739902894;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ltM+a2uxSbqNoll57t/hl+Ny/dwW4fSjhIoNqgR74iw=;
-        b=Tq0CpeQKR0uBmteu5DU33vzAjKPsYKUQQbfiydNVqVi2MMBs+ugRBV61Kbd6RENjn8
-         w1aueApblu8sVHlMsNp+6DHpn0e6wisfwvMb6p9KbfkYaRazhy/qCqiQjTCaqsM2LiZW
-         iKEYnTHHzHDsgpaKr8vM4tDgcrv3lhzV/QUo9f02VeLg200E9P9VhFvRKiQXNXSjDQbZ
-         8jDAW7N5QpgNufj1YlizWTFH3C1FT6aCEDULNNlGcKvja8XApAwrSr2NqxZ9jDone+HC
-         wYlKXQSvO6E2RdZyFZ/lf4CCpWkXqWz5dgIe+Ujfl9EUUNKZkvLfWSYJ444z3PpWFnF3
-         bwug==
-X-Forwarded-Encrypted: i=1; AJvYcCWUvrdiXC1jX4PSiXZ26TfVWXSnJmUx5MvhnSNLc8M1OmP3ueuQvmjcapHM1mbkd2o+C+CQU31EGNI/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYr/yUmJywa8C9MX364sVw9lg+0ObgILzK95ZobVX7ukBlpGtH
-	IUstWVARfmmqIeKRaMge4P1zeh27fq33EoOyhNJRQJ2TQgOYlf5FETTNvUJyY6s=
-X-Gm-Gg: ASbGncupBVpMznjMC6XulNjdYRuRYIpZwzdqHWtJT1beoqRnvnjMtu4eSz+1a+RXHww
-	jPldXEIN66U0dA1LpyWR7bfKGD6yWBa8ltcTJNMGkGrx4pebnCT84bJJU8+m9lg1T4biNsAl4zx
-	1ElbpN4A6xLfN8m8BPasKosV3GAasOKLmQPSo8HR+ZFSi2PvU8U9sKevGTDipfkNb7Ommjc0svR
-	jdmf2aQLiNkBbEvFwH4rxa5dY/5yO4xFd8M/rapyGAeifiKiYVIxfcdBHERIzmUV+l3REVZM4M2
-	lMrZusKCE5j+qpIsVixqQTYKSw==
-X-Google-Smtp-Source: AGHT+IH8s48al3LraqkT+TOIwA1K8sIqTbw55FOvBNGZc+9PMaUyZNyKYXua1A0xWaVLj5G742ETew==
-X-Received: by 2002:a5d:47af:0:b0:38d:b051:5a0e with SMTP id ffacd0b85a97d-38dea2ea1d3mr4453f8f.49.1739298093651;
-        Tue, 11 Feb 2025 10:21:33 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff21:ef30:70a:7a19:231e:65aa])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dcde66729sm11842301f8f.81.2025.02.11.10.21.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Feb 2025 10:21:33 -0800 (PST)
-Date: Tue, 11 Feb 2025 19:21:25 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Johan Hovold <johan@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100-qcp: Add WiFi/BT pwrseq
-Message-ID: <Z6uVJeQd1DXFFHG1@linaro.org>
-References: <20250211-x1e80100-pwrseq-qcp-v2-1-c4349ca974ab@linaro.org>
- <Z6txevdftVNww0wD@hovoldconsulting.com>
- <CAMRc=McApxN7TKKKAL2OmfkosKYA9gCYZXQZXFAE_A9a5qykmw@mail.gmail.com>
+	s=arc-20240116; t=1739298107; c=relaxed/simple;
+	bh=aXHOEUDaIALsHAwjUOUQ+Qgz8ovgVK0TiK4RDtyaye4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PYV/VxLlbZD66+aj4FMHZDDVdcPY+tCMKHUDll6O7Q8CqTSvp7khdgqqGSFksr2YYJFux3fzk/kRZyGDA+Ff0ipVbMw4aZJnAjZ9ASH2T5htGCJ/9U01GVioheOTl8ZfJACwkwHIQq+Ry//gdJFj8Nk0XLPqbPMzAGVxjkBGPAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=inkb7GJ6; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51BILbIl3651464
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 11 Feb 2025 12:21:37 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1739298097;
+	bh=xgT68oBSvMvFIgoMW0HNCWc1N34sOE6MI7TSV3ERtwA=;
+	h=From:To:CC:Subject:Date;
+	b=inkb7GJ6Ed4GDxTP8Ag4QfYwbkweZ+f4Ct5u/P5PBh2k2BhgcCR01NUGKA1G1WRNF
+	 arsKer/mjI/M4Rcu9HVsZPj6gZwhTfu1Vk6HW442gRYgPqI+yC9tLg4z+ujtM1IZGU
+	 lizoLTNS0RL1ltHnZIIO3NpnZSL6Q8PGR2xOtdag=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51BILbr5065006
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 11 Feb 2025 12:21:37 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
+ Feb 2025 12:21:36 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 11 Feb 2025 12:21:36 -0600
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51BILaZr022669;
+	Tue, 11 Feb 2025 12:21:36 -0600
+From: Chintan Vankar <c-vankar@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Tero Kristo
+	<kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
+	<nm@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>,
+        <srk@ti.com>, <c-vankar@ti.com>
+Subject: [PATCH v4 0/2] Add support for CPSW3G port 2 on AM62A7-SK
+Date: Tue, 11 Feb 2025 23:51:32 +0530
+Message-ID: <20250211182134.1500867-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=McApxN7TKKKAL2OmfkosKYA9gCYZXQZXFAE_A9a5qykmw@mail.gmail.com>
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Feb 11, 2025 at 06:51:02PM +0100, Bartosz Golaszewski wrote:
-> On Tue, Feb 11, 2025 at 4:49 PM Johan Hovold <johan@kernel.org> wrote:
-> >
-> > On Tue, Feb 11, 2025 at 04:01:56PM +0100, Stephan Gerhold wrote:
-> > > Add the WiFi/BT nodes for QCP and describe the regulators for the WCN7850
-> > > combo chip using the new power sequencing bindings. All voltages are
-> > > derived from chained fixed regulators controlled using a single GPIO.
-> > >
-> > > The same setup also works for CRD (and likely most of the other X1E80100
-> > > laptops). However, unlike the QCP they use soldered or removable M.2 cards
-> > > supplied by a single 3.3V fixed regulator. The other necessary voltages are
-> > > then derived inside the M.2 card. Describing this properly requires
-> > > new bindings, so this commit only adds QCP for now.
-> > >
-> > > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> > > ---
-> > > Changes in v2:
-> > > - Rebase on qcom for-next, patch 1-2 were applied already
-> > > - Mention dummy regulator warning
-> > > - Link to v1: https://lore.kernel.org/r/20241007-x1e80100-pwrseq-qcp-v1-0-f7166510ab17@linaro.org
-> > > ---
-> > > The Linux driver currently warns about a missing regulator supply:
-> > >
-> > >   pwrseq-qcom_wcn wcn7850-pmu: supply vddio1p2 not found, using dummy regulator
-> > >
-> > > This supply exists on the WCN7850 chip, but nothing is connected there on
-> > > the QCP. Discussion is still open how to hide this warning in the driver,
-> > > but since the DT is correct and the same setup is already used on SM8550
-> > > upstream, this shouldn't block this patch.
-> >
-> > I thought Bartosz was gonna fix his driver...
-> >
-> 
-> This is not the same issue. The one you're thinking about[1] was fixed
-> by commit ad783b9f8e78 ("PCI/pwrctl: Abandon QCom WCN probe on
-> pre-pwrseq device-trees").
-> 
-> This warning comes from the PMU driver, not the PCI pwrctrl one for
-> the WLAN module. One solution would be to make this supply optional in
-> bindings and use regulator_get_optional for the ones we know may be
-> unconnected. Does it sound correct?
-> 
+This series adds support for CPSW3G MAC port 2 with the SK-Ethernet-DC01
+Add-On daughtercard. Also, the missing alias for CPSW3G MAC Port 1 is
+added to the am62a7-sk board file in order to allow kernel to fetch MAC
+address populated by U-Boot for CPSW3G MAC Port 1.
 
-The supply is optional already in the bindings. It's not optional in the
-driver though, because that one uses the bulk regulator API and that
-currently provides no way to mark an individual regulator as optional.
+This series is based on linux-next tagged next-20250210.
 
-We did discuss this on v1 of this patch. I think you did not get back to
-Mark's last message yet [2]. :-)
+Link to v3:
+https://lore.kernel.org/r/20240429101739.2770090-1-c-vankar@ti.com/
 
-Thanks,
-Stephan
+Changes from v3 to v4:
+- No changes, rebased the series on top of latest linux-next branch.
 
-[2]: https://lore.kernel.org/linux-arm-msm/f125c7d5-5f85-4ff6-999b-2098ff3103f9@sirena.org.uk/
+Siddharth Vadapalli (2):
+  arm64: dts: ti: k3-am62a7-sk: Add alias for CPSW3G MAC port 1
+  arm64: dts: ti: k3-am62a7: Add overlay for second CPSW3G Port
+
+ arch/arm64/boot/dts/ti/Makefile               |  3 +
+ .../dts/ti/k3-am62a7-sk-ethernet-dc01.dtso    | 62 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       |  1 +
+ 3 files changed, 66 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
+
+-- 
+2.34.1
+
 
