@@ -1,205 +1,128 @@
-Return-Path: <devicetree+bounces-145413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B80D9A313FD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:22:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E100A31407
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:25:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D5C63A43AA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:22:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15FAC1887AC7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867BA24394F;
-	Tue, 11 Feb 2025 18:22:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1163222582;
+	Tue, 11 Feb 2025 18:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Zb7wc66X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gcZ6MW66"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273EB1E570A;
-	Tue, 11 Feb 2025 18:22:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1DD1E3DFD;
+	Tue, 11 Feb 2025 18:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739298132; cv=none; b=doqCgRmr0rNPLGuaS+yvSXBjkKcuOmrtGScHK8yBk8DY0tcG5xgKezKD8IT44QCKlV2J5CnBmBJOU5F5pq7u8jp9roUeexX0ObOzDU7PO+XH18v4I6YkjbIpOpBddmYNplNlr1nR/Lp3C9HdAfYATvykfbIqt7yppu/L6JRsY0o=
+	t=1739298335; cv=none; b=RmuLLWYLhVJm7ksC5qYWhqel6hwpmorDrDLIDbYUoOOxPI+GA3AjKavSnVdr80ETF9Bt2jZ2SQUk8x1q2l7F1VnEH1wS4gId+TehD+6jgOdxbOV0RfwZknC5pIPFep8xbKi2m9BKyVvjD5RohwRPctMXlp3ULoY2LhwA7E1CiX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739298132; c=relaxed/simple;
-	bh=drUWznsqYzBFdTs6zoqRvfCReDqxS5DHjVUce0N9hiY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JmpEO5WQ0pEvMVQgI7KBj+XJoo0sev7Rv/bT79Q49SlsKqVvNxquvxpsvonyqYxvToA9yfqs3QviHLvFxQcfDJFM6wQQ8BMqnVcqK9OBbfIggBfLB1tcqAt4OcIBl3HCZbBEahm5fpbPvPHr0W5YmPyBWWBn/9sbQuyA7bzB6BI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Zb7wc66X; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51BILd70285081
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 11 Feb 2025 12:21:40 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1739298100;
-	bh=+l74RiUBFzia65G6oVdyvmIiQ3qIBktj4F8GrgBJkLo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Zb7wc66Xd6MJotBsxlf/tI+1xyMfnl/QhLcNtIuXHyq+04S4cVaZodRFkHx20sKP0
-	 SebjMvO0wCHQg0gFYA0mGQlYegM0hWhrDijz3BLNHQQ4IDYWDvc0yPVk1JfyJEJATu
-	 CEjmtwrO590p8EmEtsPDmq0Bb538fWZqS9jgLyHE=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51BILdIe013681
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 11 Feb 2025 12:21:39 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
- Feb 2025 12:21:39 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 11 Feb 2025 12:21:39 -0600
-Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51BILcKO122968;
-	Tue, 11 Feb 2025 12:21:39 -0600
-From: Chintan Vankar <c-vankar@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
-	<nm@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>,
-        <srk@ti.com>, <c-vankar@ti.com>, Chintan Vankar <c-vankar@tii.com>,
-        Ravi Gunasekaran
-	<r-gunasekaran@ti.com>
-Subject: [PATCH v4 2/2] arm64: dts: ti: k3-am62a7: Add overlay for second CPSW3G Port
-Date: Tue, 11 Feb 2025 23:51:34 +0530
-Message-ID: <20250211182134.1500867-3-c-vankar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250211182134.1500867-1-c-vankar@ti.com>
-References: <20250211182134.1500867-1-c-vankar@ti.com>
+	s=arc-20240116; t=1739298335; c=relaxed/simple;
+	bh=m2wqFcz+v1UAQgc1YqCV1MB5c8CjM8VI4vZEBEicwuA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jG1yywoG2F8rgm2I5c6tkg/4D6PldxpJseGBNqVqynhTnYRRcJ5N8w3mug0RYMlZmGEkejTxJzWui5hD0ZsqkhKfHiMohPEudxxUeV9hJWNDNyM+Ffi78FrpWbPKJypRAam3GPk4JvcgMnFQ0yro2AMFl09fzVLvODXIAuF1iTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gcZ6MW66; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A4FDC4CEDD;
+	Tue, 11 Feb 2025 18:25:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739298334;
+	bh=m2wqFcz+v1UAQgc1YqCV1MB5c8CjM8VI4vZEBEicwuA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gcZ6MW66T4mSGkn1IwJAlhhTn3L0yjP+6Z7DRxfw3s4YqIlseachoNLve9XqrtKST
+	 O7kakKZ94Sd2Yu78QMBC3Dr/WdRoJ2so2S1L41JELSj/ACMf/mxOI+bHnylY1jVKcc
+	 dMsuMXlnGRzwoWfJoZi1/TrpfhzmANqViCcdJIzbF6JggwgSSxJK+oEL00vmrdL5KS
+	 RSieRcUqvmt7CZ1wVrCkKeRR63k36qyRQ1krBypUtiXLRZXTfTWGxHfDHARbLFjQgS
+	 9heWZK/oLn9k+37SuiRtcCnmN6i6/DQvs1xS+yOr2Wvwj9Nc0R2FUl627260njtMvP
+	 UzFpNQsC+PHyw==
+Date: Tue, 11 Feb 2025 18:25:28 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: media: st,stmipid02: correct
+ lane-polarities maxItems
+Message-ID: <20250211-labrador-spotter-27df2d2bbe02@spud>
+References: <20250210-6-14-stm32-media-fixes-v1-0-c64ebe9af8bb@foss.st.com>
+ <20250210-6-14-stm32-media-fixes-v1-2-c64ebe9af8bb@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hFoqtL9VL6EAg4Q/"
+Content-Disposition: inline
+In-Reply-To: <20250210-6-14-stm32-media-fixes-v1-2-c64ebe9af8bb@foss.st.com>
 
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
 
-The SK-Ethernet-DC01 Add-On Ethernet Card for AM62A7-SK board supports
-RGMII mode.
+--hFoqtL9VL6EAg4Q/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Add overlay to enable the second CPSW3G port in RGMII-RXID mode with the
-Add-On Ethernet Card.
+On Mon, Feb 10, 2025 at 11:04:31AM +0100, Alain Volmat wrote:
+> The MIPID02 can use up to 2 data lanes which leads to having a maximum
+> item number of 3 for the lane-polarities since this also contains the
+> clock lane.
+>=20
+> CC: stable@vger.kernel.org
+> Fixes: c2741cbe7f8a ("dt-bindings: media: st,stmipid02: Convert the text =
+bindings to YAML")
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Signed-off-by: Chintan Vankar <c-vankar@tii.com>
-Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
----
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Link to v3:
-https://lore.kernel.org/r/20240429101739.2770090-3-c-vankar@ti.com/
+> ---
+>  Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.ya=
+ml b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
+> index b68141264c0e9fe0e530ce3b06fa3434fa712b38..4d40e75b4e1efff673647dff7=
+bf984c89abca4cf 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
+> @@ -71,7 +71,7 @@ properties:
+>                  description:
+>                    Any lane can be inverted or not.
+>                  minItems: 1
+> -                maxItems: 2
+> +                maxItems: 3
+> =20
+>              required:
+>                - data-lanes
+>=20
+> --=20
+> 2.34.1
+>=20
 
-Changes from v3 to v4:
-- No changes.
+--hFoqtL9VL6EAg4Q/
+Content-Type: application/pgp-signature; name="signature.asc"
 
- arch/arm64/boot/dts/ti/Makefile               |  3 +
- .../dts/ti/k3-am62a7-sk-ethernet-dc01.dtso    | 62 +++++++++++++++++++
- 2 files changed, 65 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 8a4bdf87e2d4..7f9f0d3b9362 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -31,6 +31,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk-nand.dtbo
- # Boards with AM62Ax SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62a7-phyboard-lyra-rdk.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk-ethernet-dc01.dtbo
- 
- # Boards with AM62Px SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
-@@ -160,6 +161,8 @@ k3-am62a7-sk-csi2-ov5640-dtbs := k3-am62a7-sk.dtb \
- 	k3-am62x-sk-csi2-ov5640.dtbo
- k3-am62a7-sk-csi2-tevi-ov5640-dtbs := k3-am62a7-sk.dtb \
- 	k3-am62x-sk-csi2-tevi-ov5640.dtbo
-+k3-am62a7-sk-ethernet-dc01-dtbs := k3-am62a7-sk.dtb \
-+	k3-am62a7-sk-ethernet-dc01.dtbo
- k3-am62a7-sk-hdmi-audio-dtbs := k3-am62a7-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
- k3-am62p5-sk-csi2-imx219-dtbs := k3-am62p5-sk.dtb \
- 	k3-am62x-sk-csi2-imx219.dtbo
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso b/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
-new file mode 100644
-index 000000000000..b06362de6642
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk-ethernet-dc01.dtso
-@@ -0,0 +1,62 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT Overlay for second CPSW3G port in RGMII mode using SK-ETHERNET-DC01
-+ * Add-On Daughtercard with AM62A7-SK.
-+ *
-+ * Copyright (C) 2024-2025 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	aliases {
-+		ethernet1 = "/bus@f0000/ethernet@8000000/ethernet-ports/port@2";
-+	};
-+};
-+
-+&cpsw3g {
-+	pinctrl-0 = <&main_rgmii1_pins_default>,
-+		    <&main_rgmii2_pins_default>;
-+};
-+
-+&cpsw_port2 {
-+	status = "okay";
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&cpsw3g_phy1>;
-+};
-+
-+&cpsw3g_mdio {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	cpsw3g_phy1: ethernet-phy@1 {
-+		reg = <1>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_rgmii2_pins_default: main-rgmii2-default-pins {
-+		pinctrl-single,pins = <
-+			AM62AX_IOPAD(0x0184, PIN_INPUT, 0) /* (AA21) RGMII2_RD0 */
-+			AM62AX_IOPAD(0x0188, PIN_INPUT, 0) /* (Y20) RGMII2_RD1 */
-+			AM62AX_IOPAD(0x018c, PIN_INPUT, 0) /* (AB21) RGMII2_RD2 */
-+			AM62AX_IOPAD(0x0190, PIN_INPUT, 0) /* (AB20) RGMII2_RD3 */
-+			AM62AX_IOPAD(0x0180, PIN_INPUT, 0) /* (AA20) RGMII2_RXC */
-+			AM62AX_IOPAD(0x017c, PIN_INPUT, 0) /* (W18) RGMII2_RX_CTL */
-+			AM62AX_IOPAD(0x016c, PIN_INPUT, 0) /* (AA19) RGMII2_TD0 */
-+			AM62AX_IOPAD(0x0170, PIN_INPUT, 0) /* (Y18) RGMII2_TD1 */
-+			AM62AX_IOPAD(0x0174, PIN_INPUT, 0) /* (AA18) RGMII2_TD2 */
-+			AM62AX_IOPAD(0x0178, PIN_INPUT, 0) /* (W17) RGMII2_TD3 */
-+			AM62AX_IOPAD(0x0168, PIN_INPUT, 0) /* (AB19) RGMII2_TXC */
-+			AM62AX_IOPAD(0x0164, PIN_INPUT, 0) /* (Y19) RGMII2_TX_CTL */
-+		>;
-+	};
-+};
--- 
-2.34.1
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6uWGAAKCRB4tDGHoIJi
+0vx+AP42lFkGgFbVvjv8uVhpy2pgbgrr0qVFB5kRBVK83SQAOQEA+V9bGwFArr3m
+dzI4HLmfDst/Jxk9UYibYgg4vtsczA0=
+=Rwgi
+-----END PGP SIGNATURE-----
 
+--hFoqtL9VL6EAg4Q/--
 
