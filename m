@@ -1,283 +1,113 @@
-Return-Path: <devicetree+bounces-145506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CC98A31898
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 23:26:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B39A4A3189D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 23:31:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6D823A059B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:26:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70DF8168963
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:31:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00F4268FD4;
-	Tue, 11 Feb 2025 22:26:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB4D268FC2;
+	Tue, 11 Feb 2025 22:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LsFaIp0X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YY0DPekn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C951267714;
-	Tue, 11 Feb 2025 22:26:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A061DDC14;
+	Tue, 11 Feb 2025 22:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739312792; cv=none; b=UzLaHYbAeU5VHDfaRSpUuplLLirRCwcJdyyToYeySchmqRM3ODFfz/OL+ld1Zpo+zUSA5J0rsqk77+OgmkN8OaVgl146deZoqF/iLI7Im/IkDCBYoCm7nxC//8obqSC/LTyW0DgSVmjvpBgWKP4P1gL+bK6+uvFob01IrXrTCso=
+	t=1739313082; cv=none; b=eFAEzqQdFapviHaqnpW5AAtgyuLJwZSMAP4W0L5SxxkKsPcoXD35Ig8H2P9nrTpRk2GjOGDHWG87Wln9DBbmjiw21KdGq8x3jrDKZi6u2OQlxrEQnF+xnGYle+0yWs3YY4ktAcH86fThUgB7B1WUzRwPV1nypXy+197jekIlBXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739312792; c=relaxed/simple;
-	bh=ZiCYq37YDGQSbnisBGMOuc5JJI4Fc3ZsQrKxYb8IE/4=;
+	s=arc-20240116; t=1739313082; c=relaxed/simple;
+	bh=oKiytre//4VdWD8ww4w5uW85mMA9TzV2kpcRlAyNNLQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S+e2m/zbMfjGLgeWncmiOjVTvAIC/TSv2eZrqmNXIIY31+uBY1QHTrpOU9MjFjWyJIOkPSHwCPttPy1u/SJuT+MyueCbB5b6D6/Lv8R31znHalCsCaJxmJK3V3B39Xh7O4NdbgJ+TksK26CIsljsnPIufL4tii+TGrHSWFs5kHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LsFaIp0X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D164DC4CEDD;
-	Tue, 11 Feb 2025 22:26:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GC/W+kMvH75QDt2fXUtn7WTdi7PvGYtAObP/dpTtvEWeVJoL0OKt/ayqnRl8HrNEvaKjfVaf6gIu+iHXrknA63U1LPUaBhrXZpYQdxUsBrllEC2fYP146XVaeTs8zoNlsI4fQqnicUaev74twzESlDzzimRtd/YqP9ohy2zk8BQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YY0DPekn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEFB1C4CEDD;
+	Tue, 11 Feb 2025 22:31:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739312792;
-	bh=ZiCYq37YDGQSbnisBGMOuc5JJI4Fc3ZsQrKxYb8IE/4=;
+	s=k20201202; t=1739313081;
+	bh=oKiytre//4VdWD8ww4w5uW85mMA9TzV2kpcRlAyNNLQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LsFaIp0XxEWYbpcLJ89WV7TcBNK9RpDgupgyeTPsG2H0fFD2ZAr30fhpx0W/TIkLc
-	 rb7XzSZPSdDHrmgC9KVGnQAk28KijT1phke59uyNXwaUXceK4y/p4442QIKLe2RVE3
-	 y3BVRNMY8M+7uSX9SZT011P1xsvclCpsu+FjiEjPj9DYod43MV/JuF+K3+1crNFtd9
-	 L+bsh1KIfJRKxrGPfSTmeaCSHe4sRZzq5n315WlTxKD33vq69DmqkYl2iLROuIU/9G
-	 oMZb8u48t4UBCsv82MBOR+eEvVuKi7teOeZ/a7O+ajEH8N/pUc2RN77ziYIl/cK6M9
-	 pUhBPKD46AkFA==
-Date: Tue, 11 Feb 2025 16:26:30 -0600
-From: Rob Herring <robh@kernel.org>
-To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=YY0DPeknXpkCAAXSI/htfS+mSF4sQokI5EXqV26pE0Iiz3gWGhUcsu/Sl0AoqKAba
+	 o2eMhE0iKTOth9xArDpXJaNhj3z6uPjHgwxl05oTMjZ5Cf3gxbtCo3/FMmG+kI8jwJ
+	 ltLNGMdGV7/JWngxIjQSB8qzLlYlGfWqjtzYNHlgKVMHg2SmGIw/kCMeVgTvvhwUsN
+	 BCC7YBZP1oV/RpxEieng1tfx44s7eUjwVJzZaQk7mBNByXnn/bJqcorcaH0gMsuhiV
+	 eecy8beIZkmC68h62ApUK0Ldk46fbbDAXuN2Q8y+NsNmbHN9yD6T82EC6I/YLJNj1c
+	 rldcDOK2FCMYA==
+Date: Tue, 11 Feb 2025 22:31:15 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 3/7] dt-bindings: dma: rz-dmac: Document RZ/V2H(P) family
- of SoCs
-Message-ID: <20250211222630.GA1288508-robh@kernel.org>
-References: <20250206220308.76669-1-fabrizio.castro.jz@renesas.com>
- <20250206220308.76669-4-fabrizio.castro.jz@renesas.com>
+	Saravana Kannan <saravanak@google.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	patches@opensource.cirrus.com,
+	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1 3/5] ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC
+ and EQ support
+Message-ID: <d42f6600-4233-4438-9636-d2892f3d11c1@sirena.org.uk>
+References: <20250206163152.423199-1-francesco@dolcini.it>
+ <20250206163152.423199-4-francesco@dolcini.it>
+ <20250211221904.GA1270109-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="AS7+IzE+cm9e530p"
+Content-Disposition: inline
+In-Reply-To: <20250211221904.GA1270109-robh@kernel.org>
+X-Cookie: Printed on recycled paper.
+
+
+--AS7+IzE+cm9e530p
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250206220308.76669-4-fabrizio.castro.jz@renesas.com>
 
-On Thu, Feb 06, 2025 at 10:03:04PM +0000, Fabrizio Castro wrote:
-> Document the Renesas RZ/V2H(P) family of SoCs DMAC block.
-> The Renesas RZ/V2H(P) DMAC is very similar to the one found on the
-> Renesas RZ/G2L family of SoCs, but there are some differences:
-> * It only uses one register area
-> * It only uses one clock
-> * It only uses one reset
-> * Instead of using MID/IRD it uses REQ NO/ACK NO
-> * It is connected to the Interrupt Control Unit (ICU)
-> 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> ---
->  .../bindings/dma/renesas,rz-dmac.yaml         | 152 +++++++++++++++---
->  1 file changed, 127 insertions(+), 25 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> index 82de3b927479..d4dd22432e49 100644
-> --- a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> @@ -11,19 +11,23 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - renesas,r7s72100-dmac # RZ/A1H
-> -          - renesas,r9a07g043-dmac # RZ/G2UL and RZ/Five
-> -          - renesas,r9a07g044-dmac # RZ/G2{L,LC}
-> -          - renesas,r9a07g054-dmac # RZ/V2L
-> -          - renesas,r9a08g045-dmac # RZ/G3S
-> -      - const: renesas,rz-dmac
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - renesas,r7s72100-dmac # RZ/A1H
-> +              - renesas,r9a07g043-dmac # RZ/G2UL and RZ/Five
-> +              - renesas,r9a07g044-dmac # RZ/G2{L,LC}
-> +              - renesas,r9a07g054-dmac # RZ/V2L
-> +              - renesas,r9a08g045-dmac # RZ/G3S
-> +          - const: renesas,rz-dmac
-> +
-> +      - const: renesas,r9a09g057-dmac # RZ/V2H(P)
->  
->    reg:
->      items:
->        - description: Control and channel register block
->        - description: DMA extended resource selector block
-> +    minItems: 1
->  
->    interrupts:
->      maxItems: 17
-> @@ -52,6 +56,7 @@ properties:
->      items:
->        - description: DMA main clock
->        - description: DMA register access clock
-> +    minItems: 1
->  
->    clock-names:
->      items:
-> @@ -61,14 +66,22 @@ properties:
->    '#dma-cells':
->      const: 1
->      description:
-> -      The cell specifies the encoded MID/RID values of the DMAC port
-> -      connected to the DMA client and the slave channel configuration
-> -      parameters.
-> +      For the RZ/A1H, RZ/Five, RZ/G2{L,LC,UL}, RZ/V2L, and RZ/G3S SoCs, the cell
-> +      specifies the encoded MID/RID values of the DMAC port connected to the
-> +      DMA client and the slave channel configuration parameters.
->        bits[0:9] - Specifies MID/RID value
->        bit[10] - Specifies DMA request high enable (HIEN)
->        bit[11] - Specifies DMA request detection type (LVL)
->        bits[12:14] - Specifies DMAACK output mode (AM)
->        bit[15] - Specifies Transfer Mode (TM)
-> +      For the RZ/V2H(P) SoC the cell specifies the REQ NO, the ACK NO, and the
-> +      slave channel configuration parameters.
-> +      bits[0:9] - Specifies the REQ NO
-> +      bits[10:16] - Specifies the ACK NO
-> +      bit[17] - Specifies DMA request high enable (HIEN)
-> +      bit[18] - Specifies DMA request detection type (LVL)
-> +      bits[19:21] - Specifies DMAACK output mode (AM)
-> +      bit[22] - Specifies Transfer Mode (TM)
->  
->    dma-channels:
->      const: 16
-> @@ -80,12 +93,29 @@ properties:
->      items:
->        - description: Reset for DMA ARESETN reset terminal
->        - description: Reset for DMA RST_ASYNC reset terminal
-> +    minItems: 1
->  
->    reset-names:
->      items:
->        - const: arst
->        - const: rst_async
->  
-> +  renesas,icu:
-> +    description:
-> +      On the RZ/V2H(P) SoC configures the ICU to which the DMAC is connected to.
-> +      It must contain the phandle to the ICU, and the index of the DMAC as seen
-> +      from the ICU (e.g. parameter k from register ICU_DMkSELy).
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to the ICU node.
-> +          - description: The DMAC index.
-> +              4 for DMAC0
-> +              0 for DMAC1
-> +              1 for DMAC2
-> +              2 for DMAC3
-> +              3 for DMAC4
-> +
->  required:
->    - compatible
->    - reg
-> @@ -98,27 +128,62 @@ allOf:
->    - $ref: dma-controller.yaml#
->  
->    - if:
-> -      not:
-> -        properties:
-> -          compatible:
-> -            contains:
-> -              enum:
-> -                - renesas,r7s72100-dmac
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g057-dmac
->      then:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-> +        clocks:
-> +          maxItems: 1
-> +        resets:
-> +          maxItems: 1
-> +
-> +        clock-names: false
-> +        reset-names: false
-> +
->        required:
->          - clocks
-> -        - clock-names
->          - power-domains
-> +        - renesas,icu
->          - resets
-> -        - reset-names
->  
->      else:
-> -      properties:
-> -        clocks: false
-> -        clock-names: false
-> -        power-domains: false
-> -        resets: false
-> -        reset-names: false
-> +      if:
+On Tue, Feb 11, 2025 at 04:19:04PM -0600, Rob Herring wrote:
+> On Thu, Feb 06, 2025 at 05:31:50PM +0100, Francesco Dolcini wrote:
 
-Please try to avoid nesting if/then/else. Not sure that's easy or not 
-here. This diff is hard to read.
+> > +  wlf,retune-mobile-cfg-names:
+> > +    $ref: /schemas/types.yaml#/definitions/string-array
+> > +    description:
+> > +      List of strings for the available retune modes.
+> > +      If absent, retune is disabled.
 
-> +        not:
-> +          properties:
-> +            compatible:
-> +              contains:
-> +                enum:
-> +                  - renesas,r7s72100-dmac
-> +      then:
-> +        properties:
-> +          reg:
-> +            minItems: 2
-> +          clocks:
-> +            minItems: 2
-> +          resets:
-> +            minItems: 2
-> +
-> +          renesas,icu: false
-> +
-> +        required:
-> +          - clocks
-> +          - clock-names
-> +          - power-domains
-> +          - resets
-> +          - reset-names
-> +
-> +      else:
-> +        properties:
-> +          clocks: false
-> +          clock-names: false
-> +          power-domains: false
-> +          resets: false
-> +          reset-names: false
-> +          renesas,icu: false
->  
->  additionalProperties: false
->  
-> @@ -164,3 +229,40 @@ examples:
->          #dma-cells = <1>;
->          dma-channels = <16>;
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/renesas-cpg-mssr.h>
-> +
-> +    dmac0: dma-controller@11400000 {
-> +        compatible = "renesas,r9a09g057-dmac";
+> Is there no defined set of names?
 
-Is this example really different enough from the others to need it? I 
-would drop it.
+No, this set of names is for system integrator specified tunings so they
+can make up whatever is appropriate for their system and use cases (or
+otherwise amuses them).  The names will end up getting exposed directly
+to userspace as options that can be selected at runtime.
 
-Rob
+--AS7+IzE+cm9e530p
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmerz7IACgkQJNaLcl1U
+h9CJ/Qf/e19uP4duTkk/90jausJYsKrWocRj+OfkBnGKJcpqBYoYbYAL93oFPaq1
+ldCKokt7jBx3WlAFR9SmxZkRUi4V0HgwyiD4mVdkpyWQyxP/E4XCT+vM5Su98K6l
+71gTIc5LUO3E3FABIulpIKiVzAHO0T3B+d8pTN9ebAjP80tSRrFJjDOsCJwSNSSh
+KAInIVy9XhAaHVNtVJGEuM0j/AgLR3Ny1vm/0tzpKR2tvPGQz1y4WXYB4ikuIqIV
+m2a49nrOUSw4Zje3er7HsbKDBnjVulrjMXVSF1Mc+dZJmJCw2GDtDPLDh/GzH4bG
+o5Le8tlk3/qzTcci/yUk6zNUtpba1g==
+=kP6n
+-----END PGP SIGNATURE-----
+
+--AS7+IzE+cm9e530p--
 
