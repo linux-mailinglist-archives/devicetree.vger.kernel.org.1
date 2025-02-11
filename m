@@ -1,123 +1,145 @@
-Return-Path: <devicetree+bounces-145260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C0E6A30C5C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B9AA30C66
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:03:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB9D43A7F5B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:00:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08DFF3A51D2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:03:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C238C21CA11;
-	Tue, 11 Feb 2025 13:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1B3214811;
+	Tue, 11 Feb 2025 13:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UnoD0KpM"
+	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="BtwxWUSY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB41204859;
-	Tue, 11 Feb 2025 13:00:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3AD7524F
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739278816; cv=none; b=UO/L+DsLvvv8eoh0QIZg00malixlPLV9ZZm8ZIxb8RdbzCjpjogaFfcS5PDaI5CRUozKRl0RtvMhq2f0cuhwTj6YqDO3QNh/h2vPdZERcghbAjEFAm9DdXIWFtBH5aDlxCq3YWwUsowzT5oHG8fEHRrwnDLihJjeOHjCo/agnug=
+	t=1739279010; cv=none; b=sKmSgOxIrB6KzPFwTF2njUZNmJA4/qqEv7rh8xyjsK/ZEE1nRBwRumiaSMkC8WXp8pk5UMigzB18BGin521MehbMdfmpe/l79lJarPNmGuBa/7IPZtoZ4g2vr+TI3kJQDTW6kgaYU5oXL/TtJ1hnDXs6pUV043O79mC1q74drh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739278816; c=relaxed/simple;
-	bh=A3BZpJLJafLrsTduj49Udb7kidzg/yb+lZ0uRxIf3cA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E1OZT6COqq4uKlzNU950GT44/9B0e80Nn/65HNmNGJ8ERlqPhk5McYRY2EofRjzwuS80cscBH4opW+tz90eP3/xi5EaB8R2Bnul+9f2imQ2PNBTMqqd8ZMICYZcuvsP1PMeVVguxme9rTavIqQn3TwopkmGNPF+0wjaXGfLsY9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UnoD0KpM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCCD3C4CEDD;
-	Tue, 11 Feb 2025 13:00:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739278816;
-	bh=A3BZpJLJafLrsTduj49Udb7kidzg/yb+lZ0uRxIf3cA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UnoD0KpMGl1O7VkYH6bKVdhRA7raY63f/1GA+HvAPFCaExeG6n5hzOXcu/iJXIdjU
-	 IbPOiqfQx7Tst1Xaw526vZ7pipFmQlQVTChifj0nI6NUoSQp/QnKCTSqxW1dJDLyBt
-	 FOgJEf9eYw0u6RSLP7Q7wHBMdqXOWhqvayGipWMgwrjI3oq+C8kpKAPbhwmdo32j3e
-	 gzEdXO0wC0RLPZfQazADSMkCaYDTh6IFSn2r5Ed6VjGHo6sjuqr/ajlNQn2LT0ZIEi
-	 w2aI1RmnC7OTqDFXFGIZDk4FdEwFktTnyot3ljBOf/qK4S3rfGJoTOHw39jPO4iUiD
-	 3G7jhQwNKXFOQ==
-Date: Tue, 11 Feb 2025 13:00:08 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v8 01/17] spi: add basic support for SPI offloading
-Message-ID: <b000d3fd-754a-43e8-ab10-82677eeee1d2@sirena.org.uk>
-References: <20250207-dlech-mainline-spi-engine-offload-2-v8-0-e48a489be48c@baylibre.com>
- <20250207-dlech-mainline-spi-engine-offload-2-v8-1-e48a489be48c@baylibre.com>
- <Z6otFlsmEikIbI__@black.fi.intel.com>
- <27d2a88c-b44a-4712-b066-b999e41774f0@baylibre.com>
- <b1dcbb19-190a-45e7-8e94-cb5ef65f1f1b@sirena.org.uk>
- <Z6pim_nLct33LzfN@smile.fi.intel.com>
+	s=arc-20240116; t=1739279010; c=relaxed/simple;
+	bh=t4ghqC5uBy7BE8igwkxJT0+IlaB5NctEtS32SBL9EG0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fTT3OvE8/nDFiZj9MXLyf7e8B7PE3FSjuXoxhUqnITTt5fgDGrVdOLclKNfl1KycnWkGu3SY0eyzbIzhiMVT7DMLNpYeGuGfBmFyxDzPnMuIoZNZsS/GBZiZ6L77cRvaCfypUuXIgj3d7kiGnGhRchgENLCpZW8z+8eXo67En6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai; spf=none smtp.mailfrom=edgeble.ai; dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b=BtwxWUSY; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=edgeble.ai
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-21f4500a5c3so108246135ad.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 05:03:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1739279007; x=1739883807; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=n3wx9zk5qHzdPMIZwl01jPTrtMsd38bzKH0sGNqE64Q=;
+        b=BtwxWUSYM7Uhp+tad8G87ScBd3m7WfUDzdOxQ22M3wOszA8SP6iQ88Rrpy7APBhP8o
+         1920bHx8sjL7ljpyMdxMmb0G4AR8RtyL/dd51+DYBOtBrHyD1McOeBdvaCa3BVgLAifR
+         i9QFJCR/BrYToGNZjtsXR9YfWv7tDSX47uAM39A9tJvnD2Zte99y0QUewsJiv5Tdkjrd
+         36sRTmVQcn+4uuT9Ob2D+Xq79X/VO054nfadCtEfuYwZEZh8RL/BcSad/HJXmNtTBRNx
+         cLekk5FJPdM+omO7loy7mVFWWfUyTqRa5YgRth5dOB34XPThsXhSO+YBbyBJ7qIAjU58
+         K1cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739279007; x=1739883807;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n3wx9zk5qHzdPMIZwl01jPTrtMsd38bzKH0sGNqE64Q=;
+        b=LQv45GBOdNTiFFfmJl3tC8qidR/vpMVuvFJFtQ2GQKwADfz41/iYZHkWP241KtXDiy
+         kZVOMgHrEt3tSog07R7LdZT4FkrTw1N3UKvUFsjVDtZFSaePAimNH29EYRCpAlyK6FAi
+         jmr4ODmaez5HULLpsl5qQ5Uz3RMoMfljP0JA8PEvxQ/jrj79/yJsCJLsah/s7lP+f+Ev
+         sTRUg1CRmetwBStLhB9sBBrzZat/NJk2Zin4WgxcIqHyPvO4kou4BSH7xKDsChCD1WGh
+         2IecKTXc1ywSw6x2uuUqK/Wpa87/XcWYvSamauWOGdc1MDpahSGPQlr71gzGjYrEibPj
+         59Ng==
+X-Forwarded-Encrypted: i=1; AJvYcCWjno0bc4Ki0Dtj9FYedMw23TcEqZXB6wBeuSnC/fQoXPRDMRmd8q0Mped7iKk2qpvkGq4m+jufsWQG@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywww3TQd7hXqCN6b6qfSV/fQ9KQOQ2yFjBElLxwcbhV0ZY7WyrG
+	F9n+CIRJ39l3GQMb+n3nEd4gYCOqgjUnSMLIXMOh/z9o3WWv3e/SY+qqgf4zboYVpa1IzVih5BK
+	r5uqTv28sd8/lBpzcTKtghx8SpOl2Ljbf+41Yxw==
+X-Gm-Gg: ASbGncvvk/KR11FbizVyZg/lsWufCaTYC7Xl3KHbJwPmox4/BxrwiTpx0meWtfZMh4e
+	LeTWvizctIQ5j63NhV/lJsATv13YKR1jcT6QXIo/t4tQUAqLIES88RpsjxxAT0eAVbvszMuU=
+X-Google-Smtp-Source: AGHT+IEMVpkiHNiW0PFSaGrVrINKXb5sxzgwVDUOtgfEWggvvAR0CvuTqqd3P9Mx3MHb8RdrN+UeWxJU5s62w/GAwiQ=
+X-Received: by 2002:a17:902:ce90:b0:216:2477:e4d3 with SMTP id
+ d9443c01a7336-21f4e7f2c46mr294522695ad.51.1739279006869; Tue, 11 Feb 2025
+ 05:03:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="J/EFsBuP+b+AoL5b"
-Content-Disposition: inline
-In-Reply-To: <Z6pim_nLct33LzfN@smile.fi.intel.com>
-X-Cookie: Printed on recycled paper.
+References: <20250207-pre-ict-jaguar-v5-0-a70819ea0692@cherry.de>
+ <20250207-pre-ict-jaguar-v5-2-a70819ea0692@cherry.de> <CA+VMnFyom=2BmJ_nt-At6hTQP0v+Auaw-DkCVbT9mjndMmLKtQ@mail.gmail.com>
+ <8d830c2c-6268-4c70-ae8a-47183b8cbace@cherry.de>
+In-Reply-To: <8d830c2c-6268-4c70-ae8a-47183b8cbace@cherry.de>
+From: Jagan Teki <jagan@edgeble.ai>
+Date: Tue, 11 Feb 2025 18:33:14 +0530
+X-Gm-Features: AWEUYZm0htviHKGbBoFA3-kz2TrpIHA0nE9JnkvC09nlcKbz1Z6y2gei6ZbeNLI
+Message-ID: <CA+VMnFxJZPD2D3-5t+=BEo2TVWoJFuEtd1Jj-_+2oqVoXonHcg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] arm64: dts: rockchip: add overlay test for Edgeble NCM6A
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Niklas Cassel <cassel@kernel.org>, 
+	Michael Riesch <michael.riesch@wolfvision.net>, Jonas Karlman <jonas@kwiboo.se>, 
+	Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Quentin,
 
---J/EFsBuP+b+AoL5b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, 10 Feb 2025 at 23:27, Quentin Schulz <quentin.schulz@cherry.de> wrote:
+>
+> Hi Jagan,
+>
+> On 2/10/25 3:11 PM, Jagan Teki wrote:
+> > On Fri, 7 Feb 2025 at 20:50, Quentin Schulz <foss+kernel@0leil.net> wrote:
+> >>
+> >> From: Quentin Schulz <quentin.schulz@cherry.de>
+> >>
+> >> The Edgeble NCM6A can have WiFi modules connected and this is handled
+> >> via an overlay (commit 951d6aaa37fe ("arm64: dts: rockchip: Add Edgeble
+> >> NCM6A WiFi6 Overlay")).
+> >>
+> >> In order to make sure the overlay is still valid in the future, let's
+> >> add a validation test by applying the overlay on top of the main base
+> >> at build time.
+> >>
+> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> >> ---
+> >>   arch/arm64/boot/dts/rockchip/Makefile | 4 ++++
+> >>   1 file changed, 4 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> >> index 534e70a649eeada7f9b6f12596b83f5c47b184b4..02f98abe1df10f44f2ac27ea5f6c6e6c6334724e 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> >> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> >> @@ -192,3 +192,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-vz-2-uhd.dtb
+> >>   rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
+> >>          rk3568-wolfvision-pf5-display-vz.dtbo \
+> >>          rk3568-wolfvision-pf5-io-expander.dtbo
+> >> +
+> >> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
+> >> +rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
+> >> +       rk3588-edgeble-neu6a-wifi.dtbo
+> >
+> > Please add neu6b-io as well, wifi dtbo is similar for it as well.
+> >
+>
+> Similar or identical :)?
+>
+> Should the overlay be renamed if it applies to neu6b AND neu6a instead
+> of implying it's only for neu6a based on the name of the overlay?
 
-On Mon, Feb 10, 2025 at 10:33:31PM +0200, Andy Shevchenko wrote:
-> On Mon, Feb 10, 2025 at 05:48:00PM +0000, Mark Brown wrote:
-> > On Mon, Feb 10, 2025 at 11:11:23AM -0600, David Lechner wrote:
+Similar. that overlay is applicable for neu6a-io and neu6b-io both.
 
-> > > In this case, we specifically split up the headers so that the only time you
-> > > would ever include this header is if you need to call functions in this
-> > > namespace (i.e. struct definitions are in linux/spi/offload/types.h which
-> > > doesn't import the namespace). So this doesn't actually seem like a problem
-> > > to me.
-
-> > Indeed - I can't see any case where a user would need the header without
-> > needing the namespace.
-
-> You are looking from the other end. What I'm telling is that anyone who adds
-> a header, automatically gets a namespace. What's the point to have namespace
-> if it won't easily prevent from (ab)using it in the code. I consider putting
-> MODULE_IMPORT_NS() in the headers a bit weird.
-
-Sure, but there's no case where anyone should ever be adding the header
-without adding the namespace which does rather sound like the sort of
-thing where you should just move the namespace addition to the header.
-
---J/EFsBuP+b+AoL5b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmerSdcACgkQJNaLcl1U
-h9DBYwf/d4mDef4Pkrie8SuKHHBQWTYej9llUslvUazOm/nwONmglSBhyo34uT0/
-zD/M+rieJKO0icoS7JXCXacLfDkKN2uZW+7YTPOv7oZoRSL/wcT/0nh2naj2s7X7
-5v8cxp0Jyg241ZE4yDnrlD3jSbwckgmpgiTzxW9VpRdvWLxdHpmiRblNnEkv3ZWL
-dHxctlWq0LLcXGFgxi9ll7DR5Buv2CVMgZ3201YU0Z0GKUf5qgiTkESh3kbGPsi5
-ViNPz4Y/pw44IYZkUGLbXZC4OkeoTIXto9AOjfksA//FqGeaRKhaCrB0dfZbsI17
-TNV6zWgxLhSvR3UpTWYVanq8UX4e+Q==
-=ZJSN
------END PGP SIGNATURE-----
-
---J/EFsBuP+b+AoL5b--
+Thanks,
+Jagan.
 
