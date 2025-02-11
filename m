@@ -1,156 +1,114 @@
-Return-Path: <devicetree+bounces-145371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9390A310F1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:14:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507E5A31110
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:18:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D84F17A05EC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:13:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A0BC3A9A4B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:17:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D26253F01;
-	Tue, 11 Feb 2025 16:14:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FAC91D63D2;
+	Tue, 11 Feb 2025 16:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=soleen-com.20230601.gappssmtp.com header.i=@soleen-com.20230601.gappssmtp.com header.b="qT4H+Yp7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c1pXt6cd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BFB253F03
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 16:14:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370C01EF01;
+	Tue, 11 Feb 2025 16:16:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739290486; cv=none; b=FNALBPj3hH2JB04jjgOog2ORKUlgfjAhj83Zq0suBvvTeW9jch9Nmty8Omu4jc+Gr9NFeGnr+IWOxFVhckm0Z9DMQDfuDyE2atZ2d2SanLFTjnmydp347QA7vwepjmQpfVJ1aiszvFi+NeuoXvRhcuCyycuuiBCyBmvsi9OUswA=
+	t=1739290578; cv=none; b=be0MC2sBSOJTC2nOU2Z8Og50ch/d5uy4dqXVFCy4xhVOgSjBxqyqt4sbgFG0jwpBB6ksj76jTbOeJ7GEoFc/Vuj/8b8wd31Q7PQGU1y7gVm17o1WUHRRIDnTAJDzsGy7QNP1Po8z5+/RbElVwlKx99g1J4/1lOXOetQKvgePc1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739290486; c=relaxed/simple;
-	bh=0ZjWyRdQG+9H46Kso5hG0mLJW41kpxg0H0tqPAoUZ34=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CI+3iidPoPe4E1+iS+fnz89WgwsQd8n4RejLB5rXiKqL8H34tV5Vm8ChSzfnh9dPIp2rwthOCk+FTXvmUk5FsQNk4BBHXJLFXRgXfR0uZx8vB334zJpYRABgN4uP/zVdbWm0AoGY/wWdi0fn3s8qKAgg0hGjQ1qIEp/jWCQzwbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=soleen.com; spf=pass smtp.mailfrom=soleen.com; dkim=pass (2048-bit key) header.d=soleen-com.20230601.gappssmtp.com header.i=@soleen-com.20230601.gappssmtp.com header.b=qT4H+Yp7; arc=none smtp.client-ip=209.85.160.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=soleen.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=soleen.com
-Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-46c7855df10so106105601cf.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 08:14:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=soleen-com.20230601.gappssmtp.com; s=20230601; t=1739290483; x=1739895283; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f00g8h93qQX8OTMUbXqv3cBNa5BjAh6ZTXb5qUHVm6k=;
-        b=qT4H+Yp7f/Eo2FIggH3X8Ta/uV5EuyiPrixzrsHS3YwAr3zWE6dQfdYn5rLUeHJ9U3
-         kJXtTw8/vMEFJViZZOgWGjBm01ZuVnE2iClUzZYTV9RWv+r7B5nBW8tvOEDWPkULPMcI
-         QztiGhjyv8mDft6hHgikXc6jrLs18HnxN49H0rqR6hJ2QAb8uBJdDOwDzhGTNZnA+Rvu
-         gliEML/kE31LeX73TLGoTLljg7mAy8BYj8oJqUbCy0Ym2Ts0PcI4rioC7a6nlJYPCgpH
-         /PGsAeacB2SEFxHKE0N5l7p2h+41Ok6WcBpd7Ggp+vGfK3Fi2GdeRUjE9khYwiYsIkzX
-         ouJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739290483; x=1739895283;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=f00g8h93qQX8OTMUbXqv3cBNa5BjAh6ZTXb5qUHVm6k=;
-        b=cbijwFN67+gbd/zUqbAT9LHPIUD2UBKRjpWQoQ8Y3L5/cL82fVrkHOL83KEKjIvulP
-         jji09COKB9rTX72VfUPcf39oRWpYzasi0/99vlx9GcWq5LJ5xefcFR8Prto33rB4vS4k
-         m7eThK4Bhevw550Iymb7qXlOWUWJ4fqFUggK7m7AaqSkUQ80v/4WuY55nFpDZO4V9jAc
-         bHT2qx/bgtk/sA6CZD2raugpxcBQH31pky4HIsK+GcednonX82l9+9N/spU9UkiUAVtu
-         g8pvS6C2GW+Z+kDXc1PXsswxIbM07iZteiVQ43iUlfOL8ZeVaTk673z4ErrcRK0F7tZC
-         5F3A==
-X-Forwarded-Encrypted: i=1; AJvYcCUv4mEqsIHLb2vkOk9EQOwuAIeSDFMAfTKJVtYEiB+lo/uDFUfCy9bYhUZSObU/8glS8wLeOgysp/Ra@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJWK8wS2DYa93yY5ajOQqO+akhpuNgS+q/mBIYCG8pLKmhpXQZ
-	SKfhBFko/dIEl/eCD3TKGVORmbanoddKwNOJBQGn6p1PS7b3c1TFIHuiqeDQJSnOCXige3XCJH4
-	hav9g04vvch51o5moQ9kWYMq564bZUGEVdAg+VA==
-X-Gm-Gg: ASbGnctbM4qX2VZoPDe0AI3epl0HBDEm+GzG5VPOkMddK8kTYrTVSf3+8eaxfHAWAKp
-	rCj4HRP2cejs+yaSGIWTuDPb+8tf1CKNmIONuAbTWLEEZ+UBvVpanb++Kt18a0JA2x5M6zw==
-X-Google-Smtp-Source: AGHT+IFV/2SwK8xAi9MTHEKrLCagsybkvEOxgGEB7IziCVbPaPZ5quI5gxUrWQ8mdomSEUM9RDcaJ8/FU9MUgrz9PW4=
-X-Received: by 2002:ac8:7d86:0:b0:462:c14f:d13f with SMTP id
- d75a77b69052e-47167ae2791mr311026341cf.41.1739290483262; Tue, 11 Feb 2025
- 08:14:43 -0800 (PST)
+	s=arc-20240116; t=1739290578; c=relaxed/simple;
+	bh=1apOfVZ6LTpZYFLpFXmf153RBYS1MxNBPKu94D2rOWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SOBxprtrnoqBfgR8rNfQ8vLFwFw+dfFJ1xb8p1+6DrLnjmbJqx8GXNHQUxR9Pd5xV/s7WPyP1uzZ+LlPEHdGvHQlIr/vNfohvtySOV26X+mobkMySZ4XhRYx9mfI6/+b+0tCkdscmojyRkhkUoiq9cRG+a9XLtnbSLBskgwONDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c1pXt6cd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65F5FC4CEE5;
+	Tue, 11 Feb 2025 16:16:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739290576;
+	bh=1apOfVZ6LTpZYFLpFXmf153RBYS1MxNBPKu94D2rOWY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c1pXt6cd9/NtBdoxZPnnvpY/oFOXH3Jxv9rSmmrs21uhFjOpUfDWg8rbeAtZfbL+4
+	 BVxN/UZCqGGAHACVhmGiYwSrAUlQrbq6DXvlEXKCqp5q4ZRzlyJWWNp+QvXax+hq7W
+	 InRZ2k9VpICPC3EROPXxFhw5WqRpn8PAMM6h6wMUJChBz92QTpgtPF+KzTiCGqD7XN
+	 YPme+lhIb7d98mXJ6+2IT+md14M2EuXfXQLbXcJv8Q1EnCpoTvBmTGt9ta7kb/4pbL
+	 2cQGd37A46GtHtST1WcmxAfsB1eagOqEVwWkrf6xrmqsJ45LsaLED04DZ15pnkvfQl
+	 PUfSlEtM/RtMw==
+Date: Tue, 11 Feb 2025 10:16:15 -0600
+From: Rob Herring <robh@kernel.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Daniel Mack <daniel@zonque.org>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,
+	Robert Jarzmik <robert.jarzmik@free.fr>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	=?iso-8859-1?Q?Herv=E9?= Codina <herve.codina@bootlin.com>,
+	linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: pwm: marvell,pxa-pwm: Update to use
+ #pwm-cells = <3>
+Message-ID: <20250211161615.GB354180-robh@kernel.org>
+References: <cover.1738842938.git.u.kleine-koenig@baylibre.com>
+ <cb799d8a5bb284cd861785a691b8d5e329300d99.1738842938.git.u.kleine-koenig@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250206132754.2596694-1-rppt@kernel.org> <20250206132754.2596694-6-rppt@kernel.org>
- <20250210202220.GC3765641@nvidia.com> <CA+CK2bBBX+HgD0HLj-AyTScM59F2wXq11BEPgejPMHoEwqj+_Q@mail.gmail.com>
- <20250211124943.GC3754072@nvidia.com>
-In-Reply-To: <20250211124943.GC3754072@nvidia.com>
-From: Pasha Tatashin <pasha.tatashin@soleen.com>
-Date: Tue, 11 Feb 2025 11:14:06 -0500
-X-Gm-Features: AWEUYZnZrdGQlINhll4ZCmxy4_MiFjWVL9mBm_3F0LCmRscyspW8dY4HAyEeygc
-Message-ID: <CA+CK2bAEnaPUJmd3LxFwCRa9xWrSJ478c4xisvD4pwvNMiTCgA@mail.gmail.com>
-Subject: Re: [PATCH v4 05/14] kexec: Add Kexec HandOver (KHO) generation helpers
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org, 
-	Alexander Graf <graf@amazon.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	Andy Lutomirski <luto@kernel.org>, Anthony Yznaga <anthony.yznaga@oracle.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>, 
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>, Borislav Petkov <bp@alien8.de>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Dave Hansen <dave.hansen@linux.intel.com>, 
-	David Woodhouse <dwmw2@infradead.org>, Eric Biederman <ebiederm@xmission.com>, 
-	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Paolo Bonzini <pbonzini@redhat.com>, "H. Peter Anvin" <hpa@zytor.com>, 
-	Peter Zijlstra <peterz@infradead.org>, Pratyush Yadav <ptyadav@amazon.de>, 
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, 
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, Steven Rostedt <rostedt@goodmis.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, Tom Lendacky <thomas.lendacky@amd.com>, 
-	Usama Arif <usama.arif@bytedance.com>, Will Deacon <will@kernel.org>, devicetree@vger.kernel.org, 
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cb799d8a5bb284cd861785a691b8d5e329300d99.1738842938.git.u.kleine-koenig@baylibre.com>
 
-On Tue, Feb 11, 2025 at 7:49=E2=80=AFAM Jason Gunthorpe <jgg@nvidia.com> wr=
-ote:
->
-> On Mon, Feb 10, 2025 at 03:58:00PM -0500, Pasha Tatashin wrote:
-> > >
-> > > > +What:                /sys/kernel/kho/dt_max
-> > > > +Date:                December 2023
-> > > > +Contact:     Alexander Graf <graf@amazon.com>
-> > > > +Description:
-> > > > +             KHO needs to allocate a buffer for the DT that gets
-> > > > +             generated before it knows the final size. By default,=
- it
-> > > > +             will allocate 10 MiB for it. You can write to this fi=
-le
-> > > > +             to modify the size of that allocation.
-> > >
-> > > Seems gross, why can't it use a non-contiguous page list to generate
-> > > the FDT? :\
-> >
-> > We will consider some of these ideas in the future version. I like the
-> > idea of using preserved memory to carry sparse KHO tree: i.e FDT over
-> > sparse memory, maybe use the anchor page to describe how it should be
-> > vmapped into a virtually contiguous tree in the next kernel?
->
-> Yeah, but this is now permanent uAPI that has to be kept forever. I
+On Thu, Feb 06, 2025 at 01:06:26PM +0100, Uwe Kleine-König wrote:
+> The PXA PWM binding is the only one that doesn't pass the PWM line index
+> as first parameter of the parameter cells. However this can be upgraded
+> to the mandatory binding for all new PWM drivers without breaking
+> compatibility for old device trees using #pwm-cells = <1>.
+> 
+> So bump #pwm-cells to 3 with the (undocumented) promise to keep the old
+> behaviour for #pwm-cells = <1>.
 
-Agree, what I meant in the future patch version is before it gets
-merged. I should have been more clear.
+Why make that undocumented?
 
-> think you should not add this when there are enough ideas on how to
-> completely avoid it.
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Tested-by: Duje Mihanović <duje.mihanovic@skole.hr>
+> Reviewed-by: Daniel Mack <daniel@zonque.org>
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+> index 9ee1946dc2e1..74f2d5964742 100644
+> --- a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+> @@ -25,8 +25,7 @@ properties:
+>      maxItems: 1
+>  
+>    "#pwm-cells":
+> -    # Used for specifying the period length in nanoseconds
+> -    const: 1
+> +    const: 3
 
-Thinking about it some more, I'm actually leaning towards keeping
-things as they are, instead of going with a sparse FDT. With a sparse
-KHO-tree, we'd be kinda trying to fix something that should be handled
-higher up. All userspace preservable memory (like emulated pmem with
-devdax/fsdax and also pstore for logging) can already survive cold
-reboots with modified firmware Google and Microsoft do this.
-Similarly, the firmware could give the kernel the KHO-tree (generated
-by firmware or from the previous kernel) to keep stuff like telemetry,
-oops messages, time stamps etc. KHO should not be considered
-explicitly as a mechanism to carry device serialization data, the KHO
-should be a standard and simple way to pass kernel data between
-reboots. The more complex state can be built on top of it, for example
-guestmemfs, could preserve terabytes of data and have only one node in
-the KHO tree.
+Note that if we apply this and not the dts change, we'll add warnings.
 
->
-> Jason
+You could instead do:
+
+oneOf:
+  - const: 1
+    deprecated: true
+  - const: 3
+
 
