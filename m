@@ -1,515 +1,305 @@
-Return-Path: <devicetree+bounces-145347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91D1A30F98
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:23:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC642A30FB4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 16:27:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E893B7A2C87
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:22:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B7C07A4F07
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:25:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D791257AF3;
-	Tue, 11 Feb 2025 15:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A63253B55;
+	Tue, 11 Feb 2025 15:25:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ndg3ewiD"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="IvUmq+3q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011043.outbound.protection.outlook.com [52.101.65.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 112E1256C74;
-	Tue, 11 Feb 2025 15:21:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739287290; cv=none; b=nC9xtjCbtWmmEyzl4P7rHbLXKyEoAHuxo+nlHa09KHIdLv4KRv/3cDcEm0ToyiwA2wRMiMZ/6xqtOtRE8JlBEFIWfnlmW8kXDN9gYUiwjgRVbYWUEiqTyjqOcptokio8DTb8c+wBLU4qBLFK5f0woCKwofd1FpQQOGCmUeAZSd4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739287290; c=relaxed/simple;
-	bh=mDKm0/HxHYS0Stl4nlWAD4C/9um26bolMF15XJYAh5k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cZvjOOwcYcZRs1zJNBt4WHhAA82GfhAH+wS0QiC8bPaE/Xsn5nWi03KHXFSiX+3hESEmT9sOuanBT4j525RmU+Xhzg7wESmbrXOXdq4RPzlVzPRIkdi4Aq7sXXJCGHZimTcP7/ex+j/Dmji9ugZXy6Z+Fc/ofufi1IQEZflquNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ndg3ewiD; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739287288; x=1770823288;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=mDKm0/HxHYS0Stl4nlWAD4C/9um26bolMF15XJYAh5k=;
-  b=ndg3ewiDgnKqJVmGkZnQSpZK3fRqGKN6S6Wsep6L+Q9CpSJEFoRTyhmT
-   jCjqjEkSae5lsNGeEp78N/3DG9xyiMwgMqkITKWiVQ/9beeLR9QBdw7pT
-   ZA+vSGM6O4teIsWAhH7tgbdSM5fT/bLEee1MXgHgx625hxKdzi9macVHs
-   BtUGy/M9yk9rRmFfnrJfV/Zu8kLEf5QLPorX4kHpiV7y4EnvpsUM3Vd7k
-   qUqmZFvjft9pUOEWG5FZJwA6QZv7Igy4DtVz1lmjjVhPo++rxpBlbk3vM
-   IGQQQRRGBCEH+H6MXesgu4T45eHKbtLQSF/ViOBR/kEYA5/Bhhz2n4o0V
-   w==;
-X-CSE-ConnectionGUID: C4B8KyR6RQKrCNsF1Frc5A==
-X-CSE-MsgGUID: Y/GL9VmDSZy+Qwl+q/ZUvg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="50548338"
-X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; 
-   d="scan'208";a="50548338"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 07:21:28 -0800
-X-CSE-ConnectionGUID: gUvWHY0HRQ6tIZgoMYzxQQ==
-X-CSE-MsgGUID: uhOHyC4qRd+d3zrr+gu1rQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="112392618"
-Received: from test2-linux-lab.an.altera.com ([10.244.157.115])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 07:21:26 -0800
-From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-To: lpieralisi@kernel.org,
-	kw@linux.com,
-	manivannan.sadhasivam@linaro.org,
-	robh@kernel.org,
-	bhelgaas@google.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dinguyen@kernel.org,
-	joyce.ooi@intel.com,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: matthew.gerlach@altera.com, peter.colberg@altera.com,
-	"D M, Sharath Kumar" <sharath.kumar.d.m@intel.com>,
-	D@web.codeaurora.org, M@web.codeaurora.org,
-	Matthew Gerlach <matthew.gerlach@linux.intel.com>
-Subject: [PATCH v6 7/7] PCI: altera: Add Agilex support
-Date: Tue, 11 Feb 2025 09:17:25 -0600
-Message-Id: <20250211151725.4133582-8-matthew.gerlach@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250211151725.4133582-1-matthew.gerlach@linux.intel.com>
-References: <20250211151725.4133582-1-matthew.gerlach@linux.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42DF4253B46;
+	Tue, 11 Feb 2025 15:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739287538; cv=fail; b=CVp9Z5FJ+Kr4dvikIhPVG8Vt4iM2wejnWhuHbqMjYZwU6xj7chjZDbaHOGMKwd8RshdSAFVdZtZioUJi8YrQWZyZ4s0rBTMU00PO8fDHtPW2FNUQ7rOAtHaqrMbXCPX4dkwD9JfvLZkMJUcNyrHuA54yoYhSzHdZLqnX5swxJPc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739287538; c=relaxed/simple;
+	bh=5GGLr8vTfuuMaz+FWrEseQE1FN829WrC+towDZMYQCY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=qfgXK+RpansBXMCSlF+VUXaSMOSUT0vJN1B2cIxgKguY/eTBh4B71IKPDyWVQ+2VU/RpBs8gLSiY3kJZ+hghFLLcaJnqH4YaM8lWhkkq1ldTy/l09P3K5boElUY9Tri+lQ5XCAgdn5s5Oyv3IhsHM+hKoc3vTxsibNo4jNxf9Qs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=IvUmq+3q; arc=fail smtp.client-ip=52.101.65.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wCpOvw/z9HwADmy5RAdusJ7Uc0rDb5QYH5DbosSBVEGNqfTGxZnU/3lZtlfAFvFpPjKLkO3wNjKlQ/qbrUe+8XeAgp2I4njKgsXuKeGcq/7GFzTDzZK7P40/wjYlN0RiDh9oTnb4ThZyf/c0m3tb3323ncwQYCNWgD5OpLHlMGHExqp4qlYv7nmEOnLxxB+N7gX01oBtiXEF/Z38JoJZ1gMs/J1fFS4c0BZNsQAsXetJiRgb9GVw+dGE0IrofI1zuzqnUoy1+aSeHDf94JkMUc/AWaLNVV9D9vRVQtZSS7Xk/sBc0qSgLjtmNlX2O2BfEErklHqR+2gegvUjqPa98g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BU5cln4uCzmlm3+6SN7L/b9riimPO4ygYo9TC06yUZI=;
+ b=qoj+n/hECLYCgiwGwVh0HdEwyMZR7XJ7jx3Wn3ffUmXs53Qh66WzgSCT+j+Nl0iPJ0VXIT1CYxPmP7AXnjfAflYO9SuLaFut+PjjkwJ8TGruhtSdkou7mEy3Fziu+SUBMDAg8ZC0oZipc2PHp7Wj5sT4xkYFQbbi62dABm6ctvI8z3FglyPwjKco84cfut4dRnDeJF7jtaXvQwmH3fxsRMs3I7dSYqlC4Fkx0ZvxdWkka0tk2oQ7bqDrnaM807s8o75OT6/b+CEor0MD174S/ZxsJCvUN/K3mUxtPaCI9RwhTCXByhkeua6jhodq62xxReRWHgMlBMj2J5M7DKt5xw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BU5cln4uCzmlm3+6SN7L/b9riimPO4ygYo9TC06yUZI=;
+ b=IvUmq+3qc/4FX07r5ORGd8PUGt6umZ1sJsJoGJ+BynzwL7VHkzlWn5qZ7GwSvm2xuwX+LDAJPbxBHmWWmPomGZvlLXJQeo0PKKh7iWfD2z15FefgPXEoMsZ75brLHBLVF+51Ro7LLJRc0mpppxAVoeYl77n3DV43+HyD+VT3qoYK7Mf6TBbN73tz4PO2b0TaMg+SYpQCLdNQhrQ/cUWGaokVxRhMHt69d1ITrfxk2QZaqdb0bTCajM0SG/q1evD+mh80LW+uAd25Nz9ThEo+0F495zx//othWx+oZmXm+/2Y2kDyPFNm+VrYoCpjn1tVwHtBQId+YFXzjYjrCBB7jQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GVXPR04MB10996.eurprd04.prod.outlook.com (2603:10a6:150:220::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.18; Tue, 11 Feb
+ 2025 15:25:33 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8422.012; Tue, 11 Feb 2025
+ 15:25:33 +0000
+Date: Tue, 11 Feb 2025 10:25:23 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, "Guoniu.zhou" <guoniu.zhou@nxp.com>,
+	Robby Cai <robby.cai@nxp.com>,
+	Robert Chiras <robert.chiras@nxp.com>
+Subject: Re: [PATCH v2 01/14] dt-bindings: phy: Add MIPI CSI PHY for i.MX8Q
+Message-ID: <Z6tr414dKK56atDw@lizhi-Precision-Tower-5810>
+References: <20250205-8qxp_camera-v2-0-731a3edf2744@nxp.com>
+ <20250205-8qxp_camera-v2-1-731a3edf2744@nxp.com>
+ <20250206211808.GA24886@pendragon.ideasonboard.com>
+ <Z6UuR9mHhQUdnBEc@lizhi-Precision-Tower-5810>
+ <20250210211013.GC8531@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250210211013.GC8531@pendragon.ideasonboard.com>
+X-ClientProxiedBy: SJ0PR05CA0206.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::31) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB10996:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5f197396-5777-4e72-4590-08dd4ab0535f
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|52116014|376014|7416014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?QDK5ahCR5/oJoiepkDaWWNUuWHRzl8k37bqTdPNcqv6tJZA3kAcCB6E2RjmV?=
+ =?us-ascii?Q?dnThc67T7LLlvKA4N0L238cAk9vacLcCojJhwTqCBkt1xwMHYOzWaby5UzYr?=
+ =?us-ascii?Q?jM7r2gel8eSBoNEm21o3uhc20ideQT1jj8taTSwaVUpqd42yc3GDhGh59maf?=
+ =?us-ascii?Q?o1NDyHjOyNTP/nbRXYkpbFWUMsmm+Xo0wApWQFVQ1g/spHBfqaob6JQ4Mfdk?=
+ =?us-ascii?Q?8SNsNxSx7Hi2n40ivy53aPTmWhcBUldFnguh63QySTjvLQUsTsME+UlYEv+J?=
+ =?us-ascii?Q?vkZx2k2t2tftxlw7sAUmusGXLNu14K8xwnoW+gMRqyH+lALRzb/NqIxq0apZ?=
+ =?us-ascii?Q?tZR4r+joOxGWsSnWXbdePmWrtMwTHOpRN/4I07XKEm6All5Uhhczredu9KtF?=
+ =?us-ascii?Q?fQipFnB6xbTuOOiJcplhPzyJRvMUmjIPqJu9CqeXMXeEo+LNr5aFWoIzS6MK?=
+ =?us-ascii?Q?XsNwhn3A6DCjtHwg5069lemsT7Qe56S9bCMvmLrhAIHFOmBZRsviAfymf6Ed?=
+ =?us-ascii?Q?sFD5e+SToddars44glygJ+TRMZJ3EYVdJ5G1AoKVj4hxThF2ey/y+JAnWW8i?=
+ =?us-ascii?Q?ElFUgw+sleI6IftW83SXh94WEcYaLKKUxi3WCWI7rkkQ7y/kNRqYIFCTnTrq?=
+ =?us-ascii?Q?qpGF6/5Dk1zLrtb68Yl6MEbwvq/RMiCCkEKwA0tb+JNH7hfxGqx64j7OKVOD?=
+ =?us-ascii?Q?55xiJvlIXu7pyLxZeY3mdXfX07xFx9sEcCOprjPbPOg4olVtQn9mRzlgyCqd?=
+ =?us-ascii?Q?oXLRkDlMLcuAKZHz3iXWq31cLOuP2jlxXbg46Tej/kZmpoVm+PYf+0HD34g6?=
+ =?us-ascii?Q?7P4CHtYl5mdJhAzhw3yELkAWpgZRB344TapRM6WNdDhDNcMATGxFX98/mWQn?=
+ =?us-ascii?Q?Br35e1n+O5mSRIRcuGahW0SeFV6xjtqwaBGQTxubZVVuu3wzZ8TFHGFs0jjh?=
+ =?us-ascii?Q?6MX5zoQjDnliYLaE4HXx33Tu10Dn1aB0MWBPoN+U9juFpFLJTXM9tlFlJ7J8?=
+ =?us-ascii?Q?r7+ZBBDsHEMYIj9CVZPXNi/XwaU1DRaLzGPwJmxjCE5YVSLafmFGUVPFsuaV?=
+ =?us-ascii?Q?d2qpK3srEGS1yJ35s4yJjIZTceXA4+8LNGYNVfjFxoR85y9Vsf9VizWD9X+7?=
+ =?us-ascii?Q?O8L+ZuIOc48yflpPCTZL06TYIL/wwZIBJoAE/nTzsj3uUevejEm+LkxznWLN?=
+ =?us-ascii?Q?8XbqK3xGBpv0WpMtFpAT/Yyo3AcAqj5EIxX9SUr85y0vQVpLD7CF9YSzQ+l5?=
+ =?us-ascii?Q?AUNDaxzjmMuUHgGSg1lvQdjEhvMg4LUC+wAuJG5Bf1gI0SpyXUOBQaylllf3?=
+ =?us-ascii?Q?jkcqvLCweLqpDyWZW71mYFuDbfdKfUrxik79Ydybolpi6jdFSm05oQSxBAMw?=
+ =?us-ascii?Q?u2sJGiLckZB0b83QdK5wCfu8XvLG?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(7416014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?QC/GlhcNEWIvdiVZiEkQ5Gbihc4CFmXWsQuRJ6XqUJ0ZkVOx58muVETbW2UC?=
+ =?us-ascii?Q?PtLmcVOhqMLx30ZpyaGjpp590XasyNRF00Zcmik84o47uyiJ/O34qNudRgTz?=
+ =?us-ascii?Q?uol1Ym2mL+4MSns6W9BmMW1J1j4qwpzIsAyeKk4EJSORPkZOafHSVzH655Tq?=
+ =?us-ascii?Q?wPpLIur+4LHLw/ckBJ+MdvkEjM8rOkZgkJ9VC7JMVZLdf6g2iN4vVyyMn8SR?=
+ =?us-ascii?Q?FGVis4Wl0fWla2YXnvOVbSqB2tMt//E+FMd6Jjc4XjjUoid+h3pZeGOoeAWP?=
+ =?us-ascii?Q?y3udGys5dzUky7XpAJB8KyXHAI/UD8YAr+zvKp5mPdrRwHfjYYItG/Te3+kE?=
+ =?us-ascii?Q?wIR7D9vBwjRumZXJfTdwWPb6QhLQ8rUD1mRwwjDjrcRQ2+XXpTVOAprAre/n?=
+ =?us-ascii?Q?IQelu3MwgdLbPMNsmGG/ruyWd1Joxr8ZNS3XDSLYUzljFyJk0IAUKFsAhadz?=
+ =?us-ascii?Q?qyYoMC2Hnf5PrqgN/0Demr1YjYv77rw1YaZ3wXtKgt22ksjXUbfdR3N7R0kX?=
+ =?us-ascii?Q?ddVndioYOHvVIKndKzwv1sxVRC1FQp8CSU9w5Q2l9AChQSfVsvNiFZAsYvKb?=
+ =?us-ascii?Q?3oJ7a/WqO8DADiHZvg4F5h1lODhTsL/GqzBqNW7MPPwr5ZuQJUeYHRdp+hC2?=
+ =?us-ascii?Q?nqft/OAcWliDnXuSjM9xA8Z09+6HUZfqHAIPN6QTOWKXMF8IxEcg5BP31A8A?=
+ =?us-ascii?Q?S1ct/sZzyOJQbCwipr1hZRoWA3vGCaO3B/gRG2UrJOvo9mo7vEsVdpfhaMEk?=
+ =?us-ascii?Q?CBdDxrt3PgtimnwIG57nlujNSK++ckX9BUGIYOtMLbHY2V8BuwbxceJm1oMH?=
+ =?us-ascii?Q?kbqU+U2l4fbLGEzB/D7q8Db35zUoGxmwXWLo78Jw0xGGghUFhUQW6hURayT1?=
+ =?us-ascii?Q?eww6kaW8+erCC8dHztY8FZfsdxjpL0leDczjOjDlXfPdSrRDM/64rnSE4TT5?=
+ =?us-ascii?Q?YoPJllA+DL6uzlHhgoP0mqV2eRW8GJuaQPVfXqPyq3kixrt9zXT9Bpp0WDWO?=
+ =?us-ascii?Q?BExGcH3mFKnUb/yU5C+ScjcZ7pMfy619ITRsVEGQWJR6B8p4z6Dn4eME3oV7?=
+ =?us-ascii?Q?MTs+bo5A7TeAoJfHaxwwSxIM7SkWEDrTJrmDZcTxYWU2LdbNUBjsvyeALmc4?=
+ =?us-ascii?Q?yWwBzMX7Q7KMhpjJS8mEavhtjfq/xQFKOxOHRyofsk2I70Qf8RnGL1JxwUSO?=
+ =?us-ascii?Q?e/p0+F/9ka8HYK7BbmYoe+5TZNWkJHRUPnJcOF96xYIaSmyLHlbc72hibwJw?=
+ =?us-ascii?Q?d5TSdZKZbt0lcp1+jB+1hHEoZnZqgIx1KS2CpI3kQCdwFZHvTEKlWDPsV0i0?=
+ =?us-ascii?Q?WIb72S512FkIsRPWP7ntXqID/FEY+Qkc8Ru5jJ40m8EM+zu1x6upYLnxApPl?=
+ =?us-ascii?Q?7Qn4180zIufpuEdoc3rt3RaztEcykNpJHyL8mpY4jsXYpYo+nbwc4Ehv+rl+?=
+ =?us-ascii?Q?gJVqxAOiWOpE0nNhrd2sa2BpnCjft6bj7QY5c0Is+o2RtOa2q2Y4JeA2sXSL?=
+ =?us-ascii?Q?iJJwaGOJn7CUXCoz636/E/WuJUgSvxN0e1DVedDqSpBk8QwMT2XkVfNHQt/9?=
+ =?us-ascii?Q?TQHlsBsz4VwJsK43sYM=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f197396-5777-4e72-4590-08dd4ab0535f
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2025 15:25:33.1584
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1XBvi8jVJ3SFxmn04spca9PtsnuJAaQzoLYz9Nfuc60Yfmr/c+gMJAr9suTErxmpqRbF2lsYkS/lrDSVDliclQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10996
 
-From: "D M, Sharath Kumar" <sharath.kumar.d.m@intel.com>
+On Mon, Feb 10, 2025 at 11:10:13PM +0200, Laurent Pinchart wrote:
+> On Thu, Feb 06, 2025 at 04:48:55PM -0500, Frank Li wrote:
+> > On Thu, Feb 06, 2025 at 11:18:08PM +0200, Laurent Pinchart wrote:
+> > > On Wed, Feb 05, 2025 at 12:18:10PM -0500, Frank Li wrote:
+> > > > Add MIPI CSI phy binding doc for i.MX8QXP, i.MX8QM and i.MX8ULP.
+> > >
+> > > s/CSI/CSI-2/ in the subject line, here and below.
+> > > s/phy/PHY/
+> > >
+> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > ---
+> > > > change from v1 to v2
+> > > > - Add missed fsl,imx8qm-mipi-cphy, which failback to fsl,imx8qxp-mipi-cphy
+> > > > - Move reg to required. Previous 8ulp use fsl,offset in downstream version.
+> > > > which should be reg. So move it to required
+> > > > ---
+> > > >  .../bindings/phy/fsl,imx8qxp-mipi-cphy.yaml        | 57 ++++++++++++++++++++++
+> > > >  1 file changed, 57 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8qxp-mipi-cphy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8qxp-mipi-cphy.yaml
+> > > > new file mode 100644
+> > > > index 0000000000000..7335b9262d0e7
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/phy/fsl,imx8qxp-mipi-cphy.yaml
+> > > > @@ -0,0 +1,57 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/phy/fsl,imx8qxp-mipi-cphy.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Freescale i.MX8 SoC MIPI CSI PHY
+> > > > +
+> > > > +maintainers:
+> > > > +  - Frank Li <Frank.Li@nxp.com>
+> > > > +
+> > > > +properties:
+> > > > +  "#phy-cells":
+> > > > +    const: 0
+> > > > +
+> > > > +  compatible:
+> > > > +    oneOf:
+> > > > +      - enum:
+> > > > +          - fsl,imx8qxp-mipi-cphy
+> > > > +          - fsl,imx8ulp-mipi-cphy
+> > > > +      - items:
+> > > > +          - const: fsl,imx8qm-mipi-cphy
+> > > > +          - const: fsl,imx8qxp-mipi-cphy
+> > >
+> > > Why are those called cphy when, as far as I can tell from the
+> > > documentation, they are D-PHYs ? Does that stand for *C*SI PHY ?
+> >
+> > There are already have D-PHYS for MIPI display phy binding. cphy just means
+> > for camera PHY.
+>
+> Ah OK. I would probably have gone for *-mipi-dphy-rx then, but I'm OK
+> with the proposed "cphy". Explaining this in the description would be
+> useful.
+>
+> > > I find
+> > > it slightly confusing, but not so much that I'd ask for a change. It's
+> > > just a name at the end of the day.
+> > >
+> > > Apart from that the binding looks fairly OK. Except maybe from the fact
+> > > that this device is not a PHY :-( It has two PHY control registers, but
+> > > the rest seems related to the glue logic at the output of the CSI-2
+> > > receiver. I wonder if we should go the syscon route.
+> >
+> > Do you means use phandle to syscon node in csi-2 driver? Actually this
+> > ways is not perferred by device tree team because it should be exported
+> > as what actual function, such as PHY or RESET by use standard interface.
+> >
+> > We met similar case at other substream.
+>
+> I don't like syscon much either, but in this specific case I'm not sure
+> what else we could do. This device really aggregates some control over
+> the PHY and over the glue logic at the output of the CSI-2 controller.
+> Modelling it as "just a PHY" will cause problem as soon as you'll want
+> to configure the other parameters.
 
-Add PCIe root port controller support for the Agilex family of chips.
-The Agilex PCIe IP has three variants that are mostly sw compatible,
-except for a couple register offsets. The P-Tile variant supports
-Gen3/Gen4 1x16. The F-Tile variant supports Gen3/Gen4 4x4, 4x8, and 4x16.
-The R-Tile variant improves on the F-Tile variant by adding Gen5 support.
+I think your comments is quite good and it's one hack. I check register
+layout of csr at imx8qm/imx8qxp. It is dedicated for each csi2 moudule.
+This glue layer should be second 'reg' resource, which direct control in
+csi2's driver.
 
-To simplify the implementation of pci_ops read/write functions,
-ep_{read/write}_cfg() callbacks were added to struct altera_pci_ops
-to easily distinguish between hardware variants.
+v3 should be simpler than this version.
+https://lore.kernel.org/imx/20250210-8qxp_camera-v3-0-324f5105accc@nxp.com/T/#t
 
-Signed-off-by: D M, Sharath Kumar <sharath.kumar.d.m@intel.com>
-Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
-v6:
- - Removed duplicate Signed-off-by:
- - Add Reviewed-by: Manivannan Sadhasivam.
+Frank
 
-v5:
- - remove unnecessary !!
- - Improve macro usage to make comment unnecessary.
-
-v4:
- - Add info to commit message.
- - Use {read/write}?_relaxed where appropriate.
- - Use BIT(12) instead of (1 << 12).
- - Clear IRQ before handling it.
- - add interrupt number to unexpected IRQ messge.
-
-v3:
- - Remove accepted patches from patch set.
-
-v2:
- - Match historical style of subject.
- - Remove unrelated changes.
- - Fix indentation.
----
- drivers/pci/controller/pcie-altera.c | 253 ++++++++++++++++++++++++++-
- 1 file changed, 244 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/pci/controller/pcie-altera.c b/drivers/pci/controller/pcie-altera.c
-index eb55a7f8573a..42ea9960b9da 100644
---- a/drivers/pci/controller/pcie-altera.c
-+++ b/drivers/pci/controller/pcie-altera.c
-@@ -6,6 +6,7 @@
-  * Description: Altera PCIe host controller driver
-  */
- 
-+#include <linux/bitfield.h>
- #include <linux/delay.h>
- #include <linux/interrupt.h>
- #include <linux/irqchip/chained_irq.h>
-@@ -77,9 +78,25 @@
- #define S10_TLP_FMTTYPE_CFGWR0		0x45
- #define S10_TLP_FMTTYPE_CFGWR1		0x44
- 
-+#define AGLX_RP_CFG_ADDR(pcie, reg)	(((pcie)->hip_base) + (reg))
-+#define AGLX_RP_SECONDARY(pcie)		\
-+	readb(AGLX_RP_CFG_ADDR(pcie, PCI_SECONDARY_BUS))
-+
-+#define AGLX_BDF_REG			0x00002004
-+#define AGLX_ROOT_PORT_IRQ_STATUS	0x14c
-+#define AGLX_ROOT_PORT_IRQ_ENABLE	0x150
-+#define CFG_AER				BIT(4)
-+
-+#define AGLX_CFG_TARGET			GENMASK(13, 12)
-+#define AGLX_CFG_TARGET_TYPE0		0
-+#define AGLX_CFG_TARGET_TYPE1		1
-+#define AGLX_CFG_TARGET_LOCAL_2000	2
-+#define AGLX_CFG_TARGET_LOCAL_3000	3
-+
- enum altera_pcie_version {
- 	ALTERA_PCIE_V1 = 0,
- 	ALTERA_PCIE_V2,
-+	ALTERA_PCIE_V3,
- };
- 
- struct altera_pcie {
-@@ -102,6 +119,11 @@ struct altera_pcie_ops {
- 			   int size, u32 *value);
- 	int (*rp_write_cfg)(struct altera_pcie *pcie, u8 busno,
- 			    int where, int size, u32 value);
-+	int (*ep_read_cfg)(struct altera_pcie *pcie, u8 busno,
-+			   unsigned int devfn, int where, int size, u32 *value);
-+	int (*ep_write_cfg)(struct altera_pcie *pcie, u8 busno,
-+			    unsigned int devfn, int where, int size, u32 value);
-+	void (*rp_isr)(struct irq_desc *desc);
- };
- 
- struct altera_pcie_data {
-@@ -112,6 +134,9 @@ struct altera_pcie_data {
- 	u32 cfgrd1;
- 	u32 cfgwr0;
- 	u32 cfgwr1;
-+	u32 port_conf_offset;
-+	u32 port_irq_status_offset;
-+	u32 port_irq_enable_offset;
- };
- 
- struct tlp_rp_regpair_t {
-@@ -131,6 +156,28 @@ static inline u32 cra_readl(struct altera_pcie *pcie, const u32 reg)
- 	return readl_relaxed(pcie->cra_base + reg);
- }
- 
-+static inline void cra_writew(struct altera_pcie *pcie, const u32 value,
-+			      const u32 reg)
-+{
-+	writew_relaxed(value, pcie->cra_base + reg);
-+}
-+
-+static inline u32 cra_readw(struct altera_pcie *pcie, const u32 reg)
-+{
-+	return readw_relaxed(pcie->cra_base + reg);
-+}
-+
-+static inline void cra_writeb(struct altera_pcie *pcie, const u32 value,
-+			      const u32 reg)
-+{
-+	writeb_relaxed(value, pcie->cra_base + reg);
-+}
-+
-+static inline u32 cra_readb(struct altera_pcie *pcie, const u32 reg)
-+{
-+	return readb_relaxed(pcie->cra_base + reg);
-+}
-+
- static bool altera_pcie_link_up(struct altera_pcie *pcie)
- {
- 	return !!((cra_readl(pcie, RP_LTSSM) & RP_LTSSM_MASK) == LTSSM_L0);
-@@ -145,6 +192,15 @@ static bool s10_altera_pcie_link_up(struct altera_pcie *pcie)
- 	return !!(readw(addr) & PCI_EXP_LNKSTA_DLLLA);
- }
- 
-+static bool aglx_altera_pcie_link_up(struct altera_pcie *pcie)
-+{
-+	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie,
-+				   pcie->pcie_data->cap_offset +
-+				   PCI_EXP_LNKSTA);
-+
-+	return (readw_relaxed(addr) & PCI_EXP_LNKSTA_DLLLA);
-+}
-+
- /*
-  * Altera PCIe port uses BAR0 of RC's configuration space as the translation
-  * from PCI bus to native BUS.  Entire DDR region is mapped into PCIe space
-@@ -425,6 +481,103 @@ static int s10_rp_write_cfg(struct altera_pcie *pcie, u8 busno,
- 	return PCIBIOS_SUCCESSFUL;
- }
- 
-+static int aglx_rp_read_cfg(struct altera_pcie *pcie, int where,
-+			    int size, u32 *value)
-+{
-+	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie, where);
-+
-+	switch (size) {
-+	case 1:
-+		*value = readb_relaxed(addr);
-+		break;
-+	case 2:
-+		*value = readw_relaxed(addr);
-+		break;
-+	default:
-+		*value = readl_relaxed(addr);
-+		break;
-+	}
-+
-+	/* interrupt pin not programmed in hardware, set to INTA */
-+	if (where == PCI_INTERRUPT_PIN && size == 1 && !(*value))
-+		*value = 0x01;
-+	else if (where == PCI_INTERRUPT_LINE && !(*value & 0xff00))
-+		*value |= 0x0100;
-+
-+	return PCIBIOS_SUCCESSFUL;
-+}
-+
-+static int aglx_rp_write_cfg(struct altera_pcie *pcie, u8 busno,
-+			     int where, int size, u32 value)
-+{
-+	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie, where);
-+
-+	switch (size) {
-+	case 1:
-+		writeb_relaxed(value, addr);
-+		break;
-+	case 2:
-+		writew_relaxed(value, addr);
-+		break;
-+	default:
-+		writel_relaxed(value, addr);
-+		break;
-+	}
-+
-+	/*
-+	 * Monitor changes to PCI_PRIMARY_BUS register on root port
-+	 * and update local copy of root bus number accordingly.
-+	 */
-+	if (busno == pcie->root_bus_nr && where == PCI_PRIMARY_BUS)
-+		pcie->root_bus_nr = value & 0xff;
-+
-+	return PCIBIOS_SUCCESSFUL;
-+}
-+
-+static int aglx_ep_write_cfg(struct altera_pcie *pcie, u8 busno,
-+			     unsigned int devfn, int where, int size, u32 value)
-+{
-+	cra_writel(pcie, ((busno << 8) | devfn), AGLX_BDF_REG);
-+	if (busno > AGLX_RP_SECONDARY(pcie))
-+		where |= FIELD_PREP(AGLX_CFG_TARGET, AGLX_CFG_TARGET_TYPE1);
-+
-+	switch (size) {
-+	case 1:
-+		cra_writeb(pcie, value, where);
-+		break;
-+	case 2:
-+		cra_writew(pcie, value, where);
-+		break;
-+	default:
-+		cra_writel(pcie, value, where);
-+			break;
-+	}
-+
-+	return PCIBIOS_SUCCESSFUL;
-+}
-+
-+static int aglx_ep_read_cfg(struct altera_pcie *pcie, u8 busno,
-+			    unsigned int devfn, int where, int size, u32 *value)
-+{
-+	cra_writel(pcie, ((busno << 8) | devfn), AGLX_BDF_REG);
-+	if (busno > AGLX_RP_SECONDARY(pcie))
-+		where |= FIELD_PREP(AGLX_CFG_TARGET, AGLX_CFG_TARGET_TYPE1);
-+
-+	switch (size) {
-+	case 1:
-+		*value = cra_readb(pcie, where);
-+		break;
-+	case 2:
-+		*value = cra_readw(pcie, where);
-+		break;
-+	default:
-+		*value = cra_readl(pcie, where);
-+		break;
-+	}
-+
-+	return PCIBIOS_SUCCESSFUL;
-+}
-+
- static int _altera_pcie_cfg_read(struct altera_pcie *pcie, u8 busno,
- 				 unsigned int devfn, int where, int size,
- 				 u32 *value)
-@@ -437,6 +590,10 @@ static int _altera_pcie_cfg_read(struct altera_pcie *pcie, u8 busno,
- 		return pcie->pcie_data->ops->rp_read_cfg(pcie, where,
- 							 size, value);
- 
-+	if (pcie->pcie_data->ops->ep_read_cfg)
-+		return pcie->pcie_data->ops->ep_read_cfg(pcie, busno, devfn,
-+							where, size, value);
-+
- 	switch (size) {
- 	case 1:
- 		byte_en = 1 << (where & 3);
-@@ -481,6 +638,10 @@ static int _altera_pcie_cfg_write(struct altera_pcie *pcie, u8 busno,
- 		return pcie->pcie_data->ops->rp_write_cfg(pcie, busno,
- 						     where, size, value);
- 
-+	if (pcie->pcie_data->ops->ep_write_cfg)
-+		return pcie->pcie_data->ops->ep_write_cfg(pcie, busno, devfn,
-+						     where, size, value);
-+
- 	switch (size) {
- 	case 1:
- 		data32 = (value & 0xff) << shift;
-@@ -659,7 +820,30 @@ static void altera_pcie_isr(struct irq_desc *desc)
- 				dev_err_ratelimited(dev, "unexpected IRQ, INT%d\n", bit);
- 		}
- 	}
-+	chained_irq_exit(chip, desc);
-+}
-+
-+static void aglx_isr(struct irq_desc *desc)
-+{
-+	struct irq_chip *chip = irq_desc_get_chip(desc);
-+	struct altera_pcie *pcie;
-+	struct device *dev;
-+	u32 status;
-+	int ret;
-+
-+	chained_irq_enter(chip, desc);
-+	pcie = irq_desc_get_handler_data(desc);
-+	dev = &pcie->pdev->dev;
- 
-+	status = readl(pcie->hip_base + pcie->pcie_data->port_conf_offset +
-+		       pcie->pcie_data->port_irq_status_offset);
-+	if (status & CFG_AER) {
-+		writel(CFG_AER, (pcie->hip_base + pcie->pcie_data->port_conf_offset +
-+				 pcie->pcie_data->port_irq_status_offset));
-+		ret = generic_handle_domain_irq(pcie->irq_domain, 0);
-+		if (ret)
-+			dev_err_ratelimited(dev, "unexpected IRQ %d\n", pcie->irq);
-+	}
- 	chained_irq_exit(chip, desc);
- }
- 
-@@ -694,9 +878,9 @@ static int altera_pcie_parse_dt(struct altera_pcie *pcie)
- 	if (IS_ERR(pcie->cra_base))
- 		return PTR_ERR(pcie->cra_base);
- 
--	if (pcie->pcie_data->version == ALTERA_PCIE_V2) {
--		pcie->hip_base =
--			devm_platform_ioremap_resource_byname(pdev, "Hip");
-+	if (pcie->pcie_data->version == ALTERA_PCIE_V2 ||
-+	    pcie->pcie_data->version == ALTERA_PCIE_V3) {
-+		pcie->hip_base = devm_platform_ioremap_resource_byname(pdev, "Hip");
- 		if (IS_ERR(pcie->hip_base))
- 			return PTR_ERR(pcie->hip_base);
- 	}
-@@ -706,7 +890,7 @@ static int altera_pcie_parse_dt(struct altera_pcie *pcie)
- 	if (pcie->irq < 0)
- 		return pcie->irq;
- 
--	irq_set_chained_handler_and_data(pcie->irq, altera_pcie_isr, pcie);
-+	irq_set_chained_handler_and_data(pcie->irq, pcie->pcie_data->ops->rp_isr, pcie);
- 	return 0;
- }
- 
-@@ -719,6 +903,7 @@ static const struct altera_pcie_ops altera_pcie_ops_1_0 = {
- 	.tlp_read_pkt = tlp_read_packet,
- 	.tlp_write_pkt = tlp_write_packet,
- 	.get_link_status = altera_pcie_link_up,
-+	.rp_isr = altera_pcie_isr,
- };
- 
- static const struct altera_pcie_ops altera_pcie_ops_2_0 = {
-@@ -727,6 +912,16 @@ static const struct altera_pcie_ops altera_pcie_ops_2_0 = {
- 	.get_link_status = s10_altera_pcie_link_up,
- 	.rp_read_cfg = s10_rp_read_cfg,
- 	.rp_write_cfg = s10_rp_write_cfg,
-+	.rp_isr = altera_pcie_isr,
-+};
-+
-+static const struct altera_pcie_ops altera_pcie_ops_3_0 = {
-+	.rp_read_cfg = aglx_rp_read_cfg,
-+	.rp_write_cfg = aglx_rp_write_cfg,
-+	.get_link_status = aglx_altera_pcie_link_up,
-+	.ep_read_cfg = aglx_ep_read_cfg,
-+	.ep_write_cfg = aglx_ep_write_cfg,
-+	.rp_isr = aglx_isr,
- };
- 
- static const struct altera_pcie_data altera_pcie_1_0_data = {
-@@ -749,11 +944,44 @@ static const struct altera_pcie_data altera_pcie_2_0_data = {
- 	.cfgwr1 = S10_TLP_FMTTYPE_CFGWR1,
- };
- 
-+static const struct altera_pcie_data altera_pcie_3_0_f_tile_data = {
-+	.ops = &altera_pcie_ops_3_0,
-+	.version = ALTERA_PCIE_V3,
-+	.cap_offset = 0x70,
-+	.port_conf_offset = 0x14000,
-+	.port_irq_status_offset = AGLX_ROOT_PORT_IRQ_STATUS,
-+	.port_irq_enable_offset = AGLX_ROOT_PORT_IRQ_ENABLE,
-+};
-+
-+static const struct altera_pcie_data altera_pcie_3_0_p_tile_data = {
-+	.ops = &altera_pcie_ops_3_0,
-+	.version = ALTERA_PCIE_V3,
-+	.cap_offset = 0x70,
-+	.port_conf_offset = 0x104000,
-+	.port_irq_status_offset = AGLX_ROOT_PORT_IRQ_STATUS,
-+	.port_irq_enable_offset = AGLX_ROOT_PORT_IRQ_ENABLE,
-+};
-+
-+static const struct altera_pcie_data altera_pcie_3_0_r_tile_data = {
-+	.ops = &altera_pcie_ops_3_0,
-+	.version = ALTERA_PCIE_V3,
-+	.cap_offset = 0x70,
-+	.port_conf_offset = 0x1300,
-+	.port_irq_status_offset = 0x0,
-+	.port_irq_enable_offset = 0x4,
-+};
-+
- static const struct of_device_id altera_pcie_of_match[] = {
- 	{.compatible = "altr,pcie-root-port-1.0",
- 	 .data = &altera_pcie_1_0_data },
- 	{.compatible = "altr,pcie-root-port-2.0",
- 	 .data = &altera_pcie_2_0_data },
-+	{.compatible = "altr,pcie-root-port-3.0-f-tile",
-+	 .data = &altera_pcie_3_0_f_tile_data },
-+	{.compatible = "altr,pcie-root-port-3.0-p-tile",
-+	 .data = &altera_pcie_3_0_p_tile_data },
-+	{.compatible = "altr,pcie-root-port-3.0-r-tile",
-+	 .data = &altera_pcie_3_0_r_tile_data },
- 	{},
- };
- 
-@@ -791,11 +1019,18 @@ static int altera_pcie_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	/* clear all interrupts */
--	cra_writel(pcie, P2A_INT_STS_ALL, P2A_INT_STATUS);
--	/* enable all interrupts */
--	cra_writel(pcie, P2A_INT_ENA_ALL, P2A_INT_ENABLE);
--	altera_pcie_host_init(pcie);
-+	if (pcie->pcie_data->version == ALTERA_PCIE_V1 ||
-+	    pcie->pcie_data->version == ALTERA_PCIE_V2) {
-+		/* clear all interrupts */
-+		cra_writel(pcie, P2A_INT_STS_ALL, P2A_INT_STATUS);
-+		/* enable all interrupts */
-+		cra_writel(pcie, P2A_INT_ENA_ALL, P2A_INT_ENABLE);
-+		altera_pcie_host_init(pcie);
-+	} else if (pcie->pcie_data->version == ALTERA_PCIE_V3) {
-+		writel(CFG_AER,
-+		       pcie->hip_base + pcie->pcie_data->port_conf_offset +
-+		       pcie->pcie_data->port_irq_enable_offset);
-+	}
- 
- 	bridge->sysdata = pcie;
- 	bridge->busnr = pcie->root_bus_nr;
--- 
-2.34.1
-
+>
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  power-domains:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +required:
+> > > > +  - "#phy-cells"
+> > > > +  - compatible
+> > > > +  - reg
+> > > > +
+> > > > +allOf:
+> > > > +  - if:
+> > > > +      properties:
+> > > > +        compatible:
+> > > > +          contains:
+> > > > +            enum:
+> > > > +              - fsl,imx8qxp-mipi-cphy
+> > > > +    then:
+> > > > +      required:
+> > > > +        - power-domains
+> > > > +
+> > > > +additionalProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    phy@58221000 {
+> > > > +            compatible = "fsl,imx8qxp-mipi-cphy";
+> > > > +            reg = <0x58221000 0x10000>;
+> > > > +            #phy-cells = <0>;
+> > > > +            power-domains = <&pd 0>;
+> > > > +    };
+> > > > +
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
 
