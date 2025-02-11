@@ -1,87 +1,50 @@
-Return-Path: <devicetree+bounces-145283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63DAEA30D14
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:35:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 572BFA30D25
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:40:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 163E53A4470
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:34:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3BFE1884E70
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAEB0220693;
-	Tue, 11 Feb 2025 13:34:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32F8A22DFA1;
+	Tue, 11 Feb 2025 13:40:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CXNDTq8S"
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="gLMyPaLZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from pv50p00im-zteg10011501.me.com (pv50p00im-zteg10011501.me.com [17.58.6.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A0F1F03E2
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:34:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E221F192E
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739280899; cv=none; b=o+l/e4d27DwJMybg7lyR6uPi9mFJO64U7mlMfiDw+cz/r8gg9SG8okwMnNQOEfOCy5eD/i1DSuoJq27SPyPp/xkXuRLtmLIPopV38YVugT+xDzGz7QHE+TW1j4/i+Om50JGGs+crX4GChBCJKBiTn/7hKD9ffaEulezgHbeUyZQ=
+	t=1739281248; cv=none; b=VJ7WxQjEIR26ttXSbVeRW39na8e5fF4//4yV8+hWFnome7LdA26W0GrK1eQtylmJ4cPfHa3wzmtbQ/fKjQOiVkpmF+rEtj1Z+65E6zJAIZdl+uwUyn/LDxKWJQFsBT7WNxdmCRnbscFKfXvkez+LW2nDFePaBD4TJSAaF68HxUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739280899; c=relaxed/simple;
-	bh=jDmOTyojiikoo0IfvxOxgpPziU5nD3zAgqiOBfyXwxg=;
+	s=arc-20240116; t=1739281248; c=relaxed/simple;
+	bh=rDf1yoTRKy12ToOLrZOAZoQ7ACwfJKv8I+9q4AsypCQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AFC36KstnlhGoSiE4/c917od2IE2T4hw11mabbdnY9Y6vCYtgrkxolJHUp41nGqgv2NkmagMGNvqoQorSTJjFgVC75zCwqovuiz36mCIrFi5GsY5x4zHn9qq7PWZPUaG9nMpl3YPf5lltkEjeDjYTKB0E2ZJzTCGtqPVEvKxXQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CXNDTq8S; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51B4WqIt010521
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:34:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gdqMkX2dIK2G48mSPcv21J8TMTmaplncAXlkvHMiqFc=; b=CXNDTq8S4z/ICNkV
-	9BhjoeNMBsN4hKDX4h7bjR92q3iXRA8J6SJ7MsjBgw2nG1/MR56x1GnEz8T3FUUu
-	81ildL0d6sLAzdTqlsSSWHwMd+RzVMBwweqMc9hHzHxvaPqKMauJKtRDzN/pIawL
-	jrj30mYUYlZeNFVh2UvQB7JELLL1V5F+pI63DqqQ/miv2za64mblpgRklYid8GRP
-	I+HPWX+FfQ7BH4/Ydzsyzd8yvmOxSKG2qIuW9arnLWb+nktX4MVthDAjs293YETi
-	vZhfjs6lPDGBnMXmjrPDQJuY6gzzneeFtF3V5PaDwRUQn/OaFm9ip/UPejZd8YcX
-	guBTcw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qcs5ckb3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:34:56 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4719ed0f8easo2443361cf.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 05:34:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739280896; x=1739885696;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gdqMkX2dIK2G48mSPcv21J8TMTmaplncAXlkvHMiqFc=;
-        b=ujAalE44s/93hWAkKv92FiV7Bpol3FB8QsQhZaQU2wuHz+JLShuXOM8r/ZQYH4vNWL
-         fmO3H7EzIH5lO4ee4YCq1dKyAvAbXI7eg5tL/2yqxCur4bQdq2ZWwXE+chriQ3zfSagh
-         OFAqelp8WfHevqRza1Epch5weaBw10S+cMQPPbgJdXRaEmHGjZ6LM3N5IMnTZSsRIDZt
-         XfrKjpM/nSNmmw2UgEj/gSz2wHpnCiuG1tlesyacVzemFRRermUaUSB6omVg2bLOaYkT
-         SNgxKvKBct6HF4rzYlXnFa3B9WxlUaUEPsG7eH/g52bBP0qrgA+aZPUDdP2to6rdB8MR
-         gjDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUgQDUQkqrxu7T4lnvBfn9OLHPyj9P5nMUcyvFIl4pcUXb/hS1NHXQHVnTPuoWCP/rGz9OcaVjsMLJk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRIX0vHnch+abEwnOsR1Rhf/vz99sOfgfUKd9mM5BjpOqN/XbA
-	J0e+lTGHS/xDFxVLHfWcm+DHfESeTiUHSXZiL8C+SHZEehmcVeiAuc9mt78CfZbozKWfVGv03yY
-	koImyMbNhDITjXqxA5UvDeDoyPpjpEMunPXTuIGj9fdxhYgjuPCtC27bckbIU
-X-Gm-Gg: ASbGncuzvkfIedIT/hbAIduMH5iPPW/BSUx4nnV1IJWWAWbDXYiF2yRy4/CWGAcaC5U
-	RVuVQNXvD8Ecxt9vhJ3PCkJag+chuXd9FWUnPdTcc0MDULVxohue9FXhppYB5ikuKmOKFcDfS66
-	JsYsPQfJi9rEn59AeOt4SA0CJNCmrZ+rKQvp1Sq8N/yGJcP7e54hOGC2FqL7e9lQDIgIPVNxmB6
-	+7Lip70Q2Vp8oump0ovELLmOjX/UddxBBsWDdeCWq2vKQdVSbuJOCRqkTi4chPZKL02QsbkWu4Q
-	kyn316W2U45q4ap7wkbfnSBDZ2bNazIDCF9JWoHT2Lt+lnMguDKOTd2KrJM=
-X-Received: by 2002:a05:622a:1cc4:b0:471:9813:11da with SMTP id d75a77b69052e-47198131362mr34622081cf.2.1739280896125;
-        Tue, 11 Feb 2025 05:34:56 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF4p3W/WqcNZ9kEltf2wq42jRqj2H0gTl/tRoIEU90x/Lb7PwVN+UzDtYa9Y78eR/nsuib4Bg==
-X-Received: by 2002:a05:622a:1cc4:b0:471:9813:11da with SMTP id d75a77b69052e-47198131362mr34621961cf.2.1739280895804;
-        Tue, 11 Feb 2025 05:34:55 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7bca07294sm457847466b.68.2025.02.11.05.34.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Feb 2025 05:34:55 -0800 (PST)
-Message-ID: <88e76385-c914-44a2-847b-09013cf4e752@oss.qualcomm.com>
-Date: Tue, 11 Feb 2025 14:34:53 +0100
+	 In-Reply-To:Content-Type; b=hLQdPlwxpKv+4QcyhGAWPX7H/euGmszw5yD2Ot+S1y3esdYPJlY/igk6dATxLlnobCl9UjD7JxhdzUJsJBkhDWc0ssrZ7nvrripxDv7Kikrc3ccLNpXCxQzr5w7cQznFrUuBGjnmfaEH733UOg8XA1oXo4eBT+9s/hUruLYo2Mk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=gLMyPaLZ; arc=none smtp.client-ip=17.58.6.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+	s=1a1hai; bh=7z3RWlztrKg7sVSGOlVn10uKHd+0HdbTDQ77ooJEAJs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
+	b=gLMyPaLZmpYFi3srhMCrc8avKSZIouPGAmh0G/IvhgH6kxmmqYzsAJ1j5WZ3AQ4eu
+	 BLYcOUCLcPzyspXRbyf2zmdKOBNxzIHvtD7XIp1FR8fIaT8BamEohVLlBpjLG6JRV1
+	 pGzs+G6dV2BcSe0OSKU0qB7wPM4zsky02pZWnuDDa6XngSM4gqKqhke3yFN7vKtc4H
+	 mtLpc2qK3HcPe/A8J2LL44fKVNW7k9PaW5EsXlKkCE61CbwRPK8gnKV6juQKYAstsN
+	 Nc5Wmz6FBRWkopLl6GqWZJ/Gwkvr8pos4j4gilmPN030jdeBWpCsnRFTXfTdr69ihG
+	 0wYtHEevDL+EA==
+Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
+	by pv50p00im-zteg10011501.me.com (Postfix) with ESMTPSA id 3174F4A0246;
+	Tue, 11 Feb 2025 13:40:37 +0000 (UTC)
+Message-ID: <a682824a-1b65-4b05-9e42-3edc167600a8@icloud.com>
+Date: Tue, 11 Feb 2025 21:40:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,56 +52,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] arm64: dts: qcom: sm8650: harmonize all
- unregulated thermal trip points
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250203-topic-sm8650-thermal-cpu-idle-v4-0-65e35f307301@linaro.org>
- <20250203-topic-sm8650-thermal-cpu-idle-v4-3-65e35f307301@linaro.org>
+Subject: Re: [PATCH v3] of: property: Increase NR_FWNODE_REFERENCE_ARGS
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, Len Brown <lenb@kernel.org>,
+ Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-acpi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Zijun Hu <quic_zijuhu@quicinc.com>
+References: <20250210-fix_arg_count-v3-1-a084a5013008@quicinc.com>
+ <Z6oclML_DC1Vnf6z@smile.fi.intel.com>
+ <73eb84f3-8b9d-41f4-9b59-d059111a3d03@icloud.com>
+ <Z6tBlfmTFu9916LA@smile.fi.intel.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250203-topic-sm8650-thermal-cpu-idle-v4-3-65e35f307301@linaro.org>
+From: Zijun Hu <zijun_hu@icloud.com>
+In-Reply-To: <Z6tBlfmTFu9916LA@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: u3PgukyCMZTpYIcsWui2k7TLDq2SZhw5
-X-Proofpoint-GUID: u3PgukyCMZTpYIcsWui2k7TLDq2SZhw5
+X-Proofpoint-GUID: TqUHXtr-ok3PC5jRlmgK0cb6DzbWQpgZ
+X-Proofpoint-ORIG-GUID: TqUHXtr-ok3PC5jRlmgK0cb6DzbWQpgZ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-02-11_06,2025-02-11_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- mlxlogscore=999 phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
- adultscore=0 clxscore=1015 mlxscore=0 priorityscore=1501 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
- definitions=main-2502110089
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 mlxscore=0 adultscore=0
+ malwarescore=0 clxscore=1015 suspectscore=0 spamscore=0 mlxlogscore=854
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2502110091
 
-On 3.02.2025 2:23 PM, Neil Armstrong wrote:
-> While the CPUs thermal is handled by the LMH, and GPU has a passive
-> cooldowm via the HLOS DCVS, all the other thermal blocks only have
-> hot and critical and no passive/active trip points.
+On 2025/2/11 20:24, Andy Shevchenko wrote:
+>>>> -#define NR_FWNODE_REFERENCE_ARGS	8
+>>>> +#define NR_FWNODE_REFERENCE_ARGS	16
+>>> Thinking of the case, perhaps you also want
+>>>
+>>> static_assert(NR_FWNODE_REFERENCE_ARGS == MAX_PHANDLE_ARGS);
+>>>
+>>> to be put somewhere, but I don't think we can do it in this header file.
+>> thank you Andy for code review.
+>>
+>> yes. it seems there are good location to place the static_assert().
+>>
+>> is it okay to associate two macros by
+>> #define MAX_PHANDLE_ARGS NR_FWNODE_REFERENCE_ARGS
+> I was thinking about this and I don't see how it can be done without
+> introducing more chaos (dependency hell) into the headers. So, I won't
+> take this path or even consider it deeper.
 > 
-> Passive or active thermal management for those blocks should
-> be either defined if somehow we can express those in DT or
-> in the board definition if there's an active cooling device
-> available.
-> 
-> The tsens MAX_THRESHOLD is set to 120C on those platforms, so set
-> the hot to 110C to leave a chance to HLOS to react and critical to
-> 115C to avoid the monitor thermal shutdown.
-> 
-> In the case a passive or active cooling device would be
-> available, the downstream reference implementation uses
-> the 95C "tj" trip point, as we already use for the
-> gpuss thermal blocks.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+i have confirmed that:
 
-Konrad
+of.h includes fwnode.h indirectly
+fwnode.h does not include of.h directly or indirectly
+
+in theory, dependency between both headers should also be like this.
+
+So, it is simple to use below define in of.h
+#define MAX_PHANDLE_ARGS NR_FWNODE_REFERENCE_ARGS
+
+>> OR
+>> replace all MAX_PHANDLE_ARGS instances with NR_FWNODE_REFERENCE_ARGS
+>> ?
+> This sounds plausible to me, but you need a blessing from OF people as
+> the naming may be a bit confusing (for them) as "phandle" is well established
+> term in OF realm.
+
+phandle is a type of DT firmware node reference. so this solution
+seems suitable as well.
+
+struct software_node_ref_args also uses NR_FWNODE_REFERENCE_ARGS directly.
+
+let us wait for more comments.
+
 
