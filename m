@@ -1,167 +1,185 @@
-Return-Path: <devicetree+bounces-145239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58BCBA30BCA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:35:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D184A30BE4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:38:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D771B188A6F3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:35:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 759D17A463C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 12:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79CE1F9A9C;
-	Tue, 11 Feb 2025 12:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70F452080CC;
+	Tue, 11 Feb 2025 12:37:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FOjrMX6L"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LFEZNeQU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D9096FB9;
-	Tue, 11 Feb 2025 12:35:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D28204873;
+	Tue, 11 Feb 2025 12:37:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739277302; cv=none; b=TavpuWnTDj2uceOR452pjj4rsAoEKTlsJZRy3RfR03QYlnvLwybqkDRkrai/ifbLIU0+GgWy/zH0+8PGVQRZtou2O5z0o1Miawdp+1LaWBFDPVbMIoOuXbgZSaEJ72Xl20xsdp4dNf/imivkkPK2IAiksAeWQ4RaufgBIllLOWU=
+	t=1739277476; cv=none; b=iNnvynZG3Ua4fuPWhsizv1HrM18rB7Mj9hqd4LUxy1NJnxhOXUK2Y00tJmaFXiem4LAFTdKhxJ627oG4V2lcJFeJ4MA/+ZbXvIVI8cAsVVZ4hn8H8porbIDQsP9C03DYEhRaGRh+yI+oArqmaAxBZi5I9/oZO12SR6kLM8r/PbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739277302; c=relaxed/simple;
-	bh=MA14njnJTflw/O+wK7u99/DEzkLn82WquM8a6RvG0Kk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GD6QKXjp1LWGm4yNBHo99i+fyPdC+mCr2JszHmuwWbBXmX+toD7arc3hz5FOT8Ia1z0c+9HKDqL0dKapGejBZUIjgzuJT0xrCQOol4uRe6o3BBPKfTz5f9R9x1rKymti6eZOKS3dohLo0JicxAcyGT7LOH/QEkAizLjMJdQ6ypo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FOjrMX6L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7AFAC4CEDD;
-	Tue, 11 Feb 2025 12:34:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739277302;
-	bh=MA14njnJTflw/O+wK7u99/DEzkLn82WquM8a6RvG0Kk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FOjrMX6LCFqH0i2YuNm9+qyiW/Eb92E4QreqJ2T9+GlDiXgX0Jte8aGHcOXFbLmxU
-	 gQ1FfAm54IJx1GhDUrrdjH9AIggQvdCusC3fd1kDlkCVNHxIhJj5b2aG7ddaErmAsw
-	 SKZjQCI59+Vm0NVrZ+wjJt9cquceo3ChPd0QGEg3DcSvZ59tXQfJnSRGMHhtqzQ3LW
-	 cRr2VhUJauJVgc0rulls9zzoMF9hrFZ+OB0fQ+a99AMpgwkh+8RcMxCvrZOemrBJ1r
-	 LHVP06OAVbozyEKNRRUey2NkYmJo0FjUSDwT54h8h7pPxJRJex5recJzei7hoixe/P
-	 RT/tET6XJS7jg==
-Date: Tue, 11 Feb 2025 12:34:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Eric Biggers <ebiggers@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Andy Chiu <andybnac@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] RISC-V: add vector crypto extension validation
- checks
-Message-ID: <20250211-implode-mute-8ff31f44bdf9@spud>
-References: <20250205-cobbler-unpadded-5580c1f5d946@spud>
- <20250205-quench-entrench-09bed8c8c823@spud>
- <f1ce7aa9-63e3-41bd-9bb0-a54ebc714dff@rivosinc.com>
+	s=arc-20240116; t=1739277476; c=relaxed/simple;
+	bh=9FFcc2GB0jSxjG8mkUaYtqfXPHpoxeLtabpNTGFeG4g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nWH5y8FyjjXnDbtPKZa+9o5Vxpqu084keGD36LRHMTP21DB7Bo0xW4WjWo3PKPTRWDwkPap0VuR+2PyvClRtXeUyU4cJLZTPH9RImH3QpZtUHLgqeTMLIrCjgRNGxyMzlwbm4/j0dlge63sVV8yQEg2CBMFnstvqnafaSaKLSCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LFEZNeQU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51B94jQp008337;
+	Tue, 11 Feb 2025 12:37:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+ShQz5N2nxj49mik6Xuy9nBMQQOaIIynX9b3fSGhxsg=; b=LFEZNeQUlwmQ7HAZ
+	8Wyar+uSmq+UpgF3Ih6JZuM1oS8lZYmL40/ekviaI1v2aF3kzTW4Y15UdIBlliSr
+	PRPNAY0GPPbOSDSXx6QYj5e2RwbMaHPcPoLylvra5o4sCp3eGQmxQAGtLfuphxG0
+	j6pYLu2YSUcTfk+eKdIhWW2/2QOyk7Z41B49I0EmbqVKIDjxJUx2IISfmWUMdype
+	teialJ/uHKeYJhnOAOLfuK2Bn/TRmk6qlYz3u6hPYBfaTIg5fxZLZJrfq/xMUsVP
+	afKApbCNstTFFsIvzrr3kIfQYFaTyFPpY7jG1sl/XdKa9H6jv4oCfTfV/8eneqTR
+	1M6ehw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qewh41bh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Feb 2025 12:37:34 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51BCbXSP004532
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Feb 2025 12:37:33 GMT
+Received: from [10.253.72.242] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 11 Feb
+ 2025 04:37:26 -0800
+Message-ID: <387fbaa0-4210-4e75-aa15-003866c7735f@quicinc.com>
+Date: Tue, 11 Feb 2025 20:36:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2QQXwfJwMNFQMRKG"
-Content-Disposition: inline
-In-Reply-To: <f1ce7aa9-63e3-41bd-9bb0-a54ebc714dff@rivosinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 02/14] docs: networking: Add PPE driver
+ documentation for Qualcomm IPQ9574 SoC
+To: Bagas Sanjaya <bagasdotme@gmail.com>, Luo Jie <quic_luoj@quicinc.com>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        "Paolo
+ Abeni" <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Suruchi
+ Agarwal <quic_suruchia@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>, "Simon Horman" <horms@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Kees
+ Cook <kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>
+CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
+        <john@phrozen.org>
+References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
+ <20250209-qcom_ipq_ppe-v3-2-453ea18d3271@quicinc.com>
+ <Z6lhPB1y3BBFI4ux@archie.me>
+Content-Language: en-US
+From: Lei Wei <quic_leiwei@quicinc.com>
+In-Reply-To: <Z6lhPB1y3BBFI4ux@archie.me>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: JSPcQpJY_klIsepDx3cn02vvpTQmds5h
+X-Proofpoint-GUID: JSPcQpJY_klIsepDx3cn02vvpTQmds5h
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-11_05,2025-02-11_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ impostorscore=0 mlxlogscore=999 phishscore=0 clxscore=1011 adultscore=0
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 suspectscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502110081
 
 
---2QQXwfJwMNFQMRKG
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 11, 2025 at 09:45:44AM +0100, Cl=E9ment L=E9ger wrote:
->=20
->=20
-> On 05/02/2025 17:05, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > Using Clement's new validation callbacks, support checking that
-> > dependencies have been satisfied for the vector crpyto extensions.
-> > Currently riscv_isa_extension_available(<vector crypto>) will return
-> > true on systems that support the extensions but vector itself has been
-> > disabled by the kernel, adding validation callbacks will prevent such a
-> > scenario from occuring and make the behaviour of the extension detection
-> > functions more consistent with user expectations - it's not expected to
-> > have to check for vector AND the specific crypto extension.
-> >=20
-> > The 1.0.0 Vector crypto spec states:
-> > 	The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly
-> > 	the composite extensions Zvkn and Zvks-- require a Zve64x base,
-> > 	or application ("V") base Vector Extension. All of the other
-> > 	Vector Crypto Extensions can be built on any embedded (Zve*) or
-> > 	application ("V") base Vector Extension.
-> > and this could be used as the basis for checking that the correct base
-> > for individual crypto extensions, but that's not really the kernel's job
-> > in my opinion and it is sufficient to leave that sort of precision to
-> > the dt-bindings. The kernel only needs to make sure that vector, in some
-> > form, is available.
-> >=20
-> > Since vector will now be disabled proactively, there's no need to clear
-> > the bit in elf_hwcap in riscv_fill_hwcap() any longer.
-> >=20
-> > Link: https://github.com/riscv/riscv-crypto/releases/tag/v1.0.0
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  arch/riscv/kernel/cpufeature.c | 49 +++++++++++++++++++++++-----------
-> >  1 file changed, 33 insertions(+), 16 deletions(-)
-> >=20
-> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeat=
-ure.c
-> > index 40a24b08d905..1c148ecea612 100644
-> > --- a/arch/riscv/kernel/cpufeature.c
-> > +++ b/arch/riscv/kernel/cpufeature.c
-> > @@ -138,6 +138,23 @@ static int riscv_ext_vector_float_validate(const s=
-truct riscv_isa_ext_data *data
-> >  	return 0;
-> >  }
-> > =20
-> > +static int riscv_ext_vector_crypto_validate(const struct riscv_isa_ext=
-_data *data,
-> > +					    const unsigned long *isa_bitmap)
-> > +{
-> > +	if (!IS_ENABLED(CONFIG_RISCV_ISA_V))
-> > +		return -EINVAL;
-> > +
-> > +	/*
-> > +	 * It isn't the kernel's job to check that the binding is correct, so
-> > +	 * it should be enough to check that any of the vector extensions are
-> > +	 * enabled, which in-turn means that vector is usable in this kernel
-> > +	 */
-> > +	if (!__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZVE32X=
-))
-> > +		return -EINVAL;
->=20
-> After a second thought, I think it should be this:
->=20
-> if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZVE32X))
-> 	return 0;
->=20
-> return -EPROBEDEFER;
->=20
-> Extensions can be enabled later (but can not be "reverted") so check for
-> the extension to be present (in which case it's ok), or wait for it to
-> be (potentially) enabled.
+On 2/10/2025 10:15 AM, Bagas Sanjaya wrote:
+> On Sun, Feb 09, 2025 at 10:29:36PM +0800, Luo Jie wrote:
+>> +The Ethernet functionality in the PPE (Packet Process Engine) is comprised of three
+>> +components: the switch core, port wrapper and Ethernet DMA.
+>> +
+>> +The Switch core in the IPQ9574 PPE has maximum of 6 front panel ports and two FIFO
+>> +interfaces. One of the two FIFO interfaces is used for Ethernet port to host CPU
+>> +communication using Ethernet DMA. The other is used communicating to the EIP engine
+>                                      "The other one is used ..."
 
-Ah, of course it is operating on the /resolved/ isa, not the source one.
-Makes me thing the parameter of all the validate callbacks should be
-"resolved_isa_bitmap" instead of "isa_bitmap" to make things clearer?
+OK, I will fix here in next update.
 
+>> +which is used for IPsec offload. On the IPQ9574, the PPE includes 6 GMAC/XGMACs that
+>> +can be connected with external Ethernet PHY. Switch core also includes BM (Buffer
+>> +Management), QM (Queue Management) and SCH (Scheduler) modules for supporting the
+>> +packet processing.
+>> +
+>> <snipped>...
+>> +The PPE driver files in drivers/net/ethernet/qualcomm/ppe/ are listed as below:
+>> +
+>> +- Makefile
+>> +- ppe.c
+>> +- ppe.h
+>> +- ppe_config.c
+>> +- ppe_config.h
+>> +- ppe_debugfs.c
+>> +- ppe_debugfs.h
+>> +- ppe_regs.h
+> 
+> If somehow new source files were added, should the list above be updated to
+> keep up?
+> 
 
---2QQXwfJwMNFQMRKG
-Content-Type: application/pgp-signature; name="signature.asc"
+Yes, the list will be updated when new files added in the following PPE 
+MAC and EDMA patch series.
 
------BEGIN PGP SIGNATURE-----
+>> +Enabling the Driver
+>> +===================
+>> +
+>> +The driver is located in the menu structure at:
+>> +
+>> +  -> Device Drivers
+>> +    -> Network device support (NETDEVICES [=y])
+>> +      -> Ethernet driver support
+>> +        -> Qualcomm devices
+>> +          -> Qualcomm Technologies, Inc. PPE Ethernet support
+> 
+> Literal code block should format above nicer, but plain paragraph is fine.
+> 
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6tD8QAKCRB4tDGHoIJi
-0rbMAP4r/yeGzY8gnolAtoXxntJZm835aG220lRMaGrFycBfywD/dVqx4BlphFDL
-rdGYdaDO/nBthbezTn7ZCNX4CIT5QAM=
-=5wwm
------END PGP SIGNATURE-----
+OK, I will use Literal code block by using "at::" to replace "at:" here. 
+hope it is fine.
 
---2QQXwfJwMNFQMRKG--
+>> +
+>> +If this driver is built as a module, we can use below commands to install and remove it:
+>> +
+>> +- insmod qcom-ppe.ko
+>> +- rmmod qcom-ppe.ko
+> 
+> "If the driver is built as a module, the module will be called qcom-ppe."
+> (I assume that readers know how to insert/remove modules).
+> 
+
+OK, I will modify this sentence in next update.
+
+> Thanks.
+> 
+
 
