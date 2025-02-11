@@ -1,147 +1,106 @@
-Return-Path: <devicetree+bounces-145140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15919A30707
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 10:28:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E06A30714
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 10:29:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD23F165720
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:28:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD63C7A3CAF
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE771F1313;
-	Tue, 11 Feb 2025 09:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45E1E1F1532;
+	Tue, 11 Feb 2025 09:29:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="OAtSrdHC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="me0RZXfq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775F21F12ED;
-	Tue, 11 Feb 2025 09:28:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 826C81F1524;
+	Tue, 11 Feb 2025 09:29:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739266111; cv=none; b=Tu36wrJRMeiPQdsnD6LxdxxVQCi3H5oa9s1JkOlhiubKd3lLC2nZtyqs2mvLES0FYl3Wx7QrvMBzIV/nNvdnaPBw9y52CL2XQEg2FOcX66WaB8B1bwrUrkGFRgCuMCCJ6yJ7h5+RzN13SU7uUb+3kgsFtHexQ3BK7QGedpsNZ7M=
+	t=1739266150; cv=none; b=eCp2g5NGTm9PNbCU/IF6+fbrSd3uT/DlHXzi0a4QI+Jz/XHhQQJ9nYmOnkL01inymMmy5nVWMofWqxDMz3tS5hK0jJmpyompj9WDhodmSpENIZdQXZYfOxX3LTXhuvd4A3Sw7hU8b84+8vuLtHyvY66Uo+jp2qw8/JZqt7MtjNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739266111; c=relaxed/simple;
-	bh=co1cSWx5jjebn1be3GgShvFIPNk5ZGYkgJ/NYGsS+K0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TaXYmb3rBo0+/tZOg+8bfHD2k5ItOJmIWwXcqNTxY8E3LXS96Tih7NJMcyLN84Mqjd6OxwR/ee6Diz/bqN9/LLuTMeV+vLfpBezGYh4whVyJ0ThAJKDO2GBPBySj9FyJUf8dKXNT4wU3rBUUB/d8sUOmCvpSjheB1uDG7CYLiJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=OAtSrdHC; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739266107;
-	bh=co1cSWx5jjebn1be3GgShvFIPNk5ZGYkgJ/NYGsS+K0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OAtSrdHCu2ucm3/qoKlfHhdLzbcY9eYa0S8LB/9+ydqOk4eKkVem/z2aQsOojjCtP
-	 zTWtpglOAYoQdqUIwH21A3yn3k+mMqHtcG7ozrGKjRemj+Z7JquQpgOJkSgkN0s6a0
-	 1VrBNBOXSqCVASYcH1Z6jEIy2xmrYYspCA+qhQuujmPdV3KLUmdP7uNchNxZxk40S2
-	 vuIFaZwRhU5YGwGH3YyXqbWTV6wKvEhusmo2vgMTr5EJY9Dp8xnE86QOi1moZs6qFf
-	 6eoQzryxc+dgYY+po2U9B3Cuj4+DRQhMd78XCPGTVpiikSwGFGDkqtLlO1LrYrKSa8
-	 GGPXXiOXWqcEA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 73FC917E0EAD;
-	Tue, 11 Feb 2025 10:28:26 +0100 (CET)
-Message-ID: <9cbd03f7-c3e4-433b-96ee-3b9683fccdd2@collabora.com>
-Date: Tue, 11 Feb 2025 10:28:25 +0100
+	s=arc-20240116; t=1739266150; c=relaxed/simple;
+	bh=okPQbVYPT1ntp/61RJEoRgq8G3igp9SZpAcnOema58I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bH8cMG8jmev8DKsbzbOlyt88VRpGzGk9l+PKGdo9ATxPek0xoZ5IVxfRVLcn6eHarmeYcqo7uO2+mmuReAAxwe7OoPcjU9OMqU10xX1iGM2q+mRzuxADQQnID9THUhkqY0oONrDWcj+1w/zwsfucwziQcT/63nfG64ajRvisu1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=me0RZXfq; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=l9ZBxMcRpMoEoqbx44hfP6cOQVSEwX25fwYpyRa9ruc=; b=me0RZXfqHze4mlDOIlcJ7qvLr8
+	ACyYFpmquyLcJKuo7Wz6huORLPFTUERbLsUPoFi7Zj/9u0vGueiWrrMJVImF6++N4WeoebeicgpwE
+	/jnsq6u6K19up+6du/Xeqf72zRq4ivUA5rUO+5wsAdGT6ik8AJ5qlrZZ3RM4BUeBBs7pq63JhWOPP
+	mnVpHHGb2d5LUw1ZxplJRsxfbI9wCXM8hPhJEinFqiFRs4oX2Q84knBlh6DOiaf8xyITbl3Fu4+BE
+	6BipW7k10w0MCKDn95OXmu7dsqq0C3FUjNKvj/UjdXY1nMaqa6bBvUziNFpiYHq+sFZNfnlRRhfV6
+	RV/pXW7A==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1thmZi-0005mx-Oe; Tue, 11 Feb 2025 10:29:02 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexey Charkov <alchark@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 0/3] arm64: dts: rockchip: Add SPDIF on RK3588
+Date: Tue, 11 Feb 2025 10:28:50 +0100
+Message-ID: <173926612570.1219038.2885465365177392240.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250120-rk3588-spdif-v1-0-1415f5871dc7@gmail.com>
+References: <20250120-rk3588-spdif-v1-0-1415f5871dc7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: mediatek: mt8370: Enable gpu support
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>, kernel@collabora.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20250207-mt8370-enable-gpu-v3-0-75e9b902f9c1@collabora.com>
- <20250207-mt8370-enable-gpu-v3-3-75e9b902f9c1@collabora.com>
- <20250211-nice-boar-of-abracadabra-f696ec@krzk-bin>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250211-nice-boar-of-abracadabra-f696ec@krzk-bin>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Il 11/02/25 09:31, Krzysztof Kozlowski ha scritto:
-> On Fri, Feb 07, 2025 at 04:18:32PM +0100, Louis-Alexis Eyraud wrote:
->> Add a new gpu node in mt8370.dtsi to enable support for the
->> ARM Mali G57 MC2 GPU (Valhall-JM) found on the MT8370 SoC, using the
->> Panfrost driver.
->>
->> On a Mediatek Genio 510 EVK board, the panfrost driver probed with the
->> following message:
->> ```
->> panfrost 13000000.gpu: clock rate = 390000000
->> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
->> panfrost 13000000.gpu: features: 00000000,000019f7, issues: 00000003,
->>     80000400
->> panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
->>     Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
->> panfrost 13000000.gpu: shader_present=0x5 l2_present=0x1
->> [drm] Initialized panfrost 1.3.0 for 13000000.gpu on minor 0
->> ```
->>
->> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
->> ---
->>   arch/arm64/boot/dts/mediatek/mt8370.dtsi | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8370.dtsi b/arch/arm64/boot/dts/mediatek/mt8370.dtsi
->> index cf1a3759451ff899ce9e63e5a00f192fb483f6e5..2f27f7e7ab813b97f869297ae360f69854e966e1 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8370.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8370.dtsi
->> @@ -59,6 +59,15 @@ &cpu_little3_cooling_map0 {
->>   				<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>   };
->>   
->> +&gpu {
->> +	compatible = "mediatek,mt8370-mali", "arm,mali-valhall-jm";
+
+On Mon, 20 Jan 2025 13:01:26 +0400, Alexey Charkov wrote:
+> RK3588(s) uses a several SPDIF transmitters which are software
+> compatible with those found in RK3568. This series adds the required
+> device tree nodes in SoC .dtsi and enables the dedicated optical
+> SPDIF output on the H96 Max V58.
 > 
-> It's up to platform maintainers, but IMHO this is discouraged practice.
-> If you ever need to override compatible, this means the node is not
-> really shared between this and base SoC (base DTSI).
+> Note that only SPDIF 0/1 are meant as externally connected outputs,
+> while SPDIF 2/3/4/5 are internally routed to the various display
+> encoders inside the SoC. Thus, using SPDIF 0/1 only requires their
+> device tree nodes to be enabled (provided that the signal is routed
+> somewhere usable on the board itself), while the rest rely on driver
+> support on the display connector side and are therefore not touched
+> here.
 > 
+> [...]
 
-That's true, indeed, but this is a special case, where the GPU actually is really
-architecturally and generationally the same, difference being that one core is
-lasered off from the lower binned silicon.
+Applied, thanks!
 
-I appreciate you pointing that out, and effectively we shall not create any
-misunderstanding on this practice, which shall remain discouraged.
+[2/3] arm64: dts: rockchip: Add SPDIF nodes to RK3588(s) device trees
+      commit: 271ba4d6c56c7cb295def511cbcdd9880ec41e1b
+[3/3] arm64: dts: rockchip: Enable SPDIF output on H96 Max V58
+      commit: cd81ee8667cc13ff69e11b44a727be07035aa536
 
-Speaking of which!
-
-Louis, since you anyway have to send a v4, please add a comment before that
-gpu node override saying:
-
-/*
-  * Please note that overriding compatibles is a discouraged practice and is a
-  * clear indication of nodes not being, well, compatible!
-  *
-  * This is a special case, where the GPU is the same as MT8188, but with one
-  * of the cores fused out in this lower-binned SoC.
-  */
-&gpu {
-  ....etc
-
-
-Thanks,
-Angelo
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
