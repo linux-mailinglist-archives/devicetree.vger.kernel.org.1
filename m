@@ -1,140 +1,143 @@
-Return-Path: <devicetree+bounces-145452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FAE8A31590
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 20:44:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53D2CA315ED
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 20:51:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22EA97A342E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:43:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F256916930B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 19:51:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0083726E63B;
-	Tue, 11 Feb 2025 19:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C402D2641D1;
+	Tue, 11 Feb 2025 19:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mM6CREdI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GGkTLI1+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D053726E637
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 19:44:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D80261590;
+	Tue, 11 Feb 2025 19:49:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739303070; cv=none; b=KaBwmt2cqS3kQF4wNbfpZoNssoyUBOtOZ1Hnvsg7iPcrAm7GfFMIOVKfMNgEEGncPAxxKnjOW4pZ0SEUBsaGVf2fq24SXALNvSrNuHd73vTSYWf7lVe6MdvA19n8mb5EyfkiVuTb+gyhqU4gx+UaGsRr6fZwST8NL4c2NXoc9CE=
+	t=1739303388; cv=none; b=i9sNLbLNmIeCqi+Xk1uUb6R65vy4JrcZzmNmMoDKkKgsGAWF8tDB/MEMCrqJS5PCK+PV+vMvj3/xwiTFSBJhAOH5JQjE8MmpGD2mihV7XAbP22Hl6LWXjwAM4iH2GyGuD5nDXbyj3Sscwa4dVVoxE6swRSeqs5PPTAJtsu2IAoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739303070; c=relaxed/simple;
-	bh=Hp0BPTzPwZpSHR+vJEd78ilDWWyWdLyiF/01sHFuRLM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mQiyw+EtfhKohaEozGwD2OZ7EdF/wlZI9F6vJVPUkJHUJvgQnaeZHGEcvJem7S/sZxiMUgjvuLVKy0pTcMzMsrAkz1HmxZSjNEj83pmCE230pAP6ZrTy3vHT8PukWq0l6DTLJxPNlyOhR/SKVa/tV8L+A91R422XfP25s0xX9m4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mM6CREdI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 506C6C4CEDD;
-	Tue, 11 Feb 2025 19:44:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739303070;
-	bh=Hp0BPTzPwZpSHR+vJEd78ilDWWyWdLyiF/01sHFuRLM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mM6CREdIS+9n2HJ1vw6TatQgM+uxQtpr9Vz9BNoLvEhP4Zj0/hR8kl5xchyKha2Uk
-	 y+RlxOAS25/A/99+ZQzI3s5m6D/u3Iag96aQatQnlXPlrtsBLbNZTdCUmrs2aBBlR9
-	 e1tavxR0OQSz1rCmLCEemgxuXp8CqjgsB/uzbtxJ2FdazYm1JskgU6IvXAgbLYxidP
-	 q9udWokBedjCHBWSI5BxQZqNOt8ZzOR7GljcOKvv1EWYWWgloBvmjYMWAXCJB7B7Cy
-	 c7swNbK2KWTinMcD0GInZhoHfawzoZlNKcCPaLFkDTEyMWy5W17h3/vPdeN72jurEA
-	 LLTtwgTOcNMvg==
-Date: Tue, 11 Feb 2025 20:44:26 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Damien Le Moal <dlemoal@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: disable IOMMU when running rk3588
- in PCIe endpoint mode
-Message-ID: <Z6uomtzSVTOmAB8X@ryzen>
-References: <20250207143900.2047949-2-cassel@kernel.org>
- <7996d1ec-6ceb-4d8a-bf03-1911ac5f8f0c@arm.com>
+	s=arc-20240116; t=1739303388; c=relaxed/simple;
+	bh=q7mudpGioXTvlqpq0msVddOb6NgEqKQnlQZT/L0oMxA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=J6TjpuBSt+nRGU/u5yrw1IW8R2wVLE0e1rVBvkumKarfYW5ClQaQFljmvzl+mxNvr2M1OqzhG9rrDCPSBd4NAb6azXzWag+mPcdgp6RhdWRR4H7qWBcGCHOH59oPpbq3vglpPBMtx3chB1eauwAFsfDeoTXUu3uCbTqXK17EyZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GGkTLI1+; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-21f44e7eae4so101160265ad.2;
+        Tue, 11 Feb 2025 11:49:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739303386; x=1739908186; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IjpUGXkhDfRXw7zSvgy8sT4jnZ7i9DN1kehwE4vfMW8=;
+        b=GGkTLI1+HIbKLsHQ1032NADSIZ2gS3giH0DnPVJkfev1uHN+Tp9Q207fcOM6tHP3wp
+         81rbsFG2HDe/XOSqKkzTBY+5tY5kPWY5VMf5HguUAcxUoyxiXQlO/O/mH+x4OQAh2yMy
+         M7KM2/L0MKtNwL/76swNZJ5yKMmky1L277tx3HUPtYkdjEeden8WLWPYIj3Cs1Dkb1O/
+         XwPDDUv/yhXRMWMdDVgHWAV2+LUGbp9Fhn6tleSYDck58qN+nauxgBnS2mpFYmlTnIuE
+         OF7xHDIWlmwG5zHvGfF5GgYxqRVYvpOgknu3mIGImdUW3VkMeGUEKqtVNoAscmOYEAl4
+         CP1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739303386; x=1739908186;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IjpUGXkhDfRXw7zSvgy8sT4jnZ7i9DN1kehwE4vfMW8=;
+        b=JwgU0RXujDhWsyZUi/uM4foiU+xdn+1cgjjh6jjqxeImRPH+4+gkEtEle2t3wyF9Ud
+         okuZMRebGF+RM8+dTzKExre2+neoTCF7hyoXojmTWu/a6Z5keAWzDZR+Lw87nQl/ti9M
+         Md1EbEe6KWeEgOVgVMnjP/CuOHPRUISmbQU1ZTkgsgUpBxMD3oFOCUSdnYRNmuQ/liZq
+         x+SUEGhBSLM+bncOIF6B/IqiKQwzZzP7Wxmby58X51fdKy/bXzgfObfz77D2ZXKJUPwN
+         OUXfdJU/VlKdtHyDPSEyLNPqbCM2Wc4Ur3GbadepzmrLW25wT7U343nxI+DbMqpPjYvN
+         2XyA==
+X-Forwarded-Encrypted: i=1; AJvYcCU9cM1ny1zqJEFSQzYzg8AjYMrQH7wt098X23mjCMGFgfcyBvCtABPjAUA/r7r8pPCZb7yKJwHoOLCa@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgdnCc+qi4AIIvYuHVoEzlU4p8tF+bgLd6cEUe6FVihSQUS16o
+	L/XxlAytFVpjUISxVhquCqm4m4OEqUDnHlN7MOVWjZWHH2RpmDmeQ52+bSiy
+X-Gm-Gg: ASbGncsVubaJ0kJwo65uhAV1cwO3mxVIfEx5ocVlHNEPnhGJQ4WPhRnmo0PLk4PtFhZ
+	wXzz/rWnwaX31oSAZleHibo0txpFd0VRPQd36Ccv0A2TvgPEv9UFyO9XfFU8AMJJLjJlzWuvDQ1
+	LikEOi4CgNHNh+cwWhYNnzBYlEwnZXZqUYKgYwtGyNhCrYyvS5A9X4C2XwD7UPJ0BxPb1Jd1q/S
+	mPxI704g/J/yR31H56OHMgRuLjXu7FYzTwP+WoTfQ8Os/hF0UKD3HqEncKqLrjZsRWnyumSCO6/
+	eIMb4Lf+3/83ceZdG4qeqCbmPQQAF0zkepSLPA==
+X-Google-Smtp-Source: AGHT+IH37wtYZVk9LnGGxycAwJeRYDRGUVpw8i2n95/wnOmXU3d48HFE1h5Jo+e4BCuHk/JSvIgI5A==
+X-Received: by 2002:a17:902:eccf:b0:215:acb3:3786 with SMTP id d9443c01a7336-220bbad0d25mr7605455ad.19.1739303386130;
+        Tue, 11 Feb 2025 11:49:46 -0800 (PST)
+Received: from localhost.localdomain ([66.119.214.127])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f3687e68bsm99815035ad.169.2025.02.11.11.49.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Feb 2025 11:49:45 -0800 (PST)
+From: "James A. MacInnes" <james.a.macinnes@gmail.com>
+To: linux-arm-msm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	andersson@kernel.org,
+	konradybcio@kernel.org,
+	quic_wcheng@quicinc.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	"James A. MacInnes" <james.a.macinnes@gmail.com>
+Subject: [PATCH 0/3] Add PMI8998 VBUS Regulator Support
+Date: Tue, 11 Feb 2025 11:49:13 -0800
+Message-ID: <20250211194918.2517593-1-james.a.macinnes@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7996d1ec-6ceb-4d8a-bf03-1911ac5f8f0c@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hello Robin,
+Hello,
 
-On Tue, Feb 11, 2025 at 05:49:29PM +0000, Robin Murphy wrote:
-> On 2025-02-07 2:39 pm, Niklas Cassel wrote:
-> > Commit da92d3dfc871 ("arm64: dts: rockchip: enable the mmu600_pcie IOMMU
-> > on the rk3588 SoC") enabled the mmu600_pcie IOMMU, both in the normal case
-> > (when all PCIe controllers are running in Root Complex mode) and in the
-> > case when running the pcie3x4 PCIe controller in Endpoint mode.
-> > 
-> > There have been no issues detected when running the PCIe controllers in
-> > Root Complex mode. During PCI probe time, we will add a SID to the IOMMU
-> > for each PCI device enumerated on the bus, including the root port itself.
-> > 
-> > However, when running the pcie3x4 PCIe controller in Endpoint mode, we
-> > will only add a single SID to the IOMMU (the SID specified in the iommus
-> > DT property).
-> > 
-> > The enablement of IOMMU in endpoint mode was verified on setup with two
-> > Rock 5b:s, where the BDF of the Root Complex has BDF (00:00.0).
-> > 
-> > A Root Complex sending a TLP to the Endpoint will have Requester ID set
-> > to the BDF of the initiator. On the EP side, the Requester ID will then
-> > be used as the SID. This works fine if the Root Complex has a BDF that
-> > matches the iommus DT property, however, if the Root Complex has any other
-> > BDF, we will see something like:
-> > arm-smmu-v3 fc900000.iommu: event: C_BAD_STREAMID client: (unassigned sid) sid: 0x1600 ssid: 0x0
-> > on the endpoint side.
-> > 
-> > For PCIe controllers running in endpoint mode that always uses the
-> > incoming Requester ID as the SID, the iommus DT property simply isn't
-> > a viable solution. (Neither is iommu-map a viable solution, as there is
-> > no enumeration done on the endpoint side.)
-> 
-> Well, strictly the controller should own all the StreamIDs it's capable of
-> emitting - if that's just one per possible bus number (as the iATU
-> FUNC_NUM/FUNC_BYPASS stuff appears to suggest?) then 256 "iommus" entries
-> isn't *entirely* unmanageable. If it were to support being arbitrary (or
-> multiple) devices/functions, though, then we probably would want to look for
-> a different solution, because nobody wants a 512KB DT property... :)
+This patch series adds support for the PMI8998 VBUS regulator in the Qualcomm USB VBUS regulator driver and the device tree. These changes enable proper VBUS current limit configuration and ensure compatibility across multiple Qualcomm PMICs.
 
-Well, FUNC_BYPASS and FUNC_NUM is in the IATU_REGION_CTRL_1_OFF_OUTBOUND_i
-register, so it is for outbound PCI TLPs, not inbound PCI TLPs.
-(Only inbound PCI TLPs will get sent to the IOMMU after passing the iATU).
+Summary of Changes:
+- Patch 1/3: Updates the Device Tree Schema bindings to include "qcom,pmi8998-vbus-reg" for PMI8998 support.
+- Patch 2/3: Extends the Qualcomm USB VBUS regulator driver to support PMI8998, dynamically configuring the regulator based on the PMIC type.
+- Patch 3/3: Adds the VBUS regulator node to pmi8998.dtsi, enabling USB Type-C VBUS support.
 
-There is FUNC_NUM in IATU_REGION_CTRL_1_OFF_INBOUND_i register, but it has
-a different meaning. (An inbound PCI TLP will only get translated if the
-FUNC_NUM matches the value in this register).
-(This check is only performed if the "Function Number Match Enable" bit
-of the "iATU Region Control 2 Register" is set.)
+Motivation:
+A long time ago, in a conference room far, far away, I promised that USB Type-C capability would work on the SDM845 when we chose this chip for our instrument.
 
+That day never came.
 
-The SMMU on the rock5b, when running the PCIe controller in endpoint mode,
-has printed the following:
-arm-smmu-v3 fc900000.iommu: event: C_BAD_STREAMID client: (unassigned sid) sid: 0x1600 ssid: 0x0
-but also:
-arm-smmu-v3 fc900000.iommu: event: C_BAD_STREAMID client: (unassigned sid) sid: 0x20 ssid: 0x0
+So I wrote it myself.
 
-depending on which host system we had connected to it.
+This patch series finally adds the missing support for USB Type-C VBUS regulation on PMI8998-based platforms. Future generations of engineers will no longer have to mutter "Why doesn’t this work?" while digging through device trees.
 
-So I'm a bit worried that 256 "iommus" entries will not be enough.
+Kernel Version & Testing:
+- These patches were developed and tested on Linux 6.13.
+- Attempting to run Linux 6.14-rc2 on our Lantronix SOM resulted in a crash, making it unsuitable for validation.
+- Validation was performed using a modified device tree, confirming proper regulator configuration.
+- No regressions were observed on existing PMIC configurations.
 
-I don't have any idea on how to solve this, but right now I don't see any
-other option but to disable the IOMMU when running the PCIe controller in
-endpoint mode.
+Next Steps:
+If there are any suggestions or required changes, please let me know. I will be happy to revise and address any concerns.
 
-(We have no issues when running with the iommu enabled when running the PCIe
-controller(s) in Root Complex mode.)
+Thanks again,
+James A. MacInnes
+james.a.macinnes@gmail.com
 
+James A. MacInnes (3):
+  regulator: qcom_usb_vbus: Update DTS binding for PMI8998 support
+  regulator: qcom_usb_vbus: Add support for PMI8998 VBUS
+  arm64: boot: dts: pmi8998.dtsi: Add VBUS regulator
 
-Kind regards,
-Niklas
+ .../regulator/qcom,usb-vbus-regulator.yaml    |  1 +
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |  6 ++++
+ drivers/regulator/qcom_usb_vbus-regulator.c   | 33 ++++++++++++++++---
+ 3 files changed, 35 insertions(+), 5 deletions(-)
+
+-- 
+2.43.0
+
 
