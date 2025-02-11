@@ -1,189 +1,147 @@
-Return-Path: <devicetree+bounces-145494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BE92A31771
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:17:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11583A31783
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 22:20:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8EF497A16C8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 21:16:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99784169053
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 21:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6A11EF0B9;
-	Tue, 11 Feb 2025 21:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F55266F1E;
+	Tue, 11 Feb 2025 21:19:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jDQnUOUj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SuTXjTZ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758A5264A9F;
-	Tue, 11 Feb 2025 21:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20474266F09
+	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 21:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739308628; cv=none; b=j1rJt33fdM+3WulCZeu75RgLgjidzPgwu23WdmnaCf6HWAao5/QSlRICSyHYzR/wHkThmZy3KLwcSdfbNjKa6bh2g4qD9IwV586fZ0F+4XEYyzA9PGKS/68PMIYkJTR8qP8tUX/1N1NEVdHomJL9GCN1/j+Ue3g4LHrg1A/jcY8=
+	t=1739308792; cv=none; b=CNyDvjJ3K3vp3EASsWQIiN/K29BKvnlgZVbbZxKfFPXMbWCFLs7Tt15Pn+WhZ1OfN9hWizUQxB+zOVAZ7djS3J9aj0xLUK1phnSnHdjXTs3cmGdo87MSxc9uhcFPp/awM27aA/hqHAetPTD2QyyCMMEId2tuQqCCrwRJjeX1tYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739308628; c=relaxed/simple;
-	bh=kL4pLRpea7Cu+7ztNj7Yfeqe+//z5davQY0XpetXYu8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gBvycpNjYofr3zeGlhwugWzFnH7Dta5TJrupJomTA106oaFf/5wlbGBTIGnmEdzLv5MeIQ+AvJbyYoBZlz+TxR0XCMX2D3rIf43pypIoEVxu49X41JfdagLEHqaYqRmsrBvPmEEDVijaSagBd4RPF+oIR5pppV5S1STVxB4464o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jDQnUOUj; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ab7d451f7c4so265617866b.0;
-        Tue, 11 Feb 2025 13:17:06 -0800 (PST)
+	s=arc-20240116; t=1739308792; c=relaxed/simple;
+	bh=v+NotQmkypHRHE+nHTFJOTzrbxnNJ6Og8Bo7qTcrXqM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Q+DCQmBNlbM6IHCbNa2ktO+ZryxnkhOGjFcZnHu7okGXkswUQkaX/rr2fGp/kYjig+mhd2OcURTEyGzu4ai093ucT35ssg6Q0l2SbDO5Y+K+ITZPK0pIGuef0WWhTkFDY0pvq8j9wpxkP+Z03wPH28cvdq0Lq7pMaajRwUSyFAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SuTXjTZ1; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6f754678c29so55167187b3.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 13:19:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739308625; x=1739913425; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=kL4pLRpea7Cu+7ztNj7Yfeqe+//z5davQY0XpetXYu8=;
-        b=jDQnUOUjMqd4fUJTUzJlH7CQG8WXOe7zZAlYYFw0KUykJXr1Dk/untCQDgNXNCxLxx
-         /J0IZTD8T1qO4aCaZCt54T9v/Yxx7r4xWdvjgPlrbicygDzuC9tnNGmvN3OV3mh2qwtb
-         EFYuENSVWIi8cmcNSkob/otu8oeo35aA8Vv3oM9iIZVOZDe/sbVdOEE/0lc79vy6OyFb
-         jw1IqIuUvoZGa0HE5gurUrzuUPl72HahMTibGx5SBnrCOShhAEGgTRHbi7Z3oo3SABJY
-         m/8Sq0bz+HzoK2dHUA7PC3m0V9LASOdoTlp2Rigpr3coFT7xaG5TC+Avj61YBcGsQcQ3
-         mFaw==
+        d=linaro.org; s=google; t=1739308789; x=1739913589; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8vMpnOzz24XlelaJjtEfRnOqqAth0NeggjrcIGJFxfY=;
+        b=SuTXjTZ19A00FUPjfW5OIYpo1Pj7eXvnzezX2PSBJxCZFMy3+xCG+hWTjB2jaEIDpp
+         r1yomxBrNYd9IoPPc573d51xwZSGdEHbMvAHDMCw7RfK13I/BObzcJIoy2n75sXqpNaM
+         rq1gakYpbMsWWRVB0K3XKyMbl18OZDuNSZgiGThJsLH63GB7eyz+7nF9ynT1GX+x96d4
+         e5Qihpk/If7a0cWz2lTQy7yHbFLmS7phf/SbiTVUlrWVReoVlWTBxmutO3hhnPVBF+6F
+         TqqFHR2art6vHV1f6BHNGY0t4rm2RVQReGSXdSkfsgB6IaXy1Z0Yd5pN0r7KmEswCkkD
+         3HKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739308625; x=1739913425;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kL4pLRpea7Cu+7ztNj7Yfeqe+//z5davQY0XpetXYu8=;
-        b=psXujSCVUwh1PKZabl2Kf7gTGm/OEMdEtR4bz7HJ2TNY3kLxqyLTJp81sCBvAB5pj8
-         oN4CgWxX+smRP4zEhMRmoZugiPwsC4qtzm1WeF+AwFtHguwWUpjKC1E50lMfi2wMy8Us
-         XiNv7GgK/x8YTOY2ekm9oN9E/RfNj5zrtFU+cU9ewcXLO8K8+zbFtJdxZuHn+u97GBRt
-         v0w8pV/RmomfYJEIMU/yi1XohNU8IwWo7p/XFWtRAUAQKO+3S/g3QFTbc3oKx9a015lJ
-         C563yt7z8HNttbisu6NKAKLylGsy2dD2H6l/2I0ijKBF6UTHQmsCX+Cf0Nopbv3DHBVn
-         lFKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVf8TpqxY8Cbb3S4zDkoiYpXLZ9AkWySTW5eyeyFqXC+7zQ9EEIAGe2vrNxCtvg+eNFZzuvbdeldn1C@vger.kernel.org, AJvYcCWoSru83mX/upYIMnUCpUI6Twcqo2jPCdVFEWpq6dqEtvMNad6JcRSY1Fh7dvuhtBtDfsBhsCEJ6H8I@vger.kernel.org, AJvYcCXnwN6VO9yrToE7II/lZQlN/E7Na0Z1U+qbMehDi5fgXUn/bdgF+cOUmTZaxqM6ud/ml/asaB8FIONL37Dt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yww72BW/CJ5uJf0hDTJc8PFVXE28d3tjrBsumM8k++nkX9krWeJ
-	n0nyJt2c5sXF1ck5/a//oMAJczVXea7+KhgnIOQ7EGuGfsH9WQJZ
-X-Gm-Gg: ASbGnctvRj7Z7jEMpBKRGyaoLYlkxQHBPg7vgUsTih0zs4XR/RqEM0DagqPHsleeBGm
-	6k1ilrRzix/BtcwRlTwwOn0ll1SPRDUfO1UQUdeY+Obu+lE7OCzrmOUBhakbWK9EfS+c6d8p6aZ
-	mp4pWbfQA3T8aYmzLrjmffuBYHV8yY7EEcWEo3tAbpxau/EbttWWeUNohZQoX3iioDG35THiSSh
-	43XJJUT3qprGGCuh79lQDSPw0uOV//H9rMhuu70oQHs0zVXSXsOVEKNDo1lyxlcuiUVFo+/bb1d
-	tOvSTsy4AP0Xbv9JIp7Cxpr4uZqm9O11
-X-Google-Smtp-Source: AGHT+IGni2/bzHFeeZX8aVfgIY4iMRShws/1IbPt7a2N9AbncofAa7JiMPAeDkXCfvENazx3YMpJFQ==
-X-Received: by 2002:a17:907:60d5:b0:ab6:eecb:41f0 with SMTP id a640c23a62f3a-ab7f34738a9mr42642166b.35.1739308624364;
-        Tue, 11 Feb 2025 13:17:04 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7d18e006csm321274266b.52.2025.02.11.13.17.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Feb 2025 13:17:03 -0800 (PST)
-Message-ID: <5d0f0f209194ca5ad1e4f93ab5fefd40484855e3.camel@gmail.com>
-Subject: Re: [PATCH v9 1/2] dt-bindings: rtc: sophgo: add RTC support for
- Sophgo CV1800 series SoC
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>, alexandre.belloni@bootlin.com, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	unicorn_wang@outlook.com, inochiama@outlook.com, paul.walmsley@sifive.com, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu
-Cc: dlan@gentoo.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	linux-riscv@lists.infradead.org,
- linux-rtc@vger.kernel.org, Krzysztof Kozlowski	
- <krzysztof.kozlowski@linaro.org>
-Date: Tue, 11 Feb 2025 22:17:00 +0100
-In-Reply-To: <20240428060848.706573-2-qiujingbao.dlmu@gmail.com>
-References: <20240428060848.706573-1-qiujingbao.dlmu@gmail.com>
-	 <20240428060848.706573-2-qiujingbao.dlmu@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+        d=1e100.net; s=20230601; t=1739308789; x=1739913589;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8vMpnOzz24XlelaJjtEfRnOqqAth0NeggjrcIGJFxfY=;
+        b=RjBgDcVQnzeH/kVHDpoY8GZLNjl3wmnTRp5ABccnA/xQfKkFVPqvPXRp6LLfoSlSo3
+         FcmJzoSWlRcgn2y+8MHmPU8IOjFuSwSm4FxYVbIYlrabm4QOoWkL/Arv1Hj1Sb4YTkYF
+         Yk9nI8fW8bznLYcjIZsNEYMd+cwk2m80GZqJwCsEX+xP+j4mwSO3rda2+4lNHs2F0I9w
+         UORupGdKutLMIUjTFmL2pXA4XteA6pnW5Fsu1P/X9ccEAWvp8Tbu/sCTTUUFsiRbaU3Y
+         yBSfb9lvUSN/JrEmQ+jCKCXNLYDDHtuV8Qvl4HNjvhfAVGtAQYg7hXWUwMSenP4nbwXT
+         ChlA==
+X-Forwarded-Encrypted: i=1; AJvYcCUUqhyDg72T+wVpvD2o8EKNWOT0RdxxWmmkqXwbZ+fqRjxQ4UCCSS3lyI970z9VIo7WFdgc+kjxW4Mg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwV36kvHojAoC3a9RDK1IcNoRZExUSi0UZa1h/Dj0YbaKAfRvvB
+	VxSIw0pOJfzI7Xyw9QJ+vQio+h0gG1U5o2kmPt3pZaclo3ebuGgijNUqgJeDsTVNttuYT1l9dx+
+	7pZNNK2Xdb/gGjjJnL1zKC5Z13LvPKgErcn6R+w==
+X-Gm-Gg: ASbGnctcQTIon1Xgtye4OdPE6V7zst8EmOIjNdwfKAiXWXwtfJ8rh9CHnfk395EjeoE
+	OmHnXhcroFqvQIiWlpaIw3emqT/hNw6EBa6SNrq8mscwn1e2cYOZFG5BGZreniK9q1fuV0y5Wpj
+	HPqeheJhxcPsPV8fu/Cnv2MEEScFoQ
+X-Google-Smtp-Source: AGHT+IH9PQWCcTuU3a/WUrp8QtPQgxzfoa0eG9D03GuXuge0++Qcj4dBm/Lk+WFXHD1fsOGrWKTo04Qt3z/nEYlknZk=
+X-Received: by 2002:a05:690c:638a:b0:6f9:88ba:aa5d with SMTP id
+ 00721157ae682-6fb1f194f3dmr12585947b3.9.1739308789048; Tue, 11 Feb 2025
+ 13:19:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250207-rb1-bt-v4-0-d810fc8c94a9@linaro.org> <20250207-rb1-bt-v4-6-d810fc8c94a9@linaro.org>
+ <6e5bb2f7-a23b-4fab-914b-e67911eaf408@oss.qualcomm.com>
+In-Reply-To: <6e5bb2f7-a23b-4fab-914b-e67911eaf408@oss.qualcomm.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 11 Feb 2025 23:19:37 +0200
+X-Gm-Features: AWEUYZlP4_dHB7Swwx_XD496R58hsBttKN3cXZEWV8-yu1YbBT4qWLOogarYxpE
+Message-ID: <CAA8EJpq504V48qqSX0mzxCffUkq_xpu_UE+qubB46A7zon=0iw@mail.gmail.com>
+Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: qrb2210-rb1: add Bluetooth support
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Thanks for your patch Jingbao!
+On Tue, 11 Feb 2025 at 16:52, Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 7.02.2025 9:41 PM, Dmitry Baryshkov wrote:
+> > Add support for the onboard WCN3950 BT/WiFi chip. Corresponding firmware
+> > has been merged to linux-firmware and should be available in the next
+> > release.
+> >
+> > Bluetooth: hci0: setting up wcn399x
+> > Bluetooth: hci0: QCA Product ID   :0x0000000f
+> > Bluetooth: hci0: QCA SOC Version  :0x40070120
+> > Bluetooth: hci0: QCA ROM Version  :0x00000102
+> > Bluetooth: hci0: QCA Patch Version:0x00000001
+> > Bluetooth: hci0: QCA controller version 0x01200102
+> > Bluetooth: hci0: QCA Downloading qca/cmbtfw12.tlv
+> > Bluetooth: hci0: QCA Downloading qca/cmnv12.bin
+> > Bluetooth: hci0: QCA setup on UART is completed
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+>
+> [...]
+>
+> > +&uart3 {
+> > +     /delete-property/ interrupts;
+> > +     interrupts-extended = <&intc GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
+> > +                           <&tlmm 11 IRQ_TYPE_LEVEL_HIGH>;
+> > +     pinctrl-0 = <&uart3_default>;
+> > +     pinctrl-1 = <&uart3_sleep>;
+> > +     pinctrl-names = "default", "sleep";
+> > +
+> > +     status = "okay";
+> > +
+> > +     bluetooth {
+> > +             compatible = "qcom,wcn3950-bt";
+> > +
+> > +             vddio-supply = <&pm4125_l15>;
+> > +             vddxo-supply = <&pm4125_l13>;
+> > +             vddrf-supply = <&pm4125_l10>;
+> > +             vddch0-supply = <&pm4125_l22>;
+> > +             enable-gpios = <&tlmm 87 GPIO_ACTIVE_HIGH>;
+> > +             max-speed = <3200000>;
+>
+> I suppose we don't need a power sequencer for this smaller,
+> tightly-integrated-via-snoc chip?
 
-On Sun, 2024-04-28 at 14:08 +0800, Jingbao Qiu wrote:
-> Add RTC devicetree binding for Sophgo CV1800 SoC.
->=20
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+We can (and should) have it in a longer term. Currently none of
+wcm39xx chips have a powerseq implementation.
 
-Verified against SG2000 TRM [1], the bindings make sense to me.
-
-Reviewed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-
-[1] https://github.com/sophgo/sophgo-doc/releases/download/sg2000-trm-v1.01=
-/sg2000_trm_en.pdf
-
----
-> =C2=A0.../bindings/rtc/sophgo,cv1800-rtc.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 53 +++++++++++++++++++
-> =C2=A01 file changed, 53 insertions(+)
-> =C2=A0create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1=
-800-rtc.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml=
- b/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
-> new file mode 100644
-> index 000000000000..b36b51a69166
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/sophgo,cv1800-rtc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Real Time Clock of the Sophgo CV1800 SoC
-> +
-> +description:
-> +=C2=A0 Real Time Clock (RTC) is an independently powered module
-> +=C2=A0 within the chip, which includes a 32KHz oscillator and a
-> +=C2=A0 Power On Reset/POR submodule. It can be used for time display
-> +=C2=A0 and timed alarm generation. In addition, the hardware state
-> +=C2=A0 machine provides triggering and timing control for chip
-> +=C2=A0 power on, off, and reset.
-> +
-> +maintainers:
-> +=C2=A0 - Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> +
-> +allOf:
-> +=C2=A0 - $ref: rtc.yaml#
-> +
-> +properties:
-> +=C2=A0 compatible:
-> +=C2=A0=C2=A0=C2=A0 const: sophgo,cv1800-rtc
-> +
-> +=C2=A0 reg:
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> +
-> +=C2=A0 interrupts:
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> +
-> +=C2=A0 clocks:
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> +
-> +required:
-> +=C2=A0 - compatible
-> +=C2=A0 - reg
-> +=C2=A0 - interrupts
-> +=C2=A0 - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +=C2=A0 - |
-> +=C2=A0=C2=A0=C2=A0 #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +=C2=A0=C2=A0=C2=A0 rtc@5025000 {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "sophgo,cv1800=
--rtc";
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x5025000 0x2000>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <17 IRQ_TYPE_L=
-EVEL_HIGH>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&osc>;
-> +=C2=A0=C2=A0=C2=A0 };
-
---=20
-Alexander Sverdlin.
-
+-- 
+With best wishes
+Dmitry
 
