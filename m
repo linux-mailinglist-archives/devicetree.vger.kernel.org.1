@@ -1,169 +1,86 @@
-Return-Path: <devicetree+bounces-145320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5671DA30E54
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:34:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 237A5A30E4A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 15:33:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 685D7166A12
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:34:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7678166161
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C24250C19;
-	Tue, 11 Feb 2025 14:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A3824E4DA;
+	Tue, 11 Feb 2025 14:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Oapr5mi+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YoJ2VEcn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3213250BF8;
-	Tue, 11 Feb 2025 14:34:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 315C424C675;
+	Tue, 11 Feb 2025 14:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739284446; cv=none; b=ftT55MieFy2/5gmE1HTXnosHQN+TLVsg2agagn0f3itadLYgtRaRCQyNIY3niMppO4ugl7GN4VmOXKwi3iJURtKYdc11kDEH7ZfChJqcSSZ4vp16YEw6Vo1PQ+KTet95RrlJSH5xxArLD/MmqYP1Lym9XYaEm5dSRr8/vw+Kg5s=
+	t=1739284396; cv=none; b=paWgm330alTTFuUDYQnX98l3sprJduBLhpc8H/TFL8y4TpGpIOKMQ77uVcwZkxA6ZDHCYATtjQdRqBlK3OiknUFcXPpgeICIuygZdnDOxXpchcE9l/wm12FVILBLCiLPR3amzN111dGIRL1Nnf/H5WCDs3XAYbBgfFOnRDOhptU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739284446; c=relaxed/simple;
-	bh=UoZYGY1/CNTKkir6gRGx13md5BbvfRyVSNo4KoboVp4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZMbwEVX39dKT1C/K7v8XJvlE+roJs5v1/uGWwW0HDTGgQOtMlDRZh4XCejHxHxDKKonpCamVV1HliKPjtxJdw44jdgn0QRJqqkG2U2pCreViDO0V5YQ1jR07++Jde/3Cnny+N/aaAiRfHNuXSeOC/lT04Do/aER+Bf5RmXGIJmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Oapr5mi+; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1739284445; x=1770820445;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=UoZYGY1/CNTKkir6gRGx13md5BbvfRyVSNo4KoboVp4=;
-  b=Oapr5mi+b6ygYSbsuiippemJynutLh8Nbt5D0vOiQnpCcBm8sUEjNRTe
-   F1EA2BU0xV0sDCu7DYbyfKUhu1iAm0617GndjKRzlh64LXt+KmhfvgZiE
-   y+Gupz0hZcg+MY9Pnr16v1JlNDf3eszfbog5Syx3VEYAivZEtomsVMf45
-   6e1tKD8sChyswMDoCBo7Qq7tfDDa2tnVYgI3t4RnKFSby3WPyDsE+vhG6
-   CUrGZwZA6V6jUzi0jn0eQmvYcIldiadXL0pxXUvAbIBaobc4ewbheslzS
-   dSyvb8GrvGd66wfdn88notdKQnmx+4f/2mQQB4pz7DkoElFUpeUyi986D
-   A==;
-X-CSE-ConnectionGUID: 35UA5pLrQAmrHtJwTcQ8OA==
-X-CSE-MsgGUID: sd0yBW3qQJiEvKv5khqFFA==
-X-IronPort-AV: E=Sophos;i="6.13,277,1732604400"; 
-   d="scan'208";a="37535231"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Feb 2025 07:33:57 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 11 Feb 2025 07:33:30 -0700
-Received: from archlinux.mchp-main.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Tue, 11 Feb 2025 07:33:28 -0700
-From: Mihai Sain <mihai.sain@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH 2/2] ARM: dts: microchip: sama7d65_curiosity: Add power monitor support
-Date: Tue, 11 Feb 2025 16:33:02 +0200
-Message-ID: <20250211143302.4102-3-mihai.sain@microchip.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250211143302.4102-1-mihai.sain@microchip.com>
-References: <20250211143302.4102-1-mihai.sain@microchip.com>
+	s=arc-20240116; t=1739284396; c=relaxed/simple;
+	bh=nB42p0uhAIHOz78jGbHqRdJ6skXms/+R6HmUoLjFG1g=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=OEmjozIUvKBLeMWBVjQPj2jU2Qp/ODGj/ayKy4LT2SpJtyViLJgUg27DPx7mVVNUphCTJLnW+WfXFbHdes0ffF7Fya+n+TvmTqIAPnTTxNptIUtdFXz3vzHgpj/RN/IfDprYv1IWzYRbw14isTwu7QB539Fwrk6yt9EYyLQBTrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YoJ2VEcn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DC95C4CEDD;
+	Tue, 11 Feb 2025 14:33:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739284395;
+	bh=nB42p0uhAIHOz78jGbHqRdJ6skXms/+R6HmUoLjFG1g=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=YoJ2VEcn7Svz3ID+6ugmHwQfqUGQUmtqOM4U/8SWAUr9JY0TQO1qBrGCytlT4KKxI
+	 bfQ1WWeEOfUyC62Ohc6nXRPyL4mHpkZa2Tw7+gNhEQ/OUmvxh5FmKtIv3tzyLMj7u4
+	 CA3kbu+0Ult1IHnUNgfJkULfJBmvHAZmH4AWArTMrH+yMBOJyYdM4HPKzCM3A7IR7E
+	 6AgcnHNcw3QaTCeVuXJL/yJRCLgZn2jRxJ5EkQ/EEooyghl4w5xUwcGS9UDMJ/8Gub
+	 bIFDPwuSBeJrywLKA0+w9jJN69cAlk0XpWPiwb8iDEHxNUpW4iIRVWs/Hwm4dw8593
+	 zKxSIEWepOMqQ==
+From: Lee Jones <lee@kernel.org>
+To: kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, 
+ arnd@arndb.de, bhelgaas@google.com, unicorn_wang@outlook.com, 
+ conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com, 
+ krzk+dt@kernel.org, lee@kernel.org, lpieralisi@kernel.org, 
+ manivannan.sadhasivam@linaro.org, palmer@dabbelt.com, 
+ paul.walmsley@sifive.com, pbrobinson@gmail.com, robh@kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com, 
+ helgaas@kernel.org, Chen Wang <unicornxw@gmail.com>
+In-Reply-To: <a9b213536c5bbc20de649afae69d2898a75924e4.1736923025.git.unicorn_wang@outlook.com>
+References: <cover.1736923025.git.unicorn_wang@outlook.com>
+ <a9b213536c5bbc20de649afae69d2898a75924e4.1736923025.git.unicorn_wang@outlook.com>
+Subject: Re: (subset) [PATCH v3 3/5] dt-bindings: mfd: syscon: Add sg2042
+ pcie ctrl compatible
+Message-Id: <173928439078.2206727.3592689089610946034.b4-ty@kernel.org>
+Date: Tue, 11 Feb 2025 14:33:10 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-Mailer: b4 0.13.0
 
-Add PAC1934 support in order to monitor the board power consumption.
-Device is connected on flexcom10 in twi mode.
+On Wed, 15 Jan 2025 15:07:14 +0800, Chen Wang wrote:
+> Document SOPHGO SG2042 compatible for PCIe control registers.
+> These registers are shared by PCIe controller nodes.
+> 
+> 
 
-[root@SAMA7D65 ~]$ awk -f pac1934.awk
-VDD3V3   current: 146.173 mA, voltage: 3302.73 mV
-VDDIODDR current: 62.1356 mA, voltage: 1353.96 mV
-VDDCORE  current: 242.248 mA, voltage: 1204.36 mV
-VDDCPU   current: 213.565 mA, voltage: 1303.05 mV
+Applied, thanks!
 
-Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
----
- .../dts/microchip/at91-sama7d65_curiosity.dts | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
+[3/5] dt-bindings: mfd: syscon: Add sg2042 pcie ctrl compatible
+      commit: 28df3b1a6aeced4c77a70adc12b4d7b0b69e2ea6
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-index 0f86360fb733..8d826ec4c66c 100644
---- a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-@@ -43,6 +43,52 @@ &uart6 {
- 	status = "okay";
- };
- 
-+&flx10 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+};
-+
-+&i2c10 {
-+	dmas = <0>, <0>;
-+	i2c-analog-filter;
-+	i2c-digital-filter;
-+	i2c-digital-filter-width-ns = <35>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c10_default>;
-+	status = "okay";
-+
-+	power-monitor@10 {
-+		compatible = "microchip,pac1934";
-+		reg = <0x10>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel@1 {
-+			reg = <0x1>;
-+			shunt-resistor-micro-ohms = <47000>;
-+			label = "VDD3V3";
-+		};
-+
-+		channel@2 {
-+			reg = <0x2>;
-+			shunt-resistor-micro-ohms = <47000>;
-+			label = "VDDIODDR";
-+		};
-+
-+		channel@3 {
-+			reg = <0x3>;
-+			shunt-resistor-micro-ohms = <47000>;
-+			label = "VDDCORE";
-+		};
-+
-+		channel@4 {
-+			reg = <0x4>;
-+			shunt-resistor-micro-ohms = <47000>;
-+			label = "VDDCPU";
-+		};
-+	};
-+};
-+
- &main_xtal {
- 	clock-frequency = <24000000>;
- };
-@@ -75,6 +121,12 @@ pinctrl_uart6_default: uart6-default {
- 			 <PIN_PD19__FLEXCOM6_IO1>;
- 		bias-disable;
- 	};
-+
-+	pinctrl_i2c10_default: i2c10-default{
-+		pinmux = <PIN_PB19__FLEXCOM10_IO1>,
-+			 <PIN_PB20__FLEXCOM10_IO0>;
-+		bias-pull-up;
-+	};
- };
- 
- &sdmmc1 {
--- 
-2.48.1
+--
+Lee Jones [李琼斯]
 
 
