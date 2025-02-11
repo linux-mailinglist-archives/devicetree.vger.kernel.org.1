@@ -1,480 +1,162 @@
-Return-Path: <devicetree+bounces-145290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF9A8A30D42
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:47:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0980A30D47
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 14:48:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 919463A622C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:47:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E60F51882906
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 13:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E330243965;
-	Tue, 11 Feb 2025 13:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72DF7243965;
+	Tue, 11 Feb 2025 13:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cN5aU4iQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mcVQPflK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 236D12309AF;
-	Tue, 11 Feb 2025 13:47:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A1F26BD9A;
+	Tue, 11 Feb 2025 13:48:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739281644; cv=none; b=Hh+oTMeGRR4YGEbL/psMAzvj5ae3hvUaTrmSuC/Yze58swvq4cBvfY01fXVk8OiGI+RViK+/wm36qN2JKayFEbw9oc6Mluow+QALrIWyhUnsVxlL+lGb9XQY/ISv9kL8MXVCjpr8lt2+huVCYwd1h16yN71s7vtGNcECOFXDDtU=
+	t=1739281713; cv=none; b=IIpVMELnTK5JFdV21/yaH9mE6yi1KNPwNMS3zJMC1gay+1kCCUiGOC0uvo5xE/7RbcBZLzbnNjvduY2b74uiMkMb2Gcq2Zn4EXjfuSkH9isyrbgLG42rkpRJrq0pOMp91mBEFkY41sbroUhgplTpgX8HYsueuXIGeTimJe5hLFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739281644; c=relaxed/simple;
-	bh=jXmLqj0DxlD/iMefHrX+sErtbRk5BzuKl+If9B+aing=;
+	s=arc-20240116; t=1739281713; c=relaxed/simple;
+	bh=m4AD7l25AQkFx45miPWzhVwRxJcr7K3gU5TBHvJZg1g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ky4ySyrFPKOP08Xl+eEdBBoMom1ku/Q9gRJgPDuskH7IkpVfnYQ6Oi2e0XBS7T4LjSbr3JJFOw5VIDNM6BcxFVglk4152IcBFev1hL5wjS9hRoEOoSmUIUBGrHkr8wRA6mtTspCROx8oosL0+YH95oE89QCkECkNDmyz5nEGoKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cN5aU4iQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1959C4CEDD;
-	Tue, 11 Feb 2025 13:47:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rpEHcns7mhbBwDBemp14qNOaQKmy6O+JKtgMct19eiRSxK/i/fAST9qoMDnwNrt8nrqvjgumR/N1SaH/FT8R3vh+CdukFUYMGemDqHj2ZJlF5M8+ptQT6lA6YAGtSD0UKHs+x9A/EuNHvRQxk5mLiYpSrl+AiMmIIYopwC04STQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mcVQPflK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A55D5C4CEDD;
+	Tue, 11 Feb 2025 13:48:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739281643;
-	bh=jXmLqj0DxlD/iMefHrX+sErtbRk5BzuKl+If9B+aing=;
+	s=k20201202; t=1739281712;
+	bh=m4AD7l25AQkFx45miPWzhVwRxJcr7K3gU5TBHvJZg1g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cN5aU4iQUGMj2aUlfan0MlZ4uY04GF5imbJi2Tsdg0cms9iVDKZxOgdZTshey8YKt
-	 hZZt0qqj+8E8gtlhowfAJw8PM+kw8MtRyxca0ZOURhkI9SB2MHQZ89M/d9DZmpMKFb
-	 c1eq0Ke2dOGp2xWBS+9LVrLtkbnX82xF4v3SmMMV+5kZGiJNQTkVbNyV2w6vhWk3/m
-	 z63IxzTPpRuewxbWlSacp+h0EFuKKt9WCrMQ62lsj4yQeVBRxEbzs0wHgNwQaK2W8C
-	 O+ILzVUoFLg4fdneWfrN2EIVGYjtMuWPEVzBon8e9iwP5lD3nxKuPHWPvTurZFVgWP
-	 8pCTHJdk3QvVg==
-Date: Tue, 11 Feb 2025 13:47:19 +0000
-From: Lee Jones <lee@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor@kernel.org>,
-	Sergey Lisov <sleirsgoevy@gmail.com>, linux-kernel@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] mfd: sec: add support for S2MPU05 PMIC
-Message-ID: <20250211134719.GS1868108@google.com>
-References: <20250204-exynos7870-pmic-regulators-v1-0-05adad38102c@disroot.org>
- <20250204-exynos7870-pmic-regulators-v1-3-05adad38102c@disroot.org>
+	b=mcVQPflKFMGoFzsFfHOsGL1PwQhEKzlleh8Z7aEpchFrTuDQWFtAEziZt/fYy546n
+	 nkK+3UAReOzjD1YMoeLjznwqK+e7DDZ+6lW9lq5yAhkG7vMloOP2UnFThpMo6kh0lB
+	 spnwOSgNPjHjnPxvTW7gzxLcU026tU/JychinezqD9mhQrevMGDezrweJsX99g0nHp
+	 PomcPn7yA4YRn3VBUoNgyAV7IZbR8GbLwIUlLK+6npQJvBObyzBReoxMNAI3Amh+vZ
+	 wc0nqLLs07OcGqhabSAMNURKk27r6PgeT4nXy51ARGH0Ndu3CifTgtPY/TL5BaLCSR
+	 jB0i3eDhRpoFw==
+Date: Tue, 11 Feb 2025 13:48:26 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: soc@lists.linux.dev, Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
+	Haylen Chu <heylenay@outlook.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org,
+	Jisheng Zhang <jszhang@kernel.org>, Chao Wei <chao.wei@sophgo.com>
+Subject: Re: [PATCH v2 0/7] arm64 support for Milk-V Duo Module 01 EVB
+Message-ID: <20250211-stubble-senate-0bbb0b04a989@spud>
+References: <20250210220951.1248533-1-alexander.sverdlin@gmail.com>
+ <20250211-backwash-jester-2fdd6740000e@spud>
+ <b1f05bff1d6c3f0cb1b381c15dcf222ec4c7f1b1.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="MwDx1V044X6pY5Zr"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250204-exynos7870-pmic-regulators-v1-3-05adad38102c@disroot.org>
+In-Reply-To: <b1f05bff1d6c3f0cb1b381c15dcf222ec4c7f1b1.camel@gmail.com>
 
-On Tue, 04 Feb 2025, Kaustabh Chakraborty wrote:
 
-> From: Sergey Lisov <sleirsgoevy@gmail.com>
-> 
-> Add support for Samsung's S2MPU05 PMIC. It's the primary PMIC used by
-> Exynos7870 devices. It houses regulators (21 LDOs and 5 BUCKs) and a RTC
-> clock device.
-> 
-> Signed-off-by: Sergey Lisov <sleirsgoevy@gmail.com>
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  drivers/mfd/sec-core.c              |  12 +++
->  drivers/mfd/sec-irq.c               |  85 ++++++++++++++++++++
->  include/linux/mfd/samsung/core.h    |   1 +
->  include/linux/mfd/samsung/irq.h     |  44 +++++++++++
->  include/linux/mfd/samsung/s2mpu05.h | 152 ++++++++++++++++++++++++++++++++++++
->  5 files changed, 294 insertions(+)
-> 
-> diff --git a/drivers/mfd/sec-core.c b/drivers/mfd/sec-core.c
-> index cdfe738e1d76e63145e5888da1cecc122fbc3737..3e9b65c988a7f08bf16d3703004a3d60cfcb1c75 100644
-> --- a/drivers/mfd/sec-core.c
-> +++ b/drivers/mfd/sec-core.c
-> @@ -83,6 +83,11 @@ static const struct mfd_cell s2mpu02_devs[] = {
->  	{ .name = "s2mpu02-regulator", },
->  };
->  
-> +static const struct mfd_cell s2mpu05_devs[] = {
-> +	{ .name = "s2mpu05-regulator", },
-> +	{ .name = "s2mps15-rtc", },
-> +};
-> +
->  static const struct of_device_id sec_dt_match[] = {
->  	{
->  		.compatible = "samsung,s5m8767-pmic",
-> @@ -108,6 +113,9 @@ static const struct of_device_id sec_dt_match[] = {
->  	}, {
->  		.compatible = "samsung,s2mpu02-pmic",
->  		.data = (void *)S2MPU02,
-> +	}, {
-> +		.compatible = "samsung,s2mpu05-pmic",
-> +		.data = (void *)S2MPU05,
->  	}, {
->  		/* Sentinel */
->  	},
-> @@ -374,6 +382,10 @@ static int sec_pmic_probe(struct i2c_client *i2c)
->  		sec_devs = s2mpu02_devs;
->  		num_sec_devs = ARRAY_SIZE(s2mpu02_devs);
->  		break;
-> +	case S2MPU05:
-> +		sec_devs = s2mpu05_devs;
-> +		num_sec_devs = ARRAY_SIZE(s2mpu05_devs);
-> +		break;
->  	default:
->  		dev_err(&i2c->dev, "Unsupported device type (%lu)\n",
->  			sec_pmic->device_type);
-> diff --git a/drivers/mfd/sec-irq.c b/drivers/mfd/sec-irq.c
-> index e191aeb0c07c58a3bc4850d94af39dfe085a33e5..9ba8268fef01366d6b6dc88113e6d9b1e1701c39 100644
-> --- a/drivers/mfd/sec-irq.c
-> +++ b/drivers/mfd/sec-irq.c
-> @@ -14,6 +14,7 @@
->  #include <linux/mfd/samsung/s2mps11.h>
->  #include <linux/mfd/samsung/s2mps14.h>
->  #include <linux/mfd/samsung/s2mpu02.h>
-> +#include <linux/mfd/samsung/s2mpu05.h>
->  #include <linux/mfd/samsung/s5m8767.h>
->  
->  static const struct regmap_irq s2mps11_irqs[] = {
-> @@ -225,6 +226,77 @@ static const struct regmap_irq s2mpu02_irqs[] = {
->  	},
->  };
->  
-> +static const struct regmap_irq s2mpu05_irqs[] = {
-> +	[S2MPU05_IRQ_PWRONF] = {
-> +		.reg_offset = 0,
-> +		.mask = S2MPU05_IRQ_PWRONF_MASK,
-> +	},
+--MwDx1V044X6pY5Zr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please make use of REGMAP_IRQ_REG().
+On Tue, Feb 11, 2025 at 01:43:31PM +0100, Alexander Sverdlin wrote:
+> Hi Conor!
+>=20
+> On Tue, 2025-02-11 at 10:50 +0000, Conor Dooley wrote:
+> > On Mon, Feb 10, 2025 at 11:09:40PM +0100, Alexander Sverdlin wrote:
+> > > This series adds very basic support for Milk-V Duo Module 01 EVB [1] =
+in
+> > > arm64 mode. The SoC (SG2000) is dual-arch, RiscV and ARM64, the latte=
+r has
+> > > been chosen because the upstream toolchain can be utilized.
+> >=20
+> > > =A0 .../{riscv =3D> soc/sophgo}/sophgo.yaml=A0=A0=A0=A0=A0=A0=A0=A0 |=
+=A0 7 +-
+> > > =A0 arch/arm64/Kconfig.platforms=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 |=A0 6 ++
+> > > =A0 arch/arm64/boot/dts/Makefile=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 |=A0 1 +
+> > > =A0 arch/arm64/boot/dts/sophgo/Makefile=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+ |=A0 2 +
+> >=20
+> > I'd expect this to be maintained alongside the riscv support, how come
+> > there's no maintainers entry change here?
+>=20
+> MAINTAINERS file has "K: sophgo" entry already, I suppose new files will
+> fall into this category? That's why I've ignored this specific checkpatch=
+ warning
+> in all patches. Am I wrong?
 
-> +	[S2MPU05_IRQ_PWRONR] = {
-> +		.reg_offset = 0,
-> +		.mask = S2MPU05_IRQ_PWRONR_MASK,
-> +	},
-> +	[S2MPU05_IRQ_JIGONBF] = {
-> +		.reg_offset = 0,
-> +		.mask = S2MPU05_IRQ_JIGONBF_MASK,
-> +	},
-> +	[S2MPU05_IRQ_JIGONBR] = {
-> +		.reg_offset = 0,
-> +		.mask = S2MPU05_IRQ_JIGONBR_MASK,
-> +	},
-> +	[S2MPU05_IRQ_ACOKF] = {
-> +		.reg_offset = 0,
-> +		.mask = S2MPU05_IRQ_ACOKF_MASK,
-> +	},
-> +	[S2MPU05_IRQ_ACOKR] = {
-> +		.reg_offset = 0,
-> +		.mask = S2MPU05_IRQ_ACOKR_MASK,
-> +	},
-> +	[S2MPU05_IRQ_PWRON1S] = {
-> +		.reg_offset = 0,
-> +		.mask = S2MPU05_IRQ_PWRON1S_MASK,
-> +	},
-> +	[S2MPU05_IRQ_MRB] = {
-> +		.reg_offset = 0,
-> +		.mask = S2MPU05_IRQ_MRB_MASK,
-> +	},
-> +	[S2MPU05_IRQ_RTC60S] = {
-> +		.reg_offset = 1,
-> +		.mask = S2MPU05_IRQ_RTC60S_MASK,
-> +	},
-> +	[S2MPU05_IRQ_RTCA1] = {
-> +		.reg_offset = 1,
-> +		.mask = S2MPU05_IRQ_RTCA1_MASK,
-> +	},
-> +	[S2MPU05_IRQ_RTCA0] = {
-> +		.reg_offset = 1,
-> +		.mask = S2MPU05_IRQ_RTCA0_MASK,
-> +	},
-> +	[S2MPU05_IRQ_SMPL] = {
-> +		.reg_offset = 1,
-> +		.mask = S2MPU05_IRQ_SMPL_MASK,
-> +	},
-> +	[S2MPU05_IRQ_RTC1S] = {
-> +		.reg_offset = 1,
-> +		.mask = S2MPU05_IRQ_RTC1S_MASK,
-> +	},
-> +	[S2MPU05_IRQ_WTSR] = {
-> +		.reg_offset = 1,
-> +		.mask = S2MPU05_IRQ_WTSR_MASK,
-> +	},
-> +	[S2MPU05_IRQ_INT120C] = {
-> +		.reg_offset = 2,
-> +		.mask = S2MPU05_IRQ_INT120C_MASK,
-> +	},
-> +	[S2MPU05_IRQ_INT140C] = {
-> +		.reg_offset = 2,
-> +		.mask = S2MPU05_IRQ_INT140C_MASK,
-> +	},
-> +	[S2MPU05_IRQ_TSD] = {
-> +		.reg_offset = 2,
-> +		.mask = S2MPU05_IRQ_TSD_MASK,
-> +	},
-> +};
-> +
->  static const struct regmap_irq s5m8767_irqs[] = {
->  	[S5M8767_IRQ_PWRR] = {
->  		.reg_offset = 0,
-> @@ -339,6 +411,16 @@ static const struct regmap_irq_chip s2mpu02_irq_chip = {
->  	.ack_base = S2MPU02_REG_INT1,
->  };
->  
-> +static const struct regmap_irq_chip s2mpu05_irq_chip = {
-> +	.name = "s2mpu05",
-> +	.irqs = s2mpu05_irqs,
-> +	.num_irqs = ARRAY_SIZE(s2mpu05_irqs),
-> +	.num_regs = 3,
-> +	.status_base = S2MPU05_REG_INT1,
-> +	.mask_base = S2MPU05_REG_INT1M,
-> +	.ack_base = S2MPU05_REG_INT1,
-> +};
-> +
->  static const struct regmap_irq_chip s5m8767_irq_chip = {
->  	.name = "s5m8767",
->  	.irqs = s5m8767_irqs,
-> @@ -383,6 +465,9 @@ int sec_irq_init(struct sec_pmic_dev *sec_pmic)
->  	case S2MPU02:
->  		sec_irq_chip = &s2mpu02_irq_chip;
->  		break;
-> +	case S2MPU05:
-> +		sec_irq_chip = &s2mpu05_irq_chip;
-> +		break;
->  	default:
->  		dev_err(sec_pmic->dev, "Unknown device type %lu\n",
->  			sec_pmic->device_type);
-> diff --git a/include/linux/mfd/samsung/core.h b/include/linux/mfd/samsung/core.h
-> index 750274d41fc06b0411dbfea6d5efa6092214100d..f35314458fd22e43fa13034439406bea17a155c9 100644
-> --- a/include/linux/mfd/samsung/core.h
-> +++ b/include/linux/mfd/samsung/core.h
-> @@ -44,6 +44,7 @@ enum sec_device_type {
->  	S2MPS14X,
->  	S2MPS15X,
->  	S2MPU02,
-> +	S2MPU05,
->  };
->  
->  /**
-> diff --git a/include/linux/mfd/samsung/irq.h b/include/linux/mfd/samsung/irq.h
-> index 3fd2775eb9bbf86ac227810f49d24ae815bb3fcb..f8559e2198a53d28910e0f431f7b8b7cccec6289 100644
-> --- a/include/linux/mfd/samsung/irq.h
-> +++ b/include/linux/mfd/samsung/irq.h
-> @@ -150,6 +150,50 @@ enum s2mpu02_irq {
->  /* Masks for interrupts are the same as in s2mps11 */
->  #define S2MPS14_IRQ_TSD_MASK		(1 << 2)
->  
-> +enum s2mpu05_irq {
-> +	S2MPU05_IRQ_PWRONF,
-> +	S2MPU05_IRQ_PWRONR,
-> +	S2MPU05_IRQ_JIGONBF,
-> +	S2MPU05_IRQ_JIGONBR,
-> +	S2MPU05_IRQ_ACOKF,
-> +	S2MPU05_IRQ_ACOKR,
-> +	S2MPU05_IRQ_PWRON1S,
-> +	S2MPU05_IRQ_MRB,
-> +
-> +	S2MPU05_IRQ_RTC60S,
-> +	S2MPU05_IRQ_RTCA1,
-> +	S2MPU05_IRQ_RTCA0,
-> +	S2MPU05_IRQ_SMPL,
-> +	S2MPU05_IRQ_RTC1S,
-> +	S2MPU05_IRQ_WTSR,
-> +
-> +	S2MPU05_IRQ_INT120C,
-> +	S2MPU05_IRQ_INT140C,
-> +	S2MPU05_IRQ_TSD,
-> +
-> +	S2MPU05_IRQ_NR,
-> +};
-> +
-> +#define S2MPU05_IRQ_PWRONF_MASK		(1 << 0)
-> +#define S2MPU05_IRQ_PWRONR_MASK		(1 << 1)
-> +#define S2MPU05_IRQ_JIGONBF_MASK	(1 << 2)
-> +#define S2MPU05_IRQ_JIGONBR_MASK	(1 << 3)
-> +#define S2MPU05_IRQ_ACOKF_MASK		(1 << 4)
-> +#define S2MPU05_IRQ_ACOKR_MASK		(1 << 5)
-> +#define S2MPU05_IRQ_PWRON1S_MASK	(1 << 6)
-> +#define S2MPU05_IRQ_MRB_MASK		(1 << 7)
-> +
-> +#define S2MPU05_IRQ_RTC60S_MASK		(1 << 0)
-> +#define S2MPU05_IRQ_RTCA1_MASK		(1 << 1)
-> +#define S2MPU05_IRQ_RTCA0_MASK		(1 << 2)
-> +#define S2MPU05_IRQ_SMPL_MASK		(1 << 3)
-> +#define S2MPU05_IRQ_RTC1S_MASK		(1 << 4)
-> +#define S2MPU05_IRQ_WTSR_MASK		(1 << 5)
-> +
-> +#define S2MPU05_IRQ_INT120C_MASK	(1 << 0)
-> +#define S2MPU05_IRQ_INT140C_MASK	(1 << 1)
-> +#define S2MPU05_IRQ_TSD_MASK		(1 << 2)
+Ah, I didn't realise.
 
-BIT()?
+>=20
+> > > =A0 .../sophgo/sg2000-milkv-duo-module-01-evb.dts | 31 +++++++
+> > > =A0 .../sophgo/sg2000-milkv-duo-module-01.dtsi=A0=A0=A0 | 85 ++++++++=
++++++++++
+> > > =A0 arch/arm64/boot/dts/sophgo/sg2000.dtsi=A0=A0=A0=A0=A0=A0=A0 | 75 =
++++++++++++++++
+> > > =A0 arch/arm64/configs/defconfig=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 |=A0 5 +
+> > > =A0 arch/riscv/boot/dts/sophgo/cv1800b.dtsi=A0=A0=A0=A0=A0=A0 | 64 ++=
+++++++++---
+> > > =A0 arch/riscv/boot/dts/sophgo/cv1812h.dtsi=A0=A0=A0=A0=A0=A0 | 64 ++=
+++++++++---
+> > > =A0 arch/riscv/boot/dts/sophgo/cv181x.dtsi=A0=A0=A0=A0=A0=A0=A0 |=A0 =
+2 +-
+> > > =A0 arch/riscv/boot/dts/sophgo/cv18xx-cpu.dtsi=A0=A0=A0 | 57 ++++++++=
+++++
+> > > =A0 arch/riscv/boot/dts/sophgo/cv18xx.dtsi=A0=A0=A0=A0=A0=A0=A0 | 91 =
++++++--------------
+> > > =A0 arch/riscv/boot/dts/sophgo/sg2002.dtsi=A0=A0=A0=A0=A0=A0=A0 | 64 =
+++++++++++---
+> > > =A0 14 files changed, 451 insertions(+), 103 deletions(-)
+> > > =A0 rename Documentation/devicetree/bindings/{riscv =3D> soc/sophgo}/=
+sophgo.yaml (80%)
+> > > =A0 create mode 100644 arch/arm64/boot/dts/sophgo/Makefile
+> > > =A0 create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-mo=
+dule-01-evb.dts
+> > > =A0 create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-mo=
+dule-01.dtsi
+> > > =A0 create mode 100644 arch/arm64/boot/dts/sophgo/sg2000.dtsi
+> > > =A0 create mode 100644 arch/riscv/boot/dts/sophgo/cv18xx-cpu.dtsi
+>=20
+> --=20
+> Alexander Sverdlin.
+>=20
 
->  enum s5m8767_irq {
->  	S5M8767_IRQ_PWRR,
->  	S5M8767_IRQ_PWRF,
-> diff --git a/include/linux/mfd/samsung/s2mpu05.h b/include/linux/mfd/samsung/s2mpu05.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..fa450e4352a178a6a996bbd723f1fc1fa827c167
-> --- /dev/null
-> +++ b/include/linux/mfd/samsung/s2mpu05.h
-> @@ -0,0 +1,152 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +/*
-> + * Copyright (c) 2015 Samsung Electronics Co., Ltd
+--MwDx1V044X6pY5Zr
+Content-Type: application/pgp-signature; name="signature.asc"
 
-No changes have happened in 10 years?
+-----BEGIN PGP SIGNATURE-----
 
-> + *              http://www.samsung.com
-> + */
-> +
-> +#ifndef __LINUX_MFD_S2MPU05_H
-> +#define __LINUX_MFD_S2MPU05_H
-> +
-> +/* S2MPU05 registers */
-> +enum S2MPU05_reg {
-> +	S2MPU05_REG_ID,
-> +	S2MPU05_REG_INT1,
-> +	S2MPU05_REG_INT2,
-> +	S2MPU05_REG_INT3,
-> +	S2MPU05_REG_INT1M,
-> +	S2MPU05_REG_INT2M,
-> +	S2MPU05_REG_INT3M,
-> +	S2MPU05_REG_ST1,
-> +	S2MPU05_REG_ST2,
-> +	S2MPU05_REG_PWRONSRC,
-> +	S2MPU05_REG_OFFSRC,
-> +	S2MPU05_REG_BU_CHG,
-> +	S2MPU05_REG_RTC_BUF,
-> +	S2MPU05_REG_CTRL1,
-> +	S2MPU05_REG_CTRL2,
-> +	S2MPU05_REG_ETC_TEST,
-> +	S2MPU05_REG_OTP_ADRL,
-> +	S2MPU05_REG_OTP_ADRH,
-> +	S2MPU05_REG_OTP_DATA,
-> +	S2MPU05_REG_MON1SEL,
-> +	S2MPU05_REG_MON2SEL,
-> +	S2MPU05_REG_CTRL3,
-> +	S2MPU05_REG_ETC_OTP,
-> +	S2MPU05_REG_UVLO,
-> +	S2MPU05_REG_TIME_CTRL1,
-> +	S2MPU05_REG_TIME_CTRL2,
-> +	S2MPU05_REG_B1CTRL1,
-> +	S2MPU05_REG_B1CTRL2,
-> +	S2MPU05_REG_B2CTRL1,
-> +	S2MPU05_REG_B2CTRL2,
-> +	S2MPU05_REG_B2CTRL3,
-> +	S2MPU05_REG_B2CTRL4,
-> +	S2MPU05_REG_B3CTRL1,
-> +	S2MPU05_REG_B3CTRL2,
-> +	S2MPU05_REG_B3CTRL3,
-> +	S2MPU05_REG_B4CTRL1,
-> +	S2MPU05_REG_B4CTRL2,
-> +	S2MPU05_REG_B5CTRL1,
-> +	S2MPU05_REG_B5CTRL2,
-> +	S2MPU05_REG_BUCK_RAMP,
-> +	S2MPU05_REG_LDO_DVS1,
-> +	S2MPU05_REG_LDO_DVS9,
-> +	S2MPU05_REG_LDO_DVS10,
-> +	S2MPU05_REG_L1CTRL,
-> +	S2MPU05_REG_L2CTRL,
-> +	S2MPU05_REG_L3CTRL,
-> +	S2MPU05_REG_L4CTRL,
-> +	S2MPU05_REG_L5CTRL,
-> +	S2MPU05_REG_L6CTRL,
-> +	S2MPU05_REG_L7CTRL,
-> +	S2MPU05_REG_L8CTRL,
-> +	S2MPU05_REG_L9CTRL1,
-> +	S2MPU05_REG_L9CTRL2,
-> +	S2MPU05_REG_L10CTRL, /* LDO11~24 for CP */
-> +	S2MPU05_REG_L25CTRL = 0x47,
-> +	S2MPU05_REG_L26CTRL,
-> +	S2MPU05_REG_L27CTRL,
-> +	S2MPU05_REG_L28CTRL,
-> +	S2MPU05_REG_L29CTRL,
-> +	S2MPU05_REG_L30CTRL,
-> +	S2MPU05_REG_L31CTRL,
-> +	S2MPU05_REG_L32CTRL,
-> +	S2MPU05_REG_L33CTRL,
-> +	S2MPU05_REG_L34CTRL,
-> +	S2MPU05_REG_L35CTRL,
-> +	S2MPU05_REG_LDO_DSCH1,
-> +	S2MPU05_REG_LDO_DSCH2,
-> +	S2MPU05_REG_LDO_DSCH3,
-> +	S2MPU05_REG_LDO_DSCH4,
-> +	S2MPU05_REG_LDO_DSCH5,
-> +	S2MPU05_REG_LDO_CTRL1,
-> +	S2MPU05_REG_LDO_CTRL2,
-> +	S2MPU05_REG_TCXO_CTRL,
-> +	S2MPU05_REG_SELMIF,
-> +};
-> +
-> +/* S2MPU05 regulator ids */
-> +enum S2MPU05_regulators {
-> +	S2MPU05_LDO1,
-> +	S2MPU05_LDO2,
-> +	S2MPU05_LDO3,
-> +	S2MPU05_LDO4,
-> +	S2MPU05_LDO5,
-> +	S2MPU05_LDO6,
-> +	S2MPU05_LDO7,
-> +	S2MPU05_LDO8,
-> +	S2MPU05_LDO9,
-> +	S2MPU05_LDO10, /* LDO11~24 for CP */
-> +	S2MPU05_LDO25,
-> +	S2MPU05_LDO26,
-> +	S2MPU05_LDO27,
-> +	S2MPU05_LDO28,
-> +	S2MPU05_LDO29,
-> +	S2MPU05_LDO30,
-> +	S2MPU05_LDO31,
-> +	S2MPU05_LDO32,
-> +	S2MPU05_LDO33,
-> +	S2MPU05_LDO34,
-> +	S2MPU05_LDO35,
-> +	S2MPU05_BUCK1,
-> +	S2MPU05_BUCK2,
-> +	S2MPU05_BUCK3,
-> +	S2MPU05_BUCK4,
-> +	S2MPU05_BUCK5,
-> +
-> +	S2MPU05_REGULATOR_MAX,
-> +};
-> +
-> +#define S2MPU05_SW_ENABLE_MASK	0x03
-> +
-> +#define S2MPU05_ENABLE_TIME_LDO		128
-> +#define S2MPU05_ENABLE_TIME_BUCK1	110
-> +#define S2MPU05_ENABLE_TIME_BUCK2	110
-> +#define S2MPU05_ENABLE_TIME_BUCK3	110
-> +#define S2MPU05_ENABLE_TIME_BUCK4	150
-> +#define S2MPU05_ENABLE_TIME_BUCK5	150
-> +
-> +#define S2MPU05_LDO_MIN1	800000
-> +#define S2MPU05_LDO_STEP1	12500
-> +#define S2MPU05_LDO_MIN2	1800000
-> +#define S2MPU05_LDO_STEP2	25000
-> +#define S2MPU05_LDO_MIN3	400000
-> +
-> +#define S2MPU05_BUCK_MIN1	400000
-> +#define S2MPU05_BUCK_STEP1	6250
-> +#define S2MPU05_BUCK_MIN2	600000
-> +#define S2MPU05_BUCK_STEP2	12500
-> +
-> +#define S2MPU05_RAMP_DELAY	12000	/* uV/uS */
-> +
-> +#define S2MPU05_ENABLE_SHIFT	6
-> +#define S2MPU05_ENABLE_MASK	(0x03 << S2MPU05_ENABLE_SHIFT)
-> +
-> +#define S2MPU05_LDO_VSEL_MASK	0x3F
-> +#define S2MPU05_BUCK_VSEL_MASK	0xFF
-> +#define S2MPU05_LDO_N_VOLTAGES	(S2MPU05_LDO_VSEL_MASK + 1)
-> +#define S2MPU05_BUCK_N_VOLTAGES (S2MPU05_BUCK_VSEL_MASK + 1)
-> +
-> +#define S2MPU05_PMIC_EN_SHIFT	6
-> +
-> +#endif /*  __LINUX_MFD_S2MPU05_H */
-> 
-> -- 
-> 2.48.1
-> 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6tVKgAKCRB4tDGHoIJi
+0ryCAQCUpDB6cCAXqj3ZVyMpBboraj1VJvvnCB34OKgyUALr6AEAqOw2FC6cSonT
+W2P4mgYpwfIsREbExnYGXzdSKPmwnAU=
+=5MES
+-----END PGP SIGNATURE-----
 
--- 
-Lee Jones [李琼斯]
+--MwDx1V044X6pY5Zr--
 
