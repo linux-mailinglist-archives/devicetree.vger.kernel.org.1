@@ -1,87 +1,172 @@
-Return-Path: <devicetree+bounces-145096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFC58A30582
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:16:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC3F9A3058C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 09:17:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62BCA1614AB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:16:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF0311883266
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 08:17:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377C11EE002;
-	Tue, 11 Feb 2025 08:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DEBE1E500C;
+	Tue, 11 Feb 2025 08:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TinWPZjg"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="vo9mL2cX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2054.outbound.protection.outlook.com [40.107.237.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1BC1B6CE5;
-	Tue, 11 Feb 2025 08:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739261795; cv=none; b=WkOmjy9cC79wdV6yWTWBqWQ3AggLqEkzt6YXO6mMuDliDhUXJb24Yto1yN5fiBQBnkbZQbByu9iKFKI/iX3nf4eGDJ3HwKFw56sEVG7ir5QIAypZI8ofiypaVBlAC4HCWvw4+vqfeO6WAVf4NYwgz6q/reKtjWOwzL/G9K9qPTA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739261795; c=relaxed/simple;
-	bh=+u+5GUAVu2gY43K/hasdrUu8RXdP+Ha6+AiaUUtPgl0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RTHeDCSk9HL08zGr/2Q28ieTPs9x2AetrsXS5+45bcF9spaJCVDCJlvboaqBxoVHew2ZPxQCmxlUf9QQyWTzce8q5llKZv9e/5drrDjh8YjWclAmUDUslIUfx0AJFq2TENRfKYC4CMrlkc/LDjlpvQ4S6/rjoC0uF7gyeqy/6IE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TinWPZjg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE823C4CEDD;
-	Tue, 11 Feb 2025 08:16:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739261794;
-	bh=+u+5GUAVu2gY43K/hasdrUu8RXdP+Ha6+AiaUUtPgl0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TinWPZjgpSeo38CN9Be9w4b0lLOtgzlBPWr47JtzIpP4gvZ16FxD96VxkGp0krQFh
-	 4bMeOpIaaUdPaVFTAVkNRTMLLYmQbIb5pMxTObMWrBcRe2bkU8eH/9SX0bOfOJ6S0P
-	 ejFiT9S9zg0tf/M7UELbCGqT+F6Szf+MrE0Y8P33zgMB/fKfgcS3xRBvDX605FyFGx
-	 ZvquVVzXXGf110FQPuabOC9JryVhUc1sYMI3kQuaWINwMFLts15mLabaogNdB1GOQW
-	 tQiuNs7fl19NUHDS9273aNxNRxtodIRNlK3CbhFrXcJF7w+1fret4n+4GqyzYrtiO8
-	 1znYlrYbPN99Q==
-Date: Tue, 11 Feb 2025 09:16:31 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, robh@kernel.org, 
-	conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v12 5/9] dt-bindings: iio: adc: add ad485x axi variant
-Message-ID: <20250211-industrious-rugged-gecko-9b5c02@krzk-bin>
-References: <20250207140918.7814-1-antoniu.miclaus@analog.com>
- <20250207140918.7814-6-antoniu.miclaus@analog.com>
- <20250208162058.3b50ae20@jic23-huawei>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805CE1EE002;
+	Tue, 11 Feb 2025 08:17:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739261856; cv=fail; b=D8bz6qXwhkX4AkEWv7sUcZNf01lhd3M1mYU95J7YYsDzK9BHGOSETUY8D0SQoxg8hozIuZ2SdRawljVaeUcgdx+OE5Rm8M01b+FLR6ERl/UfxOxlRjlWd+a6yD2AteQhL2qZLpgj00fnc9SChh8jYd5+LYNKWGxxetwnAIBpBvY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739261856; c=relaxed/simple;
+	bh=63GXouE8AImSG2HJ/VALUjm4BPm5WhT4qvjajGumnuE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lljvUe8FumK/2kaYkmrWoIc2Iw4QE1b7UW433ttmL4MK3AG05sPQvZt5vfQvI0z0yQdr8kuYm5AKLlrSjw/LmvyhPQY/BLES0o4bSeQy5QOTcvo0wZtwF8vpJ26+LTfgvWil5NKX32BOfcuoMLXHKsBPzybVLxnKFE0bCFkHI5c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=vo9mL2cX; arc=fail smtp.client-ip=40.107.237.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=b8VMRUYL9jMAhyqltgTwL4/i+A5GCIqoPZK/3Ykcsb9UE4AdWe+pJneJK0l+xakhbmD+3jF/Fr10D7F179g+LbmHCCN6YlNqfu6d0xzLJZIjC3mydRkowVyoiOZ5LW1mtrdd/DZibp2cXr5ocER8O1pumecrf1jKfoTtiYa1lTW/cUhQnkXv+h1C3QVrQpKBEHCkS7igcV0rj7Cwe4rUEkfKa35FnN7ozINqZuMmVWuk7PU35YRwZbirIyk+Tju4CLGFsRdqqMdL9/HIM8ml8SBxrDTYN3p64Radvbl8q1/vv1cd9QrV/7pTrJWFT1j4bym10dSPuofNDRp8svUOOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iQ6erO71IM0BotEKCYe7kDqXI7og67JOuE2ov+Aoz70=;
+ b=Hul9ZLLIcvOQJbjYgnpYDxZ2XhRebdi90kwU35EpvO2Kef3mlHdJ15NUDjNoWQp9ZqMwU/aJv4sJrz05RUJAahLLkQldk3WWlBg8ptcjwSxtF/8QFtTHZRdeKeLnem/b37xPOcLUHGCydSvz52cyozGYOqFh3RfiaWaU7G+oRZ/53lVOV4DRQ+zk0uXOS/kXZm1YhIm4tOYxveQwEj6misPSMnIUj2Ra1M51NDzKG8Zk0QFBaX4Ckynj/io3CLZCRXiPRjs+5AXQP1GEDNETLb6SU99fdCZyetmrqdYa1BrbffTrxzolb+hq3uwWMeU6ZM0CqHdgU26R/0FGV78aYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iQ6erO71IM0BotEKCYe7kDqXI7og67JOuE2ov+Aoz70=;
+ b=vo9mL2cXiQiOSlls4qNkZ1kB8aelZFfaAd685e5HtOfGtKOp9w3UqRcEugUfctWg2pR4hcBhZ4bIsJutwdrpShYvAWPMskzw1hV2e0vGuBr6c+XTse7ZycscADsNTq8JBp6T+QYvCZoI/iqM9UJNmkMEh/EB66IicEmu4JDLTDs=
+Received: from SJ0PR05CA0175.namprd05.prod.outlook.com (2603:10b6:a03:339::30)
+ by DS7PR12MB8371.namprd12.prod.outlook.com (2603:10b6:8:e9::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.18; Tue, 11 Feb
+ 2025 08:17:31 +0000
+Received: from CO1PEPF000044F1.namprd05.prod.outlook.com
+ (2603:10b6:a03:339:cafe::9e) by SJ0PR05CA0175.outlook.office365.com
+ (2603:10b6:a03:339::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8445.10 via Frontend Transport; Tue,
+ 11 Feb 2025 08:17:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000044F1.mail.protection.outlook.com (10.167.241.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8445.10 via Frontend Transport; Tue, 11 Feb 2025 08:17:30 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 11 Feb
+ 2025 02:17:30 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 11 Feb
+ 2025 02:17:29 -0600
+Received: from xhdthippesw40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Tue, 11 Feb 2025 02:17:26 -0600
+From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+	<manivannan.sadhasivam@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <michal.simek@amd.com>,
+	<bharat.kumar.gogada@amd.com>, Thippeswamy Havalige
+	<thippeswamy.havalige@amd.com>
+Subject: [PATCH 0/2] Add support for Versal Net CPM5N Root Port controller
+Date: Tue, 11 Feb 2025 13:47:22 +0530
+Message-ID: <20250211081724.320279-1-thippeswamy.havalige@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250208162058.3b50ae20@jic23-huawei>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB05.amd.com: thippeswamy.havalige@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F1:EE_|DS7PR12MB8371:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f886acc-b828-43b3-c77a-08dd4a74878b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?RQOytg8HiuqV2+tghKvJe+e1xWzUApLyykWE5mxVR9QC4S8Wh4cSaH/NJtGX?=
+ =?us-ascii?Q?GOTdbb6J7s2NoHriUykhTiLLFLNgvOSa5JtQj5MeYHNMv94PHuu28L9Dqk0s?=
+ =?us-ascii?Q?/QjcZiYd3zWTln7SJllXneniXeHVAdlAQIySVAwbu2ePOCLzy/B0T814O+3x?=
+ =?us-ascii?Q?fkCHo2z0ixQ/ZykQpgK08wTIOvsJpdKjC2wnfzrlRSkO9N2rPyn/ej5MYjH9?=
+ =?us-ascii?Q?fVckIuTXHSNucAySAZZp+Xq6691tCFP2/Sc1FLn544amQyBtgKgLOcHWQ8GU?=
+ =?us-ascii?Q?7G/CfSpJAa+VxgASjcgOwWYJAk7FMGtZhOOlgW86snvyfJ/MG5T1r9APTfli?=
+ =?us-ascii?Q?uDMANM7hh2qjZZ6jjT2ot3IGwmkbwOKAS66zdG0L6Y5Xddt65Xd92hdPdsVc?=
+ =?us-ascii?Q?Mtt/MwV6xcUTi18B9t48RxIiINAw/gCkNJsmsol1hpGsDzRCAKLN3cfht6SV?=
+ =?us-ascii?Q?VnNcVGVuLwDdJxrdKZlTGRK7Tv6qBeZjj0kGoBpEeaeS9pweCWT9oiCrE4B8?=
+ =?us-ascii?Q?vD3gh86UcFDW6oERjMXjMqVNnLhZOgbWCvsHgvsk/C8s0BWQK+C9Mi7+TPyy?=
+ =?us-ascii?Q?L4xTM+gKkNrMeOpw8DYaskl4k8gR8eTV5ihF1JlHOrMa3ZvP+uCTw1u0P5IU?=
+ =?us-ascii?Q?V53ol7AKZRwIihMd3U4ckwMRF3k9cQGJOvKJibqSojQiTCcqNEux85AoTT7j?=
+ =?us-ascii?Q?zWWt4wuISvS/rpLW+NlPYzjQzqNtGLJyF1Q4u7f2bJXTSbXNC+VmStAJdJIY?=
+ =?us-ascii?Q?pfMiakrG9yBOrM45DtdsGPUImFTkmeroKXFdidsTlzvHOZ0pf8w4SpTDtTtN?=
+ =?us-ascii?Q?B3ogI2KnINyB/8Wl22lmv2Gmv2lNutiCkW63K0bGziYgnncDLgbk829EX1Vw?=
+ =?us-ascii?Q?I7iKBv4Z8HDz6L2LLxPg1gpyI/mZYhPJgULv5VqZGFxRGjcCq4w07dXmPMxE?=
+ =?us-ascii?Q?lq3pvoppW0wFPixmwXvA7uy7KsqEHHCKog/Qno9z4x76eaM3G947hWspbcY/?=
+ =?us-ascii?Q?KkcSgWa2Cpo0XpTgNVFxKJTLI3x1CPMhaVsksSeD1OyjxxMRZEoBLlZ7NhQS?=
+ =?us-ascii?Q?NIitnoQ7lL6lPcYmd15LyZjqL0ACRmYKiGra/W0pdCnzmZB5dyL2nhKkpLCf?=
+ =?us-ascii?Q?2XT0+gz0ddrOe5C4gxS3YUuGBmJ3WpEFb8Jcgpb+QuDen4qqw1okO8PW6Pua?=
+ =?us-ascii?Q?Kh10nWZeWHEkmmisXK5+fPyrweu6ZtsI+eop62lFBs715JdSPivB4nwlICTi?=
+ =?us-ascii?Q?wY8NM+UzC08VZa4fGtl+KqthCWkAQkuWFGylPlEOTCaS3yXjhyKFbt+jne19?=
+ =?us-ascii?Q?SuinTNEZXjrehwFRbaJntpiKzniRhb8TdjjnEceW5uCu8Ku47qAQlE4GWwIG?=
+ =?us-ascii?Q?p38WpBGyhXTis6GhYDx/FGbYvCmBm5oXdvUFPMHZKb6jIP4dwX5pAUNQwI6V?=
+ =?us-ascii?Q?uR8LUB1EIRZTtDQdW3uldHrFPr3dMBaF2JIh5pFV9MpnAiZSIgQW0NY83AZy?=
+ =?us-ascii?Q?uaN2Sc80KXuAeHk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2025 08:17:30.5662
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f886acc-b828-43b3-c77a-08dd4a74878b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF000044F1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8371
 
-On Sat, Feb 08, 2025 at 04:20:58PM +0000, Jonathan Cameron wrote:
-> On Fri, 7 Feb 2025 16:09:14 +0200
-> Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-> 
-> > Add a new compatible and related bindings for the fpga-based
-> > AD485x AXI IP core, a variant of the generic AXI ADC IP.
-> > 
-> > The AXI AD485x IP is a very similar HDL (fpga) variant of the
-> > generic AXI ADC IP, intended to control ad485x familiy.
-> 
-> Hmm. Should we name this after a specific part? Very unlikely
-> the wildcard will go wrong here because of how specific this
-> binding is anyway but we should perhaps stick to normal rules
-> of no wild cards.
+Add support for Versal Net CPM5NC Root Port controller 0.
 
-I am pretty sure we had this discussion about this or other block
-already and we reached some sort of concensus... which is undocumented
-in commit msg, so we are doomed to repeat the discussion.
+The Versal-Net ACAP devices include CCIX-PCIe Module (CPM). The integrated
+block for CPM5NC along with the integrated bridge can function as PCIe Root
+Port.
 
-Best regards,
-Krzysztof
+Bridge error in Versal-Net CPM5NC are handled using Versal-Net CPM5N
+specific interrupt line & there is no support for legacy interrupts.
+
+Thippeswamy Havalige (2):
+  dt-bindings: PCI: xilinx-cpm: Add compatible string for CPM5NC Versal
+    Net host
+  PCI: xilinx-cpm: Add support for Versal Net CPM5NC Root Port
+    controller
+
+ .../bindings/pci/xilinx-versal-cpm.yaml       |  1 +
+ drivers/pci/controller/pcie-xilinx-cpm.c      | 85 +++++++++++--------
+ 2 files changed, 52 insertions(+), 34 deletions(-)
+
+-- 
+2.43.0
 
 
