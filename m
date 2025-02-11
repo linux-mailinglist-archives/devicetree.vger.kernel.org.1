@@ -1,188 +1,162 @@
-Return-Path: <devicetree+bounces-145050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAF2BA302F0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 06:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1E2A302BE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 06:18:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39F26161B97
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 05:36:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A736D167D12
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 05:18:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF991E3DD8;
-	Tue, 11 Feb 2025 05:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EFE1157A6B;
+	Tue, 11 Feb 2025 05:18:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="v8o7fNGv";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="wqmG01jJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ll2AY41R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [5.78.89.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E28D7175D50;
-	Tue, 11 Feb 2025 05:36:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.78.89.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6430626BDA7;
+	Tue, 11 Feb 2025 05:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739252169; cv=none; b=RuhzUnvjnG9/pgA6eV5eXZCK6Lpzvqjg5uBWTStjph7vxuNnL10LanL3S3j1mHW8gs7UBPGHIc7PWh44lrhwh+RGfPMKkYdwU/kpFlbpZ/usI8qUqWSE7Hp4my5nDGLTins4jYZvDXqYCcmiLLsE6qaIcuL+wk1Q81jaUxIn+Fg=
+	t=1739251092; cv=none; b=fmmvWey5OimdyRB1d/RmhbqqAxiPkC1XpgcfyPMffLQpQwD9I2YUPFfli47upPEevHQAxYGcDhdrYJqGypVQsGzvRODHLpZplDf8AtQAm/MSyYY9lPUw1B9MIeZwOF8nAKzpaRNSo6uD3kuyXIhZ5tw6OxbloC7CxQKKxtn1fjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739252169; c=relaxed/simple;
-	bh=FN1LucoCbTc7+M/GZvEt8vYIt4uB2BvVXHfxWPX4kZg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ljT17t6bHn6NWsRYqI3xR1lNhkg+z2fdjkrmSyLedgoIsD9rCU99t5R1uAS1LsmUBWcSP6CU9nRZ6Q2M051UWRtLn5E6y4o8plWWIfOj2rJ1S6DqMxb/RL0O7vyTiLn05OKCbMqyQ0gVnieoyxA8Pz4Ov4mLg6PXNiCcaWFUe9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=v8o7fNGv; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=wqmG01jJ; arc=none smtp.client-ip=5.78.89.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 587C0122FE5F;
-	Mon, 10 Feb 2025 21:16:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1739250974; bh=FN1LucoCbTc7+M/GZvEt8vYIt4uB2BvVXHfxWPX4kZg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=v8o7fNGv9Zaqha8RjVEqM2IWywdriu0mBx/IFCCmVvQ+XrXKWq0X3iCVceMimuqUf
-	 TfZufiZOGt132Vr8T/nriOX8TofSCX5B5QHgZktU1FO9qw3pcoKyhPSQ/X0R9esjCF
-	 80DuaBEGuBOoL7lJOnZkPuRUEZ/m2Jeyzcg11Xjr8kvasaKIw6GdS7tpEuye8i0GAS
-	 KoUKFrcQfsfF1N6O4BR/ro2VruVxRmwQ2JApif6bbLFE16zpO2Y6vlAxLCRxHexBO5
-	 K4PtHDf0gmxcJ4UVzr34w4LBinIKcmab03rz5WiYUHNXFturTOqgcSR61kltnOLozl
-	 bCfNAFiZLJoYg==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id wnxHnOhZCS-n; Mon, 10 Feb 2025 21:16:02 -0800 (PST)
-Received: from ketchup (unknown [183.217.81.160])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id E462B122FE21;
-	Mon, 10 Feb 2025 21:15:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1739250962; bh=FN1LucoCbTc7+M/GZvEt8vYIt4uB2BvVXHfxWPX4kZg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=wqmG01jJ/0yHHWdc2qUdEnH9Nf0yqDio3fPcsdKuOJhiU9PxYqqAqbQ0EDykmbUpc
-	 ccwdVTqENqhHUrANZ03HIhXtQ5a6nokJvCx1rHiNg570K4qf2FSWQwd9g4I6sLTX2q
-	 X7NaJV/j2bctiyTq4HvmI+4xgzrIzOg47c5IcFn5h9K64Mvhha+78666Wx0/K3P67+
-	 UVcTw9DfIz7hLtifrY2ThA4K6cnKt0Y/Pk7bZ5KTWAwTNc1ZbdbSvzmLNwasiLUvjb
-	 ZnB6zsK5PwZGXNyWdvHds9ZKvxSdnabk/HiMRWvMmJuhU0oMKvfUYOn1RKRpX5Xusf
-	 L0Xy2FKm6LJ5A==
-Date: Tue, 11 Feb 2025 05:15:50 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1739251092; c=relaxed/simple;
+	bh=N6CCy1fGYq4C9K6nlPTKU+07WdNYTpGi77Dlw0TLX3E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=soZZe/xWYZFZmudFyhRfPl0CIxMJ+qx9DGtT5zV5g7eTcPvVkHcTlUpusgPvmkWI6wnSdi4/4y3oXmYKVIJZdHS6F1yFut41E1FB2xvsLSJABZjutD7AL7uFdyvIS4OOtiHMIvMlG+mhiukcyuG6w/NYxe98v+OgOTqX9P2niWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ll2AY41R; arc=none smtp.client-ip=209.85.222.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7c050c6e201so247674885a.0;
+        Mon, 10 Feb 2025 21:18:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739251090; x=1739855890; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WzpjNfBqOlKT2BSz+1kp1kL8skU7thu6xUdM/EtgpZs=;
+        b=ll2AY41R448Ma+fms+llnzwsi2EvxorV8/9oqhxQsi10J0zy6io8xTh/JaL+aDQRtu
+         jicxeKNoPD2FEMeXwSFyxZ4mjVe8M+tJwBSjVGztD4nyKtL3tFI89iJlEBpF4HCKeuf8
+         uo6q96UoCHRVApqnFFMWcuZybakpKtapo9X7KQW9KcIqWzgEQtFKMqDU3/hNCmz4Izd0
+         21Ci8d+A4L6o7kgTcAjiIABCYpKhlF/+TYmy2nSpfrU4C9tzEaGLs7mwuRy2tCnw2tJd
+         +V1PmgTUvWnrNEKSEu5jZ7AkKosRs/ucw+7Zz7Nu3Dq6YFfMMyFU3fLzF1/Zf9P7tkp0
+         DCwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739251090; x=1739855890;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WzpjNfBqOlKT2BSz+1kp1kL8skU7thu6xUdM/EtgpZs=;
+        b=SrslAihfkCOAaV+9Vl/fUyzkCGf1mQPo0Hbny1W6uq5ocgcJNy8YvdVke126h/nfxy
+         A7ZNrnGluFHnWr+2OZefW4OuMS4HvZUBKe8JaRKfyzYJI3fMQ5PvHxpHFwZ3d9AS/RTg
+         9AXg+DHrsmjDzocLyqLRa+oAn4EvJqf5ItUJbyzr1XKZbTcK2vm11JetHBJj7HLJCEfA
+         JN6pZjzGLLNxIFlj9yklezO3a0jbR8ZxBEvKG6YjW5rlXMS7Y1i8o2lFTw2S5pekVa8G
+         IO9ts05scHTY2sL0YVQFGpY+G2U7FocIGiB4R9+esM+znmZ3U9kARjKEvsgniVKEWHPW
+         fcaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUfDAOp0mL91/FyUJwxW6eODhlHYmdX7Eqreee4tLHYjUbtg8GoE80tQ+sbVxj8+Zkp4AaFa3/Jbe+IGw==@vger.kernel.org, AJvYcCVMwD7poXvoeEc2jHht+E4dgBDvG9Cc3MUl0ZpIGqvvAVMsGN3FjLcu2p8rvJQKjmi5ABZxGz5R1bImIXzz@vger.kernel.org, AJvYcCXSN8bdEx2qWQ+54O5yomWkjkOoSWSF+/XAQmpEM/WnLPCU3EIkFsQ0qqB8IPS/NvNxJ8LRyqjEIzMw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3ceoIP9y0pXcCXbI9OaxRiMUIDZm4ppq/AZOHtZ7tOF7Cg6Mq
+	v0AXthv6eVXjvenyISsA54+GDh1Jweal4IZplLdV6cIFUsPVLeJH
+X-Gm-Gg: ASbGncu4LUqgvUTLGmu9vlIJAYM21hKe2bDMhNpK/OAiUbOOnvJBTEewFdRj9MQJRbu
+	C6EqGpaG07k0Vn2DnYfFbApPvIEX60WFh65nyHBB8fDyKiPIhXuzX7rO6VKf7txyqkI2zt7o8L2
+	nccrd5M6Xw59/yeYWuAtkIeUf9f21QJlFRJD9RaiGi/43Mn7hv97nyzoYGfBzWug9P96Y2k+H59
+	GN9ljm0AcJ2e3/DWq0c8QjOXJb4O6ZgWD9mhd/jHfcRIb931zS32mvxcB3UsbEJxUY=
+X-Google-Smtp-Source: AGHT+IEI9E5fTbRoq6W5/oLfP1d80KE78Bpt9hACo2akmSZ485e5xOa0rGu7oPZ/n2fRyaJ/vpAwSg==
+X-Received: by 2002:a05:620a:1903:b0:7be:6f05:1b2a with SMTP id af79cd13be357-7c047cae609mr2807842585a.56.1739251090233;
+        Mon, 10 Feb 2025 21:18:10 -0800 (PST)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c041e9f506sm624267285a.71.2025.02.10.21.18.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Feb 2025 21:18:09 -0800 (PST)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>, Yixun Lan <dlan@gentoo.org>,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Chen Wang <unicorn_wang@outlook.com>,
 	Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
-Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add spacemit,k1-syscon
-Message-ID: <Z6rdBhQ7s2ReOgBL@ketchup>
-References: <20250103215636.19967-2-heylenay@4d2.org>
- <20250103215636.19967-4-heylenay@4d2.org>
- <aw2vqnz5vcccqqvrrhz5tgawj7fnzzg3tds7nnepuorit37a7r@jcj3wrs7d73h>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Guo Ren <guoren@kernel.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+Cc: Inochi Amaoto <inochiama@gmail.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH v2 0/8] riscv: sophgo: Add pinctrl support for SG2042
+Date: Tue, 11 Feb 2025 13:17:48 +0800
+Message-ID: <20250211051801.470800-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aw2vqnz5vcccqqvrrhz5tgawj7fnzzg3tds7nnepuorit37a7r@jcj3wrs7d73h>
+Content-Transfer-Encoding: 8bit
 
-On Sat, Jan 04, 2025 at 11:07:58AM +0100, Krzysztof Kozlowski wrote:
-> On Fri, Jan 03, 2025 at 09:56:35PM +0000, Haylen Chu wrote:
-> > Add documentation to describe Spacemit K1 system controller registers.
-> > 
-> > Signed-off-by: Haylen Chu <heylenay@4d2.org>
-> > ---
-> >  .../soc/spacemit/spacemit,k1-syscon.yaml      | 52 +++++++++++++++++++
-> >  1 file changed, 52 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> > new file mode 100644
-> > index 000000000000..79c4a74ff30e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> > @@ -0,0 +1,52 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/spacemit/spacemit,k1-syscon.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Spacemit K1 SoC System Controller
-> > +
-> > +maintainers:
-> > +  - Haylen Chu <heylenay@4d2.org>
-> > +
-> > +description:
-> > +  The Spacemit K1 SoC system controller provides access to shared register files
-> > +  for related SoC modules, such as clock controller and reset controller.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - spacemit,k1-apbc-syscon
-> > +          - spacemit,k1-apbs-syscon
-> > +          - spacemit,k1-apmu-syscon
-> > +          - spacemit,k1-mpmu-syscon
-> > +      - const: syscon
-> > +      - const: simple-mfd
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clock-controller:
-> > +    $ref: /schemas/clock/spacemit,k1-ccu.yaml#
-> > +    type: object
-> 
-> So now we see the full picture and it leads to questions.
-> 
-> 1. Why spacemit,k1-apbc-syscon with spacemit,k1-ccu-apmu child is a
-> correct combination?
-> 
-> 2. Why having this split in the first place? Please confirm that clock
-> controller is really, really a separate device and its child in
-> datasheet. IOW, fake child for your Linux is a no-go. Fake child while
-> devices are independent is another no-go.
+SG2042 has a simple pinctrl device for all configurable pins.
+It supports setting pull up/down, drive strength and input schmitt
+trigger.
 
-These syscons are introduced because the clock controllers share
-registers with reset controllers. Folding them into the parents results
-in devicetree nodes act as both reset and clock controllers, like what
-has been done for Rockchip SoCs. Such folding isn't practical for the
-MPMU region either, since watchdog and other misc bits (e.g. PLL lock
-status) locates in it.
+Add support for SG2042 and SG2044 pinctrl device.
 
-If you're more comfortable with reset and clock controllers folded
-together and eliminating most of these syscons, I'm willing to make the
-change.
+Changed from v1:
+- https://lore.kernel.org/all/20241024064356.865055-1-inochiama@gmail.com/
+1. Fix the binding documentation error.
+2. Refactor the cv18xx code so SG2042 can uses the same code.
+3. Add SG2044 pinctrl support as it has the same layout.
 
-> Actual answer for 1+2 above would be to fold the child into parent,
-> assuming clock controller split is fake in terms of datasheet.
-> 
-> If it is real device, then allOf:if:then: narrowing the compatibles of
-> child might not be worth the complexity.
-> 
-> 3. Why using different naming, look:
-> 
-> spacemit,k1-XXXX-syscon
-> spacemit,k1-ccu-XXXX
+Inochi Amaoto (8):
+  pinctrl: sophgo: avoid to modify untouched bit when setting cv1800
+    pinconf
+  pinctrl: sophgo: introduce generic data structure for cv18xx pinctrl
+    driver
+  pinctrl: sophgo: generalize shareable code of cv18xx pinctrl driver
+  pinctrl: sophgo: introduce generic probe function
+  dt-bindings: pinctrl: Add pinctrl for Sophgo SG2042 series SoC
+  pinctrl: sophgo: add support for SG2042 SoC
+  pinctrl: sophgo: add support for SG2044 SoC
+  riscv: dts: sophgo: sg2042: add pinctrl support
 
-I didn't consider about consistency when naming them. Talked to Yixun,
-I'll unify them as spacemit,k1-syscon-* and spacemit,k1-ccu-*, keeping
-synchronized with other K1 peripherals.
+ .../pinctrl/sophgo,sg2042-pinctrl.yaml        | 129 ++++
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |  72 ++
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   6 +
+ drivers/pinctrl/sophgo/Kconfig                |  46 +-
+ drivers/pinctrl/sophgo/Makefile               |   8 +-
+ drivers/pinctrl/sophgo/pinctrl-cv1800b.c      |  27 +-
+ drivers/pinctrl/sophgo/pinctrl-cv1812h.c      |  27 +-
+ drivers/pinctrl/sophgo/pinctrl-cv18xx.c       | 602 ++++-----------
+ drivers/pinctrl/sophgo/pinctrl-cv18xx.h       |  66 +-
+ drivers/pinctrl/sophgo/pinctrl-sg2000.c       |  27 +-
+ drivers/pinctrl/sophgo/pinctrl-sg2002.c       |  27 +-
+ drivers/pinctrl/sophgo/pinctrl-sg2042-ops.c   | 296 ++++++++
+ drivers/pinctrl/sophgo/pinctrl-sg2042.c       | 655 ++++++++++++++++
+ drivers/pinctrl/sophgo/pinctrl-sg2042.h       |  49 ++
+ drivers/pinctrl/sophgo/pinctrl-sg2044.c       | 718 ++++++++++++++++++
+ .../pinctrl/sophgo/pinctrl-sophgo-common.c    | 451 +++++++++++
+ drivers/pinctrl/sophgo/pinctrl-sophgo.h       | 136 ++++
+ include/dt-bindings/pinctrl/pinctrl-sg2042.h  | 196 +++++
+ include/dt-bindings/pinctrl/pinctrl-sg2044.h  | 221 ++++++
+ 19 files changed, 3217 insertions(+), 542 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/sophgo,sg2042-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/sophgo/pinctrl-sg2042-ops.c
+ create mode 100644 drivers/pinctrl/sophgo/pinctrl-sg2042.c
+ create mode 100644 drivers/pinctrl/sophgo/pinctrl-sg2042.h
+ create mode 100644 drivers/pinctrl/sophgo/pinctrl-sg2044.c
+ create mode 100644 drivers/pinctrl/sophgo/pinctrl-sophgo-common.c
+ create mode 100644 drivers/pinctrl/sophgo/pinctrl-sophgo.h
+ create mode 100644 include/dt-bindings/pinctrl/pinctrl-sg2042.h
+ create mode 100644 include/dt-bindings/pinctrl/pinctrl-sg2044.h
 
-> 
-> Best regards,
-> Krzysztof
-> 
+--
+2.48.1
 
-Thanks,
-Haylen Chu
 
