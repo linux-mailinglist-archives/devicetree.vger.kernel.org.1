@@ -1,328 +1,309 @@
-Return-Path: <devicetree+bounces-145390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89348A31268
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:06:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9876FA31271
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 18:07:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1ABF31884356
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:05:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 979B77A0327
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 17:06:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85788260A25;
-	Tue, 11 Feb 2025 17:05:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A924262149;
+	Tue, 11 Feb 2025 17:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JHEhO+JG"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="kfeeSVW2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2051.outbound.protection.outlook.com [40.107.22.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6648524E4C2;
-	Tue, 11 Feb 2025 17:05:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739293543; cv=none; b=hGnUvFGWyxV3QPdfY7gG3n/zZI6tHDdp+mhDYbmIyT1PBbSgRsIdvf+v6lNWpxBZXx/LP/rSX/EW7zcFMpWJ6swZIB/MwdiB6tr87YX8hW0NyJ1TaP1pvWNPmZbaSU+rKEJpBRLtD3a6M6au+7APGCfXZ07TyG2Zj6J8Uk52rQA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739293543; c=relaxed/simple;
-	bh=DE0r5jDm6YNSZPF5FU1DrOY1OpFwcpY96sjKQMUlUkM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oMVoHUcoNSyMExriFBVKO1xrPQkDcVjqaC9weOAkXnzVoGAaGkoHU7RPHBFuQpaTUQjA78zSOM6sPExfjqU9xBw+wARX+cVK6U+BoUdUXdC4LoD70SHDrA5unpekYfmuIjg3qGBQxIf7vUxAdnR2WeSr612oGKjkqC9KsguJbZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JHEhO+JG; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739293542; x=1770829542;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DE0r5jDm6YNSZPF5FU1DrOY1OpFwcpY96sjKQMUlUkM=;
-  b=JHEhO+JGPa+/HZFGmYFGpl5iP8HJ6BDkKvHrGBu0KBQPJcYnMB+Gs/SG
-   n/QJk3roWwl6UfiBOjt9rxQmXxRUQA5XoJDJbhxKEFjFyLEumd3/u0wfm
-   wU9cn3435iI0FxlBgHx3hEOZvbLaxXoFVNPzCmLeNKmPl/2+xY+runU9f
-   7LgQzyNt0t7/XApHS1Cv3pwrJWQTZiwA8IkdrK5g0jKi1YNTV7oab4piF
-   3lEx7AbY8Gn3qn9bzrpS0qGjcsulf4MijDxSzcXJk8SSHbOaF9V8YPWZb
-   T2HBHeyN7pnTAbaJj0oQ5HdFZ5nRoXbHk9fNUyRLBt8RVqDw+oEiNJkRr
-   Q==;
-X-CSE-ConnectionGUID: ZG/jALMZRGOLQZM0wjyPGQ==
-X-CSE-MsgGUID: ZVLlTnZOR+mqt0TaCTqDQg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="40048242"
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; 
-   d="scan'208";a="40048242"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2025 09:05:41 -0800
-X-CSE-ConnectionGUID: PyB6JRaRTtimkzGv6rTkog==
-X-CSE-MsgGUID: Jb+IUSR8RQW98MPBjjwg1w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; 
-   d="scan'208";a="112546840"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 11 Feb 2025 09:05:36 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ththW-0014TX-0H;
-	Tue, 11 Feb 2025 17:05:34 +0000
-Date: Wed, 12 Feb 2025 01:04:59 +0800
-From: kernel test robot <lkp@intel.com>
-To: patrice.chotard@foss.st.com, Mark Brown <broonie@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37366260A5F;
+	Tue, 11 Feb 2025 17:07:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739293639; cv=fail; b=KR4REdNup1CTvpkrX6N+ZRrER86uvJXIqsHL7ViUUfLqJO1T+lRDJu198q2KYGs+yCc5Bwu0HJy7e2HtpuS5iKL8u61pdHVfnGpnwrMAXS3rHQRDvgplrRekQdVq8cDDHAZZstn4V5cdgrwKoy8v3HdlHtWWmM51JpqgGFTCFnQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739293639; c=relaxed/simple;
+	bh=ryapaPoyLy7PX1rznifPvHxQaJH6xV9JFWVNEen6sNo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=XYuDClDAxfbogpkSK2jXneA3e+7+Al6yNTNAEthIIZMSmgHHzYJO+xleo1t5WFn9u5snnv6lqZ5AvF6MZiNcyhY0oMekcuiVbCaWCvoE6EN/nS/I4bdt16AB0gUp7qOXGlgzuZkASspREESvo+XCj5Q+qTrjPS7zZ0JWYimhYLE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=kfeeSVW2; arc=fail smtp.client-ip=40.107.22.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LAOUAWbRq9AJHlbhK68O7MK9jcFPJPJuRN5BLyKKB1AFmmhfL8apgjAfCJ8xj4yGstxe+r4/E0xaARrw3gb4/eouU9j9tiwfIqgCkMD7Urnl/oyEqpIHZih38Ruc8KagDpNBJqbLFzidJ2nWvZ9dgVVEmJnOAQlQW+c9T+uqAWyS0oaAudY+xMHzqdw+rsrOpNnSvSIKE2mdFzGgqdmO5zfUQtRt+quAfy+Hu7b7H32qnjcSihlveEsz4YTNrHd/vwL1r2n/eSycDyUFncRQFn/svVlV0FerbeMlnvaFQFel4+Yoa0/eLtCUQJ+uM3EmTkW32JLHWTq88B1zdpo7Kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8qJfZw2fEEPNJgODLs1N/Y+IIc83BcZqyo86+dbQDLQ=;
+ b=SI7Ib/3gh8j9787/CAFwQh4NYK7PIl4KyYLQHTucst/fzkhqAlMk3rGo46ocG8eqpLuyoCD5UfNXxXoNtpP+D87yuj8I5o0BI1I0AkTGsw1k01NrHXIRzIc2Gr8C+x6VLiCFS8E6fnk7LdAqYUYt0AuMVZqp6kbCS8wdrDMelU8sVdhIWFqLa2F5rJ69R+kRp+wJR3aHH7VuT4dLyGYonm3H8Xl3KUtq6hm8uU6ImqFLbMv7zZBdV8Z0qyTW36sI8IbWQfvfEi4aoIwrm/VnIx3X1WpH6GQXrySAaijC2s9va4xy2hwK0Vej9C1Hocw1ynMop0EoyJTykFJXwRtEKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8qJfZw2fEEPNJgODLs1N/Y+IIc83BcZqyo86+dbQDLQ=;
+ b=kfeeSVW23dp9rxklNJf5pFXcshhiIuDbx9m5iN+mgZ/9AwIXdMhaRmXtFaArNaofdQnO3D9bmDSeKGKIef80w7L8w8IbDY15PmY6HyU1UbOXzQZoWoL6g7Cx8RfwHuFRGnz6k4JTviG5WOJtx1Q6GA8ajU3XgcH7HplQ/uywBGksZqewynnX/iARYFlMP6iR1MS3c9JzwxsiG4yrNdX5RGRRHnJo5vT2b2FoVipNlmSRYFRQiwA87pAi9Udn6svncJeovkNzzWUr6RkTj4Teefv69918RshWVRr9+OEvAuTUrd1xQawWWQ6qcdSCbC3cvev7LrjZ764q/KGTVRmjbw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DB9PR04MB9774.eurprd04.prod.outlook.com (2603:10a6:10:4c5::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.18; Tue, 11 Feb
+ 2025 17:07:13 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8422.012; Tue, 11 Feb 2025
+ 17:07:13 +0000
+Date: Tue, 11 Feb 2025 12:07:04 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Arnd Bergmann <arnd@arndb.de>,
 	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	christophe.kerello@foss.st.com, patrice.chotard@foss.st.com
-Subject: Re: [PATCH v3 4/8] memory: Add STM32 Octo Memory Manager driver
-Message-ID: <202502120005.pznVoB0E-lkp@intel.com>
-References: <20250210131826.220318-5-patrice.chotard@foss.st.com>
+	Will Deacon <will@kernel.org>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, NXP S32 Linux <s32@nxp.com>,
+	imx@lists.linux.dev, Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>,
+	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+Subject: Re: [PATCH v7 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
+Message-ID: <Z6uDuL97EB9KqD4b@lizhi-Precision-Tower-5810>
+References: <20250207163808.1208552-1-ciprianmarian.costea@oss.nxp.com>
+ <20250207163808.1208552-3-ciprianmarian.costea@oss.nxp.com>
+ <Z6ZqGeswJDPTlzvo@lizhi-Precision-Tower-5810>
+ <3cb2620c-46d0-4334-bd41-58b2720c2cca@oss.nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3cb2620c-46d0-4334-bd41-58b2720c2cca@oss.nxp.com>
+X-ClientProxiedBy: SJ0PR13CA0001.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c0::6) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250210131826.220318-5-patrice.chotard@foss.st.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB9774:EE_
+X-MS-Office365-Filtering-Correlation-Id: be42cecc-796d-4039-8c30-08dd4abe8775
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|52116014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?SVPS/S+qXoL3J9QNOuCOGUC+N17aAV9UtjgiItrr0uzLEVoM/twHMF4SLjww?=
+ =?us-ascii?Q?RzfkMJnmuCzX9mNQGEhZMzzg7ozetoGUFwKPGYGaV2oWVRRU4OFJxLCFJR2W?=
+ =?us-ascii?Q?qgNs6QD78a+ObE/THuKfKGJw6ZOAvfT7BIQh3E8kwLjHl838ZVj5SyD9ny8P?=
+ =?us-ascii?Q?NvTAYfjwjJbpwrZMjoQOV3BdakHOx7yfSHWFHXcBUKcMLfBobARvlMaNoknO?=
+ =?us-ascii?Q?5bW6NtKeaSSJAesbQZ+Raxt7sDLX0Uq31GI1y+PiMEaVwbCRUnb2qmsktam0?=
+ =?us-ascii?Q?dP78d76i2CpD8p/eAqdzvJPHVqA4JAJAfzFRsXqsVx+Jd20+JvIo/x/3Wc4d?=
+ =?us-ascii?Q?uuxaQH9T8QDnB22UsDWVSN4P76PCI7SKSJ8US3/cLY+c3UWw0/uizkezpykM?=
+ =?us-ascii?Q?wD+sPyuBhn7qqkb9hPRZvClHdtx2+az73ReXffWUDazdZjJanC/TkEu9thAR?=
+ =?us-ascii?Q?jsqUElm73J06LUkcIIn3FyAH7xzgybFUO9cQRLlSRo5fwN6MH9JXUBL9n7cV?=
+ =?us-ascii?Q?dUwQMt33z5bkMuHwftIe8XSAWpcSvgrj5zyKgohyrx9qa59cE1EK4wXY0zrt?=
+ =?us-ascii?Q?SotgR6QN/qVuOxOq+NKT/23H4g3pmgYDo7/zM0Rm05wYWjzDjyIPWuH0aQmm?=
+ =?us-ascii?Q?kEw+EcmVp23ZcZTnnyhEHRbyibAEWIKm9LfH4u2tZi6Mw0IKDs9iu+lqiwRK?=
+ =?us-ascii?Q?QoarUUXEqvPQ+2X4rQU8CGWCZDRKBFgxp04YjjFXBsyUaIfLTCDtMHej8MVb?=
+ =?us-ascii?Q?JaSty9BH/dcSD9CaYknoqffm0J7VpOWRoC9WG8M+PZ+sgTRoRDBYxk6DJ9J1?=
+ =?us-ascii?Q?pT5RbBCWW3c02IMMZzOr7NGNGdflrMyVlhSzlwalxpSQrlY7vPEyx5aWmLHM?=
+ =?us-ascii?Q?lJDqD762K3s4tJ2LR0fMGO36id+DLzVBpyXLzqRKL/NIhCDbam5swWkDysSl?=
+ =?us-ascii?Q?Ga9bHtUbkCjKt34C7A8kYOwCbjfS/etaFJ/xl2CneTXNbiwsofipMV7lOT+u?=
+ =?us-ascii?Q?hICnhW6B9OTk6BbeFyl+9u765BoidjzxGM3l1msH1FjpYMbzdrWDIwYaSn8i?=
+ =?us-ascii?Q?hR56Ri9OdQ+5XXnj2kKnGT1vrPM9UiaB3/KRBBJjbBLQgQwflRZjrUaSiJ8W?=
+ =?us-ascii?Q?IVgsGIsr8D7xQNyvgSdZ2qoM8j+e5FND446w9CPwB9p+Qigb4xaZuOonEjIw?=
+ =?us-ascii?Q?oLjW0spjvVrQMDlzDEZEVJG+Kvm20jwTIr493qqnjB0riGrQcw2f6YlG39tb?=
+ =?us-ascii?Q?+ko+zUnh6QYhR/BTagWzlzVVa55brqmg3J65eQCax5jAK9lRQfmEuaS1Yk+9?=
+ =?us-ascii?Q?mxHf8xs5qMPx/soDPGewQmZVpZBH9KE2otKC4y237SV9l9Nt8rvLoFtDHb8e?=
+ =?us-ascii?Q?W5SqEQbqFOp0A93MDoyGJCcs9JCrJfc2OAfujMtcp1w7LTVyMxY3lonle8Ig?=
+ =?us-ascii?Q?GtZUmYCo8fyhBo12hKpZ1sxwejnjTf5B?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?khSod9p/92hlMwtirwXLLxHzJV6h4Rz/fWOKQ7xblv3RbHiimkvAoST+l8TT?=
+ =?us-ascii?Q?s4TSdB4vlQCXchnT5rsDf+toanyDtyJfK4/NPLIoVkCX5sZR7K4/ex7135Vg?=
+ =?us-ascii?Q?TwdBawTxJ0SncNRLVoknd71lgZDS7jkMQzP6LHKTsYKEH63KLXxGW7smQO1s?=
+ =?us-ascii?Q?+KYCqr3qfknfw0+qK1bbIZzt5FORXA5GU6JskQHRjMUgKoIKv/7mGoGnSo19?=
+ =?us-ascii?Q?YD5i82G2Opskgsd/PaMFnsYiIFdkXU8MAbJhoR2yobWg47jQHa3GMPpu0WKh?=
+ =?us-ascii?Q?xa2jXD3rgQgmwq5Kblk+ZLTpzEJBkQVYCdA4Otrw2dW4jQ+mNrzpaB/2FgNY?=
+ =?us-ascii?Q?CjnjvSDL5UwvE6m7jP5pJbtRitkT3fpyljzoaP7T22fwWX4wMS8Pzvc7xyfa?=
+ =?us-ascii?Q?LrYLT2YpMPTpLcD1Ceaumbg0EJZyU10k4GcXKWM0HD8NcK7hd7E7wSQbM1gM?=
+ =?us-ascii?Q?qN1FtTeoNp+V3XjUNTMeYw0prm0TniWE+izXQ3k27YBXdqz8aNBnOe4hYxD6?=
+ =?us-ascii?Q?2IS/BpycM+jhDz7R5LgYJwVxKR7CIdbb6a2McLa4l4a9Y2kFzAYuD6sLgN9Q?=
+ =?us-ascii?Q?xUtTjkEez3HaCh5pE0XIiYnjuJ5BzklF4TmBCLIvuWcLaAivyeGVaI0hciCA?=
+ =?us-ascii?Q?4A4I0bi16KqWMRG65DSSyJlCml6kGpt+CjYSvrUfx+vh0ExUKfwoQw0i5usI?=
+ =?us-ascii?Q?54TUig1SrfOXfW2GtlXB2fUPw27ledYYLqOCeV10S1+mMgAUH6SSVra0XzHo?=
+ =?us-ascii?Q?BOxaajgjMgZWZ1xd1gy95WnZycuGpBbhdlbsRVkvH+i0aWV7ro50A5knpAUr?=
+ =?us-ascii?Q?WPs4rwirpGO+FywFXeRvznLKQu6U11yDs3iggau1PFcs2MyZFnXHjSuZKTI8?=
+ =?us-ascii?Q?88I9fwuR747zpwMjyausd2KV3ngNuqf0tzvd6tFHJdmcgpoRJbsJUUrCrZaG?=
+ =?us-ascii?Q?4jrFGou0yJB/cbHmkaNAc37UsBP1P7HjbSEM/Be3PaDnSJW3yR34SbpS2P58?=
+ =?us-ascii?Q?lvNhNsM3/xDg13BTSfpaz1YjLQY3i7PXumOnXbDmlDGIOPb4Z9zw/GRZkhLq?=
+ =?us-ascii?Q?LQKNUl1vqTZlCx5MK5BZLNzOxKpZSwzU0P5BR6RelBR0rPJbih2JreKPhib2?=
+ =?us-ascii?Q?IeTOFuuxKOpJfDzZI6L2LXBbMRrUpxQxknbPYpBApCl4wvGHHAD+R50xExYJ?=
+ =?us-ascii?Q?ghc9hnBUYNlNhVqqmmhCLyKxOO9WkLd7lwTpGdT/zncN0CW+gqrIzr1MHxZr?=
+ =?us-ascii?Q?lOj8itLA1rOvTUhKRXIyv7CccgOQ5EvF4ot1sQMIlJQN2FTc0IKXZdTh8NuX?=
+ =?us-ascii?Q?ejc32YT7U6zfm8p9uxgVw4J7aaqej68s6LHIz7v2qAiuNUqqqevsKz/9IIW3?=
+ =?us-ascii?Q?yScEXE1F7rsW1AfFwDXF1qVWs0ORz4YtK21rnek9G4V+DAN6Zr/uReBYHkR5?=
+ =?us-ascii?Q?qgSakn+L0OH5PmdGW9PgbEFlI7rYZu2QG5jHmKYCdtkCJXLIqLjrA95qjyiH?=
+ =?us-ascii?Q?VxC+deKrp1iB3MzhkeZoVdUe0E2qx5RSnokW4Q29ytok/Hs9DRbbB9TyE31l?=
+ =?us-ascii?Q?F4fSm9nyn+mKuiFUhHrM5/YAOFXkd9cmI3Q3uEoN?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: be42cecc-796d-4039-8c30-08dd4abe8775
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2025 17:07:13.5991
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6UW5andtrcmprZ6XgH9/84xC0IIW1lEtirIlt5FO+Adaw4VmWa7iCAs7NLZGUHb0SXHBvqP7DGQIbT6l6B1Www==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9774
 
-Hi,
+On Tue, Feb 11, 2025 at 01:25:38PM +0200, Ciprian Marian Costea wrote:
+> On 2/7/2025 10:16 PM, Frank Li wrote:
+> > On Fri, Feb 07, 2025 at 06:38:06PM +0200, Ciprian Costea wrote:
+> > > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> > >
+> > > Add a RTC driver for NXP S32G2/S32G3 SoCs.
+> > >
+> > > RTC tracks clock time during system suspend. It can be a wakeup source
+> > > for the S32G2/S32G3 SoC based boards.
+> > >
+> > > The RTC module from S32G2/S32G3 is not battery-powered and it is not kept
+> > > alive during system reset.
+> > >
+> > > Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > > Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > > Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> > > Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> > > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> > > ---
+> > >   drivers/rtc/Kconfig    |  11 ++
+> > >   drivers/rtc/Makefile   |   1 +
+> > >   drivers/rtc/rtc-s32g.c | 383 +++++++++++++++++++++++++++++++++++++++++
+> > >   3 files changed, 395 insertions(+)
+> > >   create mode 100644 drivers/rtc/rtc-s32g.c
+> > >
+> > > diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> > > index 0bbbf778ecfa..510dc2db745d 100644
+> > > --- a/drivers/rtc/Kconfig
+> > > +++ b/drivers/rtc/Kconfig
+> > > @@ -2103,4 +2103,15 @@ config RTC_DRV_AMLOGIC_A4
+> > >   	  This driver can also be built as a module. If so, the module
+> > >   	  will be called "rtc-amlogic-a4".
+> > >
+> > > +config RTC_DRV_S32G
+> > > +	tristate "RTC driver for S32G2/S32G3 SoCs"
+> > > +	depends on ARCH_S32 || COMPILE_TEST
+> > > +	depends on COMMON_CLK
+> > > +	help
+> > > +	  Say yes to enable RTC driver for platforms based on the
+> > > +	  S32G2/S32G3 SoC family.
+> > > +
+> > > +	  This RTC module can be used as a wakeup source.
+> > > +	  Please note that it is not battery-powered.
+> > > +
+> > >   endif # RTC_CLASS
+> > > diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
+> > > index 489b4ab07068..e4b616ecd5ce 100644
+> > > --- a/drivers/rtc/Makefile
+> > > +++ b/drivers/rtc/Makefile
+> > > @@ -161,6 +161,7 @@ obj-$(CONFIG_RTC_DRV_RX8111)	+= rtc-rx8111.o
+> > >   obj-$(CONFIG_RTC_DRV_RX8581)	+= rtc-rx8581.o
+> > >   obj-$(CONFIG_RTC_DRV_RZN1)	+= rtc-rzn1.o
+> > >   obj-$(CONFIG_RTC_DRV_RENESAS_RTCA3)	+= rtc-renesas-rtca3.o
+> > > +obj-$(CONFIG_RTC_DRV_S32G)	+= rtc-s32g.o
+> > >   obj-$(CONFIG_RTC_DRV_S35390A)	+= rtc-s35390a.o
+> > >   obj-$(CONFIG_RTC_DRV_S3C)	+= rtc-s3c.o
+> > >   obj-$(CONFIG_RTC_DRV_S5M)	+= rtc-s5m.o
+> > > diff --git a/drivers/rtc/rtc-s32g.c b/drivers/rtc/rtc-s32g.c
+> > > new file mode 100644
+> > > index 000000000000..3244b23c533e
+> > > --- /dev/null
+> > > +++ b/drivers/rtc/rtc-s32g.c
+> >
+> > ...
+> >
+> > > +
+> > > +static int s32g_rtc_suspend(struct device *dev)
+> > > +{
+> > > +	struct rtc_priv *priv = dev_get_drvdata(dev);
+> > > +	u32 apival = readl(priv->rtc_base + APIVAL_OFFSET);
+> > > +
+> > > +	/* RTC registers are being reset in suspend.
+> > > +	 * Thus store standby time.
+> > > +	 */
+> > > +	if (check_add_overflow(priv->sleep_sec, div64_u64(apival, priv->rtc_hz),
+> > > +			       &priv->sleep_sec)) {
+> > > +		dev_warn(dev, "Overflow on sleep cycles occurred. Resetting to 0.\n");
+> > > +		priv->sleep_sec = 0;
+> > > +	}
+> >
+> > Strange. If RTC register are reset in suspend. How do it wake up system?
+> >
+> > Frank
+> >
+>
+> Hello Frank,
+>
+> I believe the transition between resume to run is a reset event. This would
+> lead to the RTC registers being reset after resume from suspend (triggered
+> via Suspend to RAM).
 
-kernel test robot noticed the following build warnings:
+It is weird design. I suppose it should be design error. (any errata for
+it).
 
-[auto build test WARNING on broonie-spi/for-next]
-[also build test WARNING on atorgue-stm32/stm32-next krzk-mem-ctrl/for-next linus/master v6.14-rc2 next-20250210]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Frank
 
-url:    https://github.com/intel-lab-lkp/linux/commits/patrice-chotard-foss-st-com/dt-bindings-spi-Add-STM32-OSPI-controller/20250210-212554
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-patch link:    https://lore.kernel.org/r/20250210131826.220318-5-patrice.chotard%40foss.st.com
-patch subject: [PATCH v3 4/8] memory: Add STM32 Octo Memory Manager driver
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20250212/202502120005.pznVoB0E-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250212/202502120005.pznVoB0E-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502120005.pznVoB0E-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from include/linux/device.h:15,
-                    from include/linux/platform_device.h:13,
-                    from include/linux/bus/stm32_firewall_device.h:10,
-                    from drivers/memory/stm32_omm.c:7:
-   drivers/memory/stm32_omm.c: In function 'stm32_omm_set_amcr':
->> drivers/memory/stm32_omm.c:82:38: warning: format '%llx' expects argument of type 'long long unsigned int', but argument 3 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/memory/stm32_omm.c:82:25: note: in expansion of macro 'dev_err'
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                         ^~~~~~~
-   drivers/memory/stm32_omm.c:82:45: note: format string is defined here
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                                          ~~~^
-         |                                             |
-         |                                             long long unsigned int
-         |                                          %x
-   drivers/memory/stm32_omm.c:82:38: warning: format '%llx' expects argument of type 'long long unsigned int', but argument 4 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/memory/stm32_omm.c:82:25: note: in expansion of macro 'dev_err'
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                         ^~~~~~~
-   drivers/memory/stm32_omm.c:82:52: note: format string is defined here
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                                                 ~~~^
-         |                                                    |
-         |                                                    long long unsigned int
-         |                                                 %x
-   drivers/memory/stm32_omm.c:82:38: warning: format '%llx' expects argument of type 'long long unsigned int', but argument 5 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/memory/stm32_omm.c:82:25: note: in expansion of macro 'dev_err'
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                         ^~~~~~~
-   drivers/memory/stm32_omm.c:82:80: note: format string is defined here
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                                                                             ~~~^
-         |                                                                                |
-         |                                                                                long long unsigned int
-         |                                                                             %x
-   drivers/memory/stm32_omm.c:82:38: warning: format '%llx' expects argument of type 'long long unsigned int', but argument 6 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/memory/stm32_omm.c:82:25: note: in expansion of macro 'dev_err'
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                         ^~~~~~~
-   drivers/memory/stm32_omm.c:82:87: note: format string is defined here
-      82 |                         dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-         |                                                                                    ~~~^
-         |                                                                                       |
-         |                                                                                       long long unsigned int
-         |                                                                                    %x
-   drivers/memory/stm32_omm.c:96:46: warning: format '%llx' expects argument of type 'long long unsigned int', but argument 3 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
-      96 |                                 dev_err(dev, "[0x%llx-0x%llx] overlaps [0x%llx-0x%llx]\n",
-         |                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/memory/stm32_omm.c:96:33: note: in expansion of macro 'dev_err'
-      96 |                                 dev_err(dev, "[0x%llx-0x%llx] overlaps [0x%llx-0x%llx]\n",
-         |                                 ^~~~~~~
-   drivers/memory/stm32_omm.c:96:53: note: format string is defined here
-      96 |                                 dev_err(dev, "[0x%llx-0x%llx] overlaps [0x%llx-0x%llx]\n",
-         |                                                  ~~~^
-         |                                                     |
-         |                                                     long long unsigned int
-         |                                                  %x
-   drivers/memory/stm32_omm.c:96:46: warning: format '%llx' expects argument of type 'long long unsigned int', but argument 4 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
-      96 |                                 dev_err(dev, "[0x%llx-0x%llx] overlaps [0x%llx-0x%llx]\n",
-         |                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/memory/stm32_omm.c:96:33: note: in expansion of macro 'dev_err'
-      96 |                                 dev_err(dev, "[0x%llx-0x%llx] overlaps [0x%llx-0x%llx]\n",
-
-
-vim +82 drivers/memory/stm32_omm.c
-
-    44	
-    45	static int stm32_omm_set_amcr(struct device *dev, bool set)
-    46	{
-    47		struct stm32_omm *omm = dev_get_drvdata(dev);
-    48		struct regmap *syscfg_regmap;
-    49		struct device_node *node;
-    50		struct resource res, res1;
-    51		resource_size_t mm_ospi2_size = 0;
-    52		static const char * const mm_name[] = { "ospi1", "ospi2" };
-    53		u32 amcr_base, amcr_mask;
-    54		int ret, i, idx;
-    55		unsigned int amcr, read_amcr;
-    56	
-    57		for (i = 0; i < omm->nb_child; i++) {
-    58			idx = of_property_match_string(dev->of_node,
-    59						       "memory-region-names",
-    60						       mm_name[i]);
-    61			if (idx < 0)
-    62				continue;
-    63	
-    64			/* res1 only used on second loop iteration */
-    65			res1.start = res.start;
-    66			res1.end = res.end;
-    67	
-    68			node = of_parse_phandle(dev->of_node, "memory-region", idx);
-    69			if (!node)
-    70				continue;
-    71	
-    72			ret = of_address_to_resource(node, 0, &res);
-    73			if (ret) {
-    74				dev_err(dev, "unable to resolve memory region\n");
-    75				return ret;
-    76			}
-    77	
-    78			/* check that memory region fits inside OMM memory map area */
-    79			if (!resource_contains(omm->mm_res, &res)) {
-    80				dev_err(dev, "%s doesn't fit inside OMM memory map area\n",
-    81					mm_name[i]);
-  > 82				dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-    83					res.start, res.end,
-    84					omm->mm_res->start, omm->mm_res->end);
-    85	
-    86				return -EFAULT;
-    87			}
-    88	
-    89			if (i == 1) {
-    90				mm_ospi2_size = resource_size(&res);
-    91	
-    92				/* check that OMM memory region 1 doesn't overlap memory region 2 */
-    93				if (resource_overlaps(&res, &res1)) {
-    94					dev_err(dev, "OMM memory-region %s overlaps memory region %s\n",
-    95						mm_name[0], mm_name[1]);
-    96					dev_err(dev, "[0x%llx-0x%llx] overlaps [0x%llx-0x%llx]\n",
-    97						res1.start, res1.end, res.start, res.end);
-    98	
-    99					return -EFAULT;
-   100				}
-   101			}
-   102		}
-   103	
-   104		syscfg_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "st,syscfg-amcr");
-   105		if (IS_ERR(syscfg_regmap)) {
-   106			dev_err(dev, "Failed to get st,syscfg-amcr property\n");
-   107			return PTR_ERR(syscfg_regmap);
-   108		}
-   109	
-   110		ret = of_property_read_u32_index(dev->of_node, "st,syscfg-amcr", 1,
-   111						 &amcr_base);
-   112		if (ret)
-   113			return ret;
-   114	
-   115		ret = of_property_read_u32_index(dev->of_node, "st,syscfg-amcr", 2,
-   116						 &amcr_mask);
-   117		if (ret)
-   118			return ret;
-   119	
-   120		amcr = mm_ospi2_size / SZ_64M;
-   121	
-   122		if (set)
-   123			regmap_update_bits(syscfg_regmap, amcr_base, amcr_mask, amcr);
-   124	
-   125		/* read AMCR and check coherency with memory-map areas defined in DT */
-   126		regmap_read(syscfg_regmap, amcr_base, &read_amcr);
-   127		read_amcr = read_amcr >> (ffs(amcr_mask) - 1);
-   128	
-   129		if (amcr != read_amcr) {
-   130			dev_err(dev, "AMCR value not coherent with DT memory-map areas\n");
-   131			ret = -EINVAL;
-   132		}
-   133	
-   134		return ret;
-   135	}
-   136	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+> On the other hand, the RTC is kept on during suspend for as long as its been
+> set up (for example via rtcwake -s), thus waking up the sistem via an API
+> interrupt.
+>
+> Regards,
+> Ciprian
+>
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int s32g_rtc_resume(struct device *dev)
+> > > +{
+> > > +	struct rtc_priv *priv = dev_get_drvdata(dev);
+> > > +
+> > > +	return rtc_clk_src_setup(priv);
+> > > +}
+> > > +
+> > > +static const struct of_device_id rtc_dt_ids[] = {
+> > > +	{ .compatible = "nxp,s32g2-rtc", .data = &rtc_s32g2_data},
+> > > +	{ /* sentinel */ },
+> > > +};
+> > > +
+> > > +static DEFINE_SIMPLE_DEV_PM_OPS(s32g_rtc_pm_ops,
+> > > +			 s32g_rtc_suspend, s32g_rtc_resume);
+> > > +
+> > > +static struct platform_driver s32g_rtc_driver = {
+> > > +	.driver		= {
+> > > +		.name			= "s32g-rtc",
+> > > +		.pm				= pm_sleep_ptr(&s32g_rtc_pm_ops),
+> > > +		.of_match_table = rtc_dt_ids,
+> > > +	},
+> > > +	.probe		= s32g_rtc_probe,
+> > > +};
+> > > +module_platform_driver(s32g_rtc_driver);
+> > > +
+> > > +MODULE_AUTHOR("NXP");
+> > > +MODULE_DESCRIPTION("NXP RTC driver for S32G2/S32G3");
+> > > +MODULE_LICENSE("GPL");
+> > > --
+> > > 2.45.2
+> > >
+>
 
