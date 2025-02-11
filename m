@@ -1,186 +1,123 @@
-Return-Path: <devicetree+bounces-145156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA9DA308E9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 11:42:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 661CDA30900
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 11:45:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBFC01676ED
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 10:42:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70C393A6A7E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2025 10:44:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA28C1F91C8;
-	Tue, 11 Feb 2025 10:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966EA1F76B5;
+	Tue, 11 Feb 2025 10:44:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N+yIjRxl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="S3Ay4wq1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640E11F8AC0
-	for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 10:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFA031F473A;
+	Tue, 11 Feb 2025 10:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739270520; cv=none; b=n4TMliPwuPrIs/CMiasDYrWjeSwxtMPAN5JWlURCd1wEqiU2wQ60Dmj++pDKq0goNJzQDTksDYu95mnLG7upwF7UeH9MQSp+UW00y7ROEwh/nmSF4C4u5aiFmu+Je8FTiHJYpORFnrRPFQ3Lwzx7FkTNKsjo63S/T+LIT+7adoQ=
+	t=1739270690; cv=none; b=PO1Lr9XxhD7HsgTMQAOGzfIhH6rSY37fP2OIzs+YHcr5ux2mOizVghBkvo717t9BwOu1I52sbRUK7mIRfkLBOYiXG7D3npS61VmOmXBBTbclnXdnCd7g7b+W/5yAuLFLky5JGjcPCl4w7EPd+kW0QBwTTh13pueZ/XGvWUgzeHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739270520; c=relaxed/simple;
-	bh=FooWr0ldHoSRyh8SIaja1jRnbPQlXMMzgjUp2Lh9IBw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IbOMmEWziKEgVqioWP7wGeeFablfzg9ybniYL3NlOj1qbzZz0UdqKfwyGRWvFJm00YUS4EDJ59zzL79ldQtev/Y6QAcqLVLouYqXUXLtIBrNWc74Jrj6SsWQBhogb8p+lOd1nasLKhIml2Rqi6TcSH1FKiDB4QezMZ/ux4dBEpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N+yIjRxl; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-438a39e659cso37037085e9.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 02:41:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739270516; x=1739875316; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0cUkixBgpYEn4aAeaI+o2I3hnF9EtEfIlYRTahALjTQ=;
-        b=N+yIjRxlucioHo9mr5yUxrXMpkixvJEuV/qvFwgCfppA9QRr7LAivUl2zuIYUGmm3A
-         XebAE7SuRYjY/5AyhU6vm8Y+98sslA7vOxArxfYlFt3FnJteQ63xvSciILlQ7QIBiXsA
-         4WX0Np/YOQxpr+8Oa5CfkLR6SjXLWkpISxjZf3NzNXL1TkbAU8SwuyGj1v01amTXDYR9
-         Kj2vNWJ5fwME3nbHN7H7dNVCeHVBJPNsEy+tUr9s+FgJ+AUOiUg0N/7pRAXjxSTSXM5g
-         Z+duvoWjocKd3EGayBjXGfWKCXXwQ+twZ5dzEAvmXwS6YPR4NpHeo6hMHneekwwoMx0Y
-         BTgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739270516; x=1739875316;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0cUkixBgpYEn4aAeaI+o2I3hnF9EtEfIlYRTahALjTQ=;
-        b=MibThv4Uc6DthzdZfFV1UmdTUs9hqxQh02lbwLiK8ONjVajX2G+fXE6IG5vwIgegK+
-         m1i3he50YiK4rt3yVcaBYaYFxtvHMRteScE/VsbDtTZ1TWVSr2ALjOrbV6c2Hx87VwdA
-         nn9gucpogvVaKoxMTkzSeiPNBFvzzMwWpHcfOQp3C+jFL1ACAYLJrTeyGCwBumIaYSTU
-         rOgxXlCSLVxNLa8Ag+72sAPPoNieaXZ1m1ZcssDKaDQ9waREXmNZ261kaL2eNu7EUfpK
-         EguzzTEHH2BAxeE1jsxcnaANc2000WTzWoWfYWGZEdIrLsS4YtQC2VUPirPnG08gc6mm
-         SLZA==
-X-Forwarded-Encrypted: i=1; AJvYcCXHNBXBOZEwbnERQqk+QQ+RmLPl4t5/z2sX5K4RqrsLcKz3J0CRfk+c5R0VC4ie/pnjHIG3dmiW7GG6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJTyjZpafXIrUKIFA1AUohTd2p/VMPpbVV8bovjKZ8VJefSgr3
-	tYY9WhhMGDHo8l2MWZ2OkORffKf9ivIZ7ITuiGCb3judWTz2gg49opt0SowXpbZ2masB2GSqNyt
-	9H/c=
-X-Gm-Gg: ASbGncs/9IbSG8JKps4ny80S3EnJAghZv1UlADwXLxenmusmgnoSEc01SwUjUvcvHeS
-	B2RLmWNR8NtXo7OOa+OEyWcgkWjgY9MstNov+8z05v1SsvAT4LFPkISR8KGNtbURA648GlieHbi
-	mspYEnfgEL1STByDDLK0gXcZGvq1HqPAYDRhRHNwbIbVJc8RSiluLZoD2TFVeD1RbUG4+vhNULQ
-	HWQE3ZB+OysoXA9RGMxEzCOpKG198flnnYtFcr7fR6FC82Gy6wjrL/RQi5WX8ujgWVKpna5E49g
-	Nvbz+1cijcTZ1xYwJO5XSCE=
-X-Google-Smtp-Source: AGHT+IHiznFHRTCwShZbEfQSfsP4ZlgsTN5VR0Awq+vBQZzykOkPVdMDgz2P9LDFE6gk8RKX6JBiyw==
-X-Received: by 2002:a05:600c:310f:b0:439:48f6:dd6d with SMTP id 5b1f17b1804b1-43948f6de9amr49946795e9.22.1739270516524;
-        Tue, 11 Feb 2025 02:41:56 -0800 (PST)
-Received: from [192.168.68.163] ([145.224.65.3])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43946bff4d4sm49091965e9.3.2025.02.11.02.41.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Feb 2025 02:41:56 -0800 (PST)
-Message-ID: <ea5d18c1-0cce-44f7-bf7a-7c69ffb05bb6@linaro.org>
-Date: Tue, 11 Feb 2025 10:41:54 +0000
+	s=arc-20240116; t=1739270690; c=relaxed/simple;
+	bh=lU53bagZCpbF7NgOcmW1llZ/0ZmBIbZBkQ0DIHSWzc0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MkIfM3/88C1l+N9o/cKK0rVarjTtDXzWNXe9C73SqeSl3YiVWv4ZYEjEmn4myUF4bDG1kkH8bx9yMX0COucjU5aTpKsurWw/cDW4NhDJvSl3F+CURcbWn7xXPBs+nhK5u75HbmGFvTtSln/QhbFvt5zMUrKpu+jYnvETEvrBk/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=S3Ay4wq1; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51B4Y8R7010537;
+	Tue, 11 Feb 2025 10:44:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=pop8DLAgHzsfRcjlvrS32YU1xV691RtVt0X
+	bPcHrQJ4=; b=S3Ay4wq1HExmhOFofKWV/YyaTsP45pwjLZeGO4Y0Fgh2bQ+MZ3p
+	rYOy+kA6SmJV4FxHaG+Gk+Mm3l6XNYP8VQXTz8CoFCDaEZn6luKraO/hDfGO/pP3
+	5gLCix3ZLwbrI9HC9+0ot+5kMydtrgoD6QAgj+yn+s/dRkC//rb+OqwMxyZggEsF
+	yRa9NjyOnwg3udJkqJIJKBTfmc/7fRQzd0NL8AYxrrDu9TCrhpHH/7+Nv9WcYwDP
+	b/4HiVqZJLjauvkE77DOIFsCWzkpdob/48EXfTheZjl/+ZVgsKW5Ux/UulmyXUFN
+	fXvBb3I/V8eEh2E/dh1XjqThOMPPmAFzeQg==
+Received: from aptaippmta02.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qcs5c2fa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Feb 2025 10:44:45 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 51BAigkd002161;
+	Tue, 11 Feb 2025 10:44:42 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 44p0bkpjte-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Feb 2025 10:44:42 +0000
+Received: from APTAIPPMTA02.qualcomm.com (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 51BAifrG002154;
+	Tue, 11 Feb 2025 10:44:41 GMT
+Received: from chejiang-gv.ap.qualcomm.com (chejiang-gv.qualcomm.com [10.233.43.239])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 51BAifj2002152
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Feb 2025 10:44:41 +0000
+Received: by chejiang-gv.ap.qualcomm.com (Postfix, from userid 37913)
+	id 830B814F1; Tue, 11 Feb 2025 18:44:40 +0800 (CST)
+From: Cheng Jiang <quic_chejiang@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_chejiang@quicinc.com,
+        quic_jiaymao@quicinc.com, quic_shuaz@quicinc.com,
+        quic_zijuhu@quicinc.com, quic_mohamull@quicinc.com
+Subject: [PATCH v1 0/1] Enable BT for qcs8300-ride
+Date: Tue, 11 Feb 2025 18:44:20 +0800
+Message-Id: <20250211104421.1172892-1-quic_chejiang@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 0/8] Coresight for Kernel panic and watchdog reset
-To: Linu Cherian <lcherian@marvell.com>
-Cc: suzuki.poulose@arm.com, mike.leach@linaro.org,
- linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com
-References: <20241216053014.3427909-1-lcherian@marvell.com>
- <da7dcddb-d407-41b2-8343-a0ec21914606@linaro.org>
- <20250204120216.GB1525185@hyd1403.caveonetworks.com>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <20250204120216.GB1525185@hyd1403.caveonetworks.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: TC6-Ab8FCOYS-33P3CW_RyBDvZRqB0zv
+X-Proofpoint-GUID: TC6-Ab8FCOYS-33P3CW_RyBDvZRqB0zv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-11_04,2025-02-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ mlxlogscore=672 phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
+ adultscore=0 clxscore=1015 mlxscore=0 priorityscore=1501 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502110067
+
+Enable the BT subsystem of the qcs8300 ride board.
+
+Cheng Jiang (1):
+  arm64: dts: qcom: qcs8300-ride: enable BT on qcs8300-ride
+
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
 
-
-On 04/02/2025 12:02 pm, Linu Cherian wrote:
-> Hi James,
-> 
-> 
-> On 2025-01-24 at 17:38:58, James Clark (james.clark@linaro.org) wrote:
->>
->>
->> On 16/12/2024 5:30 am, Linu Cherian wrote:
->>> This patch series is rebased on coresight-next-v6.12.rc4
->>>
->>> * Patches 1 & 2 adds support for allocation of trace buffer pages from
->>>     reserved RAM
->>> * Patches 3 & 4 adds support for saving metadata at the time of kernel panic
->>> * Patch 5 adds support for reading trace data captured at the time of panic
->>> * Patches 6 & 7 adds support for disabling coresight blocks at the time of panic
->>> * Patch 8: Gives the full description about this feature as part of documentation
->>>
->>> v12 is posted here,
->>> https://lore.kernel.org/linux-arm-kernel/20241129084714.3057080-1-lcherian@marvell.com/
->>>
->>> Changelog from v12:
->>> * Fixed wrong buffer pointer passed to coresigh_insert_barrier_packet
->>> * tmc_read_prepare/unprepare_crashdata need to be called only once and
->>>     hence removed from read path and added to tmc_probe
->>> * tmc_read_prepare_crashdata renamed to tmc_prepare_crashdata and
->>>     avoid taking locks  as its moved to probe function.
->>> * Introduced read status flag, "reading" specific to reserved buffer to keep the
->>>     reserved buffer reading independent of the regular buffer.
->>> * open/release ops for reserved buffer has to take care only about the
->>>     set/unset the "reading" status flag as the reserved buffer is prepared
->>>     during the probe time itself.
->>> * Few other trivial changes
->>>
->>
->> Hi Linu,
->>
->> I tested that decoding a crash dump of ETM1 (trace ID 17) from panic kernel
->> works:
->>
->>    $ ./ptm2human -i cstrace.bin
->>
->>    ...
->>    There is no valid data in the stream of ID 16
->>    Decode trace stream of ID 17
->>    Syncing the trace stream...
->>    Decoding the trace stream...
->>    instruction addr at 0x140c9afc, ARM state, secure state,
->>    ...
-> 
-> 
-> Thanks for trying this out.
-> 
->>
->> I noticed that once in the panic kernel Coresight becomes unusable, and the
->> Perf Coresight tests fail, with no obvious way to reset it other than a cold
->> boot:
->>
->>   $ perf record -e cs_etm//u -- true
->>   $ perf report -D | grep AUX
->>   ...
->>   AUX data lost 27 times out of 27!
->>   ...
->>
->> I didn't debug it yet. I thought it might be something to do with the RESRV
->> buffer mode, but it doesn't look like that should be the case from the code.
->> Perhaps its the claim tags and coresight_is_claimed_any() lingering, so it's
->> not really an issue that's introduced by this change?
-> 
-> 
-> Is that problem reproducible without this series applied ?
-> 
-> Thanks.
-> Linu Cherian.
-> 
-> 
-> 
-
-Yes looks like it's unrelated. I sent patches to fix the claim tag 
-issue, and there is some other state that needs to be cleared too. But 
-we can do it later.
-
-
+base-commit: df5d6180169ae06a2eac57e33b077ad6f6252440
+prerequisite-patch-id: 7777ec69b5f2389a2efdb0bda561b067da72abfb
+prerequisite-patch-id: e6140f9abf38172e77875f126da90bde6e1829cb
+prerequisite-patch-id: c4e0283b4bce4c4e0566d7783f8ccd7fcaaebd3f
+prerequisite-patch-id: c87e5f1cb29568c24566e8a960d6c8dd0be5969d
+prerequisite-patch-id: f80a486c6e34dfb62f09faf0eb3fae586cda85ec
+prerequisite-patch-id: 0e2cb7a4d8779539a58261111deea6bd6b750f6f
+prerequisite-patch-id: edd904882daa9ed31340710e36905c82c4552c8e
+prerequisite-patch-id: 28493e0ec65dc01bd8f8e2e82beea6295944e6e6
+prerequisite-patch-id: 29da1304862005c0fbe32230b47ce6d270518b04
+prerequisite-patch-id: a796c820ab0b76a1b56b32480a83dbf5cb1cdab7
+-- 
+2.34.1
 
 
