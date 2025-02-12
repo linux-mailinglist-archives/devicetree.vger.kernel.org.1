@@ -1,787 +1,202 @@
-Return-Path: <devicetree+bounces-145716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF6F3A32215
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:26:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B640A32216
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:26:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64AE27A1BAD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:25:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 164853A5686
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB928205E24;
-	Wed, 12 Feb 2025 09:26:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED4B205E31;
+	Wed, 12 Feb 2025 09:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I6HFCXaJ"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="B9VRUKBu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011048.outbound.protection.outlook.com [52.101.125.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDC9205E2B
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 09:26:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739352397; cv=none; b=n1upzkzXxPyaBDaMEtpWFHoKNdt2JI6vNnmo0onR+jrY8+il0nj/1w6TzdjP38lJPhe2fhopiDqvNlSxVcGXYT2wz/BHAVG5KhHN0LiIy/wu6JL7OkHPljqfz5nuYgkvD83gOkTGEy8sqhXbjx+LqVHC0cUA+Lv58jmuqghqmaA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739352397; c=relaxed/simple;
-	bh=hNNGA7MckC7OqZHAZ1b/uK0ou3f6jZgOrXWDf+vvX7U=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=EMPCO4HizuKKWp8AixUflcL8ACTK6BgFCn+AuxMaRNYeE5hIhoZzZwYOW70Kza468E25lTYUmhzbt35eDK4oSA/5pi2ZZFl0qtU9vyFf7QVsXd4HRUPuA8YuDICNM0PBF8k/GmJcyjTLKpQCUclebKFARE1Eq2wrXEC6VENjYK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I6HFCXaJ; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5de727f7f05so5514861a12.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 01:26:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739352393; x=1739957193; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=OJaReYYMX6Z/fw7iyoJ5zZPhqhh6orEXbX4cQL6QIEE=;
-        b=I6HFCXaJuOhnBBMohVhPIUK/GNIAubv41ikwy+4C80IAan6SUUfbp1qw5VrCZRRbhG
-         A0IH7dsNnGearNtZAzybvmUXZ2co6mk9Kg2KNQR43M7vEN8FrPAoskHG6ZxzVbAYAcAf
-         RVk0NqoLB742A8Y8iEYR2DD2t6ZufZY3s9f9n5ApQ4TvQF/ZignAopN3SKDrpevm6sYU
-         dF9jsprBpMEzEYVldiwgTmv4Yseu8VlDwreHpFmRwYt3jOY2G77+6eym6OD8tshX/8Ty
-         rdPEYdxMUNAOYY7v5Ou/VJP5DzYG4rHKdG3dGT8iX1IvbO9W8KwRaeK8UqFPTc7CkFw3
-         vtRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739352393; x=1739957193;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OJaReYYMX6Z/fw7iyoJ5zZPhqhh6orEXbX4cQL6QIEE=;
-        b=Fst9dVweVenrd3KqcXx0muklewKEGTn0i8Dx9lqkZNx9meUGUO7vGXo7BPb1x2hodp
-         0qrYoTA9FFS7G2eDdJvD0B/4Ncr9o6Yaop3zKqyiZUacDpn051qqn44b0Mo66H/iDT7y
-         9AttaheBGhXjteMhBnjPWBTl8ovhPhcIV+HUSQSHlsTllLVmeep5vXnhgcGTKHoS9kca
-         7KOJK1I9hclY23nce+pw9VaN9FgbFDo47SQlpDPTKiyzbEQb9/h7EA01XPpm6YRLFdlT
-         C9a0IVyWf6asj7Yo33segqUDKYPFTM+KPiCl28wiLsmc69c9fjbsF9gEHtw+/yD36Tf7
-         TAiA==
-X-Forwarded-Encrypted: i=1; AJvYcCU/lsBJ6YN3+5ch0AwURwtglip7G9u5J9UTSjh+TwDiDAeqa4bU/kYCqDWUw3usO/GU4A1JjgUtZr3O@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHtuIQBqzpFVa/pcBfZ3Gh551yG7Z8b0yKpS0X7JYMPVD+OAqP
-	uqxtF4kWS5fcKU3xwEg6hd6NZVDNG9Cct/SNHKCfkWlvdEkUu7TR
-X-Gm-Gg: ASbGncu4H0+J5aaBRpXHb1NGiwZRgEdLvwxrQEKAc6zAcUuWpqG8b9XAIruHwaYJ8wn
-	TTpmYHapKM+x35a+9LuJqHdmJblpkIsfdcumWPSRXsBCQrcqC/6V/wQ2gdh+r0O+8cL0ggMsTG1
-	HFufmJqAu6lPDkB+NNqe1dy/pYzCpWSpBEKihrgYwhRJDPYLacA60KaNX9RMF02DF5eTZt7S1v0
-	Xjgbxhfr1mt2YmQavCE83+zWzjJwcDUQT+tLC3XOXBy0o+tpf5lOcX14BbmCHuuo8Oz+phM8T/Z
-	q6Bv/YoZyhTLlu6ZOZLdYjreZm7Dcv9O
-X-Google-Smtp-Source: AGHT+IFeXBiL3Zpdh5C/ESK7Pr9cqXP5N91PGCl1qu9DFXAuI/rtK19Ymuac2ywApZmo7T5zwgjyQw==
-X-Received: by 2002:a05:6402:40d6:b0:5dc:8f03:bb25 with SMTP id 4fb4d7f45d1cf-5deadd7802amr2427430a12.6.1739352392821;
-        Wed, 12 Feb 2025 01:26:32 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5de5ced9758sm8064096a12.76.2025.02.12.01.26.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 01:26:32 -0800 (PST)
-Message-ID: <708cdc497b8474609989395dbf8a0898037a22de.camel@gmail.com>
-Subject: Re: [PATCH v2 1/7] riscv: dts: sophgo: cv18xx: Move RiscV-specific
- part into SoCs' .dtsi files
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Inochi Amaoto <inochiama@gmail.com>, soc@lists.linux.dev
-Cc: Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
- <inochiama@outlook.com>, 	linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, Haylen Chu	 <heylenay@outlook.com>,
- linux-arm-kernel@lists.infradead.org, Paul Walmsley	
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou	
- <aou@eecs.berkeley.edu>, Arnd Bergmann <arnd@arndb.de>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Chao Wei	
- <chao.wei@sophgo.com>
-Date: Wed, 12 Feb 2025 10:26:28 +0100
-In-Reply-To: <uvy62iqzul6kajzsmiaovdzogftcsc5b53cswkv4cbxh4w6som@32libbd7kffq>
-References: <20250210220951.1248533-1-alexander.sverdlin@gmail.com>
-	 <20250210220951.1248533-2-alexander.sverdlin@gmail.com>
-	 <uvy62iqzul6kajzsmiaovdzogftcsc5b53cswkv4cbxh4w6som@32libbd7kffq>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 338872046A1;
+	Wed, 12 Feb 2025 09:26:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739352412; cv=fail; b=MzZ4rMzx3GqdkTtxhW3Vs7X3wgJVqiW7s9K+6u3eZGWnwPgS1x2XLzqHzFPiUzLt4eBBA+GIabrptD5I1mPHPVZHJAv4CGgOa1IY/qWZP+dYmlDzWkOxmLZNJ6HP1kzC/zU/dCSKw+gQpRamC7b8vRClqK00dnei6LURIn3BC8A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739352412; c=relaxed/simple;
+	bh=so0UiKfq2YnXZlSg/Ba8XE7+I+egwS4AiKYOzRTrtQM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=iRQEO2SbXY5/sKtZfXCmkr3se2Fv3rQ0vQ/CYL0J1OAYNnYoBxUP43Cqo8VnPMuWNRca23X0gV2dboRUvgzbXW5n9spmBOdj5KVVe1I74iWHzsq6rcscx4DBBvrzvTHV2Xxe6gGlN1PHZaJqgr+lf5bFXfMZWuiHRKYmVyj5kMU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=B9VRUKBu; arc=fail smtp.client-ip=52.101.125.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HU+2JRXDEp7rOp/a0FwzEo66MOKRkWnqtjvwqNODk3OnOtRWd1fDneL9EC4WW62c0KYIHQWaHBVSHucJUcfNe8LxJiCMs+F7zZyP/qzM9+62so6KcUXgttmOgQEn5cWgCa3FIWISw4UtzeS0hRlu0y3lQ1ddNxB526sGZpy6Bt4ElS1+YSTp+fV2xqgiroZa/QIVuVs7R3Z8amVXxsx3uc5klvawXKWz/0mH2teb7h3sY/5MFpXkvAYG2j6PGcVq/vv/dhmTHNPIt0Ny7AqMbIzvMSkk5B2KgJe7YbGpunvou+DoVHvOCnuBhQ1Vu4nSeFBYbJmFxb2Ls8Axg4WLFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=so0UiKfq2YnXZlSg/Ba8XE7+I+egwS4AiKYOzRTrtQM=;
+ b=a1lf5pxl5bTN5MZc/p5BNq7s69IlJRGFp3dG2QWokupZ75kZZKvfyQf4/Cbi4GynT0QGO4gYqozCi6xgDKHhz7AKTUC+dIrg4U2Ixi5fP7j8XZ0/Zkoz0TkoAtu7NaCwjXOdInm5Cmmr5jopxbPPe5/8CKRvxwQLu5CrM/BaEvwLIO74Sluby/kuZFIn2q2Urc/oKpnmUxKB/c4POVr+UscFIcfTGS2gybpSOYPg6IY84FmUNdPPV+hz8TgDvHpdG09VJf/bhqfF9P25PfiRlj3OXPqSxtF0RgENskMs76DLK/8LaZnnJa2TATdbMdvTyFCg7lrlAqdzv4ZJe5ic/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=so0UiKfq2YnXZlSg/Ba8XE7+I+egwS4AiKYOzRTrtQM=;
+ b=B9VRUKBulp/WWLKh/0bWwImsUulDN8a8Vhc4ptZR0hnsdbAQxyHzsjCTLQfGjX8/uINaiyd6NNkagfjOp+UmX7uSsSEeBZpj+iqZ97AYPa9zNvgGWRS11wfg8OOsEzDDvRdoFnVB9h1oqKHIgA5gyICxt/A0IQr2OW0RAvs0d+M=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYWPR01MB7169.jpnprd01.prod.outlook.com (2603:1096:400:c7::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.12; Wed, 12 Feb
+ 2025 09:26:45 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%4]) with mapi id 15.20.8422.015; Wed, 12 Feb 2025
+ 09:26:45 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Prabhakar Mahadev
+ Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
+	<biju.das.au@gmail.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, Thomas Gleixner
+	<tglx@linutronix.de>
+Subject: RE: [PATCH v4 12/12] arm64: dts: renesas: r9a09g047: Add icu node
+Thread-Topic: [PATCH v4 12/12] arm64: dts: renesas: r9a09g047: Add icu node
+Thread-Index: AQHbeVSx1ueiWEUfiU2+tZK3H/IVVLNCH5UAgAFN21A=
+Date: Wed, 12 Feb 2025 09:26:45 +0000
+Message-ID:
+ <TY3PR01MB1134679D9057F586B96EFA2ED86FC2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20250207113653.21641-1-biju.das.jz@bp.renesas.com>
+ <20250207113653.21641-13-biju.das.jz@bp.renesas.com>
+ <CAMuHMdWvGY8PwWneCcqXvXjjvGSdDq0DkeTRjfH7yWbioN5Z7g@mail.gmail.com>
+In-Reply-To:
+ <CAMuHMdWvGY8PwWneCcqXvXjjvGSdDq0DkeTRjfH7yWbioN5Z7g@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYWPR01MB7169:EE_
+x-ms-office365-filtering-correlation-id: 7e496b48-5bc2-4144-20ff-08dd4b475e62
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?ejdqUHRKd0JzVFVzaE9DWEhvZEx0aGlkc296amNzVUdwK3FsMWJJTVBtd1dM?=
+ =?utf-8?B?UjRwQllqeWhyYnhSdTl2Nk1pWjFCMXBSZ3B0ZW5wTjh3VXlFQ3YxRTI1Zzdt?=
+ =?utf-8?B?T0x2azdnOUtaKzNxalcvR2VrbXVkcjFrVXc1MGJMTkV6a1VxazdmYkxzYm1N?=
+ =?utf-8?B?ck9qZkZJTUNYdy9NZ3IwbHBGK3JsS0pGZ25KSXZadTI0RHA3cjB1Y3dEY09S?=
+ =?utf-8?B?MWhhZW1BU3lTMFVHdmRTZ01UWDRWMDRIZkF5RXYvUm9kZ3JsQVJadXRtVk0r?=
+ =?utf-8?B?bjJDcUtMZ2ZwbjlaRUpVSzRpWnBhbFM1WTdyU1pINjdsVWF2c2ljRlNMbGF3?=
+ =?utf-8?B?NjY0QXFYMEFWRkxwakxCM0xSMGVpUDZOV2E3NHJaVVduZkV0eUZFRGVzUmIv?=
+ =?utf-8?B?Z3N6dVg5ZzFWcHUrN1A0WkdaREJEQkZrSDJIaVoySk9yR1gxQytxRXloVnJv?=
+ =?utf-8?B?Y3JwN0FBc1VMZGF1b1hhbEhib2VicDJWOTQ5NXZxUno3TUo4WDhkQkYrczdy?=
+ =?utf-8?B?bVlUNjl3djR1REt2Rlh0NVA1VVRYdFYyNG1RRGtvNWdaK3graTZRd0tGMlVy?=
+ =?utf-8?B?Z240K2ZVeHRiZVhLOWdndTQrcVp3V25TR3FCTXV3ejY2TCs0VHpyaUNjclgy?=
+ =?utf-8?B?R2RCSExwbGJ4M0tWamtYN0hyeXIzQ2tHdG9WUy9sdW5lcWxJVmFTQ2J5Z1Z3?=
+ =?utf-8?B?cWtCV2t2YWdXRkUvNDhzYnhPZ0gwQ0gyM1BHeUNDejhLVUUrYXp2Sjh4VHMx?=
+ =?utf-8?B?Smc1R3NsdkJ5cUoxR0hZemxZdnpWNnJLdE16Vzl1dzkrR3U4cnMzdWRkU3gz?=
+ =?utf-8?B?dE9HWWsrdGlHa1Y0cnBNaDcxNURMSjYxbktCL3ZyT3M5ZmR5Z2pseGVXUlh6?=
+ =?utf-8?B?N1h3MUQ4QndZWHEyVE1BeDByQUJpVzFrcjJaRWYxMnMra1JWT09Rc2ZZYk1J?=
+ =?utf-8?B?Ni8zNXZZcysvU1puMjFOaENpWFI3TFR5aTB3aGdmanVQQUcyVVpYNXZmcDhp?=
+ =?utf-8?B?L0h6QVJJS0FFTU5FZ3ErWFRqOEx6QkhCeG9EOFRVSHIrbmVEMzFFUlNIVEZE?=
+ =?utf-8?B?akxvR2tXWDdnYTMxUDZCMS9CaDZVUTZxbVB6dGdsSVovTlBxVHprVFJVdUpM?=
+ =?utf-8?B?SldFUk9ZWlVudnZEZmsrNkY2WG5HRHlieE8rWk45L201dk53UkJzMXdWcXVK?=
+ =?utf-8?B?eThFNDRNVFQyV0lBOUdxYTBxc3hYQWZxcDI4SEpDSUlGbm0yYkJDbFFTSGhC?=
+ =?utf-8?B?RlhyRFY3dEpsTHJjdndaSjAxS2xLaTVja0txbFJMQUZzS1J4SWZMV2RvakVn?=
+ =?utf-8?B?ZmJ1SHRuenFFTFM5akllY1d3enpJSFRPZmMrcmFYUWpIdDh3RG1QMHdKMEtS?=
+ =?utf-8?B?MUI1Slh3RndUNk9mM1d3NHpaNGFSTkVvRjdaRGc1TXFNNTlsaEJDOUlKODV0?=
+ =?utf-8?B?WDRDMjVCT083TE9zQ1NDL2V2a1BhT2k5a2d6T3hHRE1wZ2NuNnNXS3B6Q1Ni?=
+ =?utf-8?B?ejRvU3dheEZaMzFwc2tLVGRTMlJrQVc3TzNKSUQxNVdoakNZZTJBNWtWU3dY?=
+ =?utf-8?B?YlJzVzRtcVhiYkYrYThzK0ZNaGtOazVodFJzRVlNQVpyTjR1czFoUkZCdVM5?=
+ =?utf-8?B?djZpVFQvRDd3SlVnMmZPRGFqeTVsM0E4Szk4bVBzeEFiMUxkaGRLWUFJRDVJ?=
+ =?utf-8?B?U1dNQllRSW1CTTQvd0FzR0Y1VnVOdUczTUZjZ1lSVXEvRjdXZmlWcFZDT1JP?=
+ =?utf-8?B?NE9oVU9PL2FMb3lvc3pzdEU2ZmxuWG1uSHJ4NzhheFZJd0RKMjJiNnZwOXg0?=
+ =?utf-8?B?SlFkdUl1ZHZMMk9TS0kyQXdOVC9UM3VpVVBTeXlhYm82VjRhNXpXZ1NxejNy?=
+ =?utf-8?B?OE5yUVFLWWRPVWx1dTRxZ0pnYmFJZE5CSHRtZWc2TDd3ZEdNSlBaa2UyVWZm?=
+ =?utf-8?Q?U7LHIF8eHRNyto8AUe49AMKUqycYOs0y?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?cGI3azdYRVk2RW5Bc3VRSDgvMC9Eb2pSRlB5UDVKTWVnNWdaYmFLWWRzaHhi?=
+ =?utf-8?B?alRxMysrVm43K0pzQisrY0hjQTE4NWNTRmRBOTFJdnJSMllXNGoxV1F6anFN?=
+ =?utf-8?B?aEdTeDZ5bEpXdjBRRUR5U09ISGdIYzd5OHRSd1FjY3pCNXdsWFgwUm9DQzAy?=
+ =?utf-8?B?MDg5MGUxVlZFTDRLVHFESG5hRG1tZk81V3N0NE9HaXJGSXV5L3hGY1VrMnJR?=
+ =?utf-8?B?cDI4dG1FUU5wQ2FxNDVGT3Z3a0ZPbkhnWUtyNUZURHRIRUVYcnZoRFB1NlJ4?=
+ =?utf-8?B?K3B6ZTdKQXl4L3VjNjZFQStUeldCSURNWFdSZ1J4bGJmMHh1Qjd1ZXRpazcz?=
+ =?utf-8?B?alNxRWlMaFJDdTJVa09LMVQzSlZSVUdvWkJtZ3BGUHZPMVF5RG1jSlMxbzJn?=
+ =?utf-8?B?bXZFV2RoeXJjai9HVWY4VHl5UGNDdVFsWHlnOFFiRHd5c0RuVW9hN3gvMUV0?=
+ =?utf-8?B?OWU4eEE5QmRFOXhZMkZFV1NSU1k0WnBVaTZ1U2JIV0grWldrenFreTlRV2gz?=
+ =?utf-8?B?TzJ5RkE0eWtyemdIODZFUWFxVGNyalBHUGFoT1F2OVFpUFdJcEQ2bjgweHkx?=
+ =?utf-8?B?TUtFSzNYWTZoQjM2UkduVVhQMjk4NmJNNDR2YTVGaFdISFFleVU0aXdIM3dk?=
+ =?utf-8?B?aU1MSjYrUmhpeDMyWm5NR2xtb2tVdjZudVlQc0cxQzZCRGtQYUlNdkhtNnM1?=
+ =?utf-8?B?VCtkNlU0clA5bW02RDJIV01aWVNMenZwYzZKMWMrMDBGRGMwN0ZpOG55d1Ra?=
+ =?utf-8?B?RlBBcS9DNjNOcEl1OVQ2WWNJVTNIYnpqbFZnZnpJVEFuMkYxZFlna01qZEk3?=
+ =?utf-8?B?b0g0U1Zqd1JBdVlpS1JDdnZ5NmJtbHNCdmRXOFVOay9ibDh3SlpjU0FIeTFH?=
+ =?utf-8?B?QThYZkkzMWtZLzBFeWlyQWJ1a0QxREJsWi9TUit0akI3Z1ErNWwrblhlWW51?=
+ =?utf-8?B?dG55RkRPZHJVR0ZLVml1Y0ZoTHJ6ZXhYQXNPRlM4VUVnN1Vwcm04bFY2VXdI?=
+ =?utf-8?B?YnlKNmNLaXZURzQwVFNNZkZtRXpBQjEzLzQ0ZVFyVThoN0FvVCs0dUxScU5r?=
+ =?utf-8?B?REpoMlVSLysybDNRa255UVIzTUZ5MVJBVDNOcVM3Rmtacm40YlRvVndqbE94?=
+ =?utf-8?B?SGVlUzZjSktmUnlmc1ErRThnUnZRL3VZMlM4OEZGc250ZEJwQzA0ZU5Nelpu?=
+ =?utf-8?B?cXcvZ1c0cnhsQ1VrN0l6VnRCQU05VDJFZDV5Vnp3L3hpQ3lhSWpabWd1bFpC?=
+ =?utf-8?B?ZFcwOUVzem9KczBEa1V1c1pvKzBicVF5azRhK1dIa08vTFNMaSs5eGZ3UkIr?=
+ =?utf-8?B?a0d1cFAyNTliRFVzNDFacWNvaDVBNTRqR3NkMlZ5UkVUN1VPMklmTk9vWkFU?=
+ =?utf-8?B?djZHTjhJdmNVY0VpaXlhK0dpT2ZDVEMxR3l2dmdENHpuMmJMMGh1ckFWZzRk?=
+ =?utf-8?B?TDIveUs2YzM0NUxxNE9sT01Wem9kWmJQQjBDN21QVkRmWkxRWlZ2amViNFhP?=
+ =?utf-8?B?bjhyb0tCMEg0UFk3T0wyZ0tZamNzZTM5UlRUWXVJeDA4WnZYcGNhdXZ6RmE0?=
+ =?utf-8?B?SURFbUI5Z2Yvb2lhL3B3L0d1QUxkOGY5OG01dWtqRS9YUnpGK1dZQ3lrbGFG?=
+ =?utf-8?B?bWgxNnlvRGZTVDdiNEtYZHpmMUxNTEUwVTUzSnRZSjBabVpuT3hhTmNtMDNw?=
+ =?utf-8?B?OFkvSjNTdHJibE42OElBbXhwNUsxMElDWk95ekFWTnJ1d21mdHNUS0ZGTE9q?=
+ =?utf-8?B?alJGUm5JWUs5cUVCSkltMzNKanhzWE85T01tWU5lQTdERmt5R0pjMGZGQi9O?=
+ =?utf-8?B?NzZJL08rY2FkZlNqOG1LOUlIa293cDI4UFBBcjlyWGNLczJndVBRRGF3aHdl?=
+ =?utf-8?B?ZGlEc2Y3R0xxekVMQ3JzeTlDVGtwMTM2L1Q5NDZvMVdUdDJ3eDR0WlluY2xx?=
+ =?utf-8?B?SGFGRUlnUXJWUXpEZVYvbXE1OStFb29pcXdidUxRRm83cHdPMTQwWlorRy9S?=
+ =?utf-8?B?d05nYnc4VHJTVmVvMWh1eXhxV2x4M3F6b1ZpMEJ0RHRrb04vbnVXNXNIZDJY?=
+ =?utf-8?B?UmMvV2N5Y0JzRXlpSmc1RmdmZ0ZMSzgyM1Z2b0h6N0NmQzRaVFJwMDZzUUpz?=
+ =?utf-8?B?NTQzbDVaU2NZQjhFSW5oc3JjQS9OMXBvK01ZVjlla0w2dURCMjNRWndnaHFz?=
+ =?utf-8?B?K0E9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e496b48-5bc2-4144-20ff-08dd4b475e62
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Feb 2025 09:26:45.4552
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: h+iHCPufWhiSdHOp90t31GtPSnq7KVJtKfGzoFOjiwQdZZ8uJR+Rg/O4Q+YEItlOrUrw5CcxaBhauQqI8wxKm+9IncL14X3fjn54fLy2c5k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB7169
 
-Hi Inochi, Krzysztof,
-
-On Wed, 2025-02-12 at 08:31 +0800, Inochi Amaoto wrote:
-> On Mon, Feb 10, 2025 at 11:09:41PM +0100, Alexander Sverdlin wrote:
-> > Make the peripheral device tree re-usable on ARM64 platform by moving C=
-PU
-> > core and interrupt controllers' parts into the respective per-SoC .dtsi
-> > files.
-> >=20
-> > Add SOC_PERIPHERAL_IRQ() macro which explicitly maps peripheral nuberin=
-g
-> > into "plic" interrupt-controller numbering.
-> >=20
-> > Have a nice refactoring side-effect that "plic" and "clint" "compatible=
-"
-> > property is not specified outside of the corresponding device itself.
-> >=20
-> > Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> > ---
-> > Changelog:
-> > v2:
-> > - instead of carving out peripherals' part, carve out ARCH-specifics (C=
-PU
-> > core, interrupt controllers) and spread them among 3 SoC .dtsi files wh=
-ich
-> > included cv18xx.dtsi;
-> > - define a label for the "soc" node and use it in the newly introduced =
-DTs;
-> >=20
-> > =C2=A0arch/riscv/boot/dts/sophgo/cv1800b.dtsi=C2=A0=C2=A0=C2=A0 | 64 ++=
-++++++++++---
-> > =C2=A0arch/riscv/boot/dts/sophgo/cv1812h.dtsi=C2=A0=C2=A0=C2=A0 | 64 ++=
-++++++++++---
-> > =C2=A0arch/riscv/boot/dts/sophgo/cv181x.dtsi=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 2 +-
-> > =C2=A0arch/riscv/boot/dts/sophgo/cv18xx-cpu.dtsi | 57 ++++++++++++++
-> > =C2=A0arch/riscv/boot/dts/sophgo/cv18xx.dtsi=C2=A0=C2=A0=C2=A0=C2=A0 | =
-91 ++++++----------------
-> > =C2=A0arch/riscv/boot/dts/sophgo/sg2002.dtsi=C2=A0=C2=A0=C2=A0=C2=A0 | =
-64 ++++++++++++---
-> > =C2=A06 files changed, 240 insertions(+), 102 deletions(-)
-> > =C2=A0create mode 100644 arch/riscv/boot/dts/sophgo/cv18xx-cpu.dtsi
-> >=20
-> > diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/=
-dts/sophgo/cv1800b.dtsi
-> > index aa1f5df100f0..eef2884b36f9 100644
-> > --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> > +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> > @@ -3,6 +3,8 @@
-> > =C2=A0 * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> > =C2=A0 */
-> > =C2=A0
-> > +#define SOC_PERIPHERAL_IRQ(nr)	((nr) + 16)
-> > +
-> > =C2=A0#include <dt-bindings/pinctrl/pinctrl-cv1800b.h>
-> > =C2=A0#include "cv18xx.dtsi"
-> > =C2=A0
-> > @@ -14,22 +16,62 @@ memory@80000000 {
-> > =C2=A0		reg =3D <0x80000000 0x4000000>;
-> > =C2=A0	};
-> > =C2=A0
->=20
-> > -	soc {
-> > -		pinctrl: pinctrl@3001000 {
-> > -			compatible =3D "sophgo,cv1800b-pinctrl";
-> > -			reg =3D <0x03001000 0x1000>,
-> > -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x05027000 0x1000>;
-> > -			reg-names =3D "sys", "rtc";
->=20
->=20
-> > +	cpus: cpus {
-> > +		#address-cells =3D <1>;
-> > +		#size-cells =3D <0>;
-> > +		timebase-frequency =3D <25000000>;
-> > +
-> > +		cpu0: cpu@0 {
-> > +			compatible =3D "thead,c906", "riscv";
-> > +			device_type =3D "cpu";
-> > +			reg =3D <0>;
-> > +			d-cache-block-size =3D <64>;
-> > +			d-cache-sets =3D <512>;
-> > +			d-cache-size =3D <65536>;
-> > +			i-cache-block-size =3D <64>;
-> > +			i-cache-sets =3D <128>;
-> > +			i-cache-size =3D <32768>;
-> > +			mmu-type =3D "riscv,sv39";
-> > +			riscv,isa =3D "rv64imafdc";
-> > +			riscv,isa-base =3D "rv64i";
-> > +			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "zicntr", "z=
-icsr",
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "zifencei", "zihpm";
-> > +
-> > +			cpu0_intc: interrupt-controller {
-> > +				compatible =3D "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells =3D <1>;
-> > +			};
-> > =C2=A0		};
-> > =C2=A0	};
-> > =C2=A0};
->=20
-> Make all soc definition include the common cpu file.=20
-> Not just copy it.
-
-I was acting according to Krzysztof's suggestion:
-https://lore.kernel.org/soc/d3ba0ea5-0491-42d5-a18e-64cf21df696c@kernel.org=
-/
-
-Krzysztof, I can name the file cv18xx-cpu-intc.dtsi and pack CPU core + int=
-errupt
-controllers into it. Would it make sense?
-
-> > =C2=A0
-> > -&plic {
-> > -	compatible =3D "sophgo,cv1800b-plic", "thead,c900-plic";
-> > -};
-> > +&soc {
-> > +	interrupt-parent =3D <&plic>;
-> > +	dma-noncoherent;
-> > =C2=A0
-> > -&clint {
-> > -	compatible =3D "sophgo,cv1800b-clint", "thead,c900-clint";
-> > +	pinctrl: pinctrl@3001000 {
-> > +		compatible =3D "sophgo,cv1800b-pinctrl";
-> > +		reg =3D <0x03001000 0x1000>,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x05027000 0x1000>;
-> > +		reg-names =3D "sys", "rtc";
-> > +	};
-> > +
-> > +	plic: interrupt-controller@70000000 {
-> > +		compatible =3D "sophgo,cv1800b-plic", "thead,c900-plic";
-> > +		reg =3D <0x70000000 0x4000000>;
-> > +		interrupts-extended =3D <&cpu0_intc 11>, <&cpu0_intc 9>;
-> > +		interrupt-controller;
-> > +		#address-cells =3D <0>;
-> > +		#interrupt-cells =3D <2>;
-> > +		riscv,ndev =3D <101>;
-> > +	};
-> > +
-> > +	clint: timer@74000000 {
-> > +		compatible =3D "sophgo,cv1800b-clint", "thead,c900-clint";
-> > +		reg =3D <0x74000000 0x10000>;
-> > +		interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>;
-> > +	};
-> > =C2=A0};
-> > =C2=A0
-> > =C2=A0&clk {
-> > diff --git a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi b/arch/riscv/boot/=
-dts/sophgo/cv1812h.dtsi
-> > index 8a1b95c5116b..54f7e229bcd8 100644
-> > --- a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-> > +++ b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-> > @@ -3,6 +3,8 @@
-> > =C2=A0 * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
-> > =C2=A0 */
-> > =C2=A0
-> > +#define SOC_PERIPHERAL_IRQ(nr)	((nr) + 16)
-> > +
-> > =C2=A0#include <dt-bindings/interrupt-controller/irq.h>
-> > =C2=A0#include <dt-bindings/pinctrl/pinctrl-cv1812h.h>
-> > =C2=A0#include "cv18xx.dtsi"
-> > @@ -16,22 +18,62 @@ memory@80000000 {
-> > =C2=A0		reg =3D <0x80000000 0x10000000>;
-> > =C2=A0	};
-> > =C2=A0
-> > -	soc {
-> > -		pinctrl: pinctrl@3001000 {
-> > -			compatible =3D "sophgo,cv1812h-pinctrl";
-> > -			reg =3D <0x03001000 0x1000>,
-> > -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x05027000 0x1000>;
-> > -			reg-names =3D "sys", "rtc";
-> > +	cpus: cpus {
-> > +		#address-cells =3D <1>;
-> > +		#size-cells =3D <0>;
-> > +		timebase-frequency =3D <25000000>;
-> > +
-> > +		cpu0: cpu@0 {
-> > +			compatible =3D "thead,c906", "riscv";
-> > +			device_type =3D "cpu";
-> > +			reg =3D <0>;
-> > +			d-cache-block-size =3D <64>;
-> > +			d-cache-sets =3D <512>;
-> > +			d-cache-size =3D <65536>;
-> > +			i-cache-block-size =3D <64>;
-> > +			i-cache-sets =3D <128>;
-> > +			i-cache-size =3D <32768>;
-> > +			mmu-type =3D "riscv,sv39";
-> > +			riscv,isa =3D "rv64imafdc";
-> > +			riscv,isa-base =3D "rv64i";
-> > +			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "zicntr", "z=
-icsr",
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "zifencei", "zihpm";
-> > +
-> > +			cpu0_intc: interrupt-controller {
-> > +				compatible =3D "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells =3D <1>;
-> > +			};
-> > =C2=A0		};
-> > =C2=A0	};
-> > =C2=A0};
-> > =C2=A0
-> > -&plic {
-> > -	compatible =3D "sophgo,cv1812h-plic", "thead,c900-plic";
-> > -};
-> > +&soc {
-> > +	interrupt-parent =3D <&plic>;
-> > +	dma-noncoherent;
-> > =C2=A0
-> > -&clint {
-> > -	compatible =3D "sophgo,cv1812h-clint", "thead,c900-clint";
-> > +	pinctrl: pinctrl@3001000 {
-> > +		compatible =3D "sophgo,cv1812h-pinctrl";
-> > +		reg =3D <0x03001000 0x1000>,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x05027000 0x1000>;
-> > +		reg-names =3D "sys", "rtc";
-> > +	};
-> > +
-> > +	plic: interrupt-controller@70000000 {
-> > +		compatible =3D "sophgo,cv1812h-plic", "thead,c900-plic";
-> > +		reg =3D <0x70000000 0x4000000>;
-> > +		interrupts-extended =3D <&cpu0_intc 11>, <&cpu0_intc 9>;
-> > +		interrupt-controller;
-> > +		#address-cells =3D <0>;
-> > +		#interrupt-cells =3D <2>;
-> > +		riscv,ndev =3D <101>;
-> > +	};
-> > +
-> > +	clint: timer@74000000 {
-> > +		compatible =3D "sophgo,cv1812h-clint", "thead,c900-clint";
-> > +		reg =3D <0x74000000 0x10000>;
-> > +		interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>;
-> > +	};
-> > =C2=A0};
-> > =C2=A0
-> > =C2=A0&clk {
-> > diff --git a/arch/riscv/boot/dts/sophgo/cv181x.dtsi b/arch/riscv/boot/d=
-ts/sophgo/cv181x.dtsi
-> > index 5fd14dd1b14f..bbdb30653e9a 100644
-> > --- a/arch/riscv/boot/dts/sophgo/cv181x.dtsi
-> > +++ b/arch/riscv/boot/dts/sophgo/cv181x.dtsi
-> > @@ -11,7 +11,7 @@ soc {
-> > =C2=A0		emmc: mmc@4300000 {
-> > =C2=A0			compatible =3D "sophgo,cv1800b-dwcmshc";
-> > =C2=A0			reg =3D <0x4300000 0x1000>;
-> > -			interrupts =3D <34 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(18) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			clocks =3D <&clk CLK_AXI4_EMMC>,
-> > =C2=A0				 <&clk CLK_EMMC>;
-> > =C2=A0			clock-names =3D "core", "bus";
-> > diff --git a/arch/riscv/boot/dts/sophgo/cv18xx-cpu.dtsi b/arch/riscv/bo=
-ot/dts/sophgo/cv18xx-cpu.dtsi
-> > new file mode 100644
-> > index 000000000000..a68d61131efb
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/sophgo/cv18xx-cpu.dtsi
-> > @@ -0,0 +1,57 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> > + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
-> > + */
-> > +
-> > +#define SOC_PERIPHERAL_IRQ(nr)	((nr) + 16)
-> > +
-> > +/ {
-> > +	cpus: cpus {
-> > +		#address-cells =3D <1>;
-> > +		#size-cells =3D <0>;
-> > +		timebase-frequency =3D <25000000>;
-> > +
-> > +		cpu0: cpu@0 {
-> > +			compatible =3D "thead,c906", "riscv";
-> > +			device_type =3D "cpu";
-> > +			reg =3D <0>;
-> > +			d-cache-block-size =3D <64>;
-> > +			d-cache-sets =3D <512>;
-> > +			d-cache-size =3D <65536>;
-> > +			i-cache-block-size =3D <64>;
-> > +			i-cache-sets =3D <128>;
-> > +			i-cache-size =3D <32768>;
-> > +			mmu-type =3D "riscv,sv39";
-> > +			riscv,isa =3D "rv64imafdc";
-> > +			riscv,isa-base =3D "rv64i";
-> > +			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "zicntr", "z=
-icsr",
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "zifencei", "zihpm";
-> > +
-> > +			cpu0_intc: interrupt-controller {
-> > +				compatible =3D "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells =3D <1>;
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&soc {
-> > +	interrupt-parent =3D <&plic>;
-> > +	dma-noncoherent;
-> > +
-> > +	plic: interrupt-controller@70000000 {
-> > +		reg =3D <0x70000000 0x4000000>;
-> > +		interrupts-extended =3D <&cpu0_intc 11>, <&cpu0_intc 9>;
-> > +		interrupt-controller;
-> > +		#address-cells =3D <0>;
-> > +		#interrupt-cells =3D <2>;
-> > +		riscv,ndev =3D <101>;
-> > +	};
-> > +
-> > +	clint: timer@74000000 {
-> > +		reg =3D <0x74000000 0x10000>;
-> > +		interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>;
-> > +	};
-> > +};
-> > diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/d=
-ts/sophgo/cv18xx.dtsi
-> > index c18822ec849f..62c1464a0490 100644
-> > --- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> > +++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> > @@ -12,47 +12,16 @@ / {
-> > =C2=A0	#address-cells =3D <1>;
-> > =C2=A0	#size-cells =3D <1>;
-> > =C2=A0
-> > -	cpus: cpus {
-> > -		#address-cells =3D <1>;
-> > -		#size-cells =3D <0>;
-> > -		timebase-frequency =3D <25000000>;
-> > -
-> > -		cpu0: cpu@0 {
-> > -			compatible =3D "thead,c906", "riscv";
-> > -			device_type =3D "cpu";
-> > -			reg =3D <0>;
-> > -			d-cache-block-size =3D <64>;
-> > -			d-cache-sets =3D <512>;
-> > -			d-cache-size =3D <65536>;
-> > -			i-cache-block-size =3D <64>;
-> > -			i-cache-sets =3D <128>;
-> > -			i-cache-size =3D <32768>;
-> > -			mmu-type =3D "riscv,sv39";
-> > -			riscv,isa =3D "rv64imafdc";
-> > -			riscv,isa-base =3D "rv64i";
-> > -			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "zicntr", "z=
-icsr",
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "zifencei", "zihpm";
-> > -
-> > -			cpu0_intc: interrupt-controller {
-> > -				compatible =3D "riscv,cpu-intc";
-> > -				interrupt-controller;
-> > -				#interrupt-cells =3D <1>;
-> > -			};
-> > -		};
-> > -	};
-> > -
-> > =C2=A0	osc: oscillator {
-> > =C2=A0		compatible =3D "fixed-clock";
-> > =C2=A0		clock-output-names =3D "osc_25m";
-> > =C2=A0		#clock-cells =3D <0>;
-> > =C2=A0	};
-> > =C2=A0
-> > -	soc {
-> > +	soc: soc {
-> > =C2=A0		compatible =3D "simple-bus";
-> > -		interrupt-parent =3D <&plic>;
-> > =C2=A0		#address-cells =3D <1>;
-> > =C2=A0		#size-cells =3D <1>;
-> > -		dma-noncoherent;
-> > =C2=A0		ranges;
-> > =C2=A0
-> > =C2=A0		clk: clock-controller@3002000 {
-> > @@ -75,7 +44,7 @@ porta: gpio-controller@0 {
-> > =C2=A0				reg =3D <0>;
-> > =C2=A0				interrupt-controller;
-> > =C2=A0				#interrupt-cells =3D <2>;
-> > -				interrupts =3D <60 IRQ_TYPE_LEVEL_HIGH>;
-> > +				interrupts =3D <SOC_PERIPHERAL_IRQ(44) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			};
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -93,7 +62,7 @@ portb: gpio-controller@0 {
-> > =C2=A0				reg =3D <0>;
-> > =C2=A0				interrupt-controller;
-> > =C2=A0				#interrupt-cells =3D <2>;
-> > -				interrupts =3D <61 IRQ_TYPE_LEVEL_HIGH>;
-> > +				interrupts =3D <SOC_PERIPHERAL_IRQ(45) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			};
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -111,7 +80,7 @@ portc: gpio-controller@0 {
-> > =C2=A0				reg =3D <0>;
-> > =C2=A0				interrupt-controller;
-> > =C2=A0				#interrupt-cells =3D <2>;
-> > -				interrupts =3D <62 IRQ_TYPE_LEVEL_HIGH>;
-> > +				interrupts =3D <SOC_PERIPHERAL_IRQ(46) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			};
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -129,7 +98,7 @@ portd: gpio-controller@0 {
-> > =C2=A0				reg =3D <0>;
-> > =C2=A0				interrupt-controller;
-> > =C2=A0				#interrupt-cells =3D <2>;
-> > -				interrupts =3D <63 IRQ_TYPE_LEVEL_HIGH>;
-> > +				interrupts =3D <SOC_PERIPHERAL_IRQ(47) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			};
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -137,7 +106,7 @@ saradc: adc@30f0000 {
-> > =C2=A0			compatible =3D "sophgo,cv1800b-saradc";
-> > =C2=A0			reg =3D <0x030f0000 0x1000>;
-> > =C2=A0			clocks =3D <&clk CLK_SARADC>;
-> > -			interrupts =3D <100 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(84) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			#address-cells =3D <1>;
-> > =C2=A0			#size-cells =3D <0>;
-> > =C2=A0			status =3D "disabled";
-> > @@ -162,7 +131,7 @@ i2c0: i2c@4000000 {
-> > =C2=A0			#size-cells =3D <0>;
-> > =C2=A0			clocks =3D <&clk CLK_I2C>, <&clk CLK_APB_I2C0>;
-> > =C2=A0			clock-names =3D "ref", "pclk";
-> > -			interrupts =3D <49 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(33) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			status =3D "disabled";
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -173,7 +142,7 @@ i2c1: i2c@4010000 {
-> > =C2=A0			#size-cells =3D <0>;
-> > =C2=A0			clocks =3D <&clk CLK_I2C>, <&clk CLK_APB_I2C1>;
-> > =C2=A0			clock-names =3D "ref", "pclk";
-> > -			interrupts =3D <50 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(34) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			status =3D "disabled";
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -184,7 +153,7 @@ i2c2: i2c@4020000 {
-> > =C2=A0			#size-cells =3D <0>;
-> > =C2=A0			clocks =3D <&clk CLK_I2C>, <&clk CLK_APB_I2C2>;
-> > =C2=A0			clock-names =3D "ref", "pclk";
-> > -			interrupts =3D <51 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(35) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			status =3D "disabled";
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -195,7 +164,7 @@ i2c3: i2c@4030000 {
-> > =C2=A0			#size-cells =3D <0>;
-> > =C2=A0			clocks =3D <&clk CLK_I2C>, <&clk CLK_APB_I2C3>;
-> > =C2=A0			clock-names =3D "ref", "pclk";
-> > -			interrupts =3D <52 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(36) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			status =3D "disabled";
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -206,14 +175,14 @@ i2c4: i2c@4040000 {
-> > =C2=A0			#size-cells =3D <0>;
-> > =C2=A0			clocks =3D <&clk CLK_I2C>, <&clk CLK_APB_I2C4>;
-> > =C2=A0			clock-names =3D "ref", "pclk";
-> > -			interrupts =3D <53 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(37) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			status =3D "disabled";
-> > =C2=A0		};
-> > =C2=A0
-> > =C2=A0		uart0: serial@4140000 {
-> > =C2=A0			compatible =3D "snps,dw-apb-uart";
-> > =C2=A0			reg =3D <0x04140000 0x100>;
-> > -			interrupts =3D <44 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(28) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			clocks =3D <&clk CLK_UART0>, <&clk CLK_APB_UART0>;
-> > =C2=A0			clock-names =3D "baudclk", "apb_pclk";
-> > =C2=A0			reg-shift =3D <2>;
-> > @@ -224,7 +193,7 @@ uart0: serial@4140000 {
-> > =C2=A0		uart1: serial@4150000 {
-> > =C2=A0			compatible =3D "snps,dw-apb-uart";
-> > =C2=A0			reg =3D <0x04150000 0x100>;
-> > -			interrupts =3D <45 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(29) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			clocks =3D <&clk CLK_UART1>, <&clk CLK_APB_UART1>;
-> > =C2=A0			clock-names =3D "baudclk", "apb_pclk";
-> > =C2=A0			reg-shift =3D <2>;
-> > @@ -235,7 +204,7 @@ uart1: serial@4150000 {
-> > =C2=A0		uart2: serial@4160000 {
-> > =C2=A0			compatible =3D "snps,dw-apb-uart";
-> > =C2=A0			reg =3D <0x04160000 0x100>;
-> > -			interrupts =3D <46 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(30) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			clocks =3D <&clk CLK_UART2>, <&clk CLK_APB_UART2>;
-> > =C2=A0			clock-names =3D "baudclk", "apb_pclk";
-> > =C2=A0			reg-shift =3D <2>;
-> > @@ -246,7 +215,7 @@ uart2: serial@4160000 {
-> > =C2=A0		uart3: serial@4170000 {
-> > =C2=A0			compatible =3D "snps,dw-apb-uart";
-> > =C2=A0			reg =3D <0x04170000 0x100>;
-> > -			interrupts =3D <47 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(31) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			clocks =3D <&clk CLK_UART3>, <&clk CLK_APB_UART3>;
-> > =C2=A0			clock-names =3D "baudclk", "apb_pclk";
-> > =C2=A0			reg-shift =3D <2>;
-> > @@ -261,7 +230,7 @@ spi0: spi@4180000 {
-> > =C2=A0			#size-cells =3D <0>;
-> > =C2=A0			clocks =3D <&clk CLK_SPI>, <&clk CLK_APB_SPI0>;
-> > =C2=A0			clock-names =3D "ssi_clk", "pclk";
-> > -			interrupts =3D <54 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(38) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			status =3D "disabled";
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -272,7 +241,7 @@ spi1: spi@4190000 {
-> > =C2=A0			#size-cells =3D <0>;
-> > =C2=A0			clocks =3D <&clk CLK_SPI>, <&clk CLK_APB_SPI1>;
-> > =C2=A0			clock-names =3D "ssi_clk", "pclk";
-> > -			interrupts =3D <55 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(39) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			status =3D "disabled";
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -283,7 +252,7 @@ spi2: spi@41a0000 {
-> > =C2=A0			#size-cells =3D <0>;
-> > =C2=A0			clocks =3D <&clk CLK_SPI>, <&clk CLK_APB_SPI2>;
-> > =C2=A0			clock-names =3D "ssi_clk", "pclk";
-> > -			interrupts =3D <56 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(40) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			status =3D "disabled";
-> > =C2=A0		};
-> > =C2=A0
-> > @@ -294,14 +263,14 @@ spi3: spi@41b0000 {
-> > =C2=A0			#size-cells =3D <0>;
-> > =C2=A0			clocks =3D <&clk CLK_SPI>, <&clk CLK_APB_SPI3>;
-> > =C2=A0			clock-names =3D "ssi_clk", "pclk";
-> > -			interrupts =3D <57 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(41) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			status =3D "disabled";
-> > =C2=A0		};
-> > =C2=A0
-> > =C2=A0		uart4: serial@41c0000 {
-> > =C2=A0			compatible =3D "snps,dw-apb-uart";
-> > =C2=A0			reg =3D <0x041c0000 0x100>;
-> > -			interrupts =3D <48 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(32) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			clocks =3D <&clk CLK_UART4>, <&clk CLK_APB_UART4>;
-> > =C2=A0			clock-names =3D "baudclk", "apb_pclk";
-> > =C2=A0			reg-shift =3D <2>;
-> > @@ -312,7 +281,7 @@ uart4: serial@41c0000 {
-> > =C2=A0		sdhci0: mmc@4310000 {
-> > =C2=A0			compatible =3D "sophgo,cv1800b-dwcmshc";
-> > =C2=A0			reg =3D <0x4310000 0x1000>;
-> > -			interrupts =3D <36 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(20) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			clocks =3D <&clk CLK_AXI4_SD0>,
-> > =C2=A0				 <&clk CLK_SD0>;
-> > =C2=A0			clock-names =3D "core", "bus";
-> > @@ -322,7 +291,7 @@ sdhci0: mmc@4310000 {
-> > =C2=A0		sdhci1: mmc@4320000 {
-> > =C2=A0			compatible =3D "sophgo,cv1800b-dwcmshc";
-> > =C2=A0			reg =3D <0x4320000 0x1000>;
-> > -			interrupts =3D <38 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(22) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			clocks =3D <&clk CLK_AXI4_SD1>,
-> > =C2=A0				 <&clk CLK_SD1>;
-> > =C2=A0			clock-names =3D "core", "bus";
-> > @@ -332,7 +301,7 @@ sdhci1: mmc@4320000 {
-> > =C2=A0		dmac: dma-controller@4330000 {
-> > =C2=A0			compatible =3D "snps,axi-dma-1.01a";
-> > =C2=A0			reg =3D <0x04330000 0x1000>;
-> > -			interrupts =3D <29 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupts =3D <SOC_PERIPHERAL_IRQ(13) IRQ_TYPE_LEVEL_HIGH>;
-> > =C2=A0			clocks =3D <&clk CLK_SDMA_AXI>, <&clk CLK_SDMA_AXI>;
-> > =C2=A0			clock-names =3D "core-clk", "cfgr-clk";
-> > =C2=A0			#dma-cells =3D <1>;
-> > @@ -344,19 +313,5 @@ dmac: dma-controller@4330000 {
-> > =C2=A0			snps,data-width =3D <4>;
-> > =C2=A0			status =3D "disabled";
-> > =C2=A0		};
-> > -
-> > -		plic: interrupt-controller@70000000 {
-> > -			reg =3D <0x70000000 0x4000000>;
-> > -			interrupts-extended =3D <&cpu0_intc 11>, <&cpu0_intc 9>;
-> > -			interrupt-controller;
-> > -			#address-cells =3D <0>;
-> > -			#interrupt-cells =3D <2>;
-> > -			riscv,ndev =3D <101>;
-> > -		};
-> > -
-> > -		clint: timer@74000000 {
-> > -			reg =3D <0x74000000 0x10000>;
-> > -			interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>;
-> > -		};
-> > =C2=A0	};
-> > =C2=A0};
-> > diff --git a/arch/riscv/boot/dts/sophgo/sg2002.dtsi b/arch/riscv/boot/d=
-ts/sophgo/sg2002.dtsi
-> > index 7f79de33163c..732d0e72cf13 100644
-> > --- a/arch/riscv/boot/dts/sophgo/sg2002.dtsi
-> > +++ b/arch/riscv/boot/dts/sophgo/sg2002.dtsi
-> > @@ -3,6 +3,8 @@
-> > =C2=A0 * Copyright (C) 2024 Thomas Bonnefille <thomas.bonnefille@bootli=
-n.com>
-> > =C2=A0 */
-> > =C2=A0
-> > +#define SOC_PERIPHERAL_IRQ(nr)	((nr) + 16)
-> > +
-> > =C2=A0#include <dt-bindings/interrupt-controller/irq.h>
-> > =C2=A0#include <dt-bindings/pinctrl/pinctrl-sg2002.h>
-> > =C2=A0#include "cv18xx.dtsi"
-> > @@ -16,22 +18,62 @@ memory@80000000 {
-> > =C2=A0		reg =3D <0x80000000 0x10000000>;
-> > =C2=A0	};
-> > =C2=A0
-> > -	soc {
-> > -		pinctrl: pinctrl@3001000 {
-> > -			compatible =3D "sophgo,sg2002-pinctrl";
-> > -			reg =3D <0x03001000 0x1000>,
-> > -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x05027000 0x1000>;
-> > -			reg-names =3D "sys", "rtc";
-> > +	cpus: cpus {
-> > +		#address-cells =3D <1>;
-> > +		#size-cells =3D <0>;
-> > +		timebase-frequency =3D <25000000>;
-> > +
-> > +		cpu0: cpu@0 {
-> > +			compatible =3D "thead,c906", "riscv";
-> > +			device_type =3D "cpu";
-> > +			reg =3D <0>;
-> > +			d-cache-block-size =3D <64>;
-> > +			d-cache-sets =3D <512>;
-> > +			d-cache-size =3D <65536>;
-> > +			i-cache-block-size =3D <64>;
-> > +			i-cache-sets =3D <128>;
-> > +			i-cache-size =3D <32768>;
-> > +			mmu-type =3D "riscv,sv39";
-> > +			riscv,isa =3D "rv64imafdc";
-> > +			riscv,isa-base =3D "rv64i";
-> > +			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "zicntr", "z=
-icsr",
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "zifencei", "zihpm";
-> > +
-> > +			cpu0_intc: interrupt-controller {
-> > +				compatible =3D "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells =3D <1>;
-> > +			};
-> > =C2=A0		};
-> > =C2=A0	};
-> > =C2=A0};
-> > =C2=A0
-> > -&plic {
-> > -	compatible =3D "sophgo,sg2002-plic", "thead,c900-plic";
-> > -};
-> > +&soc {
-> > +	interrupt-parent =3D <&plic>;
-> > +	dma-noncoherent;
-> > =C2=A0
-> > -&clint {
-> > -	compatible =3D "sophgo,sg2002-clint", "thead,c900-clint";
-> > +	pinctrl: pinctrl@3001000 {
-> > +		compatible =3D "sophgo,sg2002-pinctrl";
-> > +		reg =3D <0x03001000 0x1000>,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x05027000 0x1000>;
-> > +		reg-names =3D "sys", "rtc";
-> > +	};
-> > +
-> > +	plic: interrupt-controller@70000000 {
-> > +		compatible =3D "sophgo,sg2002-plic", "thead,c900-plic";
-> > +		reg =3D <0x70000000 0x4000000>;
-> > +		interrupts-extended =3D <&cpu0_intc 11>, <&cpu0_intc 9>;
-> > +		interrupt-controller;
-> > +		#address-cells =3D <0>;
-> > +		#interrupt-cells =3D <2>;
-> > +		riscv,ndev =3D <101>;
-> > +	};
-> > +
-> > +	clint: timer@74000000 {
-> > +		compatible =3D "sophgo,sg2002-clint", "thead,c900-clint";
-> > +		reg =3D <0x74000000 0x10000>;
-> > +		interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>;
-> > +	};
-> > =C2=A0};
-> > =C2=A0
-> > =C2=A0&clk {
-> > --=20
-> > 2.48.1
-> >=20
-
---=20
-Alexander Sverdlin.
-
+SGkgR2VlcnQsDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogR2VlcnQg
+VXl0dGVyaG9ldmVuIDxnZWVydEBsaW51eC1tNjhrLm9yZz4NCj4gU2VudDogMTEgRmVicnVhcnkg
+MjAyNSAxMzozMQ0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY0IDEyLzEyXSBhcm02NDogZHRzOiBy
+ZW5lc2FzOiByOWEwOWcwNDc6IEFkZCBpY3Ugbm9kZQ0KPiANCj4gT24gRnJpLCA3IEZlYiAyMDI1
+IGF0IDEyOjM3LCBCaWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+IHdyb3RlOg0K
+PiA+IEFkZCBpbnRlcnJ1cHQgY29udHJvbCBub2RlIHRvIFJaL0czRSAoIlI5QTA5RzA0NyIpIFNv
+QyBEVFNJIGFuZCBhZGQNCj4gPiBpY3UgYXMgaW50ZXJydXB0LXBhcmVudCBvZiBwaW5jb250cm9s
+Lg0KPiA+DQo+ID4gUmV2aWV3ZWQtYnk6IEZhYnJpemlvIENhc3RybyA8ZmFicml6aW8uY2FzdHJv
+Lmp6QHJlbmVzYXMuY29tPg0KPiA+IFJldmlld2VkLWJ5OiBUb21tYXNvIE1lcmNpYWkgPHRvbW1h
+c28ubWVyY2lhaS54ckBicC5yZW5lc2FzLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBCaWp1IERh
+cyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+ID4gLS0tDQo+ID4gdjMtPnY0Og0KPiA+
+ICAqIERyb3BwZWQgUlpHM0VfKiBtYWNyb3MuDQo+IA0KPiBSZXZpZXdlZC1ieTogR2VlcnQgVXl0
+dGVyaG9ldmVuIDxnZWVydCtyZW5lc2FzQGdsaWRlci5iZT4gaS5lLiB3aWxsIHF1ZXVlIGluIHJl
+bmVzYXMtZGV2ZWwgZm9yIHY2LjE1Lg0KDQpUaGFua3MuIEkgd2lsbCBkcm9wIHRoaXMgcGF0Y2gg
+ZnJvbSB0aGUgbmV4dCBkcml2ZXIgc2VyaWVzLg0KDQpDaGVlcnMsDQpCaWp1DQo=
 
