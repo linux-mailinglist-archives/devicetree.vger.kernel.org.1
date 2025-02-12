@@ -1,288 +1,133 @@
-Return-Path: <devicetree+bounces-145993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21F4A32F8A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:25:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 901DCA32F8B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:25:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4976C188AADC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 19:25:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2809D188AA5C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 19:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF23B261580;
-	Wed, 12 Feb 2025 19:25:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA9F262156;
+	Wed, 12 Feb 2025 19:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fXXOzCdX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fwA/s65P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47A11DEFDD;
-	Wed, 12 Feb 2025 19:25:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53B41DEFDD;
+	Wed, 12 Feb 2025 19:25:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739388304; cv=none; b=All9PjhfnwhP9V2E21yxKWHktVSKAf9UQF3040l7/VFfjHltOwZAvSkQflGtyjyXjOzvbitoY5ImMxI2xs0vRz4KnmieTZPNZMUHDNq7iIQQAtb+hvnl5erNbaFvOUEswvCA5dfdE65ahMGS7by1k8WLzhcj2fy7+/eAqGfgQZQ=
+	t=1739388318; cv=none; b=DC0UTjYnXQdFbN6xO07925xfXDJze2y7iUhCBvl4cGTskN6omj22sLtLTUGEqUUVXpiiE88LHv6Lr4W538bxwOKjbLhnbZ2/51ausnf9Hs9Rm9a/JWSXqPwu0X6CVTqbqVNwrO7M99frwjRGOuvw8zL0H3MUO7wHlN60glvQwhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739388304; c=relaxed/simple;
-	bh=7sesecLH7TnirzeBcMYhfkDs4c2KfL3v0QPmpCbmrjE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JzDBkwgba9Z27SzgknYk4IYpf+7eiOKOoT0oRAKC+jGorRAgS8A3NsZdqkDZGRDOvQTJX9hhE9bdIQC88KSlhpB/JRnJqmmR8OAicUjxPjSrCUYHz3Ktil4g/h/3UsUDYm15PQOuNMCI8e/kR5OBttL7534avkW+WggyduDvvQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fXXOzCdX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7737FC4CEDF;
-	Wed, 12 Feb 2025 19:24:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739388304;
-	bh=7sesecLH7TnirzeBcMYhfkDs4c2KfL3v0QPmpCbmrjE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fXXOzCdXve+Cj0IcPQfCSkT54RQbKorXd/SFMTBClDoXtj0zTZEi8L2oDTOtqDvhA
-	 vRZsUw6on+dtKrngKRf0NyZV6L1UClNLFczOhoFaCLtqS8woQYrN+tZhUVpjP49Ijc
-	 S0GYPyrL6o+0s1CAxQaWwJlWqj56Q9wI3QKPUxpUgAnkfUZVwzHrucs8vURKRxUVkH
-	 kPFfxDwiMbeeDRSZ3YSfI8yS5t8XDyzdOZ1DuLC5UQZi7hyA0ZM3WglEBQUayfNqed
-	 YZrGjmAm399SwRplMlsaqGUQY4BC4ztkPJxKCCS6657WPNaG+dxp2MMX5HU7mf1BYh
-	 kMQhZzdwi8G2A==
-Message-ID: <a01de9d5-726c-4064-9617-86e01aa7e75c@kernel.org>
-Date: Wed, 12 Feb 2025 20:24:55 +0100
+	s=arc-20240116; t=1739388318; c=relaxed/simple;
+	bh=sSKn3cAe8vJOx2Ub9060X3L9Kew3cuPp2yioPFziWMo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=E+FJwCIhfF4KiWs2aluq//baI4btIXpw+Oc0iDdMjGflCO7j3EAsyoofp25kKjFvXkd8Nv6fCi5fpCXPZETxF66HUoGO/CCsOCOOKxR7Om2/UtoUWtUTnq4ZKq8fXSLJXR2crdiUbnu/M5VoGsBshbjWAswKV1gDWXyp7MlaxlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fwA/s65P; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-21f6022c2c3so21685685ad.0;
+        Wed, 12 Feb 2025 11:25:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739388314; x=1739993114; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uHuwhzhUtmjes/uvYM9YoGu3wUSPo/UpEOhuRs84cMs=;
+        b=fwA/s65PtA9lp8lXSWfuZBHo6j68lGSJpYdzRzB2Qp/V9YKCojDuRnJ6D/7/CKbRRt
+         xnHEbMTEfIeXv4vivxpqGbOrccfLbMZft9ruJABNhVnC2ypi0NROy9Ki1AxDARE9VOYh
+         yAoXArAuZW7dk6tr/4tRyr32OfWEFukxx+ttv+w9ovHRtEA1hLZ011HhT93/TVH318TV
+         USP44ziZtCFbBfgAbiVFV7PYpcUMgIBCT/MjA8cRE4B9XzP8MP8BFn2h0xxTogcb7flc
+         IaoxBSD+Q55KeAQQKpU3+LHbZsmoDcWXJuJz3s1XJ1kcHSKTj286nN5xDkTmUTlijzVq
+         QLow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739388314; x=1739993114;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uHuwhzhUtmjes/uvYM9YoGu3wUSPo/UpEOhuRs84cMs=;
+        b=xSe/v5q4/H5xHk2Wb3U29XS4HI2Ft/btgBZRX2mAVYBKCrtCRd1nk18P/6wZOSgIxY
+         F+G33Nk0/EgFPw+2odmO6Jk9NUdvhI602suKt3NdIS1Dcbh9ipSeQ7T4LYElA0emhMbU
+         aHkCvF3Dng2opYh+Fm4wGCXylgkPEDDpdoTxYk/09TMb0+26dVDMwAyvm9s0af1quhjo
+         dVdPEbygxlwpDWE9iqdojyRj6n8wnXEaxJIKvckE9Qk1A3BkZWaT7zH/pPPaSt8C9Jvx
+         tE+yWG/fHtuyLbMcsajX+1Vm1fs+g9CvMFyI5TbQki1XsmduX0tjXzWJtB3NWU09hK/k
+         e/zg==
+X-Forwarded-Encrypted: i=1; AJvYcCUPdtIs5Jv4/9Nshw3I8rUYipwnfNCQLQgGgMuEe7GSWjiYuJMW/VGyfv+HDy4tlA6fCsf/3Q3jW6CWFldX@vger.kernel.org, AJvYcCVWtpWjOIaj0RTGibtalUJPk+7ISMFQIHSBfLP+siznJmTdGjdLW28FDCCAiRh2kItmPdApq0Vuteu4@vger.kernel.org, AJvYcCXfcFeNf2wE7Uy65upSaknVQ1KskMvBYL6XNHT7dPAAGgLuQi0A7vDg9Nw1bjnPjIvYakh7y/ATjaOhAx2WQA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzD9ctOLJz3ddwJbW0I+FXKloyaZGDrTfS1nypNa8ZV5y667qv+
+	lc7tnLqy91HtmJHUL3tSPjiN3EkbQuG09Vevk89wzUcnPUlJN/cc
+X-Gm-Gg: ASbGncvDX0rOaiLI294MTT/6v0M54E2351HPFWwKmF5nEFzVJDyMU9/jtBI17C7EvNF
+	AEdLq4NCymjP799nVSiisyftUmFXn/fRJxkRL5khFSCpBmMQYhmLJN49Yr+e5pW5L+7sASjN2Cn
+	MIv61aZcxuRN8Rlpq09AVujHT+ZMwXFj6fM3wDmlL/s8EMrRCUj2Uyt4t+eY5NNo55oNHsVrskD
+	mhdYsn06Uc2+XFAWg6SOZMsPmWWwsT6S0uR1EV2m1z8VmQVEAWV6ezcxvL8EWP0pVMp22EOlZed
+	vtopmqXDsTIi1YG30lp1CvWJmp26bp7FntOmr3qBmw==
+X-Google-Smtp-Source: AGHT+IHcOBqjiEVfR0zTy4OMDsmxuaWI0odaMLRy1ZKtdCOvuR39+L0kvGf+nTVb3puyRgCGvWhYkg==
+X-Received: by 2002:a05:6a00:458e:b0:725:ce39:4516 with SMTP id d2e1a72fcca58-7323c7516f8mr253668b3a.7.1739388314052;
+        Wed, 12 Feb 2025 11:25:14 -0800 (PST)
+Received: from jamesmacinnes-VirtualBox ([66.119.214.127])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7309709027bsm5115955b3a.44.2025.02.12.11.25.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2025 11:25:13 -0800 (PST)
+Date: Wed, 12 Feb 2025 11:25:10 -0800
+From: "James A. MacInnes" <james.a.macinnes@gmail.com>
+To: Caleb Connolly <caleb.connolly@linaro.org>
+Cc: Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, quic_wcheng@quicinc.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ lgirdwood@gmail.com
+Subject: Re: [PATCH 2/3] regulator: qcom_usb_vbus: Add support for PMI8998
+ VBUS
+Message-ID: <20250212112510.2c7140a5@jamesmacinnes-VirtualBox>
+In-Reply-To: <3e8d6cb7-43e3-4375-94be-c6b28331da76@linaro.org>
+References: <20250212010744.2554574-1-james.a.macinnes@gmail.com>
+	<20250212010744.2554574-3-james.a.macinnes@gmail.com>
+	<fcf907a5-9fb7-4988-a30a-a555740ca817@linaro.org>
+	<8ec05fd8-1623-457f-a3b5-1095acd62cf7@sirena.org.uk>
+	<3e8d6cb7-43e3-4375-94be-c6b28331da76@linaro.org>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] riscv: dts: sophgo: cv18xx: Move RiscV-specific
- part into SoCs' .dtsi files
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
- Inochi Amaoto <inochiama@gmail.com>, soc@lists.linux.dev
-Cc: Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@outlook.com>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, Haylen Chu <heylenay@outlook.com>,
- linux-arm-kernel@lists.infradead.org,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
- Chao Wei <chao.wei@sophgo.com>
-References: <20250210220951.1248533-1-alexander.sverdlin@gmail.com>
- <20250210220951.1248533-2-alexander.sverdlin@gmail.com>
- <uvy62iqzul6kajzsmiaovdzogftcsc5b53cswkv4cbxh4w6som@32libbd7kffq>
- <708cdc497b8474609989395dbf8a0898037a22de.camel@gmail.com>
- <33654180-5488-4601-9103-8e4218c4a198@kernel.org>
- <26ddcdaadd777f170dbab51ab840c899f0edde24.camel@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <26ddcdaadd777f170dbab51ab840c899f0edde24.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 12/02/2025 18:44, Alexander Sverdlin wrote:
-> Hi 
-> 
-> On Wed, 2025-02-12 at 17:46 +0100, Krzysztof Kozlowski wrote:
->>>>> Make the peripheral device tree re-usable on ARM64 platform by moving CPU
->>>>> core and interrupt controllers' parts into the respective per-SoC .dtsi
->>>>> files.
->>>>>
->>>>> Add SOC_PERIPHERAL_IRQ() macro which explicitly maps peripheral nubering
->>>>> into "plic" interrupt-controller numbering.
->>>>>
->>>>> Have a nice refactoring side-effect that "plic" and "clint" "compatible"
->>>>> property is not specified outside of the corresponding device itself.
->>>>>
->>>>> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
->>>>> ---
->>>>> Changelog:
->>>>> v2:
->>>>> - instead of carving out peripherals' part, carve out ARCH-specifics (CPU
->>>>> core, interrupt controllers) and spread them among 3 SoC .dtsi files which
->>>>> included cv18xx.dtsi;
->>>>> - define a label for the "soc" node and use it in the newly introduced DTs;
->>>>>
->>>>>  arch/riscv/boot/dts/sophgo/cv1800b.dtsi    | 64 ++++++++++++---
->>>>>  arch/riscv/boot/dts/sophgo/cv1812h.dtsi    | 64 ++++++++++++---
->>>>>  arch/riscv/boot/dts/sophgo/cv181x.dtsi     |  2 +-
->>>>>  arch/riscv/boot/dts/sophgo/cv18xx-cpu.dtsi | 57 ++++++++++++++
->>>>>  arch/riscv/boot/dts/sophgo/cv18xx.dtsi     | 91 ++++++----------------
->>>>>  arch/riscv/boot/dts/sophgo/sg2002.dtsi     | 64 ++++++++++++---
->>>>>  6 files changed, 240 insertions(+), 102 deletions(-)
->>>>>  create mode 100644 arch/riscv/boot/dts/sophgo/cv18xx-cpu.dtsi
->>>>>
->>>>> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->>>>> index aa1f5df100f0..eef2884b36f9 100644
->>>>> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->>>>> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->>>>> @@ -3,6 +3,8 @@
->>>>>   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
->>>>>   */
->>>>>  
->>>>> +#define SOC_PERIPHERAL_IRQ(nr)	((nr) + 16)
->>>>> +
->>>>>  #include <dt-bindings/pinctrl/pinctrl-cv1800b.h>
->>>>>  #include "cv18xx.dtsi"
->>>>>  
->>>>> @@ -14,22 +16,62 @@ memory@80000000 {
->>>>>  		reg = <0x80000000 0x4000000>;
->>>>>  	};
->>>>>  
->>>>
->>>>> -	soc {
->>>>> -		pinctrl: pinctrl@3001000 {
->>>>> -			compatible = "sophgo,cv1800b-pinctrl";
->>>>> -			reg = <0x03001000 0x1000>,
->>>>> -			      <0x05027000 0x1000>;
->>>>> -			reg-names = "sys", "rtc";
->>>>
->>>>
->>>>> +	cpus: cpus {
->>>>> +		#address-cells = <1>;
->>>>> +		#size-cells = <0>;
->>>>> +		timebase-frequency = <25000000>;
->>>>> +
->>>>> +		cpu0: cpu@0 {
->>>>> +			compatible = "thead,c906", "riscv";
->>>>> +			device_type = "cpu";
->>>>> +			reg = <0>;
->>>>> +			d-cache-block-size = <64>;
->>>>> +			d-cache-sets = <512>;
->>>>> +			d-cache-size = <65536>;
->>>>> +			i-cache-block-size = <64>;
->>>>> +			i-cache-sets = <128>;
->>>>> +			i-cache-size = <32768>;
->>>>> +			mmu-type = "riscv,sv39";
->>>>> +			riscv,isa = "rv64imafdc";
->>>>> +			riscv,isa-base = "rv64i";
->>>>> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
->>>>> +					       "zifencei", "zihpm";
->>>>> +
->>>>> +			cpu0_intc: interrupt-controller {
->>>>> +				compatible = "riscv,cpu-intc";
->>>>> +				interrupt-controller;
->>>>> +				#interrupt-cells = <1>;
->>>>> +			};
->>>>>  		};
->>>>>  	};
->>>>>  };
->>>>
->>>> Make all soc definition include the common cpu file. 
->>>> Not just copy it.
->>>
->>> I was acting according to Krzysztof's suggestion:
->>> https://lore.kernel.org/soc/d3ba0ea5-0491-42d5-a18e-64cf21df696c@kernel.org/
->>>
->>> Krzysztof, I can name the file cv18xx-cpu-intc.dtsi and pack CPU core + interrupt
->>> controllers into it. Would it make sense?
->>
->>
->> I don't understand the original suggestion.
-> 
-> This is the snippet in question:
-> 
-> ---[ cut ]---
-> #define SOC_PERIPHERAL_IRQ(nr)	((nr) + 16)
-> 
-> / {
-> 	cpus: cpus {
-> 		#address-cells = <1>;
-> 		#size-cells = <0>;
-> 		timebase-frequency = <25000000>;
-> 
-> 		cpu0: cpu@0 {
-> 			compatible = "thead,c906", "riscv";
-> 			device_type = "cpu";
-> 			reg = <0>;
-> 			d-cache-block-size = <64>;
-> 			d-cache-sets = <512>;
-> 			d-cache-size = <65536>;
-> 			i-cache-block-size = <64>;
-> 			i-cache-sets = <128>;
-> 			i-cache-size = <32768>;
-> 			mmu-type = "riscv,sv39";
-> 			riscv,isa = "rv64imafdc";
-> 			riscv,isa-base = "rv64i";
-> 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
-> 					       "zifencei", "zihpm";
-> 
-> 			cpu0_intc: interrupt-controller {
-> 				compatible = "riscv,cpu-intc";
-> 				interrupt-controller;
-> 				#interrupt-cells = <1>;
-> 			};
-> 		};
-> 	};
-> };
-> 
-> &soc {
-> 	interrupt-parent = <&plic>;
-> 	dma-noncoherent;
-> 
-> 	plic: interrupt-controller@70000000 {
-> 		reg = <0x70000000 0x4000000>;
-> 		interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
-> 		interrupt-controller;
-> 		#address-cells = <0>;
-> 		#interrupt-cells = <2>;
-> 		riscv,ndev = <101>;
-> 	};
-> 
-> 	clint: timer@74000000 {
-> 		reg = <0x74000000 0x10000>;
-> 		interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
-> 	};
-> };
-> ---[ cut ]---
-> 
-> Inochi's proposal is to put it into separate cv18xx-cpu-intc.dtsi and
-> include the latter in 3 other SoC-specific .dtsis. In v2 I've just
-> duplicated the above snippet 3 times (refer to diffstat above).
-> 
-> What are your thoughts? In Renesas everything is duplicated, I believe.
-> Sophgo outsources much smaller snippets into .dtsi (refer to cv181x.dtsi). 
+On Wed, 12 Feb 2025 16:09:01 +0000
+Caleb Connolly <caleb.connolly@linaro.org> wrote:
 
-If it represents some shared design/part, then it feels good.
-Best regards,
-Krzysztof
+> On 2/12/25 15:37, Mark Brown wrote:
+> > On Wed, Feb 12, 2025 at 03:29:54PM +0000, Caleb Connolly wrote:
+> >   
+> >> I would suggest implementing a proper .is_enabled op to poll the
+> >> status register for OTG_STATE_ENABLED and configuring  
+> > 
+> > No, that would be buggy.  Implement a get_status() operation if the
+> > device can report status.  is_enabled() should report what the
+> > driver asked for.  
+> 
+> Ahh yep, that's right. it should implement .get_status() (as per the 
+> polling code in _regulator_do_enable()).
+> 
+
+I am happy to implement the proper get_status() operation, but the
+other half of this, the type-c driver (that is functional on the 845),
+is managing the status portion. With my testing so far, I see the
+regulator resets the USB hub when I remove power and then supplies from
+its own battery. Is this the expected operation? As of yet, I am not
+seeing any failures and the original Android driver lacked the
+knowledge of the output is status.
+
+I can dive back into the original driver and the documentation to
+verify. 
+
+Any other thoughts?
+
+Thank you,
 
