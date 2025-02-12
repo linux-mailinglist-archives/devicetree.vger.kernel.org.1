@@ -1,162 +1,110 @@
-Return-Path: <devicetree+bounces-145825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC50A3272A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 14:31:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F0EA3273D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 14:38:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A2893A70A3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 13:31:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C563E3A7899
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 13:38:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B76220B7F4;
-	Wed, 12 Feb 2025 13:31:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D22520E320;
+	Wed, 12 Feb 2025 13:38:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gaSzHUhi"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="Rb5JAqXu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6646D18C0C
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 13:31:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1078120B7F4;
+	Wed, 12 Feb 2025 13:38:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739367110; cv=none; b=GBECAkmNS0fLsjDVT4bzjG+NJV4Ie+0xFOVqdjHU246CEn3NzwSz5vkzp6FW8A8OxjMzl/h6w1rEj55kDWHkIUbc55A7fv2YcvIC5Gx2FVqRnyxBvclJh0YGTDP0vMR26s1wQNRVzrOpcB26obspzexLHT+lyrGj95GM+fMrwlU=
+	t=1739367523; cv=none; b=Zo2dXz0W3mrhCjlH1hWNUqDwHIuJdvRBKzvibtlF8RHPsd68FJfUPj4Xlxq0dKh8gOzDvcKw5/6jfWUVYf9vYwxVDSQA1ZNWhdwPES0xSopf3zNQZEUHjwV5F/5CjYb7ekbDoYTHJMDbCkuyomf9FtTwCikYo8dp5tkpWCAVslQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739367110; c=relaxed/simple;
-	bh=/rglsDZ8GhTlMGveE5GmqoA3xjI9/VvzmsZ19VBJr68=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Qmmy5f6VfT7OKlGtAtWMwU2lEvjcygjdDKQLcHOGUVTnjbChRyI6CXipFtGkXsBtmz3s02uE5Jq0rs1T9/xUznQMoDLathHH9GJQW4nWi7CO6zbZueXCbIJSBEfAwqjtrFKu7M80dZmSMF4uN0fi30TJJQuLQFoF2O68FH8qufE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gaSzHUhi; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43957634473so11876135e9.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 05:31:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739367107; x=1739971907; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lFWT2l6cxEZTfYGYKoEDAUV31A6KjbPriRcF6pko/3w=;
-        b=gaSzHUhiLSwWo1z8RkqDjTFdE+DXqJ7LaA01E8tbeLXMDuxKXlmZsTZZ7ZX3nwcxiW
-         ou+XuqJ9xlfITUom/A5E0Ph0yuUBAxcjtAKCIxKUgd9YYHFgXujTqaMeAm8Paz9uwWnQ
-         Ijy5I3ynyPpztNkf/6gLYe7kaKOBtBYFJ5JXQMBn2g4++DbQlA9zs3GTU5YSuPfPnto0
-         SjNFt1sV60GVjCrCleaDbxrkOeuj8ZKwdLuzEMP5Fg8BVMVQaXuMHGFTlMwWdgcWc1xB
-         CojtdUokF8pghHA6XAB2lQrOR44+vm4kjrpUYOnzd8QnY+lVYelh7pdLq6UyPMz+Uo2A
-         IAyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739367107; x=1739971907;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lFWT2l6cxEZTfYGYKoEDAUV31A6KjbPriRcF6pko/3w=;
-        b=BuspQ1pOzSjKeD+xzKjS0v2lXiNXNjukacmTDv8dpWUY5NhTbX/Z9tSt/N0ay5rYA4
-         a2JvfjT2pqAdiBx14hwNtG3IqSCcCXsCch5L6PY3QjsBVDV6awV4OTdEVX0jbLIBWd7+
-         4bX4ZFBtjz+NzNmqhc0ZX1m9YRhQa82/JynAq3dTXiNC1Fxaq/z65CV5Oi6HLaACo6py
-         08uzZI2umflr+hCFrqaO96JJQanXJC8m9YYzjBt74iPhiL0D1Yq+vX5LmjVS67+nEC5G
-         ggT7j+5VrN9vp7BKVBSVeMMa5BWxqyNwkGrIP8YHikQhQ+VtzzueYlzlUsZtmSTkIye1
-         PGEg==
-X-Forwarded-Encrypted: i=1; AJvYcCXd65+63OW1hDMQ87fflLxFnEfYYno+w58wRmoeEoCnF0VHl9OGw/EIlJTh95mJfuiYTAevQolU46/0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9aZng4jTSWJ2GRaSxQrNGMKHy1DhFQtrtuySz90t99Loi6seh
-	LDmQFj+fl+P7+/TRCzEO2uED6vl4hMietzT74UitiSRBMPMgZdzY2uQHxLgh0Zw=
-X-Gm-Gg: ASbGncvRGzxAgQvv1YhPw5HqR8evIpm+clMLQADVfsxqocnnoYjYeRoW4deaFul6ea8
-	qOLq28DDVMhG8VrCDwJ46H+MMrz9zRhVZbYNQKDupHhtVGdDMasprqxQArPVTafiDwM2GCmCQH/
-	lphz9Bmz3JDIWWnmZJMlJh6F50P+o9P91wRcms+AQPgf1ftAsBO8Dp5z0rjhT9pBJ+10oD3/yxP
-	5iu+FCT0SwfebUQz3Wym6t4tQ7NKmI1ASSNowN68eHeeI4mj9Ei+lVyiH4Y5P3J3CDhCB5avNdk
-	Ygia3IjKZXofKPE=
-X-Google-Smtp-Source: AGHT+IFVOqbGYSS3Hx83KOIZ/HJCQpIBPSu9Isb/2wOaOqV+ymw9h/1gRJeQeolHZDgcMwYOU81Wtw==
-X-Received: by 2002:a05:600c:34c1:b0:439:44eb:2d81 with SMTP id 5b1f17b1804b1-439581768c7mr32596585e9.15.1739367106675;
-        Wed, 12 Feb 2025 05:31:46 -0800 (PST)
-Received: from [127.0.1.1] ([86.123.96.125])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f1f27e612sm1141985f8f.93.2025.02.12.05.31.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 05:31:46 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Wed, 12 Feb 2025 15:31:36 +0200
-Subject: [PATCH v2] arm64: dts: qcom: x1e80100: Add the watchdog device
+	s=arc-20240116; t=1739367523; c=relaxed/simple;
+	bh=KgcoiEkTt6cHBFU6+0AYeRw+2sU3rQ2mobXhCmsB1aA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JGQ+CIvtP4dk5RPwRV/AGpDe5Yq9R6pz3ana3T6YYnPsO4DBobOvRIugJsJpyx4j0bmzcG/K4TmaSuDqxvO/ojNme19Ul91Kk9hZQBlgccjPCN4VRGjJ+0ogiijg6GVFoXz54BC99P4lczgk84Uig5qxWg+rCVm9cyLfWiE3wDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=Rb5JAqXu; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=FfHTHmD48ap4AAuhHkzDDEmp5+Gy2+Bv7iyUjekfXBI=; b=Rb5JAqXuomlg6Nrl+bnm37EGOF
+	pVh7Vxtci1L7tHaUnbXZEtzz1zNrOuYZlaiQUHZdYWPCodQw8HhLtHbZTLgHPDcAM/vfbfSG1zHn4
+	7krDExbRGq0mlIslvFyzKoKr4Y07hxIvC1Ehdf59l0juxt8vDNZdkyn0JnKzY9dkppuv95/RDxhWc
+	4kVrxHTZ9dgBMsxqBw7ido/wpiheV3O1yCAY2yGHVphsC1dU696nviDfGWpuYa9BcX/JhJwYLStcY
+	s71hnB+5h1bpLSkdiW6LItdU2IBZVJ5YpD79SLfWPS/+7cRXpH9LLDHBrLBrExHPSqAMFKqxtaMQn
+	KoolO6lw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:52138)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tiCwT-00064G-3B;
+	Wed, 12 Feb 2025 13:38:18 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tiCwP-00019n-10;
+	Wed, 12 Feb 2025 13:38:13 +0000
+Date: Wed, 12 Feb 2025 13:38:13 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: dimitri.fedrau@liebherr.com
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Dimitri Fedrau <dima.fedrau@gmail.com>
+Subject: Re: [PATCH net-next v4 1/3] dt-bindings: net: ethernet-phy: add
+ property tx-amplitude-100base-tx-percent
+Message-ID: <Z6ykRRBXo4tac6XQ@shell.armlinux.org.uk>
+References: <20250211-dp83822-tx-swing-v4-0-1e8ebd71ad54@liebherr.com>
+ <20250211-dp83822-tx-swing-v4-1-1e8ebd71ad54@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250212-x1e80100-add-watchdog-v2-1-a73897f0dad5@linaro.org>
-X-B4-Tracking: v=1; b=H4sIALiirGcC/4WNQQqDMBBFryKz7pSZWI105T2Ki2BGHSimJGIt4
- t2beoEu34P//g5JokqCe7FDlFWThjmDuRTQT24eBdVnBkOmIkM1biwNMRE67/Htln7yYcTBNVJ
- 6U3pbE+TtK8qg29l9dJknTUuIn/Nm5Z/9V1wZGa3lm62YeuNt+9TZxXANcYTuOI4v8bJTjbsAA
- AA=
-X-Change-ID: 20250206-x1e80100-add-watchdog-fa8e3d23d760
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Rajendra Nayak <quic_rjendra@quicinc.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1446; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=YO147nEgujsniEgzEicBnXRIY4pIl05vu7cN499arDo=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnrKK7rt0IB9n5YCfAXlrrkeaaQp0jVF5xsRG/b
- AiZ3NWXB+eJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZ6yiuwAKCRAbX0TJAJUV
- Vu2READFfWmbXv831VqQUURkUB+zQNL5ZwQptawHo6j+mU4WH3tm/+COL05Qo8DfOMG31HAKDbf
- NPdkurr9SEL7tWjonJGqeIWEI7t5rBvsf+cd+aNap9SdpzCfPf4JsYT4NBXW18ZDo3sWgmX2EXm
- kQ5uW3JjA5SpMCEm+kld7qTIF/5mup/GJuHVHxkB9Kt4qR5JNvCcXrq4l7FDX2cPkvN4+q9fkxw
- U0O+ymP6s+7vHa48cXGMn9eHVjLkxcyXPmHoQOAa7CPyyfG7IvsIEM0aZsJeHE+T8PWc6lfjYgV
- sXuhwKFnGZETZQuj/ffrnAmy4Avjshk3Y29kSaoP3A/TCpoNH6jDf2b9ESL9l0CzhofP95njJI1
- QSS8gY67tglLNLzJXhbpCpFHGb3jjVJ3AtntDFTpR2bXbjiu/IQnLZQeHYwjKkAipcxgtJDNfRt
- 3Paa5pZggXnCtR5srT+ThkAI4jMkvLPtTyx3mnvlsb9D6CyoTOmq9xKsYKl73hs/f4jH1PaI0gC
- +RIU+fI5beSkrCZVsDqg0OGvoOygyHn4LqKN4Aq4Ym7yXRWBui1G14RG3RR9iUWe8baoHd5HDxZ
- 6DDQUNoXXwTCpNzKtYcac6/Qde03cTguSL5R316yuuTu46NmofQEKTYDx4L4mLl1P9PFryLhKGj
- U8YuLPmE6LOrTZw==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250211-dp83822-tx-swing-v4-1-1e8ebd71ad54@liebherr.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-From: Rajendra Nayak <quic_rjendra@quicinc.com>
+On Tue, Feb 11, 2025 at 09:33:47AM +0100, Dimitri Fedrau via B4 Relay wrote:
+> @@ -232,6 +232,12 @@ properties:
+>        PHY's that have configurable TX internal delays. If this property is
+>        present then the PHY applies the TX delay.
+>  
+> +  tx-amplitude-100base-tx-percent:
+> +    description:
+> +      Transmit amplitude gain applied for 100BASE-TX. When omitted, the PHYs
+> +      default will be left as is.
+> +    default: 100
+> +
 
-The X Elite implements Server Base System Architecture (SBSA) specification
-compliant generic watchdog.
+This should mention what the reference is - so 100% is 100% of what (it
+would be the 802.3 specified 100BASE-TX level, but it should make that
+clear.)
 
-Describe it.
+I'm having a hard time trying to find its specification in 802.3, so
+maybe a reference to where it can be found would be useful, otherwise
+it's unclear what one gets for "100%".
 
-Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
-Changes in v2:
-- Moved the node in proper place based on address, as Johan suggested.
-- Picked up Konrad's R-b tag.
-- Link to v1: https://lore.kernel.org/r/20250206-x1e80100-add-watchdog-v1-1-77147510c2d7@linaro.org
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 9d38436763432892ceef95daf0335d4cf446357c..766f1f996baa8a0f78485431ca46f484e0facaec 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -8142,6 +8142,13 @@ frame@1780d000 {
- 			};
- 		};
- 
-+		watchdog@1c840000 {
-+			compatible = "arm,sbsa-gwdt";
-+			reg = <0 0x1c840000 0 0x1000>,
-+			      <0 0x1c850000 0 0x1000>;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
- 		pmu@24091000 {
- 			compatible = "qcom,x1e80100-llcc-bwmon", "qcom,sc7280-llcc-bwmon";
- 			reg = <0 0x24091000 0 0x1000>;
-
----
-base-commit: c674aa7c289e51659e40dda0f954886ef7f80042
-change-id: 20250206-x1e80100-add-watchdog-fa8e3d23d760
-
-Best regards,
 -- 
-Abel Vesa <abel.vesa@linaro.org>
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
