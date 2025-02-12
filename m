@@ -1,170 +1,140 @@
-Return-Path: <devicetree+bounces-145737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89868A322A5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:44:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3797BA322AA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:46:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1D2C3A7674
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:42:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D03B83A3494
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:45:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 212EC2066E1;
-	Wed, 12 Feb 2025 09:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1781EF0A6;
+	Wed, 12 Feb 2025 09:45:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lFzKYLQO"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mHammSSf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9A12066DD;
-	Wed, 12 Feb 2025 09:42:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5B79271828;
+	Wed, 12 Feb 2025 09:45:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739353357; cv=none; b=Zh/Z9/wzIgOPFShFbrVMbQ/xB0qYlBWJdjP3QlYAKLeatem4S1G93Ido93SLDcD3u917WNli/RczmoizZMbYILNwiC0OJVSivr7AV36qUa2RHE315Kgs/lcWBzu9rML+tWtR8V9U+Q5S+0qHH9n18X4zus3qVLMqNvbp1zHRepE=
+	t=1739353556; cv=none; b=CEkGGI5aPGZi88bAA2lCby4q9oIGdf3Dx5bPs7QT94KJz5TBWHeIRM4dpcfqYydGZ+1DMx0kOgwaQrpmKBF/4KyXLYfIyj3AAIS7YcRqH9VjR3sBULvN1NT9cQQJaI1J/W2IOeDKXsoshsxgmqU0rIKxQOzqvV9fGCcnhBQUvAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739353357; c=relaxed/simple;
-	bh=ylBFuo1zwM8RrVkKsFCFYgaQTBlPg2VK8bGbOHE7mVk=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=FnyGNbKlI5wvhrOBatLUwusSpLGm8QjwlVDWEledGfH++dMqU6YyeJ+LeHQMMYpwBIGsmI1yR2ckCWoJNtSusKzP6IcLruNDKWCsw6VGza+3rwzK1o4Zzgu72ptq8kuNQMpfmloVhDop13iqSkix6AjErCDigVtw2KR1kTqHlxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lFzKYLQO; arc=none smtp.client-ip=209.85.167.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3f3c0abde9eso722034b6e.1;
-        Wed, 12 Feb 2025 01:42:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739353354; x=1739958154; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9BDt179jsPGPQXJw6cCKRg6ipVwilMKrhen68cQV3C0=;
-        b=lFzKYLQOhezEkZCNI/6uZEGIC4KQ43Oipad8f5VcILaGhGOmbI48TZ25TzdA8y4Qyi
-         hpquxDSsTuzIjxiHrYr8qZaOFHsIo2yblru0jCjMBxf6TS3m1UE0TxPi5Nh1PfXWThBf
-         2mfZ1sF+2coGY32u1DaGZU/dlw8ftj6dvIweBNfTa7U3Rrad4a6oT9VgyFvIvAIGa0+d
-         3tkLJQZm4xBENpV4lOeacUwdqGkWai0YE1caD9JeKvTbYe8XvpatSRtuQIUAFy7jw9em
-         XwBkg+KK687hTiiuMB1dePxQZG7JNPJYVyM2qnWoQ1UrEZAcyO2D4F38gMxHC02JeRkS
-         ZGLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739353354; x=1739958154;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9BDt179jsPGPQXJw6cCKRg6ipVwilMKrhen68cQV3C0=;
-        b=ZpTQasEX/CsqExFvlFIaAepKTypEu7Vtqpw1uiKVpoKombtGk80qZnJaPpEumq/4ZY
-         cZJfKPcCY450VswKo680OCvBlNKCSZl9oP33a8qR99moLe0DRAlpb4Qb61diHOoryb6P
-         QvHt707sAaEbyHktRpsRJMDedxoJFmAZ7Mi06gkyMJK3Xv6pn9apejL0m+k69+WOjks4
-         7v9EP7DIXV/awuSMEX08XMpKgybM3f+Cy8+tvgFoIeo0Hb1t2CUHA9c10+xI8z5SJaCB
-         uwELbfv8ws+ppRCgIIlbwmsNQ04xjKPBv38MC/mLLQJY3/aTYM8sDZRv0uXYgXl9/DTd
-         URWA==
-X-Forwarded-Encrypted: i=1; AJvYcCUtzr3UkctPJBc4ijarNd6YzRW2PjwIXp2LqtslDm6R9lpzd5koptxbfyMcqlUKcw42mXBYbbHTc5zzo3YN@vger.kernel.org, AJvYcCXZUOf1FJNinXA+xTRAVUS1JMKvwHqB3mBjAFaTwWERER/1G30zvtFL8Aseb6J5W8TVlH7ylRyjCQro@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUwy6AgteAg4xslIPysvjw59Zh3IpoKELfyD9zDK5sd9ueIlhw
-	N+sReK7jUn1G/TPwBUNOqtXfrdJKmB21KVZdtRGWKU1K5JwJmUJ+
-X-Gm-Gg: ASbGnctjYCRN8cQE1mlnt2jwNov19FwuzTz0A5xDFaJxkuY8zC/ww/vtUdbfm8UGwgW
-	pmCriDIszY0arCs+68ITGI85ipTqoihnHbA198hnf4KclrDFQltavXjBOZXkQHJZPrkHJ3AeKPN
-	4PZSHJfYjl6ZlSb/D+qPxB6QQZx8hazGXTRQp/eK3CbQgr9cWs5TGwZ0uV6Al7aV3cxWLJvRsfA
-	f/o6LijfDr9dlxiFqJ3n8foEBq6tnJd9oIMtmHvoFRZsrWmGTe6BhbgMKVeesSMK6VcrNDOapWh
-	us7KzUq+cXOvRQTCzUQ/gj8Zvg==
-X-Google-Smtp-Source: AGHT+IEy/UxKhE92PT2Nyvo9fgnKrPBECelMkTakVs7vyrkYcrqQXDdT71oXo3Zyrau9+iD0WHIA7g==
-X-Received: by 2002:a05:6808:2e85:b0:3f3:c9fe:7fa4 with SMTP id 5614622812f47-3f3cd60df50mr2191427b6e.19.1739353353785;
-        Wed, 12 Feb 2025 01:42:33 -0800 (PST)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-726f2065dcfsm819321a34.34.2025.02.12.01.42.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 01:42:32 -0800 (PST)
-From: Chen Wang <unicornxw@gmail.com>
-To: aou@eecs.berkeley.edu,
-	unicorn_wang@outlook.com,
-	conor+dt@kernel.org,
-	guoren@kernel.org,
-	inochiama@outlook.com,
-	krzk+dt@kernel.org,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	robh@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	chunzhi.lin@sophgo.com,
-	inochiama@gmail.com,
-	sophgo@lists.linux.dev
-Subject: [PATCH 2/2] riscv: sophgo: dts: add cooling maps for Milk-V Pioneer
-Date: Wed, 12 Feb 2025 17:42:23 +0800
-Message-Id: <5a36a2784d97ed7b1e06777cb0c3c14fe9185e99.1739351437.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1739351437.git.unicorn_wang@outlook.com>
-References: <cover.1739351437.git.unicorn_wang@outlook.com>
+	s=arc-20240116; t=1739353556; c=relaxed/simple;
+	bh=kAK1JNEXBVI90rtvbzvhelzR8j2Kk8vnxGVJn1p7bBc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MkvZ842eExKM+/dwU4NVFHBH6MRwW/HezjwdRPzcWTj9AoSKEZItvVZ8Y0gC3+yczqg6S8845YiSdiiOWmMhAeAdGn/C5JaDdUOgUdksuWDbVcmW35grOAF5x5hO5bo93LFwL69NbvQspKkoJJ/KwUHgPwpqgV0tmcVS69gemCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mHammSSf; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E398A432FA;
+	Wed, 12 Feb 2025 09:45:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739353551;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CfitNOlVMCBM5pFcbQFIlvndtGb2TiK3zUMFNWZwgDY=;
+	b=mHammSSfAxD36lSKrqFlgQ0FxjGr0GSfooYA6WuHOPvHq9JQbumFr0Ho3U1Q8tbb9rmgj8
+	tzyPK6jPpwkd3G3gLk3e1NimGOsnqsuAFerXeIsRKeyGNl/6qLEg3wHBjMGJoqCzuNpIlu
+	gG5mm//6DtYFd517rnZxUZIplJuyLTrwTsT9S9iFmFmODq2DPfQlcrRjAFf7c3H6SKPIQo
+	cRNPcLf/EXG4VWiBv8ryfwFbhp9vR61Su+ehl48mzUydz6bja2p044wqlsDs8IPX5fY0d3
+	3VQ0BUcWlu/pehPCt64yUHk1WP1jizH/rz1hkKhC60ggLigUfumfX2WaRsFFZw==
+Date: Wed, 12 Feb 2025 10:45:49 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 3/3] i2c: i2c-core-of: Handle i2c bus extensions
+Message-ID: <20250212104549.6b1d8781@bootlin.com>
+In-Reply-To: <71468d78-07aa-49b1-8b6d-3d98c6fc9893@kernel.org>
+References: <20250205173918.600037-1-herve.codina@bootlin.com>
+	<20250205173918.600037-4-herve.codina@bootlin.com>
+	<71468d78-07aa-49b1-8b6d-3d98c6fc9893@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegfeehhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedtvdefvefgiedvtedvgedvgeelhfejkeejgefgvdfguedtudeiiedtieejffduhfenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedutddprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhinhhgrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnv
+ ghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihdvtgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-GND-Sasl: herve.codina@bootlin.com
 
-From: Chen Wang <unicorn_wang@outlook.com>
+Hi Krzysztof,
 
-The normal operating temperature range of SG2042 is -20 degrees
-Celsius ~ 85 degrees Celsius.
+On Wed, 12 Feb 2025 06:54:19 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Simultaneously monitor soc temperature and board temperature to
-improve redundancy and safety.
+> On 05/02/2025 18:39, Herve Codina wrote:
+> >  
+> >  	dev_dbg(&adap->dev, "of_i2c: walking child nodes from %pOF\n", bus);
+> >  
+> > -	/* Register device directly attached to this bus */
+> > +	/*
+> > +	 * Register device directly described in this bus node before looking
+> > +	 * at extensions.
+> > +	 */
+> >  	for_each_available_child_of_node(bus, node) {
+> > +		/* Filter out extension node */
+> > +		if (of_node_name_eq(node, "i2c-bus-extension"))  
+> 
+> Where is the ABI documented?
+> 
+> > +			continue;
+> > +
+> >  		if (of_node_test_and_set_flag(node, OF_POPULATED))
+> >  			continue;
+> >  
+> > @@ -103,6 +110,23 @@ static void of_i2c_register_children(struct i2c_adapter *adap,
+> >  			of_node_clear_flag(node, OF_POPULATED);
+> >  		}
+> >  	}
+> > +
+> > +	/* Look at extensions */
+> > +	for_each_available_child_of_node(bus, node) {
+> > +		if (!of_node_name_eq(node, "i2c-bus-extension"))
+> > +			continue;
+> > +
+> > +		extension = of_parse_phandle(node, "i2c-bus", 0);  
+> 
+> And this?
+> 
+> > +		if (!extension)
+> > +			continue;
+> > +  
 
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
----
- .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
+I know the binding is not present in this RFC series.
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-index 74c997ed8283..34645a5f6038 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-+++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-@@ -111,6 +111,28 @@ soc_hot: soc-hot {
- 					type = "hot";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&soc_active1>;
-+					cooling-device = <&pwmfan 0 1>;
-+				};
-+
-+				map1 {
-+					trip = <&soc_active2>;
-+					cooling-device = <&pwmfan 1 2>;
-+				};
-+
-+				map2 {
-+					trip = <&soc_active3>;
-+					cooling-device = <&pwmfan 2 3>;
-+				};
-+
-+				map3 {
-+					trip = <&soc_hot>;
-+					cooling-device = <&pwmfan 3 4>;
-+				};
-+			};
- 		};
- 
- 		board-thermal {
-@@ -125,6 +147,13 @@ board_active: board-active {
- 					type = "active";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map4 {
-+					trip = <&board_active>;
-+					cooling-device = <&pwmfan 3 4>;
-+				};
-+			};
- 		};
- 	};
- };
--- 
-2.34.1
+As I mentioned in my cover letter, the binding that needs to be updated is
+available in dt-schema repo [0].
 
+When the binding is be accepted in dt-schema repo, I will not be able to
+change it and because two repos are involved, I cannot send the binding and
+the implementation in the same series.
+
+Before sending a patch to update the binding in dt-schema repo, I would
+like first to discuss the proposed i2c bus extension idea in terms of:
+  1) DT properties naming and purpose
+  2) implementation
+
+[0] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/i2c/i2c-controller.yaml
+
+Best regards,
+Hervé
 
