@@ -1,133 +1,151 @@
-Return-Path: <devicetree+bounces-145908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF51AA32CA7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:01:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8530AA32CC5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:04:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD5941645D5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:01:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9A94168F42
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1CBA253340;
-	Wed, 12 Feb 2025 17:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE51257420;
+	Wed, 12 Feb 2025 17:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="f7F4hpCd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dDJ1sID2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C86E221D8B;
-	Wed, 12 Feb 2025 17:01:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861B2212B31
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 17:04:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739379679; cv=none; b=TnVHawqQjs1gijptEqeLyowpwUsuwonWYrDemPh3a298fAGLX94Ge/4sj5y5lbdHMEgHuiNkMslsJ+f81xSs3Rl1ZuaDACKS1ztN73j2lplLwQzKiI30kWyNLEcv6CL6AggTuHt5XTjPxk2+bAz+fsWYnJZ86sUe3oIPr+qRgMw=
+	t=1739379856; cv=none; b=rBrPPUTiV3R8Qagli2V9FBnJyW+HCmDgcjKqYGs3KtyvjOlarq39LFVgCviXE52ZFamodhbJZde4MlOwVqXNb2kZ7mZEare0EOYA4YEsBsmixTUSdEFR+SDaZNbOVLfQU4bRkwh4W050+HZXoQvZ28zWyxcXw6oNtFCkQZ3kmLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739379679; c=relaxed/simple;
-	bh=PNXX6obNWU7tUnUtVvYQStEQzBnCy0+YmkXrpfLfcQI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LnkjamsnQt5A2BltpQBc1PRfYz3EMoukuZWQrkq8y7/fGZFtBCphBnZ++ej05GJs1fxmb20e3l1S2JL0eQjWs0bXOv01vV22t6c8OKkkOaOYtj8qkaiE/yfOOfDdujGRUfTHkADNVrwrgq27ha2MMMuq17hjGztYx3L3ivff9Yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=f7F4hpCd; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D8880441BB;
-	Wed, 12 Feb 2025 17:01:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739379672;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=W+8tJdrJUUM2r3rGlZ87tl2Cw8IhsamzxMOaFlEPj2Y=;
-	b=f7F4hpCdCR3z/FwoIu08EnVzGQ0zcm5AoyUNLuC30f4+TBNPiq8WyIpq85B1vQKH/a5Xuf
-	Fjhp4ALHx/pNu2sNG4mKWmn2GEyxK9uyE/vwk4/i+0T+JkDnzXQdUu9bwC/EWH+lXssQ/e
-	1mp0zcz1Rvx3noaAnvjJ0gmpsL2B2LAg127LkI8lQBuMDFvt8syI/kDxSCrkZSf4JOKpAw
-	Ssuk13Roho2ghdOlELhoaaDvQtGONRC38PeY396QZGqvoA9Zi/WpFuZhYzk4WWROjAmSJ/
-	2rcS7vXkRyb/wzK2rdI4RCps5R2rY5T43Zmz27JVh/urkh7J/yi7XOjX4x9UAg==
-Message-ID: <a2702615-2946-4ca5-a33b-15da7026b58b@bootlin.com>
-Date: Wed, 12 Feb 2025 18:01:10 +0100
+	s=arc-20240116; t=1739379856; c=relaxed/simple;
+	bh=btRO2rOJup/wmjNa0o3QQGaXrKePyDSWMf40JjUiMBI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oecHsJdrKk8g9pyVvl8KQPg1E90k0wXTkXmk3j7CLAi8pQb411B9TPkZeCVLAwdXZNKZtLENXhiSoo+gtN4gp1quHcU/eaeRxeRPmtbRvqipTxLED55CZyIY/0OHGT76GrO+4QMkQzYm2ABUUE/8j8cpKeGWSZ/t2wdm/+fjGvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dDJ1sID2; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5de5bf41652so7684672a12.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 09:04:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739379852; x=1739984652; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lOdSsrVkTURNY/Q7FQn0+ahIqRzchEXyI5DDymGy/g0=;
+        b=dDJ1sID2FdBD2F6vx8DMajuhzvKU4vW3GDohexS5/N1zL5cngjYqreHtAsOm2ptJQL
+         pXfTyYsbZMi991ESNA1yGZcyRaKDcEnkpZhczFMtfQqvDbFVvx9KsoD96/7MA9rJT+bZ
+         MFRs0Wuq/nS7Duiy+Li7cmwTPe6uz/jxglsmYI9LBQ+QTKO/pz2f2yMs+semI9cfnu4U
+         j47UogTDVyIO8/RB7y3mCF2FcEbfvexaZJwMAZAFYu2TQuKnFdkOyzEX1axXDvur6bk9
+         V/qisDy4C6oD0OgINrmORsGbAi/sbX4xmXkz/t+H0uOiXUaGIrK1hsBHZFU6YA090G+8
+         P4KQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739379852; x=1739984652;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lOdSsrVkTURNY/Q7FQn0+ahIqRzchEXyI5DDymGy/g0=;
+        b=vgVwwcZfB0K9l6YVlnuRsbPYaZZpiewK9hvWif7NV9WbeaujrOwTTb272ydxmqMCLO
+         1xE0rc0Wa9pVKRRI00oagmhWLf/por0x9ZywGrXibhcUIoGzd88uTs5sbVCiR2Jn4i+l
+         Sq2MzolcZTLC5JsYd2xMGGOtObckyHM+eWFVjNct9GF8SrT+V+qzHYmdM94phB9Q3PVI
+         Or8DSwr9y+fXAw7AxQFQCP8c9BreqDQVdaTwpSLeEG9e+o59JPcPLVo2UQSwABxnh+8k
+         pwQlqm4zeoOLcZHoivWMpj17tM4FpzNBrPhdU+W4uTivyBy/5a4yl1jYBIDrFVQEewdV
+         VrOA==
+X-Forwarded-Encrypted: i=1; AJvYcCW1R7P+Oj9ZX+YQhNPkEBwPkjgWAJL2otFnKm0/9JTT/k2P/Nreoat5ZyZU9n1gvwtP7BvV+BE+MnMf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpbIvroFXLmkQsqV384jicygRM5FmEJiSzcdBy9LiQHtJOPwup
+	Lj6OJogKCKqgZzdYN5byz6TN6VQPX8C4+kl0NOsMHtcepzKV3dh4K4iuZwfvqng=
+X-Gm-Gg: ASbGncvujAoA7geyQQLbuufIwAJaXa8JjAO5fCCJSgacIolH7VQEGVYD7w3u+PHXy05
+	lbq4mZjG59HiLY9M1HzrQ0n9vw9ci69pFJHmp/GTR4+5ZUWf3NosFhUIuLZiiIj4K6EgwkY8zeg
+	BQYjiDvZIcaammOZ4Du7ErkuGEFRP+Pk+3Una7IS8ULQXOAYv6WUhLdwkU+r45Kt4Apkq4aF+nb
+	oEsQ/ylMxvgtIChNxXy1GrVxsdKE1VXo9rrjJnoFvflOa6wGXvCAjHxjXJziiclonVYVlViblUJ
+	rBdTIPSsrU2WJrPEgArGHePgOxZP
+X-Google-Smtp-Source: AGHT+IEQEtIiwT19pSZM69pmOEInJBgSECAuQB4A0NcaYOGmILP2pTTU6UgWdVc9CPww0WfLyZjaUQ==
+X-Received: by 2002:a05:6402:4403:b0:5db:f4fc:8a0c with SMTP id 4fb4d7f45d1cf-5deade0fe18mr3056067a12.21.1739379851631;
+        Wed, 12 Feb 2025 09:04:11 -0800 (PST)
+Received: from [127.0.0.2] ([2a02:2454:ff21:ef41:52e8:f77:3aca:520e])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5deb9f6e46bsm819230a12.71.2025.02.12.09.04.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2025 09:04:10 -0800 (PST)
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: [PATCH 0/8] dmaengine: qcom: bam_dma: Fix DT error handling for
+ num-channels/ees
+Date: Wed, 12 Feb 2025 18:03:46 +0100
+Message-Id: <20250212-bam-dma-fixes-v1-0-f560889e65d8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/12] bluetooth: hci_wilc: add wilc hci driver
-To: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Kalle Valo <kvalo@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Simon Horman <horms@kernel.org>, Nicolas Ferre
- <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Marek Vasut <marex@denx.de>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, linux-bluetooth@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250212-wilc3000_bt-v1-0-9609b784874e@bootlin.com>
- <20250212-wilc3000_bt-v1-10-9609b784874e@bootlin.com>
- <CABBYNZJ5XDasAfVxcFU+K=ru2PpZJVXkRuf_kokv1z66KF=Xaw@mail.gmail.com>
-From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <CABBYNZJ5XDasAfVxcFU+K=ru2PpZJVXkRuf_kokv1z66KF=Xaw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeggeegfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpeetlhgvgihishcunfhothhhohhrrocuoegrlhgvgihishdrlhhothhhohhrvgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepvdetteektdehudelheehkeeggfejgfelveevgeevtdejudfgveetgefhtdduuedtnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemkeegvdekmehfleegtgemvgdttdemmehfkeehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddvmeekgedvkeemfhelgegtmegvtddtmeemfhekhedphhgvlhhopeglkffrggeimedvrgdtvdemkeegvdekmehfleegtgemvgdttdemmehfkeehngdpmhgrihhlfhhrohhmpegrlhgvgihishdrlhhothhhohhrvgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdefpdhrtghpthhtoheplhhuihiirdguvghnthiisehgmhgrihhlrdgtohhmpdhrtghpthhtohepmhgrrhgtvghlsehhohhlthhmrghnnhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepk
- hhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrjhgrhidrkhgrthhhrghtsehmihgtrhhotghhihhprdgtohhmpdhrtghpthhtoheptghlrghuughiuhdrsggviihnvggrsehtuhigohhnrdguvghvpdhrtghpthhtohepkhhvrghloheskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: alexis.lothore@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHLUrGcC/x3LQQqAIBBA0avIrBtQMYmuEi1Mx5qFFgoRSHdPW
+ j4+v0GlwlRhFg0K3Vz5zB1qEOAPl3dCDt2gpR6llgY3lzAkh5EfqqhI2qid9UZN0J+r0B/6sqz
+ v+wGlHPoaXwAAAA==
+X-Change-ID: 20250204-bam-dma-fixes-1e06f2a6c418
+To: Vinod Koul <vkoul@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Yuvaraj Ranganathan <quic_yrangana@quicinc.com>, 
+ Anusha Rao <quic_anusha@quicinc.com>, 
+ Md Sadre Alam <quic_mdalam@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.2
 
-Hi Luiz,
-thanks for the prompt review !
+num-channels and qcom,num-ees are required for BAM nodes without clock,
+because the driver cannot ensure the hardware is powered on when trying to
+obtain the information from the hardware registers. Specifying the node
+without these properties is unsafe and has caused early boot crashes for
+other SoCs before [1, 2].
 
-On 2/12/25 17:14, Luiz Augusto von Dentz wrote:
+The bam_dma driver has always printed an error to the kernel log in these
+situations, but that was not enough to prevent people from upstreaming
+patches without the required properties.
 
-[...]
+To prevent these situations in the future, enforce the presence of the
+properties in both driver and schema and add the missing properties to the
+affected platforms.
 
->> +static int wilc_open(struct hci_uart *hu)
->> +{
->> +       struct wilc_data *wdata;
->> +
->> +       BT_DBG("hci_wilc: open");
-> 
-> Afaik you don't need to include the function name with the likes of
-> pr_debug/BT_DBG, that said you should really be using bt_dev_dbg if
-> you have hu->hdev set at this point, and this is valid for all other
-> places where BT_DBG could be replaced with bt_dev_dbg.
+[1]: https://lore.kernel.org/r/CY01EKQVWE36.B9X5TDXAREPF@fairphone.com/
+[2]: https://lore.kernel.org/r/20230626145959.646747-1-krzysztof.kozlowski@linaro.org/
 
-I observe that BT_DBG does not bring any kind of prefix to the emitted log. But
-indeed, bt_dev_dbg looks definitely better for my purpose, I'll update all those
-logs with it.
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+---
+Luca Weiss (1):
+      arm64: dts: qcom: sm8350: Reenable crypto & cryptobam
 
->> +       wdata = kzalloc(sizeof(*wdata), GFP_KERNEL);
->> +       if (!wdata)
->> +               return -ENOMEM;
-> 
-> Add an empty after something like an if statement to make it clearer
-> that it is not under the same scope.
+Stephan Gerhold (7):
+      arm64: dts: qcom: sm8450: Add missing properties for cryptobam
+      arm64: dts: qcom: sm8550: Add missing properties for cryptobam
+      arm64: dts: qcom: sm8650: Add missing properties for cryptobam
+      arm64: dts: qcom: sa8775p: Add missing properties for cryptobam
+      arm64: dts: qcom: ipq9574: Add missing properties for cryptobam
+      dt-bindings: dma: qcom: bam-dma: Add missing required properties
+      dmaengine: qcom: bam_dma: Fix DT error handling for num-channels/ees
 
-True, that will be fixed.
+ Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 4 ++++
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi                   | 2 ++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi                   | 2 ++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi                    | 6 ++----
+ arch/arm64/boot/dts/qcom/sm8450.dtsi                    | 2 ++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi                    | 2 ++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi                    | 2 ++
+ drivers/dma/qcom/bam_dma.c                              | 8 ++++++--
+ 8 files changed, 22 insertions(+), 6 deletions(-)
+---
+base-commit: c674aa7c289e51659e40dda0f954886ef7f80042
+change-id: 20250204-bam-dma-fixes-1e06f2a6c418
 
-[...]
-
-> 
-> Once you address these comments please fill free to add:
-> 
-> Reviewed-by: Luiz Augusto von Dentz <luiz.von.dentz@intel.com>
-
-Thanks. I'll delay v2 for a few days to let other people review the series.
-
-Alexis
-
+Best regards,
 -- 
-Alexis Lothoré, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Stephan Gerhold <stephan.gerhold@linaro.org>
+
 
