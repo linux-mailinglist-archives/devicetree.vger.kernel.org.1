@@ -1,155 +1,140 @@
-Return-Path: <devicetree+bounces-145906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594E1A32C98
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:57:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5513EA32CA3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:01:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1D06168260
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:56:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBD033A18E1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90446253B4B;
-	Wed, 12 Feb 2025 16:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10177230D0E;
+	Wed, 12 Feb 2025 17:01:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KirEBxzG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mjnhtsod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FDEA1F0E44;
-	Wed, 12 Feb 2025 16:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D142F1CDA3F;
+	Wed, 12 Feb 2025 17:01:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739379375; cv=none; b=oBA8dy7o6Hnd4QQkqScj4g1aPm7LlqZnzS8b0gqBswAA4sTAR7kBtj/7+fBgkgIzRkdXGDpW92PDBus4XcNhejKFva3FJLU4q56PD7zynlDXDiOHnJWTiSHW/Cf2YqYreQ5EtyNbmSxVxdqo31+2ZveWhfYoJbS8QCp2UzRFbWk=
+	t=1739379668; cv=none; b=TeMkU05XMInU2FnMwLflFgaIVTxUTkN1lD3JkOpB5/miGjFKNSHyCPwCyUKrZooeNPcolWVLpfF07ea3RiTRjjtJzlhJ7Hem9kuf5NRkUllNENGGBffbkfe4yRRY3oySNIXasIbEtlEaHRqXJ0SzlqGYFWU/PeGpNwiEtsQ7x2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739379375; c=relaxed/simple;
-	bh=FWCZ1JPAUvy0QAltvWa7BCQdwDaOlKC3UpWaFsRIJMg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=P33dnJ7l08oldSyVa4wnDlhrvnkUpbiGh/XL3zXGva2IV3/3vJad3sKOApsXQzaCJ9M01szCwZPOL9kHVtbLQNgktqr8Ar4s/W4NCAgtvfxJjdpjTatBWGrrH4qLeC+U6rY1A8JwvLeCb+Wbwijj2RmFsoUEtxyNIr3O5QWmgqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KirEBxzG; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2f44353649aso11152a91.0;
-        Wed, 12 Feb 2025 08:56:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739379373; x=1739984173; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b/YZ98QVY0hlmkitWAxaHzA85Cvt4+Gir/h9BCOLPtk=;
-        b=KirEBxzGtw4+k/qS7fYhicVPoI+UIOH3tO0t7I/UAEaT88zzUfzIUu4mlXMisj3rrM
-         q5RxQBI3il/Okj7Kf2oQNnCWrWoSrmvYWKdULc0PR6/YuBCiHAZ0LnOzPvw1+VZ2bsAm
-         D+SljfBq7YPp8gzXsNtaNsqUEtPwbYnavCSxhVAnO2ot4JlcW/NyOiu3e2jOx6hJrs5Q
-         RMvB4N44YTHsuohT2eFYQLzcodAIFC1ugjeqaMSysxR524olDTiuXQmcKc/icx3zO8q9
-         z2yGrJV+gEzO3/1OGoHEboNuA7K+hYFIRXAsHnV+AFwH6vK/skzIkaQdE3hSNdXeuiRM
-         gFHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739379373; x=1739984173;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b/YZ98QVY0hlmkitWAxaHzA85Cvt4+Gir/h9BCOLPtk=;
-        b=GNVZqxSzVV3j/mVKS5x/OHmJT7TrTCKbjRa76+omkgqEbpZ8547uzgJXk5BRCtJzDW
-         Yel6JpRGrKe1klWXxo+s2NO1GiqzAiszdZTqc4JeT+kZPpvuSspteTAhzcA2aucn5YUm
-         jCYLrAxo5sI5MHRv5wNc3CbN20BOQ0SzhmulWPuzyAO63yunlabkmr51VGpbM0hFmFp2
-         EZ3Ukl9k1hNgNhujZQYnnzKd/IyG5tuOZl0oklnMSkjjdLizl1KDBSiCVxeC/jtGe90F
-         T3iu61JSQAF2QSG4WfDSYeHbuoJ4akuBOkcEwv5N/2R4ykQq+Vlywtq53lbJDjwJJDCM
-         fZUA==
-X-Forwarded-Encrypted: i=1; AJvYcCUe0xTvmHnyIk3CKFTADfqIohLn+taG0ygWXroNSDptOQ8KZiqk8qc8GmU3ctZUvHbXJN8T9ofR9yQnrVZq@vger.kernel.org, AJvYcCVzJf9JfzZmgKwDTXiLBHnnZZ3KiPnPNDa/qzYApT1PSe/HUBw+AgHRyoLqpOA4CnrjTQogDeUzKHHH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVbkPnrcbzTGLKRWDNMdN16EuS6UCNgFy8+fsmypXILN4OGsn5
-	kxC9KFAhlt5+dyDChemcGiMPNrYcu5BBVJ3CFRM6ndhM0tIeQa+R
-X-Gm-Gg: ASbGncvHMBjlc0ZGu3BZcBLuP6bKfRrfu/gzvpo4fEUt7zDIHhJAPy4OYCGJaHz2R44
-	0dNZzZVbsxHGT277itQyh8lDvr9aPnlKLiJBMTfOlaD5P6qSU/TZdLYS/1BwikCh/o6bhqIOAcN
-	NLaR7E20qC59gFb5x05semaKYmtqTYAPY5PGQf08IZNxR3IXnyrJabjrKnprsREwKpL1hdbB56f
-	2esXB9H+NgoVDbM7yAbdoAB/x9K5AXBKSVZEsRC1GG+NJ85qSkVNYc77mL03Vs/tq9FwSIov99U
-	AWG4QLL4rYXK+yxxktuGFZCZsoP97AVaqkABXPR3bg==
-X-Google-Smtp-Source: AGHT+IFWjUg6Fq+J8/whiRrLq4t/CKYPDxPB+hALsINmqV1z/5bZWA0vGFCVE7tQZk8zipwXETHxrw==
-X-Received: by 2002:a17:90b:258e:b0:2f8:34df:5652 with SMTP id 98e67ed59e1d1-2fbf9072b46mr4583696a91.21.1739379372724;
-        Wed, 12 Feb 2025 08:56:12 -0800 (PST)
-Received: from jamesmacinnes-VirtualBox ([66.119.214.127])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fbf98f48eesm1727554a91.22.2025.02.12.08.56.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 08:56:12 -0800 (PST)
-Date: Wed, 12 Feb 2025 08:56:09 -0800
-From: "James A. MacInnes" <james.a.macinnes@gmail.com>
-To: Caleb Connolly <caleb.connolly@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- quic_wcheng@quicinc.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org
-Subject: Re: [PATCH 2/3] regulator: qcom_usb_vbus: Add support for PMI8998
- VBUS
-Message-ID: <20250212085609.06e0f949@jamesmacinnes-VirtualBox>
-In-Reply-To: <fcf907a5-9fb7-4988-a30a-a555740ca817@linaro.org>
-References: <20250212010744.2554574-1-james.a.macinnes@gmail.com>
-	<20250212010744.2554574-3-james.a.macinnes@gmail.com>
-	<fcf907a5-9fb7-4988-a30a-a555740ca817@linaro.org>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1739379668; c=relaxed/simple;
+	bh=vMlacXbU5ham7+v0gT1CFIMJL6Qs0MK4l6gI4SNt8fw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bSUH1wHXEFusAqc2iZUsKgvvd2AhoVW+3WgbHNk+dFm884VlVQILwUI31Ggb6JrX2ecTG6jfdJsXettAnkXeBAWIHhLwWkyrXyJK/690TgQ28Q6hKQ9j0LD8x726SRDvfkvk+g5ju6OPAsA/TFmKhXn+BoDcXwVY2yO+BOQtpco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mjnhtsod; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9626C4CEDF;
+	Wed, 12 Feb 2025 17:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739379667;
+	bh=vMlacXbU5ham7+v0gT1CFIMJL6Qs0MK4l6gI4SNt8fw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Mjnhtsod81FYFis6P+UHQKzLpDeDLz+AJBpsBfWujdHbU+fel4iL2t+gP4V4gzH1U
+	 jIXplGnHWkBNHDMdwUCOGtqL7b0K7zyfLdCZmse6e1RhBPfoUnTQAbfyjxS/8ndpH2
+	 JKLT5XMIB6b6P6wqDx/oFijfC1pJNiS9ub3gZs5lCay78mbWQBh7UTbJemsLR2axR5
+	 0VL/5+2Ye+Lh7Pa1hjSz3j6zlqdzdmcyc0so9NCAnQ0wplT9xbW7Yxz088Y+vDtcMq
+	 EUBw1ql5SDfvXdLqdmGtg2DN9waLtE/4K5VXNsAeylqpDnQ1AxzwEe2vsVx2eVmsbN
+	 NsJmMn9aKFPDw==
+Message-ID: <7220a167-c321-44dc-9223-cfc6304819b3@kernel.org>
+Date: Wed, 12 Feb 2025 18:01:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: Add VeriSilicon vendor prefix
+To: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, James Cowgill
+ <james.cowgill@blaize.com>, Matt Redfearn <matthew.redfearn@blaize.com>,
+ Neil Jones <neil.jones@blaize.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20250212-kernel-upstreaming-add_gpio_support-v1-0-080e724a21f3@blaize.com>
+ <20250212-kernel-upstreaming-add_gpio_support-v1-1-080e724a21f3@blaize.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250212-kernel-upstreaming-add_gpio_support-v1-1-080e724a21f3@blaize.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Wed, 12 Feb 2025 15:29:54 +0000
-Caleb Connolly <caleb.connolly@linaro.org> wrote:
-
-
-Hi Caleb,
-
-> Hi James,
+On 12/02/2025 14:46, Nikolaos Pasaloukos wrote:
+> VeriSilicon Microelectronics is a custom silicon service
+> provider.
 > 
-> On 2/12/25 01:07, James A. MacInnes wrote:
-> > This patch extends the Qualcomm USB VBUS regulator driver to support
-> > PMI8998 PMIC alongside the existing support for PM8150B.  
+> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Thanks for the patch!
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 5079ca6ce1d1e9e2b52312439e4b1d48b262200c..14dfefbffe05180a4d8b62b3b54fc25964f56028 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1643,6 +1643,8 @@ patternProperties:
+>      description: Vision Optical Technology Co., Ltd.
+>    "^vscom,.*":
+>      description: VS Visions Systems GmbH
+> +  "^vsi,.*":
 
-Happy to try and contribute. I know that the working Type-C port is
-going to be a misery after the relative simplicity of pushing the VBUS
-upstream.
-> > 
-> > Key changes:
-> > - Added current limit tables specific to PMI8998.  
-> 
-> I also played around with vbus on PMI8998 before for type-c support 
-> (unfortunately didn't make it's way to the lists yet...) and I needed 
-> some additional changes for this to work correctly. I found that it
-> was possible for the overcurrent protection to be hit if the type-c
-> port manager allowed the peripheral to pull current too early, and
-> it's necessary to allow 2.5ms enable time.
-> 
-> PM8150b doesn't have these limitations (and supports the instant
-> power role switch feature that's part of the type-c PD spec, allowing
-> the power role to be switched without either side losing power e.g.
-> when you unplug the power supply from a dock), hence it's only
-> necessary for PMI8998.
-> 
-> I would suggest implementing a proper .is_enabled op to poll the
-> status register for OTG_STATE_ENABLED and configuring 
-> qcom_usb_vbus_rdesc.enable_time = 250000;
-> 
-> Kind regards,
-> 
+Better verisilicon. This is supposed to match the web domain.
 
-Technical question for you in regards to the VBUS overcurrent and
-timing for the PMI8998. I would like to try and reproduce what you have
-seen as my system hasn't had switching issues, but then again the TCPM
-system may be covering the exact bug you are mentioning. I also
-searched for some definite bit in the 4.9 Android driver and was left
-wanting. As of yet, I have not had issues with the overcurrent
-protecction.
-
-I will be all too happy to migrate to the PM8150B and its associated
-SoCs and leave the 845 platform to history.
-
-Thank you for your feedback and I look forward to narrowing down this
-issue.
-
-Best wishes,
+> +    description: VeriSilicon Microelectronics Co., Ltd.
+Best regards,
+Krzysztof
 
