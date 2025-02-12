@@ -1,143 +1,98 @@
-Return-Path: <devicetree+bounces-145770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2930EA323DC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:50:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03998A32438
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:05:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA3EA7A27DE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:48:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2DF21686C0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9C020896E;
-	Wed, 12 Feb 2025 10:49:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D44209F2A;
+	Wed, 12 Feb 2025 11:05:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fsCk99ec"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="C8jZPP9O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19D9D2AF19;
-	Wed, 12 Feb 2025 10:49:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEBFF2AF19;
+	Wed, 12 Feb 2025 11:05:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739357377; cv=none; b=f364/g94c7WFYrTgkCyQjaYjOnC/+6xbx8C0R2ccajUHL1U0cBzC4SPb2hMAgp4uxSPmAYHhtD9FFQem9K1nBQIBJxSzZctW8IeZvCSXC5+nWBoYjXzCX0bRT6AUgGn8Rewirf2/j/i7aLKJ99l+yzN1ycY8YE1u/haGMVeAJzg=
+	t=1739358303; cv=none; b=GZ8MVHICF9i58+3O4keChbgAtdO2pKvE48WGUgYSk8o4tVogXNalcLTlRPt9hgpFOZGRq/JER1f/QdRb8OU13sb8h3z46UyeNXnW9ZMEVEJyOSLwKBJ5WJjctou6CA/40OYtnKcPGMgnaWaRFdcewvIJsChqUscuXvzT5Kvsuwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739357377; c=relaxed/simple;
-	bh=SrZ7q3UddXW1p49/GdRvgpUzejtlAUiY6e9x0tcKinE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D+q4+hvyrftlj3ARhQAJrH9LRybl7B2WkTVVkrl0lqNlUYuB+40DyVMGzt7FYHfzCbiXeNhrdLPpBdZ4zrpzmx00xXe7350ll34veVmDadslLsc21ZEJSi6G7AFYxjvAI/nH/lT+lo9C7s4VaHIp1z66COBE+J1LEPHONsRNLpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fsCk99ec; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01860C4CEDF;
-	Wed, 12 Feb 2025 10:49:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739357376;
-	bh=SrZ7q3UddXW1p49/GdRvgpUzejtlAUiY6e9x0tcKinE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fsCk99ecgG1X1H4oCmDUZgnbAUfRIvj8fWtdlwdoQ07gzWE7fmKGgOCFbXT8zxU8z
-	 E17uZ/CKSWTiBSsXf6Z6vZWKYpqlNlcKGIyrhcObTMnI1Vs8SOuMqX9285cpyLhl3h
-	 i4BACZrSu2IrhvuCBWekSlYRZzO3qid0P9Ajy4xYJi/PyBLZ+A2HVA8MjrFX049Kga
-	 aC8profD5qguMrsDfEYi5k14CfG/ZS5ZwDrn1/hjq/RJX6KfdiM3+g5V+nuBxEflNE
-	 BuOxNawNPtWooUTQhU4pS84J5mQd1EBbum7ylQPZiEkomLW6MNCo51OZTDyrBZ+Ri7
-	 Mh4FqItv9flOg==
-Date: Wed, 12 Feb 2025 11:49:34 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Florent Tomasin <florent.tomasin@arm.com>
-Cc: Nicolas Dufresne <nicolas@ndufresne.ca>, Vinod Koul <vkoul@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Boris Brezillon <boris.brezillon@collabora.com>, 
-	Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
-	"T . J . Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Yong Wu <yong.wu@mediatek.com>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, nd@arm.com, 
-	Akash Goel <akash.goel@arm.com>
-Subject: Re: [RFC PATCH 1/5] dt-bindings: dma: Add CMA Heap bindings
-Message-ID: <20250212-sweet-nano-penguin-e85e7d@houat>
-References: <cover.1738228114.git.florent.tomasin@arm.com>
- <771534be8dfa2a3bdc3876502752f518224b9298.1738228114.git.florent.tomasin@arm.com>
- <ats2unrml5a7vbpdrqrzowodrsfj44bnubpbujg2igk3imeklx@nrpmg5oeq3gz>
- <be8e6b9f-c3c6-41d1-af9c-3dcd102f0fe3@arm.com>
- <b02711c901e8acf2bc47926919de7673a0cb0b98.camel@ndufresne.ca>
- <fae8df2a-3e47-4266-aace-392c5f37581f@arm.com>
- <20250212-naughty-chipmunk-of-potency-7e0ced@houat>
- <8ee8e684-0164-4e70-b42e-3827c7885685@arm.com>
+	s=arc-20240116; t=1739358303; c=relaxed/simple;
+	bh=LPAsGC/1kPwqJtEBVDKuR6kEkbgn6y+zm0h6s9vKkYg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=pu5BWKnf2FsuHx2V78Rf1icQbYL4GQJKCQFme6I3gA0gsmnYN6crbbIKCOCqnCzeVHS2NhobhYewryWo+E22N7p7xcK7v0cXUBfZdoIHfAzTVGc2a62CmWjji03KqMLURUnTpsxsuBgz+95iCrrIzdgwWXhRyM1QM2ZXlja8TiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=C8jZPP9O; arc=none smtp.client-ip=217.70.178.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+	by mslow3.mail.gandi.net (Postfix) with ESMTP id 23D48584D17;
+	Wed, 12 Feb 2025 10:50:36 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A246F43191;
+	Wed, 12 Feb 2025 10:50:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739357435;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LPAsGC/1kPwqJtEBVDKuR6kEkbgn6y+zm0h6s9vKkYg=;
+	b=C8jZPP9OENUbhih3cyMW9qDaXrAVLZ3AIGea6s0MLdCuHcdGqMlmHi8Owvu3fzToaIlRMl
+	00fAiFL7m7Fo+dErGAhMaDZegjz1UbS7kL4tVp9hNpgL50LDXzMrGGC5qVuSpcnKWEwk7s
+	+j018eD3QX4d7MsYwCeDcjklWy1yEREi5LEgR7UXNIqCCYU+vCHWZMiPpA7nz4uHKVFYDT
+	r8Q2+8jaY1GRjHrNar8qHaXSeh7W7ugmz9CQGKQ6EFa6wlY216nVxoMtbPMbfjpIqX1mXU
+	LqTb0BzoTYVZgD2vQtDB2sPRXRseS3DKdSEG101R+VZ0YzEtVEj+mjqqbzpKaA==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Conor Dooley <conor@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth
+ <sebastian.hesselbarth@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Robert Marko
+ <robert.marko@sartura.hr>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/6] marvell: DT root compatible fixes
+In-Reply-To: <20250204-headfirst-evergreen-ec92900ee782@spud>
+References: <20250131-dt-marvell-fixes-v1-0-55f9f6acd4b1@kernel.org>
+ <20250204-headfirst-evergreen-ec92900ee782@spud>
+Date: Wed, 12 Feb 2025 11:50:34 +0100
+Message-ID: <87wmdvsah1.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="hofcel2epznouj7x"
-Content-Disposition: inline
-In-Reply-To: <8ee8e684-0164-4e70-b42e-3827c7885685@arm.com>
-
-
---hofcel2epznouj7x
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC PATCH 1/5] dt-bindings: dma: Add CMA Heap bindings
-MIME-Version: 1.0
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegfeeikecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefujghffffkgggtgfesthhqredttddtjeenucfhrhhomhepifhrvghgohhrhicuvefngffogffpvfcuoehgrhgvghhorhihrdgtlhgvmhgvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefghfegvdehgfdtjedvtefhvdeikefgteeuhfeukeettefgvdeuueettddtkeegveenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeguleegtgemheekuggvmegrtddtvgemvghftddunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeguleegtgemheekuggvmegrtddtvgemvghftddupdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehgrhgvghhorhihrdgtlhgvmhgvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedutddprhgtphhtthhopegtohhnohhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhto
+ hepshgvsggrshhtihgrnhdrhhgvshhsvghlsggrrhhthhesghhmrghilhdrtghomhdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosggvrhhtrdhmrghrkhhosehsrghrthhurhgrrdhhrhdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrgh
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On Wed, Feb 12, 2025 at 10:29:32AM +0000, Florent Tomasin wrote:
->=20
->=20
-> On 12/02/2025 10:01, Maxime Ripard wrote:
-> > On Wed, Feb 12, 2025 at 09:49:56AM +0000, Florent Tomasin wrote:
-> >> Note that the CMA patches were initially shared to help reproduce my
-> >> environment of development, I can isolate them in a separate patch
-> >> series and include a reference or "base-commit:" tag to it in the
-> >> Panthor protected mode RFC, to help progress this review in another
-> >> thread. It will avoid overlapping these two topics:
-> >>
-> >> - Multiple standalone CMA heaps support
-> >> - Panthor protected mode handling
-> >=20
-> > You keep insisting on using CMA here, but it's really not clear to me
-> > why you would need CMA in the first place.
-> >=20
-> > By CMA, do you mean the CMA allocator, and thus would provide buffers
-> > through the usual dma_alloc_* API, or would any allocator providing
-> > physically contiguous memory work?
->=20
-> You are correct only the CMA allocator is relevant. I needed a way to
-> sub-allocate from a carved-out memory.
+Conor Dooley <conor@kernel.org> writes:
 
-I'm still confused, sorry. You're saying that you require CMA but...
+> On Fri, Jan 31, 2025 at 03:08:24PM -0600, Rob Herring (Arm) wrote:
+>> This series adds some missing root node compatibles and fixes some=20
+>> errors in dts files for the root node compatibles.
+>>=20
+>> Signed-off-by: "Rob Herring (Arm)" <robh@kernel.org>
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> > In the latter case, would something like this work:
-> > https://lore.kernel.org/all/20240515-dma-buf-ecc-heap-v1-1-54cbbd049511=
-@kernel.org/
->=20
-> Thanks for sharing this link, I was not aware previous work was done
-> on this aspect. The new carveout heap introduced in the series could
-> probably be a good alternative. I will play-around with it and share
-> some updates.
+Applied on mvebu/dt64
 
-=2E.. you seem to be ok with a driver that doesn't use it?
+Thanks,
 
-Maxime
+Gregory
 
---hofcel2epznouj7x
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ6x8uQAKCRAnX84Zoj2+
-dhpNAX9dpZ7jCHWS9XEKQqdeu+k8bL1z43DeFaKsONHamJEssyPacY4cU20LNyHZ
-dE3EP2gBfigcyv0UGOHYi7iyKQFw7lfvXnKfZ2/xUjJoWzSqoXVjjOm3bVKTr4WT
-bTbtf2LYNw==
-=IIBH
------END PGP SIGNATURE-----
-
---hofcel2epznouj7x--
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
