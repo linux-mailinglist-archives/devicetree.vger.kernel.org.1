@@ -1,114 +1,133 @@
-Return-Path: <devicetree+bounces-146031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A99D6A3309A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 21:17:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9800A330E3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 21:36:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 317501889E72
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:17:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57FCB1887AB1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:36:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6602D201036;
-	Wed, 12 Feb 2025 20:17:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E791A1FF7C8;
+	Wed, 12 Feb 2025 20:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yXUfPL4W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXIudSIm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84ABC200BA1
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 20:17:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC8171FBC96;
+	Wed, 12 Feb 2025 20:36:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739391459; cv=none; b=l12kcFv2rQSzdv00LD51laFFjB5cVDjDSLp/fe6OCGX5K7JyxPvwYMe8MeWv74pNEBGBlRAzsHN+gJhIRXK/d4relSye69hE45kPR3znLcF12AHnFbx9h/QCnV/sNvjp824u7e29H1YXC8dPSZHqaChiKFpAqRMs5Qab+4oaT4c=
+	t=1739392584; cv=none; b=SkM36sGEKbj8PYD5Wnt3asamh7NBzQEaZBvizc5LdLOGj1dDlomQ439spy5irRu1NbSAcC470yNX/I2lRKtyxH/EZAAyexUVV2WRTmB4Iej1eZJpVk1aKIEPs0MSLYEfJd/RyjrtZ2fRMhJw15tegvzzBZh/6X0rhYGbSjWJpyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739391459; c=relaxed/simple;
-	bh=5UoI9R/vnHMC/e5ewh7O59UF8eSXn33Jwv18AA32wMo=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=bS3OwJYd62eqJcdFCH3Nf54PAS9Sx1iArN99g2uVznokeSwQqpadetLjQv5i9V+Hye1RZ0EMmeoKc5jvlhT06HYNMvV3BSaOG9jtThBf86x5GsBsqsW1y6EfqW5NysVR/QUvbeUU/CiW/1OPV//GCH2HCgoBXr7twy8sIsGboqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yXUfPL4W; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-38dc9fc48fdso14379f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 12:17:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739391456; x=1739996256; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AbCZq/KdfJ+rz1uUl+K724BtkWwa151wsTK5+/vxmtI=;
-        b=yXUfPL4WImdCKVd1sHNMY2dY3MDlgeG+hEfGI+q9GW3hrf32Yn6xSt+cqF+sfRPtOu
-         xvqS+9SQB8vfSuMfmAsbdJvcLq3zHsZISLpad2WnxCzvjeVQhM3CoJJW+SOK+YrDkLBE
-         yCa0xGDQe6OJRDtI8DKjPBZuwQsE319eG+a3Tn674BIYMyx/J/Cexsx8K56p4bixe8Ck
-         H7aPoWgBkKtrFUZ3lk9fvHNck0lV84R6RCqmicjwLGXDrWIV7eu+EokWy7IqhYVrHOY+
-         HqCk+EZ6V/wEGaHsX5wJWIoVCNK+UxCLfwQuoFowGkAL26anvLaR7CeyVZUkZhtR9lY7
-         wXqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739391456; x=1739996256;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AbCZq/KdfJ+rz1uUl+K724BtkWwa151wsTK5+/vxmtI=;
-        b=GxO7tDlBeF5316vDLQOz6zffiSdEzThpBec0zJIoMHrgZR8R0Aeq6CULLoM3SBr2Y6
-         zLkYBeWEJwrPzYtMR3qnjMUxzA0zrt8mvUtQIRT7ewlPWtBoZiutTuENj3V91lhk8hSm
-         BNo36A2y/DjX6y6c8KlUU1QyZMTtv6rPCeq4aBJIStE775+bFcB1K/vnJf4IEGPj1Wki
-         bxio9YtUkpDmmJJtXGtdn+L4UhSp5JL3JuwEL0NL43cHN+YfjnQEKXOS9Xb/5VIaWY1q
-         T4X0QqH+OGg4MYvQILK7Mmbh39vjVETzVLg1NuFpYJg/XFf9cigMfYUdNhOpBtJ7wbcX
-         Uqrg==
-X-Forwarded-Encrypted: i=1; AJvYcCXmrnnLFox7klb6c+KTJ8UJB4SebxJq3A0hYIyrWUOQBpyx/R5ZriFzOsGGTo32i2mM0D8dG1Kk8xa3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAxwadXcvxzLEwd3/t6TsiT/TvzM3eW//IWh7wEPc5zRCPPCDH
-	DpruGhZVKHVYs2VYV5Nw7I4UypQJ7Nt2Mk/VDqgm6uJiyS/D2IAYNhpsIF4neJk=
-X-Gm-Gg: ASbGncsoW03mcbz9r7/VGNP3km0Ai4+RjVThTYyNsTuRErxdfMu9sO+HyRTUY7WR8VN
-	IOpLL3DYikKHaw2Bp+kdjkrxOYj5ytaNbxcAgufd+2vY5Eka2OSEw6IVDWUEPTHunygfsbdt3YB
-	fuwxDp1rSr9y2avaHG/TNsZQV0fCFPvLh8LY1wNlXPzn8FYPm23rS6mR0RjoZBAef6TmRVGdpqV
-	4g22N73GyBuF8ngC+XwQactVMZRGm7WX/hsv68EnUqfc788aAD/i1X+LFfgqrG+ikTe7GPv3o/0
-	nlFFvz23wyhFNto5pVELOcggtG2wTKE=
-X-Google-Smtp-Source: AGHT+IHEzgbSwZhcHl5Unf6X40IETyxliC9eFPUo1deP0nfYqwIuq7PnG2+W9zZlMsgMg2uyJ/GJjg==
-X-Received: by 2002:a05:6000:4184:b0:38d:eb4b:f9aa with SMTP id ffacd0b85a97d-38deb4bfccemr1276223f8f.5.1739391455757;
-        Wed, 12 Feb 2025 12:17:35 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.218.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38e6ccc8c1dsm2386845f8f.101.2025.02.12.12.17.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 12:17:35 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20241222145257.31451-1-krzysztof.kozlowski@linaro.org>
-References: <20241222145257.31451-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] arm64: dts: exynos8895: Rename PMU nodes to fixup
- sorting
-Message-Id: <173939145421.15132.11778260219053817821.b4-ty@linaro.org>
-Date: Wed, 12 Feb 2025 21:17:34 +0100
+	s=arc-20240116; t=1739392584; c=relaxed/simple;
+	bh=v65vFOVTkj9bWxhDtiFbowfE5o/3g/K2Jrg6ERcJMLY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=CPkyLrLZjPqZ6JSOOtl0uh9BgqWQsirsMElRl0GMc3kV2n2n2mvExCHxmMQ89aPmqaO9rbkmF8HP5bS9amWGy2B2pbYj83mfw1OuMyneGGuuAmjqO5NRsBvEXK8TIpEnZVZOwo8TLKPTZxwxtDnS+2kZe4stODvrmoVAeIMolfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXIudSIm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6FD6C4CEE4;
+	Wed, 12 Feb 2025 20:36:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739392584;
+	bh=v65vFOVTkj9bWxhDtiFbowfE5o/3g/K2Jrg6ERcJMLY=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=RXIudSImnh1il6AXEN/MLwIZ8n05NHOzG0si58q69yhuIyeq+UXDJLT8H/8pGoXFT
+	 i60GPzDmnMXXp7ESVsEJ2jnaZImplFiudpAOjoeK0NKNMQ2RdR/eIqrDtQchEjNpEd
+	 b52X4TOaxxm/96xp/QS/iIx1ikWQGkkIy9OLnyAV49ZJ3Pl8dEauAFIJU+XRhn0a88
+	 NuqqE6HOLxCNc1cJjA6xbcm1L31StFYQfZd9CDlKDUf5F8erlpRIhncbEAyl2npBOF
+	 TfG2DZvVRi2Rst480kOhYyIidPSdju4lunOoPNGm9qs+lN0DA4z/hdKMtvfL6NbT0V
+	 sv7aY8CR3q8eg==
+Message-ID: <bdd7b203-ccb3-453b-ae91-32f257fc909f@kernel.org>
+Date: Wed, 12 Feb 2025 21:36:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ARM: dts: nuvoton: Align GPIO hog name with bindings
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, openbmc@lists.ozlabs.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250116090047.87499-1-krzysztof.kozlowski@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250116090047.87499-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
 
-
-On Sun, 22 Dec 2024 15:52:57 +0100, Krzysztof Kozlowski wrote:
-> Nodes should be sorted by name but it is also nice to have same class of
-> devices together, so rename both PMU nodes (A53 and M2) to use "pmu"
-> prefix, instead of suffix.
+On 16/01/2025 10:00, Krzysztof Kozlowski wrote:
+> Bindings expect GPIO hog names to end with 'hog' suffix, so correct it
+> to fix dtbs_check warnings like:
 > 
+>   nuvoton-npcm750-runbmc-olympus.dtb: G1A_P0_0: $nodename:0: 'G1A_P0_0' does not match '^.+-hog(-[0-9]+)?$'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Changes in v2:
+> 1. Rename rest of the nodes I missed.
+> ---
+>  .../boot/dts/nuvoton/nuvoton-npcm730-gbs.dts  |  12 +-
+>  .../nuvoton-npcm750-runbmc-olympus.dts        | 120 +++++++++---------
+>  2 files changed, 66 insertions(+), 66 deletions(-)
 > 
 
-Applied, thanks!
-
-[1/1] arm64: dts: exynos8895: Rename PMU nodes to fixup sorting
-      https://git.kernel.org/krzk/linux/c/ee24a95b891a215b5fbd2f6814754301070653c0
+Any comments? Can this be merged?
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Krzysztof
 
