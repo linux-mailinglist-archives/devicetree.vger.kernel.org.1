@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-145904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B182A32C54
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:49:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F548A32C89
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:55:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF96F3AA5F2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:49:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E78BA188C6FA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:54:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 011AE2505C2;
-	Wed, 12 Feb 2025 16:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E1E2580C8;
+	Wed, 12 Feb 2025 16:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QuDu2vOC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHsSCn8X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE7721D59F;
-	Wed, 12 Feb 2025 16:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814AF255E27;
+	Wed, 12 Feb 2025 16:53:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739378972; cv=none; b=Xh2PB3XTc1Biu5IOawWh/FRcaZd5QClzwKasyI8SUk7lRpFyZSbz5EowdZ3Won7KfD7X05Ko2PFtXNoXA4iuC5E6h5KbmDzcVscrWSDIbJR+pW6IxXFn5chWxMe0z6zTAGYeQHDUtSsjC47WjZNuclDX4IsnKDA+B0tQUB6c63o=
+	t=1739379223; cv=none; b=cWY4a2wr5EFQimOvmkYgOd6dJoO+lFc+7HkYQea0EqM6RN3Bh9TysgGzA656RMzrXC+0Fj8LghpCl5ez/Mh2ivjUolZlbMURYL731ZuXd5vo/Aaunkf7a7pOAeW/g7NscY5PjBZOocnQFM5//CR5I/YGKNgCjFMpzBQiebFGmAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739378972; c=relaxed/simple;
-	bh=oiJ709oCpEPB9kcfZlrUorygYDxTbmj70Ft/9Pu06Z4=;
+	s=arc-20240116; t=1739379223; c=relaxed/simple;
+	bh=mr8GjH+15lBi8VHein+7pK0kYx+HbXlrW0PLl41bbgI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tnzIOnl4SSU1ZyxR4sGibcBPvNUMBW8V0vW5WmVAYH6e9eG1OaDH4lydieYv3oF0DW7uN3StnqZEv/tHXy6LVRruk2dIlckvftLaMnTiuPvz2ifKtv5WB9Nll3Y7BZ63IGV7vcYz9F2CjjUal0p/g+BQgV5Jx+rtLpb1q5Rk1m0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QuDu2vOC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63EE0C4CEE4;
-	Wed, 12 Feb 2025 16:49:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tKGm7qap8Rk2TV33crZhCTR+umATADhH2vyJTxNHESduEMr7094z+8v9FCKEKhueHaB5LpDY2fhHx7pujhEOx66xbiI4U9uvCGR3M/BeO1WfmEgstzcHuWLaSSXW5uap9RdcHNXFQ+BsOZaSj9ZSGy7IjTSwJuj35VKr9YnXRbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHsSCn8X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B51FC4CEDF;
+	Wed, 12 Feb 2025 16:53:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739378972;
-	bh=oiJ709oCpEPB9kcfZlrUorygYDxTbmj70Ft/9Pu06Z4=;
+	s=k20201202; t=1739379221;
+	bh=mr8GjH+15lBi8VHein+7pK0kYx+HbXlrW0PLl41bbgI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QuDu2vOCN8Og5PDN/o0qAWPIh5IehilQX3JPmZt/P8XUJRPwGzvG+wjStZngVMTSl
-	 umJEapzok9F3kB/cWAINOokS19IEqdZ4VAMW+lNASxIi7ZUkpsLkeBLpNfqIHQxwqr
-	 jQOsehRMEzKaQrXoacpV+ZncoACURmd0QTSZp+DIg6Nj+Op885ekt/X8EPckXWixSc
-	 V6p6FdIg12DzZ+hj4JL4SLyMpEwjHjaPwaqKSn+sf6iXvSk/MwbjPY3G7SCekrUnaM
-	 ccYZMeeb0OzvEj7ot1bPk/SWo+j2NO6fbcdgKASSH4bgl0a+Y+aAF78eGlKcDbSufA
-	 jQjkJDPK0NyKA==
-Message-ID: <822d6dca-b2c6-4439-ade5-219620ebc435@kernel.org>
-Date: Wed, 12 Feb 2025 17:49:25 +0100
+	b=iHsSCn8XJSMVzS2R2YduVzicWLVtjzBlcvyemeAYYOK5ilrQ92vm7KYHmjDSgKUVB
+	 FsBw7NG5juZw7q/grxpAJvQDYrkN+qugXz5DzHvaoEdlC/PxEyEJLKRZiWCZSpQz5C
+	 8oejDzd6WHTm5IYKdV3TRQPGthgTZ3HAkZ0gr9DiWP23J4i6X33yE5kz19UWvwR6XI
+	 KDNH4JVmo2ybhup8V3m/9915Bc/LxvOlcG8lRd4Rox2ybvjIQf4w/sx0kKtJjYfPqY
+	 LRMkg1D6iO87JL7blAmgFPzIzOPOUm17LhafOwYmgljLykwFDV423qXJypW7kVDgJO
+	 3baJSHEdDOv3A==
+Message-ID: <76c991dd-f99b-497c-9d68-9e08541be4f0@kernel.org>
+Date: Wed, 12 Feb 2025 17:53:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
+Subject: Re: [PATCH 2/2] drivers: i3c: Add driver for NXP P3H2x4x i3c-hub
+ device
 To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
  linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
  alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
@@ -58,6 +59,7 @@ To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
 Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com,
  shashank.rebbapragada@nxp.com, Frank.Li@nxp.com
 References: <20250212132227.1348374-1-aman.kumarpandey@nxp.com>
+ <20250212132227.1348374-2-aman.kumarpandey@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,39 +105,131 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250212132227.1348374-1-aman.kumarpandey@nxp.com>
+In-Reply-To: <20250212132227.1348374-2-aman.kumarpandey@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 12/02/2025 14:22, Aman Kumar Pandey wrote:
-> P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841) is multiport I3C hub
-> device which connects to a host CPU via I3C/I2C/SMBus bus on one
-> side and to multiple peripheral devices on the other side.
-> 
-> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-> Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
-> ---
->  .../bindings/i3c/p3h2x4x_i3c_hub.yaml         | 404 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 411 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml b/Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml
-> new file mode 100644
-> index 000000000000..33ea524e5432
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml
+> +
+> +static void p3h2x4x_of_get_tp_dt_conf(struct device *dev,
+> +					const struct device_node *node)
+> +{
+> +	struct p3h2x4x *priv = dev_get_drvdata(dev);
+> +	struct device_node *dev_node;
+> +	int tp_port;
+> +
+> +	for_each_available_child_of_node(node, dev_node) {
+> +		if (!dev_node->full_name ||
+> +			(sscanf(dev_node->full_name, "target-port@%d", &tp_port) != 1))
 
-Nothing here looks like being even close to existing coding style. Look
-how other files are written, including file naming, blank lines, style
-of properties and entire layout.
+NAK, undocumented ABI. Also weird code, why are you parsing DT structure
+manually? Use proper functions to get the reg.
 
-Your current code is not only unreadable but also incorrect. But due to
-unreadability, I won't waste time to review.
 
-You should have make internal review of all this.
 
->  L:	linux-hwmon@vger.kernel.org
+> +			continue;
+> +
+> +		if (tp_port < P3H2x4x_TP_MAX_COUNT) {
+> +			priv->tp_bus[tp_port].dt_available = true;
+> +			priv->tp_bus[tp_port].of_node = dev_node;
+> +			priv->tp_bus[tp_port].tp_mask = BIT(tp_port);
+> +			priv->tp_bus[tp_port].priv = priv;
+> +			priv->tp_bus[tp_port].tp_port = tp_port;
+> +		}
+> +	}
+> +}
+> +
+> +/* return true when backend node exist */
+> +static bool p3h2x4x_is_backend_node_exist(int port, struct p3h2x4x *priv, u32 addr)
+> +{
+> +	struct smbus_device *backend = NULL;
+> +
+> +	list_for_each_entry(backend,
+> +			&priv->tp_bus[port].tp_device_entry, list) {
+> +		if (backend->addr == addr)
+> +			return true;
+> +	}
+> +	return false;
+> +}
+> +
+> +static int p3h2x4x_read_backend_from_p3h2x4x_dts(struct device_node *i3c_node_target,
+> +					struct p3h2x4x *priv)
+> +{
+> +	struct device_node *i3c_node_tp;
+> +	const char *compatible;
+> +	int tp_port, ret;
+> +	u32 addr_dts;
+> +	struct smbus_device *backend;
+> +
+> +	if (sscanf(i3c_node_target->full_name, "target-port@%d", &tp_port) == 0)
+> +		return -EINVAL;
+> +
+> +	if (tp_port > P3H2x4x_TP_MAX_COUNT)
+> +		return -ERANGE;
+> +
+> +	if (tp_port < 0)
+> +		return -EINVAL;
+> +
+> +	INIT_LIST_HEAD(&priv->tp_bus[tp_port].tp_device_entry);
+> +
+> +	if (priv->settings.tp[tp_port].mode == P3H2x4x_TP_MODE_I3C)
+> +		return 0;
+> +
+> +	for_each_available_child_of_node(i3c_node_target, i3c_node_tp) {
+> +
+> +		ret = of_property_read_u32(i3c_node_tp, "reg", &addr_dts);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (p3h2x4x_is_backend_node_exist(tp_port, priv, addr_dts))
+> +			continue;
+> +
+> +		ret = of_property_read_string(i3c_node_tp, "compatible", &compatible);
+> +		if (ret)
+> +			return ret;
+> +
+> +		backend = kzalloc(sizeof(*backend), GFP_KERNEL);
+> +		if (!backend)
+> +			return -ENOMEM;
+> +
+> +		backend->addr = addr_dts;
+> +		backend->compatible = compatible;
+> +		backend->tp_device_dt_node = i3c_node_tp;
+> +		backend->client = NULL;
+> +
+> +		list_add(&backend->list,
+> +			&priv->tp_bus[tp_port].tp_device_entry);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void p3h2x4x_parse_dt_tp(struct device *dev,
+> +				const struct device_node *i3c_node_hub,
+> +				struct p3h2x4x *priv)
+> +{
+> +	struct device_node *i3c_node_target;
+> +	int ret;
+> +
+> +	for_each_available_child_of_node(i3c_node_hub, i3c_node_target) {
+> +		if (!strcmp(i3c_node_target->name, "target-port")) {
+> +			ret = p3h2x4x_read_backend_from_p3h2x4x_dts(i3c_node_target, priv);
+> +			if (ret)
+> +				dev_err(dev, "DTS entry invalid - error %d", ret);
+> +		}
+> +	}
+> +}
+> +
+> +static int p3h2x4x_get_tp_local_device_dt_setting(struct device *dev,
+> +					const struct device_node *node, u32 id)
+> +{
+> +	u8 i;
+> +	u32 local_dev_count, local_dev;
+> +	struct p3h2x4x *priv = dev_get_drvdata(dev);
+> +
+> +	if (!of_get_property(node, "local_dev", &local_dev_count))
+
+Oh no, read DTS conding style before upstreaming such code.
 
 
 Best regards,
