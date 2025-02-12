@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-146067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2282CA332CE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 23:44:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28D56A332D0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 23:44:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC9C61629D0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 22:44:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D90C3162853
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 22:44:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C2720550F;
-	Wed, 12 Feb 2025 22:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64219207E1B;
+	Wed, 12 Feb 2025 22:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W2ggh7BC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BvmtUF2y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1E1204591;
-	Wed, 12 Feb 2025 22:43:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D0020459C
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 22:43:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739400240; cv=none; b=BM8725eEM4ZRrixX4leIObaXXUQQ+OAwZLWsTMswk0CXEJZHi5TNfyL2gOz1YqYGTN2dPFakDHrM1tJMFntOmgOVSJLrGhf74E8DF6G1n33kcSFOwC/M8A7X4RE6YcYPIFRobaNdCO/S5ndQYt2v/VkXcCtOx2GPJYIuPH0+Yuw=
+	t=1739400241; cv=none; b=SknxmDgxT//v71eSVIsQm9Wco9/cU9Qb2BAAu/DJqpRUW3snobcQwNVNvUo2c2u7ESpZrxz3e1lvITAFKJPcpupReDcmrs6HrJChwzeW3VipFFR/XQyFzXtdE5biUz9o4hNG7QG41UO/4Qid3cehVe0IyENYYN6MoA8ueDYtYtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739400240; c=relaxed/simple;
-	bh=6kwgRI/FlgXZhVdKkCbXIvcA7IIE4FmKk8xsnIfMDuI=;
+	s=arc-20240116; t=1739400241; c=relaxed/simple;
+	bh=B/NZAXNMpuTU3z3Dt8D45KXiKfShFiznnsLHvMRI4qU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eZXPJUjAWrcMSj0wdhDSfFRzfZO7WXxMDQ4KyggiaVv5oNpTn5TyFF6JQVGrok1K602veFrsf5IpFJ2wIdbl0XMzcy5b420gCsQD3iq29qjhYUfUo3jvqPvPVppBFQq2t3bwCXBErhJN8rZIkPwR4NTXqWQAQolcWrsIXC5hDq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W2ggh7BC; arc=none smtp.client-ip=209.85.208.49
+	 MIME-Version; b=H9AlQeJp/XWWMkEyg8pEJcRDwdrUkeqNXg3WDdxfvr+eCC9k1qPJQpAjjgRIZ7sraOXUUBVXk0iX7QSBvyfh7d3wuncWa9oEGyJte3cHriRV9syXJhqJ6K4dYGNDsNVjN+KETn8Ltb0cH/4vY4wcddYwqZ9mxd1ZN5rU5eXs0Hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BvmtUF2y; arc=none smtp.client-ip=209.85.208.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5d9837f201aso2819219a12.0;
-        Wed, 12 Feb 2025 14:43:58 -0800 (PST)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5debbced002so443249a12.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 14:43:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739400237; x=1740005037; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1739400238; x=1740005038; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QZXh53n6VCDql3hZOCr9qqqfbnvH47zg00k2fG55aMs=;
-        b=W2ggh7BC+owplttz2VHbxwyX3HdzXAqoQemZA7vc+jI1jxxIC08Sstd1dsETFxzmMs
-         UWdlGfoZdWDRp5Q3gYK7tJAuwQa3ss6qjQgYm/g8QvyrllvvwpumQTvj4eQVsUKt7L20
-         fqGqmLpX8PGK+JMopjWSkQ4kbNTYi8Ol+fVDZF3J0qg5WIlCTcWogya40yTkR7JB71ni
-         j6x4Thea6wo8LcvF+smk3iUQpNX1n9Y1TX1lxW7e7Hq8KdjWX32bPvVn4ECfZgqvQzXB
-         NVQY+FtG6qOeysmuZUuB+ID+6taNQJdhCb6iVdubaWu/FhWSPifOzP+gzo0d/oIVnEQe
-         3DWg==
+        bh=+40mL3jZJ6m57RT2qXKG2PKW8kpulSlmUXjQH5BVdhU=;
+        b=BvmtUF2ySMrtBCm2GTk9WJaRbsQllrbK8bEW6onVPy1U/S2t0wXuSjJgADmrkQCNq7
+         5Jp1/LETkDhHTZicy02eiz92nFsLA6PopD0vtKqOa81QePA9CBDhUuyqumumI1t5Zyjs
+         zYGAhHCxq3KzCj9K4rqacs35HsNAssS+Cd1uWPOaOHqIpAO4GIdhclnLtJZ9+tetHt1m
+         IIk5JthxZCLAc56+j+M517S7mzVY0W+sc/BD2/g2MOuqGxakc1vopzAZ4kCE3DyQccqs
+         eiaZRlYQOV+DMUcqjHt/684KUonI0tt5tuuEOdvp0dTZv17rFIvc7SBaYIXdSZ8Weg6B
+         Iv3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739400237; x=1740005037;
+        d=1e100.net; s=20230601; t=1739400238; x=1740005038;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QZXh53n6VCDql3hZOCr9qqqfbnvH47zg00k2fG55aMs=;
-        b=aGscYjUiBZeu5YlAukTyT8qNrxR26cJRYyBkBRAhWrURTf6YcQtc/GHmWCRVN/Xl3K
-         aXEFrMkKgp0FNJpQdTp2Es4D6jEGv4kMDQKcQaGU+u6Z7aoRoeE5cMMpD/P5Yn6iOLTu
-         A8mCiVhWFV7iyxcdQHWoLbBt9ik2XAnn6qOb1/qVtAJx7gzU8+/osFdOd18fkpE14Q3b
-         FigeXI1wYfkIvMq0aSBPtjcVByAx20EZ3TKvGN1jcxsv8swnW+bFz3Rxb1HuAJIUmsr9
-         +SDtWRvjRtwn6nZ2F1RS1mi3JUYJyXbPZsrM64Lh8o9Uy9CnOESHW8mqiKUAo0lAQrD3
-         9qzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWYkDMBBwRrrPft/eJz07dVvuv01F1qD6H8quCZZ2R4nTBwxRozOVuMfNbn/lQCgUilo0yQfm/+cGU=@vger.kernel.org, AJvYcCWZSBV+8kA7mu/+2yDV1L9IJXDvZzCNLZjIeihD4euhrkgdfF2u2rcb0pxHVZsoFLFIoGeueafpHzyl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yztip+r00ats2ohuwtA1l2mWRLch13lkaiqxGNhQOboMVXzCLoG
-	wlbMHLU+S5geesHmAa6FnXAOPoPFajn86zC9CFjlR23bQdGaPUUQ
-X-Gm-Gg: ASbGncuxFi5hQ/OoP6aEHoMFfUqykxfllTtXmXe6td16v8b95vzllNO8TOYai+RECRp
-	NrgwJPoG1FtcDumjDXYou+izWY+3zo4maJpevnVQ8jikOZC4cU8jHeAr535DBwhaXsbE1SiGARv
-	3HYS3e2fwaJOCfqjp8mxDFt24Npk6qbYNajqg5tnYTh3CmPQkf5afBzL6sxduY9Uc4LtO8OVTvd
-	uYn+f/4yHhKL7xjTVYxKecbTt/+wj5S4tXn/PbnZuR1CIO9uM1wwXibfcSxE1EV3vKclHRdDKKd
-	8eUWY+ZQvIW0exol39HCzU87iI72
-X-Google-Smtp-Source: AGHT+IHBmtagS8Rywtty3nyKWJ5uTo4mUVNCLeloZZ6MDa1HOxfnWgqxmhF80EhBNTH3MA3wmgnX/Q==
-X-Received: by 2002:a05:6402:4316:b0:5d9:f0d8:22d5 with SMTP id 4fb4d7f45d1cf-5decba8f0d0mr438452a12.13.1739400236755;
-        Wed, 12 Feb 2025 14:43:56 -0800 (PST)
+        bh=+40mL3jZJ6m57RT2qXKG2PKW8kpulSlmUXjQH5BVdhU=;
+        b=JlZQ+6wIfJ5Fw7KXwm3kYXc4qgLxjltqFcZzxQ/JyC+0c4D9KeDOlQZS7xMI3gQbaW
+         Mm8nE7ZjTCuLPEua76/vV7IuIwlaXgsDhzlfN7UVPY08KWnMuvCdzEnQGfI9sgeB2nEJ
+         6ArP9PUPwUfNA34YCTIF856QACeKmcSjKkR9mP0g4DiBiiuYbrQ8Ez6kXHB8Q5gHKONM
+         ufJTkK4aecXbOR1mX45WrmaLpdqUL23F01HZopPIuZTyWNUaBQDXOmPpUjyzQPc187rd
+         DfmsniJCvxisO50945sNwpmXGDBuxlUpDwbgZbMRIrCqLWtVi+3qcAOn8hGukZJWAuKR
+         TQyA==
+X-Forwarded-Encrypted: i=1; AJvYcCUD1wSEZxYj/R9rGxCHf0HExiGQBLHMPfyDqp1Srqu7KZAoDYoeffcd0E4qkbKSYrlOMLd3frFmvKTR@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzCtAz0kjAnQdgVu01RO3zaeJim4CqQmAPgRyQZxdFwYXDiFEn
+	15COdgRVFYO9JOkeNQBRHVj9u3usRk0OaFMSrR98d4/Kt4DJ3p4N
+X-Gm-Gg: ASbGncuXGjLynpOz0RB5G3Ff4rVAKyoUmpr7Lb7VJnOAq93+3Qr7dBEMZT7lJR0hKPP
+	42Xm63st1wxp3tme9CEe/h5LICJeDdNld1ZLk1ktD3TEmDMaAJdYUZ2B+N5GcWjtRr0y/TgGhX6
+	3dZDBcA2A0LbuSuDwcLpTuhu8SZEzOpB7yWJ3x0nqVhzlGXEEEaXRgGqE09+/Y51SpWhbtG3iPB
+	rMyPXKZ0M/YNzHA09uybMmRgJGIymgISFWvGz8yZgBbw1BoF8JP5SBxFqPyJrbBCouM/ZczHKKL
+	zl1PHgPPWoASkJGphXj57KMSiGua
+X-Google-Smtp-Source: AGHT+IEv+/AzdknABejwMbnqDJnaCwlQfqvJh/OI5EUKfTNWF0GxuzkjTpxXDZ3NzmJ5AaWO5+exLw==
+X-Received: by 2002:a05:6402:3495:b0:5de:5e08:babd with SMTP id 4fb4d7f45d1cf-5decb8d50f6mr651452a12.11.1739400237691;
+        Wed, 12 Feb 2025 14:43:57 -0800 (PST)
 Received: from giga-mm.. ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1b4e02sm119914a12.3.2025.02.12.14.43.55
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1b4e02sm119914a12.3.2025.02.12.14.43.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 14:43:56 -0800 (PST)
+        Wed, 12 Feb 2025 14:43:57 -0800 (PST)
 From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 To: soc@lists.linux.dev
 Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
@@ -79,21 +79,17 @@ Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
 	Chao Wei <chao.wei@sophgo.com>,
 	Chen Wang <unicorn_wang@outlook.com>,
 	Inochi Amaoto <inochiama@outlook.com>,
-	linux-pm@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	Haylen Chu <heylenay@outlook.com>,
 	linux-arm-kernel@lists.infradead.org,
-	Sebastian Reichel <sre@kernel.org>,
 	Arnd Bergmann <arnd@arndb.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 2/7] dt-bindings: soc: sophgo: Move SoCs/boards from riscv into soc, add SG2000
-Date: Wed, 12 Feb 2025 23:43:34 +0100
-Message-ID: <20250212224347.1767819-3-alexander.sverdlin@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH v3 3/7] arm64: dts: sophgo: Add initial SG2000 SoC device tree
+Date: Wed, 12 Feb 2025 23:43:35 +0100
+Message-ID: <20250212224347.1767819-4-alexander.sverdlin@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250212224347.1767819-1-alexander.sverdlin@gmail.com>
 References: <20250212224347.1767819-1-alexander.sverdlin@gmail.com>
@@ -105,52 +101,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Move sophgo.yaml from riscv into soc/sophgo so that it can be shared for
-all SoCs containing ARM cores as well. This already applies to SG2002.
+Add initial device tree for the SG2000 SoC by SOPHGO (from ARM64 PoV).
 
-Add SG2000 SoC, Milk-V Duo Module 01 and Milk-V Module 01 EVB.
-
-Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 ---
 Changelog:
 v3:
 v2:
-- patch introduced
+- relocated "memory" node according to DT coding style;
+- moved GIC node into "soc";
+- referring "soc" by label;
 
- .../devicetree/bindings/{riscv => soc/sophgo}/sophgo.yaml  | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
- rename Documentation/devicetree/bindings/{riscv => soc/sophgo}/sophgo.yaml (80%)
+ arch/arm64/boot/dts/sophgo/sg2000.dtsi | 75 ++++++++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/sophgo/sg2000.dtsi
 
-diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo.yaml
-similarity index 80%
-rename from Documentation/devicetree/bindings/riscv/sophgo.yaml
-rename to Documentation/devicetree/bindings/soc/sophgo/sophgo.yaml
-index a14cb10ff3f0..5d73d0ccc547 100644
---- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
-+++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/riscv/sophgo.yaml#
-+$id: http://devicetree.org/schemas/soc/sophgo/sophgo.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Sophgo SoC-based boards
-@@ -26,6 +26,11 @@ properties:
-           - enum:
-               - sophgo,huashan-pi
-           - const: sophgo,cv1812h
-+      - items:
-+          - enum:
-+              - milkv,duo-module-01-evb
-+          - const: milkv,duo-module-01
-+          - const: sophgo,sg2000
-       - items:
-           - enum:
-               - sipeed,licheerv-nano-b
+diff --git a/arch/arm64/boot/dts/sophgo/sg2000.dtsi b/arch/arm64/boot/dts/sophgo/sg2000.dtsi
+new file mode 100644
+index 000000000000..98c8d300347c
+--- /dev/null
++++ b/arch/arm64/boot/dts/sophgo/sg2000.dtsi
+@@ -0,0 +1,75 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++
++#define SOC_PERIPHERAL_IRQ(nr)		GIC_SPI (nr)
++
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <riscv/sophgo/cv18xx.dtsi>
++#include <riscv/sophgo/cv181x.dtsi>
++
++/ {
++	compatible = "sophgo,sg2000";
++	interrupt-parent = <&gic>;
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		cpu@0 {
++			compatible = "arm,cortex-a53";
++			device_type = "cpu";
++			reg = <0>;
++			i-cache-size = <32768>;
++			d-cache-size = <32768>;
++			next-level-cache = <&l2>;
++		};
++
++		l2: l2-cache {
++			compatible = "cache";
++			cache-level = <2>;
++			cache-unified;
++			cache-size = <0x20000>;
++		};
++	};
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x80000000 0x20000000>;	/* 512MiB */
++	};
++
++	pmu {
++		compatible = "arm,cortex-a53-pmu";
++		interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
++		always-on;
++		clock-frequency = <25000000>;
++	};
++};
++
++&soc {
++	gic: interrupt-controller@1f01000 {
++		compatible = "arm,cortex-a15-gic";
++		interrupt-controller;
++		#interrupt-cells = <3>;
++		reg = <0x01f01000 0x1000>,
++		      <0x01f02000 0x2000>;
++	};
++
++	pinctrl: pinctrl@3001000 {
++		compatible = "sophgo,sg2000-pinctrl";
++		reg = <0x03001000 0x1000>,
++		      <0x05027000 0x1000>;
++		reg-names = "sys", "rtc";
++	};
++};
++
++&clk {
++	compatible = "sophgo,sg2000-clk";
++};
 -- 
 2.48.1
 
