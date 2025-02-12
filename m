@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-146026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E021A33062
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 21:04:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15ED3A33077
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 21:08:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3507C3A0573
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:04:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA35D1663CD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B4A8200136;
-	Wed, 12 Feb 2025 20:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4606F200136;
+	Wed, 12 Feb 2025 20:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="syFQMmfV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nOx3ZAuy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FD9200118
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 20:04:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE6220103B
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 20:08:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739390692; cv=none; b=CAMYtAoN6s8wMMnob/C/ayXObEh7Y5BakJvTLZ1R6V2CScoZwZQ5oPKnO3q82nAW7HBKa5l8Ooezb8gBJy77YF2MGq6opfJrpSoOvk5CLm6TEDs5xpk6rPRDUMR3RlrwtaDz3o4H/ZfOkinu84GpI9K2L1zm1V3GLoY9SJjERpA=
+	t=1739390886; cv=none; b=SEVz0s2vnehfK8hZa8qj78hQRPQOygNTdtG0bVz6X+BduzsPbRoggtLF67vjFLXAoUnliWb3oTq3WFPB7rcmdptQfUwN6BwVQHx6KZxvZw3pk1f2LgthSkr2Z04T3qmALt7efgtxxzu/chfX5QUQkdOhWUfeTS2iOCZoEI6Et2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739390692; c=relaxed/simple;
-	bh=j+J2VmaL2sBTod1+ELLX37mlLaK9BAiuTDjYikEkCZU=;
+	s=arc-20240116; t=1739390886; c=relaxed/simple;
+	bh=khSDGr/HZLTO+nneeIVjM+UO5LunJkeAXO6VcsfdNmc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YN5XD6RV9O1qfoxAM06sENKKPUs0J+N6XnIQKUDn0Ga01q9K6fV+9/8eRCX/17Qu+nIGkcDt2UNT4E6GWXUgzNcZkfelkKVsGRqwiFakoz0RJ+uAgk9cdNuP4kmFC1UmiCK/kddF2506cvIJUtk7kSrH0IP6jbZjimK4MV1pg+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=syFQMmfV; arc=none smtp.client-ip=209.85.218.49
+	 In-Reply-To:Content-Type; b=BiP8Zyylyx0rXdhv7YyP4rNgo5BHnixQpVVZhZSJX5lDTEddNHg44X48wvrQ9083O6Rsf8wcnl4u8pwV1OjkFTfc9MQ4MUXbqkgwU4YRel8P0NEfowgVVkGEDIvqbTA4348vtQkGIh/nm2H45VDqoe5V7VP+SspA40YN2ZfrAdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nOx3ZAuy; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ab7098af6fdso2874366b.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 12:04:50 -0800 (PST)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ab7bc87197bso4128666b.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 12:08:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739390689; x=1739995489; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1739390882; x=1739995682; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=TCppI8y93cboRnNPyFDL3rH6Gq98I5rJlO4BpN7swr8=;
-        b=syFQMmfVK5ok0H5u95jjiOJZRCpfXh3miQdww042skwx5xQXewyHSNlFrXS+j00cE3
-         3Cut9CC2NdrlYFYMu3KeEVEotYkOLpg/sJPdxDaPxuZi6+pEE3F+aWSiyAGz4I3dxOL0
-         XQmMtUHtxa065j5tot1Jwhuh7VaNyxBsuSvBxn2hyRmgTN5pW6BbIHujzbLi5rwkQt3n
-         Dc1JGGc/BQzZ+cloR4uRPmN74P4Qbiu38FYMHtxj7/84oKaeesCV1oxsZDIr8Tj3Nupj
-         2AUVr4qlxfSJs5rQ0yOkDJaV4H6ZgS19EYZBHf4o/1THyYjBtmWmD5kn/dXx1Vrs3yEY
-         zVzg==
+        bh=iu/7BkGsGBE91wCLd243z0DyD6Dxurxs3l5CaDlz+Xg=;
+        b=nOx3ZAuyrVPg+boOfaZepRm5Se9iANC+ddRiLCglXx3jqlFkex5K7qWKMgjAxibS9L
+         GTz2C4j9UXc5yNCTmD2qJ0a6Y1X3NnENUsF7VGuZH95zwCsA3OEXatmynKu502cQA0Ww
+         LBQyZ0VGu9CjS/pl7fMcqNvEfL1saenGzhS8RfoKuaMjGBWHsP5FrVagdGY9Q9VPr6a5
+         irc8OMKXJE2PgWtQEaz+HeeF5AbqXCZUHHbUKDhTt5UR3umPB1bNirXORymTUFqQbcoC
+         arkKrmL8uqlSSv5tXLIjgSv9gp433TkrZgTnWlIDqjgXg4titxEQtCy76m/BMM1FLMUi
+         XceA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739390689; x=1739995489;
+        d=1e100.net; s=20230601; t=1739390882; x=1739995682;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TCppI8y93cboRnNPyFDL3rH6Gq98I5rJlO4BpN7swr8=;
-        b=iWmodBUJBPAub3HIrl5XpLPZ2GYbmvZOMHs4visc//mC7fx71aiffGXoqHoPlyOCQc
-         AUhTNp09AYgTQxKhiXkMdto6zSOUujAFvs77GTYme5dN7fODFN0jKH591RNqiZyQHmDJ
-         PbVsO68Ge18+MKforp9cEDQghc/5VUVAi0/STtAQ5Qv/y2mHSFFyUx2eJ0q6RqnK3KgW
-         KEapixEOM58EaCzg36vDbwVg8xEOAJWltmcb9RwaypzveOT8F37SOdQQb8HKYq+H7q/z
-         gF8hX1+PcQQom+w+fJku8N+JX8QICN0sxZOYwcoLvknxCjrS6cobKDWBrYtaAYttotbu
-         pU7A==
-X-Forwarded-Encrypted: i=1; AJvYcCWJV1TQojUX8/r+SQqIlCgyXxE/v8N5BhkWv7AL1Yt58wkOmVYjkictYV9ptm8Be6iXJHg29Jg78ewQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmvM0LzPs8LCTgO6aC8+FRaTB/4wm2538ZVolp/GJBdArmN+fh
-	z+nU48L6e8wnYfxw5/1yxipxCDlw0BK8PkbA4ntVnCB5kOT5UmQMgorHtrDxUNg=
-X-Gm-Gg: ASbGncucfIm7fZX6dLpYsb1nC1i4r3EfruTiPPBJsviMXHs/5KGLg3c0uHuEsG2xT0/
-	mZd44rUqhNJrKy4oOEWEKYKDCdQvo8iMbMyiF/NqmV9Ho6/NtlZc9roLCpwCtqb1aYoXRCryOp+
-	g5DGL8qYBcBomWRroDe6trFYgsZ1TBYekd81w/qG6urzNnW9nEeH0N4kNbokKjmRc6ZDarQGcTp
-	txu9cWk7B6DdAd4RzH+xXd2zpxbDK7nL997XWyyT5V7N0PUczQafD9iBH5DXq8hxDu2+Ml/yH7N
-	/tZSpYCUmbPB4uM7yrHaxgy8RLMfj2hXJUo=
-X-Google-Smtp-Source: AGHT+IGkl11bv2ccUEKxaaQCvMxLK4FjNadbwKCT6A2Anh1DkgIvsPGgQ2iR8jPdG73PRBdgMlJogA==
-X-Received: by 2002:a17:907:728b:b0:ab7:d10b:e1f2 with SMTP id a640c23a62f3a-ab7f34a0d8amr145810666b.12.1739390688613;
-        Wed, 12 Feb 2025 12:04:48 -0800 (PST)
+        bh=iu/7BkGsGBE91wCLd243z0DyD6Dxurxs3l5CaDlz+Xg=;
+        b=U8NwvyMgm4BrrYeEJR7e8hYeWZ7r+MH5ADY1ReQDRAYSEVLdF7VIby9Q2rYvPpUvTM
+         qP4xmQsin3dc5qXbwQ48ubZO7QLib9Q38YFF1SdR21azMyfVtLILQhtfzzKkTYFqBBJl
+         wGeLhu14tKqFXbXfVNNU/AGEhUFfQ69tvw8r4OTy7X83SustUrb831vgmCPR+Uu1lToC
+         +90GhYAC90VJnaTBhWMkD5FH73AsaGPUgWEDtqLWjVUr+r598w7wEI+a9jgetdcTVxSa
+         yWE4J3KBnBDW4iGac4tshtjfnlap8s91raLf6m4KaoOTPmlJyQGKqMt6HzLapJ1OKRFA
+         M/pQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/x6p0JR7b9YyPIMUQ1FebJlyiB9dEUsali6Q/aN3iN8en4cnqDC4WWki/i3maMRrxdKZqsZ70f/0T@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsrrFW0ChSCHnaCYOevXhDSY125shlI9XaVgFDENTOXgE8w+gp
+	L6tBU8chzB/dfTjNsrj8OYueBqvKL1ny7RcwbXU7rRlzH0xKpwg1Yx/l5R04PQod8pdYMbHkaQb
+	P
+X-Gm-Gg: ASbGncsm9cfeF4BZiJ7RHcw/3Ck1kyegrLbXKlwKJjwIZ4SdO26c3pVlgFXFfVrDvGq
+	/pvKBeW7BqwFCGHDiKIcmnIByftpwzI1HxtjYdKtVI6+NmAKb5C4udIKVK7C5brense7GbnDaoc
+	wioupLWIoUlGiHdbeibr0tcSTEV9eVjhlJGLHyoXjP7IAbq7kts/gP+SofjbCvMQjSp/AWDWcXI
+	42gYTZNmFbpRBuMo0f38zXATSIYM4px/bHgo/Iz4OADpM7nw01rnxmvZfdRyMzdaFIltF1DzL2x
+	jTbyhDuRoiO8u7cHtP3AzxbX17yYTIJX0HU=
+X-Google-Smtp-Source: AGHT+IGJXdMoTs2hWEXInTR+ltJbHmJj8H/ju9vPMe3A99qcrdj0eyslJQbPiSzl9wG+clAd5ieZpw==
+X-Received: by 2002:a17:907:3da5:b0:aae:b259:ef5c with SMTP id a640c23a62f3a-ab7f31906bdmr184163766b.0.1739390880917;
+        Wed, 12 Feb 2025 12:08:00 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.144])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7c520a3a2sm641974966b.158.2025.02.12.12.04.45
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7cf46bf57sm539299666b.165.2025.02.12.12.07.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Feb 2025 12:04:48 -0800 (PST)
-Message-ID: <251cbe57-da12-47a8-bcf4-be0a0c4082f6@linaro.org>
-Date: Wed, 12 Feb 2025 21:04:44 +0100
+        Wed, 12 Feb 2025 12:08:00 -0800 (PST)
+Message-ID: <ab2394be-fe1c-46c1-9940-53b4ee1afc5b@linaro.org>
+Date: Wed, 12 Feb 2025 21:07:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +83,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] media: i2c: Add driver for Sony IMX728
+Subject: Re: [PATCH 1/4] media: dt-bindings: Add Sony IMX728
 To: Sebastian LaVine <slavine@d3embedded.com>, devicetree@vger.kernel.org,
  imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
@@ -116,6 +117,7 @@ Cc: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
  Vignesh Raghavendra <vigneshr@ti.com>, Will Deacon <will@kernel.org>,
  Zhi Mao <zhi.mao@mediatek.com>
 References: <20250212195656.69528-1-slavine@d3embedded.com>
+ <20250212195656.69528-2-slavine@d3embedded.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -162,36 +164,115 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20250212195656.69528-1-slavine@d3embedded.com>
+In-Reply-To: <20250212195656.69528-2-slavine@d3embedded.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 12/02/2025 20:56, Sebastian LaVine wrote:
-> This series adds a V4L2 sensor driver for the Sony IMX728, and related
-> devicetree overlays.
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Specifier for the GPIO connected to the XCLR (System Reset) pin.
+
+s/Specifier for the GPIO connected to the//
+But you could say that it is active low, for example.
+
+> +
+> +  error0-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Specifier for the GPIO connected to the XWRN pin.
+
+The same.
+
+> +
+> +  error1-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Specifier for the GPIO connected to the XERR pin.
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: ../video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        clock-frequency = <400000>;
+
+Drop, not really relevant.
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        camera@1a {
+> +            compatible = "sony,imx728";
+> +            reg = <0x1a>;
+> +
+> +            clocks = <&fixed_clock>;
+> +            clock-names = "inck";
+> +
+> +            reset-gpios = <&gpio4 17 GPIO_ACTIVE_LOW>;
+> +            error0-gpios = <&sens_exp 1 GPIO_ACTIVE_HIGH>;
+> +            error1-gpios = <&sens_exp 2 GPIO_ACTIVE_HIGH>;
+> +
+> +            port {
+> +                camera1: endpoint {
+> +                    remote-endpoint = <&vin1a_ep>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 575f0e6f0532..50bff3558d7d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21885,6 +21885,12 @@ T:     git git://linuxtv.org/media.git
+>  F:     Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+>  F:     drivers/media/i2c/imx415.c
 > 
-> v4l2-compliance 1.26.1-5142, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: 4aee01a02792 2023-12-12 21:40:38
+> +SONY IMX728 SENSOR DRIVER
+> +M:     Stuart Burtner <sburtner@d3embedded.com>
+> +L:     linux-media@vger.kernel.org
+> +S:     Odd Fixes
 
-Your Cc list is neither correct (incorrect my email) nor reasonable
-size. You cc-ed several maintainers which are not responsible for these
-files.
 
-For next version or any resend:
+Hm, why only odd fixes? If you don't care about driver, we also kind of
+might not care and remove it soon.
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument, so you will
-not CC people just because they made one commit years ago). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
 
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline) or work on fork of kernel
-(don't, instead use mainline). Just use b4 and everything should be
-fine, although remember about `b4 prep --auto-to-cc` if you added new
-patches to the patchset.
+> +F:     Documentation/devicetree/bindings/media/i2c/sony,imx728.yaml
+> +
+>  SONY MEMORYSTICK SUBSYSTEM
+>  M:     Maxim Levitsky <maximlevitsky@gmail.com>
+>  M:     Alex Dubov <oakad@yahoo.com>
+> --
+> 2.34.1
+> 
+> Please be aware that this email includes email addresses outside of the organization.
+
+
+Obviously. Please drop it. You can use b4 relay if you need to escape
+corporate junk.
 
 Best regards,
 Krzysztof
