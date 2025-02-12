@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-145996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 328ECA32FA7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:28:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D0FBA32FAB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:29:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C5577A05E7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 19:27:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 185B8188B243
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 19:29:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D9492627F1;
-	Wed, 12 Feb 2025 19:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590DB262814;
+	Wed, 12 Feb 2025 19:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QhkQCBab"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ch3jICgO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 604DD1DEFDD;
-	Wed, 12 Feb 2025 19:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CA6B1DEFDD;
+	Wed, 12 Feb 2025 19:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739388515; cv=none; b=dlEkoes/Nrx13EVSxTtQOiPKWN33VAqLnH0/Gu4Lf2F3fekT/tch3GpkKH4u2fFBR/l8uIvc9loBoL18Wp8XkhC4X4lQaJ2D/3dLs//abNqPHL2Rx2YqR6+RUMrL55OS8jMRjz70Zyv5b5k0zBJfSARhor3awHB+o/y/mgKiasU=
+	t=1739388546; cv=none; b=iaEAfmI5zJJwZpp1d835Av3GKMFSPben+2vaIch7yOvNP+9aTZ93k1/UZTCG69IiCn4d2lG9rTDM2z8JyFb4QCE8TLuqlv9dxAZ2Io66p3mOjBfdM0v1ckUQV4xtvnAEsVUzUD5+khJy3V90Ta9yJwOfj8vC2yDXABXo3xRiZ38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739388515; c=relaxed/simple;
-	bh=76ce+6c5pg+zeAsKc8pLYPMmWPnyMADHfy6sMwTw6l0=;
+	s=arc-20240116; t=1739388546; c=relaxed/simple;
+	bh=5A7p2CxvvvZFr6l6YbVpKnVsXi5lz8ULJFg87k2iwt4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AYu77IYHHOiLZzQMEuyJVmriRcJMXPElVTjfVSg18ZHlB/+83tQKyqrlrci5jSogdAXvt42mBcehpB4+Eap4ndRtA+3PP78qprOgtkPpd9B3hN195GncammCqW913neTWSqNRxCkuD7y+BEGH9Vo0l8vvVIeWIXc5HS5kellCL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QhkQCBab; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DC50C4CEDF;
-	Wed, 12 Feb 2025 19:28:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Z9wRismF8zjjk8hDwZFnTDFt1F7tQULxnyVA3syh1KvybS2sfaFllONNqQsu0AMsqbUxKVlbVOdSiHAYLFbn667+irSMyZ4JqKO/rohZqQ+mOUdh87dkdaSlQ83GUid5GNpFbDlvmqodOUE2mDDHhX5BmRW1HctnhSv2n+jDKLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ch3jICgO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7178AC4CEDF;
+	Wed, 12 Feb 2025 19:28:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739388513;
-	bh=76ce+6c5pg+zeAsKc8pLYPMmWPnyMADHfy6sMwTw6l0=;
+	s=k20201202; t=1739388546;
+	bh=5A7p2CxvvvZFr6l6YbVpKnVsXi5lz8ULJFg87k2iwt4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QhkQCBabbJyHrRez6eVn6H9jViqfl1LQnjvWik6Q6Syfn13yRrRydruG+FMf8cdTf
-	 c7aM4AaaHEE2Dl1OnG2eh4/HJu95zgzfjGVjkv7ULPHsVImrTwtNInk0JUjKCDsyWy
-	 Xi5pIXSQMDIjP8xUfIPnb+joQP8rNGTgqWyLRW1Jp+5IRMbGqej9/dBakdJbM6KDm4
-	 vaKfh5Taun/FY5uwLW1ehtzsewW6iDj9eAi1Cvmeg1TD6dAFGijlioQdK6gmJmmf+d
-	 RFnRktWtRXSkrPCZiFK1SHMb5WBm9arWEE6Y75xRDmdaBOt78YIYKlkYToUHhYA0oQ
-	 ghOtDl8z5iVpw==
-Message-ID: <912dc0d1-6236-43cf-b423-54368eeed2e7@kernel.org>
-Date: Wed, 12 Feb 2025 20:28:26 +0100
+	b=Ch3jICgO1GJ6pUAZYeMp6T4Mm19zQdhQeixaUrEld5F2sfIoYzFyT9mPvWH7EoKVA
+	 foMHAvnftklv21DPJIvC7wbue6xpQSn5Ob62snCb12gT6lNC6r/W0uEQoMTMc+ETOj
+	 aIlg17hsmLeqxZtvOoWWYC7F4r3RUi84XNhcus5YP1NjVowwyHOadK4q++SP0VF1Ci
+	 59UV30a/xbS6xbXvVU4xpH+rGRcYIUs+RmaybxQ83EhD7yYyBBZfm8Ej4oy5PkrnFY
+	 5T0EzuUwmHo3aLRlexDAclLnRFNDUAG8LUN6JQE/FaXEFJOSkRT78Im2i7d8xClXJ4
+	 DqhhoKaBqYsUQ==
+Message-ID: <668588f0-8c29-4598-8272-66a26e35544a@kernel.org>
+Date: Wed, 12 Feb 2025 20:28:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/3] dt-bindings: media: cdns,csi2rx.yaml: Add
- optional interrupts for cdns-csi2rx
-To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: mripard@kernel.org, mchehab@kernel.org, jai.luthra@linux.dev,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devarsht@ti.com,
- vaishnav.a@ti.com, r-donadkar@ti.com, u-kumar1@ti.com
-References: <20250212131244.1397722-1-y-abhilashchandra@ti.com>
- <20250212131244.1397722-2-y-abhilashchandra@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: sun50i-h616-ccu: Add LCD TCON clk
+ and reset
+To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
+Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ p.zabel@pengutronix.de, conor+dt@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org, samuel@sholland.org, jernej.skrabec@gmail.com,
+ wens@csie.org, sboyd@kernel.org, mturquette@baylibre.com,
+ ryan@testtoast.com, Chris Morgan <macromorgan@hotmail.com>
+References: <20250212191109.156766-1-macroalpha82@gmail.com>
+ <20250212191109.156766-2-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,42 +105,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250212131244.1397722-2-y-abhilashchandra@ti.com>
+In-Reply-To: <20250212191109.156766-2-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/02/2025 14:12, Yemike Abhilash Chandra wrote:
-> The Cadence CSI2RX IP exposes 3 interrupts [0] 12.7 camera subsystem.
-> Enabling these interrupts will provide additional information about a CSI
-> packet or an individual frame. So, add support for optional interrupts
-> and interrupt-names properties.
+On 12/02/2025 20:11, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> [0]: http://www.ti.com/lit/pdf/spruil1
-
-
-Why is this RFC?
-
+> Add the required clock and reset bindings for the LCD TCON.
 > 
-> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  .../devicetree/bindings/media/cdns,csi2rx.yaml        | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
-> index 2008a47c0580..a3acf4f861c2 100644
-> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
-> +++ b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
-> @@ -24,6 +24,17 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 3
+>  include/dt-bindings/clock/sun50i-h616-ccu.h | 4 ++++
+>  include/dt-bindings/reset/sun50i-h616-ccu.h | 2 ++
+>  2 files changed, 6 insertions(+)
 
-I understand interrupts might be unused by driver, but are you sure they
-are optionally connected one-by-one? IOW, why is this flexible?
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
