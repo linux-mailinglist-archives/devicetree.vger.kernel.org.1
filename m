@@ -1,305 +1,149 @@
-Return-Path: <devicetree+bounces-145581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFBB5A31B6A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 02:44:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09C10A31B74
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 02:46:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 634CE1671E1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 01:44:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A33D63A6036
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 01:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349BA1D8DEE;
-	Wed, 12 Feb 2025 01:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25D661CA9C;
+	Wed, 12 Feb 2025 01:46:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="qsBRk4wR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NM59lqKm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6B71AD3E1;
-	Wed, 12 Feb 2025 01:43:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A44F4A50;
+	Wed, 12 Feb 2025 01:46:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739324609; cv=none; b=JjYfcixHy52rWxMagDwhQh6khm/Xxx9+hceAQeBwYM/IzrH+MIn/ipPNqRUXU+Mris79x6A8eH81ittnc2l7GpQySfP+OSZaHwJiYxukmdoo2DYvL+gi42AuO0xe7XlxgUgYtAIahYwtkTkQSmrkBPt3WbcnRN52OsC/MHfJaoM=
+	t=1739324807; cv=none; b=ciBSxGD0lOpGgQAAgsZeA2c4vAv+nvKKmEP01rvDMgbr5c2OjEXFg3yukv+1y3zS5LGc9+2XwM3AmwfWjuj5tI1TutoDUEk1NQzi0R5gG2np8We3FEgoiy8U3BC3P8+THtxp3k4YezLnNWgsaYaKsi24D3CKZHGHgn2bNkc1tW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739324609; c=relaxed/simple;
-	bh=s/Z4LPLNfozIOTELcNy7AMLR2dcAkonUo/lno5NIcv0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=peQXttUQ8HBfUeJ4nsQisQtWTXI0gAyO7jY+d2P3o2uVXT88ct7IjqGtHD+zbculrmDE5OT4Yf89ZTRtLNa+PL/XLoboFpKEe8dm+jTSTjr1TZbO6bf6ZO6Zx8SpyEBKVxjpBqN1Jor1z3d9MnlmTg0HndVX1t1xt9BtGjvKzhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=qsBRk4wR; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from romank-3650.corp.microsoft.com (unknown [131.107.160.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 82FD72107ABD;
-	Tue, 11 Feb 2025 17:43:26 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 82FD72107ABD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1739324606;
-	bh=YIGXQWp2vHYmOORROwPtmg/4obB3ld7P9a96RbaBVDE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=qsBRk4wRIg/F/eecOTCuiulUOzMx65ifZ1ByxOQSrzspu/rEkJO3oW1OWywhgWr2d
-	 6Wf+gxpOlVVo0La5ERXlCgVzaJtcAZGpmaUHYBUP2tgYOHUqc6PcnmSkFue1wUEbao
-	 pDHbrSOV14fJlmri8TENZZIsfhHq119tD+uq0lLU=
-From: Roman Kisel <romank@linux.microsoft.com>
-To: arnd@arndb.de,
-	bhelgaas@google.com,
-	bp@alien8.de,
-	catalin.marinas@arm.com,
-	conor+dt@kernel.org,
-	dave.hansen@linux.intel.com,
-	decui@microsoft.com,
-	haiyangz@microsoft.com,
-	hpa@zytor.com,
-	krzk+dt@kernel.org,
-	kw@linux.com,
-	kys@microsoft.com,
-	lpieralisi@kernel.org,
-	manivannan.sadhasivam@linaro.org,
-	mingo@redhat.com,
-	robh@kernel.org,
-	ssengar@linux.microsoft.com,
-	tglx@linutronix.de,
-	wei.liu@kernel.org,
-	will@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arch@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-hyperv@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	x86@kernel.org
-Cc: benhill@microsoft.com,
-	bperkins@microsoft.com,
-	sunilmut@microsoft.com
-Subject: [PATCH hyperv-next v4 6/6] PCI: hv: Get vPCI MSI IRQ domain from DeviceTree
-Date: Tue, 11 Feb 2025 17:43:21 -0800
-Message-ID: <20250212014321.1108840-7-romank@linux.microsoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250212014321.1108840-1-romank@linux.microsoft.com>
-References: <20250212014321.1108840-1-romank@linux.microsoft.com>
+	s=arc-20240116; t=1739324807; c=relaxed/simple;
+	bh=PSCzs3ngD+C1yXihEL4cFezGLCaJyzWjlhrxKXNCgrQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V595FYSg8xIZybJhU8xAtImPcvtLB7aXjy8PlfQLFblP16G9F4+KXVFMdzFLoDjd89nA07Cs/olNDv7XRckqHhQ2v6e22JKl7IYcoxIexMSJ6vh7MNi3vNd1w6nDtTkraTii+Ro33FRCKtxC0OOFQuQo2YbEtX7UA4+Xdt+AxPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NM59lqKm; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-21f44e7eae4so105384935ad.2;
+        Tue, 11 Feb 2025 17:46:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739324803; x=1739929603; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a1PecfJ/ulEmOVAcJ2BrU2idsARRJ75dqEtuR45WJos=;
+        b=NM59lqKm70LVrrNltM9UP2xw4Hn+I6rN/LaUGueXGidU/eas7CD7MwLkdb7aGuqvfm
+         8eGRv48Y5yb7hKRdEWOKHyRnF1o4HtYulLjUsUBrTx3PvoWOgD7JCPpLvwUbfsGruL65
+         OIgtW/z3wzA4F1qNohxBHaAbt1adDFRCNEFmd3mGe2y7pqElD1abwQBvOGtCDcmqUB1Y
+         fR7HoRfEi6T/XDeu4ncnnmb3wNjGdf2RlBY4/je9qOprfRJ+oMXtSxMb40zlW7lVRKs6
+         rLWVDZM+3czatuAgfsrORH09b+H5Ly/gHQ5FkNO/T0hWDxFCn521QZHbPIXdJXFzKTVs
+         K9DQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739324803; x=1739929603;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a1PecfJ/ulEmOVAcJ2BrU2idsARRJ75dqEtuR45WJos=;
+        b=bU71n85bHXEB76ilT7uO0QcY1pjn4OZnoHkzSQdNT1qwidtgOdZw42Ve/K2cBtNHs1
+         pblzD9kxuDrdnDrEpRUXxmUgTmPZtAA+QrH3sCvAXCUJmchi3AUxI7i/vwC6p607HMob
+         7plYFV02LKXWozbiJZ03QuZXqS+Fsu8Tgc7JDaG7pO7Hct1p36WEvWrSag8gNBUa9pDb
+         ky7z/oeAiZV6qwEvJGzxTB2AcRkMXp36iL/5IGMupQ/LvVnBz3xx2dqTq6tyHaKHG4W3
+         y90vjTXNMH3AHJmgeDU95ZIgJo4EvrA/mawW1x0JDN7M7spX28E45m+KOX2Rz/bD0IzQ
+         74Cg==
+X-Forwarded-Encrypted: i=1; AJvYcCUaO6idz8cPOHnmFWsJXF0ZcOaCCQoQti3kQF5bUcq816afPMgI60kqqYcJ2X0Yp3eXVRnebjI38P1XIkdFYpOVtw==@vger.kernel.org, AJvYcCVyk5ZJ2Gp598qK0DO0MReHi/7BSiA7TVGYz+Z3lKgIeYYJdAyXC8MofJXsMcLkm8+1pT0JQbZTrwdRTxae@vger.kernel.org, AJvYcCXjBsZizoK2hhTr19Q/TSGVnbjBZSoLQRxEcijsPW1mI0dhQOlZJC4Z2OUKNlOvwbujOT3Xk0gIZJrf@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywi2YGW8tWyDi8LmFEwrqwDf0MSpt9X6gLX1Pz1vWW6kTFsWVbl
+	sZWTPf7Z6SYjjdOahCUyCCo41kmVDX2I1JSe/b0aZKxikdIcWLFs
+X-Gm-Gg: ASbGncv59UvoVFedp8HaaLp35/P++oujlF/AKBAdmqSiGuFni7NzxDkxZNwCb3AWF0y
+	WsQYxx5fmrn8KMJT2u1urfY10rLRI4tGWZV+cX1gH6B7s1fEBwRSdBDQv3ywgjC1atSezvpIJ9k
+	7L8ET65du1xWjyi2AAHp9fKVKEY1F2OME7SdJ8V8ZxzcEaGkbTQ9vV5yV/ocfbo6sCCsFbrRAiw
+	lTG3gKetFG4DXakvl6TdIsLEesss3Ej7yHCvmNYjGssHWhMiXmTklSm5a+q4Otmz6eyI64ijzVl
+	5xsVroEu7U9hjPCLwtkhvUkgnoDNAko4fkn0aW1JiWfMIKCyHOU=
+X-Google-Smtp-Source: AGHT+IHynglCW7bmaS/rFXo/7iC4aLmIduuaHZeoNU0TbMyLvmCKS9G7NEptuYzgov+wProVrfEplQ==
+X-Received: by 2002:a17:903:234e:b0:216:282d:c69b with SMTP id d9443c01a7336-220bbca3a8dmr19893075ad.50.1739324802807;
+        Tue, 11 Feb 2025 17:46:42 -0800 (PST)
+Received: from [10.89.236.32] (wf126-032.ust.hk. [175.159.126.32])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f3687bde1sm102872645ad.195.2025.02.11.17.46.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Feb 2025 17:46:42 -0800 (PST)
+Message-ID: <23db2d80-cfc4-4c15-a4fe-11e677185344@gmail.com>
+Date: Wed, 12 Feb 2025 09:46:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/10] drivers/perf: apple_m1: Support per-implementation
+ event tables
+To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250212-apple-cpmu-v1-0-f8c7f2ac1743@gmail.com>
+ <20250212-apple-cpmu-v1-2-f8c7f2ac1743@gmail.com>
+Content-Language: en-US
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <20250212-apple-cpmu-v1-2-f8c7f2ac1743@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The hyperv-pci driver uses ACPI for MSI IRQ domain configuration on
-arm64. It won't be able to do that in the VTL mode where only DeviceTree
-can be used.
 
-Update the hyperv-pci driver to get vPCI MSI IRQ domain in the DeviceTree
-case, too.
+Nick Chan 於 2025/2/12 凌晨12:07 寫道:
+> Use per-implementation event tables to allow supporting implementations
+> with a different list of events and event affinities.
+>
+> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+> ---
+>  drivers/perf/apple_m1_cpu_pmu.c | 65 +++++++++++++++++++++++++----------------
+>  1 file changed, 40 insertions(+), 25 deletions(-)
+>
+> diff --git a/drivers/perf/apple_m1_cpu_pmu.c b/drivers/perf/apple_m1_cpu_pmu.c
+> index 06fd317529fcbab0f1485228efe8470be565407c..1bf7ce5c09846c699d66bdfcca129f418a9dad9e 100644
+> --- a/drivers/perf/apple_m1_cpu_pmu.c
+> +++ b/drivers/perf/apple_m1_cpu_pmu.c
+[...]
+>  static void m1_pmu_reset(void *info)
+> @@ -572,25 +588,16 @@ static int m1_pmu_set_event_filter(struct hw_perf_event *event,
+>  	return 0;
+>  }
+>  
+> -static int m1_pmu_init(struct arm_pmu *cpu_pmu, u32 flags)
+> +static int apple_pmu_init_common(struct arm_pmu *cpu_pmu, u32 flags)
+>  {
+>  	cpu_pmu->handle_irq	  = m1_pmu_handle_irq;
+>  	cpu_pmu->enable		  = m1_pmu_enable_event;
+>  	cpu_pmu->disable	  = m1_pmu_disable_event;
+>  	cpu_pmu->read_counter	  = m1_pmu_read_counter;
+>  	cpu_pmu->write_counter	  = m1_pmu_write_counter;
+> -	cpu_pmu->get_event_idx	  = m1_pmu_get_event_idx;
+>  	cpu_pmu->clear_event_idx  = m1_pmu_clear_event_idx;
+>  	cpu_pmu->start		  = m1_pmu_start;
+>  	cpu_pmu->stop		  = m1_pmu_stop;
+> -
+> -	if (flags & ARMPMU_EVT_47BIT)
+> -		cpu_pmu->map_event = m1_pmu_map_event;
+> -	else if (flags & ARMPMU_EVT_63BIT)
+> -		cpu_pmu->map_event = m2_pmu_map_event;
+> -	else
+> -		return WARN_ON(-EINVAL);
+> -
+>  	cpu_pmu->reset		  = m1_pmu_reset;
+>  	cpu_pmu->set_event_filter = m1_pmu_set_event_filter;
 
-Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
----
- drivers/hv/vmbus_drv.c              | 23 ++++++----
- drivers/pci/controller/pci-hyperv.c | 69 ++++++++++++++++++++++++++---
- include/linux/hyperv.h              |  2 +
- 3 files changed, 80 insertions(+), 14 deletions(-)
+[...]
 
-diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
-index 9d0c2dbd2a69..3f0f9f01b520 100644
---- a/drivers/hv/vmbus_drv.c
-+++ b/drivers/hv/vmbus_drv.c
-@@ -45,7 +45,8 @@ struct vmbus_dynid {
- 	struct hv_vmbus_device_id id;
- };
- 
--static struct device  *hv_dev;
-+/* VMBus Root Device */
-+static struct device  *vmbus_root_device;
- 
- static int hyperv_cpuhp_online;
- 
-@@ -80,9 +81,15 @@ static struct resource *fb_mmio;
- static struct resource *hyperv_mmio;
- static DEFINE_MUTEX(hyperv_mmio_lock);
- 
-+struct device *hv_get_vmbus_root_device(void)
-+{
-+	return vmbus_root_device;
-+}
-+EXPORT_SYMBOL_GPL(hv_get_vmbus_root_device);
-+
- static int vmbus_exists(void)
- {
--	if (hv_dev == NULL)
-+	if (vmbus_root_device == NULL)
- 		return -ENODEV;
- 
- 	return 0;
-@@ -861,7 +868,7 @@ static int vmbus_dma_configure(struct device *child_device)
- 	 * On x86/x64 coherence is assumed and these calls have no effect.
- 	 */
- 	hv_setup_dma_ops(child_device,
--		device_get_dma_attr(hv_dev) == DEV_DMA_COHERENT);
-+		device_get_dma_attr(vmbus_root_device) == DEV_DMA_COHERENT);
- 	return 0;
- }
- 
-@@ -1920,7 +1927,7 @@ int vmbus_device_register(struct hv_device *child_device_obj)
- 		     &child_device_obj->channel->offermsg.offer.if_instance);
- 
- 	child_device_obj->device.bus = &hv_bus;
--	child_device_obj->device.parent = hv_dev;
-+	child_device_obj->device.parent = vmbus_root_device;
- 	child_device_obj->device.release = vmbus_device_release;
- 
- 	child_device_obj->device.dma_parms = &child_device_obj->dma_parms;
-@@ -2282,7 +2289,7 @@ static int vmbus_acpi_add(struct platform_device *pdev)
- 	struct acpi_device *ancestor;
- 	struct acpi_device *device = ACPI_COMPANION(&pdev->dev);
- 
--	hv_dev = &device->dev;
-+	vmbus_root_device = &device->dev;
- 
- 	/*
- 	 * Older versions of Hyper-V for ARM64 fail to include the _CCA
-@@ -2373,7 +2380,7 @@ static int vmbus_device_add(struct platform_device *pdev)
- 	struct device_node *np = pdev->dev.of_node;
- 	int ret;
- 
--	hv_dev = &pdev->dev;
-+	vmbus_root_device = &pdev->dev;
- 
- 	ret = of_range_parser_init(&parser, np);
- 	if (ret)
-@@ -2692,7 +2699,7 @@ static int __init hv_acpi_init(void)
- 	if (ret)
- 		return ret;
- 
--	if (!hv_dev) {
-+	if (!vmbus_root_device) {
- 		ret = -ENODEV;
- 		goto cleanup;
- 	}
-@@ -2723,7 +2730,7 @@ static int __init hv_acpi_init(void)
- 
- cleanup:
- 	platform_driver_unregister(&vmbus_platform_driver);
--	hv_dev = NULL;
-+	vmbus_root_device = NULL;
- 	return ret;
- }
- 
-diff --git a/drivers/pci/controller/pci-hyperv.c b/drivers/pci/controller/pci-hyperv.c
-index cdd5be16021d..24725bea9ef1 100644
---- a/drivers/pci/controller/pci-hyperv.c
-+++ b/drivers/pci/controller/pci-hyperv.c
-@@ -50,6 +50,7 @@
- #include <linux/irqdomain.h>
- #include <linux/acpi.h>
- #include <linux/sizes.h>
-+#include <linux/of_irq.h>
- #include <asm/mshyperv.h>
- 
- /*
-@@ -817,9 +818,17 @@ static int hv_pci_vec_irq_gic_domain_alloc(struct irq_domain *domain,
- 	int ret;
- 
- 	fwspec.fwnode = domain->parent->fwnode;
--	fwspec.param_count = 2;
--	fwspec.param[0] = hwirq;
--	fwspec.param[1] = IRQ_TYPE_EDGE_RISING;
-+	if (is_of_node(fwspec.fwnode)) {
-+		/* SPI lines for OF translations start at offset 32 */
-+		fwspec.param_count = 3;
-+		fwspec.param[0] = 0;
-+		fwspec.param[1] = hwirq - 32;
-+		fwspec.param[2] = IRQ_TYPE_EDGE_RISING;
-+	} else {
-+		fwspec.param_count = 2;
-+		fwspec.param[0] = hwirq;
-+		fwspec.param[1] = IRQ_TYPE_EDGE_RISING;
-+	}
- 
- 	ret = irq_domain_alloc_irqs_parent(domain, virq, 1, &fwspec);
- 	if (ret)
-@@ -887,6 +896,35 @@ static const struct irq_domain_ops hv_pci_domain_ops = {
- 	.activate = hv_pci_vec_irq_domain_activate,
- };
- 
-+#ifdef CONFIG_OF
-+
-+static struct irq_domain *hv_pci_of_irq_domain_parent(void)
-+{
-+	struct device_node *parent;
-+	struct irq_domain *domain;
-+
-+	parent = of_irq_find_parent(hv_get_vmbus_root_device()->of_node);
-+	domain = NULL;
-+	if (parent) {
-+		domain = irq_find_host(parent);
-+		of_node_put(parent);
-+	}
-+
-+	/*
-+	 * `domain == NULL` shouldn't happen.
-+	 *
-+	 * If somehow the code does end up in that state, treat this as a configuration
-+	 * issue rather than a hard error, emit a warning, and let the code proceed.
-+	 * The NULL parent domain is an acceptable option for the `irq_domain_create_hierarchy`
-+	 * function called later.
-+	 */
-+	if (!domain)
-+		WARN_ONCE(1, "No interrupt-parent found, check the DeviceTree data.\n");
-+	return domain;
-+}
-+
-+#endif
-+
- static int hv_pci_irqchip_init(void)
- {
- 	static struct hv_pci_chip_data *chip_data;
-@@ -906,10 +944,29 @@ static int hv_pci_irqchip_init(void)
- 	 * IRQ domain once enabled, should not be removed since there is no
- 	 * way to ensure that all the corresponding devices are also gone and
- 	 * no interrupts will be generated.
-+	 *
-+	 * In the ACPI case, the parent IRQ domain is supplied by the ACPI
-+	 * subsystem, and it is the default GSI domain pointing to the GIC.
-+	 * Neither is available outside of the ACPI subsystem, cannot avoid
-+	 * the messy ifdef below.
-+	 * There is apparently no such default in the OF subsystem, and
-+	 * `hv_pci_of_irq_domain_parent` finds the parent IRQ domain that
-+	 * points to the GIC as well.
-+	 * None of these two cases reaches for the MSI parent domain.
- 	 */
--	hv_msi_gic_irq_domain = acpi_irq_create_hierarchy(0, HV_PCI_MSI_SPI_NR,
--							  fn, &hv_pci_domain_ops,
--							  chip_data);
-+#ifdef CONFIG_ACPI
-+	if (!acpi_disabled)
-+		hv_msi_gic_irq_domain = acpi_irq_create_hierarchy(0, HV_PCI_MSI_SPI_NR,
-+			fn, &hv_pci_domain_ops,
-+			chip_data);
-+#endif
-+#if defined(CONFIG_OF)
-+	if (!hv_msi_gic_irq_domain)
-+		hv_msi_gic_irq_domain = irq_domain_create_hierarchy(
-+			hv_pci_of_irq_domain_parent(), 0, HV_PCI_MSI_SPI_NR,
-+			fn, &hv_pci_domain_ops,
-+			chip_data);
-+#endif
- 
- 	if (!hv_msi_gic_irq_domain) {
- 		pr_err("Failed to create Hyper-V arm64 vPCI MSI IRQ domain\n");
-diff --git a/include/linux/hyperv.h b/include/linux/hyperv.h
-index 4179add2864b..2be4dd83b0e1 100644
---- a/include/linux/hyperv.h
-+++ b/include/linux/hyperv.h
-@@ -1333,6 +1333,8 @@ static inline void *hv_get_drvdata(struct hv_device *dev)
- 	return dev_get_drvdata(&dev->device);
- }
- 
-+struct device *hv_get_vmbus_root_device(void);
-+
- struct hv_ring_buffer_debug_info {
- 	u32 current_interrupt_mask;
- 	u32 current_read_index;
--- 
-2.43.0
+The flags parameter is no longer used, so I will send a v2 with the parameter dropped.
+
+Nick Chan
 
 
