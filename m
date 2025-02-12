@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-145678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CC1AA320C8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:19:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76499A320CE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:20:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAA063A622B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 08:18:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4283164B73
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 08:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D858204F8E;
-	Wed, 12 Feb 2025 08:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7CE204F96;
+	Wed, 12 Feb 2025 08:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="MzZw8gbu"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="J7qg5N4h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC8371E9B3B
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 08:18:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B643C204F62
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 08:20:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739348341; cv=none; b=b4BXgjfO5Gi0V4AAcPKInwtbL6Xy8/AZfrd6ULSQjsBYzY1vORfUeydomy2DCoYHvRdug1uDaXQmi7x4yZuGE+Gh2dymxEQj9hXmgzMdC97QCAeIeddai/MWyajns8EDktjk69eASvMeRp6sMreebLmBl1h1vnHPn2z4M1F1UXw=
+	t=1739348445; cv=none; b=Iw3P+uoyl3hO4irXxdlTLKH0Qx65Xs2X4YHvEzBwIIXiwBrU5+EPFgBQkzITzzip8QLteWQ3o5StExIVUMoFPBxm1Yb49UOn+13/SU9pcu5eQif4jsB60ST8+RvmEXd701V19QTm0mqRQYwS2frkdjiECitMq+6V6IsMjjrta4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739348341; c=relaxed/simple;
-	bh=YarSXhMi3MICiWyZ0jRRnUYvv8XeVcnEvxnut2kZOyY=;
+	s=arc-20240116; t=1739348445; c=relaxed/simple;
+	bh=S4hSIPOftNB6lFWm7JsVPSQO1ZY84MmI5zfQTDiKGH8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uNzPZfuFRQRo0COsmqfy0K2+liytVg5KqczC3I4uHIzYXStkgKoqDJFzLw+eiUdN1rST87C6hnpU8b4s26H2Ceu8ZvL3vhlZRm0ILcH6lxNCY5sCmQSmFwjZ7BA1i7u2kt6RGRbHpTO74pFCxLczJ6N9VACAHUaCdvTd4GUb8XE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=MzZw8gbu; arc=none smtp.client-ip=209.85.218.53
+	 In-Reply-To:Content-Type; b=X6Kdudlyu0CMTg4lyQzOseLD7S2wbaGEamwvmfi/Gp2aL2oE9zEbhj0L6cAavDj6OQeDkKBKr6qvMpfBPVoct0inYpJhUGSJ81dV2HT0R/TvJCNqOcouUPTbxQEUGbq7omKJPBgZwQVKJDHVVtnRZW1xt5FIYVfNmkMkWMHvZdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=J7qg5N4h; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-aaecf50578eso1277172066b.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 00:18:58 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5de5e3729ecso8048353a12.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 00:20:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1739348337; x=1739953137; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1739348441; x=1739953241; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1Ca3jOifU6KLMuLCZFV+VlIgaFdG1oVjtxMx89qkKmE=;
-        b=MzZw8gbuqLVeL2UHvA5aKLgbE0gIYWGSISDZP8MAJ791yo/wtGJ7+ZTmRXtvZvv/1I
-         k9RPd3JtvMfno2uQv1Rn+TaeyJYifJQTkYPu3XPdEdN0ZPTumzW3t7sMioUELOYsPSia
-         drXfL8NnWsXSPezSKJ+hOfTZFHkANRAPcHxGxej8nia1kbkBxBlYA+3QrjMnu26tHrQF
-         zq1r1B3xazjK86GtNihSzPuatJhGbrq0IMiauK8LrqNxOkYr8O3AbXrGODzwBeMRoZ1l
-         DbPqI43fvhDFEs9DmaZdb2eg/SwiKKlZPMWU2ZyFsfN99XsWNqiq/b1i9Rx65RqlH4C+
-         h9FQ==
+        bh=2wN5plf6DQoz8MXbMzn7OeAYAYu7hV2vZ8E2rhA+6WY=;
+        b=J7qg5N4hXNRd0C7RFimsuMdLfm8fFKbhgdKZMgQuZfOIdaz6wAd1fDkVbk7AnPH8ib
+         FLc659FatLAMaAz9q60Qs9zg9oonB0OzFJ4/cxLtMQsdhWbsRBm5x2SKXUe8cO23Zr68
+         qQlZJiqhr02BSzauNG5zL1GVQHEmY1VM6Osus1dS6k+FdiwQfnuaMJzEs8w/edznz7rK
+         zvalqbHWqXXetBWyjRMT+sBSUND2VLzxjwry471hd2E5Utw1YjeF/urBHNXTxC86zzn+
+         2bWgGVra2EgR9h0hq9d5cyG7HCM/Yyt/P+Y2mvxlZO1RKYhlbKuw9bOGrA62Bqv9MIo+
+         HQjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739348337; x=1739953137;
+        d=1e100.net; s=20230601; t=1739348441; x=1739953241;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Ca3jOifU6KLMuLCZFV+VlIgaFdG1oVjtxMx89qkKmE=;
-        b=Wa/49hz17LuGD3cVpUsJ9rPDNYQ7UQnQpIQvVloZ+x4OkKlHy3JHsV7D+RYDPx5GZs
-         OFqDK5LeQT/i1AvfsXtyUCqPcbj1rqQZdXlf149To6oi0/75CJPb4H4/wPvr84rbqRhI
-         9tPpzZKHrnKOXT7Nr2J1Rsg25Z9hYLqCIneAIKtBnKmw6dEBecsbfZCHowHcG6UlR5nl
-         28Nw3GES78KXheBP+Z6qPauheUAHcZy9j440EbMAbIpmA92yD48ip3lwC6rwfl4iue5T
-         ie9OOGOCQtt1egAyLup3ptqO8OhIy/V8S0Nk+vwY4DmHL+kZZDEk/RlzI5qDMwFUq5z2
-         j1Jg==
-X-Forwarded-Encrypted: i=1; AJvYcCWWVKpOU2T4HsMQyGvEKaS5HfPL3QCel0pwaz/RWMcamhD/EHjVb9toROivoNnIi3WZe/KLyuCAlA+s@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUm9YsQRXHOq5Mce49MljEj3e9z19jttTC8m0WLkzo1QO8TnG4
-	ZrO7dl1a5qEgQdYCyOKiQmkYRD7g/kHChuKHrvoDfU6SAGaKvXyFAh8k31UZiZo=
-X-Gm-Gg: ASbGnctdlO7NbhcemaNCMlhRCkZeZRPi683CZUhiCCRXHAB3eDHFZ855rZEhJJM0yBD
-	s4j4kV+SNlbte9lTxg/TMmFDM7OSwJci2/8G/Eg7m1n59WTCVp85WN3drRVn3+YHDGCap3Nt6VD
-	A2K4gwcdbo7swrlKOh79qmh/ExZhQ2Vt8wxj6kuWzr9mWbs03u0CQUnoK18hnetwmtv0ITOHT0c
-	AMsTqYoHOKV894ZtooV+8EJQsHogxCTDK98Dd/FobxJFiVrf+akP9oObzubTMyf50GTrF69qvyS
-	ws3S8Tit2uyo9ExoVub7RJ3n
-X-Google-Smtp-Source: AGHT+IHBLSlZ+tK9sv24mLWsqTARUiAJ4W3lRBwdQFx31Cj8hrychh4XqU6wPO/Gzkojw3c5V7eTFA==
-X-Received: by 2002:a17:906:6a0b:b0:ab6:b9a6:a9e6 with SMTP id a640c23a62f3a-ab7f34a11a2mr161055766b.46.1739348337071;
-        Wed, 12 Feb 2025 00:18:57 -0800 (PST)
+        bh=2wN5plf6DQoz8MXbMzn7OeAYAYu7hV2vZ8E2rhA+6WY=;
+        b=hTJglgaaak2Tvok7rMdeMU6oi2DCQFMFVfVq59TDUshXp0c80ZsD8EyaQZ6vGbjtwC
+         dyA/gPGeNemxMOS4RnEEdHnJijFX0mfeWACWwCopuvoCAzQM+NGOLZwuaOzxvrTzdi/O
+         0OwKoHWOIhvzTzB1Ztab8LUWTBRjtLeY/OPlYJDPto45IJhghu10paM2aXQwzLED6IEd
+         Hj0nvX5SmGKfjhoo5iOaLL3o5/zzwq8bB2it94+Dq7zCpone7NxlXwdF94z8WQo6qmo3
+         XBX0dnVPtwn6Mwv2ILN7ezvoqmZr3ojVROM4sto29q1SQmEBY+jFafMzJTq4ko1hP89J
+         wP+w==
+X-Forwarded-Encrypted: i=1; AJvYcCVtMDT8BmuKqS6jIOqGeAnwjV7OD3QIZ2w8V3jD6CG4tSrX2/dp7Cc+OLOTfp5pC1sIjn5laiz08mXp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxahguarTHuDlBC1UN4ll/kSq0L6ZFQ4/UAHJvZ6qZsdUMKBFDB
+	2OOLuwC1eAReuzDuHHvH28AJ+aliyyslA6ftT/9GducAWL1i7jzx8fQr+jWVfYA=
+X-Gm-Gg: ASbGnctqpKASoGPYN2RCIV7bMHD4u/KdBWwyww7p6QmtBeeJIXbo7XmGdNvQ8NXBn12
+	uXoFpZTCMinVJDByTu4Fc1SiLlVw/n2LugIzCXCQDxRigivKuPMw+4YH6RhUEsGVgYx4z8GEgVW
+	qeE9bBflRg4+PiNsO6wLR9OqhdjGYWepIopfxAaHn7SuncRZohCGtL2ITOexEWA7rRIBxrE5Xzg
+	iG01ZaR3dxaIZDRxmPHG4FDF9bQfYcuHuBZ1v3pCk9MdQwHYh94MYaEBsu5p/+modFe2JUwU1QE
+	fQywUZOkZwc4gkknXvQimzIR
+X-Google-Smtp-Source: AGHT+IGH5sEhr0U+ODZ2ybXw27QQ2etp37E5mEcz8CPyECrALs3n5tNlB3o2g80JXIcC69CgqPxvTw==
+X-Received: by 2002:a05:6402:40c7:b0:5de:6bc2:7bb with SMTP id 4fb4d7f45d1cf-5deb088ebb9mr1358535a12.17.1739348441007;
+        Wed, 12 Feb 2025 00:20:41 -0800 (PST)
 Received: from [192.168.50.4] ([82.78.167.173])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5de5e15c76bsm8231120a12.42.2025.02.12.00.18.54
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5de61830117sm7548806a12.6.2025.02.12.00.20.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Feb 2025 00:18:56 -0800 (PST)
-Message-ID: <b697f8d5-79ca-4d51-b5ac-9dd51713c0ea@tuxon.dev>
-Date: Wed, 12 Feb 2025 10:18:54 +0200
+        Wed, 12 Feb 2025 00:20:40 -0800 (PST)
+Message-ID: <202c1e0b-f17b-43ec-918c-2a4460a666c2@tuxon.dev>
+Date: Wed, 12 Feb 2025 10:20:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,8 +81,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/15] dt-bindings: rtc: at91rm9200: add
- microchip,sama7d65-rtc
+Subject: Re: [PATCH v2 10/15] ARM: at91: pm: add DT compatible support for
+ sama7d65
 To: Ryan.Wanner@microchip.com, lee@kernel.org, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, sre@kernel.org,
  nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
@@ -91,10 +91,10 @@ Cc: linux@armlinux.org.uk, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
 References: <cover.1739221064.git.Ryan.Wanner@microchip.com>
- <a0338f3d05ed43eeaf2121dd22a9f0dbf25f2fc0.1739221064.git.Ryan.Wanner@microchip.com>
+ <a35bf7aece5f43f2517f2a4082160f47ef2acb32.1739221064.git.Ryan.Wanner@microchip.com>
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-In-Reply-To: <a0338f3d05ed43eeaf2121dd22a9f0dbf25f2fc0.1739221064.git.Ryan.Wanner@microchip.com>
+In-Reply-To: <a35bf7aece5f43f2517f2a4082160f47ef2acb32.1739221064.git.Ryan.Wanner@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
@@ -103,36 +103,62 @@ Content-Transfer-Encoding: 7bit
 On 10.02.2025 23:13, Ryan.Wanner@microchip.com wrote:
 > From: Ryan Wanner <Ryan.Wanner@microchip.com>
 > 
-> Add SAMA7D65 RTC compatible to DT bindings documentation.
+> Add support for SAMA7D65 new compatible strings in pm.c file for wakeup source
+> IDs and PMC.
+> This is the first bits of PM for this new SoC. PM depends on other patches.
 > 
 > Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> [nicolas.ferre@microchip.com: split patch and address only the pm.c changes]
+> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 > ---
->  .../devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml          | 3 +++
->  1 file changed, 3 insertions(+)
+>  arch/arm/mach-at91/pm.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml b/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
-> index c8bb2eef442dd..0c878331170b4 100644
-> --- a/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
-> @@ -25,6 +25,9 @@ properties:
->        - items:
->            - const: microchip,sam9x7-rtc
->            - const: microchip,sam9x60-rtc
-> +      - items:
-> +          - const: microchip,sama7d65-rtc
-> +          - const: microchip,sam9x60-rtc
-
-Can't these be merged like below?
-
-- items:
-    - enum:
-        - microchip,sam9x7-rtc
-        - microchip,sama7d65-rtc
-    - const: microchip,sam9x60-rtc
-
-
+> diff --git a/arch/arm/mach-at91/pm.c b/arch/arm/mach-at91/pm.c
+> index 6c3e6aa22606f..1eec68e92f8d8 100644
+> --- a/arch/arm/mach-at91/pm.c
+> +++ b/arch/arm/mach-at91/pm.c
+> @@ -222,13 +222,16 @@ static const struct of_device_id sam9x60_ws_ids[] = {
+>  	{ /* sentinel */ }
+>  };
 >  
->    reg:
->      maxItems: 1
+> -static const struct of_device_id sama7g5_ws_ids[] = {
+> -	{ .compatible = "microchip,sama7g5-rtc",	.data = &ws_info[1] },
+> +static const struct of_device_id sama7_ws_ids[] = {
+> +	{ .compatible = "microchip,sama7d65-rtc",	.data = &ws_info[1] },
+> +	{ .compatible = "microchip,sama7g5-rtc",        .data = &ws_info[1] },
+
+There are spaces b/w , and .data
+
+>  	{ .compatible = "microchip,sama7g5-ohci",	.data = &ws_info[2] },
+>  	{ .compatible = "usb-ohci",			.data = &ws_info[2] },
+>  	{ .compatible = "atmel,at91sam9g45-ehci",	.data = &ws_info[2] },
+>  	{ .compatible = "usb-ehci",			.data = &ws_info[2] },
+> +	{ .compatible = "microchip,sama7d65-sdhci",	.data = &ws_info[3] },
+>  	{ .compatible = "microchip,sama7g5-sdhci",	.data = &ws_info[3] },
+> +	{ .compatible = "microchip,sama7d65-rtt",       .data = &ws_info[4] },
+
+There are spaces b/w , and .data
+
+>  	{ .compatible = "microchip,sama7g5-rtt",	.data = &ws_info[4] },
+>  	{ /* sentinel */ }
+>  };
+> @@ -1379,6 +1382,7 @@ static const struct of_device_id atmel_pmc_ids[] __initconst = {
+>  	{ .compatible = "atmel,sama5d2-pmc", .data = &pmc_infos[1] },
+>  	{ .compatible = "microchip,sam9x60-pmc", .data = &pmc_infos[4] },
+>  	{ .compatible = "microchip,sam9x7-pmc", .data = &pmc_infos[4] },
+> +	{ .compatible = "microchip,sama7d65-pmc", .data = &pmc_infos[4] },
+>  	{ .compatible = "microchip,sama7g5-pmc", .data = &pmc_infos[5] },
+>  	{ /* sentinel */ },
+>  };
+> @@ -1672,7 +1676,7 @@ void __init sama7_pm_init(void)
+>  	at91_pm_modes_init(iomaps, ARRAY_SIZE(iomaps));
+>  	at91_pm_init(NULL);
+>  
+> -	soc_pm.ws_ids = sama7g5_ws_ids;
+> +	soc_pm.ws_ids = sama7_ws_ids;
+>  	soc_pm.config_pmc_ws = at91_sam9x60_config_pmc_ws;
+>  
+>  	soc_pm.sfrbu_regs.pswbu.key = (0x4BD20C << 8);
 
 
