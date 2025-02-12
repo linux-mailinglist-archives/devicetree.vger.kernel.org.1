@@ -1,306 +1,129 @@
-Return-Path: <devicetree+bounces-145876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65DD2A32ADD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:56:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26B04A32AF9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:00:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68D7A3A98EC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 15:55:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C61C164CFF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:00:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C97F256C8E;
-	Wed, 12 Feb 2025 15:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1853123C38C;
+	Wed, 12 Feb 2025 16:00:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="URfurnxK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kz5jBzUv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C8D0271814;
-	Wed, 12 Feb 2025 15:50:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717E821D5B8;
+	Wed, 12 Feb 2025 16:00:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739375459; cv=none; b=T9LgARlIKrfU3PSzsQ1hQvq5KG3mzYwQJBHtIOF2uTkSUhlKnryQY1oPgux/IEyRMdh5YQolJfps+g9lC6yAr/WtXhFtpxhq/LisxLb7FzG8egaCOGpbrMSMVMEmqFoN6brIBKfeZ1fUWplfjXTf7QZoFCTfyDGRzqh+gdMM9i8=
+	t=1739376004; cv=none; b=qOfiMlSpwOpwhel5LVB7uhFmkkyCWFEaj0DoveAYz7LvDgCm/8SyFU7SlR53dUbBnZC0hs7H6WGDH/pDcmLmW75KT4tPgXtq+mua+x4H8Kkt4598EkBDykgxRJcINjq1hnHTYMRb9h1ssZNM3/wzFJtt/iWmdqQu8BJYGiHqd2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739375459; c=relaxed/simple;
-	bh=veRJ1seuG5meNk+CJnoyOMvxRECby9IaNKYibL9rsv8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OFRVFVSwSNkDQ/YIrxQISq4Mm6F9vdHA9cyzRd/ONocitJTiMzYRR5VXolP6oFpKuwJur0z4XanksTdJHSjDhstvVOORwNdzpkSvXXQucLvtRsTDxtEUZli8XAxhfMrgN3a4/3jygRIi7yfsk8Or15x4UnNFoKVvR/1zfnaEMK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=URfurnxK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6EE5C4AF0B;
-	Wed, 12 Feb 2025 15:50:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739375458;
-	bh=veRJ1seuG5meNk+CJnoyOMvxRECby9IaNKYibL9rsv8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=URfurnxKnHDqT67NaXeF+MY87//DBPNEdgtMNSbHJuEcs2WqelZJAMtNB2a7ExU3R
-	 qNYbQaQH4EXETek/dstSEgt8j8HVHlX3VGNiv3f55CHQM6nvHpMKqdnZiZr39oPXUj
-	 okfs6CO8CLUMyPiPLBzo+rU8ouluHvfaJdBM/aun3YMNEorHsyDPUVk9OTp1nVv+s5
-	 hnIkBcqy8Ljx+z7bcLIDvwwE+jdBqmB4lu9wYSXb6GU+2pv6d3fhKh1eG34RodGRV0
-	 V2acr5V1TiHFPzw0sCLhkCcpaxrDduHi7b6jaq1dcs3B6TK2Quh+5YEqLvXQiXzlOl
-	 2Dmt7EuKcWo4g==
-Date: Wed, 12 Feb 2025 15:50:50 +0000
-From: Lee Jones <lee@kernel.org>
-To: Fred Treven <ftreven@opensource.cirrus.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Simon Trimmer <simont@opensource.cirrus.com>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	James Ogletree <jogletre@opensource.cirrus.com>,
-	Ben Bright <ben.bright@cirrus.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Jeff LaBundy <jeff@labundy.com>, Heiko Stuebner <heiko@sntech.de>,
-	Karel Balej <balejk@matfyz.cz>,
-	Igor Prusov <ivprusov@salutedevices.com>,
-	Jack Yu <jack.yu@realtek.com>,
-	Weidong Wang <wangweidong.a@awinic.com>,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
-	Paul Handrigan <paulha@opensource.cirrus.com>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Nuno Sa <nuno.sa@analog.com>, alsa-devel@alsa-project.org,
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH RESEND 5/7] mfd: cs40l26: Add support for CS40L26 core
- driver
-Message-ID: <20250212155050.GC2274105@google.com>
-References: <20250204231835.2000457-1-ftreven@opensource.cirrus.com>
- <20250204231835.2000457-6-ftreven@opensource.cirrus.com>
- <4e5f0194-22bc-4e17-85f4-6dbc145a936b@kernel.org>
- <3bff0ff8-7397-414d-a701-011d5b5a41f4@opensource.cirrus.com>
+	s=arc-20240116; t=1739376004; c=relaxed/simple;
+	bh=xY+L/NdLZatv1yKtV6ZsZ5DxzpcOvWiPA6L0Bhck5ho=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hXE8wVm0do713pt0VDe/oaz+QiATXtrNT+ieyCqeExMmRgz896gAmoRhyz+G1yIh8MTMPGae1BE/fhSlxRMyO4yNrl2sbd7IrVLCTZBTyMHBC3Gr0LtgIvfkiixOjOrHkhrhkdYKxfaD47+4q2t34j4YklY/VAScatD9FUG2ZfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kz5jBzUv; arc=none smtp.client-ip=209.85.222.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-86707fe3eccso605139241.0;
+        Wed, 12 Feb 2025 08:00:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739376001; x=1739980801; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IZAy/eVuHocLtw+QAdIzG1zYEhIMA++9xC/HxPnjm/4=;
+        b=Kz5jBzUvsTZ/4Kji/RhuLvfbhET68TVD0W31uxDkllzXc3D8vSbsZD2izsP259OHyo
+         iqb/rZKf8QB7ZA9PWdH82WQ5DIRqjYySU9lOGsItvv5iOVfJfEG5yd+8MHwQRyun1VR8
+         34ElqlEEIPX8X3byXODlWzMXFnROdbVDS3da3KN678jrOnCWVgzjd4buAN3Rt0CspW7H
+         3vKue9TQb1iXpQ+T2ClL3V+5HEBl5h8Anotp2ier2T9HU6zVqFynfqakz5eTvGpE01E3
+         GU1i/ZYWmCpqmjINOBop0bjZLO8HESY0G6p4a8MQa2jG6HRo3VsIacJuz4Ln1LwX12p0
+         nQ4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739376001; x=1739980801;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IZAy/eVuHocLtw+QAdIzG1zYEhIMA++9xC/HxPnjm/4=;
+        b=UPjLgOO766mzh3Y9GSnqjrr0buLgtNvhdhzb8r4GBRQg/7f2xXXij5t5L0OuP63Z8A
+         4JlgjE1LtE8IsRfiJOa12z7Ogymkf0oC8NeHKENEB6gcJyID6dzfplK8BA7TaNVAGpHY
+         y3IWq0zT/pPmK2NfGSCYEojORUlQFnvXnOiUywNWf5TswjVMPn/rjnx188tGq/clVhqp
+         NQDIe3HeuULubqEN36PiBApdcwXpmTvBv8G5JDO5PW3wJs0GBfsF6jVKndCThdkQKxFQ
+         5u1/9N3ZdtHF6S7NF7xQvsx68yTam0IthqjUMH10yWaTQhpabh3KVNUNEIvIH6G0r6Vi
+         kNEA==
+X-Forwarded-Encrypted: i=1; AJvYcCWKpHCdF5NpSzlK/3T+tO6lSciHfAZsI7hSwA1UvB1+VS4K4XYj9mq2mqdnpoyLptpo5ObaOxHcPEoArm5u@vger.kernel.org, AJvYcCXW1Yg+DGfslLLJV7ShNx3EhJTF7qTYus3mV4EbEv4zl9zAyG1yq1FtNhnKJRYI5hoNWJn6hsB2+ANu+kHD+vD3E+I=@vger.kernel.org, AJvYcCXq3wRub2ZZZg0NYzpSVAtDKQ8eys3PYrjJoEZxFgjQnkI+BjGRnxEkcrVqpz12YadIXIbAFLR6sXg/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3XhOPYMjl234X12NmfC7BLceu8RaHbdlz6TZ30jJD74GqyVNO
+	7IPkinbhM149vtBNzNiuBhiqJVbPFNQlEg/MJo1INkAMAeaGzEY8
+X-Gm-Gg: ASbGncsAnkA34RTKn6wgqx9GjmWYUHmqbrfhhUse3v2l0XyJLuq2gjL5RrsTAwrUVrP
+	5KuzOj/u2dsV+iMA+/H3E/NWYmbaqYFIqGDq0Uh+anKZxOwHS303mfhkSbOU/LOBUKznedJwfvU
+	1eY/h5qa4WH8iRqadF4Uw5PvoHgsaE5K5SONiPRSwsPTqti0W0FyOkcVpKY2BvHnUm9eA2xrrM8
+	q5V4IODi0lKTa9T70VOJKFR9AfiLbFz/c04NXx71vAaa8VJ9QqNaBQBVINWdbhiPB5b5JuPoVMh
+	AQDrzgG6hC2J81pSl4uWY7Kjuu1hlAfNADH8DzjuZvAGeTyFBGqriknLfUEjT6MQPPYXJNihKY5
+	18Q==
+X-Google-Smtp-Source: AGHT+IH/AsMNaYbBvPxCWDSgZZjA1ZLTc+PqyHoxHdTOXb7RxYggVLAoaNgvJxCHflzGwmZgt2iujw==
+X-Received: by 2002:a05:6102:3907:b0:4bb:c670:7ef4 with SMTP id ada2fe7eead31-4bbe1290387mr7187891137.3.1739376001101;
+        Wed, 12 Feb 2025 08:00:01 -0800 (PST)
+Received: from localhost.localdomain ([38.44.237.182])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-866f9636904sm2335213241.3.2025.02.12.07.59.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2025 08:00:00 -0800 (PST)
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	alim.akhtar@samsung.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Denzeel Oliva <wachiturroxd150@gmail.com>
+Subject: [PATCH v1 1/2] dt-bindings: soc: samsung: exynos-sysreg: add compatibles peric0/1 sysreg for Exynos990
+Date: Wed, 12 Feb 2025 15:59:42 +0000
+Message-Id: <20250212155943.269-1-wachiturroxd150@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3bff0ff8-7397-414d-a701-011d5b5a41f4@opensource.cirrus.com>
 
-On Tue, 11 Feb 2025, Fred Treven wrote:
+Downstream from the Exynos990 kernel source it has more sysreg in
+flexpmu, but for now only those two will be added.
 
-> On 2/5/25 04:34, Krzysztof Kozlowski wrote:
-> > On 05/02/2025 00:18, Fred Treven wrote:
-> > > Introduce support for Cirrus Logic Device CS40L26:
-> > > A boosted haptic driver with integrated DSP and
-> > > waveform memory with advanced closed loop algorithms
-> > > and LRA protection.
-> > > 
-> > Please wrap commit message according to Linux coding style / submission
-> > process (neither too early nor over the limit):
-> > https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-> > 
-> > 
-> > > +
-> > > +#include <linux/cleanup.h>
-> > > +#include <linux/mfd/core.h>
-> > > +#include <linux/mfd/cs40l26.h>
-> > > +#include <linux/property.h>
-> > > +#include <linux/regulator/consumer.h>
-> > > +
-> > > +static const struct mfd_cell cs40l26_devs[] = {
-> > > +	{ .name = "cs40l26-codec", },
-> > > +	{ .name = "cs40l26-vibra", },
-> > > +};
-> > > +
-> > > +const struct regmap_config cs40l26_regmap = {
-> > > +	.reg_bits = 32,
-> > > +	.val_bits = 32,
-> > > +	.reg_stride = 4,
-> > > +	.reg_format_endian = REGMAP_ENDIAN_BIG,
-> > > +	.val_format_endian = REGMAP_ENDIAN_BIG,
-> > > +	.max_register = CS40L26_LASTREG,
-> > > +	.cache_type = REGCACHE_NONE,
-> > > +};
-> > > +EXPORT_SYMBOL_GPL(cs40l26_regmap);
-> > > +
-> > > +static const char *const cs40l26_supplies[] = {
-> > > +	"va", "vp",
-> > > +};
-> > > +
-> > > +inline void cs40l26_pm_exit(struct device *dev)
-> > 
-> > Exported function and inlined? This feels odd. Anyway, don't use any
-> > inline keywords in C units.
-> > 
-> > > +{
-> > > +	pm_runtime_mark_last_busy(dev);
-> > > +	pm_runtime_put_autosuspend(dev);
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(cs40l26_pm_exit);
-> > > +
-> > > +static int cs40l26_fw_write_raw(struct cs_dsp *dsp, const char *const name,
-> > > +				const unsigned int algo_id, const u32 offset_words,
-> > > +				const size_t len_words, u32 *buf)
-> > > +{
-> > > +	struct cs_dsp_coeff_ctl *ctl;
-> > > +	__be32 *val;
-> > > +	int i, ret;
-> > > +
-> > > +	ctl = cs_dsp_get_ctl(dsp, name, WMFW_ADSP2_XM, algo_id);
-> > > +	if (!ctl) {
-> > > +		dev_err(dsp->dev, "Failed to find FW control %s\n", name);
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	val = kzalloc(len_words * sizeof(u32), GFP_KERNEL);
-> > 
-> > Looks like an array, so kcalloc
-> > 
-> > > +	if (!val)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	for (i = 0; i < len_words; i++)
-> > > +		val[i] = cpu_to_be32(buf[i]);
-> > > +
-> > > +	ret = cs_dsp_coeff_write_ctrl(ctl, offset_words, val, len_words * sizeof(u32));
-> > > +	if (ret < 0)
-> > > +		dev_err(dsp->dev, "Failed to write FW control %s\n", name);
-> > > +
-> > > +	kfree(val);
-> > > +
-> > > +	return (ret < 0) ? ret : 0;
-> > > +}
-> > > +
-> > > +inline int cs40l26_fw_write(struct cs_dsp *dsp, const char *const name, const unsigned int algo_id,
-> > > +			    u32 val)
-> > > +{
-> > > +	return cs40l26_fw_write_raw(dsp, name, algo_id, 0, 1, &val);
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(cs40l26_fw_write);
-> > > +
-> > > +static int cs40l26_fw_read_raw(struct cs_dsp *dsp, const char *const name,
-> > > +			       const unsigned int algo_id, const unsigned int offset_words,
-> > > +			       const size_t len_words, u32 *buf)
-> > > +{
-> > > +	struct cs_dsp_coeff_ctl *ctl;
-> > > +	int i, ret;
-> > > +
-> > > +	ctl = cs_dsp_get_ctl(dsp, name, WMFW_ADSP2_XM, algo_id);
-> > > +	if (!ctl) {
-> > > +		dev_err(dsp->dev, "Failed to find FW control %s\n", name);
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	ret = cs_dsp_coeff_read_ctrl(ctl, offset_words, buf, len_words * sizeof(u32));
-> > > +	if (ret) {
-> > > +		dev_err(dsp->dev, "Failed to read FW control %s\n", name);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	for (i = 0; i < len_words; i++)
-> > > +		buf[i] = be32_to_cpu(buf[i]);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +inline int cs40l26_fw_read(struct cs_dsp *dsp, const char *const name, const unsigned int algo_id,
-> > 
-> > All your exported functions should have kerneldoc.
-> 
-> I'm happy to add this, but I don't know where this directive comes from.
-> Could you share where in the kernel style guide (or elsewhere) this is stated?
-> There are also hundreds of examples in MFD in which exported functions
-> do not have kerneldoc which is why I'm curious.
-> 
-> > 
-> > > +			   u32 *buf)
-> > > +{
-> > > +	return cs40l26_fw_read_raw(dsp, name, algo_id, 0, 1, buf);
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(cs40l26_fw_read);
-> > > +
-> > > +static struct cs40l26_irq *cs40l26_get_irq(struct cs40l26 *cs40l26, const int num, const int bit);
-> > > +
-> > > +static int cs40l26_gpio1_rise_irq(void *data)
-> > > +{
-> > > +	struct cs40l26 *cs40l26 = data;
-> > > +
-> > > +	if (cs40l26->wksrc_sts & CS40L26_WKSRC_STS_EN)
-> > > +		dev_dbg(cs40l26->dev, "GPIO1 Rising Edge Detected\n");
-> > > +
-> > > +	cs40l26->wksrc_sts |= CS40L26_WKSRC_STS_EN;
-> > > +
-> > > +	return 0;
-> > > +}
-> > 
-> > 
-> > ...
-> > 
-> > > +err:
-> > > +	dev_err(cs40l26->dev, "Invalid revision 0x%02X for device 0x%06X\n", cs40l26->revid,
-> > > +		cs40l26->devid);
-> > > +	return -EINVAL;
-> > > +}
-> > > +
-> > > +int cs40l26_set_pll_loop(struct cs40l26 *cs40l26, const u32 pll_loop)
-> > > +{
-> > > +	int i;
-> > > +
-> > > +	/* Retry in case DSP is hibernating */
-> > > +	for (i = 0; i < CS40L26_PLL_NUM_SET_ATTEMPTS; i++) {
-> > > +		if (!regmap_update_bits(cs40l26->regmap, CS40L26_REFCLK_INPUT,
-> > > +					CS40L26_PLL_REFCLK_LOOP_MASK,
-> > > +					pll_loop << CS40L26_PLL_REFCLK_LOOP_SHIFT))
-> > > +			break;
-> > > +	}
-> > > +
-> > > +	if (i == CS40L26_PLL_NUM_SET_ATTEMPTS) {
-> > > +		dev_err(cs40l26->dev, "Failed to configure PLL\n");
-> > > +		return -ETIMEDOUT;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(cs40l26_set_pll_loop);
-> > > +
-> > 
-> > This looks way past simple MFD driver. Not only this - entire file. You
-> > configure there quite a lot and for example setting PLLs is not job for
-> > MFD. This should be placed in appropriate subsystem.
-> > 
-> I disagree here because the configuration being done in this file
-> is essential to the core operation of the part. For instance,
-> setting the PLL to open-loop here is required to prevent any
-> external interference (e.g. GPIO events) from interrupting
-> the part while loading firmware.
-> 
-> The other hardware configuration being done here is required for
-> both the Input and ASoC operations of the part.
-> 
-> Lastly, these need to be done in order and independently of which
-> child driver (ASoC or input) the user adds. If this is moved
-> to cs40l26-vibra.c (the input driver), for instance,
-> and that module is then not added, it will disturb the
-> required setup for use by the ASoC driver.
-> 
-> I would really like to get Lee's opinion here because it does not
-> make sense to me why this is inappropriate when the configuration
-> done in the core MFD driver is required for use by all of its
-> children.
+Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
+---
+ .../bindings/soc/samsung/samsung,exynos-sysreg.yaml           | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-FWIW, I agree with Krzysztof.
-
-There's a bunch of functionality in here that should be exported out to
-leaf drivers which should reside in their associated subsystems.  From
-just a quick glance that looks to include, but not necessary limited
-to; IRQs, GPIOs and PLLs (Clocks).
-
-MFD has been used for a dumping ground under the premise of "core
-functionality" before.  Tolerance for those arguments are now fairly
-low.
-
+diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+index a75aef240..777a2c458 100644
+--- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
++++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+@@ -25,6 +25,8 @@ properties:
+               - samsung,exynos8895-fsys1-sysreg
+               - samsung,exynos8895-peric0-sysreg
+               - samsung,exynos8895-peric1-sysreg
++              - samsung,exynos990-peric0-sysreg
++              - samsung,exynos990-peric1-sysreg
+               - samsung,exynosautov920-peric0-sysreg
+               - samsung,exynosautov920-peric1-sysreg
+               - tesla,fsd-cam-sysreg
+@@ -87,6 +89,8 @@ allOf:
+               - samsung,exynos8895-fsys1-sysreg
+               - samsung,exynos8895-peric0-sysreg
+               - samsung,exynos8895-peric1-sysreg
++              - samsung,exynos990-peric0-sysreg
++              - samsung,exynos990-peric1-sysreg
+     then:
+       required:
+         - clocks
 -- 
-Lee Jones [李琼斯]
+2.48.1
+
 
