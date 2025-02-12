@@ -1,233 +1,172 @@
-Return-Path: <devicetree+bounces-145942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17DD0A32D77
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:28:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C989A32D81
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:31:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A50F13A405B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:28:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A42C518831A9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66E62580EC;
-	Wed, 12 Feb 2025 17:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152522236F2;
+	Wed, 12 Feb 2025 17:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NLAqTWMf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lzxLYSuZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 056972135A1;
-	Wed, 12 Feb 2025 17:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A3620E715;
+	Wed, 12 Feb 2025 17:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739381296; cv=none; b=ih2arZebqZj9QCOcWxuHJJcnp/FpjGEq15IZkK4Yh7j2EYX5+iz7kHV3L13EQAbB74SDg3X299m/1T2cdQd9CDG87XhlJNoF4lSywzn+xHIUHJjTw5iaPtEkdS7ssG7WCC/sIgDviLmuhoJS7XuFhazXFwomXGLxgPAIw3KrVwY=
+	t=1739381470; cv=none; b=VcLHdFuVQIyU+ewguO3B36Enfdx5rWZtGZCbhLokGZg+JrHKqOVs8XUJzh5NH4zex+Y3Dyj4NdhUMXMI+5U9BFBpg+ZDLCxxGYDTIHcpXZcEopmsJTDu+weXHVRMzslTICIhFxHQRkTaDh0N1GMzgJWEYbTwMO109yK/KuYLPzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739381296; c=relaxed/simple;
-	bh=y402Yi8SlQ7bGjb7YK7/fHgP8dhEV3YupmxX00SBe0I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=e1YZDifdFY6yrN+5k0PJ6/OmudzmJgeFE1JJTMSuywa+Zfh+rHjBZeFcK73La6A2XLU5c21JQLjr7thy7oSRYPCtgV8+Uu8PYzWjMeUhuaappupyi2NtXbfq29Bf8Mq2ruKY72P37UNUvwTgsWRMQh+vQkLwj1jc8UzTyRN4CQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NLAqTWMf; arc=none smtp.client-ip=209.85.221.45
+	s=arc-20240116; t=1739381470; c=relaxed/simple;
+	bh=cCDE0/i6i24oZI4BzPX7w4nr9GHEOVo4Q2qZZ8UMW9Q=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eyGO1cyNA/LyjMcFms92sgMBsLMS+O+ikE6uSATtTjh8cGLDYKmamYpvo6JvwL/fJ96f0PMOWCABD3+Eo8y7znq/XrR8OLcExbpKTVm8AIi5Z38pbdQkvNrn+kbkYyO0Rz5Q5P37mhh/NKdaKLB+BaGo0ohMoZFqant4JlCVc+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lzxLYSuZ; arc=none smtp.client-ip=209.85.161.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-38dcae0d6dcso3305530f8f.1;
-        Wed, 12 Feb 2025 09:28:14 -0800 (PST)
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5fc7d346980so1188869eaf.1;
+        Wed, 12 Feb 2025 09:31:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739381293; x=1739986093; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nH75rro3+C3cMLVqxRXiovHK/yvOZnOVe7YXKDBOPmc=;
-        b=NLAqTWMfpoAzJb+sP/p9O08mhUpdcA/fkapQMefIfG4PtKHL5jlYshVjnLbOtAKXP+
-         +MSvyIp1ojs6786uuroK9w/cWO8wYPlP/ngH/PCTasZwZTJVwtxAQVTCkrfp3CsxRkOE
-         w9Mck2sUB3upcZgWYF+NnU1Xiwd9x+57tpTYzalXpkiKKBMFYCv17xSnB2uv2ryxO4sg
-         zV3I0IimZCNPX3EFMtkrG/g55ArocYScxv885M6IOimcQJ4ozC84HurRsadoTeumdbdr
-         jIfLt3XP5zgXTMe6cQazPOilZSjmqT1pZY4KEBuj2nUQpGCO/sPp60XU/l6TSPegBqpn
-         aMbA==
+        d=gmail.com; s=20230601; t=1739381467; x=1739986267; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jbx6FcfP3bq2n5NRhn4rgJREW3IAUmWBAJQw6Shyrdg=;
+        b=lzxLYSuZWTQkp5264mp43CsfApB5arG7Lfy+1QtKCfIzjYbP7g8Qg+C23GDpWTihKp
+         489jGttHibD09tWSKQuSULONg3xwTlfBL/y4M0TsHgs5cbAomHgCnkMtn+STz7Curr53
+         iEaUar5aV3PcpwaZFhLMc1YLkLg1A3zpR8NyzLndPmxxE9XyDpjzOOI/TEUE+5z3nR2O
+         G4NA5qZjn/5ZvrSTT9SS012qlRCr5thieoCR7WOjqy9mWdVV/cs19XDaYk8hzqxGbpHE
+         j+wSwx7q4NSqG4ttjkyyVplT8Pli6fVL+yfL6Q/qnRlbM3Ze8pE1/rzV4++j+OoBIjeU
+         5+zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739381293; x=1739986093;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nH75rro3+C3cMLVqxRXiovHK/yvOZnOVe7YXKDBOPmc=;
-        b=He8JecktzLxmqDijjOTkex/PKrTheSlxVLDOvwHkS67/ZA41fWNDPWkzVQioyFJDXz
-         OioZtZ/5e76wQ3DoZVUO1GwpoJChjUTalfIc5UZjnS+LgOb2aU1UlAKDow0AKQlG9kzI
-         T0sm2zaZlIqBx7hzIVp9ee4MLauDiVDmtdllVKovIoocwUv0GCrfE2FODiijuRNNyDY7
-         gia+1t5qQl02WsT6R480Wq6iuVr+NPf+JS9kbCc8ZKm/XncmfsCTV5Vz/Y6NeSebOj0c
-         n2s4uLYWre+7jgnRNdJAX79ElakD0E3GLm7Pxyh/e44jicNK22MGEE6tqdRo55p6gSHd
-         ZNxg==
-X-Forwarded-Encrypted: i=1; AJvYcCVgveNgVpiFcPBJNzVyxnl6uAiYZ+F9W0L4CnpR2PXPtKaC8+1OgEv8WPlDyz2TvJGNjmHYztRC6DVb+pA=@vger.kernel.org, AJvYcCVu3gHf/H0F8u+JVWcSOYNsUuSNDr4higjhFAXIQabGXzr+2Z3eT6+7ETRPkOfLLckbs7yTVPjdau/VQyrb@vger.kernel.org, AJvYcCWWqUZQsLqi73gmXgBBxL4xZQVHiD6Qqpq3EtZ9OoG5TeyVvX98ADmrW0wZiT5Scoz67JKoyK6SJZ5a@vger.kernel.org, AJvYcCXIqYQENwuMO5UHXhvwZ7ALgh5DkRiHCKW5+tZl9eryIYgHdC9bapNnfFnFZq7qiBbuOzGlfQkNCbJc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzK4Y5/3qBUxzmwduOaoWqJAOuJx2bywwVuhXz91xz2Dql0YrqW
-	jrcirOnUOTOdQjfOP9cRBcyZMAwjUyN+fCgjXLG2XzMRn8stCgnvW2FZfZSFZavurVPOsyszPFt
-	jsuh1Q/6+UL6JyEs2A63A0On6ypvG4g==
-X-Gm-Gg: ASbGnct4zmIPenhT2BfAfsr+NL1t27JQ0P5I0AAvyOBeKEA9R/Ewid9AmfUBmP8tIu8
-	aemgmr1ENS7yKoeBB2iw5E7lEZbnGLFaRFO0YnoMEkuHYvmGmpY2oRv4GLuiBBedaSoQlSGM3Rg
-	==
-X-Google-Smtp-Source: AGHT+IFHGp2VcddJyJd0r3Yjkkf4R+8u+ifNxosxw3I+t06VNCVxc0BSZYOBbdWlqlQrvmWVh0BuxAawy0AYWiecw+E=
-X-Received: by 2002:a5d:59ab:0:b0:38c:5d42:1516 with SMTP id
- ffacd0b85a97d-38dea2e9023mr3528978f8f.34.1739381293078; Wed, 12 Feb 2025
- 09:28:13 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739381467; x=1739986267;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Jbx6FcfP3bq2n5NRhn4rgJREW3IAUmWBAJQw6Shyrdg=;
+        b=nZ4vNjFLwjsa2C3iGRjY1MW+ZkV9DHgyJmGhKk2pC6KCQ1bC3OgaAtfK5hRDFbxOYf
+         WkdaUELqCjgYHHuYHjuWX0NkT4rkHwmAhTsQIQnlvpg2RORFpgqG9rZZw280K9aA+H91
+         fNf2pJbrh1nOB/Y2qFnjROlKNx/RdvXcelKKav8/Vx2IQBg+95w0s4k24NQsRpDr832m
+         FlmyyhP/DJX4z1o6voVYTTpOhSfTGf7VeCIePtWnRdxFqs4YB3RphhlUBxLKVQ6+CgFu
+         M9QDJb4qwfrCtaJ92Z8zwjT3ycQglUZLviZIeVTxykMEQHm1HJM1X+KSO9arthI2c/2C
+         uZ3A==
+X-Forwarded-Encrypted: i=1; AJvYcCVZPwaIWFfkoTOEomAbm1n73la2kAHCvHUwP45ETndA1TViwdo2g467l+e7X04hrlrfRgitULuNbh6R@vger.kernel.org, AJvYcCWRvFk7Ib9o1tPaL9Kq6u7rT3vYh0QL7V4WnxGNtvC/R30KNkB5THMa8CHqJxHhUMRIcgy4WMa4wWAF@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywif0oUsN8xm1n4hW5lGrQhj3Iu2+RPBRK6w7bWVprH/vbmlHtC
+	GL+Eyfi3XpPkWnIfgWVlrOxtsIEVrrK+rAzdh71Okc1VOWL4SwWy
+X-Gm-Gg: ASbGncuSgW2rZCaf+d9Ptw1q4sSQflZC1SrcE6w70bcRNnCJ7+fk6bSxDXmDfuqmj6V
+	1LaOYNmBnnfPhB6Zf/UOCe6vRO5H1mzAMudOGb6glmHJUNTOw9JKh6BrV+LoHU1LjuxWWlUs0vY
+	Q1s31fOMWlev3E/9TzvY7sMoh8dkSHJa+Ne0umCon5+gXr5OsXnZtMJ2cC6okfObmTgpOIzj7Ay
+	iXM3yow6H/PMiF9iKyyv+2iTcmQj+xImJPvQn/ssikNza/1ABoTnnU9NNpOF4FRDF6dhtTFt7hY
+	ht9hQt59ybCTjWzl8WgXjQ==
+X-Google-Smtp-Source: AGHT+IEfXVxl7VC/O2TXG5AUw40jRF/jqb2tNJhJqtHmv0DAX3h4yayluWuzrQzPBPHKrw7ZeZKhgw==
+X-Received: by 2002:a05:6820:54b:b0:5fa:61b9:3e7e with SMTP id 006d021491bc7-5fca183ea60mr2464323eaf.3.1739381467421;
+        Wed, 12 Feb 2025 09:31:07 -0800 (PST)
+Received: from neuromancer. ([2600:1700:fb0:1bcf:511b:97aa:dc6:7ad4])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5fc8fdcbc21sm2233640eaf.37.2025.02.12.09.31.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2025 09:31:07 -0800 (PST)
+Message-ID: <67acdadb.050a0220.28f58d.f522@mx.google.com>
+X-Google-Original-Message-ID: <Z6za2bhKAmHvUMFR@neuromancer.>
+Date: Wed, 12 Feb 2025 11:31:05 -0600
+From: Chris Morgan <macroalpha82@gmail.com>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 21/26] dt-bindings: allwinner: add H616 DE33 mixer
+ binding
+References: <20240929091107.838023-1-ryan@testtoast.com>
+ <20240929091107.838023-22-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250212064657.5683-1-clamor95@gmail.com> <20250212064657.5683-3-clamor95@gmail.com>
- <Z6ywGgofzU1bvm0H@smile.fi.intel.com> <CAPVz0n1UuZPCb3Jdj_fK3Ut7WKBgtvj7aROqJ4YeYVMutuyv7A@mail.gmail.com>
- <Z6zIAGLot3YQLo9S@smile.fi.intel.com>
-In-Reply-To: <Z6zIAGLot3YQLo9S@smile.fi.intel.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Wed, 12 Feb 2025 19:28:01 +0200
-X-Gm-Features: AWEUYZmbKhIPHc15NWh3JjbFH7JV2WWJgN4WfsaqJ90DpyIvebOO039oY67e30k
-Message-ID: <CAPVz0n0YFXUugt1E5siZSYbCBcp6LdNv136eTWGQTbLAXE4pxQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] iio: light: Add support for AL3000a illuminance sensor
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>, Matti Vaittinen <mazziesaccount@gmail.com>, 
-	Emil Gedenryd <emil.gedenryd@axis.com>, Arthur Becker <arthur.becker@sentec.com>, 
-	Mudit Sharma <muditsharma.info@gmail.com>, Per-Daniel Olsson <perdaniel.olsson@axis.com>, 
-	Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
-	David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240929091107.838023-22-ryan@testtoast.com>
 
-=D1=81=D1=80, 12 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 18:10 Andy=
- Shevchenko
-<andriy.shevchenko@linux.intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Wed, Feb 12, 2025 at 05:20:04PM +0200, Svyatoslav Ryhel wrote:
-> > =D1=81=D1=80, 12 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 16:28 =
-Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> > > On Wed, Feb 12, 2025 at 08:46:56AM +0200, Svyatoslav Ryhel wrote:
->
-> ...
->
-> > > > +/*
-> > > > + * AL3000a - Dyna Image Ambient Light Sensor
-> > > > + */
-> > >
-> > > Can be on a single line.
-> >
-> > Patch checking script did not catch this as warning or style issue. If
-> > such commenting is discouraged than please add this to patch checking
-> > script. Comments are stripped on compilation anyway, they do not
-> > affect size.
->
-> First of all, it uses verb 'can' for a reason (it's not anyhow big deal).
-> Second, not all stuff should be documented or scripted, we called it
-> a "common sense". The common sense rule in the code is: "Do not introduce
-> lines that are not needed or do not add a value". I see these 3 LoCs can
-> be replaced without any downsides to 1 LoC and make it even more readable=
-,
-> less consumable of the resources, and more informative as opening the
-> first page in the editor will give me more code than mostly unrelated
-> comments.
->
-> ...
->
-> > > > +#include <linux/bitfield.h>
-> > > > +#include <linux/i2c.h>
-> > > > +#include <linux/module.h>
-> > >
-> > > > +#include <linux/of.h>
-> > >
-> > > No of*.h in the new code, please.
-> > >
-> > > > +#include <linux/regulator/consumer.h>
-> > >
-> > > Too small headers to be included. You use much more.
-> >
-> > Is there a check which determines the amount of headers I must include
-> > and which headers are mandatory to be included and which are forbidden
-> > to inclusion. Maybe at least a list? Thanks
->
-> No check, there is IWYU principle.
->
-> https://include-what-you-use.org/
->
-> The tool is not (yet?) suitable for the Linux kernel project and Jonathan=
-,
-> who is the maintainer of IIO code, had even tried it for real some time a=
-go.
->
-> > > > +#include <linux/iio/iio.h>
-> > > > +#include <linux/iio/sysfs.h>
->
-> ...
->
-> > > > +static const u32 lux_table[64] =3D {
-> > >
-> > > I think you don't need 64 to be there, but okay, I understand the int=
-ention.
-> > >
-> > > > +     1, 1, 1, 2, 2, 2, 3, 4, 4, 5, 6, 7, 9, 11, 13, 16,
-> > >
-> > > For the better readability and maintenance put pow-of-2 amount of val=
-ues per
-> > > line, like 8, and add the respective comment:
-> > >
-> > >         1, 1, 1, 2, 2, 2, 3, 4,                                 /*  0=
- -  7 */
-> > >         4, 5, 6, 7, 9, 11, 13, 16,                              /*  8=
- - 15 */
-> > >
-> > > > +     19, 22, 27, 32, 39, 46, 56, 67, 80, 96, 116, 139,
-> > > > +     167, 200, 240, 289, 347, 416, 499, 600, 720, 864,
-> > > > +     1037, 1245, 1495, 1795, 2155, 2587, 3105, 3728, 4475,
-> > > > +     5373, 6450, 7743, 9296, 11160, 13397, 16084, 19309,
-> > > > +     23180, 27828, 33408, 40107, 48148, 57803, 69393,
-> > > > +     83306, 100000
-> > >
-> > > Leave trailing comma, it's not a terminated list generally speaking
-> > > (in the future it might grow).
-> >
-> > No, this list will not grow since the bit field seems to be 0x3f
-> > (datasheet is not available, code is adaptation of downstream driver).
->
-> You never know. Sometimes driver is getting reused to support other compa=
-tible
-> HW. Telling you from the experience.
->
-> > > > +};
->
-> ...
->
-> > > > +     ret =3D i2c_smbus_write_byte_data(data->client, AL3000A_REG_S=
-YSTEM, val);
-> > >
-> > > Why not using regmap I=E6=B6=8E APIs?
-> >
-> > This adaptation was written quite a long time ago, patch check did not
-> > complained about using of i2c smbus. Is use of regmap mandatory now?
-> > Is it somewhere specified? Thanks
->
-> It adds a value to the code (in particular debugfs for free and
-> many nice helper APIs). It's recommended and many maintainers would like
-> to have it. It's rare that some of the generic framework or library commi=
-tted
-> into the kernel just left to become rotten there.
->
-> > I am not a full time linux contributor and may not be familiar with
-> > the recent rules.
->
-> Many are not the rules so far, but recommendations and/or preferences by
-> certain maintainer(s).
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+On Sun, Sep 29, 2024 at 10:04:53PM +1300, Ryan Walklin wrote:
+> The Allwinner H616 and variants have a new display engine revision
+> (DE33).
+> 
+> The mixer configuration registers are significantly different to the DE3
+> and DE2 revisions, being split into separate top and display blocks,
+> therefore a fallback for the mixer compatible is not provided.
+> 
+> Add a display engine mixer binding for the DE33.
+> 
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+> 
+> ---
+> Changelog v2..v3:
+> - Separate content into three patches for three separate subsystems
+> ---
+>  .../bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml b/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml
+> index b75c1ec686ad2..c37eb8ae1b8ee 100644
+> --- a/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml
+> +++ b/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml
+> @@ -24,6 +24,7 @@ properties:
+>        - allwinner,sun50i-a64-de2-mixer-0
+>        - allwinner,sun50i-a64-de2-mixer-1
+>        - allwinner,sun50i-h6-de3-mixer-0
+> +      - allwinner,sun50i-h616-de33-mixer-0
+>  
+>    reg:
+>      maxItems: 1
 
-I will apply all your suggestions. Thank you.
+-    maxItems: 1
++    minItems: 1
++    maxItems: 3
 
-Regards other patch series, may you please contain all advice inside
-patch series since it is quite hard to track between them. For future
-patches, I will try to avoid listed issues. Thank you.
+> -- 
+> 2.46.1
+> 
+
+Also need to add constraints to set maxItems to 3 only for the h616-de33
+
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            - allwinner,sun50i-h616-de33-mixer-0
++
++    then:
++      properties:
++        reg:
++          maxItems: 3
++
++    else:
++      properties:
++        reg:
++          maxItems: 1
++
+
+Thank you,
+Chris
 
