@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-145611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AAEDA31DF5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:34:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4A7EA31E01
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:36:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4116D3A87F0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 05:34:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2878F1670E8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 05:36:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DD31F3FC6;
-	Wed, 12 Feb 2025 05:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A091F8937;
+	Wed, 12 Feb 2025 05:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t3/vFvdX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uz0IJMSX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF951E990B;
-	Wed, 12 Feb 2025 05:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB04C271837;
+	Wed, 12 Feb 2025 05:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739338468; cv=none; b=AsJGCvIRtuMiUR62G6mxYbRYNew2F6Omk8Ast+ScY8LNPE/gMORtbmxOj+typTGAJb96DdUhLtqnaXSFRQW8W0EJDZdw19F5IgU+iFh7vZYYunTLr3jcgMAEUzAEGUoSed6fMLQRB0+w15j4XqLJRjECSpD4/8AGtIJVODxdbFs=
+	t=1739338583; cv=none; b=SKOnHjvE7oloerWlMCqcVES0PF1bKoZ4iQvN+8iL+nBWQSPFP/ROsjAvNbM1CdT/3uClehCqUvdwOHk0GFNQ3GjmjsNp+HRWDDY21BVWYMAcXaFZETuCw8VasQP8EM6oyj4nOYkW2dUZqNPUnO3A74URi5tNzs10p19uS5Jb+DA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739338468; c=relaxed/simple;
-	bh=SMRSQgzynkdliJFi44SbvxDOy6uwp77VJmO6yKAcX1g=;
+	s=arc-20240116; t=1739338583; c=relaxed/simple;
+	bh=RBcuD/ENGFYSayznVyThEkO7GUD8HBS8E4dDcSHfPhU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O4vONPZic6Oi54DZP/4um5+2ERbbvz2wvz05ATtt59yu4TyBSZQw4995cndCpVaGejnPXqb2QYsNRCjR/WfBTQ9rGUnbXyutyuaiau++FTS1qGjqKQf/cJLDhfk9dgk5dO4llADfg7S2tsi3oxI02SwojNqxPt6dh3azNkNXYEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t3/vFvdX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F963C4CEDF;
-	Wed, 12 Feb 2025 05:34:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=u+Z1l0RQ4KOk4ruZYn2JQqLvngH2feXm39GTHTQKwlD25bLYphpXQCxBxmIle4Uf3X+CGHb5lETmZ0T7XVdv5MlQJ3l6a03bEBmkDWTJytk3m6fl6jCwuWJLPrw/02/jTpwVqImO0rZmK6IBf4HX32aV0S7CdxGfd18wFgd1xMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uz0IJMSX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E96BC4CEDF;
+	Wed, 12 Feb 2025 05:36:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739338467;
-	bh=SMRSQgzynkdliJFi44SbvxDOy6uwp77VJmO6yKAcX1g=;
+	s=k20201202; t=1739338583;
+	bh=RBcuD/ENGFYSayznVyThEkO7GUD8HBS8E4dDcSHfPhU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t3/vFvdX2/tlni/5t3kugatHirhwy7BZ/5ic9a7e/FRnYGaPnT1qMCE4/SPpINYsX
-	 yYjyZGfm/AA2mxXUw5/UrVOPmD95hEi942sU0bsZn9GzgmOlHIVCIw4nUeSR9CguQB
-	 MP7DwFNN4vzZ6bKH9tfbDfH9LqjYgvt/l/1VbzPEhfBCBepA7nwTQXV61MGgo701jW
-	 onTSCZbV/hpTHdK1IWAowU9vv4hYcIGJMAMDP3NClaQNDbIucwqbUuyEOKRrgjt23m
-	 N40HsLhImZmi3laQ6NllbxYToOmLwP4zW2GTl3rjob/yyrTogFlQUDh9d/GusIXwm+
-	 nAZxnVFM3DbOg==
-Message-ID: <43c6bc3b-5dac-4925-99de-76764ea77424@kernel.org>
-Date: Wed, 12 Feb 2025 06:34:22 +0100
+	b=uz0IJMSX3veX0py61eYQILomLlEgA+nyBPp3jvgs5PP0J3A2UN6ITne73WyLa1Eco
+	 bXFKsyKc/QBHHDhxLIFu+CEdKShyYAdMzYswx2y2L1wMtaakBYET4YYTUYyT2z+a3i
+	 wHpzPXgrVBS9PFnVaWNpcllu0UgMkWOXZUQ0+JfhcJyeX+MAsD8MJeUP6Rfi1G4ELH
+	 XyGcN/tRJNFD51Bak9p6j54FoOSnwIoZ47ZtZw0AcY4s/xS+waT7pe+kYu9TSuVgpu
+	 x98OXtUSJ80JbFe4FWeRsVYifT9UzZXhZ7uWauAhA+LQeS6A9lvIr09/svuetxvpgy
+	 8Oj1JBR1U4F2A==
+Message-ID: <1eca92c0-9dc8-42fd-8149-390fcb91f4f6@kernel.org>
+Date: Wed, 12 Feb 2025 06:36:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [v2,2/2] dt-bindings: memory-controllers: Add MediaTek DRAM
- controller interface
-To: =?UTF-8?B?Q3J5c3RhbCBHdW8gKOmDreaZtik=?= <Crystal.Guo@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20250207014437.17920-1-crystal.guo@mediatek.com>
- <20250207014437.17920-3-crystal.guo@mediatek.com>
- <2942fbc2-55c5-4789-89d4-e4bf3158a34b@kernel.org>
- <eb63bd2c9e5e31ff189d2c957bfcb4bd222ec778.camel@mediatek.com>
+Subject: Re: [v8 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+ linux-pci@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
+ Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
+ Jingoo Han <jingoohan1@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Michal Simek <michal.simek@amd.com>, Peter Zijlstra <peterz@infradead.org>
+References: <20250211231646.GA58828@bhelgaas>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,35 +109,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <eb63bd2c9e5e31ff189d2c957bfcb4bd222ec778.camel@mediatek.com>
+In-Reply-To: <20250211231646.GA58828@bhelgaas>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12/02/2025 04:50, Crystal Guo (郭晶) wrote:
-> On Sun, 2025-02-09 at 11:51 +0100, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
+On 12/02/2025 00:16, Bjorn Helgaas wrote:
+> On Fri, Feb 07, 2025 at 07:39:03AM +0100, Markus Elfring wrote:
+>>> I don't *really* like guard() anyway because it's kind of magic in
+>>> that the unlock doesn't actually appear in the code, and it's kind of
+>>> hard to unravel what guard() is and how it works.  But I guess that's
+>>> mostly because it's just a new idiom that takes time to internalize.
 >>
->>
->> On 07/02/2025 02:42, Crystal Guo wrote:
->>> A MediaTek DRAM controller interface to provide the current DDR
->>> data rate.
+>> How will the circumstances evolve further for growing applications of
+>> scope-based resource management?
 > 
-> Hi Krzysztof,
+> I'm sure it will evolve to become the typical style.  Right now, it's
+> not quite there yet, as evidenced by the fact that the only reference
+> to them in Documentation/ is this somewhat ambivalent note:
 > 
-> Regarding this commit message, you previously commented as follows: 
-> "Please wrap commit message according to Linux coding style /     
-> submission process (neither too early nor over the limit): 
-> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L5
-> "
+>   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/maintainer-netdev.rst?id=v6.13#n380
 > 
-> May I ask if this means that the description "A MediaTek DRAM
-> controller interface to provide the current DDR data rate." needs to be
-> split into two lines? The total number of characters in this
-> description is 74.
+> We do already have a few uses of guard() and scoped_guard() in
+> drivers/pci, and I don't really object to more, including in this
+> amd-mdb case.  Whatever we do, I *would* want to do it consistently
+> throughout the file.
 
-And what is the wrapping limit?
 
+Bjorn,
+There is little point in discussing anything with Markus. It's a person
+known to waste our time.
 
 Best regards,
 Krzysztof
