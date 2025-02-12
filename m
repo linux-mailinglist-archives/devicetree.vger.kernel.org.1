@@ -1,123 +1,128 @@
-Return-Path: <devicetree+bounces-145809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A5DEA325EE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 13:38:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8893CA32610
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 13:44:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E697C3A65F3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:38:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3944E1688B0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:44:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF00B20C031;
-	Wed, 12 Feb 2025 12:38:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C0420CCD0;
+	Wed, 12 Feb 2025 12:44:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YVxj3DPp"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="KFDIojn1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79FE5271821;
-	Wed, 12 Feb 2025 12:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739363898; cv=none; b=sb2nVNK1ssa27ljf2NnjELzLpqhqVRqvO27RW/KZiXH341PoA821xSIQjJeeGiJ7OOt9O7A2rofPlWh66sDz1ZNzsybjSsDfwyVH4bG2gDLm/+WMxJVUad67VSe8KDHz0dJ6Jti1xCRQtlTbjQZetuDaEzm5A8BvDp6K/Zk6xXw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739363898; c=relaxed/simple;
-	bh=AN9M3YnTbLbeifclEgjFxY1ryG7kNJVenpcxqcZ3F80=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kn4TG6mSjokhX/NqmKPQZvNJNJH/WjPMY8zAcdPphQkyX2VooalndvQvF8ywVBLtoZK6go0C7k/1fmMBGiVER7kIsQYqs9tww1sbWWgWfvbVUSTNFex33/EJv1XkTeQEphDuXNX8duETVgU58kACLQvkj9QpFwzUmnY31UB4YSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YVxj3DPp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 522EAC4CEDF;
-	Wed, 12 Feb 2025 12:38:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739363897;
-	bh=AN9M3YnTbLbeifclEgjFxY1ryG7kNJVenpcxqcZ3F80=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YVxj3DPpRHUUcYmM5OfB3KJD8jWcx2OymMZ7VW0uQAOk6NEz18pNh9ck8dP6iijVQ
-	 eYsABt+PevimDso6q55lSckWyl4umHxVIJvUFD03h2HeSDmDd+HsVc0DfIZIe/uyjW
-	 xofGhVxZ6xa4pAgYqNFiUiIWoQhuUkc96xxkjHNLD+7pQ/OZAGDf5jplVvQaCedIou
-	 WHBFKi6HGAtQEes6YnIXTn/LIqcZ6QKnLOA4RPdcZcD7xldtww/1GlSe9gcGzcFx7q
-	 41Dq2Zxfte0PtJ9jrRRkgwtieD2znuEVYVDniq4Dico715bI+gey+G6/agJbgfJ7gL
-	 1XXPHf3juNaYw==
-Date: Wed, 12 Feb 2025 12:38:11 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Daniel Baluta <daniel.baluta@gmail.com>
-Cc: Marco Felsch <m.felsch@pengutronix.de>,
-	Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] ASoC: dt-bindings: support imx95's CM7 core
-Message-ID: <d66996eb-f49b-448b-9743-d19a3c3eba52@sirena.org.uk>
-References: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
- <20250211225808.3050-2-laurentiumihalcea111@gmail.com>
- <20250212093610.x4ixrackmn3u2xrf@pengutronix.de>
- <CAEnQRZBeQdnC+K92+Udb5awTmom10YHHNt7Ld-pYK4A1i8sr3Q@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4790D20A5D9;
+	Wed, 12 Feb 2025 12:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739364279; cv=pass; b=ppSPniGyBTIN0hBlqMROCajTTQjgm9xBY3gH2eqp4zLe7YXEdI/GBpDKKkUnfY79Mpz61kCqG5B3H5gh2JiXx8WkyUlAMTCNCExSuTE0hnYzFXigrtGWxznEtgMwHhluPfOIOM4q/V/euX78oVSkdfoWGfsc9sMdZq/X+4vz58Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739364279; c=relaxed/simple;
+	bh=JBdG7HNd/1tVUtH0BDCQnqqSS6Cy6BkptAat8oiEIUE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=srYiachQ4oCLBCbfhgp370onGJH2pAdmh5FfiE/8YwJOmu1HVXwDxBHhT+Vp7e88qlrXmKvnqw3A7tvPWbj5llCbm47OEQJsQqrqIg+/mzLX5nq8T2NNWgG0qM+6SqPw5a4F0P5UWXK6aJnmDDAwdIfSev+E2b9KJoh66X3R9Pc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=KFDIojn1; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1739364264; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=mhTek3LMOXWwE7inMGdFBQrsJZznqdEbQDauKdZXlGwi+Z9MfxqqTNkuHAcqwwYCDxnV0OG+NVNWOmAJNe3ZTxx0FgUVdwAggVNMkDGmmTrTWv61fR9qzmbcuE2iSJ8837Uhmy+oBFxF/9JpQCQJlTsODE+Z0ubmulW2P0qxMBM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1739364264; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=k0u7MCkVugkCYytrZIZnLSDOJ7P6+i9SZvRkCovv5zU=; 
+	b=ACA9jmkQalqYV3VPWJ07o8K0WZJpck8qONiPpOHlxLC9EQdGe+FwSaDn2g/7DmX9GLqCRFfkwlY6G2tUU/LycXHcUbjNxmisOKulgmG8/LCIKmcatAYvnyDlxhekL5/iyMarYWHVfjWSo455Zdb11lq6+qqBN1a/wHX0Y9wHDd4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1739364263;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=k0u7MCkVugkCYytrZIZnLSDOJ7P6+i9SZvRkCovv5zU=;
+	b=KFDIojn1akvvSLIMtBtS1j/gY6cML0WKSgoRHfeomaqwixBDGRWuFchtvI/GL5aB
+	KFl2p63f+Y8wIG9/MErZmEYc1IbDoGL1bs/sXhr9Rx2Vb6+10JW4a3dM6uSV5ry2Nij
+	jOnTZh89SkxlPkYr/fKxBSsT1UfvNsyfdB4psLKo=
+Received: by mx.zohomail.com with SMTPS id 1739364260281358.8015360119805;
+	Wed, 12 Feb 2025 04:44:20 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: srinivas.kandagatla@linaro.org, linux-rockchip@lists.infradead.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, detlev.casanova@collabora.com,
+ sebastian.reichel@collabora.com, Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH RESEND v2 0/6] RK3576 OTP support
+Date: Wed, 12 Feb 2025 13:44:15 +0100
+Message-ID: <5943191.DvuYhMxLoT@workhorse>
+In-Reply-To: <20250210224510.1194963-1-heiko@sntech.de>
+References: <20250210224510.1194963-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="C+7jhM8tQThOiQo5"
-Content-Disposition: inline
-In-Reply-To: <CAEnQRZBeQdnC+K92+Udb5awTmom10YHHNt7Ld-pYK4A1i8sr3Q@mail.gmail.com>
-X-Cookie: Reality does not exist -- yet.
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+
+On Monday, 10 February 2025 23:45:04 Central European Standard Time Heiko 
+Stuebner wrote:
+> This enables OTP support in the nvmem driver for rk3576.
+> 
+> I expect to pick the clock patch (patch1) and the arm64-dts patch (patch6)
+> myself, after the nvmem-driver and -binding patches have been applied
+> (patches 2-5).
+> 
+> But kept them together for people wanting to try this series.
+> 
+> changes in v2:
+> - fix register constant in clock definition (Diederik)
+> - add patch to set limits on variant-specific clock-names
+> - use correct limits for clocks + resets on rk3576 binding
+> 
+> 
+> RESEND, because I messed up my git-send-email which caused it to include
+> the list of patches 2 times, duplicating everything :-( .
+> 
+> Heiko Stuebner (6):
+>   clk: rockchip: rk3576: define clk_otp_phy_g
+>   nvmem: rockchip-otp: Move read-offset into variant-data
+>   dt-bindings: nvmem: rockchip,otp: add missing limits for clock-names
+>   dt-bindings: nvmem: rockchip,otp: Add compatible for RK3576
+>   nvmem: rockchip-otp: add rk3576 variant data
+>   arm64: dts: rockchip: add rk3576 otp node
+> 
+>  .../bindings/nvmem/rockchip,otp.yaml          | 25 ++++++++++++
+>  arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 39 +++++++++++++++++++
+>  drivers/clk/rockchip/clk-rk3576.c             |  2 +
+>  drivers/nvmem/rockchip-otp.c                  | 17 +++++++-
+>  4 files changed, 81 insertions(+), 2 deletions(-)
+
+Hi Heiko,
+
+for the entire series:
+
+Tested-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
+OTPs show up on my Sige5 RK3576 board and read fine. Also compared the OTP 
+nodes to downstream and the values look consistent with that. The OTPs aren't 
+documented in the TRM I have, so unfortunately I can't cross-reference that.
+
+NB: patchwork's "Series" download for this series somehow lacks patch 2/6, 
+which tripped me up at first. Not sure if that's a problem with patchwork or 
+with how you sent the series out, but I thought I'd let others know who run 
+into this.
+
+Regards,
+Nicolas Frattaroli
 
 
---C+7jhM8tQThOiQo5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 12, 2025 at 12:11:49PM +0200, Daniel Baluta wrote:
-> On Wed, Feb 12, 2025 at 11:38=E2=80=AFAM Marco Felsch <m.felsch@pengutron=
-ix.de> wrote:
-> > On 25-02-11, Laurentiu Mihalcea wrote:
-
-> > > +    const: fsl,imx95-cm7-sof
-
-> > Albeit Krzysztof already add his Reviewed-by, can I ask why we need to
-> > add the -sof suffix instead of -audio or so? SOF is a software project
-> > but you can clearly run different software on the audio-copro as well.
-
-> Sure you can run a different software project on the audio DSP but
-> you will need a way to distinguish between the different projects.
-
-> There might be different mailbox, memory configurations. So you will  need
-> to invent another suffix specific to the new project.
-
-> We can make  const: fsl,imx95-cm7-audio as the one used with SOF
-> and think about a different name later for when another project will
-> want to use the DSP.
-
-I think the point here was that the DT should stay the same even if the
-DSP firwmare changes, just as how changing the main OS shouldn't affect
-the DT.
-
---C+7jhM8tQThOiQo5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmesljIACgkQJNaLcl1U
-h9DJ1Qf+KGbLlszokVtBw52F0VChslY+IeXlVNkhYXA48jltF44gWifkjngIfJUm
-sPwroba34ljMgHrow2mDAQAGToN7yPjjkMLZqqU5MhVWVFgbau7Ib+XcFCdo7aqy
-iVFndv4raNHPcgcsOKIopsZjz74XGZYbSXI7XlippeazjE7Ik7tK5rST0fXYqkMk
-xywVMJ3R6iLEIF6brHqZuDaBBUsM6y0lYi4tTawWtmQtVbWercnA/w21k4laCYDc
-huQ8ANiF8SKvr0e032yxtuY9tfjHXSwxdWA1LGW3tLGeEAVa0q5khBvAskQPXbdp
-qrhQSpsJdwmXIsU89H+E3O4GYWpipQ==
-=cpaS
------END PGP SIGNATURE-----
-
---C+7jhM8tQThOiQo5--
 
