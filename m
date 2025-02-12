@@ -1,123 +1,156 @@
-Return-Path: <devicetree+bounces-145807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85229A325D3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 13:26:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23215A325DB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 13:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 294293A8271
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:26:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0C28164E79
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 545AA20ADE6;
-	Wed, 12 Feb 2025 12:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C1520A5F5;
+	Wed, 12 Feb 2025 12:29:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TyJcMOXB"
+	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="RPqGCMmK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D16D2080E6
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 12:26:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EE71271829;
+	Wed, 12 Feb 2025 12:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739363177; cv=none; b=U3GyWlPHMkJPmxjSnMI2CqqdvTnE3TMTWuFg8cW6kRT89/7czeRMJ0lWaLmnDunRUaz5IwQ/1TROrwpNsVjDIl/Q4uJvQTuPf2Wox/lZXokIZywoNLhL4+K9s9M5+R+v1G40213OBqRUqhiWIyNklYjFhj+fz1tjkYoB7TKA9Bo=
+	t=1739363355; cv=none; b=ZQaPEblryaVYYUWYf9zfo8x5RT9A6WgnkQcBeMpPDxQ8PuglN5brH/xENX19ess8OjB+kTQN0WM/oAyBF7LX3Wwves97/RHeUFYlj9AleekYV+Z9ERuVo92XdVoyqzFhd/PrBGxjNoG7/XPL/dlzHPiLYM/qcwjQna7nt0hVjWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739363177; c=relaxed/simple;
-	bh=nq8Gpy/+Xqn4Zptu93g/1bnbhcwcFsdUiUkBb+2IJ4A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=A7UDWUAZz7OHIuXWbAeVR4NiOjoeJ3n3Lcvgf2r8sUhbl2nMrKf8NCUAUzlPaf6BKdApKA+ARaiFA60QaZ0QRzkzQuzle+/XGQRw6JMbmBtY7uuXg+G6T96FhtUgN3CbOYhgPYv2bSgNPdo0SNtiLHFbuSVtD2MW7IJq4WSJ+gQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TyJcMOXB; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6f754678c29so61314977b3.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 04:26:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739363174; x=1739967974; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=46uMxi16ondgGccvYcEvXMpewkDX4CAYjnXalJ8+Fuk=;
-        b=TyJcMOXBXJR2W3Nhvs2n/KeKd3yemLN0MhVPlBFS2SWvTLp5Iv8W03Nt23rNh264Eg
-         LvA0T3TRW6V6iSGzzdDosabDxb6k6YyjAqi8csDztQOvNC1EfiyMbeN3B1OEOOyAdQv2
-         q5KQVg2cisCWMXktBXzpIIfovOIV+3AuNU4JKM/6lkQJ1fIOYiXfvZ27M2/gcpCbJm3j
-         +5z8FSERkk44ga3ad3cVlzyqNKiVKLuiRHAJmgPcDT5P8KfFkTp7s/EHxROyhIkAx+65
-         eBmNNtEiwUgrn7xw44TGV5kcbP6gkBY0zO4QuoYlpVzuIqfWJyOQTD4uNz+yQ3vYNLvE
-         +BxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739363174; x=1739967974;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=46uMxi16ondgGccvYcEvXMpewkDX4CAYjnXalJ8+Fuk=;
-        b=FKhUaWWEOUdkS5zbSlNHmN3sygSBb5/E/myR3jpVpkzbX9uOvmZ+kkAUevkY8DJYkD
-         Wyw3JOzSxlTHlOapGMagoc/yBK/vgGUTHB2WNewNXxbkbmbuvTHlhPk0RoLPs/HvJP00
-         r943A5RwWaJlKxmovIKxvgUj5dAe1n2svHDeHPOHWw5kUlLIdSqb6TceXOIfvHvAvK5h
-         aBhKM02B6Bh5CgyChpcjJ6PIZpfStocyakDvSX5lqZNgmxP3aJlOf+x5BJVjSK6eIa+8
-         mH1wDjmJOM8uSbnXKEoplzqYfQ6FR4yT17ovcspLoscdCBzFnb/AjhqzsfWotJAU3jNb
-         a0zw==
-X-Forwarded-Encrypted: i=1; AJvYcCWt+3044o0RWJ9Wvp6hUg4LHUg5Mgr4qNrFY6wz1U+jOY2qo5bnNoYUcYoU7t+G0QqpZVqNuMeLB218@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx85IM5ly9fN1kA292H7QrKEbGfOUdFPfFJbye7d838vmI/Wyg+
-	Eftq+U7Cyv6X+OTVifjqc8yr/zXS00+X6iBb3/Uw11CSWZSteo7yO9JtDxQqMd1I5ciciZt1bIV
-	kVhBRrXRqm0wnR5M1x0T+CG3h60C5fjZJGxBvAw==
-X-Gm-Gg: ASbGnctNIy1Z0ZhXxJWfuuI9FsCy0AYs04zGfDzSow4On5PkJP3ht5iTmdJvZdG3gnM
-	lgTblnVga7Ao8Pyut59rInkTjm/scI02TV5QSRbLHTBiK0o9pp0gJssFegVPJEHEjyBAYnK3gC2
-	DFO0GUQ7qTCJ2oU1SUguBERcoA5g/J
-X-Google-Smtp-Source: AGHT+IFO8HryvH361AtBzukKXHNwFD8iGdVHudVfUR5kStssIhbXkwBCk3h98SYdV45gucw51GK8rpDo/H/XBl0oEtA=
-X-Received: by 2002:a05:690c:3687:b0:6f9:50ed:e6eb with SMTP id
- 00721157ae682-6fb1f27c541mr33742567b3.27.1739363174466; Wed, 12 Feb 2025
- 04:26:14 -0800 (PST)
+	s=arc-20240116; t=1739363355; c=relaxed/simple;
+	bh=CQ3SUXjx0/f8m1n41c4a7SuLTF0PmDTDTSkoGsVR/Bc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iDlhU8aPefd/R4BxP6lPHKhc/Fi86Nz8WVgu7bDcCPM2sxrm/3K6Oqc4e2NjwAt/IQCHD9dtZHfh4KTvNuct4ViOoNYO3l27vkM2HIXsaAc8b6GH3jRYBSeIuJOVFd5aOtnR8d+rF809eQL7HX5JIoW5+GyLgA2BUv5QEB78aFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net; spf=pass smtp.mailfrom=weissschuh.net; dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b=RPqGCMmK; arc=none smtp.client-ip=159.69.126.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weissschuh.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+	s=mail; t=1739363341;
+	bh=CQ3SUXjx0/f8m1n41c4a7SuLTF0PmDTDTSkoGsVR/Bc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RPqGCMmKw9maDfoACsq5XCW1kNFM6USyJeTgaD0ZKnBDjJTzkCAXYBi0J0p/zs+gW
+	 CqjmKFSFDdJ1G1DqeLIdoAIUzFk59nzTIK1L5fU/sV+967mEPcUqwhoHA45Q4Y6o++
+	 DEc57IMn3o42I47CfAucVGa1HdoUC+cRjFDTaZ2E=
+Date: Wed, 12 Feb 2025 13:29:00 +0100
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+To: Mike Rapoport <rppt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Andy Lutomirski <luto@kernel.org>, 
+	Anthony Yznaga <anthony.yznaga@oracle.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Ashish Kalra <ashish.kalra@amd.com>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
+	Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, David Woodhouse <dwmw2@infradead.org>, 
+	Eric Biederman <ebiederm@xmission.com>, Ingo Molnar <mingo@redhat.com>, 
+	James Gowans <jgowans@amazon.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Paolo Bonzini <pbonzini@redhat.com>, Pasha Tatashin <pasha.tatashin@soleen.com>, 
+	"H. Peter Anvin" <hpa@zytor.com>, Peter Zijlstra <peterz@infradead.org>, 
+	Pratyush Yadav <ptyadav@amazon.de>, Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, 
+	Steven Rostedt <rostedt@goodmis.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Tom Lendacky <thomas.lendacky@amd.com>, Usama Arif <usama.arif@bytedance.com>, 
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org, kexec@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v4 05/14] kexec: Add Kexec HandOver (KHO) generation
+ helpers
+Message-ID: <ae80c1b9-bafb-401c-9789-37a774c702c0@t-8ch.de>
+References: <20250206132754.2596694-1-rppt@kernel.org>
+ <20250206132754.2596694-6-rppt@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250212-mst_qcs8300-v1-0-38a8aa08394b@quicinc.com>
- <20250212-mst_qcs8300-v1-1-38a8aa08394b@quicinc.com> <wyd7i47pkafa7n2yjohuvlh4btasxle4rw5xm55h4bhv24yvah@pfo224xz4xfl>
- <b4008932-ce56-4cc0-9b53-2253051514da@kernel.org>
-In-Reply-To: <b4008932-ce56-4cc0-9b53-2253051514da@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 12 Feb 2025 14:26:02 +0200
-X-Gm-Features: AWEUYZlVhAIT2AG6Qef-78nrtu6QQCvgOuZCQwLtZcDIi0z3rm5hNqs2iPwtYUM
-Message-ID: <CAA8EJpoowyKcwDQgbWy4xGHzngNQOcWt_z_Xc49GFB1qYjYO6A@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: display/msm: Redocument the
- dp-controller for QCS8300
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Yongxing Mou <quic_yongmou@quicinc.com>, Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kuogee Hsieh <quic_khsieh@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250206132754.2596694-6-rppt@kernel.org>
 
-On Wed, 12 Feb 2025 at 12:54, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 12/02/2025 11:41, Dmitry Baryshkov wrote:
-> > On Wed, Feb 12, 2025 at 03:12:24PM +0800, Yongxing Mou wrote:
-> >> We need to enable mst for qcs8300, dp0 controller will support 2 streams
-> >> output. So not reuse sm8650 dp controller driver and will add a new driver
-> >> patch for qcs8300 mst feature. Modify the corresponding dt-bingding file
-> >> to compatible with the qcs8300-dp.
-> >
-> > NAK for a different reason: QCS8300 is still compatible with SM8650.
-> > Enable features instead of randomly reshuffle compats. In this case,
-> > enable MST for both architectures.
-> >
-> So the original patch was probably correct...
+On 2025-02-06 15:27:45+0200, Mike Rapoport wrote:
+> From: Alexander Graf <graf@amazon.com>
+> 
+> This patch adds the core infrastructure to generate Kexec HandOver
+> metadata. Kexec HandOver is a mechanism that allows Linux to preserve
+> state - arbitrary properties as well as memory locations - across kexec.
+> 
+> It does so using 2 concepts:
+> 
+>   1) Device Tree - Every KHO kexec carries a KHO specific flattened
+>      device tree blob that describes the state of the system. Device
+>      drivers can register to KHO to serialize their state before kexec.
+> 
+>   2) Scratch Regions - CMA regions that we allocate in the first kernel.
+>      CMA gives us the guarantee that no handover pages land in those
+>      regions, because handover pages must be at a static physical memory
+>      location. We use these regions as the place to load future kexec
+>      images so that they won't collide with any handover data.
+> 
+> Signed-off-by: Alexander Graf <graf@amazon.com>
+> Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> ---
+>  Documentation/ABI/testing/sysfs-kernel-kho    |  53 +++
+>  .../admin-guide/kernel-parameters.txt         |  24 +
+>  MAINTAINERS                                   |   1 +
+>  include/linux/cma.h                           |   2 +
+>  include/linux/kexec.h                         |  18 +
+>  include/linux/kexec_handover.h                |  10 +
+>  kernel/Makefile                               |   1 +
+>  kernel/kexec_handover.c                       | 450 ++++++++++++++++++
+>  mm/internal.h                                 |   3 -
+>  mm/mm_init.c                                  |   8 +
+>  10 files changed, 567 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/ABI/testing/sysfs-kernel-kho
+>  create mode 100644 include/linux/kexec_handover.h
+>  create mode 100644 kernel/kexec_handover.c
 
-I have no idea. I'd let Yongxing Mou to comment on this. It would be
-nice  instead of getting a lengthy explanation of obvious items to get
-an answer to an actual question: is QCS8300 compatible with SM8650 or
-not. In other words whether they can support the same number of MST
-streams on each controller or not.
+<snip>
 
--- 
-With best wishes
-Dmitry
+> --- /dev/null
+> +++ b/include/linux/kexec_handover.h
+> @@ -0,0 +1,10 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef LINUX_KEXEC_HANDOVER_H
+> +#define LINUX_KEXEC_HANDOVER_H
+
+#include <linux/types.h>
+
+> +
+> +struct kho_mem {
+> +	phys_addr_t addr;
+> +	phys_addr_t size;
+> +};
+> +
+> +#endif /* LINUX_KEXEC_HANDOVER_H */
+
+<snip>
+
+> +static ssize_t dt_read(struct file *file, struct kobject *kobj,
+> +		       struct bin_attribute *attr, char *buf,
+
+Please make the bin_attribute argument const. Currently both work, but
+the non-const variant will go away.
+This way I can test my stuff on linux-next.
+
+> +		       loff_t pos, size_t count)
+> +{
+> +	mutex_lock(&kho_out.lock);
+> +	memcpy(buf, attr->private + pos, count);
+> +	mutex_unlock(&kho_out.lock);
+> +
+> +	return count;
+> +}
+> +
+> +struct bin_attribute bin_attr_dt_kern = __BIN_ATTR(dt, 0400, dt_read, NULL, 0);
+
+The new __BIN_ATTR_ADMIN_RO() could make this slightly shorter.
+
+<snip>
 
