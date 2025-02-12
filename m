@@ -1,295 +1,207 @@
-Return-Path: <devicetree+bounces-145939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B61DEA32D68
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:25:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C08A32D6D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:26:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C8B11689E7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:25:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 295DB164C52
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:26:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A10A32627EF;
-	Wed, 12 Feb 2025 17:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EA382586E8;
+	Wed, 12 Feb 2025 17:25:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V5fR2cca"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E85zt86s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3DB325A631;
-	Wed, 12 Feb 2025 17:23:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A38C25C6FD;
+	Wed, 12 Feb 2025 17:25:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739381012; cv=none; b=da7n5sk7IuvJsq9ethMK6GlGqdcZKXhbxPXPtXdEwWvk7gQdyHuGcoi5Q023e6GO3IbwqYisUYPA1LQN/G7L8MkJwhezrnekD9Hpa/1ekQXFMdvJJDAPShEUR+QORMVerbL4yvOCceDG2YMqC3eUwQI8i32CiDb9tbh+DLO0OF4=
+	t=1739381108; cv=none; b=JbKdFiCk3LloKmzEZR2OirxMsy+fp9S4gaS2cg8qBXzfBJA0ujzf8L5D1UzkYoAw+JiMh7w4oveambpMQeABu9UGBhe1zVwJ3NW/96r1C7cW4epcVnu0+u5ztNSNAZeDJ5/nCc+Xu/DQMvHNLP0CStrzRddkL888BgkgmpXUHZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739381012; c=relaxed/simple;
-	bh=X1FjYP6mBke/3D24Hai2ue885wXpUkAZdmez50aXc0I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=U/uZ0baM7VvZ7EewbHzX1V1/EZlstWKG97+Pm3EwD09541Dry4jOv0ZGvYg+niAzvGVu0guEzHI77XVDSpBI7IoPzDHYVj83IrJ+hrRwEzncZdpEu1R26N+H+JTHe9WSOf6D10XaiDK1ZzzobVonrh0qoPTUIYt2bsAM8fad24c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V5fR2cca; arc=none smtp.client-ip=209.85.214.180
+	s=arc-20240116; t=1739381108; c=relaxed/simple;
+	bh=gpVHDHA5/VEjZ971k1bpcLE8cgFeUrevL+UYZUWngdc=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LwnziNTIC0ykZrDDrIo/c17r8SGaq5RP5U5W6JxCCW0/GCHq/jrY4RZdckRNLT/8KxUcr39pDEYanEX5asCUUVxwwdb9nriqdtMESB8ejq8r8L1+RdIEEBMY7KI9qq0XSt7AlAbgMRfdR1xE8zt7LneIlNVnLhD1xDW5KGUgNTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E85zt86s; arc=none smtp.client-ip=209.85.160.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-21f61b01630so18295585ad.1;
-        Wed, 12 Feb 2025 09:23:30 -0800 (PST)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-2b89395a3efso2618fac.2;
+        Wed, 12 Feb 2025 09:25:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739381010; x=1739985810; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z0q3sDAF4oQzGjpTE5UFq4pISwyfntsajHJYAfkfV5U=;
-        b=V5fR2ccapSIH+sJdIAuY9FSR/fiQMgu9gtb4FMK00MJ214FBMw2otG1dCrLd3xeWn+
-         04gjyvsdeG74U1pO1r98ZQUszTHDnk860/zuyX2cu3ynNk5Gs6pPeUC0KoPlGKQw8ukM
-         +USFeicVKuyKihYIksWzFLcmr589Jr1BlkUizBqEZTR197I+7E1sqAwUwm4rXFt4PQnu
-         jCFTM9Pq9lfmR9Ulp4DfY5ReSZmVPsxZcoklOCqciCKFTasp8sPeraLemC/tdb/pZEUz
-         5//i32L6/OMi0rrl8/fPzlSXN1xF5KrtamrXDZhvgSHYut1FCmdvQo9zJW1h8TA2Rnhj
-         5S3g==
+        d=gmail.com; s=20230601; t=1739381104; x=1739985904; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=jQhvgvLw0Ab8WRqkX0Q6owok1NJpwPhofznn4BvHFOA=;
+        b=E85zt86sSU1UzWnxhX0v67SwsWZakawMeeNfXjOTwo6Xt/O8tNubEZDA1z5PSkH3YY
+         QnIJjf3/918IUljLxvfl9/CFOiSJU4qrjvPpjGcnqiVVU/kH+sW+JU/wLj8NEWlwX2Kd
+         QkpXtGQDyblpg+Yym/3iAfoSaOmAF37OSCA1vXtdnP2gBjMVBOooY9nYKDyiGpsP1wsY
+         kGtxw/YTltGHiPkTwbD07ceDzuM5As4/YgP7R8ifPM5gDdRyKD8kqtPmaxNHuOf3Pax6
+         F0dXnMZbsfSXOc9gqEZdLMCJtTCSkdI7krIBzJbQQz+a8IdkzVUig4v766Jfg1sj9HN8
+         Pxeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739381010; x=1739985810;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z0q3sDAF4oQzGjpTE5UFq4pISwyfntsajHJYAfkfV5U=;
-        b=Lalk8NUfGGZxxELxBZawurq5M32uV/A34DDFDrLzHWy2JqxmBeDp1/nfkDbx41Qj2N
-         g9bW4cXu4EmMry8KKUU/0k8f35rcencwUZPf9sVuExApKw0xB1PS4qTncnLvoGohfMkr
-         3BVA1h0DJ0RNt4Wn0+9SdWxIbVoI6qeaG8GLHwatmpfg7/bad/YnSeiNrzqVD4iVIFJQ
-         cFKtmn6Rgok0Y/DUWLbVzPD0D6C5sWuK/uiIW8IpqTGDZvTUEiYV1SnlBMTb/juTkVcw
-         vj9cZehe7ixxURG6GE1w4lJ3Z1tnkFs/75on3FSChiiuRFtEICX2Gw+uEPGTDvYOICQC
-         m6rA==
-X-Forwarded-Encrypted: i=1; AJvYcCUhZ9eCD8Hju0Y6tBq8IoDY3TNp8+l0q0CnvlivVX4VcFLZPQZCLrMxy8c/addgFiKJULQcvuwJlB7s@vger.kernel.org, AJvYcCVeVqowYyD56mxVlLY4NgWEEcjk3G8BE9NwS/EI9PfUCC+P1VSX69eITX7t3ZwDtcKp/MKeu17wyEZBUrRo@vger.kernel.org, AJvYcCVkHlQl5znkUQ121CMf35qCqKgeidR9geg9u2PJhyTdzXNg2mdQqoulairGgi0mT8uSIafhT8h2Y116JbnHXqJ3bw==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFJaaf9frwyVL23pVSBjLhxhMU+GHA8+t70W9yfoQ7sKMPpsB/
-	MWgi3Y8zXyQ48g2SDN08ynsiPs0XRvl00g49rrhZsIrmY8JFsFQu
-X-Gm-Gg: ASbGncsLU/y7mFqJf6E3k9G9mUbwtUzugjpB33ZaFTco2jKxW1N8TiDy95Hd8uZOK+J
-	4o1oxfwgD3kxYSX5j4Eg3duGQBdXGGZ9W69Z5ZSy6dRk9SJUzdDZcgTfdtwu9W9/oVUWLpG2tYb
-	i2TkP4CKkiFCdvXh5iNZP11cBZpr28WtVPrNbss54CyOqL3QP/HlsKov76qxnKdWktJ86TX1OlI
-	ZbA80gacgWws2VqGV4DHqu6oaQ5ZljBxZT3kDls3oN03i/PKfdwjDFDN/iHR07uEJ5HfWEga7rG
-	jh7RUMizgd62Z9yw0w==
-X-Google-Smtp-Source: AGHT+IGVSSdvwzosWg1IZcwS8BMskgkU07C3H1XRsLu+vnpTLU7/3ScWN2qrDfl3HyrUXyfJua/Nlg==
-X-Received: by 2002:a05:6a20:734a:b0:1ee:64c0:aa85 with SMTP id adf61e73a8af0-1ee6bae9454mr154934637.6.1739381010171;
-        Wed, 12 Feb 2025 09:23:30 -0800 (PST)
-Received: from [127.0.1.1] ([59.188.211.160])
-        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-ad54f1691ddsm6001705a12.61.2025.02.12.09.23.27
+        d=1e100.net; s=20230601; t=1739381104; x=1739985904;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jQhvgvLw0Ab8WRqkX0Q6owok1NJpwPhofznn4BvHFOA=;
+        b=L0AHO44wi6176z2qWneiuRYX69jhfHzi+y5V8AeNxPfEYPVyH1iJC4SIvUf6V0yRm5
+         yB3nV7KyTpYq6+mlNgQmfLazJ6Fkopeom5TwVBM17IlXi8WF8+ctTmkhSeEKD2I0sxJj
+         tAUbmvsKo2O8CrMko2FpffncHqPN86E1tbaaQxUeULVaHnOFsWf0DPnUuwFAjxKh/nOg
+         9raqM4VLtTDRG2sg5sNdr1H2cgnKhfk/cI2o72Cp8wceNqpQhNYvR6lKM0unmj+xox8a
+         mFpYyiUCmeEafptqxGh8RgYWXWYrEW3FIiWHh3IlRKR6ieRb0fheycn+EbfrApxjDvLW
+         OyzA==
+X-Forwarded-Encrypted: i=1; AJvYcCUu48mT3EMyHGOCI9g2MBSzGQCZM7rgrpjedSRRcAR1TrXEMrt1a3cDl+U/+8ktvzhWD1i1YBZsYUV+@vger.kernel.org, AJvYcCXNPI1OBJ56fy3BnnnJBLzhoFiNw8K+p7fsIGpCywSanqzmNZxinRLMlLWGoIuixN7yUNc3wjtFTbpb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfFeS0WpkIzb0VLWqrntNqemyXrnZSjdCIGqwGcPTYzsAQoc01
+	rT0s+cqcOXk9C8B0nckE1780y6ACWMSRFY602ztkZfjKGVzP55qu
+X-Gm-Gg: ASbGncugfRphe3ul9u8EyGCleh9Vdk0QjuRzCX1DERYdZ1E9JE2HIMZ/VttXEYKXUfD
+	uggaK0eIaFd+D6JB4N6yToyctWaX22fodvrjwhyq0SBGmo09YaUbPr9AM57eShu/l1b+A8M+Tnm
+	oBOPKOXvdYM1tsBsth0yHIVh3hpwCLO6iOWS2J3wHdWtYv8izaVFcBkvzuNlNfZjaZ/vtrG39dI
+	j9ElpWieWjkTgaVdHOWIcVepiB6U9imiEIDDpcs0e++SqeZfUSssPnuuGZnq5Ltt+unLcpDQWYn
+	R+aBFuI05Sv0pcwCeWwyXw==
+X-Google-Smtp-Source: AGHT+IFubc5w1GwArkfUm2wYuLBD6zhCQaR7Tbp8g3XURKKlpZTfkEzbGo2CJasy4U3o+foCvJ2C5A==
+X-Received: by 2002:a05:6870:c69b:b0:29e:4a13:603f with SMTP id 586e51a60fabf-2b8d644c5efmr2872725fac.4.1739381104281;
+        Wed, 12 Feb 2025 09:25:04 -0800 (PST)
+Received: from neuromancer. ([2600:1700:fb0:1bcf:511b:97aa:dc6:7ad4])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2b826262333sm5089109fac.37.2025.02.12.09.25.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 09:23:29 -0800 (PST)
-From: Nick Chan <towinchenmi@gmail.com>
-Date: Thu, 13 Feb 2025 01:22:33 +0800
-Subject: [PATCH v2 10/10] drivers/perf: apple_m1: Add Apple A11 Support
+        Wed, 12 Feb 2025 09:25:04 -0800 (PST)
+Message-ID: <67acd970.050a0220.1eb03a.101e@mx.google.com>
+X-Google-Original-Message-ID: <Z6zZbu5dABW8IrQC@neuromancer.>
+Date: Wed, 12 Feb 2025 11:25:02 -0600
+From: Chris Morgan <macroalpha82@gmail.com>
+To: Philippe Simons <simons.philippe@gmail.com>
+Cc: Ryan Walklin <ryan@testtoast.com>, Maxime Ripard <mripard@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 00/26] drm: sun4i: add Display Engine 3.3 (DE33)
+ support
+References: <20240929091107.838023-1-ryan@testtoast.com>
+ <cfc66e71-4af8-43c8-8b86-0bf5208b5c42@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250213-apple-cpmu-v2-10-87b361932e88@gmail.com>
-References: <20250213-apple-cpmu-v2-0-87b361932e88@gmail.com>
-In-Reply-To: <20250213-apple-cpmu-v2-0-87b361932e88@gmail.com>
-To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>
-Cc: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
- asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Nick Chan <towinchenmi@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7847; i=towinchenmi@gmail.com;
- h=from:subject:message-id; bh=X1FjYP6mBke/3D24Hai2ue885wXpUkAZdmez50aXc0I=;
- b=owEBbQKS/ZANAwAIAQHKCLemxQgkAcsmYgBnrNjwOHiCdDt45QwCr4G1/VlK0JHGnfJwb+zrn
- 8eBBKHLFJ2JAjMEAAEIAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCZ6zY8AAKCRABygi3psUI
- JM1pEACLmL4+xOpOZg85I4Nh44mq3mvJfCduwshN8rdiT5luta//DE7QcG0XtgtpMxFlP8B3ARQ
- aIpTgRS4e5h6pfYpwHPlet69I0siHVFNzKv+Kxk82eJT0vDGg9cLJeVlwwOKVI9ofrpSTvmh68/
- wFIvvn1CFmwtCyVIe++NljUXFapT+MmezijyvcER2///viHi/BZjHH6UybjaW0yFjJEY3LJsAWr
- BF8PDxUFg1OBEYd+wyR4Rsm2Yv87qrGucpcywdFqsblUDxjc9yd3FpDOYAcMAhzmVZNAq2iSVin
- Fg+b/l/zM63lSI5TOE0v4lUsVqGORLWmHLbt2a1GNOvwg+bdlNZvbcy0AhOrmA10xj+w9n1uZeG
- 5waq3DV9Zs1xZCCp8gYEtRHKU0xNKM3eWxTcAE9mpJLXksa5Orhf/5ff/m50eIqXUtqJt2VK696
- k9p9UscCcXpeSMOIS7IVWqBfqgUrn+ix2rLtO9EL1dTWRB+vVUo29geit57m/ljibzW0y5OopK1
- 3woxTgkBPr5tRA9sHK+pAj4pF9XuPI9St0uCTyLzoFSr5ACIIMC2BXt/P54rrvIfzKQqIEYFmtd
- 0DDr/wGjvf5FhOrrJgQwy5KSdPvHrg2ontXOTgrvTGpCzkAlouDlXq+ofJJDmvRBb8YV87e4+Hi
- 6jo03XxLmzd4eTw==
-X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
- fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cfc66e71-4af8-43c8-8b86-0bf5208b5c42@gmail.com>
 
-Add support for the CPU PMU found attached to the performance and
-efficiency cores of the Apple A11 SoCs. This PMU can deliver its
-interrupt via IRQ or FIQ. Use FIQ as that is faster.
+On Mon, Sep 30, 2024 at 03:30:45PM +0200, Philippe Simons wrote:
+> tested on 6.12-rc1 with RG35XX-H
+> 
+> Tested-by: Philippe Simons <simons.philippe@gmail.com>
+> 
+> On 29/09/2024 11:04, Ryan Walklin wrote:
+> > Hi,
+> > 
+> > V5 of this patch series adding support for the Allwinner DE33 display engine variant. V5 is rebased on torvalds/master as of today with the 6.12 drm-next patches included, with no code changes required. V3 and V4 were in turn rebased on top of the layer init and modesetting changes merged for 6.11. No functional changes from V4, fixes and reviews from previous V1-4 added, and relevant issues found by checkpatch.pl corrected.
+> > 
+> > Original blurb below:
+> > 
+> > There is existing mainline support for the DE2 and DE3 AllWinner display pipeline IP blocks, used in the A64 and H6 among others, however the H700 (as well as the H616/H618 and the T507 automotive SoC) have a newer version of the Display Engine (v3.3/DE33) which adds additional high-resolution support as well as YUV colour formats and AFBC compression support.
+> > 
+> > This patch set adds DE33 support, following up from the previous RFC [1], with significant rework to break down the previous relatively complex set into more logical steps, detailed below.
+> > 
+> > 1. Refactor the existing DE2/DE3 code in readiness to support YUV colour formats in the DE3 engine (patches 1-4).
+> > 2. Add YUV420 colour format support in the DE3 driver (patches 5-12).
+> > 3. Replace the is_de3 mixer flag with an enum to support multiple DE versions (patch 13).
+> > 4. Refactor the mixer, vi_scaler and some register code to merge common init code and more easily support multiple DE versions (patches 14-17).
+> > 5. Add Arm Frame Buffer Compression (AFBC) compressed buffer support to the DE3 driver. This is currently only supported for VI layers (for HW-decoded video output) but is well integrated into these changes and a subsequent patchset to enable the Video Engine is planned. (patch 18).
+> > 6. Add DT bindings for the DE33 engine. (patches 19-21).
+> > 7. Extend the DE2/3 driver for the DE33, comprising clock, mixer, vi_scaler, fmt and csc module support (patches 22-26).
+> > 
+> > Further patchsets are planned to support HDMI and the LCD timing controller present in these SoCs.
+> > 
+> > Regards,
+> > 
+> > Ryan
+> > 
+> > Jernej Skrabec (22):
+> >    drm: sun4i: de2/de3: Change CSC argument
+> >    drm: sun4i: de2/de3: Merge CSC functions into one
+> >    drm: sun4i: de2/de3: call csc setup also for UI layer
+> >    drm: sun4i: de2: Initialize layer fields earlier
+> >    drm: sun4i: de3: Add YUV formatter module
+> >    drm: sun4i: de3: add format enumeration function to engine
+> >    drm: sun4i: de3: add formatter flag to mixer config
+> >    drm: sun4i: de3: add YUV support to the DE3 mixer
+> >    drm: sun4i: de3: pass engine reference to ccsc setup function
+> >    drm: sun4i: de3: add YUV support to the color space correction module
+> >    drm: sun4i: de3: add YUV support to the TCON
+> >    drm: sun4i: support YUV formats in VI scaler
+> >    drm: sun4i: de2/de3: add mixer version enum
+> >    drm: sun4i: de2/de3: refactor mixer initialisation
+> >    drm: sun4i: vi_scaler refactor vi_scaler enablement
+> >    drm: sun4i: de2/de3: add generic blender register reference function
+> >    drm: sun4i: de2/de3: use generic register reference function for layer
+> >      configuration
+> >    drm: sun4i: de3: Implement AFBC support
+> >    drm: sun4i: de33: mixer: add Display Engine 3.3 (DE33) support
+> >    drm: sun4i: de33: vi_scaler: add Display Engine 3.3 (DE33) support
+> >    drm: sun4i: de33: fmt: add Display Engine 3.3 (DE33) support
+> >    drm: sun4i: de33: csc: add Display Engine 3.3 (DE33) support
+> > 
+> > Ryan Walklin (4):
+> >    dt-bindings: allwinner: add H616 DE33 bus binding
+> >    dt-bindings: allwinner: add H616 DE33 clock binding
+> >    dt-bindings: allwinner: add H616 DE33 mixer binding
+> >    clk: sunxi-ng: ccu: add Display Engine 3.3 (DE33) support
+> > 
+> >   .../bus/allwinner,sun50i-a64-de2.yaml         |   4 +-
+> >   .../clock/allwinner,sun8i-a83t-de2-clk.yaml   |   1 +
+> >   .../allwinner,sun8i-a83t-de2-mixer.yaml       |   1 +
+> >   drivers/clk/sunxi-ng/ccu-sun8i-de2.c          |  25 ++
+> >   drivers/gpu/drm/sun4i/Makefile                |   3 +-
+> >   drivers/gpu/drm/sun4i/sun4i_tcon.c            |  26 +-
+> >   drivers/gpu/drm/sun4i/sun50i_afbc.c           | 250 +++++++++++++
+> >   drivers/gpu/drm/sun4i/sun50i_afbc.h           |  87 +++++
+> >   drivers/gpu/drm/sun4i/sun50i_fmt.c            |  99 +++++
+> >   drivers/gpu/drm/sun4i/sun50i_fmt.h            |  33 ++
+> >   drivers/gpu/drm/sun4i/sun8i_csc.c             | 341 +++++++++++++++---
+> >   drivers/gpu/drm/sun4i/sun8i_csc.h             |  20 +-
+> >   drivers/gpu/drm/sun4i/sun8i_mixer.c           | 226 +++++++++---
+> >   drivers/gpu/drm/sun4i/sun8i_mixer.h           |  31 +-
+> >   drivers/gpu/drm/sun4i/sun8i_ui_layer.c        |  41 ++-
+> >   drivers/gpu/drm/sun4i/sun8i_ui_scaler.c       |   2 +-
+> >   drivers/gpu/drm/sun4i/sun8i_vi_layer.c        | 133 +++++--
+> >   drivers/gpu/drm/sun4i/sun8i_vi_scaler.c       | 115 ++++--
+> >   drivers/gpu/drm/sun4i/sun8i_vi_scaler.h       |   2 +-
+> >   drivers/gpu/drm/sun4i/sunxi_engine.h          |  34 ++
+> >   20 files changed, 1269 insertions(+), 205 deletions(-)
+> >   create mode 100644 drivers/gpu/drm/sun4i/sun50i_afbc.c
+> >   create mode 100644 drivers/gpu/drm/sun4i/sun50i_afbc.h
+> >   create mode 100644 drivers/gpu/drm/sun4i/sun50i_fmt.c
+> >   create mode 100644 drivers/gpu/drm/sun4i/sun50i_fmt.h
+> > 
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
- drivers/perf/apple_m1_cpu_pmu.c | 135 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 135 insertions(+)
+I just wanted to add my Tested-By to this patch series. That said, I can confirm
+that we also need to add support for the clock and reset before we activate the
+display engine. I'll submit patches for that in a different series (it's a
+pre-requisite of this but can be done independently).
 
-diff --git a/drivers/perf/apple_m1_cpu_pmu.c b/drivers/perf/apple_m1_cpu_pmu.c
-index c084c25f69d29756ea7a2e542e33888c1142d80a..d4e7436d0edfe785211ad700e4b0be4e1475e8c4 100644
---- a/drivers/perf/apple_m1_cpu_pmu.c
-+++ b/drivers/perf/apple_m1_cpu_pmu.c
-@@ -500,6 +500,113 @@ static const u16 a10_pmu_event_affinity[A10_PMU_PERFCTR_LAST + 1] = {
- 	[A10_PMU_PERFCTR_UNKNOWN_fd]				= ONLY_2_4_6,
- };
- 
-+enum a11_pmu_events {
-+	A11_PMU_PERFCTR_RETIRE_UOP				= 0x1,
-+	A11_PMU_PERFCTR_CORE_ACTIVE_CYCLE			= 0x2,
-+	A11_PMU_PERFCTR_L2_TLB_MISS_INSTRUCTION			= 0xa,
-+	A11_PMU_PERFCTR_L2_TLB_MISS_DATA			= 0xb,
-+	A11_PMU_PERFCTR_SCHEDULE_UOP				= 0x52,
-+	A11_PMU_PERFCTR_MAP_REWIND				= 0x75,
-+	A11_PMU_PERFCTR_MAP_STALL				= 0x76,
-+	A11_PMU_PERFCTR_MAP_INT_UOP				= 0x7c,
-+	A11_PMU_PERFCTR_MAP_LDST_UOP				= 0x7d,
-+	A11_PMU_PERFCTR_MAP_SIMD_UOP				= 0x7e,
-+	A11_PMU_PERFCTR_FLUSH_RESTART_OTHER_NONSPEC		= 0x84,
-+	A11_PMU_PERFCTR_INST_A32				= 0x8a,
-+	A11_PMU_PERFCTR_INST_T32				= 0x8b,
-+	A11_PMU_PERFCTR_INST_ALL				= 0x8c,
-+	A11_PMU_PERFCTR_INST_BRANCH				= 0x8d,
-+	A11_PMU_PERFCTR_INST_BRANCH_CALL			= 0x8e,
-+	A11_PMU_PERFCTR_INST_BRANCH_RET				= 0x8f,
-+	A11_PMU_PERFCTR_INST_BRANCH_TAKEN			= 0x90,
-+	A11_PMU_PERFCTR_INST_BRANCH_INDIR			= 0x93,
-+	A11_PMU_PERFCTR_INST_BRANCH_COND			= 0x94,
-+	A11_PMU_PERFCTR_INST_INT_LD				= 0x95,
-+	A11_PMU_PERFCTR_INST_INT_ST				= 0x96,
-+	A11_PMU_PERFCTR_INST_INT_ALU				= 0x97,
-+	A11_PMU_PERFCTR_INST_SIMD_LD				= 0x98,
-+	A11_PMU_PERFCTR_INST_SIMD_ST				= 0x99,
-+	A11_PMU_PERFCTR_INST_SIMD_ALU				= 0x9a,
-+	A11_PMU_PERFCTR_INST_LDST				= 0x9b,
-+	A11_PMU_PERFCTR_INST_BARRIER				= 0x9c,
-+	A11_PMU_PERFCTR_UNKNOWN_9f				= 0x9f,
-+	A11_PMU_PERFCTR_L1D_TLB_ACCESS				= 0xa0,
-+	A11_PMU_PERFCTR_L1D_TLB_MISS				= 0xa1,
-+	A11_PMU_PERFCTR_L1D_CACHE_MISS_ST			= 0xa2,
-+	A11_PMU_PERFCTR_L1D_CACHE_MISS_LD			= 0xa3,
-+	A11_PMU_PERFCTR_LD_UNIT_UOP				= 0xa6,
-+	A11_PMU_PERFCTR_ST_UNIT_UOP				= 0xa7,
-+	A11_PMU_PERFCTR_L1D_CACHE_WRITEBACK			= 0xa8,
-+	A11_PMU_PERFCTR_LDST_X64_UOP				= 0xb1,
-+	A11_PMU_PERFCTR_ATOMIC_OR_EXCLUSIVE_SUCC		= 0xb3,
-+	A11_PMU_PERFCTR_ATOMIC_OR_EXCLUSIVE_FAIL		= 0xb4,
-+	A11_PMU_PERFCTR_L1D_CACHE_MISS_LD_NONSPEC		= 0xbf,
-+	A11_PMU_PERFCTR_L1D_CACHE_MISS_ST_NONSPEC		= 0xc0,
-+	A11_PMU_PERFCTR_L1D_TLB_MISS_NONSPEC			= 0xc1,
-+	A11_PMU_PERFCTR_ST_MEMORY_ORDER_VIOLATION_NONSPEC	= 0xc4,
-+	A11_PMU_PERFCTR_BRANCH_COND_MISPRED_NONSPEC		= 0xc5,
-+	A11_PMU_PERFCTR_BRANCH_INDIR_MISPRED_NONSPEC		= 0xc6,
-+	A11_PMU_PERFCTR_BRANCH_RET_INDIR_MISPRED_NONSPEC	= 0xc8,
-+	A11_PMU_PERFCTR_BRANCH_CALL_INDIR_MISPRED_NONSPEC	= 0xca,
-+	A11_PMU_PERFCTR_BRANCH_MISPRED_NONSPEC			= 0xcb,
-+	A11_PMU_PERFCTR_FED_IC_MISS_DEMAND			= 0xd3,
-+	A11_PMU_PERFCTR_L1I_TLB_MISS_DEMAND			= 0xd4,
-+	A11_PMU_PERFCTR_MAP_DISPATCH_BUBBLE			= 0xd6,
-+	A11_PMU_PERFCTR_L1I_CACHE_MISS_DEMAND			= 0xdb,
-+	A11_PMU_PERFCTR_FETCH_RESTART				= 0xde,
-+	A11_PMU_PERFCTR_ST_NT_UOP				= 0xe5,
-+	A11_PMU_PERFCTR_LD_NT_UOP				= 0xe6,
-+	A11_PMU_PERFCTR_UNKNOWN_f5				= 0xf5,
-+	A11_PMU_PERFCTR_UNKNOWN_f6				= 0xf6,
-+	A11_PMU_PERFCTR_UNKNOWN_f7				= 0xf7,
-+	A11_PMU_PERFCTR_UNKNOWN_f8				= 0xf8,
-+	A11_PMU_PERFCTR_UNKNOWN_fd				= 0xfd,
-+	A11_PMU_PERFCTR_LAST					= M1_PMU_CFG_EVENT,
-+
-+	/*
-+	 * From this point onwards, these are not actual HW events,
-+	 * but attributes that get stored in hw->config_base.
-+	 */
-+	A11_PMU_CFG_COUNT_USER					= BIT(8),
-+	A11_PMU_CFG_COUNT_KERNEL				= BIT(9),
-+};
-+
-+static const u16 a11_pmu_event_affinity[A11_PMU_PERFCTR_LAST + 1] = {
-+	[0 ... A11_PMU_PERFCTR_LAST]				= ANY_BUT_0_1,
-+	[A11_PMU_PERFCTR_RETIRE_UOP]				= BIT(7),
-+	[A11_PMU_PERFCTR_CORE_ACTIVE_CYCLE]			= ANY_BUT_0_1 | BIT(0),
-+	[A11_PMU_PERFCTR_INST_ALL]				= BIT(7) | BIT(1),
-+	[A11_PMU_PERFCTR_INST_BRANCH]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BRANCH_CALL]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BRANCH_RET]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BRANCH_TAKEN]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BRANCH_INDIR]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BRANCH_COND]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_INT_LD]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_INT_ST]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_INT_ALU]				= BIT(7),
-+	[A11_PMU_PERFCTR_INST_SIMD_LD]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_SIMD_ST]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_SIMD_ALU]				= BIT(7),
-+	[A11_PMU_PERFCTR_INST_LDST]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BARRIER]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_UNKNOWN_9f]				= BIT(7),
-+	[A11_PMU_PERFCTR_L1D_CACHE_MISS_LD_NONSPEC]		= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_L1D_CACHE_MISS_ST_NONSPEC]		= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_L1D_TLB_MISS_NONSPEC]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_ST_MEMORY_ORDER_VIOLATION_NONSPEC]	= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_BRANCH_COND_MISPRED_NONSPEC]		= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_BRANCH_INDIR_MISPRED_NONSPEC]		= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_BRANCH_RET_INDIR_MISPRED_NONSPEC]	= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_BRANCH_CALL_INDIR_MISPRED_NONSPEC]	= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_BRANCH_MISPRED_NONSPEC]		= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_UNKNOWN_f5]				= ONLY_2_4_6,
-+	[A11_PMU_PERFCTR_UNKNOWN_f6]				= ONLY_2_4_6,
-+	[A11_PMU_PERFCTR_UNKNOWN_f7]				= ONLY_2_4_6,
-+	[A11_PMU_PERFCTR_UNKNOWN_f8]				= ONLY_2_TO_7,
-+	[A11_PMU_PERFCTR_UNKNOWN_fd]				= ONLY_2_4_6,
-+};
-+
- enum m1_pmu_events {
- 	M1_PMU_PERFCTR_RETIRE_UOP				= 0x1,
- 	M1_PMU_PERFCTR_CORE_ACTIVE_CYCLE			= 0x2,
-@@ -979,6 +1086,12 @@ static int a10_pmu_get_event_idx(struct pmu_hw_events *cpuc,
- 	return apple_pmu_get_event_idx(cpuc, event, a10_pmu_event_affinity);
- }
- 
-+static int a11_pmu_get_event_idx(struct pmu_hw_events *cpuc,
-+	struct perf_event *event)
-+{
-+	return apple_pmu_get_event_idx(cpuc, event, a11_pmu_event_affinity);
-+}
-+
- static int m1_pmu_get_event_idx(struct pmu_hw_events *cpuc,
- 				struct perf_event *event)
- {
-@@ -1158,6 +1271,26 @@ static int a10_pmu_fusion_init(struct arm_pmu *cpu_pmu)
- 	return apple_pmu_init_common(cpu_pmu, M1_PMU_NR_COUNTERS);
- }
- 
-+static int a11_pmu_monsoon_init(struct arm_pmu *cpu_pmu)
-+{
-+	cpu_pmu->name = "apple_monsoon_pmu";
-+	cpu_pmu->get_event_idx	  = a11_pmu_get_event_idx;
-+	cpu_pmu->map_event	  = m1_pmu_map_event;
-+	cpu_pmu->reset		  = m1_pmu_reset;
-+	cpu_pmu->start		  = m1_pmu_start;
-+	return apple_pmu_init_common(cpu_pmu, M1_PMU_NR_COUNTERS);
-+}
-+
-+static int a11_pmu_mistral_init(struct arm_pmu *cpu_pmu)
-+{
-+	cpu_pmu->name = "apple_mistral_pmu";
-+	cpu_pmu->get_event_idx	  = a11_pmu_get_event_idx;
-+	cpu_pmu->map_event	  = m1_pmu_map_event;
-+	cpu_pmu->reset		  = m1_pmu_reset;
-+	cpu_pmu->start		  = m1_pmu_start;
-+	return apple_pmu_init_common(cpu_pmu, M1_PMU_NR_COUNTERS);
-+}
-+
- static int m1_pmu_ice_init(struct arm_pmu *cpu_pmu)
- {
- 	cpu_pmu->name = "apple_icestorm_pmu";
-@@ -1204,6 +1337,8 @@ static const struct of_device_id m1_pmu_of_device_ids[] = {
- 	{ .compatible = "apple,icestorm-pmu",	.data = m1_pmu_ice_init, },
- 	{ .compatible = "apple,firestorm-pmu",	.data = m1_pmu_fire_init, },
- 	{ .compatible = "apple,fusion-pmu",	.data = a10_pmu_fusion_init, },
-+	{ .compatible = "apple,monsoon-pmu",	.data = a11_pmu_monsoon_init, },
-+	{ .compatible = "apple,mistral-pmu",	.data = a11_pmu_mistral_init, },
- 	{ .compatible = "apple,twister-pmu",	.data = a9_pmu_twister_init, },
- 	{ .compatible = "apple,typhoon-pmu",	.data = a8_pmu_typhoon_init, },
- 	{ .compatible = "apple,cyclone-pmu",	.data = a7_pmu_cyclone_init, },
+Additionally, I do have a few comments on the yaml documentation.
 
--- 
-2.48.1
+Tested-by: Chris Morgan <macromorgan@hotmail.com>
 
+Thank you,
+Chris
 
