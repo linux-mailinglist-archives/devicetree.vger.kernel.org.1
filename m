@@ -1,154 +1,206 @@
-Return-Path: <devicetree+bounces-145912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A20A32CC2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:04:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E8FA32D06
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:11:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82AA81889273
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:04:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DF173A2537
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:09:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CAAC257AF1;
-	Wed, 12 Feb 2025 17:04:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 059A12580D6;
+	Wed, 12 Feb 2025 17:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Wh+nIwYr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TO3sMBn7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58141253F09;
-	Wed, 12 Feb 2025 17:04:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA9EE256C74;
+	Wed, 12 Feb 2025 17:08:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739379857; cv=none; b=uvod2HbXDW861B8L5xSxoyYq6VzmXiiSL9z7n1QVmrJpBeyhfeI1k/SNH4FQTvi4r7f4mH56LL5IcF4n8HiW0YU+1x9YJj96/frL4he7lziBzkWk047OKDDE78hkIsxc88TyXaT5rvNMjI+ldZ/ukVz5cW9xtwnrqYNBf5yAZi8=
+	t=1739380087; cv=none; b=d7c2krBPn9hwli9pJjPxU8cZYkTozNUzDo7KivXVftWEvai8iG/o2kakR6vYsOVS7LNzHjROQlZ0ufmpAca3kCE7XsmPfDw0KgTQeCdEIJnT2/yNvaR0fTh/AbBKQ3p65Poan2QvpMSeUQGdIutwruAwxhQMe3ZYohb3DORVWaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739379857; c=relaxed/simple;
-	bh=KtCtiu3HdxGB+elt6zIdrSwpsiFCDhpc2RS0AWHPdFI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZqzRPaj6M5azJwXfZtaUMp/ejQBZm8fJSwgoOT6efj0iGt2kjn9g0D/pdY6n2ZYZQ4WGycsS7ymCsn3DqmU6UYpkRUUgzKDWt0gdsYN0WckzkgpZbsId8pzlWwo7/yKEhclibfIvqrwbRpxp78mL0E/Z/keiykLOhRl2vjNTfXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Wh+nIwYr; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from [192.168.244.162] (254C23D7.nat.pool.telekom.hu [37.76.35.215])
-	by mail.mainlining.org (Postfix) with ESMTPSA id BA7E6BB83A;
-	Wed, 12 Feb 2025 17:04:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1739379853;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qSkfr6mNx85SD3B+tK98X+gwaurO564E0jqWeUP4rL8=;
-	b=Wh+nIwYrFM6tNM6qZ04n4yTdAJyNi80HGi8guNn/76DkKUgIUtHZDsGZvhlUtLw7iCrIda
-	eVRHf4w0u1BZbFAqRO0s07eMFJqbP4TUTkLNZOkKHt25d89oXRVxgeu3yf22Ntdcjtd0SS
-	LBaYu25U2jPBDBAcpIPVvZ4dmCOUyGmxA07UEajL85nwsGJPN2cHoab2s+8ddKABCIsNGY
-	eUkGd5TUV21o5OHBpYe+yvPQHY2Xu/fl0XruLCEyXisy92ZAhVoTc/8Jw5usYzFqFswWiT
-	d6A4tWpbN+5364BPzdTvsGtZbF/Q7DaqEq1J8HMDumWJ34IiuHTkZVW8CjlmIQ==
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Wed, 12 Feb 2025 18:04:10 +0100
-Subject: [PATCH 2/2] clk: qcom: smd-rpm: Add clocks for SDM429
+	s=arc-20240116; t=1739380087; c=relaxed/simple;
+	bh=pwT1B7Ni18SkZT5w9BRjgpMRdmuKfv1+hl097RpRRY8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lm9go+AGhsqJDkKbdd3r/rUOw1aZM86MqWRPf6pc/+bBJQj8rplagg/cR/Dw3V53fLAc1Vfqmq3kWOEMVYtV0WNMuk/72+gIi2wohQCaJulIp4TwfuF3CGMAN54bP+02xQPqePBh+yFcQnZWhw+tqTN8flf9yTnRrKCW4MZRLqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TO3sMBn7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96133C4CEDF;
+	Wed, 12 Feb 2025 17:08:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739380087;
+	bh=pwT1B7Ni18SkZT5w9BRjgpMRdmuKfv1+hl097RpRRY8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TO3sMBn7NmzyjOU2ZmXRM8wZu3sy/C5H7T+qs2fHzcDjI32zhnpbQHjE4+04uk1NS
+	 YyK7MSGGPjcqozPp1dMbW4H8/Oz7VaOaDpDZ4KnmJO5oZAoXTM/3XZfnsLIAGMShlf
+	 YGP2qjpXo3eRV7rlkVCs4ky4M7U8W8tE9aW5Eb2WA8VFJ3TdTd9Kpl5X3BGzpZ0Kix
+	 jUzXEgXJsc3+mjolKr8qUhXVxUDiDJ9PoqZBm8o0hZwP1dblYxp2IBdmTUcCAKzUqR
+	 n2A0I7E1PGZqlJJCCp9FISh/wegGUxvVlbIKnhnMYMrVbt8l45j/6BRTfwQ4n7ZDj3
+	 sSze0qBTJTd5Q==
+Message-ID: <a6c9aa51-5a31-4f23-8c28-71bca5947fc2@kernel.org>
+Date: Wed, 12 Feb 2025 18:08:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250212-sdm429-rpm-v1-2-0a24ac19a478@mainlining.org>
-References: <20250212-sdm429-rpm-v1-0-0a24ac19a478@mainlining.org>
-In-Reply-To: <20250212-sdm429-rpm-v1-0-0a24ac19a478@mainlining.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
- Daniil Titov <daniilt971@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739379850; l=3273;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=fyggwXhk9oUXnNEQR7/yS+FGPmSxOG/fD7VIcXM5TRw=;
- b=+S6GYw5dJCjDduaMBbGNCl+5KorNoSqzFoc7zIOjILn2T4U4CHuAnP87bu9slQco6NyM89B3y
- p1CUAAMhSVlBWS/2YgbiZ5r76UdrN5S5KjqUHsoU+ONWvY0wZ0+THFV
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] dt-bindings: Document VeriSilicon APB GPIO driver
+To: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, James Cowgill
+ <james.cowgill@blaize.com>, Matt Redfearn <matthew.redfearn@blaize.com>,
+ Neil Jones <neil.jones@blaize.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20250212-kernel-upstreaming-add_gpio_support-v1-0-080e724a21f3@blaize.com>
+ <20250212-kernel-upstreaming-add_gpio_support-v1-2-080e724a21f3@blaize.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250212-kernel-upstreaming-add_gpio_support-v1-2-080e724a21f3@blaize.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Daniil Titov <daniilt971@gmail.com>
+On 12/02/2025 14:46, Nikolaos Pasaloukos wrote:
+> diff --git a/Documentation/devicetree/bindings/gpio/vsi,apb-gpio.yaml b/Documentation/devicetree/bindings/gpio/vsi,apb-gpio.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..4a293b44e03895b6a45cb85f42c47c46b64f5638
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/vsi,apb-gpio.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/vsi,apb-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: VeriSilicon APB GPIO controller
+> +
+> +description: |
 
-SDM429 has mostly the same rpm clocks as MSM8953, but lacks RF_CLK3 and
-IPA_CLK and additionally has the BB_CLK3.
+Do not need '|' unless you need to preserve formatting.
 
-Signed-off-by: Daniil Titov <daniilt971@gmail.com>
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
----
- drivers/clk/qcom/clk-smd-rpm.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+> +  VeriSilicon GPIO controllers have a configurable number of ports, each
+> +  of which are intended to be represented as child nodes with the generic
+> +  GPIO-controller properties as described in this bindings file.
+> +
+> +maintainers:
+> +  - Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+> +  - James Cowgill <james.cowgill@blaize.com>
+> +  - Matthew Redfearn <matthew.redfearn@blaize.com>
+> +  - Neil Jones <neil.jones@blaize.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^gpio@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    oneOf:
 
-diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
-index 29ef08a9d50b47fb71ac253c6f50f4c28f4d6519..3fbaa646286f284da12b902873b079863a2c0d77 100644
---- a/drivers/clk/qcom/clk-smd-rpm.c
-+++ b/drivers/clk/qcom/clk-smd-rpm.c
-@@ -486,6 +486,7 @@ DEFINE_CLK_SMD_RPM(qup, QCOM_SMD_RPM_QUP_CLK, 0);
- 
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(bb_clk1, 1, 19200000);
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(bb_clk2, 2, 19200000);
-+DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(bb_clk3, 3, 19200000);
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(ln_bb_clk1, 1, 19200000);
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(ln_bb_clk2, 2, 19200000);
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(ln_bb_clk3, 3, 19200000);
-@@ -1046,6 +1047,36 @@ static const struct rpm_smd_clk_desc rpm_clk_msm8998 = {
- 	.num_icc_clks = ARRAY_SIZE(msm8998_icc_clks),
- };
- 
-+static struct clk_smd_rpm *sdm429_clks[] = {
-+	[RPM_SMD_XO_CLK_SRC]		= &clk_smd_rpm_branch_bi_tcxo,
-+	[RPM_SMD_XO_A_CLK_SRC]		= &clk_smd_rpm_branch_bi_tcxo_a,
-+	[RPM_SMD_QDSS_CLK]		= &clk_smd_rpm_qdss_clk,
-+	[RPM_SMD_QDSS_A_CLK]		= &clk_smd_rpm_qdss_a_clk,
-+	[RPM_SMD_BB_CLK1]		= &clk_smd_rpm_bb_clk1,
-+	[RPM_SMD_BB_CLK1_A]		= &clk_smd_rpm_bb_clk1_a,
-+	[RPM_SMD_BB_CLK2]		= &clk_smd_rpm_bb_clk2,
-+	[RPM_SMD_BB_CLK2_A]		= &clk_smd_rpm_bb_clk2_a,
-+	[RPM_SMD_BB_CLK3]		= &clk_smd_rpm_bb_clk3,
-+	[RPM_SMD_BB_CLK3_A]		= &clk_smd_rpm_bb_clk3_a,
-+	[RPM_SMD_RF_CLK2]		= &clk_smd_rpm_rf_clk2,
-+	[RPM_SMD_RF_CLK2_A]		= &clk_smd_rpm_rf_clk2_a,
-+	[RPM_SMD_DIV_CLK2]		= &clk_smd_rpm_div_clk2,
-+	[RPM_SMD_DIV_A_CLK2]		= &clk_smd_rpm_div_clk2_a,
-+	[RPM_SMD_BB_CLK1_PIN]		= &clk_smd_rpm_bb_clk1_pin,
-+	[RPM_SMD_BB_CLK1_A_PIN]		= &clk_smd_rpm_bb_clk1_a_pin,
-+	[RPM_SMD_BB_CLK2_PIN]		= &clk_smd_rpm_bb_clk2_pin,
-+	[RPM_SMD_BB_CLK2_A_PIN]		= &clk_smd_rpm_bb_clk2_a_pin,
-+	[RPM_SMD_BB_CLK3_PIN]		= &clk_smd_rpm_bb_clk3_pin,
-+	[RPM_SMD_BB_CLK3_A_PIN]		= &clk_smd_rpm_bb_clk3_a_pin,
-+};
-+
-+static const struct rpm_smd_clk_desc rpm_clk_sdm429 = {
-+	.clks = sdm429_clks,
-+	.num_clks = ARRAY_SIZE(sdm429_clks),
-+	.icc_clks = bimc_pcnoc_snoc_smmnoc_icc_clks,
-+	.num_icc_clks = ARRAY_SIZE(bimc_pcnoc_snoc_smmnoc_icc_clks),
-+};
-+
- static struct clk_smd_rpm *sdm660_clks[] = {
- 	[RPM_SMD_XO_CLK_SRC] = &clk_smd_rpm_branch_bi_tcxo,
- 	[RPM_SMD_XO_A_CLK_SRC] = &clk_smd_rpm_branch_bi_tcxo_a,
-@@ -1276,6 +1307,7 @@ static const struct of_device_id rpm_smd_clk_match_table[] = {
- 	{ .compatible = "qcom,rpmcc-msm8998", .data = &rpm_clk_msm8998 },
- 	{ .compatible = "qcom,rpmcc-qcm2290", .data = &rpm_clk_qcm2290 },
- 	{ .compatible = "qcom,rpmcc-qcs404",  .data = &rpm_clk_qcs404  },
-+	{ .compatible = "qcom,rpmcc-sdm429",  .data = &rpm_clk_sdm429  },
- 	{ .compatible = "qcom,rpmcc-sdm660",  .data = &rpm_clk_sdm660  },
- 	{ .compatible = "qcom,rpmcc-sm6115",  .data = &rpm_clk_sm6115  },
- 	{ .compatible = "qcom,rpmcc-sm6125",  .data = &rpm_clk_sm6125  },
+Drop
 
--- 
-2.48.1
+> +      - description: Verisilicon APB GPIO controller
 
+Drop
+
+> +        items:
+> +          - enum:
+
+Missing SoC compatible. Maybe IP block is simple enough to use the same
+generic compatible for all implementations, but usually Rob was
+suggesting that it is anyway not the best approach, so I would just make
+it SoC specific only (and rename the file to match compatible). If the
+fallback is really usable by every implementation, it could stay, but
+OTOH, your 'ngpios' property already suggests that it is not enough to
+use fallback alone.
+
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  ngpios:
+> +    default: 32
+> +    minimum: 1
+> +    maximum: 32
+> +
+> +  interrupts:
+> +    description: |
+> +      The interrupts to the parent controller raised when GPIOs generate
+> +      the interrupts. Specify a single interrupt since the controller
+> +      provides one combined interrupt for all GPIOs.
+
+Drop description, obvious.
+
+> +    maxItems: 1
+> +
+> +  gpio-line-names: true
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+
+
+
+Best regards,
+Krzysztof
 
