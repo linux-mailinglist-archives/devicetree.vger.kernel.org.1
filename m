@@ -1,99 +1,140 @@
-Return-Path: <devicetree+bounces-145689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DBF1A32101
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:26:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F2EAA3212B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:32:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 803E67A2437
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 08:25:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E47561882F60
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 08:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2922205ABC;
-	Wed, 12 Feb 2025 08:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5152046BC;
+	Wed, 12 Feb 2025 08:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l2HRA1Kd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OtTgso7u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13AF205AB4;
-	Wed, 12 Feb 2025 08:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791E01DB356;
+	Wed, 12 Feb 2025 08:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739348758; cv=none; b=b/TnC1u6CZzcX6R19122y8YQDkiE46QOrNuBQ2/q1aCZ5WYs4OCIhcq256ttXwsD1bNWMdjTsudI49FlUjvKPBqhwJyAq5eh7NadKDqvjR92nnich4jg0DNn1/JAAmSD220cK2IzZazwzcOi1JIG9XJ9dUDmLkrBMDCKwOmZdww=
+	t=1739349159; cv=none; b=Zr+N/kjk+iZMIwvvgyNWYIB/pzmcCYj3+ndEJ3MNMdQ4D0t2yanO4zJqGZPyrPqpW2GjUjrUXZ6pcAw+64kLMpnOLx2Q01FgA3ydD7CZ30Gz2BNvZc+FU4M21xb2jwEx5qdWTvArM98JCWCV8CLbEOsLG5bHMvKH5U0rspHw7ow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739348758; c=relaxed/simple;
-	bh=iaafHC+QOh7ucrb1jk1Wl/0MaPzchf6dt+Z+vfrMZSk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O6P/u2lzxyclhNOhWzxu7+NA0jRyrFW8JgKI++CpqqNRLIRdC58xD8uSJUqTSsZ+N3xBnU9PP7+5wB/HTLd/wNKptqvuNZUNXEC5M7NEze00VKhKIGfboyY8bAj3LaAxrzcoBLOH8DxRu6TABQgZy4FrQ+asGvnThd0j005aymk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l2HRA1Kd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0EBDC4CEE2;
-	Wed, 12 Feb 2025 08:25:56 +0000 (UTC)
+	s=arc-20240116; t=1739349159; c=relaxed/simple;
+	bh=Xg9XIDh10rgYubqNHyKWAmhf8OMGcuuYmiDQOuA4mJA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DkwbwPMSfzAPk2lUMntL9ztj8hUcijDlfx0tcRxq1A+yKPitEKih8SHiQ4HSQWbIBiTC6g2EluvxGS3ApjA0tYf3FR4CGq5uYlA31/q4R84FK2Pv6Xc6ahYzBpejIIvYVJqtIDTj5AT+gcTmZ6xfBjrrvy8z/mjeCacYD+hUK2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OtTgso7u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30939C4CEDF;
+	Wed, 12 Feb 2025 08:32:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739348758;
-	bh=iaafHC+QOh7ucrb1jk1Wl/0MaPzchf6dt+Z+vfrMZSk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l2HRA1KdVAe3Z8QSCBXlJtH9TSQuJwWmnykKdsGFypNHwQIPhuMQ4Hkaj2dcsj6Jw
-	 Np5bWQusyHVgpzyR/qikYIGpyHtL+W4B7nimVjfOJKDd9Ftcnk8OZoBxhM46AN35gK
-	 1r+/F08DQbQngxiu+6En12NUuvU6F0/JimZZRgULPVC3bVGNlz78o4zAB6KX+Selil
-	 STerr/LkKym8W0DkKMs/FwjDl1jzBC/z41x13YUjsZuA55+Ke0/Lxzjfo33MkuqRjP
-	 SjkibqDzz7rjcSA0C1xXJZ7fBOI1ivsfI9UvEbCAKFjt7cnLX0BOnST1VlGjeLAZW1
-	 fSP8NHKE2+2GA==
-Date: Wed, 12 Feb 2025 09:25:54 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 0/2] pwm: Add support for pwm nexus node
-Message-ID: <ufl4kwrjyp4zid4muvghefevqc6hk3zyvxnsu72fxd4f46fzg6@hufkci2dzjid>
-References: <20250205095547.536083-1-herve.codina@bootlin.com>
+	s=k20201202; t=1739349159;
+	bh=Xg9XIDh10rgYubqNHyKWAmhf8OMGcuuYmiDQOuA4mJA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OtTgso7uw/lVTrFq5eqkpxEsSyuQNJtGzKAKmI6TQD/kkgJsaQesqbHNY3hmqedHl
+	 snkThAjnn7m5ZViJDPQ/a1zUE8bwLffr/Y9KZC7wZ3Ky+iyJ8OEUlg/H/RJllzkCUF
+	 axPkddm4Wb7IUetkyqfa6KCjSvZXGu+oodzCpSQ+x0PM0UO3H4Ey7D7iVfmCrDMXra
+	 u8NJzJqlhdnJ5D8PKPzlKVytlda3QErJlgUM6f7vIyovewhB9UposGpHJAuZa6WgYR
+	 /ZX1yncCY2klnDIqSrOpterS9tAs3HGdCIQFAIbPliVWco/0W5wywfTk3hSKGfw9sR
+	 g58pl16j5OfRg==
+Message-ID: <85927c8e-f0c5-4241-a840-667aa0459e70@kernel.org>
+Date: Wed, 12 Feb 2025 09:32:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wmjtzh42nhqulnry"
-Content-Disposition: inline
-In-Reply-To: <20250205095547.536083-1-herve.codina@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] dt-bindings: display: msm: dp-controller: document
+ QCS8300 compatible
+To: Yongxing Mou <quic_yongmou@quicinc.com>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250113-mdssdt_qcs8300-v3-0-6c8e93459600@quicinc.com>
+ <20250113-mdssdt_qcs8300-v3-2-6c8e93459600@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250113-mdssdt_qcs8300-v3-2-6c8e93459600@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 13/01/2025 09:03, Yongxing Mou wrote:
+> Add compatible string for the DisplayPort controller found on the
+> Qualcomm QCS8300 platform.QCS8300 only support one DisplayPort
+> controller and have the same base offset with sm8650, so we reuse
+> the sm8650 DisplayPort driver.
+
+Un-reviewed. Other patchset said these are not compatible.
+
+You keep sending stuff to the list which is known to be incorrect. Then,
+while patches are not applied, you send corrections.
+
+NAK.
 
 
---wmjtzh42nhqulnry
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v3 0/2] pwm: Add support for pwm nexus node
-MIME-Version: 1.0
 
-Hello,
-
-applied both patches to
-
-	https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-next
-
-with the fixup that Rob requested in the first patch. Thanks!
-
-Best regards
-Uwe
-
---wmjtzh42nhqulnry
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmesWw8ACgkQj4D7WH0S
-/k7aFgf+PYpAgnm3DIYuICBhwNZsiuJqtDAJVnu1HZ63Zt6ZRDrVU9yiXL+1k65/
-aalVG3qBLXQs+vYLJWz+ibEPv/42ucmJHr1w2iFt8ipO57bEVjxU5kS69h8jixBs
-jrQn/WOLaAL9OL0ZBUHea7lh15jQ3cVDL35TsZrzDCl7uRKDIzgGMqQCHwpg2TCM
-3Wy9wGiixU0SImNMr6BMpYfV5XrEFM+764u+8jwRK2KSWVPpeCj9DtOLMGuwFH9Z
-WYxepE3l0AKWaBr69u164Um4ZR0BIQDvFTTWSRcEXcOyCyocKxBAKP/P8wQa840C
-MZp+NmRASHPsS86kCg277sgSqUk0dA==
-=L6H1
------END PGP SIGNATURE-----
-
---wmjtzh42nhqulnry--
+Best regards,
+Krzysztof
 
