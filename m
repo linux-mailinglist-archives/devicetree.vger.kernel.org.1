@@ -1,209 +1,198 @@
-Return-Path: <devicetree+bounces-146025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A531A3304A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 21:00:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E021A33062
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 21:04:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB8EC1623E8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:00:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3507C3A0573
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:04:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC49220100D;
-	Wed, 12 Feb 2025 20:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B4A8200136;
+	Wed, 12 Feb 2025 20:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TyDBdVH9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="syFQMmfV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C016315383A
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 20:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FD9200118
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 20:04:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739390429; cv=none; b=CqcRatFaXEBT213fCUsHhcDf+iZiErnGkYDaE5ZbXwv/IX03v6bHvmS7t2M9U5nC5+tyRprgnuwTV6/15ZdJXlU4pXGgF2MlVUVQ6kTpvoaY3XD2FJOqwYhivXTiEoXZHnUXVzud2l7vdaoAgyU9Y5ybx3s91XXjmS0sR72QSdc=
+	t=1739390692; cv=none; b=CAMYtAoN6s8wMMnob/C/ayXObEh7Y5BakJvTLZ1R6V2CScoZwZQ5oPKnO3q82nAW7HBKa5l8Ooezb8gBJy77YF2MGq6opfJrpSoOvk5CLm6TEDs5xpk6rPRDUMR3RlrwtaDz3o4H/ZfOkinu84GpI9K2L1zm1V3GLoY9SJjERpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739390429; c=relaxed/simple;
-	bh=Sk3/jI2UsX7t1K7DBMsBontenZTYBCF6xe8eKBZ82QE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XaSMct5jAYj4PFWcIXBR4piLmAiI5ymLAbz+TiD+9wqj7Oz8WjWOfxrsBkVrR+WbQSNzYPlUsPjOx6O0T3zVfH6AvGtNdd7ZFae2S+gKW587m8x49M9Z3T9HctymkRFK+9pDJ9QAB3ZFKpbIvVHAsNj12C0Y4egGY6of4EipJvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TyDBdVH9; arc=none smtp.client-ip=209.85.128.173
+	s=arc-20240116; t=1739390692; c=relaxed/simple;
+	bh=j+J2VmaL2sBTod1+ELLX37mlLaK9BAiuTDjYikEkCZU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YN5XD6RV9O1qfoxAM06sENKKPUs0J+N6XnIQKUDn0Ga01q9K6fV+9/8eRCX/17Qu+nIGkcDt2UNT4E6GWXUgzNcZkfelkKVsGRqwiFakoz0RJ+uAgk9cdNuP4kmFC1UmiCK/kddF2506cvIJUtk7kSrH0IP6jbZjimK4MV1pg+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=syFQMmfV; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6f9625c0fccso1354167b3.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 12:00:26 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ab7098af6fdso2874366b.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 12:04:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739390426; x=1739995226; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/fTY3RzHJmo0B1XLCBasCOuHNrW5LerLaWls5wlJiRQ=;
-        b=TyDBdVH9JvqtN5SzB24bhuzfz3OgOzgK5KwPhSr3Gf5JEEg8QwlwhCITBHMI0r54pL
-         /8KdC9AKD4A3uSv+wKyX+5pNdeTRnVJEsHl3zCq6qjnvh29aahzbyPJ71JvwPdDzX+/S
-         IAkzHMuF/z0/XDAwpys5b5ZsiT1DJQ/r0cmS3K/FG1WJhcd6JR6awkQNEPQrT3iy8aFi
-         0EMzbnTHY0ROzD9EheD03FAAT93fmtNGcIwMsQTDrEHmvTUu2zHhL7z+4PS3s3JAkxcK
-         JB1vLKyHjXcJassl+kg0cTG8yuscl8cZ6RtTwB+UI3fGbO3uQWmqlsV2WiBHCHSaiF9l
-         HZOA==
+        d=linaro.org; s=google; t=1739390689; x=1739995489; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=TCppI8y93cboRnNPyFDL3rH6Gq98I5rJlO4BpN7swr8=;
+        b=syFQMmfVK5ok0H5u95jjiOJZRCpfXh3miQdww042skwx5xQXewyHSNlFrXS+j00cE3
+         3Cut9CC2NdrlYFYMu3KeEVEotYkOLpg/sJPdxDaPxuZi6+pEE3F+aWSiyAGz4I3dxOL0
+         XQmMtUHtxa065j5tot1Jwhuh7VaNyxBsuSvBxn2hyRmgTN5pW6BbIHujzbLi5rwkQt3n
+         Dc1JGGc/BQzZ+cloR4uRPmN74P4Qbiu38FYMHtxj7/84oKaeesCV1oxsZDIr8Tj3Nupj
+         2AUVr4qlxfSJs5rQ0yOkDJaV4H6ZgS19EYZBHf4o/1THyYjBtmWmD5kn/dXx1Vrs3yEY
+         zVzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739390426; x=1739995226;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1739390689; x=1739995489;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/fTY3RzHJmo0B1XLCBasCOuHNrW5LerLaWls5wlJiRQ=;
-        b=RIhmJKdRqa8MAojCg9jWfrVB6jqwSA5sur449OPSzfcp+4a8VIfiUXos1hYPZmjJx6
-         gJkuPB+3i0HPsax5RVdPb3dw2iwaxcgW4rhK2agMMw1j4loa5+cHj0VZlno8Y7jOV5SU
-         m4n33uj/Za2qh1bYJNAx2GJXEm0oWHdfIwdPGRDWc9kra27Poq8+bPPBW7vJXcIGnCm+
-         3ejugYGrFbnvjGJOVRGzs2cVtej3mmj3XJTQ6RuIzMfVsUrqvHYkR/IRlGu7WujiC/KK
-         Ikc3WDL+k1LKRX5+W95RFfQ33T+F2aur+ZUr8AUJWVw7DH7dPNQc4IZNurbC0QjPce+I
-         U5FA==
-X-Forwarded-Encrypted: i=1; AJvYcCW11jp2Hw7n/g7BlcF76Eaj5QTVpl4oIeNmy/7p/FyglDDR0K3u+IlqPfB7IY/OCGgbmNmhdxgbYTPo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzu8K/GkfrxQ1R4b/1+vzf9lau+/KElM8Q7jAWD3/ZlXX7vPzFk
-	/4ma3dvgoVyoKMp90Ol5iwijyZ5tnBBKX70JzDGMciG7Cr6MEWjBCMdoSxRp20Xc4pgEFmff6uO
-	d6+Y5cM5LCUJ9KEDXNkTRSJy5BFk3mb+9h+PURg==
-X-Gm-Gg: ASbGncutDGFfsUBMhWAbB6osy5Qol74P/roLrAhiFgn5QJ9AkHYqwiDjaOIreoHodJU
-	gmuaOY8fww2PxUqEOQSvLqQwoJYTAfZ3YcOwlhiyZrt3dDdeuMFfw2XeV/UASkuS+p3MZ9X2ME0
-	xTmpmSrnsSdHr08VyOyY587JQ+0qqv
-X-Google-Smtp-Source: AGHT+IHpP/gC08VN7wUxKZsuy3lhOhgymj/1ecYGtVd8W+HYEBiuQTcPZ00XpHQf5kS9j1OsDnAxBJQ5Gt36la9oIrA=
-X-Received: by 2002:a05:690c:f87:b0:6f9:4306:5d0b with SMTP id
- 00721157ae682-6fb32c49cf2mr8626497b3.6.1739390425591; Wed, 12 Feb 2025
- 12:00:25 -0800 (PST)
+        bh=TCppI8y93cboRnNPyFDL3rH6Gq98I5rJlO4BpN7swr8=;
+        b=iWmodBUJBPAub3HIrl5XpLPZ2GYbmvZOMHs4visc//mC7fx71aiffGXoqHoPlyOCQc
+         AUhTNp09AYgTQxKhiXkMdto6zSOUujAFvs77GTYme5dN7fODFN0jKH591RNqiZyQHmDJ
+         PbVsO68Ge18+MKforp9cEDQghc/5VUVAi0/STtAQ5Qv/y2mHSFFyUx2eJ0q6RqnK3KgW
+         KEapixEOM58EaCzg36vDbwVg8xEOAJWltmcb9RwaypzveOT8F37SOdQQb8HKYq+H7q/z
+         gF8hX1+PcQQom+w+fJku8N+JX8QICN0sxZOYwcoLvknxCjrS6cobKDWBrYtaAYttotbu
+         pU7A==
+X-Forwarded-Encrypted: i=1; AJvYcCWJV1TQojUX8/r+SQqIlCgyXxE/v8N5BhkWv7AL1Yt58wkOmVYjkictYV9ptm8Be6iXJHg29Jg78ewQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmvM0LzPs8LCTgO6aC8+FRaTB/4wm2538ZVolp/GJBdArmN+fh
+	z+nU48L6e8wnYfxw5/1yxipxCDlw0BK8PkbA4ntVnCB5kOT5UmQMgorHtrDxUNg=
+X-Gm-Gg: ASbGncucfIm7fZX6dLpYsb1nC1i4r3EfruTiPPBJsviMXHs/5KGLg3c0uHuEsG2xT0/
+	mZd44rUqhNJrKy4oOEWEKYKDCdQvo8iMbMyiF/NqmV9Ho6/NtlZc9roLCpwCtqb1aYoXRCryOp+
+	g5DGL8qYBcBomWRroDe6trFYgsZ1TBYekd81w/qG6urzNnW9nEeH0N4kNbokKjmRc6ZDarQGcTp
+	txu9cWk7B6DdAd4RzH+xXd2zpxbDK7nL997XWyyT5V7N0PUczQafD9iBH5DXq8hxDu2+Ml/yH7N
+	/tZSpYCUmbPB4uM7yrHaxgy8RLMfj2hXJUo=
+X-Google-Smtp-Source: AGHT+IGkl11bv2ccUEKxaaQCvMxLK4FjNadbwKCT6A2Anh1DkgIvsPGgQ2iR8jPdG73PRBdgMlJogA==
+X-Received: by 2002:a17:907:728b:b0:ab7:d10b:e1f2 with SMTP id a640c23a62f3a-ab7f34a0d8amr145810666b.12.1739390688613;
+        Wed, 12 Feb 2025 12:04:48 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.144])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7c520a3a2sm641974966b.158.2025.02.12.12.04.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Feb 2025 12:04:48 -0800 (PST)
+Message-ID: <251cbe57-da12-47a8-bcf4-be0a0c4082f6@linaro.org>
+Date: Wed, 12 Feb 2025 21:04:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250212-lpass_qcm6490_resets-v3-0-0b1cfb35b38e@quicinc.com>
- <20250212-lpass_qcm6490_resets-v3-2-0b1cfb35b38e@quicinc.com>
- <exyxni7td5vow2n6jarav5euje6dnbue5f5yxzu6az554dthfe@zn5yd2byvkoj> <ccc87c55-d157-4ffc-8081-1a5900752931@quicinc.com>
-In-Reply-To: <ccc87c55-d157-4ffc-8081-1a5900752931@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 12 Feb 2025 22:00:13 +0200
-X-Gm-Features: AWEUYZn3gLjvd1HsKl-sxJNZx8W02W3If6M3qoD7FnpzYCeutPv1jLp6seThGZg
-Message-ID: <CAA8EJpp7e5q36jGmB-TZX5A=XVGKsDtmBF8kJmxoga8NqGZP1A@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] clk: qcom: lpassaudiocc-sc7280: Add support for
- LPASS resets for QCM6490
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] media: i2c: Add driver for Sony IMX728
+To: Sebastian LaVine <slavine@d3embedded.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Cc: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Abel Vesa <abel.vesa@linaro.org>, Achath Vaishnav <vaishnav.a@ti.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Ard Biesheuvel <ardb@kernel.org>,
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ Bjorn Andersson <quic_bjorande@quicinc.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>,
+ Fabio Estevam <festevam@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Hans Verkuil <hverkuil@xs4all.nl>,
+ Javier Carrasco <javier.carrasco@wolfvision.net>, Jianzhong Xu <xuj@ti.com>,
+ Julien Massot <julien.massot@collabora.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Kory Maincent <kory.maincent@bootlin.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Mikhail Rudenko <mike.rudenko@gmail.com>, Nishanth Menon <nm@ti.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Stuart Burtner <sburtner@d3embedded.com>, Tero Kristo <kristo@kernel.org>,
+ Thakkar Devarsh <devarsht@ti.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Umang Jain <umang.jain@ideasonboard.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Will Deacon <will@kernel.org>,
+ Zhi Mao <zhi.mao@mediatek.com>
+References: <20250212195656.69528-1-slavine@d3embedded.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20250212195656.69528-1-slavine@d3embedded.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 12 Feb 2025 at 19:15, Taniya Das <quic_tdas@quicinc.com> wrote:
->
->
->
-> On 2/12/2025 4:39 PM, Dmitry Baryshkov wrote:
-> > On Wed, Feb 12, 2025 at 01:52:20PM +0530, Taniya Das wrote:
-> >> On the QCM6490 boards the LPASS firmware controls the complete clock
-> >> controller functionalities. But the LPASS resets are required to be
-> >> controlled from the high level OS. The Audio SW driver should be able to
-> >> assert/deassert the audio resets as required. Thus in clock driver add
-> >> support for the resets.
-> >>
-> >> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> >> ---
-> >>  drivers/clk/qcom/lpassaudiocc-sc7280.c | 23 +++++++++++++++++++----
-> >>  1 file changed, 19 insertions(+), 4 deletions(-)
-> >>
-> >> diff --git a/drivers/clk/qcom/lpassaudiocc-sc7280.c b/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> >> index 45e7264770866f929a3f4663c477330f0bf7aa84..b6439308926371891cc5f9a5e0d4e8393641560d 100644
-> >> --- a/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> >> +++ b/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> >> @@ -1,6 +1,7 @@
-> >>  // SPDX-License-Identifier: GPL-2.0-only
-> >>  /*
-> >>   * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> >> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> >>   */
-> >>
-> >>  #include <linux/clk-provider.h>
-> >> @@ -713,14 +714,24 @@ static const struct qcom_reset_map lpass_audio_cc_sc7280_resets[] = {
-> >>      [LPASS_AUDIO_SWR_WSA_CGCR] = { 0xb0, 1 },
-> >>  };
-> >>
-> >> +static const struct regmap_config lpass_audio_cc_sc7280_reset_regmap_config = {
-> >> +    .name = "lpassaudio_cc_reset",
-> >> +    .reg_bits = 32,
-> >> +    .reg_stride = 4,
-> >> +    .val_bits = 32,
-> >> +    .fast_io = true,
-> >> +    .max_register = 0xc8,
-> >> +};
-> >> +
-> >>  static const struct qcom_cc_desc lpass_audio_cc_reset_sc7280_desc = {
-> >> -    .config = &lpass_audio_cc_sc7280_regmap_config,
-> >> +    .config = &lpass_audio_cc_sc7280_reset_regmap_config,
-> >>      .resets = lpass_audio_cc_sc7280_resets,
-> >>      .num_resets = ARRAY_SIZE(lpass_audio_cc_sc7280_resets),
-> >>  };
-> >>
-> >>  static const struct of_device_id lpass_audio_cc_sc7280_match_table[] = {
-> >> -    { .compatible = "qcom,sc7280-lpassaudiocc" },
-> >> +    { .compatible = "qcom,qcm6490-lpassaudiocc", .data = &lpass_audio_cc_reset_sc7280_desc },
-> >> +    { .compatible = "qcom,sc7280-lpassaudiocc", .data = &lpass_audio_cc_sc7280_desc },
-> >>      { }
-> >>  };
-> >>  MODULE_DEVICE_TABLE(of, lpass_audio_cc_sc7280_match_table);
-> >> @@ -752,13 +763,17 @@ static int lpass_audio_cc_sc7280_probe(struct platform_device *pdev)
-> >>      struct regmap *regmap;
-> >>      int ret;
-> >>
-> >> +    desc = device_get_match_data(&pdev->dev);
-> >> +
-> >> +    if (desc->num_resets)
-> >> +            return qcom_cc_probe_by_index(pdev, 1, desc);
-> >
-> > Won't this break SC7280 support by causing an early return?
-> >
->
-> The resets are not defined for SC7280.
-> static const struct qcom_cc_desc lpass_audio_cc_sc7280_desc = {
->         .config = &lpass_audio_cc_sc7280_regmap_config,
->         .clks = lpass_audio_cc_sc7280_clocks,
->         .num_clks = ARRAY_SIZE(lpass_audio_cc_sc7280_clocks),
-> };
->
-> The reset get registered for SC7280 after the clocks are registered.
-> qcom_cc_probe_by_index(pdev, 1,  &lpass_audio_cc_reset_sc7280_desc);
+On 12/02/2025 20:56, Sebastian LaVine wrote:
+> This series adds a V4L2 sensor driver for the Sony IMX728, and related
+> devicetree overlays.
+> 
+> v4l2-compliance 1.26.1-5142, 64 bits, 64-bit time_t
+> v4l2-compliance SHA: 4aee01a02792 2023-12-12 21:40:38
 
-Could you please make this condition more obvious and error-prone
-rather than checking one particular non-obvious property?
+Your Cc list is neither correct (incorrect my email) nor reasonable
+size. You cc-ed several maintainers which are not responsible for these
+files.
 
->
-> >> +
-> >>      ret = lpass_audio_setup_runtime_pm(pdev);
-> >>      if (ret)
-> >>              return ret;
-> >>
-> >>      lpass_audio_cc_sc7280_regmap_config.name = "lpassaudio_cc";
-> >>      lpass_audio_cc_sc7280_regmap_config.max_register = 0x2f000;
-> >> -    desc = &lpass_audio_cc_sc7280_desc;
-> >>
-> >>      regmap = qcom_cc_map(pdev, desc);
-> >>      if (IS_ERR(regmap)) {
-> >> @@ -772,7 +787,7 @@ static int lpass_audio_cc_sc7280_probe(struct platform_device *pdev)
-> >>      regmap_write(regmap, 0x4, 0x3b);
-> >>      regmap_write(regmap, 0x8, 0xff05);
-> >>
-> >> -    ret = qcom_cc_really_probe(&pdev->dev, &lpass_audio_cc_sc7280_desc, regmap);
-> >> +    ret = qcom_cc_really_probe(&pdev->dev, desc, regmap);
-> >>      if (ret) {
-> >>              dev_err(&pdev->dev, "Failed to register LPASS AUDIO CC clocks\n");
-> >>              goto exit;
-> >>
-> >> --
-> >> 2.45.2
-> >>
-> >
->
+For next version or any resend:
 
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument, so you will
+not CC people just because they made one commit years ago). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
 
--- 
-With best wishes
-Dmitry
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about `b4 prep --auto-to-cc` if you added new
+patches to the patchset.
+
+Best regards,
+Krzysztof
 
