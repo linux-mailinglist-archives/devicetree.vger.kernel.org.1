@@ -1,220 +1,208 @@
-Return-Path: <devicetree+bounces-145726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DF35A32279
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:38:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CDB3A32277
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:38:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 334643A6758
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:37:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12EEC188B1DF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50A9209F53;
-	Wed, 12 Feb 2025 09:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="FiJTvakz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D2720ADEC;
+	Wed, 12 Feb 2025 09:36:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0767220898A;
-	Wed, 12 Feb 2025 09:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6646B206F02
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 09:36:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739352991; cv=none; b=eA1vWnUiRio25/17XhkTjRVPNHYCcmaOtlWn7wGdIlaex1+gWOhdw/nq0ms8jHMKDIXxwEI5xT3FlgqMycMuhQPjGPjgiBH9akvlHsm6558S8bHHmbE0t+fu1yQXoXlTZOnm0zAwlJ4FsLJ62feYpA0amro2/1GpZbOXIKa1eBE=
+	t=1739353000; cv=none; b=m8Ma1D/yYYxo2/mX7OHmboNOXBGVOpKNlRsKMMdyYFd+PA5zbgAu8rCGiY4aOCl1i+7zoCBvFqumgQd/0lzIkAWVcAdMJA6k0rl8V8MYpvheIMwTTVkepEGSE95A5zm1hfPqXjijQlkZ4QiFFtPeWyQ/lzVxFASEyEq/b+bPV2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739352991; c=relaxed/simple;
-	bh=OtKKJSIdNkbDV3bJSAtKt518xwdUh82DwElPKKreOxc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=N0D5ZW1Q1tGGGHsGyIcr3Ln+PAI35zKQuj3Vcl9uXOex1Ov9CzNoN/Qeu/6d1KUhp/lTmrB7W0l1cot9HeIRS0D9VZ+N28064VWviareIqRcq9yu5K+hCDZ/Go2Vn3vlRGk3ZDCGoDAhtxsobTQb9pm0rpZHGRElNc8rLADJ2u8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=FiJTvakz; arc=none smtp.client-ip=220.197.31.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=Zg81E
-	ugW+SQhF7AGfomh7BYRKj3sSMrCnBpJRgio1wY=; b=FiJTvakzKzORNU7dsV0p2
-	uo9l2TgbODrV/COpbaiQ+mqVeDEcJR3pt39mPyYbEjFvaiLAboMuphHohl+kEHrc
-	2AeVmjyeELuUIuIiVDp76bOgiia17862/09bFrir/Lh3ZxAFC6i45m8/0oz5UPS2
-	J1n0/O/BMQToiX5KaTJnwQ=
-Received: from ProDesk.. (unknown [])
-	by gzga-smtp-mtada-g0-1 (Coremail) with SMTP id _____wBnG9Fja6xn14FuLQ--.33700S12;
-	Wed, 12 Feb 2025 17:35:45 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: hjc@rock-chips.com,
-	krzk+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	derek.foreman@collabora.com,
-	detlev.casanova@collabora.com,
-	daniel@fooishbar.org,
-	robh@kernel.org,
-	sebastian.reichel@collabora.com,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v14 10/13] dt-bindings: display: vop2: describe constraint SoC by SoC
-Date: Wed, 12 Feb 2025 17:35:05 +0800
-Message-ID: <20250212093530.52961-11-andyshrk@163.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250212093530.52961-1-andyshrk@163.com>
-References: <20250212093530.52961-1-andyshrk@163.com>
+	s=arc-20240116; t=1739353000; c=relaxed/simple;
+	bh=fJ0oQVoe3v+GZGtKDqY/m+T+upxz/j86dCJyFecV9bQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fy2Egct6PNapNjYU8+0Azh+4R65PiyVRrxmzY+1JwKbdNjwSQw+d2iDNhpBofr82eOUvcquLY1yv/X7DwAJ6aark6142W21vGT+6JFUq37V99oQ8C1UvHLMBUTKhfZkn26Vezd5QFMD+LdVNwK0SPfdVFaIHFmZdn9sqTvLMRGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1ti9AB-0003qj-6V; Wed, 12 Feb 2025 10:36:11 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1ti9AA-000Z2U-1y;
+	Wed, 12 Feb 2025 10:36:10 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1ti9AA-00AzSK-1c;
+	Wed, 12 Feb 2025 10:36:10 +0100
+Date: Wed, 12 Feb 2025 10:36:10 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 1/3] ASoC: dt-bindings: support imx95's CM7 core
+Message-ID: <20250212093610.x4ixrackmn3u2xrf@pengutronix.de>
+References: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
+ <20250211225808.3050-2-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wBnG9Fja6xn14FuLQ--.33700S12
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZF4UWFyDtryDuw43JFyftFb_yoW5ur1Dpa
-	97Cas8X3ykGr1UWw4ktF1fCw4SqF9xJw4UJrn7t3W7Ga1DKF4UG3ySgwn8Ar9xWF42vaya
-	9a15Cr15Jw42vr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UZvttUUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqArxXmesZw5UBAACs9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250211225808.3050-2-laurentiumihalcea111@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Andy Yan <andy.yan@rock-chips.com>
+On 25-02-11, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> 
+> Add binding for imx95's CM7 core, used for audio processing.
+> Additionally, introduce a common binding for NXP audio processors with
+> Sound Open Firmware (SOF) support.
+> 
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> ---
+>  .../bindings/sound/fsl,imx95-cm7-sof.yaml     | 64 +++++++++++++++++++
+>  .../bindings/sound/fsl,sof-cpu.yaml           | 27 ++++++++
+>  2 files changed, 91 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx95-cm7-sof.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,sof-cpu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,imx95-cm7-sof.yaml b/Documentation/devicetree/bindings/sound/fsl,imx95-cm7-sof.yaml
+> new file mode 100644
+> index 000000000000..f00ae3219e15
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/fsl,imx95-cm7-sof.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/fsl,imx95-cm7-sof.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP imx95 CM7 core
+> +
+> +maintainers:
+> +  - Daniel Baluta <daniel.baluta@nxp.com>
+> +
+> +description: NXP imx95 CM7 core used for audio processing
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx95-cm7-sof
 
-As more SoCs variants are introduced, each SoC brings its own
-unique set of constraints, describe this constraints SoC by
-SoC will make things easier.
+Albeit Krzysztof already add his Reviewed-by, can I ask why we need to
+add the -sof suffix instead of -audio or so? SOF is a software project
+but you can clearly run different software on the audio-copro as well.
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Regards,
+  Marco
 
----
-
-Changes in v14:
-- Set maxItems constraint of clocks for rk3588 to 9 as a recently
-  merged patch added two optional clocks[0]:
-  [0]https://patchwork.freedesktop.org/patch/msgid/20250204-vop2-hdmi0-disp-modes-v3-1-d71c6a196e58@collabora.com
-
-Changes in v13:
-- Add maxItems constraint for clocks
-- Remove constraint for interrupts in allOf block, as the current
-  maxItems is already 1.
-
-Changes in v12:
-- Only change the description method for existing SoC.
-
-Changes in v11:
-- Remove redundant min/maxItems constraint
-
-Changes in v10:
-- Move interrupt-names back to top level
-- Add constraint of interrupts for all platform
-- Add constraint for all grf phandles
-- Reorder some properties
-
-Changes in v9:
-- Drop 'vop-' prefix of interrupt-names.
-- Add blank line between DT properties
-- Remove list interrupt-names in top level
-
-Changes in v8:
-- Fix dt_binding_check errors
-- ordered by soc name
-- Link to the previous version:
-  https://lore.kernel.org/linux-rockchip/6pn3qjxotdtpzucpul24yro7ppddezwuizneovqvmgdwyv2j7p@ztg4mqyiqmjf/T/#u
-
-Changes in v4:
-- describe constraint SOC by SOC, as interrupts of rk3576 is very
-  different from others
-- Drop Krzysztof's Reviewed-by, as this version changed a lot.
-
-Changes in v3:
-- ordered by soc name
-- Add description for newly added interrupt
-
-Changes in v2:
-- Add dt bindings
-
- .../display/rockchip/rockchip-vop2.yaml       | 40 ++++++++++++-------
- 1 file changed, 26 insertions(+), 14 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-index 46d956e63338..a5771edd83b5 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-@@ -14,6 +14,7 @@ description:
- maintainers:
-   - Sandy Huang <hjc@rock-chips.com>
-   - Heiko Stuebner <heiko@sntech.de>
-+  - Andy Yan <andyshrk@163.com>
- 
- properties:
-   compatible:
-@@ -124,43 +125,54 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: rockchip,rk3588-vop
-+            enum:
-+              - rockchip,rk3566-vop
-+              - rockchip,rk3568-vop
-     then:
-       properties:
-         clocks:
--          minItems: 7
-+          maxItems: 5
-+
-         clock-names:
--          minItems: 7
-+          maxItems: 5
- 
-         ports:
-           required:
-             - port@0
-             - port@1
-             - port@2
--            - port@3
- 
--      required:
--        - rockchip,grf
--        - rockchip,vo1-grf
--        - rockchip,vop-grf
--        - rockchip,pmu
--
--    else:
--      properties:
-         rockchip,vo1-grf: false
-         rockchip,vop-grf: false
-         rockchip,pmu: false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3588-vop
-+    then:
-+      properties:
-         clocks:
--          maxItems: 5
-+          minItems: 7
-+          maxItems: 9
-+
-         clock-names:
--          maxItems: 5
-+          minItems: 7
-+          maxItems: 9
- 
-         ports:
-           required:
-             - port@0
-             - port@1
-             - port@2
-+            - port@3
-+
-+      required:
-+        - rockchip,grf
-+        - rockchip,vo1-grf
-+        - rockchip,vop-grf
-+        - rockchip,pmu
- 
- additionalProperties: false
- 
--- 
-2.34.1
-
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reg-names:
+> +    const: sram
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  memory-region-names:
+> +    const: dma
+> +
+> +  port:
+> +    description: SAI3 port
+> +    $ref: audio-graph-port.yaml#
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - memory-region
+> +  - memory-region-names
+> +  - port
+> +
+> +allOf:
+> +  - $ref: fsl,sof-cpu.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    cm7-cpu@80000000 {
+> +        compatible = "fsl,imx95-cm7-sof";
+> +        reg = <0x80000000 0x6100000>;
+> +        reg-names = "sram";
+> +        mboxes = <&mu7 2 0>, <&mu7 2 1>, <&mu7 3 0>, <&mu7 3 1>;
+> +        mbox-names = "txdb0", "txdb1", "rxdb0", "rxdb1";
+> +        memory-region = <&adma_res>;
+> +        memory-region-names = "dma";
+> +        port {
+> +            /* SAI3-WM8962 link */
+> +            endpoint {
+> +                remote-endpoint = <&wm8962_ep>;
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,sof-cpu.yaml b/Documentation/devicetree/bindings/sound/fsl,sof-cpu.yaml
+> new file mode 100644
+> index 000000000000..31863932dbc3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/fsl,sof-cpu.yaml
+> @@ -0,0 +1,27 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/fsl,sof-cpu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP audio processor common properties
+> +
+> +maintainers:
+> +  - Daniel Baluta <daniel.baluta@nxp.com>
+> +
+> +properties:
+> +  mboxes:
+> +    maxItems: 4
+> +
+> +  mbox-names:
+> +    items:
+> +      - const: txdb0
+> +      - const: txdb1
+> +      - const: rxdb0
+> +      - const: rxdb1
+> +
+> +required:
+> +  - mboxes
+> +  - mbox-names
+> +
+> +additionalProperties: true
+> -- 
+> 2.34.1
+> 
+> 
+> 
 
