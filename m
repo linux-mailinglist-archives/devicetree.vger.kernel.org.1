@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-145988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AE00A32F60
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:14:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69086A32F69
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:16:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA236162A22
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 19:14:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E96D91889650
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 19:16:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508662627F1;
-	Wed, 12 Feb 2025 19:14:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B66925E47A;
+	Wed, 12 Feb 2025 19:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nc3EGtFJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qIPIFIIb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26AC82505B3;
-	Wed, 12 Feb 2025 19:14:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C52D1D5CCC;
+	Wed, 12 Feb 2025 19:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739387676; cv=none; b=QBc16hEfAYXtNFf84OxFAemnX/r0kqU9rjtL/hrUtci38oOEZ1/CCgK+WflQD7jf6s367MVq6fUipw51oy/9CU4Jl3jnog6J2X9YsMFu0F5gBi/h0ptli28d5mopZ4CspU+1GL/jHnVH9LZVUVW+BPgYKnXBtsRVLkgVUB8wq4Q=
+	t=1739387780; cv=none; b=Gqqk2zFk4bEHj9VY1qCb2HsCD3SFXPmUa5OeY+C4IZIP9cvn5jVHCWYjnK4IkhD5AxLzD6nvmEHFbEO41FJS0Ko8EJk6yPadK7vm2E7oKFcZrfLrsTloVQLiSv+V8oUv841gUmfDPIAI5w11UrQWVlUq6Nsax4glf1oaKhA+3Nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739387676; c=relaxed/simple;
-	bh=mmXa4CSLqs9OFL2IL4tC3NZkiKo2CpyEZ1OGJE22XGU=;
+	s=arc-20240116; t=1739387780; c=relaxed/simple;
+	bh=d72x5t43kyGwC1V2Wsdsidn9uz12Ug48Aifli3l6Qxk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uShZ+ivzXKLUyTp28rI9OIrNJ7W7eDYVh8z+amu0mxwGjh6FnIE4haPMN9Wf1lkcs7BkaKHCZuZTbQI/w2jvTCK2sNZdlaXvUZQ8BNQoyHu2P/WrwGdsb8o0WzsKqDBGVZ07ZOQgJ6AlGu673NjdDZRN7n9RXHGY+083KC1zUgY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nc3EGtFJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7077FC4CEDF;
-	Wed, 12 Feb 2025 19:14:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PKUyDlL/VDsLEZDvuGFqEYSH9QAl01UFUuDIIXOF1w5BAfkdkMAHwcjYRUkxDYOd1F8IuMerlAFkP+nXxsrBJm8Txw1zamye49hSsQVrUUdaDLvGGZE/g60zGkeMBgEAFE0P7vIAo66yL7XJdT3TDoDnuCWzAN2bfAxGNbDoq6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qIPIFIIb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06493C4CEDF;
+	Wed, 12 Feb 2025 19:16:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739387674;
-	bh=mmXa4CSLqs9OFL2IL4tC3NZkiKo2CpyEZ1OGJE22XGU=;
+	s=k20201202; t=1739387778;
+	bh=d72x5t43kyGwC1V2Wsdsidn9uz12Ug48Aifli3l6Qxk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nc3EGtFJkIVzlt6VS0rDMB7lrWbePGEGz6bNMMQjVVDdEOltHQNeLRM6T1xxYCl6g
-	 KWC6MtbBFtLzxL506xs0kTCYOpnZlBjV9pwwXIGtqI7YHBWjUoZa8J8nVWc0dQPlVj
-	 y1wi3zx3p7kaX6ryv1QbfSBkkWlTDaky2V1vuhJcYA7vw+jrfnJzRd5AT3zQcd+hua
-	 6eTuR4O6GwGnByKuQgzIiSmW5mIaA2mjBhLllphMq1REc1moGo0bmDqSACFKoNl1q9
-	 Td1/Yygdsc5toBSImNqV0HTl5izJAa+LxOZzLfLZUL4DVGlA7Whjg+fA9yivSKJAZJ
-	 5Yci1aN5p0YEw==
-Date: Wed, 12 Feb 2025 19:14:30 +0000
+	b=qIPIFIIbVkKlWLP+8mLwq7y1l/w0B6se6jkLxWPjx2HFlu1aiZDDQAqIq2v9mjZBP
+	 o2qSUoRaQ6XE1YAizF/hcS0KroCwJiC6gZ/et/MBB2FAldpdOwrr05H3ZzS1J9x5r4
+	 Wu6v8rB0Xj2Dm62T1oscLn563vPKxzC6qKsapP+XY4hRAqHbNgnYqbIxGoy9B2CEyP
+	 0+qF8Aj05MvOsyUIoMnjTw+HWNZHyfDs2yuh8AW+H1WBdm9hhRoxbaRXOoeAprDDwN
+	 o5aebRYJ0AUDUOexkA+gqgOveeA9a2GCkNbKWBOX3CU84FobN+KFsmwICDk3s3xuO2
+	 nyi5PQBz4zpCA==
+Date: Wed, 12 Feb 2025 19:16:13 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, festevam@gmail.com, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	m.felsch@pengutronix.de, bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH next v2 1/3] dt-bindings: usb: microchip,usb2514: add
- support for vdda
-Message-ID: <20250212-dullness-wreath-8d934b09576f@spud>
-References: <20250212135649.3431570-1-catalin.popescu@leica-geosystems.com>
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, mripard@kernel.org, mchehab@kernel.org,
+	jai.luthra@linux.dev, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devarsht@ti.com, vaishnav.a@ti.com,
+	r-donadkar@ti.com, u-kumar1@ti.com
+Subject: Re: [RFC PATCH 0/3] Enable support for error detection in CSI2RX
+Message-ID: <20250212-caramel-darkish-6b1bbd8f562e@spud>
+References: <20250212131244.1397722-1-y-abhilashchandra@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,85 +59,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="iw1sCEGjCNgsc9hl"
+	protocol="application/pgp-signature"; boundary="2CwtJVhBdX9uSQRj"
 Content-Disposition: inline
-In-Reply-To: <20250212135649.3431570-1-catalin.popescu@leica-geosystems.com>
+In-Reply-To: <20250212131244.1397722-1-y-abhilashchandra@ti.com>
 
 
---iw1sCEGjCNgsc9hl
+--2CwtJVhBdX9uSQRj
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 12, 2025 at 02:56:47PM +0100, Catalin Popescu wrote:
-> Microchip hub USB2514 has one 3V3 digital power supply and one 3V3
-> analog power supply. Add support for analog power supply vdda.
+On Wed, Feb 12, 2025 at 06:42:41PM +0530, Yemike Abhilash Chandra wrote:
+> This patch series enables the csi2rx_err_irq interrupt to record any erro=
+rs
+> that occur during streaming. It also adds support for the VIDIOC_LOG_STAT=
+US
+> ioctl, which outputs the current device status to the kernel log.
 >=20
-> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-> ---
-> v2:
-> - merge "if" with "allOf" and move the whole after patternProperties
->   section
-> ---
->  .../bindings/usb/microchip,usb2514.yaml       | 21 ++++++++++++++++---
->  1 file changed, 18 insertions(+), 3 deletions(-)
+> The IRQ handler records any errors encountered during streaming.
+> Additionally, VIDIOC_LOG_STATUS can be invoked from user space to retrieve
+> the latest status.
 >=20
-> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml=
- b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-> index b14e6f37b298..aeffdf0362c2 100644
-> --- a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-> +++ b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-> @@ -9,9 +9,6 @@ title: Microchip USB2514 Hub Controller
->  maintainers:
->    - Fabio Estevam <festevam@gmail.com>
-> =20
-> -allOf:
-> -  - $ref: usb-device.yaml#
-> -
->  properties:
->    compatible:
->      enum:
-> @@ -28,6 +25,9 @@ properties:
->    vdd-supply:
->      description: 3.3V power supply.
-> =20
-> +  vdda-supply:
-> +    description: 3.3V analog power supply.
-> +
->    clocks:
->      description: External 24MHz clock connected to the CLKIN pin.
->      maxItems: 1
-> @@ -43,6 +43,20 @@ patternProperties:
->      $ref: /schemas/usb/usb-device.yaml
->      additionalProperties: true
-> =20
-> +allOf:
-> +  - $ref: usb-device.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: usb424,2514
-> +    then:
-> +      properties:
-> +        vdda-supply: true
-> +    else:
-> +      properties:
-> +        vdda-supply: false
+> Logs with interrupt in DT: https://gist.github.com/Yemike-Abhilash-Chandr=
+a/58ced4df0158efad6f453b4d96463723
+> Logs without interrupt in DT: https://gist.github.com/Yemike-Abhilash-Cha=
+ndra/d807230b2a624b7a38effed89efdd148
 
-Hmm, the then: here isn't needed, you can just invert the original if
-with a "not:". Sorry for not noticing that last time.
+What is actually RFC about this patchset, rather than just being v1?
 
---iw1sCEGjCNgsc9hl
+--2CwtJVhBdX9uSQRj
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6zzFgAKCRB4tDGHoIJi
-0tx3AQCYwlidnU+dpYKm2CS9UgBGpqPUz+cfsEHZNbYm62SWmgEArgcsb+i0xZ9l
-14Bhc9qVma3uZu7iEZUxiH1+xAczpwU=
-=utub
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6zzfQAKCRB4tDGHoIJi
+0uTPAQDBXoqWdXhNQGZtmPI4uD4hJ5UUgFn1vvy075JW0KwtQQD/RNg6iQqRyxgJ
+se2uqjGP5WWwZ5j9JthZCkIZmhWydw8=
+=YJGR
 -----END PGP SIGNATURE-----
 
---iw1sCEGjCNgsc9hl--
+--2CwtJVhBdX9uSQRj--
 
