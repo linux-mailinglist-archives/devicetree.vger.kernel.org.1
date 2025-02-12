@@ -1,564 +1,184 @@
-Return-Path: <devicetree+bounces-145672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB40BA32083
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 08:59:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3782BA320A5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:11:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D004A3A5E22
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 07:59:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1A5F16395E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 08:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD2BC2046BE;
-	Wed, 12 Feb 2025 07:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EFD3204C28;
+	Wed, 12 Feb 2025 08:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DIcoEaWU"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="RbWHpu60";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="f8FcOgzt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B47204C07;
-	Wed, 12 Feb 2025 07:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE222046BD;
+	Wed, 12 Feb 2025 08:11:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739347162; cv=none; b=icFfq1Z25bBxb4fHoN+Qi8MwKTDiCJno+HKYT61dQBrV5tfta7jR9Yri+7xymWGMxye5fOHFkaJbi3pav6rd7NJ8242t8Vl8GUU+sUwyqlT7c09JstSrLm9OOt6gHrCT5878u4GWealkhfdfcObbr3QnfOWWMB+nrRwOHGnTlaY=
+	t=1739347873; cv=none; b=ZJWxhag1AtNCl8B/tjimmy5to/AzCBDeYxIQQpT3cgTQ27hn3B9Zc/PcCTJ9qLd4Yy/iSq2JPIKS1jhbRCsUQwNdlpeiWEB6klYjH9OSuxPCgyj7kihctPUEIE597CUUUpeHtFQNMO/YFt8CfPw8U5SJriqDA+lU+ZrRERARE2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739347162; c=relaxed/simple;
-	bh=g147+pNHCblvdLkB3gSmClxMR2wA7snJ1XhYu/42Wnk=;
+	s=arc-20240116; t=1739347873; c=relaxed/simple;
+	bh=KHu1LdPZoLMMLxxmSOmSC9NR1LGDoVJ+Fu6Ve5qXRFw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=V7lNogt7Cb5F6w7orQLy3of5m3EFOPecpyP7tmQWpjVWE1eq0/cKNdimKs+PPa/mSnLZu8G8mupB5Dz4d+fw2HPwmrDM1uPUlbtbvUduvXKT76Fv/0Jps5ioLWnaCRcZA4XLbIckrxQVr7bbZbbe/Cod//Y0X4NM8rhjdBTQvbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DIcoEaWU; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5450408455dso4619526e87.0;
-        Tue, 11 Feb 2025 23:59:20 -0800 (PST)
+	 MIME-Version:Content-Type; b=WRHEd2Ow41FEkTjIenzW51Yni1uLjFaJZjN1MTt5ythLEBd51L73f3eSufZpcLzJ9Ik2CIRgMq4YE9kjz5kOvMK++wr8fvM+EsIqZdJmLB41Gree7UCJ0cJtbisuD6BN/c7pmgnsNLdf3s/IbzeYSkq2XbyT8nee9cZ2dBbiaKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=RbWHpu60; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=f8FcOgzt reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739347158; x=1739951958; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7nw1AK0MrowiHGVQ4sl0yVhUzbIvFUDWN6wQBGIzcdc=;
-        b=DIcoEaWU48hMdS67tE0QkPt1SRuQFNrWHVmolkqfDf4qc43pRLk2KM6qgVqmsHHG3G
-         NpOuqPyvLJ0DQsGtETPZPPnEOygzTtnJfTBt5vpnmXvXa7HMjjIZeAJQ4ghFv12x1iXK
-         qWV2zsMOBRuR8x8d0W9ky5SM6Hu9XR4Lie76mhhiJ++AWQ+nsCEd6UwyddIw2kZtDfWo
-         hcHvGTUiHp43RRPjqMjIWgRg3yCuMscWuNrhiLOywoCddwpenoN4NLGo8FbYX9vZhZp1
-         EpeQ6VQIvQ5kd0mgZ3RaKKHgK49v8rIOSGhfxgC8lbmXtSJ8CWhz8lxfzOt3FklyIyFs
-         0V4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739347158; x=1739951958;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7nw1AK0MrowiHGVQ4sl0yVhUzbIvFUDWN6wQBGIzcdc=;
-        b=krTizioaKFD/hihZVH8T3xpn2i6T8jcsUCdiN5Z4he5Jcaqd4qOJ5QDoo/Mnp7OedZ
-         bGIwTBNs6eV6IsuiEJTz+pXWST3MQHnsC52QJ2txRHqezgz+T0rJcvcKIYFGU2fUXfET
-         TwxLEin7VHdzuVqXTrUkteasTZjwKQQ3wg3XnlypxZ0SNZVnVhI1ypudhXzNWwG0vgiy
-         yowPaXwgfI5ImPZhxJUMSmFCYOwf49CwXMOCiJLz9GDNWBehJiifa81ilmh64YR7tUx5
-         aIBIXaY9yIxRLbHx6ZWUwXh9+dCrUK6H6CvjB6UVmYL6RV4J/cZ0ua/fry2bfOGVJOOG
-         KDZw==
-X-Forwarded-Encrypted: i=1; AJvYcCULs2xps0Op+Rq/zZqMMo8YjiUZE8NAwpP3CGJNtYZ2+1+itYEgASOP9GM1S6ALvKgJZTbrDy0hx4My@vger.kernel.org, AJvYcCUr6i3FpK2fdCL1UFxBiXBZgX3AJRsM8A9fJakhokWSoOFSDsCrXzor6QudwKcyjBRKU7sDz2IMlV9sMA==@vger.kernel.org, AJvYcCVV7rzDDwPA0mIb1JEmvzwLDLr4ho7WcPhInz6rmBsRsCRfavbojc47pjPcHFoq/sKLx6wj7BthCD6SPg==@vger.kernel.org, AJvYcCWiQTtqtom96uxYJA6/ol1CFiGOMClhkLueTY/rWNafJhu3xuwcyV2McOlByiitmL4k856rD1X74P4nSutQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxM290D5fTwNibs37LvYgoNb6si99xi/tQgMm+4jZm6InCZUG/3
-	vscO9nLJ+7ILdWvJATbjPUdQYaFJ1erTLBwivFH5MH2Z1BrFlXdg
-X-Gm-Gg: ASbGncucKossA0wOY6lPV0rJTNH04YBxSQ99+fGR0PCQ4MDssUSFbexA4U6ktumuuk5
-	zld67KMlf8pWMLDR9H00gbVipMum9GpDii/0iUleH6ZtM4ifmFfAhxYmK/Vun/7W6tmUVz9cNBi
-	bltexFoqDx6OCx8waYHaVE3HoLNCMuzbfNvWdshO6InxCb9KG0osMfVcn+V0QxvrB2JJ3DdTqVX
-	zkREmKAw5u399vNiZnXka3U6z612Ph26AoOz9PnxuHp39qP1YpVXi0pnj9YdZwfSoi6qfFCC49t
-	d7mF86k=
-X-Google-Smtp-Source: AGHT+IE+G1N55eGrWmECjyblYtooPWCOLDqnOhvaRLbHU2CRlzATbmbECnCgtrhZAPbtQBO6UNR21g==
-X-Received: by 2002:a05:6512:b22:b0:544:f93:6909 with SMTP id 2adb3069b0e04-54518122cd4mr623415e87.30.1739347158114;
-        Tue, 11 Feb 2025 23:59:18 -0800 (PST)
-Received: from xeon.. ([188.163.112.51])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5441053eacfsm1797880e87.38.2025.02.11.23.59.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Feb 2025 23:59:17 -0800 (PST)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Pavel Machek <pavel@ucw.cz>,
-	Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Helge Deller <deller@gmx.de>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-fbdev@vger.kernel.org
-Subject: [PATCH v1 2/2] mfd: lm3533: convert to use OF
-Date: Wed, 12 Feb 2025 09:58:42 +0200
-Message-ID: <20250212075845.11338-3-clamor95@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250212075845.11338-1-clamor95@gmail.com>
-References: <20250212075845.11338-1-clamor95@gmail.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1739347869; x=1770883869;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Ebrh2pOj9a+WCHOfQy3AldxKt0RQJILfJP7w8ELhKWs=;
+  b=RbWHpu606HdXmJ61sRtYN50snFrkOys6KiHMu5tniiFHbV7J0hWnA8jT
+   HDOvQwGaycSkJes2Rr0+HSy2QUrPwpkKMFLrEGYtrCWiB7W1YnioNyoaD
+   SYrS2oN/EWNzB4G9xMp/NOl7IXz5Z2IGxI8YCcqceS1KLH3jDOpwc1RXy
+   JaEpzr/Eb6XsJq3oHdNgaNbupiQyplzcDlFwH140VPF+68axcwR6bh3XJ
+   Y3HitUQr9kcgdc+HCrGbLsIBzfnzXx2qImd9EEJ1mWAii/+FlloXWyw93
+   X7eHJlkajJsFGyqmk2dQQtot0RhIis4t8vftsMATiAmyuJS8vQmSFvKXc
+   Q==;
+X-CSE-ConnectionGUID: jp/xOS/UTUmFNhbEqlMSOg==
+X-CSE-MsgGUID: IFthUYPIQ0O5JgMafUVjGw==
+X-IronPort-AV: E=Sophos;i="6.13,279,1732575600"; 
+   d="scan'208";a="41778546"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 12 Feb 2025 09:11:00 +0100
+X-CheckPoint: {67AC5794-B-C21CC984-D1047F1F}
+X-MAIL-CPID: 70FDB8AC22B42A0ACE772440BDA64D6F_5
+X-Control-Analysis: str=0001.0A00636F.67AC5794.00CB,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 09E9016A031;
+	Wed, 12 Feb 2025 09:10:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1739347855;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ebrh2pOj9a+WCHOfQy3AldxKt0RQJILfJP7w8ELhKWs=;
+	b=f8FcOgztq6fes3vM/7CvY2rSKSKOMniJdix9XndFkfY8RpufORB/SLLs+nI2s41/ZQCu/X
+	yqni/qQKcZAo010dcy/NUnvTPHKNeam83NjIoojMkIVhNDGltYI/emrhg0ODzfsGML8Kh6
+	0BwTljpycstH0lQYYyp8bp/rUBd3SqaHkFN3t5CJrwpfw7/X1XDuD7RasNQWTuZvUNX8CS
+	MgNLRwSIOQZJ1iSHhPGZ/gLmcTdi/o7spHz8fvL/bQI0J5rwkiYczQMBkjewlYWoPJ/Gjv
+	84qK0gBDf7e8bS1+Omt288PbcPWN97XySBTm3NItO0vbkbFtwrHbCsX74vqwrQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 04/10] arm64: dts: imx8mn: Add access-controller references
+Date: Wed, 12 Feb 2025 09:10:53 +0100
+Message-ID: <10618164.nUPlyArG6x@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250211033340.GA13109@localhost.localdomain>
+References: <20250207083616.1442887-1-alexander.stein@ew.tq-group.com> <2222299.irdbgypaU6@steina-w> <20250211033340.GA13109@localhost.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add ability to fill pdata from device tree. Common stuff is
-filled from core driver and then pdata is filled per-device
-since all cells are optional.
+Am Dienstag, 11. Februar 2025, 04:33:41 CET schrieb Peng Fan:
+>=20
+> On Mon, Feb 10, 2025 at 04:48:56PM +0100, Alexander Stein wrote:
+> >Am Montag, 10. Februar 2025, 03:36:48 CET schrieb Peng Fan:
+> >> > Subject: Re: [PATCH v2 04/10] arm64: dts: imx8mn: Add access-
+> >> > controller references
+> >> >=20
+> >> > Hi Peng,
+> >> >=20
+> >> > Am Freitag, 7. Februar 2025, 13:02:13 CET schrieb Peng Fan:
+> >> > > On Fri, Feb 07, 2025 at 09:36:09AM +0100, Alexander Stein wrote:
+> >> > > >Mark ocotp as a access-controller and add references on periphera=
+ls
+> >> > > >which can be disabled (fused).
+> >> > >
+> >> > > I am not sure whether gpcv2 changes should be included in this
+> >> > > patchset or not. Just add access-controller for fused IP will not =
+work.
+> >> >=20
+> >> > Well, I was able to successfully boot a i.MX8M Nano DualLite.
+> >> >=20
+> >> > > i.MX8M BLK-CTRL/GPC will hang if the related power domain is still
+> >> > > touched by kernel. The pgc can't power up/down because clock is
+> >> > gated.
+> >> >=20
+> >> > Well, with GPU node disabled, no one should enable the power domain.
+> >> > But to be on the safe side I would also add access-controllers to the
+> >> > corresponding power domains as well.
+> >> >=20
+> >> > > This comment also apply to i.MX8MM/P.
+> >> >=20
+> >> > Sure. Do you have any information what is actually disabled by those
+> >> > fused?
+> >> > It seems it's the IP and their power domains. Anything else?
+> >>=20
+> >> In NXP downstream there is a patch for  drivers/pmdomain/imx/imx8m-blk=
+=2Dctrl.c
+> >>=20
+> >> soc: imx8m-blk-ctrl: Support fused modules
+> >>    =20
+> >>     For fused module, its pgc can't power up/down and clock is gated.
+> >>     Because imx8m-blk-ctrl driver will pm_runtime_get_sync/pm_runtime_=
+put
+> >>     all power domains during suspend/resume. So we have to remove the
+> >>     pgc and clock of fused module from blk-ctrl DTS node.
+> >>     Update the driver to support such case.
+> >>=20
+> >> But this patch also needs U-Boot to update device tree nodes,
+> >> I recalled that U-Boot will remove gpc nodes, but not update blk-ctrl =
+nodes.
+> >
+> >Does it work, if we add the access-controller as well for pgc_gpu3d
+> >on imx8mp? There is nothing in blk-ctrl AFAICS. But for VPU there is.
+>=20
+> Adding access-controller under pgc_gpu node will not make fwdevlink
+> work for the pgc_gpu nodes. It does not have compatible, and device
+> is created by gpcv2 driver using platform_device_alloc. Same to vpu.
+>=20
+> >Which clock needs to be removed there in case g1 is disabled?
+>=20
+> Take i.MX8MP VC8000E as example, the vpumix blk ctrl, the vc8000e
+> reference under vpumix blkctrl should be removed, including pd and clock.
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/iio/light/lm3533-als.c      | 58 ++++++++++++++++++++-
- drivers/leds/leds-lm3533.c          | 69 +++++++++++++++++++++++--
- drivers/mfd/lm3533-core.c           | 79 ++++++++++++++++++++++++-----
- drivers/video/backlight/lm3533_bl.c | 72 ++++++++++++++++++++++++--
- include/linux/mfd/lm3533.h          |  1 +
- 5 files changed, 256 insertions(+), 23 deletions(-)
+Wait, so you want to remove the last entry from these properties?
 
-diff --git a/drivers/iio/light/lm3533-als.c b/drivers/iio/light/lm3533-als.c
-index 99f0b903018c..21fc5f215c80 100644
---- a/drivers/iio/light/lm3533-als.c
-+++ b/drivers/iio/light/lm3533-als.c
-@@ -16,7 +16,9 @@
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/mfd/core.h>
-+#include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/property.h>
- #include <linux/slab.h>
- #include <linux/uaccess.h>
- 
-@@ -826,6 +828,50 @@ static const struct iio_info lm3533_als_info = {
- 	.read_raw	= &lm3533_als_read_raw,
- };
- 
-+static void lm3533_parse_als(struct platform_device *pdev,
-+			     struct lm3533_als_platform_data *pdata)
-+{
-+	struct device *dev = &pdev->dev;
-+	int val, ret;
-+
-+	/* 1 - 127 (ignored in PWM-mode) */
-+	ret = device_property_read_u32(dev, "resistor-value", &val);
-+	if (ret)
-+		val = 1;
-+	pdata->r_select = val;
-+
-+	pdata->pwm_mode = device_property_read_bool(dev, "pwm-mode");
-+}
-+
-+static int lm3533_pass_of_node(struct platform_device *pdev,
-+			       struct lm3533_als_platform_data *pdata)
-+{
-+	struct device *parent_dev = pdev->dev.parent;
-+	struct device *dev = &pdev->dev;
-+	struct fwnode_handle *node;
-+	const char *label;
-+	int val, ret;
-+
-+	device_for_each_child_node(parent_dev, node) {
-+		fwnode_property_read_string(node, "compatible", &label);
-+
-+		if (!strcmp(label, pdev->name)) {
-+			ret = fwnode_property_read_u32(node, "reg", &val);
-+			if (ret) {
-+				dev_err(dev, "reg property is missing: ret %d\n", ret);
-+				return ret;
-+			}
-+
-+			if (val == pdev->id) {
-+				dev->fwnode = node;
-+				dev->of_node = to_of_node(node);
-+			}
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int lm3533_als_probe(struct platform_device *pdev)
- {
- 	const struct lm3533_als_platform_data *pdata;
-@@ -840,8 +886,16 @@ static int lm3533_als_probe(struct platform_device *pdev)
- 
- 	pdata = dev_get_platdata(&pdev->dev);
- 	if (!pdata) {
--		dev_err(&pdev->dev, "no platform data\n");
--		return -EINVAL;
-+		pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
-+		if (!pdata)
-+			return -ENOMEM;
-+
-+		ret = lm3533_pass_of_node(pdev, pdata);
-+		if (ret)
-+			return dev_err_probe(&pdev->dev, ret,
-+					     "failed to get als device node\n");
-+
-+		lm3533_parse_als(pdev, pdata);
- 	}
- 
- 	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*als));
-diff --git a/drivers/leds/leds-lm3533.c b/drivers/leds/leds-lm3533.c
-index 45795f2a1042..587bc27b17c3 100644
---- a/drivers/leds/leds-lm3533.c
-+++ b/drivers/leds/leds-lm3533.c
-@@ -11,7 +11,9 @@
- #include <linux/leds.h>
- #include <linux/mfd/core.h>
- #include <linux/mutex.h>
-+#include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/property.h>
- #include <linux/slab.h>
- 
- #include <linux/mfd/lm3533.h>
-@@ -644,6 +646,59 @@ static int lm3533_led_setup(struct lm3533_led *led,
- 	return lm3533_ctrlbank_set_pwm(&led->cb, pdata->pwm);
- }
- 
-+static void lm3533_parse_led(struct platform_device *pdev,
-+			     struct lm3533_led_platform_data *pdata)
-+{
-+	struct device *dev = &pdev->dev;
-+	int val, ret;
-+
-+	ret = device_property_read_string(dev, "default-trigger",
-+					  &pdata->default_trigger);
-+	if (ret)
-+		pdata->default_trigger = "none";
-+
-+	/* 5000 - 29800 uA (800 uA step) */
-+	ret = device_property_read_u32(dev, "max-current-microamp", &val);
-+	if (ret)
-+		val = 5000;
-+	pdata->max_current = val;
-+
-+	/* 0 - 0x3f */
-+	ret = device_property_read_u32(dev, "pwm", &val);
-+	if (ret)
-+		val = 0;
-+	pdata->pwm = val;
-+}
-+
-+static int lm3533_pass_of_node(struct platform_device *pdev,
-+			       struct lm3533_led_platform_data *pdata)
-+{
-+	struct device *parent_dev = pdev->dev.parent;
-+	struct device *dev = &pdev->dev;
-+	struct fwnode_handle *node;
-+	const char *label;
-+	int val, ret;
-+
-+	device_for_each_child_node(parent_dev, node) {
-+		fwnode_property_read_string(node, "compatible", &label);
-+
-+		if (!strcmp(label, pdev->name)) {
-+			ret = fwnode_property_read_u32(node, "reg", &val);
-+			if (ret) {
-+				dev_info(dev, "reg property is missing: ret %d\n", ret);
-+				return ret;
-+			}
-+
-+			if (val == pdev->id) {
-+				dev->fwnode = node;
-+				dev->of_node = to_of_node(node);
-+			}
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int lm3533_led_probe(struct platform_device *pdev)
- {
- 	struct lm3533 *lm3533;
-@@ -659,8 +714,16 @@ static int lm3533_led_probe(struct platform_device *pdev)
- 
- 	pdata = dev_get_platdata(&pdev->dev);
- 	if (!pdata) {
--		dev_err(&pdev->dev, "no platform data\n");
--		return -EINVAL;
-+		pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
-+		if (!pdata)
-+			return -ENOMEM;
-+
-+		ret = lm3533_pass_of_node(pdev, pdata);
-+		if (ret)
-+			return dev_err_probe(&pdev->dev, ret,
-+					     "failed to get led device node\n");
-+
-+		lm3533_parse_led(pdev, pdata);
- 	}
- 
- 	if (pdev->id < 0 || pdev->id >= LM3533_LVCTRLBANK_COUNT) {
-@@ -673,7 +736,7 @@ static int lm3533_led_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 
- 	led->lm3533 = lm3533;
--	led->cdev.name = pdata->name;
-+	led->cdev.name = dev_name(&pdev->dev);
- 	led->cdev.default_trigger = pdata->default_trigger;
- 	led->cdev.brightness_set_blocking = lm3533_led_set;
- 	led->cdev.brightness_get = lm3533_led_get;
-diff --git a/drivers/mfd/lm3533-core.c b/drivers/mfd/lm3533-core.c
-index 0a2409d00b2e..cab60c25e3c7 100644
---- a/drivers/mfd/lm3533-core.c
-+++ b/drivers/mfd/lm3533-core.c
-@@ -381,11 +381,16 @@ static int lm3533_device_als_init(struct lm3533 *lm3533)
- 	struct lm3533_platform_data *pdata = dev_get_platdata(lm3533->dev);
- 	int ret;
- 
--	if (!pdata->als)
-+	if (!pdata->num_als)
- 		return 0;
- 
--	lm3533_als_devs[0].platform_data = pdata->als;
--	lm3533_als_devs[0].pdata_size = sizeof(*pdata->als);
-+	if (pdata->num_als > ARRAY_SIZE(lm3533_als_devs))
-+		pdata->num_als = ARRAY_SIZE(lm3533_als_devs);
-+
-+	if (pdata->als) {
-+		lm3533_als_devs[0].platform_data = pdata->als;
-+		lm3533_als_devs[0].pdata_size = sizeof(*pdata->als);
-+	}
- 
- 	ret = mfd_add_devices(lm3533->dev, 0, lm3533_als_devs, 1, NULL,
- 			      0, NULL);
-@@ -405,15 +410,17 @@ static int lm3533_device_bl_init(struct lm3533 *lm3533)
- 	int i;
- 	int ret;
- 
--	if (!pdata->backlights || pdata->num_backlights == 0)
-+	if (!pdata->num_backlights)
- 		return 0;
- 
- 	if (pdata->num_backlights > ARRAY_SIZE(lm3533_bl_devs))
- 		pdata->num_backlights = ARRAY_SIZE(lm3533_bl_devs);
- 
--	for (i = 0; i < pdata->num_backlights; ++i) {
--		lm3533_bl_devs[i].platform_data = &pdata->backlights[i];
--		lm3533_bl_devs[i].pdata_size = sizeof(pdata->backlights[i]);
-+	if (pdata->backlights) {
-+		for (i = 0; i < pdata->num_backlights; ++i) {
-+			lm3533_bl_devs[i].platform_data = &pdata->backlights[i];
-+			lm3533_bl_devs[i].pdata_size = sizeof(pdata->backlights[i]);
-+		}
- 	}
- 
- 	ret = mfd_add_devices(lm3533->dev, 0, lm3533_bl_devs,
-@@ -434,15 +441,17 @@ static int lm3533_device_led_init(struct lm3533 *lm3533)
- 	int i;
- 	int ret;
- 
--	if (!pdata->leds || pdata->num_leds == 0)
-+	if (!pdata->num_leds)
- 		return 0;
- 
- 	if (pdata->num_leds > ARRAY_SIZE(lm3533_led_devs))
- 		pdata->num_leds = ARRAY_SIZE(lm3533_led_devs);
- 
--	for (i = 0; i < pdata->num_leds; ++i) {
--		lm3533_led_devs[i].platform_data = &pdata->leds[i];
--		lm3533_led_devs[i].pdata_size = sizeof(pdata->leds[i]);
-+	if (pdata->leds) {
-+		for (i = 0; i < pdata->num_leds; ++i) {
-+			lm3533_led_devs[i].platform_data = &pdata->leds[i];
-+			lm3533_led_devs[i].pdata_size = sizeof(pdata->leds[i]);
-+		}
- 	}
- 
- 	ret = mfd_add_devices(lm3533->dev, 0, lm3533_led_devs,
-@@ -469,6 +478,26 @@ static int lm3533_device_setup(struct lm3533 *lm3533,
- 	return lm3533_set_boost_ovp(lm3533, pdata->boost_ovp);
- }
- 
-+static void lm3533_parse_nodes(struct lm3533 *lm3533,
-+			       struct lm3533_platform_data *pdata)
-+{
-+	struct fwnode_handle *node;
-+	const char *label;
-+
-+	device_for_each_child_node(lm3533->dev, node) {
-+		fwnode_property_read_string(node, "compatible", &label);
-+
-+		if (!strcmp(label, lm3533_bl_devs[pdata->num_backlights].name))
-+			pdata->num_backlights++;
-+
-+		if (!strcmp(label, lm3533_led_devs[pdata->num_leds].name))
-+			pdata->num_leds++;
-+
-+		if (!strcmp(label, lm3533_als_devs[pdata->num_als].name))
-+			pdata->num_als++;
-+	}
-+}
-+
- static int lm3533_device_init(struct lm3533 *lm3533)
- {
- 	struct lm3533_platform_data *pdata = dev_get_platdata(lm3533->dev);
-@@ -477,8 +506,25 @@ static int lm3533_device_init(struct lm3533 *lm3533)
- 	dev_dbg(lm3533->dev, "%s\n", __func__);
- 
- 	if (!pdata) {
--		dev_err(lm3533->dev, "no platform data\n");
--		return -EINVAL;
-+		pdata = devm_kzalloc(lm3533->dev, sizeof(*pdata), GFP_KERNEL);
-+		if (!pdata)
-+			return -ENOMEM;
-+
-+		ret = device_property_read_u32(lm3533->dev,
-+					       "ti,boost-ovp",
-+					       &pdata->boost_ovp);
-+		if (ret)
-+			pdata->boost_ovp = LM3533_BOOST_OVP_16V;
-+
-+		ret = device_property_read_u32(lm3533->dev,
-+					       "ti,boost-freq",
-+					       &pdata->boost_freq);
-+		if (ret)
-+			pdata->boost_freq = LM3533_BOOST_FREQ_500KHZ;
-+
-+		lm3533_parse_nodes(lm3533, pdata);
-+
-+		lm3533->dev->platform_data = pdata;
- 	}
- 
- 	lm3533->hwen = devm_gpiod_get(lm3533->dev, NULL, GPIOD_OUT_LOW);
-@@ -603,6 +649,12 @@ static void lm3533_i2c_remove(struct i2c_client *i2c)
- 	lm3533_device_exit(lm3533);
- }
- 
-+static const struct of_device_id lm3533_match_table[] = {
-+	{ .compatible = "ti,lm3533" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, lm3533_match_table);
-+
- static const struct i2c_device_id lm3533_i2c_ids[] = {
- 	{ "lm3533" },
- 	{ }
-@@ -612,6 +664,7 @@ MODULE_DEVICE_TABLE(i2c, lm3533_i2c_ids);
- static struct i2c_driver lm3533_i2c_driver = {
- 	.driver = {
- 		   .name = "lm3533",
-+		   .of_match_table = lm3533_match_table,
- 	},
- 	.id_table	= lm3533_i2c_ids,
- 	.probe		= lm3533_i2c_probe,
-diff --git a/drivers/video/backlight/lm3533_bl.c b/drivers/video/backlight/lm3533_bl.c
-index babfd3ceec86..bc568916f1b1 100644
---- a/drivers/video/backlight/lm3533_bl.c
-+++ b/drivers/video/backlight/lm3533_bl.c
-@@ -258,6 +258,60 @@ static int lm3533_bl_setup(struct lm3533_bl *bl,
- 	return lm3533_ctrlbank_set_pwm(&bl->cb, pdata->pwm);
- }
- 
-+static void lm3533_parse_backlight(struct platform_device *pdev,
-+				   struct lm3533_bl_platform_data *pdata)
-+{
-+	struct device *dev = &pdev->dev;
-+	int val, ret;
-+
-+	/* 5000 - 29800 uA (800 uA step) */
-+	ret = device_property_read_u32(dev, "max-current-microamp", &val);
-+	if (ret)
-+		val = 5000;
-+	pdata->max_current = val;
-+
-+	/* 0 - 255 */
-+	ret = device_property_read_u32(dev, "default-brightness", &val);
-+	if (ret)
-+		val = LM3533_BL_MAX_BRIGHTNESS;
-+	pdata->default_brightness = val;
-+
-+	/* 0 - 0x3f */
-+	ret = device_property_read_u32(dev, "pwm", &val);
-+	if (ret)
-+		val = 0;
-+	pdata->pwm = val;
-+}
-+
-+static int lm3533_pass_of_node(struct platform_device *pdev,
-+			       struct lm3533_bl_platform_data *pdata)
-+{
-+	struct device *parent_dev = pdev->dev.parent;
-+	struct device *dev = &pdev->dev;
-+	struct fwnode_handle *node;
-+	const char *label;
-+	int val, ret;
-+
-+	device_for_each_child_node(parent_dev, node) {
-+		fwnode_property_read_string(node, "compatible", &label);
-+
-+		if (!strcmp(label, pdev->name)) {
-+			ret = fwnode_property_read_u32(node, "reg", &val);
-+			if (ret) {
-+				dev_info(dev, "reg property is missing: ret %d\n", ret);
-+				return ret;
-+			}
-+
-+			if (val == pdev->id) {
-+				dev->fwnode = node;
-+				dev->of_node = to_of_node(node);
-+			}
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int lm3533_bl_probe(struct platform_device *pdev)
- {
- 	struct lm3533 *lm3533;
-@@ -275,8 +329,16 @@ static int lm3533_bl_probe(struct platform_device *pdev)
- 
- 	pdata = dev_get_platdata(&pdev->dev);
- 	if (!pdata) {
--		dev_err(&pdev->dev, "no platform data\n");
--		return -EINVAL;
-+		pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
-+		if (!pdata)
-+			return -ENOMEM;
-+
-+		ret = lm3533_pass_of_node(pdev, pdata);
-+		if (ret)
-+			return dev_err_probe(&pdev->dev, ret,
-+					     "failed to get backlight device node\n");
-+
-+		lm3533_parse_backlight(pdev, pdata);
- 	}
- 
- 	if (pdev->id < 0 || pdev->id >= LM3533_HVCTRLBANK_COUNT) {
-@@ -299,9 +361,9 @@ static int lm3533_bl_probe(struct platform_device *pdev)
- 	props.type = BACKLIGHT_RAW;
- 	props.max_brightness = LM3533_BL_MAX_BRIGHTNESS;
- 	props.brightness = pdata->default_brightness;
--	bd = devm_backlight_device_register(&pdev->dev, pdata->name,
--					pdev->dev.parent, bl, &lm3533_bl_ops,
--					&props);
-+	bd = devm_backlight_device_register(&pdev->dev, dev_name(&pdev->dev),
-+					    pdev->dev.parent, bl,
-+					    &lm3533_bl_ops, &props);
- 	if (IS_ERR(bd)) {
- 		dev_err(&pdev->dev, "failed to register backlight device\n");
- 		return PTR_ERR(bd);
-diff --git a/include/linux/mfd/lm3533.h b/include/linux/mfd/lm3533.h
-index 69059a7a2ce5..e22fd2093a95 100644
---- a/include/linux/mfd/lm3533.h
-+++ b/include/linux/mfd/lm3533.h
-@@ -74,6 +74,7 @@ struct lm3533_platform_data {
- 	enum lm3533_boost_freq boost_freq;
- 
- 	struct lm3533_als_platform_data *als;
-+	int num_als;
- 
- 	struct lm3533_bl_platform_data *backlights;
- 	int num_backlights;
--- 
-2.43.0
+> clocks =3D <&clk IMX8MP_CLK_VPU_G1_ROOT>,
+> 	 <&clk IMX8MP_CLK_VPU_G2_ROOT>,
+> 	 <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
+> clock-names =3D "g1", "g2", "vc8000e";
+
+This violates the DT binding.
+
+> So for non-blkctrl nodes, it is fine to use access-controller and rely
+> on fwdelink to defer probe. But for blk ctrl nodes, it will not work.
+>=20
+> For pgc nodes, it may or may not matter, not very sure for now.
+>=20
+> For blk ctrl nodes, we need provide a generic API saying
+> access_control_check or directly using nvmem API.
+
+Reading access-controllers.yaml this should still be feasible for
+providing the necessary information.
+But I'm note sure where to implement this. In e.g. imx-ocotp would be a very
+SoC-specific API.
+
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
