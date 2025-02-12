@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-145614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2401A31E0C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:40:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00716A31E32
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:47:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58B4E3A8DA8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 05:40:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98195163709
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 05:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80EF1F5437;
-	Wed, 12 Feb 2025 05:40:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 960201DA60F;
+	Wed, 12 Feb 2025 05:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m1T1XwiE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OEY6BjB6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5E6271837;
-	Wed, 12 Feb 2025 05:40:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F9C2BD10;
+	Wed, 12 Feb 2025 05:47:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739338824; cv=none; b=nLJndUEIZDXuZkzjnz3ZUhkIcQ/rkjrrqVn36pSQB1IuNN/63ZXoZQZ6eoh7gBtcs3tMY88iuxxrDPTMAFI5Jq+ru+/1DJpEXgzCDYjfEYwqoyX0oHjcST8RkuPnt9Pq3zSfLbbG/66lSmp54og/PgEukBivZGqqcaPfPsFdz9Y=
+	t=1739339253; cv=none; b=PsFmL0YA7+K9EYtAYCG2RFaiCmqax7htM7uZEKzIi+FUM5OS7wMeCH9Bbt33RsD4kLi/OqfFFn9anwzkE/hWOU96Nwyv2sLG5CMFRt4RYtqF6YYLW2qpk1yGqk4YUajm1TRCTN3Hiz5NooECjOTHCAL4OsjWzUf49s0bph+kbn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739338824; c=relaxed/simple;
-	bh=KEhGUrXE1fCsrHtoX6tuVRiuAmt3qPnhL+sQJHMcJbY=;
+	s=arc-20240116; t=1739339253; c=relaxed/simple;
+	bh=ilS7Vyw4k14KiS1Avo6VfcY56qUDNzLPX44dUnRds40=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ODS7vDRljsyVve4QTUey0JxhB5nMRP59pcjf76GofW6idOS6TpIwNTw4p5v23gub9aOumyZ+YrH3Uoa46GcX5IGjKFos3oVbDLHMfK4lPH3GkSzmYRPb8DjgmZ7H9B6AS9IuGnrtF1QWcD28gZ0ReWbOrDHnDsVADNvkI/fA4Lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m1T1XwiE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A75B9C4CEDF;
-	Wed, 12 Feb 2025 05:40:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BaHyk0gZGg1wZ132QkuPb+s6mUBPP0ovBwwmuxmKGu7hyVXHDNZbmPwks/IQCHBd1Yngjv8eQcrKwVnte4pMk+c263mBNjkrr6gKx0p4Grs0vZAlXd6QmE6WeVXYdePYbaoa/QPGDdtLMRU05B7zkvVW8whcawXeLhZS6f8w0GE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OEY6BjB6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EE5EC4CEDF;
+	Wed, 12 Feb 2025 05:47:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739338824;
-	bh=KEhGUrXE1fCsrHtoX6tuVRiuAmt3qPnhL+sQJHMcJbY=;
+	s=k20201202; t=1739339252;
+	bh=ilS7Vyw4k14KiS1Avo6VfcY56qUDNzLPX44dUnRds40=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m1T1XwiE3mJ1Dl9M93DQxeJgCK+aRKaXbdNoC2gW3nC6pc9u7bOwo+tMKDEFBFf8y
-	 sVk8KYAzZjl3CI1TV4xAutadSkOO174jbZ3M84Bq3ygGH70sImlWzTmC5OvoVcLd0q
-	 z0sOocHYTY4H2GE4AEIacR2pWG6G1QSrHFbXecrazs/JC7R1DtKo83UHIDJbX/MgaS
-	 KHD5/DW/hKo0kvfm1XRohMc8XToQAAMgMyj4526aCZaKljpZIhPp48qzHjs0DqDZEs
-	 UeYzB9LheGzeWjnO+PFCF3TcnN0/r6ftamc2xetFuIMvcVAVVBBtFJRHqVDw1ZKkqJ
-	 oZcjhSqGe59lQ==
-Message-ID: <91428aa7-5b96-480d-8f0d-c742ed25f327@kernel.org>
-Date: Wed, 12 Feb 2025 06:40:14 +0100
+	b=OEY6BjB6CkYChOeih1Nh4KTQb5T3hOPO5/BHvi7V1yaiUS6QYrxbrMpu0V9TvJU9J
+	 PwMtEHJOV6jMdEDMrdF4qoiQ9afZeuZ6U3krh0RCknAFygY+3WJGg7Kih9DhWHKuSv
+	 i/NuEcces9zbZEenBCoX3iPwqBRmIs7J7JJgst006EuNAjOkCEUt+SsxGWFqfhCp88
+	 cUBp1jdnSvjeMgknSBOmx7GTlxJPM03xAa0VK2sY1ujBxaB2ENY3MKmls+qnGaSwJu
+	 qzkT/pTUkgod6PlEHu19Q/f8NAeU6ZmA7G/R1fLahfBESpsq3/opCLlle12M5ej6zZ
+	 VtgyK3wzJuDfw==
+Message-ID: <e7a1b608-2bad-41d4-844a-07fd73818bb3@kernel.org>
+Date: Wed, 12 Feb 2025 06:47:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,38 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/12] dt-bindings: display: mediatek: add EXDMA yaml for
- MT8196
-To: =?UTF-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?= <Paul-pl.Chen@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: =?UTF-8?B?U3VubnkgU2hlbiAo5rKI5aeN5aeNKQ==?= <Sunny.Shen@mediatek.com>,
- =?UTF-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
- =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
- =?UTF-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
- <Xiandong.Wang@mediatek.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "fshao@chromium.org" <fshao@chromium.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "treapking@chromium.org" <treapking@chromium.org>
-References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
- <20250110123835.2719824-4-paul-pl.chen@mediatek.com>
- <abadfae8-56f7-499c-83ff-7d79e3fe1f52@kernel.org>
- <c1440608060e4b2fabf07ff5ac0a7fe49201ba9d.camel@mediatek.com>
- <cc043dcd-b46e-4b4b-9b80-0450efde86eb@kernel.org>
- <d1f64020a9fa819a7928ea96a2608e4021b325a8.camel@mediatek.com>
+Subject: Re: [PATCH 1/9] of: Add warpper function
+ of_find_node_by_name_balanced()
+To: Zhang Zekun <zhangzekun11@huawei.com>, robh@kernel.org,
+ saravanak@google.com, justin.chen@broadcom.com,
+ florian.fainelli@broadcom.com, andrew+netdev@lunn.ch, kuba@kernel.org,
+ o.rempel@pengutronix.de, kory.maincent@bootlin.com,
+ jacopo+renesas@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
+ laurent.pinchart+renesas@ideasonboard.com, maddy@linux.ibm.com,
+ mpe@ellerman.id.au, npiggin@gmail.com, olteanv@gmail.com,
+ davem@davemloft.net, taras.chornyi@plvision.eu, edumazet@google.com,
+ pabeni@redhat.com, sudeep.holla@arm.com, cristian.marussi@arm.com
+Cc: arm-scmi@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-media@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, chenjun102@huawei.com
+References: <20250207013117.104205-1-zhangzekun11@huawei.com>
+ <20250207013117.104205-2-zhangzekun11@huawei.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -127,85 +111,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <d1f64020a9fa819a7928ea96a2608e4021b325a8.camel@mediatek.com>
+In-Reply-To: <20250207013117.104205-2-zhangzekun11@huawei.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 11/02/2025 09:23, Paul-pl Chen (陳柏霖) wrote:
-> On Sat, 2025-01-18 at 09:37 +0100, Krzysztof Kozlowski wrote:
->>
->>>
->>> (2)Primary Task of EXDMA:
->>> The main function of EXDMA is to transfer buffers allocated by GEM
->>> to
->>> the subsequent display pipeline.
->>> EXDMA serves as a bridge between memory allocated by GEM and the
->>> display components, rather than acting as a general-purpose DMA
->>> engine.
->>> Based on the points above, we have decided to place the EXDMA
->>> driver
->>> under the DRM display subsystem rather than under the DMA
->>> subsystem.
->>
->>
->> I don't care if it uses GEM or kernel allocator or even 3rd party
->> allocator. The question is: what is this device? If it is performing
->> DMA, then it should be placed in "dma" directory. The rdma was placed
->> differently but as you can easily check: it was never acked/reviewed,
->> so
->> don't use it as an example.
->>
->> Of course if it does not perform DMA, then it should not be in dma,
->> but
->> then I don't agree on using dma-cells here and anything like that in
->> the
->> driver.
->>
->> Best regards,
->> Krzysztof
->>
->>
->>
+On 07/02/2025 02:31, Zhang Zekun wrote:
+> There are many drivers use of_find_node_by_name() with a not-NULL
+> device_node pointer, and a number of callers would require a call to
+> of_node_get() before using it. There are also some drivers who forget
+> to call of_node_get() which would cause a ref count leak[1]. So, Add a
+> wraper function for of_find_node_by_name(), drivers may use this function
+> to call of_find_node_by_name() with the refcount already balanced.
 > 
-> Hi KK,
+> [1] https://lore.kernel.org/all/20241024015909.58654-1-zhangzekun11@huawei.com/
 > 
-> Sorry, I just found this email was not send. 
+> Signed-off-by: Zhang Zekun <zhangzekun11@huawei.com>
+> ---
+>  include/linux/of.h | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> This email is discuss about the EXDMA under the display subsystem
-> 
-> The current placement of EXDMA under the display subsystem in
-> Mediatek's architecture is primarily due to its functional role as a
-> sub-device within the display pipeline.
->  
-> In MT8196 hardware design, the sub-devices in display pipeline follow a
-> sequence of: EXDMA -> BLENDER -> OUTPROC -> PQ -> DVO.
->  
-> In MT8195 hardware design, the sub-devices in display pipeline follow a
-> sequence of: OVL -> PQ ->DSI.
->  
-> As we see, OVL has been divided into three new hardware IPs in MT8196.
-> OVL and EXDMA both have the ability to fetch data directly from DRAM
-> and can be regarded as DMA controller.
->  
-> I also have confirmed with the hardware designer that EXDMA is a kind
-> of DMA, but it is specially designed to handle the graphical layer, and
-> has better performance than ordinary DMA.
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index eaf0e2a2b75c..b7c6d7ff278c 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -268,6 +268,11 @@ static inline const char *of_node_full_name(const struct device_node *np)
+>  #define for_each_of_allnodes(dn) for_each_of_allnodes_from(NULL, dn)
+>  extern struct device_node *of_find_node_by_name(struct device_node *from,
+>  	const char *name);
+> +static inline struct device_node *of_find_node_by_name_balanced(struct device_node *from,
+> +								const char *name)
+> +{
+> +	return of_find_node_by_name(of_node_get(from), name);
 
-To me the decisive factor is that you use dma-cells here, so it is a DMA
-controller. DMA controllers should placed in a directory of their
-maintainer, so they can review it.
-
->  
-> Therefore, I think that moving EXDMA and OVL from the display folder to
-> the DMA folder, or only kepping them in the display folder is decided
-> by the two different views of DMA ability or display sub-device.
->  
-> We will follow your instructions to put EXDMA on the place you decided.
-> 
-> 
-> Best, Paul 
-> 
-
+I don't think that solution to people not reading API description is to
+create more API with similar but a bit different behavior, especially
+undocumented.
 
 Best regards,
 Krzysztof
