@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-145636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB83A31F2A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 07:38:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD56AA31F3E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 07:42:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77A63188C342
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:38:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FFA3168F6D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67AF51FCFF8;
-	Wed, 12 Feb 2025 06:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E48F1FCF62;
+	Wed, 12 Feb 2025 06:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qj73nwuF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJHzF+Vz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 324D81FC7C3;
-	Wed, 12 Feb 2025 06:37:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA9C1FCF4F;
+	Wed, 12 Feb 2025 06:42:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739342256; cv=none; b=JV1xuJzdXI8AaFlZi1L6pkcTFlHDu4NRWBSw0pGHmIRdic2g8vwlyyRrQNFh98kv2JbRSsSOHXbkwnrowOtWCxeZEDRm96t7FHpWqvfD4VK55n3nngT0BEkn7hJoka1uAf5bZOuSBpntXJ6nqzJjZu23oAYfbDuQo7dADleNsBg=
+	t=1739342553; cv=none; b=iJHvuDMCmGDcl4vcZ3WrO8nFlt98tl9tbplneCIPKUzmAoFVCjY+bAb8rXy9BZq+7bFk7TDjCm1wxqcXmZiUG3xY1HU6VRqkrMBhx7YnVjZ4rRU1aDxyY1586/OzUodOEEe3Ukhr//f2lMUp51kQqpnVcXsep4nuLTDiqJSBPdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739342256; c=relaxed/simple;
-	bh=g7k5THXFMaH/qSOf4PxQOVQREAAwPs4GEz2EWgyvYpI=;
+	s=arc-20240116; t=1739342553; c=relaxed/simple;
+	bh=gcWrlH4VJdCzAwzQ0TQ13bD5T421NNpIotpvRoe8/0s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HPfjtpZ3vQbEqhYAYjLwoSlsqyvLusPXs7p5sMLt4dX5Ce+EplHIcicGQRf5rOnDov0kTktvgzuCXIdSUOQ+XXdD4hg+HtqYNxXorOhvNenxRvWJBJf+QDB7XNY/58YEy45eCtYFfbzCq52Qaj/9fR624x2lEbe2HFCG4aChBDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qj73nwuF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA796C4CEDF;
-	Wed, 12 Feb 2025 06:37:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lzRzV1neg+FOsd473NZmFZGj0Nf+ROKeoX+h6mODC3B+nFNwe4jIXiBYJBX5IneGttI1CstFh0qk4fUbanLOOz1K87Tq7eJfPSpQDOnPc4sdnLFQPFEy6PUjGF5xUkBj5+SEFqlEBpNV7k8nj5lcK9ZwDRvP/uyK20blkyWli0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJHzF+Vz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94EF6C4CEDF;
+	Wed, 12 Feb 2025 06:42:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739342255;
-	bh=g7k5THXFMaH/qSOf4PxQOVQREAAwPs4GEz2EWgyvYpI=;
+	s=k20201202; t=1739342552;
+	bh=gcWrlH4VJdCzAwzQ0TQ13bD5T421NNpIotpvRoe8/0s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qj73nwuFPJ8IiyMSKZCLLIuOk2o7tjdi9+7yOpfIzbQQqPLqv4DTUBYR0iu9h2zK1
-	 5aRRjT09KR7byLDw3KerZqLaEthM+Ia/2+mCs/u+912RSv/7pPCE24nyYec33c72JE
-	 Hwzn+BUu7qeLGWBe5GuMrMnFykZKHbf4LVsw/JpK/hbu3Qi0/tsvZv41SQqg5tdn7J
-	 zbEybvr+/YdHU0/bpWwAuR3gyYrcr3YAaJrYDJRq3wufSUGP7bsO3rnwHVLr3oXuV9
-	 CigTVcsFkDs9wdo+DO78zErcCc9qvBJ3gNitAWDRpZVasl1g71rkVd43z0epHdlp6x
-	 M3VHNi3t7kqag==
-Date: Wed, 12 Feb 2025 07:37:32 +0100
+	b=XJHzF+VzfFWlp4P1JPrUMCQkbJ5KBGLBnHIArBL2rm8chHQT3+YCoPK4OJRy5r7E3
+	 sAEvp7f7Om4wRIuJbEio3qwxlaK3G6jul9C+7mhkn+/CcOPn94KJGKuYMJNv4kBrB9
+	 iyu0wu+S5Pof3d5E6GJVuoEPQE0wwdWUJY3opqtFifXLHL3cOus7Plu+nJbBT25k6Z
+	 MLozZWZUL+9x2+p6l1ZevMJfiIYKEVfvQADJL7cew3LCDAreCs1eXEpQof9x5Sqj/D
+	 D/2n2MOO/76zGJrkaqFhCTWkj5d65Lh9hCqXduyTu+7RL200etCIuJx6zTQ6XwCouc
+	 GTngHdXyvPRoQ==
+Date: Wed, 12 Feb 2025 07:42:28 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephan Gerhold <stephan@gerhold.net>, Otto =?utf-8?Q?Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
-	Linus Walleij <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [PATCH 06/10] dt-bindings: nvmem: Add compatible for MS8937
-Message-ID: <20250212-snobbish-koel-of-discourse-60fc00@krzk-bin>
-References: <20250211-msm8937-v1-0-7d27ed67f708@mainlining.org>
- <20250211-msm8937-v1-6-7d27ed67f708@mainlining.org>
+To: Roman Kisel <romank@linux.microsoft.com>
+Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de, 
+	catalin.marinas@arm.com, conor+dt@kernel.org, dave.hansen@linux.intel.com, 
+	decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com, krzk+dt@kernel.org, 
+	kw@linux.com, kys@microsoft.com, lpieralisi@kernel.org, 
+	manivannan.sadhasivam@linaro.org, mingo@redhat.com, robh@kernel.org, ssengar@linux.microsoft.com, 
+	tglx@linutronix.de, wei.liu@kernel.org, will@kernel.org, devicetree@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	x86@kernel.org, benhill@microsoft.com, bperkins@microsoft.com, 
+	sunilmut@microsoft.com
+Subject: Re: [PATCH hyperv-next v4 4/6] dt-bindings: microsoft,vmbus: Add GIC
+ and DMA coherence to the example
+Message-ID: <20250212-rough-terrier-of-serendipity-68a0db@krzk-bin>
+References: <20250212014321.1108840-1-romank@linux.microsoft.com>
+ <20250212014321.1108840-5-romank@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,20 +67,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250211-msm8937-v1-6-7d27ed67f708@mainlining.org>
+In-Reply-To: <20250212014321.1108840-5-romank@linux.microsoft.com>
 
-On Tue, Feb 11, 2025 at 11:37:50PM +0100, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wr=
-ote:
-> Document the QFPROM block found on MSM8937.
->=20
-> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining=
-=2Eorg>
+On Tue, Feb 11, 2025 at 05:43:19PM -0800, Roman Kisel wrote:
+> The existing example lacks the GIC interrupt controller property
+> making it not possible to boot on ARM64, and it lacks the DMA
+
+GIC controller is not relevant to this binding.
+
+> coherence property making the kernel do more work on maintaining
+> CPU caches on ARM64 although the VMBus trancations are cache-coherent.
+> 
+> Add the GIC node, specify DMA coherence, and define interrupt-parent
+> and interrupts properties in the example to provide a complete reference
+> for platforms utilizing GIC-based interrupts, and add the DMA coherence
+> property to not do extra work on the architectures where DMA defaults to
+> non cache-coherent.
+> 
+> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
 > ---
->  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/bus/microsoft,vmbus.yaml      | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Last time I said: not tested by automation.
+Now: I see automation build failures, although I do not see anything
+incorrect in the code, so that's a bit surprising. Please confirm that
+binding was tested on latest dtschema.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+> index a8d40c766dcd..5ec69226ab85 100644
+> --- a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+> +++ b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+> @@ -44,11 +44,22 @@ examples:
+>              #size-cells = <1>;
+>              ranges;
+>  
+> +            gic: intc@fe200000 {
+> +              compatible = "arm,gic-v3";
+> +              reg = <0x0 0xfe200000 0x0 0x10000>,   /* GIC Dist */
+> +                    <0x0 0xfe280000 0x0 0x200000>;  /* GICR */
+> +              interrupt-controller;
+> +              #interrupt-cells = <3>;
+> +            }
+
+I fail to see how this is relevant here. This is example only of vmbus.
+Look how other bindings are done. Drop the example.
+
+
+> +
+>              vmbus@ff0000000 {
+>                  compatible = "microsoft,vmbus";
+>                  #address-cells = <2>;
+>                  #size-cells = <1>;
+>                  ranges = <0x0f 0xf0000000 0x0f 0xf0000000 0x10000000>;
+> +                dma-coherent;
+> +                interrupt-parent = <&gic>;
+> +                interrupts = <1 2 1>;
+
+Use proper defines for known constants.
 
 Best regards,
 Krzysztof
