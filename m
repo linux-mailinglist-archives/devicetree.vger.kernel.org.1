@@ -1,350 +1,360 @@
-Return-Path: <devicetree+bounces-145585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 985E1A31B87
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 02:50:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA33A31BA3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 02:59:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AE86167017
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 01:50:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27B52167C07
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 01:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367E53D3B8;
-	Wed, 12 Feb 2025 01:50:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB50712AAE2;
+	Wed, 12 Feb 2025 01:59:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="aAITlcDV"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Vc758I9Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazolkn19011037.outbound.protection.outlook.com [52.103.67.37])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E2D4D599;
-	Wed, 12 Feb 2025 01:50:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739325031; cv=fail; b=uYPvJLL9tyLdk/JD/Dw/sufEF5gKpwrb18AID5BRZQK2iQZiAxnRczsnDjpl4s4BvUD5JbEfoy2ObwAfcSMLcbExgQ/Ad1LNrHHu9CKlLASrWLJOqiUkJbO7RCxsVHDO4kzmqv/yQBV0BhMGfKoCefQMep/TXoXBqE7PLfhopmk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739325031; c=relaxed/simple;
-	bh=tx3tukYbgtPORNTRzqV/0GRcqK9H3+Qxd9uwyM17QHI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=S3qlwpDl/AJgI/upMsNse9hZBXPGU7WDJ+cMuzD7eMMK7SjNHG/dZQLdqHrna7wPCPsjgyLCpeXbhaO7RdvQxtujGSlTT9NxY24gMBukPs82HFC/FRGITWqFYwuAkuHnnzNxF4tOG29bUN/pl2pZpBnxuuWLhE2V+KpdE+Ru44c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=aAITlcDV; arc=fail smtp.client-ip=52.103.67.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EF1RsyUcOWXfbL5gL6hzdTwaiIw4pFGa5g1y7UTcLeJY5k9Glk6QTexMiohQjDbB+qI8lyY0V2rP16aLU98QxLVZ3FrOXsJOwd+oRfy8qIztDAVA4hjBJh0/vpckU1Be2K9Ge/oeYEbBPJYzlxfhENYkE7+skROGaOWjNQbRITKCyc3nsDRM8L4W7KqbyqqqnGHOL9QgdDrbfDrUl3Kb+U09FgwrGV5r3FYnqHHyWTTxBpsVn95ktNPr4zKj7TPasR/wR6+VMqYx1dvFh3b8OpAieQuoCos06VP5PoyGCbn//fNXLg+mMKvZ69YT+3toNY0AD7piW7M6AUQq4kL5Sw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pe7MKNbGhjNEVFAfFAnq2WeO4qUvvW2qCmpQ81LQeIM=;
- b=YQfel8u8mdSJ2XfC7sM4G8TSynF77pEUiTRbg0mBgDcO8zrN5D4La5HWOgT6ceYR1Nu2/4Obs5xevA0sz4u93YRj0z+DQ9xpFbLOqkIrcH5E2UM9AMspifcIyCY9ONCifNOLXnbw5PhO5dGy1UH5fKsBgt5ex8DxXE1Pj2K2a27a5+PSeYOhsaC/1dRs86vESaSkfI78SI4F4yekYN8RnPo4SlwVFhDgH3qS9gqS79bQE4qYdmJ9ahpJqqttILlvdKOWK6EPbuwls9SEj5b6kvsm24mECHh8+6b1TqgVOs+LAAtBFwHUtEWnK3P93j/LHQbmRUlvagKs2CdBwmiX4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pe7MKNbGhjNEVFAfFAnq2WeO4qUvvW2qCmpQ81LQeIM=;
- b=aAITlcDVFhROyscYyyaJQKAmx3ctc678sHKonByj1VeUliRvolQTTG2LqtOLdOZF5HsZ5i+R/xDRG481SVOuLN3zUH1eGHjNtn+7/VriIUuN5wRH8qzCXNvLaF7jAYmnzB8PBSD2gcz7JVa0iQJRl4qQ24zpuv3X4FE3RTtmR7srlyvwwd8J0/uBl575CrPw1H8umt769FweCGed2wX5dFcyCcKOqH9t2HVj0POE7h6jAPDgINpQojm7NMA+PHv43620afZYr/TAfPNVCHCPpnozW1XZp95HshsaQq9QSgzcO2tJR+er/nqCb1BbxJesaTT/kLNB5JmG6SG6X+My4w==
-Received: from BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:3a::19)
- by MA0PR01MB6005.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:4a::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.11; Wed, 12 Feb
- 2025 01:50:19 +0000
-Received: from BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::2148:4778:79a3:ba71]) by BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::2148:4778:79a3:ba71%4]) with mapi id 15.20.8445.013; Wed, 12 Feb 2025
- 01:50:18 +0000
-Message-ID:
- <BMXPR01MB244057AE697903F8C2947FB8FEFC2@BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM>
-Date: Wed, 12 Feb 2025 09:50:11 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] dt-bindings: pci: Add Sophgo SG2042 PCIe host
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Chen Wang <unicornxw@gmail.com>, kw@linux.com,
- u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, arnd@arndb.de,
- bhelgaas@google.com, conor+dt@kernel.org, guoren@kernel.org,
- inochiama@outlook.com, krzk+dt@kernel.org, lee@kernel.org,
- lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
- paul.walmsley@sifive.com, pbrobinson@gmail.com, robh@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
- chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
-References: <20250211233430.GA55431@bhelgaas>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20250211233430.GA55431@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI2PR02CA0017.apcprd02.prod.outlook.com
- (2603:1096:4:194::17) To BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:3a::19)
-X-Microsoft-Original-Message-ID:
- <4ed691d5-70b2-4624-bd38-25ce8cf713f3@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E6B978F5E
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 01:59:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739325545; cv=none; b=J/V13q/YT6ZYkVOAjJTA566DQvZIqWNHOxQCh2a7cfPYrpeKNWbnlndy1wWSUAqPfrBBZGCLz69v/C9O9MVGJ3rGxGv1lULa5HXm2UgBMSqnxXKjLoU4XkaSXUZH2UrwN/AkdX1QtxOs5/tGAo3sY5/JdFCZpwnb4AE1EPGKgMg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739325545; c=relaxed/simple;
+	bh=TgTFzIfKCXEPT/O7ObTgjTQk9DcHKZ5vxqv1bmZnltI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YcWit2GRcUHeocYWF0WN8Ph6WYAVts+uJdgexMpGGvvLdPz2lPGkY/imPq7IO1VSPu11TgBAm2UmKTP6Yc2wXfA6fGEihbm0dyi7/ZZszzaZE3KuD9kI6GPr2gXQXcIU1ShGG12EvvC2uavmCKt/Q5Xr6tr22Q4wMhGh+Qfjpkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Vc758I9Z; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51BDGVKg007894
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 01:59:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	awv0rGxstM311fFi4Sv24BEaC0+mwddjoTpetAR3/s4=; b=Vc758I9ZNeYjWDTN
+	b8yxc7Os7WRcFZt7zsZAAiVHzTCLuno8/YYdiJwQM5/SSdBgxQtc+Kl9jObDLRah
+	KrWwiyO37+5viWIJyMOCB5qJUiIFWdJjHnhaQ2nnoJhlFTJW5kGhh2nnQcXpIDfr
+	08wS/bKMX9c1DWHzbRDHjn7RYuPUSvfRoLgL8jpWXZtjAYOgWFgH0Fh2yde3abms
+	q+sn50VIuHwThLKAPIMsScI50Aef6zOsBYvYcBzISlKwVWT9zm00URsLhze9j0RM
+	Hyqsme00ExNKBE0ruyNFgoISmthPmVPFJ4aYChmPKMIw6XCPfBSgqd7cs52Rm0E1
+	J3pHNw==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qy4db7m1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 01:59:03 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-2f5538a2356so13256495a91.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Feb 2025 17:59:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739325542; x=1739930342;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=awv0rGxstM311fFi4Sv24BEaC0+mwddjoTpetAR3/s4=;
+        b=NJY1i6rySYRzEtP/GEar14lbm8n9Y73B3ncsjG3apOlF7TMd2HT6eISHHYGJhjwLvg
+         N2qFqomAIE+IEHzuv9FQ0qxs415Ma0RjlL3RP1/Vta0pUf0hxGe4QWHkPKLWsYTRna51
+         9/s511uhfmbr95CFyk0/k50On9KkUsVOU4JTz51fY7UEM4ybcoQoJwhdaxdQQJQpTrwM
+         nA5SPVkytZsxNFTRtfaYGMJG5x5iFlRNXKqRruCQVfrUErvCn09fgT/oEAv2zQS7VUfC
+         Si/r2bpP2fSNl2IAo5c8DIAWx908e2R4aYkqoQHFcVgv1MGA+/26aRn64LptWwz8rHsT
+         vT7g==
+X-Forwarded-Encrypted: i=1; AJvYcCU89Goo95NZcZgZss4uX1aFBjg5QD8wnHLNOV7Jr6Cyp60+FSYtlvG/oWEoEXq6pi0V+4NYtcB4lxB2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyzab9Pa7GN8a3iCmqRMMbl4xHZmAPY5WFgsnZiYUkxFr2xfDQa
+	Tz3PTNQLlxtjMw6H+1t0yUSl9ho5RqLdSKO5k4QQWvNETb2sAkv/hO1FGMlk8diA2Vp4UboGREg
+	CeH2WD60dS0tR96g9MLyGf9n/uJeWRxSPSzAwWtcPaod1v74WtGZfqk8f4+rm
+X-Gm-Gg: ASbGncsGjhKsAv9hIfLFRB9VPw4fHbvUlngSkKnM/e6oug1W242zKvVp0SrKckmQmy8
+	yCwM8TAGoFLCMqcBs/KcusXnbUP5vpq9ldwOVFb9xOoep+Psdl8WETBMXlubNWvHm82egQghoLl
+	WhMT3COsvHtSyoEXJFWoszqPsALgC7xoFnzU+ZwgYC0jl7ZFnY65OfhK6+qCIj3GQglSAOoUVwv
+	mFenx+OKpwIVkfMU+2yWlp5ez+oZGjpxi9QSHbl+qDiaiIa8N4Jvrntg5bAeBD+n3By5zbzHSKn
+	FUz1nLsbb56NM6DeCyMgHwOwgGcxJQgijm4xWS2MDPJodRY66TEIgy5u1MGYINsM
+X-Received: by 2002:a05:6a20:918e:b0:1ee:49ca:759a with SMTP id adf61e73a8af0-1ee5c73340amr3109469637.2.1739325542289;
+        Tue, 11 Feb 2025 17:59:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG9Ozamvj+FZMPdOC0mLlHyPulDXC1bHtTkbyAiVj5wsepcMbBLe+J/zsOKEgvKiq2TwNTNew==
+X-Received: by 2002:a05:6a20:918e:b0:1ee:49ca:759a with SMTP id adf61e73a8af0-1ee5c73340amr3109438637.2.1739325541866;
+        Tue, 11 Feb 2025 17:59:01 -0800 (PST)
+Received: from [10.133.33.12] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73087d8dc08sm4990517b3a.128.2025.02.11.17.58.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Feb 2025 17:59:01 -0800 (PST)
+Message-ID: <1882f5dd-4e46-40b9-977d-dc3570975738@oss.qualcomm.com>
+Date: Wed, 12 Feb 2025 09:58:53 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BMXPR01MB2440:EE_|MA0PR01MB6005:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d95609f-a362-4ae3-3b26-08dd4b07993f
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|6090799003|15080799006|19110799003|461199028|5072599009|6072599003|8060799006|7092599003|4302099013|3412199025|440099028|10035399004|41001999003|1602099012;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?amtZNjQ2dllHV2xMN1J0b2hQUWswL0VoZ2NYWEYzdjA2c01sT3VzMiszaGFO?=
- =?utf-8?B?c05vRXh3TFFMcUZHbjVRM1RJSm0vaGV1K3hDVUVLU3doVGxLMlZ2Qm5KSkxX?=
- =?utf-8?B?S0RoR1NRbTI2MWRYZ25Gc2dRMFpDUEFFd3V6enk4UGx2by85aGZjMHo5Rlpl?=
- =?utf-8?B?a1kybjF3aFV6cE1NOWxIMDZOWTN5dEFwZGdGUVBad043cUora2ZrVi84MWpq?=
- =?utf-8?B?SHZFWEE1bGJtbTNncjhFWklqVGQra1BkaDM1aGRoVzArMjFsR1ZBZWVETERZ?=
- =?utf-8?B?WFR6NllKbzZWZ0ZpZ2NVYzBXVGxWbk04VWVOUmJsdm9BZUJtYzJFdVBaVDl5?=
- =?utf-8?B?SHUzb01mdldqV0NsRnNxbFdIWUJXdE0rclgrQVJyUEFzeDNPQmNhUlQwbGJH?=
- =?utf-8?B?NEcrVTJEa2NrcXBJdXUwSnJLcktCZERnRDR6OHBnZWdtMEcwcHNvZXpvenBk?=
- =?utf-8?B?STJtNFJJYzlxUVg0Y0t6YWlUdE1kSFJVK3hHVUhpR3pCWVBqY1ZNMzFzVHpk?=
- =?utf-8?B?SUR4a2Z4Vld6S2VRRkNWWWRnMHFYdHJNYzl2WHgybXlVUmpsemtaZ0J1Vkxw?=
- =?utf-8?B?NDRmVXNVdndUSGlpQTkyRUZ3N2VkNHJTMmYwQS9LelJaMVZEM0RKUHNNblda?=
- =?utf-8?B?a1F5S09xVWtoOGQ1aVVPb3RYTWxTMXZ3OUVsamNlZkY3azZhSDNkdnFaVUta?=
- =?utf-8?B?NS80QzhGVFZBNVJqQkdSTk1zSnFLak1PNmFEUHVQYnpPdlhQb2hIeGpwa0dY?=
- =?utf-8?B?V0dsRVg4bFhOZFVpQkt6TjJnMHA3aXUrR0l6ZFBnT2hOUjVkcG5Vb05oSjRy?=
- =?utf-8?B?aEE3RklkQ3RSdDRYa0E3VnN6aDhOQmE5aUYyTnIrMjY2ZmplU0hZSzdiZEtt?=
- =?utf-8?B?RTI4Wk9qZzFPdjZWV2JRWmVuTlNOYXBLWllvY1lzbUJ6eG4xNCtGZ01abWE4?=
- =?utf-8?B?UjByaTlKVHE1aGpEQ1Y0aGYrbGUxVlp3U3UwNHVIRmUwRnFoZkxyY25FakVD?=
- =?utf-8?B?M0lLaUk2NWl2V09BcE1nVXRMK2w3bWJpOVFJUENiUmk2RXhobXl1QjdPVll0?=
- =?utf-8?B?YlppdGFvL1daeXViK2c1aS9zTEFQOGxpQSt5bDFCRVpiL2RsVE5nbmg1ZVhq?=
- =?utf-8?B?WUZuQzRYL2V1TDU1MmJobC9adjhUWC9mRUdiSUZQaFBIR0RUT1FJMkFuVURU?=
- =?utf-8?B?cGJEUXRRM2thcldRemRwZTVZU3VxbENpb01GUVpGM1VadlRFT3RGSlZ2TnVr?=
- =?utf-8?B?T2F0VU45SzJaYnM5ZHExeHFvQU9oY2RTTENPUllLSTF5Vnl6SjFNcm1ZV2hj?=
- =?utf-8?B?VFpmSlhQL25sVzFyRy8rVlhydUJsUG1Pckd1M1JRNFpzb2RhZEI4aXVlbkJU?=
- =?utf-8?B?NHM4dGp6cURIRDlnOU5UQzJ2Sk5kejhoMzlGL0hWUzBWSEpjY3VKMUhpWk9R?=
- =?utf-8?B?TGpFNEorZnFIR0tQTm5DZnZqYWJSOVZ2eWtjcmpzai9QRnVsWVhPTm94Mjl2?=
- =?utf-8?B?L1VYQUZhNGY0TXh5U1NYS3RJUFRsZUk0WGYyVytZRE0zMmQ1ZW1SQkhLMXA0?=
- =?utf-8?B?cXMxWWlPYWxpa0thS2RlWHNVbDZHRTBjN2QrMCtjaHZ6SmNlZko1NGFkK1FV?=
- =?utf-8?B?RXNKZGJ5dDdhOUhJWnpOZWEwRlllZDFQS0xHUUkxaThZcVJYMzR4NFN6WktR?=
- =?utf-8?B?NzRhZmhZRkRHSS9RL0RNb09NVndyS08rNXAvSko5eGd4QWVrUjRiOWRCeUdt?=
- =?utf-8?B?ZTllc0dLWEs3MlZ5cFlVdVFlZFlZRjNFR2swTDcyTkpkVzlCMVFNSkE5YkYx?=
- =?utf-8?B?TWEwdWxLejVKUjQ2TVprQT09?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UTF5THozWmg0NEF4d0VlQ0c4NEZEcno0dnJDZjFZNG1kVEdQK0U3d3RQQkJy?=
- =?utf-8?B?TnM4cEdDQk1NZDNPTjdBbTl0T3I4aXBOSnlyTmh2aDc1TGNXb29ZNm5jZjBq?=
- =?utf-8?B?MUhISVU2SHpTekdVcUFFdldSZjZQV1dQekQ2QjlsMkIyNjRBTTQxaHU3ZnJr?=
- =?utf-8?B?bzVWUnpoWXIwQ2NYV3dSVy9meTY3NlhrNHRURWVCY25SM0dta2d2cnovQUc4?=
- =?utf-8?B?d2wzeEJ6bFhVbEdUK0ZHSjhCWFV3czM1ZUlZaWR3ZG5ORTh6NEY2bFlUZlFS?=
- =?utf-8?B?dW5aeVI4dTNtQmoyUUZVdlExZk42SDZwb09zam43WFZkMGROOWtpU2hueWN3?=
- =?utf-8?B?a3ZmTjFDQmxEUUkvMVJjbGd1MTZyYm5ZbXB1ZFhtQWJ5elhKWWV5VHZtSmtk?=
- =?utf-8?B?bXhxUGNORWJ6MzdXTW5HUkRBSjQ5OEx5cjJ3RHdRL0lQcUVoZ3RZOVU5SDRF?=
- =?utf-8?B?ejBqZVAvOWlMZm5SeEJ3SWE4dXdvTkZ5YzR6d1pXM1pUcVJ1L1AwVGNoYjlG?=
- =?utf-8?B?cEI1ZWVqbXVmN1JpRmNQNFQyM0k3OGFWeDBFT3U5eGZVVFM2L3pMV284endU?=
- =?utf-8?B?V2VqOS9uanNJY3pQQmRTVDVNNVhSbjVhYjd5YjRLaFJWOXBRdU9ack9JWjlR?=
- =?utf-8?B?VkJHRDVWaTBBRTVKWEtGaExzVmNsR2ppZkluQmJxcWx2VUNwV0FvVWVYZ2d3?=
- =?utf-8?B?TkpMVjhnZExvZFVPakRzQ3pZaWVVMFQxaTJCOXBwMG8zNkhPaDJTNTBxMGdq?=
- =?utf-8?B?ckhIY21KbzkvSDU3cUs5ZUx4TW9jb1dZUDdqdktTRm9oZzZKQnB3N1h1ZEFp?=
- =?utf-8?B?VVhQQXM4Vm0zcUluREViQ0g5K3A5R05lVVkvMDkwWFJkU3FXaFBuQUdBT1Jx?=
- =?utf-8?B?bTdoSkdGZmxFQVVEbUwwdmpYamdjR25rUUF2Q1FGUU1saTJTdWo2MmhhOFBS?=
- =?utf-8?B?NFFYc0pXc3VGMWpvQmxaaHJSL3VCVWY2K2lQUE1uWjNhenV6VlZyTmZmVjUz?=
- =?utf-8?B?TUlkSk5ldzZYZmpiRy9LNjBPWDE3bm1yUzhFVEpUamxTaXZlNTd2cHRsZ05E?=
- =?utf-8?B?dDBwVkk3WFNya0k2SVlEZGJNTFVDNlE1N08yMHh6OEF3NE02MFg3K1RrV1o3?=
- =?utf-8?B?NmhCOEhNUDMwYUkvcEZCbkpFMXVVc3JuOFROR0JCb1hTaU8vTm9UeEFsb0c5?=
- =?utf-8?B?dkhYKy9CT29HOGw4ZGNsRTNHWXpiUmpXUkZZL0E4d0lIM0RjME5PaHppTEpQ?=
- =?utf-8?B?L2NzR3NMUlF6eUJLZ0FMREZpWGdQd3JwNGdzVUJmMlhBVWVsdjJsRTJNeGdu?=
- =?utf-8?B?aCtScW9hWk5nOTk0cW4zck8vbGdINUFSSy9ac0dNdG1XdkJLT1JwWm5QaE9M?=
- =?utf-8?B?VG1DSTByN2dPWldIZHBwTDMzRUI0bnUzYnYvV00rREJ6WmhkSnZ0ZGRNbkIw?=
- =?utf-8?B?L2w5NWVHZlZOcWRTR1FWVHZLbExMVHlWaGdVOVEzY04vOVNBNHFYYkhSNW5R?=
- =?utf-8?B?VjRQNWo4RUlQdFdFZnFHK3l6NDIwd1pDL0NBT2tlQk5wVWRLUnlHQ0xWNzB6?=
- =?utf-8?B?Slg1R2lTTmVRUUdzWEZTTjRFTmlYU2RSWmhwN1dpM1FPMzJjcDRNTDcvQ3Rm?=
- =?utf-8?B?N0hLVjFHSThHREpVdk5pRXROQ1kwUEo4VnhCY3JWaDRHendUV0dDMUszREFS?=
- =?utf-8?B?MTFmeU9WUi9HcDBZY3JjZzd0bGc1bi92OEFtN1ZNY3plcGludzIzM1g0Q1pN?=
- =?utf-8?Q?gsn4HrnuncdgR46os5IjSngQ0zUSTKEGKzclVXY?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d95609f-a362-4ae3-3b26-08dd4b07993f
-X-MS-Exchange-CrossTenant-AuthSource: BMXPR01MB2440.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2025 01:50:16.8207
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0PR01MB6005
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 03/14] net: ethernet: qualcomm: Add PPE driver
+ for IPQ9574 SoC
+To: Jie Luo <quic_luoj@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
+        Suruchi Agarwal <quic_suruchia@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
+        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
+        srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
+        john@phrozen.org
+References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
+ <20250209-qcom_ipq_ppe-v3-3-453ea18d3271@quicinc.com>
+ <58e05149-abc2-4cf4-a6e8-35380823d94a@oss.qualcomm.com>
+ <63f1d25c-087a-46dd-9053-60334a0095d5@quicinc.com>
+Content-Language: en-US
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <63f1d25c-087a-46dd-9053-60334a0095d5@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: R71Czssjl8u8MMC-rWIb2lI6AL-_aGbT
+X-Proofpoint-GUID: R71Czssjl8u8MMC-rWIb2lI6AL-_aGbT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-11_10,2025-02-11_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 mlxlogscore=999 bulkscore=0 phishscore=0 spamscore=0
+ suspectscore=0 adultscore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502120013
 
-Hello~
 
-On 2025/2/12 7:34, Bjorn Helgaas wrote:
-> On Sun, Jan 26, 2025 at 10:27:27AM +0800, Chen Wang wrote:
->> On 2025/1/23 6:21, Bjorn Helgaas wrote:
->>> On Wed, Jan 15, 2025 at 03:06:37PM +0800, Chen Wang wrote:
->>>> From: Chen Wang <unicorn_wang@outlook.com>
->>>>
->>>> Add binding for Sophgo SG2042 PCIe host controller.
->>>> +  sophgo,link-id:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    description: |
->>>> +      SG2042 uses Cadence IP, every IP is composed of 2 cores (called link0
->>>> +      & link1 as Cadence's term). Each core corresponds to a host bridge,
->>>> +      and each host bridge has only one root port. Their configuration
->>>> +      registers are completely independent. SG2042 integrates two Cadence IPs,
->>>> +      so there can actually be up to four host bridges. "sophgo,link-id" is
->>>> +      used to identify which core/link the PCIe host bridge node corresponds to.
->>> IIUC, the registers of Cadence IP 1 and IP 2 are completely
->>> independent, and if you describe both of them, you would have separate
->>> "pcie@62000000" stanzas with separate 'reg' and 'ranges' properties.
->> To be precise, for two cores of a cadence IP, each core has a separate set
->> of configuration registers, that is, the configuration of each core is
->> completely independent. This is also what I meant in the binding by "Each
->> core corresponds to a host bridge, and each host bridge has only one root
->> port. Their configuration registers are completely independent.". Maybe the
->> "Their" here is a bit unclear. My original intention was to refer to the
->> core. I can improve this description next time.
+
+On 2/11/2025 9:58 PM, Jie Luo wrote:
+> 
+> 
+> On 2/10/2025 10:12 AM, Jie Gan wrote:
+>>> +static int ppe_clock_init_and_reset(struct ppe_device *ppe_dev)
+>>> +{
+>>> +    unsigned long ppe_rate = ppe_dev->clk_rate;
+>>> +    struct device *dev = ppe_dev->dev;
+>>> +    struct reset_control *rstc;
+>>> +    struct clk_bulk_data *clks;
+>>> +    struct clk *clk;
+>>> +    int ret, i;
+>>> +
+>>> +    for (i = 0; i < ppe_dev->num_icc_paths; i++) {
+>>> +        ppe_dev->icc_paths[i].name = ppe_icc_data[i].name;
+>>> +        ppe_dev->icc_paths[i].avg_bw = ppe_icc_data[i].avg_bw ? :
+>>> +                           Bps_to_icc(ppe_rate);
+>> it's ppe_dev->icc_paths[i].avg_bw = ppe_icc_data[i].avg_bw ? 
+>> ppe_icc_data[i].avg_bw : Bps_to_icc(ppe_rate);  ?
+> 
+> I feel the above used notation is also fine for readability, and is
+> shorter and simpler.
+> 
 >>
->>>   From the driver, it does not look like the registers for Link0 and
->>> Link1 are independent, since the driver claims the
->>> "sophgo,sg2042-pcie-host", which includes two Cores, and it tests
->>> pcie->link_id to select the correct register address and bit mask.
->> In the driver code, one "sophgo,sg2042-pcie-host" corresponds to one core,
->> not two. So, you can see in patch 4 of this pathset [1], 3 pcie host-bridge
->> nodes are defined, pcie_rc0 ~ pcie_rc2, each corresponding to one core.
 >>
->> [1]:https://lore.kernel.org/linux-riscv/4a1f23e5426bfb56cad9c07f90d4efaad5eab976.1736923025.git.unicorn_wang@outlook.com/
+>>> +        ppe_dev->icc_paths[i].peak_bw = ppe_icc_data[i].peak_bw ? :
+>>> +                        Bps_to_icc(ppe_rate);
+>> Same with previous one?
+> 
+> Same response as for the previous comment is applicable here as well.
+> 
 >>
->> I also need to explain that link0 and link1 are actually completely
->> independent in PCIE processing, but when sophgo implements the internal msi
->> controller for PCIE, its design is not good enough, and the registers for
->> processing msi are not made separately for link0 and link1, but mixed
->> together, which is what I said cdns_pcie0_ctrl/cdns_pcie1_ctrl. In these two
->> new register files added by sophgo (only involving MSI processing), take the
->> second cadence IP as an example, some registers are used to control the msi
->> controller of pcie_rc1 (corresponding to link0), and some registers are used
->> to control the msi controller of pcie_rc2 (corresponding to link1). In a
->> more complicated situation, some bits in a register are used to control
->> pcie_rc1, and some bits are used to control pcie_rc2. This is why I have to
->> add the link_id attribute to know whether the current PCIe host bridge
->> corresponds to link0 or link1, so that when processing the msi controller
->> related to this pcie host bridge, we can find the corresponding register or
->> even the bit of a register in cdns_pcieX_ctrl.
+>>> +    }
+>>> +
+>>> +    ret = devm_of_icc_bulk_get(dev, ppe_dev->num_icc_paths,
+>>> +                   ppe_dev->icc_paths);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    ret = icc_bulk_set_bw(ppe_dev->num_icc_paths, ppe_dev->icc_paths);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    /* The PPE clocks have a common parent clock. Setting the clock
+>> Should be:
+>> /*
+>>   * The PPE clocks have a common parent clock. Setting the clock
+>>   * rate of "ppe" ensures the clock rate of all PPE clocks is
+>>   * configured to the same rate.
+>>   */
 >>
->>> "sophgo,link-id" corresponds to Cadence documentation, but I think it
->>> is somewhat misleading in the binding because a PCIe "Link" refers to
->>> the downstream side of a Root Port.  If we use "link-id" to identify
->>> either Core0 or Core1 of a Cadence IP, it sort of bakes in the
->>> idea that there can never be more than one Root Port per Core.
->> The fact is that for the cadence IP used by sg2042, only one root port is
->> supported per core.
-> 1) That's true today but may not be true forever.
->
-> 2) Even if there's only one root port forever, "link" already means
-> something specific in PCIe, and this usage means something different,
-> so it's a little confusing.  Maybe a comment to say that this refers
-> to a "Core", not a PCIe link, is the best we can do.
-How about using "sophgo,core-id", as I said in the binding description, 
-"every IP is composed of 2 cores (called link0 & link1 as Cadence's 
-term).". This avoids the conflict with the concept "link " in the PCIe 
-specification, what do you think?
->> ...
->> Based on the above analysis, I think the introduction of a three-layer
->> structure (pcie-core-port) looks a bit too complicated for candence IP. In
->> fact, the source of the discussion at the beginning of this issue was
->> whether some attributes should be placed under the host bridge or the root
->> port. I suggest that adding the root port layer on the basis of the existing
->> patch may be enough. What do you think?
+> 
+> I think for drivers/net, the above format follows the recommended
+> commenting style. Pls see: https://www.kernel.org/doc/html/v6.10/
+> process/coding-style.html
+> 
+> For files in net/ and drivers/net/ the preferred style for long
+> (multi-line) comments is a little different.
+> 
+>> BTW, it's better wrapped with ~75 characters per line.
+> 
+> Yes, the comments should be wrapped to ~75 characters.
+> 
 >>
->> e.g.,
+>>> +     * rate of "ppe" ensures the clock rate of all PPE clocks is
+>>> +     * configured to the same rate.
+>>> +     */
+>>> +    clk = devm_clk_get(dev, "ppe");
+>>> +    if (IS_ERR(clk))
+>>> +        return PTR_ERR(clk);
+>>> +
+>>> +    ret = clk_set_rate(clk, ppe_rate);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    ret = devm_clk_bulk_get_all_enabled(dev, &clks);
+>>> +    if (ret < 0)
+>>> +        return ret;
+>>> +
+>>> +    /* Reset the PPE. */
+>>> +    rstc = devm_reset_control_get_exclusive(dev, NULL);
+>>> +    if (IS_ERR(rstc))
+>>> +        return PTR_ERR(rstc);
+>>> +
+>>> +    ret = reset_control_assert(rstc);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    /* The delay 10 ms of assert is necessary for resetting PPE. */
+>>> +    usleep_range(10000, 11000);
+>>> +
+>>> +    return reset_control_deassert(rstc);
+>>> +}
+>>> +
+>>> +static int qcom_ppe_probe(struct platform_device *pdev)
+>>> +{
+>>> +    struct device *dev = &pdev->dev;
+>>> +    struct ppe_device *ppe_dev;
+>>> +    void __iomem *base;
+>>> +    int ret, num_icc;
+>> I think it's better with:
+>>      int num_icc = ARRAY_SIZE(ppe_icc_data);
+> 
+> This will impact the “reverse xmas tree” rule for local variable
+> definitions. Also, the num_icc will vary as per the different SoC,
+> so we will need to initialize the num_icc in a separate statement.
+> 
+> (Note: This driver will be extended to support different SoC in
+> the future.)
+> 
+Got your point here. So there may have multiple definitions like 
+ppe_icc_data here, right? But the num_icc here is hardcoded.
+Maybe it would be better defined within the ppe_icc_data, if possible?
+Then just directly use ppe_icc_data->num_icc?
+
+Never mind, that's just my thought on the flexibility.
+
+Jie
 >>
->> pcie_rc0: pcie@7060000000 {
->>      compatible = "sophgo,sg2042-pcie-host";
->>      ...... // host bride level properties
->>      sophgo,link-id = <0>;
->>      port {
->>          // port level properties
->>          vendor-id = <0x1f1c>;
->>          device-id = <0x2042>;
->>          num-lanes = <4>;
->>      }
->> };
+>>> +
+>>> +    num_icc = ARRAY_SIZE(ppe_icc_data);
+>>> +    ppe_dev = devm_kzalloc(dev, struct_size(ppe_dev, icc_paths, 
+>>> num_icc),
+>>> +                   GFP_KERNEL);
+>>> +    if (!ppe_dev)
+>>> +        return -ENOMEM;
+>>> +
+>>> +    base = devm_platform_ioremap_resource(pdev, 0);
+>>> +    if (IS_ERR(base))
+>>> +        return dev_err_probe(dev, PTR_ERR(base), "PPE ioremap 
+>>> failed\n");
+>>> +
+>>> +    ppe_dev->regmap = devm_regmap_init_mmio(dev, base, 
+>>> &regmap_config_ipq9574);
+>>> +    if (IS_ERR(ppe_dev->regmap))
+>>> +        return dev_err_probe(dev, PTR_ERR(ppe_dev->regmap),
+>>> +                     "PPE initialize regmap failed\n");
+>>> +    ppe_dev->dev = dev;
+>>> +    ppe_dev->clk_rate = PPE_CLK_RATE;
+>>> +    ppe_dev->num_ports = PPE_PORT_MAX;
+>>> +    ppe_dev->num_icc_paths = num_icc;
+>>> +
+>>> +    ret = ppe_clock_init_and_reset(ppe_dev);
+>>> +    if (ret)
+>>> +        return dev_err_probe(dev, ret, "PPE clock config failed\n");
+>>> +
+>>> +    platform_set_drvdata(pdev, ppe_dev);
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static const struct of_device_id qcom_ppe_of_match[] = {
+>>> +    { .compatible = "qcom,ipq9574-ppe" },
+>>> +    {}
+>>> +};
+>>> +MODULE_DEVICE_TABLE(of, qcom_ppe_of_match);
+>>> +
+>>> +static struct platform_driver qcom_ppe_driver = {
+>>> +    .driver = {
+>>> +        .name = "qcom_ppe",
+>>> +        .of_match_table = qcom_ppe_of_match,
+>>> +    },
+>>> +    .probe    = qcom_ppe_probe,
+>>> +};
+>>> +module_platform_driver(qcom_ppe_driver);
+>>> +
+>>> +MODULE_LICENSE("GPL");
+>>> +MODULE_DESCRIPTION("Qualcomm Technologies, Inc. IPQ PPE driver");
+>>> diff --git a/drivers/net/ethernet/qualcomm/ppe/ppe.h b/drivers/net/ 
+>>> ethernet/qualcomm/ppe/ppe.h
+>>> new file mode 100644
+>>> index 000000000000..cc6767b7c2b8
+>>> --- /dev/null
+>>> +++ b/drivers/net/ethernet/qualcomm/ppe/ppe.h
+>>> @@ -0,0 +1,36 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0-only
+>>> + *
+>>> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights 
+>>> reserved.
+>>> + */
+>>> +
+>>> +#ifndef __PPE_H__
+>>> +#define __PPE_H__
+>>> +
+>>> +#include <linux/compiler.h>
+>>> +#include <linux/interconnect.h>
+>>> +
+>>> +struct device;
+>> #include <linux/device.h> ?
 >>
->> pcie_rc1: pcie@7062000000 {
->>      compatible = "sophgo,sg2042-pcie-host";
->>      ...... // host bride level properties
->>      sophgo,link-id = <0>;
->>      port {
->>          // port level properties
->>          vendor-id = <0x1f1c>;
->>          device-id = <0x2042>;
->>          num-lanes = <2>;
->>      };
->> };
+>>> +struct regmap;
+>> Same with previous one, include it's header file?
+> 
+> The driver only need to reference these structures but don't
+> need their full definitions. So it should be fine to declare
+> the existence of these structures here.
+> 
 >>
->> pcie_rc2: pcie@7062800000 {
->>      compatible = "sophgo,sg2042-pcie-host";
->>      ...... // host bride level properties
->>      sophgo,link-id = <0>;
->>      port {
->>          // port level properties
->>          vendor-id = <0x1f1c>;
->>          device-id = <0x2042>;
->>          num-lanes = <2>;
->>      }
->> };
-> Where does linux,pci-domain go?
->
-> Can you show how link-id 0 and link-id 1 would both be used?  I assume
-> they need to be connected somehow, since IIUC there's some register
-> shared between them?
->
-> Bjorn
-
-Oh, sorry, I made a typo when I was giving the example. I wrote all the 
-link-id values ​​as 0. I rewrote it as follows. I changed 
-"sophgo,link-id" to "sophgo,core-id", and added "linux,pci-domain".
-
-e.g.,
-
-pcie_rc0: pcie@7060000000 {
-
-     compatible = "sophgo,sg2042-pcie-host";
-     ...... // host bride level properties
-     linux,pci-domain = <0>;
-     sophgo,core-id = <0>;
-     port {
-         // port level properties
-         vendor-id = <0x1f1c>;
-         device-id = <0x2042>;
-         num-lanes = <4>;
-     }
-};
-
-pcie_rc1: pcie@7062000000 {
-     compatible = "sophgo,sg2042-pcie-host";
-     ...... // host bride level properties
-     linux,pci-domain = <1>;
-     sophgo,core-id = <0>;
-     port {
-         // port level properties
-         vendor-id = <0x1f1c>;
-         device-id = <0x2042>;
-         num-lanes = <2>;
-     };
-};
-
-pcie_rc2: pcie@7062800000 {
-     compatible = "sophgo,sg2042-pcie-host";
-     ...... // host bride level properties
-     linux,pci-domain = <2>;
-     sophgo,core-id = <1>;
-     port {
-         // port level properties
-         vendor-id = <0x1f1c>;
-         device-id = <0x2042>;
-         num-lanes = <2>;
-     }
-
-};
-
-pcie_rc1 and pcie_rc2 share registers in cdns_pcie1_ctrl. By using 
-different "sophgo,core-id" values, they can distinguish and access the 
-registers they need in cdns_pcie1_ctrl.
-
-Regards,
-
-Chen
+>>> +
+>>> +/**
+>>> + * struct ppe_device - PPE device private data.
+>>> + * @dev: PPE device structure.
+>>> + * @regmap: PPE register map.
+>>> + * @clk_rate: PPE clock rate.
+>>> + * @num_ports: Number of PPE ports.
+>>> + * @num_icc_paths: Number of interconnect paths.
+>>> + * @icc_paths: Interconnect path array.
+>>> + *
+>>> + * PPE device is the instance of PPE hardware, which is used to
+>>> + * configure PPE packet process modules such as BM (buffer management),
+>>> + * QM (queue management), and scheduler.
+>>> + */
+>>> +struct ppe_device {
+>>> +    struct device *dev;
+>>> +    struct regmap *regmap;
+>>> +    unsigned long clk_rate;
+>>> +    unsigned int num_ports;
+>>> +    unsigned int num_icc_paths;
+>>> +    struct icc_bulk_data icc_paths[] __counted_by(num_icc_paths);
+>>> +};
+>>> +#endif
+>>>
+>>
+>> Thanks,
+>> Jie
+> 
 
 
