@@ -1,192 +1,221 @@
-Return-Path: <devicetree+bounces-145831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68DE5A327D1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 14:58:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB8FA3282E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 15:15:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2084188B288
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 13:57:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 867BD16530C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 14:15:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76AA220F061;
-	Wed, 12 Feb 2025 13:57:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51791210182;
+	Wed, 12 Feb 2025 14:15:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="ePqqxgLj"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NrzD/pmB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012049.outbound.protection.outlook.com [52.101.71.49])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7E4F20E329;
-	Wed, 12 Feb 2025 13:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739368620; cv=fail; b=g9EeuyvFJ00RtMiksSnvlwyozkUL5a4oDjianETMDGURYLfIYiecbVJNOxvpf26lL2VyXClMuLt5lIePMpKUUaJDLwkpXNd/ps774mfcAc/Ry/TW4/KxhjWyvDGRl40nXmerymGDJ/LryVUO434bpfv/4cuY/eE9RkYqZtHz2nw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739368620; c=relaxed/simple;
-	bh=ZO9GtwXtI70toNwvARD4v58U9jmXhoKOv06y5Ujpa/Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=haqKT1toCQpqY7w2hxoGeMrUlFQnGSImUNg1mTjb0goAHR7gMpMOqDF/ldbJZQcczR/79Ct8fDx76/oKtFxNfexUrHVbA5OZBImV5E5fUu0IYdWb7xBhngJtAPgdM2KMS/tG11j5E2jiAGozp6e0lh+lZZjDM5dDvTd1DyiuNwM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=ePqqxgLj; arc=fail smtp.client-ip=52.101.71.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dMGBiF2hDGGrD7C8Z87uI8FUN3SfPI/0WbVWofbYZZ01St8ujXps6I9eWOuFxu5UCrBtk3PlWYIiRxJiQ/206NQYteW5Vek19LdNyU7KK4zj2VY7gmjyvj7Zt5MNIDLIHoq2qSjtWgIsQ3L5vlCZUMPnq4d8aWdGCZCN0KGYW5yAHYbQqgF4571BEJPFf8GrLvziN4f9ShWFX6zuieg78wVdnf/Qzvmkno8OImtgkBfh4J9ApZBehbnOgeQsVycENPWY1knZdz8JT+qg7mw7XNaAmfTwJjug37q8b+izUbIuSyJUtW7sMuqzKhiLgKU/QzuQXxb2catPhO6sjCb8ng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XCBdVMgd1/WeLJUvPT/PwKOR+MgIJbOFf5PFgi36dj8=;
- b=T/3xtBeVW90VEskyWeLKQj1/7OYAxbbtgFLkYcKt53XvwK/Lx0LvBixk5gAWXAQot9IFK935gkzhDxZ2g0uXtgzQYSFrXBfp2BsfXwDCxJUq2ags0H9U5+69MRKrgRhXxeD5Vp+JT4XoQbK77bl4skdKLmq8TjJJSNAZA+G/nFXE5gA+8jujXwY4LPJQfRcus25b1wxivTI705bcLEZkYGlvfLMYzI7wudIug772jubo1yQG0OeEFhi+1sfg3HnfjrM9vwKz2LY8jQ7mHDcicVUx191lms3LCJ7FEjBJBTM7Hkdcfax0n/olsxZ3jua3gR9Xkgdz44ECx58wubz2Zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=leica-geosystems.com; dmarc=pass (p=reject sp=reject pct=100)
- action=none header.from=leica-geosystems.com; dkim=none (message not signed);
- arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XCBdVMgd1/WeLJUvPT/PwKOR+MgIJbOFf5PFgi36dj8=;
- b=ePqqxgLjxEwibSwT3IYgQ1XsIQkO9FZcofGL6Zp1M8vhzheYfb60zhpBJ6w+jKnPegYIeU+CGhI2y0hWm23mvjvjfvJBBXDx94TKXlwBCohHzqRantL6xC1pyQVQZEB5RpiADLxHKHr7R+UG5UH1NVVEq3eunXL8PTVjWYouknQ=
-Received: from PAZP264CA0248.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:239::19)
- by PA4PR06MB7295.eurprd06.prod.outlook.com (2603:10a6:102:f8::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.17; Wed, 12 Feb
- 2025 13:56:55 +0000
-Received: from AM4PEPF00025F99.EURPRD83.prod.outlook.com
- (2603:10a6:102:239:cafe::29) by PAZP264CA0248.outlook.office365.com
- (2603:10a6:102:239::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8445.12 via Frontend Transport; Wed,
- 12 Feb 2025 13:56:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
- smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
-Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
- designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
- client-ip=193.8.40.94; helo=hexagon.com; pr=C
-Received: from hexagon.com (193.8.40.94) by
- AM4PEPF00025F99.mail.protection.outlook.com (10.167.16.8) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8466.0 via Frontend Transport; Wed, 12 Feb 2025 13:56:55 +0000
-Received: from aherlnxbspsrv01.lgs-net.com ([10.60.34.116]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
-	 Wed, 12 Feb 2025 14:56:54 +0100
-From: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-To: gregkh@linuxfoundation.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	festevam@gmail.com
-Cc: linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	m.felsch@pengutronix.de,
-	bsp-development.geo@leica-geosystems.com,
-	Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Subject: [PATCH next v2 3/3] usb: misc: onboard_dev: add vdda support for Microchip USB2514
-Date: Wed, 12 Feb 2025 14:56:49 +0100
-Message-Id: <20250212135649.3431570-3-catalin.popescu@leica-geosystems.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250212135649.3431570-1-catalin.popescu@leica-geosystems.com>
-References: <20250212135649.3431570-1-catalin.popescu@leica-geosystems.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF2020FAB4;
+	Wed, 12 Feb 2025 14:15:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739369735; cv=none; b=kQ5Rf0a5KSFb3wD4ONYZwCDM1TR/9KZhwMzCtiMPsD1lXRLJLOWx4AKGv9buSw5SjG9KLTdsG2Z78kNKidleldqzbmg/ikbcWGFS7ANmFmX5EAkcsrtpkx4blp46ad9F6yTvZ73p2/nZQjnLeAyyvawiNpC8UNB0nPqwWcIcQKI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739369735; c=relaxed/simple;
+	bh=30FYxQAAzvLmXJTET4m8kzQwJjjljMpe0ptvbtivnis=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=gpU6GLQGVeuoXLHjgZwqzJELjc5T1we0pmdVfc+gc6BODJtkA8l5t7bfOlzxfqzgdNI7SE2+QfTl818BBuaATHjv16YE5exkRcClPPOc8/xRGY2JDT1KH4d0H3aSfUulYAkrHWKz9nk7hQeSGye+BMjpzIigCLXsgaTI7MtHLTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NrzD/pmB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51C8lEl2028737;
+	Wed, 12 Feb 2025 14:15:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	SwXJh/CGXv0FJaW1sQ7EFOYx4LdPcBFmv7GOLkJ3gL8=; b=NrzD/pmBw5V4R3Hw
+	hmD3eV+86EhC94dkfLjEaTmKA9s40Q1p/wX1A5cgkGWssYpT+FnMRJ6i9MHFsrfs
+	PN6vqpye5iqTS/Z2olrcdYmKW0gICa1u//p9Zg81s3iBl9kdck10zyf0h2cx6eZp
+	0jCMF6mDtOVmvlXum/ytVRVv5wMFHI3wtpf+D5M+elQICh7smX1GAiiudyY9HKZ3
+	3LSXbwRXLr8slz7uldWyKQ15Ruhfv2qPiYF6uv5IncMI3pZkFxREFHqPiQkT8EkU
+	C2075kKDl7gKzEFo7FZgIJVjXDt3SMQ6mTG2SN0DLc79iFvP1kKSkwIqeEmtIB2Y
+	KtoaNA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qxg9n5vt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Feb 2025 14:15:22 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51CEFIfE021226
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Feb 2025 14:15:18 GMT
+Received: from [10.216.47.54] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Feb
+ 2025 06:15:14 -0800
+Message-ID: <6ff07b46-2c0d-41e7-9958-1525ab4da9e4@quicinc.com>
+Date: Wed, 12 Feb 2025 19:45:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-OriginalArrivalTime: 12 Feb 2025 13:56:54.0427 (UTC) FILETIME=[F9353EB0:01DB7D55]
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM4PEPF00025F99:EE_|PA4PR06MB7295:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: a0f23398-8b16-4bc2-1931-08dd4b6d1c64
-X-SET-LOWER-SCL-SCANNER: YES
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|376014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?dgYOTbI7lDRnRdd6D9SiWtUljGAmuGge0JmoI6Yu65F6h6CsS8ESZTS3QZaA?=
- =?us-ascii?Q?29fxW+h+DGYSAmutttZRSKPIRDt2Wa9gOQ3XPDIVN7G/rLNrgYNPJzn4aRdb?=
- =?us-ascii?Q?piK4EhyyweNknN+Koh6LHPMf2GZ0azv+amwr2bv2Hs5cNW9+OFgD116tSjM6?=
- =?us-ascii?Q?L97a7ifXgSH+m6oXIUIdnXBhY9lXGsonhNuCpAmh6U5BMSINb9tp7dcrpJku?=
- =?us-ascii?Q?L6Z59ZTYKEsgvu+up4+YsFrKiC1smSGdHFm8qel1ETmOtl0GcuQhfcvfR8hv?=
- =?us-ascii?Q?RXDw0qxKuVEAZ09zbPPEidXwpyESZD52cDHmxzfiMnZN3rdDrVUtbMTgvXHc?=
- =?us-ascii?Q?zvog6kQg4SNILMZy7HTUrGMAcKyerYawuuFax+Ek8WV8bMsekovR6i2q962N?=
- =?us-ascii?Q?TFZ5gks5muYkoMReQRQ2m8PwPi3DdpWJs9VkdbSDEDlMa7pg7maLGIzfmBIa?=
- =?us-ascii?Q?4AWCCtgANUu1+cndiMVLg0HMxRAARhkXgQXv1x90H+HQ6NJF0Wj/qvmFby4c?=
- =?us-ascii?Q?m2i9LLmtTNB3Xqk7uOd1MjZ6RrdWORcEVSoNHr/9OSrSc2rN2Ngh8UA+V1A9?=
- =?us-ascii?Q?dcFn7cgWwhSwjCy/1xs9BqUC7qP3oVW5mvBJ1GmYzOQiZSbcEPCES0RzGQKX?=
- =?us-ascii?Q?uXQTA0aioI+FqIkeh8OgVG6Pm06v9LopRAKnaNK8l1DD7BZCWbRcfo5TtRSa?=
- =?us-ascii?Q?kDdG4WuuwiAzvv6LizvUaR7tbnJ5oU0ylRSHh4Y3A3+4VsRLPi/qF5Psbziw?=
- =?us-ascii?Q?FhQ9xs+2QluA9rg6M9XbMhk/m58/tiI6VERiBzM1XxP1jZgVK6oVJ6/wWwsw?=
- =?us-ascii?Q?bRk6W2Zn7KKgL8quYpNuVfW7iV09JtatSOQiA16ay9moqXCVtUSxc4DnKw7H?=
- =?us-ascii?Q?4veYOfXfrGNdWfxSmw4fM2lDUv2GTgjnGAUtzPl9754FrzSFLiTgKrS0HK4K?=
- =?us-ascii?Q?PI7TyEbQe76KZkHh8KuDj2TOTZM1PRNt2SrHYTUVI3ukAw/XVpVbie20XuhV?=
- =?us-ascii?Q?cYN0CMeMrWKnhhvQD2QUc5fy99hUKEre95lHuMaHQcb+fRsao7/3XaLTpGAA?=
- =?us-ascii?Q?bG7l/Vp4bBYXfFiTiSVVSOhYSpJue/WXMWkdUkEifhy4AH6ShtuPo26LwXUg?=
- =?us-ascii?Q?LXsHz0S2AzdQ6nc7aTP1mO5fCOEKuwneCBvjYWKCLmBEmVHIivl8HbLSXO5U?=
- =?us-ascii?Q?XlZRugij9xvUJWN5wDEHL9YsGTCyp9E3JSkOqtGLl7yhLbjRZqcc4MchwNmV?=
- =?us-ascii?Q?J+femTmiOyMhUXVBIEY2dbRjJ5RgLN2htMi4FYUnZse+zLUbNFwlmEsIbIQy?=
- =?us-ascii?Q?IHXO9AzHmEqDijeVxsG2IZeowHs5ljtXt8+Tp1/K8sEzR1iQ3+j/Zf+8K43Z?=
- =?us-ascii?Q?oFKH9gRyGCz2657yHh5cr/6VUrqu6n5tVBHwIA2zIIiU3Whuqeel82JQfjmQ?=
- =?us-ascii?Q?BhSUIsLHuy3FD9HmFIzhrpvWaKRJMSDIXLpTW0y0zDA4sgC07/ftnYQIOfa7?=
- =?us-ascii?Q?DEdjQ4ZN6uHJ5no=3D?=
-X-Forefront-Antispam-Report:
-	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: leica-geosystems.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2025 13:56:55.5381
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a0f23398-8b16-4bc2-1931-08dd4b6d1c64
-X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM4PEPF00025F99.EURPRD83.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR06MB7295
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] dt-bindings: i3c: Add Qualcomm I3C master
+ controller bindings
+To: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, <alexandre.belloni@bootlin.com>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <jarkko.nikula@linux.intel.com>, <linux-i3c@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250205143109.2955321-1-quic_msavaliy@quicinc.com>
+ <20250205143109.2955321-2-quic_msavaliy@quicinc.com>
+ <248000f5-63db-492c-884d-ac72db337493@kernel.org>
+ <0ae3f754-edcb-4b22-9d49-b20ef264554b@quicinc.com>
+ <7c518972-75df-4c8a-8920-06d5aa2849ae@kernel.org>
+ <b7f2c973-e161-4b83-9b3a-415e84510bd2@quicinc.com>
+ <20250211213924.GA1215572-robh@kernel.org>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <20250211213924.GA1215572-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: vQvWBTB4K4xxgkA2KP9g2FsvjkNJiONm
+X-Proofpoint-GUID: vQvWBTB4K4xxgkA2KP9g2FsvjkNJiONm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-12_04,2025-02-11_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ mlxscore=0 priorityscore=1501 malwarescore=0 spamscore=0 impostorscore=0
+ mlxlogscore=999 lowpriorityscore=0 phishscore=0 clxscore=1015
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502120110
 
-This hub is powered by digital and analog 3V3 power rails, so provide
-the possibility to use different regulators for digital (vdd) and analog
-(vdda) power rails.
+Thanks Rob !
 
-Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
----
-v2:
-- no change
----
- drivers/usb/misc/onboard_usb_dev.h | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+On 2/12/2025 3:09 AM, Rob Herring wrote:
+> On Mon, Feb 10, 2025 at 09:42:03PM +0530, Mukesh Kumar Savaliya wrote:
+>> Thanks Krzysztof !
+>>
+>> On 2/9/2025 5:15 PM, Krzysztof Kozlowski wrote:
+>>> On 06/02/2025 14:43, Mukesh Kumar Savaliya wrote:
+>>>> Hi Krzysztof,  Thanks !
+>>>>
+>>>> On 2/5/2025 8:12 PM, Krzysztof Kozlowski wrote:
+>>>>> On 05/02/2025 15:31, Mukesh Kumar Savaliya wrote:
+>>>>>> Add device tree bindings for the Qualcomm I3C master controller. This
+>>>>>> includes the necessary documentation and properties required to describe
+>>>>>> the hardware in the device tree.
+>>>>>
+>>>>> A nit, subject: drop second/last, redundant "bindings". The
+>>>>> "dt-bindings" prefix is already stating that these are bindings.
+>>>> Sure
+>>>>> See also:
+>>>>> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>>>>>
+>>>>> Use modern terminology, which means:
+>>>>> s/master/whatever else or even nothing/
+>>>>> See other recent bindings and discussions.
+>>>>>
+>>>> Sure
+>>>>>
+>>>>>>
+>>>>>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+>>>>>> ---
+>>>>>>     .../bindings/i3c/qcom,i3c-master.yaml         | 57 +++++++++++++++++++
+>>>>>>     1 file changed, 57 insertions(+)
+>>>>>>     create mode 100644 Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..ad63ea779fd6
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/i3c/qcom,i3c-master.yaml
+>>>>>
+>>>>> Filename matching compatible.
+>>>>>
+>>>> Changed compatible to "qcom,i3c-master"
+>>>>>> @@ -0,0 +1,57 @@
+>>>>>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>>>>>> +%YAML 1.2
+>>>>>> +---
+>>>>>> +$id: http://devicetree.org/schemas/i3c/qcom,i3c-master.yaml#
+>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>> +
+>>>>>> +title: Qualcomm I3C master controller
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+>>>>>> +
+>>>>>> +allOf:
+>>>>>> +  - $ref: i3c.yaml#
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    const: qcom,geni-i3c
+>>>>>
+>>>>> No SoC? So to be sure: you claim all future SoCs will be using exactly
+>>>>> the same interface. No new compatibles, no new properties will be added.
+>>>>>
+>>>> I think i should remove const. kept it for now as no other compatible to
+>>>> be added as of now.
+>>>>
+>>>> let me remove const.
+>>>
+>>> No, it does not matter. Keep const.
+>>>
+>> Sure. I reviewed other files and seems i should write as below. Please help
+>> confirm.
+>>
+>>    compatible:
+>>      items:
+>>        - enum:
+>>            - qcom,sm8550-i3c-master
+>>        - const: qcom,i3c-master
+> 
+> No, that's even worse. I doubt there is some universal, never changing
+> QCom I3C master.
+> 
+Agree, it may change. So can i go with "qcom, i3c-master" now instead of 
+going SOC specific name ? The current i2c and spi qcom drivers are also 
+using "qcom, geno-proto".
 
-diff --git a/drivers/usb/misc/onboard_usb_dev.h b/drivers/usb/misc/onboard_usb_dev.h
-index 317b3eb99c02..933797a7e084 100644
---- a/drivers/usb/misc/onboard_usb_dev.h
-+++ b/drivers/usb/misc/onboard_usb_dev.h
-@@ -23,6 +23,13 @@ static const struct onboard_dev_pdata microchip_usb424_data = {
- 	.is_hub = true,
- };
- 
-+static const struct onboard_dev_pdata microchip_usb2514_data = {
-+	.reset_us = 1,
-+	.num_supplies = 2,
-+	.supply_names = { "vdd", "vdda" },
-+	.is_hub = true,
-+};
-+
- static const struct onboard_dev_pdata microchip_usb5744_data = {
- 	.reset_us = 0,
- 	.power_on_delay_us = 10000,
-@@ -96,7 +103,7 @@ static const struct onboard_dev_pdata xmos_xvf3500_data = {
- 
- static const struct of_device_id onboard_dev_match[] = {
- 	{ .compatible = "usb424,2412", .data = &microchip_usb424_data, },
--	{ .compatible = "usb424,2514", .data = &microchip_usb424_data, },
-+	{ .compatible = "usb424,2514", .data = &microchip_usb2514_data, },
- 	{ .compatible = "usb424,2517", .data = &microchip_usb424_data, },
- 	{ .compatible = "usb424,2744", .data = &microchip_usb5744_data, },
- 	{ .compatible = "usb424,5744", .data = &microchip_usb5744_data, },
--- 
-2.34.1
+Since other i3c drivers using "vendor, i3c-master", i followed same.
+Should i use "qcom, geni-i3c" or "qcom, i3c-master". Accordingly i can 
+make next patch.
+
+>>>>
+>>>> SoC name is not required, as this compatible is generic to all the SOCs.
+>>>
+>>> That's the statement you make. I accept it. I will bookmark this thread
+>>> and use it whenever you try to add any future property here (to be
+>>> clear: you agree you will not add new properties to fulfill *FUTURE* SoC
+>>> differences).
+>>>
+>> Sorry, i am not saying there won't be any other compatible but i was saying
+>> base driver will use "qcom,i3c-master".
+>> After checking other files i realized there can be const compatible but
+>> other SOC specific can be added as enum.  Hope above given way is fine.
+> 
+> AIUI, "geni" is some firmware based multi-protocol serial i/o controller
+> and we already have other "geni" bindings. So really, it's probably more
+> coupled to firmware versions than SoC versions. If we haven't had
+> problems with per SoC quirks with the other geni bindings, then I think
+> using the same "geni" here is fine. But we won't be happy if we start
+> seeing per SoC quirk properties.
+> 
+Yes, was trying to follow same like geni based i2c, spi.
+SOC specific can come, but that would be kind of variant which may 
+depend on QUP GENI HW version or FW version.
+> Rob
 
 
