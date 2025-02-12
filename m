@@ -1,120 +1,203 @@
-Return-Path: <devicetree+bounces-145889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33203A32B58
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:18:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57493A32B61
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:20:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDF4518830AB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:18:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E615B3A3ED5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:20:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90290211A02;
-	Wed, 12 Feb 2025 16:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8370211A3F;
+	Wed, 12 Feb 2025 16:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dAG8SAQl"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Byx1S3Df"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8CF20E33A;
-	Wed, 12 Feb 2025 16:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59AD1D516D;
+	Wed, 12 Feb 2025 16:20:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739377124; cv=none; b=nmYI3F5UYgQ+OrkPzY6gDpbwGdkjJNsLdUyxg/bz3BT/rY/MiUvdb5C6iL4II+NHd+PhONHrtvoWsQtjHesdAAOht1TjUv53lbPNhVf8RMjM3hsDlh6+C3ubAjJXHq73kJHutKYnpY5ekOZGSECMlU5GvqZgO14+oUpvNVGhoPQ=
+	t=1739377227; cv=none; b=dLwSFRMkXtyFr+hb4g4KMpKRjiluKlLAAH/mGnhWtPcTDwZJ1Jsn1KVfGgDUC8ZqNKSqMY5ustgfPrlGlDeodgPiKDCmDhL6A0a1EYiDqzgsW9B2TVzrX1p2A8dUr6FQ9sAMg0j6jWJwWrXWMIOAhYktPcucj497QXGs4jvggZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739377124; c=relaxed/simple;
-	bh=JSBE115N7U9CMQpZg6ZPZBsdfvFaB3/geDg7qbYTHHU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=nEyoqaRcM6rpkIxWOk9kaaljPZwFvuAx6y/mhsg8dVREVAxVtwiBnhPhK1fqWPa1bq8abvuHuNBcyULF/1vY1LSOPWFeBySRYgg/e4gR7TPX1hx93DLlVm4KlhdESX1GTS+I/u2lmMH8S/2gL05u4kJ0vTwGKs39ZOW+msVDP1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dAG8SAQl; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0A62C44419;
-	Wed, 12 Feb 2025 16:18:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739377120;
+	s=arc-20240116; t=1739377227; c=relaxed/simple;
+	bh=IH6FJ/LOaKwyiedQHW7mKTCXkZR7qoVHrS4dm49fsuM=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ZhQwkM6mZGHCVjCTIeBOGvh4hzx4GSfZ86pys+JvVXN2Q46G07dbEW2RbH5CWxcpX/FuLqQU53VLa3vo3W7yLyiOtbfpOCHvBp9japJIlSWhdB+okZuVWOjrt+ZOkxNli7cGhWthnB0zKzeFSVhtviNDhgy1F6ZcfgAOtTNNZSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Byx1S3Df; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from localhost (web.docker-mailserver_default [172.18.0.2])
+	by mail.mainlining.org (Postfix) with ESMTPSA id 1EEE9BB835;
+	Wed, 12 Feb 2025 16:20:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1739377223;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=JSBE115N7U9CMQpZg6ZPZBsdfvFaB3/geDg7qbYTHHU=;
-	b=dAG8SAQlqiIZbfuzzhstCGWm+L9Dbfjcybrs1hu50NYmrj612zYGM9rM5S5H96pxSREXPg
-	aWhS4n4Na7gekB6QW63VfnQAnw20W+bGhF6YqRDN1jMnRJT/UkoJCLgPXf9uTYxu9k+Jai
-	n1rDqsCTv3cezCmSeWCZnmIpYmoKkjSWA/MSPrdKFkBAbdWkmIupX1Im/7yEbkiSdCmH+I
-	5U9tcUTaBUqiz66eFrreUccik+VM7a5gw+fWK3F3jvrg0+J9UoRsEn4bpSLqvT0aXdKLPW
-	dPjeh9XAwQtdUT9oRHVsVqmtJSsq4fj/tAWeN7wseNLGmTCwNv4dF9Y7X6c4ag==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,  richard@nod.at,
-  vigneshr@ti.com,  krzk+dt@kernel.org,  conor+dt@kernel.org,
-  linux-mtd@lists.infradead.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  git@amd.com,  amitrkcian2002@gmail.com
-Subject: Re: [PATCH v12 1/3] dt-bindings: mtd: Describe MTD partitions
- concatenation
-In-Reply-To: <20250212160659.GA3883406-robh@kernel.org> (Rob Herring's message
-	of "Wed, 12 Feb 2025 10:06:59 -0600")
-References: <20250205133730.273985-1-amit.kumar-mahapatra@amd.com>
-	<20250205133730.273985-2-amit.kumar-mahapatra@amd.com>
-	<20250211212928.GA1188800-robh@kernel.org>
-	<87r043r2lq.fsf@bootlin.com>
-	<20250212160659.GA3883406-robh@kernel.org>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Wed, 12 Feb 2025 17:18:39 +0100
-Message-ID: <874j0zqgps.fsf@bootlin.com>
+	bh=QIxsFEW0fxFxc9Uh+/NGJ+ZhMAYCRBTTVCPuNqXBoWo=;
+	b=Byx1S3Df880pwgYYJt/jlleUmRcSPicWQL0Wc8t66UFcEb4Ymrj0X6U5GMcQUYlG72P2mw
+	AeaCaTksiVCGthozukYYKwjh3r55Uz37MR6DYqQJeSryK0a28AaAI628C8QpSgwcNHP8YN
+	Ugp1f/43WQ36lJKDc/0i2PQxPXa9x9s6e5JY19LUMUxLF26KtosgKVuDcScxwxfcNnXhTl
+	I2VksJS6LWy8Axv7ckWW8Blhfu29BQg92lauuTdMQbk2adwD+FDeA1/O/6pkjMXAnZ2L7e
+	27oLOvRuwFSq3zr1O60LashbJabjiwJfddqgNM7GEOJWHLXh+m8VAne7uyZi2Q==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeggeefgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefujghffgffkfggtgfgsehtqhertddtreejnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepffeghfejtdefieeguddukedujeektdeihfelleeuieeuveehkedvleduheeivdefnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddupdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrmhhithdrkhhumhgrrhdqmhgrhhgrphgrthhrrgesrghmugdrtghomhdprhgtphhtthhopehrihgthhgrrhgusehnohgurdgrthdprhgtphhtthhopehvihhgnhgvshhhrhesthhirdgtohhmpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrn
- hgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhmthgusehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-GND-Sasl: miquel.raynal@bootlin.com
+Date: Wed, 12 Feb 2025 17:20:23 +0100
+From: barnabas.czeman@mainlining.org
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
+ =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, Linus Walleij
+ <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, Srinivas Kandagatla
+ <srinivas.kandagatla@linaro.org>, Joerg Roedel <joro@8bytes.org>, Will
+ Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Konrad Dybcio
+ <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ iommu@lists.linux.dev, Dang Huynh <danct12@riseup.net>
+Subject: Re: [PATCH 08/10] arm64: dts: qcom: Add initial support for MSM8937
+In-Reply-To: <7664b71c-ed47-4765-9ac4-5dbe3ec80d3c@oss.qualcomm.com>
+References: <20250211-msm8937-v1-0-7d27ed67f708@mainlining.org>
+ <20250211-msm8937-v1-8-7d27ed67f708@mainlining.org>
+ <7664b71c-ed47-4765-9ac4-5dbe3ec80d3c@oss.qualcomm.com>
+Message-ID: <d4792e6323e2dd5392a0d9633df62174@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 12/02/2025 at 10:06:59 -06, Rob Herring <robh@kernel.org> wrote:
+On 2025-02-12 14:07, Konrad Dybcio wrote:
+> On 11.02.2025 11:37 PM, Barnabás Czémán wrote:
+>> From: Dang Huynh <danct12@riseup.net>
+>> 
+>> Add initial support for MSM8937 SoC.
+>> 
+>> Signed-off-by: Dang Huynh <danct12@riseup.net>
+>> Co-developed-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
+> 
+> So the computer tells me 8917 and 8937 are *very* similar. Have you
+> tried assessing how making 8937.dtsi an overlay atop 8917.dtsi would
+> work out?
 
-> On Wed, Feb 12, 2025 at 09:25:53AM +0100, Miquel Raynal wrote:
->> Hi,
->>=20
->> >> The partitions that gets created are
->> >> part0_0
->> >> part1_1
->> >> part0_1-part1_0-concat
->> >
->> > 'part-concat' doesn't work if you have multiple sets of partitions you=
-=20
->> > want to concatenate.
->> >
->> > I think you need something like 'prev-partition' or 'next-partition' i=
-n=20
->> > the partition nodes to create a linked list of partitions. Hopefully,=
-=20
->> > you don't need both properties, but you do have to scan everything to=
-=20
->> > figure out which ones are concatenated or not. For example, no propert=
-y=20
->> > can mean not concatenated or last partition if you use 'next-partition=
-'.=20
->>=20
->> Out of curiosity, would the chosen node be eligible as a central place
->> where to look at?
->
-> Why would you need that?
+They are similar but there are many small differences:
+- have two dsi
+- using adreno 505
+- different iommu it uses arm,smmu for gpu and qcom,iommu for 
+applications
+- 8 cores
+- camss will be a different a bit
+- venus will be different a bit
+- have more i2c and spi
+- different mdp version
 
-I'm talking about storing in a central place all the concatenated
-partitions. Your proposal with "next-partition" works fine if we locate
-it inside the 'partitions' node, but I feel like the 'part-concat'
-instead was not fitting very well there. So I was wondering in this case
-if moving the concatenation of the partitions would be eligible to the
-chosen node, or if that's reserved to *very* few properties (and should
-remain like that).
+Maybe i can find more differences, originally it was based on 
+msm8917.dtsi
+but we have decided to keep it separate, also it have different license 
+from 8917.
+The plan is MSM8940 and SDM439 support will based on msm8937.dtsi in the 
+future.
 
-Thanks,
-Miqu=C3=A8l
+> 
+> 
+>>  arch/arm64/boot/dts/qcom/msm8937.dtsi | 2145 
+>> +++++++++++++++++++++++++++++++++
+>>  1 file changed, 2145 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8937.dtsi 
+>> b/arch/arm64/boot/dts/qcom/msm8937.dtsi
+>> new file mode 100644
+>> index 
+>> 0000000000000000000000000000000000000000..ef633c1694ad98165e58130cbeb186d2f0e2dcaa
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/msm8937.dtsi
+>> @@ -0,0 +1,2145 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
+>> + */
+>> +
+>> +#include <dt-bindings/clock/qcom,gcc-msm8917.h>
+>> +#include <dt-bindings/clock/qcom,rpmcc.h>
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include <dt-bindings/power/qcom-rpmpd.h>
+>> +#include <dt-bindings/thermal/thermal.h>
+>> +
+>> +/ {
+>> +	interrupt-parent = <&intc>;
+>> +
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+>> +
+>> +	clocks {
+>> +		xo_board: xo-board {
+>> +			compatible = "fixed-clock";
+>> +			#clock-cells = <0>;
+>> +		};
+>> +
+>> +		sleep_clk: sleep-clk {
+>> +			compatible = "fixed-clock";
+>> +			#clock-cells = <0>;
+>> +		};
+>> +	};
+>> +
+>> +	cpus {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		cpu4: cpu@0 {
+> 
+> I'm pretty sure a CPU with a MPIDR of 0 should be called CPU0
+> 
+>> +			compatible = "arm,cortex-a53";
+>> +			reg = <0x0>;
+>> +			device_type = "cpu";
+>> +			enable-method = "psci";
+>> +			operating-points-v2 = <&cpu_opp_table_c0>;
+>> +			next-level-cache = <&l2_0>;
+>> +			#cooling-cells = <2>;
+>> +			l2_0: l2-cache {
+> 
+> Please add a newline between the last property and the subnode
+> 
+>> +				compatible = "cache";
+>> +				cache-level = <2>;
+> 
+> cache-size = <0x80000>;
+> 
+> [...]
+> 
+>> +		cpu0: cpu@100 {
+>> +			compatible = "arm,cortex-a53";
+>> +			reg = <0x100>;
+>> +			device_type = "cpu";
+>> +			next-level-cache = <&l2_1>;
+>> +			enable-method = "psci";
+>> +			operating-points-v2 = <&cpu_opp_table_c1>;
+>> +			#cooling-cells = <2>;
+>> +			power-domains = <&cpu_pd0>;
+>> +			power-domain-names = "psci";
+>> +			l2_1: l2-cache {
+>> +				compatible = "cache";
+>> +				cache-level = <2>;
+> 
+> cache-size = <0x100000>;
+> 
+> I'll do further review if you decide it makes sense to keep this
+> separate from 8917
+> 
+> Konrad
 
