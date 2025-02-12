@@ -1,67 +1,69 @@
-Return-Path: <devicetree+bounces-145713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 843E9A32202
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:24:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6956A32204
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:24:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44FAB188956E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:24:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9009316361B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4E5B20896D;
-	Wed, 12 Feb 2025 09:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57CF12063F2;
+	Wed, 12 Feb 2025 09:23:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="FgKCuSl0"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="j8Ppe/Ux"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62AD72080D5;
-	Wed, 12 Feb 2025 09:23:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C20BE205E21
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 09:23:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739352194; cv=none; b=W4/IIJzZOjr+vdbE2BUnO2sXDeAOQd8VpJOfSH9OyFZNsuXQmHHfhkuy0cTDNX7INpvH+I2g9OGhOHmqDsImimG+z+DjBi+PyFlExXtJy89+fYLK4+zBoIzlPij7RIFiObM2nW3LOdiSi+/tSmiHSOKMflLflSW7o8K/Rig8pgk=
+	t=1739352220; cv=none; b=mxKEHChfqs2NiO+KFt0xsRq09k1iMW/2SwkTixuGg1enf7IqryAdYtdfyZ3SauIu5shQq+QHE2PFpc7eoxC4SK3YCA9RLdzLs+hPWu0w8R3bLA2XracIYEsvZKPmsNhHvV8TTrS1SLB3Kq9TnnQNBxK3YgvqLvOCm+vKVi8y57E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739352194; c=relaxed/simple;
-	bh=A1lTgaCSCPH+LFYIcMVq6NgsuaXTkZ36T56r0CfFEyU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=AkVnrfo3ipLsp2nL+nL1fLLvi6f+NbxmDkfMKZp/60SaqhhUxPl8ai0nw47LKBxJlrIseEr4VKMrh/6qPksraOwL0+0swoSCUPEAfRoYahBY5YrTXionc/s9cWaxNlfsszPpk7knq1K8kYa4R3aNYA3HwoUBCSOsQtZHxQxrQ88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=FgKCuSl0; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1739352192; x=1770888192;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=A1lTgaCSCPH+LFYIcMVq6NgsuaXTkZ36T56r0CfFEyU=;
-  b=FgKCuSl0mJhSoQ1wIGRf0gLBr4IQSLVtoXEaSB1a/FncVqG45VJPANed
-   r3dj+MaUHEBqBr3GMq5b8ykX67JsPRoel3DxRMJDeJ+rzS4a9MDnzJclV
-   xEiID50ZjBh6699qmSQoB4lDPl/bADqTUetEhhKlBK9p5OTQlhRZvEtKQ
-   df3Q1wldG5fDklGd6IyT1CcaI1fkFut8/1rNvwn7UwtDG4qiDRlJW5p5q
-   vXDVVczyd7SROrHyiGGNmh/he/h5e7Y2AQikeawYYNI+djlTw4G+v/phO
-   iKTQSvZoucQnSclOFV22JvJ22xapxTp4na78zYf1RRnWBhxveAmx3gsdH
-   w==;
-X-CSE-ConnectionGUID: Im7caqcMRgeiMBKdbNTopA==
-X-CSE-MsgGUID: Ydz9VnPsRnKzfMIBBjCRkg==
-X-IronPort-AV: E=Sophos;i="6.13,279,1732604400"; 
-   d="scan'208";a="37190268"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Feb 2025 02:23:03 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 12 Feb 2025 02:22:33 -0700
-Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Wed, 12 Feb 2025 02:22:28 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Wed, 12 Feb 2025 14:52:11 +0530
-Subject: [PATCH v3 2/2] dt-bindings: mmc: atmel,hsmci: Convert to json
- schema
+	s=arc-20240116; t=1739352220; c=relaxed/simple;
+	bh=YY0ZdiWZfBisbWptx3+iI/9IszSNf7DQNvx6Mh74HkA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=l0WYW3bOMGKhZGDj4qdiVgyAmT4uYFP+E5MbUYNB6Lb1UpnowvYIf2F9TsXhzK0c947RfBHAca3Wd90ER5HeNpwR11p2huJjWLFuRMZ0xDhSt1PRWPh1IVwOPiGViCxHilNvGx/qLExrvg0mm+rF+hQDufUbe9Lm439HyLLxY54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=j8Ppe/Ux; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=CGkw64b7wyEF8sHf2WWwJUD+Cc1oomA0aUrhv9+r+yc=; b=j8Ppe/UxcrxSwOtCPCWyt2qHUi
+	Cgn/Ie0uAt3kMo8l1PfAAptBtdf6OMa9IffCXoqnxnTn6Qv79hPIsnnjnYm+F0MuAwv0FsWYbJlPZ
+	5ylRKkaYmbtsEh7eQ8fKETXiGqH8tucUWB4YDpXDbQKtwGleWVHXb9gZ5O4//vSCSyuRh7LMCOiJ5
+	rpCYpPgYTWD0siiQNoR9bILx63mX5GKl5GuIsNJ5ZEoJm/UVaM4tLTpeHkP4ku6lRczvEQqdxpBVg
+	Iu5paLLPC/m6Mar7ZAX31UH1EuJbvlwqQ9PWHvaOWRFNEZQZ9hrsME4kd6q7dHZ+UGWQe3op0tgeA
+	MaxVu3PQ==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1ti8x4-0002Ai-GR; Wed, 12 Feb 2025 10:22:38 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Jimmy Hon <honyuenkwun@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Ondrej Jirman <megi@xff.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: (subset) [PATCH v8 0/4] Orange Pi 5 Max
+Date: Wed, 12 Feb 2025 10:22:28 +0100
+Message-ID: <173935214367.1388667.11082246445597459804.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250109051619.1825-1-honyuenkwun@gmail.com>
+References: <20250109051619.1825-1-honyuenkwun@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,230 +71,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250212-mmc-slot-v3-2-2bf288207040@microchip.com>
-References: <20250212-mmc-slot-v3-0-2bf288207040@microchip.com>
-In-Reply-To: <20250212-mmc-slot-v3-0-2bf288207040@microchip.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
-	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, "Martin
- Blumenstingl" <martin.blumenstingl@googlemail.com>
-CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Dharma Balasubiramani
-	<dharma.b@microchip.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739352136; l=4768;
- i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
- bh=A1lTgaCSCPH+LFYIcMVq6NgsuaXTkZ36T56r0CfFEyU=;
- b=Lcp/a3O6yv2QXnNOK3V/BtiNINsPT6P7qaEjWrE56J8XikZUjIugwaqJ43z6SzQYhqTQKUE30
- oVJfL27sDDBClvHBJjSY45HEGAHzmAEoUQ7mDXNEORYqUgBDn0+Uiws
-X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
- pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
+Content-Transfer-Encoding: 8bit
 
-Convert atmel,hsmci documentation to yaml format. The new file will inherit
-from mmc-controller.yaml.
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
- .../devicetree/bindings/mmc/atmel,hsmci.yaml       | 106 +++++++++++++++++++++
- .../devicetree/bindings/mmc/atmel-hsmci.txt        |  73 --------------
- 2 files changed, 106 insertions(+), 73 deletions(-)
+On Wed, 08 Jan 2025 23:16:14 -0600, Jimmy Hon wrote:
+> Add device-tree for Orange Pi 5 Max
+> 
+> Orange Pi now has 3 SBCs using the RK3588 SOC. Refactor the common parts
+> of the 5 Plus DTS so it can be shared with the 5 Max and the 5 Ultra.
+> The 5 Max and 5 Ultra have a similar credit-card sized board layout and
+> will also share a DTSI between them.
+> 
+> [...]
 
-diff --git a/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
-new file mode 100644
-index 000000000000..feaa98e44955
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
-@@ -0,0 +1,106 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/atmel,hsmci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel High-Speed MultiMedia Card Interface (HSMCI)
-+
-+description:
-+  The Atmel HSMCI controller provides an interface for MMC, SD, and SDIO memory
-+  cards.
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Aubin Constans <aubin.constans@microchip.com>
-+
-+allOf:
-+  - $ref: mmc-controller.yaml
-+
-+properties:
-+  compatible:
-+    const: atmel,hsmci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    const: rxtx
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: mci_clk
-+
-+  "#address-cells":
-+    const: 1
-+    description: Used for slot IDs.
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^slot@[0-9]+$":
-+    $ref: mmc-slot.yaml
-+    description: A slot node representing an MMC, SD, or SDIO slot.
-+
-+    properties:
-+      reg:
-+        enum: [0, 1]
-+
-+    required:
-+      - reg
-+      - bus-width
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+anyOf:
-+  - required:
-+      - slot@0
-+  - required:
-+      - slot@1
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/at91.h>
-+    mmc@f0008000 {
-+      compatible = "atmel,hsmci";
-+      reg = <0xf0008000 0x600>;
-+      interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&mci0_clk>;
-+      clock-names = "mci_clk";
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      slot@0 {
-+        reg = <0>;
-+        bus-width = <4>;
-+        cd-gpios = <&pioD 15 0>;
-+        cd-inverted;
-+      };
-+
-+      slot@1 {
-+        reg = <1>;
-+        bus-width = <4>;
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt b/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt
-deleted file mode 100644
-index 07ad02075a93..000000000000
---- a/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt
-+++ /dev/null
-@@ -1,73 +0,0 @@
--* Atmel High Speed MultiMedia Card Interface
--
--This controller on atmel products provides an interface for MMC, SD and SDIO
--types of memory cards.
--
--This file documents differences between the core properties described
--by mmc.txt and the properties used by the atmel-mci driver.
--
--1) MCI node
--
--Required properties:
--- compatible: should be "atmel,hsmci"
--- #address-cells: should be one. The cell is the slot id.
--- #size-cells: should be zero.
--- at least one slot node
--- clock-names: tuple listing input clock names.
--	Required elements: "mci_clk"
--- clocks: phandles to input clocks.
--
--The node contains child nodes for each slot that the platform uses
--
--Example MCI node:
--
--mmc0: mmc@f0008000 {
--	compatible = "atmel,hsmci";
--	reg = <0xf0008000 0x600>;
--	interrupts = <12 4>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	clock-names = "mci_clk";
--	clocks = <&mci0_clk>;
--
--	[ child node definitions...]
--};
--
--2) slot nodes
--
--Required properties:
--- reg: should contain the slot id.
--- bus-width: number of data lines connected to the controller
--
--Optional properties:
--- cd-gpios: specify GPIOs for card detection
--- cd-inverted: invert the value of external card detect gpio line
--- wp-gpios: specify GPIOs for write protection
--
--Example slot node:
--
--slot@0 {
--	reg = <0>;
--	bus-width = <4>;
--	cd-gpios = <&pioD 15 0>
--	cd-inverted;
--};
--
--Example full MCI node:
--mmc0: mmc@f0008000 {
--	compatible = "atmel,hsmci";
--	reg = <0xf0008000 0x600>;
--	interrupts = <12 4>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	slot@0 {
--		reg = <0>;
--		bus-width = <4>;
--		cd-gpios = <&pioD 15 0>
--		cd-inverted;
--	};
--	slot@1 {
--		reg = <1>;
--		bus-width = <4>;
--	};
--};
+Applied, thanks!
 
+[4/4] arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Max
+      commit: fa15cc73121279f93757ec76312b0d0b73f7462a
+
+Best regards,
 -- 
-2.43.0
-
+Heiko Stuebner <heiko@sntech.de>
 
