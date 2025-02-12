@@ -1,180 +1,192 @@
-Return-Path: <devicetree+bounces-145924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FAC8A32D1F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:13:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 970CCA32D20
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 18:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2EAC16CE61
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:10:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00F843A1437
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:12:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF6C25D54D;
-	Wed, 12 Feb 2025 17:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C09256C83;
+	Wed, 12 Feb 2025 17:12:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gD6eFA+T"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pL1GxGpr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7843E25D538;
-	Wed, 12 Feb 2025 17:09:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84222253B63
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 17:12:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739380169; cv=none; b=RIiokPin3n7SKA8mg1LWm3w4lEnlfQfgekPHZOrrwnEAHfTqwbNRNRDOSuz7Moh/lj74pO60l5CI4wrVKwmcFse60XdEU31jLemsi145wYgqMYDX1pRfx3XPs0pITWwIsCj9BIvYv3uLZWM0lNJZRzz8n57tYYV6uZwOP12dt4U=
+	t=1739380354; cv=none; b=nBKAOz9F4Ka2TtzPfHyHqFsL67yFF7AN0mDG6wuLfijLBs6fkVTa7IcEM/zf92/x42YyxOHCnwJtgH11MXC25qVbnLEHqEPigtuSjg5stm1ASzsycuP5mRHM1aK1OAFqOvn5zzWD6fhWwyVa4yzqOr2yoA+aeBEc6Er9QEVgbys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739380169; c=relaxed/simple;
-	bh=TE3oEgraRsG6/yVyd1qKvYuB31ewWb6CIHQdaS7to1g=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=oMj3dLQKaC0M/TJJjQcPSqdXHtdbs9upy5/VWzlVewTlf4lfFrOuWHYevrhbvbkjR/F7sKhA/MO5K1ShQXI9G0fVYEgAiurN62d2SsU0tq7O29fEPyDDGajvQBD9hj4GSgGTzQ2uF9Z4T9HzsIMtd9DGjIeWlYnZPYPetXOASl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gD6eFA+T; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-471a4f8bf65so701151cf.3;
-        Wed, 12 Feb 2025 09:09:27 -0800 (PST)
+	s=arc-20240116; t=1739380354; c=relaxed/simple;
+	bh=TEAn9XEJY37GkNpj6JIBjdfCk5yUerLMnh27Ni0kVlw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=efjweENNzKLmGM/1cRPXgA5xN6FpzgTcj4ATw/XwVKbwEP156bY0TLy/v1oI8RmOH/uGY9Z6NkV9Z/Cgc/KS0D86ZAZOxjnQ6ZaOTqYoxh2ojSntZKrp9WwhqcJtvotJMC9ObxER8JVjMVLo9vxcwzzAucWRdkX6NqhdBV2WF78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pL1GxGpr; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-38f22fe8762so170206f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 09:12:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739380166; x=1739984966; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NgSQtsSRJfTvvGbkYKS1L//GTl5a7DNUmVZ6Swpvw8k=;
-        b=gD6eFA+TbhXEtEgtM3kdypeoNUxmXMTpCkn0dceenYSWVB/21luvh8UHdD3HdsaawY
-         GQWq5y3291lktGQnODPigQ75J6qQFgzEdwMRr6PxJx9nz1WTj4JzCDOWeVq3Sl9A7jHv
-         pFOmKwS1Ak4nZjG5afcjS2eRcDy4eor1H90myEW9GCWfinvG0RSXFtSKnHyvpRaTc14P
-         kH77oqboFRCalxbN4it+FBd5M4xu4SRiwtamQzlGr+RmoWy+tS+PWhwrxJDicnCHlPFt
-         ZM1brWOirVPJr4mlzOHLfFymSg8CXWlp1Wa2ssHiNtisVnoeU4LRVNS3+g8iYRyTOvxg
-         hWiQ==
+        d=linaro.org; s=google; t=1739380351; x=1739985151; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2e3hPQxup0lPwaLwklLsTcmfKILhtXcP5+Sg3+RgTg8=;
+        b=pL1GxGprs6iBVK+Im/UAkLK60KS9HQl7xgogLTp6zZ1240G4Iu/Jw4kYc8nb77bl9k
+         7Hq9mwG8WCGKVJiWqT4T6kv2nqLA7Xgjn0dfaH2tdPRRNVNYH8zHJ/rG+0laWNcarjlw
+         wGaWydniEF6zMjrogHuCwEJ8BtMFmDEKs6pdyMfaEkhGayEEkYdRsESTIo4hdrQnHVCc
+         U6VV2jhWmklZOHkUTSKcnDwrOPEIAGSNleBpBSbCgW6FpHI5q6qW8+wzBdt4GLqXAZN6
+         +6Ca8L9eCknLdg6YL2JvFrpEVbyvLtoxI6y5dn9rv7a6v8C/40pVLDx510WDpPECpKXd
+         uA4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739380166; x=1739984966;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NgSQtsSRJfTvvGbkYKS1L//GTl5a7DNUmVZ6Swpvw8k=;
-        b=qOEsXmOMVBIvqoxVh7DHbptJb1Avf2sWwZsy74RH/PfZJc1MdW/FgPd8xGJxD5RUig
-         7DZ77vj67tzuhJfVlFHdkrNgGW74632jqERYe9nPoIw9xAHfzMbbUYGPQrpkyOhRwElq
-         QbYlVKYGiF3teuDYXidBqp+elxfQ7dyb1zfOkNP+BR6D2iBSgwH+4L5T0Il17Xah48vb
-         hf1sstIbPClG0jyx9HUFpT0FAyCKyXkQKZlzH2D/aTSmdXBZiBIT8YcVZd/qF7fNEWNV
-         PEY5F5uRGNxY7UJe9zFPbi/SuXM1Cr0P64uE7FLq1+QikOBYunoo157SpPTcyWXQ98bD
-         kGhA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfeY/qJMSzw1tHNc2HZ4oaC+z1NQUf9k+rQnlxTgK/U54xwiqneXzj/K2FY/dnKFi1HA5Qjf3YP6Xh6KQ=@vger.kernel.org, AJvYcCWgc/T75e5kJWwD3VBiKSfvwzaV3oIhpqMLDSFXtTdLTM9xbe5bTZ+WzPr0E0DzuW0RIGK29rJzqhbNbNQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzl9DPrISta/pIIz6MCOy4amPGtdQjjiwozfVDJGHELHzubPEJc
-	0upWB7WhZ7PTiKjLpIP8ue/OaCYfpWAEq/SnuLjd1UHYya3+WU2v
-X-Gm-Gg: ASbGnct9Ogv49R9EDIRMmopxdsuK6ICw8ciJifaHDSvSOLNjO9lYrL3Z2WggqZeLXuT
-	xJYs110dMbxZBZTTwst0VESJZEUFmJSQ4FuBZGdhRyFJQL0DOIfpfik2+Vmwoc/NrXIBoPXXruS
-	foe+TpyrL9LShNlmrKt12aaSK8YQJYtNhRFf3AEM7X012vTNRPly+mZqE73NOdgtbHzKqj+5DYn
-	hClPZggEe40I3HmFLq8Rz5uyI3Pq45+4g9sZnEXy7gmTpGASZi/vHczB6bb5YqyjikMEpOJ/XSZ
-	oFXzQHiAhnw17y5/O8LNCHZDbG5N+cgmZwDv2JJfLGM6sW5/piZzkxiG
-X-Google-Smtp-Source: AGHT+IG1LJxLezvshuhqs82k/JmK46r6Q76xu80RrPWUoRkjSzgD8z3+b6AmcCgLy4vaoGBtCmHUmA==
-X-Received: by 2002:a05:6214:2b0:b0:6e6:5a25:e10f with SMTP id 6a1803df08f44-6e65a25e2b3mr9254166d6.1.1739380166379;
-        Wed, 12 Feb 2025 09:09:26 -0800 (PST)
-Received: from matt-Z87X-UD4H.mynetworksettings.com ([2600:1002:a012:94a2:c438:570:6155:5ffc])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e52798f66asm12079546d6.37.2025.02.12.09.09.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 09:09:25 -0800 (PST)
-From: Matthew Majewski <mattwmajewski@gmail.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	"Dr. David Alan Gilbert" <linux@treblig.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	"Uwe Kleine-Konig" <u.kleine-koenig@baylibre.com>,
-	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Matthew Majewski <mattwmajewski@gmail.com>
-Subject: [PATCH 2/2] media: m2m-deinterlace: add device-tree support
-Date: Wed, 12 Feb 2025 12:09:01 -0500
-Message-Id: <20250212170901.3881838-3-mattwmajewski@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250212170901.3881838-1-mattwmajewski@gmail.com>
-References: <20250212170901.3881838-1-mattwmajewski@gmail.com>
+        d=1e100.net; s=20230601; t=1739380351; x=1739985151;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2e3hPQxup0lPwaLwklLsTcmfKILhtXcP5+Sg3+RgTg8=;
+        b=jEeEcOvWUWfyaos2PsNpj7Hr8DoTHz0dwqUFk9WHMeCuSzQYK6Hxa4vzfjToFQeiEZ
+         DmyNnxMlsGrhhI+oB4bRhAB7c0X0EA97REyhjkvk84YlZktSlJ2gCxIn/dn1CV4S3vMS
+         11x/TBWtj3ph6gDcSRkr5RRgD75Y/cncwL0EwayPamzGXQKu3l1Ps7NOGs4iEnefHPRb
+         1Pp2gczXn+yMiC3IJsmWpoeyxpCpm4UK50Pr3Ka65lFtyMHt0gTVOiyC8h8K7NlNJtH5
+         nYUYeXlmQsOi1d6Hlkl6cpx/xQjJsr2PyTHFChfsoPTCoVJuF7jP0Tl/ciiciEmGrJ0t
+         6OWA==
+X-Forwarded-Encrypted: i=1; AJvYcCV+rgvDSFJ8X9xMIZAhL7P0cEV1m0aCUswTmJ63rlbfpCJG1lF/kn0KrPC2im7LKHztOg5vbfHVMS+o@vger.kernel.org
+X-Gm-Message-State: AOJu0YxooJZ862xuvAGdE5WCUNj1GJaZqgR6d0G9ZCvVO2ypIawAU/E9
+	whyRVjVrVpqzPdPF2k3pp9nr8Lc2TSQqf0nwF//28Wwh8FZbnqYJmENLEe+/i18=
+X-Gm-Gg: ASbGnctGENWJ3TA0xnaiEE3tptxKTFmzO3YO4vGj1C5ZQy3HQj6dDaQ9oW2j1AC6V6w
+	XbcKVaCYBoCnfcOnDC4RrYoZ9Gng145hSDFR0g2m3RhfAk+Xbiq4KfLx4g2y1ArAK4Jx2Pell2m
+	GgYUbq6Nnm3Q3P+C7BfutTmKUeIusfHeEDF0Oo+G3F48bcILtta9CC/Ro4uCz8qpDf1gBkKwciP
+	97cCF4rIP6oRgjYSMDglZv5cucicPBMoJC+sOsxdQMAZyId6ikStrJ4sTVtMItV9TvvA52tOqDL
+	uZyUAr5izAbObHvZJvKvJ0FmimwYCdflHAWoKp6p7VgrMEgs2cTHCTDd9xqWsYBhFa1Zug==
+X-Google-Smtp-Source: AGHT+IGDrSl2sPKQZkZ2Wh5gwzUR2MlJ2zSqK8I2dmUQcoKztFuviOtdvDZxLOZdxHedx/bImSwSjg==
+X-Received: by 2002:a5d:64a3:0:b0:38d:df70:23cf with SMTP id ffacd0b85a97d-38dea3d00a0mr3564189f8f.16.1739380350759;
+        Wed, 12 Feb 2025 09:12:30 -0800 (PST)
+Received: from ?IPV6:2a0a:ef40:1d11:ab01:416b:3913:893e:bb4? ([2a0a:ef40:1d11:ab01:416b:3913:893e:bb4])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dd2ef7efesm13104756f8f.52.2025.02.12.09.12.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Feb 2025 09:12:30 -0800 (PST)
+Message-ID: <acb47522-920d-46aa-8c65-440f7c0b31e2@linaro.org>
+Date: Wed, 12 Feb 2025 17:12:29 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] regulator: qcom_usb_vbus: Add support for PMI8998
+ VBUS
+To: "James A. MacInnes" <james.a.macinnes@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ quic_wcheng@quicinc.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org
+References: <20250212010744.2554574-1-james.a.macinnes@gmail.com>
+ <20250212010744.2554574-3-james.a.macinnes@gmail.com>
+ <fcf907a5-9fb7-4988-a30a-a555740ca817@linaro.org>
+ <20250212085609.06e0f949@jamesmacinnes-VirtualBox>
+Content-Language: en-US
+From: Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20250212085609.06e0f949@jamesmacinnes-VirtualBox>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add support for loading the m2m-deinterlace driver through the
-device-tree.
+Hi James,
 
-Prefer to query the dma device through dma_request_chan(), which will
-get the dma device information from the device-tree node if
-present. Otherwise, fall back to the original dma_request_channel() to
-preserve backwards compatibility.
+On 2/12/25 16:56, James A. MacInnes wrote:
+> On Wed, 12 Feb 2025 15:29:54 +0000
+> Caleb Connolly <caleb.connolly@linaro.org> wrote:
+> 
+> 
+> Hi Caleb,
+> 
+>> Hi James,
+>>
+>> On 2/12/25 01:07, James A. MacInnes wrote:
+>>> This patch extends the Qualcomm USB VBUS regulator driver to support
+>>> PMI8998 PMIC alongside the existing support for PM8150B.
+>>
+>> Thanks for the patch!
+> 
+> Happy to try and contribute. I know that the working Type-C port is
+> going to be a misery after the relative simplicity of pushing the VBUS
+> upstream.
 
-Signed-off-by: Matthew Majewski <mattwmajewski@gmail.com>
----
- drivers/media/platform/m2m-deinterlace.c | 25 ++++++++++++++++++------
- 1 file changed, 19 insertions(+), 6 deletions(-)
+Yeah, it's hard to get used to the process... I'm happy to hear you're 
+trying to get type-c working on this platform though! This will make a 
+bunch of folks very happy if it finally lands, folks have been doing all 
+sorts of workarounds for this over on 
+https://wiki.postmarketos.org/wiki/OnePlus_6_(oneplus-enchilada)#OTG_doesn't_work
 
-diff --git a/drivers/media/platform/m2m-deinterlace.c b/drivers/media/platform/m2m-deinterlace.c
-index 5188f3189096..ba4e4ee6ad34 100644
---- a/drivers/media/platform/m2m-deinterlace.c
-+++ b/drivers/media/platform/m2m-deinterlace.c
-@@ -11,6 +11,7 @@
- #include <linux/interrupt.h>
- #include <linux/dmaengine.h>
- #include <linux/platform_device.h>
-+#include <linux/module.h>
- 
- #include <media/v4l2-mem2mem.h>
- #include <media/v4l2-device.h>
-@@ -914,7 +915,6 @@ static int deinterlace_probe(struct platform_device *pdev)
- {
- 	struct deinterlace_dev *pcdev;
- 	struct video_device *vfd;
--	dma_cap_mask_t mask;
- 	int ret = 0;
- 
- 	pcdev = devm_kzalloc(&pdev->dev, sizeof(*pcdev), GFP_KERNEL);
-@@ -923,9 +923,16 @@ static int deinterlace_probe(struct platform_device *pdev)
- 
- 	spin_lock_init(&pcdev->irqlock);
- 
--	dma_cap_zero(mask);
--	dma_cap_set(DMA_INTERLEAVE, mask);
--	pcdev->dma_chan = dma_request_channel(mask, NULL, pcdev);
-+	if (pdev->dev.of_node) {
-+		pcdev->dma_chan = dma_request_chan(&pdev->dev, "rxtx");
-+	} else {
-+		dma_cap_mask_t mask;
-+
-+		dma_cap_zero(mask);
-+		dma_cap_set(DMA_INTERLEAVE, mask);
-+		pcdev->dma_chan = dma_request_channel(mask, NULL, pcdev);
-+	}
-+
- 	if (!pcdev->dma_chan)
- 		return -ENODEV;
- 
-@@ -989,12 +996,18 @@ static void deinterlace_remove(struct platform_device *pdev)
- 	dma_release_channel(pcdev->dma_chan);
- }
- 
-+static const struct of_device_id deinterlace_dt_match[] = {
-+	{ .compatible = "m2m-deinterlace" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, deinterlace_dt_match);
-+
- static struct platform_driver deinterlace_pdrv = {
- 	.probe		= deinterlace_probe,
- 	.remove		= deinterlace_remove,
- 	.driver		= {
--		.name	= MEM2MEM_NAME,
-+		.name		= MEM2MEM_NAME,
-+		.of_match_table = deinterlace_dt_match,
- 	},
- };
- module_platform_driver(deinterlace_pdrv);
--
+
+>>>
+>>> Key changes:
+>>> - Added current limit tables specific to PMI8998.
+>>
+>> I also played around with vbus on PMI8998 before for type-c support
+>> (unfortunately didn't make it's way to the lists yet...) and I needed
+>> some additional changes for this to work correctly. I found that it
+>> was possible for the overcurrent protection to be hit if the type-c
+>> port manager allowed the peripheral to pull current too early, and
+>> it's necessary to allow 2.5ms enable time.
+>>
+>> PM8150b doesn't have these limitations (and supports the instant
+>> power role switch feature that's part of the type-c PD spec, allowing
+>> the power role to be switched without either side losing power e.g.
+>> when you unplug the power supply from a dock), hence it's only
+>> necessary for PMI8998.
+>>
+>> I would suggest implementing a proper .is_enabled op to poll the
+>> status register for OTG_STATE_ENABLED and configuring
+>> qcom_usb_vbus_rdesc.enable_time = 250000;
+>>
+>> Kind regards,
+>>
+> 
+> Technical question for you in regards to the VBUS overcurrent and
+> timing for the PMI8998. I would like to try and reproduce what you have
+> seen as my system hasn't had switching issues, but then again the TCPM
+> system may be covering the exact bug you are mentioning. I also
+> searched for some definite bit in the 4.9 Android driver and was left
+> wanting. As of yet, I have not had issues with the overcurrent
+> protecction.
+
+I guess there could be differences in our implementations, there is a 
+delay after enabling the regulator for pm8150b type-c iirc
+
+I never got around to chasing some of the remaining issues and sending 
+this upstream, but maybe my patches will be useful for you:
+
+https://git.codelinaro.org/caleb_connolly/kernel/-/commits/b4/pmi8998-typec/?ref_type=heads
+
+I spent many many hours pouring over the smb2 driver downstream, so feel 
+free to reach out if you have some specific questions.
+> 
+> I will be all too happy to migrate to the PM8150B and its associated
+> SoCs and leave the 845 platform to history.
+
+Well I for one am always happy to see SDM845 getting attention, it has a 
+special place in my heart :>
+
+And still gets love over here, even if not nearly enough of these 
+patches have made it upstream: 
+https://gitlab.com/sdm845-mainline/linux/-/commits/sdm845/6.13-release?ref_type=heads
+
+Kind regards,
+> 
+> Thank you for your feedback and I look forward to narrowing down this
+> issue.
+> 
+> Best wishes,
+
 -- 
-2.25.1
+Caleb (they/them)
 
 
