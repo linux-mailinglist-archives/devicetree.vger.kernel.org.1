@@ -1,111 +1,92 @@
-Return-Path: <devicetree+bounces-146013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22254A32FFF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:44:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 043E0A3300E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:48:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1B031644FB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 19:44:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91713188BE5F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 19:48:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D851FF7AC;
-	Wed, 12 Feb 2025 19:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4C91FFC6F;
+	Wed, 12 Feb 2025 19:48:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oj8s8rQe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FgXONBeQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7575E1FF7A9;
-	Wed, 12 Feb 2025 19:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D9DF1FF7AC;
+	Wed, 12 Feb 2025 19:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739389488; cv=none; b=Lu/zuYRsdmLoKlMF4RtXQa1jXeMA5xwWoHXS8DcroCbCVn89KYiFjBc0EchrEvRNeIC0RXbTzKL+cZDPxyf5BJmvNfjUI5NmhWbNLC/rtAqLQq/25iK8sgFbt8wRXQ/4qAcL/8ofyrWcDZOfHbGdzEGA9hDBM7iJPkyBIpLVp6o=
+	t=1739389691; cv=none; b=IRSbgJKMYd66BLX/6oZO7nx13PbjaqL8Wx0pejh1g2OOUQFb3jBvFUSSKaUm8+LwKOt8kYbTJIfCv96nSDN40WjpLvfNtJGyVZrNoeZXqP8QFemOG+UbOiNzHU5zzcBNfxWXm8YNVsC5Gc0cKeoyzGaOTzkLP5ZCPfFeoUrd5Xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739389488; c=relaxed/simple;
-	bh=H2RGuJeh4p3PZLsKQKPNVcfG0Duy/0Y8WKyJ2Dp59WE=;
+	s=arc-20240116; t=1739389691; c=relaxed/simple;
+	bh=yVac8dY+M10XXCZ6KGuP6RmE55GlDz/HkM5TX68DG/A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r3y5Pg+IiovjvfI8pkjqVIhVHahC8aF2VrSVdg8DGikz4jFeXp0qTngWE7LpoWl8vh7r5SSnuXFGVeSTIampRgW/EqC4RSM+UIdmBjzNLbne8gxWKQ4zHz78zPdP06ZrwWJDJptC0Qc+Y3ZFi1hKECJd015qm0WLzWJzixeG+wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oj8s8rQe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6F4DC4CEDF;
-	Wed, 12 Feb 2025 19:44:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=s0E9r+XHZxZFp4lBceYe7VYCMcdqedNsMOfeD1QycOue/zJl2KGi7QOymrzlB+b5Tc9advZbJY0yOa6lmsTZV3Lfsn26RyV19vtJvWCx78bLu6cZDTFNEm75I0KJv3cJoXd1TSnYCnKnTgh6dXy1kQ4vhafzKBzzxaSVIOvci/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FgXONBeQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D56CC4CEDF;
+	Wed, 12 Feb 2025 19:48:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739389488;
-	bh=H2RGuJeh4p3PZLsKQKPNVcfG0Duy/0Y8WKyJ2Dp59WE=;
+	s=k20201202; t=1739389689;
+	bh=yVac8dY+M10XXCZ6KGuP6RmE55GlDz/HkM5TX68DG/A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Oj8s8rQeyXI3HiYI0OHJHEumwjJXAFZetGXjJbiY2MBZzopmcHcKUK4kieSry0099
-	 qNx36t4mGK0OktWld9GOqZAbfj+DEYDz5hjoqokREJb1aTsdxd+D0cVUSAKj2jXwkb
-	 3Ikh8NfPF3xHwGEocZ2HwUUIauob/u7P6UYBy23gs43d4HX61Yu4L6kDfSazoHUPX9
-	 dknlKOu2PHYVpYSotcaWJoEHB3rHjT04kQpWWayQrdoJJH64ADn0YGdfCxkDeRfeU/
-	 NPBkKJBcXimLXoqBff+yziV//iNuFWxTlue95EVOH+6rBchwDwEvGyXEivB6zAwq2j
-	 5BkKP+eNC7jZg==
-Date: Wed, 12 Feb 2025 13:44:46 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
-Cc: Guenter Roeck <linux@roeck-us.net>, linuxppc-dev@lists.ozlabs.org,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	=?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
-	linux-watchdog@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-spi@vger.kernel.org, Naveen N Rao <naveen@kernel.org>,
-	Nicholas Piggin <npiggin@gmail.com>, imx@lists.linux.dev,
-	linux-ide@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-	Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-crypto@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-mtd@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+	b=FgXONBeQyNYIxCc/hTehCunY9lF08ToTiWnCSIRSenYMIT1SqXIhvSIlngpnyTDTU
+	 PEkxliqEa34rjyB2LC4pPC9FOdzTh4NrRDk7vU8QmAJmvTInujX4qV5XXlQfnxyBuv
+	 sW6rJ9++nSArChktyXzKGsMeG8vSuZ+27MeSnehTADfXNOJSCaqHHu0lxkDt/2eKki
+	 6iwfLDfT8xpeZSFBT0Ge6CXEIx/dTcw7ZC2BDPG8LPZBarPA/GfoA/dNkbCTgz+Iyb
+	 ptUWUqpHtvQUS4tGcnczPUsWhW/Ah79BG0gU+TXiy+JVNzSYh5BOMUJLd6k+uPd1cH
+	 MXCM7l1WLACGA==
+Date: Wed, 12 Feb 2025 13:48:08 -0600
+From: Rob Herring <robh@kernel.org>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
 	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	dmaengine@vger.kernel.org, Scott Wood <oss@buserror.net>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Niklas Cassel <cassel@kernel.org>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Richard Weinberger <richard@nod.at>,
-	Damien Le Moal <dlemoal@kernel.org>
-Subject: Re: [PATCH v2 10/12] dt-bindings: memory-controllers: Add
- fsl,elbc-gpcm-uio
-Message-ID: <173938948613.128569.16012047906715128997.robh@kernel.org>
-References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
- <20250207-ppcyaml-v2-10-8137b0c42526@posteo.net>
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>
+Subject: Re: [PATCH net-next 00/13] Introduce an ethernet port representation
+Message-ID: <20250212194808.GA130810-robh@kernel.org>
+References: <20250207223634.600218-1-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250207-ppcyaml-v2-10-8137b0c42526@posteo.net>
+In-Reply-To: <20250207223634.600218-1-maxime.chevallier@bootlin.com>
 
-
-On Fri, 07 Feb 2025 22:30:27 +0100, J. Neuschäfer wrote:
-> Formalize the binding already supported by the uio_fsl_elbc_gpcm.c
-> driver.
+On Fri, Feb 07, 2025 at 11:36:19PM +0100, Maxime Chevallier wrote:
+> Hello everyone,
 > 
-> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> ---
-> 
-> V2:
-> - split out from fsl,elbc patch
-> - add description
-> - remove "device_type" property
-> - move to bindings/memory-controllers
-> ---
->  .../memory-controllers/fsl,elbc-gpcm-uio.yaml      | 59 ++++++++++++++++++++++
->  1 file changed, 59 insertions(+)
-> 
+> This series follows the 2 RFC that were sent a few weeks ago :
+> RFC V2: https://lore.kernel.org/netdev/20250122174252.82730-1-maxime.chevallier@bootlin.com/
+> RFC V1: https://lore.kernel.org/netdev/20241220201506.2791940-1-maxime.chevallier@bootlin.com/
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+That makes this series v3. RFC is not a version, but a condition the 
+patches are in (not ready to merge).
 
+Rob
 
