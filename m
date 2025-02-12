@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-145612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A7EA31E01
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:36:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F33A4A31E09
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:38:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2878F1670E8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 05:36:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E9443A8DD5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 05:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A091F8937;
-	Wed, 12 Feb 2025 05:36:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB32D1F5437;
+	Wed, 12 Feb 2025 05:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uz0IJMSX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sgYXQukt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB04C271837;
-	Wed, 12 Feb 2025 05:36:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A75BCB67E;
+	Wed, 12 Feb 2025 05:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739338583; cv=none; b=SKOnHjvE7oloerWlMCqcVES0PF1bKoZ4iQvN+8iL+nBWQSPFP/ROsjAvNbM1CdT/3uClehCqUvdwOHk0GFNQ3GjmjsNp+HRWDDY21BVWYMAcXaFZETuCw8VasQP8EM6oyj4nOYkW2dUZqNPUnO3A74URi5tNzs10p19uS5Jb+DA=
+	t=1739338678; cv=none; b=jkrTqBqkWoijTdbgiwVeVAGkwN2+J+AxgvB9KhNZyYe5OePw8Eoy+1kiAIFE4VsVPMhc8M7XvrRwlKTvoEqUX4sC9lrLuUsqkakl5fWWE4VG5xwtju4JyXqkf84DlmTpwWqNWLTMry8XJ3fKtLb6AbUv7LxSA69DRQupqrnYu2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739338583; c=relaxed/simple;
-	bh=RBcuD/ENGFYSayznVyThEkO7GUD8HBS8E4dDcSHfPhU=;
+	s=arc-20240116; t=1739338678; c=relaxed/simple;
+	bh=/FoIxowu82Uq0ekKDPxc3Ge0hB+OhxoBukVa7JbIRgg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u+Z1l0RQ4KOk4ruZYn2JQqLvngH2feXm39GTHTQKwlD25bLYphpXQCxBxmIle4Uf3X+CGHb5lETmZ0T7XVdv5MlQJ3l6a03bEBmkDWTJytk3m6fl6jCwuWJLPrw/02/jTpwVqImO0rZmK6IBf4HX32aV0S7CdxGfd18wFgd1xMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uz0IJMSX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E96BC4CEDF;
-	Wed, 12 Feb 2025 05:36:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nPt8atnJNAT/1eHl5XcalmfywJj/qXVMwKQeZ+kXDhpEan2GQMHpG+W7yAarrMWwWVG8RdikoKUScUhsvrk/U8UhwxbExgNmXOdIf+5Tmxwp1RQtZjWQjcfepEsJE6ta3VMt/7CvubKh6ImzOuSdiP/PsvB2rT8KaFup7+aiTdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sgYXQukt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E8FAC4CEDF;
+	Wed, 12 Feb 2025 05:37:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739338583;
-	bh=RBcuD/ENGFYSayznVyThEkO7GUD8HBS8E4dDcSHfPhU=;
+	s=k20201202; t=1739338678;
+	bh=/FoIxowu82Uq0ekKDPxc3Ge0hB+OhxoBukVa7JbIRgg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uz0IJMSX3veX0py61eYQILomLlEgA+nyBPp3jvgs5PP0J3A2UN6ITne73WyLa1Eco
-	 bXFKsyKc/QBHHDhxLIFu+CEdKShyYAdMzYswx2y2L1wMtaakBYET4YYTUYyT2z+a3i
-	 wHpzPXgrVBS9PFnVaWNpcllu0UgMkWOXZUQ0+JfhcJyeX+MAsD8MJeUP6Rfi1G4ELH
-	 XyGcN/tRJNFD51Bak9p6j54FoOSnwIoZ47ZtZw0AcY4s/xS+waT7pe+kYu9TSuVgpu
-	 x98OXtUSJ80JbFe4FWeRsVYifT9UzZXhZ7uWauAhA+LQeS6A9lvIr09/svuetxvpgy
-	 8Oj1JBR1U4F2A==
-Message-ID: <1eca92c0-9dc8-42fd-8149-390fcb91f4f6@kernel.org>
-Date: Wed, 12 Feb 2025 06:36:16 +0100
+	b=sgYXQuktcJybLgslFBB5cgnyRREDDC4dHe8hfP5RvfXwxe104eOnp4gdzc7jGT9Tx
+	 b5aRoXD3SDquih/nZjNBZiOQ3Xc2kNLJsNX6TeJbE2jnRaeAMOdN+JluwL8E77LWQQ
+	 B4yrtlp83DfXKvm+iWuXVOE+8DdRY0SEc/RYdvO3K6LmhTFi8DXyTJuQIf/bPH3HbY
+	 Rb6CWJOvej9QmXXl6i9bZA+Zltpluoh/JL/Sh43E7ILqhCpLH3OTDebRkuRmQr00Xr
+	 9rmEtbMHuXUizGMuj/7a4WaP5XaLIzjYO3qwkELzl139H+LQNHcq7n25SeNdlhs7t+
+	 QpOWtjZrJsUzQ==
+Message-ID: <09922fcf-f667-490b-bbd2-e5fc19c3f958@kernel.org>
+Date: Wed, 12 Feb 2025 06:37:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [v8 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
- linux-pci@vger.kernel.org, kernel-janitors@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
- Jingoo Han <jingoohan1@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Michal Simek <michal.simek@amd.com>, Peter Zijlstra <peterz@infradead.org>
-References: <20250211231646.GA58828@bhelgaas>
+Subject: Re: [PATCH v5 2/2] arm64: dts: qcom: qcs8300: Add device node for
+ gfx_smmu
+To: Pratyush Brahma <quic_pbrahma@quicinc.com>, Will Deacon
+ <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20250211-b4-branch-gfx-smmu-v5-0-ff0bcb6a3c51@quicinc.com>
+ <20250211-b4-branch-gfx-smmu-v5-2-ff0bcb6a3c51@quicinc.com>
+ <3158e911-c771-4186-b287-50d2395b8c94@kernel.org>
+ <138b1c42-9580-41f4-9079-87740568b79c@quicinc.com>
+ <075588ff-77e5-4b01-8c67-8fc30e51b8a9@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,35 +111,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250211231646.GA58828@bhelgaas>
+In-Reply-To: <075588ff-77e5-4b01-8c67-8fc30e51b8a9@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/02/2025 00:16, Bjorn Helgaas wrote:
-> On Fri, Feb 07, 2025 at 07:39:03AM +0100, Markus Elfring wrote:
->>> I don't *really* like guard() anyway because it's kind of magic in
->>> that the unlock doesn't actually appear in the code, and it's kind of
->>> hard to unravel what guard() is and how it works.  But I guess that's
->>> mostly because it's just a new idiom that takes time to internalize.
+On 12/02/2025 06:19, Pratyush Brahma wrote:
+> 
+> On 2/12/2025 10:09 AM, Pratyush Brahma wrote:
 >>
->> How will the circumstances evolve further for growing applications of
->> scope-based resource management?
-> 
-> I'm sure it will evolve to become the typical style.  Right now, it's
-> not quite there yet, as evidenced by the fact that the only reference
-> to them in Documentation/ is this somewhat ambivalent note:
-> 
->   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/maintainer-netdev.rst?id=v6.13#n380
-> 
-> We do already have a few uses of guard() and scoped_guard() in
-> drivers/pci, and I don't really object to more, including in this
-> amd-mdb case.  Whatever we do, I *would* want to do it consistently
-> throughout the file.
+>>
+>> On 2/11/2025 8:45 PM, Krzysztof Kozlowski wrote:
+>>> On 11/02/2025 05:45, Pratyush Brahma wrote:
+>>>> Add the device node for gfx smmu that is required for gpu
+>>>> specific address translations.
+>>>>
+>>>> Signed-off-by: Pratyush Brahma<quic_pbrahma@quicinc.com>
+>>>> ---
+>>>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 39 +++++++++++++++++++++++++++++++++++
+>>>>   1 file changed, 39 insertions(+)
+>>> As pointed out by Rob, this wasn't ever tested. One more example of work
+>>> where you have the binding in the same patch but refuse to use it.
+> No, I had tested these patches against the dt_bindings_check and didn't 
+> see these errors.
+> It seems I need to upgrade my dtschema as Rob pointed out, reorder the 
+> clocks and resend.
 
+The reported errors are not relevant at all to upgraded or not upgraded
+dtschema. This just wasn't tested.
 
-Bjorn,
-There is little point in discussing anything with Markus. It's a person
-known to waste our time.
+> 
+
 
 Best regards,
 Krzysztof
