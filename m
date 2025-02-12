@@ -1,237 +1,155 @@
-Return-Path: <devicetree+bounces-145905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F548A32C89
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:55:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 594E1A32C98
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:57:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E78BA188C6FA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:54:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1D06168260
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E1E2580C8;
-	Wed, 12 Feb 2025 16:53:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90446253B4B;
+	Wed, 12 Feb 2025 16:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHsSCn8X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KirEBxzG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814AF255E27;
-	Wed, 12 Feb 2025 16:53:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FDEA1F0E44;
+	Wed, 12 Feb 2025 16:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739379223; cv=none; b=cWY4a2wr5EFQimOvmkYgOd6dJoO+lFc+7HkYQea0EqM6RN3Bh9TysgGzA656RMzrXC+0Fj8LghpCl5ez/Mh2ivjUolZlbMURYL731ZuXd5vo/Aaunkf7a7pOAeW/g7NscY5PjBZOocnQFM5//CR5I/YGKNgCjFMpzBQiebFGmAs=
+	t=1739379375; cv=none; b=oBA8dy7o6Hnd4QQkqScj4g1aPm7LlqZnzS8b0gqBswAA4sTAR7kBtj/7+fBgkgIzRkdXGDpW92PDBus4XcNhejKFva3FJLU4q56PD7zynlDXDiOHnJWTiSHW/Cf2YqYreQ5EtyNbmSxVxdqo31+2ZveWhfYoJbS8QCp2UzRFbWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739379223; c=relaxed/simple;
-	bh=mr8GjH+15lBi8VHein+7pK0kYx+HbXlrW0PLl41bbgI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tKGm7qap8Rk2TV33crZhCTR+umATADhH2vyJTxNHESduEMr7094z+8v9FCKEKhueHaB5LpDY2fhHx7pujhEOx66xbiI4U9uvCGR3M/BeO1WfmEgstzcHuWLaSSXW5uap9RdcHNXFQ+BsOZaSj9ZSGy7IjTSwJuj35VKr9YnXRbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHsSCn8X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B51FC4CEDF;
-	Wed, 12 Feb 2025 16:53:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739379221;
-	bh=mr8GjH+15lBi8VHein+7pK0kYx+HbXlrW0PLl41bbgI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iHsSCn8XJSMVzS2R2YduVzicWLVtjzBlcvyemeAYYOK5ilrQ92vm7KYHmjDSgKUVB
-	 FsBw7NG5juZw7q/grxpAJvQDYrkN+qugXz5DzHvaoEdlC/PxEyEJLKRZiWCZSpQz5C
-	 8oejDzd6WHTm5IYKdV3TRQPGthgTZ3HAkZ0gr9DiWP23J4i6X33yE5kz19UWvwR6XI
-	 KDNH4JVmo2ybhup8V3m/9915Bc/LxvOlcG8lRd4Rox2ybvjIQf4w/sx0kKtJjYfPqY
-	 LRMkg1D6iO87JL7blAmgFPzIzOPOUm17LhafOwYmgljLykwFDV423qXJypW7kVDgJO
-	 3baJSHEdDOv3A==
-Message-ID: <76c991dd-f99b-497c-9d68-9e08541be4f0@kernel.org>
-Date: Wed, 12 Feb 2025 17:53:34 +0100
+	s=arc-20240116; t=1739379375; c=relaxed/simple;
+	bh=FWCZ1JPAUvy0QAltvWa7BCQdwDaOlKC3UpWaFsRIJMg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=P33dnJ7l08oldSyVa4wnDlhrvnkUpbiGh/XL3zXGva2IV3/3vJad3sKOApsXQzaCJ9M01szCwZPOL9kHVtbLQNgktqr8Ar4s/W4NCAgtvfxJjdpjTatBWGrrH4qLeC+U6rY1A8JwvLeCb+Wbwijj2RmFsoUEtxyNIr3O5QWmgqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KirEBxzG; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2f44353649aso11152a91.0;
+        Wed, 12 Feb 2025 08:56:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739379373; x=1739984173; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b/YZ98QVY0hlmkitWAxaHzA85Cvt4+Gir/h9BCOLPtk=;
+        b=KirEBxzGtw4+k/qS7fYhicVPoI+UIOH3tO0t7I/UAEaT88zzUfzIUu4mlXMisj3rrM
+         q5RxQBI3il/Okj7Kf2oQNnCWrWoSrmvYWKdULc0PR6/YuBCiHAZ0LnOzPvw1+VZ2bsAm
+         D+SljfBq7YPp8gzXsNtaNsqUEtPwbYnavCSxhVAnO2ot4JlcW/NyOiu3e2jOx6hJrs5Q
+         RMvB4N44YTHsuohT2eFYQLzcodAIFC1ugjeqaMSysxR524olDTiuXQmcKc/icx3zO8q9
+         z2yGrJV+gEzO3/1OGoHEboNuA7K+hYFIRXAsHnV+AFwH6vK/skzIkaQdE3hSNdXeuiRM
+         gFHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739379373; x=1739984173;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b/YZ98QVY0hlmkitWAxaHzA85Cvt4+Gir/h9BCOLPtk=;
+        b=GNVZqxSzVV3j/mVKS5x/OHmJT7TrTCKbjRa76+omkgqEbpZ8547uzgJXk5BRCtJzDW
+         Yel6JpRGrKe1klWXxo+s2NO1GiqzAiszdZTqc4JeT+kZPpvuSspteTAhzcA2aucn5YUm
+         jCYLrAxo5sI5MHRv5wNc3CbN20BOQ0SzhmulWPuzyAO63yunlabkmr51VGpbM0hFmFp2
+         EZ3Ukl9k1hNgNhujZQYnnzKd/IyG5tuOZl0oklnMSkjjdLizl1KDBSiCVxeC/jtGe90F
+         T3iu61JSQAF2QSG4WfDSYeHbuoJ4akuBOkcEwv5N/2R4ykQq+Vlywtq53lbJDjwJJDCM
+         fZUA==
+X-Forwarded-Encrypted: i=1; AJvYcCUe0xTvmHnyIk3CKFTADfqIohLn+taG0ygWXroNSDptOQ8KZiqk8qc8GmU3ctZUvHbXJN8T9ofR9yQnrVZq@vger.kernel.org, AJvYcCVzJf9JfzZmgKwDTXiLBHnnZZ3KiPnPNDa/qzYApT1PSe/HUBw+AgHRyoLqpOA4CnrjTQogDeUzKHHH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVbkPnrcbzTGLKRWDNMdN16EuS6UCNgFy8+fsmypXILN4OGsn5
+	kxC9KFAhlt5+dyDChemcGiMPNrYcu5BBVJ3CFRM6ndhM0tIeQa+R
+X-Gm-Gg: ASbGncvHMBjlc0ZGu3BZcBLuP6bKfRrfu/gzvpo4fEUt7zDIHhJAPy4OYCGJaHz2R44
+	0dNZzZVbsxHGT277itQyh8lDvr9aPnlKLiJBMTfOlaD5P6qSU/TZdLYS/1BwikCh/o6bhqIOAcN
+	NLaR7E20qC59gFb5x05semaKYmtqTYAPY5PGQf08IZNxR3IXnyrJabjrKnprsREwKpL1hdbB56f
+	2esXB9H+NgoVDbM7yAbdoAB/x9K5AXBKSVZEsRC1GG+NJ85qSkVNYc77mL03Vs/tq9FwSIov99U
+	AWG4QLL4rYXK+yxxktuGFZCZsoP97AVaqkABXPR3bg==
+X-Google-Smtp-Source: AGHT+IFWjUg6Fq+J8/whiRrLq4t/CKYPDxPB+hALsINmqV1z/5bZWA0vGFCVE7tQZk8zipwXETHxrw==
+X-Received: by 2002:a17:90b:258e:b0:2f8:34df:5652 with SMTP id 98e67ed59e1d1-2fbf9072b46mr4583696a91.21.1739379372724;
+        Wed, 12 Feb 2025 08:56:12 -0800 (PST)
+Received: from jamesmacinnes-VirtualBox ([66.119.214.127])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fbf98f48eesm1727554a91.22.2025.02.12.08.56.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2025 08:56:12 -0800 (PST)
+Date: Wed, 12 Feb 2025 08:56:09 -0800
+From: "James A. MacInnes" <james.a.macinnes@gmail.com>
+To: Caleb Connolly <caleb.connolly@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ quic_wcheng@quicinc.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org
+Subject: Re: [PATCH 2/3] regulator: qcom_usb_vbus: Add support for PMI8998
+ VBUS
+Message-ID: <20250212085609.06e0f949@jamesmacinnes-VirtualBox>
+In-Reply-To: <fcf907a5-9fb7-4988-a30a-a555740ca817@linaro.org>
+References: <20250212010744.2554574-1-james.a.macinnes@gmail.com>
+	<20250212010744.2554574-3-james.a.macinnes@gmail.com>
+	<fcf907a5-9fb7-4988-a30a-a555740ca817@linaro.org>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drivers: i3c: Add driver for NXP P3H2x4x i3c-hub
- device
-To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
- linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
- alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com,
- shashank.rebbapragada@nxp.com, Frank.Li@nxp.com
-References: <20250212132227.1348374-1-aman.kumarpandey@nxp.com>
- <20250212132227.1348374-2-aman.kumarpandey@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250212132227.1348374-2-aman.kumarpandey@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 12/02/2025 14:22, Aman Kumar Pandey wrote:
-> +
-> +static void p3h2x4x_of_get_tp_dt_conf(struct device *dev,
-> +					const struct device_node *node)
-> +{
-> +	struct p3h2x4x *priv = dev_get_drvdata(dev);
-> +	struct device_node *dev_node;
-> +	int tp_port;
-> +
-> +	for_each_available_child_of_node(node, dev_node) {
-> +		if (!dev_node->full_name ||
-> +			(sscanf(dev_node->full_name, "target-port@%d", &tp_port) != 1))
-
-NAK, undocumented ABI. Also weird code, why are you parsing DT structure
-manually? Use proper functions to get the reg.
+On Wed, 12 Feb 2025 15:29:54 +0000
+Caleb Connolly <caleb.connolly@linaro.org> wrote:
 
 
+Hi Caleb,
 
-> +			continue;
-> +
-> +		if (tp_port < P3H2x4x_TP_MAX_COUNT) {
-> +			priv->tp_bus[tp_port].dt_available = true;
-> +			priv->tp_bus[tp_port].of_node = dev_node;
-> +			priv->tp_bus[tp_port].tp_mask = BIT(tp_port);
-> +			priv->tp_bus[tp_port].priv = priv;
-> +			priv->tp_bus[tp_port].tp_port = tp_port;
-> +		}
-> +	}
-> +}
-> +
-> +/* return true when backend node exist */
-> +static bool p3h2x4x_is_backend_node_exist(int port, struct p3h2x4x *priv, u32 addr)
-> +{
-> +	struct smbus_device *backend = NULL;
-> +
-> +	list_for_each_entry(backend,
-> +			&priv->tp_bus[port].tp_device_entry, list) {
-> +		if (backend->addr == addr)
-> +			return true;
-> +	}
-> +	return false;
-> +}
-> +
-> +static int p3h2x4x_read_backend_from_p3h2x4x_dts(struct device_node *i3c_node_target,
-> +					struct p3h2x4x *priv)
-> +{
-> +	struct device_node *i3c_node_tp;
-> +	const char *compatible;
-> +	int tp_port, ret;
-> +	u32 addr_dts;
-> +	struct smbus_device *backend;
-> +
-> +	if (sscanf(i3c_node_target->full_name, "target-port@%d", &tp_port) == 0)
-> +		return -EINVAL;
-> +
-> +	if (tp_port > P3H2x4x_TP_MAX_COUNT)
-> +		return -ERANGE;
-> +
-> +	if (tp_port < 0)
-> +		return -EINVAL;
-> +
-> +	INIT_LIST_HEAD(&priv->tp_bus[tp_port].tp_device_entry);
-> +
-> +	if (priv->settings.tp[tp_port].mode == P3H2x4x_TP_MODE_I3C)
-> +		return 0;
-> +
-> +	for_each_available_child_of_node(i3c_node_target, i3c_node_tp) {
-> +
-> +		ret = of_property_read_u32(i3c_node_tp, "reg", &addr_dts);
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (p3h2x4x_is_backend_node_exist(tp_port, priv, addr_dts))
-> +			continue;
-> +
-> +		ret = of_property_read_string(i3c_node_tp, "compatible", &compatible);
-> +		if (ret)
-> +			return ret;
-> +
-> +		backend = kzalloc(sizeof(*backend), GFP_KERNEL);
-> +		if (!backend)
-> +			return -ENOMEM;
-> +
-> +		backend->addr = addr_dts;
-> +		backend->compatible = compatible;
-> +		backend->tp_device_dt_node = i3c_node_tp;
-> +		backend->client = NULL;
-> +
-> +		list_add(&backend->list,
-> +			&priv->tp_bus[tp_port].tp_device_entry);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void p3h2x4x_parse_dt_tp(struct device *dev,
-> +				const struct device_node *i3c_node_hub,
-> +				struct p3h2x4x *priv)
-> +{
-> +	struct device_node *i3c_node_target;
-> +	int ret;
-> +
-> +	for_each_available_child_of_node(i3c_node_hub, i3c_node_target) {
-> +		if (!strcmp(i3c_node_target->name, "target-port")) {
-> +			ret = p3h2x4x_read_backend_from_p3h2x4x_dts(i3c_node_target, priv);
-> +			if (ret)
-> +				dev_err(dev, "DTS entry invalid - error %d", ret);
-> +		}
-> +	}
-> +}
-> +
-> +static int p3h2x4x_get_tp_local_device_dt_setting(struct device *dev,
-> +					const struct device_node *node, u32 id)
-> +{
-> +	u8 i;
-> +	u32 local_dev_count, local_dev;
-> +	struct p3h2x4x *priv = dev_get_drvdata(dev);
-> +
-> +	if (!of_get_property(node, "local_dev", &local_dev_count))
+> Hi James,
+> 
+> On 2/12/25 01:07, James A. MacInnes wrote:
+> > This patch extends the Qualcomm USB VBUS regulator driver to support
+> > PMI8998 PMIC alongside the existing support for PM8150B.  
+> 
+> Thanks for the patch!
 
-Oh no, read DTS conding style before upstreaming such code.
+Happy to try and contribute. I know that the working Type-C port is
+going to be a misery after the relative simplicity of pushing the VBUS
+upstream.
+> > 
+> > Key changes:
+> > - Added current limit tables specific to PMI8998.  
+> 
+> I also played around with vbus on PMI8998 before for type-c support 
+> (unfortunately didn't make it's way to the lists yet...) and I needed 
+> some additional changes for this to work correctly. I found that it
+> was possible for the overcurrent protection to be hit if the type-c
+> port manager allowed the peripheral to pull current too early, and
+> it's necessary to allow 2.5ms enable time.
+> 
+> PM8150b doesn't have these limitations (and supports the instant
+> power role switch feature that's part of the type-c PD spec, allowing
+> the power role to be switched without either side losing power e.g.
+> when you unplug the power supply from a dock), hence it's only
+> necessary for PMI8998.
+> 
+> I would suggest implementing a proper .is_enabled op to poll the
+> status register for OTG_STATE_ENABLED and configuring 
+> qcom_usb_vbus_rdesc.enable_time = 250000;
+> 
+> Kind regards,
+> 
 
+Technical question for you in regards to the VBUS overcurrent and
+timing for the PMI8998. I would like to try and reproduce what you have
+seen as my system hasn't had switching issues, but then again the TCPM
+system may be covering the exact bug you are mentioning. I also
+searched for some definite bit in the 4.9 Android driver and was left
+wanting. As of yet, I have not had issues with the overcurrent
+protecction.
 
-Best regards,
-Krzysztof
+I will be all too happy to migrate to the PM8150B and its associated
+SoCs and leave the 845 platform to history.
+
+Thank you for your feedback and I look forward to narrowing down this
+issue.
+
+Best wishes,
 
