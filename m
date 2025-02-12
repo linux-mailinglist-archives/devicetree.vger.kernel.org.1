@@ -1,149 +1,331 @@
-Return-Path: <devicetree+bounces-145762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7561FA323A5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:41:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5084A323A8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:41:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B0A43A3647
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:41:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1507D188B639
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:41:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77DDE2080FE;
-	Wed, 12 Feb 2025 10:41:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF48D2080FE;
+	Wed, 12 Feb 2025 10:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ldgtC9Pg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A+WZ44Y5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFB51EE7B9
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 10:41:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7702080EA;
+	Wed, 12 Feb 2025 10:41:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739356869; cv=none; b=Ns5GFBWj3+aVHr4ouIIcUHwM6ZNu6gqeMor2P0uY1cd9wK8Jh8zbHxiVrvfFmVAta3hKOS/MxQMlNKQvsIrWaR1SwOEgMLJ0KgjzdoQgEgXye310AHqzD7c7ixzd31QC6/jfykCUpYg2yIsqJqF/SIXRyuGsX4hHFSHuxGrw+04=
+	t=1739356885; cv=none; b=lUeEFREWCbla/MNhqb/lt6PGhleQ5Bgqxe2grEL6b5CNUL6niB1rNaSc+vVJshqqH1B4rDoI3WpOtoJaRdnZzkGCKvf8qM7FRlDPKY6JMIJNJLF0XtXD/Doy4qnLghZ6VjvvDQ8LnH9+gDXHXrmXyCyl6h3xtR9UG9gaMvyA+T4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739356869; c=relaxed/simple;
-	bh=HPiAWGGn9V3rjB/jGEe+4xyyXn//f8nUQh5na9jeQEU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qLeFzPFKVLyqJGYz2g6Xn6dEtSLhaZ1iPCLZTai8aS+cXPQUpPW7ycwH8hDftchwjkxqlWbB7nwgi6lY65u339u7yDY6PuVhDnOutwb9veGYoEPUle4Knayeb8p7+c2dl8wZY9WKUJzhuXPgv0psn/aagb8j1mXo+3/gLoxWOTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ldgtC9Pg; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54504a6955aso3706751e87.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 02:41:07 -0800 (PST)
+	s=arc-20240116; t=1739356885; c=relaxed/simple;
+	bh=jGAzdAVwZda4xcQ9nvVvKe1NQZgLD61/Q9/xa6hPT1U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S2zBp67UtOH9hk4tGUxn56d7BuoqMiRz4st5BBgxM0IomeR8I6m/I4vnmZpIhIPxhA+Sp94tkEV1JJeXJgCTBiGq+EGjHsvPMDrAokdHvHzDXq5Dx1WSJtlw7C5GW902Dg5IjaLr9hOnZ9LCUOTgJ8CjV7u/MVC7zrdO5tvieXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A+WZ44Y5; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-21f44e7eae4so111788995ad.2;
+        Wed, 12 Feb 2025 02:41:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739356865; x=1739961665; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=l1iDkFXJdTLoJv5QQSzaQMxwjFb0WaoMFN/yVr47274=;
-        b=ldgtC9Pg00q4T4piXD2BEFWhemsLQDolWmdLMA+3SpcbvRSUkvkx751Aq5WwH/nFfH
-         KWzLFSnkXqPsx7yprWGPN3fjoNT3LKFnFfkxhcWXEkBIYoii+UOlyW8eNMaSqLEN1xHV
-         qt5/isnB2rX7hDEkw7FRKWXWazaQv6ccVIA5smdYFo/CWJxwObLvYqPpzv1zycpK9cE7
-         geCuRwk09oSoCIOdLKlaA4EwP+amIuxVkX5Lsg1JgxkKD6qf292nowYi0DIkoXaJCyOe
-         fKPXwuY7K29qcbb5skJKS6M3vK+1MhI7SeJgeuRIDSQsikvll7iN9bulRExKkVexEHH5
-         kLIw==
+        d=gmail.com; s=20230601; t=1739356883; x=1739961683; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8YQyjp6+29h2F3EYFjHKjF70n+p1GBygn5et5PTL1Z0=;
+        b=A+WZ44Y5R1z1XV05wPgU1AB7QoF/L7SXxpMfiNSBADF+daE9yeO1si84O8x26K8EKI
+         3LIuG6UabvntXuNUwGS4ZEwVZyG3cA0DfVK2WXl9yS4AMNHVIeM7uQgvQk/SyO37qPYn
+         bRozDTUEi+0M/9mxLi9llmgdoXaChcJTuWiMAvAca5N7NQ2YCqeoJixe9uT0FtKE8xSk
+         DHUBJSNCGBZlfY0Fp33La5jiko6PFSbMYqvBQMHPnLM9GfCAlaFVgLhiwAkw4bVZT3so
+         uEhfP0zgXcU6LtFAQjXV9SBTMvzIg0qY6oW4/ZZ4+FuGefNAuopoVUp7E1iV3cTSfXuL
+         VlEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739356865; x=1739961665;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l1iDkFXJdTLoJv5QQSzaQMxwjFb0WaoMFN/yVr47274=;
-        b=ACQcXcr/qtswD+R+TllRdjiKFozFaUdXPilVA0Dfbj2XMx0vy5QW6PBl5ZqymZPUWU
-         TtK49/Cx372F5bM2tE3NXq65Q4mpj7s8XY4FmpCxs7yy65ugfgoHso79YaJjbprWYhXv
-         +Li86q+n2oNMlC4URTas5b9G/zRAaBLI2X5han+qLxfM4SxXeu2YL6wMlaq6ChTc1Cts
-         lJeGBZDtA8Hvn03YuT9RAd4kIU9LJkkMG6zQ1lG/E9MO8b7rHL8fhpLPyM5zZGOB3LF3
-         fKtPy2p/cf3OBVY2bUFzkUt1ng1THNkFov4z+ILifx+U1FGtSEaLZ5rZMHWOmQ6c/4A1
-         I6NQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUSIMT/TKKCoaTOzdNpFRkCEePGF8zLJAJE/Eel2ql+EDUxVh7CJ78ZbG/Ofm3ERCyMEmRkQRfjdUTB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuGgDjuWmn9EJx+kVZaHYulO3KdUEFfInaR2rUyT1EEKLtTJEZ
-	nxwRYrP6X6+JPYm7hZHD+h+g7gKu2NTZSDMh1P+gLNn/XzoUYaIi3It3d70hgjY=
-X-Gm-Gg: ASbGncu7NHedeRwi6JqIhfHVxwxjML9wdYAXK4EKtHuwM51TWe0TDIfjTSiDm2r6PeL
-	00M0XFoH8BI59QLY5wpPuPMbPc0hiTn9/tUcvEAeF+6s7qj4N1qV0IO9FtYUOtTdV3dTEOORYGN
-	2ILa3UL6zY6MbSrzkRieGSgf0uPa1n3Sx8JTAStYMe5lFM5eJy0n/G9aAt7Gwd/K39UpGfuvKBc
-	GX7opYhQp5ihf4huURYTmFv0QDrkfgH+QxgXPFVkJKz62emKXESdDhgUP/qyVievG4unav2898i
-	82Ts6KOtZcPwlTYbdC0ygPWz18Ik5IwiVdxhmKA2vxPLAyizNAfWFAOqA9MV/8a+pW5PJrE=
-X-Google-Smtp-Source: AGHT+IFSoauwUmjTLIfP8x5XTTgpa0CFQaxSPV+VulxRisj6BoyUTlqKfWl0RYYwgy038tCn23zfGQ==
-X-Received: by 2002:a05:6512:3054:b0:545:b49:f96d with SMTP id 2adb3069b0e04-54517f86bf8mr848075e87.0.1739356865416;
-        Wed, 12 Feb 2025 02:41:05 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54504a2d1d9sm1310680e87.56.2025.02.12.02.41.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 02:41:04 -0800 (PST)
-Date: Wed, 12 Feb 2025 12:41:01 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Yongxing Mou <quic_yongmou@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: display/msm: Redocument the
- dp-controller for QCS8300
-Message-ID: <wyd7i47pkafa7n2yjohuvlh4btasxle4rw5xm55h4bhv24yvah@pfo224xz4xfl>
-References: <20250212-mst_qcs8300-v1-0-38a8aa08394b@quicinc.com>
- <20250212-mst_qcs8300-v1-1-38a8aa08394b@quicinc.com>
+        d=1e100.net; s=20230601; t=1739356883; x=1739961683;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8YQyjp6+29h2F3EYFjHKjF70n+p1GBygn5et5PTL1Z0=;
+        b=sLG3Fx8kJZg1fv4vLLcuHME9GSR+pPVgJDCqu0sE9FIzzbC/DZrkbmYA7fbugzC1xL
+         uRkWbYQAfakU7RuMbK6s9dA4GzWgBRdSiFVoOwmy8E6xr7LxqAdrIgiOeyHFuH01Y0nK
+         qAxZnv57V+htOYkw8rWa50U6zDvCVhfdJfhYyQakfU/59H6tUEL4YM4Y82SbEpr0ALlG
+         ph21gfD3/LdUAKRQj3P6vM8Vc+n8auBhkzpK7zvErUN6OIksiOAz9OlR9ALH235Du9+z
+         gGX9IXXKI6bh83ibsBy35Mpop3GeG4r1CeucDVnYueKL2+SUsqgkvFtsPg1ioXdeJOaf
+         itUg==
+X-Forwarded-Encrypted: i=1; AJvYcCUZZWNbpzAjDjojDkAW+SxV0JAxWi+eWH9/WwFfeVyeNEKCUL4Ovo7YuusSWZ/y0NVsp4HM7qLInGY0@vger.kernel.org, AJvYcCWNjPGIhAs3SaWt1zPG04KTbT24iIf0X34XW5Bxeew5CDqXlMSVSDSOTpMgRffxITrem3D3N7LPisEj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHklpeY1soUUaUGeFiZ6xQSuLNFUbNsGeg2XJRszh4NOUBvv9/
+	6md1mMonQWRw3StBO12m8VIic7tj/aFJCgRsMfoNBW4RTJm0PGgM
+X-Gm-Gg: ASbGnctMo4yEm7NZcvTPZSJxfa5Jaop6/EurDiQvBmO8+au0kgyx4RqOyCVCE4QfZJg
+	nxCBDDsNUSuJ+Sndv4FaOOhoepv2dddEgc53Zi9uZyU8kQaNd6kaHvAOLbtrXF/dDpRpg3KB98O
+	ixysPRLt/Favy5mbUQnuyqeGmUU+Fwk2UTaSkoTXaRsPFe9OF7H5ukMOb6pwhV1bc1M2d/EMduU
+	9WnYJHaBBA/9OFnUIInnE1GtKvgmVQJx1e85ctGJX/ZhVjscUplPq6osyQdGNqXCeZy9GdgAvuC
+	xVzY8iQ5QUuhT2113bRn8u5l7Nftg+szol4Sc105Dehr8dCqh+5cmSdoO2xBBh3WjY00
+X-Google-Smtp-Source: AGHT+IG7fHsk50vr9pXagmuT+ZX4Yh0LGYL9EwtalbavDIXdjP2t7+2HdTqNPipABP7b7Tt+/gYa/g==
+X-Received: by 2002:a17:902:e74a:b0:215:9f5a:a236 with SMTP id d9443c01a7336-220bbaafce5mr31717535ad.6.1739356882983;
+        Wed, 12 Feb 2025 02:41:22 -0800 (PST)
+Received: from [172.19.1.42] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f36561c0bsm110057805ad.102.2025.02.12.02.41.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Feb 2025 02:41:22 -0800 (PST)
+Message-ID: <ed945ca8-f66a-4706-94be-8e4ff48872e6@gmail.com>
+Date: Wed, 12 Feb 2025 18:41:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250212-mst_qcs8300-v1-1-38a8aa08394b@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] pwm: Add Nuvoton MA35D1 PWM controller support
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: robh@kernel.org, krzysztof.kozlowski@linaro.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, ychuang3@nuvoton.com, schung@nuvoton.com,
+ cwweng@nuvoton.com, Trevor Gamblin <tgamblin@baylibre.com>
+References: <20241206085501.2623772-1-cwweng.linux@gmail.com>
+ <20241206085501.2623772-3-cwweng.linux@gmail.com>
+ <c4x3spvvlxmrfypfbl57pki2akwf4rmooufw26w5ku7rwurjw4@gwtae2pqrutk>
+Content-Language: en-US
+From: Chi-Wen Weng <cwweng.linux@gmail.com>
+In-Reply-To: <c4x3spvvlxmrfypfbl57pki2akwf4rmooufw26w5ku7rwurjw4@gwtae2pqrutk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Feb 12, 2025 at 03:12:24PM +0800, Yongxing Mou wrote:
-> We need to enable mst for qcs8300, dp0 controller will support 2 streams
-> output. So not reuse sm8650 dp controller driver and will add a new driver
-> patch for qcs8300 mst feature. Modify the corresponding dt-bingding file
-> to compatible with the qcs8300-dp.
+Hi Uwe,
 
-NAK for a different reason: QCS8300 is still compatible with SM8650.
-Enable features instead of randomly reshuffle compats. In this case,
-enable MST for both architectures.
+Thanks for your reply.
 
-> 
-> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> index 359e364d79b20469d41cd8416a55b6a5d5c7d8ce..59075d7f05147f1f477f236a76fee6ec5d8c5ad8 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> @@ -18,6 +18,7 @@ properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - qcom,qcs8300-dp
->            - qcom,sa8775p-dp
->            - qcom,sc7180-dp
->            - qcom,sc7280-dp
-> @@ -37,10 +38,6 @@ properties:
->                - qcom,sm8450-dp
->                - qcom,sm8550-dp
->            - const: qcom,sm8350-dp
-> -      - items:
-> -          - enum:
-> -              - qcom,qcs8300-dp
-> -          - const: qcom,sm8650-dp
->  
->    reg:
->      minItems: 4
-> 
-> -- 
-> 2.34.1
-> 
 
--- 
-With best wishes
-Dmitry
+On 2025/2/7 下午 05:28, Uwe Kleine-König wrote:
+> Hello,
+>
+> On Fri, Dec 06, 2024 at 04:55:01PM +0800, Chi-Wen Weng wrote:
+>> [...]
+>> diff --git a/drivers/pwm/pwm-ma35d1.c b/drivers/pwm/pwm-ma35d1.c
+>> new file mode 100644
+>> index 000000000000..380f17b20a3d
+>> --- /dev/null
+>> +++ b/drivers/pwm/pwm-ma35d1.c
+>> @@ -0,0 +1,179 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Driver for the Nuvoton MA35D1 PWM controller
+>> + *
+>> + * Copyright (C) 2024 Nuvoton Corporation
+>> + *               Chi-Wen Weng <cwweng@nuvoton.com>
+> Please add some information here about the hardware. The idea is to get
+> some info about the device's capabilities. Please stick to the format
+> that many other drivers are using such that
+>
+> 	sed -rn '/Limitations:/,/\*\/?$/p' drivers/pwm/pwm-ma35d1.c
+>
+> emits the info for your driver. Things to mention are: possible glitches
+> during .apply(); behaviour of the pin when the PWM is disabled (constant
+> signal? High-Z?)
+>
+> Also a link to a reference manual would be awesome.
+Okay, I will add the information into driver.
+>> + */
+>> +
+>> +#include <linux/clk.h>
+>> +#include <linux/io.h>
+>> +#include <linux/math64.h>
+>> +#include <linux/mod_devicetable.h>
+>> +#include <linux/module.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/pwm.h>
+>> +
+>> +/* The following are registers address offset for MA35D1 PWM controller */
+>> +#define MA35D1_REG_PWM_CTL0            (0x00)
+>> +#define MA35D1_REG_PWM_CNTEN           (0x20)
+>> +#define MA35D1_REG_PWM_PERIOD0         (0x30)
+>> +#define MA35D1_REG_PWM_CMPDAT0         (0x50)
+>> +#define MA35D1_REG_PWM_WGCTL0          (0xB0)
+>> +#define MA35D1_REG_PWM_POLCTL          (0xD4)
+>> +#define MA35D1_REG_PWM_POEN            (0xD8)
+>> +
+>> +/* The following are register address of MA35D1 PWM controller */
+>> +#define MA35D1_PWM_CH_REG_SIZE         4
+>> +#define MA35D1_PWM_CMPDAT0_ADDR(base, ch)     ((base) + MA35D1_REG_PWM_CMPDAT0 + \
+>> +					       ((ch) * MA35D1_PWM_CH_REG_SIZE))
+>> +#define MA35D1_PWM_CNTEN_ADDR(base)           ((base) + MA35D1_REG_PWM_CNTEN)
+>> +#define MA35D1_PWM_PERIOD0_ADDR(base, ch)     ((base) + MA35D1_REG_PWM_PERIOD0 + \
+>> +					       ((ch) * MA35D1_PWM_CH_REG_SIZE))
+>> +#define MA35D1_PWM_POEN_ADDR(base)            ((base) + MA35D1_REG_PWM_POEN)
+>> +#define MA35D1_PWM_POLCTL_ADDR(base)          ((base) + MA35D1_REG_PWM_POLCTL)
+> I would drop the base part in these defines and add them to the above
+> list sorted by address.
+>
+> So something like:
+>
+> #define MA35D1_REG_PWM_CTL0		0x00
+> #define MA35D1_REG_PWM_CNTEN		0x20
+> #define MA35D1_REG_PWM_PERIOD(ch)	(0x30 + 4 * (ch))
+> #define MA35D1_REG_PWM_CMPDAT(ch)	(0x50 + 4 * (ch))
+> #define MA35D1_REG_PWM_WGCTL0		0xB0
+> #define MA35D1_REG_PWM_POLCTL		0xD4
+> #define MA35D1_REG_PWM_POEN		0xD8
+>
+> To make up for the missing base, I'd create wrappers for readl and
+> writel à la:
+>
+> 	static u32 nuvoton_pwm_readl(struct nuvoton_pwm *nvtpwm, unsigned int offset);
+> 	static void nuvoton_pwm_writel(struct nuvoton_pwm *nvtpwm, unsigned int offset, u32 value);
+>
+> As you see I wouldn't use a define for 4, because IMHO that hurts
+> readability. But I don't feel strong here.
+
+It really can let my driver more readable. Thanks.
+
+
+>
+>> +#define MA35D1_PWM_MAX_COUNT           0xFFFF
+>> +#define MA35D1_PWM_TOTAL_CHANNELS      6
+> s/TOTAL/NUM/
+Okay, I will modify it in next version.
+>> +
+>> +struct nuvoton_pwm {
+>> +	void __iomem *base;
+>> +	u64 clkrate;
+> clk_get_rate() returns an unsigned long value. Please stick to that for
+> .clkrate as there is no use to double the size of this struct on 32-bit
+> platforms just to store zeros and padding.
+Okay, I will modify it in next version.
+>> +};
+>> +
+>> +static inline struct nuvoton_pwm *to_nuvoton_pwm(struct pwm_chip *chip)
+>> +{
+>> +	return pwmchip_get_drvdata(chip);
+>> +}
+> I slightly prefer nuvoton_pwm_from_chip() for this function's name to
+> have the same function prefix for all functions here.
+Okay, I will modify it in next version.
+>> +
+>> +static int nuvoton_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>> +			     const struct pwm_state *state)
+>> +{
+>> +	struct nuvoton_pwm *nvtpwm;
+>> +	u32 ch = pwm->hwpwm;
+>> +
+>> +	nvtpwm = to_nuvoton_pwm(chip);
+>> +	if (state->enabled) {
+>> +		u64 duty_cycles, period_cycles;
+>> +
+>> +		/* Calculate the duty and period cycles */
+>> +		duty_cycles = mul_u64_u64_div_u64(nvtpwm->clkrate,
+>> +						  state->duty_cycle, NSEC_PER_SEC);
+>> +		if (duty_cycles > MA35D1_PWM_MAX_COUNT)
+>> +			duty_cycles = MA35D1_PWM_MAX_COUNT;
+>> +
+>> +		period_cycles = mul_u64_u64_div_u64(nvtpwm->clkrate,
+>> +						    state->period, NSEC_PER_SEC);
+>> +		if (period_cycles > MA35D1_PWM_MAX_COUNT)
+>> +			period_cycles = MA35D1_PWM_MAX_COUNT;
+>> +
+>> +		/* Write the duty and period cycles to registers */
+>> +		writel(duty_cycles, MA35D1_PWM_CMPDAT0_ADDR(nvtpwm->base, ch));
+>> +		writel(period_cycles, MA35D1_PWM_PERIOD0_ADDR(nvtpwm->base, ch));
+>> +		/* Enable counter */
+>> +		writel(readl(MA35D1_PWM_CNTEN_ADDR(nvtpwm->base)) | BIT(ch),
+>> +		       MA35D1_PWM_CNTEN_ADDR(nvtpwm->base));
+>> +		/* Enable output */
+>> +		writel(readl(MA35D1_PWM_POEN_ADDR(nvtpwm->base)) | BIT(ch),
+>> +		       MA35D1_PWM_POEN_ADDR(nvtpwm->base));
+> Can this result in glitches? E.g. is it possible to see a waveform with
+> the old period_cycles but the new duty_cycles output? If you switch
+> polarity, do you see the new settings with the wrong polarity for some
+> time? Setup polarity before enabling the counter and output? Maybe only
+> enable the counter when the output is enabled to be sure to emit the
+> first edge with the correct timing?
+
+Yes, enable counter should be after the output is enabled. Will fix in 
+next version.
+
+
+>> +	} else {
+>> +		/* Disable counter */
+>> +		writel(readl(MA35D1_PWM_CNTEN_ADDR(nvtpwm->base)) & ~BIT(ch),
+>> +		       MA35D1_PWM_CNTEN_ADDR(nvtpwm->base));
+>> +		/* Disable output */
+>> +		writel(readl(MA35D1_PWM_POEN_ADDR(nvtpwm->base)) & ~BIT(ch),
+>> +		       MA35D1_PWM_POEN_ADDR(nvtpwm->base));
+> Maybe add another wrapper for this kind of rmw operation. Also I suggest
+> to introduce a name for BIT(ch) here such that this can become:
+>
+> 	nuvoton_pwm_rmw(nvtpwm, MA35D1_REG_PWM_POEN, MA35D1_REG_PWM_POEN_EN(ch), 0);
+>
+> (Assuming "EN0" is the name of the bit for channel 0 in
+> MA35D1_REG_PWM_POEN.)
+Okay, I will modify it next version.
+>> +	}
+>> +
+>> +	/* Set polarity state to register */
+>> +	if (state->polarity == PWM_POLARITY_NORMAL)
+>> +		writel(readl(MA35D1_PWM_POLCTL_ADDR(nvtpwm->base)) & ~BIT(ch),
+>> +		       MA35D1_PWM_POLCTL_ADDR(nvtpwm->base));
+>> +	else
+>> +		writel(readl(MA35D1_PWM_POLCTL_ADDR(nvtpwm->base)) | BIT(ch),
+>> +		       MA35D1_PWM_POLCTL_ADDR(nvtpwm->base));
+> You can skip setting up period if !state->enabled.
+Yes, it should be skip if !state->enabled.
+>> +	return 0;
+>> +}
+>> +
+>> [...]
+>> +
+>> +static int nuvoton_pwm_probe(struct platform_device *pdev)
+>> +{
+>> +	struct pwm_chip *chip;
+>> +	struct nuvoton_pwm *nvtpwm;
+>> +	struct clk *clk;
+>> +	int ret;
+>> +
+>> +	chip = devm_pwmchip_alloc(&pdev->dev, MA35D1_PWM_TOTAL_CHANNELS, sizeof(*nvtpwm));
+>> +	if (IS_ERR(chip))
+>> +		return PTR_ERR(chip);
+>> +
+>> +	nvtpwm = to_nuvoton_pwm(chip);
+>> +
+>> +	nvtpwm->base = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(nvtpwm->base))
+>> +		return PTR_ERR(nvtpwm->base);
+>> +
+>> +	clk = devm_clk_get_enabled(&pdev->dev, NULL);
+>> +	if (IS_ERR(clk))
+>> +		return dev_err_probe(&pdev->dev, PTR_ERR(clk), "unable to get the clock");
+> Please start all error messages with a capital letter and end them with
+> \n.
+>
+> devm_clk_rate_exclusive_get(&pdev->dev, clk) here please.
+Okay, I will modify it in next version.
+>> +
+>> +	nvtpwm->clkrate = clk_get_rate(clk);
+>> +	if (nvtpwm->clkrate > NSEC_PER_SEC)
+>> +		return dev_err_probe(&pdev->dev, -EINVAL, "pwm clock out of range");
+> 	return dev_err_probe(&pdev->dev, -EINVAL, "PWM clock out of range (%lu)\n", nvtpwm->clkrate);
+Okay, I will modify it in next version.
+>> +
+>> +	chip->ops = &nuvoton_pwm_ops;
+>> +	chip->atomic = true;
+>> +
+>> +	ret = devm_pwmchip_add(&pdev->dev, chip);
+>> +	if (ret < 0)
+>> +		return dev_err_probe(&pdev->dev, ret, "unable to add pwm chip");
+>> +
+>> +	return 0;
+>> +}
+> Best regards
+> Uwe
+
+
+Thanks.
+
+Chi-Wen Weng
+
+
 
