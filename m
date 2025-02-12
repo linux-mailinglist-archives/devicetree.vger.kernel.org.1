@@ -1,91 +1,176 @@
-Return-Path: <devicetree+bounces-145883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2082A32B1F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:07:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB366A32B29
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:09:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B9FB3A2E5A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:06:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 821E8164722
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:09:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74FD920967D;
-	Wed, 12 Feb 2025 16:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A3992116E5;
+	Wed, 12 Feb 2025 16:09:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TTrhUs0y"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gaZMkbsC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4985F1EC011;
-	Wed, 12 Feb 2025 16:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4219E1B21AD;
+	Wed, 12 Feb 2025 16:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739376421; cv=none; b=TRbCNRicRyeuYk/TslxbS8EIz//QUaGe9YIcokbXpySKLFHZDkdei8lp9rY9LuHJMs5pCF+HaCihoLgAj906gAmsVN+cbM53oMQfkGNVaz/J2XMD+OxB8maPzWQCzoWmtUeEfrhwV9djM4FOIMh6zw1EvE+A6VOkk8uAF2qF1L8=
+	t=1739376542; cv=none; b=hbSGvQ+grgZMeKEvHGCBSgiFuuC9WU/KahFQ6IRMLni3LQcTGCjH3+/OVUjd0Xo4GlK/1s1kcOa4I6g12vMQ3gmlI32GgpnhZX5fPb4txtSp5jI1Du2jFCpaw1+U0dtLfXeSk3TippTrH4cMW7ENJnvTz5HCvms6P4EW78txExI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739376421; c=relaxed/simple;
-	bh=DtovoddXJ18poDRZ4vbP7OjpbXwDBro1r4lUquhEprQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cHUOG7ohTKaqsldRRaHGp6MmAAb/47iVhkMnlDR5DFmAsV8A7+VGI2lAqLM8b396SqvsWhv03pNOkVjGzOVR5M0/A9aCait0MHVc12vMsDBZ1AjSl1w4a9bmKV+X1glbMlHIN7OyDOtRj5OFG0+LU3OYi7PanL9DaqIxl/JYxDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TTrhUs0y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E7F8C4CEDF;
-	Wed, 12 Feb 2025 16:07:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739376420;
-	bh=DtovoddXJ18poDRZ4vbP7OjpbXwDBro1r4lUquhEprQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TTrhUs0yFCO8s6nTGOWuKDRgvVsSeU/uokg+mhSj3yP0lbJlJuG+nXNyjlZA85rca
-	 QHns45dGnZTjymwwTfONn2w6RfUCjxkpw4YEkGadzfzFAl9OuDAEw+BckrE1ixOu5L
-	 aF6h7ha3q4tZvQ/+BLtlrPyVHINGBiOf61oBok+D9FNEUuv/o5D/WBO5oqwhWdZ4Ag
-	 mbmN7wArkjTc/wWwCw9OtnT3PpdlHv5l/69iWVO8KY6B7SmeXfVHbFtSxHsde6iFiI
-	 mGYtaqNEjcaIwYCb/oD7plsL3TayoYssJSP5mdVQ49zZ40/TUhkuEfO7Djkbnwliob
-	 XOtFNqW5JX02g==
-Date: Wed, 12 Feb 2025 10:06:59 -0600
-From: Rob Herring <robh@kernel.org>
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>, richard@nod.at,
-	vigneshr@ti.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, git@amd.com, amitrkcian2002@gmail.com
-Subject: Re: [PATCH v12 1/3] dt-bindings: mtd: Describe MTD partitions
- concatenation
-Message-ID: <20250212160659.GA3883406-robh@kernel.org>
-References: <20250205133730.273985-1-amit.kumar-mahapatra@amd.com>
- <20250205133730.273985-2-amit.kumar-mahapatra@amd.com>
- <20250211212928.GA1188800-robh@kernel.org>
- <87r043r2lq.fsf@bootlin.com>
+	s=arc-20240116; t=1739376542; c=relaxed/simple;
+	bh=JGAXxpEzZDp19Tm9FZ+cQGfxxod/rH2XENZjBdQ9YNc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=TgzCdR41Qkx67nM7AMVJOGelBfl8sp56KgjvIFSDY0A+DEI8COBfAG4e2lHsUzfTbhu66dQQUF8AaGG+tXUNnkWzIJOiimnUCU7B9HZ6bilyjs/55MG9/xe3pMpaZrmFFl45MUAtpE75V5Q6cTfl3m7132c8f67Np9OJnzOk8AQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gaZMkbsC; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B60AA441B7;
+	Wed, 12 Feb 2025 16:08:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739376537;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pm1shtqxNGtjXJC058AWPq2zZ6H04g+5wOZ4AwYEAdo=;
+	b=gaZMkbsCMNA4g3MAXZ62NrfgKcsAf0zgxcB53muCcxn3u/vvbQnMylh0prT3oM+PEup30c
+	DbbSy+f0cNBSLL0MpsbGvqN04Y4CrgNApzKHsW/RV8CtFBubgfmP5Fh3BFF8Vlt/2bAeH6
+	BAPl7cvjpzh0LjWAIZ6W22X9UjuZ713brxI9JX+c9DYs5frq6D1DAgCqvknNnOlPNfP6iY
+	KnYnqI9InDjwJLthokxPvubL8FtcJT5pVmYPLBiI5RudMtuZOPHXjJ+TgBET0cEMZqJ068
+	x4WOa5QxJvpYjTWRdOh3hJxHCCZDot2NU51IXeQuKwEcPFUBXeYV7OSStbsOxA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87r043r2lq.fsf@bootlin.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 12 Feb 2025 17:08:56 +0100
+Message-Id: <D7QLITNTXRUJ.3NA44E6PQMAUX@bootlin.com>
+Subject: Re: [PATCH v3 4/7] gpio: max7360: Add MAX7360 gpio support
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
+ <20250113-mdb-max7360-support-v3-4-9519b4acb0b1@bootlin.com>
+ <Z5eFGJspoGOINcG6@smile.fi.intel.com>
+ <D7QHGB7D0VSG.X255SDU7DFOF@bootlin.com>
+ <Z6y65SnrprvnpKEa@smile.fi.intel.com>
+In-Reply-To: <Z6y65SnrprvnpKEa@smile.fi.intel.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeggeefvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggfgtgffkffuvefhvffofhgjsehtqhertdertdejnecuhfhrohhmpedfofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugdfuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkefhkeeifeethfejteevfeduheduvddvuedvvddugfffhfevkefftefhuefftddunecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejiedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudejpdhrtghpthhtoheprghnughrihihrdhshhgvvhgthhgvnhhkohesihhnthgvlhdrtghomhdprhgtphhtthhopehlvggvsehkvghrnhgvlhdro
+ hhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplh
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On Wed, Feb 12, 2025 at 09:25:53AM +0100, Miquel Raynal wrote:
-> Hi,
-> 
-> >> The partitions that gets created are
-> >> part0_0
-> >> part1_1
-> >> part0_1-part1_0-concat
-> >
-> > 'part-concat' doesn't work if you have multiple sets of partitions you 
-> > want to concatenate.
-> >
-> > I think you need something like 'prev-partition' or 'next-partition' in 
-> > the partition nodes to create a linked list of partitions. Hopefully, 
-> > you don't need both properties, but you do have to scan everything to 
-> > figure out which ones are concatenated or not. For example, no property 
-> > can mean not concatenated or last partition if you use 'next-partition'. 
-> 
-> Out of curiosity, would the chosen node be eligible as a central place
-> where to look at?
+On Wed Feb 12, 2025 at 4:14 PM CET, Andy Shevchenko wrote:
+> On Wed, Feb 12, 2025 at 01:57:34PM +0100, Mathieu Dubois-Briand wrote:
+> > On Mon Jan 27, 2025 at 2:07 PM CET, Andy Shevchenko wrote:
+> > > On Mon, Jan 13, 2025 at 01:42:28PM +0100, Mathieu Dubois-Briand wrote=
+:
+>
+> ...
+>
+> > > > +	parent =3D to_platform_device(pdev->dev.parent);
+> > >
+> > > Why do you need this? Can't the fwnode be propagated to the children =
+and then
+> > > the respective APIs to be used?
+> >=20
+> > I'm not sure to understand this correctly, what do you mean by
+> > propagating the fwnode to the children?
+> >=20
+> > Just a quick summary of the situation and what I try to do. The device
+> > tree looks like this, only keeping the interesting properties:
+> >=20
+> > io-expander@38 {
+> >   ...
+> >   interrupts =3D <23 IRQ_TYPE_LEVEL_LOW>,
+> >                <24 IRQ_TYPE_LEVEL_LOW>;
+> >   interrupt-names =3D "inti", "intk";
+> >=20
+> >   max7360_gpio: gpio {
+> >     ...
+> >   };
+> >=20
+> >   max7360_gpo: gpo {
+> >     ...
+> >   };
+> > };
+> >=20
+> > Our pdev fwnode points either to the "gpio" or "gpo" nodes, the one fro=
+m
+> > our parent device points to "io-expander@38". Here we need to get the
+> > "inti" interrupt from the parent node. What would be the correct way to
+> > do it?
+>
+> Ah, I see now. This is being used only for IRQs, but don't you want to ca=
+ll
+> actually fwnode_irq_get_byname()? It will makes the intention clearer.
+>
 
-Why would you need that?
+Sure! I can definitely call fwnode_irq_get_byname().
 
-Rob
+>
+> > > > +	if (of_property_read_u32(pdev->dev.of_node, "ngpios", &ngpios)) {
+> > > > +		dev_err(&pdev->dev, "Missing ngpios OF property\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > >
+> > > This is not needed, it is already done in GPIOLIB core.
+> >=20
+> > I believe this is still needed:
+> > - For gpos, we need the gpio count to correctly set the partition
+> >   between gpo and keypad columns in max7360_set_gpos_count().
+>
+> Shouldn't be that done somewhere in the GPIO valid mask initialisation?
+>
+> > - For gpios, we need the gpio count to setup the IRQs.
+>
+> Doesn't GPIOLIB parse the property before initializing the IRQ valid mask
+> and other init callbacks?
+
+No, I believe I have to register the IRQ before registering the GPIO, so
+I can get the IRQ domain.
+
+Right now I have something like:
+
+irq_chip->num_irqs =3D ngpios;
+devm_regmap_add_irq_chip_fwnode(dev, dev_fwnode(dev), max7360_gpio->regmap,=
+ irq, flags, 0, irq_chip, &irq_chip_data);
+gpio_config.irq_domain =3D regmap_irq_get_domain(irq_chip_data);
+devm_gpio_regmap_register(dev, &gpio_config);
+
+Also, gpiolib will store ngpios in the gpio_chip structure, but while
+using gpio-regmap, this structure is masked behind the opaque
+gpio_regmap structure. So I believe there is no easy way to retrieve its
+value.
+
+This part of the code changed a lot, maybe it would be easier if I push
+a new version of the series and we continue the discussion there?
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
