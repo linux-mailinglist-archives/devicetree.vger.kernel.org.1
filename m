@@ -1,433 +1,172 @@
-Return-Path: <devicetree+bounces-145756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21336A32357
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:18:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B08A32361
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:20:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C109216651C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:18:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34A45166695
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:20:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 618272080CB;
-	Wed, 12 Feb 2025 10:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EAB22080CB;
+	Wed, 12 Feb 2025 10:20:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z7dv0/Vh"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="w3RGNjl7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4887A1E500C;
-	Wed, 12 Feb 2025 10:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2241E500C;
+	Wed, 12 Feb 2025 10:20:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739355529; cv=none; b=BHe8uegBFTtOyfwcaclKSV0nXIsXSj1Qx6kV3AwD4nTl+anQ6/aJBJmI/lYPIIFYluWvvItU02aoOJu9Hl1etOLHRejGaH5zv7oWTxdq6xMaVQhe3RZ35OPVSsHo22RztrtWqZgpGm1cvg7IjGvRZcw1a30inDKIGtL6zJhVWUc=
+	t=1739355616; cv=none; b=ZdOE9XBGl6Q5zQudmU+hCUELQrYanCI2KmejaXbssWnWcdlsX+Z9zZ3b5CalPLOu3F7Tzrhr6Q/GdYZRdkE0Py3gQzvtDKOCIjwWFMIK8qcmEULP/9xuuUvMD8ndUOBjcxZWiwpB5cvcbrzrWKy/VPWTMGpaIWWwk8Ba/hXv2hU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739355529; c=relaxed/simple;
-	bh=JQ3hUkVizyyC5PrH498KuKklwrEwcMwv0zzmt6N8YDU=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=S9F56l0Tba+9HJFX4tq8Y3pN1coTZwEJUhJY2M0KMtNtNesO6p4J7/WBUu6iwa62wNKuoIMM+TqQoAYhmAiLhnAnAkvQ/ABrt1mTGqnoQV6IWXrUeDnGUDQPit3v4nGVvNlHomLclvwfsPZNe0+pCrKAhD5nj3mNyhvjn/bg+zU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z7dv0/Vh; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ab7ca64da5dso131076866b.0;
-        Wed, 12 Feb 2025 02:18:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739355525; x=1739960325; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WWVlua/ySHVMeIr/pzJ7+6ofC41BpQURgsGblrbr2lM=;
-        b=Z7dv0/Vh3Y9hL8RiD7yi65+z0MxHANtGCHxSNoomJEGkm2/a7WgoTird8+3U8IZnlV
-         i5NxhsIUNsT6tKK7tdqt47W4TV6rvfbejgQYemsITkPyzi8qxBSwTzX6uKhtMR4cma/o
-         WqDzMlrgTrNmQRlypIn9ExK0BFOerW3mKAAf8k26BS8Z6JikRt1TmAtbTSSfeIdgChbv
-         x9zjzpgPQTL8UYYPjwhlYfvEy7kmou+sCDjO9qzYWpPODXudsH+dsg+NKL5n+d3cX+k8
-         CASyPWn62J7fXbZ0k4JNVFNggTplAhwnpUaroDT9W9yn7eCDSJVs6Dut80gIgTokm36e
-         CvGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739355525; x=1739960325;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WWVlua/ySHVMeIr/pzJ7+6ofC41BpQURgsGblrbr2lM=;
-        b=n02vTlATn/FooeeEnq+MxtQXxRACo7mvEpUf8tVqAo3c33jDXreq/OG30R5OSF+q1U
-         pZaZuzi5/mqYswBcGHWPvfL8zI+HYoO641B1ygSbCa7HHy3nYY1q9ze6gzVIHE0ylx/B
-         OuHJ2w3g0P/O+aXZz/xj0bjiZ0imJcSCTxDnS9hNVXnKmUwLMPhplAC8CHesasnZFg//
-         Ak1I2zMgzJvV8o/6dUQHKfaWjcSlibiuAA69Rq0TTRL6AqEtbmy64a4vi8vVkzng0N7c
-         b9inaDYUYqJO44cyYSfqxFR6eJMFIYUM/P072dtlSK/VpdN1CPYm7jGaBdYUDORpd1A+
-         7MNg==
-X-Forwarded-Encrypted: i=1; AJvYcCUoLOp31FR+/Y3SSuUZIGK6N2c8EDikHSQCpyZI2e9OS5qcFLMC2jkQOBZXCyuBiDT7E5mDApBMoxYN@vger.kernel.org, AJvYcCUpqnvC7Pto/p2DNoUWSz6FPBeINyOJ1qBMaSeH7rHviD/LEdeg6lhDf7ZdhlqDQ8TGPj2SfugRZyHu@vger.kernel.org, AJvYcCVt9RFN9jmy7UgBKdDnO6qQu2pGUAk9yjK+IlQsmlEN+EkJXQfrf7F8oMImS5hHeqmlMS4wbo/b4/y4bKB+@vger.kernel.org, AJvYcCWpsdsXcTm0cuQ/Cv+dODdn40GEE2QYF5bCMvwZU+N6FXe07nJxblPezKyrlQwE7t+rqsi5MKoK40k=@vger.kernel.org, AJvYcCXelilkWfO7WB9NRq3xm2mizSY21hRWClFvJw0qenutbvt/qo+ySulyTQ1xkjd2NyDNomlcZM65n+2diQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcpdrdWPUcn8lSEqg7TAUKlpn9DgCPcEqgcr2PAEHzlcbQIpKN
-	Bur4WJSiKJE9IXT1jRHg3Np4EhWGiXmrcLCGfhj7JnW9GZhy/OVp
-X-Gm-Gg: ASbGnctD/xrwzfjlLKWZniWmMJlgSy+f5oUgvC35jQS6/b3yvZm9iPdr0EBgIVUdkll
-	0CIMQfyCBQe9YJCOsVygHiyTnjZam6JYPG7NqosW/0pTdRLi0MsB++zAOXwEl+85I30Dp2KFccX
-	ViPBZDgUt9EVfuY/LWLHAmCM07Gv3WsNztr+a0K7pFHv49OL0mMvom8ytJq1uPS6hgvrkEGkuVh
-	WAqZjuL+hLcHTO0uA/ooU5n3z11+rYNcDUm0fKslxiycadiyGc8aXO8lVv28IftCj/AbEx7apc4
-	d6VlXoahFe+lbgq733n+zEqwS6Mvhc005uXmyVDSbfCarLnQS/UBsA==
-X-Google-Smtp-Source: AGHT+IHXhHYBhp/jwxugJOxSy8fbHAg4RaSJF+XHK6rh7pamhtjknOPXD7Wlf+ulQuEN06XXx7/uPg==
-X-Received: by 2002:a17:907:2cc5:b0:ab7:d1d0:1a84 with SMTP id a640c23a62f3a-ab7f2e8a301mr221194166b.4.1739355525335;
-        Wed, 12 Feb 2025 02:18:45 -0800 (PST)
-Received: from smtpclient.apple (185.174.17.62.zt.hu. [185.174.17.62])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7d6acd8f1sm381126966b.50.2025.02.12.02.18.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 12 Feb 2025 02:18:44 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1739355616; c=relaxed/simple;
+	bh=RCfAMMxOOEEkjSQj2Z4giICANWiUwwtkqv87A6WeoKE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WqP+/CocraQIZYWes9rgnDkMuh4Co/3yLEO4bSJBwYx4M3jw7OlBd2JamKMfkILP2H92+Krr7UouIwbkfbDlPoY5JNvPNkbjPXnZ+h4590E/GYYrXExStYvr0ofxpknW2ceUZUqcm8xo0yiFOlLeQIvFKpjcRdslFAeljRzf/N0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=w3RGNjl7; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=y8IN83D0tylBbKwg7C8Aw8PwV2/BnkhsqgeFy96LOxI=; b=w3RGNjl7vBZRtVLEfS8UB+J+Ea
+	RCafq7gKeGXNuTpE24NzRQPhZjFSNKP/Mf8ho4hrnWSOdre7vkZ2ZK2HxLCdxtWjtHgKLmfZX67W0
+	b7UWLcLKXrldSPS5rKde59jxxemk/JWyZBlrU96lLCrx77kG5hzBAoZtJeHmr3PZi+Ue5MfTLswJI
+	wdkVYWme3pMqbFxEz7TVAEj2Z+8iya9vbf/nEZp3OmPPzYwPiGfYJXHQ7s2sqHobbf+PHShb7OyFc
+	IIRZUvDSiAwk55zScuDwgECc9pfeZO+LrKqg7jaoGYS69iypBWKbD7V1tOveHr7NmJm7t+lYyw6h9
+	dvLlGyWg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:47876)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1ti9qU-0005Tj-1n;
+	Wed, 12 Feb 2025 10:19:54 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1ti9qO-00012C-32;
+	Wed, 12 Feb 2025 10:19:48 +0000
+Date: Wed, 12 Feb 2025 10:19:48 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Lei Wei <quic_leiwei@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, quic_kkumarcs@quicinc.com,
+	quic_suruchia@quicinc.com, quic_pavir@quicinc.com,
+	quic_linchen@quicinc.com, quic_luoj@quicinc.com,
+	srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
+	vsmuthu@qti.qualcomm.com, john@phrozen.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH net-next v5 0/5] Add PCS support for Qualcomm IPQ9574 SoC
+Message-ID: <Z6x1xD0krK0_eycB@shell.armlinux.org.uk>
+References: <20250207-ipq_pcs_6-14_rc1-v5-0-be2ebec32921@quicinc.com>
+ <20250211195934.47943371@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51\))
-Subject: Re: [PATCH v2 03/10] dt-bindings: clock: sunxi-ng: add compatibles
- for V853
-From: =?utf-8?B?QW5kcsOhcyBTemVtesWR?= <szemzo.andras@gmail.com>
-In-Reply-To: <20250211210215.GA1160917-robh@kernel.org>
-Date: Wed, 12 Feb 2025 11:18:32 +0100
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maxime Ripard <mripard@kernel.org>,
- Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org,
- linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <6B18CA59-65CE-4C7A-A9A6-769157BB73A9@gmail.com>
-References: <20250205125225.1152849-1-szemzo.andras@gmail.com>
- <20250205125225.1152849-4-szemzo.andras@gmail.com>
- <20250211210215.GA1160917-robh@kernel.org>
-To: Rob Herring <robh@kernel.org>
-X-Mailer: Apple Mail (2.3776.700.51)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250211195934.47943371@kernel.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Thanks for your review, I=E2=80=99ll change and explain it better.
+On Tue, Feb 11, 2025 at 07:59:34PM -0800, Jakub Kicinski wrote:
+> On Fri, 7 Feb 2025 23:53:11 +0800 Lei Wei wrote:
+> > The 'UNIPHY' PCS block in the Qualcomm IPQ9574 SoC provides Ethernet
+> > PCS and SerDes functions. It supports 1Gbps mode PCS and 10-Gigabit
+> > mode PCS (XPCS) functions, and supports various interface modes for
+> > the connectivity between the Ethernet MAC and the external PHYs/Switch.
+> > There are three UNIPHY (PCS) instances in IPQ9574, supporting the six
+> > Ethernet ports.
+> > 
+> > This patch series adds base driver support for initializing the PCS,
+> > and PCS phylink ops for managing the PCS modes/states. Support for
+> > SGMII/QSGMII (PCS) and USXGMII (XPCS) modes is being added initially.
+> > 
+> > The Ethernet driver which handles the MAC operations will create the
+> > PCS instances and phylink for the MAC, by utilizing the API exported
+> > by this driver.
+> > 
+> > While support is being added initially for IPQ9574, the driver is
+> > expected to be easily extendable later for other SoCs in the IPQ
+> > family such as IPQ5332.
+> 
+> Could someone with PHY, or even, dare I say, phylink expertise
+> take a look here?
 
-> On 11 Feb 2025, at 22:02, Rob Herring <robh@kernel.org> wrote:
->=20
-> On Wed, Feb 05, 2025 at 01:52:18PM +0100, Andras Szemzo wrote:
->> V853 has 2 CCUs, add compatible strings for it.
->>=20
->> Signed-off-by: Andras Szemzo <szemzo.andras@gmail.com>
->> ---
->> .../clock/allwinner,sun4i-a10-ccu.yaml        |   3 +
->> .../clock/allwinner,sun8i-v853-ccu.h          | 132 =
-++++++++++++++++++
->> .../clock/allwinner,sun8i-v853-r-ccu.h        |  16 +++
->> .../reset/allwinner,sun8i-v853-ccu.h          |  60 ++++++++
->> .../reset/allwinner,sun8i-v853-r-ccu.h        |  14 ++
->> 5 files changed, 225 insertions(+)
->> create mode 100644 =
-include/dt-bindings/clock/allwinner,sun8i-v853-ccu.h
->> create mode 100644 =
-include/dt-bindings/clock/allwinner,sun8i-v853-r-ccu.h
->> create mode 100644 =
-include/dt-bindings/reset/allwinner,sun8i-v853-ccu.h
->> create mode 100644 =
-include/dt-bindings/reset/allwinner,sun8i-v853-r-ccu.h
->>=20
->> diff --git =
-a/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml =
-b/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml
->> index 1690b9d99c3d..9369d62284ed 100644
->> --- =
-a/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml
->> +++ =
-b/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml
->> @@ -33,6 +33,8 @@ properties:
->>       - allwinner,sun8i-r40-ccu
->>       - allwinner,sun8i-v3-ccu
->>       - allwinner,sun8i-v3s-ccu
->> +      - allwinner,sun8i-v853-ccu
->> +      - allwinner,sun8i-v853-r-ccu
->=20
-> Please explain the difference between these in the commit message.
->=20
->>       - allwinner,sun9i-a80-ccu
->>       - allwinner,sun20i-d1-ccu
->>       - allwinner,sun20i-d1-r-ccu
->> @@ -103,6 +105,7 @@ else:
->>       compatible:
->>         enum:
->>           - allwinner,sun20i-d1-ccu
->> +          - allwinner,sun8i-v853-ccu
->>           - allwinner,sun50i-a100-ccu
->>           - allwinner,sun50i-h6-ccu
->>           - allwinner,sun50i-h616-ccu
->> diff --git a/include/dt-bindings/clock/allwinner,sun8i-v853-ccu.h =
-b/include/dt-bindings/clock/allwinner,sun8i-v853-ccu.h
->> new file mode 100644
->> index 000000000000..cf56c168e1cd
->> --- /dev/null
->> +++ b/include/dt-bindings/clock/allwinner,sun8i-v853-ccu.h
->> @@ -0,0 +1,132 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->=20
-> Dual license.
->=20
->> +/*
->> + * Copyright (C) 2024 Andras Szemzo <szemzo.andras@gmail.com.com>
->> + */
->> +
->> +#ifndef _DT_BINDINGS_CLK_ALLWINNER_SUN8I_V85X_CCU_H_
->> +#define _DT_BINDINGS_CLK_ALLWINNER_SUN8I_V85X_CCU_H_
->> +
->> +#define CLK_OSC12M		0
->> +#define CLK_PLL_CPU		1
->> +#define CLK_PLL_DDR		2
->> +#define CLK_PLL_PERIPH_4X	3
->> +#define CLK_PLL_PERIPH_2X	4
->> +#define CLK_PLL_PERIPH_800M	5
->> +#define CLK_PLL_PERIPH_480M	6
->> +#define CLK_PLL_PERIPH_600M	7
->> +#define CLK_PLL_PERIPH_400M	8
->> +#define CLK_PLL_PERIPH_300M	9
->> +#define CLK_PLL_PERIPH_200M	10
->> +#define CLK_PLL_PERIPH_160M	11
->> +#define CLK_PLL_PERIPH_150M	12
->> +#define CLK_PLL_VIDEO_4X	13
->> +#define CLK_PLL_VIDEO_2X	14
->> +#define CLK_PLL_VIDEO_1X	15
->> +#define CLK_PLL_CSI_4X		16
->> +#define CLK_PLL_AUDIO_DIV2	17
->> +#define CLK_PLL_AUDIO_DIV5	18
->> +#define CLK_PLL_AUDIO_4X	19
->> +#define CLK_PLL_AUDIO_1X	20
->> +#define CLK_PLL_NPU_4X		21
->> +#define CLK_CPU			22
->> +#define CLK_CPU_AXI		23
->> +#define CLK_CPU_APB		24
->> +#define CLK_AHB			25
->> +#define CLK_APB0		26
->> +#define CLK_APB1		27
->> +#define CLK_MBUS		28
->> +#define CLK_DE			29
->> +#define CLK_BUS_DE		30
->> +#define CLK_G2D			31
->> +#define CLK_BUS_G2D		32
->> +#define CLK_CE			33
->> +#define CLK_BUS_CE		34
->> +#define CLK_VE			35
->> +#define CLK_BUS_VE		36
->> +#define CLK_NPU			37
->> +#define CLK_BUS_NPU		38
->> +#define CLK_BUS_DMA		39
->> +#define CLK_BUS_MSGBOX0		40
->> +#define CLK_BUS_MSGBOX1		41
->> +#define CLK_BUS_SPINLOCK	42
->> +#define CLK_BUS_HSTIMER		43
->> +#define CLK_AVS			44
->> +#define CLK_BUS_DBG		45
->> +#define CLK_BUS_PWM		46
->> +#define CLK_BUS_IOMMU		47
->> +#define CLK_DRAM		48
->> +#define CLK_MBUS_DMA		49
->> +#define CLK_MBUS_VE		50
->> +#define CLK_MBUS_CE		51
->> +#define CLK_MBUS_CSI		52
->> +#define CLK_MBUS_ISP		53
->> +#define CLK_MBUS_G2D		54
->> +#define CLK_BUS_DRAM		55
->> +#define CLK_MMC0		56
->> +#define CLK_MMC1		57
->> +#define CLK_MMC2		58
->> +#define CLK_BUS_MMC0		59
->> +#define CLK_BUS_MMC1		60
->> +#define CLK_BUS_MMC2		61
->> +#define CLK_BUS_UART0		62
->> +#define CLK_BUS_UART1		63
->> +#define CLK_BUS_UART2		64
->> +#define CLK_BUS_UART3		65
->> +#define CLK_BUS_I2C0		66
->> +#define CLK_BUS_I2C1		67
->> +#define CLK_BUS_I2C2		68
->> +#define CLK_BUS_I2C3		69
->> +#define CLK_BUS_I2C4		70
->> +#define CLK_SPI0		71
->> +#define CLK_SPI1		72
->> +#define CLK_SPI2		73
->> +#define CLK_SPI3		74
->> +#define CLK_BUS_SPI0		75
->> +#define CLK_BUS_SPI1		76
->> +#define CLK_BUS_SPI2		77
->> +#define CLK_BUS_SPI3		78
->> +#define CLK_SPIF		79
->> +#define CLK_BUS_SPIF		80
->> +#define CLK_EMAC_25M		81
->> +#define CLK_BUS_EMAC		82
->> +#define CLK_BUS_GPADC		83
->> +#define CLK_BUS_THS		84
->> +#define CLK_I2S0		85
->> +#define CLK_I2S1		86
->> +#define CLK_BUS_I2S0		87
->> +#define CLK_BUS_I2S1		88
->> +#define CLK_DMIC		89
->> +#define CLK_BUS_DMIC		90
->> +#define CLK_AUDIO_CODEC_DAC	91
->> +#define CLK_AUDIO_CODEC_ADC	92
->> +#define CLK_BUS_AUDIO_CODEC	93
->> +#define CLK_USB_OHCI		94
->> +#define CLK_BUS_OHCI		95
->> +#define CLK_BUS_EHCI		96
->> +#define CLK_BUS_OTG		97
->> +#define CLK_BUS_DPSS_TOP	98
->> +#define CLK_MIPI_DSI		99
->> +#define CLK_BUS_MIPI_DSI	100
->> +#define CLK_TCON_LCD		101
->> +#define CLK_BUS_TCON_LCD	102
->> +#define CLK_CSI_TOP		103
->> +#define CLK_CSI_MCLK0		104
->> +#define CLK_CSI_MCLK1		105
->> +#define CLK_CSI_MCLK2		106
->> +#define CLK_BUS_CSI		107
->> +#define CLK_BUS_WIEGAND		108
->> +#define CLK_RISCV		109
->> +#define CLK_RISCV_AXI		110
->> +#define CLK_RISCV_CORE_GATE	111
->> +#define CLK_RISCV_CFG_GATE	112
->> +#define CLK_FANOUT_24M		113
->> +#define CLK_FANOUT_12M		114
->> +#define CLK_FANOUT_16M		115
->> +#define CLK_FANOUT_25M		116
->> +#define CLK_FANOUT_27M		117
->> +#define CLK_FANOUT_PCLK		118
->> +#define CLK_FANOUT0		119
->> +#define CLK_FANOUT1		120
->> +#define CLK_FANOUT2		121
->> +
->> +#endif
->> diff --git a/include/dt-bindings/clock/allwinner,sun8i-v853-r-ccu.h =
-b/include/dt-bindings/clock/allwinner,sun8i-v853-r-ccu.h
->> new file mode 100644
->> index 000000000000..48fe598b7bd8
->> --- /dev/null
->> +++ b/include/dt-bindings/clock/allwinner,sun8i-v853-r-ccu.h
->> @@ -0,0 +1,16 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * Copyright (C) 2025 Andras Szemzo <szemzo.andras@gmail.com>
->> + */
->> +
->> +#ifndef _DT_BINDINGS_CLK_ALLWINNER_SUN8I_V853_R_CCU_H_
->> +#define _DT_BINDINGS_CLK_ALLWINNER_SUN8I_V853_R_CCU_H_
->> +
->> +#define CLK_R_AHB		0
->> +#define CLK_R_APB0		1
->> +#define CLK_BUS_R_TWD		2
->> +#define CLK_BUS_R_PPU		3
->> +#define CLK_BUS_R_RTC		4
->> +#define CLK_BUS_R_CPUCFG	5
->> +
->> +#endif
->> diff --git a/include/dt-bindings/reset/allwinner,sun8i-v853-ccu.h =
-b/include/dt-bindings/reset/allwinner,sun8i-v853-ccu.h
->> new file mode 100644
->> index 000000000000..e258117518aa
->> --- /dev/null
->> +++ b/include/dt-bindings/reset/allwinner,sun8i-v853-ccu.h
->> @@ -0,0 +1,60 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * Copyright (C) 2024 Andras Szemzo <szemzo.andras@gmail.com>
->> + */
->> +
->> +#ifndef _DT_BINDINGS_RST_ALLWINNER_SUN8I_V85X_CCU_H_
->> +#define _DT_BINDINGS_RST_ALLWINNER_SUN8I_V85X_CCU_H_
->> +
->> +#define RST_MBUS		0
->> +#define RST_BUS_DE		1
->> +#define RST_BUS_G2D		2
->> +#define RST_BUS_CE		3
->> +#define RST_BUS_VE		4
->> +#define RST_BUS_NPU		5
->> +#define RST_BUS_DMA		6
->> +#define RST_BUS_MSGBOX0		7
->> +#define RST_BUS_MSGBOX1		8
->> +#define RST_BUS_SPINLOCK	9
->> +#define RST_BUS_HSTIMER		10
->> +#define RST_BUS_DBG		11
->> +#define RST_BUS_PWM		12
->> +#define RST_BUS_DRAM		13
->> +#define RST_BUS_MMC0		14
->> +#define RST_BUS_MMC1		15
->> +#define RST_BUS_MMC2		16
->> +#define RST_BUS_UART0		17
->> +#define RST_BUS_UART1		18
->> +#define RST_BUS_UART2		19
->> +#define RST_BUS_UART3		20
->> +#define RST_BUS_I2C0		21
->> +#define RST_BUS_I2C1		22
->> +#define RST_BUS_I2C2		23
->> +#define RST_BUS_I2C3		24
->> +#define RST_BUS_I2C4		25
->> +#define RST_BUS_SPI0		26
->> +#define RST_BUS_SPI1		27
->> +#define RST_BUS_SPI2		28
->> +#define RST_BUS_SPI3		29
->> +#define RST_BUS_SPIF		30
->> +#define RST_BUS_EMAC		31
->> +#define RST_BUS_GPADC		32
->> +#define RST_BUS_THS		33
->> +#define RST_BUS_I2S0		34
->> +#define RST_BUS_I2S1		35
->> +#define RST_BUS_DMIC		36
->> +#define RST_BUS_AUDIO_CODEC	37
->> +#define RST_USB_PHY		38
->> +#define RST_BUS_OHCI		39
->> +#define RST_BUS_EHCI		40
->> +#define RST_BUS_OTG		41
->> +#define RST_BUS_DPSS_TOP	42
->> +#define RST_BUS_MIPI_DSI	43
->> +#define RST_BUS_TCON_LCD	44
->> +#define RST_BUS_CSI		45
->> +#define RST_BUS_WIEGAND		46
->> +#define RST_RISCV_SYS_APB	47
->> +#define RST_RISCV_SOFT		48
->> +#define RST_RISCV_CFG		49
->> +
->> +#endif
->> diff --git a/include/dt-bindings/reset/allwinner,sun8i-v853-r-ccu.h =
-b/include/dt-bindings/reset/allwinner,sun8i-v853-r-ccu.h
->> new file mode 100644
->> index 000000000000..57629d635115
->> --- /dev/null
->> +++ b/include/dt-bindings/reset/allwinner,sun8i-v853-r-ccu.h
->> @@ -0,0 +1,14 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * Copyright (C) 2025 Andras Szemzo <szemzo.andras@gmail.com>
->> + */
->> +
->> +#ifndef _DT_BINDINGS_RST_ALLWINNER_SUN8I_V853_R_CCU_H_
->> +#define _DT_BINDINGS_RST_ALLWINNER_SUN8I_V853_R_CCU_H_
->> +
->> +#define RST_BUS_R_TWD		0
->> +#define RST_BUS_R_PPU		1
->> +#define RST_BUS_R_RTC		2
->> +#define RST_BUS_R_CPUCFG	3
->> +
->> +#endif
->> --=20
->> 2.39.5
->>=20
+I've not had the time, sorry. Looking at it now, I have lots of
+questions over this.
 
+1) clocks.
+
+- Patch 2 provides clocks from this driver which are exported to the
+  NSCCC block that are then used to provide the MII clocks.
+- Patch 3 consumes clocks from the NSCCC block for use with each PCS.
+
+Surely this leads to a circular dependency, where the MSCCC driver
+can't get the clocks it needs until this driver has initialised, but
+this driver can't get the clocks it needs for each PCS from the NSCCC
+because the MSCCC driver needs this driver to initialise.
+
+2) there's yet another open coded "_get" function for getting the
+PCS given a DT node which is different from every other "_get"
+function - this one checks the parent DT node has an appropriate
+compatible whereas others don't. The whole poliferation of "_get"
+methods that are specific to each PCS still needs solving, and I
+still have the big question around what happens when the PCS driver
+gets unbound - and whether that causes the kernel to oops. I'm also
+not a fan of "look up the struct device and then get its driver data".
+There is *no* locking over accessing the driver data.
+
+3) doesn't populate supported_interfaces for the PCS - which would
+make ipq_pcs_validate() unnecessary until patch 4 (but see 6 below.)
+
+4)
+"+       /* Nothing to do here as in-band autoneg mode is enabled
++        * by default for each PCS MII port."
+
+"by default" doesn't matter - what if in-band is disabled and then
+subsequently enabled.
+
+5) there seems to be an open-coded decision about the clock rate but
+there's also ipq_pcs_clk_rate_get() which seems to make the same
+decision.
+
+6) it seems this block has N PCS, but all PCS must operate in the same
+mode (e.g. one PCS can't operate in SGMII mode, another in USXGMII
+mode.) Currently, the last "config" wins over previous configs across
+all interfaces. Is this the best solution? Should we be detecting
+conflicting configurations? Unfortunately, pcs->supported_interfaces
+can't really be changed after the PCS is being used, so I guess
+any such restrictions would need to go in ipq_pcs_validate() which
+should work fine - although it would mean that a MAC populating
+its phylink_config->supported_interfaces using pcs->supported_interfaces
+may end up with too many interface bits set.
+
+(1), (2) and (6) are probably the major issues at the moment, and (2)
+has been around for a while.
+
+Given (1), I'm just left wondering whether this has been runtime
+tested, and how the driver model's driver dependencies cope with it
+if the NSCCC driver is both a clock consumer of/provider to this
+driver.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
