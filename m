@@ -1,87 +1,47 @@
-Return-Path: <devicetree+bounces-146082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC37BA333A3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 00:49:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C6EEA333B4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 00:57:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77019165EBB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 23:49:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A54018897CB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 23:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6352320AF66;
-	Wed, 12 Feb 2025 23:49:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2080121129D;
+	Wed, 12 Feb 2025 23:57:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GtdO7FhI"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="SXLJJ4OF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D226D126C05
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 23:49:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A09126C05;
+	Wed, 12 Feb 2025 23:57:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739404180; cv=none; b=YdWhKzUXuPIW4iSOQVUeMzkecKdh14nUw7pDjKWyuKcOfmdG5kU7Zj0Akhke0m+CfYHZlRh0ZwUqdiK2QsKOPUruS3mTt0yPCc8SZTG95yColz56h0sH30Ip8NdFB9Ufx4gNWkd5LZAVbVl5twWbWcrXGhJ1AZngxsnnipleT0I=
+	t=1739404646; cv=none; b=jAVXgV6lcLsivtIzYFbFh1BB9HBxyZQi2uvgm3ai5NRVV+FKIEG/faE+ul+LrZ9c9kHCKjOplRjSj2QIwZpqpfagvQo8a0dneerW8LW239dBx5aslcJQqFiGAHvInZfPbKS2eoTpq1jgdEO9A/6k0WNyPR3bfe3k+DKLRkGiuM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739404180; c=relaxed/simple;
-	bh=JIhvWwRBh4muoqeGhHJ0zK2xjH3Tjt8L2DiUTwSOSTI=;
+	s=arc-20240116; t=1739404646; c=relaxed/simple;
+	bh=bceuig7AHvs+8cF63nsWXxEM673ylyOTryzj6s+vkL8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RE+XOB8xXG9Qs7XZkTSfCngZ2FOe1dBbc5BuiV8VRRv7OVQo9pMa6bwt7EMBrlA9b+KxiXaRICqHSnwg0b2EB7StZit5oxdBiL2CQdPVpoQdajgckZhrzLemKM6/808vUtK4YQmefl3lamruGHe+ugjnORlVgXdWK5srLMGj7L4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GtdO7FhI; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51CNjTfa032491
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 23:49:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KKclV7RyRuQunpXF1JKN4EFzwZ611czWb+KOZap1Vjk=; b=GtdO7FhIeh/+VsnV
-	um5VrsNGTz+GnnXiXKtN2kULI8HI/zSkCozEsCzaKuganNg4s0LluLIJvKZWJ2ZV
-	/WDEfL63FHjnFx+tn78d/Yo5voSS46mO4QpTbbStE4Kg4NRZt0Bz3cDNXkp6pT8S
-	RCv8By29F5/raKbIYkRGIt1/+VK6qfp7OMqDbUoD86Fdc0H9zeWGeKAaY3KYjy50
-	C0YgCs2upGPV0KgesYxClJ0pTOMc018cuTAEFY6LeOqIw0e4Lv6UPmQ5fbe3yct8
-	3yo6ZtQjLojesiW7mux8Mufv1ZjfqZJMDd1Li/zAJUsa6OZsZV7QW+3ljDqF80dJ
-	9u6F8g==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qxv3xcfw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 23:49:37 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-471beb45811so149071cf.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 15:49:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739404176; x=1740008976;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KKclV7RyRuQunpXF1JKN4EFzwZ611czWb+KOZap1Vjk=;
-        b=I5NpSp5I3g6gkNvTZf15eH28LiHV+oyALiI2sOQYOZYweELO2hkIZzpA8bq7PvH8dG
-         bvdwDZ2mNlPQzZsCrt+Tc421hoIQRpu0+W1V0FpceMk304KySOa5jyqK8TKMmbKJtcnR
-         zhLXmC1xC6EbyVam7AADbVdE/TlCdI+d94qL5knJQvuWJwngn8SFZsJuDlMRYTNnbHD9
-         QH2XU/YaYXeV/s+R/AmQA8NXISSaN2jKMTJVPy7jMBYWzy0DZsw8F8MJYJQzJsXL950A
-         umRWa7LdVRyALwmTpkvBttcYP9PcB4SJAx/ItoGlqf9AyVR59TsHRlHsjGMLn8Glw0rO
-         eefg==
-X-Forwarded-Encrypted: i=1; AJvYcCXrlLiRg3BL9v2rj1KCFw+94DBtVJryFAZ4O0oM4Ms8r3U6deq11Uq9SJvdT2xLJ8kx2PQI8zYkJBoF@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoUMO0L8xoA2PJKJn3+fK7NwgjdsHvrOxpDzBofMEZO8d8pty3
-	mvqdpPMwg0r/bYfd+KciSdU/i7G4zcEA0+/DXakeN5kqAAuyvVgcBcsM4PCoDhIOZS3DIXwflBa
-	eR4J1stdivde3m4W0Pr9gQTxSxdWw/1V/boWfVeFndvzW29Nqfc3tKtBbjU+d
-X-Gm-Gg: ASbGncv884Lx/VlRTceJbOHFtqkNuj1QfmsvPK/JFSJCmDeD169Y/Fu3d947bj6TTVk
-	aEoffJHi3nI1vh/8tvGmjqpTLjjgM8GRpq96urVfZS7yQew+3KTlJ2Zlwrh3eJPQzrEjzlJMHxB
-	hto0xkfKeKLPXtxP9NiN2hDPok+XyUb7GgoZ5KTKtD4L8kJkWxsI8XqgrnBo/dM7qokjKGfbVnH
-	mJCtZoIsT5lO1gueiN+GeICf0cOP9GsCzFBAW6zQ7BwXn4KxQdWW7inqxpl9aK9tXiCcCq1J04m
-	dpvPeqSA8pmEXwFchj2qw12nuiemLAFekx2qHF+JayMR/FrfZQWcESi2+Bk=
-X-Received: by 2002:a05:622a:9015:b0:471:b9e1:670e with SMTP id d75a77b69052e-471b9e16e17mr15312831cf.4.1739404176663;
-        Wed, 12 Feb 2025 15:49:36 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHgxK9FsuRe/oeuntjkcd+d5kRycbejmWWvE2jJR5QduMdyEFnA/03RDST0RqDTvW05TGkfyw==
-X-Received: by 2002:a05:622a:9015:b0:471:b9e1:670e with SMTP id d75a77b69052e-471b9e16e17mr15312711cf.4.1739404176226;
-        Wed, 12 Feb 2025 15:49:36 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba532322dbsm16236866b.10.2025.02.12.15.49.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Feb 2025 15:49:35 -0800 (PST)
-Message-ID: <763d689b-35da-40db-8605-52e408728df0@oss.qualcomm.com>
-Date: Thu, 13 Feb 2025 00:49:32 +0100
+	 In-Reply-To:Content-Type; b=jCxHEYXXzIHFxYLB9/ZBRYxaxP3VkUxPN8RJTHrjZse8FBmKmW7KvMg8zC6oeaG9Q4yR3CAgwQyz5DppqTvb9Afg+JliVtKYOuliLwTU+I72bgla3wdLcJpLA098DxgcJk45il5OBPh43vEjCn4OWf6VJn7lvQVdqdapjpWyAgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=SXLJJ4OF; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [10.137.184.60] (unknown [131.107.160.188])
+	by linux.microsoft.com (Postfix) with ESMTPSA id A3E52203F3C9;
+	Wed, 12 Feb 2025 15:57:23 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com A3E52203F3C9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1739404643;
+	bh=bF6ePzz3cN2y4GYtn1pyoRmQYzjv5ZNDww08RM/kA5w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SXLJJ4OFPJZkogD0StqTyUAgwfIJIPnY8/4TngSfN1c5mhPDJIm7aVYDdimj/oAnX
+	 Yd7w/OE1MVKPuIswlc5gyslqUL+d311wjoJ4MwCIU3B0b3BIqYgPZwXNs7GC9thVN3
+	 s91qYLYjt5mzVMS08XeoNubtxgKPcmd+OIFopIII=
+Message-ID: <bb863c8f-a92c-42d0-abc4-ff0b92f701c2@linux.microsoft.com>
+Date: Wed, 12 Feb 2025 15:57:23 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,97 +49,169 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: qrb2210-rb1: add Bluetooth
- support
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Rob Herring
- <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-        Rocky Liao <quic_rjliao@quicinc.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250207-rb1-bt-v4-0-d810fc8c94a9@linaro.org>
- <20250207-rb1-bt-v4-6-d810fc8c94a9@linaro.org>
- <6e5bb2f7-a23b-4fab-914b-e67911eaf408@oss.qualcomm.com>
- <CAA8EJpq504V48qqSX0mzxCffUkq_xpu_UE+qubB46A7zon=0iw@mail.gmail.com>
+Subject: Re: [PATCH hyperv-next v4 4/6] dt-bindings: microsoft,vmbus: Add GIC
+ and DMA coherence to the example
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
+ catalin.marinas@arm.com, conor+dt@kernel.org, dave.hansen@linux.intel.com,
+ decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
+ krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com, lpieralisi@kernel.org,
+ manivannan.sadhasivam@linaro.org, mingo@redhat.com, robh@kernel.org,
+ ssengar@linux.microsoft.com, tglx@linutronix.de, wei.liu@kernel.org,
+ will@kernel.org, devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org,
+ benhill@microsoft.com, bperkins@microsoft.com, sunilmut@microsoft.com
+References: <20250212014321.1108840-1-romank@linux.microsoft.com>
+ <20250212014321.1108840-5-romank@linux.microsoft.com>
+ <20250212-rough-terrier-of-serendipity-68a0db@krzk-bin>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <CAA8EJpq504V48qqSX0mzxCffUkq_xpu_UE+qubB46A7zon=0iw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Roman Kisel <romank@linux.microsoft.com>
+In-Reply-To: <20250212-rough-terrier-of-serendipity-68a0db@krzk-bin>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: qN99n7m2Go3EAM0nnzr3H0umK6ATtkBA
-X-Proofpoint-ORIG-GUID: qN99n7m2Go3EAM0nnzr3H0umK6ATtkBA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-12_07,2025-02-11_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- suspectscore=0 phishscore=0 adultscore=0 spamscore=0 mlxscore=0
- bulkscore=0 impostorscore=0 clxscore=1015 lowpriorityscore=0
- malwarescore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2501170000 definitions=main-2502120167
 
-On 11.02.2025 10:19 PM, Dmitry Baryshkov wrote:
-> On Tue, 11 Feb 2025 at 16:52, Konrad Dybcio
-> <konrad.dybcio@oss.qualcomm.com> wrote:
->>
->> On 7.02.2025 9:41 PM, Dmitry Baryshkov wrote:
->>> Add support for the onboard WCN3950 BT/WiFi chip. Corresponding firmware
->>> has been merged to linux-firmware and should be available in the next
->>> release.
->>>
->>> Bluetooth: hci0: setting up wcn399x
->>> Bluetooth: hci0: QCA Product ID   :0x0000000f
->>> Bluetooth: hci0: QCA SOC Version  :0x40070120
->>> Bluetooth: hci0: QCA ROM Version  :0x00000102
->>> Bluetooth: hci0: QCA Patch Version:0x00000001
->>> Bluetooth: hci0: QCA controller version 0x01200102
->>> Bluetooth: hci0: QCA Downloading qca/cmbtfw12.tlv
->>> Bluetooth: hci0: QCA Downloading qca/cmnv12.bin
->>> Bluetooth: hci0: QCA setup on UART is completed
->>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>
->> [...]
->>
->>> +&uart3 {
->>> +     /delete-property/ interrupts;
->>> +     interrupts-extended = <&intc GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
->>> +                           <&tlmm 11 IRQ_TYPE_LEVEL_HIGH>;
->>> +     pinctrl-0 = <&uart3_default>;
->>> +     pinctrl-1 = <&uart3_sleep>;
->>> +     pinctrl-names = "default", "sleep";
->>> +
->>> +     status = "okay";
->>> +
->>> +     bluetooth {
->>> +             compatible = "qcom,wcn3950-bt";
->>> +
->>> +             vddio-supply = <&pm4125_l15>;
->>> +             vddxo-supply = <&pm4125_l13>;
->>> +             vddrf-supply = <&pm4125_l10>;
->>> +             vddch0-supply = <&pm4125_l22>;
->>> +             enable-gpios = <&tlmm 87 GPIO_ACTIVE_HIGH>;
->>> +             max-speed = <3200000>;
->>
->> I suppose we don't need a power sequencer for this smaller,
->> tightly-integrated-via-snoc chip?
+
+
+On 2/11/2025 10:42 PM, Krzysztof Kozlowski wrote:
+> On Tue, Feb 11, 2025 at 05:43:19PM -0800, Roman Kisel wrote:
+>> The existing example lacks the GIC interrupt controller property
+>> making it not possible to boot on ARM64, and it lacks the DMA
 > 
-> We can (and should) have it in a longer term. Currently none of
-> wcm39xx chips have a powerseq implementation.
+> GIC controller is not relevant to this binding.
+> 
 
-Alright, let's kick the can down the road.. hopefully not too far though
+Will remove, thank you for pointing that out!
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> coherence property making the kernel do more work on maintaining
+>> CPU caches on ARM64 although the VMBus trancations are cache-coherent.
+>>
+>> Add the GIC node, specify DMA coherence, and define interrupt-parent
+>> and interrupts properties in the example to provide a complete reference
+>> for platforms utilizing GIC-based interrupts, and add the DMA coherence
+>> property to not do extra work on the architectures where DMA defaults to
+>> non cache-coherent.
+>>
+>> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
+>> ---
+>>   .../devicetree/bindings/bus/microsoft,vmbus.yaml      | 11 +++++++++++
+>>   1 file changed, 11 insertions(+)
+> 
+> Last time I said: not tested by automation.
+> Now: I see automation build failures, although I do not see anything
+> incorrect in the code, so that's a bit surprising. Please confirm that
+> binding was tested on latest dtschema.
 
-Konrad
+They weren't for which I am sorry. Read through
+
+https://www.kernel.org/doc/html/v6.14-rc2/devicetree/bindings/writing-schema.html
+
+and was able to see and fix the break by bringing the YAML to [1].
+Getting now this
+
+/Documentation/devicetree/bindings/bus/microsoft,vmbus.example.dtb: 
+vmbus@ff0000000: 'dma-coherent', 'interrupts' do not match any of the 
+regexes: 'pinctrl-[0-9]+'
+         from schema $id: 
+http://devicetree.org/schemas/bus/microsoft,vmbus.yaml#
+
+so maybe I need to add some more to the "requires" section. Will follow
+other examples as you suggested.
+
+> 
+>>
+>> diff --git a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+>> index a8d40c766dcd..5ec69226ab85 100644
+>> --- a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+>> +++ b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+>> @@ -44,11 +44,22 @@ examples:
+>>               #size-cells = <1>;
+>>               ranges;
+>>   
+>> +            gic: intc@fe200000 {
+>> +              compatible = "arm,gic-v3";
+>> +              reg = <0x0 0xfe200000 0x0 0x10000>,   /* GIC Dist */
+>> +                    <0x0 0xfe280000 0x0 0x200000>;  /* GICR */
+>> +              interrupt-controller;
+>> +              #interrupt-cells = <3>;
+>> +            }
+> 
+> I fail to see how this is relevant here. This is example only of vmbus.
+> Look how other bindings are done. Drop the example.
+
+The bus refers to the interrupt controller, and I didn't have it, so
+added it :) Now I in other examples that is not required, and the
+tooling generates fake intc's. Appreciate your advice very much!
+
+> 
+> 
+>> +
+>>               vmbus@ff0000000 {
+>>                   compatible = "microsoft,vmbus";
+>>                   #address-cells = <2>;
+>>                   #size-cells = <1>;
+>>                   ranges = <0x0f 0xf0000000 0x0f 0xf0000000 0x10000000>;
+>> +                dma-coherent;
+>> +                interrupt-parent = <&gic>;
+>> +                interrupts = <1 2 1>;
+> 
+> Use proper defines for known constants.
+
+Will do as in [1], thank you!
+
+> 
+
+[1]
+
+--- a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
++++ b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+@@ -28,6 +28,7 @@ properties:
+  required:
+    - compatible
+    - ranges
++  - interrupts
+    - '#address-cells'
+    - '#size-cells'
+
+@@ -35,6 +36,8 @@ additionalProperties: false
+
+  examples:
+    - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
+      soc {
+          #address-cells = <2>;
+          #size-cells = <1>;
+@@ -44,14 +47,6 @@ examples:
+              #size-cells = <1>;
+              ranges;
+
+-            gic: intc@fe200000 {
+-              compatible = "arm,gic-v3";
+-              reg = <0x0 0xfe200000 0x0 0x10000>,   /* GIC Dist */
+-                    <0x0 0xfe280000 0x0 0x200000>;  /* GICR */
+-              interrupt-controller;
+-              #interrupt-cells = <3>;
+-            }
+-
+              vmbus@ff0000000 {
+                  compatible = "microsoft,vmbus";
+                  #address-cells = <2>;
+@@ -59,7 +54,7 @@ examples:
+                  ranges = <0x0f 0xf0000000 0x0f 0xf0000000 0x10000000>;
+                  dma-coherent;
+                  interrupt-parent = <&gic>;
+-                interrupts = <1 2 1>;
++                interrupts = <GIC_PPI 2 IRQ_TYPE_EDGE_RISING>;
+              };
+          };
+      };
+
+> Best regards,
+> Krzysztof
+
+-- 
+Thank you,
+Roman
+
 
