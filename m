@@ -1,331 +1,174 @@
-Return-Path: <devicetree+bounces-145763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5084A323A8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:41:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E21D8A323A9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:42:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1507D188B639
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:41:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C2651884DFC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF48D2080FE;
-	Wed, 12 Feb 2025 10:41:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A131208960;
+	Wed, 12 Feb 2025 10:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A+WZ44Y5"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="jFVt1Eql"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2064.outbound.protection.outlook.com [40.107.237.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7702080EA;
-	Wed, 12 Feb 2025 10:41:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739356885; cv=none; b=lUeEFREWCbla/MNhqb/lt6PGhleQ5Bgqxe2grEL6b5CNUL6niB1rNaSc+vVJshqqH1B4rDoI3WpOtoJaRdnZzkGCKvf8qM7FRlDPKY6JMIJNJLF0XtXD/Doy4qnLghZ6VjvvDQ8LnH9+gDXHXrmXyCyl6h3xtR9UG9gaMvyA+T4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739356885; c=relaxed/simple;
-	bh=jGAzdAVwZda4xcQ9nvVvKe1NQZgLD61/Q9/xa6hPT1U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S2zBp67UtOH9hk4tGUxn56d7BuoqMiRz4st5BBgxM0IomeR8I6m/I4vnmZpIhIPxhA+Sp94tkEV1JJeXJgCTBiGq+EGjHsvPMDrAokdHvHzDXq5Dx1WSJtlw7C5GW902Dg5IjaLr9hOnZ9LCUOTgJ8CjV7u/MVC7zrdO5tvieXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A+WZ44Y5; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-21f44e7eae4so111788995ad.2;
-        Wed, 12 Feb 2025 02:41:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739356883; x=1739961683; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8YQyjp6+29h2F3EYFjHKjF70n+p1GBygn5et5PTL1Z0=;
-        b=A+WZ44Y5R1z1XV05wPgU1AB7QoF/L7SXxpMfiNSBADF+daE9yeO1si84O8x26K8EKI
-         3LIuG6UabvntXuNUwGS4ZEwVZyG3cA0DfVK2WXl9yS4AMNHVIeM7uQgvQk/SyO37qPYn
-         bRozDTUEi+0M/9mxLi9llmgdoXaChcJTuWiMAvAca5N7NQ2YCqeoJixe9uT0FtKE8xSk
-         DHUBJSNCGBZlfY0Fp33La5jiko6PFSbMYqvBQMHPnLM9GfCAlaFVgLhiwAkw4bVZT3so
-         uEhfP0zgXcU6LtFAQjXV9SBTMvzIg0qY6oW4/ZZ4+FuGefNAuopoVUp7E1iV3cTSfXuL
-         VlEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739356883; x=1739961683;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8YQyjp6+29h2F3EYFjHKjF70n+p1GBygn5et5PTL1Z0=;
-        b=sLG3Fx8kJZg1fv4vLLcuHME9GSR+pPVgJDCqu0sE9FIzzbC/DZrkbmYA7fbugzC1xL
-         uRkWbYQAfakU7RuMbK6s9dA4GzWgBRdSiFVoOwmy8E6xr7LxqAdrIgiOeyHFuH01Y0nK
-         qAxZnv57V+htOYkw8rWa50U6zDvCVhfdJfhYyQakfU/59H6tUEL4YM4Y82SbEpr0ALlG
-         ph21gfD3/LdUAKRQj3P6vM8Vc+n8auBhkzpK7zvErUN6OIksiOAz9OlR9ALH235Du9+z
-         gGX9IXXKI6bh83ibsBy35Mpop3GeG4r1CeucDVnYueKL2+SUsqgkvFtsPg1ioXdeJOaf
-         itUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZZWNbpzAjDjojDkAW+SxV0JAxWi+eWH9/WwFfeVyeNEKCUL4Ovo7YuusSWZ/y0NVsp4HM7qLInGY0@vger.kernel.org, AJvYcCWNjPGIhAs3SaWt1zPG04KTbT24iIf0X34XW5Bxeew5CDqXlMSVSDSOTpMgRffxITrem3D3N7LPisEj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHklpeY1soUUaUGeFiZ6xQSuLNFUbNsGeg2XJRszh4NOUBvv9/
-	6md1mMonQWRw3StBO12m8VIic7tj/aFJCgRsMfoNBW4RTJm0PGgM
-X-Gm-Gg: ASbGnctMo4yEm7NZcvTPZSJxfa5Jaop6/EurDiQvBmO8+au0kgyx4RqOyCVCE4QfZJg
-	nxCBDDsNUSuJ+Sndv4FaOOhoepv2dddEgc53Zi9uZyU8kQaNd6kaHvAOLbtrXF/dDpRpg3KB98O
-	ixysPRLt/Favy5mbUQnuyqeGmUU+Fwk2UTaSkoTXaRsPFe9OF7H5ukMOb6pwhV1bc1M2d/EMduU
-	9WnYJHaBBA/9OFnUIInnE1GtKvgmVQJx1e85ctGJX/ZhVjscUplPq6osyQdGNqXCeZy9GdgAvuC
-	xVzY8iQ5QUuhT2113bRn8u5l7Nftg+szol4Sc105Dehr8dCqh+5cmSdoO2xBBh3WjY00
-X-Google-Smtp-Source: AGHT+IG7fHsk50vr9pXagmuT+ZX4Yh0LGYL9EwtalbavDIXdjP2t7+2HdTqNPipABP7b7Tt+/gYa/g==
-X-Received: by 2002:a17:902:e74a:b0:215:9f5a:a236 with SMTP id d9443c01a7336-220bbaafce5mr31717535ad.6.1739356882983;
-        Wed, 12 Feb 2025 02:41:22 -0800 (PST)
-Received: from [172.19.1.42] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f36561c0bsm110057805ad.102.2025.02.12.02.41.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Feb 2025 02:41:22 -0800 (PST)
-Message-ID: <ed945ca8-f66a-4706-94be-8e4ff48872e6@gmail.com>
-Date: Wed, 12 Feb 2025 18:41:20 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D035779C2;
+	Wed, 12 Feb 2025 10:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.64
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739356929; cv=fail; b=qmXRIP3o5ydRqIxEW6xN6GxMSozhrh9e5xj2hr4odgoHOE8WKbsD6q/7S1HxYsdu19PWI2EqJM3PVFIzpfM5gn/kokryFaqQF5DV74q4+1K3tBeeNgIDkrTzP8b4F/TuBelRcuIbpyujjIVHXSn9JBmR4bt4jSdo5lysvDFCXJA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739356929; c=relaxed/simple;
+	bh=cUHQn4OibTUvhpGku9AXCSE1Ho9+G19JKDUXp4CjjDw=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SEQbQ2MswiSvKmNuakvLz8pVhxhbh+JzJCQTHXICge/RsV99SGQpZzOFyMHGU05B0HVlf0xPJ1B82ek9JDQrnb+8CwSX3w/7NvM2UjbkoxChHlvTOpFteq2xjRtTJp790Fm9im0vO05oidbKq4mBStqNVncn8F9M0eVyf5w5W0o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=jFVt1Eql; arc=fail smtp.client-ip=40.107.237.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xIAI6ow0GisQspf4CruXTWqU+umKPRyyIH0UfLSwTzk51TjmutHTFy51r6sT12r2zBA+CONjHOuNhvzEZKs4OugRM8clQsKHanKWN0jFiN18SXSqaNOy3mpQeQqVyZzLjFtrl6F9jaAHQLNBXsvtXhoTtT1YDflOn/3uMmhhP3f0x+8qsLM03kQYOY7ncKZhBT1C1+SkfCHQ1vHKPbUVj5l3z3BCLyqwcrhipc8co2chiTGRQ/bNin+ny+EoWdAcwe17aK4pLfVLfv0W3kpQI/fXYJ/5Fea/sM2rJNhzsSC/CTxqyxXuwoyEuZ3Oql2+9wc3Uywya/jOdKmLLjfGkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n5FdbYIxoTyIHTMsA1TTsLw7YD75EFpAdm/uuCJ3Xz4=;
+ b=bS3Moal6DiwosV3BafC5BrrgAK/YOb34K3B/265hvMxYMTyva9g8WUNmfmghPqyxXWUsY9A0g0PW5t34dvCWQpAH7yGGyFh08Jbazsj+TPwVVTDShRkF5ofpBrjb+KkzJ0T+B4CDyrvVecwx9uDWJUlvfRmm0tOiFRBz9r0lOIg5SY9tuddhChP+xBhatPfC2byW6q/eTIva3OWyC5G3nC0n7tS7juBoMDEoiCL8JREBUt56AmW9c8nT1Qa5OLaguHjjsl4QuGGQpo2+/kdC0KhxOQeZJUbIK59P5tTljqhF95MRxyYqqwfOGClECfZ8wIiocvotqaN5iOGSIBhpjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=linuxfoundation.org
+ smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
+ header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n5FdbYIxoTyIHTMsA1TTsLw7YD75EFpAdm/uuCJ3Xz4=;
+ b=jFVt1EqlcEPM/Xqo0zYPA770cNCPL9WrcoQFw3JN82EcJ7K5aObozvMGx9xB6LMW13WAnqUALcWiu8UpDLA1xQyzLhNsqw3k1f4w3cqvOEY/06VM5DROm+OBZo3eCf5VTj51CpvF5ALpr6NOnXsAfm8ACy13WKAkD+hgUm6rIWWAjrTU/e2kcYD8bm7/h1G35IfREB72X6aXE8LJn0DYMG+h8Ps0GW0UpajTGQF1totVVZML4A7A+A3o5cxGGhGzoBnQ67VufM9p/7qFRA8kh3QtEqh28SJ1JNSBKwsT8KLIrYy8VxHAhd2Ip3ZIece8W4h1IH1s+ljIgKrS3aQ7mw==
+Received: from BYAPR11CA0048.namprd11.prod.outlook.com (2603:10b6:a03:80::25)
+ by MN2PR12MB4045.namprd12.prod.outlook.com (2603:10b6:208:1d6::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.19; Wed, 12 Feb
+ 2025 10:42:02 +0000
+Received: from CO1PEPF000044F2.namprd05.prod.outlook.com
+ (2603:10b6:a03:80:cafe::7) by BYAPR11CA0048.outlook.office365.com
+ (2603:10b6:a03:80::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8398.31 via Frontend Transport; Wed,
+ 12 Feb 2025 10:42:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ CO1PEPF000044F2.mail.protection.outlook.com (10.167.241.72) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8445.10 via Frontend Transport; Wed, 12 Feb 2025 10:42:01 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 12 Feb
+ 2025 02:41:53 -0800
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Wed, 12 Feb 2025 02:41:53 -0800
+Received: from NV-2XGVVG3.nvidia.com (10.127.8.12) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
+ Transport; Wed, 12 Feb 2025 02:41:49 -0800
+From: Kartik Rajput <kkartik@nvidia.com>
+To: <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
+	<jonathanh@nvidia.com>, <hvilleneuve@dimonoff.com>, <arnd@kernel.org>,
+	<geert+renesas@glider.be>, <robert.marko@sartura.hr>,
+	<schnelle@linux.ibm.com>, <andriy.shevchenko@linux.intel.com>,
+	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+Subject: [PATCH v3 0/2] Add support for Tegra UART Trace Controller (UTC) client
+Date: Wed, 12 Feb 2025 16:11:30 +0530
+Message-ID: <20250212104132.61060-1-kkartik@nvidia.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] pwm: Add Nuvoton MA35D1 PWM controller support
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: robh@kernel.org, krzysztof.kozlowski@linaro.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, ychuang3@nuvoton.com, schung@nuvoton.com,
- cwweng@nuvoton.com, Trevor Gamblin <tgamblin@baylibre.com>
-References: <20241206085501.2623772-1-cwweng.linux@gmail.com>
- <20241206085501.2623772-3-cwweng.linux@gmail.com>
- <c4x3spvvlxmrfypfbl57pki2akwf4rmooufw26w5ku7rwurjw4@gwtae2pqrutk>
-Content-Language: en-US
-From: Chi-Wen Weng <cwweng.linux@gmail.com>
-In-Reply-To: <c4x3spvvlxmrfypfbl57pki2akwf4rmooufw26w5ku7rwurjw4@gwtae2pqrutk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F2:EE_|MN2PR12MB4045:EE_
+X-MS-Office365-Filtering-Correlation-Id: 999b816c-df76-44a5-331c-08dd4b51e208
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|7416014|376014|36860700013|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Y09QpfhrssShT2ds4L8zndsIC5503BU3+nUi3p++IhUO4XWZp3dcP4uwpuaX?=
+ =?us-ascii?Q?bAFEFERqk3f7TOHX3ixm/5kQcIg5RMCCOfWXdSiNzu5R8iJY9dLagCnmsMu4?=
+ =?us-ascii?Q?HWM3Cm13mJh6lQUf1l8USJUG3ABjl86ov74yaqLvzZx8wrkXkJJ18Cji9M6c?=
+ =?us-ascii?Q?sSSScW5xfQT3QL92HNd2rODlYAZK9FedWFRkWTM7A6ILN7n1aKPA39mfoPo4?=
+ =?us-ascii?Q?ZMOg26iRGNAP+ZIbdssdmrWfo6UOKSC/Kxto/rTm7q2svZZXjhv3UxGn8Vib?=
+ =?us-ascii?Q?OKIcDQ2WUrMyksViMOT0MxXzpW24BWoqRzeoKQax1xOc8x+B2DZbgdNjgCI8?=
+ =?us-ascii?Q?bWmX61Qn+qLj4SW3MptTNKNQ5PbLXE0l9OJMudbDiULE3qa7h73GDU3VPYS0?=
+ =?us-ascii?Q?qAVD3uvqoTom5d/MLlgsVfiAHjtfrlFfFlrPXwIfqzU8FoDXoXHEjPhmHaWE?=
+ =?us-ascii?Q?uEiTVlN4XmtXnB7zayczyVHTQ36z+mlShYUugIV9p/9LuFDQuU4AelU8qNsy?=
+ =?us-ascii?Q?IlmICdKDXwp6O9JsvdIHGh7xZ3jCsNXVuuIYWmrVh4NgeySlsksIWPyNHuVF?=
+ =?us-ascii?Q?U2Ti/NPgoS/9OxzUYNGJDDqfLUNzwW7tAxm7F5jXis6DxejXCAi/ygycAD2W?=
+ =?us-ascii?Q?XzfASTLiuyQWCBxn08FTR4SI74Vq5WVJYeR7PrJcMFxzqliThu1AN9jamh9u?=
+ =?us-ascii?Q?4R4P9UnlBseJp8Nf/ekuxgODrSGjgNATDeUiq8IzIfgxpgtBQixW8NxLFGnA?=
+ =?us-ascii?Q?pCQaFCL1e6mYRlLinQCf7q5RLH4kEXUGzQtDT26l9ZRfQD+D8sVQ1FLVcf7B?=
+ =?us-ascii?Q?EhmCOL222RIqvrZ7YrXCRzAHJxtX+v3CFtL3dGwAKWCI5DEADI6am5kCX2P1?=
+ =?us-ascii?Q?cXbvRWDuVQ5GfEWDsSBQTYFm/qi17qxX4Bcf5h9Hb0iQjeGtpT38Ad7SCVu0?=
+ =?us-ascii?Q?nhRAwZwIMca3n59nXRJUYoixSzVeohqv2BO6gb2cWkPQUM8VItK8WLkgMbXI?=
+ =?us-ascii?Q?GGOc6N0JEVJFz6CN4M/84kqS76jEfsv150E999lk7jfJdVt/2alwHoDjKyHT?=
+ =?us-ascii?Q?YkQp3ETWzgxnDb3D1vLejs352ol54s8FGFF+vLQEsvyFvtkY7FyZRUJ4IbnN?=
+ =?us-ascii?Q?9vc/psyToSnHHb1OATsuy3+0CpZ7NsI0j1KRN/R16a74mFUWIKUuIRfdeVc2?=
+ =?us-ascii?Q?h7gFWfLlKkUa4x7MwpEBlGGgu8FLcbcONrLCJuMgpbbhWETiuh0/I5T4rOlH?=
+ =?us-ascii?Q?ZIkHClhaIkFI6lmk9Id16sMe13pItbVIpMU8xpBlceFcTWtwtYS+rX3/EFYT?=
+ =?us-ascii?Q?gbXcbKXNgAI9fKgD66GLjTr+BaIOI7FAk63V7OPOzE/76YzhZxaL6vQq/VBv?=
+ =?us-ascii?Q?XmXSrxJHYEkebQ+Fx7se/rNjMnrjGOFRp3XDF+g9otl/cbI6jiZ868tJ4TyN?=
+ =?us-ascii?Q?aH++JuokoaHpR8W0sdqDHNwe3HZfokTtcIrx8F+6rRFaZh6KV39fuND3NWRZ?=
+ =?us-ascii?Q?xYsErlFFG50ww88=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(7416014)(376014)(36860700013)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2025 10:42:01.2319
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 999b816c-df76-44a5-331c-08dd4b51e208
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF000044F2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4045
 
-Hi Uwe,
+The Tegra UTC (UART Trace Controller) is a hardware controller that allows
+multiple systems within the Tegra SoC to share a hardware UART interface.
+It supports up to 16 clients, with each client having its own interrupt and a
+FIFO buffer for both RX (receive) and TX (transmit), each capable of holding
+128 characters.
 
-Thanks for your reply.
+The Tegra UTC uses 8-N-1 configuration and operates on a pre-configured
+baudrate, which is configured by the bootloader.
 
+Kartik Rajput (2):
+  dt-bindings: serial: Add bindings for nvidia,tegra264-utc
+  serial: tegra-utc: Add driver for Tegra UART Trace Controller (UTC)
 
-On 2025/2/7 下午 05:28, Uwe Kleine-König wrote:
-> Hello,
->
-> On Fri, Dec 06, 2024 at 04:55:01PM +0800, Chi-Wen Weng wrote:
->> [...]
->> diff --git a/drivers/pwm/pwm-ma35d1.c b/drivers/pwm/pwm-ma35d1.c
->> new file mode 100644
->> index 000000000000..380f17b20a3d
->> --- /dev/null
->> +++ b/drivers/pwm/pwm-ma35d1.c
->> @@ -0,0 +1,179 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Driver for the Nuvoton MA35D1 PWM controller
->> + *
->> + * Copyright (C) 2024 Nuvoton Corporation
->> + *               Chi-Wen Weng <cwweng@nuvoton.com>
-> Please add some information here about the hardware. The idea is to get
-> some info about the device's capabilities. Please stick to the format
-> that many other drivers are using such that
->
-> 	sed -rn '/Limitations:/,/\*\/?$/p' drivers/pwm/pwm-ma35d1.c
->
-> emits the info for your driver. Things to mention are: possible glitches
-> during .apply(); behaviour of the pin when the PWM is disabled (constant
-> signal? High-Z?)
->
-> Also a link to a reference manual would be awesome.
-Okay, I will add the information into driver.
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/io.h>
->> +#include <linux/math64.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/module.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/pwm.h>
->> +
->> +/* The following are registers address offset for MA35D1 PWM controller */
->> +#define MA35D1_REG_PWM_CTL0            (0x00)
->> +#define MA35D1_REG_PWM_CNTEN           (0x20)
->> +#define MA35D1_REG_PWM_PERIOD0         (0x30)
->> +#define MA35D1_REG_PWM_CMPDAT0         (0x50)
->> +#define MA35D1_REG_PWM_WGCTL0          (0xB0)
->> +#define MA35D1_REG_PWM_POLCTL          (0xD4)
->> +#define MA35D1_REG_PWM_POEN            (0xD8)
->> +
->> +/* The following are register address of MA35D1 PWM controller */
->> +#define MA35D1_PWM_CH_REG_SIZE         4
->> +#define MA35D1_PWM_CMPDAT0_ADDR(base, ch)     ((base) + MA35D1_REG_PWM_CMPDAT0 + \
->> +					       ((ch) * MA35D1_PWM_CH_REG_SIZE))
->> +#define MA35D1_PWM_CNTEN_ADDR(base)           ((base) + MA35D1_REG_PWM_CNTEN)
->> +#define MA35D1_PWM_PERIOD0_ADDR(base, ch)     ((base) + MA35D1_REG_PWM_PERIOD0 + \
->> +					       ((ch) * MA35D1_PWM_CH_REG_SIZE))
->> +#define MA35D1_PWM_POEN_ADDR(base)            ((base) + MA35D1_REG_PWM_POEN)
->> +#define MA35D1_PWM_POLCTL_ADDR(base)          ((base) + MA35D1_REG_PWM_POLCTL)
-> I would drop the base part in these defines and add them to the above
-> list sorted by address.
->
-> So something like:
->
-> #define MA35D1_REG_PWM_CTL0		0x00
-> #define MA35D1_REG_PWM_CNTEN		0x20
-> #define MA35D1_REG_PWM_PERIOD(ch)	(0x30 + 4 * (ch))
-> #define MA35D1_REG_PWM_CMPDAT(ch)	(0x50 + 4 * (ch))
-> #define MA35D1_REG_PWM_WGCTL0		0xB0
-> #define MA35D1_REG_PWM_POLCTL		0xD4
-> #define MA35D1_REG_PWM_POEN		0xD8
->
-> To make up for the missing base, I'd create wrappers for readl and
-> writel à la:
->
-> 	static u32 nuvoton_pwm_readl(struct nuvoton_pwm *nvtpwm, unsigned int offset);
-> 	static void nuvoton_pwm_writel(struct nuvoton_pwm *nvtpwm, unsigned int offset, u32 value);
->
-> As you see I wouldn't use a define for 4, because IMHO that hurts
-> readability. But I don't feel strong here.
+ .../bindings/serial/nvidia,tegra264-utc.yaml  |  73 ++
+ drivers/tty/serial/Kconfig                    |  23 +
+ drivers/tty/serial/Makefile                   |   1 +
+ drivers/tty/serial/tegra-utc.c                | 634 ++++++++++++++++++
+ 4 files changed, 731 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/nvidia,tegra264-utc.yaml
+ create mode 100644 drivers/tty/serial/tegra-utc.c
 
-It really can let my driver more readable. Thanks.
-
-
->
->> +#define MA35D1_PWM_MAX_COUNT           0xFFFF
->> +#define MA35D1_PWM_TOTAL_CHANNELS      6
-> s/TOTAL/NUM/
-Okay, I will modify it in next version.
->> +
->> +struct nuvoton_pwm {
->> +	void __iomem *base;
->> +	u64 clkrate;
-> clk_get_rate() returns an unsigned long value. Please stick to that for
-> .clkrate as there is no use to double the size of this struct on 32-bit
-> platforms just to store zeros and padding.
-Okay, I will modify it in next version.
->> +};
->> +
->> +static inline struct nuvoton_pwm *to_nuvoton_pwm(struct pwm_chip *chip)
->> +{
->> +	return pwmchip_get_drvdata(chip);
->> +}
-> I slightly prefer nuvoton_pwm_from_chip() for this function's name to
-> have the same function prefix for all functions here.
-Okay, I will modify it in next version.
->> +
->> +static int nuvoton_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->> +			     const struct pwm_state *state)
->> +{
->> +	struct nuvoton_pwm *nvtpwm;
->> +	u32 ch = pwm->hwpwm;
->> +
->> +	nvtpwm = to_nuvoton_pwm(chip);
->> +	if (state->enabled) {
->> +		u64 duty_cycles, period_cycles;
->> +
->> +		/* Calculate the duty and period cycles */
->> +		duty_cycles = mul_u64_u64_div_u64(nvtpwm->clkrate,
->> +						  state->duty_cycle, NSEC_PER_SEC);
->> +		if (duty_cycles > MA35D1_PWM_MAX_COUNT)
->> +			duty_cycles = MA35D1_PWM_MAX_COUNT;
->> +
->> +		period_cycles = mul_u64_u64_div_u64(nvtpwm->clkrate,
->> +						    state->period, NSEC_PER_SEC);
->> +		if (period_cycles > MA35D1_PWM_MAX_COUNT)
->> +			period_cycles = MA35D1_PWM_MAX_COUNT;
->> +
->> +		/* Write the duty and period cycles to registers */
->> +		writel(duty_cycles, MA35D1_PWM_CMPDAT0_ADDR(nvtpwm->base, ch));
->> +		writel(period_cycles, MA35D1_PWM_PERIOD0_ADDR(nvtpwm->base, ch));
->> +		/* Enable counter */
->> +		writel(readl(MA35D1_PWM_CNTEN_ADDR(nvtpwm->base)) | BIT(ch),
->> +		       MA35D1_PWM_CNTEN_ADDR(nvtpwm->base));
->> +		/* Enable output */
->> +		writel(readl(MA35D1_PWM_POEN_ADDR(nvtpwm->base)) | BIT(ch),
->> +		       MA35D1_PWM_POEN_ADDR(nvtpwm->base));
-> Can this result in glitches? E.g. is it possible to see a waveform with
-> the old period_cycles but the new duty_cycles output? If you switch
-> polarity, do you see the new settings with the wrong polarity for some
-> time? Setup polarity before enabling the counter and output? Maybe only
-> enable the counter when the output is enabled to be sure to emit the
-> first edge with the correct timing?
-
-Yes, enable counter should be after the output is enabled. Will fix in 
-next version.
-
-
->> +	} else {
->> +		/* Disable counter */
->> +		writel(readl(MA35D1_PWM_CNTEN_ADDR(nvtpwm->base)) & ~BIT(ch),
->> +		       MA35D1_PWM_CNTEN_ADDR(nvtpwm->base));
->> +		/* Disable output */
->> +		writel(readl(MA35D1_PWM_POEN_ADDR(nvtpwm->base)) & ~BIT(ch),
->> +		       MA35D1_PWM_POEN_ADDR(nvtpwm->base));
-> Maybe add another wrapper for this kind of rmw operation. Also I suggest
-> to introduce a name for BIT(ch) here such that this can become:
->
-> 	nuvoton_pwm_rmw(nvtpwm, MA35D1_REG_PWM_POEN, MA35D1_REG_PWM_POEN_EN(ch), 0);
->
-> (Assuming "EN0" is the name of the bit for channel 0 in
-> MA35D1_REG_PWM_POEN.)
-Okay, I will modify it next version.
->> +	}
->> +
->> +	/* Set polarity state to register */
->> +	if (state->polarity == PWM_POLARITY_NORMAL)
->> +		writel(readl(MA35D1_PWM_POLCTL_ADDR(nvtpwm->base)) & ~BIT(ch),
->> +		       MA35D1_PWM_POLCTL_ADDR(nvtpwm->base));
->> +	else
->> +		writel(readl(MA35D1_PWM_POLCTL_ADDR(nvtpwm->base)) | BIT(ch),
->> +		       MA35D1_PWM_POLCTL_ADDR(nvtpwm->base));
-> You can skip setting up period if !state->enabled.
-Yes, it should be skip if !state->enabled.
->> +	return 0;
->> +}
->> +
->> [...]
->> +
->> +static int nuvoton_pwm_probe(struct platform_device *pdev)
->> +{
->> +	struct pwm_chip *chip;
->> +	struct nuvoton_pwm *nvtpwm;
->> +	struct clk *clk;
->> +	int ret;
->> +
->> +	chip = devm_pwmchip_alloc(&pdev->dev, MA35D1_PWM_TOTAL_CHANNELS, sizeof(*nvtpwm));
->> +	if (IS_ERR(chip))
->> +		return PTR_ERR(chip);
->> +
->> +	nvtpwm = to_nuvoton_pwm(chip);
->> +
->> +	nvtpwm->base = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(nvtpwm->base))
->> +		return PTR_ERR(nvtpwm->base);
->> +
->> +	clk = devm_clk_get_enabled(&pdev->dev, NULL);
->> +	if (IS_ERR(clk))
->> +		return dev_err_probe(&pdev->dev, PTR_ERR(clk), "unable to get the clock");
-> Please start all error messages with a capital letter and end them with
-> \n.
->
-> devm_clk_rate_exclusive_get(&pdev->dev, clk) here please.
-Okay, I will modify it in next version.
->> +
->> +	nvtpwm->clkrate = clk_get_rate(clk);
->> +	if (nvtpwm->clkrate > NSEC_PER_SEC)
->> +		return dev_err_probe(&pdev->dev, -EINVAL, "pwm clock out of range");
-> 	return dev_err_probe(&pdev->dev, -EINVAL, "PWM clock out of range (%lu)\n", nvtpwm->clkrate);
-Okay, I will modify it in next version.
->> +
->> +	chip->ops = &nuvoton_pwm_ops;
->> +	chip->atomic = true;
->> +
->> +	ret = devm_pwmchip_add(&pdev->dev, chip);
->> +	if (ret < 0)
->> +		return dev_err_probe(&pdev->dev, ret, "unable to add pwm chip");
->> +
->> +	return 0;
->> +}
-> Best regards
-> Uwe
-
-
-Thanks.
-
-Chi-Wen Weng
-
+-- 
+2.43.0
 
 
