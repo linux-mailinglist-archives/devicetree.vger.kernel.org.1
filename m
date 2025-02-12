@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-145626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63765A31E76
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 07:07:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D726A31EA1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 07:21:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E2893A647F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:07:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 158A73A9D1F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:20:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41C71FBC8B;
-	Wed, 12 Feb 2025 06:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE421FC7E3;
+	Wed, 12 Feb 2025 06:20:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W0K3Ek+C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XVXpk/Dg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7CF11CA9;
-	Wed, 12 Feb 2025 06:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254B61F0E55;
+	Wed, 12 Feb 2025 06:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739340428; cv=none; b=WVo2xzeV3cB9t1hyHlCk+1gRnqvn3bSe70Vs2vPz2dEsK31HCNpGvDZ1GjTtJlJhgFYF+2ZAPflcPkEE8n2O1rjUAB3OzpScK8dNW2XlyoM350JZtn5E0Q4aVxWWYqTRzKJuPgWzfCvSTSUIlCpQ9EB6fCtk/mG7aS73ttm7Cj0=
+	t=1739341213; cv=none; b=bX1IKrk3VpplZxzmuV9XtiSNnmncYTDZcvQBWJqv297VXwximQ/MLKOeWqNa/YZ/yc28WANg8JXs+i/5tAwXjqoYFB8oGsaz1AS6KrNOX41/A8DO0OA0xqlIp7fXyCBrkWAOvAaoCuAUvKBA2IJn03ifrMYcVbHSjWxBYXvegAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739340428; c=relaxed/simple;
-	bh=xnpMPHYKZyIUkTsXMPC0zqMwSDXIWAxIdusy5ZDRwJc=;
+	s=arc-20240116; t=1739341213; c=relaxed/simple;
+	bh=wbDldYyO3Krmi8fOY3r5irpwmx7oocImb77NHiathKU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nR80AWetVE5D1i+fTxH/pR4VNw3EE1u8MvvN9QtWjM4Cv+prrS8f4Wa5bn4W1xEpcMWVB3cjigDnYyw6sGAKOoCO0DUgo3YD1BditdJW3ToCj+E2Z7xbQp8NQ3TM+Yj6zILb+IWJLPIWhVKl8JVXK7Gwwq5Pdt/Zhl9YI25+b0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W0K3Ek+C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C914C4CEDF;
-	Wed, 12 Feb 2025 06:06:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jnb2A8KqC/sLWkUZ7uFAFoHqwvHzmmgRAAnTShY5ug9YOs/riNFuNCF7NtOnO4vFSqIEqCBFN/3/ZSCZsksEjW+GSEmTOFiSfZEggeal5jwe6nGYTZ7NKMch9OVenXMltN8xT6FYO2+0MGLmG1duq+ANr3BiQAMW0QAEXQDHFzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XVXpk/Dg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A88CFC4CEDF;
+	Wed, 12 Feb 2025 06:20:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739340428;
-	bh=xnpMPHYKZyIUkTsXMPC0zqMwSDXIWAxIdusy5ZDRwJc=;
+	s=k20201202; t=1739341212;
+	bh=wbDldYyO3Krmi8fOY3r5irpwmx7oocImb77NHiathKU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=W0K3Ek+CuhdtAjyOvAbbcydSnrG2zp1DflRdPjYFIRzXeEIDJwoAs9UUwOjN1RMV2
-	 KfFqS1LedukoTcMtdmNALtUlA0VLBdwA+dm4HseGyjz/p3n/D4/fKY0apKs+eG5jKW
-	 49B2i+ZewMoA1XDsBZEsYj+eCVyfMdjhDyr6cLCIziZchsLA/NFwYJqN9Uyb8Tvnsp
-	 wEj0Zc5LHq6zjcs+bjoJACvWZ3+Y64905TsWXeqyPmKAx4xBkL7c7lwj/zdyzLa6Xr
-	 4HirepD+r+1mbNUmm+ZEZw/kXDQUykGu2HNpVrJkW3a/h0qpM4UPjlBHVlZfdBiWU/
-	 MVnIvFF+DnleQ==
-Message-ID: <9a61e73d-29d1-4189-89eb-1299b8934af9@kernel.org>
-Date: Wed, 12 Feb 2025 07:06:56 +0100
+	b=XVXpk/DgCwaNVCGDEZVAiGW6rDtf8SH+KZOwpopORY23oSAi8lG06HP19CSNKYyW0
+	 44K664T75rH/rSQ7R1IVgSA5OTyljYnuju/Wq+qDtFNIQaC4L5mnubg7JGp1cQYpF6
+	 kJWJdST8/YY7TAHhrwyBQKM6SdxNFcXTXKiCEzHkdQF4+hQBuEJR3Cn6TaIrnMzZo6
+	 i+msqotNM79mD04/hMypkfzMCl2W5qo6tCGy7gVA4PLlrbjyhKN3bAtUau2zYof/FZ
+	 AnT+rDoBFlb3ICd5b50aHY8eVLqFWz5gaMAfIW/LcWPaXkCCKB2aJyWzURFASlPKZ+
+	 mJhrkJGN70GEg==
+Message-ID: <50f8e238-c9f5-4af2-adec-deee98dbb5e4@kernel.org>
+Date: Wed, 12 Feb 2025 07:19:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,33 +50,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 1/5] dt-bindings: thermal: Add MBG thermal monitor
- support
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
- Stephen Boyd <sboyd@kernel.org>, Amit Kucheria <amitk@kernel.org>,
- Thara Gopinath <thara.gopinath@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey
- <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>,
- Taniya Das <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>,
- quic_kamalw@quicinc.com, quic_jprakash@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+Subject: Re: [PATCH RESEND 5/7] mfd: cs40l26: Add support for CS40L26 core
+ driver
+To: Fred Treven <ftreven@opensource.cirrus.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Simon Trimmer <simont@opensource.cirrus.com>,
+ Charles Keepax <ckeepax@opensource.cirrus.com>,
+ Richard Fitzgerald <rf@opensource.cirrus.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ James Ogletree <jogletre@opensource.cirrus.com>,
+ Ben Bright <ben.bright@cirrus.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, David Rhodes <david.rhodes@cirrus.com>,
+ Jeff LaBundy <jeff@labundy.com>, Heiko Stuebner <heiko@sntech.de>,
+ Karel Balej <balejk@matfyz.cz>, Igor Prusov <ivprusov@salutedevices.com>,
+ Jack Yu <jack.yu@realtek.com>, Weidong Wang <wangweidong.a@awinic.com>,
+ Binbin Zhou <zhoubinbin@loongson.cn>,
+ Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
+ Paul Handrigan <paulha@opensource.cirrus.com>,
+ Masahiro Yamada <masahiroy@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20241212-mbg-v2-support-v2-0-3249a4339b6e@quicinc.com>
- <20241212-mbg-v2-support-v2-1-3249a4339b6e@quicinc.com>
- <ojukpywkhu72cimujmijzidf26654g5vkjaj477imcf4suz2o6@cmow62jcqsfz>
- <7a5db383-914c-4c1e-846e-5d68cc6a7765@quicinc.com>
- <fcd718be-fe8a-466f-bd2b-7b75d5f8dd6c@kernel.org>
- <c85903c6-6a89-4382-bfa2-2fed95f0cbc0@kernel.org>
- <sybrfmrpegq7fcqykgsfhm56wjyx5vp6zafqw2d73tiral64aw@hg4di55fzdle>
+ linux-input@vger.kernel.org, linux-sound@vger.kernel.org
+References: <20250204231835.2000457-1-ftreven@opensource.cirrus.com>
+ <20250204231835.2000457-6-ftreven@opensource.cirrus.com>
+ <4e5f0194-22bc-4e17-85f4-6dbc145a936b@kernel.org>
+ <3bff0ff8-7397-414d-a701-011d5b5a41f4@opensource.cirrus.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -122,57 +122,173 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <sybrfmrpegq7fcqykgsfhm56wjyx5vp6zafqw2d73tiral64aw@hg4di55fzdle>
+In-Reply-To: <3bff0ff8-7397-414d-a701-011d5b5a41f4@opensource.cirrus.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/02/2025 00:57, Dmitry Baryshkov wrote:
-> On Tue, Feb 11, 2025 at 12:50:12PM +0100, Krzysztof Kozlowski wrote:
->> On 11/02/2025 12:46, Krzysztof Kozlowski wrote:
->>> On 11/02/2025 12:15, Satya Priya Kakitapalli wrote:
->>>>
->>>> On 12/13/2024 2:08 PM, Krzysztof Kozlowski wrote:
->>>>> On Thu, Dec 12, 2024 at 09:41:20PM +0530, Satya Priya Kakitapalli wrote:
->>>>>> +
->>>>>> +required:
->>>>>> +  - compatible
->>>>>> +  - reg
->>>>>> +  - interrupts
->>>>>> +  - io-channels
->>>>>> +  - io-channel-names
->>>>> Binding looks ok, but this wasn't tested due to unneeded dependency.
->>>>> Please decouple from dependency, so automation can properly test it.
->>>>
->>>>
->>>> The dependency is needed because this mbg peripheral is present on only 
->>>> targets which have GEN3 ADC5, for which the bindings support is added in 
->>>> the series [1]
->>>>
->>>>
->>>> [1] 
->>>> https://lore.kernel.org/linux-arm-msm/c4ca0a4c-e421-4cf6-b073-8e9019400f4c@quicinc.com/
->>>
->>> Sure. Then this cannot be merged due to resulting test failure.
->>>
->>> Please don't post new versions before this can be actually tested and
->>> applied.
+On 11/02/2025 22:16, Fred Treven wrote:
 >>
->> Heh, you responded *after two months*, to an old email so even previous
->> discussion is gone from my inbox.
+>>> +	if (!val)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	for (i = 0; i < len_words; i++)
+>>> +		val[i] = cpu_to_be32(buf[i]);
+>>> +
+>>> +	ret = cs_dsp_coeff_write_ctrl(ctl, offset_words, val, len_words * sizeof(u32));
+>>> +	if (ret < 0)
+>>> +		dev_err(dsp->dev, "Failed to write FW control %s\n", name);
+>>> +
+>>> +	kfree(val);
+>>> +
+>>> +	return (ret < 0) ? ret : 0;
+>>> +}
+>>> +
+>>> +inline int cs40l26_fw_write(struct cs_dsp *dsp, const char *const name, const unsigned int algo_id,
+>>> +			    u32 val)
+>>> +{
+>>> +	return cs40l26_fw_write_raw(dsp, name, algo_id, 0, 1, &val);
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(cs40l26_fw_write);
+>>> +
+>>> +static int cs40l26_fw_read_raw(struct cs_dsp *dsp, const char *const name,
+>>> +			       const unsigned int algo_id, const unsigned int offset_words,
+>>> +			       const size_t len_words, u32 *buf)
+>>> +{
+>>> +	struct cs_dsp_coeff_ctl *ctl;
+>>> +	int i, ret;
+>>> +
+>>> +	ctl = cs_dsp_get_ctl(dsp, name, WMFW_ADSP2_XM, algo_id);
+>>> +	if (!ctl) {
+>>> +		dev_err(dsp->dev, "Failed to find FW control %s\n", name);
+>>> +		return -EINVAL;
+>>> +	}
+>>> +
+>>> +	ret = cs_dsp_coeff_read_ctrl(ctl, offset_words, buf, len_words * sizeof(u32));
+>>> +	if (ret) {
+>>> +		dev_err(dsp->dev, "Failed to read FW control %s\n", name);
+>>> +		return ret;
+>>> +	}
+>>> +
+>>> +	for (i = 0; i < len_words; i++)
+>>> +		buf[i] = be32_to_cpu(buf[i]);
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +inline int cs40l26_fw_read(struct cs_dsp *dsp, const char *const name, const unsigned int algo_id,
+>>
+>> All your exported functions should have kerneldoc.
 > 
-> Are you responding to your own email?
+> I'm happy to add this, but I don't know where this directive comes from.
+> Could you share where in the kernel style guide (or elsewhere) this is stated?
+> There are also hundreds of examples in MFD in which exported functions
+> do not have kerneldoc which is why I'm curious.
 
-Look at the timeline of these emails. Satya responded after two months
-with some comment. I responded now. Then I noticed that it is talk about
-something two months old, so I responded again. Two responses from me,
-that's correct.
 
-I recently got way too many such 2-month old clarifications.
+You are not looking hard enough. It's explicitly mentioned in kernel doc
+documentation.
 
-That's indeed right of the contributor to respond in their own pace, I
-am also sometimes slow, but really there should be some limit. It's
-putting unnecessary burden on reviewers as now I should dig some old
-discussion.
+> 
+>>
+>>> +			   u32 *buf)
+>>> +{
+>>> +	return cs40l26_fw_read_raw(dsp, name, algo_id, 0, 1, buf);
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(cs40l26_fw_read);
+>>> +
+>>> +static struct cs40l26_irq *cs40l26_get_irq(struct cs40l26 *cs40l26, const int num, const int bit);
+>>> +
+>>> +static int cs40l26_gpio1_rise_irq(void *data)
+>>> +{
+>>> +	struct cs40l26 *cs40l26 = data;
+>>> +
+>>> +	if (cs40l26->wksrc_sts & CS40L26_WKSRC_STS_EN)
+>>> +		dev_dbg(cs40l26->dev, "GPIO1 Rising Edge Detected\n");
+>>> +
+>>> +	cs40l26->wksrc_sts |= CS40L26_WKSRC_STS_EN;
+>>> +
+>>> +	return 0;
+>>> +}
+>>
+>>
+>> ...
+>>
+>>> +err:
+>>> +	dev_err(cs40l26->dev, "Invalid revision 0x%02X for device 0x%06X\n", cs40l26->revid,
+>>> +		cs40l26->devid);
+>>> +	return -EINVAL;
+>>> +}
+>>> +
+>>> +int cs40l26_set_pll_loop(struct cs40l26 *cs40l26, const u32 pll_loop)
+>>> +{
+>>> +	int i;
+>>> +
+>>> +	/* Retry in case DSP is hibernating */
+>>> +	for (i = 0; i < CS40L26_PLL_NUM_SET_ATTEMPTS; i++) {
+>>> +		if (!regmap_update_bits(cs40l26->regmap, CS40L26_REFCLK_INPUT,
+>>> +					CS40L26_PLL_REFCLK_LOOP_MASK,
+>>> +					pll_loop << CS40L26_PLL_REFCLK_LOOP_SHIFT))
+>>> +			break;
+>>> +	}
+>>> +
+>>> +	if (i == CS40L26_PLL_NUM_SET_ATTEMPTS) {
+>>> +		dev_err(cs40l26->dev, "Failed to configure PLL\n");
+>>> +		return -ETIMEDOUT;
+>>> +	}
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(cs40l26_set_pll_loop);
+>>> +
+>>
+>> This looks way past simple MFD driver. Not only this - entire file. You
+>> configure there quite a lot and for example setting PLLs is not job for
+>> MFD. This should be placed in appropriate subsystem.
+>>
+> I disagree here because the configuration being done in this file
+> is essential to the core operation of the part. For instance,
+> setting the PLL to open-loop here is required to prevent any
+> external interference (e.g. GPIO events) from interrupting
+> the part while loading firmware.
+> 
+> The other hardware configuration being done here is required for
+> both the Input and ASoC operations of the part.
+> 
+> Lastly, these need to be done in order and independently of which
+> child driver (ASoC or input) the user adds. If this is moved
+> to cs40l26-vibra.c (the input driver), for instance,
+> and that module is then not added, it will disturb the
+> required setup for use by the ASoC driver.
+> 
+> I would really like to get Lee's opinion here because it does not
+> make sense to me why this is inappropriate when the configuration
+> done in the core MFD driver is required for use by all of its
+> children.
+
+Sure.
+
+...
+
+> 
+> 
+>>
+>>> +	{}
+>>> +};
+>>> +MODULE_DEVICE_TABLE(spi, cs40l26_id_spi);
+>>> +
+>>> +static const struct of_device_id cs40l26_of_match[] = {
+>>> +	{ .compatible = "cirrus,cs40l26a" },
+>>> +	{ .compatible = "cirrus,cs40l27b" },
+>>
+>> So devices are compatible? Or rather this is unsynced with other ID table.
+> I'm not sure what you mean by this.
+
+
+Lack of driver data means devices are compatible or some sort of other
+problem (e.g. ID tables not being in sync, because they are supposed to
+be always in sync). Choose, but it is almost never correct. Either
+correct the issue or mention why exception is justified.
+
 Best regards,
 Krzysztof
 
