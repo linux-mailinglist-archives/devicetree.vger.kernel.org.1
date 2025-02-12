@@ -1,230 +1,143 @@
-Return-Path: <devicetree+bounces-145903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C15BA32C3F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:47:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B182A32C54
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:49:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89081164C96
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:47:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF96F3AA5F2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6911321D59F;
-	Wed, 12 Feb 2025 16:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 011AE2505C2;
+	Wed, 12 Feb 2025 16:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QOR6ZRFg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QuDu2vOC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7DE4253B6A;
-	Wed, 12 Feb 2025 16:47:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE7721D59F;
+	Wed, 12 Feb 2025 16:49:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739378825; cv=none; b=M+8tC/xkFndVpLb6Sl1gfTZ/fTIeC+u6ZklaCQla8Gm7bV2AD40SGIUi2yGNGkFEzYxCDhxGezYA2DA1s+xKsZ3/5v9nJw6pJXC+VWYg2xQhnhdGNRBf/wU2ddqA6oKEsyh1SapErKGnkepWP87wX8yTb0bleiF8t1jDF6D+Y5k=
+	t=1739378972; cv=none; b=Xh2PB3XTc1Biu5IOawWh/FRcaZd5QClzwKasyI8SUk7lRpFyZSbz5EowdZ3Won7KfD7X05Ko2PFtXNoXA4iuC5E6h5KbmDzcVscrWSDIbJR+pW6IxXFn5chWxMe0z6zTAGYeQHDUtSsjC47WjZNuclDX4IsnKDA+B0tQUB6c63o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739378825; c=relaxed/simple;
-	bh=AxbqplLjvLiGIpCkppb7rOx2QEyb+sThces8qpsbMCE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aixR4Tbrj1LT2wPHfifV+WiXTdkm1/MVRCCyP5XPPupmhkfUis4oewY0jHgD64E0xoSudFZFDFSu45c2OB1+ESUBbp1P5YV/YKxtgZnqZE1vtCN8DpkliFDluaafMSrQ6pVqyd82hOiLmIRJfReB4sPOs3rEg+nTRErUwzMv2ag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QOR6ZRFg; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-220ca204d04so7247585ad.0;
-        Wed, 12 Feb 2025 08:47:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739378823; x=1739983623; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mDVzRfCwBh1mYoJ2qxS4TbDOigyo6o/RrhqIM36xUOA=;
-        b=QOR6ZRFgo6vlCX5RBNbwEQQMhH71HFFV5dlQGwtwqDl6Pko14Eq3XEksR/n7Fp9IXt
-         TjOxq4tBhyyFUrp1vZH7gR7YkDOm//WA2UVJm2Fk9QjqCSII27sX+bCoLtSrBd27xCm8
-         q2zkyFQaVTFvFXzxuOaQEnZSlGbgHBFx6VmERg0GrlSPO2+3+CuIZGGxoGCjA4U5dZeP
-         eTkAEV7emvEn/OxxoiRiemod6BtCm/ovmwLhVR4k93CtSw5PhMuhxA9hPgYewW9ZJFhJ
-         2BtBSu812FgEBZMncskEIbxhCp0vOi/gj5prupoPfXwQzflCoCSQrCeUad0VtTFJ+Pzt
-         dN2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739378823; x=1739983623;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mDVzRfCwBh1mYoJ2qxS4TbDOigyo6o/RrhqIM36xUOA=;
-        b=nP6hAfZMxAG6wAGQI3oawO0TEaOOM1IYiMIDv1WNXWCkBvd+S9cJnEH1kximcqfRp5
-         HygZCq91pfZC4K+5E710LVehXeaHRHyu1kw13qGkyOtCN6Z2vDbEyPOc/D33Bn9wjFz7
-         BYNH8tXXfamOwvaQEL0oWcraRUYBDy4sBHyCLqqXI8PK914zdHnkNi5Ymdzuh1HNn1fy
-         CHHD3Sr5YeP6UwUlNNqg4OpFwB0mR9hoX9deRyw5lXgLx9B/prDEmGWKjBNGD0t24BSR
-         TUU+kKyjrdJRbd99VZBPVGtBdw3QDLZvwE8LQlrrc/iSkCtqhpXnFUsraSnvzb6FJ+iv
-         VZcA==
-X-Forwarded-Encrypted: i=1; AJvYcCVDkZ1r8bvoM/uOZmcWyUeD48xmLyNyrigaKGjvcaWe13ZO/G2QDM1KwJNod3ijkSLu+YWZKJYAtIPo@vger.kernel.org, AJvYcCVXdzGL9UeMFwhRKxjbWM9kiQ9LhiM2GiAaHCu7xbdVBf/jwOK8Y107c0qrmu7/zjlT7O4NjV9QAjo4G8pt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0Y6yQgV701WAPbGm1wMIU2HyhdhkxnTZvx2FDido9pffvSjF2
-	yxn/q3bga/D+O1ev6lPym3O+UGj1GyKIc9/wmxlCPZGHVYO4DzWJ
-X-Gm-Gg: ASbGncvFRHZPaBHX5pf5b5RvFewoA/RNumTHGZ0vVlF7FX+bvyO2E8sXFsno3LfR3se
-	NBpFN4xHXLAsAQZquZ8X76PaoAqtqu65Uh526GXkKEU8d1FZUjoOTqXSk4/Fscm+Cm4PXTz4KX8
-	UO9m0g4sq2/b2/gqU1LR2fs1UiQ+YQT1S5a5p0WQjv4ShKZA45HDP0gYmVvAz45UEYuYtjrkxog
-	bjq9GcrXhkXbU5tqjRdEePH8d7rmEHd3dHUjdLn2UAzg5+XpbFIovxYU3R6Mb+xxY8hkeeLHRWF
-	1S9EzHRzg5KpUZqqCEGf0FniZ5u0oYm8AvJ1mQlkGw==
-X-Google-Smtp-Source: AGHT+IE2CcZuyc9ctvMGoGdHrpg/H7Hpn/fcbaXpofrnJbeOrrvyTTBnIkCgcIZwnR0ssBQq5iBTIQ==
-X-Received: by 2002:a05:6a21:81:b0:1ee:6032:b1e8 with SMTP id adf61e73a8af0-1ee6032be02mr4157409637.18.1739378822875;
-        Wed, 12 Feb 2025 08:47:02 -0800 (PST)
-Received: from jamesmacinnes-VirtualBox ([66.119.214.127])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7307d1e80e5sm7467266b3a.15.2025.02.12.08.47.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 08:47:02 -0800 (PST)
-Date: Wed, 12 Feb 2025 08:46:59 -0800
-From: "James A. MacInnes" <james.a.macinnes@gmail.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- quic_wcheng@quicinc.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org
-Subject: Re: [PATCH 2/3] regulator: qcom_usb_vbus: Add support for PMI8998
- VBUS
-Message-ID: <20250212084659.572c0408@jamesmacinnes-VirtualBox>
-In-Reply-To: <f4a15f6d-1c2c-484b-9a81-6e5e138b3fdb@oss.qualcomm.com>
-References: <20250212010744.2554574-1-james.a.macinnes@gmail.com>
-	<20250212010744.2554574-3-james.a.macinnes@gmail.com>
-	<f4a15f6d-1c2c-484b-9a81-6e5e138b3fdb@oss.qualcomm.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1739378972; c=relaxed/simple;
+	bh=oiJ709oCpEPB9kcfZlrUorygYDxTbmj70Ft/9Pu06Z4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tnzIOnl4SSU1ZyxR4sGibcBPvNUMBW8V0vW5WmVAYH6e9eG1OaDH4lydieYv3oF0DW7uN3StnqZEv/tHXy6LVRruk2dIlckvftLaMnTiuPvz2ifKtv5WB9Nll3Y7BZ63IGV7vcYz9F2CjjUal0p/g+BQgV5Jx+rtLpb1q5Rk1m0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QuDu2vOC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63EE0C4CEE4;
+	Wed, 12 Feb 2025 16:49:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739378972;
+	bh=oiJ709oCpEPB9kcfZlrUorygYDxTbmj70Ft/9Pu06Z4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QuDu2vOCN8Og5PDN/o0qAWPIh5IehilQX3JPmZt/P8XUJRPwGzvG+wjStZngVMTSl
+	 umJEapzok9F3kB/cWAINOokS19IEqdZ4VAMW+lNASxIi7ZUkpsLkeBLpNfqIHQxwqr
+	 jQOsehRMEzKaQrXoacpV+ZncoACURmd0QTSZp+DIg6Nj+Op885ekt/X8EPckXWixSc
+	 V6p6FdIg12DzZ+hj4JL4SLyMpEwjHjaPwaqKSn+sf6iXvSk/MwbjPY3G7SCekrUnaM
+	 ccYZMeeb0OzvEj7ot1bPk/SWo+j2NO6fbcdgKASSH4bgl0a+Y+aAF78eGlKcDbSufA
+	 jQjkJDPK0NyKA==
+Message-ID: <822d6dca-b2c6-4439-ade5-219620ebc435@kernel.org>
+Date: Wed, 12 Feb 2025 17:49:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
+To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
+ linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
+ alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org
+Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com,
+ shashank.rebbapragada@nxp.com, Frank.Li@nxp.com
+References: <20250212132227.1348374-1-aman.kumarpandey@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250212132227.1348374-1-aman.kumarpandey@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Wed, 12 Feb 2025 13:55:59 +0100
-Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
-
-> On 12.02.2025 2:07 AM, James A. MacInnes wrote:
-> > This patch extends the Qualcomm USB VBUS regulator driver to support
-> > PMI8998 PMIC alongside the existing support for PM8150B.
-> > 
-> > Key changes:
-> > - Added current limit tables specific to PMI8998.
-> > - Dynamically configure the VBUS regulator based on the PMIC type.
-> > - Updated debug messages to reflect successful initialization for
-> >   supported PMICs.
-> > - Changed registration log message
-> > 
-> > These changes ensure proper VBUS current limit configuration and
-> > compatibility across multiple Qualcomm PMICs.
-> > 
-> > Signed-off-by: James A. MacInnes <james.a.macinnes@gmail.com>
-> > ---
-> >  drivers/regulator/qcom_usb_vbus-regulator.c | 38
-> > ++++++++++++++++++--- 1 file changed, 33 insertions(+), 5
-> > deletions(-)
-> > 
-> > diff --git a/drivers/regulator/qcom_usb_vbus-regulator.c
-> > b/drivers/regulator/qcom_usb_vbus-regulator.c index
-> > cd94ed67621f..804dd1a9e057 100644 ---
-> > a/drivers/regulator/qcom_usb_vbus-regulator.c +++
-> > b/drivers/regulator/qcom_usb_vbus-regulator.c @@ -20,10 +20,30 @@
-> >  #define OTG_CFG				0x53
-> >  #define OTG_EN_SRC_CFG			BIT(1)
-> >  
-> > -static const unsigned int curr_table[] = {
-> > +struct msm_vbus_desc {
-> > +	const unsigned int *curr_table;
-> > +	unsigned int n_current_limits;
-> > +};
-> > +
-> > +static const unsigned int curr_table_pm8150b[] = {
-> >  	500000, 1000000, 1500000, 2000000, 2500000, 3000000,
-> >  };
-> >  
-> > +static const unsigned int curr_table_pmi8998[] = {
-> > +	250000, 500000, 750000, 1000000,
-> > +	1250000, 1500000, 1750000, 2000000,
-> > +};  
+On 12/02/2025 14:22, Aman Kumar Pandey wrote:
+> P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841) is multiport I3C hub
+> device which connects to a host CPU via I3C/I2C/SMBus bus on one
+> side and to multiple peripheral devices on the other side.
 > 
-> To the best of my understanding these numbers are correct
+> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+> Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
+> ---
+>  .../bindings/i3c/p3h2x4x_i3c_hub.yaml         | 404 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 411 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml b/Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml
+> new file mode 100644
+> index 000000000000..33ea524e5432
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml
 
-Hopefully it is all correct. I pulled the numbers from the datasheet,
-but they are known to lie.
+Nothing here looks like being even close to existing coding style. Look
+how other files are written, including file naming, blank lines, style
+of properties and entire layout.
 
-> > +
-> > +static const struct msm_vbus_desc msm_vbus_desc_pm8150b = {
-> > +	.curr_table = curr_table_pm8150b,
-> > +	.n_current_limits = ARRAY_SIZE(curr_table_pm8150b),
-> > +};
-> > +
-> > +static const struct msm_vbus_desc msm_vbus_desc_pmi8998 = {
-> > +	.curr_table = curr_table_pmi8998,
-> > +	.n_current_limits = ARRAY_SIZE(curr_table_pmi8998),
-> > +};
-> > +
-> >  static const struct regulator_ops qcom_usb_vbus_reg_ops = {
-> >  	.enable = regulator_enable_regmap,
-> >  	.disable = regulator_disable_regmap,
-> > @@ -37,8 +57,6 @@ static struct regulator_desc qcom_usb_vbus_rdesc
-> > = { .ops = &qcom_usb_vbus_reg_ops,
-> >  	.owner = THIS_MODULE,
-> >  	.type = REGULATOR_VOLTAGE,
-> > -	.curr_table = curr_table,
-> > -	.n_current_limits = ARRAY_SIZE(curr_table),
-> >  };
-> >  
-> >  static int qcom_usb_vbus_regulator_probe(struct platform_device
-> > *pdev) @@ -48,6 +66,7 @@ static int
-> > qcom_usb_vbus_regulator_probe(struct platform_device *pdev) struct
-> > regmap *regmap; struct regulator_config config = { };
-> >  	struct regulator_init_data *init_data;
-> > +	const struct msm_vbus_desc *quirks;  
-> 
-> 'quirks' is one way to put it ;) I'd call it 'desc' or 'data' but it's
-> totally a potayto/potahto discussion
-> 
+Your current code is not only unreadable but also incorrect. But due to
+unreadability, I won't waste time to review.
 
-Is there a reasonable name for that? I suspect that later chips may add
-more to the structure. I am happy to change it as there is at least one
-more revision for this series.
+You should have make internal review of all this.
 
-> >  	int ret;
-> >  	u32 base;
-> >  
-> > @@ -68,6 +87,12 @@ static int qcom_usb_vbus_regulator_probe(struct
-> > platform_device *pdev) if (!init_data)
-> >  		return -ENOMEM;
-> >  
-> > +	quirks = of_device_get_match_data(dev);
-> > +	if (!quirks)
-> > +		return -ENODEV;
-> > +
-> > +	qcom_usb_vbus_rdesc.curr_table = quirks->curr_table;
-> > +	qcom_usb_vbus_rdesc.n_current_limits =
-> > quirks->n_current_limits; qcom_usb_vbus_rdesc.enable_reg = base +
-> > CMD_OTG; qcom_usb_vbus_rdesc.enable_mask = OTG_EN;
-> >  	qcom_usb_vbus_rdesc.csel_reg = base +
-> > OTG_CURRENT_LIMIT_CFG; @@ -80,18 +105,21 @@ static int
-> > qcom_usb_vbus_regulator_probe(struct platform_device *pdev) rdev =
-> > devm_regulator_register(dev, &qcom_usb_vbus_rdesc, &config); if
-> > (IS_ERR(rdev)) { ret = PTR_ERR(rdev);
-> > -		dev_err(dev, "not able to register vbus reg %d\n",
-> > ret);
-> > +		dev_err(dev, "Failed to register vbus reg %d\n",
-> > ret); return ret;
-> >  	}
-> >  
-> >  	/* Disable HW logic for VBUS enable */
-> >  	regmap_update_bits(regmap, base + OTG_CFG, OTG_EN_SRC_CFG,
-> > 0); 
-> > +	dev_dbg(dev, "Registered QCOM VBUS regulator\n");  
-> 
-> Not sure how useful this is given the previous call creates a sysfs
-> entry on success, but sure
-> 
-> Konrad
+>  L:	linux-hwmon@vger.kernel.org
 
-I like having a "I'm here" message so I can see when something is
-loaded and to know where in the boot log it happened. Happy to remove it
-if that is the standard.
 
-James
-
+Best regards,
+Krzysztof
 
