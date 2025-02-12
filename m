@@ -1,230 +1,120 @@
-Return-Path: <devicetree+bounces-145892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C7AA32B6F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:21:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33203A32B58
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 17:18:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C82F1886975
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:21:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDF4518830AB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 16:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29898215050;
-	Wed, 12 Feb 2025 16:21:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90290211A02;
+	Wed, 12 Feb 2025 16:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="5Ob/TXI0"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dAG8SAQl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FFAB1D516D;
-	Wed, 12 Feb 2025 16:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8CF20E33A;
+	Wed, 12 Feb 2025 16:18:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739377287; cv=none; b=U7CXIa7k0Kb3pa34Ct3IDeWFbzyrdmR/ikCq9PcR44m2e2K8IkLz0vddTbWri+o09FvANwKJOsThFP+HKvlAvLT6VCU5mRqFLhEJtrV1HsKi0kNoXJwSAX3/kRJPLDBv09wKg1IjLxRPJ3YD2ymml3sSpesoqxQMdSvmw2LJdU0=
+	t=1739377124; cv=none; b=nmYI3F5UYgQ+OrkPzY6gDpbwGdkjJNsLdUyxg/bz3BT/rY/MiUvdb5C6iL4II+NHd+PhONHrtvoWsQtjHesdAAOht1TjUv53lbPNhVf8RMjM3hsDlh6+C3ubAjJXHq73kJHutKYnpY5ekOZGSECMlU5GvqZgO14+oUpvNVGhoPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739377287; c=relaxed/simple;
-	bh=ehFeDn/3VvJ97Jmqnn9U6OpDBOcu9jIyMMyB5Z3r7f0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tFz8b/GOy3DZ4xigBKFk7+rK0ExHC0iaG9QXjozqCA6c2wjdckZTZMjkbUayUvCscSZK2ULYQZQvl2IYHfksm+ucGUAJ6dqtzMD5Fq8yuaxuJOQYTWcBpDd0kWQDSy+tn+v/Gu0pg8hvekPw6cUiII3JA8AiSuH4VWpkC65wY9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=5Ob/TXI0; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51CEa3AK022172;
-	Wed, 12 Feb 2025 17:20:54 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	sa7ZmXyMmD7WcyKboADT8XwFx6T5S7FVc7f0sxyt4WM=; b=5Ob/TXI07szMEjQ9
-	13+9jqgYT94rSOsgLS0jiUmB4CtlsdR53GUayWFFeCIfc6+7EVtWFRI76E+9bB08
-	ZNsS/pimmI7ucJQjBh/GfqvRXJD1tLAhb+INylLuw+Y2TdsvR7RlEKNFEZ99j9Uk
-	vfjG9cP7Ew3eK01SJuqcZUNqa8cCLOT2zMK7JoQ+VjXaD1MCIT1QvhKBhWhczAuJ
-	g0jcLw84oV22ZcdcvyraG0QPcusClbKqveJSNRthw3RhXKIuOmiPFTbcViT85QOI
-	ir4a4ST7WIljKj1OwORrLCBfmMMmJMU4W998qPc8QgQ2zTx6z+CEPOODjuMm10w9
-	sK9sMA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44p0q01s2r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Feb 2025 17:20:54 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id E62D740044;
-	Wed, 12 Feb 2025 17:19:36 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A05732BE712;
-	Wed, 12 Feb 2025 17:18:31 +0100 (CET)
-Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 12 Feb
- 2025 17:18:30 +0100
-Message-ID: <f56ae1b6-657a-4809-b95c-e318462d4270@foss.st.com>
-Date: Wed, 12 Feb 2025 17:18:30 +0100
+	s=arc-20240116; t=1739377124; c=relaxed/simple;
+	bh=JSBE115N7U9CMQpZg6ZPZBsdfvFaB3/geDg7qbYTHHU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=nEyoqaRcM6rpkIxWOk9kaaljPZwFvuAx6y/mhsg8dVREVAxVtwiBnhPhK1fqWPa1bq8abvuHuNBcyULF/1vY1LSOPWFeBySRYgg/e4gR7TPX1hx93DLlVm4KlhdESX1GTS+I/u2lmMH8S/2gL05u4kJ0vTwGKs39ZOW+msVDP1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dAG8SAQl; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0A62C44419;
+	Wed, 12 Feb 2025 16:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739377120;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JSBE115N7U9CMQpZg6ZPZBsdfvFaB3/geDg7qbYTHHU=;
+	b=dAG8SAQlqiIZbfuzzhstCGWm+L9Dbfjcybrs1hu50NYmrj612zYGM9rM5S5H96pxSREXPg
+	aWhS4n4Na7gekB6QW63VfnQAnw20W+bGhF6YqRDN1jMnRJT/UkoJCLgPXf9uTYxu9k+Jai
+	n1rDqsCTv3cezCmSeWCZnmIpYmoKkjSWA/MSPrdKFkBAbdWkmIupX1Im/7yEbkiSdCmH+I
+	5U9tcUTaBUqiz66eFrreUccik+VM7a5gw+fWK3F3jvrg0+J9UoRsEn4bpSLqvT0aXdKLPW
+	dPjeh9XAwQtdUT9oRHVsVqmtJSsq4fj/tAWeN7wseNLGmTCwNv4dF9Y7X6c4ag==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,  richard@nod.at,
+  vigneshr@ti.com,  krzk+dt@kernel.org,  conor+dt@kernel.org,
+  linux-mtd@lists.infradead.org,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  git@amd.com,  amitrkcian2002@gmail.com
+Subject: Re: [PATCH v12 1/3] dt-bindings: mtd: Describe MTD partitions
+ concatenation
+In-Reply-To: <20250212160659.GA3883406-robh@kernel.org> (Rob Herring's message
+	of "Wed, 12 Feb 2025 10:06:59 -0600")
+References: <20250205133730.273985-1-amit.kumar-mahapatra@amd.com>
+	<20250205133730.273985-2-amit.kumar-mahapatra@amd.com>
+	<20250211212928.GA1188800-robh@kernel.org>
+	<87r043r2lq.fsf@bootlin.com>
+	<20250212160659.GA3883406-robh@kernel.org>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Wed, 12 Feb 2025 17:18:39 +0100
+Message-ID: <874j0zqgps.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/8] memory: Add STM32 Octo Memory Manager driver
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-CC: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <christophe.kerello@foss.st.com>
-References: <20250210131826.220318-1-patrice.chotard@foss.st.com>
- <20250210131826.220318-5-patrice.chotard@foss.st.com>
- <CAMuHMdVkFym-3byZkszsi9tRoZ6zNOMCT79c2EgQQjn5xd19ig@mail.gmail.com>
-Content-Language: en-US
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <CAMuHMdVkFym-3byZkszsi9tRoZ6zNOMCT79c2EgQQjn5xd19ig@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-12_05,2025-02-11_01,2024-11-22_01
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeggeefgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefujghffgffkfggtgfgsehtqhertddtreejnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepffeghfejtdefieeguddukedujeektdeihfelleeuieeuveehkedvleduheeivdefnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddupdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrmhhithdrkhhumhgrrhdqmhgrhhgrphgrthhrrgesrghmugdrtghomhdprhgtphhtthhopehrihgthhgrrhgusehnohgurdgrthdprhgtphhtthhopehvihhgnhgvshhhrhesthhirdgtohhmpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrn
+ hgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhmthgusehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-GND-Sasl: miquel.raynal@bootlin.com
 
+On 12/02/2025 at 10:06:59 -06, Rob Herring <robh@kernel.org> wrote:
 
+> On Wed, Feb 12, 2025 at 09:25:53AM +0100, Miquel Raynal wrote:
+>> Hi,
+>>=20
+>> >> The partitions that gets created are
+>> >> part0_0
+>> >> part1_1
+>> >> part0_1-part1_0-concat
+>> >
+>> > 'part-concat' doesn't work if you have multiple sets of partitions you=
+=20
+>> > want to concatenate.
+>> >
+>> > I think you need something like 'prev-partition' or 'next-partition' i=
+n=20
+>> > the partition nodes to create a linked list of partitions. Hopefully,=
+=20
+>> > you don't need both properties, but you do have to scan everything to=
+=20
+>> > figure out which ones are concatenated or not. For example, no propert=
+y=20
+>> > can mean not concatenated or last partition if you use 'next-partition=
+'.=20
+>>=20
+>> Out of curiosity, would the chosen node be eligible as a central place
+>> where to look at?
+>
+> Why would you need that?
 
-On 2/12/25 13:51, Geert Uytterhoeven wrote:
-> Hi Patrice,
-> 
-> On Mon, 10 Feb 2025 at 14:21, <patrice.chotard@foss.st.com> wrote:
->> From: Patrice Chotard <patrice.chotard@foss.st.com>
->>
->> Octo Memory Manager driver (OMM) manages:
->>   - the muxing between 2 OSPI busses and 2 output ports.
->>     There are 4 possible muxing configurations:
->>       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
->>         output is on port 2
->>       - OSPI1 and OSPI2 are multiplexed over the same output port 1
->>       - swapped mode (no multiplexing), OSPI1 output is on port 2,
->>         OSPI2 output is on port 1
->>       - OSPI1 and OSPI2 are multiplexed over the same output port 2
->>   - the split of the memory area shared between the 2 OSPI instances.
->>   - chip select selection override.
->>   - the time between 2 transactions in multiplexed mode.
->>   - check firewall access.
->>
->> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
->> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
-> 
-> Thanks for your patch!
-> 
->> --- a/drivers/memory/Kconfig
->> +++ b/drivers/memory/Kconfig
->> @@ -225,6 +225,23 @@ config STM32_FMC2_EBI
->>           devices (like SRAM, ethernet adapters, FPGAs, LCD displays, ...) on
->>           SOCs containing the FMC2 External Bus Interface.
->>
->> +config STM32_OMM
->> +       tristate "STM32 Octo Memory Manager"
->> +       depends on SPI_STM32_OSPI || TEST_COMPILE
-> 
-> COMPILE_TEST
+I'm talking about storing in a central place all the concatenated
+partitions. Your proposal with "next-partition" works fine if we locate
+it inside the 'partitions' node, but I feel like the 'part-concat'
+instead was not fitting very well there. So I was wondering in this case
+if moving the concatenation of the partitions would be eligible to the
+chosen node, or if that's reserved to *very* few properties (and should
+remain like that).
 
- good catch 
-
-> 
->> +       help
->> +         This driver manages the muxing between the 2 OSPI busses and
->> +         the 2 output ports. There are 4 possible muxing configurations:
->> +         - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
->> +              output is on port 2
->> +         - OSPI1 and OSPI2 are multiplexed over the same output port 1
->> +         - swapped mode (no multiplexing), OSPI1 output is on port 2,
->> +              OSPI2 output is on port 1
->> +         - OSPI1 and OSPI2 are multiplexed over the same output port 2
->> +         It also manages :
->> +           - the split of the memory area shared between the 2 OSPI instances.
->> +           - chip select selection override.
->> +           - the time between 2 transactions in multiplexed mode.
->> +
->>  source "drivers/memory/samsung/Kconfig"
->>  source "drivers/memory/tegra/Kconfig"
-> 
->> --- /dev/null
->> +++ b/drivers/memory/stm32_omm.c
-> 
->> +static int stm32_omm_set_amcr(struct device *dev, bool set)
->> +{
->> +       struct stm32_omm *omm = dev_get_drvdata(dev);
->> +       struct regmap *syscfg_regmap;
->> +       struct device_node *node;
->> +       struct resource res, res1;
->> +       resource_size_t mm_ospi2_size = 0;
->> +       static const char * const mm_name[] = { "ospi1", "ospi2" };
->> +       u32 amcr_base, amcr_mask;
->> +       int ret, i, idx;
-> 
-> unsigned int i
-
-ok
-
-> 
->> +       unsigned int amcr, read_amcr;
->> +
->> +       for (i = 0; i < omm->nb_child; i++) {
->> +               idx = of_property_match_string(dev->of_node,
->> +                                              "memory-region-names",
->> +                                              mm_name[i]);
->> +               if (idx < 0)
->> +                       continue;
->> +
->> +               /* res1 only used on second loop iteration */
->> +               res1.start = res.start;
->> +               res1.end = res.end;
->> +
->> +               node = of_parse_phandle(dev->of_node, "memory-region", idx);
->> +               if (!node)
->> +                       continue;
->> +
->> +               ret = of_address_to_resource(node, 0, &res);
->> +               if (ret) {
->> +                       dev_err(dev, "unable to resolve memory region\n");
->> +                       return ret;
->> +               }
->> +
->> +               /* check that memory region fits inside OMM memory map area */
->> +               if (!resource_contains(omm->mm_res, &res)) {
->> +                       dev_err(dev, "%s doesn't fit inside OMM memory map area\n",
->> +                               mm_name[i]);
->> +                       dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
->> +                               res.start, res.end,
->> +                               omm->mm_res->start, omm->mm_res->end);
-> 
-> As reported by the kernel test robot, this fails to build when
-> resource_size_t differs from unsigned long long.  However, you can
-> easily print the full resource instead:
-> 
->     dev_err(dev, "%pR doesn't fit inside %pR\n", &res, omm->mm_res);
-> 
-> https://elixir.bootlin.com/linux/v6.13.2/source/Documentation/core-api/printk-formats.rst#L206
-
-OK, thanks for this tips
-
-Patrice
-
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
+Thanks,
+Miqu=C3=A8l
 
