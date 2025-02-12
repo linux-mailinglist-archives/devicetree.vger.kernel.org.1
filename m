@@ -1,186 +1,221 @@
-Return-Path: <devicetree+bounces-146045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE8F5A331BF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 22:53:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24147A331CF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 22:57:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E1813A7B2A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 21:53:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC6BC7A2144
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 21:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD81204081;
-	Wed, 12 Feb 2025 21:53:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F46E202F64;
+	Wed, 12 Feb 2025 21:57:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cAIItm8Q"
+	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="gM6ZPI9s";
+	dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="dApYr8xu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com [205.220.165.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED1F620370A;
-	Wed, 12 Feb 2025 21:53:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739397190; cv=none; b=FTj6dL/5pmNYOe4yPix3RVBc7qGYM6UMBTVu214FC4VWd0xNPsh5SoPKF/6giYMzpNeKbUK/SYSqldpnuoF+ESfxeoj93SI42oP+E/6Uv0RlmWuxnkkH6v3BKlM+dQosXYQt6qwfBCUnZnuAOA4+/XEbswTcjhzn/CfqAoG6RHQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739397190; c=relaxed/simple;
-	bh=i3HhJVSj9vjuZZvsLqx6As8CpYfTt4PDTtl75v1pVT8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LxrbM9KWaZ8i2re10nDlwGFdiuYqzOHELcqftIfNmZF7cWioFSZvUmxs4TwcG7K9Eyjx/bhobA2GKZ0+5TfSvBQpRIHMGhimoSXWFqYnFO7PqRvKx1LpuzMxjyStVwVksF+c8x3/arexvg8Ni0+Uy5Z/kVe4mX+2v1awT6AI4aQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cAIItm8Q; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51CLqnwT3881030
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 12 Feb 2025 15:52:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1739397169;
-	bh=7hCe79F8mvGMzccqeFPQ8ZkkWiDeQrrKNKFDBMGlSGs=;
-	h=From:To:CC:Subject:Date;
-	b=cAIItm8QUtj4Cz72EXw6XANksZqdSf198oJrMq2riMGvGh5i78uQFyJZdgtXnjJo1
-	 jHFKUcmin/gDxM5CSR4oJHM+RxnN2KcikATjFV5YddgYVOWCRd+caJLsireziHtS9V
-	 TGnff8fR4k0JdrI+doKAiZEsIdWBvRiC+sSoG2aU=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51CLqn6N044538
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 12 Feb 2025 15:52:49 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
- Feb 2025 15:52:48 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 12 Feb 2025 15:52:48 -0600
-Received: from uda0506412.dhcp.ti.com (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51CLqmj4123789;
-	Wed, 12 Feb 2025 15:52:48 -0600
-From: Kendall Willis <k-willis@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <d-gole@ti.com>, <tony@atomide.com>, <msp@baylibre.com>,
-        <khilman@baylibre.com>, <k-willis@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH] arm64: dts: ti: k3-am62p-j722s-common-wakeup: Configure ti-sysc for wkup_uart0
-Date: Wed, 12 Feb 2025 15:52:48 -0600
-Message-ID: <20250212215248.746838-1-k-willis@ti.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A2A1FF1DF;
+	Wed, 12 Feb 2025 21:57:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.165.32
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739397432; cv=fail; b=s17QOct/HOIdKb0oXCXjw6EGh0DYD1nyt54cQ+yAiyy2xb3Dw+73aJNx4VtA3337i6MH1rgPnJflbfGQU9uRDYCpAaPJLsQnMIYnjBX50na6iqDSnoa+6t/b2yShPSOfPZhKzuGfhKPQ1zWhxdtuiIw50WE7MuRqGsa1B36k20w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739397432; c=relaxed/simple;
+	bh=mAX4U0QpSVjg5CqJos1j46XGQH82z+JS9wfvmgHZih0=;
+	h=To:Cc:Subject:From:In-Reply-To:Message-ID:References:Date:
+	 Content-Type:MIME-Version; b=s+G9gg5ZgCnzAWKRcTzMua8xs6OCFAjlcFE2GtoFEjYgPAdMukCWk4LpmdMO8G78MfsdEo4p956tg/Dy4YkrDRyhn8oKmXo1P1YLSmD6R5k7+sjjjRzfDwCnniYXiNB0v9DOD5RFZbO/5fuaT36tIhqE2ULrfd2Aa5CSsdbBlPc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=gM6ZPI9s; dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b=dApYr8xu; arc=fail smtp.client-ip=205.220.165.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
+Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51CLpj2l011035;
+	Wed, 12 Feb 2025 21:56:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=corp-2023-11-20; bh=5SorpLuUIlTHKbXirA
+	cM0iEZHv4gp0KJgnJ+NkXwrOE=; b=gM6ZPI9s4XMcQr//j4TZpdnmmvr2dDNd3R
+	UBT+BgDHYZuNqg7/IlyQ3FO2QnxHpodNs6p2bjvBPdmRvQ3JAF8DXxc1Xukz7cKk
+	ovznlCZVLOtvq5n7mVSIWuwJQFh5V09zMJEgQ75rzFdTezPUYPFM0JRL2GSy+ic1
+	ZkaCxu0juuRZaHGW+ZuhjlM6kflRJfoIc3G0uHHnvtn477HzSxE6fscTZRRgyHce
+	rrMlp6D04VBwsNeGlOo7FRD+7kmxePrWJQ16SQKSvTEe/2AgJfNbabXZF9mxSzGm
+	yyxcqLwz++Od7mr4z+SmFtjctkVDC7nJCYE0tLZxvzVFYvJp2mHg==
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 44p0t48cmh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 12 Feb 2025 21:56:44 +0000 (GMT)
+Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 51CLBRRZ002659;
+	Wed, 12 Feb 2025 21:56:43 GMT
+Received: from nam11-co1-obe.outbound.protection.outlook.com (mail-co1nam11lp2177.outbound.protection.outlook.com [104.47.56.177])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 44nwqaxc3n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 12 Feb 2025 21:56:42 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qEyESu0mK5sL40jB3MZwgJrJpJJOUvsGY/keBj/pNHZjoNtcMay5YQZn9CFtqo/tjD/c1mO3kJskq0bMWjAuohhiMIhHTawQJZQKYtRp5zA/3UHzg/S1lSaJLB52CUX7yD+NlkgrNFPHis1up/dHBK0LbeV0YLfh5TyXVpSv1qn1dC6dUvolKjlHuQbURG76896PXFlKM8FxU7dT7solbWKNkVRGPLYwubJaexIwSH3tEDYm+VmHp3BuD+3cGHR8QjuvUfXXZd/YWj+6n7BZOeBmO+h6C55yu2l++Flx6s64eUa5kgzw8z8Ms/gCBAEyAzhV7k879+5TmEoYCp6FvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5SorpLuUIlTHKbXirAcM0iEZHv4gp0KJgnJ+NkXwrOE=;
+ b=x0CRmXH0I6+lgeibD7MVtX+TS0eR89nf9jnXyGs1fqN5+jKeCedCbl18TY3Vv8bvVji88t5P+irbj+y9hPAg3dvMrvOXIdMwKARn4Lx3Okx8+l0o8JR3YBeJu5A1m/LKgKknbiuqkyxzxFa0jeHcS73kxY8gAQnsE6sNPXVzZ1swbm8RS35NMr1ZBnaIfwVHBdjK02gLp+cfvgkbyNjy+zH+maZBGaxiGD7hAlcmEZ5JAi5qAwqWboqZyR8yLBSjv4ubuU32HzVmflJ1ybrveUcZAa6G5DnTgFtTEzgoTKJPgNedD2NuKChuUg241mS1CwhqXDeA5qNVj2aDO2yRmw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5SorpLuUIlTHKbXirAcM0iEZHv4gp0KJgnJ+NkXwrOE=;
+ b=dApYr8xuoals+d7bZsGm7hz8ZoIt4FGxVoKVb4wXs98IMt0+h7EhT77JOhZTEvp9PdGsOqCOS+CZonja+u1tcon8BTSvWqpNGe+XESbZargsnDaT33JLo+rqmtEUrf3OajejlUGGXhIYGQ3mPYrgRCf3cFF/InPKVOey236jq+c=
+Received: from CH0PR10MB5338.namprd10.prod.outlook.com (2603:10b6:610:cb::8)
+ by CH2PR10MB4198.namprd10.prod.outlook.com (2603:10b6:610:ab::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.13; Wed, 12 Feb
+ 2025 21:56:40 +0000
+Received: from CH0PR10MB5338.namprd10.prod.outlook.com
+ ([fe80::5cca:2bcc:cedb:d9bf]) by CH0PR10MB5338.namprd10.prod.outlook.com
+ ([fe80::5cca:2bcc:cedb:d9bf%4]) with mapi id 15.20.8422.015; Wed, 12 Feb 2025
+ 21:56:40 +0000
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: "James E . J . Bottomley" <james.bottomley@hansenpartnership.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Shawn Lin
+ <shawn.lin@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        "Rafael J . Wysocki"
+ <rafael@kernel.org>,
+        Manivannan Sadhasivam
+ <manivannan.sadhasivam@linaro.org>,
+        Alim Akhtar
+ <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van
+ Assche <bvanassche@acm.org>,
+        YiFeng Zhao <zyf@rock-chips.com>, Liang
+ Chen <cl@rock-chips.com>,
+        linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 0/7] Initial support for RK3576 UFS controller
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+In-Reply-To: <CAPDyKFq+pWXq75xEtfkeCkmkdZtfp9dAFej4M+6rO6EAUULf=w@mail.gmail.com>
+	(Ulf Hansson's message of "Fri, 7 Feb 2025 11:17:46 +0100")
+Organization: Oracle Corporation
+Message-ID: <yq14j0y25hd.fsf@ca-mkp.ca.oracle.com>
+References: <1738736156-119203-1-git-send-email-shawn.lin@rock-chips.com>
+	<CAPDyKFq+pWXq75xEtfkeCkmkdZtfp9dAFej4M+6rO6EAUULf=w@mail.gmail.com>
+Date: Wed, 12 Feb 2025 16:56:39 -0500
+Content-Type: text/plain
+X-ClientProxiedBy: MN0PR03CA0009.namprd03.prod.outlook.com
+ (2603:10b6:208:52f::14) To CH0PR10MB5338.namprd10.prod.outlook.com
+ (2603:10b6:610:cb::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH0PR10MB5338:EE_|CH2PR10MB4198:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04a71c8e-8bdf-4d2d-1739-08dd4bb02164
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?oMP6dgUkW/Mp6BIIZDkxtXsSBs1J0vy+q/ceqoUMzgvXlIGW2bSQuxu+Ynuq?=
+ =?us-ascii?Q?H7soQ8cAwl4uEIkCJ1Tg3FHl05W8nzdeapbMM1Ne+oBpAYpzcDWIktOLPMLN?=
+ =?us-ascii?Q?6P2y9J1tYZrk7vlUiXxoLvArrPqq1ME+NFFKfil4Re/BTIRXbEnvVUxfEMXO?=
+ =?us-ascii?Q?6irvUas+54p4indPBKtHd8idx9iwy9+Y+wfXRqvBkaWQLUzU3atZhXv4Am08?=
+ =?us-ascii?Q?P9ClYuSpa8BxaJSmUF2smzvmCS/80uDZqM9q2hLvTUKQXU2kHUY9w8m8B0+q?=
+ =?us-ascii?Q?eI88R4Ck/sZKjqyjs3pjqSzr5rJCEp+NBn+0VSE05RJW1gI4+zf9PQoOCLHY?=
+ =?us-ascii?Q?8ln+w8n/9ID0kA89VQsh6tqj75xDude9wIW6nA4v5n++R/19ebkQp4gwUD2i?=
+ =?us-ascii?Q?6EQWOgIYOBTwiUkhuNpvyBZeu6nfx5Cfkf9SXeWKAVTmVBoT/JFkwWmnlG7B?=
+ =?us-ascii?Q?37V+eBEHCn0Sk6920q3Ys9ncCUMnmCu20T5lHeZuUoNzGLp0tXAW+4pFLXMi?=
+ =?us-ascii?Q?1OnuyV+GJIfKBQaEhceliuxuZpm/7tCX8v6GcvJVI4ok8MAfQ8YU4k9x8L9T?=
+ =?us-ascii?Q?Ezk6OJ4QMhDQ59FAKFytONLW5Yw2WAtQBNVTMKDVBZUzzhSgmsYf9XiuyFZn?=
+ =?us-ascii?Q?jy7elpFdDMTkLMpe42K7EJfkzWAwazayl2KvDAUxyjCvcWwMONoXNUZjHDP9?=
+ =?us-ascii?Q?73e5yb1Yeeb74InYV//0b6k6HlFqFzIzeEqg8ZFHOCFr8dYlgpO1yQpeTwO1?=
+ =?us-ascii?Q?r7l7RDdH4qNmaGZPV/xORWMcJ8qw/qulMLO5KL/lDzRL20xVZIwE50J2QJWh?=
+ =?us-ascii?Q?4zF9BcPpMyVeKT4rD6dGZ/X2OJPGXHzUymmG2LmDHnr3vD9U0wfqSsfbOraZ?=
+ =?us-ascii?Q?jXP6sAK1mo+/YdeVebSJC1mmxjfCeMtWm0o5cMQpFQaMphTHgFiJcD116Umy?=
+ =?us-ascii?Q?R28skvJTAMH5hfXghTUlBzdZc/iRWQ9eXbQeQoOe3jcLqvfNYeRZMpf7fbmv?=
+ =?us-ascii?Q?N/xfMUwVK9jfJ3kPJMGCPuqsKGc1exhwyWoOvHERXVrB8lLYdO7hE3G1gvxX?=
+ =?us-ascii?Q?6fs5mPRa3zoUUTZDiDm2Oseq5K1gzNJAvcIMRoeCIqC4BLYj+qbMcpta6UPc?=
+ =?us-ascii?Q?AtQS974pfUx49jD1cr6IwL+BIt2HmYiytu5JUtuuIh2C7Gv4N4VyckCBcpSy?=
+ =?us-ascii?Q?016uQqMlHzuWIrDOqji63uDgbrtwxdCCA3QwuRWUXdcHhHJBFOz4f0d5DC8J?=
+ =?us-ascii?Q?mVhBQUdvi1TVTD/3CUFP6X5VV9stYd3yXVUdtwOVstoLymMfAJIryor58S67?=
+ =?us-ascii?Q?EOt2kIkPYlHp38Q372Y9RSyfs4DtjdZmK04nOgqcYEtmXd83kTev0NhY2RnW?=
+ =?us-ascii?Q?sPPDBpVDkIffBf7b8q8ucOeNTeaE?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH0PR10MB5338.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?GdEY1Jfa5CFpdXbUPbMwVei6I+jhsF3ylW6f0zsVRAfZm6jWsJSPDXV3hnhS?=
+ =?us-ascii?Q?AmJ2sELZqCZIr3yrR4V+2/4l9kXtyKidDwHW/g3YfgNmk/mc7DdkMu4CfnWA?=
+ =?us-ascii?Q?VNzJoOd8nxuBxtcvP4lQ6rW4ls7kPQRNFG4BKdASiKYfYiIqwlf/7xSRT1Qs?=
+ =?us-ascii?Q?XO1zW/QzP4d9GR89XnsSpB2DPLoVOjPrIEs+3XxAjgDD9F2ZNSNUj9Jh6mU5?=
+ =?us-ascii?Q?IrkP20cZGrtkXsNaNjYBfo3AVtkRQFIqp62CYuhG5WUxNdqsbX7yLhTeleg0?=
+ =?us-ascii?Q?A0xIRKwMi0LZlcyl341/oVuO3hbvlKuVGzLkMB4NpOeiZ+n/clYQAVbpzBqn?=
+ =?us-ascii?Q?jsOH/+2WrIftkVjz9pz1LmFyIOqhsw8KlcAKm9KhDxXD5PBTrnPto5CoTYQn?=
+ =?us-ascii?Q?jG+NI4UbVnLSz7wcrn4ANI/4Rfqhkukc7QZCtdsCO9XbpJY35/2tWO4mSHyN?=
+ =?us-ascii?Q?E2ImIJSgp/ytmP10TZg5fRm1oeW9Dxrsx4MIzq2hNkoUzRYc3JOWZr3T5wkG?=
+ =?us-ascii?Q?JyBarLzYVqMkm/wY/dXBTrkz4IAu6mU62r24irElc8Lny27+lFwpsSaZS6J4?=
+ =?us-ascii?Q?GcbSaWy5iIKbAHnTHzuID/i5jWIuhUomO3VMJeukHAJpTsYQNJ7+hv/cGiW9?=
+ =?us-ascii?Q?tiyiIHcuJowyutOMzXh68wPeu+q9kl6zOy+FO3l29YLsJS1pwhih9LYngPfp?=
+ =?us-ascii?Q?+UpabYNwX9AfRnkuJjtsQwejlIG1nF8zjM7LG1HdsWj3AzpDftFdTHtFMg5m?=
+ =?us-ascii?Q?XnxeWcezdjro568cJFWmqafGqWx+CL42vOOliun1WV3eL7hfL5JSS4dNmeUJ?=
+ =?us-ascii?Q?foKS17lGcmgBMk3h9OshEw817D/+j5k0BiBHorIvZ+dPfxJZleneyqb2ZcyN?=
+ =?us-ascii?Q?0XH+dxDM1aNzSK70rRaFytoismf8tm3DKlBfCytkNkMR00cbJx0IPXWz2Fyy?=
+ =?us-ascii?Q?wfKhOY9s+/7stQFdwuxzZRr5dJlVg14RNhHu7Y7PoSHZnXxy/CCZ0ydsrP8F?=
+ =?us-ascii?Q?T9IwegAr8+RbKYtJJc480UgVPSL/rFrPNFqnCO7GteRmJUgoyaxPB0DRMGhA?=
+ =?us-ascii?Q?KVNScgTBh8AELaRq0taoY15GAMB/uohXFKU+TjBUWnrA3hZ1VOyrEUj/kAxY?=
+ =?us-ascii?Q?Pnq4+QMr6pFpmZDTfK7WpuJBvqqfzENl9fCa0Lg1af4AJ4zcGp/C8v3KPPtz?=
+ =?us-ascii?Q?MDQ3f/rimjw5lR3QLcrCFxuFrQIINX9Mw17Tztgyc1tGYFVCl47HZCNi2ELB?=
+ =?us-ascii?Q?VlDh0rAJhHbsO4Ib8Uy3qoQv18XLPNWlBW0GoB8aW95DW2h6RJY/1UVyGJ1c?=
+ =?us-ascii?Q?ZIxybDu47LGN2pH1AIJp8Ql6k/hghf03SV00qy+G0q1yEjqQKEaQ4dat2ASD?=
+ =?us-ascii?Q?EZRwF569mt+evqvjEZe4VJmMdrzNjOohMwzevTuv2B7iZ8VXQ8Smvk+u82mB?=
+ =?us-ascii?Q?vKmsz5FGRa0BoMtlG0XuyVRSSkjD2FZ/F25nOVSh/ITTYjP+NlnG0LhflFsR?=
+ =?us-ascii?Q?qT42cHU6H3dPnHCtAcwrI4cxQnCunYjpdZgyOZF/xdX8RzwVhDwHHA4//vpy?=
+ =?us-ascii?Q?ZbOe6t0Njbe6/hRIwkzataKRWrvNZx7zaHQWgOKsUjXFL0ZLU1i+7Xqv+KcC?=
+ =?us-ascii?Q?sA=3D=3D?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	e47tNOMieIAMAiiTNyp/AA9pl98lkbPMzqxtwcshsZw52mIx3oFojLfQKS2pgIp02ccF29yffB8BtAloTWhqC5FkjcFXRP0K2UsCzOYHXGHoktl/jBogQscdLhTI0wKP+C/FVaVAMwKZudFRK6ayDdZXDR+Mxj9JnuJFcm+XRH6cca5bDjg1XmDR2f9PcaCseL0rkLJ6tCCXQaFOijc8wJKQ/B7d+tiHOOU/DTR1bQHk3sv7Vt7hQyjO0H5PFu3w8D2tLqUmKGz0TPV6Zff/DgCyKUYEc4rm1bsaAWvyHiGnLz4vlQYQNYPITlseWvg7mLJCG7lfJ2swBOtf5VHqYuEmlxq5kM8CL3ekXv0Zfllg4HqFXi7oAVwKNoN/k16u8BdU9yyOMdTJvPt04RqqpfRlEgcfIEcLFrUTgbv5uz8onsoPLxyB4Cq3AHu11L9M+9VyOUHz1h3dmtKwcRkDsku2lWzSHfD4W9rnXLFfoz/2tpA4qCy//r2wcbF4UJ3npcAfqi7JJaSvmLFWvMrYiKJHXHMAhmToLOyOBJpAAJOf58bRzBUp0DcRRwe3tkW2wsUe6Vgw/QNd+CaLiQcVKVRIBOywCFGkDBoTjr/g0Vg=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04a71c8e-8bdf-4d2d-1739-08dd4bb02164
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR10MB5338.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2025 21:56:40.4160
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Dq2MeR3Wi+A6DMrgJzP9gQVwfLKgBYAJ8Rrxo+BM5XOCKPNiu0aJhfe32DbOv3exhqHSqNI0VNGslJXma0GrsSu8ajM+zedOfASkwdK2fgw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR10MB4198
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-12_06,2025-02-11_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxscore=0 mlxlogscore=781
+ phishscore=0 bulkscore=0 malwarescore=0 adultscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2501170000
+ definitions=main-2502120155
+X-Proofpoint-ORIG-GUID: go7tgR2tXVPBYoix-zipx224mCfrr4kK
+X-Proofpoint-GUID: go7tgR2tXVPBYoix-zipx224mCfrr4kK
 
-From: Vibhore Vardhan <vibhore@ti.com>
 
-Similar to the TI K3-AM62x Soc commit ce27f7f9e328c8582a169f97f1466976561f1
-("arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc for wkup_uart0")
-The devices in the wkup domain are capable of waking up the system from
-suspend. We can configure the wkup domain devices in a generic way using
-the ti-sysc interconnect target module driver like we have done with the
-earlier TI SoCs.
+Ulf,
 
-As ti-sysc manages the SYSCONFIG related registers independent of the
-child hardware device, the wake-up configuration is also set even if
-wkup_uart0 is reserved by sysfw.
+> If so, may I suggest that I pick patch2, patch3 and patch4 via my
+> pmdomain tree and share them via an immutable branch, so they can be
+> pulled into James/Martin's scsi tree?
 
-The wkup_uart0 device has interconnect target module register mapping like
-dra7 wkup uart. There is a 1 MB interconnect target range with one uart IP
-block in the target module. The power domain and clock affects the whole
-interconnect target module.
+Sure, that's fine with me.
 
-Note we change the functional clock name to follow the ti-sysc binding
-and use "fck" instead of "fclk".
-
-Also note that we need to disable the target module reset as noted by
-Markus. Otherwise the sysfw using wkup_uart0 can get confused on some
-devices leading to boot time issues such as mbox timeouts.
-
-Signed-off-by: Vibhore Vardhan <vibhore@ti.com>
-Signed-off-by: Kendall Willis <k-willis@ti.com>
----
-Tested by suspend/resume with WKUP UART wakeup source on AM62P.
-
-Similar patch was sent for AM62x by Tony,
-https://lore.kernel.org/all/20231219072503.12427-1-tony@atomide.com/
-
-Similar patch was sent for AM62a by Dhruva,
-https://lore.kernel.org/all/20241231-am62a-dt-ti-sysc-wkup-v1-1-a9b0d18a2649@ti.com/
-
-Original patch for AM62p existed in the TI Vendor tree with Vibhore's
-authorship:
-https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/?h=ti-linux-6.6.y&id=efab3fb636673837886599a49cddf1e862c8aeb6
----
- .../dts/ti/k3-am62p-j722s-common-wakeup.dtsi  | 36 +++++++++++++++----
- 1 file changed, 29 insertions(+), 7 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-index 6f32135f00a5..6757b37a9de3 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-@@ -2,9 +2,11 @@
- /*
-  * Device Tree file for the WAKEUP domain peripherals shared by AM62P and J722S
-  *
-- * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2023-2025 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
-+#include <dt-bindings/bus/ti-sysc.h>
-+
- &cbass_wakeup {
- 	wkup_conf: bus@43000000 {
- 		compatible = "simple-bus";
-@@ -41,14 +43,34 @@ usb1_phy_ctrl: syscon@4018 {
- 		};
- 	};
- 
--	wkup_uart0: serial@2b300000 {
--		compatible = "ti,am64-uart", "ti,am654-uart";
--		reg = <0x00 0x2b300000 0x00 0x100>;
--		interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+	target-module@2b300050 {
-+		compatible = "ti,sysc-omap2", "ti,sysc";
-+		reg = <0 0x2b300050 0 0x4>,
-+		      <0 0x2b300054 0 0x4>,
-+		      <0 0x2b300058 0 0x4>;
-+		reg-names = "rev", "sysc", "syss";
-+		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
-+				 SYSC_OMAP2_SOFTRESET |
-+				 SYSC_OMAP2_AUTOIDLE)>;
-+		ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-+				<SYSC_IDLE_NO>,
-+				<SYSC_IDLE_SMART>,
-+				<SYSC_IDLE_SMART_WKUP>;
-+		ti,syss-mask = <1>;
-+		ti,no-reset-on-init;
- 		power-domains = <&k3_pds 114 TI_SCI_PD_EXCLUSIVE>;
- 		clocks = <&k3_clks 114 0>;
--		clock-names = "fclk";
--		status = "disabled";
-+		clock-names = "fck";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0 0x2b300000 0x100000>;
-+
-+		wkup_uart0: serial@0 {
-+			compatible = "ti,am64-uart", "ti,am654-uart";
-+			reg = <0 0x100>;
-+			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
- 	};
- 
- 	wkup_i2c0: i2c@2b200000 {
-
-base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
 -- 
-2.34.1
-
+Martin K. Petersen	Oracle Linux Engineering
 
