@@ -1,125 +1,130 @@
-Return-Path: <devicetree+bounces-145709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA7AA321D4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:13:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D021EA321FC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:23:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36B193A1A7A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:13:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AD643A5327
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8471A205E17;
-	Wed, 12 Feb 2025 09:13:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B141B207E12;
+	Wed, 12 Feb 2025 09:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dn8UbfdO"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="a8ND9QPI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B4F6205E09;
-	Wed, 12 Feb 2025 09:13:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97120207A2C;
+	Wed, 12 Feb 2025 09:23:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739351599; cv=none; b=G/CO4cNpTM8j8eeeNj0dcw5B1BdsUvGsGU9ercNEf2Cv2c1XAetc5WQlo4b/wlLzFqDMEE6ffSidyXFhtZCiwv2rImNYi5qnEP3XjlkNA72fp68uok25pYEVMf4XPFXyWdvszVeDj0wsZwxsQRmxPFQAfF6pm6YgWoG5hyY5MZ0=
+	t=1739352191; cv=none; b=GPL+ya6fN4PjRXPsGSBWEylHb0srRAD0w1ycTY4pPgvshRLFUeocawFd2GPOvE8R1JeGwhK+kNr2i7hB0oKV05pLVgYJHtxzyluFcDN6TdickVYwqbmsgDaGtyMoGwrCs1mM/1YQY/ESh1JiNNBIiSXFxcatNOQMx3J+GlHxP0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739351599; c=relaxed/simple;
-	bh=aPD5rYa5UTZEA5lzkKURim7OANCmr8pHXI0PnX7mAMw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E0Bj9YGCseDffP9iJWtqT8XLgI4IB8jM8n82wot4Idmov6b5T/RfcSVOYt/fdpby1mG7Jd8gv0Zbvs1VVQVMHB5q9L5r2br5Ft0kyScyk+M/7p3LF4eVn7FVCSYzIS7mPr9hzE04rbjjT76r0wD+Ftt2CHIJ47d1e6iXMAISrko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dn8UbfdO; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2fbfa8c73a6so820325a91.2;
-        Wed, 12 Feb 2025 01:13:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739351597; x=1739956397; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aPD5rYa5UTZEA5lzkKURim7OANCmr8pHXI0PnX7mAMw=;
-        b=dn8UbfdOzVE2ypJaIIDYg+PZiVeAe0Fwuh3Vijr3wfTlPEFdeLYoMbiHlbNTNxWarB
-         qVcP5gi9TbsoTQUB6o8u1sg8XUTQZqgZ6X5trfCKsHO7BrEDeEL2Pslo5j42FLq37i3T
-         UIo75aNVSBGXbuWRy9XV0E5mqplu6sWhcyDP46mJDxXE28B0/I2sPQXtVWSmYGrfOrzu
-         chNmFn2I5jiqn9CYpir/grZwNARgXl5TvRIWG6Xjz016N/0I5ub21FBtGiMUANbopsMJ
-         ekwCNDw3dm99XG6tuR0FqqxCWin1WLuuwLkXz5Jr3eqKtSstze8Ya/8v6vDSyTQToskV
-         BE+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739351597; x=1739956397;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aPD5rYa5UTZEA5lzkKURim7OANCmr8pHXI0PnX7mAMw=;
-        b=A141BeSl+0O1YbHJa1ppAnGEeSIDLrh8SMXxL/9ZgDpKzy8i1iZUwYh/iaGomxloqE
-         DystODs8ZsHhSnbXi/6j300l4r7BAHDkoP4+CWv4QjLEP1UcHuytGczfRzV+dGreJ8mv
-         uR30eJ59SbauzuczaYKfioLRjRmCnZCkSi11/VWHVtRrTYFp3aFWKDYTWivntjrwn4uG
-         5n31U4QSd1WiAcmZQUmVl4lTxQQ+9Gkah5I3ML8LrREjdf3sT2LrxzUhy6jtaNPzxV9i
-         s63L6V2L9Z+RHRMO2NWEbdUAM8dDxNgVKHSWY32hongKrEDqmCQGp15gJ4DNvBTXyNer
-         psQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWZEeKE1rCbWaOogwAyPo7BJy8qy9GekcmBoudmfNtKCcY89tz5tyP4303JT275WLxpZm7Jl5t+b6Kns/RN@vger.kernel.org, AJvYcCX2FK5Y+3vHnX9/3qANJlGlL1ftQWxgVA445XHAe0p4jCzYs5DEe1jogjqdKjd6fxGIZQ9jevvxIn+2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKElanAQ2qxDwx+gypkRqOuYuN04rBoBVxAXyBQdJ37cYCEiAm
-	HfbYxnpMDR9DXoSznkhw6HQw3x6+UmF6V0x4WuEwHv8rUkwdiF6XUognv2mb6GGPs9rV9xv00Ii
-	QKPhKS8vN1Vk3ZaDzhozwn/VggZU=
-X-Gm-Gg: ASbGncs8XYOUCYnOQJr9UaQG6cP7VBNQWOd/oY/Nscu4ktmBV4Q0z+L7QRp6D6fss8P
-	h9ysgtoaL0eGPAwJqbfruCTP8dOGO7WLe0y0P2EzoQ8fgqH4+rwsT+EXoJkKhxfh8y4v3HA==
-X-Google-Smtp-Source: AGHT+IHT+ZeidzgbuFPK1T7nat9jcZS+nvvNOTSUNTmWCKgY4f8d3bPZ9z+vTH8FvkV4Hugvz68ajXpWP20x9T9YFVQ=
-X-Received: by 2002:a17:90b:2c84:b0:2ea:7cd5:4ad6 with SMTP id
- 98e67ed59e1d1-2fbf5c71362mr3494611a91.32.1739351596956; Wed, 12 Feb 2025
- 01:13:16 -0800 (PST)
+	s=arc-20240116; t=1739352191; c=relaxed/simple;
+	bh=xUs1bH+W/iCogz1hXGPiTgCgI6O4GmwLfBC8KJfbnv0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=b6OrRKdBP5hDg4JmrQ5DvLTpZthwP9rYtyARP3iq1beYzgMTkhNMsHQvTHyhMONY7/ElQuQEE01OPXzsp8jI7mOViJxlS6UXaymQu76Roj+/H2NwyITUfiHulVe5FL+wOgd85nGgvwbwrf4GkOm6k9svLcn0Z5uFKeyZXAthkvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=a8ND9QPI; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1739352189; x=1770888189;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=xUs1bH+W/iCogz1hXGPiTgCgI6O4GmwLfBC8KJfbnv0=;
+  b=a8ND9QPIVe/lKCXlnagKgVvA4D35TfYw+eXRhiE5JkqKwEFsvusxmuX0
+   sn0AvU9jpjwmWqsypeymtMvcbOEr7Zo1jTuhZCthRZxPtSByJwzIWBnGH
+   8KLaK9SioUYpeaYrM+/kUhsyEiMVYE+pj3RDOXV+rLlXnnsitYtX7lmca
+   XHWQ9Sd0B3r4/h5Z8f9j83MpK2Kh9qyWgkAxETR6+gRN6JM+BlpafjORV
+   bDGhPMFY1rU+4HlVy1SZA2VFTCbOBhsk6GD/QVAwM8PGakGjyw0xSYl2n
+   n5nRAPKUFlwmaUiMt2IAt8JPDnK3FvOtDbDz0pX1L1+7J5MXD26Klrut5
+   A==;
+X-CSE-ConnectionGUID: Im7caqcMRgeiMBKdbNTopA==
+X-CSE-MsgGUID: 14u+0lMYQ4mioTEP1VJ3lQ==
+X-IronPort-AV: E=Sophos;i="6.13,279,1732604400"; 
+   d="scan'208";a="37190261"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Feb 2025 02:23:02 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 12 Feb 2025 02:22:22 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Wed, 12 Feb 2025 02:22:17 -0700
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+Subject: [PATCH v3 0/2] dt-bindings: mmc: Fix the mmc-slot and Convert
+ atmel,hsmci to json schema
+Date: Wed, 12 Feb 2025 14:52:09 +0530
+Message-ID: <20250212-mmc-slot-v3-0-2bf288207040@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241210125338.104959-1-daniel.baluta@nxp.com>
- <20241210125338.104959-6-daniel.baluta@nxp.com> <l3z3mu5inmfc23v4mymtcb4gnzic5zupqfpcuk7vqeweluy5jn@c2b5ex4lkdgc>
-In-Reply-To: <l3z3mu5inmfc23v4mymtcb4gnzic5zupqfpcuk7vqeweluy5jn@c2b5ex4lkdgc>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Wed, 12 Feb 2025 11:14:50 +0200
-X-Gm-Features: AWEUYZlmAF9HL7F1Di0jk-WkuyiQ4SgROYkfG9zP3ZC-TaPsUodPXn0I9h7DQYQ
-Message-ID: <CAEnQRZDZSj2tkMzaqZfaO0e8drO3U2j_qxoZSNocAS1Qaq1Q-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] arm64: dts: imx8mp: Add fsl,dsp-ctrl property for dsp
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, festevam@gmail.com, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, frank.li@nxp.com, aisheng.dong@nxp.com, 
-	laurentiu.mihalcea@nxp.com, shengjiu.wang@nxp.com, iuliana.prodan@nxp.com, 
-	a.fatoum@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEForGcC/22MywrCMBQFf6VkbSS5SWjryv8QFzEPe8E0JSlBK
+ f1304Ig4nIOZ2Yh2SV0mZyahSRXMGMcK4hDQ8ygx7ujaCsTYCA58J6GYGh+xJky1cqu6612WpB
+ 6n5Lz+NxTl2vlAfMc02svF76tfyKFU06tN61stbDC384BTYpmwOloYiBbqMBHVgyY+pJhk7Uwy
+ gvmwPa/8rqub5w2t5LhAAAA
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Dharma Balasubiramani
+	<dharma.b@microchip.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739352136; l=1427;
+ i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
+ bh=xUs1bH+W/iCogz1hXGPiTgCgI6O4GmwLfBC8KJfbnv0=;
+ b=P8VjgomucORyCZ1TW0hO3s+2LkILloCeyETpd/3Lroit69beEjtEhR5Yj3qitz1mcZpRjMA24
+ S4U58N+vpuIBWU9xe2QtSHVd/I3qYYVcLGZyZvevU3GkdS/zf2XEufi
+X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
+ pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
 
-On Wed, Dec 11, 2024 at 11:07=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On Tue, Dec 10, 2024 at 02:53:37PM +0200, Daniel Baluta wrote:
-> > Audio block control contains a set of registers some of them used for
-> > DSP configuration.
-> >
-> > Drivers (rproc, SOF) are using fsl,dsp-ctrl property to access those
-> > registers in order to control the operations of the DSP (e.g for
-> > start, reset, etc).
->
-> This should have been implemented as reset controller, not syscon. It's
-> really poor choice to call everything syscon. It does not scale, does
-> not provide you runtime PM or probe ordering (device links). Quick look
-> at your drivers suggest that you have exacvtly that problems.
+This patch series modifies the property status of "compatible"
+(required/optional).
 
-Hi Krzysztof,
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+Changes in v3:
+- Add compatible as required property in meson binding.
+- Include the dependent patch that converts txt to yaml for clarity in patch series.
+- Refer the mmc-slot binding in the hsmci binding.
+- Explain "why" the property is made optional in commit description.
+- Link to v2: https://lore.kernel.org/r/20250205-mmc-slot-v2-1-da3c5f30e2d9@microchip.com
 
-The bits we are using from audio-blck-ctrl for controlling the DSP are
-not for reset!
-They are only for Run/Stall the DSP.
+Changes in v2:
+- Instead of moving the compatible string to the other binding, just make it
+  optional (remove from required list).
+- Link to v1: https://lore.kernel.org/r/20241219-mmc-slot-v1-1-dfc747a3d3fb@microchip.com
 
-The reset is done via DAP interface. I will sent a separate patch to abstra=
-ct
-the reset interaction using a reset controller. But for Run/Stall bits we n=
-eed
-to use a syscon.
+---
+Dharma Balasubiramani (2):
+      dt-bindings: mmc: mmc-slot: Make compatible property optional
+      dt-bindings: mmc: atmel,hsmci: Convert to json schema
 
-thanks,
-Daniel.
+ .../bindings/mmc/amlogic,meson-mx-sdio.yaml        |   3 +
+ .../devicetree/bindings/mmc/atmel,hsmci.yaml       | 106 +++++++++++++++++++++
+ .../devicetree/bindings/mmc/atmel-hsmci.txt        |  73 --------------
+ .../devicetree/bindings/mmc/mmc-slot.yaml          |   1 -
+ 4 files changed, 109 insertions(+), 74 deletions(-)
+---
+base-commit: c674aa7c289e51659e40dda0f954886ef7f80042
+change-id: 20241219-mmc-slot-0574889daea3
+
+Best regards,
+-- 
+Dharma Balasubiramani <dharma.b@microchip.com>
+
 
