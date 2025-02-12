@@ -1,93 +1,110 @@
-Return-Path: <devicetree+bounces-145787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C46EA32498
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:15:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF6EA3250B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:33:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D38591881886
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:16:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46D527A5DA7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF1120AF67;
-	Wed, 12 Feb 2025 11:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 841E220B1FC;
+	Wed, 12 Feb 2025 11:29:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QESPeC4I"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TYFUWEK1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C612046A6;
-	Wed, 12 Feb 2025 11:15:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD66C20B1F7;
+	Wed, 12 Feb 2025 11:29:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739358950; cv=none; b=npB5KKBggG2RP0Rn6sAVd/dVaXtxOsxAQSDSyBYuko6gCeZN1nvUkTjlqbIJauX+irvy2IguxqKGbCxulKOe3IST6Fi3DI4UY5liSWZBrQ7jYUmtJG9oUuZl69ymtvklv3EVbERRq+hfdi3iFWdG1LH0AyjHUuVCsiO/S2LwROs=
+	t=1739359756; cv=none; b=iLghZCiLDrMxsYvt9/uF3cykaZgWp4lnsn7+9E3enK1bqrrOJieHmUT+bpp+rwMoWYRyWzy0cH16t8O0rneEjxbnRSHHwSxchCROT2bcq9eZtRWxwSzGDYUPzlu/PJ1W0EVhTuJWQYNfWZVsXanfkwUMNvL7696/RIR7LFOB6ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739358950; c=relaxed/simple;
-	bh=CPpp5p/Qbj7YQxkb0e+0ZwICrCMzLZP3T2zYLuNWwlU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=kCEH7demiRB4C9srAgJp9rgkdf8bDvy/NOsglckb2HaXYwJQU1aP0Z7H3MO4/0b95D5W6Sao1z+DEe6NzhdoDgs0fexaxPsDtXvAs0SK4frfEIrDyYj9pKukp8qVaJyHFncQCl4OPPh25yxdpeE9oLsjtQh4+/sb0E3EL0Cs2SQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QESPeC4I; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739358947;
-	bh=CPpp5p/Qbj7YQxkb0e+0ZwICrCMzLZP3T2zYLuNWwlU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=QESPeC4I0/ajZ8/yaC5D7QzgOML+PQwl5pmSc9BXQy2/vXZOMrW4x+hbCTrbeIL2O
-	 ESpDUAP9As2bH9mcr/GfKWdKl2gR9MP/TN/wmZNYQ1hjq7Jniwem0ZOMZRYOHvRSTQ
-	 O4XCOD8gMgNkEhQkew9RzyTNbF74budV5HTR8ueqXBegShI1e18loLmjdrqQaUiDCa
-	 m65yag6GR0N+VDHxPRQEvstBmkdTcV3YJeJq5FLDCpDSs9jbWXQm4rCqIuxREqwG9t
-	 TUB4z3Wku5g8+TJ7t+kug7mCep5ig75RQP+U19u/njzs68B0UfTol1g+Pbi4QfYYPG
-	 KZnmVQZI6Mnuw==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D606F17E151F;
-	Wed, 12 Feb 2025 12:15:46 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-mediatek@lists.infradead.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- matthias.bgg@gmail.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- kernel@collabora.com, macpaul.lin@mediatek.com
-In-Reply-To: <20241218105409.39165-1-angelogioacchino.delregno@collabora.com>
-References: <20241218105409.39165-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8188: Add tertiary
- eMMC/SD/SDIO controller
-Message-Id: <173935894680.45655.5939286400504120661.b4-ty@collabora.com>
-Date: Wed, 12 Feb 2025 12:15:46 +0100
+	s=arc-20240116; t=1739359756; c=relaxed/simple;
+	bh=OGDeLMpT+fqb5J1J1pcI9yoVGmhCRmyuCU214VJYRsA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sGj6Gm9l58WHoV3UGDRmrQI7ILdvnSm/ecOpqZGc9s2lRA2rYDNU64cahEM1BIWunE0AYnleZ0w3wfYX8yIsPKu/aFkC4jS0fDHZepsoZSr5HwQiv2yZVl0vmu+N7S1sDT9bZpnxvyzUoISOI+VHBSnB7QaNJUMPdwvAEbbIsHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TYFUWEK1; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739359752; x=1770895752;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=OGDeLMpT+fqb5J1J1pcI9yoVGmhCRmyuCU214VJYRsA=;
+  b=TYFUWEK1nCy4c5ZltoEvpQytpRgUTExzs33eguwC9fiGXpmntqUDhkUO
+   3C2XdUMiOP8uBKfHmdkMWvVlAgdWNwwnstctFZX7jXQ2wLgR8xPiL12Tg
+   YnMrX2cIFgv8rQUlVmZ4Qek1hpJCyHv0wS1rXzVBUgvUgdp22ByiliEhx
+   OhgjYRJj9NuX1Jx4CczB5NFKR6W6TcHo5f0lDqgymMvRZ6kQYsehMh9ql
+   P333rrxbwhG9bW1/ggk+vktjO4AA7pIh+jLIprmdtiOnbFjDhu6OXntUX
+   iH5FxtpeSF+MLu/v6cumhDKmdaEGKjxxzis0h0U8olbjJ2ETWUqYIaW2I
+   g==;
+X-CSE-ConnectionGUID: TevCEXZWQHG7Id17J0jpQA==
+X-CSE-MsgGUID: QBg0jkuwRB6v1Rk9k0MBZg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39895736"
+X-IronPort-AV: E=Sophos;i="6.13,279,1732608000"; 
+   d="scan'208";a="39895736"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2025 03:29:11 -0800
+X-CSE-ConnectionGUID: pewzGhOxQimaQeUOAid23A==
+X-CSE-MsgGUID: JEyRhtHDSmGwRptfnxDjWw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="112648499"
+Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
+  by orviesa010.jf.intel.com with ESMTP; 12 Feb 2025 03:29:08 -0800
+From: niravkumar.l.rabara@intel.com
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
+	nirav.rabara@altera.com,
+	devicetree@vger.kernel.org,
+	linux-mtd@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] add clock-names property to nand node 
+Date: Wed, 12 Feb 2025 19:25:33 +0800
+Message-Id: <20250212112535.2674256-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 
-On Wed, 18 Dec 2024 11:54:09 +0100, AngeloGioacchino Del Regno wrote:
-> Add a node for the third instance of the eMMC/SD/SDIO controller
-> found on the MT8188 SoC and keep it disabled.
-> 
-> It is expected that only boards that are using this controller
-> instance will configure and enable it.
-> 
-> 
-> [...]
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-Applied to v6.14-next/dts64, thanks!
+1) Document the required clock-names property because the driver
+   requests the clock by name and not the index.
+2) Add required clock-names property to the nand node in device tree.
 
-[1/1] arm64: dts: mediatek: mt8188: Add tertiary eMMC/SD/SDIO controller
-      commit: 5de2b8ed833a1cc3c9629beb34ea6040d9f18cf5
+Changes in v3:
+  * Include missing Fixes tag.
 
-Cheers,
-Angelo
+Changes in v2:
+  * Document clock-names property for Cadence NAND controller.
 
+link to v1:
+- https://lore.kernel.org/all/20250107084955.2750154-1-niravkumar.l.rabara@intel.com/
+
+Niravkumar L Rabara (2):
+  dt-bindings: mtd: cadence: document required clock-names
+  arm64: dts: socfpga: agilex5: add clock-names property to nand node
+
+ Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml | 8 +++++++-
+ arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi         | 1 +
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+-- 
+2.25.1
 
 
