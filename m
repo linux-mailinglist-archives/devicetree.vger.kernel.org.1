@@ -1,105 +1,123 @@
-Return-Path: <devicetree+bounces-145780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B12CA32431
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:03:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D08A32451
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:09:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06963188B754
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:03:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C042316813C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:09:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8026E20A5DB;
-	Wed, 12 Feb 2025 11:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF549209F59;
+	Wed, 12 Feb 2025 11:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Gf+XzD4E"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RQ294yJN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2BF420A5CC;
-	Wed, 12 Feb 2025 11:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71ECC2AF19;
+	Wed, 12 Feb 2025 11:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739358172; cv=none; b=Aq4mFFxnuLI2B9mNC9d1ToSLd8Mv/I/2vWC8pppM78BYRkSlsmLs8eeK76EbETvbyYMjJvlN0elFVvSFb4SL7iBHi0jvgxNtm6v7EkrnYGeMIZ/hTGS/w+82HGB4WtQA7w/hw0JHwTOL1eb+Wi5QaBKpls09D0nz2DLCKDJs5LM=
+	t=1739358553; cv=none; b=E0Kh6jqZfyvOjcBEzL7XbmhHFq98epP/mE1E35UA7TdT1bd5KpPb9pZy0Cejb28iU6ggemoldpfWjj6+q36NaSVYsHYxMRxiSTcipPky5GC11eBdviLlzKt97I4VEzm+6PgdjhNPl9H0F1o23hFheb+qEIgKjFwXcLaW4TkGtjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739358172; c=relaxed/simple;
-	bh=z16+7ZEO5MVrgvOcxr9QCLuQ0Xfo1ReUAEntw8k1gTQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ARK/GOwr6R8+5zGrLl2bnlepJpr03DKQAWYlfKhsLbVBPI6TQ2+0+L+znyKUNgs8r0w73ZjXbtHBYdCOxJJEGQ8yUtDwMr1IgCZDV4EqywvaAVKxJ2cF7YYVRP4MnE/gSfIOQytrVmATh3rzX7IRYdFJ9/wBKL01eDDzrteOUoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Gf+XzD4E; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739358171; x=1770894171;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=z16+7ZEO5MVrgvOcxr9QCLuQ0Xfo1ReUAEntw8k1gTQ=;
-  b=Gf+XzD4E9lzz75TiAVTwmcFcmAQuaSlosz9fF8NBRgR+rszCb61aNv7s
-   1Fz0qT1UuCHTJunjw74DAXyArPurjyCaD9LFopA3Z4s65IRsWyP1HnmMC
-   UedQnHADkYwoMMiEVH32S0BEIhVbWtZxDmGJOLGXZdtoU18bLrd155xk1
-   p0jI5k8PeBdV1RgjWKDW7s0HLBTk2/q5Lnf/6Om62ZuonqVCoBmgiwwNO
-   v6G+yPxeqkz2mOohIRJwUQ1oftOk3U1+DtPpluxPunJ9y1txoG17TWWWl
-   RVxXgMWrKgq4+KLzfpVpHqOcT/61/n/QGMduKsE4m6aHisO6rIeQ0rgJa
-   A==;
-X-CSE-ConnectionGUID: VP2yuPhaQW2BAvGVXSmgDw==
-X-CSE-MsgGUID: 443iaO7rS7yvHGxg71I3yA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51440574"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
-   d="scan'208";a="51440574"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2025 03:02:50 -0800
-X-CSE-ConnectionGUID: Iw9B5/mHTA+bafJ9LL2sLw==
-X-CSE-MsgGUID: D6MTUzZTQOe7UHDcpwl/+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="112644578"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2025 03:02:43 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tiAVt-0000000AoPx-3ob7;
-	Wed, 12 Feb 2025 13:02:41 +0200
-Date: Wed, 12 Feb 2025 13:02:41 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
-	Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] mfd: lm3533: convert to use OF
-Message-ID: <Z6x_0Q_FOF6Hz5I3@smile.fi.intel.com>
-References: <20250212075845.11338-1-clamor95@gmail.com>
+	s=arc-20240116; t=1739358553; c=relaxed/simple;
+	bh=0WMcpkgL+kzI3wuew8Ndfo8EQnxAuf57HxbK5IfZrRY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S1oxY+pjxW6Mz3QeBhgQOKGoeH2/2PvyVInJPaJQ1OtDXYk5CZT94QZkfu8xis53yGOD2Pg4RyOuL/dDQRVen5Ep6khYeDuEW9rb60ZsFpKwVYvoaD2PizKcUC8D4rWd4D6J+Pva2P64WbCD3QVfm6ix2162ZEaMDlOsbA6fX84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RQ294yJN; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1739358544;
+	bh=0WMcpkgL+kzI3wuew8Ndfo8EQnxAuf57HxbK5IfZrRY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RQ294yJNqb53NHibL46kTJCyFUsetkdQa7DtxTTTHDVuGx0/4KZsSMzsk99kedW5n
+	 m4eMWwwVGDraz6U+Qi/7/oOqSbweyl3dHK70ClKIByimu/QHsfZfSqxk7XSOC824wt
+	 Pppf0NTU5tnO8UFI207x3XF6TywPbJ6FaKhuNf3bPKE1QASHJrCbiOFtS/leBB1gJb
+	 KQrviYKDPTMo7revohw/yudk54gWnPaXiLtWqT1pQEf3L76HzYgav/kzFrhbYqfVz1
+	 5p+h7nY03xDZWEh0k22GXhm/NV3PTLUe7+ehX6nOt4ODo9NG7Ickcaz34n3XzOHHFs
+	 6eYmuA40vR0xQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EAFF717E0FBA;
+	Wed, 12 Feb 2025 12:09:02 +0100 (CET)
+Message-ID: <70436de1-7ad0-41f0-a101-7373662aa008@collabora.com>
+Date: Wed, 12 Feb 2025 12:09:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250212075845.11338-1-clamor95@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/3] MediaTek MT8188 MDP3 Enablement
+To: chunkuang.hu@kernel.org, mchehab@kernel.org
+Cc: p.zabel@pengutronix.de, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, moudy.ho@mediatek.com,
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@collabora.com, sebastian.fricke@collabora.com,
+ macpaul.lin@mediatek.com
+References: <20241218105320.38980-1-angelogioacchino.delregno@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20241218105320.38980-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Feb 12, 2025 at 09:58:40AM +0200, Svyatoslav Ryhel wrote:
-> Add schema and add support for lm3533 mfd to use device
-> tree bindings.
+Il 18/12/24 11:53, AngeloGioacchino Del Regno ha scritto:
+> This series adds the necessary bindings and devicetree nodes to enable
+> the entire Multimedia Data Path 3 (MDP3) macro-block, found in MediaTek's
+> MT8188 SoC.
+> 
+> This was tested on a MediaTek Genio 700 EVK board.
+> 
+> AngeloGioacchino Del Regno (3):
+>    dt-bindings: display: mediatek: Add compatibles for MT8188 MDP3
+>    dt-bindings: media: mediatek: mdp3: Add compatibles for MT8188 MDP3
 
-Thank you! I'm going to review the series this week, I definitely have
-the comments. Stay tuned.
+CK, Mauro,
 
--- 
-With Best Regards,
-Andy Shevchenko
+If it's okay for you, I'd like to take the display and media bindings
+patches in the MediaTek trees, so that I can also safely take the DT patch
+without immutable branching, etc.
+
+It's a very old series, yes, but it's still applicable.
+
+Can you please ack the display and media bindings so that I can safely pick?
+
+For display: 20241218105320.38980-2-angelogioacchino.delregno@collabora.com
+For media:   20241218105320.38980-3-angelogioacchino.delregno@collabora.com
+
+Thanks!
+Angelo
+
+>    arm64: dts: mediatek: mt8188: Add all Multimedia Data Path 3 nodes
+> 
+>   .../display/mediatek/mediatek,aal.yaml        |   4 +
+>   .../display/mediatek/mediatek,color.yaml      |   4 +
+>   .../display/mediatek/mediatek,merge.yaml      |   4 +
+>   .../display/mediatek/mediatek,padding.yaml    |  10 +-
+>   .../bindings/media/mediatek,mdp3-fg.yaml      |   8 +-
+>   .../bindings/media/mediatek,mdp3-hdr.yaml     |   8 +-
+>   .../bindings/media/mediatek,mdp3-rsz.yaml     |   1 +
+>   .../bindings/media/mediatek,mdp3-stitch.yaml  |   8 +-
+>   .../bindings/media/mediatek,mdp3-tcc.yaml     |   8 +-
+>   .../bindings/media/mediatek,mdp3-tdshp.yaml   |   8 +-
+>   .../bindings/media/mediatek,mdp3-wrot.yaml    |   1 +
+>   arch/arm64/boot/dts/mediatek/mt8188.dtsi      | 313 ++++++++++++++++++
+>   12 files changed, 364 insertions(+), 13 deletions(-)
+> 
 
 
 
