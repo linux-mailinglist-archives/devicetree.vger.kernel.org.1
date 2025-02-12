@@ -1,151 +1,143 @@
-Return-Path: <devicetree+bounces-145769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2399AA323C4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:44:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2930EA323DC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:50:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FDE7188B825
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:44:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA3EA7A27DE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:48:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE52209677;
-	Wed, 12 Feb 2025 10:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9C020896E;
+	Wed, 12 Feb 2025 10:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FmtZQn1B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fsCk99ec"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E89209674;
-	Wed, 12 Feb 2025 10:43:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19D9D2AF19;
+	Wed, 12 Feb 2025 10:49:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739357032; cv=none; b=YRD/9hnXsrDL7wvAOznziDPrFARwNL9TFmLTDDqmgk64zSiRAUYXMkCaD24sy891dqXlgwUjKCT2sTG3tto5HEMGrIrn/4YVTw9mBfUcOfjA2TAvwB0Ccz4rSkjjifR36hRprw/lFwzeWPTr4VcD6DdTyaUhpvI4KXZbpXhV5IQ=
+	t=1739357377; cv=none; b=f364/g94c7WFYrTgkCyQjaYjOnC/+6xbx8C0R2ccajUHL1U0cBzC4SPb2hMAgp4uxSPmAYHhtD9FFQem9K1nBQIBJxSzZctW8IeZvCSXC5+nWBoYjXzCX0bRT6AUgGn8Rewirf2/j/i7aLKJ99l+yzN1ycY8YE1u/haGMVeAJzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739357032; c=relaxed/simple;
-	bh=X2eltLRhw1w4UIkkJvn+viee4/SqEPKwaFrktrUEYQ0=;
+	s=arc-20240116; t=1739357377; c=relaxed/simple;
+	bh=SrZ7q3UddXW1p49/GdRvgpUzejtlAUiY6e9x0tcKinE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MW0LomOY+MkvwLS0dZMI6HibLpf+dF/xpbrvRDjffGFpxkl/Fw7hZrxwb0oKwLZRNXdNFUjT8n+P1z/2OzuRxIy+F58xjFoO222CFR7MDidpmVxpzJa0PsDxtcRbJlykpDUtFpbxVmZZr1XWMGjDoY2njbgyqvgt0o17FFGzKAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FmtZQn1B; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739357031; x=1770893031;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=X2eltLRhw1w4UIkkJvn+viee4/SqEPKwaFrktrUEYQ0=;
-  b=FmtZQn1BLzus6bNFcNKWSJtoVzBdQSBws7WBsJqo/epOY77IAtFfcg5L
-   3H3B5YYjPRd3KHfOJmo0v+59CrbWMXHEVOPEjRrjB2adDHipBKWjAws1j
-   A3/o48xZrW8roOxpgtSSq4fjiMdOqiUbxreKsZyF20vS7QpdjHI2lrBwP
-   xyxh7tVRml6njGbXjIY2nfsR3nkFatRP+gnKrwDwC4IHvBlmn6yKFsJMg
-   HMiCxx3Gcg1tuNc+b3fZYM0xFsxk118egeULleh/7s751RlaDtLaMnGWQ
-   s2S0pmBcihFwKtpZJvZiy4Nvqmj18hwdwyPKs7lwyGHJ4EQV1zhga6Uhd
-   Q==;
-X-CSE-ConnectionGUID: MF+EgDxRSRGhAXdkTPap3A==
-X-CSE-MsgGUID: VR1FiWZFRj6YdwqvQD9Vew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="40032078"
-X-IronPort-AV: E=Sophos;i="6.13,279,1732608000"; 
-   d="scan'208";a="40032078"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2025 02:43:51 -0800
-X-CSE-ConnectionGUID: 9ogGZln/SR2AoJP2f85ftg==
-X-CSE-MsgGUID: 082GvNeQSUKxR8PlBtUqjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,279,1732608000"; 
-   d="scan'208";a="112998158"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2025 02:43:46 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tiADW-0000000Ao56-16Qk;
-	Wed, 12 Feb 2025 12:43:42 +0200
-Date: Wed, 12 Feb 2025 12:43:42 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Aren Moynihan <aren@peacevolution.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Kaustabh Chakraborty <kauschluss@disroot.org>,
-	=?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <trabarni@gmail.com>,
-	Julien Stephan <jstephan@baylibre.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, Ondrej Jirman <megi@xff.cz>,
-	Dragan Simic <dsimic@manjaro.org>, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v5 6/8] iio: light: stk3310: use dev_err_probe where
- possible
-Message-ID: <Z6x7XgtGr8Thx08Z@smile.fi.intel.com>
-References: <20250208211325.992280-2-aren@peacevolution.org>
- <20250208211325.992280-8-aren@peacevolution.org>
- <Z6jAEEU2dqn_FJVp@smile.fi.intel.com>
- <20250211194311.5255f25b@jic23-huawei>
+	 Content-Type:Content-Disposition:In-Reply-To; b=D+q4+hvyrftlj3ARhQAJrH9LRybl7B2WkTVVkrl0lqNlUYuB+40DyVMGzt7FYHfzCbiXeNhrdLPpBdZ4zrpzmx00xXe7350ll34veVmDadslLsc21ZEJSi6G7AFYxjvAI/nH/lT+lo9C7s4VaHIp1z66COBE+J1LEPHONsRNLpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fsCk99ec; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01860C4CEDF;
+	Wed, 12 Feb 2025 10:49:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739357376;
+	bh=SrZ7q3UddXW1p49/GdRvgpUzejtlAUiY6e9x0tcKinE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fsCk99ecgG1X1H4oCmDUZgnbAUfRIvj8fWtdlwdoQ07gzWE7fmKGgOCFbXT8zxU8z
+	 E17uZ/CKSWTiBSsXf6Z6vZWKYpqlNlcKGIyrhcObTMnI1Vs8SOuMqX9285cpyLhl3h
+	 i4BACZrSu2IrhvuCBWekSlYRZzO3qid0P9Ajy4xYJi/PyBLZ+A2HVA8MjrFX049Kga
+	 aC8profD5qguMrsDfEYi5k14CfG/ZS5ZwDrn1/hjq/RJX6KfdiM3+g5V+nuBxEflNE
+	 BuOxNawNPtWooUTQhU4pS84J5mQd1EBbum7ylQPZiEkomLW6MNCo51OZTDyrBZ+Ri7
+	 Mh4FqItv9flOg==
+Date: Wed, 12 Feb 2025 11:49:34 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Florent Tomasin <florent.tomasin@arm.com>
+Cc: Nicolas Dufresne <nicolas@ndufresne.ca>, Vinod Koul <vkoul@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Boris Brezillon <boris.brezillon@collabora.com>, 
+	Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
+	"T . J . Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Yong Wu <yong.wu@mediatek.com>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, nd@arm.com, 
+	Akash Goel <akash.goel@arm.com>
+Subject: Re: [RFC PATCH 1/5] dt-bindings: dma: Add CMA Heap bindings
+Message-ID: <20250212-sweet-nano-penguin-e85e7d@houat>
+References: <cover.1738228114.git.florent.tomasin@arm.com>
+ <771534be8dfa2a3bdc3876502752f518224b9298.1738228114.git.florent.tomasin@arm.com>
+ <ats2unrml5a7vbpdrqrzowodrsfj44bnubpbujg2igk3imeklx@nrpmg5oeq3gz>
+ <be8e6b9f-c3c6-41d1-af9c-3dcd102f0fe3@arm.com>
+ <b02711c901e8acf2bc47926919de7673a0cb0b98.camel@ndufresne.ca>
+ <fae8df2a-3e47-4266-aace-392c5f37581f@arm.com>
+ <20250212-naughty-chipmunk-of-potency-7e0ced@houat>
+ <8ee8e684-0164-4e70-b42e-3827c7885685@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="hofcel2epznouj7x"
 Content-Disposition: inline
-In-Reply-To: <20250211194311.5255f25b@jic23-huawei>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Tue, Feb 11, 2025 at 07:43:11PM +0000, Jonathan Cameron wrote:
-> On Sun, 9 Feb 2025 16:47:44 +0200
-> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > On Sat, Feb 08, 2025 at 04:13:24PM -0500, Aren Moynihan wrote:
-> > > Using dev_err_probe instead of dev_err and return makes the errors  
-> > 
-> > Use dev_err_probe()
-> > dev_err()
-> > 
-> > > easier to understand by including the error name, and saves a little
-> > > code.  
-> > 
-> > I believe this patch will make more sense before switching to local 'dev'
-> > variable. Then the previous one will have an additional justification as
-> > the "struct device *dev = ...;" lines in some cases will be added already
-> > by this patch.
-> 
-> I'm not sure I follow this one comment.
-> The only line that has struct device *dev =  added in this patch is
-> replacing an existing client->dev lookup that could have been pushed
-> to previous patch if this patch ordering was maintained.
-> 
-> For dev_err() to dev_err_probe() the number of references to dev
-> is the same after all. The only additional justification this patch
-> makes is some longer lines that using a local dev pointer shortens
-> again.
-
-When converting to dev_err_probe() in some cases it makes sense to add a
-temporary variable at the same time.
-
-	if (ret) {
-		dev_err(&pdev->dev, ...);
-		return ...;
-	}
-
-===>
-
-	struct device *dev = &pdev->dev;
-	...
-	if (ret)
-		return dev_err_probe(dev, ...);
-
-which reduces automatically the churn in the patch that wants to (re)use that
-temporary variable and also adds to the justification as "we already have that
-variable, just want to use it".
-
--- 
-With Best Regards,
-Andy Shevchenko
+In-Reply-To: <8ee8e684-0164-4e70-b42e-3827c7885685@arm.com>
 
 
+--hofcel2epznouj7x
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [RFC PATCH 1/5] dt-bindings: dma: Add CMA Heap bindings
+MIME-Version: 1.0
+
+On Wed, Feb 12, 2025 at 10:29:32AM +0000, Florent Tomasin wrote:
+>=20
+>=20
+> On 12/02/2025 10:01, Maxime Ripard wrote:
+> > On Wed, Feb 12, 2025 at 09:49:56AM +0000, Florent Tomasin wrote:
+> >> Note that the CMA patches were initially shared to help reproduce my
+> >> environment of development, I can isolate them in a separate patch
+> >> series and include a reference or "base-commit:" tag to it in the
+> >> Panthor protected mode RFC, to help progress this review in another
+> >> thread. It will avoid overlapping these two topics:
+> >>
+> >> - Multiple standalone CMA heaps support
+> >> - Panthor protected mode handling
+> >=20
+> > You keep insisting on using CMA here, but it's really not clear to me
+> > why you would need CMA in the first place.
+> >=20
+> > By CMA, do you mean the CMA allocator, and thus would provide buffers
+> > through the usual dma_alloc_* API, or would any allocator providing
+> > physically contiguous memory work?
+>=20
+> You are correct only the CMA allocator is relevant. I needed a way to
+> sub-allocate from a carved-out memory.
+
+I'm still confused, sorry. You're saying that you require CMA but...
+
+> > In the latter case, would something like this work:
+> > https://lore.kernel.org/all/20240515-dma-buf-ecc-heap-v1-1-54cbbd049511=
+@kernel.org/
+>=20
+> Thanks for sharing this link, I was not aware previous work was done
+> on this aspect. The new carveout heap introduced in the series could
+> probably be a good alternative. I will play-around with it and share
+> some updates.
+
+=2E.. you seem to be ok with a driver that doesn't use it?
+
+Maxime
+
+--hofcel2epznouj7x
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ6x8uQAKCRAnX84Zoj2+
+dhpNAX9dpZ7jCHWS9XEKQqdeu+k8bL1z43DeFaKsONHamJEssyPacY4cU20LNyHZ
+dE3EP2gBfigcyv0UGOHYi7iyKQFw7lfvXnKfZ2/xUjJoWzSqoXVjjOm3bVKTr4WT
+bTbtf2LYNw==
+=IIBH
+-----END PGP SIGNATURE-----
+
+--hofcel2epznouj7x--
 
