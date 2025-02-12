@@ -1,249 +1,254 @@
-Return-Path: <devicetree+bounces-145795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F87AA32523
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:38:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59B9DA3254B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:50:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E6EE3A18FF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:38:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A199D1887E7F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF6020A5C4;
-	Wed, 12 Feb 2025 11:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6294820AF85;
+	Wed, 12 Feb 2025 11:49:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="L+/f0VfB"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="UY1vuHyh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2042.outbound.protection.outlook.com [40.107.241.42])
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9564207DE3;
-	Wed, 12 Feb 2025 11:38:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739360301; cv=fail; b=FBpFQsuUx83ny3sjraLan95m6WJy21rAFqpYqKkpzh1AoDX6EGmokCO80Q2O4E3uvXfKHFDxCepA7q3e9Q01YJPfB0MIgt/6M2wdVdb6a1TNIASK8QwaHgVvzO9Od0FY259LCkQkLc6amzWW4beDzjCRlvo7ASakUB/pwvLsMD8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739360301; c=relaxed/simple;
-	bh=h2lVmBV/supNWIq36kxp13aZ5H094SCAf5NZ58AacOI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=aG8HqhtLtf/xfrauQPmzzOd6HNHR7x79Vnxqq7FFlItlRW2k1YVZVWw4uCyM0+CvSM8RxfyCW0/s0zUFDKg8IAt0SMa/Dut3gUZtwh48ELy2/yjyCaBdgCpNp9SjkNGwuf0Vew8JRKKkEVtYXxfXUwACNjuVTnL5v8GUKhfTHAc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=L+/f0VfB; arc=fail smtp.client-ip=40.107.241.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WyOjhlAerYG7rhKkJpGO3ZDP1EedpE7PpNfWbxJ2qvbLfOUSST9q1/5257hCbakuPqsp6nu8qlYsJWA79wr6KAcUyBLbyHjZO5nYgBJAU/5pmo6+Gy0xNpo1IAUhMFrCcGIwrxL4G1AqG9CZYECgNTT6tt7HjfblRpyUdwl79+1Jh9Fh6oydKPwr2+Y3OYiPxq9Q2oLA9wIY0INb+3SvjoQTWVaxAHWoovMEIjhnTndjT+31MDAjd81RUiKLirEpqFgg1Phka7w1e4Im17x5B5aO1BkWUKh/c1ltdS7GqmowtUYBskWJ+0fVjBDa2SS27as1n/tDyLKClWXLSRRbhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7Ll5Ig1TdUUDqDmZbNuGZMueasdJsZ4VGWaFjht8Fws=;
- b=Gv7Gpim5cwAt3e78Lpu4R/KBWBxl0YGKdWp0VJF61UlFzeDmoRD0iygZmZbQVAo9hyNOEVjX8pOKGN2znIIjzJ9/5gvDAmbwtHvWSeCi90eFKQsxyMe+tEx/hgOOTD44X9QbyPw/AWqICglGJZLDpxqgfUa77dVxGP70T+mRtlG0jVl05/nWYzo99OPgoCCtacFWdn7ew/1k87k5ZjiawuBiIPCdgQN4olWxDInwZQ+kg7kulioOlMXvEfViB4tBsfr0HJh48Q9mIr8O/0j9nseFLbcrWHrNpw0Su+rml6NAzUeVEbR89GEAArX5UbCXWfd50AylNBX0vTdW8LcwWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Ll5Ig1TdUUDqDmZbNuGZMueasdJsZ4VGWaFjht8Fws=;
- b=L+/f0VfBfVy3KXjhdPHdeg4r+BniGNq+j2BXWgnmpCwCv4WGRi64pQiTrUAfpPysvU3vGSbNPT/P0B3YZNQ/A//UHifYFKMQlRIPwfuHsSRI9thZJ778L4KZXIvLxMG1xKkWqaMNcg8TSbtQ+0j2oS+E+/FwmiuofzaJdWY2orA62t9yQtofS564pB+f0j9rmthCw9Xc+nSROCK3t8hmp18qF3FIdze/6EErUlwI/jyjV1KFb8gT1VUihPBQKveWdpWCKalribzFjII35FmXgZA9DeuiYKSo8gwowAv+o1sqsBOnIHYXAAJDknrUhjWDgeD28LNiQe5wDA+g9IgiWQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8774.eurprd04.prod.outlook.com (2603:10a6:10:2e1::21)
- by PAXPR04MB9680.eurprd04.prod.outlook.com (2603:10a6:102:23e::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.18; Wed, 12 Feb
- 2025 11:38:15 +0000
-Received: from DU2PR04MB8774.eurprd04.prod.outlook.com
- ([fe80::88b8:8584:24dc:e2a1]) by DU2PR04MB8774.eurprd04.prod.outlook.com
- ([fe80::88b8:8584:24dc:e2a1%7]) with mapi id 15.20.8445.011; Wed, 12 Feb 2025
- 11:38:15 +0000
-Message-ID: <0bba6e5a-a073-688a-003a-dbbf89888886@nxp.com>
-Date: Wed, 12 Feb 2025 13:38:08 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v4 0/3] add sof support on imx95
-Content-Language: en-US
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
-From: Iuliana Prodan <iuliana.prodan@nxp.com>
-In-Reply-To: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM8P189CA0030.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:20b:218::35) To DU2PR04MB8774.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E11920A5EE;
+	Wed, 12 Feb 2025 11:49:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.156.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739360987; cv=none; b=mMMoNrvJQ6imunEB4HvRegrRWKa6io3aMwBONE2+AMsyZPp1+SNrK2m8huvfXyXjKDmK6VcVWeaFopNopBhWfniJcn4fig9RJC7IYLTevFmSykLwu4S/2KEq8xmDFYudUlFaQyV7+AUHm2W270d0Bx7gFopv40EfoTivAPWCvjo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739360987; c=relaxed/simple;
+	bh=efZbEN5VQGU9GNNYmboFpDs+LUnSjVwRvkbfTOq5sDw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jwSgIL4VgqzorxwC+2tMAbMHuzEms+CaPa/IDhvNtoVwnGrQJIEQs8i3uF28vCdQ9679+fSLRZKzJ8d/jSd0JF/TFQCZgAPnLbmV+y2zZy0yP2/7kaqRHfU3qhpB5dAS6h6xb8Z1u888k8/UmWMgNBJbDJt2IZu89iXYq1FMAyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=UY1vuHyh; arc=none smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51CAi2N8008420;
+	Wed, 12 Feb 2025 03:49:32 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pfpt0220; bh=diCFLpm9wwGN8BtsuEDbSY3
+	81ASSh6O4E3ny6a9IRXE=; b=UY1vuHyh/esvQPCbXT4G2msIlxHso0j52KNanRA
+	MTq0w798G3oZYQPj/9h1tG/Tz2wTKXlxBailP/qHQyB2O5xsKg6aouhrm1rSszH6
+	eIDTWcNJPrD7+sbCOoSWu5DWo7gYkJcADQtQEdpUdZ7ZaqAg6o+QgHLxkSpX2zCq
+	TDRXlBar0CwT2j5DPm/6n5hel6qwai7/m+U4b5z1AU8VCAgAf+FTXxg8Vpo9Kfdf
+	AEz9Mj0Jywr4G2RDziD+VIqeWystRsGQTbV7e5UpbWikMteE9RlXv6Co+bXXt0YH
+	JBRr3+ZCgwwED2HP7mbP1vQrSBxFzPJ0VHfE28SYTm+4tvg==
+Received: from dc5-exch05.marvell.com ([199.233.59.128])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 44rn8c8mmw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Feb 2025 03:49:31 -0800 (PST)
+Received: from DC5-EXCH05.marvell.com (10.69.176.209) by
+ DC5-EXCH05.marvell.com (10.69.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Wed, 12 Feb 2025 03:49:30 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH05.marvell.com
+ (10.69.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Wed, 12 Feb 2025 03:49:30 -0800
+Received: from virtx40.. (unknown [10.28.34.196])
+	by maili.marvell.com (Postfix) with ESMTP id 85B485B693C;
+	Wed, 12 Feb 2025 03:49:26 -0800 (PST)
+From: Linu Cherian <lcherian@marvell.com>
+To: <suzuki.poulose@arm.com>, <mike.leach@linaro.org>, <james.clark@arm.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <corbet@lwn.net>, <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
+        <gcherian@marvell.com>, Linu Cherian <lcherian@marvell.com>
+Subject: [PATCH v14 0/8] Coresight for Kernel panic and watchdog reset
+Date: Wed, 12 Feb 2025 17:19:10 +0530
+Message-ID: <20250212114918.548431-1-lcherian@marvell.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8774:EE_|PAXPR04MB9680:EE_
-X-MS-Office365-Filtering-Correlation-Id: e19b2bb5-1f41-4dba-3915-08dd4b59bcea
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|366016|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TGVZSGc1NzRLT3Q5QlpQdUY4THZpNjlaR0tuUEptSGI1L09CWTVNUEdscWZM?=
- =?utf-8?B?dStaYm94cXRUdnNqb1RaK1VNL1F0REhGaXpKbzhYdW1xSEdCVWY1eW5DVXNG?=
- =?utf-8?B?MDhscUZrUlRodkkrVVlJeHYyTzJ4TVV4VWVNRGliaEYrVWJKOEdpanRBL21a?=
- =?utf-8?B?TmE2bmw5NnE0aEw0VnIzbmJNZHlYRmF0aDh0MmZyMloxb2JtdDRySEZuYnd3?=
- =?utf-8?B?L1QwTE51bDZqRGtiQlp2azM3NXltMEErZ3Q4YjdaRlNBS0xEL3M3MFFmVytG?=
- =?utf-8?B?R05wcTRpRW5GRTVaMjhSQ28xcG9tNHhRYnpqeW9Xb2tmSEowT3VUNmExNUQ1?=
- =?utf-8?B?YjFMSHdRd21xYlg2TklURGRhRXZTVkI2S05EUUhodWhLLzZGY01ZS1c2cjJo?=
- =?utf-8?B?M0JkV3lvTU5GVlZiMHgzcCtPV3dqNjZWNGJtZ00wWFVUcFMrck9wM014bFZm?=
- =?utf-8?B?K0RycldPWlcvOWRHSGJCV1l6Z0FIdWxhQ0FYazFuUHlQakVSREZxczhvWWNC?=
- =?utf-8?B?OFRDUERETSt3MHBCdk96eDBJQWFNNktxMWt5MFZXQzJuNWRVMVZDTnhVQldV?=
- =?utf-8?B?cHdTWGdPSlJaeVFqakt0ZG9ScDlZVExva1RKdG9nMDRXSFVJVXBRb1RacGtm?=
- =?utf-8?B?K1dFVk5qc1RCemptZmhzaVhDL1htMG85K2Rtd3lVM3JlQkpWRHFaeEdOSW16?=
- =?utf-8?B?cnE5MkduVjhpbm8rMXNjaDdmQmlISHoyRm1KS2xKUURwUy9yN1lYQlV5ZzZL?=
- =?utf-8?B?OHJsdUV0K2M3OXhjZmh3VEZ5RXdmbVFpSENnbXRDVjF6enFPZWFVRXdCTXh0?=
- =?utf-8?B?Ulg0VmIyZzhmNEZJRkhTY0h1M3Q2cTQ4NUFtYW5qMVFHRU92cXVKYXFCWVRn?=
- =?utf-8?B?VWJEalpmcElRaitOQkVJVEQ2NDdzb3pwSVBWL1VsamFwNDlRcW1KcEN2VDJE?=
- =?utf-8?B?ZG9kVFZhanpjeGJoY3Z4VEhmWWRsTldnZjRvVjdsMjlaayt6ZVIvZGdwamsy?=
- =?utf-8?B?ajlCM0dXRnNmb0tFN1kvOVdZNk5Cb0lqczRreUVPaFJtYW0yMTJkeHY3UEJN?=
- =?utf-8?B?dFVBMXBzTzF2aUduUk9RSUUxbjJNOW9hY3pIUm9YelpjNmlJejA5b291T1gw?=
- =?utf-8?B?RU5semZmY0daTnMyTzYzb2hJMXAvejF5UnRjUVZzcmROeDBuM3hMQ3VsQStw?=
- =?utf-8?B?aTFTT0wyNDI3Z2dXNlFwbWJwcEp3bFZVS1A3anVoNmxYeEFGbmw3U0xjRmYw?=
- =?utf-8?B?RklUWDRHVU5wVjc2Z2R1YzljL0NUYS9sU0V6V3RTTUxIcmVSY0t5NkxBNFU0?=
- =?utf-8?B?M21YaVpLZGR3bXJ1eWFHWVJSVmQzTzBneVFyb2VTeEdELzM4UmdaNFpOVkJQ?=
- =?utf-8?B?R3VXdzZUTnArNDFWOHBSLzkrTXRuZlQraSt6M1M0WjdQWjduMHlQa0JNeFBy?=
- =?utf-8?B?T3VDTEJPUzF6dldIYzJlOHg2MTRaOVhtbGtSeHhwWGVCME9mNFY3VFpxQnNm?=
- =?utf-8?B?cFdGMzNGNVc5N3hYZmNRRTlDaDAyNWxDUG4vMkczZ2JxdzlZOWpCOHB4b0Zw?=
- =?utf-8?B?eFN4Zzhnc2FsMzB3Z1V3OGZ3aDVVRm1oMGFvZk94NGJmbkZLeUdhRVlFaU13?=
- =?utf-8?B?ZFdyMkl1M3E4Z0FLM1gzdXpad0ZNbEJhSWlHbVdNektUbFRsT1hrT3ZRREt4?=
- =?utf-8?B?VnoyUkREVzlvMVlydTZDd2xmMmtXemtadHl6UEdNZUJYWkNxNTdQYXBsdHky?=
- =?utf-8?B?b240OFJqMndVWlhWV1I5ekNaa0R4SllnY2tBb1dyWm4zUlYzNGhHZEtyNmZD?=
- =?utf-8?B?QzIzQXN1Z1RzZkRKN2xUOWRvb2lUUjl0RU9NbFRETzlucnZUYlJ4Qmx1c2tu?=
- =?utf-8?Q?1NMjnZwBZQABy?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8774.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZnVPeFh1WTNOSWpoNU04SzZGK3MxTk1iTUR4dWtvWGJMU2Z1b1lnaU1FWTVD?=
- =?utf-8?B?WjkwemR1eHdENnUxR0FUbmtLMlByYW1Sa0JNblZ3NWtiaFNJZ1hqY2ZXa0tJ?=
- =?utf-8?B?c1d1WkQ2VlJVVmpmZXV5WUNUQm5XMmhpRGQ5UnJabFdtOHJwU010L0JXdEc5?=
- =?utf-8?B?V1puSVNtd09obUpnekZPbkdCb3BQd28vMmdKeWJpck1FaUw3c3VOWHdrZEdy?=
- =?utf-8?B?a2ZiU3dOcFBVcDNocWZKU3A1N2RvY3FFOXp4R0lXV1ZOMVN5WmxJTW82dEtL?=
- =?utf-8?B?Y0pzemdjMjNqRlg0S1l6ZERhdlV4a1BXYTc0bW9PWW0yRnlITUFuc3JQNlh4?=
- =?utf-8?B?SlFBc0N0dm5mZlJlUy9vUTFpZ3Q4RkdCZTFYUG5XTU51U1QvMmZrZEcyb3Zx?=
- =?utf-8?B?QldRNm9zbTFNYUljOG1ZZU5yem9WU3lDNzA4WHphSmM1dEtLWVFscTR1ZGF6?=
- =?utf-8?B?NjB2bjRPWkNnK0R4T0ZhdWtCQVhianMwTG9zR3MyaXFiMk50K08xNjZ2VGRh?=
- =?utf-8?B?UUtqNTM3bVNna1lRanNpWUt0MGhYN0Z4cEJNN2hocFVoTHNtckNXb3l5cGhs?=
- =?utf-8?B?Q1VaZnkxQlBRWDBHTGtRZDFDVGdPZ29mSGt6SDE1MW9kSkNac000dkRZRE80?=
- =?utf-8?B?UlhLMVJack4zQ094L1lTZk50c3kxMzc3SFQ3Y2wzWVljRjcyQ0M5MUdYK0xM?=
- =?utf-8?B?bXhoUTB0NnN1ODBzSVlqVXBnK29NU21vVkdvYitxQVpReURHeWRWZ1RIUUox?=
- =?utf-8?B?Q0dHLzVJb1lJWGRXV1NYcXg0K0s1NGY1SEtQbStKeElJeVB3YXdqZU9WOTFt?=
- =?utf-8?B?TzBISUF0cU1WMzhqVk1vSUQrOWZ0ZDlPaVA3ZE9xMDJITGFkQVI5UExDZUFZ?=
- =?utf-8?B?ekJhSDVyaldZbm8zQjdiejMzRFdvRFc1U2JMakcyQVBHdWkxWWxPbWRGTFoz?=
- =?utf-8?B?MDkrdGo5RWhlN09uTkJKR1JFZUJ5NWc4dXZRQi81OWhBOUNiUVNqMWNBN0RW?=
- =?utf-8?B?c2RKaUN6dkgrZmVwd2EwNTdUWU56Z0diVytYMlJGUXZEakpEaGlLYVY5a3dX?=
- =?utf-8?B?OEpSUmNaeDhDNE5uWDlQZnA4dEVKRzNkb2V1ODk4enFXQmk4SjhzdlJzekUy?=
- =?utf-8?B?Q2Q5L3JVRTVhZlRuNHp6WkwzWFlhN0c0THlzYTREUVN6WkR1RU1rM3dxQStZ?=
- =?utf-8?B?Z3B0MXppMHB3VWI5Qm5wQnRLMGhyUm1PdU5tcUJNMG1uN2VNajM2SmFkMWtv?=
- =?utf-8?B?OFpXODZSWXdZTHBFVkwySVpUdjVzVFcyajB3MVFyRXlya1RYVTUzanh5bkNX?=
- =?utf-8?B?ck1BVlkrblhCVU9JM3ZGU2svdk5mT1AwMUI0VWljVEFLdzFhd0ZBcnlaRUtz?=
- =?utf-8?B?UDJmdjdDVUtBT3dOV3JrSEdxQWFRcmpvRzZuN0dmVk53V0dBSzhnaVlHZXJj?=
- =?utf-8?B?b005dDI3cC9Hc0RWSFo4QWthYWNlZ1JtM0t6emhHKytPdHpZYXV5SWY1Y3BP?=
- =?utf-8?B?d25CUy9odjZ2aEdwVE9uMlUvd3krU25rOVg1clFJM0FmamhxUWlneVgyaVRY?=
- =?utf-8?B?VHlxTWxhN0N4R0xyRGErbFJ3aDRpOUxsRHltbUNIWEwycmt0N1RuVXFrZjJZ?=
- =?utf-8?B?QWlKcjh6MmcxNFFNSHIzbjFaaUcyT2tvMW5XQ25ZcjhkUkloem9sMnFubnBl?=
- =?utf-8?B?RkFBMEhVNzlQWUNKN0x6UExZTHZNZGFrczVzeDNKK1Y4NGs4OC8vVTlJQTJD?=
- =?utf-8?B?LzVhazBGcGUxY0ROOGo3dmNIR1pFa0ROVStwT1RqZUFuSlJTeDB0aHZ1YXJz?=
- =?utf-8?B?MlRPYW5Kd0RIcGRPanRSMVdGN2xwZUl0OHZXajdGa0tZYm12SnZEV3VhUEhV?=
- =?utf-8?B?VktYM3NUWVU1YWpoR2ZZM0Y1b1k1aGs2YzFoL2NkditMOWI0d3oxWTRpMFdm?=
- =?utf-8?B?ZG4zM3JCMlVuTWFQZW9Zc09BaFRnekVLajQyOWhGeDZ5Y0hrSVlEZWxJUS9r?=
- =?utf-8?B?ZUh6ZWIxNmswK2dCTDZBWWtDQXVaVTdUK2V2UzB3dWZUaThQOXdBbEp6Mkcy?=
- =?utf-8?B?Z0M5NFdtWE8xeXYreHc4MU5OOTRIeFFUN2tQMGt6Y285VmN0RzJMbmdLeUdU?=
- =?utf-8?Q?FGTDlHAIy65jf8BrNoKMNc9Dl?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e19b2bb5-1f41-4dba-3915-08dd4b59bcea
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8774.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2025 11:38:15.2008
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1NR5VkCP0is20R91QiPypuDPINQdORvrq99Z8IfV2M2yw9banSY/eBTj/8NUpOO9/OGm0r+b6kS5cnxsbLwznQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9680
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: KgrdpqPRvKOlDG_PXkVJwJvVGckKx6vc
+X-Proofpoint-GUID: KgrdpqPRvKOlDG_PXkVJwJvVGckKx6vc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-12_04,2025-02-11_01,2024-11-22_01
 
-On 2/12/2025 12:58 AM, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->
-> Add sof support on imx95. This series also includes some changes to
-> the audio-graph-card2 binding required for the support.
-For the series:
-Reviewed-by: Iuliana Prodan <iuliana.prodan@nxp.com>
+This patch series is rebased on coresight-next-v6.13.rc2
 
-Thanks,
-Iulia
+* Patches 1 & 2 adds support for allocation of trace buffer pages from
+  reserved RAM
+* Patches 3 & 4 adds support for saving metadata at the time of kernel panic 
+* Patch 5 adds support for reading trace data captured at the time of panic
+* Patches 6 & 7 adds support for disabling coresight blocks at the time of
+  panic
+* Patch 8: Gives the full description about this feature as part of
+  documentation 
 
-> ---
-> Changes in v4:
-> - addressed Frank's comments regarding the DTS.
-> - squashed commits for common and imx95 bindings.
-> - dropped patch introducing driver. This was already handled via
-> https://lore.kernel.org/all/20250207162246.3104-1-laurentiumihalcea111@gmail.com/
-> - introduced two new properties: 'reg-names' and 'memory-region-names',
-> which are now needed by the driver to work properly. Because of this, 'reg'
-> and 'memory-region' properties had to be moved from the common binding as
-> 'reg-names' and 'memory-region-names' depend on them (you'd get a failure
-> when running the binding check otherwise).
-> - added missing 'bitclock-master' and 'frame-master' properties to codec EP.
-> - addressed Krzysztof's comments regarding the imx95 binding
-> - added Krzysztof's Acked-by
-> - Link to v3: https://lore.kernel.org/lkml/20241216145039.3074-1-laurentiumihalcea111@gmail.com/
->
-> Changes in v3:
-> - Ordered DT nodes alphabetically
-> - Removed 'cpu' and 'cpu_ep' labels from binding example
-> - Some small changes to the binding commit messages/titles.
-> - Link to v2: https://lore.kernel.org/lkml/20241113195240.3699-1-laurentiumihalcea111@gmail.com/
->
-> Changes in v2:
-> - Added new binding for 95's CM7 core with SOF. fsl,dsp.yaml is no longer used.
-> - "hp-det-gpios" and "widgets" properties now reference the definitions from audio-graph.yaml
-> - Removed extra empty spaces from DTS as suggested by Frank
-> - Ordered 'edma2', 'sai3', 'wm8962' DT nodes alphabetically. The order of the nodes
-> placed inside / is kept the same for readability
-> - Ordered driver header files includes alphabetically as suggested by Frank
-> - Removed "reg-names" and changed the maximum size of the "reg" property to 1 to align
-> with the other NXP CPUs sharing the same programming model (i.e: audio processing with SOF).
-> The region described in the DTS is the SRAM and the mailbox region is now hardcoded in the
-> driver as an offset to the start of the SRAM region.
-> - Added new binding with properties required by all NXP CPUs sharing the same programming
-> model (i.e: audio processing with SOF).
-> - Various driver adjustments made to accomodate the DT changes + some bug fixing related
-> to the mboxes not being requested/free'd on resume/suspend.
-> - Fixed value passed to "dma-channel-mask". A set bit means the channel is masked, not the
-> other way around.
-> - Link to v1: https://lore.kernel.org/lkml/20241023162114.3354-1-laurentiumihalcea111@gmail.com/
-> ---
->
-> Laurentiu Mihalcea (3):
->    ASoC: dt-bindings: support imx95's CM7 core
->    ASoC: dt-bindings: audio-graph-card2: add widgets and hp-det-gpios
->      support
->    arm64: dts: imx: add imx95 dts for sof
->
->   .../bindings/sound/audio-graph-card2.yaml     |  4 +
->   .../bindings/sound/fsl,imx95-cm7-sof.yaml     | 64 ++++++++++++++
->   .../bindings/sound/fsl,sof-cpu.yaml           | 27 ++++++
->   arch/arm64/boot/dts/freescale/Makefile        |  1 +
->   .../dts/freescale/imx95-19x19-evk-sof.dts     | 85 +++++++++++++++++++
->   5 files changed, 181 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx95-cm7-sof.yaml
->   create mode 100644 Documentation/devicetree/bindings/sound/fsl,sof-cpu.yaml
->   create mode 100644 arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
->
+v13 is posted here,
+https://lore.kernel.org/linux-arm-kernel/20241216053014.3427909-1-lcherian@marvell.com/
+
+Changelog from v13:
+* Changed the log levels of crc error check failure prints from dev_dbg to
+  dev_err as suggested by Suzuki 
+* Add metadata valid flag checks for successfully opening crashdata files,
+  as suggested by Suzuki
+* Report to the user during probe if valid crash tracedata is found,
+  as suggested by Suzuki
+* Added CRC recalculation upon barrier packet insertion for overflow
+  cases, this fixes crc check failures upon subsequent boots
+* Few other trivial cleanups suggested by Suzuki
+
+Changelog from v12:
+* Fixed wrong buffer pointer passed to coresigh_insert_barrier_packet  
+* tmc_read_prepare/unprepare_crashdata need to be called only once and
+  hence removed from read path and added to tmc_probe
+* tmc_read_prepare_crashdata renamed to tmc_prepare_crashdata and
+  avoid taking locks  as its moved to probe function.
+* Introduced read status flag, "reading" specific to reserved buffer to keep the
+  reserved buffer reading independent of the regular buffer.
+* open/release ops for reserved buffer has to take care only about the
+  set/unset the "reading" status flag as the reserved buffer is prepared
+  during the probe time itself.  
+* Few other trivial changes  
+
+Changelog from v11:
+Convert all commands to literal code blocks, that was missed out in v11.
+No other code changes.
+
+Changelog from v10:
+* Converted all csdev_access_* to readl functions in tmc_panic_sync_*
+* Added "tmc" prefix for register snapshots in struct tmc_crash_metadata
+* Converted dev_info to dev_dbg in panic handlers 
+* Converted dsb to dmb in panic handlers 
+* Fixed marking metadata as invalid when a user is trying to use the
+  reserved buffer. Earlier this was wrongly set at the time of reading
+  reserved trace buffer.
+* Moved common validation checks to is_tmc_crashdata_valid and minor
+  code rearrangements for efficiency
+* Got rid of sink specific prepare/unprepare invocations  
+* Got rid of full from struct tmc_resrv_buf
+* While reading crashdata, size is now calculated from metadata instead 
+  of relying on reserved buffer size populated by dtb 
+* Minor documenation fixes
+
+Changelog from v9:
+* Add common helper function of_tmc_get_reserved_resource_by_name
+  for better code reuse
+* Reserved buffer validity and crashdata validity has been separated to
+  avoid interdependence
+* New fields added to crash metadata: version, ffcr, ffsr, mode
+* Version checks added for metadata validation
+* Special file /dev/crash_tmc_xxx would be available only when
+  crash metadata is valid
+* Removed READ_CRASHDATA mode meant for special casing crashdata reads.
+  Instead, dedicated read function added for crashdata reads from reserved
+  buffer which is common for both ETR and ETF sinks as well.
+* Documentation added to Documentation/tracing/coresight/panic.rst
+
+Changelog from v8:
+* Added missing exit path on error in __tmc_probe.
+* Few whitespace fixes, checkpatch fixes.
+* With perf sessions honouring stop_on_flush sysfs attribute, 
+  removed redundant variable stop_on_flush_en. 
+
+Changelog from v7:
+* Fixed breakage on perf test -vvvv  "arm coresight".
+  No issues seen with and without "resrv" buffer mode
+* Moved the crashdev registration into a separate function.
+* Removed redundant variable in tmc_etr_setup_crashdata_buf
+* Avoided a redundant memcpy in tmc_panic_sync_etf.
+* Tested kernel panic with trace session started uisng perf.   
+  Please see the title "Perf based testing" below for details.
+  For this, stop_on_flush sysfs attribute is taken into 
+  consideration while starting perf sessions as well. 
+
+Changelog from v6:
+* Added special device files for reading crashdata, so that
+  read_prevboot mode flag is removed. 
+* Added new sysfs TMC device attribute, stop_on_flush.
+  Stop on flush trigger event is disabled by default. 
+  User need to explicitly enable this from sysfs for panic stop
+  to work.
+* Address parameter for panicstop ETM configuration is   
+  chosen as kernel "panic" address by default.
+* Added missing tmc_wait_for_tmcready during panic handling
+* Few other misc code rearrangements. 
+
+Changelog from v5:
+* Fixed issues reported by CONFIG_DEBUG_ATOMIC_SLEEP
+* Fixed a memory leak while reading data from /dev/tmc_etrx in
+  READ_PREVBOOT mode
+* Tested reading trace data from crashdump kernel
+
+Changelog from v4:
+* Device tree binding
+  - Description is made more explicit on the usage of reserved memory
+    region
+  - Mismatch in memory region names in dts binding and driver fixed
+  - Removed "mem" suffix from the memory region names
+* Rename "struct tmc_register_snapshot" ->  "struct tmc_crash_metadata",
+  since it contains more than register snapshot.
+  Related variables are named accordingly.
+* Rename struct tmc_drvdata members
+   resrv_buf -> crash_tbuf
+   metadata  -> crash_mdata
+* Size field in metadata refers to RSZ register and hence indicates the
+  size in 32 bit words. ETR metadata follows this convention, the same
+  has been extended to ETF metadata as well.
+* Added crc32 for more robust metadata and tracedata validation.
+* Added/modified dev_dbg messages during metadata validation
+* Fixed a typo in patch 5 commit description
+
+Changelog from v3:
+* Converted the Coresight ETM driver change to a named configuration.
+  RFC tag has been removed with this change.
+* Fixed yaml issues reported by "make dt_binding_check"
+* Added names for reserved memory regions 0 and 1
+* Added prevalidation checks for metadata processing
+* Fixed a regression introduced in RFC v3
+  - TMC Status register was getting saved wrongly
+* Reverted memremap attribute changes from _WB to _WC to match
+  with the dma map attributes
+* Introduced reserved buffer mode specific .sync op.
+  This fixes a possible crash when reserved buffer mode was used in
+  normal trace capture, due to unwanted dma maintenance operations.
+
+  
+Linu Cherian (8):
+  dt-bindings: arm: coresight-tmc: Add "memory-region" property
+  coresight: tmc-etr: Add support to use reserved trace memory
+  coresight: core: Add provision for panic callbacks
+  coresight: tmc: Enable panic sync handling
+  coresight: tmc: Add support for reading crash data
+  coresight: tmc: Stop trace capture on FlIn
+  coresight: config: Add preloaded configuration
+  Documentation: coresight: Panic support
+
+ .../bindings/arm/arm,coresight-tmc.yaml       |  26 ++
+ Documentation/trace/coresight/panic.rst       | 362 ++++++++++++++++++
+ drivers/hwtracing/coresight/Makefile          |   2 +-
+ .../coresight/coresight-cfg-preload.c         |   2 +
+ .../coresight/coresight-cfg-preload.h         |   2 +
+ .../hwtracing/coresight/coresight-cfg-pstop.c |  83 ++++
+ drivers/hwtracing/coresight/coresight-core.c  |  42 ++
+ .../hwtracing/coresight/coresight-tmc-core.c  | 321 +++++++++++++++-
+ .../hwtracing/coresight/coresight-tmc-etf.c   |  92 ++++-
+ .../hwtracing/coresight/coresight-tmc-etr.c   | 184 ++++++++-
+ drivers/hwtracing/coresight/coresight-tmc.h   | 105 +++++
+ include/linux/coresight.h                     |  12 +
+ 12 files changed, 1221 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/trace/coresight/panic.rst
+ create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
+
+-- 
+2.34.1
+
 
