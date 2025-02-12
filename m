@@ -1,211 +1,228 @@
-Return-Path: <devicetree+bounces-145812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E3C8A32645
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 13:51:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CB02A32655
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 13:56:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 243C01690E5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:51:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45BE97A06F1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2751A20A5CD;
-	Wed, 12 Feb 2025 12:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3312720CCED;
+	Wed, 12 Feb 2025 12:56:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="I+I5eKY3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DDD61E87B;
-	Wed, 12 Feb 2025 12:51:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8249A271824
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 12:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739364681; cv=none; b=T4H/bEdMQgLjiXwv4X1h77emZ5qeVHfxrXB9DKDCnwhjq+pkTcg2CJF2H1t2Gk45A0ELzFPoycuHftnj4251NRX4siyUFBw+wWPwRw5YYwzip4i2hpiBH6p3nJCH3D0q5vKpOMcRVkpPYsSiKylbcxGL//5GEIyNUk4LRGY0jC0=
+	t=1739364966; cv=none; b=c0TavmmUV7kSaMlKt4vrV7wInZNuKKTecFHNuE65gZkog/P2gRDVxNmwhOwtUnPyuI5mXoemrkidXyduLIP7ygJwvs7unnw/SfG2hw8X0OTdpbPfh6MYMaicdSrM2tyrF4XtiM54QerJA8NcO2VJQADwxeiG/3Dk2P9GzFqcStI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739364681; c=relaxed/simple;
-	bh=h6XDo9MqX66TbKJn2C4oVwqfyTVywHALJIHo9IR9uYs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bYLgzrCUiv3UDuUBLcIjhz+AgHWIibiTO88xoHvtTdrEZHLIm5Fy6S1MNn/3qrHKKFcpdAIG5Ayp3P9flKNmxdJuCuFhu/D9ejBVk9F0zEI3uweNyDQNymkjD7I5J4WQSLm74oDE6wLocbOybVOTn5laBzwJpGvIgx1FF/QbOm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-86704887709so1598863241.3;
-        Wed, 12 Feb 2025 04:51:19 -0800 (PST)
+	s=arc-20240116; t=1739364966; c=relaxed/simple;
+	bh=khCDu6D+a72YvB4zT8c20mSv6D4DLmYGwUIHI1U3gCw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z7mFPsA7b/F0OQWtbdKQUUF/ZIjkdWtaEsCgJXeYyICnPXId046p3u0e02uSPsqmEHD2vHdiIo4u3G4BK4qCWRTijfsLr1VHYqP/e391/zpLxRbIgH9p/53xsWHIE0rTuEm740GPozZ+BOHCAtoG3xu+cocUYaZ1jV0JAKf/q7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=I+I5eKY3; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51CBawPV010407
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 12:56:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5Xcp6yRYRlRMXuclTG7bgL1rCb1qEu5Tl7xJL9ykhdw=; b=I+I5eKY34w5X3xIr
+	bcw9ze8TendL06csh9gdmSYr6dFFEY+vdaYXj+FeknlFqplBbiV6RwPZ/XBa+0Qx
+	Y9ritnvoRhEXuk1zijJuwzuN7xzUgTNhYDQQD+ufWuOJcFdgtjDl3HWvVdHxHkOY
+	uBDqoQlO5Ev2SjTULEm4+9YNW+YZQn+d+Dfr9VNaja3XvrCpf8ipMj/qbBjSMCwy
+	N2hYPrevgqfbwkGu4L95US84uZFjrtk8/7QbTfJpoFJMIQpOlaUugdEj+yEfWmOI
+	rpMlE0yvx7BTOg5FHuRTKn4844egT5j4pRD9VLo1lcZUCcrHDihKlBaxYyOmqYW4
+	EysJFA==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qcs5fvhq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 12:56:03 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4718cb6689eso6974851cf.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 04:56:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739364677; x=1739969477;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MQ/1ab/AMMhwdUM5h+TBMpEY47u6kr9GW+SYGBdGrF8=;
-        b=JooYGfeAqsUex9YxZW2sKm2txxgYlfbwtBHvJ8dnDFrADej9SWbR2ZMn8GAu9BWjsM
-         p64lTBnZlgZgmFs2K27o+JxHq+MATUAgYsqZs3wp7lAkha1W4wNDX5AQF4Hyr2if3vKH
-         n/XKxf+O9eiPaU1ARAmI7sPBsZFliz1ZruE3PXt2Q4+JHG/aGdD1KjNuh815hlXas9u3
-         CMxHPCjihF+rwQme/Ju6/xYjWWrA3BfJeKANkfaKq3B4TJMxrlgeKb4yw/xQ6MD721+n
-         tUcY2WFW84pCkunUb4sjZDaUpwNVuSfcoq0oKV0nEEuJtaVwKPhpGyP6YPppgHae9tc4
-         hk3w==
-X-Forwarded-Encrypted: i=1; AJvYcCVog7TNveicoGTh5cIYIUBT0b1vuCfZhqPu/Hnds0aI1LAX8S1ghsswReKmfiHuAD+CE+Fu6W6i+QzI@vger.kernel.org, AJvYcCXbm16oR6wfSmZM78ymJV1J+6lOz4kB83wLu1ErhlvwtCEax+q7+AaYUBYWw8ZIauI0fI+4tO5tJtGU27Oa@vger.kernel.org, AJvYcCXnFtw5EOnwp7Ikcrak9VML9EAJyGKZc+wLf8Q2zFRd0SZF0NcuAu6Gf2nEdQvkrfV5WnhdfUnHDVwO@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqQmFP2NypAy/AStTtyAe6lCjNsmprwWD632eBVpRA6Sm26bJ5
-	wAbL0JOKnBBF2fMydb4RCkk65H8IwvsTrIuohwgc84wkKilvA4Qh0nrMSJnd
-X-Gm-Gg: ASbGncsLqG6fIbUojojvT79DV7ZBZh8F+/6alNJZYYhdX40ig6/FEeOqx6LqwlZ0LrE
-	CRqcmeS1RvbiCfpgzIu4rwFDo9n5d41EOr4A9KlW1apXcGH3cAiGKZnIZ9QuKmArkgpEWoiRofa
-	VqC7GZI0b9ssHvdeKInOlCeg/z8mxXwTKkjTuqKupj+RmNRaCTXOdsFV8E8zqMj0waknfvhUgt4
-	6v+ayWzqceULOZwZAVQIeXLXfPSgS5nllq2HhNGngRui++kQ4ogvqfZDWPBvz/Xg1JmlNibnbD2
-	nC3umpR13GO5hdk1lSGkNe4Q2vik9EcsZEbQM0ggj8/rNssTQgRatg==
-X-Google-Smtp-Source: AGHT+IGhjuojFyHJCG/QQ+Q42CBUu/uR/c7Ifr+gCc1PyAKmlLLAV94aP1MwThyHcebzPlywSVEvrw==
-X-Received: by 2002:a05:6122:32c6:b0:520:60c2:3fb with SMTP id 71dfb90a1353d-520678bd90cmr2363039e0c.0.1739364676701;
-        Wed, 12 Feb 2025 04:51:16 -0800 (PST)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5203a7d491fsm1016594e0c.0.2025.02.12.04.51.15
+        d=1e100.net; s=20230601; t=1739364962; x=1739969762;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5Xcp6yRYRlRMXuclTG7bgL1rCb1qEu5Tl7xJL9ykhdw=;
+        b=LQ80VWfRv2E3CwH0RMXT/P6Qi+oOSyRUPS60TVh4ANCwQTpd1//gC40p8Jm1fVu8fJ
+         oPgaLj8fcaDAox9zljWDZv0Labb+3HiuX+UsEMUDCQPgmRSMBGKFI5X/0RBzzfWyE5QZ
+         9OgbWNBjbp+DqWFLv7fg7RWCpilftVxXVcqKQGKnkUbog3PePCru2Jmjy2zF/CERrvdD
+         jvpgd9BcmmPUou3feKLawhwGym2shujZZhUcFv+Kw6Az7fPAs1tZFaLIa8B0/w5UPzdg
+         hekByQe24vt3koBMDTEHOQXqh3aOeN8P/nsu9moU/VIgIlXZlj+PP/SYdoPRcN4YKSTE
+         xZ3g==
+X-Forwarded-Encrypted: i=1; AJvYcCVCwATcdplhu1L8XxEN0a+/XraVYG6Ryo7zzFNhQyrKAWuAsUvu3RofcsW57/KgZAhcrUEpJ6fOmSD4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHX8UP0owVCohIwqYs88XmXfwEm+pBv6iwf9M9YzkTTp1tk4kn
+	LvqXH474XYATdxUJX8vj6B7P0t/pkGLW0ZsdTFxIioGbwcbYBlA5VMJH4GAz2keJ4rhbg+7vOOn
+	LphsQHNLaoHz/nK1bnck61qD5r3gZFbhioO0tagVC3ZtzTUiUGSwOj3UuY9no
+X-Gm-Gg: ASbGncuZNw+4zPFXR3EaZnys4NevdiiRcJfnv3NHQu9Fr4zFIM2GfpGBJPYVCSGZ3bj
+	fvrQal8K9FWmMWWTdV1Wer6OYOwzt48HdDyZs8Krh3tvWYPpFMNAB17VakUdPZ42NpnNBVreDSu
+	Avc6EmU4tz/+6M+CdE6cWjcCeA1TeXUqaps5H/EGOMYdV1n+17i0BM9Jqtp5qcifTFjZyY53Pxb
+	Rr8MpKA3FDHj2LvnFxgP4EToE7ZbrLBol5TueYL1H+TT6zR08Sg8nTvpsIeFK5UN2uDeenR8pmM
+	oT58mDnZUQ9VKEQMe7rNQ8wyYaGrn4gCncCNIQcAD6JzixLuGwYPsia85Sw=
+X-Received: by 2002:a05:622a:1342:b0:462:b46b:8bf8 with SMTP id d75a77b69052e-471afef4f1amr16212341cf.14.1739364962403;
+        Wed, 12 Feb 2025 04:56:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGJufyNHqGlxGr0Oi3YE2cGBUYy45V8eQFPpZVSPoCst+6BP0eWRtHg1bm7zUcq8OPj0Cjl9w==
+X-Received: by 2002:a05:622a:1342:b0:462:b46b:8bf8 with SMTP id d75a77b69052e-471afef4f1amr16212161cf.14.1739364962036;
+        Wed, 12 Feb 2025 04:56:02 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab7dae77599sm362172466b.30.2025.02.12.04.56.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Feb 2025 04:51:15 -0800 (PST)
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-8671441a730so1239846241.0;
-        Wed, 12 Feb 2025 04:51:15 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWK87vtpMprU+iaPdS5uZgbJgOhAjzq40DBbE+0bPVxGwvuyu5GxwbK7g/0oT9Ad4HJRxLLrA2vGTnZ@vger.kernel.org, AJvYcCWTAPRrAADFLuoSvVqrNo0363zlx8/zqdkhOWShTfNERucyXRtb37FySZR4KDid4DnGZ/lGo68OmM27fy83@vger.kernel.org, AJvYcCWoc6Sv+fDUegp97iu/MXvRFjtM21qzmc3AHfe+ptaTscUtLhpNodEyoQCOaHrJNjipRpNjPLrbut9J@vger.kernel.org
-X-Received: by 2002:a05:6102:3709:b0:4bb:d394:46c5 with SMTP id
- ada2fe7eead31-4bbf21cdce8mr2389568137.9.1739364674977; Wed, 12 Feb 2025
- 04:51:14 -0800 (PST)
+        Wed, 12 Feb 2025 04:56:01 -0800 (PST)
+Message-ID: <f4a15f6d-1c2c-484b-9a81-6e5e138b3fdb@oss.qualcomm.com>
+Date: Wed, 12 Feb 2025 13:55:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250210131826.220318-1-patrice.chotard@foss.st.com> <20250210131826.220318-5-patrice.chotard@foss.st.com>
-In-Reply-To: <20250210131826.220318-5-patrice.chotard@foss.st.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 12 Feb 2025 13:51:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVkFym-3byZkszsi9tRoZ6zNOMCT79c2EgQQjn5xd19ig@mail.gmail.com>
-X-Gm-Features: AWEUYZnzYg0ThTq4p4M8sQ0EhbXz6WBb20xXzFHLgeW2YGdd91BJTbWp42U4Smo
-Message-ID: <CAMuHMdVkFym-3byZkszsi9tRoZ6zNOMCT79c2EgQQjn5xd19ig@mail.gmail.com>
-Subject: Re: [PATCH v3 4/8] memory: Add STM32 Octo Memory Manager driver
-To: patrice.chotard@foss.st.com
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	christophe.kerello@foss.st.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] regulator: qcom_usb_vbus: Add support for PMI8998
+ VBUS
+To: "James A. MacInnes" <james.a.macinnes@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org, quic_wcheng@quicinc.com,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        lgirdwood@gmail.com, broonie@kernel.org
+References: <20250212010744.2554574-1-james.a.macinnes@gmail.com>
+ <20250212010744.2554574-3-james.a.macinnes@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250212010744.2554574-3-james.a.macinnes@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: hyOtkVf6g-Wp3IoxCgtV8gX5Ke5lsKMy
+X-Proofpoint-GUID: hyOtkVf6g-Wp3IoxCgtV8gX5Ke5lsKMy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-12_04,2025-02-11_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ mlxlogscore=999 phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
+ adultscore=0 clxscore=1015 mlxscore=0 priorityscore=1501 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502120100
 
-Hi Patrice,
-
-On Mon, 10 Feb 2025 at 14:21, <patrice.chotard@foss.st.com> wrote:
-> From: Patrice Chotard <patrice.chotard@foss.st.com>
->
-> Octo Memory Manager driver (OMM) manages:
->   - the muxing between 2 OSPI busses and 2 output ports.
->     There are 4 possible muxing configurations:
->       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
->         output is on port 2
->       - OSPI1 and OSPI2 are multiplexed over the same output port 1
->       - swapped mode (no multiplexing), OSPI1 output is on port 2,
->         OSPI2 output is on port 1
->       - OSPI1 and OSPI2 are multiplexed over the same output port 2
->   - the split of the memory area shared between the 2 OSPI instances.
->   - chip select selection override.
->   - the time between 2 transactions in multiplexed mode.
->   - check firewall access.
->
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
-
-Thanks for your patch!
-
-> --- a/drivers/memory/Kconfig
-> +++ b/drivers/memory/Kconfig
-> @@ -225,6 +225,23 @@ config STM32_FMC2_EBI
->           devices (like SRAM, ethernet adapters, FPGAs, LCD displays, ...) on
->           SOCs containing the FMC2 External Bus Interface.
->
-> +config STM32_OMM
-> +       tristate "STM32 Octo Memory Manager"
-> +       depends on SPI_STM32_OSPI || TEST_COMPILE
-
-COMPILE_TEST
-
-> +       help
-> +         This driver manages the muxing between the 2 OSPI busses and
-> +         the 2 output ports. There are 4 possible muxing configurations:
-> +         - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
-> +              output is on port 2
-> +         - OSPI1 and OSPI2 are multiplexed over the same output port 1
-> +         - swapped mode (no multiplexing), OSPI1 output is on port 2,
-> +              OSPI2 output is on port 1
-> +         - OSPI1 and OSPI2 are multiplexed over the same output port 2
-> +         It also manages :
-> +           - the split of the memory area shared between the 2 OSPI instances.
-> +           - chip select selection override.
-> +           - the time between 2 transactions in multiplexed mode.
+On 12.02.2025 2:07 AM, James A. MacInnes wrote:
+> This patch extends the Qualcomm USB VBUS regulator driver to support
+> PMI8998 PMIC alongside the existing support for PM8150B.
+> 
+> Key changes:
+> - Added current limit tables specific to PMI8998.
+> - Dynamically configure the VBUS regulator based on the PMIC type.
+> - Updated debug messages to reflect successful initialization for
+>   supported PMICs.
+> - Changed registration log message
+> 
+> These changes ensure proper VBUS current limit configuration and
+> compatibility across multiple Qualcomm PMICs.
+> 
+> Signed-off-by: James A. MacInnes <james.a.macinnes@gmail.com>
+> ---
+>  drivers/regulator/qcom_usb_vbus-regulator.c | 38 ++++++++++++++++++---
+>  1 file changed, 33 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/regulator/qcom_usb_vbus-regulator.c b/drivers/regulator/qcom_usb_vbus-regulator.c
+> index cd94ed67621f..804dd1a9e057 100644
+> --- a/drivers/regulator/qcom_usb_vbus-regulator.c
+> +++ b/drivers/regulator/qcom_usb_vbus-regulator.c
+> @@ -20,10 +20,30 @@
+>  #define OTG_CFG				0x53
+>  #define OTG_EN_SRC_CFG			BIT(1)
+>  
+> -static const unsigned int curr_table[] = {
+> +struct msm_vbus_desc {
+> +	const unsigned int *curr_table;
+> +	unsigned int n_current_limits;
+> +};
 > +
->  source "drivers/memory/samsung/Kconfig"
->  source "drivers/memory/tegra/Kconfig"
+> +static const unsigned int curr_table_pm8150b[] = {
+>  	500000, 1000000, 1500000, 2000000, 2500000, 3000000,
+>  };
+>  
+> +static const unsigned int curr_table_pmi8998[] = {
+> +	250000, 500000, 750000, 1000000,
+> +	1250000, 1500000, 1750000, 2000000,
+> +};
 
-> --- /dev/null
-> +++ b/drivers/memory/stm32_omm.c
+To the best of my understanding these numbers are correct
 
-> +static int stm32_omm_set_amcr(struct device *dev, bool set)
-> +{
-> +       struct stm32_omm *omm = dev_get_drvdata(dev);
-> +       struct regmap *syscfg_regmap;
-> +       struct device_node *node;
-> +       struct resource res, res1;
-> +       resource_size_t mm_ospi2_size = 0;
-> +       static const char * const mm_name[] = { "ospi1", "ospi2" };
-> +       u32 amcr_base, amcr_mask;
-> +       int ret, i, idx;
-
-unsigned int i
-
-> +       unsigned int amcr, read_amcr;
 > +
-> +       for (i = 0; i < omm->nb_child; i++) {
-> +               idx = of_property_match_string(dev->of_node,
-> +                                              "memory-region-names",
-> +                                              mm_name[i]);
-> +               if (idx < 0)
-> +                       continue;
+> +static const struct msm_vbus_desc msm_vbus_desc_pm8150b = {
+> +	.curr_table = curr_table_pm8150b,
+> +	.n_current_limits = ARRAY_SIZE(curr_table_pm8150b),
+> +};
 > +
-> +               /* res1 only used on second loop iteration */
-> +               res1.start = res.start;
-> +               res1.end = res.end;
+> +static const struct msm_vbus_desc msm_vbus_desc_pmi8998 = {
+> +	.curr_table = curr_table_pmi8998,
+> +	.n_current_limits = ARRAY_SIZE(curr_table_pmi8998),
+> +};
 > +
-> +               node = of_parse_phandle(dev->of_node, "memory-region", idx);
-> +               if (!node)
-> +                       continue;
+>  static const struct regulator_ops qcom_usb_vbus_reg_ops = {
+>  	.enable = regulator_enable_regmap,
+>  	.disable = regulator_disable_regmap,
+> @@ -37,8 +57,6 @@ static struct regulator_desc qcom_usb_vbus_rdesc = {
+>  	.ops = &qcom_usb_vbus_reg_ops,
+>  	.owner = THIS_MODULE,
+>  	.type = REGULATOR_VOLTAGE,
+> -	.curr_table = curr_table,
+> -	.n_current_limits = ARRAY_SIZE(curr_table),
+>  };
+>  
+>  static int qcom_usb_vbus_regulator_probe(struct platform_device *pdev)
+> @@ -48,6 +66,7 @@ static int qcom_usb_vbus_regulator_probe(struct platform_device *pdev)
+>  	struct regmap *regmap;
+>  	struct regulator_config config = { };
+>  	struct regulator_init_data *init_data;
+> +	const struct msm_vbus_desc *quirks;
+
+'quirks' is one way to put it ;) I'd call it 'desc' or 'data' but it's
+totally a potayto/potahto discussion
+
+>  	int ret;
+>  	u32 base;
+>  
+> @@ -68,6 +87,12 @@ static int qcom_usb_vbus_regulator_probe(struct platform_device *pdev)
+>  	if (!init_data)
+>  		return -ENOMEM;
+>  
+> +	quirks = of_device_get_match_data(dev);
+> +	if (!quirks)
+> +		return -ENODEV;
 > +
-> +               ret = of_address_to_resource(node, 0, &res);
-> +               if (ret) {
-> +                       dev_err(dev, "unable to resolve memory region\n");
-> +                       return ret;
-> +               }
-> +
-> +               /* check that memory region fits inside OMM memory map area */
-> +               if (!resource_contains(omm->mm_res, &res)) {
-> +                       dev_err(dev, "%s doesn't fit inside OMM memory map area\n",
-> +                               mm_name[i]);
-> +                       dev_err(dev, "[0x%llx-0x%llx] doesn't fit inside [0x%llx-0x%llx]\n",
-> +                               res.start, res.end,
-> +                               omm->mm_res->start, omm->mm_res->end);
+> +	qcom_usb_vbus_rdesc.curr_table = quirks->curr_table;
+> +	qcom_usb_vbus_rdesc.n_current_limits = quirks->n_current_limits;
+>  	qcom_usb_vbus_rdesc.enable_reg = base + CMD_OTG;
+>  	qcom_usb_vbus_rdesc.enable_mask = OTG_EN;
+>  	qcom_usb_vbus_rdesc.csel_reg = base + OTG_CURRENT_LIMIT_CFG;
+> @@ -80,18 +105,21 @@ static int qcom_usb_vbus_regulator_probe(struct platform_device *pdev)
+>  	rdev = devm_regulator_register(dev, &qcom_usb_vbus_rdesc, &config);
+>  	if (IS_ERR(rdev)) {
+>  		ret = PTR_ERR(rdev);
+> -		dev_err(dev, "not able to register vbus reg %d\n", ret);
+> +		dev_err(dev, "Failed to register vbus reg %d\n", ret);
+>  		return ret;
+>  	}
+>  
+>  	/* Disable HW logic for VBUS enable */
+>  	regmap_update_bits(regmap, base + OTG_CFG, OTG_EN_SRC_CFG, 0);
+>  
+> +	dev_dbg(dev, "Registered QCOM VBUS regulator\n");
 
-As reported by the kernel test robot, this fails to build when
-resource_size_t differs from unsigned long long.  However, you can
-easily print the full resource instead:
+Not sure how useful this is given the previous call creates a sysfs entry
+on success, but sure
 
-    dev_err(dev, "%pR doesn't fit inside %pR\n", &res, omm->mm_res);
-
-https://elixir.bootlin.com/linux/v6.13.2/source/Documentation/core-api/printk-formats.rst#L206
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Konrad
 
