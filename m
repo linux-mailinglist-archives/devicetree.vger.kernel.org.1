@@ -1,171 +1,188 @@
-Return-Path: <devicetree+bounces-145656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74DE0A31FCD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 08:16:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DA74A31FB2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 08:15:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65C51168BCF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 07:16:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB9F23A410E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 07:15:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5E3204C1C;
-	Wed, 12 Feb 2025 07:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16FD320409F;
+	Wed, 12 Feb 2025 07:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Db8198oC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ligrOa55"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9144A204C18;
-	Wed, 12 Feb 2025 07:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC039204097;
+	Wed, 12 Feb 2025 07:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739344579; cv=none; b=Ih8KPfR8FjyjLyTGCRD93cmUfTBZbYgG92E72xMq1xOAQ+WhTZ97+yweMK26CrWxYvTqHrGhrfI9tKR3NxJvE37ED5Myhkkzfdi3Dsk8FFDeDjZUpbRbvnwa5RXRZO3FL/F9zOyrlr7d0lSNHajGLdqaZuua5FUluXn7EOGaO5E=
+	t=1739344529; cv=none; b=QV8Lmh5WWZZIYLXmPXfWkeryJi4rMHnHKC5kq9oyQWDtGffgZwyC3b9+5wfkaj79gVQ0VJmxNw9ZOcTjOQZR83Dh5gPhcD9q2RL1lJuCs5vqqq8DjMHRn+7GjSXmdx5ax2Tu5qodSBOyfDYkufGTvFL/VIFcqkP9+h1GHiGuofo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739344579; c=relaxed/simple;
-	bh=GNTH8pHgqWxfD+S9tpEYVyPK6aZBiwCm51fjST4Cw8w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=ezUnOm1Uqdcx3xQrTHykFM2ooLGhc6B6kKrAAiFUYDlz0bp8y18GBL3AsLDxy0QVsIAF1LdE3QQakthgANXRG+dH5qhJIyuOuN69xjD9GFYYCqQhXXKqtHiwJuFVOlmzZyUi9RFP97/EVknfkLnTbad1zYuiYUUhopnSr64niik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Db8198oC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51C3IXqn010299;
-	Wed, 12 Feb 2025 07:16:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	nKdCxBfv2lMbXsVO/dbX5oXVc6EO1oBLGX5fenO7Krg=; b=Db8198oCQRKxWT1P
-	KK6GOJ8/JURiBUXOYXngTU9tjqMWZwrjm7wdEeA1sTif74IuXjF1XTE7YCdNU/QT
-	u+fzPDUHG7ePatndQEBsAL+xqCz6lsNXQhN2zoig8cAr9LVrzWzzmJ5C+0mkpWB7
-	I1W9ynkmUP2yQ2vd+1+qtkyeZFUWHAAby+zQQ5nWj3Q83YzzBiUHX9jah9mmDnLx
-	3DOIPkfx8aIEnSi8kdsrxBa/WzRzc3B84joM2LFfETUgUteK/yfLq7R0s8NLG+Y5
-	qK9GszeRwnvFLcZ9ZoIGQuffBdKiM1D/DGh2V+qy4dXx2a9JOF30V9DDNchabNWC
-	B/iiTA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qcs5ey6h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Feb 2025 07:16:07 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51C7G5aS014438
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Feb 2025 07:16:05 GMT
-Received: from cse-cd01-lnx.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 11 Feb 2025 23:15:59 -0800
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-Date: Wed, 12 Feb 2025 15:12:27 +0800
-Subject: [PATCH 4/4] arm64: dts: qcom: qcs8300: Add support for stream 1
- clk for DP MST
+	s=arc-20240116; t=1739344529; c=relaxed/simple;
+	bh=V66YCvC0FuwsQ3Tm8P1Y43IROGLiDwhKoiqjaV3vOeg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qhwv4403ud+xDuPOYWoynW2IeDSL+j2xBFy7Mrzy3e5joiPuDl/EOgr6aoYBcHyTDEGVeUijQmrmXTRlnqmG+c1xOwLcbEgHbq5fnAXZJ9lKpp+cIsxXuZRUzpsKUj2zOkGkW4edKLJS0BYwHxHVieTNlWSrOfpRw54SP9/JaNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ligrOa55; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE5C5C4CEDF;
+	Wed, 12 Feb 2025 07:15:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739344528;
+	bh=V66YCvC0FuwsQ3Tm8P1Y43IROGLiDwhKoiqjaV3vOeg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ligrOa55dlzfdnDNNi2tX2QeAofE/o4XhppmFpY7n4ksubSdNSb60y7Bv6fuhL42G
+	 uKARlCvUJFO1cT6RY9+AvvtLe5EDhgYZFeOvnmrXPMp/49YIKZ5uHAE/twE56SpwLh
+	 55crwSbwXweCl07jG+fHp2plhJe3umU1DSp1JC+88dBg/NIDszVLXgRHmXyq2Y4WR/
+	 2NQIMtvvEKuR8m+D9TQYZ4dLkvrOTNK9Yc5sNXfnp0FxALkKTbzmxbV3BC0qj0Ctn3
+	 s1Pj8lhSdOb+agDfHyayP96xBWZVhNQJM8yEjna46SC+2ml/6QU5lfYoYRdxEyHQJk
+	 hEJt7Sfw2gwaw==
+Date: Wed, 12 Feb 2025 08:15:25 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Nikola Jelic <nikola.jelic83@gmail.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, 
+	tiwai@suse.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	rwalton@cmlmicro.com
+Subject: Re: [PATCH V3 1/2] ASoC: dt-bindings: Add cmx655 codec
+Message-ID: <20250212-gabby-aardwolf-of-chivalry-a7fda2@krzk-bin>
+References: <20250210222903.88282-1-nikola.jelic83@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250212-mst_qcs8300-v1-4-38a8aa08394b@quicinc.com>
-References: <20250212-mst_qcs8300-v1-0-38a8aa08394b@quicinc.com>
-In-Reply-To: <20250212-mst_qcs8300-v1-0-38a8aa08394b@quicinc.com>
-To: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Yongxing Mou <quic_yongmou@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739344535; l=1761;
- i=quic_yongmou@quicinc.com; s=20241121; h=from:subject:message-id;
- bh=GNTH8pHgqWxfD+S9tpEYVyPK6aZBiwCm51fjST4Cw8w=;
- b=x5GebqgIdLYwWe5gSZKV3jJv4StgjIDGRq2C3mAYoMWodWBsyFPESzMkOjcCzbsAdk9MZh/tf
- T1Gts7ATDflCRUuHVpYSXRa4D5UvItLPyqManOpiX3RuBXZAiqZ70gd
-X-Developer-Key: i=quic_yongmou@quicinc.com; a=ed25519;
- pk=zeCnFRUqtOQMeFvdwex2M5o0Yf67UHYfwCyBRQ3kFbU=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: HVCbnmQuxLo7clZrm2AdKbIyBHXwk1dp
-X-Proofpoint-GUID: HVCbnmQuxLo7clZrm2AdKbIyBHXwk1dp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-12_02,2025-02-11_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- mlxlogscore=742 phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
- adultscore=0 clxscore=1015 mlxscore=0 priorityscore=1501 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
- definitions=main-2502120055
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250210222903.88282-1-nikola.jelic83@gmail.com>
 
-Add 2 streams MST support for qcs8300. Compatile with qcs8300 dp
-controller driver and populate the stream clock for qcs8300 DP0
-controller in MST mode.
+On Mon, Feb 10, 2025 at 11:28:46PM +0100, Nikola Jelic wrote:
+> Signed-off-by: Nikola Jelic <nikola.jelic83@gmail.com>
+> 
 
-Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+Nothing improved here. Respond to previous comments or implement them.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index e10db7275accf769500abbebf57a6cbbbc4bf167..5166686981617707ba19245723e9215a53300392 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -2865,12 +2865,13 @@ mdss_dp0_phy: phy@aec2a00 {
- 		};
- 
- 		mdss_dp0: displayport-controller@af54000 {
--			compatible = "qcom,qcs8300-dp", "qcom,sm8650-dp";
-+			compatible = "qcom,qcs8300-dp";
- 
- 			reg = <0x0 0x0af54000 0x0 0x200>,
- 			      <0x0 0x0af54200 0x0 0x200>,
- 			      <0x0 0x0af55000 0x0 0xc00>,
--			      <0x0 0x0af56000 0x0 0x400>;
-+			      <0x0 0x0af56000 0x0 0x400>,
-+			      <0x0 0x0af57000 0x0 0x400>;
- 
- 			interrupt-parent = <&mdss>;
- 			interrupts = <12>;
-@@ -2884,10 +2885,13 @@ mdss_dp0: displayport-controller@af54000 {
- 				      "core_aux",
- 				      "ctrl_link",
- 				      "ctrl_link_iface",
--				      "stream_pixel";
-+				      "stream_pixel",
-+				      "stream_1_pixel";
- 			assigned-clocks = <&dispcc MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
--					  <&dispcc MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
-+					  <&dispcc MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>,
-+					  <&dispcc MDSS_DISP_CC_MDSS_DPTX0_PIXEL1_CLK_SRC>;
- 			assigned-clock-parents = <&mdss_dp0_phy 0>,
-+						 <&mdss_dp0_phy 1>,
- 						 <&mdss_dp0_phy 1>;
- 			phys = <&mdss_dp0_phy>;
- 			phy-names = "dp";
+Some things got better in this patch, thank you. Other did not. Maybe
+there is misunderstanding about my comments, but you never replied to
+them, so I would assume you will be implementing them fully. If
+something is unclear, ask responding inline.
 
--- 
-2.34.1
+
+> ---
+> V2 -> V3: fixed dt_binding_check + yamllint warnings
+> V1 -> V2: removed the txt file, fixed review remarks
+> ---
+>  .../bindings/sound/cml,cmx655d.yaml           | 78 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  2 files changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/cml,cmx655d.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/cml,cmx655d.yaml b/Documentation/devicetree/bindings/sound/cml,cmx655d.yaml
+> new file mode 100644
+> index 000000000000..1648f606bf48
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/cml,cmx655d.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/cml,cmx655d.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: CML Micro CMX655D codec
+> +
+> +maintainers:
+> +  - Richard Walton <rwalton@cmlmicro.com>
+> +  - Nikola Jelic <nikola.jelic83@gmail.com>
+> +
+> +description:
+> +  The CMX655D is an ultra-low power voice codec.
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cml,cmx655d
+> +
+> +  reg:
+> +    description: Local bus address
+
+Drop, why did this appear?
+
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    description: The first cell indicating the audio interface
+
+Drop, redundant. It wasn't here before and I did not ask for this, so why?
+
+> +    const: 0
+> +
+> +  reset-gpios:
+> +    description: GPIO used for codec reset, negative logic
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: Interrupt for the CMX655D IRQ line
+
+Drop
+
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    description: Interrupt name for the CMX655D IRQ line
+
+Nothing improved. Maybe there was some misunderstanding. I asked to look
+at other bindings doing this. Where do you see syntax like that for
+interrupt-names? What syntax do you see for interrupt-names?
+
+> +    maxItems: 1
+> +
+> +  cml,classd-oc-reset-attempts:
+> +    description: Maximum number of times to reset CMX655 class-D
+> +      following a overcurrent event.
+> +      >10000 = disable limit.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 10001
+> +    default: 5
+
+Still no answer why this is board configurable.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        status = "okay";
+
+Another ignored comment.
+
+> +        audio-codec@54 {
+> +            compatible = "cml,cmx655d";
+> +            #sound-dai-cells = <0>;
+> +            reg = <0x54>;
+
+Another...
+
+
+Best regards,
+Krzysztof
 
 
