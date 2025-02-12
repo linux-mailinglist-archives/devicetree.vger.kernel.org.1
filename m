@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-145625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CACE6A31E6A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 07:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63765A31E76
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 07:07:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75B433A9294
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:00:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E2893A647F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:07:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A41B51F2367;
-	Wed, 12 Feb 2025 06:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41C71FBC8B;
+	Wed, 12 Feb 2025 06:07:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QSOBY4ny"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W0K3Ek+C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7959A1D5AA7;
-	Wed, 12 Feb 2025 06:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7CF11CA9;
+	Wed, 12 Feb 2025 06:07:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739340033; cv=none; b=EDf5SLX9SOWW1KG9u48sitJgluQX4c0dG82dPdIFt3P4TiumO4br9ll2N3r4B0UAxGEev3hQ+jWnvgNHaM2mSki7XjsoJXJEImZkG9fW9DXff29rVjHyo4CTL/59wVkk1vYzMwbEHOLilsqf9x7r371WIWq0xj1JuFQV73ULEFc=
+	t=1739340428; cv=none; b=WVo2xzeV3cB9t1hyHlCk+1gRnqvn3bSe70Vs2vPz2dEsK31HCNpGvDZ1GjTtJlJhgFYF+2ZAPflcPkEE8n2O1rjUAB3OzpScK8dNW2XlyoM350JZtn5E0Q4aVxWWYqTRzKJuPgWzfCvSTSUIlCpQ9EB6fCtk/mG7aS73ttm7Cj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739340033; c=relaxed/simple;
-	bh=i8bTX1Co+FmlgtA9zWCJAWKrZ6aCGzABIWN6cna4Lzs=;
+	s=arc-20240116; t=1739340428; c=relaxed/simple;
+	bh=xnpMPHYKZyIUkTsXMPC0zqMwSDXIWAxIdusy5ZDRwJc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TKNUdPTVB3JZ3dzkbjdzRKG7SrJG0zE4b+51WrcthDgaYwdgtSiZ5COWeNqB4Ypc2ue960CXhTXWnrsN9cf0+dQd9TD8mjnBZxBTzf1AI3SJTqL12TRjDrlNBqPxqib/AyLrq9WRv+buxHr+QQWJn966JYYz4qU0bhGgivRQuhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QSOBY4ny; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 546AAC4CEDF;
-	Wed, 12 Feb 2025 06:00:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nR80AWetVE5D1i+fTxH/pR4VNw3EE1u8MvvN9QtWjM4Cv+prrS8f4Wa5bn4W1xEpcMWVB3cjigDnYyw6sGAKOoCO0DUgo3YD1BditdJW3ToCj+E2Z7xbQp8NQ3TM+Yj6zILb+IWJLPIWhVKl8JVXK7Gwwq5Pdt/Zhl9YI25+b0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W0K3Ek+C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C914C4CEDF;
+	Wed, 12 Feb 2025 06:06:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739340033;
-	bh=i8bTX1Co+FmlgtA9zWCJAWKrZ6aCGzABIWN6cna4Lzs=;
+	s=k20201202; t=1739340428;
+	bh=xnpMPHYKZyIUkTsXMPC0zqMwSDXIWAxIdusy5ZDRwJc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QSOBY4nyf9ubr+hZrSaMn/AwWGO6firkPyE1pbdSjnKEAQ3ur7O9iD0vPjtgY+JbW
-	 iR9LOysOwWwP4mYqWDoOQUhEF8zasl1in1jrAxby6YD9KVrbqduBOoyC68/i0CnmcJ
-	 PmKQY1p45yLIajMCestKp1VQznuuS5J/8gvQIRvBmOPHj3g3AtpujnSyXXntzg/U5K
-	 BVHtU0fT0r+ONGmQunOwXtz2QfgarlQo7F90T+9Mq9Hgw1YUP9eBcXg14HcrGkW8I7
-	 joSvgrLE5ZAh5hr8fvxid68Xa5a9P8DziAdzoVgapZ2QpQjonNhdoLYHv6ysMt0OdR
-	 0w4tGXIyPHuFQ==
-Message-ID: <6842eded-725f-41be-9249-7fe633093585@kernel.org>
-Date: Wed, 12 Feb 2025 07:00:21 +0100
+	b=W0K3Ek+CuhdtAjyOvAbbcydSnrG2zp1DflRdPjYFIRzXeEIDJwoAs9UUwOjN1RMV2
+	 KfFqS1LedukoTcMtdmNALtUlA0VLBdwA+dm4HseGyjz/p3n/D4/fKY0apKs+eG5jKW
+	 49B2i+ZewMoA1XDsBZEsYj+eCVyfMdjhDyr6cLCIziZchsLA/NFwYJqN9Uyb8Tvnsp
+	 wEj0Zc5LHq6zjcs+bjoJACvWZ3+Y64905TsWXeqyPmKAx4xBkL7c7lwj/zdyzLa6Xr
+	 4HirepD+r+1mbNUmm+ZEZw/kXDQUykGu2HNpVrJkW3a/h0qpM4UPjlBHVlZfdBiWU/
+	 MVnIvFF+DnleQ==
+Message-ID: <9a61e73d-29d1-4189-89eb-1299b8934af9@kernel.org>
+Date: Wed, 12 Feb 2025 07:06:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 6/7] arm64: dts: agilex: add dts enabling PCIe Root
- Port
-To: Matthew Gerlach <matthew.gerlach@linux.intel.com>, lpieralisi@kernel.org,
- kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org,
- bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- dinguyen@kernel.org, joyce.ooi@intel.com, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: matthew.gerlach@altera.com, peter.colberg@altera.com
-References: <20250211151725.4133582-1-matthew.gerlach@linux.intel.com>
- <20250211151725.4133582-7-matthew.gerlach@linux.intel.com>
+Subject: Re: [PATCH RFC v2 1/5] dt-bindings: thermal: Add MBG thermal monitor
+ support
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, Amit Kucheria <amitk@kernel.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey
+ <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>,
+ Taniya Das <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>,
+ quic_kamalw@quicinc.com, quic_jprakash@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20241212-mbg-v2-support-v2-0-3249a4339b6e@quicinc.com>
+ <20241212-mbg-v2-support-v2-1-3249a4339b6e@quicinc.com>
+ <ojukpywkhu72cimujmijzidf26654g5vkjaj477imcf4suz2o6@cmow62jcqsfz>
+ <7a5db383-914c-4c1e-846e-5d68cc6a7765@quicinc.com>
+ <fcd718be-fe8a-466f-bd2b-7b75d5f8dd6c@kernel.org>
+ <c85903c6-6a89-4382-bfa2-2fed95f0cbc0@kernel.org>
+ <sybrfmrpegq7fcqykgsfhm56wjyx5vp6zafqw2d73tiral64aw@hg4di55fzdle>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,41 +122,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250211151725.4133582-7-matthew.gerlach@linux.intel.com>
+In-Reply-To: <sybrfmrpegq7fcqykgsfhm56wjyx5vp6zafqw2d73tiral64aw@hg4di55fzdle>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/02/2025 16:17, Matthew Gerlach wrote:
-> Add a device tree enabling PCIe Root Port support on an Agilex F-series
-> Development Kit which has the P-tile variant of the PCIe IP.
+On 12/02/2025 00:57, Dmitry Baryshkov wrote:
+> On Tue, Feb 11, 2025 at 12:50:12PM +0100, Krzysztof Kozlowski wrote:
+>> On 11/02/2025 12:46, Krzysztof Kozlowski wrote:
+>>> On 11/02/2025 12:15, Satya Priya Kakitapalli wrote:
+>>>>
+>>>> On 12/13/2024 2:08 PM, Krzysztof Kozlowski wrote:
+>>>>> On Thu, Dec 12, 2024 at 09:41:20PM +0530, Satya Priya Kakitapalli wrote:
+>>>>>> +
+>>>>>> +required:
+>>>>>> +  - compatible
+>>>>>> +  - reg
+>>>>>> +  - interrupts
+>>>>>> +  - io-channels
+>>>>>> +  - io-channel-names
+>>>>> Binding looks ok, but this wasn't tested due to unneeded dependency.
+>>>>> Please decouple from dependency, so automation can properly test it.
+>>>>
+>>>>
+>>>> The dependency is needed because this mbg peripheral is present on only 
+>>>> targets which have GEN3 ADC5, for which the bindings support is added in 
+>>>> the series [1]
+>>>>
+>>>>
+>>>> [1] 
+>>>> https://lore.kernel.org/linux-arm-msm/c4ca0a4c-e421-4cf6-b073-8e9019400f4c@quicinc.com/
+>>>
+>>> Sure. Then this cannot be merged due to resulting test failure.
+>>>
+>>> Please don't post new versions before this can be actually tested and
+>>> applied.
+>>
+>> Heh, you responded *after two months*, to an old email so even previous
+>> discussion is gone from my inbox.
 > 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> ---
-> v6:
->  - Fix SPDX header.
+> Are you responding to your own email?
 
-...
+Look at the timeline of these emails. Satya responded after two months
+with some comment. I responded now. Then I noticed that it is talk about
+something two months old, so I responded again. Two responses from me,
+that's correct.
 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts b/arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
-> new file mode 100644
-> index 000000000000..3588c845cf9c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
-> @@ -0,0 +1,87 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2024, Intel Corporation
-> + */
-> +
-> +#include "socfpga_agilex.dtsi"
-> +#include "socfpga_agilex_socdk.dtsi"
-> +#include "socfpga_agilex_pcie_root_port.dtsi"
-> +
+I recently got way too many such 2-month old clarifications.
 
-
-Missing compatible, missing model, missing bindings.
-
-
+That's indeed right of the contributor to respond in their own pace, I
+am also sometimes slow, but really there should be some limit. It's
+putting unnecessary burden on reviewers as now I should dig some old
+discussion.
 Best regards,
 Krzysztof
 
