@@ -1,136 +1,180 @@
-Return-Path: <devicetree+bounces-145777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67149A32413
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:58:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ADCAA32422
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 12:00:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E09BB188AF87
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:58:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99C9D188A2C6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 11:00:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF70209F43;
-	Wed, 12 Feb 2025 10:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05A6D209F46;
+	Wed, 12 Feb 2025 11:00:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O/X1Adqi"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zp/YQrkU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D9D0206F2C;
-	Wed, 12 Feb 2025 10:58:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CD2A2045BC;
+	Wed, 12 Feb 2025 10:59:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739357890; cv=none; b=Ba0X+J7rzCr5ZVTt7Iy8sPyecPyLBjpvlWm2/4MvUA9cr08+cTL1PnmG0zvhLHB0gILyVYjtzr0IJvj1XUH5dnKf7wnFCJ3L9XSleE96GAi8r5he7c60H2nrBlvEHFXsOquohiXvWkbsTfts8GeWBSBzAzD/hPT2EYDpbfTh/BQ=
+	t=1739358001; cv=none; b=SKtDit5ne2BXWg1EFNo1LInG0K0CZ8P7UCJk+fxKz2cYtsDCuOBrOEvpzjPU2O21Js8SA5xfuK8U56NOxv0kd8JJdMS/wSCYTb2Vbzkhs70R2wiDnzh/qbdjrSu3OCr6UK0oX4YFb+NRzwqYNhGxJXqm88DymawV3ZT9Y+Cizeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739357890; c=relaxed/simple;
-	bh=+z2XvD2jfED7TixE7ouV+IiMt8A2lUXzW0REOLFZMxM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZdoCBFt8zEnn7HzR9MLvin2iSZg7bBPJvpuApqNXNriioBK/I9SHFyLyQTEnOQL9Q9A7uW6InxXF8r7/gyS6PXAqEug7XzwZ/3f99KDQWOgtjGTnJM7/Mfevzi2zr61fnMO/ux0FVGEWQGB4+1ULyx6b9snHnahq35RV4G1gp4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O/X1Adqi; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739357889; x=1770893889;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=+z2XvD2jfED7TixE7ouV+IiMt8A2lUXzW0REOLFZMxM=;
-  b=O/X1AdqiymFiEC5aPbAg4zrUdmlPu+XJ7+rAF46m0FzY6LYL32t1WoWi
-   OxceSI38PDSnSJ9zl22IMCnDujfntjyHRzni3wA2kJhZHW7IRiWyFxOew
-   EiMexYLQazG1Yrl1vvBi4BPYgkYz9DhhasdFTyJ1rqH2vlnvYE4v7xu3D
-   nrHtffhVljCIx7YEZhxqh0WbxKw2fNSKs3rg3vfqk7obNYmqu2HKsjMYy
-   aelbDqyzr5iFPzJxur+MWblSUtaYTUJdXaJz/5G4OHJ/89TatIO1dG8LT
-   yFSNM7TWjIq6ZDwxg+cjOVKMCkujWngHKvcjy1byBAOLbHbrqsSxGyhyj
-   A==;
-X-CSE-ConnectionGUID: ptNvhZjQQxK5gTOusFjw6Q==
-X-CSE-MsgGUID: iKbD3aUXQS6NpoRJZpw1vg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39932272"
-X-IronPort-AV: E=Sophos;i="6.13,279,1732608000"; 
-   d="scan'208";a="39932272"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2025 02:58:09 -0800
-X-CSE-ConnectionGUID: ZCIVHWtYRQ+/zz/ylBdfnw==
-X-CSE-MsgGUID: vdPeYeeFT7KVQt2EtKQp9A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="149977759"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2025 02:58:05 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1tiARN-0000000AoM3-0RBJ;
-	Wed, 12 Feb 2025 12:58:01 +0200
-Date: Wed, 12 Feb 2025 12:58:00 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, David Lechner <dlechner@baylibre.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v8 01/17] spi: add basic support for SPI offloading
-Message-ID: <Z6x-uBWEsoAIV2n-@smile.fi.intel.com>
-References: <b1dcbb19-190a-45e7-8e94-cb5ef65f1f1b@sirena.org.uk>
- <Z6pim_nLct33LzfN@smile.fi.intel.com>
- <b000d3fd-754a-43e8-ab10-82677eeee1d2@sirena.org.uk>
- <Z6tcwg7QgQwytoSb@smile.fi.intel.com>
- <Z6tezVXVxVCwXuds@smile.fi.intel.com>
- <Z6tfUfHilO2KLmxv@smile.fi.intel.com>
- <Z6tgNjH6Qq5pe9Gt@smile.fi.intel.com>
- <tnjsrq3trijh4agmbhrfnqeq4iojhwybtg45bwt5n7mg7qqgcx@s7gw7idjuxgd>
- <Z6uhHssgIvI2DJ4c@smile.fi.intel.com>
- <57swm23ik5kyzcjvnhkizctnemtlqf3duhrd5u3n6yelxkerxt@6akfoqmyqsup>
+	s=arc-20240116; t=1739358001; c=relaxed/simple;
+	bh=IECdjrzXu5v/OZe0SMdDGL6u05RTxEgdE9UCcnMVYlc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CsiLcIFK9x/qSow49oyecgg1AaD7KJWA6Nz72mtn2OQiTgK8OnL+hXuAXGgaJ+Aegzt3H1VB6TqEHXux1x/BZUJ8n+95rFYdntg+Ld7AkjH9gOtxn0wNSWsXfeMtpjHfehS2WjB+eJF/5J5RHfABwMWXuKq1kYGtRxFCSJK2nZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zp/YQrkU; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=cMbXNzmQOH8F+1fl7QOJ8vHQpv6KHpW1bwAT7N9Q6cI=; b=zp/YQrkUlM3VKBJk7sx3RuhGte
+	ESyz5mnvx4yt+lVEggZQ2bVDJCW6SIJZ5FeYFX3r4TZ7LlGV6oz6k5sCGy9L19In/4Wjm3jEEfrgx
+	ej0uvffJTtniZjtVY35RINvOV0tLffeNuCvNdw/PNJb6S9SLszQs/bM4SIhcAvwJKeZqIj9LC6SP1
+	5lPjf3g2n6XN2kAcuBgtfyn/WnpLJhb1Pakn4wXesAcI6PslxC6v5RxDNF3rc6vTXwqtjcAuPCc4Q
+	uv7P3vKr0mtLEpfTDpfV3MZ27eItr7qbSkFyOiqKpUCKbjaxmIizNDA7iC1OE1zgjxle/5Q6/jTtX
+	DWvRXEHg==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tiAT9-0003GU-5b; Wed, 12 Feb 2025 11:59:51 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: hjc@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ derek.foreman@collabora.com, detlev.casanova@collabora.com,
+ daniel@fooishbar.org, robh@kernel.org, sebastian.reichel@collabora.com,
+ Andy Yan <andy.yan@rock-chips.com>
+Subject:
+ Re: [PATCH v14 02/13] drm/rockchip: vop2: Rename TRANSFORM_OFFSET to
+ TRANSFORM_OFFS
+Date: Wed, 12 Feb 2025 11:59:50 +0100
+Message-ID: <4064785.VqM8IeB0Os@diego>
+In-Reply-To: <20250212093530.52961-3-andyshrk@163.com>
+References:
+ <20250212093530.52961-1-andyshrk@163.com>
+ <20250212093530.52961-3-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <57swm23ik5kyzcjvnhkizctnemtlqf3duhrd5u3n6yelxkerxt@6akfoqmyqsup>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On Wed, Feb 12, 2025 at 09:52:37AM +0100, Uwe Kleine-König wrote:
-> On Tue, Feb 11, 2025 at 09:12:30PM +0200, Andy Shevchenko wrote:
-> > On Tue, Feb 11, 2025 at 07:45:30PM +0100, Uwe Kleine-König wrote:
-> > > I have no problem here. If the header becomes stale we will most
-> > > probably notice that eventually and remove it.
-> > 
-> > Lol. Look at the header hell we have now. 98% code in the drivers/ just show
-> > that the developers either don't care or do not understand C (in terms of
-> > what headers are for and why it's important to follow IWYU principle).
+Hi Andy,
+
+Am Mittwoch, 12. Februar 2025, 10:34:57 MEZ schrieb Andy Yan:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> Yeah, there is a problem. The source is that we have a metric ton of
-> recursive includes (i.e. headers that include other headers that include
-> still more headers). Even if you care, its sometimes hard to know which
-> headers you actually need. One idea on my long-term list is to add a
-> machine-parsable info to header files about the list of symbols that the
-> given file is responsible for. With that in place we could create a
-> linter that tells you that this source file doesn't use any symbols from
-> <linux/of_irq.h> and it should #include <linux/of.h> directly instead to
-> make use of symbols defined there.
+> This help avoid "exceeds 100 columns" warning from checkpatch
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 
-There were already few attempts to untangle the dependency hell we have in LK
-project, but all seems to fail. The infamous one by Ingo stale, however a few
-patches (out of more than 2200!) made upstream.
+I'm not much of a fan of "randomly" renaming individual constants
+(especially when one is now named OFFS, while the rest stay at OFFSET)
 
-So, any tooling for that will be warmly accepted!
+- on rk3568 VOP2_CLUSTER_WIN0_TRANSFORMED_OFFSET = WIN0 transformed offset
+- on rk3588 VOP2_CLUSTER0_WIN0_TRANSFORMED_OFFSET = WIN0 transform offset
+- on rk3576 "someone" sadly decided to not provide the 2nd TRM part anymore
+  but I guess it'll be the same.
 
--- 
-With Best Regards,
-Andy Shevchenko
+So instead of just dropping parts from the end, you could also follow
+the TRM naming and drop the "_AFBC" from the register name instead?
+
+So going to VOP2_WIN_TRANSFORM_OFFSET, this would also reduce the line
+length accordingly, and moving the naming closer to the TRM too.
+
+Alternatively, just add a linebreak at the appropriate position instead.
+
+Heiko
+
+
+> ---
+> 
+> (no changes since v1)
+> 
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 8 ++++----
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h | 4 ++--
+>  2 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> index ebc9cb93073c..8e1b742a7550 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> @@ -1524,7 +1524,7 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+>  		transform_offset = vop2_afbc_transform_offset(pstate, half_block_en);
+>  		vop2_win_write(win, VOP2_WIN_AFBC_HDR_PTR, yrgb_mst);
+>  		vop2_win_write(win, VOP2_WIN_AFBC_PIC_SIZE, act_info);
+> -		vop2_win_write(win, VOP2_WIN_AFBC_TRANSFORM_OFFSET, transform_offset);
+> +		vop2_win_write(win, VOP2_WIN_AFBC_TRANSFORM_OFFS, transform_offset);
+>  		vop2_win_write(win, VOP2_WIN_AFBC_PIC_OFFSET, ((src->x1 >> 16) | src->y1));
+>  		vop2_win_write(win, VOP2_WIN_AFBC_DSP_OFFSET, (dest->x1 | (dest->y1 << 16)));
+>  		vop2_win_write(win, VOP2_WIN_AFBC_PIC_VIR_WIDTH, stride);
+> @@ -1535,7 +1535,7 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+>  	} else {
+>  		if (vop2_cluster_window(win)) {
+>  			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 0);
+> -			vop2_win_write(win, VOP2_WIN_AFBC_TRANSFORM_OFFSET, 0);
+> +			vop2_win_write(win, VOP2_WIN_AFBC_TRANSFORM_OFFS, 0);
+>  		}
+>  
+>  		vop2_win_write(win, VOP2_WIN_YRGB_VIR, DIV_ROUND_UP(fb->pitches[0], 4));
+> @@ -3448,7 +3448,7 @@ static const struct reg_field vop2_cluster_regs[VOP2_WIN_MAX_REG] = {
+>  	[VOP2_WIN_AFBC_TILE_NUM] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_VIR_WIDTH, 16, 31),
+>  	[VOP2_WIN_AFBC_PIC_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_PIC_OFFSET, 0, 31),
+>  	[VOP2_WIN_AFBC_DSP_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_DSP_OFFSET, 0, 31),
+> -	[VOP2_WIN_AFBC_TRANSFORM_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_TRANSFORM_OFFSET, 0, 31),
+> +	[VOP2_WIN_AFBC_TRANSFORM_OFFS] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_TRANSFORM_OFFS, 0, 31),
+>  	[VOP2_WIN_AFBC_ROTATE_90] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 0, 0),
+>  	[VOP2_WIN_AFBC_ROTATE_270] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 1, 1),
+>  	[VOP2_WIN_XMIRROR] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 2, 2),
+> @@ -3547,7 +3547,7 @@ static const struct reg_field vop2_esmart_regs[VOP2_WIN_MAX_REG] = {
+>  	[VOP2_WIN_AFBC_PIC_OFFSET] = { .reg = 0xffffffff },
+>  	[VOP2_WIN_AFBC_PIC_SIZE] = { .reg = 0xffffffff },
+>  	[VOP2_WIN_AFBC_DSP_OFFSET] = { .reg = 0xffffffff },
+> -	[VOP2_WIN_AFBC_TRANSFORM_OFFSET] = { .reg = 0xffffffff },
+> +	[VOP2_WIN_AFBC_TRANSFORM_OFFS] = { .reg = 0xffffffff },
+>  	[VOP2_WIN_AFBC_HDR_PTR] = { .reg = 0xffffffff },
+>  	[VOP2_WIN_AFBC_HALF_BLOCK_EN] = { .reg = 0xffffffff },
+>  	[VOP2_WIN_AFBC_ROTATE_270] = { .reg = 0xffffffff },
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+> index 29cc7fb8f6d8..8510140b0869 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+> @@ -118,7 +118,7 @@ enum vop2_win_regs {
+>  	VOP2_WIN_AFBC_PIC_OFFSET,
+>  	VOP2_WIN_AFBC_PIC_SIZE,
+>  	VOP2_WIN_AFBC_DSP_OFFSET,
+> -	VOP2_WIN_AFBC_TRANSFORM_OFFSET,
+> +	VOP2_WIN_AFBC_TRANSFORM_OFFS,
+>  	VOP2_WIN_AFBC_HDR_PTR,
+>  	VOP2_WIN_AFBC_HALF_BLOCK_EN,
+>  	VOP2_WIN_AFBC_ROTATE_270,
+> @@ -335,7 +335,7 @@ enum dst_factor_mode {
+>  #define RK3568_CLUSTER_WIN_DSP_INFO		0x24
+>  #define RK3568_CLUSTER_WIN_DSP_ST		0x28
+>  #define RK3568_CLUSTER_WIN_SCL_FACTOR_YRGB	0x30
+> -#define RK3568_CLUSTER_WIN_AFBCD_TRANSFORM_OFFSET	0x3C
+> +#define RK3568_CLUSTER_WIN_AFBCD_TRANSFORM_OFFS	0x3C
+>  #define RK3568_CLUSTER_WIN_AFBCD_OUTPUT_CTRL	0x50
+>  #define RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE	0x54
+>  #define RK3568_CLUSTER_WIN_AFBCD_HDR_PTR	0x58
+> 
+
+
 
 
 
