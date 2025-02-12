@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-145648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC3B5A31F90
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 08:00:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF20A31FA7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 08:09:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A94B47A418D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 06:59:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F8457A2851
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 07:08:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D03661FF1C2;
-	Wed, 12 Feb 2025 07:00:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9BA20124E;
+	Wed, 12 Feb 2025 07:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u1Vd4BWp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AxMC7bO7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CDC41E9B04;
-	Wed, 12 Feb 2025 07:00:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6600C20103F;
+	Wed, 12 Feb 2025 07:09:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739343607; cv=none; b=ERVd4+Q2h8WGJPNNQ6zlyKPu2oROBocNILSKdmyqw354f1dw2NoYFtnwM06JBL6YYeF41K6Go9pe8+Hw9nP23ygtIhiy46Z6RleiDCv826kZpQBQYv3/F2PHJm3zNcLm4MnXUNrAvNodQ4owi/QaSHB+jx0Ao+YhK/szvR/tHew=
+	t=1739344147; cv=none; b=G4x2uASn4fzz8upx/arvnVft+wNMf9Iz4VTQF/XHykkWBoVE8ZPMY4lRwUGF+l6t3qR8ggvcyNqOSMnKnY5V6IsTVRxHeu3yNdnIUDWc5EEzbgysBQvhAOPZNeDSp0ddWr+deg29jpikPH/6RxrH8tFQkQzT0EFOSbEpBCencVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739343607; c=relaxed/simple;
-	bh=omI212O59QFslgZhVoctWrZt+GTeQzBaQFpXb9I54+s=;
+	s=arc-20240116; t=1739344147; c=relaxed/simple;
+	bh=dO8kQ7f4GRkQ9UG4gm8xbzd7RbRvjodzFGlo41ASAc8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PqUXH8optofw2+BEWuE3AFicjPXiPdb+x6urlKNZS26/TjiP+5zkiIVZE115XD0HlkKA0Bg39xiuuRXPUPg0Qu/2hXKuBzkQQ+0IrCVNjoBrxFR9WUDPfLHB5Ques5sFT6hyOgXi/wbdR2CNdgBGyP/pgkE3eBbSH8ByLi5pMY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u1Vd4BWp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3824DC4CEDF;
-	Wed, 12 Feb 2025 07:00:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jETrdbs3p4bKbqVwr3wS3s3mXVqWykdlsdHF03FFusJazF9V288fKr2LgyTVsfQZtrOsuwB38d+Yy7Xkr5TpZD9lEEVchY9+1tbWQw6vTuIIv+ZBiCPnkXX5G+J1QEftf7fmrcQAPOCnWyji8hhQcVaVDptHiOEOJKdYGn3RMvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AxMC7bO7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E511C4CEDF;
+	Wed, 12 Feb 2025 07:09:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739343607;
-	bh=omI212O59QFslgZhVoctWrZt+GTeQzBaQFpXb9I54+s=;
+	s=k20201202; t=1739344146;
+	bh=dO8kQ7f4GRkQ9UG4gm8xbzd7RbRvjodzFGlo41ASAc8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u1Vd4BWpfSll5RkmGK4nVvzOkBxM8p0V7Cym06iUvEOCRTGAb1bNlKBN0dBzfyVd2
-	 VwkBLawGgvuPpXe9X4Raku4RVloDCsir4dZSVzbTTc08SAAukuCYeRczzz5GpP+MSd
-	 VPvVIxLHGun7ZyUNlrx/SxxZ0Pj/ZyWvjWLGbTa+C9fzQelQlK2ciPVaCD74/rcTuY
-	 NiAeh4pU/Z9YUOalB+eaZ92Ba3l5A19LFN+2QLX1IJ6bipgnFugGa88BEukycYOCqR
-	 xUIjsCpjfA8eahc+ocQ39u38vReztB972raOtNUjY5eQj5c40RMg+SrFXdTNr3Fmzk
-	 PlIko8Uprx0cw==
-Date: Wed, 12 Feb 2025 08:00:03 +0100
+	b=AxMC7bO7N6u0XwMUb5QrqxgoSU1vY8QiHAuHpKGQlNLGEgazP0nkYCVD1P6jPBGFl
+	 M2HCoXFPMJLufIcaSvxgbi02EXEKeLNOj53NP3qThZlhwifSxFMKn/aUVf50ClDxJk
+	 mresRF3ejV5XzIcfZJHoMqhWeM7d1gXOhDuuwiY4XTY64/rohsI7nb2EBukFCeLAYa
+	 MtYVtnHE5HwAl/LO3bWS2jl3ghnl7IOW1XFKNA0kDNX7iF+JH/mRJKHoo8c9v47YXq
+	 Mi3oqXgf6D9qiAopYo3jmQewqHR80nX1e7x+MP12dNEdF7jvuebFx4Ek309piv1Zl8
+	 xrTZBNRfL1TfA==
+Date: Wed, 12 Feb 2025 08:09:03 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Robert Budai <robert.budai@analog.com>
-Cc: Nuno Sa <nuno.sa@analog.com>, 
-	Ramona Gradinariu <ramona.gradinariu@analog.com>, Antoniu Miclaus <antoniu.miclaus@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v7 4/6] dt-bindings: iio: Add adis16550 bindings
-Message-ID: <20250212-arcane-quick-mackerel-15ba6b@krzk-bin>
-References: <20250211175706.276987-1-robert.budai@analog.com>
- <20250211175706.276987-5-robert.budai@analog.com>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 1/3] ASoC: dt-bindings: support imx95's CM7 core
+Message-ID: <20250212-stalwart-sambar-of-satiation-4845dd@krzk-bin>
+References: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
+ <20250211225808.3050-2-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,64 +62,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250211175706.276987-5-robert.budai@analog.com>
+In-Reply-To: <20250211225808.3050-2-laurentiumihalcea111@gmail.com>
 
-On Tue, Feb 11, 2025 at 07:57:01PM +0200, Robert Budai wrote:
-> +  spi-max-frequency:
-> +    maximum: 15000000
-> +
-> +  vdd-supply: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description:
-> +      Must be the device tree identifier of the RESET pin. If specified,
+On Tue, Feb 11, 2025 at 05:58:06PM -0500, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> 
+> Add binding for imx95's CM7 core, used for audio processing.
+> Additionally, introduce a common binding for NXP audio processors with
+> Sound Open Firmware (SOF) support.
+> 
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> ---
+>  .../bindings/sound/fsl,imx95-cm7-sof.yaml     | 64 +++++++++++++++++++
+>  .../bindings/sound/fsl,sof-cpu.yaml           | 27 ++++++++
+>  2 files changed, 91 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx95-cm7-sof.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,sof-cpu.yaml
 
-Few nits here because you did not implement previous feedback:
-
-s/Must be the device tree identifier of//
-It cannot be anything else, right? So:
-
-Active low RESET pin.
-
-Second sentence is implementation detail, what if my krzkOS does not do
-it in probe? Is binding incorrect in such case? No, so drop.
-
-> +      it will be asserted during driver probe. As the line is active low,
-> +      it should be marked GPIO_ACTIVE_LOW.
-
-Line should be marked depending on the board layout. If there is
-inverter, it won't be GPIO_ACTIVE_LOW. Just say this is active low.
-
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: If not provided, then the internal clock is used.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - spi-cpha
-> +  - spi-cpol
-> +  - spi-max-frequency
-> +  - vdd-supply
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-
-And now we get back to previous feedback which was not implemented.
-Please share the filename which follows such style/syntax without blank
-lines, so I can fix it and people will not take it as an example.
-
-> +additionalProperties: false
-
-Here as well.
-
-> +examples:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
