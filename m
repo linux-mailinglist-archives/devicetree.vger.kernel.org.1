@@ -1,167 +1,121 @@
-Return-Path: <devicetree+bounces-145980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3902EA32F34
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:04:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5889DA32F58
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 20:13:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92338188997E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 19:05:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2B033A79CA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 19:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59C9A260A5D;
-	Wed, 12 Feb 2025 19:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F57262803;
+	Wed, 12 Feb 2025 19:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZfCX1ByG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M13oBsj2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A1B257AC7;
-	Wed, 12 Feb 2025 19:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F0102627F9;
+	Wed, 12 Feb 2025 19:13:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739387095; cv=none; b=uhUnOFKJOFrrq79+2wmp/JhcHWGPtYcJw53s3Vc5e6Kny/2IE69CQ4DBasmkJQTas/pv8bEm6Yt/q2j/i7dLziMWux0acI15S2cGcf/alldSniEak3gMxJ/c7oBL7zYUgXge0fIAPkSdD3XRAdhl6Mw5mg2bXw5/CI1VihFQGqg=
+	t=1739387616; cv=none; b=gZgqAOft3hr2xV68sr6Zun8f7eCf1cWtqPG72TghBH/DeoUjYwr+Fjo5izSIA7rIxVCp5dgrPv8RwEuDzLUprq/8uzXMgohDwt0bU2IVU2hkPyFt6blq4ghUuHhjz6+OxxFJp9Ysqzzol57XuxcXyZV4qPi4KqC7LxoC8tGCws4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739387095; c=relaxed/simple;
-	bh=GByBzklmfX23pRSpc2MBYgFPIh6J9o3kWfHsq1LZtCs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=joBLW8ZKSjLCtkkiRhbDkmBz0a4DBCVndicUdN+01JUBUB5LQQXbGN3u+uzjtJtLSsJPTYtNWK91pKe222FKFtgMJ4mxir9VfHZ1K/IdeGLv6yylcjIF4lUXzcivhOrV92u5H3bYmnkBosjhARCug60qXHxJkKEeK7DERkgGUl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZfCX1ByG; arc=none smtp.client-ip=209.85.208.42
+	s=arc-20240116; t=1739387616; c=relaxed/simple;
+	bh=iu5S2qQhfIA+bGk7zgBLx2LsbfZVYXtbMqlErEDJfIU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=okzFRrtfzus1QU3kf0iUpuxlGdrt81GFjriatQ3mMWkWj9aRUiSKyOXk4ON7Y2X5TIyVxAyjlhZmBkidpy92lbXHDp0nS5uIHyrRzFcgDV6V0ZFLEufPbC/ATZMTw6EQ0Al3SKXSMF0qovWI3rHeAoL1pnN6S7z7Ujyzxs+j1q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M13oBsj2; arc=none smtp.client-ip=209.85.210.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5de5bf41652so7546a12.1;
-        Wed, 12 Feb 2025 11:04:53 -0800 (PST)
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-726fe6dda74so86882a34.0;
+        Wed, 12 Feb 2025 11:13:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739387092; x=1739991892; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5n7rB0wdq5vMXsxf8BJiZz2GQf3El+y7mHlJDy65vBI=;
-        b=ZfCX1ByG6lLEddjENxnUcdZF+ePcjir4JHcS1wLRN5Wr1tqSLT7PI0eGYy4HrYChfI
-         4uJMsWtbY8kx7o5VxIu48iAM/erua191Rc2NvjLWKPsCxSDV9avzByN+QNCy12p7zeVt
-         ICgk/pJvgYg9fEpPyjSFx2hOQG8lslDHoBaQvA9crMZbCc7kOZejUReu6GKsN3tTnH8B
-         OOIm8f/P//+JJs1QJPAKAiiWaEqq5T/vNyvNQtZqi3NoF/THO3IYBdQccGpLCm3tFCqt
-         uUCfk/rHnrg/wFFcHqy8u9Ja3CLch8KkpoWbxmbbEwrJis2Oj/ikcChBVHAKoR9bgzXY
-         NcuA==
+        d=gmail.com; s=20230601; t=1739387614; x=1739992414; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4uvvNTCn69pMo/6V+tni3pi49kMJUjjGQzaJ92qEqLI=;
+        b=M13oBsj2/zjN5yuDafKBW+6rpnY7ZJzrVObc59uiR0wMu6cXKLoDy9B8OY/EAPJwp/
+         hbXWFwW2y3GxnuQxnjijBMbF19g0Sf/vdYzJ87F4KOiuOX/tg33SSDFLnXup9VVw9cFB
+         RzEn82ssf6DNKvU8pbV/Rtl34jZN00KutDLfryiqpG4EbDWeWluIHAMN358HQu2PT+F5
+         FURlrrAUZqbdBu0PUpUYo0CR+DtUXTmHkxNzGwE5iPwm3CqSQe0i1tUSZhe0J3vyR7JE
+         ZoBP4QmhbFiup2krI7u4QE+ABv2DsivkWxIPI8zVW11xivBgLozp19TAhd6fKF3xtf0a
+         GfIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739387092; x=1739991892;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5n7rB0wdq5vMXsxf8BJiZz2GQf3El+y7mHlJDy65vBI=;
-        b=WdII9MZYSaIQmAsOO7SDBw3hVPEfO8GXQW2mCAeEd6rN1gtThoCDR797xl4sR5CPH0
-         qU5g947cjRIEuvIMmbgEf7SO1amKfMZoSnLdh1h6s+XB8Nd//gsqugIw9vt6eM18glOE
-         WSPG3lGuyCfwS7UZhi2bnVgSi2mY37s4M7cDlshp1C0meJS1zi7MPP3ofd2ANmxBuB8l
-         Q/lZnmwMkTASzSa0UU9l5C/EnPeL5AY3W/T+84G/OJlft7PyNDqvebGiPiNpjHog7TXs
-         KfjgVg8a3Oqbpp7xXP0TNNDNyiora4oNCvSKohcPFMjwCAdCGGCA3f9eVBXIJI1ILlQc
-         O8dg==
-X-Forwarded-Encrypted: i=1; AJvYcCWcroc7Lr16vZCl08SjhRz42qL0RhUMh7vEzfZYov7EAkY3yNz/M4CH67zvXqLtnYfGbfLRi3HHAzzVIiky@vger.kernel.org, AJvYcCX2bJYBywFsaMxCxL7Nzf3ho3Xfg5E/zPzGT/XeUJhi+whvGmko46X2UR+bJ3WvEYhS/M+YLPUJS7+U@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZ4dgLqzJ7i+Qw2SrvdGwNVZczCILFIowk8/8ozWtGQbAsbhBa
-	CRR8uFYwEEVple54pOGK8+5rvdxapOWGlM0/jqC3wya9K28rzCZ8
-X-Gm-Gg: ASbGncu1FrUsiW0XsvAyGFbdIAeRuKM/TtbYFO62d0qXph5iuO+lIyhGEIY3F8RKBlw
-	rOuW7VjlcK7mu6nJtXzgUBGY9g+6AdUlj2ne2cwMQIlZjjCOpVsv+CGq3s1JPQc5SBkLWClHVnr
-	okkQalwCkkCBXXJMTvzzICArGZxH4hsxgEuRk9G8QiHbLHF/UetVOLKwjajNC0yBiqOv21+hDnV
-	wXDqxqTSQeFHSqhsPi5IbNujtbVrn2JQsL5h4Pf8wqj9YU1YKEn4MnJkD19AWnYjf3SuVg5jJsk
-	QdT3pVA2hni0OkQqLFhfNbiDRPjEcgGbZOfoOu5GfD+i
-X-Google-Smtp-Source: AGHT+IEZn0+ju/iW8MyZm8pcKU9jLpSB3rBPfVfpKrwdB6064zci1oEw5mVOcdEw7A8E0QsKoeQlTA==
-X-Received: by 2002:a05:6402:348d:b0:5dc:882f:74b7 with SMTP id 4fb4d7f45d1cf-5deade1c945mr4021549a12.30.1739387091464;
-        Wed, 12 Feb 2025 11:04:51 -0800 (PST)
-Received: from [192.168.1.130] ([82.79.237.175])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5de59f893ebsm9343226a12.45.2025.02.12.11.04.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Feb 2025 11:04:50 -0800 (PST)
-Message-ID: <da63fc79-76f6-443f-b1fe-c4242cb45328@gmail.com>
-Date: Wed, 12 Feb 2025 21:04:47 +0200
+        d=1e100.net; s=20230601; t=1739387614; x=1739992414;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4uvvNTCn69pMo/6V+tni3pi49kMJUjjGQzaJ92qEqLI=;
+        b=jZ23K0e7BplvAKXheT4yt6QKhqSLIQGj2ltur3rgNya/+KyYQcba7rKHciucT+NRk1
+         yz8MA864HjLO7w2v5EEew0BjFFpKicRMPg1C94f7rwvnGWiTlTo8vPYS8P0mV7VOPxt5
+         BrKxs81+3c3WRbd53w5pila1cw1aqPbvqGuU2lVxRe9YKSdwQMKshq6axyAbf3eD8BFy
+         X6hWzj2l1Aay6FjY/bxHxZJrhnV/jj+3c3PI6DsC36vbepDcxsm2GOlL3M5keVQE3k5/
+         owdOkhl2IORBhcnpPpMCA88/3useag3G3HaI6pyqvXXzTByoG12wWMFTHuTw8y2ZpP8/
+         /FgA==
+X-Forwarded-Encrypted: i=1; AJvYcCUE2HEuGxyl2CG/neGIl9VDoQUwkXy2Nzjrix1fMJwPbMSkXm60prwtS7SmqVy2cav89GkmQNmE0yQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwW27hHuDGgtv11zijvmbAWcTOIxduQtqVs6tYK2awyEg3Iddr6
+	HBNviKS0SpLhTYaQSE23CbaHLJgfxYzXX+6ozZkzHMThrJG+I9R7
+X-Gm-Gg: ASbGncs002ev6M9hGmBth2v/UVdIXCebutxEAXl5XXjsSev1LTx8A0kDO3E2V71Fa3x
+	2WFvXoByqIDESETFjY7/BSHdNxLS0BbnXVe4ga4hrTt4NIAcj97WZlCkQbXt5ayK38RWNxmTgOO
+	fw0eiTqk87Wvyta/rvPuM7P9292UtGQ+T+ncdUGJtlJ2l3AZNIfpebSlAtjUXutS6kKE4QtQ10z
+	UtAUwnZrA5ebPyOnNIx2x21t3Kgg8l0NTDW9u1oMM7iRk1fasoJYtRoeFA6Sum7xTq6nfbdDauC
+	soQzfQqQ3R2ejT5pI8bDEHsb+nMDlTJpGg==
+X-Google-Smtp-Source: AGHT+IG2Pv7wZCojfRcIagqlwoNOupsL8ezR2SAwZJ+ouLoR02Cx6tYjcppbrON4JH6T8Sv6ArDRyA==
+X-Received: by 2002:a05:6830:6483:b0:71e:7e4:c54e with SMTP id 46e09a7af769-726f1c33b3fmr3043630a34.3.1739387614229;
+        Wed, 12 Feb 2025 11:13:34 -0800 (PST)
+Received: from localhost.localdomain ([2600:1700:fb0:1bcf:511b:97aa:dc6:7ad4])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-726fd014926sm356033a34.32.2025.02.12.11.13.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2025 11:13:34 -0800 (PST)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-sunxi@lists.linux.dev
+Cc: devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	p.zabel@pengutronix.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	samuel@sholland.org,
+	jernej.skrabec@gmail.com,
+	wens@csie.org,
+	sboyd@kernel.org,
+	mturquette@baylibre.com,
+	ryan@testtoast.com,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/2] Add Clock and Reset for TCON LCD
+Date: Wed, 12 Feb 2025 13:11:07 -0600
+Message-ID: <20250212191109.156766-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/6] arm64: dts: imx8mp: Add fsl,dsp-ctrl property for
- dsp
-Content-Language: en-US
-To: Frank Li <Frank.li@nxp.com>, Daniel Baluta <daniel.baluta@nxp.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, krzk+dt@kernel.org, conor+dt@kernel.org,
- festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- aisheng.dong@nxp.com, daniel.baluta@gmail.com, laurentiu.mihalcea@nxp.com,
- shengjiu.wang@nxp.com, iuliana.prodan@nxp.com, a.fatoum@pengutronix.de,
- Peng Fan <peng.fan@nxp.com>
-References: <20250212085222.107102-1-daniel.baluta@nxp.com>
- <20250212085222.107102-6-daniel.baluta@nxp.com>
- <Z6zGLn3B6SVXhTV1@lizhi-Precision-Tower-5810>
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <Z6zGLn3B6SVXhTV1@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2/12/2025 6:02 PM, Frank Li wrote:
-> On Wed, Feb 12, 2025 at 10:52:21AM +0200, Daniel Baluta wrote:
->> Audio block control contains a set of registers and some of them used for
->> DSP configuration.
->>
->> Drivers (rproc, SOF) are using fsl,dsp-ctrl property in order to control
->> the DSP, particularly for Run/Stall bit.
->>
->> Note that audio block control doesn't offer the functionality to reset
->> thte DSP. Reset is done via DAP interface.
->>
->> Reviewed-by: Iuliana Prodan <iuliana.prodan@nxp.com>
->> Reviewed-by: Peng Fan <peng.fan@nxp.com>
->> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
->> ---
->>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
->> index 14cfbd228b45..46b33fbb9bd1 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
->> @@ -1609,7 +1609,7 @@ sdma2: dma-controller@30e10000 {
->>  			};
->>
->>  			audio_blk_ctrl: clock-controller@30e20000 {
->> -				compatible = "fsl,imx8mp-audio-blk-ctrl";
->> +				compatible = "fsl,imx8mp-audio-blk-ctrl", "syscon";
->>  				reg = <0x30e20000 0x10000>;
->>  				#clock-cells = <1>;
->>  				#reset-cells = <1>;
->> @@ -2425,6 +2425,7 @@ dsp: dsp@3b6e8000 {
->>  			mboxes = <&mu2 0 0>, <&mu2 1 0>, <&mu2 3 0>;
->>  			firmware-name = "imx/dsp/hifi4.bin";
->>  			memory-region = <&dsp_reserved>;
->> +			fsl,dsp-ctrl = <&audio_blk_ctrl>;
-> I think kk's comments in v3
->
-> "This should have been implemented as reset controller, not syscon. It's
-> really poor choice to call everything syscon. It does not scale, does
-> not provide you runtime PM or probe ordering (device links). Quick look
-> at your drivers suggest that you have exacvtly that problems."
->
-> The above is quite good suggestion.
->
-> Your reply "But for Run/Stall bits we need to use a syscon.",
->
-> Run/Stall actually is reset, Most system, release reset signal means dsp/core
-> RUN.
->
-> Frank
+From: Chris Morgan <macromorgan@hotmail.com>
 
-RESET and STALL are quite different signals w/ different purposes so
-calling them both RESET is confusing and inaccurate.
+Add the required resets and clocks used by the display engine TCON for
+LCD output. This is required for LCD output for the DE33 which is
+currently pending acceptance into mainline.
 
-The syscon is used here to control the STALL signal (name of the bit we're using is RunStall)
-and has nothing to do with the RESET signal, which is why it's implemented as a syscon rather
-than a reset controller.
+https://lore.kernel.org/linux-sunxi/67acd970.050a0220.1eb03a.101e@mx.google.com/
 
-While Krzysztof's comment does make sense, I still find it odd to have this implemented as a
-reset controller despite it not having anything to do with the RESET signal.
+Chris Morgan (2):
+  dt-bindings: clock: sun50i-h616-ccu: Add LCD TCON clk and reset
+  clk: sunxi-ng: h616: Add clock/reset for LCD TCON
 
-Also, do note that the two nodes are in clock provider-consumer relationship
-so unless I'm gravely mistaken this should at least guarantee the probe order.
+ drivers/clk/sunxi-ng/ccu-sun50i-h616.c      | 24 +++++++++++++++++++++
+ drivers/clk/sunxi-ng/ccu-sun50i-h616.h      |  2 +-
+ include/dt-bindings/clock/sun50i-h616-ccu.h |  4 ++++
+ include/dt-bindings/reset/sun50i-h616-ccu.h |  2 ++
+ 4 files changed, 31 insertions(+), 1 deletion(-)
+
+-- 
+2.43.0
+
 
