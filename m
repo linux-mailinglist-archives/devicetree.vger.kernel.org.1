@@ -1,127 +1,212 @@
-Return-Path: <devicetree+bounces-145719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0D8A32249
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:35:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B337CA32261
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 10:36:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18A89188AF80
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:35:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57CB316735F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 09:36:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76FD820767F;
-	Wed, 12 Feb 2025 09:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4CE2207667;
+	Wed, 12 Feb 2025 09:36:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hBcWMfJP"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Lfns9O5F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3E4C1F0E47;
-	Wed, 12 Feb 2025 09:33:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E18C42046BF;
+	Wed, 12 Feb 2025 09:36:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739352831; cv=none; b=EvPWQGeMpH2IujI2s5hhJLsPp8VIPov7rN32n2bfBG5Afmo6zp/hBAQGC9e0uzyb9eyEmDsIMeXZm2nx/FsSRY7eNrnkTmZsbymCcQAFWZyzHYHdQHjXGDqANTirsaY5DY1PJBg8+09PypKrbSP0qdE1LJVAt1TYCH4MhAnnVMU=
+	t=1739352985; cv=none; b=B/wNe1cMxH/to44NtnArDMOIKzFLswffjXkhTGnRXIlrJjzAfkVlKOMwjGr0wnNngk0g1QKtpS88W5on7GAVZ+8rk6gZzuS9t5QrFRQIP680u1BfZvmqcdg9bVZiH9fr5B4D0HHCeWmL9krBVWqEQpmm0rmF5yNK78wpF8QqSCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739352831; c=relaxed/simple;
-	bh=28ZrG67VYrx3D1mHBQEW/lHYcFEAj3xmmeyTtjgZ7YA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=svhEBzyTJ6jD6jwCTDC7XoEirV1DrHJ2CN/QINC3XOqSjeAL/Fus2NnedUbKHUN8sbJN7ABDjyZoSFtlBjKi0fAxD1clAG7vVwBy0+e2oO+C4jbfMVUfsTuR/B/B0xFbBI3WCfMXg8K2RKlivhlIde1fPt8lHOjijG46UDx7p/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hBcWMfJP; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5de4c7720bcso8024526a12.0;
-        Wed, 12 Feb 2025 01:33:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739352828; x=1739957628; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=28ZrG67VYrx3D1mHBQEW/lHYcFEAj3xmmeyTtjgZ7YA=;
-        b=hBcWMfJP/j+iyFlvdQpdum/NHs2XbBXH4PgIh4+3avm0rAibz/ckI/qCO0DZDZqMpY
-         Am98uyfwYtUzfCyMlTlJQ/rJyfDfrCyBwQGWEg7hqD7ruPC1tUfkPKX5nqAe2X1BH/RB
-         26HXmE10Pmejv/wVkT31ppSdneB7ZfGYDG7k/3ZLmvMg5wD1e3QYseLbf+af98EiDsIe
-         riOlfm2VLtALYNM8XV0mZ12q+YRac7NU4oMLrkrN8piqC/MvTgKwgDmMwMhsun/Uhzfh
-         4Kub55JyT9Uf2IxaoU/E8OptIihUGx6ZefU93UwpM8kMRns5BMgywydq+yI4SccE9rXf
-         uUIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739352828; x=1739957628;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=28ZrG67VYrx3D1mHBQEW/lHYcFEAj3xmmeyTtjgZ7YA=;
-        b=HPwCBvw5D2oCnInOU5k/cNokxUx4vXjLcP6mELLIAeH2mdf5EXvP/DyA0ea7jKl2wQ
-         fAix6ZDqH529SB1vtBM5cOE9g1oXWwfGQAWKNcrruU43MVmpoG5L+uH+VSnSf3A88hPy
-         IBRgPuXfG3XcWUfGKmY6vJIC2XmvHtGDrmjy4XsI6thgNf0WXh4fB48E9nKSBWlgz1Ia
-         Ra/3SP4lDa4W2L7GmWaL4ytsyilpqTDk0BlHP0CUH6mAJLN/+rCHmqHGwWaqLefNIgY2
-         PjwU0OWgIDZ2LjwYJZOH4ss0gSLg5o/8aKk0WZ6VCcwNIxaVLOSzVRrrMaoiky3G6ggR
-         XX+A==
-X-Forwarded-Encrypted: i=1; AJvYcCUuCMZEFf3uemE+FGWxzwchSSTwU2cC2oMDA3VP5fhgdAOBpV3DS3I7HZXXDvv6EkORDv0EbiUsRrGz@vger.kernel.org, AJvYcCXkmz2LXQlqV2ucdTHRbbVZW5IU2xRhE7yqLJzXFa2l6LVKFM0Yxb2AFH2FOOGhtvHfgcN8T9SuTDg=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFpbSMNXmpM9FbPVM+BUnDp+hB4dcMtN2CJcsHBeeT0G/2Vx5b
-	lNoMtYJbDX0iUDUsUEfPrh0Luw6fhDxNeYFH6ZSUH66W+orVpQT7
-X-Gm-Gg: ASbGncsQ29xRsj80QSMKapMkX9vdIih+/XFwqUp+sebCfBr5DFVowSj2uIPa0c4LVfV
-	cu1hBf2702oioGjUKIli4+c9vrILxHV/wSkSPhKj1dQHv0Gpi2jlTbYWZh/6GXEGvqdOwihsql+
-	BT0niP2AU9Dm/IJuoQZ7Mn67LUTY7FHcLusytBI3s1EQjlDcMX9D4Zk0m5E5o70fC+FCfc1iZT1
-	3v9m3u/X5e0C5eVTWs7eXgjMdtFmA83emw9f6qqhz3waxdtBBeXRT502jbSOXiVX3sIEevQf7kn
-	ozFPeayjms8gUWx1ybr5Zs/5QRmRq0L2
-X-Google-Smtp-Source: AGHT+IHpqQvjQqIwPaFAzknlkp4GoatkNSlei54PmBgAGgJZumwHx7ny/2UY0zjgf5S9YxNNAfvIdg==
-X-Received: by 2002:a05:6402:2344:b0:5db:f52c:806c with SMTP id 4fb4d7f45d1cf-5deadde0351mr1663917a12.20.1739352827684;
-        Wed, 12 Feb 2025 01:33:47 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5de51877083sm8949195a12.32.2025.02.12.01.33.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 01:33:47 -0800 (PST)
-Message-ID: <479c4ac407207c093e9e7b46cc18fb254f2ca74c.camel@gmail.com>
-Subject: Re: [PATCH 00/10] arm64 support for Milk-V Duo Module 01 EVB
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Inochi Amaoto <inochiama@gmail.com>, Yixun Lan <dlan@gentoo.org>
-Cc: soc@lists.linux.dev, Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
-	 <inochiama@outlook.com>, Lee Jones <lee@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, devicetree@vger.kernel.org, Haylen Chu
-	 <heylenay@outlook.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org
-Date: Wed, 12 Feb 2025 10:33:43 +0100
-In-Reply-To: <prrsy34bv6xskxu7afgmpdwc7lefdh7l2gtm2ejzcwk74zh6lr@23x3llxy662z>
-References: <20250209220646.1090868-1-alexander.sverdlin@gmail.com>
-	 <eoeyutuu4mrpsu7snkk5ll6kmm4344qsgbnncss6gerlcvvea7@usuf5v7w5ffp>
-	 <77c0db160bcaa7c2a68c04a0d33a561b2834f764.camel@gmail.com>
-	 <ccadcdf720d6b1055165f1404fafca9b1c6c54f7.camel@gmail.com>
-	 <prrsy34bv6xskxu7afgmpdwc7lefdh7l2gtm2ejzcwk74zh6lr@23x3llxy662z>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+	s=arc-20240116; t=1739352985; c=relaxed/simple;
+	bh=E46FcXGyt6jr4xuC3NTngM/rIiOGZ8dpplEXZWHJbBs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TLZQWbjGwlQxffUF4J9z8Jwj9sHsD4zDFuJS1JwsYv8HbfEtl1ppj4q4LVH7jxlNa8YSxvfLVtt12FOlrXXVI69C8+iyNL1TRhvO3o/BJTbG8ntFlBsOQQfaDy6RWCHOD+7NCHITc/B5gAXWkK/Ig76GYWnltCf2NfUL+kYD/7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Lfns9O5F; arc=none smtp.client-ip=117.135.210.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=m1dn8
+	61sdPu2eS3arIGhwMkywhJQMaUOQvKVQ0nUWMQ=; b=Lfns9O5F+OMC//3F7cFzK
+	+5MIoi2h/DoxsvqpTCLXAulnbYBUlJSh0pG3Q8yQbAgDuvuvcTa/duwJo972VZjh
+	Lho8pKc0LTml5HT2qTVFYEbzlJQIBFcY0ZrW+hzowL3c+GtHV/SzDH60R9FsewyJ
+	SNbRg7Fl8DV3jjbV3oMvZA=
+Received: from ProDesk.. (unknown [])
+	by gzga-smtp-mtada-g0-1 (Coremail) with SMTP id _____wBnG9Fja6xn14FuLQ--.33700S2;
+	Wed, 12 Feb 2025 17:35:35 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: hjc@rock-chips.com,
+	krzk+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	derek.foreman@collabora.com,
+	detlev.casanova@collabora.com,
+	daniel@fooishbar.org,
+	robh@kernel.org,
+	sebastian.reichel@collabora.com,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v14 00/13] VOP Support for rk3576
+Date: Wed, 12 Feb 2025 17:34:55 +0800
+Message-ID: <20250212093530.52961-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wBnG9Fja6xn14FuLQ--.33700S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxXw1DJry5WFy3Zw1UtrW7CFg_yoWrKFyUpa
+	95C3s8XrWkGF1jqw4kJw1xCr1SqanxJFyfG34fK3W7Ga1qyF12krWS9F15Ar9xGr1IvFWj
+	9F4Sya13KanFvF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UmdgZUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqQjxXmesZ5VJpgAAsY
 
-Hi Inochi!
+From: Andy Yan <andy.yan@rock-chips.com>
 
-On Wed, 2025-02-12 at 08:29 +0800, Inochi Amaoto wrote:
-> > Thanks for your hints!
-> > I've completely missed the RTC driver in progress [1].
-> > I will provide a patch registering the reboot handler on top of the dri=
-ver
-> > as soon as it's accepted.
-> >=20
-> > [1] https://patchwork.ozlabs.org/project/rtc-linux/patch/20240428060848=
-.706573-3-qiujingbao.dlmu@gmail.com/
-> >=20
->=20
-> As far as I know the RTC patch is no longer maintained. Maybe you can
-> pick it up?
 
-I can try... If only I can make it work...
+PATCH 1~9 are preparations for rk3576 support
+PATCH 10~13 are real support for rk376
 
-> The patch states can be found on:
-> https://github.com/sophgo/linux/wiki
+I test it with a 1080P/4K HDMI output with modetest and weston
+output.
 
-Thanks for the link!
+If there are some one want to have a try, I have a tree based on
+Linux 6.14-rc1 here[0]
 
---=20
-Alexander Sverdlin.
+[0]https://github.com/andyshrk/linux/tree/rk3576-vop2-upstream-v14
+
+
+Changes in v14:
+- Rebase on drm-misc-next
+- Set maxItems constraint of clocks for rk3588 to 9 as a recently
+  merged patch added two optional clocks[1]:
+  [1]https://patchwork.freedesktop.org/patch/msgid/20250204-vop2-hdmi0-disp-modes-v3-1-d71c6a196e58@collabora.com
+- Link to V13: https://lore.kernel.org/linux-rockchip/20250121103254.2528004-1-andyshrk@163.com/
+
+
+Changes in v13:
+- Add maxItems constraint for clocks
+- Remove constraint for interrupts in allOf block, as the current
+  maxItems is already 1.
+- typo fix
+- Explain the function of this property.
+- Use maxItems constraint for clocks in allOf block
+
+Changes in v12:
+- Only change the description method for existing SoC.
+- Split from patch 10/13
+- Split from patch 10/13
+
+Changes in v11:
+- Remove redundant min/maxItems constraint
+- Remove redundant min/maxItems constraint
+
+Changes in v10:
+- Move interrupt-names back to top level
+- Add constraint of interrupts for all platform
+- Add constraint for all grf phandles
+- Reorder some properties
+- Move interrupt-names back to top level
+- Add constraint of interrupts for all platform
+- Add constraint for all grf phandles
+- Reorder some properties
+
+Changes in v9:
+- Drop 'vop-' prefix of interrupt-names.
+- Add blank line between DT properties
+- Remove list interrupt-names in top level
+- Drop 'vop-' prefix of interrupt-names.
+- Add blank line between DT properties
+- Remove list interrupt-names in top level
+- Drop 'vop-' prefix of interrupt-names.
+
+Changes in v8:
+- Remove redundant blank line before drm_bus_format_enum_list
+- Add a blank line before DRM_ENUM_NAME_FN
+- Fix dt_binding_check errors
+- ordered by soc name
+- Link to the previous version:
+  https://lore.kernel.org/linux-rockchip/6pn3qjxotdtpzucpul24yro7ppddezwuizneovqvmgdwyv2j7p@ztg4mqyiqmjf/T/#u
+- Fix dt_binding_check errors
+- ordered by soc name
+- Link to the previous version:
+  https://lore.kernel.org/linux-rockchip/6pn3qjxotdtpzucpul24yro7ppddezwuizneovqvmgdwyv2j7p@ztg4mqyiqmjf/T/#u
+
+Changes in v7:
+- Fix rk3588 dp+dsi maxclk verification
+
+Changes in v6:
+- Add a blank line after hardware version check code
+-  More specific explanation about the AXI_BUS_ID register bit of
+   cluster window.
+
+Changes in v5:
+- Add axi id configuration
+- Remove the non-existent CBCR scale register.
+
+Changes in v4:
+- Typo fix: selet->select
+- describe constraint SOC by SOC, as interrupts of rk3576 is very
+  different from others
+- Drop Krzysztof's Reviewed-by, as this version changed a lot.
+- describe constraint SOC by SOC, as interrupts of rk3576 is very
+  different from others
+- Drop Krzysztof's Reviewed-by, as this version changed a lot.
+
+Changes in v3:
+- Add comments for why we should treat rk3566 with special care.
+- Add hardware version check
+- Add comments for why we should treat rk3566 with special care.
+- ordered by soc name
+- Add description for newly added interrupt
+- ordered by soc name
+- Add description for newly added interrupt
+- Share the alpha setup function with rk3568
+- recoder the code block by soc
+
+Changes in v2:
+- Add platform specific callback
+- Introduce vop hardware version
+- Add dt bindings
+- Add dt bindings
+- Add platform specific callback
+
+Andy Yan (12):
+  drm/rockchip: vop2: Rename TRANSFORM_OFFSET to TRANSFORM_OFFS
+  drm/rockchip: vop2: Add platform specific callback
+  drm/rockchip: vop2: Merge vop2_cluster/esmart_init function
+  drm/rockchip: vop2: Support for different layer select configuration
+    between VPs
+  drm/rockchip: vop2: Introduce vop hardware version
+  drm/rockchip: vop2: Register the primary plane and overlay plane
+    separately
+  drm/rockchip: vop2: Set plane possible crtcs by possible vp mask
+  drm/rockchip: vop2: Add uv swap for cluster window
+  dt-bindings: display: vop2: describe constraint SoC by SoC
+  dt-bindings: display: vop2: Add missing rockchip,grf property for
+    rk3566/8
+  dt-bindings: display: vop2: Add rk3576 support
+  drm/rockchip: vop2: Add support for rk3576
+
+Heiko Stuebner (1):
+  drm/rockchip: vop2: use devm_regmap_field_alloc for cluster-regs
+
+ .../display/rockchip/rockchip-vop2.yaml       |   99 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 1475 +++-----------
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  |  277 ++-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  | 1798 ++++++++++++++++-
+ 4 files changed, 2381 insertions(+), 1268 deletions(-)
+
+-- 
+2.34.1
 
 
