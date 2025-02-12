@@ -1,207 +1,214 @@
-Return-Path: <devicetree+bounces-145574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-145575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BDC7A31B3B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 02:38:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE623A31B53
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 02:43:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ABD51886834
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 01:38:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A15C71883931
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 01:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C9D838FB9;
-	Wed, 12 Feb 2025 01:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA2E86355;
+	Wed, 12 Feb 2025 01:43:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="UgormYUR"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="DLTomIWn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023100.outbound.protection.outlook.com [40.107.44.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D955518651;
-	Wed, 12 Feb 2025 01:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.100
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739324282; cv=fail; b=JgHJG8+KyKvbpPSn+O+9fZHgfuWCkEcCvbZWrtst7bmGYNeJaBg2CfudU1eNK6nSIrLu5UTcb7clwVHY95EOAVgGsy2a836+K5llseCQ5yy6bBiUN9JLEFcy2zFGatTM8saIulU6Ql3Sn2kKbd0pDgnZD9kcFiX7GD1SkqEN7OY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739324282; c=relaxed/simple;
-	bh=BtbwtkMlTiUXwmTKGBlosNkfhKuXFyFFFsrSxFEZq3M=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=B6g8uGXIprvSZZKqJVrkdSkSckcvDOhVwMSD6SqfLLldiJA8LSzNx0LnNViWef3hbHylDtL36yyRJ2gwulS6rtYfxq3YLrcSQRqWJ22aptmOTJtJvqXqyDaakOKl7FEANFgTfeDlLd5/CD4Dh/9S7gn6U94954WPqxHMFinBWZ8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=UgormYUR; arc=fail smtp.client-ip=40.107.44.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qCEJZJ1FXdRnWwNUccALXT+81OOBWlwhI3srufezNboqhLJZ5XsPWMM90wwAW83bNcZ2czQiRmTooCPa3qVR/uUhKdRWy2EmstD/+kAbai+ygA+luwSPEchaz5X117F8ppdOFYJc0HKZdaZBgKK3pplqRI3ljO2+DGCCyBasN4l20U2hx5MfoW74vXVLjz7/OxwrSvToWw0TsOecsKmrK0o5k/B7w+Us+XaaEjk/zE6UWpIo2U1TWlFQuN5wN8zI5jjP2Ursu+u5Bs3WbgPSAIPq//TAiBWYo0mOFfC54zHZ7hcU/0COpeknCvJh5ZzVX/ZUsq1jPuOLEGW6Ua5sPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BtbwtkMlTiUXwmTKGBlosNkfhKuXFyFFFsrSxFEZq3M=;
- b=EOrAiMXZmNpLvmdnl8VBjDolnJg0g+89cQYa2bg8x91JOpUqCzqlF+yY98D1dKe99HPYioEZQBd8bfdwFPBAG14kq8JtReOWN6oiDefSEziTLw+9uCDJDtzdU6y4jy+ZGX+m01AmnmHNYvhVyaXjALP+CwvkVYH88HIDj7HRJxOFBRi0jJhDa0VsoGSo8iNytAVvmf65AgWDyWGG05YdSlrk00wN9PoIM6IM7KsGS/aSXVVH5EUI8YTfv8d0od05qlebUGmG3mtzRJenu7yuK95aPcsRp+nhddFSQ9XLBmXFx0z03tbu9W10Lg0pPBaDbqbtmeubZWfJThboxKcZ6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BtbwtkMlTiUXwmTKGBlosNkfhKuXFyFFFsrSxFEZq3M=;
- b=UgormYURHDXcm+kKEgUaO4GB4KQgNsc9cBGA2E12Q9pw1dfLX/fiRUwqM9pLirMB1B686ZSmBDlrDimFUIrYLtynydMpqt427qJh5lsSfHu6x8XReMWhmMe21i8sszucysl7+O02ukLFgWIAxBAU6TGhcxvYTB5Yjz1/3PP8Nki95/ZASfwgkFkBvniEf017LpewUMk2Nn9sY5PyLnpprqWUn7O760l1uHyb4ydrPFSXW8tXM0yGyt/QW3pHoMycuoaOGQUZjwpaIXhA5Jae9W5rFAnCqi8wlXhYCgbg3FxqxRa7AToOSKvIYZHVt+vytDPyFWGQIXAhikVzWEHu+g==
-Received: from TYZPR06MB6568.apcprd06.prod.outlook.com (2603:1096:400:45f::6)
- by SEYPR06MB6279.apcprd06.prod.outlook.com (2603:1096:101:139::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.11; Wed, 12 Feb
- 2025 01:37:51 +0000
-Received: from TYZPR06MB6568.apcprd06.prod.outlook.com
- ([fe80::72b8:dce5:355b:e84b]) by TYZPR06MB6568.apcprd06.prod.outlook.com
- ([fe80::72b8:dce5:355b:e84b%7]) with mapi id 15.20.8445.008; Wed, 12 Feb 2025
- 01:37:51 +0000
-From: Jammy Huang <jammy_huang@aspeedtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "eajames@linux.ibm.com" <eajames@linux.ibm.com>, "mchehab@kernel.org"
-	<mchehab@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "joel@jms.id.au" <joel@jms.id.au>, "andrew@aj.id.au"
-	<andrew@aj.id.au>, "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>, "openbmc@lists.ozlabs.org"
-	<openbmc@lists.ozlabs.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v4] media: dt-bindings: aspeed,video-engine: Convert to
- json schema
-Thread-Topic: [PATCH v4] media: dt-bindings: aspeed,video-engine: Convert to
- json schema
-Thread-Index: AQHbe6ayI47ZWP8RUkq40RulR4uWLLNC5fOA
-Date: Wed, 12 Feb 2025 01:37:51 +0000
-Message-ID:
- <TYZPR06MB6568FD90F6A416262C02FC02F1FC2@TYZPR06MB6568.apcprd06.prod.outlook.com>
-References: <20250207101458.3757723-1-jammy_huang@aspeedtech.com>
- <20250210-crow-of-famous-drizzle-a4bb03@krzk-bin>
-In-Reply-To: <20250210-crow-of-famous-drizzle-a4bb03@krzk-bin>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR06MB6568:EE_|SEYPR06MB6279:EE_
-x-ms-office365-filtering-correlation-id: 3f64f15c-c2bf-4389-49d2-08dd4b05dd03
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|1800799024|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?WjVxZStDZHhmcHdWR1Juekl6bjRsV3kyajZkMGVvdkJuTGdJSjE0QUZJUlZD?=
- =?utf-8?B?eGNYMy9SS2t3OFlMdEtYWVhBTUF0bWNjNzhoNndwWVE1TEpkcEVWMmoxTHp5?=
- =?utf-8?B?YnM1bTI5Unh3RXlocWFXbXd4UHNxbkgwY2VJc3RQOXk1Q20zNUVHYWpMYXh6?=
- =?utf-8?B?MkEwR1pQYmF4TUY3K09ibGFYeVVQZEVpakdHdGFuZ0U4emtZajMwYmVuUkFX?=
- =?utf-8?B?VWxyYmdSWnFaNUo0WmkxaU10WVZ4azhJL1hUbzlNcWdqcXBPSVhNTGdoTit2?=
- =?utf-8?B?OFNCVjB4T0Q4dTFDem1XRXozc0lpbTg3cmxFQ283N3IycHorUzJycDQrOFh2?=
- =?utf-8?B?VGlpQjhDeGhSWEVlQk9xRGZ3MGRNVlN1RDlyZzZIaDJKWVlqd0ZjSm85Y0Qx?=
- =?utf-8?B?cnB2SFlrTGR0bEZaeFNIdVZSZng5R3lTajNKMXdIa0ZnMWFxWUh1eXpaaUZk?=
- =?utf-8?B?SWc3b3B3UU8wRk5uUFhOTHJJYzFWWmxHOVh5dDFXYlNNTDNDRGZLdjljWEE5?=
- =?utf-8?B?VkpCRGl5K0ZsYXlndkQySmJLRzhDTkxnR1Ewc0Q0SFUrM2V4ZmtCQ1RmTXJW?=
- =?utf-8?B?Tnp0RGFRb3NDZ1RyUlNJOGRLQ3dnUkljcVROaVp0cjdhckNVOWFpMytnck4w?=
- =?utf-8?B?cXZMUi84cVk4aXZCRFJTUXoxc0FwaEh4Tnk3QklkZ2VlVWNOWHhodnYyVkZy?=
- =?utf-8?B?RUhRWDlpOVRKMFltYy9CaG1vZTZHUEFaSWVsQk5EZ0JHbHpaRHVaK1UycEhL?=
- =?utf-8?B?YXd0azI4aUFCWDZXT09BOE9EYlpzMDZpMTRBVmtGQ2dmcEVVWVZFZDhEejZR?=
- =?utf-8?B?eGVnSW9OM2FkOWxBNERCMUQzcWI3Ykl2UFRjdmFxc28ydEM5eHpPa25TdTZK?=
- =?utf-8?B?ZkNTM3dFRkFoRENFWlh2Znc1ajR6Mi8xQXdRb3JNcHJSN0VRNmxyRVlrV0VS?=
- =?utf-8?B?U0VsUzhSb1lJVWQwbmxLWlVCTy9KcFdtQW96ZW5PWVU3YVczeGhvdHF5aVhw?=
- =?utf-8?B?b3huSCtTVmZ0MEhOdmhLUHpOc1I1Vm9LRytqbXZIOXFPUGFrbWx6YjRLeUZ6?=
- =?utf-8?B?QXRSdStXdEhPRkgra0ptd0I0azBUcTR0bVpteUN4TVJrQnp2VTloSVFKNTBM?=
- =?utf-8?B?cGRNK0h0RHdMS014MWU3Wk52SXVudzdTL0gwNlBJZFQrUXhvVVhxeWFPZGsz?=
- =?utf-8?B?MzdxSTJXMVpoM0xvSUw1ZFovUmxNS3Z2dmpvdEorcFZHK09oYTg0L1dRZ0M3?=
- =?utf-8?B?dXQyRENLdWp2bjJ3djZiL1RCeW80VTRaYkFPMkFZUUplZ1lXOUg4RXV0Y0pS?=
- =?utf-8?B?cE9aZDd2bCtrM2pmaFMreElwNGp1QUJJWnR2b1Q3cXBxbmpHNmNGL0FhRHFx?=
- =?utf-8?B?K05pdFZ6ZzYxS1BHOERjYnlwVWJYa2pMMndNMDY1YWNNaG5USHhDQUwzTEF0?=
- =?utf-8?B?Z3NkU21SenJVdnZxSU9XN2pMVjFaenhJK2RLcUY4VXlHRlp2NEpWVFU1dXFi?=
- =?utf-8?B?WmJIOEo2RTZLdEdXSGdIWDlGYkRmcG4zK1o5QlE1L0h0OFVTZm1oRERQNEor?=
- =?utf-8?B?V1lyZkNiU2FmYXFzY1dFQUFmOUVaVnpuWGRZMDZDL1hvcEFyYUk5ajFGeTNZ?=
- =?utf-8?B?SjkycjFxTWtYYWhVV3lPZGtabzBxUGJaUExuc3ljOGs5b055M0VqMUVCRlRB?=
- =?utf-8?B?LzM5c3N5enBsa0EyRjVrMEhUMFJXWlUweXk3ZXMyc05uL0RQMC9heml3dDRi?=
- =?utf-8?B?Tk9jS1pxOUc0czJCL3dDK0R6aFBSeHlDK1BjOEN2THlDSm90eWpBRnJTdHB3?=
- =?utf-8?B?MldrRFJ5TnJxVDcreTBEUTdFR3hJTXhtTjdUNFpnM1JhZllNWlRoRmhNclZW?=
- =?utf-8?B?TjNXVGE0ekQ1akhtZzNzdUtvU3NadERUNDUyWHBGNS9YMzNwbkpGRFVqV2U0?=
- =?utf-8?Q?zOzBhpAD6if7XotFQY2iw8dPW/PKbFJH?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR06MB6568.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?cnJpR1d1UFF6c2ROVzhXK1Rady85QXg2RWhsVERSb1pPZ3ZXbldXc085TElu?=
- =?utf-8?B?S0hRZlNjR2NsdXdGNmRuWGZZbUFqSVJlMWtKNHpWamhJOGxGdVlhbFlPaXI1?=
- =?utf-8?B?S3QwUWFYYWlKRElMYlI3K0Yzem5sNXBQSEk2SE40YmswTExOYVZRUDhJSDRC?=
- =?utf-8?B?M0pyT3Y0Wll0bmQybGJlZzNBMnJvMTJ6K3Y4M1VwWU8vRUIzdU1QZm52QkI3?=
- =?utf-8?B?aXRHRFg5ODFsdXNFMUdzUE1CMWE4UkJEOTBZYlAxT3d4NmllTnlEL2JpdnRh?=
- =?utf-8?B?ZGw4ZjJHY3VMWFZWK2huNUlTcksxMzY3Q3J4TWFmZzBNYXBxYjRsMVkzTzdy?=
- =?utf-8?B?ZTQrM0ZNMkFiM05BcFVVK2QwRkhvVEE0d0RTMnlTWTh0Wi8rQThocTJDelhT?=
- =?utf-8?B?TTY1dGI4RXFGUXl2Kys0VU50MmI4NW9xSngwdjYybGx0MENmeEdpcTMwVGx3?=
- =?utf-8?B?Tmd3WTJld0NJdU5NMnZrWWZUK2xNdmRweWFmaW8vN25vbU1vbVRDbFRFYnMx?=
- =?utf-8?B?a2ZlZjBRUktORzZNSDJkcHR2UW9pMzhUUFl3T1JyUG9qK1hOR1FDNDkzZUtK?=
- =?utf-8?B?c3o5WVQxbkYrdjJBM3Q2a2F3UDUzWHkyWGRoQzlJVFBQMXAxRmlCaHhJREpY?=
- =?utf-8?B?dUJLQnVCR3NscktGVkRocWEvOXoreXVNa3JMMjY1OWtXWitvWjVPQ0VTdmk3?=
- =?utf-8?B?b3hpUnZKMGlMT2c0OGRkWitWdzFFNzRNQ28yTkZFelZkc0Fsem1FYXlLT2xM?=
- =?utf-8?B?SFZSbnNlUnVOMFZpaXBjQkE0cGlPZWlabEl3VFpZQXhSbStGQlZxeENjbFpO?=
- =?utf-8?B?OFY0bVdqNnk2ZzZRbGNDQWhQUGd6eVJaMXVLRE93ajdEK1AxNm1qaFR2bTlu?=
- =?utf-8?B?VlRvRSthZk54QUw1UmtmVGRwRk9STEtTN3I4VFhIbjcvZTJaR3U3WXVhN0d2?=
- =?utf-8?B?MERSazVOeFJ0MDhtaXdMb0k1cGtrZDRJRExUemJmMW0rODRqejFOc1VrOVMw?=
- =?utf-8?B?V3hkOTlTaEhaSUFFUjViaXpBSlpnbXhGZWw4Z3cvU0dua2hwemFPeEJnZ3px?=
- =?utf-8?B?aG5oZUd5MTF2Y2JXZkJRZlpPVEwvVHdWeUpYaEtoUVIyUjdwSTRnbHVQVE9h?=
- =?utf-8?B?Z3hmNjJ1WnJFR2RaSHRDdnFORlArRGxTYXZoc3cxV01WSEdGemtmdktJcCtP?=
- =?utf-8?B?RU1xL3ZKZDVtOGhOcTgxSzE0UXBXUnlCamdWMmtWVTYzd3ZscUNEc1lkVHdl?=
- =?utf-8?B?cGpLMnNDd2RvYmJCZ2UxV1dyc2I1d1ZaZ0JYdERrbzNBN1Z1M1MvbDBVNnhQ?=
- =?utf-8?B?ZGZpZWZET1FaZklGazRnNVRkZmRpcjRVRm1UbXNZeDZIbmwxcFZXN3dnbjBx?=
- =?utf-8?B?RVI2VlhaZmhkeVlrbDFFOU9COU10eE1pYmpGU1pOR0hWcDhUN1EvaHNvdWN0?=
- =?utf-8?B?cG8vMDJhZkNnSldOdHA4bHM4K2pvY1c1bk9aejdhdU9KQ25IdDF4djlsL2hD?=
- =?utf-8?B?c0VpS3ZzS0syejFWaGU5RUxpTDQxWi9mSEllK1J5bnpQR0NpQ3ZXODhkdHdV?=
- =?utf-8?B?cFJJR2I1citoTGw0RVdiTGhXbnltY3VjS1FvKzFlQ1cvMFVocTUwM0tSNXcx?=
- =?utf-8?B?VDhuZEliaEFXeFFlNHBUeUM4VzZqOWFucm55WXIrdGdUTjZVTHlxUERid0s5?=
- =?utf-8?B?L3ZnTGNKanJFcUxzMjNGa2Z5bFNkVGxNUWdjbG4vZGxmWU5oRTNYQ25Ua0h3?=
- =?utf-8?B?NXN5NlUrbmRLSmcrbkwxY2p4eVo4Ny84Rmo3UjhYNFlaaDdycEVYekxCaVJj?=
- =?utf-8?B?Qjg1VTg0RVdpQ3JXT3BTdUR2RFpZUEkrVC9GVWpRakZRclJKdVdGRm5DNGtT?=
- =?utf-8?B?M2pTOFJnYVBIYlV1eVJpWnI0TGl0OWhOZTJmUVA0Mlg2VkZiUDFHOTY4WmJT?=
- =?utf-8?B?eEsvclgzWkJqOW83T3AzTnRTQ21ZeUlMcDY2WktneTRxNUw4RWtRbFgrKyt0?=
- =?utf-8?B?RGx1bXFKSXhnRE1ZMUFRcUhtNC8zSER4RWRKRjlPcEdpeHBwbG5VV0FWRUR0?=
- =?utf-8?B?TEdYNDhudUUvRWFtWlBuSEloNVNOS1lqYURDU0hWeExRSldjTFFmMlEyWU1Z?=
- =?utf-8?B?dUdxZzdzT3g4VzBZRktOR2NzV3hieUd3VjBVZHhEME12eTVEQ0NSUVVyVTli?=
- =?utf-8?B?M3c9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E657080D;
+	Wed, 12 Feb 2025 01:43:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739324605; cv=none; b=TDNJbDzAFZE4lJwR6t5PGKr4Zd2Tv6pv7/qa/GpZt4S1s5JV5WUO+I9gMrcDzednCAauxgufW7znmeqXp3qcOGeInc19WhdaApj9FP0qV61TvKrokJW2i5x8CBFkyE2SBMvXb73RYSlGTAVnfw5HDaJkK9L7EVmnmrnehBXwZ2o=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739324605; c=relaxed/simple;
+	bh=2x4lj5NC+dRFGIx4IzjaPe8yqSh4IK03MPDatQfBLq0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EhUwUPPyc0vm1ENoLXjEyGJWyY0bOG/nVTaK4jrUn/l3bVhi6cLy+Lgh9Ci/LrDHCAgCXmXuAn/+4rw/eWbZzYzv1ZcuKfSCypq1dHzDboBFDDy+7fjwT6sZh7yEfXIs5A+LepwXXz/uZ23wYo40H8QBcVmn4OgsJoZ2RKe7lNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=DLTomIWn; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from romank-3650.corp.microsoft.com (unknown [131.107.160.188])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 161072107AB3;
+	Tue, 11 Feb 2025 17:43:23 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 161072107AB3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1739324603;
+	bh=ddwZkEyQUKT6tDzGOeyU00Um1SMbmEyI6A+GHcwsesQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=DLTomIWnXmvy/IgUyCEllQ0h6v7obN9NOU6KTW9W7PW3maU6+JODsXnYDU6UVXFLG
+	 nTMW4IaGnwY5732GzMTUMPuZ0cm0L7+xtXlRvGwcImzhI72265Nrsm1ZOCdGqq4nGW
+	 nMIJkUmwBYuWSFPcHEII/KpMJzeNA6go5qc7qyrc=
+From: Roman Kisel <romank@linux.microsoft.com>
+To: arnd@arndb.de,
+	bhelgaas@google.com,
+	bp@alien8.de,
+	catalin.marinas@arm.com,
+	conor+dt@kernel.org,
+	dave.hansen@linux.intel.com,
+	decui@microsoft.com,
+	haiyangz@microsoft.com,
+	hpa@zytor.com,
+	krzk+dt@kernel.org,
+	kw@linux.com,
+	kys@microsoft.com,
+	lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org,
+	mingo@redhat.com,
+	robh@kernel.org,
+	ssengar@linux.microsoft.com,
+	tglx@linutronix.de,
+	wei.liu@kernel.org,
+	will@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arch@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-hyperv@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	x86@kernel.org
+Cc: benhill@microsoft.com,
+	bperkins@microsoft.com,
+	sunilmut@microsoft.com
+Subject: [PATCH hyperv-next v4 0/6] arm64: hyperv: Support Virtual Trust Level Boot
+Date: Tue, 11 Feb 2025 17:43:15 -0800
+Message-ID: <20250212014321.1108840-1-romank@linux.microsoft.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB6568.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f64f15c-c2bf-4389-49d2-08dd4b05dd03
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Feb 2025 01:37:51.1094
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Z6Qx2JB2bfVonH+gC4iUX+TdHeidFC/cax90ITHgfn8QgwQVIgAuqSYaN0l/3ykyYgN8NdzppCG5RbVTbZm5IxkTqSAq6JiE+y8C484Y/XE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB6279
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-SGkgS3J6eXN6dG9mLA0KDQo+IE9uIEZyaSwgRmViIDA3LCAyMDI1IGF0IDA2OjE0OjU4UE0gKzA4
-MDAsIEphbW15IEh1YW5nIHdyb3RlOg0KPiA+IENvbnZlcnQgYXNwZWVkLXZpZGVvLnR4dCB0byB5
-YW1sIGZvcm1hdC4NCj4gPiBVcGRhdGUgYXNwZWVkLXZpZGVvLnR4dCB0byBhc3BlZWQsdmlkZW8t
-ZW5naW5lLnlhbWwgaW4gTUFJTlRBSU5FUiBmaWxlLg0KPiA+DQo+ID4gQWRkaXRpb25hbCBjaGFu
-Z2VzOg0KPiA+IC0gVHdvIHBoYW5kbGUgcHJvcGVydGllcywgJ2FzcGVlZCxzY3UnIGFuZCAnYXNw
-ZWVkLGdmeCcsIGFyZSBhZGRlZCBmb3INCj4gPiAgIHZpZGVvIGVuZ2luZSB0byBjYXB0dXJlIHZp
-ZGVvIGZyb20gc291cmNlcyBvdGhlciB0aGFuIFZHQS4NCj4gDQo+IFdoZXJlIGlzIHRoZSBqdXN0
-aWZpY2F0aW9uIEkgYXNrZWQgZm9yPyBJIG1hZGUgaXQgZXZlbiB3aXRoIGJvbGQgZm9udCBzbyB5
-b3Ugd2lsbA0KPiBub3RpY2UgdGhhdCB0aGlzIGp1c3RpZmljYXRpb24gaXMgcmVxdWlyZWQuIEFy
-ZSB5b3UgYWRkaW5nIHRoZXNlIHByb3BlcnRpZXMNCj4gYmVjYXVzZSB5b3Ugd2FudCBuZXcgZmVh
-dHVyZXM/IElmIHNvLCB0aGF0J3Mgc2VwYXJhdGUgY29tbWl0LiBJZiBub3QsIHRoZW4NCj4gd2hh
-dCBpcyB0aGUgcmVhbCByZWFzb24gb2YgYWRkaW5nIHRoZW0/DQpHb3QgaXQhIFRoYW5rcyBhIGxv
-dC4NCg0KPiANCj4gPiAtIFVwZGF0ZSBleGFtcGxlcyBhbmQgaW5jbHVkZSBhcHByb3ByaWF0ZSBm
-aWxlIGRpcmVjdGl2ZXMgdG8gcmVzb2x2ZQ0KPiA+ICAgZXJyb3JzIGlkZW50aWZpZWQgYnkgYGR0
-X2JpbmRpbmdfY2hlY2tgIGFuZCBgZHRic19jaGVja2AuDQo+IA0KPiBFeGFtcGxlcyBhcmUgbm90
-IGJpbmRpbmcsIHNvIHRoYXQncyBub3QgcmVhbGx5IG5lZWRlZCB0byBtZW50aW9uLg0KPiANCj4g
-QmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0KUmVnYXJkcywNCkphbW15IEh1YW5nDQo=
+This patch set allows the Hyper-V code to boot on ARM64 inside a Virtual Trust
+Level. These levels are a part of the Virtual Secure Mode documented in the
+Top-Level Functional Specification available at
+https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/tlfs/vsm.
+
+The OpenHCL paravisor https://github.com/microsoft/openvmm/tree/main/openhcl
+can serve as a practical application of these patches on ARM64.
+
+For validation, I built kernels for the {x86_64, ARM64} x {VTL0, VTL2} set with
+a small initrd embedded into the kernel and booted VMs managed by Hyper-V and
+OpenVMM off of that.
+
+[V4]
+    - Fixed wording to match acronyms defined in the "Terms and Abbreviations"
+      section of the SMCCC specification throughout the patch series.
+      **Thank you, Michael!**
+
+    - Replaced the hypervisor ID containing ASCII with an UUID as
+      required by the specification.
+      **Thank you, Michael!**
+
+    - Added an explicit check for `SMCCC_RET_NOT_SUPPORTED` when discovering the
+      hypervisor presence to make the backward compatibility obvious.
+      **Thank you, Saurabh!**
+
+    - Split the fix for `get_vtl(void)` out to make it easier to backport.
+    - Refactored the configuration options as requested to eliminate the risk
+      of building non-functional kernels with randomly selected options.
+      **Thank you, Michael!**
+
+    - Refactored the changes not to introduce an additional file with
+      a one-line function.
+      **Thank you, Wei!**
+
+    - Fixed change description for the VMBus DeviceTree changes, used
+      `scripts/get_maintainers.pl` on the latest kernel to get the up-to-date list
+      of maintainers as requested.
+      **Thank you, Krzysztof!**
+
+    - Removed the added (paranoidal+superfluous) checks for DMA coherence in the
+      VMBus driver and instead relied on the DMA and the OF subsystem code.
+      **Thank you, Arnd, Krzysztof, Michael!**
+
+    - Used another set of APIs for discovering the hardware interrupt number
+      in the VMBus driver to be able to build the driver as a module.
+      **Thank you, Michael, Saurabh!**
+
+    - Renamed the newly introduced `get_vmbus_root_device(void)` function to
+      `hv_get_vmbus_root_device(void)` as requested.
+      **Thank you, Wei!**
+
+    - Applied the suggested small-scale refactoring to simplify changes to the Hyper-V
+      PCI driver. Taking the offered liberty of doing the large scale refactoring
+      in another patch series.
+      **Thank you, Michael!**
+
+    - Added a fix for the issue discovered internally where the CPU would not
+      get the interrupt from a PCI device attached to VTL2 as the shared peripheral
+      interrupt number (SPI) was not offset by 32 (the first valid SPI number).
+      **Thank you, Brian!**
+
+[V3]
+    https://lore.kernel.org/lkml/20240726225910.1912537-1-romank@linux.microsoft.com/
+    - Employed the SMCCC function recently implemented in the Microsoft Hyper-V
+      hypervisor to detect running on Hyper-V/arm64. No dependence on ACPI/DT is
+      needed anymore although the source code still falls back to ACPI as the new
+      hypervisor might be available only in the Windows Insiders channel just
+      yet.
+    - As a part of the above, refactored detecting the hypervisor via ACPI FADT.
+    - There was a suggestion to explore whether it is feasible or not to express
+      that ACPI must be absent for the VTL mode and present for the regular guests
+      in the Hyper-V Kconfig file.
+      My current conclusion is that this will require refactoring in many places.
+      That becomes especially convoluted on x86_64 due to the MSI and APIC
+      dependencies. I'd ask to let us tackle that in another patch series (or chalk
+      up to nice-have's rather than fires to put out) to separate concerns and
+      decrease chances of breakage.
+    - While refactoring `get_vtl(void)` and the related code, fixed the hypercall
+      output address not to overlap with the input as the Hyper-V TLFS mandates:
+      "The input and output parameter lists cannot overlap or cross page boundaries."
+      See https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/tlfs/hypercall-interface
+      for more.
+      Some might argue that should've been a topic for a separate patch series;
+      I'd counter that the change is well-contained (one line), has no dependencies,
+      and makes the code legal.
+    - Made the VTL boot code (c)leaner as was suggested.
+    - Set DMA cache coherency for the VMBus.
+    - Updated DT bindings in the VMBus documentation (separated out into a new patch).
+    - Fixed `vmbus_set_irq` to use the API that works both for the ACPI and OF.
+    - Reworked setting up the vPCI MSI IRQ domain in the non-ACPI case. The logic
+      looks a bit fiddly/ad-hoc as I couldn't find the API that would fit the bill.
+      Added comments to explain myself.
+
+[V2]
+    https://lore.kernel.org/all/20240514224508.212318-1-romank@linux.microsoft.com/
+    - Decreased number of #ifdef's
+    - Updated the wording in the commit messages to adhere to the guidlines
+    - Sending to the correct set of maintainers and mail lists
+
+[V1]
+    https://lore.kernel.org/all/20240510160602.1311352-1-romank@linux.microsoft.com/
+
+Roman Kisel (6):
+  arm64: hyperv: Use SMCCC to detect hypervisor presence
+  Drivers: hv: Enable VTL mode for arm64
+  Drivers: hv: Provide arch-neutral implementation of get_vtl()
+  dt-bindings: microsoft,vmbus: Add GIC and DMA coherence to the example
+  Drivers: hv: vmbus: Get the IRQ number from DeviceTree
+  PCI: hv: Get vPCI MSI IRQ domain from DeviceTree
+
+ .../bindings/bus/microsoft,vmbus.yaml         | 11 +++
+ arch/arm64/hyperv/mshyperv.c                  | 43 ++++++++++--
+ arch/arm64/include/asm/mshyperv.h             |  5 ++
+ arch/x86/hyperv/hv_init.c                     | 34 ---------
+ drivers/hv/Kconfig                            | 10 +--
+ drivers/hv/hv_common.c                        | 32 +++++++++
+ drivers/hv/vmbus_drv.c                        | 59 +++++++++++++---
+ drivers/pci/controller/pci-hyperv.c           | 69 +++++++++++++++++--
+ include/asm-generic/mshyperv.h                |  6 ++
+ include/hyperv/hvgdk_mini.h                   |  2 +-
+ include/linux/hyperv.h                        |  2 +
+ 11 files changed, 215 insertions(+), 58 deletions(-)
+
+
+base-commit: 2e03358be78b65d28b66e17aca9e0c8700b0df78
+-- 
+2.43.0
+
 
