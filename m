@@ -1,185 +1,161 @@
-Return-Path: <devicetree+bounces-146090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD232A33425
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 01:39:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E03C8A3342E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 01:41:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E154188311B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 00:39:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 703D9188AC5F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 00:41:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CD680034;
-	Thu, 13 Feb 2025 00:39:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MrStPF+H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A39E84D8CB;
+	Thu, 13 Feb 2025 00:41:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FEF081AC8;
-	Thu, 13 Feb 2025 00:39:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BC74D8A3;
+	Thu, 13 Feb 2025 00:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739407154; cv=none; b=jaW3ekh3qSCPqUz4HAJN4eW382MFP2pbd5DC+Luf+C/nVpuBT7g7MbI8d+NgyGjg3+dOlIhE2KqIR3QvNKvP7NybFpEwvJyTPnhgPbIQ4GsURLT4MXN7svvBXCd5sR0Vt9ZyCrk77yzfnsBjSDf5YsNEzAcFt3Z+LsBgm6CfueU=
+	t=1739407297; cv=none; b=MIHUfjsUgAvZ1MmQNZGEUZTLrPtVvr/DrwDcdXfYTIPtl49D/WSKvc3LNcNnytcsC9fZhQqJE0uW/0YpP0kSp5hQVL7wS9Uw6xtFWUbOd9c+YGEuQnskd4JoV73az9d84FolRZdWRC8u/FM6xAaVszQjWdIf0X1lkKMbmbdpuFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739407154; c=relaxed/simple;
-	bh=/+w6HiAUlBc+kRrinIioqfpoFWtrMKoB/DUDSDW3RCU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nfUGJCLTaxHFEQxZ/S+6qTRsmFRJi0aR46bwRPsx7kXuTo0NtOWYlxr498qQlOeZTk4nvPMm0UKpjYX0T0xczhQO5E6L/qr8a42oE44O/PxoZxzbUUhB3BCFy0SquA1B1ThstCFr4MM/wrq5XGtfoQvNyJG9FZj+oc5FuiKvTdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MrStPF+H; arc=none smtp.client-ip=209.85.160.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-46c8474d8daso2140031cf.3;
-        Wed, 12 Feb 2025 16:39:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739407151; x=1740011951; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1VKAEXIbPsMighQ8qKly+RRtipWoEJVN3H+Ie+l08Lw=;
-        b=MrStPF+Hb3N+pc/qdtGgDFGMcV3YJ6WmF3rUVxCVJ3HMDYeG/YL0WpzTwXM0HnsRUX
-         ovKOV/efqY+JmU/BEeF4/Uk46wLCsihmkAu6cVV4bU3nVH3C+7zTn3IsyjCdGMOqPCzz
-         rWegswOkfyBcBfZ5okJyay4UgxU3+uadSWuEP/pIyQano55DPX2/mMOarR1zjcYtgeE4
-         tiGclw77V3c1fKCNLzId8D6lxhGg/fnuYRIaKk/tz1pRv85AJUPzfj1h/U4lqtu60Zj6
-         3MkqnuWfCZy2n92lneHZUjebOEbY2E1N6Tt62AZs0oL6TILZbN3UCPwowI4oTN/6Y3uu
-         abhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739407151; x=1740011951;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1VKAEXIbPsMighQ8qKly+RRtipWoEJVN3H+Ie+l08Lw=;
-        b=fbqWkcA5ViqOHYyeHSzzgpgJqA84O7FRUxvLJb5Lqit7qGIu1pDNKE5UWNInIwbLa2
-         AQraijsgiXy27tJMJmGlwqJPqNRApp2OSvturij6e1qM8NPbBWS2Fr1/4IQmt0bJhrkX
-         rsabeCXzZhZQl89Aorr9wl6IP7sptccA6Oz0ddjteiRNRsGsBUZoghiX7JDUzhb+G5Ig
-         qubB5vc+IwmlEiqSyFrv9LSrJ6J5z9bULL1lDoickevaZ4oXy9WuHIx7Cu9MR+iQzquf
-         baEhCjcLAeRMovSCFRKpSu8uC0nQZJjGTbbZc175IuqHDyLr0ChzOuF84sVxhngret53
-         g/RQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWdUMumqZuMO1/gIj8B+9xy/HdDGOSLVVnPOxVctnW0gyLUz3QchEXVbL3hTjNo3pPM3Yj2OluBKTZ4fbpx@vger.kernel.org, AJvYcCX5KW4f0VECAZAW7UoNtxJXPc7KX0vlhX/UTVZiGMEZL+XbzmJNowkOmNkKejrXbsROTDWmy0bc5mab@vger.kernel.org
-X-Gm-Message-State: AOJu0YyH7g9vX3y89aW1qkMez3EjCBPURahDgRkn8g3M1se2UwK/Ty4+
-	iB0cNcnYDUiwTxZ+q/+nBAgUXOvjIaJQ4oPCl7vEGtgkcF/4mKDz
-X-Gm-Gg: ASbGncvNgo2a1ME7+VlJTlfrNEsrla4OqyKOZT3Ib0tqZeOZjaZ8Ci05ul4S/eE0xBL
-	HsuQDtQFysroBGTIEOMcm+xAgae0tMH9YPHRC2YNhaS1ECoYcwt0MqnIL8LG28RiPp3YJvx3IT6
-	HY4UaPVCtv6oM0K3U+ad/dFZCdlCArEJNipVE8DsQi4GNg+u/Nl8pYLBklEb/jygEsdF8pWugeD
-	lH4WB15dyY00U7r2T+kO9CEhoME+54+jVaUd31XmbOnZUsisZRmTel/Hv6r//9Rpg4=
-X-Google-Smtp-Source: AGHT+IHBc4LTnAwtHYivgaNgVKDo5w4ZaLaXgX6Xpv7NQpTgZYGhBYw2IsMuK7NVT7OfDxlvlEfZdw==
-X-Received: by 2002:ac8:7dd0:0:b0:471:9174:53ba with SMTP id d75a77b69052e-471afde1e0fmr56132161cf.9.1739407151127;
-        Wed, 12 Feb 2025 16:39:11 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-471c2b04b18sm1163941cf.72.2025.02.12.16.39.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 16:39:10 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Charlie Jenkins <charlie@rivosinc.com>,
-	Evan Green <evan@rivosinc.com>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Jesse Taube <jesse@rivosinc.com>,
-	Andy Chiu <andybnac@gmail.com>,
-	Alexandre Ghiti <alexghiti@rivosinc.com>,
-	Yong-Xuan Wang <yongxuan.wang@sifive.com>,
-	Yu Chien Peter Lin <peterlin@andestech.com>,
-	Samuel Holland <samuel.holland@sifive.com>
-Cc: linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH v4 3/3] riscv: hwprobe: export bfloat16 ISA extension
-Date: Thu, 13 Feb 2025 08:38:47 +0800
-Message-ID: <20250213003849.147358-4-inochiama@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250213003849.147358-1-inochiama@gmail.com>
-References: <20250213003849.147358-1-inochiama@gmail.com>
+	s=arc-20240116; t=1739407297; c=relaxed/simple;
+	bh=XF1Oc7XRHCDJlXTYTMN0xm9ThQduj5ZYw+BLfCKe+Ec=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gwa6BF0ZLDzs+SD9wPHh0EiwvOlRnQvUHmL25UCD/5ZskH7hsZ1OqyVvnLjsYbsQRti8cp2//NaHopw951wAP89R8+JCBYVlY7DY4tBvvPM1Ps7l7FRRf2g4z2kh1v81+jggzy364fKnsdw8YlzUd0nHakSdNfPD/8bIwPUrhUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 332FA1762;
+	Wed, 12 Feb 2025 16:41:54 -0800 (PST)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6F6513F5A1;
+	Wed, 12 Feb 2025 16:41:31 -0800 (PST)
+Date: Thu, 13 Feb 2025 00:39:27 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, samuel@sholland.org,
+ jernej.skrabec@gmail.com, wens@csie.org, sboyd@kernel.org,
+ mturquette@baylibre.com, ryan@testtoast.com, Chris Morgan
+ <macromorgan@hotmail.com>
+Subject: Re: [PATCH 2/2] clk: sunxi-ng: h616: Add clock/reset for LCD TCON
+Message-ID: <20250213003927.6f4c0b09@minigeek.lan>
+In-Reply-To: <20250212191109.156766-3-macroalpha82@gmail.com>
+References: <20250212191109.156766-1-macroalpha82@gmail.com>
+	<20250212191109.156766-3-macroalpha82@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Export Zfbmin, Zvfbfmin, Zvfbfwma ISA extension through hwprobe.
+On Wed, 12 Feb 2025 13:11:09 -0600
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-Reviewed-by: Clément Léger <cleger@rivosinc.com>
----
- Documentation/arch/riscv/hwprobe.rst  | 12 ++++++++++++
- arch/riscv/include/uapi/asm/hwprobe.h |  3 +++
- arch/riscv/kernel/sys_hwprobe.c       |  3 +++
- 3 files changed, 18 insertions(+)
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add the required clock and reset which is used for the LCD TCON.
 
-diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-index f273ea15a8e8..feefe5ea24ea 100644
---- a/Documentation/arch/riscv/hwprobe.rst
-+++ b/Documentation/arch/riscv/hwprobe.rst
-@@ -242,6 +242,18 @@ The following keys are defined:
-   * :c:macro:`RISCV_HWPROBE_EXT_SUPM`: The Supm extension is supported as
-        defined in version 1.0 of the RISC-V Pointer Masking extensions.
- 
-+  * :c:macro:`RISCV_HWPROBE_EXT_ZFBFMIN`: The Zfbfmin extension is supported as
-+       defined in the RISC-V ISA manual starting from commit 4dc23d6229de
-+       ("Added Chapter title to BF16").
-+
-+  * :c:macro:`RISCV_HWPROBE_EXT_ZVFBFMIN`: The Zvfbfmin extension is supported as
-+       defined in the RISC-V ISA manual starting from commit 4dc23d6229de
-+       ("Added Chapter title to BF16").
-+
-+  * :c:macro:`RISCV_HWPROBE_EXT_ZVFBFWMA`: The Zvfbfwma extension is supported as
-+       defined in the RISC-V ISA manual starting from commit 4dc23d6229de
-+       ("Added Chapter title to BF16").
-+
- * :c:macro:`RISCV_HWPROBE_KEY_CPUPERF_0`: Deprecated.  Returns similar values to
-      :c:macro:`RISCV_HWPROBE_KEY_MISALIGNED_SCALAR_PERF`, but the key was
-      mistakenly classified as a bitmask rather than a value.
-diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
-index c3c1cc951cb9..e4e286c63629 100644
---- a/arch/riscv/include/uapi/asm/hwprobe.h
-+++ b/arch/riscv/include/uapi/asm/hwprobe.h
-@@ -73,6 +73,9 @@ struct riscv_hwprobe {
- #define		RISCV_HWPROBE_EXT_ZCMOP		(1ULL << 47)
- #define		RISCV_HWPROBE_EXT_ZAWRS		(1ULL << 48)
- #define		RISCV_HWPROBE_EXT_SUPM		(1ULL << 49)
-+#define		RISCV_HWPROBE_EXT_ZFBFMIN	(1ULL << 50)
-+#define		RISCV_HWPROBE_EXT_ZVFBFMIN	(1ULL << 51)
-+#define		RISCV_HWPROBE_EXT_ZVFBFWMA	(1ULL << 52)
- #define RISCV_HWPROBE_KEY_CPUPERF_0	5
- #define		RISCV_HWPROBE_MISALIGNED_UNKNOWN	(0 << 0)
- #define		RISCV_HWPROBE_MISALIGNED_EMULATED	(1 << 0)
-diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
-index bcd3b816306c..f76163958e27 100644
---- a/arch/riscv/kernel/sys_hwprobe.c
-+++ b/arch/riscv/kernel/sys_hwprobe.c
-@@ -132,6 +132,8 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
- 			EXT_KEY(ZVE64D);
- 			EXT_KEY(ZVE64F);
- 			EXT_KEY(ZVE64X);
-+			EXT_KEY(ZVFBFMIN);
-+			EXT_KEY(ZVFBFWMA);
- 			EXT_KEY(ZVFH);
- 			EXT_KEY(ZVFHMIN);
- 			EXT_KEY(ZVKB);
-@@ -148,6 +150,7 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
- 			EXT_KEY(ZCD);
- 			EXT_KEY(ZCF);
- 			EXT_KEY(ZFA);
-+			EXT_KEY(ZFBFMIN);
- 			EXT_KEY(ZFH);
- 			EXT_KEY(ZFHMIN);
- 		}
--- 
-2.48.1
+Please mention here (and in the cover letter) that while those clocks
+do exist on every H616 die, the respective LCD controllers are not
+exposed on the H616 package, but only on the T507 and H700 version.
+
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+
+Apart from the part, I compared the code against the T507 manual, that
+is a match:
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
+> ---
+>  drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 24 ++++++++++++++++++++++++
+>  drivers/clk/sunxi-ng/ccu-sun50i-h616.h |  2 +-
+>  2 files changed, 25 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> index 190816c35da9..40ab6873b797 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> @@ -645,6 +645,20 @@ static const char * const tcon_tv_parents[] = { "pll-video0",
+>  						"pll-video0-4x",
+>  						"pll-video1",
+>  						"pll-video1-4x" };
+> +static SUNXI_CCU_MUX_WITH_GATE(tcon_lcd0_clk, "tcon-lcd0",
+> +			       tcon_tv_parents, 0xb60,
+> +			       24, 3,	/* mux */
+> +			       BIT(31),	/* gate */
+> +			       CLK_SET_RATE_PARENT);
+> +static SUNXI_CCU_MUX_WITH_GATE(tcon_lcd1_clk, "tcon-lcd1",
+> +			       tcon_tv_parents, 0xb64,
+> +			       24, 3,	/* mux */
+> +			       BIT(31),	/* gate */
+> +			       CLK_SET_RATE_PARENT);
+> +static SUNXI_CCU_GATE(bus_tcon_lcd0_clk, "bus-tcon-lcd0", "ahb3",
+> +		      0xb7c, BIT(0), 0);
+> +static SUNXI_CCU_GATE(bus_tcon_lcd1_clk, "bus-tcon-lcd1", "ahb3",
+> +		      0xb7c, BIT(1), 0);
+>  static SUNXI_CCU_MP_WITH_MUX_GATE(tcon_tv0_clk, "tcon-tv0",
+>  				  tcon_tv_parents, 0xb80,
+>  				  0, 4,		/* M */
+> @@ -855,8 +869,12 @@ static struct ccu_common *sun50i_h616_ccu_clks[] = {
+>  	&hdmi_cec_clk.common,
+>  	&bus_hdmi_clk.common,
+>  	&bus_tcon_top_clk.common,
+> +	&tcon_lcd0_clk.common,
+> +	&tcon_lcd1_clk.common,
+>  	&tcon_tv0_clk.common,
+>  	&tcon_tv1_clk.common,
+> +	&bus_tcon_lcd0_clk.common,
+> +	&bus_tcon_lcd1_clk.common,
+>  	&bus_tcon_tv0_clk.common,
+>  	&bus_tcon_tv1_clk.common,
+>  	&tve0_clk.common,
+> @@ -989,8 +1007,12 @@ static struct clk_hw_onecell_data sun50i_h616_hw_clks = {
+>  		[CLK_HDMI_CEC]		= &hdmi_cec_clk.common.hw,
+>  		[CLK_BUS_HDMI]		= &bus_hdmi_clk.common.hw,
+>  		[CLK_BUS_TCON_TOP]	= &bus_tcon_top_clk.common.hw,
+> +		[CLK_TCON_LCD0]		= &tcon_lcd0_clk.common.hw,
+> +		[CLK_TCON_LCD1]		= &tcon_lcd1_clk.common.hw,
+>  		[CLK_TCON_TV0]		= &tcon_tv0_clk.common.hw,
+>  		[CLK_TCON_TV1]		= &tcon_tv1_clk.common.hw,
+> +		[CLK_BUS_TCON_LCD0]	= &bus_tcon_lcd0_clk.common.hw,
+> +		[CLK_BUS_TCON_LCD1]	= &bus_tcon_lcd1_clk.common.hw,
+>  		[CLK_BUS_TCON_TV0]	= &bus_tcon_tv0_clk.common.hw,
+>  		[CLK_BUS_TCON_TV1]	= &bus_tcon_tv1_clk.common.hw,
+>  		[CLK_TVE0]		= &tve0_clk.common.hw,
+> @@ -1062,6 +1084,8 @@ static const struct ccu_reset_map sun50i_h616_ccu_resets[] = {
+>  	[RST_BUS_HDMI]		= { 0xb1c, BIT(16) },
+>  	[RST_BUS_HDMI_SUB]	= { 0xb1c, BIT(17) },
+>  	[RST_BUS_TCON_TOP]	= { 0xb5c, BIT(16) },
+> +	[RST_BUS_TCON_LCD0]	= { 0xb7c, BIT(16) },
+> +	[RST_BUS_TCON_LCD1]	= { 0xb7c, BIT(17) },
+>  	[RST_BUS_TCON_TV0]	= { 0xb9c, BIT(16) },
+>  	[RST_BUS_TCON_TV1]	= { 0xb9c, BIT(17) },
+>  	[RST_BUS_TVE_TOP]	= { 0xbbc, BIT(16) },
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.h b/drivers/clk/sunxi-ng/ccu-sun50i-h616.h
+> index a75803b49f6a..7056f293a8e0 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.h
+> +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.h
+> @@ -51,6 +51,6 @@
+>  
+>  #define CLK_BUS_DRAM		56
+>  
+> -#define CLK_NUMBER		(CLK_BUS_GPADC + 1)
+> +#define CLK_NUMBER		(CLK_BUS_TCON_LCD1 + 1)
+>  
+>  #endif /* _CCU_SUN50I_H616_H_ */
 
 
