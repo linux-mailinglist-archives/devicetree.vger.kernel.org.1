@@ -1,214 +1,153 @@
-Return-Path: <devicetree+bounces-146290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D424A340B0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:47:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB660A340D3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:53:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA5B5188F137
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:46:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7918B168540
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:53:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205282222AF;
-	Thu, 13 Feb 2025 13:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7D324BC1F;
+	Thu, 13 Feb 2025 13:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NodM34dA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pKAsxd8P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B30224BC1B;
-	Thu, 13 Feb 2025 13:45:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B81D24BC1B
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:53:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739454337; cv=none; b=WzclKvWLzBmrXl9GWapOLUR2jbQrDZf9ONma0A//TKc7mIk0b4RxYISpAIzmOlFpF2nQJ7WnKW4BPmmDgfCIFZG33F8tvAhanvzineOVUu//z1nxFWIT5P+x0pYMu+hEEKgbZ5sXg82qxOehFAsDFESrnbO2y6KPfN60s098n+g=
+	t=1739454826; cv=none; b=p19cnZJaoFREllUBFOlMwnSeI2Iz0G8PjmbJXoyHMYjWxmcgbkIpB4kRe8D24RFGNi3vyFGdGsuAYPRNtrChxfS4QOGkwrb6zGJjwmtUwlPjpx5MsQaYD5K8NCwHsxc+DfD6qWZvdRWx4Nq5RbzepwlvsaJb2BXFOnS1gsXhiLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739454337; c=relaxed/simple;
-	bh=U8ePno+sKsWtuVr6PNmUVd5zk1D2qd0BJO4jRPxf4cw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=trjEvs7DQ04OhoIsAtT/YVqhxOWjPf6Mvld/U8r/Wunz7Yw+SG/veGlpIaBw2klgadcNBPsk1yMHx1mW7dkDgRgulOFgk0tx8kh5D0G/OB6rIX+02switmUKPMLyrMAwQla4jgZzCuLSaxLBfZ8TyjlSQGCFG+D0Dr1Ak5VL7UY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NodM34dA; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 76139442EE;
-	Thu, 13 Feb 2025 13:45:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739454332;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LOY93ekLgvw384eCr7f7tJywpZTgajONjgM57IYL204=;
-	b=NodM34dAYcj7wiLVlzXBa0APHK8K9DaSlZxp+3V5zEHgGYFdGmLefvvLuqbCC466soFE79
-	AxuaobXrJuKgAv4Blrw3zVnbfh4g4pE1z59BPZKYC4NnCMRTjDwaKSQkaEY8KDiTiPF+RN
-	dDvorI1q5PCnPJ/oBcudmams/4lmlidcT8GCQ1vtFwcB2RwWWlIxyd7leRg3lABR81k4ne
-	i1WBlIZhBECuH4XccygJp5XK6IXZ4hBmzU8emlV5eTnABP7MpOFmnW+v4FjPLauaPEp0t3
-	B2GA4OqZOpcd4zsZRI4dBtP3dU11Kv5ir8jN8uWZQjLNWLAdobl7yldj/x4pOQ==
+	s=arc-20240116; t=1739454826; c=relaxed/simple;
+	bh=Eng2iBq6FvHc1yUhKMcUzLBmdUfoaMTs+ae3WTkaieQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O7nYOqS81B0WQlzzv61f0+/En8TBGWe6YnO+V1EWE88zN0HWHLhS4c/rDSzbqNgK2+0/LGsE/s9HGXAFbWkez75CPdle+SgBlB8KlBttOzE59Aa8n2UzUoC7p4stA12Gj9NFoeEo3pBt3bKEJbZfZIg7/mzvg9TdQvlbHgX1N8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pKAsxd8P; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51D8eOMm016912
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:53:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	G0T3NNL6yPWHi23ATwtvU4h45jKTgjlGN7+OXPZamIA=; b=pKAsxd8P6eu1LG+h
+	Ee1B1nOcWiiCOrTWOoEC6MvIYUU6UQrjwwf/07tKOjsk3c5aznQHbzs5dL9Duay8
+	p//qzUEJ5NZ4VEisarBD7W2XdavU+aI1hywDGOohTFI6EjWAoMygQKy8b/IFENEV
+	hpQgRC3INzKlYKf6Z0ocWLKk8ALxIr9gAbjD7VYnKC9cnI979ujYpv3vPufv4fTI
+	CX8BQlp6B2qd05lFl3f3KkOJHpGWgoiarHYf+VimNP0L5SRqqCUninZlDeL56lUB
+	xqz2bIBwYv/z4rAm/KbvhfQ5LvbsFxp133TPuQNz21evan8qcJEBFnM8MsQW3LuP
+	Hgk1vQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44sde88tfn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:53:43 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c0797974bfso8373385a.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 05:53:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739454823; x=1740059623;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=G0T3NNL6yPWHi23ATwtvU4h45jKTgjlGN7+OXPZamIA=;
+        b=hWQhpOq7FtiDajrGXB6cl8lyqu6DsI6ciBz9mXthNwM58kFwBE9hS+NvogbshpETJD
+         OM7UcT3NMlu4+IjEb+pb01mUkZypg2vjEYGxzt8+f2tQNBPC2giWv+fsOGp2HE31qCMp
+         fAvY+Su/HpBChZ8s7l8NtHezYWJASsDLJD+eqEXZuw2BJx+sSk4HLpyo6pHrpetF6aky
+         6lVyUUo53gwcJ8met9AWDd2VPsd9KJkrWzyWtVg/7uzPjxWkQtBGugTN7WWI+LpRTqZY
+         SDqnIQa3T5qjwaFhZ4OM5JpNVAXTg9xbQoCHiEseiYcm8u3Gryis03JQegUwvuYR7Wkr
+         UWAg==
+X-Forwarded-Encrypted: i=1; AJvYcCXsUDlEcZ5ib35W2sbAkBUXsppkOvopJtiQXqBFd0nh7Lti4Y2bAXi1L32psRKVoOvZacXur0wSW/Sk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/+SuRQSeAhI7zbacQLzezs22Z8MVHTy5B/wxPB2RvQWPV73jY
+	5emUNkqIfQaV6MJY1rYO4wNMWPrtqemXywlCPGz5D64v4KQKZVvtTPFWZktpJSELOBc3rYmqAAM
+	pxefvZuJsKGxA2k1KUmtrySrj7H8tMgILyq0DF09E5blfEK2zGu0+2FVPPhjC
+X-Gm-Gg: ASbGnctDOUOIeCs3B4s8IEumczaBX6ISGvVpa1JMYo5eo4cFkHZ4zbq06BlJMlz7jc9
+	yc+T1A1ioAJExvmu9zX6GvXY4+6cgMINTuJPbvPWFin62YHdHo4s43VSfm00CCsRxJPy5BauGre
+	dWJma/xCb25G2nbiVFK605KqUYDuJgyIT53JOje6kRLO8/b+Zaz+ErmiecgDUNPIUrjNfYiAcsf
+	g9L+DttP6Vdnb4jMRrWPEbMt9DDZSOVb2UCFrlWoHpITZKlqWCdTuws0O/vMBPo69Wk/uWaaWTI
+	6f/6wEM+DYL3TTCfrG9frIkFkjKWclZ4N4tgom5gnHId/duOZ1Po+Y23ut0=
+X-Received: by 2002:a05:620a:4793:b0:7c0:7753:9807 with SMTP id af79cd13be357-7c07753984fmr245804985a.2.1739454823004;
+        Thu, 13 Feb 2025 05:53:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGfRJnsuo/7alsc6cmW1TUv/j5i4/UelSoGDYSvEXPaZTGIzpCzI0MBm2/J7M+CkFWsBrPiFg==
+X-Received: by 2002:a05:620a:4793:b0:7c0:7753:9807 with SMTP id af79cd13be357-7c07753984fmr245803185a.2.1739454822571;
+        Thu, 13 Feb 2025 05:53:42 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1c4692sm1219859a12.31.2025.02.13.05.53.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Feb 2025 05:53:42 -0800 (PST)
+Message-ID: <936dc0e7-bd24-4b20-892e-831b4e5ddfaf@oss.qualcomm.com>
+Date: Thu, 13 Feb 2025 14:53:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Add crypto engine
+To: Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250213-x1e80100-crypto-v1-1-f93afdd4025a@linaro.org>
+ <Z63xEdcvCRHchHWu@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <Z63xEdcvCRHchHWu@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Date: Thu, 13 Feb 2025 14:45:31 +0100
-Message-Id: <D7RD3K56C2CQ.1WGUSI809P246@bootlin.com>
-Subject: Re: [PATCH v3 4/7] gpio: max7360: Add MAX7360 gpio support
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>, "Andy
- Shevchenko" <andriy.shevchenko@intel.com>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
- <20250113-mdb-max7360-support-v3-4-9519b4acb0b1@bootlin.com>
- <Z5eFGJspoGOINcG6@smile.fi.intel.com>
- <D7QHGB7D0VSG.X255SDU7DFOF@bootlin.com>
- <Z6y65SnrprvnpKEa@smile.fi.intel.com>
- <D7QLITNTXRUJ.3NA44E6PQMAUX@bootlin.com>
- <Z6zJljphfTuEhBTP@smile.fi.intel.com>
- <D7R9KGN6EMDM.1DCDL4P5RC23B@bootlin.com>
-In-Reply-To: <D7R9KGN6EMDM.1DCDL4P5RC23B@bootlin.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegieelvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggfgtgffkffuvefhvffofhgjsehtqhertdertdejnecuhfhrohhmpedfofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugdfuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkefhkeeifeethfejteevfeduheduvddvuedvvddugfffhfevkefftefhuefftddunecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejiedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudekpdhrtghpthhtohepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdprhgtphhtthhopegrnhgurhhih
- idrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrgh
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: zTXVO96Nm8oWC4K3B6UEdHzzbEyJYzzc
+X-Proofpoint-ORIG-GUID: zTXVO96Nm8oWC4K3B6UEdHzzbEyJYzzc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-13_06,2025-02-13_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ adultscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
+ clxscore=1015 mlxscore=0 mlxlogscore=889 spamscore=0 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502130106
 
-On Thu Feb 13, 2025 at 11:59 AM CET, Mathieu Dubois-Briand wrote:
-> On Wed Feb 12, 2025 at 5:17 PM CET, Andy Shevchenko wrote:
-> > On Wed, Feb 12, 2025 at 05:08:56PM +0100, Mathieu Dubois-Briand wrote:
-> > > On Wed Feb 12, 2025 at 4:14 PM CET, Andy Shevchenko wrote:
-> > > > On Wed, Feb 12, 2025 at 01:57:34PM +0100, Mathieu Dubois-Briand wro=
-te:
-> > > > > On Mon Jan 27, 2025 at 2:07 PM CET, Andy Shevchenko wrote:
-> > > > > > On Mon, Jan 13, 2025 at 01:42:28PM +0100, Mathieu Dubois-Briand=
- wrote:
-> >
-> > ...
-> >
-> > > > > > > +	if (of_property_read_u32(pdev->dev.of_node, "ngpios", &ngpi=
-os)) {
-> > > > > > > +		dev_err(&pdev->dev, "Missing ngpios OF property\n");
-> > > > > > > +		return -ENODEV;
-> > > > > > > +	}
-> > > > > >
-> > > > > > This is not needed, it is already done in GPIOLIB core.
-> > > > >=20
-> > > > > I believe this is still needed:
-> > > > > - For gpos, we need the gpio count to correctly set the partition
-> > > > >   between gpo and keypad columns in max7360_set_gpos_count().
-> > > >
-> > > > Shouldn't be that done somewhere in the GPIO valid mask initialisat=
-ion?
-> > > >
-> > > > > - For gpios, we need the gpio count to setup the IRQs.
-> > > >
-> > > > Doesn't GPIOLIB parse the property before initializing the IRQ vali=
-d mask
-> > > > and other init callbacks?
-> > >=20
-> > > No, I believe I have to register the IRQ before registering the GPIO,=
- so
-> > > I can get the IRQ domain.
-> > >=20
-> > > Right now I have something like:
-> > >=20
-> > > irq_chip->num_irqs =3D ngpios;
-> > > devm_regmap_add_irq_chip_fwnode(dev, dev_fwnode(dev), max7360_gpio->r=
-egmap,
-> > > irq, flags, 0, irq_chip, &irq_chip_data);
-> > > gpio_config.irq_domain =3D regmap_irq_get_domain(irq_chip_data);
-> > > devm_gpio_regmap_register(dev, &gpio_config);
-> > >=20
-> > > Also, gpiolib will store ngpios in the gpio_chip structure, but while
-> > > using gpio-regmap, this structure is masked behind the opaque
-> > > gpio_regmap structure. So I believe there is no easy way to retrieve =
-its
-> > > value.
-> > >=20
-> > > This part of the code changed a lot, maybe it would be easier if I pu=
-sh
-> > > a new version of the series and we continue the discussion there?
-> >
-> > So, what seems need to be added is some flag to GPIO regmap configurati=
-on
-> > data structure and a code that is called after gpiochip_add_data() in
-> > gpio_regmap_register() to create a domain. This will solve the above is=
-sue
-> > and helps other drivers to get rid of potential duplication of
-> > devm_regmap_add_irq_chip_fwnode() calls.
-> >
-> > Have you researched this path?
->
-> OK, so looking at the code, I believe it would need to:
-> - Add some flag in gpio_regmap_config structure, so
->   gpio_regmap_register() creates a new IRQ domain.
-> - Add a function allowing to retrieve this domain out of the gpio_regmap
->   structure.
-> - Allow to pass a domain in the regmap_irq_chip structure, so
->   regmap_add_irq_chip_fwnode() use this domain instead of calling
->   regmap_irq_create_domain().
-> - Make sure this domain is still populated with the IRQ data: number of
->   IRQs, IRQ base but also a pointer on the regmap_irq_chip_data
->   structure in .host_data. I believe this will be a bit tricky.
-> - Add a function allowing to retrieve ngpio out of the
->   gpio_regmap.gpio_chip structure, so it can be used for IRQ setup and
->   other places of the driver.
->
-> I'm sorry, but I feel like this is a lot of changes to solve this point.
-> I've been thinking about it, and I can suggest a different solution.
->
-> For gpios, I will remove the ngpios property of the device tree and use
-> a fixed value:
-> - For the today version of the chip, this is always 8.
-> - I a chip variant or a similar chip ever arise later with a different
->   number of gpios, the fixed value can be set according to the
->   "compatible" value.
-> - This removes any issue with the IRQ setup.
->
-> For gpos, we have to keep ngpios, as it depends of the implementation on
-> the board. That means ngpios will be used:
-> - For the gpio chip configuration: we let gpiolib retrieve it from the
->   device tree.
-> - In gpio-regmap reg_mask_xlate callback: I can add a function allowing
->   to retrieve it from gpio_regmap.gpio_chip, as suggested above.
-> - In max7360_set_gpos_count() to validate the coherency between
->   requested gpios and keypad columns and set the correct configuration
->   on the chip:
->   - I can also retrieve the value from gpio_regmap.gpio_chip, but that
->     means the check is made after the call to
->     devm_gpio_regmap_register().
->   - Or I will still need to retrieve it using device_property_read_u32()
->     here.
->
-> How do you feel about this solution?
+On 13.02.2025 2:18 PM, Stephan Gerhold wrote:
+> On Thu, Feb 13, 2025 at 02:44:02PM +0200, Abel Vesa wrote:
+>> On X Elite, there is a crypto engine IP block similar to ones found on
+>> SM8x50 platforms.
+>>
+>> Describe the crypto engine and its BAM.
+>>
+>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>> ---
+>> https://lore.kernel.org/all/20250213-dt-bindings-qcom-qce-x1e80100-v1-1-d17ef73a1c12@linaro.org/
+>> ---
+>>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 30 ++++++++++++++++++++++++++++++
+>>  1 file changed, 30 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>> index 9d38436763432892ceef95daf0335d4cf446357c..5a2c5dd1dc2950b918af23c0939a112cbe47398b 100644
+>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>> @@ -3708,6 +3708,36 @@ pcie4_phy: phy@1c0e000 {
+>>  			status = "disabled";
+>>  		};
+>>  
+>> +		cryptobam: dma-controller@1dc4000 {
+>> +			compatible = "qcom,bam-v1.7.0";
+> 
+> Hm, I would expect this is at least "qcom,bam-v1.7.4", "qcom,bam-v1.7.0"
+> given that this is a pretty recent SoC. I don't think this makes any
+> functional difference though, and we don't seem to have it on other
+> recent SoCs...
 
-Actually there is an additional issue: today, relying on gpiolib to
-parse the "ngpios" property does not work with gpio-regmap.
+It is v1.7.4 fwiw
 
-The gpiochip_get_ngpios() function in gpiolib is called in
-gpiochip_add_data_with_key(), but when using gpio_regmap_register(),
-we first ensure ngpio is set correctly before calling anything.
-
-Yet I believe this check can safely be removed, allowing the magic in
-gpiolib happen as expected.
-
-
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Konrad
 
