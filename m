@@ -1,397 +1,240 @@
-Return-Path: <devicetree+bounces-146118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 435A3A337F3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 07:28:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9B6FA33817
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 07:42:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6B6F161CFC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 06:28:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DB303A6E8F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 06:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CBBD207A10;
-	Thu, 13 Feb 2025 06:27:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D33207E14;
+	Thu, 13 Feb 2025 06:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d4B6blvA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BVo+psVl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83116207641;
-	Thu, 13 Feb 2025 06:27:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D831207E07;
+	Thu, 13 Feb 2025 06:42:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739428078; cv=none; b=AsXbdA9fcignhyhhMIkVSD/J1Oly9SgG0lYLNTkP+mEwZFhgRaBQtH5DYzXQxa6plWOodpryHRdQuNVcTo2/NBIQ5lCvbAxKDmM/luKgBs3SntOI7CO7Ah0aZuM/4UEyu/vZM7O65y22NAXIODbKqjUooEEroxzDZxhawiAWwAY=
+	t=1739428958; cv=none; b=u8r1k8zsi+erM/7w2jYUIKa/lnTCY2iwmDrP43No15bMLbbhVWPALKLlaSFP0i7LqkpwrRec+QIbtxEogve9mUfSCDW8MvAUvJsnO2+rGu1mNxK8sc1CtkUAoKp/oIsmOw7sfVoODt19QO0EYPaCnYVo191HoBzy8ihcGtPAA90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739428078; c=relaxed/simple;
-	bh=/ITHLgy9JYrnb84+uFgHUA5tidkL9hWALUk8ObVqab8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ImxK5oAunCbG8tjNFB9FKPJA9z+FXC0HadAi32iUcPey/S+p9yVT0ddm9dXemFD0VMVpf/d0+wfzf59fJsalHlXsECy1Tg6YurUmSqU4kFg+CZNWzzDzXam9NrAk0YPSefv3C+WuTlQ6g2b5/fy+/Et9YSFncQagAZggv2GqgW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d4B6blvA; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-38f22fe889aso278960f8f.3;
-        Wed, 12 Feb 2025 22:27:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739428075; x=1740032875; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wOzwMl8VwHYfyLhIMZVPabSmX4hCvOI4+kS23hOataA=;
-        b=d4B6blvAcgBEkF8PskjpLe7uR5BSu4Xd/uGftz8wkaYn8rtsNEQLXUl55cETS3F9RR
-         AIW6X0MIh1NF5KP2hfkGfBqpgUFtLJkWfYjXG12heAK+F1nbgck4DHWULhyxEJNYZ4kK
-         RDbyf6f2tmhmA4cBiXmVT95v3BtNC7c7m/b0TKxYsAFZKBKKVku5O3EvHY42gkJsdWW6
-         p4Ia7RiqUB1zHEaPFI0U+UwYL5ZgpHTukESnnmA3jIBJ+Bucvv3wNkw+NAzMdn0Sg8Ly
-         va2yMGoCL0BNRqsnM9hzVojeAqsMXxpKcToUt0syGsK0e8BIKMEVHZAoxLhbAcu0OOTO
-         SPqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739428075; x=1740032875;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wOzwMl8VwHYfyLhIMZVPabSmX4hCvOI4+kS23hOataA=;
-        b=eowXEO/GgFNSfM2ib19BlSyJy/D+hm3VDeVofhThSi4a7SqZkqp6jGdjXTQsLVR4lD
-         pb98XzeTAdx16wAkhPbhEdUsJzGyzLS2ZehL5DW4HTeCBTt/pXs5iSAnvDeI3pLJ+DY8
-         tYVqduywwTiNLkHAlk/8qHff/agTfdo/CVSfy9Km9oH0j9jYCzSAX43eVjnOF47TlVVz
-         LXoqcBaiMc8EgLQpxXec6alLNDAQ0ImelcnsEHlddtt9RfrwpuPAbhqVywPF2uXRuLiC
-         DdlSvtorT9HT0QTP7ZH1pNuEN4WQcuZ0bn/zWWNu0g84As7rySn/KT8RFiQCKViUQUKn
-         Ng1w==
-X-Forwarded-Encrypted: i=1; AJvYcCV5NGZGXGmV5hxbM7Ui82gGH9udXBFjhLcXKqvFYE3A4wdZ7u3sJabqrnBQG3kocflpQ1Aa3g6lA5yVvKbl@vger.kernel.org, AJvYcCVzjFn1yijuYw2nU4SuF0CmYvQ8jbprXZLUtfdO3nz/dhYXRn/NrKUGLPsuoPdl1RFvi/MpCO1kBK3PWw==@vger.kernel.org, AJvYcCWhklCF3Bb6LveHmdCE0D+IhDIBheT83NSeTgw/2woWP8lAPkvVmPJoiKRO0v3f1YLkS4Hj3WdzgomM@vger.kernel.org, AJvYcCWyVJ8XkTMhaemhDk590NBQ5hL7/LXRWr+0mtE3L7EE+Yl7hhkkZ+/tUB7aiXNtM+vjxRmqBY6YpYom/ro=@vger.kernel.org, AJvYcCX9EmEuOJJP4kHRwADFM71yCbW4S4JdFGRJgoeMQu/5x85tML+FV8Dq24QjP6MFiT5IK00+6yokELMa@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXlYxBn06kxFUKHqQent6I9TF84V4XiT3bSHJICLs4BnZbbnCl
-	GUxWVTUOch10uu2/slZrwHzcgxma0ySJPdWHp/aJKPbGiZCLSy3uO5S/jtJyvqnGsp7zwY7dlr5
-	O7OvQA6pksg9QojszMbuOJSICqco=
-X-Gm-Gg: ASbGncsdLCuZEgfVEBFWwqBVbfkGL4UP0tgRKZKwNfePJ/xLOgaUP5uBn9Y93w0xsO5
-	bIbPNlRnvEGsu5Ez8jA858o8T1vO564F9b3e9W+M41EvGe/EjyW+guRgdKmQNaeVe86GDst3m8A
-	==
-X-Google-Smtp-Source: AGHT+IGd3aSb6EVJT9y79hOBqqnlYiGX2mzwTicjMhOTwe0xN57IDbNmeue9tZ+J44tqG/5xONzLJq2CfewOMFhktjk=
-X-Received: by 2002:a5d:588a:0:b0:38f:2073:14a7 with SMTP id
- ffacd0b85a97d-38f24526be2mr2020172f8f.47.1739428074400; Wed, 12 Feb 2025
- 22:27:54 -0800 (PST)
+	s=arc-20240116; t=1739428958; c=relaxed/simple;
+	bh=wSfzicfqZaGMaX/zy9i0qtnv9BY7+9lOnhH4GUr4yd0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=COYL+hCFPZfAiGlan3dur8s41FAh5aqAfzBYPNhidiHF0jtZPcJ9fvdeqzDNUUhncUhyjpX9aZI68daGzLfaZ4iS9OPo+8cGWf9Pb39OlG68h+4Ix+z36BVMFNSZITlK0C/+Gkrkl2fzN11CCk0y/Jk3AuLGG3yOKgKRpxChyBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BVo+psVl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25C83C4CED1;
+	Thu, 13 Feb 2025 06:42:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739428957;
+	bh=wSfzicfqZaGMaX/zy9i0qtnv9BY7+9lOnhH4GUr4yd0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BVo+psVlvUiOKBdW+Xk5NAoqefLAKu66zX8SaYpPRQh3zYFySTDP7EZ2VClOWYjC/
+	 l1HURmC/RB4sV2xe5GNZ7blayI+eV61hKG3RVR1LbxOqL9xNZwCG7UinYY00V+fGdt
+	 Qf37RwM651Va+5kdCOHt3SjFLyWYYSDLL8b1nWkaMkf6tnn/0vUo27iCiyJYg5XuU4
+	 gg86fy7Oay9QR2RHT14pMoJYq7bESMGtvWeVQTPkI+Xt55FiB/WcztsOfRMnRi1WCv
+	 X9fX0J8NKvCO6SfKuLxV2X8WKxUNcrrOBlcHr2KyEs9RCUHAZDUnI7aK+OEnvm/zDX
+	 ClJQYN1dp396A==
+Date: Thu, 13 Feb 2025 14:42:28 +0800
+From: Peter Chen <peter.chen@kernel.org>
+To: Hector Martin <marcan@marcan.st>
+Cc: devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+	linux-usb@vger.kernel.org, linux-embedded@vger.kernel.org,
+	Asahi Linux <asahi@lists.linux.dev>,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org
+Subject: Re: Unified Type C PHYs and top-level port management
+Message-ID: <20250213064228.GA181829@nchen-desktop>
+References: <fda8b831-1ffc-4087-8e7b-d97779b3ecc5@marcan.st>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250212075845.11338-1-clamor95@gmail.com> <20250212075845.11338-2-clamor95@gmail.com>
- <20250212-reprint-underfed-fd723ebf3df3@spud>
-In-Reply-To: <20250212-reprint-underfed-fd723ebf3df3@spud>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 13 Feb 2025 08:27:43 +0200
-X-Gm-Features: AWEUYZmuyAB8gQ5te2zUGxj5B78TV5g_h5KsY5EeG0lXC_QDun0uHJ9JminpPgQ
-Message-ID: <CAPVz0n0-ywJfoXBwQ5H8z7831kHFxbCMfsibanSRNGMoghAkGg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: mfd: Document TI LM3533 MFD
-To: Conor Dooley <conor@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>, 
-	Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fda8b831-1ffc-4087-8e7b-d97779b3ecc5@marcan.st>
 
-=D1=81=D1=80, 12 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 21:49 Cono=
-r Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Wed, Feb 12, 2025 at 09:58:41AM +0200, Svyatoslav Ryhel wrote:
-> > Add bindings for the LM3533 - a complete power source for
-> > backlight, keypad, and indicator LEDs in smartphone handsets.
-> > The high-voltage inductive boost converter provides the
-> > power for two series LED strings display backlight and keypad
-> > functions.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../devicetree/bindings/mfd/ti,lm3533.yaml    | 221 ++++++++++++++++++
-> >  include/dt-bindings/mfd/lm3533.h              |  19 ++
-> >  2 files changed, 240 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/ti,lm3533.yam=
-l
-> >  create mode 100644 include/dt-bindings/mfd/lm3533.h
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/ti,lm3533.yaml b/Doc=
-umentation/devicetree/bindings/mfd/ti,lm3533.yaml
-> > new file mode 100644
-> > index 000000000000..d0307e5894f8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/ti,lm3533.yaml
-> > @@ -0,0 +1,221 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/ti,lm3533.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: TI LM3533 Complete Lighting Power Solution
-> > +
-> > +description: |
-> > +  The LM3533 is a complete power source for backlight,
-> > +  keypad, and indicator LEDs in smartphone handsets. The
-> > +  high-voltage inductive boost converter provides the
-> > +  power for two series LED strings display backlight and
-> > +  keypad functions.
-> > +  https://www.ti.com/product/LM3533
-> > +
-> > +maintainers:
-> > +  - Johan Hovold <jhovold@gmail.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ti,lm3533
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +  enable-gpios:
-> > +    description: GPIO to use to enable/disable the backlight (HWEN pin=
-).
-> > +    maxItems: 1
-> > +
-> > +  ti,boost-ovp:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Boost OVP select (16V, 24V, 32V, 40V)
-> > +    enum: [ 0, 1, 2, 3 ]
-> > +    default: 0
-> > +
-> > +  ti,boost-freq:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Boost frequency select (500KHz or 1MHz)
-> > +    enum: [ 0, 1 ]
-> > +    default: 0
->
-> Properties like these should be in units, so some standard voltage-based
-> one for the boost and in hertz for the second. See property-units.yaml
-> in dt-schema.
->
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +  - enable-gpios
-> > +
-> > +patternProperties:
-> > +  "^backlight@[01]$":
-> > +    type: object
-> > +    description:
-> > +      Properties for a backlight device.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: lm3533-backlight
->
-> Missing vendor prefix
->
-> > +
-> > +      reg:
-> > +        description: |
-> > +          The control bank that is used to program the two current sin=
-ks. The
-> > +          LM3533 has two control banks (A and B) and are represented a=
-s 0 or 1
-> > +          in this property. The two current sinks can be controlled
-> > +          independently with both banks, or bank A can be configured t=
-o control
-> > +          both sinks with the led-sources property.
-> > +        minimum: 0
-> > +        maximum: 1
-> > +
-> > +      max-current-microamp:
-> > +        description:
-> > +          Maximum current in =C2=B5A with a 800 =C2=B5A step.
-> > +        enum: [ 5000, 5800, 6600, 7400, 8200, 9000, 9800,
-> > +                10600, 11400, 12200, 13000, 13800, 14600,
-> > +                15400, 16200, 17000, 17800, 18600, 19400,
-> > +                20200, 21000, 21800, 22600, 23400, 24200,
-> > +                25000, 25800, 26600, 27400, 28200, 29000,
-> > +                29800 ]
-> > +        default: 5000
-> > +
-> > +      default-brightness:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Default brightness level on boot.
-> > +        minimum: 0
-> > +        maximum: 255
-> > +        default: 255
-> > +
-> > +      pwm:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Default pwm level on boot.
-> > +        minimum: 0
-> > +        maximum: 63
-> > +        default: 0
->
-> Why is default-brightness /and/ a default for pwm needed? If the pwm
-> drives the backlight, wouldn't you only need one of these two?
->
-> If it stays, I think it needs a rename to be more clear about what it is
-> doing. "pwm" is very close to "pwms", the property used for phandles to
-> pwm providers but the use is rather different.
->
-> backlight/common.yaml has standard properties that you could be using,
-> so I'd expect to see a ref here, rather than redefining your own
-> version.
->
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +
-> > +    additionalProperties: false
-> > +
-> > +  "^led@[0-3]$":
-> > +    type: object
-> > +    description:
-> > +      Properties for a led device.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: lm3533-leds
->
-> Ditto here re: compatible.
->
-> > +
-> > +      reg:
-> > +        description:
-> > +          4 led banks
-> > +        minimum: 0
-> > +        maximum: 3
-> > +
-> > +      max-current-microamp:
-> > +        description:
-> > +          Maximum current in =C2=B5A with a 800 =C2=B5A step.
-> > +        enum: [ 5000, 5800, 6600, 7400, 8200, 9000, 9800,
-> > +                10600, 11400, 12200, 13000, 13800, 14600,
-> > +                15400, 16200, 17000, 17800, 18600, 19400,
-> > +                20200, 21000, 21800, 22600, 23400, 24200,
-> > +                25000, 25800, 26600, 27400, 28200, 29000,
-> > +                29800 ]
-> > +        default: 5000
-> > +
-> > +      default-trigger:
-> > +        $ref: /schemas/types.yaml#/definitions/string
-> > +        description: |
-> > +          This parameter, if present, is a string defining
-> > +          the trigger assigned to the LED. Check linux,default-trigger=
-.
-> > +
-> > +      pwm:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Default pwm level on boot.
-> > +        minimum: 0
-> > +        maximum: 63
-> > +        default: 0
->
-> Same applies here, leds/common.yaml has some of these already.
->
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +
-> > +    additionalProperties: false
-> > +
-> > +  "^light-sensor@[0]$":
->
-> Not a pattern if it can only have 1 outcome.
->
-> > +    type: object
-> > +    description:
-> > +      Properties for an illumination sensor.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: lm3533-als
-> > +
-> > +      reg:
-> > +        const: 0
-> > +
-> > +      resistor-value:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description: |
-> > +          PWM resistor value a linear step in currents
-> > +          of 10 =C2=B5A per code based upon 2V/R_ALS.
-> > +        minimum: 1
-> > +        maximum: 127
-> > +        default: 1
-> > +
->
-> I'd expect a resistor to be measured in ohms of some sort,
-> hard to tell what the increments actually are here, they don't appear to
-> be a real unit. Are they register values?
->
-> This and all other custom properties need to have a vendor prefix on
-> them btw.
->
-> > +      pwm-mode:
-> > +        type: boolean
-> > +        description: Mode in which ALS is running
->
-> Are there multiple pwm modes? Or is this trying to say that, if set, the
-> sensor is in pwm mode? Hard to tell from the description here, sorry.
->
-> Cheers,
-> Conor.
->
+On 25-01-14 21:32:11, Hector Martin wrote:
+> Hi all,
+> 
+> We're implementing Type C port support for Apple systems and we're
+> running into impedance mismatches with the existing Linux subsystems. I
+> want to throw a quick overview of the problem here and see if we can
+> come up with solutions.
+> 
+> The short version is that Linux has a pile of (sub)subsystems that deal
+> with multiple aspects of coordinating Type C port behavior:
+> 
+> - USB role switch
+> - USB host
+> - USB gadget
+> - Type C mux
+> - Type C PD
+> - DRM/etc for DisplayPort
+> - USB4/Thunderbolt (not even going there yet)
+> - Individual PHYs for everything
+> 
+> This evolved from, and is largely designed for, systems built from
+> discrete components (separate USB3 controller, DP controller, external
+> mux, PD stuff, etc.)
+> 
+> What we actually on Apple systems is:
+> 
+> - An external I2C USB-PD controller that handles the entire PD protocol
+> and negotiation autonomously. We don't even get to pick the altmode, it
+> does all the policy on its own and there is no override (we looked).
+> - USB3/4/DP retimer and eUSB2 level shifter chips (not muxes) that are
+> managed by the external USB-PD controller over I2C, invisible to Linux.
+> - A single, unified, shared PHY (atcphy) that handles *everything*:
+> USB2, USB3, DP, USB4/TBT, depending on configuration. It presents
+> discrete interfaces to the DP, TBT, and USB controllers behind it.
+> - A dwc3 controller per unified PHY, with host and device modes. Its
+> USB3 PIPE interface can be switched (via registers in the PHY side, not
+> the dwc3 side) between a dummy PHY, the USB3 PHY, or a virtual PHY that
+> does USB4 tunneling.
+> - A set of display controllers that are separate from the ports/PHYs
+> - A DisplayPort router that can pair a display controller with a given
+> unified PHY's physical DisplayPort interface, or one of two tunnels over
+> TBT/USB4. The display controllers are n:m matched to the ports, they are
+> not 1:1 (there may be fewer display controllers than ports).
+> - The whole TBT/USB4 PCIe stuff which winds up in a PCIe root port
+> controller per port/PHY (not going to consider this for now, leaving
+> that for later).
+> 
+> The current approach we have is a mess. The tipd driver (which manages
+> the PD controller) directly does the role switching and mux calls. The
+> role switching triggers dwc3 to asynchronously switch modes. Meanwhile
+> the mux calls end up at our PHY driver which tries to reconfigure
+> everything for the given lane mode. But since PHY configuration also has
+> to negotiate with dwc3, it also acts as a PHY for that (two, actually,
+> USB2 and USB3). However, the callbacks from dwc3 are all over the place,
+> and we end up having to do things like handle USB3 configuration from
+> the USB2 PHY callbacks because that happens to be the correct timing to
+> make it work. Meanwhile DRM/DisplayPort is its own thing that is mostly
+> asynchronous to everything else, only reacting to HPD, and we haven't
+> even gotten to the dynamic assignment of display controllers to ports
+> yet (that's a story for another day).
+> 
+> To give an example of one of the quirks: Thanks to the USB-IF's
+> amazingly braindead stateful and non-self-synchronizing eUSB2 protocol,
+> we need to fully reset the dwc3 controller every time there is a hotplug
+> event on the port from the PD controller. Otherwise USB2 breaks, since
+> the PD controller will reset the eUSB2 level shifter on unplug and dwc3
+> and the paired eUSB2 PHY can't recover from that without a full reset.
+> 
+> A further complication is we do not have documentation for any of this.
+> The PHY setup is all reverse engineered. That means all we can do is
+> replicate the same register operations that macOS does, and then we have
+> to *guess* how to fit it into Linux, and what can be moved around or
+> reordered or not. There is no way to know if any given Linux
+> implementation is correct and reliably configures the PHY, other than
+> trial and error, unless we can exactly replicate what macOS does (which
+> is infeasible in Linux today because the cross-driver sync points aren't
+> in the same places, e.g. dwc3 and its phy callbacks do not match the
+> interleaving of PHY register writes and dwc3 register writes in macOS).
+> 
+> This is never going to be reliable, robust, or maintainable with the
+> current approach. Even just getting it to work at all is a frustrating
+> mess, where fixing one thing breaks another (e.g. if the dwc3 role
+> switch happens first, that runs in a workqueue, and ends up racing with
+> phy reconfig. We found out our current code was working by accident due
+> to some msleep() calls in dwc3. And of course, hotplug is all kinds of
+> racy and broken.). The sequencing requirements make this whole approach
+> using different subsystems for different things without central
+> coordination a nightmare, especially with hotplug involved and devices
+> that like to switch their altmode negotiation rapidly on connect cycles.
+> It all ends up depending of subtle implementation details of each part,
+> and if anything changes, everything breaks.
+> 
+> What we really want is a top-level, vendor-specific coordinator that
+> *synchronously* (in a single logical thread) handles all
+> hotplug/modeswitch operations for a single port, driving state
+> transitions for all the other drivers. I.e. something that can:
+> 
+> - Receive a data role/status change from tipd (this includes *all* port
+> mode including data role, altmode config, etc.). This can be
+> asynchronous/queued relative to tipd, but all config changes must be
+> processed in sequence as a single queue.
 
-Acknowledged, thank you.
+Just some ideas and see if it could improve things for you.
 
->
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +
-> > +    additionalProperties: false
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/mfd/lm3533.h>
-> > +
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        led-controller@36 {
-> > +            compatible =3D "ti,lm3533";
-> > +            reg =3D <0x36>;
-> > +
-> > +            enable-gpios =3D <&gpio 110 GPIO_ACTIVE_HIGH>;
-> > +
-> > +            ti,boost-ovp =3D <LM3533_BOOST_OVP_24V>;
-> > +            ti,boost-freq =3D <LM3533_BOOST_FREQ_500KHZ>;
-> > +
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            backlight@0 {
-> > +                compatible =3D "lm3533-backlight";
-> > +                reg =3D <0>;
-> > +
-> > +                max-current-microamp =3D <23400>;
-> > +                default-brightness =3D <113>;
-> > +                pwm =3D <0x00>;
-> > +            };
-> > +        };
-> > +    };
->
+If your PD driver reports some intermediate states, try not to handle
+them all, it could avoid de-init some operations which has done at the
+previous states. And for all PD events, queued them at ordered work
+queue with some delay.
+
+> - Deconfigure the previous mode for consumers, e.g. shutting
+> down/resetting dwc3 if required, unsetting HPD for the DisplayPort side
+> so it knows to shut that side down, etc.
+> - Change the unified PHY configuration for the new mode (this may
+> require knowledge of everything about the port state including data
+> role, not just altmode/mux state)
+> - Start up the consumers again
+> - React to PHY callbacks from the consumers to further drive PHY state
+> changes (some things need to happen in a specific sequence or at request
+> from dwc3 or the display controller firmware, and we may have to add
+> extra callbacks for some points somehow, which doesn't fit well with the
+> current PHY subsystem which is more rigid about operations...)
+> 
+> Right now, I don't see any way this would fit into the existing
+> subsystems well. The closest thing I can come up with, and what I will
+> do to get by at least for the time being, is to:
+> 
+> - Get rid of the asynchronous dwc3 role switching, making it synchronous
+> (optionally if needed to not break other users)
+
+It is a good try, it could let the PHY lane switch later than controller role
+switch, besides, you need to let your DP HPD handling after PHY switch
+to DP mode.
+
+Peter
+
+> - Add a queue to tipd so it can handle state changes asynchronously from
+> the actual PD protocol (and without blocking i2c bus interrupt handling
+> so other ports can operate in parallel), but all state changes are
+> handled sequentially without any overlap, and the ordering is carefully
+> controlled (Connect: mux call first, then USB role switch, then
+> DisplayPort HPD. Disconnect: DisplayPort HPD, then USB role switch, then
+> mux call. There may be other complex cases for mode changes while
+> already connected, this won't be fun.).
+> - Put most of the PHY policy in the atcphy driver (which is all of a
+> reset driver for dwc3, mux driver, and all the phys). This includes ugly
+> things like deferring state changes while dwc3 is active in some cases.
+> - On the DP/display side, we haven't implemented this yet, but in the
+> future the single "apple,display-subsystem" driver (which actually
+> provides the top-level DRM device for all the underlying discrete
+> display controllers, and is already its own virtual device in the DT)
+> will present virtual ports for the different PHYs, and handle the
+> muxing/assignment between them and the display controllers on its side
+> (there is potentially complex policy here too, since not all display
+> controllers are equal and there may be a need to reassign a display for
+> a lower-spec screen to a lower-spec display controller to free up a
+> higher-spec controller for a higher-spec screen, but we need a
+> controller assigned to a port to even read EDID to figure that out, so
+> it's going to be messy).
+> 
+> But I'm not happy at all with the weird, load-bearing intermingling of
+> tipd/atcphy/dwc3 there. There's bound to be places where the
+> abstractions leak and we end up with more and more horrible workarounds,
+> or layering violations.
+> 
+> A further question is how all this should be represented in the device
+> tree. That might drive the software architecture to a point, or vice versa.
+> 
+> Any ideas?
+> 
+> Some further reading here:
+> https://social.treehouse.systems/@marcan/113821266231103150
+> 
+> - Hector
+> 
+> 
 
