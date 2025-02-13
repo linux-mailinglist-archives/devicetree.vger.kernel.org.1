@@ -1,139 +1,148 @@
-Return-Path: <devicetree+bounces-146127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEA6AA3389D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 08:16:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 562CBA338AD
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 08:19:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1C9F7A3499
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 07:15:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 365897A2277
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 07:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A64207DE5;
-	Thu, 13 Feb 2025 07:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1268C207DFE;
+	Thu, 13 Feb 2025 07:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YaOsXwBP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="F7u7AJQ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49742207DF6;
-	Thu, 13 Feb 2025 07:16:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E4BB2063FC;
+	Thu, 13 Feb 2025 07:19:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739430985; cv=none; b=Bq6EBD+78yVlvYBD/uC3sejCsP0qWs25LON3lgsAkVfRjBhw/21nX92AUxC7uAdW4Th48N0AhzyS7xsWItRNeuVAxg8RPsMKqgTvlYDrnKAQQRISfX+ekOi552o6GOgQknrZ+TkiidOz/fSQhp54PxrgbXVIHfAIHFH1w6ReVXc=
+	t=1739431173; cv=none; b=ouxaQOjQRvYOqoluJyfe/7ZZbmmcd9peReEJ1tC21AfJxZW6ggrKXIO3mKAru2busD5D+PB1PdfkZBDlwlQ2jnhkDTeq6r4gEP1/scYovr1p+DlC8vykf3e2/s9adyfoAkvqi+r16jggZOc8Jm9JjbpPmJybyHdu+ezY+5ncA4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739430985; c=relaxed/simple;
-	bh=4g0YcFvJiNDvP0Tbrjh+ugrWxi4e4FGW28ip5rElsbE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sBqaXD+0jD3P9BYgVFItKFNY8oqF3IdAf/dcSoresGfBcysQZaVAhdWaJufV/yjx6dy7+wdkOHcKE+3nW4CDLbjtajJznn/9//ZTUTDEVeJyKSTiQkzAfwaAKFehPYdB/Z/3tib/8LJNyxSyyzOqEBTAgd7eJP/57jtSDarty4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YaOsXwBP; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51D7G9cG4066301
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 13 Feb 2025 01:16:09 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1739430969;
-	bh=IV5E2TdCALodDslVQj3oINlqF/dh3l9yyuEjbKTChbk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=YaOsXwBP3zPvppL+8od7hbiAvRG9opSs9n122w4Jfi3Ly4bEq6yHaJV2s8L//le1U
-	 6m/F7fx0/q0MPoeH3v50vP2K6HRKf2OchlQecNEj7Foa1qm3ANbeBPIwpt/lnBB9Rf
-	 moC8yScih2s/vY2VDfm1I25iPIf3nhnAyQi+9zI8=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51D7G9fV129757
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 13 Feb 2025 01:16:09 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
- Feb 2025 01:16:08 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 13 Feb 2025 01:16:08 -0600
-Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51D7G4Tv103146;
-	Thu, 13 Feb 2025 01:16:05 -0600
-Message-ID: <94112ab7-5462-4a5b-90f3-636a7f8e5989@ti.com>
-Date: Thu, 13 Feb 2025 12:46:03 +0530
+	s=arc-20240116; t=1739431173; c=relaxed/simple;
+	bh=ChDtJt7/F2s8e/YUIjnaDBZMZQhHOz7ElbcMlhf0Mvw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oOmnP68KO3EJvvipfvT/d4ZR6F4446U4f31qpq5i8rTLPbr8kPWugThBUJABSv4YInFEHB9Rx0U4QO5S9a2ZMIffyZoIAXqCf2BkxOKjJgr8vN12UIHA08PyImP6kay+pIbeiwaeGkNopC+FtyvKcyLMG2cRKaD+DZlwhLsgCf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=F7u7AJQ6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51D7HSuO001046;
+	Thu, 13 Feb 2025 07:19:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=sIzO4T1+Nex+xFvfuy/Nuz
+	x/LjoO4kO3SV00AdD9sNY=; b=F7u7AJQ6yuWKO2VCPzInpwIDhRvB5EPB3fA5Br
+	k139pwX15YhpQgkvQJymhgs5MjYQHU5sGonTiRiPaY/ITS6s+k47of2xsuicTroa
+	JmA6vT98zwy6YLf57OmD/RAcZE4CtckHuV08wWJ0tcNa00LJaFqQ1Bm55diiq9Gv
+	lR2cWEYc/hY3kbptv9pKqE4UFeuknVWxXl6zIGjw/c81LhbWuxU6raRsQV2TrLoT
+	4riiMiphAkjbfCoq7gzPn6JVfvVj0KMExedncDVTX5BGMZxy1HFvqNtXvA5+KLC3
+	1gTQdL6nVX7RNKEy/BpNpYQIRrEGSZ/t44HmvE9Zt4p4v6qg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44sc7b805c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Feb 2025 07:19:26 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51D7JPe6016257
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Feb 2025 07:19:25 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 12 Feb 2025 23:19:22 -0800
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+Subject: [PATCH v4 0/2] Add PCIe support for IPQ5424
+Date: Thu, 13 Feb 2025 12:49:10 +0530
+Message-ID: <20250213071912.2930066-1-quic_mmanikan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/3] dt-bindings: media: cdns,csi2rx.yaml: Add
- optional interrupts for cdns-csi2rx
-To: Krzysztof Kozlowski <krzk@kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <mripard@kernel.org>, <mchehab@kernel.org>, <jai.luthra@linux.dev>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devarsht@ti.com>, <vaishnav.a@ti.com>, <r-donadkar@ti.com>,
-        <u-kumar1@ti.com>
-References: <20250212131244.1397722-1-y-abhilashchandra@ti.com>
- <20250212131244.1397722-2-y-abhilashchandra@ti.com>
- <912dc0d1-6236-43cf-b423-54368eeed2e7@kernel.org>
-Content-Language: en-US
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-In-Reply-To: <912dc0d1-6236-43cf-b423-54368eeed2e7@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: r5sjGarlz83l2eMqiGSBqCMHtZI7V1lV
+X-Proofpoint-GUID: r5sjGarlz83l2eMqiGSBqCMHtZI7V1lV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-13_02,2025-02-11_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=491
+ phishscore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0
+ bulkscore=0 mlxscore=0 malwarescore=0 clxscore=1015 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502130054
+
+This series adds support for enabling the PCIe host devices (PCIe0,
+PCIe1, PCIe2, PCIe3) found on IPQ5424 platform. The PCIe0 & PCIe1
+are 1-lane Gen3 host and PCIe2 & PCIe3 are 2-lane Gen3 host.
+
+Depends upon [1]
+
+[1] https://lore.kernel.org/linux-arm-msm/20250206121803.1128216-1-quic_varada@quicinc.com/
+
+Changes in V4:
+	- Dropped patch #1 because it is already part of the dependency series.
+	- Dropped patch #2 because icc tags are required only for platforms
+	  using icc-rpm or icc-rpmh. IPQ5424 doesn't use icc-rpm/icc-rpmh,
+	  instead it uses icc_clk APIs to register with interconnect
+	  provider.
+	- dtsi
+		- Added mhi register space in all pcie controller nodes.
+		- Updated pcie nodes unit address to align with parf
+		  register address space.
+		- Moved msi-map before interrupts.
+		- Rearrange nodes w.r.t. address sort order.
+		- Dropped ICC tag from the interconnect paths.
+		- Removed bus-range from all pcie controller nodes.
+	- dts
+		- Added a new line before status in pcie2 and pcie3
+		  nodes.
+		- Dropped 'output-low' property from pcie2-default-state
+		  and pcie3-default-state nodes. 
+	- Fixed all review comments from Konrad, Krzysztof.
+
+V3 can be found at:
+https://lore.kernel.org/linux-arm-msm/20250125035920.2651972-1-quic_mmanikan@quicinc.com/
+
+V2 can be found at:
+https://lore.kernel.org/linux-arm-msm/20250115064747.3302912-1-quic_mmanikan@quicinc.com/
+
+V1 can be found at:
+https://lore.kernel.org/linux-arm-msm/20241213134950.234946-1-quic_mmanikan@quicinc.com/
+
+Manikanta Mylavarapu (2):
+  arm64: dts: qcom: ipq5424: Add PCIe PHYs and controller nodes
+  arm64: dts: qcom: ipq5424: Enable PCIe PHYs and controllers
+
+ arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts |  41 +-
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi       | 515 +++++++++++++++++++-
+ 2 files changed, 550 insertions(+), 6 deletions(-)
 
 
-On 13/02/25 00:58, Krzysztof Kozlowski wrote:
-> On 12/02/2025 14:12, Yemike Abhilash Chandra wrote:
->> The Cadence CSI2RX IP exposes 3 interrupts [0] 12.7 camera subsystem.
->> Enabling these interrupts will provide additional information about a CSI
->> packet or an individual frame. So, add support for optional interrupts
->> and interrupt-names properties.
->>
->> [0]: http://www.ti.com/lit/pdf/spruil1
-> 
-> 
-> Why is this RFC?
->
+base-commit: c674aa7c289e51659e40dda0f954886ef7f80042
+prerequisite-patch-id: 56fe29d9207ac31ab08ca54712adc2a865b7be89
+prerequisite-patch-id: 0b5601861c398c7f60e6a0e0c817e6ad7d172a2c
+prerequisite-patch-id: d601672c1349e162e394cdd6780abfd98b168cf6
+prerequisite-patch-id: 56f37c165f7fddb0897c94dd6447dfb85d11f736
+prerequisite-patch-id: 03a37b3dd40a88eb2bbede21fb40d2ad791c3b54
+prerequisite-patch-id: c4b0edd16bddd3f102f464c4ab8095ca083ec10d
+prerequisite-patch-id: 79ded164c537cfe947447c920602570626eddb3d
+-- 
+2.34.1
 
-I sent this as an RFC to gather input from different vendors using the 
-cdns,csi2rx driver
-and its device tree bindings. so I just wanted to get their feedback as 
-well.
-If there are no concerns from any of the them, I will proceed with 
-sending this as v1.
-
->>
->> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
->> ---
->>   .../devicetree/bindings/media/cdns,csi2rx.yaml        | 11 +++++++++++
->>   1 file changed, 11 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
->> index 2008a47c0580..a3acf4f861c2 100644
->> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
->> +++ b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
->> @@ -24,6 +24,17 @@ properties:
->>     reg:
->>       maxItems: 1
->>   
->> +  interrupts:
->> +    minItems: 1
->> +    maxItems: 3
-> 
-> I understand interrupts might be unused by driver, but are you sure they
-> are optionally connected one-by-one? IOW, why is this flexible?
-> 
-
-I understand that this flexibility is not needed, and I will correct
-that while sending v1.
-
-Thanks and Regards,
-Yemike Abhilash Chandra
-
-> 
-> Best regards,
-> Krzysztof
 
