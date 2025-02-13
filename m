@@ -1,149 +1,264 @@
-Return-Path: <devicetree+bounces-146275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21F18A33FDC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E8EA33FE5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:07:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B9953AB3EB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:05:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 417303A9EF6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:07:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F43221720;
-	Thu, 13 Feb 2025 13:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924DE23F413;
+	Thu, 13 Feb 2025 13:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HQDEeelf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CX5HUkbf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A243C25777
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:05:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7200823F400
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:07:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739451923; cv=none; b=WG9+pHU8EgUKXcPfZWJsWyXvoruKRE0zcXkB3YQyXdDInpo0Zb8W5ZD+eDw2plt2JfVjVQVdWs+r8AzXmkqIc8T+c0o6j1lS5PHV7yF45p+wVSL3Coi7dsnFuCooDP7d6pPOKI2wLRWd4b/QdVeqFr8/FZlF8czYFuOOdEPVhVc=
+	t=1739452067; cv=none; b=B+pqb/jFJL3LhTFidrBxKQ3My0q9oHnk7Jf9QK12TVAWB4igcIKrMjIN/jBTLotX9wxvua3WUX9hoM150bohrZGmjOX/YM3XvpWi8M0gbec3a7lkJXCQJhrMDXq7W76u+p7LIpcBGGTaCEzBfDb0Ab5xPy2zD3zEG+Z8ulv8E/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739451923; c=relaxed/simple;
-	bh=mxio+qKZ0oCarMDdKVLWSkQ5r9o/ZU/FWiQSXWeFPIk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MiYR7ppev6HMlcE19OX+RaBTtTdW5FSl+zD50SmH+8udSZB+7Jd+gJTqUfCKonnPB/tr1eyW4fAZE4pKwL3Ios1GhKLaobBfOg+9I7dU47rgAiODzD6DPFTeafO/c2L+QiAGkVgBG9dNU4mcp1Kmt3otutwVOQhZ3X+hHLYQwBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HQDEeelf; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1739452067; c=relaxed/simple;
+	bh=fXaB8XDraPqWHOFB9nBP2j+m04SbPqPTOpQ1Y5EAc1s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dcwvTnbwicDYyZK6x8i0UcNJCIcxrHUXdqSYuuIPqX9FqvVk9IM9pJVas/a68f51iiac7vSsflktbq5o/kwJ/qyPbFgNHokmuQ1BuZ944JI+Td2sF18iEYAORelfXVZVlQAqdjt/mNpm2f4+zOYYKQDTs8m6+sG7ihMMcxn8dfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CX5HUkbf; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43963935585so5105625e9.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 05:05:20 -0800 (PST)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-545074b88aaso878988e87.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 05:07:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739451918; x=1740056718; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zHOUQzUPyOdT3w4jRKuGIg3i9ApsudVpLcIIKx7XFPI=;
-        b=HQDEeelf+j/E4ptkdMLkkstJuvqV1DKHDRsXonj6R2YCHoao753LThTulU4siSq00i
-         dCd2C/TRnMyIq8PVbnArynpw2gnQUHmLwtGfFRx4uqcKSlzYJfZXyLMRoTe88ksOokT6
-         h4/5R1FRWmMuyUB2K7hGuuu8hNxTfKq99BEKnsduDEt2k+WlHNQ0DmEZ1gGWg/L+UrAV
-         cvbYy4Mf6fRS6flVjZb+VwAdOq+9k5iLfsMTuoDsb+51SsY1okdOs/6OoJlWdW4n1SRk
-         InoIrhk3iecG/u/2hOsJVsAp8jA+b85D3ftwvUYQ5TsCydwRmYQOeLXDUc7muogzdV//
-         WelA==
+        d=linaro.org; s=google; t=1739452064; x=1740056864; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p1m322IQyc9zOVSGsdHSNz551pCCbcY6hEwhI/Tt92E=;
+        b=CX5HUkbfREYVdKMtcaAaadWQyXc2yT5fXA/Lo9jB8OkC8SHbck2bXaizHLOGTs1dGt
+         LZgTHrWW+8Crb2KurU9SH3Y2yp/IzoZOiM9hpw1oSm8Z6zoJbhif3D7LwACUmONDXUzS
+         JGzW79dK+EuSOeUE5cDqDKp53+NPOn6V2PRBOCu9FsBlBt6zuEZ0bs7AS71bb8j8TQk2
+         1+MBsAHaewhaClKFliUqa+Nfidnh2o9NXEjBaG14H1UC+MHRromKk70SWhe2rpGw67kh
+         qfIqusDPj5v0siUPJ8O0wiBUYXjy/qRbbde9SHDG73q7cQSw3MRWe5Hq3mLB2vJaeGkL
+         GugQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739451918; x=1740056718;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1739452064; x=1740056864;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zHOUQzUPyOdT3w4jRKuGIg3i9ApsudVpLcIIKx7XFPI=;
-        b=P81LwnwJk9sChZy7hVE2Q1j1H4DveHVkTGoP0wduUwcU6oDR+rVDh5Y9MKpRaCvURY
-         X52V8VN61pb4ASlGOeNviNKxIIYdVoY15nGgdjOBv9GImlxL1w9uXHiB8dbwDJld1h6Y
-         dggy8FgTEFJhtJd5UXllBvPVuKVA/omq3i7gqwqSYMFuHLR449zFsP1V3SHjax/wY8Hq
-         GITDXddACFGvNPk3ZkXORZR9L4MR/ze2Mi1ivNzI/B9kKY5uni10DLJwCkVbOWPXqFvc
-         Etc3MONQVud/jCZjE3A+6GEQc5sKvtwka0E+Xc7CNlTsN2mpwly1yktNW7Qh2pxNLTeP
-         rIsA==
-X-Forwarded-Encrypted: i=1; AJvYcCXdwudt20c4FgVTrDRSIbP0xuVzyDNrQr8/AGEk/pNxu8XvGQ2pp3NXqWTq4MCZNXIBR3NQjmxHXakx@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCgCy4eiRy5zjsS5GT3HC2r55Wwo1ryT83fBd7cPt7Xfatvy47
-	eIR7MZ/KlHQ+6+DrTM4cJF45MCCLxF8bDMuUMlv/5LPUsKl8TJA7u9A3ExKsKbW1Z5wrkvsKVKZ
-	ZwXw=
-X-Gm-Gg: ASbGncvkH31zFgsFUWJJ/fM/Re08wkHBwgkaKWX6eGT0UuIU/MH420sh8LRc/3dK8AM
-	lLOQGyQbBzOv+vW0YTmuKllym65NyJfmNJJGo5dGAkBfvda29vO/P0fh9BL0tFNXH2pbT6ISt0O
-	XU60bADFaEuxAadUDmliNHs/xSVuXEnyuKpmcLOtLwnm1EgDF+3Oto8bvGnBaKGssXRpz+ek4he
-	qssslCMdIDBKvbnAyEMcwJp6+zf7XaVrUEUnTkeRT7Gg2BUAw1ExzW69sh3mtSVGYV05Seyokt6
-	Zm+OeSKF8DuQfPVvWntOQcnq9g4HgpvmghK+E2SLOfQFEfZgOPcEaGSHBHRSpEGufOMNckM=
-X-Google-Smtp-Source: AGHT+IHgAl/NTXWukWtRPOrcZw6v4KuAstgKfnNDDXq/WjRE7Xg59rRDQuiiCesGIdxFPL7opskBkw==
-X-Received: by 2002:a05:600c:3b92:b0:439:44eb:2db0 with SMTP id 5b1f17b1804b1-4395817ab18mr78523335e9.15.1739451918162;
-        Thu, 13 Feb 2025 05:05:18 -0800 (PST)
-Received: from ta2.c.googlers.com (169.178.77.34.bc.googleusercontent.com. [34.77.178.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43961884251sm17004025e9.31.2025.02.13.05.05.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 05:05:17 -0800 (PST)
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Thu, 13 Feb 2025 13:05:16 +0000
-Subject: [PATCH v9 3/3] MAINTAINERS: add entry for the Samsung Exynos ACPM
- mailbox protocol
+        bh=p1m322IQyc9zOVSGsdHSNz551pCCbcY6hEwhI/Tt92E=;
+        b=uKZibO0bMcPpw5v47tinMaYydSpANbJrJjEiHLoaJe+yrGR3i6SrQfKIIaC4Sm8Y60
+         IWFslPwTFqd6XswyMptNdDe9ivw26CkJIckSHg1VtBO6dBafgNpdanEhyNMAWnl803yU
+         YK9PPJbG/3qEIzOLZML8OXLL5ynUuB0X4j/fxTTF27+dt7SgrW8cKanjZ1/7LKjPVn9p
+         d48VvZlCFZ5a4iKQE4ZWns6HcjyIzJnhmEc5+gXtvrHD1lbq3D+/TVY3U20BXeRSvsxP
+         84bdYzzxXKEKE+yABoMV9KlV5cgq7787fVoRvi44hkX91VjHLRWyFhdg4teHLjfWsIQo
+         61sw==
+X-Forwarded-Encrypted: i=1; AJvYcCXTPqBFFYgu99UDLkWGWeNYwu4ifhEzAp3iVd6jdfsk/ni2VewRZyzGksszZax7lumOL93tPyNJ6BWd@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPYERzig0vLN9s5nr1eWtvrZZTKp9OLyFTBZTL3kyM/1rKKo6m
+	yMQb7V2tV2Z5NxswfcmSZ31gNai783eVRfDn4Oj/1CuCeaeufgY4x/l1YyHB+cBMle8Wjq6CXwS
+	PUNCoZgk8qFzN2iUmnJZrExDoy0Yla6709/wYNg==
+X-Gm-Gg: ASbGnctZfYj0G2UlhxosId6oXCPyGl5aprDgcHSC88luBJsfESGiILjStLGCqtop8eI
+	eJb5xuKDuQVA0oZF0PcC8rCrx8DN8gPzEY8OKppzhHcWW5ViSn4xp8+K2Ts5ANgI2tlhakeIf
+X-Google-Smtp-Source: AGHT+IGrhM736BFyGMpNf2ItBB+pdpJ4SiPwkgfbkvqCPSO0yrPV4uYNd3wllzeAV1mMnQTwQL7ndpAU15y6EgrFAw0=
+X-Received: by 2002:a05:6512:2215:b0:540:2da2:f282 with SMTP id
+ 2adb3069b0e04-5451818959bmr1878297e87.42.1739452063461; Thu, 13 Feb 2025
+ 05:07:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250213-gs101-acpm-v9-3-8b0281b93c8b@linaro.org>
-References: <20250213-gs101-acpm-v9-0-8b0281b93c8b@linaro.org>
-In-Reply-To: <20250213-gs101-acpm-v9-0-8b0281b93c8b@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- Jassi Brar <jassisinghbrar@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
- peter.griffin@linaro.org, daniel.lezcano@linaro.org, 
- vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de, 
- Tudor Ambarus <tudor.ambarus@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739451915; l=1230;
- i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=mxio+qKZ0oCarMDdKVLWSkQ5r9o/ZU/FWiQSXWeFPIk=;
- b=GiT09Wr16zJYvD7p0ZCHkOHEx8QQPR1xqF7gPsJekwN511IOr3sW5U1/bKSFoCjDMsYO7zMub
- 7HYPPkCkvERCkZePKsrvCh1pUdoxfmcR4KxfZzUNiIkht1bVjzHd0Sa
-X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
- pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
+References: <20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org>
+ <20250121-03-k1-gpio-v4-1-4641c95c0194@gentoo.org> <Z5FPJLzAEVXGWJnE@chonkvm.lixom.net>
+ <20250123113042-GYA38135@gentoo> <Z5LOdh-4UxRtteOy@chonkvm.lixom.net>
+ <20250127181726.GA538260-robh@kernel.org> <20250128031712-GYB47737@gentoo>
+ <CACRpkdYbSOHD9UH5=+qjztxS3Cq_rxaoOT9tFtD8ZWm9zQGnPw@mail.gmail.com>
+ <CACRpkdZa887vx4Lmxk1U_8w5n7AxMnyzGexeYzhsxNGT-DTYcQ@mail.gmail.com> <20250206133156-GYA5687@gentoo>
+In-Reply-To: <20250206133156-GYA5687@gentoo>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 13 Feb 2025 14:07:31 +0100
+X-Gm-Features: AWEUYZl5mIboPZ2_OX7ZzkKCHtZOEl9dcGB_tfGDF4p9QujG1OrkLL1Y1iNKYJ0
+Message-ID: <CACRpkdZYYZ5tUR4gJXuCrix0k56rPPB2TUGP3KpwqMgjs_Vd5w@mail.gmail.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Rob Herring <robh@kernel.org>, Olof Johansson <olof@lixom.net>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Conor Dooley <conor@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>, 
+	Jisheng Zhang <jszhang@kernel.org>, Jesse Taube <mr.bossman075@gmail.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add entry for the Samsung Exynos ACPM mailbox protocol.
+On Thu, Feb 6, 2025 at 2:32=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> > > foo-gpios <&gpio 2 7 GPIO_ACTIVE_LOW>;
+>
+> if we model the dts as above, then "&gpio" will register itself as one so=
+le "struct gpio_chip",
+>  which mean one gpio chip combine three banks..
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 896a307fa065..79ac2f3abff0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3070,6 +3070,7 @@ F:	drivers/*/*s3c24*
- F:	drivers/*/*s3c64xx*
- F:	drivers/*/*s5pv210*
- F:	drivers/clocksource/samsung_pwm_timer.c
-+F:	drivers/firmware/samsung/
- F:	drivers/mailbox/exynos-mailbox.c
- F:	drivers/memory/samsung/
- F:	drivers/pwm/pwm-samsung.c
-@@ -20899,6 +20900,15 @@ F:	arch/arm64/boot/dts/exynos/exynos850*
- F:	drivers/clk/samsung/clk-exynos850.c
- F:	include/dt-bindings/clock/exynos850.h
- 
-+SAMSUNG EXYNOS ACPM MAILBOX PROTOCOL
-+M:	Tudor Ambarus <tudor.ambarus@linaro.org>
-+L:	linux-kernel@vger.kernel.org
-+L:	linux-samsung-soc@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
-+F:	drivers/firmware/samsung/exynos-acpm*
-+F:	include/linux/firmware/samsung/exynos-acpm-protocol.h
-+
- SAMSUNG EXYNOS MAILBOX DRIVER
- M:	Tudor Ambarus <tudor.ambarus@linaro.org>
- L:	linux-kernel@vger.kernel.org
+Not really: the fact that there is just one gpio node in the device
+tree does not
+mean that it needs to correspond to one single gpio_chip instance inside th=
+e
+Linux kernel.
 
--- 
-2.48.1.502.g6dc24dfdaf-goog
+It's just what the current existing bindings and the code in the GPIO subsy=
+stem
+assumes. It does not have to assume that: we can change it.
 
+I'm sorry if this is not entirely intuitive :(
+
+One node can very well spawn three gpio_chip instances, but it requires
+some core changes. But I think it's the most elegant.
+
+> if taking "one gpio chip support multi banks" direction, then it will be =
+reverted back as patch V1,
+> then, even the three gpio-cells model is unnecessary needed, as we can ma=
+p gpio number
+>  to the <bank, offset> array in the underlying gpio driver
+>
+> the v4 patch is very similar to drivers/gpio/gpio-dwapb.c
+>
+> If had to choose the direction between v1 and v4, I personally would favo=
+r the latter,
+>  as from hw perspective, each gpio bank is quite indepedent - has its own=
+ io/irq registers,
+>  merely has interleaved io memory space, one shared IRQ line.. also the p=
+atch v4 leverage
+>  lots underlying generic gpio APIs, result in much simplified/clean code =
+base..
+
+So what I would suggest is a combination of the two.
+
+One gpio node in the device tree, like the DT maintainers want it.
+
+Three struct gpio_chip instances inside the driver, all three spawn from
+that single gpio device, and from that single platform_device.
+
+What we are suggesting is a three-cell phandle in the device tree:
+
+foo-gpios =3D <&gpio 0 7 GPIO_ACTIVE_HIGH>;
+bar-gpios =3D <&gpio 2 31 GPIO_ACTIVE_HIGH>;
+
+Notice the new first cell which is 0 or 2.
+
+The first one is what was previously called gpio 7.
+The second one is what was 2*32+31 =3D gpio 95.
+
+So internally in the driver it is easy to use the first cell (0 or 2) to ma=
+p to
+the right struct gpio_chip if you have it in your driver something like thi=
+s:
+
+struct spacemit_gpio {
+    struct gpio_chip gcs[3];
+...
+};
+
+struct spacemit_gpio *sg;
+struct gpio_chip *gc;
+int ret;
+
+for (i =3D 0; i++; i < 3) {
+     ret =3D devm_gpiochip_add_data(dev, &sg->gcs[i], sg);
+     if (ret)
+        return ret;
+     gc =3D sg->gcs[i];
+     .... do stuff with this instance ....
+}
+
+Callbacks etc should work as before.
+
+Then these phandles needs to be properly translated, which is done with the
+struct gpio_chip .of_xlate() callback. (If you look inside gpiolib-of.c
+you will see that chip->of_xlate() is called to map the phandle cells
+to a certain GPIO line).
+
+In most cases, drivers do not assign the chip->of_xlate callback
+(one exception is gpio-pxa.c) and then it is default-assigned to
+of_gpio_simple_xlate() which you can find in gpiolib-of.c as well.
+
+You need to copy this callback to your driver and augment it
+properly.
+
+The xlate callback is used to locate the struct gpio_chip and
+struct gpio_device as well, by just calling the xlate callback, so if
+you code up the right xlate callback, everything should just
+work by itself.
+
+this is a guess on what it would look like (just dry coding,
+but hopefully the idea works!):
+
+static int spacemit_gpio_xlate(struct gpio_chip *gc,
+                                const struct of_phandle_args *gpiospec,
+                                u32 *flags)
+{
+        struct spacemit_gpio *sg =3D gpiochip_get_data(gc);
+        int i;
+
+        if (gc->of_gpio_n_cells !=3D 3)
+                return -EINVAL;
+
+        if (gpiospec->args_count < gc->of_gpio_n_cells)
+                return -EINVAL;
+
+        /* We support maximum 3 gpio_chip instances */
+        i =3D gpiospec->args[0];
+        if (i >=3D 3)
+                return -EINVAL;
+
+        /* OK is this the right gpio_chip out of the three ? */
+        if (gc !=3D sg->gcs[i])
+                return -EINVAL;
+
+        /* Are we in range for this GPIO chip */
+        if (gpiospec->args[1] >=3D gc->ngpio)
+                return -EINVAL;
+
+        if (flags)
+                *flags =3D gpiospec->args[2];
+
+        /* Return the hw index */
+        return gpiospec->args[1];
+}
+
+...
+gc->of_gpio_n_cells =3D 3;
+gc->of_xlate =3D spacemit_gpio_xlate;
+
+If it works as I hope, this will make the code in gpiolib-of.c in
+of_find_gpio_device_by_xlate() calling gpio_device_find()
+(which will iterate over all registered gpio_chips and then
+of_gpiochip_match_node_and_xlate() will call this custom function
+to see if it's the right one and return > 0 when we have the right
+chip.
+
+This should work for gpios *only*. When we then come to irqs,
+these assume (see gpiolib.c) that we are using
+irq_domain_xlate_twocell() when using GPIOLIB_IRQCHIP, so
+you either need to roll your own irqchip code or we should fix
+the core (I can help with this if the above works).
+
+Several gpio chips use their own domain translation outside
+of the gpiolib so you can use this as an intermediate step:
+git grep irq_domain_ops drivers/gpio/
+... but if you get here, let's patch the core to deal with custom
+irqdomain xlate functions in the same manner as above.
+
+I hope this isn't terribly unclear or complicated?
+Otherwise tell me and I will try to ... explain more or give
+up and say you can use a single 96-pin gpio_chip.
+
+Yours,
+Linus Walleij
 
