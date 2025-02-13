@@ -1,783 +1,485 @@
-Return-Path: <devicetree+bounces-146314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87843A344F9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:11:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3247A34488
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:06:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62A3F3B206C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 15:02:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 766C77A0F73
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 15:05:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73241202C43;
-	Thu, 13 Feb 2025 14:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4CF8200120;
+	Thu, 13 Feb 2025 15:03:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="eQHqSQBp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XE0xrHhI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD1D201025;
-	Thu, 13 Feb 2025 14:59:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7870200105;
+	Thu, 13 Feb 2025 15:03:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739458792; cv=none; b=oOAqs+0aJ+Fjw+fW79Z8hLS3Fuxor2VCi6zZThuEvl/fAyrruGfyh04JM5TM8Q63QCx5cbK0QOTm0I83uyU1r9H1zifzR+NeHA4QT1DQwqCkpijwsGRKyZGVactnIjPpsBIgqqkxuFt14OrDzx6l9feGu7RQIgmFPzHYBvSYo/4=
+	t=1739459023; cv=none; b=MvxuxyRhb3t8KKCsCSt7DWhogvoM0/UBDaoC2X1PqDLwHUIuvnofVNQnAa6ghg/wIeMvXvk4ndVV60az71USd12OYI+0+fsrNqmePr+JoVqG917sC7qv4vLntbnzXKwADZUpHE+EK1c2ZD3pvK4P3H4iEHBYIEcE2BFycaz9lRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739458792; c=relaxed/simple;
-	bh=7czLAGYHApKjd/6EXMOX9zWOBBjQfbkIyn1sSCTIrnE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=i6Ee0pNnjm7Fwz9kzrUN1gjHVSzyErM/fbLpXmhskkt0qTwXlZDAvFnshf35gk7SsgyKbu0hEtzK8Ee2YAksXqO1fYosOacylaI/ndlFLxjXMnPrGcNs9z5VKQ0opHrZS/x1eBJGWFctj5dqXuHIxuBHMrJCGzeMuAVizGn4w4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eQHqSQBp; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739458788;
-	bh=7czLAGYHApKjd/6EXMOX9zWOBBjQfbkIyn1sSCTIrnE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=eQHqSQBp31CHpF7VtOXDZoxRDxfhduw4p1W36xkcW224Qy+fLNrGtIutLml0n9Qb2
-	 In4yapT6BJSPAt7sJ7kb8PVzqw7RPCqWT1giiILf225DJDRFpndBrd+2dQ2fXrgTk5
-	 gbuMVaSps1rA+DYQv2LyZTIVVG34qmWIcGk+FbbuI6RELZ8ucdMQ9sHIuFatuOHMOm
-	 1dLKuaGlnExI9FcPieplb5NMNGmxhYd0qX8WNI/T01ECC9rycaJns792FHI7z7pp1W
-	 NggAX9Uz5vgxgstKU2n2PmoZpoW2hFrs5EwH/7YFPp2yNrD+IAPC13iumhPEO03erC
-	 7SEgf5oIke/aw==
-Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7992717E1540;
-	Thu, 13 Feb 2025 15:59:45 +0100 (CET)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Tim Lunn <tim@feathertop.org>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Weizhao Ouyang <weizhao.ouyang@arm.com>,
-	Elon Zhang <zhangzj@rock-chips.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	Stephen Chen <stephen@radxa.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: Add Radxa ROCK 4D device tree
-Date: Thu, 13 Feb 2025 09:57:16 -0500
-Message-ID: <20250213145921.133412-3-detlev.casanova@collabora.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250213145921.133412-1-detlev.casanova@collabora.com>
-References: <20250213145921.133412-1-detlev.casanova@collabora.com>
+	s=arc-20240116; t=1739459023; c=relaxed/simple;
+	bh=bKy2/Khn0wBJ7ch0tZ8a2XFADxRpJkeSdk6pKJhI8Lc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=o3RVgsrir+4UslHS/gKR7+8sVx9T28w/7aUxLrxgOVFVfP674bbkqBJBLRl9goWI2TqvcSSXPA6YtKNokPlQ/ygo2Brp2+Gu9UJyn/3RxGlKseHKBmnAi0HOaWkfOO6YLA8o9uSoBi0He2hDIGQGKprUesYiGjyIjMn04UnRjzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XE0xrHhI; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-38f286b5281so317332f8f.1;
+        Thu, 13 Feb 2025 07:03:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739459020; x=1740063820; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=il270moocRQxXWx9sDop2wPY9i++i0FF/XAOD2V/4TY=;
+        b=XE0xrHhIPMVYgfiT98LnTbdlMBtl849KMxHmRlaVogSu1mGZiCdYq7NxrfY7QF4jJx
+         ZoM7HvkxGt+v76DYAe0XiSNaVRrR9KOcDzJv+M1mO0xEMle+a9fhvvkde2XNYbXEwLOe
+         4z7uEXoTUh4/osy3Qjz2fAtmKklQvkx1PAyd89DdwK/Zy4C3CQTAJ8RFPtz7dC54v/8a
+         Tu4xs3xwGQH0qctVUyYIR15/+9dKIUrM16XB/GiWFrIV3P/9Z5SdkEfi/o5PFE3mf4BI
+         5tfXWRiYdP9pr0HlXSKxI6y6XrBa2u2EhElUabTBnzSqbQf4xNee2XTbDEm+dhnk/r+M
+         LRHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739459020; x=1740063820;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=il270moocRQxXWx9sDop2wPY9i++i0FF/XAOD2V/4TY=;
+        b=pxPOthir2Y0bz1QvBwnz5U3PJejJWbtiFU1hSeL5aqwFLjOdxV/wc7ER+0dex/KlPC
+         a7Y+KfjlPGt0pi3+M5b4qIBOsF7WpFbyo6vSQBCml7cT9sfIx/zvQUmwHLUkW2KfwffZ
+         b5jZQZnPWc/IAvOfd6vaMFNO+t44M5anfIQ1lIGun/3ACckgWRfOJAWhhnm04qxnx8ZM
+         QK1FX42iwT86V389eSQcJ7S6s2mBLi5RskP6Yh07bl++pmfnrl+f7T7Bbw17w16llXh9
+         o/CaEOj+oyMKY931gBP7SfWpiSD5GTNnRbOEnqnRY8X6dIR0bUb+sOpBK5mHfTjcuSVq
+         VaGw==
+X-Forwarded-Encrypted: i=1; AJvYcCUi5tsB4Ql0H+NnqDug6DiNpT2B6ZSD6mNIveljugGwqZtIUgT9udMowQeuT6Gi0RermXwruFHT4cFTKg==@vger.kernel.org, AJvYcCX5Ssoc7K2/3fo9qx8glCxWoRctYJaTXfg97jlWzd1fR+vHqcflLhQ2nwRa0KXweheUtTQDFO5JqybP@vger.kernel.org, AJvYcCX6kDLLqXIjX9ieaOTtwbhAQLFvjTZn4CneTKR7PmrYVQUeghvojg9lO2SXe9bHl7PmU2g2P5l2lDqxLbQ=@vger.kernel.org, AJvYcCXGwBweVBsck9LBLy60nsZ1sxXhab+qy1DNWHnndM3F+5ggzXmhrJEQ4/33Ipr2v4ZIIYqhRKYG7HyC@vger.kernel.org, AJvYcCXcgl0w1G6/pd6kaWVkscwjWhyYqca2VqGpVFgFBg3GS1ywDPlWUZgyoYv4P7eKZcyLAESEE8QY5W1fMLlg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy43WRFMxfsB7v6im4xWlR1mZejggVBxsEqoPnSN3gEkwBD1blX
+	IprDNU1McppeMiCbg/wS3zXRKZCPexfoYAEiGf8iGpPY2tK0CUClhtIGvzdh3v8joQcjwZEWNmE
+	/tTBrOw0DAacY8i03dc1c2hVftIA=
+X-Gm-Gg: ASbGncuVckvyGSl9C24EEK8/MbLitFO1irg6hFxH8DJeX4gZv8ltYavNA/fuUZ178vA
+	H62MGVQuy36/VWBcn2/5AU0rGusa4xU9QQM0Mb/9LfeLJg958OYTxVZKMqQmWOnTF+sd921tDGQ
+	==
+X-Google-Smtp-Source: AGHT+IE8DKcyHRlcVZTAi4KF6Sh5KbjMdfB2KDTubvGG7HEDVbAuM4dGu6BtK52l5l2xucBK9g38u/USqfRqqkbnJB4=
+X-Received: by 2002:a05:6000:184b:b0:38d:b113:eb8 with SMTP id
+ ffacd0b85a97d-38dea26ecebmr7135274f8f.20.1739459019532; Thu, 13 Feb 2025
+ 07:03:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250212075845.11338-1-clamor95@gmail.com> <20250212075845.11338-3-clamor95@gmail.com>
+ <Z64IPpW5Uhad4HjU@smile.fi.intel.com>
+In-Reply-To: <Z64IPpW5Uhad4HjU@smile.fi.intel.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Thu, 13 Feb 2025 17:03:27 +0200
+X-Gm-Features: AWEUYZmUj-krca9nu8UVllaTPCZQMTjt3IELvxYIQkmFcH7UwZphBSmDpexxcjA
+Message-ID: <CAPVz0n3TTrkfARQNWfhgJd0sNnUTTdX8vx8hnHDZMq+p9aK_wA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] mfd: lm3533: convert to use OF
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>, 
+	Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Stephen Chen <stephen@radxa.com>
+=D1=87=D1=82, 13 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 16:57 Andy=
+ Shevchenko
+<andriy.shevchenko@linux.intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Wed, Feb 12, 2025 at 09:58:42AM +0200, Svyatoslav Ryhel wrote:
+> > Add ability to fill pdata from device tree. Common stuff is
+> > filled from core driver and then pdata is filled per-device
+> > since all cells are optional.
+>
+> ...
+>
+> >  #include <linux/module.h>
+> >  #include <linux/mutex.h>
+> >  #include <linux/mfd/core.h>
+>
+> > +#include <linux/of.h>
+>
+> Is it used? In any case, please no OF-centric APIs in a new (feature) cod=
+e.
+>
+> >  #include <linux/platform_device.h>
+> > +#include <linux/property.h>
+> >  #include <linux/slab.h>
+> >  #include <linux/uaccess.h>
+>
+> ...
+>
+> > +static int lm3533_pass_of_node(struct platform_device *pdev,
+>
+> pass_of_node sounds a bit awkward.
+> Perhaps you thought about parse_fwnode ?
+>
+> > +                            struct lm3533_als_platform_data *pdata)
+> > +{
+> > +     struct device *parent_dev =3D pdev->dev.parent;
+> > +     struct device *dev =3D &pdev->dev;
+> > +     struct fwnode_handle *node;
+> > +     const char *label;
+> > +     int val, ret;
+> > +
+> > +     device_for_each_child_node(parent_dev, node) {
+> > +             fwnode_property_read_string(node, "compatible", &label);
+> > +
+> > +             if (!strcmp(label, pdev->name)) {
+>
+> This is a bit strange. Why one need to compare platform device instance (=
+!)
+> name with compatible which is part of ABI. This looks really wrong approa=
+ch.
+> Needs a very good explanation on what's going on here.
+>
+> Besides that the label is usually filled by LEDS core, why do we need to =
+handle
+> it in a special way?
+>
+> > +                     ret =3D fwnode_property_read_u32(node, "reg", &va=
+l);
+> > +                     if (ret) {
+> > +                             dev_err(dev, "reg property is missing: re=
+t %d\n", ret);
+> > +                             return ret;
+> > +                     }
+> > +
+> > +                     if (val =3D=3D pdev->id) {
+>
+> > +                             dev->fwnode =3D node;
+> > +                             dev->of_node =3D to_of_node(node);
+>
+> No direct access to fwnode in struct device, please use device_set_node()=
+.
+>
+> > +                     }
+> > +             }
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+>
+> ...
+>
+> >       pdata =3D dev_get_platdata(&pdev->dev);
+> >       if (!pdata) {
+> > -             dev_err(&pdev->dev, "no platform data\n");
+> > -             return -EINVAL;
+> > +             pdata =3D devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KE=
+RNEL);
+> > +             if (!pdata)
+> > +                     return -ENOMEM;
+> > +
+> > +             ret =3D lm3533_pass_of_node(pdev, pdata);
+> > +             if (ret)
+> > +                     return dev_err_probe(&pdev->dev, ret,
+> > +                                          "failed to get als device no=
+de\n");
+>
+> With
+>
+>         struct device *dev =3D &pdev->dev;
+>
+> at the top of the function will help a lot in making the code neater and =
+easier
+> to read.
+>
+> > +             lm3533_parse_als(pdev, pdata);
+> >       }
+>
+> ...
+>
+> >  #include <linux/leds.h>
+> >  #include <linux/mfd/core.h>
+> >  #include <linux/mutex.h>
+>
+> > +#include <linux/of.h>
+>
+> Cargo cult? "Proxy" header? Please follow IWYU principle.
+>
+> >  #include <linux/platform_device.h>
+> > +#include <linux/property.h>
+> >  #include <linux/slab.h>
+>
+> ...
+>
+> > +static void lm3533_parse_led(struct platform_device *pdev,
+> > +                          struct lm3533_led_platform_data *pdata)
+> > +{
+> > +     struct device *dev =3D &pdev->dev;
+> > +     int val, ret;
+> > +
+> > +     ret =3D device_property_read_string(dev, "default-trigger",
+> > +                                       &pdata->default_trigger);
+> > +     if (ret)
+> > +             pdata->default_trigger =3D "none";
+>
+> Isn't this done already in LEDS core?
+>
+> > +     /* 5000 - 29800 uA (800 uA step) */
+> > +     ret =3D device_property_read_u32(dev, "max-current-microamp", &va=
+l);
+> > +     if (ret)
+> > +             val =3D 5000;
+> > +     pdata->max_current =3D val;
+> > +
+> > +     /* 0 - 0x3f */
+> > +     ret =3D device_property_read_u32(dev, "pwm", &val);
+> > +     if (ret)
+> > +             val =3D 0;
+> > +     pdata->pwm =3D val;
+> > +}
+>
+> ...
+>
+> > +static int lm3533_pass_of_node(struct platform_device *pdev,
+> > +                            struct lm3533_led_platform_data *pdata)
+>
+> I think I already saw exactly the same piece of code. Please make sure
+> you have no duplications.
+>
+> > +}
+>
+> ...
+>
+> >       pdata =3D dev_get_platdata(&pdev->dev);
+> >       if (!pdata) {
+> > -             dev_err(&pdev->dev, "no platform data\n");
+> > -             return -EINVAL;
+> > +             pdata =3D devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KE=
+RNEL);
+> > +             if (!pdata)
+> > +                     return -ENOMEM;
+> > +
+> > +             ret =3D lm3533_pass_of_node(pdev, pdata);
+> > +             if (ret)
+> > +                     return dev_err_probe(&pdev->dev, ret,
+> > +                                          "failed to get led device no=
+de\n");
+> > +
+> > +             lm3533_parse_led(pdev, pdata);
+>
+> Ditto.
+>
+> >       }
+>
+> ...
+>
+> > -     led->cdev.name =3D pdata->name;
+> > +     led->cdev.name =3D dev_name(&pdev->dev);
+>
+> Are you sure it's a good idea?
+>
+> ...
+>
+> > -     if (!pdata->als)
+> > +     if (!pdata->num_als)
+> >               return 0;
+> >
+> > -     lm3533_als_devs[0].platform_data =3D pdata->als;
+> > -     lm3533_als_devs[0].pdata_size =3D sizeof(*pdata->als);
+> > +     if (pdata->num_als > ARRAY_SIZE(lm3533_als_devs))
+> > +             pdata->num_als =3D ARRAY_SIZE(lm3533_als_devs);
+>
+> Looks like you want
+>
+>         pdata->num_als =3D clamp(pdata->num_als, 0, ARRAY_SIZE(lm3533_als=
+_devs));
+>         if (!pdata->num_als)
+>                 return 0;
+>
+> instead of the above. You would need minmax.h for that.
+>
+> ...
+>
+> > +     if (pdata->leds) {
+>
+> This is strange. I would expect num_leds =3D=3D 0 in this case
+>
+> > +             for (i =3D 0; i < pdata->num_leds; ++i) {
+> > +                     lm3533_led_devs[i].platform_data =3D &pdata->leds=
+[i];
+> > +                     lm3533_led_devs[i].pdata_size =3D sizeof(pdata->l=
+eds[i]);
+> > +             }
+> >       }
+>
+> ...
+>
+> > +static void lm3533_parse_nodes(struct lm3533 *lm3533,
+> > +                            struct lm3533_platform_data *pdata)
+> > +{
+> > +     struct fwnode_handle *node;
+> > +     const char *label;
+> > +
+> > +     device_for_each_child_node(lm3533->dev, node) {
+> > +             fwnode_property_read_string(node, "compatible", &label);
+> > +
+> > +             if (!strcmp(label, lm3533_bl_devs[pdata->num_backlights].=
+name))
+> > +                     pdata->num_backlights++;
+> > +
+> > +             if (!strcmp(label, lm3533_led_devs[pdata->num_leds].name)=
+)
+> > +                     pdata->num_leds++;
+> > +
+> > +             if (!strcmp(label, lm3533_als_devs[pdata->num_als].name))
+> > +                     pdata->num_als++;
+> > +     }
+> > +}
+>
+> Oh, I don't like this approach. If you have compatible, you have driver_d=
+ata
+> available, all this is not needed as it may be hard coded.
+>
+> ...
+>
+> >       if (!pdata) {
+>
+> I would expect actually that legacy platform data support will be simply =
+killed
+> by this patch(es). Do we have in-kernel users? If so, they can be easily
+> converted to use software nodes, otherwise we even don't need to care.
+>
+> > -             dev_err(lm3533->dev, "no platform data\n");
+> > -             return -EINVAL;
+> > +             pdata =3D devm_kzalloc(lm3533->dev, sizeof(*pdata), GFP_K=
+ERNEL);
+> > +             if (!pdata)
+> > +                     return -ENOMEM;
+> > +
+> > +             ret =3D device_property_read_u32(lm3533->dev,
+> > +                                            "ti,boost-ovp",
+> > +                                            &pdata->boost_ovp);
+> > +             if (ret)
+> > +                     pdata->boost_ovp =3D LM3533_BOOST_OVP_16V;
+> > +
+> > +             ret =3D device_property_read_u32(lm3533->dev,
+> > +                                            "ti,boost-freq",
+> > +                                            &pdata->boost_freq);
+> > +             if (ret)
+> > +                     pdata->boost_freq =3D LM3533_BOOST_FREQ_500KHZ;
+> > +
+> > +             lm3533_parse_nodes(lm3533, pdata);
+> > +
+> > +             lm3533->dev->platform_data =3D pdata;
+> >       }
+>
+> ...
+>
+> > +static const struct of_device_id lm3533_match_table[] =3D {
+> > +     { .compatible =3D "ti,lm3533" },
+> > +     { },
+>
+> No comma in the terminator entry.
+>
+> > +};
+>
+> ...
+>
+> > +static void lm3533_parse_backlight(struct platform_device *pdev,
+>
+> pdev is not actually used, just pass struct device *dev directly.
+> Same comment to other functions in this change. It will make code more
+> bus independent and reusable.
+>
+> > +                                struct lm3533_bl_platform_data *pdata)
+> > +{
+> > +     struct device *dev =3D &pdev->dev;
+> > +     int val, ret;
+> > +
+> > +     /* 5000 - 29800 uA (800 uA step) */
+> > +     ret =3D device_property_read_u32(dev, "max-current-microamp", &va=
+l);
+> > +     if (ret)
+> > +             val =3D 5000;
+> > +     pdata->max_current =3D val;
+>
+> > +     /* 0 - 255 */
+> > +     ret =3D device_property_read_u32(dev, "default-brightness", &val)=
+;
+> > +     if (ret)
+> > +             val =3D LM3533_BL_MAX_BRIGHTNESS;
+> > +     pdata->default_brightness =3D val;
+>
+> Isn't handled by LEDS core?
+>
+> > +     /* 0 - 0x3f */
+> > +     ret =3D device_property_read_u32(dev, "pwm", &val);
+> > +     if (ret)
+> > +             val =3D 0;
+> > +     pdata->pwm =3D val;
+> > +}
+>
+> ...
+>
+> > +static int lm3533_pass_of_node(struct platform_device *pdev,
+> > +                            struct lm3533_bl_platform_data *pdata)
+> > +{
+>
+> 3rd dup?
+>
+> > +}
+>
+> ...
+>
+> >       pdata =3D dev_get_platdata(&pdev->dev);
+> >       if (!pdata) {
+> > -             dev_err(&pdev->dev, "no platform data\n");
+> > -             return -EINVAL;
+> > +             pdata =3D devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KE=
+RNEL);
+> > +             if (!pdata)
+> > +                     return -ENOMEM;
+> > +
+> > +             ret =3D lm3533_pass_of_node(pdev, pdata);
+> > +             if (ret)
+> > +                     return dev_err_probe(&pdev->dev, ret,
+> > +                                          "failed to get backlight dev=
+ice node\n");
+> > +
+> > +             lm3533_parse_backlight(pdev, pdata);
+> >       }
+>
+> Ditto.
+>
+> > -     bd =3D devm_backlight_device_register(&pdev->dev, pdata->name,
+> > -                                     pdev->dev.parent, bl, &lm3533_bl_=
+ops,
+> > -                                     &props);
+> > +     bd =3D devm_backlight_device_register(&pdev->dev, dev_name(&pdev-=
+>dev),
+>
+> I'm not sure the dev_name() is a good idea. We usually try to rely on the
+> predictable outcome, something like what "%pfw" prints against a certain =
+fwnode.
+>
+> > +                                         pdev->dev.parent, bl,
+> > +                                         &lm3533_bl_ops, &props);
+>
+> ...
+>
+> Also I feel that this change may be split to a few separate logical chang=
+es.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
-The Radxa ROCK 4D board is based on the Rockchip rk3576 SoC.
-
-The device tree adds support for basic devices:
- - UART
- - SD Card
- - Ethernet
- - USB
- - RTC
-
-It has 4 USB ports but only 3 are usable as the top left one is used
-for maskrom.
-
-It has a USB-C port that is only used for powering the board.
-
-Signed-off-by: Stephen Chen <stephen@radxa.com>
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3576-rock-4d.dts      | 651 ++++++++++++++++++
- 2 files changed, 652 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index def1222c1907e..a112aeb37948a 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -132,6 +132,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-evb1-v10.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-rock-4d.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3582-radxa-e52c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-sige7.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-w3.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-new file mode 100644
-index 0000000000000..f356742f9d643
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-@@ -0,0 +1,651 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Radxa Computer (Shenzhen) Co., Ltd.
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/pwm/pwm.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
-+#include <dt-bindings/usb/pd.h>
-+#include "rk3576.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK 4D";
-+	compatible = "radxa,rock-4d", "rockchip,rk3576";
-+
-+	aliases {
-+		ethernet0 = &gmac0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:1500000n8";
-+	};
-+
-+	leds: leds {
-+		compatible = "gpio-leds";
-+
-+		power-led {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		user-led {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	vcc_12v0_dcin: regulator-vcc-12v0-dcin {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_12v0_dcin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vcc_5v0_sys: regulator-vcc-5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_12v0_dcin>;
-+	};
-+
-+	vcc_5v0_device: regulator-vcc-5v0-device {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_5v0_device";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_12v0_dcin>;
-+	};
-+
-+	vcc_2v0_pldo_s3: regulator-vcc-2v0-pldo-s3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_2v0_pldo_s3";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <2000000>;
-+		regulator-max-microvolt = <2000000>;
-+		vin-supply = <&vcc_5v0_sys>;
-+	};
-+
-+	vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v1_nldo_s3";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		vin-supply = <&vcc_5v0_sys>;
-+	};
-+
-+	vcc_3v3_rtc_s5: regulator-vcc-3v3-rtc-s5 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_rtc_s5";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_5v0_sys>;
-+	};
-+
-+	vcc_1v8_s0: regulator-vcc-1v8-s0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v8_s0";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_1v8_s3>;
-+	};
-+
-+	vcc_3v3_s0: regulator-vcc-3v3-s0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_s0";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+
-+	vcc_3v3_ufs_s0: regulator-vcc-ufs-s0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_ufs_s0";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_5v0_sys>;
-+	};
-+
-+	vcc_1v8_ufs_vccq2_s0: regulator-vcc1v8-ufs-vccq2-s0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v8_ufs_vccq2_s0";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_1v8_s3>;
-+	};
-+
-+	vcc_1v2_ufs_vccq_s0: regulator-vcc-1v2-ufs-vccq-s0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v2_ufs_vccq_s0";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&vcc_5v0_sys>;
-+	};
-+
-+	vcc_3v3_pcie: regulator-vcc-3v3-pcie {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_pcie";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		enable-active-high;
-+		gpio = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <5000>;
-+		vin-supply = <&vcc_5v0_sys>;
-+	};
-+
-+	vcc_5v0_host: regulator-vcc-5v0-host {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_host";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PD3 GPIO_ACTIVE_HIGH>;
-+		vin-supply = <&vcc_5v0_device>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_host_pwren>;
-+	};
-+};
-+
-+&cpu_l0 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&gmac0 {
-+	phy-mode = "rgmii-id";
-+	clock_in_out = "output";
-+
-+	snps,reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 20000 100000>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&eth0m0_miim
-+		     &eth0m0_tx_bus2
-+		     &eth0m0_rx_bus2
-+		     &eth0m0_rgmii_clk
-+		     &eth0m0_rgmii_bus
-+		     &ethm0_clk0_25m_out>;
-+
-+	phy-handle = <&rgmii_phy0>;
-+	status = "okay";
-+};
-+
-+&gpu {
-+	mali-supply = <&vdd_gpu_s0>;
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	pmic@23 {
-+		compatible = "rockchip,rk806";
-+		reg = <0x23>;
-+
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_pins
-+			     &rk806_dvs1_null
-+			     &rk806_dvs2_null
-+			     &rk806_dvs3_null>;
-+
-+		system-power-controller;
-+
-+		vcc1-supply = <&vcc_5v0_sys>;
-+		vcc2-supply = <&vcc_5v0_sys>;
-+		vcc3-supply = <&vcc_5v0_sys>;
-+		vcc4-supply = <&vcc_5v0_sys>;
-+		vcc5-supply = <&vcc_5v0_sys>;
-+		vcc6-supply = <&vcc_5v0_sys>;
-+		vcc7-supply = <&vcc_5v0_sys>;
-+		vcc8-supply = <&vcc_5v0_sys>;
-+		vcc9-supply = <&vcc_5v0_sys>;
-+		vcc10-supply = <&vcc_5v0_sys>;
-+		vcc11-supply = <&vcc_2v0_pldo_s3>;
-+		vcc12-supply = <&vcc_5v0_sys>;
-+		vcc13-supply = <&vcc_1v1_nldo_s3>;
-+		vcc14-supply = <&vcc_1v1_nldo_s3>;
-+		vcca-supply = <&vcc_5v0_sys>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		rk806_dvs1_null: dvs1-null-pins {
-+			pins = "gpio_pwrctrl1";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs2_null: dvs2-null-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs3_null: dvs3-null-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs1_slp: dvs1-slp-pins {
-+			pins = "gpio_pwrctrl1";
-+			function = "pin_fun1";
-+		};
-+
-+		rk806_dvs1_pwrdn: dvs1-pwrdn-pins {
-+			pins = "gpio_pwrctrl1";
-+			function = "pin_fun2";
-+		};
-+
-+		rk806_dvs1_rst: dvs1-rst-pins {
-+			pins = "gpio_pwrctrl1";
-+			function = "pin_fun3";
-+		};
-+
-+		rk806_dvs2_slp: dvs2-slp-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun1";
-+		};
-+
-+		rk806_dvs2_pwrdn: dvs2-pwrdn-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun2";
-+		};
-+
-+		rk806_dvs2_rst: dvs2-rst-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun3";
-+		};
-+
-+		rk806_dvs2_dvs: dvs2-dvs-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun4";
-+		};
-+
-+		rk806_dvs2_gpio: dvs2-gpio-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun5";
-+		};
-+
-+		rk806_dvs3_slp: dvs3-slp-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun1";
-+		};
-+
-+		rk806_dvs3_pwrdn: dvs3-pwrdn-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun2";
-+		};
-+
-+		rk806_dvs3_rst: dvs3-rst-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun3";
-+		};
-+
-+		rk806_dvs3_dvs: dvs3-dvs-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun4";
-+		};
-+
-+		rk806_dvs3_gpio: dvs3-gpio-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun5";
-+		};
-+
-+		regulators {
-+			vdd_cpu_big_s0: dcdc-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_cpu_big_s0";
-+				regulator-enable-ramp-delay = <400>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_npu_s0: dcdc-reg2 {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_npu_s0";
-+				regulator-enable-ramp-delay = <400>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_cpu_lit_s0: dcdc-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_cpu_lit_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+
-+			vcc_3v3_s3: dcdc-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc_3v3_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vdd_gpu_s0: dcdc-reg5 {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_gpu_s0";
-+				regulator-enable-ramp-delay = <400>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <850000>;
-+				};
-+			};
-+
-+			vddq_ddr_s0: dcdc-reg6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vddq_ddr_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_logic_s0: dcdc-reg7 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <800000>;
-+				regulator-name = "vdd_logic_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8_s3: dcdc-reg8 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc_1v8_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdd2_ddr_s3: dcdc-reg9 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vdd2_ddr_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vdd_ddr_s0: dcdc-reg10 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vdd_ddr_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcca_1v8_s0: pldo-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcca_1v8_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcca1v8_pldo2_s0: pldo-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcca1v8_pldo2_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdda_1v2_s0: pldo-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vdda_1v2_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcca_3v3_s0: pldo-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcca_3v3_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vccio_sd_s0: pldo-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vccio_sd_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcca1v8_pldo6_s3: pldo-reg6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcca1v8_pldo6_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdd_0v75_s3: nldo-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-name = "vdd_0v75_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+
-+			vdda_ddr_pll_s0: nldo-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-name = "vdda_ddr_pll_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdda0v75_hdmi_s0: nldo-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <837500>;
-+				regulator-max-microvolt = <837500>;
-+				regulator-name = "vdda0v75_hdmi_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdda_0v85_s0: nldo-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-name = "vdda_0v85_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdda_0v75_s0: nldo-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-name = "vdda_0v75_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	hym8563: rtc@51 {
-+		compatible = "haoyu,hym8563";
-+		reg = <0x51>;
-+		clock-output-names = "hym8563";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hym8563_int>;
-+		wakeup-source;
-+		#clock-cells = <0>;
-+	};
-+};
-+
-+&mdio0 {
-+	rgmii_phy0: phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x1>;
-+		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
-+	};
-+};
-+
-+&pinctrl {
-+	hym8563 {
-+		hym8563_int: hym8563-int {
-+			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	leds {
-+		led_rgb_r: led-red-en {
-+			rockchip,pins = <4 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		led_rgb_g: led-green-en {
-+			rockchip,pins = <4 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb {
-+		usb_host_pwren: usb-host-pwren {
-+			rockchip,pins = <4 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	max-frequency = <200000000>;
-+	no-sdio;
-+	no-mmc;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_3v3_s3>;
-+	vqmmc-supply = <&vccio_sd_s0>;
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-0 = <&uart0m0_xfer>;
-+	status = "okay";
-+};
-+
-+&combphy1_psu {
-+	status = "okay";
-+};
-+
-+&u2phy0 {
-+	status = "okay";
-+};
-+
-+&u2phy1 {
-+	status = "okay";
-+};
-+
-+&usb_drd1_dwc3 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
--- 
-2.48.1
-
+Acknowledged, thank you.
 
