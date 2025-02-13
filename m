@@ -1,358 +1,639 @@
-Return-Path: <devicetree+bounces-146174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF8B4A33A9E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E218CA33AAF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:10:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 481323A13C6
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 09:05:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F3003A9B8A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 09:09:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33C5520C492;
-	Thu, 13 Feb 2025 09:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00DE211A36;
+	Thu, 13 Feb 2025 09:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="uh9psz0t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cXfOiApS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2046.outbound.protection.outlook.com [40.107.93.46])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A0620C021;
-	Thu, 13 Feb 2025 09:05:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739437542; cv=fail; b=bE2G+lO95knkpDW5O11GXmc/0ZNqMKLQ1bq3pE54Iryz/YwbPnIlcsmQrRdh91i7J0YCWlJblwa0b64aos9AhudMl4/FIvQgtbX1TL5S3jmK+kjpScHpezciN4IqoOceiqjoiL7CMpkPY4yXQwJb7ktpc363fKS717iKTPOB8f4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739437542; c=relaxed/simple;
-	bh=Pm9Qjyn/sN685/C20sW2t9S4Paq8Y8TiqL4DDzG3kzU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=qc84WruJBGcp3zDbrqMfYLptCzJDbo1sWdCXai8XBJsg3dMTrerfN8iPunby4YupnSk1Ikm4NY8oFSPiKuYuMSOQWO7EZdTs0mEtEz0cq5Ao4xdmOgs1J5Xbc7qgoOozr74zrOLLX1fzWLnjinRchmEJLxZTleZpmgwDpEaajPY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=uh9psz0t; arc=fail smtp.client-ip=40.107.93.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MGCceM4UnQ8+WbEjwh/6xIATTLHGjERPCyh3bQQzQADx1onYZCeEw67YyO3cGNm8OBBqgYREWLM8eRNcQDvqZH9RkW7sIpSL8Y8/1ODVPHK8At80d8lJy/BS2wh2KjLtX0aN7sPaGvYzNh7mR2kY75yMfql0LbO/plrc2H//WGWrfdS4suXRG25uAzbIjN8ErxLitl3w31dfQX5b36Xult1MV5H3i7fHsXIx430ktlxN+bvnAI9RdO+W1RRzh9tlpCHKr0Ygi78EfYgc+JtWZZYAjJfwLvtP3pAixQLOKXSo47Ja3lksMivu8J3BOYuXqI6gVU6K2MS90Bpes5C42Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Pm9Qjyn/sN685/C20sW2t9S4Paq8Y8TiqL4DDzG3kzU=;
- b=XOS57LDSeGlSio6CwVoTfyoa2V91ln6GGV6nwUE8YCQw+8cu0WZlqWufqJHPgJHt3sW+ZeRElz7AYeP1bQsyty+/DJblxrnX2G3gy4mmSP6BYA0BkktAIan5pCg+SG4QGfIhMta4yF/hnwllhR/283MZlXZ5wRaFL/3Jp9ZhovpO4R1GqKu23nIVwamDSLw9eqAx11M/9wHElf57k2zHEn+acbAUHsM0DUcjARxUE98M5duuje/8YRPbRxpA21H5JdC3Yyw24wTkoVZfYRvZIaEbgRaN/Whnw16avYbb5vn/X1eMXRMcddZbOQNt5W7Czw7ueded7/jXVDyw30NocA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pm9Qjyn/sN685/C20sW2t9S4Paq8Y8TiqL4DDzG3kzU=;
- b=uh9psz0tvCp/QjhEYXewR0U5ZxQ+/RBhI6E/T3SUA60uvE+eLtzuW1udU5KK39ib1ZVO30xwvH3hQLepivjzJ/iT4XzjwTHeGic2dRZgvW7M8nCtglvEMcukr0kuKCr/jAXrlMZZCmjXjFh0HNNGuzU50X5XDS9/6l0ERdmzB+vAtxntw4jm9/iSGjOVjRP88M8Q4Y0jQJ0CSwp50CAn4N8OBI/qGrRDXVFmHgQ1jKN4TCw40zCIFlWGZBtW2Gug7eqsy/Hq5gwfj7sYcvFXXgIoIgc6e9+gGOws+uJYmuQQIzAPk2SIR6pH2kwaXQZnr2J1FUP6ctC6XlUn+v78EQ==
-Received: from MN0PR12MB5716.namprd12.prod.outlook.com (2603:10b6:208:373::14)
- by SA3PR12MB8023.namprd12.prod.outlook.com (2603:10b6:806:320::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.16; Thu, 13 Feb
- 2025 09:05:37 +0000
-Received: from MN0PR12MB5716.namprd12.prod.outlook.com
- ([fe80::1770:161a:675f:7861]) by MN0PR12MB5716.namprd12.prod.outlook.com
- ([fe80::1770:161a:675f:7861%4]) with mapi id 15.20.8445.013; Thu, 13 Feb 2025
- 09:05:36 +0000
-From: Kartik Rajput <kkartik@nvidia.com>
-To: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
-CC: Jon Hunter <jonathanh@nvidia.com>, "robh@kernel.org" <robh@kernel.org>,
-	"robert.marko@sartura.hr" <robert.marko@sartura.hr>, "arnd@kernel.org"
-	<arnd@kernel.org>, "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "geert+renesas@glider.be"
-	<geert+renesas@glider.be>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "hvilleneuve@dimonoff.com"
-	<hvilleneuve@dimonoff.com>, "gregkh@linuxfoundation.org"
-	<gregkh@linuxfoundation.org>, "schnelle@linux.ibm.com"
-	<schnelle@linux.ibm.com>, "linux-serial@vger.kernel.org"
-	<linux-serial@vger.kernel.org>, "linux-tegra@vger.kernel.org"
-	<linux-tegra@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] serial: tegra-utc: Add driver for Tegra UART Trace
- Controller (UTC)
-Thread-Topic: [PATCH v3 2/2] serial: tegra-utc: Add driver for Tegra UART
- Trace Controller (UTC)
-Thread-Index: AQHbfWAxahR/yn7oCUOxvUw4vBkqkrNE8iGA
-Date: Thu, 13 Feb 2025 09:05:36 +0000
-Message-ID: <ec06322386adbf4404e2fbc5d7656e3465eb4320.camel@nvidia.com>
-References: <20250212104132.61060-1-kkartik@nvidia.com>
-	 <20250212104132.61060-3-kkartik@nvidia.com>
-	 <Z6y5vRGyouZsQWyj@smile.fi.intel.com>
-In-Reply-To: <Z6y5vRGyouZsQWyj@smile.fi.intel.com>
-Reply-To: Kartik Rajput <kkartik@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Evolution 3.52.3-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN0PR12MB5716:EE_|SA3PR12MB8023:EE_
-x-ms-office365-filtering-correlation-id: 53d55cba-54a8-4b5c-eef1-08dd4c0d9489
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?bnVGNmJUcVp3b0dnaTRXMHhoT1dnb3dCVFV5WGdhVlVxR0xsdmc3NG41TlRE?=
- =?utf-8?B?cWtBbE5Dc1VSTkJJanl2bUZjZ0pYeTF4djJaczRRV1NadmROeURlem52N0da?=
- =?utf-8?B?b3RkVVQvZVloV2ZYRGIvRjVhNEMwSUZ5VHBFMHA2dkkyNERML3VSWFVrTlVp?=
- =?utf-8?B?Z1dNSHdycFF6eUg5dzlORWttbTRrOTFZa0JkM1Rpa1J6cC9wcFQrR1NJdzVJ?=
- =?utf-8?B?REFpMzJlelR1cE1lZkxNYVpzTHYzS3k1UkNMazJSR1BEYVBhbFJ1VFYzeUFR?=
- =?utf-8?B?aFRIN0pGbE1JM3daQ3hCSjViZ3hUSHBLTFFSdVpsNml3RDh4U05acUJjV2tX?=
- =?utf-8?B?ZDhCYkExazdhRWNxUEJ4RjR0ZVZHaXd3WFVUbENvbGtYdGxRdCtmYWpMd0lS?=
- =?utf-8?B?WGt6UXhlS0R5OElKUW02SHRZSFRrZ2M2MlJta1c2c3hLMDBaNU83REJpTXp4?=
- =?utf-8?B?VlNCSm8xNXhLdnpZWkdqd2pjMDd4eXZzUnZtYjRlMSt5Z0l2cVhyOVl4bnlx?=
- =?utf-8?B?ZXVjeW8rUHdMelF3T3FQNnlOdnNPeUYyYitqRXQwRzFvVUpvMTVPeVlhQ2N5?=
- =?utf-8?B?VXAxdDdJWmNjNFhNR3NYZ0tuOFp1R3NlUTVZM1pvOG5xN2EzSmFjSVJUbXlq?=
- =?utf-8?B?QkxZWGRwb05ZS0ljV2d0eWlmZ3EwelpndWhpeXltT095bGt1OG52cTVrdjRV?=
- =?utf-8?B?WWFmaW5zeFJCYzQrUjlBbEU3UGdpanJDekdOS3E4OHJBbW9mMDg2RmNTcjRj?=
- =?utf-8?B?Y0d4VU5XSG4wYmVyOVA3eEtOSVhTSkNPSWhOaG5NV2xyWmpsQzJGWTdaQk1P?=
- =?utf-8?B?alREN3NSYUM3QVBLL3JUanRLODNhS2Zmd2ovRERCeHpoMjJTa1M5b0p4T0lp?=
- =?utf-8?B?RlBUZCt2eHpjZUk5ZFlyZXBBbVlOZ2l4WHVodzE3Rnh5Z1R2dzlsbTN1cnA1?=
- =?utf-8?B?NExIWm5CYnZuQXFVTURLU0VLeDNGUlR0cEJzTVMwUUpuZVg2UTcvdE5KTGxT?=
- =?utf-8?B?SU1BWk9tNXJNTTJqUUpkMTJ0Q2Z6YlFQMmxQZDM0Q3ZOUGxkZ1pEcGozK210?=
- =?utf-8?B?R3NzMnJVRk9Rb29DaHZ2Q1dDNVp4cEtZcE53YTRtbkhHTFZYcStUMitBNHFx?=
- =?utf-8?B?UUd4TFZnMWw4QjU4SDZwZnV1aHlUeDRsMThZS2t0WEFsWXZmU1hraGJ4RDJw?=
- =?utf-8?B?T2lQVXFKYWdEWjZyQWRDU0pRdkNsRUpsWXRpd0U3cWp4N09HNC9xTFlFZzFn?=
- =?utf-8?B?eXE1RzdyKzZtY09DeHkvZ3I2Rzh0Sk9vTVc2QW1YSUcrMmJRb2JEWkVXN0I4?=
- =?utf-8?B?MmRLcjFGNnBiTSthK3AxZG4xaUJVRHZhck83aGVhOVJFOUZ3bGdHZEpudTRo?=
- =?utf-8?B?ZkFCYy84KzZmRE94MFZhUHkrdXRDNko5cnFJWlpPbnJrR1YwYUE1YTA5NjRt?=
- =?utf-8?B?ZVpBckdKZmh6KzJGM2lqT3ZLSEtleGx0RTBWUE52ZlA3cXRydXVNcFl4Wmp5?=
- =?utf-8?B?NTd4dmpCVENocGhFMHpmaC8rcENVQ0IwSVNaSHBHV0NPa1dCVzAxdHU3bzQv?=
- =?utf-8?B?NFZPNCtaenlFUytpVzJqeEh3RFpueVN3M0xWN2Vyb3RlQk9jbklOMUVoOUtq?=
- =?utf-8?B?a09HT2tOdnMxMTdDQXNsVEN6TG5pUW5jbXdzMVVMOUo1NlNqNDUwa2NSVnla?=
- =?utf-8?B?K2JFSXBzV3B3UFE3c3lqQXMzNjRKZDdLYVNOdGVKelZtSjNxQUgyQ2t4TzN5?=
- =?utf-8?B?bjVhbjFJbUxsYUxmU29jem1uNXU0SCtka3lza3d1SDh4K1pzRDNMclZSR2da?=
- =?utf-8?B?M29NTTh6ei9kMlBTYUhreWRkcGc5Q3AyTWZkTXZPK0J5TWFvaklJMFRPWUtm?=
- =?utf-8?B?VmNJZm5MZGRjUjBESWI2SytjYU51RUdqckR2SmpFMEJ0cFEzQ0twN2hZWGcy?=
- =?utf-8?Q?6/L3G56/66oHOz4xO7VrLgMTwlK/qoRR?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5716.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?U3RENXRqWmF6cThJV3FmWWhRRGZ0YU50OG9uYUVpcDVFeWtBU2lvN1FoM0JB?=
- =?utf-8?B?MjNmZ2pQN1JNalpUS2V1WmYwRjk2dDdEb2NYRUg5bnlOWVhkVmJ5SkV5dlRF?=
- =?utf-8?B?UTlLNFlWbEw0b2loSHlocnhHWTM5b2taem9hWmVWUU9LeHVxWlYvVTJ5b25J?=
- =?utf-8?B?OTVoSHFTU0VUZUwrYS9TU003OFd0SzhxdWhKT05ia0ZpeWoyVG02Uy9admpu?=
- =?utf-8?B?djRhTUhLWkVtbFlac3RsekE1dmlMcnBWS05paEF4cVBnR2ZZbGs1K1M0REpV?=
- =?utf-8?B?S2tHNmJBd3JLR2tLTW9ndTRXN2dpMW0rTDJ6bUNvY01SOUhPYmc5cklWbzdt?=
- =?utf-8?B?V01qdVJ1Vno0amFhS2dXdDY5MXdEWlJjSW83bDUzMVp1YjQ2SWFIUzd3cHhj?=
- =?utf-8?B?eWN1NGFodlR1QzZFVnQvTWFGeDFXSGpoNDRxNEx1NVRMV2d1cWJFZWFRam9x?=
- =?utf-8?B?MC9ZK1lWNEovemNLNXRTT25UdzdZNXdRZTFTVWVJZk5mZlJFVXJMRmxSMjg2?=
- =?utf-8?B?cGZETWtoSVFzZ3czOVJ6aC8rdG9hdXF3Z3hVRysvbEFLSFNqNUgyQUNHNHlz?=
- =?utf-8?B?SDdBN3pnMndSQlRmcU5scW1iZjZyZWlFMGNuZS9vV01vZUEyclU0ZXpBaXIy?=
- =?utf-8?B?TzFMWkJEOU5kL0lJbHBnOGdWczcybFd1NlVJR0hua3ZjNUVGbkRiQWpSUUY1?=
- =?utf-8?B?cjhZMjNJNHdsZlRNNU1BVldFOEZFbGhuWW8xbTZUanlNMmJsekI4SnFtNUMr?=
- =?utf-8?B?SHNVVmdxZU03WmRRTDF3RmFYUFZYSW1veDNBSHhKajluM0tKd2lScFF1aWxD?=
- =?utf-8?B?WVVIU3BSWWtYcStiTlNSb3lkVkFZTHRvRjFWRU1SNURUWk5aYVJ2aE5PdU1y?=
- =?utf-8?B?cjFFWGJWdFkxYVNvOE13bWxDNmYwNmh3NU4zK05sSDBZdjMvSFpNZkVFWWdL?=
- =?utf-8?B?T1cxSHZFL2paZzRxd0xwR3VlcU1SWFR4MGtwUm96ekZUb3E0RklDZkNaeDFu?=
- =?utf-8?B?WmFhZE9xeCtQc1Q3QjhDVlpkcGQ4dGpwb2cyVWh1RVQ3TGtSOWdpQU95am5E?=
- =?utf-8?B?NGpiZWRYREdjc2xTSWF0NG9WaERBS09kSkdyL2FFYnBoMkdZYnVVR2ozTnow?=
- =?utf-8?B?Mjl2aUdTVWV5Y0xXZjVoR21iSm5OcU9NdXd0TWNIUUlEL0RrMVRxZk1Rc0dL?=
- =?utf-8?B?YXRkenJpSkx1TVNjMkJEYWxYbmVuSlk2bHpPaHpabTRBMEZZTmhqalh4Sjdq?=
- =?utf-8?B?V0VUMzI1dmRXdXRtd05US1g1QzNnbHA1ek9pd0lTRHJiYVNCejlFRjhQTHdR?=
- =?utf-8?B?ZjBCaFZacUdRUWdrRFQxenNBQVljOU4zek44TlRQWGh0S01ZcGZTcUxrdkJX?=
- =?utf-8?B?L1JPQXArdVdpN3JKU0FMc1pvcHRNNVNLMDFlRldvWU5DVlFZOVMrY2dNSXYw?=
- =?utf-8?B?VDZZMExlY20rcE44RnN3eit0YWppN0ROUjVFTHAvZVZaQzBqN1MvOGpuWVNX?=
- =?utf-8?B?K1NXaENLbVFPZzZRL3ZzVEhMcGdpMU9yc0xWUHFiaDdNRTZIb0UxenYrMHk5?=
- =?utf-8?B?ZEZmU2oyYzRUSy9aRmdBYi8yejhVNS9LOGNGam1DdEZNdFY1UisxTHhrMTdv?=
- =?utf-8?B?c295Szc1OVJIUW92SXpHRGtlWlpkTDN3YkY4WDRLMm9Qa0l1TGVQQ1l2dFpM?=
- =?utf-8?B?amttRk9Rb0hZUmxzMmFJdVBPbDVvUmk1WW5XK1hNTlZPYmMxUFJJUEY2eEtC?=
- =?utf-8?B?aHhEZHUveTdWdW0xRU5XWXNOdis2dHBpdlFSdmh6dWRZOFR2ZDQ5OS9MM29a?=
- =?utf-8?B?NXlEOEk1T09qRmdIcVUxZ0J0WDA4cTY3YzlndC9JWEhiUXo3TWkwd3ZJNnV6?=
- =?utf-8?B?MkhNRU1GUmlQR0dCYnAyNE1xbG9kU0hIYU5tY1drMjl1anhiM1JudlVaSVd1?=
- =?utf-8?B?Z2lxb0VnNjUra21IdlNCWnRHQXBGTENONldvL253U1FuWCt2SkE5T1hrQ3ds?=
- =?utf-8?B?OFcwVm93Tm9hL0tOVkpkRW1KWUl1UW0xRUZnNHR3eXhhbmlacmpmZEo0QThu?=
- =?utf-8?B?ZEtOVklQamowSTJkSnUvZjJSNGpBL2hSbk02WHFmMTdhSi9mMWdnbXp2V3Jz?=
- =?utf-8?B?dVNOZWVmNmdITmt6cEFFVjllYXM3ei9Vc2NXK0RnZE5RZ21nL1pzbnUrU3pP?=
- =?utf-8?B?ZWc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EBB27EFC8327C34982322CE0F5AA499B@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0888211A19;
+	Thu, 13 Feb 2025 09:08:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739437729; cv=none; b=rcbIgXabJJ2yfMqbEupzcCuBqhWxxMJH3lx/dveIZExKqNaeKvd5LB85hMPi6PiuM4MZVySW8pFSPz6gJtuxCN/EgpPPUN3zmzN+TFYtc8JYs8SWvu9zogk4r5/aCddkDIFS2BsIoM41KzHfr2kuj6RdzdJpWC/OB2WkuLOln1o=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739437729; c=relaxed/simple;
+	bh=GIUlT9LC1ocTQlyq1ULMc6PUaVMG6RnWLIb/+PjLhqQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ps1uHrBRK8yDhWPnS7PZ2HtpVtNI1z9dwqevHimdw+6gs/s//IbenGHIqRWLJBRbG4PCMHexx21n5INmIufwSSztMTZ0FIz6ArlNn35KIZxw1ZcKC4OE4F2F74X+9S+5UGifqhdoddpDaWZUkwoxdaXn1IL33QcnB8B3uOwmoPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cXfOiApS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16921C4CEED;
+	Thu, 13 Feb 2025 09:08:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739437729;
+	bh=GIUlT9LC1ocTQlyq1ULMc6PUaVMG6RnWLIb/+PjLhqQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cXfOiApS4CvYmByz2sWdMw+soFywSC19cqDepOvB0PcH14Q6cVXWVQoRd3TBsxD8W
+	 5L51snHJgowUfNjJVq1kanTsMQRbzDzbWbXir5oA4Ys9DT4bGskWAbU/NTfYR8SJOX
+	 NST7rnPvIjPbafyYgvCm3XxSccEHcXHHMrznyfPJB34tkz77b0sg7So+WUJy0SeBrx
+	 WUu9HUmFIuE+n1k+Z3SSkuRynCJNFkbz1XUVKp4i3skAuVIrkyFITQh0wT9NEC0uNU
+	 cSJdxb9X+kOkHMSOwN/z0WrO2wwbs0Zl8R9Lc9asejqL+UfTpBx+88ZlDhgNeyU1tQ
+	 reyVY3lOp4tcw==
+Date: Thu, 13 Feb 2025 10:08:45 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>, devicetree@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH 04/10] arm64: dts: st: introduce stm32mp23 SoCs family
+Message-ID: <20250213-intrepid-peridot-dinosaur-c5d0bc@krzk-bin>
+References: <20250210-b4-stm32mp2_new_dts-v1-0-e8ef1e666c5e@foss.st.com>
+ <20250210-b4-stm32mp2_new_dts-v1-4-e8ef1e666c5e@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5716.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53d55cba-54a8-4b5c-eef1-08dd4c0d9489
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Feb 2025 09:05:36.6618
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lRfHt0Kfphq5qgrCoOxF0tw/i2FkfCtSSp5xYHsQ6H22Y0ZaXJ69c9pA3ZyIbzWwHAQ5WX/BWuUa4/UtPIEcGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8023
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250210-b4-stm32mp2_new_dts-v1-4-e8ef1e666c5e@foss.st.com>
 
-SGkgQW5keSwNCg0KVGhhbmtzIGZvciB0aGUgcmV2aWV3IQ0KDQoNCk9uIFdlZCwgMjAyNS0wMi0x
-MiBhdCAxNzowOSArMDIwMCwgQW5keSBTaGV2Y2hlbmtvIHdyb3RlOg0KPiBFeHRlcm5hbCBlbWFp
-bDogVXNlIGNhdXRpb24gb3BlbmluZyBsaW5rcyBvciBhdHRhY2htZW50cw0KPiANCj4gDQo+IE9u
-IFdlZCwgRmViIDEyLCAyMDI1IGF0IDA0OjExOjMyUE0gKzA1MzAsIEthcnRpayBSYWpwdXQgd3Jv
-dGU6DQo+ID4gVGhlIFRlZ3JhMjY0IFNvQyBzdXBwb3J0cyB0aGUgVUFSVCBUcmFjZSBDb250cm9s
-bGVyIChVVEMpLCB3aGljaA0KPiA+IGFsbG93cw0KPiA+IG11bHRpcGxlIGZpcm13YXJlIGNsaWVu
-dHMgKHVwIHRvIDE2KSB0byBzaGFyZSBhIHNpbmdsZSBwaHlzaWNhbA0KPiA+IFVBUlQuDQo+ID4g
-RWFjaCBjbGllbnQgaXMgcHJvdmlkZWQgd2l0aCBpdHMgb3duIGludGVycnVwdCBhbmQgaGFzIGFj
-Y2VzcyB0byBhDQo+ID4gMTI4LWNoYXJhY3RlciB3aWRlIEZJRk8gZm9yIGJvdGggdHJhbnNtaXQg
-KFRYKSBhbmQgcmVjZWl2ZSAoUlgpDQo+ID4gb3BlcmF0aW9ucy4NCj4gPiANCj4gPiBBZGQgdGVn
-cmEtdXRjIGRyaXZlciB0byBzdXBwb3J0IFRlZ3JhIFVBUlQgVHJhY2UgQ29udHJvbGxlciAoVVRD
-KQ0KPiA+IGNsaWVudC4NCj4gDQo+IC4uLg0KPiANCj4gPiArLyoNCj4gPiArICogTlZJRElBIFRl
-Z3JhIFVUQyAoVUFSVCBUcmFjZSBDb250cm9sbGVyKSBkcml2ZXIuDQo+ID4gKyAqLw0KPiANCj4g
-Q2FuIGJlIGEgc2luZ2xlIGxpbmUuDQo+IA0KDQpBY2suDQoNCj4gLi4uDQo+IA0KPiA+ICsjaW5j
-bHVkZSA8bGludXgvYml0cy5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvY29uc29sZS5oPg0KPiA+
-ICsjaW5jbHVkZSA8bGludXgvY29udGFpbmVyX29mLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9k
-ZXZpY2UuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L2Vyci5oPg0KPiANCj4gPiArI2luY2x1ZGUg
-PGxpbnV4L2lvLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9pb3BvbGwuaD4NCj4gDQo+IGlvcG9s
-bC5oIGd1YXJhbnRlZXMgdG8gaW5jbHVkZSBpby5oIGluIGNhc2UgeW91IHdhbnQgdG8gaGF2ZSBs
-ZXNzDQo+IGxpbmVzIGhlcmUuDQo+ICh5ZWFoLCBJIGtub3cgdGhhdCB0aGUgaGVhZGVyIGd1YXJh
-bnRlZXMgaXMgYSB0cmliYWwga25vd2xlZGdlLCBpdCdzDQo+IHVuZG9jdW1lbnRlZCkNCg0KQWNr
-LiBJIHdpbGwgcmVtb3ZlIGlvLmggZnJvbSBoZXJlLg0KDQo+IA0KPiA+ICsjaW5jbHVkZSA8bGlu
-dXgva2ZpZm8uaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L21vZHVsZS5oPg0KPiA+ICsjaW5jbHVk
-ZSA8bGludXgvbW9kX2RldmljZXRhYmxlLmg+DQo+IA0KPiA+ICsjaW5jbHVkZSA8bGludXgvb2Yu
-aD4NCj4gDQo+IElzIHRoaXMgYmVpbmcgdXNlZCBub3c/DQo+IA0KDQpObywgSSB3aWxsIHJlbW92
-ZSB0aGlzLg0KDQo+ID4gKyNpbmNsdWRlIDxsaW51eC9wcm9wZXJ0eS5oPg0KPiA+ICsjaW5jbHVk
-ZSA8bGludXgvcGxhdGZvcm1fZGV2aWNlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9zZXJpYWwu
-aD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3NlcmlhbF9jb3JlLmg+DQo+ID4gKyNpbmNsdWRlIDxs
-aW51eC9zbGFiLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC90dHkuaD4NCj4gPiArI2luY2x1ZGUg
-PGxpbnV4L3R0eV9mbGlwLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC90eXBlcy5oPg0KPiANCj4g
-Li4uDQo+IA0KPiA+ICsjZGVmaW5lIFVBUlRfTlLCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAxNg0KPiANCj4g
-QmFkIG5hbWluZywgY2FsbGluZyBmb3IgY29sbGlzaW9ucy4gTW92ZSBpdCB0byB0aGUgZHJpdmVy
-J3MNCj4gbmFtZXNwYWNlLg0KPiANCg0KQWNrLg0KDQo+IC4uLg0KPiANCj4gPiArc3RhdGljIHZv
-aWQgdGVncmFfdXRjX2luaXRfdHgoc3RydWN0IHRlZ3JhX3V0Y19wb3J0ICp0dXApDQo+ID4gK3sN
-Cj4gPiArwqDCoMKgwqAgLyogRGlzYWJsZSBUWC4gKi8NCj4gPiArwqDCoMKgwqAgdGVncmFfdXRj
-X3R4X3dyaXRlbCh0dXAsIDB4MCwgVEVHUkFfVVRDX0VOQUJMRSk7DQo+ID4gKw0KPiA+ICvCoMKg
-wqDCoCAvKiBVcGRhdGUgdGhlIEZJRk8gVGhyZXNob2xkLiAqLw0KPiA+ICvCoMKgwqDCoCB0ZWdy
-YV91dGNfdHhfd3JpdGVsKHR1cCwgdHVwLT50eF90aHJlc2hvbGQsDQo+ID4gVEVHUkFfVVRDX0ZJ
-Rk9fVEhSRVNIT0xEKTsNCj4gPiArDQo+ID4gK8KgwqDCoMKgIC8qIENsZWFyIGFuZCBtYXNrIGFs
-bCB0aGUgaW50ZXJydXB0cy4gKi8NCj4gPiArwqDCoMKgwqAgdGVncmFfdXRjX3R4X3dyaXRlbCh0
-dXAsIFRFR1JBX1VUQ19JTlRSX1JFUSB8DQo+ID4gVEVHUkFfVVRDX0lOVFJfRlVMTCB8IFRFR1JB
-X1VUQ19JTlRSX0VNUFRZLA0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgVEVHUkFfVVRDX0lOVFJfQ0xFQVIpOw0KPiANCj4gSGVyZS4uLg0KPiAN
-Cj4gPiArwqDCoMKgwqAgdGVncmFfdXRjX2Rpc2FibGVfdHhfaXJxKHR1cCk7DQo+ID4gKw0KPiA+
-ICvCoMKgwqDCoCAvKiBFbmFibGUgVFguICovDQo+ID4gK8KgwqDCoMKgIHRlZ3JhX3V0Y190eF93
-cml0ZWwodHVwLCBURUdSQV9VVENfRU5BQkxFX0NMSUVOVF9FTkFCTEUsDQo+ID4gVEVHUkFfVVRD
-X0VOQUJMRSk7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyB2b2lkIHRlZ3JhX3V0Y19pbml0
-X3J4KHN0cnVjdCB0ZWdyYV91dGNfcG9ydCAqdHVwKQ0KPiA+ICt7DQo+ID4gK8KgwqDCoMKgIHR1
-cC0+cnhfaXJxbWFzayA9IFRFR1JBX1VUQ19JTlRSX1JFUSB8DQo+ID4gVEVHUkFfVVRDX0lOVFJf
-VElNRU9VVDsNCj4gPiArDQo+ID4gK8KgwqDCoMKgIHRlZ3JhX3V0Y19yeF93cml0ZWwodHVwLCBU
-RUdSQV9VVENfQ09NTUFORF9SRVNFVCwNCj4gPiBURUdSQV9VVENfQ09NTUFORCk7DQo+ID4gK8Kg
-wqDCoMKgIHRlZ3JhX3V0Y19yeF93cml0ZWwodHVwLCB0dXAtPnJ4X3RocmVzaG9sZCwNCj4gPiBU
-RUdSQV9VVENfRklGT19USFJFU0hPTEQpOw0KPiA+ICsNCj4gPiArwqDCoMKgwqAgLyogQ2xlYXIg
-YWxsIHRoZSBwZW5kaW5nIGludGVycnVwdHMuICovDQo+ID4gK8KgwqDCoMKgIHRlZ3JhX3V0Y19y
-eF93cml0ZWwodHVwLCBURUdSQV9VVENfSU5UUl9USU1FT1VUIHwNCj4gPiBURUdSQV9VVENfSU5U
-Ul9PVkVSRkxPVyB8DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBURUdSQV9VVENfSU5UUl9SRVEgfCBURUdSQV9VVENfSU5UUl9GVUxMDQo+ID4g
-fA0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-VEVHUkFfVVRDX0lOVFJfRU1QVFksDQo+ID4gVEVHUkFfVVRDX0lOVFJfQ0xFQVIpOw0KPiANCj4g
-Li4uYW5kIGhlcmUgdGhlIHBvdGVudGlhbCBvZiBkZWR1cGxpY2F0aW9uIGJ5IGludHJvZHVjaW5n
-IGFuDQo+IGFkZGl0aW9uYWwgY29uc3RhbnQ6DQo+IA0KPiAjZGVmaW5lIFRFR1JBX1VUQ19JTlRS
-X0NPTU1PTsKgwqAgXA0KPiDCoMKgwqDCoMKgwqDCoCAoLi4uKQ0KPiANCj4gKGNob29zZSBiZXR0
-ZXIgbmFtZSkNCj4gDQoNCkFjay4NCg0KSSB0aGluayBURUdSQV9VVENfSU5UUl9DT01NT04gd291
-bGQgYmUgYSBnb29kIG5hbWUgZm9yIHRoaXMgbWFjcm8gc2luY2UNCnRoZXNlIGludGVycnVwdHMg
-YXJlIGNvbW1vbiBiZXR3ZWVuIFRYIGFuZCBSWCBjbGllbnQuDQoNCj4gPiArwqDCoMKgwqAgdGVn
-cmFfdXRjX3J4X3dyaXRlbCh0dXAsIHR1cC0+cnhfaXJxbWFzaywNCj4gPiBURUdSQV9VVENfSU5U
-Ul9NQVNLKTsNCj4gPiArwqDCoMKgwqAgdGVncmFfdXRjX3J4X3dyaXRlbCh0dXAsIHR1cC0+cnhf
-aXJxbWFzaywNCj4gPiBURUdSQV9VVENfSU5UUl9TRVQpOw0KPiA+ICsNCj4gPiArwqDCoMKgwqAg
-LyogRW5hYmxlIFJYLiAqLw0KPiA+ICvCoMKgwqDCoCB0ZWdyYV91dGNfcnhfd3JpdGVsKHR1cCwg
-VEVHUkFfVVRDX0VOQUJMRV9DTElFTlRfRU5BQkxFLA0KPiA+IFRFR1JBX1VUQ19FTkFCTEUpOw0K
-PiA+ICt9DQo+IA0KPiAuLi4NCj4gDQo+ID4gK3N0YXRpYyBib29sIHRlZ3JhX3V0Y190eF9jaGFy
-cyhzdHJ1Y3QgdGVncmFfdXRjX3BvcnQgKnR1cCkNCj4gPiArew0KPiA+ICvCoMKgwqDCoCBzdHJ1
-Y3QgdWFydF9wb3J0ICpwb3J0ID0gJnR1cC0+cG9ydDsNCj4gPiArwqDCoMKgwqAgdW5zaWduZWQg
-aW50IHBlbmRpbmc7DQo+ID4gK8KgwqDCoMKgIHU4IGM7DQo+ID4gKw0KPiA+ICvCoMKgwqDCoCBw
-ZW5kaW5nID0gdWFydF9wb3J0X3R4KHBvcnQsIGMsDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgISh0ZWdyYV91dGNfdHhfcmVhZGwodHVwLCBURUdSQV9VVENfRklGT19T
-VEFUVVMpDQo+ID4gJiBURUdSQV9VVENfRklGT19GVUxMKSwNCj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCB0ZWdyYV91dGNfdHhfd3JpdGVsKHR1cCwgYywgVEVHUkFfVVRD
-X0RBVEEpKTsNCj4gDQo+IE1ha2UgdGhlIGxhc3QgdHdvIHRvIHJlc2lkZSBpbiB0ZW1wb3Jhcnkg
-dmFyaWFibGVzIHdpdGggc2VsZi0NCj4gZXhwbGFuYXRvcnkgbmFtZXMuDQo+IA0KPiA+ICsNCj4g
-DQo+IFJlZHVuZGFudCBibGFuayBsaW5lLg0KDQpBY2suDQoNCj4gDQo+ID4gK8KgwqDCoMKgIGlm
-IChwZW5kaW5nKQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHRydWU7DQo+
-ID4gKw0KPiA+ICvCoMKgwqDCoCByZXR1cm4gZmFsc2U7DQo+IA0KPiDCoMKgwqDCoMKgwqDCoCBy
-ZXR1cm4gcGVuZGluZzsNCj4gDQoNCkFjay4NCg0KPiA+ICt9DQo+IA0KPiAuLi4NCj4gDQo+ID4g
-K3N0YXRpYyBpbnQgdGVncmFfdXRjX3N0YXJ0dXAoc3RydWN0IHVhcnRfcG9ydCAqcG9ydCkNCj4g
-PiArew0KPiA+ICvCoMKgwqDCoCBzdHJ1Y3QgdGVncmFfdXRjX3BvcnQgKnR1cCA9IGNvbnRhaW5l
-cl9vZihwb3J0LCBzdHJ1Y3QNCj4gPiB0ZWdyYV91dGNfcG9ydCwgcG9ydCk7DQo+ID4gK8KgwqDC
-oMKgIGludCByZXQ7DQo+ID4gKw0KPiA+ICvCoMKgwqDCoCB0ZWdyYV91dGNfaHdfaW5pdCh0dXAp
-Ow0KPiA+ICsNCj4gPiArwqDCoMKgwqAgcmV0ID0gcmVxdWVzdF9pcnEocG9ydC0+aXJxLCB0ZWdy
-YV91dGNfaXNyLCAwLCBkZXZfbmFtZShwb3J0LQ0KPiA+ID5kZXYpLCB0dXApOw0KPiANCj4gU2Vl
-bXMgdGhlIHNhbWUgUSBzdGFuZHMgYWJvdXQgc2hhcmluZywgcGVyaGFwcyBhIGNvbW1lbnQgd2h5
-IGl0J3MNCj4gZXhwZWN0ZWQgdG8NCj4gYmUgYWx3YXlzIGV4Y2x1c2l2ZT8NCg0KQWNrLiBJIHdp
-bGwgZHJvcCBhIGNvbW1lbnQgaGVyZS4NCg0KPiANCj4gPiArwqDCoMKgwqAgaWYgKHJldCA8IDAp
-DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZXZfZXJyKHBvcnQtPmRldiwgImZhaWxl
-ZCB0byByZWdpc3RlciBpbnRlcnJ1cHQNCj4gPiBoYW5kbGVyXG4iKTsNCj4gPiArDQo+ID4gK8Kg
-wqDCoMKgIHJldHVybiByZXQ7DQo+ID4gK30NCj4gDQo+IC4uLg0KPiANCj4gPiArwqDCoMKgwqAg
-Zm9yIChpID0gMDsgaSA8IGxlbjsgaSsrKSB7DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBpZiAoIW5iY29uX2VudGVyX3Vuc2FmZSh3Y3R4dCkpDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYnJlYWs7DQo+ID4gKw0KPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgcmVhZF9wb2xsX3RpbWVvdXRfYXRvbWljKHRlZ3JhX3V0Y190eF9yZWFkbCwg
-dmFsLA0KPiA+ICEodmFsICYgVEVHUkFfVVRDX0ZJRk9fRlVMTCksDQo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIDAsIFVTRUNfUEVSX1NFQywgZmFsc2UsIHR1cCwNCj4gPiBURUdSQV9VVENfRklGT19T
-VEFUVVMpOw0KPiANCj4gTm8gZXJyb3IgY2hlY2s/DQo+IA0KDQpJJ20gbm90IHN1cmUgYWJvdXQg
-dGhpcy4gVGhlIGNhc2Ugd2hlcmUgdGhlIFRYIEZJRk8gZG9lc24ndCBjbGVhciB1cCwNCmV2ZW4g
-YWZ0ZXIgcG9sbGluZyBmb3IgMSBzZWNvbmQsIGlzIGhpZ2hseSB1bmxpa2VseSwgZXNwZWNpYWxs
-eSBzaW5jZQ0KdGhlcmUncyBubyBmbG93IGNvbnRyb2wgaW52b2x2ZWQgaGVyZS4gRXZlbiBpZiB0
-aGF0IGRpZCBoYXBwZW4sIHdyaXRpbmcNCnRvIHRoZSBUWCBGSUZPIHNob3VsZCBqdXN0IHJlc3Vs
-dCBpbiBhbiBvdmVyZmxvdywgd2hpY2ggaXMgcHJvYmFibHkNCmFjY2VwdGFibGUgaW4gdGhpcyBz
-Y2VuYXJpby4NCg0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdWFydF9jb25zb2xlX3dy
-aXRlKCZ0dXAtPnBvcnQsIHdjdHh0LT5vdXRidWYgKyBpLCAxLA0KPiA+IHRlZ3JhX3V0Y19jb25z
-b2xlX3B1dGNoYXIpOw0KPiA+ICsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlmICgh
-bmJjb25fZXhpdF91bnNhZmUod2N0eHQpKQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGJyZWFrOw0KPiA+ICvCoMKgwqDCoCB9DQo+IA0KPiA+ICsNCj4gDQo+
-IFVubmVlZGVkIGJsYW5rIGxpbmUuDQoNCkFjay4NCg0KPiANCj4gPiArfQ0KPiANCj4gLi4uDQo+
-IA0KPiA+ICtzdGF0aWMgaW50IHRlZ3JhX3V0Y19wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNl
-ICpwZGV2KQ0KPiA+ICt7DQo+ID4gK8KgwqDCoMKgIGNvbnN0IHVuc2lnbmVkIGludCAqc29jX2Zp
-Zm9zaXplOw0KPiA+ICvCoMKgwqDCoCBzdHJ1Y3QgZGV2aWNlICpkZXYgPSAmcGRldi0+ZGV2Ow0K
-PiA+ICvCoMKgwqDCoCBzdHJ1Y3QgdGVncmFfdXRjX3BvcnQgKnR1cDsNCj4gPiArwqDCoMKgwqAg
-aW50IHJldDsNCj4gPiArDQo+ID4gK8KgwqDCoMKgIHR1cCA9IGRldm1fa3phbGxvYygmcGRldi0+
-ZGV2LCBzaXplb2YoKnR1cCksIEdGUF9LRVJORUwpOw0KPiA+ICvCoMKgwqDCoCBpZiAoIXR1cCkN
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiAtRU5PTUVNOw0KPiA+ICsNCj4g
-PiArwqDCoMKgwqAgcmV0ID0gZGV2aWNlX3Byb3BlcnR5X3JlYWRfdTMyKGRldiwgInR4LXRocmVz
-aG9sZCIsICZ0dXAtDQo+ID4gPnR4X3RocmVzaG9sZCk7DQo+ID4gK8KgwqDCoMKgIGlmIChyZXQp
-DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gZGV2X2Vycl9wcm9iZShkZXYs
-IHJldCwgIm1pc3NpbmcgdHgtdGhyZXNob2xkDQo+ID4gZGV2aWNlLXRyZWUgcHJvcGVydHlcbiIp
-Ow0KPiANCj4gJyBkZXZpY2UtdHJlZScgaXMgcmVkdW5kYW50IHBhcnQuDQoNCkFjay4NCg0KPiAN
-Cj4gPiArwqDCoMKgwqAgcmV0ID0gZGV2aWNlX3Byb3BlcnR5X3JlYWRfdTMyKGRldiwgInJ4LXRo
-cmVzaG9sZCIsICZ0dXAtDQo+ID4gPnJ4X3RocmVzaG9sZCk7DQo+ID4gK8KgwqDCoMKgIGlmIChy
-ZXQpDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gZGV2X2Vycl9wcm9iZShk
-ZXYsIHJldCwgIm1pc3NpbmcgcngtdGhyZXNob2xkDQo+ID4gZGV2aWNlLXRyZWUgcHJvcGVydHlc
-biIpOw0KPiANCj4gRGl0dG8uDQo+IA0KPiBBbHNvIGluIGEgZm9ybSBvZg0KPiANCj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiBkZXZfZXJyX3Byb2JlKGRldiwgcmV0LCAi
-bWlzc2luZyAlcw0KPiBwcm9wZXJ0eVxuIiwgInJ4LXRocmVzaG9sZCIpOw0KPiANCj4gaW4gYm90
-aCBjYXNlcyB0aGUgc2l6ZSBvZiB0aGUgb2JqZWN0IGZpbGUgd2lsbCBiZSBzbWFsbGVyIGJ5IGEg
-Y291cGxlDQo+IG9mIGRvemVucw0KPiBvZiBieXRlcy4NCg0KQWNrLg0KDQo+IA0KPiA+ICvCoMKg
-wqDCoCBzb2NfZmlmb3NpemUgPSBkZXZpY2VfZ2V0X21hdGNoX2RhdGEoJnBkZXYtPmRldik7DQo+
-ID4gK8KgwqDCoMKgIHR1cC0+Zmlmb3NpemUgPSAqc29jX2ZpZm9zaXplOw0KPiA+ICsNCj4gPiAr
-wqDCoMKgwqAgdHVwLT50eF9iYXNlID0gZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jlc291cmNlX2J5
-bmFtZShwZGV2LA0KPiA+ICJ0eCIpOw0KPiA+ICvCoMKgwqDCoCBpZiAoSVNfRVJSKHR1cC0+dHhf
-YmFzZSkpDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gUFRSX0VSUih0dXAt
-PnR4X2Jhc2UpOw0KPiA+ICsNCj4gPiArwqDCoMKgwqAgdHVwLT5yeF9iYXNlID0gZGV2bV9wbGF0
-Zm9ybV9pb3JlbWFwX3Jlc291cmNlX2J5bmFtZShwZGV2LA0KPiA+ICJyeCIpOw0KPiA+ICvCoMKg
-wqDCoCBpZiAoSVNfRVJSKHR1cC0+cnhfYmFzZSkpDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCByZXR1cm4gUFRSX0VSUih0dXAtPnJ4X2Jhc2UpOw0KPiA+ICsNCj4gPiArwqDCoMKgwqAg
-cmV0ID0gdGVncmFfdXRjX3NldHVwX3BvcnQoJnBkZXYtPmRldiwgdHVwKTsNCj4gPiArwqDCoMKg
-wqAgaWYgKHJldCkNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldl9lcnJfcHJvYmUo
-ZGV2LCByZXQsICJmYWlsZWQgdG8gc2V0dXAgdWFydA0KPiA+IHBvcnRcbiIpOw0KPiA+ICsNCj4g
-PiArwqDCoMKgwqAgcGxhdGZvcm1fc2V0X2RydmRhdGEocGRldiwgdHVwKTsNCj4gPiArDQo+ID4g
-K8KgwqDCoMKgIHJldHVybiB0ZWdyYV91dGNfcmVnaXN0ZXJfcG9ydCh0dXApOw0KPiA+ICt9DQo+
-IA0KPiAuLi4NCj4gDQo+ID4gK3N0YXRpYyBpbnQgX19pbml0IHRlZ3JhX3V0Y19pbml0KHZvaWQp
-DQo+ID4gK3sNCj4gPiArwqDCoMKgwqAgaW50IHJldDsNCj4gPiArDQo+ID4gK8KgwqDCoMKgIHJl
-dCA9IHVhcnRfcmVnaXN0ZXJfZHJpdmVyKCZ0ZWdyYV91dGNfZHJpdmVyKTsNCj4gPiArwqDCoMKg
-wqAgaWYgKHJldCkNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7DQo+
-ID4gKw0KPiA+ICvCoMKgwqDCoCByZXQgPSBwbGF0Zm9ybV9kcml2ZXJfcmVnaXN0ZXIoJnRlZ3Jh
-X3V0Y19wbGF0Zm9ybV9kcml2ZXIpOw0KPiA+ICvCoMKgwqDCoCBpZiAocmV0KSB7DQo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1YXJ0X3VucmVnaXN0ZXJfZHJpdmVyKCZ0ZWdyYV91dGNf
-ZHJpdmVyKTsNCj4gDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gcmV0Ow0K
-PiA+ICvCoMKgwqDCoCB9DQo+ID4gKw0KPiA+ICvCoMKgwqDCoCByZXR1cm4gMDsNCj4gDQo+IEp1
-c3QNCj4gDQo+IMKgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7DQo+IA0KPiB3aWxsIGJlIGdvb2Qg
-aW5zdGVhZCBvZiB0aGUgYWJvdmUgNCBMb0NzLg0KPiANCg0KQWNrLg0KDQo+ID4gK30NCj4gDQo+
-IC0tDQo+IFdpdGggQmVzdCBSZWdhcmRzLA0KPiBBbmR5IFNoZXZjaGVua28NCj4gDQo+IA0KDQo=
+On Mon, Feb 10, 2025 at 04:20:58PM +0100, Amelie Delaunay wrote:
+> From: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> 
+> STM32MP23 family is composed of 3 SoCs defined as following:
+> 
+> -STM32MP231: common part composed of 1*Cortex-A35, common peripherals
+> like SDMMC, UART, SPI, I2C, parallel display, 1*ETH ...
+> 
+> -STM32MP233: STM32MP231 + 1*Cortex-A35 (dual CPU), a second ETH, CAN-FD.
+> 
+> -STM32MP235: STM32MP233 + GPU/AI and video encode/decode, DSI and LDVS
+> display.
+> 
+> A second diversity layer exists for security features/ A35 frequency:
+> -STM32MP23xY, "Y" gives information:
+>  -Y = A means A35@1.2GHz + no cryp IP and no secure boot.
+>  -Y = C means A35@1.2GHz + cryp IP and secure boot.
+>  -Y = D means A35@1.5GHz + no cryp IP and no secure boot.
+>  -Y = F means A35@1.5GHz + cryp IP and secure boot.
+> 
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> ---
+>  arch/arm64/boot/dts/st/stm32mp231.dtsi  | 1216 +++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/st/stm32mp233.dtsi  |   94 +++
+>  arch/arm64/boot/dts/st/stm32mp235.dtsi  |   16 +
+>  arch/arm64/boot/dts/st/stm32mp23xc.dtsi |    8 +
+>  arch/arm64/boot/dts/st/stm32mp23xf.dtsi |    8 +
+>  5 files changed, 1342 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/st/stm32mp231.dtsi b/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..ee93f5412096a7cd30b228b85a5280a551fbfaf4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> @@ -0,0 +1,1216 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
+> +/*
+> + * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
+> + * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
+> + */
+> +#include <dt-bindings/clock/st,stm32mp25-rcc.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/regulator/st,stm32mp25-regulator.h>
+> +#include <dt-bindings/reset/st,stm32mp25-rcc.h>
+> +
+> +/ {
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			compatible = "arm,cortex-a35";
+> +			device_type = "cpu";
+> +			reg = <0>;
+> +			enable-method = "psci";
+> +			power-domains = <&CPU_PD0>;
+> +			power-domain-names = "psci";
+> +		};
+> +	};
+> +
+> +	arm-pmu {
+> +		compatible = "arm,cortex-a35-pmu";
+> +		interrupts = <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>;
+> +		interrupt-parent = <&intc>;
+> +	};
+> +
+> +	arm_wdt: watchdog {
+> +		compatible = "arm,smc-wdt";
+> +		arm,smc-id = <0xb200005a>;
+> +		status = "disabled";
+> +	};
+> +
+> +	clocks {
+
+Drop
+
+> +		clk_dsi_txbyte: txbyteclk {
+
+Use consistent naming style. Either prefix or suffix. Or better, use
+what is recommended.
+
+See: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml?h=v6.11-rc1
+
+> +			#clock-cells = <0>;
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <0>;
+> +		};
+> +
+> +		clk_rcbsec: clk-rcbsec {
+> +			#clock-cells = <0>;
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <64000000>;
+> +		};
+> +	};
+> +
+> +	firmware {
+> +		optee: optee {
+> +			compatible = "linaro,optee-tz";
+> +			method = "smc";
+> +			interrupt-parent = <&intc>;
+> +			interrupts = <GIC_PPI 15 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
+> +		};
+> +
+> +		scmi {
+> +			compatible = "linaro,scmi-optee";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			linaro,optee-channel-id = <0>;
+> +
+> +			scmi_clk: protocol@14 {
+> +				reg = <0x14>;
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			scmi_reset: protocol@16 {
+> +				reg = <0x16>;
+> +				#reset-cells = <1>;
+> +			};
+> +
+> +			scmi_voltd: protocol@17 {
+> +				reg = <0x17>;
+> +
+> +				scmi_regu: regulators {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					scmi_vddio1: regulator@0 {
+> +						reg = <VOLTD_SCMI_VDDIO1>;
+> +						regulator-name = "vddio1";
+> +					};
+> +					scmi_vddio2: regulator@1 {
+> +						reg = <VOLTD_SCMI_VDDIO2>;
+> +						regulator-name = "vddio2";
+> +					};
+> +					scmi_vddio3: regulator@2 {
+> +						reg = <VOLTD_SCMI_VDDIO3>;
+> +						regulator-name = "vddio3";
+> +					};
+> +					scmi_vddio4: regulator@3 {
+> +						reg = <VOLTD_SCMI_VDDIO4>;
+> +						regulator-name = "vddio4";
+> +					};
+> +					scmi_vdd33ucpd: regulator@5 {
+> +						reg = <VOLTD_SCMI_UCPD>;
+> +						regulator-name = "vdd33ucpd";
+> +					};
+> +					scmi_vdda18adc: regulator@7 {
+> +						reg = <VOLTD_SCMI_ADC>;
+> +						regulator-name = "vdda18adc";
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	intc: interrupt-controller@4ac00000 {
+
+Part of Soc most likely.
+
+> +		compatible = "arm,cortex-a7-gic";
+> +		#interrupt-cells = <3>;
+> +		#address-cells = <1>;
+> +		interrupt-controller;
+> +		reg = <0x0 0x4ac10000 0x0 0x1000>,
+> +		      <0x0 0x4ac20000 0x0 0x2000>,
+> +		      <0x0 0x4ac40000 0x0 0x2000>,
+> +		      <0x0 0x4ac60000 0x0 0x2000>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +
+> +		CPU_PD0: power-domain-cpu0 {
+
+All labels are always lowercase.
+
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +		};
+> +
+> +		CLUSTER_PD: power-domain-cluster {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&RET_PD>;
+> +		};
+> +
+> +		RET_PD: power-domain-retention {
+> +			#power-domain-cells = <0>;
+> +		};
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupt-parent = <&intc>;
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
+> +		always-on;
+> +	};
+> +
+> +	soc@0 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		interrupt-parent = <&intc>;
+> +		ranges = <0x0 0x0 0x0 0x80000000>;
+
+Same comments as for all other patches.
+
+> +
+> +		hpdma: dma-controller@40400000 {
+> +			compatible = "st,stm32mp25-dma3";
+> +			reg = <0x40400000 0x1000>;
+> +			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&scmi_clk CK_SCMI_HPDMA1>;
+> +			#dma-cells = <3>;
+> +		};
+> +
+> +		hpdma2: dma-controller@40410000 {
+> +			compatible = "st,stm32mp25-dma3";
+> +			reg = <0x40410000 0x1000>;
+> +			interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&scmi_clk CK_SCMI_HPDMA2>;
+> +			#dma-cells = <3>;
+> +		};
+> +
+> +		hpdma3: dma-controller@40420000 {
+> +			compatible = "st,stm32mp25-dma3";
+> +			reg = <0x40420000 0x1000>;
+> +			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&scmi_clk CK_SCMI_HPDMA3>;
+> +			#dma-cells = <3>;
+> +		};
+> +
+> +		rifsc: bus@42080000 {
+> +			compatible = "st,stm32mp25-rifsc", "simple-bus";
+> +			reg = <0x42080000 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			#access-controller-cells = <1>;
+> +			ranges;
+> +
+> +			i2s2: audio-controller@400b0000 {
+
+Confusing: device has address outside of the bus. What does the bus
+address represent?
+
+> +				compatible = "st,stm32mp25-i2s";
+> +				reg = <0x400b0000 0x400>;
+> +				#sound-dai-cells = <0>;
+> +				interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&rcc CK_BUS_SPI2>, <&rcc CK_KER_SPI2>;
+> +				clock-names = "pclk", "i2sclk";
+> +				resets = <&rcc SPI2_R>;
+> +				dmas = <&hpdma 51 0x43 0x12>,
+> +				       <&hpdma 52 0x43 0x21>;
+> +				dma-names = "rx", "tx";
+> +				access-controllers = <&rifsc 23>;
+> +				status = "disabled";
+> +			};
+> +
+
+...
+
+> +			sdmmc1: mmc@48220000 {
+> +				compatible = "st,stm32mp25-sdmmc2", "arm,pl18x", "arm,primecell";
+> +				arm,primecell-periphid = <0x00353180>;
+> +				reg = <0x48220000 0x400>, <0x44230400 0x8>;
+> +				interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&rcc CK_KER_SDMMC1 >;
+> +				clock-names = "apb_pclk";
+> +				resets = <&rcc SDMMC1_R>;
+> +				cap-sd-highspeed;
+> +				cap-mmc-highspeed;
+> +				max-frequency = <120000000>;
+> +				access-controllers = <&rifsc 76>;
+> +				status = "disabled";
+> +			};
+> +
+> +			ethernet1: ethernet@482c0000 {
+> +				compatible = "st,stm32mp25-dwmac", "snps,dwmac-5.20";
+> +				reg = <0x482c0000 0x4000>;
+> +				reg-names = "stmmaceth";
+> +				interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
+
+Why extended?
+
+> +				interrupt-names = "macirq";
+> +				clock-names = "stmmaceth",
+> +					      "mac-clk-tx",
+> +					      "mac-clk-rx",
+> +					      "ptp_ref",
+> +					      "ethstp",
+> +					      "eth-ck";
+
+...
+
+> +		rcc: clock-controller@44200000 {
+> +			compatible = "st,stm32mp25-rcc";
+> +			reg = <0x44200000 0x10000>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			clocks = <&scmi_clk CK_SCMI_HSE>,
+> +				<&scmi_clk CK_SCMI_HSI>,
+> +				<&scmi_clk CK_SCMI_MSI>,
+> +				<&scmi_clk CK_SCMI_LSE>,
+> +				<&scmi_clk CK_SCMI_LSI>,
+> +				<&scmi_clk CK_SCMI_HSE_DIV2>,
+> +				<&scmi_clk CK_SCMI_ICN_HS_MCU>,
+> +				<&scmi_clk CK_SCMI_ICN_LS_MCU>,
+> +				<&scmi_clk CK_SCMI_ICN_SDMMC>,
+> +				<&scmi_clk CK_SCMI_ICN_DDR>,
+> +				<&scmi_clk CK_SCMI_ICN_DISPLAY>,
+> +				<&scmi_clk CK_SCMI_ICN_HSL>,
+> +				<&scmi_clk CK_SCMI_ICN_NIC>,
+> +				<&scmi_clk CK_SCMI_ICN_VID>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_07>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_08>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_09>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_10>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_11>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_12>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_13>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_14>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_15>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_16>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_17>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_18>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_19>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_20>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_21>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_22>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_23>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_24>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_25>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_26>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_27>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_28>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_29>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_30>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_31>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_32>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_33>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_34>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_35>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_36>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_37>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_38>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_39>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_40>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_41>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_42>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_43>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_44>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_45>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_46>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_47>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_48>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_49>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_50>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_51>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_52>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_53>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_54>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_55>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_56>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_57>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_58>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_59>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_60>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_61>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_62>,
+> +				<&scmi_clk CK_SCMI_FLEXGEN_63>,
+> +				<&scmi_clk CK_SCMI_ICN_APB1>,
+> +				<&scmi_clk CK_SCMI_ICN_APB2>,
+> +				<&scmi_clk CK_SCMI_ICN_APB3>,
+> +				<&scmi_clk CK_SCMI_ICN_APB4>,
+> +				<&scmi_clk CK_SCMI_ICN_APBDBG>,
+> +				<&scmi_clk CK_SCMI_TIMG1>,
+> +				<&scmi_clk CK_SCMI_TIMG2>,
+> +				<&scmi_clk CK_SCMI_PLL3>,
+> +				<&clk_dsi_txbyte>;
+> +				access-controllers = <&rifsc 156>;
+> +		};
+> +
+> +		exti1: interrupt-controller@44220000 {
+> +			compatible = "st,stm32mp1-exti", "syscon";
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +			reg = <0x44220000 0x400>;
+> +			interrupts-extended =
+
+Why extended?
+
+> +				<&intc GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,	/* EXTI_0 */
+> +				<&intc GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 273 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 274 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 275 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 276 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 277 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>,	/* EXTI_10 */
+> +				<&intc GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 0   IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 1   IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH>,
+> +				<0>,						/* EXTI_20 */
+> +				<&intc GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,	/* EXTI_30 */
+> +				<&intc GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>,
+> +				<0>,
+> +				<&intc GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,	/* EXTI_40 */
+> +				<&intc GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>,	/* EXTI_50 */
+> +				<0>,
+> +				<0>,
+> +				<0>,
+> +				<0>,
+> +				<0>,
+> +				<0>,
+> +				<0>,
+> +				<0>,
+> +				<&intc GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>,
+> +				<0>,						/* EXTI_60 */
+> +				<&intc GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>,
+> +				<0>,
+> +				<0>,
+> +				<&intc GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>,
+> +				<0>,
+> +				<0>,
+> +				<&intc GIC_SPI 10  IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
+> +				<0>,
+> +				<&intc GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>,	/* EXTI_70 */
+> +				<0>,
+> +				<&intc GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
+> +				<0>,						/* EXTI_80 */
+> +				<0>,
+> +				<0>,
+> +				<&intc GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&intc GIC_SPI 258 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		syscfg: syscon@44230000 {
+> +			compatible = "st,stm32mp25-syscfg", "syscon";
+> +			reg = <0x44230000 0x10000>;
+> +		};
+> +
+> +		pinctrl: pinctrl@44240000 {
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+
+Please fix coding style everywhere here.
+
+
+> +			compatible = "st,stm32mp257-pinctrl";
+> +			ranges = <0 0x44240000 0xa0400>;
+> +			interrupt-parent = <&exti1>;
+> +			st,syscfg = <&exti1 0x60 0xff>;
+> +			pins-are-numbered;
+> +
+
+...
+
+> diff --git a/arch/arm64/boot/dts/st/stm32mp23xc.dtsi b/arch/arm64/boot/dts/st/stm32mp23xc.dtsi
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..e33b00b424e1207dc6212e75235785f8c61e5055
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/st/stm32mp23xc.dtsi
+> @@ -0,0 +1,8 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
+> +/*
+> + * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
+> + * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
+> + */
+> +
+
+What is the point of this file?
+
+Best regards,
+Krzysztof
+
 
