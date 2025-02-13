@@ -1,195 +1,165 @@
-Return-Path: <devicetree+bounces-146342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6478A348ED
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:05:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F78A348C7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:00:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC24E3A9613
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 15:59:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94F28188AABF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64DF202C39;
-	Thu, 13 Feb 2025 15:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F151202C39;
+	Thu, 13 Feb 2025 16:00:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="EWNjC9ff"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HxBobmCI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010007.outbound.protection.outlook.com [52.101.229.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B301DDC23;
-	Thu, 13 Feb 2025 15:59:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739462373; cv=fail; b=EWgoE+gLl93+k3PuvzmxyRj2Ga6jruCWwa2Gg/oNFqAEMxmLyHk1s+o/mDTIew7vrD1OTIVS9OKtiPwAlfS008/EMFH+GpcwAmtbgC2SMv0/8us4odDnyV9dUtEkhOODLqCUOHSlWKpW5+l4XPBYcHfqV2LJfE1rzXpSHvLV2Ms=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739462373; c=relaxed/simple;
-	bh=/Gdmk3kP9sEW4VCXaLVda6/6i5kP0i5JEIDIuSIgEOg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=qYkqTK86e3sWMCW7IQ5RsfqaM8648gw/KUuP7+3d+/3Tq5zSUZ2pC3mSs5oFgW+vtAbIIDm+E6v7GhUh47r2s+VLrDCpfQ2+rU3uxedtfbYDxeloorCz0cbjoI8Sh5SjkIPRGBfrEHwhAYKtQovpUNLMArJE1+5L+pRL7RCttsk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=EWNjC9ff; arc=fail smtp.client-ip=52.101.229.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Cn07a3lNJLLLrJf8mAQt8+4Lozw/HkaQ4GAltMW7MMVVVtw4HeBwdWhflB2D5GSfRJXowl+9r2tm//aXemRjwbBxJjRvDTWs2Qex5zs0IhkNhuP8P3yvNV8A7NarjD6U7ECMQI1K/egDgb5r6bShbWH29Pv/9sA4iHFnWxJ3zMPaWeNhL/PGYmhkSIVLcG/OL3bL6651fErkeAkJGzd8JxJc1LSjCgCXQzyytxc4pOZVUNFHZQkRTWn3mgJU5BJzO58jK+K/7PUpjZ28O3ogdviANhRyEhjiz4CIMub9Fkxma/v+Fi5FCYXsrtQ1Ng3wXW5TO+cu/YIqr2Dv0HZHRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MohkXNu48MMFDuODtjG6FxpYFdHjH8tFLCYLWy7zlvU=;
- b=Hv4YDBEUHLWzwbKyOvFwp76nadT8jvXUDr4/CiwGDGoOrBIF/5Jf+9Tc/ioHb37HpfwOhLrPo+UShU5KrtmcfHCAK1huNtQM/KhDb/dJUaqoaLOLMR5kDg0qJbto7McqZOnowKb4QkMqvlfw+CKRxmyMvsWSBztvwJx2SbEbhz3q7K28mxcxYIWZnLONB1qMHssDuL6btHB/KhyaGpb4Xky6B5HWDQjNvC5MMSZcrpljPVcgJ3NGD9rT7hXpyIuDjq5RlSc1i4g/Si5QeBv2oZyoZeEsDTeX3NYMnmmzWC84GFBpZ2zQOxvsBQhifwqGP3PndMQk0BN3psWgX7aLBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MohkXNu48MMFDuODtjG6FxpYFdHjH8tFLCYLWy7zlvU=;
- b=EWNjC9ff6HcvvM6/Gj4u95G0ya8TNwSfUYuWLMYfvIs9EZDpBIJAWjshaY6znKbio/CsrJGw9YvN/5Cq4HzdiY6qkKNnjmrNQVw32OY8RtMo8wiR/I4U3/n1n8cpI2GMpgtzQqTZW+LgNAkJZ25PG8r9wn9l8yqIn2wXqfi8GZw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-Received: from OS9PR01MB13950.jpnprd01.prod.outlook.com (2603:1096:604:35e::5)
- by TYRPR01MB14080.jpnprd01.prod.outlook.com (2603:1096:405:21d::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.12; Thu, 13 Feb
- 2025 15:59:26 +0000
-Received: from OS9PR01MB13950.jpnprd01.prod.outlook.com
- ([fe80::244d:8815:7064:a9f3]) by OS9PR01MB13950.jpnprd01.prod.outlook.com
- ([fe80::244d:8815:7064:a9f3%5]) with mapi id 15.20.8445.013; Thu, 13 Feb 2025
- 15:59:26 +0000
-Date: Thu, 13 Feb 2025 16:59:10 +0100
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tommaso Merciai <tomm.merciai@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
-	biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/8] media: dt-bindings: renesas,rzg2l-csi2: Document
- Renesas RZ/G3E CSI-2 block
-Message-ID: <Z64WzulGUeQ5XUAs@tom-desktop>
-References: <20250210114540.524790-1-tommaso.merciai.xr@bp.renesas.com>
- <20250210114540.524790-4-tommaso.merciai.xr@bp.renesas.com>
- <20250213-lovely-parrot-of-realization-ff3ae2@krzk-bin>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250213-lovely-parrot-of-realization-ff3ae2@krzk-bin>
-X-ClientProxiedBy: FR2P281CA0062.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:93::20) To OS9PR01MB13950.jpnprd01.prod.outlook.com
- (2603:1096:604:35e::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81DDD1FF1BF
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 16:00:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739462415; cv=none; b=Mf/MuMfAJMlC6weaO88ItawtRJgBPvO6ZobdBgrLXBiHxsiEiruX7aUb3ISyI6yk8edWxhtFqzchsrt/2jvS3FT4LqkXCHOOLWIXMKNN8PigszJF17iEPxgEa4PMjcc5pFQA7fDSUALZu6HTyWdEVfwVHExHDG0cVh7vNViQm7Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739462415; c=relaxed/simple;
+	bh=tlRPiujx2gpWjfA34WayAz3yoK4kn0l7/eSxXnmoqwo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eaUTHyWNmZV0luxB+1CGhNmnJB9kFRQO/KH2fGk5TstiCz+d40AU5JjFHnBMRdifeGxwt03YFbY9Km4v5xXXaiDbnC160b8rNYF+MEI/BZ5ExEyLUzL3IqtZMo2Qv6saly3FzuvQMQAme7MTBm1w+6bNY9Swq04XiYr/WQ4k5NA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HxBobmCI; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43955067383so7894185e9.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 08:00:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739462412; x=1740067212; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pgDN29uKkb88V0um0RfTC0vvM9HPPQBtETeV1yITKoQ=;
+        b=HxBobmCIcAQ0ymsri4AHcpalrH+pOBQGNbgY43kDrm4jtgy6BsuoOPxDeKGM5+5Edx
+         NQcY9QpXxIsqN+sB98XhjXydd5mZqCanQrEHbxuD67gbdVmGbTHpG35MG/xbGlGCcn8/
+         GWFNGMSIdEp9khXas3Rffqz8014Z74ZB0PlZg0PoRBRtWcY/6h12m18rppOkFoN14+pC
+         a/j3xFN5Ypu2Pl79RobzC/AtQf/LEdUkhnk3pkroOwMThbpX5BSKX+0ojuIZdbP0+40p
+         3POCxjG/1UO253/BAwEQ/eZv1LKJ4QsAkdXepUXwmYpBKeHd/zIJHZci88Uko+Gf/ySx
+         qxZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739462412; x=1740067212;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pgDN29uKkb88V0um0RfTC0vvM9HPPQBtETeV1yITKoQ=;
+        b=fkUms6FEEXCKp8ZmKtCw5fiCGZ+FnoFwabbP1h6ogLrHQwWKLNe8WewKAdQmSmrz+H
+         zZKjJzcD1snqImE1B13IH7DL87aYr/HzYP+QCPClFN+yD9IXMKl/IR15n9QQRh/CjdjK
+         cZ7adcFLj4w5ou7J9iyCiW6eH/q7mBWICeaJ/ZYqau2INBjjvEPQvtcR4Fe6tmeF1vdT
+         snotMCQ+uuAyw0eqT+HnQEMPO1gInj9NbEv8qAMT1/QSS45335rcTMjPmSR7dNKA8RK2
+         9/vbMeZt01qTcNZFlIA0Jo6aYUBuIsOCpUAs+M2+AR1BtfdOCUp5kQ/064Y3IkkIKt3Z
+         Ih9w==
+X-Forwarded-Encrypted: i=1; AJvYcCVg736ZIGzlymkaoFJ+iqpyeHud3HrzLy6knMXt4EGCTyf2jrbmq7+Z29fDAgPqKRN5hm9ZSPBxFQnD@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMZl96vAzg/NNNgv9Nw7z57MUCFtUzRhbaCwLQbq1x+Q5fGJWm
+	0V8tzonVoWGUCRd4MQM+YUo+ZSSZm5TzrykSRB9ZOTGRUKe8gz5asyQC5hhz2CE=
+X-Gm-Gg: ASbGncs2CC4b/oOkSuqzOkOqCfnYvPokJWmUfluDaDeF1Tib4mfcriQf2iCNXA0TIUK
+	1LLahqq3fvBxqxTgvaf3tQnkMYtR45DxLUm8dJBNl7f/N9Ngl92DwIVCfQ+dJpaHPXy0qgPVdJz
+	gMk5nXo7wYCfINVOlUZAfrEv3pgXOn4irHQZnEURoTwpfoMsWDMMl64rUthIlGa30cL4tjpgPz+
+	/a17oHlCdyjRnGli+fD0FiKqTXgM7oWccHNeK9DEf7stxqD5Eg6wfjUTroynMg4bEAdG6amEp4G
+	3j+jREV+2ldWK5X8Br4pic4I9Q==
+X-Google-Smtp-Source: AGHT+IF/wXtprc1U4VPmJ1pAueprsYzKR20H2MkrRTKmejrcGzsEoDZgejq84H03liicKIeACJ4WAA==
+X-Received: by 2002:a05:6000:2ce:b0:38f:287a:43e2 with SMTP id ffacd0b85a97d-38f287a45b1mr2767766f8f.11.1739462408125;
+        Thu, 13 Feb 2025 08:00:08 -0800 (PST)
+Received: from [192.168.68.163] ([145.224.90.174])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258dd5acsm2283106f8f.35.2025.02.13.08.00.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Feb 2025 08:00:07 -0800 (PST)
+Message-ID: <a633f52c-81e8-4c0d-aca7-cc18360866eb@linaro.org>
+Date: Thu, 13 Feb 2025 16:00:04 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS9PR01MB13950:EE_|TYRPR01MB14080:EE_
-X-MS-Office365-Filtering-Correlation-Id: 210be6ce-10ea-4cc4-d4a9-08dd4c4763c8
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?LWq+8E+/ieI0e5qXo3scwl2aIRhs/fo6isBxBiEn2fZH8zYUZwnT7VsHJneO?=
- =?us-ascii?Q?4h5/IgMFczvbvhp+bz0m/C55zePLCHZTAz+Jd8LT6OqGp2rD0rfxyq2a4msQ?=
- =?us-ascii?Q?aq/MFJtCMhdmHAQm1dTwMY0HVZvF82PU2IMmVg31rW7m6GVnfyEJUFwHfcm5?=
- =?us-ascii?Q?PpkcjXsb+SsuITX/wzXjNUScRovXCOCc99+cP6L3JRxJOKvEKTH3/Cwx5lSO?=
- =?us-ascii?Q?xXBCNs4dXNvUYYigS+NTcEpOeEbNS2pkWQaDpJc4AhPoynssLaYzlh7CJoAb?=
- =?us-ascii?Q?JV16ryDHfDRr51EYjKRVlEXx1ZdZlKufblAuL7y4O64Z0fRdtQLLiZeZahlO?=
- =?us-ascii?Q?5WdOZ9pjYQJtAjo5KuXzUlwfB51dCft8VpDrnxeE1gcDQq9AJ0kZ78wLpbKY?=
- =?us-ascii?Q?WoCrpGeSoBFKuzvFdU5FTE2oWt+MYUYGUvgLe0+W/6bvYWKjHQnvKKt1X5Ls?=
- =?us-ascii?Q?tuHKJMdGah7abKvDPpEUZmO/WM2W9lVcFDNru4G2TCetoBH0HFEDkYLYRtW6?=
- =?us-ascii?Q?4FHstoFVE741X5sn4+HLmJrOWkpyAlF6SveBpaJklqt9liejQ+2P3GQlvFGy?=
- =?us-ascii?Q?l3DlUzfdvzW/7HaneBBJWmkSiKmy9C35RWpGolUpUTPIIHuJmPU39R7WkEDE?=
- =?us-ascii?Q?Eyfwd3PdVngaH4uC9IjCrym4qan7puwRtBo8GzCs03eKtyBbpB7fcNdXKKFt?=
- =?us-ascii?Q?23rUuDqhsbfipEKD+yv0PYrNduXTGugbkQPT3W0XsGhoHJt6xDO9zXHF2oAB?=
- =?us-ascii?Q?bcyqyb0hG9Ek11+dFEWksDZLfbkmtKOmRfeDGWu4DCKNV5AeFoFwAPUAVM0I?=
- =?us-ascii?Q?zz2FrJWgLNfFuD8yP91H60rjri22/WWKXCcjjsip6S09lDDEZPK0gQN7hG8s?=
- =?us-ascii?Q?uu2bN/PtuvbjD/Phocmp2k8Hdg/NDoDDJHLPXQ2Pq+Qle+dcr9sCS/ln3zef?=
- =?us-ascii?Q?7cX+eagZbojtDRg+rQ4y/e5F/TJiIMlW294kAqSvekkIcVAgYs/iMeQM5Vjy?=
- =?us-ascii?Q?NRKAxIgo0gqrZBzKgVNTv3091RFoZ8wOiIcKsZrTgdc0jsKTwe2fExAdDA/0?=
- =?us-ascii?Q?iVEVrKkj0Cr4ss8W4kmhrkT4ssqXsFDduW49PwWxMz5MpN3GKNWARZ3IfbDy?=
- =?us-ascii?Q?Hbtsw6TbJnQscMSG3R4XuqyswVJLspxovsS8ATwhd+lrH9tk3Pl40fobzVnY?=
- =?us-ascii?Q?/bPDmmgYKkmYdpHmAS3P63bWjsQw9nPm1KF77Ex1+zeiXcH+M97NN1ylnezc?=
- =?us-ascii?Q?GXA/HkUHXtWa0QXzjJbU73aCB4Ic36ePAuHLp7RCYMSge2cRIVR5n3A0XJDJ?=
- =?us-ascii?Q?9DL/Lrm0hMbSO2dgRa1msmPQj+PT5CoJmvZ4lEjNvaF9+/vMqQhwrIkmejCo?=
- =?us-ascii?Q?WRZOVSQ1vbWYltFn2ou+fuwvE1UlprS2NSKXU8l9BlduahShfPvI+AYgHhR5?=
- =?us-ascii?Q?RPntw3D7NJ2zlNtUR5g/w+dhkcuM28KO?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS9PR01MB13950.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?zkb25/pqHl+n++htIuG6GKXyidwT8BYdUvd6JdmJzvYxmXDpkxesS2vPJARS?=
- =?us-ascii?Q?FixDsoEtbtj8m/IbqVSZF5Mi6hGuJILsR3ghsBgaIiJJWDy9y06IbnNzuqox?=
- =?us-ascii?Q?1uSrehqQoz9ME+sKNabOBixISBWQeoCb+1mlXvSe87GQC4KgiJnvcceN2qis?=
- =?us-ascii?Q?pXlHS0nQbYCq90Zm9JD+tO0lYslSbCGahqgBV4dZ/eZ5YPg+wiM4jAxDfkSl?=
- =?us-ascii?Q?96Lr2ZYAXVYkfd/TUV0qVsIPqdA7tT4HMt/ffJPagcO6FjVit7xWhQN+qW2E?=
- =?us-ascii?Q?5iwDK3MqYLaekzRYQmNB4SGDODgIJiQvedUH5Ep4YUj7EWvhijumI8xBM7qE?=
- =?us-ascii?Q?DjR+bI6HNr5TcP97NcLy9sK8TJwQcaFs7ChENx4/fX/pg6wa2Ji4C/bRZXlv?=
- =?us-ascii?Q?FkwAfO4F1JjXC2/7wae5kmdFA4sq9PxSk/fJA+8Eve/DnI3Xx4jAldAg6vb5?=
- =?us-ascii?Q?QOCdYwj0tb/Khwz3Li9XEiMynHqi0D6jq2KYmU4nxDfbMlUIvZlffHBJ0bCj?=
- =?us-ascii?Q?HHKe9g4pHvozKB5s+Zst11jh7BzqoKafGbFgY1YFybe6yYlx5yjcAvdBEsam?=
- =?us-ascii?Q?OnfMVYEv+MW7diGoS14oaAhUk9x8AcjMRSa6r9uiYC1B37JbWW8SLOli3bZU?=
- =?us-ascii?Q?a7mYppLUHG4mA0cc0gMuCjY3t+lEoZ2wARhM9zYdFmwk8Mpnp+/2eHp2ewZw?=
- =?us-ascii?Q?Y7cIMkqpssraQJ2kJhwV0dyekVTNoRIV1UMyvpQUR9opZNdPGWEN6LdcOqxa?=
- =?us-ascii?Q?gUeHU0ne3vO5bTtgqSGq6ortMVv6uj1loEK0YQFMuUmiye97XxTGQOFRH15H?=
- =?us-ascii?Q?4JUln1I4DurxQYO8aaXbxKSg4tE5cJmj4bjtSynwemNSVFdnwLacUFo63sPa?=
- =?us-ascii?Q?SJaxRCtmVHEy0msAiXj6fAB+Eecuj1AACIL1O8fyqjqSRvtRt+4VeS5IlbhR?=
- =?us-ascii?Q?4wfbRBRAmIhw7BsUljF8rVyFr3AmCiN/Xm1Ov1A3gJSf+VvW/VbdnKEX2bIM?=
- =?us-ascii?Q?OPgqWz18wXouLF8O1vWWlcEGXsXMLfn7ZJJCegj6iBpZl0DYBE1NhTYrjueA?=
- =?us-ascii?Q?hpxJSvSgqL+Nqc9BN8YhUOJK6GTHtP/jKvdx1AAJ+3GwFNOtxBnMWyuTSjG3?=
- =?us-ascii?Q?5SxYsFUG8+5xUiCVk1Cf+HkjK6Gt6pCvEUeRUTbd/MnuCW+vF2f8e0mxR4fu?=
- =?us-ascii?Q?EFqVgE0pPZHivLPdFXN6NKkZIMg/Kp0qq46NVxQclXKH0XF3MDadioV86sBi?=
- =?us-ascii?Q?A1FHPv01avhcx4KSHhZfYsx8ePixzJwrFX96TEKP9POgaBBeqehx4Ju2tfLc?=
- =?us-ascii?Q?VyMKHWKdtJYP3CWeJV4EYoHuRAVjtHg21M3RHgend2i4Z0PTEZn+kOadbNYr?=
- =?us-ascii?Q?RwrXGN0d+o9DDGKjXCK26fAhrU3T6y4X+b2z35G9lXW6uttasKVhQIbtH1WZ?=
- =?us-ascii?Q?AgszMNgohoUnaGuKJcNTZ8aDzsm/R9FQhzwhb3dE6cPo5xDPifp1toRKbx40?=
- =?us-ascii?Q?3CJ6cvIel3JIcJLvdqOVqmCwNCUEB65fmZb2mqXTPvIzQ09oyqLOey+nm3jS?=
- =?us-ascii?Q?n1RIOIecxypwPolW2ohfOVXATTfHK31sG3Gw0IUHQUR10id+iE6CGOzmYSas?=
- =?us-ascii?Q?bQQs4v+pXtrWNOCzAgTQ12w=3D?=
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 210be6ce-10ea-4cc4-d4a9-08dd4c4763c8
-X-MS-Exchange-CrossTenant-AuthSource: OS9PR01MB13950.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2025 15:59:25.8972
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YreyZCOE4ZHzE70Q3MTN/yvYQOS5HoytEDxMV8y+nXjQ8dJ95OIVlahUDglAVEE8AsZ30HFRxqsY134XotOzLhGtFItGAljMHBZPibfX7Uf6Tlk6M9Fw/YjSLgCIsIwL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYRPR01MB14080
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 4/7] Coresight: Introduce a new struct coresight_path
+To: Jie Gan <quic_jiegan@quicinc.com>
+Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
+ <mike.leach@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+References: <20250207064213.2314482-1-quic_jiegan@quicinc.com>
+ <20250207064213.2314482-5-quic_jiegan@quicinc.com>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <20250207064213.2314482-5-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
 
-Thanks for your comment.
 
-On Thu, Feb 13, 2025 at 09:56:58AM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Feb 10, 2025 at 12:45:35PM +0100, Tommaso Merciai wrote:
-> > Document the CSI-2 block which is part of CRU found in Renesas RZ/G3E
-> > SoC.
-> > 
-> > The CSI-2 block on the RZ/G3E SoC is identical to one found on the
-> > RZ/V2H(P) SoC.
-> > 
-> > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+On 07/02/2025 6:42 am, Jie Gan wrote:
+> Add 'struct coresight_path' to store the data that is needed by
+> coresight_enable_path/coresight_disable_path. The structure will be
+> transmitted to any required devices to enable related funcationalities.
 > 
-> From/SoB mismatch.
-
-Ouch sorry, I miss this part on my new setup.
-I'll fix that on v2 same of dt-bindings failure on 4/8.
-
+> The trace_id will be allocated after the path is built. Consequently,
+> The ETM3x and ETM4x devices will directly read the trace_id from path
+> which result in etm_read_alloc_trace_id and etm4_read_alloc_trace_id
+> being deleted.
 > 
-> Best regards,
-> Krzysztof
+> Co-developed-by: James Clark <james.clark@linaro.org>
+> Signed-off-by: James Clark <james.clark@linaro.org>
+> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+> ---
+>   drivers/hwtracing/coresight/coresight-core.c  | 106 +++++++++++++-----
+>   drivers/hwtracing/coresight/coresight-dummy.c |   5 +-
+>   .../hwtracing/coresight/coresight-etm-perf.c  |  30 +++--
+>   .../hwtracing/coresight/coresight-etm-perf.h  |   2 +-
+>   drivers/hwtracing/coresight/coresight-etm.h   |   1 -
+>   .../coresight/coresight-etm3x-core.c          |  54 ++-------
+>   .../coresight/coresight-etm4x-core.c          |  54 ++-------
+>   drivers/hwtracing/coresight/coresight-etm4x.h |   1 -
+>   drivers/hwtracing/coresight/coresight-priv.h  |  12 +-
+>   drivers/hwtracing/coresight/coresight-stm.c   |   3 +-
+>   drivers/hwtracing/coresight/coresight-sysfs.c |  17 ++-
+>   drivers/hwtracing/coresight/coresight-tpdm.c  |   3 +-
+>   include/linux/coresight.h                     |  12 +-
+>   13 files changed, 143 insertions(+), 157 deletions(-)
 > 
+[...]
+> @@ -352,7 +352,7 @@ static void *etm_setup_aux(struct perf_event *event, void **pages,
+>   	 * CPUs, we can handle it and fail the session.
+>   	 */
+>   	for_each_cpu(cpu, mask) {
+> -		struct list_head *path;
+> +		struct coresight_path *path;
+>   		struct coresight_device *csdev;
+>   
+>   		csdev = per_cpu(csdev_src, cpu);
+> @@ -405,15 +405,15 @@ static void *etm_setup_aux(struct perf_event *event, void **pages,
+>   			cpumask_clear_cpu(cpu, mask);
+>   			continue;
+>   		}
+> -
+>   		/* ensure we can allocate a trace ID for this CPU */
+> -		trace_id = coresight_trace_id_get_cpu_id_map(cpu, &sink->perf_sink_id_map);
+> -		if (!IS_VALID_CS_TRACE_ID(trace_id)) {
+> +		trace_id = coresight_path_assign_trace_id(path, CS_MODE_PERF);
+> +
+> +		/* Can be 0 and valid, ETE doesn't need an ID */
+> +		if (trace_id < 0) {
 
-Thanks & Regards,
-Tommaso
+Not sure why I wrote it like this, but I think we should leave it as it 
+was with !IS_VALID_CS_TRACE_ID(). Even with ETE it calls the trace ID 
+allocator, so nothing has changed here.
+
 
