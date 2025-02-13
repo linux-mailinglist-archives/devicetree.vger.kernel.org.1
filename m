@@ -1,198 +1,267 @@
-Return-Path: <devicetree+bounces-146237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805B1A33D26
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 12:00:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF5CEA33DE3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 12:25:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26B8E16968A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:00:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD0CE3ABEB7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DEA22139D4;
-	Thu, 13 Feb 2025 10:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F1920B1FF;
+	Thu, 13 Feb 2025 11:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="d/Mhh3Nd"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="qj29tY/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF5C82139D2;
-	Thu, 13 Feb 2025 10:59:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEBF207641
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 11:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739444384; cv=none; b=C0/0rxFFiEDEyiEtrotz0ajlSzWCRdybZElc0mS8lQUlzyLt50QPMpR3J4KbTVktsVv6aP/LuV/Oi16RX0TcYyFkxcWF1wll3xLEd/uiQE6lHoaDGfrNJpslvNpPqQcKWcoZoNMM3IMVINGAGB5WK2cuU8KnlTupCrgf7eAfR0c=
+	t=1739445715; cv=none; b=BbQoNTKKvRXyTjo/81vbB6SOvMpQkiozFfBRDKwenfdjEgBkLi7ZgY/r/I12MYo+172Dere8ZCFaQQSoAKHFyw/pzzzEyoLbVPYg6k2SEYjhIMIuRjmNe3gnCcJE+ys7/I69cqNjKhbFMJzOFKNiiklMA+AwStzu3Nfneur6WnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739444384; c=relaxed/simple;
-	bh=xDVrlK0GSHvz7tJRAfdNrY4o62bDOvoV3gSyda5z/eY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=rKlnWB/fwxYmjM7c+b1eCeu4XG/TajxFfo6k1k/R5iUuWp5p1WAUS/HlN73vsf0O8za0ZNBIaFpVpnejohoPL8lMNE9USEFbeN6IBmgBoUNco44RNyGDrblcqu/mhIspiguKZ9ZgXq+lAoxTM4FUdlOOMRFX2pECmpOtUyFaIf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=d/Mhh3Nd; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F0E6D432FC;
-	Thu, 13 Feb 2025 10:59:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739444372;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=oZl2hgZn7jehdjIzednng7eJxpp/nrLuv91gbdmRYjc=;
-	b=d/Mhh3Ndhg3JWzdTG+RTBCkhAXySiufk0uR/wo4ytLWc73hLlZvo2H8+IZYVuuOlY5b9Ge
-	PNN29nwIV+50n1wIo+baZ78rS7VGFoYGz/8Cm0DghC9TnB9dkrWUYRJI8beC68TRRJXh5V
-	eijwN0Yuso8xbb2ildJj686MKCaf9ht0P8HGziPcS8c8zjAes5zznOpgpua9OasFWa/Yqx
-	4oI1RYoji9hl94+Mp+tqQEQtYM8Efake2lhAacsQOM5AKT0Ob8IUhrrtGDt3jhDz7k7WYl
-	uNveQP3olQ8PPZ6X7hag01RNYtSzrOX86vVkNG3N7f02PGdplYge93E3Tr0Dsw==
+	s=arc-20240116; t=1739445715; c=relaxed/simple;
+	bh=Pi4eMn80Vkv3stDJ2Ryeq1gBOrxrcjdgjXuoH7Kh8vw=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=B8xrSqFQkmxSTdS3quzel8tQV3Pra608HcPGycyB3LkD9X/tH4pxyzrtqr0lnCnrzh62fMFMGJ8dP4CNYTqBAelTTJCqmTDwsHAn1QxVV/E+MFSrNdAWMsZL2EcOR1987fwAhRpoyvu5Dnu1LskY4tG7GoU2vfVS13nPBVlTltc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=qj29tY/i; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250213112151epoutp03140053ab99b9207a1d55bb414e4a2806~jwKikMupg1886018860epoutp03k
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 11:21:51 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250213112151epoutp03140053ab99b9207a1d55bb414e4a2806~jwKikMupg1886018860epoutp03k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1739445711;
+	bh=FYeA0egZv4FF41HWS+5lY5RJ3ar8Pphs0FsmtbhyRSE=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=qj29tY/iSIOX/IKeNwEWLUhYSOojk/p0yq39MyLUD5o9EhMrlTrfigvInh/f3eecq
+	 84a7nGp1x9AltRNUKXaTRFq1GhRgM7M05Jp+LqCej7VEd5vtVEEIO+C/IeAU42+Yjt
+	 9eaRUYaXidA013VMkA3nAAG5lk5HvpMbpBwigtMw=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+	20250213112150epcas5p432ded18de14682cc3b9c16d15c3a6f1b~jwKh9cVoO2775827758epcas5p4Q;
+	Thu, 13 Feb 2025 11:21:50 +0000 (GMT)
+Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.176]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4Ytt710fwvz4x9Pr; Thu, 13 Feb
+	2025 11:21:49 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+	epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	AF.8A.19710.CC5DDA76; Thu, 13 Feb 2025 20:21:48 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250213110439epcas5p4363f12d24845f86de9f5e0d1c15bcaf9~jv7hQbNb63061630616epcas5p4_;
+	Thu, 13 Feb 2025 11:04:39 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250213110439epsmtrp1713a253bece086c0e65de979af9e8830~jv7hPeule2200722007epsmtrp1E;
+	Thu, 13 Feb 2025 11:04:39 +0000 (GMT)
+X-AuditID: b6c32a44-363dc70000004cfe-d8-67add5cc2674
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	CF.18.23488.7C1DDA76; Thu, 13 Feb 2025 20:04:39 +0900 (KST)
+Received: from FDSFTE596 (unknown [107.122.82.131]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250213110436epsmtip2c8a8209a8c3b9ff20b96d86af3fac0e3~jv7ezI9zW2340823408epsmtip2R;
+	Thu, 13 Feb 2025 11:04:36 +0000 (GMT)
+From: "Swathi K S" <swathi.ks@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
+Cc: <krzk+dt@kernel.org>, <andrew+netdev@lunn.ch>, <davem@davemloft.net>,
+	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+	<robh@kernel.org>, <conor+dt@kernel.org>, <richardcochran@gmail.com>,
+	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+	<rmk+kernel@armlinux.org.uk>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+In-Reply-To: <20250213-adorable-arboreal-degu-6bdcb8@krzk-bin>
+Subject: RE: [PATCH v6 1/2] dt-bindings: net: Add FSD EQoS device tree
+ bindings
+Date: Thu, 13 Feb 2025 16:34:29 +0530
+Message-ID: <009a01db7e07$132feb60$398fc220$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 13 Feb 2025 11:59:31 +0100
-Message-Id: <D7R9KGN6EMDM.1DCDL4P5RC23B@bootlin.com>
-Subject: Re: [PATCH v3 4/7] gpio: max7360: Add MAX7360 gpio support
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
- <20250113-mdb-max7360-support-v3-4-9519b4acb0b1@bootlin.com>
- <Z5eFGJspoGOINcG6@smile.fi.intel.com>
- <D7QHGB7D0VSG.X255SDU7DFOF@bootlin.com>
- <Z6y65SnrprvnpKEa@smile.fi.intel.com>
- <D7QLITNTXRUJ.3NA44E6PQMAUX@bootlin.com>
- <Z6zJljphfTuEhBTP@smile.fi.intel.com>
-In-Reply-To: <Z6zJljphfTuEhBTP@smile.fi.intel.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegieehlecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggfgtgffkffuvefhvffofhgjsehtqhertdertdejnecuhfhrohhmpedfofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugdfuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkefhkeeifeethfejteevfeduheduvddvuedvvddugfffhfevkefftefhuefftddunecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejiedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudejpdhrtghpthhtoheprghnughrihihrdhshhgvvhgthhgvnhhkohesihhnthgvlhdrtghomhdprhgtphhtthhopehlvggvsehkvghrnhgvlhdro
- hhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplh
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFMfZy5LnHh86L+CikZ+hKlrx3PbgHP/Q5uAh59lGQBgzSo3LQ3hOaA
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Ta1BUZRjuO2cvB2mZ44LywUSuJ7twWdjFZT3bLFhKzhZWFD9yGJWOcGYX
+	2dvsLlJNTRZGiALSJLELrgsjFw1IF12X6wQhjkKAFzYoKBJIbjOMohgY0C4Hin/P9z7P+z3v
+	810wlD/NCcRStSbaoKXUBGcDy/FT8CvCrr4apWjotpycnygEZOWwk01WN3cjZEnPMRZ5tr2b
+	TY513OOSE5bfOWRPz0Uu2evIY5P2ERebvNNQwiFzXKNs0rpYwyY7bJvJuc5pQLZ3jaPk7fwC
+	hFxucnJf4yvuuG6hisvnBxDFWP4VrqLeMsRV2OzpCvuF4xxF3bnPFfXOWUQx09LHUbS2iBWz
+	9ufjvRPT5CqaSqENAlqbrEtJ1SqjibiEpN1JUVKRWCiWkTsIgZbS0NFE7N544Z5UtTsXIThC
+	qdPdpXjKaCQiYuQGXbqJFqh0RlM0QetT1HqJPtxIaYzpWmW4lja9KhaJIqPcwg/TVHXmZkTf
+	L/joQeEQ6yho9M8BXhjEJXDw7/sgB2zA+HgjgOaqRZaH4OMPAcy5F8YQcwDen/6StdZR9bAI
+	YYhmAK2OBpRZjAP4XfYj4FFx8BBYltfC9WA/XAjr+iu5HhGKD6PwZFHJylZeeAzMnc10Exjm
+	i78Hs675eMos/EVYUDLH8WAeLoNtrTdZDN4Ib5hHVzCKh8KK0imUmUgA58cq2IzXHvi0eAkw
+	Gn94bf7kynAQP+EFKx1ONtMQCwfrMjkM9oWT1y9zGRwIJ/KzVnES/D6vbzWyCg4tFKzqd8If
+	73rmx9wGwfCHhgimHARP36xFGF8fmPt0FGHqPOi0ruEX4OKUa3XLAOgon+GeAoRlXTTLumiW
+	dREs/7vZAOsCCKD1Ro2STo7Si7V0xn8XnqzT2MHKsw+JdYL+s0vhbQDBQBuAGEr48WBhtZLP
+	S6E+/oQ26JIM6Wra2Aai3OddgAZuSta5/43WlCSWyEQSqVQqkW2Xigl/Xmb9MSUfV1ImOo2m
+	9bRhrQ/BvAKPIgc6R20J2dih0IMR7KyNGO9464I690zYvi/eBI7HTwJcj4sOTVyJ9HZs23vu
+	ZdOmxbjSwb4y76L9w16/1XduaSWoLuuutPlk+tKIf6LQ/M6ULYgM3Uw0Fl/tiKm6WP3rQfR9
+	LeIzvlQxkLaj3CqMvH7a71NNwfmF7N3tQfWnmpb/GbYkbGFDyaQm8sHXR3wzUrfJ5Rr71pqr
+	5jFZ8K7Kv575Y1jfe2BfapP88I0Pen+Je/Qz/nbG5FuijlvWmbvdxW9cop6bebf3z5eeTYzM
+	bnrdpAz7Ft0pFwwcXlbXfmOuLaXPTA9FDQpkrv6ZphNSqq56ZHvtmKUs74ntM5+Y8v21X6ki
+	CJZRRYlDUIOR+hfqY4fEfwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGIsWRmVeSWpSXmKPExsWy7bCSvO7xi2vTDTY+EbD4+XIao8XyBztY
+	LdbsPcdkMed8C4vF/CPnWC2eHnvEbvFy1j02i/PnN7BbXNjWx2qx6fE1VovLu+awWXRde8Jq
+	Me/vWlaLYwvELL6dfsNoceTMC2aLS/0TmSz+79nB7iDkcfnaRWaPLStvMnk87d/K7rFz1l12
+	jwWbSj02repk89i8pN5j547PTB7v911l8zi4z9Dj8ya5AO4oLpuU1JzMstQifbsErowFGyaw
+	FjyXr9jY3svcwHhCrIuRk0NCwERixacZTF2MXBxCArsZJWadX84MkZCU+NQ8lRXCFpZY+e85
+	O0TRM0aJvnUbGEESbAJaEov69rGD2CICuhKbbywHK2IW+MIsMfv+ZKixbxklrjYdYAGp4hSw
+	k+j93AzWISzgL/G+9ySYzSKgKjFxzjc2EJtXwFLi0MFTLBC2oMTJmU/AbGYBbYmnN5/C2csW
+	voY6VUHi59NlrBBXuEn8nv2PEaJGXOLozx7mCYzCs5CMmoVk1Cwko2YhaVnAyLKKUTK1oDg3
+	PTfZsMAwL7Vcrzgxt7g0L10vOT93EyM46rU0djC++9akf4iRiYPxEKMEB7OSCK/EtDXpQrwp
+	iZVVqUX58UWlOanFhxilOViUxHlXGkakCwmkJ5akZqemFqQWwWSZODilGpi6QvQf7P8iaav1
+	4mzOiq3nQy7PXRN8est2l/dRqXdY64ofqt09IMTynvtnrWVB0NezPutdg3yCGjhmeX06veyJ
+	mPB2izvXC/zU0vPPBuYdCJZJiBD1TEvhWnKrn4275uh649r6jXwL/GWz/M9+/uP2oNm//yfr
+	7xOvJ5eu8IrUd8zhV6n4/nTXuzuxFv95hZ6xG01qcFPiCTh5polz6oZ4Sx7Zd/mzN93f2Fcr
+	pl/w9u2cubtnyGiesm9R/Nebe/lY5nTBmqcPZvned5C0/6gmK1sWzrAs19Rk2tGGDcGzJOS2
+	dZX3TpvcO+POet7aXA6vFwGPUueLrJvacYm7b2NiNkuc7ZZNVlJThGt+7FBiKc5INNRiLipO
+	BACb1ffZaQMAAA==
+X-CMS-MailID: 20250213110439epcas5p4363f12d24845f86de9f5e0d1c15bcaf9
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250213044955epcas5p110d1e582c8ee02579ead73f9686819ff
+References: <20250213044624.37334-1-swathi.ks@samsung.com>
+	<CGME20250213044955epcas5p110d1e582c8ee02579ead73f9686819ff@epcas5p1.samsung.com>
+	<20250213044624.37334-2-swathi.ks@samsung.com>
+	<20250213-adorable-arboreal-degu-6bdcb8@krzk-bin>
 
-On Wed Feb 12, 2025 at 5:17 PM CET, Andy Shevchenko wrote:
-> On Wed, Feb 12, 2025 at 05:08:56PM +0100, Mathieu Dubois-Briand wrote:
-> > On Wed Feb 12, 2025 at 4:14 PM CET, Andy Shevchenko wrote:
-> > > On Wed, Feb 12, 2025 at 01:57:34PM +0100, Mathieu Dubois-Briand wrote=
-:
-> > > > On Mon Jan 27, 2025 at 2:07 PM CET, Andy Shevchenko wrote:
-> > > > > On Mon, Jan 13, 2025 at 01:42:28PM +0100, Mathieu Dubois-Briand w=
-rote:
->
-> ...
->
-> > > > > > +	if (of_property_read_u32(pdev->dev.of_node, "ngpios", &ngpios=
-)) {
-> > > > > > +		dev_err(&pdev->dev, "Missing ngpios OF property\n");
-> > > > > > +		return -ENODEV;
-> > > > > > +	}
-> > > > >
-> > > > > This is not needed, it is already done in GPIOLIB core.
-> > > >=20
-> > > > I believe this is still needed:
-> > > > - For gpos, we need the gpio count to correctly set the partition
-> > > >   between gpo and keypad columns in max7360_set_gpos_count().
-> > >
-> > > Shouldn't be that done somewhere in the GPIO valid mask initialisatio=
-n?
-> > >
-> > > > - For gpios, we need the gpio count to setup the IRQs.
-> > >
-> > > Doesn't GPIOLIB parse the property before initializing the IRQ valid =
-mask
-> > > and other init callbacks?
-> >=20
-> > No, I believe I have to register the IRQ before registering the GPIO, s=
-o
-> > I can get the IRQ domain.
-> >=20
-> > Right now I have something like:
-> >=20
-> > irq_chip->num_irqs =3D ngpios;
-> > devm_regmap_add_irq_chip_fwnode(dev, dev_fwnode(dev), max7360_gpio->reg=
-map,
-> > irq, flags, 0, irq_chip, &irq_chip_data);
-> > gpio_config.irq_domain =3D regmap_irq_get_domain(irq_chip_data);
-> > devm_gpio_regmap_register(dev, &gpio_config);
-> >=20
-> > Also, gpiolib will store ngpios in the gpio_chip structure, but while
-> > using gpio-regmap, this structure is masked behind the opaque
-> > gpio_regmap structure. So I believe there is no easy way to retrieve it=
-s
-> > value.
-> >=20
-> > This part of the code changed a lot, maybe it would be easier if I push
-> > a new version of the series and we continue the discussion there?
->
-> So, what seems need to be added is some flag to GPIO regmap configuration
-> data structure and a code that is called after gpiochip_add_data() in
-> gpio_regmap_register() to create a domain. This will solve the above issu=
+
+
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 13 February 2025 13:24
+> To: Swathi K S <swathi.ks=40samsung.com>
+> Cc: krzk+dt=40kernel.org; andrew+netdev=40lunn.ch; davem=40davemloft.net;
+> edumazet=40google.com; kuba=40kernel.org; pabeni=40redhat.com;
+> robh=40kernel.org; conor+dt=40kernel.org; richardcochran=40gmail.com;
+> mcoquelin.stm32=40gmail.com; alexandre.torgue=40foss.st.com;
+> rmk+kernel=40armlinux.org.uk; netdev=40vger.kernel.org;
+> devicetree=40vger.kernel.org; linux-stm32=40st-md-mailman.stormreply.com;
+> linux-arm-kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org
+> Subject: Re: =5BPATCH v6 1/2=5D dt-bindings: net: Add FSD EQoS device tre=
 e
-> and helps other drivers to get rid of potential duplication of
-> devm_regmap_add_irq_chip_fwnode() calls.
->
-> Have you researched this path?
+> bindings
+>=20
+> On Thu, Feb 13, 2025 at 10:16:23AM +0530, Swathi K S wrote:
+> > +  clock-names:
+> > +    minItems: 5
+> > +    maxItems: 10
+> > +    contains:
+> > +      enum:
+> > +        - ptp_ref
+> > +        - master_bus
+> > +        - slave_bus
+> > +        - tx
+> > +        - rx
+> > +        - master2_bus
+> > +        - slave2_bus
+> > +        - eqos_rxclk_mux
+> > +        - eqos_phyrxclk
+> > +        - dout_peric_rgmii_clk
+>=20
+> This does not match the previous entry. It should be strictly ordered wit=
+h
+> minItems: 5.
 
-OK, so looking at the code, I believe it would need to:
-- Add some flag in gpio_regmap_config structure, so
-  gpio_regmap_register() creates a new IRQ domain.
-- Add a function allowing to retrieve this domain out of the gpio_regmap
-  structure.
-- Allow to pass a domain in the regmap_irq_chip structure, so
-  regmap_add_irq_chip_fwnode() use this domain instead of calling
-  regmap_irq_create_domain().
-- Make sure this domain is still populated with the IRQ data: number of
-  IRQs, IRQ base but also a pointer on the regmap_irq_chip_data
-  structure in .host_data. I believe this will be a bit tricky.
-- Add a function allowing to retrieve ngpio out of the
-  gpio_regmap.gpio_chip structure, so it can be used for IRQ setup and
-  other places of the driver.
+Hi Krzysztof,
+Thanks for reviewing.
+In FSD SoC, we have 2 instances of ethernet in two blocks.
+One instance needs 5 clocks and the other needs 10 clocks.
 
-I'm sorry, but I feel like this is a lot of changes to solve this point.
-I've been thinking about it, and I can suggest a different solution.
+I tried to understand this by looking at some other dt-binding files as giv=
+en below, but looks like they follow similar approach
+Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
 
-For gpios, I will remove the ngpios property of the device tree and use
-a fixed value:
-- For the today version of the chip, this is always 8.
-- I a chip variant or a similar chip ever arise later with a different
-  number of gpios, the fixed value can be set according to the
-  "compatible" value.
-- This removes any issue with the IRQ setup.
+Could you please guide me on how to implement this?
+Also, please help me understand what is meant by 'strictly ordered'
 
-For gpos, we have to keep ngpios, as it depends of the implementation on
-the board. That means ngpios will be used:
-- For the gpio chip configuration: we let gpiolib retrieve it from the
-  device tree.
-- In gpio-regmap reg_mask_xlate callback: I can add a function allowing
-  to retrieve it from gpio_regmap.gpio_chip, as suggested above.
-- In max7360_set_gpos_count() to validate the coherency between
-  requested gpios and keypad columns and set the correct configuration
-  on the chip:
-  - I can also retrieve the value from gpio_regmap.gpio_chip, but that
-    means the check is made after the call to
-    devm_gpio_regmap_register().
-  - Or I will still need to retrieve it using device_property_read_u32()
-    here.
+>=20
+>=20
+> > +
+> > +  iommus:
+> > +    maxItems: 1
+> > +
+> > +  phy-mode:
+> > +    enum:
+> > +      - rgmii-id
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +  - iommus
+> > +  - phy-mode
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - =7C
+> > +    =23include <dt-bindings/clock/fsd-clk.h>
+> > +    =23include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    soc =7B
+> > +        =23address-cells =3D <2>;
+> > +        =23size-cells =3D <2>;
+> > +        ethernet1: ethernet=4014300000 =7B
+> > +            compatible =3D =22tesla,fsd-ethqos=22;
+> > +            reg =3D <0x0 0x14300000 0x0 0x10000>;
+> > +            interrupts =3D <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
+> > +            interrupt-names =3D =22macirq=22;
+> > +            clocks =3D <&clock_peric
+> PERIC_EQOS_TOP_IPCLKPORT_CLK_PTP_REF_I>,
+> > +                     <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_ACLK_I>,
+> > +                     <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_HCLK_I>,
+> > +                     <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_RGMII_CLK_=
+I>,
+> > +                     <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_CLK_RX_I>,
+> > +                     <&clock_peric PERIC_BUS_D_PERIC_IPCLKPORT_EQOSCLK=
+>,
+> > +                     <&clock_peric PERIC_BUS_P_PERIC_IPCLKPORT_EQOSCLK=
+>,
+> > +                     <&clock_peric PERIC_EQOS_PHYRXCLK_MUX>,
+> > +                     <&clock_peric PERIC_EQOS_PHYRXCLK>,
+> > +                     <&clock_peric PERIC_DOUT_RGMII_CLK>;
+> > +            clock-names =3D =22ptp_ref=22, =22master_bus=22, =22slave_=
+bus=22,=22tx=22,
+> > +                          =22rx=22, =22master2_bus=22, =22slave2_bus=
+=22, =22eqos_rxclk_mux=22,
+> > +                          =22eqos_phyrxclk=22,=22dout_peric_rgmii_clk=
+=22;
+> > +            pinctrl-names =3D =22default=22;
+> > +            pinctrl-0 =3D <&eth1_tx_clk>, <&eth1_tx_data>, <&eth1_tx_c=
+trl>,
+> > +                        <&eth1_phy_intr>, <&eth1_rx_clk>, <&eth1_rx_da=
+ta>,
+> > +                        <&eth1_rx_ctrl>, <&eth1_mdio>;
+> > +            iommus =3D <&smmu_peric 0x0 0x1>;
+> > +            phy-mode =3D =22rgmii-id=22;
+> > +       =7D;
+>=20
+> Misaligned/misindented.
 
-How do you feel about this solution?
+Ack
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>=20
+> Best regards,
+> Krzysztof
+
 
 
