@@ -1,66 +1,62 @@
-Return-Path: <devicetree+bounces-146443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03FF7A34EFE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:06:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD82A34F03
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:07:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A2587A41BC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:05:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CCB23ABA84
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02ECA245B16;
-	Thu, 13 Feb 2025 20:06:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 873A224A04C;
+	Thu, 13 Feb 2025 20:07:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O/JH8jfV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mjnfPFOa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4BE828A2CB;
-	Thu, 13 Feb 2025 20:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2FF28A2CB;
+	Thu, 13 Feb 2025 20:07:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739477159; cv=none; b=EvPMgFqxpfcu924/14AWhehCNF7lMU92WmP+HAj/b24INeMUT9foD8v2lhOEiI6vpY0cPc7r3ngVt28urmdyiiNLXEW7/BzviAZDHYnFSlO5mdcCyAlwLxO3nylOit6cRmhK1Ikh2Eams1evc7aQ3j1EvowzqgcCBlUMvqNnz3M=
+	t=1739477247; cv=none; b=A5ownosPyHXSFgJUVQ00UOMcGhNr9wGcnP+O+2hKIbuYIIyAL9+7dpqmVsSE4GbeUOmh05xSr6XbMXWhinRhTpEhbEwHegdCyKhe2ZCYWWnhjW7dw0qYSMct5+dr89298xTryhgCImauu8Z5QzCzeY6NAC/67pk1c9FpbvldSEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739477159; c=relaxed/simple;
-	bh=NACchtxeonADU5GQJHVdhJAYs1NUCFnsjx8N1JQdRrU=;
+	s=arc-20240116; t=1739477247; c=relaxed/simple;
+	bh=3DmcbEkHgnPTKF7R+BfX1ZJqHTWQE6R1Af0rscBhj5o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IYEiKiPTrvgB4Ru8yFRO3PFS10M1GCrSnHzEyOsIFyE7t4lWfbhSHBtQnrnadTehJZ+ELNEzku1ua1gY6mnORFDauTdi+zsd9JXPecl5u4BRT1/y87TgfHQ1Wk9iohJXiNtqjgqmDvYX4RjO2BM3rX8Al5/tn1hVYSKkWrlrpe4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O/JH8jfV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB8B6C4CED1;
-	Thu, 13 Feb 2025 20:05:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iDMocjB0uq5BM3dRCREO7gvwVzWPLKwb6sS1uJ4IARdX/bQp4GnKz05/0UDrERw+YyJOYLszFbrMcTFXwxs4Mm+jmKvA8gCwQ9V7aD4nylIDAwnp2MsGetbimJFUnz0cM/r2A26eN8EUJjsXp5RMDV3L8O0MCYPyGZIKaIJnvyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mjnfPFOa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CADE9C4CED1;
+	Thu, 13 Feb 2025 20:07:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739477159;
-	bh=NACchtxeonADU5GQJHVdhJAYs1NUCFnsjx8N1JQdRrU=;
+	s=k20201202; t=1739477246;
+	bh=3DmcbEkHgnPTKF7R+BfX1ZJqHTWQE6R1Af0rscBhj5o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O/JH8jfV1QVq1uasHTsNeuvpUp+d/jj3Sxg0GxQKCVk7MJyvAD+eV7i506He6qDkk
-	 CgczH1mXZqmixuHsk0D/2KtFkSCe/Wmi8P9wl7zCIUczWtl3sD9Vq+H2A5cpdDdnQF
-	 qNGJnP9y/5CtGu9vhXYx1B8p7h+0KKFG7NvnxjfzY6NPNfHSqEgpjg6KZXdcGWsLa9
-	 aw79CG0LR2+U1fZ2shFOmgWKUurnvnCGkvfOKwv3xXZMFivGXD6G8/TJk9OItg0FuJ
-	 zk2HZ3DJcceF9gUMbY0NZul7L33XU3Emvw5VLBcspBPrQFTtCjH/OY7sZFLz2zeqsk
-	 MyoYXycWED0Ew==
-Date: Thu, 13 Feb 2025 20:05:53 +0000
+	b=mjnfPFOaeXN14HgJgFnJvL+lBMgQFzs0G4SJNJhYx3lawMt3SAHUUu/wufXKFhdQv
+	 x4bpqkL10lxnllvTNTgM9VujRp6+hgtmRRXVJPooL1usHydwfr9nEby2GE6AqxbESD
+	 KlKChRrKXqfVspbh4hRe247dmUW+Q5iIOWnQcDWM9uQPmkUkMlL9bpRZcgfkCh78J3
+	 wkWJqO6er0GNMOVdBGV531cgevhvWbcXqFDfQ3rRdlY1AoqwL/csw6EMpMbxTdGg2a
+	 R6xFQE2pmIJFX6dPnCVRIgHlXhL0l+4tbS5qBMoez5a5cd5EcIuVdSsVRZ4/VxwH0y
+	 MvFDWKjShNWMg==
+Date: Thu, 13 Feb 2025 20:07:22 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: dimitri.fedrau@liebherr.com, Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, imx@lists.linux.dev,
-	loongarch@lists.linux.dev
-Subject: Re: (subset) [PATCH v1 0/4] Removal of non-existent DAC nodes
-Message-ID: <20250213-calamity-smuggler-5d606993be32@spud>
-References: <20240717-anvil-ashy-544e80a1317c@spud>
- <173939339997.59416.11108011581545463665.b4-ty@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: can: fsl,flexcan: add transceiver
+ capabilities
+Message-ID: <20250213-scariness-enhance-56eda6901f69@spud>
+References: <20250211-flexcan-add-transceiver-caps-v1-0-c6abb7817b0f@liebherr.com>
+ <20250211-flexcan-add-transceiver-caps-v1-1-c6abb7817b0f@liebherr.com>
+ <20250211-epidermis-crib-b50da209d954@spud>
+ <20250212195204.GA6577@debian>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,53 +64,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="t2TI/qcM7Hcs5rgZ"
+	protocol="application/pgp-signature"; boundary="tSopz/7vpBki9Xj2"
 Content-Disposition: inline
-In-Reply-To: <173939339997.59416.11108011581545463665.b4-ty@linaro.org>
+In-Reply-To: <20250212195204.GA6577@debian>
 
 
---t2TI/qcM7Hcs5rgZ
+--tSopz/7vpBki9Xj2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 12, 2025 at 09:49:59PM +0100, Krzysztof Kozlowski wrote:
->=20
-> On Wed, 17 Jul 2024 10:37:52 +0100, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Feb 12, 2025 at 08:52:04PM +0100, Dimitri Fedrau wrote:
+> Am Tue, Feb 11, 2025 at 04:38:48PM +0000 schrieb Conor Dooley:
+> > On Tue, Feb 11, 2025 at 02:12:33PM +0100, Dimitri Fedrau via B4 Relay w=
+rote:
+> > > From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> > >=20
+> > > Currently the flexcan driver does not support adding PHYs. Add the
+> > > capability to ensure that the PHY is in operational state when the li=
+nk
+> > > is set to an "up" state.
+> > >=20
+> > > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.ya=
+ml b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> > > index 97dd1a7c5ed26bb7f1b2f78c326d91e2c299938a..397957569588a61111a31=
+3cf9107e29dacc9e667 100644
+> > > --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> > > @@ -70,6 +70,9 @@ properties:
+> > >    xceiver-supply:
+> > >      description: Regulator that powers the CAN transceiver.
+> > > =20
+> > > +  phys:
+> > > +    maxItems: 1
 > >=20
-> > Recently I've been getting triggered by abuse of the Rohm dh2228fv
-> > compatible to get the spidev driver probing in Linux on development
-> > kits by employees of various silicon vendors (like NXP or my own
-> > employer). I had a look around the kernel and all users other than the
-> > original Clearfontz board added by Maxime appear to be similar abuse.
-> > Drop the non-existent nodes from all of these devices :)
+> > Can all devices in this binding support external phy? Are all devices
+> > limited to a single external phy?
 > >=20
-> > [...]
->=20
-> Applied, thanks!
->=20
-> [3/4] loongarch: dts: remove non-existent DAC from 2k1000-ref
->       https://git.kernel.org/krzk/linux-dt/c/854a080f0b73ff966a813ec2dc53=
-891831daa28d
+> As far as I know, these devices are controllers without integrated PHY.
+> So they need a single external PHY. Transceivers can be very simple like
+> xceiver-supply in the binding, but I want to use "ti,tcan1043" in=20
+> drivers/phy/phy-can-transceiver.
 
-Heh, funny that you picked this up yesterday - I noticed that it was
-there while poking at spidev doing some debugging yesterday and was
-going to grab the patch myself. Thanks.
-Noticed also that there's a user of it in riscv that I hadn't included
-in my original patch. No clue why I didn't include that, but I've sent
-out a patch for it now.
+I'm not quite following, do all of these devices need to have an
+external phy but the property did not exist until now? How did any of
+them work, if that's the case?
 
---t2TI/qcM7Hcs5rgZ
+--tSopz/7vpBki9Xj2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ65QoQAKCRB4tDGHoIJi
-0hJOAP9qWBg0rjsbzm7opAMArAFEycQu0lJBHYdR+tfeeXkkhAEArfJdGry0AYEf
-b8lHjUhG8iocKhPAo6JWSZBlm8Sn4w8=
-=cxBE
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ65Q+gAKCRB4tDGHoIJi
+0kqpAPsGLUPRbO7MpIYG5HFwrss+7TGqLMfS7u0SUFSFBLj9IAD/VRU65YL7Ee+6
+HXBEGk8jv/xZxw2DyNhLUnZURTh4Nw0=
+=UKHj
 -----END PGP SIGNATURE-----
 
---t2TI/qcM7Hcs5rgZ--
+--tSopz/7vpBki9Xj2--
 
