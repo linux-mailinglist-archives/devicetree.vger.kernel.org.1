@@ -1,169 +1,156 @@
-Return-Path: <devicetree+bounces-146231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 982E7A33D03
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:53:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A333CA33D14
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:57:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BB383A3A20
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:53:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28CCB3A5C47
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDEA92080D4;
-	Thu, 13 Feb 2025 10:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE1D2135C0;
+	Thu, 13 Feb 2025 10:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="gBZS8PN0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ewD05as5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D33212D95;
-	Thu, 13 Feb 2025 10:53:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E3621325A;
+	Thu, 13 Feb 2025 10:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739443988; cv=none; b=K3guinkKa74DowOnn4OozXxa4elie1xhnOb+aRqhBiYs/UY1LeyDjM8dGw7ca6UOquScZUImnA2G7WEb/rG6MMobB1j5dT2qFKH/U/ntntaLpkfw4BNd1d52iy86HqluVtu6zMniLtLxHfNfbZs76rlTxVxjrNrvu8s7A0M9SfU=
+	t=1739444264; cv=none; b=a95eu/oCenK0QcxH9Y50CzDc+Zq0CBNCBlVurdNny5bmss+ahHGd9j4YACmTS9ZZTBaWkQbDN1bs4J7qXgWRQo7WkNIYZ17Tnvnc0lNqeZ4mbu/ecLImCktJQkex1C07MQcmIsh1xob8a3Xpwv1I3Hx3WXNIUmZ60xRjC8UfOPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739443988; c=relaxed/simple;
-	bh=mtwfNueCsCv+ny57q0pPLNJ3IhsnL/0IKJ1LF/DCjjk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=UCLxQeFlcjFoEqVFX+lXE72JQEjCKbglK9TIMtd7Nfwvl5nAdo3+xKIbYLg23JYu9hrmPkyc1dJCrl6MFcCbeTRx5lVHS3FfkAm+l0DZvZ6ptqG8mtaa+ynDHAaWj2MaZcF7452Pb+KF6l9wuQbd91tSJyuIm3g4Uv+cSirIpAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=gBZS8PN0 reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=TL7u1+0RPJwIYMqwhWmm0JTU9TwqfMb9V5VorOXWC2Y=; b=g
-	BZS8PN0A84pnDNg//1uoSVWxe9y7ghhfk2KjZSY5ZCjhod+qyhmrF1hMTiM/QrWe
-	1HFOWNJ51Exatvbi7lisTV4Hnc56472WmedlGFVCeb9TchWYUXqev5TWCt6o4uwi
-	RHLtkrujHhygALEWD0PS4YQqTsmRnYrI4YAq7Rk7uo=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-110 (Coremail) ; Thu, 13 Feb 2025 18:52:04 +0800
- (CST)
-Date: Thu, 13 Feb 2025 18:52:04 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: hjc@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, derek.foreman@collabora.com,
-	detlev.casanova@collabora.com, daniel@fooishbar.org, robh@kernel.org,
-	sebastian.reichel@collabora.com,
-	"Andy Yan" <andy.yan@rock-chips.com>
-Subject: Re:Re: [PATCH v14 02/13] drm/rockchip: vop2: Rename
- TRANSFORM_OFFSET to TRANSFORM_OFFS
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
- Copyright (c) 2002-2025 www.mailtech.cn 163com
-In-Reply-To: <4064785.VqM8IeB0Os@diego>
-References: <20250212093530.52961-1-andyshrk@163.com>
- <20250212093530.52961-3-andyshrk@163.com> <4064785.VqM8IeB0Os@diego>
-X-NTES-SC: AL_Qu2YC/ifvEEp4iKfYukfmkcVgOw9UcO5v/Qk3oZXOJF8jCfp9QItX3BTPFnE+fmDLiaLnQiHUThC4O5bbYVcZKAwKM+aBKFYQz+/TB/Eqg9O9g==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1739444264; c=relaxed/simple;
+	bh=pyF2QmNloyMOS+ooiXdEaWxfi2Vx+bDKuVx6p+SkU6c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hYrqCLStKJteLbicCnhD1hWeahrb9TlxDGKMvvN/Oge1nNGF3bPAXtkWywqpw1LvmgoIcbtRHh4K+OnNZHSMh40Oe0GOrWC0tcLuJWzZY9Zt3gSsUZx9NqsFGCJaQIFspB+BKAU0gSSdGJaU/p0jFHNNe7OvoBV62o5yK266yXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ewD05as5; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739444262; x=1770980262;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=pyF2QmNloyMOS+ooiXdEaWxfi2Vx+bDKuVx6p+SkU6c=;
+  b=ewD05as5swo7iwL2SqdBFwse7ftzTOb6b7CaO1cXbgNSyeEfkhwfnj1D
+   Gy0pqBRwaSpTIOmWmcTgVDAwDG6ahj0lRPnOqdu6NPSzxg/rNnOA/hD92
+   lPRYX1FAZx9+hPHbBi5dUTFS2L3+YKsOLdi8YdnxsYSE0mSEt/+b/VdHv
+   6w83KXAMUMU4vLgu3l/TTu51bW+z571cOt42RxnlQbFI959u8PPTolpzH
+   6EYUPB2Vh/LiGV69uFnrlGPCApNevTfpX9vWJki/+O4xkd4VZHkXWaLZd
+   M6cvRAuwobBbiwYgqHeb8iGApwVvTedST6b/fG8pCLDYBVqLi/xrb7RXx
+   Q==;
+X-CSE-ConnectionGUID: lnH5xp24T1KyGOKkpRfm7w==
+X-CSE-MsgGUID: qVNyYJJ8Sr+QUKYke6/7YA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="57673742"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; 
+   d="scan'208";a="57673742"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 02:57:41 -0800
+X-CSE-ConnectionGUID: P9Bh1cBQShitd1WRAq7ksg==
+X-CSE-MsgGUID: R1RQoslhSjeSCVtbJOXViQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; 
+   d="scan'208";a="112974706"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 02:57:38 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tiWuV-0000000B8kk-0Vn6;
+	Thu, 13 Feb 2025 12:57:35 +0200
+Date: Thu, 13 Feb 2025 12:57:34 +0200
+From: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
+To: Kartik Rajput <kkartik@nvidia.com>
+Cc: Jon Hunter <jonathanh@nvidia.com>, "robh@kernel.org" <robh@kernel.org>,
+	"robert.marko@sartura.hr" <robert.marko@sartura.hr>,
+	"arnd@kernel.org" <arnd@kernel.org>,
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"geert+renesas@glider.be" <geert+renesas@glider.be>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"jirislaby@kernel.org" <jirislaby@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
+	"schnelle@linux.ibm.com" <schnelle@linux.ibm.com>,
+	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] serial: tegra-utc: Add driver for Tegra UART
+ Trace Controller (UTC)
+Message-ID: <Z63QHvayYRS0U8Ln@smile.fi.intel.com>
+References: <20250212104132.61060-1-kkartik@nvidia.com>
+ <20250212104132.61060-3-kkartik@nvidia.com>
+ <Z6y5vRGyouZsQWyj@smile.fi.intel.com>
+ <ec06322386adbf4404e2fbc5d7656e3465eb4320.camel@nvidia.com>
+ <Z63Bk6sgQryG1pFK@smile.fi.intel.com>
+ <88a54c9bf88dac0a3316224b08d0e2378e8fc6f0.camel@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <4878d34d.835d.194feefed3d.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:bigvCgBH7lrUzq1n7qrEAA--.50216W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqQ3yXmetw8LDhQABsE
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <88a54c9bf88dac0a3316224b08d0e2378e8fc6f0.camel@nvidia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-CkhpIEhlaWtvLAoKQXQgMjAyNS0wMi0xMiAxODo1OTo1MCwgIkhlaWtvIFN0w7xibmVyIiA8aGVp
-a29Ac250ZWNoLmRlPiB3cm90ZToKPkhpIEFuZHksCj4KPkFtIE1pdHR3b2NoLCAxMi4gRmVicnVh
-ciAyMDI1LCAxMDozNDo1NyBNRVogc2NocmllYiBBbmR5IFlhbjoKPj4gRnJvbTogQW5keSBZYW4g
-PGFuZHkueWFuQHJvY2stY2hpcHMuY29tPgo+PiAKPj4gVGhpcyBoZWxwIGF2b2lkICJleGNlZWRz
-IDEwMCBjb2x1bW5zIiB3YXJuaW5nIGZyb20gY2hlY2twYXRjaAo+PiAKPj4gU2lnbmVkLW9mZi1i
-eTogQW5keSBZYW4gPGFuZHkueWFuQHJvY2stY2hpcHMuY29tPgo+Cj5JJ20gbm90IG11Y2ggb2Yg
-YSBmYW4gb2YgInJhbmRvbWx5IiByZW5hbWluZyBpbmRpdmlkdWFsIGNvbnN0YW50cwo+KGVzcGVj
-aWFsbHkgd2hlbiBvbmUgaXMgbm93IG5hbWVkIE9GRlMsIHdoaWxlIHRoZSByZXN0IHN0YXkgYXQg
-T0ZGU0VUKQo+Cj4tIG9uIHJrMzU2OCBWT1AyX0NMVVNURVJfV0lOMF9UUkFOU0ZPUk1FRF9PRkZT
-RVQgPSBXSU4wIHRyYW5zZm9ybWVkIG9mZnNldAo+LSBvbiByazM1ODggVk9QMl9DTFVTVEVSMF9X
-SU4wX1RSQU5TRk9STUVEX09GRlNFVCA9IFdJTjAgdHJhbnNmb3JtIG9mZnNldAo+LSBvbiByazM1
-NzYgInNvbWVvbmUiIHNhZGx5IGRlY2lkZWQgdG8gbm90IHByb3ZpZGUgdGhlIDJuZCBUUk0gcGFy
-dCBhbnltb3JlCj4gIGJ1dCBJIGd1ZXNzIGl0J2xsIGJlIHRoZSBzYW1lLgo+Cj5TbyBpbnN0ZWFk
-IG9mIGp1c3QgZHJvcHBpbmcgcGFydHMgZnJvbSB0aGUgZW5kLCB5b3UgY291bGQgYWxzbyBmb2xs
-b3cKPnRoZSBUUk0gbmFtaW5nIGFuZCBkcm9wIHRoZSAiX0FGQkMiIGZyb20gdGhlIHJlZ2lzdGVy
-IG5hbWUgaW5zdGVhZD8KPgo+U28gZ29pbmcgdG8gVk9QMl9XSU5fVFJBTlNGT1JNX09GRlNFVCwg
-dGhpcyB3b3VsZCBhbHNvIHJlZHVjZSB0aGUgbGluZQo+bGVuZ3RoIGFjY29yZGluZ2x5LCBhbmQg
-bW92aW5nIHRoZSBuYW1pbmcgY2xvc2VyIHRvIHRoZSBUUk0gdG9vLgoKSSAgY2hvb3NlIHRvIGRy
-b3AgdGhlIEFGQkMgcHJlZml4LiBBcyB0aGlzIHJlZ2lzdGVyIG5lZWRzIHRvIGJlIGNvbmZpZ3Vy
-ZWQgbm90IG9ubHkKaW4gQUZCQyBtb2RlLCBidXQgYWxzbyBpbiB0aWxlIG1vZGUuCkFuZCBJIGRv
-bid0IHBhcnRpY3VsYXJseSBsaWtlIHVzZSBsaW5lYnJlYWsuCgo+Cj5BbHRlcm5hdGl2ZWx5LCBq
-dXN0IGFkZCBhIGxpbmVicmVhayBhdCB0aGUgYXBwcm9wcmlhdGUgcG9zaXRpb24gaW5zdGVhZC4K
-Pgo+SGVpa28KPgo+Cj4+IC0tLQo+PiAKPj4gKG5vIGNoYW5nZXMgc2luY2UgdjEpCj4+IAo+PiAg
-ZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL3JvY2tjaGlwX2RybV92b3AyLmMgfCA4ICsrKystLS0t
-Cj4+ICBkcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvcm9ja2NoaXBfZHJtX3ZvcDIuaCB8IDQgKyst
-LQo+PiAgMiBmaWxlcyBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCj4+
-IAo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL3JvY2tjaGlwX2RybV92
-b3AyLmMgYi9kcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvcm9ja2NoaXBfZHJtX3ZvcDIuYwo+PiBp
-bmRleCBlYmM5Y2I5MzA3M2MuLjhlMWI3NDJhNzU1MCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL3JvY2tjaGlwL3JvY2tjaGlwX2RybV92b3AyLmMKPj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL3JvY2tjaGlwL3JvY2tjaGlwX2RybV92b3AyLmMKPj4gQEAgLTE1MjQsNyArMTUyNCw3IEBA
-IHN0YXRpYyB2b2lkIHZvcDJfcGxhbmVfYXRvbWljX3VwZGF0ZShzdHJ1Y3QgZHJtX3BsYW5lICpw
-bGFuZSwKPj4gIAkJdHJhbnNmb3JtX29mZnNldCA9IHZvcDJfYWZiY190cmFuc2Zvcm1fb2Zmc2V0
-KHBzdGF0ZSwgaGFsZl9ibG9ja19lbik7Cj4+ICAJCXZvcDJfd2luX3dyaXRlKHdpbiwgVk9QMl9X
-SU5fQUZCQ19IRFJfUFRSLCB5cmdiX21zdCk7Cj4+ICAJCXZvcDJfd2luX3dyaXRlKHdpbiwgVk9Q
-Ml9XSU5fQUZCQ19QSUNfU0laRSwgYWN0X2luZm8pOwo+PiAtCQl2b3AyX3dpbl93cml0ZSh3aW4s
-IFZPUDJfV0lOX0FGQkNfVFJBTlNGT1JNX09GRlNFVCwgdHJhbnNmb3JtX29mZnNldCk7Cj4+ICsJ
-CXZvcDJfd2luX3dyaXRlKHdpbiwgVk9QMl9XSU5fQUZCQ19UUkFOU0ZPUk1fT0ZGUywgdHJhbnNm
-b3JtX29mZnNldCk7Cj4+ICAJCXZvcDJfd2luX3dyaXRlKHdpbiwgVk9QMl9XSU5fQUZCQ19QSUNf
-T0ZGU0VULCAoKHNyYy0+eDEgPj4gMTYpIHwgc3JjLT55MSkpOwo+PiAgCQl2b3AyX3dpbl93cml0
-ZSh3aW4sIFZPUDJfV0lOX0FGQkNfRFNQX09GRlNFVCwgKGRlc3QtPngxIHwgKGRlc3QtPnkxIDw8
-IDE2KSkpOwo+PiAgCQl2b3AyX3dpbl93cml0ZSh3aW4sIFZPUDJfV0lOX0FGQkNfUElDX1ZJUl9X
-SURUSCwgc3RyaWRlKTsKPj4gQEAgLTE1MzUsNyArMTUzNSw3IEBAIHN0YXRpYyB2b2lkIHZvcDJf
-cGxhbmVfYXRvbWljX3VwZGF0ZShzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwKPj4gIAl9IGVsc2Ug
-ewo+PiAgCQlpZiAodm9wMl9jbHVzdGVyX3dpbmRvdyh3aW4pKSB7Cj4+ICAJCQl2b3AyX3dpbl93
-cml0ZSh3aW4sIFZPUDJfV0lOX0FGQkNfRU5BQkxFLCAwKTsKPj4gLQkJCXZvcDJfd2luX3dyaXRl
-KHdpbiwgVk9QMl9XSU5fQUZCQ19UUkFOU0ZPUk1fT0ZGU0VULCAwKTsKPj4gKwkJCXZvcDJfd2lu
-X3dyaXRlKHdpbiwgVk9QMl9XSU5fQUZCQ19UUkFOU0ZPUk1fT0ZGUywgMCk7Cj4+ICAJCX0KPj4g
-IAo+PiAgCQl2b3AyX3dpbl93cml0ZSh3aW4sIFZPUDJfV0lOX1lSR0JfVklSLCBESVZfUk9VTkRf
-VVAoZmItPnBpdGNoZXNbMF0sIDQpKTsKPj4gQEAgLTM0NDgsNyArMzQ0OCw3IEBAIHN0YXRpYyBj
-b25zdCBzdHJ1Y3QgcmVnX2ZpZWxkIHZvcDJfY2x1c3Rlcl9yZWdzW1ZPUDJfV0lOX01BWF9SRUdd
-ID0gewo+PiAgCVtWT1AyX1dJTl9BRkJDX1RJTEVfTlVNXSA9IFJFR19GSUVMRChSSzM1NjhfQ0xV
-U1RFUl9XSU5fQUZCQ0RfVklSX1dJRFRILCAxNiwgMzEpLAo+PiAgCVtWT1AyX1dJTl9BRkJDX1BJ
-Q19PRkZTRVRdID0gUkVHX0ZJRUxEKFJLMzU2OF9DTFVTVEVSX1dJTl9BRkJDRF9QSUNfT0ZGU0VU
-LCAwLCAzMSksCj4+ICAJW1ZPUDJfV0lOX0FGQkNfRFNQX09GRlNFVF0gPSBSRUdfRklFTEQoUksz
-NTY4X0NMVVNURVJfV0lOX0FGQkNEX0RTUF9PRkZTRVQsIDAsIDMxKSwKPj4gLQlbVk9QMl9XSU5f
-QUZCQ19UUkFOU0ZPUk1fT0ZGU0VUXSA9IFJFR19GSUVMRChSSzM1NjhfQ0xVU1RFUl9XSU5fQUZC
-Q0RfVFJBTlNGT1JNX09GRlNFVCwgMCwgMzEpLAo+PiArCVtWT1AyX1dJTl9BRkJDX1RSQU5TRk9S
-TV9PRkZTXSA9IFJFR19GSUVMRChSSzM1NjhfQ0xVU1RFUl9XSU5fQUZCQ0RfVFJBTlNGT1JNX09G
-RlMsIDAsIDMxKSwKPj4gIAlbVk9QMl9XSU5fQUZCQ19ST1RBVEVfOTBdID0gUkVHX0ZJRUxEKFJL
-MzU2OF9DTFVTVEVSX1dJTl9BRkJDRF9ST1RBVEVfTU9ERSwgMCwgMCksCj4+ICAJW1ZPUDJfV0lO
-X0FGQkNfUk9UQVRFXzI3MF0gPSBSRUdfRklFTEQoUkszNTY4X0NMVVNURVJfV0lOX0FGQkNEX1JP
-VEFURV9NT0RFLCAxLCAxKSwKPj4gIAlbVk9QMl9XSU5fWE1JUlJPUl0gPSBSRUdfRklFTEQoUksz
-NTY4X0NMVVNURVJfV0lOX0FGQkNEX1JPVEFURV9NT0RFLCAyLCAyKSwKPj4gQEAgLTM1NDcsNyAr
-MzU0Nyw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgcmVnX2ZpZWxkIHZvcDJfZXNtYXJ0X3JlZ3Nb
-Vk9QMl9XSU5fTUFYX1JFR10gPSB7Cj4+ICAJW1ZPUDJfV0lOX0FGQkNfUElDX09GRlNFVF0gPSB7
-IC5yZWcgPSAweGZmZmZmZmZmIH0sCj4+ICAJW1ZPUDJfV0lOX0FGQkNfUElDX1NJWkVdID0geyAu
-cmVnID0gMHhmZmZmZmZmZiB9LAo+PiAgCVtWT1AyX1dJTl9BRkJDX0RTUF9PRkZTRVRdID0geyAu
-cmVnID0gMHhmZmZmZmZmZiB9LAo+PiAtCVtWT1AyX1dJTl9BRkJDX1RSQU5TRk9STV9PRkZTRVRd
-ID0geyAucmVnID0gMHhmZmZmZmZmZiB9LAo+PiArCVtWT1AyX1dJTl9BRkJDX1RSQU5TRk9STV9P
-RkZTXSA9IHsgLnJlZyA9IDB4ZmZmZmZmZmYgfSwKPj4gIAlbVk9QMl9XSU5fQUZCQ19IRFJfUFRS
-XSA9IHsgLnJlZyA9IDB4ZmZmZmZmZmYgfSwKPj4gIAlbVk9QMl9XSU5fQUZCQ19IQUxGX0JMT0NL
-X0VOXSA9IHsgLnJlZyA9IDB4ZmZmZmZmZmYgfSwKPj4gIAlbVk9QMl9XSU5fQUZCQ19ST1RBVEVf
-MjcwXSA9IHsgLnJlZyA9IDB4ZmZmZmZmZmYgfSwKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1fdm9wMi5oIGIvZHJpdmVycy9ncHUvZHJtL3JvY2tj
-aGlwL3JvY2tjaGlwX2RybV92b3AyLmgKPj4gaW5kZXggMjljYzdmYjhmNmQ4Li44NTEwMTQwYjA4
-NjkgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1f
-dm9wMi5oCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1fdm9w
-Mi5oCj4+IEBAIC0xMTgsNyArMTE4LDcgQEAgZW51bSB2b3AyX3dpbl9yZWdzIHsKPj4gIAlWT1Ay
-X1dJTl9BRkJDX1BJQ19PRkZTRVQsCj4+ICAJVk9QMl9XSU5fQUZCQ19QSUNfU0laRSwKPj4gIAlW
-T1AyX1dJTl9BRkJDX0RTUF9PRkZTRVQsCj4+IC0JVk9QMl9XSU5fQUZCQ19UUkFOU0ZPUk1fT0ZG
-U0VULAo+PiArCVZPUDJfV0lOX0FGQkNfVFJBTlNGT1JNX09GRlMsCj4+ICAJVk9QMl9XSU5fQUZC
-Q19IRFJfUFRSLAo+PiAgCVZPUDJfV0lOX0FGQkNfSEFMRl9CTE9DS19FTiwKPj4gIAlWT1AyX1dJ
-Tl9BRkJDX1JPVEFURV8yNzAsCj4+IEBAIC0zMzUsNyArMzM1LDcgQEAgZW51bSBkc3RfZmFjdG9y
-X21vZGUgewo+PiAgI2RlZmluZSBSSzM1NjhfQ0xVU1RFUl9XSU5fRFNQX0lORk8JCTB4MjQKPj4g
-ICNkZWZpbmUgUkszNTY4X0NMVVNURVJfV0lOX0RTUF9TVAkJMHgyOAo+PiAgI2RlZmluZSBSSzM1
-NjhfQ0xVU1RFUl9XSU5fU0NMX0ZBQ1RPUl9ZUkdCCTB4MzAKPj4gLSNkZWZpbmUgUkszNTY4X0NM
-VVNURVJfV0lOX0FGQkNEX1RSQU5TRk9STV9PRkZTRVQJMHgzQwo+PiArI2RlZmluZSBSSzM1Njhf
-Q0xVU1RFUl9XSU5fQUZCQ0RfVFJBTlNGT1JNX09GRlMJMHgzQwo+PiAgI2RlZmluZSBSSzM1Njhf
-Q0xVU1RFUl9XSU5fQUZCQ0RfT1VUUFVUX0NUUkwJMHg1MAo+PiAgI2RlZmluZSBSSzM1NjhfQ0xV
-U1RFUl9XSU5fQUZCQ0RfUk9UQVRFX01PREUJMHg1NAo+PiAgI2RlZmluZSBSSzM1NjhfQ0xVU1RF
-Ul9XSU5fQUZCQ0RfSERSX1BUUgkweDU4Cj4+IAo+Cj4KPgo+Cj4KPl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj5MaW51eC1yb2NrY2hpcCBtYWlsaW5nIGxp
-c3QKPkxpbnV4LXJvY2tjaGlwQGxpc3RzLmluZnJhZGVhZC5vcmcKPmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtcm9ja2NoaXAK
+On Thu, Feb 13, 2025 at 10:11:36AM +0000, Kartik Rajput wrote:
+> On Thu, 2025-02-13 at 11:55 +0200, andriy.shevchenko@linux.intel.com
+> wrote:
+> > On Thu, Feb 13, 2025 at 09:05:36AM +0000, Kartik Rajput wrote:
+> > > On Wed, 2025-02-12 at 17:09 +0200, Andy Shevchenko wrote:
+> > > > On Wed, Feb 12, 2025 at 04:11:32PM +0530, Kartik Rajput wrote:
+
+...
+
+> > > > > +     for (i = 0; i < len; i++) {
+> > > > > +             if (!nbcon_enter_unsafe(wctxt))
+> > > > > +                     break;
+> > > > > +
+> > > > > +             read_poll_timeout_atomic(tegra_utc_tx_readl, val,
+> > > > > !(val & TEGRA_UTC_FIFO_FULL),
+> > > > > +                                      0, USEC_PER_SEC, false,
+> > > > > tup,
+> > > > > TEGRA_UTC_FIFO_STATUS);
+> > > > 
+> > > > No error check?
+> > > 
+> > > I'm not sure about this. The case where the TX FIFO doesn't clear
+> > > up,
+> > > even after polling for 1 second, is highly unlikely, especially
+> > > since
+> > > there's no flow control involved here. Even if that did happen,
+> > > writing
+> > > to the TX FIFO should just result in an overflow, which is probably
+> > > acceptable in this scenario.
+> > 
+> > Perhaps a warning (debug?) message in such a case?
+> 
+> I would prefer avoiding any prints in this function, as we are writing
+> debug messages to the UART HW here.
+
+Not every printf() goes to UART, but to your point the NBCON should solve that
+issue to some extent. Of course, if the HW in a broken (unrecoverable) state,
+nothing won't help.
+
+> > > > > +             uart_console_write(&tup->port, wctxt->outbuf + i,
+> > > > > 1,
+> > > > > tegra_utc_console_putchar);
+> > > > > +
+> > > > > +             if (!nbcon_exit_unsafe(wctxt))
+> > > > > +                     break;
+> > > > > +     }
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
