@@ -1,154 +1,199 @@
-Return-Path: <devicetree+bounces-146283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00154A3402D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:20:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EC5EA34031
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:21:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8F767A39A1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:19:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1D8C188742D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:21:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F93923A986;
-	Thu, 13 Feb 2025 13:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29CB23A982;
+	Thu, 13 Feb 2025 13:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OpUD3bTQ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="qMV67kT/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34FE0227EBC
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B558223F420;
+	Thu, 13 Feb 2025 13:20:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739452832; cv=none; b=NtCMND4d7oJ7ka2LogzZvbNygY15PlrbpTb4f6QrEIgcN7EG6Vb1gkPHrVN0r1csxZ3DVLR2/LzhYaxZEdIK0092Yzo3+aHxl0KWEn//p0Khxk3f8yEESWUu5at/BOfIsoEwRuiDQCQ83P6JnV9Oj16cl/uZObE7EG6gqVyzpYY=
+	t=1739452857; cv=none; b=BqkkLbjin4v1fJc56nJ7Qg3KRGfxf4FM9bJNJhKucX+rTe5qo9BaTODfSfVdETIqg9g0r2rNsnTEYDUTb48Xh3uYnr6nXvCr0TJIZGs18Q26/9MR9eAMwWx1aDgXMFpvJacP8oLe6MJslXMdOiJuYSqJUJ8qRYaQP6gM/kCcCgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739452832; c=relaxed/simple;
-	bh=5mMVKySb8+gpzJOBAymm9Q7LjgPAm74RfF5CFTTcYUM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dkSdbmPVxY608VxWzWsfUWIY0mKN3nmgk27KQtbkCoRF/mS756yAD6hb/PFgKQiFTymqwcOBX4loq9sQa3TKSLnA9QkGLjd8ye/zUj7Wn3hZ7qe+/5uTn84kzmTi19hvY/tfukeYjQotlbjtM0m5r4Vx63yjeztFzPBdcscBWcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OpUD3bTQ; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-38dd14c99c3so395927f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 05:20:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739452828; x=1740057628; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CwLioipVK8naZwbwKxpHl8Exj/kHTAEgP/Hsr4XIrU4=;
-        b=OpUD3bTQ3kRN85fqZamyvZOWeCkLAa9MZ/vGRhLsBViPwCcqFwS5ywWBYQzTMZ5XMP
-         OJIWYcvaBJLNn00jyI1AbTHjxT7gDaL4sui+bZWlTMgp3lkkvaRbHWKbrsaUzr8Op6Gu
-         uoQO/0y9Mk6vz3ClY2nevXd+WRv7alXVSRE9uFLPptS16fZIHIkiNmZsBJwBOd86DeDM
-         gp5oUeXLX90eGLjgrtbyYfT4v3npmYXSxderwI2cbhzoj1SYZEeAW2zkSOlIwKuESkC9
-         U6s8qE+gi4ay+v7WsG+EXcG3naZ2lb/4qlW03mDcOcqWz8VqvM7VAF7z7o6k2qVvVDMI
-         gp9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739452828; x=1740057628;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CwLioipVK8naZwbwKxpHl8Exj/kHTAEgP/Hsr4XIrU4=;
-        b=Z9snza9OZgRMDJTCCseS82y57H1i1bkKlGkHlPxHCkBbQmoUExkSzYKSnGR/hSsGps
-         7sForsIFyqNJ/oyLr2/Yu6B8eO/royPZez1dZKspU7JqBWa3sezYU5ejsR7LbQ53oVtI
-         AfPokl/Pr9v+qJYPNurwbZ8zTz8fQ1Rk+toEYwwjeVOSmgvBsvjyugkoeTdcWlbOrmwg
-         kQnPCuB9ebxXU85ThiFnYrf9dqDKxIbrwBHJ092k0Gnam2ie5abThCS7sYDviryXw7yM
-         grmlqucdSE8b/S3Bkpl7m5lQRQCh4sZnDYD/BGL/TGseQQC9WWpsGTiY+b4fm0WFktyc
-         eVFA==
-X-Forwarded-Encrypted: i=1; AJvYcCXZms/c94EEKzPH5rWS/M5t7kE/RDrEhFwrVcE7BXrbsmAMQcbhXN26yTq+ZRn/6C3MOg88qj/42Uyy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1DqOHF21EQVKvSHh5r5DU7VqI1Y8T/qY2YKy+okNXz6b3PMJe
-	pdBm1OBskelJsjXoLVeixaOMuLaTFYlqnzSWLvCwSKkoB5F3EBdTWjWNA8pkyuA=
-X-Gm-Gg: ASbGncug8c131fHDNIYWI08hFGCwBVo38GLaWmcKTOYVLytjRvbNkO6FfxYUTqBvSj9
-	IIESTvWwNFGCypT8J3VKNJPJwGApyDTOlbzrvyHHDWLXRSyhWHi7u827RDUCxn3AnuBx3y20Ki4
-	7ltTwbiP/syoejERVTfkTRcF6c0kEUYFJMfHaethhZWG47qn5gvDzVhQyhdoXj8XCm7kBST4HOM
-	RuJcML3ZwIGTcDvyhw5Yh2bZ1VO2OS3EMmn8S5ygljVIPRUEgbseMVCDViupPd3gI7tZvQHjA+X
-	121lQk1+D3e7AyjeHO+kSjQVu4A=
-X-Google-Smtp-Source: AGHT+IHa0iJhUdI7Oeca63Utadvd2nIPWbwBwu9HdjYNmDjYhPAnw2Ag6cr+5vfrRyb7rW16Cvn+DQ==
-X-Received: by 2002:a05:6000:2aa:b0:38b:da31:3e3e with SMTP id ffacd0b85a97d-38dea28ccf8mr7582277f8f.28.1739452828283;
-        Thu, 13 Feb 2025 05:20:28 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff21:ef30:5695:683f:dbf5:a2f6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258ddbb2sm1858848f8f.40.2025.02.13.05.20.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 05:20:27 -0800 (PST)
-Date: Thu, 13 Feb 2025 14:20:23 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Add crypto engine
-Message-ID: <Z63xl4_Lii0zBIYo@linaro.org>
-References: <20250213-x1e80100-crypto-v1-1-f93afdd4025a@linaro.org>
- <Z63xEdcvCRHchHWu@linaro.org>
+	s=arc-20240116; t=1739452857; c=relaxed/simple;
+	bh=OpqpLt6cXz6bNc4+IHQhnP78DOqIMnCQS+vmvfHWmLQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pdhz1D2/msiNxGpX/vjgnU440duf2cnlIieWRx5NSceCcJa5lStqiZnfB4bV5JwP/ucZBtZ42Qac0DKxNnbPxrJ3ynJaFq/MHqZ3W3tD1GqcmRg5SA6QlODsmGwMbhXDnwiQx3ahs9lypH2MqWtqry+Jl7/mlD69ZiCsJdXoSAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=qMV67kT/; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8DA98594;
+	Thu, 13 Feb 2025 14:19:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1739452774;
+	bh=OpqpLt6cXz6bNc4+IHQhnP78DOqIMnCQS+vmvfHWmLQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qMV67kT/liUDKgiWJhJRWhzgXMZmCxOgPBgdwGR60WwnITnFs2DeBzvaSRBc/x/+1
+	 Kj/paA3JvCuuHCit3peihAACdmWNObUV4gFhqWGhcyttjozIqJmQrELipUa5UfVzX2
+	 aW+guEiJT+Y0Wu88CdcWlZff2414ZIed4FIelDrE=
+Message-ID: <cd62bf21-adad-4422-8fac-ebd20e8b39a5@ideasonboard.com>
+Date: Thu, 13 Feb 2025 15:20:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z63xEdcvCRHchHWu@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] dt-bindings: display: ti: Add schema for AM625
+ OLDI Transmitter
+To: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+ Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+ Jayesh Choudhary <j-choudhary@ti.com>,
+ Francesco Dolcini <francesco@dolcini.it>,
+ DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>
+References: <20250209160925.380348-1-aradhya.bhatia@linux.dev>
+ <20250209160925.380348-3-aradhya.bhatia@linux.dev>
+ <16db8f3d-04a2-408a-964f-4cf9478229b4@ideasonboard.com>
+ <8c6e790e-f1b6-46ab-9acf-bdea8076405b@linux.dev>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <8c6e790e-f1b6-46ab-9acf-bdea8076405b@linux.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Feb 13, 2025 at 02:18:09PM +0100, Stephan Gerhold wrote:
-> On Thu, Feb 13, 2025 at 02:44:02PM +0200, Abel Vesa wrote:
-> > On X Elite, there is a crypto engine IP block similar to ones found on
-> > SM8x50 platforms.
-> > 
-> > Describe the crypto engine and its BAM.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> > https://lore.kernel.org/all/20250213-dt-bindings-qcom-qce-x1e80100-v1-1-d17ef73a1c12@linaro.org/
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 30 ++++++++++++++++++++++++++++++
-> >  1 file changed, 30 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > index 9d38436763432892ceef95daf0335d4cf446357c..5a2c5dd1dc2950b918af23c0939a112cbe47398b 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > @@ -3708,6 +3708,36 @@ pcie4_phy: phy@1c0e000 {
-> >  			status = "disabled";
-> >  		};
-> >  
-> > +		cryptobam: dma-controller@1dc4000 {
-> > +			compatible = "qcom,bam-v1.7.0";
-> 
-> Hm, I would expect this is at least "qcom,bam-v1.7.4", "qcom,bam-v1.7.0"
-> given that this is a pretty recent SoC. I don't think this makes any
-> functional difference though, and we don't seem to have it on other
-> recent SoCs...
-> 
-> > +			reg = <0 0x01dc4000 0 0x28000>;
-> > +
-> > +			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +			#dma-cells = <1>;
-> > +
-> > +			iommus = <&apps_smmu 0x480 0>,
-> > +				 <&apps_smmu 0x481 0>;
-> 
-> Should be same as <&apps_smmu 0x480 0x1> (0x1 is applied as mask to the
-> SID, and 0x481 & ~0x1 = 0x480).
-> 
-> > +
-> > +			qcom,ee = <0>;
-> > +			qcom,controlled-remotely;
-> 
-> Please add "num-channels" and "qcom,num-ees". Otherwise you risk causing
-> crashes if the interconnect listed below isn't up (anymore) when the
-> driver probes the device. See:
-> https://lore.kernel.org/linux-arm-msm/20250213-x1e80100-crypto-v1-1-f93afdd4025a@linaro.org/T/
+Hi,
 
-Sorry, I meant:
-https://lore.kernel.org/linux-arm-msm/20250212-bam-dma-fixes-v1-0-f560889e65d8@linaro.org/T/
+On 13/02/2025 14:33, Aradhya Bhatia wrote:
 
-Oops.
-Stephan
+>>> +  ti,companion-oldi:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description:
+>>> +      phandle to companion OLDI transmitter. This property is
+>>> mandatory for the
+>>> +      primarty OLDI TX if the OLDI TXes are expected to work either
+>>> in dual-lvds
+>>> +      mode or in clone mode. This property should point to the
+>>> secondary OLDI
+>>> +      TX.
+>>> +
+>>> +  ti,secondary-oldi:
+>>> +    type: boolean
+>>> +    description:
+>>> +      Boolean property to mark the OLDI transmitter as the secondary
+>>> one, when the
+>>> +      OLDI hardware is expected to run as a companion HW, in cases of
+>>> dual-lvds
+>>> +      mode or clone mode. The primary OLDI hardware is responsible
+>>> for all the
+>>> +      hardware configuration.
+>>
+>> I think these work, but I'm wondering if we would ever need to check
+>> something from the main oldi from the secondary oldi. In that case
+>> "crossed phandles" would be better, i.e. something like:
+>>
+>> (in the first oldi:)
+>> ti,slave-oldi = <phandle-to-second-oldi>
+>>
+>> (in the second oldi:)
+>> ti,master-oldi = <phandle-to-first-oldi>
+> 
+> When I had first designed the code and the devicetree for OLDI, it was
+> done so with the belief that we wouldn't reqiure a bridge instance for
+> the secondary OLDI, at all.
+> 
+> While that idea holds true for dual-lvds configuration, it doesn't so
+> for the clone mode configuration. For clone mode, as you pointed out, we
+> will require a 2nd bridge instance to configure any of the bridges and
+> panels that come after the 2nd OLDI.
+> 
+> 
+>>
+>> Then again, if we ever need that, even with these bindings the driver
+>> could find the first oldi, but needs to go via the dss's node.
+> 
+> While it is possible to do it this way, it might not be the cleanest
+> one. And _if_ there is a ever a DSS in future with more than 2 OLDI
+> TXes, say 4, then the decipher logic may get too complicated.
+> 
+> While I cannot think of any case where the secondary OLDI bridge DT
+> might need to access the primary OLDI bridge at the moment, I wonder if
+> we should play it safer and have this option anyway.
+> 
+> Maybe something like this?
+> 
+> (primary OLDI)
+> ti,primary-oldi;
+> ti,companion-oldi = <phandle-to-secondary-oldi>;
+> 
+> (secondary OLDI)
+> ti,secondary-oldi;
+> ti,companion-oldi = <phandle-to-primary-oldi>;
+
+How is this different than my proposal, except a bit more verbose?
+
+If you're thinking about a 4-OLDI hardware, how would this work there? 
+(but I want to say that even if it's good to plan for the future, we 
+shouldn't plan too much based on imaginary hardware =).
+
+  Tomi
+
 
