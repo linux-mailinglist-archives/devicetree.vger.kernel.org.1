@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-146157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1101A339F0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 09:28:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFBD1A339FB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 09:30:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22B767A3B09
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 08:27:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48BDC3A34BF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 08:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698D520B81F;
-	Thu, 13 Feb 2025 08:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FAA2207653;
+	Thu, 13 Feb 2025 08:30:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="fqnyBHfY"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="T+QBgBtj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DCF9207A37
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 08:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49901FF7DA
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 08:30:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739435305; cv=none; b=jko0Fzu0ddslyPqnI9F0Ojj1t6huCruNuKTVc/Oq9PxXW+0eu2fgXTmXbrsuc0INkbiHEN6GcRM8xu6JnrnUmZ7A0LGnn6Mpk/OVIdg3BB0FT0s1GXRmuOzXa4VKfZ5jbDbC6j19JjyAbbThMi0gadeSForBh2nvsvRCdMbecYI=
+	t=1739435446; cv=none; b=b2lw9zk2MmM/QJCW9/BItN2Ze8b6lAEnROWQarkfCHmjY0sDj1fWyjL7+E92rfOj0sOsMjwzWrPp29bmbtwAkcAwcmzRc4cl4wNFhyZBpakaCplJKFQgqBhpxoMuxZUGHjPyQEpOj8El2gB30pEMzv409TRPX4vDJ/P+y+KIsAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739435305; c=relaxed/simple;
-	bh=w5gP/JqILSFIHX1cj+D+ILd29Uv1eYMj5eJYdM9rmOA=;
+	s=arc-20240116; t=1739435446; c=relaxed/simple;
+	bh=yVyXip6qwmE1k0De5I/LF6Pjyh8674Af4I42FomQeV4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YL7DtfonC8fjGi2RQVYCKb9bYb71VHAnuNxEdq2+ClQ0DfJtSg37ELgA/uEVi/MBvrhXIdtQRWqirzllOCZLed/17igqdVXcShbVJL6ME3PWQOGMv2PcP+lJFvOoJRhzbBrsX6WIUk+u23nD8jjdkKJeAhEsFr/vgJUBeH7x53A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=fqnyBHfY; arc=none smtp.client-ip=209.85.218.44
+	 In-Reply-To:Content-Type; b=DVXfrE01lE/lrz9wN5o56A0njnQr7niv2MCgzL42y0IYxe1WDl1yYlhTbht41eZTl+BQ6LZdGF2sXy3jYAM4OBvI6JccIDg/Tq8ZVm9L/dRkP7z5bGlH/6Xutt20sAyLasvdaKDsqyXc0hIaiiKilcatVOCd3Nbc2/aB76YQdSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=T+QBgBtj; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aaf900cc7fbso77603366b.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 00:28:23 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ab7f860a9c6so134598966b.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 00:30:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1739435302; x=1740040102; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1739435443; x=1740040243; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pWXrP1biBRVYfhrhl3Fs6qE0BQgKKe9yf0UVNL2tW0Y=;
-        b=fqnyBHfY+xSgTZifkEGToghF0k19xhP1np2B2dNWyk32GfYPdLfybF6wu8gIqh+73E
-         HaZYEvjhDaI55VVrZRJ85hGJ2sTp9liEr+kwaK4QFiKtktJg5jKK7ZGIQHgcGMw2EKpy
-         Qk9k1qvnyDhWqr5lndyryvj+D/CkCaOHklFWrqO7eHz9xMsVefPV+yqkZPY1W6TVPwsW
-         MGEhCOH2WveeLyhwwwI4/qx5z0dmqRCNg33pkuUrVFgP/ctsunsNhQr9kdxLXnVfAqT3
-         v2kdqglPHX1+ucMWhjfbY2hCaOEQqPdmmQHbt/o1Z1dYHufIM41Vm0FtKVwpxp9PvnOt
-         HGDg==
+        bh=8OTJXiPdRvtiBBp8e+x5n2i2CDc/LvduVGRkWa7Iyto=;
+        b=T+QBgBtjCHvKUV+kA9m1KbX7frJPnYEnFiOv88BJ4Ogq1DTf1Wqwxc5mRee3tvrUzI
+         AftQNJIEgA4UDykK01Y82iOR5t4gJlWMScSi9IKtfijLscekzoB+ZGZaB7SOHw/+Eq3o
+         4c/HIQioSOO++u0eTbjGxUwebhJ7+ghCTPDsO/mirYiuV/KC8KuvOxjWiPYVlhWlPVWH
+         BLWRxxacVOr3h0qvP9dwVe7gQCtbKiYC3O8mn6HOwi55pEbpwWtZlFOIGg+TaPGiRwXZ
+         75oJFKhXkwFTz/YfyDvKoJfk5swu3hqVosJmg1xIEJrvGOD3xyct0QfT9fzJ8h9XFcEh
+         riBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739435302; x=1740040102;
+        d=1e100.net; s=20230601; t=1739435443; x=1740040243;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pWXrP1biBRVYfhrhl3Fs6qE0BQgKKe9yf0UVNL2tW0Y=;
-        b=E53qv0dER1sQ2+1nlzPFIw6MJwGGzBsKIFXQzh4lQ7Wc8rs5oX4sNKPGtw6p5uvzBm
-         +IRBuKhiyBECZmrUDR67QK61jrUDc+Q6lxqwJK17IG3xTAUrmGHVQKpQj6FLCIpXUqOM
-         O8Y1pgRRu6jBd2z7ZGbHfZc+PBK7Io5IkFnUmeR8gf0VpSmsK64a21H1ATE8mL2HhYA2
-         Nj9hL1QnW5dVa9jXciD3iD5K5Mu/I5yJ+WItj0vJrvLhhrrh9esZA/vG6SGNhwCkqrdM
-         YYloVHJP7rKtYRhs/GYA2dfAsybcccpGZ9LKJq+za8zZwfIx1khDqehv8su7LregA2E7
-         Xj8g==
-X-Forwarded-Encrypted: i=1; AJvYcCW21iPGj7rGcnqj2R40YAr3urS7WalDn5gPDynE3kMwfy8ibalXSlJOYO0ttvH+pxjeinHXgHOp8wRT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBzh6gmUTI0cuP5xNRMm/GjtcM7cNbeh7lxLZfFU5ZVPCcxvNU
-	xLeRyahuwzGhDCIt09+5NDJUThlUp27UU3Et5gf7htAAh5pkP/8YBjJ/8qFqmA0=
-X-Gm-Gg: ASbGncukGFmUCOQ6cJbHavcmf9KWzkYKVCrW/O5oLb09c6xNJmqcfcj/bI5XkKF4ydR
-	etQ1PiWWsbrp4lcJcOd7W35DRqRJJn8vx4w2WPCjmRPub1ObMUilTV2Hj0n2WbLdcagsLmJFTqf
-	z7S9jN4HCEOeC/wmxu+t1CSAe0AiKw2MtN1qkVNiGfxusu3/wQUANcZdksSlDaUtmGpAuYAy9Ob
-	2OTwVIH7TXkW9BvfumaTk14DOE3LboI/M1nKrvkBYE4EEQ/vUXK8feMqwl+BLNpnL+px5GZ6sa4
-	8G4I5/feLyjs4nyKmK5LlJa6
-X-Google-Smtp-Source: AGHT+IHp0wFc6lnyAccZeSIcOl6s43d7ybkx0g4TFeTVLObl1F1VkXxMGejHB9/VvyPpzOW9TCX7pg==
-X-Received: by 2002:a17:906:3652:b0:ab7:f92c:9015 with SMTP id a640c23a62f3a-ab7f92c9331mr374928166b.4.1739435301467;
-        Thu, 13 Feb 2025 00:28:21 -0800 (PST)
+        bh=8OTJXiPdRvtiBBp8e+x5n2i2CDc/LvduVGRkWa7Iyto=;
+        b=jHu6h8WJ7UvCBt/F/ijyQYVdvcAuSg9IeNAb/PKb1IDhKxegZ+dJMVFS19lKcxPwkK
+         5Fnk5S6+LWAxmaXdfOkci56Odl/Ng9oQKCn7jtGzYQrGh4uhtasOcAKb1fQiZ4W/ett/
+         zo6XFSvxQeyH0zJn9gSmAK3TBaLpAUIZUS4huV6th5kvsXhXfLdhG4YRSYLfkU3w9Kn8
+         Hy71U/ScdCQRCKmQxBB9JleLebx3bYj2sn41lRAzRx+4wV7UV7s2ohU2M14J5XlqqoSi
+         cuT6Xr9WPOCzr2KTalP3id80Wq+0vmHo76JYq7kpJc7PR78xV1amIualAn97tcHs/lQE
+         L//g==
+X-Forwarded-Encrypted: i=1; AJvYcCVnp0sQDXcCHT2TpImhYIDaJhW97b3BdAeJWCgUvwMTlxb/+eA63iyCs5AdgfhBd4CjotY7ufNPkqr/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZvESQ5gGT0j32XKJRYUQ6MHhLo2KWHvz4L1E9A73Wu+6QoTPr
+	eCYaRD2XPM1QK4GFDsOfaM0pMhMSzk4pRJXRTUhFP7ammb+CbsrWl8gIvitJjNM=
+X-Gm-Gg: ASbGncvE7dc0KQTCGfnhvTooNdMN6A0uWUmjvV96rs9j9Uux4UqC+rQTV6rQbqpN/EU
+	qTf9F+tKxredWE6flbM67OhhE3gndDk5hFd3np7p2P7mm8/jCvkPhVDcg4xjQcB2mDTwwye0aI+
+	35CsKxO7jdyTZ9HTJcIK4m+vAbSz+FrB7goX1TD4hxjqn8TIPDoPCgkhiZn3MfiYlRqm7wuOgQV
+	mLYFXTSiTqsHsL6og8DeHHv5baf26PX8Pj9x4vVdOMy/hkJjjGzFNZna+aaGuYCDrcRp5pMJMkF
+	K2WsIKhCwRFsE84bPClcUGjI
+X-Google-Smtp-Source: AGHT+IGRpE3mvXYi07r5eKrsPU6jDtGUtF130PrHSlSd+nAQxiAUlBKaWgcX6BHCBayFoA8d6GoHcg==
+X-Received: by 2002:a17:907:724c:b0:ab7:d10b:e1de with SMTP id a640c23a62f3a-ab7f339c868mr555099266b.13.1739435443116;
+        Thu, 13 Feb 2025 00:30:43 -0800 (PST)
 Received: from [192.168.50.4] ([82.78.167.173])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba5339d94asm82747366b.143.2025.02.13.00.28.20
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece288e38sm753543a12.79.2025.02.13.00.30.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Feb 2025 00:28:21 -0800 (PST)
-Message-ID: <2885fac1-edb3-4251-8e4a-3da92d3b3974@tuxon.dev>
-Date: Thu, 13 Feb 2025 10:28:19 +0200
+        Thu, 13 Feb 2025 00:30:41 -0800 (PST)
+Message-ID: <83a59afc-ce67-4461-bb63-d8b8078a1198@tuxon.dev>
+Date: Thu, 13 Feb 2025 10:30:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,8 +81,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 14/15] ARM: dts: microchip: sama7d65: Add Reset and
- Shutdown and PM support
+Subject: Re: [PATCH v2 15/15] ARM: dts: microchip: add shutdown controller and
+ rtt timer
 To: Ryan.Wanner@microchip.com, lee@kernel.org, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, sre@kernel.org,
  nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
@@ -91,10 +91,10 @@ Cc: linux@armlinux.org.uk, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
 References: <cover.1739221064.git.Ryan.Wanner@microchip.com>
- <d8578cb635ff5b01e42132bd40a12b31c8638800.1739221064.git.Ryan.Wanner@microchip.com>
+ <709f5268da63c123cc4eee9e47875324df81c454.1739221064.git.Ryan.Wanner@microchip.com>
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-In-Reply-To: <d8578cb635ff5b01e42132bd40a12b31c8638800.1739221064.git.Ryan.Wanner@microchip.com>
+In-Reply-To: <709f5268da63c123cc4eee9e47875324df81c454.1739221064.git.Ryan.Wanner@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
@@ -103,153 +103,53 @@ Hi, Ryan,
 On 10.02.2025 23:13, Ryan.Wanner@microchip.com wrote:
 > From: Ryan Wanner <Ryan.Wanner@microchip.com>
 > 
-> Add support for reset controller, wake up alarm timers, and shutdown
-> controller.
-> 
-> Add SRAM, SFR, secumod, UDDRC, and DDR3phy to enable support for low power modes.
+> Add shutdown controller and rtt timer to support shutdown and wake up.
 
-Can you split it in individual patches? E.g.
+Also, split it in 2 patches:
 
-1/ add reset controller
-2/ add shutdown controller
-3/ add rtc support
-4/ add rtt support
-5/ add PM support
-
+1/ add rtt timer
+2/ Enable shdwc
 
 > 
 > Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 > ---
->  arch/arm/boot/dts/microchip/sama7d65.dtsi | 77 +++++++++++++++++++++++
->  1 file changed, 77 insertions(+)
+>  .../boot/dts/microchip/at91-sama7d65_curiosity.dts | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-> index 854b30d15dcd4..1d40235bdab0a 100644
-> --- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-> @@ -46,12 +46,42 @@ slow_xtal: clock-slowxtal {
->  		};
+> diff --git a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+> index 0f86360fb733a..d1d0b06fbfc43 100644
+> --- a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+> +++ b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+> @@ -77,6 +77,11 @@ pinctrl_uart6_default: uart6-default {
 >  	};
+>  };
 >  
-> +	ns_sram: sram@100000 {
-> +		compatible = "mmio-sram";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		reg = <0x100000 0x20000>;
-> +		ranges;
+> +&rtt {
+> +	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
+> +	status = "disabled";
 
-Please follow order proposed here:
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n112
+Any reason for keeping this node disabled?
 
-That would be (for this node):
-- compatible
-- reg
-- ranges
-- everything else
-
+> +};
+> +
+>  &sdmmc1 {
+>  	bus-width = <4>;
+>  	pinctrl-names = "default";
+> @@ -84,6 +89,15 @@ &sdmmc1 {
+>  	status = "okay";
+>  };
+>  
+> +&shdwc {
+> +	debounce-delay-us = <976>;
+> +	status = "okay";
+> +
+> +	input@0 {
+> +		reg = <0>;
 > +	};
+> +};
 > +
->  	soc {
->  		compatible = "simple-bus";
->  		ranges;
->  		#address-cells = <1>;
->  		#size-cells = <1>;
->  
-> +		securam: sram@e0000800 {
-> +			compatible = "microchip,sama7d65-securam", "atmel,sama5d2-securam", "mmio-sram";
-> +			reg = <0xe0000800 0x4000>;
-> +			clocks = <&pmc PMC_TYPE_PERIPHERAL 17>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0 0xe0000800 0x4000>;
-> +			no-memory-wc;
-
-Same here with regards to order and dts coding style.
-
-> +		};
-> +
-> +		secumod: secumod@e0004000 {
-> +			compatible = "microchip,sama7d65-secumod", "atmel,sama5d2-secumod", "syscon";
-> +			reg = <0xe0004000 0x4000>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +		};
-> +
-> +		sfrbu: sfr@e0008000 {
-> +			compatible ="microchip,sama7d65-sfrbu", "atmel,sama5d2-sfrbu", "syscon";
-> +			reg = <0xe0008000 0x20>;
-> +		};
-> +
->  		pioa: pinctrl@e0014000 {
->  			compatible = "microchip,sama7d65-pinctrl", "microchip,sama7g5-pinctrl";
->  			reg = <0xe0014000 0x800>;
-> @@ -76,6 +106,31 @@ pmc: clock-controller@e0018000 {
->  			clock-names = "td_slck", "md_slck", "main_xtal";
->  		};
->  
-> +		reset_controller: reset-controller@e001d100 {
-> +			compatible = "microchip,sama7d65-rstc", "microchip,sama7g5-rstc";
-> +			reg = <0xe001d100 0xc>, <0xe001d1e4 0x4>;
-> +			#reset-cells = <1>;
-> +			clocks = <&clk32k 0>;
-> +		};
-> +
-> +		shdwc: poweroff@e001d200 {
-> +			compatible = "microchip,sama7d65-shdwc", "microchip,sama7g5-shdwc", "syscon";
-> +			reg = <0xe001d200 0x20>;
-> +			clocks = <&clk32k 0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			atmel,wakeup-rtc-timer;
-> +			atmel,wakeup-rtt-timer;
-> +			status = "disabled";
-> +		};
-> +
-> +		rtt: rtc@e001d300 {
-> +			compatible = "microchip,sama7d65-rtt", "atmel,at91sam9260-rtt";
-> +			reg = <0xe001d300 0x30>;
-> +			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk32k 0>;
-> +		};
-> +
->  		clk32k: clock-controller@e001d500 {
->  			compatible = "microchip,sama7d65-sckc", "microchip,sam9x60-sckc";
->  			reg = <0xe001d500 0x4>;
-> @@ -83,6 +138,18 @@ clk32k: clock-controller@e001d500 {
->  			#clock-cells = <1>;
->  		};
->  
-> +		gpbr: gpbr@e001d700 {
-> +			compatible = "microchip,sama7d65-gpbr", "syscon";
-> +			reg = <0xe001d700 0x48>;
-> +		};
-> +
-> +		rtc: rtc@e001d800 {
-> +			compatible = "microchip,sama7d65-rtc", "microchip,sam9x60-rtc";
-> +			reg = <0xe001d800 0x30>;
-> +			interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk32k 1>;
-> +		};
-> +
->  		sdmmc1: mmc@e1208000 {
->  			compatible = "microchip,sama7d65-sdhci", "microchip,sam9x60-sdhci";
->  			reg = <0xe1208000 0x400>;
-> @@ -132,6 +199,16 @@ uart6: serial@200 {
->  			};
->  		};
->  
-> +		uddrc: uddrc@e3800000 {
-> +			compatible = "microchip,sama7d65-uddrc", "microchip,sama7g5-uddrc";
-> +			reg = <0xe3800000 0x4000>;
-> +		};
-> +
-> +		ddr3phy: ddr3phy@e3804000 {
-> +			compatible = "microchip,sama7d65-ddr3phy", "microchip,sama7g5-ddr3phy";
-> +			reg = <0xe3804000 0x1000>;
-> +		};
-> +
->  		gic: interrupt-controller@e8c11000 {
->  			compatible = "arm,cortex-a7-gic";
->  			reg = <0xe8c11000 0x1000>,
+>  &slow_xtal {
+>  	clock-frequency = <32768>;
+>  };
 
 
