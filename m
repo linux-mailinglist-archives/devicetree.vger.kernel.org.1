@@ -1,199 +1,173 @@
-Return-Path: <devicetree+bounces-146284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC5EA34031
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:21:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A181FA34095
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:43:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1D8C188742D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:21:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AAC367A3BE6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:42:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29CB23A982;
-	Thu, 13 Feb 2025 13:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24F3242914;
+	Thu, 13 Feb 2025 13:43:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="qMV67kT/"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Fu99oUMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B558223F420;
-	Thu, 13 Feb 2025 13:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A1423A984
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:43:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739452857; cv=none; b=BqkkLbjin4v1fJc56nJ7Qg3KRGfxf4FM9bJNJhKucX+rTe5qo9BaTODfSfVdETIqg9g0r2rNsnTEYDUTb48Xh3uYnr6nXvCr0TJIZGs18Q26/9MR9eAMwWx1aDgXMFpvJacP8oLe6MJslXMdOiJuYSqJUJ8qRYaQP6gM/kCcCgE=
+	t=1739454201; cv=none; b=VO9XVsXm/2792qMler4zVks0vHDViUM52E+bMQpFsgv3uYnu5HBDdZ9k1EaJdZWibGTbJz5rxvUya99zUTeRK/o0OB/uyKkq4XiEVRVst/VUsW0taqgF/AZUxsv/ep/LbWFNvhRy+UXmzl92ooQmORI/PuEu4ydCj68H7OrhKWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739452857; c=relaxed/simple;
-	bh=OpqpLt6cXz6bNc4+IHQhnP78DOqIMnCQS+vmvfHWmLQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pdhz1D2/msiNxGpX/vjgnU440duf2cnlIieWRx5NSceCcJa5lStqiZnfB4bV5JwP/ucZBtZ42Qac0DKxNnbPxrJ3ynJaFq/MHqZ3W3tD1GqcmRg5SA6QlODsmGwMbhXDnwiQx3ahs9lypH2MqWtqry+Jl7/mlD69ZiCsJdXoSAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=qMV67kT/; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8DA98594;
-	Thu, 13 Feb 2025 14:19:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1739452774;
-	bh=OpqpLt6cXz6bNc4+IHQhnP78DOqIMnCQS+vmvfHWmLQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qMV67kT/liUDKgiWJhJRWhzgXMZmCxOgPBgdwGR60WwnITnFs2DeBzvaSRBc/x/+1
-	 Kj/paA3JvCuuHCit3peihAACdmWNObUV4gFhqWGhcyttjozIqJmQrELipUa5UfVzX2
-	 aW+guEiJT+Y0Wu88CdcWlZff2414ZIed4FIelDrE=
-Message-ID: <cd62bf21-adad-4422-8fac-ebd20e8b39a5@ideasonboard.com>
-Date: Thu, 13 Feb 2025 15:20:48 +0200
+	s=arc-20240116; t=1739454201; c=relaxed/simple;
+	bh=fNjNmI5Rl5Y5oA9MbVoyWFB1Ivbf4aZs4eKe5ZtHeJI=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:References; b=WD0hJ3IgBXCuWNUiDWvSJfPmSGVZOHs8eIIJiQ9FeDippnW73Lgz3PmwsBM3oMM3xkV+ZmeFnKJ45bh9CEhe7i4rJQwwElDZaDoK10XZRcS03FgYa7dzBgJeHLYmYF04zY0B+1KwqIAWPIALNj+VRFYb4EtXATwZ6oUFKKyB8Q0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Fu99oUMS; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250213134310epoutp01fbaf9b2779e31d9c68097a405d90dc88~jyF6-iNwS0358803588epoutp01c
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:43:10 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250213134310epoutp01fbaf9b2779e31d9c68097a405d90dc88~jyF6-iNwS0358803588epoutp01c
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1739454190;
+	bh=Cr1W+A1j9eKhEIpkh0PbU+eTR3PGjKL2Pnrw2rmrfgw=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=Fu99oUMSsPLDHN9WJPdT5aF+eIchVr0EHm8C4qVuhm3/UGEy3jE708CTGOU/ClYrk
+	 64tgJ+gCsuZUz8KvfZCSQ2yM+pWxTvv9MVkIxI7eLX63NDq1+Gl0JSDHjXZ4RnnHhY
+	 fs5TvWN30ceW2L44F7fruvf8q7f1vPx8SC/BsxW0=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+	20250213134309epcas5p3649909ccba39f7b333257285fc35e5d4~jyF6Ldf5d0812908129epcas5p30;
+	Thu, 13 Feb 2025 13:43:09 +0000 (GMT)
+Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.174]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4YtxG41MXTz4x9Ps; Thu, 13 Feb
+	2025 13:43:08 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+	epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	81.08.19710.CE6FDA76; Thu, 13 Feb 2025 22:43:08 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250213132731epcas5p44671005103247c9c8d82de4dfc81097d~jx4Qvh9sJ0970909709epcas5p41;
+	Thu, 13 Feb 2025 13:27:31 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250213132731epsmtrp2545a452aa4992565cdb85a3dd701ce37~jx4QtxdUW2782827828epsmtrp2d;
+	Thu, 13 Feb 2025 13:27:31 +0000 (GMT)
+X-AuditID: b6c32a44-36bdd70000004cfe-de-67adf6ecae95
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	08.58.18949.343FDA76; Thu, 13 Feb 2025 22:27:31 +0900 (KST)
+Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250213132729epsmtip1d130c10a8bb2ff3f0395988d728c1ff7~jx4OjkTTW0863808638epsmtip1-;
+	Thu, 13 Feb 2025 13:27:29 +0000 (GMT)
+From: Swathi K S <swathi.ks@samsung.com>
+To: krzk+dt@kernel.org, linux-fsd@tesla.com, robh@kernel.org,
+	conor+dt@kernel.org, richardcochran@gmail.com, alim.akhtar@samsung.com
+Cc: jayati.sahu@samsung.com, swathi.ks@samsung.com,
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH v6 0/2] arm64: dts: fsd: Add Ethernet support for FSD SoC
+Date: Thu, 13 Feb 2025 18:53:26 +0530
+Message-Id: <20250213132328.4405-1-swathi.ks@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmphk+LIzCtJLcpLzFFi42LZdlhTQ/fNt7XpBg+Ps1o8mLeNzWLN3nNM
+	FvOPnGO1uHlgJ5PFkVNLmCxezrrHZrHp8TVWi4evwi0u75rDZjHj/D4mi2MLxCwWbf3CbvHw
+	wx52iyNnXjBb/N+zg93iy8ab7A4CHjtn3WX32LSqk81j85J6j74tqxg9/jXNZff4vEkugC0q
+	2yYjNTEltUghNS85PyUzL91WyTs43jne1MzAUNfQ0sJcSSEvMTfVVsnFJ0DXLTMH6GolhbLE
+	nFKgUEBicbGSvp1NUX5pSapCRn5xia1SakFKToFJgV5xYm5xaV66Xl5qiZWhgYGRKVBhQnbG
+	lu2TmQvWcldcP9jH1sC4hLOLkZNDQsBEYu+qryxdjFwcQgK7GSW+LvzJDOF8YpRonLeREcL5
+	xihx99RNRpiWo3/eQlXtZZR4/34xO4TzhVHixsr5rCBVbAIaEtdXbAdLiAi0MUoce9oI5jAL
+	XGaUWLrtFTNIlbCAp8Szvp1MIDaLgKrEiiVNYDavgKXEtN6XUPvkJVZvOAC2T0LgJ7tE05vl
+	rBAJF4n7V3ayQNjCEq+Ob2GHsKUkPr/bywZhx0us7rsKVZMhcffXRKi4vcSBK3OA4hxAF2lK
+	rN+lDxGWlZh6ah3YDcwCfBK9v58wQcR5JXbMg7GVJf6+vgY1UlJi29L3UGs9JHpXtjKCjBQS
+	iJU4dEB4AqPsLIQFCxgZVzFKphYU56anJpsWGOallsOjKjk/dxMjODlquexgvDH/n94hRiYO
+	xkOMEhzMSiK8EtPWpAvxpiRWVqUW5ccXleakFh9iNAUG2URmKdHkfGB6ziuJNzSxNDAxMzMz
+	sTQ2M1QS523e2ZIuJJCeWJKanZpakFoE08fEwSnVwHSWLz7oyYOg8utLD/26LMzG1Sdl9eCC
+	6OeOguN91rOnd71tnyZ2McTzflKa7ybnhf1t3t4Ppp04u+tji2hhvH9krsQJyR2Lwq1W7Gey
+	1u2x+vxBpz7onuNmp2PLjhaZt3O/2vOiWDvtZH+Z6PzfArX9J6Rs5u4/PfP1n+MbZjxjUbp8
+	t1+sbeqvxzp5HK/LAo+u4DZzPnh7KvtlnSNM2sXf+O93uuxznKZzZPWjzUKllyxSn/022t2b
+	Fy+1r3h27ocPN5SXtfu+vrfg38xukaW+i+X9UqVP8p14NL2/f1lFpslx+cAAjVOHV5/8HVO+
+	JF0w886GdxVz1Duz5xh/rOCwlvJfMomj0N4o8BWDxjslluKMREMt5qLiRAD6skt5FwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrALMWRmVeSWpSXmKPExsWy7bCSnK7z57XpBu+mylk8mLeNzWLN3nNM
+	FvOPnGO1uHlgJ5PFkVNLmCxezrrHZrHp8TVWi4evwi0u75rDZjHj/D4mi2MLxCwWbf3CbvHw
+	wx52iyNnXjBb/N+zg93iy8ab7A4CHjtn3WX32LSqk81j85J6j74tqxg9/jXNZff4vEkugC2K
+	yyYlNSezLLVI3y6BK2PL9snMBWu5K64f7GNrYFzC2cXIySEhYCJx9M9b5i5GLg4hgd2MEt1r
+	XrNCJCQlPjVPhbKFJVb+e84OUfSJUeLrhsPsIAk2AQ2J6yu2gyVEBPoYJTZsb2UBcZgFbjJK
+	fFv/mBmkSljAU+JZ304mEJtFQFVixZImMJtXwFJiWu9LRogV8hKrNxxgnsDIs4CRYRWjZGpB
+	cW56brFhgVFearlecWJucWleul5yfu4mRnCgamntYNyz6oPeIUYmDsZDjBIczEoivBLT1qQL
+	8aYkVlalFuXHF5XmpBYfYpTmYFES5/32ujdFSCA9sSQ1OzW1ILUIJsvEwSnVwLSZJ9aQg8U/
+	oyxXe7qAe7f3fRUn35CMwIlfd016khJ5/vzEE5XbVT4q5b17eknXOOFaq7JAE//8TVIF+m93
+	Pb67LO7/OvvEDXPWORu+OBq1Rfnr3HlNkuIdDpWSq0Qi8xIuB3rK5bnt1llTkFBjnpo78c6r
+	PbvuTmFyWMbDOjd/0batbr1XorduKgyXfcG2K38G/z4lNWe5i9Pq4ldf/1Bqqc0dPbdks3VH
+	wcsJu/o/BW2xfj1rsUyd7ry/6+19Z0qfPpxdLLQgqbgrfMl8yc0rY3ZIvHuSuX/Gj1pPEaGT
+	93Jbj4vfUzv5/Vasxo1/K/l0Iu1PGm5g+KOQsuby9psdih79sTPXTT/LEcOX66rEUpyRaKjF
+	XFScCAA/jEe1wwIAAA==
+X-CMS-MailID: 20250213132731epcas5p44671005103247c9c8d82de4dfc81097d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250213132731epcas5p44671005103247c9c8d82de4dfc81097d
+References: <CGME20250213132731epcas5p44671005103247c9c8d82de4dfc81097d@epcas5p4.samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] dt-bindings: display: ti: Add schema for AM625
- OLDI Transmitter
-To: Aradhya Bhatia <aradhya.bhatia@linux.dev>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
- David Airlie <airlied@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
- Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
- Jayesh Choudhary <j-choudhary@ti.com>,
- Francesco Dolcini <francesco@dolcini.it>,
- DRI Development List <dri-devel@lists.freedesktop.org>,
- Devicetree List <devicetree@vger.kernel.org>,
- Linux Kernel List <linux-kernel@vger.kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>
-References: <20250209160925.380348-1-aradhya.bhatia@linux.dev>
- <20250209160925.380348-3-aradhya.bhatia@linux.dev>
- <16db8f3d-04a2-408a-964f-4cf9478229b4@ideasonboard.com>
- <8c6e790e-f1b6-46ab-9acf-bdea8076405b@linux.dev>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
- wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
- Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
- eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
- LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
- G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
- DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
- 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
- rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
- Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
- aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
- ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
- PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
- VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
- 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
- uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
- R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
- sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
- Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
- PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
- dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
- qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
- hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
- DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
- KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
- 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
- xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
- UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
- /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
- 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
- 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
- mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
- 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
- suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
- xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
- m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
- CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
- CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
- 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
- ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
- yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
- 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
-In-Reply-To: <8c6e790e-f1b6-46ab-9acf-bdea8076405b@linux.dev>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-Hi,
+FSD platform has two instances of EQoS IP, one is in FSYS0 block and
+another one is in PERIC block. This patch series add required DT file
+modifications for the same.
 
-On 13/02/2025 14:33, Aradhya Bhatia wrote:
+Changes since v1:
+1. Addressed the format related corrections.
+2. Addressed the MAC address correction.
 
->>> +  ti,companion-oldi:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description:
->>> +      phandle to companion OLDI transmitter. This property is
->>> mandatory for the
->>> +      primarty OLDI TX if the OLDI TXes are expected to work either
->>> in dual-lvds
->>> +      mode or in clone mode. This property should point to the
->>> secondary OLDI
->>> +      TX.
->>> +
->>> +  ti,secondary-oldi:
->>> +    type: boolean
->>> +    description:
->>> +      Boolean property to mark the OLDI transmitter as the secondary
->>> one, when the
->>> +      OLDI hardware is expected to run as a companion HW, in cases of
->>> dual-lvds
->>> +      mode or clone mode. The primary OLDI hardware is responsible
->>> for all the
->>> +      hardware configuration.
->>
->> I think these work, but I'm wondering if we would ever need to check
->> something from the main oldi from the secondary oldi. In that case
->> "crossed phandles" would be better, i.e. something like:
->>
->> (in the first oldi:)
->> ti,slave-oldi = <phandle-to-second-oldi>
->>
->> (in the second oldi:)
->> ti,master-oldi = <phandle-to-first-oldi>
-> 
-> When I had first designed the code and the devicetree for OLDI, it was
-> done so with the belief that we wouldn't reqiure a bridge instance for
-> the secondary OLDI, at all.
-> 
-> While that idea holds true for dual-lvds configuration, it doesn't so
-> for the clone mode configuration. For clone mode, as you pointed out, we
-> will require a 2nd bridge instance to configure any of the bridges and
-> panels that come after the 2nd OLDI.
-> 
-> 
->>
->> Then again, if we ever need that, even with these bindings the driver
->> could find the first oldi, but needs to go via the dss's node.
-> 
-> While it is possible to do it this way, it might not be the cleanest
-> one. And _if_ there is a ever a DSS in future with more than 2 OLDI
-> TXes, say 4, then the decipher logic may get too complicated.
-> 
-> While I cannot think of any case where the secondary OLDI bridge DT
-> might need to access the primary OLDI bridge at the moment, I wonder if
-> we should play it safer and have this option anyway.
-> 
-> Maybe something like this?
-> 
-> (primary OLDI)
-> ti,primary-oldi;
-> ti,companion-oldi = <phandle-to-secondary-oldi>;
-> 
-> (secondary OLDI)
-> ti,secondary-oldi;
-> ti,companion-oldi = <phandle-to-primary-oldi>;
+Changes since v2:
+1. Corrected intendation issues.
 
-How is this different than my proposal, except a bit more verbose?
+Changes since v3:
+1. Removed alias names of ethernet nodes
 
-If you're thinking about a 4-OLDI hardware, how would this work there? 
-(but I want to say that even if it's good to plan for the future, we 
-shouldn't plan too much based on imaginary hardware =).
+Changes since v4:
+1. Added more details to the commit message as per review comment.
 
-  Tomi
+Changes since v5:
+1. Avoided inserting node in the end and inserted it in between as per
+address.
+2. Changed the node label.
+3. Separating DT patches from net patches and posting in different
+branches.
+
+Here is the link to v5 patches for reference:
+https://lore.kernel.org/netdev/1cb63ff4-8926-4bbc-8a78-59103d167140@kernel.org/
+
+This patch depends on the DT binding patch
+https://lore.kernel.org/netdev/20250213044624.37334-2-swathi.ks@samsung.com/
+
+And the driver patch
+https://lore.kernel.org/netdev/20250213044624.37334-3-swathi.ks@samsung.com/
+
+Swathi K S (2):
+  arm64: dts: fsd: Add Ethernet support for FSYS0 Block of FSD SoC
+  arm64: dts: fsd: Add Ethernet support for PERIC Block of FSD SoC
+
+ arch/arm64/boot/dts/tesla/fsd-evb.dts      |  18 ++++
+ arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi | 112 +++++++++++++++++++++
+ arch/arm64/boot/dts/tesla/fsd.dtsi         |  49 +++++++++
+ 3 files changed, 179 insertions(+)
+
+-- 
+2.17.1
 
 
