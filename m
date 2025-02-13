@@ -1,217 +1,147 @@
-Return-Path: <devicetree+bounces-146083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C6EEA333B4
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 00:57:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2097BA333C2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 01:03:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A54018897CB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2025 23:57:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CED417A20F1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 00:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2080121129D;
-	Wed, 12 Feb 2025 23:57:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD958EC4;
+	Thu, 13 Feb 2025 00:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="SXLJJ4OF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iRVhe6Xw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A09126C05;
-	Wed, 12 Feb 2025 23:57:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F90D1C32;
+	Thu, 13 Feb 2025 00:03:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739404646; cv=none; b=jAVXgV6lcLsivtIzYFbFh1BB9HBxyZQi2uvgm3ai5NRVV+FKIEG/faE+ul+LrZ9c9kHCKjOplRjSj2QIwZpqpfagvQo8a0dneerW8LW239dBx5aslcJQqFiGAHvInZfPbKS2eoTpq1jgdEO9A/6k0WNyPR3bfe3k+DKLRkGiuM8=
+	t=1739404996; cv=none; b=gtWj8wacI4cUzZmA3xwiK1d+r1StmVxPoXWlUZAqrBpwzOFDbpH89VMiN0sze8s0mg3VzRWwCkdQZ5OBt/a3Ej+SLMatKAEnsWGE8UvKotGL685DopY8bueBsxO/X5qfc/lE2wyrGLjNwZD918NNq7PXtaRCvXlSST/KyLyNeNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739404646; c=relaxed/simple;
-	bh=bceuig7AHvs+8cF63nsWXxEM673ylyOTryzj6s+vkL8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jCxHEYXXzIHFxYLB9/ZBRYxaxP3VkUxPN8RJTHrjZse8FBmKmW7KvMg8zC6oeaG9Q4yR3CAgwQyz5DppqTvb9Afg+JliVtKYOuliLwTU+I72bgla3wdLcJpLA098DxgcJk45il5OBPh43vEjCn4OWf6VJn7lvQVdqdapjpWyAgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=SXLJJ4OF; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.137.184.60] (unknown [131.107.160.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id A3E52203F3C9;
-	Wed, 12 Feb 2025 15:57:23 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com A3E52203F3C9
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1739404643;
-	bh=bF6ePzz3cN2y4GYtn1pyoRmQYzjv5ZNDww08RM/kA5w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SXLJJ4OFPJZkogD0StqTyUAgwfIJIPnY8/4TngSfN1c5mhPDJIm7aVYDdimj/oAnX
-	 Yd7w/OE1MVKPuIswlc5gyslqUL+d311wjoJ4MwCIU3B0b3BIqYgPZwXNs7GC9thVN3
-	 s91qYLYjt5mzVMS08XeoNubtxgKPcmd+OIFopIII=
-Message-ID: <bb863c8f-a92c-42d0-abc4-ff0b92f701c2@linux.microsoft.com>
-Date: Wed, 12 Feb 2025 15:57:23 -0800
+	s=arc-20240116; t=1739404996; c=relaxed/simple;
+	bh=nzfWYzJlyuRlm5J2Rlgp13zIeb+QFhxyooqdwa5e8k4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cGsH0+lLVCfx1pOYAZztzIyg43RRqX1NnqI5lz4ZGOUJOn9ixsFU7+ueHIT+oRBABJ5lg1Ed/gLHQ8/lje4SvSGrrIwusm0XVIyicqCevN8wtdEN0gyykzURbfEuB+Ejr/ANTkjEY/3xHP4wIqCMIA321BHkbt2/KTJ3mdVi8HE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iRVhe6Xw; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-21f818a980cso3308565ad.3;
+        Wed, 12 Feb 2025 16:03:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739404994; x=1740009794; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lgGYLAXMTiBSQm8B4s04dx6tu5EKRE0LsYmfPrbRJeM=;
+        b=iRVhe6XwiO1nHnLTqiAFFeR74o3Mlna4xvRr04kwhbW9SdXU+p50eMtxIXR6KYybP9
+         hvCNtRtbDcOyzy0e2z7DYBISqLkEpzaL8s9UKwiK7jZsFhnY5ee4ICwMKVT1OkqmJtD6
+         WdE5L83TvvkJQ+Q4aq+lXmjQ0pPXcleCUQGFJRtBpbyX8Dw53a9xtBa1yWxR/eBsdLPJ
+         Hby1384ylxsZx8QaF8lC3cd21skA027VOZCZrNcZ2lUqR4gYn2lravC5RoVApNPUTbW5
+         WwyvMPrRCeO4AhidKGcX/GBIX1DyN48nBX1E/ElqnopKU/oMIy1xCNl1WYdc5xZ98L/J
+         GwXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739404994; x=1740009794;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lgGYLAXMTiBSQm8B4s04dx6tu5EKRE0LsYmfPrbRJeM=;
+        b=oK+35KqtQBE4bCNy8+ewmQ/wxpAjvWrw/YeSGVBlzsseeCb+etI11IEtNF2vvBAzyc
+         3g0sC0kQrD39xofIA/fB2QztHM7Zgu1oOKWLSArWwAzyP+qOjfCwP3Few3AbLDPqpzgq
+         FjbzTNwB8RuWO/AwZB5izepPHnSYJU6qjrphR/nSVSUBGbOx/PHSKhRC7wCRqFhUyKIy
+         uMVBrx6jG+9VN7rPRRfY0U3Nj1tncof1VKMsVKalVkYU4B7PzVIwfkO0MpZKI9izYyrA
+         VvMdlDnW4QKrQDFdvZoZrrUJgLnPrjrNcuAuUcsZnVdhTQ7HsmJ2YlpGvunTS5f/zESO
+         yGLA==
+X-Forwarded-Encrypted: i=1; AJvYcCVJYeEcWCdiEHer+WW4pQt5ugxHUG6RPz4vkwI44etNYe5Qjl3e+rFFNVlknRa9U+Uw9TskXNHu5z2e@vger.kernel.org, AJvYcCWdfUzF28FQiE37Q9rtFNN/2xcMRrPYtwRnWw/2G/f8Z0E+a0G/gpUo3sLp9/AoNE9AN3lk1gyIyCYtJPKoSFGmgak=@vger.kernel.org, AJvYcCWhcHuW43BkWCOhe23R4mD4SIaJym6lVfLG8Y9MVPZ54T1WvTL+oEWBtuC/AWbWGKhT4FnKNntFpcTuzwou@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6/ltfBNATwcE7l1gvJCybqVGQzyhpW5RGqGmJiDOViTgSck2C
+	yH2qE/c1UqMDZZcbm+xgNap8FGNJdSTQ3JW0S3pjxuzBCwZXFwbD
+X-Gm-Gg: ASbGncsYu3Hc59xiS+rlxOWpAR4hwBw7kpxgEvJJ//M86S6Qr8x8/ZvPCKudfLjkpYQ
+	RXXvOtV/EhKy2YOTDjarhPq486v+Yv1yr/SgleIwk9ranEgPMZwhP0+cgBvm5qr6jSHeonZxI2Z
+	1wzXteYrDLuz5zAaf9LaJjMh3xKxLfHycH+DBX/6o9NInwm5NVqMgpwsEUionddky0iAyO9yp2G
+	xJTRdNDkK8puverMxdcHl8KDIGzpUIPavCgey6YRtUlbTEXoMVlx5L91khKio9XRkjYKZbFvG4f
+	C17oKhI8KUQP/kZCUBxjV/wMZC/2GcmcoIfOxeGZP88Wtcg/15IVYKNaLn0bJcEMvxtEKUeblVe
+	uwg==
+X-Google-Smtp-Source: AGHT+IF+D2Xb6/P+MeaJ+t2rpv7ibEkX8ds1s2CaO1BKsO9476v6xLKYDYjvadIojErLW8nWiv0E0w==
+X-Received: by 2002:a05:6a21:3382:b0:1db:915b:ab11 with SMTP id adf61e73a8af0-1ee5c796586mr9410564637.24.1739404964623;
+        Wed, 12 Feb 2025 16:02:44 -0800 (PST)
+Received: from localhost.localdomain ([38.44.237.182])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7324273e4a0sm28014b3a.120.2025.02.12.16.02.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2025 16:02:44 -0800 (PST)
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	alim.akhtar@samsung.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Denzeel Oliva <wachiturroxd150@gmail.com>
+Subject: [PATCH v1] arm64: dts: exynos: r8s: enable UART interfaces and aliases
+Date: Thu, 13 Feb 2025 00:02:26 +0000
+Message-Id: <20250213000226.277-1-wachiturroxd150@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH hyperv-next v4 4/6] dt-bindings: microsoft,vmbus: Add GIC
- and DMA coherence to the example
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
- catalin.marinas@arm.com, conor+dt@kernel.org, dave.hansen@linux.intel.com,
- decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
- krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com, lpieralisi@kernel.org,
- manivannan.sadhasivam@linaro.org, mingo@redhat.com, robh@kernel.org,
- ssengar@linux.microsoft.com, tglx@linutronix.de, wei.liu@kernel.org,
- will@kernel.org, devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org,
- benhill@microsoft.com, bperkins@microsoft.com, sunilmut@microsoft.com
-References: <20250212014321.1108840-1-romank@linux.microsoft.com>
- <20250212014321.1108840-5-romank@linux.microsoft.com>
- <20250212-rough-terrier-of-serendipity-68a0db@krzk-bin>
-Content-Language: en-US
-From: Roman Kisel <romank@linux.microsoft.com>
-In-Reply-To: <20250212-rough-terrier-of-serendipity-68a0db@krzk-bin>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+ - usi_uart: Main UART interface, required for debugging or
+   communication.
+ - usi_bt_uart: UART interface for Bluetooth connectivity.
+ - Added serial0 and serial1 aliases for standard UART access.
 
+Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
+---
+ arch/arm64/boot/dts/exynos/exynos990-r8s.dts | 23 ++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-On 2/11/2025 10:42 PM, Krzysztof Kozlowski wrote:
-> On Tue, Feb 11, 2025 at 05:43:19PM -0800, Roman Kisel wrote:
->> The existing example lacks the GIC interrupt controller property
->> making it not possible to boot on ARM64, and it lacks the DMA
-> 
-> GIC controller is not relevant to this binding.
-> 
-
-Will remove, thank you for pointing that out!
-
->> coherence property making the kernel do more work on maintaining
->> CPU caches on ARM64 although the VMBus trancations are cache-coherent.
->>
->> Add the GIC node, specify DMA coherence, and define interrupt-parent
->> and interrupts properties in the example to provide a complete reference
->> for platforms utilizing GIC-based interrupts, and add the DMA coherence
->> property to not do extra work on the architectures where DMA defaults to
->> non cache-coherent.
->>
->> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
->> ---
->>   .../devicetree/bindings/bus/microsoft,vmbus.yaml      | 11 +++++++++++
->>   1 file changed, 11 insertions(+)
-> 
-> Last time I said: not tested by automation.
-> Now: I see automation build failures, although I do not see anything
-> incorrect in the code, so that's a bit surprising. Please confirm that
-> binding was tested on latest dtschema.
-
-They weren't for which I am sorry. Read through
-
-https://www.kernel.org/doc/html/v6.14-rc2/devicetree/bindings/writing-schema.html
-
-and was able to see and fix the break by bringing the YAML to [1].
-Getting now this
-
-/Documentation/devicetree/bindings/bus/microsoft,vmbus.example.dtb: 
-vmbus@ff0000000: 'dma-coherent', 'interrupts' do not match any of the 
-regexes: 'pinctrl-[0-9]+'
-         from schema $id: 
-http://devicetree.org/schemas/bus/microsoft,vmbus.yaml#
-
-so maybe I need to add some more to the "requires" section. Will follow
-other examples as you suggested.
-
-> 
->>
->> diff --git a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
->> index a8d40c766dcd..5ec69226ab85 100644
->> --- a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
->> +++ b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
->> @@ -44,11 +44,22 @@ examples:
->>               #size-cells = <1>;
->>               ranges;
->>   
->> +            gic: intc@fe200000 {
->> +              compatible = "arm,gic-v3";
->> +              reg = <0x0 0xfe200000 0x0 0x10000>,   /* GIC Dist */
->> +                    <0x0 0xfe280000 0x0 0x200000>;  /* GICR */
->> +              interrupt-controller;
->> +              #interrupt-cells = <3>;
->> +            }
-> 
-> I fail to see how this is relevant here. This is example only of vmbus.
-> Look how other bindings are done. Drop the example.
-
-The bus refers to the interrupt controller, and I didn't have it, so
-added it :) Now I in other examples that is not required, and the
-tooling generates fake intc's. Appreciate your advice very much!
-
-> 
-> 
->> +
->>               vmbus@ff0000000 {
->>                   compatible = "microsoft,vmbus";
->>                   #address-cells = <2>;
->>                   #size-cells = <1>;
->>                   ranges = <0x0f 0xf0000000 0x0f 0xf0000000 0x10000000>;
->> +                dma-coherent;
->> +                interrupt-parent = <&gic>;
->> +                interrupts = <1 2 1>;
-> 
-> Use proper defines for known constants.
-
-Will do as in [1], thank you!
-
-> 
-
-[1]
-
---- a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
-+++ b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
-@@ -28,6 +28,7 @@ properties:
-  required:
-    - compatible
-    - ranges
-+  - interrupts
-    - '#address-cells'
-    - '#size-cells'
-
-@@ -35,6 +36,8 @@ additionalProperties: false
-
-  examples:
-    - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-      soc {
-          #address-cells = <2>;
-          #size-cells = <1>;
-@@ -44,14 +47,6 @@ examples:
-              #size-cells = <1>;
-              ranges;
-
--            gic: intc@fe200000 {
--              compatible = "arm,gic-v3";
--              reg = <0x0 0xfe200000 0x0 0x10000>,   /* GIC Dist */
--                    <0x0 0xfe280000 0x0 0x200000>;  /* GICR */
--              interrupt-controller;
--              #interrupt-cells = <3>;
--            }
--
-              vmbus@ff0000000 {
-                  compatible = "microsoft,vmbus";
-                  #address-cells = <2>;
-@@ -59,7 +54,7 @@ examples:
-                  ranges = <0x0f 0xf0000000 0x0f 0xf0000000 0x10000000>;
-                  dma-coherent;
-                  interrupt-parent = <&gic>;
--                interrupts = <1 2 1>;
-+                interrupts = <GIC_PPI 2 IRQ_TYPE_EDGE_RISING>;
-              };
-          };
-      };
-
-> Best regards,
-> Krzysztof
-
+diff --git a/arch/arm64/boot/dts/exynos/exynos990-r8s.dts b/arch/arm64/boot/dts/exynos/exynos990-r8s.dts
+index 6bae3c0ec..049b40af2 100644
+--- a/arch/arm64/boot/dts/exynos/exynos990-r8s.dts
++++ b/arch/arm64/boot/dts/exynos/exynos990-r8s.dts
+@@ -18,6 +18,11 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	aliases {
++		serial0 = &serial_0;
++		serial1 = &serial_1;
++	};
++
+ 	chosen {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -113,3 +118,21 @@ key_volup: key-volup-pins {
+ 		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
+ 	};
+ };
++
++&usi_uart {
++	samsung,clkreq-on; /* needed for UART mode */
++	status = "okay";
++};
++
++&serial_0 {
++	status = "okay";
++};
++
++&usi_bt_uart {
++	samsung,clkreq-on; /* needed for UART mode */
++	status = "okay";
++};
++
++&serial_1 {
++	status = "okay";
++};
 -- 
-Thank you,
-Roman
+2.48.1
 
 
