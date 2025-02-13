@@ -1,236 +1,126 @@
-Return-Path: <devicetree+bounces-146121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39596A3383B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 07:52:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FEF0A33867
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 07:59:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B73A33A6CED
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 06:52:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32499188C49E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 07:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEEC7207A32;
-	Thu, 13 Feb 2025 06:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE6D207DF6;
+	Thu, 13 Feb 2025 06:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bzWGu+WG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nv2vRVlT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955FA2063E3;
-	Thu, 13 Feb 2025 06:52:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11474207E08
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 06:59:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739429533; cv=none; b=VwpeuUGMRedAf+LywghvbPJ5zdtD01j3DPn1BW7wrTmsE7ZyGsCvA1hNfTKCehey7nZUaxq852btK/PDQaHvT0Tq/KyAluulbtYTgmCJmK29NF9eZd1VnLuBbdDUw72CgWVCgEJRG5+AzTUWxNHIhaOiFddXWaZ8IbOqVvkRiSw=
+	t=1739429991; cv=none; b=CrLDGZm1CYRGcIwTlcY1EqQk8lyY6X61O2IZ1oJ8SYA9AP7zGpX4vNJPb/qWVE/f0jrIYG/BZZcNHa108cMXsDje7CTEtV1Kd5ps1Wl4ot/T9JMFnZuym/QAfENfSHZcFg0kyPc4zaqwRLAoaBn4XToT3Bxb5WdKELLtcEGwcZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739429533; c=relaxed/simple;
-	bh=HIsQirg/QfSVOdumsSMLsN22L13lwLj+hm+E8Aa5z/M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fI0z2Ty17QJGYUBL9uYsXVaXivC/LW4Zb+OPpkiud9QCtdf1I70w85JZCuNXZHWcptgwR6FUl2LIr769SRgFYbXGdeH8eeahxwXMe940HisxsV1r/p86Paei17hLUIoHM8LgwPxfr1hBhcXyJd6WSHwSnPoiYNO3U4Vrs0NNZho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bzWGu+WG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51CJCiMM025783;
-	Thu, 13 Feb 2025 06:52:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pSoWe0tkC6qoe3u34Vl9ApP4YwUG2Z+ydK+WaKmQ7kw=; b=bzWGu+WG3XlpNyH1
-	tXoqtpiap4vX841JbsQ2QViLmCuE54wxSuLbhlmsdvhtS5c5E/UzK5xPAWnuLRyJ
-	XqPnByxz6C3aR8ZpLO87YRmkucppLpyfwRXgVDRiBCITHXkUAnxwYa/zOYwD8F74
-	qXsKdc/QbukB1AFXu4FzUH2TIFwTveRpPuCx4/QJuAB5cRzTySbxtYd2MSMglYKu
-	KPv485bpJFHU03fCjilGedZjiRA6AE0jdAJqzMkNzZVf62QnXcop/IxUgF1aYmo/
-	paLGdbgGfDl7ZM9ycKs5V/1l7W1R7rn426yJ2hmg1+53XRAcXlxdjRE80vivk46V
-	yIAG2w==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44r5j5e4sg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Feb 2025 06:52:00 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51D6pxRm001266
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Feb 2025 06:51:59 GMT
-Received: from [10.217.217.81] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Feb
- 2025 22:51:54 -0800
-Message-ID: <c820c697-c3ec-4ae3-9720-fb80cb3a0450@quicinc.com>
-Date: Thu, 13 Feb 2025 12:21:51 +0530
+	s=arc-20240116; t=1739429991; c=relaxed/simple;
+	bh=L+lWu/Bg4y/1hXkYeBGzl87ktHtA28/BQP0FvLsbWBU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=cpFpqDYu/MJ00IZ359nGorktMG3Ujt5Zlw/Kr+ko7UUGx1LK+ZapN6plV6nytO6SJ3lGTCuRQBN1jBHzaPKWNfMX57q9VhZzUv9ZeEbJAcU3Qy5nq/yqzsEas8bglMuSRnb7BDnk9sGJe0VSXzi7eo0ngIeEfHoyRDj1PsVuDQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nv2vRVlT; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4395f81db4dso2659395e9.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2025 22:59:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739429988; x=1740034788; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=L+lWu/Bg4y/1hXkYeBGzl87ktHtA28/BQP0FvLsbWBU=;
+        b=nv2vRVlT60qu5gy4OzVc1C794oBvXfrksMC4mdRnFyRbGtw1Y/C1iKLUE4sqvb2g65
+         pOHovNAlBEvS/lAihl9nqVtnCi2BeyffT7eIRTD/nscnvxtQ7Tl7iSxPT/TIk9jjZrgB
+         p3rtuXtER2DjlhjhfZ3jJLFrAv0gKE83eREpfHP9UluMuPhwaVAzOajoMiUelMk/6MjD
+         ytmnIH6qAQgdmU6ej2LAzrukmEBWK0m6Q3x31Up3yfLMAPf93rl+9+ZbCSMYmVPe0Pev
+         iH8L/X1Uzsv4ox6XQGAgwYU/RXmD7frtOk0J50JFYNKRsCtwoBGAZDWOZzKnWRdV+iDx
+         RrZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739429988; x=1740034788;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L+lWu/Bg4y/1hXkYeBGzl87ktHtA28/BQP0FvLsbWBU=;
+        b=wGR66vTBCKhN3R1xeroaSr+EKhBtenLCgqs6UvkjhHo2R4EaZjmB1gRXIJGiBwau6T
+         Ebnfh9rUJXqq6uOcWxTDm0RnpOhcTyo7LQTIq8pURU+wjyquM8jM0RZb23dhActeZfNW
+         Vd3SzQHH5WtPerx1w/A4yHxKhQf5RdfdzVDiD0J6/+sa1iXcqzXyGuDlf/J4TI6I8U3f
+         vDbmP9+9I8h7X5aLqIw72ACf9j15hWr/gylEQ7OjX00JmUbgvsHTmW2Mew2YJrBa/9qs
+         UKPQRiQjwpMw3qFGlY93sSvRNL+iJ0kNxtqfjl+oS5mkgQqIGuq+XmKnMNLN0LdGWwla
+         fkQg==
+X-Forwarded-Encrypted: i=1; AJvYcCVSXB2y1Ittnki0k6xEfFsn4NUBlWUV0DVcWzc5fhtfj7javDZoU2ji39Ys5NqLjIrt8s+TSw6Q/KJr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCf70FjXGh6GV+0/6AZ5+u3hEb69erYOOrkgKIrrrJqArU62Lj
+	PSijCiDocy7e09pUx2l7oSRviEKYfxkZ2O9nF3mSivNwItvUtt9dyddKdhiIP+c=
+X-Gm-Gg: ASbGncvJyF54jyk9OtRfuNJRVTID+HMl7WFKWK8nq2G8ta6m3wu3ujXN+pJOPvXt/lE
+	Cp+Z38xHebfU75Qf0Kect9tGz+Ari1sNqtzsgx6lF3qJmwkebvm5UNk84+gy4Wg5e0TSqISgikP
+	URHSXKjaD4/Aq22HYBtzZD4N2lHWqofPvuAEGvASpriL2cIPoiw9QtyRdXRV5lSFM/X6kE0oaYa
+	/gzpRkl3B4rOWzaEAAEy49HAbwUpUGeo2K45YbbRmUG4rlF4f3tNiXF2TBMGB6l6ZV7JBun06hX
+	h5jPAxdFFSTXCK+sglM=
+X-Google-Smtp-Source: AGHT+IEcIbIDDwYQdOV615CUjCJxgeMnQC+DGesANA1ClWsaF9ced93N0m+sAVSXmRf6DZmkMUCY+w==
+X-Received: by 2002:a05:600c:214:b0:438:a313:cda9 with SMTP id 5b1f17b1804b1-43960c068d9mr13823075e9.10.1739429988348;
+        Wed, 12 Feb 2025 22:59:48 -0800 (PST)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f259f85c2sm995229f8f.91.2025.02.12.22.59.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2025 22:59:47 -0800 (PST)
+Message-ID: <f5f6194db4d3ab2e61ef8800531475af1b5680d9.camel@linaro.org>
+Subject: Re: [PATCH v4 0/7] USB31DRD phy updates for Google Tensor gs101
+ (orientation & DWC3 rpm)
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Marek Szyprowski
+ <m.szyprowski@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
+ <tudor.ambarus@linaro.org>, Sam Protsenko <semen.protsenko@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>,
+ kernel-team@android.com,  linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,  linux-samsung-soc@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Thu, 13 Feb 2025 06:59:46 +0000
+In-Reply-To: <75e01bf815e5f7692d4b7aa261054851a943fece.camel@linaro.org>
+References: 
+	<20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
+	 <75e01bf815e5f7692d4b7aa261054851a943fece.camel@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] clk: qcom: lpassaudiocc-sc7280: Add support for
- LPASS resets for QCM6490
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250212-lpass_qcm6490_resets-v3-0-0b1cfb35b38e@quicinc.com>
- <20250212-lpass_qcm6490_resets-v3-2-0b1cfb35b38e@quicinc.com>
- <exyxni7td5vow2n6jarav5euje6dnbue5f5yxzu6az554dthfe@zn5yd2byvkoj>
- <ccc87c55-d157-4ffc-8081-1a5900752931@quicinc.com>
- <CAA8EJpp7e5q36jGmB-TZX5A=XVGKsDtmBF8kJmxoga8NqGZP1A@mail.gmail.com>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <CAA8EJpp7e5q36jGmB-TZX5A=XVGKsDtmBF8kJmxoga8NqGZP1A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: UfpzANZj0WxZR_L58fQ8IpHUO76VBsY-
-X-Proofpoint-GUID: UfpzANZj0WxZR_L58fQ8IpHUO76VBsY-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-13_02,2025-02-11_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 mlxscore=0 bulkscore=0 suspectscore=0 malwarescore=0
- phishscore=0 adultscore=0 spamscore=0 clxscore=1015 impostorscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502130051
 
+Hi Vinod,
 
+On Mon, 2025-01-06 at 14:26 +0000, Andr=C3=A9 Draszik wrote:
+> Hi Vinod,
+>=20
+> On Fri, 2024-12-06 at 16:31 +0000, Andr=C3=A9 Draszik wrote:
+> > Hi,
+> >=20
+> > This series enables USB3 Type-C lane orientation detection and
+> > configuration on platforms that support this (Google gs101), and it
+> > also allows the DWC3 core to enter runtime suspend even when UDC is
+> > active.
+>=20
+> Friendly ping on this series :-) Do you require anything else?
 
-On 2/13/2025 1:30 AM, Dmitry Baryshkov wrote:
-> On Wed, 12 Feb 2025 at 19:15, Taniya Das <quic_tdas@quicinc.com> wrote:
->>
->>
->>
->> On 2/12/2025 4:39 PM, Dmitry Baryshkov wrote:
->>> On Wed, Feb 12, 2025 at 01:52:20PM +0530, Taniya Das wrote:
->>>> On the QCM6490 boards the LPASS firmware controls the complete clock
->>>> controller functionalities. But the LPASS resets are required to be
->>>> controlled from the high level OS. The Audio SW driver should be able to
->>>> assert/deassert the audio resets as required. Thus in clock driver add
->>>> support for the resets.
->>>>
->>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>>> ---
->>>>  drivers/clk/qcom/lpassaudiocc-sc7280.c | 23 +++++++++++++++++++----
->>>>  1 file changed, 19 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/clk/qcom/lpassaudiocc-sc7280.c b/drivers/clk/qcom/lpassaudiocc-sc7280.c
->>>> index 45e7264770866f929a3f4663c477330f0bf7aa84..b6439308926371891cc5f9a5e0d4e8393641560d 100644
->>>> --- a/drivers/clk/qcom/lpassaudiocc-sc7280.c
->>>> +++ b/drivers/clk/qcom/lpassaudiocc-sc7280.c
->>>> @@ -1,6 +1,7 @@
->>>>  // SPDX-License-Identifier: GPL-2.0-only
->>>>  /*
->>>>   * Copyright (c) 2021, The Linux Foundation. All rights reserved.
->>>> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->>>>   */
->>>>
->>>>  #include <linux/clk-provider.h>
->>>> @@ -713,14 +714,24 @@ static const struct qcom_reset_map lpass_audio_cc_sc7280_resets[] = {
->>>>      [LPASS_AUDIO_SWR_WSA_CGCR] = { 0xb0, 1 },
->>>>  };
->>>>
->>>> +static const struct regmap_config lpass_audio_cc_sc7280_reset_regmap_config = {
->>>> +    .name = "lpassaudio_cc_reset",
->>>> +    .reg_bits = 32,
->>>> +    .reg_stride = 4,
->>>> +    .val_bits = 32,
->>>> +    .fast_io = true,
->>>> +    .max_register = 0xc8,
->>>> +};
->>>> +
->>>>  static const struct qcom_cc_desc lpass_audio_cc_reset_sc7280_desc = {
->>>> -    .config = &lpass_audio_cc_sc7280_regmap_config,
->>>> +    .config = &lpass_audio_cc_sc7280_reset_regmap_config,
->>>>      .resets = lpass_audio_cc_sc7280_resets,
->>>>      .num_resets = ARRAY_SIZE(lpass_audio_cc_sc7280_resets),
->>>>  };
->>>>
->>>>  static const struct of_device_id lpass_audio_cc_sc7280_match_table[] = {
->>>> -    { .compatible = "qcom,sc7280-lpassaudiocc" },
->>>> +    { .compatible = "qcom,qcm6490-lpassaudiocc", .data = &lpass_audio_cc_reset_sc7280_desc },
->>>> +    { .compatible = "qcom,sc7280-lpassaudiocc", .data = &lpass_audio_cc_sc7280_desc },
->>>>      { }
->>>>  };
->>>>  MODULE_DEVICE_TABLE(of, lpass_audio_cc_sc7280_match_table);
->>>> @@ -752,13 +763,17 @@ static int lpass_audio_cc_sc7280_probe(struct platform_device *pdev)
->>>>      struct regmap *regmap;
->>>>      int ret;
->>>>
->>>> +    desc = device_get_match_data(&pdev->dev);
->>>> +
->>>> +    if (desc->num_resets)
->>>> +            return qcom_cc_probe_by_index(pdev, 1, desc);
->>>
->>> Won't this break SC7280 support by causing an early return?
->>>
->>
->> The resets are not defined for SC7280.
->> static const struct qcom_cc_desc lpass_audio_cc_sc7280_desc = {
->>         .config = &lpass_audio_cc_sc7280_regmap_config,
->>         .clks = lpass_audio_cc_sc7280_clocks,
->>         .num_clks = ARRAY_SIZE(lpass_audio_cc_sc7280_clocks),
->> };
->>
->> The reset get registered for SC7280 after the clocks are registered.
->> qcom_cc_probe_by_index(pdev, 1,  &lpass_audio_cc_reset_sc7280_desc);
-> 
-> Could you please make this condition more obvious and error-prone
-> rather than checking one particular non-obvious property?
-> 
+Ping again :-)
 
-Dmitry, we had earlier tried [1], but seems like we could not align on
-this patchset.
-
-If you are aligned, please let me know I can fall back on the approach.
-
-[1]:
-https://lore.kernel.org/all/20240318053555.20405-3-quic_tdas@quicinc.com/
-
-Do you have any suggestions that we could consider?
-
->>
->>>> +
->>>>      ret = lpass_audio_setup_runtime_pm(pdev);
->>>>      if (ret)
->>>>              return ret;
->>>>
->>>>      lpass_audio_cc_sc7280_regmap_config.name = "lpassaudio_cc";
->>>>      lpass_audio_cc_sc7280_regmap_config.max_register = 0x2f000;
->>>> -    desc = &lpass_audio_cc_sc7280_desc;
->>>>
->>>>      regmap = qcom_cc_map(pdev, desc);
->>>>      if (IS_ERR(regmap)) {
->>>> @@ -772,7 +787,7 @@ static int lpass_audio_cc_sc7280_probe(struct platform_device *pdev)
->>>>      regmap_write(regmap, 0x4, 0x3b);
->>>>      regmap_write(regmap, 0x8, 0xff05);
->>>>
->>>> -    ret = qcom_cc_really_probe(&pdev->dev, &lpass_audio_cc_sc7280_desc, regmap);
->>>> +    ret = qcom_cc_really_probe(&pdev->dev, desc, regmap);
->>>>      if (ret) {
->>>>              dev_err(&pdev->dev, "Failed to register LPASS AUDIO CC clocks\n");
->>>>              goto exit;
->>>>
->>>> --
->>>> 2.45.2
->>>>
->>>
->>
-> 
-> 
+Cheers,
+Andre'
 
 
