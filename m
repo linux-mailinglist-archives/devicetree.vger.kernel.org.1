@@ -1,212 +1,123 @@
-Return-Path: <devicetree+bounces-146238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ACB7A33D6C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 12:08:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A47EAA33D78
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 12:09:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC4C03A9439
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:06:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AA901884B2A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:08:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5DD267B9C;
-	Thu, 13 Feb 2025 11:05:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7786321422E;
+	Thu, 13 Feb 2025 11:08:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eyW+u0qL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f3B6so7R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF409267B1C;
-	Thu, 13 Feb 2025 11:05:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4898421323A;
+	Thu, 13 Feb 2025 11:08:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739444746; cv=none; b=fGyJhKFcYpfY+/UHUta9LDRRRjglCle6gim8+8K08lK0+9n9baigg4sMmw01nZXZ+7eREcE89VMRXnbKQSswVYpCUvUFhkd19bIvSuJd9Z0TsD2kC4XclOFOmHl+BF6B++yZjbDgBElmhhn5hlSE0LrPGsNBRFGvteZiL3C8k3E=
+	t=1739444918; cv=none; b=R6Hd7JgEBv5Pmtn76OjEezchct1QbEp+5KSoRv5hGalOtpS1mlkHAdmcY3Z2d04x+ey1d2Vb6k3+xK0VvyDDc4mk0hAZeJvJeqTfYhA2e/EmRl/Jbtz0yZ+Cih6f5Z3HhkgoF8ygF1HMovTnGHbygB6OAAHDnI1ZNVkn20N5YF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739444746; c=relaxed/simple;
-	bh=u3jhAvzTfEh3CdzEn3BAjSF63/UVzzb34kvFb3VtIos=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XRmTE2B26lgundaXJ4UJlmFeHMyaw0/FoFDEpL13idm0zAr6nVl184ta78uNiBAuH0UgMObJa8NJxxw2cIc52g9xbfhHjZywTY8J+SQX+tvc/paYIFKtN+nv90ExQVa/VPSMh2YDafFKq7rAiwZM7AZyQy7adtcg+qzpcqJgkGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eyW+u0qL; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739444745; x=1770980745;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=u3jhAvzTfEh3CdzEn3BAjSF63/UVzzb34kvFb3VtIos=;
-  b=eyW+u0qLewW4A6bDhLLh4JFhmGzofLoGdrs4UA2msi9UeFhfXB4rWceh
-   V3e39QizHbvXVn7gh6Qd3sAC6DmEWWE6mGqRti32PYZ8gfZZl4mAQbCgb
-   BRMlec5YvL3muZeMRwqLsnjycbWHmFLtNOnXiCgkx7m6rOsQhgkj8HBHN
-   zXWRjdtQZDsBrq7/hK+LNWOI6jLUxL+o8PRBvVB4o7jKqaAPq9gsD9vFI
-   5dYHrgprK9H8An+WmCH7td+OpISG5eEFG/f1+mTXh0MwWe253DYMG7uwT
-   z9iaRmiUMV2lYOZstMXdMw/yizpJSH4ixOrrC7MSlZM1US1+SNT/zid6a
-   Q==;
-X-CSE-ConnectionGUID: ZsTqD4jCS+2WBWZOQv6Iiw==
-X-CSE-MsgGUID: 1U4e5sFnREeHx9nm8qrt6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="42976571"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; 
-   d="scan'208";a="42976571"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 03:05:44 -0800
-X-CSE-ConnectionGUID: P128WeynQ/WkMPJRXWsfcw==
-X-CSE-MsgGUID: ETfIGN2oS7CuNCAvKhDUjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; 
-   d="scan'208";a="112978940"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 03:05:40 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tiX2G-0000000B8rH-2sEK;
-	Thu, 13 Feb 2025 13:05:36 +0200
-Date: Thu, 13 Feb 2025 13:05:36 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Kartik Rajput <kkartik@nvidia.com>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
-	jonathanh@nvidia.com, hvilleneuve@dimonoff.com, arnd@kernel.org,
-	geert+renesas@glider.be, robert.marko@sartura.hr,
-	schnelle@linux.ibm.com, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] serial: tegra-utc: Add driver for Tegra UART
- Trace Controller (UTC)
-Message-ID: <Z63SAPtHXR6KN9qa@smile.fi.intel.com>
-References: <20250213100442.45773-1-kkartik@nvidia.com>
- <20250213100442.45773-3-kkartik@nvidia.com>
+	s=arc-20240116; t=1739444918; c=relaxed/simple;
+	bh=NzeAgOEUcs1QCtjHEiz1U/3sMurLrKohd3+BYTsEIm4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KqT/vxyLQy6h+puhu3yhrWY7HcIrGRPWJcacdx90lC1d+D8ExTy2WQyCWsKma0nd4pzEHNL+4TuvGLfoIdBmhzE/YC2jSVzP492fD7yZr674yXkqXJvb7kprx9/ZW6zC1AV+vuU69+N9WC3zsNesKNR3Ao1YLATbj1oEBNC1j6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f3B6so7R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8EDCC4CED1;
+	Thu, 13 Feb 2025 11:08:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739444917;
+	bh=NzeAgOEUcs1QCtjHEiz1U/3sMurLrKohd3+BYTsEIm4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=f3B6so7RtGdEdY1n55i816+qWWtGUmOwoJrHGIYJj4ODxYsSHFcw5V9tDasFO13uL
+	 Ns7IjsoQX2V/8YMlGLXQJfUIhXUi6gQXBkmKGsfXlQCxsNcvSCagCX2uhmYxGF0I5P
+	 W8L5bRG7L13FGtzZ2LyDbc2knelqlxARTmY5Y4MtTBkScvF5UQF8dilWWEWptQcfi6
+	 tSf3MnZBS2iV2tubIoE15GRZ3/nQ8EjgKIcxnOqtJuE+UK40d+lew/BAQX1VMR02yV
+	 Xxpv1cRNhW7CaNEiKLD2CkQegwmWXUcrNF8+Ds/pjsyMTcBOzRJxg77PxQK6GUZ+Mi
+	 A0Dk3gPTPj+RA==
+Message-ID: <5d3c0ffd-2661-415c-8008-3f09523a82af@kernel.org>
+Date: Thu, 13 Feb 2025 12:08:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250213100442.45773-3-kkartik@nvidia.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: socfpga: agilex5: fix gpio0 address
+To: niravkumar.l.rabara@intel.com, Dinh Nguyen <dinguyen@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, nirav.rabara@altera.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org
+References: <20250213105036.3170943-1-niravkumar.l.rabara@intel.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250213105036.3170943-1-niravkumar.l.rabara@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 13, 2025 at 03:34:42PM +0530, Kartik Rajput wrote:
-> The Tegra264 SoC supports the UART Trace Controller (UTC), which allows
-> multiple firmware clients (up to 16) to share a single physical UART.
-> Each client is provided with its own interrupt and has access to a
-> 128-character wide FIFO for both transmit (TX) and receive (RX)
-> operations.
+On 13/02/2025 11:50, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > 
-> Add tegra-utc driver to support Tegra UART Trace Controller (UTC)
-> client.
+> Use the correct gpio0 address for Agilex5.
+> 
+> Fixes: 3f7c869e143a ("arm64: dts: socfpga: agilex5: Add gpio0 node and spi dma handshake id")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> ---
 
-Btw, neither the commit message nor cover letter explain why the new driver
-is needed. There are some serial Tegra drivers already. Is this one completely
-different from the existing drivers?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-...
-
-> +#define TEGRA_UTC_ENABLE			0x0
-
-It would be nice to use fixed width values for the register offsets,
-e.g., 0x000 here.
-
-> +#define TEGRA_UTC_ENABLE_CLIENT_ENABLE		BIT(0)
-> +
-> +#define TEGRA_UTC_FIFO_THRESHOLD		0x8
-> +
-> +#define TEGRA_UTC_COMMAND			0xc
-
-Ditto.
-
-> +#define TEGRA_UTC_COMMAND_RESET			BIT(0)
-> +#define TEGRA_UTC_COMMAND_FLUSH			BIT(1)
-
-> +#define TEGRA_UTC_DATA				0x20
-
-Ditto.
-
-> +#define TEGRA_UTC_FIFO_STATUS			0x100
-> +#define TEGRA_UTC_FIFO_EMPTY			BIT(0)
-> +#define TEGRA_UTC_FIFO_FULL			BIT(1)
-> +#define TEGRA_UTC_FIFO_REQ			BIT(2)
-> +#define TEGRA_UTC_FIFO_OVERFLOW			BIT(3)
-> +#define TEGRA_UTC_FIFO_TIMEOUT			BIT(4)
-> +
-> +#define TEGRA_UTC_FIFO_OCCUPANCY		0x104
-> +
-> +#define TEGRA_UTC_INTR_STATUS			0x108
-> +#define TEGRA_UTC_INTR_SET			0x10c
-> +#define TEGRA_UTC_INTR_MASK			0x110
-> +#define TEGRA_UTC_INTR_CLEAR			0x114
-> +#define TEGRA_UTC_INTR_EMPTY			BIT(0)
-> +#define TEGRA_UTC_INTR_FULL			BIT(1)
-> +#define TEGRA_UTC_INTR_REQ			BIT(2)
-> +#define TEGRA_UTC_INTR_OVERFLOW			BIT(3)
-> +#define TEGRA_UTC_INTR_TIMEOUT			BIT(4)
-
-...
-
-> +#if IS_ENABLED(CONFIG_SERIAL_TEGRA_UTC_CONSOLE)
-> +#define TEGRA_UTC_DEFAULT_FIFO_THRESHOLD	0x4
-
-Hmm... Is this a register offset? If not, why it's in a hexadecimal format?
-
-> +#define TEGRA_UTC_EARLYCON_MAX_BURST_SIZE	128
-
-...
-
-> +static int tegra_utc_probe(struct platform_device *pdev)
-> +{
-> +	const unsigned int *soc_fifosize;
-> +	struct device *dev = &pdev->dev;
-> +	struct tegra_utc_port *tup;
-> +	int ret;
-> +
-> +	tup = devm_kzalloc(&pdev->dev, sizeof(*tup), GFP_KERNEL);
-
-Use dev?
-
-> +	if (!tup)
-> +		return -ENOMEM;
-> +
-> +	ret = device_property_read_u32(dev, "tx-threshold", &tup->tx_threshold);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "missing %s property\n", "tx-threshold");
-> +
-> +	ret = device_property_read_u32(dev, "rx-threshold", &tup->rx_threshold);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "missing %s property\n", "rx-threshold");
-> +
-> +	soc_fifosize = device_get_match_data(&pdev->dev);
-> +	tup->fifosize = *soc_fifosize;
-> +
-> +	tup->tx_base = devm_platform_ioremap_resource_byname(pdev, "tx");
-> +	if (IS_ERR(tup->tx_base))
-> +		return PTR_ERR(tup->tx_base);
-> +
-> +	tup->rx_base = devm_platform_ioremap_resource_byname(pdev, "rx");
-> +	if (IS_ERR(tup->rx_base))
-> +		return PTR_ERR(tup->rx_base);
-
-> +	ret = tegra_utc_setup_port(&pdev->dev, tup);
-
-Ditto.
-
-> +	if (ret)
-> +		dev_err_probe(dev, ret, "failed to setup uart port\n");
-> +
-> +	platform_set_drvdata(pdev, tup);
-> +
-> +	return tegra_utc_register_port(tup);
-> +}
-
-...
-
-With the above being addressed, FWIW,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best regards,
+Krzysztof
 
