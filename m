@@ -1,90 +1,81 @@
-Return-Path: <devicetree+bounces-146474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31C47A35149
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 23:30:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D6BA351BA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 23:58:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2E5416E52F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 22:30:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A413A3AA4AF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 22:58:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E6826FA47;
-	Thu, 13 Feb 2025 22:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD7B2753EF;
+	Thu, 13 Feb 2025 22:58:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZOtQy7LS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Mw+QsdMs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53DFA26E156;
-	Thu, 13 Feb 2025 22:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DAA2753E4;
+	Thu, 13 Feb 2025 22:58:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739485806; cv=none; b=qzFqLxqyPDqvq1kOvYT84qHlW+UF6duzgRz5X1pBrq07cfhsxJ4UAIkxu/aHY0ZONnwR9EhGCUWX75yhrDMF0R1RsoR6j/UpmLoFacm/DB8tDzOq11ra0LxuOQWy+yMY+Uhk6o+szdJAIIzGqKX5yAETXHvR3enh+YxyjNx/uvY=
+	t=1739487525; cv=none; b=BAmbrXCT9htpCbDC2LdL880dwmC9P5jCpvmDo+ipGyq4BTdPdBTsqRQCgOE60pUo57ZJcU2CBlnLJuQ1NV7UvpCO3HUwRQoAhvkNqt+rkeOU365eh4Nr55ke6SoN7kXWkDrwZWD0GfcgDcqY8AXYwxfTX21xGf+xNk1UYwDce2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739485806; c=relaxed/simple;
-	bh=K6WgcIpyeh4VCAjdJVyHzN62WGWQKJ1LafETnOr21F0=;
+	s=arc-20240116; t=1739487525; c=relaxed/simple;
+	bh=JVrIfR2b7Zw5tphgm7dmRrPq3bFn2dAIdtlGx9/51vk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eGynxg+XWKY6CCxVXlYwnoD/sUA1JGBasjmKGz1Iird0Qvxr3WEhDVg9jCoCxFX3uBDXRN4e0y4ek0yPNTG3N8ig2FLc0bkJfLoWENgrh1hRvTsCYBMQKf0naMEbfO9jQFG9lfN2arx9jDUXT5X5GADNsUVOdxJYIy8DQsgAvs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZOtQy7LS; arc=none smtp.client-ip=209.85.222.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7c077c9cbb9so115851585a.1;
-        Thu, 13 Feb 2025 14:30:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739485804; x=1740090604; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ShXovPaITATOcaXepBbTHEqdpsA8xygI7qSwseEtmVA=;
-        b=ZOtQy7LSZY2y6Ov5FPSTNJ/N6yTawdM6YvLCGy8ewRwiN24DINFvpB5h0q2qD5RiVk
-         oHLAU/jlL4uV9EyNcloGmgIN4VgGLgYJ2LyXTHNr/QMJ5x57C10BLf7QZxoBAQcx7ViK
-         WQKXaxdv3TKg/ofEe4cHKMZc7DoAgf0yHFLy2E69Dzq1ONAH/1qy0ucj8UVLZrMpvQfL
-         WovhAN2kC3U5KI0n7FaF0zbSRMgw9y3IJLq850nGeuk7jGuAh+AtPuPOCTsrYG6cABBz
-         Ce1uTmRLeffMCSkPxKk5xsBgpetc6hzQQWFNeg5FK/AqdodKJGbc2AsqtaGUFblDGNHv
-         aJQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739485804; x=1740090604;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ShXovPaITATOcaXepBbTHEqdpsA8xygI7qSwseEtmVA=;
-        b=Ni+u9lDkCQr2+2kNNi21mWIXnII4gebEGcxWM/3/6dZR3bDbj1ondE6wgEZjGqbEPI
-         Cw6pZIHqlGJOP9RxJmeNlyJXGHabRJpuy/pa/r+LWxW5vENXbNQiilBQow2eptl7BsuA
-         ZgxDkJC89rJvNTA0vcG4Yf0YQ4SACtPuu+Al2iDE9qz1SfrmZvzgq0drxpOUPIGuyrWd
-         wCieC8jE/r4evBrSjogFZeDuY+EPjIWiVotzwyXQhT910qOZCBvUxLPuae9A+B+YTYOo
-         UfvaXY19yHuzbgrJRs92cUx3GDusj1xwp0VJ54YKB8M5m/xsPZ2cQR28frFLcNRMX6d3
-         47Qw==
-X-Forwarded-Encrypted: i=1; AJvYcCUaD6JRk/34tzyeFGvFn1IbI59KtzCz2DueiZvo2wQHarPv7707FcX/mZ0++XdOnzbC5+spF6X14jMS@vger.kernel.org, AJvYcCWlcylqTknuhAB9WbcwdFqeQyozk0IHe8pSDXAQb8ViIyZg+1kKcMuTG8sADBP7o+4ywZAKoUcPzT7iLjHu@vger.kernel.org, AJvYcCWspwm41yhZL6XRbxv0SEdmey8z4B8VpxqvDsIFec11AXW/q0m+0EV5mQwHPf87E3CkM+g8sfGNpL/b@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKuyKZeoNikrblpC96QmEZlCqT9YCJDW94xralU8qXGIWDhhO4
-	XdmhmkzwoA662AKiXUgKLTUT3nyCCWEZJU27iGEfGEzEW2ehkHLe
-X-Gm-Gg: ASbGncs7qCjuOOk8lSsIhX+Vgwav27rCtxUZH0EnIZGds3cOIZtFG+sVDEcN3rogNL+
-	nv/BZYFUXiSdfjwjVVAuI/uk/LJfJ3xRcKBfPTzgJznL9HGBZyLzTHx8SmfVM7xNyGmWscQuicn
-	9dmh8gPY4wFYZqY5LQnm2qJv+K4Cw4hhWlC7hPyH//pfplkcrHqmWY9ruXdhozd1c9kqSn8gBla
-	p4Yc7FeY08EQnPNNRy9A9RJlnJvXMFlQ6nndWuNCNVcy/YGLrQYFnnkAa5f5hCb6vc=
-X-Google-Smtp-Source: AGHT+IG45Dds1F1x6ndc483I9NQk+Amp3qv08smVydJSJhtH7qqr6jURVIBwtKjriGlCosvlZ5CFfA==
-X-Received: by 2002:a05:620a:6841:b0:7c0:78ec:1ece with SMTP id af79cd13be357-7c07a9acc99mr761190585a.7.1739485804152;
-        Thu, 13 Feb 2025 14:30:04 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c07c6088ccsm139655885a.33.2025.02.13.14.30.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 14:30:03 -0800 (PST)
-Date: Fri, 14 Feb 2025 06:29:56 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, linux-rtc@vger.kernel.org
-Cc: Jingbao Qiu <qiujingbao.dlmu@gmail.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, alexandre.belloni@bootlin.com, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, unicorn_wang@outlook.com, 
-	inochiama@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, dlan@gentoo.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v11 1/3] dt-bindings: rtc: sophgo: add RTC support for
- Sophgo CV1800 series SoC
-Message-ID: <afskjc2sltch5vqlegrliq32bpoejmzgko6vovfgj33sx6aqla@omeqr7mr77za>
-References: <20250213215655.2311793-1-alexander.sverdlin@gmail.com>
- <20250213215655.2311793-2-alexander.sverdlin@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=S34cffam5fP5tYhCo9M7kMnljzC2LIWaU/aEwFuah1p2xeBNleRhAyJPW6NTx8iq0Oz8i97FJOZArXLP/ORI+p8yOxF9tfj3PhDMyQXt1xDUTgbQesCEbGlWsIIYW5R702JPkafMsPKR9rFqguLkGEjlo2qAVuIHyM4PBbF59rM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Mw+QsdMs; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739487524; x=1771023524;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JVrIfR2b7Zw5tphgm7dmRrPq3bFn2dAIdtlGx9/51vk=;
+  b=Mw+QsdMshJosyrmllhx7VeZt0nppm/FBiQfBL9BLL/sV+EMPSdtTuJPF
+   i7+7QHwwKmqQOHKjEHDlVQZuyjJKuIqSwz/lu8EjKYxgPR1DojySv5Lta
+   UCUzVrW6zn6LgSKQFFv37kimIbLNVKecvxIOlZQ2lyyvzbcAjnyFgU+0J
+   PdfpI8fqlILOopvZb9rTRB+fWO10JBjaO4KIK9km5MOJjEokXxO0FO2cV
+   GVCmzjl89qrJw6KJXy1yHNgxVVwfOsFoXGd5Conn6VEBH4gPPX8Z3mgw6
+   B4jrTVfnlD824nOvGLrhMNuvjEn+OCiQ+hk0BNYLIhYEUQ8/oPJ4qlSdU
+   A==;
+X-CSE-ConnectionGUID: f41P3VHkR0CTg37QB5w64g==
+X-CSE-MsgGUID: IZZFlNMBQA6gweqJZUlo0A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40340106"
+X-IronPort-AV: E=Sophos;i="6.13,284,1732608000"; 
+   d="scan'208";a="40340106"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 14:58:43 -0800
+X-CSE-ConnectionGUID: Vo36sgjRSCusd9Bp7qRkhA==
+X-CSE-MsgGUID: KBz5hXtISISEmI5lrNKflA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="113774073"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 13 Feb 2025 14:58:40 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tiiAH-0018nP-25;
+	Thu, 13 Feb 2025 22:58:37 +0000
+Date: Fri, 14 Feb 2025 06:57:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev,
+	Jonathan Santos <Jonathan.Santos@analog.com>, lars@metafoo.de,
+	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com,
+	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, jonath4nns@gmail.com,
+	marcelo.schmitt1@gmail.com, dlechner@baylibre.com
+Subject: Re: [PATCH RESEND v3 11/17] iio: adc: ad7768-1: add regulator to
+ control VCM output
+Message-ID: <202502140626.PzhgxFMq-lkp@intel.com>
+References: <3552833157f252f3b6813f0042059e858c90d53a.1739368121.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,61 +84,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250213215655.2311793-2-alexander.sverdlin@gmail.com>
+In-Reply-To: <3552833157f252f3b6813f0042059e858c90d53a.1739368121.git.Jonathan.Santos@analog.com>
 
-On Thu, Feb 13, 2025 at 10:56:45PM +0100, Alexander Sverdlin wrote:
-> From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> 
-> Add RTC devicetree binding for Sophgo CV1800 SoC.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> ---
->  .../bindings/rtc/sophgo,cv1800-rtc.yaml       | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml b/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
-> new file mode 100644
-> index 000000000000..b36b51a69166
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/sophgo,cv1800-rtc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Real Time Clock of the Sophgo CV1800 SoC
-> +
-> +description:
-> +  Real Time Clock (RTC) is an independently powered module
-> +  within the chip, which includes a 32KHz oscillator and a
-> +  Power On Reset/POR submodule. It can be used for time display
-> +  and timed alarm generation. In addition, the hardware state
-> +  machine provides triggering and timing control for chip
-> +  power on, off, and reset.
-> +
-> +maintainers:
-> +  - Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +
+Hi Jonathan,
 
-> +properties:
-> +  compatible:
-> +    const: sophgo,cv1800-rtc
+kernel test robot noticed the following build errors:
 
-Now I prefer cv1800b to cv1800, using wildcard to provide base
-compatible is not a good idea. This old design should be changed.
+[auto build test ERROR on 5de07b8a24cf44cdb78adeab790704bf577c2c1d]
 
-Otherwise, it looks good to me. With the compatible change:
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Santos/iio-adc-ad7768-1-Fix-conversion-result-sign/20250213-022329
+base:   5de07b8a24cf44cdb78adeab790704bf577c2c1d
+patch link:    https://lore.kernel.org/r/3552833157f252f3b6813f0042059e858c90d53a.1739368121.git.Jonathan.Santos%40analog.com
+patch subject: [PATCH RESEND v3 11/17] iio: adc: ad7768-1: add regulator to control VCM output
+config: loongarch-randconfig-002-20250214 (https://download.01.org/0day-ci/archive/20250214/202502140626.PzhgxFMq-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250214/202502140626.PzhgxFMq-lkp@intel.com/reproduce)
 
-Reviewed-by: Inochi Amaoto <inochiama@gmail.com>
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502140626.PzhgxFMq-lkp@intel.com/
 
-Regards,
-Inochi
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "rdev_get_drvdata" [drivers/iio/adc/ad7768-1.ko] undefined!
+>> ERROR: modpost: "devm_regulator_register" [drivers/iio/adc/ad7768-1.ko] undefined!
+>> ERROR: modpost: "regulator_list_voltage_table" [drivers/iio/adc/ad7768-1.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
