@@ -1,290 +1,192 @@
-Return-Path: <devicetree+bounces-146477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CE50A3521D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 00:24:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4AEA35225
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 00:25:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10ABD3AB52F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 23:24:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 640F116AF0A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 23:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06969242908;
-	Thu, 13 Feb 2025 23:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D159722D7AC;
+	Thu, 13 Feb 2025 23:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="aufp7fKv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V9/vsZhb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4646D22D7BC;
-	Thu, 13 Feb 2025 23:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A12275400
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 23:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739489038; cv=none; b=RRWhIzT2x2ZzQYE0WHefIbNN9E0AYi+wACbHiQ/RPGFeA4NtW7dzyR6WEu2UMYBiK7eg7uYiRvpNXTr2UKxG1y4f6UPTd0k9pIk6/SsqyzFHrsrpxZ9iXq24r+Az9b23/HjIY6eM+WUARNGlJaOqHvp1391IXLy0iFwXfcMCRBc=
+	t=1739489121; cv=none; b=gUVpyJJ2hXZUJkKehp68w7FpstRcyIWWibeuY0dC9YUMlZUcUVTghpQ4SvzAP6tlVXWYEcxHlC/Y4ZlSWUMIoQOpX63T7jdxVmzndMy9WeZjvdqfrt5w2aB9BmpDV1e7Y0hSKMLigbKE4SqsLHmTMhPvQOhS1cX0YwaFpQUzrvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739489038; c=relaxed/simple;
-	bh=l+cSvSfFeSSvWEX+0CLmMC7EeXoOaYuP0euT1eP9zjg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FMJe5+nxBoN+9sF8gur2u3TcmUplWHU+fwqSRe2qtAX/79qaEscKY830fH9Fz53pLi45fOu/zeHUq0Mb5paQbS5gzCks3a1UcLHdQVc3VS65w/y9SzVMVi6o31O3xvFUVNRufQfCFElbpCxlN1LrZluRupkO69dZLnKuqer6qg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=aufp7fKv; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.137.184.60] (unknown [131.107.160.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 7A9B7203F3E8;
-	Thu, 13 Feb 2025 15:23:56 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 7A9B7203F3E8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1739489036;
-	bh=Hk/UhzyNXmtkIV3ySCx19ki8dNWuqGbbCLmGSDE/xLs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aufp7fKvZThXkNOUfRjDldRf0rvzjk9ePefQmU34QNQDzjKEBlugM1QQnoyaGdByr
-	 UvcGblhHXCbjBa/k4MpcRsnzZtdKGCD/hDb4AqXA9uZUdtcTEEmtCsn/SbibhrumUh
-	 FawOmhzoUKT+be6mPRofqUQ3NjSfwRNz4fTK8QNo=
-Message-ID: <593c22ca-6544-423d-84ee-7a06c6b8b5b9@linux.microsoft.com>
-Date: Thu, 13 Feb 2025 15:23:56 -0800
+	s=arc-20240116; t=1739489121; c=relaxed/simple;
+	bh=TODc8kLM/Xouk8pD6JlJR6Tsa6qT4/CImIfhu4Qav8A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=U9S+XgPhrFr4XXhaRqcss1NQeRBJrtituZrAR1BXXroZcXSV7yXzLavuZV7VPeVelF7FkiYdRftVvhhNvVnVntPbeMdvspFQinHkuNpBtarPrCDC+C5k8OYX3QDX4KkrsnAKzTLQrrC/qC+UM+l7mpEZ9emk5wHQN7xepuopPKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V9/vsZhb; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-308e92c3779so26755851fa.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 15:25:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739489118; x=1740093918; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vyZKU2VItF3c2AsSc7Vt49la6al69dnIjTLywWBtcgo=;
+        b=V9/vsZhbz8h45mi2qIljX85+Eah2cWs/PgHrIaBI+4Pa85IqPyj5lve1ie6qFdla2H
+         a6dYgZcQVZxID1bE86MWHYp1WLaSXxB1/7znttpDJeOLuz+suJKBHyCCq/V5YEB3EuGc
+         J3QXEceByMTZpcby1zTrf7NXUb8UTXoj/3jHXWD3t6ahCCL5X+UGzwlUuYOx/yGoINqm
+         mzN7v3DzXgGtMdeBBGtAyH76O+jgFaBrJ8wJ3+TIVbZQPEYi4mr3aOtG94JIHpLgnCLf
+         nnJJF76wOe58OK81cDsw2doFXyzL9M1B4paXOaVjEGrX9mRwJKdTnl0UOKYycX4sFh9q
+         i7Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739489118; x=1740093918;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vyZKU2VItF3c2AsSc7Vt49la6al69dnIjTLywWBtcgo=;
+        b=EhhjBX90OI0zIOBGiJKQvYKQKM6U2i/v12v77zg2Mz3fYQwDJ30Siido7wuqjAsxRI
+         HDt1/u4YYLJn6lVUf0FHlBL5mVly/i51JBt/ng706PY/k6K/CWk2CvZqbUogmMv62rFf
+         vov/gk+GEBKW9kFVZ790pLx68BqaWAv/3QGqtzUNeGZdaeNHMOlVlaum6yNRIUYYOWOz
+         m/fmnbl/VEUfs/K/MLRTeFjnl8qmXpe5XIZ+adgMTLGU541yMvwKNcAtN7cq5vBUJvHK
+         JJG+ZzS4CKppk/t+Jki60HZ3tsuf/L488pPv3KlUa0FafftSS3rWBWyvRd2f0J4dc3Ab
+         FtBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXV3P9W6/UWPA01r8z1BEd/A1ryRlk6nFO2RWCn3KfGpGDFmYcotTRndJDD/JtJU9ZxhbmVtf3Y/Lkq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrOl+Cj8mYB4lUH36N4SkYngJNuuW42BMkbM9uluFbw+T0MYMp
+	xsa9Tqqjf+YBD7HfwdtlkR2BmeC8Tj0sCj5UNbNWLPdftT+R43P8c4PNfKFUNcl1RwUT3PD4MzW
+	+uw//X1HbReIJzdXWmuJp/Auu6quV8yUmm4FGUAw2cn6If411
+X-Gm-Gg: ASbGncsldKBk60AJ/Xa7hIKHrX8v8KfN0YsBqqPi5e8XYoSfvkrRW+yho64AC1p+GzU
+	eESfUBV1/O3/LHl6//BiFrJTWBzqNQVEDw8bYqNOOZ8PJ1R0HBgTU4ZyCccKq67BKpqyUKn1I
+X-Google-Smtp-Source: AGHT+IGmjAzrNY8Z0UTae5YliwRsM6MnTTixoI4bM9qkST97BNNxdmQbCoyn1pxrE+FZoDlCxTTPFfOz0rgkvbaPBag=
+X-Received: by 2002:a05:6512:31c9:b0:545:6a2:4c4a with SMTP id
+ 2adb3069b0e04-5451dfc139amr1470866e87.1.1739489117809; Thu, 13 Feb 2025
+ 15:25:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH hyperv-next v4 1/6] arm64: hyperv: Use SMCCC to detect
- hypervisor presence
-To: Arnd Bergmann <arnd@arndb.de>, bhelgaas@google.com,
- Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>,
- Conor Dooley <conor+dt@kernel.org>, Dave Hansen
- <dave.hansen@linux.intel.com>, Dexuan Cui <decui@microsoft.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, "H. Peter Anvin" <hpa@zytor.com>,
- krzk+dt@kernel.org, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Ingo Molnar <mingo@redhat.com>, Rob Herring <robh@kernel.org>,
- ssengar@linux.microsoft.com, Thomas Gleixner <tglx@linutronix.de>,
- Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>,
- devicetree@vger.kernel.org, Linux-Arch <linux-arch@vger.kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org
-Cc: benhill@microsoft.com, bperkins@microsoft.com, sunilmut@microsoft.com
-References: <20250212014321.1108840-1-romank@linux.microsoft.com>
- <20250212014321.1108840-2-romank@linux.microsoft.com>
- <1b14e3de-4d3e-420c-819c-31ffb2d448bd@app.fastmail.com>
-Content-Language: en-US
-From: Roman Kisel <romank@linux.microsoft.com>
-In-Reply-To: <1b14e3de-4d3e-420c-819c-31ffb2d448bd@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250213-for_upstream-v2-0-ec4eff3b3cd5@analog.com> <20250213-for_upstream-v2-2-ec4eff3b3cd5@analog.com>
+In-Reply-To: <20250213-for_upstream-v2-2-ec4eff3b3cd5@analog.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 14 Feb 2025 00:25:06 +0100
+X-Gm-Features: AWEUYZmhtXgqSIi7PU_BPNP_JIj58JJuOvAuh5G-9TQ2nJTUsjALSXHus6KTIHI
+Message-ID: <CACRpkdZR8X17Bn-i2anqjxf0Gk60V175F7Xfwytkhy7_K+LsSA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] gpio: gpio-adg1414: New driver
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Kim,
 
+thanks for your patch!
 
-On 2/11/2025 10:54 PM, Arnd Bergmann wrote:
-> On Wed, Feb 12, 2025, at 02:43, Roman Kisel wrote:
->> +static bool hyperv_detect_via_smccc(void)
->> +{
->> +	struct arm_smccc_res res = {};
->> +
->> +	if (arm_smccc_1_1_get_conduit() != SMCCC_CONDUIT_HVC)
->> +		return false;
->> +	arm_smccc_1_1_hvc(ARM_SMCCC_VENDOR_HYP_CALL_UID_FUNC_ID, &res);
->> +	if (res.a0 == SMCCC_RET_NOT_SUPPORTED)
->> +		return false;
->> +
->> +	return res.a0 == ARM_SMCCC_VENDOR_HYP_UID_HYPERV_REG_0 &&
->> +		res.a1 == ARM_SMCCC_VENDOR_HYP_UID_HYPERV_REG_1 &&
->> +		res.a2 == ARM_SMCCC_VENDOR_HYP_UID_HYPERV_REG_2 &&
->> +		res.a3 == ARM_SMCCC_VENDOR_HYP_UID_HYPERV_REG_3;
->> +}
-> 
-> I had to double-check that this function is safe to call on
-> other hypervisors, at least when they follow the smccc spec.
-> 
-> Seeing that we have the same helper function checking for
-> ARM_SMCCC_VENDOR_HYP_UID_KVM_REG_* and there was another
-> patch set adding a copy for gunyah, I wonder if we can
-> put this into a drivers/firmware/smccc/smccc.c directly
-> the same way we handle soc_id, and make it return a uuid_t,
-> or perhaps take a constant uuid_t to compare against.
+On Thu, Feb 13, 2025 at 2:17=E2=80=AFPM Kim Seer Paller
+<kimseer.paller@analog.com> wrote:
 
-That would be very neat! I implemented the idea [1], please let me know
-what you think. I can use that in the next version of the patch series
-if looks good.
+> The ADG1414 is a 9.5 =CE=A9 RON =C2=B115 V/+12 V/=C2=B15 V iCMOS Serially=
+-Controlled
+> Octal SPST Switches
+>
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
 
-There is a function and a macro to make calling
-the function easier. As the SMCCC header is used by the assembler, too,
-hence I had to add __ASSEBLER__ guardrails. Another option could be to
-pass four u32's not to use uuid_t so the header stays a healthy food
-for the assembler :) For Gunyah, that would be
+OK so I looked at the data sheet and it looks like this:
 
-ARM_SMCCC_HYP_PRESENT(GUNYAH)
+A  o-------/ --------o B
 
-when using the change below.
+It'a a switch.
 
+Why is this switch a "gpio", other than that it is convenient
+to use the GPIO abstraction to control it?
 
- From f0d645e900c24f5be045b0f831f1e11494967b7f Mon Sep 17 00:00:00 2001
-From: Roman Kisel <romank@linux.microsoft.com>
-Date: Thu, 13 Feb 2025 15:10:45 -0800
-Subject: [PATCH] drivers, smcc: Introduce arm_smccc_hyp_present
+GPIO is usually devices that can drive a line high or low.
+This is very far from that. This could switch some analog
+line or whatever, right?
 
----
-  arch/arm64/hyperv/mshyperv.c       | 18 +----------------
-  drivers/firmware/smccc/kvm_guest.c |  9 +--------
-  drivers/firmware/smccc/smccc.c     | 24 ++++++++++++++++++++++
-  include/linux/arm-smccc.h          | 32 ++++++++++++++++++++++++++++++
-  4 files changed, 58 insertions(+), 25 deletions(-)
+Now, the kernel does not have switch subsystem I think,
+so this is something like a special case, so we might be
+compelled to make an exception, if the users will all be in
+say userspace and make use of this switch for factory lines
+or similar.
 
-diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
-index 16e721d8e5df..0c5babe9e1ff 100644
---- a/arch/arm64/hyperv/mshyperv.c
-+++ b/arch/arm64/hyperv/mshyperv.c
-@@ -41,22 +41,6 @@ static bool hyperv_detect_via_acpi(void)
-  #endif
-  }
+Otherwise there is also drivers/mux, but maybe a 1:1
+mux is an odd type of switch...
 
--static bool hyperv_detect_via_smccc(void)
--{
--	struct arm_smccc_res res = {};
--
--	if (arm_smccc_1_1_get_conduit() != SMCCC_CONDUIT_HVC)
--		return false;
--	arm_smccc_1_1_hvc(ARM_SMCCC_VENDOR_HYP_CALL_UID_FUNC_ID, &res);
--	if (res.a0 == SMCCC_RET_NOT_SUPPORTED)
--		return false;
--
--	return res.a0 == ARM_SMCCC_VENDOR_HYP_UID_HYPERV_REG_0 &&
--		res.a1 == ARM_SMCCC_VENDOR_HYP_UID_HYPERV_REG_1 &&
--		res.a2 == ARM_SMCCC_VENDOR_HYP_UID_HYPERV_REG_2 &&
--		res.a3 == ARM_SMCCC_VENDOR_HYP_UID_HYPERV_REG_3;
--}
--
-  static int __init hyperv_init(void)
-  {
-  	struct hv_get_vp_registers_output	result;
-@@ -69,7 +53,7 @@ static int __init hyperv_init(void)
-  	 *
-  	 * In such cases, do nothing and return success.
-  	 */
--	if (!hyperv_detect_via_acpi() && !hyperv_detect_via_smccc())
-+	if (!hyperv_detect_via_acpi() && !ARM_SMCCC_HYP_PRESENT(HYPERV))
-  		return 0;
+> +static int adg1414_spi_write(void *context, const void *data, size_t cou=
+nt)
+> +{
+> +       struct adg1414_state *st =3D context;
+> +
+> +       struct spi_transfer xfer =3D {
+> +               .tx_buf =3D &st->tx,
+> +               .len =3D count,
+> +       };
+> +
+> +       return spi_sync_transfer(st->spi, &xfer, 1);
+> +}
+> +
+> +static int adg1414_spi_read(void *context, const void *reg, size_t reg_s=
+ize,
+> +                           void *val, size_t val_size)
+> +{
+> +       return 0;
+> +}
+> +
+> +static int adg1414_get(struct gpio_chip *chip, unsigned int offset)
+> +{
+> +       struct adg1414_state *st =3D gpiochip_get_data(chip);
+> +
+> +       guard(mutex)(&st->lock);
+> +
+> +       return st->buf & BIT(offset);
+> +}
+> +
+> +static void adg1414_set(struct gpio_chip *chip, unsigned int offset, int=
+ value)
+> +{
+> +       struct adg1414_state *st =3D gpiochip_get_data(chip);
+> +
+> +       guard(mutex)(&st->lock);
+> +
+> +       if (value)
+> +               st->buf |=3D BIT(offset);
+> +       else
+> +               st->buf &=3D ~BIT(offset);
+> +
+> +       st->tx =3D cpu_to_be32(st->buf << (32 - st->chip.ngpio));
+> +
+> +       adg1414_spi_write(st, 0, st->chip.ngpio / 8);
+> +}
+> +
+> +static const struct regmap_bus adg1414_regmap_bus =3D {
+> +       .write =3D adg1414_spi_write,
+> +       .read =3D adg1414_spi_read,
+> +       .reg_format_endian_default =3D REGMAP_ENDIAN_BIG,
+> +       .val_format_endian_default =3D REGMAP_ENDIAN_BIG,
+> +};
+> +
+> +static const struct regmap_config adg1414_regmap_config =3D {
+> +       .reg_bits =3D 8,
+> +       .val_bits =3D 8,
+> +};
 
-  	/* Setup the guest ID */
-diff --git a/drivers/firmware/smccc/kvm_guest.c 
-b/drivers/firmware/smccc/kvm_guest.c
-index f3319be20b36..ae37476cabc1 100644
---- a/drivers/firmware/smccc/kvm_guest.c
-+++ b/drivers/firmware/smccc/kvm_guest.c
-@@ -17,14 +17,7 @@ void __init kvm_init_hyp_services(void)
-  	struct arm_smccc_res res;
-  	u32 val[4];
+This is not how regmap works. Your get/set callbacks for GPIO
+should call regmap_get() and regmap_update_bits() to get/set
+the individual bits.
 
--	if (arm_smccc_1_1_get_conduit() != SMCCC_CONDUIT_HVC)
--		return;
--
--	arm_smccc_1_1_invoke(ARM_SMCCC_VENDOR_HYP_CALL_UID_FUNC_ID, &res);
--	if (res.a0 != ARM_SMCCC_VENDOR_HYP_UID_KVM_REG_0 ||
--	    res.a1 != ARM_SMCCC_VENDOR_HYP_UID_KVM_REG_1 ||
--	    res.a2 != ARM_SMCCC_VENDOR_HYP_UID_KVM_REG_2 ||
--	    res.a3 != ARM_SMCCC_VENDOR_HYP_UID_KVM_REG_3)
-+	if (!ARM_SMCCC_HYP_PRESENT(KVM))
-  		return;
+So the adg1414_spi_write() needs to be done from inside the
+regmap abstraction.
 
-  	memset(&res, 0, sizeof(res));
-diff --git a/drivers/firmware/smccc/smccc.c b/drivers/firmware/smccc/smccc.c
-index a74600d9f2d7..86f75f44895f 100644
---- a/drivers/firmware/smccc/smccc.c
-+++ b/drivers/firmware/smccc/smccc.c
-@@ -67,6 +67,30 @@ s32 arm_smccc_get_soc_id_revision(void)
-  }
-  EXPORT_SYMBOL_GPL(arm_smccc_get_soc_id_revision);
-
-+bool arm_smccc_hyp_present(const uuid_t *hyp_uuid)
-+{
-+	struct arm_smccc_res res = {};
-+	struct {
-+		u32 dwords[4]
-+	} __packed res_uuid;
-+
-+	BUILD_BUG_ON(sizeof(res_uuid) != sizeof(uuid_t));
-+
-+	if (arm_smccc_1_1_get_conduit() != SMCCC_CONDUIT_HVC)
-+		return false;
-+	arm_smccc_1_1_hvc(ARM_SMCCC_VENDOR_HYP_CALL_UID_FUNC_ID, &res);
-+	if (res.a0 == SMCCC_RET_NOT_SUPPORTED)
-+		return false;
-+
-+	res_uuid.dwords[0] = res.a0;
-+	res_uuid.dwords[1] = res.a1;
-+	res_uuid.dwords[2] = res.a2;
-+	res_uuid.dwords[3] = res.a3;
-+
-+	return uuid_equal((uuid_t *)&res_uuid, hyp_uuid);
-+}
-+EXPORT_SYMBOL_GPL(arm_smccc_hyp_present);
-+
-  static int __init smccc_devices_init(void)
-  {
-  	struct platform_device *pdev;
-diff --git a/include/linux/arm-smccc.h b/include/linux/arm-smccc.h
-index 67f6fdf2e7cd..63925506a0e5 100644
---- a/include/linux/arm-smccc.h
-+++ b/include/linux/arm-smccc.h
-@@ -7,6 +7,11 @@
-
-  #include <linux/args.h>
-  #include <linux/init.h>
-+
-+#ifndef __ASSEMBLER__
-+#include <linux/uuid.h>
-+#endif
-+
-  #include <uapi/linux/const.h>
-
-  /*
-@@ -333,6 +338,33 @@ s32 arm_smccc_get_soc_id_version(void);
-   */
-  s32 arm_smccc_get_soc_id_revision(void);
-
-+#ifndef __ASSEMBLER__
-+
-+/**
-+ * arm_smccc_hyp_present(const uuid_t *hyp_uuid)
-+ *
-+ * Returns `true` if the hypervisor advertises its presence via SMCCC.
-+ *
-+ * When the function returns `false`, the caller shall not assume that
-+ * there is no hypervisor running. Instead, the caller must fall back to
-+ * other approaches if any are available.
-+ */
-+bool arm_smccc_hyp_present(const uuid_t *hyp_uuid);
-+
-+#define ARM_SMCCC_HYP_PRESENT(HYP) 								\
-+	({															\
-+		const u32 uuid_as_dwords[4] = {							\
-+			ARM_SMCCC_VENDOR_HYP_UID_ ## HYP ## _REG_0,			\
-+			ARM_SMCCC_VENDOR_HYP_UID_ ## HYP ## _REG_1,			\
-+			ARM_SMCCC_VENDOR_HYP_UID_ ## HYP ## _REG_2,			\
-+			ARM_SMCCC_VENDOR_HYP_UID_ ## HYP ## _REG_3			\
-+		};														\
-+																\
-+		arm_smccc_hyp_present((const uuid_t *)uuid_as_dwords);	\
-+	})															\
-+
-+#endif /* !__ASSEMBLER__ */
-+
-  /**
-   * struct arm_smccc_res - Result from SMC/HVC call
-   * @a0-a3 result values from registers 0 to 3
--- 
-2.43.0
-
-
-
-> 
->        Arnd
-
--- 
-Thank you,
-Roman
-
+Yours,
+Linus Walleij
 
