@@ -1,458 +1,260 @@
-Return-Path: <devicetree+bounces-146164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87636A33A44
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 09:49:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A18ADA33A64
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 09:57:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCCCA188953F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 08:50:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82133188C9FE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 08:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA71D20A5DC;
-	Thu, 13 Feb 2025 08:49:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F2320CCE4;
+	Thu, 13 Feb 2025 08:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ia57xZ3p"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="eqRwGP+2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sg2apc01on2050.outbound.protection.outlook.com [40.107.215.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD2FE2063DA;
-	Thu, 13 Feb 2025 08:49:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739436593; cv=none; b=NWoMV1N+l4ptcp1vnp2DllPNXek4HFhJck2wxgJm4Koojo3+zBOxC8/7hxPy17rA5kghG5aoqvKoR21ABboRVuGHIBMIvePQ2Kd8t6nh4u8iXozxgYCWSDPZ4bwHHDtKn2B+ZV4lAQOrxGUpLONVDF5b32x0lUl6ntOMQ3Oei/Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739436593; c=relaxed/simple;
-	bh=cd7wC24agIPsKYoQD5ER+IECrpwNvYKfrWoOGu/d88k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GelW8V213Uk1eTkpOJmwedcPONavlL2y1Hc/vOpMiXqWo8oqj1auxN07yBjl+bEd2MtI8T0EW1eBVKC+hMdpa9xgeLcDrsKOFt0KWOw4Z+emZODhDDq56yq8tiy6eHuJDcyduuLj0l70clwdrPJfpcxSKQjEk3rPfcqA4ovkTaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ia57xZ3p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EDC5C4CED1;
-	Thu, 13 Feb 2025 08:49:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739436593;
-	bh=cd7wC24agIPsKYoQD5ER+IECrpwNvYKfrWoOGu/d88k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ia57xZ3pwG5L7EjG/epzmI6HuQ4XdduMd+BUnr+fkc3YoXwsrw8IjUPXh7TGObBjt
-	 NFPEaINJ6xDAOwBTZe4CtAbSZjjGd1+wVeeLWO7COhzs4qrjG3d8aRaVAhB6VYp509
-	 9Du7pNsX38cYCsQegLRYnOMd0ImQ0iTisgR3O8o2xVB5MxbpavegGqNclkUGCN7ozB
-	 txpl77HL1ca4AzcD1gH3lBrtvtOLOc9GuprU8KmdZhJdDHubuLNkp4gruMw5HyODcE
-	 PczM6LdlRFf6JfQzfJU/qop+3EFMj0RZb/3xzZ8GZ2I9wmMU4AL8izKDMbwFIMUEjj
-	 pIAwF+DFhsxfA==
-Date: Thu, 13 Feb 2025 09:49:50 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nas Chung <nas.chung@chipsnmedia.com>
-Cc: "mchehab@kernel.org" <mchehab@kernel.org>, 
-	"hverkuil@xs4all.nl" <hverkuil@xs4all.nl>, 
-	"sebastian.fricke@collabora.com" <sebastian.fricke@collabora.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-imx@nxp.com" <linux-imx@nxp.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "jackson.lee" <jackson.lee@chipsnmedia.com>, 
-	"lafley.kim" <lafley.kim@chipsnmedia.com>
-Subject: Re: [PATCH 3/8] dt-bindings: media: nxp: Add Wave6 video codec device
-Message-ID: <20250213-imaginary-shrimp-of-merriment-6ccb6f@krzk-bin>
-References: <20250210090725.4580-1-nas.chung@chipsnmedia.com>
- <20250210090725.4580-4-nas.chung@chipsnmedia.com>
- <cb7937f5-2045-4903-825c-71ed70097efb@kernel.org>
- <SL2P216MB12460EDF6265459D11E2A5A9FBFF2@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB5220B7EB;
+	Thu, 13 Feb 2025 08:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739437025; cv=fail; b=OnMGwlrOE31kWfzjm5oyuegvlg4EJDJNEF8lhZh86NwLC4ZrzSmOnTM2OS/djd95RIuW+C+8aRaeP4KUdpne9jDi8XzxH2yXH3RafzdBsxVesh3sf1xM/pxaoWF4jiYBLcpP6Uo5ccmsJtpmJ6BZTcdunUg7VQ1rGxSwm275JxU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739437025; c=relaxed/simple;
+	bh=LJpV2yVtB39XYbpyM2NKGaRoGQMGQuTSvVqKDqGQe9c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Yk/e9ZD250H6aSmZAM9RY5YLKf8Mm3zjQhOwv9vPM2IrAUKso3kqv5Hwoc02l49AsFHv3AGK48L28GS+BGIVhxGbmDXaNEpkzLtJIWuG2PU2r+srj9RktpPbGBcXlY6PhCfPKtGr2aqnO/R0cWB6J3zfEkgFatChASwPQMvihDw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=eqRwGP+2; arc=fail smtp.client-ip=40.107.215.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dqxYbjkTIIIxIt8eibSopQoUC3izEZYZQiPnWpow3GFMy5Nfxts3L4XYsdViVgBjZyVqpAX5TeFOnT8M5zylMwdtMrfR7whkuZNvSNORLMVYga2YAlT0yaBhAYfZ55yHxI4SnmlMucsJCH6mlS9uWU+xcKezN6zpHZKiqAIqH4OQy8Me0q8MnR3aE4GIwj9wcwaalpprESMZdyZpPvo+QAimuxS6lD5rF0zxP0EBIk8yklUrNLdUjGyF0QEW+zG3ZsCrngFRgvp333d7s/fgyrXp+4X9P19IJ7PEYgFu3uA4wG9E3uzbYWHzOMf5xj47qsb4bC1V/kxBtcyiiqihOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lXQARnpP0YCLfn4tDpCb+/GIcWyJ1PPNj3JHvui+rUI=;
+ b=CDlhaFWjXPCwrVVwmEx4W5RNWDESPZh8MF4i8+MN+IWHDAUOi7p57mMXAWLQZbjdFUjylJTZ15JeGjt7fiW5m0nCY/Ix2T9qCltV3DCOb9dc8Pmp9irlbjFUGDTSv8k3PJexPdVBubdR7KpJgEUGwluBWOkfa0iaLtdNQZGDbKcmjTqnqfhhGB19NXiDAerlgSC6QlL8nAJ3zL4M4Ugb3MXqBXRD2kmgccl8OT+tPsqCbfPaYg6iKfYpLeKqu4X0OvTSFwJKjGDtVsf61olicNdTSiO5UQTyb3SZA8JZuZW3qsbfsiMqsxlv5B6FAn0wYdUpqpacuehT1+sjC96Y3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lXQARnpP0YCLfn4tDpCb+/GIcWyJ1PPNj3JHvui+rUI=;
+ b=eqRwGP+2zm9OVTB49C7KIpP2etlJ8xdImuXGN/xKX6NOqPQVRVlAX0AcQPRLg9S9gkZHZ5h5iONAENHw5266zp0qUak+/h8C/8x8spmq+yBtzQW/CqiNllJH/C8dzsdhR0+q/4VgY8DJRToUtXxlYYnPMpQioAMl2OOnhpHGe7jNIJ+6Yf0CiGbtWr27RXhuLy99Lhl9SpaFsEDQGMKFtZdTx2kg9Th1XRt9hg5KUwK3GrIGBF7HqCfyKGmP0JuXpF6xGmr6fXT0V+xIu7MuCmCnC+5MGeVIf+4+P/I5BRtYIfJllaJrfXqbiZCabQfvYLiKo5GbtLRfETybeuRb7g==
+Received: from PS2PR02CA0096.apcprd02.prod.outlook.com (2603:1096:300:5c::36)
+ by TY0PR04MB6206.apcprd04.prod.outlook.com (2603:1096:400:32c::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.19; Thu, 13 Feb
+ 2025 08:56:55 +0000
+Received: from HK2PEPF00006FB0.apcprd02.prod.outlook.com
+ (2603:1096:300:5c:cafe::f8) by PS2PR02CA0096.outlook.office365.com
+ (2603:1096:300:5c::36) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8445.12 via Frontend Transport; Thu,
+ 13 Feb 2025 08:56:55 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FB0.mail.protection.outlook.com (10.167.8.6) with Microsoft SMTP
+ Server id 15.20.8445.10 via Frontend Transport; Thu, 13 Feb 2025 08:56:54
+ +0000
+From: MarshallZhan-wiwynn <marshall_zhan@wiwynn.com>
+To: patrick@stwcx.xyz,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: MarshallZhan-wiwynn <marshall_zhan@wiwynn.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH dev 6.6 v2] ARM: dts: aspeed: yosemite4: add I3C config in DTS
+Date: Thu, 13 Feb 2025 16:56:51 +0800
+Message-Id: <20250213085651.1483494-1-marshall_zhan@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <SL2P216MB12460EDF6265459D11E2A5A9FBFF2@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: quoted-printable
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB0:EE_|TY0PR04MB6206:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: e89bc578-27b8-4f1f-98db-08dd4c0c5daf
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?PHWz4yZakLe0TDf2mziNDbgua7Ac8AaxXj839vtbAgaexxB/yn5jLBX9UhDF?=
+ =?us-ascii?Q?lV05iFp+bG1Xt9fs81rKA431xDpYlc5PKeDWgHIJCroaRASZlKN7YznE3gY/?=
+ =?us-ascii?Q?CnnxmamWjCthzLhsld6gjnLzdro5VQO/JpjFcU1tTFvQUmBumyTRlr+9oirk?=
+ =?us-ascii?Q?dRbYAFh0+ECMLHrLA1i3lT/hLGAkZt87S6rw7vVPowgop0T4L0dgXgIMjL1g?=
+ =?us-ascii?Q?JQSTBSFBfX1VkwoICMwmYIPa26KIYJvG5aM7OxgiOX/aCZqX2ohpYmVQ5/fI?=
+ =?us-ascii?Q?2Z+0Z4diQndmxcjcQ9CF9n3d+DtAlHb0swL8PqC2wrVX71EcoqYaWcZX/mp7?=
+ =?us-ascii?Q?YTYn0tB+VfYgiWBlvPhYMAUcyBEY46DKYR+2JlBUaPS163ZMcNFiTzE835R5?=
+ =?us-ascii?Q?NiLFn1j8QrIxJgc8XvjRnpDbyEQxWKtJync6PwHV6gm/foK/Uy8uJ77d6A3m?=
+ =?us-ascii?Q?br+kKdPwlu0jYnJy0oaRdstBriRfx3gj2EvQPHrsiXNGBZ6JL5b9X2zqGeuS?=
+ =?us-ascii?Q?3rMdarvqnlwB3xoWQ4FcY2aa7oLULh64hvSZUWD/BUk5Xqv8ASMOtgD3+XJi?=
+ =?us-ascii?Q?Q5RPsKXCvP3XNQbLv4leMp+f0BkceCN9YXg3e0QDa3h9JHJYujLbEOTpTopO?=
+ =?us-ascii?Q?64aX+huQp2YZAXbPzVMciZ7svctGYTddipAX6toSbuItY1bz7XcHQyrpejTu?=
+ =?us-ascii?Q?XCeUgksLBw7XRSCLI4MvIeitmX4bk/jEmC0r74okzmLR3K8lnKQ0YFQOt0Fj?=
+ =?us-ascii?Q?20Li8TKu6O15MgUWdcFtnK6iC8Xnxi9+J3XqbjU/6WBcq31e/iKJvtLAKlP3?=
+ =?us-ascii?Q?MGGtqtUxf1uLk4ywb150HWiRb93ziQafihQP6sbwcbxJ+RfsJUuRzJ4gDCBb?=
+ =?us-ascii?Q?ZG8mxvrNlbLa6E1f2CVOfcRamJB+7gbBUxrWCAP8JcVX8yZs9uIHa0iOV3rw?=
+ =?us-ascii?Q?Bm81roVvzRAYbNPk7aNEudyppLJnfE+hK181SbhljXPRivCnUBt07Db8ZUe3?=
+ =?us-ascii?Q?OLA5tEeoyWzusff4p7e0GAYT3lW0UHhYOvCCaMtjRTkASAafuTQI6XFyd2wt?=
+ =?us-ascii?Q?7JmLH/ezpsHJkeMFMJZcKN9vfsDzX9l9tqemRSYhgcw5GJbcSthHLJhbwZGd?=
+ =?us-ascii?Q?rrZAdVTOaXZLdwFQrb9StPqoneMvRoPBi5LFvTULhDq4unR4n//a+0Lr4Q1R?=
+ =?us-ascii?Q?/yhiX2t5Cri1dO1aogpvGBeXVA+hB3dtYRSzAUhuT690cppFmy9H/k6HG2EJ?=
+ =?us-ascii?Q?uDmYgNZ9dytLgfmYY7aQaJOdPe6JxyJmUNtYw+RmbUz319Cvpf0NGV8/LHML?=
+ =?us-ascii?Q?zCbhpw3cSQ6/JLihwGyAj9tzN+8WyZ7+16qCmNGQr7SfdW8Z4AhrogOaikpO?=
+ =?us-ascii?Q?NPUf+n3XzREaih4Dt0DCaVcKZJDrRkHob2D9zkV6WXNkzF/7ja6GoeppYMtf?=
+ =?us-ascii?Q?appaalk/2jNTstSYAX74QCsGNUSssZjxUqAkABX2S/RmHlANBqAmmdZtjwg7?=
+ =?us-ascii?Q?PnTW6oumG1cYI5k=3D?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2025 08:56:54.7992
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e89bc578-27b8-4f1f-98db-08dd4c0c5daf
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK2PEPF00006FB0.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR04MB6206
 
-On Thu, Feb 13, 2025 at 07:50:53AM +0000, Nas Chung wrote:
-> >> +    items:
-> >> +      - enum:
-> >> +          - nxp,imx95-wave633c-ctrl
-> >> +          - nxp,imx95-wave633c
-> >
-> >I don't understand why you duplicated compatibles. You split this for
-> >driver? That's a no. There are no two hardwares.
-> 
-> Yes, I want to introduce two different devices and drivers,
-> even though there is only one hardware.
+Set I3C config in yosemite4 DTS.
 
-That's a no. Bindings are for hardware, not drivers.
-Linux driver design is independent of bindings.
+Test plan:
+Tested pass with aspeed I3C patches and I3C hub driver.
 
-> 
-> Wave6 IP has five independent register regions:
-> 
-> One register region is dedicated to the control device,
-> which manages shared resources such as firmware loading and power domains.
-> 
-> The remaining four register regions are assigned to
-> four independent VPU devices, each accessing its own dedicated region.
-> (to support 4 vms)
+Signed-off-by: MarshallZhan-wiwynn <marshall_zhan@wiwynn.com>
+---
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 86 +++++++++++++++++++
+ 1 file changed, 86 insertions(+)
 
-This could be, but your binding said something completely opposite. Look
-how other bindings do it, first.
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/a=
+rch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index ab4904cf2c0e..3e67393d5291 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -1317,6 +1317,92 @@ eeprom@50 {
+        };
+ };
 
-> 
-> Would it be reasonable to split the YAML into separate files
-> for the VPU control device and the VPU device ?
-> (like nxp,wave633c-ctrl.yaml)
++&i3c0 {
++       status =3D "okay";
++       pinctrl-names =3D "default";
++       pinctrl-0 =3D <&pinctrl_i3c1_default>;
++       i3c-pp-scl-hi-period-ns =3D <62>;
++       i3c-pp-scl-lo-period-ns =3D <63>;
++       i3c-od-scl-hi-period-ns =3D <380>;
++       i3c-od-scl-lo-period-ns =3D <620>;
++       sda-tx-hold-ns =3D <10>;
++
++       mctp-controller;
++       hub@0x70 {
++               reg =3D <0x70 0x3c0 0x00700000>;
++               cp0-ldo-en =3D "enabled";
++               cp1-ldo-en =3D "enabled";
++               cp0-ldo-volt =3D "1.2V";
++               cp1-ldo-volt =3D "1.2V";
++               tp0145-ldo-en =3D "enabled";
++               tp2367-ldo-en =3D "enabled";
++               tp0145-ldo-volt =3D "1.2V";
++               tp2367-ldo-volt =3D "1.2V";
++               tp0145-pullup =3D "2k";
++               tp2367-pullup =3D "2k";
++
++               target-port@0 {
++                       mode =3D "i3c";
++                       pullup =3D "enabled";
++               };
++               target-port@1 {
++                       mode =3D "i3c";
++                       pullup =3D "enabled";
++               };
++               target-port@2 {
++                       mode =3D "i3c";
++                       pullup =3D "enabled";
++               };
++               target-port@3 {
++                       mode =3D "i3c";
++                       pullup =3D "enabled";
++               };
++       };
++};
++
++&i3c1 {
++       status =3D "okay";
++       pinctrl-names =3D "default";
++       pinctrl-0 =3D <&pinctrl_i3c2_default>;
++       i3c-pp-scl-hi-period-ns =3D <62>;
++       i3c-pp-scl-lo-period-ns =3D <63>;
++       i3c-od-scl-hi-period-ns =3D <380>;
++       i3c-od-scl-lo-period-ns =3D <620>;
++       sda-tx-hold-ns =3D <10>;
++
++       mctp-controller;
++       hub@0x70 {
++               reg =3D <0x70 0x3c0 0x00700000>;
++               cp0-ldo-en =3D "enabled";
++               cp1-ldo-en =3D "enabled";
++               cp0-ldo-volt =3D "1.2V";
++               cp1-ldo-volt =3D "1.2V";
++               tp0145-ldo-en =3D "enabled";
++               tp2367-ldo-en =3D "enabled";
++               tp0145-ldo-volt =3D "1.2V";
++               tp2367-ldo-volt =3D "1.2V";
++               tp0145-pullup =3D "2k";
++               tp2367-pullup =3D "2k";
++
++               target-port@0 {
++                       mode =3D "i3c";
++                       pullup =3D "enabled";
++               };
++               target-port@1 {
++                       mode =3D "i3c";
++                       pullup =3D "enabled";
++               };
++               target-port@2 {
++                       mode =3D "i3c";
++                       pullup =3D "enabled";
++               };
++               target-port@3 {
++                       mode =3D "i3c";
++                       pullup =3D "enabled";
++               };
++       };
++};
++
+ &adc0 {
+        status =3D "okay";
+        pinctrl-0 =3D <&pinctrl_adc0_default &pinctrl_adc1_default
+--
+2.25.1
 
-No, it changes nothing.
-
-> 
-> >
-> >These compatibles are anyway weird - why imx95 is in chipmedia product?
-> >Is this part of a SoC?
-> 
-> I want to represent that the Wave633 is part of the i.MX95.
-> Chips&Media's Wave633 can also be integrated into SoCs from other vendors.
-
-OK
-
-
-> By using the compatible name, the same Wave6 driver can distinguish
-> different implementations.
-
-So you tell DT maintainer how DT works, brilliant...
-
-> 
-> However, I agree that "imx95" is not strictly necessary in current status.
-> So, using "nxp,wave633c" would be a better choice, right ?
-
-No, NXP did not create wave633c. SoC components must have SoC prefix,
-assuming this is a Soc component.
-
-> 
-> >
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  interrupts:
-> >> +    maxItems: 1
-> >> +
-> >> +  clocks:
-> >> +    items:
-> >> +      - description: VPU clock
-> >> +      - description: VPU associated block clock
-> >> +
-> >> +  clock-names:
-> >> +    items:
-> >> +      - const: vpu
-> >> +      - const: vpublk_wave
-> >> +
-> >> +  power-domains:
-> >> +    minItems: 1
-> >> +    items:
-> >> +      - description: Main VPU power domain
-> >> +      - description: Performance power domain
-> >> +
-> >> +  power-domain-names:
-> >> +    items:
-> >> +      - const: vpumix
-> >> +      - const: vpuperf
-> >> +
-> >> +  cnm,ctrl:
-> >
-> >What is this prefix about? Is this nxp or something else?
-> 
-> Yes, using "nxp" as the prefix seems more appropriate.
-> 
-> >
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description: phandle of the VPU control device node. Required for VPU
-> >operation.
-> >
-> >Explain - required for what. Operation is too generic.
-> 
-> phandle of the VPU control device node, which manages shared resources
-> such as firmware access and power domains.
-
-Then NAK.
-
-Use proper bindings for this, e.g. power-domains.
-
-
-> 
-> >
-> >If this is phandle to second device, then it's proof your split is
-> >really wrong.
-> 
-> Are you suggesting that I should separate them into two YAML files,
-
-No. Splitting into separate files would change nothing - you still would
-have here a phandle, right?
-
-> or that I should structure them in a parent-child hierarchy
-> within the same YAML file ?
-
-You did not try hard enough to find similar devices, which there is a
-ton of.
-
-> 
-> I appreciate any guidance on the best approach to structure this in line
-> with existing bindings.
-
-Then look for them.
-
-You have one device. If you have sub-blocks with their own
-distinguishable address space, then they can be children. But you did
-not write it that way. Just look at your example DTS - no children at
-all!
-
-> 
-> >
-> >> +
-> >> +  boot:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description: phandle of the boot memory region node for the VPU
-> >control device.
-> >
-> >No clue what is this... if memory region then use existing bindings.
-> 
-> Boot is a memory region used for firmware upload.
-> Only the control device can access this region.
-> By "existing bindings," do you mean I should use "memory-region" instead ?
-
-Look how other bindings do this and what property they use. Yes,
-memory-region.
-
-> 
-> >
-> >Anyway, wrap your code correctly.
-> 
-> Okay.
-> 
-> >
-> >> +
-> >> +  sram:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description: phandle of the SRAM memory region node for the VPU
-> >control device.
-> >> +
-> >> +  '#cooling-cells':
-> >> +    const: 2
-> >> +
-> >> +  support-follower:
-> >> +    type: boolean
-> >> +    description: Indicates whether the VPU domain power always on.
-> >
-> >You cannot add new common properties in random way. Missing vendor
-> >prefix but more important: does not look at all as hardware property but
-> >OS policy.
-> 
-> I agree with you.
-> I'll remove it in v2.
-> 
-> >
-> >> +
-> >> +patternProperties:
-> >> +  "^vpu-ctrl@[0-9a-f]+$":
-> >> +    type: object
-> >> +    properties:
-> >> +      compatible:
-> >> +        items:
-> >> +          - enum:
-> >> +              - nxp,imx95-wave633c-ctrl
-> >
-> >Really, what? How nxp,imx95-wave633c-ctrl node can have a child with
-> >nxp,imx95-wave633c-ctrl compatible?
-> >
-> >NAK.
-> 
-> Apologies, I misunderstood the meaning of 'patternProperties'.
-> I'll remove it in v2.
-> 
-> >
-> >
-> >> +      reg: true
-> >> +      clocks: true
-> >> +      clock-names: true
-> >> +      power-domains:
-> >> +        items:
-> >> +          - description: Main VPU power domain
-> >> +          - description: Performance power domain
-> >> +      power-domain-names:
-> >> +        items:
-> >> +          - const: vpumix
-> >> +          - const: vpuperf
-> >> +      sram: true
-> >> +      boot: true
-> >> +      '#cooling-cells': true
-> >> +      support-follower: true
-> >> +    required:
-> >> +      - compatible
-> >> +      - reg
-> >> +      - clocks
-> >> +      - clock-names
-> >> +      - power-domains
-> >> +      - power-domain-names
-> >> +      - sram
-> >> +      - boot
-> >> +
-> >> +    additionalProperties: false
-> >> +
-> >> +  "^vpu@[0-9a-f]+$":
-> >> +    type: object
-> >> +    properties:
-> >> +      compatible:
-> >> +        items:
-> >> +          - enum:
-> >> +              - nxp,imx95-wave633c
-> >> +      reg: true
-> >> +      interrupts: true
-> >> +      clocks: true
-> >> +      clock-names: true
-> >> +      power-domains:
-> >> +        maxItems: 1
-> >> +        description: Main VPU power domain
-> >> +      cnm,ctrl: true
-> >> +    required:
-> >> +      - compatible
-> >> +      - reg
-> >> +      - interrupts
-> >> +      - clocks
-> >> +      - clock-names
-> >> +      - power-domains
-> >> +      - cnm,ctrl
-> >
-> >All this is just incorrect.
-> 
-> I'll remove it in v2.
-> 
-> >
-> >> +
-> >> +    additionalProperties: false
-> >> +
-> >> +additionalProperties: false
-> >> +
-> >> +examples:
-> >> +  - |
-> >> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >> +    #include <dt-bindings/clock/nxp,imx95-clock.h>
-> >> +
-> >> +    soc {
-> >> +      #address-cells = <2>;
-> >> +      #size-cells = <2>;
-> >> +
-> >> +      vpuctrl: vpu-ctrl@4c4c0000 {
-
-So this is the parent device...
-
-> >> +        compatible = "nxp,imx95-wave633c-ctrl";
-> >> +        reg = <0x0 0x4c4c0000 0x0 0x10000>;
-> >> +        clocks = <&scmi_clk 115>,
-> >> +            <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
-> >> +        clock-names = "vpu", "vpublk_wave";
-> >> +        power-domains = <&scmi_devpd 21>, <&scmi_perf 10>;
-> >> +        power-domain-names = "vpumix", "vpuperf";
-> >> +        #cooling-cells = <2>;
-> >> +        boot = <&vpu_boot>;
-> >> +        sram = <&sram1>;
-> >> +      };
-> >> +
-> >> +      vpu0: vpu@4c480000 {
-
-
-And here you have child which is not a child? Your binding and DTS
-neither match nor make any sense.
-
-> >
-> >Node names should be generic. See also an explanation and list of
-> >examples (not exhaustive) in DT specification:
-> >https://devicetree-specification.readthedocs.io/en/latest/chapter2-
-> >devicetree-basics.html#generic-names-recommendation
-> 
-> Thanks for sharing the link.
-> I'll use "video-codec" as the node name in v2.
-> 
-> >
-> >
-> >> +        compatible = "nxp,imx95-wave633c";
-> >> +        reg = <0x0 0x4c480000 0x0 0x10000>;
-> >> +        interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
-> >> +        clocks = <&scmi_clk 115>,
-> >> +                <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
-> >> +        clock-names = "vpu", "vpublk_wave";
-> >> +        power-domains = <&scmi_devpd 21>;
-> >> +        cnm,ctrl = <&vpuctrl>;
-> >> +      };
-> >> +
-> >> +      vpu1: vpu@4c490000 {
-> >> +        compatible = "nxp,imx95-wave633c";
-> >
-> >Drop all duplicated examples.
-> 
-> Wave6 HW is designed for simultaneous access,
-> as each VPU device has its own separate register space.
-> Therefore, I defined the 4 VPU devices as independent nodes in the example
-> to reflect this.
-
-They are redundant in this example. Unless you wanted to express
-something else, but you did not.
-
-
-> 
-> >
-> >
-> >> +        reg = <0x0 0x4c490000 0x0 0x10000>;
-> >> +        interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-> >> +        clocks = <&scmi_clk 115>,
-> >> +                <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
-> >> +        clock-names = "vpu", "vpublk_wave";
-> >> +        power-domains = <&scmi_devpd 21>;
-> >> +        cnm,ctrl = <&vpuctrl>;
-> >> +      };
-> >> +
-> >> +      vpu2: vpu@4c4a0000 {
-> >> +        compatible = "nxp,imx95-wave633c";
-> >> +        reg = <0x0 0x4c4a0000 0x0 0x10000>;
-> >> +        interrupts = <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH>;
-> >> +        clocks = <&scmi_clk 115>,
-> >> +                <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
-> >> +        clock-names = "vpu", "vpublk_wave";
-> >> +        power-domains = <&scmi_devpd 21>;
-> >> +        cnm,ctrl = <&vpuctrl>;
-> >> +      };
-> >> +
-> >> +      vpu3: vpu@4c4b0000 {
-> >> +        compatible = "nxp,imx95-wave633c";
-> >> +        reg = <0x0 0x4c4b0000 0x0 0x10000>;
-> >> +        interrupts = <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>;
-> >> +        clocks = <&scmi_clk 115>,
-> >> +                <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
-> >> +        clock-names = "vpu", "vpublk_wave";
-> >> +        power-domains = <&scmi_devpd 21>;
-> >> +        cnm,ctrl = <&vpuctrl>;
-> >> +      };
-> >> +    };
-> >> diff --git a/MAINTAINERS b/MAINTAINERS
-> >> index 896a307fa065..5ff5b1f1ced2 100644
-> >> --- a/MAINTAINERS
-> >> +++ b/MAINTAINERS
-> >> @@ -25462,6 +25462,14 @@ S:	Maintained
-> >>  F:	Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> >>  F:	drivers/media/platform/chips-media/wave5/
-> >>
-> >> +WAVE6 VPU CODEC DRIVER
-> >> +M:	Nas Chung <nas.chung@chipsnmedia.com>
-> >> +M:	Jackson Lee <jackson.lee@chipsnmedia.com>
-> >> +L:	linux-media@vger.kernel.org
-> >> +S:	Maintained
-> >> +F:	Documentation/devicetree/bindings/media/nxp,wave633c.yaml
-> >> +F:	drivers/media/platform/chips-media/wave6/
-> >
-> >There is no such file/directory.
-> 
-> Understood. I'll move the MAINTAINERS update to the last patch in v2.
-
-No, just add entry per entry.
-
-Best regards,
-Krzysztof
-
+WIWYNN PROPRIETARY
+This email (and any attachments) contains proprietary or confidential infor=
+mation and is for the sole use of its intended recipient. Any unauthorized =
+review, use, copying or distribution of this email or the content of this e=
+mail is strictly prohibited. If you are not the intended recipient, please =
+notify the sender and delete this email immediately.
 
