@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-146176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F61AA33ABE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:13:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF038A33AD0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:16:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4FD47A359A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 09:12:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BBD616419B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 09:14:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6EBF2116E9;
-	Thu, 13 Feb 2025 09:09:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E251320D519;
+	Thu, 13 Feb 2025 09:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A4xw9V3n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RzT9UTXT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74333211A0D;
-	Thu, 13 Feb 2025 09:09:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B054220C490;
+	Thu, 13 Feb 2025 09:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739437798; cv=none; b=Oxd+/4Z7/ZeVsGp1lIG337jTNApa23wUhSzdI533JzRmJ0oiCe0c2guX+2gk0DTSCxYCyl+bYwfuJtbTPjMMwI5C/Fsyg+B2oRwKaf1Tlte9OtGw+PqzMGB9ZT3RMASBx0QJMb3jIhObZDMfw3qCY3xSLJ9fYSw0geQ58cHXMr0=
+	t=1739437887; cv=none; b=IHir14wNOKwl0iZmlq2vmx45MZ+s2px3XqdWN86X4Hbz5HgAPoUSovHyZI85yrBeB34WQH1F0d3TBh08NkqY+YnnI3BS2sOsN5e+cRHLwBtPwr6L1EPR7BbtlV3kBXyLzEh8N+cmhJCyf2YZVfHx/G40AEuRFszFzlHFJUQkyG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739437798; c=relaxed/simple;
-	bh=yzTo+VSqdbP5hYD2auan7a+l2E2+Wwt1B7liKWHLG5U=;
+	s=arc-20240116; t=1739437887; c=relaxed/simple;
+	bh=9CDFhqfIxeQyHTbZH1uStYMdZmrLJeZxIzxr01pm+PE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hE3M20ri2ObC9GezMnZeqDGGwZ7FF1jx5CNnEPFw1Ln1zaPbxmkHv48OANtiLpcA3CFoT4LWa1GSo8We+4nimJ2aWaxCrP7DRhJNhPEuEgw5q2RF93vnKGIgDOLZOvMA5vkHEbakajsk22kqW6zzshCYe4ERWXD20qWLMqNnDEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A4xw9V3n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B1E3C4CEE6;
-	Thu, 13 Feb 2025 09:09:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LIrBReL+79GONQknIK/S1WLKwh6McOdj/YlRgcSf+Cd4B3OtaeHckGf+Wmy3zWp08Alz5XRcEuT3344m2OBWTT9kbot69DH4QBwtvU3F12sbkSY0PLtVctUVyiEt66dr0gPu1kM8rSLKyuxjMKCEkvQMVUsUVwGvDkxzGIAmOfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RzT9UTXT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31CAEC4CED1;
+	Thu, 13 Feb 2025 09:11:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739437798;
-	bh=yzTo+VSqdbP5hYD2auan7a+l2E2+Wwt1B7liKWHLG5U=;
+	s=k20201202; t=1739437887;
+	bh=9CDFhqfIxeQyHTbZH1uStYMdZmrLJeZxIzxr01pm+PE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A4xw9V3nRsRa6ghT9q+jymjVNL2RKfNOZ2YBFCEGAkzEyQWHExLusTZusYF8k7vaF
-	 kIkkKWGJEIZUucKG7cSvSytTwjgRa6WiLUGWQU9LX8JLeVoFewPLUv+ZIvDahdhSpZ
-	 E+k/ZRDjgWb0+NwPxPjtHcJuFMxFP3uwgeCBkI+nPdVsrj7vAKNw9LUrMXz3KWvzFm
-	 /qf9TC0syXuIecZUGTaFX8/+QF4Ug6oVsyAVx4sQ4uNP23Wj7HKcGu6dA0PkvSyHUQ
-	 mFZXoKFadv37t+Cdqk4Kb8sBcTAnJ/3kPdyGqvgCKEVDLwSEDPCLHPCzhnrAxoLAeJ
-	 Jl1FczADjsROA==
-Date: Thu, 13 Feb 2025 10:09:54 +0100
+	b=RzT9UTXT/D9QXKFlWezDobk5v57dZEPTqBaR9qeB3QpUZUfbCKFCH2MjTCyYZsvXh
+	 jfVpPTqQmiSClH/j01gZ1HGsMmARasUaWFxk2aO2hGH0H19y7z8hJQC0KEHRmca9Wv
+	 RvCoBtcSiFcG59rfAsMVt46DuZTKBEUZpm/0gqLBWlZhYaGTnpysU1g4eJAqCzxpze
+	 IpG93cYVjrrdPZwxN9+xUe/U7qEPhYZSIXQVMgsO42O6Q5HtSY7orIAK9MTFABK615
+	 j8TZTYQbxhGuFewDDKU0dRS0qXXq8hFOvh5Ao3PZ0lgZz4WJK1nacPQZ43F2kvCa7U
+	 qqYjPSpbbWGqw==
+Date: Thu, 13 Feb 2025 10:11:23 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Mark Kettenis <kettenis@openbsd.org>, 
-	Marc Zyngier <maz@kernel.org>, Stan Skowronek <stan@corellium.com>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: pci: apple,pcie: Add t6020 support
-Message-ID: <20250213-faithful-ibex-of-feminism-3aea45@krzk-bin>
-References: <20250211-pcie-t6-v1-0-b60e6d2501bb@rosenzweig.io>
- <20250211-pcie-t6-v1-1-b60e6d2501bb@rosenzweig.io>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>, Matti Vaittinen <mazziesaccount@gmail.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Emil Gedenryd <emil.gedenryd@axis.com>, 
+	Arthur Becker <arthur.becker@sentec.com>, Mudit Sharma <muditsharma.info@gmail.com>, 
+	Per-Daniel Olsson <perdaniel.olsson@axis.com>, Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>, 
+	Ivan Orlov <ivan.orlov0322@gmail.com>, David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: iio: light: al3010: add al3000a
+ support
+Message-ID: <20250213-eminent-antique-koala-5a68fd@krzk-bin>
+References: <20250212064657.5683-1-clamor95@gmail.com>
+ <20250212064657.5683-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,17 +67,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250211-pcie-t6-v1-1-b60e6d2501bb@rosenzweig.io>
+In-Reply-To: <20250212064657.5683-2-clamor95@gmail.com>
 
-On Tue, Feb 11, 2025 at 02:54:26PM -0500, Alyssa Rosenzweig wrote:
-> This shuffles some registers versus t6000, so requires a new compatible.
+On Wed, Feb 12, 2025 at 08:46:55AM +0200, Svyatoslav Ryhel wrote:
+> AL3000a is an ambient light sensor quite closely related to
+> exising AL3010 and can re-use exising schema for AL3010.
 > 
-> Signed-off-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  Documentation/devicetree/bindings/pci/apple,pcie.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/iio/light/dynaimage,al3010.yaml     | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/dynaimage,al3010.yaml b/Documentation/devicetree/bindings/iio/light/dynaimage,al3010.yaml
+> index a3a979553e32..6db4dfd5aa6c 100644
+> --- a/Documentation/devicetree/bindings/iio/light/dynaimage,al3010.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/dynaimage,al3010.yaml
+> @@ -4,14 +4,16 @@
+>  $id: http://devicetree.org/schemas/iio/light/dynaimage,al3010.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Dyna-Image AL3010 sensor
+> +title: Dyna-Image AL3000a/AL3010 sensor
+>  
+>  maintainers:
+>    - David Heidelberg <david@ixit.cz>
+>  
+>  properties:
+>    compatible:
+> -    const: dynaimage,al3010
+> +    enum:
+> +      - dynaimage,al3010
+> +      - dynaimage,al3000a
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If this stays here, keep alphabetical order.
 
 Best regards,
 Krzysztof
