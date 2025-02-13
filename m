@@ -1,236 +1,147 @@
-Return-Path: <devicetree+bounces-146223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50AB6A33C97
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:22:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B30A33C9D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:23:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDE99188DAFD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:21:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60BE91882B62
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B79B218EA0;
-	Thu, 13 Feb 2025 10:16:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="j3HGBuoQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2E7521A437;
+	Thu, 13 Feb 2025 10:16:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F9D2185BE;
-	Thu, 13 Feb 2025 10:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E74F21A430;
+	Thu, 13 Feb 2025 10:16:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739441800; cv=none; b=M3QIBj1PVdPwGOyG7fEIWdojSGoUUtAvysDu867qVbMfM1uOoa7gvZ6oW9nbYtyENXvrcp/J0SxgC0Ofj87cGrX5eL78gJsCUNkZJZXPXKcN1PE3AvuLl5ze4j/aTkVLzBNPGi38r2qcn4VroEjOQai1XbHDj59rDHuaDuCId2g=
+	t=1739441806; cv=none; b=ZQZEcYJnwXP8KpTGf5/QlCD9S2amggq6IjSvqXJI5n9yxMa4qK2abhhDu6WlTMEIlxZXnauj4mJZ7MwTVpnggh959Xs2zW/T+tsqX7t9WX/YKUuzOUh96OGA/Dg9IyYZkfiBluriWVOE1MOPLnfQgHd5lB8TpB90jyMIORTv0wc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739441800; c=relaxed/simple;
-	bh=eCa3R3gjoV9EjLzLiqNS/QTGgVKaXqf7vy+LGYFPg0c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XlUSt7EV0ZFj6+13/t4MBetwsz/Xh8rMwQtbZ9NwZX2fq3RWUcDK/vi8Zowl1vEZmr/kjBZ6BTudqDws3w7rPHWndbiYIOBpMNNAYqdepzixMRZBzx6o8H4a8XDq9zxefAxTO/AxCRa128FrTH/B+d6lQ9wfcBfxeafG2Q3GY8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=j3HGBuoQ; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B3C014326D;
-	Thu, 13 Feb 2025 10:16:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739441796;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=akpNRWWMvv7pF0+12PVa/Q8rH2F+xiYxVG9nFrfAwP4=;
-	b=j3HGBuoQ2iIDjdhxdwKl9ydGd+dB4vQw8rwP7lNn3jZnsapH1jJ58iSGQcStPEigxtEMKN
-	KI15GYMn5YGGPG5LurTK3lQHrhiYHyS1jVNKsxs5MPfEhAPBZoVb5tJyZVvniuYqyqeeGh
-	KroHWqwjJ31BM8Cp7DVoBMW1XQFUAQytjE43WQqwOMEdX1j5iMTy9+bvL3BJxberMW64uH
-	9oWSOmOSQ/bExLK+qTjOYwRv6frX6TtTsNCj/TslH4p8FnF7OCcij7TyIigVcW5Gd7LH6P
-	Ft4bf49VtnSB+n4p3GJQkTdcfhXo0gLKwE0rnmfPpZmq75qFAJbpgo8k6b8hSw==
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: davem@davemloft.net
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
-	Sean Anderson <seanga2@gmail.com>
-Subject: [PATCH net-next v4 15/15] dt-bindings: net: Introduce the phy-port description
-Date: Thu, 13 Feb 2025 11:16:03 +0100
-Message-ID: <20250213101606.1154014-16-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250213101606.1154014-1-maxime.chevallier@bootlin.com>
-References: <20250213101606.1154014-1-maxime.chevallier@bootlin.com>
+	s=arc-20240116; t=1739441806; c=relaxed/simple;
+	bh=KNgT4cShslnH6pe2xvhhE3jHWvOo2cG8vDyVX3ktiQw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=o0xNSWEzjzxTsjEUl1rBJ+9hCYal6KFo965xtZqBQL80ZD/rwCnwrcMcGRFTsNpCoZuJJAJgxRJkH9QsC07G/riNaMMCaUlidLW9Y6jIz3FSorGx+3ioWgDygy2mBy7dmVil2i3O1yuOo3WqLqe/m+NG2K1vwh8ArOP68C+4mzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4bbecb9b6bbso361343137.3;
+        Thu, 13 Feb 2025 02:16:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739441803; x=1740046603;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r+4RVqTGAi8P4BI3du7c8N1169rpqNW0ZHsYZ7ijscc=;
+        b=imnMp/Ya0Gco3d2ZmrbkE1E71mR2yXyv8bvlhOP1Uy+jbEqd0xFFcy5YNybCsG//qE
+         bDebXU7lgJh5rJkN+0gUZPw9ahbA4MfMhiQmjAAJiYzijloosFLPg7BGADQmaZJfyS/I
+         /W2dHy2EWFl6T3UpdAMcTFkqwmcgPyLcKRfIwm43234bhLpUiUutywlRHycZgJmwhLfx
+         CR/nyayAli6O87wq6nytQ0kX02BTOFTQsWJRvTr4qZ4krWhVRFQsGJ1Oeo+b4IDHPpaM
+         ILAU4aQs4bOtMaCQ7Qurk1mZVHfQ/NJriP92Lwa1CNrc9xTTLmwwcFZUCgcgCtQ/P8Ox
+         8zgg==
+X-Forwarded-Encrypted: i=1; AJvYcCUsIFXJYpYJgTsWQo/1501T4zfiBGGqzMkfcweHuq4YotcbCcokEQwoCbBJIhfstz65pBO9Z2TYre/F@vger.kernel.org, AJvYcCWc4V1pPiUEJxMBk0Qb413tlk5knqb9pYfnoToMP53Iy7m7PEtqlSNqyFhoyFkNaxq9YAoDuJrZbhDf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3EdfNT0+LM64+VxP39tTSXVRyzOCdShd2I2EkKwAnBDigQkPQ
+	geuBu4byHDnp1Ho2VI+NA1yQ4bUV5ZD3u8C/vNdlkies/RExY4nnankl0YnIwNg=
+X-Gm-Gg: ASbGncs7RvXj8hwUl1d13/D7U/LIUqMozSuutGgO19kZCic3Sl2ku1RKIpVcA4hLgmn
+	MbyIS4a4dxMwd/Sv1phkEWYhnNfNnVk8LsVTRSVHY2+ZliMrjNRkNJvn5uLIYm7lnC3C3ig1vaF
+	xJsgwfEEnIZGR7iDyuMjVo8PfQWsgELgKgtkz7I+s/tVnaPzFm0D3KBsemjxfxuVhtdgaayhmuc
+	cVFwcRgTqLSMHfPhwPE901Yye2FJGsZTOiYM0GjdsObjgkwsoWuyTD1fOwhSnr3emAXxm2OzEMV
+	4YqzZsWi8i6e3ma7TVyFDQ/nVRxgU1vOk6c8gVg5D30lDNNSha0+0g==
+X-Google-Smtp-Source: AGHT+IH9BGzGYtE5X702F7RMWLTOJU5Kq5h2yNUQwnMGaaTuuwguPuWFKzRqGlFiH2cg7+M2COvFpg==
+X-Received: by 2002:a05:6102:8005:b0:4bb:db41:3b68 with SMTP id ada2fe7eead31-4bbf209b9famr6584958137.5.1739441803538;
+        Thu, 13 Feb 2025 02:16:43 -0800 (PST)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-868e8583c9dsm137243241.13.2025.02.13.02.16.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Feb 2025 02:16:43 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-868e368ec74so466892241.1;
+        Thu, 13 Feb 2025 02:16:43 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUxTSJxNY8O1V8SES1bqoBpQI/fSis5GK09uOg8mzpBGBYjA2wFQCwbBFoeGZshBWizjLjy5sH9o5DL@vger.kernel.org, AJvYcCXnf6y0xRznWSJgdw9CpGnLRIaLGv/2mBTkT9vcxG0G+fGALsf2WDeYp+FlbvEitoIbKNHN3usl+bMS@vger.kernel.org
+X-Received: by 2002:a05:6102:2c06:b0:4ba:7469:78ce with SMTP id
+ ada2fe7eead31-4bbf22441dcmr6979494137.21.1739441803048; Thu, 13 Feb 2025
+ 02:16:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegieehudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeulefgvddthfekkedugeeikeeuudekhfekgfehgfelkeekkeekhfejkefgvefhieenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppedvrgdtudemtggsudelmeekugegtgemlehftddtmegstgdvudemkeekleelmeehgedttgemvgehlegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkegugegtmeelfhdttdemsggtvddumeekkeelleemheegtdgtmegvheelvgdphhgvlhhopehfvgguohhrrgdrhhhomhgvpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfedvpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgto
- hhmpdhrtghpthhtohepnhgvthguvghvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqmhhsmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: maxime.chevallier@bootlin.com
+References: <devicetree-org/dt-schema/pull/154@github.com> <d385e871-f33f-4133-8347-3f108f8a6736@kernel.org>
+In-Reply-To: <d385e871-f33f-4133-8347-3f108f8a6736@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 13 Feb 2025 11:16:31 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWLWDTi1jeSOGKDAmvhGZzxAVTM-NjBJzW__1jfECHFQg@mail.gmail.com>
+X-Gm-Features: AWEUYZkfP6xpGlv9Cpj18tTWe4DNj1i_sHyc_JDqEOorEdNEQH6nbJwe_rO5kVM
+Message-ID: <CAMuHMdWLWDTi1jeSOGKDAmvhGZzxAVTM-NjBJzW__1jfECHFQg@mail.gmail.com>
+Subject: Re: [devicetree-org/dt-schema] schemas: introduce assigned-clock-sscs
+ (PR #154)
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor@kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 
-The ability to describe the physical ports of Ethernet devices is useful
-to describe multi-port devices, as well as to remove any ambiguity with
-regard to the nature of the port.
+CC devicetree
 
-Moreover, describing ports allows for a better description of features
-that are tied to connectors, such as PoE through the PSE-PD devices.
+On Fri, 24 Jan 2025 at 15:42, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> Just FYI, below is a foward of pull request for dtschema for bindings
+> adding spread spectrum to clocks. As Clock framework maintainers this
+> might be relevant to you.
+>
+> -------- Forwarded Message --------
+> Subject: [devicetree-org/dt-schema] schemas: introduce
+> assigned-clock-sscs (PR #154)
+> Date: Fri, 24 Jan 2025 04:31:30 -0800
+> From: Peng Fan <notifications@github.com>
+> Reply-To: devicetree-org/dt-schema
+> <reply+ACPRLI5YLXX27TFZX2P7NVOFT5USFEVBNHHKO4ZXHM@reply.github.com>
+> To: devicetree-org/dt-schema <dt-schema@noreply.github.com>
+> CC: Subscribed <subscribed@noreply.github.com>
+>
+> To support spread spectrum clock, introduce assigned-clock-sscs, it is
+> an uint32-matrix with format multiple elements of below
+> &lt;modfreq spreadpercentage modmethod&gt;, &lt;...&gt;
+> You can view, comment on, or merge this pull request online at:
+>
+>   https://github.com/devicetree-org/dt-schema/pull/154
+>
+> -- Commit Summary --
+>
+>   * schemas: introduce assigned-clock-sscs
 
-Introduce a binding to allow describing the ports, for now with 2
-attributes :
+>   assigned-clock-sscs:
+>     $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>     items:
+>       items:
+>         - description: The modulation frequency
+>         - description: The modulation depth in permyriad
+>         - description: The modulation method, down(2), up(1), center(0)
 
- - The number of lanes, which is a quite generic property that allows
-   differentating between multiple similar technologies such as BaseT1
-   and "regular" BaseT (which usually means BaseT4).
+Is there a way to explicitly disable it, if it was enabled by the
+firmware? See also my comment in "Re: [PATCH v2 1/4] clk: Introduce
+clk_hw_set_spread_spectrum".
 
- - The media that can be used on that port, such as BaseT for Twisted
-   Copper, BaseC for coax copper, BaseS/L for Fiber, BaseK for backplane
-   ethernet, etc. This allows defining the nature of the port, and
-   therefore avoids the need for vendor-specific properties such as
-   "micrel,fiber-mode" or "ti,fiber-mode".
+>           minimum: 0
+>           maximum: 2
 
-The port description lives in its own file, as it is intended in the
-future to allow describing the ports for phy-less devices.
+What's the meaning of these limits?
 
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
-V4: no changes
+[1] https://lore.kernel.or/CAMuHMdWn+sKiC1B4MF1vHwS2ArFYQXGzpYi2EcsyERPSCc9bvQ@mail.gmail.com
 
- .../devicetree/bindings/net/ethernet-phy.yaml | 18 +++++++
- .../bindings/net/ethernet-port.yaml           | 47 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 3 files changed, 66 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/ethernet-port.yaml
+Gr{oetje,eeting}s,
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-index 2c71454ae8e3..950fdacfd27d 100644
---- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-@@ -261,6 +261,17 @@ properties:
- 
-     additionalProperties: false
- 
-+  mdi:
-+    type: object
-+
-+    patternProperties:
-+      '^port-[a-f0-9]+$':
-+        $ref: /schemas/net/ethernet-port.yaml#
-+
-+        unevaluatedProperties: false
-+
-+    additionalProperties: false
-+
- required:
-   - reg
- 
-@@ -297,5 +308,12 @@ examples:
-                     default-state = "keep";
-                 };
-             };
-+
-+            mdi {
-+              port-0 {
-+                lanes = <2>;
-+                media = "BaseT";
-+              };
-+            };
-         };
-     };
-diff --git a/Documentation/devicetree/bindings/net/ethernet-port.yaml b/Documentation/devicetree/bindings/net/ethernet-port.yaml
-new file mode 100644
-index 000000000000..bf0f64f1b0aa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/ethernet-port.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/ethernet-port.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic Ethernet Port
-+
-+maintainers:
-+  - Maxime Chevallier <maxime.chevallier@bootlin.com>
-+
-+description:
-+  An Ethernet port represents an output, such as a connector, of a network
-+  component such as a PHY, an Ethernet controller with no PHY, or an SFP module.
-+
-+properties:
-+
-+  lanes:
-+    description:
-+      Defines the number of lanes on the port, that is the number of physical
-+      channels used to convey the data with the link partner.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  media:
-+    description:
-+      The mediums, as defined in 802.3, that can be used on the port.
-+    items:
-+      enum:
-+        - BaseT
-+        - BaseK
-+        - BaseS
-+        - BaseC
-+        - BaseL
-+        - BaseD
-+        - BaseE
-+        - BaseF
-+        - BaseV
-+        - BaseMLD
-+        - BaseX
-+
-+required:
-+  - lanes
-+  - media
-+
-+additionalProperties: true
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ecbf70939927..7806b8e574e1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8602,6 +8602,7 @@ L:	netdev@vger.kernel.org
- S:	Maintained
- F:	Documentation/ABI/testing/sysfs-class-net-phydev
- F:	Documentation/devicetree/bindings/net/ethernet-phy.yaml
-+F:	Documentation/devicetree/bindings/net/ethernet-port.yaml
- F:	Documentation/devicetree/bindings/net/mdio*
- F:	Documentation/devicetree/bindings/net/qca,ar803x.yaml
- F:	Documentation/networking/phy-port.rst
--- 
-2.48.1
+                        Geert
 
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
