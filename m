@@ -1,181 +1,167 @@
-Return-Path: <devicetree+bounces-146349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5340AA34967
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:16:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEAA2A348B4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:59:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89AF73A1EEC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:09:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E5EA1610C0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 15:59:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F39B19AD93;
-	Thu, 13 Feb 2025 16:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41B519AD93;
+	Thu, 13 Feb 2025 15:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="hFRbf5mp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZEHQRma0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCAD226B0AE
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 16:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955E9152532;
+	Thu, 13 Feb 2025 15:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739462997; cv=none; b=rqhTgEuTHi3ZLBphWwB3lfakAwS2ZTDXIyRQiXqk+uAVHYoM2QUZhw1iMZ9e/GNgIdHHNazvpwgA8egcp4r/ieSB2ZQHbI2FwNKIC6pusRKIhgC1LYpBKkwvbjDm38cqqI0UYbTejd2bENx/k4m5KdyPeoUR0OA5f3dmEQzDswY=
+	t=1739462354; cv=none; b=O50KfH16jsDi9xaLtNutCeaTNKYrjbIZpOe2V1SALPF1ZEFvKS75aa9A6wSMTVvO7tKraK9lRvlnQnj5HBpOlCxs/gxMA3NTVdYe/3gZWsVbpixTyVjOV6q+Sz189S02DfEprPNcQ+T1PnP0bkRVZ+oqEhd2WX10DZ2un8O0Cfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739462997; c=relaxed/simple;
-	bh=aZFJkkj4PtEl8L9lHvWWk+I1PNHQuKnT37w57jFX4/0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lndKsEaxbU7W9FTQhaDW+YV7pYRbl0IDJEDqrXYd/aSf8CToCxQgqwHd0mDEB/InyHJKj828QIH5B9u2wo0Bjdeg6PnszlgAu02tz8BTCw2thIwCe6VnE7adTQJsCCM4RItes+jBrZTfpLHG6hNP1z0Nd5NNLfi8XmPRXe03kaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=hFRbf5mp; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1739462994;
- bh=OSqEFJEPXbKrFf4UCRw4Rj9UNsiFiIqusumOACEFv68=;
- b=hFRbf5mpafQtW6BFE17ed7yRnJx4vHhqlaFKf80aE9kOhz4kV81vFQRCPnwt+eVpQ4ydruotT
- Ia4HIRtsKKiBAmXB9nmnMmqXQL1PM04lTIqPSZSpvw3pAOIdl4iHpzvNgyZ4jtgyuVE0F2t8lld
- WYMzlWVYhOLAQ72Xnv93RlJpnIkLovva4WL8ELMdn1PBVR9nJDUNTQ0ihWAI6toXuMhtEPjnsJi
- kmODbQEcWDZSzJfOZ9vXqnZTSZrWXrSza8Npu1FumWuTXMNya7btNH2/IP2kVTq/YEqlnqE1qY2
- cyvSqGPJ74Q6bcJZj6boMxwYBotnNSwV6IJgIoOTe5Bw==
-X-Forward-Email-ID: 67ae1441eeea92be259cebf3
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <b5977d21-aa39-4e91-863b-cc7f9dc6938c@kwiboo.se>
-Date: Thu, 13 Feb 2025 16:48:10 +0100
+	s=arc-20240116; t=1739462354; c=relaxed/simple;
+	bh=jhNefGtsRWXyhnxG+bgW4pvnMHzaSA4ko0O4FWE8Lp8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=grgAoPXmAq9G2qZP8928JqxIjDR3kZX3sbtrCwyN3Uoe6JUsnyowBmCtSFLHVbZ3SSXSrNiyODuXqaZ+93OwoGGxPQoPfFMl7murnX6DYcDt1llkosVCAnTlBIOdTUiC8MgwsBkHqvi6efKxa72kMnxGqhOmF4Y89Qf9fq0/vO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZEHQRma0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6631CC4CED1;
+	Thu, 13 Feb 2025 15:59:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739462354;
+	bh=jhNefGtsRWXyhnxG+bgW4pvnMHzaSA4ko0O4FWE8Lp8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ZEHQRma01gw+Qyo9YZZLw6S9xt+9nwhj2+sR/54HPKZYiHpRI+K4RMoMNxh5ADfBd
+	 8jHh5+zhT21n+fAWngs0kXilDBUKI1DyGb0vf4DpXWj72kQLtOdCblgUEGLARDL0Ik
+	 bse6xYa+6/uPJRCCFYjF90JOch67MwjHvDha3fLlu0828wUYJB7SDiEW8fiUGV84Q2
+	 XcbddIQC+qJRoNoEI1Km81B4JftRfRLu2Krh/5rsgROOKeISJLhUSOOfz9gdqylMCS
+	 26ehjAOFFpqay+P4gbv3yv+05wt5nkHTLtbBT4965WvGzPGoJhvh0FiIeFLdq/c1gL
+	 r5V56n7Agy9kA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AA10C021A4;
+	Thu, 13 Feb 2025 15:59:14 +0000 (UTC)
+From: Tobias Sperling via B4 Relay <devnull+tobias.sperling.softing.com@kernel.org>
+Subject: [PATCH v4 0/2] Support for TI ADS7128 and ADS7138 ADCs
+Date: Thu, 13 Feb 2025 16:58:56 +0100
+Message-Id: <20250213-adc_ml-v4-0-66b68f8fdb8c@softing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Radxa ROCK 4D device
- tree
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Dragan Simic <dsimic@manjaro.org>, Chris Morgan <macromorgan@hotmail.com>,
- Kever Yang <kever.yang@rock-chips.com>, Tim Lunn <tim@feathertop.org>,
- FUKAUMI Naoki <naoki@radxa.com>,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Weizhao Ouyang <weizhao.ouyang@arm.com>, Elon Zhang
- <zhangzj@rock-chips.com>, Alexey Charkov <alchark@gmail.com>,
- Stephen Chen <stephen@radxa.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- kernel@collabora.com
-References: <20250213145921.133412-1-detlev.casanova@collabora.com>
- <20250213145921.133412-3-detlev.casanova@collabora.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250213145921.133412-3-detlev.casanova@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMAWrmcC/2XM3wqCMBTH8VeJXbfYztzUrnqPiNg/dZAuNhmF+
+ O5NISm8/B3O5zuhaIOzEZ0PEwo2uej8kEdxPCDdyaG12Jm8ERAoKAXA0uh7/8CGalsJW3EFGuX
+ nZ7CNe62h6y3vzsXRh/faTXS57hKJYoJJKeoGLFVK00v0zeiG9qR9j5ZIgi/kBAjbIGRYSV6XQ
+ hDNar6H7BeKDbIMqSHKsKJiUsI/nOf5A4mGyXsQAQAA
+X-Change-ID: 20241122-adc_ml-d1ce86e85b2c
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Tobias Sperling <tobias.sperling@softing.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev-355e8
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739462353; l=3437;
+ i=tobias.sperling@softing.com; s=20241122; h=from:subject:message-id;
+ bh=jhNefGtsRWXyhnxG+bgW4pvnMHzaSA4ko0O4FWE8Lp8=;
+ b=B3z1r3JT8BOwrbjqgQHDiTpNwRX4k7kpMRgT340opHRRc/PdyFaaou2pXeCZ7WNTV4i3guKAr
+ jUc15Bon+6RDLBG9MQsEkvlFx9fWcPhZ6j3HE6rH+De+VE6qvtXTq/e
+X-Developer-Key: i=tobias.sperling@softing.com; a=ed25519;
+ pk=v7hgaMHsrA9ul4UXkBVUuwusS9PF3uHW/CC+gABI65E=
+X-Endpoint-Received: by B4 Relay for tobias.sperling@softing.com/20241122
+ with auth_id=281
+X-Original-From: Tobias Sperling <tobias.sperling@softing.com>
+Reply-To: tobias.sperling@softing.com
 
-Hi Detlev,
+This patch series adds support for Texas Instruments ADS7128 and
+ADS7138, which are 12-bit, 8 channel analog-to-digital converters (ADCs)
+with build-in digital window comparator (DWC), using the I2C interface.
 
-On 2025-02-13 15:57, Detlev Casanova wrote:
-> From: Stephen Chen <stephen@radxa.com>
-> 
-> The Radxa ROCK 4D board is based on the Rockchip rk3576 SoC.
-> 
-> The device tree adds support for basic devices:
->  - UART
->  - SD Card
->  - Ethernet
->  - USB
->  - RTC
-> 
-> It has 4 USB ports but only 3 are usable as the top left one is used
-> for maskrom.
-> 
-> It has a USB-C port that is only used for powering the board.
-> 
-> Signed-off-by: Stephen Chen <stephen@radxa.com>
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3576-rock-4d.dts      | 651 ++++++++++++++++++
->  2 files changed, 652 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index def1222c1907e..a112aeb37948a 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -132,6 +132,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-evb1-v10.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-rock-4d.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3582-radxa-e52c.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-sige7.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-w3.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-> new file mode 100644
-> index 0000000000000..f356742f9d643
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-> @@ -0,0 +1,651 @@
+The driver exposes the interfaces to read the raw values, as well as the
+minimum and maximum value for each channel. In addition several settings
+can be configured, like the DWC, sampling frequency or an averaging
+filter/oversampling. Interrupts triggered by the DWC, if configured, are
+then exposed as IIO events.
 
-[snip]
+ADS7128 differs in the addition of further hardware features, like a
+root-mean-square (RMS) and a zero-crossing-detect (ZCD) module, which
+are not yet supported by the driver.
 
-> +&gmac0 {
-> +	phy-mode = "rgmii-id";
-> +	clock_in_out = "output";
-> +
-> +	snps,reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
-> +	snps,reset-active-low;
-> +	snps,reset-delays-us = <0 20000 100000>;
+Regarding the I2C interface the chips using opcodes to define the way
+how the registeres are accessed, like single or multiple register(s)
+read/write or setting/clearing only bits.
 
-The snps,reset- props are deprecated and should be changed to reset-
-props in the phy node.
+---
+Changes in v4:
+- dt-bindings: make avdd-supply mandatory.
+- Replace wildcard names with ads7138 or ADS7138 respectively.
+- Improve code style (add comments, indentation, placing of brackets,
+  helper struct for dev)
+- Rename _setclear_bit() and use it for single writes.
+- Use DEFINE_RUNTIME_DEV_PM_OPS.
+- Make avdd mandatory and verify it's not a stub.
+- Link to v3: https://lore.kernel.org/r/20250206-adc_ml-v3-0-1d0bd3483aa2@softing.com
 
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&eth0m0_miim
-> +		     &eth0m0_tx_bus2
-> +		     &eth0m0_rx_bus2
-> +		     &eth0m0_rgmii_clk
-> +		     &eth0m0_rgmii_bus
-> +		     &ethm0_clk0_25m_out>;
-> +
-> +	phy-handle = <&rgmii_phy0>;
-> +	status = "okay";
-> +};
+Changes in v3:
+- Make interrupt optional.
+- Replace SET_RUNTIME_PM_OPS() with RUNTIME_PM_OPS() to prevent warning.
+- Rework read_avail for sampling frequency to show each frequency only
+  once.
+- Use IIO_CHAN_INFO_PEAK and IIO_CHAN_INFO_TROUGH instead of ext_info.
+- Link to v2: https://lore.kernel.org/r/20250203-adc_ml-v2-0-8a597660c395@softing.com
 
-[snip]
+Changes in v2:
+- Improved commit messages.
+- dt-bindings: drop info about what driver supports, make 'avdd-supply'
+  optional.
+- General rework of driver regarding indentation and code style.
+- General code improvements to make code shorter and improve
+  readability, like remove 'goto's, order of declarations, ...
+- Use kernel macros and functions, like FIELD_*, guard(), ...
+- Rework i2c functions to return 0 in case of success and use
+  i2c_master_send() if possible.
+- Use struct for chip data instead of enum.
+- Add comment to what the lock is used for and make sure it's used in
+  these cases.
+- Use read_avail of iio_info and extend to return also the available
+  values for OSR.
+- Rework to only accept values of the availability list.
+- Use devm_* if possible and therefore drop 'remove' callback.
+- Rebase to kernel 6.13 and adjust to API changes.
+- Link to v1:
+  https://lore.kernel.org/r/20241122-adc_ml-v1-0-0769f2e1bbc1@softing.com
 
-> +&mdio0 {
-> +	rgmii_phy0: phy@1 {
+Changes in v1 (to patch series without b4):
+- dt-bindings: Extended description
 
-Maybe ethernet-phy@1 ?
+Signed-off-by: Tobias Sperling <tobias.sperling@softing.com>
 
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reg = <0x1>;
-> +		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
+---
+Tobias Sperling (2):
+      dt-bindings: iio: adc: Introduce ADS7138
+      iio: adc: Add driver for ADS7128 / ADS7138
 
-Please add reset- props here.
+ .../devicetree/bindings/iio/adc/ti,ads7138.yaml    |  63 ++
+ drivers/iio/adc/Kconfig                            |  10 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/ti-ads7138.c                       | 749 +++++++++++++++++++++
+ 4 files changed, 823 insertions(+)
+---
+base-commit: 05dbaf8dd8bf537d4b4eb3115ab42a5fb40ff1f5
+change-id: 20241122-adc_ml-d1ce86e85b2c
 
-Changing to use reset- props may cause issue if a RTL8211F PHY is used
-on the board. Use a ethernet-phy-id compatible or mainline U-Boot to
-ensure the Ethernet PHY can be discovered during probe.
+Best regards,
+-- 
+Tobias Sperling <tobias.sperling@softing.com>
 
-Regards,
-Jonas
 
-> +	};
-> +};
-> +
-
-[snip]
 
