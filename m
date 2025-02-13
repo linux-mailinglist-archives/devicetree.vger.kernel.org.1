@@ -1,147 +1,110 @@
-Return-Path: <devicetree+bounces-146084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2097BA333C2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 01:03:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF457A333F5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 01:25:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CED417A20F1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 00:02:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 664A13A79CA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 00:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD958EC4;
-	Thu, 13 Feb 2025 00:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B606C1804A;
+	Thu, 13 Feb 2025 00:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iRVhe6Xw"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="ffe5/fVd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F90D1C32;
-	Thu, 13 Feb 2025 00:03:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA4A44A29;
+	Thu, 13 Feb 2025 00:25:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739404996; cv=none; b=gtWj8wacI4cUzZmA3xwiK1d+r1StmVxPoXWlUZAqrBpwzOFDbpH89VMiN0sze8s0mg3VzRWwCkdQZ5OBt/a3Ej+SLMatKAEnsWGE8UvKotGL685DopY8bueBsxO/X5qfc/lE2wyrGLjNwZD918NNq7PXtaRCvXlSST/KyLyNeNU=
+	t=1739406335; cv=none; b=GJ9yis8LgadAyQ4pWYEWKM4V0mfRce5TjZFlNmH5henTrYXanWPvUK+ncV5jEqobbpLubHrJaVbnCjSVKJIWv0Td1SKKe8YAF8D7XsVWguoi9hCSe0J4DGHY9exAG9yTY7gzyLo8QZg5ZdqbZHUSskNBdSs3Pv3O/o618mwjpeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739404996; c=relaxed/simple;
-	bh=nzfWYzJlyuRlm5J2Rlgp13zIeb+QFhxyooqdwa5e8k4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cGsH0+lLVCfx1pOYAZztzIyg43RRqX1NnqI5lz4ZGOUJOn9ixsFU7+ueHIT+oRBABJ5lg1Ed/gLHQ8/lje4SvSGrrIwusm0XVIyicqCevN8wtdEN0gyykzURbfEuB+Ejr/ANTkjEY/3xHP4wIqCMIA321BHkbt2/KTJ3mdVi8HE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iRVhe6Xw; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-21f818a980cso3308565ad.3;
-        Wed, 12 Feb 2025 16:03:14 -0800 (PST)
+	s=arc-20240116; t=1739406335; c=relaxed/simple;
+	bh=/mMC9qm0+Vl0uwd0+1LavG/Aikmcvdnbmr+fUHIwL/U=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=oj2wEku0Fs+S13014Z1WDJCHdttXHAiX9MQMlDuXddDEgFaMHwGh7WQoIL3NdQjJ5kWaknMdW+oOqCyqOaoBao/F+KC/v7zBAl3NcxuvSd8JfpO5ru5XzLqpyXxe5L863JmT3oQhwT34KRfAJ6f1P3ttm6DblIN2wX0eplJvx4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=ffe5/fVd; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739404994; x=1740009794; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lgGYLAXMTiBSQm8B4s04dx6tu5EKRE0LsYmfPrbRJeM=;
-        b=iRVhe6XwiO1nHnLTqiAFFeR74o3Mlna4xvRr04kwhbW9SdXU+p50eMtxIXR6KYybP9
-         hvCNtRtbDcOyzy0e2z7DYBISqLkEpzaL8s9UKwiK7jZsFhnY5ee4ICwMKVT1OkqmJtD6
-         WdE5L83TvvkJQ+Q4aq+lXmjQ0pPXcleCUQGFJRtBpbyX8Dw53a9xtBa1yWxR/eBsdLPJ
-         Hby1384ylxsZx8QaF8lC3cd21skA027VOZCZrNcZ2lUqR4gYn2lravC5RoVApNPUTbW5
-         WwyvMPrRCeO4AhidKGcX/GBIX1DyN48nBX1E/ElqnopKU/oMIy1xCNl1WYdc5xZ98L/J
-         GwXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739404994; x=1740009794;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lgGYLAXMTiBSQm8B4s04dx6tu5EKRE0LsYmfPrbRJeM=;
-        b=oK+35KqtQBE4bCNy8+ewmQ/wxpAjvWrw/YeSGVBlzsseeCb+etI11IEtNF2vvBAzyc
-         3g0sC0kQrD39xofIA/fB2QztHM7Zgu1oOKWLSArWwAzyP+qOjfCwP3Few3AbLDPqpzgq
-         FjbzTNwB8RuWO/AwZB5izepPHnSYJU6qjrphR/nSVSUBGbOx/PHSKhRC7wCRqFhUyKIy
-         uMVBrx6jG+9VN7rPRRfY0U3Nj1tncof1VKMsVKalVkYU4B7PzVIwfkO0MpZKI9izYyrA
-         VvMdlDnW4QKrQDFdvZoZrrUJgLnPrjrNcuAuUcsZnVdhTQ7HsmJ2YlpGvunTS5f/zESO
-         yGLA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJYeEcWCdiEHer+WW4pQt5ugxHUG6RPz4vkwI44etNYe5Qjl3e+rFFNVlknRa9U+Uw9TskXNHu5z2e@vger.kernel.org, AJvYcCWdfUzF28FQiE37Q9rtFNN/2xcMRrPYtwRnWw/2G/f8Z0E+a0G/gpUo3sLp9/AoNE9AN3lk1gyIyCYtJPKoSFGmgak=@vger.kernel.org, AJvYcCWhcHuW43BkWCOhe23R4mD4SIaJym6lVfLG8Y9MVPZ54T1WvTL+oEWBtuC/AWbWGKhT4FnKNntFpcTuzwou@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6/ltfBNATwcE7l1gvJCybqVGQzyhpW5RGqGmJiDOViTgSck2C
-	yH2qE/c1UqMDZZcbm+xgNap8FGNJdSTQ3JW0S3pjxuzBCwZXFwbD
-X-Gm-Gg: ASbGncsYu3Hc59xiS+rlxOWpAR4hwBw7kpxgEvJJ//M86S6Qr8x8/ZvPCKudfLjkpYQ
-	RXXvOtV/EhKy2YOTDjarhPq486v+Yv1yr/SgleIwk9ranEgPMZwhP0+cgBvm5qr6jSHeonZxI2Z
-	1wzXteYrDLuz5zAaf9LaJjMh3xKxLfHycH+DBX/6o9NInwm5NVqMgpwsEUionddky0iAyO9yp2G
-	xJTRdNDkK8puverMxdcHl8KDIGzpUIPavCgey6YRtUlbTEXoMVlx5L91khKio9XRkjYKZbFvG4f
-	C17oKhI8KUQP/kZCUBxjV/wMZC/2GcmcoIfOxeGZP88Wtcg/15IVYKNaLn0bJcEMvxtEKUeblVe
-	uwg==
-X-Google-Smtp-Source: AGHT+IF+D2Xb6/P+MeaJ+t2rpv7ibEkX8ds1s2CaO1BKsO9476v6xLKYDYjvadIojErLW8nWiv0E0w==
-X-Received: by 2002:a05:6a21:3382:b0:1db:915b:ab11 with SMTP id adf61e73a8af0-1ee5c796586mr9410564637.24.1739404964623;
-        Wed, 12 Feb 2025 16:02:44 -0800 (PST)
-Received: from localhost.localdomain ([38.44.237.182])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7324273e4a0sm28014b3a.120.2025.02.12.16.02.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 16:02:44 -0800 (PST)
-From: Denzeel Oliva <wachiturroxd150@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	alim.akhtar@samsung.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
+	d=codeconstruct.com.au; s=2022a; t=1739406331;
+	bh=/mMC9qm0+Vl0uwd0+1LavG/Aikmcvdnbmr+fUHIwL/U=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=ffe5/fVdezqIZZvy9MisTNaxaYIRRrnOH7EpxbtHMGgRprWW3OUVD7hrEUKWRd84F
+	 aFN2Hfpd8dKq+kIyrDH6xVajfpDkwhQNkGMHcdvRe+SDek3r16jPUonSQTAU1MZJmE
+	 Sg7aii55lQa3/2HYDTfQtFhL6qsL8WteF7j73UfkBDAIvSukdsVFu65IKLLZjcl6oj
+	 uClq2BZG0gDFPnyCCMfHvEiUN2wFq/8NY7+1Dzmd5oEiSGAbLUeI18u3vyAlE03GQH
+	 cDnsMSJFZk+XUxVtUts9PwStbgyRbqYJa0XJPqtZGYP6wR3RmdrS6CMEN4zKSokCvo
+	 rnG2Cy6SEv+ng==
+Received: from [192.168.68.112] (203-173-7-184.dyn.iinet.net.au [203.173.7.184])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id B701E7576E;
+	Thu, 13 Feb 2025 08:25:30 +0800 (AWST)
+Message-ID: <27d51c2c498cc5921998829e5279bf136d10f2dc.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ir38060: Move & update dt
+ binding
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Guenter Roeck <linux@roeck-us.net>, Conor Dooley <conor@kernel.org>, 
+	Naresh Solanki <naresh.solanki@9elements.com>
+Cc: broonie@kernel.org, Jean Delvare <jdelvare@suse.com>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	 <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Cc: Denzeel Oliva <wachiturroxd150@gmail.com>
-Subject: [PATCH v1] arm64: dts: exynos: r8s: enable UART interfaces and aliases
-Date: Thu, 13 Feb 2025 00:02:26 +0000
-Message-Id: <20250213000226.277-1-wachiturroxd150@gmail.com>
-X-Mailer: git-send-email 2.34.1
+Date: Thu, 13 Feb 2025 10:55:29 +1030
+In-Reply-To: <c8dc4bdc-5374-4648-8092-55687be85f12@roeck-us.net>
+References: <20250204180306.2755444-1-naresh.solanki@9elements.com>
+	 <20250204-mulled-evaluate-8a690cdfbd4d@spud>
+	 <CABqG17jHKfwJEfZxto_YA4opS8=QwqTqfNdkku8kcEv2_iW+XA@mail.gmail.com>
+	 <20250205-purge-debating-21273d3b0f40@spud>
+	 <CABqG17j4tKXnMZ5=vcjBvfe6JwCLQ6NbkQmJC9ySK_bmGEv=iQ@mail.gmail.com>
+	 <20250206-camera-mashed-48cf0cf1715f@spud>
+	 <4619661d7375c71710a22520f6ebbf353a5aff59.camel@codeconstruct.com.au>
+	 <c8dc4bdc-5374-4648-8092-55687be85f12@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
- - usi_uart: Main UART interface, required for debugging or
-   communication.
- - usi_bt_uart: UART interface for Bluetooth connectivity.
- - Added serial0 and serial1 aliases for standard UART access.
+Hi Guenter,
 
-Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
----
- arch/arm64/boot/dts/exynos/exynos990-r8s.dts | 23 ++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+On Wed, 2025-02-12 at 06:46 -0800, Guenter Roeck wrote:
+> Hi Andrew,
+>=20
+> On 2/12/25 02:43, Andrew Jeffery wrote:
+> [ ... ]
+> > The history of the problem from what I can see looks like:
+> >=20
+> > =C2=A0=C2=A0=C2=A0 1. pmbus regulator support exploiting "regulators" a=
+s an OF
+> > child
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 node was merged for 3.19[1]
+>=20
+> I hope you mean "make full use of and derive benefit from (a
+> resource)"
+> and not "use (a situation or person) in an unfair or selfish way".
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos990-r8s.dts b/arch/arm64/boot/dts/exynos/exynos990-r8s.dts
-index 6bae3c0ec..049b40af2 100644
---- a/arch/arm64/boot/dts/exynos/exynos990-r8s.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos990-r8s.dts
-@@ -18,6 +18,11 @@ / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
-+	aliases {
-+		serial0 = &serial_0;
-+		serial1 = &serial_1;
-+	};
-+
- 	chosen {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -113,3 +118,21 @@ key_volup: key-volup-pins {
- 		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
- 	};
- };
-+
-+&usi_uart {
-+	samsung,clkreq-on; /* needed for UART mode */
-+	status = "okay";
-+};
-+
-+&serial_0 {
-+	status = "okay";
-+};
-+
-+&usi_bt_uart {
-+	samsung,clkreq-on; /* needed for UART mode */
-+	status = "okay";
-+};
-+
-+&serial_1 {
-+	status = "okay";
-+};
--- 
-2.48.1
+Certainly "make full use of and derive benefit from (a
+resource)" and nothing further.
 
+> If you think it is not appropriate for PMBus devices to register as
+> regulators, please let me know, and feel free to suggest a better
+> solution.
+
+My only intent was to observe the history of the problem highlighted by
+Naresh's patch. I don't have any concerns about PMBus devices
+registering as regulators.
+
+Thanks,
+
+Andrew
 
