@@ -1,242 +1,533 @@
-Return-Path: <devicetree+bounces-146261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D908CA33F25
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:28:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23589A33F3E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:35:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B5B77A29A1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 12:27:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B14F188C26A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 12:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76CE221564;
-	Thu, 13 Feb 2025 12:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AB123A9B2;
+	Thu, 13 Feb 2025 12:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="SXTLwBmd"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="OVwdSG1v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
+Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1991621D3F7;
-	Thu, 13 Feb 2025 12:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.87
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739449688; cv=fail; b=V7cR1Nhie043nUXWl2l5TM5FMFPZ1V1SlsqTeikStJiuiNXdqMFdNMEjKC2AwyYLCmRkuT3yMSAX+AnR90H1gRPg4DYEQue4Hk9IBmHAsftGkRJ2xw/ywGMOgRmZVlpNb/kU1QQd6gjfMk2Vt18eVFLuWXkp0PoegNs7oSa2nN4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739449688; c=relaxed/simple;
-	bh=cEH9sRJlqLB+fmq9O91eES0i3PeotGDLJEsXjOxBIlo=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=gyvv5lkLA2RXBpdj/v7NXccHJTbrvKp5CQ6mJKXoWfHTd+QJscUbOf+H4YmN/R4r5nFsgL+nsXPNiNrEwJ6saEXvk6IzytfjHJCln1AnAwhdDpWBjSxPMNkvshl81RDsy+CMIsnWYurKXsJIj8CDDqQaB53BAwMR6033DHxaWuI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=SXTLwBmd; arc=fail smtp.client-ip=40.107.220.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gyOLTCbXD0AUJ41H+40gBUIvJG97UhaxRdEfJm644djvYbq9IqyHugRMO9lWT7wLxKSh5dlvBPQEDdXSff2nGX6LoT3wuvIJhJz+BQMEk2lVMl/F+UmZ09hnM+76jcGZvdRRt36+XF/SCvCDPy9rDpfHhaBvH9x1evl6Ds3fRAYmAe7YxnZl7StJHFSvYE8RN1ZU1gdT+J6iA/qM021m1gDEQ4cgAT9rVOsi9NjsjC+8MJh9kVth3UUpCLozF5ysqPU5iR4k4uSgyJcheDDzP6gGhTv/NDaqZ8DlenuUD/3eGqivjbwPjOSWRy++23Ras84EdMLKM9imryGYP+oGPA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cEH9sRJlqLB+fmq9O91eES0i3PeotGDLJEsXjOxBIlo=;
- b=D/diAtThTnGrt2JdVp30kSDUowQkGrUV29OOIyDk6e8BReXnSRc2CijcKyviTx8FQngb6IkfR0GtfdWl2lmUGnlrHX9ZdtcuwskSQQssWlObRgvsVdatjdF/Aotw2KHHteq+XMZVhsxtQfm7n5tVcT0VLUr7xNM8ntkmxGvX4JqB6MCUqZ8DeIxAw+1JK7ZHgdHZ74mNWuac7aC95BO/8RmKIzpG7XtmC8WP2W33/w/AwzGhD6+mLIxQOw71YHAhkE6ICaCUws1hDhYLLER6pnNEXsuWnEWHyTvFfu5pQ6lNGQiIpGtwqjxIAyyNJaaMdY5GkHawOLZS3c8JLph7qw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cEH9sRJlqLB+fmq9O91eES0i3PeotGDLJEsXjOxBIlo=;
- b=SXTLwBmd5XI9/DKmNEcLbV6oSlq8AcwqlvTMmJDKNxpsYKW56svX1lBtGjVlhhDHWoR/6cMUDOjw9hB62bsujbwtBcB3/JK8vx+dVakASlYVgYokjsXG4WHs+fkSFv71TbIzJNq17pkYAXGoXk7oQtC+U0CQ9MRKk4VZiVhyo418TZJ+MvOGMAdKesa6OGkJmt+0ajSUda0QNJaIjUn8HJbyCmHYnXcZ5sqeiFeDCvkbjKLncbizTa3N9p0J/jOzS5BRvdXcGDmgOO+cSXL0FNAGNRDX2TgQ9ENOYUvFtx7KHl1Wk8YcYwkmtU+bQKp1dEzVsa67+m9mgC+/4WPqUQ==
-Received: from MN0PR12MB5716.namprd12.prod.outlook.com (2603:10b6:208:373::14)
- by CY5PR12MB6276.namprd12.prod.outlook.com (2603:10b6:930:f::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.13; Thu, 13 Feb
- 2025 12:28:04 +0000
-Received: from MN0PR12MB5716.namprd12.prod.outlook.com
- ([fe80::1770:161a:675f:7861]) by MN0PR12MB5716.namprd12.prod.outlook.com
- ([fe80::1770:161a:675f:7861%4]) with mapi id 15.20.8445.013; Thu, 13 Feb 2025
- 12:28:04 +0000
-From: Kartik Rajput <kkartik@nvidia.com>
-To: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
-CC: Jon Hunter <jonathanh@nvidia.com>, "robh@kernel.org" <robh@kernel.org>,
-	"robert.marko@sartura.hr" <robert.marko@sartura.hr>, "arnd@kernel.org"
-	<arnd@kernel.org>, "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "geert+renesas@glider.be"
-	<geert+renesas@glider.be>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "hvilleneuve@dimonoff.com"
-	<hvilleneuve@dimonoff.com>, "schnelle@linux.ibm.com"
-	<schnelle@linux.ibm.com>, "gregkh@linuxfoundation.org"
-	<gregkh@linuxfoundation.org>, "linux-serial@vger.kernel.org"
-	<linux-serial@vger.kernel.org>, "linux-tegra@vger.kernel.org"
-	<linux-tegra@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] serial: tegra-utc: Add driver for Tegra UART Trace
- Controller (UTC)
-Thread-Topic: [PATCH v3 2/2] serial: tegra-utc: Add driver for Tegra UART
- Trace Controller (UTC)
-Thread-Index: AQHbfWAxahR/yn7oCUOxvUw4vBkqkrNE8iGAgAAN9ICAAAR9gIAADNkAgAAZSIA=
-Date: Thu, 13 Feb 2025 12:28:04 +0000
-Message-ID: <cf4f7b915a2777cbf447936c1b13d30b8a1bd51c.camel@nvidia.com>
-References: <20250212104132.61060-1-kkartik@nvidia.com>
-	 <20250212104132.61060-3-kkartik@nvidia.com>
-	 <Z6y5vRGyouZsQWyj@smile.fi.intel.com>
-	 <ec06322386adbf4404e2fbc5d7656e3465eb4320.camel@nvidia.com>
-	 <Z63Bk6sgQryG1pFK@smile.fi.intel.com>
-	 <88a54c9bf88dac0a3316224b08d0e2378e8fc6f0.camel@nvidia.com>
-	 <Z63QHvayYRS0U8Ln@smile.fi.intel.com>
-In-Reply-To: <Z63QHvayYRS0U8Ln@smile.fi.intel.com>
-Reply-To: Kartik Rajput <kkartik@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Evolution 3.52.3-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN0PR12MB5716:EE_|CY5PR12MB6276:EE_
-x-ms-office365-filtering-correlation-id: ac21f3d7-e889-47fe-3c3b-08dd4c29dcf2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018|7053199007;
-x-microsoft-antispam-message-info:
- =?utf-8?B?OVR6S29aaDZMcThXa3VXN3RXNnFKSkNidS8zTmtJWmxLaVBKL1RmN1JwSW9m?=
- =?utf-8?B?YjhnTFp1SUFLNmw1Y2RaVzdXWmJQbS93R3Y3UXJyaVI0TjFyVldYSVhLbXJ0?=
- =?utf-8?B?Tk1UWVJiNHFnSzg5eEs2SE1sOVZLc0ZVZHVTRXZPbGJGdHI3aldGQzFxaFBy?=
- =?utf-8?B?SDdSQjRpMWR3T09vQWRCaCtIU01TNHAyWVlCVmxNNnZUb2J2bkoxL05rUkRL?=
- =?utf-8?B?UnlBZHY2L0JOdnpkZmVjMTZWL0U2TGs5TS9HaGtFTDdYbWRmYlRPM1RRYkJ5?=
- =?utf-8?B?bVNCK2NCYnJsUE9uY0tNVzFabzdkNjZzTVF6WmEvQ3dIbC9wTjNWSzFaMjZk?=
- =?utf-8?B?ODVZWEVjMVhIRnpZZU8rVnVVTTB5YlR0blk2cHI3WWdoaWZtbUlPdGhJdGFy?=
- =?utf-8?B?ZWljYnFBN0p5QlVBTjBHSm1WamIrYWdIaWE0R05xTWw3dU5NVDU5U3JLdm9w?=
- =?utf-8?B?WlR5U1lGekxER292bERHWXlkWml0OTdaTHpPcDhwbUhVeTJQVzA4Szg4SXNw?=
- =?utf-8?B?T1dGM0d3ZmErRDdVN0pWMW5FVVdXOUJrU0tkMW0yRHFHSlZ2SS9ISmd6R0Ro?=
- =?utf-8?B?QUZsREQ4TmhVS0YrMTFRaWhyTTEzaDdXWVFyZ1BQTllEb0J6WmhDc2pnL0tZ?=
- =?utf-8?B?cjVpVnlqcWNJeDBHOWxaNDh1aXVvTGM4TFhITCt3V0VLT1FMTFVQcXJJUXRX?=
- =?utf-8?B?MnFEMVJoZGgwOHdnM3dFZXVDKy9kYWlKaDh2ckhmM2pJUHBnSUQrbkNoeXNw?=
- =?utf-8?B?VXYwYTlpZTNpdkVCc2hCbStQb1F4OEZ5dDQvbktVR1YrMUJHeXh0eVdYYXJl?=
- =?utf-8?B?bzY5RHIzNW1VdFBxc1RRa3FKaDN5bGR3TFJKbFpzbTU4cERxOHJWN1ZjVWFo?=
- =?utf-8?B?MnJLTjAwbnpHOVg2UGFSVHc3OE9icU5lTzBoQVcvcmtwSTArNms5RjdoT1lB?=
- =?utf-8?B?ZmhmazY2MTZ2ekdKWEpUQXZFMmlTM1FJMDAzTFljd3pUTEpEcHNxTTgxSjlU?=
- =?utf-8?B?Mi93ZFB5aC8yMytqeG5ZejVKZUdkNnYvdkl4VURxanBUdE9heWxiNi8xTmtx?=
- =?utf-8?B?ZVFEeFBJRUdqUTUzT1Y1dDcvZ0lrYThTY0VJc2NhbWdJWXJFN1ZQakJvNmhQ?=
- =?utf-8?B?bGF4QWRIM2ZvKzJ6WElvWmliVis4elJDSTN3Wk9sZWdHSnBYaldGNTRad1Uz?=
- =?utf-8?B?RUtndFZhbTZvckFXMU1oNXdnamdXQlRkZGs1YThUQThLeXZtb2dNWkNDdDNE?=
- =?utf-8?B?Ky9qQkhTTGtmN21jYm5uQlIxQkpSaFVnUHRaR3FYSEIyMWloVXAwL0tid2t3?=
- =?utf-8?B?UmlZcTRhbUE0OUNpa1UvdE5IZDF5UlNkWmJhZ1VXOXU3ZkRtOEhSNEdnRzRF?=
- =?utf-8?B?UEJOaDdwSlJYZjBzRXNxeXNmVlU1Q1FFTnlLMTNxT1Jzdy85cGkwTklMUzNa?=
- =?utf-8?B?bCtMeWJ4NkFKY2oyM2VpU0RodVY5Q0U2d0k3Q08wYW8yanF3WnRWMzE4RmQ3?=
- =?utf-8?B?Wncxa3BUMmxQcHM4Q0VXUzRMZE1pTEZLTmdQT2lsTy9SdHlyS3FBS3ZleUo2?=
- =?utf-8?B?NEtNTTlBMk9Xd2xLWURWb1AvWnU1b01ZNVc3M0ZFcVMwanJLVE5SSGgrdE5t?=
- =?utf-8?B?MEpZNDlQTjgxVVhMTW1GdnBDR1RrTE9tN3VUSm1GZnV4NUwzeVh4RXA4SW96?=
- =?utf-8?B?YzFIZ212RTVrQklEcVQ4cWpZeGlEQ2Q1S2dSL2x1a0dWOFhNN2hlYTRxR1Ex?=
- =?utf-8?B?dmE4Qmp2RUtpbnlyRUQ0MFBaa09pSjNzU2RNOFQrdzVnU2p1NmlwY1h6Yk5i?=
- =?utf-8?B?RWthOWt3dVhHQWpsYmdzY21DdW5CdmtmMHo3YVBUUzFvZ3gyajltQ3N6ZVRU?=
- =?utf-8?B?SzhMU280KzlIbDQ2YmpSTUVHZGsyUkFaRkIwMWNJVkZsZHVvcERyb2pEVlpD?=
- =?utf-8?Q?9PLQpTsiOKemQxCkRDEK6CCs1tpIHNMs?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5716.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018)(7053199007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?ODJZOC83YTRzcER0MmNBTHlrTmdONE9TTkxWSTlvMWlPbVVWeTJPVFpieEpL?=
- =?utf-8?B?cUFmcXY2VnRNbEFyR3AwUFUyV0ZUOFJxNVltWDA1ekRuR3Jxa0ltZDFFR2xN?=
- =?utf-8?B?MXFacU9zaDVkUFk0bXVpc2NBdHl1eXRTREVZZEpjSnlSRlJkS0d2cGRDUmk2?=
- =?utf-8?B?VWQ3WVFMTjRENkhoUjBTMkhUS3lKSDlQbDBoY2JXOEc5NFZFeVFGcXJ0aHRY?=
- =?utf-8?B?alRocnlSSFozNzREMHR1SFczRVdWQ3YwQi9sYmRNVmM5UXAybXBVdXZ6a3Z4?=
- =?utf-8?B?ZHA3OVgwd095cFpoMzNFS0hXQXRvZ2ErYnUrT3dIMURqS1A3VGZ4R0IrbnQ4?=
- =?utf-8?B?dm4rMW1PZ04yTzAzamdyRjU2NThuakVRck9lb1ZKU2lIMHVnUVBCbGVLbEZ0?=
- =?utf-8?B?R2U5VjRTUEhmVENBMmFidGhtcTJkV0Jya0pJdHo5RkVpam9mSEpJdUVkMk9v?=
- =?utf-8?B?OU96TkJiYm15c3pBMnJoRzVIaUgrMG9rQjRwa1FRN0JBanhGTHo0QUt6Zysx?=
- =?utf-8?B?VnNhRTR3NmJuZEh5M3pKQTRKZnd5UFBkMDkwam0veEl3dS9HUHVucys1Z2hS?=
- =?utf-8?B?YjZGU3hTdXBZZ1gxUXhMbndlZzlCVkRCNEpwSGQ1enp5dUE3dzBad090NWN4?=
- =?utf-8?B?T3o0UjgyUUsxZFA1aG9YSGNiQjFJcnl6bTFqbW9oYWtJQ3RnVnpXNEMvNmt6?=
- =?utf-8?B?Q3A5VmJUY0hmV3R4bFZ1eEQ2VDB0NUNGRGIwNHFkRnJNZ1V2dkdiRTAvS3BZ?=
- =?utf-8?B?MjhzQXowSVI3UzJLUmxLQm9VdlJuMCs1TjJUbXBlS0E3cW9rT0NXZ29ldlEx?=
- =?utf-8?B?enk2ZlNNazNlclhHcUlLVUdtTTBZWVZ1UDl6VVFQYk5QMUR1VFpDS3VGS2NM?=
- =?utf-8?B?SGdxYlJIenEyVHZ3TmNXSHB1SlFldzZUYXNTN3dETHUxSENVV1VMd0x6WVVN?=
- =?utf-8?B?amx3bXpwQkxGQ3Z4ZnA0S0NNc0pYTTlrdHVvZXBJNVhrMjNCbFBXTzRFNVFq?=
- =?utf-8?B?QmloQm1HMXZjN0U0VmZLTUY1K2ZldWhMaURSU20ycTEvd3owQUtBZzNxRHVO?=
- =?utf-8?B?MHJrWWZlYmlGNzV1WXFWdDhYaVNEaWQ5RlZ6elA1SjFranNweUxVUlJtZHhW?=
- =?utf-8?B?RndOZjlkRklnOFZkRVFiMGh3U1lGOWdONEtZMDNRUkY2c1pDZUZma0hoKzJQ?=
- =?utf-8?B?K2t6ajk4L251NFhGNzVKemtRdHpXb015MVNDT0pueHM1bFEySkdKNVNlcHJL?=
- =?utf-8?B?b2srbGVNTXAwcmFIUGFlNnJGN21GVjU1TE9zNEJ2M2NGVmJuREdYRDBWM3ZC?=
- =?utf-8?B?dlZEbXN6cmQ3TU5qOHZpdXE2cGk3dVJvYU9BMFEraTM4Zzd5Ui9JY3lBRkgy?=
- =?utf-8?B?RTMxc2psRHdPZDdaam9SRlB6bjFIam5BVnNQbGphWEMrRXVMU1ErNzZJdzh3?=
- =?utf-8?B?Y2dEeXFFQXN0S2Z2YWZaM0ZYS3dTWFJsOHdiM3pXV2x3UGtyYkVZRlFJREhw?=
- =?utf-8?B?bDAwMmhxVE1IQ1RlVGE1b1BTbER1N1JQR3IwdFFORWxVUC9aaTVvL2VQbCtD?=
- =?utf-8?B?cm5OK2RhVEFvZlJDWVNxTExBU1RVNzFMZDVaL1pmNkU4dFpVV3lWR3hRVXFN?=
- =?utf-8?B?cWhONm1lL1EzK0ZiYTE1SEFBRThUS0h4dVZXWE9xdm1hb21vZlJYalRWRXhN?=
- =?utf-8?B?em1lODYxdVFPUWgrNVQxT3YwZG84N3J2MDQ4WFlsZ3J2V1d6YnRseU43SE1E?=
- =?utf-8?B?OHBJdnFHVlJvYzY3TUdxR20xN2xRanlhaFdsT3A0T244Rm85a1h4MGZHOXRE?=
- =?utf-8?B?emk0ZWFSQ2lrOWtsSEtmYjFhS3dhMG4vUWdGMDV5cDdpOXpXTlZvTExzQ0ll?=
- =?utf-8?B?TlFnZEZTMmszWlpYQ3RzSlpmeDZ4QXpJUFhqQTUrcGZZZk45bHR6NDRVaGVK?=
- =?utf-8?B?WlhwanhDMWNyaW81MnlpRDRqU3M5Y3EvcnFKdkF4QUUvNFhMWXNhS2cyclo2?=
- =?utf-8?B?U0RvV2I0SGp5QWp3NW1iQ1kxRjhob3pHUUsvWXhZQi9oTUgrdDZway80bXBu?=
- =?utf-8?B?NXpoWW1nQzBhcWZxV21qa0NpUXU3WEJkTFVuNjZUL2hlc3QyczlFNldmTTc2?=
- =?utf-8?B?OUxDc01FTVB4Q3IzUlM4ZkNRNW80aXlsaWhxQWlEWSs3Y0lLcUFHalBXbi9p?=
- =?utf-8?B?NlE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <247FD1BE0E200A4B90DC221975DF62FA@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7E423A9A6
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 12:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739450075; cv=none; b=uxeCVwGHQMHeKqKRbV21WQGk3BsZE2I1GukohO7v0d90b+FbUGxHXXe352RWhFkC6zACCT328OHW7vCo5qq+suvsxnSogafhRWxCmStOjaRh0y9Q5x4kyEvhC6uaM+Bo5piSHlXu8Ys+eDPrFTWdeQ96lT2UyF4jGal+t4MUs3E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739450075; c=relaxed/simple;
+	bh=OQH0XZWWhIwEuxvx+K7mtqzq6AuFdlFyDeWf/6DM7ps=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=aZmtoCjak5xCzcYG5jHZbKylwMQNSvjebBbFYzYssViv78RKCfNUXUvkjpubj6kI6/PGXzhVdHIQyuYEXgGceUzG9cqZ7rG8nDt7rzYtrbTg42FOvJSl1/S51WjmubvUFXp6p8SnIUF5exHvSpfSG+VqQzUsGm3VodlIp/KHP1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=OVwdSG1v; arc=none smtp.client-ip=91.218.175.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <8c6e790e-f1b6-46ab-9acf-bdea8076405b@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1739450060;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bemDLFLu/fe7Io6gFtEICZLhavceAM8sYoIl7bI+PpY=;
+	b=OVwdSG1vJ41RyjrDnWJi444uax7Jq5jLVll0fNmgy03GrCcPBhkf9PMe3JTeuTBHMFNsmo
+	at4H/uRBwOj1k4F2ZJdUuos6lFtUCBMh/QcnhVcEC6+AG/v5BjxeHmmyGfPJdUYe0sMZpx
+	jqJf20aKcSCwTHg6nvy9CxfhkcJ69gk=
+Date: Thu, 13 Feb 2025 18:03:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5716.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac21f3d7-e889-47fe-3c3b-08dd4c29dcf2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Feb 2025 12:28:04.0347
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TZYJ8vFymDmCTzb+8HbE2kog/BPuV9WG3UD412ojuf3JGDSk3RFAy9PCSL+G/TLq656kqrir9uBEW+6J0p2vvg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6276
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Subject: Re: [PATCH v5 2/3] dt-bindings: display: ti: Add schema for AM625
+ OLDI Transmitter
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+ Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+ Jayesh Choudhary <j-choudhary@ti.com>,
+ Francesco Dolcini <francesco@dolcini.it>,
+ DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>
+References: <20250209160925.380348-1-aradhya.bhatia@linux.dev>
+ <20250209160925.380348-3-aradhya.bhatia@linux.dev>
+ <16db8f3d-04a2-408a-964f-4cf9478229b4@ideasonboard.com>
+Content-Language: en-US
+In-Reply-To: <16db8f3d-04a2-408a-964f-4cf9478229b4@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-T24gVGh1LCAyMDI1LTAyLTEzIGF0IDEyOjU3ICswMjAwLCBhbmRyaXkuc2hldmNoZW5rb0BsaW51
-eC5pbnRlbC5jb20NCndyb3RlOg0KPiBFeHRlcm5hbCBlbWFpbDogVXNlIGNhdXRpb24gb3Blbmlu
-ZyBsaW5rcyBvciBhdHRhY2htZW50cw0KPiANCj4gDQo+IE9uIFRodSwgRmViIDEzLCAyMDI1IGF0
-IDEwOjExOjM2QU0gKzAwMDAsIEthcnRpayBSYWpwdXQgd3JvdGU6DQo+ID4gT24gVGh1LCAyMDI1
-LTAyLTEzIGF0IDExOjU1ICswMjAwLA0KPiA+IGFuZHJpeS5zaGV2Y2hlbmtvQGxpbnV4LmludGVs
-LmNvbQ0KPiA+IHdyb3RlOg0KPiA+ID4gT24gVGh1LCBGZWIgMTMsIDIwMjUgYXQgMDk6MDU6MzZB
-TSArMDAwMCwgS2FydGlrIFJhanB1dCB3cm90ZToNCj4gPiA+ID4gT24gV2VkLCAyMDI1LTAyLTEy
-IGF0IDE3OjA5ICswMjAwLCBBbmR5IFNoZXZjaGVua28gd3JvdGU6DQo+ID4gPiA+ID4gT24gV2Vk
-LCBGZWIgMTIsIDIwMjUgYXQgMDQ6MTE6MzJQTSArMDUzMCwgS2FydGlrIFJhanB1dA0KPiA+ID4g
-PiA+IHdyb3RlOg0KPiANCj4gLi4uDQo+IA0KPiA+ID4gPiA+ID4gK8KgwqDCoMKgIGZvciAoaSA9
-IDA7IGkgPCBsZW47IGkrKykgew0KPiA+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBpZiAoIW5iY29uX2VudGVyX3Vuc2FmZSh3Y3R4dCkpDQo+ID4gPiA+ID4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBicmVhazsNCj4gPiA+ID4gPiA+ICsNCj4g
-PiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVhZF9wb2xsX3RpbWVvdXRfYXRv
-bWljKHRlZ3JhX3V0Y190eF9yZWFkbCwNCj4gPiA+ID4gPiA+IHZhbCwNCj4gPiA+ID4gPiA+ICEo
-dmFsICYgVEVHUkFfVVRDX0ZJRk9fRlVMTCksDQo+ID4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgMCwgVVNFQ19QRVJfU0VDLA0KPiA+ID4gPiA+ID4gZmFsc2UsDQo+ID4gPiA+ID4gPiB0dXAs
-DQo+ID4gPiA+ID4gPiBURUdSQV9VVENfRklGT19TVEFUVVMpOw0KPiA+ID4gPiA+IA0KPiA+ID4g
-PiA+IE5vIGVycm9yIGNoZWNrPw0KPiA+ID4gPiANCj4gPiA+ID4gSSdtIG5vdCBzdXJlIGFib3V0
-IHRoaXMuIFRoZSBjYXNlIHdoZXJlIHRoZSBUWCBGSUZPIGRvZXNuJ3QNCj4gPiA+ID4gY2xlYXIN
-Cj4gPiA+ID4gdXAsDQo+ID4gPiA+IGV2ZW4gYWZ0ZXIgcG9sbGluZyBmb3IgMSBzZWNvbmQsIGlz
-IGhpZ2hseSB1bmxpa2VseSwgZXNwZWNpYWxseQ0KPiA+ID4gPiBzaW5jZQ0KPiA+ID4gPiB0aGVy
-ZSdzIG5vIGZsb3cgY29udHJvbCBpbnZvbHZlZCBoZXJlLiBFdmVuIGlmIHRoYXQgZGlkIGhhcHBl
-biwNCj4gPiA+ID4gd3JpdGluZw0KPiA+ID4gPiB0byB0aGUgVFggRklGTyBzaG91bGQganVzdCBy
-ZXN1bHQgaW4gYW4gb3ZlcmZsb3csIHdoaWNoIGlzDQo+ID4gPiA+IHByb2JhYmx5DQo+ID4gPiA+
-IGFjY2VwdGFibGUgaW4gdGhpcyBzY2VuYXJpby4NCj4gPiA+IA0KPiA+ID4gUGVyaGFwcyBhIHdh
-cm5pbmcgKGRlYnVnPykgbWVzc2FnZSBpbiBzdWNoIGEgY2FzZT8NCj4gPiANCj4gPiBJIHdvdWxk
-IHByZWZlciBhdm9pZGluZyBhbnkgcHJpbnRzIGluIHRoaXMgZnVuY3Rpb24sIGFzIHdlIGFyZQ0K
-PiA+IHdyaXRpbmcNCj4gPiBkZWJ1ZyBtZXNzYWdlcyB0byB0aGUgVUFSVCBIVyBoZXJlLg0KPiAN
-Cj4gTm90IGV2ZXJ5IHByaW50ZigpIGdvZXMgdG8gVUFSVCwgYnV0IHRvIHlvdXIgcG9pbnQgdGhl
-IE5CQ09OIHNob3VsZA0KPiBzb2x2ZSB0aGF0DQo+IGlzc3VlIHRvIHNvbWUgZXh0ZW50LiBPZiBj
-b3Vyc2UsIGlmIHRoZSBIVyBpbiBhIGJyb2tlbg0KPiAodW5yZWNvdmVyYWJsZSkgc3RhdGUsDQo+
-IG5vdGhpbmcgd29uJ3QgaGVscC4NCj4gDQoNCkkgYWdyZWUsIGJ1dCB3ZSBzdGlsbCByaXNrIGZs
-b29kaW5nIHVwIHRoZSByaW5nIGJ1ZmZlciBpZiB3ZSBhZGQgZGVidWcNCm1lc3NhZ2UgaGVyZS4N
-Cg0KPiA+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1YXJ0X2NvbnNvbGVfd3Jp
-dGUoJnR1cC0+cG9ydCwgd2N0eHQtPm91dGJ1Zg0KPiA+ID4gPiA+ID4gKyBpLA0KPiA+ID4gPiA+
-ID4gMSwNCj4gPiA+ID4gPiA+IHRlZ3JhX3V0Y19jb25zb2xlX3B1dGNoYXIpOw0KPiA+ID4gPiA+
-ID4gKw0KPiA+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoIW5iY29uX2V4
-aXRfdW5zYWZlKHdjdHh0KSkNCj4gPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGJyZWFrOw0KPiA+ID4gPiA+ID4gK8KgwqDCoMKgIH0NCj4gDQo+IC0t
-DQo+IFdpdGggQmVzdCBSZWdhcmRzLA0KPiBBbmR5IFNoZXZjaGVua28NCj4gDQo+IA0KDQpUaGFu
-a3MgJiBSZWdhcmRzLA0KS2FydGlrDQo=
+Hi Tomi,
+
+Thank you for reviewing the patches!
+
+On 11/02/25 17:54, Tomi Valkeinen wrote:
+> Hi,
+> 
+> On 09/02/2025 18:09, Aradhya Bhatia wrote:
+>> From: Aradhya Bhatia <a-bhatia1@ti.com>
+>>
+>> The OLDI transmitters (TXes) do not have registers of their own, and are
+>> dependent on the source video-ports (VPs) from the DSS to provide
+>> configuration data. This hardware doesn't directly sit on the internal
+>> bus of the SoC, but does so via the DSS. Hence, the OLDI TXes are
+>> supposed to be child nodes under the DSS, and not independent devices.
+>>
+>> Two of the OLDI TXes can function in tandem to output dual-link OLDI
+>> output, or cloned single-link outputs. In these cases, one OLDI will be
+>> the primary OLDI, and the other one, a companion. The following diagram
+>> represents such a configuration.
+>>
+>> +-----+-----+         +-------+
+>> |     |     |         |       |
+>> |     | VP1 +----+--->+ OLDI0 |  (Primary - may need companion)
+>> |     |     |    |    |       |
+>> | DSS +-----+    |    +-------+
+>> |     |     |    |
+>> |     | VP2 |    |    +-------+
+>> |     |     |    |    |       |
+>> +-----+-----+    +--->+ OLDI1 |  (Companion OLDI)
+>>                        |       |
+>>                        +-------+
+>>
+>> The DSS in AM625 SoC has a configuration like the one above. The AM625
+>> DSS VP1 (port@0) can connect and control 2 OLDI TXes, to use them in
+>> dual-link or cloned single-link OLDI modes. It is only the VP1 that can
+>> connect to either OLDI TXes for the AM625 DSS, and not the VP2.
+>>
+>> Alternatively, on some future TI SoCs, along with the above
+>> configuration, the OLDI TX can _also_ connect to separate video sources,
+>> making them work entirely independent of each other. In this case,
+>> neither of the OLDIs are "companion" or "secondary" OLDIs, and nor do
+>> they require one. They both are independent and primary OLDIs. The
+>> following diagram represents such a configuration.
+>>
+>> +-----+-----+               +-------+
+>> |     |     |               |       |
+>> |     | VP1 +--+----------->+ OLDI0 |  (Primary - may need companion)
+>> |     |     |  |            |       |
+>> |     +-----+  |            +-------+
+>> |     |     |  |
+>> |     | VP2 |  |
+>> |     |     |  |
+>> | DSS +-----+  |   +---+    +-------+
+>> |     |     |  +-->+ M |    |       |
+>> |     | VP3 +----->+ U +--->+ OLDI1 |  (Companion or Primary)
+>> |     |     |      | X |    |       |
+>> |     +-----+      +---+    +-------+
+>> |     |     |
+>> |     | VP4 |
+>> |     |     |
+>> +-----+-----+
+>>
+>> Note that depending on the mux configuration, the OLDIs can either be
+>> working together in tandem - sourced by VP1, OR, they could be working
+>> independently sourced by VP1 and VP3 respectively.
+>> The idea is to support all the configurations with this OLDI TX schema.
+>>
+>> The OLDI functionality is further supported by a system-control module,
+>> which contains a few registers to control OLDI IO power and other
+>> electrical characteristics of the IO lanes.
+>>
+>> Add devicetree binding schema for the OLDI TXes to support various
+>> configurations, and extend their support to the AM625 DSS.
+>>
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>> Signed-off-by: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+>> ---
+>>   .../bindings/display/ti/ti,am625-oldi.yaml    |  88 ++++++++++
+>>   .../bindings/display/ti/ti,am65x-dss.yaml     | 154 ++++++++++++++++++
+>>   MAINTAINERS                                   |   1 +
+>>   3 files changed, 243 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/display/ti/
+>> ti,am625-oldi.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am625-
+>> oldi.yaml b/Documentation/devicetree/bindings/display/ti/ti,am625-
+>> oldi.yaml
+>> new file mode 100644
+>> index 000000000000..42a80a512660
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+>> @@ -0,0 +1,88 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/ti/ti,am625-oldi.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Texas Instruments AM625 OLDI Transmitter
+>> +
+>> +maintainers:
+>> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> +  - Aradhya Bhatia <aradhya.bhatia@linux.dev>
+>> +
+>> +description:
+>> +  The AM625 TI Keystone OpenLDI transmitter (OLDI TX) supports
+>> serialized RGB
+>> +  pixel data transmission between host and flat panel display over
+>> LVDS (Low
+>> +  Voltage Differential Sampling) interface. The OLDI TX consists of
+>> 7-to-1 data
+>> +  serializers, and 4-data and 1-clock LVDS outputs. It supports the
+>> LVDS output
+>> +  formats "jeida-18", "jeida-24" and "vesa-18", and can accept 24-bit
+>> RGB or
+>> +  padded and un-padded 18-bit RGB bus formats as input.
+>> +
+>> +properties:
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description: serial clock input for the OLDI transmitters
+>> +
+>> +  clock-names:
+>> +    const: serial
+>> +
+>> +  ti,companion-oldi:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      phandle to companion OLDI transmitter. This property is
+>> mandatory for the
+>> +      primarty OLDI TX if the OLDI TXes are expected to work either
+>> in dual-lvds
+>> +      mode or in clone mode. This property should point to the
+>> secondary OLDI
+>> +      TX.
+>> +
+>> +  ti,secondary-oldi:
+>> +    type: boolean
+>> +    description:
+>> +      Boolean property to mark the OLDI transmitter as the secondary
+>> one, when the
+>> +      OLDI hardware is expected to run as a companion HW, in cases of
+>> dual-lvds
+>> +      mode or clone mode. The primary OLDI hardware is responsible
+>> for all the
+>> +      hardware configuration.
+> 
+> I think these work, but I'm wondering if we would ever need to check
+> something from the main oldi from the secondary oldi. In that case
+> "crossed phandles" would be better, i.e. something like:
+> 
+> (in the first oldi:)
+> ti,slave-oldi = <phandle-to-second-oldi>
+> 
+> (in the second oldi:)
+> ti,master-oldi = <phandle-to-first-oldi>
+
+When I had first designed the code and the devicetree for OLDI, it was
+done so with the belief that we wouldn't reqiure a bridge instance for
+the secondary OLDI, at all.
+
+While that idea holds true for dual-lvds configuration, it doesn't so
+for the clone mode configuration. For clone mode, as you pointed out, we
+will require a 2nd bridge instance to configure any of the bridges and
+panels that come after the 2nd OLDI.
+
+
+> 
+> Then again, if we ever need that, even with these bindings the driver
+> could find the first oldi, but needs to go via the dss's node.
+
+While it is possible to do it this way, it might not be the cleanest
+one. And _if_ there is a ever a DSS in future with more than 2 OLDI
+TXes, say 4, then the decipher logic may get too complicated.
+
+While I cannot think of any case where the secondary OLDI bridge DT
+might need to access the primary OLDI bridge at the moment, I wonder if
+we should play it safer and have this option anyway.
+
+Maybe something like this?
+
+(primary OLDI)
+ti,primary-oldi;
+ti,companion-oldi = <phandle-to-secondary-oldi>;
+
+(secondary OLDI)
+ti,secondary-oldi;
+ti,companion-oldi = <phandle-to-primary-oldi>;
+
+I will have to drop the condition below, and add ti,primary-oldi
+property.
+
+> 
+> So, just a thought.
+> 
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> 
+> 
+>> +  ti,oldi-io-ctrl:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      phandle to syscon device node mapping OLDI IO_CTRL registers
+>> found in the
+>> +      control MMR region. These registers are required to toggle the
+>> I/O lane
+>> +      power, and control its electrical characteristics.
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description: Parallel RGB input port
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description: LVDS output port
+>> +
+>> +    required:
+>> +      - port@0
+>> +      - port@1
+>> +
+>> +allOf:
+>> +  - if:
+>> +      required:
+>> +        - ti,secondary-oldi
+>> +    then:
+>> +      properties:
+>> +        ti,companion-oldi: false
+>> +
+
+(this condition)
+
+>> +required:
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - ti,oldi-io-ctrl
+>> +  - ports
+>> +
+>> +additionalProperties: false
+>> +
+>> +...
+>> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-
+>> dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>> index 399d68986326..a82c525631ea 100644
+>> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>> @@ -91,6 +91,24 @@ properties:
+>>             For AM625 DSS, the internal DPI output port node from video
+>>             port 1.
+>>             For AM62A7 DSS, the port is tied off inside the SoC.
+>> +        properties:
+>> +          endpoint@0:
+>> +            $ref: /schemas/graph.yaml#/properties/endpoint
+>> +            description:
+>> +              For AM625 DSS, VP Connection to OLDI0.
+>> +              For AM65X DSS, OLDI output from the SoC.
+>> +
+>> +          endpoint@1:
+>> +            $ref: /schemas/graph.yaml#/properties/endpoint
+>> +            description:
+>> +              For AM625 DSS, VP Connection to OLDI1.
+>> +
+>> +        anyOf:
+>> +          - required:
+>> +              - endpoint
+>> +          - required:
+>> +              - endpoint@0
+>> +              - endpoint@1
+>>           port@1:
+>>           $ref: /schemas/graph.yaml#/properties/port
+>> @@ -112,6 +130,25 @@ properties:
+>>         Input memory (from main memory to dispc) bandwidth limit in
+>>         bytes per second
+>>   +  oldi-transmitters:
+>> +    description:
+>> +      Child node under the DSS, to describe all the OLDI transmitters
+>> connected
+>> +      to the DSS videoports.
+>> +    type: object
+>> +    additionalProperties: false
+>> +
+>> +    properties:
+>> +      "#address-cells":
+>> +        const: 1
+>> +
+>> +      "#size-cells":
+>> +        const: 0
+>> +
+>> +    patternProperties:
+>> +      '^oldi@[0-1]$':
+>> +        $ref: ti,am625-oldi.yaml#
+>> +        description: OLDI transmitters connected to the DSS VPs
+>> +
+>>   allOf:
+>>     - if:
+>>         properties:
+>> @@ -120,10 +157,25 @@ allOf:
+>>               const: ti,am62a7-dss
+>>       then:
+>>         properties:
+>> +        oldi-transmitters: false
+>>           ports:
+>>             properties:
+>>               port@0: false
+>>   +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: ti,am65x-dss
+>> +    then:
+>> +      properties:
+>> +        oldi-transmitters: false
+>> +        ports:
+>> +          properties:
+>> +            port@0:
+>> +              properties:
+>> +                endpoint@1: false
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>> @@ -171,3 +223,105 @@ examples:
+>>               };
+>>           };
+>>       };
+>> +
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>> +
+>> +    bus {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +        dss1: dss@30200000 {
+>> +            compatible = "ti,am625-dss";
+>> +            reg = <0x00 0x30200000 0x00 0x1000>, /* common */
+>> +                  <0x00 0x30202000 0x00 0x1000>, /* vidl1 */
+>> +                  <0x00 0x30206000 0x00 0x1000>, /* vid */
+>> +                  <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
+>> +                  <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
+>> +                  <0x00 0x3020a000 0x00 0x1000>, /* vp1 */
+>> +                  <0x00 0x3020b000 0x00 0x1000>, /* vp2 */
+>> +                  <0x00 0x30201000 0x00 0x1000>; /* common1 */
+>> +            reg-names = "common", "vidl1", "vid",
+>> +                        "ovr1", "ovr2", "vp1", "vp2", "common1";
+>> +            power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
+>> +            clocks =        <&k3_clks 186 6>,
+>> +                            <&vp1_clock>,
+>> +                            <&k3_clks 186 2>;
+>> +            clock-names = "fck", "vp1", "vp2";
+>> +            interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
+>> +            oldi-transmitters {
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +                oldi0: oldi@0 {
+>> +                    reg = <0>;
+>> +                    clocks = <&k3_clks 186 0>;
+>> +                    clock-names = "serial";
+>> +                    ti,companion-oldi = <&oldi1>;
+>> +                    ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+>> +                    ports {
+>> +                        #address-cells = <1>;
+>> +                        #size-cells = <0>;
+>> +                        port@0 {
+>> +                            reg = <0>;
+>> +                            oldi0_in: endpoint {
+>> +                                remote-endpoint = <&dpi0_out0>;
+>> +                            };
+>> +                        };
+>> +                        port@1 {
+>> +                            reg = <1>;
+>> +                            oldi0_out: endpoint {
+>> +                                remote-endpoint = <&panel_in0>;
+>> +                            };
+>> +                        };
+>> +                    };
+>> +                };
+>> +                oldi1: oldi@1 {
+>> +                    reg = <1>;
+>> +                    clocks = <&k3_clks 186 0>;
+>> +                    clock-names = "serial";
+>> +                    ti,secondary-oldi;
+>> +                    ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+>> +                    ports {
+>> +                        #address-cells = <1>;
+>> +                        #size-cells = <0>;
+>> +                        port@0 {
+>> +                            reg = <0>;
+>> +                            oldi1_in: endpoint {
+>> +                                remote-endpoint = <&dpi0_out1>;
+>> +                            };
+>> +                        };
+>> +                        port@1 {
+>> +                            reg = <1>;
+>> +                            oldi1_out: endpoint {
+>> +                                remote-endpoint = <&panel_in1>;
+>> +                            };
+>> +                        };
+>> +                    };
+>> +                };
+>> +            };
+>> +            ports {
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +                port@0 {
+>> +                    #address-cells = <1>;
+>> +                    #size-cells = <0>;
+>> +                    reg = <0>;
+>> +                    dpi0_out0: endpoint@0 {
+>> +                        reg = <0>;
+>> +                        remote-endpoint = <&oldi0_in>;
+>> +                    };
+>> +                    dpi0_out1: endpoint@1 {
+>> +                        reg = <1>;
+>> +                        remote-endpoint = <&oldi1_in>;
+>> +                    };
+>> +                };
+>> +                port@1 {
+>> +                    reg = <1>;
+>> +                    dpi1_out: endpoint {
+>> +                        remote-endpoint = <&hdmi_bridge>;
+>> +                    };
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 0fa7c5728f1e..88fa2d9435b8 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -7816,6 +7816,7 @@ M:    Tomi Valkeinen
+>> <tomi.valkeinen@ideasonboard.com>
+>>   L:    dri-devel@lists.freedesktop.org
+>>   S:    Maintained
+>>   T:    git https://gitlab.freedesktop.org/drm/misc/kernel.git
+>> +F:    Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+>>   F:    Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>   F:    Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+>>   F:    Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
+> 
+
+-- 
+Regards
+Aradhya
+
 
