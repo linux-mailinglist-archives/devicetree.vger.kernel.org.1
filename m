@@ -1,123 +1,231 @@
-Return-Path: <devicetree+bounces-146239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A47EAA33D78
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 12:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FA82A33D91
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 12:14:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AA901884B2A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:08:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10DB41884DD5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:14:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7786321422E;
-	Thu, 13 Feb 2025 11:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE8B2147E0;
+	Thu, 13 Feb 2025 11:14:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f3B6so7R"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="u1BzMojZ";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="ykJRpAK+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bayard.4d2.org (bayard.4d2.org [5.78.89.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4898421323A;
-	Thu, 13 Feb 2025 11:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 434A6213E97;
+	Thu, 13 Feb 2025 11:14:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.78.89.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739444918; cv=none; b=R6Hd7JgEBv5Pmtn76OjEezchct1QbEp+5KSoRv5hGalOtpS1mlkHAdmcY3Z2d04x+ey1d2Vb6k3+xK0VvyDDc4mk0hAZeJvJeqTfYhA2e/EmRl/Jbtz0yZ+Cih6f5Z3HhkgoF8ygF1HMovTnGHbygB6OAAHDnI1ZNVkn20N5YF4=
+	t=1739445272; cv=none; b=H+KwWdMJOeltP0t0dbe101v9ngTvUJcDyb25t7DsGTnVyfRNafkV7b1UdwScvjR0k3a/ZXpkB56sRE+BGnf3k7oslOUYkFQMvmM3G1XUFGZwnk0SiJtB0BflHUtE0krh4ajFyus3Tt+E19wPFwgd8wR2e0xqpN6W4mkY/+BIkXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739444918; c=relaxed/simple;
-	bh=NzeAgOEUcs1QCtjHEiz1U/3sMurLrKohd3+BYTsEIm4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KqT/vxyLQy6h+puhu3yhrWY7HcIrGRPWJcacdx90lC1d+D8ExTy2WQyCWsKma0nd4pzEHNL+4TuvGLfoIdBmhzE/YC2jSVzP492fD7yZr674yXkqXJvb7kprx9/ZW6zC1AV+vuU69+N9WC3zsNesKNR3Ao1YLATbj1oEBNC1j6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f3B6so7R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8EDCC4CED1;
-	Thu, 13 Feb 2025 11:08:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739444917;
-	bh=NzeAgOEUcs1QCtjHEiz1U/3sMurLrKohd3+BYTsEIm4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=f3B6so7RtGdEdY1n55i816+qWWtGUmOwoJrHGIYJj4ODxYsSHFcw5V9tDasFO13uL
-	 Ns7IjsoQX2V/8YMlGLXQJfUIhXUi6gQXBkmKGsfXlQCxsNcvSCagCX2uhmYxGF0I5P
-	 W8L5bRG7L13FGtzZ2LyDbc2knelqlxARTmY5Y4MtTBkScvF5UQF8dilWWEWptQcfi6
-	 tSf3MnZBS2iV2tubIoE15GRZ3/nQ8EjgKIcxnOqtJuE+UK40d+lew/BAQX1VMR02yV
-	 Xxpv1cRNhW7CaNEiKLD2CkQegwmWXUcrNF8+Ds/pjsyMTcBOzRJxg77PxQK6GUZ+Mi
-	 A0Dk3gPTPj+RA==
-Message-ID: <5d3c0ffd-2661-415c-8008-3f09523a82af@kernel.org>
-Date: Thu, 13 Feb 2025 12:08:33 +0100
+	s=arc-20240116; t=1739445272; c=relaxed/simple;
+	bh=ezyedybHgoW6oyvPGrkHRiI3fE698KvW6mm+hZJtHs8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uH5qbGYOBGK4okuxjrYMrQZE1HOpzW5qKIBUtxg9YsfJu79cryEkqQ9OhqO3Qnc0PIWPlaMxCHh/lGjSHluw/6d636kXtrhL9h1llflz2RRbVKxIEKR590220ddkj46ttsNJO1qZYLauaQSl3Z4RL3AlY3+mPNbOeUKN/yGsES8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=u1BzMojZ; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=ykJRpAK+; arc=none smtp.client-ip=5.78.89.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id B300A122FE62;
+	Thu, 13 Feb 2025 03:14:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1739445261; bh=ezyedybHgoW6oyvPGrkHRiI3fE698KvW6mm+hZJtHs8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u1BzMojZL3ro81eOzFy386qDclbivD9UfUH3JBSOK2LPuAO5S1N5cgzUs7CS8o4/V
+	 mOCZwFx8y6DJXR4PLilK3ZA/kweR4PW2TT11/aflC/nZ/9LK/UJq+4yx6XzoDRvtY/
+	 WmK/WVNdQufjgL/UicmtFIq6iiktdwX52VwKgMoyjW8bG85Hp80eP2T8giwBelNIQg
+	 h9tX7lCKKW0QjANPZFOxjRZJBltMWrnQKX80N1DfmOWqCUnpjeWaGrmDV3o6YSwp0V
+	 01t5J/ruSf4S5PbZInrehDr6AurD7XWBKbittq6hziy6doUF/hRAWclmYly4Bs+2iw
+	 r2EKjMeKs2Nrg==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 8X_IBNMwRZY3; Thu, 13 Feb 2025 03:14:17 -0800 (PST)
+Received: from ketchup (unknown [183.217.81.160])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id 6C167122FE26;
+	Thu, 13 Feb 2025 03:14:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1739445257; bh=ezyedybHgoW6oyvPGrkHRiI3fE698KvW6mm+hZJtHs8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ykJRpAK+KgoLP8ji1hI8VKi1mmSh/k3SGDM/qo2eIVrZtmY60RkpRyKEpqSumOImI
+	 AI2hfL8YAxa5kOJAow37Fgq4QYdqHSI0JAMeSoEfWlbOIBWr8EOYstW9B1WHXGrVKW
+	 ogTtGTv/u8AKWLGjQqNeefFSCC1EcOJqjI629hIx9oEGJoMXe/sgTMX3Y4LpNt2NVF
+	 TpvSjLyPgoD+2VyXShy1+voNISY7J28WbTkbSdwcUHTqyispsQyxvoyahfm8qwZQVh
+	 07TVm9AFsOy8VfnZFeBnTEyWermOtFZaOEauqAi7vDRruq6aXUPcrvEJuhZ22V2JYe
+	 mAJWzmy2HEcDg==
+Date: Thu, 13 Feb 2025 11:14:04 +0000
+From: Haylen Chu <heylenay@4d2.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>, Yixun Lan <dlan@gentoo.org>,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add spacemit,k1-syscon
+Message-ID: <Z63T_EDvXiuRQbvb@ketchup>
+References: <20250103215636.19967-2-heylenay@4d2.org>
+ <20250103215636.19967-4-heylenay@4d2.org>
+ <aw2vqnz5vcccqqvrrhz5tgawj7fnzzg3tds7nnepuorit37a7r@jcj3wrs7d73h>
+ <Z6rdBhQ7s2ReOgBL@ketchup>
+ <19e5129b-8423-4660-8e4f-8b898214d275@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: socfpga: agilex5: fix gpio0 address
-To: niravkumar.l.rabara@intel.com, Dinh Nguyen <dinguyen@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, nirav.rabara@altera.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-References: <20250213105036.3170943-1-niravkumar.l.rabara@intel.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250213105036.3170943-1-niravkumar.l.rabara@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <19e5129b-8423-4660-8e4f-8b898214d275@kernel.org>
 
-On 13/02/2025 11:50, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+On Tue, Feb 11, 2025 at 09:03:20AM +0100, Krzysztof Kozlowski wrote:
+> On 11/02/2025 06:15, Haylen Chu wrote:
+> > On Sat, Jan 04, 2025 at 11:07:58AM +0100, Krzysztof Kozlowski wrote:
+> >> On Fri, Jan 03, 2025 at 09:56:35PM +0000, Haylen Chu wrote:
+> >>> Add documentation to describe Spacemit K1 system controller registers.
+> >>>
+> >>> Signed-off-by: Haylen Chu <heylenay@4d2.org>
+> >>> ---
+> >>>  .../soc/spacemit/spacemit,k1-syscon.yaml      | 52 +++++++++++++++++++
+> >>>  1 file changed, 52 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..79c4a74ff30e
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+> >>> @@ -0,0 +1,52 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/soc/spacemit/spacemit,k1-syscon.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Spacemit K1 SoC System Controller
+> >>> +
+> >>> +maintainers:
+> >>> +  - Haylen Chu <heylenay@4d2.org>
+> >>> +
+> >>> +description:
+> >>> +  The Spacemit K1 SoC system controller provides access to shared register files
+> >>> +  for related SoC modules, such as clock controller and reset controller.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    items:
+> >>> +      - enum:
+> >>> +          - spacemit,k1-apbc-syscon
+> >>> +          - spacemit,k1-apbs-syscon
+> >>> +          - spacemit,k1-apmu-syscon
+> >>> +          - spacemit,k1-mpmu-syscon
+> >>> +      - const: syscon
+> >>> +      - const: simple-mfd
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clock-controller:
+> >>> +    $ref: /schemas/clock/spacemit,k1-ccu.yaml#
+> >>> +    type: object
+> >>
+> >> So now we see the full picture and it leads to questions.
+> >>
+> >> 1. Why spacemit,k1-apbc-syscon with spacemit,k1-ccu-apmu child is a
+> >> correct combination?
+> >>
+> >> 2. Why having this split in the first place? Please confirm that clock
+> >> controller is really, really a separate device and its child in
+> >> datasheet. IOW, fake child for your Linux is a no-go. Fake child while
+> >> devices are independent is another no-go.
+> > 
+> > These syscons are introduced because the clock controllers share
+> > registers with reset controllers. Folding them into the parents results
 > 
-> Use the correct gpio0 address for Agilex5.
+> So a fake split...
 > 
-> Fixes: 3f7c869e143a ("arm64: dts: socfpga: agilex5: Add gpio0 node and spi dma handshake id")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> ---
+> > in devicetree nodes act as both reset and clock controllers, like what
+> 
+> Which is correct hardware representation, isn't it?
+> 
+> > has been done for Rockchip SoCs. Such folding isn't practical for the
+> > MPMU region either, since watchdog and other misc bits (e.g. PLL lock
+> > status) locates in it.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I have to correct that the watchdog doesn't stay in the MPMU region, I
+misremembered it.
+
+> Hm? Why? You have a device which is reset and clock controller, so why
+> one device node is not practical? Other vendors do not have problem with
+> this.
+
+Merging reset and clock controllers together is fine to me. What I want
+to mention is that APMU and MPMU, abbreviated from Application/Main Power
+Management Unit, contain not only clock/reset-related registers but also
+power management ones[1]. Additionally, the PLL lock status bits locate
+at MPMU, split from the PLL configuration registers as you've already
+seen in the binding of spacemit,k1-ccu-apbs where I refer to it with a
+phandle.
+
+Since reset/clock and power management registers interleave in the MMIO
+region, do you think syscons are acceptable in this situation or it
+should be handled in another way? The reset and clock controllers could
+still be folded together as they share the same registers. The device
+tree will look like,
+
+	syscon_mpmu: system-controller@d4050000 {
+		compatible = "spacemit,mpmu-syscon", "syscon", "simple-mfd";
+		reg = <0xd4050000 0x10000>;
+
+		cru_mpmu: clock-controller {
+			compatible = "spacemit,k1-cru-mpmu";
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+		};
+
+		power_mpmu: power-controller {
+			compatible = "spacemit,k1-powerdomain-mpmu";
+			/* ... */
+			#power-domain-cells = <0>;
+		};
+	};
+
+For the other two clock controllers (APBS and APBC), syscons are really
+unnecessary and it's simple to fold them.
+
+> > 
+> > If you're more comfortable with reset and clock controllers folded
+> > together and eliminating most of these syscons, I'm willing to make the
+> > change.
+> 
+> This is expected.
+
+Thanks for the explanation.
+
+> 
+> 
+> Best regards,
+> Krzysztof
 
 Best regards,
-Krzysztof
+Haylen Chu
+
+[1]: https://developer.spacemit.com/documentation?token=T7TnwVZz1iPBk1kKwAPc6lyKnNb#part958
 
