@@ -1,229 +1,208 @@
-Return-Path: <devicetree+bounces-146448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57E6A34F46
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:19:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B710A34F50
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:24:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A59C416D60D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:19:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B88D1888133
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:24:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D68D24BC06;
-	Thu, 13 Feb 2025 20:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ACB226618B;
+	Thu, 13 Feb 2025 20:24:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="EEw26GON"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DbuGESRK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB54324BBF8
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 20:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05EA5266180;
+	Thu, 13 Feb 2025 20:24:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739477965; cv=none; b=s0An+fwwAbClgjl5DehR4M9CPkUaOY5fQEWv7M1mpDSmgJqolIqY5jQY4Il+qV7UHZrSipg0A8E8Zo2+gsIaIGDIojTge0I8kN6Cq7SjnEWHMktcguqV/VW7Gw0ANOH0HN0S5syk5pZYm8ImvvVEDw8RjQUWpYImt8DIvpIVUtI=
+	t=1739478277; cv=none; b=foQInCzjSBrRwLdAGjq0dZed9HGzJJj7bea4e36ajeV8ExrdUFVZKeCq9MwMni8XUhw6tSXg71HteWNIu50TMdsPZFWbuHJlMWTmyNvBU/xMoKFqjrofuaqOaO/Ji/GXlEJgDgnvn9marLQmgOhQBxd2JAOVcVqfmT+ybvEKHGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739477965; c=relaxed/simple;
-	bh=R3gp0/xn5MD0hMtEjlXTBJZUS3gA1JpvIAi+rpJVCPs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e0GI1gEfcfffvg9oFgRFRvAmzquZcwnQWrTEyfwU99QRt7krf4Fu6d5Mgd9oLsFoHUkcL+S+FBTNsxd+PNjWNR4VK+BNaGF4pl0Qth3eF2sxP0YYpYF8knOwVuX7Ih+AzvWuBvIc6Ya5WcBdPNGSgJdOmF8HX0pEYoS6+Q4dWsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=EEw26GON; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1739477962;
- bh=S+N8QktHLziteDHKc6l89RJnsEypWQF7J2Pqb6k3fjQ=;
- b=EEw26GONFpoHafKvMj6awzNHrxruxsHaXlQJIigE2XLWB294oqiLa2jpEgSAKn6H+V8CXe7DX
- Zo3zVk8FyjzmD5RcilbFN/8pbrei2DRptmVSUnEQZDaPVWMaADvS5G/RZS8sV2QE98RJhuEXR7D
- D/kTFsWlk+YD/yeMrF6VmC03vIYhhnSLSYp/0JOV2Vyc/8blFmAhPDA/etmOpY4C8VZw5c03czF
- 3I7vjNLGimKPwXTYl0eC+Br9QsbUaAt3GCN0kONEtK1tfW0aen7wdv4TGKliSQZ1Q5yHFsi4Avd
- bjCNFkbH5GJ9bWI6IuBg05LZKkL8u7YPHtR3UMpV2YIg==
-X-Forward-Email-ID: 67ae53c49555f68eb8805aed
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <3da8e680-1f36-473d-b51a-6c77a6ea8cc1@kwiboo.se>
-Date: Thu, 13 Feb 2025 21:19:11 +0100
+	s=arc-20240116; t=1739478277; c=relaxed/simple;
+	bh=vgPyFYWzWxj67eo+xKZO/b/zcPiePnk59iJY0qxFk48=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mAs9p7J0l+wLOktOISuH66yooSQRA1EX8HarPmNOaiT3vUVtqh4kA8hVsp8cGWBdQZ5teGutZDYpQfUzW6Ld13KZyiqRT8wOussYNMMRR4fsdlZzoCUxngOo/xHYl+OAMUqorduHITf43vrXTDHEUcFIViVHgvbWAHb5JsCSQio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DbuGESRK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08A9FC4CED1;
+	Thu, 13 Feb 2025 20:24:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739478276;
+	bh=vgPyFYWzWxj67eo+xKZO/b/zcPiePnk59iJY0qxFk48=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DbuGESRKL2HUhlkyJcEjlKwcN2lMcx2+FHQchLaWkvCA9RLjJOv+DafFgkjdwHZD7
+	 nIJ6mFSvqj8V+mP3PcDq5ji1E0WTx0TPwc+gpB5TaCm8IFxnwM2jtRSdOQzWhtc6KU
+	 CtWAA2NaJiv4G4pU3erClaOfKCvFlaWhbsLhYYO4+x2z9BCvUwps7JjHsbHnWcKhJy
+	 zAU5g2/vU3pfsPDKs9IzTqYfb2H9GJVxo0KZ+e7jXVfuUSRre1sTvRiju6g1e9y8TD
+	 k077WAGUvf7toENcahJOusSH8pm6sEAMTraRaXlSCBUXuxtWTjYM4AbYlu/qbJcZXv
+	 kyxuaZtZ+1QDA==
+Date: Thu, 13 Feb 2025 20:24:31 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, lars@metafoo.de,
+	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com,
+	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, jonath4nns@gmail.com,
+	marcelo.schmitt1@gmail.com, dlechner@baylibre.com
+Subject: Re: [PATCH RESEND v3 03/17] dt-bindings: iio: adc: ad7768-1: add
+ trigger-sources property
+Message-ID: <20250213-sympathy-suspend-2c414b383195@spud>
+References: <cover.1739368121.git.Jonathan.Santos@analog.com>
+ <4136b5259df75221fc314bcd4a57ecaeeab41a45.1739368121.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Radxa ROCK 4D device
- tree
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Dragan Simic <dsimic@manjaro.org>, Chris Morgan <macromorgan@hotmail.com>,
- Kever Yang <kever.yang@rock-chips.com>, Tim Lunn <tim@feathertop.org>,
- FUKAUMI Naoki <naoki@radxa.com>,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Weizhao Ouyang <weizhao.ouyang@arm.com>, Elon Zhang
- <zhangzj@rock-chips.com>, Alexey Charkov <alchark@gmail.com>,
- Stephen Chen <stephen@radxa.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- kernel@collabora.com
-References: <20250213145921.133412-1-detlev.casanova@collabora.com>
- <20250213145921.133412-3-detlev.casanova@collabora.com>
- <b5977d21-aa39-4e91-863b-cc7f9dc6938c@kwiboo.se>
- <5973630.DvuYhMxLoT@trenzalore>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <5973630.DvuYhMxLoT@trenzalore>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="lWYe9Flar0M7C111"
+Content-Disposition: inline
+In-Reply-To: <4136b5259df75221fc314bcd4a57ecaeeab41a45.1739368121.git.Jonathan.Santos@analog.com>
 
-Hi Detlev,
 
-On 2025-02-13 20:56, Detlev Casanova wrote:
-> Hi Jonas,
-> 
-> On Thursday, 13 February 2025 10:48:10 EST Jonas Karlman wrote:
->> Hi Detlev,
->>
->> On 2025-02-13 15:57, Detlev Casanova wrote:
->>> From: Stephen Chen <stephen@radxa.com>
->>>
->>> The Radxa ROCK 4D board is based on the Rockchip rk3576 SoC.
->>>
->>> The device tree adds support for basic devices:
->>>  - UART
->>>  - SD Card
->>>  - Ethernet
->>>  - USB
->>>  - RTC
->>>
->>> It has 4 USB ports but only 3 are usable as the top left one is used
->>> for maskrom.
->>>
->>> It has a USB-C port that is only used for powering the board.
->>>
->>> Signed-off-by: Stephen Chen <stephen@radxa.com>
->>> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
->>> ---
->>>
->>>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->>>  .../boot/dts/rockchip/rk3576-rock-4d.dts      | 651 ++++++++++++++++++
->>>  2 files changed, 652 insertions(+)
->>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile
->>> b/arch/arm64/boot/dts/rockchip/Makefile index
->>> def1222c1907e..a112aeb37948a 100644
->>> --- a/arch/arm64/boot/dts/rockchip/Makefile
->>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->>> @@ -132,6 +132,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=
->>> rk3568-wolfvision-pf5-display-vz.dtbo> 
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-evb1-v10.dtb
->>>
->>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-rock-4d.dtb
->>>
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3582-radxa-e52c.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-sige7.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-w3.dtb
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
->>> b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts new file mode 100644
->>> index 0000000000000..f356742f9d643
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
->>> @@ -0,0 +1,651 @@
->>
->> [snip]
->>
->>> +&gmac0 {
->>> +	phy-mode = "rgmii-id";
->>> +	clock_in_out = "output";
->>> +
->>> +	snps,reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
->>> +	snps,reset-active-low;
->>> +	snps,reset-delays-us = <0 20000 100000>;
->>
->> The snps,reset- props are deprecated and should be changed to reset-
->> props in the phy node.
-> 
-> Arg, second time I use deprectated props on new things. Are there plans or 
-> ways to make dtbs_check warn about those ?
+--lWYe9Flar0M7C111
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Agree, would be nice if dtbs_check could be a little bit more verbose
-about use of deprecated props :-)
+On Wed, Feb 12, 2025 at 03:16:16PM -0300, Jonathan Santos wrote:
+> In addition to GPIO synchronization, The AD7768-1 also supports
+> synchronization over SPI, which use is recommended when the GPIO
+> cannot provide a pulse synchronous with the base MCLK signal. It
+> consists of looping back the SYNC_OUT to the SYNC_IN pin and send
+> a command via SPI to trigger the synchronization.
+>=20
+> Add a new trigger-sources property to enable synchronization over SPI
+> and future multiple devices support. This property references the
+> main device (or trigger provider) responsible for generating the
+> SYNC_OUT pulse to drive the SYNC_IN of device.
+>=20
+> While at it, add description to the interrupts property.
+>=20
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> ---
+> v3 Changes:
+> * Fixed dt-bindings errors.
+> * Trigger-source is set as an alternative to sync-in-gpios, so we
+>   don't break the previous ABI.
+> * increased maxItems from trigger-sources to 2.
+>=20
+> v2 Changes:
+> * Patch added as replacement for adi,sync-in-spi patch.
+> * addressed the request for a description to interrupts property.
+> ---
+>  .../bindings/iio/adc/adi,ad7768-1.yaml        | 28 +++++++++++++++++--
+>  1 file changed, 25 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> index 3ce59d4d065f..4bcc9e20fab9 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> @@ -26,7 +26,19 @@ properties:
+>    clock-names:
+>      const: mclk
+> =20
+> +  trigger-sources:
+> +    description:
+> +      Specifies the device responsible for driving the synchronization p=
+in,
+> +      as an alternative to adi,sync-in-gpios. If the own device node is
+> +      referenced, The synchronization over SPI is enabled and the SYNC_O=
+UT
+> +      output will drive the SYNC_IN pin.
 
-> 
->>> +
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&eth0m0_miim
->>> +		     &eth0m0_tx_bus2
->>> +		     &eth0m0_rx_bus2
->>> +		     &eth0m0_rgmii_clk
->>> +		     &eth0m0_rgmii_bus
->>> +		     &ethm0_clk0_25m_out>;
->>> +
->>> +	phy-handle = <&rgmii_phy0>;
->>> +	status = "okay";
->>> +};
->>
->> [snip]
->>
->>> +&mdio0 {
->>> +	rgmii_phy0: phy@1 {
->>
->> Maybe ethernet-phy@1 ?
-> 
-> Indeed.
-> 
->>> +		compatible = "ethernet-phy-ieee802.3-c22";
->>> +		reg = <0x1>;
->>> +		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
->>
->> Please add reset- props here.
->>
->> Changing to use reset- props may cause issue if a RTL8211F PHY is used
->> on the board. Use a ethernet-phy-id compatible or mainline U-Boot to
->> ensure the Ethernet PHY can be discovered during probe.
-> 
-> Using downstream u-boot, with the RTL8211F PHY, linux can still detect the PHY 
-> and use it correctly, even with reset-* props at the PHY level.
-> 
-> I guess I can keep those there then, unless the issues you mention are more 
-> subtle than that ?
-> 
+Maybe a silly question, but why is self-reference needed here?
+sync-in-gpios is a required property at present, so why can't you
+operate under the assumption that neither the trigger-sources when
+neither are present? Is it because only one of the sources could be
+external and one internal, or there could be either one or two internal
+sources? Self-referencing properties always feel like a bit of a
+mistake.
 
-Ohh, typically there has been issues for Linux to find the Ethernet PHY unless
-it has first been reset by boot firmware. Something like:
+> +    maxItems: 2
+> +
+>    interrupts:
+> +    description:
+> +      Specifies the interrupt line associated with the ADC. This refers
+> +      to the DRDY (Data Ready) pin, which signals when conversion result=
+s are
+> +      available.
+>      maxItems: 1
+> =20
+>    '#address-cells':
+> @@ -57,6 +69,9 @@ properties:
+>    "#io-channel-cells":
+>      const: 1
+> =20
+> +  "#trigger-source-cells":
+> +    const: 0
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -65,7 +80,6 @@ required:
+>    - vref-supply
+>    - spi-cpol
+>    - spi-cpha
+> -  - adi,sync-in-gpios
+> =20
+>  patternProperties:
+>    "^channel@([0-9]|1[0-5])$":
+> @@ -89,6 +103,13 @@ patternProperties:
+>  allOf:
+>    - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> =20
+> +  - oneOf:
+> +      - required:
+> +          - trigger-sources
+> +          - "#trigger-source-cells"
+> +      - required:
+> +          - adi,sync-in-gpios
+> +
+>  unevaluatedProperties: false
+> =20
+>  examples:
+> @@ -99,7 +120,7 @@ examples:
+>          #address-cells =3D <1>;
+>          #size-cells =3D <0>;
+> =20
+> -        adc@0 {
+> +        adc0: adc@0 {
+>              compatible =3D "adi,ad7768-1";
+>              reg =3D <0>;
+>              spi-max-frequency =3D <2000000>;
+> @@ -108,7 +129,8 @@ examples:
+>              vref-supply =3D <&adc_vref>;
+>              interrupts =3D <25 IRQ_TYPE_EDGE_RISING>;
+>              interrupt-parent =3D <&gpio>;
+> -            adi,sync-in-gpios =3D <&gpio 22 GPIO_ACTIVE_LOW>;
+> +            trigger-sources =3D <&adc0 0>;
+> +            #trigger-source-cells =3D <0>;
+>              reset-gpios =3D <&gpio 27 GPIO_ACTIVE_LOW>;
+>              clocks =3D <&ad7768_mclk>;
+>              clock-names =3D "mclk";
+> --=20
+> 2.34.1
+>=20
 
-  rk_gmac-dwmac fe010000.ethernet eth0: no phy at addr -1
-  rk_gmac-dwmac fe010000.ethernet eth0: stmmac_open: Cannot attach to PHY (error: -19)
+--lWYe9Flar0M7C111
+Content-Type: application/pgp-signature; name="signature.asc"
 
-There was a chicken-and-egg issue related to detecting ethernet phy:
-- phy needs to be reset or phy_id read back as 0xffffffff on mdio bus
-- phy device is not created because a valid phy_id is not read back
-- phy device needs to be created before it can be reset
+-----BEGIN PGP SIGNATURE-----
 
-See [1] for more details on the ethernet phy issue that typically have
-affected multiple Rockchip boards with RTL8211F PHYs. Maybe it has been
-fixed in v6.13+.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ65U/wAKCRB4tDGHoIJi
+0pB+AQCP+31FGFpNu1bFN4d+aHlh06rWj+vxU4ClpJYE0eJ7OwD+M/sVq6WXXvz7
+w2JeNL9Irj7zUuW6MgiG84wpjZ7I6Qc=
+=tZHi
+-----END PGP SIGNATURE-----
 
-[1] https://lore.kernel.org/all/47d55aca-bee6-810f-379f-9431649fefa6@kwiboo.se/
-
-Regards,
-Jonas
-
-> 
-> Detlev.
-> 
-> 
-> 
-
+--lWYe9Flar0M7C111--
 
