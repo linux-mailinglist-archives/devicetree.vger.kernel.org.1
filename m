@@ -1,147 +1,203 @@
-Return-Path: <devicetree+bounces-146224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8B30A33C9D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:23:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90A2CA33C9C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:23:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60BE91882B62
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:21:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6B33168DB1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2E7521A437;
-	Thu, 13 Feb 2025 10:16:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F471213E63;
+	Thu, 13 Feb 2025 10:19:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="b4x4Wbeq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E74F21A430;
-	Thu, 13 Feb 2025 10:16:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C13B212F98;
+	Thu, 13 Feb 2025 10:19:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739441806; cv=none; b=ZQZEcYJnwXP8KpTGf5/QlCD9S2amggq6IjSvqXJI5n9yxMa4qK2abhhDu6WlTMEIlxZXnauj4mJZ7MwTVpnggh959Xs2zW/T+tsqX7t9WX/YKUuzOUh96OGA/Dg9IyYZkfiBluriWVOE1MOPLnfQgHd5lB8TpB90jyMIORTv0wc=
+	t=1739441965; cv=none; b=mdEXIDaHloMoEwci4grjrU9bmgATSTnGNvU47tXCnZdZPqNdz0fFHvyB2pbmf0NJu4nrh2EZtRSO4fZYZaSdJpENNaOVU40UxDGTa+VkUGDEk/mA1BS6vQ9hH1/851cEZUXmJaX8jhlhzGIU5STK4Cv7ZQdq2YdWTR2o/sC8Xsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739441806; c=relaxed/simple;
-	bh=KNgT4cShslnH6pe2xvhhE3jHWvOo2cG8vDyVX3ktiQw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o0xNSWEzjzxTsjEUl1rBJ+9hCYal6KFo965xtZqBQL80ZD/rwCnwrcMcGRFTsNpCoZuJJAJgxRJkH9QsC07G/riNaMMCaUlidLW9Y6jIz3FSorGx+3ioWgDygy2mBy7dmVil2i3O1yuOo3WqLqe/m+NG2K1vwh8ArOP68C+4mzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4bbecb9b6bbso361343137.3;
-        Thu, 13 Feb 2025 02:16:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739441803; x=1740046603;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=r+4RVqTGAi8P4BI3du7c8N1169rpqNW0ZHsYZ7ijscc=;
-        b=imnMp/Ya0Gco3d2ZmrbkE1E71mR2yXyv8bvlhOP1Uy+jbEqd0xFFcy5YNybCsG//qE
-         bDebXU7lgJh5rJkN+0gUZPw9ahbA4MfMhiQmjAAJiYzijloosFLPg7BGADQmaZJfyS/I
-         /W2dHy2EWFl6T3UpdAMcTFkqwmcgPyLcKRfIwm43234bhLpUiUutywlRHycZgJmwhLfx
-         CR/nyayAli6O87wq6nytQ0kX02BTOFTQsWJRvTr4qZ4krWhVRFQsGJ1Oeo+b4IDHPpaM
-         ILAU4aQs4bOtMaCQ7Qurk1mZVHfQ/NJriP92Lwa1CNrc9xTTLmwwcFZUCgcgCtQ/P8Ox
-         8zgg==
-X-Forwarded-Encrypted: i=1; AJvYcCUsIFXJYpYJgTsWQo/1501T4zfiBGGqzMkfcweHuq4YotcbCcokEQwoCbBJIhfstz65pBO9Z2TYre/F@vger.kernel.org, AJvYcCWc4V1pPiUEJxMBk0Qb413tlk5knqb9pYfnoToMP53Iy7m7PEtqlSNqyFhoyFkNaxq9YAoDuJrZbhDf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3EdfNT0+LM64+VxP39tTSXVRyzOCdShd2I2EkKwAnBDigQkPQ
-	geuBu4byHDnp1Ho2VI+NA1yQ4bUV5ZD3u8C/vNdlkies/RExY4nnankl0YnIwNg=
-X-Gm-Gg: ASbGncs7RvXj8hwUl1d13/D7U/LIUqMozSuutGgO19kZCic3Sl2ku1RKIpVcA4hLgmn
-	MbyIS4a4dxMwd/Sv1phkEWYhnNfNnVk8LsVTRSVHY2+ZliMrjNRkNJvn5uLIYm7lnC3C3ig1vaF
-	xJsgwfEEnIZGR7iDyuMjVo8PfQWsgELgKgtkz7I+s/tVnaPzFm0D3KBsemjxfxuVhtdgaayhmuc
-	cVFwcRgTqLSMHfPhwPE901Yye2FJGsZTOiYM0GjdsObjgkwsoWuyTD1fOwhSnr3emAXxm2OzEMV
-	4YqzZsWi8i6e3ma7TVyFDQ/nVRxgU1vOk6c8gVg5D30lDNNSha0+0g==
-X-Google-Smtp-Source: AGHT+IH9BGzGYtE5X702F7RMWLTOJU5Kq5h2yNUQwnMGaaTuuwguPuWFKzRqGlFiH2cg7+M2COvFpg==
-X-Received: by 2002:a05:6102:8005:b0:4bb:db41:3b68 with SMTP id ada2fe7eead31-4bbf209b9famr6584958137.5.1739441803538;
-        Thu, 13 Feb 2025 02:16:43 -0800 (PST)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-868e8583c9dsm137243241.13.2025.02.13.02.16.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Feb 2025 02:16:43 -0800 (PST)
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-868e368ec74so466892241.1;
-        Thu, 13 Feb 2025 02:16:43 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUxTSJxNY8O1V8SES1bqoBpQI/fSis5GK09uOg8mzpBGBYjA2wFQCwbBFoeGZshBWizjLjy5sH9o5DL@vger.kernel.org, AJvYcCXnf6y0xRznWSJgdw9CpGnLRIaLGv/2mBTkT9vcxG0G+fGALsf2WDeYp+FlbvEitoIbKNHN3usl+bMS@vger.kernel.org
-X-Received: by 2002:a05:6102:2c06:b0:4ba:7469:78ce with SMTP id
- ada2fe7eead31-4bbf22441dcmr6979494137.21.1739441803048; Thu, 13 Feb 2025
- 02:16:43 -0800 (PST)
+	s=arc-20240116; t=1739441965; c=relaxed/simple;
+	bh=24IKPVvko7AYF/JdQjmDU6yGxxREmdCEYd1XuYo9HmE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F1Dzz3t8kc1b4XlTuB6+j6lXO8OlnwK/1q4OYKzGvTJPIar+onf260UYzV4Vd/r9jI3O2+VT5eZbGrz/n+wl0kEkGLu0UH7gEG35AxiwXnRPLYMsbbhYaCiqeWkBJVcluzwr/mNM36FiZE3FMr0Iv2VgGfS4iOiXhbCoS88LwL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=b4x4Wbeq; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3024B6AF;
+	Thu, 13 Feb 2025 11:17:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1739441876;
+	bh=24IKPVvko7AYF/JdQjmDU6yGxxREmdCEYd1XuYo9HmE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b4x4WbeqsNvXxNQyuRFhAU3Ed8ZwGP1OT+MWvlY7JpGqB4kloKWwzB07v7/KYld/M
+	 xhgJYJKvH5epfyl0iH9cIVSUPBxVmB2dn+7uBvY+GVu8/+400FhuklOcNVwR8sBwVh
+	 501sXqmw6+sS/O1SyCmfn3cavrs0GH0+UP06p6Ac=
+Date: Thu, 13 Feb 2025 12:19:03 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Sebastian LaVine <slavine@d3embedded.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	=?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Achath Vaishnav <vaishnav.a@ti.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Javier Carrasco <javier.carrasco@wolfvision.net>,
+	Jianzhong Xu <xuj@ti.com>,
+	Julien Massot <julien.massot@collabora.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Kory Maincent <kory.maincent@bootlin.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Mikhail Rudenko <mike.rudenko@gmail.com>,
+	Nishanth Menon <nm@ti.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Stuart Burtner <sburtner@d3embedded.com>,
+	Tero Kristo <kristo@kernel.org>, Thakkar Devarsh <devarsht@ti.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Umang Jain <umang.jain@ideasonboard.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Will Deacon <will@kernel.org>, Zhi Mao <zhi.mao@mediatek.com>
+Subject: Re: [PATCH 2/4] media: i2c: Add driver for Sony IMX728
+Message-ID: <20250213101903.GH5888@pendragon.ideasonboard.com>
+References: <20250212195656.69528-1-slavine@d3embedded.com>
+ <20250212195656.69528-3-slavine@d3embedded.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <devicetree-org/dt-schema/pull/154@github.com> <d385e871-f33f-4133-8347-3f108f8a6736@kernel.org>
-In-Reply-To: <d385e871-f33f-4133-8347-3f108f8a6736@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 13 Feb 2025 11:16:31 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWLWDTi1jeSOGKDAmvhGZzxAVTM-NjBJzW__1jfECHFQg@mail.gmail.com>
-X-Gm-Features: AWEUYZkfP6xpGlv9Cpj18tTWe4DNj1i_sHyc_JDqEOorEdNEQH6nbJwe_rO5kVM
-Message-ID: <CAMuHMdWLWDTi1jeSOGKDAmvhGZzxAVTM-NjBJzW__1jfECHFQg@mail.gmail.com>
-Subject: Re: [devicetree-org/dt-schema] schemas: introduce assigned-clock-sscs
- (PR #154)
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250212195656.69528-3-slavine@d3embedded.com>
 
-CC devicetree
+Hi Sebastian,
 
-On Fri, 24 Jan 2025 at 15:42, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> Just FYI, below is a foward of pull request for dtschema for bindings
-> adding spread spectrum to clocks. As Clock framework maintainers this
-> might be relevant to you.
->
-> -------- Forwarded Message --------
-> Subject: [devicetree-org/dt-schema] schemas: introduce
-> assigned-clock-sscs (PR #154)
-> Date: Fri, 24 Jan 2025 04:31:30 -0800
-> From: Peng Fan <notifications@github.com>
-> Reply-To: devicetree-org/dt-schema
-> <reply+ACPRLI5YLXX27TFZX2P7NVOFT5USFEVBNHHKO4ZXHM@reply.github.com>
-> To: devicetree-org/dt-schema <dt-schema@noreply.github.com>
-> CC: Subscribed <subscribed@noreply.github.com>
->
-> To support spread spectrum clock, introduce assigned-clock-sscs, it is
-> an uint32-matrix with format multiple elements of below
-> &lt;modfreq spreadpercentage modmethod&gt;, &lt;...&gt;
-> You can view, comment on, or merge this pull request online at:
->
->   https://github.com/devicetree-org/dt-schema/pull/154
->
-> -- Commit Summary --
->
->   * schemas: introduce assigned-clock-sscs
+Thank you for the patch.
 
->   assigned-clock-sscs:
->     $ref: /schemas/types.yaml#/definitions/uint32-matrix
->     items:
->       items:
->         - description: The modulation frequency
->         - description: The modulation depth in permyriad
->         - description: The modulation method, down(2), up(1), center(0)
+I'll start with a partial review.
 
-Is there a way to explicitly disable it, if it was enabled by the
-firmware? See also my comment in "Re: [PATCH v2 1/4] clk: Introduce
-clk_hw_set_spread_spectrum".
+On Wed, Feb 12, 2025 at 02:56:54PM -0500, Sebastian LaVine wrote:
+> Adds a driver for the Sony IMX728 image sensor.
+> 
+> Signed-off-by: Sebastian LaVine <slavine@d3embedded.com>
+> Mentored-by: Stuart Burtner <sburtner@d3embedded.com>
+> ---
+>  MAINTAINERS                  |    1 +
+>  arch/arm64/configs/defconfig |    1 +
+>  drivers/media/i2c/Kconfig    |   12 +
+>  drivers/media/i2c/Makefile   |    1 +
+>  drivers/media/i2c/imx728.c   | 9655 ++++++++++++++++++++++++++++++++++
+>  5 files changed, 9670 insertions(+)
+>  create mode 100644 drivers/media/i2c/imx728.c
 
->           minimum: 0
->           maximum: 2
+[snip]
 
-What's the meaning of these limits?
+> diff --git a/drivers/media/i2c/imx728.c b/drivers/media/i2c/imx728.c
+> new file mode 100644
+> index 000000000000..75120ca01ce6
+> --- /dev/null
+> +++ b/drivers/media/i2c/imx728.c
+> @@ -0,0 +1,9655 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Sony IMX728 CMOS Image Sensor Driver
+> + *
+> + * Copyright (c) 2024-2025 Define Design Deploy Corp
+> + */
 
-[1] https://lore.kernel.or/CAMuHMdWn+sKiC1B4MF1vHwS2ArFYQXGzpYi2EcsyERPSCc9bvQ@mail.gmail.com
+[snip]
 
-Gr{oetje,eeting}s,
+> +static const struct cci_reg_sequence imx728_wdr_12bit_3856x2176[] = {
 
-                        Geert
+This table is way too big, with over 8000 entries. Some are even
+duplicated, with identical or different values for the same register. It
+will take more than a second at 400kHz to program this.
 
+At the very least I would expect a way to compact the table and make use
+of I2C register address auto-increment. Default power-up values should
+also likely be just dropped.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+I haven't checked in details, but doesn't this table also contain tuning
+data for your specific camera ?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+[snip]
+
+> +};
+
+[snip]
+
+> +static int imx728_get_frame_interval(struct v4l2_subdev *sd,
+> +                                    struct v4l2_subdev_state *sd_state,
+> +                                    struct v4l2_subdev_frame_interval *fi)
+> +{
+> +       struct imx728 *imx728 = to_imx728(sd);
+> +
+> +       fi->interval.numerator = 1;
+> +       fi->interval.denominator = imx728->fps;
+> +       return 0;
+> +}
+> +
+> +static int imx728_set_frame_interval(struct v4l2_subdev *sd,
+> +                                    struct v4l2_subdev_state *sd_state,
+> +                                    struct v4l2_subdev_frame_interval *fi)
+> +{
+> +       struct imx728 *imx728 = to_imx728(sd);
+> +       u32 req_fps;
+> +
+> +       mutex_lock(&imx728->lock);
+> +
+> +       if (fi->interval.numerator == 0 || fi->interval.denominator == 0) {
+> +               fi->interval.denominator = IMX728_FRAMERATE_DEFAULT;
+> +               fi->interval.numerator = 1;
+> +       }
+> +
+> +       req_fps = clamp_val(DIV_ROUND_CLOSEST(fi->interval.denominator,
+> +                                             fi->interval.numerator),
+> +                           IMX728_FRAMERATE_MIN, IMX728_FRAMERATE_MAX);
+> +
+> +       fi->interval.numerator = 1;
+> +       fi->interval.denominator = req_fps;
+> +
+> +       imx728->fps = req_fps;
+> +
+> +       mutex_unlock(&imx728->lock);
+> +       dev_dbg(imx728->dev, "%s frame rate = %d\n", __func__, imx728->fps);
+> +
+> +       return 0;
+> +}
+
+The frame rate on raw sensors is controlled through h/v blanking. You
+can drop thse functions, especially given that imx728->fps isn't used
+anywhere else.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
