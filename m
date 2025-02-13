@@ -1,183 +1,135 @@
-Return-Path: <devicetree+bounces-146405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADFEDA34CB8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 19:01:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23694A34D08
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 19:08:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FD393A1551
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:01:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D4F13AB9B5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:06:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BEF3221725;
-	Thu, 13 Feb 2025 18:01:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lKkAptOe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0518269896;
+	Thu, 13 Feb 2025 18:03:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3C928A2AE;
-	Thu, 13 Feb 2025 18:01:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06CC026983F;
+	Thu, 13 Feb 2025 18:03:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739469698; cv=none; b=gbid2NpzVzdT6yB/73i2uE7xVKpKKPyNQpLoZ1C4DyABYS74+eHFTWyIADE4WkKCU0nkiCGK+tna6rfafyMdb1qeccBO9WJ+/E0FIKX97zIEP7+R7chmbPuj/Bt10W7meM0CHwlatcRDrogAcGJNyoV2Jrzrq7eO7lqnpnuCp00=
+	t=1739469807; cv=none; b=bvQPjemeJJ3s1KT0h5b0bzDOkr9Wn9FJToUCMBVGcfxKpSBcoc0doiYE8S8a9n/zKV/GPa+x9q75Tw9elAKQ/1WQ4gzbW2CsChsiKa3jtueDTE4K1Dfxlqexcnu7FfvRHSLGJUi+DKhSsj2y1K96LhMqSBqR1WgXT0kAkKcmESQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739469698; c=relaxed/simple;
-	bh=NW1OYpe2mVwwte24KvqPb9pRL5isVReq3c3DtOOBBMA=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bfHK71XE+ZeO9pXVHwCccTxoo2bA6241SbkPLdtqBAupemSKXoD0t7Dgye8oV+Cdck94jh/0tepfPTNfYjKKPMV45FBNgF5xqZtLQcElUdowIEdW0mWcgig24KCJcEqnApB0HJH8U9/91DpTXf68TRyefgITvLPBFZd2ArbZmLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lKkAptOe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFC4BC4CED1;
-	Thu, 13 Feb 2025 18:01:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739469697;
-	bh=NW1OYpe2mVwwte24KvqPb9pRL5isVReq3c3DtOOBBMA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=lKkAptOe5ZG6vP8rPEis0AlEiA/1jNEChi09tTGq67mYGQvoYjq2QsQirFo+qzZgb
-	 lQ+hWQtnhgTT5QDZIgLE0LLK/qzdHBxEs1u3jP1jbVy94VndeSRhUaa42fTPoXmUqj
-	 pivxwi3j9oPp4knqLBaU597hhT9pV1fhknls8UaWBTrKic1gyFlvuxDovPaJkjkHow
-	 fOkRlYpLpYgd8zNL2X4qtYZnDaLpQS5UPyQudbGm2tBsFUeanF/x7OySGyxItxrZ2K
-	 CIQ52uBM+57WBFOnOJvGIdA3m2yKZ4t4E+ybCY5Pd/bwH1tUj0GrrJZymNHMOSdvEg
-	 JRwnbdjsJbEOQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1tidWn-003nTm-Sy;
-	Thu, 13 Feb 2025 18:01:35 +0000
-Date: Thu, 13 Feb 2025 18:01:33 +0000
-Message-ID: <86r041sozm.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Alyssa Rosenzweig <alyssa@rosenzweig.io>,	Hector Martin
- <marcan@marcan.st>,	Sven Peter <sven@svenpeter.dev>,	Bjorn Helgaas
- <bhelgaas@google.com>,	Lorenzo Pieralisi <lpieralisi@kernel.org>,	Krzysztof
- =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,	Manivannan Sadhasivam
- <manivannan.sadhasivam@linaro.org>,	Krzysztof Kozlowski
- <krzk+dt@kernel.org>,	Conor Dooley <conor+dt@kernel.org>,	Mark Kettenis
- <kettenis@openbsd.org>,	Stan Skowronek <stan@corellium.com>,
-	asahi@lists.linux.dev,	linux-arm-kernel@lists.infradead.org,
-	linux-pci@vger.kernel.org,	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/7] PCI: apple: Add T602x PCIe support
-In-Reply-To: <CAL_JsqJ-sYsy-11_UiEKrKok49-a-VJUvm3vBGbpu9vY3TKLUw@mail.gmail.com>
-References: <20250211-pcie-t6-v1-0-b60e6d2501bb@rosenzweig.io>
-	<20250211-pcie-t6-v1-7-b60e6d2501bb@rosenzweig.io>
-	<CAL_JsqJ-sYsy-11_UiEKrKok49-a-VJUvm3vBGbpu9vY3TKLUw@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1739469807; c=relaxed/simple;
+	bh=mDz0xlWp9rLv+KPhAgViY4OUn0Qp1EADLYFHesLlFSg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ChBtJCj5ApQdDhXIs2F5atGD/YSLbM4g0cfIYk4XVmEV17qL5qJbUmLnloNBtCkJeL4YWLgvOu2LgxAXzFJwZjo4WlCZ+rdTNx6NjUuNHbFnkpcV518MAeyFLxMmeW5ulcrlkVlJCvQH/cuKUwT/7wqbwOsxQDHaiztsiFQ+vDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E4535113E;
+	Thu, 13 Feb 2025 10:03:44 -0800 (PST)
+Received: from e119884-lin.cambridge.arm.com (e119884-lin.cambridge.arm.com [10.1.196.72])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4D9713F5A1;
+	Thu, 13 Feb 2025 10:03:22 -0800 (PST)
+From: Vincenzo Frascino <vincenzo.frascino@arm.com>
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Vincenzo Frascino <vincenzo.frascino@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH v5 0/8] arm64: dts: Add Arm Morello support
+Date: Thu, 13 Feb 2025 18:03:01 +0000
+Message-ID: <20250213180309.485528-1-vincenzo.frascino@arm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: robh@kernel.org, alyssa@rosenzweig.io, marcan@marcan.st, sven@svenpeter.dev, bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, krzk+dt@kernel.org, conor+dt@kernel.org, kettenis@openbsd.org, stan@corellium.com, asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Thu, 13 Feb 2025 17:56:19 +0000,
-Rob Herring <robh@kernel.org> wrote:
->=20
-> On Tue, Feb 11, 2025 at 1:54=E2=80=AFPM Alyssa Rosenzweig <alyssa@rosenzw=
-eig.io> wrote:
-> >
-> > From: Hector Martin <marcan@marcan.st>
-> >
-> > This version of the hardware moved around a bunch of registers, so we
-> > drop the old compatible for these and introduce register offset
-> > structures to handle the differences.
-> >
-> > Signed-off-by: Hector Martin <marcan@marcan.st>
-> > Signed-off-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> > ---
-> >  drivers/pci/controller/pcie-apple.c | 125 ++++++++++++++++++++++++++++=
-++------
-> >  1 file changed, 105 insertions(+), 20 deletions(-)
-> >
-> > diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/controll=
-er/pcie-apple.c
-> > index 7f4839fb0a5b15a9ca87337f53c14a1ce08301fc..7c598334427cb56ca066890=
-ac61143ae1d3ed744 100644
-> > --- a/drivers/pci/controller/pcie-apple.c
-> > +++ b/drivers/pci/controller/pcie-apple.c
-> > @@ -26,6 +26,7 @@
-> >  #include <linux/list.h>
-> >  #include <linux/module.h>
-> >  #include <linux/msi.h>
-> > +#include <linux/of_device.h>
->=20
-> Drivers should not need this...
->=20
-> > +const struct reg_info t602x_hw =3D {
-> > +       .phy_lane_ctl =3D 0,
-> > +       .port_msiaddr =3D PORT_T602X_MSIADDR,
-> > +       .port_msiaddr_hi =3D PORT_T602X_MSIADDR_HI,
-> > +       .port_refclk =3D 0,
-> > +       .port_perst =3D PORT_T602X_PERST,
-> > +       .port_rid2sid =3D PORT_T602X_RID2SID,
-> > +       .port_msimap =3D PORT_T602X_MSIMAP,
-> > +       .max_rid2sid =3D 512, /* 16 on t602x, guess for autodetect on f=
-uture HW */
-> > +       .max_msimap =3D 512, /* 96 on t602x, guess for autodetect on fu=
-ture HW */
-> > +};
-> > +
-> > +static const struct of_device_id apple_pcie_of_match_hw[] =3D {
-> > +       { .compatible =3D "apple,t6020-pcie", .data =3D &t602x_hw },
-> > +       { .compatible =3D "apple,pcie", .data =3D &t8103_hw },
-> > +       { }
-> > +};
->=20
-> You should not have 2 match tables.
->=20
-> > @@ -750,13 +828,19 @@ static int apple_pcie_init(struct pci_config_wind=
-ow *cfg)
-> >         struct platform_device *platform =3D to_platform_device(dev);
-> >         struct device_node *of_port;
-> >         struct apple_pcie *pcie;
-> > +       const struct of_device_id *match;
-> >         int ret;
-> >
-> > +       match =3D of_match_device(apple_pcie_of_match_hw, dev);
-> > +       if (!match)
-> > +               return -ENODEV;
-> > +
-> >         pcie =3D devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-> >         if (!pcie)
-> >                 return -ENOMEM;
-> >
-> >         pcie->dev =3D dev;
-> > +       pcie->hw =3D match->data;
-> >
-> >         mutex_init(&pcie->lock);
-> >
-> > @@ -795,6 +879,7 @@ static const struct pci_ecam_ops apple_pcie_cfg_eca=
-m_ops =3D {
-> >  };
-> >
-> >  static const struct of_device_id apple_pcie_of_match[] =3D {
-> > +       { .compatible =3D "apple,t6020-pcie", .data =3D &apple_pcie_cfg=
-_ecam_ops },
-> >         { .compatible =3D "apple,pcie", .data =3D &apple_pcie_cfg_ecam_=
-ops },
-> >         { }
->=20
-> You are going to need to merge the data to 1 struct.
->=20
-> And then use (of_)?device_get_match_data() in probe().
+The Morello architecture is an experimental extension to Armv8.2-A,
+which extends the AArch64 state with the principles proposed in
+version 7 of the Capability Hardware Enhanced RISC Instructions
+(CHERI) ISA [1].
 
-No, that will break the driver. This isn't a standalone driver, but
-only an ECAM shim (as you can tell from the actual probe function).
+This series adds dts support for the Arm Morello System Development
+Platform.
 
-	M.
+[1] https://www.morello-project.org/
 
---=20
-Without deviation from the norm, progress is not possible.
+To simplify the testing a linux tree rebased on 6.14-rc1 is accessible
+at [2].
+
+[2] https://codeberg.org/vincenzo/linux/src/branch/morello/dts/v5
+
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org> 
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Will Deacon <will@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+
+Changes
+=======
+v5:
+  - Add support for fvp.
+  - Add support for pmu.
+  - Address review comments.
+  - Rebase on 6.14-rc1.
+v4:
+  - Add cache information.
+  - Address review comments.
+v3:
+  - Address review comments.
+  - Rebase on 6.13-rc5.
+v2:
+  - Addressed review comments.
+  - Rebased on 6.13-rc4.
+  - Renamed arm,morello to arm,morello-sdp for clarity.
+
+
+Vincenzo Frascino (8):
+  dt-bindings: arm: Add Morello compatibility
+  dt-bindings: arm: Add Morello fvp compatibility
+  dt-bindings: arm: Add Rainier compatibility
+  perf: arm_pmuv3: Add support for ARM Rainier PMU
+  arm64: dts: morello: Add support for common functionalities
+  arm64: dts: morello: Add support for soc dts
+  arm64: dts: morello: Add support for fvp dts
+  MAINTAINERS: Add Vincenzo Frascino as Arm Morello Maintainer
+
+ .../bindings/arm/arm,vexpress-juno.yaml       |   8 +
+ .../devicetree/bindings/arm/cpus.yaml         |   1 +
+ .../devicetree/bindings/arm/pmu.yaml          |   1 +
+ MAINTAINERS                                   |   6 +
+ arch/arm64/boot/dts/arm/Makefile              |   1 +
+ arch/arm64/boot/dts/arm/morello-fvp.dts       |  78 +++++
+ arch/arm64/boot/dts/arm/morello-sdp.dts       | 157 +++++++++
+ arch/arm64/boot/dts/arm/morello.dtsi          | 323 ++++++++++++++++++
+ drivers/perf/arm_pmuv3.c                      |   2 +
+ 9 files changed, 577 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/arm/morello-fvp.dts
+ create mode 100644 arch/arm64/boot/dts/arm/morello-sdp.dts
+ create mode 100644 arch/arm64/boot/dts/arm/morello.dtsi
+
+-- 
+2.43.0
+
 
