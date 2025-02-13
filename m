@@ -1,146 +1,105 @@
-Return-Path: <devicetree+bounces-146229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44CA1A33CDA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:38:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A70A33CE2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:40:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBC6C18884EE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:38:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C8E51693BB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:40:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DBEA211A06;
-	Thu, 13 Feb 2025 10:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34B5B212FAC;
+	Thu, 13 Feb 2025 10:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jyapWIhM"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="b0JIacVt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7984D1FAC42;
-	Thu, 13 Feb 2025 10:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90CAD211A06;
+	Thu, 13 Feb 2025 10:40:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739443093; cv=none; b=QfGIZoxNeZFzmaVoTuwO5EKJS+iN9U1ZHvtcPv59QoT9972VUzVGpB9jxyQuQTXLb78gBaYnXQuwj+OCJZakhPQ1xaFzwFevCGz9kUWP5BU+1p6z2+ucUWWPvxxEJpQfWj85q10YnxDeP97ek0zMAUAbS9AX5GOqqrf7jtFZu6M=
+	t=1739443243; cv=none; b=dVGfZSZ40Xqo4vvbvPKWix7N+4SAKtZJHsgSiEZQLVwPqUNl+x3tOomcL+QVmacM2f5tSCTCkD3E2LiHBSi2tXKyn3x35EB7oY3YLOg1Hr+IAeVXLPobfL81/W3TVJI8hmtN/+6J90I75Rno7g5ct8pVPwJqHhcuAqT0O5r4n6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739443093; c=relaxed/simple;
-	bh=tPc0mtOSvvNjsiyZamSxUZlYBtpbVsuKn6yjNRsFneg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EQyXmH1dRWhyEjtojhUICven5Dgp7I3GBtmCwWPLOyw1oKgpMC4xMBvhEhfk3DUQOcZ3HFpKk+l6KrVJv6X3Su2fBTGpCs1mrwaz0gM3OWDgHhvOH37HuysJDg4ZR5PQThAknpM43C6y2QFEjLVDvpn2i0r5uIrcRCnWSvCPkBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jyapWIhM; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739443089;
-	bh=tPc0mtOSvvNjsiyZamSxUZlYBtpbVsuKn6yjNRsFneg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jyapWIhMsPTIC4FGk8FX0VVGQrKTcLx1TT3roWkmt8cBuNb/NifXwpN8sVEN7lgrI
-	 eZyAehAbaVhgz1D8F7v6nKC4LpR6kTbo0pIXD3/eeiu2hipqaxTrWHCl6x8v6J+Rot
-	 VfvDhqdurU2GdHkxQZCvvP9u2NyZoh24EmqR3ZxzCujWhOyRs7GU8V9GDbmYzIE0BY
-	 vHv+G59h8jfkdSrp6c/f65FHTwLUYv7mrkjdbr+JMAanEcnTeBQv16mfXK8nH3XbU+
-	 XflDFDPaurrGr5Y8o+8vLeuYh7pVPL/jjTKGC72Xx2ax4eif+muPolU8H0hyipPFIB
-	 0trke5SdKUQuQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4F62717E00A3;
-	Thu, 13 Feb 2025 11:38:08 +0100 (CET)
-Message-ID: <1eff72da-c88f-46bc-aa0a-4e7615184202@collabora.com>
-Date: Thu, 13 Feb 2025 11:38:07 +0100
+	s=arc-20240116; t=1739443243; c=relaxed/simple;
+	bh=rKfJj/nOFTP3ITe5GatUlSP/bs0kOFPFXDa1/jdXj0Q=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=Ea3Z3atIRMfDy7odnVfpJmHWTGTGNuCIEWTHUq4GEa2uH1bf95Y/BT2vpdCGa8OQIWCRJy/OIbODQc4LzEsbWblaYjWs3A+N7t7o78fPSIRqElO4EiPpNcA3541wPXoT4f8oOTA5wFrj0T13eGwVL/eXR1NziKuAKzxiJwpI+lw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=fail (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=b0JIacVt reason="signature verification failed"; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 58AC36AF;
+	Thu, 13 Feb 2025 11:39:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1739443160;
+	bh=rKfJj/nOFTP3ITe5GatUlSP/bs0kOFPFXDa1/jdXj0Q=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=b0JIacVtrHBLExudGvxw2VW6F6/nRpG6Ko7zZRbOF5hzlown3X9l7YYBxDooS+kn0
+	 EP23NnSl/XMjJvwO6j+1Jl5FF0X9GJATp9tVJ3PujlTWBzn4f4d+gflviRsAoBU0Ca
+	 +rweftJoiunoNp8OZmz8bMPvRF65bN//JuR4eBUE=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 37/42] drm/mediatek: mtk_hdmi_common: Assign DDC
- adapter pointer to bridge
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "jie.qiu@mediatek.com" <jie.qiu@mediatek.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
- <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
- <jitao.shi@mediatek.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kernel@collabora.com" <kernel@collabora.com>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- =?UTF-8?B?TGV3aXMgTGlhbyAo5buW5p+P6YieKQ==?= <Lewis.Liao@mediatek.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- =?UTF-8?B?VG9tbXlZTCBDaGVuICjpmbPlvaXoia8p?= <TommyYL.Chen@mediatek.com>,
- =?UTF-8?B?SXZlcyBDaGVuamggKOmZs+S/iuW8mCk=?= <Ives.Chenjh@mediatek.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
- "junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
-References: <20250211113409.1517534-1-angelogioacchino.delregno@collabora.com>
- <20250211113409.1517534-38-angelogioacchino.delregno@collabora.com>
- <4ff6d01a040b37d4f581ea3808db4851e555a4fe.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <4ff6d01a040b37d4f581ea3808db4851e555a4fe.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250212195656.69528-1-slavine@d3embedded.com>
+References: <20250212195656.69528-1-slavine@d3embedded.com>
+Subject: Re: [PATCH 0/4] media: i2c: Add driver for Sony IMX728
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: =?utf-8?q?N=C3=ADcolas?= F. R. A. Prado <nfraprado@collabora.com>, Abel Vesa <abel.vesa@linaro.org>, Achath Vaishnav <vaishnav.a@ti.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Ard Biesheuvel <ardb@kernel.org>, Benjamin Mugnier <benjamin.mugnier@foss.st.com>, Biju Das <biju.das.jz@bp.renesas.com>, Bjorn Andersson <quic_bjorande@quicinc.com>, Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>, Fabio Estevam <festevam@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Hans Verkuil <hverkuil@xs4all.nl>, Javier Carrasco <javier.carrasco@wolfvision.net>, Jianzhong Xu <xuj@ti.com>, Julien Massot <julien.massot@collabora.com>, Kory Maincent <kory.maincent@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab <mchehab@kernel.org>
+ , Mikhail Rudenko <mike.rudenko@gmail.com>, Nishanth Menon <nm@ti.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Sascha Hauer <s.hauer@pengutronix.de>, Sebastian LaVine <slavine@d3embedded.com>, Shawn Guo <shawnguo@kernel.org>, Stuart Burtner <sburtner@d3embedded.com>, Tero Kristo <kristo@kernel.org>, Thakkar Devarsh <devarsht@ti.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Umang Jain <umang.jain@ideasonboard.com>, Vignesh Raghavendra <vigneshr@ti.com>, Will Deacon <will@kernel.org>, Zhi Mao <zhi.mao@mediatek.com>
+To: Sebastian LaVine <slavine@d3embedded.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Date: Thu, 13 Feb 2025 10:40:35 +0000
+Message-ID: <173944323591.1238111.8582110055649651187@ping.linuxembedded.co.uk>
+User-Agent: alot/0.10
 
-Il 13/02/25 10:20, CK Hu (胡俊光) ha scritto:
-> On Tue, 2025-02-11 at 12:34 +0100, AngeloGioacchino Del Regno wrote:
->> External email : Please do not click links or open attachments until you have verified the sender or the content.
->>
->>
->> In preparation for adding the new HDMI TX v2 IP driver, assign the
->> pointer to the DDC adapter to struct drm_bridge during probe.
-> 
-> I could not find where to use hdmi->bridge.ddc in the patch of adding hdmi v2.
-> Could you describe more about where or which function would use this?
-> 
+Hi Sebastian,
 
-I have already replied to this exact question a long time ago.
+Quoting Sebastian LaVine (2025-02-12 19:56:52)
+<snip>
+>=20
+> Total for device /dev/v4l-subdev4: 44, Succeeded: 44, Failed: 0, Warnings=
+: 0
+>=20
+>=20
+> This is a v3 of a series that was originally sent last summer[0].
+>=20
+> [0]: https://lore.kernel.org/r/linux-media/20240628-imx728-driver-v2-0-80=
+efa6774286@d3engineering.com/
 
-https://lore.kernel.org/all/b5a77637-64b0-4ed3-9619-e76d094505af@collabora.com/
+This version of the driver was authored by "Spencer Hill
+<shill@d3engineering.com>" who seems to no longer be credited. Is this
+intentional?
 
-Regards,
-Angelo
+Does his original Signed-off-by: tag need to be kept at least ? Or
+perhaps Co-Authored-by: ?
 
-> Regards,
-> CK
-> 
->>
->> This commit brings no functional changes.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> index 5ea45608921c..2c91f65f26fa 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> @@ -411,6 +411,7 @@ struct mtk_hdmi *mtk_hdmi_common_probe(struct platform_device *pdev)
->>          hdmi->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID
->>                           | DRM_BRIDGE_OP_HPD;
->>          hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
->> +       hdmi->bridge.ddc = hdmi->ddc_adpt;
->>          hdmi->bridge.vendor = "MediaTek";
->>          hdmi->bridge.product = "On-Chip HDMI";
->>
->> --
->> 2.48.1
->>
-> 
+--
+Kieran
 
 
+>=20
+> v2 -> v3:
+> - Update maintainer
+> - Update bindings example
+> - Add devicetree overlays
+> - The driver now supports SRGGB12_1X12, not SRGGB10_1X10
+> - The driver now outputs at 3856x2176, not 2840x2160
+> - Fixed exposure, again controls
+> - Removed duplicate register writes (removed repeat HDR writes, etc)
+> - Fixed imx728_wait_for_state use of the cci_* API
+> - Re-added _imx728_set_routing (necessary for imx728_init_state)
+>=20
+> Sebastian LaVine (4):
+>   media: dt-bindings: Add Sony IMX728
+>   media: i2c: Add driver for Sony IMX728
+>   arm64: dts: ti: k3-am62a7-sk: Add overlay for fusion 2 board
+>   arm64: dts: ti: Add overlays for IMX728 RCM
 
