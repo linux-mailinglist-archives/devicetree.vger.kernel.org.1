@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-146406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D434A34D03
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 19:07:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57261A34D39
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 19:13:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CEF43ACB19
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:06:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E110F188ED08
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:11:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F78426981C;
-	Thu, 13 Feb 2025 18:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1B8F245030;
+	Thu, 13 Feb 2025 18:08:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFlcFson"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TMalfmVP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53DF2245030;
-	Thu, 13 Feb 2025 18:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93952241693;
+	Thu, 13 Feb 2025 18:08:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739469803; cv=none; b=VKWVB5ukkQSqM1kmNI/D4u/EWkWCXtXQWKFiVTGmL8/ZDej+o4HuDjMMcboNWHqoR9EjG4vQY/YHGWppj+g4Pj/6IuQpT2dhIUfRrM1N/V8Rh1GsPJ/kSmis6nKLJQC0nAFfWSB9rJ1EOZ7RXconx0n/5b2nNQqSLc0ZXJ7u+mA=
+	t=1739470083; cv=none; b=WEsxWaFltSjeHPtg13/dx2pn3bxw9pGNPjezhvNszPkdCpONgjK8gRffewb7+Onq3AQYvNpz04pcMwxFVD6cfDt+iD5i1puoAhenjBprUgNb+4IOupYLlKkSAZUZGp896h1le8BTce0CT7YDXhiXtJCapn8rC7OUpAgP6+86L9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739469803; c=relaxed/simple;
-	bh=WbXwHDiWR7XWg4WjQ4/T8ldzDcjVVx3R4v88F9Z6gJQ=;
+	s=arc-20240116; t=1739470083; c=relaxed/simple;
+	bh=7tg0eIMwaCCfvANdT4CCgQtB9sEZfYm55QeTSa/g4gs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J1V9iOpXXzXVDXSsRHlWIqCx/AXz6RqY5BozS7LQDpclPY4vutcTmGfDs1uKRKN7abVSpGbBEs9tNK3A4R0A7gEwJ1CicnbEVwWEKf8RdG1AVct1TKmYtbEKvgZM5UPiGDBYKJpRAn5vUTW+vi3uAP3CJ9dm+hPGbk7gnpkwGj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFlcFson; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC902C4CED1;
-	Thu, 13 Feb 2025 18:03:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Bqo7WO81JfJ296v+pqmOEITvc/8rVIj9/tpYTJfjWrV2tD/feGl6BldvtymX2SDgfNdcHOXWuZn9/z1tmtpV5ZBr2B2sUVye5CsvJ5SSVxJKg5d6SPo1iLPeWVVJ2RqTgmZCmfk0WXIOn1ROATYT070GNvnXy+VCkzhmhcy/HXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TMalfmVP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72785C4CED1;
+	Thu, 13 Feb 2025 18:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739469802;
-	bh=WbXwHDiWR7XWg4WjQ4/T8ldzDcjVVx3R4v88F9Z6gJQ=;
+	s=k20201202; t=1739470083;
+	bh=7tg0eIMwaCCfvANdT4CCgQtB9sEZfYm55QeTSa/g4gs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JFlcFsonbuTOSnOfR4qSEuNbP6OqQO4MkCgmkJkU3qk/lFWl4DcL9Ny7+hL5pGItP
-	 X8euWWBe+4vkvZ28rziKTnwiAN6h635psymMpbkwRtULAQulnND73pl1GQ0SEOLw+C
-	 bMyAgJM5CI6DnWYEqTMaRqqnyTOVWJthiT3yj0D3KTJ11oN0uKvQaP1eLSHQXp//sT
-	 x90CYDFiKV6X3Nbgav+6OERLLLgqLuZxAL1XgCN6K07OvJ3s1v8T36rfjAL06pX26I
-	 STTI/G/uteVexNzLyPLhM66cveAjEv+pRL9cAmHIazhxI4itpUtiWCaqBx8fK/eWWw
-	 BHRgRHaw2a2YQ==
-Message-ID: <e45c47bb-2c69-42b3-9c2d-7ec789f94cc5@kernel.org>
-Date: Thu, 13 Feb 2025 19:03:14 +0100
+	b=TMalfmVPn8HL9xhS+oBHp05v2YTYoOBItw5mtGnZbBSAJvx0roBVXPsdyfUVpwTlj
+	 y1QM5JhkXc+jdzzzqS34ODn16yAJS3YKA4S4cc1BUkY02IR/0l3TLCRgzxSqhtZcjf
+	 n5X0StaEtW/+LVYfwEgKFz4HqNoJQ/gRtY3osVdoOE7E1L5+PLoVtsK4GWtlmu92Eb
+	 fCRW1v0pt/K16fubpR6MZUJhrltRniIUJDl//O4b7XHyzaLbaCGkOvB4e3qFP3qz83
+	 LpESj5d9vCIFTDkpakncFoFR4y07DpnUjj7xzWm2tTVc9jqJuODWDpQclg+TK5SJji
+	 u/mtD2OUP5vFw==
+Message-ID: <2ab715bd-e26c-41bb-ac64-baa864d90414@kernel.org>
+Date: Thu, 13 Feb 2025 19:07:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/7] arm64: dts: agilex: Fix fixed-clock schema
- warnings
-To: matthew.gerlach@linux.intel.com
-Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
- robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
- conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, matthew.gerlach@altera.com,
- peter.colberg@altera.com
-References: <20250211151725.4133582-1-matthew.gerlach@linux.intel.com>
- <20250211151725.4133582-3-matthew.gerlach@linux.intel.com>
- <8bf87b59-fe80-4bb5-a558-bff35d876e67@kernel.org>
- <d6b453b-5819-d663-7cc1-6ef154c5d965@linux.intel.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add spacemit,k1-syscon
+To: Haylen Chu <heylenay@4d2.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
+ Yixun Lan <dlan@gentoo.org>, linux-riscv@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
+ Chen Wang <unicornxdotw@foxmail.com>, Jisheng Zhang <jszhang@kernel.org>,
+ Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
+References: <20250103215636.19967-2-heylenay@4d2.org>
+ <20250103215636.19967-4-heylenay@4d2.org>
+ <aw2vqnz5vcccqqvrrhz5tgawj7fnzzg3tds7nnepuorit37a7r@jcj3wrs7d73h>
+ <Z6rdBhQ7s2ReOgBL@ketchup> <19e5129b-8423-4660-8e4f-8b898214d275@kernel.org>
+ <Z63T_EDvXiuRQbvb@ketchup>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,75 +111,145 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <d6b453b-5819-d663-7cc1-6ef154c5d965@linux.intel.com>
+In-Reply-To: <Z63T_EDvXiuRQbvb@ketchup>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/02/2025 18:37, matthew.gerlach@linux.intel.com wrote:
-> 
-> 
-> On Wed, 12 Feb 2025, Krzysztof Kozlowski wrote:
-> 
->> On 11/02/2025 16:17, Matthew Gerlach wrote:
->>> Add required clock-frequency property to fixed-clock nodes
->>> to fix schema check warnings.
+On 13/02/2025 12:14, Haylen Chu wrote:
+> On Tue, Feb 11, 2025 at 09:03:20AM +0100, Krzysztof Kozlowski wrote:
+>> On 11/02/2025 06:15, Haylen Chu wrote:
+>>> On Sat, Jan 04, 2025 at 11:07:58AM +0100, Krzysztof Kozlowski wrote:
+>>>> On Fri, Jan 03, 2025 at 09:56:35PM +0000, Haylen Chu wrote:
+>>>>> Add documentation to describe Spacemit K1 system controller registers.
+>>>>>
+>>>>> Signed-off-by: Haylen Chu <heylenay@4d2.org>
+>>>>> ---
+>>>>>  .../soc/spacemit/spacemit,k1-syscon.yaml      | 52 +++++++++++++++++++
+>>>>>  1 file changed, 52 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..79c4a74ff30e
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+>>>>> @@ -0,0 +1,52 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/soc/spacemit/spacemit,k1-syscon.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Spacemit K1 SoC System Controller
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Haylen Chu <heylenay@4d2.org>
+>>>>> +
+>>>>> +description:
+>>>>> +  The Spacemit K1 SoC system controller provides access to shared register files
+>>>>> +  for related SoC modules, such as clock controller and reset controller.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    items:
+>>>>> +      - enum:
+>>>>> +          - spacemit,k1-apbc-syscon
+>>>>> +          - spacemit,k1-apbs-syscon
+>>>>> +          - spacemit,k1-apmu-syscon
+>>>>> +          - spacemit,k1-mpmu-syscon
+>>>>> +      - const: syscon
+>>>>> +      - const: simple-mfd
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  clock-controller:
+>>>>> +    $ref: /schemas/clock/spacemit,k1-ccu.yaml#
+>>>>> +    type: object
+>>>>
+>>>> So now we see the full picture and it leads to questions.
+>>>>
+>>>> 1. Why spacemit,k1-apbc-syscon with spacemit,k1-ccu-apmu child is a
+>>>> correct combination?
+>>>>
+>>>> 2. Why having this split in the first place? Please confirm that clock
+>>>> controller is really, really a separate device and its child in
+>>>> datasheet. IOW, fake child for your Linux is a no-go. Fake child while
+>>>> devices are independent is another no-go.
 >>>
->>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>> ---
->>> v6:
->>>  - New patch to series.
->>> ---
->>>  arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
->>> index 1235ba5a9865..42cb24cfa6da 100644
->>> --- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
->>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
->>> @@ -114,21 +114,25 @@ clocks {
->>>  		cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
->>>  			#clock-cells = <0>;
->>>  			compatible = "fixed-clock";
->>> +			clock-frequency = <0>;
+>>> These syscons are introduced because the clock controllers share
+>>> registers with reset controllers. Folding them into the parents results
 >>
->> That's not a correct frequency. You silence some error by introducing
->> incorrect properties. That's wrong.
-> 
-> A clock-frequency of 0 seems valid for a clock that is disabled or not 
-> used on a particular board. I chose this approach because it already has 
-> widespread usage in the kernel:
-> 
->  	grep 'clock-frequency = <0>' arch/arm64/boot/dts/*/*.dtsi | wc -l
->  	198
-
-If the clock is not there, it should be removed or disabled. Otherwise
-what is the point of setting here clock frequency=0? To silence some
-warning. Why is there warning in the first place?
-
-
-> 
+>> So a fake split...
 >>
->> Don't fix the warnings just to silence them, while keeping actual errors
->> still in the code.
+>>> in devicetree nodes act as both reset and clock controllers, like what
+>>
+>> Which is correct hardware representation, isn't it?
+>>
+>>> has been done for Rockchip SoCs. Such folding isn't practical for the
+>>> MPMU region either, since watchdog and other misc bits (e.g. PLL lock
+>>> status) locates in it.
 > 
-> I actually want to fix the existing warnings, but it seems appropriate to 
-> only address the existing warnings that are related to this patch set of 
-> adding PCIe Root Port support to the Agilex family of chips. This patch 
-> set requires touching the file, socfpga_agilex.dtsi; so I fixed the 
-> warnings I thought were in this file. I believe the other warnings need to 
-> be fixed by converting text binding descriptions to yaml or by touching 
-> files unrelated to this patch set.
+> I have to correct that the watchdog doesn't stay in the MPMU region, I
+> misremembered it.
 > 
-> Setting the value of the status property to "disabled" also silences the 
-> particular fixed-clock, but I didn't see any other usage by a fixed-clock. 
-> What do suggest is the best way to handle this warning?
+>> Hm? Why? You have a device which is reset and clock controller, so why
+>> one device node is not practical? Other vendors do not have problem with
+>> this.
+> 
+> Merging reset and clock controllers together is fine to me. What I want
+> to mention is that APMU and MPMU, abbreviated from Application/Main Power
+> Management Unit, contain not only clock/reset-related registers but also
+> power management ones[1]. Additionally, the PLL lock status bits locate
+> at MPMU, split from the PLL configuration registers as you've already
+> seen in the binding of spacemit,k1-ccu-apbs where I refer to it with a
+> phandle.
 
-DTSI and DTS represent actual hardware, so common DTSI should not have
-clocks which do not exist. Such clocks should be in DTS or some other
-common DTSI file, depending on how the hardware is organized.
+You need to define what is the device here. Don't create fake nodes just
+for your drivers. If registers are interleaved and manual says "this is
+block APMU/MPMU" then you have one device, so one node with 'reg'.
 
-Instead of fixing the warning, look at the cause - what is wrong in DTSI
-in this hardware description.
+If subblocks are re-usable hardware (unlikely) or at least
+separate/distinguishable, you could have children. If subblocks are
+re-usable but addresses are interleaved, then children should not have
+'reg'. If children do not have any resources as an effect, this is
+strong indication these are not re-usable, separate subblocks.
+
+> 
+> Since reset/clock and power management registers interleave in the MMIO
+> region, do you think syscons are acceptable in this situation or it
+> should be handled in another way? The reset and clock controllers could
+> still be folded together as they share the same registers. The device
+> tree will look like,
+> 
+> 	syscon_mpmu: system-controller@d4050000 {
+> 		compatible = "spacemit,mpmu-syscon", "syscon", "simple-mfd";
+> 		reg = <0xd4050000 0x10000>;
+> 
+> 		cru_mpmu: clock-controller {
+> 			compatible = "spacemit,k1-cru-mpmu";
+> 			#clock-cells = <1>;
+> 			#reset-cells = <1>;
+> 		};
+> 
+> 		power_mpmu: power-controller {
+> 			compatible = "spacemit,k1-powerdomain-mpmu";
+> 			/* ... */
+> 			#power-domain-cells = <0>;
+> 		};
+
+Based on above, I do not see any need for children device nodes. It's
+fake split to match driver design.
+
+
+> 	};
+> 
+> For the other two clock controllers (APBS and APBC), syscons are really
+> unnecessary and it's simple to fold them.
+
+
+I don't follow. Do we talk about children or syscon compatible?
+
 
 Best regards,
 Krzysztof
