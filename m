@@ -1,177 +1,142 @@
-Return-Path: <devicetree+bounces-146395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DA04A34C28
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:40:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08DFBA34C30
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:42:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 223393AD55E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:34:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FBBF3A836B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:37:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F0EB24168A;
-	Thu, 13 Feb 2025 17:33:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F37ED221723;
+	Thu, 13 Feb 2025 17:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="gHt2sI3u"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JVjQkhFH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14A15241674;
-	Thu, 13 Feb 2025 17:33:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739468019; cv=pass; b=IdJIYhUMF0VV2/OLpaG3V4USlAMWH+cKYdOoFDrIb3+K47zK3cwey0CR3D/vey0lSpmGHNVmhdu3HeaYXkbtbNVe1Yv1+mX44sm2Hd5zkaaoUQYBQOmP38KbkCc8rLJUIo/nwKghtriuYs/6q8Wc30DU7x3vexBL0DjWN6iMd1o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739468019; c=relaxed/simple;
-	bh=6ByzMOuDBh5R+FUdNwn2gk3LwiXzk/aPZNyTOpzuZOU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y2JE5KJ3DmaGKhMZoK0uhx2pFjO77zVuu9ImaDEUkBCQISVHoy/Q2QHGgiDuCR+tKJ3i90UBnL+BwJ2HS49ZPW4nl86S976ivTpAW9f7oY4761tosIE3ZWADchN8+ve7LmZG9obOpNKL56o9i1aq3vH+WDy//4vl+jr517PFT6A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=gHt2sI3u; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1739467992; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=fsZ9tyPjguNsUc2+X1eFr5QgUPWPBVzABYeF+VSOoUx8sOk2o9TIpuy6IFgXZUjG9vZWe2oUATvThyog4cB1QGSF+7jMYZN0kw9K4ETfX3PdZ8MffVDq/wZ0EpgjNyprDhV/ILksMWZTFad0oAv+bAEhZnMftm6shmu4Q2uh+DQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1739467992; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=6ByzMOuDBh5R+FUdNwn2gk3LwiXzk/aPZNyTOpzuZOU=; 
-	b=bta+8ZPQPOcCe9SZHB2yjLV1NS6qrkM+JiDqDJdXEM7/kUS9MuT5tKC+9VCVfIfzD8aCiVovVkZOSqExBy9M8mRQ2Z1mRt6G56DXfOz4tq350B3ZIYmhlv8R4Xu045K9k3bY3npdzZbBAxK2WJU2vsEIWL+tbEYKPRv8yV6terI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1739467992;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=6ByzMOuDBh5R+FUdNwn2gk3LwiXzk/aPZNyTOpzuZOU=;
-	b=gHt2sI3u9x/IyIOL7Gz7LHOOPs0dHmzj8DCoJ1j0HswtKdfzbJT6zBFQ67GzwLvu
-	MPP/pAtZ4COd1DYdY5C/SpKgmnR6xnfTJ29gG6h2mt4W0K63gqqZ94CkCqga8aVXh6i
-	twwysP6rbc9WuqaBcE7MNq1IW8GqH8cgBGP/ll5k=
-Received: by mx.zohomail.com with SMTPS id 1739467989609795.4274306368665;
-	Thu, 13 Feb 2025 09:33:09 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 858F21806DE; Thu, 13 Feb 2025 18:33:04 +0100 (CET)
-Date: Thu, 13 Feb 2025 18:33:04 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>, 
-	Damon Ding <damon.ding@rock-chips.com>, heiko@sntech.de, robh@kernel.org, conor+dt@kernel.org, 
-	algea.cao@rock-chips.com, rfoss@kernel.org, devicetree@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, hjc@rock-chips.com, kever.yang@rock-chips.com, 
-	dmitry.baryshkov@linaro.org, vkoul@kernel.org, andy.yan@rock-chips.com, krzk+dt@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, l.stach@pengutronix.de
-Subject: Re: [PATCH v6 00/14] Add eDP support for RK3588
-Message-ID: <m3ovwhg3h2njsjpuj2wdahxex6zq2udmxonublgmnlrdfred4z@zxtyd6xvhram>
-References: <20250123100747.1841357-1-damon.ding@rock-chips.com>
- <5044FFCB-B325-40D0-BA82-03AF64EAF029@gmail.com>
- <D7RH63Z1VBBD.1AIOQJIWPZIXS@cknow.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04DA6204684;
+	Thu, 13 Feb 2025 17:37:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739468256; cv=none; b=oztXc6CxW7Pm+q++AH72r2vUSNAfgmXm3I6RogfUYzT3Tw3TW3jYKRdZDLIhfvujHSOWaGi89d8XFx4gB7c4hip/twZxFodPZZSRLXUDqe5V/1ErGFJ4cVRgClP0bSZNAKh1EAOelZunL7PMeH6wje0C5LSzCiqO2M2pKskgwI8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739468256; c=relaxed/simple;
+	bh=Kag1yQsukjTOP+S5Jjyl/xScN3/K1pOC6cQmUcAjDkI=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=Jy3zVQxKZzWO/IK5V2ze+ajO3Hcihn4rJxDhQycPquU6netcX/3TyR6008xOBAcH5UlUvPTJ9ED9YzSACAF+pyfdrVcvv3VTpGDnPgaRLXVAqclj2F4QYq+UPKwaWV6vrTSC2/kubKFFmfqLB37Jbu8HUqnR1eMHr+Wu8xfGv0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JVjQkhFH; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739468255; x=1771004255;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=Kag1yQsukjTOP+S5Jjyl/xScN3/K1pOC6cQmUcAjDkI=;
+  b=JVjQkhFHOzmKXwr6jbYjevnxj6zsSpgGuNFia3zje2Ik9oALIwWeMQpl
+   3tcI5tWcajN/77S1g+tita1Ov6BOQWXj/2kZDFxv9f/xGqAScMjgklyT1
+   OhsqCdMd1MC0N3ZZ+Tt+28fEd4x6bsn+CW4YI3FtOe6G8JfLK3UHabHsU
+   l3zufgdZSIC9Tl5xLCLt4ilHAgWIuKEOFWQEhbJ0ru+slMW+3IPmXwfWg
+   Rs5Casq61833QepjCOdGh41VEWpmVAjQrlQFP5nc4f7l719ESUjKFnrLc
+   PkbA02H3Ghiv3z7dRweisSZrZV431F55+8AHZ5vvheYNQc3xuYos93Z1w
+   g==;
+X-CSE-ConnectionGUID: wp5JQYCWTJebTRL3ivTeow==
+X-CSE-MsgGUID: 8g/infmpQpqrA9FXAvWlSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40449831"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; 
+   d="scan'208";a="40449831"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 09:37:34 -0800
+X-CSE-ConnectionGUID: x4aqHW16SCmMS8G5LPToIQ==
+X-CSE-MsgGUID: hKz1t8f0ReqqU7j3y875Tg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="150385334"
+Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
+  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 09:37:34 -0800
+Date: Thu, 13 Feb 2025 09:37:33 -0800 (PST)
+From: matthew.gerlach@linux.intel.com
+To: Krzysztof Kozlowski <krzk@kernel.org>
+cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+    robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
+    conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com, 
+    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, matthew.gerlach@altera.com, 
+    peter.colberg@altera.com
+Subject: Re: [PATCH v6 2/7] arm64: dts: agilex: Fix fixed-clock schema
+ warnings
+In-Reply-To: <8bf87b59-fe80-4bb5-a558-bff35d876e67@kernel.org>
+Message-ID: <d6b453b-5819-d663-7cc1-6ef154c5d965@linux.intel.com>
+References: <20250211151725.4133582-1-matthew.gerlach@linux.intel.com> <20250211151725.4133582-3-matthew.gerlach@linux.intel.com> <8bf87b59-fe80-4bb5-a558-bff35d876e67@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6djyuz6okfpd5ae6"
-Content-Disposition: inline
-In-Reply-To: <D7RH63Z1VBBD.1AIOQJIWPZIXS@cknow.org>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/239.467.69
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
 
---6djyuz6okfpd5ae6
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 00/14] Add eDP support for RK3588
-MIME-Version: 1.0
 
-Hi,
+On Wed, 12 Feb 2025, Krzysztof Kozlowski wrote:
 
-On Thu, Feb 13, 2025 at 05:56:55PM +0100, Diederik de Haas wrote:
-> On Thu Feb 13, 2025 at 3:54 PM CET, Piotr Oniszczuk wrote:
-> >
-> >
-> >> Wiadomo=C5=9B=C4=87 napisana przez Damon Ding <damon.ding@rock-chips.c=
-om> w dniu 23 sty 2025, o godz. 11:07:
-> >>=20
-> >> Picked from:
-> >> https://patchwork.kernel.org/project/linux-rockchip/list/?series=3D923=
-593
-> >>=20
-> >> These patchs have been tested with a 1536x2048p60 eDP panel on
-> >> RK3588S EVB1 board, and HDMI 1080P/4K display also has been verified
-> >> on RK3588 EVB1 board. Furthermore, the eDP display has been rechecked
-> >> on RK3399 sapphire excavator board.
-> >> ...
-> >> 9 files changed, 401 insertions(+), 89 deletions(-)
-> >>=20
-> >> --=20
-> >> 2.34.1
-> >>=20
-> >
-> > Damon,
-> >
-> > I=E2=80=99m playing with hdmi0 port enablement on radxa rock5 itx board=
- with 6.14 mainline.
-> >
-> > rock5 itx has 2 hdmi ports: hdmi0 is wired to rk3588 typeC1/eDP1 eDP wi=
-th ra620 eDP->HDMI converter and hdmi1 from hdmi/edp tx1
-> > (see page3 & page29 at https://dl.radxa.com/rock5/5itx/v1110/radxa_rock=
-_5itx_v1110_schematic.pdf)
-> >
-> > I=E2=80=99m on 6.14-rc2 with applied:=20
-> > [1] Cristicc hdmi code (https://gitlab.collabora.com/cristicc/linux-nex=
-t/-/commits/rk3588-hdmi-bridge)
-> > [2] eDP support for RK3588 (https://patchwork.kernel.org/project/linux-=
-rockchip/list/?series=3D927765)
-> > [3] Add eDP mode support for Rockchip Samsung HDPTX PHY (https://patchw=
-ork.kernel.org/project/linux-rockchip/cover/20250205105157.580060-1-damon.d=
-ing@rock-chips.com/)
-> >
-> > Is edp1 supported by yours [2] series?
-> >
-> > If yes - may you pls hint me about required dts additions in https://gi=
-t.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/arm64/boot=
-/dts/rockchip/rk3588-rock-5-itx.dts?h=3Dv6.14-rc2 ?
->=20
-> I don't know if it's relevant, but while HDMI0 got enabled for quite a
-> few devices in 6.13, it did NOT get enabled for Rock 5 ITX.
-> I made a local patch (which does the same thing as was done for Rock 5B)
-> but I have no idea if it actually works (I don't have the board).
+> On 11/02/2025 16:17, Matthew Gerlach wrote:
+>> Add required clock-frequency property to fixed-clock nodes
+>> to fix schema check warnings.
+>>
+>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>> ---
+>> v6:
+>>  - New patch to series.
+>> ---
+>>  arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+>> index 1235ba5a9865..42cb24cfa6da 100644
+>> --- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+>> @@ -114,21 +114,25 @@ clocks {
+>>  		cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
+>>  			#clock-cells = <0>;
+>>  			compatible = "fixed-clock";
+>> +			clock-frequency = <0>;
+>
+> That's not a correct frequency. You silence some error by introducing
+> incorrect properties. That's wrong.
 
-I don't have the board either, but the schematics suggests that your
-patch is not correct. On the Rock 5 ITX the RK3588's first HDMI/eDP
-port should be enabled in eDP mode to be used with an eDP panel via
-connector J11. This series is needed for that.
+A clock-frequency of 0 seems valid for a clock that is disabled or not 
+used on a particular board. I chose this approach because it already has 
+widespread usage in the kernel:
 
-Greetings,
+ 	grep 'clock-frequency = <0>' arch/arm64/boot/dts/*/*.dtsi | wc -l
+ 	198
 
--- Sebastian
+>
+> Don't fix the warnings just to silence them, while keeping actual errors
+> still in the code.
 
---6djyuz6okfpd5ae6
-Content-Type: application/pgp-signature; name="signature.asc"
+I actually want to fix the existing warnings, but it seems appropriate to 
+only address the existing warnings that are related to this patch set of 
+adding PCIe Root Port support to the Agilex family of chips. This patch 
+set requires touching the file, socfpga_agilex.dtsi; so I fixed the 
+warnings I thought were in this file. I believe the other warnings need to 
+be fixed by converting text binding descriptions to yaml or by touching 
+files unrelated to this patch set.
 
------BEGIN PGP SIGNATURE-----
+Setting the value of the status property to "disabled" also silences the 
+particular fixed-clock, but I didn't see any other usage by a fixed-clock. 
+What do suggest is the best way to handle this warning?
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmeuLNAACgkQ2O7X88g7
-+pqj/g/+Ko9YwegFYiHHFc2NJHqSn9Er7V2IhdDxANKuYmDWkl238DIkPbx5N++z
-dP6qxCV8/YD123iERKtHSvIikWgw7rRaV8GKkT95xc3AAfYfyt4Zjf3wWwwOrNXH
-w1UK+68lroyq4n+JPwQuZlkRhKclMpv78w5lZJ2fXX/ni8PWf3m8DyBGzES03yDK
-l5e0sp6dEFaxL6plKIDdB7Xw/CYW75UiJStCuBYKka1pr3I5X8IgWMuQ+oK5Lde3
-hzO/3TLG9WKTiRoehs4ocJngsz0sS8o70GWVMXSiSybaMbK0NEf6NonBv1f6hA0J
-RrCYZGZEsKaPnveI+HlwnvXJlTnISIjs2jw7HF35HSVl4ZaYLf9k4HFE6vrl+y7N
-GPplG9bzgVKsZgK5rv1ddxBQbMZ30LlyP1/BxDPqY/78+ZyFg/9vjovfF7rG6DUa
-KIgcrgB/rD/4P1wdOGhz+bwbi2mwsc0yfzAWS6qXxCw70RQ0YNKhE/ha5cM0bfwh
-IyKOUaxLceZBVLXuXXXKo1aeOxLHiVSB+kblT/Dq85b4Vl71n5v81x/jfo47O80Z
-LjNdgoLngofz67wKl+BHJsJAvtRvXP/NI9nNpsSgY1tLzUeKsnllS1mWYh3WE24u
-vPH7IuyON+11TRur6JqaEd5LbafrMcQ2+Fqz0UdscgafmzsTyTw=
-=1OmE
------END PGP SIGNATURE-----
+>
+> Best regards,
+> Krzysztof
+>
 
---6djyuz6okfpd5ae6--
+Thanks for the feedback,
+Matthew Gerlach
 
