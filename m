@@ -1,165 +1,142 @@
-Return-Path: <devicetree+bounces-146462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E75E6A35002
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:58:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEBD4A35023
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 22:06:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77C7516AF61
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:58:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EAAD3AB881
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:06:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FDE62661AC;
-	Thu, 13 Feb 2025 20:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE293266B7F;
+	Thu, 13 Feb 2025 21:06:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="b67JlGuC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="oVNy0YXX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348F128A2C0;
-	Thu, 13 Feb 2025 20:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC76266B79;
+	Thu, 13 Feb 2025 21:06:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739480306; cv=none; b=MI8DaH3HfIVEfDTCwRjpIJUY90uppBryBt8dpwrqRskm05Nx3Z7as/xXk3qQGbwXCL675KObPraYCRE7AAcZ55J33xqyaCU/hFv11xnYsQCf+rrQMGdR69mPtXGyLkAUdXQ9Lw/qkMxq6dwTva61TbBmLTxm0AjjePi/m78eW48=
+	t=1739480786; cv=none; b=gOjBTNBVpvt2XnGI9t5XrA8wFHdGpqHAHa4pU3ErucB2tWu1mURsc+lofS6+xmffxpzfm8xuVd0XutxN+UjQXCT7m70IkD4N1bd785xne7FGhH/QLX9/ahK4nNIjd4f4P4JTJ0//9pCG//i7Rj2+bjVJTWoWLYlttggYco5LmRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739480306; c=relaxed/simple;
-	bh=DMvs0zGdbiCX/sjLoR9VNsU3LUegWEBDqfY9b6mUYj8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tO5nxjrPLxN+nSvuyiMnACqc5e4xnMezVhfnPj+THfKPQzdSYXnV0Q5k2+MKQobhXAcHFPeX/FWjF67mYChjcYpF9mXKICfLKI0LijI2BCUxgMt2yN5wms8ChkZz3nKnyyys/Pi0wsBvUrRtbTeM9Kw7a8uef+LVbClKmMD2Ufc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=b67JlGuC; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 26DE544300;
-	Thu, 13 Feb 2025 20:58:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739480301;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LWJiM1NFkSJ0D7UA78bKmM5hHyORgZQGH37a4foanvg=;
-	b=b67JlGuCv3yJdSsndGs/nZkpiGYuhphZ7pGjGTTiU7QbULpqySbNoRzg6g/b9mZ1plFOF9
-	iiSZCrQdbFnpB39cmPO+F25DJft8U343DgI8Rp5buSMRtiJDyv+2Cxd/XgYqn2cWjJPgFJ
-	cbbmdxOCqfxm5uFQGc0r3of/Jxg+b7/k7I4Ow5NUa+dwlGGHRRsAyC22uq4bYsXrPeoPk7
-	GLv4a9o2UjkuisxIFWbePEjQt90HCmYnc3Ov9dMhxNc7QrgjvzUcIJx5DdO4N4xq6ixznu
-	mMacCfwcvgU1jVo/6m5aRFthKxWbyrTIFO4XJxPXHv6rOrPYV65LnXxpLlMbzQ==
-Date: Thu, 13 Feb 2025 21:58:18 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: linux-riscv@lists.infradead.org, linux-rtc@vger.kernel.org,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	Inochi Amaoto <inochiama@gmail.com>, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	unicorn_wang@outlook.com, inochiama@outlook.com,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	dlan@gentoo.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 2/2] rtc: sophgo: add rtc support for Sophgo CV1800
- SoC
-Message-ID: <20250213205818f14edd30@mail.local>
-References: <20250213184622.2099324-1-alexander.sverdlin@gmail.com>
- <20250213184622.2099324-3-alexander.sverdlin@gmail.com>
+	s=arc-20240116; t=1739480786; c=relaxed/simple;
+	bh=a2fB9wr/h7U/6HZTcm7xQ1EGsft9gg282LSV5XeX0v4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CMsOGgRrhZ8NgQ+33CrcgJLEcZ/+yeBEkqGk0JsTpPO8Su6dnkup9FiY9arYwBv2WPS19OUeL0H1AWqH22+SG1mRoHH7vK7lqzx9knyvoAusY9kIW5FQZM05ppcVhHw0WRXMrv5aed5faO9nvlBn5oys1Bjd0g0KUFWFoQbORVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=oVNy0YXX; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=NXJUGBvDPkCp2lSwyUa9SRmZSrIoKC6js7gmMeChEic=; b=oVNy0YXXg2Rpbu8oXcoHKrmwfP
+	TkV1Lnz+e07AfltG+k9Ltrv4ftiaYWRtbUgcb1JedmnFg8+S1fZHWZ7Y9n6JnbMnl/3BOoNbXNqXt
+	w8M/0GV10waXdXPCaF+zNv1d2NfopMz95VyRdzYoCjddA2h/LDJw8h+KDi3vPoeKWgpEteGx3zSf/
+	1VUK/VOtrdnTZscIO7Zk4RNEPkeqZ/SjBA/cfT2avcAoLU5nm8T+oUs8Ui1bCtm1GlOXCuG4oO6so
+	wWu4AC7ExGsSEW6nOoJ9uhmXM46m7RqUmp17FhfAcc6RklKRFBAjJL+irOL5SMhKLkiCKi8J/c8/Q
+	6+h1ZqCg==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tigPY-0006WG-UP; Thu, 13 Feb 2025 22:06:17 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: vkoul@kernel.org,
+	kishon@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	quentin.schulz@cherry.de,
+	sebastian.reichel@collabora.com,
+	heiko@sntech.de,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	dse@thaumatec.com
+Subject: [PATCH v6 0/2] MIPI DSI phy for rk3588
+Date: Thu, 13 Feb 2025 22:05:46 +0100
+Message-ID: <20250213210554.1645755-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250213184622.2099324-3-alexander.sverdlin@gmail.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegjeejlecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehlvgigrghnughrvgcuuegvlhhlohhnihcuoegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegieduueethefhkeegjeevfefhiedujeeuhffgleejgfejgeekueejuefgheeggfenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmedvugemieefjedtmeejkegvtdemtgdtvgekmedvkedtieemkegrtgeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvugemieefjedtmeejkegvtdemtgdtvgekmedvkedtieemkegrtgeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduiedprhgtphhtthhopegrlhgvgigrnhguvghrrdhsvhgvrhgulhhinhesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigqdhrihhstghvsehlihhsthhsrdhinhhfrhgruggvrggurdhor
- hhgpdhrtghpthhtoheplhhinhhugidqrhhttgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehqihhujhhinhhgsggrohdrughlmhhusehgmhgrihhlrdgtohhmpdhrtghpthhtohepihhnohgthhhirghmrgesghhmrghilhdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriiihshiithhofhdrkhhoiihlohifshhkihdoughtsehlihhnrghrohdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-On 13/02/2025 19:46:15+0100, Alexander Sverdlin wrote:
-> +static int cv1800_rtc_probe(struct platform_device *pdev)
-> +{
-> +	struct cv1800_rtc_priv *rtc;
-> +	u32 ctrl_val;
-> +	void __iomem *base;
-> +	int ret;
-> +
-> +	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
-> +	if (!rtc)
-> +		return -ENOMEM;
-> +
-> +	base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	rtc->rtc_map = devm_regmap_init_mmio(&pdev->dev, base,
-> +					     &cv1800_rtc_regmap_config);
-> +	if (IS_ERR(rtc->rtc_map))
-> +		return PTR_ERR(rtc->rtc_map);
-> +
-> +	rtc->irq = platform_get_irq(pdev, 0);
-> +	if (rtc->irq < 0)
-> +		return rtc->irq;
-> +
-> +	rtc->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-> +	if (IS_ERR(rtc->clk))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->clk),
-> +				     "clk not found\n");
-> +
-> +	platform_set_drvdata(pdev, rtc);
-> +
-> +	device_init_wakeup(&pdev->dev, 1);
-> +
-> +	rtc->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
-> +	if (IS_ERR(rtc->rtc_dev))
-> +		return PTR_ERR(rtc->rtc_dev);
-> +
-> +	rtc->rtc_dev->ops = &cv1800_rtc_ops;
-> +	rtc->rtc_dev->range_max = U32_MAX;
-> +
-> +	ret = devm_request_irq(&pdev->dev, rtc->irq, cv1800_rtc_irq_handler,
-> +			       IRQF_TRIGGER_HIGH, "rtc alarm", rtc);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret,
-> +				     "cannot register interrupt handler\n");
-> +
-> +	rtc_enable_sec_counter(rtc);
+This adds the phy driver need for DSI output on rk3588.
 
-Really, this must be avoided, this loses precious information and
-changing it later will break users. What must be done is to check
-whether the RTC is started in .read_time if this is not the case, return
--EINVAL instead of an invalid date/time.
-The RTC must be started once the time is set for the first time. This
-ensures we can detect when the time is invalid.
+The phy itself is used for both DSI output and CSI input, though the
+CSI part for the whole chain needs a lot more work, so is left out for
+now and only the DSI part implemented.
 
+This allows the rk3588 with its current VOP support to drive a DSI display
+using the DSI2 controller driver I'll submit in a next step.
 
-> +
-> +	return devm_rtc_register_device(rtc->rtc_dev);
-> +}
-> +
-> +static const struct of_device_id cv1800_dt_ids[] = {
-> +	{ .compatible = "sophgo,cv1800-rtc" },
-> +	{ /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, cv1800_dt_ids);
-> +
-> +static struct platform_driver cv1800_rtc_driver = {
-> +	.driver = {
-> +		.name = "sophgo-cv1800-rtc",
-> +		.of_match_table = cv1800_dt_ids,
-> +	},
-> +	.probe = cv1800_rtc_probe,
-> +};
-> +
-> +module_platform_driver(cv1800_rtc_driver);
-> +MODULE_AUTHOR("Jingbao Qiu");
-> +MODULE_DESCRIPTION("Sophgo cv1800 RTC Driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.48.1
-> 
+Only generic phy interfaces are used, so the DSI part is pretty straight
+forward.
+
+changes in v6:
+- rebase onto 6.14-rc1
+- add Krzysztof binding review
+- v5 was sent at the beginning of december '24, so probably has been lost
+
+changes in v5:
+- add bitfield.h for the FIELD_PROP definition
+  (reported by kernel-test-robot)
+- add Sebastian's Reviewed-by
+- add Conor's Ack to the dt-binding
+
+changes in v4:
+- moved to #phy-cells = 1 as suggested by Sebastian, with the argument
+  denoting the requested phy-type (C-PHY, D-PHY). This works similarly
+  how the Mediatek C/D-PHY already implements this, see mails around:
+  https://lore.kernel.org/all/20230608200552.GA3303349-robh@kernel.org/
+- dropped Krzysztof's review tag from the binding because of this
+- dropped custom UPDATE macro and use FIELD_PREP instead
+- build a FIELD_PREP_HIWORD macro for the GRF settings
+- add received Tested-by tags
+
+changes in v3:
+- add Krzysztof review tag to the binding
+- address Sebastian's review comments
+  - better error handling
+  - dropping empty function
+  - headers
+  - not using of_match_ptr - this should also make the
+    test-robot happier
+
+changes in v2:
+- fix error in dt-binding example
+- drop unused frequency table
+- pull in some more recent improvements from the vendor-kernel
+  which includes a lot less magic values
+- already include the support for rk3576
+- use dev_err_probe
+
+Heiko Stuebner (2):
+  dt-bindings: phy: Add Rockchip MIPI C-/D-PHY schema
+  phy: rockchip: Add Samsung MIPI D-/C-PHY driver
+
+ .../phy/rockchip,rk3588-mipi-dcphy.yaml       |   87 +
+ drivers/phy/rockchip/Kconfig                  |   12 +
+ drivers/phy/rockchip/Makefile                 |    1 +
+ .../phy/rockchip/phy-rockchip-samsung-dcphy.c | 1604 +++++++++++++++++
+ 4 files changed, 1704 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.47.2
+
 
