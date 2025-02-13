@@ -1,106 +1,86 @@
-Return-Path: <devicetree+bounces-146187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B89DA33B39
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:27:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92BBAA33B2C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:26:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED891163C9B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 09:27:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74BAA7A215D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 09:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823D120CCE2;
-	Thu, 13 Feb 2025 09:27:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="SgYp9BO+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08EC420CCC4;
+	Thu, 13 Feb 2025 09:26:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C37E320CCFB
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 09:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FE5201276;
+	Thu, 13 Feb 2025 09:26:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739438865; cv=none; b=KIWfTh6Ee3Fsg2E3qgoCBd53Pi3azpgP5TrisMxvlRllQ3Ff2+nMf+N8X2WFcumuYqdjLiWjU4enRdGu7nDyX7rAq+KTo1jX6nsOkcUeL66JT9NLXRrVg4OVYEFeE2Fptj902Qmo/IdeulXQ+rEQlBXeY6cMLZtpni5+g0PJF7s=
+	t=1739438803; cv=none; b=Lb+NnT36eO25Q8/FlKMNUIjNZIHhw+HqLad5R2PwAVIqwawrfZZKIawrtflwfpfNp+KipgjVWpbJy7oyf2Q7iOnPuHRHnnoEwChMPzhxDMFy6gANTMP2ASFs8+yGRi9ZqKYpqmumasJ3VzIjnLTK3TJIOPgAuImRWHAB63Ug+jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739438865; c=relaxed/simple;
-	bh=VDL0uOf7T+TaCXbMfwI4rehvDdg7Qqg1J9JvQJ5p670=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HVf2r9YO9fbKL+TwoUKSFX/BlxAzzRKzp6710sjOwnyQq85jM6GMMl1zW5xZTPjmrKARRlhPmvEV60txItdNRIYnXXTWpuD5qK94Vr2Z6g5zcppXOwIMLvZefGNd3yKxwE2NWDsVWrlC8Xd5yx1DgUUYOyJPKCFhyWFcPQC/UrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=SgYp9BO+; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=HUhoK5tjELfjF0
-	VqSsnZsbkAizYp2E8hPEyT0wBFLSU=; b=SgYp9BO+sJEDfmB6Dla7eOwn+K7vbG
-	f+PSyGCy8Um/Gk907fN5lQbRGOOTm9xC7lGPK/rhyUFBqXwwTIpWzKjz8gAvpxIh
-	bbwt56fszeCSRw/vWlAfZ01U90t/fHw41zPTJNpF4TlzEC9UOP6nmks2uAdQMga/
-	xg28hCz/d7HEpxKFiJVp0Q8d5iaiXyc2dkkgI2dzmsALBpfvDs1m1UOqqELRQ5ma
-	hqto6+7Bn/uBMCa6AssmmQfyfuKw6nrJgwRslKqFkwJM48NlSQ1F4pu0sDFndk0a
-	I1NVAkLHToUckfzOcyk+mYRpH8Ic9eYnjECoMqJIjV2fWVDVmMtMLhQA==
-Received: (qmail 1812528 invoked from network); 13 Feb 2025 10:27:31 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Feb 2025 10:27:31 +0100
-X-UD-Smtp-Session: l3s3148p1@PcbTqgIu6LVehh99
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: clocks: atmel,at91rm9200-pmc: add missing compatibles
-Date: Thu, 13 Feb 2025 10:26:34 +0100
-Message-ID: <20250213092728.11659-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1739438803; c=relaxed/simple;
+	bh=lax+HrlMpQdynxzj6EcGBdocd4Mvn4Ob4p9CcQRFY04=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UBAkwhncG8vz6jURbpaTcXSWzmStbC1DNBLA5wDfJYYNBABIbDhwhzp8ex7pRjH4sxZsj7WYNDy/6W9EJ1tUALfRPUEwq1lkxFH+GG7S9IJCkWimopa8vHghiHl2vUe1XHGSgmzTSjN3dvTurbm2IGk7N8CqP3NGOPWsPYdJ8xI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76B42C4CEE8;
+	Thu, 13 Feb 2025 09:26:42 +0000 (UTC)
+Date: Thu, 13 Feb 2025 10:26:35 +0100
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Sebastian LaVine <slavine@d3embedded.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	=?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>, Abel Vesa <abel.vesa@linaro.org>, 
+	Achath Vaishnav <vaishnav.a@ti.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Ard Biesheuvel <ardb@kernel.org>, 
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Bjorn Andersson <quic_bjorande@quicinc.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>, Fabio Estevam <festevam@gmail.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Javier Carrasco <javier.carrasco@wolfvision.net>, Jianzhong Xu <xuj@ti.com>, 
+	Julien Massot <julien.massot@collabora.com>, Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+	Kory Maincent <kory.maincent@bootlin.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Mikhail Rudenko <mike.rudenko@gmail.com>, 
+	Nishanth Menon <nm@ti.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Rob Herring <robh@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Stuart Burtner <sburtner@d3embedded.com>, Tero Kristo <kristo@kernel.org>, 
+	Thakkar Devarsh <devarsht@ti.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Umang Jain <umang.jain@ideasonboard.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Will Deacon <will@kernel.org>, Zhi Mao <zhi.mao@mediatek.com>
+Subject: Re: [PATCH 1/4] media: dt-bindings: Add Sony IMX728
+Message-ID: <20250213-shrewd-tacky-chachalaca-778a50@krzk-bin>
+References: <20250212195656.69528-1-slavine@d3embedded.com>
+ <20250212195656.69528-2-slavine@d3embedded.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250212195656.69528-2-slavine@d3embedded.com>
 
-The driver support more SoCs. Add the missing ones.
+On Wed, Feb 12, 2025 at 02:56:53PM -0500, Sebastian LaVine wrote:
+> Adds bindings for the Sony IMX728.
+> 
+> Signed-off-by: Sebastian LaVine <slavine@d3embedded.com>
+> Mentored-by: Stuart Burtner <sburtner@d3embedded.com>
+> ---
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+Please run scripts/checkpatch.pl and fix reported warnings. After that,
+run also 'scripts/checkpatch.pl --strict' and (probably) fix more
+warnings. Some warnings can be ignored, especially from --strict run,
+but the code here looks like it needs a fix. Feel free to get in touch
+if the warning is not clear.
 
-Changes since v1:
-* add new compatibles also to clock restrictions (Thanks, Krzysztof!)
-
- .../devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml       | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
-index 885d47dd5724..e803a1fc3681 100644
---- a/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
-+++ b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
-@@ -34,6 +34,8 @@ properties:
-           - enum:
-               - atmel,at91rm9200-pmc
-               - atmel,at91sam9260-pmc
-+              - atmel,at91sam9261-pmc
-+              - atmel,at91sam9263-pmc
-               - atmel,at91sam9g45-pmc
-               - atmel,at91sam9n12-pmc
-               - atmel,at91sam9rl-pmc
-@@ -111,6 +113,8 @@ allOf:
-             enum:
-               - atmel,at91rm9200-pmc
-               - atmel,at91sam9260-pmc
-+              - atmel,at91sam9261-pmc
-+              - atmel,at91sam9263-pmc
-               - atmel,at91sam9g20-pmc
-     then:
-       properties:
--- 
-2.45.2
+Best regards,
+Krzysztof
 
 
