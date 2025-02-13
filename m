@@ -1,130 +1,182 @@
-Return-Path: <devicetree+bounces-146105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 529C9A3352B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 03:10:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C337CA33673
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 04:56:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 266527A31D2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 02:09:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C5A9168079
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 03:56:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E44B18D620;
-	Thu, 13 Feb 2025 02:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658B4204C2B;
+	Thu, 13 Feb 2025 03:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SyKJvh64"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jzuV7ZSX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5447187550;
-	Thu, 13 Feb 2025 02:09:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F93B158524;
+	Thu, 13 Feb 2025 03:56:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739412568; cv=none; b=nqzvVM22HlliMioV8AErlipRvGX+Xu1efR9PEE+YPLhKPL91wXw6NygULDUo66YIfIwrJPmUpTeKpR26wOtpcblCjtF50E/nahmxXLpIdaNTdWjm9iVZxm8CYdu+ls26j0afrp2XPUz3Lkpa0Ro4jMNbk7SL599rRGXCnOKuJz0=
+	t=1739418992; cv=none; b=jQEYKdbbXUKLtD6cVOn3DXO8lB/o3JhXHyOEBkB8PMJWqudQPCpeCoyCwhCtvfELdtaEAfF9jO2JY9Ds9+vcmrNcNIGYsg3nUN4t6L3yt6cabv83MEkPQQVqWYDO8wjQ2PYK+hRdI6Wyl5pwjVid15pEnSmlKyEWk5ZLjmuhJUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739412568; c=relaxed/simple;
-	bh=NhnUO4VY33/Rp2hlD9lZ4FgNTSiuFYdXBAK1PePWIuI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lshY1RtVud1PIEBQCiO7NH2Oc2SpQiQl+wKH9idoJkFf6ENdTz3/rztXFlw5W6JZalhVVmvGRFmNjpbWxFqDJImhWfhmnL0j1hSKwdOKW9h6K49vabN82j7cZd3FhgAsLHr8N/IISsFHgTw6IHcF3G8qx3ctnahhbJC8ZnRDlVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SyKJvh64; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7c05dc87ad9so40142385a.3;
-        Wed, 12 Feb 2025 18:09:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739412565; x=1740017365; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vtFDrrT3rCYjoOZO0OfQ9Vc45JJv/q5OCfIu3p4OZZg=;
-        b=SyKJvh64v5Ps31xvk3drirPqgm53Eeqs0Bswbwt0n9Ev7ojD7wo7h6OIcjG267dOWz
-         fMqHUmLLxBXmpqArCBEyD9QllAgvzUKIfrcn4hB0SFZKAZbjzTaWI7cnc+gNMruv2KyU
-         ludHN/awGRY7+yTRriLxTJdNbKf1fLWe9PIJvNhxS+TKMEXL0yhJz60rOIxO2agCsfsW
-         gkT/KgpCwJDyqBICJw3iRde1qiDuyct0lyhdp592SgixlahIQnBpDyb8QNTagq27fnXV
-         jLxaQRbZ3iVsnC/m9tWHarzlDabXQNI/4raCOftWxUq0xRe0I19Y6DxyklY5qbn+ADGF
-         /bOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739412565; x=1740017365;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vtFDrrT3rCYjoOZO0OfQ9Vc45JJv/q5OCfIu3p4OZZg=;
-        b=ctghUGOz9/IeS+2ljXZCnOuEv7mO0E472ybp6Z3IHMrGHSUq3FSuFOb+PVcyAdR35R
-         Pk7QfJzK2oLlPwbKkCzE+k5IeCyKvVojP53d+Y2Z2SkJS7+U46aMY8xfkDx7E1V2yB5Q
-         4+uXw2WUlgnTnKXsCb0qxonMRpjhReLPipPlwruyN9/VmxF/O5xb00Whthg5aXA4taLe
-         qK7DV5Nf0okqFAw0Ucjk/FxDlonbhRBABt5w3VM15unNzjnw69LL6CAFGpRmydmdTRhc
-         n3NKu1XNnnmI2M8WTDUvyChXOkr2027EnrgB+4ov0Lg08535BoS79Sbdz1Ctcf9K6xEc
-         HF2A==
-X-Forwarded-Encrypted: i=1; AJvYcCUF/01xZFIxH7sr96v+0pdBBW5J3pcu7sKrZ2xSdQgOR+idL/VN7DpSbnDFvh+uGtsGbKjnsSZmKl/SfwQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuY/0ETKkXPBE3jFKT1JDu0zU/O9Z0k+g8nP8QPcm8MvmtDqsn
-	3DwY3hh7T5uhEOPiTtkKSdGx2pzZ/43s6v7G8+a8sCMu0F1Dx/SS
-X-Gm-Gg: ASbGncvFft3KyFa2FCXUtZ8J/Ay5f79yR2BXz+Mm/sCdXEjWYsr7/J8h65DUroJf8al
-	Hk3kOiqCDRNtrH/sX7sUCxSaKHX0JZ/2MMT0K8Cy1yxRvSjPNeNvD0PT8aXFcO6Bhqf6Q16FAs7
-	HMoMW+qtabeDHzE2UBUqyiDychwO00jGNyu1rVlWpuRq1xo3ImdZJjbyNsROKIIC+qpxLMwCt/4
-	PM++jLSLKdhw6AEamMJaLvMeWO+b96O5oWCPLNraroDQzrQXiYfJGqH51HrgaSSG88=
-X-Google-Smtp-Source: AGHT+IE0LFF3/PieQBcv+/M0s57QuYZfV0AqSx58CzpD01bEJ/HlCWgUX1jFHn2Bh1WE/RrZetIfow==
-X-Received: by 2002:a05:620a:4894:b0:7be:6fd2:938 with SMTP id af79cd13be357-7c06fce2424mr1035985585a.53.1739412565595;
-        Wed, 12 Feb 2025 18:09:25 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c07c861552sm20492485a.79.2025.02.12.18.09.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2025 18:09:25 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1739418992; c=relaxed/simple;
+	bh=86TVOzPXfe0Uti/VuE/NXi2zKA0oTxee60/qK9YDvWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rh73mlPYOXwD5nVm36YyY47QEaDsSFQ/2J2e7KFHLIzxjPtHrfZ5mi7lDzLEGgskT6+UUo16lUSAeQWVAL9M9n8kVxZoSpjhQmLkUigCfbQqyTq2YvOU3VVX46estFxZ6QGq4N8774iSGe754tSzkegP8On9JGT7Nwj0iWcJj8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jzuV7ZSX; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739418991; x=1770954991;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=86TVOzPXfe0Uti/VuE/NXi2zKA0oTxee60/qK9YDvWY=;
+  b=jzuV7ZSXkFAR+MyoYqD7zVceQD90hW79mlN2JiW7gqBixawR9zWpGt5a
+   2KaIQcXx5qoxMGuWr3iZZpj1B6bUp7BaPyMEUeuT8TvA6UZgkBgXkIwxc
+   +bBrFUf9QCtHkabnnY7rRmrEhfyfKF6gdL1TLkmGa76ryJeHraSWYjNJl
+   pOyFHOkm36VNWwy8XodiMWJVQd+6zEMzxgWp/AeklCSsTLvk2HlRtP7Ju
+   XluimtyabmoPzNNCQ/AK6rl3+6YGpRuUBVEz9XpXiWuwfpRG1QEucI22D
+   msGHY7uQ+ASJ/oBg9sczfIoj8eZRkoHiV0Xkyk6zKT2IBbSYGMIl5XEoc
+   Q==;
+X-CSE-ConnectionGUID: Qu5dS8xdRUqIa0+qXeG3ng==
+X-CSE-MsgGUID: 96ZvrqdARiqisyStcqDJOQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="43875992"
+X-IronPort-AV: E=Sophos;i="6.13,281,1732608000"; 
+   d="scan'208";a="43875992"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2025 19:56:30 -0800
+X-CSE-ConnectionGUID: /WKVDQ8QTZmIJkKFEpYYTQ==
+X-CSE-MsgGUID: SKBb+fb3S/GmRV+qvr8qXw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="117641992"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 12 Feb 2025 19:56:25 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tiQKt-0016UN-0z;
+	Thu, 13 Feb 2025 03:56:23 +0000
+Date: Thu, 13 Feb 2025 11:55:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Robert Budai <robert.budai@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Ramona Gradinariu <ramona.gradinariu@analog.com>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Guo Ren <guoren@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH 4/4] riscv: dts: sg2042: Adapt reset generator for new binding
-Date: Thu, 13 Feb 2025 10:08:57 +0800
-Message-ID: <20250213020900.745551-5-inochiama@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250213020900.745551-1-inochiama@gmail.com>
-References: <20250213020900.745551-1-inochiama@gmail.com>
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v7 3/6] iio: imu: adis: Add DIAG_STAT register
+Message-ID: <202502131146.rXrTvgZr-lkp@intel.com>
+References: <20250211175706.276987-4-robert.budai@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250211175706.276987-4-robert.budai@analog.com>
 
-As the SG2042 reset controller reuse new binding, change the device
-compatible with new string.
+Hi Robert,
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- arch/riscv/boot/dts/sophgo/sg2042.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index e62ac51ac55a..1e29f5975af9 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -499,7 +499,7 @@ intc: interrupt-controller@7090000000 {
- 		};
- 
- 		rstgen: reset-controller@7030013000 {
--			compatible = "sophgo,sg2042-reset";
-+			compatible = "sophgo,sg2042-reset", "reset-simple-low";
- 			reg = <0x00000070 0x30013000 0x00000000 0x0000000c>;
- 			#reset-cells = <1>;
- 		};
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on linus/master v6.14-rc2 next-20250212]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Robert-Budai/iio-imu-adis-Add-custom-ops-struct/20250212-040235
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20250211175706.276987-4-robert.budai%40analog.com
+patch subject: [PATCH v7 3/6] iio: imu: adis: Add DIAG_STAT register
+config: arc-randconfig-001-20250213 (https://download.01.org/0day-ci/archive/20250213/202502131146.rXrTvgZr-lkp@intel.com/config)
+compiler: arc-elf-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250213/202502131146.rXrTvgZr-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502131146.rXrTvgZr-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/iio/imu/adis.c: In function '__adis_check_status':
+>> drivers/iio/imu/adis.c:319:42: warning: passing argument 3 of '__adis_read_reg_16' makes pointer from integer without a cast [-Wint-conversion]
+     319 |                                          status_16);
+         |                                          ^~~~~~~~~
+         |                                          |
+         |                                          u16 {aka short unsigned int}
+   In file included from drivers/iio/imu/adis.c:19:
+   include/linux/iio/imu/adis.h:225:43: note: expected 'u16 *' {aka 'short unsigned int *'} but argument is of type 'u16' {aka 'short unsigned int'}
+     225 |                                      u16 *val)
+         |                                      ~~~~~^~~
+
+
+vim +/__adis_read_reg_16 +319 drivers/iio/imu/adis.c
+
+   298	
+   299	/**
+   300	 * __adis_check_status() - Check the device for error conditions (unlocked)
+   301	 * @adis: The adis device
+   302	 *
+   303	 * Returns 0 on success, a negative error code otherwise
+   304	 */
+   305	int __adis_check_status(struct adis *adis)
+   306	{
+   307		unsigned int status;
+   308		int diag_stat_bits;
+   309		u16 status_16;
+   310		int ret;
+   311		int i;
+   312	
+   313		if (adis->data->diag_stat_size)
+   314			ret = adis->ops->read(adis, adis->data->diag_stat_reg, &status,
+   315					      adis->data->diag_stat_size);
+   316		else
+   317		{
+   318			ret = __adis_read_reg_16(adis, adis->data->diag_stat_reg,
+ > 319						 status_16);
+   320			status = status_16;
+   321		}
+   322		if (ret)
+   323			return ret;
+   324	
+   325		status &= adis->data->status_error_mask;
+   326	
+   327		if (status == 0)
+   328			return 0;
+   329	
+   330		diag_stat_bits = BITS_PER_BYTE * (adis->data->diag_stat_size ?
+   331						  adis->data->diag_stat_size : 2);
+   332	
+   333		for (i = 0; i < diag_stat_bits; ++i) {
+   334			if (status & BIT(i)) {
+   335				dev_err(&adis->spi->dev, "%s.\n",
+   336					adis->data->status_error_msgs[i]);
+   337			}
+   338		}
+   339	
+   340		return -EIO;
+   341	}
+   342	EXPORT_SYMBOL_NS_GPL(__adis_check_status, "IIO_ADISLIB");
+   343	
+
 -- 
-2.48.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
