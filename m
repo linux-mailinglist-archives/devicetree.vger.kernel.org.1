@@ -1,87 +1,47 @@
-Return-Path: <devicetree+bounces-146459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39DD2A34FAA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:45:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A524A34FEA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C281E1886A67
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:43:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAB947A0859
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEFDA266B43;
-	Thu, 13 Feb 2025 20:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD9824BC18;
+	Thu, 13 Feb 2025 20:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kkewnj6f"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="XeTAcxIr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6182F266180
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 20:43:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37EC91FFC59;
+	Thu, 13 Feb 2025 20:50:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739479411; cv=none; b=bbRO4TJOUBczCwP3GfurKjSiFpcPoaLNoWDDAPturzMQRO11D9vRAyMsAk+Gd1TjxUQgobOKnCwmXGRA5mh8ouoAgZq1OBBVUuOn/cAVbWpFTNuzV9yezLXEQyHEez0KdzoNjj1K0OwDuPMaAyAOjbiV+xJ6Qs/K2NNoMIDI708=
+	t=1739479819; cv=none; b=OcY7C5uzb0MUvdiOEZnPWJwQOPBVeOpEWw47JCHhVMZN+BHo8SEJxHMi5gvZDV6sdXlPKWUD9ZeY/xBV8W190sdOZifI6ZoVGrkwW/ilVAI6ijN0U+R970W/RANR00ily/zNyVwBGHIbjtt+191UwbtuJ/89lfxVom/lluxzpHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739479411; c=relaxed/simple;
-	bh=KPqeKb7qxXVQvHeLPKJNyFw3t5Osul2JY6aETGmPnqY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bX5uEcmDPkRzBi/OcVmK0nNW+R7BT98i2w8TN/VGgcZrKjTc5eG7iVjT5LPg/4lO2W41kgWoRC+R9GWUDvN08rD0aKa9gX8AdMjmLbWTeac3UDoMLJKQ6kfuZu3f8dNLkyPUcB+0VSn3Z+DuR7YkVAEA+3vdrPjKSdhaL9weksw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kkewnj6f; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51DBWDB7011838
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 20:43:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dg5FrKktS73xbC19hkpapwjR69r1aE/kmuxGyVnzOJE=; b=kkewnj6fUupujmzy
-	wCMYx3IsHo88XP856vU5xBgsOrjdT4OhEuCzddQRDaHYPkI/KFU9GV8ediY+Zc4p
-	zBKWyN5mcR0EA0IFJrrE4xxbyzYNra835luYUbyYU/9MIHFcbMNIz9Za8/d+osTE
-	rk1S3Zlx540kJEEPe6OwMzfCEOBLo0y9846RcCbM/m1q+kzf9MqEUpNskZVcKD22
-	sXQnn2j1fhYHnChyFkNcfHNH8bnGoEAVakaqUD+aQWFCnYs4HtdWvQAveS1fEC/9
-	94783k1BzsbB5ff71pHMGDmerfauQBHDCCmb5qPmb1nQa1xXfZbHILrvdCgNon57
-	kYCbEA==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44sfxw9aw9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 20:43:29 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6e4546f8c47so4090016d6.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 12:43:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739479408; x=1740084208;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dg5FrKktS73xbC19hkpapwjR69r1aE/kmuxGyVnzOJE=;
-        b=F1C1ZWBWckQQ1FhrmxJ+dqqnTbH8ugT247JFDzzpoxL+tlaKifqntt6FNgf62T7dyV
-         cPG0OsJFFi7qGLcTHRC2dCNdxKTYbx3VqMXTSfIT32dVVu99mjdN3mV8LblMcmmTSn2J
-         s2Gl8pVWSr/jhaymdWL8RrgsjEotQIA4EfabzrCFX/1ToaSAf4oy8k7fm2xqVVdtd99D
-         6NpTuaTZOn5XzycLlKZhHV76WfsmeEYSuptMe7ko5w3+MrnX45VzEbDwiWi74eW+SzsM
-         6y+z5uQy+6VKRcsueCGXL1CkOkGcz/XyiYnEIZM7/fBXMRkChLIVXNfyXP7JQY45FXkz
-         5ppw==
-X-Forwarded-Encrypted: i=1; AJvYcCXsa2H1RPQbbKVAWHjgXti7itELAyXQmzae56T+PULK1pnnziyaoC0cIjKgJcNOsGw3UXh7CVHrd15Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLNwvR7AYG1pIP9h5wqlQNfbltUmId2wuMnC4Z3iQQ7pQECCwC
-	bc9/xeonos9vi6IR15EpWDwh2n4jw98GW7BBgxPBdPt7uKwkCxgpmnZogqwPNf6epsRi6uIOUFX
-	oK5sjRQKV8Di+BggfAng6HNt85DZnTks44Ib8f1GL85qbQ6IzDkjtdDGnYx4Z
-X-Gm-Gg: ASbGnctrWJpRZ9BI9gXVWLc6qJsHLfT3+4XtietOJyq6C1GfxlZOpjC1BZu2VWZKuBb
-	KI7+1eSnfANQ9F15b2Iv3yIJUnA3X0y6BHkAbiF7gDjFWJ9CQElV8N121ot73WWIGVQDbIkcU/+
-	bWXgTjmD4uFl6pnX8/3OHGweVs+MmgktxIwsrxCCzDWRhBdGh0JRkmY80bumjE20daUB8DollqR
-	+FBuAO7evSwqN5uBwvJppIh3WldH97V3JemKfl3y+cSkXee5gimWTflZJgtFVvxWMecNrskNkVz
-	jLwjc9e21HGclszllV+6RQG+vnvX/s841ddbPJ7or1EplhV1Hew99WKWIjA=
-X-Received: by 2002:ad4:5487:0:b0:6e6:62fb:3504 with SMTP id 6a1803df08f44-6e662fb3617mr9188706d6.8.1739479408374;
-        Thu, 13 Feb 2025 12:43:28 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFxHGRR8DxtnIu1R+97/QgPuFG9tFngCfkEID7ATh5FWvv/MdLvRjxbxVs/jM4V/egIV1OXlQ==
-X-Received: by 2002:ad4:5487:0:b0:6e6:62fb:3504 with SMTP id 6a1803df08f44-6e662fb3617mr9188516d6.8.1739479408060;
-        Thu, 13 Feb 2025 12:43:28 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba5325973fsm198943066b.69.2025.02.13.12.43.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Feb 2025 12:43:27 -0800 (PST)
-Message-ID: <a5bcc6bc-e1d5-4293-b671-79116f911b6c@oss.qualcomm.com>
-Date: Thu, 13 Feb 2025 21:43:25 +0100
+	s=arc-20240116; t=1739479819; c=relaxed/simple;
+	bh=U90uAXy+tD0A67ngT98YeZk8dh7Nxm1Nq0igEW7awIg=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=aftLjXNQB3KtSCk7CCTZOa91Y8L3h3cjghIKX5ql/a46yBSL4o5XqSZKdSP2omKi/gZhpZ2KOVVjytHKoqesihXdbN6jF8nmWm6oHHtHxQjGjaIbqnSXoB5283GOzd9x2TlngCetS8k71n0ZxdT/QAa7mCJGyXO/2dfRnTWf7hE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=XeTAcxIr; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [10.137.184.60] (unknown [131.107.160.188])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 83E82203F3E5;
+	Thu, 13 Feb 2025 12:50:17 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 83E82203F3E5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1739479817;
+	bh=XzQPYU9YfHy6ub9VigT3rtdUgbT32pzX4StInrVw1E4=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=XeTAcxIrprlHTTTPMf8HhI8CE7pfNVAgM8QgQEmhFcRGXQvzr/nQBmciYK3jhEmJX
+	 tydKjmyGSzh+NZdxKyYLSaHG4PGn5nB5buGjbO5npIVqSIGOlOpl5UP27xsVYpBKIQ
+	 C2q46+OmyyevQ+L1KlcwRiLGpbRqE44dKts5w7gc=
+Message-ID: <a10abb83-1bb2-4e62-b537-8b8948b055ea@linux.microsoft.com>
+Date: Thu, 13 Feb 2025 12:50:17 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,42 +49,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8917-xiaomi-riva: Add display
- backlight
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Pavel Machek <pavel@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
-References: <20250213-pm8937-pwm-v2-0-49ea59801a33@mainlining.org>
- <20250213-pm8937-pwm-v2-3-49ea59801a33@mainlining.org>
+Subject: Re: [PATCH hyperv-next v4 4/6] dt-bindings: microsoft,vmbus: Add GIC
+ and DMA coherence to the example
+From: Roman Kisel <romank@linux.microsoft.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
+ catalin.marinas@arm.com, conor+dt@kernel.org, dave.hansen@linux.intel.com,
+ decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
+ krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com, lpieralisi@kernel.org,
+ manivannan.sadhasivam@linaro.org, mingo@redhat.com, robh@kernel.org,
+ ssengar@linux.microsoft.com, tglx@linutronix.de, wei.liu@kernel.org,
+ will@kernel.org, devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org,
+ benhill@microsoft.com, bperkins@microsoft.com, sunilmut@microsoft.com
+References: <20250212014321.1108840-1-romank@linux.microsoft.com>
+ <20250212014321.1108840-5-romank@linux.microsoft.com>
+ <20250212-rough-terrier-of-serendipity-68a0db@krzk-bin>
+ <bb863c8f-a92c-42d0-abc4-ff0b92f701c2@linux.microsoft.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250213-pm8937-pwm-v2-3-49ea59801a33@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: yY-J0f7vXPEzkM6KocLT2VLl3bPhMft-
-X-Proofpoint-GUID: yY-J0f7vXPEzkM6KocLT2VLl3bPhMft-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-13_08,2025-02-13_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- bulkscore=0 spamscore=0 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 adultscore=0 mlxlogscore=758 mlxscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502130145
+In-Reply-To: <bb863c8f-a92c-42d0-abc4-ff0b92f701c2@linux.microsoft.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 13.02.2025 8:54 PM, Barnabás Czémán wrote:
-> Redmi 5A display uses pwm backlight, add support for it.
+
+
+On 2/12/2025 3:57 PM, Roman Kisel wrote:
 > 
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+[...]
 
-Konrad
+Thank you for your guidance!! The below passes tests and addresses the
+feedback you have provided. If no further comments from you, I'll
+send the file in this form in the next version of the patch series (also
+fixing the commit title and description).
+
+
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/bus/microsoft,vmbus.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: Microsoft Hyper-V VMBus
+
+maintainers:
+   - Saurabh Sengar <ssengar@linux.microsoft.com>
+
+description:
+   VMBus is a software bus that implement the protocols for communication
+   between the root or host OS and guest OSs (virtual machines).
+
+properties:
+   compatible:
+     const: microsoft,vmbus
+
+   ranges: true
+
+   '#address-cells':
+     const: 2
+
+   '#size-cells':
+     const: 1
+
+required:
+   - compatible
+   - ranges
+   - interrupts
+   - '#address-cells'
+   - '#size-cells'
+
+additionalProperties: true
+
+examples:
+   - |
+     #include <dt-bindings/interrupt-controller/irq.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     soc {
+         #address-cells = <2>;
+         #size-cells = <1>;
+         bus {
+             compatible = "simple-bus";
+             #address-cells = <2>;
+             #size-cells = <1>;
+             ranges;
+
+             vmbus@ff0000000 {
+                 compatible = "microsoft,vmbus";
+                 #address-cells = <2>;
+                 #size-cells = <1>;
+                 ranges = <0x0f 0xf0000000 0x0f 0xf0000000 0x10000000>;
+                 dma-coherent;
+                 interrupt-parent = <&gic>;
+                 interrupts = <GIC_PPI 2 IRQ_TYPE_EDGE_RISING>;
+             };
+         };
+     };
+
+
+>> Best regards,
+>> Krzysztof
+> 
+
+-- 
+Thank you,
+Roman
+
 
