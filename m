@@ -1,485 +1,120 @@
-Return-Path: <devicetree+bounces-146315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3247A34488
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:06:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CFA9A34768
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:35:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 766C77A0F73
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 15:05:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C31D3B2901
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 15:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4CF8200120;
-	Thu, 13 Feb 2025 15:03:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B35C278F30;
+	Thu, 13 Feb 2025 15:19:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XE0xrHhI"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="VN++il+2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7870200105;
-	Thu, 13 Feb 2025 15:03:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D6938389
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 15:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739459023; cv=none; b=MvxuxyRhb3t8KKCsCSt7DWhogvoM0/UBDaoC2X1PqDLwHUIuvnofVNQnAa6ghg/wIeMvXvk4ndVV60az71USd12OYI+0+fsrNqmePr+JoVqG917sC7qv4vLntbnzXKwADZUpHE+EK1c2ZD3pvK4P3H4iEHBYIEcE2BFycaz9lRs=
+	t=1739459941; cv=none; b=GOpXcBTnBjzc3lwy11p/kEdBENKilp5/oo2fqc3snPUPB1ILIqYzZ0DB1xkS7H6ZXu3HBuSESZDaWA/FCNU+r9tsN9waSTzuh+Z/UmVvC0G58nwHtUeBCve3+D+oy6ISZkqQj9Fr830hkTBPl9zTd8h4g/gtl4GwS23Ei1343z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739459023; c=relaxed/simple;
-	bh=bKy2/Khn0wBJ7ch0tZ8a2XFADxRpJkeSdk6pKJhI8Lc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o3RVgsrir+4UslHS/gKR7+8sVx9T28w/7aUxLrxgOVFVfP674bbkqBJBLRl9goWI2TqvcSSXPA6YtKNokPlQ/ygo2Brp2+Gu9UJyn/3RxGlKseHKBmnAi0HOaWkfOO6YLA8o9uSoBi0He2hDIGQGKprUesYiGjyIjMn04UnRjzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XE0xrHhI; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-38f286b5281so317332f8f.1;
-        Thu, 13 Feb 2025 07:03:41 -0800 (PST)
+	s=arc-20240116; t=1739459941; c=relaxed/simple;
+	bh=6/MHXBt3ThyNTmD9iHOOhPj6W2u7EZRVkOK3ed1Q64Q=;
+	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=ZaBRzJ963xHs4+Ivj2rb90uUC9kAWE6bIPjvlcoNFdxwsLpmHwkpqHsg2WWgTgrTUdWk6E6wgX05mBZG806jr6OCNUFlSZiOhiPiW8OC+dT/1u8/r6AsamvukpyJgRo9p25KrGrldHKZ4FcqfcB3+cq16f3rXxhtDmnBYhkX8Ew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=VN++il+2; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aaecf50578eso217131366b.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 07:18:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739459020; x=1740063820; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=il270moocRQxXWx9sDop2wPY9i++i0FF/XAOD2V/4TY=;
-        b=XE0xrHhIPMVYgfiT98LnTbdlMBtl849KMxHmRlaVogSu1mGZiCdYq7NxrfY7QF4jJx
-         ZoM7HvkxGt+v76DYAe0XiSNaVRrR9KOcDzJv+M1mO0xEMle+a9fhvvkde2XNYbXEwLOe
-         4z7uEXoTUh4/osy3Qjz2fAtmKklQvkx1PAyd89DdwK/Zy4C3CQTAJ8RFPtz7dC54v/8a
-         Tu4xs3xwGQH0qctVUyYIR15/+9dKIUrM16XB/GiWFrIV3P/9Z5SdkEfi/o5PFE3mf4BI
-         5tfXWRiYdP9pr0HlXSKxI6y6XrBa2u2EhElUabTBnzSqbQf4xNee2XTbDEm+dhnk/r+M
-         LRHg==
+        d=raspberrypi.com; s=google; t=1739459938; x=1740064738; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6/MHXBt3ThyNTmD9iHOOhPj6W2u7EZRVkOK3ed1Q64Q=;
+        b=VN++il+2NcLZMuXmB7DtC6t8u7pwISgu60YeSAlSoDlhL+Rz+BjYOrCDuKKGSqJNTv
+         +u7wrbDiN6GxzM+lVgGdMuQoo4n9N7OdMHV2clzOhPj+5yq4lXOQQx/M/Mf+WNf2LfGS
+         roSljNZR/rru7d2FngHpHdE9M5hnfNZ898pmXAsos05p8zy6zGs1CZ4hGWJxMxi47uwU
+         +2ULc+oM+L2mH+Pz2q1MBLw/y7NUaI/FWZ0X/y37mRxw4CBIDGmyGja3Nxyu39j92DDC
+         DCdVSScmyexP+VnO4sXZN/4KACKpyrO8nkBqH+vWulEO4uU2T5Ri9VWcZAFsWSgUhwcD
+         3q+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739459020; x=1740063820;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=il270moocRQxXWx9sDop2wPY9i++i0FF/XAOD2V/4TY=;
-        b=pxPOthir2Y0bz1QvBwnz5U3PJejJWbtiFU1hSeL5aqwFLjOdxV/wc7ER+0dex/KlPC
-         a7Y+KfjlPGt0pi3+M5b4qIBOsF7WpFbyo6vSQBCml7cT9sfIx/zvQUmwHLUkW2KfwffZ
-         b5jZQZnPWc/IAvOfd6vaMFNO+t44M5anfIQ1lIGun/3ACckgWRfOJAWhhnm04qxnx8ZM
-         QK1FX42iwT86V389eSQcJ7S6s2mBLi5RskP6Yh07bl++pmfnrl+f7T7Bbw17w16llXh9
-         o/CaEOj+oyMKY931gBP7SfWpiSD5GTNnRbOEnqnRY8X6dIR0bUb+sOpBK5mHfTjcuSVq
-         VaGw==
-X-Forwarded-Encrypted: i=1; AJvYcCUi5tsB4Ql0H+NnqDug6DiNpT2B6ZSD6mNIveljugGwqZtIUgT9udMowQeuT6Gi0RermXwruFHT4cFTKg==@vger.kernel.org, AJvYcCX5Ssoc7K2/3fo9qx8glCxWoRctYJaTXfg97jlWzd1fR+vHqcflLhQ2nwRa0KXweheUtTQDFO5JqybP@vger.kernel.org, AJvYcCX6kDLLqXIjX9ieaOTtwbhAQLFvjTZn4CneTKR7PmrYVQUeghvojg9lO2SXe9bHl7PmU2g2P5l2lDqxLbQ=@vger.kernel.org, AJvYcCXGwBweVBsck9LBLy60nsZ1sxXhab+qy1DNWHnndM3F+5ggzXmhrJEQ4/33Ipr2v4ZIIYqhRKYG7HyC@vger.kernel.org, AJvYcCXcgl0w1G6/pd6kaWVkscwjWhyYqca2VqGpVFgFBg3GS1ywDPlWUZgyoYv4P7eKZcyLAESEE8QY5W1fMLlg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy43WRFMxfsB7v6im4xWlR1mZejggVBxsEqoPnSN3gEkwBD1blX
-	IprDNU1McppeMiCbg/wS3zXRKZCPexfoYAEiGf8iGpPY2tK0CUClhtIGvzdh3v8joQcjwZEWNmE
-	/tTBrOw0DAacY8i03dc1c2hVftIA=
-X-Gm-Gg: ASbGncuVckvyGSl9C24EEK8/MbLitFO1irg6hFxH8DJeX4gZv8ltYavNA/fuUZ178vA
-	H62MGVQuy36/VWBcn2/5AU0rGusa4xU9QQM0Mb/9LfeLJg958OYTxVZKMqQmWOnTF+sd921tDGQ
-	==
-X-Google-Smtp-Source: AGHT+IE8DKcyHRlcVZTAi4KF6Sh5KbjMdfB2KDTubvGG7HEDVbAuM4dGu6BtK52l5l2xucBK9g38u/USqfRqqkbnJB4=
-X-Received: by 2002:a05:6000:184b:b0:38d:b113:eb8 with SMTP id
- ffacd0b85a97d-38dea26ecebmr7135274f8f.20.1739459019532; Thu, 13 Feb 2025
- 07:03:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739459938; x=1740064738;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6/MHXBt3ThyNTmD9iHOOhPj6W2u7EZRVkOK3ed1Q64Q=;
+        b=BcFn2pgO6nozz5BI6eMz3Cm8GI4a6LDClZYhJvZebw9xkJqaWJlpEWvqenEFlMEUWH
+         XdutAzoip15xP5zCt9S4TwODXA49QxDWj9ukez+PdzuuXHvoG6wwUe2UTNBD6k7u1ZCU
+         AcFfY9AHNf6gBUFhZrgvrVkvsbS/Y8Ir2Fz0Lq07in9WSOAeJvI7Gybtnqa6BDOINjpD
+         cb8lPqS/xeOPzHOdhxK4aCAGCCDv9eDano6iZpecXjeHVzkbF0QghqMgb+9G8h6YYkRL
+         5fMTEDkCQ15FuDohC8JT2PDSFqijkIvr4dcXCRT2ZK6b3WWBgJaKNHV42WTXVTWv2HE6
+         iG3A==
+X-Forwarded-Encrypted: i=1; AJvYcCX7S7HNW2nUfzqZa5urX0b2YIr6cMzqMvnePM2QhaonpnVEqPhfwHnR7/iA2C/uGSS+/moNe8rthpPk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGkE3Fe/CH1gdxlhhOMmnBKluC+To7Hb0tyV++IdB/WMTK6V2V
+	Xw464U41idwShYlOrdvNIs2LKnEPU265SpkjKQNysEEKtId301q3xVHh/Zq3Z7TKoJZ0PgRgrHN
+	p6qsvEqzVbva0qXigloo6iOkxAi4+K9TBu7oCsw==
+X-Gm-Gg: ASbGncul5VZ2UxDPlGUPQVKBYUvEEYqpvTtFkfBoGRTSe7UwEUyqAmb8wJv0ctgGlkO
+	TXPzIjce9VPhli7fPmAuL7oXv4AoElSUMmJHJKtvSnQN9uzX+3a3e2qwP2GSAhwVe3LhqXXoP2G
+	SXIhzYSuq/LfRNgg2t5QpxtNdqaRFs
+X-Google-Smtp-Source: AGHT+IEUUAMp1A3OZpYQwTyMrudMkiFtVUqwOeMuLEVr7St6uJlPcG5asSsJxDTLPpX7Ju1+2ET5B41boTMft3YQY5k=
+X-Received: by 2002:a17:907:3f25:b0:ab7:e278:2955 with SMTP id
+ a640c23a62f3a-ab7f34a31b8mr633294966b.38.1739459936619; Thu, 13 Feb 2025
+ 07:18:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250212075845.11338-1-clamor95@gmail.com> <20250212075845.11338-3-clamor95@gmail.com>
- <Z64IPpW5Uhad4HjU@smile.fi.intel.com>
-In-Reply-To: <Z64IPpW5Uhad4HjU@smile.fi.intel.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 13 Feb 2025 17:03:27 +0200
-X-Gm-Features: AWEUYZmUj-krca9nu8UVllaTPCZQMTjt3IELvxYIQkmFcH7UwZphBSmDpexxcjA
-Message-ID: <CAPVz0n3TTrkfARQNWfhgJd0sNnUTTdX8vx8hnHDZMq+p9aK_wA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] mfd: lm3533: convert to use OF
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>, 
-	Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+From: Phil Elwell <phil@raspberrypi.com>
+Date: Thu, 13 Feb 2025 15:18:45 +0000
+X-Gm-Features: AWEUYZmetnZU5U18XyjwhGQ_ZYLhS4_yaGIMiS4tC4pNvrJmSgh7GCx5E_wteQI
+Message-ID: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
+Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device using
+ a DT overlay
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: andrew@lunn.ch, Arnd Bergmann <arnd@arndb.de>, 
+	"maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" <bcm-kernel-feedback-list@broadcom.com>, bhelgaas@google.com, brgl@bgdev.pl, 
+	Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, derek.kiernan@amd.com, 
+	devicetree@vger.kernel.org, dragan.cvetic@amd.com, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, herve.codina@bootlin.com, krzk+dt@kernel.org, 
+	kw@linux.com, Linus Walleij <linus.walleij@linaro.org>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, lpieralisi@kernel.org, 
+	luca.ceresoli@bootlin.com, manivannan.sadhasivam@linaro.org, 
+	masahiroy@kernel.org, Michael Turquette <mturquette@baylibre.com>, 
+	Rob Herring <robh@kernel.org>, saravanak@google.com, Stephen Boyd <sboyd@kernel.org>, 
+	thomas.petazzoni@bootlin.com, Stefan Wahren <wahrenst@gmx.net>, 
+	Will Deacon <will@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-=D1=87=D1=82, 13 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 16:57 Andy=
- Shevchenko
-<andriy.shevchenko@linux.intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Wed, Feb 12, 2025 at 09:58:42AM +0200, Svyatoslav Ryhel wrote:
-> > Add ability to fill pdata from device tree. Common stuff is
-> > filled from core driver and then pdata is filled per-device
-> > since all cells are optional.
->
-> ...
->
-> >  #include <linux/module.h>
-> >  #include <linux/mutex.h>
-> >  #include <linux/mfd/core.h>
->
-> > +#include <linux/of.h>
->
-> Is it used? In any case, please no OF-centric APIs in a new (feature) cod=
-e.
->
-> >  #include <linux/platform_device.h>
-> > +#include <linux/property.h>
-> >  #include <linux/slab.h>
-> >  #include <linux/uaccess.h>
->
-> ...
->
-> > +static int lm3533_pass_of_node(struct platform_device *pdev,
->
-> pass_of_node sounds a bit awkward.
-> Perhaps you thought about parse_fwnode ?
->
-> > +                            struct lm3533_als_platform_data *pdata)
-> > +{
-> > +     struct device *parent_dev =3D pdev->dev.parent;
-> > +     struct device *dev =3D &pdev->dev;
-> > +     struct fwnode_handle *node;
-> > +     const char *label;
-> > +     int val, ret;
-> > +
-> > +     device_for_each_child_node(parent_dev, node) {
-> > +             fwnode_property_read_string(node, "compatible", &label);
-> > +
-> > +             if (!strcmp(label, pdev->name)) {
->
-> This is a bit strange. Why one need to compare platform device instance (=
-!)
-> name with compatible which is part of ABI. This looks really wrong approa=
-ch.
-> Needs a very good explanation on what's going on here.
->
-> Besides that the label is usually filled by LEDS core, why do we need to =
-handle
-> it in a special way?
->
-> > +                     ret =3D fwnode_property_read_u32(node, "reg", &va=
-l);
-> > +                     if (ret) {
-> > +                             dev_err(dev, "reg property is missing: re=
-t %d\n", ret);
-> > +                             return ret;
-> > +                     }
-> > +
-> > +                     if (val =3D=3D pdev->id) {
->
-> > +                             dev->fwnode =3D node;
-> > +                             dev->of_node =3D to_of_node(node);
->
-> No direct access to fwnode in struct device, please use device_set_node()=
-.
->
-> > +                     }
-> > +             }
-> > +     }
-> > +
-> > +     return 0;
-> > +}
->
-> ...
->
-> >       pdata =3D dev_get_platdata(&pdev->dev);
-> >       if (!pdata) {
-> > -             dev_err(&pdev->dev, "no platform data\n");
-> > -             return -EINVAL;
-> > +             pdata =3D devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KE=
-RNEL);
-> > +             if (!pdata)
-> > +                     return -ENOMEM;
-> > +
-> > +             ret =3D lm3533_pass_of_node(pdev, pdata);
-> > +             if (ret)
-> > +                     return dev_err_probe(&pdev->dev, ret,
-> > +                                          "failed to get als device no=
-de\n");
->
-> With
->
->         struct device *dev =3D &pdev->dev;
->
-> at the top of the function will help a lot in making the code neater and =
-easier
-> to read.
->
-> > +             lm3533_parse_als(pdev, pdata);
-> >       }
->
-> ...
->
-> >  #include <linux/leds.h>
-> >  #include <linux/mfd/core.h>
-> >  #include <linux/mutex.h>
->
-> > +#include <linux/of.h>
->
-> Cargo cult? "Proxy" header? Please follow IWYU principle.
->
-> >  #include <linux/platform_device.h>
-> > +#include <linux/property.h>
-> >  #include <linux/slab.h>
->
-> ...
->
-> > +static void lm3533_parse_led(struct platform_device *pdev,
-> > +                          struct lm3533_led_platform_data *pdata)
-> > +{
-> > +     struct device *dev =3D &pdev->dev;
-> > +     int val, ret;
-> > +
-> > +     ret =3D device_property_read_string(dev, "default-trigger",
-> > +                                       &pdata->default_trigger);
-> > +     if (ret)
-> > +             pdata->default_trigger =3D "none";
->
-> Isn't this done already in LEDS core?
->
-> > +     /* 5000 - 29800 uA (800 uA step) */
-> > +     ret =3D device_property_read_u32(dev, "max-current-microamp", &va=
-l);
-> > +     if (ret)
-> > +             val =3D 5000;
-> > +     pdata->max_current =3D val;
-> > +
-> > +     /* 0 - 0x3f */
-> > +     ret =3D device_property_read_u32(dev, "pwm", &val);
-> > +     if (ret)
-> > +             val =3D 0;
-> > +     pdata->pwm =3D val;
-> > +}
->
-> ...
->
-> > +static int lm3533_pass_of_node(struct platform_device *pdev,
-> > +                            struct lm3533_led_platform_data *pdata)
->
-> I think I already saw exactly the same piece of code. Please make sure
-> you have no duplications.
->
-> > +}
->
-> ...
->
-> >       pdata =3D dev_get_platdata(&pdev->dev);
-> >       if (!pdata) {
-> > -             dev_err(&pdev->dev, "no platform data\n");
-> > -             return -EINVAL;
-> > +             pdata =3D devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KE=
-RNEL);
-> > +             if (!pdata)
-> > +                     return -ENOMEM;
-> > +
-> > +             ret =3D lm3533_pass_of_node(pdev, pdata);
-> > +             if (ret)
-> > +                     return dev_err_probe(&pdev->dev, ret,
-> > +                                          "failed to get led device no=
-de\n");
-> > +
-> > +             lm3533_parse_led(pdev, pdata);
->
-> Ditto.
->
-> >       }
->
-> ...
->
-> > -     led->cdev.name =3D pdata->name;
-> > +     led->cdev.name =3D dev_name(&pdev->dev);
->
-> Are you sure it's a good idea?
->
-> ...
->
-> > -     if (!pdata->als)
-> > +     if (!pdata->num_als)
-> >               return 0;
-> >
-> > -     lm3533_als_devs[0].platform_data =3D pdata->als;
-> > -     lm3533_als_devs[0].pdata_size =3D sizeof(*pdata->als);
-> > +     if (pdata->num_als > ARRAY_SIZE(lm3533_als_devs))
-> > +             pdata->num_als =3D ARRAY_SIZE(lm3533_als_devs);
->
-> Looks like you want
->
->         pdata->num_als =3D clamp(pdata->num_als, 0, ARRAY_SIZE(lm3533_als=
-_devs));
->         if (!pdata->num_als)
->                 return 0;
->
-> instead of the above. You would need minmax.h for that.
->
-> ...
->
-> > +     if (pdata->leds) {
->
-> This is strange. I would expect num_leds =3D=3D 0 in this case
->
-> > +             for (i =3D 0; i < pdata->num_leds; ++i) {
-> > +                     lm3533_led_devs[i].platform_data =3D &pdata->leds=
-[i];
-> > +                     lm3533_led_devs[i].pdata_size =3D sizeof(pdata->l=
-eds[i]);
-> > +             }
-> >       }
->
-> ...
->
-> > +static void lm3533_parse_nodes(struct lm3533 *lm3533,
-> > +                            struct lm3533_platform_data *pdata)
-> > +{
-> > +     struct fwnode_handle *node;
-> > +     const char *label;
-> > +
-> > +     device_for_each_child_node(lm3533->dev, node) {
-> > +             fwnode_property_read_string(node, "compatible", &label);
-> > +
-> > +             if (!strcmp(label, lm3533_bl_devs[pdata->num_backlights].=
-name))
-> > +                     pdata->num_backlights++;
-> > +
-> > +             if (!strcmp(label, lm3533_led_devs[pdata->num_leds].name)=
-)
-> > +                     pdata->num_leds++;
-> > +
-> > +             if (!strcmp(label, lm3533_als_devs[pdata->num_als].name))
-> > +                     pdata->num_als++;
-> > +     }
-> > +}
->
-> Oh, I don't like this approach. If you have compatible, you have driver_d=
-ata
-> available, all this is not needed as it may be hard coded.
->
-> ...
->
-> >       if (!pdata) {
->
-> I would expect actually that legacy platform data support will be simply =
-killed
-> by this patch(es). Do we have in-kernel users? If so, they can be easily
-> converted to use software nodes, otherwise we even don't need to care.
->
-> > -             dev_err(lm3533->dev, "no platform data\n");
-> > -             return -EINVAL;
-> > +             pdata =3D devm_kzalloc(lm3533->dev, sizeof(*pdata), GFP_K=
-ERNEL);
-> > +             if (!pdata)
-> > +                     return -ENOMEM;
-> > +
-> > +             ret =3D device_property_read_u32(lm3533->dev,
-> > +                                            "ti,boost-ovp",
-> > +                                            &pdata->boost_ovp);
-> > +             if (ret)
-> > +                     pdata->boost_ovp =3D LM3533_BOOST_OVP_16V;
-> > +
-> > +             ret =3D device_property_read_u32(lm3533->dev,
-> > +                                            "ti,boost-freq",
-> > +                                            &pdata->boost_freq);
-> > +             if (ret)
-> > +                     pdata->boost_freq =3D LM3533_BOOST_FREQ_500KHZ;
-> > +
-> > +             lm3533_parse_nodes(lm3533, pdata);
-> > +
-> > +             lm3533->dev->platform_data =3D pdata;
-> >       }
->
-> ...
->
-> > +static const struct of_device_id lm3533_match_table[] =3D {
-> > +     { .compatible =3D "ti,lm3533" },
-> > +     { },
->
-> No comma in the terminator entry.
->
-> > +};
->
-> ...
->
-> > +static void lm3533_parse_backlight(struct platform_device *pdev,
->
-> pdev is not actually used, just pass struct device *dev directly.
-> Same comment to other functions in this change. It will make code more
-> bus independent and reusable.
->
-> > +                                struct lm3533_bl_platform_data *pdata)
-> > +{
-> > +     struct device *dev =3D &pdev->dev;
-> > +     int val, ret;
-> > +
-> > +     /* 5000 - 29800 uA (800 uA step) */
-> > +     ret =3D device_property_read_u32(dev, "max-current-microamp", &va=
-l);
-> > +     if (ret)
-> > +             val =3D 5000;
-> > +     pdata->max_current =3D val;
->
-> > +     /* 0 - 255 */
-> > +     ret =3D device_property_read_u32(dev, "default-brightness", &val)=
-;
-> > +     if (ret)
-> > +             val =3D LM3533_BL_MAX_BRIGHTNESS;
-> > +     pdata->default_brightness =3D val;
->
-> Isn't handled by LEDS core?
->
-> > +     /* 0 - 0x3f */
-> > +     ret =3D device_property_read_u32(dev, "pwm", &val);
-> > +     if (ret)
-> > +             val =3D 0;
-> > +     pdata->pwm =3D val;
-> > +}
->
-> ...
->
-> > +static int lm3533_pass_of_node(struct platform_device *pdev,
-> > +                            struct lm3533_bl_platform_data *pdata)
-> > +{
->
-> 3rd dup?
->
-> > +}
->
-> ...
->
-> >       pdata =3D dev_get_platdata(&pdev->dev);
-> >       if (!pdata) {
-> > -             dev_err(&pdev->dev, "no platform data\n");
-> > -             return -EINVAL;
-> > +             pdata =3D devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KE=
-RNEL);
-> > +             if (!pdata)
-> > +                     return -ENOMEM;
-> > +
-> > +             ret =3D lm3533_pass_of_node(pdev, pdata);
-> > +             if (ret)
-> > +                     return dev_err_probe(&pdev->dev, ret,
-> > +                                          "failed to get backlight dev=
-ice node\n");
-> > +
-> > +             lm3533_parse_backlight(pdev, pdata);
-> >       }
->
-> Ditto.
->
-> > -     bd =3D devm_backlight_device_register(&pdev->dev, pdata->name,
-> > -                                     pdev->dev.parent, bl, &lm3533_bl_=
-ops,
-> > -                                     &props);
-> > +     bd =3D devm_backlight_device_register(&pdev->dev, dev_name(&pdev-=
->dev),
->
-> I'm not sure the dev_name() is a good idea. We usually try to rely on the
-> predictable outcome, something like what "%pfw" prints against a certain =
-fwnode.
->
-> > +                                         pdev->dev.parent, bl,
-> > +                                         &lm3533_bl_ops, &props);
->
-> ...
->
-> Also I feel that this change may be split to a few separate logical chang=
-es.
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+Hi Andrea,
 
-Acknowledged, thank you.
+The problem with this approach (loading an overlay from the RP1 PCIe
+driver), and it's one that I have raised with you offline, is that
+(unless anyone can prove otherwise) it becomes impossible to create a
+Pi 5 DTS file which makes use of the RP1's resources. How do you
+declare something as simple as a button wired to an RP1 GPIO, or fan
+connected to a PWM output?
+
+If this is the preferred route to upstream adoption, I would prefer it
+if rp1.dtso could be split in two - an rp1.dtsi similar to what we
+have downstream, and an rp1.dtso that #includes it. In this way we can
+keep the patching and duplication to a minimum.
+
+Thanks,
+
+Phil
+
+P.S. Apologies for the lack of context - your emails don't make it
+through to rpi-kernel-list, and gmail doesn't make it easy to interact
+with a mailing list.
 
