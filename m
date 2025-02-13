@@ -1,247 +1,165 @@
-Return-Path: <devicetree+bounces-146298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 866B5A341FD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 15:29:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA8CA3426C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 15:36:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28D2E7A5803
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:28:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 161FD169828
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044B6241672;
-	Thu, 13 Feb 2025 14:28:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0A738389;
+	Thu, 13 Feb 2025 14:36:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mP48NQyN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F2GDkk8h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19EB323A9BE
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 14:28:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE31281349;
+	Thu, 13 Feb 2025 14:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739456926; cv=none; b=n350YUnlSrFtZGfsDs5mdY1arJcT1nxqVi40NfMaoDDhEbbPRKzqGyqdInJma/wOR8xbuTIY/AjuDwiNu5yVilAYrzDeHqDZp4OJVeskvuv2N+Dlvmn75E5DgJxBI6iMqoRfF0jmPjaFxtBvcQDsLLlM2BoEqN5eOExFcAMjK5k=
+	t=1739457386; cv=none; b=lQsWmRNQHBoowDYEPH88UYRnjEYJ3oQSvmzzVvIGlCUkE/LLMJLXBf5jG8+lqpwsixzv4u06EexqrziNCUDYCY05U2FnteCI0c1uWEy/Ugjieu277fUtbONqlERxmn9ECA7yYxaTRQEsGbAH2IRA3Ys6aZ6wgl4iANWjDTtB+aE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739456926; c=relaxed/simple;
-	bh=olY4mBN5+LgaqDjLR1wm1qyN18oxeG0QjyL+rpLXqik=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NofDok2AP+mP2a6nVVYLaDmeOnbIEGwZvvOIfUdeAurjTXmSCOUk/1ZcLhH+yMo2Y9pmJl+WI655M5gyXfGL76YHnKIYJgteczy8zk/MC6wyAxkuv3uTwuAHQKdNkdjKv+GhC/5Qo0bb8F1XVLXrVx9cLegIqbfGtWG1sDojsfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mP48NQyN; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6f9625c0fccso8351687b3.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 06:28:43 -0800 (PST)
+	s=arc-20240116; t=1739457386; c=relaxed/simple;
+	bh=HlJsqhb8XnHHNzy8AdqFixPhoif08uRtRpp/JRim2Eo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CABg438vIZ2haBzrgub5Vau9c6QizHKwIxgax3KyHyZF5E4CBjdggSTZFWiStBm5nXrMaiJuDScw4AkhgmK4ofWelE7bWb+K/E8CCZ1gJ7Rzhkjo7F3VzIVqUI9pjAOK0JJD//qYluWFk5r/MriFENfGIpsGcUoquw1rLxuDKc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F2GDkk8h; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2fbfa8c73a6so1848789a91.2;
+        Thu, 13 Feb 2025 06:36:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739456923; x=1740061723; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=pfYpXrDl+rUlmnTpgbRJTwg81BgmauUKiaO1pjrmwJQ=;
-        b=mP48NQyNb2e3n5ftJWucGRlWUywwdWC4PS+Fu1FcXOFNcpCeKdORe2JX4W8XCyAjZx
-         pvV4V0klfTHQ3MyXoryQr1yrLnMOyraior907lZpnrqbhgPtPKf/ibldc7k/H/tSAq7/
-         zNLTXIa0jOk64EAQJYjWRA9aap1nLAKue2MTZvPPCh3NQcS4t0EC7uuIyRoOdW88nMka
-         U4YxCATNzccvqzO/faI9slOiG5bj5owUPJOnwGuZ4rn81v+noHNp4Omh1ubhQVcTWJJI
-         eQGFlC+1SRsXnrwN/oUER0vM0x5LYEBUcMjC7u2DWsV//iWPf0Yguhjxywx4hsSVKx8Y
-         PL8g==
+        d=gmail.com; s=20230601; t=1739457383; x=1740062183; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7s1AnEsbDOxMifWlKKO96YvdNulNwpNMwNrlUq5WAgw=;
+        b=F2GDkk8hyPSXXPEh9mkExKzdjCxo3/SXeC+htdQqqZy5+InDSabOcB7yMLKPkfiOTq
+         tdx601pqd/TGxStbhiKtWlpfr9HqjgNY+U0kQKpiyjBP53hz3uWexvC3x32GftlOEfLY
+         g7jHxXV582zxG3i7LhxJ3QNtcTNQdidnqpBgJ+kDzvtL7IWbem1cGdVcENqQhXs6JlYz
+         V99+lWEoLShlvd+nXFWLjr0DwCEaK/YnGoxlg3e2eol3MwaGXD2mE8AaOZDyNFZ1GISB
+         P+/2dnPK+DxgkAMm/agFGVQRvaanbkqPXL5vKpNksX7D2ca6ezFpHoTw91gExMlI7wCl
+         HXQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739456923; x=1740061723;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1739457383; x=1740062183;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pfYpXrDl+rUlmnTpgbRJTwg81BgmauUKiaO1pjrmwJQ=;
-        b=unFrqEdwmhjWfTWHLqpDbnxi92CxVNxGLlGZWXGNWgg6y69cX+yryJXQWxI9Pn+02t
-         mA+6LUt5SfQff1sSuyz4Zmi/3SxtjWuSj5iDh+IdQ1ZT3BSjRA0Ipd22ipEZhK+eEuVd
-         BDWzMIruhqEbNGSSuN5zj7UiA7GPABMUErL4fG0nfrZlLbpbSIVTtL+IOqL0nO0G9prF
-         VbSxYYa4GHUNGhDA9DaHPvzsxXs6aCUPawo2o6t8n5BDjneVoozA1NXLnCo6hc1Il/7w
-         sHHh0iyJcWdJvDYCA44Y+WlwIRBPpv3GssTIw/97CRYWaLPOBTHGWxmcoT9qsSr7HtOC
-         0dzw==
-X-Forwarded-Encrypted: i=1; AJvYcCUUqOyaOBv/lFmn2BwU121UgRxjRqP/6C+lho3om6BCG2Hzh/kIXefZgF2cR9/0woVha154fffaWdmv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxjsd43QAlt70dAVmnTViMc2ap1NUo1hkPI72junTYMEHsuNBso
-	yBw2BXTRhlHK1FF3jpEYi1uZPoNXoIdcHJ7SiLtzXYFjGi7YQqf7mBfowGiQuMXAVth5GxYzqKx
-	+dPavYef7jJzWNeM9ebXDar27ur7ux96OJnIACw==
-X-Gm-Gg: ASbGncuTUKU1Rv9nJFR8qi78ydo9AqRW1uAfKc6hkuzO5r3HatPgjbFjqZp3mKR3Kw7
-	o7JW4pIP6LZl7+ym9TAxpJUP6q955agR8O+tpDy8TBWLaWQRQ8sruh4Ibnixi2rLcUBbLFq8kxY
-	XiBXozxDaLsb76vU5X1VIgkX7t3fBf
-X-Google-Smtp-Source: AGHT+IEeJa44o+XSvJZx8Jdms+oYMNreohnRoUx+hnesCryJtVqnxtGNEIN81nIsmMg4dnxmRUZEPcuZvqeWVs6CE+Y=
-X-Received: by 2002:a05:690c:6488:b0:6f9:a6bd:2053 with SMTP id
- 00721157ae682-6fb32d6daa3mr33461967b3.34.1739456923002; Thu, 13 Feb 2025
- 06:28:43 -0800 (PST)
+        bh=7s1AnEsbDOxMifWlKKO96YvdNulNwpNMwNrlUq5WAgw=;
+        b=v8yGn9KH/wCGgLY3CR4gv41Vm1wK3VOUbb6hCBPJ+dhsm3Ftu4jiPHl3NB4MoZyp/g
+         neWPEANwiQ5rwDueBsvWa3gKzXICHwZ102m8KF25PO9lho7NctgGmlbNvSvIh0KoCqpq
+         bS/rh7DbVoLWN5OpeO6sVdF1QTPvg6+3pjK/hSHWFkUvlbSmY3HzoM72XtAks4niLT5x
+         4/PN3KcaeP1ddGVHjelnpU02X9IoCUtL3K7iCcMikK5m8mPn5LNg1OezcqJBKiffAf7G
+         RYxfSnn5KK/qBO7jfHg8JZ7s7KJA4oTP7FpTSqK+3EyHJ8cmPJDQbzglVrSRC9is+eh9
+         Yggg==
+X-Forwarded-Encrypted: i=1; AJvYcCVIJaZVeG2TinyY32Llydisdie/f4/NlFZ3/DbBi5yzQLyfKFDz4RDwJJ0oEIgxt9/SQ/5lYtEInB1QfBOiN7Vj2w==@vger.kernel.org, AJvYcCVilPTfdOoHDMQmMDeUtukNYguKGsAjNyWBi6prKood4L9FG5um695+Xo4SuJlh0GQmMqNd2DUSnLLQ@vger.kernel.org, AJvYcCW0Zw3oZqqryuH4Pl5qa2jbifCor/hhpxWaL25/jSRpspKUhX2vDpK0H4p59vxdkVZ3RAr5ncv0B+Z6T7dT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+GxPSlzo6yFl5sddEt7/LV6+jHkxK35wfTaSZJNmrklF/d8zE
+	3e9U6Br9jE21o62wTSxMBeC6hqWzCdk8ISRuAJAn/hqG+BXZzfrB
+X-Gm-Gg: ASbGncvYcvMUpqzmeGpCqZSFJr/rizu7ERZyLKHXdD1fYvPz2598eyrRbpYaagzU5yq
+	19BoizAn3m2vb4/fyxYoFQCuERHZPYJy4JtLUyJu7ta5QXWGoVlGvTZl9nMHr8yVKg4oqh0RvuC
+	7Cwqe0EWwouUvB0yY/KFlEKpEtfBFY7NCeki4retCK8GpT1fBDk+JfZSO9PB+loe+mVLEjsPXhq
+	koJFytUsLmm22XHo6G6xwWCBvYYiTEGwxgYfoC06jnH/POrl16Tr/kEE5trBYHgoK1He6pI6gKw
+	gyWLsGu1Ney1r6MWMg==
+X-Google-Smtp-Source: AGHT+IFhfs9TjAcjn/ErTnxMN1WJfk7JOQCk0pFIocG3OaK+NCISwQFpuudm6tJWQ1iLr3j32Tlxow==
+X-Received: by 2002:a17:90b:2c8e:b0:2ea:712d:9a82 with SMTP id 98e67ed59e1d1-2fbf5c71357mr11037562a91.29.1739457383189;
+        Thu, 13 Feb 2025 06:36:23 -0800 (PST)
+Received: from [127.0.1.1] ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-2fbf999b5b4sm3655165a91.30.2025.02.13.06.36.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Feb 2025 06:36:22 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH v3 00/10] drivers/perf: apple_m1: Add Apple A7-A11, T2 SoC
+ support
+Date: Thu, 13 Feb 2025 22:36:02 +0800
+Message-Id: <20250213-apple-cpmu-v3-0-be7f8aded81f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250212-lpass_qcm6490_resets-v3-0-0b1cfb35b38e@quicinc.com>
- <20250212-lpass_qcm6490_resets-v3-2-0b1cfb35b38e@quicinc.com>
- <exyxni7td5vow2n6jarav5euje6dnbue5f5yxzu6az554dthfe@zn5yd2byvkoj>
- <ccc87c55-d157-4ffc-8081-1a5900752931@quicinc.com> <CAA8EJpp7e5q36jGmB-TZX5A=XVGKsDtmBF8kJmxoga8NqGZP1A@mail.gmail.com>
- <c820c697-c3ec-4ae3-9720-fb80cb3a0450@quicinc.com>
-In-Reply-To: <c820c697-c3ec-4ae3-9720-fb80cb3a0450@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 13 Feb 2025 16:28:32 +0200
-X-Gm-Features: AWEUYZnOrZ0wV8U14CBBJrqDdK_JlTRGkwtYPMzrOyTphzKXgQHiPDt9IEDIQeA
-Message-ID: <CAA8EJpon5+R5s0HXUmoikjtuyEf3sQUqBVYvWrxuh14h2DvjQg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] clk: qcom: lpassaudiocc-sc7280: Add support for
- LPASS resets for QCM6490
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFIDrmcC/1XMywrCMBCF4VcpWRtpZlobXfke4mJM03agl5BoU
+ Erf3bQg1OU58H+zCNazDeKSzcLbyIGnMQ08ZMJ0NLZWcp22gBzKHJSS5FxvpXHDS5ZUEtaE50K
+ jSIHztuH3ht3uaXccnpP/bHZU6/tjYM9EJXPZaFM1QEZVBV7bgbg/mmkQKxNhn+JfCinV1QNP6
+ oxgtd6ny7J8AfHpc4DfAAAA
+X-Change-ID: 20250211-apple-cpmu-5a5a3da39483
+To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Nick Chan <towinchenmi@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1988; i=towinchenmi@gmail.com;
+ h=from:subject:message-id; bh=HlJsqhb8XnHHNzy8AdqFixPhoif08uRtRpp/JRim2Eo=;
+ b=owEBbQKS/ZANAwAIAQHKCLemxQgkAcsmYgBnrgNiM5TkmibLzic5zEE81YsjeEvk1L/dOVFUD
+ dU7mRTs/A2JAjMEAAEIAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCZ64DYgAKCRABygi3psUI
+ JKjfD/9mscaarB494OgyW4uYq1QJXorP6V5eRfYcimmfTN9369PcFCxeFReuiEaPK98qUT+2YF/
+ CBI/e3iAMHFZI3YcOgVE7ZNjBuYvLxxaqFPqhxYQRcJPG6MZZnZFDuT3tdL62Ue4NEGdDYeShaC
+ Er7IK91opJjC6qqaNrprt2d2GkuStvOK9TbZLJh+/OCVJSXzp+TsSzLurHBWHm/Bo4lpPf5RVhJ
+ oqXinanCkSZbovdZUJlPb+q6bpge/+kNpLSsc3/Zl2tfnz8zNXpr8MpPj8MRKYrwITwRKFnvDSp
+ uFNecTEscCTbURrjoFq34VMUYACEheQlq2v4AkOTA5jLpMWp3zmcayTEKsQuY98vBAvcoGeixiP
+ dhxsIKSMTSmEKPwNssoRtrdKMJCGKVSNlZP46Uxp3A18p6W0VOvQ7IMhvQBZG/B1px6CcXxD/di
+ rmCB3ispE2rueghdb1CgBCIK8UVdXYY6HCtFoUtKQBs+o6BXPBMMr2sPLIyeKQ49hs8fj9vH+FF
+ DsAn8Sqdm6Uyj0aUIxXA4eoiuOuc3C16QyvsL6IG427z/oEyGqEr4z/K10gkY5ZtWHKjfm1wTjX
+ 3M/d+NQZ8VCscIuB52fHn2zrHmsx3o9RdOLquraPTzyiKMto9DQiU2D7HV02uq2wKe6INiUl3vu
+ hC1DzYdr7M/KW5A==
+X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
+ fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
 
-On Thu, 13 Feb 2025 at 08:52, Taniya Das <quic_tdas@quicinc.com> wrote:
->
->
->
-> On 2/13/2025 1:30 AM, Dmitry Baryshkov wrote:
-> > On Wed, 12 Feb 2025 at 19:15, Taniya Das <quic_tdas@quicinc.com> wrote:
-> >>
-> >>
-> >>
-> >> On 2/12/2025 4:39 PM, Dmitry Baryshkov wrote:
-> >>> On Wed, Feb 12, 2025 at 01:52:20PM +0530, Taniya Das wrote:
-> >>>> On the QCM6490 boards the LPASS firmware controls the complete clock
-> >>>> controller functionalities. But the LPASS resets are required to be
-> >>>> controlled from the high level OS. The Audio SW driver should be able to
-> >>>> assert/deassert the audio resets as required. Thus in clock driver add
-> >>>> support for the resets.
-> >>>>
-> >>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> >>>> ---
-> >>>>  drivers/clk/qcom/lpassaudiocc-sc7280.c | 23 +++++++++++++++++++----
-> >>>>  1 file changed, 19 insertions(+), 4 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/clk/qcom/lpassaudiocc-sc7280.c b/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> >>>> index 45e7264770866f929a3f4663c477330f0bf7aa84..b6439308926371891cc5f9a5e0d4e8393641560d 100644
-> >>>> --- a/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> >>>> +++ b/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> >>>> @@ -1,6 +1,7 @@
-> >>>>  // SPDX-License-Identifier: GPL-2.0-only
-> >>>>  /*
-> >>>>   * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> >>>> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> >>>>   */
-> >>>>
-> >>>>  #include <linux/clk-provider.h>
-> >>>> @@ -713,14 +714,24 @@ static const struct qcom_reset_map lpass_audio_cc_sc7280_resets[] = {
-> >>>>      [LPASS_AUDIO_SWR_WSA_CGCR] = { 0xb0, 1 },
-> >>>>  };
-> >>>>
-> >>>> +static const struct regmap_config lpass_audio_cc_sc7280_reset_regmap_config = {
-> >>>> +    .name = "lpassaudio_cc_reset",
-> >>>> +    .reg_bits = 32,
-> >>>> +    .reg_stride = 4,
-> >>>> +    .val_bits = 32,
-> >>>> +    .fast_io = true,
-> >>>> +    .max_register = 0xc8,
-> >>>> +};
-> >>>> +
-> >>>>  static const struct qcom_cc_desc lpass_audio_cc_reset_sc7280_desc = {
-> >>>> -    .config = &lpass_audio_cc_sc7280_regmap_config,
-> >>>> +    .config = &lpass_audio_cc_sc7280_reset_regmap_config,
-> >>>>      .resets = lpass_audio_cc_sc7280_resets,
-> >>>>      .num_resets = ARRAY_SIZE(lpass_audio_cc_sc7280_resets),
-> >>>>  };
-> >>>>
-> >>>>  static const struct of_device_id lpass_audio_cc_sc7280_match_table[] = {
-> >>>> -    { .compatible = "qcom,sc7280-lpassaudiocc" },
-> >>>> +    { .compatible = "qcom,qcm6490-lpassaudiocc", .data = &lpass_audio_cc_reset_sc7280_desc },
-> >>>> +    { .compatible = "qcom,sc7280-lpassaudiocc", .data = &lpass_audio_cc_sc7280_desc },
-> >>>>      { }
-> >>>>  };
-> >>>>  MODULE_DEVICE_TABLE(of, lpass_audio_cc_sc7280_match_table);
-> >>>> @@ -752,13 +763,17 @@ static int lpass_audio_cc_sc7280_probe(struct platform_device *pdev)
-> >>>>      struct regmap *regmap;
-> >>>>      int ret;
-> >>>>
-> >>>> +    desc = device_get_match_data(&pdev->dev);
-> >>>> +
-> >>>> +    if (desc->num_resets)
-> >>>> +            return qcom_cc_probe_by_index(pdev, 1, desc);
-> >>>
-> >>> Won't this break SC7280 support by causing an early return?
-> >>>
-> >>
-> >> The resets are not defined for SC7280.
-> >> static const struct qcom_cc_desc lpass_audio_cc_sc7280_desc = {
-> >>         .config = &lpass_audio_cc_sc7280_regmap_config,
-> >>         .clks = lpass_audio_cc_sc7280_clocks,
-> >>         .num_clks = ARRAY_SIZE(lpass_audio_cc_sc7280_clocks),
-> >> };
-> >>
-> >> The reset get registered for SC7280 after the clocks are registered.
-> >> qcom_cc_probe_by_index(pdev, 1,  &lpass_audio_cc_reset_sc7280_desc);
-> >
-> > Could you please make this condition more obvious and error-prone
-> > rather than checking one particular non-obvious property?
-> >
->
-> Dmitry, we had earlier tried [1], but seems like we could not align on
-> this patchset.
->
-> If you are aligned, please let me know I can fall back on the approach.
+This series adds support for the CPU PMU in the older Apple A7-A11, T2
+SoCs. These PMUs may have a different event layout, less counters, or
+deliver their interrupts via IRQ instead of a FIQ. Since some of those
+older SoCs support 32-bit EL0, counting for 32-bit EL0 also need to
+be enabled by the driver where applicable.
 
-You have been using of_device_is_compatible(). Krzysztof suggested
-using mach data. Both approaches are fine with me (I'm sorry,
-Krzysztof, this is a clock driver for a single platform, it doesn't
-need to scale).
+Patch 1 adds the DT bindings.
+Patch 2-5 prepares the driver to allow adding support for those 
+older SoCs.
+Patch 6-10 adds support for the older SoCs.
 
-You've settled on the second one. So far so good.
+Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+---
+Changes in v3:
+- Configure PMC8 and PMC9 for 32-bit EL0
+- Remove redundant _common suffix from shared functions
+- Link to v2: https://lore.kernel.org/r/20250213-apple-cpmu-v2-0-87b361932e88@gmail.com
 
-But! The problem is in readability. Checking for desc->num_resets is a
-_hidden_ or cryptic way of checking whether to register only a first
-controller or both.
+Changes in v2:
+- Remove unused flags parameter from apple_pmu_init_common()
+- Link to v1: https://lore.kernel.org/r/20250212-apple-cpmu-v1-0-f8c7f2ac1743@gmail.com
 
-BTW: the commit message also tells nothing about the dropped power
-domain and skipped PM code. Is it not required anymore? Is it handled
-automatically by the firmware? But I see that audio codecs still use
-that power domain.
+---
+Nick Chan (10):
+      dt-bindings: arm: pmu: Add Apple A7-A11 SoC CPU PMU compatibles
+      drivers/perf: apple_m1: Support per-implementation event tables
+      drivers/perf: apple_m1: Support a per-implementation number of counters
+      drivers/perf: apple_m1: Support configuring counters for 32-bit EL0
+      drivers/perf: apple_m1: Support per-implementation PMU start
+      drivers/perf: apple_m1: Add Apple A7 support
+      drivers/perf: apple_m1: Add Apple A8/A8X support
+      drivers/perf: apple_m1: Add A9/A9X support
+      drivers/perf: apple_m1: Add Apple A10/A10X/T2 Support
+      drivers/perf: apple_m1: Add Apple A11 Support
 
->
-> [1]:
-> https://lore.kernel.org/all/20240318053555.20405-3-quic_tdas@quicinc.com/
->
-> Do you have any suggestions that we could consider?
->
-> >>
-> >>>> +
-> >>>>      ret = lpass_audio_setup_runtime_pm(pdev);
-> >>>>      if (ret)
-> >>>>              return ret;
-> >>>>
-> >>>>      lpass_audio_cc_sc7280_regmap_config.name = "lpassaudio_cc";
-> >>>>      lpass_audio_cc_sc7280_regmap_config.max_register = 0x2f000;
-> >>>> -    desc = &lpass_audio_cc_sc7280_desc;
-> >>>>
-> >>>>      regmap = qcom_cc_map(pdev, desc);
-> >>>>      if (IS_ERR(regmap)) {
-> >>>> @@ -772,7 +787,7 @@ static int lpass_audio_cc_sc7280_probe(struct platform_device *pdev)
-> >>>>      regmap_write(regmap, 0x4, 0x3b);
-> >>>>      regmap_write(regmap, 0x8, 0xff05);
-> >>>>
-> >>>> -    ret = qcom_cc_really_probe(&pdev->dev, &lpass_audio_cc_sc7280_desc, regmap);
-> >>>> +    ret = qcom_cc_really_probe(&pdev->dev, desc, regmap);
-> >>>>      if (ret) {
-> >>>>              dev_err(&pdev->dev, "Failed to register LPASS AUDIO CC clocks\n");
-> >>>>              goto exit;
-> >>>>
-> >>>> --
-> >>>> 2.45.2
-> >>>>
-> >>>
-> >>
-> >
-> >
->
+ Documentation/devicetree/bindings/arm/pmu.yaml |   6 +
+ arch/arm64/include/asm/apple_m1_pmu.h          |   3 +
+ drivers/perf/apple_m1_cpu_pmu.c                | 779 ++++++++++++++++++++++++-
+ 3 files changed, 756 insertions(+), 32 deletions(-)
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250211-apple-cpmu-5a5a3da39483
 
-
+Best regards,
 -- 
-With best wishes
-Dmitry
+Nick Chan <towinchenmi@gmail.com>
+
 
