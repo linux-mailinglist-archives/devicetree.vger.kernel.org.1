@@ -1,205 +1,149 @@
-Return-Path: <devicetree+bounces-146468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D065A3505E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 22:13:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A08FFA35081
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 22:32:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C60F67A42A9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:12:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D7331890B44
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:32:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A9226980A;
-	Thu, 13 Feb 2025 21:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34D352661B2;
+	Thu, 13 Feb 2025 21:32:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="n5WZaoDY"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="LmNghaiK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7651D266B56
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 21:12:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188D21487FA
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 21:32:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739481179; cv=none; b=qMW21hOLfBrQJ6eNxod+IlQhZbMbOrrQmLi6CB3AGFFZgABHZ6Cv9Z/BnqDhJk7y8hkxV7JdCfagHlfym9M4J8HTvNt2VBPMlDWlEENO0ZLFwZFLtGjjkVcBg+FqzNUqMrlj5H8pzPr0nKYz6O6vpzHibGF04WiMUxI+PhnQAwg=
+	t=1739482368; cv=none; b=W+DobuxGNQsmrIlYLdFdRoRx4PKNFpPhlQMtIeGGojYYum9selT0osI+tHKvChpNHWfiNPg1NRd7Z6OgLgOiSJk8GDdsCuBPW46pKNBTKdsd8ThLaHwuk+LHg+iSuzo1Yq2o7Rnx8u4Ganyb7nnpCc4q0SBiLJ1248pOcP6O1Oc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739481179; c=relaxed/simple;
-	bh=GU5EKBsXZ0eJtx8gWdltsHJFmXYyKXIQbjJRo0aYZgw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S9P2LTu7kW8lTqnRYNDY5HH+Eriwzsq3R8W0/Redcn1siWe7qoZJvN/wDpAU9zPjotrKqDEascmxhiho1JzSCC7vYEJj/rm4oN0JaPrmoDW1i7IV+n4DuQeD7dhpI4m5QqWKs4v+ci39P37hCGkRrel56n07uz19V0kOdttVR2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=n5WZaoDY; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5ded6c31344so1056954a12.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:12:57 -0800 (PST)
+	s=arc-20240116; t=1739482368; c=relaxed/simple;
+	bh=fHyM7qs+fM0V9XKBYiBwjzIu4xyYyLnJ9YjK5FgeIzo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tCwufau35Hnw+e2NNnXIxMdWuHj0AJxP+FNpB4jw34Jcd+ECEFDNU5kC8/Dtk28jyjKoFe+wQUwa3aX8HEb21DsI2kzNK1OTBFmlhjYj810ayNV85ASKQIc8P/yNFsLazet5iXgS3PW8ybkytypASXL1G6wN+3NJqxReSrxuOkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=LmNghaiK; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4395a06cf43so9125115e9.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:32:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1739481176; x=1740085976; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GU5EKBsXZ0eJtx8gWdltsHJFmXYyKXIQbjJRo0aYZgw=;
-        b=n5WZaoDYrcDOTqhAY7PALPZuAM5RX0e4cy30yr6wfMN4BjCPFODmZhgxqi6MQxLXIt
-         0h8pSgbD3iG9ZsErIu6HYiptUXJbWP4uiUj/oV+wQAm1JNS644Jhmw7GL5K0OrmMoygH
-         twh8l1w3yBDVdTpyii2Okp/NT9SiYO3lrFMrPLVuv1wR7ZB0xB7fiuTpMDaTeCbxx2r+
-         WKngoFZ1/o/4SJbe9LnFvuxeiiZiUAIZu+dM/TAqoDoRXMs+bNMmnl/coBHDQ6FvVgtK
-         VZBI+KJZ1bSU2eGfy16zitK8fauY2Gee1qdMJvkVy5lIYcu4N4Fo16QhqaVnkieHp8qs
-         Qa+g==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1739482364; x=1740087164; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=E9Cksr5sI5tujPp8b/uuWc+Q85liEnv8iPKnjQVPTio=;
+        b=LmNghaiK1ByYmv8Fagl6cYWSyFuxlYjmSuyH/Q42VCWsZcW67qQXnrfFz0e+KIcPZH
+         /DpsMsWbJx8LKFdO9f0u+Ag0PiAQ99Fy3lhL1VGyd0kVt9bKGX606ie4tnbVR7VfXvyh
+         TRhF1P2z+XS6xB1+E4IhnQsg3S+zDWennsTUg5vvkWTgefY4VblWI1F7exIFsPTgJw5m
+         Ar9aVJiqg7psbUdGQCl9D1zdDtqeZeqLzuWFBdcE6VWAgKs4tMAZ7yUx6v6LVhJ8PcPP
+         PAEPygZv8TCDUehoJfYKph3+hXwNHyKBefUF2jwXNhDUDoCwpgx12vfDjoNUKBQwBP6L
+         3Yiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739481176; x=1740085976;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GU5EKBsXZ0eJtx8gWdltsHJFmXYyKXIQbjJRo0aYZgw=;
-        b=YKWKBU8TvKBgZ4U3fFkvarePYCWfogJeknzqPXYucgh3ZTf8UosVc1fcq5rveOMi5g
-         1F0uw2HM5NUq6XeG3FsKCDiEHzxfgg+HVKrRFak+p8HI7yzd/TgsEaH6QEjtNMqTNuh0
-         1tb1mpqGkBLrqAW5lnp6SRv95ApqhjRR1Q7VQdQjbh2VvQx7LNG9/4c1cUxvIG5TlcnD
-         EbIjTiGDuIfC59xlk7LWGW7wzXwZq7koilTMBJzBzyWws/oPcR7IpD4YVIPOFvOZQcnx
-         U8d70aYQGr7RNUNRItCJVweuEZNbFcuStTYqjo+buRAr1LKeq5OJ6DCr+VPLUIMmdtGb
-         4FWA==
-X-Forwarded-Encrypted: i=1; AJvYcCUpvnEvL6zdchloDm6ozyDSGEz3ZgJiotlYaR4DauQQpSgbwDg2knQv9PpgwWy3u6A17y/R7yK5IGzF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwniF6/Qsde/E6/bdPWfSzqitQRltz3mV97WUamNCN38zLD6C2F
-	Wc1F5HcJ4tr8D4wbvUQbXjaFY9hIJ1ISH79b0emZO/jzDANosLciQhRluzzSOjd0FFDFbvyTj6k
-	szsuMNcVraPzpBcPq5fbXe0bnhouC+qZ9s/C87w==
-X-Gm-Gg: ASbGnctztQxQ/dvx11aNUP42PM2iHq9Synul9nqAM/QicKgZSnF7YOKANLHnFaMWyHr
-	XJaiHMqKBhkg3C9cq3KuM2AbHla+BgjML+3sLUK4uJaitK/qQinIC1x6vfLmq+kAco8oRSUga
-X-Google-Smtp-Source: AGHT+IFLkOYux/AZD1CsLOqigpm7V6aZfKxqg/U6JY+qfqXEvwuM2AidB1/2uIOCxn6vFgt7OscVy95MylrJ55QfbDA=
-X-Received: by 2002:a05:6402:540a:b0:5dc:d8d2:e38f with SMTP id
- 4fb4d7f45d1cf-5dec9faaeebmr12089446a12.31.1739481175796; Thu, 13 Feb 2025
- 13:12:55 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739482364; x=1740087164;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E9Cksr5sI5tujPp8b/uuWc+Q85liEnv8iPKnjQVPTio=;
+        b=wpcEk5d7j1TgRynaeIMG3RA8MqlcBOcmBF8m12gCr/jCV0oDHxPExXRWSBBfP65OP1
+         fW95fA2YKCIOthesoVgMqrBVCntzGGXDCuWjDJIpRQmqbjh47LWe0NYzvFlXuv1pVJcs
+         CLzWZ/1LzHTY1sdQ2AV0WibaSVJLs8vND9Tay1UozDML0fZgwGQgtbVUbOR7H29CltWF
+         ZYt87WmRPHas8TrySqOCAe6aTrua2WuzxfcUBZtel1YsnVVw1EllTdcLx6ObqLUYlgM6
+         h0ITSKwF2Sr9WSqCiW/oNP5UzOMsgmQsf+W4uzLo2mS2pUd3jAjdWmbMHWvg3GgY25H7
+         OIOA==
+X-Forwarded-Encrypted: i=1; AJvYcCXNgCg4DSXGBkvgSsASthyPHIBQtvGlPESWCq+FFTxgbOqImtvy33PzvERNRuCIhasKgCH9afsSlNyP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKOJDf8FV3i09WlojRUAb36ldxXX1Qdag1C2cwb+br7FdjjQFQ
+	Yhhm8aocZXON3GVMIzo2jvSHTo1J5YYkCVNDJvm59nlM3cy+885bu24rGXXLsKM=
+X-Gm-Gg: ASbGncsd//H2QbxsdwKXaEF6RiEICCje2lyZyvsmoIk5qLKbdFyHQsTr6pCN7mkQ5Sa
+	SzgKLpW/r0K9XJ8mUsajURnhVJKM8d+2L4yO504iSL8zo5Si03ZdT4YOXLj01rW4dcj0KSPPaKW
+	bRXRf4aXt+PGXvS5L6VeiB+sDU9hJtuHaPLo5CX5PI7SmLwcY5XQUAMog4T7lve638dmiKU9FgO
+	R/YNe+9SjjeA8pXB+GW+RNfJEN/jRDwQn6w7wmHE3W0ylCHItzlINsF8D16FTU2X5qxny6xYEuM
+	hZzmuUjp3gU73Cxx8pMaba0G9hR+VkmHNLhT61Y3M1r834a9RerQkUoRkuqa5sLoEjeaQUJ9cA=
+	=
+X-Google-Smtp-Source: AGHT+IHeCTtwq1iNXSF1fUZIaS/4CGI5trwsdX8zzJ/YF5He2ktcc89iauHD10dC77CQia9erjfZIA==
+X-Received: by 2002:a05:600c:46cc:b0:439:31e0:d9a2 with SMTP id 5b1f17b1804b1-43960169738mr60413745e9.3.1739482364316;
+        Thu, 13 Feb 2025 13:32:44 -0800 (PST)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4395a1aa7d2sm59583405e9.25.2025.02.13.13.32.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Feb 2025 13:32:43 -0800 (PST)
+Date: Thu, 13 Feb 2025 21:32:41 +0000
+From: Daniel Thompson <daniel@riscstar.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: mfd: Document TI LM3533 MFD
+Message-ID: <Z65k-fi78DnKVN1K@aspen.lan>
+References: <20250212075845.11338-1-clamor95@gmail.com>
+ <20250212075845.11338-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
- <20250213171435.1c2ce376@bootlin.com> <a3c5103c-829a-4301-ba53-6ef9bd1e74e7@lunn.ch>
- <CAMEGJJ3-JXhin_Ht76EqUNAwLiNisa9PrCrdUzCgj=msGZfb5A@mail.gmail.com>
- <821d4c74-09b0-4c1b-b8ef-f8c08d0f6b5b@lunn.ch> <CAMEGJJ0QbzCScfTRA_pw_8A=iMYMAAFs69zFNLwcOxF5Syugpw@mail.gmail.com>
- <20250213195304.3a2df02c@bootlin.com> <CAMEGJJ0kGCj=tjM6KswbG_+ZFkzMwPY+06BXCU0qSnbBKz0=ug@mail.gmail.com>
- <20250213220639.373da07b@bootlin.com>
-In-Reply-To: <20250213220639.373da07b@bootlin.com>
-From: Phil Elwell <phil@raspberrypi.com>
-Date: Thu, 13 Feb 2025 21:12:43 +0000
-X-Gm-Features: AWEUYZlVo_apDuZYuyVu1Lfe1LA9oZG5SHRyZ3oyNNk68YQAzKqOxyiz3nLno9I
-Message-ID: <CAMEGJJ2_HVKfsE3P22baadbzxSDAX=yTr=m76YuXa5A2cJsJig@mail.gmail.com>
-Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device using
- a DT overlay
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Andrea della Porta <andrea.porta@suse.com>, Arnd Bergmann <arnd@arndb.de>, 
-	"maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" <bcm-kernel-feedback-list@broadcom.com>, bhelgaas@google.com, brgl@bgdev.pl, 
-	Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, derek.kiernan@amd.com, 
-	devicetree@vger.kernel.org, dragan.cvetic@amd.com, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org, kw@linux.com, 
-	Linus Walleij <linus.walleij@linaro.org>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, lpieralisi@kernel.org, 
-	luca.ceresoli@bootlin.com, manivannan.sadhasivam@linaro.org, 
-	masahiroy@kernel.org, Michael Turquette <mturquette@baylibre.com>, 
-	Rob Herring <robh@kernel.org>, saravanak@google.com, Stephen Boyd <sboyd@kernel.org>, 
-	thomas.petazzoni@bootlin.com, Stefan Wahren <wahrenst@gmx.net>, 
-	Will Deacon <will@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250212075845.11338-2-clamor95@gmail.com>
 
-On Thu, 13 Feb 2025, 21:06 Herve Codina, <herve.codina@bootlin.com> wrote:
+On Wed, Feb 12, 2025 at 09:58:41AM +0200, Svyatoslav Ryhel wrote:
+> Add bindings for the LM3533 - a complete power source for
+> backlight, keypad, and indicator LEDs in smartphone handsets.
+> The high-voltage inductive boost converter provides the
+> power for two series LED strings display backlight and keypad
+> functions.
 >
-> Hi Phil,
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  .../devicetree/bindings/mfd/ti,lm3533.yaml    | 221 ++++++++++++++++++
+>  include/dt-bindings/mfd/lm3533.h              |  19 ++
+>  2 files changed, 240 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,lm3533.yaml
+>  create mode 100644 include/dt-bindings/mfd/lm3533.h
 >
-> On Thu, 13 Feb 2025 20:15:06 +0000
-> Phil Elwell <phil@raspberrypi.com> wrote:
->
-> > Once more, with plain text, which I'd hoped the Android GMail client
-> > would work out for itself.
-> >
-> > On Thu, 13 Feb 2025, 18:53 Herve Codina, <herve.codina@bootlin.com> wrote:
-> > >
-> > > Hi Phil,
-> > >
-> > > On Thu, 13 Feb 2025 17:57:37 +0000
-> > > Phil Elwell <phil@raspberrypi.com> wrote:
-> > >
-> > > > On Thu, 13 Feb 2025 at 17:45, Andrew Lunn <andrew@lunn.ch> wrote:
-> > > > >
-> > > > > > > Or do you mean a custom board, which has a CPU, RP1 and the button and
-> > > > > > > fan are directly on this custom board? You then want a board DTS which
-> > > > > > > includes all these pieces?
-> > > > > >
-> > > > > > That depends on whether you count the Raspberry Pi 5 as a custom board.
-> > > > >
-> > > > > So you mean the Pi 5 board would itself make use of the resources the
-> > > > > RP1 device has? They are not simply connected to headers for plugin
-> > > > > boards, but used by the main board? Hence you want to describe them in
-> > > > > the board .DTS file.
-> > > >
-> > > > That's correct. But even for plug-in devices, those which are on
-> > > > non-discoverable buses need overlays to declare them, which causes a
-> > > > problem when the overlay application happens before the kernel is
-> > > > started.
-> > > >
-> > >
-> > > Hum, I see.
-> > >
-> > > We worked on overlay usage on non-discoverable buses wired to a connector
-> > > and we did a talk about issues we are facing on at Plumber [0].
-> > >
-> > > You can also find our big picture in [1] and a last contribution introducing
-> > > export-symbols feature in [2]. export-symbols is also under discussion on
-> > > some other threads.
-> > >
-> > > Also, we proposed the i2c bus extensions feature [3] whose goal is to allow
-> > > an addon board to add devices on an i2c bus provided by a base board and
-> > > wired to an connector the addon board is connected to.
-> > >
-> > > Maybe in your case, you can decouple resources (gpio, pwm) provided by the
-> > > addon board and used by the base board using also nexus node.
-> > >
-> > > We use a nexus node [4] (not presented at the Plumbers talk because the idea
-> > > came during 'out of talk' discussions in Plumbers) in order to allow our
-> > > addon board to use resources provided by the base board.
-> > >
-> > > In your case, if I understood, you are in the other direction but why not
-> > > using also a nexus node to decouple and translate resources in this other
-> > > direction ?
-> > >
-> > > Don't know if this idea can help but feel free to ask for some more
-> > > information if needed.
-> >
-> > Nexus nodes look interesting - I see them as adding a layer of
-> > abstraction such that, for example, boards can declare which of their
-> > specific resources performs a common function so that clients can
-> > treat them all the same. We do the same thing in a limited way by
-> > using common labels on nodes, but this goes much further.
-> >
-> > In the case of Pi 5 and RP1, I imagine you are proposing that the Pi 5
-> > dtb declares the connector node and the overlay fills in the content
-> > with references to its GPIO controller, PWM controller etc. However, I
-> > think the overlay would also have to be board specific because it's
-> > not possible to patch part of a property from an overlay, so you'd end
-> > up overwriting the GPIO number as well as the controller reference.
-> >
-> > What is needed to make this work is the ability to cope with
-> > unresolved references in the base dtb, to be resolved as each overlay
-> > is applied, with runtime checking that each reference is resolved
-> > before it is used, all of which sounds like a nightmare. Plus, we
-> > really don't want to have to change the way all our camera and display
-> > overlays work on all Raspberry Pis just to accommodate somebody's idea
-> > of how RP1 should be handled.
->
-> Just to be clear, my comments were not there to tell you how RP1 should
-> work. I just proposed ideas without trying to force anything and I can
-> fully understand that ideas proposed don't feed your needs.
->
-> Sorry if my approach was misunderstood.
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,lm3533.yaml b/Documentation/devicetree/bindings/mfd/ti,lm3533.yaml
+> new file mode 100644
+> index 000000000000..d0307e5894f8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/ti,lm3533.yaml
+> @@ -0,0 +1,221 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/ti,lm3533.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI LM3533 Complete Lighting Power Solution
+> +
+> +description: |
+> +  The LM3533 is a complete power source for backlight,
+> +  keypad, and indicator LEDs in smartphone handsets. The
+> +  high-voltage inductive boost converter provides the
+> +  power for two series LED strings display backlight and
+> +  keypad functions.
+> +  https://www.ti.com/product/LM3533
+> +
+> +maintainers:
+> +  - Johan Hovold <jhovold@gmail.com>
 
-I feel I've been misunderstood - I appreciate your ideas.
+This looks like it has been copied from the lm3533 driver. Did Johan
+agree to this?
 
-Perhaps it would help if you could outline how you think we could
-apply your suggestions?
 
-Thanks,
-
-Phil
+Daniel.
 
