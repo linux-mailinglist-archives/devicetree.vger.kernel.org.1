@@ -1,98 +1,98 @@
-Return-Path: <devicetree+bounces-146427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ABB0A34D89
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 19:23:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA37A34DF3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 19:46:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A2873A2F4E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:22:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EE1D16D303
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87E67245006;
-	Thu, 13 Feb 2025 18:22:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBADD24A049;
+	Thu, 13 Feb 2025 18:46:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y6I5RhB6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l3eYG3Wx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72A5F245029
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 18:22:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AF89245B1F;
+	Thu, 13 Feb 2025 18:46:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739470943; cv=none; b=lVp+0v7UQKqyNqHDZYpvI6iLOKKg61r67UUSmkE4R9dHKOqIahzg/i4ag7GqtCGje4kpmAsr5kerIggyDdkzcf/q1jBqucPNcokw7e19hbIO5rdCIAg3UGhhu2ph2tCBdBCiIjeHQD7Joqy6xYCbBu4i7TQPG4sbPELkBxHGqg8=
+	t=1739472389; cv=none; b=JQwdzg8P5xaeO/v0whrAzxbj8IN9WWkvp7XPm/Lkx5jk9acqlWv6/sCFQ4ETRINmUvt3UDR4N2EgdUe4sRIsl0k59Dr/CLOCb9LRC6dJVFoK+WHLp/NkVTyHyBq49ctw5CsKrD/9ORiPM6Q9sjBZDpANastlw5q8EHnUel8CaBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739470943; c=relaxed/simple;
-	bh=6X3OK3wPGUXeLIYb+T5aPxe5dcHUnny6vLjCVjPlNRE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=B5NuWW8fpjbagDbrXbUf4nINeOtwVyNuyaHOgwjPzvd9Dv43PLpfMcJier6u1ECRf9H7RHhytVNHqMaeg8BxAfii4vpk6EiUBVWWOAXUsZXrOergbLO5qwig54V8ihQn0aTLS+jap8ROIfE93ynIB6qnJdniSd1kGBzvDVpvxqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y6I5RhB6; arc=none smtp.client-ip=209.85.208.45
+	s=arc-20240116; t=1739472389; c=relaxed/simple;
+	bh=amTtrLAurKKgY2OMwf2io9Cjutnt1tzgel0rAC7bkOk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XXs0SRgiBN7eXX1CF4cC137g2RVNUEN2H65+oG6DNpweCX1Q3yH4t4xPwSZM8BnC9Ne+RrOfzdPazf8FneBpqhqiRwCuLngBQtKXWNn1vhlE9Qd9Mbg/scFqCDzyQMyiZVdloS8GC+KjCSmPmkMPENeBSaRgCTycTC4shA2as8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l3eYG3Wx; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5de6c708315so1774184a12.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 10:22:21 -0800 (PST)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-aaeec07b705so203295866b.2;
+        Thu, 13 Feb 2025 10:46:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739470940; x=1740075740; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F/kT84H5qLfmytF8BSF9mlL2QfF0LoMNAWpygrqKleE=;
-        b=Y6I5RhB6N+h36gOWEzCw/XlTgXaneKCv4IWCFZhHFnoGH8WwVk/23nFW31sQRQiPxr
-         aLfDnVRH5mWE7WojQcegeZfa0LFleLnAJNo8pqd4C4xv45d31h8IRI5ntc5iXth0O6nm
-         pza0yywgFUPytfempG287SbxDo5I3/JeGWaWuJBbvHSEuGnNElxq0c9Xfj3oJjgQ+R9g
-         /VQclhCSl9cgYRlxCT0lAIR4nP1ViGYJ/ttYUcW4tKfEjI9fcXRPlgwrRkQMLT3sqvW4
-         5IYfoChig02mG6EV7uNjjq08x6e/za7lmKUDZAYZZm3+EiBIbzHqgnl/jdxRP+RUpeo+
-         zeKg==
+        d=gmail.com; s=20230601; t=1739472386; x=1740077186; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aukWBb3CU/4AhOxfmtAmwLpbw3wl3GfTDAoU9wk32Bk=;
+        b=l3eYG3WxKSMAlBB+FlpaJnDTLtjR5NP9kAeFkYTIR1ku2w+BuIGF38+/mGtpXwxvhf
+         rp9ibbYr8x3QnL9JQZUwCBxlfndXu0K20AO4lsR0E0x02gBBqh3uQ7QHq22q2EWe4qNc
+         5GKnTRLnAXgJpVXMfS8QBV7chnRz9TzZJZVKBx4wvrtzuelS+zoD7vrrKptsWJRuX9Rr
+         vsyboIZ95Apm69GilyFmKsPjJcB9Lp3vU1PWaGY7afXJkgEB68MRZOwm8jLye9MAISrp
+         Q8X/KGEtMgzDXs6kzjONN8hLdBIsU1zSkkxpS4Uod8byPXqGC/+2xQzA1LY2B9/mvegI
+         UGZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739470940; x=1740075740;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F/kT84H5qLfmytF8BSF9mlL2QfF0LoMNAWpygrqKleE=;
-        b=nFLWfGV+z9wLMyqJ+KiAXRnXLamKgZjWIO9eGiusA0/VYqEwEX+HZC3BNfEEMhY7Rl
-         FzdE8XgPygwmLNS1VI5a/wMLcRw6Ods3LzgTyj+k/2avKDa78+i8ImwOIKSBqjOcPAzA
-         RHsy3NBjtGPWmkqQ2qrWTdu7qtQ6Sb0ck9miC+y6vZweUaXNIk0BgT1cbnaGpFQ495lZ
-         ZvqM/9G7OHRLGvItoO3PXzxtj5oLFTUb51T7rNiNTZAvY6jJV5g+k46nBMqk779vZvO0
-         3e5RmCcneAWa0A5pu8laQ0Af9wxX2IOR4amR2VhPXTxdv5iw4RU706zHP8CF8eFcXD+d
-         15DA==
-X-Forwarded-Encrypted: i=1; AJvYcCXJku0EhZKxG5sgtVOKvwQ3lF3MTF7sCuq8wTsh0AN1KUNvQtG+9CtRRCYIBGGBcY8CkVUfQ6hx+Z0u@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpCs0NVhnA0h0SE4JdbiCHYm4MqdOmdjSDCbVVTenjL8LAeSNp
-	3jgMGOHZdpG/rcz38D4X3Qs8AOCOFFtI7nEl7qo8sFQCtaboM9vt
-X-Gm-Gg: ASbGncvTtgkwyxDJhmpY01TtaUhSMFkxU2rUDGBtj2UK83CIktTZvjPg3inzKaDPogD
-	ufyoV539N+QfxgS4NbiFp8JFmq7nYLMfLDimAFbLfS4vISQKamsFV68MLmbqkYNqCR1oZGGTpKf
-	cOsoSZFSJUJZ4/iQ94Lj/jTzzhlmN/5noJ0reEzsd0iFTvp9c/uXKVZmR5bS9rtMRbM23zRVn7/
-	QDnYe4pFJU/GR0XSHosWh5ls/+QcT4APb6JbTLnSXboYcX6EJNCGtVwpZF8jhvvzckWCJZfhSyy
-	L+dCF43dLY4zJl8TJwa+Q9QDg2XT
-X-Google-Smtp-Source: AGHT+IGGrGvhErjvZtc60pickMx2DJtsHlYMmMxo5AoPGkhiDOh+yM3BqjtVUmG4xl6q+XzV1ek+KA==
-X-Received: by 2002:a05:6402:4316:b0:5cf:e9d6:cc8a with SMTP id 4fb4d7f45d1cf-5deade00a52mr7137331a12.20.1739470939543;
-        Thu, 13 Feb 2025 10:22:19 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739472386; x=1740077186;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aukWBb3CU/4AhOxfmtAmwLpbw3wl3GfTDAoU9wk32Bk=;
+        b=Rjds519po0GH0wJJCz0BE9HeXppkW0T9y63/A7BSO8G9EfjspO2zsaVjwcGbsgskml
+         LkKxqY0CER7RU/GUIQEMRxWlKZoJ3dMp/VySQgF+BRuKi9sXiX1wEdxEfhnD8Q9TvHwv
+         idSUXEhaH2ijalhurcPuIgsj1adu0xcBo4aGpc4c6FRpJmyecjIx/oDYeHFCLvTL60yR
+         6Ff1Wi92wyzAx1Dfh2IMaTiJmd5UmR3VYyP7vOhcj4mrEVQlVYTENAn5FULfSF+4ZUVW
+         JfVnApv7MTiNFA/MLTBGeBIV19LTXpeaEThyx26uxgPVE4iSaHxmMQ32HPavnK/SotAI
+         UqBA==
+X-Forwarded-Encrypted: i=1; AJvYcCVKt4XKwTeeq03xrIrNlwGva+dFLXhkvHKzBjWBFvMmGBJTuTp6P54cqXoDvEjXbz/IVMsfLAVNfaggFgA=@vger.kernel.org, AJvYcCVPYWultxBOQT0GBk7q3u7fK1r9t4sFL4/gBvR/zs6IwMjXEdf/K8vbl0iYfwtj/WZjfnogcQPwNGry@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLYRFJ2PBlkgVemKCQHbHEU+7MsMvq0vcwUZExbjD60MZeTuev
+	x5oC42okCjFTaDYvsa8nzE0aXnuwCySZMKvFuphiDa0Dxo/GHdzhdeX9iJKD
+X-Gm-Gg: ASbGnctpcKCR2isPm307fuWIxpSsSnOom1Z+n9RujQURm5Jzz+gSKftA8SC9rOw1741
+	gFuZcAxS6eO0BdqjBTWO14tJ9ItbvEcITPMKSSGFKw+wpI0OG5VkuTy/S9uLUrJ/sZ0Eplf9Si9
+	qYhozdw7hcyqFi36/VjkmCmrUMNYiLutPEq1+LJdAU6xcDz0WLHj5EDNOqrbSD26wiz1LveRZ2j
+	WafdAp6WXO+84M2JSuhbwYF77kjjk6MwZOt2W/5CEXsQdRJQXgEr6YwYUBzhm/ILDd1Bc0VInTG
+	+KGFBde/cVYoIpShfex5u0r0yJnI
+X-Google-Smtp-Source: AGHT+IFLxTwk4ShOCgoBhzCNNIaUWJTERo/NRFQCgSQeLdKFCXmw2TOixkwTdZg2oz22qRZqY5E3Vw==
+X-Received: by 2002:a17:907:da5:b0:ab7:dec1:b34d with SMTP id a640c23a62f3a-ab7f34ac9c2mr820599666b.47.1739472385487;
+        Thu, 13 Feb 2025 10:46:25 -0800 (PST)
 Received: from giga-mm.. ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece270a66sm1559230a12.52.2025.02.13.10.22.18
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba533998e2sm181360466b.134.2025.02.13.10.46.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 10:22:19 -0800 (PST)
+        Thu, 13 Feb 2025 10:46:25 -0800 (PST)
 From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: soc@lists.linux.dev
-Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
+To: devicetree@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Haylen Chu <heylenay@outlook.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Arnd Bergmann <arnd@arndb.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v4 5/7] arm64: dts: sophgo: Add Duo Module 01 Evaluation Board
-Date: Thu, 13 Feb 2025 19:22:06 +0100
-Message-ID: <20250213182210.2098718-6-alexander.sverdlin@gmail.com>
+	linux-rtc@vger.kernel.org
+Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	alexandre.belloni@bootlin.com,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	unicorn_wang@outlook.com,
+	inochiama@outlook.com,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	dlan@gentoo.org,
+	linux-kernel@vger.kernel.org,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v10 0/2] riscv: rtc: sophgo: add rtc support for CV1800
+Date: Thu, 13 Feb 2025 19:46:13 +0100
+Message-ID: <20250213184622.2099324-1-alexander.sverdlin@gmail.com>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250213182210.2098718-1-alexander.sverdlin@gmail.com>
-References: <20250213182210.2098718-1-alexander.sverdlin@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,85 +101,124 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Duo Module 01 Evaluation Board contains Sophgo Duo Module 01
-SMD SoM, Ethernet+USB switch, microSD slot, etc...
-Add only support for UART0 (console) and microSD slot.
+Real Time Clock (RTC) is an independently powered module
+within the chip, which includes a 32KHz oscillator and
+a Power On Reset/POR submodule. It can be used for time
+display and timed alarm generation.
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
----
-Changelog:
-v4:
-v3:
-v2:
-- sorted all nodes according to DT coding style;
-- added "compatible" property;
-- renamed the new .dts not to use underscores;
-- added status = "okay" instead of deleting it;
+Changes since v9:
+- picked up orphaned series;
+- further simplified bitmask macros;
+- unconditional RTC start (rtc_enable_sec_counter());
+- dropped ANA_CALIB modification;
+- successfully tested on SG2000;
 
- arch/arm64/boot/dts/Makefile                  |  1 +
- arch/arm64/boot/dts/sophgo/Makefile           |  2 ++
- .../sophgo/sg2000-milkv-duo-module-01-evb.dts | 31 +++++++++++++++++++
- 3 files changed, 34 insertions(+)
- create mode 100644 arch/arm64/boot/dts/sophgo/Makefile
- create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-module-01-evb.dts
+v9: https://lore.kernel.org/linux-riscv/20240428060848.706573-1-qiujingbao.dlmu@gmail.com/
 
-diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-index 79b73a21ddc2..3a32b157ac8c 100644
---- a/arch/arm64/boot/dts/Makefile
-+++ b/arch/arm64/boot/dts/Makefile
-@@ -28,6 +28,7 @@ subdir-y += realtek
- subdir-y += renesas
- subdir-y += rockchip
- subdir-y += socionext
-+subdir-y += sophgo
- subdir-y += sprd
- subdir-y += st
- subdir-y += synaptics
-diff --git a/arch/arm64/boot/dts/sophgo/Makefile b/arch/arm64/boot/dts/sophgo/Makefile
-new file mode 100644
-index 000000000000..94f52cd7d994
---- /dev/null
-+++ b/arch/arm64/boot/dts/sophgo/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_ARCH_SOPHGO) += sg2000-milkv-duo-module-01-evb.dtb
-diff --git a/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-module-01-evb.dts b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-module-01-evb.dts
-new file mode 100644
-index 000000000000..b1f8a5787861
---- /dev/null
-+++ b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-module-01-evb.dts
-@@ -0,0 +1,31 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+
-+/dts-v1/;
-+
-+#include "sg2000-milkv-duo-module-01.dtsi"
-+
-+/ {
-+	model = "Milk-V Duo Module 01 Evaluation Board";
-+	compatible = "milkv,duo-module-01-evb", "milkv,duo-module-01", "sophgo,sg2000";
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-0 = <&uart0_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&sdhci0 {
-+	bus-width = <4>;
-+	no-1-8-v;
-+	no-mmc;
-+	no-sdio;
-+	disable-wp;
-+	pinctrl-0 = <&sdhci0_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
+Changes since v8:
+- delete unused macros
+- using 0/1 instead of the DISABLE/ENABLE macro
+- pass in the correct pointer when applying for IRQ
+- convert the incoming pointer into an appropriate
+  structure pointer in the irq handler
+
+v8: https://lore.kernel.org/all/20240204044143.415915-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v7:
+- pass checkpatch.pl --strict
+- using u32 replace uint32
+- using devm_kzalloc(*) replace
+  devm_kzalloc(sizeof())
+- sort header files alphabetically
+- delete unnecessary header files
+- fix wrap error
+- drop dependent description
+- using hardware automatic calibration replace
+  software calibration. see documentation 197 page
+
+v7: https://lore.kernel.org/all/20240122080500.2621-1-qiujingbao.dlmu@gmail.com/
+documentation: https://github.com/milkv-duo/duo-files/blob/main/duo/datasheet/CV1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
+
+Changes since v6:
+- completely delete POR dt node
+- remove syscon tag
+- use devm_regmap_init_mmio() replace
+  syscon_node_to_regmap
+
+v6: https://lore.kernel.org/all/20240115160600.5444-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v5:
+- remove unnecessary lock
+- fix cv1800_rtc_alarm_irq_enable()
+- remove duplicate checks
+- using alrm->enabled instead of unconditionally
+  enabling
+- remove disable alarms on probe
+- using rtc_update_irq() replace mess of alarm
+- remove leak clk
+- useing devm_rtc_allocate_device() and
+  devm_rtc_register_device() instead old way
+- add judgment for rtc_enable_sec_counter()
+- add POR nodes in DTS. This POR device shares
+  the register region with the RTC device
+
+v5: https://lore.kernel.org/all/20240108072253.30183-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v4:
+- remove POR dt-bindings because it empty
+- remove MFD dt-bindings because SoC does
+  not have MFDs
+- add syscon attribute to share registers
+  with POR
+
+v4: https://lore.kernel.org/all/20231229090643.116575-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v3:
+- temporarily not submitting RTC driver code
+  waiting for communication with IC designer
+- add MFD dt-bindings
+- add POR dt-bindings
+
+v3: https://lore.kernel.org/all/20231226100431.331616-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v2:
+- add mfd support for CV1800
+- add rtc to mfd
+- using regmap replace iomap
+- merge register address in dts
+
+v2: https://lore.kernel.org/lkml/20231217110952.78784-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v1
+- fix duplicate names in subject
+- using RTC replace RTC controller
+- improve the properties of dt-bindings
+- using `unevaluatedProperties` replace `additionalProperties`
+- dt-bindings passed the test
+- using `devm_platform_ioremap_resource()` replace
+  `platform_get_resource()` and `devm_ioremap_resource()`
+- fix random order of the code
+- fix wrong wrapping of the `devm_request_irq()` and map the flag with dts
+- using devm_clk_get_enabled replace `devm_clk_get()` and
+  `clk_prepare_enable()`
+- fix return style
+- add rtc clock calibration function
+- use spinlock when write register on read/set time
+
+v1: https://lore.kernel.org/lkml/20231121094642.2973795-1-qiujingbao.dlmu@gmail.com/
+
+Jingbao Qiu (2):
+  dt-bindings: rtc: sophgo: add RTC support for Sophgo CV1800 series SoC
+  rtc: sophgo: add rtc support for Sophgo CV1800 SoC
+
+ .../bindings/rtc/sophgo,cv1800-rtc.yaml       |  53 +++++
+ drivers/rtc/Kconfig                           |  10 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-cv1800.c                      | 223 ++++++++++++++++++
+ 4 files changed, 287 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-cv1800.c
+
 -- 
 2.48.1
 
