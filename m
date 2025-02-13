@@ -1,98 +1,234 @@
-Return-Path: <devicetree+bounces-146450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D917BA34F53
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:25:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B01ECA34F5F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:29:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 597683ACE8A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:25:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6527A18832BC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63AA824BC1D;
-	Thu, 13 Feb 2025 20:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3E2266193;
+	Thu, 13 Feb 2025 20:29:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XPHF68oA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CH1/khpn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34BC72222DE;
-	Thu, 13 Feb 2025 20:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41149257AF1;
+	Thu, 13 Feb 2025 20:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739478341; cv=none; b=jxVuQu4LpnfKShNao6+j3XgFmibE9A4c58QV9TrrSZVHSZdntFFMSBnvxH8Vy0evHkj+HPR57eh0aDKv+rWC0LC5XOrcfemVcMapHH6GWS34DoBGM6VPFmRrhFzRBCWCjVVs9hZigkm/JJ1OPrA9Wfx4J2ZSpuGiH9KVpTI3YOM=
+	t=1739478560; cv=none; b=BjrpHRavfmUJDu3ZsCrvQTXjKICMB62ZAcZpgLqy/4DJqovX77heexIvWuk84RKRkbeztIQJYyrxiInVnAEy6/llSQBpovlXPPxl9xREaSfNHVkokTv35zTC7o9IPcw9y3tv4GPezU/JLcGKE0hAU7465WpzXTXUckeZEWDKB3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739478341; c=relaxed/simple;
-	bh=0fl/5EuCkMkPaSWLh19FXELzC67YtrjrdyCIkM/pgjc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o65Gj+gennuJ9pNm12OPgCSfX8h6GCqzeHQ/IYXBZ54w9wHCaVN3+euW4/fRUzCKJuOdOj4P/Gdce+IXYggDZjLRoedknrF7+YztkYyGhJPu+6GNqSBzqz1drNE881vkFKojm2z9tFulq+zhBmuOixTuEd67mTxV9GcJhSqkpaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XPHF68oA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FE70C4CED1;
-	Thu, 13 Feb 2025 20:25:38 +0000 (UTC)
+	s=arc-20240116; t=1739478560; c=relaxed/simple;
+	bh=YppzhLV/rFWU5bXPekJ7n27J1mtqKJ+RmDLes5j0r7A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WV/1W40telKtkiDhB+Jh5Bk39mqYZMKSc6gLEUvh2/2QTIz9VgMOxlROZe4NWBQ8pSx7gN2hEbj28wlX3bjCl401UpT99WViW8+rhBp7hRzYlfI6W7T7QA887n3ss8ySQwWeMENLPm9QNZFqqJnQ5tqPd5DLbDaVZCdzcPnT6Uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CH1/khpn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6F11C4AF09;
+	Thu, 13 Feb 2025 20:29:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739478341;
-	bh=0fl/5EuCkMkPaSWLh19FXELzC67YtrjrdyCIkM/pgjc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XPHF68oAO3m/rDkPTiM0e9+oXWkxpB52q1Wc1lrrH06PWcIBeduFndRcc/dgaog2C
-	 mPcJSnpk27IIVkgAROVZpqkpMFSwiSmsMQRjlOkuGVGvzdj5YR+rT0Me9Ev12+5tdd
-	 8rPlWWTrlfnOFqsxmbZNTHloqKedjcg8eIEJdc/7PZNJ/zjgtC4G3twDjxz8zdbGWh
-	 fuRAJFCCVtaa4Fn/CH5NeG1MKoU494/0zPinYkc6XbLi7j3LS0SxY0aO3zkBzTXtO9
-	 9wgG40w12o4mQuQ0DzvYky811ioEupWZqqMxvqQnYZfZPWCyFx5xk++OOvsRaDYHVT
-	 xQSJLV7SyHBDA==
-Date: Thu, 13 Feb 2025 20:25:36 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com,
-	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jonath4nns@gmail.com,
-	marcelo.schmitt1@gmail.com, dlechner@baylibre.com
-Subject: Re: [PATCH RESEND v3 05/17] dt-bindings: iio: adc: ad7768-1:
- document regulator provider property
-Message-ID: <20250213-anybody-affecting-f951f66242aa@spud>
-References: <cover.1739368121.git.Jonathan.Santos@analog.com>
- <78c7d5d139d6c158423804f0e6c81cbfe9717b1b.1739368121.git.Jonathan.Santos@analog.com>
+	s=k20201202; t=1739478559;
+	bh=YppzhLV/rFWU5bXPekJ7n27J1mtqKJ+RmDLes5j0r7A=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=CH1/khpnAwSHv0v/TORUt7bvTSslWqvT+7z6QS7Z4w2m2s8ZDDswHzCBIy4giQUPx
+	 CpOPcFx2ZL7qjLAsoCzU9lJ/wdN7Yg9Ok3QJ6IzTYzuUL07v8UBofG+JPgLCd6OAMX
+	 FbJoXsPz4fRbW/5Vs+ruqBM5EBpC2pN3tWlggxC/46TsPqV9f4Hvqas0eJK073idR5
+	 Kt3DHXTOp+J2muWYlsu52I/MJGioAcQIig9tP4ZwPAeJmyu7Ida5jnztUcRcLKKXst
+	 J1n6QvtdGjV+7YSGm6C5/mNMnPe4BQTLNjNDXf5kNDfhRpPbVsu6ESUf8cjuYXzd88
+	 Sir8dsCVCJOuA==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5de74599749so1991732a12.1;
+        Thu, 13 Feb 2025 12:29:19 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUgQ/ukS+YksRqWy6qjnQMMv4Nnu1MGfcMZ26SH97EAZKO6OiG8sPEHWfagtgtHgBN9ly5l90VuuilHDy0=@vger.kernel.org, AJvYcCXi4+gHGvNwT01soqhl/yGcFbhHzfDazFsa3RznGL4t/eMBAAv7zq+EhBxaKQLzyrrqX3sa+zhDYkl1wUA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaMUmQWLbK1fkCx6e/K7Zn8RLlP0k2dWi4VA0U+1HzDgXn94Qs
+	85xDHRmRHyGP0KV4Un3bjn6vXUyt9yh/jZPlAgD1YMQqRXN2zn7aXJPBssoppPwl5AuPfYgG/gz
+	kq8kEk/3krI4gxorZ4KiTHyLjmA==
+X-Google-Smtp-Source: AGHT+IEXVitIjVCDOm5xYt53H9+9JSTgqyspa689L/MSfkj4BshuTrjYl7R+w5GsXZmrMafsMmFJz4EvkMLWpFgEpOM=
+X-Received: by 2002:a05:6402:2748:b0:5dc:c3c2:225e with SMTP id
+ 4fb4d7f45d1cf-5dec9d3eb64mr3747640a12.8.1739478558277; Thu, 13 Feb 2025
+ 12:29:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="CpEWeTb+A6AzQ08v"
-Content-Disposition: inline
-In-Reply-To: <78c7d5d139d6c158423804f0e6c81cbfe9717b1b.1739368121.git.Jonathan.Santos@analog.com>
-
-
---CpEWeTb+A6AzQ08v
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20241115193445.3619074-1-robh@kernel.org> <CAL_Jsq+9jNNF2yWCbSiiey2ubn2WAX8PdA69+cbXpWCDwPEm_Q@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+9jNNF2yWCbSiiey2ubn2WAX8PdA69+cbXpWCDwPEm_Q@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 13 Feb 2025 14:29:06 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLMcSU0NCgkbuLjKd567nvwHdc0os=6avZtyf=Qf01UJA@mail.gmail.com>
+X-Gm-Features: AWEUYZm5ygLbqYDPrwlTSKCLbdlDwtmYsC6_pLReODMb6-exZj-ap83lI-2bv6k
+Message-ID: <CAL_JsqLMcSU0NCgkbuLjKd567nvwHdc0os=6avZtyf=Qf01UJA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: nvidia: Remove unused and undocumented
+ "regulator-ramp-delay-scale" property
+To: Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 12, 2025 at 03:16:35PM -0300, Jonathan Santos wrote:
-> The AD7768-1 provides a buffered common-mode voltage output
-> on the VCM pin that can be used to bias analog input signals.
->=20
-> Add regulators property to enable the use of the VCM output,
-> referenced here as vcm_output, by any other device.
->=20
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+On Thu, Jan 9, 2025 at 4:54=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Nov 15, 2024 at 1:34=E2=80=AFPM Rob Herring (Arm) <robh@kernel.or=
+g> wrote:
+> >
+> > Remove "regulator-ramp-delay-scale" property which is both unused in th=
+e
+> > kernel and undocumented. Most likely they are leftovers from downstream=
+.
+> >
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> >  arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 10 ----------
+> >  1 file changed, 10 deletions(-)
+>
+> Ping!
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Ping again...
 
---CpEWeTb+A6AzQ08v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ65VPwAKCRB4tDGHoIJi
-0rdfAP94PIe6E1lyDQNdt1pZc5Cf2DiCd8ADkNuBJ1Nanjc2aAD+MWbFZ5b923Ed
-31oVf7grz0LFxU0mB/DOXKPr8AeGhQ0=
-=kiXf
------END PGP SIGNATURE-----
-
---CpEWeTb+A6AzQ08v--
+>
+> >
+> > diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/=
+arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> > index c56824d7f4d8..0ecdd7243b2e 100644
+> > --- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> > +++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> > @@ -266,7 +266,6 @@ vdd_soc: sd0 {
+> >                                         regulator-max-microvolt =3D <11=
+70000>;
+> >                                         regulator-enable-ramp-delay =3D=
+ <146>;
+> >                                         regulator-ramp-delay =3D <27500=
+>;
+> > -                                       regulator-ramp-delay-scale =3D =
+<300>;
+> >                                         regulator-always-on;
+> >                                         regulator-boot-on;
+> >
+> > @@ -281,7 +280,6 @@ vdd_ddr: sd1 {
+> >                                         regulator-max-microvolt =3D <11=
+50000>;
+> >                                         regulator-enable-ramp-delay =3D=
+ <176>;
+> >                                         regulator-ramp-delay =3D <27500=
+>;
+> > -                                       regulator-ramp-delay-scale =3D =
+<300>;
+> >                                         regulator-always-on;
+> >                                         regulator-boot-on;
+> >
+> > @@ -296,7 +294,6 @@ vdd_pre: sd2 {
+> >                                         regulator-max-microvolt =3D <13=
+50000>;
+> >                                         regulator-enable-ramp-delay =3D=
+ <176>;
+> >                                         regulator-ramp-delay =3D <27500=
+>;
+> > -                                       regulator-ramp-delay-scale =3D =
+<350>;
+> >                                         regulator-always-on;
+> >                                         regulator-boot-on;
+> >
+> > @@ -311,7 +308,6 @@ vdd_1v8: sd3 {
+> >                                         regulator-max-microvolt =3D <18=
+00000>;
+> >                                         regulator-enable-ramp-delay =3D=
+ <242>;
+> >                                         regulator-ramp-delay =3D <27500=
+>;
+> > -                                       regulator-ramp-delay-scale =3D =
+<360>;
+> >                                         regulator-always-on;
+> >                                         regulator-boot-on;
+> >
+> > @@ -326,7 +322,6 @@ vdd_sys_1v2: ldo0 {
+> >                                         regulator-max-microvolt =3D <12=
+00000>;
+> >                                         regulator-enable-ramp-delay =3D=
+ <26>;
+> >                                         regulator-ramp-delay =3D <10000=
+0>;
+> > -                                       regulator-ramp-delay-scale =3D =
+<200>;
+> >                                         regulator-always-on;
+> >                                         regulator-boot-on;
+> >
+> > @@ -341,7 +336,6 @@ vdd_pex_1v05: ldo1 {
+> >                                         regulator-max-microvolt =3D <10=
+50000>;
+> >                                         regulator-enable-ramp-delay =3D=
+ <22>;
+> >                                         regulator-ramp-delay =3D <10000=
+0>;
+> > -                                       regulator-ramp-delay-scale =3D =
+<200>;
+> >
+> >                                         maxim,active-fps-source =3D <MA=
+X77620_FPS_SRC_NONE>;
+> >                                         maxim,active-fps-power-up-slot =
+=3D <0>;
+> > @@ -354,7 +348,6 @@ vddio_sdmmc: ldo2 {
+> >                                         regulator-max-microvolt =3D <33=
+00000>;
+> >                                         regulator-enable-ramp-delay =3D=
+ <62>;
+> >                                         regulator-ramp-delay =3D <10000=
+0>;
+> > -                                       regulator-ramp-delay-scale =3D =
+<200>;
+> >
+> >                                         maxim,active-fps-source =3D <MA=
+X77620_FPS_SRC_NONE>;
+> >                                         maxim,active-fps-power-up-slot =
+=3D <0>;
+> > @@ -371,7 +364,6 @@ vdd_rtc: ldo4 {
+> >                                         regulator-max-microvolt =3D <11=
+00000>;
+> >                                         regulator-enable-ramp-delay =3D=
+ <22>;
+> >                                         regulator-ramp-delay =3D <10000=
+0>;
+> > -                                       regulator-ramp-delay-scale =3D =
+<200>;
+> >                                         regulator-disable-active-discha=
+rge;
+> >                                         regulator-always-on;
+> >                                         regulator-boot-on;
+> > @@ -395,7 +387,6 @@ avdd_1v05_pll: ldo7 {
+> >                                         regulator-max-microvolt =3D <10=
+50000>;
+> >                                         regulator-enable-ramp-delay =3D=
+ <24>;
+> >                                         regulator-ramp-delay =3D <10000=
+0>;
+> > -                                       regulator-ramp-delay-scale =3D =
+<200>;
+> >
+> >                                         maxim,active-fps-source =3D <MA=
+X77620_FPS_SRC_1>;
+> >                                         maxim,active-fps-power-up-slot =
+=3D <3>;
+> > @@ -408,7 +399,6 @@ avdd_1v05: ldo8 {
+> >                                         regulator-max-microvolt =3D <10=
+50000>;
+> >                                         regulator-enable-ramp-delay =3D=
+ <22>;
+> >                                         regulator-ramp-delay =3D <10000=
+0>;
+> > -                                       regulator-ramp-delay-scale =3D =
+<200>;
+> >
+> >                                         maxim,active-fps-source =3D <MA=
+X77620_FPS_SRC_1>;
+> >                                         maxim,active-fps-power-up-slot =
+=3D <6>;
+> > --
+> > 2.45.2
+> >
 
