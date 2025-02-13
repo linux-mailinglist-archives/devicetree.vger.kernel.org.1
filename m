@@ -1,157 +1,179 @@
-Return-Path: <devicetree+bounces-146372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F32A34AEE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:56:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 917E3A34B24
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:03:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44C037A427D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:55:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1790C16D2BA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:57:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B6A28A2B8;
-	Thu, 13 Feb 2025 16:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C4FC44C7C;
+	Thu, 13 Feb 2025 16:56:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qpg8VJKQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lomr7dAH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E5628A2AE;
-	Thu, 13 Feb 2025 16:56:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1EC928A2D9
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 16:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739465784; cv=none; b=D8c8ZZ3h6dedjuarF+Cc15YkzrbWsiOpTPO4CTRmgQZKzDQ3/cMkLr6kVPSG6nEIlm2KdnJX5slZ6BEVmL0gElhpI8tUu3wGQq4SKo62FIAp4YIAPa9t3V+T4CBZdSuQePRTOI1QSaWaikAov3gYxYnHxueInd3DUA3jtqrPIbk=
+	t=1739465813; cv=none; b=GTWhWEe9byNq3EFdQZsKXBhSrOwboN6n+jDhURKxmfVMKHAaDUh+vR/cyG0j772CovQZnqXhJ6Hj9b15jQpOXVe+BiDnuKEfuQZXHoYGtV5A0hRwc3AYDbtOMT1tb0YYkKly78Gkj25ePZXYeQkXTar1VodKHrgebBOv0g70yWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739465784; c=relaxed/simple;
-	bh=8zma9Zybu/PvfJSuoKw81ZyPwYxJFHyoN7r5Gbuegck=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WP8D+1rveNYaUgyp1eQMF/X+/t1EhXZk/3fJegLwD3OtlzyPxeAoCxF9SJj1JYZqxGIGepotSx7Rae4Y3VcvLs16IOBlhAeZSHrkj2MLPgnfIOatJRy7mnLfy5BQ4b0ksQmCTxuBO8LKMV2MrcoFqB/ANIbEr9PrFBhq51eWID4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qpg8VJKQ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51DFh5kN008240;
-	Thu, 13 Feb 2025 16:56:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/RH5qFipI0PyKgFuJFOKA5p2Yz9Uz3CCq5uaTJ1aCaw=; b=Qpg8VJKQMRLS1MPx
-	A2JWu12E77G2IunafuvtAC5HCSLio7G1x4lvGdWeddXl3CXmaHp3B933FTYwz8Kp
-	QmBu3FcgFlk0GtfXgarZnMUQHH1zHRG/c2lrOlzXvKJyymvZQG4/ACxYys8EmCwB
-	yuvJsSZGwMhoZkqVbRTdGIAHA4vHLo7Yblh3hoIp1Ckg+FOdbV6DfHRvZyV+FkVe
-	YZD+YWPEbZONgHLFXJxHaJtFUTvsuvCq5+Oksfg38d2MWNDPAPzRr1bSDY3wnWC6
-	O+lLuNurutR0jICRr+IY2VXMCOCoNJrI46LiM/B0N8tLIxCMzWsASSVoS7pfSJj1
-	Ua3hPw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qewhbj6f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Feb 2025 16:56:11 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51DGuAVb001258
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Feb 2025 16:56:10 GMT
-Received: from [10.216.44.15] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Feb
- 2025 08:56:04 -0800
-Message-ID: <60cc3e46-575d-4a79-a081-f98f4d86a67d@quicinc.com>
-Date: Thu, 13 Feb 2025 22:26:01 +0530
+	s=arc-20240116; t=1739465813; c=relaxed/simple;
+	bh=MvrtoHxe/saZ1n2D1pB5Nw3joZKQpDZfJcJqITQNRDY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gNOl/lj9qJ2r7GR6MDRlpy2p7cUtYFHcySrxOL0o1yRStv6mbp/RyIBmNEgKsCc/4gKObEQaDcmWAVg1BkBGM9NBhvklie+lF6ry/623b4wWkIf+Zur5DP0hw1uGBkv372i0Y0NIyDmIgxV3f7Y1MzCaDA8pVzxJCj7+R6FMgu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lomr7dAH; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-54509f46614so1100828e87.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 08:56:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739465810; x=1740070610; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YyQ7iBPn2LLvOrCnmEhJGLbqAv4rLkRdUEyL8CZvRP4=;
+        b=Lomr7dAHmAHUkv3zN+ZuzLXpCcP6Uc/LXY2Z/i1OeuEHTaOD1Ww3+4fKKTBY/HMfIi
+         bBihgTmwD4PHmAP7wonR003TcsS5hs4+yMJCznPSfumy6a3pJ1Enebr3slolsjB3aMIh
+         CyvZJWY8XEZcroZnVOgwt2Zz16pLFMfJqjDOu7F0HM65UAK0qy6seamruhHfc8yVdaxq
+         HC2sarvy+DdspLEqNbIq+wqYUovg2Z8ZT1Vc5rsPkRAidbmPxkYBKHFlUZAWYEb9FdwU
+         no/0FAeNGN7xKCEawrhZ5CF+qdm1Akug8QlVqaql55gCuL/xp0JOVjw3/BMMSZ78hSM5
+         Dd0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739465810; x=1740070610;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YyQ7iBPn2LLvOrCnmEhJGLbqAv4rLkRdUEyL8CZvRP4=;
+        b=UAZcWSlpRLbBeF38F6MZ37hyB6PMhEQ6lMq6B0QQh2b1QA5uMfBgiuqnUKty9dzrIB
+         X8pUSDIu1qy+jR8wbJstfHHTMIzg1J+ZOPGDrChBRKh/zrGkC+MyvoVFISfddwWNR6CS
+         EQEBxj9Xhu1VLjL5fNJzg+IJM4QCJxzMSAB9KP7U4oJVvfHXgXgAiIrmvg5AFeLFG0wR
+         GYtfF9ShDmY3vYQa6ceG3Hov77miUs5OMfVNawrMrygNo19e4RtePv9ALYOtU+Czaca6
+         Tu/VER6uYanNxB32+1kyFvUmuqzeZhK+czCQ5c5N8cZaT1M138DTCITnpF8OYNWyvyRD
+         Lx2A==
+X-Forwarded-Encrypted: i=1; AJvYcCWiDw+J2zIACdYMEL78+FaE4Z7+kHTdgRx9h6EYKQ5NP59FpmzabL7wAy0tuB2tq2/VrToCuA+KHbhD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiOVefjwCpQ+eXOD1Z4aC2cah+dGT2aejk2PZSGImfLpihfKQW
+	vcAmnWcbjVIPLz2PY8B7em5Xs73pwvTqtmLoCEiF/ANp2zZSZKyhSkbXdH14Gjs=
+X-Gm-Gg: ASbGncuLFfrVn1/pneqYsywo8M1KHbMKARTTb+fVSPRWH0j23pPCP66m0hECFaDcuCx
+	7/pJaztQsjSpnfdjbXYfxkcxKQVvyE0pvHvpdqF/V1EJbfUe3BUaikodo9ikRvUh8iP1rXurOPO
+	pRU33QY9glZc9jZww7xD3vzRsWtaA3/TR8TX6o/eN3Qw0olZ2FJljIjFeo6ata6lYLH3sGnDh0u
+	Q8LW8YxKJvT/Vl6RUpclXXLjF0y//eKLGLx/Zrwz+RyfSLwXRQBjK/NolugxmsTf+0wSnAYV/dh
+	L2bmvDlMyuNdRtO3dVctL/zQ8/GZ7Cid0iPTCuWtjq4sAteYGSS5unvf4tkkuyMqd4FtTEY=
+X-Google-Smtp-Source: AGHT+IHPp7z9mHrglxs4Ys3IyXNLHHY1OQEK7JqWZvEuKQ6rWpt9p/SBEJZ/ltRNQXoWyTRbRwY6vQ==
+X-Received: by 2002:a05:6512:128a:b0:53e:3a7c:c0b5 with SMTP id 2adb3069b0e04-545180e5df1mr2549482e87.10.1739465809683;
+        Thu, 13 Feb 2025 08:56:49 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5451f10cc28sm221256e87.201.2025.02.13.08.56.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Feb 2025 08:56:48 -0800 (PST)
+Date: Thu, 13 Feb 2025 18:56:46 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: qcs8300: Add gpu and gmu nodes
+Message-ID: <p36nz6p6bbzur7uoitbzc63hv4qf7hhsix3mqa36igarasj67b@evcdfpeybgsh>
+References: <20250213-a623-gpu-support-v1-0-993c65c39fd2@quicinc.com>
+ <20250213-a623-gpu-support-v1-4-993c65c39fd2@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] EDITME: Support for Adreno 623 GPU
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Jie Zhang
-	<quic_jiezh@quicinc.com>
-References: <20250213-a623-gpu-support-v1-0-993c65c39fd2@quicinc.com>
- <wdeqpz7ckpzw5sx7pigcp7fjx7nf4irz23kvj6xwamv34vfyba@rwzavxd5o6o3>
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <wdeqpz7ckpzw5sx7pigcp7fjx7nf4irz23kvj6xwamv34vfyba@rwzavxd5o6o3>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: T9pvpV5GpHJ9GlmYMvSln40Y1D-vfS2K
-X-Proofpoint-GUID: T9pvpV5GpHJ9GlmYMvSln40Y1D-vfS2K
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-13_07,2025-02-13_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- impostorscore=0 mlxlogscore=999 phishscore=0 clxscore=1015 adultscore=0
- lowpriorityscore=0 malwarescore=0 bulkscore=0 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502130122
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250213-a623-gpu-support-v1-4-993c65c39fd2@quicinc.com>
 
-On 2/13/2025 10:12 PM, Dmitry Baryshkov wrote:
-> On Thu, Feb 13, 2025 at 09:40:05PM +0530, Akhil P Oommen wrote:
+On Thu, Feb 13, 2025 at 09:40:09PM +0530, Akhil P Oommen wrote:
+> From: Jie Zhang <quic_jiezh@quicinc.com>
 > 
-> Nit: subject needs to be fixed
-
-That escaped my eyes. Will fix in the next rev.
-
--Akhil
-
+> Add gpu and gmu nodes for qcs8300 chipset.
 > 
->> This series adds support for A623 GPU found in QCS8300 chipsets. This
->> GPU IP is very similar to A621 GPU, except for the UBWC configuration
->> and the GMU firmware.
->>
->> Both DT patches are for Bjorn and rest of the patches for Rob Clark to
->> pick up.
->>
->> ---
->> Jie Zhang (5):
->>       drm/msm/a6xx: Fix gpucc register block for A621
->>       drm/msm/a6xx: Add support for Adreno 623
->>       dt-bindings: display/msm/gmu: Add Adreno 623 GMU
->>       arm64: dts: qcom: qcs8300: Add gpu and gmu nodes
->>       arm64: dts: qcom: qcs8300-ride: Enable Adreno 623 GPU
->>
->>  .../devicetree/bindings/display/msm/gmu.yaml       |  1 +
->>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts          |  8 ++
->>  arch/arm64/boot/dts/qcom/qcs8300.dtsi              | 93 ++++++++++++++++++++++
->>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c          | 29 +++++++
->>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c              |  8 ++
->>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c        | 13 ++-
->>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h        | 17 ++++
->>  drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  5 ++
->>  8 files changed, 171 insertions(+), 3 deletions(-)
->> ---
->> base-commit: 6a25088d268ce4c2163142ead7fe1975bb687cb7
->> change-id: 20250213-a623-gpu-support-f6698603fb85
->> prerequisite-change-id: 20250131-b4-branch-gfx-smmu-b03261963064:v5
->> prerequisite-patch-id: f8fd1a2020c940e595e58a8bd3c55d00d3d87271
->> prerequisite-patch-id: 08a0540f75b0f95fd2018b38c9ed5c6f96433b4d
->>
->> Best regards,
->> -- 
->> Akhil P Oommen <quic_akhilpo@quicinc.com>
->>
+> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
+> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 93 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 93 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> index f1c90db7b0e6..2dc487dcc584 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> @@ -2660,6 +2660,99 @@ serdes0: phy@8909000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		gpu: gpu@3d00000 {
+> +			compatible = "qcom,adreno-623.0", "qcom,adreno";
+> +			reg = <0x0 0x03d00000 0x0 0x40000>,
+> +			      <0x0 0x03d9e000 0x0 0x1000>,
+> +			      <0x0 0x03d61000 0x0 0x800>;
+> +			reg-names = "kgsl_3d0_reg_memory",
+> +				    "cx_mem",
+> +				    "cx_dbgc";
+> +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
+> +			iommus = <&adreno_smmu 0 0xc00>,
+> +				 <&adreno_smmu 1 0xc00>;
+> +			operating-points-v2 = <&gpu_opp_table>;
+> +			qcom,gmu = <&gmu>;
+> +			interconnects = <&gem_noc MASTER_GFX3D QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+> +			interconnect-names = "gfx-mem";
+> +			#cooling-cells = <2>;
+> +
+> +			status = "disabled";
+> +
+> +			gpu_zap_shader: zap-shader {
+> +				memory-region = <&gpu_microcode_mem>;
+> +			};
+> +
+> +			gpu_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-877000000 {
+> +					opp-hz = /bits/ 64 <877000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
+> +					opp-peak-kBps = <12484375>;
+> +				};
+> +
+> +				opp-780000000 {
+> +					opp-hz = /bits/ 64 <780000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
+> +					opp-peak-kBps = <10687500>;
+> +				};
+> +
+> +				opp-599000000 {
+> +					opp-hz = /bits/ 64 <599000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
+> +					opp-peak-kBps = <8171875>;
+> +				};
+> +
+> +				opp-479000000 {
+> +					opp-hz = /bits/ 64 <479000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+> +					opp-peak-kBps = <5285156>;
+> +				};
 
+Does it have no speed bins or are they pending on the nvmem patchset?
+
+> +			};
+> +		};
+> +
+
+-- 
+With best wishes
+Dmitry
 
