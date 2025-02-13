@@ -1,148 +1,110 @@
-Return-Path: <devicetree+bounces-146367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0BDBA34A87
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:46:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C56B3A34AE3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:55:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05F6C1896FC8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:42:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 298F53AED37
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:42:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9617202C5A;
-	Thu, 13 Feb 2025 16:36:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JNg1ffw5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1275241681;
+	Thu, 13 Feb 2025 16:37:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5F7202C4C
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 16:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D6C23A9BE;
+	Thu, 13 Feb 2025 16:37:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739464590; cv=none; b=YoGaQAx2/UoP4q188HYluCMilnQD0rGi6GC0N+kMxoP1e03gWN+2b87lBtTtM/Pks6YySOzKL4MV7HgSkhtXYIUa4ldSZ0vG2LCx3AZtl5G0onGLnBmQTm0jqt/ArgHEVeqGlKQHJ2fE7sm4qdJkyadU9DRB0oijLMwWD5zGpH4=
+	t=1739464659; cv=none; b=ebFRLKaVWhU2KTe4PMEvGfE1uX4qRqlqz/RlyfZNfYuszOmF7Hy+eB2nghRXAwr1qoqUwLsWQfeuYGgIkwxq3UvXe94mb9vve5TSrY3gpSpT4PODr1uknXu6CUeKFMDWUgc6fPDzyqLJn9I/w1nOJVZ4u794yg4VWK8eNOyXAW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739464590; c=relaxed/simple;
-	bh=AQrazMltgXFOO4AhHLQxVg9E2MdXnYe8G96EurERGy4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HSmRrGbg2470wGcB/tNg9HOHvqCH39WFCaGAlIPz197QxuUudUfxBSu+3yAP13n6ccs4RJXoNpFAkQqWELXCQ6DDfcJ7Itq0KtlICmeSQHTgYwNhpMsGa9j4az1oGWlTYyctmr3D40nvKtOiVySSTo03nzEADR9VTqZU0Mxw+L4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JNg1ffw5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51D9gnid027489
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 16:36:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jRC9JvP4VHXNyNMipFwDuEvtSP6Ksiyg5e611bESZ68=; b=JNg1ffw54vq6vn0N
-	HjZdNMLtyascFWWDAvd3gRaNKL6yhM86wZdWNJMFZ4VyfZ1vTnz+U+xJoHIR5hri
-	o2pgpR9RMJjggd+7MRVjOJjEh0d/uB8G8hdGSFtXp8WBOBnwnpQi6aN1kLbbDl9v
-	manfatZU67QSLS/+Fs6iATNYhdOwxuwEyHJe85BeOjGh68DT9w+VZdt+nhLIpW57
-	hhehWoXSbW5VzVcpMykCpR5IT4EK2rGw16kkEsfTpdxfb/Ern9bZ3iW//bQ6K2j+
-	TwHglL3QsTigQrmqHvWYuDfsofyDVsolNFTp9H4L8AB0dbl8sn50XFqxmM83OPSd
-	j/WOgg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44sebn93pc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 16:36:28 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-471beb45811so735091cf.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 08:36:28 -0800 (PST)
+	s=arc-20240116; t=1739464659; c=relaxed/simple;
+	bh=CK0l7lhLTq4Xp3yGLyuG+nJaX7lurAythDmF7aJVzos=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=e5hesszMd0NZiRweDSr3aZLU2wYdQYLqfQTvEO5HRLTPF4ca3zuGrvfg/3WrJ+0e1+RcOF/GeJxYlAVHwlrUlqTaudu8muWchbVch1EbFsDlnGUtuYGdkUxlV5csLztKmum0hKYEvM8jqVtoR93QX7ULZZBz7m1j0iSY8dAJcWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4bbc406499fso265645137.1;
+        Thu, 13 Feb 2025 08:37:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739464587; x=1740069387;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jRC9JvP4VHXNyNMipFwDuEvtSP6Ksiyg5e611bESZ68=;
-        b=B3aY2CuKcYd//LD0vPG3aZayUOX8VQK2SzOUqIJmLQ94ma18t9+od5EpG1qmDOHSxj
-         K9/s4nNYKQvPYUnLYGozS99qh2UkTVYppP3yZJpIQOXOHZZBWcTV73ZSdLOdVhGE0mHf
-         D15X6qlTfUxt3BpnRjaGRW7HPGzrLonAWh0VDlf3zUiKJdj+BX6E3exirqjhp31RAeAS
-         /Yufaje6z2wT0IZ+KMMXNAHUCU9JRmQsTWc/M0Ff5W1II5E9NBQd9rHLUZtGGTXGhkf1
-         PfMvgqJwNuag/4AKkxV3SOshj3qN87RXNlWlQaRqUX84VyuH/wg26pQotO6i+GwszBgI
-         lSjA==
-X-Forwarded-Encrypted: i=1; AJvYcCWAH5swKtbChzHUXiMeOYn5eHVH+BfhWc+3+APA9dPVyP570W5ggQmmMjFTK3Ypq2O4Y2zoJ0ohQ8yf@vger.kernel.org
-X-Gm-Message-State: AOJu0YwL4pYe2bHo8yIc4FbNAL5Ec61b1is52mG+bLapSMP730dsnKAH
-	u+rGTCUk411glSJCHv031svOBiKg10bzi7/qeXbEFIp/OZjscbaSLNaiGn0BQGsAZrd3XsQkqWs
-	8JN4jdLs8WjqKtmnF0f1tvH5qLzwQVyzJzZSgSn+0EPkr/e+7sNmhcoc7rQMB
-X-Gm-Gg: ASbGncu2qT7Rh97Rmv//5ut3F8E12mMjFENqjr/cmX1sj9hrSuvaZIA22/8NVUtKYxm
-	epfLCBj85/cw5jtLygHSgOEoFx5k2Imw1Ie4/BlgaW7gEjKeonJbz9MYJtEZz5i2yVJJvAhiIf7
-	I0JSO6t1MNzenRb1qiCRLdoGogAXEMtQW7CqxCgeS8VHtI6riybY3BxyckJJIfAIMehRTcAwsyD
-	YRlMai7G0PU6meJpQp3/I35Y24jKKFjUUu2kPLkuKvUo04IkmFKmXbbWmlLSkEsUV395wi/4JoH
-	+EdCnpnXRzvofWRUMWWv6Er9G0GRG3+o20SgLOvhWoDY1yyFwVVAAY0jF0w=
-X-Received: by 2002:a05:622a:1303:b0:467:5d34:aa84 with SMTP id d75a77b69052e-471afe57ae7mr39969191cf.9.1739464586940;
-        Thu, 13 Feb 2025 08:36:26 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE65B4BdI80A2hYuehypNi18VnhTOKeJzxy4QZub8Qv8xnIyZZrKkYGRhBtPZp8LP3QGhc+eA==
-X-Received: by 2002:a05:622a:1303:b0:467:5d34:aa84 with SMTP id d75a77b69052e-471afe57ae7mr39968921cf.9.1739464586479;
-        Thu, 13 Feb 2025 08:36:26 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba5339d94asm161583966b.143.2025.02.13.08.36.23
+        d=1e100.net; s=20230601; t=1739464656; x=1740069456;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XGv6Y4EFWbhWaAQ/I5rgl8Ej7T+QeeGkeoFH3pU7Lio=;
+        b=AvV8L3UyWMIbqCrye3h5KmEMH6oHFc2xgRlkBiB35o73gil9wpMxsyPc7t/NthmU9A
+         m0PWkKww80lLyMenEH4yuAJwE+tknWYWQQihB7gP/RkyRlXdbQYM/0hnv+lB3CsrSMrC
+         SQICUjMJhYj31GGbDO/b6SR7Dz48IVMzcssLOBcVDwJCHbwIpF8n6M4FO68pCR0xoa9n
+         Y1IbQPioXZs10m73p4F93qOLqbS2PF/1hlFEmvv2MPT5W0UqCN7ly3TkmK8tECeBV9/q
+         rxbqxzwxAnnbGapr8GObBqXn/08pYp36fLUoMNZDDq96TWzzWRNJANDKRasjVx3WuYYQ
+         40rw==
+X-Forwarded-Encrypted: i=1; AJvYcCUxyy093YOjyutriIUcLaXdinqCRuw/UNc7ZhaWqSlrnsyI66/o3oEBmHdsWcL5lwRX7TaSI4IrrRC2@vger.kernel.org, AJvYcCVdTBttaZ2fbCx5/8cH1KfvYhkcND1phUTk5eBcLTpo86e2+vbDXJhnuIeEYyvD+yEN/NLzMMDQU9ssM2E66Dyvs5o=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4LTluhiavYnzJHd4n0KrhzL1yBrVG7gsn/pL8ThvXjML5r190
+	rZQppzAld8r5GHDFSEpg7nQkW9DnP2892126es04sShDBbKKQbd/gYzBgtT88RI=
+X-Gm-Gg: ASbGncssjGc23Aq3jFIWP1WhMU+35G2Edid9RudC4q54APM97bUyg+4MWPqWqSMp8ox
+	4NxkDPhwGBa6vrIINmBPuZtMAofo8nz1rdWhFSQeMQLcdhSURom7GhGzcLvmVsYMEAIPjwM87oA
+	gUc+RKNy8mJSIVf3FOzTHlI3/84G9jb3u0a7OYQuvml+jzKvDM1VNLtug1FQFYm8Dh+Apb67R7a
+	cnGDgNCyWxhC1FnixhZqZGQw70uiMquySkYVohcyRHHzqPkVcef3spTVpV0FQTWvRKjUkTZZQSR
+	YjaNiII4DOY28ohI8BAQf6mz3Fy4x8dZWSWiUpmdBu5cncx/d/eyJg==
+X-Google-Smtp-Source: AGHT+IG5O89mRMMeA2tLeQNundpG5OUxEHfxFxGe1SYYxjzieWOQJ0bZe8xznj40HaTI43IbEVAO7Q==
+X-Received: by 2002:a05:6102:fa5:b0:4bb:d062:43e with SMTP id ada2fe7eead31-4bbf5271be6mr9125990137.0.1739464655739;
+        Thu, 13 Feb 2025 08:37:35 -0800 (PST)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4bc07807a1csm207538137.16.2025.02.13.08.37.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Feb 2025 08:36:26 -0800 (PST)
-Message-ID: <2bfaa1ce-0233-456d-ba2e-5b14533f3812@oss.qualcomm.com>
-Date: Thu, 13 Feb 2025 17:36:22 +0100
+        Thu, 13 Feb 2025 08:37:35 -0800 (PST)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4ba722d3916so332501137.2;
+        Thu, 13 Feb 2025 08:37:35 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU5IRXUS9Vhi+F7Amt/sqMpxSPxNY306Lv1CEUH1EUIynDBbl0xy4ECyddT2X9/wVNWUzv0HoxyWnH6@vger.kernel.org, AJvYcCWQ+MZR1xd8T5iXaAzSjcVF6wKMGnN0+CD4NLsy6f7WVTtllQQFQ6gFKvRVrnS9MyERhRQ6jS4a3ETQWfkQ/v7pydo=@vger.kernel.org
+X-Received: by 2002:a05:6102:a4c:b0:4bb:d394:46cc with SMTP id
+ ada2fe7eead31-4bbf54922d5mr7706927137.2.1739464655329; Thu, 13 Feb 2025
+ 08:37:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] drm/msm/a6xx: Fix gpucc register block for A621
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Rob Clark
- <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
-References: <20250213-a623-gpu-support-v1-0-993c65c39fd2@quicinc.com>
- <20250213-a623-gpu-support-v1-1-993c65c39fd2@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250213-a623-gpu-support-v1-1-993c65c39fd2@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: PGRHOEGsH0gVfQBbyafsMroIXfLRz_I4
-X-Proofpoint-ORIG-GUID: PGRHOEGsH0gVfQBbyafsMroIXfLRz_I4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-13_07,2025-02-13_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- lowpriorityscore=0 clxscore=1015 mlxlogscore=807 phishscore=0
- suspectscore=0 malwarescore=0 priorityscore=1501 adultscore=0 mlxscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502130119
+References: <875xlrshp5.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <875xlrshp5.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 13 Feb 2025 17:37:23 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVRuxPR7JjEnNV_UzUvsrGtssk7TFKK68u0QZiuYALQkw@mail.gmail.com>
+X-Gm-Features: AWEUYZltp1ERIZ5YEJFcR7JiirUl6G1Yz3PhWzhWKoBojAQL0s9SOJj4pvG6kQo
+Message-ID: <CAMuHMdVRuxPR7JjEnNV_UzUvsrGtssk7TFKK68u0QZiuYALQkw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: ulcb/kf: Use TDM Split Mode for capture
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 13.02.2025 5:10 PM, Akhil P Oommen wrote:
-> From: Jie Zhang <quic_jiezh@quicinc.com>
-> 
-> Adreno 621 has a different memory map for GPUCC block. So update
-> a6xx_gpu_state code to dump the correct set of gpucc registers.
-> 
-> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> ---
+On Mon, 3 Feb 2025 at 06:47, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> Current ulcb/kf of -mix+split.dtsi is using TDM Split Mode, but only for
+> playback. Use TDM Split Mode on capture too.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-So GPU_CC is outside what we consider GPU register region upstream..
+LGTM (IANAAE), so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.15.
 
-And I've heard voices (+Caleb) lately that we should get some clock register
-dumping infrastructure..
+AE = Audio Expert...
 
-So while I'm not against this patch fixing a bug, perhaps we can get rid of
-dumping GPU_CC here in the near future
+Gr{oetje,eeting}s,
 
-Konrad
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
