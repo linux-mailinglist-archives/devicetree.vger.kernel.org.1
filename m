@@ -1,174 +1,125 @@
-Return-Path: <devicetree+bounces-146403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA21A34C95
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:58:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6164A34C90
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:57:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 070A5169B9D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:58:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BE98188A936
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8680A241663;
-	Thu, 13 Feb 2025 17:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47DA923A9BD;
+	Thu, 13 Feb 2025 17:57:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nL7iWe8L"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="DCdtDMF5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A359E23A9BF;
-	Thu, 13 Feb 2025 17:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73EB223A9B4
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 17:57:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739469495; cv=none; b=G4475mm8US+cyKyMrM261TxiwrH1cNUkfFiEBlwtywTg/09PkNq9yZrFwoFRsHJn3oawRDctUmseq2oqEmLLD7fNATMaSZsr1iMcMk/d4KNzIVguXoPs7zfP2kTCpEWUyLT4FhjXUav9K6dJrWfZlgGvWYbamBfVEcKUB9t9Itk=
+	t=1739469472; cv=none; b=LfPouPLd0IkSKDBg8LoeEFHOaqq6fzo0l8yIhO9Weeau6yCcWc0WKQX60tscKbCLnprFOWZDLozPlkiYL1YfS3S760knVbmBnYzZeAjqjNtRbi6wSOrwL28YAfbLBccnRUKAjU6R4yN790xV+YF+uX28uy4ImJZTPqUIiPTDDYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739469495; c=relaxed/simple;
-	bh=xWOXLkZUDipVXkBEWn6lKA+dhIt25ilw4tSep9BV2AI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iF5XwEfEQtoEXdfHW9Qot9GpFxvjTue+56M/kQU7D/QdyrvAjqjVgpGPUaQwkCrJSmYKTR0mqcQlrRS+ABy2vXOlWdk0aSy8q9NEs8bqeZHSnaNuvBjSi3jQIJDXIWR9s1KBe1wg0P22XT16d7sVhUFJGD3/VQ4N2pBKPgV3Fww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nL7iWe8L; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739469494; x=1771005494;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xWOXLkZUDipVXkBEWn6lKA+dhIt25ilw4tSep9BV2AI=;
-  b=nL7iWe8LRuaaE9XtsEcgHVtkJqusZwn078EcJfVJ1ID0soWE8WODa1du
-   9N/sHArAJdd1KLeVrHkSVoTA9MO870iIGOgvrxcBdCk7lHiBLgY7U/VMq
-   Cz8f8jRZpYXbDcpJtedBIZahWbcsERPBLqHVtQDp6Sj0qjziO8eqnFQ9j
-   VH4OcLRO7uFH65/NsEXo0x8x9hC4I+RVR4V/HZw2fBYGn6vuvzZfghqQa
-   AWAZGHQNoe+m5hz7QdLvSTFDcndqQwD4c/Ys8ZwV/yhBouowydsNRf2t1
-   YMa4kg89l/IqwY0tqzLuvxcLvNZ01qEJVIjKnD8J0wGiLA31CymLIOeu6
-   A==;
-X-CSE-ConnectionGUID: 4S1JRYt2TK6htlOC44dRpA==
-X-CSE-MsgGUID: LWXmXoRXSSWwfnjClGvfXQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40066666"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; 
-   d="scan'208";a="40066666"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 09:58:13 -0800
-X-CSE-ConnectionGUID: xIa7/2r4Ru+OWWqzhiIL+w==
-X-CSE-MsgGUID: FRsG1AacQQO4aUWK4apTMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; 
-   d="scan'208";a="118223746"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 13 Feb 2025 09:58:08 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tidTS-0018XD-0N;
-	Thu, 13 Feb 2025 17:58:06 +0000
-Date: Fri, 14 Feb 2025 01:57:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Robert Budai <robert.budai@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno Sa <nuno.sa@analog.com>,
-	Ramona Gradinariu <ramona.gradinariu@analog.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v7 3/6] iio: imu: adis: Add DIAG_STAT register
-Message-ID: <202502140107.SF1UwFxM-lkp@intel.com>
-References: <20250211175706.276987-4-robert.budai@analog.com>
+	s=arc-20240116; t=1739469472; c=relaxed/simple;
+	bh=uxe/sPCuvuszkG09tatgP/sxrgyFyklm5riZrTlzQJA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mqMMXh8+VRrktRGrDnGIxw7PMj8A4IKoiVGxXdc5+jZDJthgc6UCHuw3FnkJ+e+3z0Xml/KYPK4fe80owWNvTstLlPJOMlIrgWcR7pRFCcMvpk0h419NG9cvFi86XFzo6/NBZaSJU9eJB2PZ1KsxIPlA3jFAtrsGOg8PSaEU9U8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=DCdtDMF5; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aaf3c3c104fso190954866b.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 09:57:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1739469469; x=1740074269; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uxe/sPCuvuszkG09tatgP/sxrgyFyklm5riZrTlzQJA=;
+        b=DCdtDMF5xCu6D99J8ipr2xNNMloOw+nxwbV7J0RxdRxacuH4MLAcWkzqtpIHvJYCsM
+         KGY4uK5XpYAuDtgVd4Ss3RTctRp88G8zCecrUOV27ugzkMoH7212U2Rs+kcEbKuKRNsC
+         +jX9HQbSahUZr3i8BcpOM4+R0eJzFvitJafrZFsHdXPaXbYmguyaG/uPo64CMcfSYKAs
+         7klaC8saAfUGmAB3+4njsEQkayE/iCvnAOWqyl/7R3VHT4+UWu8hUK0tJo/izRYCY52A
+         rVD6D6AGDYBB5GYW+BeM0dZ2MHE3K/nTA9ZOG0U/bHhHZalhV6dmmVuojwom3Xybtn/4
+         Wdxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739469469; x=1740074269;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uxe/sPCuvuszkG09tatgP/sxrgyFyklm5riZrTlzQJA=;
+        b=hsVDCEMftnCbH3qsDhDFu1dUMlQ0yHRnlzMtSawW4Kh4qs02c80hKU1Yv6WJWzwMRx
+         qeZVP8Ps5XFNlurnizlizAocYr9YM0K+h+4rd8YhL9G95BE67DE6hQzYwN6BX2T2wP9K
+         tJ+N+Svc0PZoDDuoX/WMqeMSLTSlYerQpGU7cUeWiUFGYzxRs34Xe/bV7Ya32H2mlMkV
+         QYM0Bf1e1YbJtC+zWqRY/J7k8YRy6eQBSjNRhqooCTcyG1liJIbdptPovIiNL+WRKWpC
+         pX9pgf0X16T7GVkMFP47Wa7PaP2f+5gOtBOd4GwfXvd2apH6pwPfStCX4yZk6HyF5Mw2
+         B1BQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX2xj+H9yfN2ieo2ot3f6icN8IRUVLZjqdL4E7s5fVl+dGwhtXi91DA2K4FZ0gvgO8dyHaUe469zkHt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5QSaYHHrpXEPEo5V8HWk+MVpbY3VcyZVEf5h5FtcfV3hBGPfy
+	/TgugktcjyKDJqWfOpoX4qRr/clE/TwXwWhqPqAcx+NC7R3hhTO1jVnzsZafMq89J1TLNV2uTeC
+	0gPmYfk0EYkJc4Ng+a4QmSoup1UquzzhrLm/B+A==
+X-Gm-Gg: ASbGncvTIjXSP1ocFtx8UILfQMU9WHJCUEOJIndqcfTn4YpQOqRq3G64jUyfmPEGfsS
+	Vfqab0+4GZjHDYf4mDOOcwjUsQOGcJIeIu0OnWhlk4MWtHqlVi6SJzG+lBNgmdFfghXCTBAFX4J
+	n1UstJWGlhVCf6wpDM3N/CkAqEsE0r
+X-Google-Smtp-Source: AGHT+IEK78m51sGJDd3X7obouAmtice1DYZhDC7vdVZTdA3vPC4baSC0McAYMZqXZ2JdRz2CuZ0fh5G5y4aENoDxPdM=
+X-Received: by 2002:a17:907:971a:b0:ab9:63bf:8105 with SMTP id
+ a640c23a62f3a-ab963bf8270mr490444566b.1.1739469468776; Thu, 13 Feb 2025
+ 09:57:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250211175706.276987-4-robert.budai@analog.com>
+References: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
+ <20250213171435.1c2ce376@bootlin.com> <a3c5103c-829a-4301-ba53-6ef9bd1e74e7@lunn.ch>
+ <CAMEGJJ3-JXhin_Ht76EqUNAwLiNisa9PrCrdUzCgj=msGZfb5A@mail.gmail.com> <821d4c74-09b0-4c1b-b8ef-f8c08d0f6b5b@lunn.ch>
+In-Reply-To: <821d4c74-09b0-4c1b-b8ef-f8c08d0f6b5b@lunn.ch>
+From: Phil Elwell <phil@raspberrypi.com>
+Date: Thu, 13 Feb 2025 17:57:37 +0000
+X-Gm-Features: AWEUYZnQGb_LTFgRMGvR2NkevZWJdZdjShSWV1aYMFwhkUzlH95FjIU8_Kkz2O0
+Message-ID: <CAMEGJJ0QbzCScfTRA_pw_8A=iMYMAAFs69zFNLwcOxF5Syugpw@mail.gmail.com>
+Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device using
+ a DT overlay
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Herve Codina <herve.codina@bootlin.com>, Andrea della Porta <andrea.porta@suse.com>, 
+	Arnd Bergmann <arnd@arndb.de>, 
+	"maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" <bcm-kernel-feedback-list@broadcom.com>, bhelgaas@google.com, brgl@bgdev.pl, 
+	Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, derek.kiernan@amd.com, 
+	devicetree@vger.kernel.org, dragan.cvetic@amd.com, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org, kw@linux.com, 
+	Linus Walleij <linus.walleij@linaro.org>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, lpieralisi@kernel.org, 
+	luca.ceresoli@bootlin.com, manivannan.sadhasivam@linaro.org, 
+	masahiroy@kernel.org, Michael Turquette <mturquette@baylibre.com>, 
+	Rob Herring <robh@kernel.org>, saravanak@google.com, Stephen Boyd <sboyd@kernel.org>, 
+	thomas.petazzoni@bootlin.com, Stefan Wahren <wahrenst@gmx.net>, 
+	Will Deacon <will@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Robert,
+On Thu, 13 Feb 2025 at 17:45, Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> > > Or do you mean a custom board, which has a CPU, RP1 and the button and
+> > > fan are directly on this custom board? You then want a board DTS which
+> > > includes all these pieces?
+> >
+> > That depends on whether you count the Raspberry Pi 5 as a custom board.
+>
+> So you mean the Pi 5 board would itself make use of the resources the
+> RP1 device has? They are not simply connected to headers for plugin
+> boards, but used by the main board? Hence you want to describe them in
+> the board .DTS file.
 
-kernel test robot noticed the following build warnings:
+That's correct. But even for plug-in devices, those which are on
+non-discoverable buses need overlays to declare them, which causes a
+problem when the overlay application happens before the kernel is
+started.
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.14-rc2 next-20250213]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Robert-Budai/iio-imu-adis-Add-custom-ops-struct/20250212-040235
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20250211175706.276987-4-robert.budai%40analog.com
-patch subject: [PATCH v7 3/6] iio: imu: adis: Add DIAG_STAT register
-config: arc-randconfig-r112-20250213 (https://download.01.org/0day-ci/archive/20250214/202502140107.SF1UwFxM-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20250214/202502140107.SF1UwFxM-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502140107.SF1UwFxM-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/iio/imu/adis.c:319:42: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected unsigned short [usertype] *val @@     got unsigned short [usertype] status_16 @@
-   drivers/iio/imu/adis.c:319:42: sparse:     expected unsigned short [usertype] *val
-   drivers/iio/imu/adis.c:319:42: sparse:     got unsigned short [usertype] status_16
->> drivers/iio/imu/adis.c:319:42: sparse: sparse: non size-preserving integer to pointer cast
-
-vim +319 drivers/iio/imu/adis.c
-
-   298	
-   299	/**
-   300	 * __adis_check_status() - Check the device for error conditions (unlocked)
-   301	 * @adis: The adis device
-   302	 *
-   303	 * Returns 0 on success, a negative error code otherwise
-   304	 */
-   305	int __adis_check_status(struct adis *adis)
-   306	{
-   307		unsigned int status;
-   308		int diag_stat_bits;
-   309		u16 status_16;
-   310		int ret;
-   311		int i;
-   312	
-   313		if (adis->data->diag_stat_size)
-   314			ret = adis->ops->read(adis, adis->data->diag_stat_reg, &status,
-   315					      adis->data->diag_stat_size);
-   316		else
-   317		{
-   318			ret = __adis_read_reg_16(adis, adis->data->diag_stat_reg,
- > 319						 status_16);
-   320			status = status_16;
-   321		}
-   322		if (ret)
-   323			return ret;
-   324	
-   325		status &= adis->data->status_error_mask;
-   326	
-   327		if (status == 0)
-   328			return 0;
-   329	
-   330		diag_stat_bits = BITS_PER_BYTE * (adis->data->diag_stat_size ?
-   331						  adis->data->diag_stat_size : 2);
-   332	
-   333		for (i = 0; i < diag_stat_bits; ++i) {
-   334			if (status & BIT(i)) {
-   335				dev_err(&adis->spi->dev, "%s.\n",
-   336					adis->data->status_error_msgs[i]);
-   337			}
-   338		}
-   339	
-   340		return -EIO;
-   341	}
-   342	EXPORT_SYMBOL_NS_GPL(__adis_check_status, "IIO_ADISLIB");
-   343	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Phil
 
