@@ -1,194 +1,207 @@
-Return-Path: <devicetree+bounces-146392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89823A34BD0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:25:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50626A34BF6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:32:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEED57A0494
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:24:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 424823A2E16
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:27:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6BED20550B;
-	Thu, 13 Feb 2025 17:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7AA3202F61;
+	Thu, 13 Feb 2025 17:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UagYHjvV"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="Ws91bnDM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B34B2036FA;
-	Thu, 13 Feb 2025 17:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739467518; cv=none; b=oMC/m2BeLVtVIKKpQpR/OYA4fj5HgpgPIwqJBbe58MO8SjwAl4Ouz/LspwvqGpG4DlhjElp54MFKsc75zsKTJr2GtuytVtDS2hLOM7v9kmoobsGxrhtLqJr42FH7r79MPUcfyM1h7J6EZasNwnk7FXlDxR+Xw/gVO/GQ3kR0iig=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739467518; c=relaxed/simple;
-	bh=l5dPN45pvtGQilxxqMAKhJR7woxgI0pU9l8XeuWuM94=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oJXHEjgtskbBXrexl6Is5FXcQP/kzpEpSIVyJCSXvhd8QGoDq8qKOwE8n9UWzST9qpa8Aw5zas0+NJInXpM1LQ3zUULx0fHuUGqS0+m/C4FJR0FULFqbGD+YGTgVWwddweQDo+oeeJV3ThinajC25zU80qbgq2vuFsA6cmYumtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UagYHjvV; arc=none smtp.client-ip=209.85.161.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5fcb3ee41c5so245716eaf.1;
-        Thu, 13 Feb 2025 09:25:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739467516; x=1740072316; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sCeC6vbM7JjhdZF4P2Gx6QbEh1ZqtE+jpJS2T15RIw4=;
-        b=UagYHjvVwwU/kA+HSGmzxskKXZ9tuP/RiNfkmM71DR0b2Ectgjviq+e+sS3SNevWJK
-         pBYzQer4NyhzJz8dnpB26mCOcRDyzdk7BC8bZHuLf6GFbN5YQuVG6HhTQykQvwMRvCWA
-         UxaW3dshCtISHmiQ1aIMeWSFcI5gh5Jb9xuOICne7PGAQZzbBR6g/V48OVtq0mkpLVZS
-         LJODt1wZmmnK9Z2JxiA8hBQfK1WOvKPlceqYUYLzIGjrRvpq8E8bnANHVO/Mae6XokKA
-         FA80hWXKW1TfwIeU+Db+ZCYW9W3ZD2/Cazm89fyQK6Gkj7N+noNHTrQ6jf1lzsdWSraY
-         h8Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739467516; x=1740072316;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sCeC6vbM7JjhdZF4P2Gx6QbEh1ZqtE+jpJS2T15RIw4=;
-        b=FKN42qzMKNxTC3bKqYnOIW2wiSgvZBDfl258JCzAOUMJnmWKXRj5z8VIKsfSkWGK+3
-         6VZu8lQGs/ULJ+K5c0hb1muViwensghZu02Q80Q3wU2bSAMMFEFThvZrZTlBchzCamgg
-         KMgM0aJjWpIqJtrLtw8FIts5tYRfYviJpE/5WWtay6tS3qOCk7NPkNS7lJczNKfXuWc4
-         z25LBf2Ve56GYjfTi7rLIMtSWwpO3n9DtsEDpeqf8P0ET50In2PZp33M/9VNyQt+KHDB
-         mDETIsc4ozb+orthc9SRznirK7wrMMWbdIazNh1PzpStW6m7s1mC83woH0JTK24FhH/o
-         hXEg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZQ9U5a5D4ztNJClfnSTOGdHMGXUi/DEel8YmQtHv75W//7trnfDsr8Quhx28yAHFEZMZdpRkdxyU=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZWzucp/4s2X8Pk8dv0lLfzlcWtCQ3cvHnw5F1s7pVrgKWtrmk
-	TQ6eAiYgSar3QTYKdOtZgVjrBkHh5Z/xvK3KTeIP8gN6CV9xjdRZ
-X-Gm-Gg: ASbGncuk43rsB5nmgXudb2bi1teM+VSLTOp9nsy7Dm1PnZF0m/5CF20ZMK3fqxi9yy7
-	Y4HdHTI5t22ylj/Z62ujP5OAvJIGB67fScPRssP7X+yfMwZ1WNk4x5jl4SIOWT65iwV0/oNbzSX
-	+p8GuNhWXzhaQvUlZOkuvEtDtMYvwtL2htuBRvEDm92wi5Gy8m/ySgaaOSnOVrkegmEx3f2FUBy
-	oYB6h5YXJ7jn2TAyLPVYKNq1uJ2SjHhACfqiFHJXSUQNM3hNyJJR53tZ8kZqEYWIwOQRpGgRprx
-	gbqn60kc4vomHFyYcKNnW944jw5wOZL6F64=
-X-Google-Smtp-Source: AGHT+IH6qRsSRtamSK3BLnjwS7X5k+aZPQM3RaXmQaYZAk/4EaOjL1M8reCqrRpVQMVwez3Mn8JOBA==
-X-Received: by 2002:a05:6820:2187:b0:5fc:ade5:60d8 with SMTP id 006d021491bc7-5fcaf4d6cacmr2699564eaf.4.1739467516196;
-        Thu, 13 Feb 2025 09:25:16 -0800 (PST)
-Received: from localhost.localdomain ([2600:1700:fb0:1bcf:2d58:1e06:61bd:218e])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5fcb155b77dsm680358eaf.0.2025.02.13.09.25.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 09:25:15 -0800 (PST)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-sunxi@lists.linux.dev
-Cc: devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	p.zabel@pengutronix.de,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	samuel@sholland.org,
-	jernej.skrabec@gmail.com,
-	wens@csie.org,
-	sboyd@kernel.org,
-	mturquette@baylibre.com,
-	ryan@testtoast.com,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Andre Przywara <andre.przywara@arm.com>
-Subject: [PATCH V2 2/2] clk: sunxi-ng: h616: Add clock/reset for LCD TCON
-Date: Thu, 13 Feb 2025 11:22:48 -0600
-Message-ID: <20250213172248.158447-3-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250213172248.158447-1-macroalpha82@gmail.com>
-References: <20250213172248.158447-1-macroalpha82@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E649F28A2D6;
+	Thu, 13 Feb 2025 17:27:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739467639; cv=pass; b=FLlLxu7ITh9hpbu3Suq0r7E1mwfor41OgaaiOquXwMHGV3yLn12/MEpuTVr5+SYsWHpykMhyp6iauPtupcogLuZg1RnQtM9YQoyEWAfPfVUHdbcIaxMy7lWlQuz73r6hKD6ONScVzB7nBO5oGN8oai349MpdZusirRdx4+hS27A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739467639; c=relaxed/simple;
+	bh=CR8fsFCREtQxkG/1mxeTo2PnTzyV6JpozvmDEtfNgZg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FU6MxvYl5Sd+Sibc0XcJwd5MS4Er96Vj5XxbXFJSw0fKVjigmn2X1LNcpiueO+kIXNR+bnVXDy1FU315dGj/Cm2r7OdC8aIa7fgYwQ+NNmFjpJ0rYlONyigoXrzxbD7G6pdpz6/R52ZpDxytjlDAZWRvoz3zbEkaTGOJBWEnZxU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=Ws91bnDM; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1739467611; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=DBi2zEpYnKy4XuIgWkaFTscHZ7nB/Yg9TWfeiuiqUtEh568pSlCHcprWV131jLiyNkPrV0PgXxkXOJF+7/joCDKC38TqYAzrCGxvzkMLV61uE0Cy2Cwlt0NXSVaWUu1C8LJGg9BVDEm9IeAAEWyTtJSM2Co8i4iQRkugciWGig0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1739467611; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=M5hWV7zpzfxrkj20JGXs36bIgvWN+f1eZBOfQY7SIjM=; 
+	b=H0UaH685Fnf6T5gMeeM3s5UsaIRb+Y9jD6hk4aLgNe8A/HDjoAfNj3RgTEr/Ns0Ic1/pqf25ULiccEHjw+hz1YVZWFRt3ym5UmhNWh9KuCsdH1zQlXoXByMo2ZcWskNHcK8jc1AROJSMHLG/aY76r7gaZ/wj/4twi58HWGWV70s=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1739467611;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=M5hWV7zpzfxrkj20JGXs36bIgvWN+f1eZBOfQY7SIjM=;
+	b=Ws91bnDMeBkWP5IXglfIKxIRozeYMM8MzNL39X6Jq2/pVSfbuX7EarFMbKklR5mw
+	dd0tn8C8fZF4DPbhVIEG9+xawrfjR7jTOJWby3nlBp6hy7bDlg7VSU5flovBjG3uei0
+	tgMsDOs+DMRcUp6k8/mTn4NIl9WKVT5S3z6qjrNw=
+Received: by mx.zohomail.com with SMTPS id 1739467608754665.7670786696585;
+	Thu, 13 Feb 2025 09:26:48 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id 785651806DE; Thu, 13 Feb 2025 18:26:43 +0100 (CET)
+Date: Thu, 13 Feb 2025 18:26:43 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc: Damon Ding <damon.ding@rock-chips.com>, heiko@sntech.de, 
+	robh@kernel.org, conor+dt@kernel.org, algea.cao@rock-chips.com, rfoss@kernel.org, 
+	devicetree@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	hjc@rock-chips.com, kever.yang@rock-chips.com, dmitry.baryshkov@linaro.org, 
+	vkoul@kernel.org, andy.yan@rock-chips.com, krzk+dt@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, l.stach@pengutronix.de
+Subject: Re: [PATCH v6 00/14] Add eDP support for RK3588
+Message-ID: <tg6eyew4qahuxqakmmejne7xx2rkouj6htp55acun4ajz2irz2@vlmvqv3zc5vc>
+References: <20250123100747.1841357-1-damon.ding@rock-chips.com>
+ <5044FFCB-B325-40D0-BA82-03AF64EAF029@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jnxis7mvi3ww4bac"
+Content-Disposition: inline
+In-Reply-To: <5044FFCB-B325-40D0-BA82-03AF64EAF029@gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.2/239.417.30
+X-ZohoMailClient: External
 
-From: Chris Morgan <macromorgan@hotmail.com>
 
-Add the required clock and reset which is used for the LCD TCON. Please
-note that these clocks are exposed on the T507, H616, and H700; however
-the H616 does not expose an LCD controller for which these clocks are
-needed.
+--jnxis7mvi3ww4bac
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 00/14] Add eDP support for RK3588
+MIME-Version: 1.0
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
----
- drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 24 ++++++++++++++++++++++++
- drivers/clk/sunxi-ng/ccu-sun50i-h616.h |  2 +-
- 2 files changed, 25 insertions(+), 1 deletion(-)
+Hello Piotr,
 
-diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-index 190816c35da9..40ab6873b797 100644
---- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-+++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-@@ -645,6 +645,20 @@ static const char * const tcon_tv_parents[] = { "pll-video0",
- 						"pll-video0-4x",
- 						"pll-video1",
- 						"pll-video1-4x" };
-+static SUNXI_CCU_MUX_WITH_GATE(tcon_lcd0_clk, "tcon-lcd0",
-+			       tcon_tv_parents, 0xb60,
-+			       24, 3,	/* mux */
-+			       BIT(31),	/* gate */
-+			       CLK_SET_RATE_PARENT);
-+static SUNXI_CCU_MUX_WITH_GATE(tcon_lcd1_clk, "tcon-lcd1",
-+			       tcon_tv_parents, 0xb64,
-+			       24, 3,	/* mux */
-+			       BIT(31),	/* gate */
-+			       CLK_SET_RATE_PARENT);
-+static SUNXI_CCU_GATE(bus_tcon_lcd0_clk, "bus-tcon-lcd0", "ahb3",
-+		      0xb7c, BIT(0), 0);
-+static SUNXI_CCU_GATE(bus_tcon_lcd1_clk, "bus-tcon-lcd1", "ahb3",
-+		      0xb7c, BIT(1), 0);
- static SUNXI_CCU_MP_WITH_MUX_GATE(tcon_tv0_clk, "tcon-tv0",
- 				  tcon_tv_parents, 0xb80,
- 				  0, 4,		/* M */
-@@ -855,8 +869,12 @@ static struct ccu_common *sun50i_h616_ccu_clks[] = {
- 	&hdmi_cec_clk.common,
- 	&bus_hdmi_clk.common,
- 	&bus_tcon_top_clk.common,
-+	&tcon_lcd0_clk.common,
-+	&tcon_lcd1_clk.common,
- 	&tcon_tv0_clk.common,
- 	&tcon_tv1_clk.common,
-+	&bus_tcon_lcd0_clk.common,
-+	&bus_tcon_lcd1_clk.common,
- 	&bus_tcon_tv0_clk.common,
- 	&bus_tcon_tv1_clk.common,
- 	&tve0_clk.common,
-@@ -989,8 +1007,12 @@ static struct clk_hw_onecell_data sun50i_h616_hw_clks = {
- 		[CLK_HDMI_CEC]		= &hdmi_cec_clk.common.hw,
- 		[CLK_BUS_HDMI]		= &bus_hdmi_clk.common.hw,
- 		[CLK_BUS_TCON_TOP]	= &bus_tcon_top_clk.common.hw,
-+		[CLK_TCON_LCD0]		= &tcon_lcd0_clk.common.hw,
-+		[CLK_TCON_LCD1]		= &tcon_lcd1_clk.common.hw,
- 		[CLK_TCON_TV0]		= &tcon_tv0_clk.common.hw,
- 		[CLK_TCON_TV1]		= &tcon_tv1_clk.common.hw,
-+		[CLK_BUS_TCON_LCD0]	= &bus_tcon_lcd0_clk.common.hw,
-+		[CLK_BUS_TCON_LCD1]	= &bus_tcon_lcd1_clk.common.hw,
- 		[CLK_BUS_TCON_TV0]	= &bus_tcon_tv0_clk.common.hw,
- 		[CLK_BUS_TCON_TV1]	= &bus_tcon_tv1_clk.common.hw,
- 		[CLK_TVE0]		= &tve0_clk.common.hw,
-@@ -1062,6 +1084,8 @@ static const struct ccu_reset_map sun50i_h616_ccu_resets[] = {
- 	[RST_BUS_HDMI]		= { 0xb1c, BIT(16) },
- 	[RST_BUS_HDMI_SUB]	= { 0xb1c, BIT(17) },
- 	[RST_BUS_TCON_TOP]	= { 0xb5c, BIT(16) },
-+	[RST_BUS_TCON_LCD0]	= { 0xb7c, BIT(16) },
-+	[RST_BUS_TCON_LCD1]	= { 0xb7c, BIT(17) },
- 	[RST_BUS_TCON_TV0]	= { 0xb9c, BIT(16) },
- 	[RST_BUS_TCON_TV1]	= { 0xb9c, BIT(17) },
- 	[RST_BUS_TVE_TOP]	= { 0xbbc, BIT(16) },
-diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.h b/drivers/clk/sunxi-ng/ccu-sun50i-h616.h
-index a75803b49f6a..7056f293a8e0 100644
---- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.h
-+++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.h
-@@ -51,6 +51,6 @@
- 
- #define CLK_BUS_DRAM		56
- 
--#define CLK_NUMBER		(CLK_BUS_GPADC + 1)
-+#define CLK_NUMBER		(CLK_BUS_TCON_LCD1 + 1)
- 
- #endif /* _CCU_SUN50I_H616_H_ */
--- 
-2.43.0
+On Thu, Feb 13, 2025 at 03:54:00PM +0100, Piotr Oniszczuk wrote:
+> > Wiadomo=C5=9B=C4=87 napisana przez Damon Ding <damon.ding@rock-chips.co=
+m> w dniu 23 sty 2025, o godz. 11:07:
+> >=20
+> > Picked from:
+> > https://patchwork.kernel.org/project/linux-rockchip/list/?series=3D9235=
+93
+> >=20
+> > These patchs have been tested with a 1536x2048p60 eDP panel on
+> > RK3588S EVB1 board, and HDMI 1080P/4K display also has been verified
+> > on RK3588 EVB1 board. Furthermore, the eDP display has been rechecked
+> > on RK3399 sapphire excavator board.
+> >=20
+> > Patch 1~4   are preparations for the RK3588 eDP support on both Analogix
+> >            side and Rockchip side.
+> > Patch 5~8  are to support to get panel from the DP AUX bus.
+> > Patch 9~11 are the RK3588 Analogix DP driver support.
+> > Patch 12    is to add the power sequencing delays for panel model
+> >            LP079QX1-SP0V.
+> > Patch 13    is the addition of RK3588 eDP0 node.
+> > Patch 14    is to enable the eDP0 display on RK3588S EVB1 board.
+> >=20
+> > Damon Ding (14):
+> >  drm/rockchip: analogix_dp: Replace DRM_...() functions with drm_...()
+> >  drm/rockchip: analogix_dp: Use formalized struct definition for grf
+> >    field
+> >  drm/rockchip: analogix_dp: Expand device data to support multiple edp
+> >    display
+> >  drm/bridge: analogix_dp: Add support for phy configuration.
+> >  dt-bindings: display: rockchip: analogix-dp: Add support to get panel
+> >    from the DP AUX bus
+> >  drm/bridge: analogix_dp: support to get &analogix_dp_device.plat_data
+> >    and &analogix_dp_device.aux
+> >  drm/bridge: analogix_dp: Add support to get panel from the DP AUX bus
+> >  drm/rockchip: analogix_dp: Add support to get panel from the DP AUX
+> >    bus
+> >  dt-bindings: display: rockchip: analogix-dp: Add support for RK3588
+> >  drm/bridge: analogix_dp: Add support for RK3588
+> >  drm/rockchip: analogix_dp: Add support for RK3588
+> >  drm/edp-panel: Add LG Display panel model LP079QX1-SP0V
+> >  arm64: dts: rockchip: Add eDP0 node for RK3588
+> >  arm64: dts: rockchip: Enable eDP0 display on RK3588S EVB1 board
+> >=20
+> > .../rockchip/rockchip,analogix-dp.yaml        |  25 +-
+> > arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  28 +++
+> > .../boot/dts/rockchip/rk3588s-evb1-v10.dts    |  54 ++++
+> > .../drm/bridge/analogix/analogix_dp_core.c    |  76 +++---
+> > .../drm/bridge/analogix/analogix_dp_core.h    |   1 +
+> > .../gpu/drm/bridge/analogix/analogix_dp_reg.c |  52 ++++
+> > drivers/gpu/drm/panel/panel-edp.c             |   8 +
+> > .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 238 +++++++++++++-----
+> > include/drm/bridge/analogix_dp.h              |   8 +-
+> > 9 files changed, 401 insertions(+), 89 deletions(-)
+> >=20
+> > --=20
+> > 2.34.1
+> >=20
+>=20
+> Damon,
+>=20
+> I=E2=80=99m playing with hdmi0 port enablement on radxa rock5 itx board w=
+ith 6.14 mainline.
+>=20
+> rock5 itx has 2 hdmi ports: hdmi0 is wired to rk3588 typeC1/eDP1
+> eDP with ra620 eDP->HDMI converter and hdmi1 from hdmi/edp tx1
+> (see page3 & page29 at
+> https://dl.radxa.com/rock5/5itx/v1110/radxa_rock_5itx_v1110_schematic.pdf)
 
+The RK3588 has two different DP controllers. The one handled in this
+series should get the eDP port running, which is routed to the
+"eDP Panel" in the block diagram on page 3 of the Rock 5 ITX schematics.
+So this series adds support for using "HDMI/eDP TX0" and "HDMI/eDP TX1"
+in DP mode.
+
+The port routed to HDMI0 via RA620 is the other DP controller, which
+also exists twice: "TYPEC0/DP0" and "TYPEC1/DP1". This DP controller
+is not yet supported upstream and there is no pending patchset. As far
+as I know Rockchip plans to work on preparing upstream support for that
+soon.
+
+Note, that the two DisplayPort controllers are completely different.
+The HDMI/eDP controller is a design from Analogix and the TypeC/DP
+controller is a design from Synopsys.
+
+P.S.: Heiko merged support for HDMI1 (RK3588 SoC level) recently. So you
+should be able to get that running by some DT additions to the Rock 5
+ITX board DT with the latest linux-next code :)
+
+Greetings,
+
+-- Sebastian
+
+--jnxis7mvi3ww4bac
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmeuK0wACgkQ2O7X88g7
++prlexAApJeFewv/JsqSV3wCoT23yhvxdlzYKIVVL/yo98r9WQPC4i1qmYmKRBI4
+vzvIr65JV41ReaTQs/q/BoIL0rHdfgn0ZkatJ0H7wbNbH2IztSS2VukNrAz9DwT4
+TvyUoo10hpaHiFTfKKSzDkL5/NI3d9pvi6AmUs+SmWMD7f2eXmyav5L2WHTZ0Nzl
+kLA4FPpSVS/3NQ5qTlhHsyM0kDVsL7R6G7ObMrQ9gAp9qkp6BJ353pHWEWtXgagu
+Dj4iMS5wfJ1VXYyQDJSFgeiibznIzIMlOR83c7AG7IMvowXL7IniG2Q8vUz1nPgC
+syKJOH3btyQzxkc9AYqXYXr7NUldDWhK84iqzsA0E+imxauPhXgfeQxQOR63uTXG
+fvZKtmVjM2gyqGp0ro5rEXSczzcnKj8tSC42AZm0d/ACS/TsCi8CcOKEsgtkCM+L
+7HhI7qlJUNihK6x90i+R9i2k7Ar9STYe+lUqxybSkZnNymp3nZwpkDVYLkuf53Ot
+pwrWkcRYXOhEggDrQNTe6xq3W1C+w/sNPflgnA33KAL2+xFCyt3RQq++BrLN4Aa/
+ECjWYGebnHLh+hFA8FToTF3KG6CjTNiyIvAsFBsjRoF9x/uLrZt+davDhGf1D3fP
+l/jfGWpAOhK6VBdKArybnrr6GEUTvZtb25x6f9eTbsVVTEGORmk=
+=iYP4
+-----END PGP SIGNATURE-----
+
+--jnxis7mvi3ww4bac--
 
