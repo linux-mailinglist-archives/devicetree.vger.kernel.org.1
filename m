@@ -1,200 +1,107 @@
-Return-Path: <devicetree+bounces-146441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDCDBA34EDB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:58:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A63AAA34EF7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:04:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B80A8188FCF1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 19:57:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98EA616D785
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:04:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2CCD24A042;
-	Thu, 13 Feb 2025 19:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0E424A06F;
+	Thu, 13 Feb 2025 20:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="Q8JxXioJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ulg/rzDW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A64DE24A077;
-	Thu, 13 Feb 2025 19:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739476668; cv=pass; b=R3t3H0EnkdzV8RGt6YP06j43ZqgQcZ05aezc8PoxMntO/NaTLBhNwyb+NDLZRqyyy2SqUzhlvgTK6pQzb0/TtvxSq+gWE/x4wu1z+wVCUQ2FrJw4SJ7ZozDwQu/DD/PyT4UFCEWng5/7yF8pUbg+rO35oSJv0joTuNAnBYYaYtY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739476668; c=relaxed/simple;
-	bh=UUG74ONh30vCq5cOPe65Lz2sQ6Akmb5m/0N/paSXXRQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cXqfV2hMxv57sv4JZhBhBJ6i7hRetXsHw2wl4khLkXwzhIO6jfxHTBDC9u1A4jbX/oOIG1gnwJbZM2SFZQese7LDS44553V0F8kzqjATOt1t0MXNPZ4RzyGBczEEOYgQwbVzmp1HOUeqwU920q9AGn5rt5aSw8KtNCbADtCOpQ8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=Q8JxXioJ; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1739476614; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=esEGgr+Zc+tPVkIqhiCRV6/3ZsxDc/b/7YtkV3+NUknz0FJERHv4WjoZqgMDr0iDTIxSacyj5IPlCpt8EstN0ogUpvFHCO6Ksp0+hnliTj7wgOIMrvQdvM58YdUb1EBBZDXO2aeKLvNS2t5IrlANkgPMrKZlEmuKcOaOeJOaMv4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1739476614; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=O9GUvvUpHX6LI0qZKWX7RNV6qQdN4u6UV5/FG212X8k=; 
-	b=UBUcN6htqFck41lfia/orvBJrZzH5gpvWL+MwUU7ojHmx+66zbMewaJEXL/ZRJyWve49TjgYNRjL2P0vaAdPK2OYYJgowrz0ZFKSyBDU4zl/aH4Konvn2RGJLFn2VQxYQEZY8au4FdJ9Et/985IvHoaa7AOjOSVVPHPx7dX1MR8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1739476614;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=O9GUvvUpHX6LI0qZKWX7RNV6qQdN4u6UV5/FG212X8k=;
-	b=Q8JxXioJ4lXs0iSCkgZYzAYIWz6Xdvv38+VFAq1AWFxHY2R8ItKJ6JvNt55lWScE
-	bpnnMnehSwgma3fPFQvuLapE7XTGq1PPmnWWSzq/gNM0A7aBnTrD2ix6ArooKh8Cw+X
-	dB7WkHBWQz34nQuKkmOdnyO8Fk0bPKmBcNhiK1XE=
-Received: by mx.zohomail.com with SMTPS id 1739476611230565.2581804087819;
-	Thu, 13 Feb 2025 11:56:51 -0800 (PST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>,
- Chris Morgan <macromorgan@hotmail.com>,
- Kever Yang <kever.yang@rock-chips.com>, Tim Lunn <tim@feathertop.org>,
- FUKAUMI Naoki <naoki@radxa.com>,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Weizhao Ouyang <weizhao.ouyang@arm.com>, Elon Zhang <zhangzj@rock-chips.com>,
- Alexey Charkov <alchark@gmail.com>, Stephen Chen <stephen@radxa.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject:
- Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Radxa ROCK 4D device tree
-Date: Thu, 13 Feb 2025 14:56:48 -0500
-Message-ID: <5973630.DvuYhMxLoT@trenzalore>
-In-Reply-To: <b5977d21-aa39-4e91-863b-cc7f9dc6938c@kwiboo.se>
-References:
- <20250213145921.133412-1-detlev.casanova@collabora.com>
- <20250213145921.133412-3-detlev.casanova@collabora.com>
- <b5977d21-aa39-4e91-863b-cc7f9dc6938c@kwiboo.se>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5EBC203703;
+	Thu, 13 Feb 2025 20:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739477056; cv=none; b=U85iZoHhO0uZwip8VwD1OotMqGMEslTG2bqECqymYYQ2/JJE8nPPgPaFwtgQc7WqR16mYtLaC28E+yKPVLU9MGCZXCF2v1NMEvP/6GM6ExJ6U3vpSSb6ukgvIpqEv2V/xw8SooJGwWsIrtPIxpbu6btXckYCd/kVu4IjA19LxpQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739477056; c=relaxed/simple;
+	bh=fZ9g4z7iJBs0CfgSH7MAc1CKB24UVVzf/LWilt9EvvQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=figgB2uG4Uezfg+Nu/K1aQUz/6BTAD9oilmUJbR71g3AePfsU47/qcXdbzfR/XXuoQXRtKpyRVRyw50F6LG64tAWldo3dH7mDITNXcUc0pk2EyGUF3kSfelPyolqHz+q1iJnsm2P/3DGSw+q4sdpPTGxy4ky2roKqAnQuUvjbVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ulg/rzDW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0A8EC4CED1;
+	Thu, 13 Feb 2025 20:04:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739477055;
+	bh=fZ9g4z7iJBs0CfgSH7MAc1CKB24UVVzf/LWilt9EvvQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Ulg/rzDWtr+ncf8DLmyiSNeilp2TbJIlkWq6GE55T0Yg7zZCAQ5oTfnybJLTqW/7B
+	 IoUzKxEEN/xrJMjfU3TUICXKI3TAO8EwKFdsA3aJQdqXjo2ChVM48ReJo3zRFWJAnp
+	 XaQ35ckVJkFFyx2liIkEaQo1dceJKzdsrPQLfuwp88yz5UkxCyLcWFkiDMBFJVM4c1
+	 UWnkoG632dYFPaA+C9GD6F649NEvoxSLeIeMutnYiea3AJvNGPgrXjD3z/46dFCYro
+	 QSdkvdcao/baIfy3u4IKlGMVbCXVVbP1KW9eYqUM01ifPdkERsHd+Hvotzb745g/pf
+	 qCCbRaerQtrwQ==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] riscv: dts: starfive: remove non-existent dac from jh7110
+Date: Thu, 13 Feb 2025 20:03:52 +0000
+Message-ID: <20250213-tidy-dollop-cbfc8fc7dc91@spud>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1249; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=YaSz6TVHGRo6Wy0JnL9W0K4x8SDhrDVeJ8YpmvuOuck=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDOnrAtT3P9cwuWpnmnZP0bH9k67P5aZjEWXHeZ9NuV2ow faKf/vGjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAExkzmZGhhdfLhTWqhhsyxd/ uey9htz85itpH3vrZjreXcXzVduoR4Lhv8OrD1fuOHiJfG2NtBHPMz17O8f48XzTA/M3fSlg1P0 oxAsA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-Hi Jonas,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On Thursday, 13 February 2025 10:48:10 EST Jonas Karlman wrote:
-> Hi Detlev,
-> 
-> On 2025-02-13 15:57, Detlev Casanova wrote:
-> > From: Stephen Chen <stephen@radxa.com>
-> > 
-> > The Radxa ROCK 4D board is based on the Rockchip rk3576 SoC.
-> > 
-> > The device tree adds support for basic devices:
-> >  - UART
-> >  - SD Card
-> >  - Ethernet
-> >  - USB
-> >  - RTC
-> > 
-> > It has 4 USB ports but only 3 are usable as the top left one is used
-> > for maskrom.
-> > 
-> > It has a USB-C port that is only used for powering the board.
-> > 
-> > Signed-off-by: Stephen Chen <stephen@radxa.com>
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > ---
-> > 
-> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
-> >  .../boot/dts/rockchip/rk3576-rock-4d.dts      | 651 ++++++++++++++++++
-> >  2 files changed, 652 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile
-> > b/arch/arm64/boot/dts/rockchip/Makefile index
-> > def1222c1907e..a112aeb37948a 100644
-> > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > @@ -132,6 +132,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=
-> > rk3568-wolfvision-pf5-display-vz.dtbo> 
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-evb1-v10.dtb
-> > 
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-rock-4d.dtb
-> > 
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3582-radxa-e52c.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-sige7.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-w3.dtb
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-> > b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts new file mode 100644
-> > index 0000000000000..f356742f9d643
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-> > @@ -0,0 +1,651 @@
-> 
-> [snip]
-> 
-> > +&gmac0 {
-> > +	phy-mode = "rgmii-id";
-> > +	clock_in_out = "output";
-> > +
-> > +	snps,reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
-> > +	snps,reset-active-low;
-> > +	snps,reset-delays-us = <0 20000 100000>;
-> 
-> The snps,reset- props are deprecated and should be changed to reset-
-> props in the phy node.
+The jh7110 boards do not have a Rohm DAC on them as far as I
+can tell, and they certainly do not have a dh2228fv, as this device does
+not actually exist! Remove the dac nodes from the devicetrees as it is
+not acceptable to pretend to have a device on a board in order to bind
+the spidev driver in Linux.
 
-Arg, second time I use deprectated props on new things. Are there plans or 
-ways to make dtbs_check warn about those ?
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+CC: Emil Renner Berthing <kernel@esmil.dk>
+CC: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: linux-riscv@lists.infradead.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+---
+ arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 6 ------
+ 1 file changed, 6 deletions(-)
 
-> > +
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&eth0m0_miim
-> > +		     &eth0m0_tx_bus2
-> > +		     &eth0m0_rx_bus2
-> > +		     &eth0m0_rgmii_clk
-> > +		     &eth0m0_rgmii_bus
-> > +		     &ethm0_clk0_25m_out>;
-> > +
-> > +	phy-handle = <&rgmii_phy0>;
-> > +	status = "okay";
-> > +};
-> 
-> [snip]
-> 
-> > +&mdio0 {
-> > +	rgmii_phy0: phy@1 {
-> 
-> Maybe ethernet-phy@1 ?
-
-Indeed.
-
-> > +		compatible = "ethernet-phy-ieee802.3-c22";
-> > +		reg = <0x1>;
-> > +		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
-> 
-> Please add reset- props here.
-> 
-> Changing to use reset- props may cause issue if a RTL8211F PHY is used
-> on the board. Use a ethernet-phy-id compatible or mainline U-Boot to
-> ensure the Ethernet PHY can be discovered during probe.
-
-Using downstream u-boot, with the RTL8211F PHY, linux can still detect the PHY 
-and use it correctly, even with reset-* props at the PHY level.
-
-I guess I can keep those there then, unless the issues you mention are more 
-subtle than that ?
-
-
-Detlev.
-
-
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+index dd2eefc295e5..c2f70f5e2918 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+@@ -350,12 +350,6 @@ &pwm {
+ &spi0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&spi0_pins>;
+-
+-	spi_dev0: spi@0 {
+-		compatible = "rohm,dh2228fv";
+-		reg = <0>;
+-		spi-max-frequency = <10000000>;
+-	};
+ };
+ 
+ &syscrg {
+-- 
+2.45.2
 
 
