@@ -1,107 +1,120 @@
-Return-Path: <devicetree+bounces-146442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A63AAA34EF7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:04:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03FF7A34EFE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:06:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98EA616D785
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:04:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A2587A41BC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:05:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0E424A06F;
-	Thu, 13 Feb 2025 20:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02ECA245B16;
+	Thu, 13 Feb 2025 20:06:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ulg/rzDW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O/JH8jfV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5EBC203703;
-	Thu, 13 Feb 2025 20:04:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4BE828A2CB;
+	Thu, 13 Feb 2025 20:05:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739477056; cv=none; b=U85iZoHhO0uZwip8VwD1OotMqGMEslTG2bqECqymYYQ2/JJE8nPPgPaFwtgQc7WqR16mYtLaC28E+yKPVLU9MGCZXCF2v1NMEvP/6GM6ExJ6U3vpSSb6ukgvIpqEv2V/xw8SooJGwWsIrtPIxpbu6btXckYCd/kVu4IjA19LxpQ=
+	t=1739477159; cv=none; b=EvPMgFqxpfcu924/14AWhehCNF7lMU92WmP+HAj/b24INeMUT9foD8v2lhOEiI6vpY0cPc7r3ngVt28urmdyiiNLXEW7/BzviAZDHYnFSlO5mdcCyAlwLxO3nylOit6cRmhK1Ikh2Eams1evc7aQ3j1EvowzqgcCBlUMvqNnz3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739477056; c=relaxed/simple;
-	bh=fZ9g4z7iJBs0CfgSH7MAc1CKB24UVVzf/LWilt9EvvQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=figgB2uG4Uezfg+Nu/K1aQUz/6BTAD9oilmUJbR71g3AePfsU47/qcXdbzfR/XXuoQXRtKpyRVRyw50F6LG64tAWldo3dH7mDITNXcUc0pk2EyGUF3kSfelPyolqHz+q1iJnsm2P/3DGSw+q4sdpPTGxy4ky2roKqAnQuUvjbVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ulg/rzDW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0A8EC4CED1;
-	Thu, 13 Feb 2025 20:04:13 +0000 (UTC)
+	s=arc-20240116; t=1739477159; c=relaxed/simple;
+	bh=NACchtxeonADU5GQJHVdhJAYs1NUCFnsjx8N1JQdRrU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IYEiKiPTrvgB4Ru8yFRO3PFS10M1GCrSnHzEyOsIFyE7t4lWfbhSHBtQnrnadTehJZ+ELNEzku1ua1gY6mnORFDauTdi+zsd9JXPecl5u4BRT1/y87TgfHQ1Wk9iohJXiNtqjgqmDvYX4RjO2BM3rX8Al5/tn1hVYSKkWrlrpe4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O/JH8jfV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB8B6C4CED1;
+	Thu, 13 Feb 2025 20:05:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739477055;
-	bh=fZ9g4z7iJBs0CfgSH7MAc1CKB24UVVzf/LWilt9EvvQ=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Ulg/rzDWtr+ncf8DLmyiSNeilp2TbJIlkWq6GE55T0Yg7zZCAQ5oTfnybJLTqW/7B
-	 IoUzKxEEN/xrJMjfU3TUICXKI3TAO8EwKFdsA3aJQdqXjo2ChVM48ReJo3zRFWJAnp
-	 XaQ35ckVJkFFyx2liIkEaQo1dceJKzdsrPQLfuwp88yz5UkxCyLcWFkiDMBFJVM4c1
-	 UWnkoG632dYFPaA+C9GD6F649NEvoxSLeIeMutnYiea3AJvNGPgrXjD3z/46dFCYro
-	 QSdkvdcao/baIfy3u4IKlGMVbCXVVbP1KW9eYqUM01ifPdkERsHd+Hvotzb745g/pf
-	 qCCbRaerQtrwQ==
+	s=k20201202; t=1739477159;
+	bh=NACchtxeonADU5GQJHVdhJAYs1NUCFnsjx8N1JQdRrU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O/JH8jfV1QVq1uasHTsNeuvpUp+d/jj3Sxg0GxQKCVk7MJyvAD+eV7i506He6qDkk
+	 CgczH1mXZqmixuHsk0D/2KtFkSCe/Wmi8P9wl7zCIUczWtl3sD9Vq+H2A5cpdDdnQF
+	 qNGJnP9y/5CtGu9vhXYx1B8p7h+0KKFG7NvnxjfzY6NPNfHSqEgpjg6KZXdcGWsLa9
+	 aw79CG0LR2+U1fZ2shFOmgWKUurnvnCGkvfOKwv3xXZMFivGXD6G8/TJk9OItg0FuJ
+	 zk2HZ3DJcceF9gUMbY0NZul7L33XU3Emvw5VLBcspBPrQFTtCjH/OY7sZFLz2zeqsk
+	 MyoYXycWED0Ew==
+Date: Thu, 13 Feb 2025 20:05:53 +0000
 From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+	Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] riscv: dts: starfive: remove non-existent dac from jh7110
-Date: Thu, 13 Feb 2025 20:03:52 +0000
-Message-ID: <20250213-tidy-dollop-cbfc8fc7dc91@spud>
-X-Mailer: git-send-email 2.45.2
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, imx@lists.linux.dev,
+	loongarch@lists.linux.dev
+Subject: Re: (subset) [PATCH v1 0/4] Removal of non-existent DAC nodes
+Message-ID: <20250213-calamity-smuggler-5d606993be32@spud>
+References: <20240717-anvil-ashy-544e80a1317c@spud>
+ <173939339997.59416.11108011581545463665.b4-ty@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1249; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=YaSz6TVHGRo6Wy0JnL9W0K4x8SDhrDVeJ8YpmvuOuck=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDOnrAtT3P9cwuWpnmnZP0bH9k67P5aZjEWXHeZ9NuV2ow faKf/vGjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAExkzmZGhhdfLhTWqhhsyxd/ uey9htz85itpH3vrZjreXcXzVduoR4Lhv8OrD1fuOHiJfG2NtBHPMz17O8f48XzTA/M3fSlg1P0 oxAsA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="t2TI/qcM7Hcs5rgZ"
+Content-Disposition: inline
+In-Reply-To: <173939339997.59416.11108011581545463665.b4-ty@linaro.org>
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-The jh7110 boards do not have a Rohm DAC on them as far as I
-can tell, and they certainly do not have a dh2228fv, as this device does
-not actually exist! Remove the dac nodes from the devicetrees as it is
-not acceptable to pretend to have a device on a board in order to bind
-the spidev driver in Linux.
+--t2TI/qcM7Hcs5rgZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-CC: Emil Renner Berthing <kernel@esmil.dk>
-CC: Conor Dooley <conor@kernel.org>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: linux-riscv@lists.infradead.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
----
- arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 6 ------
- 1 file changed, 6 deletions(-)
+On Wed, Feb 12, 2025 at 09:49:59PM +0100, Krzysztof Kozlowski wrote:
+>=20
+> On Wed, 17 Jul 2024 10:37:52 +0100, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > Recently I've been getting triggered by abuse of the Rohm dh2228fv
+> > compatible to get the spidev driver probing in Linux on development
+> > kits by employees of various silicon vendors (like NXP or my own
+> > employer). I had a look around the kernel and all users other than the
+> > original Clearfontz board added by Maxime appear to be similar abuse.
+> > Drop the non-existent nodes from all of these devices :)
+> >=20
+> > [...]
+>=20
+> Applied, thanks!
+>=20
+> [3/4] loongarch: dts: remove non-existent DAC from 2k1000-ref
+>       https://git.kernel.org/krzk/linux-dt/c/854a080f0b73ff966a813ec2dc53=
+891831daa28d
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-index dd2eefc295e5..c2f70f5e2918 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-@@ -350,12 +350,6 @@ &pwm {
- &spi0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&spi0_pins>;
--
--	spi_dev0: spi@0 {
--		compatible = "rohm,dh2228fv";
--		reg = <0>;
--		spi-max-frequency = <10000000>;
--	};
- };
- 
- &syscrg {
--- 
-2.45.2
+Heh, funny that you picked this up yesterday - I noticed that it was
+there while poking at spidev doing some debugging yesterday and was
+going to grab the patch myself. Thanks.
+Noticed also that there's a user of it in riscv that I hadn't included
+in my original patch. No clue why I didn't include that, but I've sent
+out a patch for it now.
 
+--t2TI/qcM7Hcs5rgZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ65QoQAKCRB4tDGHoIJi
+0hJOAP9qWBg0rjsbzm7opAMArAFEycQu0lJBHYdR+tfeeXkkhAEArfJdGry0AYEf
+b8lHjUhG8iocKhPAo6JWSZBlm8Sn4w8=
+=cxBE
+-----END PGP SIGNATURE-----
+
+--t2TI/qcM7Hcs5rgZ--
 
