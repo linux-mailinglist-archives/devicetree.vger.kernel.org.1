@@ -1,81 +1,65 @@
-Return-Path: <devicetree+bounces-146475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0D6BA351BA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 23:58:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD92AA351E3
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 00:01:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A413A3AA4AF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 22:58:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAF7A3ACC67
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 23:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD7B2753EF;
-	Thu, 13 Feb 2025 22:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3602270EBE;
+	Thu, 13 Feb 2025 23:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Mw+QsdMs"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Az83w22h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DAA2753E4;
-	Thu, 13 Feb 2025 22:58:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C7226E14F;
+	Thu, 13 Feb 2025 23:00:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739487525; cv=none; b=BAmbrXCT9htpCbDC2LdL880dwmC9P5jCpvmDo+ipGyq4BTdPdBTsqRQCgOE60pUo57ZJcU2CBlnLJuQ1NV7UvpCO3HUwRQoAhvkNqt+rkeOU365eh4Nr55ke6SoN7kXWkDrwZWD0GfcgDcqY8AXYwxfTX21xGf+xNk1UYwDce2k=
+	t=1739487624; cv=none; b=mPJ8pWs0fP7dleN1odcsRhyIX63oY3kN5QNuyhb7axSJBpRYEgQYe0HO0yurgpi7Fki6J1yDT3Qtl1MppSZPQF74qQeq1KC/qh1ZJfOtp+pKzbjpPn/7vTYDvHdJE8f6KfDCfNwDOOH0mGVcYLuuGSMZ24mci7MWLU5WyLjoc0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739487525; c=relaxed/simple;
-	bh=JVrIfR2b7Zw5tphgm7dmRrPq3bFn2dAIdtlGx9/51vk=;
+	s=arc-20240116; t=1739487624; c=relaxed/simple;
+	bh=qSew3Ilv6r0V80osYWxsPxiGy+drA6ufbjQbXlIjsNE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S34cffam5fP5tYhCo9M7kMnljzC2LIWaU/aEwFuah1p2xeBNleRhAyJPW6NTx8iq0Oz8i97FJOZArXLP/ORI+p8yOxF9tfj3PhDMyQXt1xDUTgbQesCEbGlWsIIYW5R702JPkafMsPKR9rFqguLkGEjlo2qAVuIHyM4PBbF59rM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Mw+QsdMs; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739487524; x=1771023524;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JVrIfR2b7Zw5tphgm7dmRrPq3bFn2dAIdtlGx9/51vk=;
-  b=Mw+QsdMshJosyrmllhx7VeZt0nppm/FBiQfBL9BLL/sV+EMPSdtTuJPF
-   i7+7QHwwKmqQOHKjEHDlVQZuyjJKuIqSwz/lu8EjKYxgPR1DojySv5Lta
-   UCUzVrW6zn6LgSKQFFv37kimIbLNVKecvxIOlZQ2lyyvzbcAjnyFgU+0J
-   PdfpI8fqlILOopvZb9rTRB+fWO10JBjaO4KIK9km5MOJjEokXxO0FO2cV
-   GVCmzjl89qrJw6KJXy1yHNgxVVwfOsFoXGd5Conn6VEBH4gPPX8Z3mgw6
-   B4jrTVfnlD824nOvGLrhMNuvjEn+OCiQ+hk0BNYLIhYEUQ8/oPJ4qlSdU
-   A==;
-X-CSE-ConnectionGUID: f41P3VHkR0CTg37QB5w64g==
-X-CSE-MsgGUID: IZZFlNMBQA6gweqJZUlo0A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40340106"
-X-IronPort-AV: E=Sophos;i="6.13,284,1732608000"; 
-   d="scan'208";a="40340106"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 14:58:43 -0800
-X-CSE-ConnectionGUID: Vo36sgjRSCusd9Bp7qRkhA==
-X-CSE-MsgGUID: KBz5hXtISISEmI5lrNKflA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="113774073"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 13 Feb 2025 14:58:40 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tiiAH-0018nP-25;
-	Thu, 13 Feb 2025 22:58:37 +0000
-Date: Fri, 14 Feb 2025 06:57:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Jonathan Santos <Jonathan.Santos@analog.com>, lars@metafoo.de,
-	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com,
-	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jonath4nns@gmail.com,
-	marcelo.schmitt1@gmail.com, dlechner@baylibre.com
-Subject: Re: [PATCH RESEND v3 11/17] iio: adc: ad7768-1: add regulator to
- control VCM output
-Message-ID: <202502140626.PzhgxFMq-lkp@intel.com>
-References: <3552833157f252f3b6813f0042059e858c90d53a.1739368121.git.Jonathan.Santos@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ii/+XEq9P72iRCmOK3sPqWyss+sBG8sJXrRHJauyi1pfcV1OccIkgT8DUYX3UTZSYZn7GgbgIPX1tuwVAJ5yUPtxJ3eNJIgqN9SuSliwsim0z2275Zp8oZs+EEdL1wxQGbZ1TZqxIFLOJRiSctcByh7GoW6hg9twBcbozILYzM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Az83w22h; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id AC5C31F764;
+	Thu, 13 Feb 2025 23:00:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739487619;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SMbFIP0hXOQDBlKRcsdm79YcouV95TghdG4+3UcuP1c=;
+	b=Az83w22hwSpu+jWDQlxwg7RHVZLeWBu7AS+PA2fadSCbJgw5KY1KWHpslgnWrP3HiRoHPk
+	CXU4GNZsewKrTXhfECA8omUnixYr60bQeUenYOPaSFb6J1Bl6xWZ1/OimRRASoDH7L7tYM
+	JdHiywvV3RA6u9VU+JBT2wmVkxKFv6BFf/a/QRsVyHhnWZ37plwSkmivSr9ls6oKrh+752
+	E/qXCvZ7cVTWgLlg0zJkjFbQyvyX6/hqf88zl3xAzmSxyjrlzklGfooGx1aQbFn3U8ek1c
+	JPkRNRPlQNTCUYBBCdJs0ZV3g5bcUHsENTFbq53dh7cSjQ5qePTt+cjczuhQow==
+Date: Fri, 14 Feb 2025 00:00:17 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-rtc@vger.kernel.org, Inochi Amaoto <inochiama@gmail.com>,
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, unicorn_wang@outlook.com,
+	inochiama@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, dlan@gentoo.org,
+	linux-kernel@vger.kernel.org,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v11 3/3] rtc: sophgo: cv18xx: Add restart handler
+Message-ID: <20250213230017eaa89034@mail.local>
+References: <20250213215655.2311793-1-alexander.sverdlin@gmail.com>
+ <20250213215655.2311793-4-alexander.sverdlin@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,34 +68,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3552833157f252f3b6813f0042059e858c90d53a.1739368121.git.Jonathan.Santos@analog.com>
+In-Reply-To: <20250213215655.2311793-4-alexander.sverdlin@gmail.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegkedtgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehlvgigrghnughrvgcuuegvlhhlohhnihcuoegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegieduueethefhkeegjeevfefhiedujeeuhffgleejgfejgeekueejuefgheeggfenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmedvugemieefjedtmeejkegvtdemtgdtvgekmedvkedtieemkegrtgeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvugemieefjedtmeejkegvtdemtgdtvgekmedvkedtieemkegrtgeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedujedprhgtphhtthhopegrlhgvgigrnhguvghrrdhsvhgvrhgulhhinhesghhmrghilhdrtghomhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtp
+ hhtthhopehlihhnuhigqdhrihhstghvsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplhhinhhugidqrhhttgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehinhhotghhihgrmhgrsehgmhgrihhlrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiihihsiihtohhfrdhkohiilhhofihskhhiodgutheslhhinhgrrhhordhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-Hi Jonathan,
+On 13/02/2025 22:56:47+0100, Alexander Sverdlin wrote:
+> Currently provided ATF firmware for ARM64 Sophgo SoCs is binary-only.
+> To make Linux independent from this binary firmware, provide restart
+> handler triggering COLD or WARM reboot directly via RTC HW block as
+> alternative to PSCI interface.
+> 
+> Handler priority SYS_OFF_PRIO_DEFAULT of 0 is desired, because if PSCI
+> is indeed present, its priority of 129 will override the new one. On RiskV
+> side the behaviour is unchanged as well because SBI SRST handler has higher
+> priority as well (192).
+> 
+> Tested on SG2000 in ARM64 mode.
+> 
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> ---
+> v11:
+> - patch introduced;
+> 
+>  drivers/rtc/rtc-cv1800.c | 51 +++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 50 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/rtc/rtc-cv1800.c b/drivers/rtc/rtc-cv1800.c
+> index 5c30f7388983..586d7195f1f4 100644
+> --- a/drivers/rtc/rtc-cv1800.c
+> +++ b/drivers/rtc/rtc-cv1800.c
+> @@ -9,17 +9,23 @@
+>  #include <linux/irq.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+> +#include <linux/notifier.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/reboot.h>
+>  #include <linux/regmap.h>
+>  #include <linux/rtc.h>
+>  
+> +#define CTRL_UNLOCKKEY         0x0004
+> +#define CTRL0                  0x0008
+>  #define SEC_PULSE_GEN          0x1004
+>  #define ALARM_TIME             0x1008
+>  #define ALARM_ENABLE           0x100C
+>  #define SET_SEC_CNTR_VAL       0x1010
+>  #define SET_SEC_CNTR_TRIG      0x1014
+>  #define SEC_CNTR_VAL           0x1018
+> +#define EN_PWR_CYC_REQ         0x10C8
+> +#define EN_WARM_RST_REQ        0x10CC
+>  
+>  /*
+>   * When in VDDBKUP domain, this MACRO register
+> @@ -28,6 +34,10 @@
+>  #define MACRO_RO_T             0x14A8
+>  #define MACRO_RG_SET_T         0x1498
+>  
+> +/* CTRL0 bits */
+> +#define REQ_PWR_CYC            BIT(3)
+> +#define REQ_WARM_RST           BIT(4)
+> +
+>  #define ALARM_ENABLE_MASK      BIT(0)
+>  #define SEL_SEC_PULSE          BIT(31)
+>  
+> @@ -160,6 +170,29 @@ static const struct rtc_class_ops cv1800_rtc_ops = {
+>  	.alarm_irq_enable = cv1800_rtc_alarm_irq_enable,
+>  };
+>  
+> +static int cv1800_restart_handler(struct sys_off_data *data)
+> +{
+> +	struct cv1800_rtc_priv *info = data->cb_data;
+> +	u32 reg_en = EN_WARM_RST_REQ;
+> +	u32 request = 0xFFFF0800;
+> +
+> +	if (data->mode == REBOOT_COLD) {
+> +		reg_en = EN_PWR_CYC_REQ;
+> +		request |= REQ_PWR_CYC;
+> +	} else {
+> +		request |= REQ_WARM_RST;
+> +	}
+> +
+> +	/* Enable reset request */
+> +	regmap_write(info->rtc_map, reg_en, 1);
+> +	/* Enable CTRL0 register access */
+> +	regmap_write(info->rtc_map, CTRL_UNLOCKKEY, 0xAB18);
+> +	/* Request reset */
+> +	regmap_write(info->rtc_map, CTRL0, request);
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+>  static int cv1800_rtc_probe(struct platform_device *pdev)
+>  {
+>  	struct cv1800_rtc_priv *rtc;
+> @@ -205,7 +238,23 @@ static int cv1800_rtc_probe(struct platform_device *pdev)
+>  		return dev_err_probe(&pdev->dev, ret,
+>  				     "cannot register interrupt handler\n");
+>  
+> -	return devm_rtc_register_device(rtc->rtc_dev);
+> +	ret = devm_rtc_register_device(rtc->rtc_dev);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "cannot register RTC\n");
 
-kernel test robot noticed the following build errors:
+This message is useless, there is no failure path without a message in
+devm_rtc_register_device.
 
-[auto build test ERROR on 5de07b8a24cf44cdb78adeab790704bf577c2c1d]
+> +
+> +	/*
+> +	 * SYS_OFF_PRIO_DEFAULT of 0 is desired here because both RiscV SBI SRST
+> +	 * (prio 192) and ARM PSCI (prio 129) will override this one; this
+> +	 * handler shall serve as a fallback in cases where firmware is not
+> +	 * present.
+> +	 */
+> +	ret = devm_register_restart_handler(&pdev->dev, cv1800_restart_handler,
+> +					    rtc);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "cannot register restart handler\n");
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Santos/iio-adc-ad7768-1-Fix-conversion-result-sign/20250213-022329
-base:   5de07b8a24cf44cdb78adeab790704bf577c2c1d
-patch link:    https://lore.kernel.org/r/3552833157f252f3b6813f0042059e858c90d53a.1739368121.git.Jonathan.Santos%40analog.com
-patch subject: [PATCH RESEND v3 11/17] iio: adc: ad7768-1: add regulator to control VCM output
-config: loongarch-randconfig-002-20250214 (https://download.01.org/0day-ci/archive/20250214/202502140626.PzhgxFMq-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250214/202502140626.PzhgxFMq-lkp@intel.com/reproduce)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502140626.PzhgxFMq-lkp@intel.com/
+Probe must never fail after devm_rtc_register_device.
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "rdev_get_drvdata" [drivers/iio/adc/ad7768-1.ko] undefined!
->> ERROR: modpost: "devm_regulator_register" [drivers/iio/adc/ad7768-1.ko] undefined!
->> ERROR: modpost: "regulator_list_voltage_table" [drivers/iio/adc/ad7768-1.ko] undefined!
+> +
+> +	return 0;
+>  }
+>  
+>  static const struct of_device_id cv1800_dt_ids[] = {
+> -- 
+> 2.48.1
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
