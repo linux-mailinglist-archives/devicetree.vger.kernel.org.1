@@ -1,134 +1,195 @@
-Return-Path: <devicetree+bounces-146381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B64FA34B59
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:10:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3E3AA34BC7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:24:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CF977A0FB4
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:09:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A8AA3AA864
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:17:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5ECE1C863C;
-	Thu, 13 Feb 2025 17:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DE88201259;
+	Thu, 13 Feb 2025 17:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n8wGfp1k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9DA128A2A5;
-	Thu, 13 Feb 2025 17:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8183415689A;
+	Thu, 13 Feb 2025 17:17:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739466615; cv=none; b=hxdd1FGQ3waZUEEJ/Z3JXRpta/aqYzkrnJZn1GatzL/kgoo/Pt/QFJqUG2+m3qm0uepzA6laBJRKHn9FO1dnHx8voF6lAe9cKFf2VDeoXhUKqapAUMDb3kQuWQYHJStVTkLqWaVViln3ANGtjdts0ytZ6YdDTJPXpVveZ29+hWU=
+	t=1739467023; cv=none; b=XokJcihu/BY+zVDUiqXRxBe3WQeQCXYQhLv+mMbfKAiXM2CBgAlhMqYveRk1PP2pzTLkyPb6Za2kxs04C1rzVioo9Dsle8CEJo2NOSXJgc7EA8PFS+MH6bcHe5FHcA8GgQ6Moz2W4V8A8fv+sZo9fbkCQ+Ov6EW85PfGuluFAgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739466615; c=relaxed/simple;
-	bh=tRx2GSmvzwQ/gwoMBVPqmD2Y+O1nxBGjLSn4/EPSSBU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BRt/VNktn+LzscHeRcm9ZgHiawNTDo1+N4mF821/rhizygSW8QPx9j7kA/ffZygv6cCGtFiOmVmqd5aSHJ+WG8OLjg5tVe6i60zLXGHSGRTl94zkdYwPQGEg2hJDSPfGm+0YrmyQHNRpkMEghnypeWPkNSpb3QwS7696izml68c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-471bc8eaf3fso9299031cf.2;
-        Thu, 13 Feb 2025 09:10:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739466612; x=1740071412;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ie3JzpPwAcx/4geWAE6zYb8hiTtsdSbYIX5JhTMAO3Q=;
-        b=FlhvyLVZWeFtGm8QShS+qgurbf0NlEiQvGy2RMsSafUuGmEJGEr26XLt9S9JUPsLU4
-         12UsqCqDYrTiBdKpC67vp/8ZLaZ4a2QdaOpR4vNXP4WQ2bjvc02ec7x3muwCKod0M6QK
-         tmqjO6ZCtG7PToiq4N+Lxtg5z3hUv9jgTTJkJnLxpjicI1mr2PizlfGbJAyr5gnczofg
-         fdyYmo1JTPh6Snt23vPKgKGhASRu19g9n+Se9iwelHAnj5qT4zqf5gAOZZ/oWAqfqpTd
-         QpaEmPAFCMaaBqQimKwM3Y514iaJAg0jTQJsC1ZdjfxfiGgEcLnzXDxnLjv00mGnbNb6
-         UP8A==
-X-Forwarded-Encrypted: i=1; AJvYcCW4O7gEDNlDvCfuchznR0C7xOYzzQharj1fB79l1JEL62E/1VRKgjXDHNVh2VHiBPmEbe8VswGZu59u@vger.kernel.org, AJvYcCWcH/DzZHQx6BtsA+bHOS/KxFFeLHJGTAFy/SzvbAcRRGsz0f0O0QSXBchcCBTcqQrRjKD29IuFNZ80czOnp5FZ2xA=@vger.kernel.org, AJvYcCWzKrLvYc4dG1IAKjkfvnJrEm1oEWqpuNLKHyKwILmB3tEZPUZOKYuUEPA1E828hw3bYZaevxNnZVMAIfqu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPGY+J0r7QVC6FHo1Ox9p2Tp80ytBa/Z3c6FsrIrEiA/k/QKA0
-	XfegpOL7SusbN9H6oyiRIY3Sbvbj4xZWqSCS8Ikk7xL6YWZwXTAr4i1oWh6fCfE=
-X-Gm-Gg: ASbGncuVY9y2IpURVR7tE52Nj0hg+YMcOWNMTED3EEj4ajTCD1+asKNAD8qUnBggBCT
-	C+CxN5bz/bTIZehpFUfpWPkCH7agVMTNtMoyx79xlNqkjV/V33Mb2fnaaCf+OL/dXfZJ6C9u49j
-	m2yTuZkH0Cf1qIwxZI6sW3o5TeEHd7FAbbhNoMjCFF9RgRFejEIbL4KbKVCJK6utb0EffyccUbZ
-	g9f3DniiqcqlgBpNuUGHm+eZCeRCXBN9MVhRv9XUJdrBLVqWYlEj85h/s9g9yFIrHTysSv5zON7
-	TwT7K2gWtLo3vn0mjEXLxDATUdAdR7bGW8BtcfV8LTCfoHySS/7koA==
-X-Google-Smtp-Source: AGHT+IGqWJk4LT025H18ztYXMwx9HfiJ8qA0uwiIg83SFrNYbd/Z6MksArOwzaNZveg5DHeCSYJPfw==
-X-Received: by 2002:a05:622a:2292:b0:467:5014:8bd9 with SMTP id d75a77b69052e-471afe4c80cmr117106841cf.23.1739466611785;
-        Thu, 13 Feb 2025 09:10:11 -0800 (PST)
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com. [209.85.219.41])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e65d785c09sm11612326d6.36.2025.02.13.09.10.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Feb 2025 09:10:11 -0800 (PST)
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-6dcdf23b4edso10087656d6.0;
-        Thu, 13 Feb 2025 09:10:11 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUKCbiDjsVgDWfkEFP1eo1a82N+g/qWw2DyEQefFw+lB1Odo8KLuNfioasoxPhAxKB6eL6hheHBR2fSqTDI@vger.kernel.org, AJvYcCVXFy4eL7KsoVZiy2puXzUfpgwxuNn4Mdu7/BlsbMUkwf0HiUGnlm05Ulq9LSeKsVqCJSBnPUQ44SyQ@vger.kernel.org, AJvYcCXiHunHu/azapnlCJBXQEMuz+GrNx8d+HgGDjlSIvtSjLK8h4vpe60XAZWqdik9/Fi5VlCeF73muUHQB6MgE7mi+wU=@vger.kernel.org
-X-Received: by 2002:a05:6214:c2e:b0:6d8:a8e1:b57b with SMTP id
- 6a1803df08f44-6e46edb2ea2mr147644036d6.36.1739466611109; Thu, 13 Feb 2025
- 09:10:11 -0800 (PST)
+	s=arc-20240116; t=1739467023; c=relaxed/simple;
+	bh=rwN68ZfFZpS+p7Snpl6+Vm3SkAwnIbf/+yQkfbEaAY4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=f1dIPeOL7QlQSjthceaOtymcNoWSgl0JmJ3T2m6ulJDNcO1yQfs3KxVz55R4aQVipuauzjdL1hthrujRTk2OCLaWO1gBL7r9ltR2eaLKEYaggfeIehDR5UXX+i2RzJF9RVfH7OiKacV4jdgpV02x7sGmyarbhsFnburef0Q0tyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n8wGfp1k; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51DGrp5V008337;
+	Thu, 13 Feb 2025 17:16:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9wlBFv7Tbou/aWwuZJOkNHqYSnFsBzD7OpLRH3DjcgI=; b=n8wGfp1kx+Ww46ol
+	ltmCjQpJU3aOzBoaDeDY4u+maocy7k2uTi82/nUtkufbwtkHKKLndqXaOi9Y2Yt8
+	+pTEg8bDooUoEpskn6yVReNONteybJLKgFXjXVZFSWCxufFQICiSBmvTaCCs/Yej
+	OJ+uxVpmr5DWivVF8wbVvJCF0sDIq6/HJ5bVq9WmOyYz4MyIyaixYip2YO3aqXvV
+	kuNvAewXOkCqMtQbLkxfvIwMyxESmZKzl887iFr30MO2PE2gVQA+FBJA/ga08qeH
+	kikHG9YSuY+Ueef5eSeZI0YvRVshrHGb7NhHKlKG9EuXHT6t5foSc+PmKhlDN6WW
+	KolIBQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44qewhbm77-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Feb 2025 17:16:48 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51DHGlHA013022
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Feb 2025 17:16:47 GMT
+Received: from [10.216.44.15] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Feb
+ 2025 09:16:40 -0800
+Message-ID: <30c91617-8307-4ea5-8a56-4b3b987f2bdc@quicinc.com>
+Date: Thu, 13 Feb 2025 22:46:38 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250209180616.160253-1-marek.vasut+renesas@mailbox.org> <20250209180616.160253-3-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20250209180616.160253-3-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 13 Feb 2025 18:09:58 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUC1F02oQ1pKZr5HY0sdKOFEQe8EcsccHZw1NcrRkdwsw@mail.gmail.com>
-X-Gm-Features: AWEUYZlXRfidZ9xD_oiptzCynSGorb02SKh9tpjqSsp_85FHqgD9O05IG1SQrx0
-Message-ID: <CAMuHMdUC1F02oQ1pKZr5HY0sdKOFEQe8EcsccHZw1NcrRkdwsw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: Add boot phase tags marking to
- Renesas RZ/G2
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: qcs8300: Add gpu and gmu nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Jie Zhang
+	<quic_jiezh@quicinc.com>
+References: <20250213-a623-gpu-support-v1-0-993c65c39fd2@quicinc.com>
+ <20250213-a623-gpu-support-v1-4-993c65c39fd2@quicinc.com>
+ <p36nz6p6bbzur7uoitbzc63hv4qf7hhsix3mqa36igarasj67b@evcdfpeybgsh>
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <p36nz6p6bbzur7uoitbzc63hv4qf7hhsix3mqa36igarasj67b@evcdfpeybgsh>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 5TEdcz_SSSncZOitpVLLRmj3C4D-DxYh
+X-Proofpoint-GUID: 5TEdcz_SSSncZOitpVLLRmj3C4D-DxYh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-13_07,2025-02-13_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ impostorscore=0 mlxlogscore=999 phishscore=0 clxscore=1015 adultscore=0
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 suspectscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502130123
 
-Hi Marek,
+On 2/13/2025 10:26 PM, Dmitry Baryshkov wrote:
+> On Thu, Feb 13, 2025 at 09:40:09PM +0530, Akhil P Oommen wrote:
+>> From: Jie Zhang <quic_jiezh@quicinc.com>
+>>
+>> Add gpu and gmu nodes for qcs8300 chipset.
+>>
+>> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
+>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 93 +++++++++++++++++++++++++++++++++++
+>>  1 file changed, 93 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> index f1c90db7b0e6..2dc487dcc584 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> @@ -2660,6 +2660,99 @@ serdes0: phy@8909000 {
+>>  			status = "disabled";
+>>  		};
+>>  
+>> +		gpu: gpu@3d00000 {
+>> +			compatible = "qcom,adreno-623.0", "qcom,adreno";
+>> +			reg = <0x0 0x03d00000 0x0 0x40000>,
+>> +			      <0x0 0x03d9e000 0x0 0x1000>,
+>> +			      <0x0 0x03d61000 0x0 0x800>;
+>> +			reg-names = "kgsl_3d0_reg_memory",
+>> +				    "cx_mem",
+>> +				    "cx_dbgc";
+>> +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
+>> +			iommus = <&adreno_smmu 0 0xc00>,
+>> +				 <&adreno_smmu 1 0xc00>;
+>> +			operating-points-v2 = <&gpu_opp_table>;
+>> +			qcom,gmu = <&gmu>;
+>> +			interconnects = <&gem_noc MASTER_GFX3D QCOM_ICC_TAG_ALWAYS
+>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+>> +			interconnect-names = "gfx-mem";
+>> +			#cooling-cells = <2>;
+>> +
+>> +			status = "disabled";
+>> +
+>> +			gpu_zap_shader: zap-shader {
+>> +				memory-region = <&gpu_microcode_mem>;
+>> +			};
+>> +
+>> +			gpu_opp_table: opp-table {
+>> +				compatible = "operating-points-v2";
+>> +
+>> +				opp-877000000 {
+>> +					opp-hz = /bits/ 64 <877000000>;
+>> +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
+>> +					opp-peak-kBps = <12484375>;
+>> +				};
+>> +
+>> +				opp-780000000 {
+>> +					opp-hz = /bits/ 64 <780000000>;
+>> +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
+>> +					opp-peak-kBps = <10687500>;
+>> +				};
+>> +
+>> +				opp-599000000 {
+>> +					opp-hz = /bits/ 64 <599000000>;
+>> +					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
+>> +					opp-peak-kBps = <8171875>;
+>> +				};
+>> +
+>> +				opp-479000000 {
+>> +					opp-hz = /bits/ 64 <479000000>;
+>> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+>> +					opp-peak-kBps = <5285156>;
+>> +				};
+> 
+> Does it have no speed bins or are they pending on the nvmem patchset?
 
-On Sun, 9 Feb 2025 at 19:06, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> bootph-all as phase tag was added to dt-schema (dtschema/schemas/bootph.yaml)
-> to describe various node usage during boot phases with DT. Add bootph-all for
-> all nodes that are used in the bootloader on Renesas RZ/G2 SoC.
->
-> All SoC require CPG clock and its input clock, RST Reset, PFC pin control and
-> PRR ID register access during all stages of the boot process, those are marked
-> using bootph-all property, and so is the SoC bus node which contains these IP.
->
-> Each board console UART is also marked as bootph-all to make it available in
-> all stages of the boot process.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Product team hasn't shared the details of GPU SKUs or the SKU detection
+mechanism yet. The default assumption is single SKU.
 
-Thanks for your patch!
+-Akhil.
 
->  arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi | 1 +
->  arch/arm64/boot/dts/renesas/hihope-common.dtsi      | 1 +
->  arch/arm64/boot/dts/renesas/r8a774a1.dtsi           | 8 ++++++++
->  arch/arm64/boot/dts/renesas/r8a774b1.dtsi           | 8 ++++++++
->  arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts     | 1 +
->  arch/arm64/boot/dts/renesas/r8a774c0.dtsi           | 7 +++++++
->  arch/arm64/boot/dts/renesas/r8a774e1.dtsi           | 8 ++++++++
+> 
+>> +			};
+>> +		};
+>> +
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.15.
-
->  arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi    | 1 +
-
-I will drop this part, as it is not related to RZ/G2, but belongs to
-the RZ/G2L family, for which I expect a (larger) separate patch ;-)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
