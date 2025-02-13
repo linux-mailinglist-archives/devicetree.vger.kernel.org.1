@@ -1,201 +1,180 @@
-Return-Path: <devicetree+bounces-146112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6151BA33725
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 06:03:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 320DCA33763
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 06:41:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24CAE3A7EF3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 05:03:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD80A3A6C17
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 05:41:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC1E2066D3;
-	Thu, 13 Feb 2025 05:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F4D2066FF;
+	Thu, 13 Feb 2025 05:41:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Cv0VPl9Q"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WHyYfqwR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5859B204594
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 05:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E4D986325;
+	Thu, 13 Feb 2025 05:41:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739423008; cv=none; b=H84RBd6thkgAipoBFj8e2HRN8n3Rc937fROv0uMd8nIWZVVTwPTW3i53vxx7DENKBC3nueITWjA3HnxOYeNBZN5hJApoUgLrP0/Wu4hw98yXXWKYRAMzzYcvG00eHoojfBqHuhg/5IzoyGHY8hLwsN0//jQy+sp8u9+CHtiHMjM=
+	t=1739425308; cv=none; b=lMtneVRX55SI7/SYaRwsX5PzvATcDovR6tGTZuBloEPLrinmszof0i0lqNDeTR8/DqHXluyu8DAKrwOBZtoUQJMbd3mCJOuXSt1ftzJW5A2u+bebwxLFRnQzNl0MWK3jdJ3Q/Jg8HwIyNDt8I9xtw2vRfmD+N9t6Dj2J3BittSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739423008; c=relaxed/simple;
-	bh=RED9UTuHiLfroWYaDsP+pbbtivJ4I+Sr+JzJvs1I6Kc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:Content-Type:
-	 References; b=Nbg/7wfmnwHhWb7wFAZTGFp6yKpPF5a++3NAUdztTf1nmP/FrtUBUJ6A1BcpV6FJoi2VnUWd7paeTkI30rvAWG1RK952kG+pOdNKq+SutuLPtXVHt/Ss+IP3Cwmkb1ljH31OkxAXdePGmlnB86TNkCLOmjnurbp/FlmkiDGovsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Cv0VPl9Q; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250213050323epoutp03aa24cf7d2310978241cec96d335d5e5f~jrAF6Ewc90684806848epoutp03Q
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 05:03:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250213050323epoutp03aa24cf7d2310978241cec96d335d5e5f~jrAF6Ewc90684806848epoutp03Q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1739423003;
-	bh=UnR8x/QWGaZyJdHs9NP0syapfl2485/0TtsJYsze2qw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Cv0VPl9QmjA+BtoAQ+TQLgceunFMLARJsDvwRGJZaxoGUBHQ8O6aCEQIeejbiA+9P
-	 JrzbrGnYf3ESqMLASI+lPFCQlfS6O1LhOnZgTq3Xru5ifMDixP4Rp63aVnePwBQrIr
-	 Ho6qzdmBfnhKKP3KWbfpOQMVJ2IV7xScGbixrTx4=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-	20250213050322epcas5p2efed3bea7e9560cf1c30805f076501a2~jrAFSJzCV2150221502epcas5p2I;
-	Thu, 13 Feb 2025 05:03:22 +0000 (GMT)
-Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.181]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4YtjkK37cLz4x9Q3; Thu, 13 Feb
-	2025 05:03:21 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-	epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	5C.90.19710.91D7DA76; Thu, 13 Feb 2025 14:03:21 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250213044959epcas5p1b6f6d5554f69b5c24a5b4a15c8bf1fc9~jq0ZmeAK42465824658epcas5p1G;
-	Thu, 13 Feb 2025 04:49:59 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250213044959epsmtrp25c6fcdab4c48ef3ad722134f7e40dc7c~jq0ZlgrzH1368713687epsmtrp2j;
-	Thu, 13 Feb 2025 04:49:59 +0000 (GMT)
-X-AuditID: b6c32a44-363dc70000004cfe-0a-67ad7d19d0ec
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	0C.F0.18949.7F97DA76; Thu, 13 Feb 2025 13:49:59 +0900 (KST)
-Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250213044956epsmtip28a8b2eb288a328ea94a315978a58de69~jq0WyXiQY2273222732epsmtip2o;
-	Thu, 13 Feb 2025 04:49:56 +0000 (GMT)
-From: Swathi K S <swathi.ks@samsung.com>
-To: krzk+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	conor+dt@kernel.org, richardcochran@gmail.com, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com
-Cc: rmk+kernel@armlinux.org.uk, swathi.ks@samsung.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v6 2/2] net: stmmac: dwc-qos: Add FSD EQoS support
-Date: Thu, 13 Feb 2025 10:16:24 +0530
-Message-Id: <20250213044624.37334-3-swathi.ks@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250213044624.37334-1-swathi.ks@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCJsWRmVeSWpSXmKPExsWy7bCmlq5k7dp0g+5PwhY/X05jtFj+YAer
-	xZq955gs5pxvYbGYf+Qcq8XTY4/YLW4e2Mlk8XLWPTaLC9v6WC02Pb7GanF51xw2i65rT1gt
-	5v1dy2pxbIGYxbfTbxgtFm39wm7x8MMedosjZ14wW1zqn8hk8X/PDnaLLxtvsjuIely+dpHZ
-	Y8vKm0weT/u3snvsnHWX3WPBplKPTas62Tw2L6n32LnjM5PH+31X2Tz6tqxi9Di4z9Dj8ya5
-	AJ6obJuM1MSU1CKF1Lzk/JTMvHRbJe/geOd4UzMDQ11DSwtzJYW8xNxUWyUXnwBdt8wcoF+V
-	FMoSc0qBQgGJxcVK+nY2RfmlJakKGfnFJbZKqQUpOQUmBXrFibnFpXnpenmpJVaGBgZGpkCF
-	CdkZ6+aFFPQLVdx6u4G5gbGLv4uRk0NCwETi9Kz3TCC2kMBuRolVqwq6GLmA7E+MEguenGOE
-	cL4xSrxaOZe9i5EDrOP4hWyI+F5GiZ9Te9kgnC+MEnMWt7GCjGIT0JC4vmI7O0hCROAXo8SH
-	SaeZQRxmgbuMEpt677KBVAkLOElsfNfECjKWRUBVou83WDOvgJVE49zXzBD3yUus3nAAzOYU
-	sJaYNukDK8gcCYE7HBJfl61jgyhykVg+9xgjhC0s8er4FnYIW0ri87u9UDXxEqv7rrJA2BkS
-	d39NhIrbSxy4MocF5AZmAU2J9bv0IcKyElNPrQOHC7MAn0Tv7ydMEHFeiR3zYGxlib+vr0GN
-	lJTYtvQ91FoPiYUtjdCg62OUOPH3G9sERrlZCCsWMDKuYpRMLSjOTU9NNi0wzEsth0dacn7u
-	JkZwctZy2cF4Y/4/vUOMTByMhxglOJiVRHglpq1JF+JNSaysSi3Kjy8qzUktPsRoCgy/icxS
-	osn5wPyQVxJvaGJpYGJmZmZiaWxmqCTO27yzJV1IID2xJDU7NbUgtQimj4mDU6qBKeDMpda2
-	AGtRr2X53EcUz6xkq089JJG0w+z3AztBk56MW6tE1pkvNWAo1E264TmpwG6BW9Gy2pPdv6UK
-	Xr/ljGDqcBXyT2AwtT37M/sPm2tPz/KMyeaX1fMal+u9brp4+XdWz6q/rmYKPjtua59uZixd
-	saZZj2m99Q3vkJW8kl4bUh8bHfHTnF+7/RW3VNYuvt3WhyMM/365M0O9qzR7Xd38j61F+QoV
-	Gs7TbV3cPXxvel3nPPzpsOz2X/EsHBsvFG8597TFsbvwpaP3j5/Guw4tr/ZQlKqe7XDSa9tn
-	fvm8/jkx0u0p4b2WDUFb5/FnTmh1l7jSmfJkisIEhUXHlLZHTLVOY5rTJBnsWa7EUpyRaKjF
-	XFScCAB+7qbWVwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrNLMWRmVeSWpSXmKPExsWy7bCSvO73yrXpBkce6lv8fDmN0WL5gx2s
-	Fmv2nmOymHO+hcVi/pFzrBZPjz1it7h5YCeTxctZ99gsLmzrY7XY9Pgaq8XlXXPYLLquPWG1
-	mPd3LavFsQViFt9Ov2G0WLT1C7vFww972C2OnHnBbHGpfyKTxf89O9gtvmy8ye4g6nH52kVm
-	jy0rbzJ5PO3fyu6xc9Zddo8Fm0o9Nq3qZPPYvKTeY+eOz0we7/ddZfPo27KK0ePgPkOPz5vk
-	AniiuGxSUnMyy1KL9O0SuDLWzQsp6BequPV2A3MDYxd/FyMHh4SAicTxC9ldjFwcQgK7GSVm
-	T1vA0sXICRSXlPjUPJUVwhaWWPnvOTtE0SdGie7bC8ASbAIaEtdXbAdLiAh0MEnsmXqSGcRh
-	FnjMKPHg1X82kCphASeJje+aWEHWsQioSvT9BmvmFbCSaJz7mhlig7zE6g0HwGxOAWuJaZM+
-	gNUIAdWsermPcQIj3wJGhlWMkqkFxbnpucWGBUZ5qeV6xYm5xaV56XrJ+bmbGMHxo6W1g3HP
-	qg96hxiZOBgPMUpwMCuJ8EpMW5MuxJuSWFmVWpQfX1Sak1p8iFGag0VJnPfb694UIYH0xJLU
-	7NTUgtQimCwTB6dUA9OetINT2j97ylpwT+4zTFDSrldpLonc0T7j4Yn3V6cr7Ti75n9Jz+b3
-	vAy/Z8hNmX5D+u+v+KrUml2zk4+GqKdemPes8qgo/6PVDS7LY1oFgo0Pl/tK1x2unDZXtOSY
-	DbPK/OIVbW6b/P4w+DqbVSqxy014yxH3//nhDc/DT0nvC1bWOF7h29ke2CX470mK0cpCsVVB
-	RyQF/c7Iem2c1Hz/zI4PpmVXvRb8WfA0JsrudtGGGIdrh+O6o4WfGgtNPOkT2l/5cGHd7/0H
-	vjxz3LxezvqpZlHLlMnX2PbzX9/5I9ei1YrP4GV9++RH+aG1rrf7ohWTJ296IiCtmJZfa+/u
-	EdXelsbotapHOZyhRYmlOCPRUIu5qDgRAJYD578OAwAA
-X-CMS-MailID: 20250213044959epcas5p1b6f6d5554f69b5c24a5b4a15c8bf1fc9
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250213044959epcas5p1b6f6d5554f69b5c24a5b4a15c8bf1fc9
-References: <20250213044624.37334-1-swathi.ks@samsung.com>
-	<CGME20250213044959epcas5p1b6f6d5554f69b5c24a5b4a15c8bf1fc9@epcas5p1.samsung.com>
+	s=arc-20240116; t=1739425308; c=relaxed/simple;
+	bh=oqgEfI6+fwiW7tM2TZxu+ARiHQNbyOwzxrIpsof5wjg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iF2I69B2UqaD+shy8n8a3bGW2YBF49ro9g2qutBa8RyH8SldgPVVWgxGAVvvI87ar8GTkay7l7hhXGABo84iur0f00zs0F6regsdwhVGFrPVJ+/5sn6uSe+VxCyi4bKSO6ciWPzyEDR3RMyZwu/IRhGdqcL9NZ/c6C6dOe8IEDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WHyYfqwR; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739425306; x=1770961306;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oqgEfI6+fwiW7tM2TZxu+ARiHQNbyOwzxrIpsof5wjg=;
+  b=WHyYfqwRpmfblXgEWxSPTGh27qsoWyC+e34s4KM2gG2so/+9DtSC53b3
+   vq6qa0Hd/HHwyJtmvBAQn5l7XKDRGVDwJaE4mVsUABvZ/XI9juS0vf+81
+   Wb5PI5eRSjfCOmo2SD5LgXoenKnEoTUEHb3Vtjm/49zTXaBEIwWtpexqC
+   GBWtZdM15xC1HIKHR3bclqLA6ucgmMqOsuZmpwESE6c68Jf/6yRDbopGN
+   m2AU5WmzTgdNB4UGuQOS9D2hYiSJVeljbG1Lx7hgeKkYwUWuVOMzcSq33
+   QFmKuMZOTqur4+jgHiYtj78oOLwWdmXLfJA3J3XmPvkRIMVIk8UQkizjt
+   w==;
+X-CSE-ConnectionGUID: ggfIn0unRT6m6oxF7xmLpw==
+X-CSE-MsgGUID: SgZeTyc6RhyBN1ZHD0+VOA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="40236586"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; 
+   d="scan'208";a="40236586"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2025 21:41:45 -0800
+X-CSE-ConnectionGUID: yPMmWeO3S/ic5Kih1MRnsQ==
+X-CSE-MsgGUID: LkV5tS47Tz6JXL+GZIx16Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="112884446"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 12 Feb 2025 21:41:38 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tiRyi-0016Zr-0V;
+	Thu, 13 Feb 2025 05:41:36 +0000
+Date: Thu, 13 Feb 2025 13:40:40 +0800
+From: kernel test robot <lkp@intel.com>
+To: Robert Budai <robert.budai@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Ramona Gradinariu <ramona.gradinariu@analog.com>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v7 3/6] iio: imu: adis: Add DIAG_STAT register
+Message-ID: <202502131358.EsqgzVi7-lkp@intel.com>
+References: <20250211175706.276987-4-robert.budai@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250211175706.276987-4-robert.budai@analog.com>
 
-The FSD SoC contains two instance of the Synopsys DWC ethernet QOS IP core.
-The binding that it uses is slightly different from existing ones because
-of the integration (clocks, resets).
+Hi Robert,
 
-Signed-off-by: Swathi K S <swathi.ks@samsung.com>
----
- .../stmicro/stmmac/dwmac-dwc-qos-eth.c        | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-index 5d2dd123979b..e3b383d8e7ef 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-@@ -308,6 +308,29 @@ static void tegra_eqos_remove(struct platform_device *pdev)
- 	gpiod_set_value(eqos->reset, 1);
- }
- 
-+static int fsd_eqos_probe(struct platform_device *pdev,
-+			  struct plat_stmmacenet_data *data,
-+			  struct stmmac_resources *res)
-+{
-+	struct clk *clk_rx1 = NULL;
-+	struct clk *clk_rx2 = NULL;
-+
-+	for (int i = 0; i < data->num_clks; i++) {
-+		if (strcmp(data->clks[i].id, "slave_bus") == 0)
-+			data->stmmac_clk = data->clks[i].clk;
-+		else if (strcmp(data->clks[i].id, "eqos_rxclk_mux") == 0)
-+			clk_rx1 = data->clks[i].clk;
-+		else if (strcmp(data->clks[i].id, "eqos_phyrxclk") == 0)
-+			clk_rx2 = data->clks[i].clk;
-+	}
-+
-+	/* Eth0 RX clock doesn't support MUX */
-+	if (clk_rx1)
-+		clk_set_parent(clk_rx1, clk_rx2);
-+
-+	return 0;
-+}
-+
- struct dwc_eth_dwmac_data {
- 	int (*probe)(struct platform_device *pdev,
- 		     struct plat_stmmacenet_data *data,
-@@ -324,6 +347,10 @@ static const struct dwc_eth_dwmac_data tegra_eqos_data = {
- 	.remove = tegra_eqos_remove,
- };
- 
-+static const struct dwc_eth_dwmac_data fsd_eqos_data = {
-+	.probe = fsd_eqos_probe,
-+};
-+
- static int dwc_eth_dwmac_probe(struct platform_device *pdev)
- {
- 	const struct dwc_eth_dwmac_data *data;
-@@ -402,6 +429,7 @@ static void dwc_eth_dwmac_remove(struct platform_device *pdev)
- static const struct of_device_id dwc_eth_dwmac_match[] = {
- 	{ .compatible = "snps,dwc-qos-ethernet-4.10", .data = &dwc_qos_data },
- 	{ .compatible = "nvidia,tegra186-eqos", .data = &tegra_eqos_data },
-+	{ .compatible = "tesla,fsd-ethqos", .data = &fsd_eqos_data },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, dwc_eth_dwmac_match);
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on linus/master v6.14-rc2 next-20250212]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Robert-Budai/iio-imu-adis-Add-custom-ops-struct/20250212-040235
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20250211175706.276987-4-robert.budai%40analog.com
+patch subject: [PATCH v7 3/6] iio: imu: adis: Add DIAG_STAT register
+config: i386-buildonly-randconfig-002-20250213 (https://download.01.org/0day-ci/archive/20250213/202502131358.EsqgzVi7-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250213/202502131358.EsqgzVi7-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502131358.EsqgzVi7-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/iio/imu/adis.c:319:7: error: incompatible integer to pointer conversion passing 'u16' (aka 'unsigned short') to parameter of type 'u16 *' (aka 'unsigned short *'); take the address with & [-Wint-conversion]
+     319 |                                          status_16);
+         |                                          ^~~~~~~~~
+         |                                          &
+   include/linux/iio/imu/adis.h:225:15: note: passing argument to parameter 'val' here
+     225 |                                      u16 *val)
+         |                                           ^
+   1 error generated.
+
+
+vim +319 drivers/iio/imu/adis.c
+
+   298	
+   299	/**
+   300	 * __adis_check_status() - Check the device for error conditions (unlocked)
+   301	 * @adis: The adis device
+   302	 *
+   303	 * Returns 0 on success, a negative error code otherwise
+   304	 */
+   305	int __adis_check_status(struct adis *adis)
+   306	{
+   307		unsigned int status;
+   308		int diag_stat_bits;
+   309		u16 status_16;
+   310		int ret;
+   311		int i;
+   312	
+   313		if (adis->data->diag_stat_size)
+   314			ret = adis->ops->read(adis, adis->data->diag_stat_reg, &status,
+   315					      adis->data->diag_stat_size);
+   316		else
+   317		{
+   318			ret = __adis_read_reg_16(adis, adis->data->diag_stat_reg,
+ > 319						 status_16);
+   320			status = status_16;
+   321		}
+   322		if (ret)
+   323			return ret;
+   324	
+   325		status &= adis->data->status_error_mask;
+   326	
+   327		if (status == 0)
+   328			return 0;
+   329	
+   330		diag_stat_bits = BITS_PER_BYTE * (adis->data->diag_stat_size ?
+   331						  adis->data->diag_stat_size : 2);
+   332	
+   333		for (i = 0; i < diag_stat_bits; ++i) {
+   334			if (status & BIT(i)) {
+   335				dev_err(&adis->spi->dev, "%s.\n",
+   336					adis->data->status_error_msgs[i]);
+   337			}
+   338		}
+   339	
+   340		return -EIO;
+   341	}
+   342	EXPORT_SYMBOL_NS_GPL(__adis_check_status, "IIO_ADISLIB");
+   343	
+
 -- 
-2.17.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
