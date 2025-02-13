@@ -1,212 +1,141 @@
-Return-Path: <devicetree+bounces-146086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED280A33401
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 01:33:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A66DDA3341B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 01:39:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B906167126
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 00:33:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 316821884670
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 00:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F98225777;
-	Thu, 13 Feb 2025 00:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92DE4207A;
+	Thu, 13 Feb 2025 00:39:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="X3eHv0l+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m9qJdpiq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84980271823;
-	Thu, 13 Feb 2025 00:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F6142F44;
+	Thu, 13 Feb 2025 00:39:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739406795; cv=none; b=TNU5NlJV0WwEr39V+5ld93uPotGMQgMdgpfouv9CmJ+XElpqQuJsUyMDPKUvPz/Xvv9LIBfYUuUkdvs7iqoIQGyrsHqK8JXhpMhc1q27I8y7Yau9JBK2sCe/x+3q3Bh+Gg+9zBQBu2n9qeKT7zOV4d5Ga/hnqBtHhFWqNa0JZfg=
+	t=1739407142; cv=none; b=rJXKbM/Pcu3omegKAf1+BZI363gnP6D9qEa/FVmkGCNLJWuMO7Nms7VT3n+q39e8H79KBFR5ua7hD4hEvwozq0N8t7+1F0DylevcRZ+peB3qeq2npi1kng+AV7Id/EXRw+4Pjs554yFWhdvhXS0kylxeIPtHvH1blQfuI3OgiVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739406795; c=relaxed/simple;
-	bh=MK36XIGnJyPf3ZbpM6QOJ+5JLqK7b45u3BQX2LiHhGE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=V1PbxwwiTLtrOff/BlIeIo+Q6p33G6yazUUS6t4AR0QZeooJPY/WzYXSEBqttW9aP2EfkXazyb1yHFJ9IheiucOiOnbhAwCG0Q/XjEy2PdPheiqLBSBXi/vMDM50huTrruYsnlNVKHH5/+k/VCiumriWA9GZNRTJUcBxt7r7fQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=X3eHv0l+; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1739407142; c=relaxed/simple;
+	bh=ga/IOc7uLTg3IBgWOX8zypqySo2qZSM+QL53DLL3Gr0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bhQy2z1Ovqo8m/mQBfSk3BgZMLel+grdPNmGBNYJ6s4QNH/ALeYlKe4zGp8Q12aF7K+1wUpVT/iYKzZpqGd/64+6YOkhLYJnVKTRcYWQQE7ACye++DXC+ZNRZ6h1G81eSwtas7jSD5XOGw0kbwIToeY+DO1ghuVwPuKIFxmDQKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m9qJdpiq; arc=none smtp.client-ip=209.85.219.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-6dd1962a75bso2810516d6.3;
+        Wed, 12 Feb 2025 16:39:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1739406791;
-	bh=MK36XIGnJyPf3ZbpM6QOJ+5JLqK7b45u3BQX2LiHhGE=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=X3eHv0l+lt4JR0lILwWPS8oeZleTTgKLAHdO2tMej1PDT+NUdmup0Pwe7aagUlaug
-	 hTSmO8JAmzxnTiOM8uk8P23PWl72+Iw9lqC1C5s2jyJfZjky+p7GlYAebj077vIa/M
-	 DMnXBJJDj/eLVlBslzUjkjFV9tSV6/AcUD6Z5cveqUd3itpWizKGqAaph2eAuvTIBp
-	 /ma5hUuxV54fkeNsWO34mMDpv5WE+QN3Dp6dM3fZjWMgj6pZtOKrY16hLuSJHyZfqt
-	 yd8LFb/1164Jgqx2Q+0eX/K075mOKjDw5t6k5A6p/5+6OEIzlaQ3ENTSbhpi2hTY+E
-	 hQ4OuUUCX37Sg==
-Received: from [192.168.68.112] (203-173-7-184.dyn.iinet.net.au [203.173.7.184])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 908847576E;
-	Thu, 13 Feb 2025 08:33:10 +0800 (AWST)
-Message-ID: <dfb902083154ef3f8c7fc3bf15852b7c372f8c60.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ir38060: Move & update dt
- binding
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Conor Dooley <conor@kernel.org>
-Cc: Naresh Solanki <naresh.solanki@9elements.com>, Guenter Roeck
- <linux@roeck-us.net>, broonie@kernel.org, Jean Delvare <jdelvare@suse.com>,
-  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,  Liam Girdwood <lgirdwood@gmail.com>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Date: Thu, 13 Feb 2025 11:03:08 +1030
-In-Reply-To: <20250212-estate-tapeless-08fcdf5b5ca5@spud>
-References: <20250204180306.2755444-1-naresh.solanki@9elements.com>
-	 <20250204-mulled-evaluate-8a690cdfbd4d@spud>
-	 <CABqG17jHKfwJEfZxto_YA4opS8=QwqTqfNdkku8kcEv2_iW+XA@mail.gmail.com>
-	 <20250205-purge-debating-21273d3b0f40@spud>
-	 <CABqG17j4tKXnMZ5=vcjBvfe6JwCLQ6NbkQmJC9ySK_bmGEv=iQ@mail.gmail.com>
-	 <20250206-camera-mashed-48cf0cf1715f@spud>
-	 <4619661d7375c71710a22520f6ebbf353a5aff59.camel@codeconstruct.com.au>
-	 <20250212-estate-tapeless-08fcdf5b5ca5@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=gmail.com; s=20230601; t=1739407140; x=1740011940; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BwWt+I1q21nIuXT9naaaYFBUTlLCTvDz09ET5qP1riw=;
+        b=m9qJdpiqCz8M7l5/UMBTK++cc5Tc0O8LMOkI31XeB1oRkOaGHBG5zcNkjZmS8L/lft
+         PtvJrpCZxPMwEkPuqOcAIj9MvYO5vDSFX51v5vQnEhevK4MRpVsKGfHCp91V8fUCcQZc
+         8lrgBd3TWt6izoY78ZnxNSiXq4IWjCcvVNnWHJ+PiyPjCPiVYx3OVDLkYekk8V1VKr67
+         Hs+RYlajAo02ElYp7MtEhjC1YTUhH7TxGjnAfRe7TucJXjXZvdUCYbl7Adiu2BFO0xbb
+         g9B1EsfuX6Arpnjn+WBomajOuap+hrJNpKaWgMPrT+U1c0pRrc8y+1G0MtaW3XPGC6Fh
+         JijQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739407140; x=1740011940;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BwWt+I1q21nIuXT9naaaYFBUTlLCTvDz09ET5qP1riw=;
+        b=q0u+BnyBmMbB9tdZdVWKikRDFCpEoKVJ0cigIE/JBAchKifZ0FQZcCDG9+dAQ+zqMH
+         rTFpwN0/0eu+QgRBzsBiW13xSlenBUP4Isu2cJu74UpxZm1+xiNg4sx/YTmTOT6GPdyY
+         n1rw28s8ie553oet+seQEZAL3qh8oEDpQFYxfM+nnwLzYd80k7XthKN8khOVgJkmNR+2
+         luvY95uDaa+FN/lx2AJ8K6Kk04cHFYIC+d0OH+iouUJIHPJIN5WqLjS//w+boDdtJ9UR
+         0s+1ydFMAWAeM/84zBrXIkcNgf+g7cDBWKUy4Mipyth7n4aiY+uT9p16eb7ixmzBYtqE
+         qywg==
+X-Forwarded-Encrypted: i=1; AJvYcCUC4XSxJu7jAtrqgGqDETLc8Elrw7fSPDAaBsiI56pIJKiW8UzhELrsRkV7llvnek/VL84VYhlfZ3Ok3v6m@vger.kernel.org, AJvYcCUEdFuHQ/xEeKqhi2ZPVTi//7wQ7RCmTrj79++aeu8XLXj4haiQ0omXrr1TObUkI/vLEuRE7VMgqXU2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzja1GjTdaVpdQYCJWhlK9Rhf9bUxXw9/JO9GjfS9YJd3iSincF
+	vcj89sx9uMcBVNQHqcTdEhBo0gU4uf/2sglpwYmXgpZ1fsNq5udC
+X-Gm-Gg: ASbGncucgi0WzNUaonw/r8BP5xuBNPCJCRnwX8TK0vlDHdEFEoAssAIBLV9ityJbv5z
+	v2EfK1InGoJkDhYjR4cL3aw+NMAQlyVfNEQ/NjuBmpci5VgekL3rip4f5WJx2CtGCQD9DupCYMk
+	PhPzlI9wXUPIr+4GiHCb/4VTanNkyz6LFa4SoKen+02ZP3ddvWlWdOZkIDSexlfuzuvuW/LELEM
+	htTHjn9MjJlPhuidZqHuwWro65Sw+66F5wZEcSco24yxt7nOPr3aCsIRBJNx0K9YHs=
+X-Google-Smtp-Source: AGHT+IHHLL9ioBnDiGzkp+YhmlUcXtvqasDdyzPDZX4jep5Ey+c2ghcL5FH1R5QcGMY236A6mcEUuQ==
+X-Received: by 2002:a05:6214:410:b0:6d8:9b20:64e8 with SMTP id 6a1803df08f44-6e46ed82f7fmr97469676d6.10.1739407139724;
+        Wed, 12 Feb 2025 16:38:59 -0800 (PST)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e65d9f3498sm1406996d6.84.2025.02.12.16.38.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2025 16:38:59 -0800 (PST)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
+	Charlie Jenkins <charlie@rivosinc.com>,
+	Evan Green <evan@rivosinc.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Jesse Taube <jesse@rivosinc.com>,
+	Andy Chiu <andybnac@gmail.com>,
+	Alexandre Ghiti <alexghiti@rivosinc.com>,
+	Yong-Xuan Wang <yongxuan.wang@sifive.com>,
+	Yu Chien Peter Lin <peterlin@andestech.com>,
+	Samuel Holland <samuel.holland@sifive.com>
+Cc: linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH v4 0/3] riscv: Add bfloat16 instruction support
+Date: Thu, 13 Feb 2025 08:38:44 +0800
+Message-ID: <20250213003849.147358-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, 2025-02-12 at 18:56 +0000, Conor Dooley wrote:
-> On Wed, Feb 12, 2025 at 09:13:11PM +1030, Andrew Jeffery wrote:
-> > On Thu, 2025-02-06 at 18:09 +0000, Conor Dooley wrote:
-> > > On Thu, Feb 06, 2025 at 09:23:03PM +0530, Naresh Solanki wrote:
-> > > > On Thu, 6 Feb 2025 at 01:43, Conor Dooley <conor@kernel.org> wrote:
-> > > > > On Wed, Feb 05, 2025 at 03:51:25PM +0530, Naresh Solanki wrote:
-> > > > > > On Wed, 5 Feb 2025 at 00:52, Conor Dooley <conor@kernel.org>
-> > > > > > wrote:
-> > > > > > > On Tue, Feb 04, 2025 at 11:33:03PM +0530, Naresh Solanki
-> > > > > > > wrote:
-> > > > > > > > +=C2=A0 regulators:
-> > > > > > > > +=C2=A0=C2=A0=C2=A0 type: object
-> > > > > > > > +=C2=A0=C2=A0=C2=A0 description:
-> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 list of regulators provided=
- by this controller.
-> > > > > > >=20
-> > > > > > > Can you explain why this change is justified? Your commit
-> > > > > > > message is
-> > > > > > > explaining what you're doing but not why it's okay to do.
-> > > > >=20
-> > > > > > This is based on other similar dt-bindings under hwmon/pmbus.
-> > > > >=20
-> > > > > Okay, but what I am looking for is an explanation of why it is
-> > > > > okay to
-> > > > > change the node from
-> > > > >=20
-> > > > > > regulator@34 {
-> > > > > > =C2=A0 compatible =3D "infineon,ir38060";
-> > > > > > =C2=A0 reg =3D <0x34>;
-> > > > > >=20
-> > > > > > =C2=A0 regulator-min-microvolt =3D <437500>;
-> > > > > > =C2=A0 regulator-max-microvolt =3D <1387500>;
-> > > > > > };
-> > > > As I have understood the driver, this isn't supported.
-> > > > >=20
-> > > > > to
-> > > > >=20
-> > > > > > regulator@34 {
-> > > > > > =C2=A0=C2=A0=C2=A0 compatible =3D "infineon,ir38060";
-> > > > > > =C2=A0=C2=A0=C2=A0 reg =3D <0x34>;
-> > > > > >=20
-> > > > > > =C2=A0=C2=A0=C2=A0 regulators {
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vout {
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 regulator-name =3D "p5v_aux";
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 regulator-min-microvolt =3D <437500>;
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 regulator-max-microvolt =3D <1387500>;
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> > > > > > =C2=A0=C2=A0=C2=A0 };
-> > > > Above is the typical approach in other pmbus dt bindings.
-> > > > Even pmbus driver expects this approach.
-> > > > >=20
-> > > > > ?
-> > > > >=20
-> > > > > Will the driver handle both of these identically? Is backwards
-> > > > > compatibility with the old format maintained? Was the original
-> > > > > format
-> > > > > wrong and does not work? Why is a list of regulators needed when
-> > > > > the
-> > > > > device only provides one?
-> > > > Driver doesn't support both.
-> > > > Based on the pmbus driver original format was wrong.
-> > > > pmbus driver looks for a regulator node to start with.
-> > > >=20
-> > > > Reference:
-> > > > https://github.com/torvalds/linux/blob/master/drivers/hwmon/pmbus/p=
-mbus.h#L515
-> > >=20
-> > > Then all of the in-tree users are all just broken? They're in aspeed
-> > > bmcs, so I would not be surprised at all if that were the case.
-> >=20
-> > Can you unpack the intent of this remark for me a little?
-> >=20
-> > The history of the problem from what I can see looks like:
-> >=20
-> > =C2=A0=C2=A0 1. pmbus regulator support exploiting "regulators" as an O=
-F child
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 node was merged for 3.19[1]
-> > =C2=A0=C2=A0 2. The infineon driver support was merged with trivial bin=
-dings[2]
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 and released in v5.17
-> > =C2=A0=C2=A0 3. A patch was proposed that extracted the Infineon regula=
-tor
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibles and provided a dedicated bin=
-ding[3], however it
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lacked the "regulators" object property=
-=20
-> > =C2=A0=C2=A0 4. The patch in 3 was merged as [4] with relevant tags, an=
-d was
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 released in v6.9
-> > =C2=A0=C2=A0 5. The system1 devicetree was merged and released in v6.10=
-, and sbp1
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 is merged in v6.14-rc1 for release in v6=
-.14. Both devicetrees, as
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 far as I'm aware, conform to the binding=
- as written.
-> >=20
-> > In addition to keeping an eye out for Rob's bot, I check all Aspeed-
-> > related devicetree patches against the bindings using the usual tooling
-> > while applying them. I would like to avoid diving into driver
-> > implementations as a blocker to applying devicetree patches where
-> > possible - the formalised bindings and tooling should exist to separate
-> > us from having to do that.
-> >=20
-> > If the complaint is that people submitting Aspeed devicetree patches
-> > are regularly not testing them to make sure they behave correctly on
-> > hardware, then sure, that's something to complain about. Otherwise, I'm
-> > well aware of the (Aspeed) bindings and warnings situation; we've
-> > spoken about it previously. If there's something I should change in my
-> > process (beyond eventually addressing all the warnings) please let me
-> > know, but I don't see that there is in this specific instance.
->=20
-> Ye, it's not a jab at aspeed maintainership, it's about the bmc stuff in
-> particular. I saw far too many warnings from Rob's bot on series with a
-> version number where the submitter should know better, so the idea that
-> it had not been tested in other ways wasn't exactly a stretch.
+Add description for the BFloat16 precision Floating-Point ISA extension,
+(Zfbfmin, Zvfbfmin, Zvfbfwma). which was ratified in commit 4dc23d62
+("Added Chapter title to BF16") of the riscv-isa-manual.
 
-Thanks for elaborating :)
+Changed from v3:
+1. rebase for v6.14-rc1
+2. patch2: add validate for zfbfmin, zvfbfmin, zvfbfwma
+3. patch2: apply Clément's tag
 
->=20
-> I made a mistake how I pulled these devices out of trivial-devices.yaml,
-> given the existing driver didn't work with that binding, but I don't
-> really see why there's a requirement for a regulator child here in the
-> first place. I get it for something like the lm25066 that is a monitor
-> IC that you connect a regulator to, as the regulator is a distinct
-> device - but the ir38060 is a regulator that has a pmbus interface so
-> both describe the same device.
+Changed from v2:
+1. rebase for v6.13-rc1
 
-Makes sense. Maybe it's best to support the existing description in
-pmbus core as Rob's already suggested in another part of the thread.
+Changed from v1:
+1. patch3: add missing code in sys_hwprobe.c
 
-Andrew
+Inochi Amaoto (3):
+  dt-bindings: riscv: add bfloat16 ISA extension description
+  riscv: add ISA extension parsing for bfloat16 ISA extension
+  riscv: hwprobe: export bfloat16 ISA extension
+
+ Documentation/arch/riscv/hwprobe.rst          | 12 +++++
+ .../devicetree/bindings/riscv/extensions.yaml | 45 +++++++++++++++++++
+ arch/riscv/include/asm/hwcap.h                |  3 ++
+ arch/riscv/include/uapi/asm/hwprobe.h         |  3 ++
+ arch/riscv/kernel/cpufeature.c                | 35 +++++++++++++++
+ arch/riscv/kernel/sys_hwprobe.c               |  3 ++
+ 6 files changed, 101 insertions(+)
+
+--
+2.48.1
+
 
