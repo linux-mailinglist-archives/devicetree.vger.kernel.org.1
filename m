@@ -1,189 +1,146 @@
-Return-Path: <devicetree+bounces-146466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14C18A35036
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 22:08:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8456A3503E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 22:09:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 909C57A1B10
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:06:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 402DB7A49BA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08EE4266B7F;
-	Thu, 13 Feb 2025 21:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6EDD266B47;
+	Thu, 13 Feb 2025 21:09:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QzZvmcPQ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="JLMjc8xX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66992698A7;
-	Thu, 13 Feb 2025 21:06:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24A59194AD5;
+	Thu, 13 Feb 2025 21:09:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739480808; cv=none; b=bVCOqFaHnKMyxYRCfmh2CC5blyxRL3dG++Kvw0EvfLbbSGqyo5RfFy2kPsbaTV1+E6BhENNHRNuz1d/+3+QskdcyhOYQ1kPnoVGLnt5MmasxDCAGeuAMEqHw1X6ZSPnF688fcAlMa7GVkajm55x27XLNonipOk9+GNPqPKpdtKc=
+	t=1739480950; cv=none; b=jbfRKzPtFA9Y2htNGgG/w4MSuMJIgai+whjYlb/fpHdM1SR6PEFMrpv7gVgfiBLskfpaVbm4zdhTOxJRIEaVMa8NjFiNGJZnySgs+4IHxSrVwOLf/eW9hdpSiwn6ds0FhbI99xR2CxlWgvfY8KkZ3HlTFL+6cHKLf6/Ycmwp/vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739480808; c=relaxed/simple;
-	bh=MqX8yGdjZfKsnWm26teUdp1QQyFQ8CTu3YhcUTzLJ90=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mxp6Qbxz1/+jhzCtFMy/gavN2mDSSU9zyrf/w5gPXG45tZYuUxTkEb+RtVPrLAelC4ME74dfb+1Ho0W++61YBkqvaPd9G8V6KJYMnU9KjesLEkCgEpj0BIYvSd/Oz3Kdjr8JXR0CAao7mPvRPRQ8LVChwxsC50scCpnss+Plo0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QzZvmcPQ; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A3A13440EA;
-	Thu, 13 Feb 2025 21:06:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739480803;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/RrLWIXf4/dLUY89jPfVENxi4hWrbWl7h6YxyRzQyMU=;
-	b=QzZvmcPQo9X5fDpSORzylrRO/Q/OdB0KdxtS5BPna0CDfRfeO4Wsm9Em6qEc9Lqxbas9/L
-	zeYiz+NCs899b+tGYydjQWKSCLTPXgE7lRZxrWU4oFUNMAMU2yISKhhpZJLxraJuminz1T
-	V80xesALUQr4mrf3Dr7DP7AuOs3JqWZZ2Jyl7Oa8QVn8gN+v+rgYk/Lbxf25pVa6cZSDxf
-	NriJJQkazv/OFlIY6jtqAXL0Giz8CVrTdr8Sv4AMd9Ly4+b1aqvZqo3gbVxt9uRjFbOPms
-	SMhtt+LbP6q6Hmjy9rWzmMmN4UhujAfimZnjqrjJtmtU2OyoaSY0zy1u/kQ53A==
-Date: Thu, 13 Feb 2025 22:06:39 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Phil Elwell <phil@raspberrypi.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Andrea della Porta
- <andrea.porta@suse.com>, Arnd Bergmann <arnd@arndb.de>,
- "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <bcm-kernel-feedback-list@broadcom.com>, bhelgaas@google.com,
- brgl@bgdev.pl, Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
- <conor+dt@kernel.org>, derek.kiernan@amd.com, devicetree@vger.kernel.org,
- dragan.cvetic@amd.com, Florian Fainelli <florian.fainelli@broadcom.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org,
- kw@linux.com, Linus Walleij <linus.walleij@linaro.org>, linux-arm-kernel
- <linux-arm-kernel@lists.infradead.org>, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, "open
- list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS"
- <linux-pci@vger.kernel.org>, "moderated list:BROADCOM BCM2711/BCM2835 ARM
- ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
- lpieralisi@kernel.org, luca.ceresoli@bootlin.com,
- manivannan.sadhasivam@linaro.org, masahiroy@kernel.org, Michael Turquette
- <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
- saravanak@google.com, Stephen Boyd <sboyd@kernel.org>,
- thomas.petazzoni@bootlin.com, Stefan Wahren <wahrenst@gmx.net>, Will Deacon
- <will@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device
- using a DT overlay
-Message-ID: <20250213220639.373da07b@bootlin.com>
-In-Reply-To: <CAMEGJJ0kGCj=tjM6KswbG_+ZFkzMwPY+06BXCU0qSnbBKz0=ug@mail.gmail.com>
-References: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
-	<20250213171435.1c2ce376@bootlin.com>
-	<a3c5103c-829a-4301-ba53-6ef9bd1e74e7@lunn.ch>
-	<CAMEGJJ3-JXhin_Ht76EqUNAwLiNisa9PrCrdUzCgj=msGZfb5A@mail.gmail.com>
-	<821d4c74-09b0-4c1b-b8ef-f8c08d0f6b5b@lunn.ch>
-	<CAMEGJJ0QbzCScfTRA_pw_8A=iMYMAAFs69zFNLwcOxF5Syugpw@mail.gmail.com>
-	<20250213195304.3a2df02c@bootlin.com>
-	<CAMEGJJ0kGCj=tjM6KswbG_+ZFkzMwPY+06BXCU0qSnbBKz0=ug@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1739480950; c=relaxed/simple;
+	bh=Y1I3Wu3T4m+Mdyx3XS2h7cgF7AqOrEoM3WwaR3Wyx78=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ll71opfULzK53W7AnFEXGGKble2zi2P9VHKf0OTixiozvvEG83zYU565aX+Kh0TRIf+qPq5lmiE1/DexA+bGEi4fFscKEGCzF82GQMdZUwqVI0wHlRHobzKnVrZOiHrgb8l9ztKNpbcnij3/RLwiHOidAFWlMUjHRnNgRkDeyTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=JLMjc8xX; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=DJwimBcRqLSyXYEID3ttBpVRmf268sK2AExRPEHgOEI=; b=JLMjc8xXqVS83EWPH15sVxIbDP
+	yKlFs7JwlHERsFF56d6h2cSeXBzC7u//NenkcNAvdYiQ09DmQCviukCuQM/igm0UvDRTKpmheit5t
+	ZZ+4f4+YcJRNI8Of8AwaytmsdhARr6vLIAGwNYEqPODpOr8SDOK3lkYJzZC9bEzjw4wheLGZjKMRL
+	g9dzDWyWxS2pBHaEXZ4EmIzOBz3NmWsueePys4hMtwR4ARF1wBDn/eOYFK0PjlzG3GheAc2LHoodc
+	ZOhad2aju/3KBddc2lo3HnKSIBFzMau2WgSWDjSQAeIA8nldPw1xHWU9+zmP/uk3Se9MfxZFg4a/c
+	+Dgof7Sg==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tigSG-0006a0-Mn; Thu, 13 Feb 2025 22:09:04 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: vkoul@kernel.org, kishon@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ quentin.schulz@cherry.de, sebastian.reichel@collabora.com,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, dse@thaumatec.com
+Subject: Re: [PATCH v6 0/2] MIPI DSI phy for rk3588
+Date: Thu, 13 Feb 2025 22:09:03 +0100
+Message-ID: <6831884.31tnzDBltd@diego>
+In-Reply-To: <20250213210554.1645755-1-heiko@sntech.de>
+References: <20250213210554.1645755-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegjeekudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeviefffeegiedtleelieeghfejleeuueevkeevteegffehledtkeegudeigffgvdenucfkphepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfeehpdhrtghpthhtohepphhhihhlsehrrghsphgsvghrrhihphhirdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtoheprghnughrvggrrdhpohhrthgrsehsuhhsvgdrtghomhdprhgtphhtthhopegrrhhnugesrghrnhgusgdruggvpdhrtghpthhtoheps
- ggtmhdqkhgvrhhnvghlqdhfvggvuggsrggtkhdqlhhishhtsegsrhhorggutghomhdrtghomhdprhgtphhtthhopegshhgvlhhgrggrshesghhoohhglhgvrdgtohhmpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplhdprhgtphhtthhopegtrghtrghlihhnrdhmrghrihhnrghssegrrhhmrdgtohhm
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-Hi Phil,
-
-On Thu, 13 Feb 2025 20:15:06 +0000
-Phil Elwell <phil@raspberrypi.com> wrote:
-
-> Once more, with plain text, which I'd hoped the Android GMail client
-> would work out for itself.
+Am Donnerstag, 13. Februar 2025, 22:05:46 MEZ schrieb Heiko Stuebner:
+> This adds the phy driver need for DSI output on rk3588.
 > 
-> On Thu, 13 Feb 2025, 18:53 Herve Codina, <herve.codina@bootlin.com> wrote:
-> >
-> > Hi Phil,
-> >
-> > On Thu, 13 Feb 2025 17:57:37 +0000
-> > Phil Elwell <phil@raspberrypi.com> wrote:
-> >  
-> > > On Thu, 13 Feb 2025 at 17:45, Andrew Lunn <andrew@lunn.ch> wrote:  
-> > > >  
-> > > > > > Or do you mean a custom board, which has a CPU, RP1 and the button and
-> > > > > > fan are directly on this custom board? You then want a board DTS which
-> > > > > > includes all these pieces?  
-> > > > >
-> > > > > That depends on whether you count the Raspberry Pi 5 as a custom board.  
-> > > >
-> > > > So you mean the Pi 5 board would itself make use of the resources the
-> > > > RP1 device has? They are not simply connected to headers for plugin
-> > > > boards, but used by the main board? Hence you want to describe them in
-> > > > the board .DTS file.  
-> > >
-> > > That's correct. But even for plug-in devices, those which are on
-> > > non-discoverable buses need overlays to declare them, which causes a
-> > > problem when the overlay application happens before the kernel is
-> > > started.
-> > >  
-> >
-> > Hum, I see.
-> >
-> > We worked on overlay usage on non-discoverable buses wired to a connector
-> > and we did a talk about issues we are facing on at Plumber [0].
-> >
-> > You can also find our big picture in [1] and a last contribution introducing
-> > export-symbols feature in [2]. export-symbols is also under discussion on
-> > some other threads.
-> >
-> > Also, we proposed the i2c bus extensions feature [3] whose goal is to allow
-> > an addon board to add devices on an i2c bus provided by a base board and
-> > wired to an connector the addon board is connected to.
-> >
-> > Maybe in your case, you can decouple resources (gpio, pwm) provided by the
-> > addon board and used by the base board using also nexus node.
-> >
-> > We use a nexus node [4] (not presented at the Plumbers talk because the idea
-> > came during 'out of talk' discussions in Plumbers) in order to allow our
-> > addon board to use resources provided by the base board.
-> >
-> > In your case, if I understood, you are in the other direction but why not
-> > using also a nexus node to decouple and translate resources in this other
-> > direction ?
-> >
-> > Don't know if this idea can help but feel free to ask for some more
-> > information if needed.  
+> The phy itself is used for both DSI output and CSI input, though the
+> CSI part for the whole chain needs a lot more work, so is left out for
+> now and only the DSI part implemented.
 > 
-> Nexus nodes look interesting - I see them as adding a layer of
-> abstraction such that, for example, boards can declare which of their
-> specific resources performs a common function so that clients can
-> treat them all the same. We do the same thing in a limited way by
-> using common labels on nodes, but this goes much further.
+> This allows the rk3588 with its current VOP support to drive a DSI display
+> using the DSI2 controller driver I'll submit in a next step.
 > 
-> In the case of Pi 5 and RP1, I imagine you are proposing that the Pi 5
-> dtb declares the connector node and the overlay fills in the content
-> with references to its GPIO controller, PWM controller etc. However, I
-> think the overlay would also have to be board specific because it's
-> not possible to patch part of a property from an overlay, so you'd end
-> up overwriting the GPIO number as well as the controller reference.
+> Only generic phy interfaces are used, so the DSI part is pretty straight
+> forward.
 > 
-> What is needed to make this work is the ability to cope with
-> unresolved references in the base dtb, to be resolved as each overlay
-> is applied, with runtime checking that each reference is resolved
-> before it is used, all of which sounds like a nightmare. Plus, we
-> really don't want to have to change the way all our camera and display
-> overlays work on all Raspberry Pis just to accommodate somebody's idea
-> of how RP1 should be handled.
+> changes in v6:
+> - rebase onto 6.14-rc1
+> - add Krzysztof binding review
+> - v5 was sent at the beginning of december '24, so probably has been lost
+> 
+> changes in v5:
+> - add bitfield.h for the FIELD_PROP definition
+>   (reported by kernel-test-robot)
+> - add Sebastian's Reviewed-by
+> - add Conor's Ack to the dt-binding
+> 
+> changes in v4:
+> - moved to #phy-cells = 1 as suggested by Sebastian, with the argument
+>   denoting the requested phy-type (C-PHY, D-PHY). This works similarly
+>   how the Mediatek C/D-PHY already implements this, see mails around:
+>   https://lore.kernel.org/all/20230608200552.GA3303349-robh@kernel.org/
+> - dropped Krzysztof's review tag from the binding because of this
+> - dropped custom UPDATE macro and use FIELD_PREP instead
+> - build a FIELD_PREP_HIWORD macro for the GRF settings
+> - add received Tested-by tags
+> 
+> changes in v3:
+> - add Krzysztof review tag to the binding
+> - address Sebastian's review comments
+>   - better error handling
+>   - dropping empty function
+>   - headers
+>   - not using of_match_ptr - this should also make the
+>     test-robot happier
+> 
+> changes in v2:
+> - fix error in dt-binding example
+> - drop unused frequency table
+> - pull in some more recent improvements from the vendor-kernel
+>   which includes a lot less magic values
+> - already include the support for rk3576
+> - use dev_err_probe
+> 
+> Heiko Stuebner (2):
+>   dt-bindings: phy: Add Rockchip MIPI C-/D-PHY schema
+>   phy: rockchip: Add Samsung MIPI D-/C-PHY driver
+> 
+>  .../phy/rockchip,rk3588-mipi-dcphy.yaml       |   87 +
+>  drivers/phy/rockchip/Kconfig                  |   12 +
+>  drivers/phy/rockchip/Makefile                 |    1 +
+>  .../phy/rockchip/phy-rockchip-samsung-dcphy.c | 1604 +++++++++++++++++
+>  4 files changed, 1704 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+>  create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
 
-Just to be clear, my comments were not there to tell you how RP1 should
-work. I just proposed ideas without trying to force anything and I can
-fully understand that ideas proposed don't feed your needs.
+Forgot to transplant from the v5 cover-letter - the series got a 
 
-Sorry if my approach was misunderstood.
+Tested-by: Quentin Schulz <quentin.schulz@cherry.de>
 
-Best regards,
-Hervé
+on RK3588 Tiger with Haikou Video Demo in [0]
+
+
+[0] https://lore.kernel.org/r/63cda072-3671-42c9-9650-7a3ece39dec6@cherry.de
+
+
+
 
