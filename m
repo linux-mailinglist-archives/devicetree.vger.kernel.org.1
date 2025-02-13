@@ -1,164 +1,134 @@
-Return-Path: <devicetree+bounces-146457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 584ACA34F94
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:41:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2AF9A34FA2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:44:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E66EA18902C9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:41:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E25716AAC1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:43:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B475266B79;
-	Thu, 13 Feb 2025 20:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 030FB266B52;
+	Thu, 13 Feb 2025 20:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D6yEVYaQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qz71s5t/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B3712661B7;
-	Thu, 13 Feb 2025 20:41:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 420F92661B4
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 20:43:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739479272; cv=none; b=lREwaMA42+0N751GT6tVDjcVPpVBC8xZUr/eoHKBm54gzr+ZEqoqRnN0ZwN2pDL6OU3AmXu33HQuh4Hfjqj3MRXeUbdwDGCR63WpBtS4Mhd+yRmI6bzaCu3h+JhZjqCnNpAtNx7zBu8vRiiYBHPIl1XLT8Ibr/ZxvNOlw96taT0=
+	t=1739479397; cv=none; b=g4slFJXGZk+i28BqhZSmaOrHK6hG/ae6k9fFVxxyPcqtVSt3ClMiPfYzrt0An7HdhGOdNyRuouYA+rIA2fd4U2YMrmY72lPgzGd+i4o/5iwAYO654DHjVYwwGgt+/JL8ZixUX+yRbBeAJFG4z/KyaPURj/8FM0+5toRY2AzZA8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739479272; c=relaxed/simple;
-	bh=HQDZWS0MvWVnjZJ1jZNB/gjF3cSIjWMDfLacihPU3Ss=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gjmmVZwPvJTPs1Fa4sqt1IGOyS4EUJiWfIGUkGIqHovkHt29xaLP3dagUrO/BZUAqLp9kWGAWDAemb7Oees4KtH22O2lEWjvLxsMdqDAMDGHn2l0Emi8TYZoyk1rSGPLs7n/zjwt8fsg7Z/OgRFheNCn21omSY5+k0xRtP8+gj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D6yEVYaQ; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-51eb1823a8eso393862e0c.3;
-        Thu, 13 Feb 2025 12:41:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739479269; x=1740084069; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zUETjozF1sAV1HRzCHDJTOKm9OqmezyE1AGTSwfrSB0=;
-        b=D6yEVYaQ8sLNvqlh4HRKWA8c1UFcIZXZEjiSndS2hdBnejb5XL/lAT/kEi+C/GRY/s
-         M6Mz/rFiFD7bvX/ZXZyAgFkWDL54DCLZNpfULBU8mOg81K1VU8f0SEZWwJSI5v3BU1p1
-         quGR5nk0uQVg2Rjyg4fDjDSYSblX6fMke24q3NWDoeKsukSRUS8Z9xnoaxG/EsP4Itrm
-         zbmXtqdSIGrSkz0lg6PQ+CTYc/OlxMBbUzoydx8zzggFzRsOWxJyajxs+bbSEVdy6c1J
-         O4I9VJSHkSIfYMKajILxznTSoyyIKHahBKS9tInQPDI+OBg6w7A5spmi/jCgL79kZgeE
-         0wtA==
+	s=arc-20240116; t=1739479397; c=relaxed/simple;
+	bh=WiBletC+NiNFsqmtrCg8eDB6LgIxSryVCtxHFdD/nWk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=utVoCkBVzLAbokO13TP72i2dltoyxaPw3TyQBfGKPkoGttm3M/552+KvJ14fcro5txnyJReNM1hCYCgQrhIzpCkSJSM3E+c7XVJ1CHUpQSH6Og7+g1zP+M9P2I8AkRmaidUNspxJrbIKTGzhF5AKuFQ0AQ+D1zD8RYE4t4UFPy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qz71s5t/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51DAZRAs002731
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 20:43:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Bz2r04m4kWn3VX27WbdcYvPpU6RebAFsusUlr8Tu+1U=; b=Qz71s5t/JyZM1XqA
+	955HMXFuAC9MNF49UetlRm88X8pdfSvmDrpJBr0DCgs1YQQz4djkvW9jbVHmsSnw
+	0A/udbKGsjM7QGEVWoBvLR6hA8kOBktdbEn2Svt+XbGX2xO81SrdY1OgN0uNg944
+	DeKk6lv9AiNEQ4ptKIcue24WiSda51jgpCLRyn9/va29SngBeCT5HrInTd5UqieL
+	+o/kJQVdERn6czElQbCD4VAzub1YaHxoXn5V2QNR4rbHecFWbwWYvoCKaJw3TH2+
+	7wiaNzIP6m2eKRTXrKI6oOGFmUowYpVA+0/1ViuuIYHhdrZx+k56BWCpJUQdEmXP
+	wIfnzQ==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44s5w4axrf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 20:43:15 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6e45cd4145bso3375456d6.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 12:43:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739479269; x=1740084069;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zUETjozF1sAV1HRzCHDJTOKm9OqmezyE1AGTSwfrSB0=;
-        b=RZzuGs8/Xljvf5KyR3EPUdRr4O88V7vuGenpV+iB1hG3e/iSISs4V3wsOp3WZ80h5K
-         e3BPgbTeqURhGhQIgVhYx1s9358ptJYrbOssSm8BQaUSBUqAcnaUNKVFgqM006yA0s2B
-         VBJJcOzKMHlbjjVWGLgZvxY2Op79pJRsZ7o7rYDrzB19onXSa0/6M3AqmDjUS7oPkRDo
-         GgZz45RDyGG1vHghW5zxTOD47XHQg5NSLrLA598+9tcbBGGR0joxzobGkqAx8jhI+jca
-         DVFipbTfjaDUb1OLo6eri7+b122b21Ju4LA1CvRQkiN2SAdEolPLKjOFXjmByIh5mR/i
-         26eg==
-X-Forwarded-Encrypted: i=1; AJvYcCUNEwwl1Q9XxAsGF0HXyRk6N4xquZzi2J0UIGXc8ge5CQUFoFYksLcX8KpVgExmLXwSHNrG8FsxfeKowr4SI18Qmbg=@vger.kernel.org, AJvYcCWE4GzWKQFYhziucM4tWmajlqZrgOjwhFisfiFsJrfifdxbpNeOCX461E1SpywUeSlEkiZhm1yBra+A@vger.kernel.org, AJvYcCWmmtJriqL4v4BtD2CUoTK4S18F7WCWNjZ3K/Z6+KiZXxASkRZu1BiDW7bQ41l9GLXPWkGOZACn4rGg@vger.kernel.org, AJvYcCWqJZGb4zX/DkdAYRWa6t2H6R2eUTq/CnIWZNjqL54iIWr9lAbn9gaMGTCr/pIjlKEEvuN32D1y9t08ngap@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5u03zQCnaMNF4hri/OgbaJz8oiTOM9GZe2KgpJPaNGX64ui/w
-	48nSJe+FOzFBNX6cGDA+4DL+1ZsikTkfVMaFT8S1O+fqyqs7Jp+Cu1ZkMatK
-X-Gm-Gg: ASbGnctmSVtp6/wi+rWUeLPnNFALQWdoapn8Xy6fS7IufID88UuvDs65Gr8W7loLcr0
-	zhlldw0Zm18ZpepqrU1eQk6OXR7tu6x83JRFa99Ac2A1drACKk48UXA8U2ODpyIT7a1/x51EmV0
-	gF9iw5W/7u7F/ZYYOU1WAibgWVNJFCTSJZWXL/CdEhQFWAV9m6nwHsGtXIvtYiw81UPRKRVBIWz
-	99w0QLzNz1bnH3kX/8MdD2YV6bu1lJYd6vbrrdeQFPRIAd+oMxUbpernxS/uZ6KTDp8HqeSJuu2
-	zIK8SwBK1fOlMjZvAVrFb3cGHwLrw1yje2PsqTsytpiWOp875MlKHC/U0/MVpQRd6vs6SGwQPUM
-	Qlw==
-X-Google-Smtp-Source: AGHT+IHXSWpNKt7Pd1wu4O/V5ZcIgriucI8y2fDXNJrEQw8A9Foh3kO6pxXQxDdlqsXOjqgU4No96Q==
-X-Received: by 2002:a05:6122:32cb:b0:520:5f0a:b5a5 with SMTP id 71dfb90a1353d-52077ee259emr3992376e0c.6.1739479269272;
-        Thu, 13 Feb 2025 12:41:09 -0800 (PST)
-Received: from localhost.localdomain ([38.44.237.182])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5207aa40088sm285572e0c.10.2025.02.13.12.41.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 12:41:08 -0800 (PST)
-From: Denzeel Oliva <wachiturroxd150@gmail.com>
-To: andi.shyti@kernel.org,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	alim.akhtar@samsung.com,
-	linux-spi@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: Denzeel Oliva <wachiturroxd150@gmail.com>
-Subject: [PATCH v2 2/2] spi: s3c64xx: add support exynos990-spi to new port config data
-Date: Thu, 13 Feb 2025 20:40:44 +0000
-Message-Id: <20250213204044.660-3-wachiturroxd150@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250213204044.660-1-wachiturroxd150@gmail.com>
-References: <20250213204044.660-1-wachiturroxd150@gmail.com>
+        d=1e100.net; s=20230601; t=1739479394; x=1740084194;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bz2r04m4kWn3VX27WbdcYvPpU6RebAFsusUlr8Tu+1U=;
+        b=aRSp1q432bNs4pyO+kUEz6X/wL9ju8WF5bCz4NZGXSWgCOOuajwSnBBMkYCi2dXVpL
+         oMDxoUfEEj/V4bunjBedHV+XE33OySvj/I0aNK2QYpGw5dTE/cUsFbeNktWxfYLl03Sn
+         V3kjyQN1QO3IzFdaGdItcKNkVf+D4MDPOZzoUrETGU07s9pNydizijj8ViNXP4FYaoIt
+         PuPp+ftKHDYEn5KDrDnfRl4PuQbicSw59LhIu1S8o+ecMUfWRdWO0i0NgwMfOiFHv4sC
+         lcSeYYQfjz0OfDL9ZSTP/bLNTq2NpLudth8BrFcz8XMbXGsXxuN7UfIBBM8MalwPY2gI
+         FyTw==
+X-Forwarded-Encrypted: i=1; AJvYcCWT4XZ8R77k4dSTDoxNSQRufmjb08+Xz032HlFpbWonaXfJ2wSnOBLlzJ+rJ+eOdsoQ0toB8wHRF/VI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyx+9ECCsDUyDuP1GVd5pr6NXt5q7G9SE0tCLnEu4+xCxsIFAQJ
+	tdvDadV0teCIeM+qf1YYas0wHvVvN0c+r33Ct6pPKpu4K5wFOic5fVUaFHSx6PcFXKa2q1XhzlJ
+	hLF6e+wH86ts5qHoH44PrqAWDj8Lsoe7bd3qd9aK1Bo1fCupqSenPOK5PVH03
+X-Gm-Gg: ASbGncsuyRPKm1XQnmMxQ8o4CNwa1+DJXp0dE3FOYLkutA+NsoEI+6alu9hHrtldyrf
+	H875o0yWEovmVAJAAGiQzG5evU3S7591ZmJT3PELwh4EQvyWEbxdErFcjtUX7Zb67m1NCIG9LGI
+	RhvlOtQdCIi4CIPilfk/gL70ibHlSsfZnMPXM4riZfTfdcjes/LG7wB0gVDfewOREPfra2mgaVG
+	tORWXuMrnrNH+V3KcZtZi5q5MFJdEte0lmc6qZnGSOIKdAZo8eALeTtmXYJfYFkJRX9LxyF9kEV
+	0wxRXDpFCMO7N6eKl7H/Jp/COOoFHPIJ7/pI/JGKGC5QBpq8iDh8Xn8Hb8E=
+X-Received: by 2002:a05:6214:509e:b0:6e4:4034:5ae8 with SMTP id 6a1803df08f44-6e665191646mr2097566d6.5.1739479394086;
+        Thu, 13 Feb 2025 12:43:14 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE+X4L2atIc1ejv/4MkKqLGB1bWWF18lelzFgw1/WdffsckmQCjOSwKqdJAIJqhaOly9cD/wA==
+X-Received: by 2002:a05:6214:509e:b0:6e4:4034:5ae8 with SMTP id 6a1803df08f44-6e665191646mr2097426d6.5.1739479393797;
+        Thu, 13 Feb 2025 12:43:13 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba533bce23sm195258766b.161.2025.02.13.12.43.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Feb 2025 12:43:13 -0800 (PST)
+Message-ID: <5501041d-750a-465a-9558-203188758e90@oss.qualcomm.com>
+Date: Thu, 13 Feb 2025 21:43:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: pm8937: Add LPG PWM driver
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Pavel Machek <pavel@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        Daniil Titov <daniilt971@gmail.com>
+References: <20250213-pm8937-pwm-v2-0-49ea59801a33@mainlining.org>
+ <20250213-pm8937-pwm-v2-2-49ea59801a33@mainlining.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250213-pm8937-pwm-v2-2-49ea59801a33@mainlining.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: wAufPCSthd4Knv1cAaR0Gwhf2rz25AyI
+X-Proofpoint-ORIG-GUID: wAufPCSthd4Knv1cAaR0Gwhf2rz25AyI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-13_08,2025-02-13_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ phishscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015
+ suspectscore=0 mlxlogscore=629 priorityscore=1501 adultscore=0
+ malwarescore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502130145
 
-Exynos990 uses the same version of USI SPI (v2.1) as the GS101.
-Removed fifo_lvl_mask and rx_lvl_offset, and changed to the new data
-configuration port.
+On 13.02.2025 8:54 PM, Barnabás Czémán wrote:
+> From: Daniil Titov <daniilt971@gmail.com>
+> 
+> Add PWM/LPG node to the PM8937 dtsi so devices
+> which use this block can enable them.
+> 
+> Signed-off-by: Daniil Titov <daniilt971@gmail.com>
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> ---
 
-The difference from other new port configuration data is that fifo_depth
-is only specified in fifo-depth in DT.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Exynos 990 data for SPI:
-- The depth of the FIFO is not the same size on all nodes.
-  A depth of 64 bytes is used on most nodes,
-  while a depth of 256 bytes is used on 3 specific nodes (SPI 8/9/10).
-- The Exynos 990 only allows access to 32-bit registers.
-  If access is attempted with a different size, an error interrupt
-  is generated. Therefore, it is necessary to perform write accesses to
-  registers in 32-bit blocks.
-- To prevent potential issues when fifo-depth is not explicitly set in
-  DT, a default value of 64 is assigned to ensure stable operation.
-
-Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
----
- drivers/spi/spi-s3c64xx.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
-index 389275dbc..5f55763f9 100644
---- a/drivers/spi/spi-s3c64xx.c
-+++ b/drivers/spi/spi-s3c64xx.c
-@@ -1586,6 +1586,20 @@ static const struct s3c64xx_spi_port_config exynos850_spi_port_config = {
- 	.quirks		= S3C64XX_SPI_QUIRK_CS_AUTO,
- };
- 
-+static const struct s3c64xx_spi_port_config exynos990_spi_port_config = {
-+	/* If not specified in DT, defaults to 64 */
-+	.fifo_depth     = 64,
-+	.rx_fifomask    = S3C64XX_SPI_ST_RX_FIFO_RDY_V2,
-+	.tx_fifomask    = S3C64XX_SPI_ST_TX_FIFO_RDY_V2,
-+	.tx_st_done     = 25,
-+	.clk_div        = 4,
-+	.high_speed     = true,
-+	.clk_from_cmu   = true,
-+	.has_loopback   = true,
-+	.use_32bit_io   = true,
-+	.quirks         = S3C64XX_SPI_QUIRK_CS_AUTO,
-+};
-+
- static const struct s3c64xx_spi_port_config exynosautov9_spi_port_config = {
- 	/* fifo_lvl_mask is deprecated. Use {rx, tx}_fifomask instead. */
- 	.fifo_lvl_mask	= { 0x1ff, 0x1ff, 0x7f, 0x7f, 0x7f, 0x7f, 0x1ff, 0x7f,
-@@ -1664,6 +1678,9 @@ static const struct of_device_id s3c64xx_spi_dt_match[] = {
- 	{ .compatible = "samsung,exynos850-spi",
- 			.data = &exynos850_spi_port_config,
- 	},
-+	{ .compatible = "samsung,exynos990-spi",
-+			.data = &exynos990_spi_port_config,
-+	},
- 	{ .compatible = "samsung,exynosautov9-spi",
- 			.data = &exynosautov9_spi_port_config,
- 	},
--- 
-2.48.1
-
+Konrad
 
