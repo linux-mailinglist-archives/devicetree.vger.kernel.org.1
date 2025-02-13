@@ -1,285 +1,166 @@
-Return-Path: <devicetree+bounces-146289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF29CA34099
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:44:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52327A3405E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 14:27:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C63A17A465F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:43:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4896E7A3E99
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 13:26:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8132F2222AC;
-	Thu, 13 Feb 2025 13:43:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 041D9227E98;
+	Thu, 13 Feb 2025 13:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="p6w3rGcX"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="W2R8s45M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C353242937
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:43:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F3BE23F417
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:27:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739454205; cv=none; b=n2nvGNqUOGz+BnuC7iQhjmgbF+DpBwQADA1byZg/wB+HgE2cWfhdAKncYZLRqte7gm+uTJkuhzPI+LNuHuP/gc5gm7f94GHDndyRR/hGfzap8kz3DvewL8Xh/XcL5LdrjRCsKjE0EvADR0QJgUKsbwcrdeakTLPHRMSZaZfgY5c=
+	t=1739453239; cv=none; b=AC27ov2ZdIWDbjuTvvpbvXNSOLaYsZ1+PId7ZZjA5GqoyDFzuERxqySnWgrgDE4OpLMZ+atBI2Dy7ZAFqv3zwpWI+9CVENiTM73A0Cykih5Ic559Oz5VJy/IRT3p7ql9cpUHh2d5VhBG9/WA7KiUByBa3lu2AhjxJYDpVo/Nt/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739454205; c=relaxed/simple;
-	bh=LYw2k0jiOHJJsAwNO1BuFn7IJWnmREm2b6VSx7ysIvQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:Content-Type:
-	 References; b=afKbB2tZPBdgV7nTHu3CUKYVR+0X7RVjpuGUJZyMFt+P0kfrdCip9V+UYNrw/qnkXcQ7Y70i8LU2f30tPi6fml5qWinhmztAHHZKN/2sap9CGhJ2D92cci3P7Dekqm9ObEq+JMXzTMHfPwbCSfMffJvgTGa3/0YZow3svh2XFrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=p6w3rGcX; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250213134321epoutp02a97c0b45cbaa7346ec6b2cb5f3ce0f1f~jyGFN594A1453114531epoutp02b
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 13:43:21 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250213134321epoutp02a97c0b45cbaa7346ec6b2cb5f3ce0f1f~jyGFN594A1453114531epoutp02b
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1739454201;
-	bh=Euk7TqUpX6X4QNy8TA412LZdsq6ZeUoYJJPn/UUbcuo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=p6w3rGcXC2NoUFWUMcl+V0FB/wNczlqo395WYcu/GeLvq3zM6vzfRSuRCS8gph650
-	 buRZBFR/BChwDXezv/4esEt9XvecF20xpX0OXa/HY+SM5mlqdYr40Myur0unrtMUHD
-	 TDhsFFtySZbpSxR117uC5xGtivhZJlYMzFq6p5qs=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-	20250213134320epcas5p42903fd90823d48d3e25d118b0e35c732~jyGEuwaz51976419764epcas5p4I;
-	Thu, 13 Feb 2025 13:43:20 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.174]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4YtxGG75Y2z4x9Ps; Thu, 13 Feb
-	2025 13:43:18 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-	epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	2C.25.19956.6F6FDA76; Thu, 13 Feb 2025 22:43:18 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250213132740epcas5p3d9446fbb5ba0e0b5eed596453b690568~jx4Y0-VuS2034120341epcas5p3m;
-	Thu, 13 Feb 2025 13:27:40 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250213132740epsmtrp2e80b999a8f20d53f427a74ebda70223d~jx4Y0P1Db2782827828epsmtrp2k;
-	Thu, 13 Feb 2025 13:27:40 +0000 (GMT)
-X-AuditID: b6c32a4b-fe9f470000004df4-87-67adf6f6eb7d
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	C0.11.23488.C43FDA76; Thu, 13 Feb 2025 22:27:40 +0900 (KST)
-Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250213132738epsmtip1b2e32ec1a26d078f7d831a390a11af66~jx4WsUlQl0863808638epsmtip1A;
-	Thu, 13 Feb 2025 13:27:37 +0000 (GMT)
-From: Swathi K S <swathi.ks@samsung.com>
-To: krzk+dt@kernel.org, linux-fsd@tesla.com, robh@kernel.org,
-	conor+dt@kernel.org, richardcochran@gmail.com, alim.akhtar@samsung.com
-Cc: jayati.sahu@samsung.com, swathi.ks@samsung.com,
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: [PATCH v6 2/2] arm64: dts: fsd: Add Ethernet support for PERIC
- Block of FSD SoC
-Date: Thu, 13 Feb 2025 18:53:28 +0530
-Message-Id: <20250213132328.4405-3-swathi.ks@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250213132328.4405-1-swathi.ks@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprIJsWRmVeSWpSXmKPExsWy7bCmhu63b2vTDaZONrd4MG8bm8WaveeY
-	LOYfOcdqcfPATiaLI6eWMFm8nHWPzWLT42usFg9fhVtc3jWHzWLG+X1MFscWiFks2vqF3eLh
-	hz3sFkfOvGC2+L9nB7vFl4032R0EPHbOusvusWlVJ5vH5iX1Hn1bVjF6/Guay+7xeZNcAFtU
-	tk1GamJKapFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKLT4CuW2YO0NVKCmWJ
-	OaVAoYDE4mIlfTubovzSklSFjPziElul1IKUnAKTAr3ixNzi0rx0vbzUEitDAwMjU6DChOyM
-	9TuPMhZcUq+YMrGTpYHxj0IXIyeHhICJxJWFX9m6GLk4hAR2M0q8WLsIyvnEKPHq5mpWCOcb
-	o8S/t0uYYFr+7FnDCJHYyyjx6fJtJgjnC6PEk38vWECq2AQ0JK6v2M4OkhARaGOUOPa0Ecxh
-	FrjMKLF02ytmkCphgSiJ/5OPsYHYLAKqErf7d4Lt4BWwlFh17zA7xD55idUbDoDVcwpYSdw6
-	f4YVIj6TQ+LufiEI20XifMsdRghbWOLV8S1QvVISn9/tZYOw4yVW911lgbAzJO7+mggVt5c4
-	cGUOUJwD6DhNifW79CHCshJTT60DO4dZgE+i9/cTqPd5JXbMg7GVJf6+vgY1UlJi29L3UGs9
-	JE5t+swOCZVeRonZff+ZJjDKzUJYsYCRcRWjZGpBcW56arFpgXFeajk83pLzczcxgtOmlvcO
-	xkcPPugdYmTiYDzEKMHBrCTCKzFtTboQb0piZVVqUX58UWlOavEhRlNg+E1klhJNzgcm7ryS
-	eEMTSwMTMzMzE0tjM0Mlcd7mnS3pQgLpiSWp2ampBalFMH1MHJxSDUzmOw9Hn5Lymugzf25s
-	y5WDOsfqK7/tV079uEjjxZOeGMGtLBsPfPn/3tR5dUGE+IppMSr7S356yH7ap3o7Z2ZJ0RE2
-	vQg3HvYtv61fcYc7Wp97ypzOufjEzIiI8OOyPh87whlvTNykv4Rn/fIcbl65D5FRzZOO/dmw
-	eXGTeXr/opW5nG8bK43/ObPtZfPd7pTUvOHeAuWvhpe2nE/cNfub/qepgc9WzYlNWhigqyCk
-	FMBrVxZi730vbL+u5C6RJg2lVvbePsM5V6K/LL6W9HfaUbO4jbqeJU9//poTsn9/T9xHFf1p
-	9gE6b6/veVaypP1yDlfe/IkRD+eqx78NfvHB9ES3aMmeua9UVn86UXtOiaU4I9FQi7moOBEA
-	FAZDhSQEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrGLMWRmVeSWpSXmKPExsWy7bCSnK7P57XpBlfu81o8mLeNzWLN3nNM
-	FvOPnGO1uHlgJ5PFkVNLmCxezrrHZrHp8TVWi4evwi0u75rDZjHj/D4mi2MLxCwWbf3CbvHw
-	wx52iyNnXjBb/N+zg93iy8ab7A4CHjtn3WX32LSqk81j85J6j74tqxg9/jXNZff4vEkugC2K
-	yyYlNSezLLVI3y6BK2P9zqOMBZfUK6ZM7GRpYPyj0MXIySEhYCLxZ88axi5GLg4hgd2MEuu/
-	bmOBSEhKfGqeygphC0us/PecHcQWEvjEKDFnvg+IzSagIXF9xXZ2kGYRgT5GiQ3bW1lAHGaB
-	m4wS39Y/Zu5i5OAQFoiQmPvRF6SBRUBV4nb/TiYQm1fAUmLVvcPsEAvkJVZvOMAMYnMKWEnc
-	On+GFWKZpUTzmcvMExj5FjAyrGKUTC0ozk3PTTYsMMxLLdcrTswtLs1L10vOz93ECA5qLY0d
-	jO++NekfYmTiYDzEKMHBrCTCKzFtTboQb0piZVVqUX58UWlOavEhRmkOFiVx3pWGEelCAumJ
-	JanZqakFqUUwWSYOTqkGppgG0Y55K3pfXpw/+WHYAy+eS72L6iKvtzJVb+F8sfVtnBSvY9Ie
-	4bidid9eqDz7K+RmMXdF86F1e98tmRdvqMf88MOTzgyeAxZFskvmRPzzWvdCb3+WXXC5IW/U
-	24cVv9sv1ec3r+v6vON15DTdEL/kNdWSTJcLlu5/ICh7LqbIT+Xn+5i1Uzck/6nfUnAkRG19
-	WMspzy2/p8W52uacnVcz90ii+wK3wIwek/XXbmz+Pt827/KVGKlXIl+uPl3S8nul/P5zO0+8
-	qhbU4XVk/X2jlVOivCOmICbfzbvqaVp52LUo1rWPtk7guxEpkrnC3GHa8UsvI3vv/1nwkk37
-	kvQuhQkflxx7d7O6u3BK/F0lluKMREMt5qLiRAChqT1d2QIAAA==
-X-CMS-MailID: 20250213132740epcas5p3d9446fbb5ba0e0b5eed596453b690568
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250213132740epcas5p3d9446fbb5ba0e0b5eed596453b690568
-References: <20250213132328.4405-1-swathi.ks@samsung.com>
-	<CGME20250213132740epcas5p3d9446fbb5ba0e0b5eed596453b690568@epcas5p3.samsung.com>
+	s=arc-20240116; t=1739453239; c=relaxed/simple;
+	bh=PETh38ePI29EJVHzrw4elbMK85jko6m6w3+fzKkGw4o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nP09HH5OfCmGwA0pg8b/Mte2DhEjEh3HfP/iGya629W8tYrLcPWKirp49NCYZuNO3TYoCvTj0s5oHtGLeKbC0Za4P64IT7MvTETTE2Q5xZ5POoPG6QyTbnNq0oWs6AQawADmLJTR8M0gL6rGxmxGaagM3xNi5VmazKPIQh6pXT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=W2R8s45M; arc=none smtp.client-ip=91.218.175.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Thu, 13 Feb 2025 18:56:45 +0530
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1739453226;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WzD/OC0ZByBLmQNngbMt1lFnaeNPGOwTY+A25jppGVo=;
+	b=W2R8s45M6Rdy6DBdhwhHWEe0Nrz/vcqTmXF6dPeS95nppgNdSxB9JUX13KftJDHnEbQMDI
+	R5cKlCH/iBFqLictE1CBrp49paOvXv9OV2Rroy4RuM7gDaJyOS6wv8KDZTl1gy4YyUaGlV
+	ZQnZAJJLwDI6ePm7MAWUuXlGnD+dBBo=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Jai Luthra <jai.luthra@linux.dev>
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, mripard@kernel.org, mchehab@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, devarsht@ti.com, vaishnav.a@ti.com, 
+	r-donadkar@ti.com, u-kumar1@ti.com
+Subject: Re: [RFC PATCH 3/3] media: ti: j721e-csi2rx: Add support for
+ VIDIOC_LOG_STATUS
+Message-ID: <nvyplkcl74rpe7zl2vprfztaivlmwvrsrwyrqw7lbvbeij5ubt@4dehnb7j6ona>
+X-PGP-Key: http://jailuthra.in/files/public-key.asc
+References: <20250212131244.1397722-1-y-abhilashchandra@ti.com>
+ <20250212131244.1397722-4-y-abhilashchandra@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="s4c7q4omkexuyfrp"
+Content-Disposition: inline
+In-Reply-To: <20250212131244.1397722-4-y-abhilashchandra@ti.com>
+X-Migadu-Flow: FLOW_OUT
 
-The FSD SoC contains two instances of Synopsys DWC QoS Ethernet IP, one in
-FSYS0 block and other in PERIC block.
-The ethernet interface is connected to a switch which is not managed by
-Linux.
 
-Adds device tree node for Ethernet in PERIC Block and enables the same for
-FSD platform.
+--s4c7q4omkexuyfrp
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [RFC PATCH 3/3] media: ti: j721e-csi2rx: Add support for
+ VIDIOC_LOG_STATUS
+MIME-Version: 1.0
 
-Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-Signed-off-by: Jayati Sahu <jayati.sahu@samsung.com>
-Signed-off-by: Swathi K S <swathi.ks@samsung.com>
----
-This patch depends on the dt-binding patch
-https://lore.kernel.org/netdev/20250213044624.37334-2-swathi.ks@samsung.com/
+Hi Abhilash,
 
-And the driver patch
-https://lore.kernel.org/netdev/20250213044624.37334-3-swathi.ks@samsung.com/
+On Wed, Feb 12, 2025 at 06:42:44PM +0530, Yemike Abhilash Chandra wrote:
+> The VIDIOC_LOG_STATUS ioctl outputs the current status of a device to the
+> kernel log. When this ioctl is called on a video device, the current
+> implementation queries the log status for all connected subdevices in the
+> media pipeline.
+>=20
 
- arch/arm64/boot/dts/tesla/fsd-evb.dts      |  9 ++++
- arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi | 56 ++++++++++++++++++++++
- arch/arm64/boot/dts/tesla/fsd.dtsi         | 28 +++++++++++
- 3 files changed, 93 insertions(+)
+What is the benefit of doing this for a video node? The user can directly=
+=20
+check the status on the cdns-csi2rx subdev for CSI errors.
 
-diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-index cb977d0441a1..382f40322082 100644
---- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
-+++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-@@ -73,6 +73,15 @@
- 	};
- };
- 
-+&ethernet1 {
-+	status = "okay";
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+	};
-+};
-+
- &fin_pll {
- 	clock-frequency = <24000000>;
- };
-diff --git a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-index cb437483ff6e..6f4658f57453 100644
---- a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-@@ -437,6 +437,62 @@
- 		samsung,pin-pud = <FSD_PIN_PULL_DOWN>;
- 		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
- 	};
-+
-+	eth1_tx_clk: eth1-tx-clk-pins {
-+		samsung,pins = "gpf2-0";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_DOWN>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-+	};
-+
-+	eth1_tx_data: eth1-tx-data-pins {
-+		samsung,pins = "gpf2-1", "gpf2-2", "gpf2-3", "gpf2-4";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-+	};
-+
-+	eth1_tx_ctrl: eth1-tx-ctrl-pins {
-+		samsung,pins = "gpf2-5";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-+	};
-+
-+	eth1_phy_intr: eth1-phy-intr-pins {
-+		samsung,pins = "gpf2-6";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-+	};
-+
-+	eth1_rx_clk: eth1-rx-clk-pins {
-+		samsung,pins = "gpf3-0";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-+	};
-+
-+	eth1_rx_data: eth1-rx-data-pins {
-+		samsung,pins = "gpf3-1", "gpf3-2", "gpf3-3", "gpf3-4";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-+	};
-+
-+	eth1_rx_ctrl: eth1-rx-ctrl-pins {
-+		samsung,pins = "gpf3-5";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-+	};
-+
-+	eth1_mdio: eth1-mdio-pins {
-+		samsung,pins = "gpf3-6", "gpf3-7";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-+	};
- };
- 
- &pinctrl_pmu {
-diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-index c8311cfaeeb0..add456e0ca15 100644
---- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-@@ -979,6 +979,34 @@
- 			memory-region = <&mfc_left>;
- 		};
- 
-+		ethernet1: ethernet@14300000 {
-+			compatible = "tesla,fsd-ethqos";
-+			reg = <0x0 0x14300000 0x0 0x10000>;
-+			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq";
-+			clocks = <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_CLK_PTP_REF_I>,
-+				 <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_ACLK_I>,
-+				 <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_HCLK_I>,
-+				 <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_RGMII_CLK_I>,
-+				 <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_CLK_RX_I>,
-+				 <&clock_peric PERIC_BUS_D_PERIC_IPCLKPORT_EQOSCLK>,
-+				 <&clock_peric PERIC_BUS_P_PERIC_IPCLKPORT_EQOSCLK>,
-+				 <&clock_peric PERIC_EQOS_PHYRXCLK_MUX>,
-+				 <&clock_peric PERIC_EQOS_PHYRXCLK>,
-+				 <&clock_peric PERIC_DOUT_RGMII_CLK>;
-+			clock-names = "ptp_ref", "master_bus", "slave_bus", "tx", "rx",
-+				      "master2_bus", "slave2_bus", "eqos_rxclk_mux",
-+				      "eqos_phyrxclk", "dout_peric_rgmii_clk";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&eth1_tx_clk>, <&eth1_tx_data>, <&eth1_tx_ctrl>,
-+				    <&eth1_phy_intr>, <&eth1_rx_clk>, <&eth1_rx_data>,
-+				    <&eth1_rx_ctrl>, <&eth1_mdio>;
-+			local-mac-address = [00 00 00 00 00 00];
-+			iommus = <&smmu_peric 0x0 0x1>;
-+			phy-mode = "rgmii-id";
-+			status = "disabled";
-+		};
-+
- 		ufs: ufs@15120000 {
- 			compatible = "tesla,fsd-ufs";
- 			reg = <0x0 0x15120000 0x0 0x200>,  /* 0: HCI standard */
--- 
-2.17.1
+As far as I understand, the video node corresponds to a particular stream, =
+but=20
+the cdns-csi2rx source pad is shared for all video nodes, so it will report=
+=20
+the total errors seen for all video nodes in multi-camera scenarios.
 
+This approach will also give you v4l2 control handler status from a few=20
+sensors (like OV5640) that implement the ioctl using=20
+v4l2_ctrl_subdev_log_status(), which is probably just noise for the case wh=
+ere=20
+a user wants to check for stream errors.
+
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> ---
+>  drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>=20
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/driv=
+ers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index 6412a00be8ea..946704458fee 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -377,6 +377,15 @@ static int ti_csi2rx_enum_framesizes(struct file *fi=
+le, void *fh,
+>  	return 0;
+>  }
+> =20
+> +static int ti_csi2rx_log_status(struct file *file, void *fh)
+> +{
+> +	struct ti_csi2rx_dev *csi =3D video_drvdata(file);
+> +
+> +	v4l2_device_call_all(&csi->v4l2_dev, 0, core, log_status);
+> +
+> +	return 0;
+> +}
+> +
+>  static const struct v4l2_ioctl_ops csi_ioctl_ops =3D {
+>  	.vidioc_querycap      =3D ti_csi2rx_querycap,
+>  	.vidioc_enum_fmt_vid_cap =3D ti_csi2rx_enum_fmt_vid_cap,
+> @@ -393,6 +402,7 @@ static const struct v4l2_ioctl_ops csi_ioctl_ops =3D {
+>  	.vidioc_expbuf        =3D vb2_ioctl_expbuf,
+>  	.vidioc_streamon      =3D vb2_ioctl_streamon,
+>  	.vidioc_streamoff     =3D vb2_ioctl_streamoff,
+> +	.vidioc_log_status	=3D ti_csi2rx_log_status,
+>  };
+> =20
+>  static const struct v4l2_file_operations csi_fops =3D {
+> --=20
+> 2.34.1
+>=20
+
+Thanks,
+Jai
+
+--s4c7q4omkexuyfrp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmet8xUACgkQQ96R+SSa
+cUWkRw/9Fha7996M+iSt4Hze7iS/MHJkt1zXGu/V5py5hMizMPXwke/BGF3rO6DM
+CyehfaRs2jdm4kq2U95udD/TB3WwH0ZYKqK7vJ5xgKpFK5/gJMqHhAAosto9XRFT
+L1STl7eIMclg2C65wEkPvYk7ZdSSM/7EK2153skpsoAao3xMBfaED1uFWQah/dW+
+XqHvnB4PoCy35Vsg8jT2rtfkXxv8GvkNmYzEgGqdRDE9vRIexTjLDPTovBVH768I
+bSgei72CSWlcHuQ7IFvfnuI0PPHVbEqCBo31mnCUIfRwSqXKq4b7ABEvw/HLyax0
+cNg753tCtEbkV6LFn20DS2OUEG2W2vOoAfaOEwljOhU+ehzO+61IJGsKyudD3heB
+f7UzczkacN5iyTfroW3fD6ZQhE76ZxW7CAeunbLUxaJi+kLbDwk+BD/x7DQ4WWQY
+h+mwzWFdyP+Y3oTRBftvk/iJ42nHabGsGnQrbUzHLke3uSjBGAPmFiqSCFPJ8fsj
+U3NMbgS5rdQrPWu8lydVK1n2GPDLSia9Ie8hTxiTcaEmDfLoOWoD4A3F1Bzh1YZn
+uimjh+pTkcpAk9Wi24I1/iWPfhk8xJPbaEsnvNeFNLfkO5p//tQ0kU/83GAEvG9L
+p+YKvNw9WdDFyz8GCgXbeY8bhLyef0cBwrBRGtUwYdrIqipnHv0=
+=W2Qx
+-----END PGP SIGNATURE-----
+
+--s4c7q4omkexuyfrp--
 
