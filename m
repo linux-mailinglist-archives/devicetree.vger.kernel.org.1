@@ -1,393 +1,156 @@
-Return-Path: <devicetree+bounces-146430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD909A34DFE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 19:48:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C3BA34E16
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 19:53:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C7783A4CE6
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:46:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 996E83A7E71
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 18:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD1624A078;
-	Thu, 13 Feb 2025 18:46:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C90245AEC;
+	Thu, 13 Feb 2025 18:53:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nAPmn8F5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QQFIS6Yl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FE2D24A048;
-	Thu, 13 Feb 2025 18:46:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1B0D28A2D4;
+	Thu, 13 Feb 2025 18:53:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739472391; cv=none; b=qEbdox3hKTUK4EeXhNDWf8cEZKOwz1lJcQbxCMx+98gnqf0q3FouRlEOq3SCuUUlBALe+LyiSRebuv9vTMI+wgbJpmoEM/A6RmNNuDQcxKJOk16GpLFqqPBNDm2apJ46+b80hB8NSHI4K1d53l7UUt0myOcDmCIzjwNZKo7iRiY=
+	t=1739472796; cv=none; b=Yd/OLZcQneDF+M9s+JaOfbqpmZpLmBz3U2ksl1kxBMxlG7UUE3fu1H9DZ/2DQfNOy8+GXYFRN3UgUq/wbOG6qL68CMbk9qzCnrzsmwEJCD3C+gLWukFl2LThl+CeVKPo9s4sjoxe/AHLIv2s6CXTrLOU5tiZFHEbvUZ74Ef9j0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739472391; c=relaxed/simple;
-	bh=zixQ5GhQTzBFHCTrvdtATSSH17XYTJ67wS2V/FdC7hc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DXulh6iXaOBrLRbC6RGcvsFJ8mUKFxA3GYvyYUPVJauM0AUf0UCHaS7ilnXGmwRbv84nNclKsHjSYUScuZGGvsLKCDM5z0rJETXWpRcmGfUuv+cBWsxPBjuw1ALk3H3okB/Rpw8Ntdoft7SxqBU5bpueemH5r84VEtPQOdtxCFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nAPmn8F5; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-aaec61d0f65so290055566b.1;
-        Thu, 13 Feb 2025 10:46:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739472387; x=1740077187; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HaEihAiyP6MocC5Oa52F4VzuNeOxClEAtoQkxcRqaYg=;
-        b=nAPmn8F5FJI6V+sEFCq/vfyEIAaj39m2iDSiHP8nFwG9arElScXkuK2c9DPKe0ITxp
-         gULwJph89d7F40xZ2Qq3e+D1ex2KmotOFr3WArn51kJFpVivisrQmjewtIblFIlVCIiJ
-         RPgau0BU7kXvoUTOmT0imQNUYwR/PTKaccFp3JuJW1NefM4tdj40JrxhxOmGQEGxtpSx
-         bfZHeHpRCKnS6+LBFHVnLp/k6jKSFgo2Xba1HRuYUWasiI3tgSwkO7Mc49vOE0bvqG5e
-         9RPYDqvQ4dKLIBulY5kal3trmMQ2nXBOsjlVLf97AzfGg+XOET7jX3BmlGUHPtA9nZb/
-         LoZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739472387; x=1740077187;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HaEihAiyP6MocC5Oa52F4VzuNeOxClEAtoQkxcRqaYg=;
-        b=Dkb39iXX9RksMapJH2NUrEDRBO7iIUbZzxuM3xjI5xMYpfl2USQvndBIJsogMQk/W1
-         pshT7YdbZWzSXtNVSZXXu39+WNSA75KfuxrR5+n37Hem0T8U58vd4Ood0P1YOzsdKjk/
-         AVnMkvk0RMhs/irUL+ElyCey4DWsvDIZEZlMd5cN3ixsADZIfiOBnoUCO4cvRSteMoOO
-         9jdNpo8/sy6pXd1e3ZOJblUaSG0mx1j0/oOXDkeuGjH4bBs/CJtfvgMZNdFQ4R5B1c1J
-         iSCQDgMtp7E/OGn5ZZxhLnBivRUPurT+x0PhJDN1DCywcwtCGukeXCjH5S0Mf3zheT2x
-         mThw==
-X-Forwarded-Encrypted: i=1; AJvYcCUGHXxu5xAg8OzlCJkbf5UfM4sQbDD1DAQbXhMQ9qy5+0mUQO5EePHNxyZSOgXjYTSkWaGUrhSp8BRK@vger.kernel.org, AJvYcCUjeFh3KsfCMROy8g8FZh6Cvbfte0ys/ND5wF+koLPIATQ+7/6e2Y5hw1OSYoNnSyK2HDvTe4BUKgEo2pRw@vger.kernel.org, AJvYcCUufiGXF6kbHMRtTAvVbjdAptYAx4QkcPqcw3U+69Ns/sM+Jg/gcx4FYDt3pSjQAIxmwzVhcai8D91k@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAT50xVQSOe5E6asiqiSdjB29VJBpavAZ+wjtIGEph7fyS/RaE
-	OI5sKckFhOMi9oTT2ZTHx79P6uHotcGbMTvp3vWTDRO0opzs42uR
-X-Gm-Gg: ASbGncu+PhOhFcOCsVo5kXRSIWy0/th/4U5wKBJOTGPmDYa0lKPZ4PJkjD8P0B6V/MB
-	ODaLbjE0hkZEXpE6htW+P1hGOh7e9RYR+u44QGl0rehxJ3mu0ko6goY8dVJICmRfmrMcSFhLfCM
-	P/mCFbX2RMmeYgEdDsNezyXcrHu+FMgAXxH0IUANejKtPUta4wzxGuc9s5wCydZ5ZwqnEiChs/Q
-	KZTvBvbsMXrFKaBPTy6KpXx6E4U/wUbTVMwYngFBdY3H1Eou6EW9UZ8edPnVPSmzLQ39Qp0N0KR
-	CG0p4/lrp4ibHahMgtL+3iKVJqXD
-X-Google-Smtp-Source: AGHT+IGGkWWLaNNzOzd7hKMrdf41hfYgyJmTTQbUi197zNRcg+XO4S8rTNRAVGB7tDq/vKYEFmIXRw==
-X-Received: by 2002:a17:906:6a23:b0:ab6:dace:e763 with SMTP id a640c23a62f3a-aba5017e5d9mr408825466b.38.1739472387157;
-        Thu, 13 Feb 2025 10:46:27 -0800 (PST)
-Received: from giga-mm.. ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba533998e2sm181360466b.134.2025.02.13.10.46.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 10:46:26 -0800 (PST)
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: linux-riscv@lists.infradead.org,
-	linux-rtc@vger.kernel.org
-Cc: Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	alexandre.belloni@bootlin.com,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	unicorn_wang@outlook.com,
-	inochiama@outlook.com,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	dlan@gentoo.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Subject: [PATCH v10 2/2] rtc: sophgo: add rtc support for Sophgo CV1800 SoC
-Date: Thu, 13 Feb 2025 19:46:15 +0100
-Message-ID: <20250213184622.2099324-3-alexander.sverdlin@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250213184622.2099324-1-alexander.sverdlin@gmail.com>
-References: <20250213184622.2099324-1-alexander.sverdlin@gmail.com>
+	s=arc-20240116; t=1739472796; c=relaxed/simple;
+	bh=y2OXpJsSi9OIRanlMyx3KWqQShtlGo0AuzXqA9Fbzqc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uZMuntwa3+cLGsp2OZzTzLmqOR+WdrSoQrs/7KL0w8Y209N8y4DScxTzJtbOJROIEah/TsqlOXSmVjoa69ggWRLqI8W/5aqZ4Fs84W64dHL/OALjZapoT0YXnqu+A5F7HeLuvQAbKg+fRNUPIGq+0e9tmYAOJJQDva8cul6e1aM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QQFIS6Yl; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 44E1E4442E;
+	Thu, 13 Feb 2025 18:53:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739472790;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=J6qH4iFmq2eCsp4gR0alhKpvz8JxjM4NdzNRGitctoQ=;
+	b=QQFIS6Yl0SPVIujgU2GPm4v6MzAaeFar1z+P8jxljvArnhEuso+Y/P/qcxiEHDYPns9Oe2
+	je9+Kk9CWdf/ZsYEv5gcGV6gh9WpYb42YK62QI6bB0wAUu3we0b6aprTdQJADCNWcrSAwx
+	9ycbaUf61H5QU/WHv8hmtogOn+6BAi7kQmiMc7MydcuHs8hj5eRXpVwGOvirzmuVhTb/Xp
+	kqAxyCa/lZbEnmksJuVGjvMa1RbnPT5GuzchNsyUEemWs5dhkGjLVNdJ4susBSgI35TH1b
+	M6SnAW8+yTKzKsCCoVguJ7nfcytgbsCz4gHn8GfhtBHVrRRIAJoC44hKvft1aw==
+Date: Thu, 13 Feb 2025 19:53:04 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Phil Elwell <phil@raspberrypi.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Andrea della Porta
+ <andrea.porta@suse.com>, Arnd Bergmann <arnd@arndb.de>,
+ "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
+ <bcm-kernel-feedback-list@broadcom.com>, bhelgaas@google.com,
+ brgl@bgdev.pl, Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
+ <conor+dt@kernel.org>, derek.kiernan@amd.com, devicetree@vger.kernel.org,
+ dragan.cvetic@amd.com, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org,
+ kw@linux.com, Linus Walleij <linus.walleij@linaro.org>, linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, "open
+ list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS"
+ <linux-pci@vger.kernel.org>, "moderated list:BROADCOM BCM2711/BCM2835 ARM
+ ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
+ lpieralisi@kernel.org, luca.ceresoli@bootlin.com,
+ manivannan.sadhasivam@linaro.org, masahiroy@kernel.org, Michael Turquette
+ <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
+ saravanak@google.com, Stephen Boyd <sboyd@kernel.org>,
+ thomas.petazzoni@bootlin.com, Stefan Wahren <wahrenst@gmx.net>, Will Deacon
+ <will@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device
+ using a DT overlay
+Message-ID: <20250213195304.3a2df02c@bootlin.com>
+In-Reply-To: <CAMEGJJ0QbzCScfTRA_pw_8A=iMYMAAFs69zFNLwcOxF5Syugpw@mail.gmail.com>
+References: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
+	<20250213171435.1c2ce376@bootlin.com>
+	<a3c5103c-829a-4301-ba53-6ef9bd1e74e7@lunn.ch>
+	<CAMEGJJ3-JXhin_Ht76EqUNAwLiNisa9PrCrdUzCgj=msGZfb5A@mail.gmail.com>
+	<821d4c74-09b0-4c1b-b8ef-f8c08d0f6b5b@lunn.ch>
+	<CAMEGJJ0QbzCScfTRA_pw_8A=iMYMAAFs69zFNLwcOxF5Syugpw@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegjeehgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffleegleetgedtuddugfffkefhgeeuheeugffhhfetgffhfeehkeejgeelfeetfeenucffohhmrghinheplhhptgdrvghvvghnthhspdhkvghrnhgvlhdrohhrghdpghhithhhuhgsrdgtohhmnecukfhppedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefhedprhgtphhtthhopehphhhilhesrhgrshhpsggvrhhrhihpihdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegrnhgurhgvrgdrphhor
+ hhtrgesshhushgvrdgtohhmpdhrtghpthhtoheprghrnhgusegrrhhnuggsrdguvgdprhgtphhtthhopegstghmqdhkvghrnhgvlhdqfhgvvggusggrtghkqdhlihhsthessghrohgruggtohhmrdgtohhmpdhrtghpthhtohepsghhvghlghgrrghssehgohhoghhlvgdrtghomhdprhgtphhtthhopegsrhhglhessghguggvvhdrphhlpdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomh
+X-GND-Sasl: herve.codina@bootlin.com
 
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Hi Phil,
 
-Implement the RTC driver for CV1800, which able to provide time alarm.
+On Thu, 13 Feb 2025 17:57:37 +0000
+Phil Elwell <phil@raspberrypi.com> wrote:
 
-Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
----
-Changes since v9:
-- further simplified bitmask macros;
-- unconditional RTC start (rtc_enable_sec_counter()), otherwise
-didn't start on SG2000;
-- dropped ANA_CALIB modification (has been forgotten in v8 with
-the drop of SW calibration to switch to HW calibration);
-- successfully tested on SG2000;
+> On Thu, 13 Feb 2025 at 17:45, Andrew Lunn <andrew@lunn.ch> wrote:
+> >  
+> > > > Or do you mean a custom board, which has a CPU, RP1 and the button and
+> > > > fan are directly on this custom board? You then want a board DTS which
+> > > > includes all these pieces?  
+> > >
+> > > That depends on whether you count the Raspberry Pi 5 as a custom board.  
+> >
+> > So you mean the Pi 5 board would itself make use of the resources the
+> > RP1 device has? They are not simply connected to headers for plugin
+> > boards, but used by the main board? Hence you want to describe them in
+> > the board .DTS file.  
+> 
+> That's correct. But even for plug-in devices, those which are on
+> non-discoverable buses need overlays to declare them, which causes a
+> problem when the overlay application happens before the kernel is
+> started.
+> 
 
- drivers/rtc/Kconfig      |  10 ++
- drivers/rtc/Makefile     |   1 +
- drivers/rtc/rtc-cv1800.c | 223 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 234 insertions(+)
- create mode 100644 drivers/rtc/rtc-cv1800.c
+Hum, I see.
 
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 0bbbf778ecfa..019622db3e93 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -1159,6 +1159,16 @@ config RTC_DRV_DS2404
- 	  This driver can also be built as a module. If so, the module
- 	  will be called rtc-ds2404.
- 
-+config RTC_DRV_CV1800
-+	tristate "Sophgo CV1800 RTC"
-+	depends on ARCH_SOPHGO || COMPILE_TEST
-+	help
-+	  If you say yes here you get support the RTC driver
-+	  for Sophgo CV1800 chip.
-+
-+	  This driver can also be built as a module. If so, the
-+	  module will be called rtc-cv1800.
-+
- config RTC_DRV_DA9052
- 	tristate "Dialog DA9052/DA9053 RTC"
- 	depends on PMIC_DA9052
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index 489b4ab07068..621b30a33dda 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -44,6 +44,7 @@ obj-$(CONFIG_RTC_DRV_CADENCE)	+= rtc-cadence.o
- obj-$(CONFIG_RTC_DRV_CMOS)	+= rtc-cmos.o
- obj-$(CONFIG_RTC_DRV_CPCAP)	+= rtc-cpcap.o
- obj-$(CONFIG_RTC_DRV_CROS_EC)	+= rtc-cros-ec.o
-+obj-$(CONFIG_RTC_DRV_CV1800)	+= rtc-cv1800.o
- obj-$(CONFIG_RTC_DRV_DA9052)	+= rtc-da9052.o
- obj-$(CONFIG_RTC_DRV_DA9055)	+= rtc-da9055.o
- obj-$(CONFIG_RTC_DRV_DA9063)	+= rtc-da9063.o
-diff --git a/drivers/rtc/rtc-cv1800.c b/drivers/rtc/rtc-cv1800.c
-new file mode 100644
-index 000000000000..63d36f68a119
---- /dev/null
-+++ b/drivers/rtc/rtc-cv1800.c
-@@ -0,0 +1,223 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * rtc-cv1800.c: RTC driver for Sophgo cv1800 RTC
-+ *
-+ * Author: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/irq.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/rtc.h>
-+
-+#define SEC_PULSE_GEN          0x1004
-+#define ALARM_TIME             0x1008
-+#define ALARM_ENABLE           0x100C
-+#define SET_SEC_CNTR_VAL       0x1010
-+#define SET_SEC_CNTR_TRIG      0x1014
-+#define SEC_CNTR_VAL           0x1018
-+
-+/*
-+ * When in VDDBKUP domain, this MACRO register
-+ * does not power down
-+ */
-+#define MACRO_RO_T             0x14A8
-+#define MACRO_RG_SET_T         0x1498
-+
-+#define ALARM_ENABLE_MASK      BIT(0)
-+#define SET_SEC_CNTR_VAL_INIT  GENMASK(29, 28)
-+#define SEL_SEC_PULSE          BIT(31)
-+
-+struct cv1800_rtc_priv {
-+	struct rtc_device *rtc_dev;
-+	struct regmap *rtc_map;
-+	struct clk *clk;
-+	int irq;
-+};
-+
-+static const struct regmap_config cv1800_rtc_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+};
-+
-+static int cv1800_rtc_alarm_irq_enable(struct device *dev, unsigned int enabled)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+
-+	regmap_write(info->rtc_map, ALARM_ENABLE, enabled);
-+
-+	return 0;
-+}
-+
-+static int cv1800_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	unsigned long alarm_time;
-+
-+	alarm_time = rtc_tm_to_time64(&alrm->time);
-+
-+	cv1800_rtc_alarm_irq_enable(dev, 0);
-+
-+	regmap_write(info->rtc_map, ALARM_TIME, alarm_time);
-+
-+	cv1800_rtc_alarm_irq_enable(dev, alrm->enabled);
-+
-+	return 0;
-+}
-+
-+static int cv1800_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	u32 enabled;
-+	u32 time;
-+
-+	regmap_read(info->rtc_map, ALARM_ENABLE, &enabled);
-+
-+	alarm->enabled = enabled & ALARM_ENABLE_MASK;
-+
-+	regmap_read(info->rtc_map, ALARM_TIME, &time);
-+
-+	rtc_time64_to_tm(time, &alarm->time);
-+
-+	return 0;
-+}
-+
-+static void rtc_enable_sec_counter(struct cv1800_rtc_priv *info)
-+{
-+	u32 sec_ro_t;
-+	u32 sec;
-+
-+	/* select inner sec pulse */
-+	regmap_update_bits(info->rtc_map, SEC_PULSE_GEN, SEL_SEC_PULSE, 0);
-+
-+	sec = SET_SEC_CNTR_VAL_INIT;
-+
-+	/* load from MACRO register */
-+	regmap_read(info->rtc_map, MACRO_RO_T, &sec_ro_t);
-+	if (sec_ro_t > (SET_SEC_CNTR_VAL_INIT))
-+		sec = sec_ro_t;
-+
-+	regmap_write(info->rtc_map, SET_SEC_CNTR_VAL, sec);
-+	regmap_write(info->rtc_map, SET_SEC_CNTR_TRIG, 1);
-+}
-+
-+static int cv1800_rtc_read_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	u32 sec;
-+
-+	regmap_read(info->rtc_map, SEC_CNTR_VAL, &sec);
-+
-+	rtc_time64_to_tm(sec, tm);
-+
-+	return 0;
-+}
-+
-+static int cv1800_rtc_set_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	unsigned long sec;
-+
-+	sec = rtc_tm_to_time64(tm);
-+
-+	regmap_write(info->rtc_map, SET_SEC_CNTR_VAL, sec);
-+	regmap_write(info->rtc_map, SET_SEC_CNTR_TRIG, 1);
-+
-+	regmap_write(info->rtc_map, MACRO_RG_SET_T, sec);
-+
-+	return 0;
-+}
-+
-+static irqreturn_t cv1800_rtc_irq_handler(int irq, void *dev_id)
-+{
-+	struct cv1800_rtc_priv *info = dev_id;
-+
-+	rtc_update_irq(info->rtc_dev, 1, RTC_IRQF | RTC_AF);
-+
-+	regmap_write(info->rtc_map, ALARM_ENABLE, 0);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static const struct rtc_class_ops cv1800_rtc_ops = {
-+	.read_time = cv1800_rtc_read_time,
-+	.set_time = cv1800_rtc_set_time,
-+	.read_alarm = cv1800_rtc_read_alarm,
-+	.set_alarm = cv1800_rtc_set_alarm,
-+	.alarm_irq_enable = cv1800_rtc_alarm_irq_enable,
-+};
-+
-+static int cv1800_rtc_probe(struct platform_device *pdev)
-+{
-+	struct cv1800_rtc_priv *rtc;
-+	u32 ctrl_val;
-+	void __iomem *base;
-+	int ret;
-+
-+	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
-+	if (!rtc)
-+		return -ENOMEM;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	rtc->rtc_map = devm_regmap_init_mmio(&pdev->dev, base,
-+					     &cv1800_rtc_regmap_config);
-+	if (IS_ERR(rtc->rtc_map))
-+		return PTR_ERR(rtc->rtc_map);
-+
-+	rtc->irq = platform_get_irq(pdev, 0);
-+	if (rtc->irq < 0)
-+		return rtc->irq;
-+
-+	rtc->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-+	if (IS_ERR(rtc->clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->clk),
-+				     "clk not found\n");
-+
-+	platform_set_drvdata(pdev, rtc);
-+
-+	device_init_wakeup(&pdev->dev, 1);
-+
-+	rtc->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
-+	if (IS_ERR(rtc->rtc_dev))
-+		return PTR_ERR(rtc->rtc_dev);
-+
-+	rtc->rtc_dev->ops = &cv1800_rtc_ops;
-+	rtc->rtc_dev->range_max = U32_MAX;
-+
-+	ret = devm_request_irq(&pdev->dev, rtc->irq, cv1800_rtc_irq_handler,
-+			       IRQF_TRIGGER_HIGH, "rtc alarm", rtc);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "cannot register interrupt handler\n");
-+
-+	rtc_enable_sec_counter(rtc);
-+
-+	return devm_rtc_register_device(rtc->rtc_dev);
-+}
-+
-+static const struct of_device_id cv1800_dt_ids[] = {
-+	{ .compatible = "sophgo,cv1800-rtc" },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, cv1800_dt_ids);
-+
-+static struct platform_driver cv1800_rtc_driver = {
-+	.driver = {
-+		.name = "sophgo-cv1800-rtc",
-+		.of_match_table = cv1800_dt_ids,
-+	},
-+	.probe = cv1800_rtc_probe,
-+};
-+
-+module_platform_driver(cv1800_rtc_driver);
-+MODULE_AUTHOR("Jingbao Qiu");
-+MODULE_DESCRIPTION("Sophgo cv1800 RTC Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.48.1
+We worked on overlay usage on non-discoverable buses wired to a connector
+and we did a talk about issues we are facing on at Plumber [0].
 
+You can also find our big picture in [1] and a last contribution introducing
+export-symbols feature in [2]. export-symbols is also under discussion on
+some other threads.
+
+Also, we proposed the i2c bus extensions feature [3] whose goal is to allow
+an addon board to add devices on an i2c bus provided by a base board and
+wired to an connector the addon board is connected to.
+
+Maybe in your case, you can decouple resources (gpio, pwm) provided by the
+addon board and used by the base board using also nexus node.
+
+We use a nexus node [4] (not presented at the Plumbers talk because the idea
+came during 'out of talk' discussions in Plumbers) in order to allow our
+addon board to use resources provided by the base board.
+
+In your case, if I understood, you are in the other direction but why not
+using also a nexus node to decouple and translate resources in this other
+direction ?
+
+Don't know if this idea can help but feel free to ask for some more
+information if needed.
+
+[0] https://lpc.events/event/18/contributions/1696/
+[1] https://lore.kernel.org/lkml/20240917-hotplug-drm-bridge-v4-0-bc4dfee61be6@bootlin.com/
+[2] https://lore.kernel.org/all/20241209151830.95723-1-herve.codina@bootlin.com/
+[3] https://lore.kernel.org/all/20250205173918.600037-1-herve.codina@bootlin.com/
+[4] https://github.com/devicetree-org/devicetree-specification/blob/v0.4/source/chapter2-devicetree-basics.rst#nexus-nodes-and-specifier-mapping
+
+Best regards,
+Hervé
 
