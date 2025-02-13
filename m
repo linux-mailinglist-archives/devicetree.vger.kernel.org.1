@@ -1,267 +1,212 @@
-Return-Path: <devicetree+bounces-146249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF5CEA33DE3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 12:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ACB7A33D6C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 12:08:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD0CE3ABEB7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:23:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC4C03A9439
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F1920B1FF;
-	Thu, 13 Feb 2025 11:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5DD267B9C;
+	Thu, 13 Feb 2025 11:05:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="qj29tY/i"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eyW+u0qL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEBF207641
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 11:21:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF409267B1C;
+	Thu, 13 Feb 2025 11:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739445715; cv=none; b=BbQoNTKKvRXyTjo/81vbB6SOvMpQkiozFfBRDKwenfdjEgBkLi7ZgY/r/I12MYo+172Dere8ZCFaQQSoAKHFyw/pzzzEyoLbVPYg6k2SEYjhIMIuRjmNe3gnCcJE+ys7/I69cqNjKhbFMJzOFKNiiklMA+AwStzu3Nfneur6WnI=
+	t=1739444746; cv=none; b=fGyJhKFcYpfY+/UHUta9LDRRRjglCle6gim8+8K08lK0+9n9baigg4sMmw01nZXZ+7eREcE89VMRXnbKQSswVYpCUvUFhkd19bIvSuJd9Z0TsD2kC4XclOFOmHl+BF6B++yZjbDgBElmhhn5hlSE0LrPGsNBRFGvteZiL3C8k3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739445715; c=relaxed/simple;
-	bh=Pi4eMn80Vkv3stDJ2Ryeq1gBOrxrcjdgjXuoH7Kh8vw=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=B8xrSqFQkmxSTdS3quzel8tQV3Pra608HcPGycyB3LkD9X/tH4pxyzrtqr0lnCnrzh62fMFMGJ8dP4CNYTqBAelTTJCqmTDwsHAn1QxVV/E+MFSrNdAWMsZL2EcOR1987fwAhRpoyvu5Dnu1LskY4tG7GoU2vfVS13nPBVlTltc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=qj29tY/i; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250213112151epoutp03140053ab99b9207a1d55bb414e4a2806~jwKikMupg1886018860epoutp03k
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 11:21:51 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250213112151epoutp03140053ab99b9207a1d55bb414e4a2806~jwKikMupg1886018860epoutp03k
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1739445711;
-	bh=FYeA0egZv4FF41HWS+5lY5RJ3ar8Pphs0FsmtbhyRSE=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=qj29tY/iSIOX/IKeNwEWLUhYSOojk/p0yq39MyLUD5o9EhMrlTrfigvInh/f3eecq
-	 84a7nGp1x9AltRNUKXaTRFq1GhRgM7M05Jp+LqCej7VEd5vtVEEIO+C/IeAU42+Yjt
-	 9eaRUYaXidA013VMkA3nAAG5lk5HvpMbpBwigtMw=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-	20250213112150epcas5p432ded18de14682cc3b9c16d15c3a6f1b~jwKh9cVoO2775827758epcas5p4Q;
-	Thu, 13 Feb 2025 11:21:50 +0000 (GMT)
-Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.176]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4Ytt710fwvz4x9Pr; Thu, 13 Feb
-	2025 11:21:49 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-	epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	AF.8A.19710.CC5DDA76; Thu, 13 Feb 2025 20:21:48 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250213110439epcas5p4363f12d24845f86de9f5e0d1c15bcaf9~jv7hQbNb63061630616epcas5p4_;
-	Thu, 13 Feb 2025 11:04:39 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250213110439epsmtrp1713a253bece086c0e65de979af9e8830~jv7hPeule2200722007epsmtrp1E;
-	Thu, 13 Feb 2025 11:04:39 +0000 (GMT)
-X-AuditID: b6c32a44-363dc70000004cfe-d8-67add5cc2674
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	CF.18.23488.7C1DDA76; Thu, 13 Feb 2025 20:04:39 +0900 (KST)
-Received: from FDSFTE596 (unknown [107.122.82.131]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250213110436epsmtip2c8a8209a8c3b9ff20b96d86af3fac0e3~jv7ezI9zW2340823408epsmtip2R;
-	Thu, 13 Feb 2025 11:04:36 +0000 (GMT)
-From: "Swathi K S" <swathi.ks@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
-Cc: <krzk+dt@kernel.org>, <andrew+netdev@lunn.ch>, <davem@davemloft.net>,
-	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-	<robh@kernel.org>, <conor+dt@kernel.org>, <richardcochran@gmail.com>,
-	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-	<rmk+kernel@armlinux.org.uk>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-In-Reply-To: <20250213-adorable-arboreal-degu-6bdcb8@krzk-bin>
-Subject: RE: [PATCH v6 1/2] dt-bindings: net: Add FSD EQoS device tree
- bindings
-Date: Thu, 13 Feb 2025 16:34:29 +0530
-Message-ID: <009a01db7e07$132feb60$398fc220$@samsung.com>
+	s=arc-20240116; t=1739444746; c=relaxed/simple;
+	bh=u3jhAvzTfEh3CdzEn3BAjSF63/UVzzb34kvFb3VtIos=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XRmTE2B26lgundaXJ4UJlmFeHMyaw0/FoFDEpL13idm0zAr6nVl184ta78uNiBAuH0UgMObJa8NJxxw2cIc52g9xbfhHjZywTY8J+SQX+tvc/paYIFKtN+nv90ExQVa/VPSMh2YDafFKq7rAiwZM7AZyQy7adtcg+qzpcqJgkGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eyW+u0qL; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739444745; x=1770980745;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=u3jhAvzTfEh3CdzEn3BAjSF63/UVzzb34kvFb3VtIos=;
+  b=eyW+u0qLewW4A6bDhLLh4JFhmGzofLoGdrs4UA2msi9UeFhfXB4rWceh
+   V3e39QizHbvXVn7gh6Qd3sAC6DmEWWE6mGqRti32PYZ8gfZZl4mAQbCgb
+   BRMlec5YvL3muZeMRwqLsnjycbWHmFLtNOnXiCgkx7m6rOsQhgkj8HBHN
+   zXWRjdtQZDsBrq7/hK+LNWOI6jLUxL+o8PRBvVB4o7jKqaAPq9gsD9vFI
+   5dYHrgprK9H8An+WmCH7td+OpISG5eEFG/f1+mTXh0MwWe253DYMG7uwT
+   z9iaRmiUMV2lYOZstMXdMw/yizpJSH4ixOrrC7MSlZM1US1+SNT/zid6a
+   Q==;
+X-CSE-ConnectionGUID: ZsTqD4jCS+2WBWZOQv6Iiw==
+X-CSE-MsgGUID: 1U4e5sFnREeHx9nm8qrt6Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="42976571"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; 
+   d="scan'208";a="42976571"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 03:05:44 -0800
+X-CSE-ConnectionGUID: P128WeynQ/WkMPJRXWsfcw==
+X-CSE-MsgGUID: ETfIGN2oS7CuNCAvKhDUjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; 
+   d="scan'208";a="112978940"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 03:05:40 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tiX2G-0000000B8rH-2sEK;
+	Thu, 13 Feb 2025 13:05:36 +0200
+Date: Thu, 13 Feb 2025 13:05:36 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Kartik Rajput <kkartik@nvidia.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
+	jonathanh@nvidia.com, hvilleneuve@dimonoff.com, arnd@kernel.org,
+	geert+renesas@glider.be, robert.marko@sartura.hr,
+	schnelle@linux.ibm.com, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] serial: tegra-utc: Add driver for Tegra UART
+ Trace Controller (UTC)
+Message-ID: <Z63SAPtHXR6KN9qa@smile.fi.intel.com>
+References: <20250213100442.45773-1-kkartik@nvidia.com>
+ <20250213100442.45773-3-kkartik@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFMfZy5LnHh86L+CikZ+hKlrx3PbgHP/Q5uAh59lGQBgzSo3LQ3hOaA
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Ta1BUZRjuO2cvB2mZ44LywUSuJ7twWdjFZT3bLFhKzhZWFD9yGJWOcGYX
-	2dvsLlJNTRZGiALSJLELrgsjFw1IF12X6wQhjkKAFzYoKBJIbjOMohgY0C4Hin/P9z7P+z3v
-	810wlD/NCcRStSbaoKXUBGcDy/FT8CvCrr4apWjotpycnygEZOWwk01WN3cjZEnPMRZ5tr2b
-	TY513OOSE5bfOWRPz0Uu2evIY5P2ERebvNNQwiFzXKNs0rpYwyY7bJvJuc5pQLZ3jaPk7fwC
-	hFxucnJf4yvuuG6hisvnBxDFWP4VrqLeMsRV2OzpCvuF4xxF3bnPFfXOWUQx09LHUbS2iBWz
-	9ufjvRPT5CqaSqENAlqbrEtJ1SqjibiEpN1JUVKRWCiWkTsIgZbS0NFE7N544Z5UtTsXIThC
-	qdPdpXjKaCQiYuQGXbqJFqh0RlM0QetT1HqJPtxIaYzpWmW4lja9KhaJIqPcwg/TVHXmZkTf
-	L/joQeEQ6yho9M8BXhjEJXDw7/sgB2zA+HgjgOaqRZaH4OMPAcy5F8YQcwDen/6StdZR9bAI
-	YYhmAK2OBpRZjAP4XfYj4FFx8BBYltfC9WA/XAjr+iu5HhGKD6PwZFHJylZeeAzMnc10Exjm
-	i78Hs675eMos/EVYUDLH8WAeLoNtrTdZDN4Ib5hHVzCKh8KK0imUmUgA58cq2IzXHvi0eAkw
-	Gn94bf7kynAQP+EFKx1ONtMQCwfrMjkM9oWT1y9zGRwIJ/KzVnES/D6vbzWyCg4tFKzqd8If
-	73rmx9wGwfCHhgimHARP36xFGF8fmPt0FGHqPOi0ruEX4OKUa3XLAOgon+GeAoRlXTTLumiW
-	dREs/7vZAOsCCKD1Ro2STo7Si7V0xn8XnqzT2MHKsw+JdYL+s0vhbQDBQBuAGEr48WBhtZLP
-	S6E+/oQ26JIM6Wra2Aai3OddgAZuSta5/43WlCSWyEQSqVQqkW2Xigl/Xmb9MSUfV1ImOo2m
-	9bRhrQ/BvAKPIgc6R20J2dih0IMR7KyNGO9464I690zYvi/eBI7HTwJcj4sOTVyJ9HZs23vu
-	ZdOmxbjSwb4y76L9w16/1XduaSWoLuuutPlk+tKIf6LQ/M6ULYgM3Uw0Fl/tiKm6WP3rQfR9
-	LeIzvlQxkLaj3CqMvH7a71NNwfmF7N3tQfWnmpb/GbYkbGFDyaQm8sHXR3wzUrfJ5Rr71pqr
-	5jFZ8K7Kv575Y1jfe2BfapP88I0Pen+Je/Qz/nbG5FuijlvWmbvdxW9cop6bebf3z5eeTYzM
-	bnrdpAz7Ft0pFwwcXlbXfmOuLaXPTA9FDQpkrv6ZphNSqq56ZHvtmKUs74ntM5+Y8v21X6ki
-	CJZRRYlDUIOR+hfqY4fEfwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGIsWRmVeSWpSXmKPExsWy7bCSvO7xi2vTDTY+EbD4+XIao8XyBztY
-	LdbsPcdkMed8C4vF/CPnWC2eHnvEbvFy1j02i/PnN7BbXNjWx2qx6fE1VovLu+awWXRde8Jq
-	Me/vWlaLYwvELL6dfsNoceTMC2aLS/0TmSz+79nB7iDkcfnaRWaPLStvMnk87d/K7rFz1l12
-	jwWbSj02repk89i8pN5j547PTB7v911l8zi4z9Dj8ya5AO4oLpuU1JzMstQifbsErowFGyaw
-	FjyXr9jY3svcwHhCrIuRk0NCwERixacZTF2MXBxCArsZJWadX84MkZCU+NQ8lRXCFpZY+e85
-	O0TRM0aJvnUbGEESbAJaEov69rGD2CICuhKbbywHK2IW+MIsMfv+ZKixbxklrjYdYAGp4hSw
-	k+j93AzWISzgL/G+9ySYzSKgKjFxzjc2EJtXwFLi0MFTLBC2oMTJmU/AbGYBbYmnN5/C2csW
-	voY6VUHi59NlrBBXuEn8nv2PEaJGXOLozx7mCYzCs5CMmoVk1Cwko2YhaVnAyLKKUTK1oDg3
-	PTfZsMAwL7Vcrzgxt7g0L10vOT93EyM46rU0djC++9akf4iRiYPxEKMEB7OSCK/EtDXpQrwp
-	iZVVqUX58UWlOanFhxilOViUxHlXGkakCwmkJ5akZqemFqQWwWSZODilGpi6QvQf7P8iaav1
-	4mzOiq3nQy7PXRN8est2l/dRqXdY64ofqt09IMTynvtnrWVB0NezPutdg3yCGjhmeX06veyJ
-	mPB2izvXC/zU0vPPBuYdCJZJiBD1TEvhWnKrn4275uh649r6jXwL/GWz/M9+/uP2oNm//yfr
-	7xOvJ5eu8IrUd8zhV6n4/nTXuzuxFv95hZ6xG01qcFPiCTh5polz6oZ4Sx7Zd/mzN93f2Fcr
-	pl/w9u2cubtnyGiesm9R/Nebe/lY5nTBmqcPZvned5C0/6gmK1sWzrAs19Rk2tGGDcGzJOS2
-	dZX3TpvcO+POet7aXA6vFwGPUueLrJvacYm7b2NiNkuc7ZZNVlJThGt+7FBiKc5INNRiLipO
-	BACb1ffZaQMAAA==
-X-CMS-MailID: 20250213110439epcas5p4363f12d24845f86de9f5e0d1c15bcaf9
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250213044955epcas5p110d1e582c8ee02579ead73f9686819ff
-References: <20250213044624.37334-1-swathi.ks@samsung.com>
-	<CGME20250213044955epcas5p110d1e582c8ee02579ead73f9686819ff@epcas5p1.samsung.com>
-	<20250213044624.37334-2-swathi.ks@samsung.com>
-	<20250213-adorable-arboreal-degu-6bdcb8@krzk-bin>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250213100442.45773-3-kkartik@nvidia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+On Thu, Feb 13, 2025 at 03:34:42PM +0530, Kartik Rajput wrote:
+> The Tegra264 SoC supports the UART Trace Controller (UTC), which allows
+> multiple firmware clients (up to 16) to share a single physical UART.
+> Each client is provided with its own interrupt and has access to a
+> 128-character wide FIFO for both transmit (TX) and receive (RX)
+> operations.
+> 
+> Add tegra-utc driver to support Tegra UART Trace Controller (UTC)
+> client.
 
+Btw, neither the commit message nor cover letter explain why the new driver
+is needed. There are some serial Tegra drivers already. Is this one completely
+different from the existing drivers?
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: 13 February 2025 13:24
-> To: Swathi K S <swathi.ks=40samsung.com>
-> Cc: krzk+dt=40kernel.org; andrew+netdev=40lunn.ch; davem=40davemloft.net;
-> edumazet=40google.com; kuba=40kernel.org; pabeni=40redhat.com;
-> robh=40kernel.org; conor+dt=40kernel.org; richardcochran=40gmail.com;
-> mcoquelin.stm32=40gmail.com; alexandre.torgue=40foss.st.com;
-> rmk+kernel=40armlinux.org.uk; netdev=40vger.kernel.org;
-> devicetree=40vger.kernel.org; linux-stm32=40st-md-mailman.stormreply.com;
-> linux-arm-kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org
-> Subject: Re: =5BPATCH v6 1/2=5D dt-bindings: net: Add FSD EQoS device tre=
-e
-> bindings
->=20
-> On Thu, Feb 13, 2025 at 10:16:23AM +0530, Swathi K S wrote:
-> > +  clock-names:
-> > +    minItems: 5
-> > +    maxItems: 10
-> > +    contains:
-> > +      enum:
-> > +        - ptp_ref
-> > +        - master_bus
-> > +        - slave_bus
-> > +        - tx
-> > +        - rx
-> > +        - master2_bus
-> > +        - slave2_bus
-> > +        - eqos_rxclk_mux
-> > +        - eqos_phyrxclk
-> > +        - dout_peric_rgmii_clk
->=20
-> This does not match the previous entry. It should be strictly ordered wit=
-h
-> minItems: 5.
+...
 
-Hi Krzysztof,
-Thanks for reviewing.
-In FSD SoC, we have 2 instances of ethernet in two blocks.
-One instance needs 5 clocks and the other needs 10 clocks.
+> +#define TEGRA_UTC_ENABLE			0x0
 
-I tried to understand this by looking at some other dt-binding files as giv=
-en below, but looks like they follow similar approach
-Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+It would be nice to use fixed width values for the register offsets,
+e.g., 0x000 here.
 
-Could you please guide me on how to implement this?
-Also, please help me understand what is meant by 'strictly ordered'
+> +#define TEGRA_UTC_ENABLE_CLIENT_ENABLE		BIT(0)
+> +
+> +#define TEGRA_UTC_FIFO_THRESHOLD		0x8
+> +
+> +#define TEGRA_UTC_COMMAND			0xc
 
->=20
->=20
-> > +
-> > +  iommus:
-> > +    maxItems: 1
-> > +
-> > +  phy-mode:
-> > +    enum:
-> > +      - rgmii-id
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - iommus
-> > +  - phy-mode
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - =7C
-> > +    =23include <dt-bindings/clock/fsd-clk.h>
-> > +    =23include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    soc =7B
-> > +        =23address-cells =3D <2>;
-> > +        =23size-cells =3D <2>;
-> > +        ethernet1: ethernet=4014300000 =7B
-> > +            compatible =3D =22tesla,fsd-ethqos=22;
-> > +            reg =3D <0x0 0x14300000 0x0 0x10000>;
-> > +            interrupts =3D <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-> > +            interrupt-names =3D =22macirq=22;
-> > +            clocks =3D <&clock_peric
-> PERIC_EQOS_TOP_IPCLKPORT_CLK_PTP_REF_I>,
-> > +                     <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_ACLK_I>,
-> > +                     <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_HCLK_I>,
-> > +                     <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_RGMII_CLK_=
-I>,
-> > +                     <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_CLK_RX_I>,
-> > +                     <&clock_peric PERIC_BUS_D_PERIC_IPCLKPORT_EQOSCLK=
->,
-> > +                     <&clock_peric PERIC_BUS_P_PERIC_IPCLKPORT_EQOSCLK=
->,
-> > +                     <&clock_peric PERIC_EQOS_PHYRXCLK_MUX>,
-> > +                     <&clock_peric PERIC_EQOS_PHYRXCLK>,
-> > +                     <&clock_peric PERIC_DOUT_RGMII_CLK>;
-> > +            clock-names =3D =22ptp_ref=22, =22master_bus=22, =22slave_=
-bus=22,=22tx=22,
-> > +                          =22rx=22, =22master2_bus=22, =22slave2_bus=
-=22, =22eqos_rxclk_mux=22,
-> > +                          =22eqos_phyrxclk=22,=22dout_peric_rgmii_clk=
-=22;
-> > +            pinctrl-names =3D =22default=22;
-> > +            pinctrl-0 =3D <&eth1_tx_clk>, <&eth1_tx_data>, <&eth1_tx_c=
-trl>,
-> > +                        <&eth1_phy_intr>, <&eth1_rx_clk>, <&eth1_rx_da=
-ta>,
-> > +                        <&eth1_rx_ctrl>, <&eth1_mdio>;
-> > +            iommus =3D <&smmu_peric 0x0 0x1>;
-> > +            phy-mode =3D =22rgmii-id=22;
-> > +       =7D;
->=20
-> Misaligned/misindented.
+Ditto.
 
-Ack
+> +#define TEGRA_UTC_COMMAND_RESET			BIT(0)
+> +#define TEGRA_UTC_COMMAND_FLUSH			BIT(1)
 
->=20
-> Best regards,
-> Krzysztof
+> +#define TEGRA_UTC_DATA				0x20
+
+Ditto.
+
+> +#define TEGRA_UTC_FIFO_STATUS			0x100
+> +#define TEGRA_UTC_FIFO_EMPTY			BIT(0)
+> +#define TEGRA_UTC_FIFO_FULL			BIT(1)
+> +#define TEGRA_UTC_FIFO_REQ			BIT(2)
+> +#define TEGRA_UTC_FIFO_OVERFLOW			BIT(3)
+> +#define TEGRA_UTC_FIFO_TIMEOUT			BIT(4)
+> +
+> +#define TEGRA_UTC_FIFO_OCCUPANCY		0x104
+> +
+> +#define TEGRA_UTC_INTR_STATUS			0x108
+> +#define TEGRA_UTC_INTR_SET			0x10c
+> +#define TEGRA_UTC_INTR_MASK			0x110
+> +#define TEGRA_UTC_INTR_CLEAR			0x114
+> +#define TEGRA_UTC_INTR_EMPTY			BIT(0)
+> +#define TEGRA_UTC_INTR_FULL			BIT(1)
+> +#define TEGRA_UTC_INTR_REQ			BIT(2)
+> +#define TEGRA_UTC_INTR_OVERFLOW			BIT(3)
+> +#define TEGRA_UTC_INTR_TIMEOUT			BIT(4)
+
+...
+
+> +#if IS_ENABLED(CONFIG_SERIAL_TEGRA_UTC_CONSOLE)
+> +#define TEGRA_UTC_DEFAULT_FIFO_THRESHOLD	0x4
+
+Hmm... Is this a register offset? If not, why it's in a hexadecimal format?
+
+> +#define TEGRA_UTC_EARLYCON_MAX_BURST_SIZE	128
+
+...
+
+> +static int tegra_utc_probe(struct platform_device *pdev)
+> +{
+> +	const unsigned int *soc_fifosize;
+> +	struct device *dev = &pdev->dev;
+> +	struct tegra_utc_port *tup;
+> +	int ret;
+> +
+> +	tup = devm_kzalloc(&pdev->dev, sizeof(*tup), GFP_KERNEL);
+
+Use dev?
+
+> +	if (!tup)
+> +		return -ENOMEM;
+> +
+> +	ret = device_property_read_u32(dev, "tx-threshold", &tup->tx_threshold);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "missing %s property\n", "tx-threshold");
+> +
+> +	ret = device_property_read_u32(dev, "rx-threshold", &tup->rx_threshold);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "missing %s property\n", "rx-threshold");
+> +
+> +	soc_fifosize = device_get_match_data(&pdev->dev);
+> +	tup->fifosize = *soc_fifosize;
+> +
+> +	tup->tx_base = devm_platform_ioremap_resource_byname(pdev, "tx");
+> +	if (IS_ERR(tup->tx_base))
+> +		return PTR_ERR(tup->tx_base);
+> +
+> +	tup->rx_base = devm_platform_ioremap_resource_byname(pdev, "rx");
+> +	if (IS_ERR(tup->rx_base))
+> +		return PTR_ERR(tup->rx_base);
+
+> +	ret = tegra_utc_setup_port(&pdev->dev, tup);
+
+Ditto.
+
+> +	if (ret)
+> +		dev_err_probe(dev, ret, "failed to setup uart port\n");
+> +
+> +	platform_set_drvdata(pdev, tup);
+> +
+> +	return tegra_utc_register_port(tup);
+> +}
+
+...
+
+With the above being addressed, FWIW,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
