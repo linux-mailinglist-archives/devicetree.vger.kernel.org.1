@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-146228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13498A33CD0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:35:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44CA1A33CDA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 11:38:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAFFC18877DA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:35:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBC6C18884EE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 10:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B82210F5B;
-	Thu, 13 Feb 2025 10:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DBEA211A06;
+	Thu, 13 Feb 2025 10:38:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fTiOJD0Q"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jyapWIhM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 916922080D4;
-	Thu, 13 Feb 2025 10:35:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7984D1FAC42;
+	Thu, 13 Feb 2025 10:38:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739442930; cv=none; b=XeG8bQR7I3FNxwdovrN0UeYDfvm5OVzmhSDQMSMdmWhpinSvMdw5Ijle0hqVhuFKOaLXWAVFqAZOBru0ydzEh4nyqMu2iEWmVQ8LxdtfICz1qGFeS/cQhbVrIPrwqD+Yp1EYn3UgjKuB/N7G9acS/CGcSmq0EiLqyghywsu2cwA=
+	t=1739443093; cv=none; b=QfGIZoxNeZFzmaVoTuwO5EKJS+iN9U1ZHvtcPv59QoT9972VUzVGpB9jxyQuQTXLb78gBaYnXQuwj+OCJZakhPQ1xaFzwFevCGz9kUWP5BU+1p6z2+ucUWWPvxxEJpQfWj85q10YnxDeP97ek0zMAUAbS9AX5GOqqrf7jtFZu6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739442930; c=relaxed/simple;
-	bh=iKv36wyBftopnQn1R7KeXZd6yqLH/bu5+0UtsjV6sCM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iDfjfokdyZlkx83/YT/TDFogGQIOlZl3pCF2OQK/2zwgW5uk5X6TCgoo9bDPqBj024VDt/QwZR/QjOtWsENtf1uVdYGNL7BzwbvxZbMWPN1N5aogsAk9D6JcDV8wC5rvMoe4hv1cRwJojJ8RfJhqeUh8U6pmiTzXJvA3u+WLjy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fTiOJD0Q; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51DA72kG032747;
-	Thu, 13 Feb 2025 10:35:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	thaTTbC4cBiLguF9ah5xmscjMUoW45H5aqGsBgUzVBM=; b=fTiOJD0QBHfRsC7n
-	rEOXeNDk+JHyU8vm7bh7ieRJ1SAxr1S9/WAtyeIeWt23iZaOOKzDiYU/D6hNIa9W
-	hRFwmDM41+MW3EO42iTf1txAFKIaHAPZSNl6FLyd03s/RUSTE6aAk0UK0bfg0x//
-	oPimVxL/+2rIfimZn1nMENDskcZ35C86KMzI3ZWXrbVuKhuuP6fOa+ZnmLgt4VDH
-	68sYqv69dfQbAZ1jmRbAKTi1+GBmpKGO/F4c+rlY9f8JO9pYlSbKDxZZse6A628r
-	9qvdkFsBgqtXD5F3Ql/SZqzYHwPjaWkLCZv1e0w/LW4jnrtMOCZmawSCAFmrrMbp
-	8A8GRQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44seq002hw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Feb 2025 10:35:23 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51DAZDXT018709
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Feb 2025 10:35:13 GMT
-Received: from [10.231.216.52] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Feb
- 2025 02:35:09 -0800
-Message-ID: <1b2dfb74-3c4e-4739-a5eb-6aa07386a9be@quicinc.com>
-Date: Thu, 13 Feb 2025 18:35:06 +0800
+	s=arc-20240116; t=1739443093; c=relaxed/simple;
+	bh=tPc0mtOSvvNjsiyZamSxUZlYBtpbVsuKn6yjNRsFneg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EQyXmH1dRWhyEjtojhUICven5Dgp7I3GBtmCwWPLOyw1oKgpMC4xMBvhEhfk3DUQOcZ3HFpKk+l6KrVJv6X3Su2fBTGpCs1mrwaz0gM3OWDgHhvOH37HuysJDg4ZR5PQThAknpM43C6y2QFEjLVDvpn2i0r5uIrcRCnWSvCPkBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jyapWIhM; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1739443089;
+	bh=tPc0mtOSvvNjsiyZamSxUZlYBtpbVsuKn6yjNRsFneg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jyapWIhMsPTIC4FGk8FX0VVGQrKTcLx1TT3roWkmt8cBuNb/NifXwpN8sVEN7lgrI
+	 eZyAehAbaVhgz1D8F7v6nKC4LpR6kTbo0pIXD3/eeiu2hipqaxTrWHCl6x8v6J+Rot
+	 VfvDhqdurU2GdHkxQZCvvP9u2NyZoh24EmqR3ZxzCujWhOyRs7GU8V9GDbmYzIE0BY
+	 vHv+G59h8jfkdSrp6c/f65FHTwLUYv7mrkjdbr+JMAanEcnTeBQv16mfXK8nH3XbU+
+	 XflDFDPaurrGr5Y8o+8vLeuYh7pVPL/jjTKGC72Xx2ax4eif+muPolU8H0hyipPFIB
+	 0trke5SdKUQuQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4F62717E00A3;
+	Thu, 13 Feb 2025 11:38:08 +0100 (CET)
+Message-ID: <1eff72da-c88f-46bc-aa0a-4e7615184202@collabora.com>
+Date: Thu, 13 Feb 2025 11:38:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,71 +57,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: qcs8300-ride: enable BT on
- qcs8300-ride
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_jiaymao@quicinc.com>,
-        <quic_shuaz@quicinc.com>, <quic_zijuhu@quicinc.com>,
-        <quic_mohamull@quicinc.com>
-References: <20250211104421.1172892-1-quic_chejiang@quicinc.com>
- <20250211104421.1172892-2-quic_chejiang@quicinc.com>
- <eebcc0e7-4f87-45d5-8ad4-9d24145ef5b2@kernel.org>
- <6149d02f-21a2-459e-91f2-6c91b5093807@quicinc.com>
- <b9edb462-bf94-4c6f-a6dc-e22024a8bcb2@kernel.org>
+Subject: Re: [PATCH v6 37/42] drm/mediatek: mtk_hdmi_common: Assign DDC
+ adapter pointer to bridge
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "jie.qiu@mediatek.com" <jie.qiu@mediatek.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
+ <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
+ <jitao.shi@mediatek.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "kernel@collabora.com" <kernel@collabora.com>,
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ =?UTF-8?B?TGV3aXMgTGlhbyAo5buW5p+P6YieKQ==?= <Lewis.Liao@mediatek.com>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ =?UTF-8?B?VG9tbXlZTCBDaGVuICjpmbPlvaXoia8p?= <TommyYL.Chen@mediatek.com>,
+ =?UTF-8?B?SXZlcyBDaGVuamggKOmZs+S/iuW8mCk=?= <Ives.Chenjh@mediatek.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+ "junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
+References: <20250211113409.1517534-1-angelogioacchino.delregno@collabora.com>
+ <20250211113409.1517534-38-angelogioacchino.delregno@collabora.com>
+ <4ff6d01a040b37d4f581ea3808db4851e555a4fe.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Cheng Jiang <quic_chejiang@quicinc.com>
-In-Reply-To: <b9edb462-bf94-4c6f-a6dc-e22024a8bcb2@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fRu9y3zPdUvbAL_-5l5tRR6KjwfPPkRJ
-X-Proofpoint-ORIG-GUID: fRu9y3zPdUvbAL_-5l5tRR6KjwfPPkRJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-13_04,2025-02-13_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 bulkscore=0 clxscore=1015 priorityscore=1501 adultscore=0
- mlxscore=0 malwarescore=0 phishscore=0 spamscore=0 lowpriorityscore=0
- mlxlogscore=770 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502130081
+In-Reply-To: <4ff6d01a040b37d4f581ea3808db4851e555a4fe.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
-
-On 2/13/2025 3:36 PM, Krzysztof Kozlowski wrote:
-> On 13/02/2025 06:56, Cheng Jiang wrote:
->> Yes, label is not needed. 
->>>> +		compatible = "qcom,wcn6855-bt";
->>>> +		firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
->>>> +
->>>> +		pinctrl-names = "default";
->>>> +		pinctrl-0 = <&bt_en_state>;
->>>> +		enable-gpios = <&tlmm 55 GPIO_ACTIVE_HIGH>; /* BT_EN */
->>>> +
->>>> +		vddio-supply       = <&vreg_conn_pa>;         /* bt-vdd-ctrl1-supply */
->>>> +		vddbtcxmx-supply   = <&vreg_conn_1p8>;        /* bt-vdd-ctrl2-supply */
->>>
->>> Only one space before '='.
->>>
->>> I think this has multiple test failures.
->>>
->> Ack, Will change in next version. 
+Il 13/02/25 10:20, CK Hu (胡俊光) ha scritto:
+> On Tue, 2025-02-11 at 12:34 +0100, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>
+>>
+>> In preparation for adding the new HDMI TX v2 IP driver, assign the
+>> pointer to the DDC adapter to struct drm_bridge during probe.
 > 
-> Are you going to test it as well?
+> I could not find where to use hdmi->bridge.ddc in the patch of adding hdmi v2.
+> Could you describe more about where or which function would use this?
 > 
-Yes, I will test it. Thanks! 
 
-> Best regards,
-> Krzysztof
+I have already replied to this exact question a long time ago.
+
+https://lore.kernel.org/all/b5a77637-64b0-4ed3-9619-e76d094505af@collabora.com/
+
+Regards,
+Angelo
+
+> Regards,
+> CK
+> 
+>>
+>> This commit brings no functional changes.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> index 5ea45608921c..2c91f65f26fa 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> @@ -411,6 +411,7 @@ struct mtk_hdmi *mtk_hdmi_common_probe(struct platform_device *pdev)
+>>          hdmi->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID
+>>                           | DRM_BRIDGE_OP_HPD;
+>>          hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
+>> +       hdmi->bridge.ddc = hdmi->ddc_adpt;
+>>          hdmi->bridge.vendor = "MediaTek";
+>>          hdmi->bridge.product = "On-Chip HDMI";
+>>
+>> --
+>> 2.48.1
+>>
+> 
+
 
 
