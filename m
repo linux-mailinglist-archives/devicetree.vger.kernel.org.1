@@ -1,155 +1,139 @@
-Return-Path: <devicetree+bounces-146365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E380BA34A1F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:38:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D0FA34A74
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 17:45:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6AA07A4FBD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:37:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD5E2189440C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 16:40:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E3B26E162;
-	Thu, 13 Feb 2025 16:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A556E22156F;
+	Thu, 13 Feb 2025 16:30:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w7LwYRK+"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="LLZWOp/k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91D0269886
-	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 16:28:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C7881632DD
+	for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 16:30:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739464091; cv=none; b=I/zjVvixZ+TDRE14R46hKVzDITQzXjjoj3APSJNOXvYEXAgiAuFlyPsxE6ShyhDLZxxbMZMENPISZUgmmdChPw6YpvGX92GokC+dAPA5E1vzvr731JExNfjSTT9N/pA551gseNbCnKqd33sjcOXoIMtQcRzpxeYgewuZmG5DqFs=
+	t=1739464259; cv=none; b=NChwlCxO2DUstWOL1eZ7cEjZamEr12WSajGqg3BNc+VXbhZR+jjiXqHi9uQ1JMyhdaTrCNiy+rzy8kqqC80DQ5qiRcfpJq4/GCXSheevwX9QCTEnRXDMhLHpK0FSJdSZDg2bHoMGCXKExtCW6k36sq0ZA+evnKIrJ+Y1yLgOyes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739464091; c=relaxed/simple;
-	bh=my+RB9Jrip9aPGRvZHAD/1/UpXRs0+h6VzBYQ3PsJO4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=b13VjBMEDSI81pvtjP4inp/cLnPnW9cCCWymvTkrPdYEq5/2YiJwe61vYIohAaG5QCbQwVBte7MdmA57vKghQvkYz/G6xDPlf3ZhPE6KD1hKCaab/BJhsg4Mc8hka+FTKHMNAdYuXMy+4iS0VR0h37+T2wuAz4UKLFP0vdeDYIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w7LwYRK+; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-38f29a1a93bso409761f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 08:28:07 -0800 (PST)
+	s=arc-20240116; t=1739464259; c=relaxed/simple;
+	bh=o/51IyMp1iadw96C4sTg3+7DcvmfdS8ffzuD5PVOLzM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dDF08W0QKjSm7xSRuwYGMkbTRwWS08zn+oudR7CpQdC1pA7HER+nU6YyqZ7DvOIkza3HjOOxQVk4R2vOnKJKisvHuSKsM4C7Dj7URfo9D7ye5fMY7R6KyGIuZ3AM45lNYxaDMl3ZGbftvoplJa/G946aPX97jKfX8Sskng86f9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=LLZWOp/k; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ab7f838b92eso195145766b.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 08:30:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739464086; x=1740068886; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iDc93kMEYWIE43KW8M1DQx0zrLSt7yqt1TtwJm30k9Y=;
-        b=w7LwYRK+uXZAOyPIid0n7u7N1ejfpPwANfXf9ElIZF6rZS31Mr48Ep0y75Oa0owNRF
-         hP1ecq7c2iAKEphQOilQGgI9nGtOWGIdhnUlIr6uKMUU7YvjQUdh6V6GjZ5Owji8j/gl
-         bhtYLJyGo9sFieE7pn++2gciuoadPAK6SBk7cL7v3uHjiMtQp8r5kmv7pKYkp/uN8tF5
-         /N63LIf7NZ4dpi/kteZplOpxD5pMc7xSgMU3eagZprbLjrDjNbPsZ778mM4NJ9nPZycz
-         y9DKDWTb2dKoUdb/95LQ7Acu5hd9OzZRJGIEhgovNXl+ceOXkusQr3dkH+xXP4VL15td
-         E4GQ==
+        d=raspberrypi.com; s=google; t=1739464256; x=1740069056; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=o/51IyMp1iadw96C4sTg3+7DcvmfdS8ffzuD5PVOLzM=;
+        b=LLZWOp/k9O0iQdBoTYYkLC2opbafdJaOulLUXwXvahvC4NpRFlO4efhb49LikbQS44
+         DyjLuvXMZ8RTJM/9sZDT+pKaymsgQ1NUS3RtRqKGlGMtH4Hc6WqSE2Kag30lyYT6BPnK
+         2sdSgd+OaiF7rdiVqT8w0fvfeRCdP49MCQ02lQGeJdAx+7DtLUC/kDhjhdWVq+fJEYhn
+         qIApuq3jdCGeo1vOf3owgNVqYWcKNbig9H+iZzdH3C4RkJNnEdpghw7klAyVQbmcZkgl
+         yxevGvbxlbGA5G/Sm1mlvDvVmUe7JM1XfahWbQgkdJK/O5B+mHWqdJknptRkOH3fJeGY
+         5GXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739464086; x=1740068886;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iDc93kMEYWIE43KW8M1DQx0zrLSt7yqt1TtwJm30k9Y=;
-        b=Qy2Hkv8CypNCmjRzEE4IHzsKF5hBGDakhPIWD0FtvvXVnSDBHfMRA90f6b2PjYYO6B
-         +9uwZYka7Vr0y9dPGOoXg9kbaLjuGz1F077wrF0NL8zw3aY5frhsYs9dlahiD3O1F5dD
-         cUwyaQiNHWwYBfczVm3xLHOWuIn4PPFmbpehDEyjuPCYUbcEUyVmAnfYo4OrJ4A0eAEg
-         I9jfUSPzCTjpYBzgXYGgCmB12CFARANJggOi6JhLfOKcnEsCu88v3TSQzfYdba4nwHPH
-         v8zxhqB9JPIgTJJrI3L/8nrfZMWWwGQi1mfzxRFG4EBtORGH99T1QoI4tZAoiVzU3j6v
-         UUSA==
-X-Forwarded-Encrypted: i=1; AJvYcCXaRLYn8LqWVX1K0PlRY0QacZeciNfrroeB1iooTgTmvZkV8jp9nAENkBcs0AJjF2SKG/MBUYU1VNVj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwVAo5munIjuPpLE087o2/Y1Z5KLI27DjkuZVOl03WkpH53E10
-	RSRIU2MkZNS96iEbBUYWSjwtgpAyeEQrX+V7yujXgLIBv+oq9M6z3IeiGPZ+41g=
-X-Gm-Gg: ASbGncsNGsY5sGfHs050BE74+HtPGsHgsdcD875FgsAvAjY5nvCvIH+fuMCNnHVE1cc
-	q0BI/N0DGiIVlv1vDRQRCuRtvddLv2aAHnA9tEeVfU68rHih1olp+5+dHU4MBlrDEvG9FevVBWl
-	aNbeiUMNWg/JyjOZ95Un8OwsxiGnxFIhMT/OilIOIVh+WI5f1Rbi6vJLsESShNlXVgPRTitNKjY
-	bp53LoHEP0h//2jO8Tdbh/ek57p96A/C3iaWk54xqqqAIOpmm8pCi1qCeK+0IUErvF8jos95Ur6
-	/C68Ol2keOUW3+Za7sx4OGko/dAbfszct4fJ
-X-Google-Smtp-Source: AGHT+IFU/9Ezw9WpHOEwKFHI3agr//zJrArAr/XSAw2dHqAeOMUzEQHlgonTqcBFZjTTclKxtAjURw==
-X-Received: by 2002:a05:6000:186d:b0:38d:dffc:c134 with SMTP id ffacd0b85a97d-38dea2eb4bfmr8227417f8f.39.1739464085999;
-        Thu, 13 Feb 2025 08:28:05 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258b412esm2274382f8f.1.2025.02.13.08.28.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 08:28:05 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 13 Feb 2025 17:27:59 +0100
-Subject: [PATCH v4 4/4] arm64: dts: qcom: sm8650: add missing cpu-cfg
- interconnect path in the mdss node
+        d=1e100.net; s=20230601; t=1739464256; x=1740069056;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o/51IyMp1iadw96C4sTg3+7DcvmfdS8ffzuD5PVOLzM=;
+        b=gjx+1hz3sxaVW8c9pvxFp8WyQoLYIYeDeff6eN2rQfkPiwRznu/grkfMkDQtQpw3va
+         0YWUWxIIL9//jeacXJ5vmHSSMbYNkDbCCOgIWoUrN5mQvTG5EdZfrqaU2fwqhoIuJuIJ
+         TicSKk15tTfeCd0H+9iukJvmBu1Yr6Uf1a+lIFizhrzTBkZsbRezKorMICUpwhuEVupQ
+         EnZ3Kn3GBIMx6pdxapPRYODpp18I7m7K4Nb6e1msnbqrWsHbCtvkX8THPMtbTc5mEqgB
+         dl/SvtJsNyoYsdClbhDEPJTYr10+h2HZC3I3Zw4DD32u9PrGBLQhiLTRr1xKG7AgzLSF
+         nohg==
+X-Forwarded-Encrypted: i=1; AJvYcCX3ozpcdYeW42UoGcF3Tc7kPadvLCmIYi4fFPj9ls7n2csOmCarsEr9RrxUqL+xfXJl4pO56aJBuOAP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7YaqlOyMSVb8SmSNiRrcixph3A62ExhE87V/lSClPWK+sNIoG
+	PUta2P+oAbtHolrPIXvYodwFVDohFKdCbKXDxLmu7Fgivoghm/3jIvqmGaR9v0Jvyzo9xSp2izv
+	b1aLM3qSRIRWmcxVsinomeAQoKJxP2uLZiQrnGw==
+X-Gm-Gg: ASbGncvDdqvqVHVGb3zaPbA17X42SI+2LzRUWnKLlGOvZKqvQKN1jA1ACXCsuiPJP21
+	UpCY3bRdKvYH0Vw5LPruWq7d4G4N0fu6JouFXiDR1qb/9eoP7Fupfqzi49O56u6nzHDW9t9PbQd
+	AKfRErPOnn/dFNA4g4kl8HWE14c8WW
+X-Google-Smtp-Source: AGHT+IH5GCCG2j+0durJuW8Oa03Wrl0Cv4HeP5h1Abx+8pHhFwZ922emqHD5DAYivn9wYSdjWCmVxGwnF2qbKv7sLSM=
+X-Received: by 2002:a17:907:1909:b0:ab3:76fb:7523 with SMTP id
+ a640c23a62f3a-aba501bce21mr457456966b.53.1739464255721; Thu, 13 Feb 2025
+ 08:30:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250213-topic-sm8x50-mdss-interconnect-bindings-fix-v4-4-3fa0bc42dd38@linaro.org>
-References: <20250213-topic-sm8x50-mdss-interconnect-bindings-fix-v4-0-3fa0bc42dd38@linaro.org>
-In-Reply-To: <20250213-topic-sm8x50-mdss-interconnect-bindings-fix-v4-0-3fa0bc42dd38@linaro.org>
-To: Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1271;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=my+RB9Jrip9aPGRvZHAD/1/UpXRs0+h6VzBYQ3PsJO4=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnrh2RyIwuxEyQJnCqN4BQzwBgsz22oIe5p3/foBpN
- 3ycZJKeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ64dkQAKCRB33NvayMhJ0Z4JD/
- 9QWqppUyEnVCwdINgX9VFB0i8zoyuyZeu6IuDCoC9ZEqWoOs8NkpPN3ASdQr13S8PSIYLl377Y1oyp
- 5eeA6/WQAaEysK6t2aXfsQ3/ReD0a5Ac3DdRrNmleh6ZlEeaU0+AmQIoTygKbsAwZPRni9ZA9K98fl
- /NQ8weA+fwoAs+dY4XyM1Mh3m1kA/oq27fC/jiAe8K4S3OS2WaLDRZ3B0SmJMkY82b2fjv73YjqBRV
- 3htFOiOZTllEcFeMvAT7w+fE13umvRgT/kXrTsnd36VAvyDaZFltGUz6ymHB4kJVzytzc0UwLEMDmL
- E4z5cc4mtjo6iEE2Xlc0uY3OQz9pQ/Ni6m4RckyzTQ2ZackPXKh8WuINx/IwLSGFtY4K6i7OgB+YlV
- 49QaGlZgn4Ns7+BI/r8wuaAZHnijxZ17M1a0871JFon21oS/3XOfIDj+PIqVQH9bWGnV1erkdHce7R
- XJK8ffMPB/BQitgVl+Mm3J4mGbVgoTgfO9yjSi3fsoejYJGmspR9wnA5mDszU6zgeLiqYpeOD+hPSy
- hlcMhtnhos8K5RDwdhWfZ7yj/fYr9K4Rv5hxb8jbgxyLbaBMVqXVI6MgSA1Ya5MJnGDI/7uioYE4wW
- GTZlXhTPjsoFcf9wfs4Ga5/nJ/HJjdfx/ymjSsOzPSybrYUrT5wB+dYZxK6w==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+References: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
+ <20250213171435.1c2ce376@bootlin.com> <a3c5103c-829a-4301-ba53-6ef9bd1e74e7@lunn.ch>
+In-Reply-To: <a3c5103c-829a-4301-ba53-6ef9bd1e74e7@lunn.ch>
+From: Phil Elwell <phil@raspberrypi.com>
+Date: Thu, 13 Feb 2025 16:30:44 +0000
+X-Gm-Features: AWEUYZnIbvhJ2Gv987WOr8gH33pSGmprAqtfnZVU0XicGf3dfKPk3tqt9y_XRUs
+Message-ID: <CAMEGJJ3-JXhin_Ht76EqUNAwLiNisa9PrCrdUzCgj=msGZfb5A@mail.gmail.com>
+Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device using
+ a DT overlay
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Herve Codina <herve.codina@bootlin.com>, Andrea della Porta <andrea.porta@suse.com>, 
+	Arnd Bergmann <arnd@arndb.de>, 
+	"maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" <bcm-kernel-feedback-list@broadcom.com>, bhelgaas@google.com, brgl@bgdev.pl, 
+	Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, derek.kiernan@amd.com, 
+	devicetree@vger.kernel.org, dragan.cvetic@amd.com, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org, kw@linux.com, 
+	Linus Walleij <linus.walleij@linaro.org>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, lpieralisi@kernel.org, 
+	luca.ceresoli@bootlin.com, manivannan.sadhasivam@linaro.org, 
+	masahiroy@kernel.org, Michael Turquette <mturquette@baylibre.com>, 
+	Rob Herring <robh@kernel.org>, saravanak@google.com, Stephen Boyd <sboyd@kernel.org>, 
+	thomas.petazzoni@bootlin.com, Stefan Wahren <wahrenst@gmx.net>, 
+	Will Deacon <will@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
 
-The bindings requires the mdp0-mem and the cpu-cfg interconnect path,
-add the missing cpu-cfg path to fix the dtbs check error.
+Hi Andrew,
 
-Fixes: 9fa33cbca3d2 ("arm64: dts: qcom: sm8650: correct MDSS interconnects")
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+On Thu, 13 Feb 2025 at 16:27, Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Thu, Feb 13, 2025 at 05:14:35PM +0100, Herve Codina wrote:
+> > Hi Phil,
+> >
+> > On Thu, 13 Feb 2025 15:18:45 +0000
+> > Phil Elwell <phil@raspberrypi.com> wrote:
+> >
+> > > Hi Andrea,
+> > >
+> > > The problem with this approach (loading an overlay from the RP1 PCIe
+> > > driver), and it's one that I have raised with you offline, is that
+> > > (unless anyone can prove otherwise) it becomes impossible to create a
+> > > Pi 5 DTS file which makes use of the RP1's resources. How do you
+> > > declare something as simple as a button wired to an RP1 GPIO, or fan
+> > > connected to a PWM output?
+>
+> Where is this button or fan? On a pluggable board? Isn't that what
+> overlays are for, and they are stackable. So when you probe the
+> pluggable board via its eeprom etc, you find the overlay and load it?
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 483ae63e6032823e8cc13e8aeb6db70e3948f02d..1737265d364601494c329e79174c082c98e4d0ec 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -3997,8 +3997,11 @@ mdss: display-subsystem@ae00000 {
- 			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
- 
- 			interconnects = <&mmss_noc MASTER_MDP QCOM_ICC_TAG_ALWAYS
--					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
--			interconnect-names = "mdp0-mem";
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+			interconnect-names = "mdp0-mem",
-+					     "cpu-cfg";
- 
- 			power-domains = <&dispcc MDSS_GDSC>;
- 
+In the Raspberry Pi ecosystem it would be the firmware that applies
+the overlay, and it can't do that if the resources the overlay refers
+to are not yet present in the dtb.
 
--- 
-2.34.1
+> Or do you mean a custom board, which has a CPU, RP1 and the button and
+> fan are directly on this custom board? You then want a board DTS which
+> includes all these pieces?
 
+That depends on whether you count the Raspberry Pi 5 as a custom board.
+
+Phil
 
