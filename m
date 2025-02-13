@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-146461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84DEFA34FFA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:53:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E75E6A35002
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 21:58:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9BB23A276A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:51:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77C7516AF61
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 20:58:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF83724BC0C;
-	Thu, 13 Feb 2025 20:51:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FDE62661AC;
+	Thu, 13 Feb 2025 20:58:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rOQzpPjr"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="b67JlGuC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A2320766C;
-	Thu, 13 Feb 2025 20:51:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348F128A2C0;
+	Thu, 13 Feb 2025 20:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739479879; cv=none; b=TxEeD1CNzS5Q3vOL8gjNwjn0+wHRHQETfW43DJ0+OBw5yFilxD1qdWHHP3HHgWflqs9R/GSI4j0e1rtZYL8Tg4/vq7zqwkW9OSfP/5rTzl/toSzIrOsCjslomai4kF2pyqDKfMtW6/uaG3pnjFoxAp7EwWBPJrfu8njFLHl8xEw=
+	t=1739480306; cv=none; b=MI8DaH3HfIVEfDTCwRjpIJUY90uppBryBt8dpwrqRskm05Nx3Z7as/xXk3qQGbwXCL675KObPraYCRE7AAcZ55J33xqyaCU/hFv11xnYsQCf+rrQMGdR69mPtXGyLkAUdXQ9Lw/qkMxq6dwTva61TbBmLTxm0AjjePi/m78eW48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739479879; c=relaxed/simple;
-	bh=512cv4Hj1Kz9k8u6r5KTAHRKubmEdQ2373KIf+8y/nQ=;
+	s=arc-20240116; t=1739480306; c=relaxed/simple;
+	bh=DMvs0zGdbiCX/sjLoR9VNsU3LUegWEBDqfY9b6mUYj8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zi/tShUgRT+F4gfD8pV+Uqrh6niTcM17Q9cfPUOAvyB+fWWgLF7QCAYUUIkkcBKFOfxMMGN9g527R3OZU1SoLFdK/tDISUIR3a7i+09ZzuAs0dOU+2tqQQYRVq97HoxzE39VQt+4fQzQvYoAzD5gxGqXkTLryZC+PLcW67C1FCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rOQzpPjr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BED96C4CED1;
-	Thu, 13 Feb 2025 20:51:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739479879;
-	bh=512cv4Hj1Kz9k8u6r5KTAHRKubmEdQ2373KIf+8y/nQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rOQzpPjrf+SK50+lfxnvf1j6ydyFhRq+h3/1SS37zqLNdyguRVlBObbP1/wRV0at/
-	 +cca9LNWhv8GMr4NpXlWyHwjN2EsM3Zze84WS+MnVfh5DDswhAOygzmSDUKi4RNEMw
-	 W9XTcRCyXaqAiS0YlOjJ93ByT9I6kNGLTbYgKNCFtL2uFjH6E3cpzuaQHLZrq5Fh43
-	 meI4vmlfv8CvQzjCMKOzSD9/HcXIvAWoRS+Zs0aZLI5YIsWmaBcg8f/mx+LgeXocUJ
-	 GwMtsdYdGuWko8E5Vr4XkKGEcj8pddoYRhOHKbgd6vfPEcY5H+KykSlOKqAoh7HEqH
-	 nTNI4vN7xs7jQ==
-Date: Thu, 13 Feb 2025 20:51:13 +0000
-From: Daniel Thompson <danielt@kernel.org>
-To: Nick Chan <towinchenmi@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v5 RESEND 2/3] backlight: apple_dwi_bl: Add Apple DWI
- backlight driver
-Message-ID: <Z65bQeITMp1mpHp8@aspen.lan>
-References: <20250203115156.28174-1-towinchenmi@gmail.com>
- <20250203115156.28174-3-towinchenmi@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=tO5nxjrPLxN+nSvuyiMnACqc5e4xnMezVhfnPj+THfKPQzdSYXnV0Q5k2+MKQobhXAcHFPeX/FWjF67mYChjcYpF9mXKICfLKI0LijI2BCUxgMt2yN5wms8ChkZz3nKnyyys/Pi0wsBvUrRtbTeM9Kw7a8uef+LVbClKmMD2Ufc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=b67JlGuC; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 26DE544300;
+	Thu, 13 Feb 2025 20:58:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739480301;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LWJiM1NFkSJ0D7UA78bKmM5hHyORgZQGH37a4foanvg=;
+	b=b67JlGuCv3yJdSsndGs/nZkpiGYuhphZ7pGjGTTiU7QbULpqySbNoRzg6g/b9mZ1plFOF9
+	iiSZCrQdbFnpB39cmPO+F25DJft8U343DgI8Rp5buSMRtiJDyv+2Cxd/XgYqn2cWjJPgFJ
+	cbbmdxOCqfxm5uFQGc0r3of/Jxg+b7/k7I4Ow5NUa+dwlGGHRRsAyC22uq4bYsXrPeoPk7
+	GLv4a9o2UjkuisxIFWbePEjQt90HCmYnc3Ov9dMhxNc7QrgjvzUcIJx5DdO4N4xq6ixznu
+	mMacCfwcvgU1jVo/6m5aRFthKxWbyrTIFO4XJxPXHv6rOrPYV65LnXxpLlMbzQ==
+Date: Thu, 13 Feb 2025 21:58:18 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: linux-riscv@lists.infradead.org, linux-rtc@vger.kernel.org,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
+	Inochi Amaoto <inochiama@gmail.com>, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	unicorn_wang@outlook.com, inochiama@outlook.com,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	dlan@gentoo.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 2/2] rtc: sophgo: add rtc support for Sophgo CV1800
+ SoC
+Message-ID: <20250213205818f14edd30@mail.local>
+References: <20250213184622.2099324-1-alexander.sverdlin@gmail.com>
+ <20250213184622.2099324-3-alexander.sverdlin@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,45 +68,98 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250203115156.28174-3-towinchenmi@gmail.com>
+In-Reply-To: <20250213184622.2099324-3-alexander.sverdlin@gmail.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegjeejlecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehlvgigrghnughrvgcuuegvlhhlohhnihcuoegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegieduueethefhkeegjeevfefhiedujeeuhffgleejgfejgeekueejuefgheeggfenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmedvugemieefjedtmeejkegvtdemtgdtvgekmedvkedtieemkegrtgeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvugemieefjedtmeejkegvtdemtgdtvgekmedvkedtieemkegrtgeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduiedprhgtphhtthhopegrlhgvgigrnhguvghrrdhsvhgvrhgulhhinhesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigqdhrihhstghvsehlihhsthhsrdhinhhfrhgruggvrggurdhor
+ hhgpdhrtghpthhtoheplhhinhhugidqrhhttgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehqihhujhhinhhgsggrohdrughlmhhusehgmhgrihhlrdgtohhmpdhrtghpthhtohepihhnohgthhhirghmrgesghhmrghilhdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriiihshiithhofhdrkhhoiihlohifshhkihdoughtsehlihhnrghrohdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On Mon, Feb 03, 2025 at 07:50:33PM +0800, Nick Chan wrote:
-> Add driver for backlight controllers attached via Apple DWI 2-wire
-> interface, which is found on some Apple iPhones, iPads and iPod touches
-> with a LCD display.
->
-> Although there is an existing apple_bl driver, it is for backlight
-> controllers on Intel Macs attached via PCI, which is completely different
-> from the Samsung-derived DWI block.
->
-> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
-> ---
->  drivers/video/backlight/Kconfig        |  12 +++
->  drivers/video/backlight/Makefile       |   1 +
->  drivers/video/backlight/apple_dwi_bl.c | 123 +++++++++++++++++++++++++
->  3 files changed, 136 insertions(+)
->  create mode 100644 drivers/video/backlight/apple_dwi_bl.c
->
-> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-> index 3614a5d29c71..c6168727900a 100644
-> --- a/drivers/video/backlight/Kconfig
-> +++ b/drivers/video/backlight/Kconfig
-> @@ -290,6 +290,18 @@ config BACKLIGHT_APPLE
->  	  If you have an Intel-based Apple say Y to enable a driver for its
->  	  backlight.
->
-> +config BACKLIGHT_APPLE_DWI
-> +	tristate "Apple DWI 2-Wire Interface Backlight Driver"
-> +	depends on ARCH_APPLE || COMPILE_TEST
-> +	default y
+On 13/02/2025 19:46:15+0100, Alexander Sverdlin wrote:
+> +static int cv1800_rtc_probe(struct platform_device *pdev)
+> +{
+> +	struct cv1800_rtc_priv *rtc;
+> +	u32 ctrl_val;
+> +	void __iomem *base;
+> +	int ret;
+> +
+> +	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
+> +	if (!rtc)
+> +		return -ENOMEM;
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	rtc->rtc_map = devm_regmap_init_mmio(&pdev->dev, base,
+> +					     &cv1800_rtc_regmap_config);
+> +	if (IS_ERR(rtc->rtc_map))
+> +		return PTR_ERR(rtc->rtc_map);
+> +
+> +	rtc->irq = platform_get_irq(pdev, 0);
+> +	if (rtc->irq < 0)
+> +		return rtc->irq;
+> +
+> +	rtc->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+> +	if (IS_ERR(rtc->clk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->clk),
+> +				     "clk not found\n");
+> +
+> +	platform_set_drvdata(pdev, rtc);
+> +
+> +	device_init_wakeup(&pdev->dev, 1);
+> +
+> +	rtc->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
+> +	if (IS_ERR(rtc->rtc_dev))
+> +		return PTR_ERR(rtc->rtc_dev);
+> +
+> +	rtc->rtc_dev->ops = &cv1800_rtc_ops;
+> +	rtc->rtc_dev->range_max = U32_MAX;
+> +
+> +	ret = devm_request_irq(&pdev->dev, rtc->irq, cv1800_rtc_irq_handler,
+> +			       IRQF_TRIGGER_HIGH, "rtc alarm", rtc);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "cannot register interrupt handler\n");
+> +
+> +	rtc_enable_sec_counter(rtc);
 
-Sorry to pick this up late and on a resend but... I can't come up with
-any justification for "default y" in this driver.
+Really, this must be avoided, this loses precious information and
+changing it later will break users. What must be done is to check
+whether the RTC is started in .read_time if this is not the case, return
+-EINVAL instead of an invalid date/time.
+The RTC must be started once the time is set for the first time. This
+ensures we can detect when the time is invalid.
 
-Other than that this is a really tidy driver so with that changed please
-add:
-Reviewed-by: Daniel Thompson (RISCstar) <danielt@kernel.org>
 
+> +
+> +	return devm_rtc_register_device(rtc->rtc_dev);
+> +}
+> +
+> +static const struct of_device_id cv1800_dt_ids[] = {
+> +	{ .compatible = "sophgo,cv1800-rtc" },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, cv1800_dt_ids);
+> +
+> +static struct platform_driver cv1800_rtc_driver = {
+> +	.driver = {
+> +		.name = "sophgo-cv1800-rtc",
+> +		.of_match_table = cv1800_dt_ids,
+> +	},
+> +	.probe = cv1800_rtc_probe,
+> +};
+> +
+> +module_platform_driver(cv1800_rtc_driver);
+> +MODULE_AUTHOR("Jingbao Qiu");
+> +MODULE_DESCRIPTION("Sophgo cv1800 RTC Driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.48.1
+> 
 
-Daniel.
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
