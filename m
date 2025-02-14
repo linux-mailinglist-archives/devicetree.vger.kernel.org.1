@@ -1,230 +1,177 @@
-Return-Path: <devicetree+bounces-146562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF5DA356F4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:18:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C55A356F9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:21:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E2E33A1290
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:17:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0D2F3A0747
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:21:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6861FF7DE;
-	Fri, 14 Feb 2025 06:17:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ECF41FFC42;
+	Fri, 14 Feb 2025 06:21:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GEqqZRoh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h1vOSeLL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328791802AB;
-	Fri, 14 Feb 2025 06:17:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A5019007F;
+	Fri, 14 Feb 2025 06:21:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739513860; cv=none; b=T7yDo3fM/ia2lydtoOI7QChhdcXBF4eaYs00bCskrjM0HjvZE2jZPg3krLMjzxrLKtXz6kW959RTnqVsychhTOiv7W+c1nLSybG6uESs00XK8dDEcVSw7KghHo1Zdt2Scs96AiDPTvx2eB9CrhAG/HRt9NS1fCTuG+9sheefq1U=
+	t=1739514080; cv=none; b=gFwcFMHdVGMjkky2ZiyZVJb4K5ixvlj6KdJA9iL5MiZ24XA8DnJ+J2l957b4BKphFVXJ/6hslGdT3htAM41m4mh8LJ6M8sI4v0cjHr3/bItOEnjNieQtgnZE5brh2E1xPJFP7aYBeOd+0RqOc0+LHDT1zYKSri7MC+henTyEJ34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739513860; c=relaxed/simple;
-	bh=w25nGQtVxpWFNfJEW6tc8GMGWH8yPyXxGTlraUkS5FM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J5hSFCxEcB3FwkPzeK0F6/lIzm+YzAxsVQ6lfBCx2+/TcSRX0+/bHh8WjAsi8RqG70UCDp+wEwAzCihI3RvaKUUxGwKehydALy1u6RVaki4QbFo+pEpuZtsJ6qT/Ch6MisXZBhoa3nLtC/y6MaGbDxpiU1V5+HBQ4m3sEiWwCZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GEqqZRoh; arc=none smtp.client-ip=209.85.221.181
+	s=arc-20240116; t=1739514080; c=relaxed/simple;
+	bh=NAU3AVm4eV/usC6vbc9yMMvy4cwmwfP9l346LdyuCYw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jEFVOM+3X+4f5oEqHDoowuO25q8HTsf2+ZFELxTfEZZ36EJBo3NxyMppkH9qMJ5AggoXAYOs6n3lL/ElyvgXxAQrkGUi/36gJEnVfnK5mkl44r939Bcg7+bAf0k98gFt2ArA7s/kqJguxWrsQ27ND5LN1xLlkq92HC+zjN6AYxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h1vOSeLL; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-51f405fce23so524825e0c.0;
-        Thu, 13 Feb 2025 22:17:38 -0800 (PST)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-38dcac27bcbso1741339f8f.0;
+        Thu, 13 Feb 2025 22:21:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739513858; x=1740118658; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4sIcvxrX099LtAxbJT25rmi+yeCJ3k33A3mIelkkExA=;
-        b=GEqqZRohimFNTPQ4qW5Jqedur6g0DIoYs4pbZBMKb5Bt64ZTt/skcQxVoy2vOqwgqP
-         NVCD+Ky9EcyaaAovid9E3u+oyoaSYv2g5znReSjg+29f0tDA0/odAZ7iFoLQ6FErEtFk
-         9HqnoCQXLJQBNytduKY737VL2oIQmOkVrWV41cnrmv0YPQLWwK+Moh1e7lOlk2I3SajK
-         3B21FcMxEC0ylsHMLzdVgdppF4T8W/dWIzYkNsYbf0P8I7P7Smx3FUFzcyxgOEV27zeg
-         b+zdkOlLu9mKxyFn1CSXz9yVPVZupq59YCdtme0PgLZY5FzZQ207MCkjdbd+872VuLvO
-         4p/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739513858; x=1740118658;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1739514074; x=1740118874; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4sIcvxrX099LtAxbJT25rmi+yeCJ3k33A3mIelkkExA=;
-        b=MhuDQeIHSJFEb7DualpK+c4WvhZ1WEreXT3rNPfAACtQ8PSuvsc3v3knAeB4jdrrtB
-         7Q7sp64+DgmmdthDfkoYg2/qeL/YBc8N4zUMNzBBrdqqf50z+jziluTYZhqvJcOsSioG
-         sj9ecjgZ4bks2fDQ9d0TspZE4e6TFOvXHTkrvI6kVNnmJOR6120CS7/VSq7yAxkmsM5h
-         YrRwc+Ws0dKH5/vq+ms7QSepqwT1XCG5vbioN0brkmK3BCbxqd1ZCBd5AYbUqqXjji3h
-         B4o15g67BDUjHB3uYeGFsjI+cJ9QnMTRczkG82LyGeumfOd0IFHjrquWxzHx9Ir8h4ZE
-         Bnhg==
-X-Forwarded-Encrypted: i=1; AJvYcCU8rF17IMXQIA0JSaHJsgjETImdpfgSbZQw0vaVVwTODTW9K4XGII+ayWan43QtqM+gDLLTyPjyeZLE@vger.kernel.org, AJvYcCUjPxiYKiOhLTsKsFZyt08RYnUr+gCAWZIVFo8yiWpKLEI6X1MXwgbBWMf4cJsJOt3g0Jv9atKFwSjlkcxN@vger.kernel.org, AJvYcCWT+P2SDe0EXmbIHF4rh7xrGxrYVBYN0TebZW2UtSr17wlXmFudbwZ+yiuUw0ziIw2Cbi+5xRVPRjYagw+F@vger.kernel.org, AJvYcCXdNkdAWAONq4VEwAm3KpYQFnPHGj8mUXku+TNsend168Uy4KlfbktCzSNW2ks00NKgHOpYwcRP7iSS6wcGCPeiHB8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwZ9H0TrngndxZO5yUyS+WegOLV9vGf6qyhT6efrBWQ1z13wJl
-	qQbPHFGgVaGhgm/ekgk04UPcGbNjnewaHVui6to5Q0pbNlHxyRn1
-X-Gm-Gg: ASbGncsp9gDUv4THdttGYA1pGHqRTx1MV5v8/QFzZGRnIsz3m9j4JErP/01BnkLziTa
-	kiTOnNUJ8FikraLkdtMan8Rm7A30zlm8bhY9GYM9ZmN0oa9hvpERLO5tZhfLVWt5s6y7zl5Zy06
-	WT0TZlTP7gCMTFgVrNDQ/HK/7VWaIhrBoX1xFYhYmz6J04IjujIZjGuGvKob2w0MvQ6aBH8FZ1f
-	E7tL1Ki+D/b4ByHuSwuknm0XbqVJKXNda4G+VhYSti40WyAup4Moc9HGyUwv/k3J36saYwvb0Gt
-	+roFycllziLxtmkQoAgBFxJ/8n61O8cMGwkiVWfp0lT+aiTmodVQU3igPWNptQ==
-X-Google-Smtp-Source: AGHT+IHRLYoJKdwZm1YCd9aBf7aEL7V8Zsi2JM2MJI5ygyPB2inPNLw5h4kckPoKN1ULpGO4ZArePw==
-X-Received: by 2002:a05:6122:8c0c:b0:51f:405e:866e with SMTP id 71dfb90a1353d-52077dbf86dmr3546146e0c.1.1739513857884;
-        Thu, 13 Feb 2025 22:17:37 -0800 (PST)
-Received: from droid-r8s ([38.44.237.182])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5207ab4fc73sm487086e0c.36.2025.02.13.22.17.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 22:17:37 -0800 (PST)
-Date: Fri, 14 Feb 2025 06:17:30 +0000
-From: Denzeel Oliva <wachiturroxd150@gmail.com>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: alim.akhtar@samsung.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-	jirislaby@kernel.org, krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org,
-	robh@kernel.org, semen.protsenko@linaro.org,
-	wachiturroxd150@gmail.com
-Subject: Re: [PATCH v1 3/3] arm64: dts: exynos990: define all PERIC USI nodes
-Message-ID: <Z67f+lDxISVubiJJ@droid-r8s>
-References: <20250212234034.284-1-wachiturroxd150@gmail.com>
- <20250212234034.284-4-wachiturroxd150@gmail.com>
- <40370a0e-775b-42e3-bb6c-8cacaa0482cf@linaro.org>
+        bh=RCsOlKlhoB3KyOaKJojj7jOpAy8XUWuEdDWgdN66pjs=;
+        b=h1vOSeLLzG0Gti10pCMFoXbwdgmvo4kvoheOamW43wpJZYP1A3QjICwjsJMFJXFGHs
+         FaD3qcQzmjNItZN5f7RBLsyzAC/g9G7gKph5BJmu6KruFj5mV7oVDqD0AgLeuHWj9Tqq
+         DzDX4ZbMmya92kioFM8D/CIb5hvYe/TVQs0T4T2LB3T8nlAqJR3kPbATXWRsh1FNlkaG
+         PwjzWONMVCQdGJ8HSWDbktZqsg7te0DpDl+PgxIVvuzucn5gcbuOd4Gn8j76oVmLviHL
+         vs1Kmu2G+1Q5GulzPjPBD9ytonzxNOKo5p4XQcdu9PTq5o5C5ToRYJofpEyT3M5ZULn7
+         1s9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739514074; x=1740118874;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RCsOlKlhoB3KyOaKJojj7jOpAy8XUWuEdDWgdN66pjs=;
+        b=r/dEGQ6EVvEkeA5oIB+9nFUuW1l6DITXWURmC7EA4jANsvYRIVcID8YzK/g/Zp9vpT
+         tjK0CpmospconEPuEo6pICvJVQLnx58sycj1Fflh9M++jvfHNmSmCW7JhZWtxvtpRGXL
+         II+Xj7GL1lfBIccGWFLuLZOlcAgYFkMt/tifpEqfeubThTxGuMK42rXSH2Hzkgp9HM1G
+         JSOAqxJVAhedv/+oFSypevXf66yqowq0MEsGV93Qn+xtD+M5JD8DEj7DjKJhHHD7C40W
+         OZ1cvLxmXM3ROxW1aRCEtVZVxzFja7NEjB+XGf4bc61MQI0Rf293QKMyHt0iEi6FXukw
+         OKZA==
+X-Forwarded-Encrypted: i=1; AJvYcCVDfGoBouiLM6xDfLht//yQIQkMgcrO8uk6cSghCBPkYXaWB6lfN9Sk+rpbzX5DtmcXNtASN5vfM+pG@vger.kernel.org, AJvYcCVQXuBVoE+xHRvrYMCxKiaBiB/ZRYcU/vJzm9h9zr96mFKTPQ+dYciqJfV7WilFfJbFkwWgZq5tJsibEBM=@vger.kernel.org, AJvYcCVTfC1Zvd25q5Vuz54OP7iseyYZXLzp/1WDxECbfPVrp0oT6kHox45EsscZ+z8bW42yas6k5iIMvJ5RecJ7@vger.kernel.org, AJvYcCWs2uVv3u2g/FPBukZaLFoIK+MX+7mKyhuHyWUSoppNY8DchheHJIUVjQmBIj7QRRcWT3I+uG3rmX8h@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLd+hqMtpj5wkYRVKyL2Le/TSKaHhKr6/Q7xPu7/KCaYgBAEgV
+	TbApTM0YhazM+HV11qnZIr5zzL4rvZHtUOpk9CX7P1gArnbO/cKyss9TjzRZKmxCTGl/2qX0kR9
+	hNn8hhE92t+qCOENG1jlqZ4jqYqQ=
+X-Gm-Gg: ASbGncuXCbHhUT59c7sr+V9imUOCPRVYvRXESRQL3Q26z5Zvrf9UYPRLqbRGjKb+1dH
+	MdRQ9pCnQ3+pvozLw6GCqHhHqQfd5B1pN9S/ZPr+1gH4GlSdnLUIMqnLf5dzASGnokM5pyffa8g
+	==
+X-Google-Smtp-Source: AGHT+IG8BOtiCxNf6QI0vU+mnOel6R4Bjz0DlGpwWvpzOVrQGjoe4i+7P8GUXY5Iqx8vx2Br9ut6AYt4WMmQGGBxKHs=
+X-Received: by 2002:a5d:6da9:0:b0:38d:ae1e:2f3c with SMTP id
+ ffacd0b85a97d-38f24f96284mr7091087f8f.25.1739514074226; Thu, 13 Feb 2025
+ 22:21:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <40370a0e-775b-42e3-bb6c-8cacaa0482cf@linaro.org>
+References: <20250212064657.5683-1-clamor95@gmail.com> <20250212064657.5683-2-clamor95@gmail.com>
+ <20250212-unwritten-compile-7011777a11b3@spud> <CAPVz0n0xR_nGPdWn800H=HhMCPqnRUhqP-s1P4eMhtpZdxpxzg@mail.gmail.com>
+ <20250213-reflex-earlobe-ebbeaece6fad@spud>
+In-Reply-To: <20250213-reflex-earlobe-ebbeaece6fad@spud>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Fri, 14 Feb 2025 08:21:03 +0200
+X-Gm-Features: AWEUYZmVS1XUCLAzw9vAyVc_HXeyFlMuZvE7KiYkZpLOEfJLCqTLk6pkIqA4BQ0
+Message-ID: <CAPVz0n1aw1+kKhvGwOUi_58HqRqo0fHxDNRQZt_2O4yJ=ws56w@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: iio: light: al3010: add al3000a support
+To: Conor Dooley <conor@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>, Matti Vaittinen <mazziesaccount@gmail.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Emil Gedenryd <emil.gedenryd@axis.com>, 
+	Arthur Becker <arthur.becker@sentec.com>, Mudit Sharma <muditsharma.info@gmail.com>, 
+	Per-Daniel Olsson <perdaniel.olsson@axis.com>, Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>, 
+	Ivan Orlov <ivan.orlov0322@gmail.com>, David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 13, 2025 at 07:38:35AM +0000, Tudor Ambarus wrote:
-> > +		usi_uart: usi@105400c0 {
-> > +			compatible = "samsung,exynos990-usi", "samsung,exynos850-usi";
-> > +			reg = <0x105400c0 0x20>;
-> > +			samsung,sysreg = <&sysreg_peric0 0x1000>;
-> > +			samsung,mode = <USI_V2_UART>;
-> > +			#address-cells = <1>;
-> > +			#size-cells = <1>;
-> > +			ranges;
-> > +			clocks = <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_PCLK_4>,
-> > +				 <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_4>;
-> > +			clock-names = "pclk", "ipclk";
-> > +			status = "disabled";
-> > +
-> > +			serial_0: serial@10540000 {
-> > +				compatible = "samsung,exynos990-uart",
-> > +					     "samsung,exynos8895-uart";
-> > +				reg = <0x10540000 0xc0>;
-> > +				interrupts = <GIC_SPI 391 IRQ_TYPE_LEVEL_HIGH>;
-> > +				pinctrl-names = "default";
-> > +				pinctrl-0 = <&uart0_bus>;
-> > +				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_PCLK_4>,
-> > +					 <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_4>;
-> > +				clock-names = "uart", "clk_uart_baud0";
-> > +				samsung,uart-fifosize = <256>;
-> > +				status = "disabled";
-> 
-> node properties shall be specified in a specific order. Follow similar
-> nodes that are already accepted, gs101 is one.
+=D1=87=D1=82, 13 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 22:15 Cono=
+r Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Wed, Feb 12, 2025 at 09:39:06PM +0200, Svyatoslav Ryhel wrote:
+> > =D1=81=D1=80, 12 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 21:20 =
+Conor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+> > >
+> > > On Wed, Feb 12, 2025 at 08:46:55AM +0200, Svyatoslav Ryhel wrote:
+> > > > AL3000a is an ambient light sensor quite closely related to
+> > > > exising AL3010 and can re-use exising schema for AL3010.
+> > >
+> > > Quite close you say, but the driver is entirely different it seems. H=
+ow
+> > > closely related is the hardware itself?
+> > >
+> >
+> > Well, I can simply duplicate al3010 or al3320a schema if re-using
+> > schema is not allowed. AL3000a has no available datasheet online.
+> > Downstream code for al3000a and al3010 seems to have same principles,
+> > apart from light measurements.
+>
+> It's probably more of a question as to why you're duplicating the driver
+> for them, rather than telling you not to put both bindings together.
+> That said, information on what's actually different is helpful in the
+> binding, to explain why you're not using a fallback compatible etc.
+>
 
-Not all Exynos SoCs will follow the same order
+Quoting writing-bindings.rst:
+DON'T refer to Linux or "device driver" in bindings. Bindings should
+be based on what the hardware has, not what an OS and driver currently
+support.
 
-> <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_4>;
+From all available data, hw configuration of al3000a closely matches
+al3010 and seems to be part of same sensor lineup. It is not
+prohibited to add new compatibles to existing schema. Schema does not
+take in account way of processing data generated by sensor and this is
+the main difference between al3000a and al3010
 
-Is
-
-GATE(CLK_GOUT_PERIC0_TOP0_IPCLK_4, "gout_peric0_top0_ipclk_4",
-     "dout_peric0_uart_dbg",
-     CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_4,
-     21, 0, 0), [Mainline CLK]
-
-You can find it in the cmucal-node.c driver downstream of the kernel. [0]
-
-> > +			};
-> > +		};
-> > +
-> > +		usi0: usi@105500c0 {
-> 
-> cut
-> 
-> > +
-> > +			hsi2c_0: i2c@10550000 {
-> 
-> cut
-> 
-> > +
-> > +			spi_0: spi@10550000 {
-> 
-> cut
-> 
-> > +			serial_2: serial@10550000 {
-> 
-> why not serial_0 since you're in USI0.
-
-Because it is simply displayed in the exynos9830-usi.dtsi [1]
-
-> > +		};
-> > +
-> > +		usi_i2c_0: usi@105600c0 {
-> > +			compatible = "samsung,exynos990-usi", "samsung,exynos850-usi";
-> > +			reg = <0x105600c0 0x20>;
-> > +			samsung,sysreg = <&sysreg_peric0 0x1008>;
-> > +			samsung,mode = <USI_V2_I2C>;
-> > +			#address-cells = <1>;
-> > +			#size-cells = <1>;
-> > +			ranges;
-> > +			clocks = <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_PCLK_6>,
-> > +				 <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_6>;
-> > +			clock-names = "pclk", "ipclk";
-> > +			status = "disabled";
-> > +
-> > +			hsi2c_1: i2c@10560000 {
-> > +				compatible = "samsung,exynos990-hsi2c",
-> > +					     "samsung,exynosautov9-hsi2c";
-> > +				reg = <0x10560000 0xc0>;
-> > +				interrupts = <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>;
-> > +				pinctrl-names = "default";
-> > +				pinctrl-0 = <&hsi2c1_bus>;
-> > +				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_6>,
-> > +					 <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_PCLK_6>;
-> > +				clock-names = "hsi2c", "hsi2c_pclk";
-> > +				#address-cells = <1>;
-> > +				#size-cells = <0>;
-> > +				status = "disabled";
-> > +			};
-> 
-> shouldn't you define serial and SPI too?
-
-As shown in the node it only uses i2c which
-corresponds to the exynos9830-usi.dts. [2]
-
-> > +		};
-> > +
-> 
-> cut
-> 
-> > +			spi_8: spi@108e0000 {
-> > +				compatible = "samsung,exynos990-spi";
-> > +				reg = <0x108e0000 0x30>;
-> > +				interrupts = <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>;
-> > +				pinctrl-names = "default";
-> > +				pinctrl-0 = <&spi8_bus>;
-> > +				clocks = <&cmu_peric1 CLK_GOUT_PERIC1_TOP0_PCLK_14>,
-> > +					 <&cmu_peric1 CLK_GOUT_PERIC1_TOP0_IPCLK_14>;
-> > +				clock-names = "spi", "spi_busclk0";
-> > +				#address-cells = <1>;
-> > +				#size-cells = <0>;
-> > +				fifo-depth = <256>;
-> 
-> that's a first. Does downstream define any SPI node with 256 bytes
-> FIFOs? Would you please point me to the downstream sources?
-
-Here :) [3]
-
-> Cheers,
-> ta
-
-[0] https://github.com/ExtremeXT/android_kernel_samsung_exynos990/blob/69515fbb7a4395898c05a8624f76a12afbac11c5/drivers/soc/samsung/cal-if/exynos9830/cmucal-node.c#L2719
-[1] https://github.com/pascua28/android_kernel_samsung_s20fe/blob/3be539e9cd22b89ba3cc8282945a0c46ff27341d/arch/arm64/boot/dts/exynos/exynos9830-usi.dtsi#L1954
-[2] https://github.com/pascua28/android_kernel_samsung_s20fe/blob/3be539e9cd22b89ba3cc8282945a0c46ff27341d/arch/arm64/boot/dts/exynos/exynos9830-usi.dtsi#L170
-[3] https://github.com/pascua28/android_kernel_samsung_s20fe/blob/3be539e9cd22b89ba3cc8282945a0c46ff27341d/arch/arm64/boot/dts/exynos/exynos9830-usi.dtsi#L1638
+> >
+> > > >
+> > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > > ---
+> > > >  .../devicetree/bindings/iio/light/dynaimage,al3010.yaml     | 6 ++=
+++--
+> > > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/iio/light/dynaimage,=
+al3010.yaml b/Documentation/devicetree/bindings/iio/light/dynaimage,al3010.=
+yaml
+> > > > index a3a979553e32..6db4dfd5aa6c 100644
+> > > > --- a/Documentation/devicetree/bindings/iio/light/dynaimage,al3010.=
+yaml
+> > > > +++ b/Documentation/devicetree/bindings/iio/light/dynaimage,al3010.=
+yaml
+> > > > @@ -4,14 +4,16 @@
+> > > >  $id: http://devicetree.org/schemas/iio/light/dynaimage,al3010.yaml=
+#
+> > > >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > >
+> > > > -title: Dyna-Image AL3010 sensor
+> > > > +title: Dyna-Image AL3000a/AL3010 sensor
+> > > >
+> > > >  maintainers:
+> > > >    - David Heidelberg <david@ixit.cz>
+> > > >
+> > > >  properties:
+> > > >    compatible:
+> > > > -    const: dynaimage,al3010
+> > > > +    enum:
+> > > > +      - dynaimage,al3010
+> > > > +      - dynaimage,al3000a
+> > > >
+> > > >    reg:
+> > > >      maxItems: 1
+> > > > --
+> > > > 2.43.0
+> > > >
 
