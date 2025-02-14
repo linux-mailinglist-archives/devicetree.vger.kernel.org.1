@@ -1,229 +1,150 @@
-Return-Path: <devicetree+bounces-146840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11092A366C3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 21:15:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD113A3671D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 21:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EB031892CFD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 20:15:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EF943B124C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 20:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AA51C8611;
-	Fri, 14 Feb 2025 20:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9291D19DF41;
+	Fri, 14 Feb 2025 20:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="lDdgc3y7"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="aZ+0EMix";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="GXPFvkIk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-b8-smtp.messagingengine.com (fhigh-b8-smtp.messagingengine.com [202.12.124.159])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FD8F1DAC81
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 20:14:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8837418EFD4;
+	Fri, 14 Feb 2025 20:53:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739564081; cv=none; b=TmzHqMiyGNbwwbjCi2ySZrHWAfwO1g49m8UmtccEYrjt70vVR+itIcuIblNIrq/BxEByZzGslFlqORpCXGWah6Msa8lmovv7911T7oCsWzMASDoKyuCuNhbKRYYLkYKOA0lk5XV1eOIgzIZh7lY+6XjpfoqxTLhJ4N+m11n9b6Y=
+	t=1739566401; cv=none; b=QhDXKb6TL29m2xM6oe00Pkz9zJU5ayPpi5+ulrfPvWl7gYIuCeHXuRnkXy3nhouneE2MomB7QIW41UQx7Kbht0glHR481i+vp84e0G8bvaMDv8cVV2YrkAJ/ZEIA3rECz5DnsQ5Gf36rTFxHl+YA6xd1w31B9IVzzVH11fT+2Qo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739564081; c=relaxed/simple;
-	bh=YNsBtJJ9+cy2UshunM7rNUNI3Qb2RchH6uhbFDj9n5E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D+mfto67bEfSSHgiPA3UZVjmcLIkOc5Zg8Yk6jGqe0jIuHxGEjOdWNkKoK27q3qmbR/M/pVfFAOn5qxy6djs12L618tQj1NAs6VK+C8Jzj/QTzLweozxNTplInx1/Bdyy6uPRyTjhCY8m9r/pESz/GThztdK0vlHjCQurLST/TY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=lDdgc3y7; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7c07351d2feso361889785a.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 12:14:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1739564077; x=1740168877; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=aitcMe7WROI3inmWPb5j5yTibRGZT3eFja/8dsNPCSo=;
-        b=lDdgc3y71bo8L0V8hpCdEtVgcsYESprTduXIi+kFt0zRyUBJTudrWt7COhlV/BBLji
-         5ZkMyQmRRCnytLs+RviwSVnWQOUoM5cP3ErSy21ZoSWjTaurrbfAeOLlOz47ThtY1fmC
-         FUlgo2rNZt2vfHG+MFiY/pf6R6M/Ppt/VKABJ4J0S5yCZTzfNBiG/G8XHBO7ymhTkzq4
-         20ubMy9bEoplUkIsMCUNIc3rJPoNAuW8WmZphPHnp6uSlSve6YYVLYFopk6107RDJFBN
-         7obB/RiGZMO7NKpkJS8XE23hj8SP8OqV5dlORQbhZ8Cw+0rpdqFpPn+NC5hiIEfe8k0v
-         yuTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739564077; x=1740168877;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aitcMe7WROI3inmWPb5j5yTibRGZT3eFja/8dsNPCSo=;
-        b=vFMGnwFH4jldQDcrmFfbhYeS+L1PK+L4Ni4tJkcz6dZM0jsLw8Y2E+sCIdsnSzcgBq
-         Y0NRTkknaFxeZI/RssBtuZlx5hMPpgd7IJeNnwvFtQ1ThNiuCOEJbEFbnUM4nbZCfdSu
-         7Z6HIX5Z5zBi8QvQz3m90Q0WunJC2BHbEWoTSco57Fuy5Tdhj3xpQNtYhK9qC9KTMLEE
-         sg/XlU1HWuFhe/0Y6GtZ8k3nGfPHpx5HQR2ttfi3yHVOZclWqceTZ5TqZsX8QDoN7wcg
-         OHaeICWQMBMACiWzWI5v9/v5ACWTZRIgTEsSnhjgJ73GKxF3SkYKUPRlwt7DYyHaS76i
-         VzMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXw1ijPQl9So42gdemuLrBGwEYf5o/tsvbo6UBxUWI6h+zcByMDTkCXdpoXWbI4mF+Qqf5J35buuKXs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrO5IQ8q3VLC5y8+Hx1sRXRRFoH6YGu8pB0cWjTCc7Mc+m59YQ
-	BrODrrK5D8xty766diisv19wNLydL8QxVlZvSt6WcfRfG96mIMnDbsL9pSoBnOQ=
-X-Gm-Gg: ASbGncsYfBuWUCuMTxTCmGR6rr/HfvN05DFynd7IdDVKGb9zRjyenIPjucvd/feQoE1
-	AroenKZ9qkrZGd7+XfoPLu4eVZaf7322sYSnYSNsRr/aaZKVfWS+WariNevbHuT7p0kjvVYQLQx
-	HaxhswKK0p/Z9L/DbnSDKklx0zNy74Iga1Kgsi8D5WuFU20iJd/WXMPvcbaoGqFJXjLibN/I7k6
-	FV9LAT1WAvB5zFJSyMZzVbeSg5DWDqbhRMcVix8RoJq668mqNWzrI41a+McsHxUBqViO6GT+zMa
-	5HcxJ4pnN6feq1Rr0HO+L+0Av25mSh0/CcJOwP8TwyXUDpD6vDkCSIvgY5drgtv3
-X-Google-Smtp-Source: AGHT+IGnMpUVAQSaoCinCLx2FBIU+4N7ViIjMJqQfxMTZ4fEWvtSzvHCiXUgAsqSsNDrtdOvrjsIMg==
-X-Received: by 2002:ad4:4eed:0:b0:6d4:e0a:230e with SMTP id 6a1803df08f44-6e66ccc114cmr11243186d6.16.1739564077030;
-        Fri, 14 Feb 2025 12:14:37 -0800 (PST)
-Received: from ziepe.ca (hlfxns017vw-142-68-128-5.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.128.5])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e65daffdbbsm24455776d6.99.2025.02.14.12.14.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2025 12:14:36 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1tj255-0000000GmgQ-3jtW;
-	Fri, 14 Feb 2025 16:14:35 -0400
-Date: Fri, 14 Feb 2025 16:14:35 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Charan Teja Kalla <quic_charante@quicinc.com>
-Subject: Re: [PATCH 2/2] iommu: Get DT/ACPI parsing into the proper probe path
-Message-ID: <20250214201435.GF3696814@ziepe.ca>
-References: <cover.1739486121.git.robin.murphy@arm.com>
- <c2f0ae276fd5a18e1653bae8bb0c51670e35b283.1739486121.git.robin.murphy@arm.com>
+	s=arc-20240116; t=1739566401; c=relaxed/simple;
+	bh=tP6TWlVS+e0yQlRVKaAnhFvXz2tLpWX0gcV22HBOliI=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=oPWZ+kzPpXnDm2ReErrdTsCXF1Vll3IT1VMDXuniodo07seDnMDbbHVl3jcMQ2VINH+uFDHbJBrRbK019hpA1JibWq/6f9UNfIZYEFHK5fXzRFujNm/pbYf0GRUI4b9uWFiJl0yxHnC5g9S23g6zMmHkFEwKMWbPvTv8rmd3hGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=aZ+0EMix; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=GXPFvkIk; arc=none smtp.client-ip=202.12.124.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from phl-compute-13.internal (phl-compute-13.phl.internal [10.202.2.53])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 55A61254014C;
+	Fri, 14 Feb 2025 15:53:18 -0500 (EST)
+Received: from phl-imap-07 ([10.202.2.97])
+  by phl-compute-13.internal (MEProxy); Fri, 14 Feb 2025 15:53:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm3;
+	 t=1739566398; x=1739652798; bh=tP6TWlVS+e0yQlRVKaAnhFvXz2tLpWX0
+	gcV22HBOliI=; b=aZ+0EMixCqpdZdtygFkX0S5NBGsyyFNEF1OxH9wmAFRpd2+x
+	H9T4kgIRp9ety5bmXx//awaI9Ye9mGByE9z/W/CXrv7yN7S/0Dde8kTXxWyv8COn
+	bnJ+HKayeQE7RH4wWbrGJIucGG0J4Oq4gB3aSeT2IR6ULXzwgXqKSCoWbW/AZMAJ
+	DX96QnxIsfncLsMNH5eAsbEUVlznClWXPhzWxf6I0ygxNfrlmEUYCAedlxGomq3F
+	XAJ/jGiII5OIsTeJ5ieASE3Kpk1sir7JXNawqPGAvolpzBWTwebaBoi0gZKINY05
+	SR7FR6wSLfbrocr30QRIEFs63+To+8mm1qvi6A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1739566398; x=
+	1739652798; bh=tP6TWlVS+e0yQlRVKaAnhFvXz2tLpWX0gcV22HBOliI=; b=G
+	XPFvkIkafwq9pfnR1aA9L4tSKLp1IV1xwHw549epdoSVWTf0rAvstBgMP0L+agMN
+	0IQ1s2WgWW5yFUB1iHtR5rZKa9qNTtGcG2S1rIPqdAezjNWDEM2b2Nf+gZIvSeHe
+	mJkCq1ztbMeIsKPRwyJxvK75z2GocIQHfsJ2ZEz99AJNeT9n6taQsWqSmYmnpLwa
+	amDBXC7v0oUXo9kdVgLMj6qM5K3axW1AggxZpW6cUuk9hTW9pUUy4nwTBt17xzEc
+	SM/2ZsdEY3mI98Srl+1WljR4Y/gQxsz5qnF0QwECHOU3mZ3Oy0spG78LazsI8XD2
+	pft4zcnJH8olmF3ByK+NA==
+X-ME-Sender: <xms:PK2vZ1bQHRyyNXmXjHOCrirIltApDcwXx88Zb0ZuP7t3ShBPY5KnIg>
+    <xme:PK2vZ8YUHa3l_F73hejLAXDx9iBL1sj_BsM4pSQAUpiJx3Pp6tSthgw6VUaa9FxEL
+    oEi2t5e-vd-mf-EBw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehtdeiiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthhqredtredt
+    jeenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
+    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeehteeiveetgfefieevffffkedutdeu
+    heekffefudehhfevfefgfefgudfftdeivdenucffohhmrghinhepghhithhhuhgsrdgtoh
+    hmpdhrvggrughmvgdrmhgunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehm
+    rghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgtohhmpdhnsggprhgtphhtth
+    hopedufedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepfigvnhhssegtshhivgdr
+    ohhrghdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtgesghhmrghilhdrtghomh
+    dprhgtphhtthhopehlghhirhgufihoohgusehgmhgrihhlrdgtohhmpdhrtghpthhtohep
+    mhgrtghrohhmohhrghgrnheshhhothhmrghilhdrtghomhdprhgtphhtthhopehufihuse
+    hitggvnhhofiihrdhmvgdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhr
+    ghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfh
+    hrrgguvggrugdrohhrghdprhgtphhtthhopehlihhnuhigqdhsuhhngihisehlihhsthhs
+    rdhlihhnuhigrdguvghvpdhrtghpthhtohepphgvrhgvgiesphgvrhgvgidrtgii
+X-ME-Proxy: <xmx:PK2vZ38U9KeVGeKZmCiWaVZdvWu6fuTEpUlIui-zIuOuvu1gmASOTQ>
+    <xmx:PK2vZzpAThlzlUvs7dDdOKTVmI5svS39XRisK8Esknm2O29V7VWSBQ>
+    <xmx:PK2vZwo5wdHzOyJ_rhjnG31fSnwiDoFsBPEhrRhIlkNihB68LTSVvA>
+    <xmx:PK2vZ5ThoqrVwpb9sHHHCTm2kme6fpvSagvPU6k_6PKNRllPnfZn4Q>
+    <xmx:Pq2vZ2gMF1BrKYKM1fpJx6-M3lyUPEhYYgXcX35NXIt8jNVrzXpHLIZk>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 985B9BA006F; Fri, 14 Feb 2025 15:53:16 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c2f0ae276fd5a18e1653bae8bb0c51670e35b283.1739486121.git.robin.murphy@arm.com>
+Date: Sat, 15 Feb 2025 09:52:55 +1300
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Icenowy Zheng" <uwu@icenowy.me>, "Liam Girdwood" <lgirdwood@gmail.com>,
+ "Mark Brown" <broonie@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>,
+ "Takashi Iwai" <tiwai@suse.com>, "Chen-Yu Tsai" <wens@csie.org>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Samuel Holland" <samuel@sholland.org>
+Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ "Chris Morgan" <macromorgan@hotmail.com>
+Message-Id: <e1e08020-8284-47da-9cf1-fd7fd1461e74@app.fastmail.com>
+In-Reply-To: <c5ade280-d607-4870-a4e0-7d455f6bc6c3@app.fastmail.com>
+References: <20250125070458.13822-1-ryan@testtoast.com>
+ <20250125070458.13822-6-ryan@testtoast.com>
+ <db43243ea653073d223e640f064cd480da7e2cf5.camel@icenowy.me>
+ <c5ade280-d607-4870-a4e0-7d455f6bc6c3@app.fastmail.com>
+Subject: Re: [PATCH v2 5/5] ASoC: sun4i-codec: change h616 card name
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 13, 2025 at 11:49:00PM +0000, Robin Murphy wrote:
 
-> much just calling the same path twice. At client driver probe time,
-> dev->driver is obviously set; conversely at device_add(), or a
-> subsequent bus_iommu_probe(), any device waiting for an IOMMU really
 
-Could you put the dev->driver test into iommu_device_use_default_domain()?
+On Tue, 28 Jan 2025, at 2:10 PM, Ryan Walklin wrote:
+> On Sun, 26 Jan 2025, at 8:51 PM, Icenowy Zheng wrote:
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0card->name=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=3D=
+ "H616 Audio Codec";
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0card->name=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=3D=
+ "h616-audio-codec";
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0card->long_name=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=3D "H616 Audio Codec";
+>>
+>> I think it's part of the userspace API that should be kept stable.
+>
+> I don't have a strong feeling about this change, but can anyone sugges=
+t=20
+> any other options for how to manage this name being picked up by UCM a=
+s=20
+> a file path? I guess the UCM paths can include spaces, but this is=20
+> slightly unwieldy and may break if proper escaping is not done.
 
-It looks like many of the cases are just guarding that call.
+Apologies I have misinterpreted what the user-space code expects, it see=
+ms (as per https://github.com/alsa-project/alsa-ucm-conf/blob/master/ucm=
+2/README.md) that the UCM file path is derived from long_name, not name,=
+ and name is only used as a fallback if long_name is not provided. Will =
+send a v3 just adding a long_name instead.
 
-> should *not* have a driver already, so we can use that as a condition to
-> disambiguate the two cases, and avoid recursing back into the IOMMU core
-> at the wrong times.
+Regards,
 
-Which sounds like this:
-
-> +		mutex_unlock(&iommu_probe_device_lock);
-> +		dev->bus->dma_configure(dev);
-> +		mutex_lock(&iommu_probe_device_lock);
-> +	}
-
-Shouldn't call iommu_device_use_default_domain() ?
-
-But... I couldn't guess what the problem with calling it is?
-
-In the not-probed case it will see dev->iommu_group is NULL and succeed.
-
-The probed case could be prevented by checking dev->iommu_group sooner
-in __iommu_probe_device()?
-
-Anyhow, the approach seems OK
-
-> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-> index 9f4efa8f75a6..42b8f1833c3c 100644
-> --- a/drivers/acpi/scan.c
-> +++ b/drivers/acpi/scan.c
-> @@ -1619,6 +1619,9 @@ static int acpi_iommu_configure_id(struct device *dev, const u32 *id_in)
->  {
->  	int err;
->  
-> +	if (device_iommu_mapped(dev))
-> +		return 0;
-
-This is unlocked and outside a driver context, it should have a
-comment explaining why races with probe can't happen?
-
-> +	/*
-> +	 * For FDT-based systems and ACPI IORT/VIOT, the common firmware parsing
-> +	 * is buried in the bus dma_configure path. Properly unpicking that is
-> +	 * still a fairly big job, so for now just invoke the whole thing. Our
-> +	 * bus_iommu_probe() walk may see devices with drivers already bound,
-> +	 * but that must mean they're already configured - either probed by
-> +	 * another IOMMU, or there was no IOMMU for iommu_fwspec_init() to wait
-> +	 * for - so either way we can safely skip this and avoid worrying about
-> +	 * those recursing back here thinking they need a replay call.
-> +	 */
-> +	if (!dev->driver && dev->bus->dma_configure) {
-> +		mutex_unlock(&iommu_probe_device_lock);
-> +		dev->bus->dma_configure(dev);
-> +		mutex_lock(&iommu_probe_device_lock);
-> +	}
-> +
-> +	/*
-> +	 * At this point, either valid devices now have a fwspec, or we can
-> +	 * assume that only one of Intel, AMD, s390, PAMU or legacy SMMUv2 can
-> +	 * be present, and that any of their registered instances has suitable
-> +	 * ops for probing, and thus cheekily co-opt the same mechanism.
-> +	 */
-> +	ops = iommu_fwspec_ops(dev_iommu_fwspec_get(dev));
-> +	if (!ops)
-> +		return -ENODEV;
-> +
->  	/* Device is probed already if in a group */
->  	if (dev->iommu_group)
->  		return 0;
-
-This is the test I mean, if iommu_group is set then
-dev->iommu->iommu_dev->ops is supposed to be valid too. It seems like
-it should be done earlier..
-
-> +	/*
-> +	 * And if we do now see any replay calls, they would indicate someone
-> +	 * misusing the dma_configure path outside bus code.
-> +	 */
-> +	if (dev_iommu_fwspec_get(dev) && dev->driver)
-> +		dev_WARN(dev, "late IOMMU probe at driver bind, something fishy here!\n");
-
-WARN_ON_ONCE or dump_stack() to get the stack trace out?
-
-> @@ -121,6 +121,9 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
->  	if (!master_np)
->  		return -ENODEV;
->  
-> +	if (device_iommu_mapped(dev))
-> +		return 0;
-
-Same note
-
-> @@ -151,7 +154,12 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
->  		iommu_fwspec_free(dev);
->  	mutex_unlock(&iommu_probe_device_lock);
->  
-> -	if (!err && dev->bus)
-> +	/*
-> +	 * If we have reason to believe the IOMMU driver missed the initial
-> +	 * iommu_probe_device() call for dev, try to fix it up. This should
-> +	 * no longer happen unless of_dma_configure() is being misused.
-> +	 */
-> +	if (!err && dev->driver)
->  		err = iommu_probe_device(dev);
-
-This is being conservative? After some time of nobody complaining
-it can be removed?
-
-Jason
+Ryan
 
