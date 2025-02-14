@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-146787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2248FA36350
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 17:42:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 607D8A36380
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 17:48:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A21518846D7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:41:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE0D23A9206
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:47:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41E626738E;
-	Fri, 14 Feb 2025 16:41:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4148E267AF2;
+	Fri, 14 Feb 2025 16:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="S3Yl+E9Y"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="pNEiFYbR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3DB48635A;
-	Fri, 14 Feb 2025 16:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29177267703;
+	Fri, 14 Feb 2025 16:47:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739551301; cv=none; b=ru2sRAtkCARZLiyIA//zESp5daVD4pBqP05Yi410RQ78PlFT7cHXglF5ZmUFjDfydGQoM+GT04GMzdhzXRYN1sfabcMLO8C8BiTynqbVodITFIBYWAdN+Wlx2O4sA9gJDXiopwNb2d5fgPoQehd7rloogVcAviBT4L3qipe83Ss=
+	t=1739551627; cv=none; b=QFSeNVRKED95jjiaep/v7IGPEnwElJG2LS0tdcbktla+EfDgz3UApGcAP0DyoieF5bUMiOC/n9aN5eDJwYNL7gBvEI0rA2+1RUSBww/CzT0HXpBqI1dr3OVGBQICMzEB4yRfpiwPMXet5DVcqFksygxH/3DpXJ14zOmCI3IMJEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739551301; c=relaxed/simple;
-	bh=vWYUlyzKnZJB5j79G/froqtYYA8MVpZ8A+1xbZe3+/w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=T4DcQGp2YQMBXZB4bZX1L084IgMVGB0JvB/tKO69QeDtEqItDlYFGhSEQFQM7ynysfYvnCSwyzB3oq4jRHt5qc1Vjyd6zmuQ2fMmwjy1h9o5QNRjG2E4e2kotTuRdotA0m59QDwKxQGOWfjX7PEn7BSS4JEdxhZuXyqycz4HdD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=S3Yl+E9Y; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1739551627; c=relaxed/simple;
+	bh=e93WMTX324UPBYpzF8zp+DIsYjQOE6P2V+HVCGC9Dvk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VE0qZA7f4/h0HJO2IUS/XGukyfkqkbzrFbcKB99HGz/ks6ZIvBk0oA5u+qWWgD1mUTQOO8tnOaFCwdtcxzj28O8EpyQBOPtSpk696UE6Vw5MOJ0buRwyLd/MNOBmx7qMpPuQUc7pnYDKSWlSiwB8SdwbymIpfeQITxLwqr8mUjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=pNEiFYbR; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739551297;
-	bh=vWYUlyzKnZJB5j79G/froqtYYA8MVpZ8A+1xbZe3+/w=;
+	s=mail; t=1739551623;
+	bh=e93WMTX324UPBYpzF8zp+DIsYjQOE6P2V+HVCGC9Dvk=;
 	h=From:To:Cc:Subject:Date:From;
-	b=S3Yl+E9YyB1uFs+KuY3OJBJx+doxHsAQQpFGaPW/tPn0N8ZngWwUZpTpwJluGiigH
-	 xL+2XP0255p9SxvVaibtUP1oA1WfptKXAWCGNpS/HJC8ZxQxqhUKccOfl0f02SqCFx
-	 GaROX8vqrDbOoUEVp8JH3VoLidg2+hpK/s/oPEQ4hNXsOBVkcGGWZx5FhkGVOahmf2
-	 UDIGgIqcZ+hOuuKNjYrP6e6zMFla80xAV+qWlRlvtVUAURwMd5HtqY+mKrJsDebI1r
-	 J1codIUUBH2v4G/gT8JuDPT7+B0RkrGunAVrH1hAlPHwkbOlJun3UxssNbu2XNYMRX
-	 i4HRxoWxU5xEQ==
+	b=pNEiFYbR4xbtlhNmC3ZBXWgXW4ymzif8S2mhPyUzPkZGMGLqqP0wkp7wa2ZdisR3X
+	 T+PAVkg9aBZOZOJzZEdNCBgP2YpWB9gpgalb5DfMFzSCco1GDgLO3vlCbyvf8t+uXD
+	 TOMpZlbTmEMGAmHpmPuJQ24QgluhyLtEC6ISv8YCSNzv7N6CE5fQwwop337htcUnrk
+	 piAFL37JB2tkvqWmIHiMVZcBnwqByf0niUJ55c/6crcqBbi4d6Bma0+NP+oyrPbVXf
+	 hYBd8jBXTpPHc80UMPeeu4NP/ViYix9VcNGpR8KZYZCFlYQtUoOjewbHR3NVHhX2Z1
+	 YKtaFJu4jSeuQ==
 Received: from earth.mtl.collabora.ca (mtl.collabora.ca [66.171.169.34])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1E83317E0FBA;
-	Fri, 14 Feb 2025 17:41:34 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 901DD17E0FDF;
+	Fri, 14 Feb 2025 17:46:59 +0100 (CET)
 From: Detlev Casanova <detlev.casanova@collabora.com>
 To: linux-kernel@vger.kernel.org
 Cc: Rob Herring <robh@kernel.org>,
@@ -82,9 +82,9 @@ Cc: Rob Herring <robh@kernel.org>,
 	linux-rockchip@lists.infradead.org,
 	dri-devel@lists.freedesktop.org,
 	kernel@collabora.com
-Subject: [PATCH v6 0/3] Add HDMI audio on the rk3588 SoC
-Date: Fri, 14 Feb 2025 11:39:24 -0500
-Message-ID: <20250214164126.533685-1-detlev.casanova@collabora.com>
+Subject: [PATCH RESEND v6 0/3] Add HDMI audio on the rk3588 SoC
+Date: Fri, 14 Feb 2025 11:43:59 -0500
+Message-ID: <20250214164528.534278-1-detlev.casanova@collabora.com>
 X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -110,6 +110,8 @@ it is doing exactly what the simple-audio-card driver does, so use that
 instead in the RK3588 SoC device tree.
 
 Based on Linus' master branch.
+
+RESEND because of a network connectivity loss at the wrong time.
 
 [1]: https://lore.kernel.org/all/20241224-drm-bridge-hdmi-connector-v10-0-dc89577cd438@linaro.org/
 
