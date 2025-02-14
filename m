@@ -1,139 +1,178 @@
-Return-Path: <devicetree+bounces-146784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 787B1A362D8
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 17:18:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3759DA3630A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 17:27:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 590E9188E549
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:18:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F29216B4C2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0FBE2673B7;
-	Fri, 14 Feb 2025 16:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F74267700;
+	Fri, 14 Feb 2025 16:26:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="izeoMr9Y"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Wkc1leli"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABF32222AC;
-	Fri, 14 Feb 2025 16:18:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06C6B2676E8
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 16:26:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739549916; cv=none; b=eMmKsSQ5usmH/MaDBT5i5nBKZMTzxbgqo12kq50gt0IIQIoclQoxz5/JUeSFNfiWpomO8oyStGKowZpwH49uvQH36YG+QBMLZVymOi7LCCf1JtOarjynyzq16FN6iXK1Pjo42qzF1ef5WpoI0JuQ1d9/G2mCkdzVmqfwDpk0nBA=
+	t=1739550413; cv=none; b=RGN7IDt6EbdsF3sWB5LaUDCUi9xJYJmSutt4yU9yF6vGYUY4yyYiH4BYIl6YBrodees6dAGEcMF6ZBDEBd7SJ+BViG9Kljt7FoFVi57otqJj0NvP2ICOH0UTqn/Mx4WI9ASIT3oW90KbrFSyEvGjeNcOCu2+xRpnjpKUww/B1/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739549916; c=relaxed/simple;
-	bh=jvX3AyNlRNgADfVAUMashsnujrcJkMKHBJO128C+MeI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iwNkme3fj5PyurM3dpkmXg0p3D3joGxDc8pPQCfANs0DBbdy5TzQccB/rEZb+qemOuoUT+Wbr6y8MksfqGySfZAsfRi7Rn2g7Afv5O8aPbJzy1BX2d+20LK+niGKQkBGqaGhiQw8sgQpzGMlKR8knJmwDKaI0Mwy9a1kUEEWJPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=izeoMr9Y; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739549915; x=1771085915;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jvX3AyNlRNgADfVAUMashsnujrcJkMKHBJO128C+MeI=;
-  b=izeoMr9YvBkAwDU7bvy/YMA6Q4zAERaQtY2NEEtKH5AjvieGBxEtHnVC
-   KQzD/PQdbB/v2K7PT2k6LWHBkxdrBIWB0fkqYugGmTKVxJg4rbXirI6hm
-   gqGC3gIClYix5JBgUYFDZD/+A4U1l2VRv/wJ41hcdVRlVDRWlPxES6h0X
-   R0AT6xqvIatpocR4YKWA9JmM9sBnIG3ZoLSdGxd+EhFeV7PrLQI3nEuxA
-   SJY559W6O4h/eyI41MQ7krggjAB6PYQl3PNdAoOsqINg/STm3Z77dORVo
-   Os9Wi/YrCejLpeyMyxN6B/5EQg1baG7QpKJlZmWrLv5znNjNnH8CtIaml
-   w==;
-X-CSE-ConnectionGUID: cZgYPiWPT8CuZQh2gWsLew==
-X-CSE-MsgGUID: 94NYd8cVSRyjnbJZVM5E1A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="40175505"
-X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; 
-   d="scan'208";a="40175505"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2025 08:18:34 -0800
-X-CSE-ConnectionGUID: GB9KDTvDSdqi3rzcnQjwvg==
-X-CSE-MsgGUID: oZnxCibiTL6IPuQay9hT9A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="117622684"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2025 08:18:29 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1tiyOY-0000000BXg6-3MBG;
-	Fri, 14 Feb 2025 18:18:26 +0200
-Date: Fri, 14 Feb 2025 18:18:26 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 07/10] gpio: max7360: Add MAX7360 gpio support
-Message-ID: <Z69s0vu_T_77q9X8@smile.fi.intel.com>
-References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
- <20250214-mdb-max7360-support-v4-7-8a35c6dbb966@bootlin.com>
- <Z69oa8_LKFxUacbj@smile.fi.intel.com>
+	s=arc-20240116; t=1739550413; c=relaxed/simple;
+	bh=fqAE2/JMrhghnr7h0URaZiiOx0VrL9ZGjPBLMqFnJro=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kwtEBNpuD0uSXTIaCEW0uqmlYn0GDxFa4hB0Xog7Xx+DcH4/pulylWiyQ0cW4CYhiQK9+UTxAatif2xUSqtQbxy/kWJXxHofF9PINUXgvKVaSOljP8RHn6kPIzknZ+WoxTT7VjigWWREdMwTsSlAZRygEIGjBBUXk8DoHz338e4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Wkc1leli; arc=none smtp.client-ip=209.85.128.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-439685e14f1so6406585e9.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 08:26:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1739550409; x=1740155209; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=yYahPJ7CPZFZpNoRGXLgzm0+xcyc7qKygSX7eH5P6s0=;
+        b=Wkc1leliZ+w2KIRn+bLsx5HAJjW4tE+MWqMXc08vJk/7jQwQaQAeh+P2Vc4mAACGVm
+         bDF+I815anelrpZyZFhT1Sd2D4PucCh6nRQzJjD3+g6ECOIUw6JwDdCZrIrMSmdHjA++
+         3KZ9fplf+SPRQIPTNWOmCwpOLabFM06K6mMT16dPVU2EhyAiv1nYDZVHzUGvHsDauG6A
+         piTZAeEom7z5NmvGdNclX8CoVDyl7dcsf8bASoaDneuYcM/hTQaTVP8xccLD9Bvv53cn
+         dOJTiWOi7LW+D3PLeRlFTVys0KqQGTyGT42/MVLaut72lr2GJ26ebOaXcw2dHDdPgngP
+         stjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739550409; x=1740155209;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yYahPJ7CPZFZpNoRGXLgzm0+xcyc7qKygSX7eH5P6s0=;
+        b=tMMeAK4EO4kkOUulxVT1mNLSYntS8UWCh9X8zH2yBtqkS4XEJeCQ2q0nC8O/P/vNER
+         jmcBc7Y3waWtbyjhnsggejTgrUjKww3WOBSnyIWGSzqmg5+HtJYZ3V1kjQLBC5+NbF4A
+         72BTUNfwAif+rrvHk6bSx4z9uyldaUlrBI1vW3f5G2yABjJ3W+5CMzJf89JUqfxnexn6
+         xScAMylKtkRu90WawUL4GlDgHWl9ZzRAAP3HkvdrhQeuHVCqdkHQHdn2DLyxzmIFGxW1
+         xavMBMrHbYHng9HvAdf2JMLRqidbGLy8CNf3/KXyxtBeN/Ta5EgxehRszYitTpE/8OIa
+         TqPA==
+X-Forwarded-Encrypted: i=1; AJvYcCX/WA9Gu+IK1TZD62hHetfZ3ma2PGBUDXl8EDTb/Rw8fXsUT42fVvGGwbeS4FN4zcdRkUNMcpibVu3V@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoKZjeisvE/52HGER8WR2a+hOTzH4yQzjEJ2JLgfhEmrYymGx1
+	+kFCp0Rg3PAdNUs5ISaAPpZU8J8kzZ7G01boyzIlTTncokMqfbPAssA6n6NT724=
+X-Gm-Gg: ASbGncvq+e2ptcIyP8AB7iiswA+ly973ElWj8BHr2lwELcUD6R3dGyDHrUz0nlnlJmo
+	wvwa75t2i8YxYP5bMu/VDiR8Sgxgb8dcJta09UE0eBVwqZfQhq6gkuiZ91vsYqVT8sbv/ZbcRfR
+	43vYAKlkh0xYv/9Ehy9a5CcDJnKSoo2AnLgoGZghn1Wq7+/DXO0x0EnvEtFpB9Rm7hAx1ET4PXX
+	Rtb1fGmG+iUtcgGTmgWfBGExuZ1/tvIHFqNkfZELAfpVDStqVaSNCUGjemlFO295VOoYikVR9dF
+	1nk8GN38R8QY
+X-Google-Smtp-Source: AGHT+IGD0ZwSKP2SVlV7tCbb67DNu8v1KQBEuuR8bN5t8fbcPighOdQVzKxfEH8x4T2JZ2zth1XX9A==
+X-Received: by 2002:a05:6000:1546:b0:38d:c2d7:b5a1 with SMTP id ffacd0b85a97d-38dea26ecdfmr12656044f8f.19.1739550409013;
+        Fri, 14 Feb 2025 08:26:49 -0800 (PST)
+Received: from [192.168.2.177] ([81.0.8.231])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258dab74sm5084116f8f.32.2025.02.14.08.26.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Feb 2025 08:26:48 -0800 (PST)
+Message-ID: <05ec141f-8d2d-456c-830f-f5ea2adce671@suse.com>
+Date: Fri, 14 Feb 2025 17:26:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z69oa8_LKFxUacbj@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: riscv: spacemit: Add Milk-V Jupiter
+ board compatible
+To: Javier Martinez Canillas <javierm@redhat.com>,
+ linux-kernel@vger.kernel.org
+Cc: javier@dowhile0.org, rjones@redhat.com, abologna@redhat.com,
+ spacemit@lists.linux.dev, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Rob Herring <robh@kernel.org>,
+ Yangyu Chen <cyy@cyyself.name>, Yixun Lan <dlan@gentoo.org>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20250214151700.666544-1-javierm@redhat.com>
+ <20250214151700.666544-2-javierm@redhat.com>
+Content-Language: en-US, ca-ES, es-ES
+From: Matthias Brugger <mbrugger@suse.com>
+Autocrypt: addr=mbrugger@suse.com; keydata=
+ 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
+ PVrr2NoUqi/bxI8fFQJD1jVj8K0=
+In-Reply-To: <20250214151700.666544-2-javierm@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Feb 14, 2025 at 05:59:40PM +0200, Andy Shevchenko wrote:
-> On Fri, Feb 14, 2025 at 12:49:57PM +0100, Mathieu Dubois-Briand wrote:
 
-...
 
-> > +		ret = device_property_read_u32(dev, "maxim,constant-current-disable", &outconf);
-> > +		if (ret && (ret != -EINVAL))
-> > +			return dev_err_probe(dev, -ENODEV,
+On 14/02/2025 16:16, Javier Martinez Canillas wrote:
+> Document the compatible string for Milk-V Jupiter board [1], which
+> is a Mini ITX computer based on the SpacemiT K1/M1 RISC-V SoC [2].
 > 
-> Why shadowing the real error code?
+> Link: https://milkv.io/jupiter [1]
+> Link: https://www.spacemit.com/en/key-stone-k1 [2]
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+
+Reviewed-by: Matthias Brugger <mbrugger@suse.com>
+
+> ---
 > 
-> > +					     "Failed to read maxim,constant-current-disable OF property\n");
+>   Documentation/devicetree/bindings/riscv/spacemit.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> It may be not only OF :-)
-
-Btw, can you compare this approach and the below in terms of bloat-o-meter
-against the object file size?
-
-	// can be done without this as well, just the same string as a parameter
-	const char *propname;
-
-	propname = "maxim,constant-current-disable";
-	ret = device_property_read_u32(dev, propname, &outconf);
-	if (ret && (ret != -EINVAL))
-		return dev_err_probe(dev, ret, "Failed to read %s device property\n", propname);
-
-While the above is strong hint to the compiler, the below should give similar
-result but by the duplicates elimination:
-
-	ret = device_property_read_u32(dev, "maxim,constant-current-disable", &outconf);
-	if (ret && (ret != -EINVAL))
-		return dev_err_probe(dev, ret, "Failed to read %s device property\n",
-				     "maxim,constant-current-disable");
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> diff --git a/Documentation/devicetree/bindings/riscv/spacemit.yaml b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+> index 52e55077af1a..077b94f10dca 100644
+> --- a/Documentation/devicetree/bindings/riscv/spacemit.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+> @@ -21,6 +21,7 @@ properties:
+>         - items:
+>             - enum:
+>                 - bananapi,bpi-f3
+> +              - milkv,jupiter
+>             - const: spacemit,k1
+>   
+>   additionalProperties: true
 
 
