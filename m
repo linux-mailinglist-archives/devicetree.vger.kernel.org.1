@@ -1,134 +1,208 @@
-Return-Path: <devicetree+bounces-146663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC2B9A35C28
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:09:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9112A35C36
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:11:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96AAB16C5A3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 11:09:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45EAA3AE608
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 11:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0097A25D539;
-	Fri, 14 Feb 2025 11:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A3125E456;
+	Fri, 14 Feb 2025 11:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bruugF+G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QeaxT/w6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42DDE186E40;
-	Fri, 14 Feb 2025 11:09:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4256825E443
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 11:11:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739531383; cv=none; b=Au/zew28pQaDT/lIQZ+rJOzT32opS+BwUqTntjbwHipm5B36Eki3pyGHH5Pxtel7wEIyD2/zt4t93j7a9mttGyMhI2SSbRXnWyniy8x4U7bU0teZO9rYJC/pwyOGDKcFEoJ2DRCOU19jllUu++gFyADZnt/HCvChzUvFx81yb0w=
+	t=1739531463; cv=none; b=Haw1D9bdBiiko424cijiVIpaEr10kB4TnW79kNFx3uuLjKi9d72KHla8diG5ZYDjEMC8KYngElEnSMA7t3ZcrHPxspwCVDcaLSjayIhCVTnNowHdxGT8Ct58giEaLCLKTBYoJujkMGptocqgeg8wY0fcGGvdhrsWeQyVfvU0GL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739531383; c=relaxed/simple;
-	bh=aigpur5if5MSlLy9b9P0vOHm3NgsJ9o8CLycgKukS10=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=fF/wnRAhYVc7I4Ws7H0miKnLHpuWjjtWFaL6WUQDHIRQV0dJ2GrKEOHX6nUTHePoMi3SmLA/1zzdTH2KXhGLt2CxWBmuCfcuPNkmQn/AefSgGj75dLLVQwGWeUltjWZK16Jybt263xGlrNEE1ZGikMEPvzLer+jM7ebanK9A3eA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bruugF+G; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ab7fa1bc957so355351566b.2;
-        Fri, 14 Feb 2025 03:09:41 -0800 (PST)
+	s=arc-20240116; t=1739531463; c=relaxed/simple;
+	bh=DxZVOhLjEJPHFDpuJdpUVc9PaIyKgLPZGxYXktC7+mI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uFTUSQnfwaPx9mDk9PtV2dAUdflnpjbfxz825d9jHurlkYs432rPK57OrTxM16lrFgG3U8bxTlSD245psyLeijPmEey8PJvPanvyRHag+cjkAqcChzIax2Fx/kxX+4HZC5RhGe0Ow9JuA0sRLKjt4t/03RVbbJqcb6fu+9Bv+CQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QeaxT/w6; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43967004304so4811535e9.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 03:11:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739531380; x=1740136180; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=aigpur5if5MSlLy9b9P0vOHm3NgsJ9o8CLycgKukS10=;
-        b=bruugF+GCbhCVYWdfqjzRMp3V2M7kOa8+VZJRX+T+//TO6/SaRXDzKarG1eH9mTkFd
-         FiOrvRMLvhDDHFKhUOtmIt7MvVgEA2LOK+hFX3B/fPJljdxWLWKnuPqbkzvYDzfw5Gcf
-         YfrSS1aNWhZ6arORMlk6PoITbdgR2cd97lt5Ozxby2p5DK2LRQTb6O+dNhozeXipfj71
-         LucZTco7useBEbveXC80dN0hrViPXkwCd23mG8YVL3rrS27tCZEi+7d/izJ5L9NKPmZS
-         uw2NE0qrCILbTuwyIx52I1JyrNcPuhlfJdyPAiaKxa1X0yCzZtUiy+MtpoBM1HKM1TW+
-         amHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739531380; x=1740136180;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=linaro.org; s=google; t=1739531459; x=1740136259; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aigpur5if5MSlLy9b9P0vOHm3NgsJ9o8CLycgKukS10=;
-        b=oOsLA3MgA9SvngjIgEwU98JXgwyZw7VhPrTSp1D2+wjAOlX0UX8UCsTJnGgbowXpFT
-         buQmTi+CYDkGkvVyyApmGK091lSaZaWJ+NXgHpaozJ8Gmt6cZEoS4ujUyAGhk+OLht41
-         JY+5v1hClYA3ocw4ZWV4yxPt5AkUg2ehEl+OBQzWo0YsTBlRa2HX4D5KLBOo6G+tW6PI
-         vTT9+YOz/zrrCZfVFsxiyWmU4TLHahstDVVLplyOBN0J8LH4KwQFZGzbrvJ2AJsviD+t
-         Y3fTmj5MriR3uNghwoHr6PM/qi3dInuZeb3m7BYCTnBzYM3U6wXir4yepOQOIKYx7xVk
-         yTxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUWHnyWISwNe5UtGSR1mCcdTaQNUN2ZRDoICXYsO7DyNHWh6XPJw8MuDPJwYbDG5aro+uYkJNzRhw7fiZrb@vger.kernel.org, AJvYcCVeiK5+lagghVZdkH3o3fvcCwYppjTypgTQT+yref8NXT9Ci9eiUH5bWsqkAIAmFJVIYKMeQTRaIhtE@vger.kernel.org, AJvYcCWLHEQUwmInaCw6bsSJMgp2Or/8Fay4n9jwULpN5vHJKPqXuDIpychwA56dRlrN2ko0lmv0GcUtkhS1@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOwJstWlgzpHohjHaNprxWtf67zzNWjL7OWUWTo0g6UQIsH130
-	0OSNA0J3p4B1xlp2BAeu4sBKU8qZYwcObRzlVm1yV0rCIM2m82gY
-X-Gm-Gg: ASbGnctjYL1YmrX1Dto65luXqQp53GoEIde6zxqSH5hqzaK2oCSfTyJ8/9SyZ+QUkiV
-	d8a1PGVBl4Hwoh6On0BZitbQdDsEwNE7Rnn2ZF+5YB2XlNI8gfHwcRIKcwxWo9AupW6YQ0CmXv9
-	vogJrdNQCHvW0MykFHdtrWH8yT3LT4rhg+W38wH+MIhRC/ET9liNurrl0kBM5/Kc+KidI0qnh8d
-	fvXWLP3/JP5XTIkirrDnYRu993xWTtzMev7+umdN753eEg+RxL0PfI4lOzhZCHB7SEerrT/yE58
-	mC0bVrqivB27zGyLNNc9drwG97zhBuio
-X-Google-Smtp-Source: AGHT+IEX8u4B+i9w7ZDW/hBhkVNRcW+7tzz1yY2Ss5mruSCSTtkcNIfQ5b1LN+2uvhhVxWkQSF0igw==
-X-Received: by 2002:a17:907:3e9c:b0:ab6:da18:9a3 with SMTP id a640c23a62f3a-aba5017e3bcmr646004066b.46.1739531380181;
-        Fri, 14 Feb 2025 03:09:40 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece270a7fsm2746739a12.58.2025.02.14.03.09.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2025 03:09:39 -0800 (PST)
-Message-ID: <964a016b944b459a9a914abac539350769323259.camel@gmail.com>
-Subject: Re: [PATCH v11 1/3] dt-bindings: rtc: sophgo: add RTC support for
- Sophgo CV1800 series SoC
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Inochi Amaoto <inochiama@gmail.com>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-rtc@vger.kernel.org
-Cc: Jingbao Qiu <qiujingbao.dlmu@gmail.com>, alexandre.belloni@bootlin.com, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	unicorn_wang@outlook.com, inochiama@outlook.com, paul.walmsley@sifive.com, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, dlan@gentoo.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski
-	 <krzysztof.kozlowski@linaro.org>
-Date: Fri, 14 Feb 2025 12:09:37 +0100
-In-Reply-To: <t6z6rikut2him5m57b6xubbguw3llczp4i6d5frcpuhlqihf2d@booethzadxsq>
-References: <20250213215655.2311793-1-alexander.sverdlin@gmail.com>
-	 <20250213215655.2311793-2-alexander.sverdlin@gmail.com>
-	 <t6z6rikut2him5m57b6xubbguw3llczp4i6d5frcpuhlqihf2d@booethzadxsq>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+        bh=qeZsog2iIKuGpA11cPJmZ8pu44QO3rd34voFuR0wY1Q=;
+        b=QeaxT/w6OprTesd9CwkH8JgU/2xvdKNyWCwHnlsCR7CcbohOJOAjxRKrXQ/nscm3VK
+         C/8pukwZz8fUcdXkBIYovXG1Paw2GT3yvL69EzoO6b9uVJGERPdNsjJF8d2KLDkDXW3v
+         Js0AiKZVmP3XmGktHFqWk7NM1mqNSi1JhRp0gQg0jcDHbGuem6d0/N3Q8cuVwoupDHEr
+         7/ZPqJafoQ1PVq7kn846JwCguplWfKwgU6cx9xbdDQRDjHh7YsDK6qmuO7XhIt33RFfJ
+         X23dG7oZPk22I01q5v2q5OrFLGsJIJz3x+uvwmcZ4ZFCjYjmEnf3mK7OQouSioM5VS3Y
+         9h6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739531459; x=1740136259;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qeZsog2iIKuGpA11cPJmZ8pu44QO3rd34voFuR0wY1Q=;
+        b=jSX2ldCCh3SVcmTirNTVqmb5C0VuEzTFT+P18IX4IScRU1Wwwcer/qRyy/WE2+wY0M
+         yPYO8N1iH41Bi7OtPg91EqPrw983WQ6aIUJ8sM1tK+0A93kCe2e34ShajFtjpmuTMW3a
+         QaJp+tiz21/LollCyAm9rzOvJNnrsDhJDJ2VD8pF5uTovfeu9x/94UG6AvIJo3z1JWpV
+         HEm/H0stWDYVEmloRY7nHC5tZYvE+uSgdB2wasdCoVXFS55q/kfNl0hQc3X5RLJ0vtgt
+         26H1Ejen+096IGSjOxDqNbAkKvXIU5XH73WPgUccGgLhSdR0rhKZSBm6kK/DjPUCijXh
+         oKjA==
+X-Forwarded-Encrypted: i=1; AJvYcCWtG04hMV9DifVeFFLioYAwFMdUtyDe4GsNJGnnlQBqPf/Jcj8vXcS7sBt7Fh1rqQ/kJ51q3Lru7OAV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYXM8GlMNfC+q3uSCBSA70LjoVc53IrFWX0Y5Aco/ZQ+ABRnuG
+	e7qJ3qGPgFansrkRRTZTXtPwWO5H8tmBHYtQsn691q9CM6nVRwVpdhojcpoIch8=
+X-Gm-Gg: ASbGnctOywuPgtMJMsFK0ACcINTlqpNktwfyvJGaQbkspj/6avufP0ePsbBTNBciVe3
+	Cx0pAdgVtyJ0jfmnOubL7nd7GhCOYd5byKm0AMZYTaRb86Aa6A6btUYzJY7WgHB/OlQExlAKqkf
+	9aSvOChsVcrSDe8pHd8dfxdv6ECeKNcCFJXfkxOPvBjms5nh/DwoZ57I9lCLRWFfaZl3knLK1Pb
+	X41gj0jbsRkKYkGsh09BE9jDpwjJE0WUUj74WzutZLkSKFM9fTB8BLah1WEjoX//GwdECLLBpNG
+	pxS/PcseqrLX8Eo6JAaRY6ah2g==
+X-Google-Smtp-Source: AGHT+IG0FqoM1XNBiFLdY+14wrQsmMAdQi4bqFYD8ks4h0kO06myymwcWJElrH0RMxv71I5w/kY5xw==
+X-Received: by 2002:a5d:6484:0:b0:38d:e48b:1766 with SMTP id ffacd0b85a97d-38f244d5466mr8728379f8f.6.1739531459463;
+        Fri, 14 Feb 2025 03:10:59 -0800 (PST)
+Received: from [192.168.68.163] ([145.224.90.202])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f259d5e92sm4398625f8f.66.2025.02.14.03.10.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Feb 2025 03:10:59 -0800 (PST)
+Message-ID: <44123d40-aae3-4248-95c9-21fb9335020a@linaro.org>
+Date: Fri, 14 Feb 2025 11:10:57 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 0/7] Coresight: Add Coresight TMC Control Unit driver
+To: Jie Gan <quic_jiegan@quicinc.com>
+Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
+ <mike.leach@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+References: <20250214024021.249655-1-quic_jiegan@quicinc.com>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <20250214024021.249655-1-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Inochi,
 
-On Fri, 2025-02-14 at 17:40 +0800, Inochi Amaoto wrote:
-> > +examples:
-> > +=C2=A0 - |
-> > +=C2=A0=C2=A0=C2=A0 #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +=C2=A0=C2=A0=C2=A0 rtc@5025000 {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "sophgo,cv18=
-00-rtc";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x5025000 0x2000>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <17 IRQ_TYPE=
-_LEVEL_HIGH>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&osc>;
-> > +=C2=A0=C2=A0=C2=A0 };
-> > --=20
->=20
-> Just for curiosity, Do you leave a way to implement the
-> 8051 subsys, since its registers are in rtc. (You can
-> check the chapter "8051 subsystem" of the SG2002, which
-> can be found at https://github.com/sophgo/sophgo-doc).
 
-well, I suppose, you know the answer, according to how this has been modell=
-ed
-within this series, all the functionality could only be added on top of RTC
-driver. Do you think it's time to re-design it as compatible =3D "syscon", =
-"simple-mfd"
-with children nodes for RTC and reboot?
+On 14/02/2025 2:40 am, Jie Gan wrote:
+> From: Jie Gan <jie.gan@oss.qualcomm.com>
+> 
+> The Coresight TMC Control Unit(CTCU) device hosts miscellaneous configuration
+> registers to control various features related to TMC ETR device.
+> 
+> The CTCU device works as a helper device physically connected to the TMC ETR device.
+> ---------------------------------------------------------
+>               |ETR0|             |ETR1|
+>                . \                 / .
+>                .  \               /  .
+>                .   \             /   .
+>                .    \           /    .
+> ---------------------------------------------------
+> ETR0ATID0-ETR0ATID3     CTCU    ETR1ATID0-ETR1ATID3
+> ---------------------------------------------------
+> Each ETR has four ATID registers with 128 bits long in total.
+> e.g. ETR0ATID0-ETR0ATID3 registers are used by ETR0 device.
+> 
+> Based on the trace id which is programed in CTCU ATID register of
+> specific ETR, trace data with that trace id can get into ETR's buffer
+> while other trace data gets ignored. The number of CTCU ATID registers
+> depends on the number of defined TMC ETR devices. For example, two TMC
+> ETR devices need eight ATID registers. ETR0 with ETR0ATID0-ETR0ATID3
+> and ETR1 with ETR1ATID0-ETRATID3.
+> 
+> The significant challenge in enabling the data filter function is how
+> to collect the trace ID of the source device. The introduction of
+> trace_id callback function addresses this challenge. The callback function
+> collects trace ID of the device and return it back. The trace ID will be
+> stored in the structure called coresight_path and transmitted to helper
+> and sink devices.
+> 
+> The coresight_path structure is created to address how to transmit
+> parameters needs by coresight_enable_path/coresight_disbale_path
+> functions.
+> 
+> Here is the definition of the struct coresight_path:
+> /**
+>   * struct coresight_path - data needed by enable/disable path
+>   * @path:               path from source to sink.
+>   * @trace_id:           trace_id of the whole path.
+>   */
+> struct coresight_path {
+>          struct list_head                *path;
+>          u8                              trace_id;
+> };
+> 
+> The atid_offset mentioned before is the offset to ATID register in CTCU
+> device.
+> 
+> Enabling the source device will configure one bit in the ATID register based
+> on its trace ID.
+> Disabling the source devices will reset the bit in the AITD register
+> based on its trace ID.
+> 
+> Useage:
+> Enable:
+> STM device with trace ID 5 and ETR0 is activated.
+> Bitmap before the enablement:
+> ETR0ATID0:
+> 31..................543210
+> ==========================
+> 0000000000000000000000...0
+> ==========================
+> 
+> Bitmap after the enablement:
+> 31..................543210
+> ==========================
+> 0000000000000...0000100000
+> ==========================
+> 
+> The bit 5 of the ETR0ATID0 register is configured to 1 when enabling the
+> STM device.
+> 
+> Disable:
+> STM device with trace ID 5 and ETR0 is activated.
+> Bitmap before the disablement:
+> ETR0ATID0:
+> 31................6543210
+> =========================
+> 000000000010111...0100000
+> =========================
+> 
+> Bitmap after the disablement
+> ETR0ATID0:
+> 31................6543210
+> =========================
+> 000000000010111...0000000
+> =========================
+> 
+> The bit 5 of the ETR0ATID0 register is reset to 0 when disabling the STM
+> device.
+> 
+> Sincere thanks to James Clark for providing an excellent idea to handle
+> the trace_id of the path.
+> 
 
---=20
-Alexander Sverdlin.
+No worries! Thanks for working on Coresight too.
 
 
