@@ -1,184 +1,212 @@
-Return-Path: <devicetree+bounces-146586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCEE0A357D5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:25:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF14A357F0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:34:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90D7816A982
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:25:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8A253A83F4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37D72080C7;
-	Fri, 14 Feb 2025 07:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD9EC204C2D;
+	Fri, 14 Feb 2025 07:31:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YjOlCJp4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C4013A3EC;
-	Fri, 14 Feb 2025 07:25:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5B315573F;
+	Fri, 14 Feb 2025 07:31:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739517915; cv=none; b=GkDMBz8ELiMU/OGRtdG142pNxlDWZYz/z9JC6kDWmd525FWO8LX1zFOXxfYmUC78AqjGssvN4kxsJcgRhw7G9nEZT9lz+2WYVMpr7ittdfUFsWReoruSIqKsfLjcnBKJ37gp5tTzFrR7U44T+FqBrjAr3XrQwmYa37bidZlGmNs=
+	t=1739518311; cv=none; b=PF58HZDVEh7JPCyCE2Mfs3GoFdj/aQdmjCf1sGWs+SZRv77gIrm1WwksxxnlvfiD9Pa0GJA1GwtHuuz+lXAM5ORObvXfTX/qSV6e23rY8lWudfYUH/ARSh8gmcD0+mMAUn/h5pW0QQIYINnNkfPYJ8Ye6iewUGTcFWi35mJLBTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739517915; c=relaxed/simple;
-	bh=njhTqJEMSxRhiYF56n6lamJ5BDIWXxGYG2aaHwYf2Cs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=i+Eos7n6CyZLKvpzmbjxQ6yw9VMdsSOLVVRo9Bu8UtcoSXvLiy5b+pdMjOSmvZ+w084t1IAqJPir9+Dt9PEC4ameAl5IH7OcypT3XdkIuFXAtZx9rZa1VOH4QRblOaC/s4+ttLylHv9NmOPmerUbHxhc1Y6b49d+kuQxWcLAlqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ab7483b9bf7so221528866b.3;
-        Thu, 13 Feb 2025 23:25:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739517912; x=1740122712;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l+sv0U2cyjukGfA/ZIjsFBOYnHcPPEH2EG7bSm4QAFU=;
-        b=iXl+2bkVRmwcXmw+BZ7XesSdoHQsdrfsKoFmdhpzkHsbosN79dP4M7uW2XIT2qbhoj
-         kf45LvXSA/flUbu/KTuTZzy/LOMl2RqhBO4Q7sCEhq2bsgPONBW0IirnnmH+Z+1BhDwW
-         7vLm//c7UqMxY8UE18JogkL1FP5JJVj5aJS6vg3L604opZVesu6D3GPLI1G7oZ5Gs4d4
-         NyfhiZM9WA9BJBQ0DvNOLgJM+neTXeXlqNht+mEn5VaZZ55yc1y/0A2fhmGccpQvrYPR
-         g++h+J6B5WOKHiT4cuPEtwb16LVPNc337cyuoj3B+A7jaQijEAjKb2yoL39YHqKJLKLF
-         n6Eg==
-X-Forwarded-Encrypted: i=1; AJvYcCUd2HD0xpl6c1Wyhj4TdbIGilG3tZDV6rVB/aNjVKnCpb60+Re/OyTK50F+DIp5adgltZAWW7nmaMdo@vger.kernel.org, AJvYcCUugzaG9pjnwxXlr/Tj0Ccb2NpXnmO6xTjPH3/xqdafE8boBXfPi/NtMTCrx/YjF6i5fWHSrNH4Q4t1I5nf@vger.kernel.org, AJvYcCWfcybEFoOsdbrji90wA8nKQDQuR46wAMeCxGJcowHvjtK6tnBHluzXyvlfJ/v0n55SOADEM4SoZraWHQ==@vger.kernel.org, AJvYcCXY/FwjtLj7dYkzZBHUtfuyqx94kVwAnio9nRv99nTSrYf0EmI9YjxoxUuSLv8HI04/FFpA/xJ2xtaTbTY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqQUX9Lhd+5upDVN7bCVLJd10Lm8yIZU9qp8vNxK2YAM7s1NWu
-	Uo9W4aylujYR/C0nKJFyUMY8hy7e6rnA7avgrkTlYIm7i0To87c9o71zLrxDrxc=
-X-Gm-Gg: ASbGncs8y168NGlWUL/O25O28n14muS8qSqjt8jlKjx3t3WemXrUFHXeHf5iY7zJa71
-	Ov7kSCASmggswIQCgMrTjUc3tjVtuM3C/l/9vHg8QIA+0oXfHs+7z79PjRDbuzRR1XNo/TXZPVe
-	CVPfD83zbsebKw0xu+zPVrjvrsa5kPlzMlxgSowLIRSLl52HJb+kavez1RkU6dPi6oFL3/O5YPi
-	arxd1Ebdjv10jssAcGFGWw4bP6Mb6Z4rXlc1DN7OWkGuSCskgOSwPaxIZa0SKY02GWrQcnemG1h
-	LHlBubEl1fl+5/GsWytmPgtLLd/4FbtIRpNB4ZWHPpWgfQ==
-X-Google-Smtp-Source: AGHT+IGYN5QXOKwbMA3PoZ4nlgJhwsCk9nUu8eukWyCdLmBAJzjCji3J7ZjVxS7NbsD6CtBSWBTM0Q==
-X-Received: by 2002:a17:907:1909:b0:ab7:8e0d:3d3c with SMTP id a640c23a62f3a-ab7f3473720mr1066976566b.42.1739517911597;
-        Thu, 13 Feb 2025 23:25:11 -0800 (PST)
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com. [209.85.218.50])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba532575b8sm282318966b.44.2025.02.13.23.25.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Feb 2025 23:25:11 -0800 (PST)
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ab7c501bbecso253734966b.2;
-        Thu, 13 Feb 2025 23:25:11 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU4kjCRbFIAeBlPawvEaVnCEIRc9APHHJzqs9KSGbpD2QrdxoFXZ3rLvlhRukWF54Mpsgxhhha4R9ZRMA==@vger.kernel.org, AJvYcCUhXFYeT2k59uC5sqK2dnd7hU8D9kUvCmacTCWoaLs/tY4iAw8lAHIb6BNZVPwWmP5BxD0B2/YkE6x8wcY0@vger.kernel.org, AJvYcCWTuW8Jf0YrTXECI7f87pktHVcBmwRK7ziGdkxE143Pd7dWZgWkDSOMGB2lZcR+M1Hlq/72X+/MGlIQ@vger.kernel.org, AJvYcCXLtYqw5ol7lrm0k0apAqJMD5ypJ8G3T0PSpWOPD/FAtTU945NjhbL03Ry2ADMVHg/7Dd6aXTLY4kWwE9k=@vger.kernel.org
-X-Received: by 2002:a17:907:1909:b0:ab7:8e0d:3d3c with SMTP id
- a640c23a62f3a-ab7f3473720mr1066973166b.42.1739517910868; Thu, 13 Feb 2025
- 23:25:10 -0800 (PST)
+	s=arc-20240116; t=1739518311; c=relaxed/simple;
+	bh=EsbfD+8oMBZkVT1buE8QyRwtFHnJ7VZicSc4qxAQLDQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VGFPkqxNY6rhZQh2z1mvoNGDRRRE7SZpbeT/PgtbTJFDkPiJYRi4a3gV31w4THdioUCMXWykOPU2VNhMsaGvYRRHkx5PLrqfO2nzz/VwKO9y1rwG3bMRAxjag5Z2WAbJMs6lxA6UK5VKaPyU/4nUiHMoGz2G0vl9IgKh9boVl6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YjOlCJp4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D125C4CED1;
+	Fri, 14 Feb 2025 07:31:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739518311;
+	bh=EsbfD+8oMBZkVT1buE8QyRwtFHnJ7VZicSc4qxAQLDQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YjOlCJp45+yDX9k1uwXIa1NHpftUNJtyfYG0hmKABYAbro0g5pIf5VsHJGD2XKbNH
+	 Zh2TdyV+4jUhT0YHXMPDGRLs21J4cSbafY9uSKecbSq865Kea/aK+cg5E27coCG8pV
+	 CugXfYtw7xLQn8waXZoIA7tRs0yPxoQXyQ1f2N+gF3bEP3n0w3ojxk04uMx/UBoChm
+	 TDqHUnyg1C6oxt6BzfZ9sz6eOlRmVB+gEKTecAS1mo9CY7ZYP86OrCRMQyu29Ybarl
+	 HVI43Pntwv+/XrDliP3PgcmDpy6rfI6N+7CN9WC5Rf7JAoV5xU3RnO9Jp6vweyFznd
+	 MYPv8XNJ+OJwQ==
+Message-ID: <7d50f55d-d0cd-4741-ab55-2f54dc45d6ab@kernel.org>
+Date: Fri, 14 Feb 2025 08:31:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250214040306.16312-1-towinchenmi@gmail.com>
-In-Reply-To: <20250214040306.16312-1-towinchenmi@gmail.com>
-From: Neal Gompa <neal@gompa.dev>
-Date: Fri, 14 Feb 2025 02:24:34 -0500
-X-Gmail-Original-Message-ID: <CAEg-Je88-zfnD+Yx7GdxMaG8NZBBjDGZJJ33D0kUyYnAhMhrDA@mail.gmail.com>
-X-Gm-Features: AWEUYZmee1G4NO9TTRkSGcwt1I0mLzwp9RPxwW1Z78u96Fa7SXff07gmHN3DsJ8
-Message-ID: <CAEg-Je88-zfnD+Yx7GdxMaG8NZBBjDGZJJ33D0kUyYnAhMhrDA@mail.gmail.com>
-Subject: Re: [PATCH v6 0/3] Apple DWI backlight driver
-To: Nick Chan <towinchenmi@gmail.com>
-Cc: Janne Grunau <j@jannau.net>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Lee Jones <lee@kernel.org>, 
-	Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Helge Deller <deller@gmx.de>, asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: net: Add FSD EQoS device tree
+ bindings
+To: Swathi K S <swathi.ks@samsung.com>
+Cc: krzk+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ conor+dt@kernel.org, richardcochran@gmail.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250213044624.37334-1-swathi.ks@samsung.com>
+ <CGME20250213044955epcas5p110d1e582c8ee02579ead73f9686819ff@epcas5p1.samsung.com>
+ <20250213044624.37334-2-swathi.ks@samsung.com>
+ <20250213-adorable-arboreal-degu-6bdcb8@krzk-bin>
+ <009a01db7e07$132feb60$398fc220$@samsung.com>
+ <27b0f5c5-ae51-4192-8847-20e471c55be7@kernel.org>
+ <00ad01db7e9c$76c288a0$644799e0$@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <00ad01db7e9c$76c288a0$644799e0$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 13, 2025 at 11:04=E2=80=AFPM Nick Chan <towinchenmi@gmail.com> =
-wrote:
->
-> Apple SoCs come with a 2-wire interface named DWI. On some iPhones, iPads
-> and iPod touches the backlight controller is connected via this interface=
-.
-> This series adds a backlight driver for backlight controllers connected
-> this way.
->
-> Changes since v5:
-> - Remove default y from drivers/video/backlight/Kconfig
->
-> v5: https://lore.kernel.org/asahi/20250203115156.28174-1-towinchenmi@gmai=
-l.com/T
->
-> Changes since v4:
-> - Change type to BACKLIGHT_PLATFORM since the driver does not directly
-> interface with the backlight controller. The actual backlight controller
-> can be directly controlled via i2c and is not the same on all hardware
-> that supports the dwi interface.
-> - Rename file to apple_dwi_bl.c to better match config option.
-> - Rename driver to apple-dwi-bl to better match config option
-> - Indicate that the backlight scales linearly
->
-> v4: https://lore.kernel.org/asahi/20241211113512.19009-1-towinchenmi@gmai=
-l.com/T
->
-> Changes since v3:
-> - $ref to common.yaml in bindings
-> - (and then additionalProperties is changed to unevaluatedProperties)
-> - Use hex everywhere in bindings example
-> - Use sizeof(*dwi_bl) instead of the type of the struct when doing
-> devm_kzalloc()
-> - Use devm_platform_get_and_ioremap_resource() in driver
-> - Fix sorting in drivers/video/backlight/Makefile
-> - In drivers/video/backlight/Kconfig, move config to right after
-> BACKLIGHT_APPLE
-> - Explain this driver being completely different from apple_bl
->
-> v3: https://lore.kernel.org/asahi/20241209075908.140014-1-towinchenmi@gma=
-il.com/T
->
-> Changes since v2:
-> - Add missing includes in driver
-> - Fix file path in MAINTAINERS
->
-> v2: https://lore.kernel.org/asahi/20241207130433.30351-1-towinchenmi@gmai=
-l.com/T
->
-> Changes since v1:
-> - Fixed dt-bindings $id.
-> - Make power-domains an optional property in dt-bindings.
-> - Added missing error checking after devm_ioremap_resource() in
-> dwi_bl_probe().
->
-> v1: https://lore.kernel.org/asahi/20241206172735.4310-1-towinchenmi@gmail=
-.com/T
->
-> Nick Chan
->
-> ---
-> Nick Chan (3):
->   dt-bindings: leds: backlight: apple,dwi-bl: Add Apple DWI backlight
->   backlight: apple_dwi_bl: Add Apple DWI backlight driver
->   MAINTAINERS: Add entries for Apple DWI backlight controller
->
->  .../bindings/leds/backlight/apple,dwi-bl.yaml |  57 ++++++++
->  MAINTAINERS                                   |   2 +
->  drivers/video/backlight/Kconfig               |  11 ++
->  drivers/video/backlight/Makefile              |   1 +
->  drivers/video/backlight/apple_dwi_bl.c        | 123 ++++++++++++++++++
->  5 files changed, 194 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/appl=
-e,dwi-bl.yaml
->  create mode 100644 drivers/video/backlight/apple_dwi_bl.c
->
->
-> base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
-> --
-> 2.48.1
->
->
+On 14/02/2025 05:53, Swathi K S wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: 13 February 2025 17:31
+>> To: Swathi K S <swathi.ks@samsung.com>
+>> Cc: krzk+dt@kernel.org; andrew+netdev@lunn.ch; davem@davemloft.net;
+>> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
+>> robh@kernel.org; conor+dt@kernel.org; richardcochran@gmail.com;
+>> mcoquelin.stm32@gmail.com; alexandre.torgue@foss.st.com;
+>> rmk+kernel@armlinux.org.uk; netdev@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-stm32@st-md-mailman.stormreply.com;
+>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH v6 1/2] dt-bindings: net: Add FSD EQoS device tree
+>> bindings
+>>
+>> On 13/02/2025 12:04, Swathi K S wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>>>> Sent: 13 February 2025 13:24
+>>>> To: Swathi K S <swathi.ks@samsung.com>
+>>>> Cc: krzk+dt@kernel.org; andrew+netdev@lunn.ch;
+>> davem@davemloft.net;
+>>>> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
+>>>> robh@kernel.org; conor+dt@kernel.org; richardcochran@gmail.com;
+>>>> mcoquelin.stm32@gmail.com; alexandre.torgue@foss.st.com;
+>>>> rmk+kernel@armlinux.org.uk; netdev@vger.kernel.org;
+>>>> devicetree@vger.kernel.org; linux-stm32@st-md-
+>> mailman.stormreply.com;
+>>>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+>>>> Subject: Re: [PATCH v6 1/2] dt-bindings: net: Add FSD EQoS device
+>>>> tree bindings
+>>>>
+>>>> On Thu, Feb 13, 2025 at 10:16:23AM +0530, Swathi K S wrote:
+>>>>> +  clock-names:
+>>>>> +    minItems: 5
+>>>>> +    maxItems: 10
+>>>>> +    contains:
+>>>>> +      enum:
+>>>>> +        - ptp_ref
+>>>>> +        - master_bus
+>>>>> +        - slave_bus
+>>>>> +        - tx
+>>>>> +        - rx
+>>>>> +        - master2_bus
+>>>>> +        - slave2_bus
+>>>>> +        - eqos_rxclk_mux
+>>>>> +        - eqos_phyrxclk
+>>>>> +        - dout_peric_rgmii_clk
+>>>>
+>>>> This does not match the previous entry. It should be strictly ordered
+>>>> with
+>>>> minItems: 5.
+>>>
+>>> Hi Krzysztof,
+>>> Thanks for reviewing.
+>>> In FSD SoC, we have 2 instances of ethernet in two blocks.
+>>> One instance needs 5 clocks and the other needs 10 clocks.
+>>
+>> I understand and I do not think this is contradictory to what I asked.
+>> If it is, then why/how?
+>>
+>>>
+>>> I tried to understand this by looking at some other dt-binding files
+>>> as given below, but looks like they follow similar approach
+>>> Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+>>> Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+>>>
+>>> Could you please guide me on how to implement this?
+>>> Also, please help me understand what is meant by 'strictly ordered'
+>>
+>> Every other 99% of bindings. Just like your clocks property.
+> 
+> Hi Krzysztof,
+> Thanks for your feedback.
+> I want to make sure I fully understand your comment. 
+> I can see we have added clocks and clock names in the same order.
 
-Series LGTM.
+No, you did not. You can see syntax is very different - one uses items,
+other uses contains-enum. And now test it, change the order in DTS and
+see if you see any warning.
 
-Reviewed-by: Neal Gompa <neal@gompa.dev>
+> Could you please help in detail what specifically needs to be modified regarding the ordering and minItems/maxItems usage?
+You did not try hard enough.
 
+Open other bindings and look how they list clocks. For example any
+Samsung clock controller bindings. Or any qcom bindings.
 
---=20
-=E7=9C=9F=E5=AE=9F=E3=81=AF=E3=81=84=E3=81=A4=E3=82=82=E4=B8=80=E3=81=A4=EF=
-=BC=81/ Always, there's only one truth!
+Best regards,
+Krzysztof
 
