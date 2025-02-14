@@ -1,125 +1,204 @@
-Return-Path: <devicetree+bounces-146683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 566EAA35D30
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:58:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5885A35D3C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:02:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31B0D188E1C4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 11:55:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 569C11684AD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:00:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC2B5263C73;
-	Fri, 14 Feb 2025 11:54:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5613625D548;
+	Fri, 14 Feb 2025 12:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kWmxyq49"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BCxOplsl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC73221541;
-	Fri, 14 Feb 2025 11:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8940C1DD9AC;
+	Fri, 14 Feb 2025 12:00:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739534075; cv=none; b=jDcL5QVBE33c9zp3xW8nIqLCXliI6uDmsmNUYAmul6ZLGTOn+LS222iHOqFiHye+sB/rxlitql6fzIlN5O8swv3i/UYKfz5QvXsIQKun4f+CDwEJvI41MC882KWKAOwliw0VJ8HhyNLpN4O0C6FqXs8wBjWuGgAnQjeos8YG5w4=
+	t=1739534422; cv=none; b=kSwkXPFDcRXfxWruNmrGtSYqdUKBTQvxKo/VNez9/On7vdWFPde/tJjlaH1JNmb9usgFSYnpUYL5ll7j9sMrzsPt/DdkKboyCuDi8bEI6WAxUD2JvmBU63wP9GHDW8KY8+1plsOZpGMxVppEHzTpbHPieouQHOw5Q3gY+wT9WHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739534075; c=relaxed/simple;
-	bh=HI8EwoC0v/mnJcoRwvIyzMEB3LbRz6V2OsbB0TGXVsk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=sCnJmOKTOi6uKNptMTR4DkBFQDgiumNkV4tE5LQ+VbVWnC0CwaYOE7XLjYNx0ajy1c8qabliFHZKhJQ8Z5zDyPlRrLsY0k+8ymZBR2W1preOLc9z7T0v406fzZ6ZOA97mTUWQElhzUKEBj9F24aVlQljgSL7d2VFPtx5zgEb6tw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kWmxyq49; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8CE7D43297;
-	Fri, 14 Feb 2025 11:54:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739534070;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WvZmD9qQBpCHdGYAx46m4LzLnVpR1HzltuJ00ZwvJPs=;
-	b=kWmxyq49z3w8rvPqklSR4cZKhIzTAZrdVYqsPH/3vxHdX1CDu1xRFLUXxoVZBbXMr3R6Kc
-	L8SMWnLd0QK/xls1QVTNObfCDNHXo0dM6x925LGxhmIkUMak57Z7E9iMK7Smy/hUbEOow2
-	9iZ6/51rYMOGUFy+fy2USGSVuKYI41BWuzABzpazWfwhWBIod9Pw1cUtbVuEYW1w8If3i1
-	f7yEczLbvYGdztdETdwf4vKQvL7gl3Sg1Sa83cWWSRTiCaflLE4jNe7VX6JfckqXgqcFhj
-	et2jjbDPEwfs6OMvJlHAZ68ICr0q3Ocgd9GpnWuetsTMZciR/cga4CmI0+B24g==
+	s=arc-20240116; t=1739534422; c=relaxed/simple;
+	bh=ggYQkjTmochz2xeS9LX4BGs7YZbV0H9wrud7PJQNKxE=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=ofAr5pT7mqPvw9WjIfvH8cfexzRuAd54UOxYazENBNf2RSF6OBW39O/Dc+clR3NNXg6Pfiklbr9i8k9/5wZWqdMBZQmCWqKFKHv6s86nXcIX31P7A6+d7ep+iCRR1WE2/uhwYZAVRmrdubqKWR10fOW1t3eJ9LwCpigvyIcJ+JU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BCxOplsl; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5d9837f201aso6042328a12.0;
+        Fri, 14 Feb 2025 04:00:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739534419; x=1740139219; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GI3W9qR1fQieAycCsuIaEjCDuBJjNXKEwknKksP2WWw=;
+        b=BCxOplslPR4o3bQwRhlSaXsSio1/RaYUBQFkrCsCVNvF2NNAa5YZfVRbi8PRBsakvY
+         PXMdO00th9Co7aldDFAcgK6oAohsr1vBONCrILGnXyUegxYK+XWYMMCLv2ABkAWuw6AD
+         iTXFRlVoVGpUNrwqMKFUeXGTC8tRo/VQ7yGeSF7sDvd34ptBQXfCnMkmIKuQVc3UHnIV
+         TChT90AYGWRNoAJhTK/YPdAzTbsdYsIgFJwLKkZHbM3DK4sl6wWFpYjUPp+CSjh4knz/
+         tRUIz8GnPYSIMfXi8+LZoR2mbRGajqjyPOJKiZ9HhHKNJIBqwJe03Atz3qwrLjeCPKCG
+         rIgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739534419; x=1740139219;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GI3W9qR1fQieAycCsuIaEjCDuBJjNXKEwknKksP2WWw=;
+        b=BELzR8O5v3Tzb/RT/xg+1+PjRJUCdn4R9E/HEMF6WOk5u0+BE/9lvhvwvzr28B15L8
+         ECRz4HqbSkyG5S/hjU9Hj7xkiBZk42trsS/UfgvIZ1Ivrt5L9Nag3wZjymlDN7Hy/lZe
+         45oSejc6lrTvbV201bK++gyshazdBzTZLRqBzkGj2Ea5C3lCwss4grDX4AFwzpH5bzJi
+         Jw5L6CYoYNWwSRqHhhHgxD4e1IzBM/6+3lVPC0o6lex2tSOowjyxerKLw7IUCtXqMO4A
+         EZuj0kH85IzyPzicxo5/qH62ufOpXwxdy968OEI1Xk6FgUJB3MYT4OgTbxxNtePZs7EO
+         rzpg==
+X-Forwarded-Encrypted: i=1; AJvYcCUGbVwuVYFZDPiIj4Z1jRrVO1xjOvIVSFnV128LgKKm262SoIvRIq9WrcaVaBYYrK6GiH4+iX/d1j8v9MPL@vger.kernel.org, AJvYcCVPkyFwciE5SKLQTTAogBwcb4/dmo8khUebVRLfeMQxEbzFh8abKv1oZKg+LDl8imDjfnZIvynilOdW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3EhaSak703U91SKNIQC87xRVtRlwS/vpgUBOHz5OY04+YtB8S
+	ZDLSZvEPUs06jYj3A4om9GXhLdZan5qs02/DLGg1xlBPAmnPW/0oa7z11Z6h
+X-Gm-Gg: ASbGncuaSf0ZtBB2VagVGQy+ApRZO9HzI+eO+C+EfBmHX0AwA2Tk+8qFOeShBVODn1O
+	r17cwwUAZaseI5Tn+HRPhAsy5x+Ei1M/RMe3McJWDHtcSpW08asTIR4qKxPpERMnGSoA/rShNEI
+	3KZk/c2du+AxHOAd4lioZTLhpcZSCjqK8ZcutGuBDe7YYyE8J2UzAfS2g9Tu90mvdt2eqrrJQWy
+	/VF47rf/L3ZNyf9Cs/dhZEGkvb2q9IwuZzUaEpNaYDLINf3IxOGntSKkevGhH1XH3+ZUt9suZya
+	kD4+873TvfhqsNG6osenfQwvTJW1bdv8ppbKNA8bRikJZjPBa67UuX5E2dBlT0aXhhzTnE0y
+X-Google-Smtp-Source: AGHT+IEuZ76Lk8B5kT7BpvuBO88bUmgM7KzRYxZvjjTT1LTHSgCtEgbI85Tx+usx0aBQ6F7U8VS0vA==
+X-Received: by 2002:a17:906:fe02:b0:ab7:c11:a980 with SMTP id a640c23a62f3a-aba510aecf0mr643697766b.17.1739534416957;
+        Fri, 14 Feb 2025 04:00:16 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1c416asm2819667a12.18.2025.02.14.04.00.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 14 Feb 2025 04:00:15 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
+Subject: Re: [PATCH v6 00/14] Add eDP support for RK3588
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <tg6eyew4qahuxqakmmejne7xx2rkouj6htp55acun4ajz2irz2@vlmvqv3zc5vc>
+Date: Fri, 14 Feb 2025 13:00:03 +0100
+Cc: Damon Ding <damon.ding@rock-chips.com>,
+ heiko@sntech.de,
+ robh@kernel.org,
+ conor+dt@kernel.org,
+ algea.cao@rock-chips.com,
+ rfoss@kernel.org,
+ devicetree@vger.kernel.org,
+ linux-phy@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ hjc@rock-chips.com,
+ kever.yang@rock-chips.com,
+ dmitry.baryshkov@linaro.org,
+ vkoul@kernel.org,
+ andy.yan@rock-chips.com,
+ krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ l.stach@pengutronix.de
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 14 Feb 2025 12:54:29 +0100
-Message-Id: <D7S5D37XT80H.2WLFX1D18TZ6P@bootlin.com>
-Subject: Re: [PATCH v4 07/10] gpio: max7360: Add MAX7360 gpio support
-Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>, "Lee Jones"
- <lee@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
- <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, "Michael Walle" <mwalle@kernel.org>, "Mark Brown"
- <broonie@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
- <dakr@kernel.org>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
- <20250214-mdb-max7360-support-v4-7-8a35c6dbb966@bootlin.com>
-In-Reply-To: <20250214-mdb-max7360-support-v4-7-8a35c6dbb966@bootlin.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdegleehlecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggfgtgffkffuvefhvffofhgjsehtqhertdertdejnecuhfhrohhmpedfofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugdfuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkeehhffhlefhkeejueegtdduleeuteffjeffhfekieevvdevlefgteefleevtedvnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhrt
- ghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+Message-Id: <C81810F2-6E9B-4DCC-85D1-CCB63CBFBFEA@gmail.com>
+References: <20250123100747.1841357-1-damon.ding@rock-chips.com>
+ <5044FFCB-B325-40D0-BA82-03AF64EAF029@gmail.com>
+ <tg6eyew4qahuxqakmmejne7xx2rkouj6htp55acun4ajz2irz2@vlmvqv3zc5vc>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+X-Mailer: Apple Mail (2.3826.400.131.1.6)
 
-On Fri Feb 14, 2025 at 12:49 PM CET, Mathieu Dubois-Briand wrote:
-> Add driver for Maxim Integrated MAX7360 GPIO/GPO controller.
->
-> Two sets of GPIOs are provided by the device:
-> - Up to 8 GPIOs, shared with the PWM and rotary encoder functionalities.
->   These GPIOs also provide interrupts on input changes.
-> - Up to 6 GPOs, on unused keypad columns pins.
->
-> Co-developed-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-> ---
-...
-> +static int max7360_gpio_probe(struct platform_device *pdev)
-...
-> +	} else {
-> +		u32 ngpios;
-> +
-> +		ret =3D device_property_read_u32(dev, "ngpios", &ngpios);
-> +		if (ret < 0) {
-> +			dev_err(dev, "Missing ngpios OF property\n");
-> +			return ret;
-> +		}
-> +
-> +		gpio_config.reg_set_base =3D GPIO_REGMAP_ADDR(MAX7360_REG_PORTS);
-> +		gpio_config.reg_mask_xlate =3D max7360_gpo_reg_mask_xlate;
-> +		gpio_config.ngpio =3D ngpios;
 
-The device_property_read_u32() and setting of gpio_config.ngpio here
-will be removed, once the "gpio: regmap: Make use of 'ngpios' property"
-series gets merged.
 
-https://lore.kernel.org/linux-gpio/20250213195621.3133406-1-andriy.shevchen=
-ko@linux.intel.com/
+> Wiadomo=C5=9B=C4=87 napisana przez Sebastian Reichel =
+<sebastian.reichel@collabora.com> w dniu 13 lut 2025, o godz. 18:26:
+>=20
+> Hello Piotr,
+>=20
+>=20
+> The RK3588 has two different DP controllers. The one handled in this
+> series should get the eDP port running, which is routed to the
+> "eDP Panel" in the block diagram on page 3 of the Rock 5 ITX =
+schematics.
+> So this series adds support for using "HDMI/eDP TX0" and "HDMI/eDP =
+TX1"
+> in DP mode.
+>=20
+> The port routed to HDMI0 via RA620 is the other DP controller, which
+> also exists twice: "TYPEC0/DP0" and "TYPEC1/DP1". This DP controller
+> is not yet supported upstream and there is no pending patchset. As far
+> as I know Rockchip plans to work on preparing upstream support for =
+that
+> soon.
+>=20
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Oh - this is very valuable info and explains a lot.
+Thx.=20
+
+> Note, that the two DisplayPort controllers are completely different.
+> The HDMI/eDP controller is a design from Analogix and the TypeC/DP
+> controller is a design from Synopsys.
+>=20
+> P.S.: Heiko merged support for HDMI1 (RK3588 SoC level) recently. So =
+you
+> should be able to get that running by some DT additions to the Rock 5
+> ITX board DT with the latest linux-next code :)
+>=20
+
+And it works perfectly on all my 3588 bards (including audio and my cec =
+addition)
+But only on boards using both hdmi tx0 and tx1 to hdmi0/hdmi1 ports.
+
+on rock5 itx: =20
+
+With both hdmi tx0 and tx1 enabled in dts it looks like kernel detects =
+hdmi tx0 as connected and tries read edid.=20
+As nothing is connected to J11 (eDP con) - i=E2=80=99m getting i2c ddc =
+timeouts=20
+[   54.188880] dwhdmiqp-rockchip fde80000.hdmi: i2c read timed out
+[   54.292207] dwhdmiqp-rockchip fde80000.hdmi: i2c read timed out
+[   54.395554] dwhdmiqp-rockchip fde80000.hdmi: i2c read timed out
+
+
+disabling hdmi0 makes kernel talking to hdmi1 but with issues:=20
+[    0.540446] dwhdmiqp-rockchip fdea0000.hdmi: registered DesignWare =
+HDMI QP I2C bus driver
+[    0.541230] rockchip-drm display-subsystem: bound fdea0000.hdmi (ops =
+dw_hdmi_qp_rockchip_ops)
+[    0.542285] [drm] Initialized rockchip 1.0.0 for display-subsystem on =
+minor 0
+[    0.542933] rockchip-drm display-subsystem: [drm] Cannot find any =
+crtc or sizes
+[    0.543605] rockchip-drm display-subsystem: [drm] Cannot find any =
+crtc or sizes
+
+and here i=E2=80=99m a bit puzzled as on other 3588 boards (i.e. rock5b) =
+- when i connected monitor to hdmi1 - all works perfectly
+(kernel, OS and app nicely skipping hdmi0 and talking to actually =
+connected hdmi1 port. all works)=20
+
+on rock5 itx this not works.
+
+my observations so far are:
+-on rock5 itx hdmi0 is falsely detected as connected - even when eDP =
+connector (J11) has nothing connected
+-on rock5 itx disabling hdmi0 in dts breaks hdmi1=20
+-on other 3588 (e.g. rock 5b) disabling hdmi0 in dts NOT breaks hdmi1 =20=
+
+
+strange=E2=80=A6.
+
+  =20
+
+> Greetings,
+>=20
+> -- Sebastian
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
 
